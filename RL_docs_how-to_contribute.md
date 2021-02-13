@@ -2,15 +2,15 @@
 
 ## Introduction ##
 
-So you want to contributed documentation to the new Rock Linux project, but aren't sure how to go about that? Well if so, You've come to the right place. We're excited to have you on board with us. One of our big goals for Rocky is to have not just good, but GREAT documentation, and we can't do it alone. This document will let you know how to contribute and will (hopefully) take away any worry you might have about doing so. We're always here to help, too, so feel free to ask questions and join in the conversation.
+So you want to contribute documentation to the new Rock Linux project, but aren't sure how to go about that? Well if so, You've come to the right place. We're excited to have you on board with us. One of our big goals for Rocky is to have not just good, but GREAT documentation, and we can't do it alone. This document will let you know how to contribute and will (hopefully) take away any worry you might have about doing so. We're always here to help, too, so feel free to ask questions and join in the conversation.
 
 ## Document Subject Matter ##
 
-If you can dream it, or better yet have done it before, then your subject matter is probably important to the Rocky Linux documentation. Once a build is finally out there, then we expect that documentation will really start to explode, but we want to be ready with some things already documented out of the gate. This is where you come in-both now and in the future. If you have experience with something in Linux, and can translate that to Rocky Linux, then we want you to start writing!
+If you can dream it, or better yet have done it before, then your subject matter is probably important to the Rocky Linux documentation project. Once a build is finally out there, then we expect that documentation will really start to explode, but we want to be ready with some things already documented out of the gate. This is where you come in-both now and in the future. If you have experience with something in Linux, and can translate that to Rocky Linux, then we want you to start writing!
 
 ## Where to Start ##
 
-While you can create documentation in any format, the preferred format is Markdown. You can easily create documents in Markdown, plus Mardown is super-easy to learn. The best way to get started with Markdown is to have a Markdown editor installed and read the tutorial. You can create Mardown files with any text editor, but most Markdown editors allow you to preview what you've input already, so they can be very helpful. 
+While you can create documentation in any format, the preferred format is Markdown. You can easily create documents in Markdown, plus Markdown is super-easy to learn. The best way to get started with Markdown is to have a Markdown editor installed and read the tutorial. You can create Mardown files with any text editor, but most Markdown editors allow you to preview what you've input already, so they can be very helpful. 
 
 ### Markdown Editor ###
 
@@ -26,7 +26,7 @@ Rocky Linux, like loads of other projects out there, uses Git. In order to submi
 
 ### From Git GUI ###
 
-Most tasks can be completed from the web gui on Git. Here's and example of adding a file you've created on your local machine to the Git repository.
+Most tasks can be completed from the web gui on Git. Here's an example of adding a file you've created on your local machine to the Git repository.
 
 1. Login to your Git account.
 2. Navigate to the Rock Linux Documentation at [https://github.com/rocky-linux/documentation.git](https://github.com/rocky-linux/documentation.git)
@@ -38,13 +38,14 @@ Most tasks can be completed from the web gui on Git. Here's and example of addin
 
 ### From Git Command-Line ###
 
-If you prefer, though, and would like to run Git locally on your own machine, you can clone the Rocky Linux Documentation, make changes, and then do a commit changes afterwards.
+If you prefer, though, and would like to run Git locally on your own machine, you can clone the Rocky Linux Documentation, make changes, and then do a commit changes afterwards. To make things super-easy, do steps 1-3 on *From Git Gui* above then:
 
-1. Git clone the repository `git clone https://github.com/rocky-linux/documentation.git`
+1. Git clone the repository `git clone https://github.com/your_fork_name/documentation.git`
 2. Now, on your own machine, add files to the directory. Example: `mv /home/myname/help.md /home/myname/documentation/`
 3. Next, run git add for that file name. Example:  `git add help.md`
 4. Now, run git commit for the changes you have made. Example: `git commit -m "Added the help.md file"
-5. Finally, do the pull request. Example: `git pull
+5. Next, push your changes to your forked repository: `git push https://github.com/your_fork_name/documentation main`
+6. Next, we repeat step 6 and 7 above: ...create a Pull Request. This request lets the upstream administrators know that you've got a new file (or files) that you would like them to merge with the master. Click on "Pull Request" in the upper-left of the screen
 
 Once all of that is done, you simply wait for confirmation that your request has been successfully merged. 
 
