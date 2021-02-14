@@ -1,10 +1,10 @@
-# Rock Linux Documentation How-To Contribute Guide #
+# Rocky Linux Documentation How-To Contribute Guide #
 
 ## Introduction ##
 
-So you want to contribute documentation to the new Rock Linux project, but aren't sure how to go about that? Well if so, You've come to the right place. We're excited to have you on board with us. One of our big goals for Rocky is to have not just good, but GREAT documentation, and we can't do it alone. This document will let you know how to contribute and will (hopefully) take away any worry you might have about doing so. We're always here to help, too, so feel free to ask questions and join in the conversation.
+So you want to contribute documentation to the new Rocky Linux project, but aren't sure how to go about that? Well if so, You've come to the right place. We're excited to have you on board with us. One of our big goals for Rocky is to have not just good, but GREAT documentation, and we can't do it alone. This document will let you know how to contribute and will (hopefully) take away any worry you might have about doing so. We're always here to help, too, so feel free to ask questions and join in the conversation.
 
-## Document Subject Matter ##
+## Documentation Subject Matter ##
 
 If you can dream it, or better yet have done it before, then your subject matter is probably important to the Rocky Linux documentation project. Once a build is finally out there, then we expect that documentation will really start to explode, but we want to be ready with some things already documented out of the gate. This is where you come in-both now and in the future. If you have experience with something in Linux, and can translate that to Rocky Linux, then we want you to start writing!
 
@@ -29,7 +29,7 @@ Rocky Linux, like loads of other projects out there, uses Git. In order to submi
 Most tasks can be completed from the web gui on Git. Here's an example of adding a file you've created on your local machine to the Git repository.
 
 1. Login to your Git account.
-2. Navigate to the Rock Linux Documentation at [https://github.com/rocky-linux/documentation.git](https://github.com/rocky-linux/documentation.git)
+2. Navigate to the Rocky Linux Documentation at [https://github.com/rocky-linux/documentation.git](https://github.com/rocky-linux/documentation.git)
 3. You should be on the "Main" branch, so check the drop down label down in the middle section, just to be sure you are. Your document might not ultimately end up in the "Main" branch, but admins will move it around where it logically fits later. On the right-hand side of the page, click the "Fork" button, which will create your own copy of the documentation.
 4. In the middle of the page on the forked copy, just to the left of the Green "Code" drop down, is an "Add file" button. Click this and choose the "Upload files" option.
 5. This will give you a way to either drag and drop files here, or to browse to them on your computer. Go ahead and use the method you are most comfortable with.
