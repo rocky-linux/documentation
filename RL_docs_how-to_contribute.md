@@ -14,11 +14,11 @@ While you can create documentation in any format, the preferred format is Markdo
 
 ### Markdown Editor ###
 
-As we've said already, the best way to create Markdown files, particularly if you've not done it before, is to grab an editor for the operating system that you use on your PC or Laptop. A simple web search for "Markdown editors" will show you a bunch to choose from. Pick one that is compatible with your OS and get started. This particular How-To doc was created with ReText, a cross-platform Markdown editor. Again, if you'd prefer to create your Markdown files in your own text editor that you are already familiar with, that's no problem at all.
+As we've said already, the best way to create Markdown files, particularly if you've not done it before, is to grab an editor for the operating system that you use on your PC or Laptop. A simple web search for "Markdown editors" will show you a bunch to choose from. Pick one that is compatible with your OS and get started. This particular How-To doc was created with [ReText](https://github.com/retext-project/retext), a cross-platform Markdown editor. Again, if you'd prefer to create your Markdown files in your own text editor that you are already familiar with, that's no problem at all.
 
 ### Markdown Tutorial ###
 
-You can get a good feel on how to write Markdown files, by taking a look at [Mastering Markdown](hhttps://guides.github.com/features/mastering-markdown/). This online resource will get you up-to-speed in no time. 
+You can get a good feel on how to write Markdown files, by taking a look at [Mastering Markdown](https://guides.github.com/features/mastering-markdown/). This online resource will get you up-to-speed in no time. 
 
 ## Using Git ##
 
