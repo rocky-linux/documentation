@@ -21,7 +21,7 @@ You don't need to be some sort of programming expert (though it helps) or god-le
     * Technically correct and working as intended.
     * Easily read and understood.
 
-One last note: I *really* shouldn't have to say this next bit, but this is the internet, and the internet is a strange place: 
+One last note... I *really* shouldn't have to say this next bit, but this is the internet, and the internet is a strange place: 
 
 *Don't put anything racist, sexist, or otherwise horrible in your documentation.* And put a lid on the really dark humor, 'cause lots of people just aren't ready to see that when they just want to get LiteSpeed up and running with WordPress, or their docker container's being fussy.
 
