@@ -8,7 +8,7 @@ One of our big goals for Rocky is to have not just good, but GREAT documentation
 
 ## Documentation Subject Matter
 
-If you can dream it, or better yet have done it before, then your subject matter is probably important to the Rocky Linux documentation project. Once a build is finally out there, then we expect that documentation will really start to explode, but we want to be ready with some things already documented out of the gate. 
+If you can dream it — or better yet, have done it before — then your subject matter is probably important to the Rocky Linux documentation project. Once a build is finally out there, then we expect that documentation will really start to explode, but we want to be ready with some things already documented out of the gate. 
 
 This is where you come in — both now and in the future. If you have experience with anything Linux-related, and can translate that to Rocky Linux, then we want you to start writing!
 
