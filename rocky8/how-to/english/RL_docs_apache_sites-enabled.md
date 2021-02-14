@@ -1,4 +1,4 @@
-# Apache Web Server Multi-Site Setup #
+# Apache Web Server Multi-Site Setup 
 
 Rocky Linux has many ways for you to setup a web site. This is just one method using Apache and designed for use as a multi-site setup on a single server. While this method is designed as multi-site, it can also act as a base configuration for a single site server as well. As far as the origin of this method, it appears to have started with Debian based systems, but it is perfectly adaptable to any Linux OS running Apache.
 
@@ -8,13 +8,13 @@ Rocky Linux has many ways for you to setup a web site. This is just one method u
 * Knowledge of the command-line and editors. (this example uses vi, but can be adapted to your favorite editor)
 * At least basic knowledge about installing and running web services.
 
-## Install Apache ##
+## Install Apache 
 
 You'll likely need other packages for your web site. For instance, a version of PHP will almost certainly be required and maybe a database or other package will be needed as well. Installing php along with httpd, will get you the latest version of both that is available from Rocky Linux. Just remember that you may need modules as well, like perhaps php-bcmath or php-mysqlind. Your web application specifications should detail what is needed. These can be installed at any time. For now, we will install httpd and php, as those are almost a forgone conclusion:
 
 * From the command-line run `dnf install httpd php`
 
-## Add Extra Directories ##
+## Add Extra Directories 
 
 This method uses a couple of additional directories, but they don't currently exist on the system. We need to add two directories in /etc/httpd/ called "sites-available" and "sites-enabled."
 
@@ -22,7 +22,7 @@ This method uses a couple of additional directories, but they don't currently ex
 
 * We also need a directory where our sites are going to reside. This can be anywhere, but a good way to keep things organized is to create a directory called sub-domains. To keep things simple, put this in /var/www: `mkdir /var/www/sub-domains/`
 
-## Configuration ##
+## Configuration 
 
 We also need to add a line to the very bottom of the httpd.conf file. To do this, type `vi /etc/httpd/conf/httpd.conf` and go to the bottom of the file and add `Include /etc/httpd/sites-enabled`.
 
@@ -32,7 +32,7 @@ Our actual configuration files will reside in /etc/httpd/sites-available and we 
 
 The reason here is pretty simple. Let's say you have 10 web sites all running on the same server on different IP addresses. Let's say that site B has some major updates and you have to make changes to the configuration for that site. Let's say too, that there is something wrong with the changes made, so when you restart httpd to read in the new changes, httpd doesn't start. That means not only does the site you were working on not start, but neither do the rest of them. With this method, you simply remove the symbolic link for the site that caused the failure, restart httpd, which now should start, and then go to work trying to fix the broken site configuration. It sure takes the pressure off, knowing that the phone isn't going to ring with some angry customer, or an angry boss, because a service is off-line.
 
-### The Site Configuration ###
+### The Site Configuration 
 
 So the other thing that this method does is it allows us to fully specify everything outside of the default httpd.conf file. Let the default httpd.conf file load the defaults and your site configurations do everything else. Sweet, right? Plus again, it makes it very easy to trouble-shoot a broken site configuration. Let's look at a web site that loads a wiki. Here's a configuration for that using only port 80. If you were running with an SSL (let's face it, we all should be by now) then you would have another section after the port 80 section for port 443.
 
@@ -74,7 +74,7 @@ which will create the entire path with a single command. Next we would want to i
 
 `cp -Rf wiki_source/* /var/www/sub-domains/com.wiki.www/html/`
 
-## Taking It Live ##
+## Taking It Live 
 
 Remember that our httpd.conf file is including /etc/httpd/sites-enabled at the very end of the file, so when httpd restarts, it will load whatever configuration files are in that sites-enabled directory. Thing is, all of our configuration files are in sites-available. That's by design so that we can easily remove things in the event that httpd fails to restart. So to enable our configuration file, we need to create a symbolic link to that file in sites-enabled and then start or restart the web service. To do this, we do:
 
