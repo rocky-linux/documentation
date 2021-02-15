@@ -27,6 +27,8 @@ Pick one that is compatible with your OS and get started. This particular How-To
 ReText is good, but if you feel like exploring your other options, there are a few:
 
 * [Zettlr](https://www.zettlr.com) - Free, cross-platform, and open source
+* [Mark Text](https://marktext.app) - Free, cross-platform, and open source
+* [ghostwriter](https://wereturtle.github.io/ghostwriter/) - Free, Windows and Linux, open source
 * [Remarkable] - Linux-only, open source
 * [Typora](https://typora.io) - Free and cross-platform, but *not* open source
 
