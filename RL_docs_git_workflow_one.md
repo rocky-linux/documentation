@@ -1,13 +1,14 @@
-# Rock Linux Git Workflow - Linux Workstation using Git, Tig and SSH Keys
+# Rock Linux Git Workflow - Linux Workstation using Git and SSH Keys
 
 # Introduction
 
-There are many ways for you to setup a Git workflow that will work with the Rock Linux documentation site. This version, stays with the command-line and uses Tig for Git staging. It also uses SSH keys for work with accessing Git, which avoids logins and two-factor authentication-both of which you should have setup too. This particular workflow is not meant to be the be-all end-all of Git workflows for Rocky Linux. It is simply one way that some of you may find useful.  While this version is written specifically for uses on a Linux Workstation, I'm hopeful that it will either be edited to include other operating systems, or new documents will be created that will deal with other operating systems.
+There are many ways for you to setup a Git workflow that will work with the Rock Linux documentation site. This version, stays with the command-line and assumes you are using either git, tig, or something else for Git staging. It also uses SSH keys for work with accessing Git, which avoids logins and two-factor authentication-both of which you should have setup too. This particular workflow is not meant to be the be-all end-all of Git workflows for Rocky Linux. It is simply one way that some of you may find useful.  While this version is written specifically for uses on a Linux Workstation, I'm hopeful that it will either be edited to include other operating systems, or new documents will be created that will deal with other operating systems.
 
 ## Prerequisites
 
-* A Linux workstation with Git, Tig and the Openssh-client installed
+* A Linux workstation with Git and the Openssh-client installed
 * Knowledge of the command-line and specifically, git commands
+* A comfort level with a particular staging tool (git, tig, or GUI)
 * We assume you have already created a Fork of the Rock Linux documentation
 
 ### Setting Up the SSH Keys
@@ -107,7 +108,7 @@ So we pull from upstream (Rocky Linux) the main branch, and push the same back t
 
 ## Working On Documentation
 
-Now that we have our environment setup in a way that works, we are ready to do some work. We don't, however, want to make changes to our local main branch. Instead, we want to create a branch for our work so that if it takes multiple days to complete, we can still keep the upstream and origin in sync with each other. When we are done with our work, we can then merge it back into our main and submit a PR, staging this all with Tig. Here we go!
+Now that we have our environment setup in a way that works, we are ready to do some work. We don't, however, want to make changes to our local main branch. Instead, we want to create a branch for our work so that if it takes multiple days to complete, we can still keep the upstream and origin in sync with each other. When we are done with our work, we can then merge it back into our main and submit a PR staging this all with the tool (tig, gui, git) that you are most comfortable with. Here we go!
 
 ### Creating a Branch and Adding a Document
 
@@ -122,6 +123,12 @@ Now we can create the document we want to work on, in this case a document calle
 `git add RL_docs_git_workflow_one.md`
 
 This makes the branch aware of the file. Now just keep working on the file until you are done with it.
+
+## Staging
+
+Once your document is complete, and you are ready to submit it, you can use the tool that you feel the most comfortable with to get this done. After preparing your file remember to submit it to your origin, not the upstream:
+
+`git push branch_name origin`
 
 
 
