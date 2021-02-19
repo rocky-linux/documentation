@@ -40,7 +40,7 @@ You can get a good feel for how to write Markdown files, by taking a look at [Ma
 
 Rocky Linux, like loads of other projects out there, uses "git" to manage its code and files, including documentation files. This tutorial assumes a very basic knowledge of git, and how it works. The second example also presupposes familiarity with the command line.
 
-The steps listed below will get you started. In the meantime (and until we inevitably develop our own guide), you can learn Git in-depth wiith this [free Udacity course](https://www.udacity.com/course/version-control-with-git--ud123). If you don't have the time for that, here's [a shorter guide](https://blog.udacity.com/2015/06/a-beginners-git-github-tutorial.html).
+The steps listed below will get you started. In the meantime (and until we inevitably develop our own guide), you can learn Git in-depth with this [free Udacity course](https://www.udacity.com/course/version-control-with-git--ud123). If you don't have the time for that, here's [a shorter guide](https://blog.udacity.com/2015/06/a-beginners-git-github-tutorial.html).
 
 In order to submit your text, we ask that you create a GitHub account. When you are ready to submit your written documentation for approval, follow these easy steps:
 
