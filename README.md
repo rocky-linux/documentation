@@ -1,60 +1,80 @@
-# The Rocky Linux Documentation Style Guide for Writers
+# Rocky Linux Documentation How-To Contribute Guide
 
-## Well that was a mouthful
+## Introduction
 
-If you've found your way to this page, then you're a wonderful person who wants to help make Rocky Linux easier to use for everyone. Either that, or you're a wonderful person who is very, very lost.
+So you want to contribute to the Rocky Linux documentation, but aren't sure how to go about that? You've come to the right place. We're excited to have you on board with us. 
 
-No matter. It's good to have you here.
+One of our big goals for Rocky is to have not just good, but GREAT documentation, and we can't do it alone. This document will get you started, and will (hopefully) allay any worries you might have about doing so. We're always here to help, too, so feel free to ask questions and join in the conversation.
 
-If you want to contribute English-language documentation to the Rocky Linux project, you should have a look through these guidelines first. Get comfy, familiarize yourself with how we do things, and take it from there. 
+## Documentation Subject Matter
 
-It'll be fun, for given values of fun. Depends on how much you like nerd stuff.
+If you can dream it — or better yet, have done it before — then your subject matter is probably important to the Rocky Linux documentation project. Once a build is finally out there, then we expect that documentation will really start to explode, but we want to be ready with some things already documented out of the gate. 
 
-### Before we get started
+This is where you come in — both now and in the future. If you have experience with anything Linux-related, and can translate that to Rocky Linux, then we want you to start writing!
 
-You don't need to be some sort of programming expert (though it helps) or god-level sysadmin (ditto) to help out with this project, but you will need a few things:
+## Where to Start
 
-* A working knowledge of Git, and Github.
-* A working knowledge of Markdown formatting. Here's [a handy guide](https://guides.github.com/features/mastering-markdown/).
-* A good screenshot tool at the ready, and possibly a simple graphics editing program.
-* A willingness to work with editors. Every submission to the docs will be given a once-over (at least) to make sure it's:
-    * Technically correct and working as intended.
-    * Easily read and understood.
+While you can create documentation in any format, the preferred format is Markdown. You can easily create documents in Markdown, plus Markdown is super-easy to learn. The best way to get started with Markdown is to have a Markdown editor installed and read the tutorial. You can create Markdown files with any text editor, but most Markdown editors allow you to preview what you've input already, so they can be very helpful. 
 
-One last note... I *really* shouldn't have to say this next bit, but this is the internet, and the internet is a strange place: 
+### Markdown Editor
 
-*Don't put anything racist, sexist, or otherwise horrible in your documentation.* And put a lid on the really dark humor, 'cause lots of people just aren't ready to see that when they just want to get LiteSpeed up and running with WordPress, or their docker container's being fussy.
+As we've said already, the best way to create Markdown files, particularly if you've not done it before, is to grab an editor for the operating system that you use on your PC or Laptop. A simple web search for "Markdown editors" will show you a bunch to choose from. 
 
-Okay, with that out of the way, here's what you need to know about writing for us:
+Pick one that is compatible with your OS and get started. This particular How-To doc was created with [ReText](https://github.com/retext-project/retext), a cross-platform Markdown editor. Again, if you'd prefer to create your Markdown files in your own text editor that you are already familiar with, that's no problem at all.
 
-## Basic writing guidelines
+#### Alternate Markdown Editors
 
-These principles should apply to all documentation written for Rocky Linux:
+ReText is good, but if you feel like exploring your other options, there are a few:
 
-* **Assume a *basic* level of technical competency on the part of the reader.**  
-There *will* be documentation aimed at beginners who've never used Rocky Linux, or RHEL, or built their own servers, but this is an OS for people who have some idea what they want to do with it.
-*  **Include lots of examples, and explain exactly what you mean.**  
-... But don't make too many assumptions. Lots of Linux and server-building newbies will be reading what you write, so be as clear as you can. Explain every step, and every argument or variable you put into the command line.
-* **A screenshot is worth a thousand bits of jargon.**  
-Put the "show" in "show and tell". 'Nuff said.
-* **List the requirements at the top.**  
-On every tutorial, guide, or doc, list the things the reader will need to know or have installed first. There's no worse feeling than getting into the middle of a tutorial, then reading, "Okay, now SSH into your server..." when you haven't had any experience with SSH yet.
-* **Use the metaphor, Luke. And also watch out for the metaphors...**  
-And the anaologies, similes, idioms, and more obscure cultural references. While *we generally encourage* the use of all these literary devices to spice up documentation (especially the beginner-focused docs), do your best to keep them simple. Non-native English speakers still need to understand our documentation, especially those who will be translating it.
-* **The Oxford comma**  
-Also known as the serial comma. Love it, use it, and [read up on it](https://en.wikipedia.org/wiki/Serial_comma) if you want to.
+* [Zettlr](https://www.zettlr.com) - Free, cross-platform, and open source
+* [Mark Text](https://marktext.app) - Free, cross-platform, and open source
+* [ghostwriter](https://wereturtle.github.io/ghostwriter/) - Free, Windows and Linux, open source
+* [Remarkable] - Linux-only, open source
+* [Typora](https://typora.io) - Free and cross-platform, but *not* open source
 
-## Images & screenshots
-A few tips to help you make the best images you can for tutorials.
+### Markdown Tutorial
 
-* [Recommended image sizes?]
-* The recommended format for images is JPG.
-* If there's a lot going on in your screenshot, consider adding a couple of helpful arrows pointing at the things that matter.
-* Terminal commands are best put into a `code` element or block. If you must screenshot your terminal, make sure the text is big enough for people to easily see without zooming in.
+You can get a good feel for how to write Markdown files, by taking a look at [Mastering Markdown](https://guides.github.com/features/mastering-markdown/). This online resource will get you up-to-speed in no time. 
 
+## Using Git
 
-## The submission process
+Rocky Linux, like loads of other projects out there, uses "git" to manage its code and files, including documentation files. This tutorial assumes a very basic knowledge of git, and how it works. The second example also presupposes familiarity with the command line.
 
-Once you've written up your contribution to our docs, it's time to submit it for review. Here's the basic process:
+The steps listed below will get you started. In the meantime (and until we inevitably develop our own guide), you can learn Git in-depth with this [free Udacity course](https://www.udacity.com/course/version-control-with-git--ud123). If you don't have the time for that, here's [a shorter guide](https://blog.udacity.com/2015/06/a-beginners-git-github-tutorial.html).
 
-* [These steps are going to depend on our system. Basically, fork repo, add .md files, submit for review. Though maybe there might be a better place to put these instructions?]
+In order to submit your text, we ask that you create a GitHub account. When you are ready to submit your written documentation for approval, follow these easy steps:
+
+### With the GitHub GUI
+
+Most tasks can be completed from the web GUI on GitHub. Here's an example of adding a file you've created on your local machine to the Rocky Linux documentation GitHub repository.
+
+1. Login to your GitHub account.
+2. Navigate to the Rocky Linux Documentation repository at: [https://github.com/rocky-linux/documentation.git](https://github.com/rocky-linux/documentation.git)
+3. You should be on the "Main" branch, so check the drop down label down in the middle section, just to be sure you are. Your document might not ultimately end up in the "Main" branch, but admins will move it around to where it logically fits later.  
+On the right-hand side of the page, click the "Fork" button, which will create your own copy of the documentation.
+4. In the middle of the page on the forked copy, just to the left of the Green "Code" drop down, is an "Add file" button. Click this and choose the "Upload files" option.
+5. This will give you a way to either drag and drop files here, or to browse to them on your computer. Go ahead and use the method you are most comfortable with.
+6. Once the file is uploaded, the next thing you need to do is create a Pull Request. This request lets the upstream administrators know that you've got a new file (or files) that you would like them to merge with the master.  
+Click on "Pull Request" in the upper-left of the screen.
+7. Write a brief message in the "Write" section letting the administrators know what you've done. (New document, revision, suggested change, etc.,) then submit your change.
+
+### From the Git Command-Line
+
+If you prefer to run Git locally on your own machine, you can clone the Rocky Linux Documentation repository, make changes, and then do a commit changes afterwards. To make things super-easy, do steps 1-3 on *From Git Gui* above then:
+
+1. Git clone the repository: `git clone https://github.com/your_fork_name/documentation.git`
+2. Now, on your own machine, add files to the directory.  
+Example: `mv /home/myname/help.md /home/myname/documentation/`
+3. Next, run git add for that file name.  
+Example:  `git add help.md`
+4. Now, run git commit for the changes you have made.  
+Example: `git commit -m "Added the help.md file"
+5. Next, push your changes to your forked repository: `git push https://github.com/your_fork_name/documentation main`
+6. Next, we repeat step 6 and 7 above: ...create a Pull Request. This request lets the upstream administrators know that you've got a new file (or files) that you would like them to merge with the master branch. Click on "Pull Request" in the upper-left of the screen
+
+Once all of that is done, you simply wait for confirmation that your request has been successfully merged. (Or not, as the case may be.)
+
+## Keep Up With The Conversation
+
+If you haven't already, join the conversation on the [Rocky Linux Mattermost Channel](https://chat.rockylinux.org/rocky-linux/) and stay up-to-date with what is going on. Join the "Documentation" channel, or any other channel you are interested in. We'd be glad to have you with us!
+
