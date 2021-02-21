@@ -1,12 +1,12 @@
 Table Of Contents
-# [Introduction](/en/rocky/8/labs/security/introduction.md)
+# [Introduction](introduction.md)
 
 # Lab 1: Installing Rocky Linux
-## Installing the Red Hat OS
+## Installing the Operating System
 
 # Lab 2: Patching the System
 ## Updating and Patching
-## Configuring and using up2date
+## Configuring and using dnf
 ## Third party solutions
 
 # Lab 3: Auditing the System
