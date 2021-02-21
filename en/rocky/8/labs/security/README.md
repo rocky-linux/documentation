@@ -1,5 +1,5 @@
 Table Of Contents
-# Introduction
+# [Introduction](/introduction.md)
 
 # Lab 1: Installing Rocky Linux
 ## Installing the Red Hat OS
@@ -16,49 +16,49 @@ Table Of Contents
 ## Fine tuning tripwire
 
 
-#Lab 4: Gathering information
-##netstat
-##lsof
-##nmap
-##rpcinfo
-##tcpdump
-##telnet
+# Lab 4: Gathering information
+## netstat
+## lsof
+## nmap
+## rpcinfo
+## tcpdump
+## telnet
 
-#Lab 5: Local Security
-##Cracking  the system through the boot loader
-##Password protecting the boot loader
-##Disabling un-necessary tty’s
-##Disabling  reboot via  CTRL+ALT+DEL
-##Enforcing password prompting in single user-mode
-##Set-UID programs
-##John the ripper
+# Lab 5: Local Security
+## Cracking  the system through the boot loader
+## Password protecting the boot loader
+## Disabling un-necessary tty’s
+## Disabling  reboot via  CTRL+ALT+DEL
+## Enforcing password prompting in single user-mode
+## Set-UID programs
+## John the ripper
 
-#Lab 6: A staged Hack
-##The PATH
+# Lab 6: A staged Hack
+## The PATH
 
-#Lab 7: TCP wrappers
-##Tcp_wrappers
+# Lab 7: TCP wrappers
+## Tcp_wrappers
 
-#Lab 8: Iptables
-##Iptables essentials
-##Basic Packet Filtering
-##Basic Packet Forwarding
+# Lab 8: Iptables
+## Iptables essentials
+## Basic Packet Filtering
+## Basic Packet Forwarding
 
-#Lab 9: Cryptography
-##GnuPG
-##Key Administration
-##Revocation certificates
-##Digital signatures
-##Encrypting and decrypting files
-##sshd
-##ssh
-##scp
-##Authenticating via Public-Key
-##ssh-agent
+# Lab 9: Cryptography
+## GnuPG
+## Key Administration
+## Revocation certificates
+## Digital signatures
+## Encrypting and decrypting files
+## sshd
+## ssh
+## scp
+## Authenticating via Public-Key
+## ssh-agent
 
-#Lab 10: Kernel Level Security
-##Installing GRsecurity
-##gradm
-##ACLs
-##GRsecurity Learning mode
+# Lab 10: Kernel Level Security
+## Installing GRsecurity
+## gradm
+## ACLs
+## GRsecurity Learning mode
 ## SElinux
