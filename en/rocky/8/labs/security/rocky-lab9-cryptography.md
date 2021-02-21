@@ -1,4 +1,4 @@
-Lab 9: Cryptography
+#Lab 9: Cryptography
 
 Objectives
 
@@ -8,7 +8,8 @@ After completing this lab, you will be able to
 
 Estimated time to complete this lab: 120 minutes
 
-Definitions for some terminology used with the subject of Cryptography are necessary before proceeding.
+
+## Definitions for some terminology used with the subject of Cryptography are necessary before proceeding.
 
 Cryptography
 
@@ -92,7 +93,8 @@ This protocol is versatile for the needs of the internet, and is currently used 
 
 The following exercises examine two particular applications that make use of cryptographic protocols - GnuPG and OpenSSH.
 
-Exercise 1
+
+# Exercise 1
 
 <span id="anchor"></span>GnuPG
 
@@ -338,7 +340,7 @@ The actual key ID - 1D12E484
 
 6. You will observe that the ASCII version is more suited for posting on web-pages or spamming etc..
 
-Exercise 3
+## Exercise 3
 
 <span id="anchor-3"></span>Digital signatures
 
@@ -406,7 +408,7 @@ YOU CAN USE EITHER - USER “me@serverXY” or USER “ying@serverPR”
 
 AS YOUR PARTNER IN THE NEXT EXERCISE.
 
-Exercise 4
+## Exercise 4
 
 In this exercise you will begin the actual communication with another user, using the so called “Web of Trust”.
 
@@ -580,7 +582,7 @@ ssh
 
 The clients suite of programs include “ssh”. This is a program used for logging into remote systems and can also be used for executing commands on remote systems.
 
-Exercise 5
+## Exercise 5
 
 <span id="anchor-5"></span>sshd
 
@@ -868,7 +870,7 @@ password. Enter the passphrase you created earlier when you created your keys.
 
 5. After successfully logging into serverPR; Log back out.
 
-Exercise 9
+## Exercise 9
 
 <span id="anchor-9"></span>ssh-agent
 
