@@ -16,15 +16,17 @@ Estimated time to complete this lab: 120 minutes
 
 **Table of Contents**
 
-[Common cryptography terms and definitions](#common-cryptography-terms-and-definitions)
+- [Common cryptography terms and definitions](#common-cryptography-terms-and-definitions)
 
-[Exercise 1](#exercise-1)
+- [Exercise 1](#exercise-1)
 
-[Gnupg](##gnupg)
+ * [Gnupg](##gnupg)
 
-[Exercise 2](#exercise-2)
+- [Exercise 2](#exercise-2)
 
-[Key Administration](##key-administration)
+ * [Key Administration](##key-administration)
+
+
 
 ## Common Cryptography terms and definitions
 
