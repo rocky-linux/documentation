@@ -7,16 +7,19 @@ After completing this lab, you will be able to
 
 - apply cryptographic concepts in securing data and communication
 
-Estimated time to complete this lab: 120 minutes
+Estimated time to complete this lab: 120 minutes\
 
-Table of Contents
 
-[common cryptography terms and definitions](#common-cryptography-terms-and-definitions)
 
-[Exercise 1](exercise-1)
+**Table of Contents **
 
-[Gnupg](gnupg)
+[Common cryptography terms and definitions](#common-cryptography-terms-and-definitions)
 
+[Exercise 1](#exercise-1)
+
+[Gnupg](##gnupg)
+[Exercise 2](#exercise-2)
+[Key Administration](##key-administration)
 
 ## Common Cryptography terms and definitions
 
