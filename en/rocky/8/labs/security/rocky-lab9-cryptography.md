@@ -54,7 +54,7 @@ Symmetric algorithms use the same key for encryption and decryption (or the decr
 
 Examples of symmetric algorithms are: AES, 3DES, Blowfish, CAST5, IDEA and Twofish.
 
-b) -- Asymmetric algorithms (Public-key algorithms)
+**b) -- Asymmetric algorithms (Public-key algorithms)**
 
 Asymmetric algorithms on the other hand use a different key for encryption and decryption, and the decryption key cannot be derived from the encryption key. Asymmetric ciphers permit the encryption key to be public, allowing anyone to encrypt with the key, whereas only the proper recipient (who knows the decryption key) can decrypt the message. The encryption key is also called the public key and the decryption key the private key or secret key.
 
@@ -97,7 +97,7 @@ The following exercises examine two particular applications that make use of cry
 
 # Exercise 1
 
-<span id="anchor"></span>GnuPG
+## GnuPG
 
 GnuPG (GNU Privacy Guard) is a set of programs for public key encryption and digital signatures. The tools can be used to encrypt data and to create digital signatures. It also includes an advanced key management facility. GnuPG uses public-key cryptography to enable users to communicate securely
 
@@ -109,7 +109,7 @@ To create a new keypair
 
 2. Make sure that the GnuPG package is installed on your system. Type:
 
-\[ying@serverXY ying\]$ ***rpm -q gnupg***
+`[ying@serverXY ying]$ ***rpm -q gnupg***`
 
 gnupg-\*.\*
 
@@ -119,7 +119,7 @@ If it isn’t, get the super-user to install it.
 
 4. List the keys you currently have in your key-ring. Type:
 
-\[ying@serverXY ying\]$ ***gpg --list-keys***
+`[ying@serverXY ying]$ ***gpg --list-keys***`
 
 **NOTE**:- You shouldn’t have any keys in your key-ring yet. But the above command will also help create a default environment to enable you create a new key-pair successfully the first time.
 
@@ -127,7 +127,8 @@ List the hidden directories in your home directory again. What is the name of th
 
 5. Use the gpg program to create your new key-pairs. Type:
 
-\[ying@serverXY ying\]$ ***gpg --gen-key***
+```
+[ying@serverXY ying\]$ ***gpg --gen-key***
 
 ......................................
 
@@ -144,6 +145,7 @@ Please select what kind of key you want:
  (5) RSA (sign only)
 
 Your selection? 1
+```
 
  At the prompt for the type of key your want to create accept the default i.e.(DSA and ElGamal). Type 1
 
@@ -213,9 +215,9 @@ Enter passphrase: \*\*\*\*\*\*\*\*
 
 Repeat passphrase: \*\*\*\*\*\*\*\*
 
-## Exercise 2
+# Exercise 2
 
-<span id="anchor-1"></span>Key Administration
+## Key Administration
 
 The gpg program is also used in key administration.
 
@@ -341,9 +343,9 @@ The actual key ID - 1D12E484
 
 6. You will observe that the ASCII version is more suited for posting on web-pages or spamming etc..
 
-## Exercise 3
+# Exercise 3
 
-<span id="anchor-3"></span>Digital signatures
+## Digital signatures
 
 Creating and verifying signatures uses the public/private keypair in an operation different from encryption and decryption. A signature is created using the private key of the signer. The signature can be verified using the corresponding public key.
 
@@ -561,7 +563,7 @@ It helps to provide secure encrypted communications between two untrusted hosts 
 
 It includes both the server side components and the client side suite of programs.
 
-sshd
+**sshd**
 
 The server side includes the secure shell daemon (sshd). sshd is the daemon that listens for connections from clients.
 
@@ -583,9 +585,9 @@ ssh
 
 The clients suite of programs include “ssh”. This is a program used for logging into remote systems and can also be used for executing commands on remote systems.
 
-## Exercise 5
+# Exercise 5
 
-<span id="anchor-5"></span>sshd
+## sshd
 
 Usage: sshd \[options\]
 
@@ -687,10 +689,11 @@ d. The key should not use any passphrase
 
  and no passphrase?
 
-Exercise 6
+# Exercise 6
 
-<span id="anchor-6"></span>ssh
+## ssh
 
+```
 Usage:- ssh \[-l login\_name\] hostname | user@hostname \[command\]
 
  ssh \[-afgknqstvxACNTX1246\] \[-b bind\_address\] \[-c cipher\_spec\]
@@ -700,6 +703,7 @@ Usage:- ssh \[-l login\_name\] hostname | user@hostname \[command\]
  \[-o option\] \[-p port\] \[-F configfile\] \[-L port:host:hostport\]
 
 \[-R port:host:hostport\] \[-D port\] hostname | user@hostname \[command\]
+```
 
 To use ssh
 
@@ -745,11 +749,13 @@ scp - secure copy (remote file copy program)
 
 scp copies files between hosts on a network. It uses ssh for data transfer, and uses the same authentication and provides the same security as ssh.
 
+```
 Usage:- scp \[-pqrvBC46\] \[-F ssh\_config\] \[-S program\] \[-P port\] \[-c cipher\]
 
  \[-i identity\_file\] \[-o ssh\_option\] \[\[user@\]host1:\] file1 \[...\]
 
  \[\[user@\]host2:\] file2
+ ```
 
 To use scp
 
@@ -771,9 +777,9 @@ To use scp
 
 \[me@serverXY myimports\]$ ***scp -r ying@serverPR:/home/ying/\* .***
 
-Exercise 7
+# Exercise 7
 
-Creating User Public and Private keys for SSH
+## Creating User Public and Private keys for SSH
 
 Each individual user that wants to use SSH with RSA or DSA authentication needs a set of public keys and private keys. The ssh-keygen program can be used to create these keys ( just as it was used earlier when you created spare keys for your system)
 
@@ -819,9 +825,9 @@ The key fingerprint is:
 
 5. Use the cat command to view the contents of your public-key file (i.e. “**~/.ssh/id\_rsa.pub**”).
 
-Exercise 8
+# Exercise 8
 
-<span id="anchor-8"></span>Authenticating via Public-Key
+## Authenticating via Public-Key
 
 Thus far you have been using a password based authentication scheme to log into user accounts at serverPR.
 
@@ -871,15 +877,17 @@ password. Enter the passphrase you created earlier when you created your keys.
 
 5. After successfully logging into serverPR; Log back out.
 
-## Exercise 9
+# Exercise 9
 
-<span id="anchor-9"></span>ssh-agent
+## ssh-agent
 
 According to the man page - ssh-agent is a program to hold private keys used for public key authentication (RSA, DSA). The idea is that ssh-agent is started in the beginning of an X-session or a login session, and all other windows or programs are started as clients to the ssh-agent program. Through use of environment variables the agent can be located and automatically used for authentication when logging into other machines using ssh.
 
+```
 Usage ssh-agent \[-a bind\_address\] \[-c | -s\] \[-d\] \[command \[args ...\]\]
 
  ssh-agent \[-c | -s\] -k
+```
 
 In this exercise you will learn how to configure the agent such that you wont have to type in your passphrase every time you want to connect to another system using public-key authentication.
 
