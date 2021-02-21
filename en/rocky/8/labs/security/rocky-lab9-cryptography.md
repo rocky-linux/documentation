@@ -20,11 +20,11 @@ Estimated time to complete this lab: 120 minutes
 
 - [Exercise 1](#exercise-1)
 
- * [Gnupg](##gnupg)
+  * [Gnupg](##gnupg)
 
 - [Exercise 2](#exercise-2)
 
- * [Key Administration](##key-administration)
+  * [Key Administration](##key-administration)
 
 
 
