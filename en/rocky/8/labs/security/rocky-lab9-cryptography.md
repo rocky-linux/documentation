@@ -1,4 +1,4 @@
-#Lab 9: Cryptography
+# Lab 9: Cryptography
 
 Objectives
 
@@ -9,29 +9,30 @@ After completing this lab, you will be able to
 Estimated time to complete this lab: 120 minutes
 
 
+
 ## Definitions for some terminology used with the subject of Cryptography are necessary before proceeding.
 
-Cryptography
+**Cryptography**
 
 In general everyday usage, Cryptography is the act or art of writing in secret characters. In technical jargon it may be defined as the science of using mathematics to encrypt and decrypt data.
 
-Cryptanalysis
+**Cryptanalysis**
 
 Cryptanalysis is the study of how to compromise (defeat) cryptographic mechanisms. It is the science of cracking code, decoding secrets, violating authentication schemes, and in general, breaking cryptographic protocols.
 
-Cryptology
+**Cryptology**
 
 Cryptology is the discipline of cryptography and cryptanalysis combined. Cryptology is the branch of mathematics that studies the mathematical foundations of cryptographic methods.
 
-Encryption
+**Encryption**
 
 Encryption is the transformation of data into a form that is as close to impossible as possible to read without the appropriate knowledge (e.g. a key). Its purpose is to ensure privacy by keeping information hidden from anyone for whom it is not intended.
 
-Decryption
+**Decryption**
 
 Decryption is the reverse of encryption; it is the transformation of encrypted data back into an intelligible form.
 
-Cipher
+**Cipher**
 
 A method of encryption and decryption is called a cipher.
 
@@ -43,7 +44,7 @@ Cryptographic hash functions are used in various contexts, for example to comput
 
 **b)**- **MD5 (Message Digest Algorithm 5)** - is a cryptographic hash algorithm developed at RSA Laboratories. It can be used to hash an arbitrary length byte string into a 128 bit value.
 
-Algorithm
+**Algorithm**
 
 It describes a step-by-step problem-solving procedure, especially an established, recursive computational procedure for solving a problem in a finite number of steps. Technically, an algorithm must reach a result after a finite number of steps. The efficiency of an algorithm can be measured as the number of elementary steps it takes to solve the problem. There are two classes of key-based algorithms. They are:
 
@@ -59,7 +60,7 @@ Asymmetric algorithms on the other hand use a different key for encryption and d
 
 RSA is probably the best known asymmetric encryption algorithm.
 
-Digital Signature
+**Digital Signature**
 
 A digital signature binds a document to the owner of a particular key. Digital signatures are used to verify that a message really comes from the claimed sender.
 
@@ -67,7 +68,7 @@ The digital signature of a document is a piece of information based on both the 
 
 Several methods for making and verifying digital signatures are freely available but the most widely known algorithm is the RSA public-key algorithm.
 
-Cryptographic Protocols
+**Cryptographic Protocols**
 
 Cryptography works on many levels. On one level you have algorithms, such as block ciphers and public key cryptosystems. Building upon these you obtain protocols, and building upon protocols you find applications (or other protocols). Below is a list of common everyday applications that make use of cryptographic protocols. These protocols are built on lower level cryptographic algorithms.
 
@@ -212,7 +213,7 @@ Enter passphrase: \*\*\*\*\*\*\*\*
 
 Repeat passphrase: \*\*\*\*\*\*\*\*
 
-Exercise 2
+## Exercise 2
 
 <span id="anchor-1"></span>Key Administration
 
