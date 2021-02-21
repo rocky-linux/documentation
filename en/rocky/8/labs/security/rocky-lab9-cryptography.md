@@ -10,7 +10,10 @@ Estimated time to complete this lab: 120 minutes
 
 
 
-## Definitions for some terminology used with the subject of Cryptography are necessary before proceeding.
+
+
+
+## Common Cryptography terms definitions
 
 **Cryptography**
 
