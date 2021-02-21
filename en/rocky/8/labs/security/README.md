@@ -1,5 +1,5 @@
 Table Of Contents
-# [Introduction](/en/rocky/8/labs/security/introduction.md)
+# [Introduction](/introduction.md)
 
 # Lab 1: Installing Rocky Linux
 ## Installing the Red Hat OS
