@@ -10,7 +10,7 @@ After completing this lab, you will be able to
 Estimated time to complete this lab: 120 minutes
 
 
-[Common Cryptography terms and definitions(#Common Cryptography terms and definitions)
+[Common Cryptography terms and definitions](#Common Cryptography terms and definitions)
 
 
 
