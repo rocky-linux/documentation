@@ -7,7 +7,7 @@ After completing this lab, you will be able to
 
 - apply cryptographic concepts in securing data and communication
 
-Estimated time to complete this lab: 120 minutes\
+Estimated time to complete this lab: 120 minutes
 
 &nbsp;
 &nbsp;
