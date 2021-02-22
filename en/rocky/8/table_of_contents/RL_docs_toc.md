@@ -9,9 +9,9 @@ The order of these sections is very important, but has not been finalized yet, s
 | --- | --- | --- |
 | Migrating CentOS to Rocky Linux| Fixing Dependency Issues | Firewalls |
 | Installing Rocky Linux from ISO | Fixing Package Conflicts | Local Network Security |
-| TBD | TBD | Global Network Security |
-| TBD | TBD | Cryptographic Security |
-| TBD | TBD | [GPG keys](#link-to-gpg-keys) |
+|  |  | Global Network Security |
+|  |  | Cryptographic Security |
+|  |  | [GPG keys](#link-to-gpg-keys) |
 
 ## Package Installation
 
