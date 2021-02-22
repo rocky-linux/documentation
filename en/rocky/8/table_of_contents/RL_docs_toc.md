@@ -12,7 +12,7 @@ The order of these sections is very important, but has not been finalized yet, s
 |  |  | Global Network Security |
 |  |  | Cryptographic Security |
 |  |  | [GPG keys](#link-to-gpg-keys) |
-| **System Maintenance and Administration** | **Web Servers** | **Virtualization |
+| **System Maintenance and Administration** | **Web Servers** | **Virtualization** |
 | [Backup and Restore](#link-to-backup-and-restore) | Apache | QEMU |
 | | Nginx | KVM |
 
