@@ -12,6 +12,9 @@ The order of these sections is very important, but has not been finalized yet, s
 |  |  | Global Network Security |
 |  |  | Cryptographic Security |
 |  |  | [GPG keys](#link-to-gpg-keys) |
+| **System Maintenance and Administration** |
+| [Backup and Restore](#link-to-backup-and-restore) |
+
 
 ## Package Installation
 
