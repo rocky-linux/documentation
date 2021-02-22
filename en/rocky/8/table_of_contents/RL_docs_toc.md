@@ -19,12 +19,19 @@ The order of these sections is very important, but has not been finalized yet, s
 
 ## Package Installation
 
+| Fixing Dependency Issues | Fixing Package Conflicts | 
+| --- | --- |
+
 ### Fixing Dependency Issues
 
 ### Fixing Package Conflicts
 
 
 ## Security
+
+| Firewalls | Network Security | Cryptographic Security | 
+| --- | --- | --- | 
+| | [GPG keys](#link-to-gpg-keys)
 
 ### Firewalls
 
@@ -39,6 +46,10 @@ The order of these sections is very important, but has not been finalized yet, s
 
 ## Web Server
 
+| Apache | Nginx |
+| --- | --- |
+
+
 ### Apache
 
 ### Nginx
@@ -46,10 +57,15 @@ The order of these sections is very important, but has not been finalized yet, s
 
 ## System Maintenance and Administration
 
-* [Backup and Restore](#link-to-backup-and-restore)
+| Data Security | Managing Users and Groups |
+| --- | --- |
+| [Backup and Restore](#link-to-backup-and-restore) | | 
 
 
 ## Virtualization
+
+| QEMU | KVM | 
+| --- | --- |
 
 ### QEMU
 
