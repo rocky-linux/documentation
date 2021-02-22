@@ -36,7 +36,7 @@ The order of these sections is very important, but has not been finalized yet, s
 
 ### Apache
 
-### EngineX
+### Nginx
 
 
 ## System Maintenance and Administration
