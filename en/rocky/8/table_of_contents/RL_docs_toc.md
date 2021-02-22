@@ -4,6 +4,21 @@ This document contains the section and subsection headers for Rocky Linux docume
 
 The order of these sections is very important, but has not been finalized yet, so feel free to reorder as desired.
 
+
+## Quickstart Guides
+
+### Migrating CentOS to Rocky Linux
+
+### Installing Rocky Linux from ISO
+
+
+## Package Installation
+
+### Fixing Dependency Issues
+
+### Fixing Package Conflicts
+
+
 ## Security
 
 ### Firewalls
@@ -34,21 +49,5 @@ The order of these sections is very important, but has not been finalized yet, s
 ### QEMU
 
 ### KVM
-
-
-## Quickstart Guides
-
-### Migrating CentOS to Rocky Linux
-
-### Installing Rocky Linux from ISO
-
-
-## Package Installation
-
-### Fixing Dependency Issues
-
-### Fixing Package Conflicts
-
-
 
 
