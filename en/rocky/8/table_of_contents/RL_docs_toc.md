@@ -5,12 +5,13 @@ This document contains the section and subsection headers for Rocky Linux docume
 The order of these sections is very important, but has not been finalized yet, so feel free to reorder as desired.
 
 
-## Quickstart Guides
-
-### Migrating CentOS to Rocky Linux
-
-### Installing Rocky Linux from ISO
-
+| Quickstart Guides | Package Installation | Security |
+| --- | --- | --- |
+| Migrating CentOS to Rocky Linux| Fixing Dependency Issues | Firewalls |
+| Installing Rocky Linux from ISO | Fixing Package Conflicts | Local Network Security |
+| TBD | TBD | Global Network Security |
+| TBD | TBD | Cryptographic Security |
+| TBD | TBD | [GPG keys](#link-to-gpg-keys) |
 
 ## Package Installation
 
