@@ -13,7 +13,7 @@ The order of these sections is very important, but has not been finalized yet, s
 |  |  | Cryptographic Security |
 |  |  | [GPG keys](#link-to-gpg-keys) |
 
-## Package Installation
+## Packaging
 
 ### Fixing Dependency Issues
 
