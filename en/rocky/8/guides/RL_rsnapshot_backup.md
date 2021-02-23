@@ -46,7 +46,7 @@ Installing dependencies:
  perl-Lchown                       x86_64                       1.01-14.el8                          epel                          18 k
  rsync                             x86_64                       3.1.3-9.el8                          baseos                       404 k
 
-Transaction SummaryIn this case, rsnapshot is going to be run locally to backup a particular machine. For this example,  the configuration file will be broken down for specific things that need to be changed in the file.
+Transaction Summary
 ========================================================================================================================================
 Install  3 Packages
 
@@ -56,11 +56,9 @@ Is this ok [y/N]: y
 ```
 ## Mounting A Drive or Filesystem For Backup
 
-This particular step is only necessary if you are backing up a single machine or server (our first example below).
+In this step, we show how to mount a hard drive, such as an external USB hard drive, that will be used to back up your system. This particular step is only necessary if you are backing up a single machine or server, as seen in our first example below.
 
-For this particular step, we are assuming an external hard drive of some sort that will be attached to the USB port on your machine, which would likely be the most common method of backing up a single machine. 
-
-1. Plugin the USB drive. 
+1. Plug in the USB drive. 
 2. Type `dmesg | grep sd` which should show you the drive. Example `EXT4-fs (sda1): mounting ext2 file system using the ext4 subsystem` so in this case, sda1.
 3. Unfortunately (or fortunately depending on your opinion) most modern Linux desktop operating systems automount the drive if they can. We are going to want to change this. To determine this mount point, take the drive information revealed in the dmesg command above and type `mount | grep sda1`, which should show something like this: `/dev/sda1 on /media/username/8ea89e5e-9291-45c1-961d-99c346a2628a`
 4. Type `sudo umount /dev/sda1`
@@ -73,7 +71,7 @@ Note that for a single machine, you will have to either repeat the umount and mo
 
 # Configuring Rsnapshot
 
-This is the most important step. One of the easiest mistakes to make here is to put spaces between things. The rsnapshot configuration requires tabs for any separation between elements. A warning to that effect is at the very top of the configuration file. A space entered somewhere will cause the entire configuration-and your backup-to fail. The best thing is that the default configuration that comes with rsnapshot only needs minor changes to make it work for a backup of a local machine. It's always a good idea, though, to make a backup copy of the configuration file before you start editing:
+This is the most important step. It's easy to make a mistake when making changes to the configuration file. The rsnapshot configuration requires tabs for any separation between elements. A warning to that effect is at the very top of the configuration file. A space entered somewhere will cause the entire configuration-and your backup-to fail. For instance, near the top of the configuration file is a section for the `# SNAPSHOT ROOT DIRECTORY #`. If you were adding this in new, you would type `snapshot_root` then TAB and then type `/whatever_the_path_to_the_snapshot_root_will_be/` The best thing is that the default configuration that comes with rsnapshot only needs minor changes to make it work for a backup of a local machine. It's always a good idea, though, to make a backup copy of the configuration file before you start editing:
 
 `cp /etc/rsnapshot.conf /etc/rsnapshot.conf.bak`
 
@@ -191,7 +189,7 @@ We are going to set our backup to automatically run at 11 PM, so we will add thi
 
 ## Multiple Machine or Multiple Server Backups
 
-Doing backups of multiple machines from a machine with a RAID array or large storage capacity, either on premises or from across the Internet works very well. If running from across the Internet, you need to make sure that both locations have adequate bandwidth for the backups to occur. In my previous job, we used both an on-premise disk array and an off-premise disk array for maximum redundancy. 
+Doing backups of multiple machines from a machine with a RAID array or large storage capacity, either on premises or from across the Internet works very well. If running from across the Internet, you need to make sure that both locations have adequate bandwidth for the backups to occur. You can use rsnapshot to synchronize an on-site server with an off-site backup array or backup server to improve data redundancy. 
 
 ### Assumptions
 
@@ -200,79 +198,14 @@ We are assuming that you are running rsnapshot from a machine remotely, on-premi
 In this case, you will want to install rsnapshot on the machine that is doing all of the backups. You'll also need to:
 
 * make sure that the servers you will be backing up to, have a firewall rule that allows the remote machine to SSH into it
-* that each server that you will be backing up has a recent version of rsync installed. For Rocky Linux servers, you need only run `dnf install rsync` to make sure you are running a recent version.
+* that each server that you will be backing up has a recent version of rsync installed. For Rocky Linux servers, run `dnf install rsync` to update your system's version of rsync..
 * because everything here must be done as the root user, we are going to assume that you've either connected to the machine as the root user or that you have run `sudo -s` to switch to the root user.
 
 ### SSH Public / Private Keys
 
-For the server that will be running the backups, we need to generate an SSH key-pair for use during the backups. For our example, we will be creating RSA keys. If you already have a set of keys generated, you can skip this step. You can find out by doing an `ls -al .ssh` and looking for an id_rsa and id_rsa.pub key pair. If none exists type:
+For the server that will be running the backups, we need to generate an SSH key-pair for use during the backups. For our example, we will be creating RSA keys. If you already have a set of keys generated, you can skip this step. You can find out by doing an `ls -al .ssh` and looking for an id_rsa and id_rsa.pub key pair. If none exists use the following link to set up your keys and the servers that you want to access:
 
-`ssh-keygen -t rsa`
-
-Which will display the following:
-
-```
-Generating public/private rsa key pair.
-Enter file in which to save the key (/root/.ssh/id_rsa):
-```
-
-Hit Enter to accept the default location. Next the system will show:
-
-`Enter passphrase (empty for no passphrase):`
-
-So just hit Enter here. Finally, it will ask for you to re-enter the passphrase:
-
-`Enter same passphrase again:`
-
-So hit Enter a final time.
-
-You now should have an RSA type public and private key pair in your .ssh directory:
-see
-```
-ls -a .ssh/
-.  ..  id_rsa  id_rsa.pub
-```
-
-Now we need to send the public key (id_rsa.pub) to every machine that we are going to be backing up, but before we do, we need to make sure that we can SSH into the server's that we will be sending the key to. For our example, we are going to be using just three servers. You can either ssh by DNS name or IP address, but for our example we are going to be using the DNS name. Our example servers are web, mail, and portal. For each server, we will attempt to SSH in and leave the terminal window opened on each machine:
-
-`ssh -l root web.ourourdomain.com` 
-
-Assuming that we can login OK for all three machines, then the next step is to send our public key over to each server:
-
-`scp .ssh/id_rsa.pub root@web.ourourdomain.com:/root/` 
-
-repeating this step with each of our three machines. 
-
-On each of the open terminal windows on the three servers, you should now be able to see an id_rsa.pub when you enter the following command:
-
-`ls -a | grep id_rsa.pub` 
-
-If so, we are now ready to either create or append the authorized_keys file in each server's .ssh directory. On each of the servers, enter this command:
-
-`ls -a .ssh` 
-
-** Important! Make sure you read the below carefully. If you are not sure if you will break something, then make a backup copy of authorized_keys (if it exists) on each of the machines before continuing. **
-
-If there is no authorized_keys file listed then we will create it by entering this from our /root directory:
-
-`cat id_rsa.pub > .ssh/authorized_keys`
-
-If authorized_keys does exist, then we simply want to append our new public key to the ones that are already there:
-
-`cat id_rsa.pub >> .ssh/authorized_keys`
-
-Once the key has been either added to authorized_keys, or the authorized_keys file has been created, try to SSH from your backup machine to the server again. You should not be prompted for a password. 
-
-Once you have verified that you can SSH in without a password, remove the id_rsa.pub file from the /root directory on each machine. 
-
-`rm id_rsa.pub`
-
-#### SSH Directory and authorized_keys Security
-
-On each of your target machines, make sure that the following permissions are applied:
-
-`chmod 700 .ssh/`
-`chmod 600 .ssh/authorized_keys`
+[Rocky Linux SSH Public Private Key Pairs](RL_ssh_public_private_keys.md)
 
 ### Rsnapshot Configuration
 
@@ -290,7 +223,7 @@ can be remarked out again
 
 `#no_create_root 1`
 
-The other difference here is that each machine will have its very own configuration. You'll also want to remove the Once you get used to this, you'll simply copy one of your existing configuration files over to a new name and then modify it to fit any additional machines that you want to backup. For now, we want to modify the configuration just like we did above, and then save it. Then copy that file as a template for our first server:
+The other difference here is that each machine will have its very own configuration. Once you get used to this, you'll simply copy one of your existing configuration files over to a new name and then modify it to fit any additional machines that you want to backup. For now, we want to modify the configuration just like we did above, and then save it. Then copy that file as a template for our first server:
 
 `cp /etc/rsnapshot.conf /etc/rsnapshot_web.conf`
 
