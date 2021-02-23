@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Hit the webhook
-        run: curl $VERCEL_DEPLOY_HOOK
+        run: curl ${{ secrets.VERCEL_DEPLOY_HOOK }}
