@@ -5,7 +5,7 @@
 * A certain amount of comfort operating from the command line
 * Rocky Linux servers and/or workstations with *openssh* installed
     * Okay technically, this process whould work on any Linux system with openssh installed
-* Optional: familiarity with linux file pand directory permissions
+* Optional: familiarity with linux file and directory permissions
 
 # Introduction
 
