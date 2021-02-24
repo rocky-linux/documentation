@@ -1,53 +1,65 @@
-# Rocky Linux - Mirroring Solution - Lsyncd
-
-# Introduction
-
-Lsyncd watches a local directory trees event monitor interface (inotify). It aggregates and combines events for a few seconds and then spawns one (or more) process(es) to synchronize the changes. By default this is rsync. Lsyncd is thus a light-weight live mirror solution that is comparatively easy to install not requiring new filesystems or blockdevices and does not hamper local filesystem performance. That is from the man page for lsyncd and is the best description for what lsyncd is. 
-
-Let's say you have two Rocky Linux servers or workstations, and you want to keep some directories in sync. We will call the system that we normally update, the master, and the one that we are synchronizing to, the slave. It is actually possible to completely mirror a server using lsyncd by very carefully specifying directories and files that you want to synchronize. It's pretty sweet!
-
-For remote syncing, you will also want to setup [Rocky Linux SSH Public Private Key Pairs](RL_ssh_public_private_keys.md). The examples here use SSH (port 22).
+# Rocky Linux - Mirroring Solution - lsycnd
 
 ## Prerequisites
 
-* Machine running Rocky Linux for install
+This is everything you'll need to understand and follow along with this guide:
+
+* A machine running Rocky Linux
 * A comfort level with modifying configuration files from the command-line
-* Know how to use a command line editor (we use vi here, but you could use your favorite editor)
-* You will either have to be root or sudo -s
+* Knowledge of how to use a command line editor (we use vi here, but you could use your favorite editor)
+* You will need root access, and ideally be signed in as the root user in your terminal
+* Public and Private SSH key pairs
+* The EPEL repositories from Fedora
+* You will need to be familair with *inotify*, an event monitor interface
+* Optional: familiarity with *tail*
 
-# Installing Lsyncd
+# Introduction
 
-There are actually two ways to install lsyncd. We will include them both here, but the preferred method is to install from source. It's relatively easy to do this and there are few dependencies required.  The RPM tends to lag behind the source packages by a little. That said, we want to give you both options and let you choose. 
+If you're looking for a way to synchronize files and folders between computers automatically, lsyncd is a pretty great option. The only downside for beginners? You have to configure everything via the command line, and text files.
 
-## Installing Lsyncd - RPM Method
+Even so, it's a program worth learning for any sysadmin.
 
-Installing the RPM version is relatively easy. The only thing you will need to install first is the EPEL from Fedora. This can be done with this command:
+The best description of *lsyncd*, comes from its own man page. Slightly paraphrased, lsyncd is a light-weight live mirror solution that is comparatively easy to install. It doesn't require new filesystems or blockdevices, and does not hamper local filesystem performance. In short, it mirrors files.
+
+lsyncd watches a local directory trees event monitor interface (inotify). It aggregates and combines events for a few seconds, and then spawns one (or more) process(es) to synchronize the changes. By default this is rsync. 
+
+For the purposes of this guide, we will call the system with the original files the "master", and the one that we are synchronizing to will be the "target". It is actually possible to completely mirror a server using lsyncd by very carefully specifying directories and files that you want to synchronize. It's pretty sweet!
+
+For remote syncing, you will also want to set up [Rocky Linux SSH Public Private Key Pairs](RL_ssh_public_private_keys.md). The examples here use SSH (port 22).
+
+# Installing lsycnd
+
+There are actually two ways to install lsyncd. We will include them both here, but the preferred method is to install from source. It's relatively easy to do this and there are few dependencies required. The RPM tends to lag behind the source packages by a little. That said, we want to give you both options and let you choose. 
+
+## Installing lsycnd - RPM Method
+
+Installing the RPM version is relatively easy. The only thing you will need to install first is the EPEL software repository from Fedora. This can be done with a single command:
 
 `dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`
 
-To install lsyncd, then, we just need to install it and any missing dependencies will be installed along with it:
+To install lsyncd, then, we just need to install it, and any missing dependencies will be installed along with it:
 
 `dnf install lsyncd`
 
 That's it!
 
-## Installing Lsyncd - Source Method
+## Installing lsycnd - Source Method
 
 Installing from source is not as bad is it sounds. Just follow this guide and you will be up and running in no time!
 
 ### Install Dependencies
 
-We will need some dependencies. A few that are required by lsyncd and a few that are required to build from source. Use this command on your Rocky Linux machine to make sure you have the dependencies. If you are going to be building from source, it's a good idea to have all of the development tools installed:
+We will need some dependencies: a few that are required by lsyncd itself, and a few that are required to build packages from source. Use this command on your Rocky Linux machine to make sure you have the dependencies you need. If you are going to be building from source, it's a good idea to have all of the development tools installed:
 
 `dnf install groupinstall 'Development Tools'`
 
-and we still need some additional dependencies:
+And here are the dependencies we need for lsyncd itself, and its build process:
 
 `dnf install lua lua-libs lua-devel cmake unzip wget rsync`
 
-### Download Lsyncd And Build It
+### Download lsycnd And Build It
 
-Next we need the source:
+Next we need the source code:
 
 `wget https://github.com/axkibe/lsyncd/archive/master.zip`
 
@@ -55,11 +67,11 @@ Now unzip the master.zip file:
 
 `unzip master.zip`
 
-which will create a directory called "lsyncd-master". We need to change to this directory and create a directory called build:
+This will create a directory called "lsyncd-master". We need to change to this directory and create a directory called build:
 
 `cd lsyncd-master`
 
-and
+And then:
 
 `mkdir build`
 
@@ -67,7 +79,7 @@ Now change directories again so that you are in the build directory:
 
 `cd build`
 
-And then execute these commands:
+Now execute these commands:
 
 ```
 cmake ..
@@ -75,15 +87,19 @@ make
 make install
 ```
 
-When done, you should have the lsyncd binary installed and ready for use in /usr/local/bin
+When done, you should have the lsyncd binary installed and ready for use in */usr/local/bin*
 
-# Lsyncd Systemd Service
+# lsycnd Systemd Service
 
-Neither install method will create a systemd service for starting. We want to be able to set this to start on a reboot, because if you are doing mirroring, you don't want the mirror to be offline because you forgot to manually start a service. That's very embarrassing! Creating the systemd service is not terribly difficult. 
+Neither install method will create a systemd service for starting lsyncd on a reboot. We want to be able to do just that, because if you are mirroring files, you don't want the mirror to be offline because you forgot to manually start a service. 
 
-## Create The Lsyncd Service File
+That's very embarrassing for any sysadmin! 
 
-This file can be created anywhere, even in the root directory of your server, and once it is created, we will install it to the correct location. 
+Creating the systemd service is not terribly difficult, though, and will save you a lot of time in the long run. 
+
+## Create The lsyncd Service File
+
+This file can be created anywhere, even in the root directory of your server. Once it is created, we can easily move it the right location. 
 
 `vi /root/lsyncd.service`
 
@@ -105,7 +121,7 @@ PIDFile=/run/lsyncd.pid
 [Install]
 WantedBy=multi-user.target
 ```
-Now lets install it in the correct location:
+Now let's install the file you just made to the correct location:
 
 `install -Dm0644 /root/lsyncd.service /usr/lib/systemd/system/lsyncd.service`
 
@@ -113,13 +129,13 @@ Finally, reload the systemctl daemon so that systemd will "see" the new service 
 
 `systemctl daemon-reload`
 
-# Lsyncd Configuration
+# lsycnd Configuration
 
-Whichever method you choose to do the install, you will need a configuration file, /etc/lsyncd.conf. The next section deals with building a simple configuration file and testing it. 
+Whichever method you choose for installing lsyncd, you will need a configuration file: */etc/lsyncd.conf*. The next section will tell you how to build a simple configuration file, and test it. 
 
 ## Sample Configuration For Testing
 
-Here's an example of a simple configuration file that synchronizes /home to another machine. Our target machine is going to be 192.168.1.40 here:
+Here's an example of a simple configuration file that synchronizes */home* to another machine. Our target machine is going to be a local IP address: *192.168.1.40*
 
 ```
   settings {
@@ -148,18 +164,18 @@ sync {
 
 Breaking down this file a bit:
 
-* the "logfile" and "statusFile" will be auto created when the service starts.
-* the "statusInterval" is the number of seconds to wait before writing to the statusFile.
+* The "logfile" and "statusFile" will be automatically created when the service starts.
+* The "statusInterval" is the number of seconds to wait before writing to the statusFile.
 * "maxProcesses" is the number of processes lsyncd is allowed to spawn. Honestly, unless you are running this on a super busy machine, 1 process is enough.
 * In the sync section "default.rsyncssh" says to use rsync over ssh
-* the "source=" is the directory path we are syncing from
-* the "host=" is our target machine that we are syncing to
-* the "excludeFrom=" tells lsyncd where the eclusions file is. It must exist, but can be empty.
-* the "targetdir=" is the target directory we are sending to. In most cases this will be equal to the source, but not always.
-* then we have the "rsync =" section and these are the options that we are running rsync with
-* finally we have the "ssh =" section and this specifies the SSH port that is listening on the target machine.
+* The "source=" is the directory path we are syncing from.
+* The "host=" is our target machine that we are syncing to.
+* The "excludeFrom=" tells lsyncd where the eclusions file is. It must exist, but can be empty.
+* The "targetdir=" is the target directory we are sending files to. In most cases this will be equal to the source, but not always.
+* Then we have the "rsync =" section, and these are the options that we are running rsync with.
+* Finally we have the "ssh =" section, and this specifies the SSH port that is listening on the target machine.
 
-If we were adding one or more directories to sync, then you need to include the entire "sync" section including all the opening and closing brackets for each directory.
+If you are adding more than one directory to sync, then you need to repeat the entire "sync" section including all the opening and closing brackets for each directory.
 
 ## The lsyncd.exclude File
 
@@ -178,7 +194,7 @@ If we were syncing the /etc folder on our machine, there would be a number of fi
 
 ## Test And Turn Up
 
-Now that everything else is setup, we can now test. For starters, lets make sure our systemd lsyncd.service will start:
+Now that everything else is set up, we can test it all. For starters, lets make sure our systemd lsyncd.service will start:
 
 `systemctl start lsyncd`
 
@@ -186,15 +202,15 @@ If no errors appear after executing this command, check the status of the servic
 
 `systemctl status lsyncd`
 
-If it shows the service running, tail the two log files and make sure it shows everything OK:
+If it shows the service running, use tail to see the ends of the two log files, and make sure everything show up OK:
 
 `tail /var/log/lsyncd.log`
 
-and
+And then:
 
 `tail /var/log/lsyncd-status.log`
 
-Assuming that this all looks correct navigate to the `/home/[user]` directory, where `[user]` is a user on the machine and touch a new file there.
+Assuming that this all looks correct, navigate to the `/home/[user]` directory, where `[user]` is a user on the machine and crate a new file there with *touch*.
 
 `touch /home/[user]/testfile`
 
@@ -206,11 +222,13 @@ And you should be ready to go.
 
 ## Remember To Be Careful
 
-Anytime you are synchronizing a set of files or directories to another machine, think carefully about the effect it will have on the target machine. If you go back to ** The lsyncd.exclude File ** in our example above, can you imagine what might happen if /etc/fstab is synchronized?  The disks and labels are almost certainly different. The next time the target machine was rebooted it would fail. 
+Anytime you are synchronizing a set of files or directories to another machine, think carefully about the effect it will have on the target machine. If you go back to **The lsyncd.exclude File** in our example above, can you imagine what might happen if */etc/fstab* is synchronized? 
+
+For newbies, *fstab* is the file that is used to configure storage drives on any Linux machine. The disks and labels are almost certainly different. The next time the target machine was rebooted it would likely fail to boot entirely. 
 
 # Conclusions And References
 
-Lsyncd is another powerful tool for directory synchronization between machines. It is a tool that is easy to install and once configured the first time, is easy to maintain going forward. 
+lsycnd is a powerful tool for directory synchronization between machines. As you've seen, it's not hard to install, and it's easy to maintain going forward. Can't ask for more than that.
 
-You can find more about lsyncd by going to [The Official Site](https://github.com/axkibe/lsyncd)
+You can find out more about lsyncd by going to [The Official Site](https://github.com/axkibe/lsyncd)
 
