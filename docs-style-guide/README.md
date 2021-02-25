@@ -43,6 +43,8 @@ On every tutorial, guide, or doc, list the things the reader will need to know o
 And the anaologies, similes, idioms, and more obscure cultural references. While *we generally encourage* the use of all these literary devices to spice up documentation (especially the beginner-focused docs), do your best to keep them simple. Non-native English speakers still need to understand our documentation, especially those who will be translating it.
 * **The Oxford comma**  
 Also known as the serial comma. Love it, use it, and [read up on it](https://en.wikipedia.org/wiki/Serial_comma) if you want to.
+* **Things to italicize**  
+The first time you mention a software package in any article, italicize it, eg _rsnapshot_. Specific files and folders (eg _/home/[user]_) should _always_ be italicized. You can, of course, use italics and bold text for emphasis where needed, but do it sparingly. If everything is makred as bold text, then the boldness of the text loses its impact altogether.
 
 ## Images & screenshots
 A few tips to help you make the best images you can for tutorials.
@@ -51,10 +53,3 @@ A few tips to help you make the best images you can for tutorials.
 * The recommended format for images is JPG.
 * If there's a lot going on in your screenshot, consider adding a couple of helpful arrows pointing at the things that matter.
 * Terminal commands are best put into a `code` element or block. If you must screenshot your terminal, make sure the text is big enough for people to easily see without zooming in.
-
-
-## The submission process
-
-Once you've written up your contribution to our docs, it's time to submit it for review. Here's the basic process:
-
-* [These steps are going to depend on our system. Basically, fork repo, add .md files, submit for review. Though maybe there might be a better place to put these instructions?]
