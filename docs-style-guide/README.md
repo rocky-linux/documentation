@@ -43,6 +43,8 @@ On every tutorial, guide, or doc, list the things the reader will need to know o
 And the anaologies, similes, idioms, and more obscure cultural references. While *we generally encourage* the use of all these literary devices to spice up documentation (especially the beginner-focused docs), do your best to keep them simple. Non-native English speakers still need to understand our documentation, especially those who will be translating it.
 * **The Oxford comma**  
 Also known as the serial comma. Love it, use it, and [read up on it](https://en.wikipedia.org/wiki/Serial_comma) if you want to.
+* **Things to italicize**  
+The first time you mention a software package in any article, italicize it, eg _rsnapshot_. Specific files and folders (eg _/home/[user]_) should _always_ be italicized. You can, of course, use italics and bold text for emphasis where needed, but do it sparingly. If everything is makred as bold text, then the boldness of the text loses its impact altogether.
 
 ## Images & screenshots
 A few tips to help you make the best images you can for tutorials.
