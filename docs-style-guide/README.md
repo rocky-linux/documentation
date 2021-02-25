@@ -53,10 +53,3 @@ A few tips to help you make the best images you can for tutorials.
 * The recommended format for images is JPG.
 * If there's a lot going on in your screenshot, consider adding a couple of helpful arrows pointing at the things that matter.
 * Terminal commands are best put into a `code` element or block. If you must screenshot your terminal, make sure the text is big enough for people to easily see without zooming in.
-
-
-## The submission process
-
-Once you've written up your contribution to our docs, it's time to submit it for review. Here's the basic process:
-
-* [These steps are going to depend on our system. Basically, fork repo, add .md files, submit for review. Though maybe there might be a better place to put these instructions?]
