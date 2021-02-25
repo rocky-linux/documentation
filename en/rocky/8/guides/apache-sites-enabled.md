@@ -6,7 +6,7 @@ title: 'Apache Web Server Multi-Site Setup'
 
 Rocky Linux has many ways for you to setup a web site. This is just one method, using Apache, and is designed for use as a multi-site setup on a single server. While this method is designed for multi-site servers, it can also act as a base configuration for a single site server as well. 
 
-History fact: This server setup appears have started with Debian-based systems, but it is perfectly adaptable to any Linux OS running Apache.
+History fact: This server setup appears to have started with Debian-based systems, but it is perfectly adaptable to any Linux OS running Apache.
 
 ## What You Need
 * A server running Rocky Linux
