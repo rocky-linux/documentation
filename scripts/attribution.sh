@@ -7,9 +7,30 @@
 # contributors to documentation articles
 
 function format_contributor() {
-    # Output only the Name and Email in Name <Email> format
+    # Output only the Name 
     local -n ref=$1
-    echo ${ref} | awk -F\; '{print $2" <"$3">"}'
+    echo ${ref} | awk -F\; '{print $2}'
+}
+
+function format() {
+    local -n ref=$1
+
+    # The author is the first one to commit
+    printf "author: '%s'\n" "${ref[0]}"
+
+    # Everyone else is a contributor. As long as there is more than one
+    # commiter, loop through them and append them to the line.
+    printf "contributors: '"
+    if [[ "${#ref[@]}" -gt 1 ]]; then 
+        for c in "${ref[@]:1}"; do
+            if [[ "$c" != "${ref[-1]}" ]]; then
+                printf "%s, " "$c"
+            else
+                printf "%s" "$c"
+            fi
+        done 
+    fi
+    printf "'\n"
 }
 
 function process_contributors() {
@@ -44,17 +65,9 @@ function process_contributors() {
         fi
     done
 
-    # The author is the first one to commit
-    printf "Author: %s\n" "${final[0]}"
-
-
-    # Everyone else is a contributor
-    printf "Contributors: "
-    if [[ "${#final[@]}" -gt 1 ]]; then 
-        printf "%s, " "${final[@]:1}"
-    fi
-    printf "\n"
+    format final
 }
+
 
 file="$1"
 
@@ -76,7 +89,7 @@ else
     # If the command outputs are not identical, then concatenate the arrays
     # together, preserving order by keeping the older (follow) commits first.
     combined=("${follow[@]}" "${normal[@]}")
-    process_contributors combined[@] # Nondimentionalize the array, as expected
+    process_contributors combined[@] # Nondimensionalize the array, as expected
                                      # by the called function
 fi
 
