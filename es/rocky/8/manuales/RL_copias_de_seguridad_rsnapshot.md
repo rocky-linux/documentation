@@ -1,4 +1,4 @@
-# Rocky Linux - Copias de Seguridad - Rsnapshot
+# Rocky Linux - Copias de Seguridad - rsnapshot
 
 ## Prerequisitos
 
@@ -17,7 +17,7 @@ rsnapshot usa _rsync_ y está escrito completamente en perl sin dependencias de 
 
 Esta documentación cubre la instalación de rsnapshot sólo en Rocky Linux.
 
-# Instalando Rsnapshot
+# Instalando rsnapshot
 
 Todos los comandos mostrados aquí son de la línea de comandos en su servidor o estación de trabajo a menos que se indique lo contrario.
 
@@ -29,7 +29,7 @@ Necesitamos el repositorio de software EPEL de Fedora para instalar rsnapshot. P
 
 El repositorio ahora debería estar activo.
 
-## Instalar el Paquete Rsnapshot
+## Instalar el Paquete rsnapshot
 
 A continuación, instalar rsnapshot propiamente:
 
@@ -78,7 +78,7 @@ Tener en cuenta que para una sola máquina, tendrá que repetir los pasos de des
 
 Recomendamos la automatización. La automatización es el camino del administrador de sistemas.
 
-# Configurar Rsnapshot
+# Configurar rsnapshot
 
 Este es el paso más importante. Es fácil cometer errores al hacer cambios en archivo de configuración. La configuración de rsnapshot requiere tabulaciones para la separación entre elementos, y una advertencia a tal efecto se encuentra en la parte superior del archivo de configuración.
 
@@ -237,7 +237,7 @@ Si ya tienes un set de claves generado puedes averiguarlo haciendo un `ls -al .s
 
 [Rocky Linux Claves SSH Públicas y Privadas](RL_claves_ssh_públicas_privadas.md)
 
-### Configuración de Rsnapshot
+### Configuración de rsnapshot
 
 El archivo de configuración tiene que ser igual que el que creamos para el **Basic Machine or Single Server Backup** arriba, excepto que queremos cambiar algunas opciones.
 
@@ -324,4 +324,4 @@ Y agregamos esta línea:
 
 La configuración correcta de rsnapshot es un poco desalentadora al principio, pero puede ahorrarte mucho tiempo al respaldar tus equipos o servidores.
 
-rsnapshot es muy poderoso, rápido y económico en el uso de espacio en disco. Puedes encontrar más información sobre Rsnapshot, visitando [rsnapshot.org](https://rsnapshot.org/download.html)
+rsnapshot es muy poderoso, rápido y económico en el uso de espacio en disco. Puedes encontrar más información sobre rsnapshot, visitando [rsnapshot.org](https://rsnapshot.org/download.html)
