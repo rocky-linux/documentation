@@ -50,6 +50,8 @@ To configure a static IP address attribution, set the following:
 * PREFIX: the subnet mask in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 * GATEWAY: the default gateway
 
+The `ONBOOT` parameter set to `yes` indicates that this connection will be activated during boot time.
+
 #### DNS resolution
 
 To get proper name resolution, the following parameters must be set:
@@ -86,4 +88,45 @@ To see the detailed state of all interfaces, use
 
 	ip a 
 
-**Pro tip:** use the `-c` flag to get a more readable coloured output: `ip -c a`.
+**Pro tips:**
+* use the `-c` flag to get a more readable coloured output: `ip -c a`.
+* `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
+
+### Bring interface up or down
+
+To bring the *ens19* interface up, simply use `ip link set ens19 up` and to bring it down, use `ip link set ens19 down`.
+
+### Assign the interface a static address
+
+The command to be used is of the form:
+
+	ip addr add <IP ADDRESS/CIDR> dev <IFACE NAME>
+
+To assign the above example parameters, we will use:
+
+	ip a add 192.168.20.10/24 dev ens19
+
+Then, checking the result with:
+
+	ip a show dev ens19
+
+will output:
+
+	3: ens19: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+		link/ether 4a:f2:f5:b6:aa:9f brd ff:ff:ff:ff:ff:ff
+		inet 192.168.20.10/24 scope global ens19
+		valid_lft forever preferred_lft forever
+
+Our interface is up and configured, but we lack something.
+
+### Gateway configuration
+
+Now that the interface has an address, we have to set its default route, this can be done with:
+
+	ip route add default via 192.168.20.254 dev ens19
+
+The kernel routing table can be displayed with
+
+	ip route
+
+or `ip r` for short.
