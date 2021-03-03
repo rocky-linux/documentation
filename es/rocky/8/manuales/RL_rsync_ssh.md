@@ -4,9 +4,9 @@
 
 Esto es todo lo que necesitarás para comprender y seguir esta guía.
 
-* Una máquina que ejecute Rocky Linux.
+* Un equipo que ejecute Rocky Linux.
 * Cierta comodidad editando archivos de configuración desde la linea de comandos.
-* Cierto conocimiento en editores de línea de comandos (Aquí utilizaremos vi, sin embargo puedes utilizar el que prefieras).
+* Cierto conocimiento sobre editores de línea de comandos (Aquí utilizaremos vi, sin embargo puedes utilizar el que prefieras).
 * Necesitarás acceso root y también iniciar sesión como usuario root en tu terminal.
 * Un juego de claves SSH públicas y privadas.
 * Capacidad para crear un script simple, utilizando vi o el editor que prefieras, y probarlo.
@@ -14,7 +14,7 @@ Esto es todo lo que necesitarás para comprender y seguir esta guía.
 
 # Introducción
 
-Utilizar _rsync_ sobre SSH no es tan poderoso como [lsync](RL_espejar_lsync.md) (que permite monitorear un directorio o archivo en busca de cambios y mantenerlo sincronizado en tiempo real), ni tan flexible como [rsnapshot](RL_copias_de_seguridad_rsnapshot.md) (que permite hacer una copia de seguridad de múltiples objetivos desde un solo equipo fácilmente). Pero, ofrece la capacidad de mantener dos equipos actualizados en un horario definido.
+Utilizar _rsync_ sobre SSH no es tan poderoso como [lsync](RL_espejar_lsync.md) (que permite monitorear un directorio o archivo en busca de cambios y mantenerlo sincronizado en tiempo real), ni tan flexible como [rsnapshot](RL_copias_de_seguridad_rsnapshot.md) (que permite hacer una copia de seguridad de múltiples objetivos desde un solo equipo fácilmente). Pero ofrece la capacidad de mantener dos equipos actualizados en un horario definido.
 
 rsync ha existido desde el principio de los tiempos (bueno, tal vez no tanto, pero si lleva su tiempo) así que cada distribución Linux lo tiene disponible, y todavía persiste en los paquetes base. rsync sobre SSH puede ser una solución si necesita mantener un conjunto de directorios actualizados en un equipo objetivo, sin embargo la sincronización en tiempo real no es realmente importante.
 
@@ -30,7 +30,7 @@ Si el paquete no está instalado, dnf le pedirá que confirme la instalación y 
 
 ## Preparando el Entorno
 
-Este ejemplo en específico utilizará rsync con el objetivo de extraer desde el origen, en lugar de realizar jalar desde el origen hacia el destino, por lo que necesitaremos configurar un [juego de claves SSH](RL_claves_ssh_públicas_privadas.md) para esto. Una vez creado el juego de claves SSH, y confirmado el acceso sin contraseña desde el equipo objetivo al origen, estamos listos para comenzar.
+Este ejemplo específico utilizará rsync con el objetivo de jalar los cambios, en lugar de empujarlos hacia el destino, por lo que necesitaremos configurar un [juego de claves SSH](RL_claves_ssh_públicas_privadas.md) para esto. Una vez creado el juego de claves SSH, y confirmado el acceso sin contraseña desde el equipo objetivo al origen, estamos listos para comenzar.
 
 ## Parámetros de rsync y Configuración del Script
 
@@ -147,4 +147,4 @@ Esto ejecutará el comando a las 00 minutos, 23 horas, cada día, cada mes y cad
 
 # Conclusiones
 
-Si bien rsync no puede ser tan flexible o poderoso como otras opciones, ofrece una simple sincronización de archivos. Y siempre hay un uso para eso.
+Si bien rsync no es tan flexible o poderoso como otras opciones, ofrece una simple sincronización de archivos. Y siempre hay un uso para eso.
