@@ -3,6 +3,7 @@
 ## Prerequisites
 
 * A certain amount of comfort operating from the command line
+* All operations require root access
 * Optional: familiarity with networking concepts
 
 # Introduction
@@ -71,6 +72,11 @@ To get the connection state, simply use:
 
     nmcli connection show
 
+You can also use the `ifup` and `ifdown` commands to bring the interface up and down (they are simple wrappers around `nmcli`):
+
+	ifup ens18
+	ifdown ens18
+
 ## Using ip utility
 
 The `ip` command (provided by the *iproute2* package) is a powerful tool to get information and configure the network of a modern Linux system such as Rocky Linux.
@@ -119,6 +125,22 @@ will output:
 
 Our interface is up and configured, but we lack something.
 
+### Using ifcfg utility
+
+To add the *ens19* interface our new example IP address, use the following command:
+
+	ifcfg ens19 add 192.168.20.10/24
+
+To remove the address:
+
+	ifcfg ens19 del 192.168.20.10/24
+
+To completely disable IP addressing on this interface:
+
+	ifcfg ens19 stop
+
+*Note that this does not bring the interface down, it simply unassigns all IP addresses from the interface.*
+
 ### Gateway configuration
 
 Now that the interface has an address, we have to set its default route, this can be done with:
@@ -130,3 +152,39 @@ The kernel routing table can be displayed with
 	ip route
 
 or `ip r` for short.
+
+## Checking network connectivity
+
+At this point, you should have your network interface up and properly configured. There are several ways to verify your connectivity.
+
+By *pinging* another IP address in the same network (we will use `192.168.20.42` as an example):
+
+	ping -c3 192.168.20.42
+
+This command will issue 3 *pings* (known as ICMP request) and wait for a reply. If everything went fine, you should get this output:
+
+	PING 192.168.20.42 (192.168.20.42) 56(84) bytes of data.
+	64 bytes from 192.168.20.42: icmp_seq=1 ttl=64 time=1.07 ms
+	64 bytes from 192.168.20.42: icmp_seq=2 ttl=64 time=0.915 ms
+	64 bytes from 192.168.20.42: icmp_seq=3 ttl=64 time=0.850 ms
+
+	--- 192.168.20.42 ping statistics ---
+	3 packets transmitted, 3 received, 0% packet loss, time 5ms
+	rtt min/avg/max/mdev = 0.850/0.946/1.074/0.097 ms
+
+Then, to make sure your routing configuration is fine, try to *ping* a external host, such as this well known public DNS resolver:
+
+	ping -c3 8.8.8.8
+
+If your machine has several network interface and you want to make ICMP request via a specific interface, you can use the `-I` flag:
+
+	ping -I ens19  -c3 192.168.20.42
+
+It is now time to make sure that DNS resolution is working correctly. As a reminder, DNS resolution is a mechanism used to convert human friendly machine names into their IP addresses and the other way round (reverse DNS).
+If the `/etc/resolv.conf` file indicates a reachable DNS server, then the following should work:
+
+	host rockylinux.org
+
+Result:
+
+	rockylinux.org has address 76.76.21.21
