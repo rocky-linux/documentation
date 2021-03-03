@@ -44,7 +44,7 @@ The interface's name is **ens18** so this file's name will be `/etc/sysconfig/ne
 
 #### IP address
 
-Here there is no dynamic IP address attribution (known as DHCP)as the `BOOTPROTO` parameter is set to `none`. To enable it, set it to `dhcp`.
+Here there is no dynamic IP address attribution (known as DHCP)as the `BOOTPROTO` parameter is set to `none`. To enable it, set it to `dhcp` and remove the `IPADDR`, `PREFIX` and `GATEWAY` lines.
 To configure a static IP address attribution, set the following:
 
 * IPADDR: the IP address to assign the interface
@@ -76,6 +76,12 @@ You can also use the `ifup` and `ifdown` commands to bring the interface up and 
 
 	ifup ens18
 	ifdown ens18
+
+### Checking configuration
+
+You can check that the configuration has been correctly applied with the following `nmcli` command:
+
+
 
 ## Using ip utility
 
