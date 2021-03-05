@@ -196,7 +196,7 @@ grep -h "$today" /var/log/messages | grep dbus-daemon | mail -s "dbus-daemon mes
 
 Run the script again, and you should now have an email from the server with the dbus-daemon message.
 
-You can now [use a crontab](cron_jobs.md) to schedule this to run at a specific time.
+You can now [use a crontab](cron_jobs_howto.md) to schedule this to run at a specific time.
 
 # Conclusion
 
