@@ -1,6 +1,6 @@
 # Rocky Linux - Clave SSH Pública y Privada
 
-## Prerequisitos
+## Requisitos
 
 * Un cierto nivel de comodidad operando desde la línea de comandos
 * Servidores Linux y/o estaciones de trabajo con *openssh* instalado
@@ -15,7 +15,7 @@ Cuando estás trabajando con múltiples servidores Rocky Linux en múltiples ubi
 
 Este documento le guiará a través del proceso de creación de las claves y la configuración de sus servidores para un fácil acceso, con dichas claves.
 
-### Procedimiento para la ganeración de claves
+### Procedimiento para la generación de claves
 
 Los siguientes comandos se ejecutan todos desde la línea de comandos en su estación de trabajo Rocky Linux:
 
@@ -32,7 +32,7 @@ Pulsa Enter para aceptar la ubicación por defecto. A continuación el sistema m
 
 `Enter passphrase (empty for no passphrase):`
 
-Por lo tanto, sólo tienes que pulsar Enter aquí. Por último, le pedirá que vuelva a introducir la frase de contraseña:
+Por lo tanto, solo tienes que pulsar Enter aquí. Por último, le pedirá que vuelva a introducir la frase de contraseña:
 
 `Enter same passphrase again:`
 
@@ -45,7 +45,7 @@ ls -a .ssh/
 .  ..  id_rsa  id_rsa.pub
 ```
 
-Ahora tenemos que enviar la clave pública (id_rsa.pub) a cada máquina a la que vayamos a acceder... pero antes de hacerlo, tenemos que asegurarnos de que podemos acceder por SSH a los servidores a los que vamos a enviar la clave. Para nuestro ejemplo, vamos a utilizar sólo tres servidores. 
+Ahora tenemos que enviar la clave pública (id_rsa.pub) a cada máquina a la que vayamos a acceder... pero antes de hacerlo, tenemos que asegurarnos de que podemos acceder por SSH a los servidores a los que vamos a enviar la clave. Para nuestro ejemplo, vamos a utilizar solo tres servidores. 
 
 Puedes acceder a ellos a través de SSH por un nombre DNS o una dirección IP, pero para nuestro ejemplo vamos a utilizar el nombre DNS. Nuestros servidores de ejemplo son web, correo y portal. Para cada servidor, intentaremos entrar por SSH (a los nerds les encanta usar SSH como verbo) y dejaremos una ventana de terminal abierta para cada máquina:
 

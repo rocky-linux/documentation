@@ -1,13 +1,13 @@
 # Rocky Linux - Copias de Seguridad - rsnapshot
 
-## Prerequisitos
+## Requisitos
 
   * Saber cómo instalar repositorios e instantáneas adicionales desde la línea de comandos
   * Saber cómo montar sistemas de archivos externos a su máquina (disco duro externo, sistema de archivos remoto, etc.)
   * Saber usar un editor (aquí se usa vi, pero puedes usar tu editor favorito)
   * Saber un poco de BASH scripting 
   * Saber cómo modificar crontab para el usuario root
-  * Conocimiento de las claves públicas y privadas de SSH (sólo si planea ejecutar copias de seguridad remotas desde otro servidor)
+  * Conocimiento de las claves públicas y privadas de SSH (solo si planea ejecutar copias de seguridad remotas desde otro servidor)
 
 # Introducción
 
@@ -35,7 +35,7 @@ A continuación, instalar rsnapshot propiamente:
 
 `sudo dnf install rsnapshot`
 
-En el caso en que faltaran dependencias, éstas se mostrarán y sólo tendríamos que responder en el prompt para continuar. Por ejemplo:
+En el caso en que faltaran dependencias, éstas se mostrarán y solo tendríamos que responder en el prompt para continuar. Por ejemplo:
 
 ```
 dnf install rsnapshot
@@ -84,7 +84,7 @@ Este es el paso más importante. Es fácil cometer errores al hacer cambios en a
 
 Un carácter de espacio causará que toda la configuración y su copia de seguridad fallen. Por ejemplo, cerca de la parte superior del archivo de configuración hay una sección para el `# SNAPSHOT ROOT DIRECTORY #`. Si se agregará esto desde cero se debería escribir `snapshot_root`, luego TAB y seguido `/whatever_the_path_to_the_snapshot_root_will_be/`
 
-Lo mejor es que la configuración que viene por defecto con rsnapshot sólo necesita pequeños cambios para funcionar como copia de seguridad en un equipo local. Sin embargo siempre es una buena idea realizar una copia de seguridad del archivo de configuración antes de comenzar a editarlo:
+Lo mejor es que la configuración que viene por defecto con rsnapshot solo necesita pequeños cambios para funcionar como copia de seguridad en un equipo local. Sin embargo siempre es una buena idea realizar una copia de seguridad del archivo de configuración antes de comenzar a editarlo:
 
 `cp /etc/rsnapshot.conf /etc/rsnapshot.conf.bak`
 
@@ -102,7 +102,7 @@ Necesitamos cambiar estp en nuestro punto de montaje que creamos anteriormente m
 
 `snapshot_root   /mnt/backup/storage/`
 
-También queremos decirle a la copia de seguridad que NO se ejecute si la unidad no está montada. Para ello, se debe eliminar el signo "#" (también llamado simbolo numeral, almohadilla, comentario, hash, etc.) seguido de no_create_root para que se vea así:
+También queremos decirle a la copia de seguridad que NO se ejecute si la unidad no está montada. Para ello, se debe eliminar el signo "#" (también llamado símbolo numeral, almohadilla, comentario, hash, etc.) seguido de no_create_root para que se vea así:
 
 `no_create_root 1`
 
@@ -126,7 +126,7 @@ A continuación tendremos que saltar a la sección titulada `#     BACKUP LEVELS
 
 Esto ha sido cambiado de versiones anteriores de rsnapshot de `hourly, daily, monthly, yearly` a `alpha, beta, gamma, delta`. Lo cual es un poco confuso. Lo que necesitamos hacer es añadir un comentario a cualquier intervalo que no vayas a utilizar. En la configuración, delta ya estará comentado.
 
-Para este ejemplo, no ejecutaremos ningún otro incremento que no sea una copia de seguridad nocturna, así que sólo hay que añadir un comentario al alfa y gamma para que la configuración se vea así cuando haya terminado:
+Para este ejemplo, no ejecutaremos ningún otro incremento que no sea una copia de seguridad nocturna, así que solo hay que añadir un comentario al alfa y gamma para que la configuración se vea así cuando haya terminado:
 
 ```
 #retain  alpha   6
@@ -193,11 +193,11 @@ Cuando la copia de seguridad termine, podremos echar un vistazo a la estructura 
 
 Cada vez que se ejecute la copia de seguridad, se creará un nuevo incremento beta, de 0 a 6, o de 7 días de copias de seguridad. La copia de seguridad más reciente siempre será beta.0, mientras que la copia de seguridad de ayer siempre será beta.1.
 
-El tamaño de cada uno de estos respaldos parecerá ocupar la misma cantidad (o más) de espacio en disco, pero esto se debe al uso de enlaces duros por parte de rsnapshot. Para restaurar los archivos del respaldo de ayer, simplemente se debe copiar de vuelta desde la esctructura de directorios de la beta.1.
+El tamaño de cada uno de estos respaldos parecerá ocupar la misma cantidad (o más) de espacio en disco, pero esto se debe al uso de enlaces duros por parte de rsnapshot. Para restaurar los archivos del respaldo de ayer, simplemente se debe copiar de vuelta desde la estructura de directorios de la beta.1.
 
-Cada copia de seguridad es sólo una copia de seguridad incremental de la ejecución anterior, PERO, debido al uso de enlaces duros, cada directorio dela copia de seguridad, contiene el archivo, o enlace duro al archivo en cualquier directorio en el que realmente fue respaldado. 
+Cada copia de seguridad es solo una copia de seguridad incremental de la ejecución anterior, PERO, debido al uso de enlaces duros, cada directorio dela copia de seguridad, contiene el archivo, o enlace duro al archivo en cualquier directorio en el que realmente fue respaldado. 
 
-Así que para restaurar los archivos, usted no tiene que elegir qué directorios o incremento para restaurarlos, sólo qué marca de tiempo debe tener la copia de seguridad. Es un gran sistema y utiliza mucho menos espacio en disco que muchas otras soluciones de copia de seguridad.
+Así que para restaurar los archivos, usted no tiene que elegir qué directorios o incremento para restaurarlos, solo qué marca de tiempo debe tener la copia de seguridad. Es un gran sistema y utiliza mucho menos espacio en disco que muchas otras soluciones de copia de seguridad.
 
 ### Configurar la Copia de Seguridad para que se Ejecute Automáticamente
 
