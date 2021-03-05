@@ -40,7 +40,7 @@ La razón es muy simple. Digamos que tienes 10 sitios web que se ejecutan en el 
 
 No sólo no se iniciará el sitio en el que se estaba trabajando, sino que tampoco lo harán los demás. Con este método, se puede eliminar el enlace simbólico para el sitio que causó el fallo, y reiniciar httpd. Todo comenzará a funcionar de nuevo, y luego se puede trabajar en arreglar la configuración del sitio roto. 
 
-Es un alivio saber que el teléfono no va a sonar con un cliente enfadado, o un jefe enfadado, porque un servicio está desconectado.
+Es un alivio saber que el teléfono no va a sonar con clientes o jefes enfadados, porque un servicio está desconectado.
 
 ### La configuración del sitio
 El otro beneficio de este método es que nos permite especificar completamente todo fuera del archivo httpd.conf. Deja que el archivo httpd.conf por defecto cargue los valores predeterminados, y deja que las configuraciones de tu sitio hagan todo lo demás. Genial, ¿verdad? Además, de nuevo, hace que sea muy fácil solucionar un problema de una configuración rota de un sitio.
@@ -87,7 +87,7 @@ En nuestro ejemplo anterior, el sitio se carga desde el subdirectorio html de co
 
 ## Habilitar el sitio
 
-Recuerda que nuestro archivo *httpd.conf* incluye */etc/httpd/sites-enabled* al final, así que cuando httpd se reinicie, cargará cualquier archivo de configuración que esté en el directorio *sites-enabled*. La cosa es que todos nuestros archivos de configuración están en *sites-available*. 
+Recuerda que nuestro archivo *httpd.conf* incluye */etc/httpd/sites-enabled* al final, así que cuando httpd se reinicie, cargará cualquier archivo de configuración que esté en el directorio *sites-enabled*. El asunto es que todos nuestros archivos de configuración están en *sites-available*. 
 
 Esto es por diseño, para que podamos eliminar fácilmente las cosas en caso de que httpd falle al reiniciar. Así que para habilitar nuestro archivo de configuración, necesitamos crear un enlace simbólico a ese archivo en *sites-enabled* y luego iniciar o reiniciar el servicio web. Para hacer esto, usamos este comando:
 
@@ -95,4 +95,4 @@ Esto es por diseño, para que podamos eliminar fácilmente las cosas en caso de 
 
 Esto creará el enlace al archivo de configuración en *sites-enabled*, tal y como queremos.
 
-Ahora solo queda iniciar httpd con `systemctl start httpd` o reinícialo si ya se está ejecutando con `systemctl restart httpd`, y suponiendo que el servicio web se reinicia, ahora se puede ir y hacer pruebas en el nuevo sitio.
+Ahora solo queda iniciar httpd con `systemctl start httpd` o reiniciarlo si ya se está ejecutando con `systemctl restart httpd`, y suponiendo que el servicio web se reinicia, ahora se puede ir y hacer pruebas en el nuevo sitio.
