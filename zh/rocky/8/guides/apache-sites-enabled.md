@@ -12,7 +12,7 @@ Rocky Linux 提供了许多方法来设置网络站点。Apache 只是其中的�
 
 * 一台运行 Rocky Linux 的服务器
 * 了解命令行和文本编辑器（选择您喜欢的编辑器，本示例使用 *vi*。）
-    * 如果您想了解 vi 文本编辑器， [此处有一个简单教程](https://www.tutorialspoint.com/unix/unix-vi-editor.html)。
+    * 如果您想了解 vi 文本编辑器，[此处有一个简单教程](https://www.tutorialspoint.com/unix/unix-vi-editor.html)。
 * 有关安装和运行 Web 服务的基本知识
 
 ## 安装 Apache
