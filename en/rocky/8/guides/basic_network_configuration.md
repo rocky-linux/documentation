@@ -81,7 +81,25 @@ You can also use the `ifup` and `ifdown` commands to bring the interface up and 
 
 You can check that the configuration has been correctly applied with the following `nmcli` command:
 
+	nmcli device show ens18
 
+which should give you the following output:
+
+	GENERAL.DEVICE:                         ens18
+	GENERAL.TYPE:                           ethernet
+	GENERAL.HWADDR:                         6E:86:C0:4E:15:DB
+	GENERAL.MTU:                            1500
+	GENERAL.STATE:                          100 (connecté)
+	GENERAL.CONNECTION:                     ens18
+	GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/1
+	WIRED-PROPERTIES.CARRIER:               marche
+	IP4.ADDRESS[1]:                         192.168.0.1/24
+	IP4.GATEWAY:                            192.168.0.254
+	IP4.ROUTE[1]:                           dst = 192.168.0.0/24, nh = 0.0.0.0, mt = 100
+	IP4.ROUTE[2]:                           dst = 0.0.0.0/0, nh = 192.168.0.254, mt = 100
+	IP4.DNS[1]:                             192.168.0.254
+	IP4.DNS[2]:                             1.1.1.1
+	IP6.GATEWAY:                            --
 
 ## Using ip utility
 
@@ -194,3 +212,4 @@ If the `/etc/resolv.conf` file indicates a reachable DNS server, then the follow
 Result:
 
 	rockylinux.org has address 76.76.21.21
+
