@@ -210,8 +210,10 @@ We are going to set our backup to automatically run at 11 PM, so we will add thi
 
 ```
 ## Running the backup at 11 PM
-00 23 *  *  *  /usr/bin/rsnapshot -c /etc/rsnapshot.conf beta`
+00 23 *  *  *  /usr/bin/rsnapshot -c /etc/rsnapshot.conf beta
 ```
+
+For more on automating your processes, check out [the cron jobs how-to](cron_jobs_howto.md)
 
 ## Multiple Machine or Multiple Server Backups
 
@@ -319,6 +321,10 @@ And add this line:
 ## Running the backup at 11 PM
 00 23 *  *  *  /usr/local/sbin/backup_all
 ```
+
+### Log Reporting
+
+You can automate and deliver the logs for your backups using [postfix reporting procedure](postfix_reporting.md)
 
 ## Conclusions and Other Resources
 

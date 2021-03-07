@@ -146,6 +146,8 @@ What this says is to run this command at 00 minutes, 23 hundred hours, every day
 
 ... or with the commands that your favorite editor uses for saving a file.
 
+For more on automating processes, check out the [cron jobs how-to](cron_jobs_howto.md)
+
 # Conclusions
 
 While rsync may not be as flexible or powerful as some of the other options, it offers simple file synchronization. And there's always a use for that.
