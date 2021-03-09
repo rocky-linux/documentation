@@ -11,7 +11,7 @@
 
 SSH is a protocol used to access one machine from another, usually via the command line. With SSH, you can run commands on remote computers and servers, send files, and generally manage everything you do from one place.
 
-When you are working with multiple Rocky Linux servers in multiple locations, or if you are just trying to save some time accessing these servers, you'll want to use an SSH public and private key pair. Key pairs bascially make logging into remote machines and running commands easier. 
+When you are working with multiple Rocky Linux servers in multiple locations, or if you are just trying to save some time accessing these servers, you'll want to use an SSH public and private key pair. Key pairs basically make logging into remote machines and running commands easier. 
 
 This document will guide you through the process of creating the keys and setting up your servers for easy access, with said keys.
 
