@@ -1,16 +1,22 @@
 # Using postfix For Server Process Reporting
 
-# Introduction
-
-Many Rocky Linux server administrators write scripts to perform certain things, like backups or synchronization, and many of these scripts generate logs that have useful and sometimes very important information. Just having the logs, though, is not enough. If a process fails and logs that failure, but the busy administrator doe not review the log, then a catastrophe could be in the making. This document shows you how to use the postfix MTA (mail transfer agent) to grab log details from a particular process and send them to you via email. It also touches on date formats in logs and helps you identify which format you need to use in the reporting procedure. Keep in mind, though, that this is just the tip of the iceberg as far as what can be done with reporting via postfix. Please note, too, that it is always a good security move to keep running processes to only those that you will need all the time. This document shows you how to enable postfix only for the reporting it is doing and then shut it down again.
-
 # Prerequisites
 
 * Complete comfort operating from the command line on a Rocky Linux server
-* Familiarity with an editor of your choice (this document uses the vi editor, but you can substitute in your favorite editor)
-* An understanding about DNS (domain name system) and host names
-* Able to assign variables in a bash script
-* Know what the tail, more, grep and date commands do
+* Familiarity with an editor of your choice (this document uses the _vi_ editor, but you can substitute in your favorite editor)
+* An understanding of DNS (the Domain Name System) and host names
+* The ability to assign variables in a bash script
+* Knowledge of what the _tail_, _more_, _grep_, and _date_ commands do
+
+# Introduction
+
+Many Rocky Linux server administrators write scripts to perform specific tasks, like backups or file synchronization, and many of these scripts generate logs that have useful and sometimes very important information. Just having the logs, though, is not enough. If a process fails and logs that failure, but the busy administrator does not review the log, then a catastrophe could be in the making. 
+
+This document shows you how to use the _postfix_ MTA (mail transfer agent) to grab log details from a particular process, and send them to you via email. It also touches on date formats in logs, and helps you identify which format you need to use in the reporting procedure. 
+
+Keep in mind, though, that this is just the tip of the iceberg as far as what can be done with reporting via postfix. Please note, too, that it is always a good security move to limit running processes to only those that you will need all the time. 
+
+This document shows you how to enable postfix only for the reporting you need it to do, and then shut it down again.
 
 ## Postfix Defined
 
@@ -18,7 +24,7 @@ postfix is a server daemon used for sending email. It is more secure and simpler
 
 ## Installing postfix
 
-Aside from postfix, we will need mailx for testing when complete. To install both, and any dependencies required, enter the following on the Rocky Linux server command line:
+Aside from postfix, we will need _mailx_ for testing our ability to send emails. To install both, and any dependencies required, enter the following on the Rocky Linux server command line:
 
 `dnf install postfix mailx`
 
@@ -30,7 +36,7 @@ Before we configure postfix, we need to find out how mail will look when it leav
 
 `systemctl start postfix`
 
-Then test using mail command that is installed with mailx:
+Then test it using mail command that is installed with mailx:
 
 `mail -s "Testing from server" myname@mydomain.com`
 
@@ -38,12 +44,17 @@ This will bring up a blank line. Simply type your testing message in here:
 
 `testing from the server`
 
-Now hit enter and enter a single period
+Now hit enter, and enter a single period:
+
 `.`
-The system will respond with 
+
+The system will respond with:
+
 `EOT`
 
-Our purpose for doing this is to check to see how our mail looks to the outside world, which we can get a feel for from the maillog that goes active with the starting of postfix. Do this:
+Our purpose for doing this is to check to see how our mail looks to the outside world, which we can get a feel for from the maillog that goes active with the starting of postfix. 
+
+Use this command to see the output of the log file:
 
 `tail /var/log/maillog`
 
@@ -66,7 +77,7 @@ The "somehost.localdomain" shows us that we need to make some changes, so stop t
 
 ### Configuring Postfix
 
-Since we aren't setting up a complete, fully functional, mail server, the configuration options that we will be using are not as extensive. The firs thing we need to do is to modify the main.cf file, so let's make a backup first:
+Since we aren't setting up a complete, fully functional mail server, the configuration options that we will be using are not as extensive. The first thing we need to do is to modify the _main.cf_ file (literally the main configuration file for postfix), so let's make a backup first:
 
 `cp /etc/postifix/main.cf /etc/postfix/main.cf.bak`
 
@@ -86,7 +97,7 @@ Next, find the line for the domain name:
 
 `#mydomain = domain.tld`
 
-and either remove the remark and change it, or add a new line:
+Either remove the remark and change it, or add a new line:
 
 `mydomain = ourdomain.com`
 
@@ -96,9 +107,7 @@ Finally, go to the bottom of the file and add this line:
 
 Save your changes (in vi, that will be `Shift : wq!`) and exit the file.
 
-Before we continue editing the generic file, we need to see how email will go out of this server. In short, we need to see what it will look like. Be
-
-Next we want to create the "generic" file that we referenced in the main.cf above:
+Before we continue editing the generic file, we need to see how email will look. Specifically, we want to create the "generic" file that we referenced in the _main.cf_ file above:
 
 `vi /etc/postfix/generic`
 
@@ -116,19 +125,25 @@ Now start postfix and test your email again using the same procedure as above. Y
 
 ## The date Command And A Variable Called today
 
-Not every application will use the same logging format for the date. This means that you may have to get creative with any script you write for reporting by date. Let's say that you want to look at your system log as an example and pull everything that has to do with dbus-daemon for a today's date and email it to you. (It's probably not the greatest example, but it will give you an idea of how we would do this. We need to use a a variable in our script that we will call "today" and we want it to relate to output from the "date" command and format it in a specific way, so that we can get the data we need from our system log (/var/log/messages). To start with, let's do some investigative work.  First, enter the date command at the command line:
+Not every application will use the same logging format for the date. This means that you may have to get creative with any script you write for reporting by date. 
+
+Let's say that you want to look at your system log as an example and pull everything that has to do with dbus-daemon for today's date, and email it to yourself. (It's probably not the greatest example, but it will give you an idea of how we would do this.) 
+
+We need to use a a variable in our script that we will call "today" and we want it to relate to output from the "date" command and format it in a specific way, so that we can get the data we need from our system log (in _/var/log/messages_). To start with, let's do some investigative work.  
+
+First, enter the date command in the command line:
 
 `date`
 
-Which should give you the default system date output, which could be something like this:
+This should give you the default system date output, which could be something like this:
 
 `Thu Mar  4 18:52:28 UTC 2021`
 
-Now let's check our system log and see how it is logging, to do this, we will use the "more" and "grep" commands:
+Now let's check our system log and see how it records information. To do this, we will use the "more" and "grep" commands:
 
 `more /var/log/messages | grep dbus-daemon`
 
-which should give you something like this:
+Which should give you something like this:
 
 ```
 Mar  4 18:23:53 hedgehogct dbus-daemon[60]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher'
@@ -136,15 +151,23 @@ Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Activating via systemd: ser
 Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher
 ```
 
-The date and log outputs need to be exactly the same in our script, so let's look at how to format the date using a variable called "today".  First, let's look at what we need to do with the date to get the same output as the system log. You can reference the [Linux man page](https://man7.org/linux/man-pages/man1/date.1.html) or type `man date` on the command line to pull up the date manual page to get the information you need. What you will find is that in order to format the date the same way that /var/log/messages has it, we need to use the %b and %e format strings, with %b being the 3 character month and %e being the space padded day.
+The date and log outputs need to be exactly the same in our script, so let's look at how to format the date using a variable called "today". 
+
+First, let's look at what we need to do with the date to get the same output as the system log. You can reference the [Linux man page](https://man7.org/linux/man-pages/man1/date.1.html) or type `man date` on the command line to pull up the date manual page to get the information you need. 
+
+What you will find is that in order to format the date the same way that _/var/log/messages_ has it, we need to use the %b and %e format strings, with %b being the 3 character month and %e being the space-padded day.
 
 ### The Script
 
-For our bash script, we can see that we are going to use the date command and a variable called "today". (Keep in mind that "today" is arbitrary. You could call this variable "late_for_dinner" if you wanted!). We will call our script in this example, test.sh and place it in /usr/local/sbin:
+For our bash script, we can see that we are going to use the date command and a variable called "today". (Keep in mind that "today" is arbitrary. You could call this variable "late_for_dinner" if you wanted!). We will call our script in this example, test.sh and place it in _/usr/local/sbin_:
 
 `vi /usr/local/sbin/test.sh`
 
-The top of our script will look like this. Note that even though the comment in our file says we are sending these messages to email, for now, we are just sending them to standard out so that we can verify that they are correct. Also, in our first attempt, we are grabbing all of the messages for the current date, not just the dbus-daemon messages. We will deal with that shortly. Another thing to be aware of is that the grep command will return the filename in the output, which we don't want in this case, so we have added the "-h" option to grep to remove the prefix of the filename. In addition, once the variable "today" is set, we need to look for the entire variable as a string, so we need it all in quotes:
+Let's start with, well, the beginning of our script. Note that even though the comment in our file says we are sending these messages to email, for now, we are just sending them to a standard log output so that we can verify that they are correct. 
+
+Also, in our first attempt, we are grabbing all of the messages for the current date, not just the dbus-daemon messages. We will deal with that shortly. 
+
+Another thing to be aware of is that the grep command will return the filename in the output, which we don't want in this case, so we have added the "-h" option to grep to remove the prefix of the filename. In addition, once the variable "today" is set, we need to look for the entire variable as a string, so we need it all in quotes:
 
 ```
 #!/bin/bash
@@ -155,6 +178,7 @@ today=`date +"%b %e"`
 # grab the dbus-daemon messages and send them to email
 grep -h "$today" /var/log/messages
 ```
+
 That's it for now, so save your changes and then make the script executable:
 
 `chmod +x /usr/local/sbin/test.sh`
@@ -176,7 +200,8 @@ today=`date +"%b %e"`
 # grab the dbus-daemon messages and send them to email
 grep -h "$today" /var/log/messages | grep dbus-daemon
 ```
-Running the script again, should get you only the dbus-daemon messages and only the one's that occurred today.
+
+Running the script again, should get you only the dbus-daemon messages and only the ones that occurred today (whenever you're following this guide).
 
 There's one final step, however. Remember, we need to get this emailed to the administrator for review. So the final thing we need to do is pipe the entire thing to our email:
 
@@ -200,12 +225,4 @@ You can now use [a crontab](cron_jobs_howto.md) to schedule this to run at a spe
 
 # Conclusion
 
-Using postfix can help you keep track of process logs that you want to monitor. You can use it along with bash scripting to gain a firm grasp of your system processes and be informed if there is trouble. 
-
-
-
-
-
-
-
-
+Using postfix can help you keep track of process logs that you want to monitor. You can use it along with bash scripting to gain a firm grasp of your system processes and be informed if there is trouble.
