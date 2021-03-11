@@ -97,7 +97,7 @@ Rocky Linux 提供了許多方法來設置網絡站點。Apache 只是其中的�
 
 `cp -Rf wiki_source/* /var/www/sub-domains/com.wiki.www/html/`
 
-## 生效
+## 啓動 httpd
 
 注意，*httpd.conf* 文件在其末尾包含 */etc/httpd/sites-enabled*，因此，httpd 重新啓動時，它將加載該 *sites-enabled* 目錄中的所有配置文件。事實上，所有的配置文件都位於 *sites-available*。
 
