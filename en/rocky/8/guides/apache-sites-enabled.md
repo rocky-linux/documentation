@@ -45,11 +45,15 @@ It sure takes the pressure off, knowing that the phone isn't going to ring with 
 ### The Site Configuration
 The other benefit of this method is that it allows us to fully specify everything outside of the default httpd.conf file. Let the default httpd.conf file load the defaults, and let your site configurations do everything else. Sweet, right? Plus again, it makes it very easy to trouble-shoot a broken site configuration. 
 
-Now, let's say you have a web site that loads a wiki. You’ll need a configuration file, which makes the site available via port 80. If you want to serve the website with SSL (and let's face it, we all should be doing that by now) then you need to add another (nearly identical) section to the same file, in order to enable port 443. You can take a look at that below in the section [Configuration https - Using An SSL Certificate](#https)
+Now, let's say you have a web site that loads a wiki. You’ll need a configuration file, which makes the site available via port 80. 
+
+If you want to serve the website with SSL (and let's face it, we all should be doing that by now) then you need to add another (nearly identical) section to the same file, in order to enable port 443.
+
+You can take a look at that below in the [Configuration https - Using An SSL Certificate](#https) section.
 
 So we first need to create this configuration file in *sites-available*: `vi /etc/httpd/sites-available/com.wiki.www`
 
-The configuration file configuration content would be something like this:
+The configuration file configuration content would look something like this:
 
 ```apache
 <VirtualHost *:80>
@@ -77,31 +81,45 @@ The configuration file configuration content would be something like this:
 ```
 Once the file is created, we need to write (save) it with: `shift : wq`
 
-In our example above, the wiki site is loaded from the the html sub-directory of com.wiki.www, which means that our path we created in /var/www (above) will need some additional directories to satisfy this:
+In our example above, the wiki site is loaded from the html sub-directory of _com.ourownwiki.www_, which means that the path we created in _/var/www_ (above) will need some additional directories to satisfy this:
 
 `mkdir -p /var/www/sub-domains/com.ourownwiki.www/html`
 
-... which will create the entire path with a single command. Next we would want to install our files to this directory that will actually run the web site. This could be something that was created by you or an application, in this case a wiki, that you downloaded. Copy your files to the path above:
+... which will create the entire path with a single command. Next we would want to install our files to this directory that will actually run the web site. This could be something you made yourself, or an installable web application (in this case a wiki that you downloaded). 
+
+Copy your files to the path above:
 
 `cp -Rf wiki_source/* /var/www/sub-domains/com.ourownwiki.www/html/`
 
 ## <a name="https"></a>Configuration https - Using an SSL Certificate
 
-As stated earlier, every web server created these days _should_ be running with an SSL (or secure socket layer). This process starts by generating a private key and a CSR (which stands for certificate signing request) and then submitting the CSR to the certificate authority to purchase the SSL certificate. The process of generating these keys is somewhat extensive, so it has its own document. If you are new to generating keys for SSL, please take a look at: [Generating SSL Keys](ssl_keys_https.md)
+As stated earlier, every web server created these days _should_ be running with SSL (AKA the secure socket layer). 
+
+This process starts by generating a private key and a CSR (which stands for certificate signing request) and then submitting the CSR to the certificate authority to purchase the SSL certificate. The process of generating these keys is somewhat extensive, so it has its own document. 
+
+If you are new to generating keys for SSL, please take a look at: [Generating SSL Keys](ssl_keys_https.md)
 
 ### Placement of the SSL keys and Certificate's
 
-Now that you have your keys and certificate files, we need to place them logically in your file system on the web server. As we've seen with the example configuration file (above), we are placing our web files in "/var/www/sub-domains/com.ourownwiki.www/html". We want to place our certificate and key files with the domain, but NOT in the document root, in this case, "html". We never want our certificates and keys to have the potential of being exposed to the web. That would be bad!  Instead, we will create a new directory structure for our SSL, beneath outside of the document root:
+Now that you have your keys and certificate files, we need to place them logically in your file system on the web server. As we've seen with the example configuration file (above), we are placing our web files in _/var/www/sub-domains/com.ourownwiki.www/html_. 
+
+We want to place our certificate and key files with the domain, but NOT in the document root, (which in this case is the _html_ folder. 
+
+We never want our certificates and keys to potentially be exposed to the web. That would be bad!
+
+Instead, we will create a new directory structure for our SSL files, outside of the document root:
 
 `mkdir -p /var/www/sub-domains/com.ourownwiki.www/ssl/{ssl.key,ssl.crt,ssl.csr}`
 
 If you are new to the "tree" syntax for making directories, what the above says is:
 
-"Make a directory called ssl and then make three directories inside of that called ssl.key, ssl.crt, and ssl.csr"
+"Make a directory called ssl and then make three directories inside of that called ssl.key, ssl.crt, and ssl.csr."
 
-Just a note ahead of time: It is not necessary for the function of the web server that the CSR file be stored in the tree. If you ever need to re-issue the certificate from a different provider, etc., it's a good idea to have a stored copy of the CSR. The question becomes where can you store it so that you will remember, and storing it within the tree of your web site is the logical spot.
+Just a note ahead of time: It is not necessary for the functioning of the web server that the CSR file be stored in the tree. 
 
-Assuming that you have named your key, csr and crt (certificate) files with the name of your site, and that you have them stored in /root, we will then copy them up to their respective locations that we just created:
+If you ever need to re-issue the certificate from a different provider, etc., it's a good idea to have a stored copy of the CSR file. The question becomes where can you store it so that you will remember, and storing it within the tree of your web site is logical.
+
+Assuming that you have named your key, csr, and crt (certificate) files with the name of your site, and that you have them stored in _/root_, we will then copy them up to their respective locations that we just created:
 
 ```
 cp /root/com.wiki.www.key /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/
@@ -111,7 +129,11 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
 
 ### The Site Configuration - https
 
-Once you have generated your keys and purchased the SSL, you can now move forward with the configuration of the web site using your new keys. For starters, let's break down the beginning of the configuration file. For instance, even though we still want to listen on port 80 (standard http) for incoming requests, we don't want any of those requests to actually go to port 80. We want them to go to port 443 (or http secure, better known as SSL). Our port 80 configuration section will be minimal:
+Once you have generated your keys and purchased the SSL certificate, you can now move forward with the configuration of the web site using your new keys. 
+
+For starters, let's break down the beginning of the configuration file. For instance, even though we still want to listen on port 80 (standard http) for incoming requests, we don't want any of those requests to actually go to port 80. 
+
+We want them to go to port 443 (or http secure, better known as SSL). Our port 80 configuration section will be minimal:
 
 ```
 <VirtualHost *:80>
@@ -120,7 +142,10 @@ Once you have generated your keys and purchased the SSL, you can now move forwar
         Redirect / https://www.ourownwiki.com/
 </VirtualHost>
 ```
-What this says is to send any regular web request to the https configuration instead. The apache "Redirect" option shown above, can be changed to "Redirect permanent" once all testing is complete and you can see that the site operates as you want. The "Redirect" we have chosen is a temporary redirect. A permanent redirect will be learned by search engines and soon, any directs to your site found in a search engine will go only to port 443 (https) without hitting port 80 (http) first. 
+
+What this says is to send any regular web request to the https configuration instead. The apache "Redirect" option shown above, can be changed to "Redirect permanent" once all testing is complete and you can see that the site operates as you want it to. The "Redirect" we have chosen is a temporary redirect. 
+
+A permanent redirect will be learned by search engines, and soon, any traffic to your site that comes from search engines will go only to port 443 (https) without hitting port 80 (http) first.
 
 Next, we need to define the https portion of the configuration file. The http section is duplicated here for clarity to show that this all happens in the same configuration file:
 
@@ -163,6 +188,7 @@ Next, we need to define the https portion of the configuration file. The http se
         </Directory>
 </VirtualHost>
 ```
+
 So, breaking down this configuration further, after the normal portions of the configuration and down to the SSL portion:
 
 * SSLEngine on - simply says to use SSL

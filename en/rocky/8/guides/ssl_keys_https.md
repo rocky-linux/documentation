@@ -1,19 +1,24 @@
 # Generating SSL Keys
 
+# Prerequisites
+
+* A workstation and a server running Rocky Linux (OK, Linux, but really, you want Rocky Linux, right?)
+* _OpenSSL_ installed on the machine that you are going to be generating the private key and CSR, as well as on the server where you will eventually be installing your key and certificates
+* Able to run commands comfortably from the command-line
+* Helpful: knowledge of SSL and OpenSSL commands
+
+
 # Introduction
 
 Nearly every web site today _should_ be running with an SSL (secure socket layer) certificate. This procedure will guide you through generating the private key for your web site and then from this, generating the CSR (certificate signing request) that you will use to purchase your new certificate. 
 
-# Prerequisites
-
-* A workstation and a server running Rocky Linux (OK, Linux, but really, you want Rocky Linux, right?)
-* OpenSSL installed on the machine that you are going to be generating the private key and CSR as well as on the server where you will eventually be installing your key and certificates.
-* Able to run commands comfortably from the command-line
-* Helpful: knowledge of SSL and OpenSSL commands
-
 ## Generate The Private Key
 
-As of 2021, the recommended private key size for a web site is still 2048. You can go higher, but doubling the key size from 2048 to 4096 is only about 16% more secure, takes more space to store the key, causes higher CPU loads when the key is processed, and thus slows down your web site performance without gaining any significant security. Stick with the 2048 key size for now and always keep tabs on what is currently recommended.
+For the uninitiated, SSL private keys can have different sizes, measured in bits, which basically determines how hard they are to crack.
+
+As of 2021, the recommended private key size for a web site is still 2048 bits. You can go higher, but doubling the key size from 2048 bits to 4096 bits is only about 16% more secure, takes more space to store the key, causes higher CPU loads when the key is processed. 
+
+This slows down your web site performance without gaining any significant security. Stick with the 2048 key size for now and always keep tabs on what is currently recommended.
 
 To start with, let's make sure that OpenSSL is installed on both your workstation and server:
 
@@ -21,7 +26,9 @@ To start with, let's make sure that OpenSSL is installed on both your workstatio
 
 If it is not installed, your system will install it and any needed dependencies. 
 
-Our example domain is ourownwiki.com. Keep in mind that you would need to purchase and register your domain ahead of time. You can purchase domains through a number of "Registrars". If you are not running your own DNS (Domain Name System), you can often use the same providers for DNS hosting. DNS translates your named domain, to numbers (IP addresses, either IPv4 or IPv6) that the Internet can understand. These IP addresses will be where the web site is actually hosted.
+Our example domain is ourownwiki.com. Keep in mind that you would need to purchase and register your domain ahead of time. You can purchase domains through a number of "Registrars". 
+
+If you are not running your own DNS (Domain Name System), you can often use the same providers for DNS hosting. DNS translates your named domain, to numbers (IP addresses, either IPv4 or IPv6) that the Internet can understand. These IP addresses will be where the web site is actually hosted.
 
 Let's generate the key using openssl:
 
@@ -34,7 +41,9 @@ Enter pass phrase for ourownwiki.com.key.pass:
 Verifying - Enter pass phrase for ourownwiki.com.key.pass:
 ```
 
-Next, let's remove that passphrase. The reason for this is that if you don't remove it, each time your web server restarts and loads up your key, you will need to enter that passphrase. You might not even be around to enter it, or worse, might not have a console at the ready to enter it. Remove it now to avoid all of that:
+Next, let's remove that passphrase. The reason for this is that if you don't remove it, each time your web server restarts and loads up your key, you will need to enter that passphrase. 
+
+You might not even be around to enter it, or worse, might not have a console at the ready to enter it. Remove it now to avoid all of that:
 
 `openssl rsa -in ourownwiki.com.key.pass -out ourownwiki.com.key`
 
@@ -46,7 +55,11 @@ Now that you have entered the passphrase a third time, it has been removed from 
 
 ## Generate the CSR
 
-Next, we need to generate the CSR (certificate signing request) that we will use to purchase our certificate. During the generation of the CSR, you will be prompted for several pieces of information. These are the X.509 attributes of the certificate. One of the prompts will be for "Common Name (e.g., YOUR name)". It is important that this field be filled in with the fully qualified domain name of the server to be protected by SSL. If the website to be protected will be https://www.ourownwiki.com, then enter www.ourownwiki.com at this prompt:
+Next, we need to generate the CSR (certificate signing request) that we will use to purchase our certificate. 
+
+During the generation of the CSR, you will be prompted for several pieces of information. These are the X.509 attributes of the certificate. 
+
+One of the prompts will be for "Common Name (e.g., YOUR name)". It is important that this field be filled in with the fully qualified domain name of the server to be protected by SSL. If the website to be protected will be https://www.ourownwiki.com, then enter www.ourownwiki.com at this prompt:
 
 `openssl req -new -key ourownwiki.com.key -out ourownwiki.com.csr`
 
@@ -61,17 +74,19 @@ This opens up a dialog:
 `Email Address []:` This field is optional, you can decide to fill it out or just hit 'Enter' to skip.
 
 Next, you will be asked to enter extra attributes which can be skipped by hitting 'Enter' through both:
+
 ```
 Please enter the following 'extra' attributes
 to be sent with your certificate request
 A challenge password []:
 An optional company name []:
 ```
+
 Now you should have generated your CSR. 
 
 ## Purchasing The Certificate
 
-Each certificate vendor will have basically the same procedure. You purchase the SSL and term (1 or 2 years, etc.) and then you submit your CSR. To do this, you will need to use the more command and then copy the contents of your CSR file. 
+Each certificate vendor will have basically the same procedure. You purchase the SSL and term (1 or 2 years, etc.) and then you submit your CSR. To do this, you will need to use the `more` command, and then copy the contents of your CSR file. 
 
 `more ourownwiki.com.csr`
 
@@ -96,7 +111,10 @@ E5feDUgu+YQ6ThliTrj2VJRLOAv0Qsum5Yl1uF+FZF9x6/nU/SurUhoSYHQ6Co93
 HFOltYOnfvz6tOEP39T/wMo=
 -----END CERTIFICATE REQUEST-----
 ```
-You want to copy everything including the "BEGIN CERTIFICATE REQUEST" and "END CERTIFICATE REQUEST" lines.  Then paste these into the CSR field on the web site where you are purchasing the certificate. You may have to perform other verification steps, depending on ownership of the domain, the registrar you are using, etc., before your certificate is issued. When it is issued, it should be issued along with an intermediate certificate from the provider, which you will use in the configuration as well.
+
+You want to copy everything including the "BEGIN CERTIFICATE REQUEST" and "END CERTIFICATE REQUEST" lines. Then paste these into the CSR field on the web site where you are purchasing the certificate. 
+
+You may have to perform other verification steps, depending on ownership of the domain, the registrar you are using, etc., before your certificate is issued. When it is issued, it should be issued along with an intermediate certificate from the provider, which you will use in the configuration as well.
 
 # Conclusion
 
