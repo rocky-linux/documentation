@@ -90,7 +90,7 @@ Esto dice que se ejecute el script a las 10 PM, cada día del mes, cada mes y ca
 
 ### Las @opciones de crontab
 
-Como se indica en la parte de [Starting Easy](##-starting-easy) de este documento, los scripts de los directorios cron dot se ejecutan a horas muy concretas. Las @opciones ofrecen la posibilidad de utilizar una sincronización más natural. Las @opciones consisten en:
+Como se indica en la parte de [Comenzando con lo sencillo](##-comenzando-con-lo-sencillo) de este documento, los scripts de los directorios cron dot se ejecutan a horas muy concretas. Las @opciones ofrecen la posibilidad de utilizar una sincronización más natural. Las @opciones consisten en:
 
 * `@hourly` ejecuta el script cada hora de cada día a las 0 minutos de la hora.
 * `@daily` ejecuta el script cada día a medianoche.
