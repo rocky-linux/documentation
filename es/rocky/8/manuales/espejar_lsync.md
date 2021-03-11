@@ -1,4 +1,4 @@
-# Rocky Linux - Solución para espejar - lsycnd
+# Rocky Linux - Solución para espejar lsycnd
 
 ## Requisitos
 
@@ -26,7 +26,7 @@ Agrega y combina los eventos durante unos segundos, y luego genera uno (o más) 
 
 Para los propósitos de esta guía, llamaremos al sistema con los archivos originales el "maestro", y el que estemos sincronizando será el "objetivo". En realidad, es posible reflejar completamente un servidor usando lsyncd especificando muy cuidadosamente los directorios y archivos que quieras sincronizar. ¡Es una maravilla!
 
-Para la sincronización remota, también querrás configurar [Rocky Linux Claves SSH Públicas y Privadas](RL_claves_ssh_públicas_privadas.md). Estos ejemplos usan SSH (puerto 22).
+Para la sincronización remota, también querrás configurar [Claves SSH públicas y privadas](claves_ssh_publicas_privadas.md). Estos ejemplos usan SSH (puerto 22).
 
 # Instalación de lsyncd
 
@@ -98,7 +98,7 @@ Eso es muy embarazoso para cualquier administrador de sistemas.
 
 Crear el servicio systemd no es terriblemente difícil, sin embargo, y le ahorrará mucho tiempo a largo plazo. 
 
-## Create The lsyncd Service File
+## Crear el archivo de servicio lsyncd
 
 Este archivo puede ser creado en cualquier lugar, incluso en el directorio raíz de su servidor. Una vez creado, podemos moverlo fácilmente a la ubicación correcta. 
 
