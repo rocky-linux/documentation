@@ -31,7 +31,7 @@ Rocky Linux 提供了許多方法來設置網絡站點。Apache 只是其中的�
 
 * 還需要一個目錄用來存放網站點文件。它可以放在任何位置，但爲了使目錄井然有序，最好是創建一個名爲 sub-domains 的目錄。爲簡單起見，請將其放在 /var/www 中：`mkdir /var/www/sub-domains/`
 
-## 配置
+## httpd.conf 配置
 
 還需要在 httpd.conf 文件的末尾添加一行。爲此，輸入 `vi /etc/httpd/conf/httpd.conf` 並跳轉到文件末尾，然後添加 `Include /etc/httpd/sites-enabled`。
 
