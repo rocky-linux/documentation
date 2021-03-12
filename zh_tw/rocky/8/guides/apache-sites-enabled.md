@@ -11,8 +11,8 @@ Rocky Linux 提供了許多方法來設置網絡站點。Apache 只是其中的�
 ## 準備工作
 
 * 一臺運行 Rocky Linux 的服務器
-* 瞭解命令行和文本編輯器（選擇您喜歡的編輯器，本例使用 *vi*。）
-    * 如果您想了解 vi 文本編輯器，[此處有一個簡單教程](https://www.tutorialspoint.com/unix/unix-vi-editor.html)。
+* 瞭解命令行和文檔編輯器（選擇您喜歡的編輯器，本例使用 *vi*。）
+    * 如果您想了解 vi 文檔編輯器，[此處有一個簡單英文版的教程](https://www.tutorialspoint.com/unix/unix-vi-editor.htm)。
 * 有關安裝和運行 Web 服務的基本知識
 
 ## 安裝 Apache
