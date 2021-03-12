@@ -320,6 +320,10 @@ And add this line:
 00 23 *  *  *  /usr/local/sbin/backup_all
 ```
 
+### Reporting The Backup Status
+
+To make sure that everything is backing up according to plan, you might want to send the backup log files to your email. If your are running multiple machine backups using rsnapshot, each log file will have its own name, which you can then send to your email for review by [Using postfix For Server Process Reporting](postfix_reporting.md) procedure.
+
 ## Conclusions and Other Resources
 
 Getting the setup right with rsnapshot is a little daunting at first, but can save you loads of time backing up your machines or servers. 
