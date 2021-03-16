@@ -97,6 +97,110 @@ Rocky Linux 提供了許多方法來設置網絡站點。Apache 只是其中的�
 
 `cp -Rf wiki_source/* /var/www/sub-domains/com.wiki.www/html/`
 
+## 配置 https —— 使用 SSL 證書
+
+如前所述，如今創建的每臺 web 服務器都應該使用 SSL（也稱爲安全套接字層）運行。
+
+此過程首先生成私鑰和 CSR（表示證書籤名請求），然後將 CSR 提交給證書頒發機構以購買 SSL 證書。生成這些密鑰的過程有些複雜，因此它有自己的文檔。
+
+如果您不熟悉生成 SSL 密鑰，請查看：[生成 SSL 密鑰](ssl_keys_https.md)
+
+### 密鑰和證書的位置
+
+現在您已經擁有了密鑰和證書文件，此時需要將它們按邏輯放置在 Web 服務器上的文件系統中。正如在上面示例配置文件中所看到的，將 Web 文件放置在 _/var/www/sub-domains/com.ourownwiki.www/html_ 中。
+
+希望將證書和密鑰文件放在域（domain）中，而不是放在文檔根（document root）目錄中（在本例中是 _html_ 文件夾）。
+
+絕不希望證書和密鑰有可能暴露在網絡上。那會很糟糕！
+
+相反，將在文檔根目錄之外爲 SSL 文件創建一個新目錄結構：
+
+`mkdir -p /var/www/sub-domains/com.ourownwiki.www/ssl/{ssl.key,ssl.crt,ssl.csr}`
+
+如果您不熟悉創建目錄的“樹（tree）”語法，那麼上面所講的是：
+
+創建一個名爲 ssl 的目錄，然後在其中創建三個目錄，分別爲 ssl.key、ssl.crt 和 ssl.csr。
+
+提前提醒一下：對於 web 服務器的功能來說，CSR 文件不必存儲在樹中。
+
+如果您需要從其他供應商重新頒發證書，則最好保存 CSR 文件的副本。問題變成了在何處存儲它以便您記住，將其存儲在 web 站點的樹中是合乎邏輯的。
+
+假設已使用站點名稱來命名 key、csr 和 crt（證書）文件，並且已將它們存儲在  _/root_ 中，那麼將它們複製到剛纔創建的相應位置：
+
+```
+cp /root/com.wiki.www.key /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/
+cp /root/com.wiki.www.csr /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.csr/
+cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
+```
+
+### 站點配置 —— https
+
+一旦生成密鑰併購買了 SSL 證書，現在就可以使用新密鑰繼續配置 web 站點。
+
+首先，分析配置文件的開頭。例如，即使仍希望監聽 80 端口（標準 http）上的傳入請求，但也不希望這些請求中的任何一個真正到達 80 端口。
+
+希望請求轉到 443 端口（或安全的 http，著名的 SSL）。80 端口的配置部分將變得最少：
+
+```
+<VirtualHost *:80>
+        ServerName www.ourownwiki.com
+	        ServerAdmin username@rockylinux.org
+		        Redirect / https://www.ourownwiki.com/
+			</VirtualHost>
+			```
+
+這意味着要將任何常規 Web 請求發送到 https 配置。上面顯示的 apache “Redirect”選項可以在所有測試完成後更改爲“Redirect permanent”，您可以看到站點按照您希望的方式運行。此處選擇的“Redirect”是臨時重定向。
+
+搜索引擎將記住永久重定向，很快，從搜索引擎到您網站的所有流量都只會流向 443 端口（https），而無需先訪問 80 端口（http）。
+
+接下來，定義配置文件的https部分。爲了清楚起見，此處重複了 http 部分，以表明這一切都發生在同一配置文件中：
+
+```
+<VirtualHost *:80>
+        ServerName www.ourownwiki.com
+        ServerAdmin username@rockylinux.org
+        Redirect / https://www.ourownwiki.com/
+	</VirtualHost>
+	<Virtual Host *:443>
+        ServerName www.ourownwiki.com
+        ServerAdmin username@rockylinux.org
+        DocumentRoot /var/www/sub-domains/com.ourownwiki.www/html
+        DirectoryIndex index.php index.htm index.html
+        Alias /icons/ /var/www/icons/
+        # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.ourownwiki.www/cgi-bin/
+	CustomLog "/var/log/httpd/com.ourownwiki.www-access_log" combined
+	ErrorLog  "/var/log/httpd/com.ourownwiki.www-error_log"
+        SSLEngine on
+        SSLProtocol all -SSLv2 -SSLv3 -TLSv1
+        SSLHonorCipherOrder on
+        SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384
+        :EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS
+        SSLCertificateFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/com.wiki.www.crt
+        SSLCertificateKeyFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/com.wiki.www.key
+        SSLCertificateChainFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/your_providers_intermediate_certificate.crt
+        <Directory /var/www/sub-domains/com.ourownwiki.www/html>
+         Options -ExecCGI -Indexes
+         AllowOverride None
+         Order deny,allow
+         Deny from all
+         Allow from all
+         Satisfy all
+         </Directory>
+         </VirtualHost>
+```
+
+因此，在配置的常規部分之後，直到 SSL 部分結束，進一步分析此配置：
+
+* SSLEngine on —— 表示使用 SSL。
+* SSLProtocol all -SSLv2 -SSLv3 -TLSv1 —— 表示使用所有可用協議，但發現有漏洞的協議除外。您應該定期研究當前可接受的協議。
+* SSLHonorCipherOrder on —— 這與下一行的相關密碼套件一起使用，並表示按照給出的順序對其進行處理。您應該定期檢查要包含的密碼套件。
+* SSLCertificateFile —— 新購買和應用的證書文件及其位置。
+* SSLCertificateKeyFile —— 創建證書籤名請求時生成的密鑰。
+* SSLCertificateChainFile —— 來自證書提供商的證書，通常稱爲中間證書。
+
+接下來，將所有內容全部上線，如果啓動 Web 服務沒有任何錯誤，並且如果轉到您的網站顯示沒有錯誤的 https，那麼您就可以開始使用。
+
+
 ## 啓動 httpd
 
 注意，*httpd.conf* 文件在其末尾包含 */etc/httpd/sites-enabled*，因此，httpd 重新啓動時，它將加載該 *sites-enabled* 目錄中的所有配置文件。事實上，所有的配置文件都位於 *sites-available*。
