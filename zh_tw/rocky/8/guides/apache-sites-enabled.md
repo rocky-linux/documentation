@@ -147,13 +147,14 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
 	        ServerAdmin username@rockylinux.org
 		        Redirect / https://www.ourownwiki.com/
 			</VirtualHost>
-			```
+```
 
 這意味着要將任何常規 Web 請求發送到 https 配置。上面顯示的 apache “Redirect”選項可以在所有測試完成後更改爲“Redirect permanent”，您可以看到站點按照您希望的方式運行。此處選擇的“Redirect”是臨時重定向。
 
 搜索引擎將記住永久重定向，很快，從搜索引擎到您網站的所有流量都只會流向 443 端口（https），而無需先訪問 80 端口（http）。
 
 接下來，定義配置文件的https部分。爲了清楚起見，此處重複了 http 部分，以表明這一切都發生在同一配置文件中：
+
 
 ```
 <VirtualHost *:80>
