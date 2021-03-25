@@ -1,6 +1,6 @@
 # Rocky Linux - SSH 公钥和私钥
 
-## 预备知识
+## 准备工作
 
 * 熟悉命令行操作。
 * Rocky Linux 服务器和/或工作站已安装 *openssh*。
