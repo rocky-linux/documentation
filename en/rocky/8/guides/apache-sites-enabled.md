@@ -99,6 +99,8 @@ This process starts by generating a private key and a CSR (which stands for cert
 
 If you are new to generating keys for SSL, please take a look at: [Generating SSL Keys](ssl_keys_https.md)
 
+You can also use this alternate process for using an [SSL certificate from Let's Encrypt](generating_ssl_keys_lets_encrypt.md)
+
 ### Placement of the SSL keys and Certificate's
 
 Now that you have your keys and certificate files, we need to place them logically in your file system on the web server. As we've seen with the example configuration file (above), we are placing our web files in _/var/www/sub-domains/com.ourownwiki.www/html_. 
@@ -211,3 +213,4 @@ That's by design, so that we can easily remove things in the event that httpd fa
 This will create the link to the configuration file in *sites-enabled*, just like we want.
 
 Now just start httpd with `systemctl start httpd`. Or restart it if it’s already running: `systemctl restart httpd`, and assuming the web service restarts, you can now go and do some testing on your new site.
+
