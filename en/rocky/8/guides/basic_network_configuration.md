@@ -8,7 +8,8 @@
 
 # Introduction
 
-Nowadays a computer is almost useless by itself. Whether it is you need to update the packages on a server or browse the Web on your laptop, you will need a network access.
+Nowadays a computer without network connectivity is almost useless by itself. 
+Whether you need to update the packages on a server or simply browse external Websites from your laptop - you will need network access!
 This guide aims to provide Rocky Linux users the basic knowledge on how to setup network connectivity on Rocky Linux.
 
 ## Using NetworkManager service
