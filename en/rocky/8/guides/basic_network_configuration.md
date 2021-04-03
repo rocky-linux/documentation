@@ -3,17 +3,17 @@
 ## Prerequisites
 
 * A certain amount of comfort operating from the command line
-* All operations require root access
+* All operations require a user with elevated/administrative privileges on the system (For example root, sudo and so on)
 * Optional: familiarity with networking concepts
 
 # Introduction
 
-Nowadays a computer is almost useless by itself. Whether it is you need to update the packages set on a server or browser the Web on your laptop, you will need a network access.
-This guide aims at providing Rocky Linux users the basic knowledge on how to setup network connectivity on Rocky Linux.
+Nowadays a computer is almost useless by itself. Whether it is you need to update the packages on a server or browse the Web on your laptop, you will need a network access.
+This guide aims to provide Rocky Linux users the basic knowledge on how to setup network connectivity on Rocky Linux.
 
 ## Using NetworkManager service
 
-At the user level, the networking stack is managed by *NetworkManager*. This tool is running as a service, you can check its state with the following command:
+At the user level, the networking stack is managed by *NetworkManager*. This tool runs as a service, and you can check its state with the following command:
 
 	systemctl status NetworkManager
 
@@ -42,9 +42,18 @@ Each network interface has its configuration file. The following example in the 
 
 The interface's name is **ens18** so this file's name will be `/etc/sysconfig/network-scripts/ifcfg-ens18`.
 
-#### IP address
+**Tips:**  
+There are a few ways or mechanisms by which systems can be assigned their IP configuration information. The 2 most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
 
-Here there is no dynamic IP address attribution (known as DHCP)as the `BOOTPROTO` parameter is set to `none`. To enable it, set it to `dhcp` and remove the `IPADDR`, `PREFIX` and `GATEWAY` lines.
+The static IP configuration scheme is very popular on server class systems or networks. 
+And the dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP). Very often, home/office users don't have to worry or know about DHCP. This is because the somebody or something else is automagically taking care of that in the background. The only thing that the end user needs to do is to physically or wirelessly connect to the right network (and of course make sure that their systems are powered on)!
+
+#### IP Address
+
+In the previous `/etc/sysconfig/network-scripts/ifcfg-ens18` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. This means that the system being configued is set to you a static IP address scheme. 
+
+If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all of that information will be automaically obtained from any available DHCP server.
+
 To configure a static IP address attribution, set the following:
 
 * IPADDR: the IP address to assign the interface
@@ -60,7 +69,6 @@ To get proper name resolution, the following parameters must be set:
 * DNS1: IP address of the main nameserver
 * DNS2: the secondary nameserver IP address
 
-NetworkManager will use the nameservers configuration and will populate `/etc/resolv.conf` with it.
 
 ### Apply configuration
 
@@ -147,7 +155,7 @@ will output:
 		inet 192.168.20.10/24 scope global ens19
 		valid_lft forever preferred_lft forever
 
-Our interface is up and configured, but we lack something.
+Our interface is up and configured, but is still lacking something!
 
 ### Using ifcfg utility
 
