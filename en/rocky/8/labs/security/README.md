@@ -1,7 +1,7 @@
 Table Of Contents
 # [Introduction](introduction.md)
 
-# Lab 1: Installing Rocky Linux
+## Lab 1: Installing Rocky Linux
 ## Installing the Operating System
 
 # Lab 2: Patching the System
