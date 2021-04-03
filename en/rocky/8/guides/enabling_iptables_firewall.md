@@ -1,5 +1,9 @@
 # Enabling iptables Firewall
 
+## Prerequisites
+
+* A burning, unquenchable desire to disable the default _firewalld_ application, and enable _iptables_.
+
 # Introduction
 
 _firewalld_ is now the default firewall on Rocky Linux. _firewalld_ is nothing more than a dynamic application of _iptables_ using xml files, and it loads changes without flushing the rules. 
@@ -7,10 +11,6 @@ _firewalld_ is now the default firewall on Rocky Linux. _firewalld_ is nothing m
 However, using straight _iptables_ may be something that you are more comfortable with. If so, it is still possible to run _iptables_ without _firewalld_ by following this guide. What this guide will _not_ tell you is how to write rules for _iptables_. 
 
 It is assumed that if you want to get rid of _firewalld_, you must already know how to write rules for _iptables_.
-
-## Prerequisites
-
-* A burning, unquenchable desire to disable the default _firewalld_ application, and enable _iptables_.
 
 ### Disabling firewalld
 
