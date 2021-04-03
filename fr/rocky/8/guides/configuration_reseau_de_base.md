@@ -9,7 +9,7 @@
 # Introduction
 
 De nos jours, un ordinateur est presque inutile à lui seul. Que vous ayez besoin de mettre à jour les packages définis sur un serveur ou de naviguer sur le Web depuis votre ordinateur portable, vous aurez besoin d'un accès réseau.
-Ce guide vise à fournir aux utilisateurs de Rocky Linux les connaissances de base sur la configuration de la connectivité réseau sur Rocky Linux.
+Ce guide vise à fournir aux utilisateurs de Rocky Linux les connaissances de base sur la configuration de la connectivité réseau sur un système Rocky Linux.
 
 ## Utilisation du service NetworkManager
 
@@ -55,7 +55,7 @@ Le paramètre `ONBOOT` réglé sur `yes` indique que cette connexion sera activ�
 
 #### Résolution DNS
 
-Pour obtenir une résolution de nom appropriée, les paramètres suivants doivent être définis:
+Pour obtenir une résolution de nom fonctionnelle, les paramètres suivants doivent être définis:
 
 * DNS1: l'adresse IP du serveur de noms principal
 * DNS2: l'adresse IP du serveur de noms secondaire (facultatif)
@@ -72,7 +72,7 @@ Pour obtenir l'état de la connexion, utilisez simplement:
 
     nmcli connection show
 
-Vous pouvez également utiliser les commandes `ifup` et `ifdown` pour faire activer ou désactiver l'interface (ce sont de simples wrappers autour de `nmcli`):
+Vous pouvez également utiliser les commandes `ifup` et `ifdown` pour activer ou désactiver l'interface (ce sont de simples *wrappers* autour de `nmcli`):
 
 	ifup ens18
 	ifdown ens18
@@ -128,9 +128,11 @@ Pour activer l'interface *ens19*, utilisez simplement `ip link set ens19 up` et 
 
 ### Attribuer une adresse statique à l'interface
 
-La commande à utiliser utilise la syntaxe suivante:
+La commande à utiliser est de la forme suivante:
 
 	ip addr add <IP ADDRESS/CIDR> dev <IFACE NAME>
+
+où <IP ADDRESS/CIDR> est l'adresse IP avec son suffixe de sous-réseau et <IFACE NAME> le nom de l'interface ciblée.
 
 Pour attribuer les paramètres d'exemple ci-dessus, nous utiliserons donc:
 
@@ -200,7 +202,7 @@ Ensuite, pour vous assurer que votre configuration de routage est correcte, essa
 
 	ping -c3 8.8.8.8
 
-Si votre machine dispose de plusieurs interfaces réseau et que vous souhaitez faire une requête ICMP via une interface spécifique, vous pouvez utiliser l'indicateur `-I`:
+Si votre machine dispose de plusieurs interfaces réseau et que vous souhaitez faire une requête ICMP via une interface spécifique, vous pouvez utiliser l'option `-I`:
 
 	ping -I ens19 -c3 192.168.20.42
 
@@ -212,3 +214,4 @@ Si le fichier `/etc/resolv.conf` indique un serveur DNS accessible, alors ce qui
 Résultat:
 
 	rockylinux.org has address 76.76.21.21
+
