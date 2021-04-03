@@ -1,13 +1,13 @@
 Table Of Contents
 # [Introduction](introduction.md)
 
-# Lab 1: Installing Rocky Linux
-## Installing the Operating System
+## Lab 1: Installing Rocky Linux
+### Installing the Operating System
 
-# Lab 2: Patching the System
-## Updating and Patching
-## Configuring and using dnf
-## Third party solutions
+## Lab 2: Patching the System
+### Updating and Patching
+### Configuring and using dnf
+### Third party solutions
 
 # Lab 3: Auditing the System
 ## A simple home grown integrity checker
