@@ -3,7 +3,7 @@
 - [ ] Is this a non-English contribution? 
 - [ ] Title and Author MetaTags have been inserted into the document 
 - [ ] If applicable, steps and instructions have been tested to work on a real system
-- [ ] Did you perform an initial self-review to fix basic typos and grammartical correctness
+- [ ] Did you perform an initial self-review to fix basic typos and grammatical correctness
 
 
 ## Rocky Documentation checklist  (to be completed by Rocky team) 
