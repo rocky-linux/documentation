@@ -1,8 +1,5 @@
 # Apache Hardened Web Server - vsftpd
 
-# Introduction 
-
-_vsftpd_ is the  Very Secure FTP Daemon. (FTP is file transfer protocol) It has been available for many years now and is actually the default ftp daemon in Rocky Linux as well as many other Linux distributions. _vsftpd_ allows for the use of virtual users with pluggable authentication modules (PAM). These virtual users don't exist in the system and have no other permissions except to ftp. This means that assuming a compromised virtual user, the person with those credentials would have no other permissions once they gained access. Using this setup is very secure indeed, but does require a bit of extra work. _vsftpd_ is just one possible component of a hardened Apache web server setup and can be used with or without other tools. If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server routine](apache_hardened_webserver.md). This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
 
 # Prerequisites
 
@@ -11,6 +8,16 @@ _vsftpd_ is the  Very Secure FTP Daemon. (FTP is file transfer protocol) It has 
 * A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
 * An understanding of PAM, as well as _openssl_ commands is helpful.
 * All commands are run as the root user or sudo
+
+# Introduction 
+
+_vsftpd_ is the  Very Secure FTP Daemon (FTP being the file transfer protocol). It has been available for many years now, and is actually the default FTP daemon in Rocky Linux, as well as many other Linux distributions. 
+
+_vsftpd_ allows for the use of virtual users with pluggable authentication modules (PAM). These virtual users don't exist in the system, and have no other permissions except to use FTP. This means that if a virtual user gets compromised, the person with those credentials would have no other permissions once they gained access. Using this setup is very secure indeed, but does require a bit of extra work. 
+
+_vsftpd_ is just one possible component of a hardened Apache web server setup, and can be used with or without other tools. If you'd like to use this along with other tools for hardening, refer back to our [Apache Hardened Web Server guide](apache_hardened_webserver.md). 
+
+This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
 
 ## Installing vsftpd
 

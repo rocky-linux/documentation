@@ -4,7 +4,7 @@
 
 * A burning, unquenchable desire to disable the default _firewalld_ application, and enable _iptables_.
 
-# Introduction
+## Introduction
 
 _firewalld_ is now the default firewall on Rocky Linux. _firewalld_ is nothing more than a dynamic application of _iptables_ using xml files, and it loads changes without flushing the rules. 
 
@@ -12,7 +12,7 @@ However, using straight _iptables_ may be something that you are more comfortabl
 
 It is assumed that if you want to get rid of _firewalld_, you must already know how to write rules for _iptables_.
 
-### Disabling firewalld
+## Disabling firewalld
 
 You can't really run the old _iptables_ utilities alongside _firewalld_. They're just not compatible. The best way to get around this is to disable _firewalld_ entirely (no need to unistall it unless you want to), and reinstall the _iptables_ utilities. Disabling _firewalld_ can be done using these commands:
 
@@ -28,7 +28,7 @@ Mask the service so that it can't be found:
 
 `systemctl mask firewalld`
 
-### Installing And Enabling iptables Services
+## Installing And Enabling iptables Services
 
 Next we need to install the old _iptables_ services and utilities. This is done with the following:
 
@@ -40,7 +40,7 @@ Now we need to enable the _iptables_ service to make sure that it starts on boot
 
 `dnf enable iptables`
 
-# Conclusion
+## Conclusion
 
 You can return to using straight _iptables_ if you prefer it over _firewalld_. You can return to using the default _firewalld_ by simply reversing these changes.
 
