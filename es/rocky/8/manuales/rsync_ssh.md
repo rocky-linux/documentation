@@ -1,4 +1,4 @@
-# Utilizando rsync para Mantener dos Equipos Sincronizados
+# Utilizando rsync para mantener dos equipos sincronizados
 
 ## Requisitos
 
@@ -14,7 +14,7 @@ Esto es todo lo que necesitarás para comprender y seguir esta guía.
 
 # Introducción
 
-Utilizar _rsync_ sobre SSH no es tan poderoso como [lsync](RL_espejar_lsync.md) (que permite monitorear un directorio o archivo en busca de cambios y mantenerlo sincronizado en tiempo real), ni tan flexible como [rsnapshot](RL_copias_de_seguridad_rsnapshot.md) (que permite hacer una copia de seguridad de múltiples objetivos desde un solo equipo fácilmente). Pero ofrece la capacidad de mantener dos equipos actualizados en un horario definido.
+Utilizar _rsync_ sobre SSH no es tan poderoso como [lsync](espejar_lsync.md) (que permite monitorear un directorio o archivo en busca de cambios y mantenerlo sincronizado en tiempo real), ni tan flexible como [rsnapshot](copias_de_seguridad_rsnapshot.md) (que permite hacer una copia de seguridad de múltiples objetivos desde un solo equipo fácilmente). Pero ofrece la capacidad de mantener dos equipos actualizados en un horario definido.
 
 rsync ha existido desde el principio de los tiempos (bueno, tal vez no tanto, pero si lleva su tiempo) así que cada distribución Linux lo tiene disponible, y todavía persiste en los paquetes base. rsync sobre SSH puede ser una solución si necesita mantener un conjunto de directorios actualizados en un equipo objetivo, sin embargo la sincronización en tiempo real no es realmente importante.
 
@@ -28,11 +28,11 @@ Es probable que rsync se encuentre instalado, sin embargo es una buena idea actu
 
 Si el paquete no está instalado, dnf le pedirá que confirme la instalación y si está instalado, dnf buscará una actualización y nos dará la posibilidad de instalarla.
 
-## Preparando el Entorno
+## Preparando el entorno
 
-Este ejemplo específico utilizará rsync con el objetivo de jalar los cambios, en lugar de empujarlos hacia el destino, por lo que necesitaremos configurar un [juego de claves SSH](RL_claves_ssh_públicas_privadas.md) para esto. Una vez creado el juego de claves SSH, y confirmado el acceso sin contraseña desde el equipo objetivo al origen, estamos listos para comenzar.
+Este ejemplo específico utilizará rsync con el objetivo de jalar los cambios, en lugar de empujarlos hacia el destino, por lo que necesitaremos configurar un [juego de claves SSH](claves_ssh_publicas_privadas.md) para esto. Una vez creado el juego de claves SSH, y confirmado el acceso sin contraseña desde el equipo objetivo al origen, estamos listos para comenzar.
 
-## Parámetros de rsync y Configuración del Script
+## Parámetros de rsync y configuración del script
 
 Antes de comenzar con la configuración del script, debemos decidir qué parámetros queremos usar con rsync. Hay muchas posibilidades, así que echa un vistazo al [manual de rsync](https://linux.die.net/man/1/rsync). La forma más común de usar rsync es usar la opción -a, porque -a combina una serie de opciones en una sola y éstas son las más comunes. ¿Qué incluye -a?
 * -r, recurrir a los directorios

@@ -1,4 +1,4 @@
-# Rocky Linux - Copias de Seguridad - rsnapshot
+# Rocky Linux - Copias de Seguridad rsnapshot
 
 ## Requisitos
 
@@ -21,7 +21,7 @@ Esta documentación cubre la instalación de rsnapshot sólo en Rocky Linux.
 
 Todos los comandos mostrados aquí son de la línea de comandos en su servidor o estación de trabajo a menos que se indique lo contrario.
 
-## Instalar el Repositorio EPEL
+## Instalar el repositorio EPEL
 
 Necesitamos el repositorio de software EPEL de Fedora para instalar rsnapshot. Para instalar el repositorio, simplemente usa este comando, si aún no lo has hecho:
 
@@ -29,7 +29,7 @@ Necesitamos el repositorio de software EPEL de Fedora para instalar rsnapshot. P
 
 El repositorio ahora debería estar activo.
 
-## Instalar el Paquete rsnapshot
+## Instalar el paquete rsnapshot
 
 A continuación, instalar rsnapshot propiamente:
 
@@ -58,7 +58,7 @@ Total download size: 543 k
 Installed size: 1.2 M
 Is this ok [y/N]: y
 ```
-## Montar la Unidad o El Sistema de Archivos para Copias de Seguridad
+## Montar la unidad o el sistema de archivos para copias de seguridad
 
 En este paso, mostraremos cómo montar un disco duro, como así también una unidad extraible, que se utilizará para hacer una copia de seguridad del sistema.
 Este paso en particular es necesario si se está realizando una copia de seguridad de un equipo o servidor, como se puede observar en nuestro primer ejemplo a continuación. 
@@ -88,7 +88,7 @@ Lo mejor es que la configuración que viene por defecto con rsnapshot solo neces
 
 `cp /etc/rsnapshot.conf /etc/rsnapshot.conf.bak`
 
-## Copia de Seguridad sobre un Único Equipo o Servidor
+## Copia de seguridad sobre un único equipo o servidor
 
 En este caso, rsnapshot será ejecutado localmente para respaldar un equipo en particular. En este ejemplo, desglosaremos el archivo de configuración, y te mostraremos exactamente lo que necesitas cambiar.
 
@@ -147,7 +147,7 @@ Finalmente, saltaremos a la sección `### BACKUP POINTS / SCRIPTS ###` y agregar
 
 Por ahora debemos escribir sus cambios (`SHIFT :wq!` en vi) y saldremos del archivo de configuración.
 
-### Comprobación de la Configuración
+### Comprobación de la configuración
 
 Queremos asegurarnos de que no hemos agregado espacios o cualquier otro error evidente en nuestro archivo de configuración mientras lo editábamos. Para esto, ejecutamos rsnapshot contra nuestra configuración con la opción configtest:
 
@@ -159,7 +159,7 @@ Para ejecutar configtest contra un archivo de configuración en particular, ejec
 
 `rsnapshot -c /etc/rsnapshot.conf configtest`
 
-### Ejecutar la Copia de Seguridad por Primera Vez
+### Ejecutar la copia de seguridad por primera vez
 
 Todo se ha comprobado, así que ahora podemos seguir adelante y ejecutar la copia de seguridad por primera vez. Puede ejecutar esto en modo de prueba primero si lo desea, para que pueda ver lo que el script de copia de seguridad va a realizar.
 
@@ -189,7 +189,7 @@ Una vez que estemos satisfechos con la prueba, seguiremos adelante y ejecutaremo
 
 Cuando la copia de seguridad termine, podremos echar un vistazo a la estructura de directorios creada en /mnt/backup. Habrá un directorio `storage/beta.0/localhost` seguido por los directorios especificados para respaldar.
 
-### Explicación Adicional
+### Explicación adicional
 
 Cada vez que se ejecute la copia de seguridad, se creará un nuevo incremento beta, de 0 a 6, o de 7 días de copias de seguridad. La copia de seguridad más reciente siempre será beta.0, mientras que la copia de seguridad de ayer siempre será beta.1.
 
@@ -199,7 +199,7 @@ Cada copia de seguridad es solo una copia de seguridad incremental de la ejecuci
 
 Así que para restaurar los archivos, usted no tiene que elegir qué directorios o incremento para restaurarlos, solo qué marca de tiempo debe tener la copia de seguridad. Es un gran sistema y utiliza mucho menos espacio en disco que muchas otras soluciones de copia de seguridad.
 
-### Configurar la Copia de Seguridad para que se Ejecute Automáticamente
+### Configurar la copia de seguridad para que se ejecute automáticamente
 
 Una vez que ha sido probado y sabemos que las cosas funcionarán sin problemas el siguiente paso es configurar el crontab para el usuario root, para que todo esto se haga automáticamente cada día:
 
@@ -214,13 +214,13 @@ Vamos a configurar nuestra copia de seguridad para que se ejecute automáticamen
 00 23 *  *  *  /usr/bin/rsnapshot -c /etc/rsnapshot.conf beta`
 ```
 
-## Copias de Seguridad sobre Múltiples Equipos o Servidores
+## Copias de seguridad sobre múltiples equipos o servidores
 
 Hacer copias de seguridad de varios equipos desde una maquina con una matriz RAID o con gran capacidad de almacenamiento, ya sea en las instalaciones o desde Internet, funciona muy bien.
 
 Si ejecuta estos respaldos desde Internet, debe asegurarse de que ambas ubicaciones tengan el ancho de banda adecuado para que se realicen los respaldos. Pueden usar rsnapshot para sincronizar un servidor en el sitio con un arreglo o servidor de respaldo fuera del sitio para mejorar la redundancia de datos.
 
-### Supuestos
+### Suposiciones
 
 Asumimos que estás ejecutando rsnapshot desde un equipo remoto, en las instalaciones. Esta misma configuración puede ser duplicada, tal como se indica arriba, remotamente fuera de las instalaciones.
 
@@ -229,13 +229,13 @@ En este caso, querrás instalar rsnapshot en el equipo que está haciendo todos 
 * Que cada servidor que va a respaldar tiene una versión reciente de rsync instalada. Para los servidores Rocky Linux, ejecute `dnf install rsync` para actualizar la versión de rsync del sistema.
 * Que te hayas conectado al equipo como usuario root, o que hayas ejecutado `sudo -s` para cambiar al usuario root.
 
-### Claves SSH Públicas y Privadas
+### Claves SSH públicas y privadas
 
 Para el servidor que ejecutará las copias de seguridad, necesitamos generar un par de claves SSH para utilizarlas durante las copias de seguridad. Para nuestro ejemplo crearemos claves RSA.
 
 Si ya tienes un set de claves generado puedes averiguarlo haciendo un `ls -al .ssh` y buscando un par de claves id_rsa e id_rsa.pub. Si no existe ninguno puedes utilizar el siguiente enlace para configurar tus claves y servidores a los que quieres acceder:
 
-[Rocky Linux Claves SSH Públicas y Privadas](RL_claves_ssh_públicas_privadas.md)
+[Claves SSH públicas y privadas](claves_ssh_publicas_privadas.md)
 
 ### Configuración de rsnapshot
 
@@ -278,7 +278,7 @@ backup  root@web.ourdomain.com:/home/     web.ourdomain.com/
 backup  root@web.ourdomain.com:/root/     web.ourdomain.com/
 ```
 
-### Comprobación de la Configuración y Ejecución de la Copia de Seguridad Inicial
+### Comprobación de la configuración y ejecución de la copia de seguridad inicial
 
 Al igual que antes, ahora podemos comprobar la configuración para asegurarnos de que es sintácticamente correcta:
 
@@ -290,7 +290,7 @@ Y al igual que antes, buscamos el mensaje `Syntax OK`. Si todo está bien, podre
 
 Asumiendo que todo funciona bien, podemos entonces crear los archivos de configuración para el servidor de correo (rsnapshot_mail.conf) y el servidor de portal (rsnapshot_portal.conf), probarlos, y hacer un respaldo de prueba.
 
-### Automatización de la Copia de Seguridad
+### Automatización de la copia de seguridad
 
 La automatización de las copias de seguridad para la versión de múltiples equipos/servidores es ligeramente diferente. Queremos crear un script bash para llamar a las copias de seguridad en orden. Cuando uno termine, el siguiente se iniciará. Este script será algo así y se almacenará en /usr/local/sbin:
 
@@ -320,7 +320,7 @@ Y agregamos esta línea:
 00 23 *  *  *  /usr/local/sbin/backup_all
 ```
 
-## Conclusiones y Otros Recursos
+## Conclusiones y otros recursos
 
 La configuración correcta de rsnapshot es un poco desalentadora al principio, pero puede ahorrarte mucho tiempo al respaldar tus equipos o servidores.
 
