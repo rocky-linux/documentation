@@ -3,7 +3,7 @@
 ## Prerequisites
 
 * A certain amount of comfort operating from the command line
-* All operations require a user with elevated/administrative privileges on the system (For example root, sudo and so on)
+* Elevated or administrative privileges on the system (For example root, sudo and so on)
 * Optional: familiarity with networking concepts
 
 # Introduction
