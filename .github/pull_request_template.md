@@ -7,10 +7,10 @@
 
 
 ## Rocky Documentation checklist  (to be completed by Rocky team) 
-- [ ] 1st Pass (Check that document is good fit for project)
-- [ ] 2nd Pass ( Technical Review - check for technical correctness) 
+- [ ] 1st Pass (Check that document is good fit for project and author checklist completed)
+- [ ] 2nd Pass (Technical Review - check for technical correctness) 
 - [ ] 3rd Pass (Basic Editorial Review)
 - [ ] 4th Pass (Detailed Editorial Review and Peer Review)
 - [ ] 5th Pass (Include document in TOC)
-- [ ] 5th Pass (Final Review)
+- [ ] Final pass/approval (Final Review)
 
