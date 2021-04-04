@@ -1,30 +1,5 @@
 # Apache Hardened Web Server
 
-# Introduction
-
-Whether you are hosting multiple web sites for customers or a single, very important, web site for your business, hardening your web server will give you peace of mind, at the expense of a little more up-front work for the administrator. With multiple web sites uploaded by your customers, you can pretty much be guaranteed that one of them will upload a Content Management System (CMS) with the possibility of vulnerabilities. Most customers are focused on use, not security, and what happens is that updating their own CMS becomes a process that falls out of their priority list altogether. While notifying customers of vulnerabilities in their CMS may be possible for a company with a large IT staff, it may not be possible for a small department. The best defense is a hardened web server.
-
-Web server hardening involves multiple avenues, which may include any or all of the below tools, and possibly others not defined here. You might elect to use a couple of these tools and not the others, so for clarity and readability this document is split out into separate documents for each tool. The exception will be the packet-based firewall (_iptables_) which will be included in this main document.
-
-* A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - we will use _iptables_ for our example)[_iptables_ procedure](#iptablesstart)
-* A Host-based Intrusion Detection System (HIDS), in this case _ossec-hids_ [Apache Hardened Web Server - ossec-hids](apache_hardened_webserver_ossec-hids.md)
-* A Web-based Application Firewall (WAF), with _mod\_security_ rules [Apache Hardened Web Server - mod_security](apache_hardened_webserver_modsecurity.md)
-* Rootkit Hunter (rkhunter): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](apache_hardened_webserver_rkhunter.md)
-* Database security (we are using _mariadb-server_ here) [Apache Hardened Web Server - mariadb-server](apache_hardened_webserver_mariadb-server.md)
-* A secure FTP or SFTP server (we are using _vsftpd_ here) [Apache Hardened Web Server - vsftpd](apache_hardened_webserver_vsftpd.md)
-
-This procedure does not replace the [Apache Web Server Multi-Site Setup](apache-sites-enabled.md), it simply adds these security elements to it. If you have reviewed that, take some time to look at it before proceeding.
-
-# Other Considerations
-
-Some of the tools outlined here have both free and fee-based options. Depending on your needs or support requirements, you may want to consider the fee-based versions. You should research what is out there and make a decision after weighing all of your options. Know, too, that most of these options can be purchased as hardware appliances. If you'd prefer not to hassle with installing and maintaining your own system, there are options available other than those outlined here.
-
-This document uses a straight _iptables_ firewall and requires [this procedure on Rocky Linux to disable firewalld and enable the iptables services](enabling_iptables_firewall.md). If you prefer to use _firewalld_, simply skip this step and apply the rules needed. The firewall in our examples here, needs no OUTPUT or FORWARD chains, only INPUT. Your needs may differ!
-
-All of these tools need to be tuned to your system. That can only be done with careful monitoring of logs, and reported web experience by your customers. In addition, you will find that there will be ongoing tuning required over time. 
-
-Even though we are using a private IP address to simulate a public one, all of this _could_ have been done using a one-to-one NAT on the hardware firewall and connecting the web server to that hardware firewall, rather than to the gateway router, with a private IP address. Explaining that requires digging into the hardware firewall shown below, and since that is outside of the scope of this document, it is better to stick with our example of a simulated public IP address. 
-
 ## Prerequisites And Assumptions
 
 * A Rocky Linux Web Server running Apache
@@ -33,6 +8,43 @@ Even though we are using a private IP address to simulate a public one, all of t
 * Assumes an _iptables_ firewall, rather than _firewalld_ or hardware firewall.
 * Assumes the use of a hardware firewall that our trusted devices will sit behind.
 * Assumes a public IP address directly applied to the web server. We are substituting a private IP address for all of our examples.
+
+# Introduction
+
+Whether you are hosting multiple web sites for customers or a single, very important, web site for your business, hardening your web server will give you peace of mind, at the expense of a little more up-front work for the administrator. 
+
+With multiple web sites uploaded by your customers, you can pretty much be guaranteed that one of them will upload a Content Management System (CMS) with the possibility of vulnerabilities. Most customers are focused on ease of use, not security, and what happens is that updating their own CMS becomes a process that falls out of their priority list altogether. 
+
+While notifying customers of vulnerabilities in their CMS may be possible for a company with a large IT staff, it may not be possible for a small department. The best defense is a hardened web server.
+
+Web server hardening can take many forms, which may include any or all of the below tools, and possibly others not defined here. 
+
+You might elect to use a couple of these tools and not the others, so for clarity and readability this document is split out into separate documents for each tool. The exception will be the packet-based firewall (_iptables_) which will be included in this main document.
+
+* A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - we will use _iptables_ for our example)[_iptables_ procedure](#iptablesstart)
+* A Host-based Intrusion Detection System (HIDS), in this case _ossec-hids_ [Apache Hardened Web Server - ossec-hids](apache_hardened_webserver_ossec-hids.md)
+* A Web-based Application Firewall (WAF), with _mod\_security_ rules [Apache Hardened Web Server - mod_security](apache_hardened_webserver_modsecurity.md)
+* Rootkit Hunter (rkhunter): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](apache_hardened_webserver_rkhunter.md)
+* Database security (we are using _mariadb-server_ here) [Apache Hardened Web Server - mariadb-server](apache_hardened_webserver_mariadb-server.md)
+* A secure FTP or SFTP server (we are using _vsftpd_ here) [Apache Hardened Web Server - vsftpd](apache_hardened_webserver_vsftpd.md)
+
+This procedure does not replace the [Apache Web Server Multi-Site Setup](apache-sites-enabled.md), it simply adds these security elements to it. If you haven't read it, take some time to look at it before proceeding.
+
+# Other Considerations
+
+Some of the tools outlined here have both free and fee-based options. Depending on your needs or support requirements, you may want to consider the fee-based versions. You should research what is out there and make a decision after weighing all of your options. 
+
+Know, too, that most of these options can be purchased as hardware appliances. If you'd prefer not to hassle with installing and maintaining your own system, there are options available other than those outlined here.
+
+This document uses a straight _iptables_ firewall and requires [this procedure on Rocky Linux to disable firewalld and enable the iptables services](enabling_iptables_firewall.md). 
+
+If you prefer to use _firewalld_, simply skip this step and apply the rules needed. The firewall in our examples here, needs no OUTPUT or FORWARD chains, only INPUT. Your needs may differ!
+
+All of these tools need to be tuned to your system. That can only be done with careful monitoring of logs, and reported web experience by your customers. In addition, you will find that there will be ongoing tuning required over time. 
+
+Even though we are using a private IP address to simulate a public one, all of this _could_ have been done using a one-to-one NAT on the hardware firewall and connecting the web server to that hardware firewall, rather than to the gateway router, with a private IP address. 
+
+Explaining that requires digging into the hardware firewall shown below, and since that is outside of the scope of this document, it is better to stick with our example of a simulated public IP address. 
 
 ## Conventions
 
@@ -52,7 +64,9 @@ Each individual package section has the needed installation files and any config
 
 # <a name="iptablesstart"></a>Configuring iptables
 
-This portion of the documentation assumes that you have elected to install the _iptables_ services and utilities and that you are not planning on using _firewalld_. If you are planning on using _firewalld_, you can use this _iptables_ script to guide you in creating the appropriate rules in the _firewalld_ format. Once the script is shown here, we will break it down to describe what is happening. Only the INPUT chain is needed here. The script is being placed in the /etc/ directory and for our example, it is named firewall.conf:
+This portion of the documentation assumes that you have elected to install the _iptables_ services and utilities and that you are not planning on using _firewalld_. 
+
+If you are planning on using _firewalld_, you can use this _iptables_ script to guide you in creating the appropriate rules in the _firewalld_ format. Once the script is shown here, we will break it down to describe what is happening. Only the INPUT chain is needed here. The script is being placed in the /etc/ directory and for our example, it is named firewall.conf:
 
 `vi /etc/firewall.conf`
 
@@ -96,7 +110,7 @@ So here's what is happening above:
 * We allow our web traffic in from anywhere over port 80 and 443.
 * We allow standard FTP (ports 20-21) and the passive ports needed to exchange two-way communications in FTP (7000-7500). These ports can be arbitrarily changed to other ports based on your ftp server configuration.
 * We allow any traffic on the local interface (127.0.0.1)
-* Then we say, that any traffic that has successfully connected based on the rules, should be allowed other traffic (ports) to maintain their connection (ESTABLISHED,RELATED)
+* Then we say, that any traffic that has successfully connected based on the rules, should be allowed other traffic (ports) to maintain their connection (ESTABLISHED,RELATED).
 * And finally, we reject all other traffic and set the script to save the rules where _iptables_ expects to find them.
 
 Once this script is there, we need to make it executable:
@@ -115,9 +129,13 @@ We need to run /etc/firewall.conf:
 
 `/etc/firewall.conf`
 
-If we add new rules to the /etc/firewall.conf, just run it again to take those rules live. Keep in mind that with a default DROP policy for the INPUT chain, if you make a mistake, you could lock yourself out remotely. You can always fix this however, from the console on the server. Because the _iptables_ service is enabled, a reboot will restore all rules that have been added with `/etc/firewall.conf`.
+If we add new rules to the /etc/firewall.conf, just run it again to take those rules live. Keep in mind that with a default DROP policy for the INPUT chain, if you make a mistake, you could lock yourself out remotely. 
+
+You can always fix this however, from the console on the server. Because the _iptables_ service is enabled, a reboot will restore all rules that have been added with `/etc/firewall.conf`.
 
 # Conclusions
 
-There are a number of ways to harden an Apache web server to make it more secure. Each operates independently of the other options, so you can choose to install any or all of them based on your needs. Each requires some configuration with various tuning required for some to meet your specific needs. Since web services are one of the most attacked by unscrupulous actors, implementing at least some of these will help an administrator sleep at night.
+There are a number of ways to harden an Apache web server to make it more secure. Each operates independently of the other options, so you can choose to install any or all of them based on your needs. 
+
+Each requires some configuration with various tuning required for some to meet your specific needs. Since web services are constantly attacked by unscrupulous actors, implementing at least some of these will help an administrator sleep at night.
 
