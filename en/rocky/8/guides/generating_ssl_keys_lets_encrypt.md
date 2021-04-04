@@ -1,24 +1,26 @@
 # Generating SSL Keys - Let's Encrypt
 
-# Introduction
-
-One of the most popular ways to secure a web site, currently, is using Let's Encrypt SSL certificates, which are also free. These are actual certificates, not self-signed or snake oil, etc., so they are great for a low-budget security solution. This document will walk you through the process of installing and using Let's Encrypt certificates on a Rocky Linux web server.
-
 ## Prerequisites
 
-* comfort with the command line
-* familiarity with securing web sites with SSL certificates is a plus
-* knowledge of command line text editors (this example uses _vi_)
-* an already running web server open to the world on port 80 (http)
-* familiarity with _ssh_ (secure shell) and the ability to access your server with _ssh_
+* Comfort with the command line
+* Familiarity with securing web sites with SSL certificates is a plus
+* Knowledge of command line text editors (this example uses _vi_)
+* An already running web server open to the world on port 80 (http)
+* Familiarity with _ssh_ (secure shell) and the ability to access your server with _ssh_
+
+# Introduction
+
+One of the most popular ways to secure a web site, currently, is using Let's Encrypt SSL certificates, which are also free. 
+
+These are actual certificates, not self-signed or snake oil, etc., so they are great for a low-budget security solution. This document will walk you through the process of installing and using Let's Encrypt certificates on a Rocky Linux web server.
 
 ## Assumptions
 
-* all commands assume that you are either the root user or that you have used _sudo_ to gain root access
+* All commands assume that you are either the root user or that you have used _sudo_ to gain root access.
 
 ## Installation 
 
-To do the next steps, _ssh_ into your server. If your server's fully qualified DNS name was www.myhost.com, then you would use:
+To do the next steps, use _ssh_ to log into your server. If your server's fully qualified DNS name was www.myhost.com, then you would use:
 
 `ssh -l root www.myhost.com` 
 
@@ -26,13 +28,13 @@ Or, if you must access your server as an unprivileged user first. Use your usern
 
 `ssh -l username www.myhost.com`
 
-and then:
+And then:
 
 `sudo -s`
 
 You will need your _sudo_ user's credentials in this case to gain access to the system as root.
 
-Let's Encrypt uses a package called _certbot_ which needs to be installed via a snap. To install _snapd_ on Rocky Linux, you will need to install the EPEL repository if you have not done so already:
+Let's Encrypt uses a package called _certbot_ which needs to be installed via a snap package. To install _snapd_ on Rocky Linux, you will need to install the EPEL repository if you have not done so already:
 
 `dnf install epel-release`
 
@@ -70,7 +72,9 @@ This should install _certbot_. The final step is to put the _certbot_ command in
 
 ## Getting The Let's Encrypt Certificate
 
-There are two ways to retrieve your Let's Encrypt certificate, either using the command to modify the http configuration file for you, or to just retrieve the certificate. If you are using the procedure for a multi-site setup suggested for one or more sites in the procedure [Apache Web Server Multi-Site Setup](apache-sites-enabled.md), then you will only want to retrieve your certificate. We are assuming that you **are** using this procedure so we will only retrieve the certificate. If you are running a standalone web server using the default configuration, you can retrieve the certificate and modify the configuration file in one step using `certbot --apache`. 
+There are two ways to retrieve your Let's Encrypt certificate, either using the command to modify the http configuration file for you, or to just retrieve the certificate. If you are using the procedure for a multi-site setup suggested for one or more sites in the procedure [Apache Web Server Multi-Site Setup](apache-sites-enabled.md), then you will only want to retrieve your certificate. 
+
+We are assuming that you **are** using this procedure so we will only retrieve the certificate. If you are running a standalone web server using the default configuration, you can retrieve the certificate and modify the configuration file in one step using `certbot --apache`. 
 
 To retrieve the certificate only, use this command:
 
@@ -84,6 +88,7 @@ Plugins selected: Authenticator apache, Installer apache
 Enter email address (used for urgent renewal and security notices)
  (Enter 'c' to cancel): yourusername@youremaildomain.com
 ```
+
 The next asks you to read and accept the terms of the subscriber agreement. Once you have read the agreement answer 'Y' to continue:
 
 ```
@@ -94,6 +99,7 @@ agree in order to register with the ACME server. Do you agree?
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 (Y)es/(N)o: 
 ```
+
 The next is a request to share your email with the Electronic Frontier Foundation. Answer 'Y' or 'N' as is your preference:
 
 ```
@@ -106,7 +112,8 @@ EFF news, campaigns, and ways to support digital freedom.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 (Y)es/(N)o: 
 ```
-The next prompt asks you which domain you want the certificate for. It should display a domain in the listing based on your running web server. If so, enter the number next to the domain that you are getting the certificate for. In this case there  is only one option '1':
+
+The next prompt asks you which domain you want the certificate for. It should display a domain in the listing based on your running web server. If so, enter the number next to the domain that you are getting the certificate for. In this case there is only one option ('1'):
 
 ```
 Which names would you like to activate HTTPS for?
@@ -116,6 +123,7 @@ Which names would you like to activate HTTPS for?
 Select the appropriate numbers separated by commas and/or spaces, or leave input
 blank to select all options shown (Enter 'c' to cancel): 
 ```
+
 If all goes well, you should receive the following message:
 
 ```
@@ -140,9 +148,12 @@ IMPORTANT NOTES:
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
 ```
+
 ## The Site Configuration - https
 
-Applying the configuration file to our site is slightly different than if we were using a purchased SSL certificate from another provider. The certificate and chain file are included in a single PEM (Privacy Enhanced Mail) file. This is a common format for all certificate files now, so even though it has "Mail" in the reference, it is just a type of certificate file. To illustrate the configuration file, we will show it in it's entirety and then describe what is happening:
+Applying the configuration file to our site is slightly different than if we were using a purchased SSL certificate from another provider. 
+
+The certificate and chain file are included in a single PEM (Privacy Enhanced Mail) file. This is a common format for all certificate files now, so even though it has "Mail" in the reference, it is just a type of certificate file. To illustrate the configuration file, we will show it in it's entirety and then describe what is happening:
 
 ```
 <VirtualHost *:80>
@@ -183,6 +194,7 @@ Applying the configuration file to our site is slightly different than if we wer
         </Directory>
 </VirtualHost>
 ```
+
 Here's what's happening above. You may want to review the [Apache Web Server Multi-Site Setup](apache-sites-enabled.md) to see the differences in the application of an SSL purchased from another provider and the Let's Encrypt certificate:
 
 * Even though port 80 (standard http) is listening, we are redirecting all traffic to port 443 (https)
@@ -228,6 +240,7 @@ Congratulations, all simulated renewals succeeded:
   /etc/letsencrypt/live/yourdomain.com/fullchain.pem (success)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
+
 The [_certbot_ documentation](https//certbot.eff.org/lets-encrypt/centosrhel8-apache.html) tells you in their step number 8, that the automatic renewal process could be in a couple of different spots, depending on your system. For a Rocky Linux install, you are going to find the process by using:
 
 `systemctl list-timers`
@@ -240,4 +253,6 @@ Sat 2021-04-03 07:12:00 UTC  14h left   n/a                          n/a        
 
 # Conclusions
 
-Let's Encrypt SSL certificates are yet another option for securing your web site with an SSL. Once installed, the system provides automatic renewal of certificates and will encrypt traffic to your web site. It should be noted that Let's Encrypt certificates are used for standard DV (Domain Validation) certificates. They cannot be used for OV (Organization Validation) or EV (Extended Validation) certificates. 
+Let's Encrypt SSL certificates are yet another option for securing your web site with an SSL. Once installed, the system provides automatic renewal of certificates and will encrypt traffic to your web site. 
+
+It should be noted that Let's Encrypt certificates are used for standard DV (Domain Validation) certificates. They cannot be used for OV (Organization Validation) or EV (Extended Validation) certificates. 
