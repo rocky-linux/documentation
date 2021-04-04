@@ -8,8 +8,8 @@
 
 # Introduction
 
-Nowadays a computer without network connectivity is almost useless by itself. 
-Whether you need to update the packages on a server or simply browse external Websites from your laptop - you will need network access!
+Nowadays a computer without network connectivity is almost useless by itself. Whether you need to update the packages on a server or simply browse external Websites from your laptop - you will need network access!
+
 This guide aims to provide Rocky Linux users the basic knowledge on how to setup network connectivity on a Rocky Linux system.
 
 ## Using NetworkManager service
@@ -46,8 +46,11 @@ The interface's name is **ens18** so this file's name will be `/etc/sysconfig/ne
 **Tips:**  
 There are a few ways or mechanisms by which systems can be assigned their IP configuration information. The 2 most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
 
-The static IP configuration scheme is very popular on server class systems or networks. 
-And the dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP). Very often, home/office users don't have to worry or know about DHCP. This is because the somebody or something else is automagically taking care of that in the background. The only thing that the end user needs to do is to physically or wirelessly connect to the right network (and of course make sure that their systems are powered on)!
+The static IP configuration scheme is very popular on server class systems or networks.
+
+The dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP). 
+
+Very often, home/office users don't have to worry or know about DHCP. This is because the somebody or something else is automagically taking care of that in the background. The only thing that the end user needs to do is to physically or wirelessly connect to the right network (and of course make sure that their systems are powered on)!
 
 #### IP Address
 
@@ -214,11 +217,12 @@ If your machine has several network interface and you want to make ICMP request 
 	ping -I ens19  -c3 192.168.20.42
 
 It is now time to make sure that DNS resolution is working correctly. As a reminder, DNS resolution is a mechanism used to convert human friendly machine names into their IP addresses and the other way round (reverse DNS).
+
 If the `/etc/resolv.conf` file indicates a reachable DNS server, then the following should work:
 
 	host rockylinux.org
 
-Result:
+The result should be:
 
 	rockylinux.org has address 76.76.21.21
 
