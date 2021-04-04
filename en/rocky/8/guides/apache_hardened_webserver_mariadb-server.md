@@ -1,9 +1,5 @@
 # Apache Hardened Web Server - mariadb-server
 
-# Introduction
-
-_mariadb-server_ and the client _mariadb_ are the open source alternatives to _mysql-server_ and _mysql_. They share command structure. While _mariadb-server_ is not technically required for a web server to run, the popular [Wordpress CMS](https://wordpress.org/) requires it, so it is becoming a understood requirement for hosting web sites for customers. _mariadb-server_ is just one possible component of a hardened Apache web server setup and can be used with or without other tools. If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server routine](apache_hardened_webserver.md). This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
-
 # Prerequisites
 
 * A Rocky Linux Web Server running Apache
@@ -12,9 +8,19 @@ _mariadb-server_ and the client _mariadb_ are the open source alternatives to _m
 * An understanding of _mariadb-server_ databases is helpful
 * All commands are run as the root user or sudo
 
+# Introduction
+
+The _mariadb-server_ and it's client _mariadb_ are the open source alternatives to _mysql-server_ and _mysql_, and they share command structure. While _mariadb-server_ is not technically required for a web server to run, the popular [Wordpress CMS](https://wordpress.org/) requires it, so it is becoming a understood requirement for hosting web sites for customers. 
+
+Well, for at least 40% of the internet, anyway.
+
+_mariadb-server_ is just one possible component of a hardened Apache web server setup and can be used with or without other tools. 
+
+If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server guide](apache_hardened_webserver.md). This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
+
 ## Installing mariadb-server
 
-We need to install _mariadb-server_ and a couple of php modules. Please note that this is by no means an exhaustive list of php modules that you might need to install on your web site for other things, including others that are required for Wordpress to run:
+We need to install _mariadb-server_ and a couple of PHP modules. Please note that this is by no means an exhaustive list of PHP modules that you might need to install on your web site for other things, including others that are required for Wordpress to run. But, to get mariadb working, this is what we start with:
 
 `dnf install mariadb-server php-pdo php-mysqlnd`
 
@@ -24,7 +30,7 @@ To strengthen the security of _mariadb-server_ we need to run a script, but befo
 
 `systemctl enable mariadb`
 
-and 
+And then: 
 
 `systemctl start mariadb`
 
@@ -45,6 +51,7 @@ so you should just press enter here.
 
 Enter current password for root (enter for none): 
 ```
+
 Since this is a brand new installation, there is no root password set. So just hit enter here.
 
 The next part of the dialog continues:
@@ -57,12 +64,14 @@ root user without the proper authorisation.
 
 Set root password? [Y/n] 
 ```
+
 You absolutely _do_ want to have a root password set. You'll want to figure out what this should be and document it in a password manager somewhere so that you can pull it up if necessary. Start by hitting 'Enter' to accept the default "Y". This will bring up the password dialog:
 
 ```
 New password: 
 Re-enter new password:
 ```
+
 Enter your chosen password and then confirm it by entering it again. If this is successful, you will get the following dialog:
 
 ```
@@ -82,6 +91,7 @@ production environment.
 
 Remove anonymous users? [Y/n] 
 ```
+
 The answer here is "Y" so just hit 'Enter' to accept the default.
 
 The dialog proceeds to the section dealing with allowing the root user to login remotely:
@@ -94,6 +104,7 @@ ensures that someone cannot guess at the root password from the network.
 
 Disallow root login remotely? [Y/n]
 ```
+
 root should only be needed locally on the machine. So accept this default as well by hitting 'Enter'.
 
 The dialog then moves on to the 'test' database that is automatically installed with _mariadb-server_:
@@ -108,6 +119,7 @@ before moving into a production environment.
 
 Remove test database and access to it? [Y/n] 
 ```
+
 Again, the answer here is the default, so just hit 'Enter' to remove it.
 
 Finally, the dialog ask you if you want to reload the privileges:
@@ -123,6 +135,7 @@ will take effect immediately.
 
 Reload privilege tables now? [Y/n] 
 ```
+
 Again, simply hit 'Enter' to do this. If all goes well, you should receive this message:
 
 ```
@@ -135,6 +148,7 @@ installation should now be secure.
 
 Thanks for using MariaDB!
 ```
+
 MariaDB should now be ready to use.
 
 # Conclusions
