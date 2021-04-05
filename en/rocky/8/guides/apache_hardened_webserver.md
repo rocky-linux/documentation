@@ -53,7 +53,7 @@ Explaining that requires digging into the hardware firewall shown below, and sin
 * **Internet Router IP:** We are simulating this with 192.168.1.1/24
 * **Web Server IP:** This is the "public" IP address assigned to our web server. Again, we are simulating this with the private IP address 192.168.1.10/24
 
-![hardened_webserver_figure1](hardened_webserver_figure1.jpeg)
+![Hardened Webserver](images/hardened_webserver_figure1.jpeg)
 
 The diagram above shows our general layout. The _iptables_ packet-based firewall runs on the web server (shown above).
 
