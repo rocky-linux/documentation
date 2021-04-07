@@ -8,15 +8,9 @@ The order of these sections is very important, but has not been finalized yet, s
 
 ## Development and Packaging
 
-Obtaining Package Source | Package rebranding | Build Rocky RPMs | Package Signing | Package Signing
---- | --- | --- | ---
-[Download SRPMs](../guides/package_sources) | [Rebranding HowTo](../package_debranding) | [Package Building HowTo](../package_building) | foo
-
-
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
+Sourcing SRPM | Rebranding | Building | Signing | Deployment
+--- | --- | --- | --- | ---
+[Download SRPMs](../guides/package_sources) | [Rebranding HowTo](../package_debranding) | [Building HowTo](../package_building) | [Signing HowTo](../package_signing) | [Deployment HowTo](../package_deployment)
 
 
 ## Security
