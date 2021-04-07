@@ -2,17 +2,17 @@
 title: 'Apache Web Server Multi-Site Setup'
 ---
 
-# Apache Web Server Multi-Site Setup
-
-Rocky Linux has many ways for you to setup a web site. This is just one method, using Apache, and is designed for use as a multi-site setup on a single server. While this method is designed for multi-site servers, it can also act as a base configuration for a single site server as well. 
-
-History fact: This server setup appears to have started with Debian-based systems, but it is perfectly adaptable to any Linux OS running Apache.
-
 ## What You Need
 * A server running Rocky Linux
 * Knowledge of the command-line and text editors (This example uses *vi*, but can be adapted to your favorite editor.)
     * If you'd like to learn about the vi text editor, [here's a handy tutorial](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
 * Basic knowledge about installing and running web services
+
+# Apache Web Server Multi-Site Setup
+
+Rocky Linux has many ways for you to set up a web site. This is just one method, using Apache, and is designed for use as a multi-site setup on a single server. While this method is designed for multi-site servers, it can also act as a base configuration for a single site server as well. 
+
+History fact: This server setup appears to have started with Debian-based systems, but it is perfectly adaptable to any Linux OS running Apache.
 
 ## Install Apache
 You'll likely need other packages for your web site. For instance, a version of PHP will almost certainly be required, and maybe a database or other package will be needed as well. Installing PHP along with httpd will get you the latest version of both from the Rocky Linux repositories. 
@@ -98,6 +98,8 @@ As stated earlier, every web server created these days _should_ be running with 
 This process starts by generating a private key and a CSR (which stands for certificate signing request) and then submitting the CSR to the certificate authority to purchase the SSL certificate. The process of generating these keys is somewhat extensive, so it has its own document. 
 
 If you are new to generating keys for SSL, please take a look at: [Generating SSL Keys](ssl_keys_https.md)
+
+You can also use this alternate process for using an [SSL certificate from Let's Encrypt](generating_ssl_keys_lets_encrypt.md)
 
 ### Placement of the SSL keys and Certificate's
 
@@ -211,3 +213,4 @@ That's by design, so that we can easily remove things in the event that httpd fa
 This will create the link to the configuration file in *sites-enabled*, just like we want.
 
 Now just start httpd with `systemctl start httpd`. Or restart it if it’s already running: `systemctl restart httpd`, and assuming the web service restarts, you can now go and do some testing on your new site.
+
