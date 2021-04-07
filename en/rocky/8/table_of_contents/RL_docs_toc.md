@@ -10,7 +10,7 @@ The order of these sections is very important, but has not been finalized yet, s
 
 Sourcing SRPM | Rebranding | Building | Signing | Deployment
 --- | --- | --- | --- | ---
-[Download SRPMs](../guides/package_sources) | [Rebranding HowTo](../package_debranding) | [Building HowTo](../package_building) | [Signing HowTo](../package_signing) | [Deployment HowTo](../package_deployment)
+[Download SRPMs](../guides/package_sources) | [Rebranding HowTo](../guides/package_debranding) | [Building HowTo](../guides/package_building) | [Signing HowTo](../guides/package_signing) | [Deployment HowTo](../guides/package_deployment)
 
 
 ## Security
