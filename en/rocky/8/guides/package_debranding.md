@@ -1,19 +1,41 @@
-Steps 2-3: Import source to Git, and replace branding
+Intro to Debranding with Rocky Linux
+What is Debranding?
+Certain packages in the upstream RHEL/CentOS have logos, trademarks, and other specific text, images, or multimedia that other entities (like the Rocky Linux Foundation) are not allowed to redistribute.
 
-Each package in RHEL should have a corresponding Rocky Linux Git repository dedicated to it. For example: Rocky Linux will have a bash repository, a python3 repository, a python3-gpg repository, etc. One git repo for each package. Yes, that is a lot of git repositories.
+A visible, simple example is the Apache web server (package httpd). If you’ve ever installed it and visited the default web server page, you will see a test page specific to your Linux distro, complete with a “powered by” logo and distro-specific information. While we are allowed to compile and redistribute the Apache web server software, Rocky Linux is NOT allowed to include these trademarked images or distro-specific text!
 
-This section will outline some of the major technical hurdles being considered:
+We must have an automated process that will strip these assets out and replace them with our own branding upon import into our Gitlab.
 
-The current strategy is to Apply de-brand patches at the same time as import seems viable. So no need for a separate private repo.
 
-Git package/binary strategy
-Packages are distributed as specfiles, patches, and the upstream/original source as a tarball (.tar.gz, tar.bz2, etc.). Text files are easy enough in git, but there are different strategies for storing these upstream tar files.
+How Rocky Debranding Works
+Rocky’s method for importing packages from the upstream is a tool called srpmproc ( https://git.rockylinux.org/release-engineering/public/srpmproc )
 
-Answer: The agreed-upon strategy is to use a lookaside caching mechanism, just like Fedora and CentOS proper. The one used is called dist-git, and involves a separate script that downloads a tarfile that matches to a checked out git branch.
+Srpmproc’s purpose in life is to:
 
-If this doesn’t work out, git-lfs is also a popular option for binary storage.
+Clone PACKAGE from our upstream source: git.centos.org/rpms/PACKAGE
+Check if Rocky Linux has any debranding patches available for PACKAGE (under https://git.rockylinux.org/patch/PACKAGE )
+If patch/PACKAGE exists, then read the configuration and patches from that repository and apply them
+Commit the results (patched or not) to https://git.rockylinux.org/rpms/PACKAGE
+Do this for every package until we have a full repository of packages in our Git
 
-Files/Folders, Tags/Branches layout in Git:
-Should we stick to the folders/tags/branches layout in git.centos.org? Or something quite different? Should we place debranding metadata with the project, or somewhere else? How about automated/scripted test cases? There is a lot to consider here.
+How Many Packages are we Talking About?
+That is an open question. We know, at a minimum, there are 40 packages referred to in the CentOS 8 release notes that need to be modified from upstream. (34 modified, 6 added. See: https://wiki.centos.org/Manuals/ReleaseNotes/CentOS8.1905#Packages_modified_by_CentOS )
 
-Tentative Answer: Our Git layout will likely mirror certain branches of packages in git.centos.org, but with different names. Debranding metadata will be kept separate, as well as metadata related to modular package builds.
+However, we also know this list is incomplete. For example, package nginx (a popular web server) has not been rebranded by CentOS, but should be. We cannot include this package as-is, it must be debranded before it’s imported to Rocky Linux’s Git.
+
+
+Open Call for Help:
+Like nginx, there are undoubtedly more packages that are not on the default CentOS list, but must be debranded. We are trying to build a complete list, but we need YOUR help!
+
+The Rocky Linux community includes a metric ton of CentOS/RHEL administrators who collectively are familiar with the ENTIRE package base. If you notice a package that has upstream branding, but is not on our tracking list, PLEASE let us know! We prefer you drop by channel #Dev/Packaging on chat.rockylinux.org , but any way you can get the message to us is acceptable!
+
+
+Helping with Debrands
+There are 2 tasks involved with debranding. Identifying packages that require debranding (see call for help above), and developing patches+configs to debrand the necessary packages.
+
+If you want to help with the latter, please see “Rocky Debrand How-To” located in the same folder of this Wiki.
+
+
+Debrand Packages Tracking
+A list of packages that need debranding and their status is located in the Wiki in this folder under: Debranding/Debrand_Tracking. It will be updated as debrand patches are submitted and the needed packages are identified.
+
