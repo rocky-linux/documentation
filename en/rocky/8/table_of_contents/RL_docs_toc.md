@@ -10,7 +10,7 @@ The order of these sections is very important, but has not been finalized yet, s
 
 | Obtaining Package Source | Package rebranding | Build Rocky RPMs | Package Signing |
 | --- | --- | --- | --- |
-| [Download SRPMs](package_sources) | [Rebranding HowTo](#package_debranding) | [Rebranding HowTo](#package_debranding)
+| [Download SRPMs](../guides/package_sources) | [Rebranding HowTo](#package_debranding) | [Rebranding HowTo](#package_debranding)
 
 ## Security
 
