@@ -1,3 +1,21 @@
+## First get Familiar with the Mock build tool:
+
+Once you get through that, the biggest and most relevant technical/intro page for our package debugging effort is this:
+
+https://wiki.rockylinux.org/en/team/development/Mock_Build_Howto
+
+We are using the “mock” program to perform our builds, just like the real Rocky infrastructure will. You should install it and get very used to it. Please use this guide to get started, and explain a bit about what we hope to achieve and why we have to build all these packages in a specific order.
+
+Please read those carefully, and maybe dip your toe in the water by feeding your mock an SRPM or 2 and compiling some things.
+
+Mock is really great, as it’s an easy-to-call program that constructs an entire system inside a chroot to perform the build, then cleans it up afterwards.
+
+If you’d like a reference for Mock config files to look at or play with, there are some published here (that correspond with the “Build Passes” being done to test package builds): https://rocky.lowend.ninja/RockyDevel/mock_configs/
+
+Once you’re familiar with Mock (and especially digging through its output logs), we have a list of failing packages that we need to investigate and come up with explanations and/or fixes for.
+
+
+
 ## Intro - What needs to be done  
 
 The area we need help the most right now, and the easiest way to contribute, is to help troubleshoot failing package builds.
