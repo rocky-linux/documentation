@@ -6,7 +6,7 @@ Let's walk through building the curl package for Rocky Linux. For this you'll ne
 * Mock templates for Building Rocky Linux packages
 
 
-## 1 - Enable the EPEL repository and needed packages/tools
+## 1 - Enable the EPEL repository and install needed packages/tools
 
 ```
 sudo dnf -y install epel-release
@@ -17,11 +17,11 @@ sudo dnf -y install golang mock git
 ## 2 - Download and Setup srpmproc
  
  ```
-   git clone https://git.rockylinux.org/release-engineering/public/srpmproc.git
-    cd srpmproc
-    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build ./cmd/srpmproc
-    sudo cp srpmproc /usr/local/bin/
-    mkdir -p /tmp/srpmproc/
+git clone https://git.rockylinux.org/release-engineering/public/srpmproc.git
+cd srpmproc
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build ./cmd/srpmproc
+sudo cp srpmproc /usr/local/bin/
+mkdir -p /tmp/srpmproc/
 ```
  
 ## 3 -  Setup mock and Download the latest Mock Build Templates (mock configs)
@@ -35,7 +35,8 @@ sudo dnf -y install golang mock git
 
 
 ## Tip (optional)
-The srpmproc, rpmbuild and mock programs accepts a lot of different options. To help reduce the amount of typing that you have to do, you can abstract these options into simpler bach functions.
+The srpmproc, rpmbuild and mock programs accepts a lot of different options. To help reduce the amount of typing that you have to do, you can abstract these options into simpler bash functions.
+
 For this, you can append the following helper functions to your .bashrc file.
 
 ```
