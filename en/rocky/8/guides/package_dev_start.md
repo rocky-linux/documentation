@@ -1,8 +1,8 @@
 Let's walk through building the curl package for Rocky Linux. For this you'll need:
 
-* An existing Linux system
-* srpmproc
-* Some packages from the CentOS EPEL repository
+* An existing modern RPM based Linux system
+* The srpmproc utility
+* Some packages from the Extra Packages for Enterprise Linux (EPEL) repository
 * Mock templates for Building Rocky Linux packages
 
 
