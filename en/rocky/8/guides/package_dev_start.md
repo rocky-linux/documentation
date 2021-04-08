@@ -34,7 +34,7 @@ mkdir -p /tmp/srpmproc/
 ```
 
 
-## Tip (optional)
+### Tip (optional)
 The srpmproc, rpmbuild and mock programs accepts a lot of different options. To help reduce the amount of typing that you have to do, you can abstract these options into simpler bash functions.
 
 For this, you can append the following helper functions to your .bashrc file.
