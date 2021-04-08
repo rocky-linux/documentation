@@ -42,6 +42,7 @@ For this, you can append the following helper functions to your .bashrc file.
 ```
 rockyget(){ srpmproc --version 8 --source-rpm $1 --upstream-prefix https://git.rockylinux.org/staging --storage-addr file:///tmp/srpmproc --tmpfs-mode $@; }
 rockybuild() { rpmbuild -bs --nodeps --define "%_topdir `pwd`" --define "dist .el8" SPECS/*.spec && mock -r /etc/mock/rocky8.cfg SRPMS/*.src.rpm; }
+rockybuild-notest() { rpmbuild -bs --nodeps --define "%_topdir `pwd`" --define "dist .el8" SPECS/*.spec &&  mock --nocheck -r /etc/mock/rocky8.cfg SRPMS/*.src.rpm; }
  ```
  Once you're done, type:
 
@@ -49,7 +50,7 @@ rockybuild() { rpmbuild -bs --nodeps --define "%_topdir `pwd`" --define "dist .e
   source  ~/.bashrc
 ```
 
-## 4 - Finally, let's build a sample curl package  (using the helper functions)
+## 4a - Finally, let's build a sample curl package  (using the helper functions)
 
 ```
     mkdir $HOME/rocky
@@ -58,4 +59,17 @@ rockybuild() { rpmbuild -bs --nodeps --define "%_topdir `pwd`" --define "dist .e
     cd curl/r8
     rockybuild
 ```
+
+## 4b - Alternative -  build a sample curl package BUT skip tests  (using the `rockybuild-notest` helper function)
+
+```
+    mkdir $HOME/rocky
+    cd $HOME/rocky
+    rockyget curl
+    cd curl/r8
+    rockybuild-notest
+```
+
+
+
 *Note: it is normal to see a number of errors such as `could not get commit object for ref refs/tags/imports/c7-beta/curl-7.29.0-56.el7: object not found`--this is normal and may be safely ignored.
