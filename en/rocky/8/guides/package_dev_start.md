@@ -58,3 +58,4 @@ rockybuild() { rpmbuild -bs --nodeps --define "%_topdir `pwd`" --define "dist .e
     cd curl/r8
     rockybuild
 ```
+*Note: it is normal to see a number of errors such as `could not get commit object for ref refs/tags/imports/c7-beta/curl-7.29.0-56.el7: object not found`--this is normal and may be safely ignored.
