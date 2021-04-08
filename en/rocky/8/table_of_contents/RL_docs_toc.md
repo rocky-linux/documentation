@@ -8,9 +8,9 @@ The order of these sections is very important, but has not been finalized yet, s
 
 ## Development and Packaging
 
-Sourcing SRPM | Rebranding | Building | Signing | Deployment
---- | --- | --- | --- | ---
-[Download SRPMs](../guides/package_sources.md) | [Rebranding HowTo](../guides/package_debranding.md) | [Building HowTo](../guides/package_building.md) | [Signing HowTo](../guides/package_signing.md) | [Deployment HowTo](../guides/package_deployment.md)
+Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
+--- | --- | --- | --- | --- | ---
+[Setup Development Environment](../guides/package_dev_start.md) | [Download SRPMs](../guides/package_sources.md) | [Rebranding HowTo](../guides/package_debranding.md) | [Building HowTo](../guides/package_building.md) | [Signing HowTo](../guides/package_signing.md) | [Deployment HowTo](../guides/package_deployment.md)
  [Build Troubleshooting](../guides/package_build_troubleshooting.md) 
 
 
