@@ -60,7 +60,7 @@ rockybuild-notest() { rpmbuild -bs --nodeps --define "%_topdir `pwd`" --define "
     rockybuild
 ```
 
-## 4b - Alternative -  build a sample curl package BUT skip tests  (using the `rockybuild-notest` helper function)
+## 4b - Alternative -  quicly build a sample curl package BUT skip tests  (using the rockybuild-notest helper function)
 
 ```
     mkdir $HOME/rocky
