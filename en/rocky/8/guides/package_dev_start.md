@@ -39,7 +39,7 @@ The srpmproc, rpmbuild and mock programs accepts a lot of different options. To 
 For this, you can append the following helper functions to your .bashrc file.
 
 ```
-rockyget(){ srpmproc --version 8 --source-rpm abrt --upstream-prefix https://git.rockylinux.org/staging --storage-addr file:///tmp/srpmproc --tmpfs-mode $@; }
+rockyget(){ srpmproc --version 8 --source-rpm $1 --upstream-prefix https://git.rockylinux.org/staging --storage-addr file:///tmp/srpmproc --tmpfs-mode $@; }
     rockybuild() { rpmbuild -bs --nodeps --define "%_topdir `pwd`" --define "dist .el8" SPECS/*.spec && mock -r /etc/mock/rocky8.cfg SRPMS/*.src.rpm; }
  ```
  Once you're done, type:
