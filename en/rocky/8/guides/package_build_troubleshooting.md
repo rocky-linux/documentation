@@ -36,6 +36,6 @@ Set your mock program up with the most recent configs that we are using (linked 
 
 Investigate the error(s): You can use your own mock, as well as the log files from when the build failed, located here: https://rocky.lowend.ninja/RockyDevel/MOCK_RAW/
 
-Figure out what’s going on, and how to fix it. It may take the form of special mock settings, or a patch added to the program + specfile. Report your findings to the #Dev/Packaging channel, and someone will record them on the Wiki Package_Error_Tracking page linked above.
+Figure out what’s going on, and how to fix it. It may take the form of special mock settings, or a patch added to the program + specfile. Report your findings to the [#Dev/Packaging](https://chat.rockylinux.org/rocky-linux/channels/dev-packaging) channel, and someone will record them on the Wiki Package_Error_Tracking page linked above.
 
 The idea is to shrink the Build Failures, and grow the Package_Error_Tracking page. If necessary, we will commit build fixes to our patch repo for the different packages located here: https://git.rockylinux.org/staging/patch.
