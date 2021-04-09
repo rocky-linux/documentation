@@ -69,7 +69,13 @@ rockybuild-notest() { rpmbuild -bs --nodeps --define "%_topdir `pwd`" --define "
     cd curl/r8
     rockybuild-notest
 ```
-
-
-
 *Note: it is normal to see a number of errors such as `could not get commit object for ref refs/tags/imports/c7-beta/curl-7.29.0-56.el7: object not found`--this is normal and may be safely ignored.
+
+
+## 5 - See RPMs created in Mock's chroot space
+
+```
+   mock --shell "ls /builddir/build/RPMS/*curl*.rpm"
+```
+
+
