@@ -118,7 +118,7 @@ But expect to get the next message as well:
 
 That's a little frustrating. You can go to your account on the Comodo web site and change your password and re-run the install script, BUT, it won't change anything. The credentials will still fail.
 
-### <a name=cwaf_fix></a> CWAF Rules File Workaround
+### <a name="cwaf_fix"></a> CWAF Rules File Workaround
 
 To fix this, we need to manually install the rules from the web site. This is done by logging into your account on https://waf.comodo.com and clicking on the the "Download Full Rule Set" link. You'll then need to copy the rules to your web server using scp'
 
