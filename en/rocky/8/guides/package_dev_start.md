@@ -52,6 +52,7 @@ sudo usermod -a -G mock $USER
 sudo curl -o /etc/mock/templates/rockybuild8.tpl https://rocky.lowend.ninja/RockyDevel/mock_configs/build_pass11/rockybuild8.tpl
 sudo curl -o /etc/mock/templates/rockycentos-8.tpl https://rocky.lowend.ninja/RockyDevel/mock_configs/build_pass11/rockycentos-8.tpl
 sudo curl -o /etc/mock/rocky8.cfg https://rocky.lowend.ninja/RockyDevel/mock_configs/build_pass11/rocky8.cfg
+sudo sed -i -e 's/^module_hotfixes=1/#module_hotfixes=1/g' -e 's/^module_hotfixes=1/#module_hotfixes=1/g' /etc/mock/templates/rockycentos-8.tpl /etc/mock/templates/rockybuild8.tpl 
 ```
 
 ## 4 - Setup shortcuts for build commands
