@@ -81,14 +81,13 @@ rockybuild-notest() {
 EOF
 ```
 
-* Then pull them into your environment
+* The above code expects to be pasted to your terminal.
+* If you paste this directly into your .bashrc file, it will not work as expected due to the several *backslashes* (\\)
+* Then pull the functions into your environment
 
 ```
 source  ~/.bashrc
 ```
-
-* Note, the above is design to be pasted to your terminal.
-* If you paste directly into your .bashrc file, it will not work as expected due to the *backslash* (\\)
 
 ## 5 - Development build of the curl package, as an example
 
