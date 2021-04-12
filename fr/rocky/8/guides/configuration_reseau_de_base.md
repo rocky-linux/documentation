@@ -132,7 +132,7 @@ La commande à utiliser est de la forme suivante:
 
 	ip addr add <IP ADDRESS/CIDR> dev <IFACE NAME>
 
-où <IP ADDRESS/CIDR> est l'adresse IP avec son suffixe de sous-réseau et <IFACE NAME> le nom de l'interface ciblée.
+où <IP ADDRESS/CIDR> est l'adresse IP avec son suffixe de sous-réseau et < IFACE NAME > le nom de l'interface ciblée.
 
 Pour attribuer les paramètres d'exemple ci-dessus, nous utiliserons donc:
 
