@@ -194,7 +194,7 @@ sync {
 
 ## 测试和启动
 
-现在已经完成了其他所有设置，可以对其进行全部测试。首先，请确保 systemd lsyncd.service 将启动：
+现在已经完成了其他所有设置，可以对其进行全部测试。首先，请确保 systemd lsyncd.service 可以启动：
 
 `systemctl start lsyncd`
 
