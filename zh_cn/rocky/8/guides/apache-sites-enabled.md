@@ -104,7 +104,7 @@ Rocky Linux 提供了许多方法来设置网络站点。Apache 只是在单台�
 
 如果不这样做，证书和密钥有可能暴露在网络上。那会很糟糕！
 
-相反，将在文档根目录之外为 SSL 文件创建一个新目录结构：
+我们建议的做法是，将在文档根目录之外为 SSL 文件创建新目录：
 
 `mkdir -p /var/www/sub-domains/com.ourownwiki.www/ssl/{ssl.key,ssl.crt,ssl.csr}`
 
