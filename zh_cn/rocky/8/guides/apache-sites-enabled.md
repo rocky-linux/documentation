@@ -140,7 +140,7 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
 </VirtualHost>
 ```
 
-这意味着要将任何常规 Web 请求发送到 https 配置。上面显示的 apache “Redirect”选项可以在所有测试完成后更改为“Redirect permanent”，您可以看到站点按照您希望的方式运行。此处选择的“Redirect”是临时重定向。
+这意味着要将任何常规 Web 请求发送到 https 配置。上面显示的 apache “Redirect”选项可以在所有测试完成后更改为“Redirect permanent”，此时站点应该就会按照您希望的方式运行。此处选择的“Redirect”是临时重定向。
 
 搜索引擎将记住永久重定向，很快，从搜索引擎到您网站的所有流量都只会流向 443 端口（https），而无需先访问 80 端口（http）。
 
