@@ -44,7 +44,7 @@ rsync 从一开始就存在了也许没那么长，但确实已经很久了！)�
 * -o, 保留所有者
 * -D, 保留设备文件
 
-The only other options that we need to specify in this example is:在此示例中，需要指定的唯一其他选项是：
+在此示例中，需要指定的唯一其他选项是：
 
 * -e, 指定要使用的远程 shell
 * --delete, 表示如果目标目录中包含源文件中不存在的文件，则将其删除
