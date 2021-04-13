@@ -47,7 +47,7 @@ lsyncd 监视本地目录树事件监视器接口（inotify）。它在几秒钟
 
 从源码安装并不复杂，只需遵循本指南，相信您能很快完成一切事情！
 
-### Install Dependencies安装依赖
+### 安装依赖
 
 We will need some dependencies: a few that are required by lsyncd itself, and a few that are required to build packages from source. Use this command on your Rocky Linux machine to make sure you have the dependencies you need. If you are going to be building from source, it's a good idea to have all of the development tools installed:将需要一些依赖项：lsyncd 本身需要的一些依赖项，以及从源码构建软件包所需要的一些依赖项。在 Rocky Linux 机器上使用此命令，以确保您具有所需的依赖项。如果要从源码进行构建，则最好安装所有开发工具：
 
