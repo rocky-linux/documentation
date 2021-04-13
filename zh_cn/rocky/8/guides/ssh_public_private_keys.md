@@ -57,7 +57,7 @@ ls -a .ssh/
 
 对每台计算机重复此步骤。
 
-在每个打开的终端窗口中，输入以下命令，将看到 *id_rsa.pub*：
+在每个打开的终端窗口中，输入以下命令，您应该看到 *id_rsa.pub*：
 
 `ls -a | grep id_rsa.pub` 
 
@@ -87,6 +87,5 @@ ls -a .ssh/
 
 `chmod 700 .ssh/`
 `chmod 600 .ssh/authorized_keys`
-
 
 
