@@ -75,7 +75,7 @@ And then:
 
 `mkdir build`
 
-现在再次更改目录以位于构建目录中：
+现在再次更改目录以进入构建目录：
 
 `cd build`
 
