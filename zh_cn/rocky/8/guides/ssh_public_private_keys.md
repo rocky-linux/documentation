@@ -3,7 +3,7 @@
 ## 准备工作
 
 * 熟悉命令行操作。
-* Rocky Linux 服务器和/或工作站已安装 *openssh*。
+* 安装有 *openssh* 的 Rocky Linux 服务器或工作站。
     * 从技术上讲，本文所述的过程在任何已安装 openssh 的 Linux 系统上都可以运行。
 * 可选：熟悉 linux 文件和目录权限。
 
@@ -87,5 +87,4 @@ ls -a .ssh/
 
 `chmod 700 .ssh/`
 `chmod 600 .ssh/authorized_keys`
-
 
