@@ -41,7 +41,7 @@ lsyncd 监视本地目录树事件监视器接口（inotify）。它在几秒钟
 
 `dnf install lsyncd`
 
-That's it!就这样！
+就这样！
 
 ## Installing lsycnd - Source Method安装 lsycnd —— 源码方法
 
