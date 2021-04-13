@@ -210,7 +210,7 @@ sync {
 
 `tail /var/log/lsyncd-status.log`
 
-假设一切正确，请导航到 `/home/[user]` 目录，其中 `[user]` 是计算机上的用户，并使用 *touch* 在其中创建新文件。
+假设一切正确，进入到 `/home/[user]` 目录，其中 `[user]` 是计算机上的用户，并使用 *touch* 在其中创建新文件。
 
 `touch /home/[user]/testfile`
 
