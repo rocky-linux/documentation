@@ -80,7 +80,7 @@ Rocky Linux 提供了许多方法来设置网络站点。Apache 只是其中的�
 
 创建文件后，需要写入（保存）该文件：`shift : wq`
 
-在上面的示例中，wiki 站点是从 com.wiki.www 的 html 子目录加载的，这意味着在 /var/www（上面）中创建的路径需要一些额外的目录才能满足要求：
+在上面的示例中，wiki 站点是从 com.wiki.www 的 html 子目录加载的，这意味着需要在上面提到的 /var/www 中创建额外的目录才能满足要求：
 
 `mkdir -p /var/www/sub-domains/com.wiki.www/html`
 
