@@ -59,7 +59,7 @@ lsyncd 监视本地目录树事件监视器接口（inotify）。它在几秒钟
 
 ### 下载 lsycnd 并构建
 
-接下来，需要源码：
+接下来，获取源码：
 
 `wget https://github.com/axkibe/lsyncd/archive/master.zip`
 
