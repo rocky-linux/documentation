@@ -45,7 +45,7 @@ lsyncd 监视本地目录树事件监视器接口（inotify）。它在几秒钟
 
 ## 安装 lsycnd —— 源码方法
 
-Installing from source is not as bad is it sounds. Just follow this guide and you will be up and running in no time!从源码安装并不复杂，只需遵循本指南，您将立即启动并运行！
+从源码安装并不复杂，只需遵循本指南，相信您能很快完成一切事情！
 
 ### Install Dependencies安装依赖
 
