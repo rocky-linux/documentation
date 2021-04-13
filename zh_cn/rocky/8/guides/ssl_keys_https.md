@@ -35,7 +35,7 @@
 
 `openssl genrsa -des3 -out ourownwiki.com.key.pass 2048`
 
-注意，将密钥命名为 .pass 扩展名。这是因为一旦执行此命令，它就会要求您输入密码。输入一个您可以记住的简单密码，因为很快就会移除此密码：
+注意，将密钥命名为 .pass 扩展名。这是因为一旦执行此命令，它就会要求您输入密码。输入一个您可以记住的简单密码，因为我们稍后就会移除这个密码：
 
 ```
 Enter pass phrase for ourownwiki.com.key.pass:
