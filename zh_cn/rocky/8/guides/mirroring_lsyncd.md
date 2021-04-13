@@ -25,7 +25,7 @@ lsyncd 监视本地目录树事件监视器接口（inotify）。它在几秒钟
 
 在本文中，带有原始文件的系统称为“master（主）”，而与之同步的系统将称为“target（目标）”。实际上，，使用 lsyncd 通过非常仔细地指定要同步的目录和文件是有可能完全镜像服务器。真是太好了！
 
-对于远程同步，您还需要设置[Rocky Linux SSH 公私钥对](RL_ssh_public_private_keys.md)。此处的示例使用 SSH（端口22）。
+对于远程同步，您还需要设置 [Rocky Linux SSH 公私钥对](RL_ssh_public_private_keys.md)。此处的示例使用 SSH（端口 22）。
 
 # 安装 lsycnd
 
