@@ -144,7 +144,7 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
 
 搜索引擎将记住永久重定向，很快，从搜索引擎到您网站的所有流量都只会流向 443 端口（https），而无需先访问 80 端口（http）。
 
-接下来，定义配置文件的https部分。为了清楚起见，此处重复了 http 部分，以表明这一切都发生在同一配置文件中：
+接下来，定义配置文件的 https 部分。为了清楚起见，此处重复了 http 部分，以表明这一切都发生在同一配置文件中：
 
 ```
 <VirtualHost *:80>
