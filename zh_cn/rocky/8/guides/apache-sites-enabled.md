@@ -19,7 +19,7 @@ Rocky Linux 提供了许多方法来设置网络站点。Apache 只是在单台�
 
 站点可能需要其他软件包。例如，几乎肯定需要 PHP，也可能需要一个数据库或其他包。从 Rocky Linux 仓库获取 PHP 与 httpd 的最新版本并安装。
 
-谨记，您可能还需要模块，例如 php-bcmath 或 php-mysqlind。Web 应用程序规范应详细说明所需的模块。这些模块可以随时安装。现在将安装 httpd 和 PHP：
+有时可能还需要额外安装 php-bcmath 或 php-mysqlind 等模块，Web 应用程序规范应该会详细说明所需的模块。接下来安装 httpd 和 PHP：
 
 * 从命令行运行 `dnf install httpd php`
 
