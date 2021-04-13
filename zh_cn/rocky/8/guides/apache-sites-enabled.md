@@ -100,7 +100,7 @@ Rocky Linux 提供了许多方法来设置网络站点。Apache 只是在单台�
 
 现在您已经拥有了密钥和证书文件，此时需要将它们按逻辑放置在 Web 服务器上的文件系统中。正如在上面示例配置文件中所看到的，将 Web 文件放置在 _/var/www/sub-domains/com.ourownwiki.www/html_ 中。
 
-希望将证书和密钥文件放在域（domain）中，而不是放在文档根（document root）目录中（在本例中是 _html_ 文件夹）。
+我们建议您将证书和密钥文件放在域（domain）中，而不是放在文档根（document root）目录中（在本例中是 _html_ 文件夹）。
 
 绝不希望证书和密钥有可能暴露在网络上。那会很糟糕！
 
