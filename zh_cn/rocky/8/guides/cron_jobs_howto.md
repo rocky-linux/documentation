@@ -66,7 +66,7 @@ _crontab_ 本质上是一个列表，用户可以在其中添加自己的自动�
 
 假设有一个备份脚本，希望在晚上 10 点运行。crontab 使用 24 小时制，因此应该是 22:00。假设备份脚本名为“backup”，并且当前位于 _/usr/local/sbin_ 目录中。
 
-Note: Remember that this script needs to also be executable (`chmod +x`) in order for the cron to run it. To add the job, we would:注意：这个脚本也需要是可执行的（`chmod+x`），cron 才能运行它。要添加作业：
+注意：这个脚本也需要是可执行的（`chmod+x`），cron 才能运行它。要添加作业：
 
 `crontab -e`
 
