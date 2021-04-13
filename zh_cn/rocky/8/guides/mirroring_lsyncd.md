@@ -198,7 +198,7 @@ sync {
 
 `systemctl start lsyncd`
 
-如果执行此命令后没有错误出现，请检查服务状态，以确保：
+如果执行此命令后没有错误出现，再检查服务状态，以确保一切无误：
 
 `systemctl status lsyncd`
 
