@@ -10,7 +10,7 @@ At a low level Rocky Devtools is a wrapper for running some custom and tradtiona
 
 Let's walk through a typical installation and usage scenario of the devtools.
 
-## 1 Download Rocky Devtools
+## 1 - Download Rocky Devtools
 
 Download devtools zipped source from the following URL
 
@@ -25,7 +25,7 @@ curl  -OJL  https://github.com/rocky-linux/devtools/archive/refs/heads/main.zip
 You should now have a zipped archive named `devtools-main.zip`
 
 
-## 2 Install Rocky Devtools
+## 2 - Install Rocky Devtools
 
 Locate and unzip (uncompress) the devtools archive that you just downloaded.
 
@@ -53,7 +53,7 @@ Install devtools.  Type:
 sudo make install
 ```
 
-## 3 Use Rocky Devtools (rockyget) to search for and download Source RPMs (SRPMs)
+## 3 - Use Rocky Devtools (rockyget) to search for and download Source RPMs (SRPMs)
 
 Once installed, the main utility for find and downloading SRPMs is the `rockyget` utility. 
 
@@ -84,7 +84,7 @@ For our current sed example, it's sources will be stored under the following sam
 Once you have the original sources, this might be a good time to look through the SPECs file (`~rocky/rpms/sed/SPECS/specs.spec`) to look for potential debranding opportinites in the given package.  Debranding might include replacing upstream artwork/logos and so on. 
 
 
-## 3 - Use Rocky Devtools (rockybuild) to build a new package for the Rocky OS
+## 4 - Use Rocky Devtools (rockybuild) to build a new package for the Rocky OS
 
 Under the hood, rockybuild calls rpmbuild and mock utilities to build the source package in a chroot environment for the application specified on the command-line. It relies on the application sources and RPM SPEC file that was automatically downloaded via the rockyget command. 
 
@@ -114,7 +114,7 @@ If all goes well you should end up with a Rocky ready SRPM file under the `/home
 
 
 
-## 4 - Debugging a failed package build 
+## 5 - Debugging a failed package build 
 
 The previous rockybuild process will generate some log files that can be used in debugging failed application builds.  The results and/or logs of the build process are stored under the `~/rocky/builds/<PACKAGE NAME>/r8`. For example `~/rocky/builds/sed/r8`
 
