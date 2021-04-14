@@ -80,8 +80,11 @@ For our current sed example, it's sources will be stored under the following sam
         └── sed.spec
 ```
 
+### TIP :
+Once you have the original sources, this might be a good time to look through the SPECs file (`~rocky/rpms/sed/SPECS/specs.spec`) to look for potential debranding opportinites in the given package.  Debranding might include replacing upstream artwork/logos and so on. 
 
-## 3 Use Rocky Devtools (rockybuild) to build a new package for the Rocky OS
+
+## 3 - Use Rocky Devtools (rockybuild) to build a new package for the Rocky OS
 
 Under the hood, rockybuild calls rpmbuild and mock utilities to build the source package in a chroot environment for the application specified on the command-line. It relies on the application sources and RPM SPEC file that was automatically downloaded via the rockyget command. 
 
@@ -93,18 +96,31 @@ rockybuild sed
 
 The time needed to complete the build process/step depends on the size and complexity of the application you are trying to build.  
 
+At the end of the rockybuild run, an output similar to the one here indicates that the build completed successfully.
 
-If all goes well you should end up with sed*spm.rpm file under your INFO: Results and/or logs in: /home/centos/rocky/builds/sed/r8
+```
+..........
++ exit 0
+Finish: rpmbuild sed-4.5-2.el8.src.rpm
+Finish: build phase for sed-4.5-2.el8.src.rpm
+INFO: Done(~/rocky/rpms/sed/r8/SRPMS/sed-4.5-2.el8.src.rpm) Config(baseos) 4 minutes 34 seconds
+INFO: Results and/or logs in: /home/centos/rocky/builds/sed/r8
+........
+```
+
+If all goes well you should end up with a Rocky ready SRPM file under the `/home/centos/rocky/builds/sed/r8` directory.
 
 ~/rocky/rpms/sed/r8/SRPMS/sed-4.5-2.el8.src.rpm
 
-## Debugging a failed package build 
+
+
+## 4 - Debugging a failed package build 
 
 The previous rockybuild process will generate some log files that can be used in debugging failed application builds.  The results and/or logs of the build process are stored under the `~/rocky/builds/<PACKAGE NAME>/r8`. For example `~/rocky/builds/sed/r8`
 
 INFO: Results and/or logs in: ~/rocky/builds/sed/r8
 
- 
+``` 
 /home/centos/rocky/builds/sed/r8
 ├── build.log
 ├── hw_info.log
@@ -115,5 +131,5 @@ INFO: Results and/or logs in: ~/rocky/builds/sed/r8
 ├── sed-debuginfo-4.5-2.el8_3.x86_64.rpm
 ├── sed-debugsource-4.5-2.el8_3.x86_64.rpm
 └── state.log
-
+```
 
