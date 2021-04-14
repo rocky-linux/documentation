@@ -3,10 +3,9 @@
 Rocky devtools refers to a set of home grown scripts and utlities created by members of the Rocky Linux community to help with sourcing, creating, branding, patching and building software packages distributed with the Rocky Linux Operating system.
 Rocky devtools consists of rockyget, rockybuild, rockypatch and rockyprep.
 
-At a high level, you'll need an existing modern RPM based Linux system to install and use devtools.
-
 At a low level Rocky Devtools is a wrapper for running some custom and tradtional programs that are used for various Package management tasks. Rocky Devtools relies  heavily on [srpmproc](https://github.com/mstg/srpmproc), go, git and rpmbuild.
 
+You'll need an existing modern RPM based Linux system to install and use Rocky devtools.
 
 Let's walk through a typical installation and usage scenario of the devtools.
 
