@@ -39,11 +39,10 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 ## System Maintenance and Administration
 
 | Data Security | System Management and Debugging | Managing Users and Groups |
-| --- | --- |
-| [Rsync over SSH](../guides/rsync_ssh.md) | [Postfix](../guides/postfix_reporting.md) | 
-| [RSnapshot](../guides/rsnapshot_backup.md) | [Cron(tab)](../guides/cron_jobs_howto.md) | 
+| --- | --- | --- 
+| [Rsync over SSH](../guides/rsync_ssh.md) | [Postfix](../guides/postfix_reporting.md) |  |
+| [RSnapshot](../guides/rsnapshot_backup.md) | [Cron(tab)](../guides/cron_jobs_howto.md) |  |
 | [Lsyncd](../guides/mirroring_lsyncd.md) | | 
-| | | 
 
 
 ## Virtualization
