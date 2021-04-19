@@ -106,7 +106,8 @@ INFO: Results and/or logs in: /home/centos/rocky/builds/sed/r8
 ........
 ```
 
-If all goes well you should end up with a Rocky ready SRPM file under the `/home/centos/rocky/builds/sed/r8` directory:
+
+If all goes well you should end up with a Rocky ready SRPM file under the `~/rocky/builds/sed/r8` directory.
 
 `~/rocky/rpms/sed/r8/SRPMS/sed-4.5-2.el8.src.rpm`
 
@@ -116,10 +117,9 @@ If all goes well you should end up with a Rocky ready SRPM file under the `/home
 
 The previous rockybuild process will generate some log files that can be used in debugging failed application builds. The results and/or logs of the build process are stored under the `~/rocky/builds/<PACKAGE NAME>/r8`. For example `~/rocky/builds/sed/r8`
 
-INFO: Results and/or logs in: `~/rocky/builds/sed/r8`
 
 ``` 
-/home/centos/rocky/builds/sed/r8
+~/rocky/builds/sed/r8
 ├── build.log
 ├── hw_info.log
 ├── installed_pkgs.log
