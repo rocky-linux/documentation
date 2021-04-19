@@ -1,3 +1,12 @@
+
+
+- [Download Rocky Devtools](#1.--download-rocky-devtools)
+- [Install Rocky Devtools](#2---install-rocky-devtools)
+- [Download Source RPMs (rockyget)](#3---use-rocky-devtools-rockyget-to-search-for-and-download-source-rpms-srpms)
+- [Building packages (rockybuild)](#4---use-rocky-devtools-rockybuild-to-build-a-new-package-for-the-rocky-os)
+- [Trobleshooting package builds](#5---debugging-a-failed-package-build)
+
+
 ** Work in progress **
 
 Rocky Devtools refers to a set of home grown scripts and utlities created by members of the Rocky Linux community to help with sourcing, creating, branding, patching and building software packages distributed with the Rocky Linux Operating system.
@@ -9,7 +18,7 @@ You'll need an existing modern RPM based Linux system to install and use Rocky d
 
 Let's walk through a typical installation and usage scenario of the devtools.
 
-## 1 - Download Rocky Devtools
+## 1. Download Rocky Devtools
 
 Download the devtools zipped source from the following URL:
 
@@ -52,9 +61,9 @@ Install devtools:
 sudo make install
 ```
 
-## 3 - Use Rocky Devtools (`rockyget`) to search for and download Source RPMs (SRPMs)
+## 3 - Use Rocky Devtools (rockyget) to search for and download Source RPMs (SRPMs)
 
-Once installed, the main utility for find and downloading SRPMs is the `rockyget` utility. 
+Once installed, the main utility for finding and downloading SRPMs is the `rockyget` utility. 
 
 Let's use `rockyget` to download the SRPM for the popular `sed` package:
 
@@ -80,6 +89,9 @@ For our current sed example, its sources will be stored under the following samp
 
 ### TIP :
 Once you have the original sources, this might be a good time to look through the SPECs file (`~rocky/rpms/sed/SPECS/specs.spec`) to look for potential debranding opportinites in the given package. Debranding might include replacing upstream artwork/logos and so on.
+
+### TIP
+If you are looking for other Rocky packages to build and experient with, you can browse the list of packages that are currently failing in the Rocky automated build environment [here](https://kojidev.rockylinux.org/koji/builds?state=3&order=-build_id)  -  https://kojidev.rockylinux.org/koji/builds?state=3&order=-build_id
 
 
 ## 4 - Use Rocky Devtools (rockybuild) to build a new package for the Rocky OS
@@ -130,4 +142,6 @@ The previous rockybuild process will generate some log files that can be used in
 ├── sed-debugsource-4.5-2.el8_3.x86_64.rpm
 └── state.log
 ```
+
+The main files to search for clues for the causes any error(s) are the build.log and root.log.     The build.log file should detail all build errors and the root.log file will contain information about the chroot environment setup and tear down processes. With everything else being equal, most of the build debugging/troubleshooting process can be performed with the contents of the build.log file.
 
