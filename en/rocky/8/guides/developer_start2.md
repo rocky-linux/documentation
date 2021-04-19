@@ -1,10 +1,10 @@
 
 
-- [Download Rocky Devtools](#1.--download-rocky-devtools)
-- [Install Rocky Devtools](#2---install-rocky-devtools)
-- [Download Source RPMs (rockyget)](#3---use-rocky-devtools-rockyget-to-search-for-and-download-source-rpms-srpms)
-- [Building packages (rockybuild)](#4---use-rocky-devtools-rockybuild-to-build-a-new-package-for-the-rocky-os)
-- [Trobleshooting package builds](#5---debugging-a-failed-package-build)
+- [Download Rocky Devtools](#1-download-rocky-devtools)
+- [Install Rocky Devtools](#2-install-rocky-devtools)
+- [Download Source RPMs (rockyget)](#3-use-rocky-devtools-rockyget-to-search-for-and-download-source-rpms-srpms)
+- [Building packages (rockybuild)](#4-use-rocky-devtools-rockybuild-to-build-a-new-package-for-the-rocky-os)
+- [Trobleshooting package builds](#5-debugging-a-failed-package-build)
 
 
 ** Work in progress **
@@ -33,7 +33,7 @@ curl -OJL https://github.com/rocky-linux/devtools/archive/refs/heads/main.zip
 You should now have a zipped archive named `devtools-main.zip`
 
 
-## 2 - Install Rocky Devtools
+## 2. Install Rocky Devtools
 
 Locate and uncompress the devtools archive that you just downloaded.
 
@@ -61,7 +61,7 @@ Install devtools:
 sudo make install
 ```
 
-## 3 - Use Rocky Devtools (rockyget) to search for and download Source RPMs (SRPMs)
+## 3. Use Rocky Devtools (rockyget) to search for and download Source RPMs (SRPMs)
 
 Once installed, the main utility for finding and downloading SRPMs is the `rockyget` utility. 
 
@@ -94,7 +94,7 @@ Once you have the original sources, this might be a good time to look through th
 If you are looking for other Rocky packages to build and experient with, you can browse the list of packages that are currently failing in the Rocky automated build environment [here](https://kojidev.rockylinux.org/koji/builds?state=3&order=-build_id)  -  https://kojidev.rockylinux.org/koji/builds?state=3&order=-build_id
 
 
-## 4 - Use Rocky Devtools (rockybuild) to build a new package for the Rocky OS
+## 4. Use Rocky Devtools (rockybuild) to build a new package for the Rocky OS
 
 Under the hood, `rockybuild` calls `rpmbuild` and `mock` utilities to build the source package in a chroot environment for the application specified on the command-line. It relies on the application sources and RPM SPEC file that was automatically downloaded via the `rockyget` command. 
 
@@ -125,7 +125,7 @@ If all goes well you should end up with a Rocky ready SRPM file under the `~/roc
 
 
 
-## 5 - Debugging a failed package build 
+## 5. Debugging a failed package build 
 
 The previous rockybuild process will generate some log files that can be used in debugging failed application builds. The results and/or logs of the build process are stored under the `~/rocky/builds/<PACKAGE NAME>/r8`. For example `~/rocky/builds/sed/r8`
 
