@@ -92,7 +92,20 @@ Now that we have our environment ready to go, let's  get the latest stable versi
 
 `wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz`
 
-Now decompress the archive. In this case, we are going to use some extraction options in tar to eliminate the directory that would normally be created with decompressing (usually a dated directory based on the version release date) with the "--strip-components=1" option and then we are specifying where we want the archive to be decompressed to with the "-C" option. This will eliminate a few steps:
+Before we decompress the archive, take a look at the contents using `tar ztf` to see the contents of the archive:
+
+`tar ztv dokuwiki-stable.tgz`
+
+Notice the named dated directory ahead of all the other files that looks something like this?
+
+```
+... (more above)
+dokuwiki-2020-07-29/inc/lang/fr/resetpwd.txt
+dokuwiki-2020-07-29/inc/lang/fr/draft.txt
+dokuwiki-2020-07-29/inc/lang/fr/recent.txt
+... (more below)
+```
+We don't want that leading named directory when we decompress the archive, so we are going to use some options with tar to exclude it. The first option is the "--strip-components=1" which removes that leading directory. The second option is the "-C" option that tells tar where we want the archive to be decompressed to. So decompress the archive with this command:
 
 `tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.yourdomain.wiki-doc/html/`
 
