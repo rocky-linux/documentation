@@ -1,9 +1,8 @@
-# Apache Hardened Web Server - vsftpd
+# Secure FTP Server - vsftpd
 
 
 # Prerequisites
 
-* A Rocky Linux Web Server running Apache
 * Proficiency with a command-line editor (we are using _vi_ in this example)
 * A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
 * An understanding of PAM, as well as _openssl_ commands is helpful.
@@ -14,10 +13,6 @@
 _vsftpd_ is the  Very Secure FTP Daemon (FTP being the file transfer protocol). It has been available for many years now, and is actually the default FTP daemon in Rocky Linux, as well as many other Linux distributions. 
 
 _vsftpd_ allows for the use of virtual users with pluggable authentication modules (PAM). These virtual users don't exist in the system, and have no other permissions except to use FTP. This means that if a virtual user gets compromised, the person with those credentials would have no other permissions once they gained access. Using this setup is very secure indeed, but does require a bit of extra work. 
-
-_vsftpd_ is just one possible component of a hardened Apache web server setup, and can be used with or without other tools. If you'd like to use this along with other tools for hardening, refer back to our [Apache Hardened Web Server guide](apache_hardened_webserver.md). 
-
-This document also uses all of the same assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
 
 ## Installing vsftpd
 
@@ -47,7 +42,7 @@ Make sure that local_enable is set to yes:
 
 `local_enable=YES`
 
-Add a line for the local root user. We are assuming that you are using the configuration directory setup as specified in the [Apache Web Server Multi-Site Setup](apache-sites-enabled.md). If your setup is different, adjust the local_root setting:
+Add a line for the local root user. If the server that you are installing this on is a web server, we assume that you will be using the [Apache Web Server Multi-Site Setup](apache-sites-enabled.md), and that your local root will reflect that. If your setup is different, or if this is not a web server, adjust the local_root setting:
 
 `local_root=/var/www/sub-domains`
 
@@ -126,7 +121,7 @@ Next is the organizational unit name. You can fill this in if the server is for 
 
 `Organizational Unit Name (eg, section) []:`
 
-The next field should be filled in, however you can decide how you want to fill it in. This is the common name of your server. You might want to differentiate this from the web server name by perhaps calling it "webftp". Example: `webftp.domainname.ext`:
+The next field should be filled in, however you can decide how you want to fill it in. This is the common name of your server. Example: `webftp.domainname.ext`:
 
 `Common Name (eg, your name or your server's hostname) []:`
 
@@ -257,6 +252,6 @@ If you are unable to upload a file, then you may need to go back and make sure t
 
 # Conclusions
 
-_vsftpd_ is just another tool in a hardened web server setup. If set up to use virtual users and a certificate, it is quite secure. 
+_vsftpd_ is a popular and common ftp server and can be set up as a stand alone server, or as part of an [Apache Hardened Web Server](apache_hardened_webserver.md). If set up to use virtual users and a certificate, it is quite secure. 
 
 While there are quite a number of steps to setting up _vsftpd_ as outlined in this document, taking the extra time to set it up correctly will ensure that your server is as secure as it can be.
