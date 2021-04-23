@@ -76,5 +76,5 @@ Once all of that is done, you simply wait for confirmation that your request has
 
 ## Keep Up With The Conversation
 
-If you haven't already, join the conversation on the [Rocky Linux Mattermost Channel](https://chat.rockylinux.org/rocky-linux/) and stay up-to-date with what is going on. Join the "Documentation" channel, or any other channel you are interested in. We'd be glad to have you with us!
+If you haven't already, join the conversation on the [Rocky Linux Mattermost Server](https://chat.rockylinux.org/rocky-linux/) and stay up-to-date with what is going on. Join the [~Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation), or any other channel you are interested in. We'd be glad to have you with us!
 
