@@ -18,42 +18,40 @@ Para los no iniciados, las claves SSL pueden tener diferentes tamaños, medidos 
 
 En 2021, el tamaño recomendado de la clave privada para un servidor web sigue siendo de 2048 bits. Puede ser mayor, pero doblar el tamaño de la clave de 2048 a 4096 sólo es 16% más seguro, ocupa más espacio almacenar la clave, requiere mayores cargas de la CPU cuando se procesa la clave.
 
+Esto ralentiza el rendimiento de su sitio web sin mejoras significativas en seguridad. Utilize 2048 bits para el tamaño de su clave por ahora y manténgase informado en las recoemdaciones actuales.
 
-
-This slows down your web site performance without gaining any significant security. Stick with the 2048 key size for now and always keep tabs on what is currently recommended.
-
-To start with, let's make sure that OpenSSL is installed on both your workstation and server:
+Para empezar, asegúrese de que OpenSSL está instalado en su entación de trabajo y servidor:
 
 `dnf install openssl`
 
-If it is not installed, your system will install it and any needed dependencies. 
+Si no está instalado, su systema lo instalará con las necesarias depenciencias.
 
-Our example domain is ourownwiki.com. Keep in mind that you would need to purchase and register your domain ahead of time. You can purchase domains through a number of "Registrars". 
+Nuestro dominio de ejemplo es nuestrowiki.com. Tenga en cuenta que tendrá que adquirir y registrar su dominio previamente. Puede adquirir dominios en multitud de "Registradores".
 
-If you are not running your own DNS (Domain Name System), you can often use the same providers for DNS hosting. DNS translates your named domain, to numbers (IP addresses, either IPv4 or IPv6) that the Internet can understand. These IP addresses will be where the web site is actually hosted.
+Si no tiene su propio DNS (Sistema de Nombre de Dominio), habitualmente se puede utilizar los mismos proveedores para alojamiento DNS. El DNS traduce su nombre de dominio a números (Direcciones IP, tanto IPv4 como IPv6) que se entiende en Internet. Estas direcciones IP serán donde el sitio web estará alojado realmente.
 
-Let's generate the key using openssl:
+Generemos la clave usando openssl:
 
-`openssl genrsa -des3 -out ourownwiki.com.key.pass 2048`
+`openssl genrsa -des3 -out nuestrowiki.com.key.pass 2048`
 
-Note that we named the key, with a .pass extension. That's because as soon as we execute this command, it requests that you enter a passphrase. Enter a simple passphrase that you can remember as we are going to be removing this shortly:
+Nótese que nombramos la clave con la extensión .pass. Esto es poque tan pronto ejecute este comando, le solicitará que introduca una contraseña. Utilice una contraseña simple que pueda recordar ya que la eliminaremos seguidamente:
 
 ```
-Enter pass phrase for ourownwiki.com.key.pass:
-Verifying - Enter pass phrase for ourownwiki.com.key.pass:
+Entre la contraseña para nuestrowiki.com.key.pass:
+Verificando - Entre la contraseña para nuestrowiki.com.key.pass:
 ```
 
-Next, let's remove that passphrase. The reason for this is that if you don't remove it, each time your web server restarts and loads up your key, you will need to enter that passphrase. 
+A continuación, eliminemos la contraseña. La razón de esto es que si no se elimina, tendrá que entrarla cada vez que se reinicie el servidor web y se cargue su clave.
 
-You might not even be around to enter it, or worse, might not have a console at the ready to enter it. Remove it now to avoid all of that:
+Es posible que no esté presente, o peor todavía, que no disponga de una consola donde entrarla. Elimínela ahora para evitar todo esto:
 
-`openssl rsa -in ourownwiki.com.key.pass -out ourownwiki.com.key`
+`openssl rsa -in nuestrowiki.com.key.pass -out nuestrowiki.com.key`
 
-This will request that passphrase once again to remove the passphrase from the key:
+Esto le solicitará la contraseña una vez más para eliminarla de la clave:
 
-`Enter pass phrase for ourownwiki.com.key.pass:`
+`Entre la contrasela para nuestrowiki.com.key.pass:`
 
-Now that you have entered the passphrase a third time, it has been removed from the key file and saved as ourownwiki.com.key
+Ahora que ha entrado la contraseña por tercera vez, se ha elinado de su clave y almacenado como nuentrowiki.com.key
 
 ## Generate the CSR
 
