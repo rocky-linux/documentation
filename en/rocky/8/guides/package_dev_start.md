@@ -1,10 +1,7 @@
 
-
-- [Download Rocky Devtools](#1-download-rocky-devtools)
-- [Install Rocky Devtools](#2-install-rocky-devtools)
-- [Download Source RPMs (rockyget)](#3-use-rocky-devtools-rockyget-to-search-for-and-download-source-rpms-srpms)
-- [Building packages (rockybuild)](#4-use-rocky-devtools-rockybuild-to-build-a-new-package-for-the-rocky-os)
-- [Trobleshooting package builds](#5-debugging-a-failed-package-build)
+---
+Title: 'Rocky Linux Devtools (Packaging and developer starter guide)'
+---
 
 
 Rocky Devtools refers to a set of home grown scripts and utlities created by members of the Rocky Linux community to help with sourcing, creating, branding, patching and building software packages distributed with the Rocky Linux Operating system.
