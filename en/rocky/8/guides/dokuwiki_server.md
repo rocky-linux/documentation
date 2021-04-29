@@ -134,7 +134,7 @@ Now we need to change ownership of the new directory and its files to the _apach
 
 Before you'll be able to access the DokuWiki interface, you'll need to set name resolution for this site. For testing purposes, you can use your _/etc/hosts_ file. 
 
-In this example, let's assume that DokuWiki will be running on a private IPv4 address of 10.56.233.179. Let's also assume that you are modifying the _/etc/hosts_ file on a Linux workstation. To do this:
+In this example, let's assume that DokuWiki will be running on a private IPv4 address of 10.56.233.179. Let's also assume that you are modifying the _/etc/hosts_ file on a Linux workstation. To do this, run:
 
 `sudo vi /etc/hosts`
 
