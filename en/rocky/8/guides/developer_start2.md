@@ -91,7 +91,7 @@ For our current sed example, its sources will be stored under the following samp
 Once you have the original sources, this might be a good time to look through the SPECs file (`~rocky/rpms/sed/SPECS/specs.spec`) to look for potential debranding opportinites in the given package. Debranding might include replacing upstream artwork/logos and so on.
 
 ### TIP
-If you are looking for other Rocky packages to build and experient with, you can browse the list of packages that are currently failing in the Rocky automated build environment [here](https://kojidev.rockylinux.org/koji/builds?state=3&order=-build_id)  -  https://kojidev.rockylinux.org/koji/builds?state=3&order=-build_id
+If you are looking for other Rocky packages to build and experiment with, you can browse the list of packages that are currently failing in the Rocky automated build environment [here](https://kojidev.rockylinux.org/koji/builds?state=3&order=-build_id)  -  https://kojidev.rockylinux.org/koji/builds?state=3&order=-build_id
 
 
 ## 4. Use Rocky Devtools (rockybuild) to build a new package for the Rocky OS
