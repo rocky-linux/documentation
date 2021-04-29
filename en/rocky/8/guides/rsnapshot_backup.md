@@ -1,4 +1,4 @@
-# Rocky Linux - Backup Solution - Rsnapshot
+# Backup Solution - Rsnapshot
 
 ## Prerequisites
 

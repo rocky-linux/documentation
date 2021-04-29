@@ -1,4 +1,4 @@
-# Rocky Linux - SSH Public and Private Key
+# SSH Public and Private Key
 
 ## Prerequisites
 
