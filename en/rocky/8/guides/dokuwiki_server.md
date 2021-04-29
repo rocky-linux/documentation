@@ -1,18 +1,22 @@
 # DokuWiki Server
 
-# Introduction
-
-Documentation can take many forms in an organization. Having a repository that you can reference for that documentation is invaluable. A wiki (which means _quick_ in Hawaiian), is a way to keep documentation, process notes, corporate knowledge bases, and even code examples, in a centralized location. IT professionals who maintain a wiki, even secretly, have a built-in insurance policy against forgetting an obscure routine. DokuWiki is a mature, fast, wiki that runs without a database, has built in security features, and is relatively easy to deploy. For more information on what DokuWiki can do, check out their [web page](https://www.dokuwiki.org/dokuwiki). DokuWiki is just one of many wiki's available. It should be noted that DokuWiki is relatively lightweight and can run on a server that is already running other services, provided you have space and memory available.
-
 # Prerequisites And Assumptions
 
 * A Rocky Linux instance installed on a server, container, or virtual machine. 
-* Comfortable modifying configuration files from the command line with an editor (our examples here will use _vi_, but you can substitute your favorite editor)
-* Somewhat knowledgeable about web applications and setup.
+* Comfort with modifying configuration files from the command line with an editor (our examples here will use _vi_, but you can substitute your favorite editor)
+* Some knowledge about web applications and setup.
 * Our example will use the [Apache Sites Enabled](apache-sites-enabled.md) for setup, so it is a good idea to review that routine if you plan on following along.
 * We will be using "wiki-doc.yourdomain.com" as the domain name throughout this example.
 * We will assume throughout this document that you are the root user or can get there with _sudo_.
 * We are assuming a fresh install of the OS, however that is **NOT** a requirement.
+
+# Introduction
+
+Documentation can take many forms in an organization. Having a repository that you can reference for that documentation is invaluable. A wiki (which means _quick_ in Hawaiian), is a way to keep documentation, process notes, corporate knowledge bases, and even code examples, in a centralized location. IT professionals who maintain a wiki, even secretly, have a built-in insurance policy against forgetting an obscure routine. 
+
+DokuWiki is a mature, fast, wiki that runs without a database, has built in security features, and is relatively easy to deploy. For more information on what DokuWiki can do, check out their [web page](https://www.dokuwiki.org/dokuwiki). 
+
+DokuWiki is just one of many wiki's available, though it's a pretty good one. One big pro is that DokuWiki is relatively lightweight and can run on a server that is already running other services, provided you have space and memory available.
 
 # Installation
 
@@ -36,7 +40,7 @@ If you have read through the [Apache Sites Enabled](apache-sites-enabled.md) pro
 
 `mkdir -p /etc/httpd/{sites-available,sites-enabled}`
 
-We need to edit the httpd.conf
+We need to edit the httpd.conf file:
 
 `vi /etc/httpd/conf/httpd.conf`
 
@@ -70,6 +74,7 @@ That configuration file should look something like this:
 	CustomLog  /var/log/httpd/wiki-doc.yourdomain_access.log combined
 </VirtualHost>
 ```
+
 Note that the "AllowOverride All" above, allows the .htaccess (directory specific security) file to work.
 
 Go ahead an link the configuration file into sites-enabled, but don't start web services as yet:
@@ -84,11 +89,13 @@ We also need to create our _DocumentRoot_. To do this:
 
 ## Installing DokuWiki
 
-In your server, change to the root directory
+In your server, change to the root directory.
 
 `cd /root`
 
-Now that we have our environment ready to go, let's  get the latest stable version of DokuWiki. You can find this by going to [the download page](https://download.dokuwiki.org/) and on the left, hand side of the page under "Version" you will see "Stable (Recommended) (direct link)." Right-click on the "(direct link)" portion of this and copy the link address. In the console of your DokuWiki server, type "wget" and a space and then paste in your copied link in the terminal. You should get something like this:
+Now that we have our environment ready to go, let's  get the latest stable version of DokuWiki. You can find this by going to [the download page](https://download.dokuwiki.org/) and on the left-hand side of the page under "Version" you will see "Stable (Recommended) (direct link)." 
+
+Right-click on the "(direct link)" portion of this and copy the link address. In the console of your DokuWiki server, type "wget" and a space and then paste in your copied link in the terminal. You should get something like this:
 
 `wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz`
 
@@ -105,23 +112,29 @@ dokuwiki-2020-07-29/inc/lang/fr/draft.txt
 dokuwiki-2020-07-29/inc/lang/fr/recent.txt
 ... (more below)
 ```
-We don't want that leading named directory when we decompress the archive, so we are going to use some options with tar to exclude it. The first option is the "--strip-components=1" which removes that leading directory. The second option is the "-C" option that tells tar where we want the archive to be decompressed to. So decompress the archive with this command:
+We don't want that leading named directory when we decompress the archive, so we are going to use some options with tar to exclude it. The first option is the "--strip-components=1" which removes that leading directory. 
+
+The second option is the "-C" option, and that tells tar where we want the archive to be decompressed to. So decompress the archive with this command:
 
 `tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.yourdomain.wiki-doc/html/`
 
 Once we have executed this command, all of DokuWiki should be in our _DocumentRoot_.
 
-We need to make a copy of the _.htaccess.dist_ file that came with DokuWiki and keep the old one there too, in case we need to revert to the original in the future. In the process, we will be changing the name of this file to simply _.htaccess_ which is what _apache_ will be looking for. To do this:
+We need to make a copy of the _.htaccess.dist_ file that came with DokuWiki and keep the old one there too, in case we need to revert to the original in the future. 
+
+In the process, we will be changing the name of this file to simply _.htaccess_ which is what _apache_ will be looking for. To do this:
 
 `cp /var/www/sub-domains/com.yourdomain.wiki-doc/html/.htaccess{.dist,}`
 
-Now we need to change ownership to the _apache_ user and group:
+Now we need to change ownership of the new directory and its files to the _apache_ user and group:
 
 `chown -Rf apache.apache /var/www/sub-domains/com.yourdomain.wiki-doc/html`
 
 ## Setting Up DNS Or /etc/hosts
 
-Before you'll be able to access the DokuWiki interface, you'll need to set name resolution for this site. For testing purposes, you can use your _/etc/hosts_ file. Let's assume that DokuWiki will be running on a private IPv4 address of 10.56.233.179. Let's also assume that you are modifying the _/etc/hosts_ file on a Linux workstation. To do this:
+Before you'll be able to access the DokuWiki interface, you'll need to set name resolution for this site. For testing purposes, you can use your _/etc/hosts_ file. 
+
+In this example, let's assume that DokuWiki will be running on a private IPv4 address of 10.56.233.179. Let's also assume that you are modifying the _/etc/hosts_ file on a Linux workstation. To do this:
 
 `sudo vi /etc/hosts`
 
@@ -139,7 +152,8 @@ ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
-Once you have finished testing and are ready to take things live for everyone, you will need to add this host to a DNS server. You could do this by using a [Private DNS Server](private_dns_server_using_bind.md) or a public-facing DNS server.
+
+Once you have finished testing and are ready to take things live for everyone, you will need to add this host to a DNS server. You could do this by using a [Private DNS Server](private_dns_server_using_bind.md), or a public-facing DNS server.
 
 ## Starting httpd
 
@@ -188,9 +202,13 @@ Your wiki is now ready for you to add content.
 
 Besides the ACL policy that you just created, consider:
 
-## Firewall
+## Your Firewall
 
-Before you call everything done, you need to think about security. First, you should be running a firewall on the server. We will assume that you are using _iptables_ and have [Enabled _iptables_](enabling_iptables_firewall.md), but if you want to use _firewalld_ instead, simply modify your _firewalld_ rules accordingly. Instead of everyone having access to the wiki, we are going to assume that anyone on the 10.0.0.0/8 network is on your private Local Area Network, and that those are the only people who need access to the site. A simple _iptables_ firewall script for this is as follows. Please note that you may need other rules for other services on this server, and that this example only takes into account the web services.
+Before you call everything done, you need to think about security. First, you should be running a firewall on the server. We will assume that you are using _iptables_ and have [Enabled _iptables_](enabling_iptables_firewall.md), but if you want to use _firewalld_ instead, simply modify your _firewalld_ rules accordingly. 
+
+Instead of everyone having access to the wiki, we are going to assume that anyone on the 10.0.0.0/8 network is on your private Local Area Network, and that those are the only people who need access to the site. A simple _iptables_ firewall script for this is down below. 
+
+Please note that you may need other rules for other services on this server, and that this example only takes into account the web services.
 
 First, modify or create the _/etc/firewall.conf_ file:
 
@@ -215,6 +233,7 @@ iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
 
 /usr/sbin/service iptables save
 ```
+
 Once the script is created, make sure it is executable:
 
 `chmod +x /etc/firewall.conf`
