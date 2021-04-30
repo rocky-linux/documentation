@@ -7,7 +7,6 @@
 * Un cierto nivel de comodidad operando desde la línea de comandos.
 * Ayuda: conocimiento de SSL y comandos de OpenSSL.
 
-
 # Introducción
 
 Casi todos los servidores web actualmente _deberían_ operar con un certificado SSL (Capa de Conexiones Seguras). Este procedimiento le guiará a generar una clave privada para su sitio web y con él, a generar la CSR que usará para adquirir su nuevo certificado.
@@ -53,31 +52,31 @@ Esto le solicitará la contraseña una vez más para eliminarla de la clave:
 
 Ahora que ha entrado la contraseña por tercera vez, se ha elinado de su clave y almacenado como nuentrowiki.com.key
 
-## Generate the CSR
+## Generar la CSR
 
-Next, we need to generate the CSR (certificate signing request) that we will use to purchase our certificate. 
+A continuación, necesitamos generar la CSR (Solicitud de Firma de Certificado) que usaremos para adquirir nuestro certificado. 
 
-During the generation of the CSR, you will be prompted for several pieces of information. These are the X.509 attributes of the certificate. 
+Durante la generación de la CSR, se le solicitará varios puntos de información. Estos son atributos X.509 del certificado.
 
-One of the prompts will be for "Common Name (e.g., YOUR name)". It is important that this field be filled in with the fully qualified domain name of the server to be protected by SSL. If the website to be protected will be https://www.ourownwiki.com, then enter www.ourownwiki.com at this prompt:
+Una de las cuestiones será por el "Nombre Común (p.e., SU NOMBRE)". Es importante que para este atributo se utilice el nombre de dominio completo del servidor a proteger con SSL. Si el sitio web será https://www.nuestrowiki.com, utilice www.nuestrowiki.com para esta cuestión.
 
-`openssl req -new -key ourownwiki.com.key -out ourownwiki.com.csr`
+`openssl req -new -key nuestrowiki.com.key -out nuestrowiki.com.csr`
 
-This opens up a dialog:
+Esto inicia el cuestionario:
 
-`Country Name (2 letter code) [XX]:` enter the two character country code where your site resides, example "US"
-`State or Province Name (full name) []:` enter the full official name of your state or province, example "Nebraska"
-`Locality Name (eg, city) [Default City]:` enter the full city name, example "Omaha"
-`Organization Name (eg, company) [Default Company Ltd]:` If you want, you can enter an organization that this domain is a part of, or just hit 'Enter' to skip.
-`Organizational Unit Name (eg, section) []:` This would describe the division of the organization that your domain falls under. Again, you can just hit 'Enter' to skip.
-`Common Name (eg, your name or your server's hostname) []:` Here, we have to enter our site hostname, example "www.ourownwiki.com"
-`Email Address []:` This field is optional, you can decide to fill it out or just hit 'Enter' to skip.
+`Nombre del país (código de 2 letras) [XX]:` entre el código del país de dos letras donde reside su sitio, por ejemplo "ES"
+`Nombre del Estado o Provincia (Nombre completo) []:` entre el nombre oficial completo de su estado o provincia, por ejemplo "Córdoba"
+`Población (ej, ciudad) [...]:` entre el nombre completo de la población, por ejemplo "Bilbao"
+`Nombre de la Organicación (ej, Nombre de la empresa) [...]:` Si lo desea, puede entrar una organización ala que pertenezca el dominio, o pulse 'Enter' para saltar.
+`Nombre de la unidad organizativa (por ejemplo una sección) []:` Esto indica la sección de la organización a la que pertenezca su dominio. De nuevo, puede pulsar 'Enter' para saltar.
+`Nombre Común (ej, su nombre o el nombre de servidor) []:` Aquí tenemos que entrar el nombre del host, por ejemplo "www.nuestrowiki.com"
+`Dirección de e-mail []:` Este campo es opcional, puede completarlo o simplemente pulsar 'Enter' para saltar este paso.
 
-Next, you will be asked to enter extra attributes which can be skipped by hitting 'Enter' through both:
+A continuación se le solicita que entre atributos extra que pueden evitarse pulsando 'Enter' para ambos:
 
 ```
-Please enter the following 'extra' attributes
-to be sent with your certificate request
+Por favor entre los siguientes atributos 'extra' 
+que srán enviados con su solicitud de certificado
 A challenge password []:
 An optional company name []:
 ```
