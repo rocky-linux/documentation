@@ -17,22 +17,21 @@ https://download.rockylinux.org/pub/rocky/linux/8/x86_64/iso/<the iso>.iso
 
 ```
 
-You can alternatively download the image from this mirror:
+You can alternatively find the list of mirrors to download from at the link here:
 
 ```
-https://mirrors.edge.kernel.org/rocky/8/isos/x86_64/
+https://mirrors.rockylinux.org/mirrormanager/
 ```
 
 Once you are at the top level of the kernel.org web server folder, you will be presented with various downloadable files representing other Rocky install methods, the upload date and the approximate file size. The ISOs are named following this convention:
 
-rocky-<MAJOR#>.<MINOR#>.<MONTHSTAMP>-x86_64-dvd1.iso
+Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 
-For example - rocky-8.2.2004-x86_64-dvd1.iso
+For example - Rocky-8.3-x86_64-minimal.iso
 
 
-##TIP:  If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use teh sha5sum utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha5sum and md5sum of the  
+## TIP:  If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use teh sha5sum utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha5sum of the `sha256sum Rocky-8.3-x86_64-minimal.iso `.
 
- sha256sum Rocky-8.3-x86_64-minimal.iso  
 First download the file the contains the official checksums for the avaiable ISOs. While still in the folder that contains the downloaded Rocky ISO, type:
 
 ```
@@ -44,16 +43,16 @@ Use the sha256sum utility to verify the
 sha256sum -c CHECKSUM    --ignore-missing Rocky-8.3-x86_64-minimal.iso
 ```
 
-The output should include:
+The output should show something like:
 
 ```
 Rocky-8.3-x86_64-minimal.iso: OK
 ```
 
 
-# The Installation
+## TIP: Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium. 
 
-TIP: Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium. 
+# The Installation
 
 Let’s begin the installation process.
 
