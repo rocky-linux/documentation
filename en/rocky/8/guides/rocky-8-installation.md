@@ -37,7 +37,7 @@ Rocky project web page has a listing of several mirrors located all over the wor
 
 ## Verifying the installer ISO
 
-If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use teh sha5sum utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha5sum of the `sha256sum Rocky-8.3-x86_64-minimal.iso `.
+If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use teh sha256sum utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha256sum of the `sha256sum Rocky-8.3-x86_64-minimal.iso `.
 
 First download the file that contains the official checksums for the avaiable ISOs. While still in the folder that contains the downloaded Rocky ISO, type:
 
