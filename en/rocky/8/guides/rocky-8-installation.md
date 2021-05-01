@@ -31,7 +31,9 @@ Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 For example  `Rocky-8.3-x86_64-minimal.iso`
 
 {% note %}
-**Note:**  Rocky’ project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found at `https://#`
+
+**Note:**  Rocky project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found at `https://#`
+
 {% endnote %}
 
 ## Verifying the instaler ISO
