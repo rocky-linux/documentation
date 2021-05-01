@@ -24,7 +24,9 @@ $ wget https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_6
 
 Rocky ISOs are named following this convention:
 
+```
 Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
+```
 
 For example  `Rocky-8.3-x86_64-minimal.iso`
 
