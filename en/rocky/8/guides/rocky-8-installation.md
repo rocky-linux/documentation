@@ -210,7 +210,7 @@ Finally, complete the entire procedure by clicking the Reboot System button. The
 ### Log In
 The system is now set up and ready for use. You will see the adorable Rocky Linux console.
 
-To log onto the system, type rockstar at the login prompt and press enter. 
+To log onto the system, type `rockstar` at the login prompt and press enter. 
 
 At the Password prompt, type `04302021` (rockstar’s password) and press enter.
 
