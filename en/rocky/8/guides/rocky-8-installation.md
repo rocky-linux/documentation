@@ -76,7 +76,7 @@ After the media check runs to completion, and the media is successfully verified
 
 Select the language you want to use to perform the installation in this screen. For this example, we select English (United States). Then click the Continue button.
 
-**Warning:** You'll next see warning screen. The screen will warn you that you are installing pre-release software and that you should NOT use the operating system in a production environment. If you okay with this, click `I want to proceed` to continue 
+**Warning:** :warning: You'll next see warning screen. The screen will warn you that you are installing pre-release software and that you should NOT use the operating system in a production environment. If you okay with this, click `I want to proceed` to continue 
 
 # Installation Summary
 
