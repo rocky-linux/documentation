@@ -30,8 +30,9 @@ Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 
 For example  `Rocky-8.3-x86_64-minimal.iso`
 
+{% note %}
 ##### Tip: Rocky’ project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found at `https://#`
-
+{% endnote %}
 
 ## Verifying the instaler ISO
 
@@ -198,7 +199,7 @@ Confirm password
 
 Once you are satisfied with your choices for the various installation tasks, click the Begin Installation button on the main Installation Summary screen. The installation will begin, and the installer will show the progress of the installation.
 
-NOTE: If you develop cold feet after you click the Begin Installation button, you can still safely back out of the installation without any loss of data (or self-esteem). To quit the installer, simply reset your system either by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
+##### NOTE: If you develop cold feet after you click the Begin Installation button, you can still safely back out of the installation without any loss of data (or self-esteem). To quit the installer, simply reset your system either by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
 
 When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.   ​
  
