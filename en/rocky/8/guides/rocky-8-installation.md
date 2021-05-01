@@ -28,14 +28,10 @@ Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 
 For example  `Rocky-8.3-x86_64-minimal.iso`
 
-
-### Tip: Rocky’ project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found at `https://#`
-
+##### Tip: Rocky’ project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found at `https://#`
 
 
 ## Verifying the instaler ISO
-
-
 
 If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use teh sha5sum utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha5sum of the `sha256sum Rocky-8.3-x86_64-minimal.iso `.
 
@@ -51,14 +47,14 @@ Use the sha256sum utility to verify the
 sha256sum -c CHECKSUM    --ignore-missing Rocky-8.3-x86_64-minimal.iso
 ```
 
-The output should show something like:
+The output should include:
 
 ```
 Rocky-8.3-x86_64-minimal.iso: OK
 ```
 
 
-## TIP: Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium. 
+##### TIP: Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium. 
 
 # The Installation
 
@@ -141,7 +137,7 @@ Once the installer determines that you have a usable disk, you will be returned 
 ### Network & Hostname
 The final task of the installation procedure deals with network configuration, where you can configure or tweak network-related settings for the system.
 
-### NOTE: After you click on the Network & Hostname option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen.Depending on the Linux distribution and the specific hardware setup, Ethernet devices in Linux have names similar to eth0, eth1, ens3, ens4, em1, em2, p1p1, enp0s3, and so on.
+##### NOTE: After you click on the Network & Hostname option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen.Depending on the Linux distribution and the specific hardware setup, Ethernet devices in Linux have names similar to eth0, eth1, ens3, ens4, em1, em2, p1p1, enp0s3, and so on.
  
 For each interface, you can either configure it using DHCP or manually set the IP address. If you choose to configure manually, be sure to have all the pertinent information ready, such as the IP address, netmask, and so on.
 Clicking the Network & Hostname button in the main Installation Summary screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system (the name defaults to localhost.localdomain). Note that you can easily change this name later on after the OS has been installed. For now, accept the default value supplied for the hostname.
@@ -153,7 +149,7 @@ We'll accept all the defaults in this section.
 
 Click Done to return to the main Installation Summary screen.
 
-### CAUTION  Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it.
+##### CAUTION  Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it.
 
 ## The Installation
 Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.
@@ -210,5 +206,9 @@ After you’ve completed any of the mandatory subtasks and the installer has run
 Finally, complete the entire procedure by clicking the Reboot System button. The system will reboot itself.
             ​
 ### Log In
-The system is now set up and ready for use. You will see the adorable GNU/Linux console
-To log onto the system, type super at the login prompt and press enter. At the Password prompt, type 04erty!302021 (rockstar’s password) and press enter.
+The system is now set up and ready for use. You will see the adorable Rocky Linux console.
+
+To log onto the system, type rockstar at the login prompt and press enter. 
+
+At the Password prompt, type `04302021` (rockstar’s password) and press enter.
+
