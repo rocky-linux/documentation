@@ -1,4 +1,4 @@
-# Installing rocky
+# Installing Rocky Linux
 
 This guide walks-through the detailed steps to install a 64-bit version of the rocky Linux distribution on a stand-alone system. 
 
@@ -29,7 +29,7 @@ Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 For example  `Rocky-8.3-x86_64-minimal.iso`
 
 
-### Tip: Rocky’ project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found at `https://mirrors.rockylinux.org/mirrormanager/`
+### Tip: Rocky’ project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found at `https://#`
 
 
 
