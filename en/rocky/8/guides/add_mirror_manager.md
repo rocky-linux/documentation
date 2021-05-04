@@ -15,12 +15,12 @@ Access Rocky's Mirror Manager here: https://mirrors.rockylinux.org/mirrormanager
 
 After a successful login, your profile will be on the top right. Select the drop down then click "My sites".
 
-A new page will load listing all of the sites under the acconut. The first time will be empty. Click "Register a new site".
+A new page will load listing all of the sites under the account. The first time will be empty. Click "Register a new site".
 
 A new page will load with an important Export Compliance statement to read. Then fill out the following information:
 * "Site Name"
 * "Site Password" - used by report_mirrors script, you make this anything you want
-* "Organisation URL" - Company/School/Organization URL e.g. https://rockylinux.org/
+* "Organization URL" - Company/School/Organization URL e.g. https://rockylinux.org/
 * "Private" - Checking this box hides this site from public use.
 * "User active" - Uncheck this box to temporarily disable this site, it will be removed from public listings.
 * "All sites can pull from me?" - Enable all mirror sites to pull from me without explicitly adding them to my list.
@@ -38,7 +38,7 @@ All of the options from the last section are listed again. At the bottom of the 
 
 ## Create new host
 
-Fill out the following options that are apprpriate for the site:
+Fill out the following options that are appropriate for the site:
 * "Host name" - required: FQDN of server as seen by a public end user
 * "User active" - Uncheck this box to temporarily disable this host, it will be removed from public listings.
 * "Country" - required: 2-letter ISO country code
@@ -70,7 +70,7 @@ Click on the "[add]" link under "Categories Carried".
 
 ### Categories Carried
 
-For the Category, seclect "Rocky Linux" then "Create" to load the URL page. Then click "[add]" to load the "Add host category URL" page. There is one option. Repeat as needed for each of the mirrors supported protocols.
+For the Category, select "Rocky Linux" then "Create" to load the URL page. Then click "[add]" to load the "Add host category URL" page. There is one option. Repeat as needed for each of the mirrors supported protocols.
 
 * "URL" - URL (rsync, https, http) pointing to the top directory
 
