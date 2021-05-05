@@ -54,7 +54,7 @@ Very often, home/office users don't have to worry or know about DHCP. This is be
 
 #### IP Address
 
-In the previous `/etc/sysconfig/network-scripts/ifcfg-ens18` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. This means that the system being configued is set to you a static IP address scheme. 
+In the previous `/etc/sysconfig/network-scripts/ifcfg-ens18` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. This means that the system being configured is set to a static IP address scheme. 
 
 If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all of that information will be automaically obtained from any available DHCP server.
 
