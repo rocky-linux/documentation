@@ -2,12 +2,13 @@
 title: Adding a public mirror to Rocky's mirror manager
 ---
 
-## What You Need
-* An account on https://accounts.rockylinux.org/
-
 # Adding a public mirror to Rocky's mirror manager
 
 Rocky uses Fedora's Mirror Manager for organizing community mirrors.
+
+## What You Need
+* An account on https://accounts.rockylinux.org/
+
 
 ## Creating a site
 
