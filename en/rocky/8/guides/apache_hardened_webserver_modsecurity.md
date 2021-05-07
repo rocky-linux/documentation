@@ -84,7 +84,7 @@ Just accept the path as given and then type "y" in the next field for the instal
 
 If you have a non-standard path to the configuration file for Apache/nginx, you would enter it here, otherwise just hit 'Enter' for no changes:
 
-`If you have non-standart Apache/nginx config path enter it here:`
+`If you have non-standard Apache/nginx config path enter it here:`
 
 Here is where the failure comes in, and the only workaround is to manually download and install the rules. Answer the prompts as shown below:
 
