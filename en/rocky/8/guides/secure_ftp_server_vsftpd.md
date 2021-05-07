@@ -222,7 +222,7 @@ This will enable login for your virtual users defined in `vsftpd-virtual-user.db
 
 Each virtual user has their own configuration file, which specifies their own local_root directory. This local root must be owned by the user "vsftpd" and the group "nogroup". 
 
-Remember that this was set up in the [Setting Up Virtual Users section above.](#virtualusers) To change the ownership for the directory, simply change the ownership of the directory:
+Remember that this was set up in the [Setting Up Virtual Users section above.](#virtualusers) To change the ownership for the directory, simply type this at the command line:
 
 `chown vsftpd.nogroup /var/www/sub-domains/whatever_the_domain_name_is/html`
 
@@ -232,7 +232,7 @@ We need to create the file that contains the virtual user's configuration:
 
 This will have a single line in it that specifies the virtual user's local_root:
 
-`local_root=local_root=/var/www/sub-domains/com.testdomain/html`
+`local_root=/var/www/sub-domains/com.testdomain/html`
 
 This file path is specified in the "Virtual User" section of the vsftpd.conf file.
 

@@ -25,7 +25,7 @@ You might elect to use a couple of these tools and not the others, so for clarit
 * A Host-based Intrusion Detection System (HIDS), in this case _ossec-hids_ [Apache Hardened Web Server - ossec-hids](apache_hardened_webserver_ossec-hids.md)
 * A Web-based Application Firewall (WAF), with _mod\_security_ rules [Apache Hardened Web Server - mod_security](apache_hardened_webserver_modsecurity.md)
 * Rootkit Hunter (rkhunter): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](apache_hardened_webserver_rkhunter.md)
-* Database security (we are using _mariadb-server_ here) [Apache Hardened Web Server - mariadb-server](apache_hardened_webserver_mariadb-server.md)
+* Database security (we are using _mariadb-server_ here) [Database - mariadb-server](database_mariadb-server.md)
 * A secure FTP or SFTP server (we are using _vsftpd_ here) [Secure FTP Server - vsftpd](secure_ftp_server_vsftpd.md)
 
 This procedure does not replace the [Apache Web Server Multi-Site Setup](apache-sites-enabled.md), it simply adds these security elements to it. If you haven't read it, take some time to look at it before proceeding.
