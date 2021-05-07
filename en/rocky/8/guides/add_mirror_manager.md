@@ -1,5 +1,5 @@
 ---
-title: "Adding a public mirror to Rocky's mirror manager"
+title: Adding a public mirror to Rocky's mirror manager
 ---
 
 ## What You Need
