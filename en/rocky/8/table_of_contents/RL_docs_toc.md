@@ -4,6 +4,8 @@ This document contains the section and subsection headers for Rocky Linux docume
 
 The order of these sections is very important, but has not been finalized yet, so feel free to reorder as desired.
 
+## OS Installation and Setup
+[Rocky 8 Installation](../guides/rocky-8-installation.md)
 
 
 ## Development and Packaging
@@ -29,12 +31,12 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 | --- | --- |
 |[Web server](../guides/apache_hardened_webserver.md) | | 
 |[Enabling Website](../guides/apache-sites-enabled.md) | |
-|[MariaDB server](../guides/apache_hardened_webserver_mariadb-server.md) | | 
+|[MariaDB server](../guides/database_mariadb-server.md) | | 
 |[ModSecurity](../guides/apache_hardened_webserver_modsecurity.md) | | 
 |[Ossec-Hids](../guides/apache_hardened_webserver_ossec-hids.md) | | 
 |[RkHunter](../guides/apache_hardened_webserver_rkhunter.md) | | 
-|[VSFTPD](../guides/apache_hardened_webserver_vsftpd.md) | | 
-|[DokuWiki](../guides/dokuwiki_server.md)| |
+|[VSFTPD](../guides/secure_ftp_server_vsftpd.md) | | 
+| [DokuWiki](../guides/dokuwiki_server.md) |  |
 |[Nextcloud](../guides/cloud_server_using_nextcloud.md)||
 
 ## System Maintenance and Administration
