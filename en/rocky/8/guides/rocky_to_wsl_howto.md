@@ -1,4 +1,5 @@
-# How to create a WSL Rocky Linux image from another WSL distro with rinse
+# Import Rocky Linux to WSL with WSL and rinse
+
 ## Prerequisites
 * A Windows 10 PC with WSL 2 enabled. (*see note below).
 * Ubuntu, or any debian-based distribution, installed and running on WSL. This guide was tested using Ubuntu 20.04 LTS from the Microsoft store.
