@@ -34,7 +34,8 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 |[Ossec-Hids](../guides/apache_hardened_webserver_ossec-hids.md) | | 
 |[RkHunter](../guides/apache_hardened_webserver_rkhunter.md) | | 
 |[VSFTPD](../guides/apache_hardened_webserver_vsftpd.md) | | 
-| [DokuWiki](../guides/dokuwiki_server.md) |  |
+|[DokuWiki](../guides/dokuwiki_server.md)| |
+|[Nextcloud](../guides/cloud_server_using_nextcloud.md)||
 
 ## System Maintenance and Administration
 
