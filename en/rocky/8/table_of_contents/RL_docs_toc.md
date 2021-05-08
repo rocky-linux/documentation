@@ -6,7 +6,7 @@ The order of these sections is very important, but has not been finalized yet, s
 
 ## OS Installation and Setup
 [Rocky 8 Installation](../guides/rocky-8-installation.md)
-
+[Importing Rocky Linux to WSL, via WSL and rinse](../guides/rocky_to_wsl_howto.md)
 
 ## Development and Packaging
 
