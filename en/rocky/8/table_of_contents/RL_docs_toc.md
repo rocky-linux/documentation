@@ -37,6 +37,7 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 |[RkHunter](../guides/apache_hardened_webserver_rkhunter.md) | | 
 |[VSFTPD](../guides/secure_ftp_server_vsftpd.md) | | 
 | [DokuWiki](../guides/dokuwiki_server.md) |  |
+|[Nextcloud](../guides/cloud_server_using_nextcloud.md)||
 
 ## System Maintenance and Administration
 
