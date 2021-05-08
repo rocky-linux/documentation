@@ -1,18 +1,18 @@
-# How to create a WSL Rocky Linux image from another WSL distro
+# How to create a WSL Rocky Linux image from another WSL distro with rinse
+## Prerequisites
+* A Windows 10 PC with WSL 2 enabled. (*see note below).
+* Ubuntu, or any debian-based distribution, installed and running on WSL. This guide was tested using Ubuntu 20.04 LTS from the Microsoft store.
 
 ## Introduction
 This guide is for Windows users who would like to run Rocky Linux (RL) in the Windows Subsystem for Linux (WSL). It assumes the reader is familiar with the command line and has WSL enabled and running in their Windows 10 PC.
 
 The process uses `rinse`, a perl script for creating images of distributions that use the package manager YUM.
 
-Please keep in mind that WSL has significant limitations and quirks, and the resulting distribution may or may not work as you expect it. It may be too slow, or be unpredictable for some applications. There are no guarantees.
-
-## Prerequisites
-* A Windows 10 PC with WSL 2 enabled. (*see note below)
-* Ubuntu, or any debian-based distribution, installed and running. This guide was tested using Ubuntu 20.04 LTS from the Microsoft store.
+Please keep in mind that WSL has significant limitations and quirks, and the resulting distribution may or may not work as you expect it. It may be too slow, or be unpredictable for some applications. With computers, as with life, there are no guarantees.
 
 ## Steps
-1. Launch your Ubuntu distribution, update the package manager and install `rinse`<br/>
+
+1. Launch your Ubuntu distribution in WSL, update the package manager and install `rinse`<br/>
 ```bash
 $ sudo apt-get update
 $ sudo apt-get install rinse
@@ -43,7 +43,7 @@ mirror.amd64 = http://dl.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os/Packages/
 ```bash
 $ sudo cp -pR /usr/lib/rinse/centos-8 /usr/lib/rinse/rocky-8
 ```
-6. Edit `/usr/lib/rinse/rocky-8/post-install.sh` and add the following lines at line 14. This is needed to make sure TLS/SSL works as expected for YUM.
+6. Edit `/usr/lib/rinse/rocky-8/post-install.sh` and add the following lines at line 14. This is needed to make sure TLS/SSL works as expected for *YUM* and *dnf*.
 ```bash
 echo "  Extracting CA certs..."
 $CH /usr/bin/update-ca-trust
@@ -58,21 +58,21 @@ $ mkdir rocky_rc
 ```bash
 $ sudo rinse --arch amd64 --directory ./rocky_rc --distribution rocky-8
 ```
-11. After the script completes downloading and extracting all the packages, you will have a full RL file system in the directory you created. Now it's time to package it to pass it to Windows for importing into a new WSL distro. Use this command, creating the tar file in a Windows folder (starting with `/mnt/c/` or similar to have it readily available for the next step)
+11. After the script completes downloading and extracting all the packages, you will have a full Rocky Linux file system in the directory you created. Now it's time to package it to pass it to Windows for importing into a new WSL distro. Use this command, creating the tar file in a Windows folder (starting with `/mnt/c/` or similar to have it readily available for the next step).
 ```bash
 $ sudo tar --numeric-owner -c -C ./rocky_rc . -f <path to new tar file>
 ```
-12. Close your WSL session with Ctrl+D or by typing `exit`
+12. Close your WSL session with Ctrl+D or by typing `exit`.
 13. Open a PowerShell prompt (does not need to be admin), and create a folder to hold your new RL distro.
-14. Import the tar file with this command
+14. Import the tar file with this command:
 ```PowerShell
 wsl --import rocky_rc <path to folder from step 13> <path to tar file>
 ```
-15. In the PowerShell prompt, launch your new distro with
+15. In the PowerShell prompt, launch your new distro with:
 ```PowerShell
 wsl -d rocky_rc
 ```
-16. You are now root in your new RL distro. Run these commands to finish setting everything up
+16. You are now root in your new RL distro. Run these commands to finish setting everything up:
 ```bash
 yum update
 yum reinstall passwd sudo cracklib-dicts -y
@@ -81,8 +81,8 @@ adduser -G wheel $newUsername
 echo -e "[user]\ndefault=$newUsername" >> /etc/wsl.conf
 passwd $newUsername
 ```
-17. Exit the bash prompt (Ctrl+D or type `exit`)
-18. Back in PowerShell, shutdown WSL and relaunch your new distro
+17. Exit the bash prompt (Ctrl+D or type `exit`).
+18. Back in PowerShell, shutdown WSL and relaunch your new distro.
 ```PowerShell
 wsl --shutdown
 wsl -d rocky_rc
