@@ -207,7 +207,7 @@ Now that everything is where it should be, the next step is to make sure that ap
 
 `chown -Rf apache.apache /var/www/sub-domains/com.yourdomain.nextcloud/html`
 
-For security reasons, we also want to move the "data" folder from inside to outside of the _DocumentRoot_. Do this with the following:
+For security reasons, we also want to move the "data" folder from inside to outside of the _DocumentRoot_. Do this with the following command:
 
 `mv /var/www/sub-domains/com.yourdomain.nextcloud/html/data /var/www/sub-domains/com.yourdomain.nextcloud/`
 
@@ -241,9 +241,9 @@ There are a couple of things that we want to do differently than the defaults th
 
 Now cross your fingers and click "Finish Setup".
 
-The browser window will refresh for a bit and then usually not reload the site. Enter your URL in the browser window again and you should be confronted with the default first pages. Your administrative user is already (or should be) logged in at this point. 
+The browser window will refresh for a bit and then usually not reload the site. Enter your URL in the browser window again and you should be confronted with the default first pages. Your administrative user is already (or should be) logged in at this point, and there are several informational pages designed to get you up to speed. 
 
-There are several informational pages that you can click right-arrow thru. The "Dashboard" is what users will see when they first login. The administrative user can now create other users, install other applications and many other tasks. 
+The "Dashboard" is what users will see when they first login. The administrative user can now create other users, install other applications and many other tasks. 
 
 The "Nextcloud Manual.pdf" is the user manual, so that users can get familiar with what is available. The administrative user should read through or at least scan the high points of the admin manual [On the Nextcloud web site](https://docs.nextcloud.com/server/21/admin_manual/)
 
