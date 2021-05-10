@@ -4,7 +4,10 @@ This document contains the section and subsection headers for Rocky Linux docume
 
 The order of these sections is very important, but has not been finalized yet, so feel free to reorder as desired.
 
-
+## OS Installation and Setup
+[Rocky 8 Installation](../guides/rocky-8-installation.md)
+[Import Rocky Linux to WSL with WSL and rinse](../guides/rocky_to_wsl_howto.md)
+[Import Rocky Linux to WSL[2] with Virtualbox and Docker](../guides/import_rocky_to_WSL_howto.md)
 
 ## Development and Packaging
 
@@ -29,12 +32,13 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 | --- | --- |
 |[Web server](../guides/apache_hardened_webserver.md) | | 
 |[Enabling Website](../guides/apache-sites-enabled.md) | |
-|[MariaDB server](../guides/apache_hardened_webserver_mariadb-server.md) | | 
+|[MariaDB server](../guides/database_mariadb-server.md) | | 
 |[ModSecurity](../guides/apache_hardened_webserver_modsecurity.md) | | 
 |[Ossec-Hids](../guides/apache_hardened_webserver_ossec-hids.md) | | 
 |[RkHunter](../guides/apache_hardened_webserver_rkhunter.md) | | 
-|[VSFTPD](../guides/apache_hardened_webserver_vsftpd.md) | | 
-
+|[VSFTPD](../guides/secure_ftp_server_vsftpd.md) | | 
+| [DokuWiki](../guides/dokuwiki_server.md) |  |
+|[Nextcloud](../guides/cloud_server_using_nextcloud.md)||
 
 ## System Maintenance and Administration
 
@@ -43,7 +47,7 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 | [Rsync over SSH](../guides/rsync_ssh.md) | [Postfix](../guides/postfix_reporting.md) |  |
 | [RSnapshot](../guides/rsnapshot_backup.md) | [Cron(tab)](../guides/cron_jobs_howto.md) |  |
 | [Lsyncd](../guides/mirroring_lsyncd.md) | | 
-
+| [Bind](../guides/private_dns_server_using_bind.md) |  |
 
 ## Virtualization
 

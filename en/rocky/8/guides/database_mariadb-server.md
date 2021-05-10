@@ -1,28 +1,24 @@
-# Apache Hardened Web Server - mariadb-server
+# Database mariadb-server
 
 # Prerequisites
 
-* A Rocky Linux Web Server running Apache
+* A Rocky Linux server
 * Proficiency with a command-line editor (we are using _vi_ in this example)
 * A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
 * An understanding of _mariadb-server_ databases is helpful
-* All commands are run as the root user or sudo
+* All commands are run as the root user or _sudo_
 
 # Introduction
 
-The _mariadb-server_ and it's client _mariadb_ are the open source alternatives to _mysql-server_ and _mysql_, and they share command structure. While _mariadb-server_ is not technically required for a web server to run, the popular [Wordpress CMS](https://wordpress.org/) requires it, so it is becoming a understood requirement for hosting web sites for customers. 
+The _mariadb-server_ and it's client _mariadb_ are the open source alternatives to _mysql-server_ and _mysql_, and they share command structure. _mariadb-server_ can be found running on many web servers, due to the popular [Wordpress CMS](https://wordpress.org/) which requires it. This database, though, has many other uses.
 
-Well, for at least 40% of the internet, anyway.
-
-_mariadb-server_ is just one possible component of a hardened Apache web server setup and can be used with or without other tools. 
-
-If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server guide](apache_hardened_webserver.md). This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
+If you'd like to use this along with other tools for hardening a web server, refer back to the [Apache Hardened Web Server guide](apache_hardened_webserver.md). 
 
 ## Installing mariadb-server
 
-We need to install _mariadb-server_ and a couple of PHP modules. Please note that this is by no means an exhaustive list of PHP modules that you might need to install on your web site for other things, including others that are required for Wordpress to run. But, to get mariadb working, this is what we start with:
+We need to install _mariadb-server_:
 
-`dnf install mariadb-server php-pdo php-mysqlnd`
+`dnf install mariadb-server`
 
 ## Securing mariadb-server
 
@@ -153,5 +149,5 @@ MariaDB should now be ready to use.
 
 # Conclusions
 
-While not required to run a web server, _mariadb-server_ has become a standard installation for servers that host customer web sites because of the popularity of the Wordpress CMS. Before we run the database in production however, it is a good idea to strengthen its security. 
+A database server, such as _mariadb-server_, can be used for many purposes. Because of the popularity of the Wordpress CMS, it is often found on web servers. Before we run the database in production, however, it is a good idea to strengthen its security. 
 

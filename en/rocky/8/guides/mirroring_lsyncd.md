@@ -1,4 +1,4 @@
-# Rocky Linux - Mirroring Solution - lsycnd
+# Mirroring Solution - lsycnd
 
 ## Prerequisites
 
