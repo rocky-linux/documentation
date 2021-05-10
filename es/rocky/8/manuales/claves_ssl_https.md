@@ -3,7 +3,7 @@
 # Requisitos
 
 * Una estación de trabajo y un servidor con Rocky Linux (OK, con Linux, pero realmente, quieres Rocky Linux, ¿no?)
-* _OpenSSL_ instalado donde se van a generar la clave privada y CSR (Solicitud de Firma de Certificado), así como en el servidor donde se instalará la clave y los certificados.
+* _OpenSSL_ instalado donde se van a generar la clave privada y la CSR (Solicitud de Firma de Certificado), así como en el servidor donde se instalará la clave y los certificados.
 * Un cierto nivel de comodidad operando desde la línea de comandos.
 * Ayuda: conocimiento de SSL y comandos de OpenSSL.
 
@@ -15,25 +15,25 @@ Casi todos los servidores web actualmente _deberían_ operar con un certificado 
 
 Para los no iniciados, las claves SSL pueden tener diferentes tamaños, medidos en bits, que básicamente determinan la dificultad en descifrarlas.
 
-En 2021, el tamaño recomendado de la clave privada para un servidor web sigue siendo de 2048 bits. Puede ser mayor, pero doblar el tamaño de la clave de 2048 a 4096 sólo es 16% más seguro, ocupa más espacio almacenar la clave, requiere mayores cargas de la CPU cuando se procesa la clave.
+En 2021, el tamaño recomendado de la clave privada para un servidor web sigue siendo de 2048 bits. Puede ser mayor, pero doblar el tamaño de la clave de 2048 a 4096 sólo es 16% más seguro, ocupa más espacio almacenar la clave, y requiere mayores cargas de la CPU cuando se procesa la clave.
 
-Esto ralentiza el rendimiento de su sitio web sin mejoras significativas en seguridad. Utilize 2048 bits para el tamaño de su clave por ahora y manténgase informado en las recoemdaciones actuales.
+Esto ralentiza el rendimiento de su sitio web sin mejoras significativas en seguridad. Utilice 2048 bits para el tamaño de su clave por ahora y manténgase informado en las recomendaciones actuales.
 
-Para empezar, asegúrese de que OpenSSL está instalado en su entación de trabajo y servidor:
+Para empezar, asegúrese de que OpenSSL está instalado en su estación de trabajo y servidor:
 
 `dnf install openssl`
 
-Si no está instalado, su systema lo instalará con las necesarias depenciencias.
+Si no está instalado, su sistema lo instalará con las necesarias dependencias.
 
 Nuestro dominio de ejemplo es nuestrowiki.com. Tenga en cuenta que tendrá que adquirir y registrar su dominio previamente. Puede adquirir dominios en multitud de "Registradores".
 
-Si no tiene su propio DNS (Sistema de Nombre de Dominio), habitualmente se puede utilizar los mismos proveedores para alojamiento DNS. El DNS traduce su nombre de dominio a números (Direcciones IP, tanto IPv4 como IPv6) que se entiende en Internet. Estas direcciones IP serán donde el sitio web estará alojado realmente.
+Si no tiene su propio DNS (Sistema de Nombre de Dominio) habitualmente se pueden utilizar los mismos proveedores para alojamiento DNS. El DNS traduce su nombre de dominio a números (Direcciones IP, tanto IPv4 como IPv6) que se entienden en Internet. Estas direcciones IP serán donde el sitio web estará alojado realmente.
 
 Generemos la clave usando openssl:
 
 `openssl genrsa -des3 -out nuestrowiki.com.key.pass 2048`
 
-Nótese que nombramos la clave con la extensión .pass. Esto es poque tan pronto ejecute este comando, le solicitará que introduca una contraseña. Utilice una contraseña simple que pueda recordar ya que la eliminaremos seguidamente:
+Nótese que nombramos la clave con la extensión .pass. Esto es porque tan pronto ejecute este comando, le solicitará que introduzca una contraseña. Utilice una contraseña simple que pueda recordar ya que la eliminaremos seguidamente:
 
 ```
 Entre la contraseña para nuestrowiki.com.key.pass:
@@ -48,9 +48,9 @@ Es posible que no esté presente, o peor todavía, que no disponga de una consol
 
 Esto le solicitará la contraseña una vez más para eliminarla de la clave:
 
-`Entre la contrasela para nuestrowiki.com.key.pass:`
+`Entre la contraseña para nuestrowiki.com.key.pass:`
 
-Ahora que ha entrado la contraseña por tercera vez, se ha elinado de su clave y almacenado como nuentrowiki.com.key
+Ahora que ha entrado la contraseña por tercera vez, se ha eliminado de su clave y almacenado como nuentrowiki.com.key
 
 ## Generar la CSR
 
@@ -58,7 +58,7 @@ A continuación, necesitamos generar la CSR (Solicitud de Firma de Certificado) 
 
 Durante la generación de la CSR, se le solicitará varios puntos de información. Estos son atributos X.509 del certificado.
 
-Una de las cuestiones será por el "Nombre Común (p.e., SU NOMBRE)". Es importante que para este atributo se utilice el nombre de dominio completo del servidor a proteger con SSL. Si el sitio web será https://www.nuestrowiki.com, utilice www.nuestrowiki.com para esta cuestión.
+Una de las cuestiones será por el "Nombre Común (p.e., SU NOMBRE)". Es importante que para este atributo se utilice el nombre de dominio completo del servidor a proteger con SSL. Si el sitio web es https://www.nuestrowiki.com, utilice www.nuestrowiki.com para esta cuestión.
 
 `openssl req -new -key nuestrowiki.com.key -out nuestrowiki.com.csr`
 
@@ -67,29 +67,29 @@ Esto inicia el cuestionario:
 `Nombre del país (código de 2 letras) [XX]:` entre el código del país de dos letras donde reside su sitio, por ejemplo "ES"
 `Nombre del Estado o Provincia (Nombre completo) []:` entre el nombre oficial completo de su estado o provincia, por ejemplo "Córdoba"
 `Población (ej, ciudad) [...]:` entre el nombre completo de la población, por ejemplo "Bilbao"
-`Nombre de la Organicación (ej, Nombre de la empresa) [...]:` Si lo desea, puede entrar una organización ala que pertenezca el dominio, o pulse 'Enter' para saltar.
+`Nombre de la Organización (ej, Nombre de la empresa) [...]:` Si lo desea, puede entrar una organización a la que pertenezca el dominio, o pulse 'Enter' para saltar.
 `Nombre de la unidad organizativa (por ejemplo una sección) []:` Esto indica la sección de la organización a la que pertenezca su dominio. De nuevo, puede pulsar 'Enter' para saltar.
 `Nombre Común (ej, su nombre o el nombre de servidor) []:` Aquí tenemos que entrar el nombre del host, por ejemplo "www.nuestrowiki.com"
 `Dirección de e-mail []:` Este campo es opcional, puede completarlo o simplemente pulsar 'Enter' para saltar este paso.
 
-A continuación se le solicita que entre atributos extra que pueden evitarse pulsando 'Enter' para ambos:
+A continuación se le solicita que entre atributos extra que pueden saltar pulsando 'Enter' para ambos:
 
 ```
 Por favor entre los siguientes atributos 'extra' 
-que srán enviados con su solicitud de certificado
+que serán enviados con su solicitud de certificado
 A challenge password []:
 An optional company name []:
 ```
 
-Now you should have generated your CSR. 
+En este momento se debería haber generado su CSR.
 
-## Purchasing The Certificate
+## Adquirir el Certificado
 
-Each certificate vendor will have basically the same procedure. You purchase the SSL and term (1 or 2 years, etc.) and then you submit your CSR. To do this, you will need to use the `more` command, and then copy the contents of your CSR file. 
+Todas las entidades certificadoras tienen básicamente el mismo procedimiento. Usted adquiere el certificado y al expirar (1 ó 2 años) les envía su CSR. Para ello, necesitará usar el comando `more`, y copiar el contenido de su archivo CSR.
 
-`more ourownwiki.com.csr`
+`more nuestrowiki.com.csr`
 
-Which will show you something like this:
+Que mostrará algo parecido a esto:
 
 ```
 -----BEGIN CERTIFICATE REQUEST-----
@@ -111,11 +111,10 @@ HFOltYOnfvz6tOEP39T/wMo=
 -----END CERTIFICATE REQUEST-----
 ```
 
-You want to copy everything including the "BEGIN CERTIFICATE REQUEST" and "END CERTIFICATE REQUEST" lines. Then paste these into the CSR field on the web site where you are purchasing the certificate. 
+Necesita copiar todo, incluyendo las líneas con "BEGIN CERTIFICATE REQUEST" y "END CERTIFICATE REQUEST". Pegue estas líneas en el campo CSR en el sitio web donde esté adquiriendo el certificado.
 
-You may have to perform other verification steps, depending on ownership of the domain, the registrar you are using, etc., before your certificate is issued. When it is issued, it should be issued along with an intermediate certificate from the provider, which you will use in the configuration as well.
+Es posible que necesite realizar verificaciones extra, dependiendo del tipo de propiedad del dominio, de la entidad certificadora, etc. antes de que se emita su certificado. Cuando sea emitido, debería emitirse con los certificados intermedios del proveedor, que usará durante la configuración del servidor web.
 
-# Conclusion
+# Conclusión
 
-Generating all of the bits and pieces for the purchase of a web site certificate is not terribly difficult and can be performed by the systems administrator or web site administrator using the above procedure.
-
+Generar todas estas piezas para adquirir un certificado web no es algo terriblemente complicado y puede llevarse acabo por administradores de sistemas o de sitios web siguiento el procedimiento aquí descrito.
