@@ -84,3 +84,5 @@ Examples:
 ## Wrap up
 
 Once the information is filled out, the site should appear on the mirror list as soon as the next mirror refresh occurs.
+
+Sync your mirror from rsync://msync.rockylinux.org
