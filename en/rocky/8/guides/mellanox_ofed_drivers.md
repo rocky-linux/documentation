@@ -23,7 +23,7 @@ Python 2 does seem necessary since some scripts in the Mellanox OFED package are
 So, we need both Python 2 and 3, so let's install `python2` as `python`:
 
 ```bash
-yum install python2 -y
+dnf install python2 -y
 alternatives --config python
 ```
 
