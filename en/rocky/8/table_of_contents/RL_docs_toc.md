@@ -36,7 +36,6 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 |[ModSecurity](../guides/apache_hardened_webserver_modsecurity.md) | | |
 |[Ossec-Hids](../guides/apache_hardened_webserver_ossec-hids.md) | | |
 |[RkHunter](../guides/apache_hardened_webserver_rkhunter.md) | |  |
-|[Nextcloud](../guides/cloud_server_using_nextcloud.md)| | |
 
 ## System Maintenance and Administration
 
