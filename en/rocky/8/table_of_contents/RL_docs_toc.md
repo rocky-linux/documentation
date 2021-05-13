@@ -5,9 +5,10 @@ This document contains the section and subsection headers for Rocky Linux docume
 The order of these sections is very important, but has not been finalized yet, so feel free to reorder as desired.
 
 ## OS Installation and Setup
-[Rocky 8 Installation](../guides/rocky-8-installation.md)
-[Import Rocky Linux to WSL with WSL and rinse](../guides/rocky_to_wsl_howto.md)
-[Import Rocky Linux to WSL[2] with Virtualbox and Docker](../guides/import_rocky_to_WSL_howto.md)
+| Classic Rocky Installation | Rocky on Windows SubSystem For Linux (WSL) |
+| --- |  --- | 
+| [Rocky 8 Installation](../guides/rocky-8-installation.md) | [Rocky & WSL (rinse method)](../guides/rocky_to_wsl_howto.md) |
+| | [Rocky & WSL2 (virtualbox and docker)](../guides/import_rocky_to_WSL_howto.md) |
 
 ## Development and Packaging
 
@@ -26,19 +27,16 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 | | [Generating SSL Keys and LetsEncrypt](../guides/generating_ssl_keys_lets_encrypt.md) |
 
 
-## Web Server
+## Daemons/Servers
 
-| Apache | Nginx |
-| --- | --- |
-|[Web server](../guides/apache_hardened_webserver.md) | | 
-|[Enabling Website](../guides/apache-sites-enabled.md) | |
-|[MariaDB server](../guides/database_mariadb-server.md) | | 
-|[ModSecurity](../guides/apache_hardened_webserver_modsecurity.md) | | 
-|[Ossec-Hids](../guides/apache_hardened_webserver_ossec-hids.md) | | 
-|[RkHunter](../guides/apache_hardened_webserver_rkhunter.md) | | 
-|[VSFTPD](../guides/secure_ftp_server_vsftpd.md) | | 
-| [DokuWiki](../guides/dokuwiki_server.md) |  |
-|[Nextcloud](../guides/cloud_server_using_nextcloud.md)||
+| Web Server | FTP | Content Management System | Database | 
+| --- | --- | --- | --- |
+|[Hardened Apache Web server](../guides/apache_hardened_webserver.md) | [VSFTPD](../guides/secure_ftp_server_vsftpd.md) | [DokuWiki](../guides/dokuwiki_server.md) | [MariaDB server](../guides/database_mariadb-server.md) | 
+|[Enabling Website](../guides/apache-sites-enabled.md) | | [Nextcloud](../guides/cloud_server_using_nextcloud.md) |  |
+|[ModSecurity](../guides/apache_hardened_webserver_modsecurity.md) | | |
+|[Ossec-Hids](../guides/apache_hardened_webserver_ossec-hids.md) | | |
+|[RkHunter](../guides/apache_hardened_webserver_rkhunter.md) | |  |
+|[Nextcloud](../guides/cloud_server_using_nextcloud.md)| | |
 
 ## System Maintenance and Administration
 
