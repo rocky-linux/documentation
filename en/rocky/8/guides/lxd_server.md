@@ -1027,7 +1027,7 @@ To apply this to our centos-test container:
 
 We also want to set up the name of the snapshot to be meaningful by our date. LXD uses UTC everywhere, so our best bet to keep track of things, is to set the snapshot name with a date/time stamp that is in a more understandable format:
 
-`lxc config set centos-test snapshots.pattern "<container name>-{{ creation_date|date:'2006-01-02_15-04-05' }}"`
+`lxc config set centos-test snapshots.pattern "centos-test-{{ creation_date|date:'2006-01-02_15-04-05' }}"`
 
 GREAT, but we certainly don't want a new snapshot every day without getting rid of an old one, right?  We'd fill up the drive with snapshots. So next we do:
 
