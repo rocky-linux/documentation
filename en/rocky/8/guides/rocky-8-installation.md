@@ -37,7 +37,7 @@ Rocky project web page has a listing of several mirrors located all over the wor
 
 ## Verifying the installer ISO
 
-If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use the sha256sum utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha256sum of the `sha256sum Rocky-8.3-x86_64-minimal.iso `.
+If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use the sha256sum utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha256sum of `Rocky-8.3-x86_64-minimal.iso `.
 
 First download the file that contains the official checksums for the avaiable ISOs. While still in the folder that contains the downloaded Rocky ISO, type:
 
@@ -68,7 +68,7 @@ Insert and boot off the installation medium (optical disk, USB flash drive, and 
 
 Once booted, you'll be presented with a welcome splash screen.
 
-![Hardened Webserver](images/installation-F01.png)
+![Rocky Linux installation splash screen](images/installation-F01.png)
 
 If you do not press any key, the prompt will begin a countdown, after which the installation process will start by booting the highlighted Test This Media & Install Rocky Linux 8 ... option. You can also press enter to start the process immediately.
 
