@@ -1,4 +1,4 @@
-# Apache Hardened Web Server - ossec-hids
+# ossec-hids
 
 # Prerequisites
 

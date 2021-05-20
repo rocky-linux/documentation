@@ -1,4 +1,4 @@
-# Apache Hardened Web Server - mod_security
+# mod_security
 
 # Prerequisites
 

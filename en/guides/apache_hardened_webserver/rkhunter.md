@@ -1,4 +1,4 @@
-# Apache Hardened Web Server - rkhunter
+# rkhunter
 
 # Prerequisites
 

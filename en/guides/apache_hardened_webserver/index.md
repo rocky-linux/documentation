@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Introduction'
+sidebar_position: 0
+---
 # Apache Hardened Web Server
 
 ## Prerequisites And Assumptions
@@ -22,13 +26,13 @@ Web server hardening can take many forms, which may include any or all of the be
 You might elect to use a couple of these tools and not the others, so for clarity and readability this document is split out into separate documents for each tool. The exception will be the packet-based firewall (_iptables_) which will be included in this main document.
 
 * A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - we will use _iptables_ for our example)[_iptables_ procedure](#iptablesstart)
-* A Host-based Intrusion Detection System (HIDS), in this case _ossec-hids_ [Apache Hardened Web Server - ossec-hids](apache_hardened_webserver_ossec-hids.md)
-* A Web-based Application Firewall (WAF), with _mod\_security_ rules [Apache Hardened Web Server - mod_security](apache_hardened_webserver_modsecurity.md)
-* Rootkit Hunter (rkhunter): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](apache_hardened_webserver_rkhunter.md)
-* Database security (we are using _mariadb-server_ here) [Database - mariadb-server](database_mariadb-server.md)
-* A secure FTP or SFTP server (we are using _vsftpd_ here) [Secure FTP Server - vsftpd](secure_ftp_server_vsftpd.md)
+* A Host-based Intrusion Detection System (HIDS), in this case _ossec-hids_ [Apache Hardened Web Server - ossec-hids](ossec-hids.md)
+* A Web-based Application Firewall (WAF), with _mod\_security_ rules [Apache Hardened Web Server - mod_security](modsecurity.md)
+* Rootkit Hunter (rkhunter): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](rkhunter.md)
+* Database security (we are using _mariadb-server_ here) [Database - mariadb-server](../database_mariadb-server.md)
+* A secure FTP or SFTP server (we are using _vsftpd_ here) [Secure FTP Server - vsftpd](../secure_ftp_server_vsftpd.md)
 
-This procedure does not replace the [Apache Web Server Multi-Site Setup](apache-sites-enabled.md), it simply adds these security elements to it. If you haven't read it, take some time to look at it before proceeding.
+This procedure does not replace the [Apache Web Server Multi-Site Setup](../apache-sites-enabled.md), it simply adds these security elements to it. If you haven't read it, take some time to look at it before proceeding.
 
 # Other Considerations
 
@@ -36,7 +40,7 @@ Some of the tools outlined here have both free and fee-based options. Depending 
 
 Know, too, that most of these options can be purchased as hardware appliances. If you'd prefer not to hassle with installing and maintaining your own system, there are options available other than those outlined here.
 
-This document uses a straight _iptables_ firewall and requires [this procedure on Rocky Linux to disable firewalld and enable the iptables services](enabling_iptables_firewall.md). 
+This document uses a straight _iptables_ firewall and requires [this procedure on Rocky Linux to disable firewalld and enable the iptables services](../enabling_iptables_firewall.md). 
 
 If you prefer to use _firewalld_, simply skip this step and apply the rules needed. The firewall in our examples here, needs no OUTPUT or FORWARD chains, only INPUT. Your needs may differ!
 
@@ -60,7 +64,7 @@ The diagram above shows our general layout. The _iptables_ packet-based firewall
 
 ## Install Packages
 
-Each individual package section has the needed installation files and any configuration procedure listed. The installation instructions for _iptables_ is part of the [disable firewalld and enable the iptables services](enabling_iptables_firewall.md) procedure.
+Each individual package section has the needed installation files and any configuration procedure listed. The installation instructions for _iptables_ is part of the [disable firewalld and enable the iptables services](../enabling_iptables_firewall.md) procedure.
 
 # <a name="iptablesstart"></a>Configuring iptables
 
