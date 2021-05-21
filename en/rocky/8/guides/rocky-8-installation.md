@@ -67,7 +67,7 @@ Insert and boot off the installation medium (optical disk, USB flash drive, and 
 
 Once booted, you'll be presented with a welcome splash screen.
 
-![Welcome screen](images/installation-F01.png)
+![Rocky Linux installation splash screen](images/installation-F01.png)
 
 If you do not press any key, the prompt will begin a countdown, after which the installation process will start by booting the highlighted `Test this media & install Rocky Linux 8` ... option. You can also press <kbd>enter</kbd> to start the process immediately.
 
