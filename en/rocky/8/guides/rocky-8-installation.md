@@ -156,7 +156,7 @@ Once the installer determines that you have a usable disk, you will be returned 
 The final task of the installation procedure deals with network configuration, where you can configure or tweak network-related settings for the system.
 
 > **NOTE:** After you click on the <kbd>Network & Hostname</kbd> option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen. Depending on the Linux distribution and the specific hardware setup, Ethernet devices in Linux have names similar to `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, and so on.
- 
+
 For each interface, you can either configure it using DHCP or manually set the IP address. If you choose to configure manually, be sure to have all the pertinent information ready, such as the IP address, netmask, and so on.
 
 Clicking the <kbd>Network & Hostname</kbd> button in the main _Installation Summary_ screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system (the name defaults to `localhost.localdomain`).
@@ -187,7 +187,7 @@ This section can be used for creating a password for the `root` user account and
 
 ### Set the Root Password
 
-Click the _Root Password_ field under _User Settings_ to launch the _Root Password _task screen. In the _Root Password_ text box, set a strong password for the root user.
+Click the _Root Password_ field under _User Settings_ to launch the _Root Password _ task screen. In the _Root Password_ text box, set a strong password for the root user.
 
 > **WARNING:**
 This user is the most privileged account on the system. Therefore, if you choose to use it or enable it - it is crucial that you protect this account with a very good password.
