@@ -33,7 +33,7 @@ Par exemple `Rocky-8.3-x86_64-minimal.iso`
 
 
 > **NOTE :**
-La page web du projet Rocky propose une liste de nombreux miroirs situés partout dans le monde. A chaque fois que cela est possible, vous devriez choisir le miroir géographiquement le plus proche de vous. La liste des miroirs officiels peut être consultée là `https://#`
+La page web du projet Rocky propose une liste de nombreux miroirs situés partout dans le monde. A chaque fois que cela est possible, vous devriez choisir le miroir géographiquement le plus proche de vous. La liste des miroirs officiels peut être consultée [ici](https://mirrors.rockylinux.org`
 
 ## Vérifier l'ISO d'installation
 
