@@ -4,13 +4,34 @@ title: Adding a public mirror to Rocky's mirror manager
 
 # Adding a public mirror to Rocky's mirror manager
 
-Rocky uses Fedora's Mirror Manager for organizing community mirrors.
+## Minimal requirements for public mirrors
+
+We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 datacenter like environment. Available bandwidth should be at least 100 MBit/s. If you are also allowing rsync you should have at least 500 MBit/s better 1 GBit/s. We prefer mirrors offering dualstack (IPv4 & IPv6). Please no dynamic DNS. If you are offering a mirror in a region that has only few mirrors yet of course we also accept slower speeds.
+
+Please note that we are not allowed to accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations
+
+Hard disk space requirements are around 100 GB at the moment but expect it to grow over time. 400 GB space should be sufficient for the next years.
+
+For your first synchronisation use a mirror near to you. You can find all official mirrors here: https://mirrors.rockylinux.org
+
+Please set up a cron job to synchronize your mirror periodically and let it run around 6 times a day. But be sure to sync off the hour to help distribute the load over time. If you only check against changes of `fullfiletimelist-rocky` and only do a full sync if this file has changed you can synchronize every hour. For a simple synchronization you can use the following rsync command:
+
+```rsync -aqzH --delete source-mirror destination-dir```
+
+Consider using a locking mechanism to avoid running more than one rsync job simultaneously when we push a new release.
+
+After your first complete synchronization check that everything is fine with your mirror. Most importantly check all files and dirs got synchronized, your chron job is working properly und your mirror is reachable from the public internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
+
+If you have any questions setting up your mirror join https://chat.rockylinux.org/rocky-linux/channels/infrastructure
+
+When you are done head over to the next section and propose your mirror to become public!
 
 ## What You Need
 * An account on https://accounts.rockylinux.org/
 
-
 ## Creating a site
+
+Rocky uses Fedora's Mirror Manager for organizing community mirrors.
 
 Access Rocky's Mirror Manager here: https://mirrors.rockylinux.org/mirrormanager/
 
@@ -47,7 +68,7 @@ Fill out the following options that are appropriate for the site:
 * "Private" - e.g. not available to the public, an internal private mirror
 * "Internet2" - on Internet2 
 * "Internet2 clients" - serves Internet2 clients, even if private
-* "ASN - Autonomous System Number, used in BGP routing tables.
+* "ASN - Autonomous System Number, used in BGP routing tables. Only if you are an ISP.
 * "ASN Clients? - Serve all clients from the same ASN. Used for ISPs, companies, or schools, not personal networks.
 * "Robot email" - email address, will receive notice of upstream content updates
 * "Comment" - text, anything else you'd like a public end user to know about your mirror
@@ -59,7 +80,7 @@ Click "Create" and it will redirect back to the Information site for the host.
 
 At the bottom of the Information site, the option for "Hosts" should now display the host title next to it. Click on the name to load the host page. All of the same options from the previous step are listed again. There are new options at the bottom.
 
-* "Site-local Netblocks":  Netblocks are used to try to guide and end user to a site-specific mirror. For example, a university might list their netblocks, and the mirrorlist CGI would return the university-local mirror rather than a country-local mirror. Format is one of 18.0.0.0/255.0.0.0, 18.0.0.0/8, an IPv6 prefix/length, or a DNS hostname. Values must be public IP addresses (no RFC1918 private space addresses). 
+* "Site-local Netblocks":  Netblocks are used to try to guide and end user to a site-specific mirror. For example, a university might list their netblocks, and the mirrorlist CGI would return the university-local mirror rather than a country-local mirror. Format is one of 18.0.0.0/255.0.0.0, 18.0.0.0/8, an IPv6 prefix/length, or a DNS hostname. Values must be public IP addresses (no RFC1918 private space addresses). Use only if you are an ISP and/or own a publicly routeable netblock!
 
 * "Peer ASNs":  Peer ASNs are used to guide an end user on nearby networks to our mirror. For example, a university might list their peer ASNs, and the mirrorlist CGI would return the university-local mirror rather than a country-local mirror. You must be in the MirrorManager administrators group in order to create new entries here. 
 
@@ -85,4 +106,6 @@ Examples:
 
 Once the information is filled out, the site should appear on the mirror list as soon as the next mirror refresh occurs.
 
-Sync your mirror from rsync://msync.rockylinux.org
+Sync your mirror from `rsync://msync.rockylinux.org/rocky-production/mirror/pub/rocky/`
+
+Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider using a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
