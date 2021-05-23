@@ -650,7 +650,7 @@ Install the old network scripts:
 Nuke Network Manager:
 
 `systemctl stop NetworkManager`
-`ststenctl disable NetworkManager`
+`systemctl disable NetworkManager`
 
 Enable the old Network service:
 
@@ -1045,6 +1045,7 @@ The script is pretty simple:
 #!/bin/bash
 # This script is for doing an lxc copy --refresh against each container, copying
 # and updating them to the snapshot server.
+SHELL=/usr/bin/sh
 for x in $(/var/lib/snapd/snap/bin/lxc ls -c n --format csv)
         do echo "Refreshing $x"
         /var/lib/snapd/snap/bin/lxc copy --refresh $x lxd-snapshot:$x
@@ -1072,7 +1073,7 @@ Save your changes and exit.
  
 This will create a log in lxdadmin's home directory called "refreshlog" which will give you knowledge of whether your process worked or not. Very important!
 
-The automated procedure will fail sometimes. This generally happens when a particular container fails to refresh. You can maunually re-run the refresh with the following command (assumingg centos-test here, as our container):
+The automated procedure will fail sometimes. This generally happens when a particular container fails to refresh. You can manually re-run the refresh with the following command (assuming centos-test here, as our container):
 
 `lxc copy --refresh centos-test lxd-snapshot:centos-test`
 
