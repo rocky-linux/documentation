@@ -12,13 +12,82 @@ Please note that we are not allowed to accept public mirrors in countries subjec
 
 Hard disk space requirements are around 100 GB at the moment but expect it to grow over time. 400 GB space should be sufficient for the next years.
 
+Our master mirror is `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`
 For your first synchronisation use a mirror near to you. You can find all official mirrors here: https://mirrors.rockylinux.org
 
-Please set up a cron job to synchronize your mirror periodically and let it run around 6 times a day. But be sure to sync off the hour to help distribute the load over time. If you only check against changes of `fullfiletimelist-rocky` and only do a full sync if this file has changed you can synchronize every hour. For a simple synchronization you can use the following rsync command:
+Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider using a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
 
-```rsync -aqzH --delete source-mirror destination-dir```
+## Setting up you mirror
+
+Please set up a cron job to synchronize your mirror periodically and let it run around 6 times a day. But be sure to sync off the hour to help distribute the load over time. If you only check against changes of `fullfiletimelist-rocky` and only do a full sync if this file has changed you can synchronize every hour.
+
+Here are some crontab examples for you:
+
+```
+#This will synchronize your mirror at 0:50, 4:50, 8:50, 12:50, 16:50, 20:50
+50 */6  * * * /path/to/your/rocky-rsync-mirror.sh > /dev/null 2>&1
+
+#This will synchronize your mirror at 2:25, 6:25, 10:25, 14:25, 18:25, 22:25
+25 2,6,10,14,18,22 * * * /path/to/your/rocky-rsync-mirror.sh > /dev/null 2>&1
+
+#This will synchronize your mirror every hour at 15 minutes past the hour.
+#Only use if you are using our example script
+15 * * * * /path/to/your/rocky-rsync-mirror.sh > /dev/null 2>&1
+```
+
+For a simple synchronization you can use the following rsync command:
+
+```
+rsync -aqH --delete source-mirror destination-dir
+```
 
 Consider using a locking mechanism to avoid running more than one rsync job simultaneously when we push a new release.
+
+You can also use and modify our example script below:
+
+```
+#!/bin/bash
+
+RSYNC="/usr/bin/rsync"
+#You can change v to q if you do not want detailed logging
+OPTS="-vrlptDSH --exclude=*.~tmp~ --delete-delay --delay-updates"
+
+#Please use a mirror next to you for initial sync
+#or if you are hosting a private rather than a pulic mirror.
+#Local mirrors might be faster.
+#Also we might restrict access to the master in the future.
+SRC="msync.rockylinux.org::rocky/mirror/pub/rocky/"
+
+#Change to your local path for your mirror
+MIRRORMODULE="rocky-linux"
+DST="/mnt/mirrorserver/${MIRRORMODULE}/"
+
+FILELISTFILE="/fullfiletimelist-rocky"
+LOCKFILE=$0.lockfile
+
+
+CHECKRESULT=`${RSYNC} --no-motd --dry-run --out-format='%n' ${SRC}${FILELISTFILE} ${DST}${FILELISTFILE}`
+if [ -z $CHECKRESULT ]; then
+	echo "${FILELISTFILE} unchanged. Not updating at " `date` >> $0.log 2>&1
+	logger -t rsync "Not updating ${MIRRORMODULE}: ${FILELISTFILE} unchanged."
+	exit 1
+fi
+
+
+if [ -e $LOCKFILE ]; then
+	echo "Update already in progress at" `date` >> $0.log 2>&1
+	logger -t rsync "Not updating ${MIRRORMODULE}: already in progress."
+else
+	touch $LOCKFILE
+	echo "Started update at" `date` >> $0.log 2>&1
+	logger -t rsync "Updating ${MIRRORMODULE}"
+		
+	${RSYNC} ${OPTS} ${SRC} ${DST} >> $0.log 2>&1
+	logger -t rsync "Finished updating ${MIRRORMODULE}"  
+	echo "End: "`date` >> $0.log 2>&1
+	rm $LOCKFILE
+fi
+```
 
 After your first complete synchronization check that everything is fine with your mirror. Most importantly check all files and dirs got synchronized, your chron job is working properly und your mirror is reachable from the public internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
 
@@ -46,7 +115,7 @@ A new page will load with an important Export Compliance statement to read. Then
 * "Private" - Checking this box hides this site from public use.
 * "User active" - Uncheck this box to temporarily disable this site, it will be removed from public listings.
 * "All sites can pull from me?" - Enable all mirror sites to pull from me without explicitly adding them to my list.
-* "Comments for downstream siteadmins"
+* "Comments for downstream siteadmins. Please include your synchronization source here to avoid dependency loops."
 
 Upon clicking "Submit" you will be returned to the main mirror page.
 
@@ -105,7 +174,3 @@ Examples:
 ## Wrap up
 
 Once the information is filled out, the site should appear on the mirror list as soon as the next mirror refresh occurs.
-
-Sync your mirror from `rsync://msync.rockylinux.org/rocky-production/mirror/pub/rocky/`
-
-Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider using a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
