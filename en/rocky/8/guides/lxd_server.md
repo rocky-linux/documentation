@@ -1037,7 +1037,7 @@ GREAT, but we certainly don't want a new snapshot every day without getting rid 
 
 Again, this process is performed on lxd-primary. First thing we need to do is create a script that will be run by cron in /usr/local/sbin called "refresh-containers" :
 
-`sudo vi /usr/local/sbin/refresh-containers`
+`sudo vi /usr/local/sbin/refreshcontainers.sh`
 
 The script is pretty simple:
 
@@ -1045,7 +1045,7 @@ The script is pretty simple:
 #!/bin/bash
 # This script is for doing an lxc copy --refresh against each container, copying
 # and updating them to the snapshot server.
-SHELL=/usr/bin/sh
+
 for x in $(/var/lib/snapd/snap/bin/lxc ls -c n --format csv)
         do echo "Refreshing $x"
         /var/lib/snapd/snap/bin/lxc copy --refresh $x lxd-snapshot:$x
@@ -1055,11 +1055,11 @@ for x in $(/var/lib/snapd/snap/bin/lxc ls -c n --format csv)
  
  Make it executable:
  
-`sudo chmod +x /usr/local/sbin/refresh-containers`
+`sudo chmod +x /usr/local/sbin/refreshcontainers.sh`
  
 Change the ownership of this script to your lxdadmin user and group:
  
-`sudo chown lxdadmin.lxdadmin /usr/local/sbin/refresh-containers`
+`sudo chown lxdadmin.lxdadmin /usr/local/sbin/refreshcontainers.sh`
  
 Set up the crontab for the lxdadmin user to run this script, in this case at 10 PM: 
  
@@ -1067,7 +1067,7 @@ Set up the crontab for the lxdadmin user to run this script, in this case at 10 
  
 And your entry will look like this:
  
-`00 22 * * * /usr/local/sbin/refresh_containers > /home/lxdadmin/refreshlog 2>&1`
+`00 22 * * * /usr/local/sbin/refreshcontainers.sh > /home/lxdadmin/refreshlog 2>&1`
  
 Save your changes and exit.
  
