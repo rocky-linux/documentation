@@ -12,7 +12,7 @@
 
 _ossec-hids_ is a host intrusion detection system that offers automatic action-response steps to help mitigate host intrusion attacks. It is just one possible component of a hardened Apache web server setup and can be used with or without other tools. 
 
-If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server routine](apache_hardened_webserver.md). This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
+If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server routine](index.md). This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
 
 ## Installing Atomicorp's Repository
 
@@ -79,7 +79,7 @@ We will break apart this configuration showing the changes in line and explainin
 
 By default, email notifications are turned off and the "\<global\>" configuration is basically empty. You want to turn on email notification and identify the people who should receive the email reports by email address. 
 
-The "\<smtp_server\>" section currently shows localhost, however you can specify an email server relay if you prefer, or simply setup the postfix email settings for the local host by following [this guide](postfix_reporting.md). Y
+The "\<smtp_server\>" section currently shows localhost, however you can specify an email server relay if you prefer, or simply setup the postfix email settings for the local host by following [this guide](../postfix_reporting.md). Y
 
 ou need to set the "from" address, so that you can deal with SPAM filters on your email server which may see this email as SPAM. To avoid getting inundated with email, set the email reporting to 1 per hour. You can expand this or remark out this command if you like while you are getting started with _ossec-hids_ and need to see things quickly. 
 

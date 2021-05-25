@@ -12,7 +12,7 @@
 
 The _mariadb-server_ and it's client _mariadb_ are the open source alternatives to _mysql-server_ and _mysql_, and they share command structure. _mariadb-server_ can be found running on many web servers, due to the popular [Wordpress CMS](https://wordpress.org/) which requires it. This database, though, has many other uses.
 
-If you'd like to use this along with other tools for hardening a web server, refer back to the [Apache Hardened Web Server guide](apache_hardened_webserver.md). 
+If you'd like to use this along with other tools for hardening a web server, refer back to the [Apache Hardened Web Server guide](apache_hardened_webserver/index.md). 
 
 ## Installing mariadb-server
 

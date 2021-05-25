@@ -25,7 +25,7 @@ lsyncd watches a local directory trees event monitor interface (inotify). It agg
 
 For the purposes of this guide, we will call the system with the original files the "master", and the one that we are synchronizing to will be the "target". It is actually possible to completely mirror a server using lsyncd by very carefully specifying directories and files that you want to synchronize. It's pretty sweet!
 
-For remote syncing, you will also want to set up [Rocky Linux SSH Public Private Key Pairs](RL_ssh_public_private_keys.md). The examples here use SSH (port 22).
+For remote syncing, you will also want to set up [Rocky Linux SSH Public Private Key Pairs](ssh_public_private_keys.md). The examples here use SSH (port 22).
 
 # Installing lsycnd
 

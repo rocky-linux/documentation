@@ -241,7 +241,7 @@ Congratulations, all simulated renewals succeeded:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
-The [_certbot_ documentation](https//certbot.eff.org/lets-encrypt/centosrhel8-apache.html) tells you in their step number 8, that the automatic renewal process could be in a couple of different spots, depending on your system. For a Rocky Linux install, you are going to find the process by using:
+The [_certbot_ documentation](https://certbot.eff.org/lets-encrypt/centosrhel8-apache.html) tells you in their step number 8, that the automatic renewal process could be in a couple of different spots, depending on your system. For a Rocky Linux install, you are going to find the process by using:
 
 `systemctl list-timers`
 

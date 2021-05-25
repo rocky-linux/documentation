@@ -13,7 +13,7 @@
 
 _mod\_security_ is an open-source web-based application firewall (WAF). It is just one possible component of a hardened Apache web server setup and can be used with or without other tools. 
 
-If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server guide](apache_hardened_webserver.md). This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
+If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server guide](index.md). This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
 
 One thing that is missing with _mod\_security_ when installed from the generic Rocky Linux repositories, is that the rules installed are minimal at best. To get a more extensive package of free mod_security rules, we are using [Comodo's](https://www.comodo.com/) WAF installation procedure after installing the base package. 
 
@@ -196,4 +196,4 @@ _mod\_security_ with CWAF is another tool that can be used to help harden an Apa
 
 _mod\_security_, like other hardening tools, has the potential of false-positive responses, so you must be prepared to tune this tool to your installation. 
 
-Like other solutions mentioned in the [Apache Hardened Web Server guide](apache_hardened_webserver.md), there are other free and fee-based solutions for _mod\_security_ rules, and for that matter, other WAF applications available. You can take a look at one of these at [Atomicorp's _mod\_security_ site](https://atomicorp.com/atomic-modsecurity-rules/).
+Like other solutions mentioned in the [Apache Hardened Web Server guide](index.md), there are other free and fee-based solutions for _mod\_security_ rules, and for that matter, other WAF applications available. You can take a look at one of these at [Atomicorp's _mod\_security_ site](https://atomicorp.com/atomic-modsecurity-rules/).

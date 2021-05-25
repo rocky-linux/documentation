@@ -235,7 +235,7 @@ For the server that will be running the backups, we need to generate an SSH key-
 
 If you already have a set of keys generated, you can skip this step. You can find out by doing an `ls -al .ssh` and looking for an id_rsa and id_rsa.pub key pair. If none exists use the following link to set up your keys and the servers that you want to access:
 
-[Rocky Linux SSH Public Private Key Pairs](RL_ssh_public_private_keys.md)
+[SSH Public Private Key Pairs](ssh_public_private_keys.md)
 
 ### Rsnapshot Configuration
 

@@ -12,7 +12,7 @@
 
 _rkhunter_ (Root Kit Hunter) is a Unix-based tool that scans for rootkits, backdoors, and possible local exploits. It is a good part of a hardened web server, and is designed to notify the administrator quickly when something suspicious happens on the server's file system. 
 
-_rkhunter_ is just one possible component of a hardened Apache web server setup and can be used with or without other tools. If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server guide](apache_hardened_webserver.md). 
+_rkhunter_ is just one possible component of a hardened Apache web server setup and can be used with or without other tools. If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server guide](index.md). 
 
 This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
 
@@ -40,11 +40,11 @@ Remove the remark here and change the me@mydomain.com to reflect your email addr
 
 Then change the root@mydomain to root@whatever_the_server_name_is.
 
-You may also need to setup [Postfix Email for Reporting](postfix_reporting.md) in order to get the email section to work correctly.
+You may also need to setup [Postfix Email for Reporting](../postfix_reporting.md) in order to get the email section to work correctly.
 
 ## Running rkhunter
 
-_rkhunter_ can be run by typing it at the command-line. There is a cron job installed for you in `/etc/cron.daily`, but if you want to automate the procedure on a different schedule, look at the [Automating cron jobs guide](cron_jobs_howto.md). 
+_rkhunter_ can be run by typing it at the command-line. There is a cron job installed for you in `/etc/cron.daily`, but if you want to automate the procedure on a different schedule, look at the [Automating cron jobs guide](../cron_jobs_howto.md). 
 
 You'll also need to move the script somewhere other than `/etc/cron.daily`, such as `/usr/local/sbin` and then call it from your custom cron job. The easiest method, of course, is to leave the default cron.daily setup intact.
 

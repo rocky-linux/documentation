@@ -168,7 +168,7 @@ And then start it:
 
 `systemctl restart mariadb`
 
-Again, as indicated earlier, we will be using the setup procedure for hardening _mariadb-server_ found [here](apache_hardened_webserver-mariadb-server.md) for the initial configuration.
+Again, as indicated earlier, we will be using the setup procedure for hardening _mariadb-server_ found [here](#) for the initial configuration.
 
 # Installing Nextcloud
 
