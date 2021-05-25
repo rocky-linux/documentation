@@ -11,10 +11,6 @@ In this chapter you will learn about GNU/Linux distributions.
 :heavy_check_mark: Explain the philosophy of free and opensource software;\
 :heavy_check_mark: Discover the usefulness of the SHELL.\
 
-
-To explain your goals, you should only use action verbs. Because goals need to be quantifiable, measurable and verifiable.
-At the end of the document, you can add questions directly related to these objectives to validate the understanding of the subject.
-
 :checkered_flag: **generalities**, **linux**, **distributions**
 
 **Knowledge**: :star: \
@@ -24,7 +20,7 @@ At the end of the document, you can add questions directly related to these obje
 
 ## What is an operating system?
 
-Linux is an **operating system**.
+Linux, UNIX, BSD, Windows, and MacOS are all **operating systems**.
 
 :clipboard: An operating system is a **set of programs that manages the available resources of a computer**.
 
@@ -97,7 +93,7 @@ Linux equips 100% of the 500 supercomputers since 2018. A supercomputer is a com
 ### Architectural design
 
 * The **kernel** is the first software component.
- * It is the heart of the UNIX system.
+ * It is the heart of the Linux system.
  * It manages the hardware resources of the system.
  * The other software components must go through it to access the hardware.
 * The **shell** is a utility that interprets user commands and ensures their execution.
@@ -124,7 +120,7 @@ The purpose of Multics was to allow several users to work from several terminals
 
 Linux is able to work with multi-processor computers or with multi-core processors.
 
-#### Multiprocessor
+#### Multi-plateform
 
 Linux is written in a high-level language that can be adapted to different types of platforms during compilation. It therefore runs on :
 
@@ -139,7 +135,7 @@ Linux is written in a high-level language that can be adapted to different types
 
 Linux is based on recognized standards [posix](http://fr.wikipedia.org/wiki/POSIX), TCP/IP, NFS, Samba ... allowing to share data and services with other application systems.
 
-### The UNIX phylosophy
+### The UNIX/Linux philosophy
 
 * Everything is a file.
 * Portability.
@@ -154,7 +150,7 @@ A Linux distribution is a **consistent set of software** assembled around the Li
 
 Each distribution offers one or more **desktop environments**, provides a set of pre-installed software and a library of additional software. Configuration options (kernel or services options for example) are specific to each one.
 
-This principle allows to have distributions oriented **beginners** (Ubuntu, Linux Mint ...) or with a more complex approach (Gentoo, Arch), intended for **server** (Debian, RedHat, ...) or dedicated to **workstations**.
+This principle allows you to have distributions oriented to **beginners** (Ubuntu, Linux Mint...), to have a more complex approach (Gentoo, Arch), to be focused more towards **servers** (Debian, Redhat), or to be dedicated towards **workstations**.
 
 ### Desktop environments
 
@@ -225,7 +221,7 @@ There are several types of shells available and configurable on a platform or ac
 * bash, Bourne-Again Shell, Linux shell.
 * etc, ...
 
-## Fonctionnalities
+## Functionalities
 
 * Command execution (checks the command given and executes it);
 * Input/Output redirection (returns data to a file instead of writing it on the screen);
@@ -234,9 +230,6 @@ There are several types of shells available and configurable on a platform or ac
 * Environment variables (access to information specific to the system during operation).
 
 ### Principle
-
-.Principe de fonctionnement du SHELL
-image::0101-linux-presentation-shell.png["Le fonctionnement du shell",scaledwidth="100%"]
 
 ![Operating principle of the SHELL](images/shell-principle.png)
 
