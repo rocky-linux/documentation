@@ -252,6 +252,6 @@ If you are unable to upload a file, then you may need to go back and make sure t
 
 # Conclusions
 
-_vsftpd_ is a popular and common ftp server and can be set up as a stand alone server, or as part of an [Apache Hardened Web Server](apache_hardened_webserver.md). If set up to use virtual users and a certificate, it is quite secure. 
+_vsftpd_ is a popular and common ftp server and can be set up as a stand alone server, or as part of an [Apache Hardened Web Server](apache_hardened_webserver/index.md). If set up to use virtual users and a certificate, it is quite secure. 
 
 While there are quite a number of steps to setting up _vsftpd_ as outlined in this document, taking the extra time to set it up correctly will ensure that your server is as secure as it can be.
