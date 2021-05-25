@@ -204,7 +204,7 @@ A Linux distribution excels for :
 * **Central computer**: Banks, insurance, industry, etc.
 * **Embedded system**: Routers, Internet boxes, SmartTV, etc.
 
-Linux is a suitable choice for hosting databases or websites, or as a mail server, DNS, firewall. In short, Linux can do just about anything, which explains the quantity of specific distributions.
+Linux is a suitable choice for hosting databases or websites, or as a mail server, DNS or firewall. In short, Linux can do just about anything, which explains the quantity of specific distributions.
 
 ## Shell
 
