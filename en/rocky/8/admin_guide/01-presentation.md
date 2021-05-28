@@ -28,7 +28,7 @@ Among this management of resources, the operating system has to :
 
 * Manage the physical or virtual memory.
   * The **physical memory** is made up of the RAM bars and the processor cache memory, which is used for the execution of programs.
-  * The **virtual memory** is a location on the hard disk (the **swap** partition) that allows to unload the physical memory and to save the current state of the system during the electrical shutdown of the computer (system hibernation).
+  * The **virtual memory** is a location on the hard disk (the **swap** partition) that allows to unload the physical memory and to save the current state of the system during the electrical shutdown of the computer.
 * Intercept **access to peripherals**.
 Software is rarely allowed to access hardware directly (except for graphics cards for very specific needs).
 * Provide applications with proper **task management**.
