@@ -24,7 +24,7 @@ Linux, UNIX, BSD, Windows, and MacOS are all **operating systems**.
 
 :clipboard: An operating system is a **set of programs that manages the available resources of a computer**.
 
-Among this management of resources, the operating system has to :
+Among this management of resources, the operating system has to:
 
 * Manage the physical or virtual memory.
   * The **physical memory** is made up of the RAM bars and the processor cache memory, which is used for the execution of programs.
