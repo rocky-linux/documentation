@@ -19,7 +19,9 @@ In this chapter you will learn about GNU/Linux distributions.
 :checkered_flag: **generalities**, **linux**, **distributions**
 
 **Knowledge**: :star:
+
 **Complexity**: :star:
+
 **Reading time**: 10 minutes
 
 ****
