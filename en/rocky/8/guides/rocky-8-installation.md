@@ -1,256 +1,255 @@
-# Installing Rocky Linux
+# Installera Rocky Linux
 
-This guide walks-through the detailed steps to install a 64-bit version of the rocky Linux distribution on a stand-alone system.
+Denna guide går igenom i detalj stegen för att installera en 64-bitars version av rocky Linux distribution på ett fristående system. 
 
 ****
-We will be performing a server class install in this chapter using an operating system installer image downloaded from the rocky project website. We will tackle the installation and customizations steps in the following sections.
+Vi kommer att utföra en server klass installation i detta kapitel genom att använda en oprativsystems installationsavbild nerladdad från rocky projektets webbplats. Vi kommer att tackla installationen och anpassade steg i följande avsnitt.
 ****
 
-## OS installation prerequisites
+## OS förutsättningar för installation
 
-First, you need to download the ISO for Rocky that we will be installing.
+Först, så behöver du ladda ner ISO-avbilden för Rocky som vi kommer att installera.
 
-The latest ISO image for the version of Rocky that we will be using for this installation can be downloaded from here:
+Den senaste ISO-avbilden för den version av Rocky som vi kommer att använda för denna installation kan laddas ner härifrån:
 
 ```
 https://www.rockylinux.org/download/
 
 ```
 
-To download the ISO directly from the command line, type:
+För att ladda ner ISO-avbilden direkt från en terminal skriv:
 
 ```
 $ wget https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_64-minimal.iso
 ```
 
-Rocky ISOs are named following this convention:
+Rocky ISOs är namngavna efter följande konvention:
 
 ```
 Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 ```
 
-For example  `Rocky-8.3-x86_64-minimal.iso`
+t.ex. `Rocky-8.3-x86_64-minimal.iso`
 
-> **NOTE:**
-Rocky project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found [here](https://mirrors.rockylinux.org/mirrormanager/mirrors).
+> **NOTERA:**
+Rocky projektets webbplats har en lista på flera speglar som ligger över hela världen. När det är möjligt, så ska du välja en spegel som är geografiskt närmast dig. Listan över officella speglar kan hittas [här](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
-## Verifying the installer ISO
+## Verifiera installations ISO
 
-If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha256sum of `Rocky-8.3-x86_64-minimal.iso`.
+Om du har laddat hem Rocky ISO-avbilden/avbilder på en existerande Linux distribution, så kan du använda `sha256sum` verktyget för att verifiera  att filen/filerna du har laddat ner inte är skadade på något sätt. Vi visar ett exempel på hur man verifierar sha256sum av `Rocky-8.3-x86_64-minimal.iso`.
 
-First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky ISO, type:
+Första ladda ner filen som innehåller dom officiella kontrollsummorna för tillgängliga ISO-avbilder. Medan du fortfarande är i mappen som innehåller den nerladdade Rocky ISO-avbilden, skriv:
 
 ```
 wget http://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/CHECKSUM
 ```
 
-Use the `sha256sum` utility to verify the
+Använd `sha256sum` verktyget för att verifiera
 
 ```
 sha256sum -c CHECKSUM    --ignore-missing Rocky-8.3-x86_64-minimal.iso
 ```
 
-The output should include:
+Utdatan ska inkludera:
 
 ```
 Rocky-8.3-x86_64-minimal.iso: OK
 ```
 
-> **TIP:**
-Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
+> **TIPS:**
+Innan du startar installationen ordentligt, systemets Unified Extensible Firmware Interface (UEFI) eller Basic Input/Output System (BIOS) ska vara förkonfigurerat till att starta från korrekt media.
 
-# The Installation
+# Installationen
 
-Let’s begin the installation process.
+Låt oss börja med installationsprocessen.
 
-Insert and boot off the installation medium (optical disk, USB flash drive, and so on).
+Koppla in och starta från ditt installationmedia (optisk skiva, USB-sticka, och så vidare).
 
-Once booted, you'll be presented with a welcome splash screen.
+När du startat, så kommer du bli presenterad med en välkomstskärm.
 
 ![Rocky Linux installation splash screen](images/installation-F01.png)
 
-If you do not press any key, the prompt will begin a countdown, after which the installation process will start by booting the highlighted `Test this media & install Rocky Linux 8` ... option. You can also press <kbd>enter</kbd> to start the process immediately.
+Om du inte trycker på någon tangent, efter uppmaningen börjar en nedräkning, varefter installationsprocessen kommer börja med att starta den markerade `Testa detta media & installera Rocky Linux 8` ... alternativ. Du kan också trycka på <kbd>enter</kbd> för att starta processen omedelbart.
 
-A quick media verification step will take place. This media verification step can save you the trouble of starting the installation only to find out halfway through that the installer will abort because of bad installation media.
+Ett snabbt mediaverifieringssteg kommer att äga rum. detta mediaverifieringssteg kan spara dig besväret av att påbörja installationen endast för att upptäcka halvvägs igenom att installationsprogrammet kommer att avbrytas på grund av dåligt installationsmedia.
 
-After the media check runs to completion, and the media is successfully verified to be usable, the installer will automatically continue to the next screen.
+Efter att mediekontrollen är klar, och mediat har framgångsrikt verifierats och kommer att vara användbart, så kommer installationsprogrammet automatiskt att fortsätta till nästa sektion.
 
-Select the language you want to use to perform the installation in this screen. For this example, we select _English (United States)_. Then click the <kbd>Continue</kbd> button.
+Välj vilket språk du vill använda för att utföra installationen i denna del. För detta exempel, så kommer vi välja _Engelska (United States)_. Klicka sedan på knappen <kbd>Fortsätt</kbd>.
 
-> **WARNING:**
-:warning: You'll next see warning screen. The screen will warn you that you are installing pre-release software and that you **should NOT** use the operating system in a production environment. If you okay with this, click <kbd>I want to proceed</kbd> to continue.
+> **VARNING:**
+:varning: Du kommer härnäst se en varningsskärm. Denna skärm kommer varna dig att du installerar programvara före släpp och att du **inte SKA** använda operativsystemet i en produktionsmiljö. Om du är okej med detta,, klicka på <kbd>Jag vill fortsätta</kbd> för att fortsätta.
 
-# Installation Summary
+# Installationsöversikt
 
-The _Installation Summary_ screen is an all-in-one area where you make the important decisions about the operating system to be installed.
+Installationsöversikts skärmen är ett allt-i-ett-område där du kan göra viktiga val om det operativsystem som ska installeras.
 
-The screen is roughly divided into the following sections:
+Denna skärm är ungefär uppdelad i följande sektioner:
 
-- _Localization_: (Keyboard, Language Support, and Time & Date)
-- _Software_: (Installation Source and Software Selection)
-- _System_: (Installation Destination and Network & Hostname)
+- _Lokalisering_: (Tangentbord, Språkstöd, och Tid & Datum)
+- Programvara: (Installationskälla och Programvaruval)
+- _System_: (Installationsdestination och Nätverk & Värdnamn)
 
-We delve into each of these sections next and make changes where necessary.
+Vi fördjupar oss i vart och ett av denna sektion och gör ändringar vid behov.
 
-## Localization Section
+## Lokaliseringssektion
 
-This section is used for customizing items related to the locale of the system. This includes – Keyboard, Language Support, Time and Date.
+Denna ssektion används för att anpassa objekt relaterade till lokalen ditt system. Detta inkluderar – Tangentbord, Språkstöd, Tid och Datum.
 
-### Keyboard
+### Tangentbord
 
-On our demo system in this guide, we accept the default value (_English US_) and make no changes.
+På vårt demo-system i den här guiden accepterar vi standardvärdet (_Engelska_ US_) och gör inga ändringar.
 
-However if you need to make any changes here, from the _Installation Summary_ screen, click the <kbd>Keyboard</kbd> option to specify the keyboard layout of the system. You can add additional keyboard layouts if you need to in the ensuing screen and specify their order.
+Men om du behöver göra några ändringar här, från _Installationsöversikt_ skärmen, klicka på <kbd>Tangentbords</kbd> alternativet för att ange tangentbordslayout på ditt system. Du kan lägga till ytterligare tangentbordslayouter om du behöver på den efterföljande skärmen och ange deras ordning.
 
-Click <kbd>Done</kbd> when you are done.
+Klicka på <kbd>Klar</kbd> när du är klar.
 
-### Language Support
+### Språkstöd
 
-The <kbd>Language Support</kbd> option on the _Installation Summary_ screen enables you to specify support for additional languages that you may need on the finished system.
+<kbd>Språkstöd</kbd> alternativet på _Installationsöversikt_ skärmen tillåter dig att aktivera stöd för ytterligare språk som du kan behöva på det färdiga systemet.
 
-We accept the default value (__English – United States__) and make no change. Click <kbd>Done</kbd>.
+Vi accepterar standardvärdet (__Engelska – United States__) och gör ingen förändring . Klicka på <kbd>Klar</kbd>.
 
-### Time & Date
+### Tid & Datum
 
-Click the <kbd>Time & Date</kbd> option on the main _Installation Summary_ screen to bring up another screen that will allow you to select the time zone in which the machine is located. Scroll through the list of regions and cities and select the area closest to you.
+Klicka på <kbd>Tid & Datum</kbd> alternativet på huvud _Installationsöversikt_ skärmen för att få upp en annan skärm som tillåter dig att välja vilken tidszon där maskinen är placerad. Bläddra igenom listan över regioner och städer och välj det område som ligger närmast dig.
 
-Depending on your installation source, the _Network Time_ option could be set to _ON_ or _OFF_ by default. Accept the default _ON_ setting; this allows the system to automatically set the correct time using the Network Time Protocol (NTP). Click <kbd>Done</kbd> after making any changes.
+Beroende på din installationskälla, så kan _Nätverkstid_ alternativet sättas till _PÅ eller _AV som standard. Acceptera standard _PÅ_ inställningen; detta tillåter systemet att automatiskt ställa in rätt tid genom att använda nätverkstid protokollet (NTP). Klicka på <kbd>Klar</kbd> efter du gjort några ändringar.
 
-## Software Section
+## Programvaruval
 
-Under the _Software_ section of the _Installation Summary_ screen, you can select the installation source as well as additional packages (applications) that get installed.
+Under Programvaruval sektionen på _Installationsöversikt_ skärmen, så kan du välja en installationskälla samt ytterligare paket (applikationer) som ska installeras.
 
-### Installation Source
+### Installationskälla
 
-Since we are performing our installation using a full Rocky 8 image, you will notice that _Local Media_ is automatically specified under the Installation Source section of the main _Installation Summary_ screen. We'll accept the preset defaults.
+Eftersom vi utför vår installation med en full Rocky 8 avbild, så kommer du notera att _Lokalt media_ är automatiskt valt under installationskälla sektionen av huvud _Installationsöversikt_ skärmen. Vi accepterar de förinställda standardvärdena.
 
-### Software Selection
+### Programvaruval
 
-Clicking the <kbd>Software Selection</kbd> option on the main _Installation Summary_ screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into :
+Klicka på <kbd>Programvaruval</kbd> alternativet på huvud _Installationsöversikt_ skärmen presenterar dig med en sektion av installationen där du kan välja dom exakta programvarupaketen som installeras på systemet. Dessa programvaru områden har delats in i dessa:
 
-- _Base Environment_ : Server, Minimal Install, Custom Operating System
-- _Additional software for Selected Environment area_ : Selecting a Base Environment on the left side presents a variety of related additional software that can be installed for the given environment on the right side.
+- _Basmiljö_ : Server, Minimal installation, Anpassat Operativ system
+- _Ytterligare programvara för området Vald miljö : Då du väljer basmiljö på vänster sida presenteras en mängd relaterad ytterligare programvara som kan installeras för den valda miljön på högersida.
 
-Select the _Minimal Install_ (Basic functionality) option instead.
+Välj alternativet _Minimal installation_ (grundläggande funktionalitet) istället.
 
-Click <kbd>Done</kbd> at the top of the screen.
+Klicka på <kbd>Klar</kbd> högst upp på skärmen.
         ​
-## System Section
+## System Sektion
 
-The System section of the _Installation Summary_ screen is used for customizing and making changes to the underlying hardware of the target system. This is where you create your hard drive partitions or volumes, specify the file system to be used, and specify the network configuration.
+Systemsektionen på _Installationsöversikt_ skärmen används för att anpassa och gör ändringar till den underliggande hårdvaran på målsystemet. Detta är vart du skapar dina hårddiskpartitioner eller volymer, specificerar vilket filsystem som ska användas, och anger nätverkskonfigurationen.
 
-### Installation Destination
+### Installationsdestination
 
-From the _Installation Summary_ screen, click the <kbd>Installation Destination</kbd> option. This takes you to the corresponding task area.
+Från _Installationsöversikt_ skärmen, klicka på <kbd>Installationsdestination</kbd> alternativet. Detta tar dig till motsvarande uppgiftsområde.
 
-You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you will see the drive listed under _Local Standard Disks_ with a check mark beside it. Clicking the disk icon will toggle on or off the disk selection check mark. We want it selected/checked here.
+Du kommer se en skärm som visar alla dom kandiderande diskar som du har tillgängliga på målsystemet. Om du endast har en diskenhet på systemet, som på vårat exempelsystem, Då kommer du att se enheten listad under _Lokala Standarddiskar_ med en bock bredvid den. Om du klickar på diskikonen växlar du på eller av kryssmarkeringen för diskval. Vi vill ha den vald/ikryssad här.
 
-Under the _Storage Configuration_ Options section, select the <kbd>Automatic</kbd> radio button.
+Under _Lagringskonfigurations_ Inställningssektionen, Välj den <kbd>Automatiska</kbd> knappen.
 
-Then click <kbd>Done</kbd> at the top of the screen.
+Klicka sedan på <kbd>Klar</kbd> högst upp på skärmen.
 
-Once the installer determines that you have a usable disk, you will be returned to the _Installation Summary_ screen.
+När installationsprogrammet har kommit fram till att du har en användbar disk, så kommer du att skickas tillbaka till _Installationsöversikt_ skärmen.
 
-### Network & Hostname
+### Nätverk & Värdnamn
 
-The final task of the installation procedure deals with network configuration, where you can configure or tweak network-related settings for the system.
+Sista steget av installationsproceduren handlar om nätverkskonfiguration, här kan du kan konfigurera eller justera nätverksrelaterade inställningar för systemet.
 
-> **NOTE:** After you click on the <kbd>Network & Hostname</kbd> option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen. Depending on the Linux distribution and the specific hardware setup, Ethernet devices in Linux have names similar to `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, and so on.
+> **NOTERA:** Efter du klickat på <kbd>Nätverk & Värdnamn</kbd> alternativet, alla korrekt upptäckta hårdvaror för nätverksgränssnitt (t.ex. Ethernet, trådlösa nätverkskort och så vidare) kommer att listas i den vänstra rutan på nätverkskonfigurationsskärmen. Beroende på Linux-distributionen och dom specifika hårdvaruinställningarna, Ethernet enheter i har namn som ungefär som  `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, och såvidare.
 
-For each interface, you can either configure it using DHCP or manually set the IP address. If you choose to configure manually, be sure to have all the pertinent information ready, such as the IP address, netmask, and so on.
+För varje gränssnitt, så kan du antingen konfigurera det med DHCP eller genom att manuellt ange en IP-adress. Om du väljer att konfigurera manuellt, se till att ha all relevant information redo, som t.ex. IP-adress, nätmask, och såvidare.
 
-Clicking the <kbd>Network & Hostname</kbd> button in the main _Installation Summary_ screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system (the name defaults to `localhost.localdomain`).
+Klicka på <kbd>Nätverk & Värdnamn</kbd> knappen på huvud  _Installationsöversikt_ skärmen öppnar den motsvarande konfigurationsskärmen. Bland annat, så har du alternativet att konfigurera värdnamnet för systemet (namnet är som standard `localhost.localdomain`).
 
-> **NOTE:**
-You can easily change this name later on after the OS has been installed. For now, accept the default value supplied for the hostname.
+> **NOTERA:**
+Du kan enkelt ändra detta namnet senare efter att oprativsystemet har installerats. För nu, acceptera det angivna standardvärdet för värdnamnet.
 
-The next important configuration task is related to the network interfaces on the system. First, verify that an Ethernet card (or any network card) is listed in the left pane. Click any of the detected network devices in the left pane to select it. The configurable properties of the selected network adapter will appear in the right pane of the screen.
+Nästa viktiga konfigurationsuppgift är relaterad till nätverksgränssnitten på systemet. Först, verifiera att ett Ethernet-kort (eller annat nätverkskort) är listat i den vänstra rutan. Klicka på någon av dom upptäckta nätverksenheterna i den vänstra rutan för att välja den. De konfigurerbara egenskaperna för den valda nätverks adapter visas i den högra rutan på skärmen.
 
-> **NOTE:**
-On our sample server, we have four Ethernet devices (`ens3`, `ens4`, `ens5` and `ens6`), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our sample system.
+> **NOTERA:**
+På våran exempelserver, så har vi fyra Ethernet-enheter (`ens3`, `ens4`, `ens5` och `ens6`), som alla är i ett anslutet tillstånd. Typ, namn, kvantitet, och tillstånd på nätverksenheterna på ditt system kan variera från de som finns i vårt exempelsystem.
 
-Make sure the switch of the device you want to configure is flipped to the `ON` position in the right pane.
-We'll accept all the defaults in this section.
+Se till att omkopplaren för enheten som du vill konfigurera ändras till `PÅ` position i den högra rutan.
+Vi accepterar alla standardvärden i den här sektionen.
 
-Click <kbd>Done</kbd> to return to the main _Installation Summary_ screen.
+Klicka på <kbd>Klar</kbd> och återgå till huvud _Installationsöversikt_ skärmen.
 
-> **CAUTION:**
-Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it.
+> **VARNING:**
+Var uppmärksam på serverns IP-adress i denna sektion av installationsprogrammet. Om du inte har fysisk åtkomst eller enkel konsolåtkomst till systemet, Så kommer denna information komma att vara till nytta senare när du behöver ansluta till servern för att fortsätta arbeta med den.
 
-## The Installation
+## Installationen
 
-Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.
+När du väl är nöjd med dina val för olika installationsuppgifter, så kommer nästa fas av installationsprocessen att börja installera ordentligt.
 
-## User Settings Section
+## Användarinställningar Sektion
 
-This section can be used for creating a password for the `root` user account and also for creating new administrative or non-administrative accounts.
+Denna sektion kommer att användas för att skapa ett lösenord för `root` användarkontot och också för att skapa nya administrativa eller icke-administrativa konton.
 
-### Set the Root Password
+### Välj ett Root lösenord
 
-Click the _Root Password_ field under _User Settings_ to launch the _Root Password _ task screen. In the _Root Password_ text box, set a strong password for the root user.
+Klicka på _Rootlösenords_ fäletet under _Använderinställningar_ för att starta _Rootlösenords _ uppgiftsskärmen. I _Rootlösenord_ textrutan, ange ett starkt lösenord för rotanvändaren.
 
-> **WARNING:**
-This user is the most privileged account on the system. Therefore, if you choose to use it or enable it - it is crucial that you protect this account with a very good password.
+> **VARNING:**
+Denna användare är det mest privilegierade kontot på ditt system. Därför, om du väljer att använda det eller aktivera det - så är det mycket viktigt att du skyddar det här kontot med ett mycket bra lösenord.
 
-Enter the same password again in the _Confirm_ text box.
-
-Click <kbd>Done</kbd>.
+Ange samme lösenord igen i _Bekräfta textrutan.
+ 
+Klicka på <kbd>Klar</kbd>.
             ​
 
-### Create a User Account
+### Skapa ett användarkonto
 
-Next click the _User Creation_ field under _User Settings_ to launch the _Create User_ task screen. This task area allows you to create a privileged or non-privileged (non-administrative) user account on the system.
+Klicka sedan på fältet _Användarskapande_ under _Användarinställningar_ för att starta _Skapa en användare_ uppgiftsskärmen. Detta aktivitetsområde låter dig skapa ett privilegierat eller icke-privilegierat (icke-administrativt) användarkonto i systemet.
 
-> **INFO:**
-Creating and using a non-privileged account for day-to-day tasks on a system is a good system administration practice.
+> **INFORMATION:**
+Att skapa och använda ett icke-privilegierat konto för dagliga uppgifter i ett system är en bra systemadministrationspraxis.
+Vi kommer att skapa en vanlig användare som kan åkalla superanvändare (administratörsrättigheter) när det behövs.
 
-We’ll create a regular user that can invoke superuser (administrator) powers when needed.
+Fyll i fälten på _Skapa en användare_ skärmen med följande information och klicka sedan på<kbd>Klar</kbd>:
 
-Complete the fields in the _Create User_ screen with the following information and then click <kbd>Done</kbd>:
-
-_Full name_:
+_Fullständigt namn_:
 `rockstar`
 
-_Username_:
+_Användarnamn_:
 `rockstar`
 
-_Make this user administrator_:
-Checked
+_Gör den här användaren administratör_:
+Ikryssad
 
-_Require a password to use this account_:
-Checked
+_Kräv ett lösenord för att använda detta konto_:
+Ikryssad
 
-_Password_:
+_Lösenord_:
 `04302021`
 
-_Confirm password_:
+_Bekräfta lösenord_:
 `04302021`
 
-### Start the Installation
+### Starta installationen
 
-Once you are satisfied with your choices for the various installation tasks, click the Begin Installation button on the main _Installation Summary_ screen. The installation will begin, and the installer will show the progress of the installation.
+När du väl är nöjd med dina val för dom olika installationsuppgifterna, klicka på starta Installationsknappen på huvud _Installationsöversikt_ skärmen. installationen kommer att startas, och installationsprogrammet visar hur installationen fortskrider.
 
-> **NOTE:**
-If you develop cold feet after you click the Begin Installation button, you can still safely back out of the installation without any loss of data (or self-esteem). To quit the installer, simply reset your system either by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
+> **NOTERA:**
+Om du får kalla fötter efter att du har klickat på starta Installationsknappen, så kan du fortfarande säkert komma tillbaka från installationen utan att förlora data (eller självförtroende). För att avsluta installationsprogrammet, Återställ helt enkelt ditt system antingen genom att klicka på Avsluta-knappen, trycka ctrl-alt-del på ditt tangentbord, eller genom att trycka på reset- eller strömknappen.
 
-When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.   ​
+När installationen startar, så kommer olika uppgifter börja köras i bakgrunden, som att partitionera disken, formatera partitionerna eller LVM-volymerna, söka efter och lösa programberoenden, skriva operativsystemet till disk och så vidare.   ​
 
-### Complete the Installation
+### Slutför installationen
 
-After you’ve completed any of the mandatory subtasks and the installer has run its course, you'll be presented with a final installation progress screen with a complete message.
+Efter du har slutfört alla av de obligatoriska deluppgifterna och installationsprogrammet har gått sin runda, så kommer du att få en slutlig skärm för installationsförloppet med ett slutför meddelande.
 
-Finally, complete the entire procedure by clicking the <kbd>Reboot System</kbd> button. The system will reboot itself.
+Slutligen slutför hela proceduren genom att klicka på <kbd>Starta om System</kbd> knappen. Systemet startar om sig själv.
             ​
-### Log In
+### Logga in
 
-The system is now set up and ready for use. You will see the adorable Rocky Linux console.
+Systemet är nu färdig installerat och klart för användning. Du kommer att se den bedårande Rocky Linux-konsolen.
 
-![Rocky Linux Welcome Screen](images/installation-F04.png)
+![Rocky Linux Välkommenskärm](images/installation-F04.png)
 
-To log onto the system, type `rockstar` at the login prompt and press <kbd>enter</kbd>.
+För att logga in på systemet, skriv `rockstar` vid inloggningsprompten och tryck på <kbd>enter</kbd>.
 
-At the Password prompt, type `04302021` (rockstar’s password) and press <kbd>enter</kbd> (nothing will appear on the screen and this is normal).
+Vid lösenordsprompten, skriv `04302021` (rockstar’s lösenord) och tryck på <kbd>enter</kbd> (ingenting visas på skärmen och detta är normalt).
 
-We'll run the `whoami` command after login.
+Prova att köra `whoami` kommandot efter inloggning.
 
-![Login Screen](images/installation-F06.png)
+![Inloggningsskärm](images/installation-F06.png)
