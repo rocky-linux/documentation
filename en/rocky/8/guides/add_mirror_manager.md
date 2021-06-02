@@ -8,6 +8,8 @@ title: Adding a public mirror to Rocky's mirror manager
 
 We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 datacenter like environment. Available bandwidth should be at least 100 MBit/s. If you are also allowing rsync you should have at least 500 MBit/s better 1 GBit/s. We prefer mirrors offering dualstack (IPv4 & IPv6). Please no dynamic DNS. If you are offering a mirror in a region that has only few mirrors yet of course we also accept slower speeds.
 
+Please do not submit mirrors which are hosted in a Anycast-CDN like Cloudflare etc. as this can lead to suboptimal performance with the selection of fastest mirror in dnf.
+
 Please note that we are not allowed to accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations
 
 Hard disk space requirements are around 100 GB at the moment but expect it to grow over time. 400 GB space should be sufficient for the next years.
@@ -15,7 +17,7 @@ Hard disk space requirements are around 100 GB at the moment but expect it to gr
 Our master mirror is `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`
 For your first synchronisation use a mirror near to you. You can find all official mirrors here: https://mirrors.rockylinux.org
 
-Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider using a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
+Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider rsyncing from a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
 
 ## Setting up you mirror
 
