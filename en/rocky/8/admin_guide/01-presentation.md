@@ -19,9 +19,7 @@ In this chapter you will learn about GNU/Linux distributions.
 :checkered_flag: **generalities**, **linux**, **distributions**
 
 **Knowledge**: :star:
-
 **Complexity**: :star:
-
 **Reading time**: 10 minutes
 
 ****
@@ -150,7 +148,7 @@ Linux is based on recognized standards [posix](http://fr.wikipedia.org/wiki/POSI
 * Portability.
 * Do only one thing and do it well.
 * KISS: Keep It Simple Stupid.
-* " UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity." (__Dennis Ritchie__)
+* "UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity." (__Dennis Ritchie__)
 * "Unix is user-friendly. It just isn't promiscuous about which users it's friendly with." (__Steven King__)
 
 ## The GNU/LINUX distributions
