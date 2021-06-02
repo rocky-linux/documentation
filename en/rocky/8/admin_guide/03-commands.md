@@ -1407,8 +1407,8 @@ $ ls /; cd /home; ls -lia; cd /
 
 ## Check your Knowledge
 
-:heavy_check_mark: What defines a user under Linux? (7 answers)
-:heavy_check_mark: What characterizes a long option for an order?
+:heavy_check_mark: What defines a user under Linux? (7 answers)\
+:heavy_check_mark: What characterizes a long option for an order?\
 :heavy_check_mark: Which commands allow you to search for help on a command:
 
 - [ ] `google`
