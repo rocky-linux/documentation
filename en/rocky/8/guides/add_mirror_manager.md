@@ -1,13 +1,14 @@
 ---
-title: 'Adding a public mirror to Rocky's mirror manager'
+title: Adding a public mirror to Rocky's mirror manager
 ---
-
-## What You Need
-* An account on https://accounts.rockylinux.org/
 
 # Adding a public mirror to Rocky's mirror manager
 
 Rocky uses Fedora's Mirror Manager for organizing community mirrors.
+
+## What You Need
+* An account on https://accounts.rockylinux.org/
+
 
 ## Creating a site
 
@@ -83,3 +84,5 @@ Examples:
 ## Wrap up
 
 Once the information is filled out, the site should appear on the mirror list as soon as the next mirror refresh occurs.
+
+Sync your mirror from rsync://msync.rockylinux.org
