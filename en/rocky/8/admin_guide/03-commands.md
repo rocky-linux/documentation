@@ -1407,22 +1407,28 @@ $ ls /; cd /home; ls -lia; cd /
 
 ## Check your Knowledge
 
-:heavy_check_mark: What defines a user under Linux? (7 answers)\
-:heavy_check_mark: What characterizes a long option for an order?\
-:heavy_check_mark: Which commands allow you to search for help on a command:\
+:heavy_check_mark: What defines a user under Linux? (7 answers)
+
+:heavy_check_mark: What characterizes a long option for an order?
+
+:heavy_check_mark: Which commands allow you to search for help on a command:
 - [ ] `google`
 - [ ] `chuck --norris`
 - [ ] `info`
 - [ ] `apropos`
-- [ ] `whatis`\
-:heavy_check_mark: Which command allows you to view a user's history?\
-:heavy_check_mark: Which command allows you to search for text in a file?\
+- [ ] `whatis`
+
+:heavy_check_mark: Which command allows you to view a user's history?
+
+:heavy_check_mark: Which command allows you to search for text in a file?
 - [ ] `find`
-- [ ] `grep`\
-:heavy_check_mark: Which command allows you to search for a file?\
+- [ ] `grep`
+
+:heavy_check_mark: Which command allows you to search for a file?
 - [ ] `find`
-- [ ] `grep`\
-:heavy_check_mark: Which command redirects the error stream of a command to a new `errors.log` file:\
+- [ ] `grep`
+
+:heavy_check_mark: Which command redirects the error stream of a command to a new `errors.log` file:
 - [ ] `ls -R / 2> errors.log`
 - [ ] `ls -R / 2>> errors.log`
 - [ ] `ls -R / 2> errors.log 2>&1`
