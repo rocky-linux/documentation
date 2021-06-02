@@ -18,9 +18,9 @@ In this chapter you will learn about GNU/Linux distributions.
 
 :checkered_flag: **generalities**, **linux**, **distributions**
 
-**Knowledge**: :star: 
+**Knowledge**: :star:
 
-**Complexity**: :star: 
+**Complexity**: :star:
 
 **Reading time**: 10 minutes
 
@@ -155,11 +155,11 @@ Linux is based on recognized standards [posix](http://fr.wikipedia.org/wiki/POSI
 
 ## The GNU/LINUX distributions
 
-A Linux distribution is a **consistent set of software** assembled around the Linux kernel and ready to be installed along with the necessary components to manage this software (installation, removal, configuration). There are **associative or community** distributions (Debian, CentOS) or **commercial** (RedHat, Ubuntu).
+A Linux distribution is a **consistent set of software** assembled around the Linux kernel and ready to be installed along with the necessary components to manage this software (installation, removal, configuration). There are **associative or community** distributions (Debian, Rocky) or **commercial** (RedHat, Ubuntu).
 
 Each distribution offers one or more **desktop environments**, provides a set of pre-installed software and a library of additional software. Configuration options (kernel or services options for example) are specific to each one.
 
-This principle allows you to have distributions oriented to **beginners** (Ubuntu, Linux Mint...), to have a more complex approach (Gentoo, Arch), to be focused more towards **servers** (Debian, Redhat), or to be dedicated towards **workstations**. 
+This principle allows you to have distributions oriented to **beginners** (Ubuntu, Linux Mint...), to have a more complex approach (Gentoo, Arch), to be focused more towards **servers** (Debian, Redhat), or to be dedicated towards **workstations**.
 
 ### Desktop environments
 
@@ -221,7 +221,7 @@ Linux is a suitable choice for hosting databases or websites, or as a mail serve
 
 The **shell**, known as _command interface_, allows users to send commands to the operating system. It is less visible today, since the implementation of graphical interfaces, but remains a privileged means on Linux systems which do not all have graphical interfaces and whose services do not always have a setting interface.
 
-It offers a real programming language including the classical structures: loops, alternatives and the common constituents: variables, passing of parameters, and sub-programs. It allows the creation of scripts to automate certain actions (backups, creation of users, system monitoring, etc.).
+It offers a real programming language including the classical structures: loops, alternatives, and the common constituents: variables, passing of parameters, and sub-programs. It allows the creation of scripts to automate certain actions (backups, creation of users, system monitoring, etc.).
 
 There are several types of shells available and configurable on a platform or according to the user's preference:
 
