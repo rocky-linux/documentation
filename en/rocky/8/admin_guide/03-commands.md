@@ -174,125 +174,126 @@ This set of manuals is divided into 8 sections, grouping information by topic, t
 7. Miscellaneous;
 8. System administration tools and daemons.
    Information about each section can be accessed by typing `man x intro`, where `x` is the section number.
-   The command :
    
-   ```
-   $ man passwd
-   ```
+The command :
    
-   will tell the administrator about the passwd command, its options, etc. While a :
+```
+$ man passwd
+```
    
-   ```
-   $ man 5 passwd
-   ```
+will tell the administrator about the passwd command, its options, etc. While a :
    
-   will inform him about the files related to the command.
-   Not all pages of the manual are translated from English. However, they are generally very accurate and provide all the information needed. The syntax used and the division may confuse the beginner administrator, but with practice, he will quickly find the information he is looking for.
-   The navigation in the manual is done with the arrows <kbd>↑</kbd> and <kbd>↓</kbd>. The manual is exited by pressing the <kbd>q</kbd> key.
+```
+$ man 5 passwd
+```
    
-   ### `shutdown` command
+will inform him about the files related to the command.
+Not all pages of the manual are translated from English. However, they are generally very accurate and provide all the information needed. The syntax used and the division may confuse the beginner administrator, but with practice, he will quickly find the information he is looking for.
+The navigation in the manual is done with the arrows <kbd>↑</kbd> and <kbd>↓</kbd>. The manual is exited by pressing the <kbd>q</kbd> key.
    
-   The `shutdown` command allows you to **electrically shut down** a Linux server, either immediately or after a certain period of time.
+### `shutdown` command
    
-   ```
-   [root]# shutdown [-h] [-r] time [message]
-   ```
+The `shutdown` command allows you to **electrically shut down** a Linux server, either immediately or after a certain period of time.
    
-   The shutdown time should be specified in the format `hh:mm` for a precise time, or `+mm` for a delay in minutes.
-   To force an immediate stop, the word `now` will replace the time. In this case, the optional message is not sent to other users of the system.
-   Examples:
+```
+[root]# shutdown [-h] [-r] time [message]
+```
+  
+The shutdown time should be specified in the format `hh:mm` for a precise time, or `+mm` for a delay in minutes.
+To force an immediate stop, the word `now` will replace the time. In this case, the optional message is not sent to other users of the system.
+Examples:
    
-   ```
-   [root]# shutdown -h 0:30 "Server shutdown at 0:30"
-   [root]# shutdown -r +5
-   ```
+```
+[root]# shutdown -h 0:30 "Server shutdown at 0:30"
+[root]# shutdown -r +5
+```
    
-   Options :
+Options :
    
-   | Options | Remarks                          |
-   | ------- | -------------------------------- |
-   | `-h`    | Shutdown the system electrically |
-   | `-r`    | Restarts the system              |
+| Options | Remarks                          |
+| ------- | -------------------------------- |
+| `-h`    | Shutdown the system electrically |
+| `-r`    | Restarts the system              |
    
-   ### `history` command
+### `history` command
    
-   The `history` command displays the history of commands that have been entered by the user.
-   The commands are stored in the `**.bash_history**` file in the user's login directory.
-   Example of a history command
+The `history` command displays the history of commands that have been entered by the user.
+The commands are stored in the `**.bash_history**` file in the user's login directory.
+Example of a history command
    
-   ```
-   $ history
-   147 man ls
-   148 man history
-   ```
+```
+$ history
+147 man ls
+148 man history
+```
    
-   | Options | Comments                                                                                                           |
-   | ------- | ------------------------------------------------------------------------------------------------------------------ |
-   | `-w`    | The `-w` option will copy the history of the current session to it.                                                |
-   | `-c`    | The `-c` option will delete the history of the current session (but not the contents of the `.bash_history` file). |
+| Options | Comments                                                                                                           |
+| ------- | ------------------------------------------------------------------------------------------------------------------ |
+| `-w`    | The `-w` option will copy the history of the current session to it.                                                |
+| `-c`    | The `-c` option will delete the history of the current session (but not the contents of the `.bash_history` file). |
 * Manipulating history:
   To manipulate the history, the following commands entered from the command prompt will:
   
-  | Keys               | Function                                                  |
-  | ------------------ | --------------------------------------------------------- |
-  | <kdb>!!</kdb>      | Recall the last command placed.                           |
-  | <kdb>!n</kdb>      | Recall the command by its number in the list.             |
-  | <kdb>!string</kdb> | Recall the most recent command beginning with the string. |
-  | <kdb>↑</kdb>       | Recall the most recent command beginning with the string. |
-  | <kdb>↓</kdb>       | Recall the most recent command beginning with the string. |
+| Keys               | Function                                                  |
+| ------------------ | --------------------------------------------------------- |
+| <kdb>!!</kdb>      | Recall the last command placed.                           |
+| <kdb>!n</kdb>      | Recall the command by its number in the list.             |
+| <kdb>!string</kdb> | Recall the most recent command beginning with the string. |
+| <kdb>↑</kdb>       | Recall the most recent command beginning with the string. |
+| <kdb>↓</kdb>       | Recall the most recent command beginning with the string. |
+ 
+### The auto-completion
   
-  ### The auto-completion
-  
-  Auto-completion is also a great help.
+Auto-completion is also a great help.
 * It allows you to complete commands, entered paths, or file names.
 * A press of the <kbd>TAB</kbd> key completes the entry in the case of a single solution.
 * Otherwise, a second press will be required to obtain the list of possibilities.
   If a double press of the <kbd>TAB</kbd> key causes no reaction from the system, then there is no solution to the current completion.
   
-  ## Display and identification
+## Display and identification
   
-  ### `clear` command
+### `clear` command
   
-  The `clear` command clears the contents of the terminal screen. In fact, to be more precise, it shifts the display so that the command prompt is at the top of the screen on the first line.
-  In a terminal, the display will be permanently hidden, whereas in a graphical interface, a scrollbar will allow you to go back in the history of the virtual terminal.
+The `clear` command clears the contents of the terminal screen. In fact, to be more precise, it shifts the display so that the command prompt is at the top of the screen on the first line.
+In a terminal, the display will be permanently hidden, whereas in a graphical interface, a scrollbar will allow you to go back in the history of the virtual terminal.
   
-  > :star: **TIP:**
-  > <kbd>CTRL</kbd> + <kbd>L</kbd> will have the same effect as the `clear` command
+> :star: **TIP:**
+> <kbd>CTRL</kbd> + <kbd>L</kbd> will have the same effect as the `clear` command
   
-  ### `echo` command
+### `echo` command
   
-  The `echo` command is used to display a string of characters.
-  This command is most commonly used in administration scripts to inform the user during execution.
-  The `-n` option will not return to the line after displaying the text (which is the default behavior of the command).
-  For various reasons, the script developer may need to use special sequences (starting with a `\` character''). In this case, the `-e` option will be stipulated, allowing interpretation of the sequences.
-  Among the frequently used sequences, we can mention :
+The `echo` command is used to display a string of characters.
+This command is most commonly used in administration scripts to inform the user during execution.
+The `-n` option will not return to the line after displaying the text (which is the default behavior of the command).
+For various reasons, the script developer may need to use special sequences (starting with a `\` character''). In this case, the `-e` option will be stipulated, allowing interpretation of the sequences.
+Among the frequently used sequences, we can mention :
   
-  | Sequence | Result                |
-  | -------- | --------------------- |
-  | `\a`     | Send a sonor bip      |
-  | `\b`     | Back                  |
-  | `\n`     | Adds a line break     |
-  | `\t`     | Adds a horizontal tab |
-  | `\v`     | Adds vertical tab     |
+| Sequence | Result                |
+| -------- | --------------------- |
+| `\a`     | Send a sonor bip      |
+| `\b`     | Back                  |
+| `\n`     | Adds a line break     |
+| `\t`     | Adds a horizontal tab |
+| `\v`     | Adds vertical tab     |
   
-  ### `date` command
+### `date` command
   
-  The `date` command displays the date and time. The command has the following syntax:
+The `date` command displays the date and time. The command has the following syntax:
   
-  ```
-  date [-d AAAAMMJJ] [format]
-  ```
+```
+date [-d AAAAMMJJ] [format]
+```
   
-  Examples:
+Examples:
   
-  ```
-  $ date
-  Mon May 24 16:46:53 CEST 2021
-  $ date -d 20210517 +%j
-  137
-  ```
+```
+$ date
+Mon May 24 16:46:53 CEST 2021
+$ date -d 20210517 +%j
+137
+```
   
-  In this last example, the `-d` option displays a given date. The `+%j` option formats this date to show only the day of the year.
+In this last example, the `-d` option displays a given date. The `+%j` option formats this date to show only the day of the year.
 
 > :warning: **WARNING:**
 > The format of a date can change depending on the value of the language defined in the environment variable `$LANG`.
@@ -376,234 +377,234 @@ An **absolute path** references a file from the root by traversing the entire tr
 * By an **absolute path**, the current directory does not matter. We start at the root, and work our way down to the directories `home`, `groupA`, `alice` and finally the file `myfile`: `/home/groupA/alice/myfile`.
 * By a **relative path**, our starting point being the current directory `bob`, we go up one level through `..` (i.e., into the `groupA` directory), then down into the `alice directory, and finally the `myfile` file: `../alice/myfile`.
   
-  ### `pwd` command
+### `pwd` command
   
-  The `pwd` (Print Working Directory) command displays the absolute path of the current directory.
+The `pwd` (Print Working Directory) command displays the absolute path of the current directory.
   
-  ```
-  $ pwd
-  /home/rockstar
-  ```
+```
+$ pwd
+/home/rockstar
+```
   
-  To move around using a relative path, you must know its position in the tree.
-  Depending on the command interpreter, the command prompt may also display the name of the current directory.
+To move around using a relative path, you must know its position in the tree.
+Depending on the command interpreter, the command prompt may also display the name of the current directory.
   
-  ### `cd` command
+### `cd` command
   
-  The `cd` (Change Directory) command allows you to change the current directory, in other words, to move through the tree.
+The `cd` (Change Directory) command allows you to change the current directory, in other words, to move through the tree.
   
-  ```
-  $ cd /tmp
-  $ pwd
-  /tmp
-  $ cd ../
-  $ pwd
-  /
-  $ cd
-  $ pwd
-  /home/rockstar
-  ```
+```
+$ cd /tmp
+$ pwd
+/tmp
+$ cd ../
+$ pwd
+/
+$ cd
+$ pwd
+/home/rockstar
+```
   
-  As you can see in the last example above, the command `cd` with no arguments moves the current directory to the `home directory`.
+As you can see in the last example above, the command `cd` with no arguments moves the current directory to the `home directory`.
   
-  ### `ls` command
+### `ls` command
   
-  The `ls` command displays the contents of a directory
+The `ls` command displays the contents of a directory
   
-  ```
-  ls [-a] [-i] [-l] [directory1] [directory2] […]
-  ```
+```
+ls [-a] [-i] [-l] [directory1] [directory2] […]
+```
   
-  Example:
+Example:
   
-  ```
-  $ ls /home
-  .    ..    rockstar
-  ```
+```
+$ ls /home
+.    ..    rockstar
+```
   
-  The main options of the `ls` command are :
+The main options of the `ls` command are :
   
-  | Option                                                       | Information                                                                                                                          |
-  | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-  | `-a`                                                         | Displays all files, even hidden ones. Hidden files in Linux are those beginning with `.`.                                            |
-  | `-i`                                                         | Displays inode numbers.                                                                                                              |
-  | `-l`                                                         | The `-l` command displays a vertical list of files with additional information formatted in columns.                                 |
-  | The `ls` command, however, has a lot of options (see `man`): |                                                                                                                                      |
-  | Option                                                       | Information                                                                                                                          |
-  | ------                                                       | ------------                                                                                                                         |
-  | `-d`                                                         | Displays information about a directory instead of listing its contents.                                                              |
-  | `-g`                                                         | Displays UID and GID rather than owner names.                                                                                        |
-  | `-h`                                                         | Displays file sizes in the most appropriate format (byte, kilobyte, megabyte, gigabyte, ...). `h` stands for Human Readable.         |
-  | `-s`                                                         | Displays the size in bytes (unless `k` option).                                                                                      |
-  | `-A`                                                         | Displays all files in the directory except `.` and `.`.                                                                              |
-  | `-R`                                                         | Displays the contents of subdirectories recursively.                                                                                 |
-  | `-F`                                                         | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file. |
-  | `-X`                                                         | Sort files according to their extensions.                                                                                            |
+| Option                                                       | Information                                                                                                                          |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `-a`                                                         | Displays all files, even hidden ones. Hidden files in Linux are those beginning with `.`.                                            |
+| `-i`                                                         | Displays inode numbers.                                                                                                              |
+| `-l`                                                         | The `-l` command displays a vertical list of files with additional information formatted in columns.                                 |
+| The `ls` command, however, has a lot of options (see `man`): |                                                                                                                                      |
+| Option                                                       | Information                                                                                                                          |
+| ------                                                       | ------------                                                                                                                         |
+| `-d`                                                         | Displays information about a directory instead of listing its contents.                                                              |
+| `-g`                                                         | Displays UID and GID rather than owner names.                                                                                        |
+| `-h`                                                         | Displays file sizes in the most appropriate format (byte, kilobyte, megabyte, gigabyte, ...). `h` stands for Human Readable.         |
+| `-s`                                                         | Displays the size in bytes (unless `k` option).                                                                                      |
+| `-A`                                                         | Displays all files in the directory except `.` and `.`.                                                                              |
+| `-R`                                                         | Displays the contents of subdirectories recursively.                                                                                 |
+| `-F`                                                         | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file. |
+| `-X`                                                         | Sort files according to their extensions.                                                                                            |
 * Description of columns:
   
-  ```
-  $ ls -lia /home
-  78489 drwx------ 4 rockstar rockstar 4096 25 oct. 08:10 rockstar
-  ```
+```
+$ ls -lia /home
+78489 drwx------ 4 rockstar rockstar 4096 25 oct. 08:10 rockstar
+```
   
-  | Value           | Information                                                                                                   |
-  | --------------- | ------------------------------------------------------------------------------------------------------------- |
-  | `78489`         | Inode Number.                                                                                                 |
-  | `drwx------`    | File type (`d`) and rights (`rwx``--`).                                                                       |
-  | `4`             | Number of subdirectories (`.` and `..` included). For a file of type physical link: number of physical links. |
-  | `rockstar`      | For a physical link file: number of physical links.                                                           |
-  | `rockstar`      | For a file of type physical link: number of physical links.                                                   |
-  | `4096`          | For a physical link type file: number of physical links.                                                      |
-  | `25 oct. 08:10` | Last modified date.                                                                                           |
-  | `rockstar`      | The name of the file (or directory).                                                                          |
+| Value           | Information                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
+| `78489`         | Inode Number.                                                                                                 |
+| `drwx------`    | File type (`d`) and rights (`rwx``--`).                                                                       |
+| `4`             | Number of subdirectories (`.` and `..` included). For a file of type physical link: number of physical links. |
+| `rockstar`      | For a physical link file: number of physical links.                                                           |
+| `rockstar`      | For a file of type physical link: number of physical links.                                                   |
+| `4096`          | For a physical link type file: number of physical links.                                                      |
+| `25 oct. 08:10` | Last modified date.                                                                                           |
+| `rockstar`      | The name of the file (or directory).                                                                          |
+ 
+> :notebook: **NOTE:**
+> **Aliases** are frequently positioned in common distributions.
+> This is the case of the alias `ll`:
   
-  > :notebook: **NOTE:**
-  > **Aliases** are frequently positioned in common distributions.
-  > This is the case of the alias `ll`:
+```
+alias ll='ls -l --color=auto'
+```
   
-  ```
-  alias ll='ls -l --color=auto'
-  ```
-  
-  The `ls` command has many options and here are some advanced examples of uses:
+The `ls` command has many options and here are some advanced examples of uses:
 * List the files in `/etc` in order of last modification:
   
-  ```
-  $ ls -ltr /etc
-  total 1332
-  -rw-r--r--.  1 root root    662 29 may   2021 logrotate.conf
-  -rw-r--r--.  1 root root    272 17 may.   2021 mailcap
-  -rw-------.  1 root root    122 12 may.  2021 securetty
-  ...
-  -rw-r--r--.  2 root root     85 18 may.  17:04 resolv.conf
-  -rw-r--r--.  1 root root     44 18 may.  17:04 adjtime
-  -rw-r--r--.  1 root root    283 18 may.  17:05 mtab
-  ```
+```
+$ ls -ltr /etc
+total 1332
+-rw-r--r--.  1 root root    662 29 may   2021 logrotate.conf
+-rw-r--r--.  1 root root    272 17 may.   2021 mailcap
+-rw-------.  1 root root    122 12 may.  2021 securetty
+...
+-rw-r--r--.  2 root root     85 18 may.  17:04 resolv.conf
+-rw-r--r--.  1 root root     44 18 may.  17:04 adjtime
+-rw-r--r--.  1 root root    283 18 may.  17:05 mtab
+```
 * List `/var` files larger than 1 megabyte but less than 1 gigabyte:
   
-  ```
-  $ ls -Rlh /var | grep [0-9]M
-  ...
-  -rw-r--r--. 1 apache apache 1,2M 10 may.  13:02 XB RiyazBdIt.ttf
-  -rw-r--r--. 1 apache apache 1,2M 10 may.  13:02 XB RiyazBd.ttf
-  -rw-r--r--. 1 apache apache 1,1M 10 may.  13:02 XB RiyazIt.ttf
-  ...
-  ```
+```
+$ ls -Rlh /var | grep [0-9]M
+...
+-rw-r--r--. 1 apache apache 1,2M 10 may.  13:02 XB RiyazBdIt.ttf
+-rw-r--r--. 1 apache apache 1,2M 10 may.  13:02 XB RiyazBd.ttf
+-rw-r--r--. 1 apache apache 1,1M 10 may.  13:02 XB RiyazIt.ttf
+...
+```
 * Show the rights on a folder:
   To find out the rights to a folder, in our example `/etc`, the following command would not be appropriate:
   
-  ```
-  $ ls -l /etc
-  total 1332
-  -rw-r--r--.  1 root root     44 18 nov.  17:04 adjtime
-  -rw-r--r--.  1 root root   1512 12 janv.  2010 aliases
-  -rw-r--r--.  1 root root  12288 17 nov.  17:41 aliases.db
-  drwxr-xr-x.  2 root root   4096 17 nov.  17:48 alternatives
-  ...
-  ```
+```
+$ ls -l /etc
+total 1332
+-rw-r--r--.  1 root root     44 18 nov.  17:04 adjtime
+-rw-r--r--.  1 root root   1512 12 janv.  2010 aliases
+-rw-r--r--.  1 root root  12288 17 nov.  17:41 aliases.db
+drwxr-xr-x.  2 root root   4096 17 nov.  17:48 alternatives
+...
+```
   
-  since the command lists by default the contents of the folder and not the container.
-  To do this, use the `-d` option:
+since the command lists by default the contents of the folder and not the container.
+To do this, use the `-d` option:
   
-  ```
-  $ ls -ld /etc
-  drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc
-  ```
+```
+$ ls -ld /etc
+drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc
+```
 * List files by size:
   
-  ```
-  $ ls -lhS
-  ```
+```
+$ ls -lhS
+```
 * Display the modification date in "timestamp" format:
   
-  ```
-  $ ls -l --time-style="+%Y-%m-%d %m-%d %H:%M" /
-  total 12378
-  dr-xr-xr-x. 2 root root 4096 2014-11-23 11-23 03:13 bin
-  dr-xr-xr-x. 5 root root 1024 2014-11-23 11-23 05:29 boot
-  ```
+```
+$ ls -l --time-style="+%Y-%m-%d %m-%d %H:%M" /
+total 12378
+dr-xr-xr-x. 2 root root 4096 2014-11-23 11-23 03:13 bin
+dr-xr-xr-x. 5 root root 1024 2014-11-23 11-23 05:29 boot
+```
 * Add the _trailing slash_ to the end of folders:
   By default, the `ls` command does not display the last slash of a folder.
   In some cases, like for scripts for example, it is useful to display them:
   
-  ```
-  $ ls -dF /etc
-  /etc/
-  ```
+```
+$ ls -dF /etc
+/etc/
+```
 * Hide some extensions:
   
-  ```
-  $ ls /etc --hide=*.conf
-  ```
+```
+$ ls /etc --hide=*.conf
+```
   
-  ### `mkdir` command
+### `mkdir` command
   
-  The `mkdir` command creates a directory or directory tree.
+The `mkdir` command creates a directory or directory tree.
   
-  ```
-  mkdir [-p] directory [directory] [...]
-  ```
+```
+mkdir [-p] directory [directory] [...]
+```
   
-  Example:
+Example:
   
-  ```
-  $ mkdir /home/rockstar/work
-  ```
+```
+$ mkdir /home/rockstar/work
+```
   
-  The "rockstar" directory must exist to create the "work" directory.
-  Otherwise, the `-p` option should be used. The `-p` option creates the parent directories if they do not exist.
+The "rockstar" directory must exist to create the "work" directory.
+Otherwise, the `-p` option should be used. The `-p` option creates the parent directories if they do not exist.
   
-  > :fire: **DANGER:**
-  > It is not recommended to use Linux command names as directory or file names.
+> :fire: **DANGER:**
+> It is not recommended to use Linux command names as directory or file names.
   
-  ### `touch` command
+### `touch` command
   
-  The `touch` command changes the timestamp of a file or creates an empty file if the file does not exist.
+The `touch` command changes the timestamp of a file or creates an empty file if the file does not exist.
   
-  ```
-  touch [-t date] file
-  ```
+```
+touch [-t date] file
+```
   
-  Example :
+Example :
   
-  ```
-  $ touch /home/rockstar/myfile
-  ```
+```
+$ touch /home/rockstar/myfile
+```
   
-  | Option                            | Information                                                                |
-  | --------------------------------- | -------------------------------------------------------------------------- |
-  | `-t date`                         | Changes the date of last modification of the file with the specified date. |
-  | Date format: `[AAAA]MMJJhhmm[ss]` |                                                                            |
+| Option                            | Information                                                                |
+| --------------------------------- | -------------------------------------------------------------------------- |
+| `-t date`                         | Changes the date of last modification of the file with the specified date. |
+| Date format: `[AAAA]MMJJhhmm[ss]` |                                                                            |
+
+> :star: **TIP:**
+> The `touch` command is primarily used to create an empty file, but it can be useful for incremental or differential backups for example. Indeed, the only effect of executing a `touch` on a file will be to force it to be saved during the next backup.
   
-  > :star: **TIP:**
-  > The `touch` command is primarily used to create an empty file, but it can be useful for incremental or differential backups for example. Indeed, the only effect of executing a `touch` on a file will be to force it to be saved during the next backup.
+### `rmdir` command
   
-  ### `rmdir` command
+The `rmdir` command deletes an empty directory.
+Example:
   
-  The `rmdir` command deletes an empty directory.
-  Example:
+```
+$ rmdir /home/rockstar/work
+```
   
-  ```
-  $ rmdir /home/rockstar/work
-  ```
+| Option                                                                  | Information |
+| ----------------------------------------------------------------------- | ----------- |
+| Removes the parent directory or directories provided if they are empty. |             |
   
-  | Option                                                                  | Information |
-  | ----------------------------------------------------------------------- | ----------- |
-  | Removes the parent directory or directories provided if they are empty. |             |
+> :star: **TIP:**
+> To delete both a non-empty directory and its contents, use the `rm` command.
   
-  > :star: **TIP:**
-  > To delete both a non-empty directory and its contents, use the `rm` command.
+### `rm` command
   
-  ### `rm` command
+The `rm` command deletes a file or directory.
   
-  The `rm` command deletes a file or directory.
+```
+rm [-f] [-r] file [file] [...]
+```
   
-  ```
-  rm [-f] [-r] file [file] [...]
-  ```
-  
-  > :fire: **CAUTION:**
-  > Any deletion of a file or directory is final.
+> :fire: **CAUTION:**
+> Any deletion of a file or directory is final.
 
 | Options | Information                              |
 | ------- | ---------------------------------------- |
@@ -922,344 +923,344 @@ In this example, the `sort` command will sort the contents of the `/etc/passwd` 
 Some advanced examples of using the `sort` command:
 
 * Shuffling values
-  The `sort` command also allows you to shuffle values with the `-R` option:
+The `sort` command also allows you to shuffle values with the `-R` option:
   
   ```
   $ sort -R /etc/passwd
   ```
 * Sorting IP addresses
-  A system administrator is quickly confronted with the processing of IP addresses from the logs of his services such as SMTP, VSFTP or Apache. These addresses are typically extracted with the `cut` command.
-  Here is an example with the file `dns-client.txt` :
+A system administrator is quickly confronted with the processing of IP addresses from the logs of his services such as SMTP, VSFTP or Apache. These addresses are typically extracted with the `cut` command.
+Here is an example with the file `dns-client.txt` :
   
-  ```
-  192.168.1.10
-  192.168.1.200
-  5.1.150.146
-  208.128.150.98
-  208.128.150.99
-  ```
+```
+192.168.1.10
+192.168.1.200
+5.1.150.146
+208.128.150.98
+208.128.150.99
+```
   
-  ```
-  $ sort -nr dns-client.txt
-  208.128.150.99
-  208.128.150.98
-  192.168.1.200
-  192.168.1.10
-  5.1.150.146
-  ```
+```
+$ sort -nr dns-client.txt
+208.128.150.99
+208.128.150.98
+192.168.1.200
+192.168.1.10
+5.1.150.146
+```
 * Sorting file by sizes
-  The `sort` command knows how to recognize file sizes, from commands like `ls` with the `-h` option.
-  Here is an example with the file `size.txt` :
+The `sort` command knows how to recognize file sizes, from commands like `ls` with the `-h` option.
+Here is an example with the file `size.txt` :
   
-  ```
-  1,7G
-  18M
-  69K
-  2,4M
-  1,2M
-  4,2G
-  6M
-  124M
-  12,4M
-  4G
-  ```
+```
+1,7G
+18M
+69K
+2,4M
+1,2M
+4,2G
+6M
+124M
+12,4M
+4G
+```
   
-  ```
-  $ sort -hr size.txt
-  4,2G
-  4G
-  1,7G
-  124M
-  18M
-  12,4M
-  6M
-  2,4M
-  1,2M
-  69K
-  ```
+```
+$ sort -hr size.txt
+4,2G
+4G
+1,7G
+124M
+18M
+12,4M
+6M
+2,4M
+1,2M
+69K
+```
   
-  ### `wc` command
+### `wc` command
   
-  The `wc` command counts the number of lines, words and/or bytes in a file.
+The `wc` command counts the number of lines, words and/or bytes in a file.
   
-  ```
-  wc [-l] [-m] [-w] file [files]
-  ```
+```
+wc [-l] [-m] [-w] file [files]
+```
   
-  | Option | Observation                     |
-  | ------ | ------------------------------- |
-  | `-c`   | Count the number of bytes.      |
-  | `-m`   | Count the number of characters. |
-  | `-l`   | Counts the number of lines.     |
-  | `-w`   | Counts the number of words.     |
+| Option | Observation                     |
+| ------ | ------------------------------- |
+| `-c`   | Count the number of bytes.      |
+| `-m`   | Count the number of characters. |
+| `-l`   | Counts the number of lines.     |
+| `-w`   | Counts the number of words.     |
   
-  ## Search
+## Search
   
-  ### `find` command
+### `find` command
   
-  The `find` command searches for files or directories location.
+The `find` command searches for files or directories location.
   
-  ```
-  find directory [-name name] [-type type] [-user login] [-date date]
-  ```
+```
+find directory [-name name] [-type type] [-user login] [-date date]
+```
   
-  Since there are so many options to the `find` command, it is best to refer to the `man`.
-  If the search directory is not specified, the `find` command will search from the current directory.
+Since there are so many options to the `find` command, it is best to refer to the `man`.
+If the search directory is not specified, the `find` command will search from the current directory.
   
-  | Option              | Observation                            |
-  | ------------------- | -------------------------------------- |
-  | `-perm permissions` | Search for files by their permissions. |
-  | `-size size`        | Search for files by size.              |
+| Option              | Observation                            |
+| ------------------- | -------------------------------------- |
+| `-perm permissions` | Search for files by their permissions. |
+| `-size size`        | Search for files by size.              |
   
-  ### `-exec` option of the `find` command
+### `-exec` option of the `find` command
   
-  It is possible to use the `-exec` option of the `find` command to execute a command on each result line:
+It is possible to use the `-exec` option of the `find` command to execute a command on each result line:
   
-  ```
-  $ find /tmp -name *.txt -exec rm -f {} \;
-  ```
+```
+$ find /tmp -name *.txt -exec rm -f {} \;
+```
   
-  The previous command searches for all files in the `/tmp` directory named `*.txt` and deletes them.
+The previous command searches for all files in the `/tmp` directory named `*.txt` and deletes them.
   
-  > :star: **TIP:**
-  > **Understand the -exec** option
-  > In the example above, the `find` command will construct a string representing the command to be executed.
-  > If the `find` command finds three files named `log1.txt`, `log2.txt`, and `log3.txt`, then the `find` command will construct the string by replacing in the string "`rm -f {} \; the braces with one of the results of the search, and do this as many times as there are results.
-  > This will give us :
+> :star: **TIP:**
+> **Understand the -exec** option
+> In the example above, the `find` command will construct a string representing the command to be executed.
+> If the `find` command finds three files named `log1.txt`, `log2.txt`, and `log3.txt`, then the `find` command will construct the string by replacing in the string "`rm -f {} \; the braces with one of the results of the search, and do this as many times as there are results.
+> This will give us :
   
-  ```
-  rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
-  ```
+```
+rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
+```
   
-  The `;` character is a special shell character that must be protected by a `\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).
+The `;` character is a special shell character that must be protected by a `\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).
   
-  > :star: **TIP:**
-  > `$ find /tmp -name *.txt -delete` does the same thing.
+> :star: **TIP:**
+> `$ find /tmp -name *.txt -delete` does the same thing.
   
-  ### `whereis` command
+### `whereis` command
   
-  The `whereis` command searches for files related to a command.
+The `whereis` command searches for files related to a command.
   
-  ```
-  whereis [-b] [-m] [-s] command
-  ```
+```
+whereis [-b] [-m] [-s] command
+```
   
-  Example:
+Example:
   
-  ```
-  $ whereis -b ls
-  ls: /bin/ls
-  ```
+```
+$ whereis -b ls
+ls: /bin/ls
+```
   
-  | Option | Observation                     |
-  | ------ | ------------------------------- |
-  | `-b`   | Search only the binary file.    |
-  | `-m`   | Searches only for man pages.    |
-  | `-s`   | Searches only for source files. |
+| Option | Observation                     |
+| ------ | ------------------------------- |
+| `-b`   | Search only the binary file.    |
+| `-m`   | Searches only for man pages.    |
+| `-s`   | Searches only for source files. |
   
-  ### `grep` command
+### `grep` command
   
-  The `grep` command searches for a string in a file.
+The `grep` command searches for a string in a file.
   
-  ```
-  grep [-w] [-i] [-v] "string" file
-  ```
+```
+grep [-w] [-i] [-v] "string" file
+```
   
-  Example:
+Example:
   
-  ```
-  $ grep -w "root:" /etc/passwd
-  root:x:0:0:root:/root:/bin/bash
-  ```
+```
+$ grep -w "root:" /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+```
   
-  | Option                                                                                  | Observation                             |
-  | --------------------------------------------------------------------------------------- | --------------------------------------- |
-  | `-i`                                                                                    | Ignore the case of the searched string. |
-  | `-v`                                                                                    | Excludes lines containing the string.   |
-  | `-w`                                                                                    | Search for the exact word.              |
-  | The `grep` command returns the complete line containing the string you are looking for. |                                         |
+| Option                                                                                  | Observation                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------- |
+| `-i`                                                                                    | Ignore the case of the searched string. |
+| `-v`                                                                                    | Excludes lines containing the string.   |
+| `-w`                                                                                    | Search for the exact word.              |
+| The `grep` command returns the complete line containing the string you are looking for. |                                         |
 * The `^` special character is used to search for a string at the beginning of a line.
 * The special character `$` searches for a string at the end of a line.
   
-  ```
-  $ grep -w "^root" /etc/passwd
-  ```
+```
+$ grep -w "^root" /etc/passwd
+```
   
-  > :notebook: **NOTE:**
-  > This command is very powerful and it is highly recommended to consult its manual. It has many derivatives.
-  > It is possible to search for a string in a file tree with the `-R' option.
+> :notebook: **NOTE:**
+> This command is very powerful and it is highly recommended to consult its manual. It has many derivatives.
+> It is possible to search for a string in a file tree with the `-R' option.
   
-  ```
-  grep -R "Virtual" /etc/httpd
-  ```
+```
+grep -R "Virtual" /etc/httpd
+```
   
-  ### Meta-characters (wildcards)
+### Meta-characters (wildcards)
   
-  Meta-characters replace one or more characters (or even an absence of characters) during a search. These meta-characters are also known as wildcards. They can be combined. The `*` character replaces a string composed of any characters. The `*` character can also represent an absence of character.
+Meta-characters replace one or more characters (or even an absence of characters) during a search. These meta-characters are also known as wildcards. They can be combined. The `*` character replaces a string composed of any characters. The `*` character can also represent an absence of character.
   
-  ```
-  $ find /home -name "test*"
-  /home/rockstar/test
-  /home/rockstar/test1
-  /home/rockstar/test11
-  /home/rockstar/tests
-  /home/rockstar/test362
-  ```
+```
+$ find /home -name "test*"
+/home/rockstar/test
+/home/rockstar/test1
+/home/rockstar/test11
+/home/rockstar/tests
+/home/rockstar/test362
+```
   
-  Meta-characters allow more complex searches by replacing all or part of a word. Simply replace the unknowns with these special characters.
-  The character `?` replaces a single character, whatever it is.
+Meta-characters allow more complex searches by replacing all or part of a word. Simply replace the unknowns with these special characters.
+The character `?` replaces a single character, whatever it is.
   
-  ```
-  $ find /home -name "test?"
-  /home/rockstar/test1
-  /home/rockstar/tests
-  ```
+```
+$ find /home -name "test?"
+/home/rockstar/test1
+/home/rockstar/tests
+```
   
-  The square brackets `[` are used to specify the values that a single character can take.
+The square brackets `[` are used to specify the values that a single character can take.
   
-  ```
-  $ find /home -name "test[123]*"
-  /home/rockstar/test1
-  /home/rockstar/test11
-  /home/rockstar/test362
-  ```
+```
+$ find /home -name "test[123]*"
+/home/rockstar/test1
+/home/rockstar/test11
+/home/rockstar/test362
+```
   
-  > :notebook: **NOTE:**
-  > Always surround words containing meta-characters with `"` to prevent them from being replaced by the names of files that meet the criteria.
-  > :fire: **DANGER:**
-  > Do not confuse shell meta-characters with regular expression meta-characters. The `grep` command uses regular expression meta-characters.
+> :notebook: **NOTE:**
+> Always surround words containing meta-characters with `"` to prevent them from being replaced by the names of files that meet the criteria.
+> :fire: **DANGER:**
+> Do not confuse shell meta-characters with regular expression meta-characters. The `grep` command uses regular expression meta-characters.
   
-  ## Redirects and pipes
+## Redirects and pipes
   
-  ### Standard input and output
+### Standard input and output
   
-  On UNIX and Linux systems, there are three standard streams. They allow programs, via the `stdio.h` library, to input or output information.
-  These streams are called X channel or X file descriptor.
-  By default:
+On UNIX and Linux systems, there are three standard streams. They allow programs, via the `stdio.h` library, to input or output information.
+These streams are called X channel or X file descriptor.
+By default:
 * the keyboard is the input device for channel 0, called **stdin** ;
 * the screen is the output device for channels 1 and 2, called **stdout** and **stderr**.
-  ![standards channels](images/input-output.png)
-  **stderr** receives the error streams returned by a command. The other streams are directed to **stdout**.
-  These streams point to peripheral files, but since everything is a file in UNIX/Linux, I/O streams can easily be diverted to other files. This principle is the strength of the shell.
+![standards channels](images/input-output.png)
+**stderr** receives the error streams returned by a command. The other streams are directed to **stdout**.
+These streams point to peripheral files, but since everything is a file in UNIX/Linux, I/O streams can easily be diverted to other files. This principle is the strength of the shell.
   
-  ### Input redirection
+### Input redirection
   
-  It is possible to redirect the input stream from another file with the character `<` or `<<`. The command will read the file instead of the keyboard:
+It is possible to redirect the input stream from another file with the character `<` or `<<`. The command will read the file instead of the keyboard:
   
-  ```
-  $ ftp -in serverftp << ftp-commands.txt
-  ```
+```
+$ ftp -in serverftp << ftp-commands.txt
+```
   
-  > :notebook: **NOTE:**
-  > Only commands that require keyboard input will be able to handle input redirection.
-  > Input redirection can also be used to simulate user interactivity. The command will read the input stream until it encounters the defined keyword after the input redirection.
-  > This feature is used to script interactive commands:
+> :notebook: **NOTE:**
+> Only commands that require keyboard input will be able to handle input redirection.
+> Input redirection can also be used to simulate user interactivity. The command will read the input stream until it encounters the defined keyword after the input redirection.
+> This feature is used to script interactive commands:
   
-  ```
-  $ ftp -in serverftp << END
-  user alice password
-  put file
-  bye
-  END
-  ```
+```
+$ ftp -in serverftp << END
+user alice password
+put file
+bye
+END
+```
   
-  The keyword `END` can be replaced by any word.
+The keyword `END` can be replaced by any word.
   
-  ```
-  $ ftp -in serverftp << STOP
-  user alice password
-  put file
-  bye
-  STOP
-  ```
+```
+$ ftp -in serverftp << STOP
+user alice password
+put file
+bye
+STOP
+```
   
-  The shell exits the `ftp` command when it receives a line containing only the keyword.
+The shell exits the `ftp` command when it receives a line containing only the keyword.
   
-  > :fire: **CAUTION:**
-  > The ending keyword, here `END` or `STOP`, must be the only word on the line and must be at the beginning of the line.
-  > The standard input redirection is rarely used because most commands accept a filename as an argument.
-  > The command `wc` could be used like this:
+> :fire: **CAUTION:**
+> The ending keyword, here `END` or `STOP`, must be the only word on the line and must be at the beginning of the line.
+> The standard input redirection is rarely used because most commands accept a filename as an argument.
+> The command `wc` could be used like this:
   
-  ```
-  $ wc -l .bash_profile
-  27 .bash_profile # the number of lines is followed by the file name
-  $ wc -l < .bash_profile
-  27 # returns only the number of lines
-  ```
+```
+$ wc -l .bash_profile
+27 .bash_profile # the number of lines is followed by the file name
+$ wc -l < .bash_profile
+27 # returns only the number of lines
+```
   
-  ### Output redirection
+### Output redirection
   
-  Standard output can be redirected to other files using the `>` or `>>` characters.
-  The simple `>` redirection overwrites the contents of the output file:
+Standard output can be redirected to other files using the `>` or `>>` characters.
+The simple `>` redirection overwrites the contents of the output file:
   
-  ```
-  $ date +%F > date_file
-  ```
+```
+$ date +%F > date_file
+```
   
-  while the double redirection `>>` adds (concatenates) to the content of the output file.
+while the double redirection `>>` adds (concatenates) to the content of the output file.
   
-  ```
-  $ date +%F >> date_file
-  ```
+```
+$ date +%F >> date_file
+```
   
-  In both cases, the file is automatically created when it does not exist.
-  The standard error output can also be redirected to another file. This time it will be necessary to specify the channel number (which can be omitted for channels 0 and 1):
+In both cases, the file is automatically created when it does not exist.
+The standard error output can also be redirected to another file. This time it will be necessary to specify the channel number (which can be omitted for channels 0 and 1):
   
-  ```
-  $ ls -R / 2> errors_file
-  $ ls -R / 2>> errors_file
-  ```
+```
+$ ls -R / 2> errors_file
+$ ls -R / 2>> errors_file
+```
   
-  ### Examples of redirection
+### Examples of redirection
   
-  Redirection of 2 outputs to 2 files :
+Redirection of 2 outputs to 2 files :
   
-  ```
-  $ ls -R / >> ok_file 2>> nok_file
-  ```
+```
+$ ls -R / >> ok_file 2>> nok_file
+```
   
-  Redirection of the 2 outputs to a single file:
+Redirection of the 2 outputs to a single file:
   
-  ```
-  $ ls -R / >> log_file 2>&1
-  ```
+```
+$ ls -R / >> log_file 2>&1
+```
   
-  Redirection of *stderr* to a "bottomless pit" (`/dev/null`) :
+Redirection of *stderr* to a "bottomless pit" (`/dev/null`) :
   
-  ```
-  $ ls -R / 2>> /dev/null
-  ```
+```
+$ ls -R / 2>> /dev/null
+```
   
-  When both output streams are redirected, no information is displayed on the screen. To use both the output redirection and to keep the display, you will have to use the command `tee`.
+When both output streams are redirected, no information is displayed on the screen. To use both the output redirection and to keep the display, you will have to use the command `tee`.
   
-  ### Pipes
+### Pipes
   
-  A **pipe** is a mechanism allowing you to link the standard output of a first command to the standard input of a second command.
-  This communication is uni directional and is done with the `|` symbol. The pipe symbol `|` is obtained by pressing the  <kbd>SHIFT</kbd> + <kbd>\|<\kbd> simultaneously.
-  ![pipe](images/pipe.png)
-  All data sent by the control on the left of the pipe through the standard output channel is sent to the standard input channel of the control on the right.
-  The commands particularly used after a pipe are filters.
+A **pipe** is a mechanism allowing you to link the standard output of a first command to the standard input of a second command.
+This communication is uni directional and is done with the `|` symbol. The pipe symbol `|` is obtained by pressing the  <kbd>SHIFT</kbd> + <kbd>\|<\kbd> simultaneously.
+![pipe](images/pipe.png)
+All data sent by the control on the left of the pipe through the standard output channel is sent to the standard input channel of the control on the right.
+The commands particularly used after a pipe are filters.
 * Examples:
   
-  **Display only the beginning:**
+**Display only the beginning:**
 ```
 $ ls -lia / | head
 ```
 
-  **Display only the end:**
+**Display only the end:**
 ```
 $ ls -lia / | tail
 ```
 
-  **Sort the result:**
+**Sort the result:**
 ```
 $ ls -lia / | sort
 ```
-  **Count the number of words / characters:**
+**Count the number of words / characters:**
 ```
 $ ls -lia / | wc
 ```
-  **Search for a string in the result:**
+**Search for a string in the result:**
 ```
 $ ls -lia / | grep fichier
 ```
