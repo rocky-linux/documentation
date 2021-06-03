@@ -26,17 +26,21 @@
 
 # <a name="intro"></a>Introduction
 
-LXD is best described from the [official website](https://linuxcontainers.org/lxd/introduction/), but think of it as a container system that provides the benefits of virtual servers in a container, or a container on steroids. It is very powerful, and with the right hardware and set up, can be leveraged to run a lot of server instances on a single piece of hardware. If you pair that with a snapshot server, you also have, not only another backup (you should not think of this as a traditional backup, you still need a backup of some sort, like [rsnapshot](rsnapshot_backup.md)), but literally a set of containers that you can turn up in the event that your primary server goes down.
+LXD is best described on the [official website](https://linuxcontainers.org/lxd/introduction/), but think of it as a container system that provides the benefits of virtual servers in a container, or a container on steroids. 
+
+It is very powerful, and with the right hardware and set up, can be leveraged to run a lot of server instances on a single piece of hardware. If you pair that with a snapshot server, you also have a set of containers that you can spin up almost immediately in the event that your primary server goes down. 
+
+(You should not think of this as a traditional backup. You still need a regular backup system of some sort, like [rsnapshot](rsnapshot_backup.md).)
 
 The learning curve for LXD can be a bit steep, but this document will attempt to give you a wealth of knowledge at your fingertips, to help you deploy and use LXD on Rocky Linux.
 
 # Prerequisites And Assumptions
 
-* One Rocky Linux server nicely configured. You should consider a separate hard drive for ZFS disk space (you have to if you are using zfs) in a production environment.
+* One Rocky Linux server, nicely configured. You should consider a separate hard drive for ZFS disk space (you have to if you are using ZFS) in a production environment. And yes, we are assuming this is a bare metal server, not a VPS.
 * This should be considered an advanced topic, but we have tried our best to make it as easy to understand as possible for everyone.
-* Very comfortable at the command line on a machine and fluent in a command line editor (we are using _vi_ throughout this example, but you can substitute in your favorite editor)
-* You need to be an unprivileged user for the bulk of the LXD processes. Except where noted, enter LXD commands as your unprivileged user. We are assuming that you are using a user named "lxdadmin" for LXD commands. The bulk of the set up _is_, done as root until you get past the LXD initialization. We will have you create the "lxdadmin" user later in the process.
-* For ZFS, make sure that UEFI secure boot is NOT enabled. Otherwise, you will end up having to sign the zfs module in order to get it to load.
+* You should be very comfortable at the command line on your machine(s), and fluent in a command line editor. (We are using _vi_ throughout this example, but you can substitute in your favorite editor.)
+* You need to be an unprivileged user for the bulk of the LXD processes. Except where noted, enter LXD commands as your unprivileged user. We are assuming that you are logged in as a user named "lxdadmin" for LXD commands. The bulk of the set up _is_, done as root until you get past the LXD initialization. We will have you create the "lxdadmin" user later in the process.
+* For ZFS, make sure that UEFI secure boot is NOT enabled. Otherwise, you will end up having to sign the ZFS module in order to get it to load.
 
 # <a name="part1"></a>Part 1 : Getting The Environment Ready
 
@@ -52,7 +56,7 @@ Once installed, check for updates:
 
 `dnf update`
 
-Next install the OpenZFS repository with:
+If you're using ZFS, install the OpenZFS repository with:
 
 `dnf install https://zfsonlinux.org/epel/zfs-release.el8_3.noarch.rpm`
 
@@ -64,7 +68,7 @@ If there were kernel updates during the update process above, reboot your server
 
 ## Install snapd, dkms And vim
 
-LXD must be installed from a snap for Rocky Linux, for this reason, we need to install snapd with:
+LXD must be installed from a snap for Rocky Linux, for this reason, we need to install snapd (and a few other useful programs) with:
 
 `dnf install snapd dkms vim`
 
@@ -72,7 +76,7 @@ And now enable and start snapd:
 
 `systemctl enable snapd`
 
-and
+And then run:
 
 `systemctl start snapd`
 
@@ -90,7 +94,9 @@ Installing LXD requires the use of the snap command. At this point, we are just 
 
 ## <a name="envsetup"></a> Environment Set up
 
-Most server kernel settings are not sufficient to run a large number of containers. If we assume from the beginning that we will be using our server in production, then we need to make these changes up front to avoid errors such as "Too many open files" from occurring. Luckily, tweaking the settings for LXD is easy with a few file modifications and a reboot.
+Most server kernel settings are not sufficient to run a large number of containers. If we assume from the beginning that we will be using our server in production, then we need to make these changes up front to avoid errors such as "Too many open files" from occurring. 
+
+Luckily, tweaking the settings for LXD is easy with a few file modifications and a reboot.
 
 ### Modifying limits.conf
 
@@ -98,7 +104,7 @@ The first file we need to modify is the limits.conf file. This file is self-docu
 
 `vi /etc/security/limits.conf`
 
-This entire file is remarked out and, at the bottom, shows the current default settings. In the blank space above the end of file marker (#End of file) we need to add our custom settings. The end of the file will look like this when you are done:
+This entire file is remarked/commented out and, at the bottom, shows the current default settings. In the blank space above the end of file marker (#End of file) we need to add our custom settings. The end of the file will look like this when you are done:
 
 ```
 # Modifications made for LXD
@@ -111,15 +117,17 @@ root            hard    nofile           1048576
 *               hard    memlock          unlimited
 ```
 
-Save your changes and exit (`SHIFT:wq!` for _vi_)
+Save your changes and exit. (`SHIFT:wq!` for _vi_)
 
 ### Modifying sysctl.conf With 90-lxd.override.conf
 
-Just like other services where _systemd_ has taken over, what used to be modifying a single file took care of all of your kernel option changes. That is still the case, but now the trick is to find which file will do the overrides for you. To make these kernel changes, we are going to create a file called _90-lxd-override.conf_ in /etc/sysctl.d. To do this type:
+With _systemd_, we can make changes to our system's overall configuration and kernel options *without* mofifying the main configuration file. Instead, we'll put our settings in a separate file that will simply override the particular settings we need. 
+
+To make these kernel changes, we are going to create a file called _90-lxd-override.conf_ in /etc/sysctl.d. To do this type:
 
 `vi /etc/sysctl.d/90-lxd-override.conf`
 
-And place the following content in that file. Note that if you are wondering what we are doing here, the file content below is self-documenting:
+Place the following content in that file. Note that if you are wondering what we are doing here, the file content below is self-documenting:
 
 ```
 ## The following changes have been made for LXD ##
@@ -175,11 +183,13 @@ at use the AIO subsystem (e.g. MySQL)
 fs.aio-max-nr = 524288
 ```
 
-At this point you should reboot the server!
+At this point you should reboot the server.
 
 ### Checking _sysctl.conf_ Values
 
-Once the reboot has been completed, log back in as to the server. We need to spot check that our override file has actually done the job. This is easy to do. There's no need to check every setting unless you want to, but checking a few will verify that the settings have been changed. This is done with the _sysctl_ command:
+Once the reboot has been completed, log back in as to the server. We need to spot check that our override file has actually done the job. 
+
+This is easy to do. There's no need to check every setting unless you want to, but checking a few will verify that the settings have been changed. This is done with the _sysctl_ command:
 
 `sysctl net.core.bpf_jit_limit`
 
@@ -189,9 +199,9 @@ Which should show you:
 
 Do the same with a few other settings in the override file (above) to verify that changes have been made.
 
-## <a name="zfssetup"></a>Enabling zfs And Setting Up The Pool
+## <a name="zfssetup"></a>Enabling ZFS And Setting Up The Pool
 
-If you have UEFI secure boot turned off, this should be fairly easy.  First, load the zfs module with modprobe:
+If you have UEFI secure boot turned off, this should be fairly easy.  First, load the ZFS module with modprobe:
 
 `/sbin/modprobe zfs`
 
