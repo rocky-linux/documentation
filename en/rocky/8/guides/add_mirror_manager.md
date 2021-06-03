@@ -42,54 +42,9 @@ For a simple synchronization you can use the following rsync command:
 ```
 rsync -aqH --delete source-mirror destination-dir
 ```
-
 Consider using a locking mechanism to avoid running more than one rsync job simultaneously when we push a new release.
 
-You can also use and modify our example script below:
-
-```
-#!/bin/bash
-
-RSYNC="/usr/bin/rsync"
-#You can change v to q if you do not want detailed logging
-OPTS="-vrlptDSH --exclude=*.~tmp~ --delete-delay --delay-updates"
-
-#Please use a mirror next to you for initial sync
-#or if you are hosting a private rather than a pulic mirror.
-#Local mirrors might be faster.
-#Also we might restrict access to the master in the future.
-SRC="msync.rockylinux.org::rocky/mirror/pub/rocky/"
-
-#Change to your local path for your mirror
-MIRRORMODULE="rocky-linux"
-DST="/mnt/mirrorserver/${MIRRORMODULE}/"
-
-FILELISTFILE="/fullfiletimelist-rocky"
-LOCKFILE=$0.lockfile
-
-
-CHECKRESULT=`${RSYNC} --no-motd --dry-run --out-format='%n' ${SRC}${FILELISTFILE} ${DST}${FILELISTFILE}`
-if [ -z $CHECKRESULT ]; then
-	echo "${FILELISTFILE} unchanged. Not updating at " `date` >> $0.log 2>&1
-	logger -t rsync "Not updating ${MIRRORMODULE}: ${FILELISTFILE} unchanged."
-	exit 1
-fi
-
-
-if [ -e $LOCKFILE ]; then
-	echo "Update already in progress at" `date` >> $0.log 2>&1
-	logger -t rsync "Not updating ${MIRRORMODULE}: already in progress."
-else
-	touch $LOCKFILE
-	echo "Started update at" `date` >> $0.log 2>&1
-	logger -t rsync "Updating ${MIRRORMODULE}"
-		
-	${RSYNC} ${OPTS} ${SRC} ${DST} >> $0.log 2>&1
-	logger -t rsync "Finished updating ${MIRRORMODULE}"  
-	echo "End: "`date` >> $0.log 2>&1
-	rm $LOCKFILE
-fi
-```
+You can also use and modify our example script implementing locking and full sync only when required. It can be found at https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh.
 
 After your first complete synchronization check that everything is fine with your mirror. Most importantly check all files and dirs got synchronized, your chron job is working properly und your mirror is reachable from the public internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
 
