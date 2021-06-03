@@ -3,14 +3,14 @@
 In this chapter you will learn how to manage user.
 
 ****
-**Objectives** : In this chapter, futurs Linux administors will learn how to:
+**Objectives** : In this chapter, future Linux administrators will learn how to:
 
 :heavy_check_mark: add, delete or modify a **group** ; \
 :heavy_check_mark: add, delete or modify a **user** ; \
 :heavy_check_mark: know the syntax of the files associated with the management of groups and users ; \
 :heavy_check_mark: change the *owner* or the *group owner* of a file; \
 :heavy_check_mark: *secure* user accounts; \
-:heavy_check_mark: change identity. \
+:heavy_check_mark: change identity.
 
 :checkered_flag: **users**
 
@@ -21,7 +21,7 @@ In this chapter you will learn how to manage user.
 
 ## General
 
-Each user is a member of at least one group: **this is his main group**.
+Each user is a member of at least one group: **this is their main group**.
 
 Several users can be part of the same group.
 
@@ -31,13 +31,11 @@ Users can belong to other groups. These users are *invited* to these **secondary
 Each user has a primary group and can be invited into one or more secondary groups.
 Groups and users are managed by their unique numerical identifiers `GID` and `UID`.
 Account and group declaration files are located in `/etc`.
-
 * `UID`: _User IDentifier_. Unique user ID.
 * `GID`: _Group IDentifier_. Unique group identifier.
 
 > :fire: **DANGER:**
-It is recommended to use the administration commands instead of manually editing the files.
-
+You should always use the administration commands instead of manually editing the files.
 ## Group management
 
 Modified files, added lines:
@@ -67,17 +65,20 @@ $ sudo groupadd -g 1012 GroupeB
 Group naming rules:
 
 * No accents or special characters;
-* Different from the name of an existing user or system file.
+* Different from the name of an existing user or system files.
 
 > :notebook: **NOTE:**
-Under **Debian**, the administrator should prefer, except in scripts intended to be portable to all Linux distributions, the `addgroup` and `delgroup` commands as specified in the *man*:
+Under **Debian**, the administrator should use, except in scripts intended to be portable to all Linux distributions, the `addgroup` and `delgroup` commands as specified in the *man*:
 ```
 [root] # man addgroup
 DESCRIPTION
-    adduser and addgroup add users or groups to the system according to the options provided on the command line and the information contained in the configuration file /etc/adduser.conf. These are more user-friendly interfaces than the useradd and groupadd programs. They allow you to choose default UIDs or GIDs according to the Debian policy, to create a personal directory configured according to a template (skeleton), to use a custom script, and other features.
+adduser and addgroup add users and groups to the system according to command line options and configuration information
+in /etc/adduser.conf. They are friendlier front ends to the low level tools like useradd, groupadd and usermod programs,
+by default choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
+running a custom script, and other features.
 ```
 
-### Commande `groupmod`
+### Command `groupmod`
 
 The `groupmod` command allows you to modify an existing group on the system.
 
@@ -121,7 +122,6 @@ $ sudo groupdel GroupC
 
 > :star: **TIP:**
 To be deleted, a group must no longer contain users.
-
 Deleting the last user of an eponymous group will cause the system to delete the group.
 
 > :star: **TIP:**
@@ -129,10 +129,9 @@ Each group has a unique `GID`. A group can be duplicated. By convention, the `GI
 
 > :star: **TIP:**
 Since a user is necessarily part of a group, it is best to create the groups before adding the users. Therefore, a group may not have any members.
-
 ### `/etc/group` file
 
-This file contains the group informations (separated by `:`).
+This file contains the group information (separated by `:`).
 
 ```
 $ sudo tail -1 /etc/group
@@ -147,7 +146,6 @@ GroupP:x:516:patrick
 
 > :notebook: **NOTE:**
 Each line in the `/etc/group` file corresponds to a group. Users whose group is their main group are not listed at this level. This membership information is in fact already provided by the `/etc/passwd` file...
-
 ### `/etc/gshadow` file
 
 This file contains the security information about the groups (separated by `:`).
@@ -165,7 +163,6 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
 > :warning: **WARNING:**
 For each line in the `/etc/group` file there must be a corresponding line in the `/etc/gshadow` file.
-
 A `!` in the password indicates that it is locked.
 Thus no user can use the password to access the group (since group members do not need it).
 
@@ -230,8 +227,7 @@ Account naming rules:
 > :warning: **WARNING:**
 The home directory tree must be created except for the last directory.
 The last directory is created by the `useradd` command, which takes the opportunity to copy the files from `/etc/skel` into it.
-
-*A user can belong to several groups in addition to his main group.*
+*A user can belong to several groups in addition to their main group.*
 
 For secondary groups, the `-G` option must be used.
 
@@ -246,9 +242,9 @@ Under **Debian**, you will have to specify the `-m` option to force the creation
 ```
 $ man useradd
 DESCRIPTION
-    **useradd** is a low level utility for adding users. On Debian, administrators should usually use **adduser(8)** instead.
+    **useradd** is a low level utility for adding users. On Debian, administrators should usually use **adduser(8)**
+     instead.
 ```
-
 #### Default value for user creation.
 
 Modification of the file `/etc/default/useradd`.
@@ -302,7 +298,6 @@ With the `usermod` command, locking an account results in the addition of `!` be
 
 > :star: **TIP:**
 To be modified, a user must be disconnected and have no running processes.
-
 After changing the identifier, the files belonging to the user have an unknown `UID`. It must be reassigned the new `UID`.
 
 ```
@@ -365,11 +360,9 @@ $ sudo userdel -r carine
 
 > :star: **TIP:**
 To be deleted, a user must be logged out and have no running processes.
-
 userdel` removes the user's line from the `/etc/passwd` and `/etc/gshadow` files.
 
 ### `/etc/passwd` file
-
 This file contains user information (separated by `:`).
 
 ```
@@ -387,15 +380,12 @@ root:x:0:0:root:/root:/bin/bash
 * 7: Shell.
 
 ### `/etc/shadow` file
-
 This file contains the users' security information (separated by `:`).
-
 ```
 $ sudo tail -1 /etc/shadow
 root:$6$...:15399:0:99999:7:::
  (1)    (2)  (3) (4) (5) (6)(7,8,9)
 ```
-
 * 1: Login.
 * 2: Encrypted password.
 * 3: Date of last change.
@@ -410,24 +400,17 @@ root:$6$...:15399:0:99999:7:::
 For each line in the `/etc/passwd` file there must be a corresponding line in the `/etc/shadow` file.
 
 ## File owners
-
 > :fire: **DANGER:**
 All files necessarily belong to one user and one group.
-
 The main group of the user creating the file is, by default, the group that owns the file.
 
 ### Modification commands
-
 #### `chown` command
-
 The `chown` command allows you to change the owners of a file.
-
 ```
 chown [-R] [-v] login[:group] file
 ```
-
 Examples:
-
 ```
 $ sudo chown root myfile
 $ sudo chown albert:GroupA myfile
@@ -435,54 +418,43 @@ $ sudo chown albert:GroupA myfile
 
 | Option |	Description |
 | ------ | ------------ |
-| `-R`   |	Changes the owners of the directory and its contents.
-| `-v`   |	Displays the executed changes.
+| `-R`   |	Changes the owners of the directory and its contents. |
+| `-v`   |	Displays the executed changes. |
 
 To change only the owner user:
-
 ```
 $ sudo chown albert file
 ```
-
 To modify only the owner group:
-
 ```
-$ sudo chown :GroupA file
+$ sudo chown :GroupA file
 ```
-
 Changing the user and owner group:
-
 ```
 $ sudo chown albert:GroupA file
 ```
-
 In the following example the group assigned will be the main group of the specified user.
-
 ```
 $ sudo chown albert: file
 ```
-
 ### `chgrp` command
-
 The `chgrp` command allows you to change the owner group of a file.
-
 ```
 chgrp [-R] [-v] group file
 ```
-
 Example:
-
 ```
 $ sudo chgrp group1 file
 ```
-
 | Option | Description |
 | ------ | ----------- |
-| `-R` | Modifies the owner groups of the directory and its contents (recursion).
-| `-v` | Displays the executed changes.
+| `-R` | Modifies the owner groups of the directory and its contents (recursion). |
+| `-v` | Displays the executed changes. |
+
 
 > :notebook: **NOTE:**
 It is possible to apply to a file an owner and an owner group by taking as reference those of another file:
+
 ```
 chown [options] --reference=RRFILE FILE
 ```
@@ -490,19 +462,13 @@ For example:
 ```
 chown --reference=/etc/groups /etc/passwd
 ```
-
 ## Guest management
-
 ### `gpasswd` command
-
 The command `gpasswd` allows to manage a group.
-
 ```
 gpasswd [-a login] [-A login] [-d login] [-M login] group
 ```
-
 Examples:
-
 ```
 $ sudo gpasswd -A alain GroupA
 [alain]$ gpasswd -a patrick GroupA
@@ -516,63 +482,44 @@ $ sudo gpasswd -A alain GroupA
 | `-M login` |	Defines the complete list of guests.
 
 The command `gpasswd -M` acts as a modification, not an addition.
-
 ```
 # gpasswd GroupeA
-New Password :
-Re-enter new password :
+New Password :
+Re-enter new password :
 ```
-
 ### `id` command
-
 The `id` command displays the group names of a user.
-
 ```
 id login
 ```
-
 Example:
-
 ```
 $ sudo id alain
 uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 ```
-
 ### `newgrp` command
-
 The `newgrp` command allows you to temporarily use a secondary group for file creation.
-
 ```
 newgrp [secondarygroups]
 ```
-
 Example:
-
 ```
 [alain]$ newgrp GroupB
 ```
-
 > :notebook: **NOTE:**
 After using this command, the files will be created with the `GID` of its subgroup. \
 The command `newgrp` without parameters reassigns the main group.
-
 ## Securing
-
 ### `passwd` command
-
 The `passwd` command is used to manage a password.
-
 ```
 passwd [-d] [-l] [-S] [-u] [login]
 ```
-
 Examples:
-
 ```
 $ sudo passwd -l albert
 $ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
-
 | Option | Description |
 | ------ | ----------- |
 | `-d` | Removes the password.
@@ -586,7 +533,6 @@ $ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 | `-i days` | Delay before deactivation when the password expires.
 
 With the `passwd` command, locking an account is accomplished by adding `!!` before the password in the `/etc/shadow` file.
-
 Using the command `usermod -U` command only removes one of the `!`. So the account remains locked.
 
 Example:
@@ -597,7 +543,7 @@ Example:
 [alain]$ passwd
 ```
 
-* root changes Alain's password:
+* root changes Alain's password
 
 ```
 $ sudo passwd alain
@@ -605,36 +551,24 @@ $ sudo passwd alain
 
 > :notebook: **NOTE:**
 The `passwd` command is available to users to change their password (the old password is requested). The administrator can change the passwords of all users without restriction.
-
 They will have to comply with the security restrictions.
-
 When managing user accounts by shell script, it may be useful to set a default password after creating the user.
-
 This can be done by passing the password to the `passwd` command.
-
 Example:
-
 ```
 $ sudo echo "azerty,1" | passwd --stdin philippe
 ```
-
 > :warning: **WARNING:**
 The password is entered in clear text, `passwd` takes care of encrypting it.
-
 ### `chage` command
-
 The `chage` command is used to manage the account strategy.
-
 ```
 chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
 ```
-
 Example:
-
 ```
 $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
-
 | Option | Description |
 | ------ | ----------- |
 | `-I days` | Delay before deactivation, password expired.
@@ -646,41 +580,29 @@ $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 | `-W days` | Warning time before expiration.
 
 The `chage` command also offers an interactive mode.
-
 The `-d` option forces the password to be changed at login.
 
 Examples:
-
 ```
 $ sudo chage philippe
 $ sudo chage -d 0 philippe
 ```
-
 > :notebook: **NOTE:**
 If no user is specified, the order will concern the user who enters it.
-
 ![User account management with chage](images/chage-timeline.png)
-
 ## Advanced management
-
 Configuration files:
-
 * `/etc/default/useradd`
 * `/etc/login.defs`
 * `/etc/skel`
 
 > :notebook: **NOTE:**
 Editing the `/etc/default/useradd` file is done with the `useradd` command.
-
 The other files are to be modified with a text editor.
-
 ### `/etc/default/useradd` file
-
 This file contains the default data settings.
-
 > :star: **TIP:**
 When creating a user, if the options are not specified, the system uses the default values defined in `/etc/default/useradd`.
-
 This file is modified by the command `useradd -D` (`useradd -D` entered without any other option displays the contents of the `/etc/default/useradd` file).
 
 | Value | Comment |
@@ -695,19 +617,13 @@ This file is modified by the command `useradd -D` (`useradd -D` entered without 
 
 > :warning: **WARNING:**
 Without the `-g` option, the `useradd` command creates a group of the user's name name and places it there.
-
 In order for the `useradd` command to retrieve the value of the `GROUP` field from the `/etc/default/useradd` file, you must specify the `-N` option.
-
 Example:
-
 ```
 $ sudo useradd -u 501 -N GroupeA
 ```
-
 ### `/etc/login.defs` file
-
 This file contains many default parameters useful for creating or modifying users. This information is grouped by paragraph according to their use:
-
 * Mailboxes;
 * Passwords ;
 * UID and GID ;
@@ -716,59 +632,42 @@ This file contains many default parameters useful for creating or modifying user
 * Terminals.
 
 ### `/etc/skel` directory
-
-When a user is created, his home directory and environment files are created.
-
+When a user is created, their home directory and environment files are created.
 These files are automatically copied from the `/etc/skel` directory.
-
 * `.bash_logout`
 * `.bash_profile`
 * `.bashrc`
 
 All files and directories placed in this directory will be copied to the user tree when they are created.
-
 ## Identity change
-
 ### `su` command
-
 The `su` command allows you to change the identity of the connected user.
-
 ```
 su [-] [-c command] [login]
 ```
-
 Examples:
-
 ```
 $ sudo su - alain
 [albert]$ su -c "passwd alain"
 ```
-
 | Option | Description |
 | ------ | ----------- |
 | `-` |	Loads the user's complete environment.
 | `-c` command |	Executes the command under the user's identity.
 
 If the login is not specified, it will be `root`.
-
 Standard users will have to type the password for the new identity.
-
 > :star: **TIP:**
 There are successive 'layers' created (a stack of `bash' environments). To switch from one user to another, you must first type the `exit` command to take back your identity and then the `su` command to take another identity.
-
 #### Profile loading
-
 `root` endorses the identity of the user `alain` with `su`:
-
 ```
 ...
 /home/GroupA/alain/.bashrc
 /etc/bashrc
 ...
 ```
-
 `root` assumes the identity of the user `alain` with `su -`:
-
 ```
 ...
 /home/GroupA/alain/.bash_profile
@@ -776,11 +675,7 @@ There are successive 'layers' created (a stack of `bash' environments). To switc
 /etc/bashrc
 ...
 ```
-
 A user can temporarily (for another command or an entire session) assume the identity of another account.
-
 If no user is specified, the command will be for `root` (`su -`).
-
 It is necessary to know the password of the user whose identity is being endorsed unless it is `root` that is executing the command.
-
 An administrator can thus work on a standard user account and use the rights of the `root` account only occasionally.
