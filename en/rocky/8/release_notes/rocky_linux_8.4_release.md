@@ -66,10 +66,12 @@ Brand new in Rocky Linux 8.4 are the following new module streams:
 
 ## Known Issues
 
-As with any release, there are sometimes bugs or issues found in the process of building that have not yet been patched or fixed upstream. These are:
+As with any release, there are sometimes bugs or issues found in the process of building that have not yet been patched or fixed upstream. 
+We will be updating this section with new items or bugs as they are discovered.
 
-(Replace this with a list of known issues)
 
 ## Conversion Tools Available for Rocky Linux
 
-You can convert from Rocky Linux 8.3, Centos 8.3 or 8.4, RHEL 8.3 or 8.4, and Alma 8.3 or 8.4 to Rocky Linux 8.4 by using the [migrate2rocky](https://github.com/rocky-linux/rocky-tools/) tool. This tool has been tested and is known to work, however it is to be used **at your own risk**. 
+You can convert from Rocky Linux 8.3, Centos 8.3 or 8.4, RHEL 8.3 or 8.4, and Alma 8.3 or 8.4 to Rocky Linux 8.4 by using the [migrate2rocky](https://github.com/rocky-linux/rocky-tools/) tool. 
+
+This tool has been tested and is known to work, however it is to be used **at your own risk**. 
