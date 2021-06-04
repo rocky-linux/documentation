@@ -1052,7 +1052,7 @@ For all users:
 
 For a particular user:
 
-* `~/.bashrc``
+* `~/.bashrc`
 
 > :warning: **WARNING:**
 `umask -S` displays the file rights (without the execute right) of the files that will be created. So it is not the display of the mask used to subtract the maximum value.
