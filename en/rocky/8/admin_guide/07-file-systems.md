@@ -36,6 +36,7 @@ The same physical disk can be divided into a maximum of 4 partitions:
 
 > :warning: **WARNING:**
 There can be only one extended partition per physical disk. In order to benefit from additional drives, the extended partition can be split into logical partitions
+
 ![Breakdown into only 4 primary partitions](images/FON-040-001.png)
 
 ![Breakdown into 3 primary partitions and one extended](images/FON-040-002.png)
@@ -50,6 +51,7 @@ Finally we will find a number that defines the partitioned volume: *1* for the f
 
 > :warning: **WARNING:**
 Beware, the extended partition, which does not support a file system, still has a number.
+
 ![Identification of scores](images/FON-040-003.png)
 
 There are at least two commands for partitioning a disk: `fdisk` and `cfdisk`. Both commands have an interactive menu. `cfdisk` is more reliable and better optimized, so it is best to use it.
@@ -137,6 +139,7 @@ LVM is available under Linux from kernel version 2.4.
 
 > :notebook: **NOTE:**
 LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
+
 ### Volume groups
 
 The physical volumes *PV* _Physical Volumes_ (from partitions) are combined into volume groups *VG*.
@@ -162,6 +165,7 @@ A volume group, *VG*, is divided into logical volumes, *LV*, offering different 
 
 > :star: **TIP:**
 Striping_ improves performance by writing data to a predetermined number of physical volumes with a _round-robin_ technique.
+
 ![Mirrored volumes](images/FON-040-007.png)
 
 ### LVM commands for volume management
@@ -316,10 +320,12 @@ Example:
 
 > :warning: **WARNING:**
 Without a file system it is not possible to use the disk space.
+
 Each file system has a structure which is identical on each partition. A **boot block** and a **super block** initialized by the system and then an **inode table** and a **data area** initialized by the administrator.
 
 > :notebook: **NOTE:**
 The only exception is the **swap** partition.
+
 ### Boot block
 
 The **boot block** occupies the first block on the disk and is present on all partitions. It contains the program that starts and initializes the system and is therefore only filled in for the boot partition.
@@ -350,6 +356,7 @@ The size of the **inode table** is defined at its creation and is stored on the 
 
 > :notebook: **NOTE:**
 An inode number is unique within a file system.
+
 A copy is loaded in the central memory as soon as the system is initialized. This copy is updated as soon as it is modified and the system saves it periodically (command `sync`).
 
 When the system stops, it also copies this table in memory to its block.
@@ -358,6 +365,7 @@ A file is managed by its inode number.
 
 > :notebook: **NOTE:**
 The size of the inode table determines the maximum number of files the FS can contain.
+
 Information present in the *inode table* :
 
 * Inode number;
@@ -381,6 +389,7 @@ These tables are written to the hard disk when the system is shut down.
 
 > :fire: **DANGER:**
 In the event of a sudden stop, the file system may lose its consistency and cause data loss.
+
 ### Repairing the file system
 
 It is possible to check the consistency of a file system with the `fsck` command.
@@ -412,6 +421,7 @@ or
 
 > :warning: **WARNING:**
 The partition to be checked must be unmounted.
+
 ## Organization of a file system
 
 By definition, a File System is a tree structure of directories built from a root directory (a logical device can only contain one file system).
@@ -420,6 +430,7 @@ By definition, a File System is a tree structure of directories built from a roo
 
 > :notebook: **NOTE:**
 In Linux everything is a file.
+
 Text document, directory, binary, partition, network resource, screen, keyboard, Unix kernel, user program, ...
 
 Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) which defines the names of folders and their roles.
@@ -455,6 +466,7 @@ The `/etc/fstab` file is read at system startup and contains the mounts to be pe
 
 > :notebook: **NOTE:**
 Lines are read sequentially (`fsck`, `mount`, `umount`).
+
 ```
 /dev/mapper/VolGroup-lv_root   /         ext4    defaults        1   1
 UUID=46….92                    /boot     ext4    defaults        1   2
@@ -480,6 +492,7 @@ They are then written to the `/etc/mtab` file which contains the current mounts.
 
 > :warning: **WARNING:**
 Only the mount points listed in `/etc/fstab` will be mounted on reboot.
+
 It is possible to make a copy of the `/etc/mtab` file or to copy its contents to `/etc/fstab`.
 
 ### Mount management commands
@@ -509,6 +522,7 @@ Example:
 
 > :notebook: **NOTE:**
 The `mount` command alone displays all mounted file systems.
+
 #### `umount` command
 
 The `umount` command is used to unmount logical drives.
@@ -533,6 +547,7 @@ Example:
 
 > :notebook: **NOTE:**
 When disassembling, you must not stay below the mounting point. Otherwise, the following error message is displayed: `device is busy`.
+
 ## Types of files
 
 As in any system, in order to be able to find one's way through the tree structure and the file management, it is important to respect the file naming rules.
@@ -680,6 +695,7 @@ The link file and the source file have the same _inode_ number and the link coun
 
 > :warning: **WARNING:**
 If the source file is destroyed, the counter is decremented and the link file still accesses the file.
+
 ###### Command `ln` for a physical link
 
 The `ln` command allows you to create physical links.
@@ -687,7 +703,9 @@ The `ln` command allows you to create physical links.
 ```
 [root]# ls –li letter
 666 –rwxr--r-- 1 root root … letter
+
 [root]# ln /home/paul/letter /home/jack/read
+
 [root]# ls –li /home/*/*
 666 –rwxr--r-- 2 root root … letter
 666 –rwxr--r-- 2 root root … read
@@ -703,6 +721,7 @@ The file created contains only an indication of the path to the file. This notio
 
 > :warning: **WARNING:**
 If the source file is destroyed, the link file can no longer access the file.
+
 ###### `ln` command for a symbolic link
 
 The command `ln` with the argument `-s` allows to create symbolic links.
@@ -710,7 +729,9 @@ The command `ln` with the argument `-s` allows to create symbolic links.
 ```
 [root]# ls –li letter
 666 -rwxr--r-- 1 root root … letter
+
 [root]# ln -s /home/paul/letter /tmp/read
+
 [root]# ls –li /home/paul/letter /tmp/read
 666 -rwxr--r--- 1 root root … letter
 678 lrwxrwxrwx 1 root root … read -> letter
@@ -738,6 +759,7 @@ There are 4 file access rights:
 
 > :warning: **WARNING:**
 The rights associated with files differ from those associated with directories (see below).
+
 The user types associated with file access rights are:
 
 * **u**ser_ (owner) ;
@@ -757,6 +779,7 @@ In some commands it is possible to designate everyone with **a** (_all_).
 
 > :notebook: **NOTE:**
 Moving or renaming a file depends on the rights of the target directory. Deleting a file depends on the rights of the parent directory.
+
 ### Rights associated with directories
 
 * **r**ead: Allows reading the contents of a directory (`ls -R`).
@@ -784,6 +807,7 @@ The display of rights is done with the command `ls -l`. It is the last 9 charact
 
 > :notebook: **NOTE:**
 Permissions apply to **u**ser, **g**roup and **o**ther (**ugo**) depending on the owner and group.
+
 By default, the _owner_ of a file is the one who creates it. The _group_ of the file is the group of the owner who created the file. The _others_ are those which are not concerned by the previous cases.
 
 The attributes are changed with the `chmod` command.
@@ -808,6 +832,7 @@ Example:
 [root]# chmod -R u+rwx,g+wx,o-r /tmp/file1
 [root]# chmod g=x,o-r /tmp/file2
 [root]# chmod -R o=r /tmp/file3
+
 [root]# ls -l /tmp/fic*
 -rwxrwx--- 1 root root … /tmp/file1
 -rwx--x--- 1 root root … /tmp/file2
@@ -832,8 +857,7 @@ There are two methods for making rights changes:
 * The **symbolic** method.
 
 > :warning: **WARNING:**
-The rights of files and directories are not dissociated. For some operations, it will be necessary to know the rights of the directory containing the file.
-A write-protected file can be deleted by another user as long as the rights of the directory containing it allow this user to perform this operation.
+The rights of files and directories are not dissociated. For some operations, it will be necessary to know the rights of the directory containing the file. A write-protected file can be deleted by another user as long as the rights of the directory containing it allow this user to perform this operation.
 
 #### Principle of the octal method
 
@@ -870,7 +894,9 @@ This method can be considered as a "literal" association between a user type, an
 ```
 [root]# ls -l /tmp/myfile
 r--r-- 1 root root … /tmp/myfile
+
 [root]# chmod u+rwx,g+wx,o-r /tmp/myfile
+
 [root]# ls -l /tmp/myfile
 -rwxrwx--- 1 root root … /tmp/myfile
 ```
@@ -889,6 +915,7 @@ As with the fundamental rights, the particular rights each have a value. This va
 
 > :fire: **DANGER:**
 `S`, `S` and `T` in capital letters **if the right does not exist**.
+
 #### The sticky-bit
 
 One of the peculiarities of rights in Linux is that the right to write to a directory also allows deletion of *all* files, owner or not.
@@ -959,6 +986,7 @@ Verification:
 > :warning: **WARNING:**
 > It is not possible to pass the _SUID_ or _SGID_ to a shell script.
 > The system does not allow it because it is too dangerous for security!
+
 #### SGID on a file
 
 In a directory with the _SGID_ right, any file created will inherit the group that owns the directory instead of that of the creating user.
@@ -967,7 +995,9 @@ Example:
 ```
 [rockstar] $ ls -ld /data/
 drwxrwsr-x 2 root users 4096 26 oct. 19:43 /data
+
 [rockstar] $ touch /data/test_sgid /tmp/fic_reference
+
 [rockstar] $ ls -ld /data/test_sgid /tmp/fic_reference
 -rw-r--r--. 1 rockstar users 0 26 oct. 19:43 /data/test_sgid <1>
 -rw-r--r--. 1 rockstar rockstar 0 26 oct. 19:43  /tmp/fic_ref
