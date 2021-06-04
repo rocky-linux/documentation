@@ -1,4 +1,8 @@
-# Rocky Linux 8.4 Release
+---
+title:  Rocky Linux 8.4 Release Notes
+---
+
+# Rocky Linux 8.4
 
 The entire Rocky Linux team is excited to let you know about the first full release of Rocky Linux, Rocky Linux 8.4! If you are new to Rocky Linux, it's great to have you here and we look forward to a long and happy relationship.
 
