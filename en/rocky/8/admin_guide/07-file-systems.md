@@ -6,31 +6,26 @@ In this chapter you will learn how to work with filesystems.
 
 **Objectives** : In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: manage partitions on disk;
-
-:heavy_check_mark: use LVM for a better use of disk resources;
-
+:heavy_check_mark: manage partitions on disk; \
+:heavy_check_mark: use LVM for a better use of disk resources; \
 :heavy_check_mark: provide users with a file system and manage the access rights.
 
 and also discover:
 
-:heavy_check_mark: how the tree structure is organised in Linux;
-
+:heavy_check_mark: how the tree structure is organised in Linux; \
 :heavy_check_mark: the different types of files offered and how to work with;
 
 :checkered_flag: **hardware**, **disk**, **partition**, **lvm**, **linux**
 
-**Knowledge**: :star: :star:
-
-**Complexity**: :star: :star:
-
+**Knowledge**: :star: :star: \
+**Complexity**: :star: :star: \
 **Reading time**: 20 minutes
 
 ****
 
 ## Partitioning
 
-Partitioning will allow the installation of several operating systems because it is impossible to have several of them cohabit on the same logical drive. Partitioning also allows to partition data (security, access optimization, ...).
+Partitioning will allow the installation of several operating systems because it is impossible to have several of them cohabit on the same logical drive. Partitioning also allows to separate data logically (security, access optimization, ...).
 
 The division of the physical disk into partitioned volumes is recorded in the partition table stored in the first sector of the disk (MBR: _Master Boot Record_).
 
@@ -41,7 +36,6 @@ The same physical disk can be divided into a maximum of 4 partitions:
 
 > :warning: **WARNING:**
 There can be only one extended partition per physical disk. In order to benefit from additional drives, the extended partition can be split into logical partitions
-
 ![Breakdown into only 4 primary partitions](images/FON-040-001.png)
 
 ![Breakdown into 3 primary partitions and one extended](images/FON-040-002.png)
@@ -56,10 +50,9 @@ Finally we will find a number that defines the partitioned volume: *1* for the f
 
 > :warning: **WARNING:**
 Beware, the extended partition, which does not support a file system, still has a number.
-
 ![Identification of scores](images/FON-040-003.png)
 
-There are at least two commands for partitioning a disk: `fdisk` and `cfdisk`. Both commands have an interactive menu. `cfdisk` is more reliable and better optimised, so it is best to use it.
+There are at least two commands for partitioning a disk: `fdisk` and `cfdisk`. Both commands have an interactive menu. `cfdisk` is more reliable and better optimized, so it is best to use it.
 
 The only reason to use `fdisk` is when you want to list all logical devices with the `-l` option.
 
@@ -104,12 +97,9 @@ $ sudo cfdisk /dev/sda
                                  Disk: /dev/sda
                Size: 16 GiB, 17179869184 bytes, 33554432 sectors
                        Label: dos, identifier: 0xcf173747
-
     Device        Boot       Start        End    Sectors   Size   Id Type
 >>  /dev/sda1     *           2048    2099199    2097152     1G   83 Linux
     /dev/sda2              2099200   33554431   31455232    15G   8e Linux LVM
-
-
  lqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
  x Partition type: Linux (83)                                                 x
  x     Attributes: 80                                                         x
@@ -119,7 +109,6 @@ $ sudo cfdisk /dev/sda
  mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
      [Bootable]  [ Delete ]  [ Resize ]  [  Quit  ]  [  Type  ]  [  Help  ]
      [  Write ]  [  Dump  ]
-
 ```
 
 The preparation, without _LVM_, of the physical media goes through five steps:
@@ -148,7 +137,6 @@ LVM is available under Linux from kernel version 2.4.
 
 > :notebook: **NOTE:**
 LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
-
 ### Volume groups
 
 The physical volumes *PV* _Physical Volumes_ (from partitions) are combined into volume groups *VG*.
@@ -174,7 +162,6 @@ A volume group, *VG*, is divided into logical volumes, *LV*, offering different 
 
 > :star: **TIP:**
 Striping_ improves performance by writing data to a predetermined number of physical volumes with a _round-robin_ technique.
-
 ![Mirrored volumes](images/FON-040-007.png)
 
 ### LVM commands for volume management
@@ -191,14 +178,14 @@ Example:
 
 ```
 [root]# pvcreate /dev/hdb1
-pvcreate -- physical volume « /dev/hdb1 » successfuly created
+pvcreate -- physical volume « /dev/hdb1 » successfully created
 ```
 
 you can also use a whole disk (which facilitates disk size increases in virtual environments for example).
 
 ```
 [root]# pvcreate /dev/hdb
-pvcreate -- physical volume « /dev/hdb » successfuly created
+pvcreate -- physical volume « /dev/hdb » successfully created
 ```
 
 | Option | Description                                                                        |
@@ -218,7 +205,7 @@ Example:
 ```
 [root]# vgcreate volume1 /dev/hdb1
 …
-vgcreate – volume group « volume1 » successfuly created and activated
+vgcreate – volume group « volume1 » successfully created and activated
 ```
 
 #### `lvcreate` command
@@ -233,7 +220,7 @@ Example:
 
 ```
 [root]# lvcreate –L 600M –n VolLog1 volume1
-lvcreate -- logical volume « /dev/volume1/VolLog1 » successfuly created
+lvcreate -- logical volume « /dev/volume1/VolLog1 » successfully created
 ```
 
 | Option    | Description                                                         |
@@ -303,9 +290,9 @@ The preparation with LVM of the physical support is broken down as follows:
 A _file system_ **FS** is in charge of the following actions:
 
 * Securing access and modification rights to files;
-* Manipulate files: create, read, modify and delete;
-* Locate files on the disk;
-* Manage partition space.
+* Manipulating files: create, read, modify and delete;
+* Locating files on the disk;
+* Managing partition space.
 
 The Linux operating system is able to use different file systems (ext2, ext3, ext4, FAT16, FAT32, NTFS, HFS, BtrFS, JFS, XFS, ...).
 
@@ -329,19 +316,17 @@ Example:
 
 > :warning: **WARNING:**
 Without a file system it is not possible to use the disk space.
-
 Each file system has a structure which is identical on each partition. A **boot block** and a **super block** initialized by the system and then an **inode table** and a **data area** initialized by the administrator.
 
 > :notebook: **NOTE:**
 The only exception is the **swap** partition.
-
 ### Boot block
 
 The **boot block** occupies the first block on the disk and is present on all partitions. It contains the program that starts and initializes the system and is therefore only filled in for the boot partition.
 
 ### Super block
 
-The size of the **super block** table is defined at creation. It is present on each partition and contains the elements necessary to the exploitation of this one.
+The size of the **super block** table is defined at creation. It is present on each partition and contains the elements necessary for its utilization.
 
 It describes the File System:
 
@@ -365,7 +350,6 @@ The size of the **inode table** is defined at its creation and is stored on the 
 
 > :notebook: **NOTE:**
 An inode number is unique within a file system.
-
 A copy is loaded in the central memory as soon as the system is initialized. This copy is updated as soon as it is modified and the system saves it periodically (command `sync`).
 
 When the system stops, it also copies this table in memory to its block.
@@ -374,7 +358,6 @@ A file is managed by its inode number.
 
 > :notebook: **NOTE:**
 The size of the inode table determines the maximum number of files the FS can contain.
-
 Information present in the *inode table* :
 
 * Inode number;
@@ -398,7 +381,6 @@ These tables are written to the hard disk when the system is shut down.
 
 > :fire: **DANGER:**
 In the event of a sudden stop, the file system may lose its consistency and cause data loss.
-
 ### Repairing the file system
 
 It is possible to check the consistency of a file system with the `fsck` command.
@@ -430,7 +412,6 @@ or
 
 > :warning: **WARNING:**
 The partition to be checked must be unmounted.
-
 ## Organization of a file system
 
 By definition, a File System is a tree structure of directories built from a root directory (a logical device can only contain one file system).
@@ -439,7 +420,6 @@ By definition, a File System is a tree structure of directories built from a roo
 
 > :notebook: **NOTE:**
 In Linux everything is a file.
-
 Text document, directory, binary, partition, network resource, screen, keyboard, Unix kernel, user program, ...
 
 Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) which defines the names of folders and their roles.
@@ -475,7 +455,6 @@ The `/etc/fstab` file is read at system startup and contains the mounts to be pe
 
 > :notebook: **NOTE:**
 Lines are read sequentially (`fsck`, `mount`, `umount`).
-
 ```
 /dev/mapper/VolGroup-lv_root   /         ext4    defaults        1   1
 UUID=46….92                    /boot     ext4    defaults        1   2
@@ -484,7 +463,6 @@ tmpfs                          /dev/shm  tmpfs   defaults        0   0
 devpts                         /dev/pts  devpts  gid=5,mode=620  0   0
 sysfs                          /sys      sysfs   defaults        0   0
 proc                           /proc     proc    defaults        0   0
-
   1                              2         3        4            5   6
 ```
 
@@ -502,7 +480,6 @@ They are then written to the `/etc/mtab` file which contains the current mounts.
 
 > :warning: **WARNING:**
 Only the mount points listed in `/etc/fstab` will be mounted on reboot.
-
 It is possible to make a copy of the `/etc/mtab` file or to copy its contents to `/etc/fstab`.
 
 ### Mount management commands
@@ -532,7 +509,6 @@ Example:
 
 > :notebook: **NOTE:**
 The `mount` command alone displays all mounted file systems.
-
 #### `umount` command
 
 The `umount` command is used to unmount logical drives.
@@ -557,7 +533,6 @@ Example:
 
 > :notebook: **NOTE:**
 When disassembling, you must not stay below the mounting point. Otherwise, the following error message is displayed: `device is busy`.
-
 ## Types of files
 
 As in any system, in order to be able to find one's way through the tree structure and the file management, it is important to respect the file naming rules.
@@ -572,13 +547,13 @@ Groups of words separated by spaces must be enclosed in quotation marks:
 ```
 [root]# mkdir "working dir"
 ```
+> :notebook: **NOTE:** While there is nothing technically wrong with creating a file or directory with a space in it, it is generally a "best practice" to avoid this and replace any space with an underscore.
 
 > :notebook: **NOTE:**
 The **.** at the beginning of the file name only serves to hide it with a simple `ls`.
 
 > :warning: **WARNING:**
 Under Linux, the extension of a file is not a necessary reference to open or modify it. However, it can be useful for the user.
-
 Examples of extension agreements:
 
 * `.c` : source file in C language;
@@ -652,7 +627,7 @@ In order to communicate with peripherals (hard disks, printers, ...), Linux uses
 
 These files are special because they do not contain data but specify the access mode to communicate with the device.
 
-They are declined in two modes:
+They are defined in two modes:
 
 * **block** mode;
 * **character** mode.
@@ -683,7 +658,7 @@ The letter `c` at the beginning of the rights group indicates that it is a speci
 
 #### Communication files
 
-These are the pipe files (_pipes_) and the _sockets_ files.
+These are the pipe files (_pipes_) and the _socket_ files.
 
 * **Pipe files** pass information between processes by FIFO (_First In, First Out_).
 One process writes transient information to a _pipe_ file and another reads it. After reading, the information is no longer accessible.
@@ -705,7 +680,6 @@ The link file and the source file have the same _inode_ number and the link coun
 
 > :warning: **WARNING:**
 If the source file is destroyed, the counter is decremented and the link file still accesses the file.
-
 ###### Command `ln` for a physical link
 
 The `ln` command allows you to create physical links.
@@ -713,9 +687,7 @@ The `ln` command allows you to create physical links.
 ```
 [root]# ls –li letter
 666 –rwxr--r-- 1 root root … letter
-
 [root]# ln /home/paul/letter /home/jack/read
-
 [root]# ls –li /home/*/*
 666 –rwxr--r-- 2 root root … letter
 666 –rwxr--r-- 2 root root … read
@@ -731,7 +703,6 @@ The file created contains only an indication of the path to the file. This notio
 
 > :warning: **WARNING:**
 If the source file is destroyed, the link file can no longer access the file.
-
 ###### `ln` command for a symbolic link
 
 The command `ln` with the argument `-s` allows to create symbolic links.
@@ -739,9 +710,7 @@ The command `ln` with the argument `-s` allows to create symbolic links.
 ```
 [root]# ls –li letter
 666 -rwxr--r-- 1 root root … letter
-
 [root]# ln -s /home/paul/letter /tmp/read
-
 [root]# ls –li /home/paul/letter /tmp/read
 666 -rwxr--r--- 1 root root … letter
 678 lrwxrwxrwx 1 root root … read -> letter
@@ -769,7 +738,6 @@ There are 4 file access rights:
 
 > :warning: **WARNING:**
 The rights associated with files differ from those associated with directories (see below).
-
 The user types associated with file access rights are:
 
 * **u**ser_ (owner) ;
@@ -789,7 +757,6 @@ In some commands it is possible to designate everyone with **a** (_all_).
 
 > :notebook: **NOTE:**
 Moving or renaming a file depends on the rights of the target directory. Deleting a file depends on the rights of the parent directory.
-
 ### Rights associated with directories
 
 * **r**ead: Allows reading the contents of a directory (`ls -R`).
@@ -817,7 +784,6 @@ The display of rights is done with the command `ls -l`. It is the last 9 charact
 
 > :notebook: **NOTE:**
 Permissions apply to **u**ser, **g**roup and **o**ther (**ugo**) depending on the owner and group.
-
 By default, the _owner_ of a file is the one who creates it. The _group_ of the file is the group of the owner who created the file. The _others_ are those which are not concerned by the previous cases.
 
 The attributes are changed with the `chmod` command.
@@ -842,7 +808,6 @@ Example:
 [root]# chmod -R u+rwx,g+wx,o-r /tmp/file1
 [root]# chmod g=x,o-r /tmp/file2
 [root]# chmod -R o=r /tmp/file3
-
 [root]# ls -l /tmp/fic*
 -rwxrwx--- 1 root root … /tmp/file1
 -rwx--x--- 1 root root … /tmp/file2
@@ -852,7 +817,6 @@ Example:
 ```
 [root]# chmod 741 /tmp/file1
 [root]# chmod -R 744 /tmp/file2
-
 [root]# ls -l /tmp/fic*
 -rwxr----x 1 root root … /tmp/file1
 -rwxr--r-- 1 root root … /tmp/file2
@@ -869,7 +833,6 @@ There are two methods for making rights changes:
 
 > :warning: **WARNING:**
 The rights of files and directories are not dissociated. For some operations, it will be necessary to know the rights of the directory containing the file.
-
 A write-protected file can be deleted by another user as long as the rights of the directory containing it allow this user to perform this operation.
 
 #### Principle of the octal method
@@ -894,7 +857,7 @@ Each right has a value.
 
 #### Principle of the symbolic method
 
-This method can be considered as a "literal" association between a user type, an operator and rights.
+This method can be considered as a "literal" association between a user type, an operator, and rights.
 
 ![Symbolic method](images/FON-040-014.png)
 
@@ -907,9 +870,7 @@ This method can be considered as a "literal" association between a user type, an
 ```
 [root]# ls -l /tmp/myfile
 r--r-- 1 root root … /tmp/myfile
-
 [root]# chmod u+rwx,g+wx,o-r /tmp/myfile
-
 [root]# ls -l /tmp/myfile
 -rwxrwx--- 1 root root … /tmp/myfile
 ```
@@ -922,13 +883,12 @@ In addition to the fundamental rights (`rwx`), there are the particular rights:
 * **set-group-ID** (_SGID]_)
 * **sticky-bit**
 
-As for the fundamental rights, the particular rights each have a value. This value is placed before the `ugo` set of rights.
+As with the fundamental rights, the particular rights each have a value. This value is placed before the `ugo` set of rights.
 
 ![Special rights](images/FON-040-015.png)
 
 > :fire: **DANGER:**
 `S`, `S` and `T` in capital letters **if the right does not exist**.
-
 #### The sticky-bit
 
 One of the peculiarities of rights in Linux is that the right to write to a directory also allows deletion of *all* files, owner or not.
@@ -955,13 +915,12 @@ drwxrwxrwt … directory
 
 #### SUID and SGID on a command
 
-These rights allow to execute a command according to the rights set on the command and not according to the user's rights.
+These rights allow execution of a command according to the rights set on the command, and not according to the user's rights.
 
 The command is executed with the identity of the owner (_SUID_) or the group (_SGID_) of the command.
 
 > :notebook: **NOTE:**
 The identity of the user requesting the execution of the order is no longer taken into account.
-
 This is an additional possibility of access rights assigned to a user when it is necessary for him to have the same rights as the owner of a file or those of the group concerned.
 
 Indeed, a user may have to run a program (usually a system utility) but not have the necessary access rights. By setting the appropriate rights (**s** at the owner level and/or at the group level), the user of the program has, for the time of its execution, the identity of the owner (or that of the group) of the program.
@@ -1000,7 +959,6 @@ Verification:
 > :warning: **WARNING:**
 > It is not possible to pass the _SUID_ or _SGID_ to a shell script.
 > The system does not allow it because it is too dangerous for security!
-
 #### SGID on a file
 
 In a directory with the _SGID_ right, any file created will inherit the group that owns the directory instead of that of the creating user.
@@ -1060,7 +1018,6 @@ u=rwx,g=rx,o=w
 $ touch umask_025
 $ ls -la  umask_025
 -rw-r---w- 1 rockstar rockstar 0 nov.   4 16:44 umask_025
-
 ```
 
 | Option |	Description                     |
@@ -1072,7 +1029,6 @@ $ ls -la  umask_025
 
 > :notebook: **NOTE:**
 `umask` modifies the mask until the disconnection. To keep the value, you have to modify the following profile files:
-
 For all users:
 
 * `/etc/profile`
