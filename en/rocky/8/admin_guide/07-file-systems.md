@@ -1,5 +1,33 @@
 # File system
 
+In this chapter you will learn how to work with filesystems.
+
+****
+
+**Objectives** : In this chapter, future Linux administrators will learn how to:
+
+:heavy_check_mark: manage partitions on disk;
+
+:heavy_check_mark: use LVM for a better use of disk resources;
+
+:heavy_check_mark: provide users with a file system and manage the access rights.
+
+and also discover:
+
+:heavy_check_mark: how the tree structure is organised in Linux;
+
+:heavy_check_mark: the different types of files offered and how to work with;
+
+:checkered_flag: **hardware**, **disk**, **partition**, **lvm**, **linux**
+
+**Knowledge**: :star: :star:
+
+**Complexity**: :star: :star:
+
+**Reading time**: 20 minutes
+
+****
+
 ## Partitioning
 
 Partitioning will allow the installation of several operating systems because it is impossible to have several of them cohabit on the same logical drive. Partitioning also allows to partition data (security, access optimization, ...).
