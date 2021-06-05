@@ -6,7 +6,7 @@ title:  Rocky Linux 8.4 Release Notes
 
 The entire Rocky Linux team is excited to let you know about the first full release of Rocky Linux, Rocky Linux 8.4! If you are new to Rocky Linux, it's great to have you here and we look forward to a long and happy relationship.
 
-Rocky Linux is a community enterprise operating system designed to be 100% bug-for-bug compatible with America's top enterprise Linux distribution. It is under intensive development by the community. As such, the release notes reflect the changes to the upstream packages and to those inclduded in the original Rocky Linux 8.3 release candidate. 
+Rocky Linux is a community enterprise operating system designed to be 100% bug-for-bug compatible with America's top enterprise Linux distribution. It is under intensive development by the community. As such, the release notes reflect the changes to the upstream packages and to those included in the original Rocky Linux 8.3 release candidate. 
 
 ## New Modules
 
