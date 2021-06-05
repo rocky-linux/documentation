@@ -1,4 +1,4 @@
-# <a name="menu"></a>LXD Server
+# <a name="menu"></a>Creating a full LXD Server on Rocky Linux
 
 * [Introduction](#intro)
 * [Part 1 : Getting The Environemnt Ready](#part1)
