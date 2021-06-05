@@ -37,10 +37,11 @@ The learning curve for LXD can be a bit steep, but this document will attempt to
 # Prerequisites And Assumptions
 
 * One Rocky Linux server, nicely configured. You should consider a separate hard drive for ZFS disk space (you have to if you are using ZFS) in a production environment. And yes, we are assuming this is a bare metal server, not a VPS.
-* This should be considered an advanced topic, but we have tried our best to make it as easy to understand as possible for everyone.
+* This should be considered an advanced topic, but we have tried our best to make it as easy to understand as possible for everyone. THat said, knowing a few basic things about container management will take you a long way.
 * You should be very comfortable at the command line on your machine(s), and fluent in a command line editor. (We are using _vi_ throughout this example, but you can substitute in your favorite editor.)
 * You need to be an unprivileged user for the bulk of the LXD processes. Except where noted, enter LXD commands as your unprivileged user. We are assuming that you are logged in as a user named "lxdadmin" for LXD commands. The bulk of the set up _is_, done as root until you get past the LXD initialization. We will have you create the "lxdadmin" user later in the process.
 * For ZFS, make sure that UEFI secure boot is NOT enabled. Otherwise, you will end up having to sign the ZFS module in order to get it to load.
+* We will, for the moment, be using CentOS-based containers, as LXC does not yet have Rocky Linux images. Stay tuned for updates, because this will likely change with time.
 
 # <a name="part1"></a>Part 1 : Getting The Environment Ready
 
@@ -205,9 +206,9 @@ If you have UEFI secure boot turned off, this should be fairly easy.  First, loa
 
 `/sbin/modprobe zfs`
 
-This should not return an error, it should simply return to the command prompt when done. If you get an error, stop now and begin troubleshooting. Again, make sure that secure boot is off as that will be the biggest culprit.
+This should not return an error, it should simply return to the command prompt when done. If you get an error, stop now and begin troubleshooting. Again, make sure that secure boot is off as that will be the most likely culprit.
 
-Next we need to take a look at the disks on our system, determine what has the OS loaded on it, and what is available to use for the zfs pool. We will do this with _lsblk_:
+Next we need to take a look at the disks on our system, determine what has the OS loaded on it, and what is available to use for the ZFS pool. We will do this with _lsblk_:
 
 `lsblk`
 
@@ -231,11 +232,13 @@ sdc      8:32   0 149.1G  0 disk
 └─sdc1   8:33   0 149.1G  0 part
 ```
 
-In this listing, we can see that /dev/sda is in use by the operating system, so we are going to use /dev/sdb for our zpool. Note that if you have multiple free hard drives, you may wish to consider using raidz (a software raid specifically for zfs). That falls outside the scope of this document, but should definitely be a consideration for production, as it offers better performance and redundancy. For now, let's create our pool on the single device we have identified:
+In this listing, we can see that */dev/sda* is in use by the operating system, so we are going to use */dev/sdb* for our zpool. Note that if you have multiple free hard drives, you may wish to consider using raidz (a software raid specifically for ZFS). 
+
+That falls outside the scope of this document, but should definitely be a consideration for production, as it offers better performance and redundancy. For now, let's create our pool on the single device we have identified:
 
 `zpool create storage /dev/sdb`
 
-What this says is to create a pool called "storage" that is zfs on the device /dev/sdb.
+What this says is to create a pool called "storage" that is ZFS on the device */dev/sdb*.
 
 Once the pool is created, it's a good idea to reboot the server again at this point.
 
@@ -245,7 +248,7 @@ Now that the environment is all set up, we are ready to initialize LXD. This is 
 
 `lxd init`
 
-Here are the questions and our answers for the script, with a little exlanation where warranted:
+Here are the questions and our answers for the script, with a little explanation where warranted:
 
 `Would you like to use LXD clustering? (yes/no) [default=no]:` 
 
@@ -253,11 +256,11 @@ If you are interested in clustering, do some additional research on that [here](
 
 `Do you want to configure a new storage pool? (yes/no) [default=yes]:`
 
-This may seem counter-intuitive, since we have already created our zfs pool, but it will be resolved in a later question. Accept the default.
+This may seem counter-intuitive, since we have already created our ZFS pool, but it will be resolved in a later question. Accept the default.
 
 `Name of the new storage pool [default=default]: storage`
 
-You could leave this as default if you wanted to, but we have chosen to use the same name  we gave our zfs pool.
+You could leave this as default if you wanted to, but we have chosen to use the same name we gave our ZFS pool.
 
 `Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]:`
 
@@ -299,7 +302,7 @@ Before we continue on, we need to create our "lxdadmin" user and make sure that 
 
 `useradd -G wheel,lxd lxdadmin`
 
-then set the password:
+Then set the password:
 
 `passwd lxdadmin`
 
@@ -313,7 +316,9 @@ Create your firewall.conf script:
 
 `vi /etc/firewall.conf`
 
-We are assuming an LXD server on a LAN network of 192.168.1.0/24 below. Note, too, that we are accepting all traffic from our bridged interface. This is important if you want your containers to get IP addresses from the bridge. This firewall script makes no other assumptions about the network services needed. There is an SSH rule to allow our LAN network IP's to SSH into the server. You can very easily have many more rules needed here, depending on your environment. Later, we will be adding a rule for bi-directional traffic between our production server and the snapshot server.
+We are assuming an LXD server on a LAN network of 192.168.1.0/24 below. Note, too, that we are accepting all traffic from our bridged interface. This is important if you want your containers to get IP addresses from the bridge. 
+
+This firewall script makes no other assumptions about the network services needed. There is an SSH rule to allow our LAN network IP's to SSH into the server. You can very easily have many more rules needed here, depending on your environment. Later, we will be adding a rule for bi-directional traffic between our production server and the snapshot server.
 
 ```
 #!/bin/sh
@@ -337,7 +342,7 @@ iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
 /usr/sbin/service iptables save
 ```
 
-This completes Part 1. You can either continue on to Part 2, or return to the [menu](#menu). If you are working on the snapshot server, you can head back to [Part 5](#part5) now.
+This completes Part 1. You can either continue on to Part 2, or return to the [menu](#menu). If you are working on the snapshot server, you can head down to [Part 5](#part5) now.
 
 # <a name="part2"></a>Part 2 : Setting Up And Managing Images
 
@@ -349,7 +354,9 @@ Once you have your server environment set up, you'll probably be itching to get 
 
 `lxc image list images: | more`
 
-and hit the space bar to page through the list. This list of containers and virtual machines continues to grow. For now, we are sticking with containers. The last thing you want to do is to page through looking for a container image to install, particularly if you know the image that you want to create. Let's modify the command above to show only CentOS Linux install options:
+Hit the space bar to page through the list. This list of containers and virtual machines continues to grow. For now, we are sticking with containers. 
+
+The last thing you want to do is to page through looking for a container image to install, particularly if you know the image that you want to create. Let's modify the command above to show only CentOS Linux install options:
 
 `lxc image list images: | grep centos/8`
 
@@ -376,35 +383,17 @@ This brings up a much more manageable list:
 
 ## <a name="lxdimageinstall"></a>Installing, Renaming, And Listing Images
 
-For the first container, we are going to choose centos/8. To install it, we use:
-
-`lxc launch images:centos/8`
-
-The image will install and you should get a message something like this:
-
-```
-Creating the instance
-Instance name is: ample-chipmunk             
-Starting ample-chipmunk
-```
-
-It appears that our container for CentOS Linux version 8, has been created with a weird name. If you don't specify the name at the time of creation, this will happen. To change this behavior, modify the "lxc launch" command like this:
+For the first container, we are going to choose centos/8. To install it, we *could* use:
 
 `lxc launch images:centos/8 centos-test`
 
-That will create the container name as "centos-test" instead. You can rename a container after it has been created, but you first need to stop the container, which starts automatically when it is launched:
+That will create a CentOS-based containter named "centos-test". You can rename a container after it has been created, but you first need to stop the container, which starts automatically when it is launched.
 
-`lxc stop ample-chipmunk`
-
-then
-
-`lxc move ample-chipmunk centos-test`
-
-and start the container:
+To start the container manually, use:
 
 `lxc start centos-test`
 
-Install one more image for now:
+For the purposes of this guide, go ahead and install one more image for now:
 
 `lxc launch images:ubuntu/20.10 ubuntu-test`
 
@@ -426,11 +415,17 @@ which should return something like this:
 
 ## <a name="profiles"></a>LXD Profiles
 
-You get a default profile when you install LXD, and this profile cannot be removed or modified. That said, you can use the default profile to create new profiles to use with your containers. If you look at our container listing (above) you will notice that the IP address in each case is assigned from the bridged interface. In a production environment, you may want to use something else. This might be a DHCP assigned address from your LAN interface or even a statically assigned address from your WAN. If you configure your LXD server with two interfaces, and assign each an IP on your WAN and LAN, then it is possible to assign your containers IP addresses based on which interface the container needs to be facing. 
+You get a default profile when you install LXD, and this profile cannot be removed or modified. That said, you can use the default profile to create new profiles to use with your containers. 
 
-As of version 8 of Rocky Linux (and really any bug for bug copy of Red Hat Enterprise Linux, such as CentOS in our listing above) the method for assigning IP addresses statically or dynamically using the profiles below, is broken out of the gate. There are ways to get around this, but it is annoying, as the feature that is broken _should be_ part of the Linux kernel. That feature is macvlan. Macvlan allows you to create multiple interfaces with different Layer 2 addresses.
+If you look at our container listing (above) you will notice that the IP address in each case is assigned from the bridged interface. In a production environment, you may want to use something else. This might be a DHCP assigned address from your LAN interface or even a statically assigned address from your WAN. 
 
-For now, just be aware that what we are going to suggest next, has drawbacks when choosing container images based on RHEL.
+If you configure your LXD server with two interfaces, and assign each an IP on your WAN and LAN, then it is possible to assign your containers IP addresses based on which interface the container needs to be facing.
+
+As of version 8 of Rocky Linux (and really any bug for bug copy of Red Hat Enterprise Linux, such as CentOS in our listing above) the method for assigning IP addresses statically or dynamically using the profiles below, is broken out of the gate. 
+
+There are ways to get around this, but it is annoying, as the feature that is broken _should be_ part of the Linux kernel. That feature is macvlan. Macvlan allows you to create multiple interfaces with different Layer 2 addresses.
+
+For now, just be aware that what we are going to suggest next has drawbacks when choosing container images based on RHEL.
 
 ### <a name="macvlan"></a>Creating A macvlan Profile And Assigning It
 
@@ -459,7 +454,7 @@ And then look for the interface with the LAN IP assignment in the 192.168.1.0/24
        valid_lft forever preferred_lft forever
 ```
 
-So in this case, the interface would be "enp3s0"
+So in this case, the interface would be "enp3s0".
 
 Now let's modify the profile:
 
@@ -480,7 +475,7 @@ name: macvlan
 used_by: []
 ```
 
-Obviously, you can use profiles for lots of other things, but assigning a static IP to a container or using your own DHCP server as a source for an address are very common needs.
+Obviously, you can use profiles for lots of other things, but assigning a static IP to a container, or using your own DHCP server as a source for an address are very common needs.
 
 To assign the macvlan profile to centos-test we need to do the following:
 
@@ -490,7 +485,9 @@ This simply says, we want the default profile, and then we want to apply the mac
 
 ### <a name="centosmacvlan"></a> CentOS macvlan
 
-In CentOS implementation of Network Manager, they have managed to break the functionality of macvlan in the kernel, or at least in the kernel applied to their LXD image. This has been this way since CentOS 8 was released and no one appears to be at all concerned about a fix. If you want to run CentOS 8 containers, you've got to jump through some additional hoops to get macvlan to work. macvlan is part of the kernel, so it should work without the below fixes, but it doesn't.
+In the CentOS implementation of Network Manager, they have managed to break the functionality of macvlan in the kernel, or at least in the kernel applied to their LXD image. This has been this way since CentOS 8 was released and no one appears to be at all concerned about a fix. 
+
+Simply put, if you want to run CentOS 8 containers, you've got to jump through some additional hoops to get macvlan to work. macvlan is part of the kernel, so it should work without the below fixes, but it doesn't.
 
 #### CentOS macvlan - The DHCP Fix
 
@@ -500,11 +497,11 @@ To test this, simply do the following:
 
 `lxc stop centos-test`
 
-and
+And then:
 
 `lxc start centos-test`
 
-Now do a listing of the containers again and note that centos-test does not have an IP address anymore:
+Now list your containers again and note that centos-test does not have an IP address anymore:
 
 `lxc list`
 
@@ -580,11 +577,13 @@ A new listing will reveal that the container has been assigned the DHCP address:
 
 #### CentOS macvlan - The Static IP Fix
 
-To statically assign an IP address, things get even more convoluted. The process of setting a static IP address on a CentOS container is through the network-scripts, which we will do now. The IP we will attempt to assign is 192.168.1.200. To do this, we need to gain shell access to the container again:
+To statically assign an IP address, things get even more convoluted. The process of setting a static IP address on a CentOS container is through the network-scripts, which we will do now. The IP we will attempt to assign is 192.168.1.200. 
+
+To do this, we need to gain shell access to the container again:
 
 `lxc exec centos-test bash`
 
-The next thing we need to do is to manually modify the interface, eth0, and set our IP address. To modify our configuration, do the following:
+The next thing we need to do is to manually modify the interface labelled "eth0", and set our IP address. To modify our configuration, do the following:
 
 `vi /etc/sysconfig/network-scripts/ifcfg-eth0`
 
@@ -649,7 +648,7 @@ To fix this requires breaking Network Manager on the container. The following wo
 
 `lxc exec centos-test dhclient`
 
-then get into the container:
+Then get into the container:
 
 `lxc exec centos-test bash`
 
@@ -670,7 +669,7 @@ Exit the container and then stop and start the container again:
 
 `lxc stop centos-test`
 
-and
+And then run:
 
 `lxc start centos-test`
 
@@ -700,11 +699,11 @@ That should be all that is necessary to get a DHCP assigned address. To find out
 
 `lxc stop ubuntu-test`
 
-and
+And then run:
 
 `lxc start ubuntu-test`
 
-and then list the containers again:
+Then list the containers again:
 
 ```
 +-------------+---------+----------------------+------+-----------+-----------+
@@ -718,7 +717,7 @@ and then list the containers again:
 
 Success!
 
-Static IP is just a little different, but not at all hard. We need to modify the .yaml file associated with the container's connection (/10-lxc.yaml). For this static IP, we will use 192.168.1.201:
+Configuring the Static IP is just a little different, but not at all hard. We need to modify the .yaml file associated with the container's connection (/10-lxc.yaml). For this static IP, we will use 192.168.1.201:
 
 `vi /etc/netplan/10-lxc.yaml`
 
@@ -742,11 +741,11 @@ Now stop and start the container:
 
 `lxc stop ubuntu-test`
 
-and
+And then run:
 
 `lxc start ubuntu-test`
 
-When you do a listing again, you should see our new static IP:
+When you list your containers again, you should see our new static IP:
 
 ```
 +-------------+---------+----------------------+------+-----------+-----------+
@@ -809,11 +808,13 @@ Resources:
       Packets sent: 0
 ```
 
-There's a lot of good information there, from the profiles applied, memory in use, disk space in use, and more. 
+There's a lot of good information there, from the profiles applied, to the memory in use, disk space in use, and more. 
 
 ### <a name="lxdconfigopt"></a>A Word About Configuration And Some Options
 
-By default, LXD will allocate the required system memory, disk space, CPU cores, etc., to the container. What if we want to be more specific?  That is totally possible. There are trade-offs to doing this. For instance, if we allocate system memory and the container doesn't actually use it all, then we have kept it from another container that might actually need it. The reverse, though, can happen. If a container is a complete pig on memory, then it can keep other containers from getting enough, therefor pinching their performance. 
+By default, LXD will allocate the required system memory, disk space, CPU cores, etc., to the container. But what if we want to be more specific? That is totally possible. 
+
+There are trade-offs to doing this, though. For instance, if we allocate system memory and the container doesn't actually use it all, then we have kept it from another container that might actually need it. The reverse, though, can happen. If a container is a complete pig on memory, then it can keep other containers from getting enough, thereby pinching their performance. 
 
 Just keep in mind that every action you make to configure a container _can_ have negative effects somewhere else.
 
@@ -823,9 +824,7 @@ Rather than run through all of the options for configuration, use the tab auto-c
 
 This shows you all of the options for configuring a container. If you have questions about what one of the configuration options does, head up to the [official documentation for LXD](https://lxd.readthedocs.io/en/stable-4.0/instances/) and do a search for the configuration parameter, or Google the entire string, such as "lxc config set limits.memory" and take a look at the results of the search. 
 
-We will look at a few of the most used configuration options. 
-
-If you want to set the max amount of memory that a container can use:
+We will look at a few of the most used configuration options. FOr example, if you want to set the max amount of memory that a container can use:
 
 `lxc config set ubunt-test limits.memory 2GB`
 
@@ -865,11 +864,13 @@ locations:
 - none
 ```
 
-This shows that all of our containers are using our zfs storage pool. When using zfs, you can also set a disk quota on a container. Let's do this by setting a 2GB disk quota on the ubuntu-test container. You do this with:
+This shows that all of our containers are using our zfs storage pool. When using ZFS, you can also set a disk quota on a container. Let's do this by setting a 2GB disk quota on the ubuntu-test container. You do this with:
 
 `lxc config device override ubuntu-test root size=2GB`
 
-As stated earlier, you should use configuration options sparingly, unless you've got a container that wants to use way more than its share of resources. LXD, for the most part, will manage the environment well on its own. There are, of course, many more options that may be of interest to some people. You should do your own research to find out if any of those are of value in your environment.
+As stated earlier, you should use configuration options sparingly, unless you've got a container that wants to use way more than its share of resources. LXD, for the most part, will manage the environment well on its own. 
+
+There are, of course, many more options that may be of interest to some people. You should do your own research to find out if any of those are of value in your environment.
 
 This completes Part 3. You can either continue on to Part 4, or return to the [menu](#menu).
 
@@ -877,9 +878,9 @@ This completes Part 3. You can either continue on to Part 4, or return to the [m
 
 Container snapshots, along with a snapshot server (which we will get to more later), are probably the most important aspect of running a production LXD server. Snapshots ensure quick recovery, and can be used for safety when you are, say, updating the primary software that runs on a particular container. If something happens during the update that breaks that application, you simply restore the snapshot and you are back up and running with only a few seconds worth of downtime. 
 
-The author used LXD containers for PowerDNS public facing servers, and the process of updating those applications became so much more worry-free, when you could snapshot the container first before continuing. 
+The author used LXD containers for PowerDNS public facing servers, and the process of updating those applications became so much more worry-free, since you can snapshot the container first before continuing. 
 
-You can snapshot a container while it is running. We'll start by getting a snapshot of the ubuntu-test container by doing:
+You can even snapshot a container while it is running. We'll start by getting a snapshot of the ubuntu-test container by using this command:
 
 `lxc snapshot ubuntu-test ubuntu-test-1`
 
@@ -910,11 +911,11 @@ Before we restore the container as it was prior to creating the file, the safest
 
 `lxc stop ubuntu-test`
 
-Then restore:
+Then restore it:
 
 `lxc restore ubuntu-test ubuntu-test-1`
 
-Then start the container:
+Then start the container again:
 
 `lxc start ubuntu-test`
 
@@ -924,7 +925,9 @@ Once you don't need a snapshot anymore, you can delete it:
 
 `lxc delete ubuntu-test/ubuntu-test-1`
 
-**Important:** You should always delete snapshots with the container running. Why? Well the _lxc delete_ command also works to delete the entire container. If we had accidentally hit enter after "ubuntu-test" in the command above, AND, if the container was stopped, the container would be deleted. No warning is given, it simply does what you ask. If the container is running, however, you will get this message:
+**Important:** You should always delete snapshots with the container running. Why? Well the _lxc delete_ command also works to delete the entire container. If we had accidentally hit enter after "ubuntu-test" in the command above, AND, if the container was stopped, the container would be deleted. No warning is given, it simply does what you ask. 
+
+If the container is running, however, you will get this message:
 
 `Error: The instance is currently running, stop it first or pass --force`
 
@@ -944,7 +947,11 @@ You're back!! Congratulations, this must mean that you have successfully complet
 
 ## <a name="lxdrelationship"></a> Setting Up The Primary and Snapshot Server Relationship
 
-We've got some housekeeping to do before we continue. First, if you are running in a production environment, you probably have access to a DNS server that you can use for setting up IP to name resolution. In our lab, we don't have that luxury. Perhaps you've got the same scenario running. For this reason, we are going to add both servers IP addresses and names to the /etc/hosts file on BOTH the primary and the snapshot server. You'll need to do this as your root (or _sudo_) user. In our lab, the primary LXD server is running on 192.168.1.106 and the snapshot LXD server is running on 192.168.1.141. We will SSH into both servers and add the following to the /etc/hosts file:
+We've got some housekeeping to do before we continue. First, if you are running in a production environment, you probably have access to a DNS server that you can use for setting up IP to name resolution. 
+
+In our lab, we don't have that luxury. Perhaps you've got the same scenario running. For this reason, we are going to add both servers IP addresses and names to the /etc/hosts file on BOTH the primary and the snapshot server. You'll need to do this as your root (or _sudo_) user. 
+
+In our lab, the primary LXD server is running on 192.168.1.106 and the snapshot LXD server is running on 192.168.1.141. We will SSH into both servers and add the following to the /etc/hosts file:
 
 ```
 192.168.1.106 lxd-primary
@@ -972,7 +979,9 @@ It does not hurt to have this done in reverse as well. In other words, set the t
 
 ## <a name="migration"></a> Migrating Our First Snapshot
 
-Before we can migrate our first snapshot, we need to have any profiles created on lxd-snapshot that we have created on the lxd-primary. In our case, this is the "macvlan" profile. You'll need to create this for lxd-snapshot, so go back to [LXD Profiles](#profiles) and create the "macvlan" profile on lxd-snapshot. If your two servers have identical parent interface names ("enp3s0" for example) then you can copy the "macvlan" profile over to lxd-snapshot without recreating it:
+Before we can migrate our first snapshot, we need to have any profiles created on lxd-snapshot that we have created on the lxd-primary. In our case, this is the "macvlan" profile. 
+
+You'll need to create this for lxd-snapshot, so go back to [LXD Profiles](#profiles) and create the "macvlan" profile on lxd-snapshot. If your two servers have identical parent interface names ("enp3s0" for example) then you can copy the "macvlan" profile over to lxd-snapshot without recreating it:
 
 `lxc profile copy macvlan lxd-snapshot`
 
@@ -1012,11 +1021,13 @@ And on the lxd-snapshot server:
 
 `lxc start centos-test`
 
-Assuming all of this works without error. Stop the container on lxd-snapshot and start it again on lxd-primary.
+Assuming all of this works without error, stop the container on lxd-snapshot and start it again on lxd-primary.
 
 ## The Snapshot Server - Setting boot.autostart To Off For Containers
 
-The snapshots copied to lxd-snapshot will be down when they are migrated, but if you have a power event or need to reboot the snapshot server because of updates or something, you will end up with a problem as those containers will attempt to start on the snapshot server. To eliminate this, we need to set the migrated containers so that they will not start on reboot of the server. For our newly copied centos-test container, this is done with the following:
+The snapshots copied to lxd-snapshot will be down when they are migrated, but if you have a power event or need to reboot the snapshot server because of updates or something, you will end up with a problem as those containers will attempt to start on the snapshot server. 
+
+To eliminate this, we need to set the migrated containers so that they will not start on reboot of the server. For our newly copied centos-test container, this is done with the following:
 
 `lxc config set centos-test boot.autostart 0`
 
@@ -1025,7 +1036,8 @@ Do this for each snapshot on the lxd-snapshot server.
 ## <a name="automatingsnaps"></a> Automating The Snapshot Process
 
 Ok, so it's great that you can create snapshots when you need to, and sometimes you _do_ need to manually create a snapshot. You might even want to manually copy it over to lxd-snapshot. BUT, once you've got things going and you've got 25 to 30 containers or more running on your lxd-primary machine, the very last thing you want to do is spend an afternoon deleting snapshots on the snapshot server, creating new snapshots and sending them over. 
-First thing we need to do is schedule a process to automate snapshot creation on lxd-primary. This is has to be done for each container on the lxd-primary server, but once it is set up, it will take care of itself. This is done with the following syntax. Note the similarities to a crontab entry for the timestamp:
+
+The first thing we need to do is schedule a process to automate snapshot creation on lxd-primary. This is has to be done for each container on the lxd-primary server, but once it is set up, it will take care of itself. This is done with the following syntax. Note the similarities to a crontab entry for the timestamp:
 
 `lxc config set [container_name] snapshots.schedule "50 20 * * *"`
 
@@ -1039,7 +1051,7 @@ We also want to set up the name of the snapshot to be meaningful by our date. LX
 
 `lxc config set centos-test snapshots.pattern "centos-test-{{ creation_date|date:'2006-01-02_15-04-05' }}"`
 
-GREAT, but we certainly don't want a new snapshot every day without getting rid of an old one, right?  We'd fill up the drive with snapshots. So next we do:
+GREAT, but we certainly don't want a new snapshot every day without getting rid of an old one, right?  We'd fill up the drive with snapshots. So next we run:
 
 `lxc config set centos-test snapshots.expiry 1d`
 
@@ -1093,4 +1105,4 @@ There is a great deal to installing and effectively using LXD. You can certainly
 
 Even though we've touched on a lot of features and settings, we have only scratched the surface of what you can do with LXD. The best way to learn this system, is to install it and try it out with things that you will use. If you find LXD useful, consider installing it in the fashion described in this document for the best possible leveraging of hardware for Linux containers. Rocky Linux works very well for this!
 
-You can now exit this document, or return to the [menu](#menu).
+You can now exit this document, or return to the [menu](#menu). You know, if you want.
