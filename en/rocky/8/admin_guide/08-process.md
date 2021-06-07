@@ -1,21 +1,18 @@
 # Process management
 
-In this chapter you will learn how to work with process.
+In this chapter you will learn how to work with processes.
 
 ****
 
 **Objectives** : In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: Recognising the `PID` and `PPID` of a process;
-
-:heavy_check_mark: View and search for processes;
-
-:heavy_check_mark: Managing processes.
+:heavy_check_mark: Recognize the `PID` and `PPID` of a process; \
+:heavy_check_mark: View and search for processes; \
+:heavy_check_mark: Manage processes.
 
 :checkered_flag: **process**, **linux**
 
-**Knowledge**: :star: :star:
-
+**Knowledge**: :star: :star: \
 **Complexity**: :star:
 
 **Reading time**: 20 minutes
@@ -26,9 +23,9 @@ In this chapter you will learn how to work with process.
 
 An operating system consists of processes. These processes are executed in a specific order and are related to each other. There are two categories of processes, those focused on the user environment and those focused on the hardware environment.
 
-When a program runs, the system will create a process by placing the program data and code in memory and creating a **runtime stack**. A process is therefore an instance of a program with an associated processor environment (ordinal counter, registers, etc.) and memory environment.
+When a program runs, the system will create a process by placing the program data and code in memory and creating a **runtime stack**. A process is therefore an instance of a program with an associated processor environment (ordinal counter, registers, etc...) and memory environment.
 
-Each process has :
+Each process has:
 
 * a _PID_ : _**P**rocess **ID**entifier_, a unique process identifier;
 * a _PPID_ : _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process.
@@ -38,14 +35,14 @@ By successive filiations, the `init` process is the father of all processes.
 * A process is always created by a parent process;
 * A parent process can have multiple child processes.
 
-There is a parent/child relationship between processes, a child process is the result of the parent process calling the _fork()_ primitive and duplicating its own code to create a child. The _PID_ of the child is returned to the parent process so that it can talk to it. Each child has its parent's identifier, the _PPID_.
+There is a parent/child relationship between processes. A child process is the result of the parent process calling the _fork()_ primitive and duplicating its own code to create a child. The _PID_ of the child is returned to the parent process so that it can talk to it. Each child has its parent's identifier, the _PPID_.
 
-The _PID_ number represents the process at the time of execution. At the end of it, the number is available again for another process. Running the same command several times will produce a different _PID_ each time.
+The _PID_ number represents the process at the time of execution. When the process finishes, the number is available again for another process. Running the same command several times will produce a different _PID_ each time.
 
 ![Parent/child relationship between processes](images/FON-050-001.png)
 
 > :notebook: **NOTE:**
-Processes are not to be confused with _threads_. Each process has its own memory context (resources and address space) while _threads_ from the same process share this same context.
+Processes are not to be confused with _threads_. Each process has its own memory context (resources and address space), while _threads_ from the same process share this same context.
 
 ## Viewing processes
 
@@ -75,7 +72,7 @@ Some additional options:
 | `-I`                  | Displays additional information.                  |
 | `--sort COL`          | Sort the result according to a column.            |
 | `--headers`           | Displays the header on each page of the terminal. |
-| `--format "%a %b %c"` | Customise the output display format.              |
+| `--format "%a %b %c"` | Customize the output display format.              |
 
 Without an option specified, the `ps` command only displays processes running from the current terminal.
 
@@ -87,7 +84,7 @@ UID  PID PPID C STIME  TTY TIME      CMD
 root 1   0    0 Jan01  ?   00:00/03  /sbin/init
 ```
 
-| Colonne  |  Description                |
+| Column  |  Description                |
 |----------|-----------------------------|
 | `UID`    | Owner user.                 |
 | `PID`    | Process identifier.         |
@@ -123,8 +120,8 @@ The user process:
 The system process (_demon_):
 
 * is started by the system;
-* is not associated with any terminal and is owned by a system user (often `root`);
-* is loaded at boot time, resides in memory and is waiting for a call;
+* is not associated with any terminal, and is owned by a system user (often `root`);
+* is loaded at boot time, resides in memory, and is waiting for a call;
 * is usually identified by the letter `d` associated with the process name.
 
 System processes are therefore called daemons (_**D**isk **A**nd **E**xecution **MON**itor_).
@@ -143,18 +140,18 @@ Each time a file is accessed, the system checks the rights of the process accord
 
 A process cannot be run indefinitely, as this would be to the detriment of other running processes and would prevent multitasking.
 
-The total processing time available is therefore divided into small ranges and each process (with a priority) accesses the processor in a sequenced manner. The process will take several states during its life among the states:
+The total processing time available is therefore divided into small ranges, and each process (with a priority) accesses the processor in a sequenced manner. The process will take several states during its life among the states:
 
-* ready: waiting for the availability of the process ;
+* ready: waiting for the availability of the process;
 * in execution: accesses the processor;
 * suspended: waiting for an I/O (input/output);
 * stopped: waiting for a signal from another process;
 * zombie: request for destruction;
-* dead : the father of the process kills his son.
+* dead: the father of the process kills his son.
 
 The end of process sequencing is as follows:
 
-1. Closing of the open files ;
+1. Closing of the open files;
 2. Release of the used memory;
 3. Sending a signal to the parent and child processes.
 
@@ -162,9 +159,9 @@ When a parent process dies, its children are said to be orphans. They are then a
 
 ### The priority of a process
 
-The processor works in time sharing, each process occupies a quantum of processor time.
+The processor works in time sharing with each process occupying a quantity of processor time.
 
-The processes are classified by priority whose value varies from **-20** (the highest priority) to **+20** (the lowest priority).
+The processes are classified by priority whose value varies from **-20** (the highest priority) to **+19** (the lowest priority).
 
 The default priority of a process is **0**.
 
@@ -173,7 +170,7 @@ The default priority of a process is **0**.
 Processes can run in two ways:
 
 * **synchronous**: the user loses access to the shell during command execution. The command prompt reappears at the end of the process execution.
-* **asynchronous**: the process is processed in the background, the command prompt is displayed again immediately.
+* **asynchronous**: the process is processed in the background. The command prompt is displayed again immediately.
 
 The constraints of the asynchronous mode:
 
@@ -201,9 +198,9 @@ $ kill -9 1664
 | `9`  | _SIGKILL_ | Interrupt the process (<kbd>CTRL</kdb> + <kdb>D</kdb>) |
 | `15` | _SIGTERM_ | Clean termination of the process                       |
 | `18` | _SIGCONT_ | Resume the process                                     |
-| `19` | _SIGSTOP_ | Suspending the process                                 |
+| `19` | _SIGSTOP_ | Suspend the process                                 |
 
-Signals are the means of communication between processes. The `kill` command allows to send a signal to a process.
+Signals are the means of communication between processes. The `kill` command sends a signal to a process.
 
 > :star: **TIP:**
 The complete list of signals taken into account by the `kill` command is available by typing the command :
@@ -213,7 +210,7 @@ $ man 7 signal
 
 ### `nohup` command
 
-`nohup` allows to launch a process independent of a connection.
+`nohup` allows the launching of a process independently of a connection.
 
 ```
 nohup command
@@ -283,14 +280,14 @@ The columns represent:
 
 1. job number;
 2. the order in which the processes run
-- a `+` : the process is the next process to run by default with `fg` or `bg` ;
-- a `-` : the process is the next process to take the `+` ;
+- a `+` : this process is the next process to run by default with `fg` or `bg` ;
+- a `-` : this process is the next process to take the `+` ;
 3.  _Running_ (running process) or _Stopped_ (suspended process).
 4. the command
 
 ### `nice` and `renice` commands
 
-The command `nice` allows to execute a command by specifying its priority.
+The command `nice` allows the execution of a command by specifying its priority.
 
 ```
 nice priority command
@@ -326,7 +323,6 @@ The `renice` command acts on processes already running. It is therefore possible
 
 > :star: **TIP:**
 The `pidof` command, coupled with the `xargs` command (see the Advanced Commands course), allows a new priority to be applied in a single command:
-
 ```
 $ pidof sleep | xargs renice 20
 ```
@@ -341,7 +337,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 2514 root 20 0       15    5.5 0:01.14   top
 ```
 
-| Colonne   | Description           |
+| Column   | Description           |
 |-----------|-----------------------|
 | `PID`     | Process identifier.   |
 | `USER`    | Owner user.           |
@@ -352,7 +348,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 | `TIME+`   | Processor usage time. |
 | `COMMAND` | Command executed.     |
 
-The `top` command allows to control the processes in real time and in interactive mode.
+The `top` command allows control of the processes in real time and in interactive mode.
 
 ### `pgrep` and `pkill` commands
 
