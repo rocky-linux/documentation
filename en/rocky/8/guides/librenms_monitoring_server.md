@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Network and systems administrators almost always need some form of monitoring. This can include graphing bandwidth usage at router end points, monitoring the up/down of services running on various servers, and much, much more. There are many monitoring options out there, but one option that is very good and has many, if not all, of the monitoring components available under one roof, is LibreNMS. 
+Network and systems administrators almost always need some form of monitoring. This can include graphing bandwidth usage at router end points, monitoring the up/down of services running on various servers, and much, much more. There are many monitoring options out there, but one option that is very good and has many, if not all, of the monitoring components available under one roof, is LibreNMS.
 
-This document will only get you started with LibreNMS, but we will point you to the projects excellent (and extensive) documentation to get you going further. There are lots of other options for monitoring out there that this author has used before, Nagios and Cacti being two, but LibreNMS offers what these two project offer individually, in one spot. 
+This document will only get you started with LibreNMS, but we will point you to the projects excellent (and extensive) documentation to get you going further. There are lots of other options for monitoring out there that this author has used before, Nagios and Cacti being two, but LibreNMS offers what these two project offer individually, in one spot.
 
 While the installation will follow pretty closely to the official install instructions found [here](https://docs.librenms.org/Installation/Install-LibreNMS/), we've added some explanation and even some minor changes, which make this procedure preferable to that excellent document.
 
@@ -43,7 +43,7 @@ To do this, copy and paste (or type) the following:
 
 `useradd librenms -d /opt/librenms -M -r -s "$(which bash)"`
 
-With this command, we are setting the default directory for our new user to "/opt/librenms" however the "-M" option says "don't create the directory." The of course is that we will be creating it when we install libreNMS. The "-r" says to make this user a system account and the "-s" says to set the shell (in this case, to "bash")
+With this command, we are setting the default directory for our new user to "/opt/librenms" however the "-M" option says "don't create the directory." The reason, of course, is that we will be creating it when we install libreNMS. The "-r" says to make this user a system account and the "-s" says to set the shell (in this case, to "bash")
 
 ## Download LibreNMS and Set Permissions
 
@@ -68,7 +68,7 @@ The _setfacl_ command stands for "set file access control lists" and is another 
 
 ## Install PHP Dependencies As librenms
 
-All of the above commands were executed as root or _sudo_, but the PHP dependencies within LibreNMS need to be installed as the librenms user. To do this, 
+All of the above commands were executed as root or _sudo_, but the PHP dependencies within LibreNMS need to be installed as the librenms user. To do this,
 
 `su - librenms`
 
@@ -96,7 +96,7 @@ We need to make sure that this is set correctly, both for the system and for PHP
 
 `vi /etc/php.ini`
 
-Find the date.timezone line and modify it. Note that it is remarked out, so remove the ";" from the beginning of the line and add your timezone after the "=" sign. For our Central timezone example we will use: 
+Find the `date.timezone` line and modify it. Note that it is remarked out, so remove the ";" from the beginning of the line and add your timezone after the "=" sign. For our Central timezone example we will use:
 
 `date.timezone = America/Chicago`
 
@@ -220,7 +220,7 @@ systemctl enable --now php-fpm
 ```
 ## SELinux
 
-Please note that if you don't plan on using SELinux, skip this and head to the next section. This might also apply to you if you use LibreNMS on a container that does not support SELinux at the container level, or does not include it by default. 
+Please note that if you don't plan on using SELinux, skip this and head to the next section. This might also apply to you if you use LibreNMS on a container that does not support SELinux at the container level, or does not include it by default.
 
 To setup everything with SELinux, you'll need an additional package installed:
 
@@ -280,7 +280,7 @@ firewall-cmd --zone public --add-service http --add-service https
 firewall-cmd --permanent --zone public --add-service http --add-service https
 ```
 
-The author has problems with the simplistic nature of _firewalld_. This rule allows your web services to be open to the world, but is that what you want for a monitoring server?  I would say that this is usually **not** the case. I prefer _iptables_ rules, because it is easy to see at a glance what you are allowing. 
+The author has problems with the simplistic nature of _firewalld_. This rule allows your web services to be open to the world, but is that what you want for a monitoring server?  I would say that this is usually **not** the case. I prefer _iptables_ rules, because it is easy to see at a glance what you are allowing.
 
 ### iptables
 
@@ -288,7 +288,7 @@ Create a script to run for adding, changing firewall rules called firewall.conf 
 
 `vi /etc/firewall.conf`
 
-Place the following in the file, substituting your network IP addresses as needed. This script allows UDP, SSH, HTTP and HTTPS from the local network in the lab, 192.168.1.0/24. It also allows ICMP type 8 (which stands for "Echo Request" or more commonly "ping") from our network gateway, 192.168.1.2: 
+Place the following in the file, substituting your network IP addresses as needed. This script allows UDP, SSH, HTTP and HTTPS from the local network in the lab, 192.168.1.0/24. It also allows ICMP type 8 (which stands for "Echo Request" or more commonly "ping") from our network gateway, 192.168.1.2:
 
 ```
 #!/bin/sh
@@ -336,7 +336,7 @@ Next, we need to set it up for autocomplete:
 
 ## Configure snmpd
 
-_SNMP_ stands for "Simple Network Management Protocol" and is used in many monitoring programs for pulling data. In version 2, which we are using here, it involves a "community string" which is specific for your environment. You'll need to assign this "communty string" to your network devices that you want to monitor so that _snmpd_ (the "d" here stands for the daemon) will be able to find it. If your network has been in place for some time, you may already have a "community string" that you are using. 
+_SNMP_ stands for "Simple Network Management Protocol" and is used in many monitoring programs for pulling data. In version 2, which we are using here, it involves a "community string" which is specific for your environment. You'll need to assign this "community string" to your network devices that you want to monitor so that _snmpd_ (the "d" here stands for the daemon) will be able to find it. If your network has been in place for some time, you may already have a "community string" that you are using.
 
 First, copy the snmp.conf file from LibreNMS:
 
@@ -374,11 +374,11 @@ Now that we have all of the components installed and configured, our next step i
 
 `http://192.168.1.140/librenms`
 
-Assuming all is working correctly, you should be redirected to the pre-install checks. Assuming that these are all marked as green, then we should be able to continue. 
+Assuming all is working correctly, you should be redirected to the pre-install checks. Assuming that these are all marked as green, then we should be able to continue.
 
 ![LibreNMS Prechecks](images/librenms_prechecks.png)
 
-If you notice there are four buttons beneath the LibreNMS logo, the first on the left is for the pre-checks. Our next button over is for the database. You'll need the password that you set for the database user "librenms" earlier in the process. If you've been following along diligently, then you've got that saved in a safe place. Go ahead and click on the "Database" button. The "User" and "Password" should be all that is necessary to fill in here. Once you do that, click the "Check Credentials" button. 
+There are four buttons beneath the LibreNMS logo. The first button on the left is for the pre-checks. Our next button over is for the database. You'll need the password that you set for the database user "librenms" earlier in the process. If you've been following along diligently, then you've got that saved in a safe place. Go ahead and click on the "Database" button. The "User" and "Password" should be all that is necessary to fill in here. Once you do that, click the "Check Credentials" button.
 
 ![LibreNMS Database](images/librenms_configure_database.png)
 
@@ -386,7 +386,7 @@ Once you click that, if it comes back green, then you are ready to click the "Bu
 
 ![LibreNMS Database Status](images/librenms_configure_database_status.png)
 
-Once that is complete, the third button will be active, which is "Create Admin User", so go ahead and click this. You will be prompted for an admin user name. In our lab we are simply going to use "admin", and a password for that user. Make sure the password is secure and, again, log it somewhere safe, such as a password manager. You'll also need to fill in the email addresws for the administrative user. Once all of that is completed, simply click the "Add User" button. 
+Once that is complete, the third button will be active, which is "Create Admin User", so go ahead and click this. You will be prompted for an admin user name. In our lab we are simply going to use "admin", and a password for that user. Make sure the password is secure and, again, log it somewhere safe, such as a password manager. You'll also need to fill in the email address for the administrative user. Once all of that is completed, simply click the "Add User" button.
 
 ![LibreNMS Administrative User](images/librenms_administrative_user.png)
 
@@ -417,7 +417,7 @@ By default, when you install snmpd on Ubuntu, it only binds to the local address
 
 `agentaddress  127.0.0.1,[::1]`
 
-And add a new line that looks like this. In this example, the IP address of our workstation is 192.168.1.122 and the UDP port we are setting is "161":
+And add a new line that looks like what follows here: (In this example, the IP address of our workstation is 192.168.1.122 and the UDP port we are setting is "161")
 
 `agentAddress udp:127.0.0.1:161,udp:192.168.1.122:161`
 
@@ -443,7 +443,7 @@ sudo systemctl start snmpd
 
 If you are running a firewall on your internal workstations, then you will need to modify the firewall to allow UDP traffic from the monitoring server or from the network. LibreNMS also wants to be able to "ping" your device, so make sure that icmp port 8 is allowed from the server.
 
-### CentOS or Rocky Server Setup
+### CentOS or Rocky Linux Server Setup
 
 We are assuming that you are root here or that you can _sudo_ to become so. First, we need to install some packages:
 
@@ -479,7 +479,7 @@ view AllView included .1
 access AllGroup "" any noauth exact AllView none none
 ```
 
-CentOS and Rocky use a mapping convention to direct things. The above file is commented nicely so that you can learn what is happening, but doesn't include all of the clutter of the original file. 
+CentOS and Rocky use a mapping convention to direct things. The above file is commented nicely so that you can learn what is happening, but doesn't include all of the clutter of the original file.
 
 Once you've made the changes, save them and exit the file.
 
@@ -492,7 +492,7 @@ systemctl start snmpd
 
 #### Firewall
 
-If you are running a server, then you **are** running a firewall, right?  We are assuming _iptables_ as noted above, so we need to modify our firewall configuration, (in this case, /etc/firewall.conf) and add access for UDP and ICMP traffic coming from the monitoring server. If you are running _firewalld_, just substitute in the appropriate rules for _firewalld_. Here's a ruleset for our example server:
+If you are running a server, then you **are** running a firewall, right?  We are assuming _iptables_ as noted above, so we need to modify our firewall configuration, (in this case, /etc/firewall.conf) and add access for UDP and ICMP traffic coming from the monitoring server. If you are running _firewalld_, just substitute in the appropriate rules for _firewalld_. Here's a rule set for our example server:
 
 ```
 #!/bin/sh
@@ -526,13 +526,13 @@ Now that our sample devices are configured to accept snmp traffic from our Libre
 
 ![LibreNMS Add Device](images/librenms_add_device.png)
 
-Put in the information we used for our test devices. In our case, we are using the IP for the Ubuntu workstation to start, in our example that is 192.168.1.122. The only other thing we will need to add here is the community string in the "Community" field, so we would type in "LABone" here. Now click the "Add Device" button. Assuming that you have done everything correctly above when adding the device, your device should be added successfully. If you run into a failure to add, review the SNMP setup for the workstation or the firewall if it exists. Next we repeat the "Add Device" process for our CentOS server. 
+Put in the information we used for our test devices. In our case, we are using the IP for the Ubuntu workstation to start, in our example that is 192.168.1.122. The only other thing we will need to add here is the community string in the "Community" field, so we would type in "LABone" here. Now click the "Add Device" button. Assuming that you have done everything correctly above when adding the device, your device should be added successfully. If you run into a failure to add, review the SNMP setup for the workstation or the firewall if it exists. Next we repeat the "Add Device" process for our CentOS server.
 
 ## Getting Alerts
 
-As we said from the start, this document will only get you started with LibreNMS. There are a large number of additional configuration items, an extensive API (Application Programming Interface), an alerts system that provides a huge number of options for delivery, called "Transports", and much more.  We are not going to create any alert rules, but instead we will be editing the built-in alert rule "Device Down! Due to no ICMP response"  that is pre-configured out of the box, and for "Transports" we are going to stick with "Mail", which is just email. Just know that you are not limited. 
+As we said from the start, this document will only get you started with LibreNMS. There are a large number of additional configuration items, an extensive API (Application Programming Interface), an alerts system that provides a huge number of options for delivery, called "Transports", and much more.  We are not going to create any alert rules, but instead we will be editing the built-in alert rule "Device Down! Due to no ICMP response"  that is pre-configured out of the box, and for "Transports" we are going to stick with "Mail", which is just email. Just know that you are not limited.
 
-In order to use email for our transport, however, we need to have mail working on our server. To get this going, we are going to use this [Postfix Procedure](postfix_reporting.md). Run through that procedure to configure postfix so that it will properly identify where the messages are coming from, but you can stop after the configuration process and come back here. 
+In order to use email for our transport, however, we need to have mail working on our server. To get this going, we are going to use this [Postfix Procedure](postfix_reporting.md). Run through that procedure to configure postfix so that it will properly identify where the messages are coming from, but you can stop after the configuration process and come back here.
 
 ### Transports
 
@@ -549,7 +549,7 @@ We need a way to send out our alerts. As noted earlier, LibreNMS supports a huge
 
 ### Organizing Devices Into Groups
 
-The best way to set up alerts is to first organize your devices into some logical arangement. Currently, we have a workstation and a server in devices. While we may not normally wish to organize the two together, we will for this example. Keep in mind that our example is also redundant, as there is an "All Devices" group that would work for this as well. To set up a device group:
+The best way to set up alerts is to first organize your devices into some logical order. Currently, we have a workstation and a server in devices. While we may not normally wish to organize the two together, we will for this example. Keep in mind that our example is also redundant, as there is an "All Devices" group that would work for this as well. To set up a device group:
 
 1. Go to the dashboard
 2. Let your mouse hover over "Devices"
@@ -577,7 +577,7 @@ Before saving, your rule should look something like this:
 
 ![LibreNMS Alert Rule](images/librenms_alert_rule.png)
 
-These two devices should now alert you by email if they are down and when they recover. 
+These two devices should now alert you by email if they are down and when they recover.
 
 ## Conclusions
 
