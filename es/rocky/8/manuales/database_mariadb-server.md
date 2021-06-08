@@ -6,7 +6,7 @@
 * Estaremos usando _"vi"_ como editor de linea de comandos, por lo que es necesario saber usarlo
 * Una gran facilidad para el uso de líneas de comando en la terminal, revisar los logs (registros de errores), y otros aspectos generales de un administrador de sistema
 * Será útil algún conocimiento sobre _mariadb-server_
-* Toma en consideración que todos los comandos deben ser ejecutados super usuario o con _sudo_
+* Toma en consideración que todos los comandos deben ser ejecutados con super usuario o con _sudo_
 
 ## Introducción
 
@@ -32,7 +32,7 @@ Y luego inicializarlo:
 
 > `systemctl start mariadb`
 
-Para finalmente ingresar esté comando:
+Para finalmente ingresar este comando:
 
 > `mysql_secure_installation`
 
@@ -50,7 +50,7 @@ so you should just press enter here.
 Enter current password for root (enter for none): 
 ```
 
-Al ser una instalación limpia, no hay una contraseña establecida: Por lo que tenés que presionar "Enter". Y te va a salir esté dialogo:
+Al ser una instalación limpia, no hay una contraseña establecida: Por lo que tenés que presionar "Enter". Y te va a salir este dialogo:
 
 ```bash
 OK, successfully used password, moving on...
@@ -129,7 +129,7 @@ will take effect immediately.
 Reload privilege tables now? [Y/n] 
 ```
 
-De nuevo, tecleamos "Y" y presionamos "Enter" y si todo va bien, deberías recibir esté mensaje:
+De nuevo, tecleamos "Y" y presionamos "Enter" y si todo va bien, deberías recibir este mensaje:
 
 ```bash
  ... Success!
