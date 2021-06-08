@@ -37,9 +37,9 @@ The same physical disk can be divided into a maximum of 4 partitions:
 > :warning: **WARNING:**
 There can be only one extended partition per physical disk. In order to benefit from additional drives, the extended partition can be split into logical partitions
 
-![Breakdown into only 4 primary partitions](images/FON-040-001.png)
+![Breakdown into only 4 primary partitions](images/07-file-systems-001.png)
 
-![Breakdown into 3 primary partitions and one extended](images/FON-040-002.png)
+![Breakdown into 3 primary partitions and one extended](images/07-file-systems-002.png)
 
 The _devices_ are the files identifying the various hardware detected by the motherboard. These files are stored without `/dev`. The service which detects new devices and gives them names is called *udev*.
 
@@ -52,7 +52,7 @@ Finally we will find a number that defines the partitioned volume: *1* for the f
 > :warning: **WARNING:**
 Beware, the extended partition, which does not support a file system, still has a number.
 
-![Identification of scores](images/FON-040-003.png)
+![Identification of partitions](images/07-file-systems-003.png)
 
 There are at least two commands for partitioning a disk: `fdisk` and `cfdisk`. Both commands have an interactive menu. `cfdisk` is more reliable and better optimized, so it is best to use it.
 
@@ -149,7 +149,7 @@ Each *VG* represents disk space that can be partitioned into *LV* _Logical Volum
 * **PE** : _Physical Extension_
 * **LE** : _Logical Extension_
 
-![Volume group, PE size equal to 4MB](images/FON-040-004.png)
+![Volume group, PE size equal to 4MB](images/07-file-systems-004.png)
 
 ### Logical volumes
 
@@ -159,14 +159,14 @@ A volume group, *VG*, is divided into logical volumes, *LV*, offering different 
 * Volumes in _stripe_ mode;
 * Mirrored volumes.
 
-![Linear volumes](images/FON-040-005.png)
+![Linear volumes](images/07-file-systems-005.png)
 
-![Volumes in stripe mode](images/FON-040-006.png)
+![Volumes in stripe mode](images/F07-file-systems-006.png)
 
 > :star: **TIP:**
 Striping_ improves performance by writing data to a predetermined number of physical volumes with a _round-robin_ technique.
 
-![Mirrored volumes](images/FON-040-007.png)
+![Mirrored volumes](images/07-file-systems-007.png)
 
 ### LVM commands for volume management
 
@@ -426,7 +426,7 @@ The partition to be checked must be unmounted.
 
 By definition, a File System is a tree structure of directories built from a root directory (a logical device can only contain one file system).
 
-![Organization of a file system](images/FON-040-008.png)
+![Organization of a file system](images/07-file-systems-008.png)
 
 > :notebook: **NOTE:**
 In Linux everything is a file.
@@ -711,7 +711,7 @@ The `ln` command allows you to create physical links.
 666 –rwxr--r-- 2 root root … read
 ```
 
-![Representation of a physical link](images/FON-040-009.png)
+![Representation of a physical link](images/07-file-systems-009.png)
 
 ##### Symbolic link
 
@@ -737,7 +737,7 @@ The command `ln` with the argument `-s` allows to create symbolic links.
 678 lrwxrwxrwx 1 root root … read -> letter
 ```
 
-![Representation of a symbolic link](images/FON-040-010.png)
+![Representation of a symbolic link](images/07-file-systems-010.png)
 
 ## File attributes
 
@@ -863,27 +863,27 @@ The rights of files and directories are not dissociated. For some operations, it
 
 Each right has a value.
 
-![Octal method](images/FON-040-011.png)
+![Octal method](images/07-file-systems-011.png)
 
 ```
 [root]# ls -l /tmp/myfile
 -rwxrwxrwx  1  root  root  ... /tmp/myfile
 ```
 
-![Rights 777](images/FON-040-012.png)
+![Rights 777](images/07-file-systems-012.png)
 
 ```
 [root]# chmod 741 /tmp/myfile
 -rwxr----x  1  root  root  ... /tmp/myfile
 ```
 
-![Rights 741](images/FON-040-013.png)
+![Rights 741](images/07-file-systems-013.png)
 
 #### Principle of the symbolic method
 
 This method can be considered as a "literal" association between a user type, an operator, and rights.
 
-![Symbolic method](images/FON-040-014.png)
+![Symbolic method](images/07-file-systems-014.png)
 
 ```
 [root]# chmod u+rwx,g+wx,o-r /tmp/myfile
@@ -911,7 +911,7 @@ In addition to the fundamental rights (`rwx`), there are the particular rights:
 
 As with the fundamental rights, the particular rights each have a value. This value is placed before the `ugo` set of rights.
 
-![Special rights](images/FON-040-015.png)
+![Special rights](images/07-file-systems-015.png)
 
 > :fire: **DANGER:**
 `S`, `S` and `T` in capital letters **if the right does not exist**.
@@ -960,7 +960,7 @@ When the user _bob_ runs it, he will have to access the `/etc/shadow` file, but 
 
 Having a _SUID_ this command, `/usr/bin/passwd`, will be executed with the _UID_ of root and the _GID_ of _root_. The latter being the owner of the `/etc/shadow` file, he will have read rights.
 
-![How the SUID works](images/FON-040-016.png)
+![How the SUID works](images/07-file-systems-016.png)
 
 The setting of _SUID_ and _SGID_ can be done as below with the command `chmod`:
 
@@ -1018,11 +1018,11 @@ The principle is to remove the value defined by the mask at maximum rights witho
 
 For a directory :
 
-![How the SUID works](images/FON-040-017.png)
+![How the SUID works](images/07-file-systems-017.png)
 
 For a file, the execution rights are removed:
 
-![Default rights of a file](images/FON-040-018.png)
+![Default rights of a file](images/07-file-systems-018.png)
 
 ### `umask` command
 
