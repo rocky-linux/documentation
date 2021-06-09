@@ -8,12 +8,12 @@ In this chapter you will learn how to work with filesystems.
 
 :heavy_check_mark: manage partitions on disk; \
 :heavy_check_mark: use LVM for a better use of disk resources; \
-:heavy_check_mark: provide users with a file system and manage the access rights.
+:heavy_check_mark: provide users with a filesystem and manage the access rights.
 
 and also discover:
 
-:heavy_check_mark: how the tree structure is organised in Linux; \
-:heavy_check_mark: the different types of files offered and how to work with;
+:heavy_check_mark: how the tree structure is organized in Linux; \
+:heavy_check_mark: the different types of files offered and how to work with them;
 
 :checkered_flag: **hardware**, **disk**, **partition**, **lvm**, **linux**
 
@@ -25,9 +25,9 @@ and also discover:
 
 ## Partitioning
 
-Partitioning will allow the installation of several operating systems because it is impossible to have several of them cohabit on the same logical drive. Partitioning also allows to separate data logically (security, access optimization, ...).
+Partitioning will allow the installation of several operating systems because it is impossible to have several of them cohabit on the same logical drive. Partitioning also allows the separation of data logically (security, access optimization, ...).
 
-The division of the physical disk into partitioned volumes is recorded in the partition table stored in the first sector of the disk (MBR: _Master Boot Record_).
+The division of the physical disk into partitioned volumes is recorded in the partition table, stored in the first sector of the disk (MBR: _Master Boot Record_).
 
 The same physical disk can be divided into a maximum of 4 partitions:
 
@@ -125,7 +125,7 @@ The preparation, without _LVM_, of the physical media goes through five steps:
 
 **L**ogical **V**olume **M**anager (*LVM]*)
 
-Volume management creates an abstract layer on top of physical storage offering advantages over using physical storage directly:
+Volume management creates an abstract layer on top of physical storage, offering advantages over using physical storage directly:
 
 * More flexible disk capacity;
 * Online data movement;
@@ -185,7 +185,7 @@ Example:
 pvcreate -- physical volume « /dev/hdb1 » successfully created
 ```
 
-you can also use a whole disk (which facilitates disk size increases in virtual environments for example).
+You can also use a whole disk (which facilitates disk size increases in virtual environments for example).
 
 ```
 [root]# pvcreate /dev/hdb
@@ -336,7 +336,7 @@ The size of the **super block** table is defined at creation. It is present on e
 
 It describes the File System:
 
-* Name of the Logical Volume ;
+* Name of the Logical Volume;
 * Name of the File System;
 * Type of the File System;
 * File System Status;
@@ -372,11 +372,11 @@ Information present in the *inode table* :
 * File type and access permissions;
 * Owner identification number;
 * Identification number of the owner group;
-* Number of links on this file ;
+* Number of links on this file;
 * Size of the file in bytes;
 * Date the file was last accessed;
 * Date the file was last modified;
-* Date of the last modification of the inode (= creation) ;
+* Date of the last modification of the inode (= creation);
 * Table of several pointers (block table) to the logical blocks containing the pieces of the file.
 
 ### Data area
@@ -565,10 +565,11 @@ Groups of words separated by spaces must be enclosed in quotation marks:
 > :notebook: **NOTE:** While there is nothing technically wrong with creating a file or directory with a space in it, it is generally a "best practice" to avoid this and replace any space with an underscore.
 
 > :notebook: **NOTE:**
-The **.** at the beginning of the file name only serves to hide it with a simple `ls`.
+The **.** at the beginning of the file name only serves to hide it from a simple `ls`.
 
 > :warning: **WARNING:**
 Under Linux, the extension of a file is not a necessary reference to open or modify it. However, it can be useful for the user.
+
 Examples of extension agreements:
 
 * `.c` : source file in C language;
@@ -577,6 +578,7 @@ Examples of extension agreements:
 * `.tar` : data file archived with the `tar` utility;
 * `.cpio` : data file archived with the `cpio` utility;
 * `.gz` : data file compressed with the `gzip` utility;
+* `.tgz` : data file archived with the `tar` utility and compressed with the `gzip` utility;
 * `.html` : web page.
 
 ### Details of a file name
@@ -638,7 +640,7 @@ The letter `d` at the beginning of the rights group indicates that it is a direc
 
 #### Special files
 
-In order to communicate with peripherals (hard disks, printers, ...), Linux uses interface files called special files (_device file_ or _special file_). They allow to identify the peripherals.
+In order to communicate with peripherals (hard disks, printers, ...), Linux uses interface files called special files (_device file_ or _special file_). They allow identification by the peripherals.
 
 These files are special because they do not contain data but specify the access mode to communicate with the device.
 
@@ -673,7 +675,7 @@ The letter `c` at the beginning of the rights group indicates that it is a speci
 
 #### Communication files
 
-These are the pipe files (_pipes_) and the _socket_ files.
+These are the pipe (_pipes_) and the _socket_ files.
 
 * **Pipe files** pass information between processes by FIFO (_First In, First Out_).
 One process writes transient information to a _pipe_ file and another reads it. After reading, the information is no longer accessible.
@@ -703,9 +705,13 @@ The `ln` command allows you to create physical links.
 ```
 [root]# ls –li letter
 666 –rwxr--r-- 1 root root … letter
+```
 
+```
 [root]# ln /home/paul/letter /home/jack/read
+```
 
+```
 [root]# ls –li /home/*/*
 666 –rwxr--r-- 2 root root … letter
 666 –rwxr--r-- 2 root root … read
@@ -729,9 +735,13 @@ The command `ln` with the argument `-s` allows to create symbolic links.
 ```
 [root]# ls –li letter
 666 -rwxr--r-- 1 root root … letter
+```
 
+```
 [root]# ln -s /home/paul/letter /tmp/read
+```
 
+```
 [root]# ls –li /home/paul/letter /tmp/read
 666 -rwxr--r--- 1 root root … letter
 678 lrwxrwxrwx 1 root root … read -> letter
@@ -772,10 +782,10 @@ In some commands it is possible to designate everyone with **a** (_all_).
 
 ### Rights associated with ordinary files
 
-* **r**ead: Allow reading a file (`cat`, `less`, ...) and allow copying (`cp`, ...).
-* **w**rite: Allow modification of the file content (`cat`, `>>`, `vim`, ...).
-* e**x**ecute: Consider the file as an e**X**ecutable (binary or script).
-* **-**: No permission.
+* **r**ead: Allows reading a file (`cat`, `less`, ...) and copying a file (`cp`, ...).
+* **w**rite: Allows modification of the file content (`cat`, `>>`, `vim`, ...).
+* e**x**ecute: Considers the file as an e**X**ecutable (binary or script).
+* **-**: No permissions.
 
 > :notebook: **NOTE:**
 Moving or renaming a file depends on the rights of the target directory. Deleting a file depends on the rights of the parent directory.
@@ -783,7 +793,7 @@ Moving or renaming a file depends on the rights of the target directory. Deletin
 ### Rights associated with directories
 
 * **r**ead: Allows reading the contents of a directory (`ls -R`).
-* **w**rite: Allows modification of the contents of a directory (`touch`) and allows **creation and deletion of files** if the **x** permission is enabled.
+* **w**rite: Allows modification of the contents of a directory (`touch`) and allows creation and deletion of files if the **x** permission is enabled.
 * e**x**ecute: Allows descending in the directory (`cd`).
 * **-**: No rights.
 
@@ -832,7 +842,9 @@ Example:
 [root]# chmod -R u+rwx,g+wx,o-r /tmp/file1
 [root]# chmod g=x,o-r /tmp/file2
 [root]# chmod -R o=r /tmp/file3
+```
 
+```
 [root]# ls -l /tmp/fic*
 -rwxrwx--- 1 root root … /tmp/file1
 -rwx--x--- 1 root root … /tmp/file2
@@ -894,9 +906,13 @@ This method can be considered as a "literal" association between a user type, an
 ```
 [root]# ls -l /tmp/myfile
 r--r-- 1 root root … /tmp/myfile
+```
 
+```
 [root]# chmod u+rwx,g+wx,o-r /tmp/myfile
+```
 
+```
 [root]# ls -l /tmp/myfile
 -rwxrwx--- 1 root root … /tmp/myfile
 ```
@@ -948,7 +964,7 @@ The command is executed with the identity of the owner (_SUID_) or the group (_S
 
 > :notebook: **NOTE:**
 The identity of the user requesting the execution of the order is no longer taken into account.
-This is an additional possibility of access rights assigned to a user when it is necessary for him to have the same rights as the owner of a file or those of the group concerned.
+This is an additional possibility of access rights assigned to a user when it is necessary for them to have the same rights as the owner of a file or those of the group concerned.
 
 Indeed, a user may have to run a program (usually a system utility) but not have the necessary access rights. By setting the appropriate rights (**s** at the owner level and/or at the group level), the user of the program has, for the time of its execution, the identity of the owner (or that of the group) of the program.
 
@@ -995,9 +1011,13 @@ Example:
 ```
 [rockstar] $ ls -ld /data/
 drwxrwsr-x 2 root users 4096 26 oct. 19:43 /data
+```
 
+```
 [rockstar] $ touch /data/test_sgid /tmp/fic_reference
+```
 
+```
 [rockstar] $ ls -ld /data/test_sgid /tmp/fic_reference
 -rw-r--r--. 1 rockstar users 0 26 oct. 19:43 /data/test_sgid <1>
 -rw-r--r--. 1 rockstar rockstar 0 26 oct. 19:43  /tmp/fic_ref
@@ -1058,7 +1078,9 @@ $ ls -la  umask_025
 `umask` does not affect existing files.
 
 > :notebook: **NOTE:**
-`umask` modifies the mask until the disconnection. To keep the value, you have to modify the following profile files:
+`umask` modifies the mask until the disconnection.
+
+To keep the value, you have to modify the following profile files:
 For all users:
 
 * `/etc/profile`
