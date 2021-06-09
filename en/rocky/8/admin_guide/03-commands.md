@@ -492,10 +492,9 @@ $ ls -lia /home
 > :notebook: **NOTE:**
 > **Aliases** are frequently positioned in common distributions.
 > This is the case of the alias `ll`:
-
-```
-alias ll='ls -l --color=auto'
-```
+> ```
+> alias ll='ls -l --color=auto'
+> ```
 
 The `ls` command has many options and here are some advanced examples of uses:
 * List the files in `/etc` in order of last modification:
@@ -1087,12 +1086,10 @@ The previous command searches for all files in the `/tmp` directory named `*.txt
 > In the example above, the `find` command will construct a string representing the command to be executed.
 > If the `find` command finds three files named `log1.txt`, `log2.txt`, and `log3.txt`, then the `find` command will construct the string by replacing in the string `rm -f {} \;` the braces with one of the results of the search, and do this as many times as there are results.
 > This will give us :
-
-```
-rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
-```
-
-The `;` character is a special shell character that must be protected by a `\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).
+>```
+>rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
+>```
+>The `;` character is a special shell character that must be protected by a `\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).
 
 > :star: **TIP:**
 > `$ find /tmp -name *.txt -delete` does the same thing.
@@ -1149,7 +1146,8 @@ $ grep -w "^root" /etc/passwd
 
 > :notebook: **NOTE:**
 > This command is very powerful and it is highly recommended to consult its manual. It has many derivatives.
-> It is possible to search for a string in a file tree with the `-R` option.
+
+It is possible to search for a string in a file tree with the `-R` option.
 
 ```
 grep -R "Virtual" /etc/httpd
@@ -1221,8 +1219,10 @@ $ ftp -in serverftp << ftp-commands.txt
 
 > :notebook: **NOTE:**
 > Only commands that require keyboard input will be able to handle input redirection.
-> Input redirection can also be used to simulate user interactivity. The command will read the input stream until it encounters the defined keyword after the input redirection.
-> This feature is used to script interactive commands:
+
+Input redirection can also be used to simulate user interactivity. The command will read the input stream until it encounters the defined keyword after the input redirection.
+
+This feature is used to script interactive commands:
 
 ```
 $ ftp -in serverftp << END
@@ -1246,8 +1246,10 @@ The shell exits the `ftp` command when it receives a line containing only the ke
 
 > :fire: **CAUTION:**
 > The ending keyword, here `END` or `STOP`, must be the only word on the line and must be at the beginning of the line.
-> The standard input redirection is rarely used because most commands accept a filename as an argument.
-> The command `wc` could be used like this:
+
+The standard input redirection is rarely used because most commands accept a filename as an argument.
+
+The command `wc` could be used like this:
 
 ```
 $ wc -l .bash_profile
