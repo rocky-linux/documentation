@@ -169,6 +169,9 @@ So why is there so little enthusiasm for Linux, when **there are no (or almost n
 
 <!-- TODO: gnome screenshot -->
 
+![Gnome Desktop](images/01-presentation-gnome.png)
+
+
 The **Gnome 3** desktop environment no longer uses the concept of Desktop but that of Gnome Shell (not to be confused with the command line shell). It serves as a desktop, a dashboard, a notification area and a window selector. The Gnome desktop environment is based on the GTK+ component library.
 
 <!-- TODO: KDE  screenshot -->
