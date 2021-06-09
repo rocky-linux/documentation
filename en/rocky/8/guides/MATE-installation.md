@@ -25,11 +25,11 @@ https://copr.fedorainfracloud.org/coprs/stenstorp/lightdm/
 
 so
 
-`sudo dnf copr enable stenstorp/lightdm``
+`sudo dnf copr enable stenstorp/lightdm`
 
 and install lightdm-gtk
 
-sudo dnf install lightdm-gtk`
+`sudo dnf install lightdm-gtk`
 
 set the graphical mode 
 
