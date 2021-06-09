@@ -15,7 +15,8 @@ In this chapter you will learn how to manage user.
 :checkered_flag: **users**
 
 **Knowledge**: :star: :star: \
-**Complexity**: :star: :star:\
+**Complexity**: :star: :star:
+
 **Reading time**: 30 minutes
 ****
 

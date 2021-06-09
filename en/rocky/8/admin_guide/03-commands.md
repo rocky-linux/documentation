@@ -6,16 +6,15 @@ In this chapter you will learn how to work with Linux with the commands.
 
 **Objectives** : In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: **move** in the system tree;
-
-:heavy_check_mark: **create** a text file, **display** its contents and **modify** it;
-
+:heavy_check_mark: **move** in the system tree; \
+:heavy_check_mark: **create** a text file, **display** its contents and **modify** it; \
 :heavy_check_mark: use the most useful Linux commands.
 
 :checkered_flag: **user commands**, **linux**
 
-**Knowledge**: :star:
+**Knowledge**: :star: \
 **Complexity**: :star:
+
 **Reading time**: 40 minutes
 
 ****
