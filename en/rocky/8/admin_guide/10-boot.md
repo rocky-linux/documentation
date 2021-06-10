@@ -33,13 +33,13 @@ It then loads the **MBR** (Master Boot Record).
 
 ### The Master boot record (MBR)
 
-The Master Boot Record is the first 512 bytes of the boot disk. The MBR discovers the boot device and loads the boot loader **GRUB2** into memory and transfers control to it.
+The Master Boot Record is the first 512 bytes of the boot disk. The MBR discovers the boot device and loads the bootloader **GRUB2** into memory and transfers control to it.
 
 The next 64 bytes contain the partition table of the disk.
 
 ### The GRUB2 bootloader
 
-The default bootloader for the Rocky 8 distribution is **GRUB2** (GRand Unified Bootloader). GRUB2 replaces the old Grub bootloader (also called GRUB legacy).
+The default bootloader for the Rocky 8 distribution is **GRUB2** (GRand Unified Bootloader). GRUB2 replaces the old GRUB bootloader (also called GRUB legacy).
 
 The GRUB 2 configuration file is located under `/boot/grub2/grub.cfg` but this file should not be edited directly.
 
@@ -86,15 +86,15 @@ Systemd then places the system in the target-defined state by performing the fol
 7. Clean up directories in /var
 8. Start the virtual memory (swap)
 
-## Protecting the GRUB2 boot loader
+## Protecting the GRUB2 bootloader
 
-Why protect the boot loader with a password?
+Why protect the bootloader with a password?
 
 1. Prevent *Single* user mode access - If an attacker can boot into single user mode, he becomes the root user.
-2. Prevent access to GRUB console - If an attacker manages to use GRUB console, he can change its configuration or collect information about the system by using cat command.
+2. Prevent access to GRUB console - If an attacker manages to use GRUB console, he can change its configuration or collect information about the system by using the `cat` command.
 3. Prevent access to insecure operating systems. If there is a dual boot on the system, an attacker can select an operating system like DOS at boot time that ignores access controls and file permissions.
 
-To password protect the GRUB2:
+To password protect the GRUB2 bootloader:
 
 * Remove `-unrestricted` from the main `CLASS=` statement in the `/etc/grub.d/10_linux` file.
 
@@ -104,7 +104,7 @@ To password protect the GRUB2:
 # grub2-setpassword
 ```
 
-A `/boot/grub2/user.cfg` file will be created if it was not already present. It contains the hashed password of the GRUB.
+A `/boot/grub2/user.cfg` file will be created if it was not already present. It contains the hashed password of the GRUB2.
 
 > :notebook: **NOTE:**
 This command only supports configurations with a single root user.
@@ -133,16 +133,16 @@ All entries defined in the GRUB menu will now require a user and password to be 
 * When the user is requested, enter `root`;
 * When a password is requested, enter the password provided at the `grub2-setpassword` command.
 
-To protect only the editing of GRUB menu entries and access to the console, the execution of the `grub2-setpassword` command is sufficient.
+To protect only the editing of GRUB menu entries and access to the console, the execution of the `grub2-setpassword` command is sufficient. There may be cases where you have good reasons for doing only that. This might be particularly true in a remote data center where entering a password each time a server is rebooted is either difficult or impossible to do.
 
 ## Systemd
 
-*Systemd* is a service manager for Linux operating systems.
+*Systemd* is a service manager for the Linux operating systems.
 
 It is developed to:
 
 * remain compatible with older SysV initialization scripts,
-* provide many features such as parallel start of system services at system startup, on-demand activation of daemons, support for snapshots or management of dependencies between services.
+* provide many features, such as parallel start of system services at system startup, on-demand activation of daemons, support for snapshots, or management of dependencies between services.
 
 > :notebook: **NOTE:**
 Systemd is the default initialization system since RedHat/CentOS 7.
@@ -174,7 +174,7 @@ All service unit operations are subject to a default timeout of 5 minutes to pre
 
 ### Managing system services
 
-Service units end with the `.service` file extension and have a similar purpose to init scripts. The `systemctl` command is used to `display`, `start`, `stop`, `restart`, `enable` or `disable` system services.
+Service units end with the `.service` file extension and have a similar purpose to init scripts. The `systemctl` command is used to `display`, `start`, `stop`, `restart` a system service:
 
 | systemctl                                 | Description                             |
 |-------------------------------------------|-----------------------------------------|
@@ -186,11 +186,12 @@ Service units end with the `.service` file extension and have a similar purpose 
 | systemctl try-restart _name_.service      | Restart a service only if it is running |
 | systemctl list-units --type service --all | Display the status of all services      |
 
+The `systemctl` command is also used for the `enable` or `disable` of system a service and displaying associated services:
+
 | systemctl                                | Description                                             |
 |------------------------------------------|---------------------------------------------------------|
-| systemctl enable name.service            | Activate a service                                      |
-| systemctl disable name.service           | Disable a service                                       |
-| systemctl status name.service            | Checks if a service is running                          |
+| systemctl enable _name_.service            | Activate a service                                      |
+| systemctl disable _name_.service           | Disable a service                                       |
 | systemctl list-unit-files --type service | Lists all services and checks if they are running       |
 | systemctl list-dependencies --after      | Lists the services that start before the specified unit |
 | systemctl list-dependencies --before     | Lists the services that start after the specified unit  |
@@ -336,7 +337,7 @@ To change the current target and enter `rescue mode` in the current session:
 systemctl rescue
 ```
 
-**Emergency mode** provides the most minimalist environment possible and allows the system to be repaired even in situations where the system is unable to enter rescue mode. In the emergency mode, the system mounts the root file system only for reading, it will not attempt to mount any other local file system, will not activate any network interface and will start some essential services.
+**Emergency mode** provides the most minimalist environment possible and allows the system to be repaired even in situations where the system is unable to enter rescue mode. In the emergency mode, the system mounts the root file system only for reading. It will not attempt to mount any other local file system, will not activate any network interface, and will start some essential services.
 
 To change the current target and enter emergency mode in the current session:
 
@@ -347,15 +348,15 @@ systemctl emergency
 #### Shutdown, suspension and hibernation
 
 The `systemctl` command replaces a number of power management commands used in previous versions:
-⁠
-| Old command         | New command              | Description                         |
-|---------------------|--------------------------|-------------------------------------|
-| `halt`              | `systemctl halt`         | Shuts down the system.              |
-| `poweroff`          | `systemctl poweroff`     | Turns off the system.               |
-| `reboot`            | `systemctl reboot`       | Restarts the system.                |
-| `pm-suspend`        | `systemctl suspend`      | Suspends the system.                |
-| `pm-hibernate`      | `systemctl hibernate`    | Hibernates the system.              |
-| `pm-suspend-hybrid` | `systemctl hybrid-sleep` | Hibernates and suspends the system. |
+
+|Old command          | New command              | Description            |
+|---------------------|--------------------------|------------------------|
+| `halt`              | `systemctl halt`         |Shuts down the system.  |
+| `poweroff`          | `systemctl poweroff`     |Turns off the system.   |
+| `reboot`            | `systemctl reboot`       |Restarts the system.    |
+| `pm-suspend`        | `systemctl suspend`      |Suspends the system.    |
+| `pm-hibernate`      | `systemctl hibernate`    |Hibernates the system.  |
+| `pm-suspend-hybrid` | `systemctl hybrid-sleep` |Hibernates and suspends the system.|
 
 ### The `journald` process
 
@@ -378,7 +379,7 @@ The command lists all log files generated on the system. The structure of this o
 * the priority of entries is marked visually;
 * timestamps are converted to the local time zone of your system;
 * all logged data is displayed, including rotating logs;
-* the start of a start is marked with a special line.
+* the beginning of a start is marked with a special line.
 
 #### Using continuous display
 
