@@ -162,14 +162,11 @@ There are many graphic environments: **Gnome**, **KDE**, **LXDE**, **XFCE**, etc
 
 So why is there so little enthusiasm for Linux, when **there are no (or almost no) viruses for this system**? Maybe because all editors (Adobe) or manufacturers (NVidia) do not play the free game and do not provide a version of their software or their __drivers__ for GNU/Linux? Fear of change? The difficulty to find where to buy a Linux computer? Too few games (but not for long) distributed under Linux? Will the situation change with the arrival of the steam-box game console that runs on Linux?
 
-<!-- TODO: gnome screenshot -->
-
 ![Gnome Desktop](images/01-presentation-gnome.png)
-
 
 The **Gnome 3** desktop environment no longer uses the concept of Desktop but that of Gnome Shell (not to be confused with the command line shell). It serves as a desktop, a dashboard, a notification area and a window selector. The Gnome desktop environment is based on the GTK+ component library.
 
-<!-- TODO: KDE  screenshot -->
+![KDE Desktop](images/01-presentation-kde.png)
 
 The **KDE** desktop environment is based on the **Qt** component library.
 
