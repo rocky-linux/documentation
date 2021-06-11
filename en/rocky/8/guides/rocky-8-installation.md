@@ -20,40 +20,40 @@ https://www.rockylinux.org/download/
 To download the ISO directly from the command line, type:
 
 ```
-$ wget https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_64-minimal.iso
+$ wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-minimal.iso
 ```
 
 Rocky ISOs are named following this convention:
 
 ```
-Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
+Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-For example  `Rocky-8.3-x86_64-minimal.iso`
+For example  `Rocky-8.4-x86_64-minimal.iso`
 
 > **NOTE:**
 Rocky project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found [here](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
 ## Verifying the installer ISO
 
-If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha256sum of `Rocky-8.3-x86_64-minimal.iso`.
+If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha256sum of `Rocky-8.4-x86_64-minimal.iso`.
 
 First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky ISO, type:
 
 ```
-wget http://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/CHECKSUM
+wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/CHECKSUM
 ```
 
 Use the `sha256sum` utility to verify the
 
 ```
-sha256sum -c CHECKSUM    --ignore-missing Rocky-8.3-x86_64-minimal.iso
+sha256sum -c CHECKSUM    --ignore-missing Rocky-8.4-x86_64-minimal.iso
 ```
 
 The output should include:
 
 ```
-Rocky-8.3-x86_64-minimal.iso: OK
+Rocky-8.4-x86_64-minimal.iso: OK
 ```
 
 > **TIP:**
