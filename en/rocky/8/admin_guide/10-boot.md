@@ -1,4 +1,4 @@
-= System startup
+# System startup
 
 In this chapter you will learn how the system start.
 
