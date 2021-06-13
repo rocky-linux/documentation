@@ -203,7 +203,7 @@ grep -h "$today" /var/log/messages | grep dbus-daemon
 
 Running the script again, should get you only the dbus-daemon messages and only the ones that occurred today (whenever you're following this guide).
 
-There's one final step, however. Remember, we need to get this emailed to the administrator for review. So the final thing we need to do is pipe the entire thing to our email:
+There's one final step, however. Remember, we need to get this emailed to the administrator for review. Also, because we are only using _postfix_ on this server for reporting, we don't want to leave the service running, so we will start it at the beginning of the script and then stop it at the end. We'll introduce the _sleep_ command here to pause for 20 seconds to make sure that the email has been sent before shutting _postfix_ down again.  This final edit, adds the stop, start, and sleep issues just discussed, and also pipes the content to the administrator's email.
 
 `vi /usr/local/sbin/test.sh`
 
@@ -212,11 +212,20 @@ And modify the script:
 ```
 #!/bin/bash
 
+# start postfix
+/usr/bin/systemctl start postfix
+
 # set the date string to match /var/log/messages
 today=`date +"%b %e"`
 
 # grab the dbus-daemon messages and send them to email
 grep -h "$today" /var/log/messages | grep dbus-daemon | mail -s "dbus-daemon messages for today" myname@mydomain.com
+
+# make sure the email has finished before continuing
+sleep 20
+
+# stop postfix
+/usr/bin/systemctl stop postfix
 ```
 
 Run the script again, and you should now have an email from the server with the dbus-daemon message.

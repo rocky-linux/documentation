@@ -1,4 +1,4 @@
-# Mirroring Solution - lsycnd
+# Mirroring Solution - lsyncd
 
 ## Prerequisites
 
@@ -27,11 +27,11 @@ For the purposes of this guide, we will call the system with the original files 
 
 For remote syncing, you will also want to set up [Rocky Linux SSH Public Private Key Pairs](ssh_public_private_keys.md). The examples here use SSH (port 22).
 
-# Installing lsycnd
+# Installing lsyncd
 
 There are actually two ways to install lsyncd. We will include them both here, but the preferred method is to install from source. It's relatively easy to do this and there are few dependencies required. The RPM tends to lag behind the source packages by a little. That said, we want to give you both options and let you choose. 
 
-## Installing lsycnd - RPM Method
+## Installing lsyncd - RPM Method
 
 Installing the RPM version is relatively easy. The only thing you will need to install first is the EPEL software repository from Fedora. This can be done with a single command:
 
@@ -43,7 +43,7 @@ To install lsyncd, then, we just need to install it, and any missing dependencie
 
 That's it!
 
-## Installing lsycnd - Source Method
+## Installing lsyncd - Source Method
 
 Installing from source is not as bad is it sounds. Just follow this guide and you will be up and running in no time!
 
@@ -57,7 +57,7 @@ And here are the dependencies we need for lsyncd itself, and its build process:
 
 `dnf install lua lua-libs lua-devel cmake unzip wget rsync`
 
-### Download lsycnd And Build It
+### Download lsyncd And Build It
 
 Next we need the source code:
 
@@ -89,7 +89,7 @@ make install
 
 When done, you should have the lsyncd binary installed and ready for use in */usr/local/bin*
 
-# lsycnd Systemd Service
+# lsyncd Systemd Service
 
 Neither install method will create a systemd service for starting lsyncd on a reboot. We want to be able to do just that, because if you are mirroring files, you don't want the mirror to be offline because you forgot to manually start a service. 
 
@@ -129,7 +129,7 @@ Finally, reload the systemctl daemon so that systemd will "see" the new service 
 
 `systemctl daemon-reload`
 
-# lsycnd Configuration
+# lsyncd Configuration
 
 Whichever method you choose for installing lsyncd, you will need a configuration file: */etc/lsyncd.conf*. The next section will tell you how to build a simple configuration file, and test it. 
 
@@ -228,7 +228,7 @@ For newbies, *fstab* is the file that is used to configure storage drives on any
 
 # Conclusions And References
 
-lsycnd is a powerful tool for directory synchronization between machines. As you've seen, it's not hard to install, and it's easy to maintain going forward. Can't ask for more than that.
+lsyncd is a powerful tool for directory synchronization between machines. As you've seen, it's not hard to install, and it's easy to maintain going forward. Can't ask for more than that.
 
 You can find out more about lsyncd by going to [The Official Site](https://github.com/axkibe/lsyncd)
 

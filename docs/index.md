@@ -51,4 +51,14 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 | --- | --- |
 | | | 
 
+## Containerization
 
+| LXC/LXD |
+| --- |
+| [Creating a full LXD Server](../guides/lxd_server.md) |
+
+## Educational / Training
+
+| Administration | Security | General |
+|----------------|----------|---------|
+| [System Administration](../admin_guide/toc.md) | Security Labs |

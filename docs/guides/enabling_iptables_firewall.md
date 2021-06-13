@@ -6,11 +6,7 @@
 
 ## Introduction
 
-_firewalld_ is now the default firewall on Rocky Linux. _firewalld_ is nothing more than a dynamic application of _iptables_ using xml files, and it loads changes without flushing the rules. 
-
-However, using straight _iptables_ may be something that you are more comfortable with. If so, it is still possible to run _iptables_ without _firewalld_ by following this guide. What this guide will _not_ tell you is how to write rules for _iptables_. 
-
-It is assumed that if you want to get rid of _firewalld_, you must already know how to write rules for _iptables_.
+_firewalld_ is now the default firewall on Rocky Linux. _firewalld_ **was** nothing more than a dynamic application of _iptables_ using xml files that loaded changes without flushing the rules in CentOS 7/RHEL 7.  With CentOS 8/RHEL 8/Rocky 8, _firewalld_ is now a wrapper around _nftables_. It is still possible, however, to install and use straight _iptables_ if that is your preference. To install and run straight _iptables_ without _firewalld_ you can do so by following this guide. What this guide will **not** tell you is how to write rules for _iptables_. It is assumed that if you want to get rid of _firewalld_, you must already know how to write rules for _iptables_.
 
 ## Disabling firewalld
 
@@ -43,5 +39,3 @@ Now we need to enable the _iptables_ service to make sure that it starts on boot
 ## Conclusion
 
 You can return to using straight _iptables_ if you prefer it over _firewalld_. You can return to using the default _firewalld_ by simply reversing these changes.
-
-
