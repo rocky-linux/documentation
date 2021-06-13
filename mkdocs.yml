@@ -4,6 +4,7 @@ site_url: 'https://docs.rockylinux.org'
 docs_dir: 'docs/'
 repo_url: https://github.com/hbjydev/rldocs
 repo_name: rocky-linux/documentation
+edit_uri: 'edit/main/docs/'
 
 nav:
   - '...'
