@@ -1,30 +1,5 @@
-# <a name="menu"></a>Creating a full LXD Server on Rocky Linux
-
-* [Introduction](#intro)
-* [Part 1 : Getting The Environemnt Ready](#part1)
-  - [Install EPEL and OpenZFS Repositories](#repos)
-  - [Install Packages](#pkginstall)
-  - [Environment Set up](#envsetup)
-  - [ZFS Set up](#zfssetup)
-  - [LXD Initialization](#lxdinit)
-  - [Firewall Set Up](#firewallsetup)
-* [Part 2 : Setting Up Containers](#part2)
-  - [List Available Images](#listimages)
-  - [Installing, Renaming, And Listing Images](#lxdimageinstall)
-  - [LXD Profiles](#profiles)
-    - [Creating A macvlan Profile And Assigning It](#macvlan)
-    - [Centos macvlan](#centosmacvlan)
-    - [Ubuntu macvlan](#ubuntumacvlan)
-* [Part 3 : Container Configuration Options](#part3)
-  - [A Word About Configuration And Some Options](#lxdconfigopt)
-* [Part 4 : Container Snapshots](#part4)
-* [Part 5 : The Snapshot Server](#part5)
-  - [Setting Up The Primary and Snapshot Server Relationship](#lxdrelationship)
-  - [Migrating Our First Snapshot](#migration)
-  - [Automating The Snapshot Process](#automatingsnaps)
-  - [Automating The Copy Process](#automatingcopy)
-
-# <a name="intro"></a>Introduction
+# Creating a full LXD Server on Rocky Linux
+## Introduction
 
 LXD is best described on the [official website](https://linuxcontainers.org/lxd/introduction/), but think of it as a container system that provides the benefits of virtual servers in a container, or a container on steroids. 
 
@@ -34,7 +9,7 @@ It is very powerful, and with the right hardware and set up, can be leveraged to
 
 The learning curve for LXD can be a bit steep, but this document will attempt to give you a wealth of knowledge at your fingertips, to help you deploy and use LXD on Rocky Linux.
 
-# Prerequisites And Assumptions
+## Prerequisites And Assumptions
 
 * One Rocky Linux server, nicely configured. You should consider a separate hard drive for ZFS disk space (you have to if you are using ZFS) in a production environment. And yes, we are assuming this is a bare metal server, not a VPS.
 * This should be considered an advanced topic, but we have tried our best to make it as easy to understand as possible for everyone. THat said, knowing a few basic things about container management will take you a long way.
@@ -43,11 +18,11 @@ The learning curve for LXD can be a bit steep, but this document will attempt to
 * For ZFS, make sure that UEFI secure boot is NOT enabled. Otherwise, you will end up having to sign the ZFS module in order to get it to load.
 * We will, for the moment, be using CentOS-based containers, as LXC does not yet have Rocky Linux images. Stay tuned for updates, because this will likely change with time.
 
-# <a name="part1"></a>Part 1 : Getting The Environment Ready
+## Part 1 : Getting The Environment Ready
 
 Throughout "Part 1" you will need to be the root user or you will need to be able to _sudo_ to root.
 
-## <a name="repos"></a>Install EPEL and OpenZFS Repositories
+### <a name="repos"></a>Install EPEL and OpenZFS Repositories
 
 LXD requires the EPEL (Extra Packages for Enterprise Linux) repository, which is easy to install using:
 
@@ -67,7 +42,7 @@ We also need the GPG key, so use this command to get that:
 
 If there were kernel updates during the update process above, reboot your server
 
-## Install snapd, dkms And vim
+### Install snapd, dkms And vim
 
 LXD must be installed from a snap for Rocky Linux, for this reason, we need to install snapd (and a few other useful programs) with:
 
@@ -83,23 +58,23 @@ And then run:
 
 Reboot the server before continuing here.
 
-## <a name="pkginstall"></a>Install LXD
+### <a name="pkginstall"></a>Install LXD
 
 Installing LXD requires the use of the snap command. At this point, we are just installing it, we are doing no set up:
 
 `sudo snap install lxd`
 
-## Install OpenZFS
+### Install OpenZFS
 
 `dnf install kernel-devel zfs`
 
-## <a name="envsetup"></a> Environment Set up
+### <a name="envsetup"></a> Environment Set up
 
 Most server kernel settings are not sufficient to run a large number of containers. If we assume from the beginning that we will be using our server in production, then we need to make these changes up front to avoid errors such as "Too many open files" from occurring. 
 
 Luckily, tweaking the settings for LXD is easy with a few file modifications and a reboot.
 
-### Modifying limits.conf
+#### Modifying limits.conf
 
 The first file we need to modify is the limits.conf file. This file is self-documented, so look at the explanations in the file as to what this file does. To make our modifications type:
 
@@ -120,7 +95,7 @@ root            hard    nofile           1048576
 
 Save your changes and exit. (`SHIFT:wq!` for _vi_)
 
-### Modifying sysctl.conf With 90-lxd.override.conf
+#### Modifying sysctl.conf With 90-lxd.override.conf
 
 With _systemd_, we can make changes to our system's overall configuration and kernel options *without* mofifying the main configuration file. Instead, we'll put our settings in a separate file that will simply override the particular settings we need. 
 
@@ -186,7 +161,7 @@ fs.aio-max-nr = 524288
 
 At this point you should reboot the server.
 
-### Checking _sysctl.conf_ Values
+#### Checking _sysctl.conf_ Values
 
 Once the reboot has been completed, log back in as to the server. We need to spot check that our override file has actually done the job. 
 
@@ -200,7 +175,7 @@ Which should show you:
 
 Do the same with a few other settings in the override file (above) to verify that changes have been made.
 
-## <a name="zfssetup"></a>Enabling ZFS And Setting Up The Pool
+### <a name="zfssetup"></a>Enabling ZFS And Setting Up The Pool
 
 If you have UEFI secure boot turned off, this should be fairly easy.  First, load the ZFS module with modprobe:
 
@@ -242,7 +217,7 @@ What this says is to create a pool called "storage" that is ZFS on the device */
 
 Once the pool is created, it's a good idea to reboot the server again at this point.
 
-## <a name="lxdinit"></a>LXD Initialization
+### <a name="lxdinit"></a>LXD Initialization
 
 Now that the environment is all set up, we are ready to initialize LXD. This is an automated script that asks a series of questions to get your LXD instance up and running:
 
@@ -296,7 +271,7 @@ This trust password is how you will connect to the snapshot server or back from 
 `Would you like stale cached images to be updated automatically? (yes/no) [default=yes]` 
 `Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:` 
 
-### Setting Up User Privileges
+#### Setting Up User Privileges
 
 Before we continue on, we need to create our "lxdadmin" user and make sure that it has the privileges it needs. We need the "lxdadmin" user to be able to _sudo_ to root and we need it to be a member of the lxd group. To add the user and make sure it is a member of both groups do:
 
@@ -308,7 +283,7 @@ Then set the password:
 
 As with the other passwords, save this to a secure location.
 
-## <a name="firewallsetup"></a>Firewall Set Up
+### <a name="firewallsetup"></a>Firewall Set Up
 
 Before continuing, you will want a firewall set up on your server. This example is using _iptables_ and [this procedure](enabling_iptables_firewall.md) to disable _firewalld_. If you prefer to use _firewalld_, simply substitute in _firewalld_ rules. 
 
@@ -344,11 +319,11 @@ iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
 
 This completes Part 1. You can either continue on to Part 2, or return to the [menu](#menu). If you are working on the snapshot server, you can head down to [Part 5](#part5) now.
 
-# <a name="part2"></a>Part 2 : Setting Up And Managing Images
+## <a name="part2"></a>Part 2 : Setting Up And Managing Images
 
 Throughout Part 2, and from here on out unless otherwise noted, you will be running commands as your unprivileged user. ("lxdadmin" if you are following along with this document).
 
-## <a name="listimages"></a>List Available Images
+### <a name="listimages"></a>List Available Images
 
 Once you have your server environment set up, you'll probably be itching to get started with a container. There are a _lot_ of container OS possibilities. To get a feel for how many possibilities, enter this command:
 
@@ -381,7 +356,7 @@ This brings up a much more manageable list:
 | centos/8/ppc64el (1 more)            | 130c1c83c36c | yes    | Centos 8 ppc64el (20210427_07:08)            | ppc64le      | CONTAINER       | 129.53MB  | Apr 27, 2021 at 12:00am (UTC) |
 ```
 
-## <a name="lxdimageinstall"></a>Installing, Renaming, And Listing Images
+### <a name="lxdimageinstall"></a>Installing, Renaming, And Listing Images
 
 For the first container, we are going to choose centos/8. To install it, we *could* use:
 
@@ -413,7 +388,7 @@ which should return something like this:
 +-------------+---------+-----------------------+------+-----------+-----------+
 ```
 
-## <a name="profiles"></a>LXD Profiles
+### <a name="profiles"></a>LXD Profiles
 
 You get a default profile when you install LXD, and this profile cannot be removed or modified. That said, you can use the default profile to create new profiles to use with your containers. 
 
@@ -427,7 +402,7 @@ There are ways to get around this, but it is annoying, as the feature that is br
 
 For now, just be aware that what we are going to suggest next has drawbacks when choosing container images based on RHEL.
 
-### <a name="macvlan"></a>Creating A macvlan Profile And Assigning It
+#### <a name="macvlan"></a>Creating A macvlan Profile And Assigning It
 
 To create our macvlan profile, simply use this command:
 
@@ -483,13 +458,13 @@ To assign the macvlan profile to centos-test we need to do the following:
 
 This simply says, we want the default profile, and then we want to apply the macvlan profile as well.
 
-### <a name="centosmacvlan"></a> CentOS macvlan
+#### <a name="centosmacvlan"></a> CentOS macvlan
 
 In the CentOS implementation of Network Manager, they have managed to break the functionality of macvlan in the kernel, or at least in the kernel applied to their LXD image. This has been this way since CentOS 8 was released and no one appears to be at all concerned about a fix. 
 
 Simply put, if you want to run CentOS 8 containers, you've got to jump through some additional hoops to get macvlan to work. macvlan is part of the kernel, so it should work without the below fixes, but it doesn't.
 
-#### CentOS macvlan - The DHCP Fix
+##### CentOS macvlan - The DHCP Fix
 
 Having the profile assigned, however, doesn't change the default configuration, which is set to DHCP by default. 
 
@@ -575,7 +550,7 @@ A new listing will reveal that the container has been assigned the DHCP address:
 +-------------+---------+-----------------------+------+-----------+-----------+
 ```
 
-#### CentOS macvlan - The Static IP Fix
+##### CentOS macvlan - The Static IP Fix
 
 To statically assign an IP address, things get even more convoluted. The process of setting a static IP address on a CentOS container is through the network-scripts, which we will do now. The IP we will attempt to assign is 192.168.1.200. 
 
@@ -687,7 +662,7 @@ When the container starts, a new listing will show the correct statically assign
 
 The issue with macvlan shown in both of these examples is directly related to containers based on Red Hat Enterprise Linux (Centos 8, Rocky Linux 8).
 
-### <a name="ubuntumacvlan"></a>Ubuntu macvlan
+#### <a name="ubuntumacvlan"></a>Ubuntu macvlan
 
 Luckily, In Ubuntu's implementation of Network Manager, the macvlan stack is NOT broken, so it is much easier to deploy!
 
@@ -763,7 +738,7 @@ In the examples used in Part 2, we have intentionally chosen a hard container to
 
 This completes Part 2. You can either continue on to Part 3, or return to the [menu](#menu).
 
-## <a name="part3"></a>Part 3 : Container Configuration Options
+## Part 3 : Container Configuration Options
 
 There are a wealth of options for configuring the container once you have it installed. Before we get into how to see those, however, let's take a look at the info command for a container. In this example, we will use the ubuntu-test container:
 
@@ -810,7 +785,7 @@ Resources:
 
 There's a lot of good information there, from the profiles applied, to the memory in use, disk space in use, and more. 
 
-### <a name="lxdconfigopt"></a>A Word About Configuration And Some Options
+#### <a name="lxdconfigopt"></a>A Word About Configuration And Some Options
 
 By default, LXD will allocate the required system memory, disk space, CPU cores, etc., to the container. But what if we want to be more specific? That is totally possible. 
 
@@ -874,7 +849,7 @@ There are, of course, many more options that may be of interest to some people. 
 
 This completes Part 3. You can either continue on to Part 4, or return to the [menu](#menu).
 
-## <a name="part4"></a>Part 4: Container Snapshots
+## Part 4: Container Snapshots
 
 Container snapshots, along with a snapshot server (which we will get to more later), are probably the most important aspect of running a production LXD server. Snapshots ensure quick recovery, and can be used for safety when you are, say, updating the primary software that runs on a particular container. If something happens during the update that breaks that application, you simply restore the snapshot and you are back up and running with only a few seconds worth of downtime. 
 
@@ -937,7 +912,7 @@ The process of creating snapshots automatically, setting expiration of the snaps
 
 This completes Part 4. You can either continue on to Part 5, or return to the [menu](#menu).
 
-## <a name="part5"></a>Part 5: The Snapshot Server
+## Part 5: The Snapshot Server
 
 As noted at the beginning, the snapshot server for LXD should be a mirror of the production server in every way possible. The reason is that you may need to take it to production in the event of a hardware failure, and having not only backups, but a quick way to bring up production containers, keeps those systems administrator panic phone calls and text messages to a minimum. THAT is ALWAYS good! 
 
@@ -945,7 +920,7 @@ So the process of building the snapshot server is exactly like the production se
 
 You're back!! Congratulations, this must mean that you have successfully completed Part 1 for the snapshot server. That's great news!!
 
-## <a name="lxdrelationship"></a> Setting Up The Primary and Snapshot Server Relationship
+### Setting Up The Primary and Snapshot Server Relationship
 
 We've got some housekeeping to do before we continue. First, if you are running in a production environment, you probably have access to a DNS server that you can use for setting up IP to name resolution. 
 
@@ -977,7 +952,7 @@ This will display the certificate to accept, so do that, and then it will prompt
 
 It does not hurt to have this done in reverse as well. In other words, set the trust relationship on the lxd-snapshot server so that, if needed, snapshots can be sent back to the lxd-primary server. Simply repeat the steps and substitute in "lxd-primary" for "lxd-snapshot."
 
-## <a name="migration"></a> Migrating Our First Snapshot
+### Migrating Our First Snapshot
 
 Before we can migrate our first snapshot, we need to have any profiles created on lxd-snapshot that we have created on the lxd-primary. In our case, this is the "macvlan" profile. 
 
@@ -1023,7 +998,7 @@ And on the lxd-snapshot server:
 
 Assuming all of this works without error, stop the container on lxd-snapshot and start it again on lxd-primary.
 
-## The Snapshot Server - Setting boot.autostart To Off For Containers
+### The Snapshot Server - Setting boot.autostart To Off For Containers
 
 The snapshots copied to lxd-snapshot will be down when they are migrated, but if you have a power event or need to reboot the snapshot server because of updates or something, you will end up with a problem as those containers will attempt to start on the snapshot server. 
 
@@ -1033,7 +1008,7 @@ To eliminate this, we need to set the migrated containers so that they will not 
 
 Do this for each snapshot on the lxd-snapshot server.
 
-## <a name="automatingsnaps"></a> Automating The Snapshot Process
+### Automating The Snapshot Process
 
 Ok, so it's great that you can create snapshots when you need to, and sometimes you _do_ need to manually create a snapshot. You might even want to manually copy it over to lxd-snapshot. BUT, once you've got things going and you've got 25 to 30 containers or more running on your lxd-primary machine, the very last thing you want to do is spend an afternoon deleting snapshots on the snapshot server, creating new snapshots and sending them over. 
 
@@ -1055,7 +1030,7 @@ GREAT, but we certainly don't want a new snapshot every day without getting rid 
 
 `lxc config set centos-test snapshots.expiry 1d`
 
-## <a name=automatingcopy></a> Automating The Snapshot Copy Process
+### Automating The Snapshot Copy Process
 
 Again, this process is performed on lxd-primary. First thing we need to do is create a script that will be run by cron in /usr/local/sbin called "refresh-containers" :
 
