@@ -6,9 +6,6 @@ repo_url: https://github.com/hbjydev/rldocs
 repo_name: rocky-linux/documentation
 edit_uri: 'edit/main/docs/'
 
-# nav:
-  # - '...'
-
 extra_css:
   - stylesheets/extra.css
 
@@ -22,6 +19,7 @@ theme:
     - navigation.tabs.sticky
     - navigation.indexes
     - navigation.top
+  logo: assets/logo.png
   palette:
     - scheme: default
       toggle:
@@ -53,4 +51,14 @@ plugins:
   # - tags
 
 extra: 
-  generator: false
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/rocky_linux
+    - icon: fontawesome/brands/github
+      link: https://github.com/rocky-linux
+    - icon: fontawesome/brands/gitlab
+      link: https://git.rockylinux.org
+    - icon: material/home
+      link: https://rockylinux.org
+
+copyright: Copyright &copy; 2021 The Rocky Enterprise Software Foundation
