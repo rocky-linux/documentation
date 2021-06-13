@@ -22,6 +22,15 @@ theme:
     - navigation.tabs.sticky
     - navigation.indexes
     - navigation.top
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
 
 markdown_extensions:
   - toc:
