@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block config %}
+{{ super() }}
+{% if "localsearch" in config["plugins"] %}
+<script src="{{ 'assets/javascripts/iframe-worker.js' | url }}"></script>
+<script src="{{ 'search/search_index.js' | url }}"></script>
+{% endif %}
+{% endblock %}

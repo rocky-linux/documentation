@@ -1,8 +1,4 @@
----
-sidebar_label: 'Introduction'
-sidebar_position: 0
----
-# Apache Hardened Web Server
+# Introduction
 
 ## Prerequisites And Assumptions
 
