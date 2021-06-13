@@ -2,3 +2,4 @@ mkdocs
 mkdocs-material
 mkdocs-localsearch
 mkdocs-awesome-pages-plugin
+mkdocs-static-i18n
