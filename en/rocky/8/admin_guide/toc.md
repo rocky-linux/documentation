@@ -9,8 +9,8 @@ This is a collection of educational documents focused on System Administrators. 
 * [Chapter 3. - Commands for Linux users](../admin_guide/03-commands.md)
 * [Chapter 4. - Advanced Commands]
 * [Chapter 5. - VI Text Editor](../admin_guide/05-vi.md)
-* [Chapter 6. - User and Group Management](../admin_guide/06-user.md)
-* [Chapter 7. - File System](../admin_guide/07-file-system.md)
+* [Chapter 6. - User and Group Management](../admin_guide/06-users.md)
+* [Chapter 7. - File System](../admin_guide/07-file-systems.md)
 * [Chapter 8. - Process Management](../admin_guide/08-process.md)
 * [Chapter 9. - Backup]
 * [Chapter 10. - System Startup](../admin_guide/10-boot.md)
