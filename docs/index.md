@@ -55,10 +55,10 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 
 | LXC/LXD |
 | --- |
-| [Creating a full LXD Server](../guides/lxd_server.md) |
+| [Creating a full LXD Server](guides/lxd_server.md) |
 
 ## Educational / Training
 
 | Administration | Security | General |
 |----------------|----------|---------|
-| [System Administration](../admin_guide/toc.md) | Security Labs |
+| [System Administration](guides/admin_guide/toc.md) | Security Labs |
