@@ -17,9 +17,9 @@ theme:
   features:
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.indexes
     - navigation.top
   logo: assets/logo.png
+  favicon: assets/logo.png
   palette:
     - scheme: default
       media: "(prefers-color-scheme: light)"
