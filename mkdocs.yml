@@ -6,8 +6,8 @@ repo_url: https://github.com/hbjydev/rldocs
 repo_name: rocky-linux/documentation
 edit_uri: 'edit/main/docs/'
 
-nav:
-  - '...'
+# nav:
+  # - '...'
 
 extra_css:
   - stylesheets/extra.css
@@ -35,6 +35,9 @@ theme:
 markdown_extensions:
   - toc:
       permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 plugins:
   - search

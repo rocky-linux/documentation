@@ -6,15 +6,16 @@ In this chapter you will learn about GNU/Linux distributions.
 
 **Objectives** : In this chapter you will learn how to:
 
-:heavy_check_mark: Describe the features and possible architectures of an operating system; \
-:heavy_check_mark: Recount the history of UNIX and GNU/Linux; \
-:heavy_check_mark: Choose the right Linux distribution for your needs; \
-:heavy_check_mark: Explain the philosophy of free and opensource software; \
-:heavy_check_mark: Discover the usefulness of the SHELL.
+- :heavy_check_mark: Describe the features and possible architectures of an operating system
+- :heavy_check_mark: Recount the history of UNIX and GNU/Linux
+- :heavy_check_mark: Choose the right Linux distribution for your needs
+- :heavy_check_mark: Explain the philosophy of free and opensource software
+- :heavy_check_mark: Discover the usefulness of the SHELL.
 
 :checkered_flag: **generalities**, **linux**, **distributions**
 
-**Knowledge**: :star: \
+**Knowledge**: :star:
+
 **Complexity**: :star:
 
 **Reading time**: 10 minutes
