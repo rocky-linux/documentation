@@ -1,0 +1,1132 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.rockylinux.org/es/guides/rocky-8-installation/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Installing Rocky Linux - Rocky Linux Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Hat+Text:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font-family:"Red Hat Text";--md-code-font-family:""}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installing-rocky-linux" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-header__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rocky Linux Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installing Rocky Linux
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="../../../" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../zh/" hreflang="zh" class="md-select__link">
+                    简体中文
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../" hreflang="es" class="md-select__link">
+                    Español
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/rocky-linux/documentation/" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../" class="md-tabs__link">
+      Table of Contents
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../add_mirror_manager/" class="md-tabs__link md-tabs__link--active">
+        Guides
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/security/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-nav__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Rocky Linux Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/rocky-linux/documentation/" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Guides
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../add_mirror_manager/" class="md-nav__link">
+        Adding a public mirror to Rocky's mirror manager
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-sites-enabled/" class="md-nav__link">
+        Configuración del servidor web Apache para múltiples sitios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_network_configuration/" class="md-nav__link">
+        Rocky Linux - Networking configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud_server_using_nextcloud/" class="md-nav__link">
+        Cloud Server Using Nextcloud
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron_jobs_howto/" class="md-nav__link">
+        Automatizar procesos con cron y crontab en Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database_mariadb-server/" class="md-nav__link">
+        Database mariadb-server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_start2/" class="md-nav__link">
+        Developer start2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dokuwiki_server/" class="md-nav__link">
+        DokuWiki Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enabling_iptables_firewall/" class="md-nav__link">
+        Enabling iptables Firewall
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generating_ssl_keys_lets_encrypt/" class="md-nav__link">
+        Cómo Generar Claves SSL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../import_rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL[2] with Virtualbox and Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mirroring_lsyncd/" class="md-nav__link">
+        Rocky Linux - Solución para espejar lsycnd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_build_troubleshooting/" class="md-nav__link">
+        Package build troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_debranding/" class="md-nav__link">
+        Rocky package debranding How-To 
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_dev_start/" class="md-nav__link">
+        Rocky Linux Devtools (Packaging and developer starter guide)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_signing/" class="md-nav__link">
+        Package signing and testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postfix_reporting/" class="md-nav__link">
+        Using postfix For Server Process Reporting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../private_dns_server_using_bind/" class="md-nav__link">
+        Private DNS Server Using Bind
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Installing Rocky Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Installing Rocky Linux
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#os-installation-prerequisites" class="md-nav__link">
+    OS installation prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verifying-the-installer-iso" class="md-nav__link">
+    Verifying the installer ISO
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL with WSL and rinse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsnapshot_backup/" class="md-nav__link">
+        Rocky Linux - Copias de Seguridad rsnapshot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsync_ssh/" class="md-nav__link">
+        Utilizando rsync para mantener dos equipos sincronizados
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secure_ftp_server_vsftpd/" class="md-nav__link">
+        Secure FTP Server - vsftpd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh_public_private_keys/" class="md-nav__link">
+        Rocky Linux - Claves SSH Públicas y Privadas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl_keys_https/" class="md-nav__link">
+        Generating SSL Keys
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_26" type="checkbox" id="__nav_2_26" >
+      
+      <label class="md-nav__link" for="__nav_2_26">
+        Apache Hardened Webserver
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Apache Hardened Webserver" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_26">
+          <span class="md-nav__icon md-icon"></span>
+          Apache Hardened Webserver
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/modsecurity/" class="md-nav__link">
+        mod_security
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/ossec-hids/" class="md-nav__link">
+        ossec-hids
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/rkhunter/" class="md-nav__link">
+        rkhunter
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Security
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Security" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/rocky-lab9-cryptography/" class="md-nav__link">
+        Lab 9: Cryptography
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#os-installation-prerequisites" class="md-nav__link">
+    OS installation prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verifying-the-installer-iso" class="md-nav__link">
+    Verifying the installer ISO
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rocky-linux/documentation/edit/master/docs/guides/rocky-8-installation.md" title="Editar esta página" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="installing-rocky-linux">Installing Rocky Linux<a class="headerlink" href="#installing-rocky-linux" title="Permanent link">&para;</a></h1>
+<p>This guide walks-through the detailed steps to install a 64-bit version of the rocky Linux distribution on a stand-alone system. </p>
+<p>We will be performing a server class install in this chapter using an operating system installer image downloaded from the rocky project website. We will tackle the installation and customizations steps in the following sections.</p>
+<h2 id="os-installation-prerequisites">OS installation prerequisites<a class="headerlink" href="#os-installation-prerequisites" title="Permanent link">&para;</a></h2>
+<p>First, you need to download the ISO for Rocky that we will be installing.</p>
+<p>The latest ISO image for the version of Rocky that we will be using for this installation can be downloaded from here:</p>
+<pre><code>https://www.rockylinux.org/download/
+
+</code></pre>
+<p>To download the ISO directly from the command line, type:</p>
+<pre><code>$ wget https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_64-minimal.iso
+</code></pre>
+<p>Rocky ISOs are named following this convention:</p>
+<pre><code>Rocky-&lt;MAJOR#&gt;.&lt;MINOR#&gt;.&lt;ARCH&gt;-&lt;VARIANT&gt;.iso
+</code></pre>
+<p>For example  <code>Rocky-8.3-x86_64-minimal.iso</code></p>
+<p><strong>Note:</strong>
+Rocky project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found at <code>https://#</code></p>
+<h2 id="verifying-the-installer-iso">Verifying the installer ISO<a class="headerlink" href="#verifying-the-installer-iso" title="Permanent link">&para;</a></h2>
+<p>If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use the sha256sum utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha256sum of <code>Rocky-8.3-x86_64-minimal.iso</code>.</p>
+<p>First download the file that contains the official checksums for the avaiable ISOs. While still in the folder that contains the downloaded Rocky ISO, type:</p>
+<pre><code>wget http://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/CHECKSUM
+</code></pre>
+<p>Use the sha256sum utility to verify the </p>
+<pre><code>sha256sum -c CHECKSUM    --ignore-missing Rocky-8.3-x86_64-minimal.iso
+</code></pre>
+<p>The output should include:</p>
+<pre><code>Rocky-8.3-x86_64-minimal.iso: OK
+</code></pre>
+<p><strong>TIP:</strong> Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium. </p>
+<h1 id="the-installation">The Installation<a class="headerlink" href="#the-installation" title="Permanent link">&para;</a></h1>
+<p>Let’s begin the installation process.</p>
+<p>Insert and boot off the installation medium (optical disk, USB flash drive, and so on).</p>
+<p>Once booted, you'll be presented with a welcome splash screen.</p>
+<p><img alt="Rocky Linux installation splash screen" src="../../../guides/images/installation-F01.png" /></p>
+<p>If you do not press any key, the prompt will begin a countdown, after which the installation process will start by booting the highlighted Test This Media &amp; Install Rocky Linux 8 ... option. You can also press enter to start the process immediately.</p>
+<p>A quick media verification step will take place. This media verification step can save you the trouble of starting the installation only to find out halfway through that the installer will abort because of bad installation media.</p>
+<p>After the media check runs to completion, and the media is successfully verified to be usable, the installer will automatically continue to the next screen.</p>
+<p>Select the language you want to use to perform the installation in this screen. For this example, we select English (United States). Then click the Continue button.</p>
+<p><strong>Warning:</strong> :warning: You'll next see warning screen. The screen will warn you that you are installing pre-release software and that you should NOT use the operating system in a production environment. If you okay with this, click <code>I want to proceed</code> to continue </p>
+<h1 id="installation-summary">Installation Summary<a class="headerlink" href="#installation-summary" title="Permanent link">&para;</a></h1>
+<p>The Installation Summary screen is an all-in-one area where you make the important decisions about the operating system to be installed. The screen is roughly divided into the following sections:
+    • Localization (Keyboard, Language Support, and Time &amp; Date)
+    • Software (Installation Source and Software Selection)
+    • System (Installation Destination and Network &amp; Hostname)</p>
+<p>We delve into each of these sections next and make changes where necessary.</p>
+<h2 id="localization-section">Localization Section<a class="headerlink" href="#localization-section" title="Permanent link">&para;</a></h2>
+<p>This section is used for customizing items related to the locale of the system. This includes – Keyboard, Language Support, Time and Date.</p>
+<h3 id="keyboard">Keyboard<a class="headerlink" href="#keyboard" title="Permanent link">&para;</a></h3>
+<p>On our demo system in this guide, we accept the default value (English US) and make no changes.
+However if you need to make any changes here, from the Installation Summary screen, click the Keyboard option to specify the keyboard layout of the system. You can add additional keyboard layouts if you need to in the ensuing screen and specify their order.
+Click Done when you are done.</p>
+<h3 id="language-support">Language Support<a class="headerlink" href="#language-support" title="Permanent link">&para;</a></h3>
+<p>The Language Support option on the Installation Summary screen enables you to specify support for additional languages that you may need on the finished system.
+We accept the default value (English – United States) and make no change. Click Done.</p>
+<h3 id="time-date">Time &amp; Date<a class="headerlink" href="#time-date" title="Permanent link">&para;</a></h3>
+<p>Click the Time &amp; Date option on the main Installation Summary screen to bring up another screen that will allow you to select the time zone in which the machine is located. Scroll through the list of regions and cities and select the area closest to you. </p>
+<p>Depending on your installation source, the Network Time option could be set to ON or OFF by default. Accept the default ON setting; this allows the system to automatically set the correct time using the Network Time Protocol (NTP). Click Done after making any changes.</p>
+<h2 id="software-section">Software Section<a class="headerlink" href="#software-section" title="Permanent link">&para;</a></h2>
+<p>Under the Software section of the Installation Summary screen, you can select the installation source as well as additional packages (applications) that get installed.</p>
+<h3 id="installation-source">Installation Source<a class="headerlink" href="#installation-source" title="Permanent link">&para;</a></h3>
+<p>Since we are performing our installation using a full Rocky 8 image, you will notice that Local Media is automatically specified under the Installation Source section of the main Installation Summary screen. We'll accept the preset defaults.</p>
+<h3 id="software-selection">Software Selection<a class="headerlink" href="#software-selection" title="Permanent link">&para;</a></h3>
+<p>Clicking the Software Selection option on the main Installation Summary screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into the Base Environment (Server, Minimal Install, Custom Operating System) and Additional software for Selected Environment area.
+Selecting a Base Environment on the left side presents a variety of related additional software that can be installed for the given environment on the right side.</p>
+<p>Select the Minimal Install (Basic functionality) option instead.</p>
+<p>Click Done at the top of the screen.
+        ​</p>
+<h2 id="system-section">System Section<a class="headerlink" href="#system-section" title="Permanent link">&para;</a></h2>
+<p>The System section of the Installation Summary screen is used for customizing and making changes to the underlying hardware of the target system. This is where you create your hard drive partitions or volumes, specify the file system to be used, and specify the network configuration.</p>
+<h3 id="installation-destination">Installation Destination<a class="headerlink" href="#installation-destination" title="Permanent link">&para;</a></h3>
+<p>From the Installation Summary screen, click the Installation Destination option. This takes you to the corresponding task area.
+You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you will see the drive listed under Local Standard Disks with a check mark beside it. Clicking the disk icon will toggle on or off the disk selection check mark. We want it selected/checked here.</p>
+<p>Under the Storage Configuration Options section, select the Automatic radio button.
+Then click Done at the top of the screen.
+Once the installer determines that you have a usable disk, you will be returned to the installation summary screen.</p>
+<h3 id="network-hostname">Network &amp; Hostname<a class="headerlink" href="#network-hostname" title="Permanent link">&para;</a></h3>
+<p>The final task of the installation procedure deals with network configuration, where you can configure or tweak network-related settings for the system.</p>
+<p><strong>NOTE:</strong> After you click on the Network &amp; Hostname option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen.Depending on the Linux distribution and the specific hardware setup, Ethernet devices in Linux have names similar to eth0, eth1, ens3, ens4, em1, em2, p1p1, enp0s3, and so on.
+ 
+For each interface, you can either configure it using DHCP or manually set the IP address. If you choose to configure manually, be sure to have all the pertinent information ready, such as the IP address, netmask, and so on.
+Clicking the Network &amp; Hostname button in the main Installation Summary screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system (the name defaults to localhost.localdomain). Note that you can easily change this name later on after the OS has been installed. For now, accept the default value supplied for the hostname.</p>
+<p>The next important configuration task is related to the network interfaces on the system. First, verify that an Ethernet card (or any network card) is listed in the left pane. Click any of the detected network devices in the left pane to select it. The configurable properties of the selected network adapter will appear in the right pane of the screen.
+On our sample server, we have four Ethernet devices (ens3, ens4, ens5 and ens6), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our sample system.
+Make sure the switch of the device you want to configure is flipped to the ON position in the right pane.
+We'll accept all the defaults in this section.</p>
+<p>Click Done to return to the main Installation Summary screen.</p>
+<p><strong>CAUTION:</strong>  Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it.</p>
+<h2 id="the-installation_1">The Installation<a class="headerlink" href="#the-installation_1" title="Permanent link">&para;</a></h2>
+<p>Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.</p>
+<h2 id="user-settings-section">User Settings Section<a class="headerlink" href="#user-settings-section" title="Permanent link">&para;</a></h2>
+<p>This section can be used for creating a password for the root user account and also for creating new administrative or non-administrative accounts.</p>
+<h3 id="set-the-root-password">Set the Root Password<a class="headerlink" href="#set-the-root-password" title="Permanent link">&para;</a></h3>
+<p>Click the Root Password field under User Settings to launch the Root Password task screen. In the Root Password text box, set a strong password for the root user. 
+This user is the most privileged account on the system. Therefore, if you choose to use it or enable it - it is crucial that you protect this account with a very good password.
+Enter the same password again in the Confirm text box. Click Done.
+            ​</p>
+<h3 id="create-a-user-account">Create a User Account<a class="headerlink" href="#create-a-user-account" title="Permanent link">&para;</a></h3>
+<p>Next click the User Creation field under User Settings to launch the Create User task screen. This task area allows you to create a privileged or non-privileged (non-administrative) user account on the system. </p>
+<p>Creating and using a non-privileged account for day-to-day tasks on a system is a good system administration practice. </p>
+<p>We’ll create a regular user that can invoke superuser (administrator) powers when needed.
+Complete the fields in the Create User screen with the following information and then click Done:</p>
+<p>Full name
+<code>rockstar</code>
+Username
+<code>rockstar</code>
+Make this user administrator
+Checked</p>
+<p>Require a password to use this account
+Checked</p>
+<p>Password
+<code>04302021</code></p>
+<p>Confirm password
+<code>04302021</code></p>
+<h3 id="start-the-installation">Start the Installation<a class="headerlink" href="#start-the-installation" title="Permanent link">&para;</a></h3>
+<p>Once you are satisfied with your choices for the various installation tasks, click the Begin Installation button on the main Installation Summary screen. The installation will begin, and the installer will show the progress of the installation.</p>
+<p><strong>NOTE:</strong> If you develop cold feet after you click the Begin Installation button, you can still safely back out of the installation without any loss of data (or self-esteem). To quit the installer, simply reset your system either by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.</p>
+<p>When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.   ​</p>
+<h3 id="complete-the-installation">Complete the Installation<a class="headerlink" href="#complete-the-installation" title="Permanent link">&para;</a></h3>
+<p>After you’ve completed any of the mandatory subtasks and the installer has run its course, you'll be presented with a final installation progress screen with a complete message.</p>
+<p>Finally, complete the entire procedure by clicking the Reboot System button. The system will reboot itself.
+            ​</p>
+<h3 id="log-in">Log In<a class="headerlink" href="#log-in" title="Permanent link">&para;</a></h3>
+<p>The system is now set up and ready for use. You will see the adorable Rocky Linux console.</p>
+<p><img alt="Rocky Linux Welcome Screen" src="../../../guides/images/installation-F04.png" /></p>
+<p>To log onto the system, type <code>rockstar</code> at the login prompt and press enter. </p>
+<p>At the Password prompt, type <code>04302021</code> (rockstar’s password) and press enter.</p>
+<p>We'll run the <code>whoami</code> command after login. </p>
+<p><img alt="Login Screen" src="../../../guides/images/installation-F06.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="../private_dns_server_using_bind/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Private DNS Server Using Bind" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Private DNS Server Using Bind
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../rocky_to_wsl_howto/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Import Rocky Linux to WSL with WSL and rinse" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              Import Rocky Linux to WSL with WSL and rinse
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+
+<script src="../../../assets/javascripts/iframe-worker.js"></script>
+<script src="../../../search/search_index.js"></script>
+
+
+    
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

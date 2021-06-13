@@ -1,0 +1,1305 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.rockylinux.org/fr/guides/apache-sites-enabled/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Configuration Apache Web Server Multi-Sites - Rocky Linux Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Hat+Text:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font-family:"Red Hat Text";--md-code-font-family:""}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#de-quoi-avez-vous-besoin" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-header__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rocky Linux Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration Apache Web Server Multi-Sites
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="../../../" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../zh/" hreflang="zh" class="md-select__link">
+                    简体中文
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../es/" hreflang="es" class="md-select__link">
+                    Español
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/rocky-linux/documentation/" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../" class="md-tabs__link">
+      Table of Contents
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../add_mirror_manager/" class="md-tabs__link md-tabs__link--active">
+        Guides
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/security/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-nav__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Rocky Linux Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/rocky-linux/documentation/" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Guides
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../add_mirror_manager/" class="md-nav__link">
+        Adding a public mirror to Rocky's mirror manager
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Configuration Apache Web Server Multi-Sites
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Configuration Apache Web Server Multi-Sites
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#de-quoi-avez-vous-besoin" class="md-nav__link">
+    De quoi avez-vous besoin ?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-apache-web-server-multi-sites" class="md-nav__link">
+    Configuration Apache Web Server Multi-Sites
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Apache Web Server Multi-Sites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installer-apache" class="md-nav__link">
+    Installer Apache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajouter-des-dossiers-supplementaires" class="md-nav__link">
+    Ajouter des dossiers supplémentaires
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-configuration-du-site" class="md-nav__link">
+    La configuration du site
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-configuration-https-utiliser-un-certificat-ssl" class="md-nav__link">
+    La configuration https - Utiliser un certificat SSL
+  </a>
+  
+    <nav class="md-nav" aria-label="La configuration https - Utiliser un certificat SSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#placement-des-clefs-ssl-et-des-certificats" class="md-nav__link">
+    Placement des clefs SSL et des certificats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-configuration-du-site-https" class="md-nav__link">
+    La configuration du site - https
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-mot-de-la-fin" class="md-nav__link">
+    Le mot de la fin
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_network_configuration/" class="md-nav__link">
+        Rocky Linux - Configuration réseau de base
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud_server_using_nextcloud/" class="md-nav__link">
+        Cloud Server Using Nextcloud
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron_jobs_howto/" class="md-nav__link">
+        Automating Processes with cron and crontab in Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database_mariadb-server/" class="md-nav__link">
+        Database mariadb-server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_start2/" class="md-nav__link">
+        Developer start2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dokuwiki_server/" class="md-nav__link">
+        DokuWiki Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enabling_iptables_firewall/" class="md-nav__link">
+        Enabling iptables Firewall
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generating_ssl_keys_lets_encrypt/" class="md-nav__link">
+        Generating SSL Keys - Let's Encrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../import_rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL[2] with Virtualbox and Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mirroring_lsyncd/" class="md-nav__link">
+        Mirroring Solution - lsycnd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_build_troubleshooting/" class="md-nav__link">
+        Package build troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_debranding/" class="md-nav__link">
+        Rocky package debranding How-To 
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_dev_start/" class="md-nav__link">
+        Rocky Linux Devtools (Packaging and developer starter guide)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_signing/" class="md-nav__link">
+        Package signing and testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postfix_reporting/" class="md-nav__link">
+        Using postfix For Server Process Reporting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../private_dns_server_using_bind/" class="md-nav__link">
+        Private DNS Server Using Bind
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky-8-installation/" class="md-nav__link">
+        Installing Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL with WSL and rinse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsnapshot_backup/" class="md-nav__link">
+        Backup Solution - Rsnapshot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsync_ssh/" class="md-nav__link">
+        Using rsync To Keep Two Machines Synchronized
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secure_ftp_server_vsftpd/" class="md-nav__link">
+        Secure FTP Server - vsftpd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh_public_private_keys/" class="md-nav__link">
+        SSH Public and Private Key
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl_keys_https/" class="md-nav__link">
+        Generating SSL Keys
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_26" type="checkbox" id="__nav_2_26" >
+      
+      <label class="md-nav__link" for="__nav_2_26">
+        Apache Hardened Webserver
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Apache Hardened Webserver" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_26">
+          <span class="md-nav__icon md-icon"></span>
+          Apache Hardened Webserver
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/modsecurity/" class="md-nav__link">
+        mod_security
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/ossec-hids/" class="md-nav__link">
+        ossec-hids
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/rkhunter/" class="md-nav__link">
+        rkhunter
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Security
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Security" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/rocky-lab9-cryptography/" class="md-nav__link">
+        Lab 9: Cryptography
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#de-quoi-avez-vous-besoin" class="md-nav__link">
+    De quoi avez-vous besoin ?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-apache-web-server-multi-sites" class="md-nav__link">
+    Configuration Apache Web Server Multi-Sites
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Apache Web Server Multi-Sites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installer-apache" class="md-nav__link">
+    Installer Apache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajouter-des-dossiers-supplementaires" class="md-nav__link">
+    Ajouter des dossiers supplémentaires
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-configuration-du-site" class="md-nav__link">
+    La configuration du site
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-configuration-https-utiliser-un-certificat-ssl" class="md-nav__link">
+    La configuration https - Utiliser un certificat SSL
+  </a>
+  
+    <nav class="md-nav" aria-label="La configuration https - Utiliser un certificat SSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#placement-des-clefs-ssl-et-des-certificats" class="md-nav__link">
+    Placement des clefs SSL et des certificats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-configuration-du-site-https" class="md-nav__link">
+    La configuration du site - https
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-mot-de-la-fin" class="md-nav__link">
+    Le mot de la fin
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rocky-linux/documentation/edit/master/docs/guides/apache-sites-enabled.fr.md" title="Editer cette page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h2 id="de-quoi-avez-vous-besoin">De quoi avez-vous besoin ?<a class="headerlink" href="#de-quoi-avez-vous-besoin" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Un serveur sous Rocky Linux,</li>
+<li>Des connaissances de la ligne de commande et des éditeurs de texte (Cet exemple utilise <em>vi</em>, mais peut être adapté à votre éditeur favori),<ul>
+<li>Si vous êtes intéressé pour apprendre à utiliser l'éditeur de texte vi, <a href="https://www.tutorialspoint.com/unix/unix-vi-editor.htm">voici un tutoriel pratique</a>.</li>
+</ul>
+</li>
+<li>Des connaissances élémentaires sur l'installation et le lancement de services web.</li>
+</ul>
+<h1 id="configuration-apache-web-server-multi-sites">Configuration Apache Web Server Multi-Sites<a class="headerlink" href="#configuration-apache-web-server-multi-sites" title="Permanent link">&para;</a></h1>
+<p>Il y a de nombreuses façons pour vous de configurer un site web sur Rocky Linux. Celle-ci est juste une méthode utilisant Apache et est conçue pour accueillir une configuration multi-sites sur un seul serveur. Bien que cette méthode soit conçue pour des serveurs multi-sites, elle peut tout aussi bien faire office de configuration de base pour un server mono-site.</p>
+<p>Pour la petite histoire : cette configuration serveur semble avoir démarré sur des systèmes Debian, mais est parfaitement adaptable à n'importe quel OS Linux faisant tourner Apache.</p>
+<h2 id="installer-apache">Installer Apache<a class="headerlink" href="#installer-apache" title="Permanent link">&para;</a></h2>
+<p>Vous aurez surement besoin d'autres paquets pour votre site web. Par exemple, une version de PHP sera certainement nécessaire et peut être également une base de données ou tout autre sortes de paquets. L'installation de PHP et de httpd vous permettra d'obtenir les dernières versions de ces logiciels à partir des dépôts de Rocky Linux.</p>
+<p>Rappelez-vous simplement que vous pourrez avoir besoin de modules également, comme peut être php-bcmath ou php-mysqlind. Les spécifications de votre application web devraient détailler ce qui est nécessaire. Elles peuvent être installées à n'importe quel moment. Pour l'instant, nous allons installer httpd et PHP, puisqu'ils sont presque inévitables :</p>
+<ul>
+<li>Depuis la ligne de commande, exécuter : <code>dnf install httpd php</code></li>
+</ul>
+<h2 id="ajouter-des-dossiers-supplementaires">Ajouter des dossiers supplémentaires<a class="headerlink" href="#ajouter-des-dossiers-supplementaires" title="Permanent link">&para;</a></h2>
+<p>Cette méthode utilise un ensemble de répertoires supplémentaires, mais ils n'existent pas actuellement sur le système. Nous devons ajouter deux répertoires dans <em>/etc/httpd/</em> appelés "sites-available" et "sites-enabled".</p>
+<ul>
+<li>
+<p>Depuis la ligne de commande, saisir <code>mkdir /etc/httpd/sites-available</code> puis <code>mkdir /etc/httpd/sites-enabled</code></p>
+</li>
+<li>
+<p>Nous avons également besoin d'un répertoire dans lequel nos sites vont être déposés. Cela peut être n'importe où, mais une bonne façon de conserver les choses organisées et de créer un répertoire appelé sub-domains. Pour conserver les choses simples, placez le sous /var/www: <code>mkdir /var/www/sub-domains/</code></p>
+</li>
+</ul>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>Nous avons aussi besoin d'ajouter une ligne à la toute fin du fichier httpd.conf. Pour faire cela, saisissez <code>vi /etc/httpd/conf/httpd.conf</code>, allez en bas du fichier et ajoutez <code>Include /etc/httpd/sites-enabled</code>.</p>
+<p>Nos fichiers de configuration seront dans <em>/etc/httpd/sites-available</em> et nous allons simplement créer des liens symboliques vers eux dans <em>/etc/httpd/sites-enabled</em>.</p>
+<p><strong>Pourquoi faisons nous cela ?</strong></p>
+<p>La raison est plutôt simple. Imaginons que vous avez 10 sites web fonctionnant tous sur le même server sur différentes adresses IP. Disons que le site B a des mises à jour majeures et vous devez faire des changements à la configuration de ce site. Disons également qu'il y a quelque chose de faux dans les changements effectués, si bien que lorsque vous redémarrez httpd pour prendre en compte les nouveaux changements, httpd ne démarre pas.</p>
+<p>Non seulement le site sur lequel vous étiez en train de travailler ne démarre pas, mais aucun autre non plus. Avec cette méthode, vous pouvez simplement supprimer le lien symbolique du site qui pose problème et redémarrer httpd. Il va recommencer à fonctionner et vous pourrez travailler pour tenter de corriger la configuration du site en panne.</p>
+<p>Cela enlève la pression, en sachant que le téléphone ne va pas sonner avec un client ou un chef en colère parce que le service est coupé.</p>
+<h3 id="la-configuration-du-site">La configuration du site<a class="headerlink" href="#la-configuration-du-site" title="Permanent link">&para;</a></h3>
+<p>L'autre bénéfice de cette méthode est qu'elle va nous permettre de tout spécifier en dehors du fichier par défaut httpd.conf. Laissez le fichier par défaut httpd.conf charger les options par défaut et laissez les fichiers de configuration de vos sites faire le reste. Chouette non ? De plus, encore une fois, cela rend vraiment simple de dépanner une configuration de site.</p>
+<p>Maintenant, disons que vous avez un site web qui charge un wiki. Vous allez avoir besoin d'un fichier de configuration qui rendra le site disponible sur le port 80.</p>
+<p>Si vous voulez servir le site en SSL (et regardons les choses en face, nous devrions tous faire ça maintenant) alors vous devrez ajouter une autre section (quasiment identique) au même fichier afin d'activer le port 443.</p>
+<p>Vous pouvez jeter un œil à cela ci-dessous dans la section <a href="#https">La configuration https - Utiliser un certificat SSL</a>.</p>
+<p>Nous devons dans un premier temps créer ce fichier de configuration dans <em>sites-available</em>: <code>vi /etc/httpd/sites-available/com.ourownwiki.www</code></p>
+<p>Le contenu du fichier de configuration devrait ressembler à quelque chose comme ceci :</p>
+<pre><code class="language-apache">&lt;VirtualHost *:80&gt;
+        ServerName www.ourownwiki.com
+        ServerAdmin username@rockylinux.org
+        DocumentRoot /var/www/sub-domains/com.ourownwiki.www/html
+        DirectoryIndex index.php index.htm index.html
+        Alias /icons/ /var/www/icons/
+        # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.ourownwiki.www/cgi-bin/
+
+    CustomLog &quot;/var/log/httpd/com.ourownwiki.www-access_log&quot; combined
+    ErrorLog  &quot;/var/log/httpd/com.ourownwiki.www-error_log&quot;
+
+        &lt;Directory /var/www/sub-domains/com.ourownwiki.www/html&gt;
+                Options -ExecCGI -Indexes
+                AllowOverride None
+
+                Order deny,allow
+                Deny from all
+                Allow from all
+
+                Satisfy all
+        &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>Une fois le fichier créé, nous devons l'écrire (le sauvegarder) avec : <code>shift : wq</code></p>
+<p>Dans notre exemple précédent, le site du wiki est chargé depuis le sous répertoire html de <em>com.ourownwiki.www</em>,  ce qui veut dire que le répertoire <em>sub-domains</em> que nous nous avons créé dans <em>/var/www</em> (précédemment) va nécessiter des répertoires supplémentaires pour satisfaire cela :</p>
+<p><code>mkdir -p /var/www/sub-domains/com.ourownwiki.www/html</code></p>
+<p>... ce qui va créer le chemin complet avec une seule commande. Ensuite, nous allons vouloir installer nos fichiers dans ce répertoire qui composeront le site web. Cela peut être quelque chose que vous avez fait vous-même ou une installation web que vous installerez (dans le cas d'un wiki que vous auriez téléchargé).</p>
+<p>Copiez vos fichiers dans le répertoire créé précédemment :</p>
+<p><code>cp -Rf wiki_source/* /var/www/sub-domains/com.ourownwiki.www/html/</code></p>
+<h2 id="la-configuration-https-utiliser-un-certificat-ssl"><a name="https"></a>La configuration https - Utiliser un certificat SSL<a class="headerlink" href="#la-configuration-https-utiliser-un-certificat-ssl" title="Permanent link">&para;</a></h2>
+<p>Comme discuté précédemment, chaque serveur web créé de nos jours <em>devrait</em> fonctionner avec du SSL (Secure Socket Layer).</p>
+<p>Ce processus commence par la génération d'une clef privée et d'un CSR (Certificate Signing Request) et ensuite par l'envoi du CSR à l'autorité de certification pour acheter le certificat SSL. Ce processus de génération de clefs sort du cadre de ce document.</p>
+<p>Si vous débutez dans la génération des clefs pour SSL, merci de consulter la page <a href="../../../../en/guides/ssl_keys_https.md">Générer des clefs SSL</a></p>
+<p>Vous pouvez aussi utiliser ce processus alternatif pour utiliser <a href="../../../../en/guides/generating_ssl_keys_lets_encrypt.md">un certificat SSL Let's Encrypt</a></p>
+<h3 id="placement-des-clefs-ssl-et-des-certificats">Placement des clefs SSL et des certificats<a class="headerlink" href="#placement-des-clefs-ssl-et-des-certificats" title="Permanent link">&para;</a></h3>
+<p>Maintenant que vous disposez des fichiers de vos clefs et de vos certificats, nous devons logiquement les placer sur le système de fichiers de votre serveur web. Comme nous l'avons vu dans l'exemple de fichier de configuration (voir ci-dessus), nous plaçons les fichiers web dans  <em>/var/www/sub-domains/com.ourownwiki.www/html</em>.</p>
+<p>Nous voulons placer nos fichiers de certificats et de clefs avec le domaine, mais PAS à la racine des pages web (qui dans ce cas est dans le dossier _html).</p>
+<p>Nous ne voulons absolument pas que nos certificats et clefs puissent être potentiellement exposées sur internet. Ça serait catastrophique !</p>
+<p>A la place, nous allons créer une nouvelle structure de répertoires pour nos fichiers SSL, en dehors de la racine des pages web.</p>
+<p><code>mkdir -p /var/www/sub-domains/com.ourownwiki.www/ssl/{ssl.key,ssl.crt,ssl.csr}</code></p>
+<p>Si vous débutez avec la syntaxe "tree", voici ce que veut dire l'exemple précédent :</p>
+<p>"Créer un répertoire appelé ssl et dans ce répertoire créer trois répertoires appelés ssl.key, ssl.crt et ssl.csr."</p>
+<p>Juste une petite note en avance de phase : ce n'est pas nécessaire pour le fonctionnement du site web de stocker le CSR dans l'arborescence.</p>
+<p>Si jamais vous avez besoin d'une nouvelle édition de votre certificat depuis un fournisseur différent par exemple, c'est une bonne idée d'avoir une copie de sauvegarde de ce fichier CSR. La question devient alors où le stocker de manière à s'en souvenir et le fait de le stocker dans l'arborescence du site web devient logique.</p>
+<p>En supposant que vous avez nommé vos fichiers .key, .csr et .crt (certificat) avec le nom de votre site et que vous les avez stockés  dans <em>/root</em>, nous allons alors les copier dans leurs emplacements respectifs que nous venons juste de créer :</p>
+<pre><code>cp /root/com.wiki.www.key /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/
+cp /root/com.wiki.www.csr /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.csr/
+cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
+</code></pre>
+<h3 id="la-configuration-du-site-https">La configuration du site - https<a class="headerlink" href="#la-configuration-du-site-https" title="Permanent link">&para;</a></h3>
+<p>Une fois que vous avez généré vos clefs et acheté les certificats SSL, vous pouvez avancer dans la configuration du site web pour utiliser les nouvelles clefs.</p>
+<p>Pour les débutants, décomposons le début du fichier de configuration. Par exemple, même si nous voulons toujours écouter sur le port 80 (http standard) pour les requêtes entrantes, nous ne voulons pas qu'elles aboutissent vers le port 80.</p>
+<p>Nous voulons qu'elles soient redirigées vers le port 443 (ou http sécurisé, mieux connu sous SSL). Notre section de configuration du port 80 sera réduite au minimum :</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+        ServerName www.ourownwiki.com
+        ServerAdmin username@rockylinux.org
+        Redirect / https://www.ourownwiki.com/
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>Cette configuration indique de renvoyer toutes les requêtes web en https. L'option apache "Redirect" utilisée ci-dessus peut être remplacée par "Redirect permanent" une fois que tous les tests ont été effectués et que vous pouvez constater que le site fonctionne comme vous voulez qu'il fonctionne. Le "Redirect" que nous avons choisi est une redirection temporaire.</p>
+<p>Une redirection permanente va être apprise par les moteurs de recherche et rapidement tout le trafic de votre site qui provient des moteurs de recherche ira seulement vers le port 443 (https) sans passer par le port 80 en premier.</p>
+<p>Ensuite, nous devons définir la partie https du fichier de configuration. La section http est dupliquée par clarté pour montrer que tout cela se passe dans le même fichier de configuration :</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+        ServerName www.ourownwiki.com
+        ServerAdmin username@rockylinux.org
+        Redirect / https://www.ourownwiki.com/
+&lt;/VirtualHost&gt;
+&lt;Virtual Host *:443&gt;
+        ServerName www.ourownwiki.com
+        ServerAdmin username@rockylinux.org
+        DocumentRoot /var/www/sub-domains/com.ourownwiki.www/html
+        DirectoryIndex index.php index.htm index.html
+        Alias /icons/ /var/www/icons/
+        # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.ourownwiki.www/cgi-bin/
+
+        CustomLog &quot;/var/log/httpd/com.ourownwiki.www-access_log&quot; combined
+        ErrorLog  &quot;/var/log/httpd/com.ourownwiki.www-error_log&quot;
+
+        SSLEngine on
+        SSLProtocol all -SSLv2 -SSLv3 -TLSv1
+        SSLHonorCipherOrder on
+        SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384
+:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS
+
+        SSLCertificateFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/com.wiki.www.crt
+        SSLCertificateKeyFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/com.wiki.www.key
+        SSLCertificateChainFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/your_providers_intermediate_certificate.crt
+
+        &lt;Directory /var/www/sub-domains/com.ourownwiki.www/html&gt;
+                Options -ExecCGI -Indexes
+                AllowOverride None
+
+                Order deny,allow
+                Deny from all
+                Allow from all
+
+                Satisfy all
+        &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>Donc, en décomposant davantage cette configuration, après les parties normales de la configuration et sous la partie SSL :</p>
+<ul>
+<li>SSLEngine on - dit simplement d'utiliser SSL</li>
+<li>SSLProtocol all -SSLv2 -SSLv3 -TLSv1 - dit d'utiliser tous les protocoles disponibles sauf ceux pour qui des vulnérabilités ont été découvertes. Vous devriez rechercher régulièrement quels protocoles sont actuellement acceptables à être utilisés.</li>
+<li>SSLHonorCipherOrder on - cette directive fonctionne avec la ligne suivante concernant les algorithmes de chiffrements (Cipher Suite) et demande de les utiliser dans le même ordre que celui dans lequel ils sont donnés. C'est une autre partie de la configuration que vous devriez réviser régulièrement</li>
+<li>SSLCertificateFile - qui est exactement ce qu'il semble être, le fichier du nouveau certificat acquis et son emplacement.</li>
+<li>SSLCertificateKeyFile - la clef que vous avez générée lors de la création de la demande de signature de certificat</li>
+<li>SSLCertificateChainFile - le certificat de votre fournisseur de certificat, souvent appelé certificat intermédiaire.</li>
+</ul>
+<p>Ensuite, mettez tout en route et s'il n'y a aucune erreur lors du démarrage du service web et si en allant sur votre site web le site en https s'affiche sans erreurs, alors vous pouvez continuer.</p>
+<h2 id="le-mot-de-la-fin">Le mot de la fin<a class="headerlink" href="#le-mot-de-la-fin" title="Permanent link">&para;</a></h2>
+<p>Rappelez-vous que notre fichier <em>httpd.conf</em> contient à la toute fin du fichier <em>/etc/httpd/sites-enabled</em>, alors, quand httpd redémarre, il va charger n'importe quel fichier de configuration qui se trouve dans le répertoire <em>sites-enabled</em>. Toutefois, tous nos fichiers de configuration sont dans <em>sites-available</em>.</p>
+<p>C'est un choix délibéré de manière à pouvoir retirer facilement des configurations dans le cas où le service http refuserait de redémarrer. Alors, pour activer nos fichiers de configuration, nous devons créer un lien symbolique vers ce fichier dans <em>sites-enabled</em> et ensuite démarrer ou redémarrer le service web. Pour faire cela, nous utilisons la commande :</p>
+<p><code>ln -s /etc/httpd/sites-available/com.ourownwiki.www /etc/httpd/sites-enabled/</code></p>
+<p>Cela va créer le lien vers le fichier de configuration dans <em>sites-enabled</em> comme nous le désirons.</p>
+<p>Maintenant démarrez simplement httpd avec <code>systemctl start httpd</code> ou redémarrez le s'il tourne déjà : <code>systemctl restart httpd</code> et en supposant que le service redémarre, vous pouvez accéder à votre site et le tester.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../add_mirror_manager/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Adding a public mirror to Rocky&#39;s mirror manager" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              Adding a public mirror to Rocky's mirror manager
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../basic_network_configuration/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Rocky Linux - Configuration réseau de base" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              Rocky Linux - Configuration réseau de base
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copier dans le presse-papier", "clipboard.copied": "Copi\u00e9 dans le presse-papier", "search.config.lang": "fr", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Rechercher", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+
+<script src="../../../assets/javascripts/iframe-worker.js"></script>
+<script src="../../../search/search_index.js"></script>
+
+
+    
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

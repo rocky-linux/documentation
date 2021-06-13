@@ -1,0 +1,1106 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.rockylinux.org/fr/guides/dokuwiki_server/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>DokuWiki Server - Rocky Linux Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Hat+Text:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font-family:"Red Hat Text";--md-code-font-family:""}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dokuwiki-server" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-header__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rocky Linux Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DokuWiki Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="../../../" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../zh/" hreflang="zh" class="md-select__link">
+                    简体中文
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../es/" hreflang="es" class="md-select__link">
+                    Español
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/rocky-linux/documentation/" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../" class="md-tabs__link">
+      Table of Contents
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../add_mirror_manager/" class="md-tabs__link md-tabs__link--active">
+        Guides
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/security/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-nav__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Rocky Linux Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/rocky-linux/documentation/" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Guides
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../add_mirror_manager/" class="md-nav__link">
+        Adding a public mirror to Rocky's mirror manager
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-sites-enabled/" class="md-nav__link">
+        Configuration Apache Web Server Multi-Sites
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_network_configuration/" class="md-nav__link">
+        Rocky Linux - Configuration réseau de base
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud_server_using_nextcloud/" class="md-nav__link">
+        Cloud Server Using Nextcloud
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron_jobs_howto/" class="md-nav__link">
+        Automating Processes with cron and crontab in Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database_mariadb-server/" class="md-nav__link">
+        Database mariadb-server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_start2/" class="md-nav__link">
+        Developer start2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        DokuWiki Server
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enabling_iptables_firewall/" class="md-nav__link">
+        Enabling iptables Firewall
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generating_ssl_keys_lets_encrypt/" class="md-nav__link">
+        Generating SSL Keys - Let's Encrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../import_rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL[2] with Virtualbox and Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mirroring_lsyncd/" class="md-nav__link">
+        Mirroring Solution - lsycnd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_build_troubleshooting/" class="md-nav__link">
+        Package build troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_debranding/" class="md-nav__link">
+        Rocky package debranding How-To 
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_dev_start/" class="md-nav__link">
+        Rocky Linux Devtools (Packaging and developer starter guide)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_signing/" class="md-nav__link">
+        Package signing and testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postfix_reporting/" class="md-nav__link">
+        Using postfix For Server Process Reporting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../private_dns_server_using_bind/" class="md-nav__link">
+        Private DNS Server Using Bind
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky-8-installation/" class="md-nav__link">
+        Installing Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL with WSL and rinse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsnapshot_backup/" class="md-nav__link">
+        Backup Solution - Rsnapshot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsync_ssh/" class="md-nav__link">
+        Using rsync To Keep Two Machines Synchronized
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secure_ftp_server_vsftpd/" class="md-nav__link">
+        Secure FTP Server - vsftpd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh_public_private_keys/" class="md-nav__link">
+        SSH Public and Private Key
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl_keys_https/" class="md-nav__link">
+        Generating SSL Keys
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_26" type="checkbox" id="__nav_2_26" >
+      
+      <label class="md-nav__link" for="__nav_2_26">
+        Apache Hardened Webserver
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Apache Hardened Webserver" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_26">
+          <span class="md-nav__icon md-icon"></span>
+          Apache Hardened Webserver
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/modsecurity/" class="md-nav__link">
+        mod_security
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/ossec-hids/" class="md-nav__link">
+        ossec-hids
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/rkhunter/" class="md-nav__link">
+        rkhunter
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Security
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Security" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/rocky-lab9-cryptography/" class="md-nav__link">
+        Lab 9: Cryptography
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rocky-linux/documentation/edit/master/docs/guides/dokuwiki_server.md" title="Editer cette page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="dokuwiki-server">DokuWiki Server<a class="headerlink" href="#dokuwiki-server" title="Permanent link">&para;</a></h1>
+<h1 id="prerequisites-and-assumptions">Prerequisites And Assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permanent link">&para;</a></h1>
+<ul>
+<li>A Rocky Linux instance installed on a server, container, or virtual machine. </li>
+<li>Comfort with modifying configuration files from the command line with an editor (our examples here will use <em>vi</em>, but you can substitute your favorite editor)</li>
+<li>Some knowledge about web applications and setup.</li>
+<li>Our example will use the <a href="../apache-sites-enabled/">Apache Sites Enabled</a> for setup, so it is a good idea to review that routine if you plan on following along.</li>
+<li>We will be using "wiki-doc.yourdomain.com" as the domain name throughout this example.</li>
+<li>We will assume throughout this document that you are the root user or can get there with <em>sudo</em>.</li>
+<li>We are assuming a fresh install of the OS, however that is <strong>NOT</strong> a requirement.</li>
+</ul>
+<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
+<p>Documentation can take many forms in an organization. Having a repository that you can reference for that documentation is invaluable. A wiki (which means <em>quick</em> in Hawaiian), is a way to keep documentation, process notes, corporate knowledge bases, and even code examples, in a centralized location. IT professionals who maintain a wiki, even secretly, have a built-in insurance policy against forgetting an obscure routine. </p>
+<p>DokuWiki is a mature, fast, wiki that runs without a database, has built in security features, and is relatively easy to deploy. For more information on what DokuWiki can do, check out their <a href="https://www.dokuwiki.org/dokuwiki">web page</a>. </p>
+<p>DokuWiki is just one of many wiki's available, though it's a pretty good one. One big pro is that DokuWiki is relatively lightweight and can run on a server that is already running other services, provided you have space and memory available.</p>
+<h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+<h2 id="installing-dependencies">Installing Dependencies<a class="headerlink" href="#installing-dependencies" title="Permanent link">&para;</a></h2>
+<p>The minimum PHP version for DokuWiki is now 7.2, which is exactly what Rocky Linux 8 comes with. We are specifying packages here that may already be installed:</p>
+<p><code>dnf install tar wget httpd php php-gd php-xml php-json php-mbstring</code></p>
+<p>You will see a list of additional dependencies that will be installed and this prompt:</p>
+<p><code>Is this ok [y/N]:</code></p>
+<p>Go ahead and answer with "y" and hit 'Enter' to install.</p>
+<h2 id="create-directories-and-modify-configuration">Create Directories And Modify Configuration<a class="headerlink" href="#create-directories-and-modify-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="apache-configuration">Apache Configuration<a class="headerlink" href="#apache-configuration" title="Permanent link">&para;</a></h3>
+<p>If you have read through the <a href="../apache-sites-enabled/">Apache Sites Enabled</a> procedure, you know that we need to create a few directories. We will start with the <em>httpd</em> configuration directory additions:</p>
+<p><code>mkdir -p /etc/httpd/{sites-available,sites-enabled}</code></p>
+<p>We need to edit the httpd.conf file:</p>
+<p><code>vi /etc/httpd/conf/httpd.conf</code></p>
+<p>And add this to the very bottom of the file:</p>
+<p><code>Include /etc/httpd/sites-enabled</code></p>
+<p>Create the site configuration file in sites-available:</p>
+<p><code>vi /etc/httpd/sites-available/com.yourdomain.wiki-doc</code></p>
+<p>That configuration file should look something like this:</p>
+<pre><code>&lt;VirtualHost *&gt;
+    ServerName    wiki-doc.yourdomain.com
+    DocumentRoot  /var/www/sub-domains/com.yourdomain.wiki-doc/html
+
+    &lt;Directory ~ &quot;/var/www/sub-domains/com.yourdomain.wiki-doc/html/(bin/|conf/|data/|inc/)&quot;&gt;
+        &lt;IfModule mod_authz_core.c&gt;
+                AllowOverride All
+            Require all denied
+        &lt;/IfModule&gt;
+        &lt;IfModule !mod_authz_core.c&gt;
+            Order allow,deny
+            Deny from all
+        &lt;/IfModule&gt;
+    &lt;/Directory&gt;
+
+    ErrorLog   /var/log/httpd/wiki-doc.yourdomain.com_error.log
+    CustomLog  /var/log/httpd/wiki-doc.yourdomain_access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>Note that the "AllowOverride All" above, allows the .htaccess (directory specific security) file to work.</p>
+<p>Go ahead an link the configuration file into sites-enabled, but don't start web services as yet:</p>
+<p><code>ln -s /etc/httpd/sites-available/com.yourdomain.wiki-doc /etc/httpd/sites-enabled/</code></p>
+<h3 id="apache-documentroot">Apache DocumentRoot<a class="headerlink" href="#apache-documentroot" title="Permanent link">&para;</a></h3>
+<p>We also need to create our <em>DocumentRoot</em>. To do this:</p>
+<p><code>mkdir -p /var/www/sub-domains/com.yourdomain.wiki-doc/html</code></p>
+<h2 id="installing-dokuwiki">Installing DokuWiki<a class="headerlink" href="#installing-dokuwiki" title="Permanent link">&para;</a></h2>
+<p>In your server, change to the root directory.</p>
+<p><code>cd /root</code></p>
+<p>Now that we have our environment ready to go, let's  get the latest stable version of DokuWiki. You can find this by going to <a href="https://download.dokuwiki.org/">the download page</a> and on the left-hand side of the page under "Version" you will see "Stable (Recommended) (direct link)." </p>
+<p>Right-click on the "(direct link)" portion of this and copy the link address. In the console of your DokuWiki server, type "wget" and a space and then paste in your copied link in the terminal. You should get something like this:</p>
+<p><code>wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz</code></p>
+<p>Before we decompress the archive, take a look at the contents using <code>tar ztf</code> to see the contents of the archive:</p>
+<p><code>tar ztv dokuwiki-stable.tgz</code></p>
+<p>Notice the named dated directory ahead of all the other files that looks something like this?</p>
+<pre><code>... (more above)
+dokuwiki-2020-07-29/inc/lang/fr/resetpwd.txt
+dokuwiki-2020-07-29/inc/lang/fr/draft.txt
+dokuwiki-2020-07-29/inc/lang/fr/recent.txt
+... (more below)
+</code></pre>
+<p>We don't want that leading named directory when we decompress the archive, so we are going to use some options with tar to exclude it. The first option is the "--strip-components=1" which removes that leading directory. </p>
+<p>The second option is the "-C" option, and that tells tar where we want the archive to be decompressed to. So decompress the archive with this command:</p>
+<p><code>tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.yourdomain.wiki-doc/html/</code></p>
+<p>Once we have executed this command, all of DokuWiki should be in our <em>DocumentRoot</em>.</p>
+<p>We need to make a copy of the <em>.htaccess.dist</em> file that came with DokuWiki and keep the old one there too, in case we need to revert to the original in the future. </p>
+<p>In the process, we will be changing the name of this file to simply <em>.htaccess</em> which is what <em>apache</em> will be looking for. To do this:</p>
+<p><code>cp /var/www/sub-domains/com.yourdomain.wiki-doc/html/.htaccess{.dist,}</code></p>
+<p>Now we need to change ownership of the new directory and its files to the <em>apache</em> user and group:</p>
+<p><code>chown -Rf apache.apache /var/www/sub-domains/com.yourdomain.wiki-doc/html</code></p>
+<h2 id="setting-up-dns-or-etchosts">Setting Up DNS Or /etc/hosts<a class="headerlink" href="#setting-up-dns-or-etchosts" title="Permanent link">&para;</a></h2>
+<p>Before you'll be able to access the DokuWiki interface, you'll need to set name resolution for this site. For testing purposes, you can use your <em>/etc/hosts</em> file. </p>
+<p>In this example, let's assume that DokuWiki will be running on a private IPv4 address of 10.56.233.179. Let's also assume that you are modifying the <em>/etc/hosts</em> file on a Linux workstation. To do this, run:</p>
+<p><code>sudo vi /etc/hosts</code></p>
+<p>And then modify your hosts file to look something like this (note the IP address above in the below example):</p>
+<pre><code>127.0.0.1   localhost
+127.0.1.1   myworkstation-home
+10.56.233.179   wiki-doc.yourdomain.com     wiki-doc
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+</code></pre>
+<p>Once you have finished testing and are ready to take things live for everyone, you will need to add this host to a DNS server. You could do this by using a <a href="../private_dns_server_using_bind/">Private DNS Server</a>, or a public-facing DNS server.</p>
+<h2 id="starting-httpd">Starting httpd<a class="headerlink" href="#starting-httpd" title="Permanent link">&para;</a></h2>
+<p>Before we start <em>httpd</em> let's test to make sure that our configuration is OK:</p>
+<p><code>httpd -t</code></p>
+<p>You should get:</p>
+<p><code>Syntax OK</code></p>
+<p>If so, you should be ready to start <em>httpd</em> and then finish the setup. Let's start by enabling <em>httpd</em> to start on boot:</p>
+<p><code>systemctl enable httpd</code></p>
+<p>And then start it:</p>
+<p><code>systemctl start httpd</code></p>
+<h2 id="testing-dokuwiki">Testing DokuWiki<a class="headerlink" href="#testing-dokuwiki" title="Permanent link">&para;</a></h2>
+<p>Now that our host name is set for testing and the web service has been started, the next step is to open up a web browser and type this in the address bar:</p>
+<p><code>http://wiki-doc/install.php</code></p>
+<p>OR</p>
+<p><code>http://wiki-doc.yourdomain.com/install.php</code></p>
+<p>Either should work if you set your hosts file as above. This will bring you to the setup screen so that you can finish the setup:</p>
+<ul>
+<li>In the "Wiki Name" field, type the name for our wiki. Example "Technical Documentation"</li>
+<li>In the "Superuser" field, type the administrative username. Example "admin"</li>
+<li>In the "Real name" field, type the real name for the administrative user.</li>
+<li>In the "E-Mail" field, type the email address of the administrative user.</li>
+<li>In the "Password" field, type the secure password for the administrative user.</li>
+<li>In the "once again" field, re-type that same password.</li>
+<li>In the "Initial ACL Policy" drop down, choose the option that works best for your environment.</li>
+<li>Choose the appropriate check box for the license you want to put your content under.</li>
+<li>Leave checked or uncheck the "Once a month, send anonymous usage data to the DokuWiki developers" checkbox</li>
+<li>Click the "Save" button</li>
+</ul>
+<p>Your wiki is now ready for you to add content.</p>
+<h1 id="securing-dokuwiki">Securing DokuWiki<a class="headerlink" href="#securing-dokuwiki" title="Permanent link">&para;</a></h1>
+<p>Besides the ACL policy that you just created, consider:</p>
+<h2 id="your-firewall">Your Firewall<a class="headerlink" href="#your-firewall" title="Permanent link">&para;</a></h2>
+<p>Before you call everything done, you need to think about security. First, you should be running a firewall on the server. We will assume that you are using <em>iptables</em> and have <a href="../enabling_iptables_firewall/">Enabled <em>iptables</em></a>, but if you want to use <em>firewalld</em> instead, simply modify your <em>firewalld</em> rules accordingly. </p>
+<p>Instead of everyone having access to the wiki, we are going to assume that anyone on the 10.0.0.0/8 network is on your private Local Area Network, and that those are the only people who need access to the site. A simple <em>iptables</em> firewall script for this is down below. </p>
+<p>Please note that you may need other rules for other services on this server, and that this example only takes into account the web services.</p>
+<p>First, modify or create the <em>/etc/firewall.conf</em> file:</p>
+<p><code>vi /etc/firewall.conf</code></p>
+<pre><code>#IPTABLES=/usr/sbin/iptables
+
+#  Unless specified, the defaults for OUTPUT is ACCEPT
+#    The default for FORWARD and INPUT is DROP
+#
+echo &quot;   clearing any existing rules and setting default policy..&quot;
+iptables -F INPUT
+iptables -P INPUT DROP
+# web ports
+iptables -A INPUT -p tcp -m tcp -s 10.0.0.0/8 --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp -s 10.0.0.0/8 --dport 443 -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
+iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+
+/usr/sbin/service iptables save
+</code></pre>
+<p>Once the script is created, make sure it is executable:</p>
+<p><code>chmod +x /etc/firewall.conf</code></p>
+<p>Then execute the script:</p>
+<p><code>/etc/firewall.conf</code></p>
+<p>This will execute the rules and save them so that they will be reloaded on the next start of <em>iptables</em> or on boot.</p>
+<h2 id="ssl">SSL<a class="headerlink" href="#ssl" title="Permanent link">&para;</a></h2>
+<p>For the best security, you should consider using an SSL so that all web traffic is encrypted. You can purchase an SSL from an SSL provider or use <a href="../generating_ssl_keys_lets_encrypt/">Let's Encrypt</a></p>
+<h1 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h1>
+<p>Whether you need to document processes, company policies, program code, or something else, a wiki is a great way to get that done. DokuWiki is a product that is secure, flexible, easy to use, relatively easy to install and deploy, and is a stable project that has been around for many years.  </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../developer_start2/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Developer start2" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              Developer start2
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../enabling_iptables_firewall/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Enabling iptables Firewall" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              Enabling iptables Firewall
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copier dans le presse-papier", "clipboard.copied": "Copi\u00e9 dans le presse-papier", "search.config.lang": "fr", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Rechercher", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+
+<script src="../../../assets/javascripts/iframe-worker.js"></script>
+<script src="../../../search/search_index.js"></script>
+
+
+    
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

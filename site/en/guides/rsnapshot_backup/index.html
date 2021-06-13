@@ -1,0 +1,1191 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.rockylinux.org/en/guides/rsnapshot_backup/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Backup Solution - Rsnapshot - Rocky Linux Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Hat+Text:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font-family:"Red Hat Text";--md-code-font-family:""}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#backup-solution-rsnapshot" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-header__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rocky Linux Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Backup Solution - Rsnapshot
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="../../../" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../zh/" hreflang="zh" class="md-select__link">
+                    简体中文
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../es/" hreflang="es" class="md-select__link">
+                    Español
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/rocky-linux/documentation/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../" class="md-tabs__link">
+      Table of Contents
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../add_mirror_manager/" class="md-tabs__link md-tabs__link--active">
+        Guides
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/security/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-nav__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Rocky Linux Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/rocky-linux/documentation/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Guides
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../add_mirror_manager/" class="md-nav__link">
+        Adding a public mirror to Rocky's mirror manager
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-sites-enabled/" class="md-nav__link">
+        Apache Web Server Multi-Site Setup
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_network_configuration/" class="md-nav__link">
+        Rocky Linux - Networking configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud_server_using_nextcloud/" class="md-nav__link">
+        Cloud Server Using Nextcloud
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron_jobs_howto/" class="md-nav__link">
+        Automating Processes with cron and crontab in Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database_mariadb-server/" class="md-nav__link">
+        Database mariadb-server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_start2/" class="md-nav__link">
+        Developer start2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dokuwiki_server/" class="md-nav__link">
+        DokuWiki Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enabling_iptables_firewall/" class="md-nav__link">
+        Enabling iptables Firewall
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generating_ssl_keys_lets_encrypt/" class="md-nav__link">
+        Generating SSL Keys - Let's Encrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../import_rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL[2] with Virtualbox and Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mirroring_lsyncd/" class="md-nav__link">
+        Mirroring Solution - lsycnd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_build_troubleshooting/" class="md-nav__link">
+        Package build troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_debranding/" class="md-nav__link">
+        Rocky package debranding How-To 
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_dev_start/" class="md-nav__link">
+        Rocky Linux Devtools (Packaging and developer starter guide)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_signing/" class="md-nav__link">
+        Package signing and testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postfix_reporting/" class="md-nav__link">
+        Using postfix For Server Process Reporting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../private_dns_server_using_bind/" class="md-nav__link">
+        Private DNS Server Using Bind
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky-8-installation/" class="md-nav__link">
+        Installing Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL with WSL and rinse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Backup Solution - Rsnapshot
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Backup Solution - Rsnapshot
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsync_ssh/" class="md-nav__link">
+        Using rsync To Keep Two Machines Synchronized
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secure_ftp_server_vsftpd/" class="md-nav__link">
+        Secure FTP Server - vsftpd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh_public_private_keys/" class="md-nav__link">
+        SSH Public and Private Key
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl_keys_https/" class="md-nav__link">
+        Generating SSL Keys
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_26" type="checkbox" id="__nav_2_26" >
+      
+      <label class="md-nav__link" for="__nav_2_26">
+        Apache Hardened Webserver
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Apache Hardened Webserver" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_26">
+          <span class="md-nav__icon md-icon"></span>
+          Apache Hardened Webserver
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/modsecurity/" class="md-nav__link">
+        mod_security
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/ossec-hids/" class="md-nav__link">
+        ossec-hids
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/rkhunter/" class="md-nav__link">
+        rkhunter
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Security
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Security" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/rocky-lab9-cryptography/" class="md-nav__link">
+        Lab 9: Cryptography
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rocky-linux/documentation/edit/master/docs/guides/rsnapshot_backup.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="backup-solution-rsnapshot">Backup Solution - Rsnapshot<a class="headerlink" href="#backup-solution-rsnapshot" title="Permanent link">&para;</a></h1>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Know how to install additional repositories and snapshots from the command-line</li>
+<li>Know about mounting filesystems external of your machine (external Hard Drive, remote filesystem, etc.)</li>
+<li>Know how to use an editor (vi is used here, but you can use your favorite editor)</li>
+<li>Know a little BASH scripting </li>
+<li>Know how to modify the crontab for the root user</li>
+<li>Knowledge of SSH public and private keys (only if you plan to run remote backups from another server)</li>
+</ul>
+<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
+<p><em>rsnapshot</em> is a very powerful backup utility that can be installed on any Linux-based machine. It can either back up a machine locally, or you can back up multiple machines, say servers for instance, from a single machine. </p>
+<p>rsnapshot uses <em>rsync</em> and is written entirely in perl with no library dependencies, so there are no weird requirements to installing it. In the case of Rocky Linux, you should be able to install rsnapshot simply by installing the EPEL software repository. </p>
+<p>This documentation covers the installation of rsnapshot on Rocky Linux only.</p>
+<h1 id="installing-rsnapshot">Installing Rsnapshot<a class="headerlink" href="#installing-rsnapshot" title="Permanent link">&para;</a></h1>
+<p>All commands shown here are from the command-line on your server or workstation unless otherwise noted.</p>
+<h2 id="installing-the-epel-repository">Installing The EPEL repository<a class="headerlink" href="#installing-the-epel-repository" title="Permanent link">&para;</a></h2>
+<p>We need the EPEL software repo from Fedora to install rsnapshot. To install the repository, just use this command, if you haven't already:</p>
+<p><code>sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm</code></p>
+<p>The repository should now be active.</p>
+<h2 id="install-the-rsnapshot-package">Install the Rsnapshot Package<a class="headerlink" href="#install-the-rsnapshot-package" title="Permanent link">&para;</a></h2>
+<p>Next, install rsnapshot itself:</p>
+<p><code>sudo dnf install rsnapshot</code></p>
+<p>If there are any missing dependencies, those will show up and you simply need to answer the prompt to continue. For example:</p>
+<pre><code>dnf install rsnapshot
+Last metadata expiration check: 0:00:16 ago on Mon Feb 22 00:12:45 2021.
+Dependencies resolved.
+========================================================================================================================================
+ Package                           Architecture                 Version                              Repository                    Size
+========================================================================================================================================
+Installing:
+ rsnapshot                         noarch                       1.4.3-1.el8                          epel                         121 k
+Installing dependencies:
+ perl-Lchown                       x86_64                       1.01-14.el8                          epel                          18 k
+ rsync                             x86_64                       3.1.3-9.el8                          baseos                       404 k
+
+Transaction Summary
+========================================================================================================================================
+Install  3 Packages
+
+Total download size: 543 k
+Installed size: 1.2 M
+Is this ok [y/N]: y
+</code></pre>
+<h2 id="mounting-a-drive-or-filesystem-for-backup">Mounting A Drive or Filesystem For Backup<a class="headerlink" href="#mounting-a-drive-or-filesystem-for-backup" title="Permanent link">&para;</a></h2>
+<p>In this step, we show how to mount a hard drive, such as an external USB hard drive, that will be used to back up your system. This particular step is only necessary if you are backing up a single machine or server, as seen in our first example below.</p>
+<ol>
+<li>Plug in the USB drive. </li>
+<li>Type <code>dmesg | grep sd</code> which should show you the drive should show you the drive you want to use. In this case, it'll be called <em>sda1</em>.<br />
+Example: <code>EXT4-fs (sda1): mounting ext2 file system using the ext4 subsystem</code>.</li>
+<li>Unfortunately (or fortunately depending on your opinion) most modern Linux desktop operating systems automount the drive if they can. This means that, depending on various factors, rsnapshot might lose track of the hard drive. We want the drive to "mount" or make its files available in the same place every time.<br />
+To do that, take the drive information revealed in the dmesg command above and type <code>mount | grep sda1</code>, which should show something like this: <code>/dev/sda1 on /media/username/8ea89e5e-9291-45c1-961d-99c346a2628a</code></li>
+<li>Type <code>sudo umount /dev/sda1</code> to unmount your external hard drive.</li>
+<li>Next, create a new mount point for the backup: <code>sudo mkdir /mnt/backup</code></li>
+<li>Now mount the drive to your backup folder location: <code>sudo mount /dev/sda1 /mnt/backup</code></li>
+<li>Now type <code>mount | grep sda1</code> again, and you should see something like this: <code>/dev/sda1 on /mnt/backup type ext2 (rw,relatime)</code></li>
+<li>Next create a directory that must exist for the backup to continue on the mounted drive. We are using a folder called "storage" for this example: <code>sudo mkdir /mnt/backup/storage</code></li>
+</ol>
+<p>Note that for a single machine, you will have to either repeat the umount and mount steps each time the drive is plugged in again, or each time the system reboots, or automate these commands with a script.</p>
+<p>We recommend automation. Automation is the sysadmin way.</p>
+<h1 id="configuring-rsnapshot">Configuring rsnapshot<a class="headerlink" href="#configuring-rsnapshot" title="Permanent link">&para;</a></h1>
+<p>This is the most important step. It's easy to make a mistake when making changes to the configuration file. The rsnapshot configuration requires tabs for any separation between elements, and a warning to that effect is at the very top of the configuration file.</p>
+<p>A space character will cause the entire configuration—and your backup—to fail. For instance, near the top of the configuration file is a section for the <code># SNAPSHOT ROOT DIRECTORY #</code>. If you were adding this in from scratch, you would type <code>snapshot_root</code> then TAB and then type <code>/whatever_the_path_to_the_snapshot_root_will_be/</code> </p>
+<p>The best thing is that the default configuration that comes with rsnapshot only needs minor changes to make it work for a backup of a local machine. It's always a good idea, though, to make a backup copy of the configuration file before you start editing:</p>
+<p><code>cp /etc/rsnapshot.conf /etc/rsnapshot.conf.bak</code></p>
+<h2 id="basic-machine-or-single-server-backup">Basic Machine or Single Server Backup<a class="headerlink" href="#basic-machine-or-single-server-backup" title="Permanent link">&para;</a></h2>
+<p>In this case, rsnapshot is going to be run locally to back up a particular machine. In this example, we'll break down the configuration file, and show you exactly what you need to change.</p>
+<p>You will need to use vi (or edit with your favorite editor) to open the <em>/etc/rsnapshot.conf</em> file.</p>
+<p>The first thing to change is the <em>snapshot_root</em> setting which by default has this value:</p>
+<p><code>snapshot_root   /.snapshots/</code></p>
+<p>We need to change this to our mount point that we created above plus the addition of "storage".</p>
+<p><code>snapshot_root   /mnt/backup/storage/</code></p>
+<p>We also want to tell the backup NOT to run if the drive is not mounted. To do this, remove the "#" sign (also called a remark, pound sign, number sign, hash symbol, etc.) next to no_create_root so that it looks like this:</p>
+<p><code>no_create_root 1</code></p>
+<p>Next go down to the section titled <code># EXTERNAL PROGRAM DEPENDENCIES #</code> and remove the comment (again, the "#" sign) from this line:</p>
+<p><code>#cmd_cp         /usr/bin/cp</code></p>
+<p>So that it now reads:</p>
+<p><code>cmd_cp         /usr/bin/cp</code></p>
+<p>While we do not need cmd_ssh for this particular configuration, we will need it for our other option below and it doesn't hurt to have it enabled. So find the line that says:</p>
+<p><code>#cmd_ssh        /usr/bin/ssh</code> </p>
+<p>And remove the "#" sign so that it looks like this:</p>
+<p><code>cmd_ssh        /usr/bin/ssh</code></p>
+<p>Next we need to skip down to the section titled <code>#     BACKUP LEVELS / INTERVALS         #</code></p>
+<p>This has been changed from earlier versions of rsnapshot from <code>hourly, daily, monthly, yearly</code> to <code>alpha, beta, gamma, delta</code>. Which is a bit confusing. What you need to do is add a remark to any interval that you won't be using. In the configuration, delta is already remarked out. </p>
+<p>For this example, we aren't going to be running any other increments other than a nightly backup, so just add a remark to alpha and gamma so that the configuration looks like this when you are done:</p>
+<pre><code>#retain  alpha   6
+retain  beta    7
+#retain  gamma   4
+#retain delta   3
+</code></pre>
+<p>Now skip down to the logfile line, which by default should read:</p>
+<p><code>#logfile        /var/log/rsnapshot</code></p>
+<p>And remove the remark so that it is enabled:</p>
+<p><code>logfile        /var/log/rsnapshot</code></p>
+<p>Finally, skip down to the <code>### BACKUP POINTS / SCRIPTS ###</code> section and add any directories that you want to add in the <code># LOCALHOST</code> section, remember to use TAB rather than SPACE between elements!</p>
+<p>For now write your changes (<code>SHIFT :wq!</code> for vi) and exit the configuration file.</p>
+<h3 id="checking-the-configuration">Checking The Configuration<a class="headerlink" href="#checking-the-configuration" title="Permanent link">&para;</a></h3>
+<p>We want to make sure that we didn't add spaces or any other glaring errors to our configuration file while we were editing it. To do this, we run rsnapshot against our configuration with the configtest option: </p>
+<p><code>rsnapshot configtest</code> will show <code>Syntax OK</code> if there are no errors in the configuration.</p>
+<p>You should get into the habit of running configtest against a particular configuration. The reason for that will be more evident when we get into the <strong>Multiple Machine or Multiple Server Backups</strong> section. </p>
+<p>To run configtest against a particular configuration file, run it with the -c option to specify the configuration:</p>
+<p><code>rsnapshot -c /etc/rsnapshot.conf configtest</code></p>
+<h3 id="running-the-backup-the-first-time">Running The Backup The First Time<a class="headerlink" href="#running-the-backup-the-first-time" title="Permanent link">&para;</a></h3>
+<p>Everything has checked out, so it's time to go ahead and run the backup for the first time. You can run this in test mode first if you like, so that you can see what the backup script is going to do. </p>
+<p>Again, to do this you don't necessarily have to specify the configuration in this case, but you should get into the habit of doing so:</p>
+<p><code>rsnapshot -c /etc/rsnapshot.conf -t beta</code></p>
+<p>Which should return something like this, showing you what will happen when the backup is actually run:</p>
+<pre><code>echo 1441 &gt; /var/run/rsnapshot.pid 
+mkdir -m 0755 -p /mnt/backup/storage/beta.0/ 
+/usr/bin/rsync -a --delete --numeric-ids --relative --delete-excluded \
+    /home/ /mnt/backup/storage/beta.0/localhost/ 
+mkdir -m 0755 -p /mnt/backup/storage/beta.0/ 
+/usr/bin/rsync -a --delete --numeric-ids --relative --delete-excluded /etc/ \
+    /mnt/backup/storage/beta.0/localhost/ 
+mkdir -m 0755 -p /mnt/backup/storage/beta.0/ 
+/usr/bin/rsync -a --delete --numeric-ids --relative --delete-excluded \
+    /usr/local/ /mnt/backup/storage/beta.0/localhost/ 
+touch /mnt/backup/storage/beta.0/
+</code></pre>
+<p>Once you are satisfied with the test, go ahead and run it manually the first time without the test:</p>
+<p><code>rsnapshot -c /etc/rsnapshot.conf beta</code></p>
+<p>When the backup finishes, navigate to /mnt/backup and take a look at the directory structure that was created there. There will be a <code>storage/beta.0/localhost</code> directory, followed by the directories that you specified to backup. </p>
+<h3 id="further-explanation">Further Explanation<a class="headerlink" href="#further-explanation" title="Permanent link">&para;</a></h3>
+<p>Each time the backup is run, it will create a new beta increment, 0-6, or 7 days worth of backups. The newest backup will always be beta.0 where as yesterday's backup will always be beta.1. </p>
+<p>The size of each of these backups will appear to take up the same amount (or more) of disk space, but this is because of rsnapshot's use of hard links. To restore files from yesterday's backup, you would simply copy them back from beta.1's directory structure. </p>
+<p>Each backup is only an incremental backup from the previous run, BUT, because of the use of hard links, each backup directory, contains the file, or the hard-link to the file in whichever directory it actually was backed up in. </p>
+<p>So to restore files, you don't have to pick and choose which directory or increment to restore them from, just what time stamp the backup should have. It's a great system and uses far less disk space than many other backup solutions.</p>
+<h3 id="setting-the-backup-to-run-automatically">Setting The Backup To Run Automatically<a class="headerlink" href="#setting-the-backup-to-run-automatically" title="Permanent link">&para;</a></h3>
+<p>Once everything has been tested and we know that things will work without issue, the next step is to set up the crontab for the root user, so that all of this can be done automatically every day:</p>
+<p><code>sudo crontab -e</code></p>
+<p>If you haven't run this before, choose vim.basic as your editor or your own editor preference when the <code>Select an editor</code> line comes up. </p>
+<p>We are going to set our backup to automatically run at 11 PM, so we will add this to the crontab: </p>
+<pre><code>## Running the backup at 11 PM
+00 23 *  *  *  /usr/bin/rsnapshot -c /etc/rsnapshot.conf beta`
+</code></pre>
+<h2 id="multiple-machine-or-multiple-server-backups">Multiple Machine or Multiple Server Backups<a class="headerlink" href="#multiple-machine-or-multiple-server-backups" title="Permanent link">&para;</a></h2>
+<p>Doing backups of multiple machines from a machine with a RAID array or large storage capacity, either on premises or from across the Internet works very well. </p>
+<p>If running these backups from across the Internet, you need to make sure that both locations have adequate bandwidth for the backups to occur. You can use rsnapshot to synchronize an on-site server with an off-site backup array or backup server to improve data redundancy. </p>
+<h3 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h3>
+<p>We are assuming that you are running rsnapshot from a machine remotely, on-premise. This exact configuration can be duplicated, as indicated above, remotely off-premise as well.</p>
+<p>In this case, you will want to install rsnapshot on the machine that is doing all of the backups. We are also assuming</p>
+<ul>
+<li>That the servers you will be backing up to, have a firewall rule that allows the remote machine to SSH into it</li>
+<li>That each server that you will be backing up has a recent version of rsync installed. For Rocky Linux servers, run <code>dnf install rsync</code> to update your system's version of rsync.</li>
+<li>That you've either connected to the machine as the root user, or that you have run <code>sudo -s</code> to switch to the root user.</li>
+</ul>
+<h3 id="ssh-public-private-keys">SSH Public / Private Keys<a class="headerlink" href="#ssh-public-private-keys" title="Permanent link">&para;</a></h3>
+<p>For the server that will be running the backups, we need to generate an SSH key-pair for use during the backups. For our example, we will be creating RSA keys. </p>
+<p>If you already have a set of keys generated, you can skip this step. You can find out by doing an <code>ls -al .ssh</code> and looking for an id_rsa and id_rsa.pub key pair. If none exists use the following link to set up your keys and the servers that you want to access:</p>
+<p><a href="../ssh_public_private_keys/">SSH Public Private Key Pairs</a></p>
+<h3 id="rsnapshot-configuration">Rsnapshot Configuration<a class="headerlink" href="#rsnapshot-configuration" title="Permanent link">&para;</a></h3>
+<p>The configuration file needs to be just like the one we created for the <strong>Basic Machine or Single Server Backup</strong> above, except that we want to change some of the options.</p>
+<p>The snapshot root can be reverted back to the default like so:</p>
+<p><code>snapshot_root   /.snapshots/</code></p>
+<p>And this line:</p>
+<p><code>no_create_root 1</code></p>
+<p>... can be commented out again:</p>
+<p><code>#no_create_root 1</code></p>
+<p>The other difference here is that each machine will have its very own configuration. Once you get used to this, you'll simply copy one of your existing configuration files over to a new name and then modify it to fit any additional machines that you want to backup. </p>
+<p>For now, we want to modify the configuration file just like we did above, and then save it. Then copy that file as a template for our first server:</p>
+<p><code>cp /etc/rsnapshot.conf /etc/rsnapshot_web.conf</code></p>
+<p>We want to modify the new configuration file and create the log and lockfile with the machine's name:</p>
+<p><code>logfile /var/log/rsnapshot_web.log</code></p>
+<p><code>lockfile        /var/run/rsnapshot_web.pid</code></p>
+<p>Next, we want to modify rsnapshot_web.conf so that it includes the directories we want to back up. The only thing that is different here is the target. </p>
+<p>Here's an example of the web.ourdomain.com configuration:</p>
+<pre><code>### BACKUP POINTS / SCRIPTS ###
+backup  root@web.ourourdomain.com:/etc/     web.ourourdomain.com/
+backup  root@web.ourourdomain.com:/var/www/     web.ourourdomain.com/
+backup  root@web.ourdomain.com:/usr/local/     web.ourdomain.com/
+backup  root@web.ourdomain.com:/home/     web.ourdomain.com/
+backup  root@web.ourdomain.com:/root/     web.ourdomain.com/
+</code></pre>
+<h3 id="checking-the-configuration-and-running-the-initial-backup">Checking The Configuration and Running The Initial Backup<a class="headerlink" href="#checking-the-configuration-and-running-the-initial-backup" title="Permanent link">&para;</a></h3>
+<p>Just like before, we can now check the configuration to make sure it is syntactically correct:</p>
+<p><code>rsnapshot -c /etc/rsnapshot_web.conf configtest</code></p>
+<p>And just like before, we are looking for the <code>Syntax OK</code> message. If all is well, we can execute the backup manually:</p>
+<p><code>/usr/bin/rsnapshot -c /etc/rsnapshot_web.conf beta</code> </p>
+<p>Assuming that everything works alright, we can then create the configuration files for the mail server (rsnapshot_mail.conf) and portal server (rsnapshot_portal.conf), test them, and do a trial backup.</p>
+<h3 id="automating-the-backup">Automating The Backup<a class="headerlink" href="#automating-the-backup" title="Permanent link">&para;</a></h3>
+<p>Automating backups for the multiple machine/server version is slightly different. We want to create a bash script to call the backups in order. When one finishes the next will start. This script will look something like this and be stored in /usr/local/sbin:</p>
+<p><code>vi /usr/local/sbin/backup_all</code></p>
+<p>With the content:</p>
+<pre><code>#!/bin/bash
+# script to run rsnapshot backups in succession
+/usr/bin/rsnapshot -c /etc/rsnapshot_web.conf beta
+/usr/bin/rsnapshot -c /etc/rsnapshot_mail.conf beta
+/usr/bin/rsnapshot -c /etc/rsnapshot_portal.conf beta
+</code></pre>
+<p>Then we make the script executabe:</p>
+<p><code>chmod +x /usr/local/sbin/backup_all</code></p>
+<p>Then create the crontab for root to run the backup script:</p>
+<p><code>chrontab -e</code></p>
+<p>And add this line:</p>
+<pre><code>## Running the backup at 11 PM
+00 23 *  *  *  /usr/local/sbin/backup_all
+</code></pre>
+<h3 id="reporting-the-backup-status">Reporting The Backup Status<a class="headerlink" href="#reporting-the-backup-status" title="Permanent link">&para;</a></h3>
+<p>To make sure that everything is backing up according to plan, you might want to send the backup log files to your email. If your are running multiple machine backups using rsnapshot, each log file will have its own name, which you can then send to your email for review by <a href="../postfix_reporting/">Using postfix For Server Process Reporting</a> procedure.</p>
+<h2 id="conclusions-and-other-resources">Conclusions and Other Resources<a class="headerlink" href="#conclusions-and-other-resources" title="Permanent link">&para;</a></h2>
+<p>Getting the setup right with rsnapshot is a little daunting at first, but can save you loads of time backing up your machines or servers. </p>
+<p>rsnapshot is very powerful, very fast, and very economical on disk space usage. You can find more information on Rsnapshot, by visiting <a href="https://rsnapshot.org/download.html">rsnapshot.org</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../rocky_to_wsl_howto/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Import Rocky Linux to WSL with WSL and rinse" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Import Rocky Linux to WSL with WSL and rinse
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../rsync_ssh/" class="md-footer__link md-footer__link--next" aria-label="Next: Using rsync To Keep Two Machines Synchronized" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Using rsync To Keep Two Machines Synchronized
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+
+<script src="../../../assets/javascripts/iframe-worker.js"></script>
+<script src="../../../search/search_index.js"></script>
+
+
+    
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

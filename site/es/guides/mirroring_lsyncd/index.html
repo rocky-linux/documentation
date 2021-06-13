@@ -1,0 +1,1139 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.rockylinux.org/es/guides/mirroring_lsyncd/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Rocky Linux - Solución para espejar lsycnd - Rocky Linux Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Hat+Text:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font-family:"Red Hat Text";--md-code-font-family:""}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rocky-linux-solucion-para-espejar-lsycnd" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-header__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rocky Linux Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Rocky Linux - Solución para espejar lsycnd
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="../../../" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../zh/" hreflang="zh" class="md-select__link">
+                    简体中文
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../" hreflang="es" class="md-select__link">
+                    Español
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/rocky-linux/documentation/" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../" class="md-tabs__link">
+      Table of Contents
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../add_mirror_manager/" class="md-tabs__link md-tabs__link--active">
+        Guides
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/security/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-nav__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Rocky Linux Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/rocky-linux/documentation/" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Guides
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../add_mirror_manager/" class="md-nav__link">
+        Adding a public mirror to Rocky's mirror manager
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-sites-enabled/" class="md-nav__link">
+        Configuración del servidor web Apache para múltiples sitios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_network_configuration/" class="md-nav__link">
+        Rocky Linux - Networking configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud_server_using_nextcloud/" class="md-nav__link">
+        Cloud Server Using Nextcloud
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron_jobs_howto/" class="md-nav__link">
+        Automatizar procesos con cron y crontab en Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database_mariadb-server/" class="md-nav__link">
+        Database mariadb-server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_start2/" class="md-nav__link">
+        Developer start2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dokuwiki_server/" class="md-nav__link">
+        DokuWiki Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enabling_iptables_firewall/" class="md-nav__link">
+        Enabling iptables Firewall
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generating_ssl_keys_lets_encrypt/" class="md-nav__link">
+        Cómo Generar Claves SSL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../import_rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL[2] with Virtualbox and Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Rocky Linux - Solución para espejar lsycnd
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Rocky Linux - Solución para espejar lsycnd
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos" class="md-nav__link">
+    Requisitos
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_build_troubleshooting/" class="md-nav__link">
+        Package build troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_debranding/" class="md-nav__link">
+        Rocky package debranding How-To 
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_dev_start/" class="md-nav__link">
+        Rocky Linux Devtools (Packaging and developer starter guide)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_signing/" class="md-nav__link">
+        Package signing and testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postfix_reporting/" class="md-nav__link">
+        Using postfix For Server Process Reporting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../private_dns_server_using_bind/" class="md-nav__link">
+        Private DNS Server Using Bind
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky-8-installation/" class="md-nav__link">
+        Installing Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL with WSL and rinse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsnapshot_backup/" class="md-nav__link">
+        Rocky Linux - Copias de Seguridad rsnapshot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsync_ssh/" class="md-nav__link">
+        Utilizando rsync para mantener dos equipos sincronizados
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secure_ftp_server_vsftpd/" class="md-nav__link">
+        Secure FTP Server - vsftpd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh_public_private_keys/" class="md-nav__link">
+        Rocky Linux - Claves SSH Públicas y Privadas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl_keys_https/" class="md-nav__link">
+        Generating SSL Keys
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_26" type="checkbox" id="__nav_2_26" >
+      
+      <label class="md-nav__link" for="__nav_2_26">
+        Apache Hardened Webserver
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Apache Hardened Webserver" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_26">
+          <span class="md-nav__icon md-icon"></span>
+          Apache Hardened Webserver
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/modsecurity/" class="md-nav__link">
+        mod_security
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/ossec-hids/" class="md-nav__link">
+        ossec-hids
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/rkhunter/" class="md-nav__link">
+        rkhunter
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Security
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Security" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/rocky-lab9-cryptography/" class="md-nav__link">
+        Lab 9: Cryptography
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos" class="md-nav__link">
+    Requisitos
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rocky-linux/documentation/edit/master/docs/guides/mirroring_lsyncd.es.md" title="Editar esta página" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="rocky-linux-solucion-para-espejar-lsycnd">Rocky Linux - Solución para espejar lsycnd<a class="headerlink" href="#rocky-linux-solucion-para-espejar-lsycnd" title="Permanent link">&para;</a></h1>
+<h2 id="requisitos">Requisitos<a class="headerlink" href="#requisitos" title="Permanent link">&para;</a></h2>
+<p>Esto es todo lo que necesitarás para entender y seguir esta guía:</p>
+<ul>
+<li>Un equipo con Rocky Linux</li>
+<li>Un nivel de comodidad editando archivos de configuración desde la línea de comandos</li>
+<li>Conocimiento en editores de línea de comando (aquí utilizaremos vi, pero puedes escoger el de tu preferencia)</li>
+<li>Necesitas acceso a la raíz, e idealmente iniciar sesión como usuario raíz en tu terminal</li>
+<li>Un par de claves SSH públicas y privadas</li>
+<li>Los repositorios EPEL de Fedora</li>
+<li>Necesitarás estar familiarizado con <em>inotify</em>, una interfaz de monitorización de eventos</li>
+<li>Opcional: familiaridad con <em>tail</em></li>
+</ul>
+<h1 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h1>
+<p>Si buscas una forma de sincronizar automáticamente archivos y carpetas entre ordenadores, lsyncd es una opción bastante buena. ¿El único problema para los principiantes? Tienes que configurarlo todo a través de la línea de comandos, y de archivos de texto.</p>
+<p>Aun así, es un programa que vale la pena aprender para cualquier administrador de sistemas.</p>
+<p>La mejor descripción de <em>lsyncd</em>, viene de su propia página man. Ligeramente parafraseado, lsyncd es una solución ligera para espejar en vivo, que es comparativamente fácil de instalar. No requiere de nuevos sistemas de archivos o dispositivos de bloqueo, y no obstaculiza el rendimiento del sistema de archivos local. En resumen, refleja los archivos.</p>
+<p>lsyncd vigila una interfaz de monitorización de eventos de árboles de directorios locales (inotify).
+Agrega y combina los eventos durante unos segundos, y luego genera uno (o más) proceso(s) para sincronizar los cambios. Por defecto es rsync.</p>
+<p>Para los propósitos de esta guía, llamaremos al sistema con los archivos originales el "maestro", y el que estemos sincronizando será el "objetivo". En realidad, es posible reflejar completamente un servidor usando lsyncd especificando muy cuidadosamente los directorios y archivos que quieras sincronizar. ¡Es una maravilla!</p>
+<p>Para la sincronización remota, también querrás configurar <a href="claves_ssh_publicas_privadas.md">Claves SSH públicas y privadas</a>. Estos ejemplos usan SSH (puerto 22).</p>
+<h1 id="instalacion-de-lsyncd">Instalación de lsyncd<a class="headerlink" href="#instalacion-de-lsyncd" title="Permanent link">&para;</a></h1>
+<p>En realidad hay dos formas de instalar lsyncd. Incluiremos ambas aquí, pero el método preferido es instalar desde el código fuente. Es relativamente fácil de hacer y hay pocas dependencias necesarias. El RPM tiende a ir un poco por detrás de los paquetes fuente. Dicho esto, queremos darte ambas opciones y dejarte elegir. </p>
+<h2 id="instalacion-de-lsycnd-metodo-rpm">Instalación de lsycnd - Método RPM<a class="headerlink" href="#instalacion-de-lsycnd-metodo-rpm" title="Permanent link">&para;</a></h2>
+<p>La instalación de la versión RPM es relativamente fácil. Lo único que tendrá que instalar primero es el repositorio de software EPEL de Fedora. Esto se puede hacer con un solo comando:</p>
+<p><code>dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm</code></p>
+<p>Para instalar lsyncd, entonces, solo tenemos que instalarlo, y cualquier dependencia que falte se instalará junto con él:</p>
+<p><code>dnf install lsyncd</code></p>
+<p>¡Eso es todo!</p>
+<h2 id="instalacion-de-lsycnd-metodo-desde-el-codigo-fuente">Instalación de lsycnd - Método desde el código fuente<a class="headerlink" href="#instalacion-de-lsycnd-metodo-desde-el-codigo-fuente" title="Permanent link">&para;</a></h2>
+<p>Instalar desde el código fuente no es tan malo como parece. Solo tienes que seguir esta guía y estarás funcionando en un abrir y cerrar de ojos.</p>
+<h3 id="instalar-dependencias">Instalar dependencias<a class="headerlink" href="#instalar-dependencias" title="Permanent link">&para;</a></h3>
+<p>Necesitaremos algunas dependencias: unas pocas que son requeridas por el propio lsyncd, y otras que son necesarias para construir paquetes desde el código fuente. Usa este comando en tu máquina Rocky Linux para asegurarte de que tienes las dependencias que necesitas. Si vas a construir desde el código fuente, es una buena idea tener todas las herramientas de desarrollo instaladas:</p>
+<p><code>dnf install groupinstall 'Development Tools'</code></p>
+<p>Y aquí están las dependencias que necesitamos para el propio lsyncd, y su proceso de construcción:</p>
+<p><code>dnf install lua lua-libs lua-devel cmake unzip wget rsync</code></p>
+<h3 id="descargar-lsycnd-y-construirlo">Descargar lsycnd y construirlo<a class="headerlink" href="#descargar-lsycnd-y-construirlo" title="Permanent link">&para;</a></h3>
+<p>A continuación necesitamos el código fuente:</p>
+<p><code>wget https://github.com/axkibe/lsyncd/archive/master.zip</code></p>
+<p>Ahora descomprime el archivo master.zip:</p>
+<p><code>unzip master.zip</code></p>
+<p>Esto creará un directorio llamado "lsyncd-master". Tenemos que cambiar a este directorio y crear un directorio llamado build:</p>
+<p><code>cd lsyncd-master</code></p>
+<p>Y luego:</p>
+<p><code>mkdir build</code></p>
+<p>Ahora cambia de nuevo de directorio para que estés en el directorio build:</p>
+<p><code>cd build</code></p>
+<p>Ahora ejecuta estos comandos:</p>
+<pre><code>cmake ..
+make
+make install
+</code></pre>
+<p>Una vez hecho esto, deberías tener el binario de lsyncd instalado y listo para usar en <em>/usr/local/bin</em>.</p>
+<h1 id="servicio-systemd-de-lsycnd">Servicio systemd de lsycnd<a class="headerlink" href="#servicio-systemd-de-lsycnd" title="Permanent link">&para;</a></h1>
+<p>Ninguno de los métodos de instalación activará el servicio systemd para iniciar lsyncd al reiniciar. Queremos ser capaces de hacer eso, porque si está replicando archivos, no quiere que la réplica esté fuera de línea porque se olvidó de iniciar manualmente un servicio. </p>
+<p>Eso es muy embarazoso para cualquier administrador de sistemas. </p>
+<p>Crear el servicio systemd no es terriblemente difícil, sin embargo, y le ahorrará mucho tiempo a largo plazo. </p>
+<h2 id="crear-el-archivo-de-servicio-lsyncd">Crear el archivo de servicio lsyncd<a class="headerlink" href="#crear-el-archivo-de-servicio-lsyncd" title="Permanent link">&para;</a></h2>
+<p>Este archivo puede ser creado en cualquier lugar, incluso en el directorio raíz de su servidor. Una vez creado, podemos moverlo fácilmente a la ubicación correcta. </p>
+<p><code>vi /root/lsyncd.service</code></p>
+<p>El contenido de este archivo debe ser:</p>
+<pre><code>[Unit]
+Description=Live Syncing (Mirror) Daemon
+After=network.target
+
+[Service]
+Restart=always
+Type=simple
+Nice=19
+ExecStart=/usr/local/bin/lsyncd -nodaemon -pidfile /run/lsyncd.pid /etc/lsyncd.conf
+ExecReload=/bin/kill -HUP $MAINPID
+PIDFile=/run/lsyncd.pid
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>Ahora vamos a instalar el archivo que acabas de hacer en la ubicación correcta:</p>
+<p><code>install -Dm0644 /root/lsyncd.service /usr/lib/systemd/system/lsyncd.service</code></p>
+<p>Finalmente, recargamos el demonio systemctl para que systemd "vea" el nuevo archivo de servicio:</p>
+<p><code>systemctl daemon-reload</code></p>
+<h1 id="configuracion-de-lsycnd">Configuración de lsycnd<a class="headerlink" href="#configuracion-de-lsycnd" title="Permanent link">&para;</a></h1>
+<p>Sea cual sea el método que elija para instalar lsyncd, necesitará un fichero de configuración: <em>/etc/lsyncd.conf</em>. La siguiente sección le dirá cómo construir un archivo de configuración simple, y probarlo. </p>
+<h2 id="ejemplo-de-configuracion-para-pruebas">Ejemplo de configuración para pruebas<a class="headerlink" href="#ejemplo-de-configuracion-para-pruebas" title="Permanent link">&para;</a></h2>
+<p>Aquí hay un ejemplo de un archivo de configuración simple que sincroniza <em>/home</em> a otra máquina. Nuestra máquina objetivo va a ser una dirección IP local: <em>192.168.1.40</em></p>
+<pre><code>  settings {
+   logfile = &quot;/var/log/lsyncd.log&quot;,
+   statusFile = &quot;/var/log/lsyncd-status.log&quot;,
+   statusInterval = 20
+   maxProcesses = 1
+   }
+
+sync {
+   default.rsyncssh,
+   source=&quot;/home&quot;, 
+   host=&quot;root@192.168.1.40&quot;,
+   excludeFrom=&quot;/etc/lsyncd.exclude&quot;,
+   targetdir=&quot;/home&quot;,
+   rsync = {
+     archive = true,
+     compress = false,
+     whole_file = false
+   },
+   ssh = {
+     port = 22
+   }
+}
+</code></pre>
+<p>Desglosando un poco este archivo:</p>
+<ul>
+<li>El "logfile" y el "statusFile" se crearán automáticamente cuando se inicie el servicio.</li>
+<li>El "statusInterval" es el número de segundos que hay que esperar antes de escribir en el statusFile.</li>
+<li>El "maxProcesses" es el número de procesos que lsyncd puede generar. Honestamente, a menos que esté ejecutando esto en un equipo súper ocupado, 1 proceso es suficiente.</li>
+<li>En la sección de sincronización "default.rsyncssh" dice que se debe usar rsync sobre ssh</li>
+<li>El "source=" es la ruta del directorio desde el que estamos sincronizando.</li>
+<li>El "host=" es nuestro equipos destino a la que estamos sincronizando.</li>
+<li>El "excludeFrom=" le dice a lsyncd donde está el archivo de exclusiones. Debe existir, pero puede estar vacío.</li>
+<li>El "targetdir=" es el directorio destino al que estamos enviando los archivos. En la mayoría de los casos será igual al de origen, pero no siempre.</li>
+<li>Luego tenemos la sección "rsync =", y estas son las opciones con las que estamos ejecutando rsync.</li>
+<li>Finalmente tenemos la sección "ssh =", y esto especifica el puerto SSH que está escuchando en el equipo destino.</li>
+</ul>
+<p>Si estás añadiendo más de un directorio para sincronizar, entonces necesitas repetir toda la sección "sync" incluyendo todos los paréntesis de apertura y cierre para cada directorio.</p>
+<h2 id="el-archivo-lsyncdexclude">El archivo lsyncd.exclude<a class="headerlink" href="#el-archivo-lsyncdexclude" title="Permanent link">&para;</a></h2>
+<p>Como se ha dicho antes, el archivo "excludeFrom" debe existir, así que vamos a crearlo ahora:</p>
+<p><code>touch /etc/lsyncd.exclude</code></p>
+<p>Si estuviéramos sincronizando la carpeta /etc de nuestra máquina, habría una serie de archivos y/o directorios que deberíamos dejar fuera. Cada archivo o directorio excluido simplemente se enumera en el archivo, uno por línea, así:</p>
+<pre><code>/etc/hostname
+/etc/hosts
+/etc/networks
+/etc/fstab
+</code></pre>
+<h2 id="prueba-y-puesta-en-marcha">Prueba y puesta en marcha<a class="headerlink" href="#prueba-y-puesta-en-marcha" title="Permanent link">&para;</a></h2>
+<p>Ahora que todo lo demás está configurado, podemos probarlo todo. Para empezar, vamos a asegurarnos de que nuestro systemd lsyncd.service se iniciará:</p>
+<p><code>systemctl start lsyncd</code></p>
+<p>Si no aparece ningún error después de ejecutar este comando, comprueba el estado del servicio, solo para asegurarte:</p>
+<p><code>systemctl status lsyncd</code></p>
+<p>Si muestra que el servicio se está ejecutando, usa tail para ver los extremos de los dos archivos de registro, y asegúrate de que todo aparece bien:</p>
+<p><code>tail /var/log/lsyncd.log</code></p>
+<p>Y luego:</p>
+<p><code>tail /var/log/lsyncd-status.log</code></p>
+<p>Asumiendo que todo parece correcto, navega al directorio <code>/home/[user]</code>, donde <code>[user]</code> es un usuario del equipo y crea un nuevo archivo allí con <em>touch</em>.</p>
+<p><code>touch /home/[user]/testfile</code></p>
+<p>Ahora vaya al equipo destino y vea si el archivo aparece. Si es así, todo está funcionando como debería. Configure el servicio lsyncd.service para que se inicie en el arranque con:</p>
+<p><code>systemctl enable lsyncd</code></p>
+<p>Y ya debería estar listo para funcionar.</p>
+<h2 id="recuerde-ser-cuidadoso">Recuerde ser cuidadoso<a class="headerlink" href="#recuerde-ser-cuidadoso" title="Permanent link">&para;</a></h2>
+<p>Siempre que vayas a sincronizar un conjunto de archivos o directorios a otra máquina, piensa cuidadosamente en el efecto que tendrá en el equipo destino. Si vuelves a <strong>El archivo lsyncd.exclude</strong> de nuestro ejemplo anterior, ¿te imaginas lo que podría pasar si se sincroniza <em>/etc/fstab</em>? </p>
+<p>Para los novatos, <em>fstab</em> es el archivo que se utiliza para configurar las unidades de almacenamiento en cualquier máquina Linux. Es casi seguro que los discos y las etiquetas son diferentes. La próxima vez que se reinicie el equipo destino es probable que no arranque por completo. </p>
+<h1 id="conclusiones-y-referencias">Conclusiones y referencias<a class="headerlink" href="#conclusiones-y-referencias" title="Permanent link">&para;</a></h1>
+<p>lsycnd es una potente herramienta para la sincronización de directorios entre ordenadores. Como has visto, no es difícil de instalar, y es fácil de mantener en el futuro. No se puede pedir más que eso.</p>
+<p>Puedes encontrar más información sobre lsyncd en <a href="https://github.com/axkibe/lsyncd">El Sitio Oficial</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="../import_rocky_to_wsl_howto/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Import Rocky Linux to WSL[2] with Virtualbox and Docker" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Import Rocky Linux to WSL[2] with Virtualbox and Docker
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../package_build_troubleshooting/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Package build troubleshooting" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              Package build troubleshooting
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+
+<script src="../../../assets/javascripts/iframe-worker.js"></script>
+<script src="../../../search/search_index.js"></script>
+
+
+    
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

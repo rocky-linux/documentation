@@ -1,0 +1,1707 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.rockylinux.org/zh/labs/security/rocky-lab9-cryptography/">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Lab 9: Cryptography - Rocky Linux Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Hat+Text:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font-family:"Red Hat Text";--md-code-font-family:""}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-9-cryptography" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Rocky Linux Documentation" class="md-header__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rocky Linux Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 9: Cryptography
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="../../../../" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../" hreflang="zh" class="md-select__link">
+                    简体中文
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../../es/" hreflang="es" class="md-select__link">
+                    Español
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../../fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/rocky-linux/documentation/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../" class="md-tabs__link">
+      Table of Contents
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../guides/add_mirror_manager/" class="md-tabs__link">
+        Guides
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Labs
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Rocky Linux Documentation" class="md-nav__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Rocky Linux Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/rocky-linux/documentation/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Guides
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/add_mirror_manager/" class="md-nav__link">
+        Adding a public mirror to Rocky's mirror manager
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/apache-sites-enabled/" class="md-nav__link">
+        Apache Web 服务器多站点设置
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/basic_network_configuration/" class="md-nav__link">
+        Rocky Linux - Networking configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/cloud_server_using_nextcloud/" class="md-nav__link">
+        Cloud Server Using Nextcloud
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/cron_jobs_howto/" class="md-nav__link">
+        Automating Processes with cron and crontab in Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/database_mariadb-server/" class="md-nav__link">
+        Database mariadb-server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/developer_start2/" class="md-nav__link">
+        Developer start2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/dokuwiki_server/" class="md-nav__link">
+        DokuWiki Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/enabling_iptables_firewall/" class="md-nav__link">
+        Enabling iptables Firewall
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/generating_ssl_keys_lets_encrypt/" class="md-nav__link">
+        Generating SSL Keys - Let's Encrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/import_rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL[2] with Virtualbox and Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/mirroring_lsyncd/" class="md-nav__link">
+        Mirroring Solution - lsycnd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/package_build_troubleshooting/" class="md-nav__link">
+        Package build troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/package_debranding/" class="md-nav__link">
+        Rocky package debranding How-To 
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/package_dev_start/" class="md-nav__link">
+        Rocky Linux Devtools (Packaging and developer starter guide)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/package_signing/" class="md-nav__link">
+        Package signing and testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/postfix_reporting/" class="md-nav__link">
+        Using postfix For Server Process Reporting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/private_dns_server_using_bind/" class="md-nav__link">
+        Private DNS Server Using Bind
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/rocky-8-installation/" class="md-nav__link">
+        Installing Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL with WSL and rinse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/rsnapshot_backup/" class="md-nav__link">
+        Backup Solution - Rsnapshot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/rsync_ssh/" class="md-nav__link">
+        Using rsync To Keep Two Machines Synchronized
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/secure_ftp_server_vsftpd/" class="md-nav__link">
+        Secure FTP Server - vsftpd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/ssh_public_private_keys/" class="md-nav__link">
+        SSH Public and Private Key
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/ssl_keys_https/" class="md-nav__link">
+        Generating SSL Keys
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_26" type="checkbox" id="__nav_2_26" >
+      
+      <label class="md-nav__link" for="__nav_2_26">
+        Apache Hardened Webserver
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Apache Hardened Webserver" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_26">
+          <span class="md-nav__icon md-icon"></span>
+          Apache Hardened Webserver
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/apache_hardened_webserver/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/apache_hardened_webserver/modsecurity/" class="md-nav__link">
+        mod_security
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/apache_hardened_webserver/ossec-hids/" class="md-nav__link">
+        ossec-hids
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/apache_hardened_webserver/rkhunter/" class="md-nav__link">
+        rkhunter
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Security
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Security" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lab 9: Cryptography
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lab 9: Cryptography
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-cryptography-terms-and-definitions" class="md-nav__link">
+    Common Cryptography terms and definitions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-cryptography-terms-and-definitions" class="md-nav__link">
+    Common Cryptography terms and definitions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rocky-linux/documentation/edit/master/docs/labs/security/rocky-lab9-cryptography.md" title="编辑此页" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="lab-9-cryptography">Lab 9: Cryptography<a class="headerlink" href="#lab-9-cryptography" title="Permanent link">&para;</a></h1>
+<p>Objectives</p>
+<p>After completing this lab, you will be able to</p>
+<ul>
+<li>apply cryptographic concepts in securing data and communication</li>
+</ul>
+<p>Estimated time to complete this lab: 120 minutes</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li>
+<p><a href="#common-cryptography-terms-and-definitions">Common cryptography terms and definitions</a></p>
+</li>
+<li>
+<p><a href="#exercise-1">Exercise 1</a></p>
+</li>
+<li>
+<p><a href="#gnupg">Gnupg</a></p>
+</li>
+<li>
+<p><a href="#exercise-2">Exercise 2</a></p>
+</li>
+<li>
+<p><a href="#key-administration">Key Administration</a></p>
+</li>
+<li><a href="#exercise-3">Exercise 3</a></li>
+<li><a href="#digital-signatures">Digital Signatures</a></li>
+</ul>
+<h2 id="common-cryptography-terms-and-definitions">Common Cryptography terms and definitions<a class="headerlink" href="#common-cryptography-terms-and-definitions" title="Permanent link">&para;</a></h2>
+<p><strong>Cryptography</strong></p>
+<p>In general everyday usage, Cryptography is the act or art of writing in secret characters. In technical jargon it may be defined as the science of using mathematics to encrypt and decrypt data.</p>
+<p><strong>Cryptanalysis</strong></p>
+<p>Cryptanalysis is the study of how to compromise (defeat) cryptographic mechanisms. It is the science of cracking code, decoding secrets, violating authentication schemes, and in general, breaking cryptographic protocols.</p>
+<p><strong>Cryptology</strong></p>
+<p>Cryptology is the discipline of cryptography and cryptanalysis combined. Cryptology is the branch of mathematics that studies the mathematical foundations of cryptographic methods.</p>
+<p><strong>Encryption</strong></p>
+<p>Encryption is the transformation of data into a form that is as close to impossible as possible to read without the appropriate knowledge (e.g. a key). Its purpose is to ensure privacy by keeping information hidden from anyone for whom it is not intended.</p>
+<p><strong>Decryption</strong></p>
+<p>Decryption is the reverse of encryption; it is the transformation of encrypted data back into an intelligible form.</p>
+<p><strong>Cipher</strong></p>
+<p>A method of encryption and decryption is called a cipher.</p>
+<p>Hash Functions (Digest algorithms)</p>
+<p>Cryptographic hash functions are used in various contexts, for example to compute the message digest when making a digital signature. A hash function compresses the bits of a message to a fixed-size hash value in a way that distributes the possible messages evenly among the possible hash values. A cryptographic hash function does this in a way that makes it extremely difficult to come up with a message that would hash to a particular hash value. Some examples of the best known and most widely used hash functions are described below.</p>
+<p><strong>a)</strong> - <strong>SHA-1 (Secure Hash Algorithm)</strong> -This is a cryptographic hash algorithm published by the United States Government. It produces a 160 bit hash value from an arbitrary length string. It is considered to be very good.</p>
+<p><strong>b)</strong>- <strong>MD5 (Message Digest Algorithm 5)</strong> - is a cryptographic hash algorithm developed at RSA Laboratories. It can be used to hash an arbitrary length byte string into a 128 bit value.</p>
+<p><strong>Algorithm</strong></p>
+<p>It describes a step-by-step problem-solving procedure, especially an established, recursive computational procedure for solving a problem in a finite number of steps. Technically, an algorithm must reach a result after a finite number of steps. The efficiency of an algorithm can be measured as the number of elementary steps it takes to solve the problem. There are two classes of key-based algorithms. They are:</p>
+<p><strong>a) </strong>-- <strong>Symmetric Encryption Algorithms ( secret-key)</strong></p>
+<p>Symmetric algorithms use the same key for encryption and decryption (or the decryption key is easily derived from the encryption key). Secret key algorithms use the same key for both encryption and decryption (or one is easily derivable from the other). This is the more straightforward approach to data encryption, it is mathematically less complicated than public-key cryptography. Symmetric algorithms can be divided into stream ciphers and block ciphers. Stream ciphers can encrypt a single bit of plaintext at a time, whereas block ciphers take a number of bits (typically 64 bits in modern ciphers), and encrypt them as a single unit. Symmetric algorithms are much faster to execute on a computer than asymmetric ones.</p>
+<p>Examples of symmetric algorithms are: AES, 3DES, Blowfish, CAST5, IDEA and Twofish.</p>
+<p><strong>b) -- Asymmetric algorithms (Public-key algorithms)</strong></p>
+<p>Asymmetric algorithms on the other hand use a different key for encryption and decryption, and the decryption key cannot be derived from the encryption key. Asymmetric ciphers permit the encryption key to be public, allowing anyone to encrypt with the key, whereas only the proper recipient (who knows the decryption key) can decrypt the message. The encryption key is also called the public key and the decryption key the private key or secret key.</p>
+<p>RSA is probably the best known asymmetric encryption algorithm.</p>
+<p><strong>Digital Signature</strong></p>
+<p>A digital signature binds a document to the owner of a particular key. Digital signatures are used to verify that a message really comes from the claimed sender.</p>
+<p>The digital signature of a document is a piece of information based on both the document and the signer's private key. It is typically created through the use of a hash function and a private signing function (encrypting with the signer's private key). A digital signature is a small amount of data that was created using some secret key, and there is a public key that can be used to verify that the signature was really generated using the corresponding private key.</p>
+<p>Several methods for making and verifying digital signatures are freely available but the most widely known algorithm is the RSA public-key algorithm.</p>
+<p><strong>Cryptographic Protocols</strong></p>
+<p>Cryptography works on many levels. On one level you have algorithms, such as block ciphers and public key cryptosystems. Building upon these you obtain protocols, and building upon protocols you find applications (or other protocols). Below is a list of common everyday applications that make use of cryptographic protocols. These protocols are built on lower level cryptographic algorithms.</p>
+<p>i.) Domain Name Server Security (DNSSEC)</p>
+<p>This is a protocol for secure distributed name services. It is currently available as an Internet Draft.</p>
+<p>ii.) Secure Socket Layer (SSL)</p>
+<p>SSL is one of the two protocols used for secure WWW connections (the other is SHTTP). WWW security has become important as, increasing amounts of sensitive information, such as credit card numbers, are being transmitted over the Internet.</p>
+<p>iii.) Secure Hypertext Transfer Protocol (SHTTP)</p>
+<p>This is another protocol for providing more security for WWW transactions.</p>
+<p>iv) E-Mail security and related services</p>
+<p><strong>GnuPG</strong> - The GNU Privacy Guard - is compliant with the proposed OpenPGP Internet standard as described in RFC2440.</p>
+<p>v) SSH2 Protocol</p>
+<p>This protocol is versatile for the needs of the internet, and is currently used in the SSH2 software. The protocol is used to secure terminal sessions and TCP connections.</p>
+<p>The following exercises examine two particular applications that make use of cryptographic protocols - GnuPG and OpenSSH.</p>
+<h1 id="exercise-1">Exercise 1<a class="headerlink" href="#exercise-1" title="Permanent link">&para;</a></h1>
+<h2 id="gnupg">GnuPG<a class="headerlink" href="#gnupg" title="Permanent link">&para;</a></h2>
+<p>GnuPG (GNU Privacy Guard) is a set of programs for public key encryption and digital signatures. The tools can be used to encrypt data and to create digital signatures. It also includes an advanced key management facility. GnuPG uses public-key cryptography to enable users to communicate securely</p>
+<p>Perform the following exercises as a regular user. e.g. user ying</p>
+<p>To create a new keypair</p>
+<ol>
+<li>
+<p>Log into the system as user “<strong><em>ying</em></strong>”</p>
+</li>
+<li>
+<p>Make sure that the GnuPG package is installed on your system. Type:</p>
+</li>
+</ol>
+<p><code>[ying@serverXY ying]$ ***rpm -q gnupg***</code></p>
+<p>gnupg-*.*</p>
+<p>If it isn’t, get the super-user to install it.</p>
+<ol>
+<li>
+<p>List and make a note of all the hidden directories in your home directory.</p>
+</li>
+<li>
+<p>List the keys you currently have in your key-ring. Type:</p>
+</li>
+</ol>
+<p><code>[ying@serverXY ying]$ ***gpg --list-keys***</code></p>
+<p><strong>NOTE</strong>:- You shouldn’t have any keys in your key-ring yet. But the above command will also help create a default environment to enable you create a new key-pair successfully the first time.</p>
+<p>List the hidden directories in your home directory again. What is the name of the new directory added?</p>
+<ol>
+<li>Use the gpg program to create your new key-pairs. Type:</li>
+</ol>
+<pre><code>[ying@serverXY ying\]$ ***gpg --gen-key***
+
+......................................
+
+gpg: keyring \`/home/ying/.gnupg/secring.gpg' created
+
+gpg: keyring \`/home/ying/.gnupg/pubring.gpg' created
+
+Please select what kind of key you want:
+
+ (1) DSA and ElGamal (default)
+
+ (2) DSA (sign only)
+
+ (5) RSA (sign only)
+
+Your selection? 1
+</code></pre>
+<p>At the prompt for the type of key your want to create accept the default i.e.(DSA and ElGamal). Type 1</p>
+<p><strong>NOTES</strong>:</p>
+<p>Option (1) will create two key-pairs for you. The DSA key-pair will be the primary keypair - for making digital signatures and a subordinate ELGamel keypair for data encryption.</p>
+<ol>
+<li>You will create an ELG-E keysize of 1024. Accept the default again at the prompt below:</li>
+</ol>
+<p>DSA keypair will have 1024 bits.</p>
+<p>About to generate a new ELG-E keypair.</p>
+<p>minimum keysize is 768 bits</p>
+<p>default keysize is 1024 bits</p>
+<p>highest suggested keysize is 2048 bits</p>
+<p>What keysize do you want? (1024) 1024</p>
+<ol>
+<li>Create keys that will expire in a year. Type “1y” at the prompt below:</li>
+</ol>
+<p>Please specify how long the key should be valid.</p>
+<p>0 = key does not expire</p>
+<p>&lt;n&gt; = key expires in n days</p>
+<p>&lt;n&gt;w = key expires in n weeks</p>
+<p>&lt;n&gt;m = key expires in n months</p>
+<p>&lt;n&gt;y = key expires in n years</p>
+<p>Key is valid for? (0) 1y</p>
+<ol>
+<li>Type “y” to accept the expiry date shown at the prompt:</li>
+</ol>
+<p>Is this correct (y/n)? y</p>
+<ol>
+<li>Create a User-ID to identify your key with:</li>
+</ol>
+<p>You need a User-ID to identify your key; the software constructs the user id</p>
+<p>from Real Name, Comment and Email Address in this form:</p>
+<p>"Firstname Lastname (any comment) &lt;yourname@serverXY&gt;"</p>
+<p>Real name: Ying Yang[ENTER]</p>
+<p>Comment : my test[ENTER]</p>
+<p>Email address: ying@serverXY [ENTER]</p>
+<p>At the confirmation prompt type “o” (Okay) to accept the correct values.</p>
+<p>You selected this USER-ID:</p>
+<p>"Ying Yang (my test) &lt;ying@serverXY&gt;"</p>
+<p>Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O</p>
+<ol>
+<li>Select a passphrase that you WILL NOT forget at the next prompt:</li>
+</ol>
+<p>Enter passphrase: ********</p>
+<p>Repeat passphrase: ********</p>
+<h1 id="exercise-2">Exercise 2<a class="headerlink" href="#exercise-2" title="Permanent link">&para;</a></h1>
+<h2 id="key-administration">Key Administration<a class="headerlink" href="#key-administration" title="Permanent link">&para;</a></h2>
+<p>The gpg program is also used in key administration.</p>
+<p>Listing your keys</p>
+<ol>
+<li>While still logged into the system as the user ying. Display the keys in your key-ring. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>gpg --list-keys</em></strong></p>
+<p>gpg: WARNING: using insecure memory!</p>
+<p>/home/ying/.gnupg/pubring.gpg</p>
+<hr />
+<p>pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;</p>
+<p>sub 1024g/1EDB00AC 2003-10-16 [expires: 2004-10-15]</p>
+<ol>
+<li>To suppress the somewhat annoying “warning” about “insecure memory” add the following option</li>
+</ol>
+<p>to your personal gpg configuration file. Type:</p>
+<p>[ying@serverXY ying]$ <strong><em>echo "no-secmem-warning" &gt;&gt; ~/.gnupg/gpg.conf</em></strong></p>
+<ol>
+<li>
+<p>Run the command to list your keys again. to make sure your change is in effect.</p>
+</li>
+<li>
+<p>List your keys along with their signatures. Type:</p>
+</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>gpg --list-sigs</em></strong></p>
+<p>/home/ying/.gnupg/pubring.gpg</p>
+<p>........&lt;SNIP&gt;.............</p>
+<ol>
+<li>List only your secret keys. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>gpg --list-secret-keys</em></strong></p>
+<p>/home/ying/.gnupg/secring.gpg</p>
+<hr />
+<p>sec 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;</p>
+<p>ssb 1024g/1EDB00AC 2003-10-16</p>
+<ol>
+<li>Display the key fingerprints. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>gpg --fingerprint</em></strong></p>
+<p>/home/ying/.gnupg/pubring.gpg</p>
+<hr />
+<p>pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;</p>
+<p>Key fingerprint = D61E 1538 EA12 9049 4ED3 5590 3BC4 A3C1 1D12 E484</p>
+<p>sub 1024g/1EDB00AC 2003-10-16 [expires: 2004-10-15]</p>
+<p><span id="anchor-2"></span>Revocation certificates</p>
+<p>Revocation certificates are used revoking keys in case someone gets knowledge of your secret key or incase you forget your passphrase. They are also useful for other various functions.</p>
+<p>To create a revocation certificate</p>
+<ol>
+<li>While still logged in as the user ying. Create a revocation certificate. It will be displayed on your</li>
+</ol>
+<p>standard output. Type:</p>
+<p>[ying@serverXY ying]$<strong><em> gpg --gen-revoke ying@serverXY</em></strong></p>
+<p>Follow the prompts and enter your passphrase when prompted to do so.</p>
+<ol>
+<li>Now create a revocation certificate that will be stored in an ASCII format in a file called -</li>
+</ol>
+<p>“revoke.asc”. Type:</p>
+<p>[ying@serverXY ying]$<strong><em> gpg --output revoke.asc --gen-revoke ying@serverXY</em></strong></p>
+<ol>
+<li>You should store the revocation certificate in a safe place and even make a hard printed copy.</li>
+</ol>
+<p>Exporting Public Keys</p>
+<p>The whole point of all this encrypting, signing and decrypting business is because people wish to communicate with one another - but they also wish to do so in as secure a manner as possible.</p>
+<p>With that said - the perhaps not to so obvious has to be stated:</p>
+<p>To communicate with other people using a public-key based cryptosystem - you must exchange public keys.</p>
+<p>Or at least make your public key available in any publicly accessible place (Bill-boards, web pages, key servers, radio, T.V, SPAMMING via e-mail ..etc ….. )</p>
+<p>To export your public keys</p>
+<ol>
+<li>Export your public key in binary format to a file called “ying-pub.gpg”. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>gpg --output ying-pub.gpg --export &lt;your_key’s_user_ID&gt;</em></strong></p>
+<p>NOTE:</p>
+<p>Please replace &lt;your_key’s_user_ID&gt; with any string that correctly identifies</p>
+<p>your keys. On our sample system this value can be any one of the following:</p>
+<p>ying@serverXY, ying, yang</p>
+<p>OR</p>
+<p>The actual key ID - 1D12E484</p>
+<ol>
+<li>Export your public key to a file called “ying-pub.asc”. But this time generate it in</li>
+</ol>
+<p>ASCII-armored format. Type:</p>
+<p>[ying@serverXY ying]$<strong><em>gpg --output ying-pub.asc --armor --export ying@serverXY </em></strong></p>
+<ol>
+<li>
+<p>Use the cat command to view the binary version of ying’s public key (ying-pub.gpg)</p>
+</li>
+<li>
+<p>  (To reset your terminal type: “reset”)</p>
+</li>
+<li>
+<p>Use the cat command to view the ASCII version of ying’s public key (ying-pub.asc)</p>
+</li>
+<li>
+<p>You will observe that the ASCII version is more suited for posting on web-pages or spamming etc..</p>
+</li>
+</ol>
+<h1 id="exercise-3">Exercise 3<a class="headerlink" href="#exercise-3" title="Permanent link">&para;</a></h1>
+<h2 id="digital-signatures">Digital signatures<a class="headerlink" href="#digital-signatures" title="Permanent link">&para;</a></h2>
+<p>Creating and verifying signatures uses the public/private keypair in an operation different from encryption and decryption. A signature is created using the private key of the signer. The signature can be verified using the corresponding public key.</p>
+<p>To digitally sign a file</p>
+<ol>
+<li>Create a file named “secret-file.txt” with the text “Hello All” in it. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>echo "Hello All" &gt; secret1.txt</em></strong></p>
+<ol>
+<li>
+<p>Use cat to view the contents of the file. Use the file command to see the kind of file it is.</p>
+</li>
+<li>
+<p>Now sign the file with your digital signature. Type:</p>
+</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>gpg -s secret1.txt</em></strong></p>
+<p>Input your passphrase when prompted.</p>
+<p>The above command will create another file “secret1.txt.gpg” which is compressed and has a signature attached to it. Run the “file” command on the file to check this. View the file with cat </p>
+<ol>
+<li>Check the signature on the signed “secret1.txt.gpg” file. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>gpg --verify secret1.txt.gpg</em></strong></p>
+<p>gpg: Signature made Thu 16 Oct 2003 07:29:37 AM PDT using DSA key ID 1D12E484</p>
+<p>gpg: Good signature from "Ying Yang (my test) &lt;ying@serverXY&gt;"</p>
+<ol>
+<li>
+<p>Create another file secret2.txt with the text “ Hello All” in it.</p>
+</li>
+<li>
+<p>Sign the secret2.txt file but this time let the file be ASCII armored. Type:</p>
+</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>gpg -sa secret2.txt</em></strong></p>
+<p>An ASCII armored file called “secret2.txt.asc” will be created in your pwd.</p>
+<ol>
+<li>
+<p>Use the cat command to view the contents of the ASCII armored file created for you above.</p>
+</li>
+<li>
+<p>Create another file called “secret3.txt” with the text “hello dude” in it. Type:</p>
+</li>
+</ol>
+<p>[ying@serverXY ying]$<strong><em> echo "hello dude" &gt; secret3.txt</em></strong></p>
+<ol>
+<li>Append your signature to the body of the file you created above. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>gpg --clearsign secret3.txt</em></strong></p>
+<p>This will create an uncompressed file (secret3.txt.asc) that is wrapped in your ASCII-armored signature.</p>
+<p>Write down the command to verify the signature of the file that was created for you.</p>
+<ol>
+<li>Open up the file to view its contents with any pager. Can you read the text you entered into the file?</li>
+</ol>
+<p>MAKE SURE THAT YOUR PARTNER HAS PERFORMED THE WHOLE OF</p>
+<p>“EXERCISES -1, 2, 3” ABOVE BEFORE YOU CONTINUE TO “EXERCISE 4” BELOW</p>
+<p>IF YOU DON’T HAVE A PARTNER. LOG OFF USER YING’s ACCOUNT AND LOG INTO THE SYSTEM AS THE USER “me”.</p>
+<p>THEN REPEAT THE WHOLE OF “EXECISES -1,2,3” AS THE USER “me”.</p>
+<p>YOU MAY THEN PERFORM EXERCISE 4 BELOW. REPLACE ALL REFERENCES TO THE USER YING AT “serverPR” WITH - USER “me” AT serverXY (i.e. your localhost)</p>
+<p>YOU CAN USE EITHER - USER “me@serverXY” or USER “ying@serverPR”</p>
+<p>AS YOUR PARTNER IN THE NEXT EXERCISE.</p>
+<h2 id="exercise-4">Exercise 4<a class="headerlink" href="#exercise-4" title="Permanent link">&para;</a></h2>
+<p>In this exercise you will begin the actual communication with another user, using the so called “Web of Trust”.</p>
+<p>Importing public keys</p>
+<ol>
+<li>
+<p>Log into the system as user ying.</p>
+</li>
+<li>
+<p>Make your ASCII-armored public-key file (ying-pub.asc) available to your partner ( use</p>
+</li>
+</ol>
+<p>either - me@serverXY or ying@serverPR)</p>
+<p>NOTE:</p>
+<p>There are several ways of doing this e.g. e-mail, copying and pasting, scp, ftp, Saving on a diskette etc...</p>
+<p>Select the most efficient method for yourself.</p>
+<ol>
+<li>
+<p>Ask your partner to also make their public-key file available to you.</p>
+</li>
+<li>
+<p>Assuming your partner’s public key is store in a file called “ me-pub.asc” in your pwd;</p>
+</li>
+</ol>
+<p>Import the key into your key-ring. Type:</p>
+<p>[ying@serverXY ying]$ <strong><em>gpg --import me-pub.asc</em></strong></p>
+<p>gpg: key 1D0D7654: public key "Me Mao (my test) &lt;me@serverXY&gt;" imported</p>
+<p>gpg: Total number processed: 1</p>
+<p>gpg: imported: 1</p>
+<ol>
+<li>Now list the keys in your key-ring. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$<strong><em> gpg --list-keys</em></strong></p>
+<p>/home/ying/.gnupg/pubring.gpg</p>
+<hr />
+<p>pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;</p>
+<p>sub 1024g/1EDB00AC 2003-10-16 [expires: 2004-10-15]</p>
+<p>pub 1024D/1D0D7654 2003-10-16 Me Mao (my test) &lt;me@serverXY&gt;</p>
+<p>sub 1024g/FD20DBF1 2003-10-16 [expires: 2004-10-15]</p>
+<ol>
+<li>In particular list the key that is associated with the user-ID me@serverXY. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$<strong><em> gpg --list-keys me@serverXY</em></strong></p>
+<ol>
+<li>View the fingerprint of the key for me@serverXY. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$<strong><em> gpg --fingerprint me@serverXY</em></strong></p>
+<p><span id="anchor-4"></span>Encrypting and decrypting files</p>
+<p>The procedure for encrypting and decrypting files or documents is straight forward.</p>
+<p>If you want to encrypt a message to the user ying, you will encrypt it using user ying’s public key.</p>
+<p>Upon receipt, ying will need to decrypt the message with ying’s private key.</p>
+<p>ONLY ying can decrypt the message or file that was encrypted with ying’s public key</p>
+<p>To encrypt a file</p>
+<ol>
+<li>While logged into the system as the user ying, create a file called encrypt-sec.txt. Type:</li>
+</ol>
+<p>[ying@serverXY ying]$ <strong><em>echo "hello" &gt; encrypt-sec.txt</em></strong></p>
+<p>Make sure you can read the contents of the file using cat.</p>
+<ol>
+<li>Encrypt the file encrypt-sec.txt, such that only the user “me” can view the file. i.e. you will encrypt</li>
+</ol>
+<p>it using me@serverXY’s public key ( which you now have in your key-ring). Type:</p>
+<p>[ying@serverXY ying]$ <strong><em>gpg --encrypt --recipient me@serverXY encrypt-sec.txt</em></strong></p>
+<p>The above command will create an encrypted file called “encrypt-sec.txt.gpg” in your pwd.</p>
+<p>To decrypt a file</p>
+<ol>
+<li>The file you encrypted above was meant for me@serverXY.</li>
+</ol>
+<p>Try to decrypt the file. Type:</p>
+<p>[ying@serverXY ying]$ <strong><em>gpg --decrypt encrypt-sec.txt.gpg</em></strong></p>
+<p>gpg: encrypted with 1024-bit ELG-E key, ID FD20DBF1, created 2003-10-16</p>
+<p>"Me Mao (my test) &lt;me@serverXY&gt;"</p>
+<p>gpg: decryption failed: secret key not available</p>
+<ol>
+<li>
+<p>Have we learnt any valuable lesson here?</p>
+</li>
+<li>
+<p>Make the encrypted file you created available to the correct owner and have them run the above</p>
+</li>
+</ol>
+<p>command to decrypt the file. Were they more successful in decrypting the file.</p>
+<p>NOTE:</p>
+<p>Be very careful when decrypting binary files ( e.g. programs), because after successfully decrypting a file gpg will attempt to send the contents of the file to standard output.</p>
+<p>Make a habit of using the command below instead when decrypting files:</p>
+<p>[ying@serverXY ying]$ <strong><em>gpg --output encrypt-sec --decrypt encrypt-sec.txt.gpg</em></strong></p>
+<p>This forces sending the output to a file called “encrypt-sec”.</p>
+<p>Which can then be viewed (or run) using any program that is suited for the file (or content) type.</p>
+<p>TIPS !!</p>
+<ol>
+<li>Most of the commands and options used with the gpg program also have short forms that results in less</li>
+</ol>
+<p>typing for the user at the command line. e.g.</p>
+<p>gpg --encrypt --recipient me@serverXY encrypt-sec.txt</p>
+<p>The short form of the above command is:</p>
+<p>gpg -e -r me@serverXY encrypt-sec.txt</p>
+<ol>
+<li>To encrypt the string "hello" and mails it as an ASCII armored message to the user with the mail address</li>
+</ol>
+<p>ying@serverXY; Use the command below:</p>
+<p>echo "hello" | gpg -ea -r ying@serverXY | mail ying@serverXY</p>
+<ol>
+<li>To encrypt the file "your_file" with the public key of "me@serverXY" and write it to "your_file.gpg"</li>
+</ol>
+<p>after <strong><em>signing</em></strong> it with your user id (using your digital signature); Use the command below:</p>
+<p>gpg -se -r me@serverXY your_file</p>
+<ol>
+<li>There is a publicly available key server at wwwkeys.pgp.net. You can use gpg to upload your key there with:</li>
+</ol>
+<p>gpg --send-keys &lt;your_real_email_address&gt; --keyserver wwwkeys.pgp.net</p>
+<p>OpenSSH (www.openssh.org)</p>
+<p>OpenSSH is OpenBSD's SSH (Secure SHell) protocol implementation.</p>
+<p>It is a FREE version of the SSH protocol suite of network connectivity tools. OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other network-level attacks. Additionally, OpenSSH provides a plethora of secure tunneling capabilities, as well as a variety of authentication methods.</p>
+<p>It helps to provide secure encrypted communications between two untrusted hosts over an insecure network (such as the internet).</p>
+<p>It includes both the server side components and the client side suite of programs.</p>
+<p><strong>sshd</strong></p>
+<p>The server side includes the secure shell daemon (sshd). sshd is the daemon that listens for connections from clients.</p>
+<p>It forks a new daemon for each incoming connection. The forked daemons handle key exchange, encryption,</p>
+<p>authentication, command execution, and data exchange. According to sshd’s man page, sshd works as follows:</p>
+<p>For SSH protocol version 2…..</p>
+<p>Each host has a host-specific key (RSA or DSA) used to identify the host. When the daemon starts, it does not generate a server key (As is the case in SSH protocol version 1). Forward security is provided through a Diffie-Hellman key agreement. This key agreement results in a shared session key.</p>
+<p>The rest of the session is encrypted using a symmetric cipher, currently 128 bit AES, Blowfish, 3DES, CAST128, Arcfour, 192 bit AES, or 256 bit AES. The client selects the encryption algorithm to use from those offered by the server. Additionally, session integrity is provided through a cryptographic message authentication code (hmac-sha1 or hmac-md5).</p>
+<p>Protocol version 2 provides a public key based user (PubkeyAuthentication) or client host (HostbasedAuthentication) authentication method, conventional password authentication and challenge response based methods.</p>
+<p>The SSH2 protocol implemented in OpenSSH is standardized by the “IETF secsh” working group</p>
+<p>ssh</p>
+<p>The clients suite of programs include “ssh”. This is a program used for logging into remote systems and can also be used for executing commands on remote systems.</p>
+<h1 id="exercise-5">Exercise 5<a class="headerlink" href="#exercise-5" title="Permanent link">&para;</a></h1>
+<h2 id="sshd">sshd<a class="headerlink" href="#sshd" title="Permanent link">&para;</a></h2>
+<p>Usage: sshd [options]</p>
+<p>Options:</p>
+<p>-f file Configuration file (default /etc/ssh/sshd_config)</p>
+<p>-d Debugging mode (multiple -d means more debugging)</p>
+<p>-i Started from inetd</p>
+<p>-D Do not fork into daemon mode</p>
+<p>-t Only test configuration file and keys</p>
+<p>-q Quiet (no logging)</p>
+<p>-p port Listen on the specified port (default: 22)</p>
+<p>-k seconds Regenerate server key every this many seconds (default: 3600)</p>
+<p>-g seconds Grace period for authentication (default: 600)</p>
+<p>-b bits Size of server RSA key (default: 768 bits)</p>
+<p>-h file File from which to read host key (default: /etc/ssh/ssh_host_key)</p>
+<p>-u len Maximum hostname length for utmp recording</p>
+<p>-4 Use IPv4 only</p>
+<p>-6 Use IPv6 only</p>
+<p>-o option Process the option as if it was read from a configuration file.</p>
+<p>Most Linux systems out of the box already have the OpenSSH server configured and running with some defaults. The configuration file for sshd usually resides under - /etc/ssh/ - and is called sshd_config.</p>
+<p>sshd_config</p>
+<ol>
+<li>Open up the ssh server’s config file with any pager and study it. Type:</li>
+</ol>
+<p>[root@serverXY root]# less /etc/ssh/sshd_config</p>
+<p>NOTE:</p>
+<p>sshd_config is a rather odd configuration file.</p>
+<p>You will notice that unlike other Linux config files - comments (#) in the sshd_config file denotes the defaults values of the options. i.e. comments represents already compiled-in defaults.</p>
+<ol>
+<li>Consult the man page for sshd_config and explain what the options below do?</li>
+</ol>
+<p>AuthorizedKeysFile</p>
+<p>Ciphers</p>
+<p>HostKey</p>
+<p>Port</p>
+<p>Protocol</p>
+<p>X11Forwarding</p>
+<p>HostKey</p>
+<ol>
+<li>
+<p>Change your pwd to the /etc/ssh/ directory.</p>
+</li>
+<li>
+<p>List all the files in the directory below:</p>
+</li>
+</ol>
+<p>Creating host keys</p>
+<p>Your ssh server already has hosts keys that it uses. Those keys were generated when your system was first installed. In this exercise you will learn how to create host type keys for your server. But you wont actually use the keys.</p>
+<p>To generate host keys for your server</p>
+<ol>
+<li>Create a new directory under your pwd. Call it spare-keys. cd to the new directory. Type:</li>
+</ol>
+<p>[root@serverXY ssh]# mkdir spare-keys &amp;&amp; cd spare-keys</p>
+<ol>
+<li>Use the ssh-keygen program to create a host key with the following characteristics:</li>
+</ol>
+<p>a. key type should be “rsa”</p>
+<p>b. Key should have no comments</p>
+<p>c. Private key file should be named - ssh_host_rsa_key</p>
+<p>d. The key should not use any passphrase</p>
+<p>Type:</p>
+<p>[root@serverXY spare-keys]# ssh-keygen -q -t rsa -f ssh_host_rsa_key -C '' -N ''</p>
+<ol>
+<li>View the fingerprint of the key you created above. Type:</li>
+</ol>
+<p>[root@serverXY spare-keys]# ssh-keygen -l -f ssh_host_rsa_key</p>
+<ol>
+<li>Write down the command to create a <strong><em>dsa</em></strong> type key called “ssh_host_dsa_key” with no comments,</li>
+</ol>
+<p>and no passphrase?</p>
+<h1 id="exercise-6">Exercise 6<a class="headerlink" href="#exercise-6" title="Permanent link">&para;</a></h1>
+<h2 id="ssh">ssh<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h2>
+<pre><code>Usage:- ssh \[-l login\_name\] hostname | user@hostname \[command\]
+
+ ssh \[-afgknqstvxACNTX1246\] \[-b bind\_address\] \[-c cipher\_spec\]
+
+ \[-e escape\_char\] \[-i identity\_file\] \[-l login\_name\] \[-m mac\_spec\]
+
+ \[-o option\] \[-p port\] \[-F configfile\] \[-L port:host:hostport\]
+
+\[-R port:host:hostport\] \[-D port\] hostname | user@hostname \[command\]
+</code></pre>
+<p>To use ssh</p>
+<ol>
+<li>
+<p>Log into serverXY as the user me.</p>
+</li>
+<li>
+<p>Use ssh to connect to serverPR. Type:</p>
+</li>
+</ol>
+<p>[me@serverXY me]$ <strong><em>ssh serverPR</em></strong></p>
+<p>Type in me’s password when prompted. If you get any warning messages type “yes” to continue.</p>
+<ol>
+<li>After logging in, create a directory called - myexport and create an empty file. Type:</li>
+</ol>
+<p>[me@serverPR me]$ <strong><em>mkdir ~/myexport &amp;&amp; touch myexport/$$</em></strong></p>
+<p>Make a note of the random file that was created for you, under ~/myexport ?</p>
+<ol>
+<li>Log off serverPR. Type:</li>
+</ol>
+<p>[me@serverPR me]$ <strong><em>exit</em></strong></p>
+<p>You will be returned to your local shell at serverXY.</p>
+<ol>
+<li>Use ssh to remotely execute the “ls” command to view the list of files in ying’s home directory at</li>
+</ol>
+<p>serverPR. Type:</p>
+<p>[me@serverXY me]$ <strong><em>ssh ying@serverPR “ls /home/ying”</em></strong></p>
+<p>Type in ying’s password when prompted. If you get any warning messages type “yes” to continue.</p>
+<ol>
+<li>While still logged in as me on serverXY, log into serverPR as the user ying. Type:</li>
+</ol>
+<p>[me@serverXY me]$ <strong><em>ssh -l ying serverPR </em></strong></p>
+<p><strong>Type in ying’s password when prompted.</strong></p>
+<ol>
+<li>Type “exit” to log off serverPR and return to serverXY.</li>
+</ol>
+<p><span id="anchor-7"></span>scp</p>
+<p>scp - secure copy (remote file copy program)</p>
+<p>scp copies files between hosts on a network. It uses ssh for data transfer, and uses the same authentication and provides the same security as ssh.</p>
+<pre><code>Usage:- scp \[-pqrvBC46\] \[-F ssh\_config\] \[-S program\] \[-P port\] \[-c cipher\]
+
+ \[-i identity\_file\] \[-o ssh\_option\] \[\[user@\]host1:\] file1 \[...\]
+
+ \[\[user@\]host2:\] file2
+ ```
+
+To use scp
+
+1. Make sure you are still logged in as the user me on serverXY.
+
+2. Create a directory under your home directory called myimport and cd to the directory.
+
+3. Copy over all the files under the “/home/me/myexport/” directory on serverPR. Type:
+
+\[me@serverXY myimports\]$ ***scp serverPR:/home/me/myexport .***
+
+4. List the contents of your pwd ?
+
+ Was that totally cool or what ?
+
+5. What is the command to copy over all the under “/home/me/.gnugp/” on serverPR ?
+
+6. Now copy over all the files under ying’s home directory on serverPR. Type:
+
+\[me@serverXY myimports\]$ ***scp -r ying@serverPR:/home/ying/\* .***
+
+# Exercise 7
+
+## Creating User Public and Private keys for SSH
+
+Each individual user that wants to use SSH with RSA or DSA authentication needs a set of public keys and private keys. The ssh-keygen program can be used to create these keys ( just as it was used earlier when you created spare keys for your system)
+
+The only “advised” difference when creating user keys is to also create a passphrase.
+
+The passphrase is a password that the is used to encrypt the private key before it is stored on the file system.
+
+The public is store in a file with the same file name as the private key but with the extension “.pub” appended to it. There is no way to recover a lost passphrase. If the passphrase is lost or forgotten, a new key must be generated.
+
+To create ying’s authentication keys
+
+1. Log into your local machine as the user ying.
+
+2. Run the “ssh-keygen” program to create a “***dsa***” type key with the default length. Type:
+
+\[ying@serverXY ying\]$ ***ssh-keygen -t dsa***
+
+Generating public/private dsa key pair.
+
+Press \[ENTER\] to accept the default file location.
+
+Enter file in which to save the key (/home/ying/.ssh/id\_dsa): \[ENTER\]
+
+Enter a very good passphrase when prompted - i.e. one that is difficult to guess.
+
+Created directory '/home/ying/.ssh'.
+
+Enter passphrase (empty for no passphrase): \*\*\*\*\*\*\*\*\*
+
+Enter same passphrase again: \*\*\*\*\*\*\*\*\*
+
+Your identification has been saved in /home/ying/.ssh/id\_dsa.
+
+Your public key has been saved in /home/ying/.ssh/id\_dsa.pub.
+
+The key fingerprint is:
+
+61:68:aa:c2:0c:af:9b:49:4a:11:b8:aa:b5:84:18:10 ying@serverXY.example.org
+
+3. cd to your “**~/.ssh/**” directory. List the files in the directory?
+
+4. What is the “ssh-keygen” command to view the fingerprint of your keys?
+
+5. Use the cat command to view the contents of your public-key file (i.e. “**~/.ssh/id\_rsa.pub**”).
+
+# Exercise 8
+
+## Authenticating via Public-Key
+
+Thus far you have been using a password based authentication scheme to log into user accounts at serverPR.
+
+This means that, you had to have known the corresponding account’s password on the remote side to have been able to log in successfully.
+
+In this exercise you will configure public-key authentication between your user account on serverXY and the ying’s user account at serverPR.
+
+To configure public-key authentication
+
+1. Log into your local system as the user ying.
+
+2. cd to your “~/.ssh” directory.
+
+3. Type in the horrible looking command below:
+
+\[ying@serverXY .ssh\]$ ***cat id\_dsa.pub | ssh ying@serverPR \\***
+
+ '(cd ~/.ssh &amp;&amp; cat - &amp;gt;&amp;gt; authorized\_keys &amp;&amp; chmod 600 authorized\_keys)'
+
+ The above command reads:
+
+ a. cat the contents of your dsa public-key file, but send the out to the pipe ( | ) instead of the
+
+ usual standard out.
+
+ b. run the command “***cd ~/.ssh &amp;&amp; cat - &amp;gt;&amp;gt; authorized\_keys &amp;&amp; chmod 600 authorized\_keys”***
+
+ as the user ying on serverPR.
+
+ c. The whole point of the command is simply to copy and append the contents of your public-key
+
+ file to the “/home/ying/.ssh/authorized\_keys” on serverPR and give it the correct permissions.
+
+ If you know of any other manual way to achieve the same result, please do so.
+
+4. After you have added your public-key to the authorized\_keys file on the remote system. Attempt to
+
+ login to serverPR as ying via ssh. Type:
+
+\[ying@serverXY .ssh\]$ ***ssh serverPR***
+
+Enter passphrase for key '/home/ying/.ssh/id\_dsa': \*\*\*\*\*\*\*\*\*\*
+
+Note very carefully that, you are being prompted for your passphrase this time instead of the
+
+password. Enter the passphrase you created earlier when you created your keys.
+
+5. After successfully logging into serverPR; Log back out.
+
+# Exercise 9
+
+## ssh-agent
+
+According to the man page - ssh-agent is a program to hold private keys used for public key authentication (RSA, DSA). The idea is that ssh-agent is started in the beginning of an X-session or a login session, and all other windows or programs are started as clients to the ssh-agent program. Through use of environment variables the agent can be located and automatically used for authentication when logging into other machines using ssh.
+
+</code></pre>
+<p>Usage ssh-agent [-a bind_address] [-c | -s] [-d] [command [args ...]]</p>
+<p>ssh-agent [-c | -s] -k
+```</p>
+<p>In this exercise you will learn how to configure the agent such that you wont have to type in your passphrase every time you want to connect to another system using public-key authentication.</p>
+<ol>
+<li>
+<p>Make sure you are logged into your local system as the user ying.</p>
+</li>
+<li>
+<p>Type in the command below:</p>
+</li>
+</ol>
+<p>[ying@serverXY .ssh]$ <strong><em>eval `ssh-agent`</em></strong></p>
+<p>Agent pid 5623</p>
+<p>Take note of the PID of the agent:</p>
+<ol>
+<li>Use the “<strong><em>ssh-add</em></strong>” program to add your keys to the agent you launched above. Type:</li>
+</ol>
+<p>[ying@serverXY .ssh]$ <strong><em>ssh-add</em></strong></p>
+<p>Enter your passphrase when prompted.</p>
+<p>Enter passphrase for /home/ying/.ssh/id_dsa:</p>
+<p>Identity added: /home/ying/.ssh/id_dsa (/home/ying/.ssh/id_dsa)</p>
+<ol>
+<li>Now connect to serverPR as the user ying. You WILL NOT be prompted for a password or</li>
+</ol>
+<p>passphrase (i.e if everything has been done correctly). Type:</p>
+<p>[ying@serverXY .ssh]$ <strong><em>ssh serverPR</em></strong></p>
+<ol>
+<li>Enjoy.</li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../introduction/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Introduction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              Introduction
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+<script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+
+<script src="../../../../assets/javascripts/iframe-worker.js"></script>
+<script src="../../../../search/search_index.js"></script>
+
+
+    
+      <script src="../../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

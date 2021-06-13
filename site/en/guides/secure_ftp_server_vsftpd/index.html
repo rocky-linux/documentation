@@ -1,0 +1,1092 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.rockylinux.org/en/guides/secure_ftp_server_vsftpd/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Secure FTP Server - vsftpd - Rocky Linux Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Hat+Text:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font-family:"Red Hat Text";--md-code-font-family:""}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#secure-ftp-server-vsftpd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-header__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rocky Linux Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Secure FTP Server - vsftpd
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="../../../" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../zh/" hreflang="zh" class="md-select__link">
+                    简体中文
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../es/" hreflang="es" class="md-select__link">
+                    Español
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="../../../fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/rocky-linux/documentation/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../" class="md-tabs__link">
+      Table of Contents
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../add_mirror_manager/" class="md-tabs__link md-tabs__link--active">
+        Guides
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/security/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rocky Linux Documentation" class="md-nav__button md-logo" aria-label="Rocky Linux Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Rocky Linux Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/rocky-linux/documentation/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rocky-linux/documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Guides
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../add_mirror_manager/" class="md-nav__link">
+        Adding a public mirror to Rocky's mirror manager
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-sites-enabled/" class="md-nav__link">
+        Apache Web Server Multi-Site Setup
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_network_configuration/" class="md-nav__link">
+        Rocky Linux - Networking configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud_server_using_nextcloud/" class="md-nav__link">
+        Cloud Server Using Nextcloud
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron_jobs_howto/" class="md-nav__link">
+        Automating Processes with cron and crontab in Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database_mariadb-server/" class="md-nav__link">
+        Database mariadb-server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_start2/" class="md-nav__link">
+        Developer start2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dokuwiki_server/" class="md-nav__link">
+        DokuWiki Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enabling_iptables_firewall/" class="md-nav__link">
+        Enabling iptables Firewall
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generating_ssl_keys_lets_encrypt/" class="md-nav__link">
+        Generating SSL Keys - Let's Encrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../import_rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL[2] with Virtualbox and Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mirroring_lsyncd/" class="md-nav__link">
+        Mirroring Solution - lsycnd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_build_troubleshooting/" class="md-nav__link">
+        Package build troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_debranding/" class="md-nav__link">
+        Rocky package debranding How-To 
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_dev_start/" class="md-nav__link">
+        Rocky Linux Devtools (Packaging and developer starter guide)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../package_signing/" class="md-nav__link">
+        Package signing and testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postfix_reporting/" class="md-nav__link">
+        Using postfix For Server Process Reporting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../private_dns_server_using_bind/" class="md-nav__link">
+        Private DNS Server Using Bind
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky-8-installation/" class="md-nav__link">
+        Installing Rocky Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocky_to_wsl_howto/" class="md-nav__link">
+        Import Rocky Linux to WSL with WSL and rinse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsnapshot_backup/" class="md-nav__link">
+        Backup Solution - Rsnapshot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rsync_ssh/" class="md-nav__link">
+        Using rsync To Keep Two Machines Synchronized
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Secure FTP Server - vsftpd
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh_public_private_keys/" class="md-nav__link">
+        SSH Public and Private Key
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl_keys_https/" class="md-nav__link">
+        Generating SSL Keys
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_26" type="checkbox" id="__nav_2_26" >
+      
+      <label class="md-nav__link" for="__nav_2_26">
+        Apache Hardened Webserver
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Apache Hardened Webserver" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_26">
+          <span class="md-nav__icon md-icon"></span>
+          Apache Hardened Webserver
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/modsecurity/" class="md-nav__link">
+        mod_security
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/ossec-hids/" class="md-nav__link">
+        ossec-hids
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache_hardened_webserver/rkhunter/" class="md-nav__link">
+        rkhunter
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Security
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Security" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/" class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/security/rocky-lab9-cryptography/" class="md-nav__link">
+        Lab 9: Cryptography
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rocky-linux/documentation/edit/master/docs/guides/secure_ftp_server_vsftpd.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="secure-ftp-server-vsftpd">Secure FTP Server - vsftpd<a class="headerlink" href="#secure-ftp-server-vsftpd" title="Permanent link">&para;</a></h1>
+<h1 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Proficiency with a command-line editor (we are using <em>vi</em> in this example)</li>
+<li>A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties</li>
+<li>An understanding of PAM, as well as <em>openssl</em> commands is helpful.</li>
+<li>All commands are run as the root user or sudo</li>
+</ul>
+<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
+<p><em>vsftpd</em> is the  Very Secure FTP Daemon (FTP being the file transfer protocol). It has been available for many years now, and is actually the default FTP daemon in Rocky Linux, as well as many other Linux distributions. </p>
+<p><em>vsftpd</em> allows for the use of virtual users with pluggable authentication modules (PAM). These virtual users don't exist in the system, and have no other permissions except to use FTP. This means that if a virtual user gets compromised, the person with those credentials would have no other permissions once they gained access. Using this setup is very secure indeed, but does require a bit of extra work. </p>
+<h2 id="installing-vsftpd">Installing vsftpd<a class="headerlink" href="#installing-vsftpd" title="Permanent link">&para;</a></h2>
+<p>We also need to make sure <em>openssl</em> is installed. If you are running a web server, this probably <strong>is</strong> already installed, but just to make sure, you can run:</p>
+<p><code>dnf install vsftpd openssl</code></p>
+<p>You will also want to enable the vsftpd service:</p>
+<p><code>systemctl enable vsftpd</code> </p>
+<p>But <em>don't start the service just yet.</em></p>
+<h2 id="configuring-vsftpd">Configuring vsftpd<a class="headerlink" href="#configuring-vsftpd" title="Permanent link">&para;</a></h2>
+<p>We want to make sure that some settings are disabled and that others are enabled. Generally, when you install <em>vsftpd</em>, it comes with the most sane options already set, but it is a good idea to make sure.</p>
+<p>To check the configuration file and make changes as necessary, run:</p>
+<p><code>vi /etc/vsftpd/vsftpd.conf</code></p>
+<p>Look for the line "anonymous_enable=" and make sure that it is set to "NO" and that it is <strong>NOT</strong> remarked/commented out. (Remarking out this line will enable anonymous logins).  The line should look like this when it is correct:</p>
+<p><code>anonymous_enable=NO</code></p>
+<p>Make sure that local_enable is set to yes:</p>
+<p><code>local_enable=YES</code></p>
+<p>Add a line for the local root user. If the server that you are installing this on is a web server, we assume that you will be using the <a href="../apache-sites-enabled/">Apache Web Server Multi-Site Setup</a>, and that your local root will reflect that. If your setup is different, or if this is not a web server, adjust the local_root setting:</p>
+<p><code>local_root=/var/www/sub-domains</code></p>
+<p>Make sure that write_enable is set to yes as well:</p>
+<p><code>write_enable=YES</code></p>
+<p>Find the line to "chroot_local_users", and remove the remark. Then add two lines below so that it looks like this:</p>
+<pre><code>chroot_local_user=YES
+allow_writeable_chroot=YES
+hide_ids=YES
+</code></pre>
+<p>Beneath this, we want to add an entirely new section that will deal with virtual users:</p>
+<pre><code># Virtual User Settings
+user_config_dir=/etc/vsftpd/vsftpd_user_conf
+guest_enable=YES
+virtual_use_local_privs=YES
+pam_service_name=vsftpd
+nopriv_user=vsftpd
+guest_username=vsftpd
+</code></pre>
+<p>We need to add a section near the bottom of the file to force passwords sent over the internet to be encrypted. We need <em>openssl</em> installed and we will need to create the certificate file for this as well. </p>
+<p>Start by adding these lines at the bottom of the file:</p>
+<pre><code>rsa_cert_file=/etc/vsftpd/vsftpd.pem
+rsa_private_key_file=/etc/vsftpd/vsftpd.key
+ssl_enable=YES
+allow_anon_ssl=NO
+force_local_data_ssl=YES
+force_local_logins_ssl=YES
+ssl_tlsv1=YES
+ssl_sslv2=NO
+ssl_sslv3=NO
+
+pasv_min_port=7000
+pasv_max_port=7500
+</code></pre>
+<p>Now save your configuration. (That's <code>SHIFT:wq</code> if using <em>vi</em>.)</p>
+<h2 id="setting-up-the-rsa-certificate">Setting Up The RSA Certificate<a class="headerlink" href="#setting-up-the-rsa-certificate" title="Permanent link">&para;</a></h2>
+<p>We need to create the <em>vsftpd</em> RSA certificate file. The author generally figures that a server is good for 4 or 5 years, so set the number of days for this certificate based on the number of years you believe you'll have the server up and running on this hardware. </p>
+<p>Edit the number of days as you see fit, and then use the below format of the command to create the certificate and private key files:</p>
+<p><code>openssl req -x509 -nodes -days 1825 -newkey rsa:2048 -keyout /etc/vsftpd/vsftpd.key -out /etc/vsftpd/vsftpd.pem</code></p>
+<p>Like all certificate creation processes, this will start a script that will ask you for some information. This is not a difficult process. Many fields can be left blank. </p>
+<p>The first field is the country code field, fill this one in with your country two letter code:</p>
+<p><code>Country Name (2 letter code) [XX]:</code></p>
+<p>Next comes the state or province, fill this in by typing the whole name, not the abbreviation: </p>
+<p><code>State or Province Name (full name) []:</code></p>
+<p>Next is the locality name. This is your city:</p>
+<p><code>Locality Name (eg, city) [Default City]:</code></p>
+<p>Next is the company or organizational name. You can leave this blank or fill it in as you see fit:</p>
+<p><code>Organization Name (eg, company) [Default Company Ltd]:</code></p>
+<p>Next is the organizational unit name. You can fill this in if the server is for a specific division, or leave it blank:</p>
+<p><code>Organizational Unit Name (eg, section) []:</code></p>
+<p>The next field should be filled in, however you can decide how you want to fill it in. This is the common name of your server. Example: <code>webftp.domainname.ext</code>:</p>
+<p><code>Common Name (eg, your name or your server's hostname) []:</code></p>
+<p>Finally, there is the email field, which you can certainly leave blank without issue:</p>
+<p><code>Email Address []:</code></p>
+<p>Once you have completed the form, the certificate will be created.</p>
+<h2 id="setting-up-virtual-users"><a name="virtualusers"></a>Setting Up Virtual Users<a class="headerlink" href="#setting-up-virtual-users" title="Permanent link">&para;</a></h2>
+<p>As stated earlier, using virtual users for <em>vsftpd</em> is much more secure, because they have no system privileges at all. That said, we need to add a user for the virtual users to use. We also need to add a group:</p>
+<p><code>groupadd nogroup</code></p>
+<p>And then:</p>
+<p><code>useradd --home-dir /home/vsftpd --gid nogroup -m --shell /bin/false vsftpd</code></p>
+<p>The user must match the <code>guest_username=</code> line in the vsftpd.conf file.</p>
+<p>Now navigate to the configuration directory for <em>vsftpd</em>:</p>
+<p><code>cd /etc/vsftpd</code></p>
+<p>We need to create a new password database that will be used to authenticate our virtual users. We need to create a file to read the virtual users and passwords from that will create the database. </p>
+<p>In the future, when adding new users, we will want to duplicate this process as well:</p>
+<p><code>vi vusers.txt</code></p>
+<p>The user and password are line separated, so simply type the user, hit enter, and then type the password. Continue until you have added all of the users you currently want to have access to the system. Example:</p>
+<pre><code>user_name_a
+user_password_a
+user_name_b
+user_password_b
+</code></pre>
+<p>Once the text file is created, we now want to generate the password database that <em>vsftpd</em> will use for the virtual users. This is done with <em>db_load</em>. <em>db_load</em> is provided by <em>libdb-utils</em> which should be loaded on your system, but if it is not, you can simply install it with:</p>
+<p><code>dnf install libdb-utils</code></p>
+<p>Create the database from the text file with:</p>
+<p><code>db_load -T -t hash -f vusers.txt vsftpd-virtual-user.db</code></p>
+<p>We need to take just a moment here to reference what <em>db_load</em> is doing here:</p>
+<ul>
+<li>The -T is used to easily allow the import of a text file into the database.</li>
+<li>The -t says to specify the underlying access method.</li>
+<li>The <em>hash</em> is the underlying access method we are specifying.</li>
+<li>The -f says to read from a specified file.</li>
+<li>The specified file is <em>vusers.txt</em> .</li>
+<li>And the database we are creating or adding to is <em>vsftpd-virtual-user.db</em>.</li>
+</ul>
+<p>Change the default permissions of the database file:</p>
+<p><code>chmod 600 vsftpd-virtual-user.db</code></p>
+<p>And remove the vusers.txt file:</p>
+<p><code>rm vusers.txt</code></p>
+<p>When adding new users, simply use <em>vi</em> to create a new vusers.txt file, and re-run the <em>db_load</em> command, which will add the new user/s to the database.</p>
+<h2 id="setting-up-pam">Setting Up PAM<a class="headerlink" href="#setting-up-pam" title="Permanent link">&para;</a></h2>
+<p><em>vsftpd</em> installs a default pam file when you install the package. We are going to replace this with our own content, so <strong>always</strong> make a backup copy of the old file first. </p>
+<p>Make a directory for your backup file in /root:</p>
+<p><code>mkdir /root/backup_vsftpd_pam</code></p>
+<p>Then copy the pam file to this directory:</p>
+<p><code>cp /etc/pam.d/vsftpd /root/backup_vsftpd_pam/</code></p>
+<p>Now edit the original file:</p>
+<p><code>vi /etc/pam.d/vsftpd</code></p>
+<p>Remove everything in this file except the "#%PAM-1.0" and then add in the following lines:</p>
+<pre><code>auth       required     pam_userdb.so db=/etc/vsftpd/vsftpd-virtual-user
+account    required     pam_userdb.so db=/etc/vsftpd/vsftpd-virtual-user
+session    required     pam_loginuid.so
+</code></pre>
+<p>Save your changes and exit (<code>SHIFT:wq</code> in <em>vi</em>).</p>
+<p>This will enable login for your virtual users defined in <code>vsftpd-virtual-user.db</code>, and will disable local logins.</p>
+<h2 id="setting-up-the-virtual-users-configuration">Setting Up The Virtual User's Configuration<a class="headerlink" href="#setting-up-the-virtual-users-configuration" title="Permanent link">&para;</a></h2>
+<p>Each virtual user has their own configuration file, which specifies their own local_root directory. This local root must be owned by the user "vsftpd" and the group "nogroup". </p>
+<p>Remember that this was set up in the <a href="#virtualusers">Setting Up Virtual Users section above.</a> To change the ownership for the directory, simply type this at the command line:</p>
+<p><code>chown vsftpd.nogroup /var/www/sub-domains/whatever_the_domain_name_is/html</code></p>
+<p>We need to create the file that contains the virtual user's configuration:</p>
+<p><code>vi /etc/vsftpd/vsftpd_user_conf/username</code></p>
+<p>This will have a single line in it that specifies the virtual user's local_root:</p>
+<p><code>local_root=/var/www/sub-domains/com.testdomain/html</code></p>
+<p>This file path is specified in the "Virtual User" section of the vsftpd.conf file.</p>
+<h2 id="starting-vsftpd">Starting vsftpd<a class="headerlink" href="#starting-vsftpd" title="Permanent link">&para;</a></h2>
+<p>Once all of this is completed, start the <em>vsftpd</em> service and then test your users, assuming that the service starts correctly:</p>
+<p><code>systemctl restart vsftpd</code></p>
+<h3 id="testing-vsftpd">Testing vsftpd<a class="headerlink" href="#testing-vsftpd" title="Permanent link">&para;</a></h3>
+<p>You can test your setup using the command line on a machine and test access to the machine using FTP. That said, the easiest way to test is to test with an FTP client, such as <a href="https://filezilla-project.org/">FileZilla</a>. </p>
+<p>When you test with a virtual user to the server running <em>vsftpd</em>, you should get an SSL certificate trust message. This trust message is saying to the person using the FTP client that the server uses a certificate and asks them to approve the certificate before continuing. Once connected as a virtual user, you should be able to place files in the "local_root" folder that we setup for that user. </p>
+<p>If you are unable to upload a file, then you may need to go back and make sure that each of the above steps is completed. For instance, it could be that the ownership permissions for the "local_root" have not been set to the "vsftpd" user and the "nogroup" group.</p>
+<h1 id="conclusions">Conclusions<a class="headerlink" href="#conclusions" title="Permanent link">&para;</a></h1>
+<p><em>vsftpd</em> is a popular and common ftp server and can be set up as a stand alone server, or as part of an <a href="../apache_hardened_webserver/">Apache Hardened Web Server</a>. If set up to use virtual users and a certificate, it is quite secure. </p>
+<p>While there are quite a number of steps to setting up <em>vsftpd</em> as outlined in this document, taking the extra time to set it up correctly will ensure that your server is as secure as it can be.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../rsync_ssh/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Using rsync To Keep Two Machines Synchronized" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Using rsync To Keep Two Machines Synchronized
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ssh_public_private_keys/" class="md-footer__link md-footer__link--next" aria-label="Next: SSH Public and Private Key" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              SSH Public and Private Key
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+
+<script src="../../../assets/javascripts/iframe-worker.js"></script>
+<script src="../../../search/search_index.js"></script>
+
+
+    
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

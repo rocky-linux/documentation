@@ -2,7 +2,7 @@
 site_name: 'Rocky Linux Documentation'
 site_url: 'https://docs.rockylinux.org'
 docs_dir: 'docs/'
-repo_url: https://github.com/rocky-linux/documentation
+repo_url: https://github.com/hbjydev/rldocs
 repo_name: rocky-linux/documentation
 
 nav:
