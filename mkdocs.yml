@@ -22,13 +22,17 @@ theme:
   logo: assets/logo.png
   palette:
     - scheme: default
+      media: "(prefers-color-scheme: light)"
       toggle:
         icon: material/weather-sunny
         name: Switch to dark mode
+      primary: black
     - scheme: slate
+      media: "(prefers-color-scheme: dark)"
       toggle:
         icon: material/weather-night
         name: Switch to light mode
+      primary: black
 
 markdown_extensions:
   - toc:
