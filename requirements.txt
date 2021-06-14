@@ -1,5 +1,0 @@
-mkdocs
-mkdocs-material
-mkdocs-localsearch
-mkdocs-awesome-pages-plugin
-git+https://github.com/ultrabug/mkdocs-static-i18n.git@issue_37

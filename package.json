@@ -1,9 +1,0 @@
-{
-  "name": "@resf/rocky-linux-docs",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "mkdocs serve",
-    "build": "mkdocs build -d public"
-  }
-}
