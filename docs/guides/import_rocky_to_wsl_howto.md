@@ -1,4 +1,4 @@
-# Import Rocky Linux to WSL[2] with Virtualbox and Docker
+# Import Rocky Linux to WSL2 with Virtualbox and Docker
 
 ## Prerequisites
 
