@@ -2,4 +2,4 @@ mkdocs
 mkdocs-material
 mkdocs-localsearch
 mkdocs-awesome-pages-plugin
-mkdocs-static-i18n
+git+https://github.com/ultrabug/mkdocs-static-i18n.git@issue_37

@@ -35,6 +35,7 @@ theme:
       primary: black
 
 markdown_extensions:
+  - attr_list
   - toc:
       permalink: true
   - pymdownx.emoji:
@@ -51,8 +52,7 @@ plugins:
         en: English
         fr: Français
         es: Español
-        zh: 简体中文
-  # - tags
+        zh_CN: 简体中文
 
 extra: 
   social:
