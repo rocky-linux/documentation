@@ -1,7 +1,3 @@
----
-id: 'contributing'
----
-
 # Contribution Guide
 
 ## Introduction
