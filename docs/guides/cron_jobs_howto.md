@@ -1,4 +1,4 @@
-# Automating Processes with cron and crontab in Rocky Linux
+# Automating Processes with cron and crontab
 
 ## Prerequisites
 

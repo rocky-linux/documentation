@@ -1,4 +1,4 @@
-# Rocky Linux - Solución para espejar lsycnd
+# Solución para espejar lsycnd
 
 ## Requisitos
 

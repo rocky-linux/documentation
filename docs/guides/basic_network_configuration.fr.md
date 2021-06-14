@@ -1,4 +1,4 @@
-# Rocky Linux - Configuration réseau de base
+# Configuration réseau de base
 
 ## Prérequis
 

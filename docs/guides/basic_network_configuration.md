@@ -1,4 +1,4 @@
-# Rocky Linux - Networking configuration
+# Networking configuration
 
 ## Prerequisites
 

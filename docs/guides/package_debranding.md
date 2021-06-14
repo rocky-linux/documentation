@@ -1,6 +1,4 @@
----
-title:  'Rocky package debranding How-To '
----
+# Rocky package debranding How-To
 
 This explains how to debrand a package for the Rocky Linux distribution.
 

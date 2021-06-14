@@ -1,4 +1,4 @@
-# Rocky Linux - Claves SSH Públicas y Privadas
+# Claves SSH Públicas y Privadas
 
 ## Requisitos
 

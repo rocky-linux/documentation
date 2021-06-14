@@ -1,7 +1,3 @@
----
-title: Adding a public mirror to Rocky's mirror manager
----
-
 # Adding a public mirror to Rocky's mirror manager
 
 ## Minimal requirements for public mirrors

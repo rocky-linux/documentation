@@ -1,4 +1,4 @@
-# Creating a full LXD Server on Rocky Linux
+# Creating a full LXD Server
 ## Introduction
 
 LXD is best described on the [official website](https://linuxcontainers.org/lxd/introduction/), but think of it as a container system that provides the benefits of virtual servers in a container, or a container on steroids. 

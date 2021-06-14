@@ -1,4 +1,4 @@
-# Rocky Linux - Copias de Seguridad rsnapshot
+# Copias de Seguridad rsnapshot
 
 ## Requisitos
 

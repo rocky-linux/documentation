@@ -1,7 +1,3 @@
----
-title: 'Configuración del servidor web Apache para múltiples sitios'
----
-
 # Configuración del servidor web Apache para múltiples sitios
 
 Rocky Linux tiene muchas maneras de configurar un sitio web. Este es sólo un método de varios, utilizando Apache, y está diseñado para configurar múltiples sitios en un solo servidor. Aunque este método está diseñado para servidores multisitio, también puede servir como una configuración base para un servidor de un solo sitio.  
