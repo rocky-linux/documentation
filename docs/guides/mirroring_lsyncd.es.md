@@ -26,7 +26,7 @@ Agrega y combina los eventos durante unos segundos, y luego genera uno (o más) 
 
 Para los propósitos de esta guía, llamaremos al sistema con los archivos originales el "maestro", y el que estemos sincronizando será el "objetivo". En realidad, es posible reflejar completamente un servidor usando lsyncd especificando muy cuidadosamente los directorios y archivos que quieras sincronizar. ¡Es una maravilla!
 
-Para la sincronización remota, también querrás configurar [Claves SSH públicas y privadas](claves_ssh_publicas_privadas.md). Estos ejemplos usan SSH (puerto 22).
+Para la sincronización remota, también querrás configurar [Claves SSH públicas y privadas](ssh_public_private_keys.es.md). Estos ejemplos usan SSH (puerto 22).
 
 # Instalación de lsyncd
 

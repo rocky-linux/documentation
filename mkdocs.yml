@@ -35,12 +35,22 @@ theme:
       primary: black
 
 markdown_extensions:
+  - abbr
   - attr_list
+  - admonition
   - toc:
       permalink: true
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.keys
+  - pymdownx.tabbed
+  - footnotes
+  - def_list
+  - pymdownx.tasklist
+  - meta
 
 plugins:
   - search

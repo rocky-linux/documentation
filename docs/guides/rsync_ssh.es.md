@@ -14,7 +14,7 @@ Esto es todo lo que necesitarás para comprender y seguir esta guía.
 
 # Introducción
 
-Utilizar _rsync_ sobre SSH no es tan poderoso como [lsync](espejar_lsync.md) (que permite monitorear un directorio o archivo en busca de cambios y mantenerlo sincronizado en tiempo real), ni tan flexible como [rsnapshot](copias_de_seguridad_rsnapshot.md) (que permite hacer una copia de seguridad de múltiples objetivos desde un solo equipo fácilmente). Pero ofrece la capacidad de mantener dos equipos actualizados en un horario definido.
+Utilizar _rsync_ sobre SSH no es tan poderoso como [lsync](mirroring_lsyncd.es.md) (que permite monitorear un directorio o archivo en busca de cambios y mantenerlo sincronizado en tiempo real), ni tan flexible como [rsnapshot](rsnapshot_backup.es.md) (que permite hacer una copia de seguridad de múltiples objetivos desde un solo equipo fácilmente). Pero ofrece la capacidad de mantener dos equipos actualizados en un horario definido.
 
 rsync ha existido desde el principio de los tiempos (bueno, tal vez no tanto, pero si lleva su tiempo) así que cada distribución Linux lo tiene disponible, y todavía persiste en los paquetes base. rsync sobre SSH puede ser una solución si necesita mantener un conjunto de directorios actualizados en un equipo objetivo, sin embargo la sincronización en tiempo real no es realmente importante.
 
@@ -30,7 +30,7 @@ Si el paquete no está instalado, dnf le pedirá que confirme la instalación y 
 
 ## Preparando el entorno
 
-Este ejemplo específico utilizará rsync con el objetivo de jalar los cambios, en lugar de empujarlos hacia el destino, por lo que necesitaremos configurar un [juego de claves SSH](claves_ssh_publicas_privadas.md) para esto. Una vez creado el juego de claves SSH, y confirmado el acceso sin contraseña desde el equipo objetivo al origen, estamos listos para comenzar.
+Este ejemplo específico utilizará rsync con el objetivo de jalar los cambios, en lugar de empujarlos hacia el destino, por lo que necesitaremos configurar un [juego de claves SSH](ssh_public_private_keys.es.md) para esto. Una vez creado el juego de claves SSH, y confirmado el acceso sin contraseña desde el equipo objetivo al origen, estamos listos para comenzar.
 
 ## Parámetros de rsync y configuración del script
 

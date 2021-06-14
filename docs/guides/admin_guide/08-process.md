@@ -39,7 +39,7 @@ There is a parent/child relationship between processes. A child process is the r
 
 The _PID_ number represents the process at the time of execution. When the process finishes, the number is available again for another process. Running the same command several times will produce a different _PID_ each time.
 
-![Parent/child relationship between processes](images/FON-050-001.png)
+<!-- TODO ![Parent/child relationship between processes](images/FON-050-001.png) -->
 
 > :notebook: **NOTE:**
 Processes are not to be confused with _threads_. Each process has its own memory context (resources and address space), while _threads_ from the same process share this same context.

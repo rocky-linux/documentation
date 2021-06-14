@@ -161,7 +161,7 @@ A volume group, *VG*, is divided into logical volumes, *LV*, offering different 
 
 ![Linear volumes](images/07-file-systems-005.png)
 
-![Volumes in stripe mode](images/F07-file-systems-006.png)
+![Volumes in stripe mode](images/07-file-systems-006.png)
 
 > :star: **TIP:**
 Striping_ improves performance by writing data to a predetermined number of physical volumes with a _round-robin_ technique.
