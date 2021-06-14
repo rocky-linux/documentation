@@ -14,7 +14,7 @@ The order of these sections is very important, but has not been finalized yet, s
 
 Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 --- | --- | --- | --- | --- | ---
-[Setup Development Environment](guides/package_dev_start.md) | [Rebranding HowTo](guides/package_debranding.md) | [Signing HowTo](guides/package_signing.md) [Build Troubleshooting](guides/package_build_troubleshooting.md) 
+[Setup Development Environment](guides/development/package_dev_start.md) | [Rebranding HowTo](guides/development/package_debranding.md) | [Signing HowTo](guides/development/package_signing.md) [Build Troubleshooting](guides/development/package_build_troubleshooting.md) 
 
 
 ## Security
