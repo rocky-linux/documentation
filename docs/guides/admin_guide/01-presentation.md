@@ -1,4 +1,4 @@
-# Introduction to the Linux operating system
+# 01: Introduction to the Linux operating system
 
 In this chapter you will learn about GNU/Linux distributions.
 

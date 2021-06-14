@@ -1,4 +1,4 @@
-# User management
+# 06: User management
 
 In this chapter you will learn how to manage user.
 
