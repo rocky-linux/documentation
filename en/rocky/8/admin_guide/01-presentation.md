@@ -248,7 +248,6 @@ There are several types of shells available and configurable on a platform or ac
 
 - [ ] Manage physical and virtual memory   
 - [ ] Allow direct access to peripherals   
-- [ ] Subcontract task management to the processor   
 - [ ] Subcontract the management of tasks to the processor   
 - [ ] Collect information about the programs used or in use   
 
