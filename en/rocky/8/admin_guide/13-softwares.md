@@ -7,9 +7,11 @@ On a Linux system, it is possible to install software in two ways:
 * by using an installation package;
 * by compiling the source files.
 
+> :notebook: **Note:** Installing from source is not covered here. As a rule, you should use the package method unless the software you want is not available via the package manager. The reason for this is that dependencies are generally managed by the package system, whereas with source, you need to manage the dependencies manually.
+
 **The package**: This is a single file containing all the data needed to install the program. It can be executed directly on the system from a software repository.
 
-**The source files** : Some software are not provided in packages ready to be installed but via an archive containing the source files. It is up to the administrator to prepare these files and compile them to install the program.
+**The source files** : Some software is not provided in packages ready to be installed, but via an archive containing the source files. It is up to the administrator to prepare these files and compile them to install the program.
 
 ## RPM : RedHat Package Manager
 
@@ -46,8 +48,7 @@ Example:
 
 The `rpm` command also allows you to query the system package database by adding the `-q` option.
 
-It is possible to execute several types of queries to obtain different information about the installed packages.
-The RPM database is located in the directory `/var/lib/rpm`.
+It is possible to execute several types of queries to obtain different information about the installed packages. The RPM database is located in the directory `/var/lib/rpm`.
 
 Example:
 
@@ -77,7 +78,7 @@ Example:
 | `--last`         | The list of packages is given by installation date (the last installed packages appear first). |
 
 > :warning: **WARNING:**
-After the `-q` option, the package name must be exact. Metacharacters are not supported.
+After the `-q` option, the package name must be exact. Metacharacters (wildcards) are not supported.
 
 > :star: **TIP:**
 However, it is possible to list all installed packages and filter with the `grep` command.
@@ -106,6 +107,16 @@ kernel-4.18.0-305.el8.x86_64                  Tue 25 May 2021 06:04:56 AM CEST
 kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
 ```
 
+Example: list all installed packages with a specific name using `grep`:
+
+```
+sudo dnf list installed | grep httpd
+centos-logos-httpd.noarch           80.5-2.el8                              @baseos      
+httpd.x86_64                        2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream   
+httpd-filesystem.noarch             2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream   
+httpd-tools.x86_64                  2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
+```
+
 ## DNF : Dandified Yum
 
 **DNF** (**Dandified Yum**) is a software package manager, successor of **YUM** (**Yellow dog **U**pdater **M**odified). It works with **RPM** packages grouped in a local or remote repository (a directory for storing packages). For the most common commands, its usage is identical to that of `yum`.
@@ -116,16 +127,16 @@ The `dnf` command allows the management of packages by comparing those installed
 
 ### `dnf` command
 
-The yum command allows you to install a package by specifying only the short name.
+The dnf command allows you to install a package by specifying only the short name.
 
 ```
-yum [install][remove][list all][search][info] package
+dnf [install][remove][list all][search][info] package
 ```
 
 Example:
 
 ```
-[root]# yum install tree
+[root]# dnf install tree
 ```
 
 Only the short name of the package is required.
@@ -136,10 +147,10 @@ Only the short name of the package is required.
 | `remove`                   | Uninstall the package.                        |
 | `list all`                 | Lists the packages already in the repository. |
 | `search`                   | Search for a package in the repository.       |
-| `provides */commande_name` | Search for a command.                         |
+| `provides */command_name`  | Search for a command.                         |
 | `info`                     | Displays the package information.             |
 
-The `yum list` command lists all the packages installed on the system and present in the repository. It accepts several parameters:
+The `dnf list` command lists all the packages installed on the system and present in the repository. It accepts several parameters:
 
 | Parameter   | Description                                                                |
 |-------------|----------------------------------------------------------------------------|
@@ -152,7 +163,7 @@ The `yum list` command lists all the packages installed on the system and presen
 Example of a search for the `semanage` command:
 
 ```
-[root]# yum provides */semanage
+[root]# dnf provides */semanage
 ```
 
 ### How DNF works
