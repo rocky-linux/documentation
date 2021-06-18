@@ -6,7 +6,7 @@ title:  Rocky Linux 8.4 Release Notes
 
 The entire Rocky Linux team is excited to let you know about the first full release of Rocky Linux, Rocky Linux 8.4! If you are new to Rocky Linux, it's great to have you here and we look forward to a long and happy relationship.
 
-Rocky Linux is a community enterprise operating system designed to be 100% bug-for-bug compatible with America's top enterprise Linux distribution. It is under intensive development by the community. As such, the release notes reflect the changes to the upstream packages and to those included in the original Rocky Linux 8.3 release candidate. 
+Rocky Linux is a community enterprise operating system designed to be 100% bug-for-bug compatible with America's top enterprise Linux distribution. It is under intensive development by the community. As such, the release notes reflect the changes to the upstream packages and to those included in the original Rocky Linux 8.3 release candidate.
 
 ## New Modules
 
@@ -17,7 +17,7 @@ Brand new in Rocky Linux 8.4 are the following new module streams:
 * Subversion 1.14
 * Redis 6
 * PostgreSQL 13
-* MariaDB 10.5 
+* MariaDB 10.5
 
 ## Major Changes
 
@@ -25,7 +25,7 @@ Brand new in Rocky Linux 8.4 are the following new module streams:
 
 * IPsec VPN provided by Libreswan now supports TCP encapsulation and security labels for IKEv2.
 
-* The scap-security-guide packages have been rebased to version 0.1.54, and OpenSCAP has been rebased to version 1.3.4. These updates provide substantial improvements, including: Improved memory management, 
+* The scap-security-guide packages have been rebased to version 0.1.54, and OpenSCAP has been rebased to version 1.3.4. These updates provide substantial improvements, including: Improved memory management,
 
 * The `fapolicyd` framework now provides integrity checking, and the RPM plugin now registers any system update that is handled by either the YUM package manager or the RPM Package Manager.
 
@@ -66,12 +66,12 @@ Brand new in Rocky Linux 8.4 are the following new module streams:
 
 ## Known Issues
 
-As with any release, there are sometimes bugs or issues found in the process of building that have not yet been patched or fixed upstream. 
-We will be updating this section with new items or bugs as they are discovered.
+As with any release, there are sometimes bugs or issues found in the process of building that have not yet been patched or fixed upstream. We will be updating this section with new items or bugs as they are discovered.
 
+> :star: **A Note about Secure Boot:** We know many of you depend on Secure Boot. It is a non-trivial process to get Secure Boot for a new OS. This process is underway, however Rocky 8.4 will not be released with Secure Boot enabled.
 
 ## Conversion Tools Available for Rocky Linux
 
-You can convert from Rocky Linux 8.3, Centos 8.3 or 8.4, RHEL 8.3 or 8.4, and Alma 8.3 or 8.4 to Rocky Linux 8.4 by using the [migrate2rocky](https://github.com/rocky-linux/rocky-tools/) tool. 
+You can convert from Rocky Linux 8.3, Centos 8.3 or 8.4, RHEL 8.3 or 8.4, and Alma 8.3 or 8.4 to Rocky Linux 8.4 by using the [migrate2rocky](https://github.com/rocky-linux/rocky-tools/) tool.
 
-This tool has been tested and is known to work, however it is to be used **at your own risk**. 
+This tool has been tested and is known to work, however it is to be used **at your own risk**.
