@@ -16,4 +16,4 @@ This is a collection of educational documents focused on System Administrators. 
 * [Chapter 10. - System Startup](../admin_guide/10-boot.md)
 * [Chapter 11. - Managing Tasks With Cron]
 * [Chapter 12. - Networking](../admin_guide/12-network.md)
-* [Chapter 13. - Managing Software]
+* [Chapter 13. - Managing Software](../admin_guide/13-softwares.md)
