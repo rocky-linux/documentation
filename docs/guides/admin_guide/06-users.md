@@ -5,16 +5,16 @@ In this chapter you will learn how to manage user.
 ****
 **Objectives** : In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: add, delete or modify a **group** ; \
-:heavy_check_mark: add, delete or modify a **user** ; \
-:heavy_check_mark: know the syntax of the files associated with the management of groups and users ; \
-:heavy_check_mark: change the *owner* or the *group owner* of a file; \
-:heavy_check_mark: *secure* user accounts; \
+:heavy_check_mark: add, delete or modify a **group** ;   
+:heavy_check_mark: add, delete or modify a **user** ;   
+:heavy_check_mark: know the syntax of the files associated with the management of groups and users ;   
+:heavy_check_mark: change the *owner* or the *group owner* of a file;   
+:heavy_check_mark: *secure* user accounts;   
 :heavy_check_mark: change identity.
 
 :checkered_flag: **users**
 
-**Knowledge**: :star: :star: \
+**Knowledge**: :star: :star:   
 **Complexity**: :star: :star:
 
 **Reading time**: 30 minutes

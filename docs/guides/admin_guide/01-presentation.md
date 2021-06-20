@@ -6,6 +6,7 @@ In this chapter you will learn about GNU/Linux distributions.
 
 **Objectives** : In this chapter you will learn how to:
 
+<<<<<<< HEAD:docs/guides/admin_guide/01-presentation.md
 - :heavy_check_mark: Describe the features and possible architectures of an operating system
 - :heavy_check_mark: Recount the history of UNIX and GNU/Linux
 - :heavy_check_mark: Choose the right Linux distribution for your needs
@@ -16,6 +17,17 @@ In this chapter you will learn about GNU/Linux distributions.
 
 **Knowledge**: :star:
 
+=======
+:heavy_check_mark: Describe the features and possible architectures of an operating system;   
+:heavy_check_mark: Recount the history of UNIX and GNU/Linux;   
+:heavy_check_mark: Choose the right Linux distribution for your needs;   
+:heavy_check_mark: Explain the philosophy of free and opensource software;   
+:heavy_check_mark: Discover the usefulness of the SHELL.
+
+:checkered_flag: **generalities**, **linux**, **distributions**
+
+**Knowledge**: :star:    
+>>>>>>> 7396f1abe9e2429de3e0e7690695a77384856913:en/rocky/8/admin_guide/01-presentation.md
 **Complexity**: :star:
 
 **Reading time**: 10 minutes
@@ -242,63 +254,62 @@ There are several types of shells available and configurable on a platform or ac
 
 :heavy_check_mark: An operating system is a set of programs for managing the available resources of a computer:
 
-- [ ] True
+- [ ] True   
 - [ ] False
 
 :heavy_check_mark: The operating system is brought to:
 
-- [ ] Manage physical and virtual memory
-- [ ] Allow direct access to peripherals
-- [ ] Subcontract task management to the processor
-- [ ] Subcontract the management of tasks to the processor
-- [ ] Collect information about the programs used or in use
+- [ ] Manage physical and virtual memory   
+- [ ] Allow direct access to peripherals   
+- [ ] Subcontract the management of tasks to the processor   
+- [ ] Collect information about the programs used or in use   
 
 :heavy_check_mark: Among these personalities, which ones participated in the development of UNIX:
 
-- [ ] Linus Torvalds
-- [ ] Ken Thompson
-- [ ] Lionel Richie
-- [ ] Brian Kernighan
-- [ ] Andrew Stuart Tanenbaum
+- [ ] Linus Torvalds   
+- [ ] Ken Thompson   
+- [ ] Lionel Richie   
+- [ ] Brian Kernighan   
+- [ ] Andrew Stuart Tanenbaum   
 
 :heavy_check_mark: The original nationality of Linus Torvalds, creator of the Linux kernel, is:
 
-- [ ] Swedish
-- [ ] Finnish
-- [ ] Norwegian
-- [ ] Flemish
-- [ ] French of course
+- [ ] Swedish   
+- [ ] Finnish   
+- [ ] Norwegian   
+- [ ] Flemish   
+- [ ] French of course   
 
 :heavy_check_mark: Which of the following distributions is the oldest:
 
-- [ ] Debian
-- [ ] Slackware
-- [ ] RedHat
+- [ ] Debian   
+- [ ] Slackware   
+- [ ] RedHat   
 - [ ] Arch
 
 :heavy_check_mark: Is the Linux kernel:
 
-- [ ] Multitasking
-- [ ] Multi user
-- [ ] Multiprocessor
-- [ ] Multi-core
-- [ ] Cross-platform
-- [ ] Open
+- [ ] Multitasking   
+- [ ] Multi user   
+- [ ] Multiprocessor   
+- [ ] Multi-core   
+- [ ] Cross-platform   
+- [ ] Open   
 
 :heavy_check_mark: Is free software necessarily open source?
 
-- [ ] True
-- [ ] False
+- [ ] True   
+- [ ] False   
 
 :heavy_check_mark: Is Open Source software necessarily free?
 
-- [ ] True
-- [ ] False
+- [ ] True   
+- [ ] False   
 
 :heavy_check_mark: Which of the following is not a shell:
 
-- [ ] Jason
-- [ ] Jason-Bourne shell (jbsh)
-- [ ] Bourne-Again shell (bash)
-- [ ] C shell (csh)
-- [ ] Korn shell (ksh)
+- [ ] Jason   
+- [ ] Jason-Bourne shell (jbsh)   
+- [ ] Bourne-Again shell (bash)   
+- [ ] C shell (csh)   
+- [ ] Korn shell (ksh)   

@@ -6,19 +6,20 @@ In this chapter you will learn how to work with filesystems.
 
 **Objectives** : In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: manage partitions on disk; \
-:heavy_check_mark: use LVM for a better use of disk resources; \
+:heavy_check_mark: manage partitions on disk;   
+:heavy_check_mark: use LVM for a better use of disk resources;   
 :heavy_check_mark: provide users with a filesystem and manage the access rights.
 
 and also discover:
 
-:heavy_check_mark: how the tree structure is organized in Linux; \
+:heavy_check_mark: how the tree structure is organized in Linux;   
 :heavy_check_mark: the different types of files offered and how to work with them;
 
 :checkered_flag: **hardware**, **disk**, **partition**, **lvm**, **linux**
 
-**Knowledge**: :star: :star: \
-**Complexity**: :star: :star: \
+**Knowledge**: :star: :star:   
+**Complexity**: :star: :star:   
+
 **Reading time**: 20 minutes
 
 ****
