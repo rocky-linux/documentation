@@ -66,7 +66,11 @@ Brand new in Rocky Linux 8.4 are the following new module streams:
 
 ## Known Issues
 
-As with any release, there are sometimes bugs or issues found in the process of building that have not yet been patched or fixed upstream. We will be updating this section with new items or bugs as they are discovered.
+As with any release, there are sometimes bugs or issues found in the process of building that have not yet been patched or [fixed upstream](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.4_release_notes/known-issues). We will be updating this section with new items or bugs as they are discovered.
+
+* The Rocky Linux Minimal ISO (`Rocky-8.4-x86_64-minimal.iso`) does not contain the `rsyslog` package. As a result, a system installed with the Rocky Linux Minimal ISO will not include `rsyslog.service` or `/var/log/messages` out of the box. The `rsyslog` package can be installed immediately after reboot from the Rocky Linux AppStream repository to resolve this issue. ([RB#14](https://bugs.rockylinux.org/show_bug.cgi?id=14))
+
+* The Help button in the Anaconda installer doesn't currently work. The Rocky Linux team has provided an [installation walk-through](../guides/rocky-8-installation/) in the Rocky Linux Documentation to help resolve installation issues. ([RB#20](https://bugs.rockylinux.org/show_bug.cgi?id=20))
 
 > :star: **A Note about Secure Boot:** We know many of you depend on Secure Boot. It is a non-trivial process to get Secure Boot for a new OS. This process is underway, however Rocky 8.4 will not be released with Secure Boot enabled.
 
