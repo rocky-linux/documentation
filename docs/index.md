@@ -8,7 +8,7 @@ The order of these sections is very important, but has not been finalized yet, s
 | Classic Rocky Installation | Rocky on Windows SubSystem For Linux (WSL) |
 | --- |  --- |
 | [Rocky 8 Installation](guides/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky_to_wsl_howto.md) |
-| | [Rocky & WSL2 (virtualbox and docker)](guides/import_rocky_to_wsl_howto.md) |
+| [Migrate to Rocky from CentOS (and others)](guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox and docker)](guides/import_rocky_to_wsl_howto.md) |
 
 ## Development and Packaging
 
