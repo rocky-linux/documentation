@@ -112,11 +112,11 @@ So far, everything we have talked about has had pretty simple options, but what 
 
 What if you wanted to run the backup every 10 minutes, but only on Monday, Wednesday and Friday?:
 
-`*/10  *   *   *   1,3,5   /usr/local/sbin/backup`
+`*/10  *   1,3,5   *   *   /usr/local/sbin/backup`
 
 What about every 10 minutes every day except Saturday and Sunday?:
 
-`*/10  *   *   *   1-5   /usr/local/sbin/backup`
+`*/10  *   1-5   *    *    /usr/local/sbin/backup`
 
 In the table, the commas let you specify individual entries within a field, while the dash lets you specify a range of values within a field. This can happen in any of the fields, and on multiple fields at the same time. As you can see, things can get pretty complicated. 
 
