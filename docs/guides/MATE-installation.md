@@ -4,22 +4,26 @@ The MATE desktop environment was created to fork and continue GNOME2 in the wake
 
 This procedure is designed to get you up and running with Rocky Linux using MATE.
 
+## Prerequisites
+
+* A computer with a screen and everything, preferably with Rocky Linux already installed.
+
 ## Install Rocky Linux Minimal
 
-When installing Rocky Linux, we used the following:
+When installing Rocky Linux, we used the following sets of packages:
 
 * Minimal
 * Standard
 
 ## Enabling Repositories
 
-We need the unofficial repository for stenstorp Mate. You can find more information on that repository here: [Stenstorp/MATE](https://copr.fedorainfracloud.org/coprs/stenstorp/MATE/)
+We need the unofficial repository for MATE. You can find more information on that repository here: [Stenstorp/MATE](https://copr.fedorainfracloud.org/coprs/stenstorp/MATE/)
 
 Enable this repository by entering:
 
 `dnf copr enable stenstorp/MATE`
 
-You will get a warning message about the repository, butt go ahead and enable it by typing `Y` to allow.
+You will get a warning message about the repository, but go ahead and enable it by typing `Y` to allow.
 
 As noted from the link above, you also need the Powertools repository and the EPEL. Go ahead and enable those now:
 
@@ -65,4 +69,4 @@ You should end up with a login prompt in the MATE GUI, and when you login, you w
 
 ## Conclusion
 
-Some people are not satisfied with the newer GNOME implementations. There are a lot of users who simply prefer the older MATE GNOME2 look and feel. For those people, this procedure will work to install MATE on Rocky Linux 8.
+Some people are not satisfied with the newer GNOME implementations or are a lot of users who simply prefer the older MATE GNOME 2 look and feel. For those people, getting MATE installed in Rocky Linux will provide a nice, stable alternative.
