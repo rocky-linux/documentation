@@ -6,28 +6,15 @@ In this chapter you will learn about GNU/Linux distributions.
 
 **Objectives** : In this chapter you will learn how to:
 
-<<<<<<< HEAD:docs/guides/admin_guide/01-presentation.md
-- :heavy_check_mark: Describe the features and possible architectures of an operating system
-- :heavy_check_mark: Recount the history of UNIX and GNU/Linux
-- :heavy_check_mark: Choose the right Linux distribution for your needs
-- :heavy_check_mark: Explain the philosophy of free and opensource software
-- :heavy_check_mark: Discover the usefulness of the SHELL.
-
-:checkered_flag: **generalities**, **linux**, **distributions**
-
-**Knowledge**: :star:
-
-=======
-:heavy_check_mark: Describe the features and possible architectures of an operating system;   
-:heavy_check_mark: Recount the history of UNIX and GNU/Linux;   
-:heavy_check_mark: Choose the right Linux distribution for your needs;   
-:heavy_check_mark: Explain the philosophy of free and opensource software;   
-:heavy_check_mark: Discover the usefulness of the SHELL.
+:heavy_check_mark: Describe the features and possible architectures of an operating system   
+:heavy_check_mark: Recount the history of UNIX and GNU/Linux   
+:heavy_check_mark: Choose the right Linux distribution for your needs   
+:heavy_check_mark: Explain the philosophy of free and opensource software   
+:heavy_check_mark: Discover the usefulness of the SHELL.   
 
 :checkered_flag: **generalities**, **linux**, **distributions**
 
 **Knowledge**: :star:    
->>>>>>> 7396f1abe9e2429de3e0e7690695a77384856913:en/rocky/8/admin_guide/01-presentation.md
 **Complexity**: :star:
 
 **Reading time**: 10 minutes
@@ -38,7 +25,8 @@ In this chapter you will learn about GNU/Linux distributions.
 
 Linux, UNIX, BSD, Windows, and MacOS are all **operating systems**.
 
-:clipboard: An operating system is a **set of programs that manages the available resources of a computer**.
+!!! abstract
+    An operating system is a **set of programs that manages the available resources of a computer**.
 
 Among this management of resources, the operating system has to:
 
