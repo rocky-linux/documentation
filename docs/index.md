@@ -62,4 +62,4 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 
 | Administration | Security | General |
 |----------------|----------|---------|
-| [System Administration](guides/admin_guide/toc.md) | [Security Labs](labs/security/index.md) |
+| [System Administration](guides/admin_guide/00-toc.md) | [Security Labs](labs/security/index.md) |
