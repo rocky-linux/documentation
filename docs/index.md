@@ -9,6 +9,7 @@ The order of these sections is very important, but has not been finalized yet, s
 | --- |  --- |
 | [Rocky 8 Installation](guides/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky_to_wsl_howto.md) |
 | [Migrate to Rocky from CentOS (and others)](guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox and docker)](guides/import_rocky_to_wsl_howto.md) |
+| [Install MATE on Rocky Linux](guides/MATE-installation.md) |  |
 
 ## Development and Packaging
 
