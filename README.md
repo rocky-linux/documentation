@@ -1,4 +1,4 @@
-# Rocky Linux Documentation How-To Contribute Guide
+# Contribution Guide
 
 ## Introduction
 
