@@ -9,6 +9,7 @@ The order of these sections is very important, but has not been finalized yet, s
 | --- |  --- |
 | [Rocky 8 Installation](guides/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky_to_wsl_howto.md) |
 | | [Rocky & WSL2 (virtualbox and docker)](guides/import_rocky_to_wsl_howto.md) |
+| [Install MATE on Rocky Linux](guides/MATE-installation.md) |  |
 
 ## Development and Packaging
 
@@ -61,4 +62,4 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 
 | Administration | Security | General |
 |----------------|----------|---------|
-| [System Administration](guides/admin_guide/toc.md) | [Security Labs](labs/security/index.md) |
+| [System Administration](guides/admin_guide/00-toc.md) | [Security Labs](labs/security/index.md) |
