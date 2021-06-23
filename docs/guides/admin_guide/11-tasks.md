@@ -6,8 +6,8 @@ In this chapter you will learn how to manage scheduled tasks.
 
 **Objectives** : In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: linux deals with the tasks scheduling;   
-:heavy_check_mark: restrict the use of cron to certain users;   
+:heavy_check_mark: Linux deals with the tasks scheduling;   
+:heavy_check_mark: restrict the use of **`cron`** to certain users;   
 :heavy_check_mark: schedule tasks.
 
 :checkered_flag: **crontab**, **crond**, **scheduling**, **linux**
@@ -21,27 +21,27 @@ In this chapter you will learn how to manage scheduled tasks.
 
 ## Generalities
 
-The scheduling of tasks is managed with the **cron** utility. It allows the periodic execution of tasks.
+The scheduling of tasks is managed with the `cron` utility. It allows the periodic execution of tasks.
 
-It is reserved to the administrator and under reserve to the users and uses only one command : `crontab`.
+It is reserved to the administrator for system tasks but can be used by normal users for tasks or scripts that they have access to. To access the `cron` utility, we use: `crontab`.
 
-The `cron` service is used for :
+The `cron` service is used for:
 
 * Repetitive administration operations;
 * Backups;
 * Monitoring of system activity;
 * Program execution.
 
-`crontab` is short for **chrono table**: schedule table.
+`crontab` is short for **cron table**, but can be thought of as a task scheduling table.
 
 !!! Warning
-    To set up a schedule, the system must be on time.
+    To set up a schedule, the system must have the correct time set.
 
 ## How the service works
 
 The `cron` service is run by a `crond` daemon present in memory.
 
-To check its status :
+To check its status:
 
 ```
 [root] # systemctl status crond
@@ -50,13 +50,13 @@ To check its status :
 !!! Tip
     If the `crond` daemon is not running, you will have to initialize it manually and/or automatically at startup. Indeed, even if tasks are scheduled, they will not be launched.
 
-Initialization of the `crond` daemon in manual :
+Initialization of the `crond` daemon in manual:
 
 ```
 [root]# systemctl {status|start|restart|stop} crond
 ```
 
-Initialization of the `crond` daemon at startup :
+Initialization of the `crond` daemon at startup:
 
 ```
 [root]# systemctl enable crond
@@ -74,13 +74,13 @@ This permission varies according to the information contained in the files below
 !!! Warning
     If neither file is present, all users can use `cron`.
 
-### Allows
+### The `cron.allow` and `cron.deny` Files
 
 File `/etc/cron.allow`
 
 Only users contained in this file are allowed to use `cron`.
 
-If it is empty, no users can use `cron`.
+If it exists and is empty, no users can use `cron`.
 
 !!! Warning
     If `cron.allow` is present, `cron.deny` is **ignored**.
@@ -90,6 +90,8 @@ File `/etc/cron.deny`
 Users in this file are not allowed to use `cron`.
 
 If it is empty, all users can use `cron`.
+
+By default, `/etc/cron.deny` exists and is empty and `/etc/cron.allow` does not exist.
 
 ### Allowing a user
 
@@ -114,11 +116,11 @@ user2
 
 When a user schedules a task, a file with his name is created under `/var/spool/cron/`.
 
-This file contains all the information allowing the `crond` daemon to know which command or program to run and when to run it (hour, minute, day ...).
+This file contains all the information the `crond` needs to know regarding all tasks created by this user, the commands or programs to run, and when to run them (hour, minute, day ...).
 
 ![Cron tree](images/tasks-001.png)
 
-### Crontab command
+### The `crontab` command
 
 The `crontab` command is used to manage the schedule file.
 
@@ -146,11 +148,11 @@ Example:
 
     The example above allows root to schedule a task for user1.
 
-### Interests of crontab
+### Uses of `crontab`
 
-The interests of crontab are many and include:
+The uses of `crontab` are many and include:
 
-* Modifications to the crontab files taken into account immediately;
+* Modifications to the `crontab` files taken into account immediately;
 * No need to restart.
 
 On the other hand, the following points must be taken into account:
@@ -162,9 +164,9 @@ On the other hand, the following points must be taken into account:
 !!! Note
     It is important to understand that the purpose of scheduling is to perform tasks automatically, without the need for external intervention.
 
-## The crontab file
+## The `crontab` file
 
-The crontab file is structured according to the following rules.
+The `crontab` file is structured according to the following rules.
 
 * Each line of this file corresponds to a schedule;
 * Each line has six fields, 5 for the time and 1 for the order;
@@ -192,7 +194,7 @@ The crontab file is structured according to the following rules.
 
 In order to simplify the notation for the definition of time, it is advisable to use special symbols.
 
-| Metacharacter | Description                      |
+| Wildcards | Description                      |
 |---------------|----------------------------------|
 | `*`           | All possible values of the field |
 | `-`           | Indicates a range of values      |
@@ -225,15 +227,26 @@ Run every 10 minutes during working hours:
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
 ```
 
+For the root user, `crontab` also has some special time settings:
+
+| Setting  | Description                   |
+|----------|-------------------------------|
+| @reboot  | Run command on system reboot  |
+| @hourly  | Run command every hour        |
+| @daily   | Runs daily just after midnight|
+| @weekly  | Runs command every Sunday just after midnight    |
+| @monthly | Runs command on the first day of the month just after midnight |
+| @annually| Runs January 1st just after midnight |
+
 ### Task execution process
 
-A user, rockstar, wants to edit his crontab file:
+A user, rockstar, wants to edit his `crontab` file:
 
-1) crond checks to see if he is allowed (`/etc/cron.allow` and `/etc/cron.deny`).
+1) `crond` checks to see if he is allowed (`/etc/cron.allow` and `/etc/cron.deny`).
 
-2) If he is, he accesses his crontab file (`/var/spool/cron/rockstar`).
+2) If he is, he accesses his `crontab` file (`/var/spool/cron/rockstar`).
 
-Every minute crond reads the schedule files.
+Every minute `crond` reads the schedule files.
 
 3) It executes the scheduled tasks.
 
