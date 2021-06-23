@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 # @author Neil Hanlon <neil@rockylinux.org> 
 # @date 2021-02-26 
@@ -6,24 +6,36 @@
 # yaml-compatible document to be appended into file metadata for attribution of
 # contributors to documentation articles
 
+function debug() {
+    # @param    $1  - string to be formatted as a debug if debug is set
+    if [[ $DEBUG ]]; then
+        printf "[DEBUG] %s %s\n" $(date +'%Y-%m-%d %H:%M:%S') "$1"
+    fi
+}
+
 function format_contributor() {
-    # Output only the Name 
-    local -n ref=$1
-    echo ${ref} | awk -F\; '{print $2}'
+    # @param    commiter    - the contributor's detail string (from locals)
+    # @return   output      - the formatted string
+    output=$(echo ${commiter} | awk -F\; '{print $2}')
 }
 
 function format() {
-    local -n ref=$1
+    # @param    contributor_set       - the array to iterate on and output; it
+    #                                   should be sorted by commit date, 
+    #                                   ascending.
+    # @stdout   formatted text        - formatted output in yaml
 
+    # Add a yaml document header
+    echo '---'
     # The author is the first one to commit
-    printf "author: '%s'\n" "${ref[0]}"
+    printf "author: '%s'\n" "${contributor_set[0]}"
 
     # Everyone else is a contributor. As long as there is more than one
     # commiter, loop through them and append them to the line.
     printf "contributors: '"
-    if [[ "${#ref[@]}" -gt 1 ]]; then 
-        for c in "${ref[@]:1}"; do
-            if [[ "$c" != "${ref[-1]}" ]]; then
+    if [[ "${#contributor_set[@]}" -ge 1 ]]; then 
+        for c in "${contributor_set[@]:1}"; do
+            if [[ "$c" != "${contributor_set[-1]}" ]]; then
                 printf "%s, " "$c"
             else
                 printf "%s" "$c"
@@ -31,6 +43,11 @@ function format() {
         done 
     fi
     printf "'\n"
+
+    printf "%s\n" "$(awk '// {print}' $file)"
+
+    # Add the yaml document footer
+    printf "...\n"
 }
 
 function process_contributors() {
@@ -54,18 +71,21 @@ function process_contributors() {
 
     # Loop through every commiter; Skip if it is empty or if the formatted
     # version is already contained in the output array. (Unique it)
-    local -a final
+    local -a contributor_set # Ordered Set containing contributors for the file
 
+    local commiter
+    local -a output=()
     for commiter in "${commiters[@]}"; do
-        formatted=$(format_contributor commiter)
-        if [[ $commiter == '' || "${final[*]}" =~ $formatted ]]; then
+        format_contributor # returns formatted version in $output
+        if [[ $commiter == '' || "${contributor_set[*]}" =~ $output ]]; then
             continue;
         else
-            final+=("${formatted}")
+            contributor_set=("${output}" "${contributor_set[@]}")
         fi
     done
 
-    format final
+    # Call the format function to process $contributor_set and output
+    format
 }
 
 
