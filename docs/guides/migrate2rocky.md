@@ -18,7 +18,7 @@ Well, we've got the tool for you: [migrate2rocky](https://github.com/rocky-linux
 
 It's a script that, when executed, will change out all of your repositories to those of Rocky Linux. Packages will be installed and upgraded/downgraded as necessary, and all of your OS' branding will change too.
 
-Don't worry, uf you're new to systems administration, I'll be keeping this as user-friendly as possible. Well, as user friendly as the command line gets.
+Don't worry, if you're new to systems administration, I'll be keeping this as user-friendly as possible. Well, as user friendly as the command line gets.
 
 ### Caveats and warnings
 
@@ -43,7 +43,7 @@ Download the compressed files from GitHub and extract the one you need (That'd b
 
 ![The "Download Zip" button](images/migrate2rocky-github-zip.png)
 
-Then, upload the ex to your server with ssh by running this command on your local machine:
+Then, upload the executable to your server with ssh by running this command on your local machine:
 
 ```
 scp PATH/TO/FILE/migrate2rocky.sh root@yourdomain.com:/home/
