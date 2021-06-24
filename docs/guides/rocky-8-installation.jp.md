@@ -21,7 +21,7 @@ https://www.rockylinux.org/download/
 コマンドラインから直接ISOをダウンロードするには、次のように入力します。
 
 ```
-$ wget https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_64-minimal.iso
+$ wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-minimal.iso
 ```
 
 Rocky ISOは、この慣例に従って命名されています。
@@ -30,31 +30,31 @@ Rocky ISOは、この慣例に従って命名されています。
 Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 ```
 
-例   `Rocky-8.3-x86_64-minimal.iso`
+例   `Rocky-8.4-x86_64-minimal.iso`
 
 > **NOTE:**
 > ロッキープロジェクトのWebページには、世界中にあるいくつかのミラーのリストがあります。可能な限り、地理的に最も近いミラーを選択してください。公式ミラーのリストは [ここ](https://mirrors.rockylinux.org/mirrormanager/mirrors)にあります。
 
 ## インストーラISOの検証
 
-既存の Linux ディストリビューションで Rocky の ISO をダウンロードした場合、`sha256sum` ユーティリティーを使って、ダウンロードしたファイルが壊れていないかどうかを確認することができます。ここでは、`Rocky-8.3-x86_64-minimal.iso`のsha256sumを検証する例を紹介します。
+既存の Linux ディストリビューションで Rocky の ISO をダウンロードした場合、`sha256sum` ユーティリティーを使って、ダウンロードしたファイルが壊れていないかどうかを確認することができます。ここでは、`Rocky-8.4-x86_64-minimal.iso`のsha256sumを検証する例を紹介します。
 
 まず、利用可能なISOの公式チェックサムを含んだファイルをダウンロードします。ダウンロードしたロッキーのISOが入っているフォルダに入ったまま、次のように入力します。
 
 ```
-wget http://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/CHECKSUM
+wget http://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/CHECKSUM
 ```
 
 `sha256sum` ユーティリティーを使って、次のように検証します。
 
 ```
-sha256sum -c CHECKSUM --ignore-missing Rocky-8.3-x86_64-minimal.iso
+sha256sum -c CHECKSUM --ignore-missing Rocky-8.4-x86_64-minimal.iso
 ```
 
 出力には以下が含まれるはずです。
 
 ```
-Rocky-8.3-x86_64-minimal.iso: OK
+Rocky-8.4-x86_64-minimal.iso: OK
 ```
 
 > **TIP:**

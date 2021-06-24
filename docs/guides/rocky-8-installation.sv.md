@@ -20,7 +20,7 @@ https://www.rockylinux.org/download/
 För att ladda ner ISO-avbilden direkt från en terminal skriv:
 
 ```
-$ wget https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_64-minimal.iso
+$ wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-minimal.iso
 ```
 
 Rocky ISOs är namngavna efter följande konvention:
@@ -29,31 +29,31 @@ Rocky ISOs är namngavna efter följande konvention:
 Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 ```
 
-t.ex. `Rocky-8.3-x86_64-minimal.iso`
+t.ex. `Rocky-8.4-x86_64-minimal.iso`
 
 > **NOTERA:**
 Rocky projektets webbplats har en lista på flera speglar som ligger över hela världen. När det är möjligt, så ska du välja en spegel som är geografiskt närmast dig. Listan över officella speglar kan hittas [här](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
 ## Verifiera installations ISO
 
-Om du har laddat hem Rocky ISO-avbilden/avbilder på en existerande Linux distribution, så kan du använda `sha256sum` verktyget för att verifiera  att filen/filerna du har laddat ner inte är skadade på något sätt. Vi visar ett exempel på hur man verifierar sha256sum av `Rocky-8.3-x86_64-minimal.iso`.
+Om du har laddat hem Rocky ISO-avbilden/avbilder på en existerande Linux distribution, så kan du använda `sha256sum` verktyget för att verifiera  att filen/filerna du har laddat ner inte är skadade på något sätt. Vi visar ett exempel på hur man verifierar sha256sum av `Rocky-8.4-x86_64-minimal.iso`.
 
 Första ladda ner filen som innehåller dom officiella kontrollsummorna för tillgängliga ISO-avbilder. Medan du fortfarande är i mappen som innehåller den nerladdade Rocky ISO-avbilden, skriv:
 
 ```
-wget http://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/CHECKSUM
+wget http://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/CHECKSUM
 ```
 
 Använd `sha256sum` verktyget för att verifiera
 
 ```
-sha256sum -c CHECKSUM    --ignore-missing Rocky-8.3-x86_64-minimal.iso
+sha256sum -c CHECKSUM    --ignore-missing Rocky-8.4-x86_64-minimal.iso
 ```
 
 Utdatan ska inkludera:
 
 ```
-Rocky-8.3-x86_64-minimal.iso: OK
+Rocky-8.4-x86_64-minimal.iso: OK
 ```
 
 > **TIPS:**
