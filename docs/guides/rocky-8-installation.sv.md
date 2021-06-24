@@ -77,9 +77,6 @@ Efter att mediekontrollen är klar, och mediat har framgångsrikt verifierats oc
 
 Välj vilket språk du vill använda för att utföra installationen i denna del. För detta exempel, så kommer vi välja _Engelska (United States)_. Klicka sedan på knappen <kbd>Fortsätt</kbd>.
 
-> **VARNING:**
-:varning: Du kommer härnäst se en varningsskärm. Denna skärm kommer varna dig att du installerar programvara före släpp och att du **inte SKA** använda operativsystemet i en produktionsmiljö. Om du är okej med detta,, klicka på <kbd>Jag vill fortsätta</kbd> för att fortsätta.
-
 # Installationsöversikt
 
 Installationsöversikts skärmen är ett allt-i-ett-område där du kan göra viktiga val om det operativsystem som ska installeras.

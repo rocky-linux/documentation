@@ -77,9 +77,6 @@ After the media check runs to completion, and the media is successfully verified
 
 Select the language you want to use to perform the installation in this screen. For this example, we select _English (United States)_. Then click the <kbd>Continue</kbd> button.
 
-> **WARNING:**
-:warning: You'll next see warning screen. The screen will warn you that you are installing pre-release software and that you **should NOT** use the operating system in a production environment. If you okay with this, click <kbd>I want to proceed</kbd> to continue.
-
 # Installation Summary
 
 The _Installation Summary_ screen is an all-in-one area where you make the important decisions about the operating system to be installed.
