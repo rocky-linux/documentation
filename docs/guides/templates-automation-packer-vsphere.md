@@ -1,19 +1,22 @@
 # Automatic template creation with Packer and deployment with Ansible in a VMWare VSphere environment
 
-****
-In this tutorial, we will discuss about:
-
-:heavy_check_mark: The VMWare template creation of the Rocky Virtual Machine with Packer;   
-:heavy_check_mark: The deployment of new virtual machines based on this template with Ansible.   
-
-:checkered_flag: **template**, **vmware**, **vsphere**, **packer**, **ansible**
-
 **Knowledge**: :star: :star: :star:   
 **Complexity**: :star: :star: :star:   
 
 **Reading time**: 30 minutes
 
-****
+## Prerequisites
+
+* A VSphere environment available, a user with granted access
+* An internal webserver to store files
+* A web access to the rocky repositories
+* An ansible environment ready
+
+## Introduction
+
+We will discuss about the VMWare template creation with Packer and how to deploy the artifact as new virtual machines with Ansible.
+
+## Possible adjustments
 
 Of course, you can adapt this tutorial for other hypervisors.
 
