@@ -5,12 +5,14 @@
 
 **Reading time**: 30 minutes
 
-## Prerequisites
+## Prerequisites, Assumptions, and General Notes
 
 * A VSphere environment available, and a user with granted access
 * An internal web server to store files
 * Web access to the rocky repositories
 * An Ansible environment available
+* It is assumed that you have some knowledge on each product mentioned. If not, dig into that documentation before you begin.
+* Vagrant is **not** in use here. It was pointed out that with Vagrant, an SSH key that was not self-signed would be provided. If you want to dig into that you can do so, but it is not covered in this document.
 
 ## Introduction
 
@@ -52,7 +54,7 @@ $ vim .vsphere-secrets.json {
 
 Those credentials needs some grant access to your VSphere environment.
 
-Let's create a json file (in the future, the format of this file will change to the HCL format):
+Let's create a json file (in the future, the format of this file will change to the HCL):
 
 ```
 {
@@ -131,13 +133,13 @@ In a first step, we declare variables, mainly for the sake of readability:
 },
 ```
 
-We will use later the variable `version` in the template name we will create. You can easily increment this value to suit your needs.
+We will use the variable `version` later in the template name we will create. You can easily increment this value to suit your needs.
 
 We will also need our booting virtual machine to access a ks.cfg (Kickstart) file.
 
-A Kickstart file contains the answers to the questions asked during the installation process. This file passes all the contents of file to Anaconda (the installation process), which allows you to fully automate the creation of the template.
+A Kickstart file contains the answers to the questions asked during the installation process. This file passes all its contents to Anaconda (the installation process), which allows you to fully automate the creation of the template.
 
-The author likes to store his ks.cfg file in an internal web server accessible from my template, but other possibilities exists that you may chose to use instead.
+The author likes to store his ks.cfg file in an internal web server accessible from his template, but other possibilities exists that you may chose to use instead.
 
 For example, the ks.cfg file is accessible from the VM at this url in our lab: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. You would need to set up something similar to use this method.
 
@@ -162,7 +164,7 @@ Next part is interesting, and will be covered later by providing you the script 
 ],
 ```
 
-After the installation is finished, the VM will reboot. As soon Packer detects an IP address (thanks to the VMWare Tools), it will copy the `requirements.sh` and execute it. It's a nice feature to clean the VM after the installation process (remove SSH keys, clean the history, etc.) and install some extra package.
+After the installation is finished, the VM will reboot. As soon as Packer detects an IP address (thanks to the VMWare Tools), it will copy the `requirements.sh` and execute it. It's a nice feature to clean the VM after the installation process (remove SSH keys, clean the history, etc.) and install some extra package.
 
 ### The builders section
 
@@ -218,7 +220,7 @@ Then you have to provide the complete command to be entered during the installat
 !!! Note
     This example takes the most complex case: using a static IP. If you have a DHCP server available, the process will be much easier.
 
-This is the most amusing part of the procedure, I'm sure you'll go and admire the VMWare console during the generation, just to see the automatic entry of the commands during the boot.
+This is the most amusing part of the procedure: I'm sure you'll go and admire the VMWare console during the generation, just to see the automatic entry of the commands during the boot.
 
 ```
 "boot_command": [
@@ -239,7 +241,7 @@ At the end of the process, the VM must be stopped. It's a little bit more compli
 "shutdown_command": "/sbin/halt -h -p",
 ```
 
-Next, we deal with the VSphere configuration. The only notable things here are the use of the variables defined at the beginning of the document in our home directory, as well as the `insecure_connection` option, because our VSphere uses a self-signed certificate.
+Next, we deal with the VSphere configuration. The only notable things here are the use of the variables defined at the beginning of the document in our home directory, as well as the `insecure_connection` option, because our VSphere uses a self-signed certificate (See note in Assumptions at the top of this document):
 
 ```
 "insecure_connection": "true",
@@ -257,7 +259,7 @@ Next, we deal with the VSphere configuration. The only notable things here are t
 
 And finally, we will ask VSphere to convert our stopped VM to a template.
 
-At this stage, you could also elect to just use the VM as is (not converting it as a template). In this case, you can decide to take a snapshot.
+At this stage, you could also elect to just use the VM as is (not converting it to a template). In this case, you can decide to take a snapshot instead:
 
 ```
 "convert_to_template": true,
@@ -281,9 +283,9 @@ firstboot --disabled
 eula --agreed
 ignoredisk --only-use=sda
 # Keyboard layouts
-keyboard --vckeymap=fr-oss --xlayouts='fr (oss)'
+keyboard --vckeymap=us --xlayouts='us'
 # System language
-lang fr_FR.UTF-8
+lang en_US.UTF-8
 
 # Network information
 network --bootproto=static --device=ens192 --gateway=192.168.1.254 --ip=192.168.1.11 --nameserver=192.168.1.254,4.4.4.4 --netmask=255.255.255.0 --onboot=on --ipv6=auto --activate
@@ -375,7 +377,7 @@ systemctl start vmtoolsd
 
 As we have chosen to use the minimal iso, instead of the Boot or DVD, not all required installation packages will be available.
 
-As Packer relies on VMWare Tools to detect the end of the installation, and the `open-vm-tools` package is only available in the AppStream repos, we have to specify to the installation process to use as source both the cdrom and this remote repo:
+As Packer relies on VMWare Tools to detect the end of the installation, and the `open-vm-tools` package is only available in the AppStream repos, we have to specify to the installation process that we want to use as source both the cdrom and this remote repo:
 
 !!! Note
     If you don't have access to the external repos, you can use either a mirror of the repo, a squid proxy, or the dvd.
@@ -393,7 +395,7 @@ Let's jump to the network configuration, as once again, in this example we aren'
 network --bootproto=static --device=ens192 --gateway=192.168.1.254 --ip=192.168.1.11 --nameserver=192.168.1.254,4.4.4.4 --netmask=255.255.255.0 --onboot=on --ipv6=auto --activate
 ```
 
-Remember, we had specified to Packer the user to connect via SSH at the end of the installation. This user and password must match:
+Remember we specified the user to connect via SSH with to Packer at the end of the installation. This user and password must match:
 
 ```
 # Root password
@@ -401,9 +403,9 @@ rootpw mysecurepassword
 ```
 
 !!! Warning
-    You can use an insecure password here, as long as you make sure that this password will be changed immediately after the deployment of your vm, for example with Ansible.
+    You can use an insecure password here, as long as you make sure that this password will be changed immediately after the deployment of your VM, for example with Ansible.
 
-Here is the selected partition scheme. Much more complex things can be done. You can define a partition scheme that suits your needs, adapting it to the disk space defined in Packer, and that respects the security rules defined for your environment (dedicated partition for `/tmp`, etc.):
+Here is the selected partition scheme. Much more complex things can be done. You can define a partition scheme that suits your needs, adapting it to the disk space defined in Packer, and which respects the security rules defined for your environment (dedicated partition for `/tmp`, etc.):
 
 ```
 # System booloader configuration
@@ -423,11 +425,11 @@ logvol swap --fstype="swap" --size=4092 --name=lv_swap --vgname=vg_root
 The next section concerns the packages that will be installed. A "best practice" is to limit the quantity of installed packages to only those you need, which limits the attack surface, especially in a server environment.
 
 !!! Note
-    The author likes to limit the actions to be done in the installation process and to defer installing what is need in the post installation script of Packer. So, in this case, we install only the minimum required packages.
+    The author likes to limit the actions to be done in the installation process and to defer installing what is needed in the post installation script of Packer. So, in this case, we install only the minimum required packages.
 
-The `openssh-clients` package seems to be required for Packer to copy its scripts into the vm.
+The `openssh-clients` package seems to be required for Packer to copy its scripts into the VM.
 
-The `open-vm-tools` is also needed by Packer to detect the end of the installation, this explains the addition of the AppStream repository. `perl` and `perl-File-Temp` will also be required by VMWare Tools during the deployment part. This is a shame because it requires a lot of other dependent packages. `python3` (3.6) will also be required in the future for Ansible to work (if you won't use Ansible nor python, remove it!).
+The `open-vm-tools` is also needed by Packer to detect the end of the installation, this explains the addition of the AppStream repository. `perl` and `perl-File-Temp` will also be required by VMWare Tools during the deployment part. This is a shame because it requires a lot of other dependent packages. `python3` (3.6) will also be required in the future for Ansible to work (if you won't use Ansible or python, remove them!).
 
 ```
 %packages --ignoremissing --excludedocs
@@ -643,6 +645,6 @@ It is at this point that you can launch the final configuration of your virtual 
 
 ## In summary
 
-As we have seen, there are now fully automated DevOps solutions to create and deploy vms.
+As we have seen, there are now fully automated DevOps solutions to create and deploy VMs.
 
 At the same time, this represents an undeniable saving of time, especially in cloud or data center environments. It also facilitates a standard compliance across all of the computers in the company (servers and workstations), and an easy maintenance / evolution of templates.
