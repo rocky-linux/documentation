@@ -20,7 +20,7 @@ https://www.rockylinux.org/download/
 Pour télécharger l'ISO directement depuis la ligne de commande, saisir :
 
 ```
-$ wget https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_64-minimal.iso
+$ wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-minimal.iso
 ```
 
 Les ISOs de Rocky sont nommées en suivant cette convention :
@@ -29,31 +29,31 @@ Les ISOs de Rocky sont nommées en suivant cette convention :
 Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 ```
 
-Par exemple `Rocky-8.3-x86_64-minimal.iso`
+Par exemple `Rocky-8.4-x86_64-minimal.iso`
 
 !!! Note
     La page web du projet Rocky propose une liste de nombreux miroirs situés partout dans le monde. A chaque fois que cela est possible, vous devriez choisir le miroir géographiquement le plus proche de vous. La liste des miroirs officiels peut être consultée [ici](https://mirrors.rockylinux.org)
 
 ## Vérifier l'ISO d'installation
 
-Si vous avez téléchargé l'ISO(s) Rocky depuis une distribution Linux existante, vous pouvez utiliser l'utilitaire `sha256sum` pour vérifier que le(s) fichier(s) téléchargés ne sont pas corrompus. Nous allons montrer un exemple de la façon de vérifier le sha256sum renvoyé par la commande `sha256sum Rocky-8.3-x86_64-minimal.iso`.
+Si vous avez téléchargé l'ISO(s) Rocky depuis une distribution Linux existante, vous pouvez utiliser l'utilitaire `sha256sum` pour vérifier que le(s) fichier(s) téléchargés ne sont pas corrompus. Nous allons montrer un exemple de la façon de vérifier le sha256sum renvoyé par la commande `sha256sum Rocky-8.4-x86_64-minimal.iso`.
 
 Tout d'abord téléchargez le fichier contenant les sommes de contrôle officielles pour les ISOs disponibles. Toujours dans le répertoire contenant l'ISO de Rocky qui a été téléchargée, saisir :
 
 ```
-wget http://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/CHECKSUM
+wget http://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/CHECKSUM
 ```
 
 Utilisez l'utilitaire `sha256sum` pour vérifier la somme de contrôle
 
 ```
-sha256sum -c CHECKSUM    --ignore-missing Rocky-8.3-x86_64-minimal.iso
+sha256sum -c CHECKSUM    --ignore-missing Rocky-8.4-x86_64-minimal.iso
 ```
 
 La sortie devrait contenir :
 
 ```
-Rocky-8.3-x86_64-minimal.iso: OK
+Rocky-8.4-x86_64-minimal.iso: OK
 ```
 
 !!! Tip "Astuce"
@@ -76,9 +76,6 @@ Une étape de vérification rapide du support aura lieu. Cette étape de vérifi
 Une fois la vérification du support terminée et que le support a été validé avec succès, l'installation va automatiquement passer à l'écran suivant.
 
 Sélectionnez dans cet écran la langue que vous voulez utiliser pour réaliser l'installation. Pour cet exemple, nous choisissons _Français (France)_. Cliquez ensuite sur le bouton <kbd>Fait</kbd>.
-
-**ATTENTION :**
-:warning: Vous allez ensuite voir cet écran d'avertissement. L'écran vous avertit que vous allez installer une version logicielle en pré-release et que vous **NE DEVRIEZ PAS** utiliser le système d'exploitation dans un environnement de production. Si vous êtes d'accord avec ça, cliquez sur <kbd>I want to proceed</kbd> pour continuer.
 
 # Résumé de l'installation
 

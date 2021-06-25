@@ -20,7 +20,7 @@ https://www.rockylinux.org/download/
 För att ladda ner ISO-avbilden direkt från en terminal skriv:
 
 ```
-$ wget https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_64-minimal.iso
+$ wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-minimal.iso
 ```
 
 Rocky ISOs är namngavna efter följande konvention:
@@ -29,31 +29,31 @@ Rocky ISOs är namngavna efter följande konvention:
 Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 ```
 
-t.ex. `Rocky-8.3-x86_64-minimal.iso`
+t.ex. `Rocky-8.4-x86_64-minimal.iso`
 
 !!! Note "Notera"
     Rocky projektets webbplats har en lista på flera speglar som ligger över hela världen. När det är möjligt, så ska du välja en spegel som är geografiskt närmast dig. Listan över officella speglar kan hittas [här](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
 ## Verifiera installations ISO
 
-Om du har laddat hem Rocky ISO-avbilden/avbilder på en existerande Linux distribution, så kan du använda `sha256sum` verktyget för att verifiera  att filen/filerna du har laddat ner inte är skadade på något sätt. Vi visar ett exempel på hur man verifierar sha256sum av `Rocky-8.3-x86_64-minimal.iso`.
+Om du har laddat hem Rocky ISO-avbilden/avbilder på en existerande Linux distribution, så kan du använda `sha256sum` verktyget för att verifiera  att filen/filerna du har laddat ner inte är skadade på något sätt. Vi visar ett exempel på hur man verifierar sha256sum av `Rocky-8.4-x86_64-minimal.iso`.
 
 Första ladda ner filen som innehåller dom officiella kontrollsummorna för tillgängliga ISO-avbilder. Medan du fortfarande är i mappen som innehåller den nerladdade Rocky ISO-avbilden, skriv:
 
 ```
-wget http://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/CHECKSUM
+wget http://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/CHECKSUM
 ```
 
 Använd `sha256sum` verktyget för att verifiera
 
 ```
-sha256sum -c CHECKSUM    --ignore-missing Rocky-8.3-x86_64-minimal.iso
+sha256sum -c CHECKSUM    --ignore-missing Rocky-8.4-x86_64-minimal.iso
 ```
 
 Utdatan ska inkludera:
 
 ```
-Rocky-8.3-x86_64-minimal.iso: OK
+Rocky-8.4-x86_64-minimal.iso: OK
 ```
 
 !!! Tip
@@ -77,9 +77,12 @@ Efter att mediekontrollen är klar, och mediat har framgångsrikt verifierats oc
 
 Välj vilket språk du vill använda för att utföra installationen i denna del. För detta exempel, så kommer vi välja _Engelska (United States)_. Klicka sedan på knappen <kbd>Fortsätt</kbd>.
 
+<<<<<<< HEAD
+=======
 !!! Warning  "Varning"
     Du kommer härnäst se en varningsskärm. Denna skärm kommer varna dig att du installerar programvara före släpp och att du **inte SKA** använda operativsystemet i en produktionsmiljö. Om du är okej med detta,, klicka på <kbd>Jag vill fortsätta</kbd> för att fortsätta.
 
+>>>>>>> 4fa1c22e6c8666408e3d7c9b2612a900cc0b3a82
 # Installationsöversikt
 
 Installationsöversikts skärmen är ett allt-i-ett-område där du kan göra viktiga val om det operativsystem som ska installeras.
