@@ -1,6 +1,6 @@
 # Installera Rocky Linux
 
-Denna guide går igenom i detalj stegen för att installera en 64-bitars version av rocky Linux distribution på ett fristående system. 
+Denna guide går igenom i detalj stegen för att installera en 64-bitars version av rocky Linux distribution på ett fristående system.
 
 ****
 Vi kommer att utföra en server klass installation i detta kapitel genom att använda en oprativsystems installationsavbild nerladdad från rocky projektets webbplats. Vi kommer att tackla installationen och anpassade steg i följande avsnitt.
@@ -31,8 +31,8 @@ Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 
 t.ex. `Rocky-8.3-x86_64-minimal.iso`
 
-> **NOTERA:**
-Rocky projektets webbplats har en lista på flera speglar som ligger över hela världen. När det är möjligt, så ska du välja en spegel som är geografiskt närmast dig. Listan över officella speglar kan hittas [här](https://mirrors.rockylinux.org/mirrormanager/mirrors).
+!!! Note "Notera"
+    Rocky projektets webbplats har en lista på flera speglar som ligger över hela världen. När det är möjligt, så ska du välja en spegel som är geografiskt närmast dig. Listan över officella speglar kan hittas [här](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
 ## Verifiera installations ISO
 
@@ -56,8 +56,8 @@ Utdatan ska inkludera:
 Rocky-8.3-x86_64-minimal.iso: OK
 ```
 
-> **TIPS:**
-Innan du startar installationen ordentligt, systemets Unified Extensible Firmware Interface (UEFI) eller Basic Input/Output System (BIOS) ska vara förkonfigurerat till att starta från korrekt media.
+!!! Tip
+    Innan du startar installationen ordentligt, systemets Unified Extensible Firmware Interface (UEFI) eller Basic Input/Output System (BIOS) ska vara förkonfigurerat till att starta från korrekt media.
 
 # Installationen
 
@@ -77,8 +77,8 @@ Efter att mediekontrollen är klar, och mediat har framgångsrikt verifierats oc
 
 Välj vilket språk du vill använda för att utföra installationen i denna del. För detta exempel, så kommer vi välja _Engelska (United States)_. Klicka sedan på knappen <kbd>Fortsätt</kbd>.
 
-> **VARNING:**
-:varning: Du kommer härnäst se en varningsskärm. Denna skärm kommer varna dig att du installerar programvara före släpp och att du **inte SKA** använda operativsystemet i en produktionsmiljö. Om du är okej med detta,, klicka på <kbd>Jag vill fortsätta</kbd> för att fortsätta.
+!!! Warning  "Varning"
+    Du kommer härnäst se en varningsskärm. Denna skärm kommer varna dig att du installerar programvara före släpp och att du **inte SKA** använda operativsystemet i en produktionsmiljö. Om du är okej med detta,, klicka på <kbd>Jag vill fortsätta</kbd> för att fortsätta.
 
 # Installationsöversikt
 
@@ -155,27 +155,28 @@ När installationsprogrammet har kommit fram till att du har en användbar disk,
 
 Sista steget av installationsproceduren handlar om nätverkskonfiguration, här kan du kan konfigurera eller justera nätverksrelaterade inställningar för systemet.
 
-> **NOTERA:** Efter du klickat på <kbd>Nätverk & Värdnamn</kbd> alternativet, alla korrekt upptäckta hårdvaror för nätverksgränssnitt (t.ex. Ethernet, trådlösa nätverkskort och så vidare) kommer att listas i den vänstra rutan på nätverkskonfigurationsskärmen. Beroende på Linux-distributionen och dom specifika hårdvaruinställningarna, Ethernet enheter i har namn som ungefär som  `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, och såvidare.
+!!! Note "Notera"
+    Efter du klickat på <kbd>Nätverk & Värdnamn</kbd> alternativet, alla korrekt upptäckta hårdvaror för nätverksgränssnitt (t.ex. Ethernet, trådlösa nätverkskort och så vidare) kommer att listas i den vänstra rutan på nätverkskonfigurationsskärmen. Beroende på Linux-distributionen och dom specifika hårdvaruinställningarna, Ethernet enheter i har namn som ungefär som  `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, och såvidare.
 
 För varje gränssnitt, så kan du antingen konfigurera det med DHCP eller genom att manuellt ange en IP-adress. Om du väljer att konfigurera manuellt, se till att ha all relevant information redo, som t.ex. IP-adress, nätmask, och såvidare.
 
 Klicka på <kbd>Nätverk & Värdnamn</kbd> knappen på huvud  _Installationsöversikt_ skärmen öppnar den motsvarande konfigurationsskärmen. Bland annat, så har du alternativet att konfigurera värdnamnet för systemet (namnet är som standard `localhost.localdomain`).
 
-> **NOTERA:**
-Du kan enkelt ändra detta namnet senare efter att oprativsystemet har installerats. För nu, acceptera det angivna standardvärdet för värdnamnet.
+!!! Note "Notera"
+    Du kan enkelt ändra detta namnet senare efter att oprativsystemet har installerats. För nu, acceptera det angivna standardvärdet för värdnamnet.
 
 Nästa viktiga konfigurationsuppgift är relaterad till nätverksgränssnitten på systemet. Först, verifiera att ett Ethernet-kort (eller annat nätverkskort) är listat i den vänstra rutan. Klicka på någon av dom upptäckta nätverksenheterna i den vänstra rutan för att välja den. De konfigurerbara egenskaperna för den valda nätverks adapter visas i den högra rutan på skärmen.
 
-> **NOTERA:**
-På våran exempelserver, så har vi fyra Ethernet-enheter (`ens3`, `ens4`, `ens5` och `ens6`), som alla är i ett anslutet tillstånd. Typ, namn, kvantitet, och tillstånd på nätverksenheterna på ditt system kan variera från de som finns i vårt exempelsystem.
+!!! Note "Notera"
+    På våran exempelserver, så har vi fyra Ethernet-enheter (`ens3`, `ens4`, `ens5` och `ens6`), som alla är i ett anslutet tillstånd. Typ, namn, kvantitet, och tillstånd på nätverksenheterna på ditt system kan variera från de som finns i vårt exempelsystem.
 
 Se till att omkopplaren för enheten som du vill konfigurera ändras till `PÅ` position i den högra rutan.
 Vi accepterar alla standardvärden i den här sektionen.
 
 Klicka på <kbd>Klar</kbd> och återgå till huvud _Installationsöversikt_ skärmen.
 
-> **VARNING:**
-Var uppmärksam på serverns IP-adress i denna sektion av installationsprogrammet. Om du inte har fysisk åtkomst eller enkel konsolåtkomst till systemet, Så kommer denna information komma att vara till nytta senare när du behöver ansluta till servern för att fortsätta arbeta med den.
+!!! Warning "Varning"
+    Var uppmärksam på serverns IP-adress i denna sektion av installationsprogrammet. Om du inte har fysisk åtkomst eller enkel konsolåtkomst till systemet, Så kommer denna information komma att vara till nytta senare när du behöver ansluta till servern för att fortsätta arbeta med den.
 
 ## Installationen
 
@@ -189,11 +190,11 @@ Denna sektion kommer att användas för att skapa ett lösenord för `root` anv�
 
 Klicka på _Rootlösenords_ fäletet under _Använderinställningar_ för att starta _Rootlösenords _ uppgiftsskärmen. I _Rootlösenord_ textrutan, ange ett starkt lösenord för rotanvändaren.
 
-> **VARNING:**
-Denna användare är det mest privilegierade kontot på ditt system. Därför, om du väljer att använda det eller aktivera det - så är det mycket viktigt att du skyddar det här kontot med ett mycket bra lösenord.
+!!! Warning "Varning"
+    Denna användare är det mest privilegierade kontot på ditt system. Därför, om du väljer att använda det eller aktivera det - så är det mycket viktigt att du skyddar det här kontot med ett mycket bra lösenord.
 
 Ange samme lösenord igen i _Bekräfta textrutan.
- 
+
 Klicka på <kbd>Klar</kbd>.
             ​
 
@@ -201,9 +202,9 @@ Klicka på <kbd>Klar</kbd>.
 
 Klicka sedan på fältet _Användarskapande_ under _Användarinställningar_ för att starta _Skapa en användare_ uppgiftsskärmen. Detta aktivitetsområde låter dig skapa ett privilegierat eller icke-privilegierat (icke-administrativt) användarkonto i systemet.
 
-> **INFORMATION:**
-Att skapa och använda ett icke-privilegierat konto för dagliga uppgifter i ett system är en bra systemadministrationspraxis.
-Vi kommer att skapa en vanlig användare som kan åkalla superanvändare (administratörsrättigheter) när det behövs.
+!!! Info
+    Att skapa och använda ett icke-privilegierat konto för dagliga uppgifter i ett system är en bra systemadministrationspraxis.
+    Vi kommer att skapa en vanlig användare som kan åkalla superanvändare (administratörsrättigheter) när det behövs.
 
 Fyll i fälten på _Skapa en användare_ skärmen med följande information och klicka sedan på<kbd>Klar</kbd>:
 
@@ -229,8 +230,8 @@ _Bekräfta lösenord_:
 
 När du väl är nöjd med dina val för dom olika installationsuppgifterna, klicka på starta Installationsknappen på huvud _Installationsöversikt_ skärmen. installationen kommer att startas, och installationsprogrammet visar hur installationen fortskrider.
 
-> **NOTERA:**
-Om du får kalla fötter efter att du har klickat på starta Installationsknappen, så kan du fortfarande säkert komma tillbaka från installationen utan att förlora data (eller självförtroende). För att avsluta installationsprogrammet, Återställ helt enkelt ditt system antingen genom att klicka på Avsluta-knappen, trycka ctrl-alt-del på ditt tangentbord, eller genom att trycka på reset- eller strömknappen.
+!!! Note
+    Om du får kalla fötter efter att du har klickat på starta Installationsknappen, så kan du fortfarande säkert komma tillbaka från installationen utan att förlora data (eller självförtroende). För att avsluta installationsprogrammet, Återställ helt enkelt ditt system antingen genom att klicka på Avsluta-knappen, trycka ctrl-alt-del på ditt tangentbord, eller genom att trycka på reset- eller strömknappen.
 
 När installationen startar, så kommer olika uppgifter börja köras i bakgrunden, som att partitionera disken, formatera partitionerna eller LVM-volymerna, söka efter och lösa programberoenden, skriva operativsystemet till disk och så vidare.   ​
 
