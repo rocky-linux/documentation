@@ -63,3 +63,9 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 | Administration | Security | General |
 |----------------|----------|---------|
 | [System Administration](guides/admin_guide/00-toc.md) | [Security Labs](labs/security/index.md) |
+
+## System Automation And Maintenance
+
+| Ansible           | Puppet | Salt | Chef |
+|-------------------|--------|------|------|
+| [VM Template Creation With Packer, Ansible deployment for Vmware](guides/templates-automation-packer-vsphere.md) |  |   |   |
