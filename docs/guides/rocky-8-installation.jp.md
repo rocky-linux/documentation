@@ -21,7 +21,7 @@ https://www.rockylinux.org/download/
 コマンドラインから直接ISOをダウンロードするには、次のように入力します。
 
 ```
-$ wget https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_64-minimal.iso
+$ wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-minimal.iso
 ```
 
 Rocky ISOは、この慣例に従って命名されています。
@@ -30,31 +30,31 @@ Rocky ISOは、この慣例に従って命名されています。
 Rocky-<MAJOR#>.<MINOR#>.<ARCH>-<VARIANT>.iso
 ```
 
-例   `Rocky-8.3-x86_64-minimal.iso`
+例   `Rocky-8.4-x86_64-minimal.iso`
 
 !!! Note
     ロッキープロジェクトのWebページには、世界中にあるいくつかのミラーのリストがあります。可能な限り、地理的に最も近いミラーを選択してください。公式ミラーのリストは [ここ](https://mirrors.rockylinux.org/mirrormanager/mirrors)にあります。
 
 ## インストーラISOの検証
 
-既存の Linux ディストリビューションで Rocky の ISO をダウンロードした場合、`sha256sum` ユーティリティーを使って、ダウンロードしたファイルが壊れていないかどうかを確認することができます。ここでは、`Rocky-8.3-x86_64-minimal.iso`のsha256sumを検証する例を紹介します。
+既存の Linux ディストリビューションで Rocky の ISO をダウンロードした場合、`sha256sum` ユーティリティーを使って、ダウンロードしたファイルが壊れていないかどうかを確認することができます。ここでは、`Rocky-8.4-x86_64-minimal.iso`のsha256sumを検証する例を紹介します。
 
 まず、利用可能なISOの公式チェックサムを含んだファイルをダウンロードします。ダウンロードしたロッキーのISOが入っているフォルダに入ったまま、次のように入力します。
 
 ```
-wget http://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/CHECKSUM
+wget http://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/CHECKSUM
 ```
 
 `sha256sum` ユーティリティーを使って、次のように検証します。
 
 ```
-sha256sum -c CHECKSUM --ignore-missing Rocky-8.3-x86_64-minimal.iso
+sha256sum -c CHECKSUM --ignore-missing Rocky-8.4-x86_64-minimal.iso
 ```
 
 出力には以下が含まれるはずです。
 
 ```
-Rocky-8.3-x86_64-minimal.iso: OK
+Rocky-8.4-x86_64-minimal.iso: OK
 ```
 
 !!! Tip
@@ -78,9 +78,12 @@ Rocky-8.3-x86_64-minimal.iso: OK
 
 この画面では、インストールを行う際に使用する言語を選択します。この例では、_English (United States)_ を選択します。そして、<kbd>Continue</kbd>ボタンをクリックします。
 
+<<<<<<< HEAD
+=======
 !!! Warning
     警告です。次に警告画面が表示されます。この画面では、プレリリースのソフトウェアをインストールしており、このOSを実稼働環境で使用することは **すべきではない** という警告が表示されます。この内容でよければ、<kbd>I want to proceed</kbd>をクリックして続行してください。
 
+>>>>>>> 4fa1c22e6c8666408e3d7c9b2612a900cc0b3a82
 # インストールサマリー
 
 _Installation Summary_ 画面は、インストールするOSに関する重要な決定を行うためのオールインワンエリアです。
