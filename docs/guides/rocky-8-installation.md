@@ -93,7 +93,7 @@ We delve into each of these sections next and make changes where necessary.
 
 This section is used for customizing items related to the locale of the system. This includes – Keyboard, Language Support, Time and Date.
 
-### Keyboard
+#### Keyboard
 
 On our demo system in this guide, we accept the default value (_English US_) and make no changes.
 
@@ -101,13 +101,13 @@ However if you need to make any changes here, from the _Installation Summary_ sc
 
 Click <kbd>Done</kbd> when you are done.
 
-### Language Support
+#### Language Support
 
 The <kbd>Language Support</kbd> option on the _Installation Summary_ screen enables you to specify support for additional languages that you may need on the finished system.
 
 We accept the default value (__English – United States__) and make no change. Click <kbd>Done</kbd>.
 
-### Time & Date
+#### Time & Date
 
 Click the <kbd>Time & Date</kbd> option on the main _Installation Summary_ screen to bring up another screen that will allow you to select the time zone in which the machine is located. Scroll through the list of regions and cities and select the area closest to you.
 
@@ -117,11 +117,11 @@ Depending on your installation source, the _Network Time_ option could be set to
 
 Under the _Software_ section of the _Installation Summary_ screen, you can select the installation source as well as additional packages (applications) that get installed.
 
-### Installation Source
+#### Installation Source
 
 Since we are performing our installation using a full Rocky 8 image, you will notice that _Local Media_ is automatically specified under the Installation Source section of the main _Installation Summary_ screen. We'll accept the preset defaults.
 
-### Software Selection
+#### Software Selection
 
 Clicking the <kbd>Software Selection</kbd> option on the main _Installation Summary_ screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into :
 
@@ -136,7 +136,7 @@ Click <kbd>Done</kbd> at the top of the screen.
 
 The System section of the _Installation Summary_ screen is used for customizing and making changes to the underlying hardware of the target system. This is where you create your hard drive partitions or volumes, specify the file system to be used, and specify the network configuration.
 
-### Installation Destination
+#### Installation Destination
 
 From the _Installation Summary_ screen, click the <kbd>Installation Destination</kbd> option. This takes you to the corresponding task area.
 
