@@ -59,7 +59,7 @@ Rocky-8.4-x86_64-minimal.iso: OK
 !!! Tip
     Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
 
-# The Installation
+## The Installation
 
 Let’s begin the installation process.
 
