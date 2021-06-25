@@ -77,7 +77,7 @@ After the media check runs to completion, and the media is successfully verified
 
 Select the language you want to use to perform the installation in this screen. For this example, we select _English (United States)_. Then click the <kbd>Continue</kbd> button.
 
-# Installation Summary
+### Installation Summary
 
 The _Installation Summary_ screen is an all-in-one area where you make the important decisions about the operating system to be installed.
 
@@ -89,7 +89,7 @@ The screen is roughly divided into the following sections:
 
 We delve into each of these sections next and make changes where necessary.
 
-## Localization Section
+### Localization Section
 
 This section is used for customizing items related to the locale of the system. This includes – Keyboard, Language Support, Time and Date.
 
@@ -113,7 +113,7 @@ Click the <kbd>Time & Date</kbd> option on the main _Installation Summary_ scree
 
 Depending on your installation source, the _Network Time_ option could be set to _ON_ or _OFF_ by default. Accept the default _ON_ setting; this allows the system to automatically set the correct time using the Network Time Protocol (NTP). Click <kbd>Done</kbd> after making any changes.
 
-## Software Section
+### Software Section
 
 Under the _Software_ section of the _Installation Summary_ screen, you can select the installation source as well as additional packages (applications) that get installed.
 
@@ -132,7 +132,7 @@ Select the _Minimal Install_ (Basic functionality) option instead.
 
 Click <kbd>Done</kbd> at the top of the screen.
         ​
-## System Section
+### System Section
 
 The System section of the _Installation Summary_ screen is used for customizing and making changes to the underlying hardware of the target system. This is where you create your hard drive partitions or volumes, specify the file system to be used, and specify the network configuration.
 
@@ -175,11 +175,11 @@ Click <kbd>Done</kbd> to return to the main _Installation Summary_ screen.
 !!! Warning
     Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it.
 
-## The Installation
+## Installer phase 
 
 Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.
 
-## User Settings Section
+### User Settings Section
 
 This section can be used for creating a password for the `root` user account and also for creating new administrative or non-administrative accounts.
 
