@@ -1,8 +1,8 @@
 # Table of Contents
 
-This document contains the section and subsection headers for Rocky Linux documentation, as well as links to articles in each section/subsection.
+This document contains the section and subsection headers for Rocky Linux documentation; as well as links to articles in each section/subsection.
 
-The order of these sections is very important, but has not been finalized yet, so feel free to reorder as desired.
+The order of these sections is very important but has not been finalized yet, so feel free to reorder as desired.
 
 ## OS Installation and Setup
 | Classic Rocky Installation | Rocky on Windows SubSystem For Linux (WSL) |
