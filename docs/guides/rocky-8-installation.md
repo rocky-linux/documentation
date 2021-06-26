@@ -225,10 +225,10 @@ _Require a password to use this account_:
 Checked
 
 _Password_:
-`20010217`
+`04302021`
 
 _Confirm password_:
-`20010217`
+`04302021`
 
 ### Start the Installation
 
@@ -253,7 +253,7 @@ The system is now set up and ready for use. You will see the Rocky Linux console
 
 To log onto the system, type `rockstar` at the login prompt and press <kbd>enter</kbd>.
 
-At the Password prompt, type `20010217` (rockstar’s password) and press <kbd>enter</kbd> (the password will ***not*** be echoed to the screen, that is normal).
+At the Password prompt, type `04302021` (rockstar’s password) and press <kbd>enter</kbd> (the password will ***not*** be echoed to the screen, that is normal).
 
 We will run the `whoami` command after login, this command shows the name of the currently logged in user.
 
