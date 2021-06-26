@@ -105,11 +105,11 @@ Perform the following exercises as a regular user. e.g. user ying
 
 To create a new keypair
 
-1. Log into the system as user “***ying***”
+1. Log into the system as user “ying”
 
 2. Make sure that the GnuPG package is installed on your system. Type:
 
-`[ying@serverXY ying]$ ***rpm -q gnupg***`
+`[ying@serverXY ying]$ rpm -q gnupg`
 
 gnupg-\*.\*
 
@@ -119,16 +119,17 @@ If it isn’t, get the super-user to install it.
 
 4. List the keys you currently have in your key-ring. Type:
 
-`[ying@serverXY ying]$ ***gpg --list-keys***`
+`[ying@serverXY ying]$ gpg --list-keys`
 
-**NOTE**:- You shouldn’t have any keys in your key-ring yet. But the above command will also help create a default environment to enable you create a new key-pair successfully the first time.
+!!! NOTE 
+You shouldn’t have any keys in your key-ring yet. But the above command will also help create a default environment to enable you create a new key-pair successfully the first time.
 
 List the hidden directories in your home directory again. What is the name of the new directory added?
 
 5. Use the gpg program to create your new key-pairs. Type:
 
 ```
-[ying@serverXY ying\]$ ***gpg --gen-key***
+[ying@serverXY ying\]$ gpg --gen-key
 
 ......................................
 
@@ -149,7 +150,7 @@ Your selection? 1
 
  At the prompt for the type of key your want to create accept the default i.e.(DSA and ElGamal). Type 1
 
-⚠️
+!!! WARNING
 
 Option (1) will create two key-pairs for you. The DSA key-pair will be the primary keypair - for making digital signatures and a subordinate ELGamel keypair for data encryption.
 
