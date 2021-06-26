@@ -95,7 +95,6 @@ This protocol is versatile for the needs of the internet, and is currently used 
 
 The following exercises examine two particular applications that make use of cryptographic protocols - GnuPG and OpenSSH.
 
-
 # Exercise 1
 
 ## GnuPG
@@ -174,13 +173,13 @@ Please specify how long the key should be valid.
 
  0 = key does not expire
 
- &lt;n&gt; = key expires in n days
+<n> = key expires in n days
 
- &lt;n&gt;w = key expires in n weeks
+<n>w  = key expires in n weeks
 
- &lt;n&gt;m = key expires in n months
+<n>m = key expires in n months
 
- &lt;n&gt;y = key expires in n years
+<n>y = key expires in n years
 
 Key is valid for? (0) 1y
 
@@ -226,7 +225,7 @@ Listing your keys
 
 1. While still logged into the system as the user ying. Display the keys in your key-ring. Type:
 
-\[ying@serverXY ying\]$ ***gpg --list-keys***
+[ying@serverXY ying\]$  gpg --list-keys
 
 gpg: WARNING: using insecure memory!
 
@@ -242,20 +241,20 @@ sub 1024g/1EDB00AC 2003-10-16 \[expires: 2004-10-15\]
 
  to your personal gpg configuration file. Type:
 
-\[ying@serverXY ying\]$ ***echo "no-secmem-warning" &gt;&gt; ~/.gnupg/gpg.conf***
+[ying@serverXY ying\]$ echo "no-secmem-warning" &gt;&gt; ~/.gnupg/gpg.conf
 
 3. Run the command to list your keys again. to make sure your change is in effect.
 
 4. List your keys along with their signatures. Type:
 
-[ying@serverXY ying\]$ ***gpg --list-sigs***
+[ying@serverXY ying\]$ gpg --list-sigs
 
 /home/ying/.gnupg/pubring.gpg
 
 
 5. List only your secret keys. Type:
 
-[ying@serverXY ying\]$ ***gpg --list-secret-keys***
+[ying@serverXY ying\]$ gpg --list-secret-keys
 
 /home/ying/.gnupg/secring.gpg
 
@@ -333,7 +332,7 @@ The actual key ID - 1D12E484
 
  ASCII-armored format. Type:
 
-\[ying@serverXY ying\]$***gpg --output ying-pub.asc --armor --export ying@serverXY ***
+[ying@serverXY ying\]$***gpg --output ying-pub.asc --armor --export ying@serverXY ***
 
 3. Use the cat command to view the binary version of ying’s public key (ying-pub.gpg)
 
