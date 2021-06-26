@@ -1,83 +1,89 @@
 # Installing Rocky Linux
 
-This guide walks-through the detailed steps to install a 64-bit version of the rocky Linux distribution on a stand-alone system.
+This guide walks through the detailed steps to install a 64-bit version of the Rocky Linux distribution on a stand-alone system.
 
 ****
-We will be performing a server class install in this chapter using an operating system installer image downloaded from the rocky project website. We will tackle the installation and customizations steps in the following sections.
+In this guide we will be performing a server class install using an operating system installer image downloaded from the Rocky Linux project website. We will step through the installation and customization steps in the following sections.
 ****
 
-## OS installation prerequisites
+!!! Note
+    Wherever there is a command which is run from the command prompt it will be assumed that you are logged in as a standard user (not the superuser). The command to type will not show the command prompt which could be different depending on the system and operating system you are using.
 
-First, you need to download the ISO for Rocky that we will be installing.
+## OS Installation Prerequisites
 
-The latest ISO image for the version of Rocky that we will be using for this installation can be downloaded from here:
+First, you need to download the ISO to be used for this installation of Rocky Linux.
+
+The latest ISO image for the version of Rocky Linux that we will be using for this installation can be downloaded from here:
 
 ```
 https://www.rockylinux.org/download/
-
 ```
 
-To download the ISO directly from the command line, type:
+To download the ISO directly from the command line use the `wget` command:
 
 ```
-$ wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-minimal.iso
 ```
 
-Rocky ISOs are named following this convention:
+Rocky Linux ISOs are named following this convention:
 
 ```
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-For example  `Rocky-8.4-x86_64-minimal.iso`
+For example, `Rocky-8.4-x86_64-minimal.iso`
 
 !!! Note
     Rocky project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found [here](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
-## Verifying the installer ISO
+## Verifying the Installer ISO File
 
-If you've downloaded the Rocky ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupted in anyway. We'll show an example of how to verify the sha256sum of `Rocky-8.4-x86_64-minimal.iso`.
+If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-8.4-x86_64-minimal.iso` file by checking its checksum.
 
-First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky ISO, type:
+First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky Linux ISO download the checksum file for the ISO, type:
 
 ```
 wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/CHECKSUM
 ```
 
-Use the `sha256sum` utility to verify the
+Use the `sha256sum` utility to verify the integrity of the ISO file against corruption and/or tampering.
 
 ```
-sha256sum -c CHECKSUM    --ignore-missing Rocky-8.4-x86_64-minimal.iso
+sha256sum -c CHECKSUM --ignore-missing  Rocky-8.4-x86_64-minimal.iso
 ```
 
-The output should include:
+The output should show:
 
 ```
 Rocky-8.4-x86_64-minimal.iso: OK
 ```
 
+## The Installation
+
 !!! Tip
     Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
 
-## The Installation
+If the computer is setup to boot from the media that has the ISO file we can begin the installation process.
 
-Let’s begin the installation process.
+Insert and boot from the installation medium (optical disk, USB flash drive, and so on).
 
-Insert and boot off the installation medium (optical disk, USB flash drive, and so on).
-
-Once booted, you'll be presented with a welcome splash screen.
+Once the computer has booted you will be presented with the Rocky Linux 8 welcome splash screen.
 
 ![Rocky Linux installation splash screen](images/installation-F01.png)
 
-If you do not press any key, the prompt will begin a countdown, after which the installation process will start by booting the highlighted `Test this media & install Rocky Linux 8` ... option. You can also press <kbd>enter</kbd> to start the process immediately.
+If you do not press any key the installer will begin a countdown, after which the installation process will automatically execute the default, highlighted, option:
 
-A quick media verification step will take place. This media verification step can save you the trouble of starting the installation only to find out halfway through that the installer will abort because of bad installation media.
+`Test this media & install Rocky Linux 8`
 
-After the media check runs to completion, and the media is successfully verified to be usable, the installer will automatically continue to the next screen.
+You can also press <kbd>enter</kbd> at any time to start the process immediately.
+
+A quick media verification step will take place. This media verification step can save you the trouble of starting the installation only to find out halfway through that the installer has to abort because of bad installation media.
+
+After the media check runs to completion and the media is successfully verified to be usable, the installer will automatically continue to the next screen.
 
 Select the language you want to use to perform the installation in this screen. For this example, we select _English (United States)_. Then click the <kbd>Continue</kbd> button.
 
-### Installation Summary
+## Installation Summary
 
 The _Installation Summary_ screen is an all-in-one area where you make the important decisions about the operating system to be installed.
 
@@ -87,7 +93,7 @@ The screen is roughly divided into the following sections:
 - _Software_: (Installation Source and Software Selection)
 - _System_: (Installation Destination and Network & Hostname)
 
-We delve into each of these sections next and make changes where necessary.
+We will delve into each of these sections next and make changes where necessary.
 
 ### Localization Section
 
@@ -99,13 +105,13 @@ On our demo system in this guide, we accept the default value (_English US_) and
 
 However if you need to make any changes here, from the _Installation Summary_ screen, click the <kbd>Keyboard</kbd> option to specify the keyboard layout of the system. You can add additional keyboard layouts if you need to in the ensuing screen and specify their order.
 
-Click <kbd>Done</kbd> when you are done.
+Click <kbd>Done</kbd> when you are finished with this screen.
 
 #### Language Support
 
 The <kbd>Language Support</kbd> option on the _Installation Summary_ screen enables you to specify support for additional languages that you may need on the finished system.
 
-We accept the default value (__English – United States__) and make no change. Click <kbd>Done</kbd>.
+We will accept the default value (__English – United States__) and make no change, click <kbd>Done</kbd>.
 
 #### Time & Date
 
@@ -131,7 +137,7 @@ Clicking the <kbd>Software Selection</kbd> option on the main _Installation Summ
 Select the _Minimal Install_ (Basic functionality) option instead.
 
 Click <kbd>Done</kbd> at the top of the screen.
-        ​
+
 ### System Section
 
 The System section of the _Installation Summary_ screen is used for customizing and making changes to the underlying hardware of the target system. This is where you create your hard drive partitions or volumes, specify the file system to be used, and specify the network configuration.
@@ -175,7 +181,7 @@ Click <kbd>Done</kbd> to return to the main _Installation Summary_ screen.
 !!! Warning
     Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it.
 
-## Installer phase 
+## Installer Phase 
 
 Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.
 
@@ -188,12 +194,12 @@ This section can be used for creating a password for the `root` user account and
 Click the _Root Password_ field under _User Settings_ to launch the _Root Password _ task screen. In the _Root Password_ text box, set a strong password for the root user.
 
 !!! Warning
-    This user is the most privileged account on the system. Therefore, if you choose to use it or enable it - it is crucial that you protect this account with a very good password.
+    The root superuser is the most privileged account on the system. Therefore, if you choose to use or enable it, it is crucial that you protect this account with a strong password.
 
 Enter the same password again in the _Confirm_ text box.
 
 Click <kbd>Done</kbd>.
-            ​
+
 
 ### Create a User Account
 
@@ -202,7 +208,7 @@ Next click the _User Creation_ field under _User Settings_ to launch the _Create
 !!! Info
     Creating and using a non-privileged account for day-to-day tasks on a system is a good system administration practice.
 
-We’ll create a regular user that can invoke superuser (administrator) powers when needed.
+We’ll create a regular user that can invoke superuser (administrator) powers, the same as the root user, when needed.
 
 Complete the fields in the _Create User_ screen with the following information and then click <kbd>Done</kbd>:
 
@@ -219,36 +225,36 @@ _Require a password to use this account_:
 Checked
 
 _Password_:
-`04302021`
+`20010217`
 
 _Confirm password_:
-`04302021`
+`20010217`
 
 ### Start the Installation
 
 Once you are satisfied with your choices for the various installation tasks, click the Begin Installation button on the main _Installation Summary_ screen. The installation will begin, and the installer will show the progress of the installation.
 
 !!! Note
-    If you develop cold feet after you click the Begin Installation button, you can still safely back out of the installation without any loss of data (or self-esteem). To quit the installer, simply reset your system either by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
+    If you do not wish to continue after clicking the Begin Installation button, you can still safely back out of the installation without any loss of data. To quit the installer, simply reset your system either by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
 
 When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.   ​
 
 ### Complete the Installation
 
-After you’ve completed any of the mandatory subtasks and the installer has run its course, you'll be presented with a final installation progress screen with a complete message.
+After you have completed all of the mandatory subtasks, and the installer has run its course, you will be presented with a final installation progress screen with a complete message.
 
-Finally, complete the entire procedure by clicking the <kbd>Reboot System</kbd> button. The system will reboot itself.
-            ​
+Finally, complete the entire procedure by clicking the <kbd>Reboot System</kbd> button. The system will restart.
+
 ### Log In
 
-The system is now set up and ready for use. You will see the adorable Rocky Linux console.
+The system is now set up and ready for use. You will see the Rocky Linux console.
 
 ![Rocky Linux Welcome Screen](images/installation-F04.png)
 
 To log onto the system, type `rockstar` at the login prompt and press <kbd>enter</kbd>.
 
-At the Password prompt, type `04302021` (rockstar’s password) and press <kbd>enter</kbd> (nothing will appear on the screen and this is normal).
+At the Password prompt, type `20010217` (rockstar’s password) and press <kbd>enter</kbd> (the password will ***not*** be echoed to the screen, that is normal).
 
-We'll run the `whoami` command after login.
+We will run the `whoami` command after login, this command shows the name of the currently logged in user.
 
 ![Login Screen](images/installation-F06.png)
