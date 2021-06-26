@@ -13,27 +13,27 @@ Estimated time to complete this lab: 120 minutes
 
 ## Common Cryptography terms and definitions
 
-###Cryptography###
+### Cryptography
 
 In general everyday usage, Cryptography is the act or art of writing in secret characters. In technical jargon it may be defined as the science of using mathematics to encrypt and decrypt data.
 
-###Cryptanalysis###
+### Cryptanalysis
 
 Cryptanalysis is the study of how to compromise (defeat) cryptographic mechanisms. It is the science of cracking code, decoding secrets, violating authentication schemes, and in general, breaking cryptographic protocols.
 
-###Cryptology###
+### Cryptology
 
 Cryptology is the discipline of cryptography and cryptanalysis combined. Cryptology is the branch of mathematics that studies the mathematical foundations of cryptographic methods.
 
-###Encryption###
+### Encryption
 
 Encryption is the transformation of data into a form that is as close to impossible as possible to read without the appropriate knowledge (e.g. a key). Its purpose is to ensure privacy by keeping information hidden from anyone for whom it is not intended.
 
-###Decryption###
+### Decryption
 
 Decryption is the reverse of encryption; it is the transformation of encrypted data back into an intelligible form.
 
-###Cipher###
+### Cipher
 
 A method of encryption and decryption is called a cipher.
 
@@ -45,7 +45,7 @@ Cryptographic hash functions are used in various contexts, for example to comput
 
 **b)**- **MD5 (Message Digest Algorithm 5)** - is a cryptographic hash algorithm developed at RSA Laboratories. It can be used to hash an arbitrary length byte string into a 128 bit value.
 
-###Algorithm###
+### Algorithm
 
 It describes a step-by-step problem-solving procedure, especially an established, recursive computational procedure for solving a problem in a finite number of steps. Technically, an algorithm must reach a result after a finite number of steps. The efficiency of an algorithm can be measured as the number of elementary steps it takes to solve the problem. There are two classes of key-based algorithms. They are:
 
@@ -61,7 +61,7 @@ Asymmetric algorithms on the other hand use a different key for encryption and d
 
 RSA is probably the best known asymmetric encryption algorithm.
 
-###Digital Signature###
+### Digital Signature
 
 A digital signature binds a document to the owner of a particular key. Digital signatures are used to verify that a message really comes from the claimed sender.
 
@@ -69,7 +69,7 @@ The digital signature of a document is a piece of information based on both the 
 
 Several methods for making and verifying digital signatures are freely available but the most widely known algorithm is the RSA public-key algorithm.
 
-###Cryptographic Protocols###
+### Cryptographic Protocols
 
 Cryptography works on many levels. On one level you have algorithms, such as block ciphers and public key cryptosystems. Building upon these you obtain protocols, and building upon protocols you find applications (or other protocols). Below is a list of common everyday applications that make use of cryptographic protocols. These protocols are built on lower level cryptographic algorithms.
 
@@ -248,15 +248,14 @@ sub 1024g/1EDB00AC 2003-10-16 \[expires: 2004-10-15\]
 
 4. List your keys along with their signatures. Type:
 
-\[ying@serverXY ying\]$ ***gpg --list-sigs***
+[ying@serverXY ying\]$ ***gpg --list-sigs***
 
 /home/ying/.gnupg/pubring.gpg
 
-........&lt;SNIP&gt;.............
 
 5. List only your secret keys. Type:
 
-\[ying@serverXY ying\]$ ***gpg --list-secret-keys***
+[ying@serverXY ying\]$ ***gpg --list-secret-keys***
 
 /home/ying/.gnupg/secring.gpg
 
@@ -290,7 +289,7 @@ To create a revocation certificate
 
  standard output. Type:
 
-\[ying@serverXY ying\]$*** gpg --gen-revoke ying@serverXY***
+[ying@serverXY ying\]$*** gpg --gen-revoke ying@serverXY***
 
 Follow the prompts and enter your passphrase when prompted to do so.
 
@@ -298,7 +297,7 @@ Follow the prompts and enter your passphrase when prompted to do so.
 
  “revoke.asc”. Type:
 
-\[ying@serverXY ying\]$*** gpg --output revoke.asc --gen-revoke ying@serverXY***
+[ying@serverXY ying\]$*** gpg --output revoke.asc --gen-revoke ying@serverXY***
 
 3. You should store the revocation certificate in a safe place and even make a hard printed copy.
 
@@ -316,9 +315,9 @@ To export your public keys
 
 1. Export your public key in binary format to a file called “ying-pub.gpg”. Type:
 
-\[ying@serverXY ying\]$ ***gpg --output ying-pub.gpg --export &lt;your\_key’s\_user\_ID&gt;***
+[ying@serverXY ying\]$ ***gpg --output ying-pub.gpg --export &lt;your\_key’s\_user\_ID&gt;***
 
-NOTE:
+!!! NOTE
 
 Please replace &lt;your\_key’s\_user\_ID&gt; with any string that correctly identifies
 
@@ -514,7 +513,7 @@ gpg: decryption failed: secret key not available
 
  command to decrypt the file. Were they more successful in decrypting the file.
 
-NOTE:
+!!! NOTE
 
 Be very careful when decrypting binary files ( e.g. programs), because after successfully decrypting a file gpg will attempt to send the contents of the file to standard output.
 
@@ -526,7 +525,7 @@ This forces sending the output to a file called “encrypt-sec”.
 
 Which can then be viewed (or run) using any program that is suited for the file (or content) type.
 
-TIPS !!
+!!! TIPS
 
 1. Most of the commands and options used with the gpg program also have short forms that results in less
 
@@ -896,7 +895,7 @@ In this exercise you will learn how to configure the agent such that you wont ha
 
 2. Type in the command below:
 
-\[ying@serverXY .ssh\]$ ***eval \`ssh-agent\`***
+[ying@serverXY .ssh\]$ ***eval \`ssh-agent\`***
 
 Agent pid 5623
 
@@ -904,7 +903,7 @@ Take note of the PID of the agent:
 
 3. Use the “***ssh-add***” program to add your keys to the agent you launched above. Type:
 
-\[ying@serverXY .ssh\]$ ***ssh-add***
+[ying@serverXY .ssh\]$ ***ssh-add***
 
  Enter your passphrase when prompted.
 
@@ -914,8 +913,8 @@ Identity added: /home/ying/.ssh/id\_dsa (/home/ying/.ssh/id\_dsa)
 
 4. Now connect to serverPR as the user ying. You WILL NOT be prompted for a password or
 
- passphrase (i.e if everything has been done correctly). Type:
+passphrase (i.e if everything has been done correctly). Type:
 
-\[ying@serverXY .ssh\]$ ***ssh serverPR***
+[ying@serverXY .ssh\]$ ***ssh serverPR***
 
 5. Enjoy.
