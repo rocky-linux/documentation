@@ -1,14 +1,13 @@
 # Secure FTP Server - vsftpd
 
-
-# Prerequisites
+## Prerequisites
 
 * Proficiency with a command-line editor (we are using _vi_ in this example)
 * A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
 * An understanding of PAM, as well as _openssl_ commands is helpful.
 * All commands are run as the root user or sudo
 
-# Introduction 
+## Introduction 
 
 _vsftpd_ is the  Very Secure FTP Daemon (FTP being the file transfer protocol). It has been available for many years now, and is actually the default FTP daemon in Rocky Linux, as well as many other Linux distributions. 
 
@@ -250,7 +249,7 @@ When you test with a virtual user to the server running _vsftpd_, you should get
 
 If you are unable to upload a file, then you may need to go back and make sure that each of the above steps is completed. For instance, it could be that the ownership permissions for the "local_root" have not been set to the "vsftpd" user and the "nogroup" group.
 
-# Conclusions
+## Conclusion
 
 _vsftpd_ is a popular and common ftp server and can be set up as a stand alone server, or as part of an [Apache Hardened Web Server](apache_hardened_webserver/index.md). If set up to use virtual users and a certificate, it is quite secure. 
 

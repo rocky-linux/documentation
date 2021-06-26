@@ -14,7 +14,7 @@ La combinación de _mariadb-server_ y su cliente _mariadb_ son una buena alterna
 
 _mariadb-server_ es bastante popular y es usado en muchos servidores, debido a que es requerido por el CMS de [Wordpress](https://es.wordpress.org/). Aunque el mismo también se puede usar para otras cosas.
 
-Si buscas aumentar aún más la seguridad por medio de otras herramientas, te aconsejo que leas la siguiente guía, [Apache Hardened Web Server guide](apache_hardened_webserver.md).
+Si buscas aumentar aún más la seguridad por medio de otras herramientas, te aconsejo que leas la siguiente guía, [Apache Hardened Web Server guide](apache_hardened_webserver/index.md).
 
 ### Instalando mariadb-server
 

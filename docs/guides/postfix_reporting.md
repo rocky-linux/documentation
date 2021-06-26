@@ -1,6 +1,6 @@
-# Using postfix For Server Process Reporting
+# Using Postfix For Server Process Reporting
 
-# Prerequisites
+## Prerequisites
 
 * Complete comfort operating from the command line on a Rocky Linux server
 * Familiarity with an editor of your choice (this document uses the _vi_ editor, but you can substitute in your favorite editor)
@@ -8,7 +8,7 @@
 * The ability to assign variables in a bash script
 * Knowledge of what the _tail_, _more_, _grep_, and _date_ commands do
 
-# Introduction
+## Introduction
 
 Many Rocky Linux server administrators write scripts to perform specific tasks, like backups or file synchronization, and many of these scripts generate logs that have useful and sometimes very important information. Just having the logs, though, is not enough. If a process fails and logs that failure, but the busy administrator does not review the log, then a catastrophe could be in the making. 
 
@@ -75,7 +75,7 @@ The "somehost.localdomain" shows us that we need to make some changes, so stop t
 
 `systemctl stop postfix`
 
-### Configuring Postfix
+## Configuring Postfix
 
 Since we aren't setting up a complete, fully functional mail server, the configuration options that we will be using are not as extensive. The first thing we need to do is to modify the _main.cf_ file (literally the main configuration file for postfix), so let's make a backup first:
 
@@ -123,7 +123,7 @@ Now we need to tell postfix to use all of our changes. This is done with the pos
 
 Now start postfix and test your email again using the same procedure as above. You should now see that all of the "localdomain" instances have been changed to your actual domain. 
 
-## The date Command And A Variable Called today
+### The date Command and a Variable Called today
 
 Not every application will use the same logging format for the date. This means that you may have to get creative with any script you write for reporting by date. 
 
@@ -232,6 +232,6 @@ Run the script again, and you should now have an email from the server with the 
 
 You can now use [a crontab](cron_jobs_howto.md) to schedule this to run at a specific time.
 
-# Conclusion
+## Conclusion
 
 Using postfix can help you keep track of process logs that you want to monitor. You can use it along with bash scripting to gain a firm grasp of your system processes and be informed if there is trouble.

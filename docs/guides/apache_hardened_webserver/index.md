@@ -1,17 +1,17 @@
-# Introduction
+# Apache Hardened Webserver
 
-## Prerequisites And Assumptions
+## Prerequisites and Assumptions
 
-* A Rocky Linux Web Server running Apache
+* A Rocky Linux web server running Apache
 * A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
-* A comfort level with a command line editor (our examples use _vi_, but you can substitute in your favorite editor)
-* Assumes an _iptables_ firewall, rather than _firewalld_ or hardware firewall.
-* Assumes the use of a hardware firewall that our trusted devices will sit behind.
+* A comfort level with a command line editor (our examples use _vi_ which will usually invoke the _vim_ editor, but you can substitute your favorite editor)
+* Assumes an _iptables_ firewall, rather than _firewalld_ or a hardware firewall.
+* Assumes the use of a gateway hardware firewall that our trusted devices will sit behind.
 * Assumes a public IP address directly applied to the web server. We are substituting a private IP address for all of our examples.
 
-# Introduction
+## Introduction
 
-Whether you are hosting multiple web sites for customers or a single, very important, web site for your business, hardening your web server will give you peace of mind, at the expense of a little more up-front work for the administrator. 
+Whether you are hosting multiple websites for customers, or a single, very important, website for your business, hardening your web server will give you peace of mind, at the expense of a little more up-front work for the administrator. 
 
 With multiple web sites uploaded by your customers, you can pretty much be guaranteed that one of them will upload a Content Management System (CMS) with the possibility of vulnerabilities. Most customers are focused on ease of use, not security, and what happens is that updating their own CMS becomes a process that falls out of their priority list altogether. 
 
@@ -19,18 +19,18 @@ While notifying customers of vulnerabilities in their CMS may be possible for a 
 
 Web server hardening can take many forms, which may include any or all of the below tools, and possibly others not defined here. 
 
-You might elect to use a couple of these tools and not the others, so for clarity and readability this document is split out into separate documents for each tool. The exception will be the packet-based firewall (_iptables_) which will be included in this main document.
+You might elect to use a couple of these tools, and not the others, so for clarity and readability this document is split out into separate documents for each tool. The exception will be the packet-based firewall (_iptables_) which will be included in this main document.
 
-* A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - we will use _iptables_ for our example)[_iptables_ procedure](#iptablesstart)
+* A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - we will use _iptables_ for our example) [_iptables_ procedure](#iptablesstart)
 * A Host-based Intrusion Detection System (HIDS), in this case _ossec-hids_ [Apache Hardened Web Server - ossec-hids](ossec-hids.md)
 * A Web-based Application Firewall (WAF), with _mod\_security_ rules [Apache Hardened Web Server - mod_security](modsecurity.md)
 * Rootkit Hunter (rkhunter): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](rkhunter.md)
-* Database security (we are using _mariadb-server_ here) [Database - mariadb-server](../database_mariadb-server.md)
+* Database security (we are using _mariadb-server_ here) [MariaDB Database Server](../database_mariadb-server.md)
 * A secure FTP or SFTP server (we are using _vsftpd_ here) [Secure FTP Server - vsftpd](../secure_ftp_server_vsftpd.md)
 
 This procedure does not replace the [Apache Web Server Multi-Site Setup](../apache-sites-enabled.md), it simply adds these security elements to it. If you haven't read it, take some time to look at it before proceeding.
 
-# Other Considerations
+## Other Considerations
 
 Some of the tools outlined here have both free and fee-based options. Depending on your needs or support requirements, you may want to consider the fee-based versions. You should research what is out there and make a decision after weighing all of your options. 
 
@@ -62,7 +62,7 @@ The diagram above shows our general layout. The _iptables_ packet-based firewall
 
 Each individual package section has the needed installation files and any configuration procedure listed. The installation instructions for _iptables_ is part of the [disable firewalld and enable the iptables services](../enabling_iptables_firewall.md) procedure.
 
-# <a name="iptablesstart"></a>Configuring iptables
+## <a name="iptablesstart"></a>Configuring iptables
 
 This portion of the documentation assumes that you have elected to install the _iptables_ services and utilities and that you are not planning on using _firewalld_. 
 
@@ -133,9 +133,9 @@ If we add new rules to the /etc/firewall.conf, just run it again to take those r
 
 You can always fix this however, from the console on the server. Because the _iptables_ service is enabled, a reboot will restore all rules that have been added with `/etc/firewall.conf`.
 
-# Conclusions
+## Conclusion
 
-There are a number of ways to harden an Apache web server to make it more secure. Each operates independently of the other options, so you can choose to install any or all of them based on your needs. 
+There are a number of ways to harden an Apache web server to make it more secure. Each operates independently of the other options, so you can choose to install any, or all, of them based on your needs. 
 
-Each requires some configuration with various tuning required for some to meet your specific needs. Since web services are constantly attacked by unscrupulous actors, implementing at least some of these will help an administrator sleep at night.
+Each requires some configuration with various tuning required for some to meet your specific needs. Since web services are constantly under attack 24/7 by unscrupulous actors, implementing at least some of these will help an administrator sleep at night.
 
