@@ -1,12 +1,13 @@
 # Apache Web Server Multi-Site Setup
 
 ## What You Need
+
 * A server running Rocky Linux
 * Knowledge of the command-line and text editors (This example uses *vi*, but can be adapted to your favorite editor.)
     * If you'd like to learn about the vi text editor, [here's a handy tutorial](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
 * Basic knowledge about installing and running web services
 
-# Apache Web Server Multi-Site Setup
+## Introduction
 
 Rocky Linux has many ways for you to set up a web site. This is just one method, using Apache, and is designed for use as a multi-site setup on a single server. While this method is designed for multi-site servers, it can also act as a base configuration for a single site server as well. 
 
@@ -211,4 +212,3 @@ That's by design, so that we can easily remove things in the event that httpd fa
 This will create the link to the configuration file in *sites-enabled*, just like we want.
 
 Now just start httpd with `systemctl start httpd`. Or restart it if it’s already running: `systemctl restart httpd`, and assuming the web service restarts, you can now go and do some testing on your new site.
-

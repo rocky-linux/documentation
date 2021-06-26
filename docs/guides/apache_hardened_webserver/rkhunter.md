@@ -1,6 +1,6 @@
-# rkhunter
+# Rootkit Hunter
 
-# Prerequisites
+## Prerequisites
 
 * A Rocky Linux Web Server running Apache
 * Proficiency with a command-line editor (we are using _vi_ in this example)
@@ -8,7 +8,7 @@
 * An understanding of what can trigger a response to changed files on the file system (such as package updates) is helpful
 * All commands are run as the root user or sudo
 
-# Introduction
+## Introduction
 
 _rkhunter_ (Root Kit Hunter) is a Unix-based tool that scans for rootkits, backdoors, and possible local exploits. It is a good part of a hardened web server, and is designed to notify the administrator quickly when something suspicious happens on the server's file system. 
 
@@ -58,6 +58,6 @@ To run _rkhunter_ manually:
 
 This will echo back to the screen as the checks are performed, prompting you to `[Press <ENTER> to continue]` after each section. 
 
-# Conclusions
+## Conclusion
 
 _rkhunter_ is one part of a hardened server strategy that can help in monitoring the file system and reporting any issues to the administrator. It is perhaps one of the easiest hardening tools to install, configure, and run.

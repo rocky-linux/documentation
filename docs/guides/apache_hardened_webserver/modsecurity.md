@@ -1,6 +1,6 @@
-# mod_security
+# Web-based Application Firewall (WAF)
 
-# Prerequisites
+## Prerequisites
 
 * A Rocky Linux Web Server running Apache
 * Proficiency with a command-line editor (we are using _vi_ in this example)
@@ -9,9 +9,9 @@
 * An account on Comodo's WAF site
 * All commands are run as the root user or sudo
 
-# Introduction
+## Introduction
 
-_mod\_security_ is an open-source web-based application firewall (WAF). It is just one possible component of a hardened Apache web server setup and can be used with or without other tools. 
+_mod\_security_ is an open-source web-based application firewall (WAF). It is just one possible component of a hardened Apache web server setup and can be used with, or without, other tools. 
 
 If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server guide](index.md). This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
 
@@ -190,7 +190,7 @@ Now save your changes (with vi it's `SHIFT+:+wq!`) and restart httpd:
 
 If httpd starts OK, then you are ready to start using _mod\_security_ with the CWAF.
 
-# Conclusions
+## Conclusion
 
 _mod\_security_ with CWAF is another tool that can be used to help harden an Apache web server. Because CWAF's passwords require punctuation and because the standalone installation does not send that punctuation correctly, managing CWAF rules requires logging into the CWAF site and downloading rules and changes. 
 
