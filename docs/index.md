@@ -8,7 +8,7 @@ The order of these sections is very important but has not been finalized yet, so
 | Classic Rocky Installation | Rocky on Windows SubSystem For Linux (WSL) |
 | --- |  --- |
 | [Rocky 8 Installation](1._Guides/rocky-8-installation.md) | [Rocky & WSL (rinse method)](1._Guides/rocky_to_wsl_howto.md) |
-| | [Rocky & WSL2 (virtualbox and docker)](1._Guides/import_rocky_to_wsl_howto.md) |
+| [Convert CentOS (and Others) to Rocky Linux](1._Guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox and docker)](1._Guides/import_rocky_to_wsl_howto.md) |
 | [Install MATE on Rocky Linux](1._Guides/mate_installation.md) |  |
 
 ## Development and Packaging
