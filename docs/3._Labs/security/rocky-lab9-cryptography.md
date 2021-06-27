@@ -1,7 +1,7 @@
 
 # Lab 9: Cryptography
 
-Objectives
+## Objectives
 
 After completing this lab, you will be able to
 
@@ -9,50 +9,31 @@ After completing this lab, you will be able to
 
 Estimated time to complete this lab: 120 minutes
 
-&nbsp;
-&nbsp;
-&nbsp;
-
-
-**Table of Contents**
-
-- [Common cryptography terms and definitions](#common-cryptography-terms-and-definitions)
-
-- [Exercise 1](#exercise-1)
-
-  * [Gnupg](#gnupg)
-
-- [Exercise 2](#exercise-2)
-
-  * [Key Administration](#key-administration)
-- [Exercise 3](#exercise-3)
-  * [Digital Signatures](#digital-signatures)
-
 
 
 ## Common Cryptography terms and definitions
 
-**Cryptography**
+### Cryptography
 
 In general everyday usage, Cryptography is the act or art of writing in secret characters. In technical jargon it may be defined as the science of using mathematics to encrypt and decrypt data.
 
-**Cryptanalysis**
+### Cryptanalysis
 
 Cryptanalysis is the study of how to compromise (defeat) cryptographic mechanisms. It is the science of cracking code, decoding secrets, violating authentication schemes, and in general, breaking cryptographic protocols.
 
-**Cryptology**
+### Cryptology
 
 Cryptology is the discipline of cryptography and cryptanalysis combined. Cryptology is the branch of mathematics that studies the mathematical foundations of cryptographic methods.
 
-**Encryption**
+### Encryption
 
 Encryption is the transformation of data into a form that is as close to impossible as possible to read without the appropriate knowledge (e.g. a key). Its purpose is to ensure privacy by keeping information hidden from anyone for whom it is not intended.
 
-**Decryption**
+### Decryption
 
 Decryption is the reverse of encryption; it is the transformation of encrypted data back into an intelligible form.
 
-**Cipher**
+### Cipher
 
 A method of encryption and decryption is called a cipher.
 
@@ -64,7 +45,7 @@ Cryptographic hash functions are used in various contexts, for example to comput
 
 **b)**- **MD5 (Message Digest Algorithm 5)** - is a cryptographic hash algorithm developed at RSA Laboratories. It can be used to hash an arbitrary length byte string into a 128 bit value.
 
-**Algorithm**
+### Algorithm
 
 It describes a step-by-step problem-solving procedure, especially an established, recursive computational procedure for solving a problem in a finite number of steps. Technically, an algorithm must reach a result after a finite number of steps. The efficiency of an algorithm can be measured as the number of elementary steps it takes to solve the problem. There are two classes of key-based algorithms. They are:
 
@@ -80,7 +61,7 @@ Asymmetric algorithms on the other hand use a different key for encryption and d
 
 RSA is probably the best known asymmetric encryption algorithm.
 
-**Digital Signature**
+### Digital Signature
 
 A digital signature binds a document to the owner of a particular key. Digital signatures are used to verify that a message really comes from the claimed sender.
 
@@ -88,7 +69,7 @@ The digital signature of a document is a piece of information based on both the 
 
 Several methods for making and verifying digital signatures are freely available but the most widely known algorithm is the RSA public-key algorithm.
 
-**Cryptographic Protocols**
+### Cryptographic Protocols
 
 Cryptography works on many levels. On one level you have algorithms, such as block ciphers and public key cryptosystems. Building upon these you obtain protocols, and building upon protocols you find applications (or other protocols). Below is a list of common everyday applications that make use of cryptographic protocols. These protocols are built on lower level cryptographic algorithms.
 
@@ -114,7 +95,6 @@ This protocol is versatile for the needs of the internet, and is currently used 
 
 The following exercises examine two particular applications that make use of cryptographic protocols - GnuPG and OpenSSH.
 
-
 # Exercise 1
 
 ## GnuPG
@@ -125,11 +105,11 @@ Perform the following exercises as a regular user. e.g. user ying
 
 To create a new keypair
 
-1. Log into the system as user “***ying***”
+1. Log into the system as user “ying”
 
 2. Make sure that the GnuPG package is installed on your system. Type:
 
-`[ying@serverXY ying]$ ***rpm -q gnupg***`
+`[ying@serverXY ying]$ rpm -q gnupg`
 
 gnupg-\*.\*
 
@@ -139,16 +119,17 @@ If it isn’t, get the super-user to install it.
 
 4. List the keys you currently have in your key-ring. Type:
 
-`[ying@serverXY ying]$ ***gpg --list-keys***`
+`[ying@serverXY ying]$ gpg --list-keys`
 
-**NOTE**:- You shouldn’t have any keys in your key-ring yet. But the above command will also help create a default environment to enable you create a new key-pair successfully the first time.
+!!! NOTE 
+You shouldn’t have any keys in your key-ring yet. But the above command will also help create a default environment to enable you create a new key-pair successfully the first time.
 
 List the hidden directories in your home directory again. What is the name of the new directory added?
 
 5. Use the gpg program to create your new key-pairs. Type:
 
 ```
-[ying@serverXY ying\]$ ***gpg --gen-key***
+[ying@serverXY ying\]$ gpg --gen-key
 
 ......................................
 
@@ -169,7 +150,7 @@ Your selection? 1
 
  At the prompt for the type of key your want to create accept the default i.e.(DSA and ElGamal). Type 1
 
-**NOTES**:
+!!! WARNING
 
 Option (1) will create two key-pairs for you. The DSA key-pair will be the primary keypair - for making digital signatures and a subordinate ELGamel keypair for data encryption.
 
@@ -193,13 +174,13 @@ Please specify how long the key should be valid.
 
  0 = key does not expire
 
- &lt;n&gt; = key expires in n days
+<n> = key expires in n days
 
- &lt;n&gt;w = key expires in n weeks
+<n>w  = key expires in n weeks
 
- &lt;n&gt;m = key expires in n months
+<n>m = key expires in n months
 
- &lt;n&gt;y = key expires in n years
+<n>y = key expires in n years
 
 Key is valid for? (0) 1y
 
@@ -245,7 +226,7 @@ Listing your keys
 
 1. While still logged into the system as the user ying. Display the keys in your key-ring. Type:
 
-\[ying@serverXY ying\]$ ***gpg --list-keys***
+[ying@serverXY ying\]$  gpg --list-keys
 
 gpg: WARNING: using insecure memory!
 
@@ -261,21 +242,20 @@ sub 1024g/1EDB00AC 2003-10-16 \[expires: 2004-10-15\]
 
  to your personal gpg configuration file. Type:
 
-\[ying@serverXY ying\]$ ***echo "no-secmem-warning" &gt;&gt; ~/.gnupg/gpg.conf***
+[ying@serverXY ying\]$ echo "no-secmem-warning" &gt;&gt; ~/.gnupg/gpg.conf
 
 3. Run the command to list your keys again. to make sure your change is in effect.
 
 4. List your keys along with their signatures. Type:
 
-\[ying@serverXY ying\]$ ***gpg --list-sigs***
+[ying@serverXY ying\]$ gpg --list-sigs
 
 /home/ying/.gnupg/pubring.gpg
 
-........&lt;SNIP&gt;.............
 
 5. List only your secret keys. Type:
 
-\[ying@serverXY ying\]$ ***gpg --list-secret-keys***
+[ying@serverXY ying\]$ gpg --list-secret-keys
 
 /home/ying/.gnupg/secring.gpg
 
@@ -309,7 +289,7 @@ To create a revocation certificate
 
  standard output. Type:
 
-\[ying@serverXY ying\]$*** gpg --gen-revoke ying@serverXY***
+[ying@serverXY ying\]$*** gpg --gen-revoke ying@serverXY***
 
 Follow the prompts and enter your passphrase when prompted to do so.
 
@@ -317,7 +297,7 @@ Follow the prompts and enter your passphrase when prompted to do so.
 
  “revoke.asc”. Type:
 
-\[ying@serverXY ying\]$*** gpg --output revoke.asc --gen-revoke ying@serverXY***
+[ying@serverXY ying\]$*** gpg --output revoke.asc --gen-revoke ying@serverXY***
 
 3. You should store the revocation certificate in a safe place and even make a hard printed copy.
 
@@ -335,9 +315,9 @@ To export your public keys
 
 1. Export your public key in binary format to a file called “ying-pub.gpg”. Type:
 
-\[ying@serverXY ying\]$ ***gpg --output ying-pub.gpg --export &lt;your\_key’s\_user\_ID&gt;***
+[ying@serverXY ying\]$ ***gpg --output ying-pub.gpg --export &lt;your\_key’s\_user\_ID&gt;***
 
-NOTE:
+!!! NOTE
 
 Please replace &lt;your\_key’s\_user\_ID&gt; with any string that correctly identifies
 
@@ -353,7 +333,7 @@ The actual key ID - 1D12E484
 
  ASCII-armored format. Type:
 
-\[ying@serverXY ying\]$***gpg --output ying-pub.asc --armor --export ying@serverXY ***
+[ying@serverXY ying\]$***gpg --output ying-pub.asc --armor --export ying@serverXY ***
 
 3. Use the cat command to view the binary version of ying’s public key (ying-pub.gpg)
 
@@ -533,7 +513,7 @@ gpg: decryption failed: secret key not available
 
  command to decrypt the file. Were they more successful in decrypting the file.
 
-NOTE:
+!!! NOTE
 
 Be very careful when decrypting binary files ( e.g. programs), because after successfully decrypting a file gpg will attempt to send the contents of the file to standard output.
 
@@ -545,7 +525,7 @@ This forces sending the output to a file called “encrypt-sec”.
 
 Which can then be viewed (or run) using any program that is suited for the file (or content) type.
 
-TIPS !!
+!!! TIPS
 
 1. Most of the commands and options used with the gpg program also have short forms that results in less
 
@@ -915,7 +895,7 @@ In this exercise you will learn how to configure the agent such that you wont ha
 
 2. Type in the command below:
 
-\[ying@serverXY .ssh\]$ ***eval \`ssh-agent\`***
+[ying@serverXY .ssh\]$ ***eval \`ssh-agent\`***
 
 Agent pid 5623
 
@@ -923,7 +903,7 @@ Take note of the PID of the agent:
 
 3. Use the “***ssh-add***” program to add your keys to the agent you launched above. Type:
 
-\[ying@serverXY .ssh\]$ ***ssh-add***
+[ying@serverXY .ssh\]$ ***ssh-add***
 
  Enter your passphrase when prompted.
 
@@ -933,8 +913,8 @@ Identity added: /home/ying/.ssh/id\_dsa (/home/ying/.ssh/id\_dsa)
 
 4. Now connect to serverPR as the user ying. You WILL NOT be prompted for a password or
 
- passphrase (i.e if everything has been done correctly). Type:
+passphrase (i.e if everything has been done correctly). Type:
 
-\[ying@serverXY .ssh\]$ ***ssh serverPR***
+[ying@serverXY .ssh\]$ ***ssh serverPR***
 
 5. Enjoy.

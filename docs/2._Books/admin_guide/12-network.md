@@ -1,4 +1,4 @@
-# Implementing the network
+# 12: Implementing the network
 
 In this chapter you will learn how to work with and manage the network.
 
