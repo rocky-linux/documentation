@@ -1,4 +1,4 @@
-# 00: Introduction
+# Introduction
 
 The Administration Guide is a collection of Educational Documents focused on System Administrators. They can be used by future System Administrators trying to get up to speed, by current System Administrators who would like a refresher, or by any Linux user who'd like to learn more about the Linux environment, commands, processes, and more. Like all documents of this type, it will evolve and update over time.
 
@@ -10,9 +10,9 @@ Next comes the chapter on the VI editor. While Linux comes with many editors, VI
 
 We can then get into the deep functioning of Linux to discover how the system manages:
 
-* - users.
-* - file systems.
-* - processes.
+* users.
+* file systems.
+* processes.
 
 Next, we will cover an essential subject for the System Administrator: The Bacup Process. Many software solutions come with Linux to enhance Backups (rsnapshot, lsyncd, etcetera.)It is good to know the essential components of the backup that are within the operating system. We will investigate two tools: `tar` and the less widespread `cpio` in this chapter.
 
@@ -20,6 +20,3 @@ WRegarding management of the system during the boot process, it has evolved enor
 
 
 We will conclude by examining the management of tasks, the implementation of the network, and software installation.
-
-
-

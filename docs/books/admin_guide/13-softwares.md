@@ -1,4 +1,4 @@
-# 13: Software Management
+# Software Management
 
 ## Generalities
 

@@ -1,4 +1,4 @@
-# 07: File system
+# File System
 
 In this chapter you will learn how to work with filesystems.
 

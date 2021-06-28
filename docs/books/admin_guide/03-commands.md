@@ -1,4 +1,4 @@
-# 03: Commands for Linux users
+# Commands for Linux Users
 
 In this chapter you will learn how to work with Linux with the commands.
 

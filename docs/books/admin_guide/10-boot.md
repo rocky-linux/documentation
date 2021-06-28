@@ -1,6 +1,6 @@
-# 10: System startup
+# System Startup
 
-In this chapter you will learn how the system start.
+In this chapter you will learn how the system starts, usually known as 'booting'.
 
 ****
 **Objectives** : In this chapter, future Linux administrators will learn:

@@ -1,4 +1,4 @@
-# 08: Process management
+# Process Management
 
 In this chapter you will learn how to work with processes.
 
