@@ -585,9 +585,9 @@ ssh
 
 The clients suite of programs include “ssh”. This is a program used for logging into remote systems and can also be used for executing commands on remote systems.
 
-# Exercise 5
+## Exercise 5
 
-## sshd
+### sshd
 
 Usage: sshd \[options\]
 
