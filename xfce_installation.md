@@ -20,52 +20,63 @@ When installing Rocky Linux, we used the following sets of packages:
 
 First, run the server update command to let the system rebuild the repository cache, so that it could recognize the packages available in that.
 
-`yum update`
-
-To check the available repository on your system you can use the command:
-
-`yum repolist`
-
-You should see Extra packages for Enterprise Linux 8 and Linux Modular 8.
-
-##Check The Available Environments and Tools in the Group
-
-`yum grouplist`
-
-You should see the Group for XFCE listed.
+`dnf update`
 
 ## Enabling Repositories
 
-We need the unofficial repository for XFCE, to run on Rocky 8.x versions. 
+We need the unofficial repository for XFCE in the EPEL, to run on Rocky 8.x versions.
 
 Enable this repository by entering:
-
-`yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`
-
-For Rocky Linux 7.x versions enable the repository by entering:
-
-`yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm`
-
-As noted from the link above, you also need the Powertools repository and the EPEL. Go ahead and enable those now:
-
-`dnf config-manager --set-enabled powertools` 
 
 `dnf install epel-release`
 
 And answer 'Y' to install the EPEL.
 
+You also need the Powertools and lightdm repositories. Go ahead and enable those now:
+
+`dnf config-manager --set-enabled powertools`
 
 `dnf copr enable stenstorp/lightdm`
 
 Again, you will be presented with a warning message about the repository. Go ahead and answer `Y` to the prompt.
 
-Go ahead and run `yum update` one more time to make sure all of the enabled repositories are read into the system.
+## Check The Available Environments and Tools in the Group
+
+Now that the repositories are enabled, run the following commands to check everything.
+
+First, check your repository listing with:
+
+`dnf repolist`
+
+You should get the following back showing all of the enabled repositories:
+
+```
+appstream                                                        Rocky Linux 8 - AppStream
+baseos                                                           Rocky Linux 8 - BaseOS
+copr:copr.fedorainfracloud.org:stenstorp:lightdm                 Copr repo for lightdm owned by stenstorp
+epel                                                             Extra Packages for Enterprise Linux 8 - x86_64
+epel-modular                                                     Extra Packages for Enterprise Linux Modular 8 - x86_64
+extras                                                           Rocky Linux 8 - Extras
+powertools                                                       Rocky Linux 8 - PowerTools
+```
+
+Next run the following command to check for XFCE:
+
+`dnf grouplist`
+
+You should see "Xfce" at the bottom of the listing.
+
+Go ahead and run `dnf update` one more time to make sure all of the enabled repositories are read into the system.
 
 ## Installing Packages
 
 To install XFCE, run:
 
-`yum groupinstall "xfce"`
+`dnf groupinstall "xfce"`
+
+Also install lightdm:
+
+`dnf install lightdm`
 
 ## Final Steps
 
@@ -81,4 +92,4 @@ You should end up with a login prompt in the XFCE GUI, and when you login, you w
 
 ## Conclusion
 
-XFCE is a light environment with simple interface for those who dislike eye-candy and bloat. This Tutorial will be updated with images soon, showing screenshots to give a viual example of the installation.
+XFCE is a light environment with simple interface for those who dislike eye-candy and bloat. This Tutorial will be updated with images soon, showing screenshots to give a visual example of the installation.
