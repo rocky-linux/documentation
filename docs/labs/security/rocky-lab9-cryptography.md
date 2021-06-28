@@ -95,9 +95,9 @@ This protocol is versatile for the needs of the internet, and is currently used 
 
 The following exercises examine two particular applications that make use of cryptographic protocols - GnuPG and OpenSSH.
 
-# Exercise 1
+## Exercise 1
 
-## GnuPG
+### GnuPG
 
 GnuPG (GNU Privacy Guard) is a set of programs for public key encryption and digital signatures. The tools can be used to encrypt data and to create digital signatures. It also includes an advanced key management facility. GnuPG uses public-key cryptography to enable users to communicate securely
 
@@ -216,9 +216,9 @@ Enter passphrase: \*\*\*\*\*\*\*\*
 
 Repeat passphrase: \*\*\*\*\*\*\*\*
 
-# Exercise 2
+## Exercise 2
 
-## Key Administration
+### Key Administration
 
 The gpg program is also used in key administration.
 
@@ -343,9 +343,9 @@ The actual key ID - 1D12E484
 
 6. You will observe that the ASCII version is more suited for posting on web-pages or spamming etc..
 
-# Exercise 3
+## Exercise 3
 
-## Digital signatures
+### Digital signatures
 
 Creating and verifying signatures uses the public/private keypair in an operation different from encryption and decryption. A signature is created using the private key of the signer. The signature can be verified using the corresponding public key.
 
@@ -689,9 +689,9 @@ d. The key should not use any passphrase
 
  and no passphrase?
 
-# Exercise 6
+## Exercise 6
 
-## ssh
+### ssh
 
 ```
 Usage:- ssh \[-l login\_name\] hostname | user@hostname \[command\]
@@ -777,9 +777,9 @@ To use scp
 
 \[me@serverXY myimports\]$ ***scp -r ying@serverPR:/home/ying/\* .***
 
-# Exercise 7
+## Exercise 7
 
-## Creating User Public and Private keys for SSH
+### Creating User Public and Private keys for SSH
 
 Each individual user that wants to use SSH with RSA or DSA authentication needs a set of public keys and private keys. The ssh-keygen program can be used to create these keys ( just as it was used earlier when you created spare keys for your system)
 
@@ -825,9 +825,9 @@ The key fingerprint is:
 
 5. Use the cat command to view the contents of your public-key file (i.e. “**~/.ssh/id\_rsa.pub**”).
 
-# Exercise 8
+## Exercise 8
 
-## Authenticating via Public-Key
+### Authenticating via Public-Key
 
 Thus far you have been using a password based authentication scheme to log into user accounts at serverPR.
 
@@ -877,9 +877,9 @@ password. Enter the passphrase you created earlier when you created your keys.
 
 5. After successfully logging into serverPR; Log back out.
 
-# Exercise 9
+## Exercise 9
 
-## ssh-agent
+### ssh-agent
 
 According to the man page - ssh-agent is a program to hold private keys used for public key authentication (RSA, DSA). The idea is that ssh-agent is started in the beginning of an X-session or a login session, and all other windows or programs are started as clients to the ssh-agent program. Through use of environment variables the agent can be located and automatically used for authentication when logging into other machines using ssh.
 
