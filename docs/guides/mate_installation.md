@@ -23,6 +23,9 @@ Enable this repository by entering:
 
 `dnf copr enable stenstorp/MATE`
 
+!!! Warning
+    The `copr` build system creates a repository that is known to work for installing `mate` and `lightdm` (below), but is not maintained by the Rocky Linux community. Use at your own risk!
+    
 You will get a warning message about the repository, but go ahead and enable it by typing `Y` to allow.
 
 As noted from the link above, you also need the Powertools repository and the EPEL. Go ahead and enable those now:
