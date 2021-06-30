@@ -1,4 +1,4 @@
-# Backups and restorations
+# 09: Backups and restorations
 
 In this chapter you will learn how to backup and restore your data with Linux.
 
@@ -6,8 +6,8 @@ In this chapter you will learn how to backup and restore your data with Linux.
 
 **Objectives** : In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: use the `tar` and `cpio` command to make backup;   
-:heavy_check_mark: check their backup or restore data;   
+:heavy_check_mark: use the `tar` and `cpio` command to make a backup;   
+:heavy_check_mark: check their backups and restore data;   
 :heavy_check_mark: compress or decompress their backups.
 
 :checkered_flag: **backup**, **restore**, **compression**
@@ -19,18 +19,20 @@ In this chapter you will learn how to backup and restore your data with Linux.
 
 ****
 
+!!! Note
+    Throughout this chapter the command structures use "device" to specify both a target location for backup, and the source location when restoring. The device can be either external media or a local file. You should get a feel for this as the chapter unfolds, but you can always refer back to this note for clarification if you need to.
 
-The backup will allow to answer a need of conservation and restoration of the data in a sure and effective way.
+The backup will answer a need to conserve and restore data in a sure and effective way.
 
-The backup allows you to protect yourself from the following elements:
+The backup allows you to protect yourself from the following:
 
 * **Destruction**: voluntary or involuntary. Human or technical. Virus, ...
 * **Deletion**: voluntary or involuntary. Human or technical. Virus, ...
-* **Integrity** : data become unusable.
+* **Integrity** : data becomes unusable.
 
-No system is infallible, no human is infallible, so to avoid losing data, it must be backed up to be able to restore them after a problem.
+No system is infallible, no human is infallible, so to avoid losing data, it must be backed up to be able to restore after a problem.
 
-The backup media are kept in another room (or building) than the server so that a disaster does not destroy the server and the backups.
+The backup media should be kept in another room (or building) than the server so that a disaster does not destroy the server and the backups.
 
 In addition, the administrator must regularly check that the media are still readable.
 
@@ -41,11 +43,11 @@ There are two principles, the **backup** and the **archive**.
 * The archive destroys the information source after the operation.
 * The backup preserves the source of information after the operation.
 
-These operations consist in saving information in a file, on a peripheral or a support (tapes, disks, ...).
+These operations consist of saving information in a file, on a peripheral or a supported media (tapes, disks, ...).
 
 ### The process
 
-Backup requires a lot of discipline and rigor from the system administrator. It is necessary to ask the following questions:
+Backups require a lot of discipline and rigor from the system administrator. It is necessary to ask the following questions:
 
 * What is the appropriate medium?
 * What should be backed up?
@@ -59,14 +61,14 @@ Backup requires a lot of discipline and rigor from the system administrator. It 
 
 ### Backup methods
 
-* **Complete**: one or more **file systems** are backed up (kernel, data, utilities, ...).
+* **Complete**: one or more **filesystems** are backed up (kernel, data, utilities, ...).
 * **Partial**: one or more **files** are backed up (configurations, directories, ...).
 * **Differential**: only files modified since the last **complete** backup are backed up.
 * **Incremental**: only files modified since the last backup are backed up.
 
 ### Periodicity
 
-* **Precurrent** : at a given time (before a system update, ...).
+* **Pre-current** : at a given time (before a system update, ...).
 * **Periodic**: Daily, weekly, monthly, ...
 
 !!! Tip
@@ -92,14 +94,14 @@ There are many utilities to make backups.
 * **graphical tools**;
 * **command line tools**: `tar`, `cpio`, `pax`, `dd`, `dump`, ...
 
-The commands we will see here are `tar` and `cpio`.
+The commands we will use here are `tar` and `cpio`.
 
 * `tar`:
   * easy to use ;
   * allows adding files to an existing backup.
 * `cpio` :
   * retains owners;
-  * groups, dates and rights;
+  * retains groups, dates and rights;
   * skips damaged files;
   * complete file system.
 
@@ -119,7 +121,7 @@ The use of a naming convention makes it possible to quickly target the contents 
     The name of the backup must be an explicit name.
 
 !!! Note
-The notion of extension under Linux does not exist.
+    The notion of extension under Linux does not exist. In other words, our use of extensions here is for the human operator. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
 ### Contents of a backup
 
@@ -148,7 +150,7 @@ The `tar` command allows saving on several successive media (multi-volume option
 
 It is possible to extract all or part of a backup.
 
-`tar` implicitly backs up in relative mode even if the path of the information to be backed up is mentioned in absolute mode. However, backup and restore in absolute mode are possible.
+`tar` implicitly backs up in relative mode even if the path of the information to be backed up is mentioned in absolute mode. However, backups and restores in absolute mode are possible.
 
 ### Restoration guidelines
 
@@ -167,7 +169,7 @@ Restorations are usually performed after a problem has occurred that needs to be
 
 The default utility for creating backups on UNIX systems is the `tar` command. These backups can be compressed by `bzip2`, `xz`, `lzip`, `lzma`, `lzop`, `gzip`, `compress` or `zstd`.
 
-`tar` allows you to extract a single file or a directory from a backup, view its contents or validate its integrity, etc.
+`tar` allows you to extract a single file or a directory from a backup, view its contents or validate its integrity.
 
 #### Estimate the size of a backup
 
@@ -203,7 +205,7 @@ Here is an example of a naming convention for a `tar` backup, knowing that the d
 
 ##### Create a backup in relative mode
 
-Creating a non-compressed backup in relative mode is done with the `cvf`* keys:
+Creating a non-compressed backup in relative mode is done with the `cvf` keys:
 
 ```
 tar c[vf] [device] [file(s)]
@@ -264,7 +266,7 @@ $ tar cvzf backup.tar.gz dirname/
     The `.tgz` extension is an equivalent extension to `.tar.gz`.
 
 !!! Note
-    Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the key makes the command easier to understand (e.g. `cvfz` or `cvfj`, etc.).
+    Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the keys makes the command easier to understand (e.g. `cvfz` or `cvfj`, etc.).
 
 ##### Creating a compressed backup with `bzip`
 
@@ -281,7 +283,7 @@ $ tar cvfj backup.tar.bz2 dirname/
 !!! Note
     The `.tbz` and `.tb2` extensions are equivalent to `.tar.bz2` extensions.
 
-##### Compressions `compress`, `gzip`, `bzip2`, `lzip` and `xz`
+##### Compression `compress`, `gzip`, `bzip2`, `lzip` and `xz`
 
 Compression, and consequently decompression, will have an impact on resource consumption (time and CPU usage).
 
@@ -362,7 +364,7 @@ $ tar tvf backup.tar | less
     To list or retrieve the contents of a backup, it is not necessary to mention the compression algorithm used when the backup was created. That is, a `tar tvf` is equivalent to `tar tvfj`, to read the contents, and a `tar xvf` is equivalent to `tar xvfj`, to extract.
 
 !!! Tip
-  Always check the contents of a backup.
+    Always check the contents of a backup.
 
 #### Check the integrity of a backup
 
@@ -532,7 +534,7 @@ This list is provided with the commands `find`, `ls` or `cat`.
 Syntax of the `cpio` command:
 
 ```
-[files command |] cpio {-o| --create} [-options] [<fic-list] [>device]
+[files command |] cpio {-o| --create} [-options] [<file-list] [>device]
 ```
 
 Example:
@@ -827,7 +829,7 @@ usr.cpio
 
 The file name is truncated by `bunzip2` and the extension `.bz2` is removed.
 
-`bunzip2` also decompresses the file with the following extensions :
+`bunzip2` also decompresses the file with the following extensions:
 
 * `-bz` ;
 * `.tbz2` ;
