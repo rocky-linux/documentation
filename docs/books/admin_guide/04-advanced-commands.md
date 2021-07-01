@@ -1,6 +1,6 @@
 # 04: Advanced Commands for Linux users
 
-In this chapter you will learn:
+In this chapter you will learn some advanced commands for Linux.
 
 ****
 
@@ -9,7 +9,7 @@ In this chapter you will learn:
 :heavy_check_mark: some useful commands not covered in the previous chapter;   
 :heavy_check_mark: some advanced commands.
 
-:checkered_flag: **user commands**, **linux**
+:checkered_flag: **user commands**, **Linux**
 
 **Knowledge**: :star:   
 **Complexity**: :star: :star: :star:
@@ -210,6 +210,9 @@ The `-I` option allows you to specify a character (in our example the `%` charac
 ## `yum-utils` package
 
 The `yum-utils` package is a collection of utilities from different authors for `yum`, which make it easier and more powerful to use.
+
+!!! Note
+    While `yum` has been replaced by `dnf` in Rocky Linux 8, the package name has remained `yum-utils` although it can be installed as `dnf-utils` as well. These are classic YUM utilities implemented as CLI shims on top of DNF to maintain backwards compatibility with `yum-3`.
 
 Here are some examples of usage:
 
