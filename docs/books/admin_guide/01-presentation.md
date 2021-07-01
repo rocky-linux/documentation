@@ -256,7 +256,7 @@ There are several types of shells available and configurable on a platform or ac
 
 - [ ] Linus Torvalds   
 - [ ] Ken Thompson   
-- [ ] Lionel Richie   
+- [ ] Dennis Richie   
 - [ ] Brian Kernighan   
 - [ ] Andrew Stuart Tanenbaum   
 
