@@ -45,6 +45,7 @@ The following packages have been updated:
 The following modules have been updated:
 
 * PyYAML -> PyYAML-5.4.1-1.module+el8.4.0+595+c96abaa2
+* 389-ds -> 1.4.3.16-16
 * go-toolset -> go-toolset-1.15.13-1.module+el8.4.0+591+0da41cc3
 * golang -> golang-1.15.13-3.module+el8.4.0+591+0da41cc3
 * idm:DL1 -> ipa-4.9.2-4
@@ -87,3 +88,6 @@ The extras repository for aarch64 has been updated to include various packages t
 * A "devel" repository is now provided for mock/buildroot purposes
 * Extras repository for aarch64 has been updated to include missing packages not provided by upstream for desktop use
 * rpaste has been updated to accept stdin input
+* Older packages will be provided in the repos during the life of a point release.
+
+  * This allows for packages to be downgraded in the case of regressions from upstream or troubleshooting.
