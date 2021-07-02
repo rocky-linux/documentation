@@ -96,11 +96,7 @@ home:~/documentation
 
 Next, we need to set up Git-Cola. We need to open the "documentation" repository we just created locally, and we need to set the remotes. You can set your remotes with git via the command line as well, but I find this method easier, because for me, I want the Rocky Linux remote to be called something different from "origin" which is what it will name it by default. For me, I think of my fork, as the "origin" and Rocky Linux as the "upstream". You may disagree.
 
-<<todo: Get screen shot of Git-Cola opening the documentation repository>>
-
 When you first open Git-Cola, it asks you to select your repository. You could have several on your machine, but the one you are looking for is the one called "documentation". So click on this one and open it.
-
-<todo: Get screen shots of the Git-Cola remotes setup>>
 
 Once you have your repository open, setup the remotes by clicking on `File` and `Edit Remotes`.
 
