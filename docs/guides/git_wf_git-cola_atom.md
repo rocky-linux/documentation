@@ -56,7 +56,7 @@ Next, install the Atom editor:
 
 You will need your own fork of the repository. This will become one of your Git remotes for this workflow.
 
-We are already assuming that you've created your Github account, have SSH key access and are logged in to [Documentation](https://github.com/rocky-linux/documentation).
+We are already assuming that you've created your GitHub account, have SSH key access, and are logged in to [Documentation](https://github.com/rocky-linux/documentation).
 
 On the right-hand side of the page, click on "Fork" shown here:
 
@@ -70,7 +70,7 @@ https://github.com/alphaomega/documentation
 
 ## Cloning a Local copy of the Repository
 
-Next we need a local copy of the repository, which is easy enough to do. Again, from the Rocky Linux [Documentation](https://github.com/rocky-linux/documentation), look for the green Code button and click on it:
+Next we need a local copy of the repository, which is easy enough to do. Again, from the Rocky Linux [Documentation](https://github.com/rocky-linux/documentation), look for the green "Code" button and click on it:
 
 ![Documentation Code](images/gw_greencode.png)
 
@@ -94,7 +94,7 @@ home:~/documentation
 
 ## Setting Up Git-Cola
 
-Next, we need to set up Git-Cola. We need to open the "documentation" repository we just created locally, and we need to set the remotes. You can set your remotes with git via the command line as well, but I find this method easier, because for me, I want the Rocky Linux remote to be called something different than "origin" which is what it will name it by default. For me, I think of my fork, as the "origin" and Rocky Linux as the "upstream". You may disagree.
+Next, we need to set up Git-Cola. We need to open the "documentation" repository we just created locally, and we need to set the remotes. You can set your remotes with git via the command line as well, but I find this method easier, because for me, I want the Rocky Linux remote to be called something different from "origin" which is what it will name it by default. For me, I think of my fork, as the "origin" and Rocky Linux as the "upstream". You may disagree.
 
 <<todo: Get screen shot of Git-Cola opening the documentation repository>>
 
@@ -104,9 +104,9 @@ When you first open Git-Cola, it asks you to select your repository. You could h
 
 Once you have your repository open, setup the remotes by clicking on `File` and `Edit Remotes`.
 
-By default, it will already show you your Rocky Linux remote as "origin". To change this, simply click in the field, back space over the top of "origin", replace it with "upstream" and click "Save"
+By default, it will already show you your Rocky Linux remote as "origin". To change this, simply click in the field, backspace over the top of "origin", replace it with "upstream" and click "Save."
 
-Next, we actually want to create a new remote that is your fork. Click the green plus sign (+) in the left-hand corner of the bottom of the screen and a new remote dialog will open. Type "origin" for the name, and then, assuming our Github username is "alphaomega" again, your URL will look like this:
+Next, we actually want to create a new remote that is your fork. Click the green plus sign (+) in the left-hand corner of the bottom of the screen and a new remote dialog will open. Type "origin" for the name, and then, assuming our GitHub username is "alphaomega" again, your URL will look like this:
 
 ```
 git@github.com:alphaomega/documentation.git
@@ -139,7 +139,7 @@ This command should be run before any branches are created or any work is done, 
 
 ## A Note about Atom and Git-Cola and why the author uses both
 
-The Atom editor has integration with Git and Github. In fact, you can use Atom without the need for Git-Cola at all. That said, the visualizations that Git-Cola provide are clearer from the author's view. The editor features in Atom far outweigh those that are specifically designed as markdown editors (again, the author's opinion). If you so choose, you can eliminate the need for Git-Cola and simply use Atom if you like.
+The Atom editor has integration with Git and GitHub. In fact, you can use Atom without the need for Git-Cola at all. That said, the visualizations that Git-Cola provide are clearer from the author's view. The editor features in Atom far outweigh those that are specifically designed as markdown editors (again, the author's opinion). If you so choose, you can eliminate the need for Git-Cola and simply use Atom if you like.
 
 I use Git-Cola for setting up the remotes (as we have already seen), branching, and committing changes. Atom is used as an editor and markdown preview only. Pushes and pulls are done from the command line.
 
@@ -161,3 +161,62 @@ As you create and save your changes in Atom, you will see the "Unstaged Changes"
 These changes also show up in Git-Cola under the "Status" in the left-hand window:
 
 ![Git-Cola Unstaged](images/gw_gitcolaunstaged.png)
+
+## Staging the Files with Git-Cola
+
+Once our document is done and we are ready to create the pull request, the first thing we need to do is to write a commit statement. In most cases typing it all up before committing the files is easier, because as soon as you stage your files, the changes will disappear from view. You want your commit statement to be as clear as possible. The Commit summary should say what you are committing. For example: "Document to Present a Git Workflow." The extended description should give bullet points of the highlights of the document, for instance:
+
+* Git workflow using Git-Cola and Atom
+* Includes corresponding images
+
+Once you've written the Commit but before you hit the "Commit" button, you need to stage all of your unstaged files. To do this, select all of the files, then right-click and click on "Stage Selected." Now click the "Commit" button.
+
+Before you get out of Git-Cola, in the "Branches" section on the right, right-click "main" and click "Checkout." We want to be checked out to main before we push our files.
+
+## Pushing To Your Fork
+
+Now that all of the document creation work is done, you need to push your branch to your fork. If you followed along as we created the remotes before, then you have created your fork as the "origin". We need to get into the documentation directory in the terminal window. In other words, into the clone of the Rocky Documentation repository. From a terminal window type:
+
+`cd documentation`
+
+You should see your home directory and your cursor inside documentation:
+
+`home:~/documentation$`
+
+Now we need to push our changes:
+
+`git push origin rl_git_workflow`
+
+This says we are pushing to our fork, the branch that we just created and put a document into.
+
+When we enter this command, we get back a message from Git that says you can create a Pull Request. It will look something like this:
+
+```
+Enumerating objects: 16, done.
+Counting objects: 100% (16/16), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (12/12), 122.01 KiB | 2.22 MiB/s, done.
+Total 12 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+remote:
+remote: Create a pull request for 'rl_git_workflow' on GitHub by visiting:
+remote:      https://github.com/alphaomega/documentation/pull/new/rl_git_workflow
+remote:
+To github.com:sspencerwire/documentation.git
+ * [new branch]      rl_git_workflow -> rl_git_workflow
+```
+
+## Adding to the Document
+
+If you suddenly realize that you have more to add to your document, and don't want to do the PR as yet, that's no problem.
+
+Go back to Git-Cola, right-click on your branch (in this case "rl_git_workflow") and click "Checkout" then go back to Atom, open your document again and make whatever additions you need to add. Any changes you make to the file or files, will again have to be staged, and a new commit will need to be written. You will need to right-click the "main" branch when done and click "Checkout" again, and you will need to push your changes to your fork again. The difference is that since the URL for doing the pull request (PR) has already been sent, you will not get this again. You need to use the original link that was sent before.
+
+## Waiting For Your PR to be Merged
+
+An editor has to give your document a once over. He (or she), needs to be certain that everything you have done and written matches
+
+## Conclusion
+
+Everyone who uses Git has a slightly different workflow. This is the author's. If you have a favorite workflow, please post it!
