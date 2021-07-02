@@ -89,3 +89,5 @@ The extras repository for aarch64 has been updated to include various packages t
 * Extras repository for aarch64 has been updated to include missing packages not provided by upstream for desktop use
 * rpaste has been updated to accept stdin input
 * Older packages will be provided in the repos during the life of a point release.
+
+  * This allows for packages to be downgraded in the case of regressions from upstream or troubleshooting.
