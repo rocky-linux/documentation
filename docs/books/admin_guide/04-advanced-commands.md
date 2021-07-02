@@ -1,4 +1,4 @@
-# 04: Advanced Commands for Linux users
+# Advanced Commands for Linux users
 
 In this chapter you will learn:
 

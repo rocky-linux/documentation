@@ -1,4 +1,4 @@
-# 13: Software Management
+# Software Management
 
 ## Generalities
 
@@ -7,7 +7,8 @@ On a Linux system, it is possible to install software in two ways:
 * by using an installation package;
 * by compiling the source files.
 
-> :notebook: **Note:** Installing from source is not covered here. As a rule, you should use the package method unless the software you want is not available via the package manager. The reason for this is that dependencies are generally managed by the package system, whereas with source, you need to manage the dependencies manually.
+!!! Note
+    Installing from source is not covered here. As a rule, you should use the package method unless the software you want is not available via the package manager. The reason for this is that dependencies are generally managed by the package system, whereas with source, you need to manage the dependencies manually.
 
 **The package**: This is a single file containing all the data needed to install the program. It can be executed directly on the system from a software repository.
 
@@ -77,11 +78,11 @@ Example:
 | `-f`             | Shows the name of the package containing the specified file.                                   |
 | `--last`         | The list of packages is given by installation date (the last installed packages appear first). |
 
-> :warning: **WARNING:**
-After the `-q` option, the package name must be exact. Metacharacters (wildcards) are not supported.
+!!! Warning
+    After the `-q` option, the package name must be exact. Metacharacters (wildcards) are not supported.
 
-> :star: **TIP:**
-However, it is possible to list all installed packages and filter with the `grep` command.
+!!! Tip
+    However, it is possible to list all installed packages and filter with the `grep` command.
 
 Example: list the last installed packages:
 
@@ -206,10 +207,10 @@ If you are behind an internet proxy:
 
 ```
 [root]# export http_proxy=http://172.16.1.10:8080
-````
+```
 
 Then:
 
 ```
 [root]# dnf install epel-release
-````
+```
