@@ -1,4 +1,4 @@
-# 11: Task management
+# Task management
 
 In this chapter you will learn how to manage scheduled tasks.
 
