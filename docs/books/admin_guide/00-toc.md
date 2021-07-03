@@ -1,22 +1,38 @@
-# Learning Linux with Rocky
+# 用Rocky学习Linux
 
-The Administration Guide is a collection of Educational Documents focused on System Administrators. They can be used by future System Administrators trying to get up to speed, by current System Administrators who would like a refresher, or by any Linux user who'd like to learn more about the Linux environment, commands, processes, and more. Like all documents of this type, it will evolve and update over time.
+管理指南是一个以系统管理员为对象的学习文档集。它可以用来给想要快速上手，成为系统管理员的人使用，也可以被在任系统管理员的人用于复习，或者被任何想学习更多关于Linux环境、命令、进程等的Linux用户使用。像其他类似的的文档一样，这份文档随着时间的推移会不断发展和更新。
 
-Initially, we will discuss Linux, distributions, and the whole ecosystem around our operating system.
+我们首先会讨论一下Linux、发行版以及围绕我们操作系统的整个生态。
 
-We will then look at the user commands that are essential for getting up to speed with Linux. The more experienced users should also consult the chapter dedicated to the more "advanced" 'Commands.'
+然后，我们将看一下那些快速上手Linux的关键用户指令。经验丰富的用户还应该参考专门介绍"高级"'命令'的章节。
 
-Next comes the chapter on the VI editor. While Linux comes with many editors, VI is one of the most powerful. Other commands sometimes use identical syntaxes as VI (`sed` comes to mind). So knowing something about VI, or at least demystifying its essential functions (how to open a file, save, quit or quit without saving), are very important to know. The user will become more comfortable with the other functions of VI as they use the editor. An alternative would be to use nano which comes installed by default in Rocky Linux. While not as versatile, it is simple to use, straightforward and gets the job done.
+接下来是关于VI编辑器的章节。虽然Linux带有许多编辑器，但VI是最强大的编辑器之一。其他命令有的使用与VI相同的语法（比如说`sed`）。因此，了解一些关于VI的知识，或者至少知道它的基本功能（如何打开一个文件、保存、退出或不保存而退出），是非常重要的。用户在使用编辑器的过程中，会对VI其他功能会变得更加熟悉。另一个选择是使用Rocky Linux中默认安装的nano。虽然它没有VI那么多的功能，但它使用起来很简单，直截了当，并能胜任工作。
 
-We can then get into the deep functioning of Linux to discover how the system manages:
+然后，我们可以探索Linux的深层功能，并了解系统如何管理：
 
-* users.
-* file systems.
-* processes.
+* 用户
+* 文件系统
+* 进程
 
-Next, we will cover an essential subject for the System Administrator: The Bacup Process. Many software solutions come with Linux to enhance Backups (rsnapshot, lsyncd, etcetera.)It is good to know the essential components of the backup that are within the operating system. We will investigate two tools: `tar` and the less widespread `cpio` in this chapter.
+接下来，我们还会介绍系统管理员的一个重要课题： 备份。Linux自带了许多软件以加强备份（rsnapshot，lsyncd，等等）， 了解备份中的重要组成部分对我们有好处。在本章中，我们将研究两个工具：`tar`和不太常用的`cpio`。
 
-Regarding management of the system during the boot process, it has evolved enormously in recent years since the arrival of the systemd.
+关于启动过程中的系统管理，自从systemd出现后，近年来有了很大的发展。
+
+最后，我们将研究任务的管理、网络的实现和软件的安装。
 
 
-We will conclude by examining the management of tasks, the implementation of the network, and software installation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
