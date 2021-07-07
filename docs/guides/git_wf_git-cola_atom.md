@@ -8,17 +8,17 @@ This particular workflow uses the following components:
 
 * A personal fork of the documentation repository found [here](https://github.com/rocky-linux/documentation)
 * A local cloned copy of the repository on a Linux workstation
-* Git-Cola: a visual client for git branching and staging
-* The Atom editor. (optional)
+* Git-Cola: a visual client for git branching and staging (optional)
+* The Atom editor (optional)
 
 !!! Note
-    The Atom editor is optional. If you choose to use a different markdown editor, then simply ignore all of the Atom steps.
+    The Atom editor is optional. If you choose to use a different markdown editor, then simply ignore all of the Atom steps. The Git-Cola option is also optional. For this workflow, however, you will need one or the other. What is described here is using both. One for the GitHub portion, and one for the editing portion.
 
 ## Prerequisites and Assumptions
 
 * A Rocky Linux desktop
 * Familiarity with the command line
-* A Github account with SSH key access
+* A GitHub account with SSH key access
 
 ## Installing Repositories
 
@@ -138,6 +138,8 @@ This command should be run before any branches are created or any work is done, 
 The Atom editor has integration with Git and GitHub. In fact, you can use Atom without the need for Git-Cola at all. That said, the visualizations that Git-Cola provide are clearer from the author's view. The editor features in Atom far outweigh those that are specifically designed as markdown editors (again, the author's opinion). If you so choose, you can eliminate the need for Git-Cola and simply use Atom if you like.
 
 I use Git-Cola for setting up the remotes (as we have already seen), branching, and committing changes. Atom is used as an editor and markdown preview only. Pushes and pulls are done from the command line.
+
+If you choose to use
 
 ## Branching with Git-Cola
 
