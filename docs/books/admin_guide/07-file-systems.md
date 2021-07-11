@@ -1,4 +1,4 @@
-# 07: File system
+# File system
 
 In this chapter you will learn how to work with filesystems.
 
@@ -35,8 +35,8 @@ The same physical disk can be divided into a maximum of 4 partitions:
 * *Primary* (or main)
 * *Extended*
 
-> :warning: **WARNING:**
-There can be only one extended partition per physical disk. In order to benefit from additional drives, the extended partition can be split into logical partitions
+!!! Warning
+    There can be only one extended partition per physical disk. In order to benefit from additional drives, the extended partition can be split into logical partitions
 
 ![Breakdown into only 4 primary partitions](images/07-file-systems-001.png)
 
@@ -50,8 +50,8 @@ Storage devices are named *hd* for IDE hard drives and *sd* for other media. The
 
 Finally we will find a number that defines the partitioned volume: *1* for the first primary partition, ...
 
-> :warning: **WARNING:**
-Beware, the extended partition, which does not support a file system, still has a number.
+!!! Warning
+    Beware, the extended partition, which does not support a file system, still has a number.
 
 ![Identification of partitions](images/07-file-systems-003.png)
 
@@ -138,8 +138,8 @@ The disadvantage is that if one of the physical volumes becomes out of order, th
 
 LVM is available under Linux from kernel version 2.4.
 
-> :notebook: **NOTE:**
-LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
+!!! Note
+    LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
 
 ### Volume groups
 
@@ -164,8 +164,8 @@ A volume group, *VG*, is divided into logical volumes, *LV*, offering different 
 
 ![Volumes in stripe mode](images/07-file-systems-006.png)
 
-> :star: **TIP:**
-Striping_ improves performance by writing data to a predetermined number of physical volumes with a _round-robin_ technique.
+!!! Tip
+    Striping_ improves performance by writing data to a predetermined number of physical volumes with a _round-robin_ technique.
 
 ![Mirrored volumes](images/07-file-systems-007.png)
 
@@ -319,13 +319,13 @@ Example:
 |--------|-------------------------------------------|
 | `-t`   | Indicates the type of file system to use. |
 
-> :warning: **WARNING:**
-Without a file system it is not possible to use the disk space.
+!!! Warning
+    Without a file system it is not possible to use the disk space.
 
 Each file system has a structure which is identical on each partition. A **boot block** and a **super block** initialized by the system and then an **inode table** and a **data area** initialized by the administrator.
 
-> :notebook: **NOTE:**
-The only exception is the **swap** partition.
+!!! Note
+    The only exception is the **swap** partition.
 
 ### Boot block
 
@@ -355,8 +355,8 @@ When the system stops, it also copies this table in memory to its block.
 
 The size of the **inode table** is defined at its creation and is stored on the partition. It consists of records, called inodes, corresponding to the files created. Each record contains the addresses of the data blocks making up the file.
 
-> :notebook: **NOTE:**
-An inode number is unique within a file system.
+!!! Note
+    An inode number is unique within a file system.
 
 A copy is loaded in the central memory as soon as the system is initialized. This copy is updated as soon as it is modified and the system saves it periodically (command `sync`).
 
@@ -364,8 +364,8 @@ When the system stops, it also copies this table in memory to its block.
 
 A file is managed by its inode number.
 
-> :notebook: **NOTE:**
-The size of the inode table determines the maximum number of files the FS can contain.
+!!! Note
+    The size of the inode table determines the maximum number of files the FS can contain.
 
 Information present in the *inode table* :
 
@@ -388,8 +388,8 @@ Its size corresponds to the rest of the available space of the partition. This a
 
 These tables are written to the hard disk when the system is shut down.
 
-> :fire: **DANGER:**
-In the event of a sudden stop, the file system may lose its consistency and cause data loss.
+!!! Danger
+    In the event of a sudden stop, the file system may lose its consistency and cause data loss.
 
 ### Repairing the file system
 
@@ -420,8 +420,8 @@ or
 [root]# shutdown –r -F now
 ```
 
-> :warning: **WARNING:**
-The partition to be checked must be unmounted.
+!!! Warning
+    The partition to be checked must be unmounted.
 
 ## Organization of a file system
 
@@ -429,8 +429,8 @@ By definition, a File System is a tree structure of directories built from a roo
 
 ![Organization of a file system](images/07-file-systems-008.png)
 
-> :notebook: **NOTE:**
-In Linux everything is a file.
+!!! Note
+    In Linux everything is a file.
 
 Text document, directory, binary, partition, network resource, screen, keyboard, Unix kernel, user program, ...
 
@@ -465,8 +465,8 @@ Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) whic
 
 The `/etc/fstab` file is read at system startup and contains the mounts to be performed. Each file system to be mounted is described on a single line, the fields being separated by spaces or tabs.
 
-> :notebook: **NOTE:**
-Lines are read sequentially (`fsck`, `mount`, `umount`).
+!!! Note
+    Lines are read sequentially (`fsck`, `mount`, `umount`).
 
 ```
 /dev/mapper/VolGroup-lv_root   /         ext4    defaults        1   1
@@ -491,8 +491,8 @@ proc                           /proc     proc    defaults        0   0
 The `mount -a` command allows new mounts to be taken into account without rebooting.
 They are then written to the `/etc/mtab` file which contains the current mounts.
 
-> :warning: **WARNING:**
-Only the mount points listed in `/etc/fstab` will be mounted on reboot.
+!!! Warning
+    Only the mount points listed in `/etc/fstab` will be mounted on reboot.
 
 It is possible to make a copy of the `/etc/mtab` file or to copy its contents to `/etc/fstab`.
 
@@ -521,8 +521,8 @@ Example:
 | `-w`   | Mounts the file system read/write, by default (equivalent `-o rw`).            |
 | `-o`   | Argument followed by a comma-separated list of options (`remount`, `ro`, ...). |
 
-> :notebook: **NOTE:**
-The `mount` command alone displays all mounted file systems.
+!!! Note
+    The `mount` command alone displays all mounted file systems.
 
 #### `umount` command
 
@@ -546,8 +546,8 @@ Example:
 | `-f`   | Force unmount.                                     |
 | `-a`   | Unmount all filesystems mentioned in `/etc/fstab`. |
 
-> :notebook: **NOTE:**
-When disassembling, you must not stay below the mounting point. Otherwise, the following error message is displayed: `device is busy`.
+!!! Note
+    When disassembling, you must not stay below the mounting point. Otherwise, the following error message is displayed: `device is busy`.
 
 ## Types of files
 
@@ -563,13 +563,15 @@ Groups of words separated by spaces must be enclosed in quotation marks:
 ```
 [root]# mkdir "working dir"
 ```
-> :notebook: **NOTE:** While there is nothing technically wrong with creating a file or directory with a space in it, it is generally a "best practice" to avoid this and replace any space with an underscore.
 
-> :notebook: **NOTE:**
-The **.** at the beginning of the file name only serves to hide it from a simple `ls`.
+!!! Note
+    While there is nothing technically wrong with creating a file or directory with a space in it, it is generally a "best practice" to avoid this and replace any space with an underscore.
 
-> :warning: **WARNING:**
-Under Linux, the extension of a file is not a necessary reference to open or modify it. However, it can be useful for the user.
+!!! Note
+    The **.** at the beginning of the file name only serves to hide it from a simple `ls`.
+
+!!! Warning
+    Under Linux, the extension of a file is not a necessary reference to open or modify it. However, it can be useful for the user.
 
 Examples of extension agreements:
 
@@ -696,8 +698,8 @@ There are two types of link files:
 
 The link file and the source file have the same _inode_ number and the link counter is incremented. It is not possible to link different directories or files from different file systems.
 
-> :warning: **WARNING:**
-If the source file is destroyed, the counter is decremented and the link file still accesses the file.
+!!! Warning
+    If the source file is destroyed, the counter is decremented and the link file still accesses the file.
 
 ###### Command `ln` for a physical link
 
@@ -726,8 +728,8 @@ Unlike the physical link, the symbolic link involves the creation of a new _inod
 
 The file created contains only an indication of the path to the file. This notion no longer has the limitations of physical links and it is now possible to link directories and files belonging to different file systems.
 
-> :warning: **WARNING:**
-If the source file is destroyed, the link file can no longer access the file.
+!!! Warning
+    If the source file is destroyed, the link file can no longer access the file.
 
 ###### `ln` command for a symbolic link
 
@@ -768,8 +770,8 @@ There are 4 file access rights:
 * e**x**ecution;
 * **-** no right.
 
-> :warning: **WARNING:**
-The rights associated with files differ from those associated with directories (see below).
+!!! Warning
+    The rights associated with files differ from those associated with directories (see below).
 
 The user types associated with file access rights are:
 
@@ -788,8 +790,8 @@ In some commands it is possible to designate everyone with **a** (_all_).
 * e**x**ecute: Considers the file as an e**X**ecutable (binary or script).
 * **-**: No permissions.
 
-> :notebook: **NOTE:**
-Moving or renaming a file depends on the rights of the target directory. Deleting a file depends on the rights of the parent directory.
+!!! Note
+    Moving or renaming a file depends on the rights of the target directory. Deleting a file depends on the rights of the parent directory.
 
 ### Rights associated with directories
 
@@ -816,8 +818,8 @@ The display of rights is done with the command `ls -l`. It is the last 9 charact
 | 4   | File owner                                                    |
 | 5   | Group owner of the file                                       |
 
-> :notebook: **NOTE:**
-Permissions apply to **u**ser, **g**roup and **o**ther (**ugo**) depending on the owner and group.
+!!! Note
+    Permissions apply to **u**ser, **g**roup and **o**ther (**ugo**) depending on the owner and group.
 
 By default, the _owner_ of a file is the one who creates it. The _group_ of the file is the group of the owner who created the file. The _others_ are those which are not concerned by the previous cases.
 
@@ -869,8 +871,8 @@ There are two methods for making rights changes:
 * The **octal** method;
 * The **symbolic** method.
 
-> :warning: **WARNING:**
-The rights of files and directories are not dissociated. For some operations, it will be necessary to know the rights of the directory containing the file. A write-protected file can be deleted by another user as long as the rights of the directory containing it allow this user to perform this operation.
+!!! Warning
+    The rights of files and directories are not dissociated. For some operations, it will be necessary to know the rights of the directory containing the file. A write-protected file can be deleted by another user as long as the rights of the directory containing it allow this user to perform this operation.
 
 #### Principle of the octal method
 
@@ -930,8 +932,8 @@ As with the fundamental rights, the particular rights each have a value. This va
 
 ![Special rights](images/07-file-systems-015.png)
 
-> :fire: **DANGER:**
-`S`, `S` and `T` in capital letters **if the right does not exist**.
+!!! Danger
+    `S`, `S` and `T` in capital letters **if the right does not exist**.
 
 #### The sticky-bit
 
@@ -963,9 +965,10 @@ These rights allow execution of a command according to the rights set on the com
 
 The command is executed with the identity of the owner (_SUID_) or the group (_SGID_) of the command.
 
-> :notebook: **NOTE:**
-The identity of the user requesting the execution of the order is no longer taken into account.
-This is an additional possibility of access rights assigned to a user when it is necessary for them to have the same rights as the owner of a file or those of the group concerned.
+!!! Note
+    The identity of the user requesting the execution of the order is no longer taken into account.
+
+    This is an additional possibility of access rights assigned to a user when it is necessary for them to have the same rights as the owner of a file or those of the group concerned.
 
 Indeed, a user may have to run a program (usually a system utility) but not have the necessary access rights. By setting the appropriate rights (**s** at the owner level and/or at the group level), the user of the program has, for the time of its execution, the identity of the owner (or that of the group) of the program.
 
@@ -1000,9 +1003,9 @@ Verification:
 -rwxrwsrwx … command2
 ```
 
-> :warning: **WARNING:**
-> It is not possible to pass the _SUID_ or _SGID_ to a shell script.
-> The system does not allow it because it is too dangerous for security!
+!!! Warning
+    It is not possible to pass the _SUID_ or _SGID_ to a shell script.
+    The system does not allow it because it is too dangerous for security!
 
 #### SGID on a file
 
@@ -1075,11 +1078,11 @@ $ ls -la  umask_025
 |--------|----------------------------------|
 | `-S`   | Symbolic display of file rights. |
 
-> :warning: **WARNING:**
-`umask` does not affect existing files.
+!!! Warning
+    `umask` does not affect existing files.
 
-> :notebook: **NOTE:**
-`umask` modifies the mask until the disconnection.
+!!! Note
+    `umask` modifies the mask until the disconnection.
 
 To keep the value, you have to modify the following profile files:
 For all users:
@@ -1091,8 +1094,8 @@ For a particular user:
 
 * `~/.bashrc`
 
-> :warning: **WARNING:**
-`umask -S` displays the file rights (without the execute right) of the files that will be created. So it is not the display of the mask used to subtract the maximum value.
+!!! Warning
+    `umask -S` displays the file rights (without the execute right) of the files that will be created. So it is not the display of the mask used to subtract the maximum value.
 
-> :star: **TIP:**
-The `umask` command being a _bash_ command, (a `type umask` returns `umask is a shell primitive`) you have to search `umask` in `man bash`.
+!!! Tip
+    The `umask` command being a _bash_ command, (a `type umask` returns `umask is a shell primitive`) you have to search `umask` in `man bash`.

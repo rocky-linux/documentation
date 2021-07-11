@@ -8,7 +8,7 @@ Please do not submit mirrors which are hosted in a Anycast-CDN like Cloudflare e
 
 Please note that we are not allowed to accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations
 
-Hard disk space requirements are around 100 GB at the moment but expect it to grow over time. 400 GB space should be sufficient for the next years.
+Hard disk space requirements are around 300 GB at the moment but expect it to grow over time. 400 GB space should be sufficient for the next years.
 
 Our master mirror is `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`
 For your first synchronisation use a mirror near to you. You can find all official mirrors here: https://mirrors.rockylinux.org
