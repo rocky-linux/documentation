@@ -1,12 +1,12 @@
-# Ansible bases
+# Ansible Basics
 
 In this chapter you will learn how to work with Ansible.
 
 ****
 
-**Objectives** : In this chapter you will learn how to:
+**Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Implementing Ansible;       
+:heavy_check_mark: Implement Ansible;       
 :heavy_check_mark: Apply configuration changes on a server;   
 :heavy_check_mark: Create first Ansible playbooks;   
 
@@ -19,87 +19,87 @@ In this chapter you will learn how to work with Ansible.
 
 ****
 
-Ansible centralizes and automates administration tasks. It is :
+Ansible centralizes and automates administration tasks. It is:
 
 * **agentless** (it does not require specific deployments on clients),
 * **idempotent** (same effect each time it is run)
 
-It uses the **SSH** protocol to remotely configure Linux clients or the **WinRM** protocol to work with Windows clients. If none of these protocols is available, it is always possible for Ansible to use an API, which makes Ansible a real Swiss army knife for the configuration of servers, workstations, docker services, network equipments, etc. (Almost everything in fact).
+It uses the **SSH** protocol to remotely configure Linux clients or the **WinRM** protocol to work with Windows clients. If none of these protocols is available, it is always possible for Ansible to use an API, which makes Ansible a real Swiss army knife for the configuration of servers, workstations, docker services, network equipment, etc. (Almost everything in fact).
 
 !!! Warning
-    The opening of SSH or WinRM flows to all clients from the Ansible server makes it a critical element of the architecture that must be carefully monitored.
+    The opening of SSH or WinRM flows to all clients from the Ansible server, makes it a critical element of the architecture that must be carefully monitored.
 
-As Ansible is Push-based, it will not keep the state of its targetted servers between each of its executions. On the contrary, it will perform new state checks each time it is executed. It is said to be stateless.
+As Ansible is push-based, it will not keep the state of its targeted servers between each of its executions. On the contrary, it will perform new state checks each time it is executed. It is said to be stateless.
 
 It will help you with:
 
-* your provisionning (deploying a new VM),
-* your applications deployments
-* your configuration management,
-* your automation,
-* your orchestration (when more than 1 target is in use).
+* provisioning (deploying a new VM),
+* application deployments
+* configuration management,
+* automation,
+* orchestration (when more than 1 target is in use).
 
 ![The features of Ansible](images/ansible-001.png)
 
-To offer a graphical interface to your daily use of ansible, you can install some tools like Ansible Tower (RedHat) which is not free, its opensource counterpart Awx, or other projects like Jenkins and the excellent Rundeck can also be used.
+To offer a graphical interface to your daily use of Ansible, you can install some tools like Ansible Tower (RedHat), which is not free, its opensource counterpart Awx, or other projects like Jenkins and the excellent Rundeck can also be used.
 
 !!! Abstract
-    To follow this training, you will need at least 2 servers under Rocky8 :
+    To follow this training, you will need at least 2 servers under Rocky8:
 
     * the first one will be the **management machine**, Ansible will be installed on it.
     * the second one will be the server to configure and manage (another Linux than Rocky Linux will do just as well).
 
     In the examples below, the administration station has the IP address 172.16.1.10, the managed station 172.16.1.11. It is up to you to adapt the examples according to your IP addressing plan.
 
-## The ansible vocabulary
+## The Ansible vocabulary
 
-* The **management machine** : the machine on which Ansible is installed. Since Ansible is **agentless**, no software is deployed on the managed servers.
+* The **management machine**: the machine on which Ansible is installed. Since Ansible is **agentless**, no software is deployed on the managed servers.
 * The **inventory**: a file containing information about the managed servers.
 * The **tasks**: a task is a block defining a procedure to be executed (e.g. create a user or a group, install a software package, etc.).
 * A **module**: a module abstracts a task. There are many modules provided by Ansible.
-* The **playbooks** : a simple file in yaml format defining the target servers and the tasks to be performed.
+* The **playbooks**: a simple file in yaml format defining the target servers and the tasks to be performed.
 * A **role**: a role allows you to organize the playbooks and all the other necessary files (templates, scripts, etc.) to facilitate the sharing and reuse of code.
-* A **collection**: a collection include a logical set of playbooks, roles, modules, and plugins.
+* A **collection**: a collection includes a logical set of playbooks, roles, modules, and plugins.
 * The **facts**: these are global variables containing information about the system (machine name, system version, network interface and configuration, etc.).
 * The **handlers**: these are used to cause a service to be stopped or restarted in the event of a change.
 
 ## Installation on the management server
 
-Ansible is available in the _EPEL_ repository but come as version 2.9.21, which is quite old now:
+Ansible is available in the _EPEL_ repository but comes as version 2.9.21, which is quite old now. You can see how this is done by following along here, but skip the actual installation steps, as we will be installing the latest version. The _EPEL_ is required for both versions, so you can go ahead and install that now:
 
 * EPEL installation:
 
 ```
 $ sudo dnf install epel-release
 ```
+If we were installing Ansible from the _EPEL_ we could do the following:
 
 ```
 $ sudo dnf install ansible
 $ ansible --version
 2.9.21
 ```
-
-As we want to use a newer version of ansible, we will install it from `python3-pip`:
+As we want to use a newer version of Ansible, we will install it from `python3-pip`:
 
 !!! Note
-    Remove Ansible if you have installed it previously from EPEL.
+    Remove Ansible if you have installed it previously from _EPEL_.
 
 ```
 $ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust cargo curl
 ```
 
 !!! Note
-    python3-argcomplete is provided by EPEL. Please install epel-release if not done yet.
-    Argcomplete will help you completing ansible command.
+    `python3-argcomplete` is provided by _EPEL_. Please install epel-release if not done yet.
+    This package will help you complete Ansible commands.
 
-We can now install ansible:
+We can now install Ansible:
 
 ```
 $ sudo pip3 install ansible
 $ sudo activate-global-python-argcomplete
 ```
 
-Check your ansible version:
+Check your Ansible version:
 
 ```
 $ ansible --version
@@ -120,12 +120,12 @@ The server configuration is located under `/etc/ansible`.
 
 There are two main configuration files:
 
-* The main configuration file `ansible.cfg` where stand commands, modules, plugins, and ssh configuration;
-* The client machine management inventory file `hosts` where are declared the clients, and groups of clients.
+* The main configuration file `ansible.cfg` where the commands, modules, plugins, and ssh configuration reside;
+* The client machine management inventory file `hosts` where the clients, and groups of clients are declared.
 
-As we installed previously Ansible with pip, those files doesn't exist. We will have to create them by hand.
+As we installed Ansible with `pip`, those files do not exist. We will have to create them by hand.
 
-An example of the `ansible.cfg` is given here: https://github.com/ansible/ansible/blob/devel/examples/ansible.cfg and an exemple of the `hosts` file here: https://github.com/ansible/ansible/blob/devel/examples/hosts.
+An example of the `ansible.cfg` [is given here](https://github.com/ansible/ansible/blob/devel/examples/ansible.cfg) and an example of the `hosts` [file here](https://github.com/ansible/ansible/blob/devel/examples/hosts).
 
 ```
 $ sudo mkdir /etc/ansible
@@ -136,7 +136,7 @@ $ sudo curl -o /etc/ansible/hosts https://raw.githubusercontent.com/ansible/ansi
 
 ### The inventory file `/etc/ansible/hosts`
 
-As ansible will have to work with all your equipment to be configured, it is very important to provide it with one (or more) well-structured inventory file(s), which perfectly matches your organization.
+As Ansible will have to work with all your equipment to be configured, it is very important to provide it with one (or more) well-structured inventory file(s), which perfectly matches your organization.
 
 It is sometimes necessary to think carefully about how to build this file.
 
@@ -188,7 +188,7 @@ Go to the default inventory file, which is located under `/etc/ansible/hosts`. S
 ## db-[99:101]-node.example.com
 ```
 
-As you can see, the file provided as an example uses the INI format, well known to system administrators. Please note that you can choose another file format (like yaml for example), but for the first tests, the INI format is well adapted to our future examples.
+As you can see, the file provided as an example uses the INI format, which is well known to system administrators. Please note that you can choose another file format (like yaml for example), but for the first tests, the INI format is well adapted to our future examples.
 
 Obviously, in production, the inventory can be generated automatically, especially if you have a virtualization environment like VMware VSphere or a cloud environment (Aws, Openstack or other).
 
@@ -220,9 +220,9 @@ ansible_clients
 172.16.1.10
 ```
 
-We won't go any further for the moment on the subject of inventory, but if you're interested, consider checking out the following link: https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
+We won't go any further for the moment on the subject of inventory, but if you're interested, consider checking [this link](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html).
 
-Now that our management server is installed and our inventory is ready, it's time to run our first ansible commands.
+Now that our management server is installed and our inventory is ready, it's time to run our first `ansible` commands.
 
 ## `ansible` command line usage
 
@@ -235,7 +235,7 @@ ansible <host-pattern> [-m module_name] [-a args] [options]
 Examples:
 
 !!! Warning
-    Since we have not yet configured authentication on our 2 test servers, not all of the following examples will work. They are given as examples to facilitate understanding, and will be fully functional after the following chapters.
+    Since we have not yet configured authentication on our 2 test servers, not all the following examples will work. They are given as examples to facilitate understanding, and will be fully functional later in this chapter.
 
 * List the hosts belonging to the rocky8 group:
 
@@ -261,20 +261,20 @@ ansible rocky8 -m setup
 ansible rocky8 -m command -a 'uptime'
 ```
 
-* Run a command with administrator privileges :
+* Run a command with administrator privileges:
 
 ```
 ansible ansible_clients --become -m command -a 'reboot'
 ```
 
-* Run a command using a custom inventory file :
+* Run a command using a custom inventory file:
 
 ```
 ansible rocky8 -i ./local-inventory -m command -a 'date'
 ```
 
 !!! Note
-    As in this example, it is sometimes simpler to separate the declaration of managed devices into several files (by cloud project for example) and provide ansible with the path to these files than to maintain a long inventory file.
+    As in this example, it is sometimes simpler to separate the declaration of managed devices into several files (by cloud project for example) and provide Ansible with the path to these files, rather than to maintain a long inventory file.
 
 | Option                   | 	Information                                                                                    |
 |--------------------------|-------------------------------------------------------------------------------------------------|
@@ -291,7 +291,7 @@ On both management machine and clients, we will create an `ansible` user dedicat
 
 This user will be used:
 
-* On the administration station side: to run ansible commands and ssh to managed clients.
+* On the administration station side: to run `ansible` commands and ssh to managed clients.
 * On the managed stations (here the server that serves as your administration station also serves as a client, so it is managed by itself) to execute the commands launched from the administration station: it must therefore have sudo rights.
 
 On both machines, create an `ansible` user, dedicated to ansible:
@@ -313,24 +313,17 @@ Modify the sudoers config to allow members of the `wheel` group to sudo without 
 $ sudo visudo
 ```
 
-Uncomment the following line:
+Our goal here is to comment out the default, and uncomment the NOPASSWD option so that these lines looks like this when we are done:
 
 ```
 ## Allows people in group wheel to run all commands
-%wheel  ALL=(ALL)       ALL
+# %wheel  ALL=(ALL)       ALL
 
 ## Same thing without a password
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 ```
 
-And comment the following line:
-
-```
-## Allows people in group wheel to run all commands
-# %wheel  ALL=(ALL)       ALL
-```
-
-From now, on the management, start working with this new user:
+When using management from this point on, start working with this new user:
 
 ```
 $ sudo su - ansible
@@ -372,7 +365,7 @@ SSH password:
     ```
 
 !!! Abstract
-    You can now test the commands of the previous chapter.
+    You can now test the commands that didn't work previously in this chapter.
 
 ## Key authentication
 
@@ -436,7 +429,7 @@ For the next test, the `shell` module, allowing remote command execution, is use
 No password is required, private/public key authentication works!
 
 !!! Note
-    In production environment, you should now remove the `ansible` passwords previously set to enforce your security (as now authentification password is not necessary).
+    In production environment, you should now remove the `ansible` passwords previously set to enforce your security (as now an authentication password is not necessary).
 
 ## Using Ansible
 
@@ -444,13 +437,13 @@ Ansible can be used from the shell or via playbooks.
 
 ### The modules
 
-The list of modules classified by category can be found at https://docs.ansible.com/ansible/latest/collections/index_module.html. Ansible offers more than 750!
+The list of modules classified by category can be [found here](https://docs.ansible.com/ansible/latest/collections/index_module.html). Ansible offers more than 750!
 
-The modules are now grouped into module collections, a list of which can be found here: https://docs.ansible.com/ansible/latest/collections/index.html.
+The modules are now grouped into module collections, a list of which can be [found here](https://docs.ansible.com/ansible/latest/collections/index.html).
 
-> Collections are a distribution format for Ansible content that can include playbooks, roles, modules, and plugins.
+Collections are a distribution format for Ansible content that can include playbooks, roles, modules, and plugins.
 
-A module is invoked with the `-m` option of the ansible command:
+A module is invoked with the `-m` option of the `ansible` command:
 
 ```
 ansible <host-pattern> [-m module_name] [-a args] [options]
@@ -474,7 +467,7 @@ Each category of need has its own module. Here is a non exhaustive list:
 
 #### Example of software installation
 
-The `dnf` module allows to install software on the target clients:
+The `dnf` module allows for the installation of software on the target clients:
 
 ```
 # ansible rocky8 --become -m dnf -a name="httpd"
@@ -515,11 +508,11 @@ The installed software being a service, it is now necessary to start it with the
 ```
 
 !!! Tip
-    Try to launch those last 2 commands twice. You will observe that the first time ansible will take actions to reach the state set by the command. The second time, it will do nothing because it will have detected that the state is already reached!
+    Try to launch those last 2 commands twice. You will observe that the first time Ansible will take actions to reach the state set by the command. The second time, it will do nothing because it will have detected that the state is already reached!
 
 ### Exercises
 
-To help you discovering Ansible and to get used to searching the ansible documentation, here are some exercises you can do before going on:
+To help discover more about Ansible and to get used to searching the Ansible documentation, here are some exercises you can do before going on:
 
 * Create the groups Paris, Tokio, NewYork
 * Create the user `supervisor`
@@ -567,20 +560,20 @@ We'll see later how to use facts in our playbooks and how to create our own fact
         ...
 ```
 
-Now that we have seen how to configure a remote server with ansible on the command line, we will be able to introduce the notion of playbook, another way to use ansible, not much more complex, but which will make it easier to reuse your code.
+Now that we have seen how to configure a remote server with Ansible on the command line, we will be able to introduce the notion of playbook. Playbooks are another way to use Ansible, which is not much more complex, but which will make it easier to reuse your code.
 
 ## Playbooks
 
-Ansible playbooks describe a policy to be applied to remote systems, to force their configuration. Playbooks are written in an easily understandable text format that groups together a set of tasks: the `yaml` format.
+Ansible's playbooks describe a policy to be applied to remote systems, to force their configuration. Playbooks are written in an easily understandable text format that groups together a set of tasks: the `yaml` format.
 
 !!! Note
-    Learn more about yaml: https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+    Learn more about [yaml here](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 
 ```
 ansible-playbook <file.yml> ... [options]
 ```
 
-The options are identical to the ansible command.
+The options are identical to the `ansible` command.
 
 The command returns the following error codes:
 
@@ -596,11 +589,11 @@ The command returns the following error codes:
 | `250` | Unexpected error                  |
 
 !!! Note
-    Please note that ansible will return Ok when there is no host matching your target, which might mislead you!
+    Please note that `ansible` will return Ok when there is no host matching your target, which might mislead you!
 
 ### Example of Apache and MySQL playbook
 
-The following playbook allows us to install Apache and MySQL on our target servers.
+The following playbook allows us to install Apache and MariaDB on our target servers.
 
 Create a `test.yml` file with the following content:
 
@@ -626,10 +619,10 @@ Create a `test.yml` file with the following content:
 ...
 ```
 
-* <1> The targetted group or the targetted server must exist in the inventory
+* <1> The targeted group or the targeted server must exist in the inventory
 * <2> Once connected, the user becomes `root` (via `sudo` by default)
 
-The execution of the playbook is done with the command `ansible-playbook` :
+The execution of the playbook is done with the command `ansible-playbook`:
 
 ```
 $ ansible-playbook test.yml
@@ -694,16 +687,17 @@ For more readability, it is recommended to write your playbooks in full yaml for
 ```
 
 !!! Tip
-    dnf is one of the modules that allow you to give it a list as argument.
+    `dnf` is one of the modules that allow you to give it a list as argument.
 
-Note about collections : ansible nowadays provides modules in the form of collections.
-Some modules are provided by default within the `ansible.builtin` collection, others must be installed manually via the :
+Note about collections: Ansible now provides modules in the form of collections.
+Some modules are provided by default within the `ansible.builtin` collection, others must be installed manually via the:
 
 ```
-ansible-galaxy collection install collectionname
+ansible-galaxy collection install [collectionname]
 ```
+where [collectionname] is the name of the collection. (the square brackets here are used to highlight the need to replace this with an actual collection name, and are NOT part of the command.)
 
-The previous example should be write as this:
+The previous example should be written like this:
 
 ```
 ---
@@ -774,7 +768,7 @@ A playbook is not limited to one target:
 You can check the syntax of your playbook:
 
 ```
-$ ansible-playbook --syntaxe-check play.yml
+$ ansible-playbook --syntax-check play.yml
 ```
 
 ## Exercices results

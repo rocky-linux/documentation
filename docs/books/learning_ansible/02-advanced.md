@@ -1,4 +1,4 @@
-# Ansible intermediate
+# Ansible Intermediate
 
 In this chapter you will continue to learn how to work with Ansible.
 
@@ -20,22 +20,22 @@ In this chapter you will continue to learn how to work with Ansible.
 
 ****
 
-In the previous chapter, you learned how to install ansible, use it on the command line or how to write playbooks to promote the reusability of your code.
+In the previous chapter, you learned how to install Ansible, use it on the command line, or how to write playbooks to promote the re-usability of your code.
 
-In this chapter, we can start to discover some more advanced notions of how to use ansible and discover some interesting tasks that you will use very regularly.
+In this chapter, we can start to discover some more advanced notions of how to use Ansible, and discover some interesting tasks that you will use very regularly.
 
 ## The variables
 
 !!! Note
-    More information at https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html
+    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html).
 
 Under Ansible, there are different types of primitive variables:
 
-* string,
+* strings,
 * integers,
 * booleans.
 
-These variables can be organized as :
+These variables can be organized as:
 
 * dictionaries,
 * lists.
@@ -54,7 +54,7 @@ For example, from a playbook:
       rhel: httpd
 ```
 
-or from the command line :
+or from the command line:
 
 ```
 $ ansible-playbook deploy-http.yml --extra-vars "service=httpd"
@@ -63,7 +63,7 @@ $ ansible-playbook deploy-http.yml --extra-vars "service=httpd"
 Once defined, a variable can be used by calling it between double braces:
 
 * `{{ port_http }}` for a simple value,
-* `{{ service['rhel'] }}` or `{{ service.rhel }}` for a dictionnary.
+* `{{ service['rhel'] }}` or `{{ service.rhel }}` for a dictionary.
 
 For example:
 
@@ -78,7 +78,7 @@ Of course, it is also possible to access the global variables (the **facts**) of
 
 ### Outsourcing variables
 
-Variables can be deported to a file external to the playbook, in which case this file must be defined in the playbook with the `vars_files` directive:
+Variables can be included in a file external to the playbook, in which case this file must be defined in the playbook with the `vars_files` directive:
 
 ```
 ---
@@ -125,7 +125,7 @@ You can also use the variable inside a text:
 
 To save the return of a task and to be able to access it later, you have to use the keyword `register` inside the task itself.
 
-Use of a stored variable :
+Use of a stored variable:
 
 ```
 - name: /home content
@@ -148,7 +148,7 @@ The strings that make up the stored variable can be accessed via the `stdout` va
 
 ### Exercices
 
-* Write a  playbook `play-vars.yml` that print the distribution name of the target with its major version, using globales variables.
+* Write a  playbook `play-vars.yml` that prints the distribution name of the target with its major version, using global variables.
 
 * Write a playbook using the following dictionary to display the services that will be installed:
 
@@ -170,10 +170,10 @@ The default type should be "web".
 
 ## Loop management
 
-With the help of loop, you can iterate a task over a list, a hash, or dictionnary for example.
+With the help of loop, you can iterate a task over a list, a hash, or dictionary for example.
 
 !!! Note
-    More information at https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html
+    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html).
 
 Simple example of use, creation of 4 users:
 
@@ -228,11 +228,11 @@ We can use the example seen during the study of stored variables to improve it. 
 
 A dictionary can also be used in a loop.
 
-In this case, you will have to transform the dictionary into an item with what is called a **jinja filter** (jinja is the templating engine used by ansible): `| dict2items`.
+In this case, you will have to transform the dictionary into an item with what is called a **jinja filter** (jinja is the templating engine used by Ansible): `| dict2items`.
 
 In the loop, it becomes possible to use `item.key` which corresponds to the dictionary key, and `item.value` which corresponds to the values of the key.
 
-Let's see this through a concrete example, allowing the management of the system users:
+Let's see this through a concrete example, showing the management of the system users:
 
 ```
 ---
@@ -259,7 +259,7 @@ Let's see this through a concrete example, allowing the management of the system
 ```
 
 !!! Note
-    Many things can be done with the loops. You will discover the possibilities offered by loops when your use of ansible pushes you to use them in a more complex way.
+    Many things can be done with the loops. You will discover the possibilities offered by loops when your use of Ansible pushes you to use them in a more complex way.
 
 ### Exercices
 
@@ -272,10 +272,10 @@ Let's see this through a concrete example, allowing the management of the system
     {{ service.values() | list }}
     ```
 
-## Conditionnals
+## Conditionals
 
 !!! Note
-    More informations at https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html
+    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html).
 
 The `when` statement is very useful in many cases: not performing certain actions on certain types of servers, if a file or a user does not exist, etc.
 
@@ -325,7 +325,7 @@ You can test the value of a boolean and verify that it is true:
     - directory.stat.isdir
 ```
 
-On the contrary you can test that it is not true:
+You can also test that it is not true:
 
 ```
   when:
@@ -346,15 +346,15 @@ You will probably have to test that a variable exists to avoid execution errors:
 ## Managing changes: the `handlers`
 
 !!! Note
-    More informations at https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html
+    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html).
 
 Handlers allow to launch operations, like restarting a service, when changes occur.
 
-A module, being idempotent, a playbook can detect that there has been a significant change on a remote system, and thus trigger an operation in reaction to this change. A notification is sent at the end of a playbook task block, and the reaction operation will be triggered only once even if several different tasks send this notification.
+A module, being idempotent, a playbook can detect that there has been a significant change on a remote system, and thus trigger an operation in reaction to this change. A notification is sent at the end of a playbook task block, and the reaction operation will be triggered only once even if several tasks send the same notification.
 
 ![Handlers](images/handlers.png)
 
-For example, several tasks may indicate that the httpd service needs to be restarted due to a change in its configuration files. But the service will only be restarted once to avoid multiple unnecessary starts.
+For example, several tasks may indicate that the `httpd` service needs to be restarted due to a change in its configuration files. But the service will only be restarted once to avoid multiple unnecessary starts.
 
 ```
 - name: template configuration file
@@ -371,7 +371,7 @@ A handler is a kind of task referenced by a unique global name:
 * It is activated by one or more notifiers.
 * It does not start immediately, but waits until all tasks are complete to run.
 
-Example of handlers :
+Example of handlers:
 
 ```
 handlers:
@@ -387,7 +387,7 @@ handlers:
       state: restarted
 ```
 
-Since version 2.2 of Ansible, handlers can listen directly to :
+Since version 2.2 of Ansible, handlers can listen directly as well:
 
 ```
 handlers:
@@ -413,11 +413,11 @@ tasks:
 ## Asynchronous tasks
 
 !!! Note
-    More informations at https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html
+    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html).
 
 By default, SSH connections to hosts remain open during the execution of various playbook tasks on all nodes.
 
-This can cause some problems, especially :
+This can cause some problems, especially:
 
 * if the execution time of the task is longer than the SSH connection timeout
 * if the connection is interrupted during the action (server reboot for example)
@@ -449,11 +449,11 @@ Here's an example using asynchronous tasks, which allows you to restart a server
     delegate_to: localhost
 ```
 
-You can also decide to launch a long running task and to forget if (fire and forget) because the execution does not matter in the playbook.
+You can also decide to launch a long-running task and forget it (fire and forget) because the execution does not matter in the playbook.
 
-## Exercices results
+## Exercise results
 
-* Write a  playbook `play-vars.yml` that print the distribution name of the target with its major version, using globales variables.
+* Write a  playbook `play-vars.yml` that print the distribution name of the target with its major version, using global variables.
 
 ```
 ---
@@ -513,7 +513,7 @@ The default type should be "web".
 
   tasks:
 
-    - name: Print a specific entry of a dictionnaire
+    - name: Print a specific entry of a dictionary
       debug:
         msg: "The {{ service[type]['name'] }} will be installed with the packages {{ service[type].rpm }}"
 ```
@@ -546,7 +546,7 @@ PLAY [ansible_clients] *********************************************************
 TASK [Gathering Facts] *********************************************************************************
 ok: [192.168.1.11]
 
-TASK [Print a specific entry of a dictionnaire] ********************************************************
+TASK [Print a specific entry of a dictionary] ********************************************************
 ok: [192.168.1.11] => {
     "msg": "The mariadb will be installed with the packages mariadb-server"
 }
@@ -576,7 +576,7 @@ service:
 
   tasks:
 
-    - name: Print a specific entry of a dictionnaire
+    - name: Print a specific entry of a dictionary
       debug:
         msg: "The {{ service[type]['name'] }} will be installed with the packages {{ service[type].rpm }}"
 ```
@@ -595,7 +595,7 @@ service:
     {{ service.values() | list }}
     ```
 
-With `dict2items` :
+With `dict2items`:
 
 ```
 ---
@@ -605,7 +605,7 @@ With `dict2items` :
 
   tasks:
 
-    - name: Print a dictionnary variable with a loop
+    - name: Print a dictionary variable with a loop
       debug:
         msg: "{{item.key }} | The {{ item.value.name }} will be installed with the packages {{ item.value.rpm }}"
       loop: "{{ service | dict2items }}"              
@@ -619,7 +619,7 @@ PLAY [ansible_clients] *********************************************************
 TASK [Gathering Facts] *********************************************************************************
 ok: [192.168.1.11]
 
-TASK [Print a dictionnary variable with a loop] ********************************************************
+TASK [Print a dictionary variable with a loop] ********************************************************
 ok: [192.168.1.11] => (item={'key': 'web', 'value': {'name': 'apache', 'rpm': 'httpd'}}) => {
     "msg": "web | The apache will be installed with the packages httpd"
 }
@@ -642,7 +642,7 @@ With `list`:
 
   tasks:
 
-    - name: Print a dictionnary variable with a loop
+    - name: Print a dictionary variable with a loop
       debug:
         msg: "The {{ item.name }} will be installed with the packages {{ item.rpm }}"
       loop: "{{ service.values() | list}}"
@@ -657,7 +657,7 @@ PLAY [ansible_clients] *********************************************************
 TASK [Gathering Facts] *********************************************************************************
 ok: [192.168.1.11]
 
-TASK [Print a dictionnary variable with a loop] ********************************************************
+TASK [Print a dictionary variable with a loop] ********************************************************
 ok: [192.168.1.11] => (item={'name': 'apache', 'rpm': 'httpd'}) => {
     "msg": "The apache will be installed with the packages httpd"
 }
@@ -679,13 +679,13 @@ PLAY RECAP *********************************************************************
 
   tasks:
 
-    - name: Print a dictionnary variable
+    - name: Print a dictionary variable
       debug:
         msg: "The {{ service.web.name }} will be installed with the packages {{ service.web.rpm }}"
       when: type == "web"
 
 
-    - name: Print a dictionnary variable
+    - name: Print a dictionary variable
       debug:
         msg: "The {{ service.db.name }} will be installed with the packages {{ service.db.rpm }}"
       when: type == "db"
@@ -699,12 +699,12 @@ PLAY [ansible_clients] *********************************************************
 TASK [Gathering Facts] *********************************************************************************
 ok: [192.168.1.11]
 
-TASK [Print a dictionnary variable] ********************************************************************
+TASK [Print a dictionary variable] ********************************************************************
 ok: [192.168.1.11] => {
     "msg": "The apache will be installed with the packages httpd"
 }
 
-TASK [Print a dictionnary variable] ********************************************************************
+TASK [Print a dictionary variable] ********************************************************************
 skipping: [192.168.1.11]
 
 PLAY RECAP *********************************************************************************************
@@ -717,10 +717,10 @@ PLAY [ansible_clients] *********************************************************
 TASK [Gathering Facts] *********************************************************************************
 ok: [192.168.1.11]
 
-TASK [Print a dictionnary variable] ********************************************************************
+TASK [Print a dictionary variable] ********************************************************************
 skipping: [192.168.1.11]
 
-TASK [Print a dictionnary variable] ********************************************************************
+TASK [Print a dictionary variable] ********************************************************************
 ok: [192.168.1.11] => {
     "msg": "The mariadb will be installed with the packages mariadb-server"
 }
