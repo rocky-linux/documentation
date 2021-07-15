@@ -6,6 +6,33 @@ title:  Rocky Linux 8 Change Log
 
 Rocky Linux 8.4 will receive incremental updates over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`
 
+## 8.4 - 2021-07-12
+
+The following packages have been updated:
+
+* rocky-release
+* linuxptp
+* rpaste
+* ovn2.13 (NFV)
+
+The following modules have been updated:
+
+* python36
+
+### Additional Changes
+
+Experimental repository metadata signing has been implemented. If you would like to try this, set the following option in the Rocky-X.repo files:
+
+```
+repo_gpgcheck=1
+```
+
+### Coming Soon...
+
+* Storage addon repositories:
+
+  * Glusterfs 9 support
+
 ## 8.4 - 2021-06-30
 
 ### Package Updates
