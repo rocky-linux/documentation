@@ -8,12 +8,12 @@
 * While Nextcloud can be installed via a snap application, we will be downloading and installing the .zip file.
 * We will be applying concepts from the Apache sites enabled document (linked to later in this document) for directory setup.
 * We will also be using the _mariadb-server_ hardening procedure (also linked to later) for database setup.
-* Throughout this document we will assume that you are root, or that you can be by using _sudo_. 
+* Throughout this document we will assume that you are root, or that you can be by using _sudo_.
 * We are using an example domain of "yourdomain.com" throughout this document.
 
 ## Introduction
 
-If you are in charge of a server environment for a large (or even a small) company, you may be tempted by cloud applications. Doing things in the cloud can free up your own resources for other things, but there is a downside to this, and that is the loss of control of your company's data. If the cloud application is compromised, so too may be your company's data. 
+If you are in charge of a server environment for a large (or even a small) company, you may be tempted by cloud applications. Doing things in the cloud can free up your own resources for other things, but there is a downside to this, and that is the loss of control of your company's data. If the cloud application is compromised, so too may be your company's data.
 
 Taking the cloud back into your own environment is a way to reclaim security of your data at the expense of your time and energy. Sometimes, that is a cost worth paying.
 
@@ -41,7 +41,7 @@ Run the following to see a list of php modules that can be enabled:
 
 Which should give you output like this:
 
-```
+```plain text
 CentOS Linux 8 - AppStream
 Name                   Stream                         Profiles                                    Summary                                
 php                    7.2 [d]                        common [d], devel, minimal                  PHP scripting language                 
@@ -84,17 +84,17 @@ Set _apache_ to start on boot:
 
 `systemctl enable httpd`
 
-As noted earlier, we are using the "Apache Sites Enabled" procedure found [here](apache-sites-enabled.md) to configure Apache. Follow that guide to get the configuration directories setup and the _httpd.conf_ file modified and then return to this document for the remaining steps. 
+As noted earlier, we are using the "Apache Sites Enabled" procedure found [here](apache-sites-enabled.md) to configure Apache. Follow that guide to get the configuration directories setup and the _httpd.conf_ file modified and then return to this document for the remaining steps.
 
 #### Create The Configuration
 
 For Nextcloud, we will need to create the following configuration file.
 
-`vi /etc/httpd/sites-available/com.yourdomain.nextcloud` 
+`vi /etc/httpd/sites-available/com.yourdomain.nextcloud`
 
 Your configuration file should look something like this:
 
-```
+```xml
 <VirtualHost *:80>
   DocumentRoot /var/www/sub-domains/com.yourdomain.nextcloud/html/
   ServerName  nextcloud.yourdomain.com
@@ -130,7 +130,7 @@ This is where our Nextcloud instance will be installed.
 
 Find your timezone. This can be done by:
 
-`cd /usr/share/zoneinfo` 
+`cd /usr/share/zoneinfo`
 
 If you are in the Central timezone, for instance, you could either use "US/Central" or "America/Chicago" and either setting would work. Once you have identified your timezone, the next thing we need to do is populate the php.ini file with this information.
 
@@ -215,7 +215,7 @@ For security reasons, we also want to move the "data" folder from inside to outs
 
 Now comes the fun! First, make sure that you have your services running. If you followed the above steps, they should already be running. We have had several steps between those initial service starts, so let's go ahead and restart them, just to be sure:
 
-```
+```plain text
 systemctl restart httpd
 systemctl restart mariadb
 ```
@@ -241,16 +241,16 @@ There are a couple of things that we want to do differently than the defaults th
 
 Now cross your fingers and click "Finish Setup".
 
-The browser window will refresh for a bit and then usually not reload the site. Enter your URL in the browser window again and you should be confronted with the default first pages. Your administrative user is already (or should be) logged in at this point, and there are several informational pages designed to get you up to speed. 
+The browser window will refresh for a bit and then usually not reload the site. Enter your URL in the browser window again and you should be confronted with the default first pages. Your administrative user is already (or should be) logged in at this point, and there are several informational pages designed to get you up to speed.
 
-The "Dashboard" is what users will see when they first login. The administrative user can now create other users, install other applications and many other tasks. 
+The "Dashboard" is what users will see when they first login. The administrative user can now create other users, install other applications and many other tasks.
 
 The "Nextcloud Manual.pdf" is the user manual, so that users can get familiar with what is available. The administrative user should read through or at least scan the high points of the admin manual [On the Nextcloud web site](https://docs.nextcloud.com/server/21/admin_manual/)
 
 ### Next Steps
 
-At this point, don't forget that this is a server that you will be storing company data on. It's important to get it locked down with a firewall, get the [backups setup](rsnapshot_backup.md), secure the site with an [SSL](generating_ssl_keys_lets_encrypt.md), and any other duties that are required to keep your data safe. 
+At this point, don't forget that this is a server that you will be storing company data on. It's important to get it locked down with a firewall, get the [backups setup](rsnapshot_backup.md), secure the site with an [SSL](generating_ssl_keys_lets_encrypt.md), and any other duties that are required to keep your data safe.
 
 ## Conclusions
 
-A decision to take the company cloud in house is one that needs to be evaluated carefully. For those that decide that keeping company data locally is preferable over an external cloud host, Nextcloud is a good alternative. 
+A decision to take the company cloud in house is one that needs to be evaluated carefully. For those that decide that keeping company data locally is preferable over an external cloud host, Nextcloud is a good alternative.
