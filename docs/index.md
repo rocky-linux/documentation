@@ -1,8 +1,10 @@
 # Table of Contents
 
-This document contains the section and subsection headers for Rocky Linux documentation; as well as links to articles in each section/subsection.
+You've found us! Welcome to the documentation hub for Rocky Linux! We're glad you're here! We've had a number of contributors adding content, and that cache of content gets bigger all the time. Here you will find documents on how to build Rocky Linux itself, as well as documents on various subjects that are important to the Rocky community. Who makes up that community you ask? Will actually, you do.
 
-The order of these sections is very important but has not been finalized yet, so feel free to reorder as desired.
+In right-hand column, you will see the major categories of documents as it stands now. This has already changed many times, and it will change when new content is added that does not fit one of these categories. If you look at the top of this page, you will see the general categories for these same documents. This is just another way to look at the available documents. "Guides" will contain the bulk of the content available, but feel free to poke around and see what you can find here.
+
+Did you find something missing? Did you find an error? Are you wondering how to create a document of your own or how to fix things here?  Remember how we said that "you" were the Rocky community? Well, that means that "you" are important to us, and we want you to join us, if you like, and help make this documentation better. If you are interested in this, head over to our [Contribution Guide](https://github.com/rocky-linux/documentation/blob/main/README.md) to find out how you can do just that!
 
 ## OS Installation and Setup
 | Classic Rocky Installation | Rocky on Windows SubSystem For Linux (WSL) |
