@@ -41,7 +41,7 @@ Run the following to see a list of php modules that can be enabled:
 
 Which should give you output like this:
 
-```plain text
+```
 CentOS Linux 8 - AppStream
 Name                   Stream                         Profiles                                    Summary                                
 php                    7.2 [d]                        common [d], devel, minimal                  PHP scripting language                 
@@ -94,7 +94,7 @@ For Nextcloud, we will need to create the following configuration file.
 
 Your configuration file should look something like this:
 
-```xml
+```
 <VirtualHost *:80>
   DocumentRoot /var/www/sub-domains/com.yourdomain.nextcloud/html/
   ServerName  nextcloud.yourdomain.com
