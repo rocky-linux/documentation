@@ -25,7 +25,7 @@ For this installation, we will require two repositories. We need to install the 
 
 To install the EPEL run:
 
-`dnf enable epel-release`
+`dnf install epel-release`
 
 And then once installed, run an update to make sure you are at the very latest epel version:
 
