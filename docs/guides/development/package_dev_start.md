@@ -11,7 +11,7 @@ You'll need an existing modern RPM based Linux system to install and use Rocky d
 Let's walk through a typical installation and usage scenario of the devtools.
 
 ## Dependencies
-Several packages are required on the system. These commands have been tested on Rocky Linux but should work on CentOS 8 / RHEL 8 too
+Several packages are required on the system before you can begin to use the devtools. These commands have been tested on Rocky Linux but should work on CentOS 8 / RHEL 8 too
 ```
 dnf install git make golang
 ```
