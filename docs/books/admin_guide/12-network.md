@@ -68,8 +68,8 @@ There are also specific addresses within a network, which must be identified. Th
 A **MAC address** is a physical identifier written in the factory onto the device. This is sometimes referred to as the hardware address. It consists of 6 bytes often given in hexadecimal form (for example 5E:FF:56:A2:AF:15).
 It is composed of : 3 bytes of the manufacturer identifier and 3 bytes of the serial number.
 
-> :warning: **WARNING:**
-This last statement is nowadays a little less true with virtualization. There are also software solutions for changing the MAC address.
+!!! Warning
+    This last statement is nowadays a little less true with virtualization. There are also software solutions for changing the MAC address.
 
 An Internet Protocol (**IP**) address is an identification number permanently or temporarily assigned to each device connected to a computer network using the Internet Protocol.
 One part defines the network address (NetID or SubnetID as the case may be), the other part defines the address of the host in the network (HostID). The relative size of each part varies according to the network (sub)mask.
@@ -96,9 +96,8 @@ In order for a computer to be part of a DNS domain, it must be given a DNS suffi
 
 ### Reminder of the OSI model
 
-> :star: **TIP:**
-memory aid:
-To remember the order of the layers of the OSI model, remember the following sentence: __Please Do Not Touch Steven's Pet Alligator__.
+!!! Note "Memory aid"
+    To remember the order of the layers of the OSI model, remember the following sentence: __Please Do Not Touch Steven's Pet Alligator__.
 
 |  Layer            |  Protocoles                                  |
 |-------------------|----------------------------------------------|
@@ -149,12 +148,16 @@ On Rocky8 Linux distributions, systemd will name interfaces with the new followi
 
 Forget the old `ifconfig` command! Think `ip`!
 
-> :notebook: **NOTE:**
-> Comment for administrators of older Linux systems:
-> The historical network management command is `ifconfig`. This command has been replaced by the `ip` command, which is already well known to network administrators.
-> The `ip` command is the only command to manage **IP address, ARP, routing, etc.**.
-> The `ifconfig` command is no longer installed by default in Rocky8.
- It is important to get into good habits now.
+!!! Note
+    Comment for administrators of older Linux systems:
+
+    The historical network management command is `ifconfig`. This command has been replaced by the `ip` command, which is already well known to network administrators.
+
+    The `ip` command is the only command to manage **IP address, ARP, routing, etc.**.
+
+    The `ifconfig` command is no longer installed by default in Rocky8.
+
+    It is important to get into good habits now.
 
 ## The hostname
 
@@ -169,8 +172,8 @@ hostname [-f] [hostname]
 | `-f`     | Display the FQDN               |
 | `-i`     | Display the system IPs address |
 
-> :hand:
-This command is used by various network programs to identify the machine.
+!!! Tip
+    This command is used by various network programs to identify the machine.
 
 To assign a host name, it is possible to use the `hostname` command, but the changes will not be retained at the next boot. The command with no arguments displays the host name.
 
@@ -189,8 +192,8 @@ It then uses the `/etc/hosts` file to evaluate the main IP address of the server
 
 It is therefore essential to fill in these two files before any configuration of network services.
 
-> :hand:
-To know if this configuration is well done, the commands `hostname` and `hostname -f` must answer with the expected values.
+!!! Tip
+    To know if this configuration is well done, the commands `hostname` and `hostname -f` must answer with the expected values.
 
 ## /etc/hosts file
 
@@ -210,8 +213,8 @@ Example of `/etc/hosts` file:
 
 The `/etc/hosts` file is still used by the system, especially at boot time when the system FQDN is determined.
 
-> :hand:
-RedHat recommends that at least one line containing the system name be filled in.
+!!! Tip
+    RedHat recommends that at least one line containing the system name be filled in.
 
 If the **DNS** service (**D**domain **N**ame **S**ervice) is not in place, you must fill in all the names in the hosts file for each of your machines.
 
@@ -248,8 +251,8 @@ search mondomaine.lan
 nameserver 192.168.1.254
 ```
 
-> :hand:
-This file is historical. It is no longer filled in directly!
+!!! Tip
+    This file is historical. It is no longer filled in directly!
 
 Newer generations of distributions have generally integrated the `NetworkManager` service. This service allows you to manage the configuration more efficiently, either in graphical or console mode.
 
@@ -324,8 +327,8 @@ BOOTPROTO=dhcp
 HWADDR=00:0c:29:96:32:e3
 ```
 
-> :star: **TIP:**
-If NetworkManager is installed, the changes are taken into account automatically. If not, you have to restart the network service.
+!!! Tip
+    If NetworkManager is installed, the changes are taken into account automatically. If not, you have to restart the network service.
 
 * Restart the network service:
 
@@ -369,8 +372,8 @@ NETMASK=255.255.255.0
 PREFIX=24
 ```
 
-> :warning: **WARNING:**
-You must use NETMASK OR PREFIX - Not both!
+!!! Warning
+    You must use NETMASK OR PREFIX - Not both!
 
 ## Routing
 
@@ -467,8 +470,8 @@ Example:
 [root]# ping –c 4 localhost
 ```
 
-> :star: **TIP:**
-Validate connectivity from near to far
+!!! Tip
+    Validate connectivity from near to far
 
 1) Validate the TCP/IP software layer
 
@@ -569,11 +572,12 @@ Example:
 BROADCAST=172.16.79.255
 ```
 
-> :star: **TIP:**
-This command is interesting followed by a redirection to automatically fill in the configuration files of your interfaces:
-```
-[root]# ipcalc –b 172.16.66.203 255.255.240.0 >> /etc/sysconfig/network-scripts/ifcfg-eth0
-```
+!!! Tip
+    This command is interesting followed by a redirection to automatically fill in the configuration files of your interfaces:
+
+    ```
+    [root]# ipcalc –b 172.16.66.203 255.255.240.0 >> /etc/sysconfig/network-scripts/ifcfg-eth0
+    ```
 
 |  Option  |  Description                           |
 |----------|----------------------------------------|
@@ -614,7 +618,8 @@ When implementing network services, it is very common to check with one of these
 
 ### `netstat` command
 
-> :warning: **WARNING** The `netstat` command is now deprecated and is no-longer installed by default on Rocky Linux. You may still find some Linux versions that have it installed, but it is best to move on to using `ss` for everything that you would have used `netstat` for.
+!!! Warning
+    The `netstat` command is now deprecated and is no-longer installed by default on Rocky Linux. You may still find some Linux versions that have it installed, but it is best to move on to using `ss` for everything that you would have used `netstat` for.
 
 The `netstat` command (**network statistics**) displays the listening ports on the network.
 
@@ -657,8 +662,8 @@ $ arp-scan -I eth0 -l
 172.16.1.232   88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)
 ```
 
-> :star: **TIP:**
-As the above example shows, it is also possible to have MAC address conflicts! These problems are brought about by virtualization technologies and the copying of virtual machines.
+!!! Tip
+    As the above example shows, it is also possible to have MAC address conflicts! These problems are brought about by virtualization technologies and the copying of virtual machines.
 
 ## Hot configuration
 
