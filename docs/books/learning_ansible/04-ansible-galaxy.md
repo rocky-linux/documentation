@@ -1,6 +1,6 @@
 # Ansible-galaxy: collections and roles
 
-In this chapter you will learn how to use install and manage ansible roles and collections.
+In this chapter you will learn how to use, install, and manage Ansible roles and collections.
 
 ****
 
@@ -24,7 +24,7 @@ The elements provided can be referenced in the playbooks and used out of the box
 
 ## `ansible-galaxy` command
 
-The `ansible-galaxy` command manages roles and collections using [galaxy.ansible.com]http://galaxy.ansible.com.
+The `ansible-galaxy` command manages roles and collections using [galaxy.ansible.com](http://galaxy.ansible.com).
 
 * To manage roles:
 
@@ -37,7 +37,7 @@ ansible-galaxy role [import|init|install|login|remove|...]
 | `install`    | installs a role.                                          |
 | `remove`     | remove one or more roles.                                 |
 | `list`       | display the name and the version of installed roles.      |
-| `info`       | display informations about a role.                        |
+| `info`       | display information about a role.                        |
 | `init`       | generate a skeleton of a new role.                        |
 | `import`     | import a role from the galaxy web site. Requires a login. |
 
@@ -60,13 +60,13 @@ An Ansible role is a unit that promotes the reusability of playbooks.
 !!! Note
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 
-### Installing usefull Roles
+### Installing useful Roles
 
 In order to highlight the interest of using roles, I suggest you to use the `alemorvan/patchmanagement` role, which will allow you to perform a lot of tasks (pre-update or post-update for example) during your update process, in only a few lines of code.
 
 You can check the code in the github repo of the role [here](https://github.com/alemorvan/patchmanagement).
 
-* Install the role. This needs only one command line!
+* Install the role. This needs only one command:
 
 ```
 ansible-galaxy role install alemorvan.patchmanagement
@@ -199,7 +199,7 @@ Pretty easy for such a complex process, isn't it?
 
 This is just one example of what can be done using roles made available by the community. Have a look at [galaxy.ansible.com](https://galaxy.ansible.com/) to discover the roles that could be useful for you!
 
-You can also create your own roles for your own needs and publish them on the internet if you feel like it. This is what we will briefly cover in the next chapter.
+You can also create your own roles for your own needs and publish them on the Internet if you feel like it. This is what we will briefly cover in the next chapter.
 
 ### Introduction to Role development
 
@@ -235,7 +235,7 @@ rocky8/
 8 directories, 8 files
 ```
 
-Roles allow you to do away with the need to include files. No need to specify file paths, `include` directives in playbooks. You just have to specify a task, ansible takes care of the inclusions.
+Roles allow you to do away with the need to include files. There is no need to specify file paths or `include` directives in playbooks. You just have to specify a task, and Ansible takes care of the inclusions.
 
 The structure of a role is fairly obvious to understand.
 
@@ -245,16 +245,15 @@ The handlers, files, and templates needed for your code are stored in `handlers/
 
 All that remains is to define the code for your role's tasks in `tasks/main.yml`.
 
-Once all this is working well, you can use this role in your playbooks. You will be able to use your role without worrying about the technical aspect of its tasks while customizing its operation with variables.
+Once all this is working well, you can use this role in your playbooks. You will be able to use your role without worrying about the technical aspect of its tasks, while customizing its operation with variables.
 
 ### Practical work: create a first simple role
 
-Let's implement this with a "go anywhere" role start that will create a default user and install software packages.
-This role can be systematically applied to all your servers.
+Let's implement this with a "go anywhere" role that will create a default user and install software packages. This role can be systematically applied to all your servers.
 
 #### Variables
 
-We will create for all of our servers a `rockstar` user. As we don't want this user to be overrided, let's define it in the `vars/main.yml`:
+We will create a `rockstar` user on all of our servers. As we don't want this user to be overridden, let's define it in the `vars/main.yml`:
 
 ```
 ---
@@ -267,7 +266,7 @@ rocky8_default_user:
   group: rockstar
 ```
 
-We can now use thoses variables inside our `tasks/main.yml` without any inclusion.
+We can now use those variables inside our `tasks/main.yml` without any inclusion.
 
 ```
 ---
@@ -283,7 +282,7 @@ We can now use thoses variables inside our `tasks/main.yml` without any inclusio
     group: "{{ rocky8_default_user.gid }}"
 ```
 
-To test your new role, let's create a `test-role.yml` playbook in the same directory than your role :
+To test your new role, let's create a `test-role.yml` playbook in the same directory as your role:
 
 ```
 ---
@@ -297,7 +296,7 @@ To test your new role, let's create a `test-role.yml` playbook in the same direc
       become_user: root
 ```
 
-and launch it :
+and launch it:
 
 ```
 ansible-playbook test-role.yml
@@ -317,7 +316,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-Congratulations! You are now able, with a playbook of only a few lines, to create great things.
+Congratulations! You are now able to create great things with a playbook of only a few lines.
 
 Let's see the use of default variables.
 
@@ -333,18 +332,18 @@ rocky8_remove_packages: []
 and use them in your `tasks/main.yml`:
 
 ```
-- name: Install default packages (can be overrided)
+- name: Install default packages (can be overridden)
   package:
     name: "{{ rocky8_default_packages }}"
     state: present
 
-- name: "Uninstall default packages (can be overrided) {{ rocky8_remove_packages }}"
+- name: "Uninstall default packages (can be overridden) {{ rocky8_remove_packages }}"
   package:
     name: "{{ rocky8_remove_packages }}"
     state: absent
 ```
 
-Test now your role with the help of the playbook previously created:
+Test your role with the help of the playbook previously created:
 
 ```
 ansible-playbook test-role.yml
@@ -360,17 +359,17 @@ ok: [localhost]
 TASK [rocky8 : Create default user] ********************************************************************
 ok: [localhost]
 
-TASK [rocky8 : Install default packages (can be overrided)] ********************************************
+TASK [rocky8 : Install default packages (can be overridden)] ********************************************
 ok: [localhost]
 
-TASK [rocky8 : Uninstall default packages (can be overrided) []] ***************************************
+TASK [rocky8 : Uninstall default packages (can be overridden) []] ***************************************
 ok: [localhost]
 
 PLAY RECAP *********************************************************************************************
 localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-You can now override the `rocky8_remove_packages` in your playbock and uninstall for example `cockpit`:
+You can now override the `rocky8_remove_packages` in your playbook and uninstall for example `cockpit`:
 
 ```
 ---
@@ -401,20 +400,20 @@ ok: [localhost]
 TASK [rocky8 : Create default user] ********************************************************************
 ok: [localhost]
 
-TASK [rocky8 : Install default packages (can be overrided)] ********************************************
+TASK [rocky8 : Install default packages (can be overridden)] ********************************************
 ok: [localhost]
 
-TASK [rocky8 : Uninstall default packages (can be overrided) ['cockpit']] ******************************
+TASK [rocky8 : Uninstall default packages (can be overridden) ['cockpit']] ******************************
 changed: [localhost]
 
 PLAY RECAP *********************************************************************************************
 localhost                  : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-Obviously, there is no limit to how much you can improve your role. Imagine that for one of your servers, you need a package that is in the list of those to be uninstalled. You could then, for example, create a new list that can be overrided and then remove from the list of packages to be uninstalled those in the list of specifics packages to be installed by using the jinja `difference()` filter.
+Obviously, there is no limit to how much you can improve your role. Imagine that for one of your servers, you need a package that is in the list of those to be uninstalled. You could then, for example, create a new list that can be overridden and then remove from the list of packages to be uninstalled those in the list of specific packages to be installed by using the jinja `difference()` filter.
 
 ```
-- name: "Uninstall default packages (can be overrided) {{ rocky8_remove_packages }}"
+- name: "Uninstall default packages (can be overridden) {{ rocky8_remove_packages }}"
   package:
     name: "{{ rocky8_remove_packages | difference(rocky8_specifics_packages) }}"
     state: absent
