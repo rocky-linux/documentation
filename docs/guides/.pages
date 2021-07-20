@@ -1,0 +1,7 @@
+---
+nav:
+    - Guides Home: index.md
+    - Installation Guide: rocky-8-installation.md
+    - Apache Hardened Webserver: apache_hardened_webserver
+    - Development: development
+    - ...

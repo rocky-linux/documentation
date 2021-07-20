@@ -1,0 +1,8 @@
+---
+nav:
+    - Table of Contents: index.md
+    - Guides: guides
+    - Books: books
+    - Labs: labs
+    - Release Notes: release_notes
+    - Rocky Linux: https://rockylinux.org

@@ -1,2 +1,13 @@
 ---
-title: System Administrator's Guide
+nav:
+    - Introduction: 00-toc.md
+    - The Linux Operating System: 01-presentation.md
+    - Commands for Linux Users: 03-commands.md
+    - The vi Text Editor: 05-vi.md
+    - User Management: 06-users.md
+    - File Systems: 07-file-systems.md
+    - Process Management: 08-process.md
+    - System Startup: 10-boot.md
+    - Task Management: 11-tasks.md
+    - Implementing the Network: 12-network.md
+    - Software Management: 13-softwares.md
