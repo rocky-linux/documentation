@@ -92,6 +92,12 @@ $ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust
     `python3-argcomplete` is provided by _EPEL_. Please install epel-release if not done yet.
     This package will help you complete Ansible commands.
 
+Before we actually install Ansible, we need to tell Rocky Linux that we want to use the newly installed version of Python. The reason is that if we continue to the install without this, the default python3 (version 3.6 as of this writing), will be used instead of the newly installed version 3.8. Set the version you want to use by entering the following command:
+
+```
+sudo alternatives --set python /usr/bin/python3.8
+```
+
 We can now install Ansible:
 
 ```
@@ -322,6 +328,10 @@ Our goal here is to comment out the default, and uncomment the NOPASSWD option s
 ## Same thing without a password
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 ```
+
+!!! Warning
+    If you receive the following error message when entering Ansible commands, it probably means that you forgot this step on one of your clients:
+    `"msg": "Missing sudo password`
 
 When using management from this point on, start working with this new user:
 
