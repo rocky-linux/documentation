@@ -16,7 +16,7 @@ The order of these sections is very important but has not been finalized yet, so
 
 Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 --- | --- | --- | --- | --- | ---
-[Setup Development Environment](guides/development/package_dev_start.md) | [Rebranding HowTo](guides/development/package_debranding.md) | [Signing HowTo](guides/development/package_signing.md) [Build Troubleshooting](guides/development/package_build_troubleshooting.md)
+[Setup Development Environment](guides/development/package_dev_start.md) | [Rebranding HowTo](guides/development/package_debranding.md) | [Signing HowTo](guides/development/package_signing.md) <br /> [Build Troubleshooting](guides/development/package_build_troubleshooting.md)
 
 
 ## Security
@@ -63,7 +63,7 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 
 | Administration | Security | General |
 |----------------|----------|---------|
-| [System Administration](books/admin_guide/00-toc.md) | [Security Labs](labs/security/index.md) |
+| [System Administration](books/admin_guide/00-toc.md) | [Security Labs](labs/security/index.md) | [Learning Ansible](books/learning_ansible/index.md)
 
 ## System Automation And Maintenance
 
