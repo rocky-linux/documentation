@@ -13,6 +13,8 @@ The following packages have been updated:
 * kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
 * systemd -> systemd-239-45.el8_4.2 -> Addresses CVE-2021-33910
 * firefox
+* java-1.8.0-openjdk
+* java-11-openjdk
 
 ## 8.4 - 2021-07-12
 
