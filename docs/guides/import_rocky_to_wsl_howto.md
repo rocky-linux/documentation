@@ -1,8 +1,16 @@
-# Import Rocky Linux to WSL2 with Virtualbox and Docker
+# Import Rocky Linux to WSL2 with Docker
 
 ## Prerequisites
 
+Either 
 * Linux PC running VirtualBox - VirtualBox will not run under windows 10 with WSL2, which is needed for later steps. You can also use a dual boot PC, or a live distribution, but make sure you have VirtualBox available.
+
+Or
+
+
+* Docker Desktop for Windows 10 (or any docker installation)
+
+Required
 * Windows 10 PC running **WSL2**
 * Internet access
 
@@ -10,7 +18,7 @@
 
 This guide shows the steps to create a tar image for a Docker container, and how to import that image into the Windows Subsystem for Linux (WSL). The steps outlined below are largely taken from Microsoft's [Import any Linux distribution to use with WSL](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro) and from Docker's [Create a base image](https://docs.docker.com/develop/develop-images/baseimages/), and adapted to the new distribution. 
 
-Please note that you **do not need Docker** to accomplish this task. If you go to either of the original guides for reference, do not install Docker on your PC(s), unless you need it for other purposes. This guide assumes the user is familiar with VirtualBox, and knows how to perform tasks like installing the VirtualBoxAdditions, and mounting shared drives.
+Please note that you need Virtual Box (to create the container for yourself) **OR** Docker to just pull the existing image from Docker Hub. This guide assumes the user is familiar with VirtualBox or Docker, and knows how to perform tasks like installing the VirtualBoxAdditions, and mounting shared drives.
 
 It is also important to be familiar with the limitations of WSL, which will cause some functionality to break, work slowly, or work in unexpected ways. Depending on what you want to accomplish, the resulting distribution may or may not do what you want it to do. There are no guarantees.
 
@@ -18,7 +26,25 @@ It is also important to be familiar with the limitations of WSL, which will caus
 
 ## Install Steps
 
-### On Linux PC with VirtualBox
+### Get Rocky Container Image
+
+#### Pull From Docker Hub (on the same PC as your WSL2 install)
+1. From powershell or another WSL2 distro create a rocky container using the version you wish to start with. Replace the tag with your desired tag
+```powershell
+docker run --name rocky-container rockylinux/rockylinux:8.4
+```
+2. Confirm the container exists
+```powershell
+docker container list --all | Select-String rocky_container
+```
+3. Export container as tar
+```powershell
+docker export rocky_container -o rocky_container.tar
+```
+
+Note: You don't have to be on the same system as your WSL2 install, you just need to be able to get that tar file to the system.
+
+#### Create Your Own On Linux PC with VirtualBox
 1. Download the minimal image from [Rocky Linux](https://rockylinux.org/download).
 2. Boot and install Rocky Linux on a new VirtualBox VM. The default settings are fine.
 3. Install VirtualBoxAdditions on your VM. This will require installing additional packages (as shown in the suggested command):<br />
@@ -53,21 +79,22 @@ $ sudo ./mkimage-yum.sh -y /home/<your_username>/wsl_tar/yum.conf baseos
 9. After the script finishes, your new tar file will be in the path you entered in the script above. Mount a shared drive with the host and move the tar file there.  
     You could also move the file to a USB drive or folder accessible to the Windows 10 PC. After moving the file to an external drive or folder, you won't need the VM anymore. You can delete it or modify it for other purposes.
 
-### On your Windows 10 PC
-10. Create a directory to hold the Rocky Linux filesystem.
-11. In a PowerShell prompt, import Rocky Linux (it's named `rocky_rc` here, but you can name it anything you like).<br/>
+
+### Import into WSL2
+1. Create a directory to hold the Rocky Linux filesystem.
+2. In a PowerShell prompt, import Rocky Linux (it's named `rocky_rc` here, but you can name it anything you like).<br/>
 ```PowerShell
-wsl --import rocky_rc <Path to RockyLinuxDirectory> <Path to tar file from above>
+wsl --import rocky_rc <Path to RockyLinuxDirectory from step 10> <Path to tar file from previous sections>
 ```
-12. Verify Rocky Linux is installed with:<br/>
+3. Verify Rocky Linux is installed with:<br/>
 ```PowerShell
 wsl -l -v
 ```
-13. Launch Rocky Linux with<br/>
+4. Launch Rocky Linux with<br/>
 ```PowerShell
 wsl -d rocky_rc
 ```
-14. Set up Rocky Linux with the following bash commands (you'll need to be running as root).<br/>
+5. Set up Rocky Linux with the following bash commands (you'll need to be running as root).<br/>
 ```bash
 yum update
 yum install glibc-langpack-en -y
@@ -77,13 +104,13 @@ adduser -G wheel $newUsername
 echo -e "[user]\ndefault=$newUsername" >> /etc/wsl.conf
 passwd $newUsername
 ```
-15. Exit the bash prompt (Ctrl+D or exit).
-16. Back in a PowerShell prompt, shutdown all WSL running instances and start Rocky.<br/>
+6. Exit the bash prompt (Ctrl+D or exit).
+7. Back in a PowerShell prompt, shutdown all WSL running instances and start Rocky.<br/>
 ```PowerShell
 wsl --shutdown
 wsl -d rocky_rc
 ```
-17. Test and enjoy!
+8. Test and enjoy!
 
 If you have Windows Terminal installed, the new WSL distro name will appear as an option on the pull-down menu, which is quite handy to launch it in the future. You can then customize it with colors, fonts, etc. 
 
