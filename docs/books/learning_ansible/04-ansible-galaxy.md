@@ -279,7 +279,7 @@ We can now use those variables inside our `tasks/main.yml` without any inclusion
   user:
     name: "{{ rocky8_default_user.name }}"
     uid: "{{ rocky8_default_user.uid }}"
-    group: "{{ rocky8_default_user.gid }}"
+    group: "{{ rocky8_default_user.group }}"
 ```
 
 To test your new role, let's create a `test-role.yml` playbook in the same directory as your role:
