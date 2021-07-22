@@ -6,6 +6,16 @@ title:  Rocky Linux 8 Change Log
 
 Rocky Linux 8.4 will receive incremental updates over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`
 
+## 8.4 - 2021-07-21
+
+The following packages have been updated:
+
+* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
+* systemd -> systemd-239-45.el8_4.2 -> Addresses CVE-2021-33910
+* firefox
+* java-1.8.0-openjdk
+* java-11-openjdk
+
 ## 8.4 - 2021-07-12
 
 The following packages have been updated:
