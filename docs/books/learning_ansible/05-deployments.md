@@ -6,11 +6,11 @@ In this chapter you will learn how to deploy applications with the Ansible role 
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Implementing Ansistrano;       
-:heavy_check_mark: Configuring Ansistrano;       
+:heavy_check_mark: Implement Ansistrano;       
+:heavy_check_mark: Configure Ansistrano;       
 :heavy_check_mark: Use shared folders and files between deployed versions;       
 :heavy_check_mark: Deploying different versions of a site from git;        
-:heavy_check_mark: Reacting between deployment steps.          
+:heavy_check_mark: React between deployment steps.          
 
 :checkered_flag: **ansible**, **ansistrano**, **roles**, **deployments**
 
@@ -22,11 +22,11 @@ In this chapter you will learn how to deploy applications with the Ansible role 
 ****
 
 Ansistrano is an Ansible role to easily deploy PHP, Python, etc. applications.
-It is based on the functionality of [Capistrano](http://capistranorb.com/)
+It is based on the functionality of [Capistrano](http://capistranorb.com/).
 
 ## Introduction
 
-Ansistrano requires to run:
+Ansistrano requires the following to run:
 
 * Ansible on the deployment machine,
 * `rsync` or `git` on the client machine.
@@ -41,11 +41,11 @@ Ansistrano deploys applications by following these 5 steps:
 * **Setup**: create the directory structure to host the releases;
 * **Update Code**: downloading the new release to the targets;
 * **Symlink Shared** and **Symlink**: after deploying the new release, the `current` symbolic link is modified to point to this new release;
-* **Clean Up** : to do some clean up (remove old versions).
+* **Clean Up**: to do some clean up (remove old versions).
 
 ![Stages of a deployment](images/ansistrano-001.png)
 
-The skeleton of a deployment with ansistrano looks like :
+The skeleton of a deployment with Ansistrano looks like this:
 
 ```
 /var/www/site/
@@ -61,7 +61,7 @@ The skeleton of a deployment with ansistrano looks like :
     └── img/
 ```
 
-You can find all the ansistrano documentation on its [Github repository].(https://github.com/ansistrano/deploy).
+You can find all the Ansistrano documentation on its [Github repository](https://github.com/ansistrano/deploy).
 
 ## Labs
 
@@ -69,11 +69,11 @@ You will continue to work on your 2 servers:
 
 The management server:
 
-* Ansible is already installed. You will have to deploy the `ansistrano-deploy` role
+* Ansible is already installed. You will have to install the `ansistrano.deploy` role.
 
 The managed server:
 
-* You will need to install Apache and deploy the client site
+* You will need to install Apache and deploy the client site.
 
 ### Deploying the Web server
 
@@ -100,7 +100,7 @@ Installing 'ansible.posix:1.2.0' to '/home/ansible/.ansible/collections/ansible_
 ansible.posix:1.2.0 was installed successfully
 ```
 
-Once the role and the collection are installed, we can create the first part of our playbook, which will :
+Once the role and the collection are installed, we can create the first part of our playbook, which will:
 
 * Install Apache,
 * Create a target folder for our `vhost`,
@@ -116,7 +116,7 @@ Technical considerations:
 * The deployment is done by `git`, the package will be installed.
 
 !!! Note
-    The target of our vhost will therefore be : `/var/www/site/current/html`.
+    The target of our vhost will therefore be: `/var/www/site/current/html`.
 
 Our playbook to configure the server: `playbook-config-server.yml`
 
@@ -176,7 +176,7 @@ RUNNING HANDLER [geerlingguy.apache : restart apache] **************************
 
 The `geerlingguy.apache` role makes our job much easier by taking care of the installation and configuration of Apache.
 
-You can check that everything is working "fine":
+You can check that everything is working by using `curl`:
 
 ```
 $ curl -I http://192.168.1.11
@@ -187,7 +187,7 @@ Content-Type: text/html; charset=iso-8859-1
 ```
 
 !!! Note
-    We have not yet deployed any code, so it is normal for the curl to return a `404` HTTP code. But we can already confirm that the httpd service is working and that the firewall is open.
+    We have not yet deployed any code, so it is normal for `curl` to return a `404` HTTP code. But we can already confirm that the `httpd` service is working and that the firewall is open.
 
 ### Deploying the software
 
@@ -277,13 +277,13 @@ You can now connect by ssh to your client machine.
 
 ```
 $ tree /var/www/site/
-/var/www/site/
-├── current -> ./releases/20210718100000Z
+/var/www/site
+├── current -> ./releases/20210722155312Z
 ├── releases
-│   └── 20210718100000Z
-│       ├── html
-│       │   └── index.htm
-│       └── REVISION
+│   └── 20210722155312Z
+│       ├── REVISION
+│       └── html
+│           └── index.htm
 ├── repo
 │   └── html
 │       └── index.htm
@@ -292,33 +292,33 @@ $ tree /var/www/site/
 
 Please note:
 
-* the `current` symlink to the release `./releases/20210718100000Z`
+* the `current` symlink to the release `./releases/20210722155312Z`
 * the presence of a directory `shared`
 * the presence of the git repos in `./repo/`
 
-* From the ansible server, restart **3** times the deployment, then check on the client.
+* From the Ansible server, restart the deployment **3** times, then check on the client.
 
 ```
 $ tree /var/www/site/
-/var/www/site/
-├── current -> ./releases/20210718100000Z
+var/www/site
+├── current -> ./releases/20210722160048Z
 ├── releases
-│   ├── 20210718100000Z
-│   │   ├── html
-│   │   │   └── index.htm
-│   │   └── REVISION
-│   ├── 20210718100010Z
-│   │   ├── html
-│   │   │   └── index.htm
-│   │   └── REVISION
-│   └── 20210718100020Z
-│       ├── html
-│       │   └── index.htm
-│       └── REVISION
-│   ├── 20210718100030Z
-│   │   ├── html
-│   │   │   └── index.htm
-│   │   └── REVISION
+│   ├── 20210722155312Z
+│   │   ├── REVISION
+│   │   └── html
+│   │       └── index.htm
+│   ├── 20210722160032Z
+│   │   ├── REVISION
+│   │   └── html
+│   │       └── index.htm
+│   ├── 20210722160040Z
+│   │   ├── REVISION
+│   │   └── html
+│   │       └── index.htm
+│   └── 20210722160048Z
+│       ├── REVISION
+│       └── html
+│           └── index.htm
 ├── repo
 │   └── html
 │       └── index.htm
@@ -361,21 +361,21 @@ On the client machine:
 
 ```
 $ tree /var/www/site/
-/var/www/site/
-├── current -> ./releases/20180821113223Z
+/var/www/site
+├── current -> ./releases/20210722160318Z
 ├── releases
-│   └── 20180821112100Z
-│       ├── html
-│       │   └── index.htm
-│       └── REVISION
-│   ├── 20180821112348Z
-│   │   ├── html
-│   │   │   └── index.htm
-│   │   └── REVISION
-│   └── 20180821113223Z
-│       ├── html
-│       │   └── index.htm
-│       └── REVISION
+│   ├── 20210722160040Z
+│   │   ├── REVISION
+│   │   └── html
+│   │       └── index.htm
+│   ├── 20210722160048Z
+│   │   ├── REVISION
+│   │   └── html
+│   │       └── index.htm
+│   └── 20210722160318Z
+│       ├── REVISION
+│       └── html
+│           └── index.htm
 ├── repo
 │   └── html
 │       └── index.htm
@@ -431,25 +431,25 @@ On the client machine:
 ```
 $  tree -F /var/www/site/
 /var/www/site/
-├── current -> ./releases/20210718100000Z/
-├── releases
-│   ├── 20180821112348Z/
-│   │   ├── html/
-│   │   │   └── index.htm
-│   │   └── REVISION
-│   └── 20180821113223Z/
+├── current -> ./releases/20210722160631Z/
+├── releases/
+│   ├── 20210722160048Z/
+│   │   ├── REVISION
+│   │   └── html/
+│   │       └── index.htm
+│   ├── 20210722160318Z/
+│   │   ├── REVISION
+│   │   └── html/
+│   │       └── index.htm
+│   └── 20210722160631Z/
+│       ├── REVISION
+│       ├── css -> ../../shared/css/
 │       ├── html/
 │       │   └── index.htm
-│       └── REVISION
-│   └── 20180821120131Z/
-│       ├── css -> ../../shared/css/
-│       ├── html
-│       │   └── index.htm
 │       ├── img -> ../../shared/img/
-│       ├── logs -> ../../shared/logs
-│       └── REVISION
+│       └── logs -> ../../shared/logs
 ├── repo/
-│   └── html
+│   └── html/
 │       └── index.htm
 └── shared/
     ├── css/
@@ -471,13 +471,13 @@ Therefore, the files contained in these 2 folders and the `logs` file are always
 
 but above all they will be kept from one release to the next.
 
-### Use a subdirectory of the repository for deployment
+### Use a sub-directory of the repository for deployment
 
 In our case, the repository contains a `html` folder, which contains the site files.
 
-* To avoid this extra level of directory, use the `ansistrano_git_repo_tree` variable by specifying the path of the subdirectory to use.
+* To avoid this extra level of directory, use the `ansistrano_git_repo_tree` variable by specifying the path of the sub-directory to use.
 
-Don't forget to modify the apache configuration to take into account this change!
+Don't forget to modify the Apache configuration to take into account this change!
 
 Change the playbook for the server configuration `playbook-config-server.yml`
 
@@ -513,7 +513,7 @@ Change the playbook for the server configuration `playbook-config-server.yml`
 
 <1> Modify this line
 
-Change the playbook for the deploiement `playbook-deploy.yml`
+Change the playbook for the deployment `playbook-deploy.yml`
 
 ```
 ---
@@ -546,27 +546,27 @@ Change the playbook for the deploiement `playbook-deploy.yml`
 ```
 $  tree -F /var/www/site/
 /var/www/site/
-├── current -> ./releases/20180821120131Z/
-├── releases
-│   └── 20180821113223Z/
-│   │   ├── html/
-│   │   │   └── index.htm
-│   │   └── REVISION
-│   └── 20180821120131Z/
-│   │   ├── css -> ../../shared/css/
-│   │   ├── html
-│   │   │   └── index.htm
-│   │   ├── img -> ../../shared/img/
-│   │   ├── logs -> ../../shared/logs
-│   │   └── REVISION
-│   └── 20180821130124Z/
+├── current -> ./releases/20210722161542Z/
+├── releases/
+│   ├── 20210722160318Z/
+│   │   ├── REVISION
+│   │   └── html/
+│   │       └── index.htm
+│   ├── 20210722160631Z/
+│   │   ├── REVISION
+│   │   ├── css -> ../../shared/css/
+│   │   ├── html/
+│   │   │   └── index.htm
+│   │   ├── img -> ../../shared/img/
+│   │   └── logs -> ../../shared/logs
+│   └── 20210722161542Z/
+│       ├── REVISION
 │       ├── css -> ../../shared/css/
 │       ├── img -> ../../shared/img/
-│       ├── index.htm  # <1>
-│       ├── logs -> ../../shared/logs
-│       └── REVISION
+│       ├── index.htm
+│       └── logs -> ../../shared/logs
 ├── repo/
-│   └── html
+│   └── html/
 │       └── index.htm
 └── shared/
     ├── css/
@@ -645,9 +645,6 @@ $ curl http://192.168.1.11
      - { role: ansistrano.deploy }
 ```
 
-!!! Note
-    You can have fun, during the deployment, refreshing your browser, to see in 'live' the change.
-
 ```
 $ curl http://192.168.1.11
 <html>
@@ -679,7 +676,7 @@ A playbook can be included through the variables provided for this purpose:
 * `ansistrano_before_<task>_tasks_file`
 * or `ansistrano_after_<task>_tasks_file`
 
-* Easy example: send an email (or whatever you want like slack notification) at the begining of the deployment:
+* Easy example: send an email (or whatever you want like Slack notification) at the beginning of the deployment:
 
 
 ```
@@ -776,6 +773,6 @@ TASK [ansistrano.deploy : restart apache] **************************************
 changed: [192.168.10.11]
 ```
 
-As you have seen during this chapter, Ansible can greatly facilitate the life of the system administrator. Very intelligent roles like ansistrano are "must have" that quickly become indispensable.
+As you have seen during this chapter, Ansible can greatly improve the life of the system administrator. Very intelligent roles like Ansistrano are "must haves" that quickly become indispensable.
 
-Using Ansistrano is to ensure that good deployment practices are respected, to reduce the time needed to put the system into production, and to avoid the risk of potential human errors. The machine works fast, well and rarely makes mistakes!
+Using Ansistrano, ensures that good deployment practices are respected, reduces the time needed to put a system into production, and avoids the risk of potential human errors. The machine works fast, well, and rarely makes mistakes!
