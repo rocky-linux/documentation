@@ -14,7 +14,7 @@ We can then get into the deep functioning of Linux to discover how the system ma
 * file systems.
 * processes.
 
-Next, we will cover an essential subject for the System Administrator: The Bacup Process. Many software solutions come with Linux to enhance Backups (rsnapshot, lsyncd, etcetera.)It is good to know the essential components of the backup that are within the operating system. We will investigate two tools: `tar` and the less widespread `cpio` in this chapter.
+Next, we will cover an essential subject for the System Administrator: The Backup Process. Many software solutions come with Linux to enhance Backups (rsnapshot, lsyncd, etcetera.)It is good to know the essential components of the backup that are within the operating system. We will investigate two tools: `tar` and the less widespread `cpio` in this chapter.
 
 Regarding management of the system during the boot process, it has evolved enormously in recent years since the arrival of the systemd.
 
