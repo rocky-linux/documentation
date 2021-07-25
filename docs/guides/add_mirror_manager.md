@@ -2,13 +2,13 @@
 
 ## Minimal requirements for public mirrors
 
-We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 datacenter like environment. Available bandwidth should be at least 100 MBit/s. If you are also allowing rsync you should have at least 500 MBit/s better 1 GBit/s. We prefer mirrors offering dualstack (IPv4 & IPv6). Please no dynamic DNS. If you are offering a mirror in a region that has only few mirrors yet of course we also accept slower speeds.
+We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 datacenter like environment. Available bandwidth should be at least 100 MBit/s. If you are also allowing rsync you should have at least 500 MBit/s better 1 GBit/s. We prefer mirrors offering dualstack (IPv4 & IPv6). Please no dynamic DNS. If you are offering a mirror in a region that has only few mirrors, we will also accept slower speeds.
 
 Please do not submit mirrors which are hosted in a Anycast-CDN like Cloudflare etc. as this can lead to suboptimal performance with the selection of fastest mirror in dnf.
 
 Please note that we are not allowed to accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations
 
-Hard disk space requirements are around 300 GB at the moment but expect it to grow over time. 400 GB space should be sufficient for the next years.
+Hard disk space requirements are around 300 GB at the moment but expect it to grow over time. 400 GB space should be sufficient for the next few years.
 
 Our master mirror is `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`
 For your first synchronisation use a mirror near to you. You can find all official mirrors here: https://mirrors.rockylinux.org
@@ -40,7 +40,7 @@ rsync -aqH --delete source-mirror destination-dir
 ```
 Consider using a locking mechanism to avoid running more than one rsync job simultaneously when we push a new release.
 
-You can also use and modify our example script implementing locking and full sync only when required. It can be found at https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh.
+You can also use and modify our example script implementing locking and full sync if required. It can be found at https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh.
 
 After your first complete synchronization check that everything is fine with your mirror. Most importantly check all files and dirs got synchronized, your chron job is working properly und your mirror is reachable from the public internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
 
@@ -59,7 +59,7 @@ Access Rocky's Mirror Manager here: https://mirrors.rockylinux.org/mirrormanager
 
 After a successful login, your profile will be on the top right. Select the drop down then click "My sites".
 
-A new page will load listing all of the sites under the account. The first time will be empty. Click "Register a new site".
+A new page will load listing all of the sites under the account. The first time it will be empty. Click "Register a new site".
 
 A new page will load with an important Export Compliance statement to read. Then fill out the following information:
 * "Site Name"
