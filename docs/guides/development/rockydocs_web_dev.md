@@ -64,7 +64,7 @@ docker run -d -it --name rockydoc \
 ```
 
 
-Alternativelty if you prefer and if you have docker-compose installed, you can create compose file named docker-compose.yml with the following contents:
+Alternativelty if you prefer and if you have `docker-compose` installed, you can create compose file named `docker-compose.yml` with the following contents:
 
 ```
 version: "3.9"
@@ -81,10 +81,11 @@ services:
 
 ```
 
-And start the container by running:
+Save the file with the file name `docker-compose.yml` in your $ROCKYDOCS working directory.  And start the service/container by running:
 
-docker-compose -f rocky-mkdocs-compose.yml  up
-
+```
+docker-compose  up
+```
 
 
 ## View the local docs.rockylinux.org website
