@@ -21,19 +21,22 @@ Some notes:
 ## Create the content environment
 
 1. Change the current working directory on your local system to a folder where you intend to do your writing and web dev work. We'll refer to this directcory as 
-$ROCKYDOCS in the rest of this guide.  For our demo $ROCKYDOCCS is   ~/projects/rockydocs. Type:
+`$ROCKYDOCS` in the rest of this guide.  For our demo here, `$ROCKYDOCS` points to `~/projects/rockydocs` on our demo system. 
+
+Create $ROCKYDOCS if it doesn't already exist and then type:
  
 ```
 cd  $ROCKYDOCS
 ```
 
-2. Make sure you have git installed.  While in $ROCKYDOCS clone the official Rocky Documentation content repo. Type:
+2. Make sure you have `git` installed (`dnf -y install git`).  While in $ROCKYDOCS clone the official Rocky Documentation content repo. Type:
 
 ```
 git clone https://github.com/rocky-linux/documentation.git
 ```
 
-You'll now have a $ROCKYDOCS/documentation folder. This folder is a git repository and under git's control.
+You'll now have a `$ROCKYDOCS/documentation` folder. This folder is a git repository and under git's control.
+
 
 ## Create and Start the RockyDocs web developmwnt environment
 
