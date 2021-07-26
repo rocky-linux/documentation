@@ -2,23 +2,23 @@
 
 ## Introduction
 
-So you want to contribute to the Rocky Linux documentation, but aren't sure how to go about that? You've come to the right place. We're excited to have you on board with us. 
+So you want to contribute to the Rocky Linux documentation, but aren't sure how to go about that? You've come to the right place. We're excited to have you on board with us.
 
 One of our big goals for Rocky is to have not just good, but GREAT documentation, and we can't do it alone. This document will get you started, and will (hopefully) allay any worries you might have about doing so. We're always here to help, too, so feel free to ask questions and join in the conversation.
 
 ## Documentation Subject Matter
 
-If you can dream it — or better yet, have done it before — then your subject matter is probably important to the Rocky Linux documentation project. Once a build is finally out there, then we expect that documentation will really start to explode, but we want to be ready with some things already documented out of the gate. 
+If you can dream it — or better yet, have done it before — then your subject matter is probably important to the Rocky Linux documentation project. Now that a Rocky Linux release is available, we expect that documentation submissions will increase.
 
 This is where you come in — both now and in the future. If you have experience with anything Linux-related, and can translate that to Rocky Linux, then we want you to start writing!
 
 ## Where to Start
 
-While you can create documentation in any format, the preferred format is Markdown. You can easily create documents in Markdown, plus Markdown is super-easy to learn. The best way to get started with Markdown is to have a Markdown editor installed and read the tutorial. You can create Markdown files with any text editor, but most Markdown editors allow you to preview what you've input already, so they can be very helpful. 
+While you can create documentation in any format, the preferred format is Markdown. You can easily create documents in Markdown, plus Markdown is super-easy to learn. The best way to get started with Markdown is to have a Markdown editor installed and read the tutorial. You can create Markdown files with any text editor, but most Markdown editors allow you to preview what you've input already, so they can be very helpful.
 
 ### Markdown Editor
 
-As we've said already, the best way to create Markdown files, particularly if you've not done it before, is to grab an editor for the operating system that you use on your PC or Laptop. A simple web search for "Markdown editors" will show you a bunch to choose from. 
+As we've said already, the best way to create Markdown files, particularly if you've not done it before, is to grab an editor for the operating system that you use on your PC or Laptop. A simple web search for "Markdown editors" will show you a bunch to choose from.
 
 Pick one that is compatible with your OS and get started. This particular How-To doc was created with [ReText](https://github.com/retext-project/retext), a cross-platform Markdown editor. Again, if you'd prefer to create your Markdown files in your own text editor that you are already familiar with, that's no problem at all.
 
@@ -31,10 +31,11 @@ ReText is good, but if you feel like exploring your other options, there are a f
 * [ghostwriter](https://wereturtle.github.io/ghostwriter/) - Free, Windows and Linux, open source
 * [Remarkable](https://remarkableapp.github.io) - Linux-only, open source
 * [Typora](https://typora.io) - Free and cross-platform, but *not* open source
+* [Atom](https://atom.io) - Free, cross-platform and open source. Not _only_ a Markdown editor. Has integration with Git and GitHub built-in.
 
 ### Markdown Tutorial
 
-You can get a good feel for how to write Markdown files, by taking a look at [Mastering Markdown](https://guides.github.com/features/mastering-markdown/). This online resource will get you up-to-speed in no time. 
+You can get a good feel for how to write Markdown files, by taking a look at [Mastering Markdown](https://guides.github.com/features/mastering-markdown/). This online resource will get you up-to-speed in no time.
 
 ## Using Git
 
@@ -77,4 +78,3 @@ Once all of that is done, you simply wait for confirmation that your request has
 ## Keep Up With The Conversation
 
 If you haven't already, join the conversation on the [Rocky Linux Mattermost Server](https://chat.rockylinux.org/rocky-linux/) and stay up-to-date with what is going on. Join the [~Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation), or any other channel you are interested in. We'd be glad to have you with us!
-
