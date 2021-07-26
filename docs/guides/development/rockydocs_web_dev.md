@@ -59,8 +59,8 @@ docker image  ls
 1. Start a container from the rockydocs image. Type:
 
 ```
-docker run -d -it --name rockydoc \
-     -p 8000:8000   \
+docker run -it --name rockydoc --rm \
+     -p 8000:8000  \
      --mount type=bind,source="$(pwd)"/documentation,target=/documentation  \
      wsoyinka/rockydocs:latest
 
