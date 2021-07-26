@@ -4,12 +4,13 @@ This document walks through how to recreate and run a local copy of the entire d
 
 Running a local copy of the documentation website might be useful in the following scenarios:
 
-- You are interested in learning about and contributing to the web development aspects of the docs.rockylinux.org website
-- You are an author and you'd like to see how your doccuments will render/look on the docs website before contributing them
-- You are a web developer looking to contribute to or help maintain the docs.rockylinux.org website
+* You are interested in learning about and contributing to the web development aspects of the docs.rockylinux.org website
+* You are an author and you'd like to see how your doccuments will render/look on the docs website before contributing them
+* You are a web developer looking to contribute to or help maintain the docs.rockylinux.org website
 
 
-Some notes:
+### Some notes:
+
 * The instructions in this guide are **NOT** a prerequiste for Rocky documentation Authors/Content contributors
 * The entire environment runs in a Docker container and so you'll need a Docker engine on your local machine
 * The container is built ontop of the official RockyLinux docker image available here https://hub.docker.com/r/rockylinux/rockylinux 
