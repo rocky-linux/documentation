@@ -10,12 +10,12 @@ Running a local copy of the documentation website might be useful in the followi
 
 
 Some notes:
-The instructions in this guide are NOT a prerequiste for Rocky documentation Authors/Content contributors
-The entire environment runs in a Docker container
-You'll need a Docker engine on your local machine to use this environment
-The container is built ontop of the official RockyLinux docker image available here https://hub.docker.com/r/rockylinux/rockylinux 
-The container keeps the documentation content (guides, howtos, images and so on) seperate from the web engine (mkdocs)
-The container starts a local webserver listening on port 8000.  And port 8000 will be forwarded to the Docker host
+* The instructions in this guide are NOT a prerequiste for Rocky documentation Authors/Content contributors
+* The entire environment runs in a Docker container
+* You'll need a Docker engine on your local machine to use this environment
+* The container is built ontop of the official RockyLinux docker image available here https://hub.docker.com/r/rockylinux/rockylinux 
+* The container keeps the documentation content (guides, howtos, images and so on) seperate from the web engine (mkdocs)
+* The container starts a local webserver listening on port 8000.  And port 8000 will be forwarded to the Docker host
 
 
 ## Create the content environment
