@@ -1,3 +1,5 @@
+# Running a local copy of the docs.rockylinux.org website for web development and/or content authors
+
 This document walks through how to recreate and run a local copy of the entire docs.rockylinux.org website on your local machine. It is a work-in-progress.
 
 Running a local copy of the documentation website might be useful in the following scenarios:
@@ -8,7 +10,7 @@ Running a local copy of the documentation website might be useful in the followi
 
 
 Some notes:
-
+The instructions in this guide are NOT a prerequiste for Rocky documentation Authors/Content contributors
 The entire environment runs in a Docker container
 You'll need a Docker engine on your local machine to use this environment
 The container is built ontop of the official RockyLinux docker image available here https://hub.docker.com/r/rockylinux/rockylinux 
@@ -16,33 +18,40 @@ The container keeps the documentation content (guides, howtos, images and so on)
 The container starts a local webserver listening on port 8000.  And port 8000 will be forwarded to the Docker host
 
 
-!!Create the content environment
+## Create the content environment
 
 1. Change the current working directory on your local system to a folder where you intend to do your writing and web dev work. We'll refer to this directcory as 
 $ROCKYDOCS in the rest of this guide.  For our demo $ROCKYDOCCS is   ~/projects/rockydocs. Type:
  
+```
 cd  $ROCKYDOCS
+```
 
 2. Make sure you have git installed.  While in $ROCKYDOCS clone the official Rocky Documentation content repo. Type:
 
+```
 git clone https://github.com/rocky-linux/documentation.git
+```
 
 You'll now have a $ROCKYDOCS/documentation folder. This folder is a git repository and under git's control.
 
-!!Create and Start the RockyDocs web developmwnt environment
+##Create and Start the RockyDocs web developmwnt environment
 
 3.  Make sure you have Docker up and running on your local machine (you can check with systemctl  
 
 4. From a terminal type:
 
+```
 docker pull wsoyinka/rockydocs:latest
-
+```
 
 5. Check to make sure the image downloaded successfully. Type:
 
-$ docker image  ls
+```
+docker image  ls
+```
 
-!!Start the RockyDocs container
+## Start the RockyDocs container
 
 1. Start a container from the rockydocs image. Type:
 
@@ -78,7 +87,7 @@ docker-compose -f rocky-mkdocs-compose.yml  up
 
 
 
-!!View the local docs.rockylinux.org website
+## View the local docs.rockylinux.org website
 
 With the container up and running, you should now be able to point your web browser to the following URL to view your local copy of the site:
 
