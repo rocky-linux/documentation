@@ -1,26 +1,25 @@
 # Running a local copy of the docs.rockylinux.org website for web development and/or content authors
 
-This document walks through how to recreate and run a local copy of the entire docs.rockylinux.org website on your local machine. It is a work-in-progress.
+This document walks through how to recreate and run a local copy of the entire docs.rockylinux.org website on your local machine. **It is a work-in-progress.**
 
 Running a local copy of the documentation website might be useful in the following scenarios:
 
 - You are interested in learning about and contributing to the web development aspects of the docs.rockylinux.org website
 - You are an author and you'd like to see how your doccuments will render/look on the docs website before contributing them
-- You are a web developer looking contribute to or help maintain the docs.rockylinux.org website
+- You are a web developer looking to contribute to or help maintain the docs.rockylinux.org website
 
 
 Some notes:
-* The instructions in this guide are NOT a prerequiste for Rocky documentation Authors/Content contributors
-* The entire environment runs in a Docker container
-* You'll need a Docker engine on your local machine to use this environment
+* The instructions in this guide are **NOT** a prerequiste for Rocky documentation Authors/Content contributors
+* The entire environment runs in a Docker container and so you'll need a Docker engine on your local machine
 * The container is built ontop of the official RockyLinux docker image available here https://hub.docker.com/r/rockylinux/rockylinux 
-* The container keeps the documentation content (guides, howtos, images and so on) seperate from the web engine (mkdocs)
+* The container keeps the documentation content (guides, books, images and so on) seperate from the web engine (mkdocs)
 * The container starts a local webserver listening on port 8000.  And port 8000 will be forwarded to the Docker host
 
 
 ## Create the content environment
 
-1. Change the current working directory on your local system to a folder where you intend to do your writing and web dev work. We'll refer to this directcory as 
+1. Change the current working directory on your local system to a folder where you intend to do your writing. We'll refer to this directcory as 
 `$ROCKYDOCS` in the rest of this guide.  For our demo here, `$ROCKYDOCS` points to `~/projects/rockydocs` on our demo system. 
 
 Create $ROCKYDOCS if it doesn't already exist and then type:
@@ -29,7 +28,7 @@ Create $ROCKYDOCS if it doesn't already exist and then type:
 cd  $ROCKYDOCS
 ```
 
-2. Make sure you have `git` installed (`dnf -y install git`).  While in $ROCKYDOCS clone the official Rocky Documentation content repo. Type:
+2. Make sure you have `git` installed (`dnf -y install git`).  While in $ROCKYDOCS use git to clone the official Rocky Documentation content repo. Type:
 
 ```
 git clone https://github.com/rocky-linux/documentation.git
