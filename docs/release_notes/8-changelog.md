@@ -6,6 +6,12 @@ title:  Rocky Linux 8 Change Log
 
 Rocky Linux 8.4 will receive incremental updates over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`
 
+## 8.4 - 2021-07-27
+
+The following packages have been updated:
+
+* thunderbird -> thunderbird-78.12.0-3.el8_4
+
 ## 8.4 - 2021-07-21
 
 The following packages have been updated:
