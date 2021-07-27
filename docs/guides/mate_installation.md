@@ -4,6 +4,9 @@ The MATE desktop environment was created to fork and continue GNOME2 in the wake
 
 This procedure is designed to get you up and running with Rocky Linux using MATE.
 
+!!! Warning
+    MATE does not come from Rocky Linux repositories. It is not officially supported by Rocky Linux. For most users, this procedure will work as expected, but if you have issues, please note that the Rocky developers and test group will do NO work on any failures!  If you want MATE badly enough, then troubleshoot your issues and fix as needed. If you find something that you feel should be included in this procedure to help others, push a change to the document.
+
 ## Prerequisites
 
 * A computer with a screen and everything, preferably with Rocky Linux already installed.
@@ -25,7 +28,7 @@ Enable this repository by entering:
 
 !!! Warning
     The `copr` build system creates a repository that is known to work for installing `mate` and `lightdm` (below), but is not maintained by the Rocky Linux community. Use at your own risk!
-    
+
 You will get a warning message about the repository, but go ahead and enable it by typing `Y` to allow.
 
 As noted from the link above, you also need the Powertools repository and the EPEL. Go ahead and enable those now:
