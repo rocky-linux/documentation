@@ -76,6 +76,8 @@ Go ahead and run `dnf update` one more time to make sure all of the enabled repo
 To install XFCE, run:
 
 `dnf groupinstall "xfce"`
+or
+`dnf groupinstall "Xfce"` (A recent change in the EPEL Repository used and uppercase 'X')
 
 Also install lightdm:
 
