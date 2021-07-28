@@ -2,25 +2,25 @@
 
 ## Introduction
 
-So you want to contribute to Rocky Linux documentation but aren't sure how to go about that? You came to the right place. We are privileged to have you on board with us. 
+So you want to contribute to Rocky Linux documentation but aren't sure how to go about that? You came to the right place. We are privileged to have you on board with us.
 
 One of our main goals for Rocky is to have not just good but GREAT documentation, and we cannot do it alone. This document will get you started and will (hopefully) ease any worries you might have about doing so. We will always be here to help, so feel free to ask questions and join in the conversation.
 
 ## Documentation Subject Matter
 
-If you can dream it — or better yet, have done it before — then your subject matter is probably essential to the Rocky Linux documentation project. Once a build is finally out there, we expect that documentation will start to explode, but we want to be ready with some things already documented out of the gate. 
+If you can dream it — or better yet, have done it before — then your subject matter is probably essential to the Rocky Linux documentation project. Once a build is finally out there, we expect that documentation will start to explode, but we want to be ready with some things already documented out of the gate.
 
 Where do you come in — both now and in the future? If you have experience with anything Linux-related and can translate that to Rocky Linux, we would like you to start writing!
 
 ## Where to Start
 
-While you can create documentation in any format, the preferred format is Markdown. You can easily create documents in Markdown, plus Markdown is simple to learn. The best way to get started with Markdown is to have a Markdown editor installed and read the tutorial. You can create Markdown files with any text editor, but most Markdown editors allow you to preview what you've input already so that they can be beneficial. 
+While you can create documentation in any format, the preferred format is Markdown. You can easily create documents in Markdown, plus Markdown is simple to learn. The best way to get started with Markdown is to have a Markdown editor installed and read the tutorial. You can create Markdown files with any text editor, but most Markdown editors allow you to preview what you've input already so they can be very helpful.
 
 ### Markdown Editor
 
-As we said already, the best way to create Markdown files, mainly if you have not done it before, is to install an editor for the operating system that you use on your PC or Laptop. A simple web search for "Markdown editors" will show you a number for you to choose. 
+As we said already, the best way to create Markdown files, mainly if you have not done it before, is to install an editor for the operating system that you use on your PC or Laptop. A simple web search for "Markdown editors" will show you a number for you to choose.
 
-Pick one to use that is compatible with your Operating System [ReText](https://github.com/retext-project/retext), a cross-platform Markdown editor, was used to create this document. Again, if you prefer to create your Markdown files in your text editor that you are already familiar with, that is just fine
+Pick one to use that is compatible with your Operating System [ReText](https://github.com/retext-project/retext), a cross-platform Markdown editor, was used to create this document. Again, if you prefer to create your Markdown files in your text editor that you are already familiar with, that is just fine.
 
 #### Alternate Markdown Editors
 
@@ -34,7 +34,7 @@ ReText is good, but if you feel like exploring your other options, there are a f
 
 ### Markdown Tutorial
 
-You can get a good feel for how to write Markdown files by taking a look at [Mastering Markdown](https://guides.github.com/features/mastering-markdown/). This online resource will get you up to speed in no time. 
+You can get a good feel for how to write Markdown files by taking a look at [Mastering Markdown](https://guides.github.com/features/mastering-markdown/). This online resource will get you up to speed in no time.
 
 ## Using Git
 
@@ -60,7 +60,7 @@ Click on "Pull Request" in the upper-left of the screen.
 
 ### From the Git Command-Line
 
-If you prefer to run Git locally on your machine, you can clone the Rocky Linux Documentation repository, make changes, and then commit changes afterward. To make things simple, execute steps 1-3 on *From Git Gui* above then:
+If you prefer to run Git locally on your machine, you can clone the Rocky Linux Documentation repository, make changes, and then commit changes afterward. To make things simple, execute steps 1-3 on from *With the GitHub GUI* above then:
 
 1. Git clone the repository: `git clone https://github.com/your_fork_name/documentation.git`
 2. Now, on your machine, add files to the directory.  
@@ -77,4 +77,3 @@ Once all of the above is complete, you wait for confirmation that Github success
 ## Keep Up With The Conversation
 
 If you haven't already, join the conversation on the [Rocky Linux Mattermost Server](https://chat.rockylinux.org/rocky-linux/) and stay up-to-date with what is going on. Join the [~Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) or any other channel in which you are interested. We will be privileged to have you with us!
-
