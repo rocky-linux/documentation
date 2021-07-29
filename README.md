@@ -14,13 +14,13 @@ Where do you come in — both now and in the future? If you have experience with
 
 ## Where to Start
 
-While you can create documentation in any format, the preferred format is Markdown. You can easily create documents in Markdown, plus Markdown is simple to learn. The best way to get started with Markdown is to have a Markdown editor installed and read the tutorial. You can create Markdown files with any text editor, but most Markdown editors allow you to preview what you've input already so they can be very helpful.
+While you can create documentation in any format, the preferred format is Markdown. You can easily create documents in Markdown, plus Markdown is simple to learn. The best way to get started with Markdown is to have a Markdown editor installed and read the tutorial. You can create Markdown files with any text editor, but most Markdown editors allow you to preview what you have inputted already so that they can be beneficial.
 
 ### Markdown Editor
 
 As we said already, the best way to create Markdown files, mainly if you have not done it before, is to install an editor for the operating system that you use on your PC or Laptop. A simple web search for "Markdown editors" will show you a number for you to choose.
 
-Pick one to use that is compatible with your Operating System [ReText](https://github.com/retext-project/retext), a cross-platform Markdown editor, was used to create this document. Again, if you prefer to create your Markdown files in your text editor that you are already familiar with, that is just fine.
+Pick one to use that is compatible with your Operating System [ReText](https://github.com/retext-project/retext), a cross-platform Markdown editor, was used to create this document. Again, if you prefer to make your Markdown files in your text editor that you are already familiar with, that is just fine.
 
 #### Alternate Markdown Editors
 
@@ -76,4 +76,4 @@ Once all of the above is complete, you wait for confirmation that Github success
 
 ## Keep Up With The Conversation
 
-If you haven't already, join the conversation on the [Rocky Linux Mattermost Server](https://chat.rockylinux.org/rocky-linux/) and stay up-to-date with what is going on. Join the [~Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) or any other channel in which you are interested. We will be privileged to have you with us!
+If you have not already. Join the conversation on the [Rocky Linux Mattermost Server](https://chat.rockylinux.org/rocky-linux/) and stay up-to-date with what is going on. Join the [~Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) or any other channel in which you are interested. We will be privileged to have you with us!
