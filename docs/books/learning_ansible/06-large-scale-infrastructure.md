@@ -110,9 +110,9 @@ Our starting point will be the `site.yml` file. This file is a bit like the orch
 
   roles:
 
-    - role: roles/functionnality1
+    - role: roles/functionality1
 
-    - role: roles/functionnality2
+    - role: roles/functionality2
 ```
 
 Of course, those roles must be created under the `roles` directory at the same level as the `site.yml` file.
@@ -127,9 +127,9 @@ I like to manage my global vars inside a `vars/global_vars.yml`, even if I could
     - vars/global_vars.yml
   roles:
 
-    - role: roles/functionnality1
+    - role: roles/functionality1
 
-    - role: roles/functionnality2
+    - role: roles/functionality2
 ```
 
 I also like to keep the possibility of disabling a functionality. So I include my roles with a condition and a default value like this:
@@ -142,13 +142,13 @@ I also like to keep the possibility of disabling a functionality. So I include m
     - vars/global_vars.yml
   roles:
 
-    - role: roles/functionnality1
+    - role: roles/functionality1
       when:
-        - enable_functionnality1|default(true)
+        - enable_functionality1|default(true)
 
-    - role: roles/functionnality2
+    - role: roles/functionality2
       when:
-        - enable_functionnality2|default(false)
+        - enable_functionality2|default(false)
 ```
 
 Don't forget to use the tags:
@@ -161,17 +161,17 @@ Don't forget to use the tags:
     - vars/global_vars.yml
   roles:
 
-    - role: roles/functionnality1
+    - role: roles/functionality1
       when:
-        - enable_functionnality1|default(true)
+        - enable_functionality1|default(true)
       tags:
-        - functionnality1
+        - functionality1
 
-    - role: roles/functionnality2
+    - role: roles/functionality2
       when:
-        - enable_functionnality2|default(false)
+        - enable_functionality2|default(false)
       tags:
-        - functionnality2
+        - functionality2
 ```
 
 You should get something like this:
@@ -188,12 +188,12 @@ cms
 │           ├── client1.yml
 │           └── client2.yml
 ├── roles
-│   ├── functionnality1
+│   ├── functionality1
 │   │   ├── defaults
 │   │   │   └── main.yml
 │   │   └── tasks
 │   │       └── main.yml
-│   └── functionnality2
+│   └── functionality2
 │       ├── defaults
 │       │   └── main.yml
 │       └── tasks
@@ -218,26 +218,26 @@ PLAY [Config Management for client1] *******************************************
 TASK [Gathering Facts] ******************************************************************************************
 ok: [client1]
 
-TASK [roles/functionnality1 : Task in functionnality 1] *********************************************************
+TASK [roles/functionality1 : Task in functionality 1] *********************************************************
 ok: [client1] => {
-    "msg": "You are in functionnality 1"
+    "msg": "You are in functionality 1"
 }
 
-TASK [roles/functionnality2 : Task in functionnality 2] *********************************************************
+TASK [roles/functionality2 : Task in functionality 2] *********************************************************
 skipping: [client1]
 
 PLAY RECAP ******************************************************************************************************
 client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 ```
 
-As you can see, by default, only the tasks of the `functionnality1` role are played.
+As you can see, by default, only the tasks of the `functionality1` role are played.
 
-Let's activate in the inventory the `functionnality2` for our targeted node and rerun the playbook:
+Let's activate in the inventory the `functionality2` for our targeted node and rerun the playbook:
 
 ```
 $ vim inventories/production/host_vars/client1.yml
 ---
-enable_functionnality2: true
+enable_functionality2: true
 ```
 
 
@@ -249,33 +249,33 @@ PLAY [Config Management for client1] *******************************************
 TASK [Gathering Facts] ******************************************************************************************
 ok: [client1]
 
-TASK [roles/functionnality1 : Task in functionnality 1] *********************************************************
+TASK [roles/functionality1 : Task in functionality 1] *********************************************************
 ok: [client1] => {
-    "msg": "You are in functionnality 1"
+    "msg": "You are in functionality 1"
 }
 
-TASK [roles/functionnality2 : Task in functionnality 2] *********************************************************
+TASK [roles/functionality2 : Task in functionality 2] *********************************************************
 ok: [client1] => {
-    "msg": "You are in functionnality 2"
+    "msg": "You are in functionality 2"
 }
 
 PLAY RECAP ******************************************************************************************************
 client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-Try to apply only `functionnality2`:
+Try to apply only `functionality2`:
 
 ```
-$ ansible-playbook -i inventories/production/hosts -e "target=client1" --tags functionnality2 site.yml
+$ ansible-playbook -i inventories/production/hosts -e "target=client1" --tags functionality2 site.yml
 
 PLAY [Config Management for client1] ****************************************************************************
 
 TASK [Gathering Facts] ******************************************************************************************
 ok: [client1]
 
-TASK [roles/functionnality2 : Task in functionnality 2] *********************************************************
+TASK [roles/functionality2 : Task in functionality 2] *********************************************************
 ok: [client1] => {
-    "msg": "You are in functionnality 2"
+    "msg": "You are in functionality 2"
 }
 
 PLAY RECAP ******************************************************************************************************
@@ -293,17 +293,17 @@ TASK [Gathering Facts] *********************************************************
 ok: [client1]
 ok: [client2]
 
-TASK [roles/functionnality1 : Task in functionnality 1] *********************************************************
+TASK [roles/functionality1 : Task in functionality 1] *********************************************************
 ok: [client1] => {
-    "msg": "You are in functionnality 1"
+    "msg": "You are in functionality 1"
 }
 ok: [client2] => {
-    "msg": "You are in functionnality 1"
+    "msg": "You are in functionality 1"
 }
 
-TASK [roles/functionnality2 : Task in functionnality 2] *********************************************************
+TASK [roles/functionality2 : Task in functionality 2] *********************************************************
 ok: [client1] => {
-    "msg": "You are in functionnality 2"
+    "msg": "You are in functionality 2"
 }
 skipping: [client2]
 
@@ -312,7 +312,7 @@ client1                    : ok=3    changed=0    unreachable=0    failed=0    s
 client2                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 ```
 
-As you can see, `functionnality2` is only played on the client1.
+As you can see, `functionality2` is only played on the client1.
 
 ## Benefits
 
