@@ -18,33 +18,33 @@ In this chapter you will learn how to scale your configuration management system
 
 ****
 
-We have seen in the previous chapters how to organize our code in the form of roles but also how to use some roles for the management of updates (patch management) or for the deployment of code.
+We have seen in the previous chapters how to organize our code in the form of roles but also how to use some roles for the management of updates (patch management) or the deployment of code.
 
 What about configuration management? How to manage the configuration of tens, hundreds, or even thousands of virtual machines with Ansible?
 
-The advent of the cloud has changed the traditional methods a bit. The VM is configured at deployment. If its configuration is no longer compliant, it is simply destroyed and replaced by a new one.
+The advent of the cloud has changed the traditional methods a bit. The VM is configured at deployment. If its configuration is no longer compliant, it is destroyed and replaced by a new one.
 
-The organization of the configuration management system presented in this chapter will respond to these two ways of consuming IT: "one shot" use or regular "re-configuration" of a fleet.
+The organization of the configuration management system presented in this chapter will respond to these two ways of consuming IT: "one-shot" use or regular "re-configuration" of a fleet.
 
-However, be careful: using ansible to ensure park compliance requires changing work habits. It is no longer possible to manually modify the configuration of a service manager without seeing these modifications overwritten the next time ansible is run.
+However, be careful: using Ansible to ensure park compliance requires changing work habits. It is no longer possible to manually modify the configuration of a service manager without seeing these modifications overwritten the next time Ansible is run.
 
 !!! Note
-    What we are going to set up below is clearly not ansible's favourite terrain. Technos like Puppet or Salt will do much better, but let's remember that Ansible is a Swiss army knife of automation and that it is agentless, which explains the differences in performance.
+    What we are going to set up below is not Ansible's favorite terrain. Technologies like Puppet or Salt will do much better. Let's remember that Ansible is a Swiss army knife of automation and is agentless, which explains the differences in performance.
 
 !!! Note
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/sample_setup.html)
 
 ## Variables storage
 
-The first thing we have to discuss is about the separation between data and ansible code.
+The first thing we have to discuss is the separation between data and Ansible code.
 
-As the code gets bigger and more complex, it will be more and more complicated to modify the variables it contains.
+As the code gets larger and more complex, it will be more and more complicated to modify the variables it contains.
 
-To ensure the maintenance of your site, the most important thing is to correctly separate the variables from the ansible code.
+To ensure the maintenance of your site, the most important thing is correctly separating the variables from the Ansible code.
 
-We haven't discussed it here yet, but you should know that ansible can automatically load the variables it finds in specific folders depending on the inventory name of the managed node, or its membership groups.
+We haven't discussed it here yet, but you should know that Ansible can automatically load the variables it finds in specific folders depending on the inventory name of the managed node, or its member groups.
 
-The ansible documentation suggests that we organize our code as bellow:
+The Ansible documentation suggests that we organize our code as below:
 
 ```
 inventories/
@@ -58,17 +58,17 @@ inventories/
          hostname2.yml
 ```
 
-If the targeted node is `hostname1` of `group1`, then the variables contained in the `hostname1.yml` and `group1.yml` files will be automatically loaded. It's a nice way so store all the data for all your roles in the same place.
+If the targeted node is `hostname1` of `group1`, the variables contained in the `hostname1.yml` and `group1.yml` files will be automatically loaded. It's a nice way to store all the data for all your roles in the same place.
 
 In this way, the inventory file of your server becomes its identity card. It contains all the variables that differ from the default variables for your server.
 
-From this point of view of centralization of variables, it becomes essential to organize the naming of its variables in the roles by prefixing them, for example, with the name of the role. It is also recommended to use flat variable names rather than dictionaries.
+From the point of view of centralization of variables, it becomes essential to organize the naming of its variables in the roles by prefixing them, for example, with the name of the role. It is also recommended to use flat variable names rather than dictionaries.
 
-For example, if you want to variabilize the `PermitRootLogin` value in the `sshd_config` file, a good variable name could be `sshd_config_permitrootlogin` (instead of `sshd.config.permitrootlogin` which could also be a less better option but still a good one).
+For example, if you want to make the `PermitRootLogin` value in the `sshd_config` file a variable, a good variable name could be `sshd_config_permitrootlogin` (instead of `sshd.config.permitrootlogin` which could also be a good variable name).
 
-## About ansible tags
+## About Ansible tags
 
-The use of ansible tags allows you to execute or skip a part of the tasks in your code.
+The use of Ansible tags allows you to execute or skip a part of the tasks in your code.
 
 !!! Note
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html)
@@ -99,9 +99,9 @@ You can also use the `--skip-tags` option.
 
 ## About the directory layout
 
-Let's focus on a proposal for the organization of files and directories necessary for the proper functioning of the cms.
+Let's focus on a proposal for the organization of files and directories necessary for the proper functioning of a CMS (Content Management System).
 
-Our starting point will be the `site.yml` file. This file is a bit like the orchestra conductor of the cms since it will only include the necessary roles for the target nodes if needed
+Our starting point will be the `site.yml` file. This file is a bit like the orchestra conductor of the CMS since it will only include the necessary roles for the target nodes if needed:
 
 ```
 ---
@@ -115,7 +115,7 @@ Our starting point will be the `site.yml` file. This file is a bit like the orch
     - role: roles/functionnality2
 ```
 
-Of course, those roles must be created under the `roles` directory at the same level than the `site.yml` file.
+Of course, those roles must be created under the `roles` directory at the same level as the `site.yml` file.
 
 I like to manage my global vars inside a `vars/global_vars.yml`, even if I could store them inside a file located at `inventories/production/group_vars/all.yml`
 
@@ -132,7 +132,7 @@ I like to manage my global vars inside a `vars/global_vars.yml`, even if I could
     - role: roles/functionnality2
 ```
 
-I also like to keep the possibility to disable a functionnality. So I use to include my roles with a condition and a default value as this:
+I also like to keep the possibility of disabling a functionality. So I include my roles with a condition and a default value like this:
 
 ```
 ---
@@ -230,9 +230,9 @@ PLAY RECAP *********************************************************************
 client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 ```
 
-As you can see, by default, only the tasks of the functionnality1 role are played.
+As you can see, by default, only the tasks of the `functionnality1` role are played.
 
-Let's activate in the inventory the functionnaly2 for our targeted node and rerun the playbook:
+Let's activate in the inventory the `functionnality2` for our targeted node and rerun the playbook:
 
 ```
 $ vim inventories/production/host_vars/client1.yml
@@ -263,7 +263,7 @@ PLAY RECAP *********************************************************************
 client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-Try to apply only functionnality2:
+Try to apply only `functionnality2`:
 
 ```
 $ ansible-playbook -i inventories/production/hosts -e "target=client1" --tags functionnality2 site.yml
@@ -312,13 +312,13 @@ client1                    : ok=3    changed=0    unreachable=0    failed=0    s
 client2                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 ```
 
-As you can see, functionnality2 is only play on the client1.
+As you can see, `functionnality2` is only played on the client1.
 
 ## Benefits
 
-By following the advice given in the ansible documentation, you will quickly obtain a :
+By following the advice given in the Ansible documentation, you will quickly obtain a:
 
 * easily maintainable source code even if it contains a large number of roles
 * a relatively fast, repeatable compliance system that you can apply partially or completely
 * can be adapted on a case-by-case basis and by servers
-* the specificities of your information system are separated from the code, easily auditable, centralized in the inventory files of your configuration management.
+* the specifics of your information system are separated from the code, easily audit-able, and centralized in the inventory files of your configuration management.
