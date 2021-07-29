@@ -1,0 +1,324 @@
+# Ansible - Large scale infrastucture
+
+In this chapter you will learn how to scale your configuration management system.
+
+****
+
+**Objectives**: In this chapter you will learn how to:
+
+:heavy_check_mark: ;       
+:heavy_check_mark: .          
+
+:checkered_flag: **ansible**, **config management**, **scale**
+
+**Knowledge**: :star: :star: :star:       
+**Complexity**: :star: :star: :star: :star:
+
+**Reading time**: 30 minutes
+
+****
+
+We have seen in the previous chapters how to organize our code in the form of roles but also how to use some roles for the management of updates (patch management) or for the deployment of code.
+
+What about configuration management? How to manage the configuration of tens, hundreds, or even thousands of virtual machines with Ansible?
+
+The advent of the cloud has changed the traditional methods a bit. The VM is configured at deployment. If its configuration is no longer compliant, it is simply destroyed and replaced by a new one.
+
+The organization of the configuration management system presented in this chapter will respond to these two ways of consuming IT: "one shot" use or regular "re-configuration" of a fleet.
+
+However, be careful: using ansible to ensure park compliance requires changing work habits. It is no longer possible to manually modify the configuration of a service manager without seeing these modifications overwritten the next time ansible is run.
+
+!!! Note
+    What we are going to set up below is clearly not ansible's favourite terrain. Technos like Puppet or Salt will do much better, but let's remember that Ansible is a Swiss army knife of automation and that it is agentless, which explains the differences in performance.
+
+!!! Note
+    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/sample_setup.html)
+
+## Variables storage
+
+The first thing we have to discuss is about the separation between data and ansible code.
+
+As the code gets bigger and more complex, it will be more and more complicated to modify the variables it contains.
+
+To ensure the maintenance of your site, the most important thing is to correctly separate the variables from the ansible code.
+
+We haven't discussed it here yet, but you should know that ansible can automatically load the variables it finds in specific folders depending on the inventory name of the managed node, or its membership groups.
+
+The ansible documentation suggests that we organize our code as bellow:
+
+```
+inventories/
+   production/
+      hosts               # inventory file for production servers
+      group_vars/
+         group1.yml       # here we assign variables to particular groups
+         group2.yml
+      host_vars/
+         hostname1.yml    # here we assign variables to particular systems
+         hostname2.yml
+```
+
+If the targeted node is `hostname1` of `group1`, then the variables contained in the `hostname1.yml` and `group1.yml` files will be automatically loaded. It's a nice way so store all the data for all your roles in the same place.
+
+In this way, the inventory file of your server becomes its identity card. It contains all the variables that differ from the default variables for your server.
+
+From this point of view of centralization of variables, it becomes essential to organize the naming of its variables in the roles by prefixing them, for example, with the name of the role. It is also recommended to use flat variable names rather than dictionaries.
+
+For example, if you want to variabilize the `PermitRootLogin` value in the `sshd_config` file, a good variable name could be `sshd_config_permitrootlogin` (instead of `sshd.config.permitrootlogin` which could also be a less better option but still a good one).
+
+## About ansible tags
+
+The use of ansible tags allows you to execute or skip a part of the tasks in your code.
+
+!!! Note
+    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html)
+
+For example, let's modify our users creation task:
+
+```
+- name: add users
+  user:
+    name: "{{ item }}"
+    state: present
+    groups: "users"
+  loop:
+     - antoine
+     - patrick
+     - steven
+     - xavier
+  tags: users
+```
+
+You can now play only the tasks with the tag `users` with the `ansible-playbook` option `--tags`:
+
+```
+ansible-playbook -i inventories/production/hosts --tags users site.yml
+```
+
+You can also use the `--skip-tags` option.
+
+## About the directory layout
+
+Let's focus on a proposal for the organization of files and directories necessary for the proper functioning of the cms.
+
+Our starting point will be the `site.yml` file. This file is a bit like the orchestra conductor of the cms since it will only include the necessary roles for the target nodes if needed
+
+```
+---
+- name: "Config Management for {{ target }}"
+  hosts: "{{ target }}"
+
+  roles:
+
+    - role: roles/functionnality1
+
+    - role: roles/functionnality2
+```
+
+Of course, those roles must be created under the `roles` directory at the same level than the `site.yml` file.
+
+I like to manage my global vars inside a `vars/global_vars.yml`, even if I could store them inside a file located at `inventories/production/group_vars/all.yml`
+
+```
+---
+- name: "Config Management for {{ target }}"
+  hosts: "{{ target }}"
+  vars_files:
+    - vars/global_vars.yml
+  roles:
+
+    - role: roles/functionnality1
+
+    - role: roles/functionnality2
+```
+
+I also like to keep the possibility to disable a functionnality. So I use to include my roles with a condition and a default value as this:
+
+```
+---
+- name: "Config Management for {{ target }}"
+  hosts: "{{ target }}"
+  vars_files:
+    - vars/global_vars.yml
+  roles:
+
+    - role: roles/functionnality1
+      when:
+        - enable_functionnality1|default(true)
+
+    - role: roles/functionnality2
+      when:
+        - enable_functionnality2|default(false)
+```
+
+Don't forget to use the tags:
+
+
+```
+- name: "Config Management for {{ target }}"
+  hosts: "{{ target }}"
+  vars_files:
+    - vars/global_vars.yml
+  roles:
+
+    - role: roles/functionnality1
+      when:
+        - enable_functionnality1|default(true)
+      tags:
+        - functionnality1
+
+    - role: roles/functionnality2
+      when:
+        - enable_functionnality2|default(false)
+      tags:
+        - functionnality2
+```
+
+You should get something like this:
+
+```
+$ tree cms
+cms
+├── inventories
+│   └── production
+│       ├── group_vars
+│       │   └── plateform.yml
+│       ├── hosts
+│       └── host_vars
+│           ├── client1.yml
+│           └── client2.yml
+├── roles
+│   ├── functionnality1
+│   │   ├── defaults
+│   │   │   └── main.yml
+│   │   └── tasks
+│   │       └── main.yml
+│   └── functionnality2
+│       ├── defaults
+│       │   └── main.yml
+│       └── tasks
+│           └── main.yml
+├── site.yml
+└── vars
+    └── global_vars.yml
+```
+
+!!! Note
+    You are free to develop your roles within a collection
+
+## Tests
+
+Let's launch the playbook and run some tests:
+
+```
+$ ansible-playbook -i inventories/production/hosts -e "target=client1" site.yml
+
+PLAY [Config Management for client1] ****************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************
+ok: [client1]
+
+TASK [roles/functionnality1 : Task in functionnality 1] *********************************************************
+ok: [client1] => {
+    "msg": "You are in functionnality 1"
+}
+
+TASK [roles/functionnality2 : Task in functionnality 2] *********************************************************
+skipping: [client1]
+
+PLAY RECAP ******************************************************************************************************
+client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+```
+
+As you can see, by default, only the tasks of the functionnality1 role are played.
+
+Let's activate in the inventory the functionnaly2 for our targeted node and rerun the playbook:
+
+```
+$ vim inventories/production/host_vars/client1.yml
+---
+enable_functionnality2: true
+```
+
+
+```
+$ ansible-playbook -i inventories/production/hosts -e "target=client1" site.yml
+
+PLAY [Config Management for client1] ****************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************
+ok: [client1]
+
+TASK [roles/functionnality1 : Task in functionnality 1] *********************************************************
+ok: [client1] => {
+    "msg": "You are in functionnality 1"
+}
+
+TASK [roles/functionnality2 : Task in functionnality 2] *********************************************************
+ok: [client1] => {
+    "msg": "You are in functionnality 2"
+}
+
+PLAY RECAP ******************************************************************************************************
+client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
+
+Try to apply only functionnality2:
+
+```
+$ ansible-playbook -i inventories/production/hosts -e "target=client1" --tags functionnality2 site.yml
+
+PLAY [Config Management for client1] ****************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************
+ok: [client1]
+
+TASK [roles/functionnality2 : Task in functionnality 2] *********************************************************
+ok: [client1] => {
+    "msg": "You are in functionnality 2"
+}
+
+PLAY RECAP ******************************************************************************************************
+client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
+
+Let's run on the whole inventory:
+
+```
+$ ansible-playbook -i inventories/production/hosts -e "target=plateform" site.yml
+
+PLAY [Config Management for plateform] **************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************
+ok: [client1]
+ok: [client2]
+
+TASK [roles/functionnality1 : Task in functionnality 1] *********************************************************
+ok: [client1] => {
+    "msg": "You are in functionnality 1"
+}
+ok: [client2] => {
+    "msg": "You are in functionnality 1"
+}
+
+TASK [roles/functionnality2 : Task in functionnality 2] *********************************************************
+ok: [client1] => {
+    "msg": "You are in functionnality 2"
+}
+skipping: [client2]
+
+PLAY RECAP ******************************************************************************************************
+client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+client2                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+```
+
+As you can see, functionnality2 is only play on the client1.
+
+## Benefits
+
+By following the advice given in the ansible documentation, you will quickly obtain a :
+
+* easily maintainable source code even if it contains a large number of roles
+* a relatively fast, repeatable compliance system that you can apply partially or completely
+* can be adapted on a case-by-case basis and by servers
+* the specificities of your information system are separated from the code, easily auditable, centralized in the inventory files of your configuration management.
