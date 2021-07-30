@@ -6,8 +6,8 @@ In this chapter you will learn how to scale your configuration management system
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: ;       
-:heavy_check_mark: .          
+:heavy_check_mark: Organize your code for large infrastructure;   
+:heavy_check_mark: Apply all or part of your configuration management to a group of nodes;   
 
 :checkered_flag: **ansible**, **config management**, **scale**
 
@@ -312,7 +312,7 @@ client1                    : ok=3    changed=0    unreachable=0    failed=0    s
 client2                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 ```
 
-As you can see, `functionality2` is only played on the client1.
+As you can see, `functionality2` is only played on the `client1`.
 
 ## Benefits
 
