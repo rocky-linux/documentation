@@ -1,10 +1,12 @@
 # Table of Contents
 
-You've found us! Welcome to the documentation hub for Rocky Linux! We're glad you're here! We've had a number of contributors adding content, and that cache of content gets bigger all the time. Here you will find documents on how to build Rocky Linux itself, as well as documents on various subjects that are important to the Rocky community. Who makes up that community you ask? Will actually, you do.
+You've found us! Welcome to the documentation hub for Rocky Linux; we're glad you're here. We have a number of contributors adding content, and that cache of content gets bigger all the time. Here you will find documents on how to build Rocky Linux itself, as well as documents on various subjects that are important to the Rocky community. Who makes up that community you ask? 
 
-In the right-hand column, you will see the major categories of documents. This has already changed many times, and it will change when new content is added that does not fit one of these categories. If you look at the top of this page, you will see the general categories for these same documents. This is just another way to look at the available documents. "Guides" will contain the bulk of the content available, but feel free to poke around and see what you can find here.
+Well actually, you do.
 
-Did you find something missing? Did you find an error? Are you wondering how to create a document of your own or how to fix things here?  Remember how we said that "you" were the Rocky community? Well, that means that "you" are important to us, and we want you to join us, if you like, and help make this documentation better. If you are interested in this, head over to our [Contribution Guide](https://github.com/rocky-linux/documentation/blob/main/README.md) to find out how you can do just that!
+Right now, you're looking at an index of our guides, which cover specific ways to set up and use Rocky Linux. See the categories on the right to skim through what we have. Up top, you can access a complete book on installing and setting up Rocky, as well as some advanced labs you can work through to further your understanding of systems administration and more.
+
+Did you find something missing? Did you find an error? Are you wondering how to create a document of your own or how to fix things here? Remember how we said that *you* were the Rocky community? Well, that means that *you* are important to us, and we want you to join us, if you like, and help make this documentation better. If you are interested in this, head over to our [Contribution Guide](https://github.com/rocky-linux/documentation/blob/main/README.md) to find out how you can do just that!
 
 ## OS Installation and Setup
 | Classic Rocky Installation | Rocky on Windows SubSystem For Linux (WSL) |
