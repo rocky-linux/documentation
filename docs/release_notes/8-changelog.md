@@ -6,6 +6,20 @@ title:  Rocky Linux 8 Change Log
 
 Rocky Linux 8.4 will receive incremental updates over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`
 
+## 8.4 - 2021-08-02
+
+The following packages have been updated:
+
+* varnish -> varnish-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> Addresses CVE-2021-36740
+
+Added kickstart repos for the following repositories:
+
+* BaseOS
+* AppStream
+* PowerTools
+* High Availability
+* Resilient Storage
+
 ## 8.4 - 2021-07-27
 
 The following packages have been updated:
