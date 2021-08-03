@@ -1,4 +1,4 @@
-# 09: Backups and restorations
+# Backups and restorations
 
 In this chapter you will learn how to backup and restore your data with Linux.
 
