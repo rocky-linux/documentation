@@ -9,7 +9,7 @@
 你发现有什么遗漏吗？你是否发现了一个错误？你是否想知道如何创建一个属于你自己的文件，或者如何解决这里的问题？还记得我们说过，*你*是洛基社区吗？那么，这意味着*你*对我们很重要，我们希望你能加入我们，如果你愿意的话，并帮助使这个文档变得更好。如果你对此感兴趣，请到我们的[贡献指南](https://github.com/rocky-linux/documentation/blob/main/README.md)了解你如何能做到这一点!
 
 ## 操作系统的安装和设置
-| Classic Rocky Installation | Rocky on Windows SubSystem For Linux (WSL) |
+| 常规安装 | Windows Linux子系统安装（WSL） |
 | --- |  --- |
 | [Rocky 8 安装](guides/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky_to_wsl_howto.md) |
 | [将CentOS 切换为Rocky Linux](guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox and docker)](guides/import_rocky_to_wsl_howto.md) |
@@ -18,38 +18,38 @@
 
 ## 开发和发布
 
-Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
+开始 | 寻找RPM源代码 | 再造 | 构建 | 签名 | 部署 
 --- | --- | --- | --- | --- | ---
-[Setup Development Environment](guides/development/package_dev_start.md) | [Rebranding HowTo](guides/development/package_debranding.md) | [Signing HowTo](guides/development/package_signing.md) <br /> [Build Troubleshooting](guides/development/package_build_troubleshooting.md)
+[安装开发环境](guides/development/package_dev_start.md) | [重塑品牌的方法](guides/development/package_debranding.md) | [签名方法](guides/development/package_signing.md) <br /> [构建故障排除](guides/development/package_build_troubleshooting.md) |||
 
 
 ## 安全
 
-| Firewalls | Network Security | Cryptographic Security |
+| 防火墙 | 网络安全 | 密码安全 |
 | --- | --- | --- |
 |[IPTABLES](guides/enabling_iptables_firewall.md) | [Networking Configuration](guides/basic_network_configuration.md) | [SSH Keys](guides/ssh_public_private_keys.md) |
-| | [SSL Keys](guides/ssl_keys_https.md) |
-| | [Generating SSL Keys and LetsEncrypt](guides/generating_ssl_keys_lets_encrypt.md) |
+| | [SSL Keys](guides/ssl_keys_https.md) ||
+| | [Generating SSL Keys and LetsEncrypt](guides/generating_ssl_keys_lets_encrypt.md) ||
 
 
 ## 服务
 
-| Web Server | FTP | Content Management System | Database |
+| Web 服务 | FTP服务 | 内容管理系统 | 数据库 |
 | --- | --- | --- | --- |
 |[Hardened Apache Web server](guides/apache_hardened_webserver/index.md) | [VSFTPD](guides/secure_ftp_server_vsftpd.md) | [DokuWiki](guides/dokuwiki_server.md) | [MariaDB server](guides/database_mariadb-server.md) |
 |[Enabling Website](guides/apache-sites-enabled.md) | | [Nextcloud](guides/cloud_server_using_nextcloud.md) |  |
-|[ModSecurity](guides/apache_hardened_webserver/modsecurity.md) | | |
-|[Ossec-Hids](guides/apache_hardened_webserver/ossec-hids.md) | | |
-|[RkHunter](guides/apache_hardened_webserver/rkhunter.md) | |  |
+|[ModSecurity](guides/apache_hardened_webserver/modsecurity.md) | | ||
+|[Ossec-Hids](guides/apache_hardened_webserver/ossec-hids.md) | | ||
+|[RkHunter](guides/apache_hardened_webserver/rkhunter.md) | |  ||
 
 ## 系统维护和管理
 
-| Data Security | System Management and Debugging | Managing Users and Groups |
-| --- | --- | ---
+| 数据安全 | 系统管理和调试 | 管理用户和组 |
+| --- | --- | ---|
 | [Rsync over SSH](guides/rsync_ssh.md) | [Postfix](guides/postfix_reporting.md) |  |
 | [RSnapshot](guides/rsnapshot_backup.md) | [Cron(tab)](guides/cron_jobs_howto.md) |  |
-| [Lsyncd](guides/mirroring_lsyncd.md) | |
-| [Bind](guides/private_dns_server_using_bind.md) |  |
+| [Lsyncd](guides/mirroring_lsyncd.md) | ||
+| [Bind](guides/private_dns_server_using_bind.md) |  ||
 
 ## 虚拟化
 
@@ -65,9 +65,9 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 
 ## 教育/培训
 
-| Administration | Security | General |
-|----------------|----------|---------|
-| [System Administration](books/admin_guide/00-toc.md) | [Security Labs](labs/security/index.md) | [Learning Ansible](books/learning_ansible/index.md)
+| 管理员                                    | 安全                               | 一般                                           |
+| ----------------------------------------- | ---------------------------------- | ---------------------------------------------- |
+| [系统管理员](books/admin_guide/00-toc.md) | [安全实验](labs/security/index.md) | [学习Ansible](books/learning_ansible/index.md) |
 
 ## 系统自动化和维护
 
