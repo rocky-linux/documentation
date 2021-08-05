@@ -1,29 +1,29 @@
-# Table of Contents
+# 目录
 
-You've found us! Welcome to the documentation hub for Rocky Linux; we're glad you're here. We have a number of contributors adding content, and that cache of content gets bigger all the time. Here you will find documents on how to build Rocky Linux itself, as well as documents on various subjects that are important to the Rocky community. Who makes up that community you ask? 
+你已经找到我们了! 欢迎来到Rocky Linux的文档中心；我们很高兴你在这里。我们有许多贡献者在添加内容，而且这些内容的缓存一直在增加。在这里你可以找到关于如何构建Rocky Linux本身的文件，以及关于对Rocky社区来说很重要的各种主题的文件。你问谁构成了这个社区？
 
-Well actually, you do.
+事实上，你知道的。
 
-Right now, you're looking at an index of our guides, which cover specific ways to set up and use Rocky Linux. See the categories on the right to skim through what we have. Up top, you can access a complete book on installing and setting up Rocky, as well as some advanced labs you can work through to further your understanding of systems administration and more.
+现在，你所看到的是我们的指南索引，其中包括设置和使用Rocky Linux的具体方法。请看右边的分类来浏览我们的内容。在上面，你可以访问一本关于安装和设置Rocky的完整书籍，以及一些高级实验室，你可以通过它来进一步了解系统管理和更多。
 
-Did you find something missing? Did you find an error? Are you wondering how to create a document of your own or how to fix things here? Remember how we said that *you* were the Rocky community? Well, that means that *you* are important to us, and we want you to join us, if you like, and help make this documentation better. If you are interested in this, head over to our [Contribution Guide](https://github.com/rocky-linux/documentation/blob/main/README.md) to find out how you can do just that!
+你发现有什么遗漏吗？你是否发现了一个错误？你是否想知道如何创建一个属于你自己的文件，或者如何解决这里的问题？还记得我们说过，*你*是洛基社区吗？那么，这意味着*你*对我们很重要，我们希望你能加入我们，如果你愿意的话，并帮助使这个文档变得更好。如果你对此感兴趣，请到我们的[贡献指南](https://github.com/rocky-linux/documentation/blob/main/README.md)了解你如何能做到这一点!
 
-## OS Installation and Setup
+## 操作系统的安装和设置
 | Classic Rocky Installation | Rocky on Windows SubSystem For Linux (WSL) |
 | --- |  --- |
-| [Rocky 8 Installation](guides/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky_to_wsl_howto.md) |
-| [Convert CentOS (and Others) to Rocky Linux](guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox and docker)](guides/import_rocky_to_wsl_howto.md) |
-| [Install MATE on Rocky Linux](guides/mate_installation.md) |  |
-| [Install XFCE on Rocky Linux](guides/xfce_installation.md) |  |
+| [Rocky 8 安装](guides/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky_to_wsl_howto.md) |
+| [将CentOS 切换为Rocky Linux](guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox and docker)](guides/import_rocky_to_wsl_howto.md) |
+| [在Rocky Linux上安装MATE](guides/mate_installation.md) |  |
+| [在Rocky Linux上安装XFCE](guides/xfce_installation.md) |  |
 
-## Development and Packaging
+## 开发和发布
 
 Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 --- | --- | --- | --- | --- | ---
 [Setup Development Environment](guides/development/package_dev_start.md) | [Rebranding HowTo](guides/development/package_debranding.md) | [Signing HowTo](guides/development/package_signing.md) <br /> [Build Troubleshooting](guides/development/package_build_troubleshooting.md)
 
 
-## Security
+## 安全
 
 | Firewalls | Network Security | Cryptographic Security |
 | --- | --- | --- |
@@ -32,7 +32,7 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 | | [Generating SSL Keys and LetsEncrypt](guides/generating_ssl_keys_lets_encrypt.md) |
 
 
-## Daemons/Servers
+## 服务
 
 | Web Server | FTP | Content Management System | Database |
 | --- | --- | --- | --- |
@@ -42,7 +42,7 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 |[Ossec-Hids](guides/apache_hardened_webserver/ossec-hids.md) | | |
 |[RkHunter](guides/apache_hardened_webserver/rkhunter.md) | |  |
 
-## System Maintenance and Administration
+## 系统维护和管理
 
 | Data Security | System Management and Debugging | Managing Users and Groups |
 | --- | --- | ---
@@ -51,25 +51,25 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 | [Lsyncd](guides/mirroring_lsyncd.md) | |
 | [Bind](guides/private_dns_server_using_bind.md) |  |
 
-## Virtualization
+## 虚拟化
 
 | QEMU | KVM |
 | --- | --- |
 | | |
 
-## Containerization
+## 容器化
 
 | LXC/LXD |
 | --- |
 | [Creating a full LXD Server](guides/lxd_server.md) |
 
-## Educational / Training
+## 教育/培训
 
 | Administration | Security | General |
 |----------------|----------|---------|
 | [System Administration](books/admin_guide/00-toc.md) | [Security Labs](labs/security/index.md) | [Learning Ansible](books/learning_ansible/index.md)
 
-## System Automation And Maintenance
+## 系统自动化和维护
 
 | Ansible           | Puppet | Salt | Chef |
 |-------------------|--------|------|------|
