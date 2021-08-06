@@ -1,55 +1,55 @@
-# The Rocky Linux Documentation Style Guide for Writers
+# Rocky Linux文档写作风格指南
 
-## Well that was a mouthful
+## 好吧，这是一个口号
 
-If you've found your way to this page, then you're a wonderful person who wants to help make Rocky Linux easier to use for everyone. Either that, or you're a wonderful person who is very, very lost.
+如果你找到了你的方式，那么你是一个很好的人，想帮助使Rocky Linux对每个人来说更容易使用。或者，你是一个非常、非常迷茫的人。
 
-No matter. It's good to have you here.
+不管怎么样。有你在这里是件好事。
 
-If you want to contribute English-language documentation to the Rocky Linux project, you should have a look through these guidelines first. Get comfy, familiarize yourself with how we do things, and take it from there. 
+如果你想为Rocky Linux项目贡献英文文档，你应该先看一下这些指南。适应一下，熟悉一下我们是如何做事的，然后再开始。
 
-It'll be fun, for given values of fun. Depends on how much you like nerd stuff.
+这将是很有趣的，对于给定的有趣值。取决于你有多喜欢书呆子的东西。
 
-### Before we get started
+### 在我们开始之前
 
-You don't need to be some sort of programming expert (though it helps) or god-level sysadmin (ditto) to help out with this project, but you will need a few things:
+你不需要成为某种编程专家（尽管这有帮助）或神级的系统管理员（同上）来帮助这个项目，但你将需要一些东西。
 
-* A working knowledge of Git, and Github.
-* A working knowledge of Markdown formatting. Here's [a handy guide](https://guides.github.com/features/mastering-markdown/).
-* A good screenshot tool at the ready, and possibly a simple graphics editing program.
-* A willingness to work with editors. Every submission to the docs will be given a once-over (at least) to make sure it's:
-    * Technically correct and working as intended.
-    * Easily read and understood.
+* 对Git和Github有一定的了解。
+* 对Markdown格式化有一定的了解。这里是 [方便的指南](https://guides.github.com/features/mastering-markdown/).
+* 准备好一个好的屏幕截图工具，可能还有一个简单的图形编辑程序。
+* 愿意与编辑们一起工作。每一份提交给文档的文件都会被仔细检查一遍（至少），以确保它是。
+    * 技术上是正确的，并按预期工作。
+    * 易于阅读和理解。
 
-One last note... I *really* shouldn't have to say this next bit, but this is the internet, and the internet is a strange place: 
+最后一句话... 我真的不应该说这一点，但这是互联网，而互联网是一个神奇的地方。
 
-*Don't put anything racist, sexist, or otherwise horrible in your documentation.* And put a lid on the really dark humor, 'cause lots of people just aren't ready to see that when they just want to get LiteSpeed up and running with WordPress, or their docker container's being fussy.
+*不要在你的文档中加入任何种族主义、性别歧视或其他可怕的东西。*在真正的黑色幽默上加个盖子，因为很多人只是想让LiteSpeed与WordPress一起运行，或者他们的docker容器很挑剔，他们还没有准备好看到这些。
 
-Okay, with that out of the way, here's what you need to know about writing for us:
+好了，说了这么多，下面是你需要知道的关于为我们写作的情况。
 
-## Basic writing guidelines
+## 基本的写作准则
 
-These principles should apply to all documentation written for Rocky Linux:
+这些原则应该适用于所有为Rocky Linux编写的文档。
 
-* **Assume a *basic* level of technical competency on the part of the reader.**  
-There *will* be documentation aimed at beginners who've never used Rocky Linux, or RHEL, or built their own servers, but this is an OS for people who have some idea what they want to do with it.
-*  **Include lots of examples, and explain exactly what you mean.**  
-... But don't make too many assumptions. Lots of Linux and server-building newbies will be reading what you write, so be as clear as you can. Explain every step, and every argument or variable you put into the command line.
-* **A screenshot is worth a thousand bits of jargon.**  
-Put the "show" in "show and tell". 'Nuff said.
-* **List the requirements at the top.**  
-On every tutorial, guide, or doc, list the things the reader will need to know or have installed first. There's no worse feeling than getting into the middle of a tutorial, then reading, "Okay, now SSH into your server..." when you haven't had any experience with SSH yet.
-* **Use the metaphor, Luke. And also watch out for the metaphors...**  
-And the anaologies, similes, idioms, and more obscure cultural references. While *we generally encourage* the use of all these literary devices to spice up documentation (especially the beginner-focused docs), do your best to keep them simple. Non-native English speakers still need to understand our documentation, especially those who will be translating it.
-* **The Oxford comma**  
-Also known as the serial comma. Love it, use it, and [read up on it](https://en.wikipedia.org/wiki/Serial_comma) if you want to.
-* **Things to italicize**  
-The first time you mention a software package in any article, italicize it, eg _rsnapshot_. Specific files and folders (eg _/home/[user]_) should _always_ be italicized. You can, of course, use italics and bold text for emphasis where needed, but do it sparingly. If everything is makred as bold text, then the boldness of the text loses its impact altogether.
+* **假设读者具有*基本的技术能力水平。 
+将有**的文档针对那些从未使用过Rocky Linux或RHEL，或建立自己的服务器的初学者，但这是一个为那些有一些想法的人准备的操作系统。
+* **包括大量的例子，并准确解释你的意思。 
+... 但是不要做太多的假设。很多Linux和服务器建设的新手都会阅读你写的东西，所以要尽可能的清楚。解释每一个步骤，以及你放入命令行的每一个参数或变量。
+* **一张截图胜千行**
+把 "展示 "放在 "展示和讲述 "中。不说了。
+* **在顶部列出要求.**  
+在每一个教程、指南或文档中，列出读者需要知道或首先安装的东西。没有什么比进入教程的中间部分，然后读到 "好了，现在SSH进入你的服务器...... "而你还没有任何SSH的经验更糟糕的感觉。
+* **使用比喻，同时也要注意隐喻...**  
+还有拟声词、比喻、成语，以及更多晦涩的文化参考。虽然*我们通常鼓励*使用所有这些文学手段来调剂文档（尤其是以初学者为重点的文档），但要尽力保持它们的简单。非英语母语的人仍然需要理解我们的文档，尤其是那些将要翻译文档的人。
+* **逗号**  
+也被称为连环逗号。喜欢它，使用它，并且 [查阅资料](https://en.wikipedia.org/wiki/Serial_comma) 如果你想。
+* **斜体**  
+在任何文章中第一次提到一个软件包时，用斜体字表示，例如_rsnapshot_。特定的文件和文件夹 (eg _/home/[user]_) 应该总是用斜体字。当然，你可以在必要时使用斜体和粗体字来强调，但要少用。如果所有的东西都做成粗体字，那么文字的粗体就完全失去了它的影响力。
 
-## Images & screenshots
-A few tips to help you make the best images you can for tutorials.
+## 图片和截图
+一些提示可以帮助你为教程制作最好的图片。
 
-* [Recommended image sizes?]
-* The recommended format for images is JPG.
-* If there's a lot going on in your screenshot, consider adding a couple of helpful arrows pointing at the things that matter.
-* Terminal commands are best put into a `code` element or block. If you must screenshot your terminal, make sure the text is big enough for people to easily see without zooming in.
+* [推荐的图像尺寸?]
+* 图片的推荐格式是JPG。
+* 如果你的截图中有很多事情发生，考虑添加几个有用的箭头，指向重要的事情。
+* 终端命令最好放在 "代码 "元素或块中。如果你必须对你的终端进行截图，请确保文本足够大，以便人们在不放大的情况下容易看到。
