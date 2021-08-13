@@ -12,11 +12,14 @@ The learning curve for LXD can be a bit steep, but this document will attempt to
 ## Prerequisites And Assumptions
 
 * One Rocky Linux server, nicely configured. You should consider a separate hard drive for ZFS disk space (you have to if you are using ZFS) in a production environment. And yes, we are assuming this is a bare metal server, not a VPS.
-* This should be considered an advanced topic, but we have tried our best to make it as easy to understand as possible for everyone. THat said, knowing a few basic things about container management will take you a long way.
+* This should be considered an advanced topic, but we have tried our best to make it as easy to understand as possible for everyone. That said, knowing a few basic things about container management will take you a long way.
 * You should be very comfortable at the command line on your machine(s), and fluent in a command line editor. (We are using _vi_ throughout this example, but you can substitute in your favorite editor.)
 * You need to be an unprivileged user for the bulk of the LXD processes. Except where noted, enter LXD commands as your unprivileged user. We are assuming that you are logged in as a user named "lxdadmin" for LXD commands. The bulk of the set up _is_, done as root until you get past the LXD initialization. We will have you create the "lxdadmin" user later in the process.
 * For ZFS, make sure that UEFI secure boot is NOT enabled. Otherwise, you will end up having to sign the ZFS module in order to get it to load.
 * We will, for the moment, be using CentOS-based containers, as LXC does not yet have Rocky Linux images. Stay tuned for updates, because this will likely change with time.
+
+!!! Note
+    This has changed! Feel free to substitute in Rocky Linux containers in the examples below.
 
 ## Part 1 : Getting The Environment Ready
 
@@ -44,7 +47,7 @@ If there were kernel updates during the update process above, reboot your server
 
 ### Install snapd, dkms And vim
 
-LXD must be installed from a snap for Rocky Linux, for this reason, we need to install snapd (and a few other useful programs) with:
+LXD must be installed from a snap for Rocky Linux. For this reason, we need to install snapd (and a few other useful programs) with:
 
 `dnf install snapd dkms vim`
 
@@ -97,7 +100,7 @@ Save your changes and exit. (`SHIFT:wq!` for _vi_)
 
 #### Modifying sysctl.conf With 90-lxd.override.conf
 
-With _systemd_, we can make changes to our system's overall configuration and kernel options *without* mofifying the main configuration file. Instead, we'll put our settings in a separate file that will simply override the particular settings we need.
+With _systemd_, we can make changes to our system's overall configuration and kernel options *without* modifying the main configuration file. Instead, we'll put our settings in a separate file that will simply override the particular settings we need.
 
 To make these kernel changes, we are going to create a file called _90-lxd-override.conf_ in /etc/sysctl.d. To do this type:
 
@@ -470,7 +473,7 @@ This simply says, we want the default profile, and then we want to apply the mac
 
 In the CentOS implementation of Network Manager, they have managed to break the functionality of macvlan in the kernel, or at least in the kernel applied to their LXD image. This has been this way since CentOS 8 was released and no one appears to be at all concerned about a fix.
 
-Simply put, if you want to run CentOS 8 containers, you've got to jump through some additional hoops to get macvlan to work. macvlan is part of the kernel, so it should work without the below fixes, but it doesn't.
+Simply put, if you want to run CentOS 8 containers (or any other RHEL 1-for-1 release, such as Rocky Linux), you've got to jump through some additional hoops to get macvlan to work. macvlan is part of the kernel, so it should work without the below fixes, but it doesn't.
 
 ##### CentOS macvlan - The DHCP Fix
 
@@ -1020,7 +1023,7 @@ Do this for each snapshot on the lxd-snapshot server.
 
 Ok, so it's great that you can create snapshots when you need to, and sometimes you _do_ need to manually create a snapshot. You might even want to manually copy it over to lxd-snapshot. BUT, once you've got things going and you've got 25 to 30 containers or more running on your lxd-primary machine, the very last thing you want to do is spend an afternoon deleting snapshots on the snapshot server, creating new snapshots and sending them over.
 
-The first thing we need to do is schedule a process to automate snapshot creation on lxd-primary. This is has to be done for each container on the lxd-primary server, but once it is set up, it will take care of itself. This is done with the following syntax. Note the similarities to a crontab entry for the timestamp:
+The first thing we need to do is schedule a process to automate snapshot creation on lxd-primary. This has to be done for each container on the lxd-primary server, but once it is set up, it will take care of itself. This is done with the following syntax. Note the similarities to a crontab entry for the timestamp:
 
 `lxc config set [container_name] snapshots.schedule "50 20 * * *"`
 
