@@ -1,12 +1,12 @@
 # SELinux security
 
-With the arrival of kernel version 2.6, a new security system has been introduced to provide a security mechanism to support access control security policies.
+With the arrival of kernel version 2.6, a new security system was introduced to provide a security mechanism to support access control security policies.
 
 This system is called **SELinux** (**S**ecurity **E**nhanced **Linux**) and was created by the **NSA** (**N**ational **S**ecurity **A**dministration) to implement a robust **M**andatory **A**ccess **C**ontrol (**MAC**) architecture in the Linux kernel subsystems.
 
-If, throughout your career, you have either disabled or ignored SELinux, this chapter will be a good introduction to this system that works in the shadow of Linux to limit privileges or remove the risks associated with compromising a program or daemon.
+If, throughout your career, you have either disabled or ignored SELinux, this document will be a good introduction to this system. SELinux works to limit privileges or remove the risks associated with compromising a program or daemon.
 
-Before starting, you should know that SELinux is mainly intended for RHEL distributions, although it is possible to implement it on other distributions like Debian (but good luck!). The distributions of the Debian family generally integrate the AppArmor system, which for its part, works relatively differently from SELinux.
+Before starting, you should know that SELinux is mainly intended for RHEL distributions, although it is possible to implement it on other distributions like Debian (but good luck!). The distributions of the Debian family generally integrate the AppArmor system, which works differently from SELinux.
 
 ## Generalities
 
@@ -20,7 +20,7 @@ With each system call, the kernel queries SELinux to see if it allows the action
 
 ![SELinux](images/selinux_001.png)
 
-SELinux uses a set of rules (policy) for this. A set of two standard rule sets (**targeted** and **strict**) is provided and each application usually provides its own rules.
+SELinux uses a set of rules (policies) for this. A set of two standard rule sets (**targeted** and **strict**) is provided and each application usually provides its own rules.
 
 ### The SELinux context
 
@@ -28,17 +28,17 @@ The operation of SELinux is totally different from traditional Unix rights.
 
 The SELinux security context is defined by the trio **identity**+**role**+**domain**.
 
-The identity of a user depends directly on his linux account. An identity is assigned one or more roles, but to each role corresponds one domain and one only.
+The identity of a user depends directly on his Linux account. An identity is assigned one or more roles, but to each role corresponds to one domain, and only one.
 
-It is according to the domain of the security context (and thus the role...) that the rights of a user on a resource are evaluated.
+It is according to the domain of the security context (and thus the role) that the rights of a user on a resource are evaluated.
 
 ![SELinux context](images/selinux_002.png)
 
-The terms "domain" and "type" are similar, typically "domain" is used when referring to a process while "type" refers to an object.
+The terms "domain" and "type" are similar. Typically "domain" is used when referring to a process, while "type" refers to an object.
 
 The naming convention is: **user_u:role_r:type_t**.
 
-The security context is assigned to a user at the time of his connection, according to his roles. The security context of a file is defined by the `chcon` (**ch**ange **con**text) command, which we will see later in this chapter.
+The security context is assigned to a user at the time of his connection, according to his roles. The security context of a file is defined by the `chcon` (**ch**ange **con**text) command, which we will see later in this document.
 
 Consider the following pieces of the SELinux puzzle:
 
@@ -55,7 +55,7 @@ The rights of a process depend on its security context.
 
 By default, the security context of the process is defined by the context of the user (identity + role + domain) who launches it.
 
-A domain being a specific type (in the SELinux sense) linked to a process and inherited (normally) from the user who launched it, its rights are expressed in terms of authorization or refusal on types (linked to objects):
+A domain being a specific type (in the SELinux sense) linked to a process and inherited (normally) from the user who launched it, its rights are expressed in terms of authorization or refusal on types linked to objects:
 
 A process whose context has security __domain D__ can access objects of __type T__.
 
@@ -67,7 +67,7 @@ Most important programs are assigned a dedicated domain.
 
 Each executable is tagged with a dedicated type (here **sshd_exec_t**) which automatically switches the associated process to the **sshd_t** context (instead of **user_t**).
 
-This mechanism is essential since it allows to restrict the rights of a process as much as possible.
+This mechanism is essential since it restricts the rights of a process as much as possible.
 
 ![The SELinux context of an important process - example of sshd](images/selinux_004.png)
 
@@ -92,7 +92,7 @@ $ semanage boolean -l
 | -m      |  Modify an object |
 | -l      |  List the objects |
 
-The `semanage` command may not be installed by default under RockyLinux.
+The `semanage` command may not be installed by default under Rocky Linux.
 
 Without knowing the package that provides this command, you should search for its name with the command:
 
@@ -120,7 +120,7 @@ To list the available Booleans:
 semanage boolean –l
 SELinux boolean    State Default  Description
 …
-httpd_can_sendmail (off , off)  Allow httpd to can send mail
+httpd_can_sendmail (off , off)  Allow httpd to send mail
 …
 ```
 
@@ -167,7 +167,7 @@ SELinux has three operating modes:
 
 * Enforcing
 
-Default mode for RockyLinux. Access will be restricted according to the rules in force.
+Default mode for Rocky Linux. Access will be restricted according to the rules in force.
 
 * Permissive
 
@@ -332,7 +332,7 @@ sudo restorecon -vR /home/
 | `-v`    | Switch into verbose mode |
 | `-R`    | Apply recursion          |
 
-To make a context change survive to a restorecon, you have to modify the default file contexts with the `semanage fcontext` command:
+To make a context change survive to a `restorecon`, you have to modify the default file contexts with the `semanage fcontext` command:
 
 ```
 semanage fcontext -a options file
@@ -369,7 +369,7 @@ sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2why
 
 ### Going further with SELinux
 
-The `audit2allow` command creates from a line in an "audit" file a module to allow a SELinux action (when no module exists):
+The `audit2allow` command creates a module to allow a SELinux action (when no module exists) from a line in an "audit" file:
 
 ```
 audit2allow [-mM]
@@ -388,7 +388,7 @@ sudo cat /var/log/audit/audit.log | grep AVC | grep denied | tail -1 | audit2all
 
 #### Example of configuration
 
-After the execution of a command, the system gives you back the hand but the expected result is not visible: no error message on the screen.
+After the execution of a command, the system gives you back the command prompt but the expected result is not visible: no error message on the screen.
 
 * **Step 1**: Read the log file knowing that the message we are interested in is of type AVC (SELinux), refused (denied) and the most recent one (therefore the last one).
 
