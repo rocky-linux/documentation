@@ -33,6 +33,8 @@ passwd
 sudo
 cracklib-dicts
 openssh-clients
+python3-dbus
+dbus-glib
 ```
 4. Edit the `rinse` config file at `/etc/rinse/rinse.conf` and add the following lines, which are the entry for RL mirrors. As of this writing, we have a direct download, but this will be changed to a mirror as soon as available.
 ```bash
@@ -67,8 +69,11 @@ $ sudo tar --numeric-owner -c -C ./rocky_rc . -f <path to new tar file>
 13. Open a PowerShell prompt (does not need to be admin), and create a folder to hold your new RL distro.
 14. Import the tar file with this command:
 ```PowerShell
-wsl --import rocky_rc <path to folder from step 13> <path to tar file>
+wsl --import rocky_rc <path to folder from step 9> <path to tar file>
 ```
+Note: Default location of WSL is `%LOCALAPPDATA%\Packages\` 
+`e.g. for Ubuntu - C:\Users\tahder\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhks2fndhsd\LocalState\rootfs\home\txunil\rocky_rc`
+
 15. In the PowerShell prompt, launch your new distro with:
 ```PowerShell
 wsl -d rocky_rc
