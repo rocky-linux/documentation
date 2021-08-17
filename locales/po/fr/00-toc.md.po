@@ -1,0 +1,108 @@
+# French translations for PACKAGE package
+# Copyright (C) 2021 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: 2021-08-17 08:55+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. type: Plain text
+#: docs/books/admin_guide/00-toc.md:2
+msgid "# Learning Linux with Rocky"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/00-toc.md:4
+msgid ""
+"The Administration Guide is a collection of Educational Documents focused on "
+"System Administrators. They can be used by future System Administrators "
+"trying to get up to speed, by current System Administrators who would like a "
+"refresher, or by any Linux user who'd like to learn more about the Linux "
+"environment, commands, processes, and more. Like all documents of this type, "
+"it will evolve and update over time."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/00-toc.md:6
+msgid ""
+"Initially, we will discuss Linux, distributions, and the whole ecosystem "
+"around our operating system."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/00-toc.md:8
+msgid ""
+"We will then look at the user commands that are essential for getting up to "
+"speed with Linux. The more experienced users should also consult the chapter "
+"dedicated to the more \"advanced\" 'Commands.'"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/00-toc.md:10
+msgid ""
+"Next comes the chapter on the VI editor. While Linux comes with many "
+"editors, VI is one of the most powerful. Other commands sometimes use "
+"identical syntaxes as VI (`sed` comes to mind). So knowing something about "
+"VI, or at least demystifying its essential functions (how to open a file, "
+"save, quit or quit without saving), are very important to know. The user "
+"will become more comfortable with the other functions of VI as they use the "
+"editor. An alternative would be to use nano which comes installed by default "
+"in Rocky Linux. While not as versatile, it is simple to use, "
+"straightforward, and gets the job done."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/00-toc.md:12
+msgid ""
+"We can then get into the deep functioning of Linux to discover how the "
+"system manages:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/00-toc.md:16
+msgid "users."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/00-toc.md:16
+msgid "file systems."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/00-toc.md:16
+msgid "processes."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/00-toc.md:18
+msgid ""
+"Next, we will cover an essential subject for the System Administrator: The "
+"Backup Process. Many software solutions come with Linux to enhance Backups "
+"(rsnapshot, lsyncd, etcetera.)It is good to know the essential components of "
+"the backup that are within the operating system. We will investigate two "
+"tools: `tar` and the less widespread `cpio` in this chapter."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/00-toc.md:20
+msgid ""
+"Management of the system during the boot process has evolved significantly "
+"in recent years since the arrival of the systemd."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/00-toc.md:23
+msgid ""
+"We will conclude by examining the management of tasks, the implementation of "
+"the network, and software installation."
+msgstr ""

@@ -1,0 +1,1797 @@
+# French translations for PACKAGE package
+# Copyright (C) 2021 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: 2021-08-17 08:55+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:6
+#: docs/books/admin_guide/01-presentation.md:23
+#: docs/books/admin_guide/03-commands.md:6
+#: docs/books/admin_guide/03-commands.md:21
+#: docs/books/admin_guide/04-advanced-commands.md:6
+#: docs/books/admin_guide/04-advanced-commands.md:20
+#: docs/books/admin_guide/05-vi.md:6 docs/books/admin_guide/05-vi.md:20
+#: docs/books/admin_guide/07-file-systems.md:6
+#: docs/books/admin_guide/07-file-systems.md:26
+#: docs/books/admin_guide/08-process.md:6
+#: docs/books/admin_guide/08-process.md:21
+#: docs/books/admin_guide/09-backups.md:6
+#: docs/books/admin_guide/09-backups.md:21 docs/books/admin_guide/11-tasks.md:6
+#: docs/books/admin_guide/11-tasks.md:21 docs/books/admin_guide/12-network.md:6
+#: docs/books/admin_guide/12-network.md:23
+#: docs/books/learning_ansible/01-bases.md:6
+#: docs/books/learning_ansible/01-bases.md:21
+#: docs/books/learning_ansible/02-advanced.md:6
+#: docs/books/learning_ansible/02-advanced.md:22
+#: docs/books/learning_ansible/03-working-with-files.md:6
+#: docs/books/learning_ansible/03-working-with-files.md:21
+#: docs/books/learning_ansible/04-ansible-galaxy.md:6
+#: docs/books/learning_ansible/04-ansible-galaxy.md:20
+#: docs/books/learning_ansible/05-deployments.md:6
+#: docs/books/learning_ansible/05-deployments.md:23
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:6
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
+#, no-wrap
+msgid "****\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:208
+#: docs/books/admin_guide/03-commands.md:301
+#: docs/books/admin_guide/03-commands.md:690
+#: docs/books/admin_guide/03-commands.md:1333
+#: docs/books/admin_guide/04-advanced-commands.md:288
+#: docs/books/admin_guide/04-advanced-commands.md:329
+#: docs/books/admin_guide/06-users.md:339
+#: docs/books/admin_guide/06-users.md:514
+#: docs/books/admin_guide/06-users.md:733
+#: docs/books/admin_guide/08-process.md:368
+#: docs/books/admin_guide/09-backups.md:350
+#: docs/books/admin_guide/09-backups.md:690
+#: docs/books/admin_guide/10-boot.md:200 docs/books/admin_guide/11-tasks.md:205
+#: docs/books/admin_guide/12-network.md:523
+#: docs/books/learning_ansible/01-bases.md:242
+msgid "Examples:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1502
+#: docs/books/admin_guide/03-commands.md:1522
+#: docs/books/learning_ansible/01-bases.md:142
+#: docs/books/learning_ansible/01-bases.md:412
+#: docs/books/learning_ansible/02-advanced.md:486
+#: docs/books/learning_ansible/02-advanced.md:538
+#: docs/books/learning_ansible/02-advanced.md:634
+#: docs/books/learning_ansible/04-ansible-galaxy.md:509
+#: docs/books/learning_ansible/05-deployments.md:207
+#: docs/books/learning_ansible/05-deployments.md:257
+msgid "```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:21
+#: docs/books/learning_ansible/01-bases.md:19
+#: docs/books/learning_ansible/02-advanced.md:20
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:18
+#, no-wrap
+msgid "**Reading time**: 30 minutes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:2
+msgid "# Ansible Basics"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:4
+msgid "In this chapter you will learn how to work with Ansible."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:8
+#: docs/books/learning_ansible/03-working-with-files.md:8
+#: docs/books/learning_ansible/04-ansible-galaxy.md:8
+#: docs/books/learning_ansible/05-deployments.md:8
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:8
+#, no-wrap
+msgid "**Objectives**: In this chapter you will learn how to:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:12
+#, no-wrap
+msgid ""
+":heavy_check_mark: Implement Ansible;       \n"
+":heavy_check_mark: Apply configuration changes on a server;   \n"
+":heavy_check_mark: Create first Ansible playbooks;   \n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:14
+#: docs/books/learning_ansible/02-advanced.md:15
+msgid ":checkered_flag: **ansible**, **module**, **playbook**"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:17
+#: docs/books/learning_ansible/02-advanced.md:18
+#, no-wrap
+msgid ""
+"**Knowledge**: :star: :star: :star:     \n"
+"**Complexity**: :star: :star:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:23
+msgid "Ansible centralizes and automates administration tasks. It is:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:26
+msgid "**agentless** (it does not require specific deployments on clients),"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:26
+msgid "**idempotent** (same effect each time it is run)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:28
+msgid ""
+"It uses the **SSH** protocol to remotely configure Linux clients or the "
+"**WinRM** protocol to work with Windows clients. If none of these protocols "
+"is available, it is always possible for Ansible to use an API, which makes "
+"Ansible a real Swiss army knife for the configuration of servers, "
+"workstations, docker services, network equipment, etc. (Almost everything in "
+"fact)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:31
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    The opening of SSH or WinRM flows to all clients from the Ansible server, makes it a critical element of the architecture that must be carefully monitored.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:33
+msgid ""
+"As Ansible is push-based, it will not keep the state of its targeted servers "
+"between each of its executions. On the contrary, it will perform new state "
+"checks each time it is executed. It is said to be stateless."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:35
+msgid "It will help you with:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:41
+msgid "provisioning (deploying a new VM),"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:41
+msgid "application deployments"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:41
+msgid "configuration management,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:41
+msgid "automation,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:41
+msgid "orchestration (when more than 1 target is in use)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:43
+msgid "![The features of Ansible](images/ansible-001.png)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:45
+msgid ""
+"To offer a graphical interface to your daily use of Ansible, you can install "
+"some tools like Ansible Tower (RedHat), which is not free, its opensource "
+"counterpart Awx, or other projects like Jenkins and the excellent Rundeck "
+"can also be used."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:48
+#, no-wrap
+msgid ""
+"!!! Abstract\n"
+"    To follow this training, you will need at least 2 servers under Rocky8:\n"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: docs/books/learning_ansible/01-bases.md:51
+msgid ""
+"the first one will be the **management machine**, Ansible will be installed "
+"on it."
+msgstr ""
+
+#. type: Bullet: '    * '
+#: docs/books/learning_ansible/01-bases.md:51
+msgid ""
+"the second one will be the server to configure and manage (another Linux "
+"than Rocky Linux will do just as well)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:53
+#, no-wrap
+msgid "    In the examples below, the administration station has the IP address 172.16.1.10, the managed station 172.16.1.11. It is up to you to adapt the examples according to your IP addressing plan.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:55
+msgid "## The Ansible vocabulary"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:65
+msgid ""
+"The **management machine**: the machine on which Ansible is installed. Since "
+"Ansible is **agentless**, no software is deployed on the managed servers."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:65
+msgid ""
+"The **inventory**: a file containing information about the managed servers."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:65
+msgid ""
+"The **tasks**: a task is a block defining a procedure to be executed (e.g. "
+"create a user or a group, install a software package, etc.)."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:65
+msgid ""
+"A **module**: a module abstracts a task. There are many modules provided by "
+"Ansible."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:65
+msgid ""
+"The **playbooks**: a simple file in yaml format defining the target servers "
+"and the tasks to be performed."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:65
+msgid ""
+"A **role**: a role allows you to organize the playbooks and all the other "
+"necessary files (templates, scripts, etc.) to facilitate the sharing and "
+"reuse of code."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:65
+msgid ""
+"A **collection**: a collection includes a logical set of playbooks, roles, "
+"modules, and plugins."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:65
+msgid ""
+"The **facts**: these are global variables containing information about the "
+"system (machine name, system version, network interface and configuration, "
+"etc.)."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:65
+msgid ""
+"The **handlers**: these are used to cause a service to be stopped or "
+"restarted in the event of a change."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:67
+msgid "## Installation on the management server"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:69
+msgid ""
+"Ansible is available in the _EPEL_ repository but comes as version 2.9.21, "
+"which is quite old now. You can see how this is done by following along "
+"here, but skip the actual installation steps, as we will be installing the "
+"latest version. The _EPEL_ is required for both versions, so you can go "
+"ahead and install that now:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:71
+msgid "EPEL installation:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:76
+msgid ""
+"``` $ sudo dnf install epel-release ``` If we were installing Ansible from "
+"the _EPEL_ we could do the following:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:83
+msgid ""
+"``` $ sudo dnf install ansible $ ansible --version 2.9.21 ``` As we want to "
+"use a newer version of Ansible, we will install it from `python3-pip`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:86
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    Remove Ansible if you have installed it previously from _EPEL_.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:90
+msgid ""
+"``` $ sudo dnf install python38 python38-pip python38-wheel python3-"
+"argcomplete rust cargo curl ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:94
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    `python3-argcomplete` is provided by _EPEL_. Please install epel-release if not done yet.\n"
+"    This package will help you complete Ansible commands.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:96
+msgid ""
+"Before we actually install Ansible, we need to tell Rocky Linux that we want "
+"to use the newly installed version of Python. The reason is that if we "
+"continue to the install without this, the default python3 (version 3.6 as of "
+"this writing), will be used instead of the newly installed version 3.8. Set "
+"the version you want to use by entering the following command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:100
+msgid "``` sudo alternatives --set python /usr/bin/python3.8 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:102
+msgid "We can now install Ansible:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:107
+msgid ""
+"``` $ sudo pip3 install ansible $ sudo activate-global-python-argcomplete ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:109
+msgid "Check your Ansible version:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:122
+#, no-wrap
+msgid ""
+"```\n"
+"$ ansible --version\n"
+"ansible [core 2.11.2]\n"
+"  config file = None\n"
+"  configured module search path = ['/home/ansible/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']\n"
+"  ansible python module location = /usr/local/lib/python3.8/site-packages/ansible\n"
+"  ansible collection location = /home/ansible/.ansible/collections:/usr/share/ansible/collections\n"
+"  executable location = /usr/local/bin/ansible\n"
+"  python version = 3.8.6 (default, Jun 29 2021, 21:14:45) [GCC 8.4.1 20200928 (Red Hat 8.4.1-1)]\n"
+"  jinja version = 3.0.1\n"
+"  libyaml = True\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:124
+msgid "## Configuration files"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:126
+msgid "The server configuration is located under `/etc/ansible`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:128
+msgid "There are two main configuration files:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:131
+msgid ""
+"The main configuration file `ansible.cfg` where the commands, modules, "
+"plugins, and ssh configuration reside;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:131
+msgid ""
+"The client machine management inventory file `hosts` where the clients, and "
+"groups of clients are declared."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:133
+msgid ""
+"As we installed Ansible with `pip`, those files do not exist. We will have "
+"to create them by hand."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:135
+msgid ""
+"An example of the `ansible.cfg` [is given here](https://github.com/ansible/"
+"ansible/blob/devel/examples/ansible.cfg) and an example of the `hosts` [file "
+"here](https://github.com/ansible/ansible/blob/devel/examples/hosts)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:140
+msgid ""
+"``` $ sudo mkdir /etc/ansible $ sudo curl -o /etc/ansible/ansible.cfg "
+"https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg "
+"$ sudo curl -o /etc/ansible/hosts https://raw.githubusercontent.com/ansible/"
+"ansible/devel/examples/hosts"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:144
+msgid "### The inventory file `/etc/ansible/hosts`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:146
+msgid ""
+"As Ansible will have to work with all your equipment to be configured, it is "
+"very important to provide it with one (or more) well-structured inventory "
+"file(s), which perfectly matches your organization."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:148
+msgid ""
+"It is sometimes necessary to think carefully about how to build this file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:150
+msgid ""
+"Go to the default inventory file, which is located under `/etc/ansible/"
+"hosts`. Some examples are provided and commented:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:161
+#, no-wrap
+msgid ""
+"```\n"
+"# This is the default ansible 'hosts' file.\n"
+"#\n"
+"# It should live in /etc/ansible/hosts\n"
+"#\n"
+"#   - Comments begin with the '#' character\n"
+"#   - Blank lines are ignored\n"
+"#   - Groups of hosts are delimited by [header] elements\n"
+"#   - You can enter hostnames or ip addresses\n"
+"#   - A hostname/ip can be a member of multiple groups\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:163
+msgid "# Ex 1: Ungrouped hosts, specify before any group headers:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:168
+msgid ""
+"## green.example.com ## blue.example.com ## 192.168.100.1 ## 192.168.100.10"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:170
+msgid "# Ex 2: A collection of hosts belonging to the 'webservers' group:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:176
+msgid ""
+"## [webservers] ## alpha.example.org ## beta.example.org ## 192.168.1.100 ## "
+"192.168.1.110"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:179
+msgid ""
+"# If you have multiple hosts following a pattern, you can specify # them "
+"like this:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:181
+msgid "## www[001:006].example.com"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:183
+msgid "# Ex 3: A collection of database servers in the 'dbservers' group:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:190
+msgid ""
+"## [dbservers] ## ## db01.intranet.mydomain.net ## db02.intranet.mydomain."
+"net ## 10.25.1.56 ## 10.25.1.57"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:193
+msgid ""
+"# Here's another example of host ranges, this time there are no # leading 0s:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:196
+msgid "## db-[99:101]-node.example.com ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:198
+msgid ""
+"As you can see, the file provided as an example uses the INI format, which "
+"is well known to system administrators. Please note that you can choose "
+"another file format (like yaml for example), but for the first tests, the "
+"INI format is well adapted to our future examples."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:200
+msgid ""
+"Obviously, in production, the inventory can be generated automatically, "
+"especially if you have a virtualization environment like VMware VSphere or a "
+"cloud environment (Aws, Openstack or other)."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:202
+msgid "Creating a hostgroup in `/etc/ansible/hosts`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:204
+msgid ""
+"As you may have noticed, the groups are declared in square brackets. Then "
+"come the elements belonging to the groups. You can create, for example, a "
+"`rocky8` group by inserting the following block into this file:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:210
+msgid "``` [rocky8] 172.16.1.10 172.16.1.11 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:212
+msgid ""
+"Groups can be used within other groups. In this case, it must be specified "
+"that the parent group is composed of subgroups with the `:chidren` attribute "
+"like this:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:217
+msgid "``` [linux:children] rocky8 debian9"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:221
+msgid "[ansible:children] ansible_management ansible_clients"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:224
+msgid "[ansible_management] 172.16.1.10"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:228
+msgid "[ansible_clients] 172.16.1.10 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:230
+msgid ""
+"We won't go any further for the moment on the subject of inventory, but if "
+"you're interested, consider checking [this link](https://docs.ansible.com/"
+"ansible/latest/user_guide/intro_inventory.html)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:232
+msgid ""
+"Now that our management server is installed and our inventory is ready, it's "
+"time to run our first `ansible` commands."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:234
+msgid "## `ansible` command line usage"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:236
+msgid "The `ansible` command launches a task on one or more target hosts."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:240
+#: docs/books/learning_ansible/01-bases.md:461
+msgid "``` ansible <host-pattern> [-m module_name] [-a args] [options] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:245
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    Since we have not yet configured authentication on our 2 test servers, not all the following examples will work. They are given as examples to facilitate understanding, and will be fully functional later in this chapter.\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:247
+msgid "List the hosts belonging to the rocky8 group:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:251
+msgid "``` ansible rocky8 --list-hosts ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:253
+msgid "Ping a host group with the `ping` module:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:257
+msgid "``` ansible rocky8 -m ping ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:259
+msgid "Display facts from a host group with the `setup` module:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:263
+msgid "``` ansible rocky8 -m setup ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:265
+msgid ""
+"Run a command on a host group by invoking the `command` module with "
+"arguments:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:269
+msgid "``` ansible rocky8 -m command -a 'uptime' ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:271
+msgid "Run a command with administrator privileges:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:275
+msgid "``` ansible ansible_clients --become -m command -a 'reboot' ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:277
+msgid "Run a command using a custom inventory file:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:281
+msgid "``` ansible rocky8 -i ./local-inventory -m command -a 'date' ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:284
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    As in this example, it is sometimes simpler to separate the declaration of managed devices into several files (by cloud project for example) and provide Ansible with the path to these files, rather than to maintain a long inventory file.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:293
+#, no-wrap
+msgid ""
+"| Option                   | \tInformation                                                                                    |\n"
+"|--------------------------|-------------------------------------------------------------------------------------------------|\n"
+"| `-a 'arguments'`         | The arguments to pass to the module.                                                            |\n"
+"| `-b -K`                  | Requests a password and runs the command with higher privileges.                                |\n"
+"| `--user=username`        | Uses this user to connect to the target host instead of the current user.                       |\n"
+"| `--become-user=username` | Executes the operation as this user (default: `root`).                                          |\n"
+"| `-C`                     | Simulation. Does not make any changes to the target but tests it to see what should be changed. |\n"
+"| `-m module`              | Runs the module called                                                                          |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:295
+msgid "### Preparing the client"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:297
+msgid ""
+"On both management machine and clients, we will create an `ansible` user "
+"dedicated to the operations performed by Ansible. This user will have to use "
+"sudo rights, so it will have to be added to the `wheel` group."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:299
+msgid "This user will be used:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:302
+msgid ""
+"On the administration station side: to run `ansible` commands and ssh to "
+"managed clients."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:302
+msgid ""
+"On the managed stations (here the server that serves as your administration "
+"station also serves as a client, so it is managed by itself) to execute the "
+"commands launched from the administration station: it must therefore have "
+"sudo rights."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:304
+msgid "On both machines, create an `ansible` user, dedicated to ansible:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:309
+msgid "``` $ sudo useradd ansible $ sudo usermod -aG wheel ansible ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:311
+msgid "Set a password for this user:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:315
+msgid "``` $ sudo passwd ansible ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:317
+msgid ""
+"Modify the sudoers config to allow members of the `wheel` group to sudo "
+"without password:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:321
+msgid "``` $ sudo visudo ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:323
+msgid ""
+"Our goal here is to comment out the default, and uncomment the NOPASSWD "
+"option so that these lines looks like this when we are done:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:327
+#, no-wrap
+msgid ""
+"```\n"
+"## Allows people in group wheel to run all commands\n"
+"# %wheel  ALL=(ALL)       ALL\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:331
+#, no-wrap
+msgid ""
+"## Same thing without a password\n"
+"%wheel        ALL=(ALL)       NOPASSWD: ALL\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:335
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    If you receive the following error message when entering Ansible commands, it probably means that you forgot this step on one of your clients:\n"
+"    `\"msg\": \"Missing sudo password`\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:337
+msgid ""
+"When using management from this point on, start working with this new user:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:341
+msgid "``` $ sudo su - ansible ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:343
+msgid "### Test with the ping module"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:345
+msgid "By default password login is not allowed by Ansible."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:347
+msgid ""
+"Uncomment the following line from the `[defaults]` section in the `/etc/"
+"ansible/ansible.cfg` configuration file and set it to True:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:351
+#, no-wrap
+msgid ""
+"```\n"
+"ask_pass      = True\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:353
+msgid "Run a `ping` on each server of the rocky8 group:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:366
+#, no-wrap
+msgid ""
+"```\n"
+"# ansible rocky8 -m ping\n"
+"SSH password:\n"
+"172.16.1.10 | SUCCESS => {\n"
+"    \"changed\": false,\n"
+"    \"ping\": \"pong\"\n"
+"}\n"
+"172.16.1.11 | SUCCESS => {\n"
+"    \"changed\": false,\n"
+"    \"ping\": \"pong\"\n"
+"}\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:369
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    You are asked for the `ansible` password of the remote servers, which is a security problem...\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:372
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    If you get this error `\"msg\": \"to use the 'ssh' connection type with passwords, you must install the sshpass program\"`, you can just install `sshpass` on the management station:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:376
+#, no-wrap
+msgid ""
+"    ```\n"
+"    $ sudo dnf install sshpass\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:379
+#, no-wrap
+msgid ""
+"!!! Abstract\n"
+"    You can now test the commands that didn't work previously in this chapter.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:381
+msgid "## Key authentication"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:383
+msgid ""
+"Password authentication will be replaced by a much more secure private/"
+"public key authentication."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:385
+msgid "### Creating an SSH key"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:387
+msgid ""
+"The dual-key will be generated with the command `ssh-keygen` on the "
+"management station by the `ansible` user:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:410
+#, no-wrap
+msgid ""
+"```\n"
+"[ansible]$ ssh-keygen\n"
+"Generating public/private rsa key pair.\n"
+"Enter file in which to save the key (/home/ansible/.ssh/id_rsa):\n"
+"Enter passphrase (empty for no passphrase):\n"
+"Enter same passphrase again:\n"
+"Your identification has been saved in /home/ansible/.ssh/id_rsa.\n"
+"Your public key has been saved in /home/ansible/.ssh/id_rsa.pub.\n"
+"The key fingerprint is:\n"
+"SHA256:Oa1d2hYzzdO0e/K10XPad25TA1nrSVRPIuS4fnmKr9g ansible@localhost.localdomain\n"
+"The key's randomart image is:\n"
+"+---[RSA 3072]----+\n"
+"|           .o . +|\n"
+"|           o . =.|\n"
+"|          . . + +|\n"
+"|         o . = =.|\n"
+"|        S o = B.o|\n"
+"|         = + = =+|\n"
+"|        . + = o+B|\n"
+"|         o + o *@|\n"
+"|        . Eoo .+B|\n"
+"+----[SHA256]-----+\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:414
+msgid "The public key can be copied to the servers:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:419
+msgid ""
+"``` # ssh-copy-id ansible@172.16.1.10 # ssh-copy-id ansible@172.16.1.11 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:421
+msgid ""
+"Re-comment the following line from the `[defaults]` section in the `/etc/"
+"ansible/ansible.cfg` configuration file to prevent password authentication:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:425
+#, no-wrap
+msgid ""
+"```\n"
+"#ask_pass      = True\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:427
+msgid "### Private key authentication test"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:429
+msgid ""
+"For the next test, the `shell` module, allowing remote command execution, is "
+"used:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:434
+#, no-wrap
+msgid ""
+"```\n"
+"# ansible rocky8 -m shell -a \"uptime\"\n"
+"172.16.1.10 | SUCCESS | rc=0 >>\n"
+" 12:36:18 up 57 min,  1 user,  load average: 0.00, 0.00, 0.00\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:438
+#, no-wrap
+msgid ""
+"172.16.1.11 | SUCCESS | rc=0 >>\n"
+" 12:37:07 up 57 min,  1 user,  load average: 0.00, 0.00, 0.00\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:440
+msgid "No password is required, private/public key authentication works!"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:443
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    In production environment, you should now remove the `ansible` passwords previously set to enforce your security (as now an authentication password is not necessary).\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:445
+msgid "## Using Ansible"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:447
+msgid "Ansible can be used from the shell or via playbooks."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:449
+msgid "### The modules"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:451
+msgid ""
+"The list of modules classified by category can be [found here](https://docs."
+"ansible.com/ansible/latest/collections/index_module.html). Ansible offers "
+"more than 750!"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:453
+msgid ""
+"The modules are now grouped into module collections, a list of which can be "
+"[found here](https://docs.ansible.com/ansible/latest/collections/index.html)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:455
+#: docs/books/learning_ansible/04-ansible-galaxy.md:425
+msgid ""
+"Collections are a distribution format for Ansible content that can include "
+"playbooks, roles, modules, and plugins."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:457
+msgid "A module is invoked with the `-m` option of the `ansible` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:463
+msgid ""
+"There is a module for almost every need! It is thus advised, instead of "
+"using the shell module, to look for a module adapted to the need."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:465
+msgid ""
+"Each category of need has its own module. Here is a non exhaustive list:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:477
+#, no-wrap
+msgid ""
+"| Type                | Examples                                                     |\n"
+"|---------------------|--------------------------------------------------------------|\n"
+"| System Management   | `user` (users management), `group` (groups management), etc. |\n"
+"| Software management | `dnf`,`yum`, `apt`, `pip`, `npm`                             |\n"
+"| File management     | `copy`, `fetch`, `lineinfile`, `template`, `archive`         |\n"
+"| Database management | `mysql`, `postgresql`, `redis`                               |\n"
+"| Cloud management    | `amazon S3`, `cloudstack`, `openstack`                       |\n"
+"| Cluster management  | `consul`, `zookeeper`                                        |\n"
+"| Send commands       |  `shell`, `script`, `expect`                                 |\n"
+"| Downloads           |  `get_url`                                                   |\n"
+"| Source management   |  `git`, `gitlab`                                             |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:479
+msgid "#### Example of software installation"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:481
+msgid ""
+"The `dnf` module allows for the installation of software on the target "
+"clients:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:503
+#, no-wrap
+msgid ""
+"```\n"
+"# ansible rocky8 --become -m dnf -a name=\"httpd\"\n"
+"172.16.1.10 | SUCCESS => {\n"
+"    \"changed\": true,\n"
+"    \"msg\": \"\",\n"
+"    \"rc\": 0,\n"
+"    \"results\": [\n"
+"      ...\n"
+"      \\n\\nComplete!\\n\"\n"
+"    ]\n"
+"}\n"
+"172.16.1.11 | SUCCESS => {\n"
+"    \"changed\": true,\n"
+"    \"msg\": \"\",\n"
+"    \"rc\": 0,\n"
+"    \"results\": [\n"
+"      ...\n"
+"    \\n\\nComplete!\\n\"\n"
+"    ]\n"
+"}\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:505
+msgid ""
+"The installed software being a service, it is now necessary to start it with "
+"the module `systemd`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:519
+#, no-wrap
+msgid ""
+"```\n"
+"# ansible rocky8 --become  -m systemd -a \"name=httpd state=started\"\n"
+"172.16.1.10 | SUCCESS => {\n"
+"    \"changed\": true,\n"
+"    \"name\": \"httpd\",\n"
+"    \"state\": \"started\"\n"
+"}\n"
+"172.16.1.11 | SUCCESS => {\n"
+"    \"changed\": true,\n"
+"    \"name\": \"httpd\",\n"
+"    \"state\": \"started\"\n"
+"}\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:522
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    Try to launch those last 2 commands twice. You will observe that the first time Ansible will take actions to reach the state set by the command. The second time, it will do nothing because it will have detected that the state is already reached!\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:524
+msgid "### Exercises"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:526
+msgid ""
+"To help discover more about Ansible and to get used to searching the Ansible "
+"documentation, here are some exercises you can do before going on:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:536
+#: docs/books/learning_ansible/01-bases.md:795
+msgid "Create the groups Paris, Tokio, NewYork"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:536
+#: docs/books/learning_ansible/01-bases.md:795
+msgid "Create the user `supervisor`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:536
+#: docs/books/learning_ansible/01-bases.md:795
+msgid "Change the user to have a uid of 10000"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:536
+#: docs/books/learning_ansible/01-bases.md:795
+msgid "Change the user so that it belongs to the Paris group"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:536
+#: docs/books/learning_ansible/01-bases.md:795
+msgid "Install the tree software"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:536
+#: docs/books/learning_ansible/01-bases.md:795
+msgid "Stop the crond service"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:536
+msgid "Create en empty file with `644` rights"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:536
+#: docs/books/learning_ansible/01-bases.md:795
+msgid "Update your client distribution"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:536
+#: docs/books/learning_ansible/01-bases.md:795
+msgid "Restart your client"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:539
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    Do not use the shell module. Look in the documentation for the appropriate modules!\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:541
+msgid "#### `setup` module: introduction to facts"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:543
+msgid ""
+"The system facts are variables retrieved by Ansible via its `setup` module."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:545
+msgid ""
+"Take a look at the different facts of your clients to get an idea of the "
+"amount of information that can be easily retrieved via a simple command."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:547
+msgid ""
+"We'll see later how to use facts in our playbooks and how to create our own "
+"facts."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:572
+#, no-wrap
+msgid ""
+"```\n"
+"# ansible ansible_clients -m setup | less\n"
+"192.168.1.11 | SUCCESS => {\n"
+"    \"ansible_facts\": {\n"
+"        \"ansible_all_ipv4_addresses\": [\n"
+"            \"192.168.1.11\"\n"
+"        ],\n"
+"        \"ansible_all_ipv6_addresses\": [\n"
+"            \"2001:861:3dc3:fcf0:a00:27ff:fef7:28be\",\n"
+"            \"fe80::a00:27ff:fef7:28be\"\n"
+"        ],\n"
+"        \"ansible_apparmor\": {\n"
+"            \"status\": \"disabled\"\n"
+"        },\n"
+"        \"ansible_architecture\": \"x86_64\",\n"
+"        \"ansible_bios_date\": \"12/01/2006\",\n"
+"        \"ansible_bios_vendor\": \"innotek GmbH\",\n"
+"        \"ansible_bios_version\": \"VirtualBox\",\n"
+"        \"ansible_board_asset_tag\": \"NA\",\n"
+"        \"ansible_board_name\": \"VirtualBox\",\n"
+"        \"ansible_board_serial\": \"NA\",\n"
+"        \"ansible_board_vendor\": \"Oracle Corporation\",\n"
+"        ...\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:574
+msgid ""
+"Now that we have seen how to configure a remote server with Ansible on the "
+"command line, we will be able to introduce the notion of playbook. Playbooks "
+"are another way to use Ansible, which is not much more complex, but which "
+"will make it easier to reuse your code."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:576
+msgid "## Playbooks"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:578
+msgid ""
+"Ansible's playbooks describe a policy to be applied to remote systems, to "
+"force their configuration. Playbooks are written in an easily understandable "
+"text format that groups together a set of tasks: the `yaml` format."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:581
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    Learn more about [yaml here](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:585
+msgid "``` ansible-playbook <file.yml> ... [options] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:587
+msgid "The options are identical to the `ansible` command."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:589
+msgid "The command returns the following error codes:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:600
+#, no-wrap
+msgid ""
+"| Code  | Error                             |\n"
+"|-------|-----------------------------------|\n"
+"| `0`   | OK or no matching host            |\n"
+"| `1`   | Error                             |\n"
+"| `2`   | One or more hosts are failing     |\n"
+"| `3`   | One or more hosts are unreachable |\n"
+"| `4`   | Analyze error                     |\n"
+"| `5`   | Bad or incomplete options         |\n"
+"| `99`  | Run interrupted by user           |\n"
+"| `250` | Unexpected error                  |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:603
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    Please note that `ansible` will return Ok when there is no host matching your target, which might mislead you!\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:605
+msgid "### Example of Apache and MySQL playbook"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:607
+msgid ""
+"The following playbook allows us to install Apache and MariaDB on our target "
+"servers."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:609
+msgid "Create a `test.yml` file with the following content:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:611
+#: docs/books/learning_ansible/01-bases.md:670
+#: docs/books/learning_ansible/01-bases.md:713
+#: docs/books/learning_ansible/01-bases.md:745
+#: docs/books/learning_ansible/02-advanced.md:48
+#: docs/books/learning_ansible/02-advanced.md:84
+#: docs/books/learning_ansible/02-advanced.md:93
+#: docs/books/learning_ansible/02-advanced.md:238
+#: docs/books/learning_ansible/02-advanced.md:459
+#: docs/books/learning_ansible/02-advanced.md:502
+#: docs/books/learning_ansible/02-advanced.md:572
+#: docs/books/learning_ansible/02-advanced.md:601
+#: docs/books/learning_ansible/02-advanced.md:638
+#: docs/books/learning_ansible/02-advanced.md:675
+#: docs/books/learning_ansible/04-ansible-galaxy.md:103
+#: docs/books/learning_ansible/04-ansible-galaxy.md:112
+#: docs/books/learning_ansible/04-ansible-galaxy.md:259
+#: docs/books/learning_ansible/04-ansible-galaxy.md:272
+#: docs/books/learning_ansible/04-ansible-galaxy.md:288
+#: docs/books/learning_ansible/04-ansible-galaxy.md:375
+#: docs/books/learning_ansible/05-deployments.md:124
+#: docs/books/learning_ansible/05-deployments.md:213
+#: docs/books/learning_ansible/05-deployments.md:340
+#: docs/books/learning_ansible/05-deployments.md:356
+#: docs/books/learning_ansible/05-deployments.md:389
+#: docs/books/learning_ansible/05-deployments.md:485
+#: docs/books/learning_ansible/05-deployments.md:519
+#: docs/books/learning_ansible/05-deployments.md:586
+#: docs/books/learning_ansible/05-deployments.md:626
+#: docs/books/learning_ansible/05-deployments.md:683
+#: docs/books/learning_ansible/05-deployments.md:709
+#: docs/books/learning_ansible/05-deployments.md:734
+#: docs/books/learning_ansible/05-deployments.md:761
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:107
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:123
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:138
+#, no-wrap
+msgid ""
+"```\n"
+"---\n"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/learning_ansible/01-bases.md:615
+msgid "hosts: rocky8 <1> become: true <2> become_user: root"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:617
+#: docs/books/learning_ansible/01-bases.md:676
+#: docs/books/learning_ansible/01-bases.md:719
+#: docs/books/learning_ansible/01-bases.md:751
+#: docs/books/learning_ansible/02-advanced.md:252
+#: docs/books/learning_ansible/02-advanced.md:463
+#: docs/books/learning_ansible/02-advanced.md:515
+#: docs/books/learning_ansible/02-advanced.md:578
+#: docs/books/learning_ansible/02-advanced.md:607
+#: docs/books/learning_ansible/02-advanced.md:644
+#: docs/books/learning_ansible/02-advanced.md:681
+#: docs/books/learning_ansible/05-deployments.md:137
+#: docs/books/learning_ansible/05-deployments.md:498
+#, no-wrap
+msgid "  tasks:\n"
+msgstr ""
+
+#. type: Bullet: '    - '
+#: docs/books/learning_ansible/01-bases.md:620
+msgid ""
+"name: ensure apache is at the latest version dnf: name=httpd,php,php-mysqli "
+"state=latest"
+msgstr ""
+
+#. type: Bullet: '    - '
+#: docs/books/learning_ansible/01-bases.md:623
+msgid "name: ensure httpd is started systemd: name=httpd state=started"
+msgstr ""
+
+#. type: Bullet: '    - '
+#: docs/books/learning_ansible/01-bases.md:626
+msgid ""
+"name: ensure mariadb is at the latest version dnf: name=mariadb-server "
+"state=latest"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:631
+#, no-wrap
+msgid ""
+"    - name: ensure mariadb is started\n"
+"      systemd: name=mariadb state=started\n"
+"...\n"
+"```\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:634
+msgid ""
+"<1> The targeted group or the targeted server must exist in the inventory"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:634
+msgid "<2> Once connected, the user becomes `root` (via `sudo` by default)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:636
+msgid ""
+"The execution of the playbook is done with the command `ansible-playbook`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:639
+msgid "``` $ ansible-playbook test.yml"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:641
+msgid ""
+"PLAY [rocky8] "
+"****************************************************************"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:645
+msgid ""
+"TASK [setup] "
+"****************************************************************** ok: "
+"[172.16.1.10] ok: [172.16.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:649
+msgid ""
+"TASK [ensure apache is at the latest version] "
+"********************************* ok: [172.16.1.10] ok: [172.16.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:653
+msgid ""
+"TASK [ensure httpd is started] "
+"************************************************ changed: [172.16.1.10] "
+"changed: [172.16.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:657
+msgid ""
+"TASK [ensure mariadb is at the latest version] "
+"********************************** changed: [172.16.1.10] changed: "
+"[172.16.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:661
+msgid ""
+"TASK [ensure mariadb is started] "
+"*********************************************** changed: [172.16.1.10] "
+"changed: [172.16.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:666
+#, no-wrap
+msgid ""
+"PLAY RECAP *********************************************************************\n"
+"172.16.1.10             : ok=5    changed=3    unreachable=0    failed=0\n"
+"172.16.1.11             : ok=5    changed=3    unreachable=0    failed=0\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:668
+msgid ""
+"For more readability, it is recommended to write your playbooks in full yaml "
+"format. In the previous example, the arguments are given on the same line as "
+"the module, the value of the argument following its name separated by an "
+"`=`. Look at the same playbook in full yaml:"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/learning_ansible/01-bases.md:674
+#: docs/books/learning_ansible/01-bases.md:717
+msgid "hosts: rocky8 become: true become_user: root"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:681
+#, no-wrap
+msgid ""
+"    - name: ensure apache is at the latest version\n"
+"      dnf:\n"
+"        name: httpd,php,php-mysqli\n"
+"        state: latest\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:686
+#, no-wrap
+msgid ""
+"    - name: ensure httpd is started\n"
+"      systemd:\n"
+"        name: httpd\n"
+"        state: started\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:691
+#, no-wrap
+msgid ""
+"    - name: ensure mariadb is at the latest version\n"
+"      dnf:\n"
+"        name: mariadb-server\n"
+"        state: latest\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:698
+#, no-wrap
+msgid ""
+"    - name: ensure mariadb is started\n"
+"      systemd:\n"
+"        name: mariadb\n"
+"        state: started\n"
+"...\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:701
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    `dnf` is one of the modules that allow you to give it a list as argument.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:704
+msgid ""
+"Note about collections: Ansible now provides modules in the form of "
+"collections.  Some modules are provided by default within the `ansible."
+"builtin` collection, others must be installed manually via the:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:709
+msgid ""
+"``` ansible-galaxy collection install [collectionname] ``` where "
+"[collectionname] is the name of the collection. (the square brackets here "
+"are used to highlight the need to replace this with an actual collection "
+"name, and are NOT part of the command.)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:711
+msgid "The previous example should be written like this:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:724
+#: docs/books/learning_ansible/01-bases.md:756
+#, no-wrap
+msgid ""
+"    - name: ensure apache is at the latest version\n"
+"      ansible.builtin.dnf:\n"
+"        name: httpd,php,php-mysqli\n"
+"        state: latest\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:729
+#: docs/books/learning_ansible/01-bases.md:761
+#, no-wrap
+msgid ""
+"    - name: ensure httpd is started\n"
+"      ansible.builtin.systemd:\n"
+"        name: httpd\n"
+"        state: started\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:734
+#: docs/books/learning_ansible/01-bases.md:770
+#, no-wrap
+msgid ""
+"    - name: ensure mariadb is at the latest version\n"
+"      ansible.builtin.dnf:\n"
+"        name: mariadb-server\n"
+"        state: latest\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:741
+#: docs/books/learning_ansible/01-bases.md:777
+#, no-wrap
+msgid ""
+"    - name: ensure mariadb is started\n"
+"      ansible.builtin.systemd:\n"
+"        name: mariadb\n"
+"        state: started\n"
+"...\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:743
+msgid "A playbook is not limited to one target:"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/learning_ansible/01-bases.md:749
+msgid "hosts: webservers become: true become_user: root"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/learning_ansible/01-bases.md:765
+msgid "hosts: databases become: true become_user: root"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:779
+msgid "You can check the syntax of your playbook:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:783
+msgid "``` $ ansible-playbook --syntax-check play.yml ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:785
+msgid "## Exercices results"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/01-bases.md:795
+msgid "Create en empty file with `0644` rights"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:808
+msgid ""
+"``` ansible ansible_clients --become -m group -a \"name=Paris\" ansible "
+"ansible_clients --become -m group -a \"name=Tokio\" ansible ansible_clients "
+"--become -m group -a \"name=NewYork\" ansible ansible_clients --become -m "
+"user -a \"name=Supervisor\" ansible ansible_clients --become -m user -a "
+"\"name=Supervisor uid=10000\" ansible ansible_clients --become -m user -a "
+"\"name=Supervisor uid=10000 groups=Paris\" ansible ansible_clients --become -"
+"m dnf -a \"name=tree\" ansible ansible_clients --become -m systemd -a "
+"\"name=crond state=stopped\" ansible ansible_clients --become -m copy -a "
+"\"content='' dest=/tmp/test force=no mode=0644\" ansible ansible_clients --"
+"become -m dnf -a \"name=* state=latest\" ansible ansible_clients --become -m "
+"reboot ```"
+msgstr ""

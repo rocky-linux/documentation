@@ -1,0 +1,672 @@
+# French translations for PACKAGE package
+# Copyright (C) 2021 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: 2021-08-17 08:55+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:6
+#: docs/books/admin_guide/01-presentation.md:23
+#: docs/books/admin_guide/03-commands.md:6
+#: docs/books/admin_guide/03-commands.md:21
+#: docs/books/admin_guide/04-advanced-commands.md:6
+#: docs/books/admin_guide/04-advanced-commands.md:20
+#: docs/books/admin_guide/05-vi.md:6 docs/books/admin_guide/05-vi.md:20
+#: docs/books/admin_guide/07-file-systems.md:6
+#: docs/books/admin_guide/07-file-systems.md:26
+#: docs/books/admin_guide/08-process.md:6
+#: docs/books/admin_guide/08-process.md:21
+#: docs/books/admin_guide/09-backups.md:6
+#: docs/books/admin_guide/09-backups.md:21 docs/books/admin_guide/11-tasks.md:6
+#: docs/books/admin_guide/11-tasks.md:21 docs/books/admin_guide/12-network.md:6
+#: docs/books/admin_guide/12-network.md:23
+#: docs/books/learning_ansible/01-bases.md:6
+#: docs/books/learning_ansible/01-bases.md:21
+#: docs/books/learning_ansible/02-advanced.md:6
+#: docs/books/learning_ansible/02-advanced.md:22
+#: docs/books/learning_ansible/03-working-with-files.md:6
+#: docs/books/learning_ansible/03-working-with-files.md:21
+#: docs/books/learning_ansible/04-ansible-galaxy.md:6
+#: docs/books/learning_ansible/04-ansible-galaxy.md:20
+#: docs/books/learning_ansible/05-deployments.md:6
+#: docs/books/learning_ansible/05-deployments.md:23
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:6
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
+#, no-wrap
+msgid "****\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:208
+#: docs/books/admin_guide/03-commands.md:301
+#: docs/books/admin_guide/03-commands.md:690
+#: docs/books/admin_guide/03-commands.md:1333
+#: docs/books/admin_guide/04-advanced-commands.md:288
+#: docs/books/admin_guide/04-advanced-commands.md:329
+#: docs/books/admin_guide/06-users.md:339
+#: docs/books/admin_guide/06-users.md:514
+#: docs/books/admin_guide/06-users.md:733
+#: docs/books/admin_guide/08-process.md:368
+#: docs/books/admin_guide/09-backups.md:350
+#: docs/books/admin_guide/09-backups.md:690
+#: docs/books/admin_guide/10-boot.md:200 docs/books/admin_guide/11-tasks.md:205
+#: docs/books/admin_guide/12-network.md:523
+#: docs/books/learning_ansible/01-bases.md:242
+msgid "Examples:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:2
+msgid "# Advanced Commands for Linux users"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:4
+msgid "In this chapter you will learn some advanced commands for Linux."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:8
+#, no-wrap
+msgid "**Objectives** : In this chapter, future Linux administrators will learn:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:11
+#, no-wrap
+msgid ""
+":heavy_check_mark: some useful commands not covered in the previous chapter;   \n"
+":heavy_check_mark: some advanced commands.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:13
+msgid ":checkered_flag: **user commands**, **Linux**"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:16
+#, no-wrap
+msgid ""
+"**Knowledge**: :star:   \n"
+"**Complexity**: :star: :star: :star:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:18
+#: docs/books/admin_guide/05-vi.md:18
+#: docs/books/admin_guide/07-file-systems.md:24
+#: docs/books/admin_guide/08-process.md:19
+#: docs/books/learning_ansible/03-working-with-files.md:19
+#, no-wrap
+msgid "**Reading time**: 20 minutes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:22
+msgid "## `uniq` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:24
+msgid ""
+"The `uniq` command is a very powerful command, used with the `sort` command, "
+"especially for log file analysis. It allows you to sort and display entries "
+"by removing duplicates."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:26
+msgid ""
+"To illustrate how the `uniq` command works, let's use a `firstnames.txt` "
+"file containing a list of first names:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:37
+msgid "``` antoine xavier steven patrick xavier antoine antoine steven ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:40
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    `uniq` requires the input file to be sorted because it only compares consecutive lines.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:42
+msgid ""
+"Without an argument, the `uniq` command will not display identical lines "
+"that follow each other in the `firstnames.txt` file:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:50
+msgid "``` $ sort firstnames.txt | uniq antoine patrick steven xavier ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:52
+msgid "To display only the rows that appear only once, use the `-u` option:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:57
+msgid "``` $ sort firstnames.txt | uniq -u patrick ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:59
+msgid ""
+"Conversely, to display only the lines that appear at least twice in the "
+"file, you must use the `-d` option:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:66
+msgid "``` $ sort firstnames.txt | uniq -d antoine steven xavier ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:68
+msgid "To simply delete lines that appear only once, use the `-D` option:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:79
+msgid ""
+"``` $ sort firstnames.txt | uniq -D antoine antoine antoine steven steven "
+"xavier xavier ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:81
+msgid ""
+"Finally, to count the number of occurrences of each line, use the `-c` "
+"option:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:89
+#, no-wrap
+msgid ""
+"```\n"
+"$ sort firstnames.txt | uniq -c\n"
+"      3 antoine\n"
+"      1 patrick\n"
+"      2 steven\n"
+"      2 xavier\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:96
+#, no-wrap
+msgid ""
+"```\n"
+"$ sort firstnames.txt | uniq -cd\n"
+"      3 antoine\n"
+"      2 steven\n"
+"      2 xavier\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:98
+msgid "## `xargs` commands"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:100
+msgid ""
+"The `xargs` command allows the construction and execution of command lines "
+"from standard input."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:102
+msgid ""
+"The `xargs` command reads whitespace or linefeed delimited arguments from "
+"standard input, and executes the command (`/bin/echo` by default) one or "
+"more times using the initial arguments followed by the arguments read from "
+"standard input."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:104
+msgid "A first and simplest example would be the following:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:113
+msgid "``` $ xargs use of xargs <CTRL+D> use of xargs ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:115
+msgid ""
+"The `xargs` command waits for an input from the standard **stdin** input. "
+"Three lines are entered. The end of the user input is specified to `xargs` "
+"by the keystroke sequence <kbd>CTRL</kbd>+<kbd>D</kbd>. `xargs` then "
+"executes the default command `echo` followed by the three arguments "
+"corresponding to the user input, namely :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:120
+msgid "``` $ echo \"use\" \"of\" \"xargs\" use of xargs ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:122
+msgid "It is possible to specify a command to be run by `xargs`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:124
+msgid ""
+"In the following example, `xargs` will run the command `ls -ld` on the set "
+"of folders specified in the standard input:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:135
+msgid ""
+"``` $ xargs ls -ld /home /tmp /root <CTRL+D> drwxr-xr-x. 9 root root 4096 5 "
+"avril 11:10 /home dr-xr-x---. 2 root root 4096 5 avril 15:52 /root "
+"drwxrwxrwt. 3 root root 4096 6 avril 10:25 /tmp ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:137
+msgid ""
+"In practice, the `xargs` command executed the `ls -ld /home /tmp /root` "
+"command."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:139
+msgid ""
+"What happens if the command to be executed does not accept multiple "
+"arguments as is the case with the `find` command?"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:146
+msgid ""
+"``` $ xargs find /var/log -name *.old *.log find: paths must precede "
+"expression: *.log ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:148
+msgid ""
+"The `xargs` command attempted to execute the `find` command with multiple "
+"arguments behind the `-name` option, which caused `find` to generate an "
+"error:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:153
+msgid ""
+"``` $ find /var/log -name \"*.old\" \"*.log\" find: paths must precede "
+"expression: *.log ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:155
+msgid ""
+"In this case, the `xargs` command must be forced to execute the `find` "
+"command several times (once per line entered as standard input). The `-L` "
+"option followed by an **integer** allows you to specify the maximum number "
+"of entries to be processed with the command at one time:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:172
+msgid ""
+"``` $ xargs -L 1 find /var/log -name *.old /var/log/dmesg.old *.log /var/log/"
+"boot.log /var/log/anaconda.yum.log /var/log/anaconda.storage.log /var/log/"
+"anaconda.log /var/log/yum.log /var/log/audit/audit.log /var/log/anaconda."
+"ifcfg.log /var/log/dracut.log /var/log/anaconda.program.log <CTRL+D> ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:174
+msgid ""
+"If we wanted to be able to specify both arguments on the same line, we would "
+"have to use the `-n 1` option:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:190
+msgid ""
+"``` $ xargs -n 1 find /var/log -name *.old *.log /var/log/dmesg.old /var/log/"
+"boot.log /var/log/anaconda.yum.log /var/log/anaconda.storage.log /var/log/"
+"anaconda.log /var/log/yum.log /var/log/audit/audit.log /var/log/anaconda."
+"ifcfg.log /var/log/dracut.log /var/log/anaconda.program.log <CTRL+D> ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:192
+msgid "Case study of a backup with a `tar` based on a search:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:199
+#, no-wrap
+msgid ""
+"```\n"
+"$ find /var/log/ -name \"*.log\" -mtime -1 | xargs tar cvfP /root/log.tar\n"
+"$ tar tvfP /root/log.tar\n"
+"-rw-r--r-- root/root      1720 2017-04-05 15:43 /var/log/boot.log\n"
+"-rw-r--r-- root/root    499270 2017-04-06 11:01 /var/log/audit/audit.log\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:201
+msgid ""
+"The special feature of the `xargs` command is that it places the input "
+"argument at the end of the called command. This works very well with the "
+"above example since the files passed in will form the list of files to be "
+"added to the archive."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:203
+msgid ""
+"Now, if we take the example of the `cp` command and want to copy a list of "
+"files in a directory, this list of files will be added at the end of the "
+"command... but what the `cp` command expects at the end of the command is "
+"the destination. To do this, we use the `-I` option to put the input "
+"arguments somewhere else than at the end of the line."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:207
+msgid ""
+"``` $ find /var/log -type f -name \"*.log\" | xargs -I % cp % /root/backup "
+"```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:209
+msgid ""
+"The `-I` option allows you to specify a character (in our example the `%` "
+"character) where the input files to `xargs` will be placed."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:211
+msgid "## `yum-utils` package"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:213
+msgid ""
+"The `yum-utils` package is a collection of utilities from different authors "
+"for `yum`, which make it easier and more powerful to use."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:216
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    While `yum` has been replaced by `dnf` in Rocky Linux 8, the package name has remained `yum-utils` although it can be installed as `dnf-utils` as well. These are classic YUM utilities implemented as CLI shims on top of DNF to maintain backwards compatibility with `yum-3`.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:218
+msgid "Here are some examples of usage:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/04-advanced-commands.md:220
+msgid "`repoquery` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:222
+msgid "The `repoquery` command queries the repositories."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:224
+msgid "Examples of use:"
+msgstr ""
+
+#. type: Bullet: '  * '
+#: docs/books/admin_guide/04-advanced-commands.md:226
+msgid "Knowing the dependencies of an uninstalled package:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:230
+msgid "``` repoquery --requires <package> ```"
+msgstr ""
+
+#. type: Bullet: '  * '
+#: docs/books/admin_guide/04-advanced-commands.md:232
+msgid "Know the files provided by a non-installed package:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:260
+msgid ""
+"``` $ repoquery -l yum-utils /etc/bash_completion.d /etc/bash_completion.d/"
+"yum-utils.bash /usr/bin/debuginfo-install /usr/bin/find-repos-of-install /"
+"usr/bin/needs-restarting /usr/bin/package-cleanup /usr/bin/repo-graph /usr/"
+"bin/repo-rss /usr/bin/repoclosure /usr/bin/repodiff /usr/bin/repomanage /usr/"
+"bin/repoquery /usr/bin/reposync /usr/bin/repotrack /usr/bin/show-changed-"
+"rco /usr/bin/show-installed /usr/bin/verifytree /usr/bin/yum-builddep /usr/"
+"bin/yum-config-manager /usr/bin/yum-debug-dump /usr/bin/yum-debug-restore /"
+"usr/bin/yum-groups-manager /usr/bin/yumdownloader â¦ ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/04-advanced-commands.md:262
+msgid "`yumdownloader` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:264
+msgid ""
+"The `yumdownloader` command downloads RPM packages from the repositories."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:267
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    This command is very useful to quickly build a local repository of a few rpm!\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:269
+msgid ""
+"Example: `yumdownloader` will download the _repoquery_ rpm package and all "
+"its dependencies:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:273
+msgid "``` $ yumdownloader --destdir /var/tmp -- resolve repoquery ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:278
+#, no-wrap
+msgid ""
+"| Options     |  Comments                                                       |\n"
+"|-------------|-----------------------------------------------------------------|\n"
+"| -`-destdir` | The downloaded packages will be stored in the specified folder. |\n"
+"| `--resolve` | Also downloads the package dependencies.                        |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:280
+msgid "## `psmisc` packages"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:282
+msgid "The `psmisc` package contains utilities for managing system processes:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/04-advanced-commands.md:286
+msgid ""
+"`pstree`: the `pstree` command displays the current processes on the system "
+"in a tree-like structure."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/04-advanced-commands.md:286
+msgid ""
+"`killall`: the `killall` command sends a kill signal to all processes "
+"identified by name."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/04-advanced-commands.md:286
+msgid ""
+"`fuser`: the `fuser` command identifies the `PID` of processes that use the "
+"specified files or file systems."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:308
+#, no-wrap
+msgid ""
+"```\n"
+"$ pstree\n"
+"systemdââ¬âNetworkManagerâââ2*[{NetworkManager}]\n"
+"        ââagetty\n"
+"        ââauditdâââ{auditd}\n"
+"        ââcrond\n"
+"        ââdbus-daemonâââ{dbus-daemon}\n"
+"        ââfirewalldâââ{firewalld}\n"
+"        ââlvmetad\n"
+"        ââmasterââ¬âpickup\n"
+"        â        ââqmgr\n"
+"        ââpolkitdâââ5*[{polkitd}]\n"
+"        âârsyslogdâââ2*[{rsyslogd}]\n"
+"        ââsshdâââsshdâââbashâââpstree\n"
+"        ââsystemd-journal\n"
+"        ââsystemd-logind\n"
+"        ââsystemd-udevd\n"
+"        ââtunedâââ4*[{tuned}]\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:312
+msgid "``` # killall httpd ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:314
+msgid ""
+"Kill processes (option `-k`) that access the `/etc/httpd/conf/httpd.conf` "
+"file:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:318
+msgid "``` # fuser -k /etc/httpd/conf/httpd.conf ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:320
+msgid "## `watch` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:322
+msgid ""
+"The `watch` command regularly executes a command and displays the result in "
+"the terminal in full screen."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:324
+msgid ""
+"The `-n` option allows you to specify the number of seconds between each "
+"execution of the command."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:327
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    To exit the `watch` command, you must type the keys: <kbd>CTRL</kbd>+<kbd>C</kbd> to kill the process.\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/04-advanced-commands.md:331
+msgid "Display the end of the `/etc/passwd` file every 5 seconds:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:335
+msgid "``` $ watch -n 5 tail -n 3 /etc/passwd ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:337
+msgid "Result:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:340
+#, no-wrap
+msgid ""
+"```\n"
+"Every 5,0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:345
+msgid ""
+"sssd:x:996:993:User for sssd:/:/sbin/nologin chrony:x:995:992::/var/lib/"
+"chrony:/sbin/nologin sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/"
+"sbin/nologin ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/04-advanced-commands.md:347
+msgid "Monitoring the number of files in a folder:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:351
+msgid "``` $ watch -n 1 'ls -l | wc -l' ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/04-advanced-commands.md:353
+msgid "Display a clock:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:356
+msgid "``` $ watch -t -n 1 date ```"
+msgstr ""

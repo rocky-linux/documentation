@@ -1,0 +1,1454 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:6
+#: docs/books/admin_guide/01-presentation.md:23
+#: docs/books/admin_guide/03-commands.md:6
+#: docs/books/admin_guide/03-commands.md:21
+#: docs/books/admin_guide/04-advanced-commands.md:6
+#: docs/books/admin_guide/04-advanced-commands.md:20
+#: docs/books/admin_guide/05-vi.md:6 docs/books/admin_guide/05-vi.md:20
+#: docs/books/admin_guide/07-file-systems.md:6
+#: docs/books/admin_guide/07-file-systems.md:26
+#: docs/books/admin_guide/08-process.md:6
+#: docs/books/admin_guide/08-process.md:21
+#: docs/books/admin_guide/09-backups.md:6
+#: docs/books/admin_guide/09-backups.md:21 docs/books/admin_guide/11-tasks.md:6
+#: docs/books/admin_guide/11-tasks.md:21 docs/books/admin_guide/12-network.md:6
+#: docs/books/admin_guide/12-network.md:23
+#: docs/books/learning_ansible/01-bases.md:6
+#: docs/books/learning_ansible/01-bases.md:21
+#: docs/books/learning_ansible/02-advanced.md:6
+#: docs/books/learning_ansible/02-advanced.md:22
+#: docs/books/learning_ansible/03-working-with-files.md:6
+#: docs/books/learning_ansible/03-working-with-files.md:21
+#: docs/books/learning_ansible/04-ansible-galaxy.md:6
+#: docs/books/learning_ansible/04-ansible-galaxy.md:20
+#: docs/books/learning_ansible/05-deployments.md:6
+#: docs/books/learning_ansible/05-deployments.md:23
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:6
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
+#, no-wrap
+msgid "****\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:8
+#: docs/books/admin_guide/12-network.md:8
+#: docs/books/learning_ansible/02-advanced.md:8
+#, no-wrap
+msgid "**Objectives** : In this chapter you will learn how to:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1384
+#: docs/books/admin_guide/06-users.md:498
+#: docs/books/learning_ansible/02-advanced.md:69
+#: docs/books/learning_ansible/03-working-with-files.md:108
+msgid "For example:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1502
+#: docs/books/admin_guide/03-commands.md:1522
+#: docs/books/learning_ansible/01-bases.md:142
+#: docs/books/learning_ansible/01-bases.md:412
+#: docs/books/learning_ansible/02-advanced.md:486
+#: docs/books/learning_ansible/02-advanced.md:538
+#: docs/books/learning_ansible/02-advanced.md:634
+#: docs/books/learning_ansible/04-ansible-galaxy.md:509
+#: docs/books/learning_ansible/05-deployments.md:207
+#: docs/books/learning_ansible/05-deployments.md:257
+msgid "```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:21
+#: docs/books/learning_ansible/01-bases.md:19
+#: docs/books/learning_ansible/02-advanced.md:20
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:18
+#, no-wrap
+msgid "**Reading time**: 30 minutes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:14
+#: docs/books/learning_ansible/02-advanced.md:15
+msgid ":checkered_flag: **ansible**, **module**, **playbook**"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:17
+#: docs/books/learning_ansible/02-advanced.md:18
+#, no-wrap
+msgid ""
+"**Knowledge**: :star: :star: :star:     \n"
+"**Complexity**: :star: :star:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:611
+#: docs/books/learning_ansible/01-bases.md:670
+#: docs/books/learning_ansible/01-bases.md:713
+#: docs/books/learning_ansible/01-bases.md:745
+#: docs/books/learning_ansible/02-advanced.md:48
+#: docs/books/learning_ansible/02-advanced.md:84
+#: docs/books/learning_ansible/02-advanced.md:93
+#: docs/books/learning_ansible/02-advanced.md:238
+#: docs/books/learning_ansible/02-advanced.md:459
+#: docs/books/learning_ansible/02-advanced.md:502
+#: docs/books/learning_ansible/02-advanced.md:572
+#: docs/books/learning_ansible/02-advanced.md:601
+#: docs/books/learning_ansible/02-advanced.md:638
+#: docs/books/learning_ansible/02-advanced.md:675
+#: docs/books/learning_ansible/04-ansible-galaxy.md:103
+#: docs/books/learning_ansible/04-ansible-galaxy.md:112
+#: docs/books/learning_ansible/04-ansible-galaxy.md:259
+#: docs/books/learning_ansible/04-ansible-galaxy.md:272
+#: docs/books/learning_ansible/04-ansible-galaxy.md:288
+#: docs/books/learning_ansible/04-ansible-galaxy.md:375
+#: docs/books/learning_ansible/05-deployments.md:124
+#: docs/books/learning_ansible/05-deployments.md:213
+#: docs/books/learning_ansible/05-deployments.md:340
+#: docs/books/learning_ansible/05-deployments.md:356
+#: docs/books/learning_ansible/05-deployments.md:389
+#: docs/books/learning_ansible/05-deployments.md:485
+#: docs/books/learning_ansible/05-deployments.md:519
+#: docs/books/learning_ansible/05-deployments.md:586
+#: docs/books/learning_ansible/05-deployments.md:626
+#: docs/books/learning_ansible/05-deployments.md:683
+#: docs/books/learning_ansible/05-deployments.md:709
+#: docs/books/learning_ansible/05-deployments.md:734
+#: docs/books/learning_ansible/05-deployments.md:761
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:107
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:123
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:138
+#, no-wrap
+msgid ""
+"```\n"
+"---\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:617
+#: docs/books/learning_ansible/01-bases.md:676
+#: docs/books/learning_ansible/01-bases.md:719
+#: docs/books/learning_ansible/01-bases.md:751
+#: docs/books/learning_ansible/02-advanced.md:252
+#: docs/books/learning_ansible/02-advanced.md:463
+#: docs/books/learning_ansible/02-advanced.md:515
+#: docs/books/learning_ansible/02-advanced.md:578
+#: docs/books/learning_ansible/02-advanced.md:607
+#: docs/books/learning_ansible/02-advanced.md:644
+#: docs/books/learning_ansible/02-advanced.md:681
+#: docs/books/learning_ansible/05-deployments.md:137
+#: docs/books/learning_ansible/05-deployments.md:498
+#, no-wrap
+msgid "  tasks:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:2
+msgid "# Ansible Intermediate"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:4
+msgid "In this chapter you will continue to learn how to work with Ansible."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:13
+#, no-wrap
+msgid ""
+":heavy_check_mark: work with variables;       \n"
+":heavy_check_mark: use loops;   \n"
+":heavy_check_mark: manage state changes and react to them;   \n"
+":heavy_check_mark: manage asynchronous tasks.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:24
+msgid ""
+"In the previous chapter, you learned how to install Ansible, use it on the "
+"command line, or how to write playbooks to promote the re-usability of your "
+"code."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:26
+msgid ""
+"In this chapter, we can start to discover some more advanced notions of how "
+"to use Ansible, and discover some interesting tasks that you will use very "
+"regularly."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:28
+msgid "## The variables"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:31
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html).\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:33
+msgid "Under Ansible, there are different types of primitive variables:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:37
+msgid "strings,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:37
+msgid "integers,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:37
+msgid "booleans."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:39
+msgid "These variables can be organized as:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:42
+msgid "dictionaries,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:42
+msgid "lists."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:44
+msgid ""
+"A variable can be defined in different places, like in a playbook, in a role "
+"or from the command line for example."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:46
+msgid "For example, from a playbook:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:56
+#, no-wrap
+msgid ""
+"- hosts: apache1\n"
+"  vars:\n"
+"    port_http: 80\n"
+"    service:\n"
+"      debian: apache2\n"
+"      rhel: httpd\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:58
+msgid "or from the command line:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:62
+msgid ""
+"``` $ ansible-playbook deploy-http.yml --extra-vars \"service=httpd\" ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:64
+msgid ""
+"Once defined, a variable can be used by calling it between double braces:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:67
+msgid "`{{ port_http }}` for a simple value,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:67
+msgid "`{{ service['rhel'] }}` or `{{ service.rhel }}` for a dictionary."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:76
+#, no-wrap
+msgid ""
+"```\n"
+"- name: make sure apache is started\n"
+"  ansible.builtin.systemd:\n"
+"    name: \"{{ service['rhel'] }}\"\n"
+"    state: started\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:78
+msgid ""
+"Of course, it is also possible to access the global variables (the "
+"**facts**) of Ansible (OS type, IP addresses, VM name, etc.)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:80
+msgid "### Outsourcing variables"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:82
+msgid ""
+"Variables can be included in a file external to the playbook, in which case "
+"this file must be defined in the playbook with the `vars_files` directive:"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/learning_ansible/02-advanced.md:89
+msgid "hosts: apache1 vars_files:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:89
+#, no-wrap
+msgid ""
+"    - myvariables.yml\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:91
+msgid "The `myvariables.yml` file:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:99
+#, no-wrap
+msgid ""
+"port_http: 80\n"
+"ansible.builtin.systemd::\n"
+"  debian: apache2\n"
+"  rhel: httpd\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:101
+msgid ""
+"It can also be added dynamically with the use of the module `include_vars`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:107
+#, no-wrap
+msgid ""
+"```\n"
+"- name: Include secrets.\n"
+"  ansible.builtin.include_vars:\n"
+"    file: vault.yml\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:109
+msgid "### Display a variable"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:111
+msgid ""
+"To display a variable, you have to activate the `debug` module as follows:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:116
+#, no-wrap
+msgid ""
+"```\n"
+"- ansible.builtin.debug:\n"
+"    var: \"{{ service['debian'] }}\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:118
+msgid "You can also use the variable inside a text:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:123
+#, no-wrap
+msgid ""
+"```\n"
+"- ansible.builtin.debug:\n"
+"    msg: \"Print a variable in a message : {{ service['debian'] }}\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:125
+msgid "### Save the return of a task"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:127
+msgid ""
+"To save the return of a task and to be able to access it later, you have to "
+"use the keyword `register` inside the task itself."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:129
+msgid "Use of a stored variable:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:134
+#: docs/books/learning_ansible/02-advanced.md:222
+#, no-wrap
+msgid ""
+"```\n"
+"- name: /home content\n"
+"  shell: ls /home\n"
+"  register: homes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:138
+#, no-wrap
+msgid ""
+"- name: Print the first directory name\n"
+"  ansible.builtin.debug:\n"
+"    var: homes.stdout_lines[0]\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:143
+#, no-wrap
+msgid ""
+"- name: Print the first directory name\n"
+"  ansible.builtin.debug:\n"
+"    var: homes.stdout_lines[1]\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:146
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    The variable `homes.stdout_lines` is a list of variables of type string, a way to organize variables that we had not yet encountered.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:148
+msgid ""
+"The strings that make up the stored variable can be accessed via the "
+"`stdout` value (which allows you to do things like `homes.stdout.find(\"core"
+"\") != -1`), to exploit them using a loop (see `loop`), or simply by their "
+"indices as seen in the previous example."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:150
+#: docs/books/learning_ansible/02-advanced.md:265
+#: docs/books/learning_ansible/02-advanced.md:343
+msgid "### Exercices"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:152
+msgid ""
+"Write a playbook `play-vars.yml` that prints the distribution name of the "
+"target with its major version, using global variables."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:154
+#: docs/books/learning_ansible/02-advanced.md:488
+msgid ""
+"Write a playbook using the following dictionary to display the services that "
+"will be installed:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:164
+#: docs/books/learning_ansible/02-advanced.md:498
+#, no-wrap
+msgid ""
+"```\n"
+"service:\n"
+"  web:\n"
+"    name: apache\n"
+"    rpm: httpd\n"
+"  db:\n"
+"    name: mariadb\n"
+"    rpm: mariadb-server\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:166
+#: docs/books/learning_ansible/02-advanced.md:500
+msgid "The default type should be \"web\"."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:168
+msgid "Override the `type` variable using the command line"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:170
+#: docs/books/learning_ansible/02-advanced.md:559
+msgid "Externalize variables in a `vars.yml` file"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:172
+msgid "## Loop management"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:174
+msgid ""
+"With the help of loop, you can iterate a task over a list, a hash, or "
+"dictionary for example."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:177
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html).\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:179
+msgid "Simple example of use, creation of 4 users:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:192
+#, no-wrap
+msgid ""
+"```\n"
+"- name: add users\n"
+"  user:\n"
+"    name: \"{{ item }}\"\n"
+"    state: present\n"
+"    groups: \"users\"\n"
+"  loop:\n"
+"     - antoine\n"
+"     - patrick\n"
+"     - steven\n"
+"     - xavier\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:194
+msgid ""
+"At each iteration of the loop, the value of the list used is stored in the "
+"`item` variable, accessible in the loop code."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:196
+msgid "Of course, a list can be defined in an external file:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:204
+#, no-wrap
+msgid ""
+"```\n"
+"users:\n"
+"  - antoine\n"
+"  - patrick\n"
+"  - steven\n"
+"  - xavier\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:206
+msgid ""
+"and be used inside the task like this (after having include the vars file):"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:215
+#, no-wrap
+msgid ""
+"```\n"
+"- name: add users\n"
+"  user:\n"
+"    name: \"{{ item }}\"\n"
+"    state: present\n"
+"    groups: \"users\"\n"
+"  loop: \"{{ users }}\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:217
+msgid ""
+"We can use the example seen during the study of stored variables to improve "
+"it. Use of a stored variable:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:228
+#, no-wrap
+msgid ""
+"- name: Print the directories name\n"
+"  ansible.builtin.debug:\n"
+"    msg: \"Directory => {{ item }}\"\n"
+"  loop: \"{{ homes.stdout_lines }}\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:230
+msgid "A dictionary can also be used in a loop."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:232
+msgid ""
+"In this case, you will have to transform the dictionary into an item with "
+"what is called a **jinja filter** (jinja is the templating engine used by "
+"Ansible): `| dict2items`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:234
+msgid ""
+"In the loop, it becomes possible to use `item.key` which corresponds to the "
+"dictionary key, and `item.value` which corresponds to the values of the key."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:236
+msgid ""
+"Let's see this through a concrete example, showing the management of the "
+"system users:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:250
+#, no-wrap
+msgid ""
+"- hosts: rocky8\n"
+"  become: true\n"
+"  become_user: root\n"
+"  vars:\n"
+"    users:\n"
+"      antoine:\n"
+"        group: users\n"
+"        state: present\n"
+"      steven:\n"
+"        group: users\n"
+"        state: absent\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:260
+#, no-wrap
+msgid ""
+"  - name: Manage users\n"
+"    user:\n"
+"      name: \"{{ item.key }}\"\n"
+"      group: \"{{ item.value.group }}\"\n"
+"      state: \"{{ item.value.state }}\"\n"
+"    loop: \"{{ users | dict2items }}\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:263
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    Many things can be done with the loops. You will discover the possibilities offered by loops when your use of Ansible pushes you to use them in a more complex way.\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:267
+#: docs/books/learning_ansible/02-advanced.md:586
+msgid ""
+"Display the content of the `service` variable from the previous exercise "
+"using a loop."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:270
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    You will have to transform your `service` variable, which is a dictionary, to a list with the help of the jinja filter `list` as this:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:274
+#: docs/books/learning_ansible/02-advanced.md:597
+#, no-wrap
+msgid ""
+"    ```\n"
+"    {{ service.values() | list }}\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:276
+msgid "## Conditionals"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:279
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html).\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:281
+msgid ""
+"The `when` statement is very useful in many cases: not performing certain "
+"actions on certain types of servers, if a file or a user does not exist, etc."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:284
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    Behind the `when` statement the variables do not need double braces (they are in fact Jinja2 expressions...).\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:290
+#, no-wrap
+msgid ""
+"```\n"
+"- name: \"Reboot only Debian servers\"\n"
+"  reboot:\n"
+"  when: ansible_os_family == \"Debian\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:292
+msgid "Conditions can be grouped with parentheses:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:299
+#, no-wrap
+msgid ""
+"```\n"
+"- name: \"Reboot only CentOS version 6 and Debian version 7\"\n"
+"  reboot:\n"
+"  when: (ansible_distribution == \"CentOS\" and ansible_distribution_major_version == \"6\") or\n"
+"        (ansible_distribution == \"Debian\" and ansible_distribution_major_version == \"7\")\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:301
+msgid ""
+"The conditions corresponding to a logical AND can be provided as a list:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:309
+#, no-wrap
+msgid ""
+"```\n"
+"- name: \"Reboot only CentOS version 6\"\n"
+"  reboot:\n"
+"  when:\n"
+"    - ansible_distribution == \"CentOS\"\n"
+"    - ansible_distribution_major_version == \"6\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:311
+msgid "You can test the value of a boolean and verify that it is true:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:317
+#, no-wrap
+msgid ""
+"```\n"
+"- name: check if directory exists\n"
+"  stat:\n"
+"    path: /home/ansible\n"
+"  register: directory\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:320
+#, no-wrap
+msgid ""
+"- ansible.builtin.debug:\n"
+"    var: directory\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:327
+#, no-wrap
+msgid ""
+"- ansible.builtin.debug:\n"
+"    msg: The directory exists\n"
+"  when:\n"
+"    - directory.stat.exists\n"
+"    - directory.stat.isdir\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:329
+msgid "You can also test that it is not true:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:335
+#, no-wrap
+msgid ""
+"```\n"
+"  when:\n"
+"    - file.stat.exists\n"
+"    - not file.stat.isdir\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:337
+msgid ""
+"You will probably have to test that a variable exists to avoid execution "
+"errors:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:341
+#, no-wrap
+msgid ""
+"```\n"
+"  when: myboolean is defined and myboolean\n"
+"```\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:345
+#: docs/books/learning_ansible/02-advanced.md:673
+msgid "Print the value of `service.web` only when `type` equals to `web`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:347
+msgid "## Managing changes: the `handlers`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:350
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html).\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:352
+msgid ""
+"Handlers allow to launch operations, like restarting a service, when changes "
+"occur."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:354
+msgid ""
+"A module, being idempotent, a playbook can detect that there has been a "
+"significant change on a remote system, and thus trigger an operation in "
+"reaction to this change. A notification is sent at the end of a playbook "
+"task block, and the reaction operation will be triggered only once even if "
+"several tasks send the same notification."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:356
+msgid "![Handlers](images/handlers.png)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:358
+msgid ""
+"For example, several tasks may indicate that the `httpd` service needs to be "
+"restarted due to a change in its configuration files. But the service will "
+"only be restarted once to avoid multiple unnecessary starts."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:368
+#, no-wrap
+msgid ""
+"```\n"
+"- name: template configuration file\n"
+"  template:\n"
+"    src: template-site.j2\n"
+"    dest: /etc/httpd/sites-availables/test-site.conf\n"
+"  notify:\n"
+"     - restart memcached\n"
+"     - restart httpd\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:370
+msgid "A handler is a kind of task referenced by a unique global name:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:373
+msgid "It is activated by one or more notifiers."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:373
+msgid ""
+"It does not start immediately, but waits until all tasks are complete to run."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:375
+msgid "Example of handlers:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:378
+#: docs/books/learning_ansible/02-advanced.md:394
+msgid "``` handlers:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:383
+#, no-wrap
+msgid ""
+"  - name: restart memcached\n"
+"    systemd:\n"
+"      name: memcached\n"
+"      state: restarted\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:389
+#, no-wrap
+msgid ""
+"  - name: restart httpd\n"
+"    systemd:\n"
+"      name: httpd\n"
+"      state: restarted\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:391
+msgid "Since version 2.2 of Ansible, handlers can listen directly as well:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:400
+#, no-wrap
+msgid ""
+"  - name: restart memcached\n"
+"    systemd:\n"
+"      name: memcached\n"
+"      state: restarted\n"
+"    listen: \"web services restart\"\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:406
+#, no-wrap
+msgid ""
+"  - name: restart apache\n"
+"    systemd:\n"
+"      name: apache\n"
+"      state: restarted\n"
+"    listen: \"web services restart\"\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:412
+#, no-wrap
+msgid ""
+"tasks:\n"
+"    - name: restart everything\n"
+"      command: echo \"this task will restart the web services\"\n"
+"      notify: \"web services restart\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:414
+msgid "## Asynchronous tasks"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:417
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html).\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:419
+msgid ""
+"By default, SSH connections to hosts remain open during the execution of "
+"various playbook tasks on all nodes."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:421
+msgid "This can cause some problems, especially:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:424
+msgid ""
+"if the execution time of the task is longer than the SSH connection timeout"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:424
+msgid ""
+"if the connection is interrupted during the action (server reboot for "
+"example)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:426
+msgid ""
+"In this case, you will have to switch to asynchronous mode and specify a "
+"maximum execution time as well as the frequency (by default 10s) with which "
+"you will check the host status."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:428
+msgid ""
+"By specifying a poll value of 0, Ansible will execute the task and continue "
+"without worrying about the result."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:430
+msgid ""
+"Here's an example using asynchronous tasks, which allows you to restart a "
+"server and wait for port 22 to be reachable again:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:440
+#, no-wrap
+msgid ""
+"```\n"
+"# Wait 2s and launch the reboot\n"
+"- name: Reboot system\n"
+"  shell: sleep 2 && shutdown -r now \"Ansible reboot triggered\"\n"
+"  async: 1\n"
+"  poll: 0\n"
+"  ignore_errors: true\n"
+"  become: true\n"
+"  changed_when: False\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:451
+#, no-wrap
+msgid ""
+"  # Wait the server is available\n"
+"  - name: Waiting for server to restart (10 mins max)\n"
+"    wait_for:\n"
+"      host: \"{{ inventory_hostname }}\"\n"
+"      port: 22\n"
+"      delay: 30\n"
+"      state: started\n"
+"      timeout: 600\n"
+"    delegate_to: localhost\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:453
+msgid ""
+"You can also decide to launch a long-running task and forget it (fire and "
+"forget) because the execution does not matter in the playbook."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:455
+msgid "## Exercise results"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:457
+msgid ""
+"Write a playbook `play-vars.yml` that print the distribution name of the "
+"target with its major version, using global variables."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:461
+msgid "- hosts: ansible_clients"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:468
+#, no-wrap
+msgid ""
+"    - name: Print globales variables\n"
+"      debug:\n"
+"        msg: \"The distribution is {{ ansible_distribution }} version {{ ansible_distribution_major_version }}\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:471
+msgid "``` $ ansible-playbook play-vars.yml"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:473
+#: docs/books/learning_ansible/02-advanced.md:525
+#: docs/books/learning_ansible/02-advanced.md:545
+#: docs/books/learning_ansible/02-advanced.md:618
+#: docs/books/learning_ansible/02-advanced.md:656
+#: docs/books/learning_ansible/02-advanced.md:698
+#: docs/books/learning_ansible/02-advanced.md:716
+msgid ""
+"PLAY [ansible_clients] "
+"*********************************************************************************"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:476
+#: docs/books/learning_ansible/02-advanced.md:528
+#: docs/books/learning_ansible/02-advanced.md:548
+#: docs/books/learning_ansible/02-advanced.md:621
+#: docs/books/learning_ansible/02-advanced.md:659
+#: docs/books/learning_ansible/02-advanced.md:701
+#: docs/books/learning_ansible/02-advanced.md:719
+msgid ""
+"TASK [Gathering Facts] "
+"********************************************************************************* "
+"ok: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:481
+#, no-wrap
+msgid ""
+"TASK [Print globales variables] ************************************************************************\n"
+"ok: [192.168.1.11] => {\n"
+"    \"msg\": \"The distribution is Rocky version 8\"\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:484
+#: docs/books/learning_ansible/02-advanced.md:536
+#: docs/books/learning_ansible/02-advanced.md:632
+#, no-wrap
+msgid ""
+"PLAY RECAP *********************************************************************************************\n"
+"192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:513
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  vars:\n"
+"    type: web\n"
+"    service:\n"
+"      web:\n"
+"        name: apache\n"
+"        rpm: httpd\n"
+"      db:\n"
+"        name: mariadb\n"
+"        rpm: mariadb-server\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:520
+#: docs/books/learning_ansible/02-advanced.md:583
+#, no-wrap
+msgid ""
+"    - name: Print a specific entry of a dictionary\n"
+"      debug:\n"
+"        msg: \"The {{ service[type]['name'] }} will be installed with the packages {{ service[type].rpm }}\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:523
+#: docs/books/learning_ansible/02-advanced.md:616
+#: docs/books/learning_ansible/02-advanced.md:654
+#: docs/books/learning_ansible/02-advanced.md:696
+msgid "``` $ ansible-playbook display-dict.yml"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:533
+#, no-wrap
+msgid ""
+"TASK [Print a specific entry of a dictionnaire] ********************************************************\n"
+"ok: [192.168.1.11] => {\n"
+"    \"msg\": \"The apache will be installed with the packages httpd\"\n"
+"}\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/02-advanced.md:540
+msgid "Override the `type` variable using the command line:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:543
+msgid "``` ansible-playbook --extra-vars \"type=db\" display-dict.yml"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:553
+#, no-wrap
+msgid ""
+"TASK [Print a specific entry of a dictionary] ********************************************************\n"
+"ok: [192.168.1.11] => {\n"
+"    \"msg\": \"The mariadb will be installed with the packages mariadb-server\"\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:557
+#: docs/books/learning_ansible/02-advanced.md:671
+#, no-wrap
+msgid ""
+"PLAY RECAP *********************************************************************************************\n"
+"192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:570
+#, no-wrap
+msgid ""
+"```\n"
+"type: web\n"
+"service:\n"
+"  web:\n"
+"    name: apache\n"
+"    rpm: httpd\n"
+"  db:\n"
+"    name: mariadb\n"
+"    rpm: mariadb-server\n"
+"```\n"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/learning_ansible/02-advanced.md:576
+#: docs/books/learning_ansible/02-advanced.md:605
+#: docs/books/learning_ansible/02-advanced.md:642
+#: docs/books/learning_ansible/02-advanced.md:679
+msgid "hosts: ansible_clients vars_files:"
+msgstr ""
+
+#. type: Bullet: '    - '
+#: docs/books/learning_ansible/02-advanced.md:576
+#: docs/books/learning_ansible/02-advanced.md:605
+#: docs/books/learning_ansible/02-advanced.md:642
+#: docs/books/learning_ansible/02-advanced.md:679
+msgid "vars.yml"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:589
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    You will have to transform your `service` variable, which is a dictionary, to an item or a list with the help of the jinja filters `dict2items` or `list` as this:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:593
+#, no-wrap
+msgid ""
+"    ```\n"
+"    {{ service | dict2items }}\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:599
+msgid "With `dict2items`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:613
+#, no-wrap
+msgid ""
+"    - name: Print a dictionary variable with a loop\n"
+"      debug:\n"
+"        msg: \"{{item.key }} | The {{ item.value.name }} will be installed with the packages {{ item.value.rpm }}\"\n"
+"      loop: \"{{ service | dict2items }}\"              \n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:629
+#, no-wrap
+msgid ""
+"TASK [Print a dictionary variable with a loop] ********************************************************\n"
+"ok: [192.168.1.11] => (item={'key': 'web', 'value': {'name': 'apache', 'rpm': 'httpd'}}) => {\n"
+"    \"msg\": \"web | The apache will be installed with the packages httpd\"\n"
+"}\n"
+"ok: [192.168.1.11] => (item={'key': 'db', 'value': {'name': 'mariadb', 'rpm': 'mariadb-server'}}) => {\n"
+"    \"msg\": \"db | The mariadb will be installed with the packages mariadb-server\"\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:636
+msgid "With `list`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:651
+#, no-wrap
+msgid ""
+"    - name: Print a dictionary variable with a loop\n"
+"      debug:\n"
+"        msg: \"The {{ item.name }} will be installed with the packages {{ item.rpm }}\"\n"
+"      loop: \"{{ service.values() | list}}\"\n"
+"~                                                 \n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:667
+#, no-wrap
+msgid ""
+"TASK [Print a dictionary variable with a loop] ********************************************************\n"
+"ok: [192.168.1.11] => (item={'name': 'apache', 'rpm': 'httpd'}) => {\n"
+"    \"msg\": \"The apache will be installed with the packages httpd\"\n"
+"}\n"
+"ok: [192.168.1.11] => (item={'name': 'mariadb', 'rpm': 'mariadb-server'}) => {\n"
+"    \"msg\": \"The mariadb will be installed with the packages mariadb-server\"\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:686
+#, no-wrap
+msgid ""
+"    - name: Print a dictionary variable\n"
+"      debug:\n"
+"        msg: \"The {{ service.web.name }} will be installed with the packages {{ service.web.rpm }}\"\n"
+"      when: type == \"web\"\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:693
+#, no-wrap
+msgid ""
+"    - name: Print a dictionary variable\n"
+"      debug:\n"
+"        msg: \"The {{ service.db.name }} will be installed with the packages {{ service.db.rpm }}\"\n"
+"      when: type == \"db\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:706
+#, no-wrap
+msgid ""
+"TASK [Print a dictionary variable] ********************************************************************\n"
+"ok: [192.168.1.11] => {\n"
+"    \"msg\": \"The apache will be installed with the packages httpd\"\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:709
+#: docs/books/learning_ansible/02-advanced.md:722
+msgid ""
+"TASK [Print a dictionary variable] "
+"******************************************************************** "
+"skipping: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:712
+#, no-wrap
+msgid ""
+"PLAY RECAP *********************************************************************************************\n"
+"192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   \n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:714
+msgid "$ ansible-playbook --extra-vars \"type=db\" display-dict.yml"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:727
+#, no-wrap
+msgid ""
+"TASK [Print a dictionary variable] ********************************************************************\n"
+"ok: [192.168.1.11] => {\n"
+"    \"msg\": \"The mariadb will be installed with the packages mariadb-server\"\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/02-advanced.md:730
+#, no-wrap
+msgid ""
+"PLAY RECAP *********************************************************************************************\n"
+"192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   \n"
+"```\n"
+msgstr ""

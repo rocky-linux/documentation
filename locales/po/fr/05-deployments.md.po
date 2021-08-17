@@ -1,0 +1,1428 @@
+# French translations for PACKAGE package
+# Copyright (C) 2021 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: 2021-08-17 08:55+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:6
+#: docs/books/admin_guide/01-presentation.md:23
+#: docs/books/admin_guide/03-commands.md:6
+#: docs/books/admin_guide/03-commands.md:21
+#: docs/books/admin_guide/04-advanced-commands.md:6
+#: docs/books/admin_guide/04-advanced-commands.md:20
+#: docs/books/admin_guide/05-vi.md:6 docs/books/admin_guide/05-vi.md:20
+#: docs/books/admin_guide/07-file-systems.md:6
+#: docs/books/admin_guide/07-file-systems.md:26
+#: docs/books/admin_guide/08-process.md:6
+#: docs/books/admin_guide/08-process.md:21
+#: docs/books/admin_guide/09-backups.md:6
+#: docs/books/admin_guide/09-backups.md:21 docs/books/admin_guide/11-tasks.md:6
+#: docs/books/admin_guide/11-tasks.md:21 docs/books/admin_guide/12-network.md:6
+#: docs/books/admin_guide/12-network.md:23
+#: docs/books/learning_ansible/01-bases.md:6
+#: docs/books/learning_ansible/01-bases.md:21
+#: docs/books/learning_ansible/02-advanced.md:6
+#: docs/books/learning_ansible/02-advanced.md:22
+#: docs/books/learning_ansible/03-working-with-files.md:6
+#: docs/books/learning_ansible/03-working-with-files.md:21
+#: docs/books/learning_ansible/04-ansible-galaxy.md:6
+#: docs/books/learning_ansible/04-ansible-galaxy.md:20
+#: docs/books/learning_ansible/05-deployments.md:6
+#: docs/books/learning_ansible/05-deployments.md:23
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:6
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
+#, no-wrap
+msgid "****\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:19
+#: docs/books/admin_guide/09-backups.md:19
+#: docs/books/learning_ansible/04-ansible-galaxy.md:18
+#: docs/books/learning_ansible/05-deployments.md:21
+#, no-wrap
+msgid "**Reading time**: 40 minutes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1502
+#: docs/books/admin_guide/03-commands.md:1522
+#: docs/books/learning_ansible/01-bases.md:142
+#: docs/books/learning_ansible/01-bases.md:412
+#: docs/books/learning_ansible/02-advanced.md:486
+#: docs/books/learning_ansible/02-advanced.md:538
+#: docs/books/learning_ansible/02-advanced.md:634
+#: docs/books/learning_ansible/04-ansible-galaxy.md:509
+#: docs/books/learning_ansible/05-deployments.md:207
+#: docs/books/learning_ansible/05-deployments.md:257
+msgid "```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:8
+#: docs/books/learning_ansible/03-working-with-files.md:8
+#: docs/books/learning_ansible/04-ansible-galaxy.md:8
+#: docs/books/learning_ansible/05-deployments.md:8
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:8
+#, no-wrap
+msgid "**Objectives**: In this chapter you will learn how to:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:611
+#: docs/books/learning_ansible/01-bases.md:670
+#: docs/books/learning_ansible/01-bases.md:713
+#: docs/books/learning_ansible/01-bases.md:745
+#: docs/books/learning_ansible/02-advanced.md:48
+#: docs/books/learning_ansible/02-advanced.md:84
+#: docs/books/learning_ansible/02-advanced.md:93
+#: docs/books/learning_ansible/02-advanced.md:238
+#: docs/books/learning_ansible/02-advanced.md:459
+#: docs/books/learning_ansible/02-advanced.md:502
+#: docs/books/learning_ansible/02-advanced.md:572
+#: docs/books/learning_ansible/02-advanced.md:601
+#: docs/books/learning_ansible/02-advanced.md:638
+#: docs/books/learning_ansible/02-advanced.md:675
+#: docs/books/learning_ansible/04-ansible-galaxy.md:103
+#: docs/books/learning_ansible/04-ansible-galaxy.md:112
+#: docs/books/learning_ansible/04-ansible-galaxy.md:259
+#: docs/books/learning_ansible/04-ansible-galaxy.md:272
+#: docs/books/learning_ansible/04-ansible-galaxy.md:288
+#: docs/books/learning_ansible/04-ansible-galaxy.md:375
+#: docs/books/learning_ansible/05-deployments.md:124
+#: docs/books/learning_ansible/05-deployments.md:213
+#: docs/books/learning_ansible/05-deployments.md:340
+#: docs/books/learning_ansible/05-deployments.md:356
+#: docs/books/learning_ansible/05-deployments.md:389
+#: docs/books/learning_ansible/05-deployments.md:485
+#: docs/books/learning_ansible/05-deployments.md:519
+#: docs/books/learning_ansible/05-deployments.md:586
+#: docs/books/learning_ansible/05-deployments.md:626
+#: docs/books/learning_ansible/05-deployments.md:683
+#: docs/books/learning_ansible/05-deployments.md:709
+#: docs/books/learning_ansible/05-deployments.md:734
+#: docs/books/learning_ansible/05-deployments.md:761
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:107
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:123
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:138
+#, no-wrap
+msgid ""
+"```\n"
+"---\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:617
+#: docs/books/learning_ansible/01-bases.md:676
+#: docs/books/learning_ansible/01-bases.md:719
+#: docs/books/learning_ansible/01-bases.md:751
+#: docs/books/learning_ansible/02-advanced.md:252
+#: docs/books/learning_ansible/02-advanced.md:463
+#: docs/books/learning_ansible/02-advanced.md:515
+#: docs/books/learning_ansible/02-advanced.md:578
+#: docs/books/learning_ansible/02-advanced.md:607
+#: docs/books/learning_ansible/02-advanced.md:644
+#: docs/books/learning_ansible/02-advanced.md:681
+#: docs/books/learning_ansible/05-deployments.md:137
+#: docs/books/learning_ansible/05-deployments.md:498
+#, no-wrap
+msgid "  tasks:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:16
+#: docs/books/learning_ansible/05-deployments.md:19
+#, no-wrap
+msgid ""
+"**Knowledge**: :star: :star:      \n"
+"**Complexity**: :star: :star: :star:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:2
+msgid "# Ansible Deployments with Ansistrano"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:4
+msgid ""
+"In this chapter you will learn how to deploy applications with the Ansible "
+"role Ansistrano."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:14
+#, no-wrap
+msgid ""
+":heavy_check_mark: Implement Ansistrano;       \n"
+":heavy_check_mark: Configure Ansistrano;       \n"
+":heavy_check_mark: Use shared folders and files between deployed versions;       \n"
+":heavy_check_mark: Deploying different versions of a site from git;        \n"
+":heavy_check_mark: React between deployment steps.          \n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:16
+msgid ""
+":checkered_flag: **ansible**, **ansistrano**, **roles**, **deployments**"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:26
+msgid ""
+"Ansistrano is an Ansible role to easily deploy PHP, Python, etc. "
+"applications.  It is based on the functionality of [Capistrano](http://"
+"capistranorb.com/)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:28
+msgid "## Introduction"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:30
+msgid "Ansistrano requires the following to run:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:33
+msgid "Ansible on the deployment machine,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:33
+msgid "`rsync` or `git` on the client machine."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:35
+msgid ""
+"It can download source code from `rsync`, `git`, `scp`, `http`, `S3`, ..."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:38
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    For our deployment example, we will use the `git` protocol.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:40
+msgid "Ansistrano deploys applications by following these 5 steps:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:45
+msgid "**Setup**: create the directory structure to host the releases;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:45
+msgid "**Update Code**: downloading the new release to the targets;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:45
+msgid ""
+"**Symlink Shared** and **Symlink**: after deploying the new release, the "
+"`current` symbolic link is modified to point to this new release;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:45
+msgid "**Clean Up**: to do some clean up (remove old versions)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:47
+#: docs/books/learning_ansible/05-deployments.md:673
+msgid "![Stages of a deployment](images/ansistrano-001.png)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:49
+msgid "The skeleton of a deployment with Ansistrano looks like this:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:63
+#, no-wrap
+msgid ""
+"```\n"
+"/var/www/site/\n"
+"âââ current -> ./releases/20210718100000Z\n"
+"âââ releases\n"
+"âÂ Â  âââ 20210718100000Z\n"
+"âÂ Â      âââ css -> ../../shared/css/\n"
+"âÂ Â      âââ img -> ../../shared/img/\n"
+"âÂ Â      âââ REVISION\n"
+"âââ repo\n"
+"âââ shared\n"
+"    âââ css/\n"
+"    âââ img/\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:65
+msgid ""
+"You can find all the Ansistrano documentation on its [Github repository]"
+"(https://github.com/ansistrano/deploy)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:67
+msgid "## Labs"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:69
+msgid "You will continue to work on your 2 servers:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:71
+msgid "The management server:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:73
+msgid ""
+"Ansible is already installed. You will have to install the `ansistrano."
+"deploy` role."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:75
+msgid "The managed server:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:77
+msgid "You will need to install Apache and deploy the client site."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:79
+msgid "### Deploying the Web server"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:81
+msgid ""
+"For more efficiency, we will use the `geerlingguy.apache` role to configure "
+"the server:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:90
+msgid ""
+"``` $ ansible-galaxy role install geerlingguy.apache Starting galaxy role "
+"install process - downloading role 'apache', owned by geerlingguy - "
+"downloading role from https://github.com/geerlingguy/ansible-role-apache/"
+"archive/3.1.4.tar.gz - extracting geerlingguy.apache to /home/ansible/."
+"ansible/roles/geerlingguy.apache - geerlingguy.apache (3.1.4) was installed "
+"successfully ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:92
+msgid ""
+"We will probably need to open some firewall rules, so we will also install "
+"the collection `ansible.posix` to work with its module `firewalld`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:102
+msgid ""
+"``` $ ansible-galaxy collection install ansible.posix Starting galaxy "
+"collection install process Process install dependency map Starting "
+"collection install process Downloading https://galaxy.ansible.com/download/"
+"ansible-posix-1.2.0.tar.gz to /home/ansible/.ansible/tmp/ansible-"
+"local-519039bp65pwn/tmpsvuj1fw5/ansible-posix-1.2.0-bhjbfdpw Installing "
+"'ansible.posix:1.2.0' to '/home/ansible/.ansible/collections/"
+"ansible_collections/ansible/posix' ansible.posix:1.2.0 was installed "
+"successfully ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:104
+msgid ""
+"Once the role and the collection are installed, we can create the first part "
+"of our playbook, which will:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:110
+msgid "Install Apache,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:110
+msgid "Create a target folder for our `vhost`,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:110
+msgid "Create a default `vhost`,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:110
+msgid "Open the firewall,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:110
+msgid "Start or restart Apache."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:112
+msgid "Technical considerations:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:117
+msgid "We will deploy our site to the `/var/www/site/` folder."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:117
+msgid ""
+"As we will see later, `ansistrano` will create a `current` symbolic link to "
+"the current release folder."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:117
+msgid ""
+"The source code to be deployed contains a `html` folder which the vhost "
+"should point to. Its `DirectoryIndex` is `index.htm`."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:117
+msgid "The deployment is done by `git`, the package will be installed."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:120
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    The target of our vhost will therefore be: `/var/www/site/current/html`.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:122
+msgid "Our playbook to configure the server: `playbook-config-server.yml`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:135
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  become: yes\n"
+"  become_user: root\n"
+"  vars:\n"
+"    dest: \"/var/www/site/\"\n"
+"    apache_global_vhost_settings: |\n"
+"      DirectoryIndex index.php index.htm\n"
+"    apache_vhosts:\n"
+"      - servername: \"website\"\n"
+"        documentroot: \"{{ dest }}current/html\"\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:143
+#: docs/books/learning_ansible/05-deployments.md:504
+#, no-wrap
+msgid ""
+"    - name: create directory for website\n"
+"      file:\n"
+"        path: /var/www/site/\n"
+"        state: directory\n"
+"        mode: 0755\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:148
+#: docs/books/learning_ansible/05-deployments.md:509
+#, no-wrap
+msgid ""
+"    - name: install git\n"
+"      package:\n"
+"        name: git\n"
+"        state: latest\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:155
+#, no-wrap
+msgid ""
+"    - name: permit traffic in default zone for http service\n"
+"      ansible.posix.firewalld:\n"
+"        service: http\n"
+"        permanent: yes\n"
+"        state: enabled\n"
+"        immediate: yes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:159
+#: docs/books/learning_ansible/05-deployments.md:513
+#, no-wrap
+msgid ""
+"  roles:\n"
+"    - { role: geerlingguy.apache }\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:161
+msgid "The playbook can be applied to the server:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:165
+msgid "``` $ ansible-playbook playbook-config-server.yml ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:167
+msgid "Note the execution of the following tasks:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:176
+msgid ""
+"``` TASK [geerlingguy.apache : Ensure Apache is installed on RHEL.] "
+"**************** TASK [geerlingguy.apache : Configure Apache.] "
+"********************************** TASK [geerlingguy.apache : Add apache "
+"vhosts configuration.] ******************* TASK [geerlingguy.apache : Ensure "
+"Apache has selected state and enabled on boot.] *** TASK [permit traffic in "
+"default zone for http service] ************************* RUNNING HANDLER "
+"[geerlingguy.apache : restart apache] ************************** ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:178
+msgid ""
+"The `geerlingguy.apache` role makes our job much easier by taking care of "
+"the installation and configuration of Apache."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:180
+msgid "You can check that everything is working by using `curl`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:188
+msgid ""
+"``` $ curl -I http://192.168.1.11 HTTP/1.1 404 Not Found Date: Mon, 05 Jul "
+"2021 23:30:02 GMT Server: Apache/2.4.37 (rocky) OpenSSL/1.1.1g Content-Type: "
+"text/html; charset=iso-8859-1 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:191
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    We have not yet deployed any code, so it is normal for `curl` to return a `404` HTTP code. But we can already confirm that the `httpd` service is working and that the firewall is open.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:193
+msgid "### Deploying the software"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:195
+msgid "Now that our server is configured, we can deploy the application."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:197
+msgid ""
+"For this, we will use the `ansistrano.deploy` role in a second playbook "
+"dedicated to application deployment (for more readability)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:205
+msgid ""
+"``` $ ansible-galaxy role install ansistrano.deploy Starting galaxy role "
+"install process - downloading role 'deploy', owned by ansistrano - "
+"downloading role from https://github.com/ansistrano/deploy/archive/3.10.0."
+"tar.gz - extracting ansistrano.deploy to /home/ansible/.ansible/roles/"
+"ansistrano.deploy - ansistrano.deploy (3.10.0) was installed successfully"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:209
+msgid ""
+"The sources of the software can be found in the [github repository](https://"
+"github.com/alemorvan/demo-ansible.git)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:211
+msgid ""
+"We will create a playbook `playbook-deploy.yml` to manage our deployment:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:222
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  become: yes\n"
+"  become_user: root\n"
+"  vars:\n"
+"    dest: \"/var/www/site/\"\n"
+"    ansistrano_deploy_via: \"git\"\n"
+"    ansistrano_git_repo: https://github.com/alemorvan/demo-ansible.git\n"
+"    ansistrano_deploy_to: \"{{ dest }}\"\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:226
+#: docs/books/learning_ansible/05-deployments.md:354
+#: docs/books/learning_ansible/05-deployments.md:408
+#: docs/books/learning_ansible/05-deployments.md:539
+#: docs/books/learning_ansible/05-deployments.md:607
+#: docs/books/learning_ansible/05-deployments.md:647
+#: docs/books/learning_ansible/05-deployments.md:705
+#: docs/books/learning_ansible/05-deployments.md:757
+#, no-wrap
+msgid ""
+"  roles:\n"
+"     - { role: ansistrano.deploy }\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:229
+msgid "``` $ ansible-playbook playbook-deploy.yml"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:231
+msgid ""
+"PLAY [ansible_clients] "
+"*********************************************************"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:252
+msgid ""
+"TASK [ansistrano.deploy : ANSISTRANO | Ensure deployment base path exists] "
+"***** TASK [ansistrano.deploy : ANSISTRANO | Ensure releases folder exists] "
+"TASK [ansistrano.deploy : ANSISTRANO | Ensure shared elements folder exists] "
+"TASK [ansistrano.deploy : ANSISTRANO | Ensure shared paths exists] TASK "
+"[ansistrano.deploy : ANSISTRANO | Ensure basedir shared files exists] TASK "
+"[ansistrano.deploy : ANSISTRANO | Get release version] ******************** "
+"TASK [ansistrano.deploy : ANSISTRANO | Get release path] TASK [ansistrano."
+"deploy : ANSISTRANO | GIT | Register ansistrano_git_result variable] TASK "
+"[ansistrano.deploy : ANSISTRANO | GIT | Set git_real_repo_tree] TASK "
+"[ansistrano.deploy : ANSISTRANO | GIT | Create release folder] TASK "
+"[ansistrano.deploy : ANSISTRANO | GIT | Sync repo subtree[\"\"] to release "
+"path] TASK [ansistrano.deploy : ANSISTRANO | Copy git released version into "
+"REVISION file] TASK [ansistrano.deploy : ANSISTRANO | Ensure shared paths "
+"targets are absent] TASK [ansistrano.deploy : ANSISTRANO | Create softlinks "
+"for shared paths and files] TASK [ansistrano.deploy : ANSISTRANO | Ensure ."
+"rsync-filter is absent] TASK [ansistrano.deploy : ANSISTRANO | Setup .rsync-"
+"filter with shared-folders] TASK [ansistrano.deploy : ANSISTRANO | Get "
+"current folder] TASK [ansistrano.deploy : ANSISTRANO | Remove current folder "
+"if it's a directory] TASK [ansistrano.deploy : ANSISTRANO | Change softlink "
+"to new release] TASK [ansistrano.deploy : ANSISTRANO | Clean up releases]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:255
+#, no-wrap
+msgid ""
+"PLAY RECAP ********************************************************************************************************************************************************************************************************\n"
+"192.168.1.11               : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   \n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:259
+msgid "So many things done with only 11 lines of code!"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:271
+msgid ""
+"``` $ curl http://192.168.1.11 <html> <head> <title>Demo Ansible</title> </"
+"head> <body> <h1>Version Master</h1> </body> <html> ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:273
+msgid "### Checking on the server"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:275
+msgid "You can now connect by ssh to your client machine."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:277
+msgid "Make a `tree` on the `/var/www/site/` directory:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:292
+#, no-wrap
+msgid ""
+"```\n"
+"$ tree /var/www/site/\n"
+"/var/www/site\n"
+"âââ current -> ./releases/20210722155312Z\n"
+"âââ releases\n"
+"âÂ Â  âââ 20210722155312Z\n"
+"âÂ Â      âââ REVISION\n"
+"âÂ Â      âââ html\n"
+"âÂ Â          âââ index.htm\n"
+"âââ repo\n"
+"âÂ Â  âââ html\n"
+"âÂ Â      âââ index.htm\n"
+"âââ shared\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:294
+#: docs/books/learning_ansible/05-deployments.md:329
+msgid "Please note:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:298
+msgid "the `current` symlink to the release `./releases/20210722155312Z`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:298
+msgid "the presence of a directory `shared`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:298
+msgid "the presence of the git repos in `./repo/`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:300
+msgid ""
+"From the Ansible server, restart the deployment **3** times, then check on "
+"the client."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:327
+#, no-wrap
+msgid ""
+"```\n"
+"$ tree /var/www/site/\n"
+"var/www/site\n"
+"âââ current -> ./releases/20210722160048Z\n"
+"âââ releases\n"
+"âÂ Â  âââ 20210722155312Z\n"
+"âÂ Â  âÂ Â  âââ REVISION\n"
+"âÂ Â  âÂ Â  âââ html\n"
+"âÂ Â  âÂ Â      âââ index.htm\n"
+"âÂ Â  âââ 20210722160032Z\n"
+"âÂ Â  âÂ Â  âââ REVISION\n"
+"âÂ Â  âÂ Â  âââ html\n"
+"âÂ Â  âÂ Â      âââ index.htm\n"
+"âÂ Â  âââ 20210722160040Z\n"
+"âÂ Â  âÂ Â  âââ REVISION\n"
+"âÂ Â  âÂ Â  âââ html\n"
+"âÂ Â  âÂ Â      âââ index.htm\n"
+"âÂ Â  âââ 20210722160048Z\n"
+"âÂ Â      âââ REVISION\n"
+"âÂ Â      âââ html\n"
+"âÂ Â          âââ index.htm\n"
+"âââ repo\n"
+"âÂ Â  âââ html\n"
+"âÂ Â      âââ index.htm\n"
+"âââ shared\n"
+"```\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:332
+msgid "`ansistrano` kept the 4 last releases,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:332
+msgid "the `current` link linked now to the lastest release"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:334
+msgid "### Limit the number of releases"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:336
+msgid ""
+"The `ansistrano_keep_releases` variable is used to specify the number of "
+"releases to keep."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:338
+msgid ""
+"Using the `ansistrano_keep_releases` variable, keep only 3 releases of the "
+"project. Check."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:350
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  become: yes\n"
+"  become_user: root\n"
+"  vars:\n"
+"    dest: \"/var/www/site/\"\n"
+"    ansistrano_deploy_via: \"git\"\n"
+"    ansistrano_git_repo: https://github.com/alemorvan/demo-ansible.git\n"
+"    ansistrano_deploy_to: \"{{ dest }}\"\n"
+"    ansistrano_keep_releases: 3\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:359
+msgid "$ ansible-playbook -i hosts playbook-deploy.yml ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:361
+#: docs/books/learning_ansible/05-deployments.md:430
+msgid "On the client machine:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:384
+#, no-wrap
+msgid ""
+"```\n"
+"$ tree /var/www/site/\n"
+"/var/www/site\n"
+"âââ current -> ./releases/20210722160318Z\n"
+"âââ releases\n"
+"âÂ Â  âââ 20210722160040Z\n"
+"âÂ Â  âÂ Â  âââ REVISION\n"
+"âÂ Â  âÂ Â  âââ html\n"
+"âÂ Â  âÂ Â      âââ index.htm\n"
+"âÂ Â  âââ 20210722160048Z\n"
+"âÂ Â  âÂ Â  âââ REVISION\n"
+"âÂ Â  âÂ Â  âââ html\n"
+"âÂ Â  âÂ Â      âââ index.htm\n"
+"âÂ Â  âââ 20210722160318Z\n"
+"âÂ Â      âââ REVISION\n"
+"âÂ Â      âââ html\n"
+"âÂ Â          âââ index.htm\n"
+"âââ repo\n"
+"âÂ Â  âââ html\n"
+"âÂ Â      âââ index.htm\n"
+"âââ shared\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:386
+msgid "### Using shared_paths and shared_files"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:404
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  become: yes\n"
+"  become_user: root\n"
+"  vars:\n"
+"    dest: \"/var/www/site/\"\n"
+"    ansistrano_deploy_via: \"git\"\n"
+"    ansistrano_git_repo: https://github.com/alemorvan/demo-ansible.git\n"
+"    ansistrano_deploy_to: \"{{ dest }}\"\n"
+"    ansistrano_keep_releases: 3\n"
+"    ansistrano_shared_paths:\n"
+"      - \"img\"\n"
+"      - \"css\"\n"
+"    ansistrano_shared_files:\n"
+"      - \"logs\"\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:410
+msgid ""
+"On the client machine, create the file `logs` in the `shared` directory:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:414
+msgid "``` sudo touch /var/www/site/shared/logs ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:416
+msgid "Then execute the playbook:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:422
+msgid ""
+"``` TASK [ansistrano.deploy : ANSISTRANO | Ensure shared paths targets are "
+"absent] ******************************************************* ok: "
+"[192.168.10.11] => (item=img)  ok: [192.168.10.11] => (item=css)  ok: "
+"[192.168.10.11] => (item=logs/log)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:428
+msgid ""
+"TASK [ansistrano.deploy : ANSISTRANO | Create softlinks for shared paths and "
+"files] ************************************************** changed: "
+"[192.168.10.11] => (item=img)  changed: [192.168.10.11] => (item=css)  "
+"changed: [192.168.10.11] => (item=logs)  ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:459
+#, no-wrap
+msgid ""
+"```\n"
+"$  tree -F /var/www/site/\n"
+"/var/www/site/\n"
+"âââ current -> ./releases/20210722160631Z/\n"
+"âââ releases/\n"
+"âÂ Â  âââ 20210722160048Z/\n"
+"âÂ Â  âÂ Â  âââ REVISION\n"
+"âÂ Â  âÂ Â  âââ html/\n"
+"âÂ Â  âÂ Â      âââ index.htm\n"
+"âÂ Â  âââ 20210722160318Z/\n"
+"âÂ Â  âÂ Â  âââ REVISION\n"
+"âÂ Â  âÂ Â  âââ html/\n"
+"âÂ Â  âÂ Â      âââ index.htm\n"
+"âÂ Â  âââ 20210722160631Z/\n"
+"âÂ Â      âââ REVISION\n"
+"âÂ Â      âââ css -> ../../shared/css/\n"
+"âÂ Â      âââ html/\n"
+"âÂ Â      âÂ Â  âââ index.htm\n"
+"âÂ Â      âââ img -> ../../shared/img/\n"
+"âÂ Â      âââ logs -> ../../shared/logs\n"
+"âââ repo/\n"
+"âÂ Â  âââ html/\n"
+"âÂ Â      âââ index.htm\n"
+"âââ shared/\n"
+"    âââ css/\n"
+"    âââ img/\n"
+"    âââ logs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:461
+msgid ""
+"Please note that the last release contains 3 links: `css`, `img`, and `logs`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:465
+msgid "from `/var/www/site/releases/css` to the `../../shared/css/` directory."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:465
+msgid "from `/var/www/site/releases/img` to the `../../shared/img/` directory."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:465
+msgid "from `/var/www/site/releases/logs` to the `../../shared/logs` file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:467
+msgid ""
+"Therefore, the files contained in these 2 folders and the `logs` file are "
+"always accessible via the following paths:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:471
+msgid "`/var/www/site/current/css/`,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:471
+msgid "`/var/www/site/current/img/`,"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:471
+msgid "`/var/www/site/current/logs`,"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:473
+msgid "but above all they will be kept from one release to the next."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:475
+msgid "### Use a sub-directory of the repository for deployment"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:477
+msgid ""
+"In our case, the repository contains a `html` folder, which contains the "
+"site files."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:479
+msgid ""
+"To avoid this extra level of directory, use the `ansistrano_git_repo_tree` "
+"variable by specifying the path of the sub-directory to use."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:481
+msgid ""
+"Don't forget to modify the Apache configuration to take into account this "
+"change!"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:483
+msgid ""
+"Change the playbook for the server configuration `playbook-config-server.yml`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:496
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  become: yes\n"
+"  become_user: root\n"
+"  vars:\n"
+"    dest: \"/var/www/site/\"\n"
+"    apache_global_vhost_settings: |\n"
+"      DirectoryIndex index.php index.htm\n"
+"    apache_vhosts:\n"
+"      - servername: \"website\"\n"
+"        documentroot: \"{{ dest }}current/\" # <1>\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:515
+#: docs/books/learning_ansible/05-deployments.md:541
+msgid "<1> Modify this line"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:517
+msgid "Change the playbook for the deployment `playbook-deploy.yml`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:535
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  become: yes\n"
+"  become_user: root\n"
+"  vars:\n"
+"    dest: \"/var/www/site/\"\n"
+"    ansistrano_deploy_via: \"git\"\n"
+"    ansistrano_git_repo: https://github.com/alemorvan/demo-ansible.git\n"
+"    ansistrano_deploy_to: \"{{ dest }}\"\n"
+"    ansistrano_keep_releases: 3\n"
+"    ansistrano_shared_paths:\n"
+"      - \"img\"\n"
+"      - \"css\"\n"
+"    ansistrano_shared_files:\n"
+"      - \"log\"\n"
+"    ansistrano_git_repo_tree: 'html' # <1>\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:543
+msgid "Don't forget to run both of the playbooks"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:545
+msgid "Check on the client machine:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:576
+#, no-wrap
+msgid ""
+"```\n"
+"$  tree -F /var/www/site/\n"
+"/var/www/site/\n"
+"âââ current -> ./releases/20210722161542Z/\n"
+"âââ releases/\n"
+"âÂ Â  âââ 20210722160318Z/\n"
+"âÂ Â  âÂ Â  âââ REVISION\n"
+"âÂ Â  âÂ Â  âââ html/\n"
+"âÂ Â  âÂ Â      âââ index.htm\n"
+"âÂ Â  âââ 20210722160631Z/\n"
+"âÂ Â  âÂ Â  âââ REVISION\n"
+"âÂ Â  âÂ Â  âââ css -> ../../shared/css/\n"
+"âÂ Â  âÂ Â  âââ html/\n"
+"âÂ Â  âÂ Â  âÂ Â  âââ index.htm\n"
+"âÂ Â  âÂ Â  âââ img -> ../../shared/img/\n"
+"âÂ Â  âÂ Â  âââ logs -> ../../shared/logs\n"
+"âÂ Â  âââ 20210722161542Z/\n"
+"âÂ Â      âââ REVISION\n"
+"âÂ Â      âââ css -> ../../shared/css/\n"
+"âÂ Â      âââ img -> ../../shared/img/\n"
+"âÂ Â      âââ index.htm\n"
+"âÂ Â      âââ logs -> ../../shared/logs\n"
+"âââ repo/\n"
+"âÂ Â  âââ html/\n"
+"âÂ Â      âââ index.htm\n"
+"âââ shared/\n"
+"    âââ css/\n"
+"    âââ img/\n"
+"    âââ logs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:578
+msgid "<1> Please note the absence of `html`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:580
+msgid "### Managing git branch or tags"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:582
+msgid ""
+"The `ansistrano_git_branch` variable is used to specify a `branch` or `tag` "
+"to deploy."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:584
+msgid "Deploy the `releases/v1.1.0` branch:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:603
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  become: yes\n"
+"  become_user: root\n"
+"  vars:\n"
+"    dest: \"/var/www/site/\"\n"
+"    ansistrano_deploy_via: \"git\"\n"
+"    ansistrano_git_repo: https://github.com/alemorvan/demo-ansible.git\n"
+"    ansistrano_deploy_to: \"{{ dest }}\"\n"
+"    ansistrano_keep_releases: 3\n"
+"    ansistrano_shared_paths:\n"
+"      - \"img\"\n"
+"      - \"css\"\n"
+"    ansistrano_shared_files:\n"
+"      - \"log\"\n"
+"    ansistrano_git_repo_tree: 'html'\n"
+"    ansistrano_git_branch: 'releases/v1.1.0'\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:610
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    You can have fun, during the deployment, refreshing your browser, to see in 'live' the change.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:622
+msgid ""
+"``` $ curl http://192.168.1.11 <html> <head> <title>Demo Ansible</title> </"
+"head> <body> <h1>Version 1.0.1</h1> </body> <html> ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:624
+msgid "Deploy the `v2.0.0` tag:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:643
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  become: yes\n"
+"  become_user: root\n"
+"  vars:\n"
+"    dest: \"/var/www/site/\"\n"
+"    ansistrano_deploy_via: \"git\"\n"
+"    ansistrano_git_repo: https://github.com/alemorvan/demo-ansible.git\n"
+"    ansistrano_deploy_to: \"{{ dest }}\"\n"
+"    ansistrano_keep_releases: 3\n"
+"    ansistrano_shared_paths:\n"
+"      - \"img\"\n"
+"      - \"css\"\n"
+"    ansistrano_shared_files:\n"
+"      - \"log\"\n"
+"    ansistrano_git_repo_tree: 'html'\n"
+"    ansistrano_git_branch: 'v2.0.0'\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:659
+msgid ""
+"``` $ curl http://192.168.1.11 <html> <head> <title>Demo Ansible</title> </"
+"head> <body> <h1>Version 2.0.0</h1> </body> <html> ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:661
+msgid "### Actions between deployment steps"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:663
+msgid "A deployment with Ansistrano respects the following steps:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:669
+msgid "`Setup`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:669
+msgid "`Update Code`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:669
+msgid "`Symlink Shared`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:669
+msgid "`Symlink`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:669
+msgid "`Clean Up`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:671
+msgid "It is possible to intervene before and after each of these steps."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:675
+msgid ""
+"A playbook can be included through the variables provided for this purpose:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:678
+msgid "`ansistrano_before_<task>_tasks_file`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:678
+msgid "or `ansistrano_after_<task>_tasks_file`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:680
+msgid ""
+"Easy example: send an email (or whatever you want like Slack notification) "
+"at the beginning of the deployment:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:701
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  become: yes\n"
+"  become_user: root\n"
+"  vars:\n"
+"    dest: \"/var/www/site/\"\n"
+"    ansistrano_deploy_via: \"git\"\n"
+"    ansistrano_git_repo: https://github.com/alemorvan/demo-ansible.git\n"
+"    ansistrano_deploy_to: \"{{ dest }}\"\n"
+"    ansistrano_keep_releases: 3\n"
+"    ansistrano_shared_paths:\n"
+"      - \"img\"\n"
+"      - \"css\"\n"
+"    ansistrano_shared_files:\n"
+"      - \"logs\"\n"
+"    ansistrano_git_repo_tree: 'html'\n"
+"    ansistrano_git_branch: 'v2.0.0'\n"
+"    ansistrano_before_setup_tasks_file: \"{{ playbook_dir }}/deploy/before-setup-tasks.yml\"\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:707
+msgid "Create the file `deploy/before-setup-tasks.yml`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:715
+#, no-wrap
+msgid ""
+"- name: Send a mail\n"
+"  mail:\n"
+"    subject: Starting deployment on {{ ansible_hostname }}.\n"
+"  delegate_to: localhost\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:719
+msgid ""
+"``` TASK [ansistrano.deploy : include] "
+"************************************************************************************* "
+"included: /home/ansible/deploy/before-setup-tasks.yml for 192.168.10.11"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:723
+msgid ""
+"TASK [ansistrano.deploy : Send a mail] "
+"************************************************************************************* "
+"ok: [192.168.10.11 -> localhost] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:730
+#, no-wrap
+msgid ""
+"```\n"
+"[root] # mailx\n"
+"Heirloom Mail version 12.5 7/5/10.  Type ? for help.\n"
+"\"/var/spool/mail/root\": 1 message 1 new\n"
+">N  1 root@localhost.local  Tue Aug 21 14:41  28/946   \"Starting deployment on localhost.\"\n"
+"```\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/05-deployments.md:732
+msgid ""
+"You will probably have to restart some services at the end of the "
+"deployment, to flush caches for example. Let's restart Apache at the end of "
+"the deployment:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:753
+#, no-wrap
+msgid ""
+"- hosts: ansible_clients\n"
+"  become: yes\n"
+"  become_user: root\n"
+"  vars:\n"
+"    dest: \"/var/www/site/\"\n"
+"    ansistrano_deploy_via: \"git\"\n"
+"    ansistrano_git_repo: https://github.com/alemorvan/demo-ansible.git\n"
+"    ansistrano_deploy_to: \"{{ dest }}\"\n"
+"    ansistrano_keep_releases: 3\n"
+"    ansistrano_shared_paths:\n"
+"      - \"img\"\n"
+"      - \"css\"\n"
+"    ansistrano_shared_files:\n"
+"      - \"logs\"\n"
+"    ansistrano_git_repo_tree: 'html'\n"
+"    ansistrano_git_branch: 'v2.0.0'\n"
+"    ansistrano_before_setup_tasks_file: \"{{ playbook_dir }}/deploy/before-setup-tasks.yml\"\n"
+"    ansistrano_after_symlink_tasks_file: \"{{ playbook_dir }}/deploy/after-symlink-tasks.yml\"\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:759
+msgid "Create the file `deploy/after-symlink-tasks.yml`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:767
+#, no-wrap
+msgid ""
+"- name: restart apache\n"
+"  systemd:\n"
+"    name: httpd\n"
+"    state: restarted\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:771
+msgid ""
+"``` TASK [ansistrano.deploy : include] "
+"************************************************************************************* "
+"included: /home/ansible/deploy/after-symlink-tasks.yml for 192.168.10.11"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:775
+msgid ""
+"TASK [ansistrano.deploy : restart apache] "
+"************************************************************************************** "
+"changed: [192.168.10.11] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:777
+msgid ""
+"As you have seen during this chapter, Ansible can greatly improve the life "
+"of the system administrator. Very intelligent roles like Ansistrano are "
+"\"must haves\" that quickly become indispensable."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/05-deployments.md:778
+msgid ""
+"Using Ansistrano, ensures that good deployment practices are respected, "
+"reduces the time needed to put a system into production, and avoids the risk "
+"of potential human errors. The machine works fast, well, and rarely makes "
+"mistakes!"
+msgstr ""

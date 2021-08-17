@@ -1,0 +1,1188 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:6
+#: docs/books/admin_guide/01-presentation.md:23
+#: docs/books/admin_guide/03-commands.md:6
+#: docs/books/admin_guide/03-commands.md:21
+#: docs/books/admin_guide/04-advanced-commands.md:6
+#: docs/books/admin_guide/04-advanced-commands.md:20
+#: docs/books/admin_guide/05-vi.md:6 docs/books/admin_guide/05-vi.md:20
+#: docs/books/admin_guide/07-file-systems.md:6
+#: docs/books/admin_guide/07-file-systems.md:26
+#: docs/books/admin_guide/08-process.md:6
+#: docs/books/admin_guide/08-process.md:21
+#: docs/books/admin_guide/09-backups.md:6
+#: docs/books/admin_guide/09-backups.md:21 docs/books/admin_guide/11-tasks.md:6
+#: docs/books/admin_guide/11-tasks.md:21 docs/books/admin_guide/12-network.md:6
+#: docs/books/admin_guide/12-network.md:23
+#: docs/books/learning_ansible/01-bases.md:6
+#: docs/books/learning_ansible/01-bases.md:21
+#: docs/books/learning_ansible/02-advanced.md:6
+#: docs/books/learning_ansible/02-advanced.md:22
+#: docs/books/learning_ansible/03-working-with-files.md:6
+#: docs/books/learning_ansible/03-working-with-files.md:21
+#: docs/books/learning_ansible/04-ansible-galaxy.md:6
+#: docs/books/learning_ansible/04-ansible-galaxy.md:20
+#: docs/books/learning_ansible/05-deployments.md:6
+#: docs/books/learning_ansible/05-deployments.md:23
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:6
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
+#, no-wrap
+msgid "****\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:110
+#: docs/books/admin_guide/12-network.md:146
+#: docs/books/learning_ansible/04-ansible-galaxy.md:136
+#: docs/books/learning_ansible/04-ansible-galaxy.md:143
+#: docs/books/learning_ansible/04-ansible-galaxy.md:180
+#: docs/books/learning_ansible/04-ansible-galaxy.md:188
+msgid "..."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:19
+#: docs/books/admin_guide/09-backups.md:19
+#: docs/books/learning_ansible/04-ansible-galaxy.md:18
+#: docs/books/learning_ansible/05-deployments.md:21
+#, no-wrap
+msgid "**Reading time**: 40 minutes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1502
+#: docs/books/admin_guide/03-commands.md:1522
+#: docs/books/learning_ansible/01-bases.md:142
+#: docs/books/learning_ansible/01-bases.md:412
+#: docs/books/learning_ansible/02-advanced.md:486
+#: docs/books/learning_ansible/02-advanced.md:538
+#: docs/books/learning_ansible/02-advanced.md:634
+#: docs/books/learning_ansible/04-ansible-galaxy.md:509
+#: docs/books/learning_ansible/05-deployments.md:207
+#: docs/books/learning_ansible/05-deployments.md:257
+msgid "```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:8
+#: docs/books/learning_ansible/03-working-with-files.md:8
+#: docs/books/learning_ansible/04-ansible-galaxy.md:8
+#: docs/books/learning_ansible/05-deployments.md:8
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:8
+#, no-wrap
+msgid "**Objectives**: In this chapter you will learn how to:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:455
+#: docs/books/learning_ansible/04-ansible-galaxy.md:425
+msgid ""
+"Collections are a distribution format for Ansible content that can include "
+"playbooks, roles, modules, and plugins."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/01-bases.md:611
+#: docs/books/learning_ansible/01-bases.md:670
+#: docs/books/learning_ansible/01-bases.md:713
+#: docs/books/learning_ansible/01-bases.md:745
+#: docs/books/learning_ansible/02-advanced.md:48
+#: docs/books/learning_ansible/02-advanced.md:84
+#: docs/books/learning_ansible/02-advanced.md:93
+#: docs/books/learning_ansible/02-advanced.md:238
+#: docs/books/learning_ansible/02-advanced.md:459
+#: docs/books/learning_ansible/02-advanced.md:502
+#: docs/books/learning_ansible/02-advanced.md:572
+#: docs/books/learning_ansible/02-advanced.md:601
+#: docs/books/learning_ansible/02-advanced.md:638
+#: docs/books/learning_ansible/02-advanced.md:675
+#: docs/books/learning_ansible/04-ansible-galaxy.md:103
+#: docs/books/learning_ansible/04-ansible-galaxy.md:112
+#: docs/books/learning_ansible/04-ansible-galaxy.md:259
+#: docs/books/learning_ansible/04-ansible-galaxy.md:272
+#: docs/books/learning_ansible/04-ansible-galaxy.md:288
+#: docs/books/learning_ansible/04-ansible-galaxy.md:375
+#: docs/books/learning_ansible/05-deployments.md:124
+#: docs/books/learning_ansible/05-deployments.md:213
+#: docs/books/learning_ansible/05-deployments.md:340
+#: docs/books/learning_ansible/05-deployments.md:356
+#: docs/books/learning_ansible/05-deployments.md:389
+#: docs/books/learning_ansible/05-deployments.md:485
+#: docs/books/learning_ansible/05-deployments.md:519
+#: docs/books/learning_ansible/05-deployments.md:586
+#: docs/books/learning_ansible/05-deployments.md:626
+#: docs/books/learning_ansible/05-deployments.md:683
+#: docs/books/learning_ansible/05-deployments.md:709
+#: docs/books/learning_ansible/05-deployments.md:734
+#: docs/books/learning_ansible/05-deployments.md:761
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:107
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:123
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:138
+#, no-wrap
+msgid ""
+"```\n"
+"---\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:2
+msgid "# Ansible-galaxy: collections and roles"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:4
+msgid ""
+"In this chapter you will learn how to use, install, and manage Ansible roles "
+"and collections."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:11
+#, no-wrap
+msgid ""
+":heavy_check_mark: install and manage collections;       \n"
+":heavy_check_mark: install and manage roles;.   \n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:13
+msgid ""
+":checkered_flag: **ansible**, **ansible-galaxy**, **roles**, **collections**"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:16
+#: docs/books/learning_ansible/05-deployments.md:19
+#, no-wrap
+msgid ""
+"**Knowledge**: :star: :star:      \n"
+"**Complexity**: :star: :star: :star:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:22
+msgid ""
+"Ansible Galaxy provides Ansible Roles and Collections from the Ansible "
+"Community."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:24
+msgid ""
+"The elements provided can be referenced in the playbooks and used out of the "
+"box"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:26
+msgid "## `ansible-galaxy` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:28
+msgid ""
+"The `ansible-galaxy` command manages roles and collections using [galaxy."
+"ansible.com](http://galaxy.ansible.com)."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/04-ansible-galaxy.md:30
+msgid "To manage roles:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:34
+msgid "``` ansible-galaxy role [import|init|install|login|remove|...] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:43
+#, no-wrap
+msgid ""
+"| Sub-commands | Observations                                              |\n"
+"|--------------|-----------------------------------------------------------|\n"
+"| `install`    | installs a role.                                          |\n"
+"| `remove`     | remove one or more roles.                                 |\n"
+"| `list`       | display the name and the version of installed roles.      |\n"
+"| `info`       | display information about a role.                        |\n"
+"| `init`       | generate a skeleton of a new role.                        |\n"
+"| `import`     | import a role from the galaxy web site. Requires a login. |\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/04-ansible-galaxy.md:45
+msgid "To manage collections:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:49
+msgid ""
+"``` ansible-galaxy collection [import|init|install|login|remove|...] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:55
+#, no-wrap
+msgid ""
+"| Sub-commands | Observations                                               |\n"
+"|--------------|------------------------------------------------------------|\n"
+"| `init`       | generate a skeleton of a new collection.                   |\n"
+"| `install`    | installs a collection.                                     |\n"
+"| `list`       | display the name and the version of installed collections. |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:57
+msgid "## Ansible Roles"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:59
+msgid "An Ansible role is a unit that promotes the reusability of playbooks."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:62
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:64
+msgid "### Installing useful Roles"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:66
+msgid ""
+"In order to highlight the interest of using roles, I suggest you to use the "
+"`alemorvan/patchmanagement` role, which will allow you to perform a lot of "
+"tasks (pre-update or post-update for example) during your update process, in "
+"only a few lines of code."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:68
+msgid ""
+"You can check the code in the github repo of the role [here](https://github."
+"com/alemorvan/patchmanagement)."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/04-ansible-galaxy.md:70
+msgid "Install the role. This needs only one command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:74
+msgid "``` ansible-galaxy role install alemorvan.patchmanagement ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/04-ansible-galaxy.md:76
+msgid "Create a playbook to include the role:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:83
+#, no-wrap
+msgid ""
+"```\n"
+"- name: Start a Patch Management\n"
+"  hosts: ansible_clients\n"
+"  vars:\n"
+"    pm_before_update_tasks_file: custom_tasks/pm_before_update_tasks_file.yml\n"
+"    pm_after_update_tasks_file: custom_tasks/pm_after_update_tasks_file.yml\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:89
+#, no-wrap
+msgid ""
+"  tasks:\n"
+"    - name: \"Include patchmanagement\"\n"
+"      include_role:\n"
+"        name: \"alemorvan.patchmanagement\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:91
+msgid ""
+"With this role, you can add your own tasks for all your inventory or for "
+"only your targeted node."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:93
+msgid ""
+"Let's create tasks that will be run before and after the update process:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/04-ansible-galaxy.md:95
+msgid "Create the `custom_tasks` folder:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:99
+msgid "``` mkdir custom_tasks ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/04-ansible-galaxy.md:101
+msgid ""
+"Create the `custom_tasks/pm_before_update_tasks_file.yml` (feel free to "
+"change the name and the content of this file)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:108
+#, no-wrap
+msgid ""
+"- name: sample task before the update process\n"
+"  debug:\n"
+"    msg: \"This is a sample tasks, feel free to add your own test task\"\n"
+"```\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/learning_ansible/04-ansible-galaxy.md:110
+msgid ""
+"Create the `custom_tasks/pm_after_update_tasks_file.yml` (feel free to "
+"change the name and the content of this file)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:117
+#, no-wrap
+msgid ""
+"- name: sample task after the update process\n"
+"  debug:\n"
+"    msg: \"This is a sample tasks, feel free to add your own test task\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:119
+msgid "And launch your first Patch Management:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:122
+msgid "``` ansible-playbook patchmanagement.yml"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:124
+#: docs/books/learning_ansible/04-ansible-galaxy.md:488
+msgid ""
+"PLAY [Start a Patch Management] "
+"*************************************************************************"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:127
+#: docs/books/learning_ansible/04-ansible-galaxy.md:491
+msgid ""
+"TASK [Gathering Facts] "
+"********************************************************************************** "
+"ok: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:129
+msgid ""
+"TASK [Include patchmanagement] "
+"**************************************************************************"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:134
+#, no-wrap
+msgid ""
+"TASK [alemorvan.patchmanagement : MAIN | Linux Patch Management Job] ************************************\n"
+"ok: [192.168.1.11] => {\n"
+"    \"msg\": \"Start 192 patch management\"\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:141
+#, no-wrap
+msgid ""
+"TASK [alemorvan.patchmanagement : sample task before the update process] ********************************\n"
+"ok: [192.168.1.11] => {\n"
+"    \"msg\": \"This is a sample tasks, feel free to add your own test task\"\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:146
+msgid ""
+"TASK [alemorvan.patchmanagement : MAIN | We can now patch] "
+"********************************************** included: /home/ansible/."
+"ansible/roles/alemorvan.patchmanagement/tasks/patch.yml for 192.168.1.11"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:151
+#, no-wrap
+msgid ""
+"TASK [alemorvan.patchmanagement : PATCH | Tasks depends on distribution] ********************************\n"
+"ok: [192.168.1.11] => {\n"
+"    \"ansible_distribution\": \"Rocky\"\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:154
+msgid ""
+"TASK [alemorvan.patchmanagement : PATCH | Include tasks for CentOS & RedHat "
+"tasks] ********************** included: /home/ansible/.ansible/roles/"
+"alemorvan.patchmanagement/tasks/linux_tasks/redhat_centos.yml for "
+"192.168.1.11"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:157
+msgid ""
+"TASK [alemorvan.patchmanagement : RHEL CENTOS | yum clean all] "
+"****************************************** changed: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:160
+msgid ""
+"TASK [alemorvan.patchmanagement : RHEL CENTOS | Ensure yum-utils is "
+"installed] ************************** ok: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:163
+msgid ""
+"TASK [alemorvan.patchmanagement : RHEL CENTOS | Remove old kernels] "
+"************************************* skipping: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:166
+msgid ""
+"TASK [alemorvan.patchmanagement : RHEL CENTOS | Update rpm package with yum] "
+"**************************** ok: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:169
+msgid ""
+"TASK [alemorvan.patchmanagement : PATCH | Inlude tasks for Debian & Ubuntu "
+"tasks] *********************** skipping: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:172
+msgid ""
+"TASK [alemorvan.patchmanagement : MAIN | We can now reboot] "
+"********************************************* included: /home/ansible/."
+"ansible/roles/alemorvan.patchmanagement/tasks/reboot.yml for 192.168.1.11"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:175
+msgid ""
+"TASK [alemorvan.patchmanagement : REBOOT | Reboot triggered] "
+"******************************************** ok: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:178
+msgid ""
+"TASK [alemorvan.patchmanagement : REBOOT | Ensure we are not in rescue mode] "
+"**************************** ok: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:183
+msgid ""
+"TASK [alemorvan.patchmanagement : FACTS | Insert fact file] "
+"********************************************* ok: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:186
+msgid ""
+"TASK [alemorvan.patchmanagement : FACTS | Save date of last PM] "
+"***************************************** ok: [192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:193
+#, no-wrap
+msgid ""
+"TASK [alemorvan.patchmanagement : sample task after the update process] *********************************\n"
+"ok: [192.168.1.11] => {\n"
+"    \"msg\": \"This is a sample tasks, feel free to add your own test task\"\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:197
+#, no-wrap
+msgid ""
+"PLAY RECAP **********************************************************************************************\n"
+"192.168.1.11               : ok=31   changed=1    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0  \n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:199
+msgid "Pretty easy for such a complex process, isn't it?"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:201
+msgid ""
+"This is just one example of what can be done using roles made available by "
+"the community. Have a look at [galaxy.ansible.com](https://galaxy.ansible."
+"com/) to discover the roles that could be useful for you!"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:203
+msgid ""
+"You can also create your own roles for your own needs and publish them on "
+"the Internet if you feel like it. This is what we will briefly cover in the "
+"next chapter."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:205
+msgid "### Introduction to Role development"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:207
+msgid ""
+"A role skeleton, serving as a starting point for custom role development, "
+"can be generated by the `ansible-galaxy` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:212
+msgid ""
+"``` $ ansible-galaxy role init rocky8 - Role rocky8 was created successfully "
+"```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:214
+msgid ""
+"The command will generate the following tree structure to contain the "
+"`rocky8` role:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:234
+#, no-wrap
+msgid ""
+"```\n"
+"tree rocky8/\n"
+"rocky8/\n"
+"âââ defaults\n"
+"âÂ Â  âââ main.yml\n"
+"âââ files\n"
+"âââ handlers\n"
+"âÂ Â  âââ main.yml\n"
+"âââ meta\n"
+"âÂ Â  âââ main.yml\n"
+"âââ README.md\n"
+"âââ tasks\n"
+"âÂ Â  âââ main.yml\n"
+"âââ templates\n"
+"âââ tests\n"
+"âÂ Â  âââ inventory\n"
+"âÂ Â  âââ test.yml\n"
+"âââ vars\n"
+"    âââ main.yml\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:237
+msgid "8 directories, 8 files ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:239
+msgid ""
+"Roles allow you to do away with the need to include files. There is no need "
+"to specify file paths or `include` directives in playbooks. You just have to "
+"specify a task, and Ansible takes care of the inclusions."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:241
+msgid "The structure of a role is fairly obvious to understand."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:243
+msgid ""
+"Variables are simply stored either in `vars/main.yml` if the variables are "
+"not to be overridden, or in `default/main.yml` if you want to leave the "
+"possibility of overriding the variable content from outside your role."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:245
+msgid ""
+"The handlers, files, and templates needed for your code are stored in "
+"`handlers/main.yml`, `files` and `templates` respectively."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:247
+msgid ""
+"All that remains is to define the code for your role's tasks in `tasks/main."
+"yml`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:249
+msgid ""
+"Once all this is working well, you can use this role in your playbooks. You "
+"will be able to use your role without worrying about the technical aspect of "
+"its tasks, while customizing its operation with variables."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:251
+msgid "### Practical work: create a first simple role"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:253
+msgid ""
+"Let's implement this with a \"go anywhere\" role that will create a default "
+"user and install software packages. This role can be systematically applied "
+"to all your servers."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:255
+msgid "#### Variables"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:257
+msgid ""
+"We will create a `rockstar` user on all of our servers. As we don't want "
+"this user to be overridden, let's define it in the `vars/main.yml`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:268
+#, no-wrap
+msgid ""
+"rocky8_default_group:\n"
+"  name: rockstar\n"
+"  gid: 1100\n"
+"rocky8_default_user:\n"
+"  name: rockstar\n"
+"  uid: 1100\n"
+"  group: rockstar\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:270
+msgid ""
+"We can now use those variables inside our `tasks/main.yml` without any "
+"inclusion."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:277
+#, no-wrap
+msgid ""
+"- name: Create default group\n"
+"  group:\n"
+"    name: \"{{ rocky8_default_group.name }}\"\n"
+"    gid: \"{{ rocky8_default_group.gid }}\"\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:284
+#, no-wrap
+msgid ""
+"- name: Create default user\n"
+"  user:\n"
+"    name: \"{{ rocky8_default_user.name }}\"\n"
+"    uid: \"{{ rocky8_default_user.uid }}\"\n"
+"    group: \"{{ rocky8_default_user.group }}\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:286
+msgid ""
+"To test your new role, let's create a `test-role.yml` playbook in the same "
+"directory as your role:"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/learning_ansible/04-ansible-galaxy.md:291
+msgid "name: Test my role hosts: localhost"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:293
+#: docs/books/learning_ansible/04-ansible-galaxy.md:383
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:112
+#, no-wrap
+msgid "  roles:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:298
+#: docs/books/learning_ansible/04-ansible-galaxy.md:388
+#, no-wrap
+msgid ""
+"    - role: rocky8\n"
+"      become: true\n"
+"      become_user: root\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:300
+msgid "and launch it:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:303
+#: docs/books/learning_ansible/04-ansible-galaxy.md:350
+#: docs/books/learning_ansible/04-ansible-galaxy.md:391
+msgid "``` ansible-playbook test-role.yml"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:305
+#: docs/books/learning_ansible/04-ansible-galaxy.md:352
+#: docs/books/learning_ansible/04-ansible-galaxy.md:393
+msgid ""
+"PLAY [Test my role] "
+"************************************************************************************"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:308
+#: docs/books/learning_ansible/04-ansible-galaxy.md:355
+#: docs/books/learning_ansible/04-ansible-galaxy.md:396
+msgid ""
+"TASK [Gathering Facts] "
+"********************************************************************************* "
+"ok: [localhost]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:311
+msgid ""
+"TASK [rocky8 : Create default group] "
+"******************************************************************* changed: "
+"[localhost]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:314
+msgid ""
+"TASK [rocky8 : Create default user] "
+"******************************************************************** "
+"changed: [localhost]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:318
+#, no-wrap
+msgid ""
+"PLAY RECAP *********************************************************************************************\n"
+"localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:320
+msgid ""
+"Congratulations! You are now able to create great things with a playbook of "
+"only a few lines."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:322
+msgid "Let's see the use of default variables."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:324
+msgid ""
+"Create a list of packages to install by default on your servers and an empty "
+"list of packages to uninstall. Edit the `defaults/main.yml` files and add "
+"those two lists:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:331
+#, no-wrap
+msgid ""
+"```\n"
+"rocky8_default_packages:\n"
+"  - tree\n"
+"  - vim\n"
+"rocky8_remove_packages: []\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:333
+msgid "and use them in your `tasks/main.yml`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:339
+#, no-wrap
+msgid ""
+"```\n"
+"- name: Install default packages (can be overridden)\n"
+"  package:\n"
+"    name: \"{{ rocky8_default_packages }}\"\n"
+"    state: present\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:345
+#, no-wrap
+msgid ""
+"- name: \"Uninstall default packages (can be overridden) {{ rocky8_remove_packages }}\"\n"
+"  package:\n"
+"    name: \"{{ rocky8_remove_packages }}\"\n"
+"    state: absent\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:347
+msgid "Test your role with the help of the playbook previously created:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:358
+#: docs/books/learning_ansible/04-ansible-galaxy.md:399
+msgid ""
+"TASK [rocky8 : Create default group] "
+"******************************************************************* ok: "
+"[localhost]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:361
+#: docs/books/learning_ansible/04-ansible-galaxy.md:402
+msgid ""
+"TASK [rocky8 : Create default user] "
+"******************************************************************** ok: "
+"[localhost]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:364
+#: docs/books/learning_ansible/04-ansible-galaxy.md:405
+msgid ""
+"TASK [rocky8 : Install default packages (can be overridden)] "
+"******************************************** ok: [localhost]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:367
+msgid ""
+"TASK [rocky8 : Uninstall default packages (can be overridden) []] "
+"*************************************** ok: [localhost]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:371
+#, no-wrap
+msgid ""
+"PLAY RECAP *********************************************************************************************\n"
+"localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:373
+msgid ""
+"You can now override the `rocky8_remove_packages` in your playbook and "
+"uninstall for example `cockpit`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:381
+#, no-wrap
+msgid ""
+"- name: Test my role\n"
+"  hosts: localhost\n"
+"  vars:\n"
+"    rocky8_remove_packages:\n"
+"      - cockpit\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:408
+msgid ""
+"TASK [rocky8 : Uninstall default packages (can be overridden) ['cockpit']] "
+"****************************** changed: [localhost]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:412
+#, no-wrap
+msgid ""
+"PLAY RECAP *********************************************************************************************\n"
+"localhost                  : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:414
+msgid ""
+"Obviously, there is no limit to how much you can improve your role. Imagine "
+"that for one of your servers, you need a package that is in the list of "
+"those to be uninstalled. You could then, for example, create a new list that "
+"can be overridden and then remove from the list of packages to be "
+"uninstalled those in the list of specific packages to be installed by using "
+"the jinja `difference()` filter."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:421
+#, no-wrap
+msgid ""
+"```\n"
+"- name: \"Uninstall default packages (can be overridden) {{ rocky8_remove_packages }}\"\n"
+"  package:\n"
+"    name: \"{{ rocky8_remove_packages | difference(rocky8_specifics_packages) }}\"\n"
+"    state: absent\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:423
+msgid "## Ansible Collections"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:428
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:430
+msgid "To install or upgrade a collection:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:434
+msgid ""
+"``` ansible-galaxy collection install namespace.collection [--upgrade] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:436
+msgid ""
+"You can then use the newly installed collection using its namespace and name "
+"before the module's name or role's name:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:440
+#, no-wrap
+msgid ""
+"```\n"
+"- import_role:\n"
+"    name: namespace.collection.rolename\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:444
+#, no-wrap
+msgid ""
+"- namespace.collection.modulename:\n"
+"    option1: value\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:446
+msgid ""
+"You can find a collection index [here](https://docs.ansible.com/ansible/"
+"latest/collections/index.html)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:448
+msgid "Let's install the `community.general` collection:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:458
+msgid ""
+"``` ansible-galaxy collection install community.general Starting galaxy "
+"collection install process Process install dependency map Starting "
+"collection install process Downloading https://galaxy.ansible.com/download/"
+"community-general-3.3.2.tar.gz to /home/ansible/.ansible/tmp/ansible-"
+"local-51384hsuhf3t5/tmpr_c9qrt1/community-general-3.3.2-f4q9u4dg Installing "
+"'community.general:3.3.2' to '/home/ansible/.ansible/collections/"
+"ansible_collections/community/general' community.general:3.3.2 was installed "
+"successfully ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:460
+msgid "We can now use the newly available module `yum_versionlock`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:467
+#, no-wrap
+msgid ""
+"```\n"
+"- name: Start a Patch Management\n"
+"  hosts: ansible_clients\n"
+"  become: true\n"
+"  become_user: root\n"
+"  tasks:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:472
+#, no-wrap
+msgid ""
+"    - name: Ensure yum-versionlock is installed\n"
+"      package:\n"
+"        name: python3-dnf-plugin-versionlock\n"
+"        state: present\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:478
+#, no-wrap
+msgid ""
+"    - name: Prevent kernel from being updated\n"
+"      community.general.yum_versionlock:\n"
+"        state: present\n"
+"        name: kernel\n"
+"      register: locks\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:483
+#, no-wrap
+msgid ""
+"    - name: Display locks\n"
+"      debug:\n"
+"        var: locks.meta.packages                            \n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:486
+msgid "``` ansible-playbook versionlock.yml"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:494
+msgid ""
+"TASK [Ensure yum-versionlock is installed] "
+"************************************************************** changed: "
+"[192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:497
+msgid ""
+"TASK [Prevent kernel from being updated] "
+"**************************************************************** changed: "
+"[192.168.1.11]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:504
+#, no-wrap
+msgid ""
+"TASK [Display locks] ************************************************************************************\n"
+"ok: [192.168.1.11] => {\n"
+"    \"locks.meta.packages\": [\n"
+"        \"kernel\"\n"
+"    ]\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:507
+#, no-wrap
+msgid ""
+"PLAY RECAP **********************************************************************************************\n"
+"192.168.1.11               : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:511
+msgid "### Creating your own collection"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:513
+msgid ""
+"As with roles, you are able to create your own collection with the help of "
+"the `ansible-galaxy` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:518
+msgid ""
+"``` ansible-galaxy collection init rocky8.rockstarcollection - Collection "
+"rocky8.rockstarcollection was created successfully ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:529
+msgid ""
+"``` tree rocky8/rockstarcollection/ rocky8/rockstarcollection/ âââ docs âââ "
+"galaxy.yml âââ plugins âÂ Â  âââ README.md âââ README.md âââ roles ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/learning_ansible/04-ansible-galaxy.md:530
+msgid ""
+"You can then store your own plugins or roles inside this new collection."
+msgstr ""

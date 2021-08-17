@@ -1,0 +1,3384 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:6
+#: docs/books/admin_guide/01-presentation.md:23
+#: docs/books/admin_guide/03-commands.md:6
+#: docs/books/admin_guide/03-commands.md:21
+#: docs/books/admin_guide/04-advanced-commands.md:6
+#: docs/books/admin_guide/04-advanced-commands.md:20
+#: docs/books/admin_guide/05-vi.md:6 docs/books/admin_guide/05-vi.md:20
+#: docs/books/admin_guide/07-file-systems.md:6
+#: docs/books/admin_guide/07-file-systems.md:26
+#: docs/books/admin_guide/08-process.md:6
+#: docs/books/admin_guide/08-process.md:21
+#: docs/books/admin_guide/09-backups.md:6
+#: docs/books/admin_guide/09-backups.md:21 docs/books/admin_guide/11-tasks.md:6
+#: docs/books/admin_guide/11-tasks.md:21 docs/books/admin_guide/12-network.md:6
+#: docs/books/admin_guide/12-network.md:23
+#: docs/books/learning_ansible/01-bases.md:6
+#: docs/books/learning_ansible/01-bases.md:21
+#: docs/books/learning_ansible/02-advanced.md:6
+#: docs/books/learning_ansible/02-advanced.md:22
+#: docs/books/learning_ansible/03-working-with-files.md:6
+#: docs/books/learning_ansible/03-working-with-files.md:21
+#: docs/books/learning_ansible/04-ansible-galaxy.md:6
+#: docs/books/learning_ansible/04-ansible-galaxy.md:20
+#: docs/books/learning_ansible/05-deployments.md:6
+#: docs/books/learning_ansible/05-deployments.md:23
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:6
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
+#, no-wrap
+msgid "****\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:242
+#: docs/books/admin_guide/03-commands.md:1534
+msgid "## Check your Knowledge"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:2
+msgid "# Commands for Linux users"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:4
+msgid ""
+"In this chapter you will learn how to work with Linux with the commands."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:8 docs/books/admin_guide/05-vi.md:8
+#: docs/books/admin_guide/07-file-systems.md:8
+#: docs/books/admin_guide/08-process.md:8
+#: docs/books/admin_guide/09-backups.md:8 docs/books/admin_guide/11-tasks.md:8
+#, no-wrap
+msgid "**Objectives** : In this chapter, future Linux administrators will learn how to:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:12
+#, no-wrap
+msgid ""
+":heavy_check_mark: **move** in the system tree;   \n"
+":heavy_check_mark: **create** a text file, **display** its contents and **modify** it;   \n"
+":heavy_check_mark: use the most useful Linux commands.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:14 docs/books/admin_guide/05-vi.md:13
+msgid ":checkered_flag: **user commands**, **linux**"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:17
+#, no-wrap
+msgid ""
+"**Knowledge**: :star:   \n"
+"**Complexity**: :star:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:19
+#: docs/books/admin_guide/09-backups.md:19
+#: docs/books/learning_ansible/04-ansible-galaxy.md:18
+#: docs/books/learning_ansible/05-deployments.md:21
+#, no-wrap
+msgid "**Reading time**: 40 minutes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:23
+#: docs/books/admin_guide/08-process.md:23
+#: docs/books/admin_guide/09-backups.md:40
+#: docs/books/admin_guide/11-tasks.md:23
+#: docs/books/admin_guide/12-network.md:25
+#: docs/books/admin_guide/13-softwares.md:4
+msgid "## Generalities"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:25
+msgid ""
+"Current Linux systems have graphical utilities dedicated to the work of an "
+"administrator. However, it is important to be able to use the interface in "
+"command line mode for several reasons:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:31
+msgid ""
+"The majority of system commands are common to all Linux distributions, which "
+"is not the case for graphical tools."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:31
+msgid ""
+"It can happen that the system does not start correctly but that a backup "
+"command interpreter remains accessible."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:31
+msgid "Remote administration is done on the command line with an SSH terminal."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:31
+msgid ""
+"In order to preserve server resources, the graphical interface is either not "
+"installed or launched on demand."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:31
+msgid "Administration is done by scripts."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:33
+msgid ""
+"Learning these commands allows the administrator to connect to a Linux "
+"terminal, to manage its resources, its files, to identify the station, the "
+"terminal, and the connected users, etc."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:35
+msgid "### The users"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:37
+msgid "The user of a Linux system is defined in the `/etc/passwd` file, by:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:43
+msgid "a **login name**, more commonly called \"login\", containing no spaces;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:43
+msgid "a numeric identifier : **UID** (User Identifier);"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:43
+msgid "a group identifier : **GID** (Group Identifier);"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:43
+msgid ""
+"a **command interpreter**, a shell, which can be different from one user to "
+"another;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:43
+msgid "a **connection directory**, the __home directory__."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:45
+msgid "In other files by:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:48
+msgid ""
+"a **password**, which will be encrypted before being stored (`/etc/shadow`);"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:48
+msgid ""
+"a **command prompt**, or __prompt__ login, which will be symbolized by a `#` "
+"for administrators and a `$` for other users (`/etc/profile`)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:50
+msgid ""
+"Depending on the security policy implemented on the system, the password "
+"will have to contain a certain number of characters and meet certain "
+"complexity requirements."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:52
+msgid ""
+"Among the existing command interpreters, the **Bourne-Again Shell** (`/bin/"
+"bash`) is the one most frequently used. It is assigned by default to new "
+"users. For various reasons, advanced Linux users can choose alternative "
+"shells from among the Korn Shell (`ksh`), the C Shell (`csh`), etc."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:54
+msgid ""
+"The user's login directory is by convention stored in the `/home` directory "
+"of the workstation. It will contain the user's personal data and the "
+"configuration files of his applications. By default, at login, the login "
+"directory is selected as the current directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:56
+msgid ""
+"A workstation type installation (with graphical interface) starts this "
+"interface on terminal 1. Linux being multi-user, it is possible to connect "
+"several users several times, on different **physical terminals** (TTY) or "
+"**virtual terminals** (PTS). Virtual terminals are available within a "
+"graphical environment. A user switches from one physical terminal to another "
+"using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using "
+"<kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:58
+msgid "### The shell"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:60
+msgid ""
+"Once the user is connected to a console, the shell displays the command "
+"**prompt**. It then behaves like an infinite loop, with each statement "
+"entered:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:68
+msgid "displaying the command prompt;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:68
+msgid "reading the command ;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:68
+msgid "syntax analysis ;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:68
+msgid "substitution of special characters ;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:68
+msgid "execute the command;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:68
+msgid "display the command prompt;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:68
+msgid "etc."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:70
+msgid ""
+"The key sequence <kbd>CTRL</kbd> + <kbd>C</kbd> is used to interrupt a "
+"running command."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:72
+msgid "The use of a command generally follows this sequence:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:76
+msgid "```bash command [option(s)] [arguments(s)] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:78
+msgid "The name of the command is **often in lower case**."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:80
+msgid "A space separates each item."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:83
+msgid ""
+"Short **options** begin with a dash (`-l`), while **long options** begin "
+"with two dashes (`--list`).  A double dash (`--`) indicates the end of the "
+"option list."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:85
+msgid "It is possible to group some short options together:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:89
+msgid "```bash $ ls -l -i -a ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:91
+msgid "is equivalent to:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:95
+msgid "```bash $ ls -lia ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:97
+msgid "There can of course be several arguments after an option:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:101
+msgid "```bash $ ls -lia /etc /home /var ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:103
+msgid ""
+"In the literature, the term \"option\" is equivalent to the term \"parameter,"
+"\" which is more commonly used in programming. The optional side of an "
+"option or argument is symbolized by enclosing it in square brackets `[` and "
+"`]`. When more than one option is possible, a vertical bar called a \"pipe\" "
+"separates them `[a|e|i]`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:105
+msgid "## General commands"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:107
+msgid "### `apropos`, `whatis` et `man` commands"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:109
+msgid ""
+"It is impossible for an administrator at any level to know all the commands "
+"and options in detail. A manual is usually available for all installed "
+"commands."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:111
+msgid "#### `apropos` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:113
+msgid ""
+"The command `apropos` allows you to search by keyword within these manual "
+"pages:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:118
+#, no-wrap
+msgid ""
+"| Options                                     | Observations                                               |\n"
+"| ------------------------------------------- | ---------------------------------------------------------- |\n"
+"| `-s`, `--sections list` or `--section list` | Limited to manual sections.                                |\n"
+"| `-a` or `--and`                             | Displays only the item matching all the provided keywords. |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:120
+#: docs/books/admin_guide/03-commands.md:156
+#: docs/books/admin_guide/03-commands.md:451
+#: docs/books/admin_guide/03-commands.md:595
+#: docs/books/admin_guide/03-commands.md:634
+#: docs/books/admin_guide/03-commands.md:748
+#: docs/books/admin_guide/03-commands.md:795
+#: docs/books/admin_guide/03-commands.md:811
+#: docs/books/admin_guide/03-commands.md:931
+#: docs/books/admin_guide/03-commands.md:954
+#: docs/books/admin_guide/03-commands.md:1118
+#: docs/books/admin_guide/03-commands.md:1139
+#: docs/books/admin_guide/05-vi.md:40 docs/books/admin_guide/05-vi.md:385
+#: docs/books/admin_guide/05-vi.md:393 docs/books/admin_guide/05-vi.md:399
+#: docs/books/admin_guide/05-vi.md:405 docs/books/admin_guide/05-vi.md:411
+#: docs/books/admin_guide/06-users.md:58 docs/books/admin_guide/06-users.md:95
+#: docs/books/admin_guide/06-users.md:123
+#: docs/books/admin_guide/06-users.md:212
+#: docs/books/admin_guide/06-users.md:247
+#: docs/books/admin_guide/06-users.md:271
+#: docs/books/admin_guide/06-users.md:294
+#: docs/books/admin_guide/06-users.md:327
+#: docs/books/admin_guide/06-users.md:593
+#: docs/books/admin_guide/07-file-systems.md:97
+#: docs/books/admin_guide/07-file-systems.md:183
+#: docs/books/admin_guide/07-file-systems.md:209
+#: docs/books/admin_guide/07-file-systems.md:225
+#: docs/books/admin_guide/07-file-systems.md:247
+#: docs/books/admin_guide/07-file-systems.md:261
+#: docs/books/admin_guide/07-file-systems.md:275
+#: docs/books/admin_guide/07-file-systems.md:313
+#: docs/books/admin_guide/07-file-systems.md:409
+#: docs/books/admin_guide/07-file-systems.md:510
+#: docs/books/admin_guide/07-file-systems.md:536
+#: docs/books/admin_guide/07-file-systems.md:843
+#: docs/books/admin_guide/07-file-systems.md:976
+#: docs/books/admin_guide/09-backups.md:215
+#: docs/books/admin_guide/09-backups.md:239
+#: docs/books/admin_guide/09-backups.md:541
+#: docs/books/admin_guide/09-backups.md:603
+#: docs/books/admin_guide/09-backups.md:648
+#: docs/books/admin_guide/09-backups.md:671
+#: docs/books/admin_guide/09-backups.md:753
+#: docs/books/admin_guide/09-backups.md:775
+#: docs/books/admin_guide/09-backups.md:797
+#: docs/books/admin_guide/09-backups.md:823
+#: docs/books/admin_guide/10-boot.md:315 docs/books/admin_guide/11-tasks.md:132
+#: docs/books/admin_guide/12-network.md:43
+#: docs/books/admin_guide/12-network.md:468
+#: docs/books/admin_guide/12-network.md:548
+#: docs/books/admin_guide/12-network.md:569
+#: docs/books/admin_guide/12-network.md:609
+#: docs/books/admin_guide/12-network.md:633
+#: docs/books/admin_guide/12-network.md:650
+#: docs/books/admin_guide/12-network.md:677
+#: docs/books/admin_guide/12-network.md:690
+#: docs/books/admin_guide/12-network.md:703
+#: docs/books/admin_guide/13-softwares.md:36
+#: docs/books/admin_guide/13-softwares.md:55
+#: docs/books/admin_guide/13-softwares.md:67
+#: docs/books/admin_guide/13-softwares.md:138
+#: docs/books/admin_guide/13-softwares.md:177
+#: docs/books/admin_guide/13-softwares.md:185
+msgid "Example:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:138
+#, no-wrap
+msgid ""
+"```\n"
+"$ apropos clear\n"
+"clear (1)            - clear the terminal screen\n"
+"clear_console (1)    - clear the console\n"
+"clearenv (3)         - clear the environment\n"
+"clearerr (3)         - check and reset stream status\n"
+"clearerr_unlocked (3) - nonlocking stdio functions\n"
+"feclearexcept (3)    - floating-point rounding and exception handling\n"
+"fwup_clear_status (3) - library to support management of system firmware updates\n"
+"klogctl (3)          - read and/or clear kernel message ring buffer; set console_loglevel\n"
+"sgt-samegame (6)     - Block-clearing puzzle\n"
+"syslog (2)           - read and/or clear kernel message ring buffer; set console_loglevel\n"
+"timerclear (3)       - timeval operations\n"
+"XClearArea (3)       - clear area or window\n"
+"XClearWindow (3)     - clear area or window\n"
+"XSelectionClearEvent (3) - SelectionClear event structure\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:140
+msgid ""
+"To find the command that will allow changing the password of an account:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:146
+#, no-wrap
+msgid ""
+"```bash\n"
+"$ apropos --exact password  -a change\n"
+"chage (1)            - change user password expiry information\n"
+"passwd (1)           - change user password\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:148
+msgid "#### `whatis` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:150
+msgid ""
+"The `whatis` command displays the description of the command passed as "
+"argument:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:154
+msgid "```bash whatis clear ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:161
+#, no-wrap
+msgid ""
+"```\n"
+"$ whatis clear\n"
+"clear (1)            - clear the terminal screen\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:163
+msgid "#### `man` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:166
+msgid ""
+"Once found by `apropos` or `whatis`, the manual is read by `man` (\"Man is "
+"your friend\").  This set of manuals is divided into 8 sections, grouping "
+"information by topic, the default section being 1:"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: docs/books/admin_guide/03-commands.md:176
+msgid "User Commands;"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: docs/books/admin_guide/03-commands.md:176
+msgid "System Calls;"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: docs/books/admin_guide/03-commands.md:176
+msgid "C library functions;"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: docs/books/admin_guide/03-commands.md:176
+msgid "Peripherals and special files;"
+msgstr ""
+
+#. type: Bullet: '5. '
+#: docs/books/admin_guide/03-commands.md:176
+msgid "File formats ;"
+msgstr ""
+
+#. type: Bullet: '6. '
+#: docs/books/admin_guide/03-commands.md:176
+msgid "Games;"
+msgstr ""
+
+#. type: Bullet: '7. '
+#: docs/books/admin_guide/03-commands.md:176
+msgid "Miscellaneous;"
+msgstr ""
+
+#. type: Bullet: '8. '
+#: docs/books/admin_guide/03-commands.md:176
+msgid ""
+"System administration tools and daemons.  Information about each section can "
+"be accessed by typing `man x intro`, where `x` is the section number."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:178
+msgid "The command :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:182
+msgid "```bash man passwd ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:184
+msgid ""
+"will tell the administrator about the passwd command, its options, etc. "
+"While a :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:188
+msgid "```bash $ man 5 passwd ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:190
+msgid "will inform him about the files related to the command."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:192
+msgid ""
+"Not all pages of the manual are translated from English. However, they are "
+"generally very accurate and provide all the information needed. The syntax "
+"used and the division may confuse the beginner administrator, but with "
+"practice, he will quickly find the information he is looking for."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:194
+msgid ""
+"The navigation in the manual is done with the arrows <kbd>â</kbd> and "
+"<kbd>â</kbd>. The manual is exited by pressing the <kbd>q</kbd> key."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:196
+msgid "### `shutdown` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:198
+msgid ""
+"The `shutdown` command allows you to **electrically shut down** a Linux "
+"server, either immediately or after a certain period of time."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:202
+msgid "```bash shutdown [-h] [-r] time [message] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:204
+msgid ""
+"The shutdown time should be specified in the format `hh:mm` for a precise "
+"time, or `+mm` for a delay in minutes."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:206
+msgid ""
+"To force an immediate stop, the word `now` will replace the time. In this "
+"case, the optional message is not sent to other users of the system."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:208
+#: docs/books/admin_guide/03-commands.md:301
+#: docs/books/admin_guide/03-commands.md:690
+#: docs/books/admin_guide/03-commands.md:1333
+#: docs/books/admin_guide/04-advanced-commands.md:288
+#: docs/books/admin_guide/04-advanced-commands.md:329
+#: docs/books/admin_guide/06-users.md:339
+#: docs/books/admin_guide/06-users.md:514
+#: docs/books/admin_guide/06-users.md:733
+#: docs/books/admin_guide/08-process.md:368
+#: docs/books/admin_guide/09-backups.md:350
+#: docs/books/admin_guide/09-backups.md:690
+#: docs/books/admin_guide/10-boot.md:200 docs/books/admin_guide/11-tasks.md:205
+#: docs/books/admin_guide/12-network.md:523
+#: docs/books/learning_ansible/01-bases.md:242
+msgid "Examples:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:213
+msgid ""
+"```bash [root]# shutdown -h 0:30 \"Server shutdown at 0:30\" [root]# "
+"shutdown -r +5 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:215
+msgid "Options :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:220
+#, no-wrap
+msgid ""
+"| Options | Remarks                          |\n"
+"| ------- | -------------------------------- |\n"
+"| `-h`    | Shutdown the system electrically |\n"
+"| `-r`    | Restarts the system              |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:222
+msgid "### `history` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:225
+msgid ""
+"The `history` command displays the history of commands that have been "
+"entered by the user.  The commands are stored in the `.bash_history` file in "
+"the user's login directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:227
+msgid "Example of a history command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:233
+msgid "```bash $ history 147 man ls 148 man history ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:238
+#, no-wrap
+msgid ""
+"| Options | Comments                                                                                                           |\n"
+"| ------- | ------------------------------------------------------------------------------------------------------------------ |\n"
+"| `-w`    | The `-w` option will copy the history of the current session to it.                                                |\n"
+"| `-c`    | The `-c` option will delete the history of the current session (but not the contents of the `.bash_history` file). |\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:240
+msgid "Manipulating history:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:242
+msgid ""
+"To manipulate the history, the following commands entered from the command "
+"prompt will:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:250
+#, no-wrap
+msgid ""
+"| Keys               | Function                                                  |\n"
+"| ------------------ | --------------------------------------------------------- |\n"
+"| <kdb>!!</kdb>      | Recall the last command placed.                           |\n"
+"| <kdb>!n</kdb>      | Recall the command by its number in the list.             |\n"
+"| <kdb>!string</kdb> | Recall the most recent command beginning with the string. |\n"
+"| <kdb>â</kdb>       | Recall the most recent command beginning with the string. |\n"
+"| <kdb>â</kdb>       | Recall the most recent command beginning with the string. |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:252
+msgid "### The auto-completion"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:254
+msgid "Auto-completion is also a great help."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:258
+msgid "It allows you to complete commands, entered paths, or file names."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:258
+msgid ""
+"A press of the <kbd>TAB</kbd> key completes the entry in the case of a "
+"single solution."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:258
+msgid ""
+"Otherwise, a second press will be required to obtain the list of "
+"possibilities."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:260
+msgid ""
+"If a double press of the <kbd>TAB</kbd> key causes no reaction from the "
+"system, then there is no solution to the current completion."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:262
+msgid "## Display and identification"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:264
+msgid "### `clear` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:266
+msgid ""
+"The `clear` command clears the contents of the terminal screen. In fact, to "
+"be more precise, it shifts the display so that the command prompt is at the "
+"top of the screen on the first line."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:268
+msgid ""
+"In a terminal, the display will be permanently hidden, whereas in a "
+"graphical interface, a scrollbar will allow you to go back in the history of "
+"the virtual terminal."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:271
+#, no-wrap
+msgid ""
+"!!! tip\n"
+"    <kbd>CTRL</kbd> + <kbd>L</kbd> will have the same effect as the `clear` command\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:273
+msgid "### `echo` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:275
+msgid "The `echo` command is used to display a string of characters."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:277
+msgid ""
+"This command is most commonly used in administration scripts to inform the "
+"user during execution."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:279
+msgid ""
+"The `-n` option will not return to the line after displaying the text (which "
+"is the default behavior of the command)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:281
+msgid ""
+"For various reasons, the script developer may need to use special sequences "
+"(starting with a `\\` character). In this case, the `-e` option will be "
+"stipulated, allowing interpretation of the sequences."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:283
+msgid "Among the frequently used sequences, we can mention :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:291
+#, no-wrap
+msgid ""
+"| Sequence | Result                |\n"
+"| -------- | --------------------- |\n"
+"| `\\a`     | Send a sonor bip      |\n"
+"| `\\b`     | Back                  |\n"
+"| `\\n`     | Adds a line break     |\n"
+"| `\\t`     | Adds a horizontal tab |\n"
+"| `\\v`     | Adds vertical tab     |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:293
+msgid "### `date` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:295
+msgid ""
+"The `date` command displays the date and time. The command has the following "
+"syntax:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:299
+msgid "```bash date [-d AAAAMMJJ] [format] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:308
+msgid ""
+"```bash $ date Mon May 24 16:46:53 CEST 2021 $ date -d 20210517 +%j 137 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:310
+msgid ""
+"In this last example, the `-d` option displays a given date. The `+%j` "
+"option formats this date to show only the day of the year."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:313
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    The format of a date can change depending on the value of the language defined in the environment variable `$LANG`.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:315
+msgid "The date display can follow the following formats:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:334
+#, no-wrap
+msgid ""
+"| Option                                                                                                             | Format                           |\n"
+"| ------------------------------------------------------------------------------------------------------------------ | -------------------------------- |\n"
+"| `+%A`                                                                                                              | Full Name of Day                 |\n"
+"| `+%B`                                                                                                              | Full Name of Month               |\n"
+"| `+%c`                                                                                                              | Full Date Display                |\n"
+"| `+%d`                                                                                                              | Day number                       |\n"
+"| `+%F`                                                                                                              | Date in `YYYY-MM-DD` format      |\n"
+"| `+%G`                                                                                                              | Year                             |\n"
+"| `+%H`                                                                                                              | Time of day                      |\n"
+"| `+%j`                                                                                                              | Day of the year                  |\n"
+"| `+%m`                                                                                                              | Month number                     |\n"
+"| `+%M`                                                                                                              | Minute                           |\n"
+"| `+%R`                                                                                                              | Time in `hh:mm` format           |\n"
+"| `+%s`                                                                                                              | Seconds since January 1, 1970    |\n"
+"| `+%T`                                                                                                              | Time in `hh:mm:ss` format        |\n"
+"| `+%u`                                                                                                              | Day of the week (`1` for Monday) |\n"
+"| `+%V`                                                                                                              | Week number (`+%V`)              |\n"
+"| `+%x`                                                                                                              | Date in format `DD/MM/YYYY`      |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:336
+msgid ""
+"The `date` command also allows you to change the system date and time. In "
+"this case, the `-s` option will be used."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:340
+msgid "```bash [root]# date -s \"2021-05-24 10:19\" ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:342
+msgid "The format to be used following the `-s` option is this:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:346
+msgid "```bash date -s \"[AA]AA-MM-JJ hh:mm:[ss]\" ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:348
+msgid "### `id`, `who` and `whoami` commands"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:350
+msgid ""
+"The `id` command displays the name of the current user and its groups or "
+"those of a user, if the user's login is given as an argument."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:355
+msgid ""
+"```bash $ id rockstar uid=1000(rockstar) gid=1000(rockstar) "
+"groups=1000(rockstar),10(wheel)  ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:357
+msgid ""
+"The `-g`, `-G`, `-n` and `-u` options display the main group GID, subgroup "
+"GIDs, names instead of numeric identifiers, and the user's UID respectively."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:359
+msgid "The `whoami` command displays the login of the current user."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:361
+msgid "The `who` command alone displays the names of logged in users:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:367
+#, no-wrap
+msgid ""
+"```bash\n"
+"$ who\n"
+"rockstar tty1   2021-05-24 10:30\n"
+"root     pts/0  2021-05-24 10:31\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:369
+msgid ""
+"Since Linux is multi-user, it is likely that multiple sessions are open on "
+"the same station, either physically or over the network. It is interesting "
+"to know which users are logged in, if only to communicate with them by "
+"sending messages."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:372
+msgid "tty: represents a terminal."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:372
+msgid ""
+"pts/: represents a virtual console in a graphical environment with the "
+"number after representing the instance of the virtual console (0, 1, 2...)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:374
+msgid ""
+"The `-r` option also displays the execution level (see chapter \"startup\")."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:376
+msgid "## File tree"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:378
+msgid ""
+"In Linux, the file tree is an inverted tree, called a **single hierarchical "
+"tree**, whose root is the directory `/`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:380
+msgid "The **current directory** is the directory where the user is located."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:382
+msgid ""
+"The **connection directory** is the working directory associated with the "
+"user. The login directories are, by default, stored in the `/home` directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:384
+msgid "When the user logs in, the current directory is the login directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:386
+msgid ""
+"An **absolute path** references a file from the root by traversing the "
+"entire tree to the file level:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:388
+msgid "`/home/groupA/alice/file`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:390
+msgid ""
+"The **relative path** references that same file by traversing the entire "
+"tree from the current directory:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:392
+msgid "`../alice/file`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:394
+msgid ""
+"In the above example, the \"`..`\" refers to the parent directory of the "
+"current directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:396
+msgid ""
+"A directory, even if it is empty, will necessarily contain at least **two "
+"references** :"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:399
+msgid "`.`: reference to itself."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:399
+msgid "`..`: reference to the parent directory of the current directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:401
+msgid ""
+"A relative path can thus start with `./` or `../`. When the relative path "
+"refers to a subdirectory or file in the current directory, then the `./` is "
+"often omitted. Mentioning the first `./` in the tree will only really be "
+"required to run an executable file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:403
+msgid ""
+"Errors in paths can cause many problems: creating folders or files in the "
+"wrong places, unintentional deletions, etc. It is therefore strongly "
+"recommended to use auto-completion when entering paths."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:405
+msgid "![our example tree](images/commands-pathabsolute.png)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:407
+msgid ""
+"In the above example, we are looking to give the location of the file "
+"`myfile` from the directory of bob."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:410
+msgid ""
+"By an **absolute path**, the current directory does not matter. We start at "
+"the root, and work our way down to the directories `home`, `groupA`, `alice` "
+"and finally the file `myfile`: `/home/groupA/alice/myfile`."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:410
+msgid ""
+"By a **relative path**, our starting point being the current directory "
+"`bob`, we go up one level through `..` (i.e., into the `groupA` directory), "
+"then down into the alice directory, and finally the `myfile` file: `../alice/"
+"myfile`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:412
+msgid "### `pwd` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:414
+msgid ""
+"The `pwd` (Print Working Directory) command displays the absolute path of "
+"the current directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:419
+msgid "```bash $ pwd /home/rockstar ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:421
+msgid ""
+"To move around using a relative path, you must know its position in the tree."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:423
+msgid ""
+"Depending on the command interpreter, the command prompt may also display "
+"the name of the current directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:425
+msgid "### `cd` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:427
+msgid ""
+"The `cd` (Change Directory) command allows you to change the current "
+"directory, in other words, to move through the tree."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:439
+msgid ""
+"```bash $ cd /tmp $ pwd /tmp $ cd ../ $ pwd / $ cd $ pwd /home/rockstar ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:441
+msgid ""
+"As you can see in the last example above, the command `cd` with no arguments "
+"moves the current directory to the `home directory`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:443
+msgid "### `ls` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:445
+msgid "The `ls` command displays the contents of a directory"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:449
+msgid "```bash ls [-a] [-i] [-l] [directory1] [directory2] [â¦] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:456
+#, no-wrap
+msgid ""
+"```bash\n"
+"$ ls /home\n"
+".    ..    rockstar\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:458
+msgid "The main options of the `ls` command are :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:464
+#, no-wrap
+msgid ""
+"| Option                                                       | Information                                                                                                                          |\n"
+"| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |\n"
+"| `-a`                                                         | Displays all files, even hidden ones. Hidden files in Linux are those beginning with `.`.                                            |\n"
+"| `-i`                                                         | Displays inode numbers.                                                                                                              |\n"
+"| `-l`                                                         | The `-l` command displays a vertical list of files with additional information formatted in columns.                                 |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:466
+msgid "The `ls` command, however, has a lot of options (see `man`):"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:477
+#, no-wrap
+msgid ""
+"| Option                                                       | Information                                                                                                                          |\n"
+"| ------                                                       | ------------                                                                                                                         |\n"
+"| `-d`                                                         | Displays information about a directory instead of listing its contents.                                                              |\n"
+"| `-g`                                                         | Displays UID and GID rather than owner names.                                                                                        |\n"
+"| `-h`                                                         | Displays file sizes in the most appropriate format (byte, kilobyte, megabyte, gigabyte, ...). `h` stands for Human Readable.         |\n"
+"| `-s`                                                         | Displays the size in bytes (unless `k` option).                                                                                      |\n"
+"| `-A`                                                         | Displays all files in the directory except `.` and `.`.                                                                              |\n"
+"| `-R`                                                         | Displays the contents of subdirectories recursively.                                                                                 |\n"
+"| `-F`                                                         | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file. |\n"
+"| `-X`                                                         | Sort files according to their extensions.                                                                                            |\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:479
+msgid "Description of columns:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:484
+msgid ""
+"```bash $ ls -lia /home 78489 drwx------ 4 rockstar rockstar 4096 25 oct. "
+"08:10 rockstar ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:495
+#, no-wrap
+msgid ""
+"| Value           | Information                                                                                                   |\n"
+"| --------------- | ------------------------------------------------------------------------------------------------------------- |\n"
+"| `78489`         | Inode Number.                                                                                                 |\n"
+"| `drwx------`    | File type (`d`) and rights (`rwx------`).                                                                       |\n"
+"| `4`             | Number of subdirectories (`.` and `..` included). For a file of type physical link: number of physical links. |\n"
+"| `rockstar`      | For a physical link file: number of physical links.                                                           |\n"
+"| `rockstar`      | For a file of type physical link: number of physical links.                                                   |\n"
+"| `4096`          | For a physical link type file: number of physical links.                                                      |\n"
+"| `25 oct. 08:10` | Last modified date.                                                                                           |\n"
+"| `rockstar`      | The name of the file (or directory).                                                                          |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:498
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    **Aliases** are frequently positioned in common distributions.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:500
+#, no-wrap
+msgid "    This is the case of the alias `ll`:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:504
+#, no-wrap
+msgid ""
+"    ```\n"
+"    alias ll='ls -l --color=auto'\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:506
+msgid ""
+"The `ls` command has many options and here are some advanced examples of "
+"uses:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:508
+msgid "List the files in `/etc` in order of last modification:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:520
+#, no-wrap
+msgid ""
+"```bash\n"
+"$ ls -ltr /etc\n"
+"total 1332\n"
+"-rw-r--r--.  1 root root    662 29 may   2021 logrotate.conf\n"
+"-rw-r--r--.  1 root root    272 17 may.   2021 mailcap\n"
+"-rw-------.  1 root root    122 12 may.  2021 securetty\n"
+"...\n"
+"-rw-r--r--.  2 root root     85 18 may.  17:04 resolv.conf\n"
+"-rw-r--r--.  1 root root     44 18 may.  17:04 adjtime\n"
+"-rw-r--r--.  1 root root    283 18 may.  17:05 mtab\n"
+"```\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:522
+msgid "List `/var` files larger than 1 megabyte but less than 1 gigabyte:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:531
+msgid ""
+"```bash $ ls -Rlh /var | grep [0-9]M ...  -rw-r--r--. 1 apache apache 1,2M "
+"10 may.  13:02 XB RiyazBdIt.ttf -rw-r--r--. 1 apache apache 1,2M 10 may.  "
+"13:02 XB RiyazBd.ttf -rw-r--r--. 1 apache apache 1,1M 10 may.  13:02 XB "
+"RiyazIt.ttf ...  ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:533
+msgid "Show the rights on a folder:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:535
+msgid ""
+"To find out the rights to a folder, in our example `/etc`, the following "
+"command would not be appropriate:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:545
+#, no-wrap
+msgid ""
+"```bash\n"
+"$ ls -l /etc\n"
+"total 1332\n"
+"-rw-r--r--.  1 root root     44 18 nov.  17:04 adjtime\n"
+"-rw-r--r--.  1 root root   1512 12 janv.  2010 aliases\n"
+"-rw-r--r--.  1 root root  12288 17 nov.  17:41 aliases.db\n"
+"drwxr-xr-x.  2 root root   4096 17 nov.  17:48 alternatives\n"
+"...\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:547
+msgid ""
+"since the command lists by default the contents of the folder and not the "
+"container."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:549
+msgid "To do this, use the `-d` option:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:554
+msgid ""
+"```bash $ ls -ld /etc drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:556
+msgid "List files by size:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:560
+msgid "```bash $ ls -lhS ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:562
+msgid "Display the modification date in \"timestamp\" format:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:569
+msgid ""
+"```bash $ ls -l --time-style=\"+%Y-%m-%d %m-%d %H:%M\" / total 12378 dr-xr-"
+"xr-x. 2 root root 4096 2014-11-23 11-23 03:13 bin dr-xr-xr-x. 5 root root "
+"1024 2014-11-23 11-23 05:29 boot ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:571
+msgid "Add the _trailing slash_ to the end of folders:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:574
+msgid ""
+"By default, the `ls` command does not display the last slash of a folder.  "
+"In some cases, like for scripts for example, it is useful to display them:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:579
+msgid "```bash $ ls -dF /etc /etc/ ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:581
+msgid "Hide some extensions:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:585
+msgid "```bash $ ls /etc --hide=*.conf ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:587
+msgid "### `mkdir` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:589
+msgid "The `mkdir` command creates a directory or directory tree."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:593
+msgid "```bash mkdir [-p] directory [directory] [...] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:599
+msgid "```bash $ mkdir /home/rockstar/work ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:602
+msgid ""
+"The \"rockstar\" directory must exist to create the \"work\" directory.  "
+"Otherwise, the `-p` option should be used. The `-p` option creates the "
+"parent directories if they do not exist."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:605
+#, no-wrap
+msgid ""
+"!!! Danger\n"
+"    It is not recommended to use Linux command names as directory or file names.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:607
+msgid "### `touch` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:609
+msgid ""
+"The `touch` command changes the timestamp of a file or creates an empty file "
+"if the file does not exist."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:613
+msgid "```bash touch [-t date] file ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:615
+msgid "Example :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:619
+msgid "```bash $ touch /home/rockstar/myfile ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:623
+#, no-wrap
+msgid ""
+"| Option                            | Information                                                                |\n"
+"| --------------------------------- | -------------------------------------------------------------------------- |\n"
+"| `-t date`                         | Changes the date of last modification of the file with the specified date. |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:625
+msgid "Date format: `[AAAA]MMJJhhmm[ss]`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:628
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    The `touch` command is primarily used to create an empty file, but it can be useful for incremental or differential backups for example. Indeed, the only effect of executing a `touch` on a file will be to force it to be saved during the next backup.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:630
+msgid "### `rmdir` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:632
+msgid "The `rmdir` command deletes an empty directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:638
+msgid "```bash $ rmdir /home/rockstar/work ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:642
+#, no-wrap
+msgid ""
+"| Option                                                                  | Information |\n"
+"| ----------------------------------------------------------------------- | ----------- |\n"
+"| `-p` |  Removes the parent directory or directories provided if they are empty.           |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:645
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    To delete both a non-empty directory and its contents, use the `rm` command.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:647
+msgid "### `rm` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:649
+msgid "The `rm` command deletes a file or directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:653
+msgid "```bash rm [-f] [-r] file [file] [...] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:656
+#, no-wrap
+msgid ""
+"!!! Danger\n"
+"    Any deletion of a file or directory is final.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:662
+#, no-wrap
+msgid ""
+"| Options | Information                              |\n"
+"| ------- | ---------------------------------------- |\n"
+"| `-f`    | Do not ask for confirmation of deletion. |\n"
+"| `-i`    | Requires confirmation of deletion.       |\n"
+"| `-r`    | Recursively deletes subdirectories.      |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:665
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    The `rm` command itself does not ask for confirmation when deleting files. However, with a RedHat/Rocky distribution, `rm` does ask for confirmation of deletion because the `rm` command is an `alias` of the `rm -i` command. Don't be surprised if on another distribution, like Debian for example, you don't get a confirmation request.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:667
+msgid ""
+"Deleting a folder with the `rm` command, whether the folder is empty or not, "
+"will require the `-r` option to be added."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:669
+msgid "The end of the options is signaled to the shell by a double dash `--`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:671
+msgid "In the example:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:678
+msgid ""
+"```bash $ >-hard-hard # To create an empty file called -hard-hard hard-hard "
+"[CTRL+C] To interrupt the creation of the file $ rm -f -- -hard-hard ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:680
+msgid ""
+"The hard-hard file name starts with a `-`. Without the use of the `--` the "
+"shell would have interpreted the `-d` in `-hard-hard` as an option."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:682
+msgid "### `mv` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:684
+msgid "The `mv` command moves and renames a file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:688
+msgid "```bash mv file [file ...] destination ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:695
+msgid ""
+"```bash $ mv /home/rockstar/file1 /home/rockstar/file2 $ mv /home/rockstar/"
+"file1 /home/rockstar/file2 /tmp ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:700
+#, no-wrap
+msgid ""
+"| Options                                                                        | Information                                                     |\n"
+"| ------------------------------------------------------------------------------ | --------------------------------------------------------------- |\n"
+"| `-f`                                                                           | Don't ask for confirmation if overwriting the destination file. |\n"
+"| `-i`                                                                           | Request confirmation if overwriting destination file (default). |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:702
+msgid ""
+"A few concrete cases will help you understand the difficulties that can "
+"arise:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:706
+msgid "```bash $ mv /home/rockstar/file1 /home/rockstar/file2 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:708
+msgid ""
+"Renames `file1` to `file2`, if `file2` already exists, it will be replaced "
+"by `file1`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:712
+msgid "```bash $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:714
+msgid "Moves `file1` and `file2` into the `/tmp` directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:718
+msgid "```bash $ mv file1 /repexist/file2 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:720
+msgid "Moves `file1` into `repexist` and renames it `file2`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:724
+msgid "```bash $ mv file1 file2 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:726
+msgid "`file1` is renamed to `file2`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:730
+msgid "```bash $ mv file1 /repexist ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:732
+msgid "If the destination directory exists, `file1` is moved to `/repexist`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:736
+msgid "```bash $ mv file1 /wrongrep ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:738
+msgid ""
+"If the destination directory does not exist, `file1` is renamed to "
+"`wrongrep` in the root directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:740
+msgid "### `cp` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:742
+msgid "The `cp` command copies a file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:746
+msgid "```bash cp file [file ...] destination ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:752
+msgid "```bash $ cp -r /home/rockstar /tmp ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:759
+#, no-wrap
+msgid ""
+"| Options | Information                                                      |\n"
+"| ------- | ---------------------------------------------------------------- |\n"
+"| `-i`    | Request confirmation if overwriting (default).                   |\n"
+"| `-f`    | Do not ask for confirmation if overwriting the destination file. |\n"
+"| `-p`    | Keeps the owner, permissions and timestamp of the copied file.   |\n"
+"| `-r`    | Copies a directory with its files and subdirectories.            |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:763
+msgid "```bash cp file1 /repexist/file2 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:765
+msgid "`file1` is copied to `/repexist` under the name `file2`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:769
+msgid "```bash $ cp file1 file2 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:771
+msgid "`file1` is copied as `file2` to this directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:775
+msgid "```bash $ cp file1 /repexist ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:777
+msgid "If the destination directory exists, `file1` is copied to `/repexist`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:781
+msgid "```bash $ cp file1 /wrongrep ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:783
+msgid ""
+"If the destination directory does not exist, `file1` is copied under the "
+"name `wrongrep` to the root directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:785
+msgid "## Visualization"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:787
+msgid "### `file` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:789
+msgid "The `file` command displays the type of a file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:793
+msgid "```bash file file1 [files] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:801
+#, no-wrap
+msgid ""
+"```bash\n"
+"$ file /etc/passwd /etc\n"
+"/etc/passwd:    ASCII text\n"
+"/etc:        directory\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:803
+msgid "### `more` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:805
+msgid ""
+"The `more` command displays the contents of one or more files screen by "
+"screen."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:809
+msgid "```bash more file1 [files] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:817
+msgid "```bash $ more /etc/passwd root:x:0:0:root:/root:/bin/bash ...  ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:819
+msgid ""
+"Using the <kbd>ENTER</kbd> key, the move is line by line. Using the "
+"<kbd>SPACE</kbd> key, the move is page by page. `/text` allows you to search "
+"for the occurrence in the file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:821
+msgid "### `less` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:823
+msgid ""
+"The `less` command displays the contents of one or more files. The `less` "
+"command is interactive and has its own commands for use."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:827
+msgid "```bash less file1 [files] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:829
+msgid "The commands specific to `less` are:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:840
+#, no-wrap
+msgid ""
+"| Command           | Action                                          |\n"
+"| ----------------- | ----------------------------------------------- |\n"
+"| `h`               | Help.                                           |\n"
+"| `Arrows`          | Move up, down a line, or to the right or left.. |\n"
+"| `Enter`           | Move down one line.                             |\n"
+"| `Space`           | Move down one page.                             |\n"
+"| `PgUp` and `PgDn` | Move up or down one page.                       |\n"
+"| `Begin` and `End` | Move to the beginning or end of a file.         |\n"
+"| `/texte`          | Search for text.                                |\n"
+"| `q`               | Quit the `less` command.                        |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:842
+msgid "### `cat` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:844
+msgid ""
+"The `cat` command concatenates the contents of multiple files and displays "
+"the result on the standard output."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:848
+msgid "```bash cat file1 [files] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:850
+msgid "Example 1 - Displaying the contents of a file to the standard output :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:854
+msgid "```bash $ cat /etc/passwd ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:856
+msgid ""
+"Example 2 - Displaying the contents of multiple files to standard output:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:860
+msgid "```bash $ cat /etc/passwd /etc/group ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:862
+msgid ""
+"Example 3 - Displaying the contents of several files in the file "
+"`usersAndGroups.txt` :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:866
+msgid "```bash $ cat /etc/passwd /etc/group > usersAndGroups.txt ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:868
+msgid "Example 4 - Displaying the line numbering :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:879
+#, no-wrap
+msgid ""
+"```bash\n"
+"$ cat -n /etc/profile\n"
+"     1    # /etc/profile: system-wide .profile file for the Bourne shell (sh(1))\n"
+"     2    # and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).\n"
+"     3\n"
+"     4    if [ \"`id -u`\" -eq 0 ]; then\n"
+"     5      PATH=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n"
+"     6    else\n"
+"â¦\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:881
+msgid "Example 5 - Shows the numbering of non-empty lines:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:886
+#, no-wrap
+msgid ""
+"```bash\n"
+"$ cat -b /etc/profile\n"
+"     1    # /etc/profile: system-wide .profile file for the Bourne shell (sh(1))\n"
+"     2    # and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:892
+#, no-wrap
+msgid ""
+"     3    if [ \"`id -u`\" -eq 0 ]; then\n"
+"     4      PATH=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n"
+"     5    else\n"
+"â¦\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:894
+msgid "### `tac` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:896
+msgid ""
+"The `tac` command does almost the opposite of the `cat` command. It displays "
+"the contents of a file starting from the end (which is particularly "
+"interesting for reading logs!)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:898
+msgid "Example: Display a log file by displaying the last line first:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:902
+msgid "```bash [root]# tac /var/log/messages | less ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:904
+msgid "### `head` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:906
+msgid "The `head` command displays the beginning of a file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:910
+msgid "```bash head [-n x] file ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:914
+#, no-wrap
+msgid ""
+"| Option                                                                                                | Observation                             |\n"
+"| ----------------------------------------------------------------------------------------------------- | --------------------------------------- |\n"
+"| `-n x`                                                                                                | Display the first `x` lines of the file |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:916
+msgid ""
+"By default (without the `-n` option), the `head` command will display the "
+"first 10 lines of the file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:918
+msgid "### `tail` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:920
+msgid "The `tail` command displays the end of a file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:924
+msgid "```bash tail [-f] [-n x] file ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:929
+#, no-wrap
+msgid ""
+"| Option   | Observation                               |\n"
+"| -------- | ----------------------------------------- |\n"
+"| `-n x`   | Displays the last `x` lines of the file   |\n"
+"| `-f`     | Displays changes to the file in real time |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:938
+msgid ""
+"```bash tail -n 3 /etc/passwd sshd:x:74:74:Privilege-separeted sshd:/var/"
+"empty /sshd:/sbin/nologin tcpdump::x:72:72::/:/sbin/nologin user1:x:500:500:"
+"grp1:/home/user1:/bin/bash ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:940
+msgid ""
+"With the `-f` option, the `tail` command does not give back and runs until "
+"the user interrupts it with the sequence <kbd>CTRL</kbd> + <kbd>C</kbd>. "
+"This option is very frequently used to track log files (the logs) in real "
+"time."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:942
+msgid ""
+"Without the `-n` option, the tail command displays the last 10 lines of the "
+"file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:944
+msgid "### `sort` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:946
+msgid "The `sort` command sorts the lines of a file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:948
+msgid ""
+"It allows you to order the result of a command or the content of a file in a "
+"given order, numerically, alphabetically, by size (KB, MB, GB) or in reverse "
+"order."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:952
+msgid "```bash sort [-kx] [-n] [-o file] [-ty] file ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:960
+msgid ""
+"```bash $ sort -k3 -t: -n /etc/passwd root:x:0:0:root:/root:/bin/bash adm:"
+"x:3:4:adm:/var/adm/:/sbin/nologin ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:968
+#, no-wrap
+msgid ""
+"| Option                                                                                                                                                                                                                               | Observation                                  |\n"
+"| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |\n"
+"| `-kx`                                                                                                                                                                                                                                | Specifies the `x` column to sort on          |\n"
+"| `-n`                                                                                                                                                                                                                                 | Requests a numeric sort                      |\n"
+"| `-o file   `                                                                                                                                                                                                                         | Saves the sort to the specified file         |\n"
+"| `-ty`                                                                                                                                                                                                                                | Specifies the field separator character `y`. |\n"
+"| `-r`                                                                                                                                                                                                                                 | Reverse the order of the result              |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:970
+msgid ""
+"The `sort` command sorts the file only on the screen. The file is not "
+"modified by the sorting. To save the sort, use the `-o` option or an output "
+"redirection `>`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:972
+msgid ""
+"By default, the numbers are sorted according to their character. Thus, "
+"\"110\" will be before \"20\", which will itself be before \"3\". The `-n` "
+"option must be specified so that the numeric character blocks are sorted by "
+"their value."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:974
+msgid ""
+"The `sort` command reverses the order of the results, with the `-r` option:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:980
+msgid ""
+"```bash $ sort -k3 -t: -n -r /etc/passwd root:x:0:0:root:/root:/bin/bash adm:"
+"x:3:4:adm:/var/adm/:/sbin/nologin ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:982
+msgid ""
+"In this example, the `sort` command will sort the contents of the `/etc/"
+"passwd` file this time from largest uid to smallest."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:984
+msgid "Some advanced examples of using the `sort` command:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:986
+msgid "Shuffling values"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:988
+msgid ""
+"The `sort` command also allows you to shuffle values with the `-R` option:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:992
+msgid "```bash $ sort -R /etc/passwd ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:994
+msgid "Sorting IP addresses"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:996
+msgid ""
+"A system administrator is quickly confronted with the processing of IP "
+"addresses from the logs of his services such as SMTP, VSFTP or Apache. These "
+"addresses are typically extracted with the `cut` command."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:998
+msgid "Here is an example with the file `dns-client.txt` :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1006
+msgid ""
+"``` 192.168.1.10 192.168.1.200 5.1.150.146 208.128.150.98 208.128.150.99 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1015
+msgid ""
+"```bash $ sort -nr dns-client.txt 208.128.150.99 208.128.150.98 "
+"192.168.1.200 192.168.1.10 5.1.150.146 ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:1017
+msgid "Sorting file by sizes"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1019
+msgid ""
+"The `sort` command knows how to recognize file sizes, from commands like "
+"`ls` with the `-h` option."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1021
+msgid "Here is an example with the file `size.txt` :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1034
+msgid "``` 1,7G 18M 69K 2,4M 1,2M 4,2G 6M 124M 12,4M 4G ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1048
+msgid ""
+"```bash $ sort -hr size.txt 4,2G 4G 1,7G 124M 18M 12,4M 6M 2,4M 1,2M 69K ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1050
+msgid "### `wc` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1052
+msgid ""
+"The `wc` command counts the number of lines, words and/or bytes in a file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1056
+msgid "```bash wc [-l] [-m] [-w] file [files] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1063
+#, no-wrap
+msgid ""
+"| Option | Observation                     |\n"
+"| ------ | ------------------------------- |\n"
+"| `-c`   | Count the number of bytes.      |\n"
+"| `-m`   | Count the number of characters. |\n"
+"| `-l`   | Counts the number of lines.     |\n"
+"| `-w`   | Counts the number of words.     |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1065
+msgid "## Search"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1067
+msgid "### `find` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1069
+msgid "The `find` command searches for files or directories location."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1073
+msgid ""
+"```bash find directory [-name name] [-type type] [-user login] [-date date] "
+"```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1075
+msgid ""
+"Since there are so many options to the `find` command, it is best to refer "
+"to the `man`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1077
+msgid ""
+"If the search directory is not specified, the `find` command will search "
+"from the current directory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1082
+#, no-wrap
+msgid ""
+"| Option              | Observation                            |\n"
+"| ------------------- | -------------------------------------- |\n"
+"| `-perm permissions` | Search for files by their permissions. |\n"
+"| `-size size`        | Search for files by size.              |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1084
+msgid "### `-exec` option of the `find` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1086
+msgid ""
+"It is possible to use the `-exec` option of the `find` command to execute a "
+"command on each result line:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1090
+msgid "```bash $ find /tmp -name *.txt -exec rm -f {} \\; ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1092
+msgid ""
+"The previous command searches for all files in the `/tmp` directory named `*."
+"txt` and deletes them."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1095
+#, no-wrap
+msgid ""
+"!!! Tip \"Understand the `-exec` option\"\n"
+"    In the example above, the `find` command will construct a string representing the command to be executed.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1097
+#, no-wrap
+msgid "    If the `find` command finds three files named `log1.txt`, `log2.txt`, and `log3.txt`, then the `find` command will construct the string by replacing in the string `rm -f {} \\;` the braces with one of the results of the search, and do this as many times as there are results.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1099
+#, no-wrap
+msgid "    This will give us :\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1103
+#, no-wrap
+msgid ""
+"    ```\n"
+"    rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1105
+#, no-wrap
+msgid "    The `;` character is a special shell character that must be protected by a `\\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1108
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    `$ find /tmp -name *.txt -delete` does the same thing.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1110
+msgid "### `whereis` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1112
+msgid "The `whereis` command searches for files related to a command."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1116
+msgid "```bash whereis [-b] [-m] [-s] command ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1123
+msgid "```bash $ whereis -b ls ls: /bin/ls ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1129
+#, no-wrap
+msgid ""
+"| Option | Observation                     |\n"
+"| ------ | ------------------------------- |\n"
+"| `-b`   | Search only the binary file.    |\n"
+"| `-m`   | Searches only for man pages.    |\n"
+"| `-s`   | Searches only for source files. |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1131
+msgid "### `grep` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1133
+msgid "The `grep` command searches for a string in a file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1137
+msgid "```bash grep [-w] [-i] [-v] \"string\" file ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1144
+msgid ""
+"```bash $ grep -w \"root:\" /etc/passwd root:x:0:0:root:/root:/bin/bash ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1150
+#, no-wrap
+msgid ""
+"| Option                                                                                  | Observation                             |\n"
+"| --------------------------------------------------------------------------------------- | --------------------------------------- |\n"
+"| `-i`                                                                                    | Ignore the case of the searched string. |\n"
+"| `-v`                                                                                    | Excludes lines containing the string.   |\n"
+"| `-w`                                                                                    | Search for the exact word.              |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1154
+msgid ""
+"The `grep` command returns the complete line containing the string you are "
+"looking for.  * The `^` special character is used to search for a string at "
+"the beginning of a line.  * The special character `$` searches for a string "
+"at the end of a line."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1158
+msgid "```bash $ grep -w \"^root\" /etc/passwd ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1161
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    This command is very powerful and it is highly recommended to consult its manual. It has many derivatives.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1163
+msgid ""
+"It is possible to search for a string in a file tree with the `-R` option."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1167
+msgid "```bash grep -R \"Virtual\" /etc/httpd ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1169
+msgid "### Meta-characters (wildcards)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1171
+msgid ""
+"Meta-characters replace one or more characters (or even an absence of "
+"characters) during a search. These meta-characters are also known as "
+"wildcards. They can be combined. The `*` character replaces a string "
+"composed of any characters. The `*` character can also represent an absence "
+"of character."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1180
+msgid ""
+"```bash $ find /home -name \"test*\" /home/rockstar/test /home/rockstar/"
+"test1 /home/rockstar/test11 /home/rockstar/tests /home/rockstar/test362 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1182
+msgid ""
+"Meta-characters allow more complex searches by replacing all or part of a "
+"word. Simply replace the unknowns with these special characters."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1184
+msgid "The character `?` replaces a single character, whatever it is."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1190
+msgid ""
+"```bash $ find /home -name \"test?\" /home/rockstar/test1 /home/rockstar/"
+"tests ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1192
+msgid ""
+"The square brackets `[` are used to specify the values that a single "
+"character can take."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1199
+msgid ""
+"```bash $ find /home -name \"test[123]*\" /home/rockstar/test1 /home/"
+"rockstar/test11 /home/rockstar/test362 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1202
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    Always surround words containing meta-characters with `\"` to prevent them from being replaced by the names of files that meet the criteria.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1205
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    Do not confuse shell meta-characters with regular expression meta-characters. The `grep` command uses regular expression meta-characters.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1207
+msgid "## Redirects and pipes"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1209
+msgid "### Standard input and output"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1211
+msgid ""
+"On UNIX and Linux systems, there are three standard streams. They allow "
+"programs, via the `stdio.h` library, to input or output information."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1213
+msgid "These streams are called X channel or X file descriptor."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1217
+msgid ""
+"By default: * the keyboard is the input device for channel 0, called "
+"**stdin** ; * the screen is the output device for channels 1 and 2, called "
+"**stdout** and **stderr**."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1219
+msgid "![standards channels](images/input-output.png)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1221
+#, no-wrap
+msgid "**stderr** receives the error streams returned by a command. The other streams are directed to **stdout**.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1223
+msgid ""
+"These streams point to peripheral files, but since everything is a file in "
+"UNIX/Linux, I/O streams can easily be diverted to other files. This "
+"principle is the strength of the shell."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1225
+msgid "### Input redirection"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1227
+msgid ""
+"It is possible to redirect the input stream from another file with the "
+"character `<` or `<<`. The command will read the file instead of the "
+"keyboard:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1231
+msgid "```bash $ ftp -in serverftp << ftp-commands.txt ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1234
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    Only commands that require keyboard input will be able to handle input redirection.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1236
+msgid ""
+"Input redirection can also be used to simulate user interactivity. The "
+"command will read the input stream until it encounters the defined keyword "
+"after the input redirection."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1238
+msgid "This feature is used to script interactive commands:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1246
+msgid ""
+"```bash $ ftp -in serverftp << END user alice password put file bye END ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1248
+msgid "The keyword `END` can be replaced by any word."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1256
+msgid ""
+"```bash $ ftp -in serverftp << STOP user alice password put file bye STOP ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1258
+msgid ""
+"The shell exits the `ftp` command when it receives a line containing only "
+"the keyword."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1261
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    The ending keyword, here `END` or `STOP`, must be the only word on the line and must be at the beginning of the line.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1263
+msgid ""
+"The standard input redirection is rarely used because most commands accept a "
+"filename as an argument."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1265
+msgid "The command `wc` could be used like this:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1272
+msgid ""
+"```bash $ wc -l .bash_profile 27 .bash_profile # the number of lines is "
+"followed by the file name $ wc -l < .bash_profile 27 # returns only the "
+"number of lines ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1274
+msgid "### Output redirection"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1276
+msgid ""
+"Standard output can be redirected to other files using the `>` or `>>` "
+"characters."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1278
+msgid "The simple `>` redirection overwrites the contents of the output file:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1282
+msgid "```bash $ date +%F > date_file ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1284
+msgid ""
+"while the double redirection `>>` adds (concatenates) to the content of the "
+"output file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1288
+msgid "```bash $ date +%F >> date_file ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1290
+msgid ""
+"In both cases, the file is automatically created when it does not exist."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1292
+msgid ""
+"The standard error output can also be redirected to another file. This time "
+"it will be necessary to specify the channel number (which can be omitted for "
+"channels 0 and 1):"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1297
+msgid "```bash $ ls -R / 2> errors_file $ ls -R / 2>> errors_file ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1299
+msgid "### Examples of redirection"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1301
+msgid "Redirection of 2 outputs to 2 files :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1305
+msgid "```bash $ ls -R / >> ok_file 2>> nok_file ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1307
+msgid "Redirection of the 2 outputs to a single file:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1311
+msgid "```bash $ ls -R / >> log_file 2>&1 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1313
+msgid "Redirection of *stderr* to a \"bottomless pit\" (`/dev/null`) :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1317
+msgid "```bash $ ls -R / 2>> /dev/null ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1319
+msgid ""
+"When both output streams are redirected, no information is displayed on the "
+"screen. To use both the output redirection and to keep the display, you will "
+"have to use the command `tee`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1321
+msgid "### Pipes"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1323
+msgid ""
+"A **pipe** is a mechanism allowing you to link the standard output of a "
+"first command to the standard input of a second command."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1325
+msgid ""
+"This communication is uni directional and is done with the `|` symbol. The "
+"pipe symbol `|` is obtained by pressing the <kbd>SHIFT</kbd> + <kbd>|</kbd> "
+"simultaneously."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1327
+msgid "![pipe](images/pipe.png)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1329
+msgid ""
+"All data sent by the control on the left of the pipe through the standard "
+"output channel is sent to the standard input channel of the control on the "
+"right."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1331
+msgid "The commands particularly used after a pipe are filters."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1335
+msgid "Display only the beginning:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1339
+msgid "```bash $ ls -lia / | head ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1341
+msgid "Display only the end:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1345
+msgid "```bash $ ls -lia / | tail ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1347
+msgid "Sort the result:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1351
+msgid "```bash $ ls -lia / | sort ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1353
+msgid "Count the number of words / characters:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1357
+msgid "```bash $ ls -lia / | wc ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1359
+msgid "Search for a string in the result:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1363
+msgid "```bash $ ls -lia / | grep fichier ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1365
+msgid "## Special points"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1367
+msgid "### `tee` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1369
+msgid ""
+"The `tee` command is used to redirect the standard output of a command to a "
+"file while maintaining the screen display."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1371
+msgid ""
+"It is combined with the `|` pipe to receive as input the output of the "
+"command to be redirected:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1376
+msgid "```bash $ ls -lia / | tee fic $ cat fic ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1378
+msgid "The `-a` option adds to the file instead of overwriting it."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1380
+msgid "### `alias` and `unalias` commands"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1382
+msgid ""
+"Using **alias** is a way to ask the shell to remember a particular command "
+"with its options and give it a name."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1384
+#: docs/books/admin_guide/06-users.md:498
+#: docs/books/learning_ansible/02-advanced.md:69
+#: docs/books/learning_ansible/03-working-with-files.md:108
+msgid "For example:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1388
+msgid "```bash $ ll ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1390
+msgid "will replace the command :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1394
+msgid "```bash $ ls -l ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1396
+msgid ""
+"The `alias` command lists the aliases for the current session. Aliases are "
+"set by default on Linux distributions. Here, the aliases for a Rocky server :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1405
+msgid ""
+"```bash $ alias alias l.='ls -d .* --color=auto' alias ll='ls -l --"
+"color=auto' alias ls='ls --color=auto' alias vi='vim' alias which='alias | /"
+"usr/bin/which --tty-only --read-alias --show-dot --show-tilde' ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1407
+msgid ""
+"The aliases are only defined temporarily, for the time of the user session."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1409
+msgid "For permanent use, they must be created in the :"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:1412
+msgid "`.bashrc` file in the user's login directory;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/03-commands.md:1412
+msgid "`/etc/profile.d/alias.sh` file for all users."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1415
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    Special care must be taken when using aliases which can be potentially dangerous! For example, an alias set up without the administrator's knowledge :\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1419
+#, no-wrap
+msgid ""
+"    ```bash\n"
+"    alias cd='rm -Rf'\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1421
+msgid "The `unalias` command allows you to delete aliases."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1423
+msgid "To delete a single alias:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1427
+msgid "```bash $ unalias ll ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1429
+msgid "To delete all aliases:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1433
+msgid "```bash $ unalias -a ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1435
+msgid "To disable an alias temporarily, the combination is `\\<alias name>`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1437
+msgid "For example if we do:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1441
+msgid "```bash $ type ls ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1443
+msgid "it might return the following:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1447
+msgid "```bash ls is an alias to Â« ls -rt Â» ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1449
+msgid ""
+"Now that this is known, we can see the results of using the alias or "
+"disabling it one time with the `\\` by executing the following:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1456
+#, no-wrap
+msgid ""
+"```bash\n"
+"$ ls file*   # order by time\n"
+"file3.txt  file2.txt  file1.txt\n"
+"$ \\ls file*  # order by name\n"
+"file1.txt  file2.txt  file3.txt\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1458
+msgid "### Aliases and useful functions"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1462
+#, no-wrap
+msgid ""
+"* `grep` alias\n"
+"Colorize the result of the `grep` command:\n"
+"`alias grep='grep --color=auto'`\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1466
+#, no-wrap
+msgid ""
+"* `mcd` function\n"
+"It is common to create a folder and then move around in it:\n"
+"`mcd() { mkdir -p \"$1\"; cd \"$1\"; }`\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1470
+#, no-wrap
+msgid ""
+"* `cls` function\n"
+"Move to a folder and list its contents:\n"
+"`cls() { cd \"$1\"; ls; }`\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1474
+#, no-wrap
+msgid ""
+"* `backup` function\n"
+"Create a backup copy of a file:\n"
+"`backup() { cp \"$1\"{,.bak}; }`\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1477
+#, no-wrap
+msgid ""
+"* `extract` function\n"
+"Extract any type of archive:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1500
+#, no-wrap
+msgid ""
+"```bash\n"
+"extract () {\n"
+"  if [ -f $1 ] ; then\n"
+"    case $1 in\n"
+"      *.tar.bz2) tar xjf $1 ;;\n"
+"      *.tar.gz) tar xzf $1 ;;\n"
+"      *.bz2) bunzip2 $1 ;;\n"
+"      *.rar) unrar e $1 ;;\n"
+"      *.gz) gunzip $1 ;;\n"
+"      *.tar) tar xf $1 ;;\n"
+"      *.tbz2) tar xjf $1 ;;\n"
+"      *.tgz) tar xzf $1 ;;\n"
+"      *.zip) unzip $1 ;;\n"
+"      *.Z) uncompress $1 ;;\n"
+"      *.7z) 7z x $1 ;;\n"
+"      *)\n"
+"        echo \"'$1' cannot be extracted via extract()\" ;;\n"
+"    esac\n"
+"  else\n"
+"    echo \"'$1' is not a valid file\"\n"
+"  fi\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1502
+#: docs/books/admin_guide/03-commands.md:1522
+#: docs/books/learning_ansible/01-bases.md:142
+#: docs/books/learning_ansible/01-bases.md:412
+#: docs/books/learning_ansible/02-advanced.md:486
+#: docs/books/learning_ansible/02-advanced.md:538
+#: docs/books/learning_ansible/02-advanced.md:634
+#: docs/books/learning_ansible/04-ansible-galaxy.md:509
+#: docs/books/learning_ansible/05-deployments.md:207
+#: docs/books/learning_ansible/05-deployments.md:257
+msgid "```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1505
+#, no-wrap
+msgid ""
+"* If `alias cmount` returns the following:\n"
+"`alias cmount=\"mount | column -t\"`\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1507
+msgid ""
+"Then we can use cmount to show all of the system mounts in columns like this:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1509
+msgid "`[root]# cmount`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1511
+msgid "which would return our mounted filesystem in the following format:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1520
+#, no-wrap
+msgid ""
+"```bash\n"
+"/dev/simfs  on  /                                          type  simfs        (rw,relatime,usrquota,grpquota)\n"
+"proc        on  /proc                                      type  proc         (rw,relatime)\n"
+"sysfs       on  /sys                                       type  sysfs        (rw,relatime)\n"
+"none        on  /dev                                       type  devtmpfs     (rw,relatime,mode=755)\n"
+"none        on  /dev/pts                                   type  devpts       (rw,relatime,mode=600,ptmxmode=000)\n"
+"none        on  /dev/shm                                   type  tmpfs        (rw,relatime)\n"
+"none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (rw,relatime)\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1524
+msgid "### The character `;`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1526
+msgid "The `;` character strings the commands."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1528
+msgid ""
+"The commands will all run sequentially in the order of input once the user "
+"presses <kbd>ENTER</kdb>."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1532
+msgid "```bash $ ls /; cd /home; ls -lia; cd / ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1536
+msgid ":heavy_check_mark: What defines a user under Linux? (7 answers)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1538
+msgid ":heavy_check_mark: What characterizes a long option for an order?"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1540
+msgid ""
+":heavy_check_mark: Which commands allow you to search for help on a command:"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/03-commands.md:1546
+msgid "[ ] `google`"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/03-commands.md:1546
+msgid "[ ] `chuck --norris`"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/03-commands.md:1546
+msgid "[ ] `info`"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/03-commands.md:1546
+msgid "[ ] `apropos`"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/03-commands.md:1546
+msgid "[ ] `whatis`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1548
+msgid ":heavy_check_mark: Which command allows you to view a user's history?"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1550
+msgid ""
+":heavy_check_mark: Which command allows you to search for text in a file?"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/03-commands.md:1553
+#: docs/books/admin_guide/03-commands.md:1558
+msgid "[ ] `find`"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/03-commands.md:1553
+#: docs/books/admin_guide/03-commands.md:1558
+msgid "[ ] `grep`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1555
+msgid ":heavy_check_mark: Which command allows you to search for a file?"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:1560
+msgid ""
+":heavy_check_mark: Which command redirects the error stream of a command to "
+"a new `errors.log` file:"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/03-commands.md:1563
+msgid "[ ] `ls -R / 2> errors.log`"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/03-commands.md:1563
+msgid "[ ] `ls -R / 2>> errors.log`"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/03-commands.md:1563
+msgid "[ ] `ls -R / 2> errors.log 2>&1`"
+msgstr ""

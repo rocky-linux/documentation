@@ -1,0 +1,957 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:6
+#: docs/books/admin_guide/01-presentation.md:23
+#: docs/books/admin_guide/03-commands.md:6
+#: docs/books/admin_guide/03-commands.md:21
+#: docs/books/admin_guide/04-advanced-commands.md:6
+#: docs/books/admin_guide/04-advanced-commands.md:20
+#: docs/books/admin_guide/05-vi.md:6 docs/books/admin_guide/05-vi.md:20
+#: docs/books/admin_guide/07-file-systems.md:6
+#: docs/books/admin_guide/07-file-systems.md:26
+#: docs/books/admin_guide/08-process.md:6
+#: docs/books/admin_guide/08-process.md:21
+#: docs/books/admin_guide/09-backups.md:6
+#: docs/books/admin_guide/09-backups.md:21 docs/books/admin_guide/11-tasks.md:6
+#: docs/books/admin_guide/11-tasks.md:21 docs/books/admin_guide/12-network.md:6
+#: docs/books/admin_guide/12-network.md:23
+#: docs/books/learning_ansible/01-bases.md:6
+#: docs/books/learning_ansible/01-bases.md:21
+#: docs/books/learning_ansible/02-advanced.md:6
+#: docs/books/learning_ansible/02-advanced.md:22
+#: docs/books/learning_ansible/03-working-with-files.md:6
+#: docs/books/learning_ansible/03-working-with-files.md:21
+#: docs/books/learning_ansible/04-ansible-galaxy.md:6
+#: docs/books/learning_ansible/04-ansible-galaxy.md:20
+#: docs/books/learning_ansible/05-deployments.md:6
+#: docs/books/learning_ansible/05-deployments.md:23
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:6
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
+#, no-wrap
+msgid "****\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:8 docs/books/admin_guide/05-vi.md:8
+#: docs/books/admin_guide/07-file-systems.md:8
+#: docs/books/admin_guide/08-process.md:8
+#: docs/books/admin_guide/09-backups.md:8 docs/books/admin_guide/11-tasks.md:8
+#, no-wrap
+msgid "**Objectives** : In this chapter, future Linux administrators will learn how to:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:23
+#: docs/books/admin_guide/08-process.md:23
+#: docs/books/admin_guide/09-backups.md:40
+#: docs/books/admin_guide/11-tasks.md:23
+#: docs/books/admin_guide/12-network.md:25
+#: docs/books/admin_guide/13-softwares.md:4
+msgid "## Generalities"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:208
+#: docs/books/admin_guide/03-commands.md:301
+#: docs/books/admin_guide/03-commands.md:690
+#: docs/books/admin_guide/03-commands.md:1333
+#: docs/books/admin_guide/04-advanced-commands.md:288
+#: docs/books/admin_guide/04-advanced-commands.md:329
+#: docs/books/admin_guide/06-users.md:339
+#: docs/books/admin_guide/06-users.md:514
+#: docs/books/admin_guide/06-users.md:733
+#: docs/books/admin_guide/08-process.md:368
+#: docs/books/admin_guide/09-backups.md:350
+#: docs/books/admin_guide/09-backups.md:690
+#: docs/books/admin_guide/10-boot.md:200 docs/books/admin_guide/11-tasks.md:205
+#: docs/books/admin_guide/12-network.md:523
+#: docs/books/learning_ansible/01-bases.md:242
+msgid "Examples:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/04-advanced-commands.md:18
+#: docs/books/admin_guide/05-vi.md:18
+#: docs/books/admin_guide/07-file-systems.md:24
+#: docs/books/admin_guide/08-process.md:19
+#: docs/books/learning_ansible/03-working-with-files.md:19
+#, no-wrap
+msgid "**Reading time**: 20 minutes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:2
+msgid "# Process management"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:4
+msgid "In this chapter you will learn how to work with processes."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:12
+#, no-wrap
+msgid ""
+":heavy_check_mark: Recognize the `PID` and `PPID` of a process;   \n"
+":heavy_check_mark: View and search for processes;   \n"
+":heavy_check_mark: Manage processes.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:14
+msgid ":checkered_flag: **process**, **linux**"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:17
+#, no-wrap
+msgid ""
+"**Knowledge**: :star: :star:   \n"
+"**Complexity**: :star:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:25
+msgid ""
+"An operating system consists of processes. These processes are executed in a "
+"specific order and are related to each other. There are two categories of "
+"processes, those focused on the user environment and those focused on the "
+"hardware environment."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:27
+msgid ""
+"When a program runs, the system will create a process by placing the program "
+"data and code in memory and creating a **runtime stack**. A process is "
+"therefore an instance of a program with an associated processor environment "
+"(ordinal counter, registers, etc...) and memory environment."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:29
+msgid "Each process has:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:32
+msgid "a _PID_ : _**P**rocess **ID**entifier_, a unique process identifier;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:32
+msgid ""
+"a _PPID_ : _**P**arent **P**rocess **ID**entifier_, unique identifier of "
+"parent process."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:34
+msgid ""
+"By successive filiations, the `init` process is the father of all processes."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:37
+msgid "A process is always created by a parent process;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:37
+msgid "A parent process can have multiple child processes."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:39
+msgid ""
+"There is a parent/child relationship between processes. A child process is "
+"the result of the parent process calling the _fork()_ primitive and "
+"duplicating its own code to create a child. The _PID_ of the child is "
+"returned to the parent process so that it can talk to it. Each child has its "
+"parent's identifier, the _PPID_."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:41
+msgid ""
+"The _PID_ number represents the process at the time of execution. When the "
+"process finishes, the number is available again for another process. Running "
+"the same command several times will produce a different _PID_ each time."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:43
+msgid ""
+"<!-- TODO ![Parent/child relationship between processes](images/FON-050-001."
+"png) -->"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:46
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    Processes are not to be confused with _threads_. Each process has its own memory context (resources and address space), while _threads_ from the same process share this same context.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:48
+msgid "## Viewing processes"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:53
+msgid ""
+"The `ps` command displays the status of running processes.  ``` ps [-e] [-f] "
+"[-u login] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:58
+msgid "Example: ``` # ps -fu root ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:64
+#, no-wrap
+msgid ""
+"|  Option    |  Description                     |\n"
+"|------------|----------------------------------|\n"
+"| `-e`       | Displays all processes.          |\n"
+"| `-f`       | Displays additional information. |\n"
+"| `-u` login | Displays the user's processes.   |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:66
+msgid "Some additional options:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:77
+#, no-wrap
+msgid ""
+"|  Option               |  Description                                      |\n"
+"|-----------------------|---------------------------------------------------|\n"
+"| `-g`                  | Displays the processes in the group.              |\n"
+"| `-t tty`              | Displays the processes running from the terminal. |\n"
+"| `-p PID`              | Displays the process information.                 |\n"
+"| `-H`                  | Displays the information in a tree structure.     |\n"
+"| `-I`                  | Displays additional information.                  |\n"
+"| `--sort COL`          | Sort the result according to a column.            |\n"
+"| `--headers`           | Displays the header on each page of the terminal. |\n"
+"| `--format \"%a %b %c\"` | Customize the output display format.              |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:79
+msgid ""
+"Without an option specified, the `ps` command only displays processes "
+"running from the current terminal."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:81
+msgid "The result is displayed in columns:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:87
+#, no-wrap
+msgid ""
+"```\n"
+"# ps -ef\n"
+"UID  PID PPID C STIME  TTY TIME      CMD\n"
+"root 1   0    0 Jan01  ?   00:00/03  /sbin/init\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:98
+#, no-wrap
+msgid ""
+"| Column  |  Description                |\n"
+"|----------|-----------------------------|\n"
+"| `UID`    | Owner user.                 |\n"
+"| `PID`    | Process identifier.         |\n"
+"| `PPID`   | Parent process identifier.  |\n"
+"| `C`      | Priority of the process.    |\n"
+"| `STIME`  | Date and time of execution. |\n"
+"| `TTY`    | Execution terminal.         |\n"
+"| `TIME`   | Processing duration.        |\n"
+"| `CMD`    | Command executed.           |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:100
+msgid "The behaviour of the control can be fully customized:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:113
+#, no-wrap
+msgid ""
+"```\n"
+"# ps -e --format \"%P %p %c %n\" --sort ppid --headers\n"
+" PPID   PID COMMAND          NI\n"
+"    0     1 systemd           0\n"
+"    0     2 kthreadd          0\n"
+"    1   516 systemd-journal   0\n"
+"    1   538 systemd-udevd     0\n"
+"    1   598 lvmetad           0\n"
+"    1   643 auditd           -4\n"
+"    1   668 rtkit-daemon      1\n"
+"    1   670 sssd              0\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:115
+msgid "## Types of processes"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:117
+msgid "The user process:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:120
+msgid "is started from a terminal associated with a user;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:120
+msgid "accesses resources via requests or daemons."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:122
+msgid "The system process (_demon_):"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:127
+msgid "is started by the system;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:127
+msgid ""
+"is not associated with any terminal, and is owned by a system user (often "
+"`root`);"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:127
+msgid "is loaded at boot time, resides in memory, and is waiting for a call;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:127
+msgid ""
+"is usually identified by the letter `d` associated with the process name."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:129
+msgid ""
+"System processes are therefore called daemons (_**D**isk **A**nd "
+"**E**xecution **MON**itor_)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:131
+msgid "## Permissions and rights"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:133
+msgid ""
+"When a command is executed, the user's credentials are passed to the created "
+"process."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:135
+msgid ""
+"By default, the actual `UID` and `GID` (of the process) are therefore "
+"identical to the **actual** `UID` and `GID` (the `UID` and `GID` of the user "
+"who executed the command)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:137
+msgid ""
+"When a `SUID` (and/or `SGID`) is set on a command, the actual `UID` (and/or "
+"`GID`) becomes that of the owner (and/or owner group) of the command and no "
+"longer that of the user or user group that issued the command. Effective and "
+"real **UIDs** are therefore **different**."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:139
+msgid ""
+"Each time a file is accessed, the system checks the rights of the process "
+"according to its effective identifiers."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:141
+msgid "## Process management"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:143
+msgid ""
+"A process cannot be run indefinitely, as this would be to the detriment of "
+"other running processes and would prevent multitasking."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:145
+msgid ""
+"The total processing time available is therefore divided into small ranges, "
+"and each process (with a priority) accesses the processor in a sequenced "
+"manner. The process will take several states during its life among the "
+"states:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:152
+msgid "ready: waiting for the availability of the process;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:152
+msgid "in execution: accesses the processor;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:152
+msgid "suspended: waiting for an I/O (input/output);"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:152
+msgid "stopped: waiting for a signal from another process;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:152
+msgid "zombie: request for destruction;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:152
+msgid "dead: the father of the process kills his son."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:154
+msgid "The end of process sequencing is as follows:"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: docs/books/admin_guide/08-process.md:158
+msgid "Closing of the open files;"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: docs/books/admin_guide/08-process.md:158
+msgid "Release of the used memory;"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: docs/books/admin_guide/08-process.md:158
+msgid "Sending a signal to the parent and child processes."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:160
+msgid ""
+"When a parent process dies, its children are said to be orphans. They are "
+"then adopted by the `init` process which will destroy them."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:162
+msgid "### The priority of a process"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:164
+msgid ""
+"The processor works in time sharing with each process occupying a quantity "
+"of processor time."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:166
+msgid ""
+"The processes are classified by priority whose value varies from **-20** "
+"(the highest priority) to **+19** (the lowest priority)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:168
+msgid "The default priority of a process is **0**."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:170
+msgid "### Modes of operation"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:172
+msgid "Processes can run in two ways:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:175
+msgid ""
+"**synchronous**: the user loses access to the shell during command "
+"execution. The command prompt reappears at the end of the process execution."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:175
+msgid ""
+"**asynchronous**: the process is processed in the background. The command "
+"prompt is displayed again immediately."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:177
+msgid "The constraints of the asynchronous mode:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:181
+msgid "the command or script must not wait for keyboard input;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:181
+msgid "the command or script must not return any result on the screen;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:181
+msgid "quitting the shell ends the process."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:183
+msgid "## Process management controls"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:185
+msgid "### `kill` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:187
+msgid "The `kill` command sends a stop signal to a process."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:191
+msgid "``` kill [-signal] PID ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:196
+msgid "Example: ``` $ kill -9 1664 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:204
+#, no-wrap
+msgid ""
+"| Code | Signal    | Description                                            |\n"
+"|------|-----------|--------------------------------------------------------|\n"
+"| `2`  | _SIGINT_  | Immediate termination of the process                   |\n"
+"| `9`  | _SIGKILL_ | Interrupt the process (<kbd>CTRL</kdb> + <kdb>D</kdb>) |\n"
+"| `15` | _SIGTERM_ | Clean termination of the process                       |\n"
+"| `18` | _SIGCONT_ | Resume the process                                     |\n"
+"| `19` | _SIGSTOP_ | Suspend the process                                    |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:206
+msgid ""
+"Signals are the means of communication between processes. The `kill` command "
+"sends a signal to a process."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:212
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    The complete list of signals taken into account by the `kill` command is available by typing the command :\n"
+"```\n"
+"$ man 7 signal\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:214
+msgid "### `nohup` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:216
+msgid ""
+"`nohup` allows the launching of a process independently of a connection."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:220
+msgid "``` nohup command ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:225
+msgid "Example: ``` $ nohup myprogram.sh 0</dev/null & ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:227
+msgid "`nohup` ignores the `SIGHUP` signal sent when a user logs out."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:230
+#, no-wrap
+msgid ""
+"!!! Note \"Question\"\n"
+"    `nohup` handles standard output and error, but not standard input, hence the redirection of this input to `/dev/null`.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:232
+msgid "### [CTRL] + [Z]"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:234
+msgid ""
+"By pressing the <kbd>CTRL</kbd> + <kbd>Z</kbd> keys simultaneously, the "
+"synchronous process is temporarily suspended. Access to the prompt is "
+"restored after displaying the number of the process that has just been "
+"suspended."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:236
+msgid "### `&` instruction"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:238
+msgid ""
+"The `&` statement executes the command asynchronously (the command is then "
+"called _job_) and displays the number of _job_. Access to the prompt is then "
+"returned."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:245
+msgid "Example: ``` $ time ls -lR / > list.ls 2> /dev/null & [1] 15430 $ ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:247
+msgid ""
+"The _job_ number is obtained during background processing and is displayed "
+"in square brackets, followed by the `PID` number."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:249
+msgid "### `fg` and `bg` commands"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:251
+msgid "The `fg` command puts the process in the foreground:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:257
+msgid ""
+"``` $ time ls -lR / > list.ls 2>/dev/null & $ fg 1 time ls -lR / > list.ls 2/"
+"dev/null ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:259
+msgid "while the command `bg` places it in the background:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:268
+msgid "``` [CTRL]+[Z] ^Z [1]+ Stopped $ bg 1 [1] 15430 $ ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:270
+msgid ""
+"Whether it was put in the background when it was created with the `&` "
+"argument or later with the <kbd>CTRL</kbd> +<kbd>Z</kbd> keys, a process can "
+"be brought back to the foreground with the `fg` command and its job number."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:272
+msgid "### `jobs` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:274
+msgid ""
+"The `jobs` command displays the list of processes running in the background "
+"and specifies their job number."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:281
+#, no-wrap
+msgid ""
+"Example:\n"
+"```\n"
+"$ jobs\n"
+"[1]- Running    sleep 1000\n"
+"[2]+ Running    find / > arbo.txt\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:283
+msgid "The columns represent:"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: docs/books/admin_guide/08-process.md:290
+msgid "job number;"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: docs/books/admin_guide/08-process.md:290
+msgid "the order in which the processes run"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/08-process.md:290
+msgid ""
+"a `+` : this process is the next process to run by default with `fg` or "
+"`bg` ;"
+msgstr ""
+
+#. type: Bullet: '- '
+#: docs/books/admin_guide/08-process.md:290
+msgid "a `-` : this process is the next process to take the `+` ;"
+msgstr ""
+
+#. type: Bullet: '3.  '
+#: docs/books/admin_guide/08-process.md:290
+msgid "_Running_ (running process) or _Stopped_ (suspended process)."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: docs/books/admin_guide/08-process.md:290
+msgid "the command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:292
+msgid "### `nice` and `renice` commands"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:294
+msgid ""
+"The command `nice` allows the execution of a command by specifying its "
+"priority."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:298
+msgid "``` nice priority command ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:303
+msgid "Example: ``` $ nice -n+15 find / -name \"file\" ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:305
+msgid ""
+"Unlike `root`, a standard user can only reduce the priority of a process. "
+"Only values between +0 and +19 will be accepted."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:308
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    This last limitation can be lifted on a per-user or per-group basis by modifying the `/etc/security/limits.conf` file.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:310
+msgid ""
+"The `renice` command allows you to change the priority of a running process."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:314
+msgid "``` renice priority [-g GID] [-p PID] [-u UID] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:324
+#, no-wrap
+msgid ""
+"Example:\n"
+"```\n"
+"$ renice +15 -p 1664\n"
+"```\n"
+"| Option | Description                       |\n"
+"|--------|-----------------------------------|\n"
+"| `-g`   | `GID` of the process owner group. |\n"
+"| `-p`   | `PID` of the process.             |\n"
+"| `-u`   | `UID` of the process owner.       |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:326
+msgid ""
+"The `renice` command acts on processes already running. It is therefore "
+"possible to change the priority of a specific process, but also of several "
+"processes belonging to a user or a group."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:332
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    The `pidof` command, coupled with the `xargs` command (see the Advanced Commands course), allows a new priority to be applied in a single command:\n"
+"```\n"
+"$ pidof sleep | xargs renice 20\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:334
+msgid "### `top` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:336
+msgid ""
+"The `top` command displays the processes and their resource consumption."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:342
+#, no-wrap
+msgid ""
+"```\n"
+"$ top\n"
+"PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND\n"
+"2514 root 20 0       15    5.5 0:01.14   top\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:353
+#, no-wrap
+msgid ""
+"| Column   | Description           |\n"
+"|-----------|-----------------------|\n"
+"| `PID`     | Process identifier.   |\n"
+"| `USER`    | Owner user.           |\n"
+"| `PR`      | Process priority.     |\n"
+"| `NI`      | Nice value.           |\n"
+"| `%CPU`    | Processor load.       |\n"
+"| `%MEM`    | Memory load.          |\n"
+"| `TIME+`   | Processor usage time. |\n"
+"| `COMMAND` | Command executed.     |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:355
+msgid ""
+"The `top` command allows control of the processes in real time and in "
+"interactive mode."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:357
+msgid "### `pgrep` and `pkill` commands"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:359
+msgid ""
+"The `pgrep` command searches the running processes for a process name and "
+"displays the _PID_ matching the selection criteria on the standard output."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:361
+msgid ""
+"The `pkill` command will send the specified signal (by default _SIGTERM_) to "
+"each process."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:366
+msgid "``` pgrep process pkill [-signal] process ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:370
+msgid "Get the process number from `sshd`:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:374
+msgid "``` $ pgrep -u root sshd ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/08-process.md:376
+msgid "Kill all `tomcat` processes:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/08-process.md:379
+msgid "``` $ pkill tomcat ```"
+msgstr ""

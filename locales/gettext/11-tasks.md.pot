@@ -1,0 +1,723 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:6
+#: docs/books/admin_guide/01-presentation.md:23
+#: docs/books/admin_guide/03-commands.md:6
+#: docs/books/admin_guide/03-commands.md:21
+#: docs/books/admin_guide/04-advanced-commands.md:6
+#: docs/books/admin_guide/04-advanced-commands.md:20
+#: docs/books/admin_guide/05-vi.md:6 docs/books/admin_guide/05-vi.md:20
+#: docs/books/admin_guide/07-file-systems.md:6
+#: docs/books/admin_guide/07-file-systems.md:26
+#: docs/books/admin_guide/08-process.md:6
+#: docs/books/admin_guide/08-process.md:21
+#: docs/books/admin_guide/09-backups.md:6
+#: docs/books/admin_guide/09-backups.md:21 docs/books/admin_guide/11-tasks.md:6
+#: docs/books/admin_guide/11-tasks.md:21 docs/books/admin_guide/12-network.md:6
+#: docs/books/admin_guide/12-network.md:23
+#: docs/books/learning_ansible/01-bases.md:6
+#: docs/books/learning_ansible/01-bases.md:21
+#: docs/books/learning_ansible/02-advanced.md:6
+#: docs/books/learning_ansible/02-advanced.md:22
+#: docs/books/learning_ansible/03-working-with-files.md:6
+#: docs/books/learning_ansible/03-working-with-files.md:21
+#: docs/books/learning_ansible/04-ansible-galaxy.md:6
+#: docs/books/learning_ansible/04-ansible-galaxy.md:20
+#: docs/books/learning_ansible/05-deployments.md:6
+#: docs/books/learning_ansible/05-deployments.md:23
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:6
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
+#, no-wrap
+msgid "****\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:8 docs/books/admin_guide/05-vi.md:8
+#: docs/books/admin_guide/07-file-systems.md:8
+#: docs/books/admin_guide/08-process.md:8
+#: docs/books/admin_guide/09-backups.md:8 docs/books/admin_guide/11-tasks.md:8
+#, no-wrap
+msgid "**Objectives** : In this chapter, future Linux administrators will learn how to:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:23
+#: docs/books/admin_guide/08-process.md:23
+#: docs/books/admin_guide/09-backups.md:40
+#: docs/books/admin_guide/11-tasks.md:23
+#: docs/books/admin_guide/12-network.md:25
+#: docs/books/admin_guide/13-softwares.md:4
+msgid "## Generalities"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:120
+#: docs/books/admin_guide/03-commands.md:156
+#: docs/books/admin_guide/03-commands.md:451
+#: docs/books/admin_guide/03-commands.md:595
+#: docs/books/admin_guide/03-commands.md:634
+#: docs/books/admin_guide/03-commands.md:748
+#: docs/books/admin_guide/03-commands.md:795
+#: docs/books/admin_guide/03-commands.md:811
+#: docs/books/admin_guide/03-commands.md:931
+#: docs/books/admin_guide/03-commands.md:954
+#: docs/books/admin_guide/03-commands.md:1118
+#: docs/books/admin_guide/03-commands.md:1139
+#: docs/books/admin_guide/05-vi.md:40 docs/books/admin_guide/05-vi.md:385
+#: docs/books/admin_guide/05-vi.md:393 docs/books/admin_guide/05-vi.md:399
+#: docs/books/admin_guide/05-vi.md:405 docs/books/admin_guide/05-vi.md:411
+#: docs/books/admin_guide/06-users.md:58 docs/books/admin_guide/06-users.md:95
+#: docs/books/admin_guide/06-users.md:123
+#: docs/books/admin_guide/06-users.md:212
+#: docs/books/admin_guide/06-users.md:247
+#: docs/books/admin_guide/06-users.md:271
+#: docs/books/admin_guide/06-users.md:294
+#: docs/books/admin_guide/06-users.md:327
+#: docs/books/admin_guide/06-users.md:593
+#: docs/books/admin_guide/07-file-systems.md:97
+#: docs/books/admin_guide/07-file-systems.md:183
+#: docs/books/admin_guide/07-file-systems.md:209
+#: docs/books/admin_guide/07-file-systems.md:225
+#: docs/books/admin_guide/07-file-systems.md:247
+#: docs/books/admin_guide/07-file-systems.md:261
+#: docs/books/admin_guide/07-file-systems.md:275
+#: docs/books/admin_guide/07-file-systems.md:313
+#: docs/books/admin_guide/07-file-systems.md:409
+#: docs/books/admin_guide/07-file-systems.md:510
+#: docs/books/admin_guide/07-file-systems.md:536
+#: docs/books/admin_guide/07-file-systems.md:843
+#: docs/books/admin_guide/07-file-systems.md:976
+#: docs/books/admin_guide/09-backups.md:215
+#: docs/books/admin_guide/09-backups.md:239
+#: docs/books/admin_guide/09-backups.md:541
+#: docs/books/admin_guide/09-backups.md:603
+#: docs/books/admin_guide/09-backups.md:648
+#: docs/books/admin_guide/09-backups.md:671
+#: docs/books/admin_guide/09-backups.md:753
+#: docs/books/admin_guide/09-backups.md:775
+#: docs/books/admin_guide/09-backups.md:797
+#: docs/books/admin_guide/09-backups.md:823
+#: docs/books/admin_guide/10-boot.md:315 docs/books/admin_guide/11-tasks.md:132
+#: docs/books/admin_guide/12-network.md:43
+#: docs/books/admin_guide/12-network.md:468
+#: docs/books/admin_guide/12-network.md:548
+#: docs/books/admin_guide/12-network.md:569
+#: docs/books/admin_guide/12-network.md:609
+#: docs/books/admin_guide/12-network.md:633
+#: docs/books/admin_guide/12-network.md:650
+#: docs/books/admin_guide/12-network.md:677
+#: docs/books/admin_guide/12-network.md:690
+#: docs/books/admin_guide/12-network.md:703
+#: docs/books/admin_guide/13-softwares.md:36
+#: docs/books/admin_guide/13-softwares.md:55
+#: docs/books/admin_guide/13-softwares.md:67
+#: docs/books/admin_guide/13-softwares.md:138
+#: docs/books/admin_guide/13-softwares.md:177
+#: docs/books/admin_guide/13-softwares.md:185
+msgid "Example:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:208
+#: docs/books/admin_guide/03-commands.md:301
+#: docs/books/admin_guide/03-commands.md:690
+#: docs/books/admin_guide/03-commands.md:1333
+#: docs/books/admin_guide/04-advanced-commands.md:288
+#: docs/books/admin_guide/04-advanced-commands.md:329
+#: docs/books/admin_guide/06-users.md:339
+#: docs/books/admin_guide/06-users.md:514
+#: docs/books/admin_guide/06-users.md:733
+#: docs/books/admin_guide/08-process.md:368
+#: docs/books/admin_guide/09-backups.md:350
+#: docs/books/admin_guide/09-backups.md:690
+#: docs/books/admin_guide/10-boot.md:200 docs/books/admin_guide/11-tasks.md:205
+#: docs/books/admin_guide/12-network.md:523
+#: docs/books/learning_ansible/01-bases.md:242
+msgid "Examples:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:2
+msgid "# Task management"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:4
+msgid "In this chapter you will learn how to manage scheduled tasks."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:12
+#, no-wrap
+msgid ""
+":heavy_check_mark: Linux deals with the tasks scheduling;   \n"
+":heavy_check_mark: restrict the use of **`cron`** to certain users;   \n"
+":heavy_check_mark: schedule tasks.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:14
+msgid ":checkered_flag: **crontab**, **crond**, **scheduling**, **linux**"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:17
+#: docs/books/admin_guide/12-network.md:19
+#, no-wrap
+msgid ""
+"**Knowledge**: :star: :star:  \n"
+"**Complexity**: :star: :star:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:19
+#, no-wrap
+msgid "**Reading time**: 15 minutes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:25
+msgid ""
+"The scheduling of tasks is managed with the `cron` utility. It allows the "
+"periodic execution of tasks."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:27
+msgid ""
+"It is reserved to the administrator for system tasks but can be used by "
+"normal users for tasks or scripts that they have access to. To access the "
+"`cron` utility, we use: `crontab`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:29
+msgid "The `cron` service is used for:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:34
+msgid "Repetitive administration operations;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:34
+msgid "Backups;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:34
+msgid "Monitoring of system activity;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:34
+msgid "Program execution."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:36
+msgid ""
+"`crontab` is short for **cron table**, but can be thought of as a task "
+"scheduling table."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:39
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    To set up a schedule, the system must have the correct time set.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:41
+msgid "## How the service works"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:43
+msgid "The `cron` service is run by a `crond` daemon present in memory."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:45
+msgid "To check its status:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:49
+msgid "``` [root] # systemctl status crond ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:52
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    If the `crond` daemon is not running, you will have to initialize it manually and/or automatically at startup. Indeed, even if tasks are scheduled, they will not be launched.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:54
+msgid "Initialization of the `crond` daemon in manual:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:58
+msgid "``` [root]# systemctl {status|start|restart|stop} crond ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:60
+msgid "Initialization of the `crond` daemon at startup:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:64
+msgid "``` [root]# systemctl enable crond ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:66
+msgid "## Security"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:68
+msgid ""
+"In order to implement a schedule, a user must have permission to use the "
+"`cron` service."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:70
+msgid ""
+"This permission varies according to the information contained in the files "
+"below:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:73
+msgid "`/etc/cron.allow`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:73
+msgid "`/etc/cron.deny`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:76
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    If neither file is present, all users can use `cron`.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:78
+msgid "### The `cron.allow` and `cron.deny` Files"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:80
+msgid "File `/etc/cron.allow`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:82
+msgid "Only users contained in this file are allowed to use `cron`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:84
+msgid "If it exists and is empty, no users can use `cron`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:87
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    If `cron.allow` is present, `cron.deny` is **ignored**.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:89
+msgid "File `/etc/cron.deny`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:91
+msgid "Users in this file are not allowed to use `cron`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:93
+msgid "If it is empty, all users can use `cron`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:95
+msgid ""
+"By default, `/etc/cron.deny` exists and is empty and `/etc/cron.allow` does "
+"not exist."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:97
+msgid "### Allowing a user"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:99
+msgid "Only **user1** will be able to use `cron`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:104
+msgid "``` [root]# vi /etc/cron.allow user1 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:107
+msgid "### Prohibit a user Only **user2** will not be able to use `cron`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:112
+msgid "``` [root]# vi /etc/cron.deny user2 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:114
+msgid "`cron.allow` must not be present."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:116
+msgid "## Scheduling tasks"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:118
+msgid ""
+"When a user schedules a task, a file with his name is created under `/var/"
+"spool/cron/`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:120
+msgid ""
+"This file contains all the information the `crond` needs to know regarding "
+"all tasks created by this user, the commands or programs to run, and when to "
+"run them (hour, minute, day ...)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:122
+msgid "![Cron tree](images/tasks-001.png)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:124
+msgid "### The `crontab` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:126
+msgid "The `crontab` command is used to manage the schedule file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:130
+msgid "``` crontab [-u user] [-e | -l | -r] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:136
+msgid "``` [root]# crontab -u user1 -e ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:143
+#, no-wrap
+msgid ""
+"| Option |\tDescription                                              |\n"
+"|--------|-----------------------------------------------------------|\n"
+"| `-e`   | Edit the schedule file with vi                            |\n"
+"| `-l`   | Displays the contents of the schedule file                |\n"
+"| `-u`   | Name of the user whose schedule file is to be manipulated |\n"
+"| `-r`   | Delete the schedule file                                  |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:146
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    `crontab` without option deletes the old schedule file and waits for the user to enter new lines. You have to press <kbd>ctrl</kbd> + <kbd>d</kbd> to exit this editing mode.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:148
+#, no-wrap
+msgid "    Only `root` can use the `-u user` option to manage another user's schedule file.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:150
+#, no-wrap
+msgid "    The example above allows root to schedule a task for user1.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:152
+msgid "### Uses of `crontab`"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:154
+msgid "The uses of `crontab` are many and include:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:157
+msgid "Modifications to the `crontab` files taken into account immediately;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:157
+msgid "No need to restart."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:159
+msgid "On the other hand, the following points must be taken into account:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:163
+msgid "The program must be autonomous;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:163
+msgid "Provide redirections (stdin, stdout, stderr);"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:163
+msgid ""
+"It is not relevant to run commands that use input/output requests on a "
+"terminal."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:166
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    It is important to understand that the purpose of scheduling is to perform tasks automatically, without the need for external intervention.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:168
+msgid "## The `crontab` file"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:170
+msgid "The `crontab` file is structured according to the following rules."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:176
+msgid "Each line of this file corresponds to a schedule;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:176
+msgid "Each line has six fields, 5 for the time and 1 for the order;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:176
+msgid "Each field is separated by a space or a tab;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:176
+msgid "Each line ends with a carriage return;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/11-tasks.md:176
+msgid "A `#` at the beginning of the line comments it."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:182
+#, no-wrap
+msgid ""
+"```\n"
+"[root]# crontab âe\n"
+"10 4 1 * * /root/scripts/backup.sh\n"
+"1  2 3 4 5       6\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:191
+#, no-wrap
+msgid ""
+"| Field | Description         | Detail                   |\n"
+"|-------|---------------------|--------------------------|\n"
+"| 1     | Minute(s)           | From 0 to 59             |\n"
+"| 2     | Hour(s)             | From 0 to 23             |\n"
+"| 3     | Day(s) of the month | From 1 to 31             |\n"
+"| 4     | Month of the year   | From 1 to 12             |\n"
+"| 5     | Day(s) of the week  | From 0 to 7 (0=7=sunday) |\n"
+"| 6     | Task to execute     | Full command or script   |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:194
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    The tasks to be executed must use absolute paths and if possible use redirects.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:196
+msgid ""
+"In order to simplify the notation for the definition of time, it is "
+"advisable to use special symbols."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:203
+#, no-wrap
+msgid ""
+"| Wildcards | Description                      |\n"
+"|---------------|----------------------------------|\n"
+"| `*`           | All possible values of the field |\n"
+"| `-`           | Indicates a range of values      |\n"
+"| `,`           | Indicates a list of values       |\n"
+"| `/`           | Defines a step                   |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:207
+msgid "Script executed on April 15 at 10:25 am:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:211
+msgid "``` 25 10 15 04 * /root/scripts/script > /log/â¦ ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:213
+msgid "Run at 11am and then at 4pm every day:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:217
+msgid "``` 00 11,16 * * * /root/scripts/script > /log/â¦ ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:219
+msgid "Run every hour from 11am to 4pm every day:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:223
+msgid "``` 00 11-16 * * * /root/scripts/script > /log/â¦ ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:225
+msgid "Run every 10 minutes during working hours:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:229
+msgid "``` */10 8-17 * * 1-5 /root/scripts/script > /log/â¦ ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:231
+msgid "For the root user, `crontab` also has some special time settings:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:240
+#, no-wrap
+msgid ""
+"| Setting  | Description                   |\n"
+"|----------|-------------------------------|\n"
+"| @reboot  | Run command on system reboot  |\n"
+"| @hourly  | Run command every hour        |\n"
+"| @daily   | Runs daily just after midnight|\n"
+"| @weekly  | Runs command every Sunday just after midnight    |\n"
+"| @monthly | Runs command on the first day of the month just after midnight |\n"
+"| @annually| Runs January 1st just after midnight |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:242
+msgid "### Task execution process"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:244
+msgid "A user, rockstar, wants to edit his `crontab` file:"
+msgstr ""
+
+#. type: Bullet: '1) '
+#: docs/books/admin_guide/11-tasks.md:246
+msgid ""
+"`crond` checks to see if he is allowed (`/etc/cron.allow` and `/etc/cron."
+"deny`)."
+msgstr ""
+
+#. type: Bullet: '2) '
+#: docs/books/admin_guide/11-tasks.md:248
+msgid "If he is, he accesses his `crontab` file (`/var/spool/cron/rockstar`)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:250
+msgid "Every minute `crond` reads the schedule files."
+msgstr ""
+
+#. type: Bullet: '3) '
+#: docs/books/admin_guide/11-tasks.md:252
+msgid "It executes the scheduled tasks."
+msgstr ""
+
+#. type: Bullet: '4) '
+#: docs/books/admin_guide/11-tasks.md:253
+msgid "It reports systematically in a log file (`/var/log/cron`)."
+msgstr ""

@@ -1,0 +1,1763 @@
+# French translations for PACKAGE package
+# Copyright (C) 2021 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: 2021-08-17 08:55+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:6
+#: docs/books/admin_guide/01-presentation.md:23
+#: docs/books/admin_guide/03-commands.md:6
+#: docs/books/admin_guide/03-commands.md:21
+#: docs/books/admin_guide/04-advanced-commands.md:6
+#: docs/books/admin_guide/04-advanced-commands.md:20
+#: docs/books/admin_guide/05-vi.md:6 docs/books/admin_guide/05-vi.md:20
+#: docs/books/admin_guide/07-file-systems.md:6
+#: docs/books/admin_guide/07-file-systems.md:26
+#: docs/books/admin_guide/08-process.md:6
+#: docs/books/admin_guide/08-process.md:21
+#: docs/books/admin_guide/09-backups.md:6
+#: docs/books/admin_guide/09-backups.md:21 docs/books/admin_guide/11-tasks.md:6
+#: docs/books/admin_guide/11-tasks.md:21 docs/books/admin_guide/12-network.md:6
+#: docs/books/admin_guide/12-network.md:23
+#: docs/books/learning_ansible/01-bases.md:6
+#: docs/books/learning_ansible/01-bases.md:21
+#: docs/books/learning_ansible/02-advanced.md:6
+#: docs/books/learning_ansible/02-advanced.md:22
+#: docs/books/learning_ansible/03-working-with-files.md:6
+#: docs/books/learning_ansible/03-working-with-files.md:21
+#: docs/books/learning_ansible/04-ansible-galaxy.md:6
+#: docs/books/learning_ansible/04-ansible-galaxy.md:20
+#: docs/books/learning_ansible/05-deployments.md:6
+#: docs/books/learning_ansible/05-deployments.md:23
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:6
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
+#, no-wrap
+msgid "****\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:8
+#: docs/books/admin_guide/12-network.md:8
+#: docs/books/learning_ansible/02-advanced.md:8
+#, no-wrap
+msgid "**Objectives** : In this chapter you will learn how to:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/01-presentation.md:110
+#: docs/books/admin_guide/12-network.md:146
+#: docs/books/learning_ansible/04-ansible-galaxy.md:136
+#: docs/books/learning_ansible/04-ansible-galaxy.md:143
+#: docs/books/learning_ansible/04-ansible-galaxy.md:180
+#: docs/books/learning_ansible/04-ansible-galaxy.md:188
+msgid "..."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:23
+#: docs/books/admin_guide/08-process.md:23
+#: docs/books/admin_guide/09-backups.md:40
+#: docs/books/admin_guide/11-tasks.md:23
+#: docs/books/admin_guide/12-network.md:25
+#: docs/books/admin_guide/13-softwares.md:4
+msgid "## Generalities"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:120
+#: docs/books/admin_guide/03-commands.md:156
+#: docs/books/admin_guide/03-commands.md:451
+#: docs/books/admin_guide/03-commands.md:595
+#: docs/books/admin_guide/03-commands.md:634
+#: docs/books/admin_guide/03-commands.md:748
+#: docs/books/admin_guide/03-commands.md:795
+#: docs/books/admin_guide/03-commands.md:811
+#: docs/books/admin_guide/03-commands.md:931
+#: docs/books/admin_guide/03-commands.md:954
+#: docs/books/admin_guide/03-commands.md:1118
+#: docs/books/admin_guide/03-commands.md:1139
+#: docs/books/admin_guide/05-vi.md:40 docs/books/admin_guide/05-vi.md:385
+#: docs/books/admin_guide/05-vi.md:393 docs/books/admin_guide/05-vi.md:399
+#: docs/books/admin_guide/05-vi.md:405 docs/books/admin_guide/05-vi.md:411
+#: docs/books/admin_guide/06-users.md:58 docs/books/admin_guide/06-users.md:95
+#: docs/books/admin_guide/06-users.md:123
+#: docs/books/admin_guide/06-users.md:212
+#: docs/books/admin_guide/06-users.md:247
+#: docs/books/admin_guide/06-users.md:271
+#: docs/books/admin_guide/06-users.md:294
+#: docs/books/admin_guide/06-users.md:327
+#: docs/books/admin_guide/06-users.md:593
+#: docs/books/admin_guide/07-file-systems.md:97
+#: docs/books/admin_guide/07-file-systems.md:183
+#: docs/books/admin_guide/07-file-systems.md:209
+#: docs/books/admin_guide/07-file-systems.md:225
+#: docs/books/admin_guide/07-file-systems.md:247
+#: docs/books/admin_guide/07-file-systems.md:261
+#: docs/books/admin_guide/07-file-systems.md:275
+#: docs/books/admin_guide/07-file-systems.md:313
+#: docs/books/admin_guide/07-file-systems.md:409
+#: docs/books/admin_guide/07-file-systems.md:510
+#: docs/books/admin_guide/07-file-systems.md:536
+#: docs/books/admin_guide/07-file-systems.md:843
+#: docs/books/admin_guide/07-file-systems.md:976
+#: docs/books/admin_guide/09-backups.md:215
+#: docs/books/admin_guide/09-backups.md:239
+#: docs/books/admin_guide/09-backups.md:541
+#: docs/books/admin_guide/09-backups.md:603
+#: docs/books/admin_guide/09-backups.md:648
+#: docs/books/admin_guide/09-backups.md:671
+#: docs/books/admin_guide/09-backups.md:753
+#: docs/books/admin_guide/09-backups.md:775
+#: docs/books/admin_guide/09-backups.md:797
+#: docs/books/admin_guide/09-backups.md:823
+#: docs/books/admin_guide/10-boot.md:315 docs/books/admin_guide/11-tasks.md:132
+#: docs/books/admin_guide/12-network.md:43
+#: docs/books/admin_guide/12-network.md:468
+#: docs/books/admin_guide/12-network.md:548
+#: docs/books/admin_guide/12-network.md:569
+#: docs/books/admin_guide/12-network.md:609
+#: docs/books/admin_guide/12-network.md:633
+#: docs/books/admin_guide/12-network.md:650
+#: docs/books/admin_guide/12-network.md:677
+#: docs/books/admin_guide/12-network.md:690
+#: docs/books/admin_guide/12-network.md:703
+#: docs/books/admin_guide/13-softwares.md:36
+#: docs/books/admin_guide/13-softwares.md:55
+#: docs/books/admin_guide/13-softwares.md:67
+#: docs/books/admin_guide/13-softwares.md:138
+#: docs/books/admin_guide/13-softwares.md:177
+#: docs/books/admin_guide/13-softwares.md:185
+msgid "Example:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/03-commands.md:208
+#: docs/books/admin_guide/03-commands.md:301
+#: docs/books/admin_guide/03-commands.md:690
+#: docs/books/admin_guide/03-commands.md:1333
+#: docs/books/admin_guide/04-advanced-commands.md:288
+#: docs/books/admin_guide/04-advanced-commands.md:329
+#: docs/books/admin_guide/06-users.md:339
+#: docs/books/admin_guide/06-users.md:514
+#: docs/books/admin_guide/06-users.md:733
+#: docs/books/admin_guide/08-process.md:368
+#: docs/books/admin_guide/09-backups.md:350
+#: docs/books/admin_guide/09-backups.md:690
+#: docs/books/admin_guide/10-boot.md:200 docs/books/admin_guide/11-tasks.md:205
+#: docs/books/admin_guide/12-network.md:523
+#: docs/books/learning_ansible/01-bases.md:242
+msgid "Examples:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/11-tasks.md:17
+#: docs/books/admin_guide/12-network.md:19
+#, no-wrap
+msgid ""
+"**Knowledge**: :star: :star:  \n"
+"**Complexity**: :star: :star:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:2
+msgid "# Implementing the network"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:4
+msgid "In this chapter you will learn how to work with and manage the network."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:14
+#, no-wrap
+msgid ""
+":heavy_check_mark: Configure a workstation to use DHCP;  \n"
+":heavy_check_mark: Configure a workstation to use a static configuration;   \n"
+":heavy_check_mark: Configure a workstation to use a gateway;   \n"
+":heavy_check_mark: Configure a workstation to use DNS servers;   \n"
+":heavy_check_mark: Troubleshoot the network of a workstation.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:16
+msgid ":checkered_flag: **network**, **linux**, **ip**"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:21
+#: docs/books/learning_ansible/01-bases.md:19
+#: docs/books/learning_ansible/02-advanced.md:20
+#: docs/books/learning_ansible/06-large-scale-infrastructure.md:18
+#, no-wrap
+msgid "**Reading time**: 30 minutes\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:27
+msgid "To illustrate this chapter, we will use the following architecture."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:29
+msgid "![Illustration of our network architecture](images/network-001.png)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:31
+msgid "It will allow us to consider :"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:35
+msgid "integration in a LAN (local area network);"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:35
+msgid "the configuration of a gateway to reach a remote server;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:35
+msgid ""
+"the configuration of a DNS server and the implementation of name resolution."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:37
+msgid "The minimum parameters to be defined for the machine are:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:41
+msgid "the name of the machine ;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:41
+msgid "the IP address;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:41
+msgid "the subnet mask."
+msgstr ""
+
+#. type: Bullet: '*   '
+#: docs/books/admin_guide/12-network.md:47
+msgid "`pc-rocky`;"
+msgstr ""
+
+#. type: Bullet: '*   '
+#: docs/books/admin_guide/12-network.md:47
+msgid "`192.168.1.10`;"
+msgstr ""
+
+#. type: Bullet: '*   '
+#: docs/books/admin_guide/12-network.md:47
+msgid "`255.255.255.0`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:49
+msgid "The notation called CIDR is more and more frequent: 192.168.1.10/24"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:51
+msgid ""
+"IP addresses are used for the proper routing of messages (packets). They are "
+"divided into two parts:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:54
+msgid "the fixed part, identifying the network;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:54
+msgid "the identifier of the host in the network."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:56
+msgid "The subnet mask is a set of **4 bytes** intended to isolate:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:59
+msgid ""
+"the network address (**NetID** or **SubnetID**) by performing a bitwise "
+"logical AND between the IP address and the mask;"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:59
+msgid ""
+"the host address (**HostID**) by performing a bitwise logical AND between "
+"the IP address and the complement of the mask."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:61
+msgid ""
+"There are also specific addresses within a network, which must be "
+"identified. The first address of a range as well as the last one have a "
+"particular role:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:63
+msgid ""
+"The first address of a range is the **network address**. It is used to "
+"identify networks and to route information from one network to another."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:65
+msgid ""
+"The last address of a range is the **broadcast address**. It is used to "
+"broadcast information to all the machines on the network."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:67
+msgid "### MAC address / IP address"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:70
+msgid ""
+"A **MAC address** is a physical identifier written in the factory onto the "
+"device. This is sometimes referred to as the hardware address. It consists "
+"of 6 bytes often given in hexadecimal form (for example 5E:FF:56:A2:AF:15).  "
+"It is composed of : 3 bytes of the manufacturer identifier and 3 bytes of "
+"the serial number."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:73
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    This last statement is nowadays a little less true with virtualization. There are also software solutions for changing the MAC address.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:76
+msgid ""
+"An Internet Protocol (**IP**) address is an identification number "
+"permanently or temporarily assigned to each device connected to a computer "
+"network using the Internet Protocol.  One part defines the network address "
+"(NetID or SubnetID as the case may be), the other part defines the address "
+"of the host in the network (HostID). The relative size of each part varies "
+"according to the network (sub)mask."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:78
+msgid ""
+"An IPv4 address defines an address on 4 bytes. The number of available "
+"addresses being close to saturation a new standard was created, the IPv6 "
+"defined on 16 bytes."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:80
+msgid ""
+"IPv6 is often represented by 8 groups of 2 bytes separated by a colon. "
+"Insignificant zeros can be omitted, one or more groups of 4 consecutive "
+"zeros can be replaced by a double colon."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:82
+msgid ""
+"Subnet masks have from 0 to 128 bits. (for example "
+"21ac:0000:0000:0611:21e0:00ba:321b:54da/64 or 21ac::611:21e0:ba:321b:54da/64)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:84
+msgid ""
+"In a web address or URL (Uniform Resource Locator), an ip address can be "
+"followed by a colon and the port address (which indicates the application to "
+"which the data is destined). Also to avoid confusion in a URL, the IPv6 "
+"address is written in square brackets [ ], colon, port address."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:86
+msgid "IP and MAC addresses must be unique on a network!"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:88
+msgid "### DNS Domain"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:90
+msgid ""
+"Client machines can be part of a DNS (**Domain Name System**, e.g. `mydomain."
+"lan`) domain."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:92
+msgid ""
+"The fully qualified machine name (**FQDN**) becomes `pc-rocky.mydomain.lan`."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:94
+msgid ""
+"A set of computers can be grouped into a logical, name-resolving, set called "
+"a DNS domain. A DNS domain is not, of course, limited to a single physical "
+"network."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:96
+msgid ""
+"In order for a computer to be part of a DNS domain, it must be given a DNS "
+"suffix (here `mydomain.lan`) as well as servers that it can query."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:98
+msgid "### Reminder of the OSI model"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:101
+#, no-wrap
+msgid ""
+"!!! Note \"Memory aid\"\n"
+"    To remember the order of the layers of the OSI model, remember the following sentence: __Please Do Not Touch Steven's Pet Alligator__.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:111
+#, no-wrap
+msgid ""
+"|  Layer            |  Protocoles                                  |\n"
+"|-------------------|----------------------------------------------|\n"
+"|  7 - Application  |  POP, IMAP, SMTP, SSH, SNMP, HTTP, FTP, ...  |\n"
+"|  6 - Presentation |  ASCII, MIME, ...                            |\n"
+"|  5 - Session      |  TLS, SSL, NetBIOS, ...                      |\n"
+"|  4 - Transport    |  TLS, SSL, TCP, UDP, ...                     |\n"
+"|  3 - Network      |  IPv4, IPv6, ARP, ...                        |\n"
+"|  2 - Data Link    |  Ethernet, WiFi, Token Ring, ...             |\n"
+"|  1 - Physical     |  Cables, optical fibers, radio waves, ...    |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:114
+#, no-wrap
+msgid ""
+"**Layer 1** (Physical) supports transmission over a communication channel (Wifi, Optical fiber, RJ cable, etc.).\n"
+"Unit: the bit.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:118
+#, no-wrap
+msgid ""
+"**Layer 2** (Data Link) supports network topology\n"
+"(token-ring, star, bus, etc.), data splitting and transmission errors.\n"
+"Unit: the frame.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:121
+#, no-wrap
+msgid ""
+"**Layer 3** (Network) supports end-to-end data transmission (IP routing = Gateway).\n"
+"Unit: the packet.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:125
+#, no-wrap
+msgid ""
+"**Layer 4** (Transport) supports service type (connected or unconnected)\n"
+"encryption and flow control.\n"
+"Unit: the segment or the datagram.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:127
+#, no-wrap
+msgid "**Layer 5** (Session) supports the communication between two computers.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:129
+#, no-wrap
+msgid "**Layer 6** (Presentation) represents the area that is independent of data at the application layer. Essentially this layer translates from network format to the application format, or or from the application format to the network format.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:133
+#, no-wrap
+msgid ""
+"**Layer 7** (Application) represents the contact with the user.\n"
+"It provides the services offered by the network: http, dns, ftp, imap,\n"
+"pop, smtp, etc.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:135
+msgid "## The naming of interfaces"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:137
+#, no-wrap
+msgid "*lo* is the \"**loopback**\" interface which allows TCP/IP programs to communicate with each other without leaving the local machine. This enables testing if the **network module of the system is working properly** and also allows pinging the localhost. All packets that enter through localhost leave through localhost. The packets received are the packets sent.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:139
+msgid ""
+"The Linux kernel assigns interface names with a specific prefix depending on "
+"the type. Traditionally, all **Ethernet** interfaces, for example, began "
+"with **eth**. The prefix was followed by a number, the first being 0 (eth0, "
+"eth1, eth2...). The wifi interfaces were given a wlan prefix."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:141
+msgid ""
+"On Rocky8 Linux distributions, systemd will name interfaces with the new "
+"following policy where \"X\" represents a number:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:146
+msgid "`enoX`: on-board devices"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:146
+msgid "`ensX`: PCI Express hotplug slot"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:146
+msgid ""
+"`enpXsX`: physical/geographical location of the connector of the hardware"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:148
+msgid "## Using the `ip` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:150
+msgid "Forget the old `ifconfig` command! Think `ip`!"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:153
+#, no-wrap
+msgid ""
+"!!! Note\n"
+"    Comment for administrators of older Linux systems:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:155
+#, no-wrap
+msgid "    The historical network management command is `ifconfig`. This command has been replaced by the `ip` command, which is already well known to network administrators.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:157
+#, no-wrap
+msgid "    The `ip` command is the only command to manage **IP address, ARP, routing, etc.**.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:159
+#, no-wrap
+msgid "    The `ifconfig` command is no longer installed by default in Rocky8.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:161
+#, no-wrap
+msgid "    It is important to get into good habits now.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:163
+msgid "## The hostname"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:165
+msgid "The `hostname` command displays or sets the host name of the system"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:169
+msgid "``` hostname [-f] [hostname] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:174
+#, no-wrap
+msgid ""
+"|  Option  |  Description                   |\n"
+"|----------|--------------------------------|\n"
+"| `-f`     | Display the FQDN               |\n"
+"| `-i`     | Display the system IPs address |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:177
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    This command is used by various network programs to identify the machine.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:179
+msgid ""
+"To assign a host name, it is possible to use the `hostname` command, but the "
+"changes will not be retained at the next boot. The command with no arguments "
+"displays the host name."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:181
+msgid ""
+"To set the host name, the file `/etc/sysconfig/network` must be modified:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:186
+msgid "``` NETWORKING=yes HOSTNAME=pc-rocky.mondomaine.lan ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:188
+msgid ""
+"The RedHat boot script also consults the `/etc/hosts` file to resolve the "
+"host name of the system."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:190
+msgid ""
+"When the system boots, Linux evaluates the `HOSTNAME` value in the `/etc/"
+"sysconfig/network` file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:192
+msgid ""
+"It then uses the `/etc/hosts` file to evaluate the main IP address of the "
+"server and its host name. It deduces the DNS domain name."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:194
+msgid ""
+"It is therefore essential to fill in these two files before any "
+"configuration of network services."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:197
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    To know if this configuration is well done, the commands `hostname` and `hostname -f` must answer with the expected values.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:199
+msgid "## /etc/hosts file"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:201
+msgid ""
+"The `/etc/hosts` file is a static host name mapping table, which follows the "
+"following format:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:205
+msgid "``` @IP <hostname> [alias] [# comment] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:207
+msgid "Example of `/etc/hosts` file:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:213
+#, no-wrap
+msgid ""
+"```\n"
+"127.0.0.1 \tlocalhost localhost.localdomain\n"
+"::1 \t\tlocalhost localhost.localdomain\n"
+"192.168.1.10 \trockstar.rockylinux.lan rockstar\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:215
+msgid ""
+"The `/etc/hosts` file is still used by the system, especially at boot time "
+"when the system FQDN is determined."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:218
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    RedHat recommends that at least one line containing the system name be filled in.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:220
+msgid ""
+"If the **DNS** service (**D**domain **N**ame **S**ervice) is not in place, "
+"you must fill in all the names in the hosts file for each of your machines."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:222
+msgid ""
+"The `/etc/hosts` file contains one line per entry, with the IP address, the "
+"FQDN, then the host name (in that order) and a series of aliases (alias1 "
+"alias2 ...). The alias is an option."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:224
+msgid "## `/etc/nsswitch.conf` file"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:226
+msgid ""
+"The **NSS** (**N**ame **S**ervice **S**witch) allows configuration files (e."
+"g. `/etc/passwd`, `/etc/group`, `/etc/hosts`) to be substituted for one or "
+"more centralized databases."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:228
+msgid ""
+"The `/etc/nsswitch.conf` file is used to configure the name service "
+"databases."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:233
+msgid "``` passwd: files shadow: files group: files"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:236
+msgid "hosts: files dns ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:238
+msgid ""
+"In this case, Linux will first look for a host name match (`hosts:` line) in "
+"the `/etc/hosts` file (`files` value) before querying DNS (`dns` value)! "
+"This behavior can simply be changed by editing the `/etc/nsswitch.conf` file."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:240
+msgid ""
+"Of course, it is possible to imagine querying an LDAP, MySQL or other server "
+"by configuring the name service to respond to system requests for hosts, "
+"users, groups, etc."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:242
+msgid ""
+"The resolution of the name service can be tested with the `getent` command "
+"that we will see later in this course."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:244
+msgid "## `/etc/resolv.conf` file"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:246
+msgid ""
+"The `/etc/resolv.conf` file contains the DNS name resolution configuration."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:253
+msgid ""
+"``` #Generated by NetworkManager domain mondomaine.lan search mondomaine.lan "
+"nameserver 192.168.1.254 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:256
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    This file is historical. It is no longer filled in directly!\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:258
+msgid ""
+"Newer generations of distributions have generally integrated the "
+"`NetworkManager` service. This service allows you to manage the "
+"configuration more efficiently, either in graphical or console mode."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:260
+msgid ""
+"It allows for the addition of DNS servers from the configuration file of a "
+"network interface. It then dynamically populates the `/etc/resolv.conf` file "
+"which should never be edited directly, otherwise the configuration changes "
+"will be lost the next time the network service is started."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:262
+msgid "## `ip` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:264
+msgid ""
+"The `ip` command from the `iproute2` package allows you to configure an "
+"interface and its routing table."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:266
+msgid "Display interfaces :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:270
+msgid "``` [root]# ip link ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:272
+msgid "Display interfaces information:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:276
+msgid "``` [root]# ip addr show ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:278
+msgid "Display the information of an interface :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:282
+msgid "``` [root]# ip addr show eth0 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:284
+msgid "Display the ARP table:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:288
+msgid "``` [root]# ip neigh ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:290
+msgid ""
+"All historical network management commands have been grouped under the `ip` "
+"command, which is well known to network administrators."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:292
+msgid "## DHCP configuration"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:294
+msgid ""
+"The **DHCP** protocol (**D**ynamic **H**ost **C**Control **P**rotocol) "
+"allows you to obtain a complete IP configuration via the network. This is "
+"the default configuration mode of a network interface under Rocky Linux, "
+"which explains why a system connected to the network of an Internet router "
+"can function without additional configuration."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:296
+msgid ""
+"The configuration of interfaces under Rocky Linux is done in the `/etc/"
+"sysconfig/network-scripts/` folder."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:298
+msgid ""
+"For each Ethernet interface, a `ifcfg-ethX` file allows for the "
+"configuration of the associated interface."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:305
+msgid "``` DEVICE=eth0 ONBOOT=yes BOOTPROTO=dhcp HWADDR=00:0c:29:96:32:e3 ```"
+msgstr ""
+
+#. type: Bullet: '*  '
+#: docs/books/admin_guide/12-network.md:307
+msgid "Interface name : (must be in the file name)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:311
+msgid "``` DEVICE=eth0 ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:313
+msgid "Automatically start the interface:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:317
+msgid "``` ONBOOT=yes ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:319
+msgid "Make a DHCP request when the interface starts up:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:323
+msgid "``` BOOTPROTO=dhcp ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:325
+msgid ""
+"Specify the MAC address (optional but useful when there are several "
+"interfaces) :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:329
+msgid "``` HWADDR=00:0c:29:96:32:e3 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:332
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    If NetworkManager is installed, the changes are taken into account automatically. If not, you have to restart the network service.\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:334
+msgid "Restart the network service:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:338
+msgid "``` [root]# systemctl restart NetworkManager ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:340
+msgid "## Static configuration"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:342
+msgid "The static configuration requires at least:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:350
+msgid ""
+"``` DEVICE=eth0 ONBOOT=yes BOOTPROTO=none IPADDR=192.168.1.10 "
+"NETMASK=255.255.255.0 ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:352
+msgid ""
+"Here we are replacing \"dhcp\" with \"none\" which equals static "
+"configuration:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:356
+msgid "``` BOOTPROTO=none ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:358
+msgid "IP Address:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:362
+msgid "``` IPADDR=192.168.1.10 ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:364
+msgid "Subnet mask:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:368
+msgid "``` NETMASK=255.255.255.0 ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:370
+msgid "The mask can be specified with a prefix:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:374
+msgid "``` PREFIX=24 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:377
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    You must use NETMASK OR PREFIX - Not both!\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:379
+msgid "## Routing"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:381
+msgid "![Network architecture with a gateway](images/network-002.png)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:391
+msgid ""
+"``` DEVICE=eth0 ONBOOT=yes BOOTPROTO=none HWADDR=00:0c:29:96:32:e3 "
+"IPADDR=192.168.1.10 NETMASK=255.255.255.0 GATEWAY=192.168.1.254 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:393
+msgid "The `ip route` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:399
+msgid ""
+"``` [root]# ip route show 192.168.1.0/24 dev eth0 [â¦] src 192.168.1.10 "
+"metric 1 default via 192.168.1.254 dev eth0 proto static ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:401
+msgid ""
+"It is a good idea to know how to read a routing table, especially in an "
+"environment with multiple network interfaces."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:403
+msgid ""
+"In the example shown, the `192.168.1.0/24` network is reachable directly "
+"from the `eth0` device, so there is a metric at `1` (does not traverse a "
+"router)."
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:405
+msgid ""
+"All other networks than the previous one will be reachable, again from the "
+"`eth0` device, but this time the packets will be addressed to a "
+"`192.168.1.254` gateway. The routing protocol is a static protocol (although "
+"it is possible to add a route to a dynamically assigned address in Linux)."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:407
+msgid "## Name resolution"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:409
+msgid "A system needs to resolve:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:411
+msgid "FQDNs into IP addresses"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:415
+msgid "``` www.free.fr = 212.27.48.10 ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:417
+msgid "IP addresses into names"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:421
+msgid "``` 212.27.48.10 = www.free.fr ```"
+msgstr ""
+
+#. type: Bullet: '* '
+#: docs/books/admin_guide/12-network.md:423
+msgid "or to obtain information about an area:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:427
+msgid "``` MX de free.fr = 10 mx1.free.fr + 20 mx2.free.fr ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:440
+msgid ""
+"``` DEVICE=eth0 ONBOOT=yes BOOTPROTO=none HWADDR=00:0c:29:96:32:e3 "
+"IPADDR=192.168.1.10 NETMASK=255.255.255.0 GATEWAY=192.168.1.254 "
+"DNS1=172.16.1.2 DNS2=172.16.1.3 DOMAIN=rockylinux.lan ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:442
+msgid "In this case, to reach the DNS, you have to go through the gateway."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:450
+#, no-wrap
+msgid ""
+"```\n"
+" #Generated by NetworkManager\n"
+" domain mondomaine.lan\n"
+" search mondomaine.lan\n"
+" nameserver 172.16.1.2\n"
+" nameserver 172.16.1.3\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:452
+msgid "The file has been updated by NetworkManager."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:454
+msgid "## Troubleshooting"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:456
+msgid ""
+"The `ping` command sends datagrams to another machine and waits for a "
+"response."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:458
+msgid ""
+"It is the basic command for testing the network because it checks the "
+"connectivity between your network interface and another."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:460
+msgid "Syntax of the `ping` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:464
+msgid "``` ping [-c numerical] destination ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:466
+msgid ""
+"The `-c` (count) option allows you to stop the command after the countdown "
+"in seconds."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:472
+msgid "``` [root]# ping âc 4 localhost ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:475
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    Validate connectivity from near to far\n"
+msgstr ""
+
+#. type: Bullet: '1) '
+#: docs/books/admin_guide/12-network.md:477
+msgid "Validate the TCP/IP software layer"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:481
+msgid "``` [root]# ping localhost ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:483
+msgid ""
+"\"Pinging\" the inner loop does not detect a hardware failure on the network "
+"interface. It simply determines whether the IP software configuration is "
+"correct."
+msgstr ""
+
+#. type: Bullet: '2) '
+#: docs/books/admin_guide/12-network.md:485
+msgid "Validate the network card"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:489
+msgid "``` [root]# ping 192.168.1.10 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:491
+msgid ""
+"To determine that the network card is functional, we must now ping its IP "
+"address. The network card, if the network cable is not connected, should be "
+"in a \"down\" state."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:493
+msgid ""
+"If the ping does not work, first check the network cable to your network "
+"switch and reassemble the interface (see the `if up` command), then check "
+"the interface itself."
+msgstr ""
+
+#. type: Bullet: '3) '
+#: docs/books/admin_guide/12-network.md:495
+msgid "Validate the connectivity of the gateway"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:499
+msgid "``` [root]# ping 192.168.1.254 ```"
+msgstr ""
+
+#. type: Bullet: '4) '
+#: docs/books/admin_guide/12-network.md:501
+msgid "Validate the connectivity of a remote server"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:505
+msgid "``` [root]# ping 172.16.1.2 ```"
+msgstr ""
+
+#. type: Bullet: '5) '
+#: docs/books/admin_guide/12-network.md:507
+msgid "Validate the DNS service"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:511
+msgid "``` [root]# ping www.free.fr ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:513
+msgid "### `dig` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:515
+msgid "The `dig` command is used to query the DNS server."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:517
+msgid "The `dig` command syntax:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:521
+msgid "``` dig [-t type] [+short] [name] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:531
+#, no-wrap
+msgid ""
+"```\n"
+"[root]# dig +short rockylinux.org\n"
+"76.223.126.88\n"
+"[root]# dig -t MX +short rockylinux.org                                                         î² â\n"
+"5 alt1.aspmx.l.google.com.\n"
+"...\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:533
+msgid ""
+"The `dig` command is used to query DNS servers. It is very verbose by "
+"default, but this behavior can be changed with the `+short` option."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:535
+msgid ""
+"It is also possible to specify a DNS **record type** to resolve, such as an "
+"MX **type** to get information about the mail exchangers for a domain."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:537
+msgid "### `getent` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:539
+msgid ""
+"The `getent` (get entry) command is used to get an NSSwitch entry (`hosts` + "
+"`dns`)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:541
+msgid "Syntax of the `getent` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:546
+msgid "``` getent hosts name ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:553
+#, no-wrap
+msgid ""
+"```\n"
+"[root]# getent hosts rockylinux.org\n"
+"  76.223.126.88 rockylinux.org\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:555
+msgid ""
+"Querying only a DNS server may return an erroneous result that does not take "
+"into account the contents of a `hosts` file, although this should be rare "
+"nowadays."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:557
+msgid ""
+"To take the `/etc/hosts` file into account as well, the NSSwitch name "
+"service must be queried, which will take care of any DNS resolution."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:559
+msgid "### `ipcalc` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:561
+msgid ""
+"The `ipcalc` (**ip calculation**) command is used to calculate the address "
+"of a network or broadcast from an IP address and a mask."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:563
+msgid "Syntax of the `ipcalc` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:567
+msgid "``` ipcalc [options] IP <netmask> ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:574
+msgid ""
+"``` [root]# ipcalc âb 172.16.66.203 255.255.240.0 BROADCAST=172.16.79.255 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:577
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    This command is interesting followed by a redirection to automatically fill in the configuration files of your interfaces:\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:581
+#, no-wrap
+msgid ""
+"    ```\n"
+"    [root]# ipcalc âb 172.16.66.203 255.255.240.0 >> /etc/sysconfig/network-scripts/ifcfg-eth0\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:586
+#, no-wrap
+msgid ""
+"|  Option  |  Description                           |\n"
+"|----------|----------------------------------------|\n"
+"|  `-b`    | Displays the broadcast address.        |\n"
+"|  `-n`    | Displays the network address and mask. |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:588
+msgid ""
+"`ipcalc` is a simple way to calculate the IP information of a host. The "
+"various options indicate what information `ipcalc` should display on the "
+"standard output. Multiple options can be specified. An IP address on which "
+"to operate must be specified. Most operations also require a network mask or "
+"CIDR prefix."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:597
+#, no-wrap
+msgid ""
+"| Option short | Option long | Description                                                                  |\n"
+"|---------------|---------------|------------------------------------------------------------------------------|\n"
+"| `-b`          | `--broadcast` | Displays the broadcast address of the given IP address and the network mask. |\n"
+"| `-h`          | `--hostname`  | Displays the hostname of the IP address given via DNS.                       |\n"
+"| `-n`          | `--netmask`   | Calculates the network mask for the given IP address. Assumes that the IP address is part of a complete class A, B, or C network. Many networks do not use default network masks, in which case an incorrect incorrect value will be returned. |\n"
+"| `-p`          | `--prefix`    | Indicates the prefix of the mask/IP address.                                 |\n"
+"| `-n`          | `--network`   | Indicates the network address of the given IP address and mask.              |\n"
+"| `-s`          | `--silent`    | Never displays any error messages.                                           |\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:599
+msgid "### `ss` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:601
+msgid ""
+"The `ss` (**socket statistics**) command displays the listening ports on the "
+"network."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:603
+msgid "Syntax of the `ss` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:607
+msgid "``` ss [-tuna] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:614
+#, no-wrap
+msgid ""
+"```\n"
+"[root]# ss âtuna\n"
+"tcp   LISTEN   0   128   *:22   *:*\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:616
+msgid ""
+"The commands `ss` and `netstat` (to follow) will be very important for the "
+"rest of your Linux life."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:618
+msgid ""
+"When implementing network services, it is very common to check with one of "
+"these two commands that the service is listening on the expected ports."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:620
+msgid "### `netstat` command"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:623
+#, no-wrap
+msgid ""
+"!!! Warning\n"
+"    The `netstat` command is now deprecated and is no-longer installed by default on Rocky Linux. You may still find some Linux versions that have it installed, but it is best to move on to using `ss` for everything that you would have used `netstat` for.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:625
+msgid ""
+"The `netstat` command (**network statistics**) displays the listening ports "
+"on the network."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:627
+msgid "Syntax of the `netstat` command:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:631
+msgid "``` netstat -tapn ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:638
+msgid ""
+"``` [root]# netstat âtapn tcp 0 0 0.0.0.0:22 0.0.0.0:* LISTEN 2161/sshd ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:640
+msgid "### IP or MAC address conflicts"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:642
+msgid ""
+"A misconfiguration can cause multiple interfaces to use the same IP address. "
+"This can happen when a network has multiple DHCP servers or when the same IP "
+"address is manually assigned multiple times."
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:644
+msgid ""
+"When the network is malfunctioning, and when an IP address conflict could be "
+"the cause, it is possible to use the `arp-scan` software (requires the EPEL "
+"repository):"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:648
+msgid "``` $ dnf install arp-scan ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:653
+msgid "``` $ arp-scan -I eth0 -l"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:664
+#, no-wrap
+msgid ""
+"172.16.1.104  00:01:02:03:04:05       3COM CORPORATION\n"
+"172.16.1.107  00:0c:29:1b:eb:97       VMware, Inc.\n"
+"172.16.1.250  00:26:ab:b1:b7:f6       (Unknown)\n"
+"172.16.1.252  00:50:56:a9:6a:ed       VMWare, Inc.\n"
+"172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc.\n"
+"172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 2)\n"
+"172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 3)\n"
+"172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 4)\n"
+"172.16.1.232   88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:667
+#, no-wrap
+msgid ""
+"!!! Tip\n"
+"    As the above example shows, it is also possible to have MAC address conflicts! These problems are brought about by virtualization technologies and the copying of virtual machines.\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:669
+msgid "## Hot configuration"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:671
+msgid "The `ip` command can hot add an IP address to an interface"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:675
+msgid "``` ip addr add @IP dev DEVICE ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:681
+msgid "``` [root]# ip addr add 192.168.2.10 dev eth1 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:683
+msgid ""
+"The `ip` command allows for the activation or deactivation of an interface:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:688
+msgid "``` ip link set DEVICE up ip link set DEVICE down ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:695
+msgid "``` [root]# ip link set eth1 up [root]# ip link set eth1 down ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:697
+msgid "The `ip` command is used to add a route:"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:701
+msgid "``` ip route add [default|netaddr] via @IP [dev device] ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:708
+msgid ""
+"``` [root]# ip route add default via 192.168.1.254 [root]# ip route add "
+"192.168.100.0/24 via 192.168.2.254 dev eth1 ```"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:710
+msgid "## In summary"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:712
+msgid "The files used in this chapter are :"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:714
+msgid ""
+"![Synthesis of the files implemented in the network part](images/network-003."
+"png)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:716
+msgid ""
+"A complete interface configuration could be this (file `/etc/sysconfig/"
+"network-scripts/ifcfg-eth0`):"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:729
+#, no-wrap
+msgid ""
+"```\n"
+" DEVICE=eth0\n"
+" ONBOOT=yes\n"
+" BOOTPROTO=none\n"
+" HWADDR=00:0c:29:96:32:e3\n"
+" IPADDR=192.168.1.10\n"
+" NETMASK=255.255.255.0\n"
+" GATEWAY=192.168.1.254\n"
+" DNS1=172.16.1.1\n"
+" DNS2=172.16.1.2\n"
+" DOMAIN=rockylinux.lan\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:731
+msgid "The troubleshooting method should go from closest to farthest:"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: docs/books/admin_guide/12-network.md:737
+msgid "ping localhost (software test)"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: docs/books/admin_guide/12-network.md:737
+msgid "ping IP-address (hardware test)"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: docs/books/admin_guide/12-network.md:737
+msgid "ping gateway (connectivity test)"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: docs/books/admin_guide/12-network.md:737
+msgid "ping remote-server (routing test)"
+msgstr ""
+
+#. type: Bullet: '5. '
+#: docs/books/admin_guide/12-network.md:737
+msgid "DNS query (dig or ping)"
+msgstr ""
+
+#. type: Plain text
+#: docs/books/admin_guide/12-network.md:738
+msgid ""
+"![Method of troubleshooting or network validation](images/network-004.png)"
+msgstr ""
