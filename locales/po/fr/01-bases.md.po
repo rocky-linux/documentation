@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: 2021-08-17 08:55+0200\n"
-"PO-Revision-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: 2021-08-17 15:09+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0\n"
 
 #. type: Plain text
 #: docs/books/admin_guide/01-presentation.md:6
@@ -46,7 +47,7 @@ msgstr ""
 #: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
 #, no-wrap
 msgid "****\n"
-msgstr ""
+msgstr "****\n"
 
 #. type: Plain text
 #: docs/books/admin_guide/03-commands.md:208
@@ -65,7 +66,7 @@ msgstr ""
 #: docs/books/admin_guide/12-network.md:523
 #: docs/books/learning_ansible/01-bases.md:242
 msgid "Examples:"
-msgstr ""
+msgstr "Exemples :"
 
 #. type: Plain text
 #: docs/books/admin_guide/03-commands.md:1502
@@ -79,7 +80,7 @@ msgstr ""
 #: docs/books/learning_ansible/05-deployments.md:207
 #: docs/books/learning_ansible/05-deployments.md:257
 msgid "```"
-msgstr ""
+msgstr "```"
 
 #. type: Plain text
 #: docs/books/admin_guide/12-network.md:21
@@ -88,17 +89,17 @@ msgstr ""
 #: docs/books/learning_ansible/06-large-scale-infrastructure.md:18
 #, no-wrap
 msgid "**Reading time**: 30 minutes\n"
-msgstr ""
+msgstr "**Temps de lecture** : 30 minutes\n"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:2
 msgid "# Ansible Basics"
-msgstr ""
+msgstr "Principes de base d'Ansible"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:4
 msgid "In this chapter you will learn how to work with Ansible."
-msgstr ""
+msgstr "Dans ce chapitre, vous allez apprendre à travailler avec Ansible."
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:8
@@ -108,7 +109,7 @@ msgstr ""
 #: docs/books/learning_ansible/06-large-scale-infrastructure.md:8
 #, no-wrap
 msgid "**Objectives**: In this chapter you will learn how to:\n"
-msgstr ""
+msgstr "**Objectifs** : Dans ce chapitre, vous allez apprendre comment:\n"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:12
@@ -118,12 +119,15 @@ msgid ""
 ":heavy_check_mark: Apply configuration changes on a server;   \n"
 ":heavy_check_mark: Create first Ansible playbooks;   \n"
 msgstr ""
+":heavy_check_mark: Mettre en œuvre Ansible ;       \n"
+":heavy_check_mark: Appliquer des changements de configuration sur un serveur;   \n"
+":heavy_check_mark: Créer vos premiers playbooks Ansible;   \n"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:14
 #: docs/books/learning_ansible/02-advanced.md:15
 msgid ":checkered_flag: **ansible**, **module**, **playbook**"
-msgstr ""
+msgstr ":checkered_flag: **ansible**, **module**, **playbook**"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:17
@@ -133,21 +137,25 @@ msgid ""
 "**Knowledge**: :star: :star: :star:     \n"
 "**Complexity**: :star: :star:\n"
 msgstr ""
+"**Connaissances** : :star: :star: :star:     \n"
+"**Complexité** : :star: :star:\n"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:23
 msgid "Ansible centralizes and automates administration tasks. It is:"
-msgstr ""
+msgstr "Ansible centralise et automatise les tâches d'administration. Il est :"
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:26
 msgid "**agentless** (it does not require specific deployments on clients),"
 msgstr ""
+"**agentless** (sans agent, il ne nécessite aucun déploiement spécifique sur "
+"les clients),"
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:26
 msgid "**idempotent** (same effect each time it is run)"
-msgstr ""
+msgstr "**idempotent** (il a le même effet à chaque passage)"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:28
@@ -159,6 +167,12 @@ msgid ""
 "workstations, docker services, network equipment, etc. (Almost everything in "
 "fact)."
 msgstr ""
+"Il utilise le protocole **SSH** pour configurer à distance les clients Linux "
+"ou le protocole **WinRM** pour fonctionner avec des clients Windows. Si "
+"aucun de ces protocoles n'est disponible, il est toujours possible pour "
+"Ansible d'utiliser une API, ce qui fait d'Ansible un véritable couteau "
+"suisse de la configuration des serveurs, des postes de travail, des services "
+"dockers, des équipements réseaux, etc. (Pratiquement tout en fait)."
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:31
@@ -167,6 +181,8 @@ msgid ""
 "!!! Warning\n"
 "    The opening of SSH or WinRM flows to all clients from the Ansible server, makes it a critical element of the architecture that must be carefully monitored.\n"
 msgstr ""
+"!!! Warning\n"
+"    L’ouverture des flux SSH vers l’ensemble des clients depuis le serveur Ansible font de lui un élément critique de l’architecture qu’il faudra attentivement surveiller.\n"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:33
@@ -175,41 +191,45 @@ msgid ""
 "between each of its executions. On the contrary, it will perform new state "
 "checks each time it is executed. It is said to be stateless."
 msgstr ""
+"Comme Ansible est \"push-based\", il ne conservera pas l'état de ses noeuds "
+"cibles entre chacune de ses exécutions. Au contraire, il effectuera de "
+"nouvelles vérifications d'état à chaque fois qu'il sera exécuté. On dit "
+"qu'il est sans état."
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:35
 msgid "It will help you with:"
-msgstr ""
+msgstr "Il vous aidera à :"
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:41
 msgid "provisioning (deploying a new VM),"
-msgstr ""
+msgstr "provisionner (déployer une nouvelle machine virtuelle),"
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:41
 msgid "application deployments"
-msgstr ""
+msgstr "déployer des applications"
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:41
 msgid "configuration management,"
-msgstr ""
+msgstr "la gestion de la configuration,"
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:41
 msgid "automation,"
-msgstr ""
+msgstr "l'automatisation,"
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:41
 msgid "orchestration (when more than 1 target is in use)."
-msgstr ""
+msgstr "l'orchestration (quand plus d'un noeud cible est en jeu)."
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:43
 msgid "![The features of Ansible](images/ansible-001.png)"
-msgstr ""
+msgstr "![Les fonctionnalités d’Ansible](images/ansible-001.png)"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:45
@@ -219,6 +239,10 @@ msgid ""
 "counterpart Awx, or other projects like Jenkins and the excellent Rundeck "
 "can also be used."
 msgstr ""
+"Pour offrir une interface graphique à votre utilisation quotidienne "
+"d'Ansible, vous pouvez installer certains outils comme Ansible Tower "
+"(RedHat), qui n'est pas gratuit, son homologue opensource Awx, ou d'autres "
+"projets comme Jenkins et l'excellent Rundeck peuvent également être utilisés."
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:48
@@ -227,13 +251,15 @@ msgid ""
 "!!! Abstract\n"
 "    To follow this training, you will need at least 2 servers under Rocky8:\n"
 msgstr ""
+"!!! Abstract\n"
+"    Pour suivre cette formation, vous aurez besoin d'au moins 2 serveurs sous Rocky8.:\n"
 
 #. type: Bullet: '    * '
 #: docs/books/learning_ansible/01-bases.md:51
 msgid ""
 "the first one will be the **management machine**, Ansible will be installed "
 "on it."
-msgstr ""
+msgstr "le premier sera le **poste de gestion**, Ansible sera installé dessus."
 
 #. type: Bullet: '    * '
 #: docs/books/learning_ansible/01-bases.md:51
@@ -241,17 +267,19 @@ msgid ""
 "the second one will be the server to configure and manage (another Linux "
 "than Rocky Linux will do just as well)."
 msgstr ""
+"le second sera le serveur à configurer et à gérer (un autre Linux que Rocky "
+"Linux fera tout aussi bien l'affaire)."
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:53
 #, no-wrap
 msgid "    In the examples below, the administration station has the IP address 172.16.1.10, the managed station 172.16.1.11. It is up to you to adapt the examples according to your IP addressing plan.\n"
-msgstr ""
+msgstr "    Dans les exemples ci-dessous, la station d'administration a l'adresse IP 172.16.1.10, la station gérée 172.16.1.11. Il vous appartient d'adapter les exemples en fonction de votre plan d'adressage IP.\n"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:55
 msgid "## The Ansible vocabulary"
-msgstr ""
+msgstr "## Le vocabulaire Ansible"
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:65
@@ -259,12 +287,16 @@ msgid ""
 "The **management machine**: the machine on which Ansible is installed. Since "
 "Ansible is **agentless**, no software is deployed on the managed servers."
 msgstr ""
+"Le poste de gestion : la machine sur laquelle Ansible est installée. Ansible "
+"étant agentless, aucun logiciel n’est déployé sur les serveurs gérés."
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:65
 msgid ""
 "The **inventory**: a file containing information about the managed servers."
 msgstr ""
+"L'**inventaire** : un fichier contenant les informations concernant les "
+"serveurs gérés."
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:65
@@ -272,6 +304,9 @@ msgid ""
 "The **tasks**: a task is a block defining a procedure to be executed (e.g. "
 "create a user or a group, install a software package, etc.)."
 msgstr ""
+"Les tâches (**tasks**) : une tâche est un bloc définissant une procédure à "
+"exécuter (par exemple créer un utilisateur ou un groupe, installer un paquet "
+"logiciel, etc.)."
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:65
@@ -279,6 +314,8 @@ msgid ""
 "A **module**: a module abstracts a task. There are many modules provided by "
 "Ansible."
 msgstr ""
+"Un **module** : un module rend abstrait une tâche. Il existe de nombreux "
+"modules fournis par Ansible."
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:65
@@ -286,6 +323,8 @@ msgid ""
 "The **playbooks**: a simple file in yaml format defining the target servers "
 "and the tasks to be performed."
 msgstr ""
+"Les **playbooks** : un fichier simple au format yaml définissant les "
+"serveurs cibles et les tâches devant être effectuées."
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:65
@@ -294,6 +333,9 @@ msgid ""
 "necessary files (templates, scripts, etc.) to facilitate the sharing and "
 "reuse of code."
 msgstr ""
+"Un **rôle** : un rôle permet d’organiser les playbooks et tous les autres "
+"fichiers nécessaires (modèles, scripts, etc.) pour faciliter le partage et "
+"la réutilisation du code."
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:65
@@ -301,6 +343,8 @@ msgid ""
 "A **collection**: a collection includes a logical set of playbooks, roles, "
 "modules, and plugins."
 msgstr ""
+"Une **collection** : une collection comprend un ensemble logique de "
+"playbooks, de rôles, de modules et de plugins. "
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:65
@@ -309,6 +353,9 @@ msgid ""
 "system (machine name, system version, network interface and configuration, "
 "etc.)."
 msgstr ""
+"Les **facts** : ce sont des variables globales contenant des informations à "
+"propos du système (nom de la machine, version du système, interface et "
+"configuration réseau, etc.)."
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:65
@@ -316,6 +363,8 @@ msgid ""
 "The **handlers**: these are used to cause a service to be stopped or "
 "restarted in the event of a change."
 msgstr ""
+"Les **handlers** : il sont utilisés pour provoquer un arrêt ou un "
+"redémarrage d’un service en cas de changement."
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:67
@@ -1763,22 +1812,25 @@ msgstr ""
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:779
 msgid "You can check the syntax of your playbook:"
-msgstr ""
+msgstr "Vous pouvez contrôler la syntaxe de votre playbook :"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:783
 msgid "``` $ ansible-playbook --syntax-check play.yml ```"
 msgstr ""
+"```\n"
+"$ ansible-playbook --syntax-check play.yml \n"
+"```"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:785
 msgid "## Exercices results"
-msgstr ""
+msgstr "## Corrections des exercices"
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:795
 msgid "Create en empty file with `0644` rights"
-msgstr ""
+msgstr "Créer un fichier vide avec les droits en `0644`"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:808
@@ -1795,3 +1847,19 @@ msgid ""
 "become -m dnf -a \"name=* state=latest\" ansible ansible_clients --become -m "
 "reboot ```"
 msgstr ""
+"```\n"
+"ansible ansible_clients --become -m group -a \"name=Paris\" \n"
+"ansible ansible_clients --become -m group -a \"name=Tokio\" \n"
+"ansible ansible_clients --become -m group -a \"name=NewYork\" \n"
+"ansible ansible_clients --become -m user -a \"name=Supervisor\" \n"
+"ansible ansible_clients --become -m user -a \"name=Supervisor uid=10000\" \n"
+"ansible ansible_clients --become -m user -a \"name=Supervisor uid=10000 "
+"groups=Paris\"\n"
+"ansible ansible_clients --become -m dnf -a \"name=tree\" \n"
+"ansible ansible_clients --become -m systemd -a \"name=crond state=stopped"
+"\" \n"
+"ansible ansible_clients --become -m copy -a \"content='' dest=/tmp/test "
+"force=no mode=0644\" \n"
+"ansible ansible_clients --become -m dnf -a \"name=* state=latest\" \n"
+"ansible ansible_clients --become -m reboot\n"
+"```"

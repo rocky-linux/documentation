@@ -46,7 +46,7 @@ msgstr ""
 #: docs/books/learning_ansible/06-large-scale-infrastructure.md:20
 #, no-wrap
 msgid "****\n"
-msgstr ""
+msgstr "****\n"
 
 #. type: Plain text
 #: docs/books/admin_guide/03-commands.md:19
@@ -69,7 +69,7 @@ msgstr ""
 #: docs/books/learning_ansible/05-deployments.md:207
 #: docs/books/learning_ansible/05-deployments.md:257
 msgid "```"
-msgstr ""
+msgstr "```"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:8

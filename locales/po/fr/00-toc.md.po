@@ -5,21 +5,22 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: 2021-08-17 08:55+0200\n"
-"PO-Revision-Date: 2021-08-17 08:55+0200\n"
+"PO-Revision-Date: 2021-08-17 09:35+0200\n"
 "Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"Language-Team: en\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0\n"
 
 #. type: Plain text
 #: docs/books/admin_guide/00-toc.md:2
 msgid "# Learning Linux with Rocky"
-msgstr ""
+msgstr "# Apprendre Linux avec Rocky"
 
 #. type: Plain text
 #: docs/books/admin_guide/00-toc.md:4
@@ -31,6 +32,13 @@ msgid ""
 "environment, commands, processes, and more. Like all documents of this type, "
 "it will evolve and update over time."
 msgstr ""
+"Le Guide d'administration est une collection de documents éducatifs destinés "
+"aux administrateurs système. Ils peuvent être utilisés par les anciens "
+"administrateurs système qui veulent se mettre à niveau, par les "
+"administrateurs système actuels qui souhaitent se rafraîchir la mémoire, ou "
+"par tout utilisateur de Linux qui souhaite en savoir plus sur "
+"l'environnement, les commandes, les processus et autres de Linux. Comme tous "
+"les documents de ce type, il évoluera et sera mis à jour au fil du temps."
 
 #. type: Plain text
 #: docs/books/admin_guide/00-toc.md:6
@@ -38,6 +46,8 @@ msgid ""
 "Initially, we will discuss Linux, distributions, and the whole ecosystem "
 "around our operating system."
 msgstr ""
+"Dans un premier temps, nous parlerons de Linux, des distributions et de tout "
+"l'écosystème autour de notre système d'exploitation."
 
 #. type: Plain text
 #: docs/books/admin_guide/00-toc.md:8
@@ -46,6 +56,9 @@ msgid ""
 "speed with Linux. The more experienced users should also consult the chapter "
 "dedicated to the more \"advanced\" 'Commands.'"
 msgstr ""
+"Nous examinerons ensuite les commandes utilisateur indispensables pour se "
+"familiariser avec Linux. Les utilisateurs les plus expérimentés pourront "
+"également consulter le chapitre consacré aux \"commandes\" plus \"avancées\"."
 
 #. type: Plain text
 #: docs/books/admin_guide/00-toc.md:10
@@ -60,6 +73,16 @@ msgid ""
 "in Rocky Linux. While not as versatile, it is simple to use, "
 "straightforward, and gets the job done."
 msgstr ""
+"Vient ensuite le chapitre sur l'éditeur VI. Bien que Linux soit livré avec "
+"de nombreux éditeurs, VI est l'un des plus puissants. D'autres commandes "
+"utilisent parfois une syntaxe identique à celle de VI (on pense notamment à "
+"`sed`). Il est donc très important d'en connaître un minimum sur VI ou au "
+"moins de démystifier ses fonctions essentielles (comment ouvrir un fichier, "
+"sauvegarder, quitter ou quitter sans sauvegarder). L'utilisateur deviendra "
+"plus à l'aise avec les autres fonctions de VI au fur et à mesure qu'il "
+"utilisera l'éditeur. Une alternative serait d'utiliser `nano` qui est "
+"installé par défaut dans Rocky Linux. Bien qu'il ne soit pas aussi "
+"polyvalent, il est simple à utiliser, direct, et fait le travail."
 
 #. type: Plain text
 #: docs/books/admin_guide/00-toc.md:12
@@ -67,21 +90,23 @@ msgid ""
 "We can then get into the deep functioning of Linux to discover how the "
 "system manages:"
 msgstr ""
+"Nous pouvons alors entrer dans le fonctionnement de Linux pour découvrir "
+"comment le système gère :"
 
 #. type: Bullet: '* '
 #: docs/books/admin_guide/00-toc.md:16
 msgid "users."
-msgstr ""
+msgstr "les utilisateurs."
 
 #. type: Bullet: '* '
 #: docs/books/admin_guide/00-toc.md:16
 msgid "file systems."
-msgstr ""
+msgstr "les systèmes de fichiers."
 
 #. type: Bullet: '* '
 #: docs/books/admin_guide/00-toc.md:16
 msgid "processes."
-msgstr ""
+msgstr "les processus."
 
 #. type: Plain text
 #: docs/books/admin_guide/00-toc.md:18
@@ -92,6 +117,12 @@ msgid ""
 "the backup that are within the operating system. We will investigate two "
 "tools: `tar` and the less widespread `cpio` in this chapter."
 msgstr ""
+"Ensuite, nous allons aborder un sujet essentiel pour l'administrateur "
+"système : Le processus de sauvegarde. De nombreuses solutions logicielles "
+"sont fournies avec Linux pour améliorer les sauvegardes (rsnapshot, lsyncd, "
+"etc.). Il est bon de connaître les composants essentiels de la sauvegarde "
+"qui se trouvent dans le système d'exploitation. Nous allons étudier deux "
+"outils : `tar` et le moins répandu `cpio` dans ce chapitre."
 
 #. type: Plain text
 #: docs/books/admin_guide/00-toc.md:20
@@ -99,6 +130,8 @@ msgid ""
 "Management of the system during the boot process has evolved significantly "
 "in recent years since the arrival of the systemd."
 msgstr ""
+"La gestion du système pendant le processus de démarrage a beaucoup évolué "
+"ces dernières années depuis l'arrivée de systemd."
 
 #. type: Plain text
 #: docs/books/admin_guide/00-toc.md:23
@@ -106,3 +139,5 @@ msgid ""
 "We will conclude by examining the management of tasks, the implementation of "
 "the network, and software installation."
 msgstr ""
+"Nous terminerons en examinant la gestion des tâches, la mise en place du "
+"réseau et l'installation des logiciels."
