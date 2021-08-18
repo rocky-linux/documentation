@@ -44,7 +44,7 @@ Next, enable Rocky Linux' PowerTools:
 
 ## Install Asterisk
 
-## Downloading and Configuring the Asterisk Build
+### Downloading and Configuring the Asterisk Build
 
 Before you download this script, make sure you have the latest version. To do so, navigate to http://downloads.asterisk.org/pub/telephony/asterisk/ and look for the latest build of Asterisk and then copy the link location. As of the writing of this document, the following was the latest build:
 
@@ -72,7 +72,7 @@ Now that all of the required packages are installed, our next step is to configu
 
 `./configure --libdir=/usr/lib64 --with-jansson-bundled=yes`
 
-Assuming that the configuration runs without issue, you should get a large ASCII  Asterisk emplem, followed by the following on Rocky Linux:
+Assuming that the configuration runs without issue, you should get a large ASCII  Asterisk emblem, followed by the following on Rocky Linux:
 ```
 configure: Package configured for:
 configure: OS type  : linux-gnu
@@ -81,7 +81,7 @@ configure: build-cpu:vendor:os: x86_64 : pc : linux-gnu :
 configure: host-cpu:vendor:os: x86_64 : pc : linux-gnu :
 ```
 
-## Set Asterisk menu options [For more options]
+### Set Asterisk menu options [For more options]
 
 This is one of the steps where the administrator is going to need to do his homework. There are a lot of menu options that you may or may not need. Running the following command:
 
@@ -91,7 +91,7 @@ will bring you to a [menuselect screen](images/asterisk_menuselect.png)
 
 Look through these options carefully and make selections based on your requirements. As stated earlier, this may take some additional homework.
 
-## Build and Install Asterisk
+### Build and Install Asterisk
 
 To build, we want to execute the following commands in succession:
 ```
@@ -157,17 +157,29 @@ sudo firewall-cmd --zone=public --add-service sip --permanent
 sudo firewall-cmd --zone=public --add-port=10000-20000/udp --permanent
 ```
 
-While a reboot of the server is not required to function, I've always found that this is the cleanest way to test/run after a major installation. You can choose for yourself:
+Since we've made the `firewalld` commands permanent, we will need to do a reboot of the server. You can do that with:
 
 `sudo shutdown -r now`
 
 ## Test
 
-`sudo asterisk -rvvvv`
+### The Asterisk Console
+
+To test, let's connect to the Asterisk console:
+
+`sudo asterisk -r`
 
 Which will bring you into the Asterisk command-line client. You will see this prompt after the basic Asterisk information is displayed:
 
 `asterisk*CLI>`
+
+To change the verbosity of the console, use the following:
+
+`core set verbose 4`
+
+Which should show you the following in the Asterisk console:
+
+`Console verbose was OFF and is now 4.`
 
 ### Show Sample End-Point Authentications
 
