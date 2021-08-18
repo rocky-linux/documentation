@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-08-17 08:55+0200\n"
-"PO-Revision-Date: 2021-08-17 15:09+0200\n"
+"PO-Revision-Date: 2021-08-17 18:49+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -344,7 +344,7 @@ msgid ""
 "modules, and plugins."
 msgstr ""
 "Une **collection** : une collection comprend un ensemble logique de "
-"playbooks, de rôles, de modules et de plugins. "
+"playbooks, de rôles, de modules et de plugins."
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:65
@@ -369,7 +369,7 @@ msgstr ""
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:67
 msgid "## Installation on the management server"
-msgstr ""
+msgstr "## Installation sur le serveur de gestion"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:69
@@ -380,11 +380,17 @@ msgid ""
 "latest version. The _EPEL_ is required for both versions, so you can go "
 "ahead and install that now:"
 msgstr ""
+"Ansible est disponible dans le dépôt EPEL mais est fourni en version 2.9.21, "
+"ce qui est un peu ancien maintenant. Vous pouvez vous donner une idée de "
+"comment l'installer depuis EPEL en suivant ce qui suit, mais sautez les "
+"étapes d'installation proprement dites, car nous allons installer la "
+"dernière version. Le dépôt _EPEL_ est nécessaire pour les deux versions, "
+"vous pouvez donc l'installer maintenant :"
 
 #. type: Bullet: '* '
 #: docs/books/learning_ansible/01-bases.md:71
 msgid "EPEL installation:"
-msgstr ""
+msgstr "Installation d’EPEL :"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:76
@@ -392,6 +398,12 @@ msgid ""
 "``` $ sudo dnf install epel-release ``` If we were installing Ansible from "
 "the _EPEL_ we could do the following:"
 msgstr ""
+"``` \n"
+"$ sudo dnf install epel-release \n"
+"```\n"
+"\n"
+"Si nous installions Ansible à partir du repo _EPEL_, nous aurions pu faire "
+"ce qui suit :"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:83
@@ -399,6 +411,14 @@ msgid ""
 "``` $ sudo dnf install ansible $ ansible --version 2.9.21 ``` As we want to "
 "use a newer version of Ansible, we will install it from `python3-pip`:"
 msgstr ""
+"``` \n"
+"$ sudo dnf install ansible \n"
+"$ ansible --version \n"
+"2.9.21 \n"
+"``` \n"
+"\n"
+"Comme nous voulons utiliser une version plus récente d'Ansible, nous allons "
+"l'installer à partir de `python3-pip` :"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:86
@@ -407,6 +427,8 @@ msgid ""
 "!!! Note\n"
 "    Remove Ansible if you have installed it previously from _EPEL_.\n"
 msgstr ""
+"!!! Note\n"
+"    Supprimez Ansible si vous l'avez installé précédemment à partir du repo _EPEL_.\n"
 
 #. type: Plain text
 #: docs/books/learning_ansible/01-bases.md:90
