@@ -191,4 +191,4 @@ This will return username and password information that you can then use to conn
 
 ## Conclusion
 
-The above will get you up and running with the server, but finishing out the configuration, connecting devices, and further troubleshooting is up to you. Running an Asterisk communications server takes a lot of time and effort and will require a lot of research by any administrator.
+The above will get you up and running with the server, but finishing out the configuration, connecting devices, and further troubleshooting is up to you. Running an Asterisk communications server takes a lot of time and effort and will require a lot of research by any administrator. For more information on how to configure and use Asterisk, take a look at the [Asterisk Wiki here.](https://wiki.asterisk.org/wiki/display/AST/Getting+Started)
