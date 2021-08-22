@@ -1,51 +1,55 @@
 # 目录
 
-本文包含 Rocky Linux 文档的章节和小节标题，以及每个章节/小节中的文章链接。
+你已经找到我们了! 欢迎来到Rocky Linux的文档中心；我们很高兴你在这里。我们有许多贡献者在添加内容，而且这些内容的缓存一直在增加。在这里你可以找到关于如何构建Rocky Linux本身的文件，以及关于对Rocky社区来说很重要的各种主题的文件。你问谁构成了这个社区？
 
-章节的顺序非常重要，但尚未最终确定，因此请随时根据需要重新排序。
+事实上，你知道的。
 
-## 操作系统安装和设置
-| Rocky 经典安装 | 在 Windows 下的 Linux 子系统上安装 Rocky |
+现在，你所看到的是我们的指南索引，其中包括设置和使用Rocky Linux的具体方法。请看右边的分类来浏览我们的内容。在上面，你可以访问一本关于安装和设置Rocky的完整书籍，以及一些高级实验室，你可以通过它来进一步了解系统管理和更多。
+
+你发现有什么遗漏吗？你是否发现了一个错误？你是否想知道如何创建一个属于你自己的文件，或者如何解决这里的问题？还记得我们说过，*你*是洛基社区吗？那么，这意味着*你*对我们很重要，我们希望你能加入我们，如果你愿意的话，并帮助使这个文档变得更好。如果你对此感兴趣，请到我们的[贡献指南](https://github.com/rocky-linux/documentation/blob/main/README.md)了解你如何能做到这一点!
+
+## 操作系统的安装和设置
+| 常规安装 | Windows Linux子系统安装（WSL） |
 | --- |  --- |
 | [Rocky 8 安装](guides/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky_to_wsl_howto.md) |
-| [将 CentOS（或其他）转换为 Rocky Linux](guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox 和 docker)](guides/import_rocky_to_wsl_howto.md) |
-| [在 Rocky Linux 上安装 MATE](guides/mate_installation.md) |  |
-| [在 Rocky Linux 上安装 XFCE](guides/xfce_installation.md) |  |
+| [将CentOS 切换为Rocky Linux](guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox and docker)](guides/import_rocky_to_wsl_howto.md) |
+| [在Rocky Linux上安装MATE](guides/mate_installation.md) |  |
+| [在Rocky Linux上安装XFCE](guides/xfce_installation.md) |  |
 
-## 开发和打包
+## 开发和发布
 
-开始 | SRPM 源 | 重新打包 | 构建 | 签名 | 部署
+开始 | 寻找RPM源代码 | 再造 | 构建 | 签名 | 部署 
 --- | --- | --- | --- | --- | ---
-[设置开发环境](guides/development/package_dev_start.md) | [如何重新打包](guides/development/package_debranding.md) | [如何签名](guides/development/package_signing.md) <br /> [构建故障处理](guides/development/package_build_troubleshooting.md)
+[安装开发环境](guides/development/package_dev_start.md) | [重塑品牌的方法](guides/development/package_debranding.md) | [签名方法](guides/development/package_signing.md) <br /> [构建故障排除](guides/development/package_build_troubleshooting.md) |||
 
 
 ## 安全
 
 | 防火墙 | 网络安全 | 密码安全 |
 | --- | --- | --- |
-|[IPTABLES](guides/enabling_iptables_firewall.md) | [网络配置](guides/basic_network_configuration.md) | [SSH 密钥](guides/ssh_public_private_keys.md) |
-| | [SSL 密钥](guides/ssl_keys_https.md) |
-| | [生成 SSL 密钥和 Let's Encrypt](guides/generating_ssl_keys_lets_encrypt.md) |
+|[IPTABLES](guides/enabling_iptables_firewall.md) | [Networking Configuration](guides/basic_network_configuration.md) | [SSH Keys](guides/ssh_public_private_keys.md) |
+| | [SSL Keys](guides/ssl_keys_https.md) ||
+| | [Generating SSL Keys and LetsEncrypt](guides/generating_ssl_keys_lets_encrypt.md) ||
 
 
-## 守护进程/服务器
+## 服务
 
-| Web 服务器 | FTP | 内容管理系统 | 数据库 |
+| Web 服务 | FTP服务 | 内容管理系统 | 数据库 |
 | --- | --- | --- | --- |
-|[强化 Apache Web 服务器](guides/apache_hardened_webserver/index.md) | [VSFTPD](guides/secure_ftp_server_vsftpd.md) | [DokuWiki](guides/dokuwiki_server.md) | [MariaDB 服务器](guides/database_mariadb-server.md) |
-|[启用网站](guides/apache-sites-enabled.md) | | [Nextcloud](guides/cloud_server_using_nextcloud.md) |  |
-|[ModSecurity](guides/apache_hardened_webserver/modsecurity.md) | | |
-|[Ossec-Hids](guides/apache_hardened_webserver/ossec-hids.md) | | |
-|[RkHunter](guides/apache_hardened_webserver/rkhunter.md) | |  |
+|[Hardened Apache Web server](guides/apache_hardened_webserver/index.md) | [VSFTPD](guides/secure_ftp_server_vsftpd.md) | [DokuWiki](guides/dokuwiki_server.md) | [MariaDB server](guides/database_mariadb-server.md) |
+|[Enabling Website](guides/apache-sites-enabled.md) | | [Nextcloud](guides/cloud_server_using_nextcloud.md) |  |
+|[ModSecurity](guides/apache_hardened_webserver/modsecurity.md) | | ||
+|[Ossec-Hids](guides/apache_hardened_webserver/ossec-hids.md) | | ||
+|[RkHunter](guides/apache_hardened_webserver/rkhunter.md) | |  ||
 
 ## 系统维护和管理
 
-| 数据安全 | 系统管理与调试 | 管理用户与组 |
-| --- | --- | ---
-| [通过 SSH 同步](guides/rsync_ssh.md) | [Postfix](guides/postfix_reporting.md) |  |
+| 数据安全 | 系统管理和调试 | 管理用户和组 |
+| --- | --- | ---|
+| [Rsync over SSH](guides/rsync_ssh.md) | [Postfix](guides/postfix_reporting.md) |  |
 | [RSnapshot](guides/rsnapshot_backup.md) | [Cron(tab)](guides/cron_jobs_howto.md) |  |
-| [Lsyncd](guides/mirroring_lsyncd.md) | |
-| [Bind](guides/private_dns_server_using_bind.md) |  |
+| [Lsyncd](guides/mirroring_lsyncd.md) | ||
+| [Bind](guides/private_dns_server_using_bind.md) |  ||
 
 ## 虚拟化
 
@@ -57,16 +61,16 @@
 
 | LXC/LXD |
 | --- |
-| [创建完整的 LXD 服务器](guides/lxd_server.md) |
+| [Creating a full LXD Server](guides/lxd_server.md) |
 
 ## 教育/培训
 
-| 管理 | 安全 | 常规 |
-|----------------|----------|---------|
-| [系统管理](books/admin_guide/00-toc.md) | [安全实验室](labs/security/index.md) | [学习 Ansible](books/learning_ansible/index.md)
+| 管理员                                    | 安全                               | 一般                                           |
+| ----------------------------------------- | ---------------------------------- | ---------------------------------------------- |
+| [系统管理员](books/admin_guide/00-toc.md) | [安全实验](labs/security/index.md) | [学习Ansible](books/learning_ansible/index.md) |
 
-## 系统自动化与维护
+## 系统自动化和维护
 
 | Ansible           | Puppet | Salt | Chef |
 |-------------------|--------|------|------|
-| [使用 Packer 创建 VM 模板并使用 Ansible 在 Vmware 中进行部署](guides/templates-automation-packer-vsphere.md) |  |   |   |
+| [VM Template Creation With Packer, Ansible deployment for Vmware](guides/templates-automation-packer-vsphere.md) |  |   |   |
