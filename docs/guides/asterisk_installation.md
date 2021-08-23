@@ -2,9 +2,9 @@
 
 **What is Asterisk?**
 
-Asterisk is an open source framework for building communications applications. Additionally, Asterisk turns an ordinary computer into a communications server, as well as powering IP PBX systems, VoIP gateways, conference servers and other custom solutions. It is used by small businesses, large businesses, call centers, carriers, and government agencies worldwide. 
+Asterisk is an open source framework for building communications applications. Additionally, Asterisk turns an ordinary computer into a communications server, as well as powering IP PBX systems, VoIP gateways, conference servers and other custom solutions. It is used by small businesses, large businesses, call centers, carriers, and government agencies worldwide.
 
-Asterisk is free and open sourcen and is sponsored by [Sangoma](https://www.sangoma.com/). Sangoma also offers commercial products that use Asterisk under the hood, and depending on your experience and budget, using these products may be more beneficial than rolling your own. Only you and your organization know that answer to that.
+Asterisk is free and open source and is sponsored by [Sangoma](https://www.sangoma.com/). Sangoma also offers commercial products that use Asterisk under the hood, and depending on your experience and budget, using these products may be more beneficial than rolling your own. Only you and your organization know that answer.
 
 It should be noted that this guide requires the administrator to do a fair amount of research on their own. Installing a communications server is not a difficult process, but running one can be quite complicated. While this guide will get your server up and running, it will not be fully ready for you to use in production.
 
@@ -163,7 +163,7 @@ rungroup = asterisk ; The group to run as.
 
 ### Configure Firewall
 
-This example uses `firewalld` for the firewall, which is the default in Rocky Linux. The goal here is to open SIP ports to the world and to open RTP (Realtime Transport Protocol) to the world on ports 10000-20000 as recommended by the Asterisk documentation. 
+This example uses `firewalld` for the firewall, which is the default in Rocky Linux. The goal here is to open SIP ports to the world and to open RTP (Realtime Transport Protocol) to the world on ports 10000-20000 as recommended by the Asterisk documentation.
 
 Keep in mind that you will almost certainly need other firewall rules for other forward-facing services (HTTP/HTTPS) which you will probably want to limit to your own IP addresses. That is beyond the scope of this document:
 
@@ -206,6 +206,6 @@ This will return username and password information that you can then use to conn
 
 ## Conclusion
 
-The above will get you up and running with the server, but finishing out the configuration, connecting devices, and further troubleshooting is up to you. 
+The above will get you up and running with the server, but finishing out the configuration, connecting devices, and further troubleshooting is up to you.
 
 Running an Asterisk communications server takes a lot of time and effort and will require a lot of research by any administrator. For more information on how to configure and use Asterisk, take a look at the [Asterisk Wiki here.](https://wiki.asterisk.org/wiki/display/AST/Getting+Started)
