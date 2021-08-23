@@ -1,5 +1,10 @@
-# What's Asterisk
-Asterisk is an open source framework for building communications applications. Asterisk turns an ordinary computer into a communications server. Asterisk powers IP PBX systems, VoIP gateways, conference servers and other custom solutions. It is used by small businesses, large businesses, call centers, carriers and government agencies, worldwide. Asterisk is free and open source. Asterisk is sponsored by [Sangoma](https://www.sangoma.com/). Sangoma also offers commercial products that use Asterisk under the hood, and depending on your experience and budget, using these products may be more beneficial than rolling your own. Only you and your organization know that answer to that.
+# Installing Asterisk on Rocky Linux
+
+**What is Asterisk?**
+
+Asterisk is an open source framework for building communications applications. Additionally, Asterisk turns an ordinary computer into a communications server, as well as powering IP PBX systems, VoIP gateways, conference servers and other custom solutions. It is used by small businesses, large businesses, call centers, carriers, and government agencies worldwide. 
+
+Asterisk is free and open sourcen and is sponsored by [Sangoma](https://www.sangoma.com/). Sangoma also offers commercial products that use Asterisk under the hood, and depending on your experience and budget, using these products may be more beneficial than rolling your own. Only you and your organization know that answer to that.
 
 It should be noted that this guide requires the administrator to do a fair amount of research on their own. Installing a communications server is not a difficult process, but running one can be quite complicated. While this guide will get your server up and running, it will not be fully ready for you to use in production.
 
@@ -9,21 +14,23 @@ At minimum, you will need the following skills and tools to complete this guide:
 
 * A machine running Rocky Linux
 * A comfort level with modifying configuration files and issuing commands from the command-line
-* Knowledge of how to use a command line editor. (we are using `vi` here, but feel free to substitute in your favorite editor)
+* Knowledge of how to use a command line editor (We are using `vi` here, but feel free to substitute in your favorite editor.)
 * You will need root access, and ideally be signed in as the root user in your terminal
 * The EPEL repositories from Fedora
-* The ability to be root or become root with _sudo_. All commands here assume a user that has _sudo_ rights, however the configuration and build processes are run with `sudo -s`.
+* The ability to login as root or run root commands with _sudo_. All commands here assume a user that has _sudo_ rights, however the configuration and build processes are run with `sudo -s`.
 * To grab the latest build of Asterisk, you will need to either use `curl` or `wget`. This guide uses `wget`, but feel free to substitute in the appropriate `curl` string if you want to use that.
 
 ## Update Rocky Linux and Install `wget`
 
 `sudo dnf -y update`
 
-This will get your server up-to-date with all packages that have been released or updated since the last update or install.
+This will get your server up-to-date with all packages that have been released or updated since the last update or install. Then run:
 
 `sudo dnf install wget`
 
 ## Set Hostname
+
+Set your host name to the domain you'll be using for Asterisk.
 
 `sudo hostnamectl set-hostname asterisk.example.com`
 
@@ -46,13 +53,14 @@ Next, enable Rocky Linux' PowerTools:
 
 ### Downloading and Configuring the Asterisk Build
 
-Before you download this script, make sure you have the latest version. To do so, navigate to http://downloads.asterisk.org/pub/telephony/asterisk/ and look for the latest build of Asterisk and then copy the link location. As of the writing of this document, the following was the latest build:
+Before you download this script, make sure you have the latest version. To do so, navigate to http://downloads.asterisk.org/pub/telephony/asterisk/ and look for the latest build of Asterisk. Then copy the link location. As of the writing of this document, the following was the latest build:
 
 ```    
 wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18.6.0.tar.gz
 tar xvfz asterisk-18-current.tar.gz
 cd asterisk-18.6.0/
 ```
+
 Before running the `install_prereq` below (and the remaining commands), you are going to need to be the superuser or root. It's much easier at this point to get into _sudo_ permanently for a while. We will exit back out of _sudo_ later in the process:
 
 ```
@@ -60,7 +68,7 @@ sudo -s
 contrib/scripts/install_prereq install
 ```
 
-You should receive the following when the script completes:
+You should see the following when the script completes:
 
 ```
 #############################################
@@ -73,6 +81,7 @@ Now that all of the required packages are installed, our next step is to configu
 `./configure --libdir=/usr/lib64 --with-jansson-bundled=yes`
 
 Assuming that the configuration runs without issue, you should get a large ASCII  Asterisk emblem, followed by the following on Rocky Linux:
+
 ```
 configure: Package configured for:
 configure: OS type  : linux-gnu
@@ -94,15 +103,17 @@ Look through these options carefully and make selections based on your requireme
 ### Build and Install Asterisk
 
 To build, we want to execute the following commands in succession:
+
 ```
 make
 make install
 ```
+
 Installing the documentation isn't required, but unless you are a communications server expert, you'll want them installed:
 
 `make progdocs`
 
-Next install the basic PBX and make the config. The basic PBX is just that! You will probably need to make changes going forward to get your PBX to function as you want it to.
+Next install the basic PBX and make the config. The basic PBX is just that, very basic! You will probably need to make changes going forward to get your PBX to function as you want it to.
 
 ```
 make basic-pbx
@@ -113,6 +124,7 @@ make config
 
 ### Create User & Group
 
+You'll need a specific user just for asterisk. Might as well create it now.
 
 ```
 groupadd asterisk
@@ -120,6 +132,7 @@ useradd -r -d /var/lib/asterisk -g asterisk asterisk
 chown -R asterisk.asterisk /etc/asterisk /var/{lib,log,spool}/asterisk /usr/lib64/asterisk
 restorecon -vr {/etc/asterisk,/var/lib/asterisk,/var/log/asterisk,/var/spool/asterisk}
 ```
+
 Now that the bulk of our work is completed, go ahead and exit out of the `sudo -s` command. This will require that most of the remaining commands use _sudo_ again:
 
 `exit`
@@ -128,7 +141,7 @@ Now that the bulk of our work is completed, go ahead and exit out of the `sudo -
 
 `sudo vi /etc/sysconfig/asterisk`
 
- Remove the comments on the two lines below and save:
+Remove the comments on the two lines below and save:
 
 ```
 AST_USER="asterisk"
@@ -150,7 +163,9 @@ rungroup = asterisk ; The group to run as.
 
 ### Configure Firewall
 
-This example uses `firewalld` for the firewall, which is the default in Rocky Linux. The goal here is to open SIP ports to the world and to open RTP (Realtime Transport Protocol) to the world on ports 10000-20000 as recommended by the Asterisk documentation. Keep in mind that you will almost certainly need other firewall rules for other forward-facing services (HTTP/HTTPS) which you will probably want to limit to your own IP addresses. That is beyond the scope of this document:
+This example uses `firewalld` for the firewall, which is the default in Rocky Linux. The goal here is to open SIP ports to the world and to open RTP (Realtime Transport Protocol) to the world on ports 10000-20000 as recommended by the Asterisk documentation. 
+
+Keep in mind that you will almost certainly need other firewall rules for other forward-facing services (HTTP/HTTPS) which you will probably want to limit to your own IP addresses. That is beyond the scope of this document:
 
 ```
 sudo firewall-cmd --zone=public --add-service sip --permanent
@@ -191,4 +206,6 @@ This will return username and password information that you can then use to conn
 
 ## Conclusion
 
-The above will get you up and running with the server, but finishing out the configuration, connecting devices, and further troubleshooting is up to you. Running an Asterisk communications server takes a lot of time and effort and will require a lot of research by any administrator. For more information on how to configure and use Asterisk, take a look at the [Asterisk Wiki here.](https://wiki.asterisk.org/wiki/display/AST/Getting+Started)
+The above will get you up and running with the server, but finishing out the configuration, connecting devices, and further troubleshooting is up to you. 
+
+Running an Asterisk communications server takes a lot of time and effort and will require a lot of research by any administrator. For more information on how to configure and use Asterisk, take a look at the [Asterisk Wiki here.](https://wiki.asterisk.org/wiki/display/AST/Getting+Started)
