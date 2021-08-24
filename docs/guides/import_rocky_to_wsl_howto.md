@@ -3,6 +3,7 @@
 ## Prerequisites
 
 Either 
+
 * Linux PC running VirtualBox - VirtualBox will not run under windows 10 with WSL2, which is needed for later steps. You can also use a dual boot PC, or a live distribution, but make sure you have VirtualBox available.
 
 Or
