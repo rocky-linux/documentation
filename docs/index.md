@@ -1,6 +1,6 @@
 # Table of Contents
 
-You've found us! Welcome to the documentation hub for Rocky Linux; we're glad you're here. We have a number of contributors adding content, and that cache of content gets bigger all the time. Here you will find documents on how to build Rocky Linux itself, as well as documents on various subjects that are important to the Rocky community. Who makes up that community you ask? 
+You've found us! Welcome to the documentation hub for Rocky Linux; we're glad you're here. We have a number of contributors adding content, and that cache of content gets bigger all the time. Here you will find documents on how to build Rocky Linux itself, as well as documents on various subjects that are important to the Rocky community. Who makes up that community you ask?
 
 Well actually, you do.
 
@@ -30,6 +30,7 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 |[IPTABLES](guides/enabling_iptables_firewall.md) | [Networking Configuration](guides/basic_network_configuration.md) | [SSH Keys](guides/ssh_public_private_keys.md) |
 | | [SSL Keys](guides/ssl_keys_https.md) |
 | | [Generating SSL Keys and LetsEncrypt](guides/generating_ssl_keys_lets_encrypt.md) |
+| | [SELinux Introduction](guides/learning_selinux.md) |
 
 
 ## Daemons/Servers

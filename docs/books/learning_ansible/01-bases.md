@@ -96,6 +96,7 @@ Before we actually install Ansible, we need to tell Rocky Linux that we want to 
 
 ```
 sudo alternatives --set python /usr/bin/python3.8
+sudo alternatives --set python3 /usr/bin/python3.8
 ```
 
 We can now install Ansible:
