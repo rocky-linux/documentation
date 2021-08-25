@@ -35,11 +35,11 @@ docker run --name rocky-container rockylinux/rockylinux:8.4
 ```
 2. Confirm the container exists
 ```powershell
-docker container list --all | Select-String rocky_container
+docker container list --all | Select-String rocky-container
 ```
 3. Export container as tar
 ```powershell
-docker export rocky_container -o rocky_container.tar
+docker export rocky-container -o rocky-container.tar
 ```
 
 Note: You don't have to be on the same system as your WSL2 install, you just need to be able to get that tar file to the system.
@@ -84,7 +84,7 @@ $ sudo ./mkimage-yum.sh -y /home/<your_username>/wsl_tar/yum.conf baseos
 1. Create a directory to hold the Rocky Linux filesystem.
 2. In a PowerShell prompt, import Rocky Linux (it's named `rocky_rc` here, but you can name it anything you like).<br/>
 ```PowerShell
-wsl --import rocky_rc <Path to RockyLinuxDirectory from step 10> <Path to tar file from previous sections>
+wsl --import rocky_rc <Path to RockyLinuxDirectory from step 1> <Path to tar file from previous sections>
 ```
 3. Verify Rocky Linux is installed with:<br/>
 ```PowerShell
