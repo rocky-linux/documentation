@@ -6,6 +6,25 @@ title:  Rocky Linux 8 Change Log
 
 Rocky Linux 8.4 will receive incremental updates over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`
 
+## 8.4 - 2021-08-24
+
+The following packages have been updated:
+
+* dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
+* libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Addresses 
+
+  * Addresses a heap buffer overflow that allowed arbitrary code execution from a wav file
+
+* scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.1
+
+  * Addresses RLBZ#108
+
+The following repos/packages have been added:
+
+* RT (realtime) - Enabled by running `dnf config-manager --set-enabled rt`
+
+  * kernel-rt (realtime kernel)
+
 ## 8.4 - 2021-08-11
 
 The following packages have been updated:
