@@ -62,7 +62,7 @@ dnf install -y git
 Then clone the rocky-tools repository with:
 
 ```
-https://github.com/rocky-linux/rocky-tools.git
+git clone https://github.com/rocky-linux/rocky-tools.git
 ```
 
 Note: this method will download all of the scripts and files in the rocky-tools repository. 
