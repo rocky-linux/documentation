@@ -1,6 +1,6 @@
 ---
 nav:
-    - Table of Contents: index.md
+    - ... | index*.md
     - Guides: guides
     - Books: books
     - Labs: labs

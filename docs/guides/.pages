@@ -1,7 +1,10 @@
 ---
 nav:
     - Guides Home: index.md
-    - Installation Guide: rocky-8-installation.md
     - Apache Hardened Webserver: apache_hardened_webserver
+    - Content Management Systems: cms
+    - Database Servers: database
     - Development: development
+    - Email Servers: email
+    - File Transfer Systems: file_transfer
     - ...

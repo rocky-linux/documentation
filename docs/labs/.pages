@@ -1,4 +1,4 @@
 ---
 nav:
-    - Labs Home: index.md
+    - ... | index*.md
     - System Security Labs: security
