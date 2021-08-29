@@ -8,7 +8,7 @@ This is the home landing page for the Tutorial Labs section of the Rocky Linux d
 
 ## Collapsible sections 
 
-These are a good idea for pages with a lot of content. See the [website](https://facelessuser.github.io/pymdown-extensions/extensions/details/)
+These are a good idea for pages with a lot of content. See the [website](https://facelessuser.github.io/pymdown-extensions/extensions/details/).
 
 Support has to be added to the `mkdocs.yaml` config file.
 
