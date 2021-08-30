@@ -69,7 +69,7 @@ Insert and boot from the installation medium (optical disk, USB flash drive, and
 
 Once the computer has booted you will be presented with the Rocky Linux 8 welcome splash screen.
 
-![Rocky Linux installation splash screen](images/installation-F01.png)
+![Rocky Linux installation splash screen](../images/installation-F01.png)
 
 If you do not press any key the installer will begin a countdown, after which the installation process will automatically execute the default, highlighted, option:
 
@@ -249,7 +249,7 @@ Finally, complete the entire procedure by clicking the <kbd>Reboot System</kbd> 
 
 The system is now set up and ready for use. You will see the Rocky Linux console.
 
-![Rocky Linux Welcome Screen](images/installation-F04.png)
+![Rocky Linux Welcome Screen](../images/installation-F04.png)
 
 To log onto the system, type `rockstar` at the login prompt and press <kbd>enter</kbd>.
 
@@ -257,4 +257,4 @@ At the Password prompt, type `04302021` (rockstar’s password) and press <kbd>e
 
 We will run the `whoami` command after login, this command shows the name of the currently logged in user.
 
-![Login Screen](images/installation-F06.png)
+![Login Screen](../images/installation-F06.png)

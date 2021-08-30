@@ -68,7 +68,7 @@ Rocky-8.3-x86_64-minimal.iso: OK
 
 启动后，您将看到一个欢迎的初始界面。
 
-![Hardened Webserver](images/installation-F01.png)
+![Hardened Webserver](../images/installation-F01.png)
 
 如果您不按任何键，提示将开始倒计时，然后安装过程将启动高亮显示的“This Media & Install Rocky Linux 8 ... ”选项。您还可以按 Enter 键立即启动安装。
 
@@ -213,7 +213,7 @@ Rocky-8.3-x86_64-minimal.iso: OK
 ### 登录
 系统现在已设置好，您可以使用了。您将看到可爱的 Rocky Linux 控制台。
 
-![Rocky Linux Welcome Screen](images/installation-F04.png)
+![Rocky Linux Welcome Screen](../images/installation-F04.png)
 
 要登录到系统，请在登录提示处键入 `rockstar`，然后按 enter 键。
 
@@ -221,4 +221,4 @@ Rocky-8.3-x86_64-minimal.iso: OK
 
 在登录后运行 `whoami` 命令。
 
-![Login Screen](images/installation-F06.png)
+![Login Screen](../images/installation-F06.png)
