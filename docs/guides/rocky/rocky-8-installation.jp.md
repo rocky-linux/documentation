@@ -68,7 +68,7 @@ Rocky-8.4-x86_64-minimal.iso: OK
 
 起動すると、歓迎のスプラッシュ画面が表示されます。
 
-![Rocky Linuxインストール用スプラッシュスクリーン](images/installation-F01.png)
+![Rocky Linuxインストール用スプラッシュスクリーン](../images/installation-F01.png)
 
 何もキーを押さないでいると、プロンプトがカウントダウンを始め、その後、ハイライトされた`Test this media & install Rocky Linux 8` ... オプションを起動することにより、インストールプロセスが開始されます。<kbd>enter</kbd>を押してすぐにプロセスを開始することもできます。
 
@@ -243,7 +243,7 @@ _Confirm password_:
 
 これでシステムの設定が完了し、使用できるようになりました。可愛らしいRocky Linuxのコンソールが表示されます。
 
-![Rocky Linux Welcome Screen](images/installation-F04.png)
+![Rocky Linux Welcome Screen](../images/installation-F04.png)
 
 システムにログインするには、ログインプロンプトで`rockstar`と入力し、<kbd>enter</kbd>を押します。
 
@@ -251,4 +251,4 @@ Passwordプロンプトで、`04302021`（rockstarのパスワード）と入力
 
 ログイン後に`whoami`コマンドを実行します。
 
-![ログイン画面](images/installation-F06.png)
+![ログイン画面](../images/installation-F06.png)
