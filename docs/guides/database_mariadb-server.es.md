@@ -20,21 +20,21 @@ Si buscas aumentar aún más la seguridad por medio de otras herramientas, te ac
 
 Necesitamos primero instalar _mariadb-server_:
 
-> `dnf install mariadb-server`
+`dnf install mariadb-server`
 
 ### Asegurando mariadb-server
 
 Para fortalecer la seguridad en _mariadb-server_ necesitamos primero habilitar el servicio:
 
-> `systemctl enable mariadb`
+`systemctl enable mariadb`
 
 Y luego inicializarlo:
 
-> `systemctl start mariadb`
+`systemctl start mariadb`
 
 Para finalmente ingresar este comando:
 
-> `mysql_secure_installation`
+`mysql_secure_installation`
 
 Del cual saldrá este dialogo:
 

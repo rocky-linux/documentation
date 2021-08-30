@@ -11,7 +11,7 @@
 * Que se esté como usuario root o cambiar a root con `sudo -s` **(Poder ejecutar ciertos scripts en sus propios directorios como usuario propietario. En este caso, no es necesario cambiar a root).**
 * Suponemos que eres genial.
 
-# Introducción
+## Introducción
 
 Linux proporciona el sistema _cron_, un planificador de trabajos basado en el tiempo, para automatizar procesos. Es simple y a su vez poderoso. ¿Quieres un script o programa que se ejecute todos los días a las 5 PM? Aquí es donde puedes configurarlo.
 
@@ -121,7 +121,7 @@ En la tabla, las comas le permiten especificar entradas individuales dentro de u
 
 Al determinar cuándo ejecutar un script, debe tomarse el tiempo necesario y planificarlo, especialmente si los criterios son complejos.
 
-# Conclusiones
+## Conclusiones
 
 El sistema cron/crontab es una herramienta muy poderosa para el usuario de escritorio o el administrador de sistemas de Rocky Linux. Puede permitirte automatizar tareas y scripts para que no tengas que acordarte de ejecutarlos manualmente. 
 
