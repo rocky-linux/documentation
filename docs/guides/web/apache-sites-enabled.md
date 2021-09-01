@@ -96,9 +96,9 @@ As stated earlier, every web server created these days _should_ be running with 
 
 This process starts by generating a private key and a CSR (which stands for certificate signing request) and then submitting the CSR to the certificate authority to purchase the SSL certificate. The process of generating these keys is somewhat extensive, so it has its own document.
 
-If you are new to generating keys for SSL, please take a look at: [Generating SSL Keys](ssl_keys_https.md)
+If you are new to generating keys for SSL, please take a look at: [Generating SSL Keys](../security/ssl_keys_https.md)
 
-You can also use this alternate process for using an [SSL certificate from Let's Encrypt](generating_ssl_keys_lets_encrypt.md)
+You can also use this alternate process for using an [SSL certificate from Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md)
 
 ### Placement of the SSL keys and Certificate's
 

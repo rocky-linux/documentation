@@ -68,7 +68,7 @@ We are already assuming that you've created your GitHub account, have SSH key ac
 
 On the right-hand side of the page, click on "Fork" shown here:
 
-![Documentation Fork](images/gw_fork.png)
+![Documentation Fork](../images/gw_fork.png)
 
 When this completes, you should have a fork with a URL that has your username in it. If your git username was "alphaomega" then the URL would be:
 
@@ -80,11 +80,11 @@ https://github.com/alphaomega/documentation
 
 Next we need a local copy of the repository, which is easy enough to do. Again, from the Rocky Linux [Documentation](https://github.com/rocky-linux/documentation), look for the green "Code" button and click on it:
 
-![Documentation Code](images/gw_greencode.png)
+![Documentation Code](../images/gw_greencode.png)
 
 Once open, click on SSH and then copy the URL:
 
-![Documentation Copy SSH](images/gw_sshcopy.png)
+![Documentation Copy SSH](../images/gw_sshcopy.png)
 
 On your Linux workstation in a terminal window, enter the following at the command line:
 
@@ -158,15 +158,15 @@ You always want to create a branch by using the "main" as the template. Make sur
 
 As an example, below you can see the "Branches" listing, which shows "rl_git_workflow":
 
-![git-cola Branches](images/gw_gcbranches.png)
+![git-cola Branches](../images/gw_gcbranches.png)
 
 As you create and save your changes in Atom, you will see the "Unstaged Changes" listing in the git view change:
 
-![Atom Unstaged](images/gw_atomunstaged.png)
+![Atom Unstaged](../images/gw_atomunstaged.png)
 
 These changes also show up in Git Cola under the "Status" in the left-hand window:
 
-![git-cola Unstaged](images/gw_gitcolaunstaged.png)
+![git-cola Unstaged](../images/gw_gitcolaunstaged.png)
 
 ## Staging the Files with Git Cola
 

@@ -5,7 +5,7 @@
 * A Rocky Linux instance installed on a server, container, or virtual machine. 
 * Comfort with modifying configuration files from the command line with an editor (our examples here will use _vi_, but you can substitute your favorite editor)
 * Some knowledge about web applications and setup.
-* Our example will use the [Apache Sites Enabled](apache-sites-enabled.md) for setup, so it is a good idea to review that routine if you plan on following along.
+* Our example will use the [Apache Sites Enabled](../web/apache-sites-enabled.md) for setup, so it is a good idea to review that routine if you plan on following along.
 * We will be using "wiki-doc.yourdomain.com" as the domain name throughout this example.
 * We will assume throughout this document that you are the root user or can get there with _sudo_.
 * We are assuming a fresh install of the OS, however that is **NOT** a requirement.
@@ -36,7 +36,7 @@ Go ahead and answer with "y" and hit 'Enter' to install.
 
 ### Apache Configuration
 
-If you have read through the [Apache Sites Enabled](apache-sites-enabled.md) procedure, you know that we need to create a few directories. We will start with the _httpd_ configuration directory additions:
+If you have read through the [Apache Sites Enabled](../web/apache-sites-enabled.md) procedure, you know that we need to create a few directories. We will start with the _httpd_ configuration directory additions:
 
 `mkdir -p /etc/httpd/{sites-available,sites-enabled}`
 
@@ -153,7 +153,7 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
 
-Once you have finished testing and are ready to take things live for everyone, you will need to add this host to a DNS server. You could do this by using a [Private DNS Server](private_dns_server_using_bind.md), or a public-facing DNS server.
+Once you have finished testing and are ready to take things live for everyone, you will need to add this host to a DNS server. You could do this by using a [Private DNS Server](../dns/private_dns_server_using_bind.md), or a public-facing DNS server.
 
 ## Starting httpd
 
@@ -204,7 +204,7 @@ Besides the ACL policy that you just created, consider:
 
 ## Your Firewall
 
-Before you call everything done, you need to think about security. First, you should be running a firewall on the server. We will assume that you are using _iptables_ and have [Enabled _iptables_](enabling_iptables_firewall.md), but if you want to use _firewalld_ instead, simply modify your _firewalld_ rules accordingly. 
+Before you call everything done, you need to think about security. First, you should be running a firewall on the server. We will assume that you are using _iptables_ and have [Enabled _iptables_](../security/enabling_iptables_firewall.md), but if you want to use _firewalld_ instead, simply modify your _firewalld_ rules accordingly. 
 
 Instead of everyone having access to the wiki, we are going to assume that anyone on the 10.0.0.0/8 network is on your private Local Area Network, and that those are the only people who need access to the site. A simple _iptables_ firewall script for this is down below. 
 
@@ -246,7 +246,7 @@ This will execute the rules and save them so that they will be reloaded on the n
 
 ## SSL
 
-For the best security, you should consider using an SSL so that all web traffic is encrypted. You can purchase an SSL from an SSL provider or use [Let's Encrypt](generating_ssl_keys_lets_encrypt.md)
+For the best security, you should consider using an SSL so that all web traffic is encrypted. You can purchase an SSL from an SSL provider or use [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md)
 
 # Conclusion
 

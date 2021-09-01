@@ -41,7 +41,7 @@ Make sure that local_enable is set to yes:
 
 `local_enable=YES`
 
-Add a line for the local root user. If the server that you are installing this on is a web server, we assume that you will be using the [Apache Web Server Multi-Site Setup](apache-sites-enabled.md), and that your local root will reflect that. If your setup is different, or if this is not a web server, adjust the local_root setting:
+Add a line for the local root user. If the server that you are installing this on is a web server, we assume that you will be using the [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md), and that your local root will reflect that. If your setup is different, or if this is not a web server, adjust the local_root setting:
 
 `local_root=/var/www/sub-domains`
 
@@ -251,6 +251,6 @@ If you are unable to upload a file, then you may need to go back and make sure t
 
 ## Conclusion
 
-_vsftpd_ is a popular and common ftp server and can be set up as a stand alone server, or as part of an [Apache Hardened Web Server](apache_hardened_webserver/index.md). If set up to use virtual users and a certificate, it is quite secure. 
+_vsftpd_ is a popular and common ftp server and can be set up as a stand alone server, or as part of an [Apache Hardened Web Server](../web/apache_hardened_webserver/index.md). If set up to use virtual users and a certificate, it is quite secure. 
 
 While there are quite a number of steps to setting up _vsftpd_ as outlined in this document, taking the extra time to set it up correctly will ensure that your server is as secure as it can be.

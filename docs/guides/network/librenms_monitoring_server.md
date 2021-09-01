@@ -108,7 +108,7 @@ We also need to make sure that the system timezone is correct. Again, using our 
 
 ## MariaDB Setup
 
-Before we get into the database setup required for LibreNMS, run through the [MariaDB procedure](database_mariadb-server.md) and specifically the section for "Securing mariadb-server", and then come back here for these specific settings. The first thing we need to do is modify the mariadb-server.cnf file:
+Before we get into the database setup required for LibreNMS, run through the [MariaDB procedure](../database/database_mariadb-server.md) and specifically the section for "Securing mariadb-server", and then come back here for these specific settings. The first thing we need to do is modify the mariadb-server.cnf file:
 
 `vi /etc/my.cnf.d/mariadb-server.cnf`
 
@@ -177,7 +177,7 @@ Save your changes and exit the file. If this is the only web service that will b
 
 ## Configure Apache
 
-Normally, we would use the [Apache sites-enabled](apache-sites-enabled.md) procedure to set up any web services, but in this case, we are just going with the default setup. Note that if you want to use that procedure, you simply need to place the configuration file in /etc/httpd/sites-available and then follow the procedure to link it to sites-enabled. The default document root, however, would **not** be /var/www/sub-domains/librenms/html, but instead it would be /opt/librenms/html.
+Normally, we would use the [Apache sites-enabled](../web/apache-sites-enabled.md) procedure to set up any web services, but in this case, we are just going with the default setup. Note that if you want to use that procedure, you simply need to place the configuration file in /etc/httpd/sites-available and then follow the procedure to link it to sites-enabled. The default document root, however, would **not** be /var/www/sub-domains/librenms/html, but instead it would be /opt/librenms/html.
 
 Again, in this case we aren't using that procedure and just going with the default, suggested setup. To do this, start by creating this file:
 
@@ -269,7 +269,7 @@ If you run into problems and you suspect it might be due to an SELinux issue, ru
 
 ## Firewall Configuration
 
-We will include the _firewalld_ instructions from the official documentation, however we will be using _iptables_ in the lab, so will also include those instructions. To use _iptables_ simply follow [this procedure](enabling_iptables_firewall.md) and then use the _iptables_ script found in this procedure, and make modifications to it for your network.
+We will include the _firewalld_ instructions from the official documentation, however we will be using _iptables_ in the lab, so will also include those instructions. To use _iptables_ simply follow [this procedure](../security/enabling_iptables_firewall.md) and then use the _iptables_ script found in this procedure, and make modifications to it for your network.
 
 ### firewalld
 
@@ -376,19 +376,19 @@ Now that we have all of the components installed and configured, our next step i
 
 Assuming all is working correctly, you should be redirected to the pre-install checks. Assuming that these are all marked as green, then we should be able to continue.
 
-![LibreNMS Prechecks](images/librenms_prechecks.png)
+![LibreNMS Prechecks](../images/librenms_prechecks.png)
 
 There are four buttons beneath the LibreNMS logo. The first button on the left is for the pre-checks. Our next button over is for the database. You'll need the password that you set for the database user "librenms" earlier in the process. If you've been following along diligently, then you've got that saved in a safe place. Go ahead and click on the "Database" button. The "User" and "Password" should be all that is necessary to fill in here. Once you do that, click the "Check Credentials" button.
 
-![LibreNMS Database](images/librenms_configure_database.png)
+![LibreNMS Database](../images/librenms_configure_database.png)
 
 Once you click that, if it comes back green, then you are ready to click the "Build Database" button.
 
-![LibreNMS Database Status](images/librenms_configure_database_status.png)
+![LibreNMS Database Status](../images/librenms_configure_database_status.png)
 
 Once that is complete, the third button will be active, which is "Create Admin User", so go ahead and click this. You will be prompted for an admin user name. In our lab we are simply going to use "admin", and a password for that user. Make sure the password is secure and, again, log it somewhere safe, such as a password manager. You'll also need to fill in the email address for the administrative user. Once all of that is completed, simply click the "Add User" button.
 
-![LibreNMS Administrative User](images/librenms_administrative_user.png)
+![LibreNMS Administrative User](../images/librenms_administrative_user.png)
 
 Once you do this, you'll be faced with a screen for "Finish Install." There should only be one item left to finish the install and that is a line that asks you to "validate your install". Click the link. Once you've done this and everything is successful, you'll be redirected to the login page. Login with your administrative user and password.
 
@@ -524,7 +524,7 @@ If you are new to this particular _iptables_ concept, the /etc/firewall.conf is 
 
 Now that our sample devices are configured to accept snmp traffic from our LibreNMS server, the next step is to add those devices in LibreNMS. We are assuming that you have the web interface for LibreNMS open, and if so, it is going to be showing you that you have no devices added and asking you to add one. So go ahead and do that. Once you click to add a device, you'll be faced with this screen:
 
-![LibreNMS Add Device](images/librenms_add_device.png)
+![LibreNMS Add Device](../images/librenms_add_device.png)
 
 Put in the information we used for our test devices. In our case, we are using the IP for the Ubuntu workstation to start, in our example that is 192.168.1.122. The only other thing we will need to add here is the community string in the "Community" field, so we would type in "LABone" here. Now click the "Add Device" button. Assuming that you have done everything correctly above when adding the device, your device should be added successfully. If you run into a failure to add, review the SNMP setup for the workstation or the firewall if it exists. Next we repeat the "Add Device" process for our CentOS server.
 
@@ -532,7 +532,7 @@ Put in the information we used for our test devices. In our case, we are using t
 
 As we said from the start, this document will only get you started with LibreNMS. There are a large number of additional configuration items, an extensive API (Application Programming Interface), an alerts system that provides a huge number of options for delivery, called "Transports", and much more.  We are not going to create any alert rules, but instead we will be editing the built-in alert rule "Device Down! Due to no ICMP response"  that is pre-configured out of the box, and for "Transports" we are going to stick with "Mail", which is just email. Just know that you are not limited.
 
-In order to use email for our transport, however, we need to have mail working on our server. To get this going, we are going to use this [Postfix Procedure](postfix_reporting.md). Run through that procedure to configure postfix so that it will properly identify where the messages are coming from, but you can stop after the configuration process and come back here.
+In order to use email for our transport, however, we need to have mail working on our server. To get this going, we are going to use this [Postfix Procedure](../email/postfix_reporting.md). Run through that procedure to configure postfix so that it will properly identify where the messages are coming from, but you can stop after the configuration process and come back here.
 
 ### Transports
 
@@ -575,7 +575,7 @@ Now that we have the transport and the device group set up, let's configure the 
 
 Before saving, your rule should look something like this:
 
-![LibreNMS Alert Rule](images/librenms_alert_rule.png)
+![LibreNMS Alert Rule](../images/librenms_alert_rule.png)
 
 These two devices should now alert you by email if they are down and when they recover.
 

@@ -14,7 +14,7 @@ This is everything you'll need to understand and follow along with this guide.
 
 # Introduction
 
-Using _rsync_ over SSH is neither as powerful as [lsyncd](mirroring_lsyncd.md) (which allows you to watch a directory or file for changes and keep it synchronized in real time), or as flexible as [rsnapshot](rsnapshot_backup.md) (which offers the ability to easily backup multiple targets from a single machine). But, it does offer the ability to keep two machines up-to-date on a schedule that you define. 
+Using _rsync_ over SSH is neither as powerful as [lsyncd](../backup/mirroring_lsyncd.md) (which allows you to watch a directory or file for changes and keep it synchronized in real time), or as flexible as [rsnapshot](../backup/rsnapshot_backup.md) (which offers the ability to easily backup multiple targets from a single machine). But, it does offer the ability to keep two machines up-to-date on a schedule that you define. 
 
 rsync has been around since the dawn of time (OK, maybe not quite that long, but a long time!) so every Linux distribution has it available, and most still install it with the base packages. rsync over SSH might be a solution, if you need to keep a set of directories up-to-date on a target machine, but real-time syncing is not particularly important. 
 
@@ -30,7 +30,7 @@ If the package is not installed, dnf will ask you to confirm installation and if
 
 ## Preparing The Environment
 
-This particular example will use rsync on the target to pull from the source, rather than pushing from the source to the target, so we will need to set up an [SSH key pair](ssh_public_private_keys.md) for this for this. Once the SSH key pairs are created, and you have confirmed access without a password from the target machine to the source, we are ready to start.
+This particular example will use rsync on the target to pull from the source, rather than pushing from the source to the target, so we will need to set up an [SSH key pair](../security/ssh_public_private_keys.md) for this for this. Once the SSH key pairs are created, and you have confirmed access without a password from the target machine to the source, we are ready to start.
 
 ## rsync Parameters And Setting Up A Script
 
