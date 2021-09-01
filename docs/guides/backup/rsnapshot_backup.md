@@ -235,7 +235,7 @@ For the server that will be running the backups, we need to generate an SSH key-
 
 If you already have a set of keys generated, you can skip this step. You can find out by doing an `ls -al .ssh` and looking for an id_rsa and id_rsa.pub key pair. If none exists use the following link to set up your keys and the servers that you want to access:
 
-[SSH Public Private Key Pairs](ssh_public_private_keys.md)
+[SSH Public Private Key Pairs](../security/ssh_public_private_keys.md)
 
 ### Rsnapshot Configuration
 
@@ -322,7 +322,7 @@ And add this line:
 
 ### Reporting The Backup Status
 
-To make sure that everything is backing up according to plan, you might want to send the backup log files to your email. If your are running multiple machine backups using rsnapshot, each log file will have its own name, which you can then send to your email for review by [Using postfix For Server Process Reporting](postfix_reporting.md) procedure.
+To make sure that everything is backing up according to plan, you might want to send the backup log files to your email. If your are running multiple machine backups using rsnapshot, each log file will have its own name, which you can then send to your email for review by [Using postfix For Server Process Reporting](../email/postfix_reporting.md) procedure.
 
 ## Conclusions and Other Resources
 

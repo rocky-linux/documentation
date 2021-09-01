@@ -84,7 +84,7 @@ Set _apache_ to start on boot:
 
 `systemctl enable httpd`
 
-As noted earlier, we are using the "Apache Sites Enabled" procedure found [here](apache-sites-enabled.md) to configure Apache. Follow that guide to get the configuration directories setup and the _httpd.conf_ file modified and then return to this document for the remaining steps.
+As noted earlier, we are using the "Apache Sites Enabled" procedure found [here](../web/apache-sites-enabled.md) to configure Apache. Follow that guide to get the configuration directories setup and the _httpd.conf_ file modified and then return to this document for the remaining steps.
 
 #### Create The Configuration
 
@@ -168,7 +168,7 @@ And then start it:
 
 `systemctl restart mariadb`
 
-Again, as indicated earlier, we will be using the setup procedure for hardening _mariadb-server_ found [here](https://docs.rockylinux.org/guides/database_mariadb-server/) for the initial configuration.
+Again, as indicated earlier, we will be using the setup procedure for hardening _mariadb-server_ found [here](../database/database_mariadb-server.md) for the initial configuration.
 
 ## Installing Nextcloud
 
@@ -228,7 +228,7 @@ To do the initial configuration, we want to actually load the site in a web brow
 
 And you should see this screen:
 
-![nextcloud login screen](images/nextcloud_screen.jpg)
+![nextcloud login screen](../images/nextcloud_screen.jpg)
 
 There are a couple of things that we want to do differently than the defaults that show up:
 
@@ -249,7 +249,7 @@ The "Nextcloud Manual.pdf" is the user manual, so that users can get familiar wi
 
 ### Next Steps
 
-At this point, don't forget that this is a server that you will be storing company data on. It's important to get it locked down with a firewall, get the [backups setup](rsnapshot_backup.md), secure the site with an [SSL](generating_ssl_keys_lets_encrypt.md), and any other duties that are required to keep your data safe.
+At this point, don't forget that this is a server that you will be storing company data on. It's important to get it locked down with a firewall, get the [backups setup](../backup/rsnapshot_backup.md), secure the site with an [SSL](../security/generating_ssl_keys_lets_encrypt.md), and any other duties that are required to keep your data safe.
 
 ## Conclusions
 

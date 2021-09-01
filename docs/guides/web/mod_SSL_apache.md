@@ -1,3 +1,7 @@
+---
+title: Apache With `mod_ssl`
+---
+
 # `mod_ssl` on Rocky Linux in an httpd Apache Web-Server Environment
 
 Apache Web-Server has been used for many years now; `mod_ssl`is used to provide greater security for the Web-Server and can be installed on almost any version of Linux, including Rocky Linux. The installation of `mod_ssl` will be part of the creation of a Lamp-Server for Rocky Linux.

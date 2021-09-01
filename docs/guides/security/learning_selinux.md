@@ -18,7 +18,7 @@ A MAC system reinforces the separation of confidentiality and integrity informat
 
 With each system call, the kernel queries SELinux to see if it allows the action to be performed.
 
-![SELinux](images/selinux_001.png)
+![SELinux](../images/selinux_001.png)
 
 SELinux uses a set of rules (policies) for this. A set of two standard rule sets (**targeted** and **strict**) is provided and each application usually provides its own rules.
 
@@ -32,7 +32,7 @@ The identity of a user depends directly on his Linux account. An identity is ass
 
 It is according to the domain of the security context (and thus the role) that the rights of a user on a resource are evaluated.
 
-![SELinux context](images/selinux_002.png)
+![SELinux context](../images/selinux_002.png)
 
 The terms "domain" and "type" are similar. Typically "domain" is used when referring to a process, while "type" refers to an object.
 
@@ -59,7 +59,7 @@ A domain being a specific type (in the SELinux sense) linked to a process and in
 
 A process whose context has security __domain D__ can access objects of __type T__.
 
-![The SELinux context of standard processes](images/selinux_003.png)
+![The SELinux context of standard processes](../images/selinux_003.png)
 
 #### The SELinux context of important processes
 
@@ -69,7 +69,7 @@ Each executable is tagged with a dedicated type (here **sshd_exec_t**) which aut
 
 This mechanism is essential since it restricts the rights of a process as much as possible.
 
-![The SELinux context of an important process - example of sshd](images/selinux_004.png)
+![The SELinux context of an important process - example of sshd](../images/selinux_004.png)
 
 ## Management
 

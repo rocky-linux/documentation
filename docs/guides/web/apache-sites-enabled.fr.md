@@ -101,9 +101,9 @@ Comme discuté précédemment, chaque serveur web créé de nos jours _devrait_ 
 
 Ce processus commence par la génération d'une clef privée et d'un CSR (Certificate Signing Request) et ensuite par l'envoi du CSR à l'autorité de certification pour acheter le certificat SSL. Ce processus de génération de clefs sort du cadre de ce document.
 
-Si vous débutez dans la génération des clefs pour SSL, merci de consulter la page [Générer des clefs SSL](ssl_keys_https.md)
+Si vous débutez dans la génération des clefs pour SSL, merci de consulter la page [Générer des clefs SSL](../security/ssl_keys_https.md)
 
-Vous pouvez aussi utiliser ce processus alternatif pour utiliser [un certificat SSL Let's Encrypt](generating_ssl_keys_lets_encrypt.md)
+Vous pouvez aussi utiliser ce processus alternatif pour utiliser [un certificat SSL Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md)
 
 ### Placement des clefs SSL et des certificats
 

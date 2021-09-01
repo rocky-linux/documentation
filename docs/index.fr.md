@@ -15,46 +15,46 @@ Did you find something missing? Did you find an error? Are you wondering how to 
 ## OS Installation and Setup
 | Classic Rocky Installation | Rocky on Windows SubSystem For Linux (WSL) |
 | --- |  --- |
-| [Rocky 8 Installation](guides/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky_to_wsl_howto.md) |
-| [Convert CentOS (and Others) to Rocky Linux](guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox and docker)](guides/import_rocky_to_wsl_howto.md) |
-| [Install MATE on Rocky Linux](guides/mate_installation.md) |  |
-| [Install XFCE on Rocky Linux](guides/xfce_installation.md) |  |
+| [Rocky 8 Installation](guides/rocky/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky/rocky_to_wsl_howto.md) |
+| [Convert CentOS (and Others) to Rocky Linux](guides/rocky/migrate2rocky.md) | [Rocky & WSL2 (virtualbox and docker)](guides/rocky/import_rocky_to_wsl_howto.md) |
+| [Install MATE on Rocky Linux](guides/desktop/mate_installation.md) |  |
+| [Install XFCE on Rocky Linux](guides/desktop/xfce_installation.md) |  |
 
 ## Development and Packaging
 
 Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 --- | --- | --- | --- | --- | ---
-[Setup Development Environment](guides/development/package_dev_start.md) | [Rebranding HowTo](guides/development/package_debranding.md) | [Signing HowTo](guides/development/package_signing.md) <br /> [Build Troubleshooting](guides/development/package_build_troubleshooting.md)
+[Setup Development Environment](guides/rocky/development/package_dev_start.md) | [Rebranding HowTo](guides/rocky/development/package_debranding.md) | [Signing HowTo](guides/rocky/development/package_signing.md) <br /> [Build Troubleshooting](guides/rocky/development/package_build_troubleshooting.md)
 
 
 ## Security
 
 | Firewalls | Network Security | Cryptographic Security |
 | --- | --- | --- |
-|[IPTABLES](guides/enabling_iptables_firewall.md) | [Networking Configuration](guides/basic_network_configuration.md) | [SSH Keys](guides/ssh_public_private_keys.md) |
-| | [SSL Keys](guides/ssl_keys_https.md) |
-| | [Generating SSL Keys and LetsEncrypt](guides/generating_ssl_keys_lets_encrypt.md) |
-| | [SELinux Introduction](guides/learning_selinux.md) |
+|[IPTABLES](guides/security/enabling_iptables_firewall.md) | [Networking Configuration](guides/network/basic_network_configuration.md) | [SSH Keys](guides/security/ssh_public_private_keys.md) |
+| | [SSL Keys](guides/security/ssl_keys_https.md) |
+| | [Generating SSL Keys and LetsEncrypt](guides/security/generating_ssl_keys_lets_encrypt.md) |
+| | [SELinux Introduction](guides/security/learning_selinux.md) |
 
 
 ## Daemons/Servers
 
 | Web Server | FTP | Content Management System | Database |
 | --- | --- | --- | --- |
-|[Hardened Apache Web server](guides/apache_hardened_webserver/index.md) | [VSFTPD](guides/secure_ftp_server_vsftpd.md) | [DokuWiki](guides/dokuwiki_server.md) | [MariaDB server](guides/database_mariadb-server.md) |
-|[Enabling Website](guides/apache-sites-enabled.md) | | [Nextcloud](guides/cloud_server_using_nextcloud.md) |  |
-|[ModSecurity](guides/apache_hardened_webserver/modsecurity.md) | | |
-|[Ossec-Hids](guides/apache_hardened_webserver/ossec-hids.md) | | |
-|[RkHunter](guides/apache_hardened_webserver/rkhunter.md) | |  |
+|[Hardened Apache Web server](guides/web/apache_hardened_webserver/index.md) | [VSFTPD](guides/file_transfer/secure_ftp_server_vsftpd.md) | [DokuWiki](guides/cms/dokuwiki_server.md) | [MariaDB server](guides/database/database_mariadb-server.md) |
+|[Enabling Website](guides/web/apache-sites-enabled.md) | | [Nextcloud](guides/cms/cloud_server_using_nextcloud.md) |  |
+|[ModSecurity](guides/web/apache_hardened_webserver/modsecurity.md) | | |
+|[Ossec-Hids](guides/web/apache_hardened_webserver/ossec-hids.md) | | |
+|[RkHunter](guides/web/apache_hardened_webserver/rkhunter.md) | |  |
 
 ## System Maintenance and Administration
 
 | Data Security | System Management and Debugging | Managing Users and Groups |
 | --- | --- | ---
-| [Rsync over SSH](guides/rsync_ssh.md) | [Postfix](guides/postfix_reporting.md) |  |
-| [RSnapshot](guides/rsnapshot_backup.md) | [Cron(tab)](guides/cron_jobs_howto.md) |  |
-| [Lsyncd](guides/mirroring_lsyncd.md) | |
-| [Bind](guides/private_dns_server_using_bind.md) |  |
+| [Rsync over SSH](guides/backup/rsync_ssh.md) | [Postfix](guides/email/postfix_reporting.md) |  |
+| [RSnapshot](guides/backup/rsnapshot_backup.md) | [Cron(tab)](guides/automation/cron_jobs_howto.md) |  |
+| [Lsyncd](guides/backup/mirroring_lsyncd.md) | |
+| [Bind](guides/dns/private_dns_server_using_bind.md) |  |
 
 ## Virtualization
 
@@ -66,7 +66,7 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 
 | LXC/LXD |
 | --- |
-| [Creating a full LXD Server](guides/lxd_server.md) |
+| [Creating a full LXD Server](guides/containers/lxd_server.md) |
 
 ## Educational / Training
 
@@ -78,4 +78,4 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 
 | Ansible           | Puppet | Salt | Chef |
 |-------------------|--------|------|------|
-| [VM Template Creation With Packer, Ansible deployment for Vmware](guides/templates-automation-packer-vsphere.md) |  |   |   |
+| [VM Template Creation With Packer, Ansible deployment for Vmware](guides/automation/templates-automation-packer-vsphere.md) |  |   |   |

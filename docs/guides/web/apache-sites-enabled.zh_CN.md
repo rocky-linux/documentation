@@ -94,7 +94,7 @@ Rocky Linux 提供了许多方法来设置网络站点。Apache 只是在单台�
 
 此过程首先生成私钥和 CSR（表示证书签名请求），然后将 CSR 提交给证书颁发机构以购买 SSL 证书。生成这些密钥的过程有些复杂，因此它有自己的文档。
 
-如果您不熟悉生成 SSL 密钥，请查看：[生成 SSL 密钥](ssl_keys_https.md)
+如果您不熟悉生成 SSL 密钥，请查看：[生成 SSL 密钥](../security/ssl_keys_https.md)
 
 ### 密钥和证书的位置
 

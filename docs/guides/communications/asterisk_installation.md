@@ -96,7 +96,7 @@ This is one of the steps where the administrator is going to need to do his home
 
 `make menuselect`
 
-will bring you to a [menuselect screen](images/asterisk_menuselect.png)
+will bring you to a [menuselect screen](../images/asterisk_menuselect.png)
 
 Look through these options carefully and make selections based on your requirements. As stated earlier, this may take some additional homework.
 

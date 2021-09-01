@@ -1,3 +1,7 @@
+---
+title: Automatic Template Creation - Packer - Ansible - VMWare VSphere
+---
+
 # Automatic template creation with Packer and deployment with Ansible in a VMWare VSphere environment
 
 **Knowledge**: :star: :star: :star:   

@@ -72,7 +72,7 @@ This should install _certbot_. The final step is to put the _certbot_ command in
 
 ## Getting The Let's Encrypt Certificate
 
-There are two ways to retrieve your Let's Encrypt certificate, either using the command to modify the http configuration file for you, or to just retrieve the certificate. If you are using the procedure for a multi-site setup suggested for one or more sites in the procedure [Apache Web Server Multi-Site Setup](apache-sites-enabled.md), then you will only want to retrieve your certificate. 
+There are two ways to retrieve your Let's Encrypt certificate, either using the command to modify the http configuration file for you, or to just retrieve the certificate. If you are using the procedure for a multi-site setup suggested for one or more sites in the procedure [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md), then you will only want to retrieve your certificate. 
 
 We are assuming that you **are** using this procedure so we will only retrieve the certificate. If you are running a standalone web server using the default configuration, you can retrieve the certificate and modify the configuration file in one step using `certbot --apache`. 
 
@@ -195,7 +195,7 @@ The certificate and chain file are included in a single PEM (Privacy Enhanced Ma
 </VirtualHost>
 ```
 
-Here's what's happening above. You may want to review the [Apache Web Server Multi-Site Setup](apache-sites-enabled.md) to see the differences in the application of an SSL purchased from another provider and the Let's Encrypt certificate:
+Here's what's happening above. You may want to review the [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md) to see the differences in the application of an SSL purchased from another provider and the Let's Encrypt certificate:
 
 * Even though port 80 (standard http) is listening, we are redirecting all traffic to port 443 (https)
 * SSLEngine on - simply says to use SSL

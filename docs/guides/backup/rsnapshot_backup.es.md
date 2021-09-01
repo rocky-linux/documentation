@@ -235,7 +235,7 @@ Para el servidor que ejecutará las copias de seguridad, necesitamos generar un 
 
 Si ya tienes un set de claves generado puedes averiguarlo haciendo un `ls -al .ssh` y buscando un par de claves id_rsa e id_rsa.pub. Si no existe ninguno puedes utilizar el siguiente enlace para configurar tus claves y servidores a los que quieres acceder:
 
-[Claves SSH públicas y privadas](ssh_public_private_keys.es.md)
+[Claves SSH públicas y privadas](../security/ssh_public_private_keys.es.md)
 
 ### Configuración de rsnapshot
 

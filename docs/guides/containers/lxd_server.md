@@ -5,7 +5,7 @@ LXD is best described on the [official website](https://linuxcontainers.org/lxd/
 
 It is very powerful, and with the right hardware and set up, can be leveraged to run a lot of server instances on a single piece of hardware. If you pair that with a snapshot server, you also have a set of containers that you can spin up almost immediately in the event that your primary server goes down.
 
-(You should not think of this as a traditional backup. You still need a regular backup system of some sort, like [rsnapshot](rsnapshot_backup.md).)
+(You should not think of this as a traditional backup. You still need a regular backup system of some sort, like [rsnapshot](../backup/rsnapshot_backup.md).)
 
 The learning curve for LXD can be a bit steep, but this document will attempt to give you a wealth of knowledge at your fingertips, to help you deploy and use LXD on Rocky Linux.
 
@@ -296,7 +296,7 @@ As with the other passwords, save this to a secure location.
 
 ### <a name="firewallsetup"></a>Firewall Set Up
 
-Before continuing, you will want a firewall set up on your server. This example is using _iptables_ and [this procedure](enabling_iptables_firewall.md) to disable _firewalld_. If you prefer to use _firewalld_, simply substitute in _firewalld_ rules.
+Before continuing, you will want a firewall set up on your server. This example is using _iptables_ and [this procedure](../security/enabling_iptables_firewall.md) to disable _firewalld_. If you prefer to use _firewalld_, simply substitute in _firewalld_ rules.
 
 Create your firewall.conf script:
 
