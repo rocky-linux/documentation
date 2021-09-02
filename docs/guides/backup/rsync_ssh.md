@@ -1,3 +1,7 @@
+---
+title: rsync For Synchronization
+---
+
 # Using rsync To Keep Two Machines Synchronized
 
 ## Prerequisites
