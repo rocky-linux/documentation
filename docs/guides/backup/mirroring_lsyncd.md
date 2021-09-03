@@ -13,7 +13,7 @@ This is everything you'll need to understand and follow along with this guide:
 * You will need to be familair with *inotify*, an event monitor interface
 * Optional: familiarity with *tail*
 
-# Introduction
+## Introduction
 
 If you're looking for a way to synchronize files and folders between computers automatically, lsyncd is a pretty great option. The only downside for beginners? You have to configure everything via the command line, and text files.
 
@@ -27,7 +27,7 @@ For the purposes of this guide, we will call the system with the original files 
 
 For remote syncing, you will also want to set up [Rocky Linux SSH Public Private Key Pairs](../security/ssh_public_private_keys.md). The examples here use SSH (port 22).
 
-# Installing lsyncd
+## Installing lsyncd
 
 There are actually two ways to install lsyncd. We will include them both here, but the preferred method is to install from source. It's relatively easy to do this and there are few dependencies required. The RPM tends to lag behind the source packages by a little. That said, we want to give you both options and let you choose. 
 
@@ -89,7 +89,7 @@ make install
 
 When done, you should have the lsyncd binary installed and ready for use in */usr/local/bin*
 
-# lsyncd Systemd Service
+## lsyncd Systemd Service
 
 Neither install method will create a systemd service for starting lsyncd on a reboot. We want to be able to do just that, because if you are mirroring files, you don't want the mirror to be offline because you forgot to manually start a service. 
 
@@ -129,7 +129,7 @@ Finally, reload the systemctl daemon so that systemd will "see" the new service 
 
 `systemctl daemon-reload`
 
-# lsyncd Configuration
+## lsyncd Configuration
 
 Whichever method you choose for installing lsyncd, you will need a configuration file: */etc/lsyncd.conf*. The next section will tell you how to build a simple configuration file, and test it. 
 
@@ -231,4 +231,3 @@ For newbies, *fstab* is the file that is used to configure storage drives on any
 lsyncd is a powerful tool for directory synchronization between machines. As you've seen, it's not hard to install, and it's easy to maintain going forward. Can't ask for more than that.
 
 You can find out more about lsyncd by going to [The Official Site](https://github.com/axkibe/lsyncd)
-
