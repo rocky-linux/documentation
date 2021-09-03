@@ -1,10 +1,15 @@
 ---
 nav:
     - Guides Home: index.md
-    - Apache Hardened Webserver: apache_hardened_webserver
-    - Content Management Systems: cms
-    - Database Servers: database
-    - Development: development
-    - Email Servers: email
-    - File Transfer Systems: file_transfer
+    - Rocky Specific: rocky
+    - Automation: automation
+    - Backup & Sync: backup
+    - Content Management: cms
+    - Communications: communications
+    - Containers: containers
+    - Database: database
+    - Desktop: desktop
+    - DNS: dns
+    - Email: email
+    - File Transfer: file_transfer
     - ...
