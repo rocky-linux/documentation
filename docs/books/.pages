@@ -1,0 +1,5 @@
+---
+nav:
+    - Books Home: index.md
+    - System Administrator's Guide: admin_guide
+    - ...

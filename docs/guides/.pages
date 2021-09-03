@@ -1,0 +1,15 @@
+---
+nav:
+    - Guides Home: index.md
+    - Rocky Specific: rocky
+    - Automation: automation
+    - Backup & Sync: backup
+    - Content Management: cms
+    - Communications: communications
+    - Containers: containers
+    - Database: database
+    - Desktop: desktop
+    - DNS: dns
+    - Email: email
+    - File Transfer: file_transfer
+    - ...
