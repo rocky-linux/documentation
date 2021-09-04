@@ -1,6 +1,7 @@
 ---
 nav:
     - Guides Home: index.md
+    - ... | installation*.md
     - Rocky Specific: rocky
     - Automation: automation
     - Backup & Sync: backup

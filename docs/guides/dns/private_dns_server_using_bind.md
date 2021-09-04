@@ -6,7 +6,7 @@
 * Several internal servers that need to be accessed only locally, but not over the Internet
 * Several workstations that need access to these same servers that exist on the same network
 * A healthy comfort level with entering commands from command line
-* Able to use a command line editor (we are using _vi_ in this example)
+* Familarity with a command line editor (we are using _vi_ in this example)
 * Able to use either _firewalld_ or _iptables_ for creating firewall rules (we are using _iptables_ here. If you would like to use _iptables_ as well, use the [Enabling Iptables Firewall procedure](../security/enabling_iptables_firewall.md))
 
 ## Introduction

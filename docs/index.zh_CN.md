@@ -7,7 +7,7 @@
 ## 操作系统安装和设置
 | Rocky 经典安装 | 在 Windows 下的 Linux 子系统上安装 Rocky |
 | --- |  --- |
-| [Rocky 8 安装](guides/rocky/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky/rocky_to_wsl_howto.md) |
+| [Rocky 8 安装](guides/installation.md) | [Rocky & WSL (rinse method)](guides/rocky/rocky_to_wsl_howto.md) |
 | [将 CentOS（或其他）转换为 Rocky Linux](guides/rocky/migrate2rocky.md) | [Rocky & WSL2 (virtualbox 和 docker)](guides/rocky/import_rocky_to_wsl_howto.md) |
 | [在 Rocky Linux 上安装 MATE](guides/desktop/mate_installation.md) |  |
 | [在 Rocky Linux 上安装 XFCE](guides/desktop/xfce_installation.md) |  |

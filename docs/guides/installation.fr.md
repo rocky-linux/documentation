@@ -67,7 +67,7 @@ Insérez et démarrez le média d'installation (disque optique, clef USB, etc.).
 
 Une fois démarré, vous verrez apparaître un écran de bienvenue.
 
-![Welcome screen](../images/installation-F01.png)
+![Welcome screen](images/installation-F01.png)
 
 Si vous n'appuyez sur aucune touche, l'invite va commencer un compte à rebours, après lequel le processus d'installation va démarrer avec l'option mise en évidence `Test this media & install Rocky Linux 8`. Vous pouvez aussi appuyer sur <kbd>Entrer</kbd> pour démarrer le processus immédiatement.
 
@@ -243,7 +243,7 @@ Enfin, terminez la procédure en cliquant sur le bouton <kbd>Redémarrer le syst
 
 Le système est maintenant configuré et prêt à être utilisé. Vous verrez l'adorable console Rocky Linux.
 
-![Rocky Linux Welcome Screen](../images/installation-F04.png)
+![Rocky Linux Welcome Screen](images/installation-F04.png)
 
 Pour se connecter au système, saisissez `rockstar` au prompt de connexion et appuyer sur <kbd>Entrer</kbd>.
 
@@ -251,4 +251,4 @@ Au prompt du mot de passe, saisissez `04302021` (le mot de passe de rockstar) et
 
 Nous lançons la commande `whoami` après la connexion.
 
-![Login Screen](../images/installation-F06.png)
+![Login Screen](images/installation-F06.png)

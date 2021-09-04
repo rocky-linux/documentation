@@ -67,7 +67,7 @@ Koppla in och starta från ditt installationmedia (optisk skiva, USB-sticka, och
 
 När du startat, så kommer du bli presenterad med en välkomstskärm.
 
-![Rocky Linux installation splash screen](../images/installation-F01.png)
+![Rocky Linux installation splash screen](images/installation-F01.png)
 
 Om du inte trycker på någon tangent, efter uppmaningen börjar en nedräkning, varefter installationsprocessen kommer börja med att starta den markerade `Testa detta media & installera Rocky Linux 8` ... alternativ. Du kan också trycka på <kbd>enter</kbd> för att starta processen omedelbart.
 
@@ -242,7 +242,7 @@ Slutligen slutför hela proceduren genom att klicka på <kbd>Starta om System</k
 
 Systemet är nu färdig installerat och klart för användning. Du kommer att se den bedårande Rocky Linux-konsolen.
 
-![Rocky Linux Välkommenskärm](../images/installation-F04.png)
+![Rocky Linux Välkommenskärm](images/installation-F04.png)
 
 För att logga in på systemet, skriv `rockstar` vid inloggningsprompten och tryck på <kbd>enter</kbd>.
 
@@ -250,4 +250,4 @@ Vid lösenordsprompten, skriv `04302021` (rockstar’s lösenord) och tryck på 
 
 Prova att köra `whoami` kommandot efter inloggning.
 
-![Inloggningsskärm](../images/installation-F06.png)
+![Inloggningsskärm](images/installation-F06.png)
