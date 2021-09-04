@@ -1,6 +1,6 @@
 # Private DNS Server Using Bind
 
-# Prerequisites And Assumptions
+## Prerequisites and Assumptions
 
 * A server running Rocky Linux
 * Several internal servers that need to be accessed only locally, but not over the Internet
@@ -9,7 +9,7 @@
 * Able to use a command line editor (we are using _vi_ in this example)
 * Able to use either _firewalld_ or _iptables_ for creating firewall rules (we are using _iptables_ here. If you would like to use _iptables_ as well, use the [Enabling Iptables Firewall procedure](../security/enabling_iptables_firewall.md))
 
-# Introduction
+## Introduction
 
 External, or public, DNS servers are used on the Internet to map host names to IP addresses and, in the case of PTR (known as "pointer" or "reverse") records, to map the IP to the host name. This is an essential part of the Internet. It makes your mail server, web server, FTP server, or many other servers and services work as expected no matter where you are. 
 
@@ -19,13 +19,13 @@ This will work for _your_ workstation, but not for any other machine on your net
 
 If you were creating production-level public DNS servers and resolvers, then this author would probably recommend the more robust [PowerDNS](https://www.powerdns.com/) authoritative and recursive DNS, which is easily installed on Rocky Linux servers. However, that is simply overkill for a local network that won't be exposing its DNS servers to the outside world. That is why we have chosen _bind_ for this example.
 
-## The DNS Server Components Explained
+### The DNS Server Components Explained
 
 As stated, DNS separates services into authoritative and recursive servers. These services are now recommended to be separate from each other on separate hardware or containers. 
 
 The authoritative server is the storage area for all IP addresses and host names, and the recursive server is used to lookup addresses and host names. In the case of our private DNS server, both the authoritative and the recursive server services will run together. 
 
-# Installing And Enabling Bind
+## Installing and Enabling Bind
 
 The first step is to install packages. In the case of _bind_ we need to execute the following command:
 
@@ -41,13 +41,13 @@ And then we need to start it:
 
 ## Configuration
 
-Before we make any changes to the configuration file, we want to make a backup copy of the original working *named.conf* file:
+Before making changes to any configuration file, it is a good idea to make a backup copy of the original installed working file, in this case _named.conf_:
 
 `cp /etc/named.conf /etc/named.conf.orig`
 
-That will help us in the future if we completely muck up the configuration file. It is *always* a good idea to make a backup copy before making a bunch of changes. 
+That will help in the future if errors are introduced into the configuration file. It is *always* a good idea to make a backup copy before making changes. 
 
-These changes require us to edit the named.conf file, to do this, we are using _vi_, but you can substitute your favorite command line editor:
+These changes require us to edit the named.conf file, to do this, we are using _vi_, but you can substitute your favorite command line editor (the editor `nano` is also installed in Rocky Linux and is easier to use than `vi`):
 
 `vi /etc/named.conf`
 
@@ -68,7 +68,7 @@ This has to be handled in two places. The first place is in the *named.conf* fil
 
 `filter-aaaa-on-v4 yes;`
 
-Finally, skip down to the bottom of the *named.conf* file and add a section for your network. Our example is using ourdomain, so sub in what you want to call your lan hosts:
+Finally, skip down to the bottom of the *named.conf* file and add a section for your network. Our example is using ourdomain, so sub in what you want to call your LAN hosts:
 
 ```
 # primary forwward and reverse zones
@@ -318,7 +318,7 @@ iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
 ```
 
 
-# Conclusions
+## Conclusions
 
 While using */etc/hosts* on an individual workstation will get you access to a machine on your internal network, you can only use it on that one machine. By adding a private DNS server using _bind_, you can add hosts to the DNS and as long as the workstations have access to that private DNS server, they will be able to get to these local servers. 
 
