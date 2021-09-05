@@ -67,7 +67,7 @@ Koppla in och starta från ditt installationmedia (optisk skiva, USB-sticka, och
 
 När du startat, så kommer du bli presenterad med en välkomstskärm.
 
-![Rocky Linux installation splash screen](../images/installation-F01.png)
+![Rocky Linux installation splash screen](images/installation-F01.png)
 
 Om du inte trycker på någon tangent, efter uppmaningen börjar en nedräkning, varefter installationsprocessen kommer börja med att starta den markerade `Testa detta media & installera Rocky Linux 8` ... alternativ. Du kan också trycka på <kbd>enter</kbd> för att starta processen omedelbart.
 
@@ -77,7 +77,7 @@ Efter att mediekontrollen är klar, och mediat har framgångsrikt verifierats oc
 
 Välj vilket språk du vill använda för att utföra installationen i denna del. För detta exempel, så kommer vi välja _Engelska (United States)_. Klicka sedan på knappen <kbd>Fortsätt</kbd>.
 
-# Installationsöversikt
+## Installationsöversikt
 
 Installationsöversikts skärmen är ett allt-i-ett-område där du kan göra viktiga val om det operativsystem som ska installeras.
 
@@ -131,7 +131,7 @@ Klicka på <kbd>Programvaruval</kbd> alternativet på huvud _Installationsövers
 Välj alternativet _Minimal installation_ (grundläggande funktionalitet) istället.
 
 Klicka på <kbd>Klar</kbd> högst upp på skärmen.
-        ​
+
 ## System Sektion
 
 Systemsektionen på _Installationsöversikt_ skärmen används för att anpassa och gör ändringar till den underliggande hårdvaran på målsystemet. Detta är vart du skapar dina hårddiskpartitioner eller volymer, specificerar vilket filsystem som ska användas, och anger nätverkskonfigurationen.
@@ -193,7 +193,7 @@ Klicka på _Rootlösenords_ fäletet under _Använderinställningar_ för att st
 Ange samme lösenord igen i _Bekräfta textrutan.
 
 Klicka på <kbd>Klar</kbd>.
-            ​
+
 
 ### Skapa ett användarkonto
 
@@ -237,12 +237,12 @@ När installationen startar, så kommer olika uppgifter börja köras i bakgrund
 Efter du har slutfört alla av de obligatoriska deluppgifterna och installationsprogrammet har gått sin runda, så kommer du att få en slutlig skärm för installationsförloppet med ett slutför meddelande.
 
 Slutligen slutför hela proceduren genom att klicka på <kbd>Starta om System</kbd> knappen. Systemet startar om sig själv.
-            ​
+
 ### Logga in
 
 Systemet är nu färdig installerat och klart för användning. Du kommer att se den bedårande Rocky Linux-konsolen.
 
-![Rocky Linux Välkommenskärm](../images/installation-F04.png)
+![Rocky Linux Välkommenskärm](images/installation-F04.png)
 
 För att logga in på systemet, skriv `rockstar` vid inloggningsprompten och tryck på <kbd>enter</kbd>.
 
@@ -250,4 +250,4 @@ Vid lösenordsprompten, skriv `04302021` (rockstar’s lösenord) och tryck på 
 
 Prova att köra `whoami` kommandot efter inloggning.
 
-![Inloggningsskärm](../images/installation-F06.png)
+![Inloggningsskärm](images/installation-F06.png)

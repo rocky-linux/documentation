@@ -60,7 +60,7 @@ Rocky-8.4-x86_64-minimal.iso: OK
 !!! Tip
     インストールを開始する前に、システムのUEFI(Unified Extensible Firmware Interface)またはBIOS(Basic Input/Output System)が正しいメディアから起動するようにあらかじめ設定しておく必要があります。
 
-# インストール
+## インストール
 
 それでは早速、インストールを始めましょう。
 
@@ -68,7 +68,7 @@ Rocky-8.4-x86_64-minimal.iso: OK
 
 起動すると、歓迎のスプラッシュ画面が表示されます。
 
-![Rocky Linuxインストール用スプラッシュスクリーン](../images/installation-F01.png)
+![Rocky Linuxインストール用スプラッシュスクリーン](images/installation-F01.png)
 
 何もキーを押さないでいると、プロンプトがカウントダウンを始め、その後、ハイライトされた`Test this media & install Rocky Linux 8` ... オプションを起動することにより、インストールプロセスが開始されます。<kbd>enter</kbd>を押してすぐにプロセスを開始することもできます。
 
@@ -78,7 +78,7 @@ Rocky-8.4-x86_64-minimal.iso: OK
 
 この画面では、インストールを行う際に使用する言語を選択します。この例では、_English (United States)_ を選択します。そして、<kbd>Continue</kbd>ボタンをクリックします。
 
-# インストールサマリー
+## インストールサマリー
 
 _Installation Summary_ 画面は、インストールするOSに関する重要な決定を行うためのオールインワンエリアです。
 
@@ -243,7 +243,7 @@ _Confirm password_:
 
 これでシステムの設定が完了し、使用できるようになりました。可愛らしいRocky Linuxのコンソールが表示されます。
 
-![Rocky Linux Welcome Screen](../images/installation-F04.png)
+![Rocky Linux Welcome Screen](images/installation-F04.png)
 
 システムにログインするには、ログインプロンプトで`rockstar`と入力し、<kbd>enter</kbd>を押します。
 
@@ -251,4 +251,4 @@ Passwordプロンプトで、`04302021`（rockstarのパスワード）と入力
 
 ログイン後に`whoami`コマンドを実行します。
 
-![ログイン画面](../images/installation-F06.png)
+![ログイン画面](images/installation-F06.png)

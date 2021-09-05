@@ -15,7 +15,7 @@ Did you find something missing? Did you find an error? Are you wondering how to 
 ## OS Installation and Setup
 | Classic Rocky Installation | Rocky on Windows SubSystem For Linux (WSL) |
 | --- |  --- |
-| [Rocky 8 Installation](guides/rocky/rocky-8-installation.md) | [Rocky & WSL (rinse method)](guides/rocky/rocky_to_wsl_howto.md) |
+| [Rocky 8 Installation](guides/installation.md) | [Rocky & WSL (rinse method)](guides/rocky/rocky_to_wsl_howto.md) |
 | [Convert CentOS (and Others) to Rocky Linux](guides/rocky/migrate2rocky.md) | [Rocky & WSL2 (virtualbox and docker)](guides/rocky/import_rocky_to_wsl_howto.md) |
 | [Install MATE on Rocky Linux](guides/desktop/mate_installation.md) |  |
 | [Install XFCE on Rocky Linux](guides/desktop/xfce_installation.md) |  |

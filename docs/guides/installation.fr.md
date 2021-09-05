@@ -59,7 +59,7 @@ Rocky-8.4-x86_64-minimal.iso: OK
 !!! Tip "Astuce"
     Avant de démarrer l'installation à proprement parler, l'UEFI (Unified Extensible Firmware Interface) ou le BIOS (Basic Input/Output System) du système doit être configuré pour démarrer sur le bon média.
 
-# L'installation
+## L'installation
 
 Démarrons le processus d'installation.
 
@@ -67,7 +67,7 @@ Insérez et démarrez le média d'installation (disque optique, clef USB, etc.).
 
 Une fois démarré, vous verrez apparaître un écran de bienvenue.
 
-![Welcome screen](../images/installation-F01.png)
+![Welcome screen](images/installation-F01.png)
 
 Si vous n'appuyez sur aucune touche, l'invite va commencer un compte à rebours, après lequel le processus d'installation va démarrer avec l'option mise en évidence `Test this media & install Rocky Linux 8`. Vous pouvez aussi appuyer sur <kbd>Entrer</kbd> pour démarrer le processus immédiatement.
 
@@ -131,7 +131,7 @@ En cliquant sur l'option <kbd>Sélection Logiciel</kbd> de l'écran principal _R
 Sélectionnez plutôt l'option _Installation minimale_ (Fonctionnalité de base).
 
 Cliquez sur <kbd>Fait</kbd> en haut de l’écran.
-        ​
+
 ## Section Système
 
 La section Système de l'écran _Résumé de l'installation_ est utilisée pour personnaliser et modifier le matériel sous-jacent du système cible. C'est ici que vous créez vos partitions ou volumes de disque dur, que vous spécifiez le système de fichiers à utiliser et que vous spécifiez la configuration du réseau.
@@ -238,12 +238,12 @@ Lorsque l'installation commence, différentes tâches démarrent en arrière-pla
 Une fois que les sous-tâches obligatoires sont terminées et que le programme d'installation a suivi son cours, un écran final _Progression de l'installation_ est affiché avec un message de fin.
 
 Enfin, terminez la procédure en cliquant sur le bouton <kbd>Redémarrer le système</kbd>. Le système redémarrera de lui-même.
-        ​
+
 ### Connexion
 
 Le système est maintenant configuré et prêt à être utilisé. Vous verrez l'adorable console Rocky Linux.
 
-![Rocky Linux Welcome Screen](../images/installation-F04.png)
+![Rocky Linux Welcome Screen](images/installation-F04.png)
 
 Pour se connecter au système, saisissez `rockstar` au prompt de connexion et appuyer sur <kbd>Entrer</kbd>.
 
@@ -251,4 +251,4 @@ Au prompt du mot de passe, saisissez `04302021` (le mot de passe de rockstar) et
 
 Nous lançons la commande `whoami` après la connexion.
 
-![Login Screen](../images/installation-F06.png)
+![Login Screen](images/installation-F06.png)
