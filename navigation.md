@@ -1,28 +1,39 @@
 # Navigational Changes - A Process Document for Managers/Editors
 
-## Reason for this document
+## Reason For This Document
 
-When the documentation project got started, we were hoping for Mkdocs to be as automatic as possible, making manual editing rare. After a few months of generating documents, it became clear that just placing documents in the correct folder and letting Mkdocs generate the navigation could not be depended on to keep things clean and neat. We needed categories, something that Mkdocs does not provide unless the documents are placed in specific folders. Mkdocs will then create a navigation with an alphabetic sort. Creating a folder structure that fixes navigation isn't the entire picture however. Even that will sometimes need additional changes to keep things organized. For instance, capitalization without modifying the lower-case folder structure.
+When the documentation project got started, it was hoped that menus in Mkdocs would be as automatic as possible, making manual editing of navigation rare. After a few months of generating documents, it became clear that just placing documents in the correct folder and letting Mkdocs generate the navigation could not be depended on to keep things clean and neat. We needed categories, something that Mkdocs does not provide unless the documents are placed in specific folders. Mkdocs will then create a navigation with an alphabetic sort. Creating a folder structure that fixes navigation isn't the entire picture however. Even that will sometimes need additional changes to keep things organized. For instance, capitalization without modifying the lower-case folder structure.
 
 ## Goals
 
 Our goals were:
 
-* Create the folder structure as needed now. (new folders may be required in the future)
-* Adjust the navigation so that the "Rocky Specific" items are very near the top
-* Adjust the navigation to better name some folders, and keep correct capitalization. As an example, "DNS" and "File Transfer", which otherwise show up as "Dns" and "File transfer" without some manipulation.
+* Create the folder structure as needed now (new folders may be required in the future).
+* Adjust the navigation so that the "Rocky Specific" items are very near the top.
+* Adjust the navigation to better name some folders, and enable correct capitalization. As an example, "DNS" and "File Transfer", which otherwise show up as "Dns" and "File transfer" without some manipulation.
 * Make sure that these navigation files are restricted to Managers and Editors.
 
 This last item may seem unnecessary to some reading this, but it will become clearer as this document continues.
 
 ## Assumptions
 
-We are already assuming that you have a local clone of the Rocky GitHub repository: [https://github.com/rocky-linux/documentation](https://github.com/rocky-linux/documentation)
+It is assumed that you have a local clone of the Rocky GitHub repository: [https://github.com/rocky-linux/documentation](https://github.com/rocky-linux/documentation).
 
 ## Environment Changes
 
-With these changes comes a real need to "see" how changes you are making affect the content _BEFORE_ it is taken live.  Doing this effectively requires:
+With these changes comes a real need to "see" how any changes you are making affect content, in the context of the website, _BEFORE_ that content is committed to the document repository, and subsequently goes 'live'.
 
+MkDocs is a [Python](https://www.python.org) application and the extra packages it uses are also Python code, this means that the environment required to run MkDocs needs to be a **correctly configured Python environment**. Setting up Python for development tasks (which is what is being done running MkDocs) is not a trivial task, and instructions for that are out of the scope of this document. Some considerations are:
+
+* The version of Python, it should be >= 3.8, also **particular care must be taken not to use the 'system' Python version of a computer if the computer runs Linux/macOS**. For example, as of the writing of this document, the system version of Python on macOS is still version 2.7.
+* Running a Python 'virtual environment'. When running Python application project and installing packages, for example MkDocs, it is **strongly recommended** by the Python community to [create an isolated virtual environment](https://realpython.com/python-virtual-environments-a-primer/) for each project.
+* Use a modern IDE (Integrated Development Environment) that supports Python well. Two popular IDEs, which also have integrated support for running virtual environments, are:
+    * PyCharm - (free version available) the leading IDE for Python https://www.jetbrains.com/pycharm/
+    * Visual Studio Code- (free version available) from Microsoft https://code.visualstudio.com
+
+Doing this effectively requires:
+
+* Setting up a new Python project which, ideally, uses a virtual environment.
 * Installing `mkdocs`
 * Installing some python plugins
 * Cloning this Rocky GitHub repository:[https://github.com/rocky-linux/docs.rockylinux.org](https://github.com/rocky-linux/docs.rockylinux.org)
@@ -34,8 +45,8 @@ With these changes comes a real need to "see" how changes you are making affect 
 
 ### Installing
 
-* Install `mkdocs` with the python environment: `sudo pip install mkdocs`
-* Install needed plugins:  `sudo pip install mkdocs-material mkdocs-localsearch mkdocs-awesome-pages-plugin mkdocs-i18n`
+* Install `mkdocs` with the python environment: `pip install mkdocs`
+* Install needed plugins:  `pip install mkdocs-material mkdocs-localsearch mkdocs-awesome-pages-plugin mkdocs-i18n`
 * Clone the repository (noted above)
 
 ### Linking and Running `mkdocs`
