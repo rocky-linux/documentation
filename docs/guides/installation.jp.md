@@ -60,7 +60,7 @@ Rocky-8.4-x86_64-minimal.iso: OK
 !!! Tip
     インストールを開始する前に、システムのUEFI(Unified Extensible Firmware Interface)またはBIOS(Basic Input/Output System)が正しいメディアから起動するようにあらかじめ設定しておく必要があります。
 
-# インストール
+## インストール
 
 それでは早速、インストールを始めましょう。
 
@@ -78,7 +78,7 @@ Rocky-8.4-x86_64-minimal.iso: OK
 
 この画面では、インストールを行う際に使用する言語を選択します。この例では、_English (United States)_ を選択します。そして、<kbd>Continue</kbd>ボタンをクリックします。
 
-# インストールサマリー
+## インストールサマリー
 
 _Installation Summary_ 画面は、インストールするOSに関する重要な決定を行うためのオールインワンエリアです。
 
