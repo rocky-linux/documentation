@@ -34,7 +34,7 @@ This will install everything that is needed to run a straight _iptables_ rule se
 
 Now we need to enable the _iptables_ service to make sure that it starts on boot:
 
-`dnf enable iptables`
+`systemctl enable iptables`
 
 ## Conclusion
 
