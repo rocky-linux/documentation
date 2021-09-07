@@ -2,7 +2,7 @@
 title: Table of Contents
 ---
 
-# English - Table of Contents
+# Table of Contents
 
 You've found us! Welcome to the documentation hub for Rocky Linux; we're glad you're here. We have a number of contributors adding content, and that cache of content gets bigger all the time. Here you will find documents on how to build Rocky Linux itself, as well as documents on various subjects that are important to the Rocky community. Who makes up that community you ask?
 
