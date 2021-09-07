@@ -38,7 +38,7 @@ Detta kommer installera allting som behövs för att köra ett rakt _iptables_ r
 
 Nu måste vi aktivera _iptables_ tjänsten för att se till att den startar direkt vid uppstart:
 
-`dnf enable iptables`
+`systemctl enable iptables`
 
 ## Slutsats
 
