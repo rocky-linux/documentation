@@ -1,5 +1,5 @@
 ---
-title: English Labs
+title: Tutorial Labs
 ---
 
 # English Rocky Linux Tutorial Labs
