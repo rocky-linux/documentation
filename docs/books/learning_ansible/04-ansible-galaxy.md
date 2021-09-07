@@ -1,4 +1,8 @@
-# Ansible-galaxy: collections and roles
+---
+title: Ansible Galaxy
+---
+
+# Ansible Galaxy: Collections and Roles
 
 In this chapter you will learn how to use, install, and manage Ansible roles and collections.
 
@@ -18,7 +22,7 @@ In this chapter you will learn how to use, install, and manage Ansible roles and
 
 ****
 
-Ansible Galaxy provides Ansible Roles and Collections from the Ansible Community.
+[Ansible Galaxy](https://galaxy.ansible.com) provides Ansible Roles and Collections from the Ansible Community.
 
 The elements provided can be referenced in the playbooks and used out of the box
 

@@ -1,11 +1,15 @@
+---
+title: Software Management
+---
+
 # Software Management
 
 ## Generalities
 
 On a Linux system, it is possible to install software in two ways:
 
-* by using an installation package;
-* by compiling the source files.
+* Using an installation package;
+* Compiling from source files.
 
 !!! Note
     Installing from source is not covered here. As a rule, you should use the package method unless the software you want is not available via the package manager. The reason for this is that dependencies are generally managed by the package system, whereas with source, you need to manage the dependencies manually.
@@ -20,9 +24,9 @@ On a Linux system, it is possible to install software in two ways:
 
 **RPM** is the format used by all RedHat based distributions (RockyLinux, Fedora, CentOS, SuSe, Mandriva, ...). Its equivalent in the Debian world is DPKG (Debian Package).
 
-The name of an RPM package follows a precise nomenclature:
+The name of an RPM package follows a specific nomenclature:
 
-![Illustration of a package name](images/sofware001.png)
+![Illustration of a package name](images/software-001.png)
 
 ### `rpm` command
 
@@ -32,7 +36,7 @@ The rpm command allows you to install a package.
 rpm [-i][-U] package.rpm [-e] package
 ```
 
-Example:
+Example (for a package named 'package'):
 
 ```
 [root]# rpm -ivh package.rpm
@@ -40,12 +44,12 @@ Example:
 
 | Option            | Description                                  |
 |-------------------|----------------------------------------------|
-| `-i _paquet.rpm_` |	Installs the package.                        |
-| `-U _paquet.rpm_` |	Updates an already installed package.        |
-| `-e _paquet.rpm_` |	Uninstalls the package.                      |
-| `-h`              |	Displays a progress bar.                     |
+| `-i package.rpm`  | Installs the package.                        |
+| `-U package.rpm`  | Updates an already installed package.        |
+| `-e package.rpm`  | Uninstalls the package.                      |
+| `-h`              | Displays a progress bar.                     |
 | `-v`              | Informs about the progress of the operation. |
-| `--test`          |	Tests the command without executing it.      |
+| `--test`          | Tests the command without executing it.      |
 
 The `rpm` command also allows you to query the system package database by adding the `-q` option.
 
@@ -197,7 +201,7 @@ By default, the `enabled` directive is absent which means that the repository is
 
 ## The EPEL repository
 
-The **EPEL** (**E**xtra **P**packages for **E**nterprise **L**inux) repository is a repository containing additional software packages for Enterprise Linux, which includes RedHat Enterprise Linux (RHEL), RockyLinux, CentOS, etc.
+**EPEL** (**E**xtra **P**ackages for **E**nterprise **L**inux) is a repository containing additional software packages for Enterprise Linux, which includes RedHat Enterprise Linux (RHEL), RockyLinux, CentOS, etc.
 
 ### Installation
 

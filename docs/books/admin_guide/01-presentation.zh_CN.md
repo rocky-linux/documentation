@@ -1,3 +1,7 @@
+---
+title: Linux 简介
+---
+
 # Linux 操作系统简介
 
 本章将带您将了解 GNU/Linux 发行版。

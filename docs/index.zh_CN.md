@@ -1,3 +1,7 @@
+---
+title: 目录
+---
+
 # 目录
 
 本文包含 Rocky Linux 文档的章节和小节标题，以及每个章节/小节中的文章链接。
@@ -63,7 +67,7 @@
 
 | 管理 | 安全 | 常规 |
 |----------------|----------|---------|
-| [系统管理](books/admin_guide/00-toc.md) | [安全实验室](labs/security/index.md) | [学习 Ansible](books/learning_ansible/index.md)
+| [系统管理](books/admin_guide/00-toc.md) | [安全实验室](labs/security/index.md) | [学习 Ansible](books/learning_ansible/00-toc.md)
 
 ## 系统自动化与维护
 

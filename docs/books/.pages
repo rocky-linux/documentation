@@ -1,5 +1,5 @@
 ---
 nav:
-    - Books Home: index.md
+    - ... | index*.md
     - System Administrator's Guide: admin_guide
     - ...

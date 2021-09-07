@@ -1,4 +1,8 @@
-# Implementing the network
+---
+title: Implementing the Network
+---
+
+# Implementing the Network
 
 In this chapter you will learn how to work with and manage the network.
 

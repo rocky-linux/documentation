@@ -72,7 +72,7 @@ Start Here | Sourcing SRPM | Rebranding | Building | Signing | Deployment
 
 | Administration | Security | General |
 |----------------|----------|---------|
-| [System Administration](books/admin_guide/00-toc.md) | [Security Labs](labs/security/index.md) | [Learning Ansible](books/learning_ansible/index.md)
+| [System Administration](books/admin_guide/00-toc.md) | [Security Labs](labs/security/index.md) | [Learning Ansible](books/learning_ansible/00-toc.md)
 
 ## System Automation And Maintenance
 

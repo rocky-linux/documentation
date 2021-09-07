@@ -1,4 +1,8 @@
-# Ansible - Large scale infrastucture
+---
+title: Large Scale infrastructure
+---
+
+# Ansible - Large Scale infrastructure
 
 In this chapter you will learn how to scale your configuration management system.
 
