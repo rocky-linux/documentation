@@ -1,3 +1,7 @@
+---
+title: 安装 Rocky Linux
+---
+
 # 安装 Rocky Linux
 
 本文介绍在独立系统上安装 64 位 rocky Linux 发行版的详细步骤。

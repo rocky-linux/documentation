@@ -1,4 +1,8 @@
-# Task management
+---
+title: Task Management
+---
+
+# Task Management
 
 In this chapter you will learn how to manage scheduled tasks.
 

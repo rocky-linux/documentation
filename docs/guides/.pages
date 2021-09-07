@@ -1,6 +1,6 @@
 ---
 nav:
-    - Guides Home: index.md
+    - ... | index*.md
     - ... | installation*.md
     - Rocky Specific: rocky
     - Automation: automation

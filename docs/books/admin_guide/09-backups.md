@@ -1,6 +1,10 @@
-# Backups and restorations
+---
+title: Backup and Restore
+---
 
-In this chapter you will learn how to backup and restore your data with Linux.
+# Backup and Restore
+
+In this chapter you will learn how to back up and restore your data with Linux.
 
 ****
 

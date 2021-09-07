@@ -1,3 +1,7 @@
+---
+title: Guides Home
+---
+
 # Rocky Linux Guides
 
 Welcome to the **Guides** section of the Rocky Linux documentation. You will find a host of "how-to" documents, and much more, here. This section is changing all the time. There are also some longer document groups that can be found in "Books" as well as future planned educational "Labs", each of which may be found in the top menu.

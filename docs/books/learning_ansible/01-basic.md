@@ -1,3 +1,7 @@
+---
+title: Ansible Basics
+---
+
 # Ansible Basics
 
 In this chapter you will learn how to work with Ansible.

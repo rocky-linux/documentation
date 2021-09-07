@@ -1,3 +1,7 @@
+---
+title: Installera Rocky Linux
+---
+
 # Installera Rocky Linux
 
 Denna guide går igenom i detalj stegen för att installera en 64-bitars version av rocky Linux distribution på ett fristående system.

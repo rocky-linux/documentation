@@ -1,3 +1,7 @@
+---
+title: Installer Rocky Linux
+---
+
 # Installer Rocky Linux
 
 Ce guide passe en revue les étapes détaillées pour installer une version 64 bits de la distribution rocky Linux sur un système autonome.
