@@ -29,12 +29,6 @@ Okay? We ready? Let's do this.
 
 ## Prepare your server
 
-It probably couldn't hurt to make sure your server is up to date, especially on a fresh install. If you're sure it won't break anything, go ahead and run:
-
-```
-dnf update -y
-```
-
 Then, you'll need to grab the actual script file from the repository. This can be done in a number of ways. 
 
 ### The manual way
