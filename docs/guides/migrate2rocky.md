@@ -50,7 +50,7 @@ Just, you know, adjust all the file paths and server domains or addresses as nee
 Install git on your server with:
 
 ```
-dnf install -y git
+dnf install git
 ```
 
 Then clone the rocky-tools repository with:
