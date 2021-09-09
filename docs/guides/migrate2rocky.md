@@ -69,16 +69,12 @@ Note: this method will download all of the scripts and files in the rocky-tools 
 
 ### The easy-but-slightly-less-secure way
 
-Okay, this is not necessarily the best thing to do, security-wise. But, it is the easiest way to grab the script. First, make sure you have *wget* installed (you'll generally want it around anyway):
-
-```
-dnf install -y wget
-```
+Okay, this is not necessarily the best thing to do, security-wise. But, it is the easiest way to grab the script.
 
 Then, run this command to download the script into whatever directory you're using:
 
 ```
-wget https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
+curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
 ```
 
 That command will download the file straight to your server, and *only* the file you want. But again, there are security concerns that suggest this isn't necessarily the best practice, so keep that in mind.
