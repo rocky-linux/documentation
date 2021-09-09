@@ -71,7 +71,7 @@ Note: this method will download all of the scripts and files in the rocky-tools 
 
 Okay, this is not necessarily the best thing to do, security-wise. But, it is the easiest way to grab the script.
 
-Then, run this command to download the script into whatever directory you're using:
+Run this command to download the script into whatever directory you're using:
 
 ```
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
