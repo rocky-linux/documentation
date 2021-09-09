@@ -29,7 +29,7 @@ Okay? We ready? Let's do this.
 
 ## Prepare your server
 
-Then, you'll need to grab the actual script file from the repository. This can be done in a number of ways. 
+You'll need to grab the actual script file from the repository. This can be done in a number of ways. 
 
 ### The manual way
 
