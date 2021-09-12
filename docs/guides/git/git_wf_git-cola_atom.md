@@ -1,3 +1,7 @@
+---
+title: A git Workflow Using Git Cola and Atom
+---
+
 # git Workflow for Documentation: git, Git Cola, and Atom
 
 So, you want to submit some documentation to this repository. Well, _git_ experts can always just get cracking and work how they usually do, then push their suggested changes to us. But if you're more of a beginner, and are looking for an example workflow, this guide can help.

@@ -1,3 +1,7 @@
+---
+title: Running A Local Copy of The Documentation Website
+---
+
 # Running a local copy of the docs.rockylinux.org website for web development and/or content authors
 
 This document walks through how to recreate and run a local copy of the entire docs.rockylinux.org website on your local machine. **It is a work-in-progress.**
@@ -5,26 +9,26 @@ This document walks through how to recreate and run a local copy of the entire d
 Running a local copy of the documentation website might be useful in the following scenarios:
 
 * You are interested in learning about and contributing to the web development aspects of the docs.rockylinux.org website
-* You are an author and you'd like to see how your doccuments will render/look on the docs website before contributing them
+* You are an author and you'd like to see how your documents will render/look on the docs website before contributing them
 * You are a web developer looking to contribute to or help maintain the docs.rockylinux.org website
 
 
 ### Some notes:
 
-* The instructions in this guide are **NOT** a prerequiste for Rocky documentation Authors/Content contributors
+* The instructions in this guide are **NOT** a prerequisite for Rocky documentation Authors/Content contributors
 * The entire environment runs in a Docker container and so you'll need a Docker engine on your local machine
-* The container is built ontop of the official RockyLinux docker image available here https://hub.docker.com/r/rockylinux/rockylinux 
-* The container keeps the documentation content (guides, books, images and so on) seperate from the web engine (mkdocs)
-* The container starts a local webserver listening on port 8000.  And port 8000 will be forwarded to the Docker host
+* The container is built on top of the official RockyLinux docker image available here https://hub.docker.com/r/rockylinux/rockylinux
+* The container keeps the documentation content (guides, books, images and so on) separate from the web engine (mkdocs)
+* The container starts a local web server listening on port 8000.  And port 8000 will be forwarded to the Docker host
 
 
 ## Create the content environment
 
-1. Change the current working directory on your local system to a folder where you intend to do your writing. We'll refer to this directcory as 
-`$ROCKYDOCS` in the rest of this guide.  For our demo here, `$ROCKYDOCS` points to `~/projects/rockydocs` on our demo system. 
+1. Change the current working directory on your local system to a folder where you intend to do your writing. We'll refer to this directory as
+`$ROCKYDOCS` in the rest of this guide.  For our demo here, `$ROCKYDOCS` points to `~/projects/rockydocs` on our demo system.
 
 Create $ROCKYDOCS if it doesn't already exist and then type:
- 
+
 ```
 cd  $ROCKYDOCS
 ```
@@ -40,7 +44,7 @@ You'll now have a `$ROCKYDOCS/documentation` folder. This folder is a git reposi
 
 ## Create and Start the RockyDocs web developmwnt environment
 
-3.  Make sure you have Docker up and running on your local machine (you can check with systemctl  
+3.  Make sure you have Docker up and running on your local machine (you can check with `systemctl `)
 
 4. From a terminal type:
 
@@ -67,7 +71,7 @@ docker run -it --name rockydoc --rm \
 ```
 
 
-Alternativelty if you prefer and if you have `docker-compose` installed, you can create compose file named `docker-compose.yml` with the following contents:
+Alternatively if you prefer and if you have `docker-compose` installed, you can create compose file named `docker-compose.yml` with the following contents:
 
 ```
 version: "3.9"
@@ -96,15 +100,3 @@ docker-compose  up
 With the container up and running, you should now be able to point your web browser to the following URL to view your local copy of the site:
 
 http://localhost:8000
-
-
-
-
-
-
-
-
-
-
-
-

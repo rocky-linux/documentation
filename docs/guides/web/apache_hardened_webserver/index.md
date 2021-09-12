@@ -26,7 +26,7 @@ You might elect to use a couple of these tools, and not the others, so for clari
 * A Web-based Application Firewall (WAF), with _mod\_security_ rules [Apache Hardened Web Server - mod_security](modsecurity.md)
 * Rootkit Hunter (rkhunter): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](rkhunter.md)
 * Database security (we are using _mariadb-server_ here) [MariaDB Database Server](../../database/database_mariadb-server.md)
-* A secure FTP or SFTP server (we are using _vsftpd_ here) [Secure FTP Server - vsftpd](../../file_transfer/secure_ftp_server_vsftpd.md)
+* A secure FTP or SFTP server (we are using _vsftpd_ here) [Secure FTP Server - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md)
 
 This procedure does not replace the [Apache Web Server Multi-Site Setup](../apache-sites-enabled.md), it simply adds these security elements to it. If you haven't read it, take some time to look at it before proceeding.
 
