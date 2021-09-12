@@ -1,3 +1,7 @@
+---
+title: Packaging And Developer Guide
+---
+
 # Packaging and developer starter guide
 
 
@@ -38,7 +42,7 @@ Locate and uncompress the devtools archive that you just downloaded.
 Here we'll use the `unzip` command line utility:
 
 ```
-unzip devtools-main.zip 
+unzip devtools-main.zip
 ```
 
 Change your working directory to the new devtool source directory that was just created:
@@ -61,7 +65,7 @@ sudo make install
 
 ## 3. Use Rocky Devtools (rockyget) to search for and download Source RPMs (SRPMs)
 
-Once installed, the main utility for finding and downloading SRPMs is the `rockyget` utility. 
+Once installed, the main utility for finding and downloading SRPMs is the `rockyget` utility.
 
 Let's use `rockyget` to download the SRPM for the popular `sed` package:
 
@@ -94,7 +98,7 @@ If you are looking for other Rocky packages to build and experiment with, you ca
 
 ## 4. Use Rocky Devtools (rockybuild) to build a new package for the Rocky OS
 
-Under the hood, `rockybuild` calls `rpmbuild` and `mock` utilities to build the source package in a chroot environment for the application specified on the command-line. It relies on the application sources and RPM SPEC file that was automatically downloaded via the `rockyget` command. 
+Under the hood, `rockybuild` calls `rpmbuild` and `mock` utilities to build the source package in a chroot environment for the application specified on the command-line. It relies on the application sources and RPM SPEC file that was automatically downloaded via the `rockyget` command.
 
 Use `rockybuild` to build the sed utility:
 
@@ -123,12 +127,12 @@ If all goes well you should end up with a Rocky ready SRPM file under the `~/roc
 
 
 
-## 5. Debugging a failed package build 
+## 5. Debugging a failed package build
 
 The previous rockybuild process will generate some log files that can be used in debugging failed application builds. The results and/or logs of the build process are stored under the `~/rocky/builds/<PACKAGE NAME>/r8`. For example `~/rocky/builds/sed/r8`
 
 
-``` 
+```
 ~/rocky/builds/sed/r8
 ├── build.log
 ├── hw_info.log
@@ -142,4 +146,3 @@ The previous rockybuild process will generate some log files that can be used in
 ```
 
 The main files to search for clues for the causes any error(s) are the build.log and root.log.     The build.log file should detail all build errors and the root.log file will contain information about the chroot environment setup and tear down processes. With everything else being equal, most of the build debugging/troubleshooting process can be performed with the contents of the build.log file.
-

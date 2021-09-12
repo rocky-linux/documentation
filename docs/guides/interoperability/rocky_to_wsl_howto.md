@@ -1,3 +1,7 @@
+---
+title: Import To WSL with WSL and rinse
+---
+
 # Import Rocky Linux to WSL with WSL and rinse
 
 ## Prerequisites
@@ -71,7 +75,7 @@ $ sudo tar --numeric-owner -c -C ./rocky_rc . -f <path to new tar file>
 ```PowerShell
 wsl --import rocky_rc <path to folder from step 9> <path to tar file>
 ```
-Note: Default location of WSL is `%LOCALAPPDATA%\Packages\` 
+Note: Default location of WSL is `%LOCALAPPDATA%\Packages\`
 `e.g. for Ubuntu - C:\Users\tahder\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhks2fndhsd\LocalState\rootfs\home\txunil\rocky_rc`
 
 15. In the PowerShell prompt, launch your new distro with:

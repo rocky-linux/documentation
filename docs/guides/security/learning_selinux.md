@@ -1,3 +1,7 @@
+---
+title: SELinux Security
+---
+
 # SELinux security
 
 With the arrival of kernel version 2.6, a new security system was introduced to provide a security mechanism to support access control security policies.

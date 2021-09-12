@@ -1,8 +1,12 @@
+---
+title: Import to WSL2 with Docker
+---
+
 # Import Rocky Linux to WSL2 with Docker
 
 ## Prerequisites
 
-Either 
+Either
 
 * Linux PC running VirtualBox - VirtualBox will not run under windows 10 with WSL2, which is needed for later steps. You can also use a dual boot PC, or a live distribution, but make sure you have VirtualBox available.
 
@@ -17,7 +21,7 @@ Required
 
 ## Introduction
 
-This guide shows the steps to create a tar image for a Docker container, and how to import that image into the Windows Subsystem for Linux (WSL). The steps outlined below are largely taken from Microsoft's [Import any Linux distribution to use with WSL](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro) and from Docker's [Create a base image](https://docs.docker.com/develop/develop-images/baseimages/), and adapted to the new distribution. 
+This guide shows the steps to create a tar image for a Docker container, and how to import that image into the Windows Subsystem for Linux (WSL). The steps outlined below are largely taken from Microsoft's [Import any Linux distribution to use with WSL](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro) and from Docker's [Create a base image](https://docs.docker.com/develop/develop-images/baseimages/), and adapted to the new distribution.
 
 Please note that you need Virtual Box (to create the container for yourself) **OR** Docker to just pull the existing image from Docker Hub. This guide assumes the user is familiar with VirtualBox or Docker, and knows how to perform tasks like installing the VirtualBoxAdditions, and mounting shared drives.
 
@@ -113,6 +117,6 @@ wsl -d rocky_rc
 ```
 8. Test and enjoy!
 
-If you have Windows Terminal installed, the new WSL distro name will appear as an option on the pull-down menu, which is quite handy to launch it in the future. You can then customize it with colors, fonts, etc. 
+If you have Windows Terminal installed, the new WSL distro name will appear as an option on the pull-down menu, which is quite handy to launch it in the future. You can then customize it with colors, fonts, etc.
 
 Even though you need WSL2 in order to perform the steps above, you can use the distro as WSL 1 or 2, by converting it with PowerShell commands.

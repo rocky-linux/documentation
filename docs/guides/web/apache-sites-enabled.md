@@ -1,3 +1,7 @@
+---
+title: Apache Multi-Site Setup
+---
+
 # Apache Web Server Multi-Site Setup
 
 ## What You Need

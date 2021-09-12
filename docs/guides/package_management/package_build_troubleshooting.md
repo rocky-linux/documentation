@@ -1,4 +1,8 @@
-## First get Familiar with the Mock build tool:
+---
+title: Package Build & Troubleshooting
+---
+
+# First get Familiar with the Mock build tool:
 
 Once you get through that, the biggest and most relevant technical/intro page for our package debugging effort is this:
 

@@ -1,3 +1,7 @@
+---
+title: Package Debranding
+---
+
 # Rocky package debranding How-To
 
 This explains how to debrand a package for the Rocky Linux distribution.
@@ -17,5 +21,3 @@ When srpmproc goes to import the package to Rocky, it will see the work done in 
 
 
 from https://wiki.rockylinux.org/en/team/development/debranding/how-to
-
-

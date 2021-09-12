@@ -1,3 +1,7 @@
+---
+title: Adding a Rocky Mirror
+---
+
 # Adding a public mirror to Rocky's mirror manager
 
 ## Minimal requirements for public mirrors
@@ -88,7 +92,7 @@ Fill out the following options that are appropriate for the site:
 * "Country" - required: 2-letter ISO country code
 * "Bandwidth" - required: integer megabits/sec, how much bandwidth this host can serve
 * "Private" - e.g. not available to the public, an internal private mirror
-* "Internet2" - on Internet2 
+* "Internet2" - on Internet2
 * "Internet2 clients" - serves Internet2 clients, even if private
 * "ASN - Autonomous System Number, used in BGP routing tables. Only if you are an ISP.
 * "ASN Clients? - Serve all clients from the same ASN. Used for ISPs, companies, or schools, not personal networks.
@@ -104,11 +108,11 @@ At the bottom of the Information site, the option for "Hosts" should now display
 
 * "Site-local Netblocks":  Netblocks are used to try to guide and end user to a site-specific mirror. For example, a university might list their netblocks, and the mirrorlist CGI would return the university-local mirror rather than a country-local mirror. Format is one of 18.0.0.0/255.0.0.0, 18.0.0.0/8, an IPv6 prefix/length, or a DNS hostname. Values must be public IP addresses (no RFC1918 private space addresses). Use only if you are an ISP and/or own a publicly routeable netblock!
 
-* "Peer ASNs":  Peer ASNs are used to guide an end user on nearby networks to our mirror. For example, a university might list their peer ASNs, and the mirrorlist CGI would return the university-local mirror rather than a country-local mirror. You must be in the MirrorManager administrators group in order to create new entries here. 
+* "Peer ASNs":  Peer ASNs are used to guide an end user on nearby networks to our mirror. For example, a university might list their peer ASNs, and the mirrorlist CGI would return the university-local mirror rather than a country-local mirror. You must be in the MirrorManager administrators group in order to create new entries here.
 
-* "Countries Allowed":  Some mirrors need to restrict themselves to serving only end users from their country. If you're one of these, list the 2-letter ISO code for the countries you will allow end users to be from. The mirrorlist CGI will honor this. 
+* "Countries Allowed":  Some mirrors need to restrict themselves to serving only end users from their country. If you're one of these, list the 2-letter ISO code for the countries you will allow end users to be from. The mirrorlist CGI will honor this.
 
-* "Categories Carried":  Hosts carry categories of software. Example Fedora categories include Fedora and Fedora Archive. 
+* "Categories Carried":  Hosts carry categories of software. Example Fedora categories include Fedora and Fedora Archive.
 
 Click on the "[add]" link under "Categories Carried".
 
