@@ -2,7 +2,8 @@
 nav:
     - ... | index*.md
     - ... | installation*.md
-    - Rocky Specific: rocky
+    - ... | migrate2rocky*.md
+    - Contribute: contribute
     - Automation: automation
     - Backup & Sync: backup
     - Content Management: cms
@@ -12,5 +13,10 @@ nav:
     - Desktop: desktop
     - DNS: dns
     - Email: email
-    - File Transfer: file_transfer
+    - File Sharing Services: file_sharing
+    - Git: git
+    - Interoperability: interoperability
+    - Mirror Management: mirror_management
+    - Network: network
+    - Package Management: package_management
     - ...

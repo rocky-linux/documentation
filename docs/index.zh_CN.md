@@ -11,8 +11,8 @@ title: 目录
 ## 操作系统安装和设置
 | Rocky 经典安装 | 在 Windows 下的 Linux 子系统上安装 Rocky |
 | --- |  --- |
-| [Rocky 8 安装](guides/installation.md) | [Rocky & WSL (rinse method)](guides/rocky/rocky_to_wsl_howto.md) |
-| [将 CentOS（或其他）转换为 Rocky Linux](guides/rocky/migrate2rocky.md) | [Rocky & WSL2 (virtualbox 和 docker)](guides/rocky/import_rocky_to_wsl_howto.md) |
+| [Rocky 8 安装](guides/installation.md) | [Rocky & WSL (rinse method)](guides/interoperability/rocky_to_wsl_howto.md) |
+| [将 CentOS（或其他）转换为 Rocky Linux](guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox 和 docker)](guides/interoperability/import_rocky_to_wsl_howto.md) |
 | [在 Rocky Linux 上安装 MATE](guides/desktop/mate_installation.md) |  |
 | [在 Rocky Linux 上安装 XFCE](guides/desktop/xfce_installation.md) |  |
 
@@ -20,7 +20,7 @@ title: 目录
 
 开始 | SRPM 源 | 重新打包 | 构建 | 签名 | 部署
 --- | --- | --- | --- | --- | ---
-[设置开发环境](guides/rocky/development/package_dev_start.md) | [如何重新打包](guides/rocky/development/package_debranding.md) | [如何签名](guides/rocky/development/package_signing.md) <br /> [构建故障处理](guides/rocky/development/package_build_troubleshooting.md)
+[设置开发环境](guides/package_management/package_dev_start.md) | [如何重新打包](guides/package_management/package_debranding.md) | [如何签名](guides/package_management/package_signing.md) <br /> [构建故障处理](guides/package_management/package_build_troubleshooting.md)
 
 
 ## 安全
@@ -36,7 +36,7 @@ title: 目录
 
 | Web 服务器 | FTP | 内容管理系统 | 数据库 |
 | --- | --- | --- | --- |
-|[强化 Apache Web 服务器](guides/web/apache_hardened_webserver/index.md) | [VSFTPD](guides/file_transfer/secure_ftp_server_vsftpd.md) | [DokuWiki](guides/cms/dokuwiki_server.md) | [MariaDB 服务器](guides/database/database_mariadb-server.md) |
+|[强化 Apache Web 服务器](guides/web/apache_hardened_webserver/index.md) | [VSFTPD](guides/file_sharing/secure_ftp_server_vsftpd.md) | [DokuWiki](guides/cms/dokuwiki_server.md) | [MariaDB 服务器](guides/database/database_mariadb-server.md) |
 |[启用网站](guides/web/apache-sites-enabled.md) | | [Nextcloud](guides/cms/cloud_server_using_nextcloud.md) |  |
 |[ModSecurity](guides/web/apache_hardened_webserver/modsecurity.md) | | |
 |[Ossec-Hids](guides/web/apache_hardened_webserver/ossec-hids.md) | | |
