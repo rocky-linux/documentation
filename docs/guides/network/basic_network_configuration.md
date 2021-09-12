@@ -1,3 +1,7 @@
+---
+title: Networking Configuration
+---
+
 # Networking configuration
 
 ## Prerequisites
@@ -48,13 +52,13 @@ There are a few ways or mechanisms by which systems can be assigned their IP con
 
 The static IP configuration scheme is very popular on server class systems or networks.
 
-The dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP). 
+The dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP).
 
 Very often, home/office users don't have to worry or know about DHCP. This is because the somebody or something else is automagically taking care of that in the background. The only thing that the end user needs to do is to physically or wirelessly connect to the right network (and of course make sure that their systems are powered on)!
 
 #### IP Address
 
-In the previous `/etc/sysconfig/network-scripts/ifcfg-ens18` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. This means that the system being configured is set to a static IP address scheme. 
+In the previous `/etc/sysconfig/network-scripts/ifcfg-ens18` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. This means that the system being configured is set to a static IP address scheme.
 
 If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all of that information will be automaically obtained from any available DHCP server.
 
@@ -128,7 +132,7 @@ In this example, we will assume the following parameters:
 
 To see the detailed state of all interfaces, use
 
-	ip a 
+	ip a
 
 **Pro tips:**
 * use the `-c` flag to get a more readable coloured output: `ip -c a`.
@@ -225,4 +229,3 @@ If the `/etc/resolv.conf` file indicates a reachable DNS server, then the follow
 The result should be:
 
 	rockylinux.org has address 76.76.21.21
-

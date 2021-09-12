@@ -1,5 +1,5 @@
 ---
-title: Running A Local Copy of The Documentation Website
+title: Running A Local Copy of Documentation
 ---
 
 # Running a local copy of the docs.rockylinux.org website for web development and/or content authors

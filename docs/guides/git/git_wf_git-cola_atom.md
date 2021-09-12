@@ -1,5 +1,5 @@
 ---
-title: A git Workflow Using Git Cola and Atom
+title: git Using Git Cola and Atom
 ---
 
 # git Workflow for Documentation: git, Git Cola, and Atom

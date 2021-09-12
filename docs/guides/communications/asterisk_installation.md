@@ -1,3 +1,7 @@
+---
+title: Installing Asterisk
+---
+
 # Installing Asterisk on Rocky Linux
 
 **What is Asterisk?**

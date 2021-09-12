@@ -1,5 +1,5 @@
 ---
-title: rsync For Synchronization
+title: Synchronization With rsync
 ---
 
 # Using rsync To Keep Two Machines Synchronized
@@ -18,9 +18,9 @@ This is everything you'll need to understand and follow along with this guide.
 
 # Introduction
 
-Using _rsync_ over SSH is neither as powerful as [lsyncd](../backup/mirroring_lsyncd.md) (which allows you to watch a directory or file for changes and keep it synchronized in real time), or as flexible as [rsnapshot](../backup/rsnapshot_backup.md) (which offers the ability to easily backup multiple targets from a single machine). But, it does offer the ability to keep two machines up-to-date on a schedule that you define. 
+Using _rsync_ over SSH is neither as powerful as [lsyncd](../backup/mirroring_lsyncd.md) (which allows you to watch a directory or file for changes and keep it synchronized in real time), or as flexible as [rsnapshot](../backup/rsnapshot_backup.md) (which offers the ability to easily backup multiple targets from a single machine). But, it does offer the ability to keep two machines up-to-date on a schedule that you define.
 
-rsync has been around since the dawn of time (OK, maybe not quite that long, but a long time!) so every Linux distribution has it available, and most still install it with the base packages. rsync over SSH might be a solution, if you need to keep a set of directories up-to-date on a target machine, but real-time syncing is not particularly important. 
+rsync has been around since the dawn of time (OK, maybe not quite that long, but a long time!) so every Linux distribution has it available, and most still install it with the base packages. rsync over SSH might be a solution, if you need to keep a set of directories up-to-date on a target machine, but real-time syncing is not particularly important.
 
 For all of the below, we will be doing things as the root user, so either login as root or use the `sudo -s` command to switch to the root user in your terminal.
 
@@ -45,7 +45,7 @@ Before we get terribly carried away with the setting up a script, we first need 
 * -p, preserve permissions
 * -t, preserve modification times
 * -g, preserve group-
-* -o, preserve owner 
+* -o, preserve owner
 * -D, preserve device files
 
 The only other options that we need to specify in this example is:
@@ -75,7 +75,7 @@ Now run the script:
 
 `/usr/local/sbin/rsync_dirs`
 
-If all is well, you should get a completely synchronized copy of your home directory on the target machine. Check to be sure this is the case. 
+If all is well, you should get a completely synchronized copy of your home directory on the target machine. Check to be sure this is the case.
 
 Assuming all of that worked out as we hoped, go next go ahead and create a new file on the source machine in your home directory:
 
@@ -93,7 +93,7 @@ Run the script again:
 
 `/usr/local/sbin/rsync_dirs`
 
-Verify the file is now gone on the target machine. 
+Verify the file is now gone on the target machine.
 
 Finally, let's create a file on the target machine that doesn't exist on the source. So on the target:
 
@@ -103,7 +103,7 @@ Run the script a final time:
 
 `/usr/local/sbin/rsync_dirs`
 
-The file we just created on the target should now be gone, because it does not exist on the source. 
+The file we just created on the target should now be gone, because it does not exist on the source.
 
 Assuming all of this worked as expected, go ahead and modify the script to synchronize all the directories that you want.
 
@@ -115,29 +115,29 @@ We probably don't want to be running this script manually every time we want to 
 
 This will pull up the cron, which may look something like this:
 
-``` 
+```
 # Edit this file to introduce tasks to be run by cron.
-# 
+#
 # Each task to run has to be defined through a single line
 # indicating with different fields when the task will be run
 # and what command to run for the task
-# 
+#
 # To define the time you can provide concrete values for
 # minute (m), hour (h), day of month (dom), month (mon),
 # and day of week (dow) or use '*' in these fields (for 'any').
-# 
+#
 # Notice that tasks will be started based on the cron's system
 # daemon's notion of time and timezones.
-# 
+#
 # Output of the crontab jobs (including errors) is sent through
 # email to the user the crontab file belongs to (unless redirected).
-# 
+#
 # For example, you can run a backup of all your user accounts
 # at 5 a.m every week with:
 # 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
-# 
+#
 # For more information see the manual pages of crontab(5) and cron(8)
-# 
+#
 # m h  dom mon dow   command
 ```
 The cron is set up on a 24 hour clock, so what we will need for our entry at the bottom of this file is:
@@ -146,7 +146,7 @@ The cron is set up on a 24 hour clock, so what we will need for our entry at the
 
 What this says is to run this command at 00 minutes, 23 hundred hours, every day, every month, and every day of the week. Save your cron entry with:
 
-`Shift : wq!` 
+`Shift : wq!`
 
 ... or with the commands that your favorite editor uses for saving a file.
 
