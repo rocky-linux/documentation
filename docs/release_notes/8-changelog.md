@@ -14,6 +14,11 @@ The following packages have been updated:
 * firefox: updated to 78.14.0
 * cyrus-imapd: updated to 3.0.7-20.el8_4.1 (addresses CVE-2021-33582)
 * systemtap rebuilt against dyninst 10.2 to address a bug report
+* rocky-release -> Updated to allow "centos" as an ID
+
+The following repos have been updated:
+
+* extras -> CentOS sig release packages have been added
 
 ## 8.4 - 2021-08-24
 
