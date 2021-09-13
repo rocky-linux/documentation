@@ -6,6 +6,15 @@ title:  Rocky Linux 8 Change Log
 
 Rocky Linux 8.4 will receive incremental updates over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`
 
+## 8.4 - 2021-09-13
+
+The following packages have been updated:
+
+* thunderbird: updated to 78.14.0
+* firefox: updated to 78.14.0
+* cyrus-imapd: updated to 3.0.7-20.el8_4.1 (addresses CVE-2021-33582)
+* systemtap rebuilt against dyninst 10.2 to address a bug report
+
 ## 8.4 - 2021-08-24
 
 The following packages have been updated:
