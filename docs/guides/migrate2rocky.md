@@ -33,13 +33,7 @@ Okay? We ready? Let's do this.
 
 ## Prepare your server
 
-It probably couldn't hurt to make sure your server is up to date, especially on a fresh install. If you're sure it won't break anything, go ahead and run:
-
-```
-dnf update -y
-```
-
-Then, you'll need to grab the actual script file from the repository. This can be done in a number of ways.
+You'll need to grab the actual script file from the repository. This can be done in a number of ways.
 
 ### The manual way
 
@@ -60,29 +54,25 @@ Just, you know, adjust all the file paths and server domains or addresses as nee
 Install git on your server with:
 
 ```
-dnf install -y git
+dnf install git
 ```
 
 Then clone the rocky-tools repository with:
 
 ```
-https://github.com/rocky-linux/rocky-tools.git
+git clone https://github.com/rocky-linux/rocky-tools.git
 ```
 
 Note: this method will download all of the scripts and files in the rocky-tools repository.
 
 ### The easy-but-slightly-less-secure way
 
-Okay, this is not necessarily the best thing to do, security-wise. But, it is the easiest way to grab the script. First, make sure you have *wget* installed (you'll generally want it around anyway):
+Okay, this is not necessarily the best thing to do, security-wise. But, it is the easiest way to grab the script.
+
+Run this command to download the script into whatever directory you're using:
 
 ```
-dnf install -y wget
-```
-
-Then, run this command to download the script into whatever directory you're using:
-
-```
-wget https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
+curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
 ```
 
 That command will download the file straight to your server, and *only* the file you want. But again, there are security concerns that suggest this isn't necessarily the best practice, so keep that in mind.
