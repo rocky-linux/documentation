@@ -1,4 +1,8 @@
-# System startup
+---
+title: System Startup
+---
+
+# System Startup
 
 In this chapter you will learn how the system start.
 

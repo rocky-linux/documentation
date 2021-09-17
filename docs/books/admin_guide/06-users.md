@@ -1,4 +1,8 @@
-# User management
+---
+title: User Management
+---
+
+# User Management
 
 In this chapter you will learn how to manage user.
 
