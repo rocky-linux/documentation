@@ -1,4 +1,8 @@
-# Commands for Linux users
+---
+title: Linux Commands
+---
+
+# Commands for Linux Users
 
 In this chapter you will learn how to work with Linux with the commands.
 
