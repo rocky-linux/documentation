@@ -10,15 +10,15 @@ You've found us! Welcome to the documentation hub for Rocky Linux; we're glad yo
 
 Well actually, you do.
 
-This home page will give you an introduction to the documentation website and how to find your way around — we trust you will feel right at home.
+This home page will give you an introduction to the documentation website and how to find your way around — we're confident that you will feel right at home.
 
 ## Navigating the Site
 
 ### Getting Around
 
-Right now you are on the home page of the documentation. If you glance at the top menu (which is always available, including on mobile devices) you can see the main structure showing the top-level sections of the documentation site. If you click on each top menu item (try 'Guides' for example) you will see the list of *sub-sections* for each main section. Guides has many topics of interest.
+Right now you are on the home page of the documentation. If you glance at the top menu (which is always available, including on mobile devices) you can see the main structure showing the top-level sections of the documentation site. If you click on each top menu item (try 'Guides' for example) then on the left hand side you will see the list of *sub-sections* for each main section. Guides has many topics of interest.
 
-When you open a document on the right hand side you will see a 'Table of contents' with clickable navigation links for that document (for mobile devices try landscape orientation). For long documents, like the [Release Notes](release_notes/8.4.md), the table of contents make it easy to jump around the document. If you are reading a long document and want to go back to the top press <kbd>pg up</kbd> and you will see a `Back to top` button appear at the top of the screen.
+When you open a document, on the right hand side you will see a 'Table of contents' with clickable navigation links for that document (for mobile devices try landscape orientation). For long documents, like the [Release Notes](release_notes/8.4.md), the table of contents makes it easy to jump around the document. If you are reading a long document and want to go back to the top press <kbd>pg up</kbd> and you will see a `Back to top` button appear at the top of the screen.
 
 The main sections of the documentation site are: 
 
@@ -31,14 +31,16 @@ The main sections of the documentation site are:
 Of course not everyone has English as their first language! At Rocky Linux we want to make the documentation site as accessible as possible to everyone —  *translations into different languages is an important part of that*. If you click on the (common symbol) language selector on the top menu you will see the languages the website is available in, there are two parts to this:
 
 1. Website interface localisation: if you choose another language, for example Français, you will note that the interface, for example the 'Next' and 'Previous' navigators, will be localised.
-1. Content: translating content is, obviously, an ongoing (big) task. For those pages that have been translated you will see them in your chosen language, those that have not will fall back to the default language English. If you want to contribute to the community through translations the documentation team would love to hear from you — see below for details.
+1. Content: translating content is, obviously, an ongoing (significant) task. Not all content is translated into all languages yet. Any pages that have been translated (into the language selected) will be seen in the chosen language, those that have not will fall back to the default language English. If you want to contribute to the community through translations the documentation team would love to hear from you — see below for details.
 
 !!! note
-     Not all functionality is available in all languages, this is a limitation of the underlying MkDocs modules available.
+    Not all functionality may be available in all languages, this is a limitation of the underlying MkDocs modules available.
 
 ### Using Search
 
 If you want to quickly find specific information/document the documentation site has a full-text search capability. Simply start typing in the 'Search' entry field in the top menu bar and the site will return drill down search results.
+
+To open a page in the search results simply click (or tap on mobile) on the desired page in the list displayed.
 
 ## First Time
 

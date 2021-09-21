@@ -234,7 +234,7 @@ När du väl är nöjd med dina val för dom olika installationsuppgifterna, kli
 !!! Note
     Om du får kalla fötter efter att du har klickat på starta Installationsknappen, så kan du fortfarande säkert komma tillbaka från installationen utan att förlora data (eller självförtroende). För att avsluta installationsprogrammet, Återställ helt enkelt ditt system antingen genom att klicka på Avsluta-knappen, trycka ctrl-alt-del på ditt tangentbord, eller genom att trycka på reset- eller strömknappen.
 
-När installationen startar, så kommer olika uppgifter börja köras i bakgrunden, som att partitionera disken, formatera partitionerna eller LVM-volymerna, söka efter och lösa programberoenden, skriva operativsystemet till disk och så vidare.   ​
+När installationen startar, så kommer olika uppgifter börja köras i bakgrunden, som att partitionera disken, formatera partitionerna eller LVM-volymerna, söka efter och lösa programberoenden, skriva operativsystemet till disk och så vidare.
 
 ### Slutför installationen
 
