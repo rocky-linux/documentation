@@ -30,6 +30,11 @@ The following packages have been updated:
 * gcc-toolset-10-binutils: 2.35-8.el8_4.4
 * maven: maven-3.6.2-6
 * mysql: 8.0.26
+* selinux-policy: 3.14.3-67.el8_4.2
+* grub2: 2.02-99.el8_4.1.1
+* resource-agents: 4.1.1-90.el8_4.7
+* poppler: 20.11.0-2.el8_4.1
+* pacemaker: 2.0.5-9.el8_4.3
 
 ## 8.4 - 2021-09-13
 
