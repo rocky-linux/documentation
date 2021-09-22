@@ -1,3 +1,7 @@
+---
+author: Hayden Young
+---
+
 # Active Directory Authentication
 
 ## Prerequisites
@@ -16,6 +20,9 @@ Now, while connecting Linux to an AD cluster cannot support _all_ of the
 features mentioned, it can handle users, groups, and access control. It is even
 possible (through some configuration tweaks on the Linux side and some advanced
 options on the AD side) to distribute SSH keys using AD.
+
+This guide, however, will just cover configuring authentication against Active
+Directory, and will not include any extra configuration on the Windows side.
 
 ## Discovering and joining AD using SSSD
 
