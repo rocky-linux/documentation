@@ -1,5 +1,6 @@
 ---
 author: Hayden Young
+contributors: Steven Spencer
 ---
 
 # Active Directory Authentication
@@ -16,7 +17,7 @@ authentication system for Windows systems and for external, LDAP-connected
 services. It allows you to configure users and groups, access control,
 permissions, auto-mounting, and more.
 
-Now, while connecting Linux to an AD cluster cannot support _all_ of the 
+Now, while connecting Linux to an AD cluster cannot support _all_ of the
 features mentioned, it can handle users, groups, and access control. It is even
 possible (through some configuration tweaks on the Linux side and some advanced
 options on the AD side) to distribute SSH keys using AD.
@@ -26,9 +27,8 @@ Directory, and will not include any extra configuration on the Windows side.
 
 ## Discovering and joining AD using SSSD
 
-> Note: Throughout this guide, the domain name `ad.company.local` will be used
-> to represent the Active Directory domain -- to follow this guide, replace it
-> with the actual domain name your AD domain uses.
+!!! Note
+    Throughout this guide, the domain name `ad.company.local` will be used to represent the Active Directory domain. To follow this guide, replace it with the actual domain name your AD domain uses.
 
 The first step along the way to join a Linux system into AD is to discover your
 AD cluster, to ensure that the network configuration is correct on both sides.
@@ -69,7 +69,7 @@ AD cluster, to ensure that the network configuration is correct on both sides.
   ```
 
 - Ensure that the time on both sides (AD host and Linux system) is synchronized
-  
+
   **To check the time on Rocky Linux:**
   ```sh
   [user@host ~]$ date
