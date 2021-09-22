@@ -6,6 +6,36 @@ title:  Rocky Linux 8 Change Log
 
 Rocky Linux 8.4 will receive incremental updates over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`
 
+## 8.4 - 2021-09-21
+
+The following packages have been updated:
+
+* kernel: kernel-4.18.0-305.19.1 (9-15)
+* scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.2
+* golang: 1.15.14-2
+* nss: 3.67.0-6
+* ca-certificates: 2021.2.50-80.0
+* opencryptoki: 3.15.1-7
+* krb5: 1.18.2-8.3
+* platform-python: 3.6.8-38
+* libdb: 5.3.28-42
+* rng-tools: 6.8-4
+* sos: 4.0-12
+* python-ldap: 3.3.1-1.1
+* subscription-manager: 1.28.13-4
+* pcp: 5.2.5-6
+* strace: 5.7-2.1
+* nspr: 4.32.0-1
+* gcc-toolset-10-elfutils: 0.182-6
+* gcc-toolset-10-binutils: 2.35-8.el8_4.4
+* maven: maven-3.6.2-6
+* mysql: 8.0.26
+* selinux-policy: 3.14.3-67.el8_4.2
+* grub2: 2.02-99.el8_4.1.1
+* resource-agents: 4.1.1-90.el8_4.7
+* poppler: 20.11.0-2.el8_4.1
+* pacemaker: 2.0.5-9.el8_4.3
+
 ## 8.4 - 2021-09-13
 
 The following packages have been updated:
