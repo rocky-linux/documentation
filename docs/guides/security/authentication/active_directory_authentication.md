@@ -169,3 +169,10 @@ By adding the `default_domain_suffix`, you are instructing SSSD to (if no
 other domain is specified) infer that the user is trying to authenticate as a
 user from the `ad.company.local` domain. This allows you to authenticate as
 something like `john.doe` instead of `john.doe@ad.company.local`.
+
+To make this configuration change take effect, you must restart the
+`sssd.service` unit with `systemctl`.
+
+```sh
+[user@host ~]$ sudo systemctl restart sssd
+```
