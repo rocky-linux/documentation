@@ -1,4 +1,8 @@
-# Process management
+---
+title: Process Management
+---
+
+# Process Management
 
 In this chapter you will learn how to work with processes.
 

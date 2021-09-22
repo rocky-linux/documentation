@@ -1,3 +1,7 @@
+---
+title: File Management
+---
+
 # Ansible - Management of Files
 
 In this chapter you will learn how to manage files with Ansible.

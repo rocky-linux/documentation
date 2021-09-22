@@ -1,3 +1,7 @@
+---
+title: Introduction
+---
+
 # Introduction
 
 A fictitious company (called Example Incorporated) is the subject for designing the labs. Example Incorporated has offices all over the world. Example Incorporated makes widgets. The company has all the usual bells and whistles that a modern company requires to conduct its business. 

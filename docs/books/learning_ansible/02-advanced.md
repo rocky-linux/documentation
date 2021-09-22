@@ -1,3 +1,7 @@
+---
+title: Ansible Intermediate
+---
+
 # Ansible Intermediate
 
 In this chapter you will continue to learn how to work with Ansible.

@@ -1,3 +1,7 @@
+---
+title: Advanced Linux Commands
+---
+
 # Advanced Commands for Linux users
 
 In this chapter you will learn some advanced commands for Linux.

@@ -1,0 +1,5 @@
+---
+nav:
+    - ... | index*.md
+    - System Administrator's Guide: admin_guide
+    - ...

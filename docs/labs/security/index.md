@@ -1,64 +1,70 @@
-# Table of Contents
+---
+title: List of Security Labs
+---
 
-- [Introduction](introduction.md)
+# List of Security Labs
 
-- **Lab 1:** Installing Rocky Linux
-   - Installing the Operating System
+## [Introduction](introduction.md)
 
-- **Lab 2:** Patching the System
-  - Updating and Patching
-  - Configuring and using dnf
-  - Third party solutions
+### Lab 1: Installing Rocky Linux
 
-- **Lab 3:** Auditing the System
-  - A simple home grown integrity checker
-  - Tripwire
-  - Integrity checking and viewing reports
-  - Fine tuning tripwire
+1. Installing the Operating System
 
-- **Lab 4:** Gathering information
-  - netstat
-  - lsof
-  - nmap
-  - rpcinfo
-  - tcpdump
-  - telnet
+### Lab 2: Patching the System
 
-- **Lab 5:** Local Security
-  - Cracking  the system through the boot loader
-  - Password protecting the boot loader
-  - Disabling un-necessary tty’s
-  - Disabling  reboot via  CTRL+ALT+DEL
-  - Enforcing password prompting in single user-mode
-  - Set-UID programs
-  - John the ripper
+1. Updating and Patching
+1. Configuring and using dnf
+1. Third party solutions
 
-- **Lab 6:** A staged Hack
-  - The PATH
+### Lab 3: Auditing the System
+1. A simple home grown integrity checker
+1. Tripwire
+1. Integrity checking and viewing reports
+1. Fine tuning tripwire
 
-- **Lab 7:** TCP wrappers
-  - Tcp_wrappers
+### Lab 4: Gathering information
+1. netstat
+1. lsof
+1. nmap
+1. rpcinfo
+1. tcpdump
+1. telnet
 
-- **Lab 8:** Iptables
-  - Iptables essentials
-  - Basic Packet Filtering
-  - Basic Packet Forwarding
+### Lab 5: Local Security
+1. Cracking  the system through the boot loader
+1. Password protecting the boot loader
+1. Disabling un-necessary tty’s
+1. Disabling  reboot via  CTRL+ALT+DEL
+1. Enforcing password prompting in single user-mode
+1. Set-UID programs
+1. John the ripper
 
-- **Lab 9:** Cryptography
-  - GnuPG
-  - Key Administration
-  - Revocation certificates
-  - Digital signatures
-  - Encrypting and decrypting files
-  - sshd
-  - ssh
-  - scp
-  - Authenticating via Public-Key
-  - ssh-agent
+### Lab 6: A staged Hack
+1. The PATH
 
-- **Lab 10:** Kernel Level Security
-  - Installing GRsecurity
-  - gradm
-  - ACLs
-  - GRsecurity Learning mode
-  - SElinux
+### Lab 7: TCP wrappers
+1. Tcp_wrappers
+
+### Lab 8: Iptables
+1. Iptables essentials
+1. Basic Packet Filtering
+1. Basic Packet Forwarding
+
+### Lab 9: Cryptography
+1. GnuPG
+1. Key Administration
+1. Revocation certificates
+1. Digital signatures
+1. Encrypting and decrypting files
+1. sshd
+1. ssh
+1. scp
+1. Authenticating via Public-Key
+1. ssh-agent
+
+### Lab 10: Kernel Level Security
+1. Installing GRsecurity
+1. gradm
+1. ACLs
+1. GRsecurity Learning mode
+1. SElinux

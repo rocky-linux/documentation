@@ -1,6 +1,10 @@
+---
+title: Deploy With Ansistrano
+---
+
 # Ansible Deployments with Ansistrano
 
-In this chapter you will learn how to deploy applications with the Ansible role Ansistrano.
+In this chapter you will learn how to deploy applications with the Ansible role [Ansistrano](https://ansistrano.com).
 
 ****
 

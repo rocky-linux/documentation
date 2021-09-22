@@ -1,4 +1,8 @@
-# Commands for Linux users
+---
+title: Linux Commands
+---
+
+# Commands for Linux Users
 
 In this chapter you will learn how to work with Linux with the commands.
 
@@ -103,7 +107,7 @@ In the literature, the term "option" is equivalent to the term "parameter," whic
 
 ## General commands
 
-### `apropos`, `whatis` et `man` commands
+### `apropos`, `whatis` and `man` commands
 
 It is impossible for an administrator at any level to know all the commands and options in detail. A manual is usually available for all installed commands.
 
@@ -118,7 +122,7 @@ The command `apropos` allows you to search by keyword within these manual pages:
 
 Example:
 
-```
+```bash
 $ apropos clear
 clear (1)            - clear the terminal screen
 clear_console (1)    - clear the console
@@ -154,7 +158,7 @@ whatis clear
 
 Example:
 
-```
+```bash
 $ whatis clear
 clear (1)            - clear the terminal screen
 ```
@@ -313,24 +317,24 @@ In this last example, the `-d` option displays a given date. The `+%j` option fo
 
 The date display can follow the following formats:
 
-| Option                                                                                                             | Format                           |
-| ------------------------------------------------------------------------------------------------------------------ | -------------------------------- |
-| `+%A`                                                                                                              | Full Name of Day                 |
-| `+%B`                                                                                                              | Full Name of Month               |
-| `+%c`                                                                                                              | Full Date Display                |
-| `+%d`                                                                                                              | Day number                       |
-| `+%F`                                                                                                              | Date in `YYYY-MM-DD` format      |
-| `+%G`                                                                                                              | Year                             |
-| `+%H`                                                                                                              | Time of day                      |
-| `+%j`                                                                                                              | Day of the year                  |
-| `+%m`                                                                                                              | Month number                     |
-| `+%M`                                                                                                              | Minute                           |
-| `+%R`                                                                                                              | Time in `hh:mm` format           |
-| `+%s`                                                                                                              | Seconds since January 1, 1970    |
-| `+%T`                                                                                                              | Time in `hh:mm:ss` format        |
-| `+%u`                                                                                                              | Day of the week (`1` for Monday) |
-| `+%V`                                                                                                              | Week number (`+%V`)              |
-| `+%x`                                                                                                              | Date in format `DD/MM/YYYY`      |
+| Option  | Format                           |
+| --------| -------------------------------- |
+| `+%A`   | Full Name of Day                 |
+| `+%B`   | Full Name of Month               |
+| `+%c`   | Full Date Display                |
+| `+%d`   | Day number                       |
+| `+%F`   | Date in `YYYY-MM-DD` format      |
+| `+%G`   | Year                             |
+| `+%H`   | Time of day                      |
+| `+%j`   | Day of the year                  |
+| `+%m`   | Month number                     |
+| `+%M`   | Minute                           |
+| `+%R`   | Time in `hh:mm` format           |
+| `+%s`   | Seconds since January 1, 1970    |
+| `+%T`   | Time in `hh:mm:ss` format        |
+| `+%u`   | Day of the week (`1` for Monday) |
+| `+%V`   | Week number (`+%V`)              |
+| `+%x`   | Date in format `DD/MM/YYYY`      |
 
 The `date` command also allows you to change the system date and time. In this case, the `-s` option will be used.
 

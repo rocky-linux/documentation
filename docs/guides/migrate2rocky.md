@@ -1,18 +1,22 @@
+---
+title: Migrating To Rocky Linux
+---
+
 # How to Migrate to Rocky Linux from CentOS, Alma Linux, RHEL, or Oracle Linux
 
 ## Prerequisites & Assumptions
 
 * A hardware server or VPS running, well... CentOS, Alma Linux, RHEL, or Oracle Linux. The current supported version for each of these is 8.4.
-* A working knowledge of the command line. 
+* A working knowledge of the command line.
 * A working knowledge of SSH for remote machines.
 * A mildly risk-taking attitude.
 * All commands should be run as root. Either log in as root, or get ready to type "sudo" a lot.
 
 ## Introduction
 
-In this guide, you'll learn how to convert all of the OSes listed above to fully functional Rocky Linux installs. This is probably one of the most roundabout ways of installing Rocky Linux, but it'll come in handy for people in a variety of situations. 
+In this guide, you'll learn how to convert all of the OSes listed above to fully functional Rocky Linux installs. This is probably one of the most roundabout ways of installing Rocky Linux, but it'll come in handy for people in a variety of situations.
 
-For example, some server providers won't support Rocky Linux by default for a while. Or you may have a production server that you want to convert to Rocky Linux without reinstalling everything. 
+For example, some server providers won't support Rocky Linux by default for a while. Or you may have a production server that you want to convert to Rocky Linux without reinstalling everything.
 
 Well, we've got the tool for you: [migrate2rocky](https://github.com/rocky-linux/rocky-tools/tree/main/migrate2rocky).
 
@@ -29,7 +33,7 @@ Okay? We ready? Let's do this.
 
 ## Prepare your server
 
-You'll need to grab the actual script file from the repository. This can be done in a number of ways. 
+You'll need to grab the actual script file from the repository. This can be done in a number of ways.
 
 ### The manual way
 
@@ -59,7 +63,7 @@ Then clone the rocky-tools repository with:
 git clone https://github.com/rocky-linux/rocky-tools.git
 ```
 
-Note: this method will download all of the scripts and files in the rocky-tools repository. 
+Note: this method will download all of the scripts and files in the rocky-tools repository.
 
 ### The easy-but-slightly-less-secure way
 
