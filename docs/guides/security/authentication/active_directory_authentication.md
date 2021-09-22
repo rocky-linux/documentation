@@ -28,7 +28,9 @@ Directory, and will not include any extra configuration on the Windows side.
 ## Discovering and joining AD using SSSD
 
 !!! Note
-    Throughout this guide, the domain name `ad.company.local` will be used to represent the Active Directory domain. To follow this guide, replace it with the actual domain name your AD domain uses.
+    Throughout this guide, the domain name `ad.company.local` will be used to
+    represent the Active Directory domain. To follow this guide, replace it with
+    the actual domain name your AD domain uses.
 
 The first step along the way to join a Linux system into AD is to discover your
 AD cluster, to ensure that the network configuration is correct on both sides.
@@ -144,3 +146,26 @@ Last login: Wed Sep 15 17:37:03 2021 from 10.0.10.241
 
 If this succeeds, you have successfully configured Linux to use Active
 Directory as an authentication source.
+
+### Setting the default domain
+
+In a completely default setup, you will need to log in with your AD account by
+specifying the domain in your username (e.g. `john.doe@ad.company.local`). If
+this is not the desired behaviour, and you instead want to be able to omit the
+domain name at authentication time, you can configure SSSD to default to a
+specific domain.
+
+This is actually a relatively simple process, and just requires a configuration
+tweak in your SSSD configuration file.
+
+```sh
+[user@host ~]$ sudo vi /etc/sssd/sssd.conf
+[sssd]
+...
+default_domain_suffix = ad.company.local
+```
+
+By adding the `default_domain_suffix`, you are instructing SSSD to (if no
+other domain is specified) infer that the user is trying to authenticate as a
+user from the `ad.company.local` domain. This allows you to authenticate as
+something like `john.doe` instead of `john.doe@ad.company.local`.
