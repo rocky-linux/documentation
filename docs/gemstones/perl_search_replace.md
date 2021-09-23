@@ -1,5 +1,6 @@
 ---
 title: Perl - Search and Replace
+author: Steven Spencer
 ---
 
 # `perl` Search and Replace

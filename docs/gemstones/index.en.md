@@ -1,5 +1,6 @@
 ---
 title: Index
+author: Steven Spencer
 ---
 
 # Gemstones
