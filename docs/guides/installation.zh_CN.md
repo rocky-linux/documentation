@@ -32,7 +32,7 @@ Rocky ISO 的命名遵循以下约定：
 Rocky-<主版本号#>.<次版本号#>.<架构>-<变体>.iso
 ```
 
-例如  `Rocky-8.3-x86_64-minimal.iso`
+例如  `Rocky-8.4-x86_64-minimal.iso`
 
 
 **注意:**
