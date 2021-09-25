@@ -1,76 +1,54 @@
 ---
-title: 家
+标题：首页
 ---
 
-# 目录
+# Rocky Linux 文档
 
-本文包含 Rocky Linux 文档的章节和小节标题，以及每个章节/小节中的文章链接。
+＃＃ 欢迎！
 
-章节的顺序非常重要，但尚未最终确定，因此请随时根据需要重新排序。
+你找到了我们！欢迎来到 Rocky Linux 的文档中心；我们很高兴你在这里。我们有许多贡献者添加内容，并且内容缓存一直在增长。在这里，您将找到有关如何构建 Rocky Linux 本身的文档，以及有关 Rocky Linux 社区重要的各种主题的文档。谁组成了你问的那个社区？
 
-## 操作系统安装和设置
-| Rocky 经典安装 | 在 Windows 下的 Linux 子系统上安装 Rocky |
-| --- |  --- |
-| [Rocky 8 安装](guides/installation.md) | [Rocky & WSL (rinse method)](guides/interoperability/rocky_to_wsl_howto.md) |
-| [将 CentOS（或其他）转换为 Rocky Linux](guides/migrate2rocky.md) | [Rocky & WSL2 (virtualbox 和 docker)](guides/interoperability/import_rocky_to_wsl_howto.md) |
-| [在 Rocky Linux 上安装 MATE](guides/desktop/mate_installation.md) |  |
-| [在 Rocky Linux 上安装 XFCE](guides/desktop/xfce_installation.md) |  |
+嗯，实际上，你做。
 
-## 开发和打包
+此主页将向您介绍文档网站以及如何找到自己的方法 — 我们相信您会感到宾至如归。
 
-开始 | SRPM 源 | 重新打包 | 构建 | 签名 | 部署
---- | --- | --- | --- | --- | ---
-[设置开发环境](guides/package_management/package_dev_start.md) | [如何重新打包](guides/package_management/package_debranding.md) | [如何签名](guides/package_management/package_signing.md) <br /> [构建故障处理](guides/package_management/package_build_troubleshooting.md)
+## 浏览网站
+
+### 四处走走
+
+现在您位于文档的主页上。如果您看一眼顶部菜单（始终可用，包括在移动设备上），您可以看到显示文档站点顶级部分的主要结构。如果您单击每个顶部菜单项（例如尝试“指南”），则在左侧您将看到每个主要部分的 *子部分 * 列表。 Guides 有很多有趣的话题。
+
+当您打开一个文档时，您会在右侧看到一个“目录”，其中包含该文档的可点击导航链接（对于移动设备，请尝试横向）。对于长文档，如 [Release Notes](release_notes/8.4.md)，目录可以很容易地在文档中跳转。如果您正在阅读长文档并想返回顶部，请按 <kbd>pg up</kbd>，您将看到屏幕顶部出现“返回顶部”按钮。
+
+文档站点的主要部分是：
+
+* **指南**：涵盖设置和使用 Rocky Linux 的特定方法。
+* **书籍**：是基于特定区域的更详细信息
+* **实验室**：这是“回到学校”，但您会喜欢做这些教程！
+
+### 多种语言
+
+当然，不是每个人都将英语作为他们的第一语言！在 Rocky Linux，我们希望尽可能让每个人都可以访问文档站点——*翻译成不同的语言是其中的一个重要部分*。如果您单击顶部菜单上的（通用符号）语言选择器，您将看到网站可用的语言，这有两个部分：
+
+1. 网站界面本地化：如果您选择另一种语言，例如法语，您会注意到界面，例如“下一个”和“上一个”导航器，将被本地化。
+1. 内容：翻译内容显然是一项持续的（重要的）任务。并非所有内容都被翻译成所有语言。任何已翻译（翻译成所选语言）的页面将以所选语言显示，未翻译的页面将回退到默认语言英语。如果您想通过翻译为社区做出贡献，文档团队很乐意收到您的来信——详情见下文。
+
+！！！笔记
+    并非所有功能都适用于所有语言，这是可用的底层 MkDocs 模块的限制。
+
+### 使用搜索
+
+如果您想快速查找特定信息/文档，文档站点具有全文搜索功能。只需开始在顶部菜单栏中的“搜索”输入字段中输入内容，该站点就会返回深入搜索结果。
+
+要在搜索结果中打开一个页面，只需在显示的列表中单击（或点击移动设备）所需的页面。
+
+＃＃ 第一次
+
+如果这是您第一次访问 Rocky Linux 文档站点，那么您很可能是 Rocky Linux 的新手并且很想安装它！没问题，跳转到[安装 Rocky Linux](guides/installation.md) 页面获取详细说明。
+
+如果您遇到困难并有疑问，Rocky Linux 社区可以为您提供帮助。访问[社区论坛](https://forums.rockylinux.org)，您可以搜索解决方案并将您自己的问题发布到社区。
 
 
-## 安全
+## 贡献
 
-| 防火墙 | 网络安全 | 密码安全 |
-| --- | --- | --- |
-|[IPTABLES](guides/security/enabling_iptables_firewall.md) | [网络配置](guides/network/basic_network_configuration.md) | [SSH 密钥](guides/security/ssh_public_private_keys.md) |
-| | [SSL 密钥](guides/security/ssl_keys_https.md) |
-| | [生成 SSL 密钥和 Let's Encrypt](guides/security/generating_ssl_keys_lets_encrypt.md) |
-
-
-## 守护进程/服务器
-
-| Web 服务器 | FTP | 内容管理系统 | 数据库 |
-| --- | --- | --- | --- |
-|[强化 Apache Web 服务器](guides/web/apache_hardened_webserver/index.md) | [VSFTPD](guides/file_sharing/secure_ftp_server_vsftpd.md) | [DokuWiki](guides/cms/dokuwiki_server.md) | [MariaDB 服务器](guides/database/database_mariadb-server.md) |
-|[启用网站](guides/web/apache-sites-enabled.md) | | [Nextcloud](guides/cms/cloud_server_using_nextcloud.md) |  |
-|[ModSecurity](guides/web/apache_hardened_webserver/modsecurity.md) | | |
-|[Ossec-Hids](guides/web/apache_hardened_webserver/ossec-hids.md) | | |
-|[RkHunter](guides/web/apache_hardened_webserver/rkhunter.md) | |  |
-
-## 系统维护和管理
-
-| 数据安全 | 系统管理与调试 | 管理用户与组 |
-| --- | --- | ---
-| [通过 SSH 同步](guides/backup/rsync_ssh.md) | [Postfix](guides/email/postfix_reporting.md) |  |
-| [RSnapshot](guides/backup/rsnapshot_backup.md) | [Cron(tab)](guides/automation/cron_jobs_howto.md) |  |
-| [Lsyncd](guides/backup/mirroring_lsyncd.md) | |
-| [Bind](guides/dns/private_dns_server_using_bind.md) |  |
-
-## 虚拟化
-
-| QEMU | KVM |
-| --- | --- |
-| | |
-
-## 容器化
-
-| LXC/LXD |
-| --- |
-| [创建完整的 LXD 服务器](guides/containers/lxd_server.md) |
-
-## 教育/培训
-
-| 管理 | 安全 | 常规 |
-|----------------|----------|---------|
-| [系统管理](books/admin_guide/00-toc.md) | [安全实验室](labs/security/index.md) | [学习 Ansible](books/learning_ansible/00-toc.md)
-
-## 系统自动化与维护
-
-| Ansible           | Puppet | Salt | Chef |
-|-------------------|--------|------|------|
-| [使用 Packer 创建 VM 模板并使用 Ansible 在 Vmware 中进行部署](guides/automation/templates-automation-packer-vsphere.md) |  |   |   |
+你有没有发现遗漏了什么？你发现错误了吗？您是否想知道如何创建自己的文档，或者如何修复这里的问题？还记得我们说过 *你* 是 Rocky 社区吗？嗯，这意味着 *您* 对我们很重要，如果您愿意，我们希望您加入我们，并帮助改进此文档。如果您对此感兴趣，请前往我们的 [贡献指南](https://github.com/rocky-linux/documentation/blob/main/README.md) 了解如何做到这一点！
