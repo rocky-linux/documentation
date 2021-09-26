@@ -7,11 +7,11 @@ contributors: Ezequiel Bruni
 
 ## Introduction
 
-HAProxy stands for "High Availability Proxy." This proxy can sit in front of any TCP application (such as web servers), but it is often used to act as a load-balancer between multiple instances of a website. 
+HAProxy stands for "High Availability Proxy." This proxy can sit in front of any TCP application (such as web servers), but it is often used to act as a load-balancer between multiple instances of a website.
 
 There might be a number of reasons for doing this. If you have a website that is being hit hard — adding another instance of that same website and placing HAProxy in front of both — allows you to distribute traffic between instances. Another reason might be to be able to update content on a website without any down time. HAProxy can also help mitigate DOS and DDOS attacks.
 
-This guide is going to explore using HAProxy using two website instances, and load-balancing with round robin rotation, on the same LXD host. This might be a perfectly fine solution for ensuring that updates can be performed without downtime. 
+This guide is going to explore using HAProxy using two website instances, and load-balancing with round robin rotation, on the same LXD host. This might be a perfectly fine solution for ensuring that updates can be performed without downtime.
 
 If your problem is website performance, however, you may need to distribute your multiple sites across actual bare metal or between multiple LXD hosts. It is certainly possible to do all of this on bare metal without using LXD at all, however LXD offers great flexibility and performance, plus it is great to use for lab testing.
 
@@ -173,10 +173,10 @@ It is just as easy to install HAProxy on the proxy container as well. Again, no 
 `lxc exec proxyha dnf install haproxy`
 
 The next thing we want to do is configure `haproxy` to listen on port 80 and port 443 for the web services. This is done with the configure sub-command of `lxc`:
-
-`lxc config device add proxyha http proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80`
-
-`lxc config device add proxyha https proxy listen=tcp:0.0.0.0:443 connect=tcp:127.0.0.1:443`
+```
+lxc config device add proxyha http proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80
+lxc config device add proxyha https proxy listen=tcp:0.0.0.0:443 connect=tcp:127.0.0.1:443
+```
 
 For our testing, we are probably only going to use port 80, or HTTP traffic, but this shows you how you would configure the container to listen on the default web ports for both HTTP and HTTPS. Using this command also ensures that restarting the **proxyha** container will maintain those listening ports.
 
@@ -277,15 +277,15 @@ backend subdomain2
      server web1 web1.testdomain.com:80 check
 ```
 
-A little explanation of what's going on above. You should see this in your testing, when you get to the testing section of this guide (below): 
+A little explanation of what's going on above. You should see this in your testing, when you get to the testing section of this guide (below):
 
-Both web1 and web2 are definded in the "acl" section. Then both **web1** and **web2** are included in each other's "roundrobin" for their respective back ends. What happens when you go to web1.testdomain.com in the test, the URL does not change, but the page inside will switch each time you access the page from the web1 to the web2 test pages. Same goes for web2.testdomain.com. 
+Both **web1** and **web2** are definded in the "acl" section. Then both **web1** and **web2** are included in each other's "roundrobin" for their respective back ends. What happens when you go to web1.testdomain.com in the test, the URL does not change, but the page inside will switch each time you access the page from the web1 to the web2 test pages. Same goes for web2.testdomain.com.
 
 This is done to show you the switch is occurring, but in reality, your website content will look exactly the same regardless of which server you are hitting. Keep in mind that we are showing how you might want to distribute traffic between multiple hosts. You can also use "leastcon" in the balance line, and instead of switching based on the previous hit, it will load the site with the least number of connections.
 
 ### The Error Files
 
-Some versions of HAProxy come with a standard set of web error files, however the version that comes from Rocky Linux (and the upstream vendor), does not have these files. You probably **do** want to create them, as they may help you troubleshoot any problems. These files go in the directory `/etc/haproxy/errors` which does not exist. 
+Some versions of HAProxy come with a standard set of web error files, however the version that comes from Rocky Linux (and the upstream vendor), does not have these files. You probably **do** want to create them, as they may help you troubleshoot any problems. These files go in the directory `/etc/haproxy/errors` which does not exist.
 
 The first thing we need to do is create that directory:
 
@@ -391,10 +391,10 @@ We need to create a "run" directory for `haproxy` before we start the service:
 `lxc exec proxyha mkdir /run/haproxy`
 
 Next, we need to enable the service and start it:
-
-`lxc exec proxyha systemctl enable haproxy`
-`lxc exec proxyha systemctl start haproxy`
-
+```
+lxc exec proxyha systemctl enable haproxy
+lxc exec proxyha systemctl start haproxy
+```
 If you get any errors, research the reason by using:
 
 `lxc exec proxyha systemctl status haproxy`
@@ -403,7 +403,7 @@ If everything starts and runs without issue, we are ready to move on to testing.
 
 ## Testing The Proxy
 
-As with the hosts (`/etc/hosts`) setup that we used so that our **proxyha** container can resolve the web servers, and since in our lab environment we don't have a local DNS server running, we need to set the hostname values on our local machine for both the **web1** and **web2** containers. But, instead of using their IP addresses, we need to use the **proxyha** IP address for both. 
+As with the hosts (`/etc/hosts`) setup that we used so that our **proxyha** container can resolve the web servers, and since in our lab environment we don't have a local DNS server running, we need to set the hostname values on our local machine for both the **web1** and **web2** containers. But, instead of using their IP addresses, we need to use the **proxyha** IP address for both.
 
 To do this, we need to modify our `/etc/hosts` file on our local machine. Consider this method of domain resolution a "poor man's DNS."
 
@@ -474,7 +474,7 @@ Sep 25 23:18:02 proxyha haproxy[4602]: Proxy subdomain2 started.
 
 ## Conclusions
 
-HAProxy is a powerful proxy engine that can be used for many things. It is a high-performance, open-source load balancer and reverse proxy for TCP and HTTP applications. We have shown in this document how to use load balancing of two web server instances. 
+HAProxy is a powerful proxy engine that can be used for many things. It is a high-performance, open-source load balancer and reverse proxy for TCP and HTTP applications. We have shown in this document how to use load balancing of two web server instances.
 
 It can also be used for other applications, including databases. It works within LXD containers, as well as on bare metal and standalone servers.
 
