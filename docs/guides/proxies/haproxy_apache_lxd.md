@@ -1,21 +1,26 @@
 ---
 title: HAProxy-Apache-LXD
 author: Steven Spencer
+contributors: Ezequiel Bruni
 ---
 # HAProxy Load Balancing Apache using LXD Containers
 
 ## Introduction
 
-HAProxy stands for "High Availability Proxy." This proxy can sit in front of any TCP application, but it is often used to act as a load-balancer between multiple instances of a website. There might be a number of reasons for doing this. If you have a website that is being hit hard, adding another instance of that same website and placing HAProxy in front of both, allows you to distribute traffic between instances. Another reason might be to be able to update content on a website without any down time. HAProxy can also help mitigate DOS and DDOS attacks.
+HAProxy stands for "High Availability Proxy." This proxy can sit in front of any TCP application (such as web servers), but it is often used to act as a load-balancer between multiple instances of a website. 
 
-This guide is going to explore using HAProxy using two website instances, and load-balancing with round robin rotation, on the same LXD host. This might be a perfectly fine solution for ensuring that updates can be performed without downtime. If your problem is website performance, you may need to distribute your multiple sites across actual bare metal or between multiple LXD hosts. It is certainly possible to do all of this on bare metal without using LXD at all, however LXD offers great flexibility and performance, plus it is great to use for lab testing.
+There might be a number of reasons for doing this. If you have a website that is being hit hard — adding another instance of that same website and placing HAProxy in front of both — allows you to distribute traffic between instances. Another reason might be to be able to update content on a website without any down time. HAProxy can also help mitigate DOS and DDOS attacks.
+
+This guide is going to explore using HAProxy using two website instances, and load-balancing with round robin rotation, on the same LXD host. This might be a perfectly fine solution for ensuring that updates can be performed without downtime. 
+
+If your problem is website performance, however, you may need to distribute your multiple sites across actual bare metal or between multiple LXD hosts. It is certainly possible to do all of this on bare metal without using LXD at all, however LXD offers great flexibility and performance, plus it is great to use for lab testing.
 
 ## Prerequisites and Assumptions
 
 * Complete comfort at the command line on a Linux machine
 * Experience with a command line editor (we are using `vim` here)
 * Experience with `crontab`
-* Knowledge of LXD. For more information, you may want to consult the [LXD Server](https://docs.rockylinux.org/guides/containers/lxd_server) document. It is perfectly fine to install LXD on a laptop or workstation as well without doing the full-blown server install. This document is being written with a lab machine that is running LXD, but is not set up as a full server as the referenced document uses.
+* Knowledge of LXD. For more information, you may want to consult the [LXD Server](https://docs.rockylinux.org/guides/containers/lxd_server) document. It is perfectly fine to install LXD on a laptop or workstation as well without doing the full-blown server install. This document is being written with a lab machine that is running LXD, but is not set up as a full server as the document linked above uses.
 * Some knowledge on installing, configuring, and using web servers.
 * We will assume that LXD is already installed and ready to create containers.
 
@@ -54,13 +59,14 @@ Make sure that your editor is set to your preferred editor, in this case `vim`:
 
 `export EDITOR=/usr/bin/vim`
 
-Next we need to modify the `macvlan` profile, but before we do, we need to know what interface the host is using for our LAN so use `ip addr` and look for the interface with the LAN IP assignment:
+Next we need to modify the `macvlan` profile. But before we do, we need to know what interface the host is using for our LAN so run `ip addr` and look for the interface with the LAN IP assignment:
 
 ```
 2: eno1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether a8:5e:45:52:f8:b6 brd ff:ff:ff:ff:ff:ff
     inet 192.168.1.141/24 brd 192.168.1.255 scope global dynamic noprefixroute eno1
 ```
+
 In this case, the interface we are looking for is "eno1" but this could be completely different on your system. Use **your** interface information! Now that we know the LAN interface, we can modify our `macvlan` profile. To do this, at the command line type:
 
 `lxc profile edit macvlan`
@@ -88,7 +94,8 @@ lxc profile assign web1 default,macvlan
 lxc profile assign web2 default,macvlan
 lxc profile assign proxyha default,macvlan
 ```
-Unfortunately, the default behavior of `macvlan` as implemented in the kernel, is inexplicably broken within an LXD container (see [this document](https://docs.rockylinux.org/guides/containers/lxd_server/#centos-macvlan)). This has been the case with the upstream provider since version 8 was released. To get around these issues, we will need to run `dhclient` on boot of each of the containers.
+
+Unfortunately, the default behavior of `macvlan` as implemented in the kernel, is inexplicably broken within an LXD container (see [this document](https://docs.rockylinux.org/guides/containers/lxd_server/#centos-macvlan)). This has been the case with the upstream provider since version 8 was released. To get around these issues, we will need to run `dhclient` on boot in each of the containers.
 
 Doing this is pretty simple when using DHCP. Just follow this for each container:
 
@@ -132,7 +139,7 @@ Now that our environment is set, we need to install Apache (`httpd`) on each web
 lxc exec web1 dnf install httpd
 lxc exec web2 dnf install httpd
 ```
-While it is understood that you will need a whole lot more than Apache for any modern web server, from a testing perspective, this gets us enough to test.
+While it is understood that you will need a whole lot more than Apache for any modern web server, this is enough to run some tests.
 
 Next, we need to enable `httpd`, start it, and then modify the default welcome screen, so we know which server we are hitting when we attempt to access via proxy.
 
@@ -144,6 +151,7 @@ lxc exec web1 systemctl start httpd
 lxc exec web2 systemctl enable httpd
 lxc exec web2 systemctl start httpd
 ```
+
 Now that we have `httpd` enabled and started, let's modify the welcome screen. This is the screen that comes up when there is no website configured, essentially a default page that loads. In Rocky Linux, this page is located here `/usr/share/httpd/noindex/index.html`. To modify that file, again, there's no need for direct access to the container. Simply do the following:
 
 `lxc exec web1 vi /usr/share/httpd/noindex/index.html`
@@ -268,15 +276,22 @@ backend subdomain2
      server web2 web2.testdomain.com:80 check
      server web1 web1.testdomain.com:80 check
 ```
-A little explanation of what will happen above. You should see this in your testing when you get to testing (below): Both web1 and web2 are definded in the "acl" section. Then both **web1** and **web2** are included in each other's "roundrobin" for their respective back ends. What happens when you go to web1.testdomain.com in the test, the URL does not change, but the page inside will switch each time you access the page from the web1 to the web2 test pages. Same goes for web2.testdomain.com. This is done to show you the switch is occurring, but in reality, your website content will look exactly the same regardless of which server you are hitting. Keep in mind that we are showing how you might want to distribute traffic between multiple hosts. You can also use "leastcon" in the balance line, and instead of switching based on the previous hit, it will load the site with the least number of connections.
+
+A little explanation of what's going on above. You should see this in your testing, when you get to the testing section of this guide (below): 
+
+Both web1 and web2 are definded in the "acl" section. Then both **web1** and **web2** are included in each other's "roundrobin" for their respective back ends. What happens when you go to web1.testdomain.com in the test, the URL does not change, but the page inside will switch each time you access the page from the web1 to the web2 test pages. Same goes for web2.testdomain.com. 
+
+This is done to show you the switch is occurring, but in reality, your website content will look exactly the same regardless of which server you are hitting. Keep in mind that we are showing how you might want to distribute traffic between multiple hosts. You can also use "leastcon" in the balance line, and instead of switching based on the previous hit, it will load the site with the least number of connections.
 
 ### The Error Files
 
-Some versions of HAProxy come with a standard set of web error files, however the version that comes from Rocky Linux and the upstream, does not have these files. You probably **do** want to create them, as they may help you troubleshoot any problems. These files go in the directory `/etc/haproxy/errors` which does not exist. First thing we need to do is create that directory:
+Some versions of HAProxy come with a standard set of web error files, however the version that comes from Rocky Linux (and the upstream vendor), does not have these files. You probably **do** want to create them, as they may help you troubleshoot any problems. These files go in the directory `/etc/haproxy/errors` which does not exist. 
+
+The first thing we need to do is create that directory:
 
 `lxc exec proxyha mkdir /etc/haproxy/errors`
 
-Then we need to create each of these files in that directory. Note that you can do this with each filename from your LXD host with the command `lxc exec proxyha vi /etc/haproxy/errors/filename.http` where "filename.http" references one of the below file names. In a production environment, your company may have more specific errors that they would like to use:
+Then we need to create each of these files in that directory. Note that you can do this with each filename from your LXD host with the command `lxc exec proxyha vi /etc/haproxy/errors/filename.http`, where "filename.http" references one of the below file names. In a production environment, your company may have more specific errors that they would like to use:
 
 File name `400.http`:
 
@@ -290,6 +305,7 @@ Content-Type: text/html
 Your browser sent an invalid request.
 </body></html>
 ```
+
 File name `403.http`:
 
 ```
@@ -302,6 +318,7 @@ Content-Type: text/html
 Request forbidden by administrative rules.
 </body></html>
 ```
+
 Filename `408.http`:
 
 ```
@@ -314,6 +331,7 @@ Content-Type: text/html
 Your browser didn't send a complete request in time.
 </body></html>
 ```
+
 Filename `500.http`:
 
 ```
@@ -326,6 +344,7 @@ Content-Type: text/html
 An internal server error occurred.
 </body></html>
 ```
+
 Filename `502.http`:
 
 ```
@@ -338,6 +357,7 @@ Content-Type: text/html
 The server returned an invalid or incomplete response.
 </body></html>
 ```
+
 Filename `503.http`:
 
 ```
@@ -350,6 +370,7 @@ Content-Type: text/html
 No server is available to handle this request.
 </body></html>
 ```
+
 Filename `504.http`:
 
 ```
@@ -362,6 +383,7 @@ Content-Type: text/html
 The server didn't respond in time.
 </body></html>
 ```
+
 ## Running The Proxy
 
 We need to create a "run" directory for `haproxy` before we start the service:
@@ -381,7 +403,9 @@ If everything starts and runs without issue, we are ready to move on to testing.
 
 ## Testing The Proxy
 
-As with the hosts (`/etc/hosts`) setup that we used so that our **proxyha** container can resolve the web servers, and since in our lab environment we don't have a local DNS server running, we need to set the hostname values on our local machine for both the **web1** and **web2** containers, but instead of using their IP addresses, we need to use the **proxyha** IP address for both. To do this, we need to modify our `/etc/hosts` file on our local machine. Consider this method of domain resolution a "poor mans DNS."
+As with the hosts (`/etc/hosts`) setup that we used so that our **proxyha** container can resolve the web servers, and since in our lab environment we don't have a local DNS server running, we need to set the hostname values on our local machine for both the **web1** and **web2** containers. But, instead of using their IP addresses, we need to use the **proxyha** IP address for both. 
+
+To do this, we need to modify our `/etc/hosts` file on our local machine. Consider this method of domain resolution a "poor man's DNS."
 
 `sudo vi /etc/hosts`
 
@@ -399,6 +423,7 @@ PING web1.testdomain.com (192.168.1.149) 56(84) bytes of data.
 64 bytes from web1.testdomain.com (192.168.1.149): icmp_seq=1 ttl=64 time=0.427 ms
 64 bytes from web1.testdomain.com (192.168.1.149): icmp_seq=2 ttl=64 time=0.430 ms
 ```
+
 Now open your web browser and type web1.testdomain.com (or web2.testdomain.com) as the URL in the address bar. You should get a response back from one of the two test pages and if you load the page again, you should get the next server's test page. Note that the URL does not change, but the returned page will change alternately between servers.
 
 ![screenshot of web1 being loaded and showing the second server test message](../images/haproxy_apache_lxd.png)
@@ -449,4 +474,8 @@ Sep 25 23:18:02 proxyha haproxy[4602]: Proxy subdomain2 started.
 
 ## Conclusions
 
-HAProxy is a powerful proxy engine that can be used for many things. It is a high-performance, open-source load balancer and reverse proxy for TCP and HTTP applications. We have shown in this document how to use load balancing of two web server instances. It can also be used for other applications, including databases.  It works within LXD containers, as well as on bare metal and standalone servers. There are plenty of uses not covered in this document. Check out the [official manual for HAProxy here.](https://cbonte.github.io/haproxy-dconv/1.8/configuration.html)
+HAProxy is a powerful proxy engine that can be used for many things. It is a high-performance, open-source load balancer and reverse proxy for TCP and HTTP applications. We have shown in this document how to use load balancing of two web server instances. 
+
+It can also be used for other applications, including databases. It works within LXD containers, as well as on bare metal and standalone servers.
+
+There are plenty of uses not covered in this document. Check out the [official manual for HAProxy here.](https://cbonte.github.io/haproxy-dconv/1.8/configuration.html)
