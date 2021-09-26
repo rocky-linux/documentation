@@ -148,7 +148,7 @@ Now that we have `httpd` enabled and started, let's modify the welcome screen. T
 
 `lxc exec web1 vi /usr/share/httpd/noindex/index.html`
 
-and then do a search for the <h1> tag, which should show this:
+and then do a search for the `<h1>` tag, which should show this:
 
 `<h1>HTTP Server <strong>Test Page</strong></h1>`
 
@@ -401,7 +401,7 @@ PING web1.testdomain.com (192.168.1.149) 56(84) bytes of data.
 ```
 Now open your web browser and type web1.testdomain.com (or web2.testdomain.com) as the URL in the address bar. You should get a response back from one of the two test pages and if you load the page again, you should get the next server's test page. Note that the URL does not change, but the returned page will change alternately between servers.
 
-<Insert screenshot>
+![screenshot of web1 being loaded and showing the second server test message](../images/haproxy_apache_lxd.png)
 
 ## Logging
 
