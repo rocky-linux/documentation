@@ -1,7 +1,7 @@
 ---
 title: HAProxy-Apache-LXD
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Antoine Le Morvan
 ---
 # HAProxy Load Balancing Apache using LXD Containers
 
@@ -66,8 +66,10 @@ Next we need to modify the `macvlan` profile. But before we do, we need to know 
     link/ether a8:5e:45:52:f8:b6 brd ff:ff:ff:ff:ff:ff
     inet 192.168.1.141/24 brd 192.168.1.255 scope global dynamic noprefixroute eno1
 ```
+!!! Note
+    In this case, the interface we are looking for is "eno1" but this could be completely different on your system. Use **your** interface information!
 
-In this case, the interface we are looking for is "eno1" but this could be completely different on your system. Use **your** interface information! Now that we know the LAN interface, we can modify our `macvlan` profile. To do this, at the command line type:
+Now that we know the LAN interface, we can modify our `macvlan` profile. To do this, at the command line type:
 
 `lxc profile edit macvlan`
 
@@ -162,7 +164,7 @@ and then do a search for the `<h1>` tag, which should show this:
 
 Simply change that line to read:
 
-`<h1>WEB1 HTTP Server <strong>Test Page</strong></h1>`
+`<h1>SITE1 HTTP Server <strong>Test Page</strong></h1>`
 
 Now repeat the process for web2. Going to these machines by IP in a browser should now return the correct welcome page for each. There's more to do on the web servers, but let's leave them and go on to the proxy server next.
 
@@ -178,19 +180,19 @@ lxc config device add proxyha http proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0
 lxc config device add proxyha https proxy listen=tcp:0.0.0.0:443 connect=tcp:127.0.0.1:443
 ```
 
-For our testing, we are probably only going to use port 80, or HTTP traffic, but this shows you how you would configure the container to listen on the default web ports for both HTTP and HTTPS. Using this command also ensures that restarting the **proxyha** container will maintain those listening ports.
+For our testing, we are only going to use port 80, or HTTP traffic, but this shows you how you would configure the container to listen on the default web ports for both HTTP and HTTPS. Using this command also ensures that restarting the **proxyha** container will maintain those listening ports.
 
 ## The HAProxy Configuration
 
-We've already installed HAProxy on the container, but we have done nothing with the configuration. Before we do anything, we need to do something to resolve our hosts. Normally we would be using fully-qualified domain names, but in this lab environment, we are just using IPs. To get some names associated with the machines, we are going to add some hosts file records to the **proxyha** container.
+We've already installed HAProxy on the container, but we have done nothing with the configuration. Before we do anything, we need to do something to resolve our hosts. Normally we would be using fully-qualified domain names, but in this lab environment, we are just using IPs. To get some names associated with the machines, we are going to add some host file records to the **proxyha** container.
 
 `lxc exec proxyha vi /etc/hosts`
 
 Add the following records to the bottom of the file:
 
 ```
-192.168.1.150   web1.testdomain.com     web1
-192.168.1.101   web2.testdomain.com     web2
+192.168.1.150   site1.testdomain.com     site1
+192.168.1.101   site2.testdomain.com     site2
 ```
 
 Which should allow the **proxyha** container to resolve those names.
@@ -245,8 +247,8 @@ errorfile 504 /etc/haproxy/errors/504.http
 # bind *:443 ssl crt /etc/letsencrypt/live/example.com/example.com.pem
 # reqadd X-Forwarded-Proto:\ https
 
-# acl host_web1 hdr(host) -i web1.testdomain.com
-# acl host_web2 hdr(host) -i web2.testdomain.com
+# acl host_web1 hdr(host) -i site1.testdomain.com
+# acl host_web2 hdr(host) -i site2.testdomain.com
 
 # use_backend subdomain1 if host_web1
 # use_backend subdomain2 if host_web2
@@ -254,8 +256,8 @@ errorfile 504 /etc/haproxy/errors/504.http
 frontend http_frontend
 bind *:80
 
-acl web_host1 hdr(host) -i web1.testdomain.com
-acl web_host2 hdr(host) -i web2.testdomain.com
+acl web_host1 hdr(host) -i site1.testdomain.com
+acl web_host2 hdr(host) -i site2.testdomain.com
 
 use_backend subdomain1 if web_host1
 use_backend subdomain2 if web_host2
@@ -265,21 +267,21 @@ backend subdomain1
   balance roundrobin
   http-request set-header X-Client-IP %[src]
 # redirect scheme https if !{ ssl_fc }
-     server web1 web1.testdomain.com:80 check
-     server web2 web2.testdomain.com:80 check
+     server site1 site1.testdomain.com:80 check
+     server site2 web2.testdomain.com:80 check
 
 backend subdomain2
 # balance leastconn
   balance roundrobin
   http-request set-header X-Client-IP %[src]
 # redirect scheme https if !{ ssl_fc }
-     server web2 web2.testdomain.com:80 check
-     server web1 web1.testdomain.com:80 check
+     server site2 site2.testdomain.com:80 check
+     server site1 site1.testdomain.com:80 check
 ```
 
 A little explanation of what's going on above. You should see this in your testing, when you get to the testing section of this guide (below):
 
-Both **web1** and **web2** are definded in the "acl" section. Then both **web1** and **web2** are included in each other's "roundrobin" for their respective back ends. What happens when you go to web1.testdomain.com in the test, the URL does not change, but the page inside will switch each time you access the page from the web1 to the web2 test pages. Same goes for web2.testdomain.com.
+Both **site1** and **site2** are defined in the "acl" section. Then both **site1** and **site2** are included in each other's "roundrobin" for their respective back ends. What happens when you go to site1.testdomain.com in the test, the URL does not change, but the page inside will switch each time you access the page from the **site1** to the **site2** test pages. Same goes for site2.testdomain.com.
 
 This is done to show you the switch is occurring, but in reality, your website content will look exactly the same regardless of which server you are hitting. Keep in mind that we are showing how you might want to distribute traffic between multiple hosts. You can also use "leastcon" in the balance line, and instead of switching based on the previous hit, it will load the site with the least number of connections.
 
@@ -403,7 +405,7 @@ If everything starts and runs without issue, we are ready to move on to testing.
 
 ## Testing The Proxy
 
-As with the hosts (`/etc/hosts`) setup that we used so that our **proxyha** container can resolve the web servers, and since in our lab environment we don't have a local DNS server running, we need to set the hostname values on our local machine for both the **web1** and **web2** containers. But, instead of using their IP addresses, we need to use the **proxyha** IP address for both.
+As with the hosts (`/etc/hosts`) setup that we used so that our **proxyha** container can resolve the web servers, and since in our lab environment we don't have a local DNS server running, we need to set the IP values on our local machine for both the site1 and site2 websites, to correspond to our haproxy container.
 
 To do this, we need to modify our `/etc/hosts` file on our local machine. Consider this method of domain resolution a "poor man's DNS."
 
@@ -412,19 +414,20 @@ To do this, we need to modify our `/etc/hosts` file on our local machine. Consid
 Then just add these two lines:
 
 ```
-192.168.1.149   web1.testdomain.com     web1
-192.168.1.149   web2.testdomain.com     web2
+192.168.1.149   site1.testdomain.com     site1
+192.168.1.149   site2.testdomain.com     site2
 ```
 
-If you ping either **web1** or **web2** on your local machine now, you should get a response from **proxyha**:
+If you ping either **site1** or **site2** on your local machine now, you should get a response from **proxyha**:
 
 ```
-PING web1.testdomain.com (192.168.1.149) 56(84) bytes of data.
-64 bytes from web1.testdomain.com (192.168.1.149): icmp_seq=1 ttl=64 time=0.427 ms
-64 bytes from web1.testdomain.com (192.168.1.149): icmp_seq=2 ttl=64 time=0.430 ms
+PING site1.testdomain.com (192.168.1.149) 56(84) bytes of data.
+64 bytes from site1.testdomain.com (192.168.1.149): icmp_seq=1 ttl=64 time=0.427 ms
+64 bytes from site1.testdomain.com (192.168.1.149): icmp_seq=2 ttl=64 time=0.430 ms
 ```
 
-Now open your web browser and type web1.testdomain.com (or web2.testdomain.com) as the URL in the address bar. You should get a response back from one of the two test pages and if you load the page again, you should get the next server's test page. Note that the URL does not change, but the returned page will change alternately between servers.
+Now open your web browser and type site1.testdomain.com (or site2.testdomain.com) as the URL in the address bar. You should get a response back from one of the two test pages and if you load the page again, you should get the next server's test page. Note that the URL does not change, but the returned page will change alternately between servers.
+
 
 ![screenshot of web1 being loaded and showing the second server test message](../images/haproxy_apache_lxd.png)
 
