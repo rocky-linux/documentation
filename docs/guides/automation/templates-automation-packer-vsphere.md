@@ -116,9 +116,9 @@ Let's create a json file (in the future, the format of this file will change to 
       "folder": "Templates/RockyLinux",
       "cluster": "CLUSTER_NAME",
       "host": "esx1.rockylinux.lan",
-      "notes": "Template RockyLinux version {{ user `version` }}"
+      "notes": "Template RockyLinux version {{ user `version` }}",
       "convert_to_template": true,
-      "create_snapshot": false,
+      "create_snapshot": false
     }
   ]
 }
