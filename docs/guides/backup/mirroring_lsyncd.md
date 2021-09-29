@@ -51,7 +51,7 @@ Installing from source is not as bad is it sounds. Just follow this guide and yo
 
 We will need some dependencies: a few that are required by lsyncd itself, and a few that are required to build packages from source. Use this command on your Rocky Linux machine to make sure you have the dependencies you need. If you are going to be building from source, it's a good idea to have all of the development tools installed:
 
-`dnf install groupinstall 'Development Tools'`
+`dnf groupinstall 'Development Tools'`
 
 And here are the dependencies we need for lsyncd itself, and its build process:
 
