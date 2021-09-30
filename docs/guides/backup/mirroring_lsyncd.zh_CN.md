@@ -51,7 +51,7 @@ lsyncd 监视本地目录树事件监视器接口（inotify）。它在几秒钟
 
 我们需要安装下面的一些依赖项：lsyncd 本身需要的依赖项，以及从源码构建软件包所需要的依赖项。在 Rocky Linux 机器上使用此命令，以确保您具有所需的依赖项。如果要从源码进行构建，则最好安装所有开发工具：
 
-`dnf install groupinstall 'Development Tools'`
+`dnf groupinstall 'Development Tools'`
 
 以下是 lsyncd 本身及其构建过程所需的依赖项：
 

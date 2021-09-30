@@ -52,7 +52,7 @@ Instalar desde el código fuente no es tan malo como parece. Solo tienes que seg
 
 Necesitaremos algunas dependencias: unas pocas que son requeridas por el propio lsyncd, y otras que son necesarias para construir paquetes desde el código fuente. Usa este comando en tu máquina Rocky Linux para asegurarte de que tienes las dependencias que necesitas. Si vas a construir desde el código fuente, es una buena idea tener todas las herramientas de desarrollo instaladas:
 
-`dnf install groupinstall 'Development Tools'`
+`dnf groupinstall 'Development Tools'`
 
 Y aquí están las dependencias que necesitamos para el propio lsyncd, y su proceso de construcción:
 
