@@ -80,7 +80,7 @@ By default, email notifications are turned off and the `<global>` configuration 
 
 The `<smtp_server>` section currently shows localhost, however you can specify an email server relay if you prefer, or simply setup the postfix email settings for the local host by following [this guide](../../email/postfix_reporting.md).
 
-ou need to set the "from" address, so that you can deal with SPAM filters on your email server which may see this email as SPAM. To avoid getting inundated with email, set the email reporting to 1 per hour. You can expand this or remark out this command if you like while you are getting started with _ossec-hids_ and need to see things quickly.
+You need to set the "from" address, so that you can deal with SPAM filters on your email server which may see this email as SPAM. To avoid getting inundated with email, set the email reporting to 1 per hour. You can expand this or remark out this command if you like while you are getting started with _ossec-hids_ and need to see things quickly.
 
 The `<white_list>` sections deal with the server's localohost IP and with the "public" address (remember, we are using a private address to demonstrate this) of the firewall, from which all connections on the trusted network will show. You can add multiple `<white_list>` entries as needed.
 
