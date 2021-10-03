@@ -22,9 +22,9 @@ Quando você abrir um documento, à sua direita você verá 'Tabela de conteúdo
 
 As principais seções do site the documentação são:
 
-* **Guias**: que cobre formas específicas para configurar e usar o Rocky Linux.
-* **Livros**: mais informação detalhada a respeito de uma área específica.
-* **Laboratórios**: é um 'de volta a escola', mas estes tutoriais você irá se divertir ao fazê-los!
+* **Guides**: que cobre formas específicas para configurar e usar o Rocky Linux.
+* **Books**: mais informação detalhada a respeito de uma área específica.
+* **Labs**: é um 'de volta a escola', mas estes tutoriais você irá se divertir ao fazê-los!
 
 ### Múltiplas Línguas
 
