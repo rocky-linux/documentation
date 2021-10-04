@@ -17,7 +17,7 @@ title: 迁移到Rocky Linux
 
 * 所有的命令都应该以 root 身份运行。要么以 root 身份登陆，要么每次输入命令行前键入"sudo"
 
-!!! note "笔记"
+!!! note
     sudo命令，表示普通用户（UID>=1000）临时借用超级管理员(UID=0)权限，类似Windows的右键以管理员运行，不加任何选项，sudo等同于sudo -u  root
 
 ## 介绍
@@ -45,7 +45,7 @@ title: 迁移到Rocky Linux
 
 从 GitHub 下载压缩文件并提取您需要的文件（即 **migrate2rocky.sh**）。您可以在存储库主页的右侧找到这个zip 文件：
 
-![The "Download Zip" button](/home/tianci/Documents/documentation/docs/guides/images/migrate2rocky-github-zip.png)
+![The "Download Zip" button](images/migrate2rocky-github-zip.png)
 
 然后，在您的本地计算机中运行以下命令，使用scp（ssh cp）命令将文件上传到您的服务器。
 
@@ -105,13 +105,13 @@ shell > ./migrate2rocky.sh -r
 
 如果您做对了，终端窗口看起来像这样：
 
-![a successful script startup](/home/tianci/Documents/documentation/docs/guides/images/migrate2rocky-convert-01.png)
+![a successful script startup](images/migrate2rocky-convert-01.png)
 
 现在，脚本需要一段时间来转换所有内容，具体取决于实际机器的硬件性能与网络连接情况。
 
 如果您最后看到 **Complete!** 消息，则表示一切正常，重启服务器即可。
 
-![a successful OS migration message](/home/tianci/Documents/documentation/docs/guides/images/migrate2rocky-convert-02.png)
+![a successful OS migration message](images/migrate2rocky-convert-02.png)
 
 给它一定的时间重启，键入 `hostnamectl`即可检查是否一切正常的迁移。
 
@@ -119,4 +119,3 @@ shell > ./migrate2rocky.sh -r
     cat /etc/os-release 或者 cat /etc/redhat-release 都可以
 
 ![The results of the hostnamectl command](images/migrate2rocky-convert-03.png)
-
