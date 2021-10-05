@@ -17,4 +17,4 @@ Your code, script, or command document should be short. If it is many pages long
 
 ## Contribution
 
-You can contribute your **Gemstone** in the same way that you contribute other documentation (see: [Guides/Contribution/Contribution Guide](../guides/contribute/README.md)). When you submit a pull request to GitHub, include "gemstone" in the commit message. If you don't have or don't want a GitHub account, you can simply submit it to the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) and we will edit and create your **Gemstone** for you. It couldn't be easier!
+You can contribute your **Gemstone** in the same way that you contribute other documentation (see: [Guides/Contribution/Contribution Guide](../contribute/index.md)). When you submit a pull request to GitHub, include "gemstone" in the commit message. If you don't have or don't want a GitHub account, you can simply submit it to the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) and we will edit and create your **Gemstone** for you. It couldn't be easier!
