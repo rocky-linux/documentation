@@ -119,6 +119,12 @@ tools.
 [user@host ~]$ sudo realm join ad.company.local
 ```
 
+If this process complains about encryption with `KDC has no support for encryption type`, try updating the global crypto policy to allow older encryption algorithms:
+
+```sh
+[user@host ~]$ sudo update-crypto-policies --set DEFAULT:AD-SUPPORT
+```
+
 If this process succeeds, you should now be able to pull `passwd` information
 for an Active Directory user.
 
