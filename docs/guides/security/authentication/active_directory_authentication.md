@@ -1,6 +1,6 @@
 ---
 author: Hayden Young
-contributors: Steven Spencer
+contributors: Steven Spencer, Sambhav Saggi
 ---
 
 # Active Directory Authentication
