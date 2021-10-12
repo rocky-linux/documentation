@@ -8,4 +8,4 @@ title: 指南首页
 
 大多数类别不需要特别的解释，如果您想了解如何帮助正在进行的Rocky Linux开发，请加入开发频道——[Mattermost Development channel](https://chat.rockylinux.org/rocky-linux/channels/development)。对于那些希望参与文档的人，请加入文档频道—— [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) ，讨论以了解更多的信息。
 
-如果您想直接进入，现在可以 [安装Rocky Linux](installation.zh_CN.md)
+如果您想直接进入，现在可以 [安装Rocky Linux](installation.zh.md)
