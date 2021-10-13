@@ -31,14 +31,14 @@ As principais seções do site de documentação são:
 Claro que nem todos tem inglês como idioma materno! Em Rock Linux nós queremos fazer a documentação do site acessível para todos — *tradução em línguas diferentes é uma parte importante disso*. Se você clicar no (símbolo comum) seletor de línguas no _menu_ superior você verá quais idiomas o site está disponível, existe duas partes para isto:
 
 1. Localização da _interface_ do site: caso você escolha outro idioma, por exemplo, Francês, notará que a _interface_ será localizada.
-1. Conteúdo: traduzir conteúdo é obviamente uma tarefa contínua. Nem todo conteúdo está traduzido em todos os idiomas ainda. Quaisquer páginas que estão traduzidas serão apresentadas no idioma selecionado, aquelas que não possuírem tradução serão apresentadas em inglês. Caso você queira contribuir para a comunidade através de traduções, o grupo de documentação está pronto para ouvi-lo — veja detalhes abaixo. 
+1. Conteúdo: traduzir conteúdo é obviamente uma tarefa contínua. Nem todo conteúdo está traduzido em todos os idiomas ainda. Quaisquer páginas que estão traduzidas serão apresentadas no idioma selecionado, aquelas que não possuírem tradução serão apresentadas em inglês. Caso você queira contribuir para a comunidade através de traduções, o grupo de documentação está pronto para ouvi-lo — veja detalhes abaixo.
 
-!!! Nota
+!!! Note "Nota"
     Nem todas as funcionalidades estarão disponíveis em todos os idiomas, isto é uma limitação dos módulos do MkDocs disponíveis.
 
 ### Procurando informação
 
-Caso você queira rapidamente procurar uma informação/documento específico, o site de documentação possui capacidades de procura em texto integral. Simplesmente comece escrevendo no campo 'Search' no _menu_ superior e o site retornará os resultados de busca. 
+Caso você queira rapidamente procurar uma informação/documento específico, o site de documentação possui capacidades de procura em texto integral. Simplesmente comece escrevendo no campo 'Search' no _menu_ superior e o site retornará os resultados de busca.
 
 Para abrir a página nos resultados de busca, simplesmente click (ou aperte em caso de _smartphones_) na página desejada na lista apresentada.
 
