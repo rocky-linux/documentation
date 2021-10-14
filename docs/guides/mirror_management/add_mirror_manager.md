@@ -1,23 +1,24 @@
 ---
 title: Adding a Rocky Mirror
+contributors: Amin Vakil, Steven Spencer
 ---
 
 # Adding a public mirror to Rocky's mirror manager
 
 ## Minimal requirements for public mirrors
 
-We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 datacenter like environment. Available bandwidth should be at least 1 GBit/s. We prefer mirrors offering dualstack (IPv4 & IPv6). Please no dynamic DNS. If you are offering a mirror in a region that has only few mirrors, we will also accept slower speeds.
+We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 data center like environment. Available bandwidth should be at least 1 GBit/s. We prefer mirrors offering dual-stack (IPv4 & IPv6). Please no dynamic DNS. If you are offering a mirror in a region that has only few mirrors, we will also accept slower speeds.
 
-Please do not submit mirrors which are hosted in a Anycast-CDN like Cloudflare etc. as this can lead to suboptimal performance with the selection of fastest mirror in dnf.
+Please do not submit mirrors which are hosted in a Anycast-CDN like Cloudflare etc. as this can lead to sub-optimal performance with the selection of fastest mirror in `dnf`.
 
 Please note that we are not allowed to accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations
 
 Hard disk space requirements are around 500 GB at the moment but expect it to grow over time. 600 GB space should be sufficient for the next few years.
 
 Our master mirror is `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`
-For your first synchronisation use a mirror near to you. You can find all official mirrors here: https://mirrors.rockylinux.org
+For your first synchronization use a mirror near to you. You can find all official mirrors here: https://mirrors.rockylinux.org
 
-Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider rsyncing from a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
+Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider `rsyncing` from a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
 
 ## Setting up you mirror
 
@@ -37,16 +38,16 @@ Here are some crontab examples for you:
 15 * * * * /path/to/your/rocky-rsync-mirror.sh > /dev/null 2>&1
 ```
 
-For a simple synchronization you can use the following rsync command:
+For a simple synchronization you can use the following `rsync` command:
 
 ```
 rsync -aqH --delete source-mirror destination-dir
 ```
-Consider using a locking mechanism to avoid running more than one rsync job simultaneously when we push a new release.
+Consider using a locking mechanism to avoid running more than one `rsync` job simultaneously when we push a new release.
 
 You can also use and modify our example script implementing locking and full sync if required. It can be found at https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh.
 
-After your first complete synchronization check that everything is fine with your mirror. Most importantly check all files and dirs got synchronized, your chron job is working properly und your mirror is reachable from the public internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
+After your first complete synchronization check that everything is fine with your mirror. Most importantly check all files and dirs got synchronized, your chron job is working properly and your mirror is reachable from the public internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
 
 If you have any questions setting up your mirror join https://chat.rockylinux.org/rocky-linux/channels/infrastructure
 
@@ -66,6 +67,7 @@ After a successful login, your profile will be on the top right. Select the drop
 A new page will load listing all of the sites under the account. The first time it will be empty. Click "Register a new site".
 
 A new page will load with an important Export Compliance statement to read. Then fill out the following information:
+
 * "Site Name"
 * "Site Password" - used by report_mirrors script, you make this anything you want
 * "Organization URL" - Company/School/Organization URL e.g. https://rockylinux.org/
@@ -87,6 +89,7 @@ All of the options from the last section are listed again. At the bottom of the 
 ## Create new host
 
 Fill out the following options that are appropriate for the site:
+
 * "Host name" - required: FQDN of server as seen by a public end user
 * "User active" - Uncheck this box to temporarily disable this host, it will be removed from public listings.
 * "Country" - required: 2-letter ISO country code
