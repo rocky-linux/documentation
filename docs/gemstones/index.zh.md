@@ -1,7 +1,7 @@
 ---
 title: 宝石首页
 authors: Steven Spencer
-translator: tianci li
+contributor: tianci li
 date: 2021-10-15
 ---
 

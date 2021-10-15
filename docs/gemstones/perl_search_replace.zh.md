@@ -1,7 +1,7 @@
 ---
-title: Perl - Search and Replace
+title: Perl - 搜索与替换
 author: Steven Spencer
-translator: tianci li
+contributor: tianci li
 date: 2021-10-15
 ---
 
