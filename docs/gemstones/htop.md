@@ -57,14 +57,19 @@ PID USER PRI NI VIRT RES SHR S CPU% MEM% TIME+ Commad(merged)
 ##  Process information description
 
 **PID-Process ID number**
+
 * USER-the owner of the process
 * PRI-Display the process priority as seen by the Linux kernel
 * NI-displays the process priority of reset by normal user or root super user
 * VIRI-virtual memory being consumed by a process
+
 **RES-physical memory being consumed by a process**
+
 * SHR-shared memory being consumed by a process
 * S-The current state of the process, there is a special state to pay attention to! That is Z (zombie process). When there are a large number of zombie processes in the machine, it will affect the performance of the machine.
+
 **CPU%-Percentage of CPU consumed by each process**
+
 * MEM%-Percentage of memory consumed by each process
 * TIME+-shows the running time since the process was started
 * Commad-the command corresponding to the process
