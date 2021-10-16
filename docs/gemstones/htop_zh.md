@@ -8,7 +8,7 @@ date: 2021-10-16
 每个系统管理员都喜欢用一些比较常用的命令，今天推荐的是htop，作为 `top` 命令的替代。要正常使用 `htop`命令，需要首先安装它。
 ``` bash
 # 安装epel源（也叫存储库）
- dnf -y install epel-release 
+dnf -y install epel-release 
 # 生成缓存
 dnf makeche
 # 安装htop
@@ -19,8 +19,8 @@ dnf -y install htop
 ```
 0[ |||                                            3%]       Tasks: 24,  14thr;  1  running
 1[ |                                              1%]       Load average:  0.00  0.00  0.05
-Mem[ |||||||                       1 97M/8G]       Uptime:  00:31:39
-Swap[                                0K/500M]
+Mem[ |||||||                                 197M/8G]       Uptime:  00:31:39
+Swap[                                        0K/500M]
 
 PID   USER   PRI   NI   VIRT   RES   SHR   S    CPU%   MEM%   TIME+   Commad(merged)
 ...
