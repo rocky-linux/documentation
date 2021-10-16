@@ -1,6 +1,7 @@
 ---
 title: htop - 进程管理
-auther: tianci li
+author: tianci li
+contributors: Steven Spencer
 date: 2021-10-16
 ---
 
