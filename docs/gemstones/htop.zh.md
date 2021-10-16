@@ -11,7 +11,7 @@ date: 2021-10-16
 # 安装epel源（也叫存储库）
 dnf -y install epel-release 
 # 生成缓存
-dnf makeche
+dnf makecache
 # 安装htop
 dnf -y install htop
 ```
