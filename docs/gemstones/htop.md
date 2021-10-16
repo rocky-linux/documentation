@@ -11,7 +11,7 @@ Every system administrator likes to use some of the more commonly used commands.
 # Installation epel source (also called repository)
 dnf -y install epel-release
 # Generate cache
-dnf makeche
+dnf makecache
 # Install htop
 dnf -y install htop
 ```
