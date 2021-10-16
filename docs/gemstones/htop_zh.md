@@ -1,10 +1,10 @@
 ---
-title: htop - 进程查看与管理
-contributor: tianci li
+title: htop - 进程管理
+auther: tianci li
 date: 2021-10-16
 ---
 
-# htop安装
+# 安装 `htop`
 每个系统管理员都喜欢用一些比较常用的命令，今天推荐的是htop，作为 `top` 命令的替代。要正常使用 `htop`命令，需要首先安装它。
 ``` bash
 # 安装epel源（也叫存储库）
@@ -14,7 +14,7 @@ dnf makeche
 # 安装htop
 dnf -y install htop
 ```
-# 使用htop
+# 使用 `htop`
 您只需要在终端中键入 htop 即可，交互界面如下：
 ```
 0[ |||                                            3%]       Tasks: 24,  14thr;  1  running
@@ -82,5 +82,5 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S    CPU%   MEM%   TIME+   Commad(mer
 |9  | 用来立即结束程序的运行，用来强制终止进程，类似windows任务栏当中的强制结束 |
 |15  |  kill 命令的默认信号。有时如果进程已经发生问题，这个信号时无法正常终止进程的，我们会尝试信号9 |
 
-# 结尾
-htop比系统自带的top好用太多，更加直观，对日常的使用提升非常巨大，这也是为什么通常在安装操作系统后，第一件事就是将其安装上。
+## 结尾
+`htop`比系统自带的`top`好用太多，更加直观，对日常的使用提升非常巨大，这也是为什么通常在安装操作系统后，第一件事就是将其安装上。
