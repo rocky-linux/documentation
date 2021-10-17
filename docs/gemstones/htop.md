@@ -5,7 +5,7 @@ contributors: Steven Spencer
 date : 2021-10-16
 ---
 
-#  `htop` install
+#  install `htop` 
 Every system administrator likes to use some of the more commonly used commands. Today I recommend `htop` as an alternative to the `top` command. To use the `htop` command normally , you need to install it first.
 ``` bash
 # Installation epel source (also called repository)
@@ -18,29 +18,29 @@ dnf -y install htop
 #  Use `htop`
 You only need to type `htop` in the terminal, and the interactive interface is as follows:
 ```
-0[ ||| 3%] Tasks: 24, 14thr; 1 running
-1[ | 1%] Load average: 0.00 0.00 0.05
-Mem[ ||||||| 197M/8G] Uptime: 00:31:39
-Swap[ 0K/500M]
-PID USER PRI NI VIRT RES SHR S CPU% MEM% TIME+ Commad(merged)
+0[ |||                      3%]     Tasks: 24, 14thr; 1 running
+1[ |                        1%]     Load average: 0.00 0.00 0.05
+Mem[ |||||||           197M/8G]     Uptime: 00:31:39
+Swap[                  0K/500M]
+PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Commad(merged)
 ...
 ```
-<kbd>F1</kbd>Help<kbd>F2</kbd>Setup<kbd>F3</kbd>Search<kbd>F4</kbd>Filter<kbd>F5</kbd>Tree<kbd>F6</kbd>SortBy<kbd>F7</kbd>Nice<kbd>F8</kbd>Nice+<kbd>F9</kbd>Kill<kbd>F10</kbd>Quit
+<kbd>F1</kbd>Help   <kbd>F2</kbd>Setup  <kbd>F3</kbd>Search <kbd>F4</kbd>Filter <kbd>F5</kbd>Tree   <kbd>F6</kbd>SortBy <kbd>F7</kbd>Nice   <kbd>F8</kbd>Nice+  <kbd>F9</kbd>Kill   <kbd>F10</kbd>Quit
 
 ##  Top Description
 
 * The top 0 and 1 indicate the number of your CPU cores, and the percentage indicates the occupancy rate of a single core (of course, the total occupancy rate of the CPU can also be displayed)
-* The different colors of the progress bar indicate the percentage of different process types:
+    * The different colors of the progress bar indicate the percentage of different process types:
 
- | Color | Description |
- | ---------| ------------|
- | Blue | Percentage of CPU used by low-priority processes |
- | Green | Percentage of process CPU owned by ordinary users |
- | Red | Percentage of CPU used by system processes |
- | Orange | Percentage of CPU used by IRQ time |
- | Magenta (Magenta) | Percentage of CPU used by soft IRQ time |
- | Gray | Percentage of CPU occupied by IO waiting time |
- | Cyan | Percentage of CPU consumed by Steal time |
+        | Color | Description |
+        | ---------| ------------|
+        | Blue | Percentage of CPU used by low-priority processes |
+        | Green | Percentage of process CPU owned by ordinary users |
+        | Red | Percentage of CPU used by system processes |
+        | Orange | Percentage of CPU used by IRQ time |
+        | Magenta  | Percentage of CPU used by soft IRQ time |
+        | Gray | Percentage of CPU occupied by IO waiting time |
+        | Cyan | Percentage of CPU consumed by Steal time |
 
 * Tasks: 24, 14thr; 1 running, process information. In my example, it means that my current machine has 24 tasks, which are divided into 14 threads, of which only 1 process is in a running state.
 * Mem memory and swap information. Similarly, use different colors to distinguish:
@@ -56,19 +56,19 @@ PID USER PRI NI VIRT RES SHR S CPU% MEM% TIME+ Commad(merged)
 
 ##  Process information description
 
-**PID-Process ID number**
+* **PID-Process ID number**
 
 * USER-the owner of the process
 * PRI-Display the process priority as seen by the Linux kernel
 * NI-displays the process priority of reset by normal user or root super user
 * VIRI-virtual memory being consumed by a process
 
-**RES-physical memory being consumed by a process**
+* **RES-physical memory being consumed by a process**
 
 * SHR-shared memory being consumed by a process
 * S-The current state of the process, there is a special state to pay attention to! That is Z (zombie process). When there are a large number of zombie processes in the machine, it will affect the performance of the machine.
 
-**CPU%-Percentage of CPU consumed by each process**
+* **CPU%-Percentage of CPU consumed by each process**
 
 * MEM%-Percentage of memory consumed by each process
 * TIME+-shows the running time since the process was started
