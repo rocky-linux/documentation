@@ -63,6 +63,12 @@ done
 ```
 The script loops through all of the files created in `phpfiles.txt`, creates a backup of each file, and executes the search and replace string globally.  Once you have verified that your search and replace has completed successfully and your changes are what you want, you can delete all of the backup files.
 
+## Other reading and examples
+
+* `sed` [manual page](https://linux.die.net/man/1/sed)
+* `sed` [additional examples](https://www.linuxtechi.com/20-sed-command-examples-linux-users/)
+* `sed` & `awk` [O'Reilly Book](https://www.oreilly.com/library/view/sed-awk/1565922255/)
+
 ## Conclusion
 
 `sed` is a powerful tools and works very well for search and replace functions, particularly where the delimiter needs to be flexible.
