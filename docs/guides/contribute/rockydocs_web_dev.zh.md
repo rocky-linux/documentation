@@ -1,5 +1,7 @@
 ---
-title: 运行文件的本地副本
+title: 运行文档的本地副本
+contributors: tianci li
+date: 2021-10-19
 ---
 
 # 为Web开发和内容作者运行docs.rockylinux.org网站的本地副本
