@@ -1,6 +1,7 @@
 ---
 title: 运行文档的本地副本
-contributors: tianci li
+author: Wale Soyinka
+contributors: tianci li, Steven Spencer
 date: 2021-10-19
 ---
 
@@ -26,7 +27,7 @@ date: 2021-10-19
 
 ## 创建内容环境
 
-1. 将你本地系统中的当前工作目录改为你打算进行写作的文件夹，本指南的其余部分中，我们将该目录称为`$ROCKYDOCS`。在我们这里的演示中，`$ROCKYDOCS`指向我们演示系统上的`~/jects/rockydocs`。
+1. 将你本地系统中的当前工作目录改为你打算进行写作的文件夹，本指南的其余部分中，我们将该目录称为`$ROCKYDOCS`。在我们这里的演示中，`$ROCKYDOCS`指向我们演示系统上的`~/projects/rockydocs`。
 
     如果$ROCKYDOCS尚不存在，请创建它，然后键入：
 
@@ -39,7 +40,7 @@ date: 2021-10-19
     git clone https://github.com/rocky-linux/documentation.git
     ```
 
-    现在您将拥有一个`$ROCKYDOCS/Docentation`文件夹。该文件夹是一个git存储库（git repository），由git进行控制。
+    现在您将拥有一个`$ROCKYDOCS/Documentation`文件夹。该文件夹是一个git存储库（git repository），由git进行控制。
 
 
 ## 创建并启动RockyDocs的Web开发环境
