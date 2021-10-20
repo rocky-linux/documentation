@@ -23,7 +23,7 @@ update: 2021-10-20
 
 anacron的出现并不是取代crontab，而是与crontab相互补充。它们的关系如下图：
 
-![Relations](..\images\anacron_01.png)
+![Relations](../images/anacron_01.png)
 
 ## anacron配置文件
 
