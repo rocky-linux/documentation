@@ -1,7 +1,7 @@
 ---
-title: 定期运行命令
+title: anacron - 自动化命令
 author: tianci li
-contributors: 
+contributors: Steven Spencer
 update: 2021-10-20
 ---
 
@@ -28,7 +28,7 @@ anacron的出现并不是取代crontab，而是与crontab相互补充。它们�
 ## anacron配置文件
 
 ```bash
-shell > rpm -ql cronie-anacron 
+shell > rpm -ql cronie-anacron
 /etc/anacrontab
 /etc/cron.hourly/0anacron
 /usr/lib/.build-id
@@ -65,7 +65,7 @@ START_HOURS_RANGE=3-22
 # 每隔一个月开机后 45 分钟检查 /etc/cron.monthly 目录内的文件是否被执行
 @monthly 45	cron.monthly		nice run-parts /etc/cron.monthly
 ```
- 
+
 **/etc/cron.hourly/** - 通过`journalctl -u crond.service`可以知道，放入到里面的文件其实是被crond.server调用，表示每小时的第一分钟后开始执行命令。如下所示：
 
 ```bash
@@ -75,18 +75,20 @@ SHELL=/bin/bash
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 MAILTO=root
 01 * * * * root run-parts /etc/cron.hourly
+```
+```
+shell > journalctl -u crond.service
+- Logs begin at Wed 2021-10-20 19:27:39 CST, end at Wed 2021-10-20 23:32:42 CST. -
+October 20 19:27:42 li systemd[1]: Started Command Scheduler.
+October 20 19:27:42 li crond[733]: (CRON) STARTUP (1.5.2)
+October 20 19:27:42 li crond[733]: (CRON) INFO (RANDOM_DELAY will be scaled with factor 76% if used.)
+October 20 19:27:42 li crond[733]: (CRON) INFO (running with inotify support)
+October 20 20:01:01 li CROND[1897]: (root) CMD (run-parts /etc/cron.hourly)
+October 20 21:01:01 li CROND[1922]: (root) CMD (run-parts /etc/cron.hourly)
+October 20 22:01:01 li CROND[1947]: (root) CMD (run-parts /etc/cron.hourly)
+October 20 23:01:01 li CROND[2037]: (root) CMD (run-parts /etc/cron.hourly)
 
-shell > journalctl -u crond.service 
--- Logs begin at Wed 2021-10-20 19:27:39 CST, end at Wed 2021-10-20 23:32:42 CST. --
-10月 20 19:27:42 li systemd[1]: Started Command Scheduler.
-10月 20 19:27:42 li crond[733]: (CRON) STARTUP (1.5.2)
-10月 20 19:27:42 li crond[733]: (CRON) INFO (RANDOM_DELAY will be scaled with factor 76% if used.)
-10月 20 19:27:42 li crond[733]: (CRON) INFO (running with inotify support)
-10月 20 20:01:01 li CROND[1897]: (root) CMD (run-parts /etc/cron.hourly)
-10月 20 21:01:01 li CROND[1922]: (root) CMD (run-parts /etc/cron.hourly)
-10月 20 22:01:01 li CROND[1947]: (root) CMD (run-parts /etc/cron.hourly)
-10月 20 23:01:01 li CROND[2037]: (root) CMD (run-parts /etc/cron.hourly)
- ```
+```
 
 更多配置文件信息，请[浏览手册页](https://man7.org/linux/man-pages/man5/anacrontab.5.html)
 
@@ -94,14 +96,17 @@ shell > journalctl -u crond.service
 为了使某些文件在这些自动定义的时间内运行，您所需要做的就是将脚本文件复制到相关目录中，并确保其拥有**x执行权限（chmod +x）**。因此，您只要让系统在这些预定时间之一自动运行脚本就可以了，这使自动化任务变得非常容易。
 
 我们用 cron.daily 工作来说明一下 /etc/anacrontab 的执行过程:
+
 1. anacron读取 **/var/spool/anacron/cron.daily** 文件，文件内容显示为上一次执行的时间。
 2. 和当前的时间比较，如果两个时间的差值超过 1 天，就执行 cron.daily 工作。
 3. 只能在 03：00-22：00 执行这个工作。
 4. 开机5分钟检查有文件是否被执行，当执行第一个后，再随机延迟 0～45 分钟执行下一个。
 5. 使用 nice 参数指定默认优先级，使用  run-parts 参数执行 /etc/cron.daily/ 目录中所有的可执行文件。
 
+
 ## 相关命令
 使用到的命令 `anacron`，常用选项有：
+
 |选项|说明|
 |---|---|
 |-f    |执行所有的作业，忽略时间戳|
@@ -109,4 +114,3 @@ shell > journalctl -u crond.service
 |-T|测试配置文件/etc/anacrontab的有效性|
 
 更多帮助信息，请[浏览手册页](https://man7.org/linux/man-pages/man8/anacron.8.html)
- 

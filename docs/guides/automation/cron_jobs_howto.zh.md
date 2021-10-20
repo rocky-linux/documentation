@@ -1,3 +1,9 @@
+---
+title: cron - 自动化命令
+author: unknown
+contributors: Steven Spencer
+---
+
 # 在 Rocky Linux 中使用 cron 和 crontab 自动化进程
 
 ## 准备工作
@@ -40,25 +46,25 @@ _crontab_ 本质上是一个列表，用户可以在其中添加自己的自动�
 
 ```
 # 编辑此文件以引入要由 cron 运行的任务。
-# 
+#
 # 一行定义一个要运行的任务
 # 在一行中用不同的字段指示何时运行该任务
 # 以及为该任务运行的命令
-# 
+#
 # 要定义时间，可以为
 # 分钟（m）、小时（h）、月日（dom）、月（mon）和星期（dow）
 # 提供具体值，或者在这些字段中使用“*”（表示“任何”）。
-# 
+#
 # 注意，将根据 cron 的系统守护程序的时间和时区概念启动任务。
-# 
+#
 # 作业的输出（包括错误）通过电子邮件发送给
 # crontab 文件所属的用户（除非重定向）。
 # cron
 # 例如，每周一上午 5 点运行所有用户帐户的备份：
 # 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
-# 
+#
 # 有关更多信息，请参见 crontab（5）和 cron（8）的手册页
-# 
+#
 # m h  dom mon dow   command
 ```
 
@@ -121,6 +127,6 @@ _crontab_ 本质上是一个列表，用户可以在其中添加自己的自动�
 
 # 总结
 
-对于 Rocky Linux 桌面用户或系统管理员而言，cron/crontab 系统是一个非常强大的工具。它可以让您自动执行任务和脚本，这样您就不必记住手动运行它们。
+对于 Rocky Linux 桌面用户或系统管理员而言，cron/crontab 系统是一个非常强大的工具。它可以让您自动执行任务和脚本，这样您就不必记住手动运行它们。对于不是一天 24 小时运行的机器，探索 [anacron - 自动化命令](anacron.zh.md)。
 
 虽然基础知识很简单，但实际任务可能很复杂。有关 crontab 的更多信息，请访问 [crontab 手册页](https://man7.org/linux/man-pages/man5/crontab.5.html)。您还可以简单地在网上搜索“crontab”，它将为您提供大量搜索结果，帮助您微调 crontab 表达式。
