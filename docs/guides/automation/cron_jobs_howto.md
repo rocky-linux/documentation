@@ -1,5 +1,7 @@
 ---
-title: Automating With cron
+title: cron - Automating commands
+author: Steven Spencer
+contributors: Ezequiel Bruni
 ---
 
 # Automating Processes with cron and crontab
@@ -128,6 +130,6 @@ When determining when to run a script, you need to take time and plan it out, pa
 
 # Conclusions
 
-The cron/crontab system is a very powerful tool for the Rocky Linux desktop user or systems administrator. It can allow you to automate tasks and scripts so that you don't have to remember to run them manually.
+The cron/crontab system is a very powerful tool for the Rocky Linux desktop user or systems administrator. It can allow you to automate tasks and scripts so that you don't have to remember to run them manually. For machines that are not on 24 hours a day, explore [anacron - Automating commands](anacron.md).
 
 While the basics are pretty easy, you can get a lot more complex. For more information on crontab head up to the [crontab manual page](https://man7.org/linux/man-pages/man5/crontab.5.html). You can also simply do a web search for "crontab" which will give you a wealth of results to help you fine-tune your crontab skills.
