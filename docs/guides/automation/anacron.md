@@ -16,7 +16,7 @@ update : 2021-10-20
 ##  Assumption
 
 * You have understood the basic knowledge of bash, python or other scripting/programming tools, and want to run the script automatically.
-* You are logged in as the root user, or switch to root with `su-root`
+* You are logged in as the root user, or switch to root with `su - root`
 
 ##  Anacron Introduction
 **anacron is used to run commands on a regular basis, and the operating frequency is defined in units of days. It is suitable for computers that do not run 24/7, such as laptops and desktops. Suppose you have a scheduled task (such as a backup script) to be run in the early morning of every day using crontab. When you fall asleep, your desktop/laptop is shut down. Your backup script will not be executed. However, if you use anacron, you can rest assured that the next time you turn on the desktop/laptop, the backup script will be executed. **
