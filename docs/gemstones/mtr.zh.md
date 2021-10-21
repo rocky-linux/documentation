@@ -1,19 +1,22 @@
 ---
-title: mtr - 网络诊断工具
+title: mtr - 网络诊断
 author: tianci li
+contributors: Steven Spencer
 date: 2021-10-20
 ---
 
-# mtr简介
-mtr是一个网络诊断工具，可以诊断网络问题，用来替代 `ping`与`traceroute`命令，在性能上，`mtr`命令的速度更加快。
+# `mtr`简介
 
-## 使用mtr
+`mtr`是一个网络诊断工具，可以诊断网络问题，用来替代 `ping`与`traceroute`命令，在性能上，`mtr`命令的速度更加快。
+
+## 使用`mtr`
 ```bash
 # 安装 mtr
 shell >  dnf -y install mtr
 ```
 
 `mtr`命令的常见选项如下，通常情况下，都不需要额外选项，后面直接跟主机名或IP地址
+
 |选项|说明|
 |---|---|
 |-4 |# 仅使用IPv4|
