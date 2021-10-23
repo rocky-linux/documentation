@@ -50,8 +50,8 @@ shell > ls /etc/sysconfig/network-scripts/
 ifcfg-ens33
 ```
 
-|参数名     |含义   |   示例|
-|---    |---    |---    |---    |
+|参数名|含义|示例|
+|---|---|---|
 |DEVICE |系统逻辑设备名     |DEVICE=ens33       |
 |ONBOOT     |网卡是否随系统自启动，可选择yes或者no|ONBOOT=yes|
 |TYPE|网卡接口类型，一般是Ethernet|TYPE=Ethernet|
