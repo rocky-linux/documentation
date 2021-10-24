@@ -8,7 +8,7 @@ update: 2021-10-23
 
 # nmtui
 
-`NetworkManager`是标准 Linux 网络配置工具套件，支持服务器，也支持桌面环境，发展到如今，绝大多数流行的发行版都支持它。Centos 7以及以后的版本中引入这个网络配置工具套件，如果您希望图形化的方式配置网络信息（即命令行`nmtui`），只需要这么做：
+`NetworkManager`是标准 Linux 网络配置工具套件，支持服务器，也支持桌面环境，发展到如今，绝大多数流行的发行版都支持它。这套网络配置工具适用于 Rocky Linux 8 及更高版本，如果您希望图形化的方式配置网络信息（即命令行`nmtui`），只需要这么做：
 
 ```bash
 shell > dnf -y install NetworkManager NetworkManager-tui
