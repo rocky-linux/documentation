@@ -1,12 +1,15 @@
 ---
-title - 快速更改网络信息
+title: nmtui - 网络管理工具
 author: tianci li
+contributors: Steven Spencer
 update: 2021-10-23
 ---
 
+# 引言
+
 对于初次使用GNU/Linux的新手用户来说，最先考虑的事情是安装操作系统后如何让机器连接互联网。本篇将告诉您如何配置IP地址、子网掩码、网关以及DNS，有几种方式作为参考，不管是新手还是熟手，相信您都都能快速上手。
 
-# nmtui
+## nmtui
 
 `NetworkManager`是标准 Linux 网络配置工具套件，支持服务器，也支持桌面环境，发展到如今，绝大多数流行的发行版都支持它。这套网络配置工具适用于 Rocky Linux 8 及更高版本，如果您希望图形化的方式配置网络信息（即命令行`nmtui`），只需要这么做：
 
@@ -25,11 +28,11 @@ shell > nmtui
 
 您可以使用 <kbd>Tab</kbd>键 或者 <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd>键的方式选择具体的功能，如果要更改网络信息，请选择 **Edit a connection** ，然后<kbd>Enter</kbd>键。选择不同的网卡，选择 **Edit..** 进行编辑。
 
-## DHCP的IPv4
+### DHCP的IPv4
 
 针对IPv4，如果是使用DHCP的方式获取网络信息，则只需要选择 *IPv4 CONFIGURATION* 后面的 **\<Automatic\>**，然后在您的终端中运行下`systemctl restart NetworkManager.service`，大多数的情况下都能生效，极少数的情况下需要开关网卡才能生效，例如这样的方式——`nmcli connection down ens33`，`nmcli connection up ens33`
 
-## 手动固定网络信息
+### 手动固定网络信息
 
 如果要将所有IPv4的网络信息进行手动固定，需要选择 *IPv4 CONFIGURATION* 后面的 **\<Manual\>**，一行一行进行添加，例如我这样的：
 
@@ -41,7 +44,7 @@ shell > nmtui
 
 然后点击 \<OK\> ，一步一步返回到终端界面，执行`systemctl restart NetworkManager.service` 即可。同样的，极少数的情况下需要开关网卡才能生效。
 
-# 更改配置文件的方式
+## 更改配置文件的方式
 
 所有的RHEL发行版，不管是上游的还是下游的，都是一样的配置方式。网络信息的配置文件保存在 **/etc/sysconfig/network-scripts/** 目录下面，一个网卡对应一个配置文件。配置文件的参数非常的多，如下表所示。注意！参数一定要大写。
 
@@ -77,7 +80,7 @@ ifcfg-ens33
 
 配置文件修改成功后，记得重启网卡服务`systemctl restart NetworkManager.service`
 
-## IPV4的推荐配置
+### IPV4的推荐配置
 
 ```bash
 TYPE=Ethernet
@@ -95,7 +98,7 @@ DNS1=8.8.8.8
 DNS2=114.114.114.114
 ```
 
-## IPV6的推荐配置
+### IPV6的推荐配置
 
 ```bash
 TYPE=Ethernet
@@ -109,6 +112,6 @@ IPV6_DEFROUTE=yes
 IPV6_FAILURE_FATAL=no
 ```
 
-# 查看网络信息
+## 查看网络信息
 
 `ip a`或者`nmcli device show`
