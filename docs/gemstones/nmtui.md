@@ -1,7 +1,7 @@
 ---
 title: nmtui - Network Management Tool
 author : tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Neil Hanlon
 update : 2021-10-23
 ---
 
@@ -30,11 +30,11 @@ You can use the <kbd>Tab</kbd> key or the <kbd>↑</kbd><kbd>↓</kbd><kbd>←</
 
 ###  DHCP IPv4
 
-For IPv4, if it is to obtain network information using DHCP way, you only need to select * IPv4 CONFIGURATION * back ** \ < Automatic \> ** , and then run your terminal under `systemctl restart NetworkManager.service` , large In most cases, it can take effect. In rare cases, you need to switch the network card to take effect. For example, this way- `nmcli connection down ens33` , `nmcli connection up ens33`
+For IPv4, if it is to obtain network information using DHCP way, you only need to select *IPv4 CONFIGURATION* back ** &lt;Automatic&gt; ** , and then run your terminal under `systemctl restart NetworkManager.service` , large In most cases, it can take effect. In rare cases, you need to switch the network card to take effect. For example, this way- `nmcli connection down ens33` , `nmcli connection up ens33`
 
 ### Manually fix network information
 
-If you want to manually fix all IPv4 network information, you need to select ** \< Manual \> ** after *IPv4 CONFIGURATION* and add it line by line. For example, I like this:
+If you want to manually fix all IPv4 network information, you need to select ** &lt;Manual&gt;  ** after *IPv4 CONFIGURATION* and add it line by line. For example, I like this:
 
 |Item|Value|
 |---|---|
@@ -42,7 +42,7 @@ If you want to manually fix all IPv4 network information, you need to select ** 
 |Gateway|192.168.100.1||
 |DNS servers|8.8.8.8|
 
-Then click \< OK \> , return to the terminal interface step by step, and execute `systemctl restart NetworkManager.service` . Similarly, in rare cases, the network card needs to be switched on and off to take effect.
+Then click \< OK \> , return to the terminal interface step by step, and execute `systemctl restart NetworkManager.service`. Similarly, in rare cases, the network card needs to be switched on and off to take effect.
 
 ## Change the way of configuration files
 
