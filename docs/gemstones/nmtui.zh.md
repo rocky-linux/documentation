@@ -1,7 +1,7 @@
 ---
 title: nmtui - 网络管理工具
 author: tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Neil Hanlon
 update: 2021-10-23
 ---
 
@@ -30,11 +30,11 @@ shell > nmtui
 
 ### DHCP的IPv4
 
-针对IPv4，如果是使用DHCP的方式获取网络信息，则只需要选择 *IPv4 CONFIGURATION* 后面的 **\<Automatic\>**，然后在您的终端中运行下`systemctl restart NetworkManager.service`，大多数的情况下都能生效，极少数的情况下需要开关网卡才能生效，例如这样的方式——`nmcli connection down ens33`，`nmcli connection up ens33`
+针对IPv4，如果是使用DHCP的方式获取网络信息，则只需要选择 *IPv4 CONFIGURATION* 后面的 ** &lt;Automatic&gt; **，然后在您的终端中运行下`systemctl restart NetworkManager.service`，大多数的情况下都能生效，极少数的情况下需要开关网卡才能生效，例如这样的方式——`nmcli connection down ens33`，`nmcli connection up ens33`
 
 ### 手动固定网络信息
 
-如果要将所有IPv4的网络信息进行手动固定，需要选择 *IPv4 CONFIGURATION* 后面的 **\<Manual\>**，一行一行进行添加，例如我这样的：
+如果要将所有IPv4的网络信息进行手动固定，需要选择 *IPv4 CONFIGURATION* 后面的 **&lt;Manual&gt;**，一行一行进行添加，例如我这样的：
 
 |项|值|
 |---|---|
