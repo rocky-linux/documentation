@@ -2,11 +2,11 @@
 title: Migrating To Rocky Linux
 ---
 
-# How to Migrate to Rocky Linux from CentOS, Alma Linux, RHEL, or Oracle Linux
+# How to Migrate to Rocky Linux from CentOS Stream, CentOS, Alma Linux, RHEL, or Oracle Linux
 
 ## Prerequisites & Assumptions
 
-* A hardware server or VPS running, well... CentOS, Alma Linux, RHEL, or Oracle Linux. The current supported version for each of these is 8.4.
+* A hardware server or VPS running, well... CentOS Stream, CentOS, Alma Linux, RHEL, or Oracle Linux. The current supported version for each of these is 8.4.
 * A working knowledge of the command line.
 * A working knowledge of SSH for remote machines.
 * A mildly risk-taking attitude.
