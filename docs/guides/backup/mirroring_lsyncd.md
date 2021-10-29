@@ -36,7 +36,7 @@ For remote syncing, you will also want to set up [Rocky Linux SSH Public Private
 
 ## Installing `lsyncd`
 
-There are actually two ways to install `lsyncd`. We will include them both here. The RPM tends to lag behind the source packages by a little, but only by a little. The version installed by the RPM method at the time of this writing is 2.2.2-9, whereas the source code version is now at 2.3. That said, we want to give you both options and let you choose. 
+There are actually two ways to install `lsyncd`. We will include them both here. The RPM tends to lag behind the source packages by a little, but only by a little. The version installed by the RPM method at the time of this writing is 2.2.2-9, whereas the source code version is now at 2.2.3. That said, we want to give you both options and let you choose.
 
 ## Installing `lsyncd` - RPM Method
 
