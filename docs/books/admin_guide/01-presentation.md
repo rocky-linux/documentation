@@ -59,7 +59,7 @@ Among this management of resources, the operating system has to:
 
 The C language is still one of the most popular programming languages today! A low level language, close to the hardware, it allows the adaptation of the operating system to any machine architecture having a C compiler.
 
-UNIX is an open and evolving operating system that has played a major role in the history of computing. It has been the basis for many other systems: Linux, BSD, Mac OSX, etc.
+UNIX is an open and evolving operating system that has played a major role in the history of computing. It has been the basis for many other systems: Linux, BSD, MacOS, etc.
 
 UNIX is still relevant today (HP-UX, AIX, Solaris, etc.)
 
@@ -165,7 +165,7 @@ This principle allows you to have distributions oriented to **beginners** (Ubunt
 
 There are many graphic environments: **Gnome**, **KDE**, **LXDE**, **XFCE**, etc. There is something for everyone, and their **ergonomics** have nothing to be ashamed of when compared to Microsoft or Apple systems!
 
-So why is there so little enthusiasm for Linux, when **there are no (or almost no) viruses for this system**? Maybe because all editors (Adobe) or manufacturers (NVidia) do not play the free game and do not provide a version of their software or their __drivers__ for GNU/Linux? Fear of change? The difficulty to find where to buy a Linux computer? Too few games (but not for long) distributed under Linux? Will the situation change with the arrival of the steam-box game console that runs on Linux?
+So why is there so little enthusiasm for Linux, when **there are no (or almost no) viruses for this system**? Maybe because all editors (Adobe) or manufacturers (Nvidia) do not play the free game and do not provide a version of their software or their __drivers__ for GNU/Linux? Fear of change? The difficulty to find where to buy a Linux computer? Too few games (but not for long) distributed under Linux? Will the situation change with the arrival of the steam-box game console that runs on Linux?
 
 ![Gnome Desktop](images/01-presentation-gnome.png)
 
