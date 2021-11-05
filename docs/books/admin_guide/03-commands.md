@@ -1018,6 +1018,27 @@ $ sort -nr dns-client.txt
 5.1.150.146
 ```
 
+* Sorting file by removing duplicates
+
+The `sort` command knows how to sort the duplicates out from the file output using `-u` as option.
+
+Here is an example with the file `colours.txt` :
+
+```
+Red
+Green
+Blue
+Red
+Pink
+```
+```
+$ sort -u colours.txt
+Blue
+Green
+Pink
+Red
+```
+
 * Sorting file by sizes
 
 The `sort` command knows how to recognize file sizes, from commands like `ls` with the `-h` option.
