@@ -760,6 +760,7 @@ $ cp -r /home/rockstar /tmp
 | `-f`    | Do not ask for confirmation if overwriting the destination file. |
 | `-p`    | Keeps the owner, permissions and timestamp of the copied file.   |
 | `-r`    | Copies a directory with its files and subdirectories.            |
+| `-s`    | Creates a symbolik links rather than copying            |
 
 ```bash
 cp file1 /repexist/file2
