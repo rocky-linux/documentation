@@ -1020,7 +1020,7 @@ $ sort -nr dns-client.txt
 
 * Sorting file by removing duplicates
 
-The `sort` command knows how to sort the duplicates out from the file output using `-u` as option.
+The `sort` command knows how to remove the duplicates out from the file output using `-u` as option.
 
 Here is an example with the file `colours.txt` :
 
