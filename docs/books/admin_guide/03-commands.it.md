@@ -115,15 +115,14 @@ In letteratura, il termine "opzione" è equivalente al termine "parametro," che 
 
 Il comando `apropos` ti consente di cercare per parola chiave all'interno di queste pagine manuali:
 
-
-| Opzioni                                    | Osservazioni                                                             |
-| -------------------------------------------- | -------------------------------------------------------------------------- |
-| `-s`, `--sections list` o `--section list` | Limitato alle sezioni manuali.                                           |
-| `-a` o `--and`                             | Visualizza solo la voce corrispondente a tutte le parole chiave fornite. |
+| Opzioni                                      | Osservazioni                                       |
+| -------------------------------------------- | -------------------------------------------------- |
+| `-s`, `--sections list` o `--section list`   | Limitato alle sezioni manuali.                      |
+| `-a` o `--and`                               | Visualizza solo la voce corrispondente a tutte le parole chiave fornite. |
 
 Esempio:
 
-```
+```bash
 $ apropos clear
 clear (1)            - clear the terminal screen
 clear_console (1)    - clear the console
@@ -159,7 +158,7 @@ whatis clear
 
 Esempio:
 
-```
+```bash
 $ whatis clear
 clear (1)            - clear the terminal screen
 ```
@@ -218,11 +217,10 @@ Esempi:
 
 Opzioni :
 
-
-| Opzioni | Osservazioni                     |
+| Opzioni   | Osservazioni                       |
 | --------- | ---------------------------------- |
-| `-h`    | Spegne il sistema elettricamente |
-| `-r`    | Riavvia il sistema               |
+| `-h`      | Spegne il sistema elettricamente   |
+| `-r`      | Riavvia il sistema                 |
 
 ### comando `history`
 
@@ -237,24 +235,22 @@ $ history
 148 man history
 ```
 
-
-| Opzioni | Commenti                                                                                                       |
-| --------- | ---------------------------------------------------------------------------------------------------------------- |
-| `-w`    | L'opzione`-w` copierà la cronologia della sessione corrente nel file.                                         |
+| Opzioni | Commenti                                                                            |
+| ------- | ----------------------------------------------------------------------------------- |
+| `-w`    | L'opzione`-w` copierà la cronologia della sessione corrente nel file.               |
 | `-c`    | L'opzione`-c` eliminerà la cronologia della sessione corrente (ma non il contenuto del file `.bash_history`). |
 
 * Manipolazione della history:
 
 Per manipolare la history, i seguenti comandi immessi dal prompt dei comandi permetteranno di:
 
-
-| Chiavi             | Funzione                                                    |
-| -------------------- | ------------------------------------------------------------- |
-| <kdb>!!</kdb>      | Richiama l'ultimo comando eseguito.                         |
-| <kdb>!n</kdb>      | Richiama il comando per il suo numero nell'elenco.          |
-| <kdb>!string</kdb> | Richiama il comando più recente che inizia con la stringa. |
-| <kdb>↑</kdb>      | Richiama il comando più recente che inizia con la stringa. |
-| <kdb>↓</kdb>      | Richiama il comando più recente che inizia con la stringa. |
+| Chiavi             | Funzione                                                      |
+| ------------------ | ------------------------------------------------------------- |
+| <kdb>!!</kdb>      | Richiama l'ultimo comando eseguito.                           |
+| <kdb>!n</kdb>      | Richiama il comando per il suo numero nell'elenco.            |
+| <kdb>!string</kdb> | Richiama il comando più recente che inizia con la stringa.    |
+| <kdb>↑</kdb>       | Richiama il comando più recente che inizia con la stringa.    |
+| <kdb>↓</kdb>       | Richiama il comando più recente che inizia con la stringa.    |
 
 ### Il completamento automatico
 
@@ -289,14 +285,13 @@ Per vari motivi, allo sviluppatore dello script potrebbe essere necessario utili
 
 Tra le sequenze usate frequentemente, possiamo menzionare :
 
-
-| Sequence | Result                             |
-| ---------- | ------------------------------------ |
-| `\a`     | Invia un bip sonoro                |
-| `\b`     | Indietro                           |
-| `\n`     | Aggiunge una interruzione di linea |
-| `\t`     | Aggiunge un tab orizzontale        |
-| `\v`     | Aggiunge tab verticale             |
+| Sequenza   | Risultato                          |
+| ---------- | ---------------------------------- |
+| `\a`       | Invia un bip sonoro                |
+| `\b`       | Indietro                           |
+| `\n`       | Aggiunge una interruzione di linea |
+| `\t`       | Aggiunge un tab orizzontale        |
+| `\v`       | Aggiunge tab verticale             |
 
 ### comando `date`
 
@@ -322,9 +317,8 @@ Il formato di una data può cambiare in base al valore della lingua definita nel
 
 Il display della data può seguire i seguenti formati:
 
-
 | Opzione | Formato                                  |
-| --------- | ------------------------------------------ |
+| ------- | ---------------------------------------- |
 | `+%A`   | Nome completo del giorno                 |
 | `+%B`   | Nome completo del mese                   |
 | `+%c`   | Visualizzazione completa della data      |
@@ -336,9 +330,9 @@ Il display della data può seguire i seguenti formati:
 | `+%m`   | Numero del mese                          |
 | `+%M`   | Minuti                                   |
 | `+%R`   | Tempo nel formato`hh:mm`                 |
-| `+%s`   | Secondi dal 1° gennaio 1970             |
+| `+%s`   | Secondi dal 1° gennaio 1970              |
 | `+%T`   | Tempo nel formato`hh:mm:ss`              |
-| `+%u`   | Giorno della settimana (`1` per Lunedì) |
+| `+%u`   | Giorno della settimana (`1` per Lunedì)  |
 | `+%V`   | Numero della settimana (`+%V`)           |
 | `+%x`   | Data in formato`DD/MM/YYYY`              |
 
@@ -466,26 +460,24 @@ $ ls /home
 
 Le opzioni principali del comando `ls` sono :
 
-
-| Opzione | Informazione                                                                                                            |
-| --------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `-a`    | Visualizza tutti i file, anche quelli nascosti. I file nascosti in Linux sono quelli che iniziano con`.`.               |
-| `-i`    | Visualizza i numeri di inode.                                                                                           |
+| Opzione | Informazione                                                                            |
+| ------- | --------------------------------------------------------------------------------------- |
+| `-a`    | Visualizza tutti i file, anche quelli nascosti. I file nascosti in Linux sono quelli che iniziano con`.`. |
+| `-i`    | Visualizza i numeri di inode.                                                           |
 | `-l`    | Il comando con l'opzione`-l` visualizza un elenco verticale dei file con informazioni aggiuntive formattate in colonne. |
 
 Il comando `ls`, tuttavia, ha molte opzioni (vedi `man`):
 
-
-| Opzione | Informazione                                                                                                                                          |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-d`    | Visualizza le informazioni di una directory invece di elencare i suoi contenuti.                                                                      |
-| `-g`    | Visualizza UID e GID al posto dei nomi dei proprietari.                                                                                               |
-| `-h`    | Visualizza le dimensioni dei file nel formato più appropriato (byte, kilobyte, megabyte, gigabyte, ...).`h` stà per Human Readable.                 |
-| `-s`    | Visualizza la dimensione in byte (tranne l'opzione`k`).                                                                                               |
-| `-A`    | Visualizza tutti i file nella directory tranne`.` e `..`.                                                                                             |
-| `-R`    | Visualizza il contenuto delle sottodirectory in modo ricorsivo.                                                                                       |
+| Opzione | Informazione                                                                               |
+| ------- | ------------------------------------------------------------------------------------------ |
+| `-d`    | Visualizza le informazioni di una directory invece di elencare i suoi contenuti.           |
+| `-g`    | Visualizza UID e GID al posto dei nomi dei proprietari.                                    |
+| `-h`    | Visualizza le dimensioni dei file nel formato più appropriato (byte, kilobyte, megabyte, gigabyte, ...).`h` stà per Human Readable. |
+| `-s`    | Visualizza la dimensione in byte (tranne l'opzione`k`).                                    |
+| `-A`    | Visualizza tutti i file nella directory tranne`.` e `..`.                                  |
+| `-R`    | Visualizza il contenuto delle sottodirectory in modo ricorsivo.                            |
 | `-F`    | Visualizza il tipo di file. Stampa un`/` per una directory, `*` per gli eseguibili, `@` per un collegamento simbolico, e niente per un file di testo. |
-| `-X`    | ordina i file in base alle loro estensioni.                                                                                                           |
+| `-X`    | ordina i file in base alle loro estensioni.                                                |
 
 * Descrizione delle colonne:
 
@@ -494,24 +486,23 @@ $ ls -lia /home
 78489 drwx------ 4 rockstar rockstar 4096 25 oct. 08:10 rockstar
 ```
 
-
-| Valore          | Informazione                                                                                                    |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `78489`         | Numero di inode.                                                                                                |
-| `drwx------`    | Tipo di file (`d`) e permessi (`rwx------`).                                                                    |
+| Valore          | Informazione                                                                      |
+| ----------------- | ------------------------------------------------------------------------------- |
+| `78489`         | Numero di inode.                                                                  |
+| `drwx------`    | Tipo di file (`d`) e permessi (`rwx------`).                                      |
 | `4`             | Numero di sottodirectory. (`.` e `..` incluse). Per un file di tipo link fisico: numero di collegamenti fisici. |
-| `rockstar`      | Per un file di collegamento fisico: numero di collegamenti fisici.                                              |
-| `rockstar`      | Per un file di tipo link fisico: numero di collegamenti fisici.                                                 |
-| `4096`          | Per un file di tipo di collegamento fisico: numero di collegamenti fisici.                                      |
-| `25 oct. 08:10` | Ultima data di modifica.                                                                                        |
-| `rockstar`      | Il nome del file (o directory).                                                                                 |
+| `rockstar`      | Per un file di collegamento fisico: numero di collegamenti fisici.                |
+| `rockstar`      | Per un file di tipo link fisico: numero di collegamenti fisici.                   |
+| `4096`          | Per un file di tipo di collegamento fisico: numero di collegamenti fisici.        |
+| `25 oct. 08:10` | Ultima data di modifica.                                                          |
+| `rockstar`      | Il nome del file (o directory).                                                   |
 
 !!! Nota
 Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni.
 
 Questo è il caso dell'alias `ll`:
 
-```
+```bash
 alias ll='ls -l --color=auto'
 ```
 
@@ -630,10 +621,9 @@ Esempio :
 $ touch /home/rockstar/myfile
 ```
 
-
-| Opzione   | Informazione                                                            |
-| ----------- | ------------------------------------------------------------------------- |
-| `-t date` | Modifica la data dell'ultima modifica del file con la data specificata. |
+| Opzione     | Informazione                                                            |
+| ----------- | ----------------------------------------------------------------------- |
+| `-t date`   | Modifica la data dell'ultima modifica del file con la data specificata. |
 
 Formato data: `[AAAA]MMJJhhmm[ss]`
 
@@ -650,9 +640,8 @@ Esempio:
 $ rmdir /home/rockstar/work
 ```
 
-
 | Opzione | Informazione                                                          |
-| --------- | ----------------------------------------------------------------------- |
+| ------- | --------------------------------------------------------------------- |
 | `-p`    | Rimuove la directory o le directory principale fornite se sono vuote. |
 
 !!! Consiglio
@@ -669,9 +658,8 @@ rm [-f] [-r] file [file] [...]
 !!! Pericolo
 Qualsiasi cancellazione di un file o directory è definitiva.
 
-
 | Opzioni | Informazione                               |
-| --------- | -------------------------------------------- |
+| ------- | ------------------------------------------ |
 | `-f`    | Non chiedere conferma della cancellazione. |
 | `-i`    | Richiede conferma di cancellazione.        |
 | `-r`    | Elimina ricorsivamente le sottodirectory.. |
@@ -679,7 +667,7 @@ Qualsiasi cancellazione di un file o directory è definitiva.
 !!! Nota
 Il comando `rm` non chiede la conferma durante l'eliminazione dei file. Tuttavia, con una distribuzione RedHat/Rocky, `rm` chiede la conferma della cancellazione in quanto il comando `rm` è un` alias` di `rm -i`. Non sorprenderti se su un'altra distribuzione, come Debian, ad esempio, non ottieni una richiesta di conferma.
 
-L'eliminazione di una cartella con il comando `rm`, che la cartella sia vuota o meno, richiederà l'aggiunta dell'opzione` -r`.
+L'eliminazione di una cartella con il comando `rm`, che la cartella sia vuota o meno, richiederà l'aggiunta dell'opzione `-r`.
 
 La fine delle opzioni è segnalata alla shell da un doppio trattino `--`.
 
@@ -709,9 +697,8 @@ $ mv /home/rockstar/file1 /home/rockstar/file2
 $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
-
 | Opzioni | Informazione                                                                  |
-| --------- | ------------------------------------------------------------------------------- |
+| ------- | ----------------------------------------------------------------------------- |
 | `-f`    | Non chiedere conferma per la sovrascrittura del file di destinazione.         |
 | `-i`    | Richiedere conferma per la sovrascrittura del file di destinazione (default). |
 
@@ -767,9 +754,8 @@ Esempio:
 $ cp -r /home/rockstar /tmp
 ```
 
-
 | Opzioni | Informazione                                                                 |
-| --------- | ------------------------------------------------------------------------------ |
+| ------- | ---------------------------------------------------------------------------- |
 | `-i`    | Richiesta di conferma per la sovrascrittura (default).                       |
 | `-f`    | Non chiedere conferma per la sovrascrittura del file di destinazione.        |
 | `-p`    | Mantiene il proprietario, le autorizzazioni e il timestamp del file copiato. |
@@ -845,14 +831,13 @@ less file1 [files]
 
 I comandi specifici per `less` sono:
 
-
 | Command           | Action                                                |
-| ------------------- | ------------------------------------------------------- |
+| ----------------- | ----------------------------------------------------- |
 | `h`               | Help.                                                 |
-| `Arrows`          | Sposta su, giù di una linea, o a destra e sinistra.. |
-| `Enter`           | Sposta giù di una riga.                              |
-| `Space`           | Sposta giù di una pagina.                            |
-| `PgUp` and `PgDn` | Sposta su o giù di una pagina.                       |
+| `Arrows`          | Sposta su, giù di una linea, o a destra e sinistra.   |
+| `Enter`           | Sposta giù di una riga.                               |
+| `Space`           | Sposta giù di una pagina.                             |
+| `PgUp` and `PgDn` | Sposta su o giù di una pagina.                        |
 | `Begin` and `End` | Passa all'inizio o alla fine di un file.              |
 | `/text`           | Cerca il testo.                                       |
 | `q`               | Chiude il comando`less`.                              |
@@ -927,7 +912,6 @@ Il comando `head` visualizza l'inizio di un file.
 head [-n x] file
 ```
 
-
 | Opzione | Osservazione                      |
 | --------- | ----------------------------------- |
 | `-n x`  | Mostra le prime linee`x` del file |
@@ -942,9 +926,8 @@ Il comando `tail` visualizza la fine di un file.
 tail [-f] [-n x] file
 ```
 
-
 | Opzione | Osservazione                                   |
-| --------- | ------------------------------------------------ |
+| ------- | ---------------------------------------------- |
 | `-n x`  | Visualizza le ultime linee del file`x`         |
 | `-f`    | Visualizza le modifiche al file in tempo reale |
 
@@ -979,12 +962,11 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-
 | Opzione      | Osservazione                                        |
-| -------------- | ----------------------------------------------------- |
+| ------------ | --------------------------------------------------- |
 | `-kx`        | Specifica la colonna`x` per ordinare                |
 | `-n`         | Richiede un ordinamento numerico                    |
-| `-o file   ` | Salva l'ordinamento nel file specificato            |
+| `-o file`    | Salva l'ordinamento nel file specificato            |
 | `-ty`        | Specifica il carattere del separatore del campo `y` |
 | `-r`         | Inverte l'ordine del risultato                      |
 
@@ -1018,7 +1000,7 @@ Un amministratore di sistema si deve spesso confrontare con l'elaborazione di in
 
 Ecco un esempio con il file `dns-client.txt` :
 
-```
+```bash
 192.168.1.10
 192.168.1.200
 5.1.150.146
@@ -1041,7 +1023,7 @@ Il comando `sort` sa come riconoscere le dimensioni dei file, dai comandi come `
 
 Ecco un esempio con il file `size.txt` :
 
-```
+```bash
 1,7G
 18M
 69K
@@ -1076,9 +1058,8 @@ Il comando `wc` conta il numero di linee, parole e/o byte in un file.
 wc [-l] [-m] [-w] file [files]
 ```
 
-
 | Option | Observation                   |
-| -------- | ------------------------------- |
+| ------ | ----------------------------- |
 | `-c`   | Conta il numero di byte.      |
 | `-m`   | Conta il numero di caratteri. |
 | `-l`   | Conta il numero di linee.     |
@@ -1098,9 +1079,8 @@ Dal momento che ci sono così tante opzioni nel comando `find`, è meglio fare r
 
 Se la directory di ricerca non è specificata, il comando `find` cercherà dalla directory corrente.
 
-
 | Opzione             | Osservazione                    |
-| --------------------- | --------------------------------- |
+| ------------------- | ------------------------------- |
 | `-perm permissions` | Cerca i file dai loro permessi. |
 | `-size size`        | Cerca i file per dimensione.    |
 
@@ -1121,7 +1101,7 @@ Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.t
 
 Questo ci darà :
 
-```
+```bash
 rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
 ```
 
@@ -1144,9 +1124,8 @@ $ whereis -b ls
 ls: /bin/ls
 ```
 
-
 | Opzione | Osservazione                    |
-| --------- | --------------------------------- |
+| ------- | ------------------------------- |
 | `-b`    | Cerca solo il file binario.     |
 | `-m`    | Ricerca solo per le pagine man. |
 | `-s`    | Ricerca solo per file sorgente. |
@@ -1166,9 +1145,8 @@ $ grep -w "root:" /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 ```
 
-
 | Opzione | Osservazione                                         |
-| --------- | ------------------------------------------------------ |
+| ------- | ---------------------------------------------------- |
 | `-i`    | Ignora il maiuscolo/minuscolo della stringa cercata. |
 | `-v`    | Esclude le linee contenenti la stringa.              |
 | `-w`    | Cerca la parola esatta.                              |
