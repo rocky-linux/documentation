@@ -1,5 +1,8 @@
 ---
 title: Linux Commands
+author: Antoine Le Morvan
+contributors: Steven Spencer, Aditya Putta
+update: 11-08-2021
 ---
 
 # Commands for Linux Users
@@ -178,13 +181,13 @@ This set of manuals is divided into 8 sections, grouping information by topic, t
 8. System administration tools and daemons.
    Information about each section can be accessed by typing `man x intro`, where `x` is the section number.
 
-The command :
+The command:
 
 ```bash
 man passwd
 ```
 
-will tell the administrator about the passwd command, its options, etc. While a :
+will tell the administrator about the passwd command, its options, etc. While a:
 
 ```bash
 $ man 5 passwd
@@ -215,7 +218,7 @@ Examples:
 [root]# shutdown -r +5
 ```
 
-Options :
+Options:
 
 | Options | Remarks                          |
 | ------- | -------------------------------- |
@@ -270,7 +273,7 @@ The `clear` command clears the contents of the terminal screen. In fact, to be m
 
 In a terminal, the display will be permanently hidden, whereas in a graphical interface, a scrollbar will allow you to go back in the history of the virtual terminal.
 
-💡 **Tip:**
+!!! Tip
     <kbd>CTRL</kbd> + <kbd>L</kbd> will have the same effect as the `clear` command
 
 ### `echo` command
@@ -283,7 +286,7 @@ The `-n` option will not return to the line after displaying the text (which is 
 
 For various reasons, the script developer may need to use special sequences (starting with a `\` character). In this case, the `-e` option will be stipulated, allowing interpretation of the sequences.
 
-Among the frequently used sequences, we can mention :
+Among the frequently used sequences, we can mention:
 
 | Sequence | Result                |
 | -------- | --------------------- |
@@ -312,7 +315,7 @@ $ date -d 20210517 +%j
 
 In this last example, the `-d` option displays a given date. The `+%j` option formats this date to show only the day of the year.
 
-💡 **Warning:**
+!!! Warning
     The format of a date can change depending on the value of the language defined in the environment variable `$LANG`.
 
 The date display can follow the following formats:
@@ -396,7 +399,7 @@ The **relative path** references that same file by traversing the entire tree fr
 
 In the above example, the "`..`" refers to the parent directory of the current directory.
 
-A directory, even if it is empty, will necessarily contain at least **two references** :
+A directory, even if it is empty, will necessarily contain at least **two references**:
 
 * `.`: reference to itself.
 * `..`: reference to the parent directory of the current directory.
@@ -458,7 +461,7 @@ $ ls /home
 .    ..    rockstar
 ```
 
-The main options of the `ls` command are :
+The main options of the `ls` command are:
 
 | Option                                                       | Information                                                                                                                          |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -497,7 +500,7 @@ $ ls -lia /home
 | `25 oct. 08:10` | Last modified date.                                                                                           |
 | `rockstar`      | The name of the file (or directory).                                                                          |
 
-💡 **Note:**
+!!! Note
     **Aliases** are frequently positioned in common distributions.
 
     This is the case of the alias `ll`:
@@ -604,7 +607,7 @@ $ mkdir /home/rockstar/work
 The "rockstar" directory must exist to create the "work" directory.
 Otherwise, the `-p` option should be used. The `-p` option creates the parent directories if they do not exist.
 
-💡 **Danger:**
+!!! Danger
     It is not recommended to use Linux command names as directory or file names.
 
 ### `touch` command
@@ -615,7 +618,7 @@ The `touch` command changes the timestamp of a file or creates an empty file if 
 touch [-t date] file
 ```
 
-Example :
+Example:
 
 ```bash
 $ touch /home/rockstar/myfile
@@ -627,7 +630,7 @@ $ touch /home/rockstar/myfile
 
 Date format: `[AAAA]MMJJhhmm[ss]`
 
-💡 **Tip:**
+!!! Tip
     The `touch` command is primarily used to create an empty file, but it can be useful for incremental or differential backups for example. Indeed, the only effect of executing a `touch` on a file will be to force it to be saved during the next backup.
 
 ### `rmdir` command
@@ -644,7 +647,7 @@ $ rmdir /home/rockstar/work
 | ----------------------------------------------------------------------- | ----------- |
 | `-p` |  Removes the parent directory or directories provided if they are empty.           |
 
-💡 **Tip:**
+!!! Tip
     To delete both a non-empty directory and its contents, use the `rm` command.
 
 ### `rm` command
@@ -655,7 +658,7 @@ The `rm` command deletes a file or directory.
 rm [-f] [-r] file [file] [...]
 ```
 
-💡 **Danger:**
+!!! Danger
     Any deletion of a file or directory is final.
 
 | Options | Information                              |
@@ -664,7 +667,7 @@ rm [-f] [-r] file [file] [...]
 | `-i`    | Requires confirmation of deletion.       |
 | `-r`    | Recursively deletes subdirectories.      |
 
-💡 **Note:**
+!!! Note
     The `rm` command itself does not ask for confirmation when deleting files. However, with a RedHat/Rocky distribution, `rm` does ask for confirmation of deletion because the `rm` command is an `alias` of the `rm -i` command. Don't be surprised if on another distribution, like Debian for example, you don't get a confirmation request.
 
 Deleting a folder with the `rm` command, whether the folder is empty or not, will require the `-r` option to be added.
@@ -851,7 +854,7 @@ The `cat` command concatenates the contents of multiple files and displays the r
 cat file1 [files]
 ```
 
-Example 1 - Displaying the contents of a file to the standard output :
+Example 1 - Displaying the contents of a file to the standard output:
 
 ```bash
 $ cat /etc/passwd
@@ -863,13 +866,13 @@ Example 2 - Displaying the contents of multiple files to standard output:
 $ cat /etc/passwd /etc/group
 ```
 
-Example 3 - Displaying the contents of several files in the file `usersAndGroups.txt` :
+Example 3 - Displaying the contents of several files in the file `usersAndGroups.txt`:
 
 ```bash
 $ cat /etc/passwd /etc/group > usersAndGroups.txt
 ```
 
-Example 4 - Displaying the line numbering :
+Example 4 - Displaying the line numbering:
 
 ```bash
 $ cat -n /etc/profile
@@ -952,7 +955,7 @@ The `sort` command sorts the lines of a file.
 It allows you to order the result of a command or the content of a file in a given order, numerically, alphabetically, by size (KB, MB, GB) or in reverse order.
 
 ```bash
-sort [-kx] [-n] [-o file] [-ty] file
+sort [-kx] [-n] [-u] [-o file] [-ty] file
 ```
 
 Example:
@@ -970,6 +973,7 @@ adm:x:3:4:adm:/var/adm/:/sbin/nologin
 | `-o file   `                                                                                                                                                                                                                         | Saves the sort to the specified file         |
 | `-ty`                                                                                                                                                                                                                                | Specifies the field separator character `y`. |
 | `-r`                                                                                                                                                                                                                                 | Reverse the order of the result              |
+| `- u`                 | unique                                       |
 
 The `sort` command sorts the file only on the screen. The file is not modified by the sorting. To save the sort, use the `-o` option or an output redirection `>`.
 
@@ -999,7 +1003,7 @@ $ sort -R /etc/passwd
 
 A system administrator is quickly confronted with the processing of IP addresses from the logs of his services such as SMTP, VSFTP or Apache. These addresses are typically extracted with the `cut` command.
 
-Here is an example with the file `dns-client.txt` :
+Here is an example with the file `dns-client.txt`:
 
 ```
 192.168.1.10
@@ -1022,7 +1026,7 @@ $ sort -nr dns-client.txt
 
 The `sort` command knows how to remove the duplicates from the file output using `-u` as option.
 
-Here is an example with the file `colours.txt` :
+Here is an example with the file `colours.txt`:
 
 ```
 Red
@@ -1043,7 +1047,7 @@ Red
 
 The `sort` command knows how to recognize file sizes, from commands like `ls` with the `-h` option.
 
-Here is an example with the file `size.txt` :
+Here is an example with the file `size.txt`:
 
 ```
 1,7G
@@ -1117,12 +1121,12 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 The previous command searches for all files in the `/tmp` directory named `*.txt` and deletes them.
 
 
-💡 **Tip:** "Understand the `-exec` option"
+!!! Tip "Understand the `-exec` option"
     In the example above, the `find` command will construct a string representing the command to be executed.
 
     If the `find` command finds three files named `log1.txt`, `log2.txt`, and `log3.txt`, then the `find` command will construct the string by replacing in the string `rm -f {} \;` the braces with one of the results of the search, and do this as many times as there are results.
 
-    This will give us :
+    This will give us:
 
     ```
     rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
@@ -1130,7 +1134,7 @@ The previous command searches for all files in the `/tmp` directory named `*.txt
 
     The `;` character is a special shell character that must be protected by a `\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).
 
-💡 **Tip:**
+!!! Tip
     `$ find /tmp -name *.txt -delete` does the same thing.
 
 ### `whereis` command
@@ -1183,7 +1187,7 @@ The `grep` command returns the complete line containing the string you are looki
 $ grep -w "^root" /etc/passwd
 ```
 
-💡 **Note:**
+!!! Note
     This command is very powerful and it is highly recommended to consult its manual. It has many derivatives.
 
 It is possible to search for a string in a file tree with the `-R` option.
@@ -1224,10 +1228,10 @@ $ find /home -name "test[123]*"
 /home/rockstar/test362
 ```
 
-💡 **Note:**
+!!! Note
     Always surround words containing meta-characters with `"` to prevent them from being replaced by the names of files that meet the criteria.
 
-💡 **Warning:**
+!!! Warning
     Do not confuse shell meta-characters with regular expression meta-characters. The `grep` command uses regular expression meta-characters.
 
 ## Redirects and pipes
@@ -1256,7 +1260,7 @@ It is possible to redirect the input stream from another file with the character
 $ ftp -in serverftp << ftp-commands.txt
 ```
 
-💡 **Note:**
+!!! Note
     Only commands that require keyboard input will be able to handle input redirection.
 
 Input redirection can also be used to simulate user interactivity. The command will read the input stream until it encounters the defined keyword after the input redirection.
@@ -1283,7 +1287,7 @@ STOP
 
 The shell exits the `ftp` command when it receives a line containing only the keyword.
 
-💡 **Warning:**
+!!! Warning
     The ending keyword, here `END` or `STOP`, must be the only word on the line and must be at the beginning of the line.
 
 The standard input redirection is rarely used because most commands accept a filename as an argument.
@@ -1324,7 +1328,7 @@ $ ls -R / 2>> errors_file
 
 ### Examples of redirection
 
-Redirection of 2 outputs to 2 files :
+Redirection of 2 outputs to 2 files:
 
 ```bash
 $ ls -R / >> ok_file 2>> nok_file
@@ -1336,7 +1340,7 @@ Redirection of the 2 outputs to a single file:
 $ ls -R / >> log_file 2>&1
 ```
 
-Redirection of *stderr* to a "bottomless pit" (`/dev/null`) :
+Redirection of *stderr* to a "bottomless pit" (`/dev/null`):
 
 ```bash
 $ ls -R / 2>> /dev/null
@@ -1413,13 +1417,13 @@ For example:
 $ ll
 ```
 
-will replace the command :
+will replace the command:
 
 ```bash
 $ ls -l
 ```
 
-The `alias` command lists the aliases for the current session. Aliases are set by default on Linux distributions. Here, the aliases for a Rocky server :
+The `alias` command lists the aliases for the current session. Aliases are set by default on Linux distributions. Here, the aliases for a Rocky server:
 
 ```bash
 $ alias
@@ -1432,13 +1436,13 @@ alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-ti
 
 The aliases are only defined temporarily, for the time of the user session.
 
-For permanent use, they must be created in the :
+For permanent use, they must be created in the:
 
 * `.bashrc` file in the user's login directory;
 * `/etc/profile.d/alias.sh` file for all users.
 
-💡 **Warning:**
-    Special care must be taken when using aliases which can be potentially dangerous! For example, an alias set up without the administrator's knowledge :
+!!! Warning
+    Special care must be taken when using aliases which can be potentially dangerous! For example, an alias set up without the administrator's knowledge:
 
     ```bash
     alias cd='rm -Rf'
