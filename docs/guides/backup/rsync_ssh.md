@@ -23,7 +23,7 @@ This is everything you'll need to understand and follow along with this guide.
 
 Using `rsync` over SSH is neither as powerful as [lsyncd](../backup/mirroring_lsyncd.md) (which allows you to watch a directory or file for changes and keep it synchronized in real time), or as flexible as [rsnapshot](../backup/rsnapshot_backup.md) (which offers the ability to easily backup multiple targets from a single machine). However, it does provide the ability to keep two computers up to date on a schedule that you define.
 
-If you need to keep a set of directories on the target computer up to date, and real-time synchronization is not important, then `rsync` over SSH may be the answer.
+If you need to keep a set of directories on the target computer up to date, and you don't care about real-time synchronization as a feature, then `rsync` over SSH is probably the best solution.
 
 For all of the below, we will be doing things as the root user, so either login as root or use the `sudo -s` command to switch to the root user in your terminal.
 
