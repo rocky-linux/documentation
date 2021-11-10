@@ -1,5 +1,5 @@
 ---
-title: ガイド Home
+title: ガイド・ホーム
 ---
 
 # Rocky Linux ガイド
