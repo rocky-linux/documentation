@@ -1,5 +1,5 @@
 ---
-title: ホーム
+title: Home
 ---
 
 # Rocky Linux のドキュメント
