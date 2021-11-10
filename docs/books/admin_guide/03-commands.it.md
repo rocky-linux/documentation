@@ -1,5 +1,8 @@
 ---
 title: Comandi Linux
+author: Antoine Le Morvan
+contributors: Steven Spencer, Franco Colussi
+update: 11-10-2021
 ---
 
 # Comandi per gli utenti Linux
@@ -10,14 +13,14 @@ In questo capitolo imparerai come lavorare con Linux e con i comandi.
 
 **Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come fare per:
 
-:heavy_check_mark: **spostarsi** nell'albero di sistema;
-:heavy_check_mark: **creare** un file di testo, **visualizzare** il suo contenuto e **modificarlo**;
-:heavy_check_mark: utilizzare i comandi Linux più utili.
+:heavy_check_mark: **spostarsi** nell'albero di sistema;  
+:heavy_check_mark: **creare** un file di testo, **visualizzare** il suo contenuto e **modificarlo**;  
+:heavy_check_mark: utilizzare i comandi Linux più utili.  
 
 :checkered_flag: **comandi utente**, **linux**
 
-**Conoscenza**: :star:
-**Complessità**: :star:
+**Conoscenza**: :star:  
+**Complessità**: :star:  
 
 **Tempo di lettura**: 40 minuti
 
@@ -271,7 +274,7 @@ Il comando `clear` cancella il contenuto della schermata del terminale. Infatti,
 In un terminale, il display sarà permanentemente nascosto, mentre nell'interfaccia grafica, una barra di scorrimento ti permetterà sempre di scorrere la cronologia del terminale virtuale.
 
 !!! tip
-<kbd>CTRL</kbd> + <kbd>L</kbd> avrà lo stesso effetto del comando `clear`
+    <kbd>CTRL</kbd> + <kbd>L</kbd> avrà lo stesso effetto del comando `clear`
 
 ### comando `echo`
 
@@ -313,7 +316,7 @@ $ date -d 20210517 +%j
 In questo ultimo esempio, l'opzione `d` visualizza una data fornita. L'opzione `+%J` formatta questa data per mostrare solo il giorno dell'anno.
 
 !!! Avvertimento
-Il formato di una data può cambiare in base al valore della lingua definita nella variabile di ambiente `$LANG`.
+    Il formato di una data può cambiare in base al valore della lingua definita nella variabile di ambiente `$LANG`.
 
 Il display della data può seguire i seguenti formati:
 
@@ -498,7 +501,7 @@ $ ls -lia /home
 | `rockstar`      | Il nome del file (o directory).                                                   |
 
 !!! Nota
-Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni.
+    Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni.
 
 Questo è il caso dell'alias `ll`:
 
@@ -605,7 +608,7 @@ La directory "rockstar" deve esistere per creare la directory "work".
 Altrimenti, dovrebbe essere utilizzata l'opzione `-p`. L'opzione `-p` crea le directory genitore se queste non esistono.
 
 !!! Pericolo
-Non è consigliato utilizzare i nomi dei comandi Linux come directory o nomi di file.
+    Non è consigliato utilizzare i nomi dei comandi Linux come directory o nomi di file.
 
 ### comando `touch`
 
@@ -628,7 +631,7 @@ $ touch /home/rockstar/myfile
 Formato data: `[AAAA]MMJJhhmm[ss]`
 
 !!! Consiglio
-Il comando `touch` viene utilizzato principalmente per creare un file vuoto, ma può essere utile per i backup incrementali o differenziali per esempio. Davvero, l'unico effetto di eseguire un `touch` su un file sarà quello di costringerlo a essere salvato durante il backup successivo.
+    Il comando `touch` viene utilizzato principalmente per creare un file vuoto, ma può essere utile per i backup incrementali o differenziali per esempio. Davvero, l'unico effetto di eseguire un `touch` su un file sarà quello di costringerlo a essere salvato durante il backup successivo.
 
 ### comando `rmdir`
 
@@ -645,7 +648,7 @@ $ rmdir /home/rockstar/work
 | `-p`    | Rimuove la directory o le directory principale fornite se sono vuote. |
 
 !!! Consiglio
-Per eliminare sia una directory non vuota che il suo contenuto, utilizzare il comando `rm`.
+    Per eliminare sia una directory non vuota che il suo contenuto, utilizzare il comando `rm`.
 
 ### comando`rm`
 
@@ -656,7 +659,7 @@ rm [-f] [-r] file [file] [...]
 ```
 
 !!! Pericolo
-Qualsiasi cancellazione di un file o directory è definitiva.
+    Qualsiasi cancellazione di un file o directory è definitiva.
 
 | Opzioni | Informazione                               |
 | ------- | ------------------------------------------ |
@@ -665,7 +668,7 @@ Qualsiasi cancellazione di un file o directory è definitiva.
 | `-r`    | Elimina ricorsivamente le sottodirectory.. |
 
 !!! Nota
-Il comando `rm` non chiede la conferma durante l'eliminazione dei file. Tuttavia, con una distribuzione RedHat/Rocky, `rm` chiede la conferma della cancellazione in quanto il comando `rm` è un` alias` di `rm -i`. Non sorprenderti se su un'altra distribuzione, come Debian, ad esempio, non ottieni una richiesta di conferma.
+    Il comando `rm` non chiede la conferma durante l'eliminazione dei file. Tuttavia, con una distribuzione RedHat/Rocky, `rm` chiede la conferma della cancellazione in quanto il comando `rm` è un` alias` di `rm -i`. Non sorprenderti se su un'altra distribuzione, come Debian, ad esempio, non ottieni una richiesta di conferma.
 
 L'eliminazione di una cartella con il comando `rm`, che la cartella sia vuota o meno, richiederà l'aggiunta dell'opzione `-r`.
 
@@ -1095,7 +1098,7 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso `*.txt` e li elimina.
 
 !!! Suggerimento "Comprendere l'opzione `-exec`"
-Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
+    Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
 
 Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.txt`, il comando `find` costruirà la stringa sostituendo nella stringa `rm -f {} \;` le parentesi graffe con uno dei risultati della ricerca, e farà questo tutte le volte che ci sono dei risultati.
 
@@ -1106,8 +1109,9 @@ rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
 ```
 
 IL carattere `;` è un carattere speciale di shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
+
 !!! Consiglio
-`$ find /tmp -name *.txt -delete` fa la stessa cosa.
+    `$ find /tmp -name *.txt -delete` fa la stessa cosa.
 
 ### comando `whereis`
 
@@ -1161,7 +1165,7 @@ $ grep -w "^root" /etc/passwd
 ```
 
 !!! Nota
-Questo comando è molto potente ed è altamente raccomandata la consultazione del manuale. Ha molti utilizzi derivati.
+    Questo comando è molto potente ed è altamente raccomandata la consultazione del manuale. Ha molti utilizzi derivati.
 
 È possibile cercare una stringa in un albero di file con l'opzione `-R`.
 
@@ -1202,10 +1206,10 @@ $ find /home -name "test[123]*"
 ```
 
 !!! Nota
-Delimita sempre le parole contenenti meta-caratteri con `"` per evitare che vengano sostituiti dai nomi dei file che soddisfano i criteri.
+    Delimita sempre le parole contenenti meta-caratteri con `"` per evitare che vengano sostituiti dai nomi dei file che soddisfano i criteri.
 
 !!! Avvertimento
-Non confondere i meta-caratteri della shell con i meta-caratteri dell'espressione regolare. Il comando `grep` usa i meta-caratteri dell'espressione regolare.
+    Non confondere i meta-caratteri della shell con i meta-caratteri dell'espressione regolare. Il comando `grep` usa i meta-caratteri dell'espressione regolare.
 
 ## Reindirizzamenti e pipes
 
@@ -1235,7 +1239,7 @@ $ ftp -in serverftp << ftp-commands.txt
 ```
 
 !!! Nota
-Solo i comandi che richiedono l'input della tastiera saranno in grado di gestire il reindirizzamento dell'ingresso.
+    Solo i comandi che richiedono l'input della tastiera saranno in grado di gestire il reindirizzamento dell'ingresso.
 
 Il reindirizzamento dell'ingresso può anche essere utilizzato per simulare l'interattività dell'utente. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
 
@@ -1262,7 +1266,7 @@ STOP
 La shell esce dal comando `ftp` quando riceve una linea contenente solo la parola chiave.
 
 !!! Avvertimento
-La parola chiave finale, quì `END` o `STOP`, deve essere l'unica parola sulla linea e deve essere all'inizio della linea.
+    La parola chiave finale, quì `END` o `STOP`, deve essere l'unica parola sulla linea e deve essere all'inizio della linea.
 
 Il reindirizzamento dell'ingresso standard viene usato raramente perché la maggior parte dei comandi accetta un nome di file come argomento.
 
@@ -1416,7 +1420,7 @@ Per un uso permanente, devono essere creati nel:
 * `/etc/profile.d/alias.sh` file per tutti gli utenti.
 
 !!! Avvertimento
-Prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore :
+    Prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore :
 
 ```bash
 alias cd='rm -Rf'

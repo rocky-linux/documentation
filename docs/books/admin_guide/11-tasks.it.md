@@ -1,6 +1,10 @@
 ---
 title: Gestione dei compiti
+author: Antoine Le Morvan
+contributors: Steven Spencer, Franco Colussi
+update: 11-10-2021
 ---
+
 # Gestione dei compiti
 
 In questo capitolo imparerai come gestire le attività programmate.
@@ -9,14 +13,14 @@ In questo capitolo imparerai come gestire le attività programmate.
 
 **Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come:
 
-:heavy_check_mark: Linux si occupa della pianificazione dei compiti;
-:heavy_check_mark: limitare l'uso di **`cron`** a determinati utenti;
-:heavy_check_mark: pianificare le attività.
+:heavy_check_mark: Linux si occupa della pianificazione dei compiti;  
+:heavy_check_mark: limitare l'uso di **`cron`** a determinati utenti;  
+:heavy_check_mark: pianificare le attività.  
 
 :checkered_flag: **crontab**, **crond**, **pianificazione**, **linux**
 
-**Conoscenza**: :star: :star:
-**Complessità**: :star: :star:
+**Conoscenza**: :star: :star:  
+**Complessità**: :star: :star:  
 
 **Tempo di lettura**: 15 minuti
 
@@ -38,7 +42,7 @@ Il servizio `cron` è usato per:
 `crontab` è un'abbreviazione per **cron table**, ma può essere pensato come una tabella di programmazione attività.
 
 !!! Avvertimento
-Per impostare una pianificazione, il sistema deve avere l'ora locale impostata correttamente.
+    Per impostare una pianificazione, il sistema deve avere l'ora locale impostata correttamente.
 
 ## Come funziona il servizio
 
@@ -51,7 +55,7 @@ Per verificare il suo stato:
 ```
 
 !!! Consiglio
-Se il demone `crond` non è in esecuzione, dovrai inizializzarlo manualmente e/o automaticamente all'avvio. Quindi, anche se sono programmati dei compiti, questi non saranno eseguiti fino all'avvio dello stesso.
+    Se il demone `crond` non è in esecuzione, dovrai inizializzarlo manualmente e/o automaticamente all'avvio. Quindi, anche se sono programmati dei compiti, questi non saranno eseguiti fino all'avvio dello stesso.
 
 Inizializzazione manuale del demone `crond`:
 
@@ -75,7 +79,7 @@ Questa autorizzazione varia in base alle informazioni contenute nei file seguent
 * `/etc/cron.deny`
 
 !!! Avvertimento
-Se nessuno dei due file è presente, tutti gli utenti possono usare `cron`.
+    Se nessuno dei due file è presente, tutti gli utenti possono usare `cron`.
 
 ### I files `cron.allow` and `cron.deny`
 
@@ -86,7 +90,7 @@ Solo gli utenti contenuti in questo file sono autorizzati a utilizzare `cron`.
 Se esiste ed è vuoto, nessun utente può usare `cron`.
 
 !!! Avvertimento
-Se è presente `cron.allow`,`cron.deny` è **ignorato**.
+    Se è presente `cron.allow`,`cron.deny` è **ignorato**.
 
 File `/etc/cron.deny`
 
@@ -146,9 +150,9 @@ Esempio:
 | `-r`    | Elimina il file di pianificazione                                     |
 
 !!! Avvertimento
-`crontab` Senza opzioni elimina il vecchio file di pianificazione e attende che l'utente inserisca nuove linee. Devi premere <kbd>ctrl</kbd> + <kbd>d</kbd> per uscire da questa modalità di modifica.
-Solo `root` può utilizzare l'opzione `-u utente` per gestire il file di pianificazione di un altro utente.
-L'esempio sopra consente a root di pianificare un'attività per l'utente1.
+    `crontab` Senza opzioni elimina il vecchio file di pianificazione e attende che l'utente inserisca nuove linee. Devi premere <kbd>ctrl</kbd> + <kbd>d</kbd> per uscire da questa modalità di modifica.
+    Solo `root` può utilizzare l'opzione `-u utente` per gestire il file di pianificazione di un altro utente.
+    L'esempio sopra consente a root di pianificare un'attività per l'utente1.
 
 ### Usi di `crontab`
 
@@ -164,7 +168,7 @@ D'altra parte, devono essere presi in considerazione i seguenti punti:
 * Non è rilevante per eseguire comandi che utilizzano richieste di ingresso/uscita su un terminale.
 
 !!! Nota
-È importante capire che lo scopo della pianificazione è quello di eseguire automaticamente attività, senza la necessità di un intervento esterno.
+    È importante capire che lo scopo della pianificazione è quello di eseguire automaticamente attività, senza la necessità di un intervento esterno.
 
 ## Il file  `crontab`
 
@@ -192,7 +196,7 @@ Il file `crontab` è strutturato in base alle seguenti regole.
 | 6     | Compito da eseguire       | Comando completo o script |
 
 !!! Avvertimento
-Le attività da eseguire devono utilizzare percorsi assoluti e, se possibile, utilizzare reindirizzamenti.
+    Le attività da eseguire devono utilizzare percorsi assoluti e, se possibile, utilizzare reindirizzamenti.
 
 Al fine di semplificare la notazione per la definizione del tempo, è consigliabile utilizzare simboli speciali.
 
