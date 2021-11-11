@@ -1,5 +1,5 @@
 ---
-title: Introduzione a Linux.
+title: Introduzione a Linux
 ---
 # Introduzione al sistema operativo Linux
 
@@ -9,16 +9,16 @@ In questo capitolo impareremo a conoscere le distribuzioni GNU/Linux.
 
 **Obiettivi** : In questo capitolo imparerai a:
 
-:heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo
-:heavy_check_mark: Raccontare la storia di UNIX e GNU/Linux
-:heavy_check_mark: Scegliere la distribuzione Linux giusta per le tue esigenze
-:heavy_check_mark: Spiegare la filosofia del software libero e opensource
-:heavy_check_mark: Scoprire l'utilità della SHELL.
+:heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo  
+:heavy_check_mark: Raccontare la storia di UNIX e GNU/Linux  
+:heavy_check_mark: Scegliere la distribuzione Linux giusta per le tue esigenze  
+:heavy_check_mark: Spiegare la filosofia del software libero e opensource  
+:heavy_check_mark: Scoprire l'utilità della SHELL.  
 
 :checkered_flag: **generalità**, **linux**, **distribuzioni**
 
-**Conoscenza**: :star:
-**Complessità**: :star:
+**Conoscenza**: :star:  
+**Complessità**: :star:  
 
 **Tempo di lettura**: 10 minuti
 

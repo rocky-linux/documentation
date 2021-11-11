@@ -10,13 +10,13 @@ In questo capitolo imparerai alcuni comandi avanzati per Linux.
 
 **Obiettivi** : In questo capitolo, i futuri amministratori Linux impareranno:
 
-:heavy_check_mark: alcuni comandi utili non trattati nel capitolo precedente;
-:heavy_check_mark: alcuni comandi avanzati.
+:heavy_check_mark: alcuni comandi utili non trattati nel capitolo precedente;  
+:heavy_check_mark: alcuni comandi avanzati.  
 
 :checkered_flag: **comandi utente**, **Linux**
 
-**Conoscenza**: :star:
-**Complessità**: :star: :star: :star:
+**Conoscenza**: :star:  
+**Complessità**: :star: :star: :star:  
 
 **Tempo di lettura**: 20 minuti
 
