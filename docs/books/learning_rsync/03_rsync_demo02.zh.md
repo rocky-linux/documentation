@@ -1,6 +1,7 @@
 ---
 title: rsync 演示02
 author: tianci li
+contributors: Steven Spencer
 update: 2021-11-04
 ---
 
@@ -16,6 +17,7 @@ update: 2021-11-04
 ```
 
 该文件的部分参数以及值如下，[这里](04_rsync_configure.zh.md) 有更多的参数说明。
+
 |项|说明|
 |---|---|
 | address = 192.168.100.4 | rsync默认监听的IP地址 |
@@ -36,7 +38,7 @@ update: 2021-11-04
 写入一些文件内容到 <font color=red>/etc/rsyncd.conf</font>，且将用户名与密码写入到 /etc/rsyncd_users.db 中，权限为 600
 
 ```bash
-[root@Rocky ~]# cat /etc/rsyncd.conf 
+[root@Rocky ~]# cat /etc/rsyncd.conf
 address = 192.168.100.4
 port = 873
 pid file = /var/run/rsyncd.pid
@@ -50,17 +52,17 @@ dont compress = *.gz *.bz2 *.zip
 auth users = li
 secrets file = /etc/rsyncd_users.db
 
-[root@Rocky ~]# ll /etc/rsyncd_users.db 
+[root@Rocky ~]# ll /etc/rsyncd_users.db
 -rw------- 1 root root 9 11月  2 16:16 /etc/rsyncd_users.db
 
-[root@Rocky ~]# cat /etc/rsyncd_users.db 
+[root@Rocky ~]# cat /etc/rsyncd_users.db
 li:13579
 ```
 
-你可能需要`dnf -y install rsync-daemon`，然后才能将服务启动： `systemctl start rsyncd.service` 
+你可能需要`dnf -y install rsync-daemon`，然后才能将服务启动： `systemctl start rsyncd.service`
 
 ```bash
-[root@Rocky ~]# systemctl start rsyncd.service 
+[root@Rocky ~]# systemctl start rsyncd.service
 [root@Rocky ~]# netstat -tulnp
 Active Internet connections (only servers)
 Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
@@ -79,7 +81,7 @@ udp6       0      0 ::1:323                 :::*                                
 
 ```bash
 [root@fedora ~]# rsync -avz li@192.168.100.4::share /root
-Password: 
+Password:
 receiving incremental file list
 ./
 rsynctest.txt
@@ -98,7 +100,7 @@ aabbcc  anaconda-ks.cfg  fedora  rsynctest.txt
 ```bash
 [root@fedora ~]# touch /root/fedora.txt
 [root@fedora ~]# rsync -avz /root/* li@192.168.100.4::share
-Password: 
+Password:
 sending incremental file list
 rsync: [sender] read error: Connection reset by peer (104)
 rsync error: error in socket IO (code 10) at io.c(784) [sender=3.2.3]
@@ -110,7 +112,7 @@ rsync error: error in socket IO (code 10) at io.c(784) [sender=3.2.3]
 
 ```bash
 [root@fedora ~]# rsync -avz /root/* li@192.168.100.4::share
-Password: 
+Password:
 sending incremental file list
 fedora.txt
 rsync: mkstemp "/.fedora.txt.hxzBIQ" (in share) failed: Permission denied (13)
@@ -124,7 +126,7 @@ rsync error: some files/attrs were not transferred (see previous errors) (code 2
 
 ```bash
 [root@fedora ~]# rsync -avz /root/* li@192.168.100.4::share
-Password: 
+Password:
 sending incremental file list
 fedora.txt
 

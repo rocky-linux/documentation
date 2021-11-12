@@ -15,7 +15,7 @@ update: 2021-11-04
 [root@Rocky /usr/local/src/inotify-tools-3.21.9.6]# ./autogen.sh  && \
 ./configure --prefix=/usr/local/inotify-tools &&  \
 make &&  \
-make install 
+make install
 ...
 [root@Rocky ~]# ls /usr/local/inotify-tools/bin/
 inotifywait  inotifywatch
@@ -40,7 +40,7 @@ PATH=$PATH:/usr/local/inotify-tools/bin/
 
 ```bash
 [root@Rocky ~]# cd /proc/sys/fs/inotify/
-[root@Rocky /proc/sys/fs/inotify]# cat max_queued_events ;cat max_user_instances ;cat max_user_watches 
+[root@Rocky /proc/sys/fs/inotify]# cat max_queued_events ;cat max_user_instances ;cat max_user_watches
 16384
 128
 28014
@@ -129,7 +129,7 @@ SSH协议的免密验证登录，可参考 [rsync 免密验证登录](05_rsync_a
 #!/bin/bash
 a="/usr/local/inotify-tools/bin/inotifywait -mrq -e modify,move,create,delete /rsync/"
 b="/usr/bin/rsync -avz /rsync/* testfedora@192.168.100.5:/home/testfedora/"
-$a | while read directory event file 
+$a | while read directory event file
     do
         $b &>> /tmp/rsync.log
     done
@@ -142,7 +142,7 @@ $a | while read directory event file
 
 !!! tip "再次强调!"
     使用SSH协议进行数据同步传输时，如果目标机器的SSH服务端口不是22 ，则您可以使用类似这样的方式——
-    `b="/usr/bin/rsync -avz -e 'ssh -p 2222'  /rsync/* testfedora@192.168.100.5:/home/testfedora/"`
+    `b="/usr/bin/rsync -avz -e 'ssh -p [port-number]'  /rsync/* testfedora@192.168.100.5:/home/testfedora/"`
 
 !!! tip "注意!"
     如果您要开机自启动这个脚本的话
