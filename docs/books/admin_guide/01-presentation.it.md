@@ -28,8 +28,8 @@ In questo capitolo impareremo a conoscere le distribuzioni GNU/Linux.
 
 Linux, UNIX, BSD, Windows e MacOS sono tutti **sistemi operativi**.
 
-!!! astratto
-Un sistema operativo è un **insieme di programmi che gestisce le risorse disponibili di un computer**.
+!!! astratto  
+    Un sistema operativo è un **insieme di programmi che gestisce le risorse disponibili di un computer**.
 
 Nella gestione di queste risorse, il sistema operativo deve:
 
