@@ -114,7 +114,7 @@ Per proteggere con password il bootloader GRUB2:
 
 Un file `/boot/grub2/user.cfg` sarà creato se non era già presente. Contiene la password hashed. di GRUB2.
 
-!!! Nota
+!!! Nota  
     Questo comando supporta solo le configurazioni con un singolo utente root.
 
 ```bash
@@ -152,7 +152,7 @@ Per proteggere solo la modifica delle voci del menu GRUB e l'accesso alla consol
 * rimanere compatibile con gli script di inizializzazione del vecchio SysV,
 * fornire molte funzionalità, come l'avvio parallelo dei servizi di sistema all'avvio del sistema, l'attivazione su richiesta dei demoni, il supporto per le istantanee o la gestione delle dipendenze tra i servizi.
 
-!!! Note
+!!! Nota  
     Systemd è il sistema di inizializzazione predefinito da RedHat/CentOS 7.
 
 Systemd introduce il concetto di unità systemd.
@@ -163,7 +163,7 @@ Systemd introduce il concetto di unità systemd.
 | Unità di destinazione   | `.target`                  | Un gruppo di unità systemd                          |
 | Mount unit              | `.automount`               | Un punto di montaggio automatico per il file system |
 
-!!! Note
+!!! Nota  
     Ci sono molti tipi di unità: Device unit, Mount unit, Path unit, Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit, Timer unit.
 
 * Systemd supporta le istantanee dello stato del sistema e il ripristino.
