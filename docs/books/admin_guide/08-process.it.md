@@ -9,13 +9,13 @@ In questo capitolo imparerai come lavorare con i processi.
 
 **Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come:
 
-:heavy_check_mark: Riconoscere il `PID` e il `PPID` di un processo;
-:heavy_check_mark: Visualizzare e cercare processi;
+:heavy_check_mark: Riconoscere il `PID` e il `PPID` di un processo;  
+:heavy_check_mark: Visualizzare e cercare processi;  
 :heavy_check_mark: Gestire i processi.
 
-:checkered_flag: **process**, **linux**
+:checkered_flag: **processi**, **linux**
 
-**Conoscenza**: :star: :star:
+**Conoscenza**: :star: :star:  
 **Complessità**: :star:
 
 **Tempo di lettura**: 20 minuti
@@ -44,8 +44,8 @@ Il numero _PID_ rappresenta il processo al momento dell'esecuzione. Quando il pr
 
 <!-- TODO ![Parent/child relationship between processes](images/FON-050-001.png) -->
 
-!!! Nota
-I processi non devono essere confusi con i _threads_. Ogni processo ha il proprio contesto di memoria (risorse e spazio di indirizzamento), mentre il _threads_ dello stesso processo condivide lo stesso contesto.
+!!! Nota  
+    I processi non devono essere confusi con i _threads_. Ogni processo ha il proprio contesto di memoria (risorse e spazio di indirizzamento), mentre il _threads_ dello stesso processo condivide lo stesso contesto.
 
 ## Visualizzazione dei processi
 
@@ -214,8 +214,8 @@ $ kill -9 1664
 
 I segnali sono i mezzi di comunicazione tra i processi. Il comando `kill` invia un segnale a un processo.
 
-!!! Consiglio
-L'elenco completo dei segnali presi in considerazione dal comando `kill` è disponibile digitando il comando:
+!!! Consiglio  
+    L'elenco completo dei segnali presi in considerazione dal comando `kill` è disponibile digitando il comando:
 
 ```
 $ man 7 signal
@@ -237,8 +237,8 @@ $ nohup myprogram.sh 0</dev/null &
 
 `nohup` ignora il segnale `SIGHUP` inviato quando un utente si disconnette.
 
-!!! Nota "Domanda"
-`nohup` gestisce l'output e l'errore standard, ma non l'input standard, da qui il reindirizzamento di questo input a `/dev/null`.
+!!! Nota "Domanda"  
+   `nohup` gestisce l'output e l'errore standard, ma non l'input standard, da qui il reindirizzamento di questo input a `/dev/null`.
 
 ### [CTRL] + [Z]
 
@@ -320,8 +320,8 @@ $ nice -n+15 find / -name "file"
 
 a differenza di `root`, un utente standard può solo ridurre la priorità di un processo. Saranno accettati solo valori tra +0 e +19.
 
-!!! Consiglio
-Quest'ultima limitazione può essere modificata su base utente o per gruppo modificando il file `/etc/security/limits.conf`.
+!!! Consiglio  
+    Quest'ultima limitazione può essere modificata su base utente o per gruppo modificando il file `/etc/security/limits.conf`.
 
 Il comando `renice` ti consente di modificare la priorità di un processo di esecuzione.
 
@@ -344,8 +344,8 @@ $ renice +15 -p 1664
 
 Il comando `renice` agisce sui processi già in esecuzione. È quindi possibile modificare la priorità di un processo specifico, ma anche di diversi processi appartenenti a un utente o un gruppo.
 
-!!! Consiglio
-Il comando `pidof`, accoppiato con il comando `xargs` (vedi il pagina dei comandi avanzati), consente di applicare una nuova priorità in un singolo comando:
+!!! Consiglio  
+    Il comando `pidof`, accoppiato con il comando `xargs` (vedi il pagina dei comandi avanzati), consente di applicare una nuova priorità in un singolo comando:
 
 ```
 $ pidof sleep | xargs renice 20
