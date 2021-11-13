@@ -26,7 +26,7 @@ https://www.rockylinux.org/download/
 To download the ISO directly from the command line use the `wget` command:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-8.4-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-8.5-x86_64-minimal.iso
 ```
 
 Rocky Linux ISOs are named following this convention:
@@ -42,7 +42,7 @@ For example, `Rocky-8.5-x86_64-minimal.iso`
 
 ## Verifying the Installer ISO File
 
-If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-8.4-x86_64-minimal.iso` file by checking its checksum.
+If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-8.5-x86_64-minimal.iso` file by checking its checksum.
 
 First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky Linux ISO download the checksum file for the ISO, type:
 
