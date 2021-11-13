@@ -10,7 +10,7 @@ update: 2021-11-06
 
 ## 环境准备
 
-* Rocky Linix 8 与 Fedora 34 都需要源代码编译安装 **inotify-tools** ，这里不具体展开。
+* Rocky Linux 8 与 Fedora 34 都需要源代码编译安装 **inotify-tools** ，这里不具体展开。
 * 两台机器都必须免密登录验证，这里我们使用的是SSH协议进行
 * [ocaml](https://github.com/ocaml/ocaml/) 使用v4.12.0，[unison](https://github.com/bcpierce00/unison/) 使用v2.51.4。
   

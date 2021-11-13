@@ -64,7 +64,7 @@ Fedora34-->|pull/下载|RockyLinux8;
 ## 基于SSH协议的演示
 
 !!! tip "注意!"
-    这里Rocky Linux 8和 Fedora 34都使用 root 用户进行登录。Fodora 34是客户端，Rocky Linux 8是服务器。
+    这里Rocky Linux 8和 Fedora 34都使用 root 用户进行登录。Fedora 34是客户端，Rocky Linux 8是服务器。
 
 ### pull/下载
 
