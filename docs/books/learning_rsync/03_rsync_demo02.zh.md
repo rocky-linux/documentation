@@ -29,7 +29,7 @@ update: 2021-11-04
 | comment = rsync | 备注或者描述信息 |
 | path = /rsync/ | 所在的系统路径位置 |
 | read only = yes| yes表示只读，no表示可读可写 |
-| dont compress = *.gz *.gz2 *.zip | 哪些文件类型不对它进行压缩 |
+| dont compress = \*.gz \*.gz2 \*.zip | 哪些文件类型不对它进行压缩 |
 | auth users = li| 启用虚拟用户，定义个虚拟用户叫什么。需要自行创建|
 | secrets file = /etc/rsyncd_users.db | 用来指定虚拟用户的密码文件位置，必须以.db结尾。文件的内容格式是"用户名:密码"，一行一个 |
 
