@@ -11,7 +11,7 @@ As we mentioned earlier, one-way synchronization uses rsync + inotify-tools. In 
 
 ## Environmental preparation
 
-* Both Rocky Linix 8 and Fedora 34 require source code compilation and installation **inotify-tools**, which is not specifically expanded here.
+* Both Rocky Linux 8 and Fedora 34 require source code compilation and installation **inotify-tools**, which is not specifically expanded here.
 * Both machines must be password-free login authentication, here we use the SSH protocol for
 * [ocaml](https://github.com/ocaml/ocaml/) uses v4.12.0, [unison](https://github.com/bcpierce00/unison/) uses v2.51.4.
 
@@ -49,7 +49,7 @@ Ocaml is a programming language, and the bottom layer of unison depends on it.
 [root@Rocky ~]# ls /usr/local/ocaml/
 bin lib man
 [root@Rocky ~]# echo PATH=$PATH:/usr/local/ocaml/bin >> /etc/profile
-[root@Rocky ~]#. /etc/profile
+[root@Rocky ~]# . /etc/profile
 ```
 
 ```bash
@@ -87,7 +87,7 @@ bin lib man
 ...
 [root@fedora /usr/local/src/unison-2.51.4]# ls src/unison
 src/unison
-[root@fedora /usr/local/src/unison-2.51.4] cp -p src/unison /usr/local/bin
+[root@fedora /usr/local/src/unison-2.51.4]# cp -p src/unison /usr/local/bin
 ```
 
 
@@ -98,9 +98,9 @@ src/unison
 ### Configure Rcoky Linux 8
 
 ```bash
-[root@Rocky ~] mkdir /dir1
-[root@Rocky ~] setfacl -m u:testrsync:rwx /dir1/
-[root@Rocky ~] vim /root/unison1.sh
+[root@Rocky ~]# mkdir /dir1
+[root@Rocky ~]# setfacl -m u:testrsync:rwx /dir1/
+[root@Rocky ~]# vim /root/unison1.sh
 #!/bin/bash
 a="/usr/local/inotify-tools/bin/inotifywait -mrq -e create,delete,modify,move /dir1/"
 b="/usr/local/bin/unison -batch /dir1/ ssh://testrsync@192.168.100.5//dir2"
@@ -116,9 +116,9 @@ done
 ### Configure Fedora 34
 
 ```bash
-[root@fedora ~] mkdir /dir2
-[root@fedora ~] setfacl -m u:testrsync:rwx /dir2/
-[root@fedora ~] vim /root/unison2.sh
+[root@fedora ~]# mkdir /dir2
+[root@fedora ~]# setfacl -m u:testrsync:rwx /dir2/
+[root@fedora ~]# vim /root/unison2.sh
 #!/bin/bash
 a="/usr/local/inotify-tools/bin/inotifywait -mrq -e create,delete,modify,move /dir2/"
 b="/usr/local/bin/unison -batch /dir2/ ssh://testrsync@192.168.100.4//dir1"
