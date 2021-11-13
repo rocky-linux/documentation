@@ -114,6 +114,7 @@ rsync error: some files/attrs were not transferred (see previous errors) (code 2
 ```
 
 **提示权限拒绝，如何处理？**
+
 首先查看 /rsync/ 这个目录的权限。很明显没有w权限，我们可以使用`setfacl`赋予权限
 
 ```bash
