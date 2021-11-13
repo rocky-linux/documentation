@@ -6,11 +6,10 @@ title: Monitoring Rocky Linux nodes or clusters by Ganglia
 
 This guide walks through the detailed steps to install Ganglia packages in Rocky Linux distribution.
 
+## Install Ganglia-web Interface
+
 !!! General Overview
-    Ganglia is a very good software package for monitoring the historical state of clusters or nodes. However, the php version used by the current ganglia web interface (3.7.5) is 5.6. If you are using a higher version php, such as in the default environment of **Rocky Linux 8**, ganglia web interface will not be displayed normally. Therefore, configuring and using php5.6 was the necessary option to run the ganglia web interface in Rocky linux. Docker can easily solve this problem. That is, **running Ganglia-web inside a centos7 container** in the Rocky linux 8 system, which container can easily run the php5.6. It will **ensure the normal display of the ganglia-web interface**.
-
-
-
+    Ganglia is a very good software package for monitoring the historical state of clusters or nodes. However, the current ganglia web interface (3.7.5) is based on php-5.6. If you are using a higher version php, such as that in the default environment of **Rocky Linux 8**, ganglia web interface will not be displayed normally. Therefore, configuring and using php-5.6 was the necessary option to run the ganglia web interface in Rocky linux. Docker can easily solve this problem. That is, **running Ganglia-web inside a centos7 container** in the Rocky linux 8 system, which container can easily run the php-5.6. It will **ensure the normal display of the ganglia-web interface**.
 
 ### Manually build the container image by Yourself
 
@@ -127,4 +126,43 @@ podman build -t mybuild/cent7ganglia /root/dockertest/cent7ganglia/
    systemctl restart httpd
    ```
 
- 
+
+## Install gmond in nodes to collect nodes status information
+
+### Install
+
+1. Install gmond in a node
+
+   ```
+   dnf install epel-release
+   dnf install ganglia ganglia-gmond
+   ```
+
+2. Edit /etc/ganglia/gmond.conf
+
+   ```
+   # change the fellow part
+   cluster {
+     name = "cluster"               # be the same as that gmetad.conf inside your container
+     owner = "unspecified"
+     latlong = "unspecified"
+     url = "unspecified"
+   }
+   ```
+
+3. Open ports, enable permission.
+
+   ```
+   firewall-cmd --add-port=8649/udp --permanent
+   firewall-cmd --add-port=8649/tcp --permanent
+   firewall-cmd --reload
+   firewall-cmd --list-all
+   ```
+4. Enable gmond service.
+
+   ```
+   systemctl enable --now gmond
+   ```
+
+##### You can monitor the nodes through http://ganglia.your.servername.com now.
+
