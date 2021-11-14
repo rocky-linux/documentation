@@ -2,7 +2,7 @@
 Title: Installing Rocky Linux 8.4
 ---
 
-# Installing Rocky Linux
+# Installing Rocky Linux 8.4
 
 This guide walks through the detailed steps to install a 64-bit version of the Rocky Linux distribution on a stand-alone system.
 
