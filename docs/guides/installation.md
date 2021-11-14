@@ -4,14 +4,8 @@ Title: Installing Rocky Linux
 
 # Installing Rocky Linux
 
-This guide walks through the detailed steps to install a 64-bit version of the Rocky Linux distribution on a stand-alone system.
+This guide walks through the detailed steps to install a 64-bit version of the Rocky Linux distribution on a stand-alone system.  We will be performing a server class install using an operating system installer image downloaded from the Rocky Linux project website. We will step through the installation and customization steps in the following sections.
 
-****
-In this guide we will be performing a server class install using an operating system installer image downloaded from the Rocky Linux project website. We will step through the installation and customization steps in the following sections.
-****
-
-!!! Note
-    Wherever there is a command which is run from the command prompt it will be assumed that you are logged in as a standard user (not the superuser). The command to type will not show the command prompt which could be different depending on the system and operating system you are using.
 
 ## OS Installation Prerequisites
 
