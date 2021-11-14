@@ -67,7 +67,7 @@ Insert and boot from the installation medium (optical disk, USB flash drive, and
 
 Once the computer has booted you will be presented with the Rocky Linux 8 welcome splash screen.
 
-![Rocky Linux installation splash screen](images/installation-F01.png)
+![Rocky Linux installation splash screen](images/installation_8.5_F01.png)
 
 If you do not press any key the installer will begin a countdown, after which the installation process will automatically execute the default, highlighted, option:
 
