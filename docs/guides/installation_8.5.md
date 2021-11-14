@@ -85,7 +85,7 @@ A quick media verification step will take place. This media verification step ca
 
 After the media check runs to completion and the media is successfully verified to be usable, the installer will automatically continue to the next screen.
 
-Select the language you want to use to perform the installation in this screen. For this example, we select _English (United States)_. Then click the <kbd>Continue</kbd> button.
+Select the language you want to use to perform the installation in this screen. For this guide, we select _English (United States)_. Then click the <kbd>Continue</kbd> button.
 
 ## Installation Summary
 
@@ -131,6 +131,9 @@ Under the _Software_ section of the _Installation Summary_ screen, you can selec
 
 Since we are performing our installation using a full Rocky 8 image, you will notice that _Local Media_ is automatically specified under the Installation Source section of the main _Installation Summary_ screen. We'll accept the preset defaults.
 
+!!! Tip
+    The installation Source area is where you can opt to perform a network based installation. For a network based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet.  To perform a network based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`.   Click `Done`.
+
 #### Software Selection
 
 Clicking the <kbd>Software Selection</kbd> option on the main _Installation Summary_ screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into :
@@ -175,7 +178,7 @@ Clicking the <kbd>Network & Hostname</kbd> button in the main _Installation Summ
 The next important configuration task is related to the network interfaces on the system. First, verify that an Ethernet card (or any network card) is listed in the left pane. Click any of the detected network devices in the left pane to select it. The configurable properties of the selected network adapter will appear in the right pane of the screen.
 
 !!! Note
-    On our sample server, we have four Ethernet devices (`ens3`, `ens4`, `ens5` and `ens6`), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our sample system.
+    On our sample system, we have two Ethernet devices (`ens3` and `ens4`), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our sample system.
 
 Make sure the switch of the device you want to configure is flipped to the `ON` position in the right pane.
 We'll accept all the defaults in this section.
