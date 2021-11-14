@@ -1,4 +1,5 @@
 ---
 nav:
-    - Current: 8.4.md
+    - 8.5: 8.5.md
+    - 8.4: 8.4.md
     - Rocky Linux 8 Changelog: 8-changelog.md
