@@ -1,5 +1,5 @@
 ---
-title: Installing Rocky Linux
+Title: Installing Rocky Linux 8.4
 ---
 
 # Installing Rocky Linux
