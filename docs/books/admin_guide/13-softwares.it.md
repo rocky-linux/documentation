@@ -1,5 +1,8 @@
 ---
 title: Gestione del software
+author: Antoine Le Morvan
+contributors: Steven Spencer, Franco Colussi
+update: 11-15-2021
 ---
 
 # Gestione del software

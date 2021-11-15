@@ -1,5 +1,8 @@
 ---
 title: Implementazione della Rete
+author: Antoine Le Morvan
+contributors: Steven Spencer, Franco Colussi
+update: 11-15-2021
 ---
 
 # Implementazione della Rete
