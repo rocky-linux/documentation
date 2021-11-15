@@ -129,7 +129,6 @@ podman build -t mybuild/cent7ganglia /root/dockertest/cent7ganglia/
    systemctl restart container-ganglia
    systemctl restart httpd
    ```
-4. check 
 
 ## Install gmond in nodes to collect nodes status information
 
