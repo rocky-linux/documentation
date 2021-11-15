@@ -28,7 +28,7 @@ In questo capitolo impareremo a conoscere le distribuzioni GNU/Linux.
 
 Linux, UNIX, BSD, Windows e MacOS sono tutti **sistemi operativi**.
 
-!!! astratto  
+!!! abstract "astratto"  
     Un sistema operativo è un **insieme di programmi che gestisce le risorse disponibili di un computer**.
 
 Nella gestione di queste risorse, il sistema operativo deve:
@@ -39,7 +39,7 @@ Nella gestione di queste risorse, il sistema operativo deve:
 * Intercettare **l'accesso alle periferiche**.
   Raramente al software è consentito accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze molto specifiche).
 * Fornire alle applicazioni una corretta **gestione delle attività**.
-  Il sistema operativo è responsabile della pianificazione dei processi per occupare il processore.
+  Il sistema operativo è responsabile della pianificazione dei processi che occupano il processore.
 * **Protezione dei file** da accessi non autorizzati.
 * **Raccolta di informazioni** sui programmi in uso o in esecuzione.
 
@@ -81,7 +81,7 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 TODO: graphics with market share for servers and pc.
 -->
 
-Linux non è ancora molto conosciuto dal grande pubblico, anche se lo usano regolarmente. Linux infatti è nascosto in **smartphone**, **televisori**, **internet box**, ecc. Quasi il **70% delle pagine web** servite nel mondo sono servite da un server Linux o UNIX!
+Linux non è ancora molto conosciuto dal grande pubblico, anche se lo usa regolarmente. Linux infatti è nascosto in **smartphone**, **televisori**, **internet box**, ecc. Quasi il **70% delle pagine web** servite nel mondo sono servite da un server Linux o UNIX!
 
 Linux equipaggia poco più del **3% dei personal computer** ma più dell'**82% degli smartphone**. **Android** è un sistema operativo il cui kernel è Linux.
 
@@ -130,7 +130,7 @@ Linux è scritto in un linguaggio di alto livello che può essere adattato a div
 * elementi di rete attivi (router, switch)
 * elettrodomestici (TV, frigoriferi,...).
 
-#### Open
+#### Aperto
 
 Linux è basato su standard riconosciuti [posix](http://fr.wikipedia.org/wiki/POSIX), TCP/IP, NFS, Samba ... che consentono di condividere dati e servizi con altri sistemi operativi.
 
@@ -149,7 +149,7 @@ Una distribuzione Linux è un **insieme coerente di software** assemblato attorn
 
 Ogni distribuzione offre uno o più **ambienti desktop**, fornisce un set di software preinstallato e una libreria di software aggiuntivo. Le opzioni di configurazione (opzioni del kernel o servizi ad esempio) sono specifiche per ciascuno.
 
-Questo principio ti consente di consente di avere distribuzioni per **principianti** (Ubuntu, Linux Mint...), distribuzioni con un approccio più complesso (Gentoo, Arch), o essere focalizzate di più verso **servers** (Debian, Redhat), o **workstations**.
+Questo principio ti consente di avere distribuzioni per **principianti** (Ubuntu, Linux Mint...), distribuzioni con un approccio più complesso (Gentoo, Arch), o essere focalizzate di più verso **servers** (Debian, Redhat), o **workstations**.
 
 ### Ambienti desktop
 
