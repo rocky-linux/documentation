@@ -31,7 +31,7 @@ In questo capitolo imparerai come lavorare con Linux e con i comandi.
 I sistemi Linux attuali hanno utilità grafiche dedicate al lavoro di un amministratore. Tuttavia, è importante essere in grado di utilizzare l'interfaccia in modalità riga di comando per diversi motivi:
 
 * La maggior parte dei comandi di sistema sono comuni a tutte le distribuzioni Linux, questo non è il caso degli strumenti grafici.
-* Può accadere che il sistema non si avvia correttamente ma che un interprete di comando di backup rimane accessibile.
+* Può accadere che il sistema non si avvii correttamente ma che un interprete di comando di backup rimanga accessibile.
 * L'amministrazione remota viene eseguita dalla riga di comando con un terminale SSH.
 * Per preservare le risorse del server, l'interfaccia grafica è installata o lanciata su richiesta.
 * L'amministrazione è eseguita da scripts.
@@ -59,7 +59,7 @@ Tra gli interpreti di comando esistenti, la **Bourne-Again Shell** (`/bin/bash`)
 
 La directory di accesso dell'utente è per convenzione memorizzata nella directory `/home` della workstation. Conterrà i dati personali dell'utente e i file di configurazione delle sue applicazioni. Per impostazione predefinita, al login, la directory di accesso è selezionata come directory corrente.
 
-Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Linux può essere multiutente, è possibile connettere diversi utenti più volte, in differenti **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili all'interno di un ambiente grafico. Un utente passa da un terminale fisico a un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> dalla riga di comando o utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
+Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Linux può essere multiutente, è possibile connettere diversi utenti più volte, in differenti **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili all'interno di un ambiente grafico. Un utente passa da un terminale fisico ad un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> dalla riga di comando o utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd> in modalità grafica.
 
 ### La shell
 
@@ -73,7 +73,7 @@ Una volta che l'utente è collegato a una console, la shell visualizza il **prom
 * visualizza il prompt dei comandi;
 * etc.
 
-La sequenza chiave <kbd>CTRL</kbd> + <kbd>C</kbd> è usato per interrompere un comando in esecuzione.
+La sequenza chiave <kbd>CTRL</kbd> + <kbd>C</kbd> è usata per interrompere un comando in esecuzione.
 
 L'uso di un comando segue generalmente questa sequenza:
 
@@ -273,7 +273,7 @@ Il comando `clear` cancella il contenuto della schermata del terminale. Infatti,
 
 In un terminale, il display sarà permanentemente nascosto, mentre nell'interfaccia grafica, una barra di scorrimento ti permetterà sempre di scorrere la cronologia del terminale virtuale.
 
-!!! tip
+!!! Tip "Suggerimento"
     <kbd>CTRL</kbd> + <kbd>L</kbd> avrà lo stesso effetto del comando `clear`
 
 ### comando `echo`
@@ -315,7 +315,7 @@ $ date -d 20210517 +%j
 
 In questo ultimo esempio, l'opzione `d` visualizza una data fornita. L'opzione `+%J` formatta questa data per mostrare solo il giorno dell'anno.
 
-!!! Avvertimento
+!!! Warning "Avvertimento"
     Il formato di una data può cambiare in base al valore della lingua definita nella variabile di ambiente `$LANG`.
 
 Il display della data può seguire i seguenti formati:
@@ -339,7 +339,7 @@ Il display della data può seguire i seguenti formati:
 | `+%V`   | Numero della settimana (`+%V`)           |
 | `+%x`   | Data in formato`DD/MM/YYYY`              |
 
-Il comando `date` consente anche di modificare la data e l'ora del sistema.In questo caso, verrà utilizzata l'opzione `-s`.
+Il comando `date` consente anche di modificare la data e l'ora del sistema. In questo caso, verrà utilizzata l'opzione `-s`.
 
 ```bash
 [root]# date -s "2021-05-24 10:19"
@@ -389,7 +389,7 @@ La **directory di connessione** è la directory di lavoro associata all'utente. 
 
 Quando l'utente accede, la directory corrente è la directory di accesso.
 
-Un **percorso assoluto** fa riferimento ad un file dalla radice attraversando l'intero albero fino al livello di file:
+Un **percorso assoluto** fa riferimento ad un file dalla radice attraversando l'intero albero fino al livello del file:
 
 * `/home/groupA/alice/file`
 
@@ -500,7 +500,7 @@ $ ls -lia /home
 | `25 oct. 08:10` | Ultima data di modifica.                                                          |
 | `rockstar`      | Il nome del file (o directory).                                                   |
 
-!!! Nota
+!!! Note "Nota"
     Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni.
 
 Questo è il caso dell'alias `ll`:
@@ -607,7 +607,7 @@ $ mkdir /home/rockstar/work
 La directory "rockstar" deve esistere per creare la directory "work".
 Altrimenti, dovrebbe essere utilizzata l'opzione `-p`. L'opzione `-p` crea le directory genitore se queste non esistono.
 
-!!! Pericolo
+!!! Danger "Pericolo"
     Non è consigliato utilizzare i nomi dei comandi Linux come directory o nomi di file.
 
 ### comando `touch`
@@ -630,7 +630,7 @@ $ touch /home/rockstar/myfile
 
 Formato data: `[AAAA]MMJJhhmm[ss]`
 
-!!! Consiglio
+!!! Tip "Suggerimento"
     Il comando `touch` viene utilizzato principalmente per creare un file vuoto, ma può essere utile per i backup incrementali o differenziali per esempio. Davvero, l'unico effetto di eseguire un `touch` su un file sarà quello di costringerlo a essere salvato durante il backup successivo.
 
 ### comando `rmdir`
@@ -647,7 +647,7 @@ $ rmdir /home/rockstar/work
 | ------- | --------------------------------------------------------------------- |
 | `-p`    | Rimuove la directory o le directory principale fornite se sono vuote. |
 
-!!! Consiglio
+!!! Tip "Suggerimento"
     Per eliminare sia una directory non vuota che il suo contenuto, utilizzare il comando `rm`.
 
 ### comando`rm`
@@ -658,7 +658,7 @@ Il comando `rm` elimina un file o una directory.
 rm [-f] [-r] file [file] [...]
 ```
 
-!!! Pericolo
+!!! Danger "Pericolo"
     Qualsiasi cancellazione di un file o directory è definitiva.
 
 | Opzioni | Informazione                               |
@@ -667,7 +667,7 @@ rm [-f] [-r] file [file] [...]
 | `-i`    | Richiede conferma di cancellazione.        |
 | `-r`    | Elimina ricorsivamente le sottodirectory.. |
 
-!!! Nota
+!!! Note "Nota"
     Il comando `rm` non chiede la conferma durante l'eliminazione dei file. Tuttavia, con una distribuzione RedHat/Rocky, `rm` chiede la conferma della cancellazione in quanto il comando `rm` è un` alias` di `rm -i`. Non sorprenderti se su un'altra distribuzione, come Debian, ad esempio, non ottieni una richiesta di conferma.
 
 L'eliminazione di una cartella con il comando `rm`, che la cartella sia vuota o meno, richiederà l'aggiunta dell'opzione `-r`.
@@ -836,7 +836,7 @@ I comandi specifici per `less` sono:
 
 | Command           | Action                                                |
 | ----------------- | ----------------------------------------------------- |
-| `h`               | Help.                                                 |
+| `h`               | Aiuto.                                                 |
 | `Arrows`          | Sposta su, giù di una linea, o a destra e sinistra.   |
 | `Enter`           | Sposta giù di una riga.                               |
 | `Space`           | Sposta giù di una pagina.                             |
@@ -1097,7 +1097,7 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 
 Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso `*.txt` e li elimina.
 
-!!! Suggerimento "Comprendere l'opzione `-exec`"
+!!! Tip "Comprendere l'opzione `-exec`"
     Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
 
 Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.txt`, il comando `find` costruirà la stringa sostituendo nella stringa `rm -f {} \;` le parentesi graffe con uno dei risultati della ricerca, e farà questo tutte le volte che ci sono dei risultati.
@@ -1108,9 +1108,9 @@ Questo ci darà :
 rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
 ```
 
-IL carattere `;` è un carattere speciale di shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
+Il carattere `;` è un carattere speciale di shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
 
-!!! Consiglio
+!!! Tip "Suggerimento"
     `$ find /tmp -name *.txt -delete` fa la stessa cosa.
 
 ### comando `whereis`
@@ -1164,7 +1164,7 @@ Il comando `grep` restituisce la linea completa contenente la stringa che stai c
 $ grep -w "^root" /etc/passwd
 ```
 
-!!! Nota
+!!! Note "Nota"
     Questo comando è molto potente ed è altamente raccomandata la consultazione del manuale. Ha molti utilizzi derivati.
 
 È possibile cercare una stringa in un albero di file con l'opzione `-R`.
@@ -1205,10 +1205,10 @@ $ find /home -name "test[123]*"
 /home/rockstar/test362
 ```
 
-!!! Nota
+!!! Note "Nota"
     Delimita sempre le parole contenenti meta-caratteri con `"` per evitare che vengano sostituiti dai nomi dei file che soddisfano i criteri.
 
-!!! Avvertimento
+!!! Warning "Avvertimento"
     Non confondere i meta-caratteri della shell con i meta-caratteri dell'espressione regolare. Il comando `grep` usa i meta-caratteri dell'espressione regolare.
 
 ## Reindirizzamenti e pipes
@@ -1238,7 +1238,7 @@ Questi flussi puntano ai file delle periferiche, ma poiché tutto è un file in 
 $ ftp -in serverftp << ftp-commands.txt
 ```
 
-!!! Nota
+!!! Note "Nota"
     Solo i comandi che richiedono l'input della tastiera saranno in grado di gestire il reindirizzamento dell'ingresso.
 
 Il reindirizzamento dell'ingresso può anche essere utilizzato per simulare l'interattività dell'utente. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
@@ -1265,7 +1265,7 @@ STOP
 
 La shell esce dal comando `ftp` quando riceve una linea contenente solo la parola chiave.
 
-!!! Avvertimento
+!!! Warning "Avvertimento"
     La parola chiave finale, quì `END` o `STOP`, deve essere l'unica parola sulla linea e deve essere all'inizio della linea.
 
 Il reindirizzamento dell'ingresso standard viene usato raramente perché la maggior parte dei comandi accetta un nome di file come argomento.
@@ -1419,12 +1419,11 @@ Per un uso permanente, devono essere creati nel:
 * `.bashrc` file nella directory di accesso dell'utente;
 * `/etc/profile.d/alias.sh` file per tutti gli utenti.
 
-!!! Avvertimento
-    Prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore :
-
-```bash
-alias cd='rm -Rf'
-```
+!!! Warning "Avvertimento"
+    Prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
+    ```bash
+    alias cd='rm -Rf'
+    ```
 
 Il comando `unalias` ti consente di eliminare gli alias.
 
