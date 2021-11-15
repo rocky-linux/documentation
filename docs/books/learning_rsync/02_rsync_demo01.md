@@ -15,7 +15,7 @@ update: 2021-11-04
 Before the specific demonstration of rsync synchronization, you need to use the `rsync` command. In Rocky Linux 8, the rsync rpm package is installed by default, and the version is 3.1.3-12, as follows:
 
 ```bash
-[root@Rocky ~ ] # rpm -qa|grep rsync
+[root@Rocky ~]# rpm -qa|grep rsync
 rsync-3.1.3-12.el8.x86_64
 ```
 
@@ -72,14 +72,14 @@ Fedora34-->|pull/download|RockyLinux8;
 Since it is based on the SSH protocol, we first create a user in the server:
 
 ```bash
-[root@Rocky ~ ] # useradd testrsync
-[root@Rocky ~ ] # passwd testrsync
+[root@Rocky ~]# useradd testrsync
+[root@Rocky ~]# passwd testrsync
 ```
 
 On the client side, we pull/download it, and the file on the server is /rsync/aabbcc
 
 ```bash
-[root@fedora ~ ] # rsync -avz testrsync@192.168.100.4:/rsync/aabbcc /root
+[root@fedora ~]# rsync -avz testrsync@192.168.100.4:/rsync/aabbcc /root
 testrsync@192.168.100.4 ' s password:
 receiving incremental file list
 aabbcc
@@ -92,7 +92,7 @@ aabbcc
 The transfer was successful.
 
 !!! tip "Attention"
-    If the server's SSH port is not the default 22, you can specify the port in a similar way-`rsync -avz -e ' ssh -p [port] ' `.
+    If the server's SSH port is not the default 22, you can specify the port in a similar way---`rsync -avz -e 'ssh -p [port]' `.
 
 ### push/upload
 
@@ -110,7 +110,8 @@ total size is 883 speedup is 0.91
 rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1330) [sender = 3.2.3]
 ```
 
-**Prompt permission denied, how to deal with it? **
+**Prompt permission denied, how to deal with it?**
+
 First check the permissions of the /rsync/ directory. Obviously, there is no permission. We can use `setfacl` to give permission:
 
 ```bash
