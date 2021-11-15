@@ -9,6 +9,7 @@ update: 2021-11-04
 在vsftpd中，有虚拟用户（管理员自定义的模拟用户），原因在于使用匿名用户和本地用户都不太安全。我们知道基于SSH协议的服务器必须要保证有一个系统的用户，当有许多的同步需求时，就可能需要创建许多的用户，这显然不符合GNU/Linux的运维标准（用户数越多，服务器越不安全），在rsync中，为了安全性考虑，就有了rsync协议验证登录方式。
 
 **具体如何操作？**
+
 在配置文件中写入对应的参数以及值就可以了。在Rocky Linux 8中，需要手动创建 <font color=red>/etc/rsyncd.conf</font> 这个文件。
 
 ```bash
@@ -28,7 +29,7 @@ update: 2021-11-04
 | comment = rsync | 备注或者描述信息 |
 | path = /rsync/ | 所在的系统路径位置 |
 | read only = yes| yes表示只读，no表示可读可写 |
-| dont compress = *.gz *.gz2 *.zip | 哪些文件类型不对它进行压缩 |
+| dont compress = \*.gz \*.gz2 \*.zip | 哪些文件类型不对它进行压缩 |
 | auth users = li| 启用虚拟用户，定义个虚拟用户叫什么。需要自行创建|
 | secrets file = /etc/rsyncd_users.db | 用来指定虚拟用户的密码文件位置，必须以.db结尾。文件的内容格式是"用户名:密码"，一行一个 |
 

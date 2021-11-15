@@ -23,7 +23,7 @@ What are the backup methods?
 
 ##  rsync in brief
 
-On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. But you shouldn't "put all of your eggs in the same basket." Once the hardware fails and cannot start normally, the data still cannot be retrieved." In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
+On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. But you shouldn't "put all of your eggs in the same basket." Once the hardware fails and cannot start normally, the data still cannot be retrieved. In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
 
 Some people will say, can't I just use the `tar` or `cp` command on the first server and send it to the second server via `scp` or `sftp`?
 
