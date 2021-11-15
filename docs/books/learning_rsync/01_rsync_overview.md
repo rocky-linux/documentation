@@ -23,9 +23,9 @@ What are the backup methods?
 
 ##  rsync in brief
 
-On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. But in fact, it is still "Don't put the eggs in the same basket." Once the hardware fails and cannot boot and start normally, the data still cannot be retrieved. In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
+On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. But you shouldn't "put all of your eggs in the same basket." Once the hardware fails and cannot start normally, the data still cannot be retrieved." In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
 
-Some people will say, I use the `tar` or `cp` command on the first server, and then transfer it to the second server via `scp` or `sftp`.
+Some people will say, can't I just use the `tar` or `cp` command on the first server and send it to the second server via `scp` or `sftp`?
 
 In a production environment, the amount of data is relatively large. First of all, `tar` or `cp` consumes a lot of time and occupies system performance. Transmission via `scp` or `sftp` also occupies a lot of network bandwidth, which is not allowed in the actual production environment. Secondly, these commands or tools need to be manually entered by the administrator and need to be combined with the crontab of the scheduled task. However, the time set by crontab is not easy to grasp, and the set time is too short. For example, if it is executed once every 1 minute, it may happen that the first script is not executed, and the second script is executed again; the set time has passed For example, if it is executed once every 5 hours, there may be data loss because the data is not backed up in time.
 
@@ -48,10 +48,13 @@ The original `rsync` was maintained by the Australian programmer <font color=red
     **rsync itself is only an incremental backup tool and does not have the function of real-time data synchronization. It needs to be supplemented with another program. In addition to this, synchronization is one-way, and if you want two-way backup, you need to use another tool to achieve it. **
 
 ###  Basic Principles and Features
+
 How does `rsync` achieve efficient one-way data synchronization backup?
-The core of `rsync` is its **Checksum algorithm** . If you are interested, you can go to [ Rsync Working Principle ](https://rsync.samba.org/how-rsync-works.html) and [ rsync Algorithm ](https ://rsync.samba.org/tech_report/) I understand that this part is beyond the scope of the author's ability, so I won't give too much explanation.
+
+The core of `rsync` is its **Checksum algorithm**. If you are interested, you can go to [How Rsync works](https://rsync.samba.org/how-rsync-works.html) and [The rsync algorithm](https://rsync.samba.org/tech_report/) for more information, This section is beyond the author's competence and will not be covered too much.
 
 The characteristics of `rsync` are:
+
 * The entire directory can be updated recursively;
 * Can selectively retain file synchronization attributes, such as hard link, soft link, owner, group, corresponding permissions, modification time, etc., and can retain some of the attributes;
 * Support two protocols for transmission, one is ssh protocol, the other is rsync protocol

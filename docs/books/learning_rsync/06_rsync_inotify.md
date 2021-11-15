@@ -28,12 +28,12 @@ Append the environment variable PATH, write it to the configuration file and let
 [root@Rocky ~]# vim /etc/profile
 ...
 PATH=$PATH:/usr/local/inotify-tools/bin/
-[root@Rocky ~]#. /etc/profile
+[root@Rocky ~]# . /etc/profile
 ```
 
-**Why not use the inotify-tools RPM package of the EPEL repository? And the way to use source code to compile and install? **
+**Why not use the inotify-tools RPM package of the EPEL repository? And the way to use source code to compile and install?**
 
-The author personally believes that remote data transmission is related to efficiency issues, especially in the production environment, when the number of files to be synchronized is large and the single file is particularly large, this is particularly important. In addition, the new version will have some bug fixes and function expansions, and perhaps the transmission efficiency of the new version will be higher, so I recommend installing inotify-tools by source code. Of course, this is the author's personal suggestion, not every user must follow.
+The author personally believes that remote data transmission is a matter of efficiency, especially in a production environment, where there are a large number of files to be synchronized and a single file is particularly large. In addition, the new version will have some bug fixes and function expansions, and perhaps the transmission efficiency of the new version will be higher, so I recommend installing inotify-tools by source code. Of course, this is the author's personal suggestion, not every user must follow.
 
 ## Kernel parameter adjustment
 
@@ -46,6 +46,7 @@ You can adjust the kernel parameters according to the needs of the production en
 128
 28014
 ```
+
 * max_queued_events-maximum monitor queue size, default 16384
 * max_user_instances-the maximum number of monitoring instances, the default is 128
 * max_user_watches-the maximum number of files monitored per instance, the default is 8192
@@ -101,6 +102,7 @@ Type the command in the first terminal pts/0, and the window is locked after pre
 
 ```bash
 [root@Rocky ~]# inotifywait -mrq -e create,delete /rsync/
+
 ```
 
 In the second terminal pts/1, go to the /rsync/ directory and create a file.
@@ -141,7 +143,7 @@ $a | while read directory event file
 
 !!! tip "emphasize again!"
     When using the SSH protocol for data synchronization transmission, if the SSH service port of the target machine is not 22, you can use a method similar to this——
-    `b="/usr/bin/rsync -avz -e'ssh -p [port-number]' /rsync/* testfedora@192.168.100.5:/home/testfedora/"`
+    `b="/usr/bin/rsync -avz -e 'ssh -p [port-number]' /rsync/* testfedora@192.168.100.5:/home/testfedora/"`
 
 !!! tip "Attention!"
     If you want to start this script at boot
