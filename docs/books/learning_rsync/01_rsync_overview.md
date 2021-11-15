@@ -23,7 +23,7 @@ What are the backup methods?
 
 ##  rsync in brief
 
-On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. But in fact, it is still "Put the eggs in the same basket." Once the hardware fails and cannot boot and start normally, the data still cannot be retrieved. In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
+On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. But you shouldn't "put all of your eggs in the same basket." Once the hardware fails and cannot start normally, the data still cannot be retrieved." In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
 
 Some people will say, can't I just use the `tar` or `cp` command on the first server and send it to the second server via `scp` or `sftp`?
 
@@ -51,7 +51,7 @@ The original `rsync` was maintained by the Australian programmer <font color=red
 
 How does `rsync` achieve efficient one-way data synchronization backup?
 
-The core of `rsync` is its **Checksum algorithm** . If you are interested,you can go to [How Rsync works](https://rsync.samba.org/how-rsync-works.html) and [The rsync algorithm](https://rsync.samba.org/tech_report/) for more information, This section is beyond the author's competence and will not be covered too much.
+The core of `rsync` is its **Checksum algorithm**. If you are interested, you can go to [How Rsync works](https://rsync.samba.org/how-rsync-works.html) and [The rsync algorithm](https://rsync.samba.org/tech_report/) for more information, This section is beyond the author's competence and will not be covered too much.
 
 The characteristics of `rsync` are:
 
