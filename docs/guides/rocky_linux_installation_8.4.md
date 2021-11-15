@@ -1,11 +1,17 @@
 ---
-Title: Installing Rocky Linux
+Title: Installing Rocky Linux 8.4
 ---
 
-# Installing Rocky Linux
+# Installing Rocky Linux 8.4
 
-This guide walks through the detailed steps to install a 64-bit version of the Rocky Linux distribution on a stand-alone system.  We will be performing a server class install using an operating system installer image downloaded from the Rocky Linux project website. We will step through the installation and customization steps in the following sections.
+This guide walks through the detailed steps to install a 64-bit version of the Rocky Linux distribution on a stand-alone system.
 
+****
+In this guide we will be performing a server class install using an operating system installer image downloaded from the Rocky Linux project website. We will step through the installation and customization steps in the following sections.
+****
+
+!!! Note
+    Wherever there is a command which is run from the command prompt it will be assumed that you are logged in as a standard user (not the superuser). The command to type will not show the command prompt which could be different depending on the system and operating system you are using.
 
 ## OS Installation Prerequisites
 
@@ -20,7 +26,7 @@ https://www.rockylinux.org/download/
 To download the ISO directly from the command line use the `wget` command:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-8.5-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-minimal.iso
 ```
 
 Rocky Linux ISOs are named following this convention:
@@ -29,31 +35,31 @@ Rocky Linux ISOs are named following this convention:
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-For example, `Rocky-8.5-x86_64-minimal.iso`
+For example, `Rocky-8.4-x86_64-minimal.iso`
 
 !!! Note
     Rocky project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found [here](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
 ## Verifying the Installer ISO File
 
-If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-8.5-x86_64-minimal.iso` file by checking its checksum.
+If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-8.4-x86_64-minimal.iso` file by checking its checksum.
 
 First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky Linux ISO download the checksum file for the ISO, type:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/CHECKSUM
+wget https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/CHECKSUM
 ```
 
 Use the `sha256sum` utility to verify the integrity of the ISO file against corruption and/or tampering.
 
 ```
-sha256sum -c CHECKSUM --ignore-missing  Rocky-8.5-x86_64-minimal.iso
+sha256sum -c CHECKSUM --ignore-missing  Rocky-8.4-x86_64-minimal.iso
 ```
 
 The output should show:
 
 ```
-Rocky-8.5-x86_64-minimal.iso: OK
+Rocky-8.4-x86_64-minimal.iso: OK
 ```
 
 ## The Installation
@@ -67,7 +73,7 @@ Insert and boot from the installation medium (optical disk, USB flash drive, and
 
 Once the computer has booted you will be presented with the Rocky Linux 8 welcome splash screen.
 
-![Rocky Linux installation splash screen](images/installation_8.5_F01.png)
+![Rocky Linux installation splash screen](images/installation-F01.png)
 
 If you do not press any key the installer will begin a countdown, after which the installation process will automatically execute the default, highlighted, option:
 
@@ -79,7 +85,7 @@ A quick media verification step will take place. This media verification step ca
 
 After the media check runs to completion and the media is successfully verified to be usable, the installer will automatically continue to the next screen.
 
-Select the language you want to use to perform the installation in this screen. For this guide, we select _English (United States)_. Then click the <kbd>Continue</kbd> button.
+Select the language you want to use to perform the installation in this screen. For this example, we select _English (United States)_. Then click the <kbd>Continue</kbd> button.
 
 ## Installation Summary
 
@@ -125,9 +131,6 @@ Under the _Software_ section of the _Installation Summary_ screen, you can selec
 
 Since we are performing our installation using a full Rocky 8 image, you will notice that _Local Media_ is automatically specified under the Installation Source section of the main _Installation Summary_ screen. We'll accept the preset defaults.
 
-!!! Tip
-    The installation Source area is where you can opt to perform a network based installation. For a network based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet.  To perform a network based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`.   Click `Done`.
-
 #### Software Selection
 
 Clicking the <kbd>Software Selection</kbd> option on the main _Installation Summary_ screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into :
@@ -172,7 +175,7 @@ Clicking the <kbd>Network & Hostname</kbd> button in the main _Installation Summ
 The next important configuration task is related to the network interfaces on the system. First, verify that an Ethernet card (or any network card) is listed in the left pane. Click any of the detected network devices in the left pane to select it. The configurable properties of the selected network adapter will appear in the right pane of the screen.
 
 !!! Note
-    On our sample system, we have two Ethernet devices (`ens3` and `ens4`), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our sample system.
+    On our sample server, we have four Ethernet devices (`ens3`, `ens4`, `ens5` and `ens6`), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our sample system.
 
 Make sure the switch of the device you want to configure is flipped to the `ON` position in the right pane.
 We'll accept all the defaults in this section.
@@ -250,7 +253,7 @@ Finally, complete the entire procedure by clicking the <kbd>Reboot System</kbd> 
 
 The system is now set up and ready for use. You will see the Rocky Linux console.
 
-![Rocky Linux Welcome Screen](images/installation_8.5_F02.png)
+![Rocky Linux Welcome Screen](images/installation-F04.png)
 
 To log onto the system, type `rockstar` at the login prompt and press <kbd>enter</kbd>.
 
