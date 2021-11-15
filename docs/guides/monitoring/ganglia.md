@@ -129,7 +129,7 @@ podman build -t mybuild/cent7ganglia /root/dockertest/cent7ganglia/
    systemctl restart container-ganglia
    systemctl restart httpd
    ```
-
+4. check 
 
 ## Install gmond in nodes to collect nodes status information
 
@@ -169,4 +169,5 @@ podman build -t mybuild/cent7ganglia /root/dockertest/cent7ganglia/
    ```
 
 ##### You can monitor the nodes through http://ganglia.your.servername.com now.
+   Or just http://<YOUR_IP>:1380/ganglia/, (do not through reverse proxy), such as http://192.168.1.100:1380/ganglia/
 
