@@ -10,7 +10,7 @@ update: 2021-11-06
 
 ## 环境准备
 
-* Rocky Linix 8 与 Fedora 34 都需要源代码编译安装 **inotify-tools** ，这里不具体展开。
+* Rocky Linux 8 与 Fedora 34 都需要源代码编译安装 **inotify-tools** ，这里不具体展开。
 * 两台机器都必须免密登录验证，这里我们使用的是SSH协议进行
 * [ocaml](https://github.com/ocaml/ocaml/) 使用v4.12.0，[unison](https://github.com/bcpierce00/unison/) 使用v2.51.4。
   
@@ -59,7 +59,7 @@ bin  lib  man
 ...
 [root@Rocky /usr/local/src/unison-2.51.4]# ls src/unison
 src/unison
-[root@Rocky /usr/local/src/unison-2.51.4] cp -p src/unison /usr/local/bin
+[root@Rocky /usr/local/src/unison-2.51.4]# cp -p src/unison /usr/local/bin
 ```
 
 ## Fedora 34 安装unison
@@ -86,7 +86,7 @@ bin  lib  man
 ...
 [root@fedora /usr/local/src/unison-2.51.4]# ls src/unison
 src/unison
-[root@fedora /usr/local/src/unison-2.51.4] cp -p src/unison /usr/local/bin
+[root@fedora /usr/local/src/unison-2.51.4]# cp -p src/unison /usr/local/bin
 ```
 
 
@@ -97,9 +97,9 @@ src/unison
 ### 配置Rcoky Linux 8
 
 ```bash
-[root@Rocky ~] mkdir /dir1 
-[root@Rocky ~] setfacl -m u:testrsync:rwx /dir1/
-[root@Rocky ~] vim /root/unison1.sh
+[root@Rocky ~]# mkdir /dir1 
+[root@Rocky ~]# setfacl -m u:testrsync:rwx /dir1/
+[root@Rocky ~]# vim /root/unison1.sh
 #!/bin/bash
 a="/usr/local/inotify-tools/bin/inotifywait -mrq -e create,delete,modify,move /dir1/"
 b="/usr/local/bin/unison -batch /dir1/ ssh://testrsync@192.168.100.5//dir2"
@@ -115,9 +115,9 @@ done
 ### 配置Fedora 34
 
 ```bash
-[root@fedora ~] mkdir /dir2
-[root@fedora ~] setfacl -m u:testrsync:rwx /dir2/
-[root@fedora ~] vim /root/unison2.sh
+[root@fedora ~]# mkdir /dir2
+[root@fedora ~]# setfacl -m u:testrsync:rwx /dir2/
+[root@fedora ~]# vim /root/unison2.sh
 #!/bin/bash
 a="/usr/local/inotify-tools/bin/inotifywait -mrq -e create,delete,modify,move /dir2/"
 b="/usr/local/bin/unison -batch /dir2/ ssh://testrsync@192.168.100.4//dir1"
