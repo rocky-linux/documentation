@@ -19,7 +19,7 @@ This guide walks through the detailed steps to install Ganglia packages in Rocky
 ##### Downlaod this Dockerfile into your system
 
 ```
-Wget https://raw.githubusercontent.com/berlin2123/ganglia-web-docker/main/ganglia-web-centos7/Dockerfile
+wget https://raw.githubusercontent.com/berlin2123/ganglia-web-docker/main/ganglia-web-centos7/Dockerfile
 ```
 
 ##### Manually build this container:
@@ -41,7 +41,7 @@ podman build -t mybuild/cent7ganglia /root/dockertest/cent7ganglia/
 1. In order to ensure the normal operation of init (systemd) inside container, the host machine needs to open the permission. (When SELinux is enabled)
 
    ```
-   setsebool -P containermanagecgroup true
+   setsebool -P container_manage_cgroup true
    ```
 2. Run the container
 
@@ -54,14 +54,14 @@ podman build -t mybuild/cent7ganglia /root/dockertest/cent7ganglia/
    You can check the runing state by 
 
    ```
-   docker logs --since 10m ganglia
+   podman logs --since 10m ganglia
    ```
    
 3. Modify the internal configuration of the container
 
    ```
    # enter the container
-   docker exec -u root -it ganglia /bin/bash
+   podman exec -u root -it ganglia /bin/bash
    # set time zone, to use your time zone, such as,
    timedatectl  set-timezone Asia/Shanghai
    
@@ -70,6 +70,7 @@ podman build -t mybuild/cent7ganglia /root/dockertest/cent7ganglia/
    data_source "my cluster" localhost 
    # to
    data_source "cluster" 10.88.0.1:8649
+   # you can use other cluster_name
    
    # After the modification is completed, exit from the container
    exit
