@@ -44,35 +44,33 @@ Il numero _PID_ rappresenta il processo al momento dell'esecuzione. Quando il pr
 
 <!-- TODO ![Parent/child relationship between processes](images/FON-050-001.png) -->
 
-!!! Nota  
+!!! Note "Nota"
     I processi non devono essere confusi con i _threads_. Ogni processo ha il proprio contesto di memoria (risorse e spazio di indirizzamento), mentre il _threads_ dello stesso processo condivide lo stesso contesto.
 
 ## Visualizzazione dei processi
 
 Il comando `ps` visualizza lo stato dei processi in esecuzione.
 
-```
+```bash
 ps [-e] [-f] [-u login]
 ```
 
 Esempio:
 
-```
+```bash
 # ps -fu root
 ```
 
-
 | Opzione    | Descrizione                        |
-| ------------ | ------------------------------------ |
+| ---------- | ---------------------------------- |
 | `-e`       | Visualizza tutti i processi.       |
 | `-f`       | Visualizza ulteriori informazioni. |
 | `-u` login | Visualizza i processi dell'utente. |
 
 Alcune opzioni aggiuntive:
 
-
 | Opzione               | Descrizione                                             |
-| ----------------------- | --------------------------------------------------------- |
+| --------------------- | ------------------------------------------------------- |
 | `-g`                  | Visualizza i processi nel gruppo.                       |
 | `-t tty`              | Visualizza i processi in esecuzione dal terminale.      |
 | `-p PID`              | Visualizza le informazioni del processo.                |
@@ -86,19 +84,18 @@ Senza un'opzione specificata, il comando `ps` visualizza solo i processi in esec
 
 Il risultato viene visualizzato in colonne:
 
-```
+```bash
 # ps -ef
 UID  PID PPID C STIME  TTY TIME      CMD
 root 1   0    0 Jan01  ?   00:00/03  /sbin/init
 ```
 
-
 | Colonna | Descrizione                           |
-| --------- | --------------------------------------- |
+| ------- | ------------------------------------- |
 | `UID`   | Utente proprietario.                  |
 | `PID`   | Identificatore di processo.           |
 | `PPID`  | Identificatore del processo genitore. |
-| `C`     | Priorità del processo.               |
+| `C`     | Priorità del processo.                |
 | `STIME` | Data e ora di esecuzione.             |
 | `TTY`   | Terminale di esecuzione.              |
 | `TIME`  | Durata di elaborazione.               |
@@ -106,7 +103,7 @@ root 1   0    0 Jan01  ?   00:00/03  /sbin/init
 
 Il comportamento del controllo può essere completamente personalizzato:
 
-```
+```bash
 # ps -e --format "%P %p %c %n" --sort ppid --headers
  PPID   PID COMMAND          NI
     0     1 systemd           0
@@ -193,19 +190,18 @@ I vincoli della modalità asincrona:
 
 Il comando `kill` invia un segnale di arresto a un processo.
 
-```
+```bash
 kill [-signal] PID
 ```
 
 Esempio:
 
-```
+```bash
 $ kill -9 1664
 ```
 
-
 | Codice | Segnale   | Descrizione                                                |
-| -------- | ----------- | ------------------------------------------------------------ |
+| ------ | --------- | ---------------------------------------------------------- |
 | `2`    | _SIGINT_  | Arresto immediato del processo                             |
 | `9`    | _SIGKILL_ | Interruzione del processo (<kbd>CTRL</kdb> + <kdb>D</kdb>) |
 | `15`   | _SIGTERM_ | Arresto pulito del processo                                |
@@ -214,10 +210,10 @@ $ kill -9 1664
 
 I segnali sono i mezzi di comunicazione tra i processi. Il comando `kill` invia un segnale a un processo.
 
-!!! Consiglio  
+!!! Tip "Suggerimento"  
     L'elenco completo dei segnali presi in considerazione dal comando `kill` è disponibile digitando il comando:
 
-```
+```bash
 $ man 7 signal
 ```
 
@@ -225,19 +221,19 @@ $ man 7 signal
 
 `nohup` consente il lancio di un processo indipendentemente da una connessione.
 
-```
+```bash
 nohup command
 ```
 
 Esempio:
 
-```
+```bash
 $ nohup myprogram.sh 0</dev/null &
 ```
 
 `nohup` ignora il segnale `SIGHUP` inviato quando un utente si disconnette.
 
-!!! Nota "Domanda"  
+!!! Note "Domanda"  
    `nohup` gestisce l'output e l'errore standard, ma non l'input standard, da qui il reindirizzamento di questo input a `/dev/null`.
 
 ### [CTRL] + [Z]
@@ -250,7 +246,7 @@ La dichiarazione `&` esegue il comando in modo asincrono (il comando viene quind
 
 Esempio:
 
-```
+```bash
 $ time ls -lR / > list.ls 2> /dev/null &
 [1] 15430
 $
@@ -262,7 +258,7 @@ Il numero _job_ è ottenuto durante l'elaborazione in background e viene visuali
 
 Il comando `fg` mette il processo in primo piano:
 
-```
+```bash
 $ time ls -lR / > list.ls 2>/dev/null &
 $ fg 1
 time ls -lR / > list.ls 2/dev/null
@@ -270,7 +266,7 @@ time ls -lR / > list.ls 2/dev/null
 
 mentre il comando `bg` lo colloca in background:
 
-```
+```bash
 [CTRL]+[Z]
 ^Z
 [1]+ Stopped
@@ -287,7 +283,7 @@ Il comando `jobs` visualizza l'elenco dei processi in esecuzione in background e
 
 Example:
 
-```
+```bash
 $ jobs
 [1]- Running    sleep 1000
 [2]+ Running    find / > arbo.txt
@@ -308,46 +304,45 @@ Le colonne rappresentano:
 
 Il comando `nice` consente l'esecuzione di un comando specificando la sua priorità.
 
-```
+```bash
 nice priority command
 ```
 
 Esempio:
 
-```
+```bash
 $ nice -n+15 find / -name "file"
 ```
 
 a differenza di `root`, un utente standard può solo ridurre la priorità di un processo. Saranno accettati solo valori tra +0 e +19.
 
-!!! Consiglio  
+!!! Tip "Suggerimento"  
     Quest'ultima limitazione può essere modificata su base utente o per gruppo modificando il file `/etc/security/limits.conf`.
 
 Il comando `renice` ti consente di modificare la priorità di un processo di esecuzione.
 
-```
+```bash
 renice priority [-g GID] [-p PID] [-u UID]
 ```
 
 Esempio:
 
-```
+```bash
 $ renice +15 -p 1664
 ```
 
-
 | Opzione | Descrizione                                 |
-| --------- | --------------------------------------------- |
+| ------- | ------------------------------------------- |
 | `-g`    | `GID` del gruppo proprietario del processo. |
 | `-p`    | `PID` del processo.                         |
 | `-u`    | `UID` del proprietario del processo.        |
 
 Il comando `renice` agisce sui processi già in esecuzione. È quindi possibile modificare la priorità di un processo specifico, ma anche di diversi processi appartenenti a un utente o un gruppo.
 
-!!! Consiglio  
+!!! Tip "Suggerimento"  
     Il comando `pidof`, accoppiato con il comando `xargs` (vedi il pagina dei comandi avanzati), consente di applicare una nuova priorità in un singolo comando:
 
-```
+```bash
 $ pidof sleep | xargs renice 20
 ```
 
@@ -355,18 +350,17 @@ $ pidof sleep | xargs renice 20
 
 Il comando `top` visualizza i processi e il loro consumo di risorse.
 
-```
+```bash
 $ top
 PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 2514 root 20 0       15    5.5 0:01.14   top
 ```
 
-
 | Colonna   | Descrizione                       |
-| ----------- | ----------------------------------- |
+| --------- | --------------------------------- |
 | `PID`     | Identificatore del processo.      |
 | `USER`    | Utente proprietario.              |
-| `PR`      | Priorità del processo.           |
+| `PR`      | Priorità del processo.            |
 | `NI`      | Valore di Nice.                   |
 | `%CPU`    | Carico del processore.            |
 | `%MEM`    | Carico di memoria.                |
@@ -381,7 +375,7 @@ Il comando `pgrep` cerca i processi in esecuzione per un nome di processo e visu
 
 Il comando `pkill` invierà il segnale specificato (per impostazione predefinita _SIGTERM_) ad ogni processo.
 
-```
+```bash
 pgrep process
 pkill [-signal] process
 ```
@@ -390,12 +384,12 @@ Esempi:
 
 * Ottenere il numero di processo di `sshd`:
 
-```
+```bash
 $ pgrep -u root sshd
 ```
 
 * Termina tutti i processi `tomcat`:
 
-```
+```bash
 $ pkill tomcat
 ```

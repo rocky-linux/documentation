@@ -44,7 +44,7 @@ Il Master Boot Record sono i primi 512 byte del disco di avvio. Il MBR trova il 
 
 I successivi 64 byte contengono la tabella delle partizioni del disco.
 
-### Il bootloader Grub2.
+### Il bootloader Grub2
 
 Il bootloader predefinito per la distribuzione Rocky 8 è **GRUB2** (GRand Unified Bootloader). GRUB2 sostituisce il vecchio. GRUB bootloader (chiamato anche GRUB legacy).
 
@@ -114,7 +114,7 @@ Per proteggere con password il bootloader GRUB2:
 
 Un file `/boot/grub2/user.cfg` sarà creato se non era già presente. Contiene la password hashed. di GRUB2.
 
-!!! Nota  
+!!! Note "Nota"
     Questo comando supporta solo le configurazioni con un singolo utente root.
 
 ```bash
@@ -152,7 +152,7 @@ Per proteggere solo la modifica delle voci del menu GRUB e l'accesso alla consol
 * rimanere compatibile con gli script di inizializzazione del vecchio SysV,
 * fornire molte funzionalità, come l'avvio parallelo dei servizi di sistema all'avvio del sistema, l'attivazione su richiesta dei demoni, il supporto per le istantanee o la gestione delle dipendenze tra i servizi.
 
-!!! Nota  
+!!! Note "Nota"
     Systemd è il sistema di inizializzazione predefinito da RedHat/CentOS 7.
 
 Systemd introduce il concetto di unità systemd.
@@ -163,7 +163,7 @@ Systemd introduce il concetto di unità systemd.
 | Unità di destinazione   | `.target`                  | Un gruppo di unità systemd                          |
 | Mount unit              | `.automount`               | Un punto di montaggio automatico per il file system |
 
-!!! Nota  
+!!! Note "Nota"
     Ci sono molti tipi di unità: Device unit, Mount unit, Path unit, Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit, Timer unit.
 
 * Systemd supporta le istantanee dello stato del sistema e il ripristino.
@@ -264,13 +264,13 @@ Ad esempio, l'unità `graphical.target`, che viene utilizzata per avviare una se
 
 Allo stesso modo, l'unità `multi-user.target` inizializza altri servizi di sistema essenziali, come **NetworkManager** (`NetworkManager.service`) o **D-Bus** (`dbus.service`) e attiva un'altra unità di destinazione denominata `basic.target`.
 
-| Unità di destinazione.      | Descrizione                                   |
-|-------------------|---------------------------------------------------------|
-| poweroff.target   | Chiude il sistema e lo spegne                           |
-| rescue.target     | Attiva una shell di salvataggio                         |
-| multi-user.target | Attiva un sistema multiutente senza interfaccia grafica |
-| graphical.target  | Attiva un sistema multiutente con interfaccia grafica   |
-| reboot.target     | Spegne e riavvia il sistema                             |
+| Unità di destinazione. | Descrizione                                             |
+|------------------------|---------------------------------------------------------|
+| poweroff.target        | Chiude il sistema e lo spegne                           |
+| rescue.target          | Attiva una shell di salvataggio                         |
+| multi-user.target      | Attiva un sistema multiutente senza interfaccia grafica |
+| graphical.target       | Attiva un sistema multiutente con interfaccia grafica   |
+| reboot.target          | Spegne e riavvia il sistema                             |
 
 #### La destinazione predefinita
 
@@ -357,14 +357,14 @@ systemctl emergency
 
 Il comando `systemctl` sostituisce alcuni dei comandi di gestione dell'alimentazione utilizzati nelle versioni precedenti:
 
-|Vecchio comando          | Nuovo comando             | Descrizione            |
-|---------------------|--------------------------|------------------------|
-| `halt`              | `systemctl halt`         |Spegne il sistema.  |
+|Vecchio comando      | Nuovo comando            | Descrizione                         |
+|---------------------|--------------------------|-------------------------------------|
+| `halt`              | `systemctl halt`         |Spegne il sistema.                   |
 | `poweroff`          | `systemctl poweroff`     |Arresta elettricamente il sistema.   |
-| `reboot`            | `systemctl reboot`       |Riavvia il sistema.    |
-| `pm-suspend`        | `systemctl suspend`      |Sospende il sistema.    |
-| `pm-hibernate`      | `systemctl hibernate`    |Iberna il sistema.  |
-| `pm-suspend-hybrid` | `systemctl hybrid-sleep` |Iberna e sospende il sistema.|
+| `reboot`            | `systemctl reboot`       |Riavvia il sistema.                  |
+| `pm-suspend`        | `systemctl suspend`      |Sospende il sistema.                 |
+| `pm-hibernate`      | `systemctl hibernate`    |Iberna il sistema.                   |
+| `pm-suspend-hybrid` | `systemctl hybrid-sleep` |Iberna e sospende il sistema.        |
 
 ### Il processo `journald`
 

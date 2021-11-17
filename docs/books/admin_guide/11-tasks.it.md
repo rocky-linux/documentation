@@ -41,7 +41,7 @@ Il servizio `cron` è usato per:
 
 `crontab` è un'abbreviazione per **cron table**, ma può essere pensato come una tabella di programmazione attività.
 
-!!! Avvertimento
+!!! Warning "Avvertimento"
     Per impostare una pianificazione, il sistema deve avere l'ora locale impostata correttamente.
 
 ## Come funziona il servizio
@@ -54,7 +54,7 @@ Per verificare il suo stato:
 [root] # systemctl status crond
 ```
 
-!!! Consiglio
+!!! Tip "Suggerimento"
     Se il demone `crond` non è in esecuzione, dovrai inizializzarlo manualmente e/o automaticamente all'avvio. Quindi, anche se sono programmati dei compiti, questi non saranno eseguiti fino all'avvio dello stesso.
 
 Inizializzazione manuale del demone `crond`:
@@ -78,7 +78,7 @@ Questa autorizzazione varia in base alle informazioni contenute nei file seguent
 * `/etc/cron.allow`
 * `/etc/cron.deny`
 
-!!! Avvertimento
+!!! Warning "Avvertimento"
     Se nessuno dei due file è presente, tutti gli utenti possono usare `cron`.
 
 ### I files `cron.allow` and `cron.deny`
@@ -89,7 +89,7 @@ Solo gli utenti contenuti in questo file sono autorizzati a utilizzare `cron`.
 
 Se esiste ed è vuoto, nessun utente può usare `cron`.
 
-!!! Avvertimento
+!!! Warning "Avvertimento"
     Se è presente `cron.allow`,`cron.deny` è **ignorato**.
 
 File `/etc/cron.deny`
@@ -109,7 +109,7 @@ Solo **user1** sarà in grado di utilizzare`cron`.
 user1
 ```
 
-### Proibire ad un utente.
+### Proibire ad un utente
 
 Solo **user2** non sarà in grado di usare `cron`.
 
@@ -149,7 +149,7 @@ Esempio:
 | `-u`    | Nome dell'utente il cui file di pianificazione deve essere manipolato |
 | `-r`    | Elimina il file di pianificazione                                     |
 
-!!! Avvertimento
+!!! Warning "Avvertimento"
     `crontab` Senza opzioni elimina il vecchio file di pianificazione e attende che l'utente inserisca nuove linee. Devi premere <kbd>ctrl</kbd> + <kbd>d</kbd> per uscire da questa modalità di modifica.
     Solo `root` può utilizzare l'opzione `-u utente` per gestire il file di pianificazione di un altro utente.
     L'esempio sopra consente a root di pianificare un'attività per l'utente1.
@@ -167,7 +167,7 @@ D'altra parte, devono essere presi in considerazione i seguenti punti:
 * Fornire reindirizzamenti (stdin, stdout, stderr);
 * Non è rilevante per eseguire comandi che utilizzano richieste di ingresso/uscita su un terminale.
 
-!!! Nota
+!!! Note "Nota"
     È importante capire che lo scopo della pianificazione è quello di eseguire automaticamente attività, senza la necessità di un intervento esterno.
 
 ## Il file  `crontab`
@@ -195,7 +195,7 @@ Il file `crontab` è strutturato in base alle seguenti regole.
 | 5     | Giorno(i) della settimana | Da 0 a 7 (0=7=Domenica)   |
 | 6     | Compito da eseguire       | Comando completo o script |
 
-!!! Avvertimento
+!!! Warning "Avvertimento"
     Le attività da eseguire devono utilizzare percorsi assoluti e, se possibile, utilizzare reindirizzamenti.
 
 Al fine di semplificare la notazione per la definizione del tempo, è consigliabile utilizzare simboli speciali.

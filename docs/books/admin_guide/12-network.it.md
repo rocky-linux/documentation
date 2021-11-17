@@ -75,7 +75,7 @@ La subnet mask è un insieme di **4 byte** destinato a isolare:
 L'**indirizzo MAC** è un identificatore fisico scritto in fabbrica sul dispositivo. Questo a volte viene definito l'indirizzo hardware. Consiste di 6 byte spesso espressi in forma esadecimale (per esempio 5E:FF:56:A2:AF:15).
 È composto da: 3 byte dell'identificatore del produttore e 3 byte del numero di serie.
 
-!!! Warning Avvertimento  
+!!! Warning "Avvertimento"
     Quest'ultima affermazione è al giorno d'oggi un po' meno vera con la virtualizzazione. Ci sono anche soluzioni software per cambiare l'indirizzo MAC.
 
 Un indirizzo Internet Protocol (**IP**) è un numero di identificazione permanente o temporaneo assegnato a ciascun dispositivo collegato a una rete di computer che utilizza l'Internet Protocol.
@@ -103,7 +103,7 @@ Affinché un computer faccia parte di un dominio DNS, è necessario fornire un s
 
 ### Promemoria del modello OSI
 
-!!! Note " Aiuto alla memoria "  
+!!! Note " Aiuto alla memoria "
      Per ricordare l'ordine dei livelli del modello OSI, ricordare la seguente frase:  __Please Do Not Touch Steven's Pet Alligator__.
 
 |  Livello                  |  Protocolli                                  |
@@ -154,7 +154,7 @@ Sulle distribuzioni Linux Rocky 8, systemd nominerà le interfacce seguendo la n
 
 Dimentica il vecchio comando `ifconfig`! Pensa `ip`!
 
-!!! Note Nota  
+!!! Note "Nota"
     Commento per gli amministratori dei vecchi sistemi Linux:
     Il comando storico di gestione della rete è `ifconfig`. Questo comando è stato sostituito dal comando `ip`, che è già ben noto agli amministratori di rete.
     Il comando `ip` è l'unico comando per gestire **indirizzo IP, ARP, routing, ecc.**.
@@ -175,7 +175,7 @@ hostname [-f] [hostname]
 | `-f`     | Mostra il FQDN                          |
 | `-i`     | Visualizza gli indirizzi IP del sistema |
 
-!!! Tip Consiglio  
+!!! Tip "Suggerimento"
     Questo comando viene utilizzato da vari programmi di rete per identificare la macchina.
 
 Per assegnare un nome host, è possibile utilizzare il comando`hostname`, ma le modifiche non verranno mantenute all'avvio successivo. Il comando senza argomenti visualizza il nome host.
@@ -195,7 +195,7 @@ Utilizza quindi il file `/etc/hosts` per valutare l'indirizzo IP principale del 
 
 È quindi essenziale compilare questi due file prima di qualsiasi configurazione dei servizi di rete.
 
-!!! Tip Consiglio  
+!!! Tip "Suggerimento"
     Per sapere se questa configurazione è ben fatta, i comandi `hostname` e `hostname -f` devono restituire i valori previsti.
 
 ## /etc/hosts file
@@ -216,7 +216,7 @@ Esempio di un file `/etc/hosts`:
 
 Il file `/etc/hosts` viene ancora utilizzato dal sistema, soprattutto al momento dell'avvio quando viene determinato il nome di dominio completo del sistema (FQDN).
 
-!!! Tip Consiglio  
+!!! Tip "Suggerimento"
     RedHat raccomanda che sia compilata almeno una linea con il nome del sistema.
 
 Se il servizio **DNS** (**D**domain **N**ame **S**ervice) non è presente, è necessario compilare tutti i nomi nel file hosts per ciascuno dei computer.
@@ -254,7 +254,7 @@ search mondomaine.lan
 nameserver 192.168.1.254
 ```
 
-!!! Tip Consiglio  
+!!! Tip "Suggerimento"
     Questo file è ormai storia. Non è più compilato direttamente!
 
 Le nuove generazioni di distribuzioni hanno generalmente integrato il servizio `NetworkManager`. Questo servizio consente di gestire la configurazione in modo più efficiente, sia in modalità grafica che console.
@@ -330,7 +330,7 @@ BOOTPROTO=dhcp
 HWADDR=00:0c:29:96:32:e3
 ```
 
-!!! Tip Consiglio  
+!!! Tip "Suggerimento"
     Se NetworkManager è installato, le modifiche vengono prese in considerazione automaticamente. In caso contrario, è necessario riavviare il servizio di rete.
 
 * Riavviare il servizio di rete:
@@ -375,7 +375,7 @@ NETMASK=255.255.255.0
 PREFIX=24
 ```
 
-!!! Warning Avvertimento  
+!!! Warning "Avvertimento"
     È necessario utilizzare il NETMASK o il PREFISSO - Non entrambi!
 
 ## Routing (Instradamento)
@@ -473,7 +473,7 @@ Esempio:
 [root]# ping –c 4 localhost
 ```
 
-!!! Tip Consiglio  
+!!! Tip "Suggerimento"
     Convalida la connettività da vicino a lontano
 
 1) Convalidare il livello software TCP/IP
@@ -574,7 +574,7 @@ Esempio:
 BROADCAST=172.16.79.255
 ```
 
-!!! Tip Consiglio  
+!!! Tip "Suggerimento"
     Questo comando è interessante se seguito da un reindirizzamento per compilare automaticamente i file di configurazione delle interfacce:
 
     ```bash
@@ -620,7 +620,7 @@ Quando si implementano i servizi di rete, è molto comune verificare con uno di 
 
 ### comando `netstat`
 
-!!! Warning Avvertimento  
+!!! Warning "Avvertimento"
     Il comando `netstat` è ora deprecato e non è più installato per impostazione predefinita su Rocky Linux. Potresti ancora trovare alcune versioni di Linux che lo hanno installato, ma è meglio passare all'uso di "ss" per tutto ciò per cui avresti usato "netstat".
 
 Il comando `netstat` (**statistiche di rete**) visualizza le porte in ascolto sulla rete.
@@ -664,7 +664,7 @@ $ arp-scan -I eth0 -l
 172.16.1.232   88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)
 ```
 
-!!! Tip Consiglio  
+!!! Tip "Suggerimento"
     Come mostra l'esempio precedente, è anche possibile avere conflitti di indirizzi MAC! Questi problemi sono causati dalle tecnologie di virtualizzazione e dalla copia delle macchine virtuali.
 
 ## Configurazione a caldo
