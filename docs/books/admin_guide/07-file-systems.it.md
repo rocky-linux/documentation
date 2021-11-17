@@ -39,7 +39,7 @@ Lo stesso disco fisico può essere diviso in un massimo di 4 partizioni:
 * *Primary* (o main)
 * *Extended*
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"
     Ci può essere solo una partizione estesa per disco fisico. Al fine di beneficiare di ulteriori unità, la partizione estesa può essere suddivisa in partizioni logiche
 
 ![Breakdown into only 4 primary partitions](images/07-file-systems-001.png)
@@ -54,7 +54,7 @@ I dispositivi di archiviazione sono denominati *hd* per i dischi rigidi IDE e *s
 
 Finalmente troveremo un numero che definisce il volume partizionato: *1* per la prima partizione primaria, ...
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"  
     Attenzione, la partizione estesa, che non supporta un file system, ha ancora un numero.
 
 ![Identification of partitions](images/07-file-systems-003.png)
@@ -63,7 +63,7 @@ Ci sono almeno due comandi per il partizionamento di un disco: `fdisk` e `cfdisk
 
 L'unico motivo per usare `fdisk` è quando vuoi elencare tutti i dispositivi logici con l'opzione `-l`.
 
-```
+```bash
 sudo fdisk -l
 sudo fdisk -l /dev/sdc
 sudo fdisk -l /dev/sdc2
@@ -73,7 +73,7 @@ sudo fdisk -l /dev/sdc2
 
 Il comando `parted` (_partition editor_) è in grado di partizionare un disco.
 
-```
+```bash
 parted [-l] [device]
 ```
 
@@ -93,13 +93,13 @@ Il comando  `gparted` da solo tornerà a una modalità interattiva con le propri
 
 Il comando `cfdisk` è usato per gestire le partizioni.
 
-```
+```bash
 cfdisk device
 ```
 
 Esempio:
 
-```
+```bash
 $ sudo cfdisk /dev/sda
                                  Disk: /dev/sda
                Size: 16 GiB, 17179869184 bytes, 33554432 sectors
@@ -142,7 +142,7 @@ Lo svantaggio è che se uno dei volumi fisici va fuori servizio, allora tutti i 
 
 LVM è disponibile in Linux dalla versione del kernel 2.4.
 
-!!! Nota  
+!!! Note "Nota"  
     LVM è gestito solo dal sistema operativo. Quindi, il _BIOS_ ha bisogno di almeno una partizione senza LVM per avviarsi.
 
 ### Gruppi di volumi
@@ -168,7 +168,7 @@ Un gruppo di volumi, *VG*, è diviso in volumi logici, *LV*, offrendo diverse mo
 
 ![Volumes in stripe mode](images/07-file-systems-006.png)
 
-!!! Consiglio  
+!!! Tip "Suggerimento"
     _Striping_ migliora le prestazioni scrivendo i dati a un numero predeterminato di volumi fisici con una tecnica _round-robin_.
 
 ![Mirrored volumes](images/07-file-systems-007.png)
@@ -179,40 +179,39 @@ Un gruppo di volumi, *VG*, è diviso in volumi logici, *LV*, offrendo diverse mo
 
 Il comando `pvcreate` è usato per creare volumi fisici. Comprende partizioni Linux (o dischi) in volumi fisici.
 
-```
+```bash
 pvcreate [-options] partition
 ```
 
 Esempio:
 
-```
+```bash
 [root]# pvcreate /dev/hdb1
 pvcreate -- physical volume « /dev/hdb1 » successfully created
 ```
 
 Puoi anche usare un disco intero (che facilita l'aumento della dimensione del disco in ambienti virtuali per esempio).
 
-```
+```bash
 [root]# pvcreate /dev/hdb
 pvcreate -- physical volume « /dev/hdb » successfully created
 ```
 
-
 | Opzione | Descrizione                                                                  |
-| --------- | ------------------------------------------------------------------------------ |
-| `-f`    | Costringe la creazione del volume (disco già trasformato in volume fisico). |
+| ------- | ----------------------------------------------------- ---------------------- |
+| `-f`    | Costringe la creazione del volume (disco già trasformato in volume fisico).  |
 
 #### comando `vgcreate`
 
 Il comando `vgcreate` è usato per creare gruppi di volumi. Raggruppa uno o più volumi fisici in un gruppo di volumi.
 
-```
+```bash
 vgcreate volume physical_volume [PV...]
 ```
 
 Esempio:
 
-```
+```bash
 [root]# vgcreate volume1 /dev/hdb1
 …
 vgcreate – volume group « volume1 » successfully created and activated
@@ -222,20 +221,19 @@ vgcreate – volume group « volume1 » successfully created and activated
 
 Il comando `lvcreate` crea volumi logici. Il file system viene quindi creato su questi volumi logici.
 
-```
+```bash
 lvcreate -L size [-n name] VG_name
 ```
 
 Esempio:
 
-```
+```bash
 [root]# lvcreate –L 600M –n VolLog1 volume1
 lvcreate -- logical volume « /dev/volume1/VolLog1 » successfully created
 ```
 
-
 | Opzione   | Descrizione                                                                      |
-| ----------- | ---------------------------------------------------------------------------------- |
+| --------- | -------------------------------------------------------------------------------- |
 | `-L size` | Dimensione del volume logico in K, M o G.                                        |
 | `-n name` | Nome del LV. Un file speciale viene creato in`/dev/name_volume` con questo nome. |
 
@@ -245,13 +243,13 @@ lvcreate -- logical volume « /dev/volume1/VolLog1 » successfully created
 
 Il comando `pvdisplay` consente di visualizzare informazioni sui volumi fisici.
 
-```
+```bash
 pvdisplay /dev/PV_name
 ```
 
 Esempio:
 
-```
+```bash
 [root]# pvdisplay /dev/PV_name
 ```
 
@@ -259,13 +257,13 @@ Esempio:
 
 Il comando `vgdisplay` ti consente di visualizzare informazioni sui gruppi di volumi.
 
-```
+```bash
 vgdisplay VG_name
 ```
 
 Esempio:
 
-```
+```bash
 [root]# vgdisplay volume1
 ```
 
@@ -273,13 +271,13 @@ Esempio:
 
 Il comando `lvdisplay` ti permette di visualizzare le informazioni sui volumi logici.
 
-```
+```bash
 lvdisplay /dev/VG_name/LV_name
 ```
 
 Esempio:
 
-```
+```bash
 [root]# lvdisplay /dev/volume1/VolLog1
 ```
 
@@ -311,27 +309,26 @@ Il sistema operativo Linux è in grado di utilizzare diversi file system (ext2, 
 
 Il comando `mkfs` consente di creare un file system Linux.
 
-```
+```bash
 mkfs [-t fstype] filesys
 ```
 
 Esempio:
 
-```
+```bash
 [root]# mkfs -t ext4 /dev/sda1
 ```
 
-
 | Opzione | Descrizione                                  |
-| --------- | ---------------------------------------------- |
+| ------- | -------------------------------------------- |
 | `-t`    | Indica il tipo di file system da utilizzare. |
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"  
     Senza un file system non è possibile utilizzare lo spazio su disco.
 
 Ogni file system ha una struttura identica su ciascuna partizione. Un **boot block** e **super block** inizializzato dal sistema e poi un **inode table** e una **data area** inizializzata dall'amministratore.
 
-!!! Nota  
+!!! Note "Nota"  
     L'unica eccezione è la partizione **swap**.
 
 ### Blocco di avvio
@@ -362,7 +359,7 @@ Quando il sistema viene fermato, viene copiata anche questa tabella sull'hard di
 
 La dimensione della **tabella inode** è definito alla sua creazione ed è memorizzato sulla partizione. Consiste di record, chiamati inodes, corrispondenti ai file creati. Ogni record contiene gli indirizzi dei blocchi di dati che costituiscono il file.
 
-!!! Nota  
+!!! Note "Nota"  
     Un numero inode è unico all'interno di un file system.
 
 Una copia viene caricata nella memoria centrale non appena il sistema è inizializzato. Questa copia viene aggiornata non appena viene modificata e il sistema la salva periodicamente (comando `sync`).
@@ -371,7 +368,7 @@ Quando il sistema viene fermato, viene copiata anche questa tabella sull'hard di
 
 Un file è gestito dal suo numero di inode.
 
-!!! Nota  
+!!! Note "Nota"  
     La dimensione della tabella di inode determina il numero massimo di file che il file system può contenere.
 
 Informazioni presenti nella *tabella inode* :
@@ -395,7 +392,7 @@ La sua dimensione corrisponde al resto dello spazio disponibile nella partizione
 
 Quando il sistema viene fermato, viene copiata anche questa tabella sull'hard disk
 
-!!! Pericolo  
+!!! Danger "Pericolo"  
     In caso di fermata improvvisa, il file system potrebbe perdere la sua coerenza e causare la perdita di dati.
 
 ### Riparazione del file system
@@ -408,26 +405,26 @@ In caso di errori, vengono proposte le soluzioni per riparare le incoerenze. Dop
 
 Il comando `fsck` è uno strumento di controllo e riparazione di integrità in modalità console per i file system Linux.
 
-```
+```bash
 fsck [-sACVRTNP] [ -t fstype ] filesys
 ```
 
 Esempio:
 
-```
+```bash
 [root]# fsck /dev/sda1
 ```
 
 Per controllare la partizione root, è possibile creare un file `forcefsck` e riavviare o eseguire `shutdown` con l'opzione `-F`.
 
-```
+```bash
 [root]# touch /forcefsck
 [root]# reboot
 or
 [root]# shutdown –r -F now
 ```
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"  
     La partizione da controllare deve essere smontata.
 
 ## Organizzazione di un file system
@@ -436,23 +433,22 @@ Per definizione, un file system è una struttura ad albero delle directory creat
 
 ![Organization of a file system](images/07-file-systems-008.png)
 
-!!! Nota  
+!!! Note "Nota"  
     In Linux tutto è un file.
 
 Documento di testo, directory, file binario, partizione, risorse di rete, schermo, tastiera, Unix kernel, programma utente, ...
 
 Linux segue il **FHS** (_Filesystems Hierarchy Standard_) (vedi `man hier`) che definisce i nomi delle cartelle e dei loro ruoli.
 
-
 | Directory  | Osservazione                                                             | Abbreviazione di              |
-| ------------ | -------------------------------------------------------------------------- | ------------------------------- |
+| ---------- | ------------------------------------------------------------------------ | ----------------------------- |
 | `/`        | Contiene directory speciali                                              |                               |
 | `/boot`    | File relativi all'avvio del sistema                                      |                               |
 | `/sbin`    | Comandi necessari per l'avvio e la riparazione del sistema               | _system binaries_             |
 | `/bin`     | Eseguibili dei comandi di base del sistema                               | _binaries_                    |
 | `/usr/bin` | Comandi di amministrazione del sistema                                   |                               |
 | `/lib`     | Librerie condivise e moduli del kernel                                   | _libraries_                   |
-| `/usr`     | Tutto ciò che non è necessario per il funzionamento minimo del sistema | _UNIX System Resources_       |
+| `/usr`     | Tutto ciò che non è necessario per il funzionamento minimo del sistema   | _UNIX System Resources_       |
 | `/mnt`     | Per il montaggio temporaneo dei file system                              | _mount_                       |
 | `/media`   | Per il montaggio dei supporti rimovibili                                 |                               |
 | `/root`    | Directory di accesso dell'amministratore                                 |                               |
@@ -473,10 +469,10 @@ Linux segue il **FHS** (_Filesystems Hierarchy Standard_) (vedi `man hier`) che 
 
 Il file `/etc/fstab` viene letto all'avvio del sistema e contiene i supporti da montare. Ogni file system da montare è descritto su una singola riga, I campi sono separati da spazi o tabulazioni.
 
-!!! Nota  
+!!! Note "Nota"  
     Le linee sono lette in sequenza (`fsck`, `mount`, `umount`).
 
-```
+```bash
 /dev/mapper/VolGroup-lv_root   /         ext4    defaults        1   1
 UUID=46….92                    /boot     ext4    defaults        1   2
 /dev/mapper/VolGroup-lv_swap   swap      swap    defaults        0   0
@@ -487,20 +483,19 @@ proc                           /proc     proc    defaults        0   0
   1                              2         3        4            5   6
 ```
 
-
 | Colonna | Descrizione                                                                                                                         |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | 1       | Dispositivo di file system. (`/dev/sda1`, UUID=..., ...)                                                                            |
 | 2       | Nome del punto di montaggio, **absolute path** (tranne **swap**)                                                                    |
 | 3       | Tipo di filesystem. (ext4, swap, ...)                                                                                               |
 | 4       | Opzioni speciali per il montaggio (`defaults`, `ro`, ...)                                                                           |
 | 5       | Abilita o disabilita la gestione del backup (0:niente backup, 1:backup)                                                             |
-| 6       | Controllare l'ordine quando si controlla il file system con il comando`fsck` (0:nessun controllo, 1:priorità, 2:nessuna priorità) |
+| 6       | Controllare l'ordine quando si controlla il file system con il comando`fsck` (0:nessun controllo, 1:priorità, 2:nessuna priorità)   |
 
 Il comando `mount -a` consente di montare i nuovi punti di montaggio senza riavvio.
 Vengono quindi scritti nel file `/etc/mtab` che contiene i supporti correnti.
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"  
     Solo i punti di montaggio elencati in `/etc/fstab` saranno montati al riavvio.
 
 È possibile fare una copia del file `/etc/mtab` o copiare il suo contenuto in `/etc/fstab`.
@@ -511,19 +506,18 @@ Vengono quindi scritti nel file `/etc/mtab` che contiene i supporti correnti.
 
 Il comando `mount` permette di montare e visualizzare le unità logiche nell'albero.
 
-```
+```bash
 mount [-option] [device] [directory]
 ```
 
 Esempio:
 
-```
+```bash
 [root]# mount /dev/sda7 /home
 ```
 
-
 | Opzione | Descrizione                                                                                    |
-| --------- | ------------------------------------------------------------------------------------------------ |
+| ------- | ---------------------------------------------------------------------------------------------- |
 | `-n`    | Montare senza scrivere in`/etc/mtab`.                                                          |
 | `-t`    | Per indicare il tipo di file system da utilizzare.                                             |
 | `-a`    | Monta tutti i filesystem menzionati in `/etc/fstab`.                                           |
@@ -531,33 +525,32 @@ Esempio:
 | `-w`    | Monta il file system in lettura/scrittura, per impostazione predefinita. (equivalente`-o rw`). |
 | `-o`    | Argomento seguito da un elenco di opzioni separate da virgole (`remount`, `ro`, ...).          |
 
-!!! Nota  
+!!! Note "Nota"  
     Il comando `mount` da solo visualizza tutti i file system montati.
 
 #### comando `umount`
 
 Il comando `umount` è usato per smontare le unità logiche.
 
-```
+```bash
 umount [-option] [device] [directory]
 ```
 
 Esempio:
 
-```
+```bash
 [root]# umount /home
 [root]# umount /dev/sda7
 ```
 
-
 | Opzione | Descrizione                                            |
-| --------- | -------------------------------------------------------- |
+| ------- | ------------------------------------------------------ |
 | `-n`    | Smontare senza scrivere in`/etc/mtab`.                 |
 | `-r`    | Se l'unmount fallisce, rimontare come sola lettura.    |
 | `-f`    | Forza smontaggio.                                      |
 | `-a`    | Smontare tutti i filesystem menzionati in`/etc/fstab`. |
 
-!!! Nota  
+!!! Note "Nota"  
     Quando si smontano, non devi essere posizionato al di sotto del punto di montaggio. Altrimenti, viene visualizzato il seguente messaggio di errore: `device is busy`.
 
 ## Tipi di file
@@ -571,17 +564,17 @@ Come in qualsiasi sistema, è importante rispettare le regole di denominazione d
 
 I gruppi di parole separati da spazi devono essere racchiusi tra virgolette:
 
-```
+```bash
 [root]# mkdir "working dir"
 ```
 
-!!! Nota  
+!!! Note "Nota"  
     Anche se non c'è nulla di tecnicamente sbagliato nel creare un file o una directory con uno spazio in esso, generalmente è una "_pratica migliore_" evitarlo e sostituire qualsiasi spazio con una sottolineatura.
 
-!!! Nota  
+!!! Note "Nota"  
     Il **.** all'inizio del nome del file serve solo a nasconderlo da un semplice `ls`.
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"  
     In Linux, l'estensione di un file non è un riferimento necessario per aprirlo o modificarlo. Tuttavia, può essere utile per l'utente.
 
 Esempi di estensioni comuni:
@@ -592,20 +585,19 @@ Esempi di estensioni comuni:
 * `.tar` : file di dati archiviato con l'utilità `tar`;
 * `.cpio` : file di dati archiviato con l'utilità `cpio`;
 * `.gz` : file di dati compresso con l'utilità `gzip`;
-* `.tgz` : file di dati archiviato con l'utilità `tar` e compresso con l'utilità` gzip`;
+* `.tgz` : file di dati archiviato con l'utilità `tar` e compresso con l'utilità `gzip`;
 * `.html` : pagina web.
 
 ### Dettagli di un nome del file
 
-```
+```bash
 [root]# ls -liah /usr/bin/passwd
 266037 -rwsr-xr-x 1 root root 59K mars  22  2019 /usr/bin/passwd
 1      2    3     4  5    6    7       8               9
 ```
 
-
 | Riga | Descrizione                                                    |
-| ------ | ---------------------------------------------------------------- |
+| ---- | -------------------------------------------------------------- |
 | `1`  | Numero di inode                                                |
 | `2`  | Tipo di file (primo carattere del blocco di 10)                |
 | `3`  | Permessi di accesso (ultimi 9 caratteri del blocco di 10)      |
@@ -630,7 +622,7 @@ I seguenti tipi di file possono essere trovati su un sistema:
 
 Questi sono testo, programmmi (sorgente), eseguibile (dopo la compilazione) o dati (binari, ASCII) e file multimediali.
 
-```
+```bash
 [root]# ls -l myfile
 -rwxr-xr-x   1   root  root  26  nov  31  15:21 myfile
 ```
@@ -646,7 +638,7 @@ Per impostazione predefinita in ogni directory sono presenti **.**  e **..**.
 * IL **.** rappresenta la posizione nell'albero.
 * Il **..** rappresenta il padre della posizione corrente.
 
-```
+```bash
 [root]# ls -l mydirectory
 drwxr-xr-x   1   root  root  26  nov  31  15:21 mydirectory
 ```
@@ -668,7 +660,7 @@ Sono definiti in due modalità:
 
 Il file speciale **modo block** consente, utilizzando i buffer di sistema, di trasferire i dati sul dispositivo.
 
-```
+```bash
 [root]# ls -l /dev/sda
 brw-------   1   root  root  8, 0 jan 1 1970 /dev/sda
 ```
@@ -681,7 +673,7 @@ Il file speciale *character mode* viene utilizzato per trasferire i dati sul dis
 
 L'output standard è lo screen.
 
-```
+```bash
 [root]# ls -l /dev/tty0
 crw-------   1   root  root  8, 0 jan 1 1970 /dev/tty0
 ```
@@ -709,23 +701,23 @@ Esistono due tipi di file link:
 
 Il file di collegamento e il file di origine hanno lo stesso numero di _inode_ e il contatore dei collegamenti viene incrementato. Non è possibile collegare diverse directory o files da file system diversi.
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"  
     Se il file sorgente viene distrutto, il contatore viene decrementato e il file di collegamento accede ancora al file.
 
 ###### Commando `ln` per un link fisico
 
 Il comando `ln` permette di creare i collegamenti fisici.
 
-```
+```bash
 [root]# ls –li letter
 666 –rwxr--r-- 1 root root … letter
 ```
 
-```
+```bash
 [root]# ln /home/paul/letter /home/jack/read
 ```
 
-```
+```bash
 [root]# ls –li /home/*/*
 666 –rwxr--r-- 2 root root … letter
 666 –rwxr--r-- 2 root root … read
@@ -739,23 +731,23 @@ A differenza del collegamento fisico, il link simbolico coinvolge la creazione d
 
 Il file creato contiene solo un'indicazione del percorso verso il file. Questa nozione non ha più le limitazioni dei collegamenti fisici ed è ora possibile collegare directory e file appartenenti a diversi file system.
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"  
     Se il file sorgente viene distrutto, il file di link non può più accedere al file.
 
 ###### comando `ln` per un link simbolico
 
 Il comando `ln` con l'argomento `-s` permette di creare collegamenti simbolici.
 
-```
+```bash
 [root]# ls –li letter
 666 -rwxr--r-- 1 root root … letter
 ```
 
-```
+```bash
 [root]# ln -s /home/paul/letter /tmp/read
 ```
 
-```
+```bash
 [root]# ls –li /home/paul/letter /tmp/read
 666 -rwxr--r--- 1 root root … letter
 678 lrwxrwxrwx 1 root root … read -> letter
@@ -781,7 +773,7 @@ Ci sono 4 diritti di accesso ai file:
 * e**x**ecution; (esecuzione)
 * **-** no right. (nessun diritto)
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"  
     I diritti associati ai file differiscono da quelli associati alle directory (vedi sotto).
 
 I tipi di utente associati ai diritti di accesso ai file sono:
@@ -801,7 +793,7 @@ In alcuni comandi è possibile designare tutti con **a** (_all_).
 * e**x**ecute: Considera il file come un eseguibile e**X**ecutable (binario o script.).
 * **-**: Nessuna autorizzazione.
 
-!!! Nota  
+!!! Note "Nota"  
     Spostare o rinominare un file dipende dai permessi della directory di destinazione. Eliminazione di un file dipende dai permessi della directory principale.
 
 ### Permessi associati alle directory
@@ -815,22 +807,21 @@ In alcuni comandi è possibile designare tutti con **a** (_all_).
 
 La visualizzazione dei permessi viene eseguita con il comando `ls -l`. Sono gli ultimi 9 caratteri del blocco di 10. Più precisamente 3 volte 3 caratteri.
 
-```
+```bash
 [root]# ls -l /tmp/myfile
 -rwxrw-r-x  1  root  sys  ... /tmp/myfile
   1  2  3       4     5
 ```
 
-
 | Riga | Descrizione                                                   |
-| ------ | --------------------------------------------------------------- |
+| ---- | ------------------------------------------------------------- |
 | 1    | Autorizzazioni del proprietario (**u**ser), qui `rwx`         |
 | 2    | Autorizzazioni del gruppo proprietario (**g**roup), qui `rw-` |
 | 3    | Autorizzazioni degli altri utenti (**o**thers), qui `r-x`     |
 | 4    | Proprietario del file                                         |
 | 5    | Proprietario del gruppo del file                              |
 
-!!! Nota  
+!!! Note "Nota"  
     Le autorizzazioni si applicano a **u**ser, **g**roup e **o**ther (**ugo**) a seconda del proprietario e del gruppo.
 
 Per impostazione predefinita, il _proprietario_ di un file è quello che lo crea. IL _gruppo_ del file è il gruppo del proprietario che ha creato il file. Gli _others_ sono quelli che non sono interessati dai casi precedenti.
@@ -843,7 +834,7 @@ Solo l'amministratore e il proprietario di un file possono modificare i permessi
 
 Il comando `chmod` consente di modificare le autorizzazioni di accesso a un file.
 
-```
+```bash
 chmod [option] mode file
 ```
 
@@ -853,20 +844,20 @@ Diverse operazioni simboliche possono essere separate da virgole
 
 Esempio:
 
-```
+```bash
 [root]# chmod -R u+rwx,g+wx,o-r /tmp/file1
 [root]# chmod g=x,o-r /tmp/file2
 [root]# chmod -R o=r /tmp/file3
 ```
 
-```
+```bash
 [root]# ls -l /tmp/fic*
 -rwxrwx--- 1 root root … /tmp/file1
 -rwx--x--- 1 root root … /tmp/file2
 -rwx--xr-- 1 root root … /tmp/file3
 ```
 
-```
+```bash
 [root]# chmod 741 /tmp/file1
 [root]# chmod -R 744 /tmp/file2
 [root]# ls -l /tmp/fic*
@@ -874,9 +865,8 @@ Esempio:
 -rwxr--r-- 1 root root … /tmp/file2
 ```
 
-
 | Opzione | Osservazione                                                                    |
-| --------- | --------------------------------------------------------------------------------- |
+| ------- | ------------------------------------------------------------------------------- |
 | `-R`    | Modifica ricorsivamente le autorizzazioni delle directory e dei loro contenuti. |
 
 Ci sono due metodi per la realizzazione dei cambiamenti dei permessi:
@@ -884,7 +874,7 @@ Ci sono due metodi per la realizzazione dei cambiamenti dei permessi:
 * Il metodo **ottale**;
 * Il metodo **simbolico**.
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"  
     I permessi dei file e delle directory non sono dissociati. Per alcune operazioni, Sarà necessario conoscere i permessi della directory contenente il file. Un file protetto da scrittura può essere cancellato da un altro utente purché i permessi della directory che lo contengono consentono a questo utente di eseguire questa operazione.
 
 #### Principio del metodo ottale
@@ -893,14 +883,14 @@ Ogni permesso ha un valore.
 
 ![Octal method](images/07-file-systems-011.png)
 
-```
+```bash
 [root]# ls -l /tmp/myfile
 -rwxrwxrwx  1  root  root  ... /tmp/myfile
 ```
 
 ![Rights 777](images/07-file-systems-012.png)
 
-```
+```bash
 [root]# chmod 741 /tmp/myfile
 -rwxr----x  1  root  root  ... /tmp/myfile
 ```
@@ -913,22 +903,22 @@ Questo metodo può essere considerato come un'associazione "letterale" tra un ti
 
 ![Symbolic method](images/07-file-systems-014.png)
 
-```
+```bash
 [root]# chmod u+rwx,g+wx,o-r /tmp/myfile
 [root]# chmod g=x,o-r /tmp/myfile
 [root]# chmod o=r /tmp/myfile
 ```
 
-```
+```bash
 [root]# ls -l /tmp/myfile
 r--r-- 1 root root … /tmp/myfile
 ```
 
-```
+```bash
 [root]# chmod u+rwx,g+wx,o-r /tmp/myfile
 ```
 
-```
+```bash
 [root]# ls -l /tmp/myfile
 -rwxrwx--- 1 root root … /tmp/myfile
 ```
@@ -945,7 +935,7 @@ Come con i permessi fondamentali, i permessi particolari hanno ciascuno un valor
 
 ![Special rights](images/07-file-systems-015.png)
 
-!!! Pericolo  
+!!! Danger "Pericolo"  
     `S`, `S` e `T` in maiuscolo **se il diritto non esiste**.
 
 #### Il sticky-bit
@@ -958,19 +948,19 @@ L'impostazione del _sticky-bit_ può essere fatto come segue:
 
 Metodo ottale:
 
-```
+```bash
 [root]# chmod 1777 directory
 ```
 
 Metodo simbolico:
 
-```
+```bash
 [root]# chmod o+t directory
 ```
 
 Verifica:
 
-```
+```bash
 [root]# ls -l
 drwxrwxrwt … directory
 ```
@@ -981,7 +971,7 @@ Questi permessi consentono l'esecuzione di un comando in base ai permessi impost
 
 Il comando viene eseguito con l'identità del proprietario (_SUID_) o del gruppo (_SGID_) del comando.
 
-!!! Nota  
+!!! Note "Nota"  
     L'identità dell'utente che richiede l'esecuzione dell'ordine non è più presa in considerazione.
 
 Questa è una possibilità aggiuntiva dei permessi di accesso assegnata a un utente quando è necessario per loro avere gli stessi permessi del proprietario di un file o di quelli del gruppo in questione.
@@ -1001,27 +991,27 @@ L'impostazione di _SUID_ e _SGID_ può essere fatto come sotto con il comando `c
 
 Metodo ottale:
 
-```
+```bash
 [root]# chmod 4777 command1
 [root]# chmod 2777 command2
 ```
 
 Metodo simbolico:
 
-```
+```bash
 [root]# chmod u+s command1
 [root]# chmod g+s command2
 ```
 
 Verifica:
 
-```
+```bash
 [root]# ls -l
 -rwsrwxrwx … command1
 -rwxrwsrwx … command2
 ```
 
-!!! Avvertimento  
+!!! Warning "Avvertimento"  
     Non è possibile passare il _SUID_ o _SGID_ a una shell script.
 Il sistema non lo consente perché è troppo pericoloso per la sicurezza!
 
@@ -1031,16 +1021,16 @@ In una directory con il permesso _SGID_, qualsiasi file creato erediterà il gru
 
 Esempio:
 
-```
+```bash
 [rockstar] $ ls -ld /data/
 drwxrwsr-x 2 root users 4096 26 oct. 19:43 /data
 ```
 
-```
+```bash
 [rockstar] $ touch /data/test_sgid /tmp/fic_reference
 ```
 
-```
+```bash
 [rockstar] $ ls -ld /data/test_sgid /tmp/fic_reference
 -rw-r--r--. 1 rockstar users 0 26 oct. 19:43 /data/test_sgid <1>
 -rw-r--r--. 1 rockstar rockstar 0 26 oct. 19:43  /tmp/fic_ref
@@ -1071,13 +1061,13 @@ Per un file, i diritti di esecuzione vengono rimossi:
 
 Il comando `umask` ti consente di visualizzare e modificare la maschera.
 
-```
+```bash
 umask [option] [mode]
 ```
 
 Example:
 
-```
+```bash
 $ umask 033
 $ umask
 0033
@@ -1094,16 +1084,15 @@ $ ls -la  umask_025
 -rw-r---w- 1 rockstar rockstar 0 nov.   4 16:44 umask_025
 ```
 
-
-| Opzione | Descrizione                                     |
-| --------- | ------------------------------------------------- |
+| Opzione | Descrizione                                      |
+| ------- | ------------------------------------------------ |
 | `-S`    | Visualizzazione simbolica dei permessi dei file. |
 
-!!! Avvertimento  
-   `umask` non influisce sui file esistenti.
+!!! Warning "Avvertimento"
+    `umask` non influisce sui file esistenti.
 
-!!! Nota  
-   `umask` modifica la maschera fino alla disconnessione.
+!!! Note "Nota"
+    `umask` modifica la maschera fino alla disconnessione.
 
 Per mantenere il valore, devi modificare i seguenti file del profilo:
 Per tutti gli utenti:
@@ -1115,8 +1104,8 @@ Per un determinato utente:
 
 * `~/.bashrc`
 
-!!! Avvertimento  
-   `umask -S` visualizza i permessi dei file (senza i permessi di esecuzione) dei file che verranno creati. Quindi non è il display della maschera utilizzata per sottrarre il valore massimo.
+!!! Warning "Avvertimento"
+    `umask -S` visualizza i permessi dei file (senza i permessi di esecuzione) dei file che verranno creati. Quindi non è il display della maschera utilizzata per sottrarre il valore massimo.
 
-!!! Consiglio  
+!!! Tip "Suggerimento"
     Il comando `umask` è un comando _bash_, (un `type umask` ritorna `umask is a shell primitive`) devi cercare `umask` in `man bash`.
