@@ -18,9 +18,9 @@ This home page will give you an introduction to the documentation website and ho
 
 Right now you are on the home page of the documentation. If you glance at the top menu (which is always available, including on mobile devices) you can see the main structure showing the top-level sections of the documentation site. If you click on each top menu item (try 'Guides' for example) then on the left hand side you will see the list of *sub-sections* for each main section. Guides has many topics of interest.
 
-When you open a document, on the right hand side you will see a 'Table of contents' with clickable navigation links for that document (for mobile devices try landscape orientation). For long documents, like the [Release Notes](release_notes/8.4.md), the table of contents makes it easy to jump around the document. If you are reading a long document and want to go back to the top press <kbd>pg up</kbd> and you will see a `Back to top` button appear at the top of the screen.
+When you open a document, on the right hand side you will see a 'Table of contents' with clickable navigation links for that document (for mobile devices try landscape orientation). For long documents, like the [Release Notes](release_notes/8.5.md), the table of contents makes it easy to jump around the document. If you are reading a long document and want to go back to the top press <kbd>pg up</kbd> and you will see a `Back to top` button appear at the top of the screen.
 
-The main sections of the documentation site are: 
+The main sections of the documentation site are:
 
 * **Guides**: which cover specific ways to set up and use Rocky Linux.
 * **Books**: are more detailed information based around a specific area
@@ -54,4 +54,3 @@ If you get stuck and have a question the Rocky Linux community is there to help.
 ## Contributing
 
 Did you find something missing? Did you find an error? Are you wondering how to create a document of your own, or how to fix things here? Remember how we said that *you* were the Rocky community? Well, that means that *you* are important to us and we want you to join us, if you like, and help make this documentation better. If you are interested in this, head over to our [Contribution Guide](https://github.com/rocky-linux/documentation/blob/main/README.md) to find out how you can do just that!
-
