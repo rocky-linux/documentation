@@ -1,5 +1,5 @@
 ---
 nav:
-    - Current: 8.5.md
-    - Release 8.4: 8.4.md
+    - Current: 8_5.md
+    - ... | 8_4*.md
     - Change Log: 8-changelog.md
