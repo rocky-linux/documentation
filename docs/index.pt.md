@@ -1,5 +1,5 @@
 ---
-title: Página principal
+title: Home
 ---
 
 # Documentação do Rocky Linux
