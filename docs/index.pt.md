@@ -1,5 +1,5 @@
 ---
-title: Página principal
+title: Home
 ---
 
 # Documentação do Rocky Linux
@@ -18,7 +18,7 @@ Esta página irá introduzir o site de documentação e como se navegar por aqui
 
 Você está na página principal da documentação. Se você olhar o _menu_ superior (que está sempre disponível, inclusive em _smartphones_) você pode notar a estrutura principal mostrando as principais seções da documentação. Se você clicar em cada sessão (tente 'Guides', por exemplo) então à esquerda você verá uma lista com as sub-seções para cada assunto principal. Guias possui vários tópicos de interesse.
 
-Quando você abrir um documento, à sua direita você verá 'Table of contents' com linques de navegação clicáveis para o documento (em _smartphones_ tente orientação de paisagem). Para documentos longos, como [notas de lançamento](release_notes/8_5.md), a tabela de conteúdos facilitar navegar no documento. Se você estiver lendo um documento longo e deseja voltar para o topo, aperte <kbd>pg up</kbd> e você verá o botão `Voltar ao Topo` aparecer no topo da tela.
+Quando você abrir um documento, à sua direita você verá 'Table of contents' com linques de navegação clicáveis para o documento (em _smartphones_ tente orientação de paisagem). Para documentos longos, como [notas de lançamento](release_notes/8.5.md), a tabela de conteúdos facilitar navegar no documento. Se você estiver lendo um documento longo e deseja voltar para o topo, aperte <kbd>pg up</kbd> e você verá o botão `Voltar ao Topo` aparecer no topo da tela.
 
 As principais seções do site de documentação são:
 

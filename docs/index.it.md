@@ -17,7 +17,7 @@ Questa home page ti darà un'introduzione al sito web della documentazione e su 
 
 In questo momento sei nella pagina iniziale della documentazione. Se guardi al menu principale (che è sempre disponibile, anche sui dispositivi mobili) puoi vedere la struttura principale che mostra le sezioni di primo livello del sito della documentazione. Se fai clic su una voce del menu in alto (prova "Guide" per esempio) vedrai sul lato sinistro l'elenco delle *sottosezioni* per ogni sezione principale. Le Guide hanno molti argomenti interessanti.
 
-Quando apri un documento, sul lato destro vedrai un 'Sommario' con collegamenti di navigazione cliccabili per quel documento (per i dispositivi mobili prova l'orientamento orizzontale). Per documenti lunghi, come le [Note di rilascio](release_notes/8_5.md), il sommario rende facile la navigazione del documento. Se stai leggendo un documento lungo e vuoi tornare all'inizio del documento premi <kbd>pg up</kbd> e vedrai un bottone `Back to top` apparire nella parte superiore dello schermo.
+Quando apri un documento, sul lato destro vedrai un 'Sommario' con collegamenti di navigazione cliccabili per quel documento (per i dispositivi mobili prova l'orientamento orizzontale). Per documenti lunghi, come le [Note di rilascio](release_notes/8.5.md), il sommario rende facile la navigazione del documento. Se stai leggendo un documento lungo e vuoi tornare all'inizio del documento premi <kbd>pg up</kbd> e vedrai un bottone `Back to top` apparire nella parte superiore dello schermo.
 
 Le sezioni principali del sito di documentazione sono:
 
