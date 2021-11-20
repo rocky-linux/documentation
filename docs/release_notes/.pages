@@ -1,5 +1,5 @@
 ---
 nav:
-    - Current: 8_5.md
+    - Current: 8.5.md
     - ... | 8_4*.md
     - Change Log: 8-changelog.md
