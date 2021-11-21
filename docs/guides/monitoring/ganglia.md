@@ -46,7 +46,7 @@ podman build -t mybuild/cent7ganglia /root/dockertest/cent7ganglia/
 2. Run the container
 
    ```
-   podman run -t -d --name ganglia -p 1380:80 --restart always --privileged localhost/mybuild/cent7ganglia
+   podman run -t -d --name ganglia -p 1380:80 --restart always localhost/mybuild/cent7ganglia
    ```
 
    You may need to use your own image name. 
