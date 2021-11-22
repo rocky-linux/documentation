@@ -1,10 +1,75 @@
 ---
 title:  Rocky Linux 8 Change Log
+author: Louis Abel
+contributors: Steven Spencer
+update: 11-22-2021
 ---
 
 # Rocky Linux 8 Change Log
 
-Rocky Linux 8.4 will receive incremental updates over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`
+Rocky Linux 8 will receive incremental updates, and minor version upgrades, over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`. The update of this document can sometimes be delayed. To check for new updates, you can go to the [Rocky Announce](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/) mailing list archive.
+
+## 8.5 - 2021-11-16
+
+The following packages have been updated since the 8.5 release Nov 14, 2021
+(including updated module packages):
+
+* annobin: annobin-9.65-1.el8 -> annobin-9.72-1.el8_5.2
+* binutils: binutils-2.30-108.el8 -> binutils-2.30-108.el8_5.1
+* dotnet-build-reference-packages: dotnet-build-reference-packages-0-9.20200608gitcd5a8c6.el8 -> dotnet-build-reference-packages-0-10.20200608gitcd5a8c6.el8
+* dotnet3.1: dotnet3.1-3.1.119-2.el8.0.1 -> dotnet3.1-3.1.120-2.el8_5
+* dotnet5.0: dotnet5.0-5.0.207-3.el8.0.1 -> dotnet5.0-5.0.208-2.el8_5
+* dotnet6.0: dotnet6.0-6.0.0-0.6.28be3e9a006d90d8c6e87d4353b77882829df718.el8.0.1 -> dotnet6.0-6.0.100-0.10.el8_5
+* firefox: firefox-78.13.0-2.el8 -> firefox-91.3.0-1.el8
+* flatpak: flatpak-1.8.5-4.el8 -> flatpak-1.8.5-5.el8_5
+* freerdp: freerdp-2:2.2.0-2.el8 -> freerdp-2:2.2.0-7.el8_5
+* gcc: gcc-8.5.0-3.el8 -> gcc-8.5.0-4.el8_5
+* gcc-toolset-10-annobin: gcc-toolset-10-annobin-9.29-1.el8 -> gcc-toolset-10-annobin-9.29-1.el8_5.2
+* gcc-toolset-10-binutils: gcc-toolset-10-binutils-2.35-8.el8_4.4 -> gcc-toolset-10-binutils-2.35-8.el8_5.6
+* gcc-toolset-10-gcc: gcc-toolset-10-gcc-10.2.1-8.2.el8 -> gcc-toolset-10-gcc-10.3.1-1.2.el8_5
+* gcc-toolset-11-annobin: gcc-toolset-11-annobin-9.73-1.el8 -> gcc-toolset-11-annobin-9.85-1.el8_5.1
+* gcc-toolset-11-binutils: gcc-toolset-11-binutils-2.36.1-1.el8 -> gcc-toolset-11-binutils-2.36.1-1.el8_5.1
+* gcc-toolset-11-dyninst: gcc-toolset-11-dyninst-11.0.0-1.el8 -> gcc-toolset-11-dyninst-11.0.0-2.el8
+* gcc-toolset-11-gcc: gcc-toolset-11-gcc-11.1.1-3.el8 -> gcc-toolset-11-gcc-11.2.1-1.2.el8_5
+* gcc-toolset-11-systemtap: gcc-toolset-11-systemtap-4.5-3.el8 -> gcc-toolset-11-systemtap-4.5-4.el8
+* gcc-toolset-11-valgrind: gcc-toolset-11-valgrind-1:3.17.0-4.el8 -> gcc-toolset-11-valgrind-1:3.17.0-6.el8
+* gnome-settings-daemon: gnome-settings-daemon-3.32.0-14.el8 -> gnome-settings-daemon-3.32.0-16.el8
+* gnome-shell-extensions: gnome-shell-extensions-3.32.1-20.el8 -> gnome-shell-extensions-3.32.1-20.el8_5.1
+* httpd: httpd-2.4.37-41.module+el8.5.0+695+1fa8055e -> httpd-2.4.37-43.module+el8.5.0+714+5ec56ee8
+* ibus: ibus-1.5.19-13.el8 -> ibus-1.5.19-14.el8_5
+* java-1.8.0-openjdk: java-1.8.0-openjdk-1:1.8.0.302.b08-3.el8 -> java-1.8.0-openjdk-1:1.8.0.312.b07-2.el8_5
+* java-11-openjdk: java-11-openjdk-1:11.0.12.0.7-4.el8 -> java-11-openjdk-1:11.0.13.0.8-3.el8_5
+* java-17-openjdk: java-17-openjdk-1:17.0.0.0.35-4.el8 -> java-17-openjdk-1:17.0.1.0.12-2.el8_5
+* kernel: kernel-4.18.0-348.el8.0.2 -> kernel-4.18.0-348.2.1.el8_5
+* kernel-rt: kernel-rt-4.18.0-348.rt7.130.el8.0.2 -> kernel-rt-4.18.0-348.2.1.rt7.132.el8_5
+* kronosnet: kronosnet-1.18-1.el8 -> kronosnet-1.18-2.el8
+* rust: rust-1.54.0-2.module+el8.5.0+678+cf7bc64b -> rust-1.54.0-3.module+el8.5.0+712+d335422a
+* rust-toolset: rust-toolset-1.54.0-1.module+el8.5.0+678+cf7bc64b -> rust-toolset-1.54.0-1.module+el8.5.0+712+d335422a
+* sssd: sssd-2.5.2-2.el8 -> sssd-2.5.2-2.el8_5.1
+* thunderbird: thunderbird-78.13.0-1.el8 -> thunderbird-91.3.0-2.el8
+* udftools: udftools-2.2-5.el8 -> udftools-2.3-2.el8
+
+The following packages have been dropped and also removed from dnf groups:
+insights-client: insights-client-3.1.5-1.el8 (Standard Group)
+
+For packages that been dropped, it is safe to remove them using `dnf remove`
+
+The following modules have been updated since the 8.5 release Nov 14, 2021:
+
+* rust-toolset-rhel8-8050020211112021616.f73640c0
+* httpd-2.4-8050020211115030420.b4937e53
+
+### Updates
+
+Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
+
+All Rocky Linux components are built from the sources hosted at git.rockylinux.org. In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+### Known Issues
+
+https://bugs.rockylinux.org/show_bug.cgi?id=174 - We are aware of an issue that `kdump` does not work on vmware systems such as ESXi.
+
+We are also aware of our mirror system reporting back the wrong directory for doing updates. It was going to `kickstart` rather than `os`. This should be resolved and updates should work normally.
 
 ## 8.4 - 2021-09-21
 
@@ -55,7 +120,7 @@ The following repos have been updated:
 The following packages have been updated:
 
 * dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
-* libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Addresses 
+* libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Addresses
 
   * Addresses a heap buffer overflow that allowed arbitrary code execution from a wav file
 
@@ -251,7 +316,7 @@ The following modules have been updated:
 * rubygem-mongo -> rubygem-mongo-2.5.1-2 / rubygem-mongo-2.8.0-1 / rubygem-mongo-2.11.3-1
 * rubygem-pg -> rubygem-pg-1.0.0-2 / rubygem-pg-1.1.4-1 / rubygem-pg-1.2.3-1
 
- 
+
 ### Context
 
 Some modules and packages have been updated in a routine fashion by upstream.
