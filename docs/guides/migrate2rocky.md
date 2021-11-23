@@ -1,5 +1,8 @@
 ---
 title: Migrating To Rocky Linux
+author: Ezequiel Bruni
+contributors: tianci li, Steven Spencer
+update: 11-23-2021
 ---
 
 # How to Migrate to Rocky Linux from CentOS Stream, CentOS, Alma Linux, RHEL, or Oracle Linux
@@ -27,7 +30,7 @@ Don't worry, if you're new to systems administration, I'll be keeping this as us
 ### Caveats and warnings
 
 1. Do check out migrate2rocky's README page (linked above), because there is a known clash between the script and Katello's repositories. In time, it's probable that we'll discover (and eventually patch) more clashes and incompatibilities, so you'll want to know about those, especially for production servers.
-2. This script is most likely to work without incident on completely fresh installs. _If you want to convert a production server, for the love of all that is holy and good, **do it in a staging environment first.**_
+2. This script is most likely to work without incident on completely fresh installs. _If you want to convert a production server, for the love of all that is holy and good, **make a data backup and system snapshot, or do it in a staging environment first.**_
 
 Okay? We ready? Let's do this.
 
@@ -47,7 +50,7 @@ Then, upload the executable to your server with ssh by running this command on y
 scp PATH/TO/FILE/migrate2rocky.sh root@yourdomain.com:/home/
 ```
 
-Just, you know, adjust all the file paths and server domains or addresses as needed.
+Just, you know, adjust all the file paths and server domains or IP addresses as needed.
 
 ### The git way
 
@@ -77,14 +80,12 @@ curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rock
 
 That command will download the file straight to your server, and *only* the file you want. But again, there are security concerns that suggest this isn't necessarily the best practice, so keep that in mind.
 
-## Installation
+## Execution scripts and installation
 
-Here comes what is probably the easiest bit. Log in to your server, and then use the terminal to navigate to whatever folder contains the migrate2rocky.sh file.
-
-Then, make sure the file is executable:
+Use the `cd` command to switch to the directory where the script is located, make sure the file is executable and give the owner of the script file x permissions.
 
 ```
-chmod +x migrate2rocky.sh
+chmod u+x migrate2rocky.sh
 ```
 
 And now, at long last, execute the script:
@@ -101,7 +102,7 @@ If you've done everything right, your terminal window should look a bit like thi
 
 Now, it'll take the script a while to convert everything, depending on the actual machine/server, and the connection it has to the wider internet.
 
-If you see this mesage at the end, everything has gone right. Just reboot your server to finish the job.
+If you see a **Complete!** message at the end, then everything is fine and you can restart the server.
 
 ![a successful OS migration message](images/migrate2rocky-convert-02.png)
 
