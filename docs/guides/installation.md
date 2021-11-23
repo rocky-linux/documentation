@@ -20,7 +20,7 @@ https://www.rockylinux.org/download/
 To download the ISO directly from the command line use the `wget` command:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-8.5-x86_64-minimal.iso
+wget -c https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-8.5-x86_64-minimal.iso
 ```
 
 Rocky Linux ISOs are named following this convention:
@@ -73,7 +73,7 @@ If you do not press any key the installer will begin a countdown, after which th
 
 `Test this media & install Rocky Linux 8`
 
-You can also press <kbd>enter</kbd> at any time to start the process immediately.
+You can also press <kbd>Enter</kbd> at any time to start the process immediately.
 
 A quick media verification step will take place. This media verification step can save you the trouble of starting the installation only to find out halfway through that the installer has to abort because of bad installation media.
 
@@ -233,12 +233,10 @@ _Confirm password_:
 
 ### Start the Installation
 
-Once you are satisfied with your choices for the various installation tasks, click the Begin Installation button on the main _Installation Summary_ screen. The installation will begin, and the installer will show the progress of the installation.
+Once you are satisfied with your choices for the various installation tasks, click the Begin Installation button on the main _Installation Summary_ screen. The installation will begin, and the installer will show the progress of the installation.When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.
 
 !!! Note
     If you do not wish to continue after clicking the Begin Installation button, you can still safely back out of the installation without any loss of data. To quit the installer, simply reset your system either by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
-
-When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.
 
 ### Complete the Installation
 
@@ -252,9 +250,9 @@ The system is now set up and ready for use. You will see the Rocky Linux console
 
 ![Rocky Linux Welcome Screen](images/installation_8.5_F02.png)
 
-To log onto the system, type `rockstar` at the login prompt and press <kbd>enter</kbd>.
+To log onto the system, type `rockstar` at the login prompt and press <kbd>Enter</kbd>.
 
-At the Password prompt, type `04302021` (rockstar’s password) and press <kbd>enter</kbd> (the password will ***not*** be echoed to the screen, that is normal).
+At the Password prompt, type `04302021` (rockstar’s password) and press <kbd>Enter</kbd> (the password will ***not*** be echoed to the screen, that is normal).
 
 We will run the `whoami` command after login, this command shows the name of the currently logged in user.
 
