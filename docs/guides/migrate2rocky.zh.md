@@ -1,5 +1,8 @@
 ---
 title: 迁移到Rocky Linux
+author: Ezequiel Bruni
+contributors: tianci li, Steven Spencer
+update: 11-23-2021
 ---
 
 # 如何从CentOS Stream、Centos、Alma Linux、RHEL或Oracle Linux迁移到Rocky Linux
@@ -48,9 +51,6 @@ scp PATH/TO/FILE/migrate2rocky.sh root@yourdomain.com:/home/
 ```
 
 根据需要，你需要调整所在的文件路径以及服务器域名或ip地址
-
-!!! note  "笔记"
-    如果您是使用Xshell连接的远程服务器，则可以直接使用`rz`命令选择脚本文件上传即可（`dnf  -y  install lrzsz`）。
 
 ### git方式
 

@@ -1,5 +1,7 @@
 ---
 Title: Installing Rocky Linux
+contributors: tianci li, Steven Spencer
+updated: 11-23-2021
 ---
 
 # Installing Rocky Linux
@@ -20,7 +22,7 @@ https://www.rockylinux.org/download/
 To download the ISO directly from the command line use the `wget` command:
 
 ```
-wget -c https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-8.5-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-8.5-x86_64-minimal.iso
 ```
 
 Rocky Linux ISOs are named following this convention:
@@ -182,7 +184,7 @@ Click <kbd>Done</kbd> to return to the main _Installation Summary_ screen.
 !!! Warning
     Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it.
 
-## Installer Phase 
+## Installer Phase
 
 Once you are satisfied with your choices for the various installation tasks, the next phase of the installation process will begin the installation proper.
 
@@ -233,7 +235,7 @@ _Confirm password_:
 
 ### Start the Installation
 
-Once you are satisfied with your choices for the various installation tasks, click the Begin Installation button on the main _Installation Summary_ screen. The installation will begin, and the installer will show the progress of the installation.When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.
+Once you are satisfied with your choices for the various installation tasks, click the Begin Installation button on the main _Installation Summary_ screen. The installation will begin, and the installer will show the progress of the installation. When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.
 
 !!! Note
     If you do not wish to continue after clicking the Begin Installation button, you can still safely back out of the installation without any loss of data. To quit the installer, simply reset your system either by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.

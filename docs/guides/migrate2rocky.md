@@ -1,5 +1,8 @@
 ---
 title: Migrating To Rocky Linux
+author: Ezequiel Bruni
+contributors: tianci li, Steven Spencer
+update: 11-23-2021
 ---
 
 # How to Migrate to Rocky Linux from CentOS Stream, CentOS, Alma Linux, RHEL, or Oracle Linux
@@ -27,7 +30,7 @@ Don't worry, if you're new to systems administration, I'll be keeping this as us
 ### Caveats and warnings
 
 1. Do check out migrate2rocky's README page (linked above), because there is a known clash between the script and Katello's repositories. In time, it's probable that we'll discover (and eventually patch) more clashes and incompatibilities, so you'll want to know about those, especially for production servers.
-2. This script is most likely to work without incident on completely fresh installs.**If you want to use it in an actual production environment, make a data backup and system snapshot first, or in a temporary test environment.**
+2. This script is most likely to work without incident on completely fresh installs. _If you want to convert a production server, for the love of all that is holy and good, **make a data backup and system snapshot, or do it in a staging environment first.**_
 
 Okay? We ready? Let's do this.
 
@@ -48,9 +51,6 @@ scp PATH/TO/FILE/migrate2rocky.sh root@yourdomain.com:/home/
 ```
 
 Just, you know, adjust all the file paths and server domains or IP addresses as needed.
-
-!!! Note "note" 
-    If you are using Xshell to connect to a remote server, you can simply use the `rz` command to select the script file to upload(`dnf  -y  install lrzsz`)
 
 ### The git way
 
