@@ -1,5 +1,8 @@
 ---
-title: Working with filters
+title: Working With Filters
+author: Antoine Le Morvan
+contributors: Steven Spencer
+update: 11-23-2021
 ---
 
 # Ansible - Working with filters
@@ -45,7 +48,7 @@ Throughout this chapter, we will use the following playbook to test the differen
     false_non_boolean: "False"
     whatever: "It's false!"
     user_name: antoine
-    my_dictionnary:
+    my_dictionary:
       key1: value1
       key2: value2
     my_simple_list:
@@ -145,7 +148,7 @@ or a variable into a boolean:
 
 ```
 
-A character string can be transformed into upper or lower case :
+A character string can be transformed into upper or lower case:
 
 ```
 - name: Lowercase a string of characters
@@ -256,27 +259,27 @@ are frequently used, especially in loops.
 Note that it is possible to specify the name of the key and of the value to use in the transformation.
 
 ```
-- name: Display a dictionnary
+- name: Display a dictionary
   debug:
-    var: my_dictionnary
+    var: my_dictionary
 
 - name: Transforming a dictionary into a list
   debug:
-    var: my_dictionnary | dict2items
+    var: my_dictionary | dict2items
 
 - name: Transforming a dictionary into a list
   debug:
-    var: my_dictionnary | dict2items(key_name='key', value_name='value')
+    var: my_dictionary | dict2items(key_name='key', value_name='value')
 
-- name: Transforming a list into a dictionnary
+- name: Transforming a list into a dictionary
   debug:
     var: my_list | items2dict(key_name='element', value_name='value')
 ```
 
 ```
-TASK [Display a dictionnary] *************************************************************************
+TASK [Display a dictionary] *************************************************************************
 ok: [localhost] => {
-    "my_dictionnary": {
+    "my_dictionary": {
         "key1": "value1",
         "key2": "value2"
     }
@@ -284,7 +287,7 @@ ok: [localhost] => {
 
 TASK [Transforming a dictionary into a list] *************************************************************
 ok: [localhost] => {
-    "my_dictionnary | dict2items": [
+    "my_dictionary | dict2items": [
         {
             "key": "key1",
             "value": "value1"
@@ -298,7 +301,7 @@ ok: [localhost] => {
 
 TASK [Transforming a dictionary into a list] *************************************************************
 ok: [localhost] => {
-    "mon_dictionnaire | dict2items(key_name='clef', value_name='valeur')": [
+    "my_dictionary | dict2items (key_name = 'key', value_name = 'value')": [
         {
             "key": "key1",
             "value": "value1"
@@ -310,7 +313,7 @@ ok: [localhost] => {
     ]
 }
 
-TASK [Transforming a list into a dictionnary] ************************************************************
+TASK [Transforming a list into a dictionary] ************************************************************
 ok: [localhost] => {
     "my_list | items2dict(key_name='element', value_name='value')": {
         "element1": "value1",
