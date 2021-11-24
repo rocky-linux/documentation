@@ -50,9 +50,10 @@ The following packages have been updated since the 8.5 release Nov 14, 2021
 * udftools: udftools-2.2-5.el8 -> udftools-2.3-2.el8
 
 The following packages have been dropped and also removed from dnf groups:
-insights-client: insights-client-3.1.5-1.el8 (Standard Group)
 
-For packages that been dropped, it is safe to remove them using `dnf remove`
+* insights-client: insights-client-3.1.5-1.el8 (Standard Group)
+
+For packages that have been dropped, it is safe to remove them using `dnf remove`
 
 The following modules have been updated since the 8.5 release Nov 14, 2021:
 
@@ -63,11 +64,11 @@ The following modules have been updated since the 8.5 release Nov 14, 2021:
 
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
-All Rocky Linux components are built from the sources hosted at git.rockylinux.org. In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
 ### Known Issues
 
-https://bugs.rockylinux.org/show_bug.cgi?id=174 - We are aware of an issue that `kdump` does not work on vmware systems such as ESXi.
+[bug 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) - We are aware of an issue that `kdump` does not work on vmware systems such as ESXi.
 
 We are also aware of our mirror system reporting back the wrong directory for doing updates. It was going to `kickstart` rather than `os`. This should be resolved and updates should work normally.
 
