@@ -1,7 +1,8 @@
 ---
 title: Rocky on VirtualBox
 author: Steven Spencer
-update: 11-17-2021
+contributors: Trevor Cooper, Ezequiel Bruni
+update: 11-24-2021
 tested on: Rocky Linux 8.4, 8.5
 ---
 
@@ -44,13 +45,13 @@ Now we need to set up the hard disk size. By default, VirtualBox&reg; will autom
 
 * Click "Create"
 
-You will get a dialog box for creating various virtual hard disk types. For the sake of this document, just keep the default (VDI):
+You will get a dialog box for creating various virtual hard disk types. There are several hard disk types listed here. See the Oracle VirtualBox documentation for [more information](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vdidetails.html) about selecting virtual hard disk types. For the purpose of this document, just keep the default (VDI):
 
 ![Hard Disk File Type](../images/vbox-04.png)
 
 * Click "Next"
 
-The next screen deals with the storage on the physical hard disk. There are two options, but for the purpose of this document, we are just accepting the default "Dynamically allocated."
+The next screen deals with the storage on the physical hard disk. There are two options. "Fixed Size" will be slower to create, faster to use, but less flexible in terms of space (if you need more space, you are stuck with what you created), whereas the default, "Dynamically Allocated" will be faster to create, slower to use, but will give you the option to grow if your disk space needs change. For the purpose of this document, we are just accepting the default "Dynamically allocated."
 
 ![Storage On Physical Hard Disk](../images/vbox-05.png)
 
@@ -93,16 +94,16 @@ The Rocky Linux ISO image now shows selected under the "Controller:IDE" in the m
 
 ### Video Memory for Graphical Installations
 
-VirtualBox&reg; sets up 16 MB of memory to use for video. That is fine if you are planning on running a bare-bones server without a GUI, but as soon as you add graphics, that's not enough. Users who keep this setting, often see a hanging boot screen that never finishes or other errors. If you are going to be running Rocky Linux with a GUI, you should allocate 128 MB. To fix this before we start the virtual machine, click on the "Settings" (gear icon) and you should get the same settings screen that we got when attaching our ISO image (above).
+VirtualBox&reg; sets up 16 MB of memory to use for video. That is fine if you are planning on running a bare-bones server without a GUI, but as soon as you add graphics, that's not enough. Users who keep this setting, often see a hanging boot screen that never finishes or other errors. If you are going to be running Rocky Linux with a GUI, you should allocate enough memory to easily run the graphics. If your machine is a bit thin on memory, adjust this value upwards 16 MB at a time until things run smoothly. Keep in mind, too, that your host machines video resolution is also a factor that you need to consider. Think carefully about what you want your Rocky Linux virtual machine to do, and try to allocate video memory that is compatible with your host machine and your other requirements. You can find more information on display settings from [Oracle's official documentation here](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/settings-display.html). If you've got plenty of memory you can set this value to the maximum of 128 MB. To fix this before we start the virtual machine, click on the "Settings" (gear icon) and you should get the same settings screen that we got when attaching our ISO image (above).
 
 This time:
 
 * Click on "Display" on the left-hand side
 * In the "Screen" tab on the right-hand side, you'll notice the "Video Memory" option with the default set to 16 MB.
-* Change this to 128 MB
+* Change this to the value that you want. You can adjust this upwards by coming back to this screen anytime. In our example, we are selecting 128 MB now.
 
-!!! Note
-    There are ways to set the video memory up-to 256 MB. If you need more, do a quick Internet search on how to do this within your host operating system.
+!!! Tip
+    There are ways to set the video memory up-to 256 MB. If you need more, check out [this document](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vboxmanage-modifyvm.html) from Oracle's official documentation.
 
 Your screen should look something like this:
 
@@ -130,7 +131,10 @@ After installing and rebooting you will get a EULA license agreement screen that
 
 ## Other Information
 
-It is not the intent of this document to make you an expert on all of the features that VirtualBox&reg; can provide. For information on how to do specific things please check the [official documentation](https://www.virtualbox.org/manual/UserManual.html).
+It is not the intent of this document to make you an expert on all of the features that VirtualBox&reg; can provide. For information on how to do specific things please check the [official documentation](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/).
+
+!!! tip "Advanced Tip"
+    VirtualBox&reg; offers extensive options at the command line using `VBoxManage`. While this document does not cover the use of `VBoxManage`, Oracle's official documentation provides [plenty of details](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vboxmanage-intro.html) if you would like to research this further.
 
 ## Conclusion
 
