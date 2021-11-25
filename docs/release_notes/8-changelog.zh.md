@@ -329,10 +329,10 @@ repo_gpgcheck=1
   * 为未来的情况添加 devel 和 debuginfo 存储库
   * 这是为了 模拟/构建根 目的而提供的
 
-
 * rocky-logos
 
   * 改进未来官方的live镜像图标
+
 
 ### 附加更改
 
