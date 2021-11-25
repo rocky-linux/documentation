@@ -50,6 +50,7 @@ update: 2021-11-23
 * udftools: udftools-2.2-5.el8 -> udftools-2.3-2.el8
 
 以下软件包已被丢弃，同时也从 dnf 软件包组中删除:
+
 * insights-client: insights-client-3.1.5-1.el8 (标准软件包组)
 
 对于被丢弃的软件包，可以使用`dnf remove`安全地将其删除。
