@@ -50,7 +50,7 @@ update: 2021-11-23
 * udftools: udftools-2.2-5.el8 -> udftools-2.3-2.el8
 
 以下软件包已被丢弃，同时也从 dnf 软件包组中删除:
-insights-client: insights-client-3.1.5-1.el8 (标准软件包组)
+* insights-client: insights-client-3.1.5-1.el8 (标准软件包组)
 
 对于被丢弃的软件包，可以使用`dnf remove`安全地将其删除。
 
@@ -63,11 +63,11 @@ insights-client: insights-client-3.1.5-1.el8 (标准软件包组)
 
 因为上游发布的更新是在我们当前的架构中发布的，所以强烈建议所有用户在您当前的Rocky Linux计算机中应用 *全部* 更新（包括今天发布的内容），您可以通过运行`dnf update`来完成更新动作。
 
-所有Rocky Linux组件都是由托管在 git.rockylinux.org 上的源代码进行构建的。此外，SRPM与存储库将一起发布在对应的"source"目录中，您可以在我们的任意镜像网站上找到它们，镜像网站的源码包与我们发布的每个二进制RPM相同。
+所有Rocky Linux组件都是由托管在[git.rockylinux.org](https://git.rockylinux.org) 上的源代码进行构建的。此外，SRPM与存储库将一起发布在对应的"source"目录中，您可以在我们的任意镜像网站上找到它们，镜像网站的源码包与我们发布的每个二进制RPM相同。
 
 ### 已知问题
 
-https://bugs.rockylinux.org/show_bug.cgi?id=174 -我们注意到一个问题，即`kdump`在ESXi等VMware系统上不起作用。
+我们注意到一个问题[bug 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) ，即`kdump`在ESXi等VMware系统上不起作用。
 
 我们还了解到镜像系统做更新时报告了有错误的目录，它应该去到`kickstart`请求应答文件而不是`OS`(操作系统)。这个问题应该可以通过更新来解决，使其正常工作。
 
