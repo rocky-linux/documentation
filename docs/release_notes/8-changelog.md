@@ -2,14 +2,47 @@
 title:  Rocky Linux 8 Change Log
 author: Louis Abel
 contributors: Steven Spencer
-update: 11-22-2021
+update: 11-26-2021
 ---
 
 # Rocky Linux 8 Change Log
 
 Rocky Linux 8 will receive incremental updates, and minor version upgrades, over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`. The update of this document can sometimes be delayed. To check for new updates, you can go to the [Rocky Announce](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/) mailing list archive.
 
+## Updates
+
+Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
+
+All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - 2021-11-22
+
+The following packages have been updated since Nov 22, 2021 (including updated module packages):
+
+* mailman: mailman-3:2.1.29-12.module+el8.5.0+703+19300c10 -> mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1
+
+The follow modules have been updated since Nov 23, 2021:
+
+* mailman-2.1-8050020211123230959.fd901a62
+
+Associated CVE's:
+
+* CVE-2021-42096
+* CVE-2021-42097
+
 ## 8.5 - 2021-11-16
+
+The following packages have been updated since Nov 16, 2021 (including updated module packages):
+
+* clang: clang-12.0.1-2.module+el8.5.0+692+8756646f -> clang-12.0.1-4.module+el8.5.0+715+58f51d49
+* llvm-toolset: llvm-toolset-12.0.1-1.module+el8.5.0+692+8756646f -> llvm-toolset-12.0.1-1.module+el8.5.0+715+58f51d49
+
+The follow modules have been updated since Nov 16, 2021:
+
+* llvm-toolset-rhel8-8050020211122023437.b4937e53
+
+
+## 8.5 - 2021-11-14
 
 The following packages have been updated since the 8.5 release Nov 14, 2021
 (including updated module packages):
@@ -59,12 +92,6 @@ The following modules have been updated since the 8.5 release Nov 14, 2021:
 
 * rust-toolset-rhel8-8050020211112021616.f73640c0
 * httpd-2.4-8050020211115030420.b4937e53
-
-### Updates
-
-Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
-
-All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
 ### Known Issues
 
