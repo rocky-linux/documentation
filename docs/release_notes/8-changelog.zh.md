@@ -2,14 +2,47 @@
 title:  Rocky Linux 8 Change Log
 author: Louis Abel
 contributors: tianci li
-update: 2021-11-23
+update: 2021-11-26
 ---
 
 # Rocky Linux 8 更改日志
 
 随着上游的构建和推送自己的版本，Rocky Linux 8.4 将随着时间的推移逐步接收到增量更新以及次要版本升级，此页面将提供发生更改时的详细信息。对于运行着Rocky Linux的系统，可以通过运行`dnf update`命令随时更新他们的系统。本文档的更新有时可能会延迟，要检查是否有新的更新，您可以访问邮件列表归档——[Rocky Announce](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/)。
 
+### 更新说明
+
+因为上游发布的更新是在我们当前的架构中发布的，所以强烈建议所有用户在您当前的Rocky Linux计算机中应用 *全部* 更新（包括今天发布的内容），您可以通过运行`dnf update`来完成更新动作。
+
+所有Rocky Linux组件都是由托管在[git.rockylinux.org](https://git.rockylinux.org) 上的源代码进行构建的。此外，SRPM与存储库将一起发布在对应的"source"目录中，您可以在我们的任意镜像网站上找到它们，镜像网站的源码包与我们发布的每个二进制RPM相同。
+
+## 8.5 - 2021-11-22
+
+以下软件包自2021年11月22日起进行了更新(包含更新后的模块软件包)：
+
+* mailman: mailman-3:2.1.29-12.module+el8.5.0+703+19300c10 -> mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1
+
+以下模块自2021年11月23日起已更新：
+
+* mailman-2.1-8050020211123230959.fd901a62
+
+相关联的CVE:
+
+* CVE-2021-42096
+* CVE-2021-42097
+
 ## 8.5 - 2021-11-16
+
+以下软件包自2021年11月16日起进行了更新(包含更新后的模块软件包):
+
+* clang: clang-12.0.1-2.module+el8.5.0+692+8756646f -> clang-12.0.1-4.module+el8.5.0+715+58f51d49
+* llvm-toolset: llvm-toolset-12.0.1-1.module+el8.5.0+692+8756646f -> llvm-toolset-12.0.1-1.module+el8.5.0+715+58f51d49
+
+以下模块自2021年11月16日起已更新:
+
+* llvm-toolset-rhel8-8050020211122023437.b4937e53
+  
+
+## 8.5 - 2021-11-14
 
 从2021年11月14日发布 8.5 版本以来，以下软件包已更新
 (包含更新的模块软件包):
@@ -50,7 +83,8 @@ update: 2021-11-23
 * udftools: udftools-2.2-5.el8 -> udftools-2.3-2.el8
 
 以下软件包已被丢弃，同时也从 dnf 软件包组中删除:
-insights-client: insights-client-3.1.5-1.el8 (标准软件包组)
+
+* insights-client: insights-client-3.1.5-1.el8 (标准软件包组)
 
 对于被丢弃的软件包，可以使用`dnf remove`安全地将其删除。
 
@@ -59,15 +93,9 @@ insights-client: insights-client-3.1.5-1.el8 (标准软件包组)
 * rust-toolset-rhel8-8050020211112021616.f73640c0
 * httpd-2.4-8050020211115030420.b4937e53
 
-### 更新说明
-
-因为上游发布的更新是在我们当前的架构中发布的，所以强烈建议所有用户在您当前的Rocky Linux计算机中应用 *全部* 更新（包括今天发布的内容），您可以通过运行`dnf update`来完成更新动作。
-
-所有Rocky Linux组件都是由托管在 git.rockylinux.org 上的源代码进行构建的。此外，SRPM与存储库将一起发布在对应的"source"目录中，您可以在我们的任意镜像网站上找到它们，镜像网站的源码包与我们发布的每个二进制RPM相同。
-
 ### 已知问题
 
-https://bugs.rockylinux.org/show_bug.cgi?id=174 -我们注意到一个问题，即`kdump`在ESXi等VMware系统上不起作用。
+我们注意到一个问题[bug 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) ，即`kdump`在ESXi等VMware系统上不起作用。
 
 我们还了解到镜像系统做更新时报告了有错误的目录，它应该去到`kickstart`请求应答文件而不是`OS`(操作系统)。这个问题应该可以通过更新来解决，使其正常工作。
 
@@ -328,10 +356,10 @@ repo_gpgcheck=1
   * 为未来的情况添加 devel 和 debuginfo 存储库
   * 这是为了 模拟/构建根 目的而提供的
 
-
 * rocky-logos
 
   * 改进未来官方的live镜像图标
+
 
 ### 附加更改
 
