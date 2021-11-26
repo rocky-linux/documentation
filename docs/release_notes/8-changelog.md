@@ -2,7 +2,7 @@
 title:  Rocky Linux 8 Change Log
 author: Louis Abel
 contributors: Steven Spencer
-update: 11-22-2021
+update: 11-26-2021
 ---
 
 # Rocky Linux 8 Change Log
