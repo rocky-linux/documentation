@@ -2,18 +2,26 @@
 title:  Rocky Linux 8 Change Log
 author: Louis Abel
 contributors: Steven Spencer
-update: 11-26-2021
+update: 11-30-2021
 ---
 
 # Rocky Linux 8 Change Log
 
 Rocky Linux 8 will receive incremental updates, and minor version upgrades, over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`. The update of this document can sometimes be delayed. To check for new updates, you can go to the [Rocky Announce](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/) mailing list archive.
 
-## Updates
+### Updates
 
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - 2021-11-24
+
+The following packages have been updated since Nov 24, 2021:
+
+* dotnet5.0: dotnet5.0-5.0.208-2.el8_5 -> dotnet5.0-5.0.209-1.el8_5
+* dotnet5.0-build-reference-packages: dotnet5.0-build-reference-packages-0-11.20210607git5f10a4b.el8 -> dotnet5.0-build-reference-packages-0-12.20211117git6ce5818.el8_5
+
 
 ## 8.5 - 2021-11-22
 
