@@ -67,7 +67,7 @@ Längst ner på informationssidan, alternativet för "Värd" ska nu visa värdti
 
 * "Paketkategorier ":  Värdar har flera olika kategorier av programvara. Exempel på Fedora-kategorier inkluderar Fedora och Fedora arkiv 
 
-Klicka på "[lägg till]]" länken under "Paketkategorier".
+Klicka på "[lägg till]" länken under "Paketkategorier".
 
 ### Paketkategorier
 
