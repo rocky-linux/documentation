@@ -1,176 +1,177 @@
 ---
-title: Task Management
+title: Gestione dei compiti
 ---
 
-# Task Management
+# Gestione dei compiti
 
-In this chapter you will learn how to manage scheduled tasks.
-
-****
-
-**Objectives** : In this chapter, future Linux administrators will learn how to:
-
-:heavy_check_mark: Linux deals with the tasks scheduling;   
-:heavy_check_mark: restrict the use of **`cron`** to certain users;   
-:heavy_check_mark: schedule tasks.
-
-:checkered_flag: **crontab**, **crond**, **scheduling**, **linux**
-
-**Knowledge**: :star: :star:  
-**Complexity**: :star: :star:
-
-**Reading time**: 15 minutes
+In questo capitolo imparerai come gestire le attività programmate.
 
 ****
 
-## Generalities
+**Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come:
 
-The scheduling of tasks is managed with the `cron` utility. It allows the periodic execution of tasks.
+:heavy_check_mark: Linux si occupa della pianificazione dei compiti;  
+:heavy_check_mark: limitare l'uso di **`cron`** a determinati utenti;  
+:heavy_check_mark: pianificare le attività.
 
-It is reserved to the administrator for system tasks but can be used by normal users for tasks or scripts that they have access to. To access the `cron` utility, we use: `crontab`.
+:checkered_flag: **crontab**, **crond**, **pianificazione**, **linux**
 
-The `cron` service is used for:
+**Conoscenza**: :star: :star:  
+**Complessità**: :star: :star:
 
-* Repetitive administration operations;
+**Tempo di lettura**: 15 minuti
+
+****
+
+## Generalità
+
+La pianificazione delle attività è gestita con l'utilità `cron`. Essa permette l'esecuzione periodica dei compiti.
+
+È riservata all'amministratore per le attività di sistema ma può essere utilizzata da utenti normali per attività o script a cui hanno accesso. Per accedere all'utilità `cron`, usiamo: `crontab`.
+
+Il servizio `cron` è usato per:
+
+* Operazioni di amministrazione ripetitive;
 * Backups;
-* Monitoring of system activity;
-* Program execution.
+* Monitoraggio dell'attività del sistema;
+* Esecuzione di un programma.
 
-`crontab` is short for **cron table**, but can be thought of as a task scheduling table.
+`crontab` è un'abbreviazione per **cron table**, ma può essere pensato come una tabella di programmazione attività.
 
-!!! Warning To set up a schedule, the system must have the correct time set.
+!!! Warning "Avvertimento" Per impostare una pianificazione, il sistema deve avere l'ora locale impostata correttamente.
 
-## How the service works
+## Come funziona il servizio
 
-The `cron` service is run by a `crond` daemon present in memory.
+Il servizio di `cron` è gestito da un demone `crond` presente in memoria.
 
-To check its status:
+Per verificare il suo stato:
 
 ```
 [root] # systemctl status crond
 ```
 
-!!! Tip If the `crond` daemon is not running, you will have to initialize it manually and/or automatically at startup. Indeed, even if tasks are scheduled, they will not be launched.
+!!! Tip "Suggerimento" Se il demone `crond` non è in esecuzione, dovrai inizializzarlo manualmente e/o automaticamente all'avvio. Quindi, anche se sono programmati dei compiti, questi non saranno eseguiti fino all'avvio dello stesso.
 
-Initialization of the `crond` daemon in manual:
+Inizializzazione manuale del demone `crond`:
 
 ```
 [root]# systemctl {status|start|restart|stop} crond
 ```
 
-Initialization of the `crond` daemon at startup:
+Initializzazione del demone `crond` all'avvio del sistema:
 
 ```
 [root]# systemctl enable crond
 ```
 
-## Security
+## Sicurezza
 
-In order to implement a schedule, a user must have permission to use the `cron` service.
+Per implementare una pianificazione, un utente deve disporre dell'autorizzazione all'utilizzo del servizio `cron`.
 
-This permission varies according to the information contained in the files below:
+Questa autorizzazione varia in base alle informazioni contenute nei file seguenti:
 
 * `/etc/cron.allow`
 * `/etc/cron.deny`
 
-!!! Warning If neither file is present, all users can use `cron`.
+!!! Warning "Avvertimento" Se nessuno dei due file è presente, tutti gli utenti possono usare `cron`.
 
-### The `cron.allow` and `cron.deny` Files
+### I files `cron.allow` and `cron.deny`
 
 File `/etc/cron.allow`
 
-Only users contained in this file are allowed to use `cron`.
+Solo gli utenti contenuti in questo file sono autorizzati a utilizzare `cron`.
 
-If it exists and is empty, no users can use `cron`.
+Se esiste ed è vuoto, nessun utente può usare `cron`.
 
-!!! Warning If `cron.allow` is present, `cron.deny` is **ignored**.
+!!! Warning "Avvertimento" Se è presente `cron.allow`,`cron.deny` è **ignorato**.
 
 File `/etc/cron.deny`
 
-Users in this file are not allowed to use `cron`.
+Gli utenti di questo file non sono autorizzati a utilizzare `cron`.
 
-If it is empty, all users can use `cron`.
+Se è vuoto, tutti gli utenti possono usare `cron`.
 
-By default, `/etc/cron.deny` exists and is empty and `/etc/cron.allow` does not exist.
+Per impostazione predefinita, `/etc/cron.deny` esiste ed è vuoto e `/etc/cron.allow` non esiste.
 
-### Allowing a user
+### Consentire ad un utente
 
-Only **user1** will be able to use `cron`.
+Solo **user1** sarà in grado di utilizzare`cron`.
 
 ```
 [root]# vi /etc/cron.allow
 user1
 ```
 
-### Prohibit a user
-Only **user2** will not be able to use `cron`.
+### Proibire ad un utente
+Solo **user2** non sarà in grado di usare `cron`.
 
 ```
 [root]# vi /etc/cron.deny
 user2
 ```
 
-`cron.allow` must not be present.
+`cron.allow` non deve essere presente.
 
-## Scheduling tasks
+## Pianificazione delle attività
 
-When a user schedules a task, a file with his name is created under `/var/spool/cron/`.
+Quando un utente pianifica un'attività, viene creato un file con il suo nome in `/var/spool/cron/`.
 
-This file contains all the information the `crond` needs to know regarding all tasks created by this user, the commands or programs to run, and when to run them (hour, minute, day ...).
+Questo file contiene tutte le informazioni che il `crond` deve sapere riguardo a tutte le attività create da questo utente, i comandi o i programmi da eseguire e quando eseguirli (ora, minuto, giorno ...).
 
 ![Cron tree](images/tasks-001.png)
 
-### The `crontab` command
+### Il comando `crontab`
 
-The `crontab` command is used to manage the schedule file.
+Il comando `crontab` viene utilizzato per gestire il file di pianificazione.
 
 ```
 crontab [-u user] [-e | -l | -r]
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# crontab -u user1 -e
 ```
 
-| Option | Description                                               |
-| ------ | --------------------------------------------------------- |
-| `-e`   | Edit the schedule file with vi                            |
-| `-l`   | Displays the contents of the schedule file                |
-| `-u`   | Name of the user whose schedule file is to be manipulated |
-| `-r`   | Delete the schedule file                                  |
+| Opzione | Descrizione                                                           |
+| ------- | --------------------------------------------------------------------- |
+| `-e`    | Modifica il file di pianificazione con VI                             |
+| `-l`    | Visualizza il contenuto del file di pianificazione                    |
+| `-u`    | Nome dell'utente il cui file di pianificazione deve essere manipolato |
+| `-r`    | Elimina il file di pianificazione                                     |
 
-!!! Warning `crontab` without option deletes the old schedule file and waits for the user to enter new lines. You have to press <kbd>ctrl</kbd> + <kbd>d</kbd> to exit this editing mode.
+!!! Warning "Avvertimento" `crontab` Senza opzioni elimina il vecchio file di pianificazione e attende che l'utente inserisca nuove linee. Devi premere <kbd>ctrl</kbd> + <kbd>d</kbd> per uscire da questa modalità di modifica.
 
-    Only `root` can use the `-u user` option to manage another user's schedule file.
+    Solo <code>root può utilizzare l'opzione -u utente per gestire il file di pianificazione di un altro utente.
     
-    The example above allows root to schedule a task for user1.
+    L'esempio sopra consente a root di pianificare un'attività per l'utente1.
+    </code>
 
-### Uses of `crontab`
+### Usi di `crontab`
 
-The uses of `crontab` are many and include:
+Gli usi di `crontab` sono molti e includono:
 
-* Modifications to the `crontab` files taken into account immediately;
-* No need to restart.
+* Modifiche ai file `crontab` presi in considerazione immediatamente;
+* Nessun bisogno di riavviare.
 
-On the other hand, the following points must be taken into account:
+D'altra parte, devono essere presi in considerazione i seguenti punti:
 
-* The program must be autonomous;
-* Provide redirections (stdin, stdout, stderr);
-* It is not relevant to run commands that use input/output requests on a terminal.
+* Il programma deve essere autonomo;
+* Fornire reindirizzamenti (stdin, stdout, stderr);
+* Non è rilevante per eseguire comandi che utilizzano richieste di ingresso/uscita su un terminale.
 
-!!! Note It is important to understand that the purpose of scheduling is to perform tasks automatically, without the need for external intervention.
+!!! Note "Nota" È importante capire che lo scopo della pianificazione è quello di eseguire automaticamente attività, senza la necessità di un intervento esterno.
 
-## The `crontab` file
+## Il file  `crontab`
 
-The `crontab` file is structured according to the following rules.
+Il file `crontab` è strutturato in base alle seguenti regole.
 
-* Each line of this file corresponds to a schedule;
-* Each line has six fields, 5 for the time and 1 for the order;
-* Each field is separated by a space or a tab;
-* Each line ends with a carriage return;
-* A `#` at the beginning of the line comments it.
+* Ogni riga di questo file corrisponde a una pianificazione;
+* Ogni linea ha sei campi, 5 per il tempo e 1 per l'ordine;
+* Ogni campo è separato da uno spazio o da una tabulazione;
+* Ogni linea termina con un ritorno a capo;
+* Un `#` all'inizio della linea la commenta.
 
 ```
 [root]# crontab –e
@@ -178,73 +179,73 @@ The `crontab` file is structured according to the following rules.
 1  2 3 4 5       6
 ```
 
-| Field | Description         | Detail                   |
-| ----- | ------------------- | ------------------------ |
-| 1     | Minute(s)           | From 0 to 59             |
-| 2     | Hour(s)             | From 0 to 23             |
-| 3     | Day(s) of the month | From 1 to 31             |
-| 4     | Month of the year   | From 1 to 12             |
-| 5     | Day(s) of the week  | From 0 to 7 (0=7=sunday) |
-| 6     | Task to execute     | Full command or script   |
+| Campo | Descrizione               | Dettaglio                 |
+| ----- | ------------------------- | ------------------------- |
+| 1     | Minuto(i)                 | Da 0 a 59                 |
+| 2     | Ora(e)                    | Da 0 a 23                 |
+| 3     | Giorno(i) del mese        | Da 1 a 31                 |
+| 4     | Mese dell'anno            | Da 1 a 12                 |
+| 5     | Giorno(i) della settimana | Da 0 a 7 (0=7=Domenica)   |
+| 6     | Compito da eseguire       | Comando completo o script |
 
-!!! Warning The tasks to be executed must use absolute paths and if possible use redirects.
+!!! Warning "Avvertimento" Le attività da eseguire devono utilizzare percorsi assoluti e, se possibile, utilizzare reindirizzamenti.
 
-In order to simplify the notation for the definition of time, it is advisable to use special symbols.
+Al fine di semplificare la notazione per la definizione del tempo, è consigliabile utilizzare simboli speciali.
 
-| Wildcards | Description                      |
-| --------- | -------------------------------- |
-| `*`       | All possible values of the field |
-| `-`       | Indicates a range of values      |
-| `,`       | Indicates a list of values       |
-| `/`       | Defines a step                   |
+| Wildcards | Descrizione                        |
+| --------- | ---------------------------------- |
+| `*`       | Tutti i possibili valori del campo |
+| `-`       | Indica una gamma di valori         |
+| `,`       | Indica un elenco di valori         |
+| `/`       | Definisce un passo                 |
 
-Examples:
+Esempi:
 
-Script executed on April 15 at 10:25 am:
+Script eseguito il 15 Aprile alle 10:25am:
 
 ```
 25 10 15 04 * /root/scripts/script > /log/…
 ```
 
-Run at 11am and then at 4pm every day:
+Esegui alle 11am e quindi alle 4pm di ogni giorno:
 
 ```
 00 11,16 * * * /root/scripts/script > /log/…
 ```
 
-Run every hour from 11am to 4pm every day:
+Esegui ogni ora dalle 11am alle 4pm di ogni giorno:
 
 ```
 00 11-16 * * * /root/scripts/script > /log/…
 ```
 
-Run every 10 minutes during working hours:
+Esegui ogni 10 minuti durante l'orario di lavoro:
 
 ```
 */10 8-17 * * 1-5 /root/scripts/script > /log/…
 ```
 
-For the root user, `crontab` also has some special time settings:
+Per l'utente root, `crontab` ha anche alcune impostazioni speciali del tempo:
 
-| Setting   | Description                                                    |
-| --------- | -------------------------------------------------------------- |
-| @reboot   | Run command on system reboot                                   |
-| @hourly   | Run command every hour                                         |
-| @daily    | Runs daily just after midnight                                 |
-| @weekly   | Runs command every Sunday just after midnight                  |
-| @monthly  | Runs command on the first day of the month just after midnight |
-| @annually | Runs January 1st just after midnight                           |
+| Impostazioni | Descrizione                                                       |
+| ------------ | ----------------------------------------------------------------- |
+| @reboot      | Eseguire il comando al riavvio del sistema                        |
+| @hourly      | Esegui il comando ogni ora                                        |
+| @daily       | Esegui giornalmente dopo la mezzanotte                            |
+| @weekly      | Esegui il comando ogni domenica dopo la mezzanotte                |
+| @monthly     | Esegui il comando il primo giorno del mese subito dopo mezzanotte |
+| @annually    | Esegui il 1 gennaio subito dopo mezzanotte                        |
 
-### Task execution process
+### Processo di esecuzione dell'attività
 
-A user, rockstar, wants to edit his `crontab` file:
+Un utente, rockstar, vuole modificare il suo file `crontab`:
 
-1) `crond` checks to see if he is allowed (`/etc/cron.allow` and `/etc/cron.deny`).
+1) `crond` controlla se è permesso (`/etc/cron.allow` e `/etc/cron.deny`).
 
-2) If he is, he accesses his `crontab` file (`/var/spool/cron/rockstar`).
+Ogni minuto `cron` legge il file di pianificazione.
 
 Every minute `crond` reads the schedule files.
 
-3) It executes the scheduled tasks.
+3) Esegue le attività pianificate.
 
-4) It reports systematically in a log file (`/var/log/cron`).
+4) Riporta sistematicamente in un file di registro (`/var/log/cron`).
