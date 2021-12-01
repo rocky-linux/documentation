@@ -1,129 +1,128 @@
 ---
-title: Comandi Linux
+title: Linux Commands
 author: Antoine Le Morvan
-contributors: Steven Spencer, Franco Colussi
-update: 11-10-2021
+contributors: Steven Spencer, Aditya Putta
+update: 11-08-2021
 ---
 
-# Comandi per gli utenti Linux
+# Commands for Linux Users
 
-In questo capitolo imparerai come lavorare con Linux e con i comandi.
+In this chapter you will learn how to work with Linux with the commands.
 
----
+****
 
-**Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come fare per:
+**Objectives** : In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: **spostarsi** nell'albero di sistema;  
-:heavy_check_mark: **creare** un file di testo, **visualizzare** il suo contenuto e **modificarlo**;  
-:heavy_check_mark: utilizzare i comandi Linux più utili.  
+:heavy_check_mark: **move** in the system tree;   
+:heavy_check_mark: **create** a text file, **display** its contents and **modify** it;   
+:heavy_check_mark: use the most useful Linux commands.
 
-:checkered_flag: **comandi utente**, **linux**
+:checkered_flag: **user commands**, **linux**
 
-**Conoscenza**: :star:  
-**Complessità**: :star:  
+**Knowledge**: :star:   
+**Complexity**: :star:
 
-**Tempo di lettura**: 40 minuti
+**Reading time**: 40 minutes
 
----
+****
 
-## Generalità
+## Generalities
 
-I sistemi Linux attuali hanno utilità grafiche dedicate al lavoro di un amministratore. Tuttavia, è importante essere in grado di utilizzare l'interfaccia in modalità riga di comando per diversi motivi:
+Current Linux systems have graphical utilities dedicated to the work of an administrator. However, it is important to be able to use the interface in command line mode for several reasons:
 
-* La maggior parte dei comandi di sistema sono comuni a tutte le distribuzioni Linux, questo non è il caso degli strumenti grafici.
-* Può accadere che il sistema non si avvii correttamente ma che un interprete di comando di backup rimanga accessibile.
-* L'amministrazione remota viene eseguita dalla riga di comando con un terminale SSH.
-* Per preservare le risorse del server, l'interfaccia grafica è installata o lanciata su richiesta.
-* L'amministrazione è eseguita da scripts.
+* The majority of system commands are common to all Linux distributions, which is not the case for graphical tools.
+* It can happen that the system does not start correctly but that a backup command interpreter remains accessible.
+* Remote administration is done on the command line with an SSH terminal.
+* In order to preserve server resources, the graphical interface is either not installed or launched on demand.
+* Administration is done by scripts.
 
-L'apprendimento di questi comandi consente all'amministratore di connettersi a un terminale Linux, per gestire le sue risorse, i suoi files, identificare la stazione, il terminale e gli utenti connessi, etc.
+Learning these commands allows the administrator to connect to a Linux terminal, to manage its resources, its files, to identify the station, the terminal, and the connected users, etc.
 
-### Gli utenti
+### The users
 
-L'utente di un sistema Linux è definito nel file `/etc/passwd`, da:
+The user of a Linux system is defined in the `/etc/passwd` file, by:
 
-* un **nome di login**, o più comunemente chiamato "login", che non può contenere spazi;
-* un identificatore numerico : **UID** (User Identifier);
-* un identificatore di gruppo : **GID** (Group Identifier);
-* un **interprete di comandi**, una shell, che può essere diversa da un utente all'altro;
-* una **directory di connessione**, la __home directory__.
+* a **login name**, more commonly called "login", containing no spaces;
+* a numeric identifier : **UID** (User Identifier);
+* a group identifier : **GID** (Group Identifier);
+* a **command interpreter**, a shell, which can be different from one user to another;
+* a **connection directory**, the __home directory__.
 
-In altri file da:
+In other files by:
 
-* una **password**, che verrà crittografata prima di essere memorizzata (`/etc/shadow`);
-* un **prompt dei comandi**, o __prompt login__, che sarà simboleggiato da un `#` per gli amministratori e da un `$` per gli altri utenti (`/etc/profile`).
+* a **password**, which will be encrypted before being stored (`/etc/shadow`);
+* a **command prompt**, or __prompt__ login, which will be symbolized by a `#` for administrators and a `$` for other users (`/etc/profile`).
 
-A seconda della politica di sicurezza implementata sul sistema, la password dovrà contenere un certo numero di caratteri e soddisfare determinati requisiti di complessità.
+Depending on the security policy implemented on the system, the password will have to contain a certain number of characters and meet certain complexity requirements.
 
-Tra gli interpreti di comando esistenti, la **Bourne-Again Shell** (`/bin/bash`) è quella più frequentemente usata. È assegnata per impostazione predefinita ai nuovi utenti. Per vari motivi, gli utenti avanzati di Linux possono scegliere shells alternative tra la Korn Shell (`ksh`), la C Shell (`csh`), etc.
+Among the existing command interpreters, the **Bourne-Again Shell** (`/bin/bash`) is the one most frequently used. It is assigned by default to new users. For various reasons, advanced Linux users can choose alternative shells from among the Korn Shell (`ksh`), the C Shell (`csh`), etc.
 
-La directory di accesso dell'utente è per convenzione memorizzata nella directory `/home` della workstation. Conterrà i dati personali dell'utente e i file di configurazione delle sue applicazioni. Per impostazione predefinita, al login, la directory di accesso è selezionata come directory corrente.
+The user's login directory is by convention stored in the `/home` directory of the workstation. It will contain the user's personal data and the configuration files of his applications. By default, at login, the login directory is selected as the current directory.
 
-Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Linux può essere multiutente, è possibile connettere diversi utenti più volte, in differenti **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili all'interno di un ambiente grafico. Un utente passa da un terminale fisico ad un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> dalla riga di comando o utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd> in modalità grafica.
+A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
 
-### La shell
+### The shell
 
-Una volta che l'utente è collegato a una console, la shell visualizza il **prompt** dei comandi. Quindi inizia un loop (ciclo infinito), con ogni stringa inserita:
+Once the user is connected to a console, the shell displays the command **prompt**. It then behaves like an infinite loop, with each statement entered:
 
-* visualizzazione del prompt dei comandi;
-* lettura del comando ;
-* analisi della sintassi ;
-* sostituzione di caratteri speciali ;
-* esecuzione del comando;
-* visualizza il prompt dei comandi;
+* displaying the command prompt;
+* reading the command ;
+* syntax analysis ;
+* substitution of special characters ;
+* execute the command;
+* display the command prompt;
 * etc.
 
-La sequenza chiave <kbd>CTRL</kbd> + <kbd>C</kbd> è usata per interrompere un comando in esecuzione.
+The key sequence <kbd>CTRL</kbd> + <kbd>C</kbd> is used to interrupt a running command.
 
-L'uso di un comando segue generalmente questa sequenza:
+The use of a command generally follows this sequence:
 
 ```bash
-comando [opzione(i)] [argomento(i)]
+command [option(s)] [arguments(s)]
 ```
 
-Il nome del comando è **spesso in minuscolo**.
+The name of the command is **often in lower case**.
 
-Uno spazio separa ogni oggetto.
+A space separates each item.
 
-Le **opzioni** abbreviate iniziano con un trattino (`-l`), mentre le **opzioni lunghe** iniziano con due trattini (`--list`).
-Un doppio trattino (`--`) indica la fine dell'elenco delle opzioni.
+Short **options** begin with a dash (`-l`), while **long options** begin with two dashes (`--list`). A double dash (`--`) indicates the end of the option list.
 
-È possibile raggruppare alcune opzioni brevi insieme:
+It is possible to group some short options together:
 
 ```bash
 $ ls -l -i -a
 ```
 
-è equivalente a:
+is equivalent to:
 
 ```bash
 $ ls -lia
 ```
 
-Naturalmente ci possono essere diversi argomenti dopo un'opzione:
+There can of course be several arguments after an option:
 
 ```bash
 $ ls -lia /etc /home /var
 ```
 
-In letteratura, il termine "opzione" è equivalente al termine "parametro," che è più comunemente usato nella programmazione. Il lato opzionale di un'opzione o argomento è simboleggiata dall'inclusione in parentesi quadre `[` e `]`. Quando è possibile più di un'opzione, Una barra verticale chiamata "pipe" li separa `[a|e|i]`.
+In the literature, the term "option" is equivalent to the term "parameter," which is more commonly used in programming. The optional side of an option or argument is symbolized by enclosing it in square brackets `[` and `]`. When more than one option is possible, a vertical bar called a "pipe" separates them `[a|e|i]`.
 
-## Comandi generali
+## General commands
 
-### comandi `apropos`, `whatis` e `man`
+### `apropos`, `whatis` and `man` commands
 
-È impossibile per un amministratore a qualsiasi livello conoscere tutti i comandi e le opzioni in dettaglio. Un manuale è solitamente disponibile per tutti i comandi installati.
+It is impossible for an administrator at any level to know all the commands and options in detail. A manual is usually available for all installed commands.
 
-#### comando `apropos`
+#### `apropos` command
 
-Il comando `apropos` ti consente di cercare per parola chiave all'interno di queste pagine manuali:
+The command `apropos` allows you to search by keyword within these manual pages:
 
-| Opzioni                                      | Osservazioni                                       |
-| -------------------------------------------- | -------------------------------------------------- |
-| `-s`, `--sections list` o `--section list`   | Limitato alle sezioni manuali.                      |
-| `-a` o `--and`                               | Visualizza solo la voce corrispondente a tutte le parole chiave fornite. |
+| Options                                     | Observations                                               |
+| ------------------------------------------- | ---------------------------------------------------------- |
+| `-s`, `--sections list` or `--section list` | Limited to manual sections.                                |
+| `-a` or `--and`                             | Displays only the item matching all the provided keywords. |
 
-Esempio:
+Example:
 
 ```bash
 $ apropos clear
@@ -143,7 +142,7 @@ XClearWindow (3)     - clear area or window
 XSelectionClearEvent (3) - SelectionClear event structure
 ```
 
-Per trovare il comando che consentirà di cambiare la password di un account:
+To find the command that will allow changing the password of an account:
 
 ```bash
 $ apropos --exact password  -a change
@@ -151,86 +150,83 @@ chage (1)            - change user password expiry information
 passwd (1)           - change user password
 ```
 
-#### comando `whatis`
+#### `whatis` command
 
-Il comando `whatis` visualizza la descrizione del comando passata come argomento:
+The `whatis` command displays the description of the command passed as argument:
 
 ```bash
 whatis clear
 ```
 
-Esempio:
+Example:
 
 ```bash
 $ whatis clear
 clear (1)            - clear the terminal screen
 ```
 
-#### comando `man`
+#### `man` command
 
-Una volta trovato con `apropos` o `whatis`, il manuale è letto da `man` ("Man è tuo amico").
-Questo set di manuali è diviso in 8 sezioni, raggruppando le informazioni per argomento, la sezione predefinita è la 1:
+Once found by `apropos` or `whatis`, the manual is read by `man` ("Man is your friend"). This set of manuals is divided into 8 sections, grouping information by topic, the default section being 1:
 
-1. Comandi utente;
-2. Chiamate di sistema;
-3. Funzioni della libreria C;
-4. Periferiche e file speciali;
-5. Formati di file ;
-6. Giochi;
-7. Varie;
-8. Strumenti e demoni dell'amministrazione del sistema.
-   È possibile accedere alle informazioni su ciascuna sezione digitando `man x intro`, dove `x` è il numero della sezione.
+1. User Commands;
+2. System Calls;
+3. C library functions;
+4. Peripherals and special files;
+5. File formats ;
+6. Games;
+7. Miscellaneous;
+8. System administration tools and daemons. Information about each section can be accessed by typing `man x intro`, where `x` is the section number.
 
-Il comando:
+The command:
 
 ```bash
 man passwd
 ```
 
-dirà all'amministratore le opzioni, etc, del comando passwd. Mentre :
+will tell the administrator about the passwd command, its options, etc. While a:
 
 ```bash
 $ man 5 passwd
 ```
 
-lo informerà sui file relativi al comando.
+will inform him about the files related to the command.
 
-Non tutte le pagine del manuale sono tradotte dall'inglese. Tuttavia, sono generalmente molto accurate e forniscono tutte le informazioni necessarie. La sintassi utilizzata e la divisione può confondere l'amministratore principiante, ma con la pratica, troverà rapidamente le informazioni che sta cercando.
+Not all pages of the manual are translated from English. However, they are generally very accurate and provide all the information needed. The syntax used and the division may confuse the beginner administrator, but with practice, he will quickly find the information he is looking for.
 
-La navigazione nel manuale viene eseguita con le frecce <kbd>↑</kbd> e <kbd>↓</kbd>. Il manuale si esce premendo il tasto <kbd>q</kbd>.
+The navigation in the manual is done with the arrows <kbd>↑</kbd> and <kbd>↓</kbd>. The manual is exited by pressing the <kbd>q</kbd> key.
 
-### comando `shutdown`
+### `shutdown` command
 
-Il comando `shutdown` ti permette di fare lo  **spegnimento elettrico** del server Linux, o immediatamente o dopo un certo periodo di tempo.
+The `shutdown` command allows you to **electrically shut down** a Linux server, either immediately or after a certain period of time.
 
 ```bash
 shutdown [-h] [-r] time [message]
 ```
 
-Il tempo di spegnimento dovrebbe essere specificato nel formato `hh:mm` per un tempo preciso, o `+mm` per un ritardo in minuti.
+The shutdown time should be specified in the format `hh:mm` for a precise time, or `+mm` for a delay in minutes.
 
-Per forzare un arresto immediato, la parola `now` sostituirà il tempo. In questo caso, il messaggio opzionale non viene inviato agli altri utenti del sistema.
+To force an immediate stop, the word `now` will replace the time. In this case, the optional message is not sent to other users of the system.
 
-Esempi:
+Examples:
 
 ```bash
 [root]# shutdown -h 0:30 "Server shutdown at 0:30"
 [root]# shutdown -r +5
 ```
 
-Opzioni :
+Options:
 
-| Opzioni   | Osservazioni                       |
-| --------- | ---------------------------------- |
-| `-h`      | Spegne il sistema elettricamente   |
-| `-r`      | Riavvia il sistema                 |
+| Options | Remarks                          |
+| ------- | -------------------------------- |
+| `-h`    | Shutdown the system electrically |
+| `-r`    | Restarts the system              |
 
-### comando `history`
+### `history` command
 
-Il comando `history` visualizza la cronologia dei comandi che sono stati inseriti dall'utente.
-I comandi sono memorizzati nel file `.bash_history` nella directory di accesso dell'utente.
+The `history` command displays the history of commands that have been entered by the user. The commands are stored in the `.bash_history` file in the user's login directory.
 
-Esempio di un comando history
+Example of a history command
 
 ```bash
 $ history
@@ -238,73 +234,72 @@ $ history
 148 man history
 ```
 
-| Opzioni | Commenti                                                                            |
-| ------- | ----------------------------------------------------------------------------------- |
-| `-w`    | L'opzione`-w` copierà la cronologia della sessione corrente nel file.               |
-| `-c`    | L'opzione`-c` eliminerà la cronologia della sessione corrente (ma non il contenuto del file `.bash_history`). |
+| Options | Comments                                                                                                           |
+| ------- | ------------------------------------------------------------------------------------------------------------------ |
+| `-w`    | The `-w` option will copy the history of the current session to it.                                                |
+| `-c`    | The `-c` option will delete the history of the current session (but not the contents of the `.bash_history` file). |
 
-* Manipolazione della history:
+* Manipulating history:
 
-Per manipolare la history, i seguenti comandi immessi dal prompt dei comandi permetteranno di:
+To manipulate the history, the following commands entered from the command prompt will:
 
-| Chiavi             | Funzione                                                      |
-| ------------------ | ------------------------------------------------------------- |
-| <kdb>!!</kdb>      | Richiama l'ultimo comando eseguito.                           |
-| <kdb>!n</kdb>      | Richiama il comando per il suo numero nell'elenco.            |
-| <kdb>!string</kdb> | Richiama il comando più recente che inizia con la stringa.    |
-| <kdb>↑</kdb>       | Richiama il comando più recente che inizia con la stringa.    |
-| <kdb>↓</kdb>       | Richiama il comando più recente che inizia con la stringa.    |
+| Keys               | Function                                                  |
+| ------------------ | --------------------------------------------------------- |
+| <kdb>!!</kdb>      | Recall the last command placed.                           |
+| <kdb>!n</kdb>      | Recall the command by its number in the list.             |
+| <kdb>!string</kdb> | Recall the most recent command beginning with the string. |
+| <kdb>↑</kdb>       | Recall the most recent command beginning with the string. |
+| <kdb>↓</kdb>       | Recall the most recent command beginning with the string. |
 
-### Il completamento automatico
+### The auto-completion
 
-Il completamento automatico è anche un grande aiuto.
+Auto-completion is also a great help.
 
-* Ti consente di completare i comandi, i percorsi inseriti o i nomi dei file.
-* Una pressione del tasto <kbd>TAB</kbd> completa la voce nel caso di una soluzione singola.
-* Altrimenti, sarà richiesta una seconda pressione per ottenere l'elenco delle possibilità.
+* It allows you to complete commands, entered paths, or file names.
+* A press of the <kbd>TAB</kbd> key completes the entry in the case of a single solution.
+* Otherwise, a second press will be required to obtain the list of possibilities.
 
-Se una doppia pressione del tasto <kbd>TAB</kbd> non produce nessuna reazione dal sistema, allora non c'è soluzione al completamento corrente.
+If a double press of the <kbd>TAB</kbd> key causes no reaction from the system, then there is no solution to the current completion.
 
-## Visualizzazione e identificazione
+## Display and identification
 
-### commando `clear`
+### `clear` command
 
-Il comando `clear` cancella il contenuto della schermata del terminale. Infatti, per essere più precisi, sposta il display in modo che il prompt dei comandi sia nella parte superiore dello schermo sulla prima riga.
+The `clear` command clears the contents of the terminal screen. In fact, to be more precise, it shifts the display so that the command prompt is at the top of the screen on the first line.
 
-In un terminale, il display sarà permanentemente nascosto, mentre nell'interfaccia grafica, una barra di scorrimento ti permetterà sempre di scorrere la cronologia del terminale virtuale.
+In a terminal, the display will be permanently hidden, whereas in a graphical interface, a scrollbar will allow you to go back in the history of the virtual terminal.
 
-!!! Tip "Suggerimento"
-    <kbd>CTRL</kbd> + <kbd>L</kbd> avrà lo stesso effetto del comando `clear`
+!!! Tip <kbd>CTRL</kbd> + <kbd>L</kbd> will have the same effect as the `clear` command
 
-### comando `echo`
+### `echo` command
 
-Il comando `echo` è usato per visualizzare una stringa di caratteri.
+The `echo` command is used to display a string of characters.
 
-Questo comando è più comunemente usato negli script amministrativi per informare l'utente durante l'esecuzione.
+This command is most commonly used in administration scripts to inform the user during execution.
 
-L'opzione `-n` non tornerà alla linea dopo aver visualizzato il testo (che è il comportamento predefinito del comando).
+The `-n` option will not return to the line after displaying the text (which is the default behavior of the command).
 
-Per vari motivi, allo sviluppatore dello script potrebbe essere necessario utilizzare sequenze speciali (a partire da un carattere `\`). In questo caso, sara usata l'opzione `-e`, che consentirà l'interpretazione della sequenza.
+For various reasons, the script developer may need to use special sequences (starting with a `\` character). In this case, the `-e` option will be stipulated, allowing interpretation of the sequences.
 
-Tra le sequenze usate frequentemente, possiamo menzionare :
+Among the frequently used sequences, we can mention:
 
-| Sequenza   | Risultato                          |
-| ---------- | ---------------------------------- |
-| `\a`       | Invia un bip sonoro                |
-| `\b`       | Indietro                           |
-| `\n`       | Aggiunge una interruzione di linea |
-| `\t`       | Aggiunge un tab orizzontale        |
-| `\v`       | Aggiunge tab verticale             |
+| Sequence | Result                |
+| -------- | --------------------- |
+| `\a`    | Send a sonor bip      |
+| `\b`    | Back                  |
+| `\n`    | Adds a line break     |
+| `\t`    | Adds a horizontal tab |
+| `\v`    | Adds vertical tab     |
 
-### comando `date`
+### `date` command
 
-Il comando `date` visualizza la data e l'ora. Il comando ha la seguente sintassi:
+The `date` command displays the date and time. The command has the following syntax:
 
 ```bash
 date [-d AAAAMMJJ] [format]
 ```
 
-Esempi:
+Examples:
 
 ```bash
 $ date
@@ -313,58 +308,57 @@ $ date -d 20210517 +%j
 137
 ```
 
-In questo ultimo esempio, l'opzione `d` visualizza una data fornita. L'opzione `+%J` formatta questa data per mostrare solo il giorno dell'anno.
+In this last example, the `-d` option displays a given date. The `+%j` option formats this date to show only the day of the year.
 
-!!! Warning "Avvertimento"
-    Il formato di una data può cambiare in base al valore della lingua definita nella variabile di ambiente `$LANG`.
+!!! Warning The format of a date can change depending on the value of the language defined in the environment variable `$LANG`.
 
-Il display della data può seguire i seguenti formati:
+The date display can follow the following formats:
 
-| Opzione | Formato                                  |
-| ------- | ---------------------------------------- |
-| `+%A`   | Nome completo del giorno                 |
-| `+%B`   | Nome completo del mese                   |
-| `+%c`   | Visualizzazione completa della data      |
-| `+%d`   | Numero del giorno                        |
-| `+%F`   | Data nel formato`YYYY-MM-DD`             |
-| `+%G`   | Anno                                     |
-| `+%H`   | Ora del giorno                           |
-| `+%j`   | Giorno dell'anno                         |
-| `+%m`   | Numero del mese                          |
-| `+%M`   | Minuti                                   |
-| `+%R`   | Tempo nel formato`hh:mm`                 |
-| `+%s`   | Secondi dal 1° gennaio 1970              |
-| `+%T`   | Tempo nel formato`hh:mm:ss`              |
-| `+%u`   | Giorno della settimana (`1` per Lunedì)  |
-| `+%V`   | Numero della settimana (`+%V`)           |
-| `+%x`   | Data in formato`DD/MM/YYYY`              |
+| Option | Format                           |
+| ------ | -------------------------------- |
+| `+%A`  | Full Name of Day                 |
+| `+%B`  | Full Name of Month               |
+| `+%c`  | Full Date Display                |
+| `+%d`  | Day number                       |
+| `+%F`  | Date in `YYYY-MM-DD` format      |
+| `+%G`  | Year                             |
+| `+%H`  | Time of day                      |
+| `+%j`  | Day of the year                  |
+| `+%m`  | Month number                     |
+| `+%M`  | Minute                           |
+| `+%R`  | Time in `hh:mm` format           |
+| `+%s`  | Seconds since January 1, 1970    |
+| `+%T`  | Time in `hh:mm:ss` format        |
+| `+%u`  | Day of the week (`1` for Monday) |
+| `+%V`  | Week number (`+%V`)              |
+| `+%x`  | Date in format `DD/MM/YYYY`      |
 
-Il comando `date` consente anche di modificare la data e l'ora del sistema. In questo caso, verrà utilizzata l'opzione `-s`.
+The `date` command also allows you to change the system date and time. In this case, the `-s` option will be used.
 
 ```bash
 [root]# date -s "2021-05-24 10:19"
 ```
 
-Il formato da utilizzare usando l'opzione `-s` il seguente:
+The format to be used following the `-s` option is this:
 
 ```bash
 date -s "[AA]AA-MM-JJ hh:mm:[ss]"
 ```
 
-### comando `id`, `who` e `whoami`
+### `id`, `who` and `whoami` commands
 
-Il comando `id` visualizza il nome dell'attuale utente e dei suoi gruppi o quelli di un utente, se il login dell'utente viene assegnato come argomento.
+The `id` command displays the name of the current user and its groups or those of a user, if the user's login is given as an argument.
 
 ```bash
 $ id rockstar
 uid=1000(rockstar) gid=1000(rockstar) groups=1000(rockstar),10(wheel)
 ```
 
-Le opzioni `-g`, `-G`, `-n` e `-u` visualizzano il gruppo principale GID, sottogruppo GIDs, nomi al posto di identificatori numerici, e l'UID dell'utente.
+The `-g`, `-G`, `-n` and `-u` options display the main group GID, subgroup GIDs, names instead of numeric identifiers, and the user's UID respectively.
 
-Il comando `whoami` visualizza il login dell'utente corrente.
+The `whoami` command displays the login of the current user.
 
-Il comando `who` da solo visualizza i nomi degli utenti registrati:
+The `who` command alone displays the names of logged in users:
 
 ```bash
 $ who
@@ -372,65 +366,65 @@ rockstar tty1   2021-05-24 10:30
 root     pts/0  2021-05-24 10:31
 ```
 
-Poiché Linux è multi-utente, è probabile che più sessioni siano aperte sulla stessa stazione, fisicamente o sulla rete. È interessante sapere quali utenti sono registrati, se non solo per comunicare con loro inviando messaggi.
+Since Linux is multi-user, it is likely that multiple sessions are open on the same station, either physically or over the network. It is interesting to know which users are logged in, if only to communicate with them by sending messages.
 
-* tty: rappresenta un terminale.
-* pts/: rappresenta una console virtuale in un ambiente grafico con il numero dopo aver rappresentato l'istanza della console virtuale (0, 1, 2...)
+* tty: represents a terminal.
+* pts/: represents a virtual console in a graphical environment with the number after representing the instance of the virtual console (0, 1, 2...)
 
-L'opzione `-r` visualizza anche il livello di esecuzione (vedere il capitolo "startup").
+The `-r` option also displays the execution level (see chapter "startup").
 
-## Albero dei File
+## File tree
 
-In Linux, l'albero dei file è un albero invertito, chiamato **albero gerarchico singolo**, la cui radice è la directory `/`.
+In Linux, the file tree is an inverted tree, called a **single hierarchical tree**, whose root is the directory `/`.
 
-La **directory corrente** è la directory in cui si trova l'utente.
+The **current directory** is the directory where the user is located.
 
-La **directory di connessione** è la directory di lavoro associata all'utente. Le directory di accesso sono, per impostazione predefinita, memorizzate nella directory `/home`.
+The **connection directory** is the working directory associated with the user. The login directories are, by default, stored in the `/home` directory.
 
-Quando l'utente accede, la directory corrente è la directory di accesso.
+When the user logs in, the current directory is the login directory.
 
-Un **percorso assoluto** fa riferimento ad un file dalla radice attraversando l'intero albero fino al livello del file:
+An **absolute path** references a file from the root by traversing the entire tree to the file level:
 
 * `/home/groupA/alice/file`
 
-Un **percorso relativo** fa riferimento allo stesso file attraversando l'intero albero dalla directory corrente:
+The **relative path** references that same file by traversing the entire tree from the current directory:
 
 * `../alice/file`
 
-Nell'esempio sopra, il "`..` " si riferisce alla directory principale della directory corrente.
+In the above example, the "`..`" refers to the parent directory of the current directory.
 
-Una directory, anche se è vuota, conterrà necessariamente almeno **due riferimenti** :
+A directory, even if it is empty, will necessarily contain at least **two references**:
 
-* `.`: riferimento a se stessa.
-* `..`: riferimento alla directory principale della directory corrente.
+* `.`: reference to itself.
+* `..`: reference to the parent directory of the current directory.
 
-Un percorso relativo può quindi iniziare con `./` o `../`. Quando il percorso relativo si riferisce a una sottodirectory o ad un file nella directory corrente, il `./` è spesso omesso. L'inserimento del riferimento `./` sarà veramente richiesto solo per l'esecuzione di un file eseguibile.
+A relative path can thus start with `./` or `../`. When the relative path refers to a subdirectory or file in the current directory, then the `./` is often omitted. Mentioning the first `./` in the tree will only really be required to run an executable file.
 
-Gli errori nei percorsi possono causare molti problemi: dalla creazione di cartelle o file nei luoghi sbagliati, alle eliminazioni involontarie, ecc. È quindi fortemente raccomandato di utilizzare il completamento automatico quando si immettono i percorsi.
+Errors in paths can cause many problems: creating folders or files in the wrong places, unintentional deletions, etc. It is therefore strongly recommended to use auto-completion when entering paths.
 
 ![our example tree](images/commands-pathabsolute.png)
 
-Nell'esempio sopra, stiamo cercando la posizione del file `myfile` nella directory di bob.
+In the above example, we are looking to give the location of the file `myfile` from the directory of bob.
 
-* in un **percorso assoluto**, la directory corrente non ha importanza. Iniziamo dalla radice e scendiamo fino alle directory `home`, `groupA`, `alice` e infine il file `myfile`: `/home/groupA/alice/myfile`.
-* in un **percorso relativo**, il nostro punto di partenza è la directory corrente `bob`, saliamo di un livello con `..` (i.e., nella directpry `groupA`), poi giù nella directory di alice, e infine il file `myfile`: `../alice/myfile`.
+* By an **absolute path**, the current directory does not matter. We start at the root, and work our way down to the directories `home`, `groupA`, `alice` and finally the file `myfile`: `/home/groupA/alice/myfile`.
+* By a **relative path**, our starting point being the current directory `bob`, we go up one level through `..` (i.e., into the `groupA` directory), then down into the alice directory, and finally the `myfile` file: `../alice/myfile`.
 
-### comando `pwd`
+### `pwd` command
 
-Il comando `pwd` (Print Working Directory) visualizza il percorso assoluto della directory corrente.
+The `pwd` (Print Working Directory) command displays the absolute path of the current directory.
 
 ```bash
 $ pwd
 /home/rockstar
 ```
 
-Per muoversi usando un percorso relativo, devi conoscere la sua posizione nell'albero.
+To move around using a relative path, you must know its position in the tree.
 
-A seconda dell'interprete di comando, il prompt dei comandi può anche visualizzare il nome della directory corrente.
+Depending on the command interpreter, the command prompt may also display the name of the current directory.
 
-### comando `cd`
+### `cd` command
 
-Il comando `cd` (Change Directory) consente di modificare la directory corrente, in altre parole, serve per spostarsi attraverso l'albero.
+The `cd` (Change Directory) command allows you to change the current directory, in other words, to move through the tree.
 
 ```bash
 $ cd /tmp
@@ -444,74 +438,73 @@ $ pwd
 /home/rockstar
 ```
 
-Come puoi vedere nell'ultimo esempio sopra, il comando `cd` senza argomenti sposta la directory corrente alla `home directory`.
+As you can see in the last example above, the command `cd` with no arguments moves the current directory to the `home directory`.
 
-### comando `ls`
+### `ls` command
 
-Il comando `ls` visualizza il contenuto di una directory
+The `ls` command displays the contents of a directory
 
 ```bash
 ls [-a] [-i] [-l] [directory1] [directory2] […]
 ```
 
-Esempio:
+Example:
 
 ```bash
 $ ls /home
 .    ..    rockstar
 ```
 
-Le opzioni principali del comando `ls` sono :
+The main options of the `ls` command are:
 
-| Opzione | Informazione                                                                            |
-| ------- | --------------------------------------------------------------------------------------- |
-| `-a`    | Visualizza tutti i file, anche quelli nascosti. I file nascosti in Linux sono quelli che iniziano con`.`. |
-| `-i`    | Visualizza i numeri di inode.                                                           |
-| `-l`    | Il comando con l'opzione`-l` visualizza un elenco verticale dei file con informazioni aggiuntive formattate in colonne. |
+| Option | Information                                                                                          |
+| ------ | ---------------------------------------------------------------------------------------------------- |
+| `-a`   | Displays all files, even hidden ones. Hidden files in Linux are those beginning with `.`.            |
+| `-i`   | Displays inode numbers.                                                                              |
+| `-l`   | The `-l` command displays a vertical list of files with additional information formatted in columns. |
 
-Il comando `ls`, tuttavia, ha molte opzioni (vedi `man`):
+The `ls` command, however, has a lot of options (see `man`):
 
-| Opzione | Informazione                                                                               |
-| ------- | ------------------------------------------------------------------------------------------ |
-| `-d`    | Visualizza le informazioni di una directory invece di elencare i suoi contenuti.           |
-| `-g`    | Visualizza UID e GID al posto dei nomi dei proprietari.                                    |
-| `-h`    | Visualizza le dimensioni dei file nel formato più appropriato (byte, kilobyte, megabyte, gigabyte, ...).`h` stà per Human Readable. |
-| `-s`    | Visualizza la dimensione in byte (tranne l'opzione`k`).                                    |
-| `-A`    | Visualizza tutti i file nella directory tranne`.` e `..`.                                  |
-| `-R`    | Visualizza il contenuto delle sottodirectory in modo ricorsivo.                            |
-| `-F`    | Visualizza il tipo di file. Stampa un`/` per una directory, `*` per gli eseguibili, `@` per un collegamento simbolico, e niente per un file di testo. |
-| `-X`    | ordina i file in base alle loro estensioni.                                                |
+| Option | Information                                                                                                                          |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `-d`   | Displays information about a directory instead of listing its contents.                                                              |
+| `-g`   | Displays UID and GID rather than owner names.                                                                                        |
+| `-h`   | Displays file sizes in the most appropriate format (byte, kilobyte, megabyte, gigabyte, ...). `h` stands for Human Readable.         |
+| `-s`   | Displays the size in bytes (unless `k` option).                                                                                      |
+| `-A`   | Displays all files in the directory except `.` and `.`.                                                                              |
+| `-R`   | Displays the contents of subdirectories recursively.                                                                                 |
+| `-F`   | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file. |
+| `-X`   | Sort files according to their extensions.                                                                                            |
 
-* Descrizione delle colonne:
+* Description of columns:
 
 ```bash
 $ ls -lia /home
 78489 drwx------ 4 rockstar rockstar 4096 25 oct. 08:10 rockstar
 ```
 
-| Valore          | Informazione                                                                      |
-| ----------------- | ------------------------------------------------------------------------------- |
-| `78489`         | Numero di inode.                                                                  |
-| `drwx------`    | Tipo di file (`d`) e permessi (`rwx------`).                                      |
-| `4`             | Numero di sottodirectory. (`.` e `..` incluse). Per un file di tipo link fisico: numero di collegamenti fisici. |
-| `rockstar`      | Per un file di collegamento fisico: numero di collegamenti fisici.                |
-| `rockstar`      | Per un file di tipo link fisico: numero di collegamenti fisici.                   |
-| `4096`          | Per un file di tipo di collegamento fisico: numero di collegamenti fisici.        |
-| `25 oct. 08:10` | Ultima data di modifica.                                                          |
-| `rockstar`      | Il nome del file (o directory).                                                   |
+| Value           | Information                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
+| `78489`         | Inode Number.                                                                                                 |
+| `drwx------`    | File type (`d`) and rights (`rwx------`).                                                                     |
+| `4`             | Number of subdirectories (`.` and `..` included). For a file of type physical link: number of physical links. |
+| `rockstar`      | For a physical link file: number of physical links.                                                           |
+| `rockstar`      | For a file of type physical link: number of physical links.                                                   |
+| `4096`          | For a physical link type file: number of physical links.                                                      |
+| `25 oct. 08:10` | Last modified date.                                                                                           |
+| `rockstar`      | The name of the file (or directory).                                                                          |
 
-!!! Note "Nota"
-    Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni.
+!!! Note **Aliases** are frequently positioned in common distributions.
 
-Questo è il caso dell'alias `ll`:
+    This is the case of the alias `ll`:
 
-```bash
-alias ll='ls -l --color=auto'
-```
+    ```
+    alias ll='ls -l --color=auto'
+    ```
 
-Il comando `ls` ha molte opzioni ed ecco alcuni esempi avanzati di uso:
+The `ls` command has many options and here are some advanced examples of uses:
 
-* Elenca i file in `/etc` in base all'ultima modifica:
+* List the files in `/etc` in order of last modification:
 
 ```bash
 $ ls -ltr /etc
@@ -525,7 +518,7 @@ total 1332
 -rw-r--r--.  1 root root    283 18 may.  17:05 mtab
 ```
 
-* Elenca i file in `/var` più grandi di 1 megabyte ma minori di 1 Gigabyte:
+* List `/var` files larger than 1 megabyte but less than 1 gigabyte:
 
 ```bash
 $ ls -Rlh /var | grep [0-9]M
@@ -536,9 +529,9 @@ $ ls -Rlh /var | grep [0-9]M
 ...
 ```
 
-* Mostra i permessi di una cartella:
+* Show the rights on a folder:
 
-Per scoprire i permessi di una cartella, nel nostro esempio `/etc`, il seguente comando non sarebbe appropriato:
+To find out the rights to a folder, in our example `/etc`, the following command would not be appropriate:
 
 ```bash
 $ ls -l /etc
@@ -550,22 +543,22 @@ drwxr-xr-x.  2 root root   4096 17 nov.  17:48 alternatives
 ...
 ```
 
-dal momento che elenca il contenuto della cartella e non la cartella stessa.
+since the command lists by default the contents of the folder and not the container.
 
-Per fare ciò, useremo l'opzione `d`:
+To do this, use the `-d` option:
 
 ```bash
 $ ls -ld /etc
 drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc
 ```
 
-* Elenca i file per dimensione:
+* List files by size:
 
 ```bash
 $ ls -lhS
 ```
 
-* Visualizza la data di modifica nel formato "timestamp":
+* Display the modification date in "timestamp" format:
 
 ```bash
 $ ls -l --time-style="+%Y-%m-%d %m-%d %H:%M" /
@@ -574,231 +567,225 @@ dr-xr-xr-x. 2 root root 4096 2014-11-23 11-23 03:13 bin
 dr-xr-xr-x. 5 root root 1024 2014-11-23 11-23 05:29 boot
 ```
 
-* Aggiungi la _trailing slash_ alla fine della cartella:
+* Add the _trailing slash_ to the end of folders:
 
-Per impostazione predefinita, il comando `ls` non visualizza l'ultima barra di una cartella.
-In alcuni casi, come per gli script, ad esempio, è utile visualizzarla:
+By default, the `ls` command does not display the last slash of a folder. In some cases, like for scripts for example, it is useful to display them:
 
 ```bash
 $ ls -dF /etc
 /etc/
 ```
 
-* Nascondi alcune estensioni:
+* Hide some extensions:
 
 ```bash
 $ ls /etc --hide=*.conf
 ```
 
-### comando `mkdir`
+### `mkdir` command
 
-Il comando `mkdir` crea una directory o un albero di directory.
+The `mkdir` command creates a directory or directory tree.
 
 ```bash
 mkdir [-p] directory [directory] [...]
 ```
 
-Esempio:
+Example:
 
 ```bash
 $ mkdir /home/rockstar/work
 ```
 
-La directory "rockstar" deve esistere per creare la directory "work".
-Altrimenti, dovrebbe essere utilizzata l'opzione `-p`. L'opzione `-p` crea le directory genitore se queste non esistono.
+The "rockstar" directory must exist to create the "work" directory. Otherwise, the `-p` option should be used. The `-p` option creates the parent directories if they do not exist.
 
-!!! Danger "Pericolo"
-    Non è consigliato utilizzare i nomi dei comandi Linux come directory o nomi di file.
+!!! Danger It is not recommended to use Linux command names as directory or file names.
 
-### comando `touch`
+### `touch` command
 
-Il comando `touch` cambia il timestamp di un file o crea un file vuoto se il file non esiste.
+The `touch` command changes the timestamp of a file or creates an empty file if the file does not exist.
 
 ```bash
 touch [-t date] file
 ```
 
-Esempio :
+Example:
 
 ```bash
 $ touch /home/rockstar/myfile
 ```
 
-| Opzione     | Informazione                                                            |
-| ----------- | ----------------------------------------------------------------------- |
-| `-t date`   | Modifica la data dell'ultima modifica del file con la data specificata. |
+| Option    | Information                                                                |
+| --------- | -------------------------------------------------------------------------- |
+| `-t date` | Changes the date of last modification of the file with the specified date. |
 
-Formato data: `[AAAA]MMJJhhmm[ss]`
+Date format: `[AAAA]MMJJhhmm[ss]`
 
-!!! Tip "Suggerimento"
-    Il comando `touch` viene utilizzato principalmente per creare un file vuoto, ma può essere utile per i backup incrementali o differenziali per esempio. Davvero, l'unico effetto di eseguire un `touch` su un file sarà quello di costringerlo a essere salvato durante il backup successivo.
+!!! Tip The `touch` command is primarily used to create an empty file, but it can be useful for incremental or differential backups for example. Indeed, the only effect of executing a `touch` on a file will be to force it to be saved during the next backup.
 
-### comando `rmdir`
+### `rmdir` command
 
-Il comando `rmdir` elimina una directory vuota.
+The `rmdir` command deletes an empty directory.
 
-Esempio:
+Example:
 
 ```bash
 $ rmdir /home/rockstar/work
 ```
 
-| Opzione | Informazione                                                          |
-| ------- | --------------------------------------------------------------------- |
-| `-p`    | Rimuove la directory o le directory principale fornite se sono vuote. |
+| Option | Information                                                             |
+| ------ | ----------------------------------------------------------------------- |
+| `-p`   | Removes the parent directory or directories provided if they are empty. |
 
-!!! Tip "Suggerimento"
-    Per eliminare sia una directory non vuota che il suo contenuto, utilizzare il comando `rm`.
+!!! Tip To delete both a non-empty directory and its contents, use the `rm` command.
 
-### comando`rm`
+### `rm` command
 
-Il comando `rm` elimina un file o una directory.
+The `rm` command deletes a file or directory.
 
 ```bash
 rm [-f] [-r] file [file] [...]
 ```
 
-!!! Danger "Pericolo"
-    Qualsiasi cancellazione di un file o directory è definitiva.
+!!! Danger Any deletion of a file or directory is final.
 
-| Opzioni | Informazione                               |
-| ------- | ------------------------------------------ |
-| `-f`    | Non chiedere conferma della cancellazione. |
-| `-i`    | Richiede conferma di cancellazione.        |
-| `-r`    | Elimina ricorsivamente le sottodirectory.. |
+| Options | Information                              |
+| ------- | ---------------------------------------- |
+| `-f`    | Do not ask for confirmation of deletion. |
+| `-i`    | Requires confirmation of deletion.       |
+| `-r`    | Recursively deletes subdirectories.      |
 
-!!! Note "Nota"
-    Il comando `rm` non chiede la conferma durante l'eliminazione dei file. Tuttavia, con una distribuzione RedHat/Rocky, `rm` chiede la conferma della cancellazione in quanto il comando `rm` è un` alias` di `rm -i`. Non sorprenderti se su un'altra distribuzione, come Debian, ad esempio, non ottieni una richiesta di conferma.
+!!! Note The `rm` command itself does not ask for confirmation when deleting files. However, with a RedHat/Rocky distribution, `rm` does ask for confirmation of deletion because the `rm` command is an `alias` of the `rm -i` command. Don't be surprised if on another distribution, like Debian for example, you don't get a confirmation request.
 
-L'eliminazione di una cartella con il comando `rm`, che la cartella sia vuota o meno, richiederà l'aggiunta dell'opzione `-r`.
+Deleting a folder with the `rm` command, whether the folder is empty or not, will require the `-r` option to be added.
 
-La fine delle opzioni è segnalata alla shell da un doppio trattino `--`.
+The end of the options is signaled to the shell by a double dash `--`.
 
-Nell'esempio:
+In the example:
 
 ```bash
-$ >-hard-hard # Per creare un file vuoto chiamato -hard-hard
+$ >-hard-hard # To create an empty file called -hard-hard
 hard-hard
-[CTRL+C] Per interrompere la creazione del file
+[CTRL+C] To interrupt the creation of the file
 $ rm -f -- -hard-hard
 ```
 
-Il nome del file hard-hard inizia con un `-`. Senza l'uso del `--` la shell avrebbe interpretato il `-d` in `-hard-hard` come un'opzione.
+The hard-hard file name starts with a `-`. Without the use of the `--` the shell would have interpreted the `-d` in `-hard-hard` as an option.
 
-### command `mv`
+### `mv` command
 
-Il comando `mv` muove e rinomina un file.
+The `mv` command moves and renames a file.
 
 ```bash
 mv file [file ...] destination
 ```
 
-Esempi:
+Examples:
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2
 $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
-| Opzioni | Informazione                                                                  |
-| ------- | ----------------------------------------------------------------------------- |
-| `-f`    | Non chiedere conferma per la sovrascrittura del file di destinazione.         |
-| `-i`    | Richiedere conferma per la sovrascrittura del file di destinazione (default). |
+| Options | Information                                                     |
+| ------- | --------------------------------------------------------------- |
+| `-f`    | Don't ask for confirmation if overwriting the destination file. |
+| `-i`    | Request confirmation if overwriting destination file (default). |
 
-Alcuni casi concreti ti aiuteranno a capire le difficoltà che possono sorgere:
+A few concrete cases will help you understand the difficulties that can arise:
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2
 ```
 
-Rinominare `file1` in `file2`, se `file2` esiste già, sarà sostituito da `file1`.
+Renames `file1` to `file2`, if `file2` already exists, it will be replaced by `file1`.
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
-Muovere `file1` e `file2` nella directory `/tmp`.
+Moves `file1` and `file2` into the `/tmp` directory.
 
 ```bash
 $ mv file1 /repexist/file2
 ```
 
-Muovere `file1` in `repexist` e rinominarlo `file2`.
+Moves `file1` into `repexist` and renames it `file2`.
 
 ```bash
 $ mv file1 file2
 ```
 
-`file1` è rinominato con `file2`.
+`file1` is renamed to `file2`.
 
 ```bash
 $ mv file1 /repexist
 ```
 
-Se esiste la directory di destinazione, `file1` viene spostato in `/repexist`.
+If the destination directory exists, `file1` is moved to `/repexist`.
 
 ```bash
 $ mv file1 /wrongrep
 ```
 
-Se la directory di destinazione non esiste, `file1` è rinominato `wrongrep` nella directory principale (root).
+If the destination directory does not exist, `file1` is renamed to `wrongrep` in the root directory.
 
-### comando `cp`
+### `cp` command
 
-Il comando `cp` copia un file.
+The `cp` command copies a file.
 
 ```bash
 cp file [file ...] destination
 ```
 
-Esempio:
+Example:
 
 ```bash
 $ cp -r /home/rockstar /tmp
 ```
 
-| Opzioni | Informazione                                                                 |
-| ------- | ---------------------------------------------------------------------------- |
-| `-i`    | Richiesta di conferma per la sovrascrittura (default).                       |
-| `-f`    | Non chiedere conferma per la sovrascrittura del file di destinazione.        |
-| `-p`    | Mantiene il proprietario, le autorizzazioni e il timestamp del file copiato. |
-| `-r`    | Copia una directory con i suoi file e sottodirectory.                        |
+| Options | Information                                                      |
+| ------- | ---------------------------------------------------------------- |
+| `-i`    | Request confirmation if overwriting (default).                   |
+| `-f`    | Do not ask for confirmation if overwriting the destination file. |
+| `-p`    | Keeps the owner, permissions and timestamp of the copied file.   |
+| `-r`    | Copies a directory with its files and subdirectories.            |
+| `-s`    | Creates a symbolik links rather than copying                     |
 
 ```bash
 cp file1 /repexist/file2
 ```
 
-`file1` viene copiato in `/repexist` con il nome `file2`.
+`file1` is copied to `/repexist` under the name `file2`.
 
 ```bash
 $ cp file1 file2
 ```
 
-`file1` è copiato come `file2` in questa directory.
+`file1` is copied as `file2` to this directory.
 
 ```bash
 $ cp file1 /repexist
 ```
 
-Se esiste la directory di destinazione, `file1` viene copiato in `/repexist`.
+If the destination directory exists, `file1` is copied to `/repexist`.
 
 ```bash
 $ cp file1 /wrongrep
 ```
 
-Se la directory di destinazione non esiste, `file1` è copiato sotto il nome `wrongrep` nella directory principale (root).
+If the destination directory does not exist, `file1` is copied under the name `wrongrep` to the root directory.
 
-## Visualizzazione
+## Visualization
 
-### comando `file`
+### `file` command
 
-Il comando `file` visualizza il tipo di un file.
+The `file` command displays the type of a file.
 
 ```bash
 file file1 [files]
 ```
 
-Esempio:
+Example:
 
 ```bash
 $ file /etc/passwd /etc
@@ -806,15 +793,15 @@ $ file /etc/passwd /etc
 /etc:        directory
 ```
 
-### comando `more`
+### `more` command
 
-Il comando `more` visualizza il contenuto di uno o più files tramite schermo.
+The `more` command displays the contents of one or more files screen by screen.
 
 ```bash
 more file1 [files]
 ```
 
-Esempio:
+Example:
 
 ```bash
 $ more /etc/passwd
@@ -822,56 +809,56 @@ root:x:0:0:root:/root:/bin/bash
 ...
 ```
 
-Usando il tasto <kbd>ENTER</kbd>, lo spostamento è linea per linea. Usando il tasto <kbd>SPACE</kbd>, lo spostamento è pagina per pagina. `/text` Ti consente di cercare la corrispondenza nel file.
+Using the <kbd>ENTER</kbd> key, the move is line by line. Using the <kbd>SPACE</kbd> key, the move is page by page. `/text` allows you to search for the occurrence in the file.
 
-### comando `less`
+### `less` command
 
-Il comando `Less` visualizza il contenuto di uno o più file. Il comando `less` è interattivo e ha i propri comandi per l'uso.
+The `less` command displays the contents of one or more files. The `less` command is interactive and has its own commands for use.
 
 ```bash
 less file1 [files]
 ```
 
-I comandi specifici per `less` sono:
+The commands specific to `less` are:
 
-| Command           | Action                                                |
-| ----------------- | ----------------------------------------------------- |
-| `h`               | Aiuto.                                                 |
-| `Arrows`          | Sposta su, giù di una linea, o a destra e sinistra.   |
-| `Enter`           | Sposta giù di una riga.                               |
-| `Space`           | Sposta giù di una pagina.                             |
-| `PgUp` and `PgDn` | Sposta su o giù di una pagina.                        |
-| `Begin` and `End` | Passa all'inizio o alla fine di un file.              |
-| `/text`           | Cerca il testo.                                       |
-| `q`               | Chiude il comando`less`.                              |
+| Command           | Action                                          |
+| ----------------- | ----------------------------------------------- |
+| `h`               | Help.                                           |
+| `Arrows`          | Move up, down a line, or to the right or left.. |
+| `Enter`           | Move down one line.                             |
+| `Space`           | Move down one page.                             |
+| `PgUp` and `PgDn` | Move up or down one page.                       |
+| `Begin` and `End` | Move to the beginning or end of a file.         |
+| `/texte`          | Search for text.                                |
+| `q`               | Quit the `less` command.                        |
 
-### comando `cat`
+### `cat` command
 
-Il comando `cat` concatena il contenuto di più file e visualizza il risultato sull'output standard.
+The `cat` command concatenates the contents of multiple files and displays the result on the standard output.
 
 ```bash
 cat file1 [files]
 ```
 
-Esempio 1 - Visualizzazione del contenuto di un file in output standard :
+Example 1 - Displaying the contents of a file to the standard output:
 
 ```bash
 $ cat /etc/passwd
 ```
 
-Esempio 2 - Visualizzazione del contenuto di più file in output standard:
+Example 2 - Displaying the contents of multiple files to standard output:
 
 ```bash
 $ cat /etc/passwd /etc/group
 ```
 
-Esempio 3 - Visualizzazione del contenuto di diversi file nel file `usersAndGroups.txt` :
+Example 3 - Displaying the contents of several files in the file `usersAndGroups.txt`:
 
 ```bash
 $ cat /etc/passwd /etc/group > usersAndGroups.txt
 ```
 
-Esempio 4 - Visualizzazione della numerazione di linea :
+Example 4 - Displaying the line numbering:
 
 ```bash
 $ cat -n /etc/profile
@@ -884,7 +871,7 @@ $ cat -n /etc/profile
 …
 ```
 
-Esempio 5 - Mostra la numerazione di linee non vuote:
+Example 5 - Shows the numbering of non-empty lines:
 
 ```bash
 $ cat -b /etc/profile
@@ -897,44 +884,44 @@ $ cat -b /etc/profile
 …
 ```
 
-### comando `tac`
+### `tac` command
 
-Il comando `tac` fa quasi il contrario del comando `cat`. Visualizza il contenuto di un file a partire dalla fine (che è particolarmente interessante per la lettura dei log!).
+The `tac` command does almost the opposite of the `cat` command. It displays the contents of a file starting from the end (which is particularly interesting for reading logs!).
 
-Esempio: Visualizza un file di log visualizzando prima l'ultima riga:
+Example: Display a log file by displaying the last line first:
 
 ```bash
 [root]# tac /var/log/messages | less
 ```
 
-### comando `head`
+### `head` command
 
-Il comando `head` visualizza l'inizio di un file.
+The `head` command displays the beginning of a file.
 
 ```bash
 head [-n x] file
 ```
 
-| Opzione | Osservazione                      |
-| --------- | ----------------------------------- |
-| `-n x`  | Mostra le prime linee`x` del file |
+| Option | Observation                             |
+| ------ | --------------------------------------- |
+| `-n x` | Display the first `x` lines of the file |
 
-Per impostazione predefinita (senza l'opzione `-n`), il comando `head` visualizzerà le prime 10 righe del file.
+By default (without the `-n` option), the `head` command will display the first 10 lines of the file.
 
-### comando `tail`
+### `tail` command
 
-Il comando `tail` visualizza la fine di un file.
+The `tail` command displays the end of a file.
 
 ```bash
 tail [-f] [-n x] file
 ```
 
-| Opzione | Osservazione                                   |
-| ------- | ---------------------------------------------- |
-| `-n x`  | Visualizza le ultime linee del file`x`         |
-| `-f`    | Visualizza le modifiche al file in tempo reale |
+| Option | Observation                               |
+| ------ | ----------------------------------------- |
+| `-n x` | Displays the last `x` lines of the file   |
+| `-f`   | Displays changes to the file in real time |
 
-Esempio:
+Example:
 
 ```bash
 tail -n 3 /etc/passwd
@@ -943,21 +930,21 @@ tcpdump::x:72:72::/:/sbin/nologin
 user1:x:500:500:grp1:/home/user1:/bin/bash
 ```
 
-Con l'opzione `-f`, il comando `tail` non visualizza solo il file sullo standard output ma funziona finché l'utente non lo interrompe con la sequenza <kbd>CTRL</kbd> + <kbd>C</kbd>. Questa opzione è utilizzata molto frequentemente per tracciare i file di registro (i log) in tempo reale.
+With the `-f` option, the `tail` command does not give back and runs until the user interrupts it with the sequence <kbd>CTRL</kbd> + <kbd>C</kbd>. This option is very frequently used to track log files (the logs) in real time.
 
-Senza l'opzione `-n`, il comando tail visualizza le ultime 10 righe del file.
+Without the `-n` option, the tail command displays the last 10 lines of the file.
 
-### comando `sort`
+### `sort` command
 
-Il comando `sort` ordina le linee di un file.
+The `sort` command sorts the lines of a file.
 
-Ti consente di ordinare il risultato di un comando o del contenuto di un file in un determinato ordine, numericamente, alfabeticamente, per dimensione (KB, MB, GB) o in ordine inverso.
+It allows you to order the result of a command or the content of a file in a given order, numerically, alphabetically, by size (KB, MB, GB) or in reverse order.
 
 ```bash
-sort [-kx] [-n] [-o file] [-ty] file
+sort [-kx] [-n] [-u] [-o file] [-ty] file
 ```
 
-Esempio:
+Example:
 
 ```bash
 $ sort -k3 -t: -n /etc/passwd
@@ -965,19 +952,20 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-| Opzione      | Osservazione                                        |
-| ------------ | --------------------------------------------------- |
-| `-kx`        | Specifica la colonna`x` per ordinare                |
-| `-n`         | Richiede un ordinamento numerico                    |
-| `-o file`    | Salva l'ordinamento nel file specificato            |
-| `-ty`        | Specifica il carattere del separatore del campo `y` |
-| `-r`         | Inverte l'ordine del risultato                      |
+| Option    | Observation                                  |
+| --------- | -------------------------------------------- |
+| `-kx`     | Specifies the `x` column to sort on          |
+| `-n`      | Requests a numeric sort                      |
+| `-o file` | Saves the sort to the specified file         |
+| `-ty`     | Specifies the field separator character `y`. |
+| `-r`      | Reverse the order of the result              |
+| `- u`     | unique                                       |
 
-Il comando `sort` ordina il file solo sullo schermo. Il file non è modificato dall'ordinamento. Per salvare l'ordinamento, usa l'opzione `-o` o un reindirizzamento dell'output `>`.
+The `sort` command sorts the file only on the screen. The file is not modified by the sorting. To save the sort, use the `-o` option or an output redirection `>`.
 
-Per impostazione predefinita, i numeri sono ordinati in base al loro carattere. Quindi, "110" sarà prima del "20", che sarà a sua volta prima "3". L'opzione `-n` deve essere specificata in modo che i blocchi di caratteri numerici siano ordinati per il loro valore.
+By default, the numbers are sorted according to their character. Thus, "110" will be before "20", which will itself be before "3". The `-n` option must be specified so that the numeric character blocks are sorted by their value.
 
-Il comanda `sort` inverte l'ordine del risultato, con l'opzione `-r`:
+The `sort` command reverses the order of the results, with the `-r` option:
 
 ```bash
 $ sort -k3 -t: -n -r /etc/passwd
@@ -985,25 +973,25 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-In questo esempio, il comando `sort` ordinerà il contenuto del file `/etc /passwd` questa volta dal UID più grande al più piccolo.
+In this example, the `sort` command will sort the contents of the `/etc/passwd` file this time from largest uid to smallest.
 
-Alcuni esempi avanzati di utilizzazione del comando `sort`
+Some advanced examples of using the `sort` command:
 
-* Mischiando valori
+* Shuffling values
 
-Il comando `sort` ti consente anche di mescolare valori con l'opzione `-R`:
+The `sort` command also allows you to shuffle values with the `-R` option:
 
 ```bash
 $ sort -R /etc/passwd
 ```
 
-* Ordinamento degli indirizzi IP
+* Sorting IP addresses
 
-Un amministratore di sistema si deve spesso confrontare con l'elaborazione di indirizzi IP provenienti dai registri dei suoi servizi come SMTP, VSFTP o Apache. Questi indirizzi sono tipicamente estratti con il comando `cut`.
+A system administrator is quickly confronted with the processing of IP addresses from the logs of his services such as SMTP, VSFTP or Apache. These addresses are typically extracted with the `cut` command.
 
-Ecco un esempio con il file `dns-client.txt` :
+Here is an example with the file `dns-client.txt`:
 
-```bash
+```
 192.168.1.10
 192.168.1.200
 5.1.150.146
@@ -1020,13 +1008,34 @@ $ sort -nr dns-client.txt
 5.1.150.146
 ```
 
-* Ordinamento dei file per dimensioni
+* Sorting file by removing duplicates
 
-Il comando `sort` sa come riconoscere le dimensioni dei file, dai comandi come `ls` con l'opzione `-h`.
+The `sort` command knows how to remove the duplicates from the file output using `-u` as option.
 
-Ecco un esempio con il file `size.txt` :
+Here is an example with the file `colours.txt`:
 
-```bash
+```
+Red
+Green
+Blue
+Red
+Pink
+```
+```
+$ sort -u colours.txt
+Blue
+Green
+Pink
+Red
+```
+
+* Sorting file by sizes
+
+The `sort` command knows how to recognize file sizes, from commands like `ls` with the `-h` option.
+
+Here is an example with the file `size.txt`:
+
+```
 1,7G
 18M
 69K
@@ -1053,129 +1062,127 @@ $ sort -hr size.txt
 69K
 ```
 
-### comando `wc`
+### `wc` command
 
-Il comando `wc` conta il numero di linee, parole e/o byte in un file.
+The `wc` command counts the number of lines, words and/or bytes in a file.
 
 ```bash
 wc [-l] [-m] [-w] file [files]
 ```
 
-| Option | Observation                   |
-| ------ | ----------------------------- |
-| `-c`   | Conta il numero di byte.      |
-| `-m`   | Conta il numero di caratteri. |
-| `-l`   | Conta il numero di linee.     |
-| `-w`   | Conta il numero di parole.    |
+| Option | Observation                     |
+| ------ | ------------------------------- |
+| `-c`   | Count the number of bytes.      |
+| `-m`   | Count the number of characters. |
+| `-l`   | Counts the number of lines.     |
+| `-w`   | Counts the number of words.     |
 
-## Ricerca
+## Search
 
-### comando `find`
+### `find` command
 
-Il comando `find` ricerca per file o posizione della directory.
+The `find` command searches for files or directories location.
 
 ```bash
 find directory [-name name] [-type type] [-user login] [-date date]
 ```
 
-Dal momento che ci sono così tante opzioni nel comando `find`, è meglio fare riferimento a `man`.
+Since there are so many options to the `find` command, it is best to refer to the `man`.
 
-Se la directory di ricerca non è specificata, il comando `find` cercherà dalla directory corrente.
+If the search directory is not specified, the `find` command will search from the current directory.
 
-| Opzione             | Osservazione                    |
-| ------------------- | ------------------------------- |
-| `-perm permissions` | Cerca i file dai loro permessi. |
-| `-size size`        | Cerca i file per dimensione.    |
+| Option              | Observation                            |
+| ------------------- | -------------------------------------- |
+| `-perm permissions` | Search for files by their permissions. |
+| `-size size`        | Search for files by size.              |
 
-### opzione `-exec` del comando `find`
+### `-exec` option of the `find` command
 
-È possibile usare l'opzione `-exec` del comando `find` per eseguire un comando con il risultato ottenuto dalla ricerca:
+It is possible to use the `-exec` option of the `find` command to execute a command on each result line:
 
 ```bash
 $ find /tmp -name *.txt -exec rm -f {} \;
 ```
 
-Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso `*.txt` e li elimina.
+The previous command searches for all files in the `/tmp` directory named `*.txt` and deletes them.
 
-!!! Tip "Comprendere l'opzione `-exec`"
-    Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
 
-Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.txt`, il comando `find` costruirà la stringa sostituendo nella stringa `rm -f {} \;` le parentesi graffe con uno dei risultati della ricerca, e farà questo tutte le volte che ci sono dei risultati.
+!!! Tip "Understand the `-exec` option" In the example above, the `find` command will construct a string representing the command to be executed.
 
-Questo ci darà :
+    If the `find` command finds three files named `log1.txt`, `log2.txt`, and `log3.txt`, then the `find` command will construct the string by replacing in the string `rm -f {} \;` the braces with one of the results of the search, and do this as many times as there are results.
+    
+    This will give us:
 
-```bash
-rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
-```
+    ```
+    rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
+    ```
 
-Il carattere `;` è un carattere speciale di shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
 
-!!! Tip "Suggerimento"
-    `$ find /tmp -name *.txt -delete` fa la stessa cosa.
+    The `;` character is a special shell character that must be protected by a `\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).
 
-### comando `whereis`
+!!! Tip `$ find /tmp -name *.txt -delete` does the same thing.
 
-Il comando `whereis` ricerca i file relativi a un comando.
+### `whereis` command
+
+The `whereis` command searches for files related to a command.
 
 ```bash
 whereis [-b] [-m] [-s] command
 ```
 
-Esempio:
+Example:
 
 ```bash
 $ whereis -b ls
 ls: /bin/ls
 ```
 
-| Opzione | Osservazione                    |
-| ------- | ------------------------------- |
-| `-b`    | Cerca solo il file binario.     |
-| `-m`    | Ricerca solo per le pagine man. |
-| `-s`    | Ricerca solo per file sorgente. |
+| Option | Observation                     |
+| ------ | ------------------------------- |
+| `-b`   | Search only the binary file.    |
+| `-m`   | Searches only for man pages.    |
+| `-s`   | Searches only for source files. |
 
-### command `grep`
+### `grep` command
 
-Il comando `grep` ricerca una stringa in un file.
+The `grep` command searches for a string in a file.
 
 ```bash
 grep [-w] [-i] [-v] "string" file
 ```
 
-Esempio:
+Example:
 
 ```bash
 $ grep -w "root:" /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 ```
 
-| Opzione | Osservazione                                         |
-| ------- | ---------------------------------------------------- |
-| `-i`    | Ignora il maiuscolo/minuscolo della stringa cercata. |
-| `-v`    | Esclude le linee contenenti la stringa.              |
-| `-w`    | Cerca la parola esatta.                              |
+| Option | Observation                             |
+| ------ | --------------------------------------- |
+| `-i`   | Ignore the case of the searched string. |
+| `-v`   | Excludes lines containing the string.   |
+| `-w`   | Search for the exact word.              |
 
-Il comando `grep` restituisce la linea completa contenente la stringa che stai cercando.
-
-* Il carattere speciale `^` è usato per cercare una stringa all'inizio di una linea.
-* Il carattere speciale `$` cerca una stringa alla fine di una linea.
+The `grep` command returns the complete line containing the string you are looking for.
+* The `^` special character is used to search for a string at the beginning of a line.
+* The special character `$` searches for a string at the end of a line.
 
 ```bash
 $ grep -w "^root" /etc/passwd
 ```
 
-!!! Note "Nota"
-    Questo comando è molto potente ed è altamente raccomandata la consultazione del manuale. Ha molti utilizzi derivati.
+!!! Note This command is very powerful and it is highly recommended to consult its manual. It has many derivatives.
 
-È possibile cercare una stringa in un albero di file con l'opzione `-R`.
+It is possible to search for a string in a file tree with the `-R` option.
 
 ```bash
 grep -R "Virtual" /etc/httpd
 ```
 
-### Meta-caratteri (wildcards)
+### Meta-characters (wildcards)
 
-I Meta-caratteri sostituiscono uno o più caratteri (o anche un'assenza di caratteri) durante una ricerca. Questi meta-caratteri sono anche noti come wildcards. Possono essere combinati. Il carattere `*` sostituisce una stringa composta da qualsiasi carattere. Il carattere `*` può anche rappresentare un'assenza di caratteri.
+Meta-characters replace one or more characters (or even an absence of characters) during a search. These meta-characters are also known as wildcards. They can be combined. The `*` character replaces a string composed of any characters. The `*` character can also represent an absence of character.
 
 ```bash
 $ find /home -name "test*"
@@ -1186,9 +1193,9 @@ $ find /home -name "test*"
 /home/rockstar/test362
 ```
 
-I Meta-caratteri consentono ricerche più complesse sostituendo tutto o parte di una parola. Sostituiscono semplicemente le incognite con questi caratteri speciali.
+Meta-characters allow more complex searches by replacing all or part of a word. Simply replace the unknowns with these special characters.
 
-Il carattere `?` sostituisce un singolo carattere, qualunque esso sia.
+The character `?` replaces a single character, whatever it is.
 
 ```bash
 $ find /home -name "test?"
@@ -1196,7 +1203,7 @@ $ find /home -name "test?"
 /home/rockstar/tests
 ```
 
-Le parentesi quadre `[` sono usate per specificare i valori che un singolo carattere può prendere.
+The square brackets `[` are used to specify the values that a single character can take.
 
 ```bash
 $ find /home -name "test[123]*"
@@ -1205,45 +1212,41 @@ $ find /home -name "test[123]*"
 /home/rockstar/test362
 ```
 
-!!! Note "Nota"
-    Delimita sempre le parole contenenti meta-caratteri con `"` per evitare che vengano sostituiti dai nomi dei file che soddisfano i criteri.
+!!! Note Always surround words containing meta-characters with `"` to prevent them from being replaced by the names of files that meet the criteria.
 
-!!! Warning "Avvertimento"
-    Non confondere i meta-caratteri della shell con i meta-caratteri dell'espressione regolare. Il comando `grep` usa i meta-caratteri dell'espressione regolare.
+!!! Warning Do not confuse shell meta-characters with regular expression meta-characters. The `grep` command uses regular expression meta-characters.
 
-## Reindirizzamenti e pipes
+## Redirects and pipes
 
-### Standard input e output
+### Standard input and output
 
-Sui sistemi UNIX e Linux, ci sono tre flussi standard. Consentono ai programmi, attraverso la libreria `stdio.h`, di inviare e ricevere informazioni.
+On UNIX and Linux systems, there are three standard streams. They allow programs, via the `stdio.h` library, to input or output information.
 
-Questi flussi sono chiamati canale X descrittore di file X.
+These streams are called X channel or X file descriptor.
 
-Per impostazione predefinita:
-
-* la tastiera è il dispositivo di input per il canale 0, chiamato **stdin** ;
-* lo schermo è il dispositivo di uscita per i canali 1 e 2, chiamati **stdout** e **stderr**.
+By default:
+* the keyboard is the input device for channel 0, called **stdin** ;
+* the screen is the output device for channels 1 and 2, called **stdout** and **stderr**.
 
 ![standards channels](images/input-output.png)
 
-**stderr** riceve i flussi di errore restituiti da un comando. Gli altri flussi sono diretti a **stdout**.
+**stderr** receives the error streams returned by a command. The other streams are directed to **stdout**.
 
-Questi flussi puntano ai file delle periferiche, ma poiché tutto è un file in UNIX/Linux, i flussi di I/O possono essere facilmente deviati ad altri file. Questo principio è la forza della shell.
+These streams point to peripheral files, but since everything is a file in UNIX/Linux, I/O streams can easily be diverted to other files. This principle is the strength of the shell.
 
-### Redirezione Input
+### Input redirection
 
-È possibile reindirizzare il flusso di input da un altro file con il carattere `<` o `<<`. Il comando leggerà il file anziché la tastiera:
+It is possible to redirect the input stream from another file with the character `<` or `<<`. The command will read the file instead of the keyboard:
 
 ```bash
 $ ftp -in serverftp << ftp-commands.txt
 ```
 
-!!! Note "Nota"
-    Solo i comandi che richiedono l'input della tastiera saranno in grado di gestire il reindirizzamento dell'ingresso.
+!!! Note Only commands that require keyboard input will be able to handle input redirection.
 
-Il reindirizzamento dell'ingresso può anche essere utilizzato per simulare l'interattività dell'utente. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
+Input redirection can also be used to simulate user interactivity. The command will read the input stream until it encounters the defined keyword after the input redirection.
 
-Questa funzione è utilizzata per i comandi interattivi negli script:
+This feature is used to script interactive commands:
 
 ```bash
 $ ftp -in serverftp << END
@@ -1253,7 +1256,7 @@ bye
 END
 ```
 
-La parola chiave `END` può essere sostituita da qualsiasi parola.
+The keyword `END` can be replaced by any word.
 
 ```bash
 $ ftp -in serverftp << STOP
@@ -1263,145 +1266,144 @@ bye
 STOP
 ```
 
-La shell esce dal comando `ftp` quando riceve una linea contenente solo la parola chiave.
+The shell exits the `ftp` command when it receives a line containing only the keyword.
 
-!!! Warning "Avvertimento"
-    La parola chiave finale, quì `END` o `STOP`, deve essere l'unica parola sulla linea e deve essere all'inizio della linea.
+!!! Warning The ending keyword, here `END` or `STOP`, must be the only word on the line and must be at the beginning of the line.
 
-Il reindirizzamento dell'ingresso standard viene usato raramente perché la maggior parte dei comandi accetta un nome di file come argomento.
+The standard input redirection is rarely used because most commands accept a filename as an argument.
 
-Il comando `wc` potrebbe essere usato in questo modo:
+The command `wc` could be used like this:
 
 ```bash
 $ wc -l .bash_profile
-27 .bash_profile # il numero di linee è seguito dal nome del file
+27 .bash_profile # the number of lines is followed by the file name
 $ wc -l < .bash_profile
-27 # restituisce solo il numero di linee
+27 # returns only the number of lines
 ```
 
-### Redirezione Output
+### Output redirection
 
-L'output standard può essere reindirizzato ad altri file usando il carattere `>` o `>>`.
+Standard output can be redirected to other files using the `>` or `>>` characters.
 
-Il semplice `>` reindirizzamento sovrascrive il contenuto del file di output:
+The simple `>` redirection overwrites the contents of the output file:
 
 ```bash
 $ date +%F > date_file
 ```
 
-mentre il doppio reindirizzamento `>>` aggiunge (concatena) al contenuto del file di output.
+while the double redirection `>>` adds (concatenates) to the content of the output file.
 
 ```bash
 $ date +%F >> date_file
 ```
 
-In entrambi i casi, il file viene creato automaticamente quando non esiste.
+In both cases, the file is automatically created when it does not exist.
 
-L'output di errore standard può anche essere reindirizzato a un altro file. Questa volta sarà necessario specificare il numero del canale (che può essere omesso per i canali 0 e 1):
+The standard error output can also be redirected to another file. This time it will be necessary to specify the channel number (which can be omitted for channels 0 and 1):
 
 ```bash
 $ ls -R / 2> errors_file
 $ ls -R / 2>> errors_file
 ```
 
-### Esempi di reindirizzamento
+### Examples of redirection
 
-Reindirizzamento di 2 uscite a 2 file :
+Redirection of 2 outputs to 2 files:
 
 ```bash
 $ ls -R / >> ok_file 2>> nok_file
 ```
 
-Reindirizzamento delle 2 uscite a un singolo file:
+Redirection of the 2 outputs to a single file:
 
 ```bash
 $ ls -R / >> log_file 2>&1
 ```
 
-Reindirizzamento del *stderr* a un "pozzo senza fondo" (`/dev/null`) :
+Redirection of *stderr* to a "bottomless pit" (`/dev/null`):
 
 ```bash
 $ ls -R / 2>> /dev/null
 ```
 
-Quando entrambi i flussi di uscita vengono reindirizzati, nessuna informazione viene visualizzata sullo schermo. Per utilizzare sia il reindirizzamento dell'uscita che per mantenere il display, dovrai usare il comando `tee`.
+When both output streams are redirected, no information is displayed on the screen. To use both the output redirection and to keep the display, you will have to use the command `tee`.
 
 ### Pipes
 
-Una **pipe** è un meccanismo che consente di collegare l'output standard di un primo comando all'ingresso standard di un secondo comando.
+A **pipe** is a mechanism allowing you to link the standard output of a first command to the standard input of a second command.
 
-Questa comunicazione è UNI direzionale ed è fatta con il simbolo `|`. Il simbolo della pipe `|` è ottenuto premendo il tasto  <kbd>SHIFT</kbd> + <kbd>|</kbd> contemporaneamente.
+This communication is uni directional and is done with the `|` symbol. The pipe symbol `|` is obtained by pressing the  <kbd>SHIFT</kbd> + <kbd>|</kbd> simultaneously.
 
 ![pipe](images/pipe.png)
 
-Tutti i dati inviati dal controllo a sinistra della pipe tramite il canale di uscita standard vengono inviati al canale di ingresso standard del controllo a destra.
+All data sent by the control on the left of the pipe through the standard output channel is sent to the standard input channel of the control on the right.
 
-I comandi particolarmente utilizzati dopo una pipe sono i filtri.
+The commands particularly used after a pipe are filters.
 
-* Esempi:
+* Examples:
 
-Mostra solo l'inizio:
+Display only the beginning:
 
 ```bash
 $ ls -lia / | head
 ```
 
-Mostra solo la fine:
+Display only the end:
 
 ```bash
 $ ls -lia / | tail
 ```
 
-Ordina il risultato.:
+Sort the result:
 
 ```bash
 $ ls -lia / | sort
 ```
 
-Conta il numero di parole / caratteri:
+Count the number of words / characters:
 
 ```bash
 $ ls -lia / | wc
 ```
 
-Cerca una stringa nel risultato:
+Search for a string in the result:
 
 ```bash
 $ ls -lia / | grep fichier
 ```
 
-## Punti speciali
+## Special points
 
-### comando `tee`
+### `tee` command
 
-Il comando `tee` viene utilizzato per reindirizzare l'output standard di un comando a un file mantenendo il display dello schermo.
+The `tee` command is used to redirect the standard output of a command to a file while maintaining the screen display.
 
-Viene combinato con la pipe  `|` per ricevere come input l'output del comando da reindirizzare:
+It is combined with the `|` pipe to receive as input the output of the command to be redirected:
 
 ```bash
 $ ls -lia / | tee fic
 $ cat fic
 ```
 
-L'opzione `-a` aggiunge al file invece di sovrascriverla.
+The `-a` option adds to the file instead of overwriting it.
 
-### comandi `alias` e `unalias`
+### `alias` and `unalias` commands
 
-Usare **alias** è un modo per chiedere alla shell di ricordare un determinato comando con le sue opzioni e dargli un nome.
+Using **alias** is a way to ask the shell to remember a particular command with its options and give it a name.
 
-Per esempio:
+For example:
 
 ```bash
 $ ll
 ```
 
-sostituirà il comando :
+will replace the command:
 
 ```bash
 $ ls -l
 ```
 
-Il comando `alias` elenca gli alias per la sessione corrente. Gli alias sono stabiliti per impostazione predefinita sulle distribuzioni Linux. Qui, gli alias per un server Rocky Linux :
+The `alias` command lists the aliases for the current session. Aliases are set by default on Linux distributions. Here, the aliases for a Rocky server:
 
 ```bash
 $ alias
@@ -1412,72 +1414,67 @@ alias vi='vim'
 alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
 ```
 
-Gli alias sono definiti temporaneamente solo per il tempo della sessione utente.
+The aliases are only defined temporarily, for the time of the user session.
 
-Per un uso permanente, devono essere creati nel:
+For permanent use, they must be created in the:
 
-* `.bashrc` file nella directory di accesso dell'utente;
-* `/etc/profile.d/alias.sh` file per tutti gli utenti.
+* `.bashrc` file in the user's login directory;
+* `/etc/profile.d/alias.sh` file for all users.
 
-!!! Warning "Avvertimento"
-    Prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
+!!! Warning Special care must be taken when using aliases which can be potentially dangerous! For example, an alias set up without the administrator's knowledge:
+
     ```bash
     alias cd='rm -Rf'
     ```
 
-Il comando `unalias` ti consente di eliminare gli alias.
+The `unalias` command allows you to delete aliases.
 
-Per eliminare un singolo alias:
+To delete a single alias:
 
 ```bash
 $ unalias ll
 ```
 
-Per eliminare tutti gli alias:
+To delete all aliases:
 
 ```bash
 $ unalias -a
 ```
 
-Per disabilitare temporaneamente un alias, la combinazione è `\<alias name>`.
+To disable an alias temporarily, the combination is `\<alias name>`.
 
-Ad esempio se digitiamo:
+For example if we do:
 
 ```bash
 $ type ls
 ```
 
-potrebbe restituire quanto segue:
+it might return the following:
 
 ```bash
 ls is an alias to « ls -rt »
 ```
 
-Ora che questo è noto, possiamo vedere i risultati dell'utilizzo dell'alias o disabilitarlo in una volta con il carattere `\` eseguendo il seguente:
+Now that this is known, we can see the results of using the alias or disabling it one time with the `\` by executing the following:
 
 ```bash
-$ ls file*   # ordine per data
+$ ls file*   # order by time
 file3.txt  file2.txt  file1.txt
-$ \ls file*  # ordine per nome
+$ \ls file*  # order by name
 file1.txt  file2.txt  file3.txt
 ```
 
-### Aliases e funzioni utili
+### Aliases and useful functions
 
-* `grep` alias
-  Colora il risultato del comando `grep`:
-  `alias grep='grep --color=auto'`
-* `mcd` function
-  È comune creare una cartella e quindi muoversi in essa:
-  `mcd() { mkdir -p "$1"; cd "$1"; }`
-* `cls` function
-  Spostati in una cartella e elenca il suo contenuto:
-  `cls() { cd "$1"; ls; }`
-* `backup` function
-  Creare una copia di backup di un file:
-  `backup() { cp "$1"{,.bak}; }`
-* `extract` function
-  Estrai qualsiasi tipo di archivio:
+* `grep` alias Colorize the result of the `grep` command: `alias grep='grep --color=auto'`
+
+* `mcd` function It is common to create a folder and then move around in it: `mcd() { mkdir -p "$1"; cd "$1"; }`
+
+* `cls` function Move to a folder and list its contents: `cls() { cd "$1"; ls; }`
+
+* `backup` function Create a backup copy of a file: `backup() { cp "$1"{,.bak}; }`
+
+* `extract` function Extract any type of archive:
 
 ```bash
 extract () {
@@ -1504,14 +1501,13 @@ extract () {
 
 ```
 
-* Se `alias cmount` restituisce quanto segue:
-  `alias cmount="mount | column -t"`
+* If `alias cmount` returns the following: `alias cmount="mount | column -t"`
 
-Possiamo usare il cmount per mostrare tutti i supporti del sistema in colonne come questa:
+Then we can use cmount to show all of the system mounts in columns like this:
 
 `[root]# cmount`
 
-che ritornerà il nostro filesystem montato nel seguente formato:
+which would return our mounted filesystem in the following format:
 
 ```bash
 /dev/simfs  on  /                                          type  simfs        (rw,relatime,usrquota,grpquota)
@@ -1524,44 +1520,91 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 ```
 
-### Il carattere `;`
+### The character `;`
 
-Il carattere `;` concatena i comandi.
+The `;` character strings the commands.
 
-I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che l'utente preme <kbd>ENTER</kdb>.
+The commands will all run sequentially in the order of input once the user presses <kbd>ENTER</kdb>.</p> 
 
-```bash
-$ ls /; cd /home; ls -lia; cd /
-```
+<pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
+</code></pre>
 
-## Controlla la tua conoscenza
+<h2 spaces-before="0">
+  Check your Knowledge
+</h2>
 
-:heavy_check_mark: Cosa definisce un utente sotto Linux? (7 answers)
+<p spaces-before="0">
+  :heavy_check_mark: What defines a user under Linux? (7 answers)
+</p>
 
-:heavy_check_mark: Cosa caratterizza una lunga opzione per un ordine?
+<p spaces-before="0">
+  :heavy_check_mark: What characterizes a long option for an order?
+</p>
 
-:heavy_check_mark: Quali comandi consentono di cercare aiuto su un comando:
+<p spaces-before="0">
+  :heavy_check_mark: Which commands allow you to search for help on a command:
+</p>
 
-- [ ] `google`
-- [ ] `chuck --norris`
-- [ ] `info`
-- [ ] `apropos`
-- [ ] `whatis`
+<ul>
+  <li>
+    [ ] <code>google</code>
+  </li>
+  <li>
+    [ ] <code>chuck --norris</code>
+  </li>
+  <li>
+    [ ] <code>info</code>
+  </li>
+  <li>
+    [ ] <code>apropos</code>
+  </li>
+  <li>
+    [ ] <code>whatis</code>
+  </li>
+</ul>
 
-:heavy_check_mark: Quale comando consente di visualizzare la cronologia di un utente?
+<p spaces-before="0">
+  :heavy_check_mark: Which command allows you to view a user's history?
+</p>
 
-:heavy_check_mark: Quale comando consente di cercare il testo in un file?
+<p spaces-before="0">
+  :heavy_check_mark: Which command allows you to search for text in a file?
+</p>
 
-- [ ] `find`
-- [ ] `grep`
+<ul>
+  <li>
+    [ ] <code>find</code>
+  </li>
+  <li>
+    [ ] <code>grep</code>
+  </li>
+</ul>
 
-:heavy_check_mark: Quale comando consente di cercare un file?
+<p spaces-before="0">
+  :heavy_check_mark: Which command allows you to search for a file?
+</p>
 
-- [ ] `find`
-- [ ] `grep`
+<ul>
+  <li>
+    [ ] <code>find</code>
+  </li>
+  <li>
+    [ ] <code>grep</code>
+  </li>
+</ul>
 
-:heavy_check_mark: Quale comando reindirizza il flusso di errore di un comando a un nuovo file `errors.log`:
+<p spaces-before="0">
+  :heavy_check_mark: Which command redirects the error stream of a command to a new <code>errors.log</code> file:
+</p>
 
-- [ ] `ls -R / 2> errors.log`
-- [ ] `ls -R / 2>> errors.log`
-- [ ] `ls -R / 2> errors.log 2>&1`
+<ul>
+  <li>
+    [ ] <code>ls -R / 2&gt; errors.log</code>
+  </li>
+  <li>
+    [ ] <code>ls -R / 2&gt;&gt; errors.log</code>
+  </li>
+  <li>
+    [ ] <code>ls -R / 2&gt; errors.log 2&gt;&1</code>
+  </li>
+</ul>   
