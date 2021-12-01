@@ -10,36 +10,36 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 
 **Objectifs : **Dans ce chapitre, vous apprendrez à :
 
-:heavy_check_mark: Describe the features and possible architectures of an operating system   
-:heavy_check_mark: Recount the history of UNIX and GNU/Linux   
-:heavy_check_mark: Choose the right Linux distribution for your needs   
-:heavy_check_mark: Explain the philosophy of free and opensource software   
-:heavy_check_mark: Discover the usefulness of the SHELL.
+:heavy_check_mark: Décrire les caractéristiques et les architectures possibles d'un système d'exploitation.   
+:heavy_check_mark: Retracer l'histoire d'UNIX et de GNU/Linux   
+:heavy_check_mark: Choisir la distribution Linux adaptée à ses besoins   
+:heavy_check_mark: Expliquer la philosophie des logiciels libres et open source   
+:heavy_check_mark: Découvrir l'utilité de la SHELL.
 
-:checkered_flag: **generalities**, **linux**, **distributions**
+:checkered_flag: **généralités**, **linux**, **distributions**
 
-**Knowledge**: :star:    
-**Complexity**: :star:
+**Connaissances : ** :star:    
+**Complexité : ** :star:
 
-**Reading time**: 10 minutes
+**Temps de lecture : **10 minutes
 
 ****
 
-## What is an operating system?
+## Qu'est-ce qu'un système d'exploitation ?
 
-Linux, UNIX, BSD, Windows, and MacOS are all **operating systems**.
+Linux, UNIX, BSD, Windows et MacOS sont tous des **systèmes d'exploitation**.
 
-!!! abstract An operating system is a **set of programs that manages the available resources of a computer**.
+!!! abstract Un système d'exploitation est un ensemble de programmes qui gèrent les ressources disponibles d'un ordinateur.
 
-Among this management of resources, the operating system has to:
+Parmi cette gestion des ressources, le système d'exploitation doit :
 
-* Manage the physical or virtual memory.
-  * The **physical memory** is made up of the RAM bars and the processor cache memory, which is used for the execution of programs.
-  * The **virtual memory** is a location on the hard disk (the **swap** partition) that allows the unloading of the physical memory and the saving of the current state of the system during the electrical shutdown of the computer.
-* Intercept **access to peripherals**. Software is rarely allowed to access hardware directly (except for graphics cards for very specific needs).
-* Provide applications with proper **task management**. The operating system is responsible for scheduling processes to occupy the processor.
-* **Protect files** from unauthorized access.
-* **Collecting information** about programs in use or in progress.
+* Gérer la mémoire physique ou virtuelle.
+  * La **mémoire physique** est constituée des barrettes de RAM et de la mémoire cache du processeur, utilisées pour l'exécution des programmes.
+  * La **mémoire virtuelle** est un emplacement sur le disque dur (la partition **swap**) qui permet de décharger la mémoire physique et de sauvegarder l'état actuel du système lors de l'arrêt électrique de l'ordinateur.
+* Intercepter les **accès aux périphériques**. Les logiciels sont rarement autorisés à accéder directement au matériel (sauf les cartes graphiques pour des besoins très spécifiques).
+* Fournir aux applications une **gestion correcte des tâches**. Le système d'exploitation est responsable de la planification des processus pour occuper le processeur.
+* **Protéger les fichiers** contre les accès non autorisés.
+* **Collecter des informations** sur les programmes utilisés ou en cours d'exécution.
 
 ![Operation of an operating system](images/operating_system.png)
 
