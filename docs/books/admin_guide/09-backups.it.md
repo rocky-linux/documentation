@@ -1,187 +1,177 @@
 ---
-title: Backup e Ripristino
-author: Antoine Le Morvan
-contributors: Steven Spencer, Franco Colussi
-update: 11-10-2021
----
-# Backup e ripristino
-
-In questo capitolo imparerai come eseguire il backup e ripristinare i tuoi dati con Linux.
-
+title: Backup and Restore
 ---
 
-**Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come:
+# Backup and Restore
 
-:heavy_check_mark: usare i comandi `tar` e `cpio` per effettuare un backup;  
-:heavy_check_mark: controllare i loro backup e ripristinare i dati;  
-:heavy_check_mark: comprimere o decomprimere i loro backup.  
+In this chapter you will learn how to back up and restore your data with Linux.
 
-:checkered_flag: **backup**, **ripristino**, **compressione**
+****
 
-**Conoscenza**: :star: :star: :star:  
-**Complessità**: :star: :star:  
+**Objectives** : In this chapter, future Linux administrators will learn how to:
 
-**Tempo di lettura**: 40 minuti
+:heavy_check_mark: use the `tar` and `cpio` command to make a backup;   
+:heavy_check_mark: check their backups and restore data;   
+:heavy_check_mark: compress or decompress their backups.
 
----
+:checkered_flag: **backup**, **restore**, **compression**
 
-!!! Nota  
-    In questo capitolo le strutture di comando utilizzano "dispositivo" per specificare sia un percorso di destinazione per il backup, e sia la posizione sorgente durante il ripristino. Il dispositivo può essere un supporto esterno o un file locale. Dovresti sviluppare una certa confidenza con questo concetto durante lo svolgimento del capitolo, ma puoi sempre ritornare a questa nota per chiarimenti se ne hai bisogno.
+**Knowledge**: :star: :star: :star:   
+**Complexity**: :star: :star:
 
-Il backup risponde a una necessità di conservare e ripristinare i dati in modo sicuro ed efficace.
+**Reading time**: 40 minutes
 
-Il backup consente di proteggersi dai seguenti problemi:
+****
 
-* **Distruzione**: volontaria o involontaria. Umana o tecnica. Virus, ...
-* **Cancellazione**: volontaria o involontaria. Umana o tecnica. Virus, ...
-* **Integrità** : i dati diventano inutilizzabili.
+!!! Note Throughout this chapter the command structures use "device" to specify both a target location for backup, and the source location when restoring. The device can be either external media or a local file. You should get a feel for this as the chapter unfolds, but you can always refer back to this note for clarification if you need to.
 
-Nessun sistema è infallibile, nessun umano è infallibile, quindi per evitare di perdere dati, questi devono essere salvati per poi essere in grado di ripristinarli dopo un problema.
+The backup will answer a need to conserve and restore data in a sure and effective way.
 
-Il supporto di backup dovrebbe essere tenuto in un'altra stanza (o edificio) rispetto al server in modo che un disastro non distrugga il server e i backup.
+The backup allows you to protect yourself from the following:
 
-Inoltre, l'amministratore deve controllare regolarmente che i supporti siano ancora leggibili.
+* **Destruction**: voluntary or involuntary. Human or technical. Virus, ...
+* **Deletion**: voluntary or involuntary. Human or technical. Virus, ...
+* **Integrity** : data becomes unusable.
 
-## Generalità
+No system is infallible, no human is infallible, so to avoid losing data, it must be backed up to be able to restore after a problem.
 
-Ci sono due principi, il **backup** e l'**archivio**.
+The backup media should be kept in another room (or building) than the server so that a disaster does not destroy the server and the backups.
 
-* L'archivio distrugge la fonte delle informazioni dopo l'operazione.
-* Il backup conserva la fonte delle informazioni dopo l'operazione.
+In addition, the administrator must regularly check that the media are still readable.
 
-Queste operazioni consistono nel salvare informazioni in un file, su un supporto periferico o supportato (nastri, dischi, ...).
+## Generalities
 
-### Il processo
+There are two principles, the **backup** and the **archive**.
 
-I backup richiedono molta disciplina e rigore da parte dell'amministratore di sistema. È necessario porsi le seguenti domande:
+* The archive destroys the information source after the operation.
+* The backup preserves the source of information after the operation.
 
-* Qual è il mezzo appropriato?
-* Cosa dovrebbe essere salvato?
-* Quante copie?
-* Quanto durerà il backup?
-* Metodo?
-* Quante volte?
-* Automatico o manuale?
-* Dove conservarlo?
-* Quanto tempo sarà conservato?
+These operations consist of saving information in a file, on a peripheral or a supported media (tapes, disks, ...).
 
-### Metodi di backup
+### The process
 
-* **Completo**: uno o più **filesystems** sono salvati (kernel, dati, utilità, ...).
-* **Parziale**: uno o più  **files** sono salvati (configurazioni, directories, ...).
-* **Differenziale**: solo i file modificati dall'ultimo backup **completo** sono salvati.
-* **Incrementale**: solo i file modificati dall'ultimo backup sono salvati.
+Backups require a lot of discipline and rigor from the system administrator. It is necessary to ask the following questions:
 
-### Periodicità
+* What is the appropriate medium?
+* What should be backed up?
+* How many copies?
+* How long will the backup take?
+* Method?
+* How often?
+* Automatic or manual?
+* Where to store it?
+* How long will it be kept?
 
-* **Pre-corrente** : in un dato momento (prima di un aggiornamento del sistema, ...).
-* **Periodica**: Ogni giorno, settimana, mese, ...
+### Backup methods
 
-!!! Consiglio  
-    Prima di effettuare modifiche al sistema, può essere utile effettuare un backup. Tuttavia, non ha senso eseguire il backup dei dati ogni giorno se vengono modificati solo ogni mese.
+* **Complete**: one or more **filesystems** are backed up (kernel, data, utilities, ...).
+* **Partial**: one or more **files** are backed up (configurations, directories, ...).
+* **Differential**: only files modified since the last **complete** backup are backed up.
+* **Incremental**: only files modified since the last backup are backed up.
 
-### Metodi di ripristino
+### Periodicity
 
-A seconda delle utilità disponibili, sarà possibile eseguire diversi tipi di ripristini.
+* **Pre-current** : at a given time (before a system update, ...).
+* **Periodic**: Daily, weekly, monthly, ...
 
-* **Ripristino Completo**: alberi delle directory, ...
-* **Ripristino Selettivo**: parte dell'albero, files, ...
+!!! Tip Before a system change, it can be useful to make a backup. However, there is no point in backing up data every day that is only changed every month.
 
-È possibile ripristinare un intero backup ma è anche possibile ripristinarne solo una parte. Tuttavia, quando si ripristina una directory, i file creati dopo il backup non vengono eliminati.
+### Restoration methods
 
-!!! Consiglio  
-    Per ripristinare una directory com'era al momento del backup, è necessario eliminarne completamente il contenuto prima di avviare il ripristino.
+Depending on the utilities available, it will be possible to perform several types of restorations.
 
-### Gli strumenti
+* **Complete restoration**: trees, ...
+* **Selective restoration**: part of tree, files, ...
 
-Ci sono molte utilità per fare il backup.
+It is possible to restore a whole backup but it is also possible to restore only a part of it. However, when restoring a directory, the files created after the backup are not deleted.
 
-* **strumenti di editor** ;
-* **strumenti grafici**;
-* **strumenti da riga di comando**: `tar`, `cpio`, `pax`, `dd`, `dump`, ...
+!!! Tip To recover a directory as it was at the time of the backup, it is necessary to completely delete its contents before launching the restoration.
 
-I comandi che useremo qui sono `tar` e `cpio`.
+### The tools
+
+There are many utilities to make backups.
+
+* **editor tools** ;
+* **graphical tools**;
+* **command line tools**: `tar`, `cpio`, `pax`, `dd`, `dump`, ...
+
+The commands we will use here are `tar` and `cpio`.
 
 * `tar`:
-  * facile da usare ;
-  * consente di aggiungere file a un backup esistente.
-* `cpio`:
-  * conserva i proprietari;
-  * conserva gruppi, date e permessi;
-  * salta i file danneggiati;
-  * file system completo.
+  * easy to use ;
+  * allows adding files to an existing backup.
+* `cpio` :
+  * retains owners;
+  * retains groups, dates and rights;
+  * skips damaged files;
+  * complete file system.
 
-!!! Nota  
-    Questi comandi salvano in un formato proprietario e standardizzato.
+!!! Note These commands save in a proprietary and standardized format.
 
-### Convenzione di denominazione
+### Naming convention
 
-L'uso di una convenzione di denominazione consente di indirizzare rapidamente il contenuto di un file di backup ed evitare così ripristini pericolosi.
+The use of a naming convention makes it possible to quickly target the contents of a backup file and thus avoid hazardous restorations.
 
-* nome della directory;
-* utilità utilizzata;
-* opzioni utilizzate;
-* data.
+* name of the directory;
+* utility used;
+* options used;
+* date.
 
-!!! Consiglio  
-    Il nome del backup deve essere un nome esplicito.
+!!! Tip The name of the backup must be an explicit name.
 
-!!! Nota  
-    La nozione di estensione sotto Linux non esiste. In altre parole, il nostro uso delle estensioni qui è per l'operatore umano. Se l'amministratore di sistema vede un'estensione di file `.tar.gz` o `.tgz`, ad esempio, allora sa come gestire il file.
+!!! Note The notion of extension under Linux does not exist. In other words, our use of extensions here is for the human operator. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
-### Contenuto di un backup
+### Contents of a backup
 
-Un backup contiene in genere i seguenti elementi:
+A backup generally contains the following elements:
 
-* il file;
-* il nome;
-* il proprietario;
-* la dimensione;
-* i permessi;
-* data di accesso.
+* the file;
+* the name;
+* the owner;
+* the size;
+* the permissions
+* access date.
 
-!!! Nota  
-    Manca il numero di `inode`.
+!!! Note The `inode` number is missing.
 
-### Modalità di archiviazione
+### Storage modes
 
-Esistono due diverse modalità di archiviazione:
+There are two different storage modes:
 
-* file su disco;
-* dispositivo.
+* file on disk;
+* device.
 
 ## Tape ArchiveR - `tar`
 
-Il comando `tar` consente di salvare su più supporti successivi (opzioni multi-volume).
+The `tar` command allows saving on several successive media (multi-volume options).
 
-È possibile estrarre tutto o parte di un backup.
+It is possible to extract all or part of a backup.
 
-`tar` esegue implicitamente il backup in modalità relativa anche se il percorso delle informazioni di cui eseguire il backup è menzionato in modalità assoluta. Tuttavia, sono possibili backup e ripristini in modalità assoluta.
+`tar` implicitly backs up in relative mode even if the path of the information to be backed up is mentioned in absolute mode. However, backups and restores in absolute mode are possible.
 
-### Linee guida per il ripristino
+### Restoration guidelines
 
-Le domande giuste da porsi sono:
+The right questions to ask are:
 
-* cosa: parziale o completo;
-* dove: il luogo in cui i dati saranno ripristinati;
-* come: assoluto o relativo.
+* what: partial or complete;
+* where: the place where the data will be restored;
+* how: absolute or relative.
 
-!!! Avvertimento  
-    Prima di un ripristino, è importante prendersi del tempo per pensare e determinare il metodo più appropriato, questo per evitare errori.
+!!! Warning Before a restoration, it is important to take time to think about and determine the most appropriate method to avoid mistakes.
 
-I ripristini vengono solitamente eseguiti dopo che si è verificato un problema che deve essere risolto rapidamente. Un ripristino scadente può, in alcuni casi, peggiorare la situazione.
+Restorations are usually performed after a problem has occurred that needs to be resolved quickly. A poor restoration can, in some cases, make the situation worse.
 
-### Backup con `tar`
+### Backing up with `tar`
 
-L'utilità predefinita per la creazione di backup su sistemi UNIX è il comando `tar`. Questi backup possono essere compressi con `bzip2`, `xz`, `lzip`, `lzma`, `lzop`, `gzip`, `compress` o `zstd`.
+The default utility for creating backups on UNIX systems is the `tar` command. These backups can be compressed by `bzip2`, `xz`, `lzip`, `lzma`, `lzop`, `gzip`, `compress` or `zstd`.
 
-`tar` consente di estrarre un singolo file o una directory da un backup, visualizzarne il contenuto o convalidarne l'integrità.
+`tar` allows you to extract a single file or a directory from a backup, view its contents or validate its integrity.
 
-#### Stimare le dimensioni di un backup
+#### Estimate the size of a backup
 
-Il comando seguente stima la dimensione in kilobyte di un possibile file _tar_:
+The following command estimates the size in kilobytes of a possible _tar_ file:
 
-```bash
+```
 $ tar cf - /directory/to/backup/ | wc -c
 20480
 $ tar czf - /directory/to/backup/ | wc -c
@@ -190,201 +180,195 @@ $ tar cjf - /directory/to/backup/ | wc -c
 428
 ```
 
-!!! Avvertimento  
-    Attenzione, la presenza di "-" nella riga di comando disturba `zsh`. Passa a `bash`!
+!!! Warning Beware, the presence of "-" in the command line disturbs `zsh`. Switch to `bash`!
 
-#### Convenzione di denominazione per un backup `tar`
+#### Naming convention for a `tar` backup
 
-Ecco un esempio di convenzione di denominazione per un backup `tar`, sapendo che la data deve essere aggiunta al nome.
+Here is an example of a naming convention for a `tar` backup, knowing that the date is to be added to the name.
 
-| Opzioni | Files   | Suffisso         | Osservazione                                      |
-| ------- | ------- | ---------------- | ------------------------------------------------- |
-| `cvf`   | `home`  | `home.tar`       | `/home` in modalità relativa, forma non compressa |
-| `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in modalità assoluta, nessuna compressione |
-| `cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in modalità relativa, compressione _gzip_  |
-| `cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in modalità relativa, compressione _bzip2_ |
-| `cvfPz` | `/home` | `home.A.tar.gz`  | `home` in modalità assoluta, compressione _gzip_  |
-| `cvfPj` | `/home` | `home.A.tar.bz2` | `home` in modalità assoluta, compressione _bzip2_ |
-| …       |         |                  |                                                   |
+| keys    | Files   | Suffix           | Observation                                  |
+| ------- | ------- | ---------------- | -------------------------------------------- |
+| `cvf`   | `home`  | `home.tar`       | `/home` in relative mode, uncompressed form  |
+| `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in absolute mode, no compression      |
+| `cvfz`  | `usr`   | `usr.tar.gz`     | `/usr` in relative mode, _gzip_ compression  |
+| `cvfj`  | `usr`   | `usr.tar.bz2`    | `/usr` in relative mode, _bzip2_ compression |
+| `cvfPz` | `/home` | `home.A.tar.gz`  | `home` in absolute mode, _gzip_ compression  |
+| `cvfPj` | `/home` | `home.A.tar.bz2` | `home` in absolute mode, _bzip2_ compression |
+| …       |         |                  |                                              |
 
-#### Creare un backup
+#### Create a backup
 
-##### Creare un backup in modalità relativa
+##### Create a backup in relative mode
 
-La creazione di un backup non compresso in modalità relativa viene eseguita con le opzioni `cvf`:
+Creating a non-compressed backup in relative mode is done with the `cvf` keys:
 
-```bash
+```
 tar c[vf] [device] [file(s)]
 ```
 
-Esempio:
+Example:
 
-```bash
+```
 [root]# tar cvf /backups/home.133.tar /home/
 ```
 
-| Opzione | Descrizione                                            |
-| ------- | ------------------------------------------------------ |
-| `c`     | Crea un backup.                                        |
-| `v`     | Visualizza il nome dei file elaborati.                 |
-| `f`     | Consente di specificare il nome del backup (supporto). |
 
-!!! Consiglio  
-    Il trattino (`-`) davanti alle opzioni di 'tar' non è necessario!
+| Key | Description                                            |
+| --- | ------------------------------------------------------ |
+| `c` | Creates a backup.                                      |
+| `v` | Displays the name of the processed files.              |
+| `f` | Allows you to specify the name of the backup (medium). |
 
-##### Creare un backup in modalità assoluta
+!!! Tip The hyphen (`-`) in front of the `tar` keys is not necessary!
 
-La creazione di un backup non compresso in modo esplicito in modalità assoluta viene eseguita con le opzioni `cvfP`:
+##### Create a backup in absolute mode
 
-```bash
-tar c[vf]P [device] [file(s)]
+Creating a non-compressed backup explicitly in absolute mode is done with the `cvfP` keys:
+
+```
+$ tar c[vf]P [device] [file(s)]
 ```
 
-Esempio:
+Example:
 
-```bash
+```
 [root]# tar cvfP /backups/home.133.P.tar /home/
 ```
 
-| Opzione | Descrizione                          |
-| ------- | ------------------------------------ |
-| `P`     | Crea un backup in modalità assoluta. |
+| Key | Description                       |
+| --- | --------------------------------- |
+| `P` | Create a backup in absolute mode. |
 
-!!! Avvertimento  
-    Con la chiave `P`, il percorso dei file di cui eseguire il backup deve essere inserito come **assoluto**. Se le due condizioni (chiave `P` e percorso **assoluto**) non sono indicate, il backup è in modalità relativa.
 
-##### Creazione di un backup compresso con `gzip`
+!!! Warning With the `P` key, the path of the files to be backed up must be entered as **absolute**. If the two conditions (key `P` and path **absolute**) are not indicated, the backup is in relative mode.
 
-La creazione di un backup compresso con 'gzip' viene eseguita con le opzioni `cvfz`:
+##### Creating a compressed backup with `gzip`
 
-```bash
+Creating a compressed backup with `gzip` is done with the `cvfz` keys:
+
+```
 $ tar cvzf backup.tar.gz dirname/
 ```
 
-| Opzione | Descrizione                    |
-| ------- | ------------------------------ |
-| `z`     | Comprime il backup con _gzip_. |
+| Key | Description                      |
+| --- | -------------------------------- |
+| `z` | Compresses the backup in _gzip_. |
 
-!!! Nota  
-    L'estensione `.tgz` è un'estensione equivalente a `.tar.gz`.
 
-!!! Nota  
-    Mantenere invariate le opzioni `cvf` (`tvf` o `xvf`) per tutte le operazioni di backup e aggiungere semplicemente la chiave di compressione alla fine delle chiavi rende il comando più facile da capire (ad esempio `cvfz` o `cvfj`, ecc.).
+!!! Note The `.tgz` extension is an equivalent extension to `.tar.gz`.
 
-##### Creazione di un backup compresso con `bzip`
+!!! Note Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the keys makes the command easier to understand (e.g. `cvfz` or `cvfj`, etc.).
 
-La creazione di un backup compresso con `bzip` viene eseguita con le opzioni `cvfj`:
+##### Creating a compressed backup with `bzip`
 
-```bash
+Creating a compressed backup with `bzip` is done with the keys `cvfj`:
+
+```
 $ tar cvfj backup.tar.bz2 dirname/
 ```
 
-| Opzione | Descrizione                    |
-| ------- | ------------------------------ |
-| `j`     | Comprime il backup con_bzip2_. |
+| Key | Description                       |
+| --- | --------------------------------- |
+| `j` | Compresses the backup in _bzip2_. |
 
-!!! Nota  
-    Le estensioni `.tbz` and `.tb2` sono equivalenti all'estensione `.tar.bz2`.
+!!! Note The `.tbz` and `.tb2` extensions are equivalent to `.tar.bz2` extensions.
 
-##### Compressione `compress`, `gzip`, `bzip2`, `lzip` e `xz`
+##### Compression `compress`, `gzip`, `bzip2`, `lzip` and `xz`
 
-La compressione, e di conseguenza la decompressione, avrà un impatto sul consumo di risorse (tempo e utilizzo della CPU).
+Compression, and consequently decompression, will have an impact on resource consumption (time and CPU usage).
 
-Ecco una classifica della compressione di un insieme di file di testo, dal meno al più efficiente:
+Here is a ranking of the compression of a set of text files, from least to most efficient:
 
-* compress (`.tar.Z`)
-* gzip (`.tar.gz`)
-* bzip2 (`.tar.bz2`)
-* lzip (`.tar.lz`)
-* xz (`.tar.xz`)
+- compress (`.tar.Z`)
+- gzip (`.tar.gz`)
+- bzip2 (`.tar.bz2`)
+- lzip (`.tar.lz`)
+- xz (`.tar.xz`)
 
-#### Aggiungere un file o una directory a un backup esistente
+#### Add a file or directory to an existing backup
 
-È possibile aggiungere uno o più elementi a un backup esistente.
+It is possible to add one or more items to an existing backup.
 
-```bash
+```
 tar {r|A}[key(s)] [device] [file(s)]
 ```
 
-Per aggiungere `/etc/passwd` al backup `/backups/home.133.tar`:
+To add `/etc/passwd` to the backup `/backups/home.133.tar`:
 
-```bash
+```
 [root]# tar rvf /backups/home.133.tar /etc/passwd
 ```
 
-L'aggiunta di una directory è simile. Qui aggiungi `dirtoadd` a `backup_name.tar`:
+Adding a directory is similar. Here add `dirtoadd` to `backup_name.tar`:
 
-```bash
+```
 $ tar rvf backup_name.tar dirtoadd
 ```
 
-| Opzione | Descrizione                                                                                     |
-| --- --- | ----------------------------------------------------------------------------------------------- |
-| `r`     | Aggiunge uno o più file alla fine di un backup multimediale ad accesso diretto (disco rigido).  |
-| `A`     | Aggiunge uno o più file al termine di un backup su un supporto di accesso sequenziale (nastro). |
+| Key | Description                                                                      |
+| --- | -------------------------------------------------------------------------------- |
+| `r` | Adds one or more files at the end of a direct access media backup (hard disk).   |
+| `A` | Adds one or more files at the end of a backup on sequential access media (tape). |
 
-!!! Nota  
-    Non è possibile aggiungere file o cartelle a un backup compresso.
+!!! Note It is not possible to add files or folders to a compressed backup.
 
-```bash
+    ```
     $ tar rvfz backup.tgz filetoadd
     tar: Cannot update compressed archives
     Try `tar --help' or `tar --usage' for more information.
+    ```
+
+!!! Note If the backup was performed in relative mode, add files in relative mode. If the backup was done in absolute mode, add files in absolute mode.
+
+    Mixing modes can cause problems when restoring.
+
+#### List the contents of a backup
+
+Viewing the contents of a backup without extracting it is possible.
+
 ```
-
-!!! Nota  
-    Se il backup è stato eseguito in modalità relativa, aggiungere i file in modalità relativa. Se il backup è stato eseguito in modalità assoluta, aggiungere i file in modalità assoluta. Le modalità miste possono causare problemi durante il ripristino.
-
-#### Elencare il contenuto di un backup
-
-È possibile visualizzare il contenuto di un backup senza estrarlo.
-
-```bash
 tar t[key(s)] [device]
 ```
 
-| Opzione  | Descrizione                                              |
-| -------- | -------------------------------------------------------- |
-| `t`      | Visualizza il contenuto di un backup (compresso o meno). |
+| Key | Description                                           |
+| --- | ----------------------------------------------------- |
+| `t` | Displays the content of a backup (compressed or not). |
 
-Esempi:
+Examples:
 
-```bash
+```
 $ tar tvf backup.tar
 $ tar tvfz backup.tar.gz
 $ tar tvfj backup.tar.bz2
 ```
 
-Quando il numero di file in un backup diventa grande, è possibile inviare in  _pipe_ il risultato del comando `tar` ad un _impaginatore_ (`more`, `less`, `most`, ecc.):
+When the number of files in a backup becomes large, it is possible to _pipe_ the result of the `tar` command to a _pager_ (`more`, `less`, `most`, etc.):
 
-```bash
+```
 $ tar tvf backup.tar | less
 ```
 
-!!! Consiglio  
-    Per elencare o recuperare il contenuto di un backup, non è necessario menzionare l'algoritmo di compressione utilizzato al momento della creazione del backup. Cioè, un `tar tvf` equivale a `tar tvfj`, per leggere il contenuto, e un `tar xvf` è equivalente a `tar xvfj`, per estrarre.
+!!! Tip To list or retrieve the contents of a backup, it is not necessary to mention the compression algorithm used when the backup was created. That is, a `tar tvf` is equivalent to `tar tvfj`, to read the contents, and a `tar xvf` is equivalent to `tar xvfj`, to extract.
 
-!!! Consiglio  
-    Controllare sempre il contenuto di un backup.
+!!! Tip Always check the contents of a backup.
 
-#### Verificare l'integrità di un backup
+#### Check the integrity of a backup
 
-L'integrità di un backup può essere testata con la chiave `W` al momento della sua creazione:
+The integrity of a backup can be tested with the `W` key at the time of its creation:
 
-```bash
+```
 $ tar cvfW file_name.tar dir/
 ```
 
-L'integrità di un backup può essere testata con la chiave `d` dopo la sua creazione:
+The integrity of a backup can be tested with the key `d` after its creation:
 
-```bash
+```
 $ tar vfd file_name.tar dir/
 ```
 
-!!! Consiglio  
-    Aggiungendo una seconda `v` alla chiave precedente, si otterrà l'elenco dei file archiviati e le differenze tra i file archiviati e quelli presenti nel file system.
+!!! Tip By adding a second `v` to the previous key, you will get the list of archived files as well as the differences between the archived files and those present in the file system.
 
-```bash
+    ```
     $ tar vvfd  /tmp/quodlibet.tar .quodlibet/
     drwxr-x--- rockstar/rockstar     0 2021-05-21 00:11 .quodlibet/
     -rw-r--r-- rockstar/rockstar     0 2021-05-19 00:59 .quodlibet/queue
@@ -393,11 +377,11 @@ $ tar vfd file_name.tar dir/
     .quodlibet/config: Mod time differs
     .quodlibet/config: Size differs
     […]
+    ```
+
+The `W` key is also used to compare the content of an archive against the filesystem:
+
 ```
-
-L'opzione `W` viene utilizzata anche per confrontare il contenuto di un archivio con il filesystem:
-
-```bash
 $ tar tvfW file_name.tar
 Verify 1/file1
 1/file1: Mod time differs
@@ -406,428 +390,418 @@ Verify 1/file2
 Verify 1/file3
 ```
 
-La verifica con l'opzione `W` non può essere eseguita con un archivio compresso. Deve essere utilizzata l'opzione `d` :
+The verification with the `W` key cannot be done with a compressed archive. The key `d` must be used:
 
-```bash
+```
 $ tar dfz file_name.tgz
 $ tar dfj file_name.tar.bz2
 ```
 
-#### Estrarre (_untar_) un backup
+#### Extract (_untar_) a backup
 
-L'estrazione di un backup (_untar_) `*.tar` viene eseguito con le opzioni `xvf`:
+Extract (_untar]_) a `*.tar` backup is done with the `xvf` keys:
 
-Estrarre il file `etc/exports` dal backup `/savings/etc.133.tar` nella cartella `etc` della directory corrente:
+Extract the `etc/exports` file from the `/savings/etc.133.tar` backup into the `etc` directory of the active directory:
 
-```bash
+```
 $ tar xvf /backups/etc.133.tar etc/exports
 ```
 
-Estrarre tutti i file dal backup compresso `/backups/home.133.tar.bz2` nella directory corrente:
+Extract all files from the compressed backup `/backups/home.133.tar.bz2` into the active directory:
 
-```bash
+```
 [root]# tar xvfj /backups/home.133.tar.bz2
 ```
 
-Estrarre tutti i file dal backup `/backups/etc.133.P.tar` nella loro directory originale:
+Extract all files from the backup `/backups/etc.133.P.tar` to their original directory:
 
-```bash
+```
 $ tar xvfP /backups/etc.133.P.tar
 ```
 
-!!! Avvertimento  
-    Vai nel posto giusto.
+!!! Warning Go to the right place.
 
-Controlla il contenuto del backup.
+    Check the contents of the backup.
 
-| Opzione | Descrizione                                   |
-| ------- | --------------------------------------------- |
-| `x`     | Estrarre i file dal backup, compressi o meno. |
+| Key | Description                                       |
+| --- | ------------------------------------------------- |
+| `x` | Extract files from the backup, compressed or not. |
 
-L'estrazione di un backup _tar-gzipped_ ('*.tar.gz') viene eseguita con le opzioni `xvfz`:
 
-```bash
+Extracting a _tar-gzipped_ (`*.tar.gz`) backup is done with the `xvfz` keys:
+
+```
 $ tar xvfz backup.tar.gz
 ```
 
-L'estrazione di un _tar-bzipped_ (`*.tar.bz2`) viene eseguita con le opzioni `xvfj`:
+Extracting a _tar-bzipped_ (`*.tar.bz2`) backup is done with the `xvfj` keys:
 
-```bash
+```
 $ tar xvfj backup.tar.bz2
 ```
 
-!!! Consiglio  
-    Per estrarre o elencare il contenuto di un backup, non è necessario menzionare l'algoritmo di compressione utilizzato per creare il backup. Cioè, un `tar xvf` equivale a `tar xvfj`, per estrarre il contenuto, e un `tar tvf` è equivalente a `tar tvfj`, per elencare.
+!!! Tip To extract or list the contents of a backup, it is not necessary to mention the compression algorithm used to create the backup. That is, a `tar xvf` is equivalent to `tar xvfj`, to extract the contents, and a `tar tvf` is equivalent to `tar tvfj`, to list.
 
-!!! Avvertimento  
-    Per ripristinare i file nella loro directory originale (chiave `P` di un `tar xvf`), è necessario aver generato il backup con il percorso assoluto. Cioè, con la chiave `P` di un `tar cvf`.
+!!! Warning To restore the files in their original directory (key `P` of a `tar xvf`), you must have generated the backup with the absolute path. That is, with the `P` key of a `tar cvf`.
 
-##### Estrarre solo un file da un backup _tar_
+##### Extract only a file from a _tar_ backup
 
-Per estrarre un file specifico da un backup _tar_, specificare il nome di tale file alla fine del comando `tar xvf`.
+To extract a specific file from a _tar_ backup, specify the name of that file at the end of the `tar xvf` command.
 
-```bash
+```
 $ tar xvf backup.tar /path/to/file
 ```
 
-Il comando precedente estrae solo il file `/path/to/file` dal backup `backup.tar`. Questo file verrà ripristinato nella directory `/path/to/` creata, o già presente, nella directory corrente.
+The previous command extracts only the `/path/to/file` file from the `backup.tar` backup. This file will be restored to the `/path/to/` directory created, or already present, in the active directory.
 
-```bash
+```
 $ tar xvfz backup.tar.gz /path/to/file
 $ tar xvfj backup.tar.bz2 /path/to/file
 ```
 
-##### Estrarre una cartella da un backup _tar_
+##### Extract a folder from a backup _tar_
 
-Per estrarre una sola directory (incluse le sottodirectory e i file) da un backup, specificare il nome della directory alla fine del comando `tar xvf`.
+To extract only one directory (including its subdirectories and files) from a backup, specify the directory name at the end of the `tar xvf` command.
 
-```bash
+```
 $ tar xvf backup.tar /path/to/dir/
 ```
 
-Per estrarre più directory, specificare ciascuno dei nomi uno dopo l'altro:
+To extract multiple directories, specify each of the names one after the other:
 
-```bash
+```
 $ tar xvf backup.tar /path/to/dir1/ /path/to/dir2/
 $ tar xvfz backup.tar.gz /path/to/dir1/ /path/to/dir2/
 $ tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 ```
 
-##### Estrarre un gruppo di file da un backup _tar_ utilizzando espressioni regolari (_regex_)
+##### Extract a group of files from a _tar_ backup using regular expressions (_regex_)
 
-Specificate un _regex_ per estrarre i file corrispondenti al modello di selezione specificato.
+Specify a _regex_ to extract the files matching the specified selection pattern.
 
-Ad esempio, per estrarre tutti i file con l'estensione `.conf` :
+For example, to extract all files with the extension `.conf` :
 
-```bash
+```
 $ tar xvf backup.tar --wildcards '*.conf'
 ```
 
-chiavi :
+keys :
 
-* `--wildcards *.conf` corrisponde ai file con estensione `.conf`.
+  * **--wildcards *.conf** corresponds to files with the extension `.conf`.
 
 ## _CoPy Input Output_ - `cpio`
 
-Il comando `cpio` consente di salvare su più supporti successivi senza specificare alcuna opzione.
+The `cpio` command allows saving on several successive media without specifying any options.
 
-È possibile estrarre tutto o parte di un backup.
+It is possible to extract all or part of a backup.
 
-Non c'è alcuna opzione, a differenza del comando `tar`, per eseguire il backup e comprimere allo stesso tempo.
-Quindi è fatto in due passaggi: backup e compressione.
+There is no option, unlike the `tar` command, to backup and compress at the same time. So it is done in two steps: backup and compression.
 
-Per eseguire un backup con `cpio`, è necessario specificare un elenco di file di cui eseguire il backup.
+To perform a backup with `cpio`, you have to specify a list of files to backup.
 
-Questo elenco è fornito con i comandi `find`, `ls` o `cat`.
+This list is provided with the commands `find`, `ls` or `cat`.
 
-* `find` : sfogliare un albero, ricorsivo o meno;
-* `ls` : elencare una directory, ricorsiva o meno;
-* `cat` : legge un file contenente gli alberi delle directory o i file da salvare.
+* `find` : browse a tree, recursive or not;
+* `ls` : list a directory, recursive or not;
+* `cat` : reads a file containing the trees or files to be saved.
 
-!!! Nota  
-    `ls` non può essere usato con `-l` (dettagli) o `-R` (ricorsivo).
-    Richiede un semplice elenco di nomi.
+!!! Note `ls` cannot be used with `-l` (details) or `-R` (recursive).
 
-### Creare un backup con il comando `cpio`
+    It requires a simple list of names.
 
-Sintassi del comando `cpio`:
+### Create a backup with `cpio` command
 
-```bash
+Syntax of the `cpio` command:
+
+```
 [files command |] cpio {-o| --create} [-options] [<file-list] [>device]
 ```
 
-Esempio:
+Example:
 
-Con un reindirizzamento dell'output di `cpio`:
+With a redirection of the output of `cpio`:
 
-```bash
+```
 $ find /etc | cpio -ov > /backups/etc.cpio
 ```
 
-Utilizzo del nome di un supporto di backup:
+Using the name of a backup media :
 
-```bash
+```
 $ find /etc | cpio -ovF /backups/etc.cpio
 ```
 
-Il risultato del comando `find` viene inviato come input al comando `cpio` tramite una _pipe_ (carattere `|`, <kbd>AltGr</kbd> + <kbd>|</kbd>).
+The result of the `find` command is sent as input to the `cpio` command via a _pipe_ (character `|`, <kbd>AltGr</kbd> + <kbd>6</kbd>).
 
-Qui, il comando `find /etc` restituisce un elenco di file corrispondenti al contenuto della directory `/etc` (ricorsivamente) al comando `cpio`, che esegue il backup.
+Here, the `find /etc` command returns a list of files corresponding to the contents of the `/etc` directory (recursively) to the `cpio` command, which performs the backup.
 
-Non dimenticare il segno `>` durante il salvataggio o l'opzione `F save_name_cpio`.
+Do not forget the `>` sign when saving or the `F save_name_cpio`.
 
-| Opzione | Descrizione                                  |
-| ------- | -------------------------------------------- |
-| `-o`    | Crea un backup (_output_).                   |
-| `-v`    | Visualizza il nome dei file elaborati.       |
-| `-F`    | Indica il backup da modificare (supporto).   |
+| Options | Description                                    | | `-o`    | Creates a backup (_output_).                   | | `-v`    | Displays the name of the processed files.      | | `-F`    | Designates the backup to be modified (medium). |
 
-Backup su un supporto:
+Backup to a media :
 
-```bash
+```
 $ find /etc | cpio -ov > /dev/rmt0
 ```
 
-Il supporto può essere di diversi tipi:
+The support can be of several types:
 
-* unità nastro: `/dev/rmt0`  ;
-* una partizione: `/dev/sda5`, `/dev/hda5`, etc.
+* tape drive: `/dev/rmt0`  ;
+* a partition: `/dev/sda5`, `/dev/hda5`, etc.
 
-### Tipo di backup
+### Type of backup
 
-#### Backup con percorso relativo
+#### Backup with relative path
 
-```bash
+```
 $ cd /
 $ find etc | cpio -o > /backups/etc.cpio
 ```
 
-#### Backup con percorso assoluto
+#### Backup with absolute path
 
-```bash
+```
 $ find /etc | cpio -o > /backups/etc.A.cpio
 ```
 
-!!! Avvertimento  
-    Se il percorso specificato nel comando `find` è **assoluto** il backup verrà eseguito in **assoluto**.
-    Se il percorso indicato nel comando `find` è **relativo** il backup verrà eseguito in **relativo**.
+!!! Warning If the path specified in the `find` command is **absolute** then the backup will be performed in **absolute**.
 
-### Aggiungere a un backup
+    If the path indicated in the `find` command is **relative** then the backup will be done in **relative**.
 
-```bash
+### Add to a backup
+
+```
 [files command |] cpio {-o| --create} -A [-options] [<fic-list] {F|>device}
 ```
 
-Esempio:
+Example:
 
-```bash
+```
 $ find /etc/shadow | cpio -o -AF SystemFiles.A.cpio
 ```
 
-L'aggiunta di file è possibile solo su supporti ad accesso diretto.
+Adding files is only possible on direct access media.
 
-| Opzione | Descrizione                                    |
-| ------- | ---------------------------------------------- |
-| `-A`    | Aggiunge uno o più file a un backup su disco.  |
-| `-F`    | Indica il backup da modificare.                |
+| Option | Description                                 |
+| ------ | ------------------------------------------- |
+| `-A`   | Adds one or more files to a backup on disk. |
+| `-F`   | Designates the backup to be modified.       |
 
-### Compressione di un backup
+### Compressing a backup
 
-* Salva **poi** comprimi
+* Save **then** compress
 
-```bash
+```
 $ find /etc | cpio  –o > etc.A.cpio
 $ gzip /backups/etc.A.cpio
 $ ls /backups/etc.A.cpio*
 /backups/etc.A.cpio.gz
 ```
 
-* Salva **e** comprimi
+* Save **and** compress
 
-```bash
+```
 $ find /etc | cpio –o | gzip > /backups/etc.A.cpio.gz
 ```
 
-Non c'è alcuna opzione, a differenza del comando `tar`, per salvare e comprimere allo stesso tempo.
-Quindi è fatto in due passaggi: salvataggio e compressione.
+There is no option, unlike the `tar` command, to save and compress at the same time. So it is done in two steps: saving and compressing.
 
-La sintassi del primo metodo è più facile da capire e ricordare, perché viene eseguita in due passaggi.
+The syntax of the first method is easier to understand and remember, because it is done in two steps.
 
-Per il primo metodo, il file di backup viene automaticamente rinominato dall'utilità `gzip` che aggiunge `.gz` alla fine del nome del file. Allo stesso modo l'utilità `bzip2` aggiunge automaticamente `.bz2`.
+For the first method, the backup file is automatically renamed by the `gzip` utility which adds `.gz` to the end of the file name. Similarly the `bzip2` utility automatically adds `.bz2`.
 
-### Leggere il contenuto di un backup
+### Read the contents of a backup
 
-Sintassi del comando `cpio` per leggere il contenuto di un backup _cpio_:
+Syntax of the `cpio` command to read the contents of a _cpio_ backup:
 
-```bash
+```
 cpio -t [-options] [<fic-list]
 ```
 
-Esempio:
+Example:
 
-```bash
-$ cpio -tv < /backups/etc.152.cpio | less
+```
+$ cpio -tv </backups/etc.152.cpio | less
 ```
 
-| Opzioni | Descrizione                        |
-| ------- | ---------------------------------- |
-| `-t`    | Legge un backup.                   |
-| `-v`    | Visualizza gli attributi dei file. |
+| Options | Description               |
+| ------- | ------------------------- |
+| `-t`    | Reads a backup.           |
+| `-v`    | Displays file attributes. |
 
-Dopo aver eseguito un backup, è necessario leggerne il contenuto per essere sicuri che non ci siano stati errori.
+After making a backup, you need to read its contents to be sure that there were no errors.
 
-Allo stesso modo, prima di eseguire un ripristino, è necessario leggere il contenuto del backup che verrà utilizzato.
+In the same way, before performing a restore, you must read the contents of the backup that will be used.
 
-### Ripristinare un backup
+### Restore a backup
 
-Sintassi del comando `cpio` per ripristinare un backup:
+Syntax of the `cpio` command to restore a backup:
 
-```bash
+```
 cpio {-i| --extract} [-E file] [-options] [<device]
 ```
 
-Esempio:
+Example:
 
-```bash
+```
 $ cpio -iv </backups/etc.152.cpio | less
 ```
 
-| Opzioni                      | Descrizione                                                                           |
-| ---------------------------- | ------------------------------------------------------------------------------------- |
-| `-i`                         | Ripristinare un backup completo.                                                      |
-| `-E file`                    | Ripristina solo i file il cui nome è contenuto nel file.                              |
-| `--make-directories` o `-d`  | Ricostruisce la struttura ad albero mancante.                                         |
-| `-u`                         | Sostituisce tutti i file anche se esistono.                                           |
-| `--no-absolute-filenames`    | Permette di ripristinare un backup effettuato in modalità assoluta in modo relativo.  |
+| Options                      | Description                                                         |
+| ---------------------------- | ------------------------------------------------------------------- |
+| `-i`                         | Restore a complete backup.                                          |
+| `-E file`                    | Restores only the files whose name is contained in file.            |
+| `--make-directories` or `-d` | Rebuilds the missing tree structure.                                |
+| `-u`                         | Replaces all files even if they exist.                              |
+| `--no-absolute-filenames`    | Allows to restore a backup made in absolute mode in a relative way. |
 
-!!! Avvertimento  
-    Per impostazione predefinita, al momento del ripristino, i file sul disco la cui data di ultima modifica è più recente o uguale alla data del backup non vengono ripristinati (al fine di evitare di sovrascrivere le informazioni recenti con informazioni meno recenti).
-    L'opzione `u`, d'altra parte, consente di ripristinare le versioni precedenti dei file.
+!!! Warning By default, at the time of restoration, files on the disk whose last modification date is more recent or equal to the date of the backup are not restored (in order to avoid overwriting recent information with older information).
 
-Esempi:
+    The `u` option, on the other hand, allows you to restore older versions of the files.
 
-* Ripristinare un backup assoluto in modalità assoluta
+Examples:
 
-```bash
+* Absolute restoration of an absolute backup
+
+```
 $ cpio –ivF home.A.cpio
 ```
 
-* Ripristino assoluto su una struttura ad albero esistente
+* Absolute restoration on an existing tree structure
 
-L'opzione `u` consente di sovrascrivere i file esistenti nella posizione in cui avviene il ripristino.
+The `u` option allows you to overwrite existing files at the location where the restore takes place.
 
-```bash
+```
 $ cpio –iuvF home.A.cpio
 ```
 
-* Ripristinare un backup assoluto in modalità relativa
+* Restore an absolute backup in relative mode
 
-L'opzione lunga `no-absolute-filenames` consente un ripristino in modalità relativa. Infatti la `/` all'inizio del percorso verrà rimossa.
+The long option `no-absolute-filenames` allows a restoration in relative mode. Indeed the `/` at the beginning of the path will be removed.
 
-```bash
+```
 $ cpio --no-absolute-filenames -divuF home.A.cpio
 ```
 
-!!! Consiglio  
-    La creazione di directory è forse necessaria, da qui l'uso dell'opzione `d`
+!!! Tip The creation of directories is perhaps necessary, hence the use of the `d` option
 
-* Ripristinare un backup relativo
+* Restore a relative backup
 
-```bash
+```
 $ cpio –iv <etc.cpio
 ```
 
-* Ripristino in modalità assoluta di un file o di una directory
+* Absolute restoration of a file or directory
 
-Il ripristino di un particolare file o directory richiede la creazione di un file di elenco che deve poi essere eliminato.
+The restoration of a particular file or directory requires the creation of a list file that must then be deleted.
 
-```bash
+```
 echo "/etc/passwd" > tmp
 cpio –iuE tmp -F etc.A.cpio
 rm -f tmp
 ```
 
-## Utilità di Compressione - decompressione
+## Compression - decompression utilities
 
-L'utilizzo della compressione al momento di un backup può avere una serie di inconvenienti:
+Using compression at the time of a backup can have a number of drawbacks:
 
-* Allunga il tempo di backup e il tempo di ripristino.
-* Rende impossibile aggiungere file al backup.
+* Lengthens the backup time as well as the restore time.
+* It makes it impossible to add files to the backup.
 
-!!! Nota  
-    È quindi meglio fare un backup e comprimerlo piuttosto che comprimerlo durante il backup.
+!!! Note It is therefore better to make a backup and compress it than to compress it during the backup.
 
-### Compressione con `gzip`
+### Compressing with `gzip`
 
-Il comando `gzip` comprime i dati.
+The `gzip` command compresses data.
 
-Sintassi del comando `gzip`:
+Syntax of the `gzip` command:
 
-```bash
+```
 gzip [options] [file ...]
 ```
 
-Esempio:
+Example:
 
-```bash
+```
 $ gzip usr.tar
 $ ls
 usr.tar.gz
 ```
 
-Il file riceve l'estensione `.gz`.
+The file receives the extension `.gz`.
 
-Mantiene gli stessi permessi e le stesse date di ultimo accesso e modifica.
+It keeps the same rights and the same last access and modification dates.
 
-### Compressione con `bunzip2`
+### Compressing with `bunzip2`
 
-Anche il comando 'bunzip2' comprime i dati.
+The `bunzip2` command also compresses data.
 
-Sintassi del comando `bzip2`:
+Syntax of the `bzip2` command:
 
-```bash
+```
 bzip2 [options] [file ...]
 ```
 
-Esempio:
+Example:
 
-```bash
+```
 $ bzip2 usr.cpio
 $ ls
 usr.cpio.bz2
 ```
 
-Al nome del file viene assegnata l'estensione `.bz2`.
+The file name is given the extension `.bz2`.
 
-La compressione con `bzip2` è migliore della compressione con `gzip` ma ci vuole più tempo per eseguirla.
+Compression by `bzip2` is better than compression by `gzip` but it takes longer to execute.
 
-### Decompressione con `gunzip`
+### Decompressing with `gunzip`
 
-Il comando `gunzip` decomprime i dati compressi.
+The `gunzip` command decompresses compressed data.
 
-Sintassi del comando `gunzip`:
+Syntax of the `gunzip` command:
 
-```bash
+```
 gunzip [options] [file ...]
 ```
 
-Esempio:
+Example:
 
-```bash
+```
 $ gunzip usr.tar.gz
 $ ls
 usr.tar
 ```
 
-Il nome del file viene troncato da `gunzip` e l'estensione `.gz` viene rimossa.
+The file name is truncated by `gunzip` and the extension `.gz` is removed.
 
-`gunzip` decomprime anche i file con le seguenti estensioni:
+`gunzip` also decompresses files with the following extensions:
 
 * `.z` ;
 * `-z` ;
 * `_z` .
 
-### Decompressione con `bunzip2`
+### Decompressing with `bunzip2`
 
-Il comando `bunzip2` decomprime i dati compressi.
+The `bunzip2` command decompresses compressed data.
 
-Sintassi del comando `bzip2:
+Syntax of the `bzip2` command:
 
-```bash
+```
 bzip2 [options] [file ...]
 ```
 
-Esempio:
+Example:
 
-```bash
+```
 $ bunzip2 usr.cpio.bz2
 $ ls
 usr.cpio
 ```
 
-Il nome del file viene troncato da `bunzip2` e l'estensione `.bz2` viene rimossa.
+The file name is truncated by `bunzip2` and the extension `.bz2` is removed.
 
-`bunzip2` decomprime anche il file con le seguenti estensioni:
+`bunzip2` also decompresses the file with the following extensions:
 
 * `-bz` ;
 * `.tbz2` ;
