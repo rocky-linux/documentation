@@ -1,91 +1,91 @@
 ---
-title: Software Management
+title: Gestione del software
 ---
 
-# Software Management
+# Gestione del software
 
-## Generalities
+## Generalità
 
-On a Linux system, it is possible to install software in two ways:
+Su un sistema Linux, è possibile installare il software in due modi:
 
-* Using an installation package;
-* Compiling from source files.
+* Utilizzando un pacchetto di installazione;
+* Compilandolo da un file sorgente.
 
-!!! Note Installing from source is not covered here. As a rule, you should use the package method unless the software you want is not available via the package manager. The reason for this is that dependencies are generally managed by the package system, whereas with source, you need to manage the dependencies manually.
+!!! Note "Nota" L'installazione dall'origine non è trattata qui. Di norma, è necessario utilizzare il metodo del pacchetto a meno che il software desiderato non sia disponibile tramite il gestore pacchetti. La ragione di ciò è che le dipendenze sono generalmente gestite dal sistema di pacchetti, mentre con il sorgente, è necessario gestire manualmente le dipendenze.
 
-**The package**: This is a single file containing all the data needed to install the program. It can be executed directly on the system from a software repository.
+**Il pacchetto**: si tratta di un singolo file contenente tutti i dati necessari per installare il programma. Può essere eseguito direttamente sul sistema da un repository software.
 
-**The source files** : Some software is not provided in packages ready to be installed, but via an archive containing the source files. It is up to the administrator to prepare these files and compile them to install the program.
+**I file sorgente** : Alcuni software non sono forniti in pacchetti pronti per essere installati, ma tramite un archivio contenente i file sorgente. Spetta all'amministratore preparare questi file e compilarli per installare il programma.
 
-## RPM : RedHat Package Manager
+## RPM : Gestione pacchetti RedHat
 
-**RPM** (RedHat Package Manager) is a software management system. It is possible to install, uninstall, update or check software contained in packages.
+**RPM** (RedHat Package Manager) è un sistema di gestione software. È possibile installare, disinstallare, aggiornare o controllare il software contenuto nei pacchetti.
 
-**RPM** is the format used by all RedHat based distributions (RockyLinux, Fedora, CentOS, SuSe, Mandriva, ...). Its equivalent in the Debian world is DPKG (Debian Package).
+**RPM** è il formato utilizzato da tutte le distribuzioni basate su RedHat (RockyLinux, Fedora, CentOS, SuSe, Mandriva, ...). Il suo equivalente nel mondo Debian è DPKG (Debian Package).
 
-The name of an RPM package follows a specific nomenclature:
+Il nome di un pacchetto RPM segue una nomenclatura specifica:
 
 ![Illustration of a package name](images/software-001.png)
 
-### `rpm` command
+### comando `rpm`
 
-The rpm command allows you to install a package.
+Il comando rpm consente di installare un pacchetto.
 
 ```
 rpm [-i][-U] package.rpm [-e] package
 ```
 
-Example (for a package named 'package'):
+Esempio (per un pacchetto denominato 'package'):
 
 ```
 [root]# rpm -ivh package.rpm
 ```
 
-| Option           | Description                                  |
-| ---------------- | -------------------------------------------- |
-| `-i package.rpm` | Installs the package.                        |
-| `-U package.rpm` | Updates an already installed package.        |
-| `-e package.rpm` | Uninstalls the package.                      |
-| `-h`             | Displays a progress bar.                     |
-| `-v`             | Informs about the progress of the operation. |
-| `--test`         | Tests the command without executing it.      |
+| Opzione          | Descrizione                                         |
+| ---------------- | --------------------------------------------------- |
+| `-i package.rpm` | Installa il pacchetto.                              |
+| `-U package.rpm` | Aggiorna un pacchetto già installato.               |
+| `-e package.rpm` | Disinstalla il pacchetto.                           |
+| `-h`             | Visualizza una barra di avanzamento.                |
+| `-v`             | Informa sullo stato di avanzamento dell'operazione. |
+| `--test`         | Esegue il test del comando senza eseguirlo.         |
 
-The `rpm` command also allows you to query the system package database by adding the `-q` option.
+Il comando `rpm` consente inoltre di interrogare il database dei pacchetti sul sistema aggiungendo l'opzione `-q`.
 
-It is possible to execute several types of queries to obtain different information about the installed packages. The RPM database is located in the directory `/var/lib/rpm`.
+È possibile eseguire diversi tipi di ricerche per ottenere informazioni sui pacchetti installati. Il database RPM si trova nella directory `/var/lib/rpm`.
 
-Example:
+Esempio:
 
 ```
 [root]# rpm -qa
 ```
 
-This command queries all the packages installed on the system.
+Questo comando esegue una ricerca su tutti i pacchetti installati nel sistema.
 
 ```
 rpm -q [-a][-i][-l] package [-f] file
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# rpm -qil package
 [root]# rpm -qf /path/to/file
 ```
 
-| Option           | Description                                                                                    |
-| ---------------- | ---------------------------------------------------------------------------------------------- |
-| `-a`             | Lists all packages installed on the system.                                                    |
-| `-i __package__` | Displays the package information.                                                              |
-| `-l __package__` | Lists the files contained in the package.                                                      |
-| `-f`             | Shows the name of the package containing the specified file.                                   |
-| `--last`         | The list of packages is given by installation date (the last installed packages appear first). |
+| Opzione          | Descrizione                                                                                                                   |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `-a`             | Elenca tutti i pacchetti installati nel sistema.                                                                              |
+| `-i __package__` | Visualizza le informazioni sul pacchetto.                                                                                     |
+| `-l __package__` | Elenca i file contenuti nel pacchetto.                                                                                        |
+| `-f`             | Mostra il nome del pacchetto contenente il file specificato.                                                                  |
+| `--last`         | L'elenco dei pacchetti è indicato per data di installazione (gli ultimi pacchetti installati vengono visualizzati per primi). |
 
-!!! Warning After the `-q` option, the package name must be exact. Metacharacters (wildcards) are not supported.
+!!! Warning "Avvertimento" Dopo l'opzione `-q`, il nome del pacchetto deve essere esatto. I metacaratteri (caratteri jolly) non sono supportati.
 
-!!! Tip However, it is possible to list all installed packages and filter with the `grep` command.
+!!! Tip "Suggerimento" Tuttavia, è possibile elencare tutti i pacchetti installati e filtrarli con il comando 'grep'.
 
-Example: list the last installed packages:
+Esempio: elencare gli ultimi pacchetti installati:
 
 ```
 sudo rpm -qa --last | head
@@ -101,7 +101,7 @@ iwl7260-firmware-25.30.13.0-101.el8.1.noarch  Mon 24 May 2021 02:33:59 PM CEST
 iwl6050-firmware-41.28.5.1-101.el8.1.noarch   Mon 24 May 2021 02:33:59 PM CEST
 ```
 
-Example: list the installation history of the kernel:
+Esempio: elencare la cronologia di installazione del kernel:
 
 ```
 sudo rpm -qa --last kernel
@@ -109,7 +109,7 @@ kernel-4.18.0-305.el8.x86_64                  Tue 25 May 2021 06:04:56 AM CEST
 kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
 ```
 
-Example: list all installed packages with a specific name using `grep`:
+Esempio: elencare tutti i pacchetti installati con un nome specifico utilizzando 'grep':
 
 ```
 sudo dnf list installed | grep httpd
@@ -121,68 +121,68 @@ httpd-tools.x86_64                  2.4.37-30.module_el8.3.0+561+97fdbbcc   @app
 
 ## DNF : Dandified Yum
 
-**DNF** (**Dandified Yum**) is a software package manager, successor of **YUM** (**Yellow dog **U**pdater **M**odified). It works with **RPM** packages grouped in a local or remote repository (a directory for storing packages). For the most common commands, its usage is identical to that of `yum`.
+**DNF** (**Dandified Yum**) è un gestore di pacchetti software, successore di **YUM** (**Y**ellow Dog **U**pdater **M**odified). Funziona con pacchetti **RPM** raggruppati in un repository locale o remoto (una directory per l'archiviazione dei pacchetti). Per i comandi più comuni, il suo utilizzo è identico a quello di `yum`.
 
-The `dnf` command allows the management of packages by comparing those installed on the system with those in the repositories defined on the server. It also automatically installs dependencies, if they are also present in the repositories.
+Il comando `dnf` permette la gestione dei pacchetti confrontando quelli installati sul sistema con quelli nei repository definiti sul server. Installa inoltre automaticamente le dipendenze, se sono presenti anche nei repository.
 
-`dnf` is the manager used by many RedHat based distributions (RockyLinux, Fedora, CentOS, ...). Its equivalent in the Debian world is **APT** (**A**dvanced **P**ackaging **T**ool).
+`dnf` è il gestore utilizzato da molte distribuzioni basate su RedHat (RockyLinux, Fedora, CentOS, ...). Il suo equivalente nel mondo Debian è **APT** (**A**dvanced **P**ackaging **T**ool).
 
-### `dnf` command
+### comando `dnf`
 
-The dnf command allows you to install a package by specifying only the short name.
+Il comando dnf consente di installare un pacchetto specificando solo il nome breve.
 
 ```
 dnf [install][remove][list all][search][info] package
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# dnf install tree
 ```
 
-Only the short name of the package is required.
+È richiesto solo il nome breve del pacchetto.
 
-| Option                    | Description                                   |
-| ------------------------- | --------------------------------------------- |
-| `install`                 | Installs the package.                         |
-| `remove`                  | Uninstall the package.                        |
-| `list all`                | Lists the packages already in the repository. |
-| `search`                  | Search for a package in the repository.       |
-| `provides */command_name` | Search for a command.                         |
-| `info`                    | Displays the package information.             |
+| Opzione                   | Descrizione                               |
+| ------------------------- | ----------------------------------------- |
+| `install`                 | Installa il pacchetto.                    |
+| `remove`                  | Disinstalla il pacchetto.                 |
+| `list all`                | Elenca i pacchetti già nel repository.    |
+| `search`                  | Cerca un pacchetto nel repository.        |
+| `provides */command_name` | Cerca un comando.                         |
+| `info`                    | Visualizza le informazioni sul pacchetto. |
 
-The `dnf list` command lists all the packages installed on the system and present in the repository. It accepts several parameters:
+Il comando `dnf list` elenca tutti i pacchetti installati sul sistema e presenti nel repository. Accetta diversi parametri:
 
-| Parameter   | Description                                                                |
-| ----------- | -------------------------------------------------------------------------- |
-| `all`       | Lists the installed packages and then those available on the repositories. |
-| `available` | Lists only the packages available for installation.                        |
-| `updates`   | Lists packages that can be upgraded.                                       |
-| `obsoletes` | Lists the packages made obsolete by higher versions available.             |
-| `recent`    | Lists the latest packages added to the repository.                         |
+| Parametro   | Descrizione                                                               |
+| ----------- | ------------------------------------------------------------------------- |
+| `all`       | Elenca i pacchetti installati e quindi quelli disponibili nei repository. |
+| `available` | Elenca solo i pacchetti disponibili per l'installazione.                  |
+| `updates`   | Elenca i pacchetti che possono essere aggiornati.                         |
+| `obsoletes` | Elenca i pacchetti resi obsoleti dalle versioni superiori disponibili.    |
+| `recent`    | Elenca i pacchetti più recenti aggiunti al repository.                    |
 
-Example of a search for the `semanage` command:
+Esempio di ricerca del comando `semanage`:
 
 ```
 [root]# dnf provides */semanage
 ```
 
-### How DNF works
+### Come funziona DNF
 
-The DNF manager relies on one or more configuration files to target the repositories containing the RPM packages.
+Il gestore DNF si basa su uno o più file di configurazione per indirizzare i repository contenenti i pacchetti RPM.
 
-These files are located in `/etc/yum.repos.d/` and must end with `.repo` in order to be used by DNF.
+Questi file si trovano in `/etc/yum.repos.d/` e devono terminare con `.repo` per poter essere utilizzati da DNF.
 
-Example:
+Esempio:
 
 ```
 /etc/yum.repos.d/Rocky-BaseOS.repo
 ```
 
-Each `.repo` file consists of at least the following information, one directive per line.
+Ogni file `.repo` è costituito da almeno le seguenti informazioni, una direttiva per riga.
 
-Example:
+Esempio:
 
 ```
 [baseos] # Short name of the repository
@@ -194,23 +194,23 @@ enabled=1 # Activated =1, or not activated =0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial # GPG public key path
 ```
 
-By default, the `enabled` directive is absent which means that the repository is enabled. To disable a repository, you must specify the `enabled=0` directive.
+Per impostazione predefinita, la direttiva `enabled` è assente, il che significa che il repository è abilitato. Per disabilitare un repository, è necessario specificare la direttiva `enabled=0`.
 
-## The EPEL repository
+## Il repository EPEL
 
-**EPEL** (**E**xtra **P**ackages for **E**nterprise **L**inux) is a repository containing additional software packages for Enterprise Linux, which includes RedHat Enterprise Linux (RHEL), RockyLinux, CentOS, etc.
+**EPEL** (**E**xtra **P**ackages for **E**nterprise **L**inux) è un repository contenente pacchetti software aggiuntivi per Enterprise Linux, che include RedHat Enterprise Linux (RHEL), RockyLinux, CentOS, ecc.
 
-### Installation
+### Installazione
 
-Download and install the rpm from the repository:
+Scarica e installa l'rpm dal repository:
 
-If you are behind an internet proxy:
+Se sei dietro un proxy internet:
 
 ```
 [root]# export http_proxy=http://172.16.1.10:8080
 ```
 
-Then:
+Quindi:
 
 ```
 [root]# dnf install epel-release
