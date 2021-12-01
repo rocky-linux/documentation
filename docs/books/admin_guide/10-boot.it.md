@@ -1,58 +1,55 @@
 ---
-title: Avvio del sistema
-author: Antoine Le Morvan
-contributors: Steven Spencer, Franco Colussi
-update: 11-10-2021
+title: System Startup
 ---
 
-# Avvio del sistema
+# System Startup
 
-In questo capitolo imparerai come si avvia il sistema.
+In this chapter you will learn how the system start.
 
 ****
-**Obiettivi** : In questo capitolo, i futuri amministratori Linux apprenderanno:  
+**Objectives** : In this chapter, future Linux administrators will learn:
 
-:heavy_check_mark: Le diverse fasi del processo di avvio;  
-:heavy_check_mark: Come Rocky Linux supporta questo avvio tramite Grub2 e systemd;  
-:heavy_check_mark: Come proteggere Grub2 da un attacco;  
-:heavy_check_mark: Come gestire i servizi;  
-:heavy_check_mark: Come accedere ai registri di log con journald.  
+:heavy_check_mark: The different stages of the booting process;   
+:heavy_check_mark: How Rocky Linux supports this boot via GRUB2 and systemd;   
+:heavy_check_mark: How to protect GRUB2 from an attack;   
+:heavy_check_mark: How to manage the services;   
+:heavy_check_mark: How to access to the logs from journald.
 
-:checkered_flag: **utenti**
+:checkered_flag: **users**
 
-**Conoscenza**: :star: :star:  
-**Complessità**: :star: :star: :star:  
+**Knowledge**: :star: :star:   
+**Complexity**: :star: :star: :star:
 
-**Tempo di lettura**: 20 minuti
+**Reading time**: 20 minutes
 ****
 
-## Il processo di avvio
+## The boot process
 
-È importante capire il processo di avvio di Linux per poter risolvere i problemi che potrebbero verificarsi.
+It is important to understand the boot process of Linux in order to be able to solve problems that may occur.
 
-Il processo di avvio include:
+The boot process includes:
 
-### L'avvio del BIOS
+### The BIOS startup
 
-Il **BIOS** (Basic Input/Output System) esegue il **POST** (power on self test) per rilevare, testare e inizializzare i componenti hardware del sistema.
+The **BIOS** (Basic Input/Output System) performs the **POST** (power on self test) to detect, test and initialize the system hardware components.
 
-Quindi carica il **MBR** (Master Boot Record).
+It then loads the **MBR** (Master Boot Record).
 
-### Il Master boot record (MBR)
+### The Master boot record (MBR)
 
-Il Master Boot Record sono i primi 512 byte del disco di avvio. Il MBR trova il dispositivo di avvio e carica il bootloader **GRUB2** in memoria passando il controllo ad esso.
+The Master Boot Record is the first 512 bytes of the boot disk. The MBR discovers the boot device and loads the bootloader **GRUB2** into memory and transfers control to it.
 
-I successivi 64 byte contengono la tabella delle partizioni del disco.
+The next 64 bytes contain the partition table of the disk.
 
-### Il bootloader Grub2.
+### The GRUB2 bootloader
 
-Il bootloader predefinito per la distribuzione Rocky 8 è **GRUB2** (GRand Unified Bootloader). GRUB2 sostituisce il vecchio. GRUB bootloader (chiamato anche GRUB legacy).
+The default bootloader for the Rocky 8 distribution is **GRUB2** (GRand Unified Bootloader). GRUB2 replaces the old GRUB bootloader (also called GRUB legacy).
 
-Il file di configurazione di GRUB2 si trova in `/boot/grub2/grub.cfg` ma questo file non dovrebbe mai essere modificato direttamente.
+The GRUB 2 configuration file is located under `/boot/grub2/grub.cfg` but this file should not be edited directly.
 
-Le impostazioni di configurazione del menu GRUB2 si trovano in `/etc/default/grub` e sono usate per generare il file `grub.cfg`.
+The GRUB2 menu configuration settings are located under `/etc/default/grub` and are used to generate the `grub.cfg` file.
 
-```bash
+```
 # cat /etc/default/grub
 GRUB_TIMEOUT=5
 GRUB_DEFAULT=saved
@@ -62,69 +59,67 @@ GRUB_CMDLINE_LINUX="rd.lvm.lv=rhel/swap crashkernel=auto rd.lvm.lv=rhel/root rhg
 GRUB_DISABLE_RECOVERY="true"
 ```
 
-Se vengono apportate modifiche a uno o più di questi parametri, deve essere eseguito il comando `grub2-mkconfig` per rigenerare il file `/boot/grub2/grub.cfg`.
+If changes are made to one or more of these parameters, the `grub2-mkconfig` command must be run to regenerate the `/boot/grub2/grub.cfg` file.
 
-```bash
+```
 [root] # grub2-mkconfig –o /boot/grub2/grub.cfg
 ```
 
-* GRUB2 cerca l'immagine del kernel compresso (il file `vmlinuz`) nella cartella `/boot`.
-* GRUB2 carica l'immagine del kernel in memoria ed estrae il contenuto del file immagine `initramfs` in una cartella temporanea in memoria usando il file system `tmpfs`.
+* GRUB2 looks for the compressed kernel image (the `vmlinuz` file) in the `/boot` directory.
+* GRUB2 loads the kernel image into memory and extracts the contents of the `initramfs` image file into a temporary folder in memory using the `tmpfs` file system.
 
-### Il kernel
+### The kernel
 
-Il kernel inizia il processo `systemd` con PID 1.
-
-```bash
+The kernel starts the `systemd` process with PID 1.
+```
 root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --switched-root --system --deserialize 23
 ```
 
 ### `systemd`
 
-Systemd è il genitore di tutti i processi di sistema. Legge il target del link `/etc/systemd/system/default.target` (es. `/usr/lib/systemd/system/multi-user.target`) per determinare l'obiettivo predefinito del sistema. Il file definisce i servizi da avviare.
+Systemd is the parent of all system processes. It reads the target of the `/etc/systemd/system/default.target` link (e.g. `/usr/lib/systemd/system/multi-user.target`) to determine the default target of the system. The file defines the services to be started.
 
-Systemd posiziona quindi il sistema nello stato definito dall'obiettivo eseguendo le seguenti attività di inizializzazione:
+Systemd then places the system in the target-defined state by performing the following initialization tasks:
 
-1. Imposta il nome della macchina
-2. Inizializza la rete
-3. Inizializza SELinux
-4. Mostra il banner di benvenuto
-5. Inizializza l'hardware in base agli argomenti forniti al kernel al momento dell'avvio
-6. Monta i file system, inclusi i file system virtuali come /proc
-7. Pulisce le directory in /var
-8. Avvia la memoria virtuale (swap)
+1. Set the machine name
+2. Initialize the network
+3. Initialize SELinux
+4. Display the welcome banner
+5. Initialize the hardware based on the arguments given to the kernel at boot time
+6. Mount the file systems, including virtual file systems like /proc
+7. Clean up directories in /var
+8. Start the virtual memory (swap)
 
-## Protezione del bootloader GRUB2
+## Protecting the GRUB2 bootloader
 
-Perché proteggere il bootloader con una password?
+Why protect the bootloader with a password?
 
-1. Prevenire l'accesso in *Single user mode* - Se un utente malintenzionato può avviare in single user mode, diventa l'utente root.
-2. Impedire l'accesso alla console di GRUB - Se un utente malintenzionato riesce a utilizzare la console Grub, può modificare la sua configurazione o raccogliere informazioni sul sistema utilizzando il comando `cat`.
-3. Impedire l'accesso ai sistemi operativi insicuri. Se c'è un doppio avvio sul sistema, un utente malintenzionato può selezionare un sistema operativo come DOS che all'avvio ignora i controlli di accesso e le autorizzazioni dei file.
+1. Prevent *Single* user mode access - If an attacker can boot into single user mode, he becomes the root user.
+2. Prevent access to GRUB console - If an attacker manages to use GRUB console, he can change its configuration or collect information about the system by using the `cat` command.
+3. Prevent access to insecure operating systems. If there is a dual boot on the system, an attacker can select an operating system like DOS at boot time that ignores access controls and file permissions.
 
-Per proteggere con password il bootloader GRUB2:
+To password protect the GRUB2 bootloader:
 
-* Rimuovere `-unrestricted` dalla dichiarazione principale `CLASS=` nel file `/etc/grub.d/10_linux`.
+* Remove `-unrestricted` from the main `CLASS=` statement in the `/etc/grub.d/10_linux` file.
 
-* Se un utente non è stato ancora configurato, utilizzare il comando `grub2-setpassword` per fornire una password per l'utente root:
+* If a user has not yet been configured, use the `grub2-setpassword` command to provide a password for the root user:
 
-```bash
+```
 # grub2-setpassword
 ```
 
-Un file `/boot/grub2/user.cfg` sarà creato se non era già presente. Contiene la password hashed. di GRUB2.
+A `/boot/grub2/user.cfg` file will be created if it was not already present. It contains the hashed password of the GRUB2.
 
-!!! Nota  
-    Questo comando supporta solo le configurazioni con un singolo utente root.
+!!! Note This command only supports configurations with a single root user.
 
-```bash
+```
 [root]# cat /boot/grub2/user.cfg
 GRUB2_PASSWORD=grub.pbkdf2.sha512.10000.CC6F56....A21
 ```
 
-* Ricreare il file di configurazione con il comando `grub2-mkconfig`:
+* Recreate the configuration file with the `grub2-mkconfig` command:
 
-```bash
+```
 [root]# grub2-mkconfig -o /boot/grub2/grub.cfg
 Generating grub configuration file ...
 Found linux image: /boot/vmlinuz-3.10.0-327.el7.x86_64
@@ -134,104 +129,102 @@ Found initrd image: /boot/initramfs-0-rescue-f9725b0c842348ce9e0bc81968cf7181.im
 done
 ```
 
-* Riavviare il sistema e controllare.
+* Restart the server and check.
 
-Tutte le voci definite nel menu GRUB richiederanno ora un utente e una password da inserire a ciascun avvio. Il sistema non avvierà un kernel senza l'intervento diretto dell'utente dalla console.
+All entries defined in the GRUB menu will now require a user and password to be entered at each boot. The system will not boot a kernel without direct user intervention from the console.
 
-* Quando viene richiesto l'utente, inserire `root`;
-* Quando viene richiesta una password, inserire la password fornita al comando `grub2-setpassword`.
+* When the user is requested, enter `root`;
+* When a password is requested, enter the password provided at the `grub2-setpassword` command.
 
-Per proteggere solo la modifica delle voci del menu GRUB e l'accesso alla console, l'esecuzione del comando `grub2-setpassword` è sufficiente. Ci possono però essere casi in cui ci sono buone ragioni per non farlo. Questo potrebbe essere particolarmente vero in un data center remoto in cui l'inserimento di una password ogni volta che viene riavviato un server è difficile o impossibile da fare.
+To protect only the editing of GRUB menu entries and access to the console, the execution of the `grub2-setpassword` command is sufficient. There may be cases where you have good reasons for doing only that. This might be particularly true in a remote data center where entering a password each time a server is rebooted is either difficult or impossible to do.
 
 ## Systemd
 
-*Systemd* è un gestore di servizi per i sistemi operativi Linux.
+*Systemd* is a service manager for the Linux operating systems.
 
-È sviluppato per:
+It is developed to:
 
-* rimanere compatibile con gli script di inizializzazione del vecchio SysV,
-* fornire molte funzionalità, come l'avvio parallelo dei servizi di sistema all'avvio del sistema, l'attivazione su richiesta dei demoni, il supporto per le istantanee o la gestione delle dipendenze tra i servizi.
+* remain compatible with older SysV initialization scripts,
+* provide many features, such as parallel start of system services at system startup, on-demand activation of daemons, support for snapshots, or management of dependencies between services.
 
-!!! Nota  
-    Systemd è il sistema di inizializzazione predefinito da RedHat/CentOS 7.
+!!! Note Systemd is the default initialization system since RedHat/CentOS 7.
 
-Systemd introduce il concetto di unità systemd.
+Systemd introduces the concept of systemd units.
 
-| Tipo                    | Estensione del file        | Osservazioni                                        |
-|-------------------------|----------------------------|-----------------------------------------------------|
-| Unità di servizio       | `.service`                 | Servizio di sistema                                 |
-| Unità di destinazione   | `.target`                  | Un gruppo di unità systemd                          |
-| Mount unit              | `.automount`               | Un punto di montaggio automatico per il file system |
+| Type         | File extension | Observation                              |
+| ------------ | -------------- | ---------------------------------------- |
+| Service unit | `.service`     | System service                           |
+| Target unit  | `.target`      | A group of systemd units                 |
+| Mount unit   | `.automount`   | An automatic mount point for file system |
 
-!!! Nota  
-    Ci sono molti tipi di unità: Device unit, Mount unit, Path unit, Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit, Timer unit.
+!!! Note There are many types of units: Device unit, Mount unit, Path unit, Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit, Timer unit.
 
-* Systemd supporta le istantanee dello stato del sistema e il ripristino.
+* Systemd supports system state snapshots and restore.
 
-* Mount points possono essere configurati come target di systemd.
+* Mount points can be configured as systemd targets.
 
-* All'avvio, systemd crea socket di ascolto per tutti i servizi di sistema che supportano questo tipo di attivazione e passa questi socket ai relativi servizi non appena vengono avviati. Ciò consente di riavviare un servizio senza perdere un singolo messaggio inviato dalla rete durante la sua indisponibilità. Il socket corrispondente rimane accessibile e tutti i messaggi vengono accodati.
+* At startup, systemd creates listening sockets for all system services that support this type of activation and passes these sockets to these services as soon as they are started. This makes it possible to restart a service without losing a single message sent to it by the network during its unavailability. The corresponding socket remains accessible and all messages are queued.
 
-* I servizi di sistema che utilizzano D-BUS per le comunicazioni tra processi possono essere avviati su richiesta la prima volta che vengono utilizzati da un client.
+* System services that use D-BUS for their inter-process communications can be started on demand the first time they are used by a client.
 
-* Systemd arresta o riavvia solo i servizi in esecuzione. Le versioni precedenti (prima di RHEL7) tentavano di arrestare direttamente i servizi senza controllarne lo stato corrente.
+* Systemd stops or restarts only running services. Previous versions (before RHEL7) attempted to stop services directly without checking their current status.
 
-* I servizi di sistema non ereditano alcun contesto (come le variabili di ambiente HOME e PATH). Ogni servizio opera nel proprio contesto di esecuzione.
+* System services do not inherit any context (like HOME and PATH environment variables). Each service operates in its own execution context.
 
-Tutte le operazioni delle unità di servizio sono soggette a un timeout predefinito di 5 minuti per evitare che un servizio malfunzionante blocchi il sistema.
+All service unit operations are subject to a default timeout of 5 minutes to prevent a malfunctioning service from freezing the system.
 
-### Gestione dei servizi di sistema
+### Managing system services
 
-Le unità di servizio terminano con l'estensione di file `.service` e hanno uno scopo simile a quello degli script di init. Il comando `systemctl` viene utilizzato per `visualizzare`, `avviare`, `fermare`, `riavviare` un servizio di sistema:
+Service units end with the `.service` file extension and have a similar purpose to init scripts. The `systemctl` command is used to `display`, `start`, `stop`, `restart` a system service:
 
-| systemctl                                 | Descrizione                                 |
-|-------------------------------------------|---------------------------------------------|
-| systemctl start _name_.service            | Avvia un servizio                           |
-| systemctl stop _name_.service             | Arresta un servizio                         |
-| systemctl restart _name_.service          | Riavvia un servizio                         |
-| systemctl reload _name_.service           | Ricarica una configurazione                 |
-| systemctl status _name_.service           | Controlla se un servizio è in esecuzione    |
-| systemctl try-restart _name_.service      | Riavvia un servizio solo se è in esecuzione |
-| systemctl list-units --type service --all | Visualizza lo stato di tutti i servizi      |
+| systemctl                                 | Description                             |
+| ----------------------------------------- | --------------------------------------- |
+| systemctl start _name_.service            | Start a service                         |
+| systemctl stop _name_.service             | Stops a service                         |
+| systemctl restart _name_.service          | Restart a service                       |
+| systemctl reload _name_.service           | Reload a configuration                  |
+| systemctl status _name_.service           | Checks if a service is running          |
+| systemctl try-restart _name_.service      | Restart a service only if it is running |
+| systemctl list-units --type service --all | Display the status of all services      |
 
-Il comando `systemctl` viene utilizzato anche per `abilitare` o `disabilitare` un servizio di sistema e la visualizzazione dei servizi associati:
+The `systemctl` command is also used for the `enable` or `disable` of system a service and displaying associated services:
 
-| systemctl                                | Descrizione                                                  |
-|------------------------------------------|--------------------------------------------------------------|
-| systemctl enable _name_.service          | Attivare un servizio                                         |
-| systemctl disable _name_.service         | Disabilitare un servizio                                     |
-| systemctl list-unit-files --type service | Elenca tutti i servizi e i controlli se sono in esecuzione   |
-| systemctl list-dependencies --after      | Elenca i servizi che si avviano prima dell'unità specificata |
-| systemctl list-dependencies --before     | Elenca i servizi che si avviano dopo l'unità specificata     |
+| systemctl                                | Description                                             |
+| ---------------------------------------- | ------------------------------------------------------- |
+| systemctl enable _name_.service          | Activate a service                                      |
+| systemctl disable _name_.service         | Disable a service                                       |
+| systemctl list-unit-files --type service | Lists all services and checks if they are running       |
+| systemctl list-dependencies --after      | Lists the services that start before the specified unit |
+| systemctl list-dependencies --before     | Lists the services that start after the specified unit  |
 
-Esempi:
+Examples:
 
-```bash
+```
 systemctl stop nfs-server.service
 # or
 systemctl stop nfs-server
 ```
 
-Per elencare tutte le unità attualmente caricate:
+To list all units currently loaded:
 
-```bash
+```
 systemctl list-units --type service
 ```
 
-Per elencare tutte le unità e per verificare se sono attivate:
+To list all units to check if they are activated:
 
-```bash
+```
 systemctl list-unit-files --type service
 ```
 
-```bash
+```
 systemctl enable httpd.service
 systemctl disable bluetooth.service
 ```
 
-### Esempio di un file .service per il servizio postfix
+### Example of a .service file for the postfix service
 
-```bash
+```
 postfix.service Unit File
 What follows is the content of the /usr/lib/systemd/system/postfix.service unit file as currently provided by the postfix package:
 
@@ -254,42 +247,42 @@ ExecStop=/usr/sbin/postfix stop
 WantedBy=multi-user.target
 ```
 
-### Utilizzo degli obiettivi di sistema
+### Using system targets
 
-Su Rocky8/RHEL8, il concetto di runlevel è stato sostituito dagli obiettivi systemd.
+On Rocky8/RHEL8, the concept of run levels has been replaced by Systemd targets.
 
-I sistemi di destinazione sono rappresentati da unità di destinazione. Le unità di destinazione terminano con l'estenzione `.target` e il loro unico scopo è di raggruppare altre unità systemd in una catena di dipendenze.
+Systemd targets are represented by target units. Target units end with the `.target` file extension and their sole purpose is to group other Systemd units into a chain of dependencies.
 
-Ad esempio, l'unità `graphical.target`, che viene utilizzata per avviare una sessione grafica, inizializza i servizi di sistema come il **GNOME display manager** (`gdm.service`) o l'**accounts service** (`accounts-daemon.service`) e attiva anche l'unità `multi-user.target`.
+For example, the `graphical.target` unit, which is used to start a graphical session, starts system services such as the **GNOME display manager** (`gdm.service`) or the **accounts service** (`accounts-daemon.service`) and also activates the `multi-user.target` unit.
 
-Allo stesso modo, l'unità `multi-user.target` inizializza altri servizi di sistema essenziali, come **NetworkManager** (`NetworkManager.service`) o **D-Bus** (`dbus.service`) e attiva un'altra unità di destinazione denominata `basic.target`.
+Similarly, the `multi-user.target` unit starts other essential system services, such as **NetworkManager** (`NetworkManager.service`) or **D-Bus** (`dbus.service`) and activates another target unit named `basic.target`.
 
-| Unità di destinazione.      | Descrizione                                   |
-|-------------------|---------------------------------------------------------|
-| poweroff.target   | Chiude il sistema e lo spegne                           |
-| rescue.target     | Attiva una shell di salvataggio                         |
-| multi-user.target | Attiva un sistema multiutente senza interfaccia grafica |
-| graphical.target  | Attiva un sistema multiutente con interfaccia grafica   |
-| reboot.target     | Spegne e riavvia il sistema                             |
+| Target Units      | Description                                               |
+| ----------------- | --------------------------------------------------------- |
+| poweroff.target   | Shuts down the system and turns it off                    |
+| rescue.target     | Activates a rescue shell                                  |
+| multi-user.target | Activates a multi-user system without graphical interface |
+| graphical.target  | Activates a multi-user system with graphical interface    |
+| reboot.target     | Shuts down and restarts the system                        |
 
-#### La destinazione predefinita
+#### The default target
 
-Per determinare quale obiettivo viene utilizzato per impostazione predefinita:
+To determine which target is used by default:
 
-```bash
+```
 systemctl get-default
 ```
 
-Questo comando cerca l'obiettivo del collegamento simbolico situato in `/etc/systemd/system/default.target` e visualizza il risultato.
+This command searches for the target of the symbolic link located at `/etc/systemd/system/default.target` and displays the result.
 
-```bash
+```
 $ systemctl get-default
 graphical.target
 ```
 
-Il comando `systemctl` può anche fornire un elenco di obiettivi disponibili:
+The `systemctl` command can also provide a list of available targets:
 
-```bash
+```
 systemctl list-units --type target
 UNIT                   LOAD   ACTIVE SUB    DESCRIPTION
 basic.target           loaded active active Basic System
@@ -313,101 +306,101 @@ sysinit.target         loaded active active System Initialization
 timers.target          loaded active active Timers
 ```
 
-Per configurare il sistema all'utilizzo di un diverso target predefinito:
+To configure the system to use a different default target:
 
-```bash
+```
 systemctl set-default name.target
 ```
 
-Esempio:
+Example:
 
-```bash
+```
 # systemctl set-default multi-user.target
 rm '/etc/systemd/system/default.target'
 ln -s '/usr/lib/systemd/system/multi-user.target' '/etc/systemd/system/default.target'
 ```
 
-Per passare a un'unità di destinazione diversa nella sessione corrente:
+To switch to a different target unit in the current session:
 
-```bash
+```
 systemctl isolate name.target
 ```
 
-La **Modalità di ripristino** fornisce un ambiente semplice per riparare il sistema nei casi in cui è impossibile eseguire un normale processo di avvio.
+The **Rescue mode** provides a simple environment to repair your system in cases where it is impossible to perform a normal boot process.
 
-In `modalità di ripristino`, il sistema tenta di montare tutti i file system locali e avviare diversi servizi di sistema importanti, ma non abilita un'interfaccia di rete o consente ad altri utenti di connettersi al sistema contemporaneamente.
+In `rescue mode`, the system attempts to mount all local file systems and start several important system services, but does not enable a network interface or allow other users to connect to the system at the same time.
 
-Su Rocky 8, la `modalità di ripristino` è equivalente al vecchio `single user mode` e richiede la password di root.
+On Rocky 8, the `rescue mode` is equivalent to the old `single user mode` and requires the root password.
 
-Per modificare la destinazione corrente immettere `rescue mode` nella sessione corrente:
+To change the current target and enter `rescue mode` in the current session:
 
-```bash
+```
 systemctl rescue
 ```
 
-**Modalità di emergenza** fornisce l'ambiente più minimalista possibile e consente di riparare il sistema anche in situazioni in cui il sistema non è in grado di inserire la modalità di salvataggio. Nella modalità di emergenza, il sistema monta il file system root solo per la lettura. Non tenterà di montare qualsiasi altro file system locale, non attiverà alcuna interfaccia di rete e inizializzerà alcuni servizi essenziali.
+**Emergency mode** provides the most minimalist environment possible and allows the system to be repaired even in situations where the system is unable to enter rescue mode. In the emergency mode, the system mounts the root file system only for reading. It will not attempt to mount any other local file system, will not activate any network interface, and will start some essential services.
 
-Per modificare il target corrente e immettere la modalità di emergenza nella sessione corrente:
+To change the current target and enter emergency mode in the current session:
 
-```bash
+```
 systemctl emergency
 ```
 
-#### Arresto, sospensione e ibernazione
+#### Shutdown, suspension and hibernation
 
-Il comando `systemctl` sostituisce alcuni dei comandi di gestione dell'alimentazione utilizzati nelle versioni precedenti:
+The `systemctl` command replaces a number of power management commands used in previous versions:
 
-|Vecchio comando          | Nuovo comando             | Descrizione            |
-|---------------------|--------------------------|------------------------|
-| `halt`              | `systemctl halt`         |Spegne il sistema.  |
-| `poweroff`          | `systemctl poweroff`     |Arresta elettricamente il sistema.   |
-| `reboot`            | `systemctl reboot`       |Riavvia il sistema.    |
-| `pm-suspend`        | `systemctl suspend`      |Sospende il sistema.    |
-| `pm-hibernate`      | `systemctl hibernate`    |Iberna il sistema.  |
-| `pm-suspend-hybrid` | `systemctl hybrid-sleep` |Iberna e sospende il sistema.|
+| Old command         | New command              | Description                         |
+| ------------------- | ------------------------ | ----------------------------------- |
+| `halt`              | `systemctl halt`         | Shuts down the system.              |
+| `poweroff`          | `systemctl poweroff`     | Turns off the system.               |
+| `reboot`            | `systemctl reboot`       | Restarts the system.                |
+| `pm-suspend`        | `systemctl suspend`      | Suspends the system.                |
+| `pm-hibernate`      | `systemctl hibernate`    | Hibernates the system.              |
+| `pm-suspend-hybrid` | `systemctl hybrid-sleep` | Hibernates and suspends the system. |
 
-### Il processo `journald`
+### The `journald` process
 
-I file di registro possono, oltre a `rsyslogd`, essere gestiti anche dal demone `journald` che è un componente di `systemd`.
+Log files can, in addition to `rsyslogd`, also be managed by the `journald` daemon which is a component of `systemd`.
 
-Il demone `journald` cattura i messaggi Syslog, i messaggi di registro del kernel, i messaggi dal disco RAM iniziale e dall'inizio dell'avvio, nonché i messaggi scritti nell'output standard e l'output di errore standard di tutti i servizi, quindi li indicizza e li rende disponibili all'utente.
+The `journald` daemon captures Syslog messages, kernel log messages, messages from the initial RAM disk and from the start of boot, as well as messages written to the standard output and the standard error output of all services, then indexes them and makes them available to the user.
 
-Il formato del file di registro nativo, che è un file binario strutturato e indicizzato, migliora le ricerche e consente un funzionamento più rapido, memorizza anche le informazioni dei metadati, come i timestamp o gli ID utente.
+The format of the native log file, which is a structured and indexed binary file, improves searches and allows for faster operation, it also stores metadata information, such as timestamps or user IDs.
 
-### comando `journalctl`
+### `journalctl` command
 
-Il comando `journalctl` visualizza i file di registro.
+The `journalctl` command displays the log files.
 
-```bash
+```
 journalctl
 ```
 
-Il comando elenca tutti i file di registro generati sul sistema. La struttura di questa uscita è simile a quella utilizzata in `/var/log/messages/` ma offre alcuni miglioramenti:
+The command lists all log files generated on the system. The structure of this output is similar to that used in `/var/log/messages/` but it offers some improvements:
 
-* la priorità delle voci è segnata visivamente;
-* i timestamp sono convertiti nella zona oraria locale del sistema;
-* vengono visualizzati tutti i dati registrati, inclusi i registri rotativi;
-* l'inizio di un avvio è contrassegnato da una linea speciale.
+* the priority of entries is marked visually;
+* timestamps are converted to the local time zone of your system;
+* all logged data is displayed, including rotating logs;
+* the beginning of a start is marked with a special line.
 
-#### Uso del display continuo
+#### Using continuous display
 
-Con il display continuo, i messaggi di registro vengono visualizzati in tempo reale.
+With continuous display, log messages are displayed in real time.
 
-```bash
+```
 journalctl -f
 ```
 
-Questo comando restituisce un elenco delle dieci linee di registro più recenti. L'utilità continua quindi a funzionare e attende che avvengano nuove modifiche per visualizzarle immediatamente.
+This command returns a list of the ten most recent log lines. The journalctl utility then continues to run and waits for new changes to occur before displaying them immediately.
 
-#### Filtrare i Messaggi
+#### Filtering messages
 
-È possibile utilizzare diversi metodi di filtraggio per estrarre informazioni che si adattano a diverse esigenze. I messaggi di registro vengono spesso utilizzati per monitorare il comportamento errato del sistema. Per visualizzare le voci con una priorità selezionata o superiore:
+It is possible to use different filtering methods to extract information that fits different needs. Log messages are often used to track erroneous behavior on the system. To view entries with a selected or higher priority:
 
-```bash
+```
 journalctl -p priority
 ```
 
-È necessario sostituire la priorità con una delle seguenti parole chiave (o un numero):
+You must replace priority with one of the following keywords (or a number):
 
 * debug (7),
 * info (6),
