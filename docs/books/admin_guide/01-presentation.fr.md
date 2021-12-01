@@ -2,7 +2,7 @@
 title: Introduction to Linux
 ---
 
-# Introduction to the Linux Operating System
+# Introduction au système d'exploitation Linux
 
 In this chapter you will learn about GNU/Linux distributions.
 
