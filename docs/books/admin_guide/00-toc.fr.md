@@ -1,5 +1,5 @@
 ---
-title: Learning Linux With Rocky
+title: Apprendre Linux avec Rocky
 ---
 
 # Apprendre Linux avec Rocky
@@ -10,18 +10,18 @@ Dans un premier temps, nous parlerons de Linux, des distributions, et de tout l'
 
 Nous nous pencherons ensuite sur les commandes utilisateurs qui sont essentielles pour se familiariser avec Linux. Les utilisateurs les plus expérimentés pourront également consulter le chapitre consacré aux commandes "plus avancées".
 
-Vient ensuite le chapitre sur l'éditeur VI. Si Linux est livré avec de nombreux éditeurs, VI est l'un des plus puissants. D'autres commandes utilisent parfois des syntaxes identiques à celles de VI (on pensera notamment à `sed`). Il est donc très important de connaître VI, ou du moins de démystifier ses fonctions essentielles (comment ouvrir un fichier, enregistrer, quitter ou quitter sans enregistrer). The user will become more comfortable with the other functions of VI as they use the editor. An alternative would be to use nano which comes installed by default in Rocky Linux. While not as versatile, it is simple to use, straightforward, and gets the job done.
+Vient ensuite le chapitre sur l'éditeur VI. Si Linux est livré avec de nombreux éditeurs, VI est l'un des plus puissants. D'autres commandes utilisent parfois des syntaxes identiques à celles de VI (on pensera notamment à `sed`). Il est donc très important de connaître VI, ou du moins de démystifier ses fonctions essentielles (comment ouvrir un fichier, enregistrer, quitter ou quitter sans enregistrer). L'utilisateur deviendra plus à l'aise avec les autres fonctions de VI au fur et à mesure qu'il utilisera l'éditeur. Une alternative serait d'utiliser nano qui est installé par défaut dans Rocky Linux. Bien qu'il ne soit pas aussi polyvalent, il est simple à utiliser, direct, et fait le travail.
 
-We can then get into the deep functioning of Linux to discover how the system manages:
+Nous pourrons ensuite entrer dans le fonctionnement profond de Linux pour découvrir comment le système gère :
 
-* users.
-* file systems.
-* processes.
+* les utilisateurs.
+* les systèmes de fichiers.
+* les processus.
 
-Next, we will cover an essential subject for the System Administrator: The Backup Process. Many software solutions come with Linux to enhance Backups (rsnapshot, lsyncd, etcetera.)It is good to know the essential components of the backup that are within the operating system. We will investigate two tools: `tar` and the less widespread `cpio` in this chapter.
+Ensuite, nous aborderons un sujet essentiel pour l'administrateur systèmes : Le processus de sauvegarde. De nombreuses solutions logicielles sont fournies avec Linux pour améliorer les sauvegardes (rsnapshot, lsyncd, etc..). Il est bon de connaître les composants essentiels de la sauvegarde qui se trouvent dans le système d'exploitation. Nous allons étudier deux outils : `tar` et le moins répandu `cpio` dans ce chapitre.
 
-Management of the system during the boot process has evolved significantly in recent years since the arrival of the systemd.
+La gestion du système pendant le processus de démarrage a beaucoup évolué ces dernières années depuis l'arrivée de systemd.
 
 
-We will conclude by examining the management of tasks, the implementation of the network, and software installation.
+Nous terminerons en examinant la gestion des tâches, la mise en place du réseau et l'installation des logiciels.
 
