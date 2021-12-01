@@ -1,27 +1,27 @@
 ---
-title: Imparare Linux Con Rocky
+title: Learning Linux With Rocky
 ---
 
-# Imparare Linux con Rocky
+# Learning Linux with Rocky
 
-La Guida all'amministrazione è una raccolta di documenti didattici incentrati sugli amministratori di sistema. Possono essere utilizzati dai futuri amministratori di sistema che cercano di migliorarsi, dagli attuali amministratori di sistema che desiderano un aggiornamento o da qualsiasi utente Linux che desideri saperne di più sull'ambiente, i comandi, i processi e altro ancora di Linux. Come tutti i documenti di questo tipo, si evolverà e si aggiornerà nel tempo.
+The Administration Guide is a collection of Educational Documents focused on System Administrators. They can be used by future System Administrators trying to get up to speed, by current System Administrators who would like a refresher, or by any Linux user who'd like to learn more about the Linux environment, commands, processes, and more. Like all documents of this type, it will evolve and update over time.
 
-Inizialmente, discuteremo di Linux, delle distribuzioni e dell'intero ecosistema che ruota attorno al nostro sistema operativo.
+Initially, we will discuss Linux, distributions, and the whole ecosystem around our operating system.
 
-Vedremo quindi i comandi utente che sono essenziali per prendere confidenza con Linux. Gli utenti più esperti dovrebbero consultare anche il capitolo dedicato ai "Comandi avanzati”.
+We will then look at the user commands that are essential for getting up to speed with Linux. The more experienced users should also consult the chapter dedicated to the more "advanced" 'Commands.'
 
-Segue il capitolo sull'editor VI. Mentre Linux viene fornito con molti editor, VI è uno dei più potenti. Altri comandi a volte usano sintassi identiche a VI (come il comando `sed`). Quindi sapere qualcosa su VI, o almeno demistificare le sue funzioni essenziali (come aprire un file, salvare, uscire o uscire senza salvare), è molto importante da sapere. L'utente si sentirà più a suo agio con le altre funzioni di VI mentre usa l'editor. Un'alternativa sarebbe usare nano che viene installato di default in Rocky Linux. Sebbene non sia così versatile, è semplice da usare, diretto e porta a termine il lavoro.
+Next comes the chapter on the VI editor. While Linux comes with many editors, VI is one of the most powerful. Other commands sometimes use identical syntaxes as VI (`sed` comes to mind). So knowing something about VI, or at least demystifying its essential functions (how to open a file, save, quit or quit without saving), are very important to know. The user will become more comfortable with the other functions of VI as they use the editor. An alternative would be to use nano which comes installed by default in Rocky Linux. While not as versatile, it is simple to use, straightforward, and gets the job done.
 
-Possiamo quindi entrare nel profondo del funzionamento di Linux per scoprire come gestisce il sistema:
+We can then get into the deep functioning of Linux to discover how the system manages:
 
-* utenti.
+* users.
 * file systems.
-* processi.
+* processes.
 
-Successivamente, tratteremo un argomento essenziale per l'amministratore di sistema: il processo di backup. 
-Molte soluzioni software vengono fornite con Linux per migliorare i backup (rsnapshot, lsyncd, ecc.) È bene conoscere i componenti essenziali del backup che si trovano all'interno del sistema operativo. In questo capitolo esamineremo due strumenti: `tar` e il meno diffuso `cpio`.
+Next, we will cover an essential subject for the System Administrator: The Backup Process. Many software solutions come with Linux to enhance Backups (rsnapshot, lsyncd, etcetera.)It is good to know the essential components of the backup that are within the operating system. We will investigate two tools: `tar` and the less widespread `cpio` in this chapter.
 
-Per quanto riguarda la gestione del sistema durante il processo di avvio, si è evoluta enormemente negli ultimi anni dall'arrivo di systemd.
+Management of the system during the boot process has evolved significantly in recent years since the arrival of the systemd.
 
 
-Concluderemo esaminando la gestione delle attività, l'implementazione della rete e l'installazione del software.
+We will conclude by examining the management of tasks, the implementation of the network, and software installation.
+
