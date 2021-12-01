@@ -1,14 +1,14 @@
 ---
-title: Introduction to Linux
+title: Introduction à Linux
 ---
 
 # Introduction au système d'exploitation Linux
 
-In this chapter you will learn about GNU/Linux distributions.
+Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/Linux.
 
 ****
 
-**Objectives** : In this chapter you will learn how to:
+**Objectifs : **Dans ce chapitre, vous apprendrez à :
 
 :heavy_check_mark: Describe the features and possible architectures of an operating system   
 :heavy_check_mark: Recount the history of UNIX and GNU/Linux   
