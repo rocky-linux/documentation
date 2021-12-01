@@ -15,6 +15,31 @@ Updates released since upstream are posted across our current architectures. We 
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
+## 8.5 - Supplemental - 2021-11-30
+
+The following packages have been added to the devel repository:
+
+* ncurses-static
+
+The following packages have been added to the plus repository:
+
+* open-vm-tools (aarch64 specific build only)
+
+### Plus Notes
+
+The plus repository contains items which are not provided in the base repositories, either because they are not available due to the comps and pungi configuration (based on RHEL repositories) or they are requested as alternative builds with additional patches/features not found in the base. The plus repository should be safe to keep enabled.
+
+The current packages in plus (as of 2021-11-30) are:
+
+* openldap-servers (all architectures)
+* thunderbird with PGP support (all architectures)
+* ncurses-static (all architectures)
+* open-vm-tools (aarch64 specific build only)
+
+### Devel Notes
+
+The devel repository should be used with care. It is meant for koji or buildroot purposes and should not be enabled 100% of the time. If you find there is a package you wish to see in the devel repo, send a mail on rocky-devel and/or open a bug report on https://bugs.rockylinux.org
+
 ## 8.5 - 2021-11-24
 
 The following packages have been updated since Nov 24, 2021:
