@@ -1,51 +1,51 @@
 ---
-title: Process Management
+title: Gestione dei processi
 ---
 
-# Process Management
+# Gestione dei processi
 
-In this chapter you will learn how to work with processes.
-
-****
-
-**Objectives** : In this chapter, future Linux administrators will learn how to:
-
-:heavy_check_mark: Recognize the `PID` and `PPID` of a process;   
-:heavy_check_mark: View and search for processes;   
-:heavy_check_mark: Manage processes.
-
-:checkered_flag: **process**, **linux**
-
-**Knowledge**: :star: :star:   
-**Complexity**: :star:
-
-**Reading time**: 20 minutes
+In questo capitolo imparerai come lavorare con i processi.
 
 ****
 
-## Generalities
+**Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come:
 
-An operating system consists of processes. These processes are executed in a specific order and are related to each other. There are two categories of processes, those focused on the user environment and those focused on the hardware environment.
+:heavy_check_mark: Riconoscere il `PID` e il `PPID` di un processo;  
+:heavy_check_mark: Visualizzare e cercare processi;  
+:heavy_check_mark: Gestire i processi.
 
-When a program runs, the system will create a process by placing the program data and code in memory and creating a **runtime stack**. A process is therefore an instance of a program with an associated processor environment (ordinal counter, registers, etc...) and memory environment.
+:checkered_flag: **processi**, **linux**
 
-Each process has:
+**Conoscenza**: :star: :star:  
+**Complessità**: :star:
 
-* a _PID_ : _**P**rocess **ID**entifier_, a unique process identifier;
-* a _PPID_ : _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process.
+**Tempo di lettura**: 20 minuti
 
-By successive filiations, the `init` process is the father of all processes.
+****
 
-* A process is always created by a parent process;
-* A parent process can have multiple child processes.
+## Generalità
 
-There is a parent/child relationship between processes. A child process is the result of the parent process calling the _fork()_ primitive and duplicating its own code to create a child. The _PID_ of the child is returned to the parent process so that it can talk to it. Each child has its parent's identifier, the _PPID_.
+Un sistema operativo è costituito da processi. Questi processi sono eseguiti in un ordine specifico e sono correlati tra loro. Ci sono due categorie di processi, quelli focalizzati sull'ambiente utente e quelli focalizzati sull'ambiente hardware.
 
-The _PID_ number represents the process at the time of execution. When the process finishes, the number is available again for another process. Running the same command several times will produce a different _PID_ each time.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! Note Processes are not to be confused with _threads_. Each process has its own memory context (resources and address space), while _threads_ from the same process share this same context.
+Quando viene eseguito un programma, Il sistema creerà un processo posizionando i dati del programma e il codice in memoria e creando una **runtime stack**. Un processo è quindi un'istanza di un programma con un ambiente di processore associato (contatore ordinale, registri, etc...) e ambiente di memoria.
 
-## Viewing processes
+Ogni processo ha:
 
-The `ps` command displays the status of running processes.
+* un _PID_ : _**P**rocess **ID**entifier_, un identificatore di processo unico;
+* un _PPID_ : _**P**arent **P**rocess **ID**entifier_, identificatore univoco del processo genitore.
+
+Da filiazioni successive, il processo `init` è il padre di tutti i processi.
+
+* Un processo è sempre creato da un processo genitore;
+* Un processo genitore può avere più processi figlio.
+
+C'è una relazione genitore/figlio tra i processi. Un processo figlio è il risultato del processo genitore che chiama il _fork ()_ iniziale e duplicando il proprio codice crea un processo figlio. Il _PID_ del processo figlio viene restituito al processo genitore in modo che possa comunicare. Ogni processo figlio ha l'identificatore del suo processo genitore, il _PPID_.
+
+Il numero _PID_ rappresenta il processo al momento dell'esecuzione. Quando il processo finisce, il numero è di nuovo disponibile per un altro processo. Eseguendo lo stesso comando più volte produrrà un diverso _PID_ ogni volta.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! Note "Nota" I processi non devono essere confusi con i _threads_. Ogni processo ha il proprio contesto di memoria (risorse e spazio di indirizzamento), mentre il _threads_ dello stesso processo condivide lo stesso contesto.
+
+## Visualizzazione dei processi
+
+Il comando `ps` visualizza lo stato dei processi in esecuzione.
 ```
 ps [-e] [-f] [-u login]
 ```
@@ -55,28 +55,28 @@ Example:
 # ps -fu root
 ```
 
-| Option     | Description                      |
-| ---------- | -------------------------------- |
-| `-e`       | Displays all processes.          |
-| `-f`       | Displays additional information. |
-| `-u` login | Displays the user's processes.   |
+| Opzione    | Descrizione                        |
+| ---------- | ---------------------------------- |
+| `-e`       | Visualizza tutti i processi.       |
+| `-f`       | Visualizza ulteriori informazioni. |
+| `-u` login | Visualizza i processi dell'utente. |
 
-Some additional options:
+Alcune opzioni aggiuntive:
 
-| Option                | Description                                       |
-| --------------------- | ------------------------------------------------- |
-| `-g`                  | Displays the processes in the group.              |
-| `-t tty`              | Displays the processes running from the terminal. |
-| `-p PID`              | Displays the process information.                 |
-| `-H`                  | Displays the information in a tree structure.     |
-| `-I`                  | Displays additional information.                  |
-| `--sort COL`          | Sort the result according to a column.            |
-| `--headers`           | Displays the header on each page of the terminal. |
-| `--format "%a %b %c"` | Customize the output display format.              |
+| Opzione               | Descrizione                                             |
+| --------------------- | ------------------------------------------------------- |
+| `-g`                  | Visualizza i processi nel gruppo.                       |
+| `-t tty`              | Visualizza i processi in esecuzione dal terminale.      |
+| `-p PID`              | Visualizza le informazioni del processo.                |
+| `-H`                  | Visualizza le informazioni in una struttura ad albero.  |
+| `-I`                  | Visualizza ulteriori informazioni.                      |
+| `--sort COL`          | Ordina il risultato secondo una colonna.                |
+| `--headers`           | Visualizza l'intestazione su ogni pagina del terminale. |
+| `--format "%a %b %c"` | Personalizza il formato di visualizzazione dell'uscita. |
 
-Without an option specified, the `ps` command only displays processes running from the current terminal.
+Senza un'opzione specificata, il comando `ps` visualizza solo i processi in esecuzione sul terminale corrente.
 
-The result is displayed in columns:
+Il risultato viene visualizzato in colonne:
 
 ```
 # ps -ef
@@ -84,18 +84,18 @@ UID  PID PPID C STIME  TTY TIME      CMD
 root 1   0    0 Jan01  ?   00:00/03  /sbin/init
 ```
 
-| Column  | Description                 |
-| ------- | --------------------------- |
-| `UID`   | Owner user.                 |
-| `PID`   | Process identifier.         |
-| `PPID`  | Parent process identifier.  |
-| `C`     | Priority of the process.    |
-| `STIME` | Date and time of execution. |
-| `TTY`   | Execution terminal.         |
-| `TIME`  | Processing duration.        |
-| `CMD`   | Command executed.           |
+| Colonna | Descrizione                           |
+| ------- | ------------------------------------- |
+| `UID`   | Utente proprietario.                  |
+| `PID`   | Identificatore di processo.           |
+| `PPID`  | Identificatore del processo genitore. |
+| `C`     | Priorità del processo.                |
+| `STIME` | Data e ora di esecuzione.             |
+| `TTY`   | Terminale di esecuzione.              |
+| `TIME`  | Durata di elaborazione.               |
+| `CMD`   | Comando eseguito.                     |
 
-The behaviour of the control can be fully customized:
+Il comportamento del controllo può essere completamente personalizzato:
 
 ```
 # ps -e --format "%P %p %c %n" --sort ppid --headers
@@ -110,79 +110,79 @@ The behaviour of the control can be fully customized:
     1   670 sssd              0
 ```
 
-## Types of processes
+## Tipi di processi
 
-The user process:
+Il processo dell'utente:
 
-* is started from a terminal associated with a user;
-* accesses resources via requests or daemons.
+* è iniziato da un terminale associato a un utente;
+* accede alle risorse tramite richieste o daemons.
 
-The system process (_demon_):
+Il processo di sistema (_daemon_):
 
-* is started by the system;
-* is not associated with any terminal, and is owned by a system user (often `root`);
-* is loaded at boot time, resides in memory, and is waiting for a call;
-* is usually identified by the letter `d` associated with the process name.
+* è iniziato dal sistema;
+* non è associato a nessun terminale, ed è di proprietà di un utente di sistema (spesso `root`);
+* è caricato al momento dell'avvio, risiede in memoria, e sta aspettando una chiamata;
+* è solitamente identificato dalla lettera `d` associato al nome del processo.
 
-System processes are therefore called daemons (_**D**isk **A**nd **E**xecution **MON**itor_).
+I processi di sistema sono quindi chiamati daemons (_**D**isk **A**nd **E**xecution **MON**itor_).
 
-## Permissions and rights
+## Autorizzazioni e diritti
 
-When a command is executed, the user's credentials are passed to the created process.
+Quando viene eseguito un comando, le credenziali dell'utente sono passate al processo creato.
 
-By default, the actual `UID` and `GID` (of the process) are therefore identical to the **actual** `UID` and `GID` (the `UID` and `GID` of the user who executed the command).
+Per impostazione predefinita., l'attuale `UID` e `GID` (del processo) sono quindi identici al **effettivo** `UID` e `GID` (il `UID` e `GID` dell'utente che ha eseguito il comando).
 
-When a `SUID` (and/or `SGID`) is set on a command, the actual `UID` (and/or `GID`) becomes that of the owner (and/or owner group) of the command and no longer that of the user or user group that issued the command. Effective and real **UIDs** are therefore **different**.
+Quando un `SUID` (e/o `SGID`) è impostato su un comando, l'attuale `UID` (e/o `GID`) diventa quello del proprietario (e/o gruppo proprietario) del comando e non più quello dell'utente o del gruppo di utenti che ha emesso il comando. Effettivo e reale **UIDs** sono quindi **differenti**.
 
-Each time a file is accessed, the system checks the rights of the process according to its effective identifiers.
+Ogni volta che si accede a un file, il sistema controlla i diritti del processo in base ai suoi effettivi identificatori.
 
-## Process management
+## Gestione dei processi
 
-A process cannot be run indefinitely, as this would be to the detriment of other running processes and would prevent multitasking.
+Un processo non può essere eseguito indefinitamente, perchè questo sarebbe a discapito di altri processi in esecuzione e impedirebbe il multitasking.
 
-The total processing time available is therefore divided into small ranges, and each process (with a priority) accesses the processor in a sequenced manner. The process will take several states during its life among the states:
+Il tempo totale di elaborazione disponibile è quindi diviso in piccoli intervalli, e ogni processo (con una priorità) accede al processore in modo sequenziale. Il processo prenderà diversi stati durante la sua vita tra gli stati:
 
-* ready: waiting for the availability of the process;
-* in execution: accesses the processor;
-* suspended: waiting for an I/O (input/output);
-* stopped: waiting for a signal from another process;
-* zombie: request for destruction;
-* dead: the father of the process kills his son.
+* pronto: in attesa della disponibilità del processo;
+* in esecuzione: accede al processore;
+* sospeso: aspettando un I/O (input/output);
+* fermato: aspettando un segnale da un altro processo;
+* zombie: richiesta di distruzione;
+* morto: il padre del processo chiude il suo processo figlio.
 
-The end of process sequencing is as follows:
+La sequenza di chiusura del processo è la seguente:
 
-1. Closing of the open files;
-2. Release of the used memory;
-3. Sending a signal to the parent and child processes.
+1. Chiusura dei file aperti;
+2. Rilascio della memoria usata;
+3. Invio di un segnale ai processi genitore e figlio.
 
-When a parent process dies, its children are said to be orphans. They are then adopted by the `init` process which will destroy them.
+Quando un processo genitore muore, si dice che i suoi processi figli sono orfani. Sono quindi adottati dal processo `init` che li distruggerà.
 
-### The priority of a process
+### La priorità di un processo
 
-The processor works in time sharing with each process occupying a quantity of processor time.
+Il processore funziona in condivisione del tempo (time sharing) con ogni processo occupando una determinata quantità di tempo del processore.
 
-The processes are classified by priority whose value varies from **-20** (the highest priority) to **+19** (the lowest priority).
+I processi sono classificati per priorità il cui valore varia da **-20** (la massima priorità) a **+19** (la priorità più bassa).
 
-The default priority of a process is **0**.
+La priorità predefinita di un processo è **0**.
 
-### Modes of operation
+### Modalità di funzionamento
 
-Processes can run in two ways:
+I processi possono essere eseguiti in due modi:
 
-* **synchronous**: the user loses access to the shell during command execution. The command prompt reappears at the end of the process execution.
-* **asynchronous**: the process is processed in the background. The command prompt is displayed again immediately.
+* **sincrona**: l'utente perde l'accesso alla shell durante l'esecuzione del comando. Il prompt dei comandi riappare alla fine dell'esecuzione del processo.
+* **asincrona**: il processo viene elaborato in background. Il prompt dei comandi viene visualizzato di nuovo immediatamente.
 
-The constraints of the asynchronous mode:
+I vincoli della modalità asincrona:
 
-* the command or script must not wait for keyboard input;
-* the command or script must not return any result on the screen;
-* quitting the shell ends the process.
+* il comando o lo script non devono attendere l'input della tastiera;
+* il comando o lo script non devono restituire alcun risultato sullo schermo;
+* lasciare che la shell termini il processo.
 
-## Process management controls
+## Controlli per la gestione dei processi
 
-### `kill` command
+### comando `kill`
 
-The `kill` command sends a stop signal to a process.
+Il comando `kill` invia un segnale di arresto a un processo.
 
 ```
 kill [-signal] PID
@@ -191,7 +191,7 @@ kill [-signal] PID
 Example:
 ```
 $ kill -9 1664
-```Interrupt the process (<kbd>CTRL</kdb> + <kdb>D</kdb>)</td> </tr> 
+```Interruzione del processo (<kbd>CTRL</kdb> + <kdb>D</kdb>)</td> </tr> 
 
 <tr>
   <td>
@@ -203,7 +203,7 @@ $ kill -9 1664
   </td>
   
   <td>
-    Clean termination of the process
+    Arresto pulito del processo
   </td>
 </tr>
 
@@ -217,7 +217,7 @@ $ kill -9 1664
   </td>
   
   <td>
-    Resume the process
+    Riprendere il processo
   </td>
 </tr>
 
@@ -231,16 +231,16 @@ $ kill -9 1664
   </td>
   
   <td>
-    Suspend the process
+    Sospendere il processo
   </td>
 </tr></tbody> </table> 
 
 <p spaces-before="0">
-  Signals are the means of communication between processes. The <code>kill</code> command sends a signal to a process.
+  I segnali sono i mezzi di comunicazione tra i processi. Il comando <code>kill</code> invia un segnale a un processo.
 </p>
 
 <p spaces-before="0">
-  !!! Tip The complete list of signals taken into account by the <code>kill</code> command is available by typing the command :
+  !!! Tip "Suggerimento"<br x-id="2" /> L'elenco completo dei segnali presi in considerazione dal comando <code>kill</code> è disponibile digitando il comando:
 </p>
 
 <pre><code>$ man 7 signal
@@ -249,11 +249,11 @@ $ kill -9 1664
 
 
 <h3 spaces-before="0">
-  <code>nohup</code> command
+  comando <code>nohup</code>
 </h3>
 
 <p spaces-before="0">
-  <code>nohup</code> allows the launching of a process independently of a connection.
+  <code>nohup</code> consente il lancio di un processo indipendentemente da una connessione.
 </p>
 
 <pre><code>nohup command
@@ -267,11 +267,11 @@ $ kill -9 1664
 </code></pre>
 
 <p spaces-before="0">
-  <code>nohup</code> ignores the <code>SIGHUP</code> signal sent when a user logs out.
+  <code>nohup</code> ignora il segnale <code>SIGHUP</code> inviato quando un utente si disconnette.
 </p>
 
 <p spaces-before="0">
-  !!! Note "Question" <code>nohup</code> handles standard output and error, but not standard input, hence the redirection of this input to <code>/dev/null</code>.
+  !!! Note "Domanda"<br x-id="2" /> <code>nohup</code> gestisce l'output e l'errore standard, ma non l'input standard, da qui il reindirizzamento di questo input a <code>/dev/null</code>.
 </p>
 
 
@@ -281,17 +281,17 @@ $ kill -9 1664
 </h3>
 
 <p spaces-before="0">
-  By pressing the <kbd>CTRL</kbd> + <kbd>Z</kbd> keys simultaneously, the synchronous process is temporarily suspended. Access to the prompt is restored after displaying the number of the process that has just been suspended.
+  Premendo la combinazione <kbd>CTRL</kbd> + <kbd>Z</kbd> contemporaneamente, il processo sincrono è temporaneamente sospeso. L'accesso al prompt viene ripristinato dopo aver visualizzato il numero del processo che è stato appena sospeso.
 </p>
 
 
 
 <h3 spaces-before="0">
-  <code>&</code> instruction
+  istruzione <code>&</code>
 </h3>
 
 <p spaces-before="0">
-  The <code>&</code> statement executes the command asynchronously (the command is then called <em x-id="4">job</em>) and displays the number of <em x-id="4">job</em>. Access to the prompt is then returned.
+  La dichiarazione <code>&</code> esegue il comando in modo asincrono (il comando viene quindi chiamato <em x-id="4">job</em>) e visualizza il numero di <em x-id="4">job</em>. L'accesso al prompt viene quindi restituito.
 </p>
 
 <p spaces-before="0">
@@ -304,17 +304,17 @@ $
 </code></pre>
 
 <p spaces-before="0">
-  The <em x-id="4">job</em> number is obtained during background processing and is displayed in square brackets, followed by the <code>PID</code> number.
+  Il numero <em x-id="4">job</em> è ottenuto durante l'elaborazione in background e viene visualizzato in parentesi quadre, seguito dal numero di <code>PID</code>.
 </p>
 
 
 
 <h3 spaces-before="0">
-  <code>fg</code> and <code>bg</code> commands
+  comandi <code>fg</code> e <code>bg</code>
 </h3>
 
 <p spaces-before="0">
-  The <code>fg</code> command puts the process in the foreground:
+  Il comando <code>fg</code> mette il processo in primo piano:
 </p>
 
 <pre><code>$ time ls -lR / &gt; list.ls 2&gt;/dev/null &
@@ -323,7 +323,7 @@ time ls -lR / &gt; list.ls 2/dev/null
 </code></pre>
 
 <p spaces-before="0">
-  while the command <code>bg</code> places it in the background:
+  mentre il comando <code>bg</code> lo colloca in background:
 </p>
 
 <pre><code>[CTRL]+[Z]
@@ -335,17 +335,17 @@ $
 </code></pre>
 
 <p spaces-before="0">
-  Whether it was put in the background when it was created with the <code>&</code> argument or later with the <kbd>CTRL</kbd> +<kbd>Z</kbd> keys, a process can be brought back to the foreground with the <code>fg</code> command and its job number.
+  Se è stato messo in background quando è stato creato con l'argomento <code>&</code> o più tardi con la combinazione <kbd>CTRL</kbd> +<kbd>Z</kbd>, un processo può essere riportato in primo piano con il comando <code>fg</code> e il suo numero di lavoro.
 </p>
 
 
 
 <h3 spaces-before="0">
-  <code>jobs</code> command
+  comando <code>jobs</code>
 </h3>
 
 <p spaces-before="0">
-  The <code>jobs</code> command displays the list of processes running in the background and specifies their job number.
+  Il comando <code>jobs</code> visualizza l'elenco dei processi in esecuzione in background e specifica il loro numero di lavoro.
 </p>
 
 <p spaces-before="0">
@@ -358,46 +358,46 @@ $
 </code></pre>
 
 <p spaces-before="0">
-  The columns represent:
+  Le colonne rappresentano:
 </p>
 
 <ol start="1">
   <li>
-    job number;
+    numero di lavoro;
   </li>
   
   <li>
-    the order in which the processes run
+    l'ordine in cui i processi sono in esecuzione
   </li>
 </ol>
 
 <ul>
   <li>
-    a <code>+</code> : this process is the next process to run by default with <code>fg</code> or <code>bg</code> ;
+    un <code>+</code> : questo processo è il prossimo processo da eseguire per impostazione predefinita con <code>fg</code> o <code>bg</code> ;
   </li>
   <li>
-    a <code>-</code> : this process is the next process to take the <code>+</code> ;
+    un <code>-</code> : questo processo è il prossimo processo a prendere il <code>+</code> ;
   </li>
 </ul>
 
 <ol start="3">
   <li>
-    <em x-id="4">Running</em> (running process) or <em x-id="4">Stopped</em> (suspended process).
+    <em x-id="4">Running</em> (processo in esecuzione) o <em x-id="4">Stopped</em> (processo sospeso).
   </li>
   
   <li>
-    the command
+    il comando
   </li>
 </ol>
 
 
 
 <h3 spaces-before="0">
-  <code>nice</code> and <code>renice</code> commands
+  comandi <code>nice</code> e <code>renice</code>
 </h3>
 
 <p spaces-before="0">
-  The command <code>nice</code> allows the execution of a command by specifying its priority.
+  Il comando <code>nice</code> consente l'esecuzione di un comando specificando la sua priorità.
 </p>
 
 <pre><code>nice priority command
@@ -411,15 +411,15 @@ $
 </code></pre>
 
 <p spaces-before="0">
-  Unlike <code>root</code>, a standard user can only reduce the priority of a process. Only values between +0 and +19 will be accepted.
+  a differenza di <code>root</code>, un utente standard può solo ridurre la priorità di un processo. Saranno accettati solo valori tra +0 e +19.
 </p>
 
 <p spaces-before="0">
-  !!! Tip This last limitation can be lifted on a per-user or per-group basis by modifying the <code>/etc/security/limits.conf</code> file.
+  !!! Tip "Suggerimento"<br x-id="2" /> Quest'ultima limitazione può essere modificata su base utente o per gruppo modificando il file <code>/etc/security/limits.conf</code>.
 </p>
 
 <p spaces-before="0">
-  The <code>renice</code> command allows you to change the priority of a running process.
+  Il comando <code>renice</code> ti consente di modificare la priorità di un processo di esecuzione.
 </p>
 
 <pre><code>renice priority [-g GID] [-p PID] [-u UID]
@@ -434,11 +434,11 @@ $
 <table spaces-before="0">
   <tr>
     <th>
-      Option
+      Opzione
     </th>
     
     <th>
-      Description
+      Descrizione
     </th>
   </tr>
   
@@ -448,7 +448,7 @@ $
     </td>
     
     <td>
-      <code>GID</code> of the process owner group.
+      <code>GID</code> del gruppo proprietario del processo.
     </td>
   </tr>
   
@@ -458,7 +458,7 @@ $
     </td>
     
     <td>
-      <code>PID</code> of the process.
+      <code>PID</code> del processo.
     </td>
   </tr>
   
@@ -468,17 +468,17 @@ $
     </td>
     
     <td>
-      <code>UID</code> of the process owner.
+      <code>UID</code> del proprietario del processo.
     </td>
   </tr>
 </table>
 
 <p spaces-before="0">
-  The <code>renice</code> command acts on processes already running. It is therefore possible to change the priority of a specific process, but also of several processes belonging to a user or a group.
+  Il comando <code>renice</code> agisce sui processi già in esecuzione. È quindi possibile modificare la priorità di un processo specifico, ma anche di diversi processi appartenenti a un utente o un gruppo.
 </p>
 
 <p spaces-before="0">
-  !!! Tip The <code>pidof</code> command, coupled with the <code>xargs</code> command (see the Advanced Commands course), allows a new priority to be applied in a single command:
+  !!! Tip "Suggerimento"<br x-id="2" /> Il comando <code>pidof</code>, accoppiato con il comando <code>xargs</code> (vedi il pagina dei comandi avanzati), consente di applicare una nuova priorità in un singolo comando:
 </p>
 
 <pre><code>$ pidof sleep | xargs renice 20
@@ -487,11 +487,11 @@ $
 
 
 <h3 spaces-before="0">
-  <code>top</code> command
+  comando <code>top</code>
 </h3>
 
 <p spaces-before="0">
-  The <code>top</code> command displays the processes and their resource consumption.
+  Il comando <code>top</code> visualizza i processi e il loro consumo di risorse.
 </p>
 
 <pre><code>$ top
@@ -502,11 +502,11 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 <table spaces-before="0">
   <tr>
     <th>
-      Column
+      Colonna
     </th>
     
     <th>
-      Description
+      Descrizione
     </th>
   </tr>
   
@@ -516,7 +516,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
     </td>
     
     <td>
-      Process identifier.
+      Identificatore del processo.
     </td>
   </tr>
   
@@ -526,7 +526,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
     </td>
     
     <td>
-      Owner user.
+      Utente proprietario.
     </td>
   </tr>
   
@@ -536,7 +536,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
     </td>
     
     <td>
-      Process priority.
+      Priorità del processo.
     </td>
   </tr>
   
@@ -546,7 +546,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
     </td>
     
     <td>
-      Nice value.
+      Valore di Nice.
     </td>
   </tr>
   
@@ -556,7 +556,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
     </td>
     
     <td>
-      Processor load.
+      Carico del processore.
     </td>
   </tr>
   
@@ -566,7 +566,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
     </td>
     
     <td>
-      Memory load.
+      Carico di memoria.
     </td>
   </tr>
   
@@ -576,7 +576,7 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
     </td>
     
     <td>
-      Processor usage time.
+      Tempo di utilizzo del processore.
     </td>
   </tr>
   
@@ -586,27 +586,27 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
     </td>
     
     <td>
-      Command executed.
+      Comando eseguito.
     </td>
   </tr>
 </table>
 
 <p spaces-before="0">
-  The <code>top</code> command allows control of the processes in real time and in interactive mode.
+  Il comando <code>top</code> consente il controllo dei processi in tempo reale e in modalità interattiva.
 </p>
 
 
 
 <h3 spaces-before="0">
-  <code>pgrep</code> and <code>pkill</code> commands
+  comandi <code>pgrep</code> e <code>pkill</code>
 </h3>
 
 <p spaces-before="0">
-  The <code>pgrep</code> command searches the running processes for a process name and displays the <em x-id="4">PID</em> matching the selection criteria on the standard output.
+  Il comando <code>pgrep</code> cerca i processi in esecuzione per un nome di processo e visualizza il <em x-id="4">PID</em> che soddisfa i criteri di selezione sull'output standard.
 </p>
 
 <p spaces-before="0">
-  The <code>pkill</code> command will send the specified signal (by default <em x-id="4">SIGTERM</em>) to each process.
+  Il comando <code>pkill</code> invierà il segnale specificato (per impostazione predefinita <em x-id="4">SIGTERM</em>) ad ogni processo.
 </p>
 
 <pre><code>pgrep process
@@ -614,12 +614,12 @@ pkill [-signal] process
 </code></pre>
 
 <p spaces-before="0">
-  Examples:
+  Esempi:
 </p>
 
 <ul>
   <li>
-    Get the process number from <code>sshd</code>:
+    Ottenere il numero di processo di <code>sshd</code>:
   </li>
 </ul>
 
@@ -628,7 +628,7 @@ pkill [-signal] process
 
 <ul>
   <li>
-    Kill all <code>tomcat</code> processes:
+    Termina tutti i processi <code>tomcat</code>:
   </li>
 </ul>
 
