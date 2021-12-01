@@ -4,62 +4,63 @@ title: File System
 
 # File System
 
-In this chapter you will learn how to work with filesystems.
+In questo capitolo imparerai come lavorare con il filesystem.
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come:
 
-:heavy_check_mark: manage partitions on disk;   
-:heavy_check_mark: use LVM for a better use of disk resources;   
-:heavy_check_mark: provide users with a filesystem and manage the access rights.
+:heavy_check_mark: gestire le partizioni su disco;  
+:heavy_check_mark: utilizzare LVM per un uso migliore delle risorse del disco;  
+:heavy_check_mark: fornire gli utenti di un filesystem e gestire i diritti di accesso.
 
-and also discover:
+e anche scoprire:
 
-:heavy_check_mark: how the tree structure is organized in Linux;   
-:heavy_check_mark: the different types of files offered and how to work with them;
+:heavy_check_mark: come è organizzata la struttura ad albero in Linux;  
+:heavy_check_mark: i diversi tipi di file offerti e come lavorare con loro;
 
-:checkered_flag: **hardware**, **disk**, **partition**, **lvm**, **linux**
+:checkered_flag: **hardware**, **disco**, **partizioni**, **lvm**, **linux**
 
-**Knowledge**: :star: :star:   
-**Complexity**: :star: :star:
+**Conoscenza**: :star: :star:  
+**Complessità**: :star: :star:
 
-**Reading time**: 20 minutes
+**Tempo di lettura**: 20 minuti
 
 ****
 
-## Partitioning
+## Partizionamento
 
-Partitioning will allow the installation of several operating systems because it is impossible to have several of them cohabit on the same logical drive. Partitioning also allows the separation of data logically (security, access optimization, ...).
+Il partizionamento consentirà l'installazione di diversi sistemi operativi perché è impossibile avere più sistemi conviventi sulla stessa unità logica. Il partizionamento consente anche la separazione dei dati logicamente (sicurezza, ottimizzazione dell'accesso, ...).
 
-The division of the physical disk into partitioned volumes is recorded in the partition table, stored in the first sector of the disk (MBR: _Master Boot Record_).
+La divisione del disco fisico in volumi partizionati è registrata nella tabella delle partizioni, memorizzato nel primo settore del disco (MBR: _Master Boot Record_).
 
-The same physical disk can be divided into a maximum of 4 partitions:
+Lo stesso disco fisico può essere diviso in un massimo di 4 partizioni:
 
-* *Primary* (or main)
+* *Primary* (o main)
 * *Extended*
 
-!!! Warning There can be only one extended partition per physical disk. In order to benefit from additional drives, the extended partition can be split into logical partitions
+!!! Warning "Avvertimento" Ci può essere solo una partizione estesa per disco fisico. Al fine di beneficiare di ulteriori unità, la partizione estesa può essere suddivisa in partizioni logiche
 
 ![Breakdown into only 4 primary partitions](images/07-file-systems-001.png)
 
 ![Breakdown into 3 primary partitions and one extended](images/07-file-systems-002.png)
 
-The _devices_ are the files identifying the various hardware detected by the motherboard. These files are stored without `/dev`. The service which detects new devices and gives them names is called *udev*.
+I _dispositivi_ sono dei file che identificano i vari hardware rilevati dalla scheda madre. Questi file sono memorizzati in `/dev`. Il servizio che rileva i nuovi dispositivi e dà loro i nomi è chiamato *udev*.
 
-They are identified by their type.
+Sono identificati in base al loro tipo.
 
-Storage devices are named *hd* for IDE hard drives and *sd* for other media. Then comes a letter that starts with *a* for the first device, then *b*, *c*, ...
+I dispositivi di archiviazione sono denominati *hd* per i dischi rigidi IDE e *sd* per gli altri supporti. Quindi arriva una lettera che inizia con *a* per il primo dispositivo, poi *b*, *c*, ...
 
-Finally we will find a number that defines the partitioned volume: *1* for the first primary partition, ...
+Finalmente troveremo un numero che definisce il volume partizionato: *1* per la prima partizione primaria, ...
 
-!!! Warning Beware, the extended partition, which does not support a file system, still has a number.
+!!! Warning "Avvertimento"  
+Attenzione, la partizione estesa, che non supporta un file system, ha ancora un numero.
 
 ![Identification of partitions](images/07-file-systems-003.png)
 
-There are at least two commands for partitioning a disk: `fdisk` and `cfdisk`. Both commands have an interactive menu. `cfdisk` is more reliable and better optimized, so it is best to use it.
+Ci sono almeno due comandi per il partizionamento di un disco: `fdisk` e `cfdisk`. Entrambi i comandi hanno un menu interattivo. `cfdisk` è più affidabile e ottimizzato meglio, quindi è la scelta migliore.
 
-The only reason to use `fdisk` is when you want to list all logical devices with the `-l` option.
+L'unico motivo per usare `fdisk` è quando vuoi elencare tutti i dispositivi logici con l'opzione `-l`.
 
 ```
 sudo fdisk -l
@@ -67,29 +68,29 @@ sudo fdisk -l /dev/sdc
 sudo fdisk -l /dev/sdc2
 ```
 
-### `parted` command
+### comando `parted`
 
-The `parted` (_partition editor_) command is able to partition a disk.
+Il comando `parted` (_partition editor_) è in grado di partizionare un disco.
 
 ```
 parted [-l] [device]
 ```
 
-It also has a recovery function capable of rewriting a deleted partition table.
+Ha anche una funzione di recupero in grado di riscrivere una tabella di partizione cancellata.
 
-Under graphical interface, there is the very complete `gparted` tool: *G*nome *PAR*tition *ED*itor.
+In un'interfaccia grafica, c'è l'applicazione completa `gparted`: *G*nome *PAR*tition *ED*itor.
 
-The `gparted -l` command lists all logical devices on a computer.
+Il comando `gparted -l` elenca tutti i dispositivi logici su un computer.
 
-The `gparted` command alone will return to an interactive mode with its own internal options:
+Il comando  `gparted` da solo tornerà a una modalità interattiva con le proprie opzioni interne:
 
-* `help` or an incorrect command will display these options.
-* `print all` in this mode will have the same result as `gparted -l` on the command line.
-* `quit` to return to the prompt.
+* `help` o un comando errato visualizzerà queste opzioni.
+* `print all` in questa modalità avrà lo stesso risultato di `gparted -l` sulla riga di comando.
+* `quit` per ritornare al prompt.
 
-### `cfdisk` command
+### comando `cfdisk`
 
-The `cfdisk` command is used to manage partitions.
+Il comando `cfdisk` è usato per gestire le partizioni.
 
 ```
 cfdisk device
@@ -116,62 +117,63 @@ $ sudo cfdisk /dev/sda
      [  Write ]  [  Dump  ]
 ```
 
-The preparation, without _LVM_, of the physical media goes through five steps:
+La preparazione, senza _LVM_, dei media fisici passano attraverso cinque passaggi:
 
-* Setting up the physical disk;
-* Partitioning of the volumes (geographical division of the disk, possibility of installing several systems, ...);
-* Creation of the file systems (allows the operating system to manage the files, the tree structure, the rights, ...);
-* Mounting of file systems (registration of the file system in the tree structure);
-* Manage user access.
+* Impostazione del disco fisico;
+* Partizionamento dei volumi (divisione geografica del disco, possibilità di installare diversi sistemi, ...);
+* Creazione dei file system (Consente al sistema operativo di gestire i file, la struttura ad albero, i permessi, ...);
+* Montaggio dei file system (registrazione del file system nella struttura ad albero);
+* Gestione dell'accesso dell'utente..
 
 ## Logical Volume Manager (LVM)
 
 **L**ogical **V**olume **M**anager (*LVM]*)
 
-Volume management creates an abstract layer on top of physical storage, offering advantages over using physical storage directly:
+La gestione del volume crea uno strato astratto in cima alla memoria fisica, offrendo vantaggi rispetto all'utilizzo diretto della memoria fisica:
 
-* More flexible disk capacity;
-* Online data movement;
-* Disks in _stripe_ mode;
-* Mirrored volumes (recopy);
-* Volume snapshots (_snapshot_).
+* Più flessibilità nella capienza del disco;
+* Movimento dei dati online;
+* Dischi in modalità _stripe_ ;
+* Volumi ridondanti (recopy);
+* Istantanee del volume (_snapshot_).
 
-The disadvantage is that if one of the physical volumes becomes out of order, then all the logical volumes that use this physical volume are lost. You will have to use LVM on raid disks.
+Lo svantaggio è che se uno dei volumi fisici va fuori servizio, allora tutti i volumi logici che utilizzano questo volume fisico sono persi. Dovrai usare LVM su dischi RAID.
 
-LVM is available under Linux from kernel version 2.4.
+LVM è disponibile in Linux dalla versione del kernel 2.4.
 
-!!! Note LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
+!!! Note "Nota"  
+LVM è gestito solo dal sistema operativo. Quindi, il _BIOS_ ha bisogno di almeno una partizione senza LVM per avviarsi.
 
-### Volume groups
+### Gruppi di volumi
 
-The physical volumes *PV* _Physical Volumes_ (from partitions) are combined into volume groups *VG*. Each *VG* represents disk space that can be partitioned into *LV* _Logical Volumes_. *Extension* is the smallest unit of fixed-size space that can be allocated.
+I volumi fisici *PV* _Physical Volumes_ (dalle partizioni) sono combinati in gruppi di volumi *VG*. Ogni *VG* rappresenta lo spazio su disco che può essere partizionato in *LV* _Logical Volumes_. *Extension* è la più piccola unità di spazio a dimensione fissa che può essere assegnata.
 
 * **PE** : _Physical Extension_
 * **LE** : _Logical Extension_
 
 ![Volume group, PE size equal to 4MB](images/07-file-systems-004.png)
 
-### Logical volumes
+### Volumi logici
 
-A volume group, *VG*, is divided into logical volumes, *LV*, offering different operating modes:
+Un gruppo di volumi, *VG*, è diviso in volumi logici, *LV*, offrendo diverse modalità operative:
 
-* Linear volumes;
-* Volumes in _stripe_ mode;
-* Mirrored volumes.
+* Volumi lineari;
+* Volumi in modalità _stripe_ ;
+* Volumi ridondanti.
 
 ![Linear volumes](images/07-file-systems-005.png)
 
 ![Volumes in stripe mode](images/07-file-systems-006.png)
 
-!!! Tip Striping_ improves performance by writing data to a predetermined number of physical volumes with a _round-robin_ technique.
+!!! Tip "Suggerimento" _Striping_ migliora le prestazioni scrivendo i dati a un numero predeterminato di volumi fisici con una tecnica _round-robin_.
 
 ![Mirrored volumes](images/07-file-systems-007.png)
 
-### LVM commands for volume management
+### I comandi LVM per la gestione del volume
 
-#### `pvcreate` command
+#### comando `pvcreate`
 
-The `pvcreate` command is used to create physical volumes. It turns Linux partitions (or disks) into physical volumes.
+Il comando `pvcreate` è usato per creare volumi fisici. Comprende partizioni Linux (o dischi) in volumi fisici.
 
 ```
 pvcreate [-options] partition
@@ -184,20 +186,20 @@ Example:
 pvcreate -- physical volume « /dev/hdb1 » successfully created
 ```
 
-You can also use a whole disk (which facilitates disk size increases in virtual environments for example).
+Puoi anche usare un disco intero (che facilita l'aumento della dimensione del disco in ambienti virtuali per esempio).
 
 ```
 [root]# pvcreate /dev/hdb
 pvcreate -- physical volume « /dev/hdb » successfully created
 ```
 
-| Option | Description                                                                        |
-| ------ | ---------------------------------------------------------------------------------- |
-| `-f`   | Forces the creation of the volume (disk already transformed into physical volume). |
+| Opzione | Descrizione                                                                 |
+| ------- | --------------------------------------------------------------------------- |
+| `-f`    | Costringe la creazione del volume (disco già trasformato in volume fisico). |
 
-#### `vgcreate` command
+#### comando `vgcreate`
 
-The `vgcreate` command is used to create volume groups. It groups one or more physical volumes into a volume group.
+Il comando `vgcreate` è usato per creare gruppi di volumi. Raggruppa uno o più volumi fisici in un gruppo di volumi.
 
 ```
 vgcreate volume physical_volume [PV...]
@@ -211,9 +213,9 @@ Example:
 vgcreate – volume group « volume1 » successfully created and activated
 ```
 
-#### `lvcreate` command
+#### comando `lvcreate`
 
-The `lvcreate` command creates logical volumes. The file system is then created on these logical volumes.
+Il comando `lvcreate` crea volumi logici. Il file system viene quindi creato su questi volumi logici.
 
 ```
 lvcreate -L size [-n name] VG_name
@@ -226,16 +228,16 @@ Example:
 lvcreate -- logical volume « /dev/volume1/VolLog1 » successfully created
 ```
 
-| Option    | Description                                                         |
-| --------- | ------------------------------------------------------------------- |
-| `-L size` | Logical volume size in K, M or G.                                   |
-| `-n name` | LV name. Special file created in `/dev/name_volume` with this name. |
+| Opzione   | Descrizione                                                                      |
+| --------- | -------------------------------------------------------------------------------- |
+| `-L size` | Dimensione del volume logico in K, M o G.                                        |
+| `-n name` | Nome del LV. Un file speciale viene creato in`/dev/name_volume` con questo nome. |
 
-### LVM commands to view volume information
+### I comandi LVM per visualizzare le informazioni del volume
 
-#### `pvdisplay` command
+#### comando `pvdisplay`
 
-The `pvdisplay` command allows you to view information about the physical volumes.
+Il comando `pvdisplay` consente di visualizzare informazioni sui volumi fisici.
 
 ```
 pvdisplay /dev/PV_name
@@ -247,9 +249,9 @@ Example:
 [root]# pvdisplay /dev/PV_name
 ```
 
-#### `vgdisplay` command
+#### comando `vgdisplay`
 
-The `vgdisplay` command allows you to view information about volume groups.
+Il comando `vgdisplay` ti consente di visualizzare informazioni sui gruppi di volumi.
 
 ```
 vgdisplay VG_name
@@ -261,9 +263,9 @@ Example:
 [root]# vgdisplay volume1
 ```
 
-#### `lvdisplay` command
+#### comando `lvdisplay`
 
-The `lvdisplay` command allows you to view information about the logical volumes.
+Il comando `lvdisplay` ti permette di visualizzare le informazioni sui volumi logici.
 
 ```
 lvdisplay /dev/VG_name/LV_name
@@ -275,33 +277,33 @@ Example:
 [root]# lvdisplay /dev/volume1/VolLog1
 ```
 
-### Preparation of the physical media
+### Preparazione dei media fisici
 
-The preparation with LVM of the physical support is broken down as follows:
+La preparazione con LVM del supporto fisico è suddiviso come segue:
 
-* Setting up the physical disk
-* Partitioning of the volumes
-* **LVM physical volume**
-* **LVM volume groups**
-* **LVM logical volumes**
-* Creating file systems
-* Mounting file systems
-* Manage user access
+* Impostazione del disco fisico
+* Partizionamento dei volumi
+* **Volume fisico LVM.**
+* **Gruppi di volumi LVM.**
+* **Volumi logici LVM.**
+* Creazione di file systems
+* Montaggio file systems
+* Gestione accesso dell'utente.
 
-## Structure of a file system
+## Struttura di un file system
 
-A _file system_ **FS** is in charge of the following actions:
+Un _file system_ **FS** è responsabile delle seguenti azioni:
 
-* Securing access and modification rights to files;
-* Manipulating files: create, read, modify and delete;
-* Locating files on the disk;
-* Managing partition space.
+* Assicurare i permessi di accesso e modifica dei file;
+* Manipolazione dei file: crea, legge, modifica ed elimina;
+* Individuazione dei file sul disco;
+* Gestione dello spazio della partizione.
 
-The Linux operating system is able to use different file systems (ext2, ext3, ext4, FAT16, FAT32, NTFS, HFS, BtrFS, JFS, XFS, ...).
+Il sistema operativo Linux è in grado di utilizzare diversi file system (ext2, ext3, ext4, FAT16, FAT32, NTFS, HFS, BtrFS, JFS, XFS, ...).
 
-### `mkfs` command
+### comando `mkfs`
 
-The `mkfs` command allows you to create a Linux file system.
+Il comando `mkfs` consente di creare un file system Linux.
 
 ```
 mkfs [-t fstype] filesys
@@ -313,86 +315,91 @@ Example:
 [root]# mkfs -t ext4 /dev/sda1
 ```
 
-| Option | Description                               |
-| ------ | ----------------------------------------- |
-| `-t`   | Indicates the type of file system to use. |
+| Opzione | Descrizione                                  |
+| ------- | -------------------------------------------- |
+| `-t`    | Indica il tipo di file system da utilizzare. |
 
-!!! Warning Without a file system it is not possible to use the disk space.
+!!! Warning "Avvertimento"  
+Senza un file system non è possibile utilizzare lo spazio su disco.
 
-Each file system has a structure which is identical on each partition. A **boot block** and a **super block** initialized by the system and then an **inode table** and a **data area** initialized by the administrator.
+Ogni file system ha una struttura identica su ciascuna partizione. Un **boot block** e **super block** inizializzato dal sistema e poi un **inode table** e una **data area** inizializzata dall'amministratore.
 
-!!! Note The only exception is the **swap** partition.
+!!! Note "Nota"  
+L'unica eccezione è la partizione **swap**.
 
-### Boot block
+### Blocco di avvio
 
-The **boot block** occupies the first block on the disk and is present on all partitions. It contains the program that starts and initializes the system and is therefore only filled in for the boot partition.
+Il **blocco di avvio** occupa il primo blocco sul disco ed è presente su tutte le partizioni. Contiene il programma che avvia e inizializza il sistema ed è quindi compilato solo per la partizione di avvio.
 
-### Super block
+### Super blocco
 
-The size of the **super block** table is defined at creation. It is present on each partition and contains the elements necessary for its utilization.
+La dimensione della tabella **super blocco** è definito alla creazione. È presente su ogni partizione e contiene gli elementi necessari per il suo utilizzo.
 
-It describes the File System:
+Descrive il file system:
 
-* Name of the Logical Volume;
-* Name of the File System;
-* Type of the File System;
-* File System Status;
-* Size of the File System;
-* Number of free blocks;
-* Pointer to the beginning of the list of free blocks;
-* Size of the inode list;
-* Number and list of free inodes.
+* Nome del Volume Logico;
+* Nome del File System;
+* Tipo di File System;
+* Stato del File System;
+* Dimensione del File System;
+* Numero di blocchi liberi;
+* Puntatore all'inizio della lista dei blocchi liberi;
+* Dimensione della lista di inode;
+* Numero e elenco di inodes liberi.
 
-A copy is loaded in the central memory as soon as the system is initialized. This copy is updated as soon as it is modified and the system saves it periodically (command `sync`).
+Una copia viene caricata nella memoria centrale non appena il sistema è inizializzato. Questa copia viene aggiornata non appena viene modificata e il sistema la salva periodicamente (comando `sync`).
 
-When the system stops, it also copies this table in memory to its block.
+Quando il sistema viene fermato, viene copiata anche questa tabella sull'hard disk.
 
-### Table of inodes
+### Tabella degli inodes
 
-The size of the **inode table** is defined at its creation and is stored on the partition. It consists of records, called inodes, corresponding to the files created. Each record contains the addresses of the data blocks making up the file.
+La dimensione della **tabella inode** è definito alla sua creazione ed è memorizzato sulla partizione. Consiste di record, chiamati inodes, corrispondenti ai file creati. Ogni record contiene gli indirizzi dei blocchi di dati che costituiscono il file.
 
-!!! Note An inode number is unique within a file system.
+!!! Note "Nota"  
+Un numero inode è unico all'interno di un file system.
 
-A copy is loaded in the central memory as soon as the system is initialized. This copy is updated as soon as it is modified and the system saves it periodically (command `sync`).
+Una copia viene caricata nella memoria centrale non appena il sistema è inizializzato. Questa copia viene aggiornata non appena viene modificata e il sistema la salva periodicamente (comando `sync`).
 
-When the system stops, it also copies this table in memory to its block.
+Quando il sistema viene fermato, viene copiata anche questa tabella sull'hard disk.
 
-A file is managed by its inode number.
+Un file è gestito dal suo numero di inode.
 
-!!! Note The size of the inode table determines the maximum number of files the FS can contain.
+!!! Note "Nota"  
+La dimensione della tabella di inode determina il numero massimo di file che il file system può contenere.
 
-Information present in the *inode table* :
+Informazioni presenti nella *tabella inode* :
 
-* Inode number;
-* File type and access permissions;
-* Owner identification number;
-* Identification number of the owner group;
-* Number of links on this file;
-* Size of the file in bytes;
-* Date the file was last accessed;
-* Date the file was last modified;
-* Date of the last modification of the inode (= creation);
-* Table of several pointers (block table) to the logical blocks containing the pieces of the file.
+* Numero di inode;
+* Tipo di file e permessi di accesso;
+* Numero di identificazione del proprietario;
+* Numero di identificazione del gruppo proprietario;
+* Numero di collegamenti su questo file;
+* Dimensione del file in byte;
+* Data dell'ultimo accesso;
+* Data dell'ultima modifica;
+* Data dell'ultima modifica dell'inode (= creazione);
+* Tabella di diversi puntatori (tabella a blocchi) ai blocchi logici contenenti i pezzi del file.
 
-### Data area
+### Area dati
 
-Its size corresponds to the rest of the available space of the partition. This area contains the catalogs corresponding to each directory and the data blocks corresponding to the contents of the files.
+La sua dimensione corrisponde al resto dello spazio disponibile nella partizione. Questa area contiene i cataloghi corrispondenti a ciascuna directory e i blocchi di dati corrispondenti ai contenuti dei file.
 
-**In order to guarantee the consistency of the file system**, an image of the superblock and the inode table is loaded into memory (RAM) when the operating system is loaded so that all I/O operations are done through these system tables. When the user creates or modifies files, this memory image is updated first. The operating system must therefore regularly update the superblock of the logical disk (`sync` command).
+**Al fine di garantire la coerenza del file system**, un'immagine del superblocco e della tabella degli inode viene caricata in memoria (RAM) quando il sistema operativo è caricato, in modo che tutte le operazione di I/O siano fatte attraverso questa tabella di sistema. Quando l'utente crea o modifica i file, questa immagine in memoria viene aggiornata per prima. Il sistema operativo deve quindi aggiornare regolarmente il superblocco del disco logico (comando `sync`).
 
-These tables are written to the hard disk when the system is shut down.
+Quando il sistema viene fermato, viene copiata anche questa tabella sull'hard disk
 
-!!! Danger In the event of a sudden stop, the file system may lose its consistency and cause data loss.
+!!! Danger "Pericolo"  
+In caso di fermata improvvisa, il file system potrebbe perdere la sua coerenza e causare la perdita di dati.
 
-### Repairing the file system
+### Riparazione del file system
 
-It is possible to check the consistency of a file system with the `fsck` command.
+È possibile controllare la coerenza di un file system con il comando  `fsck`.
 
-In case of errors, solutions are proposed to repair the inconsistencies. After repair, files that remain without entries in the inode table are attached to the `/lost+found` folder of the logical drive.
+In caso di errori, vengono proposte le soluzioni per riparare le incoerenze. Dopo la riparazione, i file che rimangono senza voci nella tabella degli inode sono allegati alla cartella `/lost+found` dell'unità logica.
 
-#### `fsck` command
+#### comando `fsck`
 
-The `fsck` command is a console-mode integrity check and repair tool for Linux file systems.
+Il comando `fsck` è uno strumento di controllo e riparazione di integrità in modalità console per i file system Linux.
 
 ```
 fsck [-sACVRTNP] [ -t fstype ] filesys
@@ -404,7 +411,7 @@ Example:
 [root]# fsck /dev/sda1
 ```
 
-To check the root partition, it is possible to create a `forcefsck` file and reboot or run `shutdown` with the `-F` option.
+Per controllare la partizione root, è possibile creare un file `forcefsck` e riavviare o eseguire `shutdown` con l'opzione `-F`.
 
 ```
 [root]# touch /forcefsck
@@ -413,48 +420,49 @@ or
 [root]# shutdown –r -F now
 ```
 
-!!! Warning The partition to be checked must be unmounted.
+!!! Warning "Avvertimento"  
+La partizione da controllare deve essere smontata.
 
 ## Organization of a file system
 
-By definition, a File System is a tree structure of directories built from a root directory (a logical device can only contain one file system).
+Per definizione, un file system è una struttura ad albero delle directory creata a partire da una directory principale (un dispositivo logico può contenere solo un file system).
 
 ![Organization of a file system](images/07-file-systems-008.png)
 
-!!! Note In Linux everything is a file.
+: Per una directory.
 
-Text document, directory, binary, partition, network resource, screen, keyboard, Unix kernel, user program, ...
+Documento di testo, directory, file binario, partizione, risorse di rete, schermo, tastiera, Unix kernel, programma utente, ...
 
-Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) which defines the names of folders and their roles.
+Linux segue il **FHS** (_Filesystems Hierarchy Standard_) (vedi `man hier`) che definisce i nomi delle cartelle e dei loro ruoli.
 
-| Directory  | Observation                                                   | Abbreviation of               |
-| ---------- | ------------------------------------------------------------- | ----------------------------- |
-| `/`        | Contains special directories                                  |                               |
-| `/boot`    | Files related to system startup                               |                               |
-| `/sbin`    | Commands necessary for system startup and repair              | _system binaries_             |
-| `/bin`     | Executables of basic system commands                          | _binaries_                    |
-| `/usr/bin` | System administration commands                                |                               |
-| `/lib`     | Shared libraries and kernel modules                           | _libraries_                   |
-| `/usr`     | Everything that is not necessary for minimal system operation | _UNIX System Resources_       |
-| `/mnt`     | For mounting temporary SF                                     | _mount_                       |
-| `/media`   | For mounting removable media                                  |                               |
-| `/root`    | Administrator's login directory                               |                               |
-| `/home`    | User data                                                     |                               |
-| `/tmp`     | Temporary files                                               | _temporary_                   |
-| `/dev`     | Special device files                                          | _device_                      |
-| `/etc`     | Configuration and script files                                | _editable text configuration_ |
-| `/opt`     | Specific to installed applications                            | _optional_                    |
-| `/proc`    | Virtual file system representing different processes          | _processes_                   |
-| `/var`     | Miscellaneous variable files                                  | _variables_                   |
+| Directory  | Osservazione                                                           | Abbreviazione di              |
+| ---------- | ---------------------------------------------------------------------- | ----------------------------- |
+| `/`        | Contiene directory speciali                                            |                               |
+| `/boot`    | File relativi all'avvio del sistema                                    |                               |
+| `/sbin`    | Comandi necessari per l'avvio e la riparazione del sistema             | _system binaries_             |
+| `/bin`     | Eseguibili dei comandi di base del sistema                             | _binaries_                    |
+| `/usr/bin` | Comandi di amministrazione del sistema                                 |                               |
+| `/lib`     | Librerie condivise e moduli del kernel                                 | _libraries_                   |
+| `/usr`     | Tutto ciò che non è necessario per il funzionamento minimo del sistema | _UNIX System Resources_       |
+| `/mnt`     | Per il montaggio temporaneo dei file system                            | _mount_                       |
+| `/media`   | Per il montaggio dei supporti rimovibili                               |                               |
+| `/root`    | Directory di accesso dell'amministratore                               |                               |
+| `/home`    | Dati utente                                                            |                               |
+| `/tmp`     | File temporanei                                                        | _temporary_                   |
+| `/dev`     | File di dispositivo speciali                                           | _device_                      |
+| `/etc`     | File di configurazione e script                                        | _editable text configuration_ |
+| `/opt`     | Specifica per applicazioni installate                                  | _optional_                    |
+| `/proc`    | Sistema virtuale che rappresenta processi diversi                      | _processes_                   |
+| `/var`     | File di vario genere variabili.                                        | _variables_                   |
 
-* To perform a mount or unmount, at the tree level, you must not be under its mount point.
-* Mounting on a non-empty directory does not delete the content. It is only hidden.
-* Only the administrator can perform mounts.
-* Mount points to be automatically mounted at boot time must be entered in `/etc/fstab`.
+* Per montare o smontare, a livello dell'albero, non devi essere sotto il suo punto di montaggio.
+* Il montaggio su una directory non vuota non elimina il contenuto. Viene solamente nascosto.
+* Solo l'amministratore può montare i supporti.
+* I punti di montaggio da montare automaticamente all'avvio devono essere inseriti in `/etc/fstab`.
 
-### `/etc/fstab` file
+### file `/etc/fstab`
 
-The `/etc/fstab` file is read at system startup and contains the mounts to be performed. Each file system to be mounted is described on a single line, the fields being separated by spaces or tabs.
+Il file `/etc/fstab` viene letto all'avvio del sistema e contiene i supporti da montare. Ogni file system da montare è descritto su una singola riga, I campi sono separati da spazi o tabulazioni.
 
 !!! Note Lines are read sequentially (`fsck`, `mount`, `umount`).
 
@@ -469,26 +477,27 @@ proc                           /proc     proc    defaults        0   0
   1                              2         3        4            5   6
 ```
 
-| Column | Description                                                                                       |
-| ------ | ------------------------------------------------------------------------------------------------- |
-| 1      | File system device (`/dev/sda1`, UUID=..., ...)                                                   |
-| 2      | Mount point name, **absolute path** (except **swap**)                                             |
-| 3      | Filesystem type (ext4, swap, ...)                                                                 |
-| 4      | Special options for mounting (`defaults`, `ro`, ...)                                              |
-| 5      | Enable or disable backup management (0:not backed up, 1:backed up)                                |
-| 6      | Check order when checking the SF with the `fsck` command (0:no check, 1:priority, 2:not priority) |
+| Colonna | Descrizione                                                                                                                       |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| 1       | Dispositivo di file system. (`/dev/sda1`, UUID=..., ...)                                                                          |
+| 2       | Nome del punto di montaggio, **absolute path** (tranne **swap**)                                                                  |
+| 3       | Tipo di filesystem. (ext4, swap, ...)                                                                                             |
+| 4       | Opzioni speciali per il montaggio (`defaults`, `ro`, ...)                                                                         |
+| 5       | Abilita o disabilita la gestione del backup (0:niente backup, 1:backup)                                                           |
+| 6       | Controllare l'ordine quando si controlla il file system con il comando`fsck` (0:nessun controllo, 1:priorità, 2:nessuna priorità) |
 
-The `mount -a` command allows new mounts to be taken into account without rebooting. They are then written to the `/etc/mtab` file which contains the current mounts.
+Il comando `mount -a` consente di montare i nuovi punti di montaggio senza riavvio. Vengono quindi scritti nel file `/etc/mtab` che contiene i supporti correnti.
 
-!!! Warning Only the mount points listed in `/etc/fstab` will be mounted on reboot.
+!!! Warning "Avvertimento"  
+Solo i punti di montaggio elencati in `/etc/fstab` saranno montati al riavvio.
 
-It is possible to make a copy of the `/etc/mtab` file or to copy its contents to `/etc/fstab`.
+È possibile fare una copia del file `/etc/mtab` o copiare il suo contenuto in `/etc/fstab`.
 
-### Mount management commands
+### Comandi di gestione del supporto
 
-#### `mount` command
+#### comando `mount`
 
-The `mount` command allows you to mount and view the logical drives in the tree.
+Il comando `mount` permette di montare e visualizzare le unità logiche nell'albero.
 
 ```
 mount [-option] [device] [directory]
@@ -500,20 +509,21 @@ Example:
 [root]# mount /dev/sda7 /home
 ```
 
-| Option | Description                                                                    |
-| ------ | ------------------------------------------------------------------------------ |
-| `-n`   | Mount without writing to `/etc/mtab`.                                          |
-| `-t`   | To indicate the type of file system to use.                                    |
-| `-a`   | Mounts all filesystems mentioned in `/etc/fstab`.                              |
-| `-r`   | Mounts the file system read-only (equivalent to `-o ro`).                      |
-| `-w`   | Mounts the file system read/write, by default (equivalent `-o rw`).            |
-| `-o`   | Argument followed by a comma-separated list of options (`remount`, `ro`, ...). |
+| Opzione | Descrizione                                                                                    |
+| ------- | ---------------------------------------------------------------------------------------------- |
+| `-n`    | Montare senza scrivere in`/etc/mtab`.                                                          |
+| `-t`    | Per indicare il tipo di file system da utilizzare.                                             |
+| `-a`    | Monta tutti i filesystem menzionati in `/etc/fstab`.                                           |
+| `-r`    | Monta il file system in sola lettura (equivalente a`-o ro`).                                   |
+| `-w`    | Monta il file system in lettura/scrittura, per impostazione predefinita. (equivalente`-o rw`). |
+| `-o`    | Argomento seguito da un elenco di opzioni separate da virgole (`remount`, `ro`, ...).          |
 
-!!! Note The `mount` command alone displays all mounted file systems.
+!!! !!! Note "Nota"  
+Il comando `mount` da solo visualizza tutti i file system montati.
 
-#### `umount` command
+#### comando `umount`
 
-The `umount` command is used to unmount logical drives.
+Il comando `umount` è usato per smontare le unità logiche.
 
 ```
 umount [-option] [device] [directory]
@@ -526,48 +536,52 @@ Example:
 [root]# umount /dev/sda7
 ```
 
-| Option | Description                                        |
-| ------ | -------------------------------------------------- |
-| `-n`   | Unmount without writing to `/etc/mtab`.            |
-| `-r`   | If unmount fails, remount as read-only.            |
-| `-f`   | Force unmount.                                     |
-| `-a`   | Unmount all filesystems mentioned in `/etc/fstab`. |
+| Opzione | Descrizione                                            |
+| ------- | ------------------------------------------------------ |
+| `-n`    | Smontare senza scrivere in`/etc/mtab`.                 |
+| `-r`    | Se l'unmount fallisce, rimontare come sola lettura.    |
+| `-f`    | Forza smontaggio.                                      |
+| `-a`    | Smontare tutti i filesystem menzionati in`/etc/fstab`. |
 
-!!! Note When disassembling, you must not stay below the mounting point. Otherwise, the following error message is displayed: `device is busy`.
+!!! Note "Nota"  
+Quando si smontano, non devi essere posizionato al di sotto del punto di montaggio. Altrimenti, viene visualizzato il seguente messaggio di errore: `device is busy`.
 
-## Types of files
+## Tipi di file
 
-As in any system, in order to be able to find one's way through the tree structure and the file management, it is important to respect the file naming rules.
+Come in qualsiasi sistema, è importante rispettare le regole di denominazione dei file per poter trovare la propria strada nella struttura ad albero e per la gestione dei file.
 
-* Files are coded on 255 characters;
-* All ASCII characters can be used;
-* Uppercase and lowercase letters are differentiated;
-* No notion of extension.
+* I file sono codificati su 255 caratteri;
+* Tutti i caratteri ASCII possono essere utilizzati;
+* Le lettere maiuscole e minuscole sono differenziate;
+* Nessuna nozione di estensione.
 
-Groups of words separated by spaces must be enclosed in quotation marks:
+I gruppi di parole separati da spazi devono essere racchiusi tra virgolette:
 
 ```
 [root]# mkdir "working dir"
 ```
 
-!!! Note While there is nothing technically wrong with creating a file or directory with a space in it, it is generally a "best practice" to avoid this and replace any space with an underscore.
+!!! Note "Nota"  
+Anche se non c'è nulla di tecnicamente sbagliato nel creare un file o una directory con uno spazio in esso, generalmente è una "_pratica migliore_" evitarlo e sostituire qualsiasi spazio con una sottolineatura.
 
-!!! Note The **.** at the beginning of the file name only serves to hide it from a simple `ls`.
+!!! Note "Nota"  
+Il **.** all'inizio del nome del file serve solo a nasconderlo da un semplice `ls`.
 
-!!! Warning Under Linux, the extension of a file is not a necessary reference to open or modify it. However, it can be useful for the user.
+!!! Warning "Avvertimento"  
+In Linux, l'estensione di un file non è un riferimento necessario per aprirlo o modificarlo. Tuttavia, può essere utile per l'utente.
 
-Examples of extension agreements:
+Esempi di estensioni comuni:
 
-* `.c` : source file in C language;
-* `.h` : C and Fortran header file;
-* `.o` : object file in C language;
-* `.tar` : data file archived with the `tar` utility;
-* `.cpio` : data file archived with the `cpio` utility;
-* `.gz` : data file compressed with the `gzip` utility;
-* `.tgz` : data file archived with the `tar` utility and compressed with the `gzip` utility;
-* `.html` : web page.
+* `.c` : file sorgente nel linguaggio C;
+* `.h` : file di header in C and Fortran;
+* `.o` : file oggetto nel linguaggio C;
+* `.tar` : file di dati archiviato con l'utilità `tar`;
+* `.cpio` : file di dati archiviato con l'utilità `cpio`;
+* `.gz` : file di dati compresso con l'utilità `gzip`;
+* `.tgz` : file di dati archiviato con l'utilità `tar` e compresso con l'utilità `gzip`;
+* `.html` : pagina web.
 
-### Details of a file name
+### Dettagli di un nome del file
 
 ```
 [root]# ls -liah /usr/bin/passwd
@@ -575,116 +589,117 @@ Examples of extension agreements:
 1      2    3     4  5    6    7       8               9
 ```
 
-| Row | Description                                                |
-| --- | ---------------------------------------------------------- |
-| `1` | Inode number                                               |
-| `2` | File type (1st character of the block of 10)               |
-| `3` | Access rights (last 9 characters of the block of 10)       |
-| `4` | Number of links (ordinary) or subdirectories (directories) |
-| `5` | Name of the owner                                          |
-| `6` | Name of the group                                          |
-| `7` | Size (byte, kilo, mega)                                    |
-| `8` | Date of last update                                        |
-| `9` | Name of the file                                           |
+| Riga | Descrizione                                                    |
+| ---- | -------------------------------------------------------------- |
+| `1`  | Numero di inode                                                |
+| `2`  | Tipo di file (primo carattere del blocco di 10)                |
+| `3`  | Permessi di accesso (ultimi 9 caratteri del blocco di 10)      |
+| `4`  | Numero di collegamenti (ordinari) o sottodirectory (directory) |
+| `5`  | Nome del proprietario                                          |
+| `6`  | Nome del gruppo                                                |
+| `7`  | Dimensione (byte, kilo, mega)                                  |
+| `8`  | Data dell'ultima modifica                                      |
+| `9`  | Nome del file                                                  |
 
-### Different types of files
+### Diversi tipi di file
 
-The following types of files can be found on a system:
+I seguenti tipi di file possono essere trovati su un sistema:
 
-* Ordinary (text, binary, ...);
+* Ordinari (testo, binari, ...);
 * Directories;
-* Special (printers, screens, ...);
-* Links;
-* Communications (tubes and socket).
+* Speciali (stampanti, screens, ...);
+* Collegamenti;
+* Comunicazioni (tubes e socket).
 
-#### Ordinary files
+#### File ordinari
 
-These are text, program (source), executable (after compilation) or data (binary, ASCII) and multimedia files.
+Questi sono testo, programmmi (sorgente), eseguibile (dopo la compilazione) o dati (binari, ASCII) e file multimediali.
 
 ```
 [root]# ls -l myfile
 -rwxr-xr-x   1   root  root  26  nov  31  15:21 myfile
 ```
 
-The dash `-` at the beginning of the rights group (10-character block) indicates that it is an ordinary file type.
+Il carattere `-` all'inizio dei permessi del gruppo dei (blocco di 10 caratteri) indica che è un tipo di file ordinario.
 
-#### Directory files
+#### File di directory
 
-Directory files contain references to other files.
+I file di directory contengono riferimenti ad altri file.
 
-By default in each directory are present **.**  and **..**.
+Per impostazione predefinita in ogni directory sono presenti **.**  e **..**.
 
-* The **.** represents the position in the tree.
-* The **..** represents the father of the current position.
+* IL **.** rappresenta la posizione nell'albero.
+* Il **..** rappresenta il padre della posizione corrente.
 
 ```
 [root]# ls -l mydirectory
 drwxr-xr-x   1   root  root  26  nov  31  15:21 mydirectory
 ```
 
-The letter `d` at the beginning of the rights group indicates that it is a directory type file.
+La lettera `d` all'inizio del gruppo dei permessi indica che è un file di tipo directory.
 
-#### Special files
+#### File speciali
 
-In order to communicate with peripherals (hard disks, printers, ...), Linux uses interface files called special files (_device file_ or _special file_). They allow identification by the peripherals.
+Per comunicare con le periferiche (hard disks, stampanti, ...), Linux utilizza i file di interfaccia chiamati file speciali (_device file_ o _special file_). Consentono l'identificazione da parte delle periferiche.
 
-These files are special because they do not contain data but specify the access mode to communicate with the device.
+Questi file sono speciali perché non contengono dati ma specificano la modalità di accesso per comunicare con il dispositivo.
 
-They are defined in two modes:
+Sono definiti in due modalità:
 
-* **block** mode;
-* **character** mode.
+* modo **block**;
+* modo **character**.
 
-##### Block mode
+##### Modo Block
 
-The special **block mode** file allows, using the system buffers, to transfer data to the device.
+Il file speciale **modo block** consente, utilizzando i buffer di sistema, di trasferire i dati sul dispositivo.
 
 ```
 [root]# ls -l /dev/sda
 brw-------   1   root  root  8, 0 jan 1 1970 /dev/sda
 ```
 
-The letter `b` at the beginning of the rights group indicates that it is a special file **block**.
+La lettera `b` all'inizio del gruppo dei permessi indica che è un file speciale **block**.
 
-##### Character mode
+##### Modo Character
 
-The special *character mode* file is used to transfer data to the device as a stream of one character at a time without using a buffer. These are devices like printer, screen or DAT tapes, ...
+Il file speciale *character mode* viene utilizzato per trasferire i dati sul dispositivo come un flusso di un carattere alla volta senza utilizzare un buffer. Questi sono dispositivi come la stampante, screen o nastri DAT, ...
 
-The standard output is the screen.
+L'output standard è lo screen.
 
 ```
 [root]# ls -l /dev/tty0
 crw-------   1   root  root  8, 0 jan 1 1970 /dev/tty0
 ```
 
-The letter `c` at the beginning of the rights group indicates that it is a special character file.
+La lettera `c` all'inizio del gruppo dei permessi indica che è un file speciale di character.
 
-#### Communication files
+#### File di comunicazione
 
-These are the pipe (_pipes_) and the _socket_ files.
+Questi sono le pipe (_pipes_) e i file _socket_ .
 
-* **Pipe files** pass information between processes by FIFO (_First In, First Out_). One process writes transient information to a _pipe_ file and another reads it. After reading, the information is no longer accessible.
+* I **files Pipe** passano le informazioni tra i processi con FIFO (_First In, First Out_). Un processo scrive informazioni transitorie nel file di _pipe_ e un altro lo legge. Dopo averlo letto, le informazioni non sono più accessibili.
 
-* **Socket files** allow bidirectional inter-process communication (on local or remote systems). They use an _inode_ of the file system.
+* **Socket files** consentono la comunicazione bidirezionale intertrattativa (sui sistemi locali o remoti). Usano un _inode_ del file system.
 
-#### Link files
+#### Files di Link
 
-These files give the possibility to give several logical names to the same physical file. A new access point to the file is therefore created.
+Questi file danno la possibilità di fornire diversi nomi logici allo stesso file fisico. È pertanto creato un nuovo punto di accesso al file.
 
-There are two types of link files:
+Esistono due tipi di file link:
 
-* Physical links;
-* Symbolic links.
+* Links fisici;
+* Links simbolici.
 
-##### Physical link
+##### Link Fisici
 
-The link file and the source file have the same _inode_ number and the link counter is incremented. It is not possible to link different directories or files from different file systems.
+Il file di collegamento e il file di origine hanno lo stesso numero di _inode_ e il contatore dei collegamenti viene incrementato. Non è possibile collegare diverse directory o files da file system diversi.
 
-!!! Warning If the source file is destroyed, the counter is decremented and the link file still accesses the file.
+!!! Warning "Avvertimento"  
+Se il file sorgente viene distrutto, il contatore viene decrementato e il file di collegamento accede ancora al file.
 
-###### Command `ln` for a physical link
+###### Commando `ln` per un link fisico
 
-The `ln` command allows you to create physical links.
+Il comando `ln` permette di creare i collegamenti fisici.
 
 ```
 [root]# ls –li letter
@@ -703,17 +718,18 @@ The `ln` command allows you to create physical links.
 
 ![Representation of a physical link](images/07-file-systems-009.png)
 
-##### Symbolic link
+##### Link simbolico
 
-Unlike the physical link, the symbolic link involves the creation of a new _inode_. At the symbolic link level, only a path is stored in the inode table.
+A differenza del collegamento fisico, il link simbolico coinvolge la creazione di un nuovo _inode_. A livello di collegamento simbolico, solo un percorso è memorizzato nella tabella degli inode.
 
-The file created contains only an indication of the path to the file. This notion no longer has the limitations of physical links and it is now possible to link directories and files belonging to different file systems.
+Il file creato contiene solo un'indicazione del percorso verso il file. Questa nozione non ha più le limitazioni dei collegamenti fisici ed è ora possibile collegare directory e file appartenenti a diversi file system.
 
-!!! Warning If the source file is destroyed, the link file can no longer access the file.
+!!! Warning "Avvertimento"  
+Se il file sorgente viene distrutto, il file di link non può più accedere al file.
 
-###### `ln` command for a symbolic link
+###### comando `ln` per un link simbolico
 
-The command `ln` with the argument `-s` allows to create symbolic links.
+Il comando `ln` con l'argomento `-s` permette di creare collegamenti simbolici.
 
 ```
 [root]# ls –li letter
@@ -732,55 +748,57 @@ The command `ln` with the argument `-s` allows to create symbolic links.
 
 ![Representation of a symbolic link](images/07-file-systems-010.png)
 
-## File attributes
+## Attributi dei file
 
-Linux is a multi-user operating system where the control of access to files is essential.
+Linux è un sistema operativo multiutente in cui il controllo dell'accesso ai file è essenziale.
 
-These controls are functions of:
+Questi controlli sono le funzioni di:
 
-* file access permissions ;
-* users (_ugo_ _Users Groups Others_).
+* autorizzazioni di accesso ai file ;
+* utenti (_ugo_ _Users Groups Others_).
 
-The command `ls -l` allows to display the attributes.
+Il comando `ls -l` permette di visualizzare gli attributi.
 
-There are 4 file access rights:
+Ci sono 4 diritti di accesso ai file:
 
-* **r**ead;
-* **w**rite;
-* e**x**ecution;
+* **r**ead; (lettura)
+* **w**rite; (scrittura)
+* e**x**ecution; (esecuzione)
 * **-** no right.
 
-!!! Warning The rights associated with files differ from those associated with directories (see below).
+!!! Warning "Avvertimento"  
+I diritti associati ai file differiscono da quelli associati alle directory (vedi sotto).
 
-The user types associated with file access rights are:
+I tipi di utente associati ai diritti di accesso ai file sono:
 
-* **u**ser_ (owner) ;
-* **g**roup_ (owner group);
-* **o**thers (others users);
+* **u**ser_ (owner) ; (proprietario)
+* **g**roup_ (owner group); (gruppo propretario)
+* **o**thers (others users); (altri utenti)
 
-In some commands it is possible to designate everyone with **a** (_all_).
+In alcuni comandi è possibile designare tutti con **a** (_all_).
 
 **a = ugo**
 
-### Rights associated with ordinary files
+### Permessi associati ai file ordinari
 
-* **r**ead: Allows reading a file (`cat`, `less`, ...) and copying a file (`cp`, ...).
-* **w**rite: Allows modification of the file content (`cat`, `>>`, `vim`, ...).
-* e**x**ecute: Considers the file as an e**X**ecutable (binary or script).
-* **-**: No permissions.
+* **r**ead: Consente di leggere un file (`cat`, `less`, ...) e copiare un file (`cp`, ...).
+* **w**rite: Consente la modifica del contenuto del file (`cat`, `>>`, `vim`, ...).
+* e**x**ecute: Considera il file come un eseguibile e**X**ecutable (binario o script.).
+* **-**: Nessuna autorizzazione.
 
-!!! Note Moving or renaming a file depends on the rights of the target directory. Deleting a file depends on the rights of the parent directory.
+!!! Note "Nota"  
+Spostare o rinominare un file dipende dai permessi della directory di destinazione. Eliminazione di un file dipende dai permessi della directory principale.
 
-### Rights associated with directories
+### Permessi associati alle directory
 
-* **r**ead: Allows reading the contents of a directory (`ls -R`).
-* **w**rite: Allows modification of the contents of a directory (`touch`) and allows creation and deletion of files if the **x** permission is enabled.
-* e**x**ecute: Allows descending in the directory (`cd`).
-* **-**: No rights.
+* **r**ead: Consente di leggere il contenuto di una directory (`ls -R`).
+* **w**rite: Consente la modifica dei contenuti di una directory (`touch`) e consente la creazione e la cancellazione dei file se il permesso **x** è abilitato.
+* e**x**ecute: Permette di discendere nella directory (`cd`).
+* **-**: Nessun diritto.
 
-### Attribute management
+### Gestione degli attributi
 
-The display of rights is done with the command `ls -l`. It is the last 9 characters of the block of 10. More precisely 3 times 3 characters.
+La visualizzazione dei permessi viene eseguita con il comando `ls -l`. Sono gli ultimi 9 caratteri del blocco di 10. Più precisamente 3 volte 3 caratteri.
 
 ```
 [root]# ls -l /tmp/myfile
@@ -788,33 +806,34 @@ The display of rights is done with the command `ls -l`. It is the last 9 charact
   1  2  3       4     5
 ```
 
-| Row | Description                                       |
-| --- | ------------------------------------------------- |
-| 1   | Owner (**u**ser) permissions, here `rwx`          |
-| 2   | Owner group permissions (**g**roup), here `rw-`   |
-| 3   | Other users' permissions (**o**thers), here `r-x` |
-| 4   | File owner                                        |
-| 5   | Group owner of the file                           |
+| Riga | Descrizione                                                   |
+| ---- | ------------------------------------------------------------- |
+| 1    | Autorizzazioni del proprietario (**u**ser), qui `rwx`         |
+| 2    | Autorizzazioni del gruppo proprietario (**g**roup), qui `rw-` |
+| 3    | Autorizzazioni degli altri utenti (**o**thers), qui `r-x`     |
+| 4    | Proprietario del file                                         |
+| 5    | Proprietario del gruppo del file                              |
 
-!!! Note Permissions apply to **u**ser, **g**roup and **o**ther (**ugo**) depending on the owner and group.
+!!! Note "Nota"  
+Le autorizzazioni si applicano a **u**ser, **g**roup e **o**ther (**ugo**) a seconda del proprietario e del gruppo.
 
-By default, the _owner_ of a file is the one who creates it. The _group_ of the file is the group of the owner who created the file. The _others_ are those which are not concerned by the previous cases.
+Per impostazione predefinita, il _proprietario_ di un file è quello che lo crea. IL _gruppo_ del file è il gruppo del proprietario che ha creato il file. Gli _others_ sono quelli che non sono interessati dai casi precedenti.
 
-The attributes are changed with the `chmod` command.
+Gli attributi sono cambiati con il comando `chmod`.
 
-Only the administrator and the owner of a file can change the rights of a file.
+Solo l'amministratore e il proprietario di un file possono modificare i permessi di un file.
 
-#### `chmod` command
+#### comando `chmod`
 
-The `chmod` command allows you to change the access permissions to a file.
+Il comando `chmod` consente di modificare le autorizzazioni di accesso a un file.
 
 ```
 chmod [option] mode file
 ```
 
-The mode indication can be an octal representation (e.g. `744`) or a symbolic representation ([`ugoa`][`+=-`][`rwxst`]).
+L'indicazione della modalità può essere una rappresentazione ottale (e.g. `744`) o una rappresentazione simbolica ([`ugoa`][`+=-`][`rwxst`]).
 
-Several symbolic operations can be separated by commas
+Diverse operazioni simboliche possono essere separate da virgole
 
 Example:
 
@@ -839,20 +858,21 @@ Example:
 -rwxr--r-- 1 root root … /tmp/file2
 ```
 
-| Option | Observation                                                           |
-| ------ | --------------------------------------------------------------------- |
-| `-R`   | Recursively modify the permissions of directories and their contents. |
+| Opzione | Osservazione                                                                    |
+| ------- | ------------------------------------------------------------------------------- |
+| `-R`    | Modifica ricorsivamente le autorizzazioni delle directory e dei loro contenuti. |
 
-There are two methods for making rights changes:
+Ci sono due metodi per la realizzazione dei cambiamenti dei permessi:
 
-* The **octal** method;
-* The **symbolic** method.
+* Il metodo **ottale**;
+* Il metodo **simbolico**.
 
-!!! Warning The rights of files and directories are not dissociated. For some operations, it will be necessary to know the rights of the directory containing the file. A write-protected file can be deleted by another user as long as the rights of the directory containing it allow this user to perform this operation.
+!!! Warning "Avvertimento"  
+I permessi dei file e delle directory non sono dissociati. Per alcune operazioni, Sarà necessario conoscere i permessi della directory contenente il file. Un file protetto da scrittura può essere cancellato da un altro utente purché i permessi della directory che lo contengono consentono a questo utente di eseguire questa operazione.
 
-#### Principle of the octal method
+#### Principio del metodo ottale
 
-Each right has a value.
+Ogni permesso ha un valore.
 
 ![Octal method](images/07-file-systems-011.png)
 
@@ -870,9 +890,9 @@ Each right has a value.
 
 ![Rights 741](images/07-file-systems-013.png)
 
-#### Principle of the symbolic method
+#### Principio del metodo simbolico
 
-This method can be considered as a "literal" association between a user type, an operator, and rights.
+Questo metodo può essere considerato come un'associazione "letterale" tra un tipo utente, un operatore e permesso.
 
 ![Symbolic method](images/07-file-systems-014.png)
 
@@ -898,90 +918,93 @@ r--r-- 1 root root … /tmp/myfile
 
 ### Special rights
 
-In addition to the fundamental rights (`rwx`), there are the particular rights:
+Oltre ai permessi fondamentali (`rwx`), ci sono i permessi particolari:
 
 * **set-user-ID** (_SUID]_)
 * **set-group-ID** (_SGID]_)
 * **sticky-bit**
 
-As with the fundamental rights, the particular rights each have a value. This value is placed before the `ugo` set of rights.
+Come con i permessi fondamentali, i permessi particolari hanno ciascuno un valore. Questo valore è posizionato prima del set dei diritti di `ugo`.
 
 ![Special rights](images/07-file-systems-015.png)
 
-!!! Danger `S`, `S` and `T` in capital letters **if the right does not exist**.
+!!! Danger "Pericolo"  
+`S`, `S` e `T` in maiuscolo **se il diritto non esiste**.
 
-#### The sticky-bit
+#### Il sticky-bit
 
-One of the peculiarities of rights in Linux is that the right to write to a directory also allows deletion of *all* files, owner or not.
+Una delle peculiarità dei diritti in Linux è che il diritto di scrivere in una directory consente anche la cancellazione di *tutti* i files, proprietario o no.
 
-The _sticky-bit_ set on the directory will only allow users to delete files they own. This is the basic case for the `/tmp` directory.
+IL _sticky-bit_ impostato sulla directory consentirà agli utenti di eliminare solo i file che possiedono. Questo è il caso di base per la directory `/tmp`.
 
-The setting of the _sticky-bit_ can be done as follows:
+L'impostazione del _sticky-bit_ può essere fatto come segue:
 
-Octal method:
+Metodo ottale:
 ```
 [root]# chmod 1777 directory
 ```
 
-Symbolic method:
+Metodo simbolico:
 ```
 [root]# chmod o+t directory
 ```
 
-Verification:
+Verifica:
 ```
 [root]# ls -l
 drwxrwxrwt … directory
 ```
 
-#### SUID and SGID on a command
+#### SUID e SGID su un comando
 
-These rights allow execution of a command according to the rights set on the command, and not according to the user's rights.
+Questi permessi consentono l'esecuzione di un comando in base ai permessi impostati sul comando, e non secondo i permessi dell'utente.
 
-The command is executed with the identity of the owner (_SUID_) or the group (_SGID_) of the command.
+Il comando viene eseguito con l'identità del proprietario (_SUID_) o del gruppo (_SGID_) del comando.
 
-!!! Note The identity of the user requesting the execution of the order is no longer taken into account.
+!!! Note "Nota"  
+L'identità dell'utente che richiede l'esecuzione dell'ordine non è più presa in considerazione.
 
-    This is an additional possibility of access rights assigned to a user when it is necessary for them to have the same rights as the owner of a file or those of the group concerned.
+    Questa è una possibilità aggiuntiva dei permessi di accesso assegnata a un utente quando è necessario per loro avere gli stessi permessi del proprietario di un file o di quelli del gruppo in questione.
 
-Indeed, a user may have to run a program (usually a system utility) but not have the necessary access rights. By setting the appropriate rights (**s** at the owner level and/or at the group level), the user of the program has, for the time of its execution, the identity of the owner (or that of the group) of the program.
+Infatti, un utente potrebbe deve eseguire un programma (di solito un'utilità di sistema) ma non ha i permessi di accesso necessari. Impostando i permessi appropriati (**s** a livello proprietario e/o a livello di gruppo), l'utente del programma ha, per il tempo della sua esecuzione, l'identità del proprietario (o quella del gruppo) del programma.
 
 Example:
 
-The file `/usr/bin/passwd` is an executable file (a command) with a _SUID_.
+Il file `/usr/bin/passwd` è un file eseguibile (un comando) con un _SUID_.
 
-When the user _bob_ runs it, he will have to access the `/etc/shadow` file, but the permissions on this file do not allow _bob_ to access it.
+Quando l'utente. _bob_ lo esegue, dovrà accedere al file `/etc/shadow` , ma le autorizzazioni su questo file non permettono a _bob_ di accedervi.
 
-Having a _SUID_ this command, `/usr/bin/passwd`, will be executed with the _UID_ of root and the _GID_ of _root_. The latter being the owner of the `/etc/shadow` file, he will have read rights.
+Avere un _suid_ su questo comando, `/usr/bin/passwd`, sarà eseguito con il _UID_ di root e il _GID_ di _root_. Quest'ultimo è il proprietario del file  `/etc/shadow`, e avrà i permessi di lettura.
 
 ![How the SUID works](images/07-file-systems-016.png)
 
-The setting of _SUID_ and _SGID_ can be done as below with the command `chmod`:
+L'impostazione di _SUID_ e _SGID_ può essere fatto come sotto con il comando `chmod`:
 
-Octal method:
+Metodo ottale:
 ```
 [root]# chmod 4777 command1
 [root]# chmod 2777 command2
 ```
 
-Symbolic method:
+Metodo simbolico:
 ```
 [root]# chmod u+s command1
 [root]# chmod g+s command2
 ```
 
-Verification:
+Verifica:
 ```
 [root]# ls -l
 -rwsrwxrwx … command1
 -rwxrwsrwx … command2
 ```
 
-!!! Warning It is not possible to pass the _SUID_ or _SGID_ to a shell script. The system does not allow it because it is too dangerous for security!
+!!! Warning "Avvertimento"  
+Non è possibile passare il _SUID_ o _SGID_ a una shell script. Il sistema non lo consente perché è troppo pericoloso per la sicurezza!
 
-#### SGID on a file
+#### SGID su un file
 
-In a directory with the _SGID_ right, any file created will inherit the group that owns the directory instead of that of the creating user.
+In una directory con il permesso _SGID_, qualsiasi file creato erediterà il gruppo che possiede la directory anziché quella dell'utente di creazione.
 
 Example:
 ```
@@ -999,30 +1022,30 @@ drwxrwsr-x 2 root users 4096 26 oct. 19:43 /data
 -rw-r--r--. 1 rockstar rockstar 0 26 oct. 19:43  /tmp/fic_ref
 ```
 
-<1> The `test_sgid` file inherits the group owner of its `/data` folder (in this case `users`) whatever the main group of the `rockstar` user is.
+<1> Il file `test_sgid` eredita il proprietario del gruppo della sua cartella `/data` (in questo caso `users`) Qualunque sia il gruppo principale dell'utente `rockstar`.
 
-## Default rights and mask
+## Permessi predefiniti e mascheramento
 
-When a file or directory is created, it already has permissions.
+Quando viene creato un file o una directory, ha già le autorizzazioni.
 
-* For a directory: `rwxr-xr-x` or _755_.
-* For a file: `rw-r-r-` or _644_.
+* Per una directory.: `rwxr-xr-x` or _755_.
+* Per un file: `rw-r-r-` or _644_.
 
-This behavior is defined by the **default mask**.
+Questo comportamento è definito dalla **maschera predefinita**.
 
-The principle is to remove the value defined by the mask at maximum rights without the execution right.
+Il principio è rimuovere il valore definito dalla maschera ai massimi permessi senza i permessi di esecuzione.
 
 For a directory :
 
 ![How the SUID works](images/07-file-systems-017.png)
 
-For a file, the execution rights are removed:
+Per un file, i diritti di esecuzione vengono rimossi:
 
 ![Default rights of a file](images/07-file-systems-018.png)
 
-### `umask` command
+### comando `umask`
 
-The `umask` command allows you to display and modify the mask.
+Il comando `umask` ti consente di visualizzare e modificare la maschera.
 
 ```
 umask [option] [mode]
@@ -1046,23 +1069,23 @@ $ ls -la  umask_025
 -rw-r---w- 1 rockstar rockstar 0 nov.   4 16:44 umask_025
 ```
 
-| Option | Description                      |
-| ------ | -------------------------------- |
-| `-S`   | Symbolic display of file rights. |
+| Opzione | Descrizione                                      |
+| ------- | ------------------------------------------------ |
+| `-S`    | Visualizzazione simbolica dei permessi dei file. |
 
-!!! Warning `umask` does not affect existing files.
+!!! Warning "Avvertimento" `umask` non influisce sui file esistenti.
 
-!!! Note `umask` modifies the mask until the disconnection.
+!!! Note "Nota" `umask` modifica la maschera fino alla disconnessione.
 
-To keep the value, you have to modify the following profile files: For all users:
+Per mantenere il valore, devi modificare i seguenti file del profilo: Per tutti gli utenti:
 
 * `/etc/profile`
 * `/etc/bashrc`
 
-For a particular user:
+Per un determinato utente:
 
 * `~/.bashrc`
 
-!!! Warning `umask -S` displays the file rights (without the execute right) of the files that will be created. So it is not the display of the mask used to subtract the maximum value.
+!!! Warning "Avvertimento" `umask -S` visualizza i permessi dei file (senza i permessi di esecuzione) dei file che verranno creati. Quindi non è il display della maschera utilizzata per sottrarre il valore massimo.
 
-!!! Tip The `umask` command being a _bash_ command, (a `type umask` returns `umask is a shell primitive`) you have to search `umask` in `man bash`.
+!!! Tip "Suggerimento" Il comando `umask` è un comando _bash_, (un `type umask` ritorna `umask is a shell primitive`) devi cercare `umask` in `man bash`.
