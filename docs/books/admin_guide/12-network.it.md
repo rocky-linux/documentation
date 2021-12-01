@@ -1,218 +1,221 @@
 ---
-title: Implementing the Network
+title: Implementazione della Rete
 ---
 
-# Implementing the Network
+# Implementazione della Rete
 
-In this chapter you will learn how to work with and manage the network.
+In questo capitolo imparerai come gestire e lavorare con la rete.
 
 ****
 
-**Objectives** : In this chapter you will learn how to:
+**Obiettivi** : In questo capitolo imparerai come:
 
-:heavy_check_mark: Configure a workstation to use DHCP;  
-:heavy_check_mark: Configure a workstation to use a static configuration;   
-:heavy_check_mark: Configure a workstation to use a gateway;   
-:heavy_check_mark: Configure a workstation to use DNS servers;   
-:heavy_check_mark: Troubleshoot the network of a workstation.
+:heavy_check_mark: Configurare una workstation per usare DHCP;  
+:heavy_check_mark: Configurare una workstation per utilizzare una configurazione statica;  
+:heavy_check_mark: Configura una workstation per utilizzare un gateway;  
+:heavy_check_mark: Configurare una workstation per utilizzare i server DNS;  
+:heavy_check_mark: Risolvere i problemi relativi alla rete di una workstation.
 
-:checkered_flag: **network**, **linux**, **ip**
+:checkered_flag: **rete**, **linux**, **ip**
 
 **Knowledge**: :star: :star:  
 **Complexity**: :star: :star:
 
-**Reading time**: 30 minutes
+**Tempo di lettura**: 30 minuti
 
 ****
 
-## Generalities
+## Generalità
 
-To illustrate this chapter, we will use the following architecture.
+Per illustrare questo capitolo, useremo la seguente architettura.
 
 ![Illustration of our network architecture](images/network-001.png)
 
-It will allow us to consider :
+Ci consentirà di prendere in considerazione:
 
-* integration in a LAN (local area network);
-* the configuration of a gateway to reach a remote server;
-* the configuration of a DNS server and the implementation of name resolution.
+* l'integrazione in una LAN (local area network);
+* la configurazione di un gateway per raggiungere un server remoto;
+* la configurazione di un server DNS e l'implementazione della risoluzione dei nomi.
 
-The minimum parameters to be defined for the machine are:
+I parametri minimi da definire per la macchina sono:
 
-* the name of the machine ;
-* the IP address;
-* the subnet mask.
+* il nome della macchina;
+* l'indirizzo IP;
+* la subnet mask.
 
-Example:
+Esempio:
 
 *   `pc-rocky`;
 *   `192.168.1.10`;
 *   `255.255.255.0`.
 
-The notation called CIDR is more and more frequent: 192.168.1.10/24
+La notazione chiamata CIDR è sempre più frequente: 192.168.1.10/24
 
-IP addresses are used for the proper routing of messages (packets). They are divided into two parts:
+Gli indirizzi IP vengono utilizzati per il corretto routing dei messaggi (pacchetti). Sono divisi in due parti:
 
-* the fixed part, identifying the network;
-* the identifier of the host in the network.
+* la parte fissa, identifica la rete;
+* l'identificatore dell'host nella rete.
 
-The subnet mask is a set of **4 bytes** intended to isolate:
+La subnet mask è un insieme di **4 byte** destinato a isolare:
 
-* the network address (**NetID** or **SubnetID**) by performing a bitwise logical AND between the IP address and the mask;
-* the host address (**HostID**) by performing a bitwise logical AND between the IP address and the complement of the mask.
+* l'indirizzo di rete (**NetID** o **SubnetID**) eseguendo un AND logico bit per bit tra l'indirizzo IP e la maschera;
+* l'indirizzo dell'host. (**HostID**) eseguendo un AND logico bit per bit tra l'indirizzo IP e il complemento della maschera.
 
-There are also specific addresses within a network, which must be identified. The first address of a range as well as the last one have a particular role:
+Ci sono anche indirizzi specifici all'interno di una rete, che devono essere identificati. Il primo indirizzo di un intervallo e l'ultimo hanno un ruolo particolare:
 
-* The first address of a range is the **network address**. It is used to identify networks and to route information from one network to another.
+* Il primo indirizzo di un intervallo è l'**indirizzo di rete**. Viene utilizzato per identificare le reti e per instradare le informazioni da una rete all'altra.
 
-* The last address of a range is the **broadcast address**. It is used to broadcast information to all the machines on the network.
+* L'ultimo indirizzo di un intervallo è l'**indirizzo di trasmissione**. Viene utilizzato per trasmettere informazioni a tutte le macchine sulla rete.
 
-### MAC address / IP address
+### Indirizzo MAC / Indirizzo IP
 
-A **MAC address** is a physical identifier written in the factory onto the device. This is sometimes referred to as the hardware address. It consists of 6 bytes often given in hexadecimal form (for example 5E:FF:56:A2:AF:15). It is composed of : 3 bytes of the manufacturer identifier and 3 bytes of the serial number.
+L'**indirizzo MAC** è un identificatore fisico scritto in fabbrica sul dispositivo. Questo a volte viene definito l'indirizzo hardware. Consiste di 6 byte spesso espressi in forma esadecimale (per esempio 5E:FF:56:A2:AF:15). È composto da: 3 byte dell'identificatore del produttore e 3 byte del numero di serie.
 
-!!! Warning This last statement is nowadays a little less true with virtualization. There are also software solutions for changing the MAC address.
+!!! Warning "Avvertimento" Quest'ultima affermazione è al giorno d'oggi un po' meno vera con la virtualizzazione. Ci sono anche soluzioni software per cambiare l'indirizzo MAC.
 
-An Internet Protocol (**IP**) address is an identification number permanently or temporarily assigned to each device connected to a computer network using the Internet Protocol. One part defines the network address (NetID or SubnetID as the case may be), the other part defines the address of the host in the network (HostID). The relative size of each part varies according to the network (sub)mask.
+Un indirizzo Internet Protocol (**IP**) è un numero di identificazione permanente o temporaneo assegnato a ciascun dispositivo collegato a una rete di computer che utilizza l'Internet Protocol. Una parte definisce l'indirizzo di rete (NetID o SubnetID  a seconda dei casi), l'altra parte definisce l'indirizzo dell'host nella rete (HostID). La dimensione relativa di ciascuna parte varia in base alla (sub)mask della rete.
 
-An IPv4 address defines an address on 4 bytes. The number of available addresses being close to saturation a new standard was created, the IPv6 defined on 16 bytes.
+Un indirizzo IPv4 definisce un indirizzo su 4 byte. Per il numero di indirizzi disponibili che è vicino alla saturazione è stato creato un nuovo standard, l'IPv6 definito su 16 byte.
 
-IPv6 is often represented by 8 groups of 2 bytes separated by a colon. Insignificant zeros can be omitted, one or more groups of 4 consecutive zeros can be replaced by a double colon.
+IPv6 è spesso rappresentato da 8 gruppi di 2 byte separati da un due punti. Gli zeri insignificanti possono essere omessi, uno o più gruppi di 4 zeri consecutivi possono essere sostituiti da un doppio due punti.
 
-Subnet masks have from 0 to 128 bits. (for example 21ac:0000:0000:0611:21e0:00ba:321b:54da/64 or 21ac::611:21e0:ba:321b:54da/64)
+Le maschere di sottorete hanno da 0 a 128 bit. (Per esempio 21ac:0000:0000:0611:21e0:00ba:321b:54da/64 o 21ac::611:21e0:ba:321b:54da/64)
 
-In a web address or URL (Uniform Resource Locator), an ip address can be followed by a colon and the port address (which indicates the application to which the data is destined). Also to avoid confusion in a URL, the IPv6 address is written in square brackets [ ], colon, port address.
+In un indirizzo web o URL (Uniform Resource Locator), un indirizzo IP può essere seguito da un due punti e dall'indirizzo della porta (che indica l'applicazione a cui i dati sono destinati). Inoltre per evitare confusione in un URL, l'indirizzo IPv6 è scritto in parentesi quadre [ ], due punti, indirizzo della porta.
 
-IP and MAC addresses must be unique on a network!
+Le macchine client possono far parte di un dominio DNS (**Domain Name System**, ad esempio `mydomain.lan`).
 
-### DNS Domain
+### Dominio DNS
 
-Client machines can be part of a DNS (**Domain Name System**, e.g. `mydomain.lan`) domain.
+Il nome completo del computer (**FQDN**) diventa `pc-rocky.mydomain.lan`.
 
-The fully qualified machine name (**FQDN**) becomes `pc-rocky.mydomain.lan`.
+Affinché un computer faccia parte di un dominio DNS, è necessario fornire un suffisso DNS (qui `mydomain.lan`) e un server da poter interrogare.
 
-A set of computers can be grouped into a logical, name-resolving, set called a DNS domain. A DNS domain is not, of course, limited to a single physical network.
+Un insieme di computer può essere raggruppato in un set logico, che risolve i nomi, chiamato dominio DNS. Un dominio DNS non è, ovviamente, limitato a una singola rete fisica.
 
 In order for a computer to be part of a DNS domain, it must be given a DNS suffix (here `mydomain.lan`) as well as servers that it can query.
 
-### Reminder of the OSI model
+### Promemoria del modello OSI
 
-!!! Note "Memory aid" To remember the order of the layers of the OSI model, remember the following sentence: __Please Do Not Touch Steven's Pet Alligator__.
+!!! Note " Aiuto alla memoria " Per ricordare l'ordine dei livelli del modello OSI, ricordare la seguente frase:  __Please Do Not Touch Steven's Pet Alligator__.
 
-| Layer            | Protocoles                                 |
-| ---------------- | ------------------------------------------ |
-| 7 - Application  | POP, IMAP, SMTP, SSH, SNMP, HTTP, FTP, ... |
-| 6 - Presentation | ASCII, MIME, ...                           |
-| 5 - Session      | TLS, SSL, NetBIOS, ...                     |
-| 4 - Transport    | TLS, SSL, TCP, UDP, ...                    |
-| 3 - Network      | IPv4, IPv6, ARP, ...                       |
-| 2 - Data Link    | Ethernet, WiFi, Token Ring, ...            |
-| 1 - Physical     | Cables, optical fibers, radio waves, ...   |
+| Livello                 | Protocolli                                 |
+| ----------------------- | ------------------------------------------ |
+| 7 - Applicazione        | POP, IMAP, SMTP, SSH, SNMP, HTTP, FTP, ... |
+| 6 - Presentazione       | ASCII, MIME, ...                           |
+| 5 - Sessione            | TLS, SSL, NetBIOS, ...                     |
+| 4 - Trasporto           | TLS, SSL, TCP, UDP, ...                    |
+| 3 - Rete                | IPv4, IPv6, ARP, ...                       |
+| 2 - Collegamento dati   | Ethernet, WiFi, Token Ring, ...            |
+| 1 - Collegamento fisici | Cavi, fibre ottiche, onde radio, ...       |
 
-**Layer 1** (Physical) supports transmission over a communication channel (Wifi, Optical fiber, RJ cable, etc.). Unit: the bit.
+**Livello 1**  (Fisico) supporta la trasmissione su un canale di comunicazione (Wifi, fibra ottica, cavo RJ, ecc.). Unità: il bit.
 
-**Layer 2** (Data Link) supports network topology (token-ring, star, bus, etc.), data splitting and transmission errors. Unit: the frame.
+**Livello 2** (Data Link) supporta la topologia di rete (token-ring, star, bus, etc.), divisione dei dati ed errori di trasmissione. Unità: il frame.
 
-**Layer 3** (Network) supports end-to-end data transmission (IP routing = Gateway). Unit: the packet.
+**Livello 3** (Rete) supporta la trasmissione dati end-to-end (Routing IP = Gateway). Unità: il pacchetto.
 
-**Layer 4** (Transport) supports service type (connected or unconnected) encryption and flow control. Unit: the segment or the datagram.
+**Livello 4** (Trasporto) supporta il tipo di servizio (connesso o non connesso) crittografia e controllo del flusso. Unità: il segmento o il datagramma.
 
-**Layer 5** (Session) supports the communication between two computers.
+**Livello 5** (Sessione) supporta la comunicazione tra due computer.
 
-**Layer 6** (Presentation) represents the area that is independent of data at the application layer. Essentially this layer translates from network format to the application format, or or from the application format to the network format.
+**Livello 6** (Presentazione) rappresenta l'area indipendente dai dati a livello di applicazione. Essenzialmente questo livello traduce dal formato di rete al formato dell'applicazione, o dal formato dell'applicazione al formato di rete.
 
-**Layer 7** (Application) represents the contact with the user. It provides the services offered by the network: http, dns, ftp, imap, pop, smtp, etc.
+**Layer 7** (Applicazione) rappresenta il contatto con l'utente. Fornisce i servizi offerti dalla rete: http, dns, ftp, imap, pop, smtp, etc.
 
-## The naming of interfaces
+## La denominazione delle interfacce
 
-*lo* is the "**loopback**" interface which allows TCP/IP programs to communicate with each other without leaving the local machine. This enables testing if the **network module of the system is working properly** and also allows pinging the localhost. All packets that enter through localhost leave through localhost. The packets received are the packets sent.
+*lo* è l'intefaccia di "**loopback**" che consente ai programmi TCP/IP di comunicare tra loro senza lasciare la macchina locale. Ciò consente di verificare se il modulo di rete **del sistema funziona correttamente** e consente anche il ping del localhost. Tutti i pacchetti che entrano attraverso localhost escono attraverso localhost. I pacchetti ricevuti corrispondono ai pacchetti inviati.
 
-The Linux kernel assigns interface names with a specific prefix depending on the type. Traditionally, all **Ethernet** interfaces, for example, began with **eth**. The prefix was followed by a number, the first being 0 (eth0, eth1, eth2...). The wifi interfaces were given a wlan prefix.
+Il kernel Linux assegna i nomi delle interfacce con un prefisso specifico a seconda del tipo. Ad esempio tradizionalmente, tutte le interfacce **Ethernet**, iniziano con **eth**. Il prefisso è seguito da un numero, il primo è 0 (eth0, eth1, eth2...). Alle interfacce wifi è stato assegnato un prefisso wlan.
 
-On Rocky8 Linux distributions, systemd will name interfaces with the new following policy where "X" represents a number:
+Sulle distribuzioni Linux Rocky 8, systemd nominerà le interfacce seguendo la nuova politica in cui "X" rappresenta un numero:
 
-* `enoX`:  on-board devices
-* `ensX`: PCI Express hotplug slot
-* `enpXsX`: physical/geographical location of the connector of the hardware
+* Nome dell'interfaccia : (deve essere nel nome del file)
+* `ensX`: slot hotplug PCI Express
+* `enpXsX`: posizione fisica/geografica del connettore dell'hardware
 * ...
 
-## Using the `ip` command
+## Uso del comandi `ip`
 
-Forget the old `ifconfig` command! Think `ip`!
+Dimentica il vecchio comando `ifconfig`! Pensa `ip`!
 
-!!! Note Comment for administrators of older Linux systems:
+... [root]# dig +short rockylinux.org 76.223.126.88 [root]# dig -t MX +short rockylinux.org                                                          ✔ 5 alt1.aspmx.l.google.com.
 
-    The historical network management command is `ifconfig`. This command has been replaced by the `ip` command, which is already well known to network administrators.
+    Note "Nota"
+        Commento per gli amministratori dei vecchi sistemi Linux:
+        Il comando storico di gestione della rete è <code>ifconfig. Questo comando è stato sostituito dal comando ip, che è già ben noto agli amministratori di rete.
     
-    The `ip` command is the only command to manage **IP address, ARP, routing, etc.**.
+    Il comando ip è l'unico comando per gestire **indirizzo IP, ARP, routing, ecc.**.
     
-    The `ifconfig` command is no longer installed by default in Rocky8.
+    Il comando ifconfig non è più installato per impostazione predefinita in Rocky8.
     
     It is important to get into good habits now.
+    </code>
 
-## The hostname
+## Il nome host
 
-The `hostname` command displays or sets the host name of the system
+Il comando `hostname` visualizza o imposta il nome host del sistema
 
 ```
 hostname [-f] [hostname]
 ```
 
-| Option | Description                    |
-| ------ | ------------------------------ |
-| `-f`   | Display the FQDN               |
-| `-i`   | Display the system IPs address |
+| Opzione | Descrizione                             |
+| ------- | --------------------------------------- |
+| `-f`    | Mostra il FQDN                          |
+| `-i`    | Visualizza gli indirizzi IP del sistema |
 
-!!! Tip This command is used by various network programs to identify the machine.
+!!! Tip "Suggerimento" Questo comando viene utilizzato da vari programmi di rete per identificare la macchina.
 
-To assign a host name, it is possible to use the `hostname` command, but the changes will not be retained at the next boot. The command with no arguments displays the host name.
+Per assegnare un nome host, è possibile utilizzare il comando`hostname`, ma le modifiche non verranno mantenute all'avvio successivo. Il comando senza argomenti visualizza il nome host.
 
-To set the host name, the file `/etc/sysconfig/network` must be modified:
+Per impostare il nome host, bisogna modificare il file `/etc/sysconfig/network`:
 
 ```
 NETWORKING=yes
 HOSTNAME=pc-rocky.mondomaine.lan
 ```
 
-The RedHat boot script also consults the `/etc/hosts` file to resolve the host name of the system.
+Lo script di avvio di RedHat consulta anche il file `/etc/hosts` per risolvere il nome host del sistema.
 
-When the system boots, Linux evaluates the `HOSTNAME` value in the `/etc/sysconfig/network` file.
+All'avvio del sistema, Linux valuta il valore `HOSTNAME` nel file `/etc/sysconfig/network`.
 
-It then uses the `/etc/hosts` file to evaluate the main IP address of the server and its host name. It deduces the DNS domain name.
+Utilizza quindi il file `/etc/hosts` per valutare l'indirizzo IP principale del server e il suo nome host. E dedurre il nome di dominio DNS.
 
-It is therefore essential to fill in these two files before any configuration of network services.
+È quindi essenziale compilare questi due file prima di qualsiasi configurazione dei servizi di rete.
 
-!!! Tip To know if this configuration is well done, the commands `hostname` and `hostname -f` must answer with the expected values.
+!!! Tip "Suggerimento" Per sapere se questa configurazione è ben fatta, i comandi `hostname` e `hostname -f` devono restituire i valori previsti.
 
 ## /etc/hosts file
 
-The `/etc/hosts` file is a static host name mapping table, which follows the following format:
+Il file `/etc/hosts` è una tabella di mapping dei nomi host statici, che segue il seguente formato:
 
 ```
 @IP <hostname>  [alias]  [# comment]
 ```
 
-Example of `/etc/hosts` file:
+Esempio di un file `/etc/hosts`:
 
 ```
-127.0.0.1   localhost localhost.localdomain
-::1         localhost localhost.localdomain
-192.168.1.10    rockstar.rockylinux.lan rockstar
+127.0.0.1      localhost localhost.localdomain
+::1            localhost localhost.localdomain
+192.168.1.10   rockstar.rockylinux.lan rockstar
 ```
 
-The `/etc/hosts` file is still used by the system, especially at boot time when the system FQDN is determined.
+Il file `/etc/hosts` viene ancora utilizzato dal sistema, soprattutto al momento dell'avvio quando viene determinato il nome di dominio completo del sistema (FQDN).
 
-!!! Tip RedHat recommends that at least one line containing the system name be filled in.
+!!! Tip "Suggerimento" RedHat raccomanda che sia compilata almeno una linea con il nome del sistema.
 
-If the **DNS** service (**D**domain **N**ame **S**ervice) is not in place, you must fill in all the names in the hosts file for each of your machines.
+Se il servizio **DNS** (**D**domain **N**ame **S**ervice) non è presente, è necessario compilare tutti i nomi nel file hosts per ciascuno dei computer.
 
-The `/etc/hosts` file contains one line per entry, with the IP address, the FQDN, then the host name (in that order) and a series of aliases (alias1 alias2 ...). The alias is an option.
+Il file `/etc/hosts` contiene una riga per voce, con l'indirizzo IP, il nome di dominio completo, quindi il nome host (in quest'ordine) e una serie di alias (alias1 alias2 ...). L'alias è opzionale.
 
-## `/etc/nsswitch.conf` file
+## il file `/etc/nsswitch.conf`
 
-The **NSS** (**N**ame **S**ervice **S**witch) allows configuration files (e.g. `/etc/passwd`, `/etc/group`, `/etc/hosts`) to be substituted for one or more centralized databases.
+Il **NSS** (**N**ame **S**ervice **S**witch) consente di sostituire i file di configurazione (ad esempio `/etc/passwd`, `/etc/group`, `/etc/hosts`) con uno o più database centralizzati.
 
-The `/etc/nsswitch.conf` file is used to configure the name service databases.
+Il file `/etc/nsswitch.conf` viene utilizzato per configurare i database del servizio dei nomi.
 
 ```
 passwd: files
@@ -222,15 +225,15 @@ group: files
 hosts: files dns
 ```
 
-In this case, Linux will first look for a host name match (`hosts:` line) in the `/etc/hosts` file (`files` value) before querying DNS (`dns` value)! This behavior can simply be changed by editing the `/etc/nsswitch.conf` file.
+In questo caso, Linux cercherà prima una corrispondenza del nome host (riga `hosts:`) nel file `/etc/hosts` (valore `files`) prima di interrogare il DNS (valore `dns`)! Questo comportamento può essere variato modificando il file `/etc/nsswitch.conf`.
 
-Of course, it is possible to imagine querying an LDAP, MySQL or other server by configuring the name service to respond to system requests for hosts, users, groups, etc.
+Naturalmente, è possibile immaginare di interrogare un LDAP, MySQL o altro server configurando il servizio dei nomi per rispondere alle richieste di sistema per host, utenti, gruppi, ecc.
 
-The resolution of the name service can be tested with the `getent` command that we will see later in this course.
+La risoluzione del servizio dei nomi può essere testata con il comando `getent` che vedremo più avanti in questo corso.
 
-## `/etc/resolv.conf` file
+## file `/etc/resolv.conf`
 
-The `/etc/resolv.conf` file contains the DNS name resolution configuration.
+Il file `/etc/resolv.conf` contiene la configurazione della risoluzione dei nomi DNS.
 
 ```
 #Generated by NetworkManager
@@ -239,49 +242,49 @@ search mondomaine.lan
 nameserver 192.168.1.254
 ```
 
-!!! Tip This file is historical. It is no longer filled in directly!
+!!! Tip "Suggerimento" Questo file è ormai storia. Non è più compilato direttamente!
 
-Newer generations of distributions have generally integrated the `NetworkManager` service. This service allows you to manage the configuration more efficiently, either in graphical or console mode.
+Le nuove generazioni di distribuzioni hanno generalmente integrato il servizio `NetworkManager`. Questo servizio consente di gestire la configurazione in modo più efficiente, sia in modalità grafica che console.
 
-It allows for the addition of DNS servers from the configuration file of a network interface. It then dynamically populates the `/etc/resolv.conf` file which should never be edited directly, otherwise the configuration changes will be lost the next time the network service is started.
+Consente l'aggiunta di server DNS dal file di configurazione di un'interfaccia di rete. Quindi popola dinamicamente il file `/etc/resolv.conf` che non dovrebbe mai essere modificato direttamente, altrimenti le modifiche alla configurazione andranno perse al successivo avvio del servizio di rete.
 
-## `ip` command
+## comando `ip`
 
-The `ip` command from the `iproute2` package allows you to configure an interface and its routing table.
+Il comando `ip` del pacchetto `iproute2` consente di configurare un'interfaccia e la relativa tabella di routing.
 
-Display interfaces :
+Mostra le interfacce :
 
 ```
 [root]# ip link
 ```
 
-Display interfaces information:
+Mostra le informazioni sulle interfacce:
 
 ```
 [root]# ip addr show
 ```
 
-Display the information of an interface :
+Mostra le informazioni su una interfaccia :
 
 ```
 [root]# ip addr show eth0
 ```
 
-Display the ARP table:
+Mostra la tabella ARP:
 
 ```
 [root]# ip neigh
 ```
 
-All historical network management commands have been grouped under the `ip` command, which is well known to network administrators.
+Tutti i comandi di gestione della rete storici sono stati raggruppati sotto il comando `ip`, che è ben noto agli amministratori di rete.
 
-## DHCP configuration
+## configurazione DHCP
 
-The **DHCP** protocol (**D**ynamic **H**ost **C**Control **P**rotocol) allows you to obtain a complete IP configuration via the network. This is the default configuration mode of a network interface under Rocky Linux, which explains why a system connected to the network of an Internet router can function without additional configuration.
+Il protocollo **DHCP** (**D**ynamic **H**ost **C**Control **P**rotocol) consente di ottenere una configurazione IP completa tramite la rete. Questa è la modalità di configurazione predefinita di un'interfaccia di rete sotto Rocky Linux, il che spiega perché un sistema connesso alla rete attraverso un router internet può funzionare senza ulteriori configurazioni.
 
-The configuration of interfaces under Rocky Linux is done in the `/etc/sysconfig/network-scripts/` folder.
+La configurazione delle interfacce sotto Rocky Linux è contenuta nella cartella `/etc/sysconfig/network-scripts/`.
 
-For each Ethernet interface, a `ifcfg-ethX` file allows for the configuration of the associated interface.
+Per ogni interfaccia Ethernet, un file `ifcfg-ethX` consente la configurazione dell'interfaccia associata.
 
 ```
 DEVICE=eth0
@@ -290,41 +293,41 @@ BOOTPROTO=dhcp
 HWADDR=00:0c:29:96:32:e3
 ```
 
-*  Interface name : (must be in the file name)
+*  Avvia automaticamente l'interfaccia:
 
 ```
 DEVICE=eth0
 ```
 
-* Automatically start the interface:
+* Effettuare una richiesta DHCP all'avvio dell'interfaccia:
 
 ```
 ONBOOT=yes
 ```
 
-* Make a DHCP request when the interface starts up:
+* Specificare l'indirizzo MAC (opzionale ma utile quando ci sono diverse interfacce):
 
 ```
 BOOTPROTO=dhcp
 ```
 
-* Specify the MAC address (optional but useful when there are several interfaces) :
+* Riavviare il servizio di rete:
 
 ```
 HWADDR=00:0c:29:96:32:e3
 ```
 
-!!! Tip If NetworkManager is installed, the changes are taken into account automatically. If not, you have to restart the network service.
+!!! Tip "Suggerimento" Se NetworkManager è installato, le modifiche vengono prese in considerazione automaticamente. In caso contrario, è necessario riavviare il servizio di rete.
 
-* Restart the network service:
+* Qui stiamo sostituendo "dhcp" con "none" che equivale alla configurazione statica:
 
 ```
 [root]# systemctl restart NetworkManager
 ```
 
-## Static configuration
+## Configurazione statica
 
-The static configuration requires at least:
+La configurazione statica richiede almeno:
 
 ```
 DEVICE=eth0
@@ -334,13 +337,13 @@ IPADDR=192.168.1.10
 NETMASK=255.255.255.0
 ```
 
-* Here we are replacing "dhcp" with "none" which equals static configuration:
+* Indirizzo IP:
 
 ```
 BOOTPROTO=none
 ```
 
-* IP Address:
+* FQDN in indirizzi IP
 
 ```
 IPADDR=192.168.1.10
@@ -352,15 +355,15 @@ IPADDR=192.168.1.10
 NETMASK=255.255.255.0
 ```
 
-* The mask can be specified with a prefix:
+* La maschera può essere specificata con un prefisso:
 
 ```
 PREFIX=24
 ```
 
-!!! Warning You must use NETMASK OR PREFIX - Not both!
+!!! Warning "Avvertimento" È necessario utilizzare il NETMASK o il PREFISSO - Non entrambi!
 
-## Routing
+## Routing (Instradamento)
 
 ![Network architecture with a gateway](images/network-002.png)
 
@@ -374,7 +377,7 @@ NETMASK=255.255.255.0
 GATEWAY=192.168.1.254
 ```
 
-The `ip route` command:
+Il comando `ip route`:
 
 ```
 [root]# ip route show
@@ -382,23 +385,23 @@ The `ip route` command:
 default via 192.168.1.254 dev eth0 proto static
 ```
 
-It is a good idea to know how to read a routing table, especially in an environment with multiple network interfaces.
+È una buona idea sapere come leggere una tabella di routing, specialmente in un ambiente con più interfacce di rete.
 
-* In the example shown, the `192.168.1.0/24` network is reachable directly from the `eth0` device, so there is a metric at `1` (does not traverse a router).
+* Nell'esempio mostrato, la rete `192.168.1.0/24` è raggiungibile direttamente dal dispositivo `eth0`, quindi c'è una metrica a `1` (non attraversa un router).
 
-* All other networks than the previous one will be reachable, again from the `eth0` device, but this time the packets will be addressed to a `192.168.1.254` gateway. The routing protocol is a static protocol (although it is possible to add a route to a dynamically assigned address in Linux).
+* Tutte le altre reti oltre alla precedente saranno raggiungibili, sempre dal dispositivo `eth0`, ma questa volta i pacchetti saranno indirizzati a un gateway `192.168.1.254`. Il protocollo di routing è un protocollo statico (anche se è possibile aggiungere una route a un indirizzo assegnato dinamicamente in Linux).
 
-## Name resolution
+## Risoluzione dei nomi
 
-A system needs to resolve:
+Un sistema deve risolvere:
 
-* FQDNs into IP addresses
+* Indirizzi IP in nomi
 
 ```
 www.free.fr = 212.27.48.10
 ```
 
-* IP addresses into names
+* o per ottenere informazioni su un'area:
 
 ```
 212.27.48.10 = www.free.fr
@@ -423,7 +426,7 @@ DNS2=172.16.1.3
 DOMAIN=rockylinux.lan
 ```
 
-In this case, to reach the DNS, you have to go through the gateway.
+In questo caso, per raggiungere il DNS, devi passare attraverso il gateway.
 
 ```
  #Generated by NetworkManager
@@ -433,267 +436,264 @@ In this case, to reach the DNS, you have to go through the gateway.
  nameserver 172.16.1.3
 ```
 
-The file has been updated by NetworkManager.
+Il file è stato aggiornato da NetworkManager.
 
-## Troubleshooting
+## Risoluzione dei problemi
 
-The `ping` command sends datagrams to another machine and waits for a response.
+Il comando `ping` invia i datagrammi a un'altra macchina e attende una risposta.
 
-It is the basic command for testing the network because it checks the connectivity between your network interface and another.
+È il comando di base per testare la rete perché controlla la connettività tra l'interfaccia di rete e un'altra.
 
-Syntax of the `ping` command:
+Sintassi del comando `ping`:
 
 ```
 ping [-c numerical] destination
 ```
 
-The `-c` (count) option allows you to stop the command after the countdown in seconds.
+L'opzione `-c` (conteggio) consente di interrompere il comando dopo il conto alla rovescia in secondi.
 
-Example:
+Esempio:
 
 ```
 [root]# ping –c 4 localhost
 ```
 
-!!! Tip Validate connectivity from near to far
+!!! Tip "Suggerimento" Convalida la connettività da vicino a lontano
 
-1) Validate the TCP/IP software layer
+1) Convalidare il livello software TCP/IP
 
 ```
 [root]# ping localhost
 ```
 
-"Pinging" the inner loop does not detect a hardware failure on the network interface. It simply determines whether the IP software configuration is correct.
+Il "Pinging" del loop interno non rileva un errore hardware sull'interfaccia di rete. Determina semplicemente se la configurazione del software IP è corretta.
 
-2) Validate the network card
+2) Convalidare la scheda di rete
 
 ```
 [root]# ping 192.168.1.10
 ```
 
-To determine that the network card is functional, we must now ping its IP address. The network card, if the network cable is not connected, should be in a "down" state.
+Per determinare se la scheda di rete è funzionante, ora dobbiamo eseguire il ping del suo indirizzo IP. La scheda di rete, se il cavo di rete non è collegato, dovrebbe essere in uno stato "down".
 
-If the ping does not work, first check the network cable to your network switch and reassemble the interface (see the `if up` command), then check the interface itself.
+Se il ping non funziona, controllare prima il cavo di rete allo switch di rete e riassemblare l'interfaccia (vedere il comando `if up`), quindi controllare l'interfaccia stessa.
 
-3) Validate the connectivity of the gateway
+3) Convalidare la connettività del gateway
 
 ```
 [root]# ping 192.168.1.254
 ```
 
-4) Validate the connectivity of a remote server
+4) Convalidare la connettività di un server remoto
 
 ```
 [root]# ping 172.16.1.2
 ```
 
-5) Validate the DNS service
+5) Convalidare il servizio DNS
 
 ```
 [root]# ping www.free.fr
 ```
 
-### `dig` command
+### comando `dig`
 
-The `dig` command is used to query the DNS server.
+Il comando `dig` viene utilizzato per interrogare il server DNS.
 
-The `dig` command syntax:
+La sintassi del comando `dig`:
 
 ```
 dig [-t type] [+short] [name]
 ```
 
-Examples:
+Esempi:
 
 ```
 [root]# dig +short rockylinux.org
 76.223.126.88
 [root]# dig -t MX +short rockylinux.org                                                          ✔
 5 alt1.aspmx.l.google.com.
-...
+!!!
 ```
 
-The `dig` command is used to query DNS servers. It is very verbose by default, but this behavior can be changed with the `+short` option.
+Il comando `dig` viene utilizzato per eseguire query sui server DNS. È molto prolisso per impostazione predefinita, ma questo comportamento può essere modificato con l'opzione `+short`.
 
-It is also possible to specify a DNS **record type** to resolve, such as an MX **type** to get information about the mail exchangers for a domain.
+È anche possibile specificare un **tipo di record** DNS da risolvere, ad esempio un **tipo** MX per ottenere informazioni sugli scambiatori di posta per un dominio.
 
-### `getent` command
+### comando `getent`
 
-The `getent` (get entry) command is used to get an NSSwitch entry (`hosts` + `dns`)
+Il comando 'getent' (get entry) viene utilizzato per ottenere una voce NSSwitch (`hosts` + `dns`)
 
-Syntax of the `getent` command:
+Sintassi del comando `getent`:
 
 
 ```
 getent hosts name
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# getent hosts rockylinux.org
   76.223.126.88 rockylinux.org
 ```
 
-Querying only a DNS server may return an erroneous result that does not take into account the contents of a `hosts` file, although this should be rare nowadays.
+Interrogare solo un server DNS può restituire un risultato errato che non tiene conto del contenuto di un file `hosts`, anche se questo dovrebbe essere raro al giorno d'oggi.
 
-To take the `/etc/hosts` file into account as well, the NSSwitch name service must be queried, which will take care of any DNS resolution.
+Per prendere in considerazione anche il file `/etc/hosts`, è necessario interrogare il servizio dei nomi NSSwitch, che si occuperà di qualsiasi risoluzione DNS.
 
-### `ipcalc` command
+### comando `ipcalc`
 
-The `ipcalc` (**ip calculation**) command is used to calculate the address of a network or broadcast from an IP address and a mask.
+Il comando `ipcalc` (**calcolo ip**) viene utilizzato per calcolare l'indirizzo di una rete o di trasmissione da un indirizzo IP e una maschera.
 
-Syntax of the `ipcalc` command:
+Sintassi del comando `ipcalc`:
 
 ```
 ipcalc  [options] IP <netmask>
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# ipcalc –b 172.16.66.203 255.255.240.0
 BROADCAST=172.16.79.255
 ```
 
-!!! Tip This command is interesting followed by a redirection to automatically fill in the configuration files of your interfaces:
+!!! Tip "Suggerimento" Questo comando è interessante se seguito da un reindirizzamento per compilare automaticamente i file di configurazione delle interfacce:
 
     ```
     [root]# ipcalc –b 172.16.66.203 255.255.240.0 >> /etc/sysconfig/network-scripts/ifcfg-eth0
     ```
 
-| Option | Description                            |
-| ------ | -------------------------------------- |
-| `-b`   | Displays the broadcast address.        |
-| `-n`   | Displays the network address and mask. |
+| Opzione | Descrizione                                   |
+| ------- | --------------------------------------------- |
+| `-b`    | Visualizza l'indirizzo di trasmissione.       |
+| `-n`    | Visualizza l'indirizzo di rete e la maschera. |
 
-`ipcalc` is a simple way to calculate the IP information of a host. The various options indicate what information `ipcalc` should display on the standard output. Multiple options can be specified. An IP address on which to operate must be specified. Most operations also require a network mask or CIDR prefix.
+`ipcalc` è un modo semplice per calcolare le informazioni IP di un host. Le varie opzioni indicano a `ipcalc` quali informazioni devono essere visualizzate sull'uscita standard. È possibile specificare più opzioni. È necessario specificare un indirizzo IP su cui operare. La maggior parte delle operazioni richiede anche una maschera di rete o un prefisso CIDR.
 
-| Option short | Option long   | Description                                                                                                                                                                                                                                    |
-| ------------ | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-b`         | `--broadcast` | Displays the broadcast address of the given IP address and the network mask.                                                                                                                                                                   |
-| `-h`         | `--hostname`  | Displays the hostname of the IP address given via DNS.                                                                                                                                                                                         |
-| `-n`         | `--netmask`   | Calculates the network mask for the given IP address. Assumes that the IP address is part of a complete class A, B, or C network. Many networks do not use default network masks, in which case an incorrect incorrect value will be returned. |
-| `-p`         | `--prefix`    | Indicates the prefix of the mask/IP address.                                                                                                                                                                                                   |
-| `-n`         | `--network`   | Indicates the network address of the given IP address and mask.                                                                                                                                                                                |
-| `-s`         | `--silent`    | Never displays any error messages.                                                                                                                                                                                                             |
+| Opzione corta | Opzione lunga | Descrizione                                                                                                                                                                                                                                           |
+| ------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-b`          | `--broadcast` | Visualizza l'indirizzo di trasmissione dell'indirizzo IP specifico e la maschera di rete.                                                                                                                                                             |
+| `-h`          | `--hostname`  | Visualizza il nome host dell'indirizzo IP fornito tramite DNS.                                                                                                                                                                                        |
+| `-n`          | `--netmask`   | Calcola la maschera di rete per l'indirizzo IP indicato. Presuppone che l'indirizzo IP faccia parte di una rete completa di classe A, B o C. Molte reti non utilizzano maschere di rete predefinite, nel qual caso verrà restituito un valore errato. |
+| `-p`          | `--prefix`    | Indica il prefisso della maschera/indirizzo IP.                                                                                                                                                                                                       |
+| `-n`          | `--network`   | Indica l'indirizzo di rete dell'indirizzo IP e della maschera forniti.                                                                                                                                                                                |
+| `-s`          | `--silent`    | Non visualizza mai alcun messaggio di errore.                                                                                                                                                                                                         |
 
-### `ss` command
+### comando `ss`
 
-The `ss` (**socket statistics**) command displays the listening ports on the network.
+Il comando `ss` (**statistiche socket**) visualizza le porte in ascolto sulla rete.
 
-Syntax of the `ss` command:
+Sintassi del comando `ss`:
 
 ```
 ss [-tuna]
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# ss –tuna
 tcp   LISTEN   0   128   *:22   *:*
 ```
 
-The commands `ss` and `netstat` (to follow) will be very important for the rest of your Linux life.
+I comandi `ss` e `netstat` (che segue) saranno molto importanti per il resto della tua vita con Linux.
 
-When implementing network services, it is very common to check with one of these two commands that the service is listening on the expected ports.
+Quando si implementano i servizi di rete, è molto comune verificare con uno di questi due comandi che il servizio sia in ascolto sulle porte previste.
 
-### `netstat` command
+### comando `netstat`
 
-!!! Warning The `netstat` command is now deprecated and is no-longer installed by default on Rocky Linux. You may still find some Linux versions that have it installed, but it is best to move on to using `ss` for everything that you would have used `netstat` for.
+!!! Warning "Avvertimento" Il comando `netstat` è ora deprecato e non è più installato per impostazione predefinita su Rocky Linux. You may still find some Linux versions that have it installed, but it is best to move on to using `ss` for everything that you would have used `netstat` for.
 
-The `netstat` command (**network statistics**) displays the listening ports on the network.
+Il comando `netstat` (**statistiche di rete**) visualizza le porte in ascolto sulla rete.
 
-Syntax of the `netstat` command:
+Sintassi del comando `netstat`:
 
 ```
 netstat -tapn
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# netstat –tapn
 tcp  0  0  0.0.0.0:22  0.0.0.0:*  LISTEN 2161/sshd
 ```
 
-### IP or MAC address conflicts
+### Conflitti di indirizzi IP o MAC
 
-A misconfiguration can cause multiple interfaces to use the same IP address. This can happen when a network has multiple DHCP servers or when the same IP address is manually assigned multiple times.
+Una configurazione errata può causare l'utilizzo dello stesso indirizzo IP da parte di più interfacce. Ciò può verificarsi quando una rete dispone di più server DHCP o quando lo stesso indirizzo IP viene assegnato manualmente più volte.
 
-When the network is malfunctioning, and when an IP address conflict could be the cause, it is possible to use the `arp-scan` software (requires the EPEL repository):
+Quando la rete non funziona correttamente e quando la causa potrebbe essere un conflitto di indirizzi IP, è possibile utilizzare il software `arp-scan` (richiede il repository EPEL):
 
 ```
 $ dnf install arp-scan
 ```
 
-Example:
+Esempio:
 
 ```
 $ arp-scan -I eth0 -l
 
 172.16.1.104  00:01:02:03:04:05       3COM CORPORATION
-172.16.1.107  00:0c:29:1b:eb:97       VMware, Inc.
-172.16.1.250  00:26:ab:b1:b7:f6       (Unknown)
-172.16.1.252  00:50:56:a9:6a:ed       VMWare, Inc.
-172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc.
-172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 2)
+172.16.1.107  00:0c:29:1b:eb:97       VMware, Inc. 172.16.1.250  00:26:ab:b1:b7:f6       (Unknown)
+172.16.1.252  00:50:56:a9:6a:ed       VMWare, Inc. (DUP: 2)
 172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 3)
 172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 4)
 172.16.1.232   88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)
 ```
 
-!!! Tip As the above example shows, it is also possible to have MAC address conflicts! These problems are brought about by virtualization technologies and the copying of virtual machines.
+!!! Tip "Suggerimento" Come mostra l'esempio precedente, è anche possibile avere conflitti di indirizzi MAC! Questi problemi sono causati dalle tecnologie di virtualizzazione e dalla copia delle macchine virtuali.
 
-## Hot configuration
+## Configurazione a caldo
 
-The `ip` command can hot add an IP address to an interface
+Il comando `ip` può aggiungere a caldo un indirizzo IP a un'interfaccia
 
 ```
 ip addr add @IP dev DEVICE
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# ip addr add 192.168.2.10 dev eth1
 ```
 
-The `ip` command allows for the activation or deactivation of an interface:
+Il comando `ip` consente l'attivazione o la disattivazione di un'interfaccia:
 
 ```
 ip link set DEVICE up
 ip link set DEVICE down
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# ip link set eth1 up
 [root]# ip link set eth1 down
 ```
 
-The `ip` command is used to add a route:
+Il comando `ip` viene utilizzato per aggiungere una route:
 
 ```
 ip route add [default|netaddr] via @IP [dev device]
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# ip route add default via 192.168.1.254
 [root]# ip route add 192.168.100.0/24 via 192.168.2.254 dev eth1
 ```
 
-## In summary
+## In sintesi
 
-The files used in this chapter are :
+I file utilizzati in questo capitolo sono:
 
 ![Synthesis of the files implemented in the network part](images/network-003.png)
 
-A complete interface configuration could be this (file `/etc/sysconfig/network-scripts/ifcfg-eth0`):
+Una configurazione completa dell'interfaccia potrebbe essere questa (file `/etc/sysconfig/network-scripts/ifcfg-eth0`):
 
 ```
  DEVICE=eth0
@@ -708,12 +708,12 @@ A complete interface configuration could be this (file `/etc/sysconfig/network-s
  DOMAIN=rockylinux.lan
 ```
 
-The troubleshooting method should go from closest to farthest:
+Il metodo di risoluzione dei problemi dovrebbe andare dal più vicino al più lontano:
 
-1. ping localhost (software test)
-2. ping IP-address (hardware test)
-3. ping gateway (connectivity test)
-4. ping remote-server (routing test)
-5. DNS query (dig or ping)
+1. ping localhost (test del software)
+2. ping indirizzo-IP (test dell'hardware)
+3. ping gateway (test di connettività)
+4. ping server remoto (test di instradamento)
+5. DNS query (dig o ping)
 
 ![Method of troubleshooting or network validation](images/network-004.png)
