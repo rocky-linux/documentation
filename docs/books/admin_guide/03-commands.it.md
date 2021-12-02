@@ -465,16 +465,16 @@ Le opzioni principali del comando `ls` sono :
 
 Il comando `ls`, tuttavia, ha molte opzioni (vedi `man`):
 
-| Option | Informazione                                                                                                                                                       |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `-d`   | Visualizza le informazioni di una directory invece di elencare i suoi contenuti.                                                                                   |
-| `-g`   | Visualizza UID e GID al posto dei nomi dei proprietari.                                                                                                            |
-| `-h`   | Visualizza le dimensioni dei file nel formato più appropriato (byte, kilobyte, megabyte, gigabyte, ...).`h` stà per Human Readable. `h` stands for Human Readable. |
-| `-s`   | Visualizza la dimensione in byte (tranne l'opzione`k`).                                                                                                            |
-| `-A`   | Visualizza tutti i file nella directory tranne`.` e `..`.                                                                                                          |
-| `-R`   | Visualizza il contenuto delle sottodirectory in modo ricorsivo.                                                                                                    |
-| `-F`   | Visualizza il tipo di file. Stampa un`/` per una directory, `*` per gli eseguibili, `@` per un collegamento simbolico, e niente per un file di testo.              |
-| `-X`   | ordina i file in base alle loro estensioni.                                                                                                                        |
+| Option | Informazione                                                                                                                                          |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-d`   | Visualizza le informazioni di una directory invece di elencare i suoi contenuti.                                                                      |
+| `-g`   | Visualizza UID e GID al posto dei nomi dei proprietari.                                                                                               |
+| `-h`   | Visualizza le dimensioni dei file nel formato più appropriato (byte, kilobyte, megabyte, gigabyte, ...). `h` stà per Human Readable.                  |
+| `-s`   | Visualizza la dimensione in byte (tranne l'opzione`k`).                                                                                               |
+| `-A`   | Visualizza tutti i file nella directory tranne`.` e `..`.                                                                                             |
+| `-R`   | Visualizza il contenuto delle sottodirectory in modo ricorsivo.                                                                                       |
+| `-F`   | Visualizza il tipo di file. Stampa un`/` per una directory, `*` per gli eseguibili, `@` per un collegamento simbolico, e niente per un file di testo. |
+| `-X`   | ordina i file in base alle loro estensioni.                                                                                                           |
 
 * Descrizione delle colonne:
 
@@ -496,13 +496,13 @@ $ ls -lia /home
 
 !!! Note "Nota" Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni.
 
-    This is the case of the alias `ll`:
+    Questo è il caso dell'alias `ll`:
 
     ```
     alias ll='ls -l --color=auto'
     ```
 
-Questo è il caso dell'alias `ll`:
+Il comando `ls` ha molte opzioni ed ecco alcuni esempi avanzati di uso:
 
 * Elenca i file in `/etc` in base all'ultima modifica:
 
@@ -531,7 +531,7 @@ $ ls -Rlh /var | grep [0-9]M
 
 * Mostra i permessi di una cartella:
 
-Il comando `ls` ha molte opzioni ed ecco alcuni esempi avanzati di uso:
+Per scoprire i permessi di una cartella, nel nostro esempio `/etc`, il seguente comando non sarebbe appropriato:
 
 ```bash
 $ ls -l /etc
@@ -543,9 +543,9 @@ drwxr-xr-x.  2 root root   4096 17 nov.  17:48 alternatives
 ...
 ```
 
-Per scoprire i permessi di una cartella, nel nostro esempio `/etc`, il seguente comando non sarebbe appropriato:
-
 dal momento che elenca il contenuto della cartella e non la cartella stessa.
+
+Per fare ciò, useremo l'opzione `d`:
 
 ```bash
 $ ls -ld /etc
@@ -584,13 +584,13 @@ $ ls /etc --hide=*.conf
 
 ### comando `mkdir`
 
-Il comando `rm` elimina un file o una directory.
+Il comando `mkdir` crea una directory o un albero di directory.
 
 ```bash
 mkdir [-p] directory [directory] [...]
 ```
 
-Il comando `mkdir` crea una directory o un albero di directory.
+Esempio:
 
 ```bash
 $ mkdir /home/rockstar/work
@@ -602,7 +602,7 @@ La directory "rockstar" deve esistere per creare la directory "work". Altrimenti
 
 ### comando `touch`
 
-The `touch` command changes the timestamp of a file or creates an empty file if the file does not exist.
+Il comando `touch` cambia il timestamp di un file o crea un file vuoto se il file non esiste.
 
 ```bash
 touch [-t date] file
@@ -618,15 +618,15 @@ $ touch /home/rockstar/myfile
 | --------- | ----------------------------------------------------------------------- |
 | `-t date` | Modifica la data dell'ultima modifica del file con la data specificata. |
 
-Esempio :
+Date format: `[AAAA]MMJJhhmm[ss]`
 
 !!! Tip "Suggerimento" Il comando `touch` viene utilizzato principalmente per creare un file vuoto, ma può essere utile per i backup incrementali o differenziali per esempio. Davvero, l'unico effetto di eseguire un `touch` su un file sarà quello di costringerlo a essere salvato durante il backup successivo.
 
 ### comando `rmdir`
 
-The `rmdir` command deletes an empty directory.
-
 Il comando `rmdir` elimina una directory vuota.
+
+Esempio :
 
 ```bash
 $ rmdir /home/rockstar/work
@@ -640,7 +640,7 @@ $ rmdir /home/rockstar/work
 
 ### comando`rm`
 
-Il carattere `;` concatena i comandi.
+Il comando `rm` elimina un file o una directory.
 
 ```bash
 rm [-f] [-r] file [file] [...]
@@ -656,11 +656,11 @@ rm [-f] [-r] file [file] [...]
 
 !!! Note "Nota" Il comando `rm` non chiede la conferma durante l'eliminazione dei file. Tuttavia, con una distribuzione RedHat/Rocky, `rm` chiede la conferma della cancellazione in quanto il comando `rm` è un`alias` di `rm -i`. Non sorprenderti se su un'altra distribuzione, come Debian, ad esempio, non ottieni una richiesta di conferma.
 
-Deleting a folder with the `rm` command, whether the folder is empty or not, will require the `-r` option to be added.
-
 L'eliminazione di una cartella con il comando `rm`, che la cartella sia vuota o meno, richiederà l'aggiunta dell'opzione `-r`.
 
 La fine delle opzioni è segnalata alla shell da un doppio trattino `--`.
+
+Nell'esempio:
 
 ```bash
 $ >-hard-hard # Per creare un file vuoto chiamato -hard-hard
@@ -673,13 +673,13 @@ Il nome del file hard-hard inizia con un `-`. Senza l'uso del `--` la shell avre
 
 ### command `mv`
 
-The `mv` command moves and renames a file.
+Il comando `mv` muove e rinomina un file.
 
 ```bash
 mv file [file ...] destination
 ```
 
-Il comando `mv` muove e rinomina un file.
+Esempi:
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2
@@ -691,25 +691,25 @@ $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 | `-f`    | Non chiedere conferma per la sovrascrittura del file di destinazione.         |
 | `-i`    | Richiedere conferma per la sovrascrittura del file di destinazione (default). |
 
-Esempi:
+Alcuni casi concreti ti aiuteranno a capire le difficoltà che possono sorgere:
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2
 ```
 
-Alcuni casi concreti ti aiuteranno a capire le difficoltà che possono sorgere:
+Rinominare `file1` in `file2`, se `file2` esiste già, sarà sostituito da `file1`.
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
-Rinominare `file1` in `file2`, se `file2` esiste già, sarà sostituito da `file1`.
+Muovere `file1` e `file2` nella directory `/tmp`.
 
 ```bash
 $ mv file1 /repexist/file2
 ```
 
-Muovere `file1` e `file2` nella directory `/tmp`.
+Muovere `file1` in `repexist` e rinominarlo `file2`.
 
 ```bash
 $ mv file1 file2
@@ -1522,22 +1522,27 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 ### Il carattere `;`
 
-Il carattere speciale `$` cerca una stringa alla fine di una linea.
+Il carattere `;` concatena i comandi.
 
-che ritornerà il nostro filesystem montato nel seguente formato:
+I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che l'utente preme <kbd>ENTER</kdb> .</p> 
 
-```bash
-$ ls /; cd /home; ls -lia; cd /
-```
+<pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
+</code></pre>
 
-## Controlla la tua conoscenza
-
-:heavy_check_mark: Cosa definisce un utente sotto Linux? (7 answers)
-
-I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che l'utente preme <kbd>ENTER</kdb>.</p> 
+<h2 spaces-before="0">
+  Controlla la tua conoscenza
+</h2>
 
 <p spaces-before="0">
-  :heavy_check_mark: Quale comando consente di cercare un file?
+  :heavy_check_mark: Cosa definisce un utente sotto Linux? (7 answers)
+</p>
+
+<p spaces-before="0">
+  :heavy_check_mark: Cosa caratterizza una lunga opzione per un ordine?
+</p>
+
+<p spaces-before="0">
+  :heavy_check_mark: Quali comandi consentono di cercare aiuto su un comando:
 </p>
 
 <ul>
@@ -1559,26 +1564,13 @@ I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che 
 </ul>
 
 <p spaces-before="0">
-  :heavy_check_mark: Cosa caratterizza una lunga opzione per un ordine?
-</p>
-
-<p spaces-before="0">
-  :heavy_check_mark: Quali comandi consentono di cercare aiuto su un comando:
-</p>
-
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
-
-<p spaces-before="0">
   :heavy_check_mark: Quale comando consente di visualizzare la cronologia di un utente?
 </p>
 
+<p spaces-before="0">
+  :heavy_check_mark: Quale comando consente di cercare il testo in un file?
+</p>
+
 <ul>
   <li>
     [ ] <code>find</code>
@@ -1589,7 +1581,20 @@ I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che 
 </ul>
 
 <p spaces-before="0">
-  :heavy_check_mark: Quale comando consente di cercare il testo in un file?
+  :heavy_check_mark: Quale comando consente di cercare un file?
+</p>
+
+<ul>
+  <li>
+    [ ] <code>find</code>
+  </li>
+  <li>
+    [ ] <code>grep</code>
+  </li>
+</ul>
+
+<p spaces-before="0">
+  :heavy_check_mark: Quale comando reindirizza il flusso di errore di un comando a un nuovo file <code>errors.log</code>:
 </p>
 
 <ul>
