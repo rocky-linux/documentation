@@ -2,7 +2,7 @@
 title:  Rocky Linux 8 Change Log
 author: Louis Abel
 contributors: Steven Spencer
-update: 11-30-2021
+update: 12-02-2021
 ---
 
 # Rocky Linux 8 Change Log
@@ -39,6 +39,17 @@ The current packages in plus (as of 2021-11-30) are:
 ### Devel Notes
 
 The devel repository should be used with care. It is meant for koji or buildroot purposes and should not be enabled 100% of the time. If you find there is a package you wish to see in the devel repo, send a mail on rocky-devel and/or open a bug report on https://bugs.rockylinux.org
+
+## 8.5 - 2021-11-29
+
+The following packages have been updated since Nov 29, 2021:
+
+* kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
+* nss: nss-3.67.0-6.el8_4 -> nss-3.67.0-7.el8_5
+
+Associated CVE's:
+
+* nss-3.67.0-7.el8_5: CVE-2021-43527
 
 ## 8.5 - 2021-11-24
 
