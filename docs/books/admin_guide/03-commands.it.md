@@ -400,7 +400,7 @@ Una directory, anche se è vuota, conterrà necessariamente almeno **due riferim
 
 Un percorso relativo può quindi iniziare con `./` o `../`. Quando il percorso relativo si riferisce a una sottodirectory o ad un file nella directory corrente, il `./` è spesso omesso. L'inserimento del riferimento `./` sarà veramente richiesto solo per l'esecuzione di un file eseguibile.
 
-Gli errori nei percorsi possono causare molti problemi: dalla creazione di cartelle o file nei luoghi sbagliati, alle eliminazioni involontarie, ecc. È quindi fortemente raccomandato di utilizzare il completamento automatico quando si immettono i percorsi. It is therefore strongly recommended to use auto-completion when entering paths.
+Gli errori nei percorsi possono causare molti problemi: dalla creazione di cartelle o file nei luoghi sbagliati, alle eliminazioni involontarie, ecc. È quindi fortemente raccomandato di utilizzare il completamento automatico quando si immettono i percorsi.
 
 ![our example tree](images/commands-pathabsolute.png)
 
@@ -452,7 +452,7 @@ Esempio:
 
 ```bash
 $ ls /home
-.    rockstar    ..
+.    ..    rockstar
 ```
 
 Le opzioni principali del comando `ls` sono :
