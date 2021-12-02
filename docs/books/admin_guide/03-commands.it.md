@@ -494,7 +494,7 @@ $ ls -lia /home
 | `25 oct. 08:10` | Ultima data di modifica.                                                                                        |
 | `rockstar`      | Il nome del file (o directory).                                                                                 |
 
-!!! Note "Nota" Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni.
+!!! Note "Nota" Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni. 
 
     Questo è il caso dell'alias `ll`:
 
@@ -614,11 +614,11 @@ Il comando `touch` cambia il timestamp di un file o crea un file vuoto se il fil
 $ touch /home/rockstar/myfile
 ```
 
-| Option    | Informazione                                                            |
+| Opzione   | Informazione                                                            |
 | --------- | ----------------------------------------------------------------------- |
 | `-t date` | Modifica la data dell'ultima modifica del file con la data specificata. |
 
-Date format: `[AAAA]MMJJhhmm[ss]`
+Formato data: `[AAAA]MMJJhhmm[ss]`
 
 !!! Tip "Suggerimento" Il comando `touch` viene utilizzato principalmente per creare un file vuoto, ma può essere utile per i backup incrementali o differenziali per esempio. Davvero, l'unico effetto di eseguire un `touch` su un file sarà quello di costringerlo a essere salvato durante il backup successivo.
 
@@ -626,15 +626,15 @@ Date format: `[AAAA]MMJJhhmm[ss]`
 
 Il comando `rmdir` elimina una directory vuota.
 
-Esempio :
+Esempio:
 
 ```bash
 $ rmdir /home/rockstar/work
 ```
 
-| Option | Informazione                                                          |
-| ------ | --------------------------------------------------------------------- |
-| `-p`   | Rimuove la directory o le directory principale fornite se sono vuote. |
+| Opzione | Informazione                                                          |
+| ------- | --------------------------------------------------------------------- |
+| `-p`    | Rimuove la directory o le directory principale fornite se sono vuote. |
 
 !!! Tip "Suggerimento" Per eliminare sia una directory non vuota che il suo contenuto, utilizzare il comando `rm`.
 
@@ -715,29 +715,29 @@ Muovere `file1` in `repexist` e rinominarlo `file2`.
 $ mv file1 file2
 ```
 
-Muovere `file1` in `repexist` e rinominarlo `file2`.
+`file1` è rinominato con `file2`.
 
 ```bash
 $ mv file1 /repexist
 ```
 
-`file1` è rinominato con `file2`.
+Se esiste la directory di destinazione, `file1` viene spostato in `/repexist`.
 
 ```bash
 $ mv file1 /wrongrep
 ```
 
-Se esiste la directory di destinazione, `file1` viene spostato in `/repexist`.
+Se la directory di destinazione non esiste, `file1` è rinominato `wrongrep` nella directory principale (root).
 
 ### comando `cp`
 
-Se la directory di destinazione non esiste, `file1` è rinominato `wrongrep` nella directory principale (root).
+Il comando `cp` copia un file.
 
 ```bash
 cp file [file ...] destination
 ```
 
-Il comando `cp` copia un file.
+Esempio:
 
 ```bash
 $ cp -r /home/rockstar /tmp
@@ -936,15 +936,15 @@ Without the `-n` option, the tail command displays the last 10 lines of the file
 
 ### comando `sort`
 
-Senza l'opzione `-n`, il comando tail visualizza le ultime 10 righe del file.
-
 Il comando `sort` ordina le linee di un file.
+
+Ti consente di ordinare il risultato di un comando o del contenuto di un file in un determinato ordine, numericamente, alfabeticamente, per dimensione (KB, MB, GB) o in ordine inverso.
 
 ```bash
 sort [-kx] [-n] [-o file] [-ty] file
 ```
 
-Ti consente di ordinare il risultato di un comando o del contenuto di un file in un determinato ordine, numericamente, alfabeticamente, per dimensione (KB, MB, GB) o in ordine inverso.
+Esempio:
 
 ```bash
 $ sort -k3 -t: -n /etc/passwd
@@ -952,20 +952,20 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-| Option    | Observation                                         |
+| Opzione   | Observation                                         |
 | --------- | --------------------------------------------------- |
 | `-kx`     | Specifica la colonna`x` per ordinare                |
 | `-n`      | Richiede un ordinamento numerico                    |
 | `-o file` | Salva l'ordinamento nel file specificato            |
 | `-ty`     | Specifica il carattere del separatore del campo `y` |
 | `-r`      | Inverte l'ordine del risultato                      |
-| `- u`     | unique                                              |
+| `- u`     | unico                                               |
 
 Il comando `sort` ordina il file solo sullo schermo. Il file non è modificato dall'ordinamento. Per salvare l'ordinamento, usa l'opzione `-o` o un reindirizzamento dell'output `>`.
 
 Per impostazione predefinita, i numeri sono ordinati in base al loro carattere. Quindi, "110" sarà prima del "20", che sarà a sua volta prima "3". L'opzione `-n` deve essere specificata in modo che i blocchi di caratteri numerici siano ordinati per il loro valore.
 
-The `sort` command reverses the order of the results, with the `-r` option:
+Il comanda `sort` inverte l'ordine del risultato, con l'opzione `-r`:
 
 ```bash
 $ sort -k3 -t: -n -r /etc/passwd
@@ -973,13 +973,13 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-Il comanda `sort` inverte l'ordine del risultato, con l'opzione `-r`:
-
 In questo esempio, il comando `sort` ordinerà il contenuto del file `/etc /passwd` questa volta dal UID più grande al più piccolo.
+
+Alcuni esempi avanzati di utilizzazione del comando `sort`:
 
 * Mischiando valori
 
-Alcuni esempi avanzati di utilizzazione del comando `sort`
+Il comando `sort` ti consente anche di mescolare valori con l'opzione `-R`:
 
 ```bash
 $ sort -R /etc/passwd
@@ -989,7 +989,7 @@ $ sort -R /etc/passwd
 
 Un amministratore di sistema si deve spesso confrontare con l'elaborazione di indirizzi IP provenienti dai registri dei suoi servizi come SMTP, VSFTP o Apache. Questi indirizzi sono tipicamente estratti con il comando `cut`.
 
-Here is an example with the file `dns-client.txt`:
+Ecco un esempio con il file `dns-client.txt`:
 
 ```
 192.168.1.10
@@ -1109,16 +1109,16 @@ Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.t
 
 !!! Tip "Comprendere l'opzione `-exec`" Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
 
-    If the `find` command finds three files named `log1.txt`, `log2.txt`, and `log3.txt`, then the `find` command will construct the string by replacing in the string `rm -f {} \;` the braces with one of the results of the search, and do this as many times as there are results.
+    Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.txt`, il comando `find` costruirà la stringa sostituendo nella stringa `rm -f {} \;` le parentesi graffe con uno dei risultati della ricerca, e farà questo tutte le volte che ci sono dei risultati.
     
-    This will give us:
+    Questo ci darà:
 
     ```
     rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
     ```
 
 
-    The `;` character is a special shell character that must be protected by a `\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).
+    Il carattere `;` è un carattere speciale di shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
 
 !!! Tip "Suggerimento" `$ find /tmp -name *.txt -delete` fa la stessa cosa.
 
@@ -1246,7 +1246,7 @@ $ ftp -in serverftp << ftp-commands.txt
 
 Il reindirizzamento dell'ingresso può anche essere utilizzato per simulare l'interattività dell'utente. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
 
-This feature is used to script interactive commands:
+Questa funzione è utilizzata per i comandi interattivi negli script:
 
 ```bash
 $ ftp -in serverftp << END
@@ -1336,9 +1336,9 @@ Questa comunicazione è UNI direzionale ed è fatta con il simbolo `|`. Il simbo
 
 ![pipe](images/pipe.png)
 
-All data sent by the control on the left of the pipe through the standard output channel is sent to the standard input channel of the control on the right.
+Tutti i dati inviati dal controllo a sinistra della pipe tramite il canale di uscita standard vengono inviati al canale di ingresso standard del controllo a destra.
 
-The commands particularly used after a pipe are filters.
+I comandi particolarmente utilizzati dopo una pipe sono i filtri.
 
 * `.bashrc` file nella directory di accesso dell'utente;
 
@@ -1416,10 +1416,10 @@ alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-ti
 
 sostituirà il comando :
 
-For permanent use, they must be created in the:
+Per un uso permanente, devono essere creati nel:
 
+* `.bashrc` file nella directory di accesso dell'utente;
 * `/etc/profile.d/alias.sh` file per tutti gli utenti.
-* `/etc/profile.d/alias.sh` file for all users.
 
 !!! Warning "Avvertimento" Prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
 
@@ -1429,7 +1429,7 @@ For permanent use, they must be created in the:
 
 Per un uso permanente, devono essere creati nel:
 
-To delete a single alias:
+Per eliminare un singolo alias:
 
 ```bash
 $ unalias ll
