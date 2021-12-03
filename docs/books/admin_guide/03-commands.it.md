@@ -1524,7 +1524,7 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 Il carattere `;` concatena i comandi.
 
-I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che l'utente preme <kbd>ENTER</kdb>. </p> 
+I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che l'utente preme <kbd>ENTER</kdb> </p> 
 
 <pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
 </code></pre>
