@@ -2,7 +2,7 @@
 title:  Rocky Linux 8 Change Log
 author: Louis Abel
 contributors: Steven Spencer
-update: 12-02-2021
+update: 12-03-2021
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,22 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - 2021-12-02
+
+The following packages have been updated since December 02, 2021:
+
+* mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
+* mailman-3:2.1.29-12.module+el8.5.0+717+27fd1ba7.2
+
+Associated CVE's:
+
+* mailman: CVE-2021-44227
+
+The follow modules have been updated since December 02, 2021:
+
+* mailman-2.1-8050020211202160117.fd901a62
+
 
 ## 8.5 - Supplemental - 2021-11-30
 
