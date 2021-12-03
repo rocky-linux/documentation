@@ -1,8 +1,8 @@
 ---
 title: Rocky Linuxへの移行
 author: Ezequiel Bruni
-contributors: tianci li, Steven Spencer
-update: 11-23-2021
+contributors: Norio Yahata, Steven Spencer
+update: 12-03-2021
 ---
 
 # CentOS Stream, CentOS, Alma Linux, RHEL, Oracle LinuxからRocky Linuxへの移行方法
