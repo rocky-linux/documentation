@@ -65,9 +65,9 @@ Längst ner på informationssidan, alternativet för "Värd" ska nu visa värdti
 
 * "Land tillåtna":  Vissa speglar måste begränsa sig till att endast betjäna slutanvändare från deras land. Om du är en av dessa, lista 2-bokstävers ISOkoder för dom länderna du vill tillåta slutanvändare att vara från. spegellistan CGI kommer att acceptera detta. 
 
-* Paketkategorier ":  Värdar har flera olika kategorier av programvara. Exempel på Fedora-kategorier inkluderar Fedora och Fedora arkiv 
+* "Paketkategorier ":  Värdar har flera olika kategorier av programvara. Exempel på Fedora-kategorier inkluderar Fedora och Fedora arkiv 
 
-Klicka på "[lägg till]]" länken under "Paketkategorier".
+Klicka på "[lägg till]" länken under "Paketkategorier".
 
 ### Paketkategorier
 

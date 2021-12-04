@@ -1,7 +1,8 @@
 ---
 title: Migrazione a Rocky Linux
-contributors: Franco Colussi
-update: 11-23-2021
+author: Ezequiel Bruni
+contributors: Franco Colussi, Steven Spencer
+update: 11-30-2021
 ---
 
 # Come migrare a Rocky Linux da CentOS Stream, CentOS, Alma Linux, RHEL, o Oracle Linux

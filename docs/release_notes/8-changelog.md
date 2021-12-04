@@ -2,18 +2,62 @@
 title:  Rocky Linux 8 Change Log
 author: Louis Abel
 contributors: Steven Spencer
-update: 11-26-2021
+update: 12-02-2021
 ---
 
 # Rocky Linux 8 Change Log
 
 Rocky Linux 8 will receive incremental updates, and minor version upgrades, over time as upstream builds and pushes their own. This page will provide details and information of changes as they occur. A system running Rocky Linux can update their system to full at any time by running `dnf update`. The update of this document can sometimes be delayed. To check for new updates, you can go to the [Rocky Announce](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/) mailing list archive.
 
-## Updates
+### Updates
 
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - Supplemental - 2021-11-30
+
+The following packages have been added to the devel repository:
+
+* ncurses-static
+
+The following packages have been added to the plus repository:
+
+* open-vm-tools (aarch64 specific build only)
+
+### Plus Notes
+
+The plus repository contains items which are not provided in the base repositories, either because they are not available due to the comps and pungi configuration (based on RHEL repositories) or they are requested as alternative builds with additional patches/features not found in the base. The plus repository should be safe to keep enabled.
+
+The current packages in plus (as of 2021-11-30) are:
+
+* openldap-servers (all architectures)
+* thunderbird with PGP support (all architectures)
+* ncurses-static (all architectures)
+* open-vm-tools (aarch64 specific build only)
+
+### Devel Notes
+
+The devel repository should be used with care. It is meant for koji or buildroot purposes and should not be enabled 100% of the time. If you find there is a package you wish to see in the devel repo, send a mail on rocky-devel and/or open a bug report on https://bugs.rockylinux.org
+
+## 8.5 - 2021-11-29
+
+The following packages have been updated since Nov 29, 2021:
+
+* kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
+* nss: nss-3.67.0-6.el8_4 -> nss-3.67.0-7.el8_5
+
+Associated CVE's:
+
+* nss-3.67.0-7.el8_5: CVE-2021-43527
+
+## 8.5 - 2021-11-24
+
+The following packages have been updated since Nov 24, 2021:
+
+* dotnet5.0: dotnet5.0-5.0.208-2.el8_5 -> dotnet5.0-5.0.209-1.el8_5
+* dotnet5.0-build-reference-packages: dotnet5.0-build-reference-packages-0-11.20210607git5f10a4b.el8 -> dotnet5.0-build-reference-packages-0-12.20211117git6ce5818.el8_5
+
 
 ## 8.5 - 2021-11-22
 
