@@ -1,7 +1,7 @@
 ---
 title: Eseguire una copia locale della documentazione
-contributors: Franco Colussi
-update: 04-12-2021
+contributors: Franco Colussi, Steven Spencer
+update: 12-06-2021
 ---
 
 # Esecuzione di una copia locale del sito docs.rockylinux.org per lo sviluppo web e/o gli autori di contenuti

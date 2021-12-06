@@ -1,7 +1,7 @@
 ---
 title: Modifiche alla navigazione
-contributors: Franco Colussi
-update: 05-12-2021
+contributors: Franco Colussi, Steven Spencer
+update: 12-06-2021
 ---
 
 # Modifiche alla navigazione - Un documento di processo per manager/editori
@@ -113,7 +113,7 @@ title: Apache With `mod_ssl`
 ---
 ```
 
-Questo cambia il titolo per quanto riguarda la navigazione, ma lascia il titolo originale dell'autore al suo posto nel documento. 
+Questo cambia il titolo per quanto riguarda la navigazione, ma lascia il titolo originale dell'autore al suo posto nel documento.
 
 Probabilmente non ci sarà molto bisogno di file `.pages` aggiuntivi. Dovrebbero essere usati in modo economico.
 
