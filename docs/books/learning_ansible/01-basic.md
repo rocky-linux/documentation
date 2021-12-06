@@ -1,5 +1,8 @@
 ---
 title: Ansible Basics
+author: Antoine Le Morvan
+contributors: Steven Spencer
+update: 12-06-2021
 ---
 
 # Ansible Basics
@@ -144,7 +147,7 @@ $ sudo curl -o /etc/ansible/ansible.cfg https://raw.githubusercontent.com/ansibl
 $ sudo curl -o /etc/ansible/hosts https://raw.githubusercontent.com/ansible/ansible/devel/examples/hosts
 ```
 
-You can also use the `ansible-config` command to generate a new configuration file :
+You can also use the `ansible-config` command to generate a new configuration file:
 
 ```
 usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
