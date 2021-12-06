@@ -1,8 +1,8 @@
 ---
-title: Working with filters
+title: Working With Filters
 author: Antoine Le Morvan
 contributors: Steven Spencer
-update: 06-12-2021
+update: 06-Dec-2021
 ---
 
 # Management server optimizations
@@ -15,13 +15,13 @@ Some interesting configuration options to comment on:
 
 * `forks`: by default to 5, it is the number of processes that Ansible will launch in parallel to communicate with remote hosts. The higher this number is, the more clients Ansible will be able to manage at the same time, and thus speed up processing. The value you can set is dependent on the CPU/RAM limits of your management server. Note that the default value, `5`, is very small, the Ansible documentation states that many users set it to 50, even 500 or more.
 
-* `gathering`: this variable changes the policy for collecting facts. By default, the value is `implicit`, which implies that facts will be collected systematically. Switching this variable to `smart` allows to collect facts only when they have not already been collected. Coupled with a facts cache (see below), this option can greatly increase performance.
+* `gathering`: this variable changes the policy for collecting facts. By default, the value is `implicit`, which implies that facts will be collected systematically. Switching this variable to `smart` allows for collection facts only when they have not already been collected. Coupled with a facts cache (see below), this option can greatly increase performance.
 
 * `host_key_checking`: Be careful with your server security! However, if you are in control of your environment, it can be interesting to disable the key control of remote servers and save some time at the connection. You can also, on remote servers, disable the use of the DNS of the SSH server (in `/etc/ssh/sshd_config`, option `UseDNS no`), this option wastes time at the connection and is, most of the time, only used in the connection logs.
 
-* `ansible_managed`: This variable, containing `Ansible managed` by default, is typically used in file templates that are deployed on remote servers. It allows you to specify to an administrator that the file is managed automatically and that any changes they make to it will potentially be lost. It can be interesting to let the administrators have more complete messages. Be careful though, if you change this variable, it may cause daemons to restart (via the handlers associated with the templates).
+* `ansible_managed`: This variable, containing `Ansible managed` by default, is typically used in file templates that are deployed on remote servers. It allows you to specify to an administrator that the file is managed automatically and that any changes they make to it will potentially be lost. It can be interesting to let the administrators have a more complete messages. Be careful though, if you change this variable, it may cause daemons to restart (via the handlers associated with the templates).
 
-* `ssh_args = -C -o ControlMaster=auto -o ControlPersist=300s -o PreferredAuthentications=publickey`: specify the ssh connection options. By disabling all authentication methods other than public key, you can save a lot of time. You can also increase the `ControlPersist` (the documentation suggests that a value equivalent to 30 minutes may be appropriate) to improve performance. The connection to a client will stay open longer and can be reused when reconnecting to the same server, which is a significant time saving.
+* `ssh_args = -C -o ControlMaster=auto -o ControlPersist=300s -o PreferredAuthentications=publickey`: specify the ssh connection options. By disabling all authentication methods other than public key, you can save a lot of time. You can also increase the `ControlPersist` to improve performance (the documentation suggests that a value equivalent to 30 minutes may be appropriate). The connection to a client will stay open longer and can be reused when reconnecting to the same server, which is a significant time saving.
 
 * `control_path_dir`: Specify the path to the connection sockets. If this path is too long, it can cause problems. Consider changing it to something short, such as `/tmp/.cp`.
 
@@ -60,7 +60,7 @@ redis-cli
 
 The various passwords and secrets cannot be stored in clear text with the Ansible source code, either locally on the management server or on a possible source code manager.
 
-Ansible proposes to use an encryption manager: `ansible-vault`.
+Ansible proposes using an encryption manager: `ansible-vault`.
 
 The principle is to encrypt a variable or a whole file with the `ansible-vault` command.
 
@@ -96,7 +96,7 @@ $ANSIBLE_VAULT;1.1;AES256
 6334
 ```
 
-Once a file is encrypted, it can still be edited with the command :
+Once a file is encrypted, it can still be edited with the command:
 
 ```
 ansible-vault edit myfile.yml
@@ -157,7 +157,7 @@ ROCKYLINUX.ORG = {
   .rockylinux.org = ROCKYLINUX.ORG
 ```
 
-* Via the python package manager :
+* Via the python package manager:
 
 ```
 pip3 install pywinrm
@@ -193,7 +193,7 @@ You can then generate a global `json` file:
 ansible-cmdb -t json /var/www/ansible/cmdb/out/linux > /var/www/ansible/cmdb/cmdb-linux.json
 ```
 
-If you prefer a web interface :
+If you prefer a web interface:
 
 ```
 ansible-cmdb -t html_fancy_split /var/www/ansible/cmdb/out/
