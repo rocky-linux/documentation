@@ -52,7 +52,7 @@ Fare questo in modo efficace richiede:
 ### Installazione di
 
 * Installare `mkdocs` con l'ambiente python: `pip install mkdocs`
-* Installare i plugin necessari:  `pip install mkdocs-material mkdocs-localsearch mkdocs-awesome-pages-plugin mkdocs-i18n`
+* Installare i plugin necessari:  `pip install mkdocs-material mkdocs-localsearch mkdocs-awesome-pages-plugin mkdocs-redirects mkdocs-i18n`
 * Clonare il repository (indicato sopra)
 
 ### Collegamento ed esecuzione `mkdocs`
