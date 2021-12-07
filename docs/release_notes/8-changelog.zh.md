@@ -1,8 +1,8 @@
 ---
-title:  Rocky Linux 8 Change Log
+title: 更改日志
 author: Louis Abel
-contributors: tianci li
-update: 2021-11-26
+contributors: tianci li, Steven Spencer
+update: 2021-Dec-07
 ---
 
 # Rocky Linux 8 更改日志
@@ -40,7 +40,7 @@ update: 2021-11-26
 以下模块自2021年11月16日起已更新:
 
 * llvm-toolset-rhel8-8050020211122023437.b4937e53
-  
+
 
 ## 8.5 - 2021-11-14
 
@@ -131,7 +131,7 @@ update: 2021-11-26
 
 ## 8.4 - 2021-09-13
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * thunderbird: 更新至78.14.0
 * Firefox: 更新至78.14.0
@@ -145,7 +145,7 @@ update: 2021-11-26
 
 ## 8.4 - 2021-08-24
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
 * libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Addresses
@@ -156,7 +156,7 @@ update: 2021-11-26
 
   * Addresses RLBZ#108
 
-添加了以下仓库/包: 
+添加了以下仓库/包:
 
 * RT (realtime) - 通过运行 `dnf config-manager --set-enabled rt` 来启用
 
@@ -164,7 +164,7 @@ update: 2021-11-26
 
 ## 8.4 - 2021-08-11
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * 389-ds-base: 389-ds-base-1.4.3.16-16.module+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.module+el8.4.0+636+837ee950
 * NetworkManager: NetworkManager-1:1.30.0-9.el8_4 -> NetworkManager-1:1.30.0-10.el8_4
@@ -231,7 +231,7 @@ update: 2021-11-26
 
 ## 8.4 - 2021-08-02
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * varnish -> varnish-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> Addresses CVE-2021-36740
 
@@ -245,13 +245,13 @@ update: 2021-11-26
 
 ## 8.4 - 2021-07-27
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * thunderbird -> thunderbird-78.12.0-3.el8_4
 
 ## 8.4 - 2021-07-21
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
 * systemd -> systemd-239-45.el8_4.2 -> Addresses CVE-2021-33910
@@ -261,20 +261,20 @@ update: 2021-11-26
 
 ## 8.4 - 2021-07-12
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * rocky-release
 * linuxptp
 * rpaste
 * ovn2.13 (NFV)
 
-以下模块已更新: 
+以下模块已更新:
 
 * python36
 
 ### 附加更改
 
-已经实现了实验性的存储库元数据签名。如果要尝试此操作，请在 Rocky-X.repo 文件中设置以下选项: 
+已经实现了实验性的存储库元数据签名。如果要尝试此操作，请在 Rocky-X.repo 文件中设置以下选项:
 
 ```
 repo_gpgcheck=1
@@ -290,7 +290,7 @@ repo_gpgcheck=1
 
 ### 软件包更新
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * NetworkManager -> NetworkManager-11.30.0-9.el8_4
 * cloud-init -> cloud-init-20.3-10.el8_4.3
@@ -322,7 +322,7 @@ repo_gpgcheck=1
 * tuned -> tuned-2.15.0-2.el8_4.1
 * unzip -> unzip-6.0-45.el8_4
 
-以下模块已更新: 
+以下模块已更新:
 
 * PyYAML -> PyYAML-5.4.1-1.module+el8.4.0+595+c96abaa2
 * 389-ds -> 1.4.3.16-16
@@ -371,4 +371,3 @@ aarch64 的 extras 存储库已更新，以包含上游未包含的各种软件�
 * 在点发布(point release)的生命周期内，将在 repos 中提供较旧的包。
 
   * 这将允许在上游软件包回归(regressions)或者需要排查问题的情况下，将其降级到已知的良好版本。
-  
