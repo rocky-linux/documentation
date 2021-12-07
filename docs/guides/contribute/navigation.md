@@ -50,7 +50,7 @@ Doing this effectively requires:
 ### Installing
 
 * Install `mkdocs` with the python environment: `pip install mkdocs`
-* Install needed plugins:  `pip install mkdocs-material mkdocs-localsearch mkdocs-awesome-pages-plugin mkdocs-i18n`
+* Install needed plugins:  `pip install mkdocs-material mkdocs-localsearch mkdocs-awesome-pages-plugin mkdocs-redirects mkdocs-i18n`
 * Clone the repository (noted above)
 
 ### Linking and Running `mkdocs`
