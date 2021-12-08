@@ -24,7 +24,7 @@ and also discover:
 **Knowledge**: :star: :star:   
 **Complexity**: :star: :star:
 
-**Reading time**: 20 minutes
+**阅读时间**: 20 分钟
 
 ****
 
