@@ -811,6 +811,20 @@ You can check the syntax of your playbook:
 $ ansible-playbook --syntax-check play.yml
 ```
 
+You can also use a "linter" for yaml :
+
+```
+$ dnf install -y yamllint
+```
+
+then check the yaml syntax of your playbooks :
+
+```
+$ yamllint test.yml
+test.yml
+  8:1       error    syntax error: could not find expected ':' (syntax)
+```
+
 ## Exercices results
 
 * Create the groups Paris, Tokio, NewYork
