@@ -22,11 +22,11 @@ In this chapter you will learn how to work with Linux with the commands.
 **Knowledge**: :star:   
 **Complexity**: :star:
 
-**Reading time**: 40 minutes
+**阅读时间**: 40 分钟
 
 ****
 
-## Generalities
+## 概论
 
 Current Linux systems have graphical utilities dedicated to the work of an administrator. However, it is important to be able to use the interface in command line mode for several reasons:
 
@@ -1530,7 +1530,7 @@ The commands will all run sequentially in the order of input once the user press
 </code></pre>
 
 <h2 spaces-before="0">
-  Check your Knowledge
+  检测所学知识
 </h2>
 
 <p spaces-before="0">
