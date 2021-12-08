@@ -19,7 +19,7 @@ In this chapter you will learn how to back up and restore your data with Linux.
 **Knowledge**: :star: :star: :star:   
 **Complexity**: :star: :star:
 
-**Reading time**: 40 minutes
+**阅读时间**: 40 分钟
 
 ****
 
@@ -39,7 +39,7 @@ The backup media should be kept in another room (or building) than the server so
 
 In addition, the administrator must regularly check that the media are still readable.
 
-## Generalities
+## 概论
 
 There are two principles, the **backup** and the **archive**.
 
