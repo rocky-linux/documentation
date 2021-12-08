@@ -101,7 +101,6 @@ The follow modules have been updated since Nov 16, 2021:
 
 * llvm-toolset-rhel8-8050020211122023437.b4937e53
 
-
 ## 8.5 - 2021-11-14
 
 The following packages have been updated since the 8.5 release Nov 14, 2021
