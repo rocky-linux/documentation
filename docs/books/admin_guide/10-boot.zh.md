@@ -20,7 +20,7 @@ In this chapter you will learn how the system start.
 **Knowledge**: :star: :star:   
 **Complexity**: :star: :star: :star:
 
-**Reading time**: 20 minutes
+**阅读时间**: 20 分钟
 ****
 
 ## The boot process
