@@ -4,7 +4,7 @@ title: Software Management
 
 # Software Management
 
-## Generalities
+## 概论
 
 On a Linux system, it is possible to install software in two ways:
 
