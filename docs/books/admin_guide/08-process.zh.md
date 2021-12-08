@@ -19,11 +19,11 @@ In this chapter you will learn how to work with processes.
 **Knowledge**: :star: :star:   
 **Complexity**: :star:
 
-**Reading time**: 20 minutes
+**阅读时间**: 20 分钟
 
 ****
 
-## Generalities
+## 概论
 
 An operating system consists of processes. These processes are executed in a specific order and are related to each other. There are two categories of processes, those focused on the user environment and those focused on the hardware environment.
 
