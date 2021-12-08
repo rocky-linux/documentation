@@ -24,7 +24,7 @@ and also discover:
 **Knowledge**: :star: :star:   
 **Complexity**: :star: :star:
 
-**Reading time**: 20 minutes
+**Temps de lecture : **20 minutes
 
 ****
 
@@ -444,7 +444,7 @@ Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) whic
 | `/dev`     | Special device files                                          | _device_                      |
 | `/etc`     | Configuration and script files                                | _editable text configuration_ |
 | `/opt`     | Specific to installed applications                            | _optional_                    |
-| `/proc`    | Virtual file system representing different processes          | _processes_                   |
+| `/proc`    | Virtual file system representing different processes          | _les processus_               |
 | `/var`     | Miscellaneous variable files                                  | _variables_                   |
 
 * To perform a mount or unmount, at the tree level, you must not be under its mount point.
