@@ -18,7 +18,7 @@ In this chapter you will learn some advanced commands for Linux.
 **Knowledge**: :star:   
 **Complexity**: :star: :star: :star:
 
-**Reading time**: 20 minutes
+**阅读时间**: 20 分钟
 
 ****
 
