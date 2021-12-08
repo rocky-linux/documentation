@@ -8,7 +8,7 @@ In this chapter you will learn how to work with and manage the network.
 
 ****
 
-**Objectives** : In this chapter you will learn how to:
+**目标** : 本章将讲解以下内容：
 
 :heavy_check_mark: Configure a workstation to use DHCP;  
 :heavy_check_mark: Configure a workstation to use a static configuration;   
@@ -21,11 +21,11 @@ In this chapter you will learn how to work with and manage the network.
 **Knowledge**: :star: :star:  
 **Complexity**: :star: :star:
 
-**Reading time**: 30 minutes
+**阅读时间**: 30 分钟
 
 ****
 
-## Generalities
+## 概论
 
 To illustrate this chapter, we will use the following architecture.
 
