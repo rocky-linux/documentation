@@ -19,7 +19,7 @@ In this chapter you will learn how to manage scheduled tasks.
 **Knowledge**: :star: :star:  
 **Complexity**: :star: :star:
 
-**Reading time**: 15 minutes
+**Temps de lecture : **15 minutes
 
 ****
 
