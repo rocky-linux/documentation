@@ -811,13 +811,13 @@ You can check the syntax of your playbook:
 $ ansible-playbook --syntax-check play.yml
 ```
 
-You can also use a "linter" for yaml :
+You can also use a "linter" for yaml:
 
 ```
 $ dnf install -y yamllint
 ```
 
-then check the yaml syntax of your playbooks :
+then check the yaml syntax of your playbooks:
 
 ```
 $ yamllint test.yml
