@@ -19,7 +19,7 @@ In this chapter you will learn how to work with processes.
 **Knowledge**: :star: :star:   
 **Complexity**: :star:
 
-**Reading time**: 20 minutes
+**Temps de lecture : **20 minutes
 
 ****
 
