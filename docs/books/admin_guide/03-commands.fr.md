@@ -19,10 +19,10 @@ In this chapter you will learn how to work with Linux with the commands.
 
 :checkered_flag: **user commands**, **linux**
 
-**Knowledge**: :star:   
-**Complexity**: :star:
+**Connaissances : ** :star:   
+**Complexité : ** :star:
 
-**Reading time**: 40 minutes
+**Temps de lecture : **40 minutes
 
 ****
 
