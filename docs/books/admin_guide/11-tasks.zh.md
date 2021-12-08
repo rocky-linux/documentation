@@ -19,11 +19,11 @@ In this chapter you will learn how to manage scheduled tasks.
 **Knowledge**: :star: :star:  
 **Complexity**: :star: :star:
 
-**Reading time**: 15 minutes
+**阅读时间**: 15 分钟
 
 ****
 
-## Generalities
+## 概论
 
 The scheduling of tasks is managed with the `cron` utility. It allows the periodic execution of tasks.
 
