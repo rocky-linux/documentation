@@ -19,7 +19,7 @@ In this chapter you will learn how to back up and restore your data with Linux.
 **Knowledge**: :star: :star: :star:   
 **Complexity**: :star: :star:
 
-**Reading time**: 40 minutes
+**Temps de lecture : **40 minutes
 
 ****
 
