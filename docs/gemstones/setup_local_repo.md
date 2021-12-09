@@ -1,15 +1,20 @@
 ---
-title: Setup Local Rocky Linux Repositories
-Author: codedude
+title: Setup Local Rocky Repositories
+author: codedude
+contributors: Steven Spencer
+update: 09-Dec-2021
 ---
 
 # Introduction
-Sometimes you need to have Rocky Repositories local for building virtual machines, lab environments, etc.  It can also can help save bandwidth if that is a concern.  This article will walk you thru using rsync to copy Rocky repositories to a local web server.  Building a web server is out of the scope of this short article.
+
+Sometimes you need to have Rocky repositories local for building virtual machines, lab environments, etc.  It can also help save bandwidth if that is a concern.  This article will walk you through using `rsync` to copy Rocky repositories to a local web server.  Building a web server is out of the scope of this short article.
 
 ## Requirements
-A web server
 
-## Code 
+* A web server
+
+## Code
+
 ```
 #!/bin/bash
 repos_base_dir="/web/path"
@@ -26,8 +31,10 @@ if [[ -d "$repos_base_dir" ]] ; then
   fi
 fi
 ```
-## Breakdown 
-This simple shell script uses rsync to pull repository files from the nearest mirror.  It also utilizes the "exclude" option which is defined in a text file in the form of keywords that shouldnt be included.  Excludes are good if you have limited disk space or just dont want everything for whatever reason.  We can use  '*' as a wildcard character.  Be careful using '*/ng' as it will exclude anything that match those characters.  An example is below.
+
+## Breakdown
+
+This simple shell script uses `rsync` to pull repository files from the nearest mirror.  It also utilizes the "exclude" option which is defined in a text file in the form of keywords that shouldnt be included.  Excludes are good if you have limited disk space or just dont want everything for whatever reason.  We can use  `*` as a wildcard character.  Be careful using  `*/ng` as it will exclude anything that matches those characters.  An example is below:
 
 ```
 */source*
