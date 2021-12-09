@@ -18,10 +18,10 @@ title: 使用 Rocky 学习 Linux
 * 文件系统
 * 进程
 
-Next, we will cover an essential subject for the System Administrator: The Backup Process. Many software solutions come with Linux to enhance Backups (rsnapshot, lsyncd, etcetera.)It is good to know the essential components of the backup that are within the operating system. We will investigate two tools: `tar` and the less widespread `cpio` in this chapter.
+接下来，我们将介绍对系统管理员来说一个极其重要的课程: 备份进程。 Linux附带了许多软件解决方案来加强备份(rsnapshot、lsyncd等)，了解操作系统中这些备份的重要组件是有好处的。 在本章中，我们将研究两个工具: `tar` 和不太常用的 `cpio`
 
-Management of the system during the boot process has evolved significantly in recent years since the arrival of the systemd.
+自从systemd出现后，系统在引导过程中的管理在最近几年已经有了很大的发展。
 
 
-We will conclude by examining the management of tasks, the implementation of the network, and software installation.
+最后，我们将研究任务的管理、网络的实现和软件的安装。
 
