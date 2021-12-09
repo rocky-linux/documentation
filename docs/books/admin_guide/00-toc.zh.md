@@ -1,8 +1,8 @@
 ---
-title: Learning Linux With Rocky
+title: 与Rocky一起学习Linux
 ---
 
-# Learning Linux with Rocky
+# 与Rocky一起学习Linux
 
 The Administration Guide is a collection of Educational Documents focused on System Administrators. They can be used by future System Administrators trying to get up to speed, by current System Administrators who would like a refresher, or by any Linux user who'd like to learn more about the Linux environment, commands, processes, and more. Like all documents of this type, it will evolve and update over time.
 
