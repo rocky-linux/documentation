@@ -314,24 +314,24 @@ In questo ultimo esempio, l'opzione `d` visualizza una data fornita. L'opzione `
 
 Il display della data può seguire i seguenti formati:
 
-| Option | Formato                                 |
-| ------ | --------------------------------------- |
-| `+%A`  | Nome completo del giorno                |
-| `+%B`  | Nome completo del mese                  |
-| `+%c`  | Visualizzazione completa della data     |
-| `+%d`  | Numero del giorno                       |
-| `+%F`  | Data nel formato`YYYY-MM-DD`            |
-| `+%G`  | Anno                                    |
-| `+%H`  | Ora del giorno                          |
-| `+%j`  | Giorno dell'anno                        |
-| `+%m`  | Numero del mese                         |
-| `+%M`  | Minuti                                  |
-| `+%R`  | Tempo nel formato`hh:mm`                |
-| `+%s`  | Secondi dal 1° gennaio 1970             |
-| `+%T`  | Tempo nel formato`hh:mm:ss`             |
-| `+%u`  | Giorno della settimana (`1` per Lunedì) |
-| `+%V`  | Numero della settimana (`+%V`)          |
-| `+%x`  | Data in formato`DD/MM/YYYY`             |
+| Opzione | Formato                                 |
+| ------- | --------------------------------------- |
+| `+%A`   | Nome completo del giorno                |
+| `+%B`   | Nome completo del mese                  |
+| `+%c`   | Visualizzazione completa della data     |
+| `+%d`   | Numero del giorno                       |
+| `+%F`   | Data nel formato`YYYY-MM-DD`            |
+| `+%G`   | Anno                                    |
+| `+%H`   | Ora del giorno                          |
+| `+%j`   | Giorno dell'anno                        |
+| `+%m`   | Numero del mese                         |
+| `+%M`   | Minuti                                  |
+| `+%R`   | Tempo nel formato`hh:mm`                |
+| `+%s`   | Secondi dal 1° gennaio 1970             |
+| `+%T`   | Tempo nel formato`hh:mm:ss`             |
+| `+%u`   | Giorno della settimana (`1` per Lunedì) |
+| `+%V`   | Numero della settimana (`+%V`)          |
+| `+%x`   | Data in formato`DD/MM/YYYY`             |
 
 Il comando `date` consente anche di modificare la data e l'ora del sistema. In questo caso, verrà utilizzata l'opzione `-s`.
 
@@ -457,24 +457,24 @@ $ ls /home
 
 Le opzioni principali del comando `ls` sono :
 
-| Option | Informazione                                                                                                            |
-| ------ | ----------------------------------------------------------------------------------------------------------------------- |
-| `-a`   | Visualizza tutti i file, anche quelli nascosti. I file nascosti in Linux sono quelli che iniziano con`.`.               |
-| `-i`   | Visualizza i numeri di inode.                                                                                           |
-| `-l`   | Il comando con l'opzione`-l` visualizza un elenco verticale dei file con informazioni aggiuntive formattate in colonne. |
+| Opzione | Informazione                                                                                                            |
+| ------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `-a`    | Visualizza tutti i file, anche quelli nascosti. I file nascosti in Linux sono quelli che iniziano con`.`.               |
+| `-i`    | Visualizza i numeri di inode.                                                                                           |
+| `-l`    | Il comando con l'opzione`-l` visualizza un elenco verticale dei file con informazioni aggiuntive formattate in colonne. |
 
 Il comando `ls`, tuttavia, ha molte opzioni (vedi `man`):
 
-| Option | Informazione                                                                                                                                          |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-d`   | Visualizza le informazioni di una directory invece di elencare i suoi contenuti.                                                                      |
-| `-g`   | Visualizza UID e GID al posto dei nomi dei proprietari.                                                                                               |
-| `-h`   | Visualizza le dimensioni dei file nel formato più appropriato (byte, kilobyte, megabyte, gigabyte, ...). `h` stà per Human Readable.                  |
-| `-s`   | Visualizza la dimensione in byte (tranne l'opzione`k`).                                                                                               |
-| `-A`   | Visualizza tutti i file nella directory tranne`.` e `..`.                                                                                             |
-| `-R`   | Visualizza il contenuto delle sottodirectory in modo ricorsivo.                                                                                       |
-| `-F`   | Visualizza il tipo di file. Stampa un`/` per una directory, `*` per gli eseguibili, `@` per un collegamento simbolico, e niente per un file di testo. |
-| `-X`   | ordina i file in base alle loro estensioni.                                                                                                           |
+| Opzione | Informazione                                                                                                                                          |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-d`    | Visualizza le informazioni di una directory invece di elencare i suoi contenuti.                                                                      |
+| `-g`    | Visualizza UID e GID al posto dei nomi dei proprietari.                                                                                               |
+| `-h`    | Visualizza le dimensioni dei file nel formato più appropriato (byte, kilobyte, megabyte, gigabyte, ...). `h` stà per Human Readable.                  |
+| `-s`    | Visualizza la dimensione in byte (tranne l'opzione`k`).                                                                                               |
+| `-A`    | Visualizza tutti i file nella directory tranne`.` e `..`.                                                                                             |
+| `-R`    | Visualizza il contenuto delle sottodirectory in modo ricorsivo.                                                                                       |
+| `-F`    | Visualizza il tipo di file. Stampa un`/` per una directory, `*` per gli eseguibili, `@` per un collegamento simbolico, e niente per un file di testo. |
+| `-X`    | ordina i file in base alle loro estensioni.                                                                                                           |
 
 * Descrizione delle colonne:
 
@@ -902,9 +902,9 @@ Esempio: Visualizza un file di log visualizzando prima l'ultima riga:
 head [-n x] file
 ```
 
-| Option | Observation                       |
-| ------ | --------------------------------- |
-| `-n x` | Mostra le prime linee`x` del file |
+| Opzione | Osservazione                      |
+| ------- | --------------------------------- |
+| `-n x`  | Mostra le prime linee`x` del file |
 
 Il comando `head` visualizza l'inizio di un file.
 
@@ -916,12 +916,12 @@ Per impostazione predefinita (senza l'opzione `-n`), il comando `head` visualizz
 tail [-f] [-n x] file
 ```
 
-| Option | Observation                                    |
-| ------ | ---------------------------------------------- |
-| `-n x` | Visualizza le ultime linee del file`x`         |
-| `-f`   | Visualizza le modifiche al file in tempo reale |
+| Opzione | Osservazione                                   |
+| ------- | ---------------------------------------------- |
+| `-n x`  | Visualizza le ultime linee del file`x`         |
+| `-f`    | Visualizza le modifiche al file in tempo reale |
 
-Il comando `tail` visualizza la fine di un file.
+Esempio:
 
 ```bash
 tail -n 3 /etc/passwd
@@ -1091,7 +1091,7 @@ Se la directory di ricerca non è specificata, il comando `find` cercherà dalla
 
 È possibile usare l'opzione `-exec` del comando `find` per eseguire un comando con il risultato ottenuto dalla ricerca:
 
-| Option              | Observation                     |
+| Opzione             | Osservazione                    |
 | ------------------- | ------------------------------- |
 | `-perm permissions` | Cerca i file dai loro permessi. |
 | `-size size`        | Cerca i file per dimensione.    |
@@ -1104,7 +1104,7 @@ Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso 
 $ find /tmp -name *.txt -exec rm -f {} \;
 ```
 
-Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.txt`, il comando `find` costruirà la stringa sostituendo nella stringa `rm -f {} \;` le parentesi graffe con uno dei risultati della ricerca, e farà questo tutte le volte che ci sono dei risultati.
+Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso `*.txt` e li elimina.
 
 
 !!! Tip "Comprendere l'opzione `-exec`" Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
@@ -1124,7 +1124,7 @@ Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.t
 
 ### comando `whereis`
 
-Il carattere `;` è un carattere speciale di shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
+Il comando `whereis` ricerca i file relativi a un comando.
 
 ```bash
 whereis [-b] [-m] [-s] command
@@ -1137,15 +1137,15 @@ $ whereis -b ls
 ls: /bin/ls
 ```
 
-| Option | Observation                     |
-| ------ | ------------------------------- |
-| `-b`   | Cerca solo il file binario.     |
-| `-m`   | Ricerca solo per le pagine man. |
-| `-s`   | Ricerca solo per file sorgente. |
+| Opzione | Osservazione                    |
+| ------- | ------------------------------- |
+| `-b`    | Cerca solo il file binario.     |
+| `-m`    | Ricerca solo per le pagine man. |
+| `-s`    | Ricerca solo per file sorgente. |
 
 ### command `grep`
 
-Il comando `whereis` ricerca i file relativi a un comando.
+Il comando `grep` ricerca una stringa in un file.
 
 ```bash
 grep [-w] [-i] [-v] "string" file
@@ -1158,15 +1158,15 @@ $ grep -w "root:" /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 ```
 
-| Option | Observation                                          |
-| ------ | ---------------------------------------------------- |
-| `-i`   | Ignora il maiuscolo/minuscolo della stringa cercata. |
-| `-v`   | Esclude le linee contenenti la stringa.              |
-| `-w`   | Cerca la parola esatta.                              |
+| Opzione | Osservazione                                         |
+| ------- | ---------------------------------------------------- |
+| `-i`    | Ignora il maiuscolo/minuscolo della stringa cercata. |
+| `-v`    | Esclude le linee contenenti la stringa.              |
+| `-w`    | Cerca la parola esatta.                              |
 
-Il comando `grep` ricerca una stringa in un file.
-* la tastiera è il dispositivo di input per il canale 0, chiamato **stdin** ;
-* lo schermo è il dispositivo di uscita per i canali 1 e 2, chiamati **stdout** e **stderr**.
+Il comando `grep` restituisce la linea completa contenente la stringa che stai cercando.
+* Il carattere speciale `^` è usato per cercare una stringa all'inizio di una linea.
+* Il carattere speciale `$` cerca una stringa alla fine di una linea.
 
 ```bash
 $ grep -w "^root" /etc/passwd
@@ -1174,7 +1174,7 @@ $ grep -w "^root" /etc/passwd
 
 !!! Note "Nota" Questo comando è molto potente ed è altamente raccomandata la consultazione del manuale. Ha molti utilizzi derivati.
 
-Il comando `grep` restituisce la linea completa contenente la stringa che stai cercando.
+È possibile cercare una stringa in un albero di file con l'opzione `-R`.
 
 ```bash
 grep -R "Virtual" /etc/httpd
@@ -1225,8 +1225,8 @@ Sui sistemi UNIX e Linux, ci sono tre flussi standard. Consentono ai programmi, 
 Questi flussi sono chiamati canale X descrittore di file X.
 
 Per impostazione predefinita:
-* Esempi:
-* Una **pipe** è un meccanismo che consente di collegare l'output standard di un primo comando all'ingresso standard di un secondo comando.
+* * la tastiera è il dispositivo di input per il canale 0, chiamato **stdin** ;
+* lo schermo è il dispositivo di uscita per i canali 1 e 2, chiamati **stdout** e **stderr**.
 
 ![standards channels](images/input-output.png)
 
@@ -1266,13 +1266,13 @@ bye
 STOP
 ```
 
-Questa funzione è utilizzata per i comandi interattivi negli script:
+La shell esce dal comando `ftp` quando riceve una linea contenente solo la parola chiave.
 
 !!! Warning "Avvertimento" La parola chiave finale, quì `END` o `STOP`, deve essere l'unica parola sulla linea e deve essere all'inizio della linea.
 
-La shell esce dal comando `ftp` quando riceve una linea contenente solo la parola chiave.
+Il reindirizzamento dell'ingresso standard viene usato raramente perché la maggior parte dei comandi accetta un nome di file come argomento.
 
-Per fare ciò, useremo l'opzione `d`:
+Il comando `wc` potrebbe essere usato in questo modo:
 
 ```bash
 $ wc -l .bash_profile
@@ -1283,21 +1283,21 @@ $ wc -l < .bash_profile
 
 ### Redirezione Output
 
-Il reindirizzamento dell'ingresso standard viene usato raramente perché la maggior parte dei comandi accetta un nome di file come argomento.
+L'output standard può essere reindirizzato ad altri file usando il carattere `>` o `>>`.
 
-Il comando `wc` potrebbe essere usato in questo modo:
+Il semplice `>` reindirizzamento sovrascrive il contenuto del file di output:
 
 ```bash
 $ date +%F > date_file
 ```
 
-L'output standard può essere reindirizzato ad altri file usando il carattere `>` o `>>`.
+mentre il doppio reindirizzamento `>>` aggiunge (concatena) al contenuto del file di output.
 
 ```bash
 $ date +%F >> date_file
 ```
 
-Il semplice `>` reindirizzamento sovrascrive il contenuto del file di output:
+In entrambi i casi, il file viene creato automaticamente quando non esiste.
 
 L'output di errore standard può anche essere reindirizzato a un altro file. Questa volta sarà necessario specificare il numero del canale (che può essere omesso per i canali 0 e 1):
 
@@ -1308,7 +1308,7 @@ $ ls -R / 2>> errors_file
 
 ### Esempi di reindirizzamento
 
-In entrambi i casi, il file viene creato automaticamente quando non esiste.
+Reindirizzamento di 2 uscite a 2 file:
 
 ```bash
 $ ls -R / >> ok_file 2>> nok_file
@@ -1330,7 +1330,7 @@ Quando entrambi i flussi di uscita vengono reindirizzati, nessuna informazione v
 
 ### Pipes
 
-Reindirizzamento del *stderr* a un "pozzo senza fondo" (`/dev/null`) :
+Una **pipe** è un meccanismo che consente di collegare l'output standard di un primo comando all'ingresso standard di un secondo comando.
 
 Questa comunicazione è UNI direzionale ed è fatta con il simbolo `|`. Il simbolo della pipe `|` è ottenuto premendo il tasto  <kbd>SHIFT</kbd> + <kbd>|</kbd> contemporaneamente.
 
@@ -1340,33 +1340,33 @@ Tutti i dati inviati dal controllo a sinistra della pipe tramite il canale di us
 
 I comandi particolarmente utilizzati dopo una pipe sono i filtri.
 
-* `.bashrc` file nella directory di accesso dell'utente;
+* Esempi:
 
-Tutti i dati inviati dal controllo a sinistra della pipe tramite il canale di uscita standard vengono inviati al canale di ingresso standard del controllo a destra.
+Mostra solo l'inizio:
 
 ```bash
 $ ls -lia / | head
 ```
 
-I comandi particolarmente utilizzati dopo una pipe sono i filtri.
+Mostra solo la fine:
 
 ```bash
 $ ls -lia / | tail
 ```
 
-Mostra solo l'inizio:
+Ordina il risultato:
 
 ```bash
 $ ls -lia / | sort
 ```
 
-Mostra solo la fine:
+Conta il numero di parole / caratteri:
 
 ```bash
 $ ls -lia / | wc
 ```
 
-Ordina il risultato.:
+Cerca una stringa nel risultato:
 
 ```bash
 $ ls -lia / | grep fichier
@@ -1376,7 +1376,7 @@ $ ls -lia / | grep fichier
 
 ### comando `tee`
 
-Conta il numero di parole / caratteri:
+Il comando `tee` viene utilizzato per reindirizzare l'output standard di un comando a un file mantenendo il display dello schermo.
 
 Cerca una stringa nel risultato:
 
@@ -1385,19 +1385,19 @@ $ ls -lia / | tee fic
 $ cat fic
 ```
 
-Il comando `tee` viene utilizzato per reindirizzare l'output standard di un comando a un file mantenendo il display dello schermo.
+L'opzione `-a` aggiunge al file invece di sovrascriverla.
 
 ### comandi `alias` e `unalias`
 
-Viene combinato con la pipe  `|` per ricevere come input l'output del comando da reindirizzare:
+Usare **alias** è un modo per chiedere alla shell di ricordare un determinato comando con le sue opzioni e dargli un nome.
 
-L'opzione `-a` aggiunge al file invece di sovrascriverla.
+Per esempio:
 
 ```bash
 $ ll
 ```
 
-Usare **alias** è un modo per chiedere alla shell di ricordare un determinato comando con le sue opzioni e dargli un nome.
+sostituirà il comando:
 
 ```bash
 $ ls -l
@@ -1427,7 +1427,7 @@ Per un uso permanente, devono essere creati nel:
     alias cd='rm -Rf'
     ```
 
-Per un uso permanente, devono essere creati nel:
+Il comando `unalias` ti consente di eliminare gli alias.
 
 Per eliminare un singolo alias:
 
@@ -1441,21 +1441,21 @@ Il comando `unalias` ti consente di eliminare gli alias.
 $ unalias -a
 ```
 
-Per eliminare un singolo alias:
+Per disabilitare temporaneamente un alias, la combinazione è `\<alias name>`.
 
-Per eliminare tutti gli alias:
+Ad esempio se digitiamo:
 
 ```bash
 $ type ls
 ```
 
-Per disabilitare temporaneamente un alias, la combinazione è `\<alias name>`.
+potrebbe restituire quanto segue:
 
 ```bash
 ls is an alias to « ls -rt »
 ```
 
-Ad esempio se digitiamo:
+Ora che questo è noto, possiamo vedere i risultati dell'utilizzo dell'alias o disabilitarlo in una volta con il carattere `\` eseguendo il seguente:
 
 ```bash
 $ ls file*   # ordine per data
@@ -1503,11 +1503,11 @@ extract () {
 
 * Se `alias cmount` restituisce quanto segue: `alias cmount="mount | column -t"`
 
-potrebbe restituire quanto segue:
+Possiamo usare il cmount per mostrare tutti i supporti del sistema in colonne come questa:
 
 `[root]# cmount`
 
-Possiamo usare il cmount per mostrare tutti i supporti del sistema in colonne come questa:
+che ritornerà il nostro filesystem montato nel seguente formato:
 
 ```bash
 /dev/simfs  on  /                                          type  simfs        (rw,relatime,usrquota,grpquota)
@@ -1524,7 +1524,7 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 Il carattere `;` concatena i comandi.
 
-I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che l'utente preme <kbd>ENTER</kdb> </p> 
+I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che l'utente preme <kbd>ENTER</kdb>.</p> 
 
 <pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
 </code></pre>
