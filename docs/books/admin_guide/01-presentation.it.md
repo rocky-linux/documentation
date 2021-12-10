@@ -88,7 +88,7 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 TODO: graphics with market share for servers and pc.
 -->
 
-Linux non è ancora molto conosciuto dal grande pubblico, anche se lo usa regolarmente. Linux infatti è nascosto in **smartphone**, **televisori**, **internet box**, ecc. Quasi il **70% delle pagine web** servite nel mondo sono servite da un server Linux o UNIX! Almost **70% of the web pages** served in the world are served by a Linux or UNIX server!
+Linux non è ancora molto conosciuto dal grande pubblico, anche se lo usa regolarmente. Linux infatti è nascosto in **smartphone**, **televisori**, **internet box**, ecc. Quasi il **70% delle pagine web** servite nel mondo sono servite da un server Linux o UNIX!
 
 Linux equipaggia poco più del **3% dei personal computer** ma più dell'**82% degli smartphone**. **Android** è un sistema operativo il cui kernel è Linux.
 
