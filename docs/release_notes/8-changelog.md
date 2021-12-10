@@ -2,7 +2,7 @@
 title:  Rocky Linux 8 Change Log
 author: Louis Abel
 contributors: Steven Spencer
-update: 12-03-2021
+update: 12-10-2021
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,35 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - 2021-12-09
+
+The following packages have been updated since December 09, 2021:
+
+* thunderbird: thunderbird-91.3.0-2.el8_4 ->
+* thunderbird-91.4.0-2.el8_5
+* thunderbird: thunderbird-91.3.0-2.el8.plus ->
+* thunderbird-91.4.0-2.el8.plus
+
+### Release Engineering Notes
+
+Thunderbird: This is a regular ESR build update for thunderbird. This update is for both the base repositories and Plus. The Plus repository contains a version of thunderbird with PGP support.
+
+## 8.5 - 2021-12-03
+
+The following packages have been updated since December 03, 2021:
+
+* abrt: abrt-2.10.9-21.el8 -> abrt-2.10.9-21.el8.rocky.0
+* firefox: firefox-91.3.0-1.el8_4 -> firefox-91.4.0-1.el8_5
+* sos: sos-4.1-5.el8 -> sos-4.1-5.el8.rocky.2
+
+### Release Engineering Notes
+
+Firefox: This is an updated ESR build for Firefox.
+
+abrt: This is a mostly cosmetic change. It removes the reliance on the libreport-rhel* and rhtsupport plugins. These packages can be safely removed after updating to the new abrt package.
+
+sos: This is a mostly cosmetic change. It brings down the upstream Rocky policy. See [this PR for more details](https://github.com/sosreport/sos/pull/2784)
 
 ## 8.5 - 2021-12-02
 
