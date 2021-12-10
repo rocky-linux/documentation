@@ -1524,7 +1524,7 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 The `;` character strings the commands.
 
-The commands will all run sequentially in the order of input once the user presses <kbd>ENTER</kdb>.</p> 
+Les commandes s'exécuteront toutes séquentiellement dans l'ordre d'entrée une fois que l'utilisateur aura pressé <kbd>ENTRÉE</kdb>.</p> 
 
 <pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
 </code></pre>
