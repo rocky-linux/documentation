@@ -96,7 +96,7 @@ Il comando `cfdisk` è usato per gestire le partizioni.
 cfdisk device
 ```
 
-Example:
+Esempio:
 
 ```
 $ sudo cfdisk /dev/sda
@@ -179,7 +179,7 @@ Il comando `pvcreate` è usato per creare volumi fisici. Comprende partizioni Li
 pvcreate [-options] partition
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# pvcreate /dev/hdb1
@@ -205,7 +205,7 @@ Il comando `vgcreate` è usato per creare gruppi di volumi. Raggruppa uno o più
 vgcreate volume physical_volume [PV...]
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# vgcreate volume1 /dev/hdb1
@@ -221,7 +221,7 @@ Il comando `lvcreate` crea volumi logici. Il file system viene quindi creato su 
 lvcreate -L size [-n name] VG_name
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# lvcreate –L 600M –n VolLog1 volume1
@@ -243,7 +243,7 @@ Il comando `pvdisplay` consente di visualizzare informazioni sui volumi fisici.
 pvdisplay /dev/PV_name
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# pvdisplay /dev/PV_name
@@ -257,7 +257,7 @@ Il comando `vgdisplay` ti consente di visualizzare informazioni sui gruppi di vo
 vgdisplay VG_name
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# vgdisplay volume1
@@ -271,7 +271,7 @@ Il comando `lvdisplay` ti permette di visualizzare le informazioni sui volumi lo
 lvdisplay /dev/VG_name/LV_name
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# lvdisplay /dev/volume1/VolLog1
@@ -309,7 +309,7 @@ Il comando `mkfs` consente di creare un file system Linux.
 mkfs [-t fstype] filesys
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# mkfs -t ext4 /dev/sda1
@@ -405,7 +405,7 @@ Il comando `fsck` è uno strumento di controllo e riparazione di integrità in m
 fsck [-sACVRTNP] [ -t fstype ] filesys
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# fsck /dev/sda1
@@ -503,7 +503,7 @@ Il comando `mount` permette di montare e visualizzare le unità logiche nell'alb
 mount [-option] [device] [directory]
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# mount /dev/sda7 /home
@@ -529,7 +529,7 @@ Il comando `umount` è usato per smontare le unità logiche.
 umount [-option] [device] [directory]
 ```
 
-Example:
+Esempio:
 
 ```
 [root]# umount /home
@@ -835,7 +835,7 @@ L'indicazione della modalità può essere una rappresentazione ottale (e.g. `744
 
 Diverse operazioni simboliche possono essere separate da virgole
 
-Example:
+Esempio:
 
 ```
 [root]# chmod -R u+rwx,g+wx,o-r /tmp/file1
@@ -916,7 +916,7 @@ r--r-- 1 root root … /tmp/myfile
 -rwxrwx--- 1 root root … /tmp/myfile
 ```
 
-### Special rights
+### Permessi speciali
 
 Oltre ai permessi fondamentali (`rwx`), ci sono i permessi particolari:
 
@@ -968,7 +968,7 @@ L'identità dell'utente che richiede l'esecuzione dell'ordine non è più presa 
 
 Infatti, un utente potrebbe deve eseguire un programma (di solito un'utilità di sistema) ma non ha i permessi di accesso necessari. Impostando i permessi appropriati (**s** a livello proprietario e/o a livello di gruppo), l'utente del programma ha, per il tempo della sua esecuzione, l'identità del proprietario (o quella del gruppo) del programma.
 
-Example:
+Esempio:
 
 Il file `/usr/bin/passwd` è un file eseguibile (un comando) con un _SUID_.
 
@@ -1006,7 +1006,7 @@ Non è possibile passare il _SUID_ o _SGID_ a una shell script. Il sistema non l
 
 In una directory con il permesso _SGID_, qualsiasi file creato erediterà il gruppo che possiede la directory anziché quella dell'utente di creazione.
 
-Example:
+Esempio:
 ```
 [rockstar] $ ls -ld /data/
 drwxrwsr-x 2 root users 4096 26 oct. 19:43 /data
@@ -1035,7 +1035,7 @@ Questo comportamento è definito dalla **maschera predefinita**.
 
 Il principio è rimuovere il valore definito dalla maschera ai massimi permessi senza i permessi di esecuzione.
 
-For a directory :
+Per una directory :
 
 ![How the SUID works](images/07-file-systems-017.png)
 
@@ -1051,7 +1051,7 @@ Il comando `umask` ti consente di visualizzare e modificare la maschera.
 umask [option] [mode]
 ```
 
-Example:
+Esempio:
 ```
 $ umask 033
 $ umask
