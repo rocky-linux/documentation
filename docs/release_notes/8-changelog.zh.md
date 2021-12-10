@@ -1,8 +1,8 @@
 ---
-title:  Rocky Linux 8 Change Log
+title: 更改日志
 author: Louis Abel
-contributors: tianci li
-update: 2021-11-26
+contributors: tianci li, Steven Spencer
+update: 2021-Dec-07
 ---
 
 # Rocky Linux 8 更改日志
@@ -15,6 +15,65 @@ update: 2021-11-26
 
 所有Rocky Linux组件都是由托管在[git.rockylinux.org](https://git.rockylinux.org) 上的源代码进行构建的。此外，SRPM与存储库将一起发布在对应的"source"目录中，您可以在我们的任意镜像网站上找到它们，镜像网站的源码包与我们发布的每个二进制RPM相同。
 
+## 8.5 - 2021-12-02
+
+以下软件包自2021年12月2日起进行了更新:
+
+* mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
+* mailman-3:2.1.29-12.module+el8.5.0+717+27fd1ba7.2
+
+关联的CVE:
+
+* mailman: CVE-2021-44227
+
+以下模块自2021年11月2日起已更新:
+
+* mailman-2.1-8050020211202160117.fd901a62
+
+
+## 8.5 - 补充部分 - 2021-11-30
+
+以下软件包已添加到 devel 存储库中:
+
+* ncurses-static
+
+以下软件包已添加到 plus 存储库中:
+
+* open-vm-tools (aarch64 specific build only)
+
+### 附加注释
+
+plus 存储库包含了 base 存储库中没有提供的项目，原因可能是由于comps和pungi配置（基于 RHEL 存储库）而无法使用这些项目，或者是在 base 存储库中找不到其他补丁/功能，被要求作为替代构建。但 plus 存储库应该可以安全地保持启用状态。
+
+在plus 存储库中的当前软件包是（截至2021-11-30）：
+
+* openldap-servers (all architectures)
+* thunderbird with PGP support (all architectures)
+* ncurses-static (all architectures)
+* open-vm-tools (aarch64 specific build only)
+
+### 开发笔记
+
+应谨慎使用 devel 存储库，它是被用于 koji 或 buildroot 目的的，不应该100%启用。如果您希望在 devel 存储库中找到您想要查看的软件包，请在rocky-devel上发送邮件和（或者）在 https://bugs.rockylinux.org 上打开bug报告
+
+## 8.5 - 2021-11-29
+
+以下软件包自2021年11月29日起已更新:
+
+* kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
+* nss: nss-3.67.0-6.el8_4 -> nss-3.67.0-7.el8_5
+
+关联的CVE:
+
+* nss-3.67.0-7.el8_5: CVE-2021-43527
+
+## 8.5 - 2021-11-24
+
+以下软件包自2021年11月24日起已更新：
+
+* dotnet5.0: dotnet5.0-5.0.208-2.el8_5 -> dotnet5.0-5.0.209-1.el8_5
+* dotnet5.0-build-reference-packages: dotnet5.0-build-reference-packages-0-11.20210607git5f10a4b.el8 -> dotnet5.0-build-reference-packages-0-12.20211117git6ce5818.el8_5
+  
 ## 8.5 - 2021-11-22
 
 以下软件包自2021年11月22日起进行了更新(包含更新后的模块软件包)：
@@ -40,7 +99,7 @@ update: 2021-11-26
 以下模块自2021年11月16日起已更新:
 
 * llvm-toolset-rhel8-8050020211122023437.b4937e53
-  
+
 
 ## 8.5 - 2021-11-14
 
@@ -131,7 +190,7 @@ update: 2021-11-26
 
 ## 8.4 - 2021-09-13
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * thunderbird: 更新至78.14.0
 * Firefox: 更新至78.14.0
@@ -145,7 +204,7 @@ update: 2021-11-26
 
 ## 8.4 - 2021-08-24
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
 * libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Addresses
@@ -156,7 +215,7 @@ update: 2021-11-26
 
   * Addresses RLBZ#108
 
-添加了以下仓库/包: 
+添加了以下仓库/包:
 
 * RT (realtime) - 通过运行 `dnf config-manager --set-enabled rt` 来启用
 
@@ -164,7 +223,7 @@ update: 2021-11-26
 
 ## 8.4 - 2021-08-11
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * 389-ds-base: 389-ds-base-1.4.3.16-16.module+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.module+el8.4.0+636+837ee950
 * NetworkManager: NetworkManager-1:1.30.0-9.el8_4 -> NetworkManager-1:1.30.0-10.el8_4
@@ -231,7 +290,7 @@ update: 2021-11-26
 
 ## 8.4 - 2021-08-02
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * varnish -> varnish-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> Addresses CVE-2021-36740
 
@@ -245,13 +304,13 @@ update: 2021-11-26
 
 ## 8.4 - 2021-07-27
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * thunderbird -> thunderbird-78.12.0-3.el8_4
 
 ## 8.4 - 2021-07-21
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
 * systemd -> systemd-239-45.el8_4.2 -> Addresses CVE-2021-33910
@@ -261,20 +320,20 @@ update: 2021-11-26
 
 ## 8.4 - 2021-07-12
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * rocky-release
 * linuxptp
 * rpaste
 * ovn2.13 (NFV)
 
-以下模块已更新: 
+以下模块已更新:
 
 * python36
 
 ### 附加更改
 
-已经实现了实验性的存储库元数据签名。如果要尝试此操作，请在 Rocky-X.repo 文件中设置以下选项: 
+已经实现了实验性的存储库元数据签名。如果要尝试此操作，请在 Rocky-X.repo 文件中设置以下选项:
 
 ```
 repo_gpgcheck=1
@@ -290,7 +349,7 @@ repo_gpgcheck=1
 
 ### 软件包更新
 
-以下软件包已更新: 
+以下软件包已更新:
 
 * NetworkManager -> NetworkManager-11.30.0-9.el8_4
 * cloud-init -> cloud-init-20.3-10.el8_4.3
@@ -322,7 +381,7 @@ repo_gpgcheck=1
 * tuned -> tuned-2.15.0-2.el8_4.1
 * unzip -> unzip-6.0-45.el8_4
 
-以下模块已更新: 
+以下模块已更新:
 
 * PyYAML -> PyYAML-5.4.1-1.module+el8.4.0+595+c96abaa2
 * 389-ds -> 1.4.3.16-16
@@ -371,4 +430,3 @@ aarch64 的 extras 存储库已更新，以包含上游未包含的各种软件�
 * 在点发布(point release)的生命周期内，将在 repos 中提供较旧的包。
 
   * 这将允许在上游软件包回归(regressions)或者需要排查问题的情况下，将其降级到已知的良好版本。
-  

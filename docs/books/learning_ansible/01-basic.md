@@ -1,5 +1,8 @@
 ---
 title: Ansible Basics
+author: Antoine Le Morvan
+contributors: Steven Spencer
+update: 12-06-2021
 ---
 
 # Ansible Basics
@@ -142,8 +145,30 @@ An example of the `ansible.cfg` [is given here](https://github.com/ansible/ansib
 $ sudo mkdir /etc/ansible
 $ sudo curl -o /etc/ansible/ansible.cfg https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg
 $ sudo curl -o /etc/ansible/hosts https://raw.githubusercontent.com/ansible/ansible/devel/examples/hosts
+```
+
+You can also use the `ansible-config` command to generate a new configuration file:
 
 ```
+usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
+
+View ansible configuration.
+
+positional arguments:
+  {list,dump,view,init}
+    list                Print all config options
+    dump                Dump configuration
+    view                View configuration file
+    init                Create initial configuration
+```
+
+Example:
+
+```
+ansible-config init --disabled > /etc/ansible/ansible.cfg
+```
+
+The `--disabled` option allows you to comment out the set of options by prefixing them with a `;`.
 
 ### The inventory file `/etc/ansible/hosts`
 
@@ -784,6 +809,20 @@ You can check the syntax of your playbook:
 
 ```
 $ ansible-playbook --syntax-check play.yml
+```
+
+You can also use a "linter" for yaml:
+
+```
+$ dnf install -y yamllint
+```
+
+then check the yaml syntax of your playbooks:
+
+```
+$ yamllint test.yml
+test.yml
+  8:1       error    syntax error: could not find expected ':' (syntax)
 ```
 
 ## Exercices results

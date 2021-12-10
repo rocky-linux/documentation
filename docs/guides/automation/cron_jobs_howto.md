@@ -42,6 +42,7 @@ and
 `dnf remove cronie-anacron`
 
 As you might expect, this removes `anacron` from the server and reverts to running tasks within the "dot" directories on a strict schedule. This is defined by this file: `/etc/cron.d/dailyjobs`, which has the following contents:
+
 ```
 # Run the daily, weekly, and monthly jobs if cronie-anacron is not installed
 SHELL=/bin/bash
@@ -53,6 +54,7 @@ MAILTO=root
 22 4 * * 0 root [ ! -f /etc/cron.hourly/0anacron ] && run-parts /etc/cron.weekly
 42 4 1 * * root [ ! -f /etc/cron.hourly/0anacron ] && run-parts /etc/cron.monthly
 ```
+
 This translates to the following:
 
 * run scripts in `cron.daily` at 04:02:00 every day.

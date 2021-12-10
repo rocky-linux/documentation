@@ -19,7 +19,8 @@ update : 2021-10-20
 * You are logged in as the root user, or switch to root with `su - root`
 
 ##  Anacron Introduction
-**anacron is used to run commands on a regular basis, and the operating frequency is defined in units of days. It is suitable for computers that do not run 24/7, such as laptops and desktops. Suppose you have a scheduled task (such as a backup script) to be run in the early morning of every day using crontab. When you fall asleep, your desktop/laptop is shut down. Your backup script will not be executed. However, if you use anacron, you can rest assured that the next time you turn on the desktop/laptop, the backup script will be executed. **
+
+**anacron is used to run commands on a regular basis, and the operating frequency is defined in units of days. It is suitable for computers that do not run 24/7, such as laptops and desktops. Suppose you have a scheduled task (such as a backup script) to be run in the early morning of every day using crontab. When you fall asleep, your desktop/laptop is shut down. Your backup script will not be executed. However, if you use anacron, you can rest assured that the next time you turn on the desktop/laptop, the backup script will be executed.**
 
 The appearance of anacron is not to replace crontab, but to complement crontab. Their relationship is as follows:
 
@@ -89,8 +90,11 @@ October 20 23:01:01 li CROND[2037]: (root) CMD (run-parts /etc/cron.hourly)
 ```
 
 For more configuration file information, please [Browse the manual page](https://man7.org/linux/man-pages/man5/anacrontab.5.html)
-# # User use
+
+## User use
+
 In order to make certain files run within these automatically defined times, all you need to do is to copy the script file to the relevant directory and make sure that it has ** x execution permission (chmod +x) ** . Therefore, you only need to let the system automatically run the script at one of these scheduled times, which makes the automation task very easy.
+
 Let's use cron.daily to illustrate the execution process of /etc/anacrontab:
 
 1. Anacron reads the ** /var/spool/anacron/cron.daily ** file, and the content of the file shows the time of the last execution.
@@ -99,7 +103,8 @@ Let's use cron.daily to illustrate the execution process of /etc/anacrontab:
 4. Check whether a file is executed after 5 minutes after booting. When the first one is executed, it will be randomly delayed for 0～45 minutes to execute the next one.
 5. Use the nice parameter to specify the default priority, and use the run-parts parameter to execute all executable files in the /etc/cron.daily/ directory.
 
-# # Related commands
+## Related commands
+
 Use the command `anacron`, commonly used options are:
 
 | Options | Description |

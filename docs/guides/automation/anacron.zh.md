@@ -19,6 +19,7 @@ update: 2021-10-20
 * 您已以 root 用户身份登录，或者用`su - root`切换到root
 
 ## anacron简介
+
 **anacron用于定期运行命令，运行频率以天为单位进行定义，它适用于在笔记本电脑和台式机等不会全天候7*24运行的计算机上。假设您有一个计划的任务(比如备份脚本)要在每天凌晨使用crontab运行，当您睡着的时候，此时您的台式机/笔记本电脑已经关闭。您的备份脚本将不会执行。但是，如果您使用anacron，您可以放心，下次再次打开台式机/笔记本电脑时，将执行备份脚本。**
 
 anacron的出现并不是取代crontab，而是与crontab相互补充。它们的关系如下图：
@@ -48,7 +49,6 @@ shell > rpm -ql cronie-anacron
 shell > cat /etc/anacontab
 # /etc/anacrontab: configuration file for anacron
 # See anacron(8) and anacrontab(5) for details.
-
 SHELL=/bin/sh
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 MAILTO=root
@@ -56,7 +56,6 @@ MAILTO=root
 RANDOM_DELAY=45
 # 指定工作的时间范围，这里表示3：00~22：00
 START_HOURS_RANGE=3-22
-
 # period in days   delay in minutes   job-identifier   command
 # 每天开机5分钟后就检查 /etc/cron.daily 目录内的文件是否被执行，如果今天没有被执行，那就执行下一个
 1	5	cron.daily		nice run-parts /etc/cron.daily
@@ -93,6 +92,7 @@ October 20 23:01:01 li CROND[2037]: (root) CMD (run-parts /etc/cron.hourly)
 更多配置文件信息，请[浏览手册页](https://man7.org/linux/man-pages/man5/anacrontab.5.html)
 
 ## 用户使用
+
 为了使某些文件在这些自动定义的时间内运行，您所需要做的就是将脚本文件复制到相关目录中，并确保其拥有**x执行权限（chmod +x）**。因此，您只要让系统在这些预定时间之一自动运行脚本就可以了，这使自动化任务变得非常容易。
 
 我们用 cron.daily 工作来说明一下 /etc/anacrontab 的执行过程:
@@ -103,8 +103,8 @@ October 20 23:01:01 li CROND[2037]: (root) CMD (run-parts /etc/cron.hourly)
 4. 开机5分钟检查有文件是否被执行，当执行第一个后，再随机延迟 0～45 分钟执行下一个。
 5. 使用 nice 参数指定默认优先级，使用  run-parts 参数执行 /etc/cron.daily/ 目录中所有的可执行文件。
 
-
 ## 相关命令
+
 使用到的命令 `anacron`，常用选项有：
 
 |选项|说明|
