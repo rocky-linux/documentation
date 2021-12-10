@@ -39,7 +39,7 @@ antoine
 steven
 ```
 
-!!! Note `uniq` requires the input file to be sorted because it only compares consecutive lines.
+!!! !!! Note "Nota" `uniq` richiede che il file di input sia ordinato perché confronta solo le linee consecutive.
 
 Senza un argomento, il comando `uniq` non mostrerà righe identiche che si susseguono nel file `firstnames.txt`:
 
