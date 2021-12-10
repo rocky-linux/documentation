@@ -64,7 +64,7 @@ Esempio:
 $ sudo groupadd -g 1012 GroupeB
 ```
 
-| Option   | Description                                                                                                                        |
+| Opzione  | Descrizione                                                                                                                        |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `-g GID` | `GID` del gruppo da creare.                                                                                                        |
 | `-f`     | Il sistema sceglie un`GID` se quello specificato dall'opzione `-g` esiste già.                                                     |
@@ -103,7 +103,7 @@ $ sudo groupmod -g 1016 GroupP
 $ sudo groupmod -n GroupC GroupB
 ```
 
-| Option    | Description                          |
+| Opzione   | Descrizione                          |
 | --------- | ------------------------------------ |
 | `-g GID`  | Nuovo`GID` del gruppo da modificare. |
 | `-n name` | Nuovo nome.                          |
@@ -195,7 +195,7 @@ Un utente è definito come segue nel file  `/etc/passwd`:
 
 Ci sono tre tipi di utenti:
 
-* **root**: the system administrator ;
+* **root**: L'amministratore di sistema ;
 * **utenti di sistema**: Utilizzato dal sistema per gestire i diritti di accesso alle applicazioni ;
 * **utente normale**: Altro account per accedere al sistema.
 
@@ -218,7 +218,7 @@ Esempio:
 $ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 ```
 
-| Option         | Description                                                              |
+| Opzione        | Descrizione                                                              |
 | -------------- | ------------------------------------------------------------------------ |
 | `-u UID`       | `UID` dell'utente da creare.                                             |
 | `-g GID`       | `GID` del gruppo principale.                                             |
@@ -277,7 +277,7 @@ Esempio:
 $ sudo useradd -D -g 1000 -b /home -s /bin/bash
 ```
 
-| Option         | Description                                                                          |
+| Opzione        | Descrizione                                                                          |
 | -------------- | ------------------------------------------------------------------------------------ |
 | `-D`           | Imposta i valori predefiniti per la creazione dell'utente.                           |
 | `-b directory` | Imposta la directory di accesso predefinita.                                         |
@@ -302,7 +302,7 @@ $ sudo usermod -u 1044 carine
 
 Opzioni identiche al comando `useradd`.
 
-| Option          | Description                                                                                             |
+| Opzione         | Descrizione                                                                                             |
 | --------------- | ------------------------------------------------------------------------------------------------------- |
 | `-m`            | Associato all'opzione`-d`, sposta il contenuto della vecchia directory di accesso a quello nuova.       |
 | `-l login`      | Nuovo nome.                                                                                             |
@@ -339,7 +339,7 @@ Per un utente invitato a un gruppo da questo comando e già posizionato come osp
 
 L'opzione *-a* cambia questo comportamento.
 
-Examples:
+Esempi:
 
 * Invitare `albert` nel gruppo `GroupP`.
 
@@ -373,9 +373,9 @@ Il comando `userdel` ti consente di eliminare l'account di un utente.
 $ sudo userdel -r carine
 ```
 
-| Option | Description                                             |
-| ------ | ------------------------------------------------------- |
-| `-r`   | Elimina la directory di connessione e i file contenuti. |
+| Opzione | Descrizione                                             |
+| ------- | ------------------------------------------------------- |
+| `-r`    | Elimina la directory di connessione e i file contenuti. |
 
 !!! Tip "Suggerimento"  
 Per essere cancellato, un utente deve essere disconnesso e non avere processi in esecuzione.
@@ -438,16 +438,16 @@ Il comando `chown` ti consente di modificare i proprietari di un file.
 chown [-R] [-v] login[:group] file
 ```
 
-Examples:
+Esempi:
 ```
 $ sudo chown root myfile
 $ sudo chown albert:GroupA myfile
 ```
 
-| Option | Description                                                |
-| ------ | ---------------------------------------------------------- |
-| `-R`   | Cambia i proprietari della directory e dei suoi contenuti. |
-| `-v`   | Visualizza le modifiche eseguite.                          |
+| Opzione | Descrizione                                                |
+| ------- | ---------------------------------------------------------- |
+| `-R`    | Cambia i proprietari della directory e dei suoi contenuti. |
+| `-v`    | Visualizza le modifiche eseguite.                          |
 
 Per cambiare solo l'utente proprietario:
 
@@ -486,10 +486,10 @@ Esempio:
 $ sudo chgrp group1 file
 ```
 
-| Option | Description                                                                     |
-| ------ | ------------------------------------------------------------------------------- |
-| `-R`   | Modifica i gruppi proprietari della directory e dei suoi contenuti (ricorsivo). |
-| `-v`   | Visualizza le modifiche eseguite.                                               |
+| Opzione | Descrizione                                                                     |
+| ------- | ------------------------------------------------------------------------------- |
+| `-R`    | Modifica i gruppi proprietari della directory e dei suoi contenuti (ricorsivo). |
+| `-v`    | Visualizza le modifiche eseguite.                                               |
 
 !!! Note "Nota"  
 È possibile applicare a un file un proprietario e un gruppo proprietario prendendo come riferimento quelli di un altro file:
@@ -514,14 +514,14 @@ Il comando `gpasswd` permette di gestire un gruppo.
 gpasswd [-a login] [-A login] [-d login] [-M login] group
 ```
 
-Examples:
+Esempi:
 
 ```
 $ sudo gpasswd -A alain GroupA
 [alain]$ gpasswd -a patrick GroupA
 ```
 
-| Option     | Description                               |
+| Opzione    | Descrizione                               |
 | ---------- | ----------------------------------------- |
 | `-a login` | Aggiunge l'utente al gruppo.              |
 | `-A login` | Imposta l'amministratore del gruppo.      |
@@ -571,13 +571,13 @@ Il comando `passwd` è usato per gestire una password.
 ```
 passwd [-d] [-l] [-S] [-u] [login]
 ```
-Examples:
+Esempi:
 ```
 $ sudo passwd -l albert
 $ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
 
-| Option    | Description                                                  |
+| Opzione   | Descrizione                                                  |
 | --------- | ------------------------------------------------------------ |
 | `-d`      | Rimuove la password.                                         |
 | `-l`      | Blocca l'account.                                            |
@@ -634,7 +634,7 @@ Esempio:
 $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
 
-| Option          | Description                                             |
+| Opzione         | Descrizione                                             |
 | --------------- | ------------------------------------------------------- |
 | `-I days`       | Ritardo prima della disattivazione, a password scaduta. |
 | `-l`            | Visualizza i dettagli della politica.                   |
@@ -648,7 +648,7 @@ Il comando `chage` offre anche una modalità interattiva.
 
 L'opzione `-d` costringe alla modifica della password al login.
 
-Examples:
+Esempi:
 ```
 $ sudo chage philippe
 $ sudo chage -d 0 philippe
@@ -669,11 +669,11 @@ File di configurazione.:
 !!! Note "Nota"  
 La modifica del file `/etc/default/useradd` è fatta con il comando `useradd`.
 
-    The other files are to be modified with a text editor.
+    Gli altri file devono essere modificati con un editor di testo.
 
 ### file `/etc/default/useradd`
 
-Gli altri file devono essere modificati con un editor di testo.
+Questo file contiene le impostazioni dei dati predefinite.
 
 !!! Tip "Suggerimento"  
 Quando si crea un utente, se le opzioni non sono specificate, il sistema utilizza i valori predefiniti definiti in `/etc/default/useradd`.
@@ -693,7 +693,7 @@ Questo file è modificato dal comando `useradd -D` (`useradd -D` inserito senza 
 !!! Warning "Avvertimento"  
 Senza l'opzione `-g`, il comando `useradd` crea un gruppo dal nome dell'utente e il gruppo diventa il gruppo principale dell'utente.
 
-In order for the `useradd` command to retrieve the value of the `GROUP` field from the `/etc/default/useradd` file, you must specify the `-N` option.
+In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
 
 In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
 ```
@@ -713,48 +713,48 @@ Questo file contiene molti parametri predefiniti utili per la creazione o la mod
 
 ### directory `/etc/skel`
 
-When a user is created, their home directory and environment files are created.
-
 Quando viene creato un utente, vengono creati anche la home directory e i file d'ambiente.
+
+Questi file vengono automaticamente copiati dalla directory `/etc/skel`.
 
 * `.bash_logout`
 * `.bash_profile`
 * `.bashrc`
 
-Questi file vengono automaticamente copiati dalla directory `/etc/skel`.
+Tutti i file e le directory inseriti in questa directory verranno copiati nell'albero utente alla creazione dello stesso.
 
 ## Cambiamento di identità
 
 ### comando `su`
 
-Tutti i file e le directory inseriti in questa directory verranno copiati nell'albero utente alla creazione dello stesso.
+Il comando `su` consente di modificare l'identità dell'utente connesso.
 
 ```
 su [-] [-c command] [login]
 ```
 
-Examples:
+Esempi:
 
 ```
 $ sudo su - alain
 [albert]$ su -c "passwd alain"
 ```
 
-| Option       | Description                                                 |
+| Opzione      | Descrizione                                                 |
 | ------------ | ----------------------------------------------------------- |
 | `-`          | Carica l'ambiente completo dell'utente.                     |
 | `-c` comando | Esegue il comando sotto l'identità dell'utente specificato. |
 
-Esempi:
-
 Se il login non è specificato, sarà `root`.
+
+Gli utenti standard dovranno digitare la password per la nuova identità.
 
 !!! Tip "Suggerimento"  
 Ci sono "strati" creati in successione (una pila di ambienti `bash`). Per passare da un utente all'altro, devi prima digitare il comando `exit` per riprendere la tua identità e poi il comando `su` per prendere un'altra identità.
 
 #### Caricamento del profilo
 
-Il comando `su` consente di modificare l'identità dell'utente connesso.
+`root` approva l'identità dell'utente `alain` insieme a `su`:
 
 ```
 ...
@@ -763,7 +763,7 @@ Il comando `su` consente di modificare l'identità dell'utente connesso.
 ...
 ```
 
-`root` approva l'identità dell'utente `alain` insieme a `su`:
+`root` assume l'identità dell'utente `alain` with `su -`:
 
 ```
 ...
@@ -773,10 +773,10 @@ Il comando `su` consente di modificare l'identità dell'utente connesso.
 ...
 ```
 
-`root` assume l'identità dell'utente `alain` with `su -`:
-
 Un utente può temporaneamente (per un altro comando o per un'intera sessione) assumere l'identità di un altro account.
 
 Se nessun utente è specificato, il comando sarà per `root` (`su -`).
 
-È necessario conoscere la password dell'utente la cui identità viene approvata a meno che non sia "root` che esegue il comando.
+È necessario conoscere la password dell'utente la cui identità viene approvata a meno che non sia `root` che esegue il comando.
+
+Un amministratore può quindi lavorare su un account utente standard e utilizzare i diritti dell'account `root` solo occasionalmente.
