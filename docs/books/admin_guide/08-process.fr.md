@@ -191,7 +191,7 @@ kill [-signal] PID
 Example:
 ```
 $ kill -9 1664
-```Interrupt the process (<kbd>CTRL</kdb> + <kdb>D</kdb>)</td> </tr> 
+```Interrompre le processus ( <kbd>CTRL</kdb> + <kdb>D</kdb> )</td> </tr> 
 
 <tr>
   <td>
