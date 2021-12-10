@@ -608,7 +608,7 @@ Il comando `touch` cambia il timestamp di un file o crea un file vuoto se il fil
 touch [-t date] file
 ```
 
-Il comando `touch` cambia il timestamp di un file o crea un file vuoto se il file non esiste.
+Esempio :
 
 ```bash
 $ touch /home/rockstar/myfile
@@ -755,37 +755,37 @@ $ cp -r /home/rockstar /tmp
 cp file1 /repexist/file2
 ```
 
-Esempio:
+`file1` viene copiato in `/repexist` con il nome `file2`.
 
 ```bash
 $ cp file1 file2
 ```
 
-`file1` viene copiato in `/repexist` con il nome `file2`.
+`file1` è copiato come `file2` in questa directory.
 
 ```bash
 $ cp file1 /repexist
 ```
 
-`file1` è copiato come `file2` in questa directory.
+Se esiste la directory di destinazione, `file1` viene copiato in `/repexist`.
 
 ```bash
 $ cp file1 /wrongrep
 ```
 
-Se esiste la directory di destinazione, `file1` viene copiato in `/repexist`.
+Se la directory di destinazione non esiste, `file1` è copiato sotto il nome `wrongrep` nella directory principale (root).
 
 ## Visualizzazione
 
 ### comando `file`
 
-Se la directory di destinazione non esiste, `file1` è copiato sotto il nome `wrongrep` nella directory principale (root).
+Il comando `file` visualizza il tipo di un file.
 
 ```bash
 file file1 [files]
 ```
 
-Il comando `file` visualizza il tipo di un file.
+Esempio:
 
 ```bash
 $ file /etc/passwd /etc
@@ -795,13 +795,13 @@ $ file /etc/passwd /etc
 
 ### comando `more`
 
-Esempio:
+Il comando `more` visualizza il contenuto di uno o più files tramite schermo.
 
 ```bash
 more file1 [files]
 ```
 
-Il comando `more` visualizza il contenuto di uno o più files tramite schermo.
+Esempio:
 
 ```bash
 $ more /etc/passwd
@@ -819,7 +819,7 @@ Il comando `Less` visualizza il contenuto di uno o più file. Il comando `less` 
 less file1 [files]
 ```
 
-Il comando `sort` ti consente anche di mescolare valori con l'opzione `-R`:
+I comandi specifici per `less` sono:
 
 | Command           | Action                                              |
 | ----------------- | --------------------------------------------------- |
@@ -834,31 +834,31 @@ Il comando `sort` ti consente anche di mescolare valori con l'opzione `-R`:
 
 ### comando `cat`
 
-I comandi specifici per `less` sono:
+Il comando `cat` concatena il contenuto di più file e visualizza il risultato sull'output standard.
 
 ```bash
 cat file1 [files]
 ```
 
-Il comando `cat` concatena il contenuto di più file e visualizza il risultato sull'output standard.
+Esempio 1 - Visualizzazione del contenuto di un file in output standard :
 
 ```bash
 $ cat /etc/passwd
 ```
 
-Esempio 1 - Visualizzazione del contenuto di un file in output standard :
+Esempio 2 - Visualizzazione del contenuto di più file in output standard:
 
 ```bash
 $ cat /etc/passwd /etc/group
 ```
 
-Esempio 2 - Visualizzazione del contenuto di più file in output standard:
+Esempio 3 - Visualizzazione del contenuto di diversi file nel file `usersAndGroups.txt` :
 
 ```bash
 $ cat /etc/passwd /etc/group > usersAndGroups.txt
 ```
 
-Esempio 3 - Visualizzazione del contenuto di diversi file nel file `usersAndGroups.txt` :
+Esempio 4 - Visualizzazione della numerazione di linea :
 
 ```bash
 $ cat -n /etc/profile
@@ -871,7 +871,7 @@ $ cat -n /etc/profile
 …
 ```
 
-Esempio 4 - Visualizzazione della numerazione di linea :
+Esempio 5 - Mostra la numerazione di linee non vuote:
 
 ```bash
 $ cat -b /etc/profile
@@ -888,7 +888,7 @@ $ cat -b /etc/profile
 
 Il comando `tac` fa quasi il contrario del comando `cat`. Visualizza il contenuto di un file a partire dalla fine (che è particolarmente interessante per la lettura dei log!).
 
-Example: Display a log file by displaying the last line first:
+Esempio: Visualizza un file di log visualizzando prima l'ultima riga:
 
 ```bash
 [root]# tac /var/log/messages | less
@@ -896,7 +896,7 @@ Example: Display a log file by displaying the last line first:
 
 ### comando `head`
 
-Esempio: Visualizza un file di log visualizzando prima l'ultima riga:
+Il comando `head` visualizza l'inizio di un file.
 
 ```bash
 head [-n x] file
@@ -906,11 +906,11 @@ head [-n x] file
 | ------- | --------------------------------- |
 | `-n x`  | Mostra le prime linee`x` del file |
 
-Il comando `head` visualizza l'inizio di un file.
+Per impostazione predefinita (senza l'opzione `-n`), il comando `head` visualizzerà le prime 10 righe del file.
 
 ### comando `tail`
 
-Per impostazione predefinita (senza l'opzione `-n`), il comando `head` visualizzerà le prime 10 righe del file.
+Il comando `tail` visualizza la fine di un file.
 
 ```bash
 tail [-f] [-n x] file
@@ -932,7 +932,7 @@ user1:x:500:500:grp1:/home/user1:/bin/bash
 
 Con l'opzione `-f`, il comando `tail` non visualizza solo il file sullo standard output ma funziona finché l'utente non lo interrompe con la sequenza <kbd>CTRL</kbd> + <kbd>C</kbd>. Questa opzione è utilizzata molto frequentemente per tracciare i file di registro (i log) in tempo reale.
 
-Without the `-n` option, the tail command displays the last 10 lines of the file.
+Senza l'opzione `-n`, il comando tail visualizza le ultime 10 righe del file.
 
 ### comando `sort`
 
@@ -1081,15 +1081,15 @@ wc [-l] [-m] [-w] file [files]
 
 ### comando `find`
 
-Dal momento che ci sono così tante opzioni nel comando `find`, è meglio fare riferimento a `man`.
+Il comando `find` ricerca per file o posizione della directory.
 
 ```bash
 find directory [-name name] [-type type] [-user login] [-date date]
 ```
 
-Se la directory di ricerca non è specificata, il comando `find` cercherà dalla directory corrente.
+Dal momento che ci sono così tante opzioni nel comando `find`, è meglio fare riferimento a `man`.
 
-È possibile usare l'opzione `-exec` del comando `find` per eseguire un comando con il risultato ottenuto dalla ricerca:
+Se la directory di ricerca non è specificata, il comando `find` cercherà dalla directory corrente.
 
 | Opzione             | Osservazione                    |
 | ------------------- | ------------------------------- |
@@ -1414,7 +1414,7 @@ alias vi='vim'
 alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
 ```
 
-sostituirà il comando :
+Gli alias sono definiti solo temporaneamente, per l'ora della sessione utente.
 
 Per un uso permanente, devono essere creati nel:
 
