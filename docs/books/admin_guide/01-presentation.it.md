@@ -146,7 +146,7 @@ Linux è basato su standard riconosciuti [posix](http://fr.wikipedia.org/wiki/PO
 * Tutto è un file.
 * Portabilità.
 * Fai solo una cosa e falla bene.
-* KISS: Mantienilo semplice stupido.
+* KISS: Mantienilo semplice stupido (Keep It Simple Stupid).
 * "UNIX è fondamentalmente un sistema operativo semplice, Ma devi essere un genio per capirne la semplicità." (__Dennis Ritchie__)
 * "Unix è facile da usare. Solamente che non è chiaro con quali utenti sia amichevole." (__Steven King__)
 
