@@ -2,7 +2,7 @@
 title: Change Log
 author: Louis Abel
 contributors: Steven Spencer
-update: 12-10-2021
+update: 12-Dec-2021
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,33 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - 2021-12-10
+
+The following packages have been updated since December 10, 2021:
+
+* WALinuxAgent: WALinuxAgent-2.3.0.2-2.el8 -> WALinuxAgent-2.3.0.2-2.el8.rocky.0
+* libreoffice: libreoffice-1:6.4.7.2-5.el8.1 -> libreoffice-1:6.4.7.2-5.el8.2.rocky
+* openscap: openscap-1.3.5-6.el8 -> openscap-1.3.5-6.el8.rocky.0.1
+* pcs: pcs-0.10.10-4.el8 -> pcs-0.10.10-4.el8.rocky.0
+* python2: python2-2.7.18-7.module+el8.5.0+706+735ec4b3.rocky.0.1 -> python2-2.7.18-7.module+el8.5.0+718+67e45b5f.rocky.0.2
+* rocky-release: rocky-release-8.5-1.el8 -> rocky-release-8.5-2.el8
+
+The follow modules have been updated:
+
+* python27
+
+### Release Engineering Notes
+
+These updates are mostly cosmetic in nature and do not affect
+functionality.
+
+* WALinuxAgent -> We have added direct Rocky support here as well as in a PR upstream to Microsoft
+* libreoffice -> There was red hat branding found. This update addresses the branding.
+* openscap -> There were missing information for Rocky Linux.
+* pcs -> The logo had a trademark that was not removed
+* rocky-release -> simplifies CPE_NAME
+* python2 -> adds rocky to supported dists
 
 ## 8.5 - 2021-12-09
 
