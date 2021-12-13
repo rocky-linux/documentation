@@ -1008,7 +1008,7 @@ $ sort -nr dns-client.txt
 5.1.150.146
 ```
 
-* Ordinamento dei file per dimensioni
+* Ordinamento file rimuovendo i duplicati
 
 Ecco un esempio con il file `dns-client.txt` :
 
