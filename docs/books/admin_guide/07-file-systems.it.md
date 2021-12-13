@@ -429,7 +429,7 @@ Per definizione, un file system è una struttura ad albero delle directory creat
 
 ![Organization of a file system](images/07-file-systems-008.png)
 
-: Per una directory.
+: Nota In Linux tutto è un file.
 
 Documento di testo, directory, file binario, partizione, risorse di rete, schermo, tastiera, Unix kernel, programma utente, ...
 
@@ -464,7 +464,7 @@ Linux segue il **FHS** (_Filesystems Hierarchy Standard_) (vedi `man hier`) che 
 
 Il file `/etc/fstab` viene letto all'avvio del sistema e contiene i supporti da montare. Ogni file system da montare è descritto su una singola riga, I campi sono separati da spazi o tabulazioni.
 
-!!! Note Lines are read sequentially (`fsck`, `mount`, `umount`).
+!!! Nota Le linee sono lette sequenzialmente (`fsck`, `mount`, `umount`).
 
 ```
 /dev/mapper/VolGroup-lv_root   /         ext4    defaults        1   1
@@ -677,7 +677,7 @@ La lettera `c` all'inizio del gruppo dei permessi indica che è un file speciale
 
 Questi sono le pipe (_pipes_) e i file _socket_ .
 
-* I **files Pipe** passano le informazioni tra i processi con FIFO (_First In, First Out_). Un processo scrive informazioni transitorie nel file di _pipe_ e un altro lo legge. Dopo averlo letto, le informazioni non sono più accessibili.
+* **files Pipe** passano le informazioni tra i processi con FIFO (_First In, First Out_). Un processo scrive informazioni transitorie nel file di _pipe_ e un altro lo legge. Dopo averlo letto, le informazioni non sono più accessibili.
 
 * **Socket files** consentono la comunicazione bidirezionale intertrattativa (sui sistemi locali o remoti). Usano un _inode_ del file system.
 
@@ -764,7 +764,7 @@ Ci sono 4 diritti di accesso ai file:
 * **r**ead; (lettura)
 * **w**rite; (scrittura)
 * e**x**ecution; (esecuzione)
-* **-** no right.
+* **-** no right. (nessun diritto)
 
 !!! Warning "Avvertimento"  
 I diritti associati ai file differiscono da quelli associati alle directory (vedi sotto).
