@@ -421,20 +421,20 @@ $ tar xvfP /backups/etc.133.P.tar
 
 !!! Warning "Avvertimento" Posizionati nel posto giusto.
 
-    Ripristinare un backup completo.
+    Controlla il contenuto del backup.
 
 | Opzione | Descrizione                                   |
 | ------- | --------------------------------------------- |
 | `x`     | Estrarre i file dal backup, compressi o meno. |
 
 
-Controlla il contenuto del backup.
+L'estrazione di un backup _tar-gzipped_ (`*.tar.gz`) viene eseguita con le opzioni `xvfz`:
 
 ```
 $ tar xvfz backup.tar.gz
 ```
 
-L'estrazione di un backup _tar-gzipped_ ('*.tar.gz') viene eseguita con le opzioni `xvfz`:
+L'estrazione di un _tar-bzipped_ (`*.tar.bz2`) viene eseguita con le opzioni `xvfj`:
 
 ```
 $ tar xvfj backup.tar.bz2
@@ -461,13 +461,13 @@ $ tar xvfj backup.tar.bz2 /path/to/file
 
 ##### Estrarre una cartella da un backup _tar_
 
-To extract only one directory (including its subdirectories and files) from a backup, specify the directory name at the end of the `tar xvf` command.
+Per estrarre una sola directory (incluse le sottodirectory e i file) da un backup, specificare il nome della directory alla fine del comando `tar xvf`.
 
 ```
 $ tar xvf backup.tar /path/to/dir/
 ```
 
-Per estrarre una sola directory (incluse le sottodirectory e i file) da un backup, specificare il nome della directory alla fine del comando `tar xvf`.
+Per estrarre più directory, specificare ciascuno dei nomi uno dopo l'altro:
 
 ```
 $ tar xvf backup.tar /path/to/dir1/ /path/to/dir2/
@@ -477,29 +477,29 @@ $ tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 
 ##### Estrarre un gruppo di file da un backup _tar_ utilizzando espressioni regolari (_regex_)
 
-Per estrarre più directory, specificare ciascuno dei nomi uno dopo l'altro:
-
 Specificate un _regex_ per estrarre i file corrispondenti al modello di selezione specificato.
+
+Ad esempio, per estrarre tutti i file con l'estensione `.conf` :
 
 ```
 $ tar xvf backup.tar --wildcards '*.conf'
 ```
 
-Ad esempio, per estrarre tutti i file con l'estensione `.conf` :
+chiavi :
 
   * `--wildcards *.conf` corrisponde ai file con estensione `.conf`.
 
 ## _CoPy Input Output_ - `cpio`
 
-chiavi :
-
 Il comando `cpio` consente di salvare su più supporti successivi senza specificare alcuna opzione.
+
+È possibile estrarre tutto o parte di un backup.
 
 Non c'è alcuna opzione, a differenza del comando `tar`, per eseguire il backup e comprimere allo stesso tempo. Quindi è fatto in due passaggi: backup e compressione.
 
-To perform a backup with `cpio`, you have to specify a list of files to backup.
-
 Per eseguire un backup con `cpio`, è necessario specificare un elenco di file di cui eseguire il backup.
+
+Questo elenco è fornito con i comandi `find`, `ls` o `cat`.
 
 * `find` : sfogliare un albero, ricorsivo o meno;
 * `ls` : elencare una directory, ricorsiva o meno;
@@ -511,33 +511,33 @@ Per eseguire un backup con `cpio`, è necessario specificare un elenco di file d
 
 ### Creare un backup con il comando `cpio`
 
-`--make-directories` o `-d`
+Sintassi del comando `cpio`:
 
 ```
 [files command |] cpio {-o| --create} [-options] [<file-list] [>device]
 ```
 
-Sintassi del comando `cpio`:
-
 Esempio:
+
+Con un reindirizzamento dell'output di `cpio`:
 
 ```
 $ find /etc | cpio -ov > /backups/etc.cpio
 ```
 
-Con un reindirizzamento dell'output di `cpio`:
+Utilizzo del nome di un supporto di backup:
 
 ```
 $ find /etc | cpio -ovF /backups/etc.cpio
 ```
 
-Utilizzo del nome di un supporto di backup:
+Il risultato del comando `find` viene inviato come input al comando `cpio` tramite una _pipe_ (carattere `|`, <kbd>AltGr</kbd> + <kbd>6</kbd>).
 
-Il risultato del comando `find` viene inviato come input al comando `cpio` tramite una _pipe_ (carattere `|`, <kbd>AltGr</kbd> + <kbd>|</kbd>).
+Il risultato del comando `find` viene inviato come input al comando `cpio` tramite una _pipe_ (carattere `|`, <kbd>AltGr</kbd> + <kbd>6</kbd>).
 
-Qui, il comando `find /etc` restituisce un elenco di file corrispondenti al contenuto della directory `/etc` (ricorsivamente) al comando `cpio`, che esegue il backup.
+Non dimenticare il segno `>` durante il salvataggio o l'opzione `F save_name_cpio`.
 
-| Options | Description                                    | | `-o`    | Creates a backup (_output_).                   | | `-v`    | Displays the name of the processed files.      Indica il backup da modificare (supporto). |
+| Opzioni | Descrizione                                    | | `-o`    | Crea a backup (_output_).                   | | `-v`    | Visualizza il nome dei file elaborati.      | | `-F`    | Designa il backup da modificare (medio). |
 
 Backup su un supporto:
 
@@ -567,7 +567,7 @@ $ find /etc | cpio -o > /backups/etc.A.cpio
 
 !!! Warning "Avvertimento" Se il percorso specificato nel comando `find` è **assoluto** il backup verrà eseguito in **assoluto**.
 
-    If the path indicated in the `find` command is **relative** then the backup will be done in **relative**.
+    Se il percorso indicato nel comando `find` è **relativo** il backup verrà eseguito in **relativo**.
 
 ### Aggiungere a un backup
 
@@ -583,10 +583,10 @@ $ find /etc/shadow | cpio -o -AF SystemFiles.A.cpio
 
 L'aggiunta di file è possibile solo su supporti ad accesso diretto.
 
-| Opzione | Descrizione                            |
-| ------- | -------------------------------------- |
-| `-A`    | Crea un backup (_output_).             |
-| `-F`    | Visualizza il nome dei file elaborati. |
+| Opzione | Descrizione                                   |
+| ------- | --------------------------------------------- |
+| `-A`    | Aggiunge uno o più file a un backup su disco. |
+| `-F`    | Indica il backup da modificare.               |
 
 ### Compressione di un backup
 
@@ -625,10 +625,10 @@ Esempio:
 $ cpio -tv < /backups/etc.152.cpio | less
 ```
 
-| Opzione | Descrizione                                   |
-| ------- | --------------------------------------------- |
-| `-t`    | Aggiunge uno o più file a un backup su disco. |
-| `-v`    | Indica il backup da modificare.               |
+| Opzione | Descrizione                        |
+| ------- | ---------------------------------- |
+| `-t`    | Legge un backup.                   |
+| `-v`    | Visualizza gli attributi dei file. |
 
 Dopo aver eseguito un backup, è necessario leggerne il contenuto per essere sicuri che non ci siano stati errori.
 
@@ -658,8 +658,7 @@ $ cpio -iv </backups/etc.152.cpio | less
 
 !!! Warning "Avvertimento" Per impostazione predefinita, al momento del ripristino, i file sul disco la cui data di ultima modifica è più recente o uguale alla data del backup non vengono ripristinati (al fine di evitare di sovrascrivere le informazioni recenti con informazioni meno recenti).
 
-    L'opzione <code>u, d'altra parte, consente di ripristinare le versioni precedenti dei file.
-    </code>
+    L'opzione `u`, d'altra parte, consente di ripristinare le versioni precedenti dei file.
 
 Esempi:
 
