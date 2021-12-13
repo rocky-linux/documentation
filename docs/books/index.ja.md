@@ -1,6 +1,8 @@
 ---
 title: 書籍・ホーム
-author: @sspencerwire
+author: Steven Spencer
+contributors: Norio Yahata
+update: 13-Dec-2021
 ---
 
 # Rocky Linuxの取扱説明書
