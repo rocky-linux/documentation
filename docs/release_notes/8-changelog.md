@@ -2,7 +2,7 @@
 title: Change Log
 author: Louis Abel
 contributors: Steven Spencer
-update: 12-Dec-2021
+update: 13-Dec-2021
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,18 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - 2021-12-12
+
+The following packages have been updated since December 12, 2021:
+
+* samba: samba-4.14.5-2.el8 -> samba-4.14.5-7.el8_5
+
+Associated CVE's:
+
+* CVE-2016-2124
+* CVE-2020-25717
+* CVE-2021-23192
 
 ## 8.5 - 2021-12-10
 
