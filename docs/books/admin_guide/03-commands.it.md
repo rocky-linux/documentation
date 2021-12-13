@@ -1010,9 +1010,9 @@ $ sort -nr dns-client.txt
 
 * Ordinamento file rimuovendo i duplicati
 
-Ecco un esempio con il file `dns-client.txt` :
+Il comando `sort` sa come rimuovere i duplicati dall'output del file usando `-u` come opzione.
 
-Il comando `sort` sa come riconoscere le dimensioni dei file, dai comandi come `ls` con l'opzione `-h`.
+Ecco un esempio con il file `colours.txt`:
 
 ```
 Red
@@ -1029,11 +1029,11 @@ Pink
 Red
 ```
 
-* Il carattere speciale `^` è usato per cercare una stringa all'inizio di una linea.
+* Ordinamento file per dimensioni
 
-Ecco un esempio con il file `size.txt` :
+Il comando `sort` sa riconoscere le dimensioni dei file, da comandi come `ls` con l'opzione `-h`.
 
-Il comando `wc` conta il numero di linee, parole e/o byte in un file.
+Ecco un esempio con il file `size.txt`:
 
 ```
 1,7G
@@ -1064,13 +1064,13 @@ $ sort -hr size.txt
 
 ### comando `wc`
 
-Il comando `find` ricerca per file o posizione della directory.
+Il comando `wc` conta il numero di linee, parole e/o byte in un file.
 
 ```bash
 wc [-l] [-m] [-w] file [files]
 ```
 
-| Option | Observation                   |
+| Option | Osservazione                  |
 | ------ | ----------------------------- |
 | `-c`   | Conta il numero di byte.      |
 | `-m`   | Conta il numero di caratteri. |
@@ -1098,7 +1098,7 @@ Se la directory di ricerca non è specificata, il comando `find` cercherà dalla
 
 ### opzione `-exec` del comando `find`
 
-Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso `*.txt` e li elimina.
+È possibile usare l'opzione `-exec` del comando `find` per eseguire un comando con il risultato ottenuto dalla ricerca:
 
 ```bash
 $ find /tmp -name *.txt -exec rm -f {} \;
@@ -1225,7 +1225,7 @@ Sui sistemi UNIX e Linux, ci sono tre flussi standard. Consentono ai programmi, 
 Questi flussi sono chiamati canale X descrittore di file X.
 
 Per impostazione predefinita:
-* * la tastiera è il dispositivo di input per il canale 0, chiamato **stdin** ;
+* la tastiera è il dispositivo di input per il canale 0, chiamato **stdin** ;
 * lo schermo è il dispositivo di uscita per i canali 1 e 2, chiamati **stdout** e **stderr**.
 
 ![standards channels](images/input-output.png)
@@ -1320,7 +1320,7 @@ Reindirizzamento delle 2 uscite a un singolo file:
 $ ls -R / >> log_file 2>&1
 ```
 
-Reindirizzamento di 2 uscite a 2 file :
+Reindirizzamento del *stderr* a un "pozzo senza fondo" (`/dev/null`) :
 
 ```bash
 $ ls -R / 2>> /dev/null
@@ -1378,7 +1378,7 @@ $ ls -lia / | grep fichier
 
 Il comando `tee` viene utilizzato per reindirizzare l'output standard di un comando a un file mantenendo il display dello schermo.
 
-Cerca una stringa nel risultato:
+Viene combinato con la pipe `|` per ricevere come input l'output del comando da reindirizzare:
 
 ```bash
 $ ls -lia / | tee fic
@@ -1414,7 +1414,7 @@ alias vi='vim'
 alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
 ```
 
-Gli alias sono definiti solo temporaneamente, per l'ora della sessione utente.
+Gli alias sono definiti temporaneamente solo per il tempo della sessione utente.
 
 Per un uso permanente, devono essere creati nel:
 
@@ -1435,7 +1435,7 @@ Per eliminare un singolo alias:
 $ unalias ll
 ```
 
-Il comando `unalias` ti consente di eliminare gli alias.
+Per eliminare tutti gli alias:
 
 ```bash
 $ unalias -a
@@ -1524,87 +1524,40 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 Il carattere `;` concatena i comandi.
 
-I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che l'utente preme <kbd>ENTER</kdb>.</p> 
+I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che l'utente preme ENTER.
 
-<pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
-</code></pre>
+```bash
+$ ls /; cd /home; ls -lia; cd /
+```
 
-<h2 spaces-before="0">
-  Controlla la tua conoscenza
-</h2>
+## Controlla la tua conoscenza
 
-<p spaces-before="0">
-  :heavy_check_mark: Cosa definisce un utente sotto Linux? (7 answers)
-</p>
+:heavy_check_mark: Cosa definisce un utente sotto Linux? (7 answers)
 
-<p spaces-before="0">
-  :heavy_check_mark: Cosa caratterizza una lunga opzione per un ordine?
-</p>
+:heavy_check_mark: Cosa caratterizza una lunga opzione per un ordine?
 
-<p spaces-before="0">
-  :heavy_check_mark: Quali comandi consentono di cercare aiuto su un comando:
-</p>
+:heavy_check_mark: Quali comandi consentono di cercare aiuto su un comando:
 
-<ul>
-  <li>
-    [ ] <code>google</code>
-  </li>
-  <li>
-    [ ] <code>chuck --norris</code>
-  </li>
-  <li>
-    [ ] <code>info</code>
-  </li>
-  <li>
-    [ ] <code>apropos</code>
-  </li>
-  <li>
-    [ ] <code>whatis</code>
-  </li>
-</ul>
+- [ ] `google`
+- [ ] `chuck --norris`
+- [ ] `info`
+- [ ] `apropos`
+- [ ] `whatis`
 
-<p spaces-before="0">
-  :heavy_check_mark: Quale comando consente di visualizzare la cronologia di un utente?
-</p>
+:heavy_check_mark: Quale comando consente di visualizzare la cronologia di un utente?
 
-<p spaces-before="0">
-  :heavy_check_mark: Quale comando consente di cercare il testo in un file?
-</p>
+:heavy_check_mark: Quale comando consente di cercare il testo in un file?
 
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
+- [ ] `find`
+- [ ] `grep`
 
-<p spaces-before="0">
-  :heavy_check_mark: Quale comando consente di cercare un file?
-</p>
+:heavy_check_mark: Quale comando consente di cercare un file?
 
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
+- [ ] `find`
+- [ ] `grep`
 
-<p spaces-before="0">
-  :heavy_check_mark: Quale comando reindirizza il flusso di errore di un comando a un nuovo file <code>errors.log</code>:
-</p>
+:heavy_check_mark: Quale comando reindirizza il flusso di errore di un comando a un nuovo file `errors.log`:
 
-<ul>
-  <li>
-    [ ] <code>ls -R / 2&gt; errors.log</code>
-  </li>
-  <li>
-    [ ] <code>ls -R / 2&gt;&gt; errors.log</code>
-  </li>
-  <li>
-    [ ] <code>ls -R / 2&gt; errors.log 2&gt;&1</code>
-  </li>
-</ul>   
+- [ ] `ls -R / 2> errors.log`
+- [ ] `ls -R / 2>> errors.log`
+- [ ] `ls -R / 2> errors.log 2>&1`   
