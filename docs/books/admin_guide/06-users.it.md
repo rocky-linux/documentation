@@ -75,7 +75,7 @@ Regole di denominazione del gruppo:
 * Nessun accento o caratteri speciali;
 * Diverso dal nome di un utente o file di sistema esistenti.
 
-; **root**: L'amministratore di sistema.
+; Nota Sotto **Debian**, l'amministratore dovrebbe usare, tranne che negli script destinati ad essere portatili per tutte le distribuzioni Linux, i comandi `addgroup` e `delgroup` come specificato nell' `man`:
 
     ```
     $ man addgroup
@@ -695,7 +695,7 @@ Senza l'opzione `-g`, il comando `useradd` crea un gruppo dal nome dell'utente e
 
 In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
 
-In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
+Esempio:
 ```
 $ sudo useradd -u 501 -N GroupeA
 ```
