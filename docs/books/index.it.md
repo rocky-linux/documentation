@@ -1,6 +1,6 @@
 ---
 title: Books Home
-author: @sspencerwire
+author: Steven Spencer
 contributors: @fromoz
 ---
 # Libri didattici su Rocky Linux
