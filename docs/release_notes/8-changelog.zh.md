@@ -2,7 +2,7 @@
 title: 更改日志
 author: Louis Abel
 contributors: tianci li, Steven Spencer
-update: 2021-Dec-07
+update: 2021-Dec-12
 ---
 
 # Rocky Linux 8 更改日志
@@ -14,6 +14,61 @@ update: 2021-Dec-07
 因为上游发布的更新是在我们当前的架构中发布的，所以强烈建议所有用户在您当前的Rocky Linux计算机中应用 *全部* 更新（包括今天发布的内容），您可以通过运行`dnf update`来完成更新动作。
 
 所有Rocky Linux组件都是由托管在[git.rockylinux.org](https://git.rockylinux.org) 上的源代码进行构建的。此外，SRPM与存储库将一起发布在对应的"source"目录中，您可以在我们的任意镜像网站上找到它们，镜像网站的源码包与我们发布的每个二进制RPM相同。
+
+## 8.5 - 2021-12-10
+
+以下软件包自2021年12月10日起进行了更新:
+
+* WALinuxAgent: WALinuxAgent-2.3.0.2-2.el8 -> WALinuxAgent-2.3.0.2-2.el8.rocky.0
+* libreoffice: libreoffice-1:6.4.7.2-5.el8.1 -> libreoffice-1:6.4.7.2-5.el8.2.rocky
+* openscap: openscap-1.3.5-6.el8 -> openscap-1.3.5-6.el8.rocky.0.1
+* pcs: pcs-0.10.10-4.el8 -> pcs-0.10.10-4.el8.rocky.0
+* python2: python2-2.7.18-7.module+el8.5.0+706+735ec4b3.rocky.0.1 -> python2-2.7.18-7.module+el8.5.0+718+67e45b5f.rocky.0.2
+* rocky-release: rocky-release-8.5-1.el8 -> rocky-release-8.5-2.el8
+
+以下模块已更新:
+
+* python27
+
+### 发布说明
+
+这些更新主要是外观上的，并不影响功能。
+
+* WALinuxAgent -> 我们在这里以及微软的PR上游中添加了对 Rocky 的直接支持
+* libreoffice -> 发现有红帽的品牌，这次更新解决了这个品牌问题。
+* openscap -> 缺少有关Rocky Linux的信息。
+* pcs -> 该logo有一个未被删除的商标
+* rocky-release -> 简化了 CPE_NAME
+* python2 -> 将 Rocky 添加到支持的地方中
+
+## 8.5 - 2021-12-09
+
+以下软件包自2021年12月09日起进行了更新:
+
+* thunderbird: thunderbird-91.3.0-2.el8_4 ->
+* thunderbird-91.4.0-2.el8_5
+* thunderbird: thunderbird-91.3.0-2.el8.plus ->
+* thunderbird-91.4.0-2.el8.plus
+
+### 发布说明
+
+Thunderbird:这是一个针对Thunderbird常规ESR构建的更新，此次更新适用于base存储库与Plus存储库。Plus存储库包含一个支持PGP的Thunderbird版本。
+
+## 8.5 - 2021-12-03
+
+以下软件包自2021年12月03日起进行了更新:
+
+* abrt: abrt-2.10.9-21.el8 -> abrt-2.10.9-21.el8.rocky.0
+* firefox: firefox-91.3.0-1.el8_4 -> firefox-91.4.0-1.el8_5
+* sos: sos-4.1-5.el8 -> sos-4.1-5.el8.rocky.2
+
+### 发布说明
+
+Firefox: 这是一个针对Firefox ESR构建的更新。
+
+abrt: 主要是外观上的变化，移除了对 libreport-rhel* 和 rhtsupport 这些插件的依赖。在更新到新的abrt软件包之后，可以安全的删除这些软件包。
+
+sos: 主要是外观上的变化，带来了Rocky Linux的策略，查阅 [this PR for more details](https://github.com/sosreport/sos/pull/2784)
 
 ## 8.5 - 2021-12-02
 
@@ -99,7 +154,6 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 以下模块自2021年11月16日起已更新:
 
 * llvm-toolset-rhel8-8050020211122023437.b4937e53
-
 
 ## 8.5 - 2021-11-14
 

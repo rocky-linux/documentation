@@ -32,8 +32,7 @@ The follow modules have been updated:
 
 ### Release Engineering Notes
 
-These updates are mostly cosmetic in nature and do not affect
-functionality.
+These updates are mostly cosmetic in nature and do not affect functionality.
 
 * WALinuxAgent -> We have added direct Rocky support here as well as in a PR upstream to Microsoft
 * libreoffice -> There was red hat branding found. This update addresses the branding.
