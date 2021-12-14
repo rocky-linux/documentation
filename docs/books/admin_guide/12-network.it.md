@@ -87,13 +87,13 @@ Le macchine client possono far parte di un dominio DNS (**Domain Name System**, 
 
 ### Dominio DNS
 
-Il nome completo del computer (**FQDN**) diventa `pc-rocky.mydomain.lan`.
+Le macchine client possono far parte di un dominio DNS (**Domain Name System**, ad esempio `mydomain.lan`).
 
-Affinché un computer faccia parte di un dominio DNS, è necessario fornire un suffisso DNS (qui `mydomain.lan`) e un server da poter interrogare.
+Il nome completo del computer (**FQDN**) diventa `pc-rocky.mydomain.lan`.
 
 Un insieme di computer può essere raggruppato in un set logico, che risolve i nomi, chiamato dominio DNS. Un dominio DNS non è, ovviamente, limitato a una singola rete fisica.
 
-In order for a computer to be part of a DNS domain, it must be given a DNS suffix (here `mydomain.lan`) as well as servers that it can query.
+Affinché un computer faccia parte di un dominio DNS, è necessario fornire un suffisso DNS (qui `mydomain.lan`) e un server da poter interrogare.
 
 ### Promemoria del modello OSI
 
