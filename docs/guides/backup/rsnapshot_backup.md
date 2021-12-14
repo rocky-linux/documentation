@@ -305,7 +305,7 @@ With the content:
 /usr/bin/rsnapshot -c /etc/rsnapshot_mail.conf beta
 /usr/bin/rsnapshot -c /etc/rsnapshot_portal.conf beta
 ```
-Then we make the script executabe:
+Then we make the script executable:
 
 `chmod +x /usr/local/sbin/backup_all`
 
