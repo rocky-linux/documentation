@@ -2,7 +2,7 @@
 title: 更改日志
 author: Louis Abel
 contributors: tianci li, Steven Spencer
-update: 2021-Dec-12
+update: 2021-Dec-13
 ---
 
 # Rocky Linux 8 更改日志
@@ -14,6 +14,18 @@ update: 2021-Dec-12
 因为上游发布的更新是在我们当前的架构中发布的，所以强烈建议所有用户在您当前的Rocky Linux计算机中应用 *全部* 更新（包括今天发布的内容），您可以通过运行`dnf update`来完成更新动作。
 
 所有Rocky Linux组件都是由托管在[git.rockylinux.org](https://git.rockylinux.org) 上的源代码进行构建的。此外，SRPM与存储库将一起发布在对应的"source"目录中，您可以在我们的任意镜像网站上找到它们，镜像网站的源码包与我们发布的每个二进制RPM相同。
+
+## 8.5 - 2021-12-12
+
+以下软件包自2021年12月12日起进行了更新:
+
+* samba: samba-4.14.5-2.el8 -> samba-4.14.5-7.el8_5
+
+关联的CVE:
+
+* CVE-2016-2124
+* CVE-2020-25717
+* CVE-2021-23192
 
 ## 8.5 - 2021-12-10
 
