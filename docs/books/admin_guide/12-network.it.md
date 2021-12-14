@@ -131,7 +131,7 @@ Il kernel Linux assegna i nomi delle interfacce con un prefisso specifico a seco
 
 Sulle distribuzioni Linux Rocky 8, systemd nominerà le interfacce seguendo la nuova politica in cui "X" rappresenta un numero:
 
-* Nome dell'interfaccia : (deve essere nel nome del file)
+* `enoX`: dispositivi on-board
 * `ensX`: slot hotplug PCI Express
 * `enpXsX`: posizione fisica/geografica del connettore dell'hardware
 * ...
@@ -140,18 +140,15 @@ Sulle distribuzioni Linux Rocky 8, systemd nominerà le interfacce seguendo la n
 
 Dimentica il vecchio comando `ifconfig`! Pensa `ip`!
 
-... [root]# dig +short rockylinux.org 76.223.126.88 [root]# dig -t MX +short rockylinux.org                                                          ✔ 5 alt1.aspmx.l.google.com.
+... Note Nota Commento per gli amministratori dei vecchi sistemi Linux:
 
-    Note "Nota"
-        Commento per gli amministratori dei vecchi sistemi Linux:
-        Il comando storico di gestione della rete è <code>ifconfig. Questo comando è stato sostituito dal comando ip, che è già ben noto agli amministratori di rete.
+    Il comando storico di gestione della rete è `ifconfig`. Questo comando è stato sostituito dal comando `ip`, che è già ben noto agli amministratori di rete.
     
-    Il comando ip è l'unico comando per gestire **indirizzo IP, ARP, routing, ecc.**.
+    Il comando `ip` è l'unico comando per gestire**indirizzo IP, ARP, routing, ecc.**
     
-    Il comando ifconfig non è più installato per impostazione predefinita in Rocky8.
+    Il comando `ifconfig` non è più installato per impostazione predefinita in Rocky8.
     
-    It is important to get into good habits now.
-    </code>
+    È importante iniziare con le buone abitudini ora.
 
 ## Il nome host
 
@@ -293,25 +290,25 @@ BOOTPROTO=dhcp
 HWADDR=00:0c:29:96:32:e3
 ```
 
-*  Avvia automaticamente l'interfaccia:
+*  Nome dell'interfaccia : (deve essere nel nome del file)
 
 ```
 DEVICE=eth0
 ```
 
-* Effettuare una richiesta DHCP all'avvio dell'interfaccia:
+* Avvia automaticamente l'interfaccia:
 
 ```
 ONBOOT=yes
 ```
 
-* Specificare l'indirizzo MAC (opzionale ma utile quando ci sono diverse interfacce):
+* Effettuare una richiesta DHCP all'avvio dell'interfaccia:
 
 ```
 BOOTPROTO=dhcp
 ```
 
-* Riavviare il servizio di rete:
+* Specificare l'indirizzo MAC (opzionale ma utile quando ci sono diverse interfacce):
 
 ```
 HWADDR=00:0c:29:96:32:e3
@@ -319,7 +316,7 @@ HWADDR=00:0c:29:96:32:e3
 
 !!! Tip "Suggerimento" Se NetworkManager è installato, le modifiche vengono prese in considerazione automaticamente. In caso contrario, è necessario riavviare il servizio di rete.
 
-* Qui stiamo sostituendo "dhcp" con "none" che equivale alla configurazione statica:
+* Riavviare il servizio di rete:
 
 ```
 [root]# systemctl restart NetworkManager
@@ -337,13 +334,13 @@ IPADDR=192.168.1.10
 NETMASK=255.255.255.0
 ```
 
-* Indirizzo IP:
+* Qui stiamo sostituendo "dhcp" con "none" che equivale alla configurazione statica:
 
 ```
 BOOTPROTO=none
 ```
 
-* FQDN in indirizzi IP
+* Indirizzo IP:
 
 ```
 IPADDR=192.168.1.10
@@ -395,19 +392,19 @@ default via 192.168.1.254 dev eth0 proto static
 
 Un sistema deve risolvere:
 
-* Indirizzi IP in nomi
+* FQDN in indirizzi IP
 
 ```
 www.free.fr = 212.27.48.10
 ```
 
-* o per ottenere informazioni su un'area:
+* Indirizzi IP in nomi
 
 ```
 212.27.48.10 = www.free.fr
 ```
 
-* or to obtain information about an area:
+* o per ottenere informazioni su un'area:
 
 ```
 MX de free.fr = 10 mx1.free.fr + 20 mx2.free.fr
