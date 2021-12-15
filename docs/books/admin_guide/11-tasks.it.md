@@ -143,10 +143,9 @@ Esempio:
 
 !!! Warning "Avvertimento" `crontab` Senza opzioni elimina il vecchio file di pianificazione e attende che l'utente inserisca nuove linee. Devi premere <kbd>ctrl</kbd> + <kbd>d</kbd> per uscire da questa modalità di modifica.
 
-    Solo <code>root può utilizzare l'opzione -u utente per gestire il file di pianificazione di un altro utente.
+    Solo `root` può utilizzare l'opzione `-u utente` per gestire il file di pianificazione di un altro utente.
     
     L'esempio sopra consente a root di pianificare un'attività per l'utente1.
-    </code>
 
 ### Usi di `crontab`
 
@@ -242,9 +241,9 @@ Un utente, rockstar, vuole modificare il suo file `crontab`:
 
 1) `crond` controlla se è permesso (`/etc/cron.allow` e `/etc/cron.deny`).
 
-Ogni minuto `cron` legge il file di pianificazione.
+2) Se lo è, accede al file `crontab` (`/var/spool/cron/rockstar`).
 
-Every minute `crond` reads the schedule files.
+Ogni minuto `cron` legge il file di pianificazione.
 
 3) Esegue le attività pianificate.
 
