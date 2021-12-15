@@ -83,7 +83,7 @@ Le maschere di sottorete hanno da 0 a 128 bit. (Per esempio 21ac:0000:0000:0611:
 
 In un indirizzo web o URL (Uniform Resource Locator), un indirizzo IP può essere seguito da un due punti e dall'indirizzo della porta (che indica l'applicazione a cui i dati sono destinati). Inoltre per evitare confusione in un URL, l'indirizzo IPv6 è scritto in parentesi quadre [ ], due punti, indirizzo della porta.
 
-Le macchine client possono far parte di un dominio DNS (**Domain Name System**, ad esempio `mydomain.lan`).
+Gli indirizzi IP e MAC devono essere univoci su una rete!
 
 ### Dominio DNS
 
@@ -144,7 +144,7 @@ Dimentica il vecchio comando `ifconfig`! Pensa `ip`!
 
     Il comando storico di gestione della rete è `ifconfig`. Questo comando è stato sostituito dal comando `ip`, che è già ben noto agli amministratori di rete.
     
-    Il comando `ip` è l'unico comando per gestire**indirizzo IP, ARP, routing, ecc.**
+    Il comando `ip` è l'unico comando per gestire **indirizzo IP, ARP, routing, ecc.**.
     
     Il comando `ifconfig` non è più installato per impostazione predefinita in Rocky8.
     
