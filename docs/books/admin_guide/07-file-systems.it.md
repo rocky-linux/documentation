@@ -423,7 +423,7 @@ or
 !!! Warning "Avvertimento"  
 La partizione da controllare deve essere smontata.
 
-## Organization of a file system
+## Organizzazione di un file system
 
 Per definizione, un file system è una struttura ad albero delle directory creata a partire da una directory principale (un dispositivo logico può contenere solo un file system).
 
@@ -677,7 +677,7 @@ La lettera `c` all'inizio del gruppo dei permessi indica che è un file speciale
 
 Questi sono le pipe (_pipes_) e i file _socket_ .
 
-* **files Pipe** passano le informazioni tra i processi con FIFO (_First In, First Out_). Un processo scrive informazioni transitorie nel file di _pipe_ e un altro lo legge. Dopo averlo letto, le informazioni non sono più accessibili.
+* I **files Pipe** passano le informazioni tra i processi con FIFO (_First In, First Out_). Un processo scrive informazioni transitorie nel file di _pipe_ e un altro lo legge. Dopo averlo letto, le informazioni non sono più accessibili.
 
 * **Socket files** consentono la comunicazione bidirezionale intertrattativa (sui sistemi locali o remoti). Usano un _inode_ del file system.
 
@@ -1086,6 +1086,8 @@ Per un determinato utente:
 
 * `~/.bashrc`
 
-!!! Warning "Avvertimento" `umask -S` visualizza i permessi dei file (senza i permessi di esecuzione) dei file che verranno creati. Quindi non è il display della maschera utilizzata per sottrarre il valore massimo.
+!!! Warning "Avvertimento"  
+`umask -S` visualizza i permessi dei file (senza i permessi di esecuzione) dei file che verranno creati. Quindi non è il display della maschera utilizzata per sottrarre il valore massimo.
 
-!!! Tip "Suggerimento" Il comando `umask` è un comando _bash_, (un `type umask` ritorna `umask is a shell primitive`) devi cercare `umask` in `man bash`.
+!!! Tip "Suggerimento"  
+Il comando `umask` è un comando _bash_, (un `type umask` ritorna `umask is a shell primitive`) devi cercare `umask` in `man bash`.
