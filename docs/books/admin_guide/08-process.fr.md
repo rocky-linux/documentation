@@ -191,446 +191,184 @@ kill [-signal] PID
 Example:
 ```
 $ kill -9 1664
-```Interrompre le processus ( <kbd>CTRL</kdb> + <kdb>D</kdb> )</td> </tr> 
+```
 
-<tr>
-  <td>
-    <code>15</code>
-  </td>
-  
-  <td>
-    <em x-id="4">SIGTERM</em>
-  </td>
-  
-  <td>
-    Clean termination of the process
-  </td>
-</tr>
+| Code | Signal    | Description                          |
+| ---- | --------- | ------------------------------------ |
+| `2`  | _SIGINT_  | Immediate termination of the process |
+| `9`  | _SIGKILL_ | Interrompre le processus (CTRL+D)    |
+| `15` | _SIGTERM_ | Clean termination of the process     |
+| `18` | _SIGCONT_ | Resume the process                   |
+| `19` | _SIGSTOP_ | Suspend the process                  |
 
-<tr>
-  <td>
-    <code>18</code>
-  </td>
-  
-  <td>
-    <em x-id="4">SIGCONT</em>
-  </td>
-  
-  <td>
-    Resume the process
-  </td>
-</tr>
+Signals are the means of communication between processes. The `kill` command sends a signal to a process.
 
-<tr>
-  <td>
-    <code>19</code>
-  </td>
-  
-  <td>
-    <em x-id="4">SIGSTOP</em>
-  </td>
-  
-  <td>
-    Suspend the process
-  </td>
-</tr></tbody> </table> 
+!!! Tip The complete list of signals taken into account by the `kill` command is available by typing the command :
+```
+$ man 7 signal
+```
 
-<p spaces-before="0">
-  Signals are the means of communication between processes. The <code>kill</code> command sends a signal to a process.
-</p>
+### `nohup` command
 
-<p spaces-before="0">
-  !!! Tip The complete list of signals taken into account by the <code>kill</code> command is available by typing the command :
-</p>
+`nohup` allows the launching of a process independently of a connection.
 
-<pre><code>$ man 7 signal
-</code></pre>
+```
+nohup command
+```
 
+Example:
+```
+$ nohup myprogram.sh 0</dev/null &
+```
 
+`nohup` ignores the `SIGHUP` signal sent when a user logs out.
 
-<h3 spaces-before="0">
-  <code>nohup</code> command
-</h3>
+!!! Note "Question" `nohup` handles standard output and error, but not standard input, hence the redirection of this input to `/dev/null`.
 
-<p spaces-before="0">
-  <code>nohup</code> allows the launching of a process independently of a connection.
-</p>
+### [CTRL] + [Z]
 
-<pre><code>nohup command
-</code></pre>
+By pressing the <kbd>CTRL</kbd> + <kbd>Z</kbd> keys simultaneously, the synchronous process is temporarily suspended. Access to the prompt is restored after displaying the number of the process that has just been suspended.
 
-<p spaces-before="0">
-  Example:
-</p>
+### `&` instruction
 
-<pre><code>$ nohup myprogram.sh 0&lt;/dev/null &
-</code></pre>
+The `&` statement executes the command asynchronously (the command is then called _job_) and displays the number of _job_. Access to the prompt is then returned.
 
-<p spaces-before="0">
-  <code>nohup</code> ignores the <code>SIGHUP</code> signal sent when a user logs out.
-</p>
-
-<p spaces-before="0">
-  !!! Note "Question" <code>nohup</code> handles standard output and error, but not standard input, hence the redirection of this input to <code>/dev/null</code>.
-</p>
-
-
-
-<h3 spaces-before="0">
-  [CTRL] + [Z]
-</h3>
-
-<p spaces-before="0">
-  By pressing the <kbd>CTRL</kbd> + <kbd>Z</kbd> keys simultaneously, the synchronous process is temporarily suspended. Access to the prompt is restored after displaying the number of the process that has just been suspended.
-</p>
-
-
-
-<h3 spaces-before="0">
-  <code>&</code> instruction
-</h3>
-
-<p spaces-before="0">
-  The <code>&</code> statement executes the command asynchronously (the command is then called <em x-id="4">job</em>) and displays the number of <em x-id="4">job</em>. Access to the prompt is then returned.
-</p>
-
-<p spaces-before="0">
-  Example:
-</p>
-
-<pre><code>$ time ls -lR / &gt; list.ls 2&gt; /dev/null &
+Example:
+```
+$ time ls -lR / > list.ls 2> /dev/null &
 [1] 15430
 $
-</code></pre>
+```
 
-<p spaces-before="0">
-  The <em x-id="4">job</em> number is obtained during background processing and is displayed in square brackets, followed by the <code>PID</code> number.
-</p>
+The _job_ number is obtained during background processing and is displayed in square brackets, followed by the `PID` number.
 
+### `fg` and `bg` commands
 
+The `fg` command puts the process in the foreground:
 
-<h3 spaces-before="0">
-  <code>fg</code> and <code>bg</code> commands
-</h3>
-
-<p spaces-before="0">
-  The <code>fg</code> command puts the process in the foreground:
-</p>
-
-<pre><code>$ time ls -lR / &gt; list.ls 2&gt;/dev/null &
+```
+$ time ls -lR / > list.ls 2>/dev/null &
 $ fg 1
-time ls -lR / &gt; list.ls 2/dev/null
-</code></pre>
+time ls -lR / > list.ls 2/dev/null
+```
 
-<p spaces-before="0">
-  while the command <code>bg</code> places it in the background:
-</p>
+while the command `bg` places it in the background:
 
-<pre><code>[CTRL]+[Z]
+```
+[CTRL]+[Z]
 ^Z
 [1]+ Stopped
 $ bg 1
 [1] 15430
 $
-</code></pre>
+```
 
-<p spaces-before="0">
-  Whether it was put in the background when it was created with the <code>&</code> argument or later with the <kbd>CTRL</kbd> +<kbd>Z</kbd> keys, a process can be brought back to the foreground with the <code>fg</code> command and its job number.
-</p>
+Whether it was put in the background when it was created with the `&` argument or later with the <kbd>CTRL</kbd> +<kbd>Z</kbd> keys, a process can be brought back to the foreground with the `fg` command and its job number.
 
+### `jobs` command
 
+The `jobs` command displays the list of processes running in the background and specifies their job number.
 
-<h3 spaces-before="0">
-  <code>jobs</code> command
-</h3>
-
-<p spaces-before="0">
-  The <code>jobs</code> command displays the list of processes running in the background and specifies their job number.
-</p>
-
-<p spaces-before="0">
-  Example:
-</p>
-
-<pre><code>$ jobs
+Example:
+```
+$ jobs
 [1]- Running    sleep 1000
-[2]+ Running    find / &gt; arbo.txt
-</code></pre>
+[2]+ Running    find / > arbo.txt
+```
 
-<p spaces-before="0">
-  The columns represent:
-</p>
+The columns represent:
 
-<ol start="1">
-  <li>
-    job number;
-  </li>
-  
-  <li>
-    the order in which the processes run
-  </li>
-</ol>
+1. job number;
+2. the order in which the processes run
+- a `+` : this process is the next process to run by default with `fg` or `bg` ;
+- a `-` : this process is the next process to take the `+` ;
+3.  _Running_ (running process) or _Stopped_ (suspended process).
+4. the command
 
-<ul>
-  <li>
-    a <code>+</code> : this process is the next process to run by default with <code>fg</code> or <code>bg</code> ;
-  </li>
-  <li>
-    a <code>-</code> : this process is the next process to take the <code>+</code> ;
-  </li>
-</ul>
+### `nice` and `renice` commands
 
-<ol start="3">
-  <li>
-    <em x-id="4">Running</em> (running process) or <em x-id="4">Stopped</em> (suspended process).
-  </li>
-  
-  <li>
-    the command
-  </li>
-</ol>
+The command `nice` allows the execution of a command by specifying its priority.
 
+```
+nice priority command
+```
 
+Example:
+```
+$ nice -n+15 find / -name "file"
+```
 
-<h3 spaces-before="0">
-  <code>nice</code> and <code>renice</code> commands
-</h3>
+Unlike `root`, a standard user can only reduce the priority of a process. Only values between +0 and +19 will be accepted.
 
-<p spaces-before="0">
-  The command <code>nice</code> allows the execution of a command by specifying its priority.
-</p>
+!!! Tip This last limitation can be lifted on a per-user or per-group basis by modifying the `/etc/security/limits.conf` file.
 
-<pre><code>nice priority command
-</code></pre>
+The `renice` command allows you to change the priority of a running process.
 
-<p spaces-before="0">
-  Example:
-</p>
+```
+renice priority [-g GID] [-p PID] [-u UID]
+```
 
-<pre><code>$ nice -n+15 find / -name "file"
-</code></pre>
+Example:
+```
+$ renice +15 -p 1664
+```
+| Option | Description                       |
+| ------ | --------------------------------- |
+| `-g`   | `GID` of the process owner group. |
+| `-p`   | `PID` of the process.             |
+| `-u`   | `UID` of the process owner.       |
 
-<p spaces-before="0">
-  Unlike <code>root</code>, a standard user can only reduce the priority of a process. Only values between +0 and +19 will be accepted.
-</p>
+The `renice` command acts on processes already running. It is therefore possible to change the priority of a specific process, but also of several processes belonging to a user or a group.
 
-<p spaces-before="0">
-  !!! Tip This last limitation can be lifted on a per-user or per-group basis by modifying the <code>/etc/security/limits.conf</code> file.
-</p>
+!!! Tip The `pidof` command, coupled with the `xargs` command (see the Advanced Commands course), allows a new priority to be applied in a single command:
+```
+$ pidof sleep | xargs renice 20
+```
 
-<p spaces-before="0">
-  The <code>renice</code> command allows you to change the priority of a running process.
-</p>
+### `top` command
 
-<pre><code>renice priority [-g GID] [-p PID] [-u UID]
-</code></pre>
+The `top` command displays the processes and their resource consumption.
 
-<p spaces-before="0">
-  Example:
-</p>
-
-<pre><code>$ renice +15 -p 1664
-</code></pre>
-<table spaces-before="0">
-  <tr>
-    <th>
-      Option
-    </th>
-    
-    <th>
-      Description
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>-g</code>
-    </td>
-    
-    <td>
-      <code>GID</code> of the process owner group.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>-p</code>
-    </td>
-    
-    <td>
-      <code>PID</code> of the process.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>-u</code>
-    </td>
-    
-    <td>
-      <code>UID</code> of the process owner.
-    </td>
-  </tr>
-</table>
-
-<p spaces-before="0">
-  The <code>renice</code> command acts on processes already running. It is therefore possible to change the priority of a specific process, but also of several processes belonging to a user or a group.
-</p>
-
-<p spaces-before="0">
-  !!! Tip The <code>pidof</code> command, coupled with the <code>xargs</code> command (see the Advanced Commands course), allows a new priority to be applied in a single command:
-</p>
-
-<pre><code>$ pidof sleep | xargs renice 20
-</code></pre>
-
-
-
-<h3 spaces-before="0">
-  <code>top</code> command
-</h3>
-
-<p spaces-before="0">
-  The <code>top</code> command displays the processes and their resource consumption.
-</p>
-
-<pre><code>$ top
+```
+$ top
 PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 2514 root 20 0       15    5.5 0:01.14   top
-</code></pre>
+```
 
-<table spaces-before="0">
-  <tr>
-    <th>
-      Column
-    </th>
-    
-    <th>
-      Description
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>PID</code>
-    </td>
-    
-    <td>
-      Process identifier.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>USER</code>
-    </td>
-    
-    <td>
-      Owner user.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>PR</code>
-    </td>
-    
-    <td>
-      Process priority.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>NI</code>
-    </td>
-    
-    <td>
-      Nice value.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>%CPU</code>
-    </td>
-    
-    <td>
-      Processor load.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>%MEM</code>
-    </td>
-    
-    <td>
-      Memory load.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>TIME+</code>
-    </td>
-    
-    <td>
-      Processor usage time.
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      <code>COMMAND</code>
-    </td>
-    
-    <td>
-      Command executed.
-    </td>
-  </tr>
-</table>
+| Column    | Description           |
+| --------- | --------------------- |
+| `PID`     | Process identifier.   |
+| `USER`    | Owner user.           |
+| `PR`      | Process priority.     |
+| `NI`      | Nice value.           |
+| `%CPU`    | Processor load.       |
+| `%MEM`    | Memory load.          |
+| `TIME+`   | Processor usage time. |
+| `COMMAND` | Command executed.     |
 
-<p spaces-before="0">
-  The <code>top</code> command allows control of the processes in real time and in interactive mode.
-</p>
+The `top` command allows control of the processes in real time and in interactive mode.
 
+### `pgrep` and `pkill` commands
 
+The `pgrep` command searches the running processes for a process name and displays the _PID_ matching the selection criteria on the standard output.
 
-<h3 spaces-before="0">
-  <code>pgrep</code> and <code>pkill</code> commands
-</h3>
+The `pkill` command will send the specified signal (by default _SIGTERM_) to each process.
 
-<p spaces-before="0">
-  The <code>pgrep</code> command searches the running processes for a process name and displays the <em x-id="4">PID</em> matching the selection criteria on the standard output.
-</p>
-
-<p spaces-before="0">
-  The <code>pkill</code> command will send the specified signal (by default <em x-id="4">SIGTERM</em>) to each process.
-</p>
-
-<pre><code>pgrep process
+```
+pgrep process
 pkill [-signal] process
-</code></pre>
+```
 
-<p spaces-before="0">
-  Examples:
-</p>
+Examples:
 
-<ul>
-  <li>
-    Get the process number from <code>sshd</code>:
-  </li>
-</ul>
+* Get the process number from `sshd`:
 
-<pre><code>$ pgrep -u root sshd
-</code></pre>
+```
+$ pgrep -u root sshd
+```
 
-<ul>
-  <li>
-    Kill all <code>tomcat</code> processes:
-  </li>
-</ul>
+* Kill all `tomcat` processes:
 
-<pre><code>$ pkill tomcat
-</code></pre>
+```
+$ pkill tomcat
+```
