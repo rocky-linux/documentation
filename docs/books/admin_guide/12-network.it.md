@@ -601,7 +601,7 @@ Quando si implementano i servizi di rete, è molto comune verificare con uno di 
 
 ### comando `netstat`
 
-!!! Warning "Avvertimento" Il comando `netstat` è ora deprecato e non è più installato per impostazione predefinita su Rocky Linux. You may still find some Linux versions that have it installed, but it is best to move on to using `ss` for everything that you would have used `netstat` for.
+!!! Warning "Avvertimento" Il comando `netstat` è ora deprecato e non è più installato per impostazione predefinita su Rocky Linux. Potresti ancora trovare alcune versioni di Linux che lo hanno installato, ma è meglio passare all'uso di `ss` per tutto ciò per cui avresti usato `netstat`.
 
 Il comando `netstat` (**statistiche di rete**) visualizza le porte in ascolto sulla rete.
 
@@ -634,8 +634,11 @@ Esempio:
 $ arp-scan -I eth0 -l
 
 172.16.1.104  00:01:02:03:04:05       3COM CORPORATION
-172.16.1.107  00:0c:29:1b:eb:97       VMware, Inc. 172.16.1.250  00:26:ab:b1:b7:f6       (Unknown)
-172.16.1.252  00:50:56:a9:6a:ed       VMWare, Inc. (DUP: 2)
+172.16.1.107  00:0c:29:1b:eb:97       VMware, Inc.
+172.16.1.250  00:26:ab:b1:b7:f6       (Unknown)
+172.16.1.252  00:50:56:a9:6a:ed       VMWare, Inc.
+172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc.
+172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 2)
 172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 3)
 172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 4)
 172.16.1.232   88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)
