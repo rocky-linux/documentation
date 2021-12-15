@@ -1,8 +1,8 @@
 ---
 title: Ansible Basics
 author: Antoine Le Morvan
-contributors: Steven Spencer
-update: 12-06-2021
+contributors: Steven Spencer, tianci li
+update: 15-Dec-2021
 ---
 
 # Ansible Basics
