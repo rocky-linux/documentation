@@ -1524,87 +1524,40 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 The `;` character strings the commands.
 
-Les commandes s'exécuteront toutes séquentiellement dans l'ordre d'entrée une fois que l'utilisateur aura pressé <kbd>ENTRÉE</kdb>.</p> 
+Les commandes s'exécuteront toutes séquentiellement dans l'ordre d'entrée une fois que l'utilisateur aura pressé ENTRÉE.
 
-<pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
-</code></pre>
+```bash
+$ ls /; cd /home; ls -lia; cd /
+```
 
-<h2 spaces-before="0">
-  Check your Knowledge
-</h2>
+## Check your Knowledge
 
-<p spaces-before="0">
-  :heavy_check_mark: What defines a user under Linux? (7 answers)
-</p>
+:heavy_check_mark: What defines a user under Linux? (7 answers)
 
-<p spaces-before="0">
-  :heavy_check_mark: What characterizes a long option for an order?
-</p>
+:heavy_check_mark: What characterizes a long option for an order?
 
-<p spaces-before="0">
-  :heavy_check_mark: Which commands allow you to search for help on a command:
-</p>
+:heavy_check_mark: Which commands allow you to search for help on a command:
 
-<ul>
-  <li>
-    [ ] <code>google</code>
-  </li>
-  <li>
-    [ ] <code>chuck --norris</code>
-  </li>
-  <li>
-    [ ] <code>info</code>
-  </li>
-  <li>
-    [ ] <code>apropos</code>
-  </li>
-  <li>
-    [ ] <code>whatis</code>
-  </li>
-</ul>
+- [ ] `google`
+- [ ] `chuck --norris`
+- [ ] `info`
+- [ ] `apropos`
+- [ ] `whatis`
 
-<p spaces-before="0">
-  :heavy_check_mark: Which command allows you to view a user's history?
-</p>
+:heavy_check_mark: Which command allows you to view a user's history?
 
-<p spaces-before="0">
-  :heavy_check_mark: Which command allows you to search for text in a file?
-</p>
+:heavy_check_mark: Which command allows you to search for text in a file?
 
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
+- [ ] `find`
+- [ ] `grep`
 
-<p spaces-before="0">
-  :heavy_check_mark: Which command allows you to search for a file?
-</p>
+:heavy_check_mark: Which command allows you to search for a file?
 
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
+- [ ] `find`
+- [ ] `grep`
 
-<p spaces-before="0">
-  :heavy_check_mark: Which command redirects the error stream of a command to a new <code>errors.log</code> file:
-</p>
+:heavy_check_mark: Which command redirects the error stream of a command to a new `errors.log` file:
 
-<ul>
-  <li>
-    [ ] <code>ls -R / 2&gt; errors.log</code>
-  </li>
-  <li>
-    [ ] <code>ls -R / 2&gt;&gt; errors.log</code>
-  </li>
-  <li>
-    [ ] <code>ls -R / 2&gt; errors.log 2&gt;&1</code>
-  </li>
-</ul>   
+- [ ] `ls -R / 2> errors.log`
+- [ ] `ls -R / 2>> errors.log`
+- [ ] `ls -R / 2> errors.log 2>&1`   
