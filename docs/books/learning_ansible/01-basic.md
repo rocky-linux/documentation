@@ -1,8 +1,8 @@
 ---
 title: Ansible Basics
 author: Antoine Le Morvan
-contributors: Steven Spencer
-update: 12-06-2021
+contributors: Steven Spencer, tianci li
+update: 15-Dec-2021
 ---
 
 # Ansible Basics
@@ -25,6 +25,19 @@ In this chapter you will learn how to work with Ansible.
 **Reading time**: 30 minutes
 
 ****
+
+When it comes to Ansible, you have to mention its author, Michael DeHaan, the founder of tools such as Cobbler and Ansible.
+
+![Michael DeHaan](images/Michael_DeHaan01.jpg)
+
+|Time period|Company|Post|
+|---|---|---|
+|2013-03 ~ |AnsibleWorks open source company|CTO|
+|2011-06 ~ 2012-11|Rpath, founded in 2005, was closed on May 1, 2013.|Senior Engineer|
+|2010-02 ~ 2010-07|Puppet|Product Manager|
+|2006-03 ~ 2009-10|Red Hat|Senior Software Engineer|
+
+The earliest first version was 0.0.1, released on March 9, 2012. on October 17, 2015, AnsibleWorks was acquired by Red Hat for $150 million.
 
 Ansible centralizes and automates administration tasks. It is:
 
