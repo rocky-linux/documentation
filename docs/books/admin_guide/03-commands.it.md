@@ -749,7 +749,7 @@ $ cp -r /home/rockstar /tmp
 | `-f`    | Non chiedere conferma per la sovrascrittura del file di destinazione.        |
 | `-p`    | Mantiene il proprietario, le autorizzazioni e il timestamp del file copiato. |
 | `-r`    | Copia una directory con i suoi file e sottodirectory.                        |
-| `-s`    | Creates a symbolik links rather than copying                                 |
+| `-s`    | Crea un collegamento simbolico invece di copiare                             |
 
 ```bash
 cp file1 /repexist/file2
@@ -1107,7 +1107,8 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso `*.txt` e li elimina.
 
 
-!!! Tip "Comprendere l'opzione `-exec`" Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
+!!! Tip "Comprendere l'opzione `-exec`"  
+Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
 
     Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.txt`, il comando `find` costruirà la stringa sostituendo nella stringa `rm -f {} \;` le parentesi graffe con uno dei risultati della ricerca, e farà questo tutte le volte che ci sono dei risultati.
     
