@@ -50,7 +50,7 @@ Il comando `ps` visualizza lo stato dei processi in esecuzione.
 ps [-e] [-f] [-u login]
 ```
 
-Example:
+Esempio:
 ```
 # ps -fu root
 ```
@@ -217,7 +217,7 @@ $ man 7 signal
 nohup command
 ```
 
-Example:
+Esempio:
 ```
 $ nohup myprogram.sh 0</dev/null &
 ```
@@ -235,7 +235,7 @@ Premendo la combinazione <kbd>CTRL</kbd> + <kbd>Z</kbd> contemporaneamente, il p
 
 La dichiarazione `&` esegue il comando in modo asincrono (il comando viene quindi chiamato _job_) e visualizza il numero di _job_. L'accesso al prompt viene quindi restituito.
 
-Example:
+Esempio:
 ```
 $ time ls -lR / > list.ls 2> /dev/null &
 [1] 15430
@@ -271,7 +271,7 @@ Se è stato messo in background quando è stato creato con l'argomento `&` o pi�
 
 Il comando `jobs` visualizza l'elenco dei processi in esecuzione in background e specifica il loro numero di lavoro.
 
-Example:
+Esempio:
 ```
 $ jobs
 [1]- Running    sleep 1000
@@ -295,7 +295,7 @@ Il comando `nice` consente l'esecuzione di un comando specificando la sua priori
 nice priority command
 ```
 
-Example:
+Esempio:
 ```
 $ nice -n+15 find / -name "file"
 ```
@@ -311,7 +311,7 @@ Il comando `renice` ti consente di modificare la priorità di un processo di ese
 renice priority [-g GID] [-p PID] [-u UID]
 ```
 
-Example:
+Esempio:
 ```
 $ renice +15 -p 1664
 ```
