@@ -648,13 +648,13 @@ Esempio:
 $ cpio -iv </backups/etc.152.cpio | less
 ```
 
-| Opzioni                      | Descrizione                                                                          |
-| ---------------------------- | ------------------------------------------------------------------------------------ |
-| `-i`                         | Legge un backup.                                                                     |
-| `-E file`                    | Visualizza gli attributi dei file.                                                   |
-| `--make-directories` or `-d` | Ricostruisce la struttura ad albero mancante.                                        |
-| `-u`                         | Sostituisce tutti i file anche se esistono.                                          |
-| `--no-absolute-filenames`    | Permette di ripristinare un backup effettuato in modalità assoluta in modo relativo. |
+| Opzioni                     | Descrizione                                                                          |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| `-i`                        | Legge un backup.                                                                     |
+| `-E file`                   | Visualizza gli attributi dei file.                                                   |
+| `--make-directories` o `-d` | Ricostruisce la struttura ad albero mancante.                                        |
+| `-u`                        | Sostituisce tutti i file anche se esistono.                                          |
+| `--no-absolute-filenames`   | Permette di ripristinare un backup effettuato in modalità assoluta in modo relativo. |
 
 !!! Warning "Avvertimento" Per impostazione predefinita, al momento del ripristino, i file sul disco la cui data di ultima modifica è più recente o uguale alla data del backup non vengono ripristinati (al fine di evitare di sovrascrivere le informazioni recenti con informazioni meno recenti).
 
