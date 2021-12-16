@@ -1,8 +1,8 @@
 ---
 title: Change Log
 author: Louis Abel
-contributors: Steven Spencer
-update: 13-Dec-2021
+contributors: Steven Spencer, tianci li
+update: 16-Dec-2021
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,34 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - 2021-12-13
+
+The following packages have been updated since December 13, 2021:
+
+* dotnet5.0: dotnet5.0-5.0.209-1.el8_5 -> dotnet5.0-5.0.210-1.el8_5
+* go-toolset: go-toolset-1.16.7-1.module+el8.5.0+694+f77f0bfd -> go-toolset-1.16.12-1.module+el8.5.0+720+c057d5cf
+* golang: golang-1.16.7-1.module+el8.5.0+694+f77f0bfd -> golang-1.16.12-1.module+el8.5.0+720+c057d5cf
+* ipa: ipa-4.9.6-6.module+el8.5.0+675+61f67439 -> ipa-4.9.6-10.module+el8.5.0+719+4f06efb6
+* nodejs: nodejs-1:16.8.0-1.module+el8.5.0+702+221f14e6 -> nodejs-1:16.13.1-3.module+el8.5.0+721+4c107270
+* nodejs-nodemon: nodejs-nodemon-2.0.7-1.module+el8.5.0+702+221f14e6 -> nodejs-nodemon-2.0.15-1.module+el8.5.0+721+4c107270
+
+* kernel-rt: kernel-rt-kvm added to RT
+
+Associated CVE's:
+
+* CVE-2020-25717
+
+The follow modules have been updated:
+
+* go-toolset-rhel8-8050020211215173118-8aa62369
+* idm-DL1-8050020211215093947-3d2c466f
+* nodejs-16-8050020211215195043-b4937e53
+
+
+### Release Engineering Notes
+
+Based on a request, the kernel-rt-kvm package has been added to the RT repo.
 
 ## 8.5 - 2021-12-12
 
