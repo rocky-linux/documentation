@@ -43,45 +43,45 @@ Parmi cette gestion des ressources, le système d'exploitation doit :
 
 ![Operation of an operating system](images/operating_system.png)
 
-## Generalities UNIX - GNU/Linux
+## Généralités UNIX - GNU/Linux
 
-### History
+### Histoire
 
 #### UNIX
 
-* From **1964 to 1968**: MULTICS (MULTiplexed Information and Computing Service) is developed for MIT, Bell Labs (AT&T) and General Electric.
+* De **1964 à 1968** : MULTICS (MULTiplexed Information and Computing Service) est développé pour le MIT, Bell Labs (AT&T) et General Electric.
 
-* **1969**: After the withdrawal of Bell (1969) and then General Electric from the project, two developers (Ken Thompson and Dennis Ritchie), joined later by Brian Kernighan, judging MULTICS to be too complex, launched the development of UNIX (UNiplexed Information and Computing Service). Originally developed in assembler, the designers of UNIX developed the B language and then the C language (1971) and completely rewrote UNIX. Having been developed in 1970, the reference date of UNIX/Linux systems is still set at January 01, 1970.
+* **1969** : Après le retrait de Bell (1969) puis de General Electric du projet, deux développeurs (Ken Thompson et Dennis Ritchie), rejoint plus tard par Brian Kernighan, jugeant MULTICS trop complexe, ont lancé le développement de UNIX (UNiplexed Information and Computing Service). Développé à l'origine en assembleur, les concepteurs d'UNIX développent le langage B puis le langage C (1971) et réécrivent complètement UNIX. Ayant été développé en 1970, la date de référence des systèmes UNIX/Linux est toujours fixée au 1er janvier 1970.
 
-The C language is still one of the most popular programming languages today! A low level language, close to the hardware, it allows the adaptation of the operating system to any machine architecture having a C compiler.
+Le langage C est encore l'un des langages de programmation les plus populaires aujourd'hui! Un langage de bas niveau, proche du matériel, il permet d'adapter le système d'exploitation à toute architecture de machine ayant un compilateur C.
 
-UNIX is an open and evolving operating system that has played a major role in the history of computing. It has been the basis for many other systems: Linux, BSD, MacOS, etc.
+UNIX est un système d'exploitation ouvert et évolutif qui a joué un rôle majeur dans l'histoire de l'informatique. Il a été la base de beaucoup d'autres systèmes : Linux, BSD, MacOS, etc.
 
-UNIX is still relevant today (HP-UX, AIX, Solaris, etc.)
+UNIX est toujours d'actualité aujourd'hui (HP-UX, AIX, Solaris, etc.)
 
 #### Minix
 
-* **1987**: A.S. Tanenbaum develops MINIX, a simplified UNIX, to teach operating systems in a simple way. Mr. Tanenbaum makes the source code of his operating system available.
+* **1987** : A.S. Tanenbaum développe MINIX, un UNIX simplifié, pour enseigner les systèmes d'exploitation de manière simple. M. Tanenbaum met à disposition le code source de son système d'exploitation.
 
 #### Linux
 
-* **1991**: A Finnish student, **Linus Torvalds**, creates an operating system dedicated to his personal computer and names it Linux. He publishes his first version 0.02, on the Usenet discussion forum and other developers come to help him improve his system. The term Linux is a play on words between the founder's first name, Linus, and UNIX.
+* **1991** : Un étudiant finlandais, **Linus Torvalds**, crée un système d'exploitation dédié à son ordinateur personnel et le nomme Linux. Il publie sa première version 0.02, sur le forum de discussion Usenet et d'autres développeurs viennent l'aider à améliorer son système. Le terme Linux est un jeu de mots entre le prénom du fondateur, Linus, et UNIX.
 
-* **1993**: The Debian distribution is created. Debian is a non-commercial, community-based distribution. Originally developed for use on servers, it is particularly well suited for this role, but it is intended to be a universal system and thus usable on a personal computer as well. Debian is used as the basis for many other distributions, such as Mint or Ubuntu.
+* **1993** : La distribution Debian est créée. Debian est une distribution non commerciale basée sur la communauté. Développé à l'origine pour être utilisée sur les serveurs, elle est particulièrement adaptée à ce rôle, mais elle est destinée à être un système universel et donc utilisable sur un ordinateur personnel également. Debian est utilisée comme base pour de nombreuses autres distributions, comme Mint ou Ubuntu.
 
-* **1994**: The commercial distribution RedHat is created by the company RedHat, which is today the leading distributor of the GNU/Linux operating system. RedHat supports the community version Fedora and recently the free distribution CentOS.
+* **1994** : La distribution commerciale RedHat est créée par la société RedHat, qui est aujourd'hui le premier distributeur du système d'exploitation GNU/Linux. RedHat prend en charge la version communautaire Fedora et récemment la distribution gratuite CentOS.
 
-* **1997**: The KDE desktop environment is created. It is based on the Qt component library and the C++ development language.
+* **1997** : L'environnement de bureau KDE est créé. Il est basé sur la bibliothèque de composants Qt et le langage de développement C++.
 
-* **1999**: The Gnome desktop environment is created. It is based on the GTK+ component library.
+* **1999** : L'environnement de bureau Gnome est créé. Il est basé sur la bibliothèque de composants GTK+.
 
-* **2002**: The Arch distribution is created. Its particularity is to be released in Rolling Release (continuous update).
+* **2002** : La distribution Arch est créée. Sa particularité est d'être diffusée en Rolling Release (mise à jour continue).
 
-* **2004**: Ubuntu is created by the Canonical company (Mark Shuttleworth). It is based on Debian, but includes free and proprietary software.
+* **2004** : Ubuntu est créé par la compagnie Canonical (Mark Shuttleworth). Elle est basé sur Debian, mais inclut des logiciels libres et propriétaires.
 
-* **2021**: Birth of Rocky Linux, based on RedHat distribution.
+* **2021** : Naissance de Rocky Linux, basée sur la distribution RedHat.
 
-### Market share
+### Part de marché
 
 <!--
 TODO: graphics with market share for servers and pc.
