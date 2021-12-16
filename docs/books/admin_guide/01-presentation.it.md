@@ -76,7 +76,7 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
 * **1999**: Viene creato l'ambiente desktop Gnome. Questo si basa sulla libreria di componenti GTK+.
 
-* **2002**: Viene creata la distribuzione Arch. La sua particolarità è quella di essere rilasciato in Rolling Release (aggiornamento continuo). La sua particolarità deve essere rilasciata in Rolling Release (aggiornamento continuo).
+* **2002**: Viene creata la distribuzione Arch. La sua particolarità deve essere rilasciata in Rolling Release (aggiornamento continuo).
 
 * **2004**: Ubuntu viene creato dalla società Canonical (Mark Shuttleworth). È basato su Debian, che include software gratuito e proprietario.
 
