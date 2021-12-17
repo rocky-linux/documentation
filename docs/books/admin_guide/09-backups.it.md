@@ -533,19 +533,23 @@ $ find /etc | cpio -ovF /backups/etc.cpio
 
 Il risultato del comando `find` viene inviato come input al comando `cpio` tramite una _pipe_ (carattere `|`, <kbd>AltGr</kbd> + <kbd>6</kbd>).
 
-Il risultato del comando `find` viene inviato come input al comando `cpio` tramite una _pipe_ (carattere `|`, <kbd>AltGr</kbd> + <kbd>6</kbd>).
+Qui, il comando `find /etc` restituisce un elenco di file corrispondenti al contenuto della directory `/etc` (ricorsivamente) al comando `cpio`, che esegue il backup.
 
 Non dimenticare il segno `>` durante il salvataggio o l'opzione `F save_name_cpio`.
 
-| Opzioni | Descrizione                                    | | `-o`    | Crea a backup (_output_).                   | | `-v`    | Visualizza il nome dei file elaborati.      | | `-F`    | Designa il backup da modificare (medio). |
+| Options | Descrizione                                    |
+| ------- | ---------------------------------------------- |
+| `-o`    | Creates a backup (_output_).                   |
+| `-v`    | Displays the name of the processed files.      |
+| `-F`    | Designates the backup to be modified (medium). |
 
-Backup su un supporto:
+Backup to a media :
 
 ```
 $ find /etc | cpio -ov > /dev/rmt0
 ```
 
-Il supporto può essere di diversi tipi:
+The support can be of several types:
 
 * unità nastro: `/dev/rmt0`  ;
 * una partizione: `/dev/sda5`, `/dev/hda5`, etc.
@@ -565,7 +569,7 @@ $ find etc | cpio -o > /backups/etc.cpio
 $ find /etc | cpio -o > /backups/etc.A.cpio
 ```
 
-!!! Warning "Avvertimento" Se il percorso specificato nel comando `find` è **assoluto** il backup verrà eseguito in **assoluto**.
+!!! Warning If the path specified in the `find` command is **absolute** then the backup will be performed in **absolute**.
 
     Se il percorso indicato nel comando `find` è **relativo** il backup verrà eseguito in **relativo**.
 
@@ -575,18 +579,18 @@ $ find /etc | cpio -o > /backups/etc.A.cpio
 [files command |] cpio {-o| --create} -A [-options] [<fic-list] {F|>device}
 ```
 
-Esempio:
+Example:
 
 ```
 $ find /etc/shadow | cpio -o -AF SystemFiles.A.cpio
 ```
 
-L'aggiunta di file è possibile solo su supporti ad accesso diretto.
+Adding files is only possible on direct access media.
 
-| Opzione | Descrizione                                   |
-| ------- | --------------------------------------------- |
-| `-A`    | Aggiunge uno o più file a un backup su disco. |
-| `-F`    | Indica il backup da modificare.               |
+| Option | Descrizione                                 |
+| ------ | ------------------------------------------- |
+| `-A`   | Adds one or more files to a backup on disk. |
+| `-F`   | Designates the backup to be modified.       |
 
 ### Compressione di un backup
 
@@ -605,62 +609,62 @@ $ ls /backups/etc.A.cpio*
 $ find /etc | cpio –o | gzip > /backups/etc.A.cpio.gz
 ```
 
-Non c'è alcuna opzione, a differenza del comando `tar`, per salvare e comprimere allo stesso tempo. Quindi è fatto in due passaggi: salvataggio e compressione.
+There is no option, unlike the `tar` command, to save and compress at the same time. So it is done in two steps: saving and compressing.
 
-La sintassi del primo metodo è più facile da capire e ricordare, perché viene eseguita in due passaggi.
+The syntax of the first method is easier to understand and remember, because it is done in two steps.
 
-Per il primo metodo, il file di backup viene automaticamente rinominato dall'utilità `gzip` che aggiunge `.gz` alla fine del nome del file. Allo stesso modo l'utilità `bzip2` aggiunge automaticamente `.bz2`.
+For the first method, the backup file is automatically renamed by the `gzip` utility which adds `.gz` to the end of the file name. Similarly the `bzip2` utility automatically adds `.bz2`.
 
 ### Leggere il contenuto di un backup
 
-Sintassi del comando `cpio` per leggere il contenuto di un backup _cpio_:
+Syntax of the `cpio` command to read the contents of a _cpio_ backup:
 
 ```
 cpio -t [-options] [<fic-list]
 ```
 
-Esempio:
+Example:
 
 ```
 $ cpio -tv < /backups/etc.152.cpio | less
 ```
 
-| Opzione | Descrizione                        |
-| ------- | ---------------------------------- |
-| `-t`    | Legge un backup.                   |
-| `-v`    | Visualizza gli attributi dei file. |
+| Opzioni | Descrizione               |
+| ------- | ------------------------- |
+| `-t`    | Reads a backup.           |
+| `-v`    | Displays file attributes. |
 
-Dopo aver eseguito un backup, è necessario leggerne il contenuto per essere sicuri che non ci siano stati errori.
+After making a backup, you need to read its contents to be sure that there were no errors.
 
-Allo stesso modo, prima di eseguire un ripristino, è necessario leggere il contenuto del backup che verrà utilizzato.
+In the same way, before performing a restore, you must read the contents of the backup that will be used.
 
 ### Ripristinare un backup
 
-Sintassi del comando `cpio` per ripristinare un backup:
+Syntax of the `cpio` command to restore a backup:
 
 ```
 cpio {-i| --extract} [-E file] [-options] [<device]
 ```
 
-Esempio:
+Example:
 
 ```
 $ cpio -iv </backups/etc.152.cpio | less
 ```
 
-| Opzioni                     | Descrizione                                                                          |
-| --------------------------- | ------------------------------------------------------------------------------------ |
-| `-i`                        | Legge un backup.                                                                     |
-| `-E file`                   | Visualizza gli attributi dei file.                                                   |
-| `--make-directories` o `-d` | Ricostruisce la struttura ad albero mancante.                                        |
-| `-u`                        | Sostituisce tutti i file anche se esistono.                                          |
-| `--no-absolute-filenames`   | Permette di ripristinare un backup effettuato in modalità assoluta in modo relativo. |
+| Options                      | Description                                                         |
+| ---------------------------- | ------------------------------------------------------------------- |
+| `-i`                         | Restore a complete backup.                                          |
+| `-E file`                    | Restores only the files whose name is contained in file.            |
+| `--make-directories` or `-d` | Rebuilds the missing tree structure.                                |
+| `-u`                         | Replaces all files even if they exist.                              |
+| `--no-absolute-filenames`    | Allows to restore a backup made in absolute mode in a relative way. |
 
-!!! Warning "Avvertimento" Per impostazione predefinita, al momento del ripristino, i file sul disco la cui data di ultima modifica è più recente o uguale alla data del backup non vengono ripristinati (al fine di evitare di sovrascrivere le informazioni recenti con informazioni meno recenti).
+!!! Warning By default, at the time of restoration, files on the disk whose last modification date is more recent or equal to the date of the backup are not restored (in order to avoid overwriting recent information with older information).
 
     L'opzione `u`, d'altra parte, consente di ripristinare le versioni precedenti dei file.
 
-Esempi:
+Examples:
 
 * Ripristinare un backup assoluto in modalità assoluta
 
@@ -670,7 +674,7 @@ $ cpio –ivF home.A.cpio
 
 * Ripristino assoluto su una struttura ad albero esistente
 
-L'opzione `u` consente di sovrascrivere i file esistenti nella posizione in cui avviene il ripristino.
+The `u` option allows you to overwrite existing files at the location where the restore takes place.
 
 ```
 $ cpio –iuvF home.A.cpio
@@ -678,13 +682,13 @@ $ cpio –iuvF home.A.cpio
 
 * Ripristinare un backup assoluto in modalità relativa
 
-L'opzione lunga `no-absolute-filenames` consente un ripristino in modalità relativa. Infatti la `/` all'inizio del percorso verrà rimossa.
+The long option `no-absolute-filenames` allows a restoration in relative mode. Indeed the `/` at the beginning of the path will be removed.
 
 ```
 $ cpio --no-absolute-filenames -divuF home.A.cpio
 ```
 
-!!! Tip "Suggerimento" La creazione di directory è forse necessaria, da qui l'uso dell'opzione `d`
+!!! Tip The creation of directories is perhaps necessary, hence the use of the `d` option
 
 * Ripristinare un backup relativo
 
@@ -694,7 +698,7 @@ $ cpio –iv <etc.cpio
 
 * Ripristino in modalità assoluta di un file o di una directory
 
-Il ripristino di un particolare file o directory richiede la creazione di un file di elenco che deve poi essere eliminato.
+The restoration of a particular file or directory requires the creation of a list file that must then be deleted.
 
 ```
 echo "/etc/passwd" > tmp
@@ -704,24 +708,24 @@ rm -f tmp
 
 ## Utilità di Compressione - decompressione
 
-L'utilizzo della compressione al momento di un backup può avere una serie di inconvenienti:
+Using compression at the time of a backup can have a number of drawbacks:
 
 * Allunga il tempo di backup e il tempo di ripristino.
 * Rende impossibile aggiungere file al backup.
 
-!!! Note "Nota" È quindi meglio fare un backup e comprimerlo piuttosto che comprimerlo durante il backup.
+!!! Note It is therefore better to make a backup and compress it than to compress it during the backup.
 
 ### Compressione con `gzip`
 
-Il comando `gzip` comprime i dati.
+The `gzip` command compresses data.
 
-Sintassi del comando `gzip`:
+Syntax of the `gzip` command:
 
 ```
 gzip [options] [file ...]
 ```
 
-Esempio:
+Example:
 
 ```
 $ gzip usr.tar
@@ -729,21 +733,21 @@ $ ls
 usr.tar.gz
 ```
 
-Il file riceve l'estensione `.gz`.
+The file receives the extension `.gz`.
 
-Mantiene gli stessi permessi e le stesse date di ultimo accesso e modifica.
+It keeps the same rights and the same last access and modification dates.
 
 ### Compressione con `bunzip2`
 
-Anche il comando 'bunzip2' comprime i dati.
+The `bunzip2` command also compresses data.
 
-Sintassi del comando `bzip2`:
+Syntax of the `bzip2` command:
 
 ```
 bzip2 [options] [file ...]
 ```
 
-Esempio:
+Example:
 
 ```
 $ bzip2 usr.cpio
@@ -751,21 +755,21 @@ $ ls
 usr.cpio.bz2
 ```
 
-Al nome del file viene assegnata l'estensione `.bz2`.
+The file name is given the extension `.bz2`.
 
-La compressione con `bzip2` è migliore della compressione con `gzip` ma ci vuole più tempo per eseguirla.
+Compression by `bzip2` is better than compression by `gzip` but it takes longer to execute.
 
 ### Decompressione con `gunzip`
 
-Il comando `gunzip` decomprime i dati compressi.
+The `gunzip` command decompresses compressed data.
 
-Sintassi del comando `gunzip`:
+Syntax of the `gunzip` command:
 
 ```
 gunzip [options] [file ...]
 ```
 
-Esempio:
+Example:
 
 ```
 $ gunzip usr.tar.gz
@@ -773,9 +777,9 @@ $ ls
 usr.tar
 ```
 
-Il nome del file viene troncato da `gunzip` e l'estensione `.gz` viene rimossa.
+The file name is truncated by `gunzip` and the extension `.gz` is removed.
 
-`gunzip` decomprime anche i file con le seguenti estensioni:
+`gunzip` also decompresses files with the following extensions:
 
 * `.z` ;
 * `-z` ;
@@ -783,15 +787,15 @@ Il nome del file viene troncato da `gunzip` e l'estensione `.gz` viene rimossa.
 
 ### Decompressione con `bunzip2`
 
-Il comando `bunzip2` decomprime i dati compressi.
+The `bunzip2` command decompresses compressed data.
 
-Sintassi del comando `bzip2:
+Syntax of the `bzip2` command:
 
 ```
 bzip2 [options] [file ...]
 ```
 
-Esempio:
+Example:
 
 ```
 $ bunzip2 usr.cpio.bz2
@@ -799,9 +803,9 @@ $ ls
 usr.cpio
 ```
 
-Il nome del file viene troncato da `bunzip2` e l'estensione `.bz2` viene rimossa.
+The file name is truncated by `bunzip2` and the extension `.bz2` is removed.
 
-`bunzip2` decomprime anche il file con le seguenti estensioni:
+`bunzip2` also decompresses the file with the following extensions:
 
 * `-bz` ;
 * `.tbz2` ;
