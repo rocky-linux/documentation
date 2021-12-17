@@ -6,21 +6,21 @@ title: Comandi Avanzati Linux
 
 In questo capitolo imparerai alcuni comandi avanzati per Linux.
 
----
+****
 
 **Obiettivi** : In questo capitolo, i futuri amministratori Linux impareranno:
 
 :heavy_check_mark: alcuni comandi utili non trattati nel capitolo precedente;  
-:heavy_check_mark: alcuni comandi avanzati.  
+:heavy_check_mark: alcuni comandi avanzati.
 
 :checkered_flag: **comandi utente**, **Linux**
 
 **Conoscenza**: :star:  
-**Complessità**: :star: :star: :star:  
+**Complessità**: :star: :star: :star:
 
 **Tempo di lettura**: 20 minuti
 
----
+****
 
 ## comando `uniq`
 
@@ -28,7 +28,7 @@ Il comando `uniq` è un comando molto potente, usato con il comando `sort`, sopr
 
 Per illustrare come funziona il comando `uniq`, usiamo un file `firstnames.txt` contenente un elenco di nomi primi:
 
-```bash
+```
 antoine
 xavier
 steven
@@ -39,12 +39,11 @@ antoine
 steven
 ```
 
-!!! Note "Nota"  
-    `uniq` richiede che il file di input sia ordinato perché confronta solo le linee consecutive.
+!!! !!! Note "Nota" `uniq` richiede che il file di input sia ordinato perché confronta solo le linee consecutive.
 
 Senza un argomento, il comando `uniq` non mostrerà righe identiche che si susseguono nel file `firstnames.txt`:
 
-```bash
+```
 $ sort firstnames.txt | uniq
 antoine
 patrick
@@ -54,14 +53,14 @@ xavier
 
 Per visualizzare solo le righe che appaiono solo una volta, utilizzare l'opzione `-u`:
 
-```bash
+```
 $ sort firstnames.txt | uniq -u
 patrick
 ```
 
 Al contrario, per visualizzare solo le linee che appaiono almeno due volte nel file, è necessario utilizzare l'opzione `-d`:
 
-```bash
+```
 $ sort firstnames.txt | uniq -d
 antoine
 steven
@@ -70,7 +69,7 @@ xavier
 
 Per eliminare semplicemente linee che appaiono solo una volta, utilizzare l'opzione `-D`:
 
-```bash
+```
 $ sort firstnames.txt | uniq -D
 antoine
 antoine
@@ -83,7 +82,7 @@ xavier
 
 Infine, contare il numero di occorrenze di ciascuna linea, utilizzare l'opzione `-c`:
 
-```bash
+```
 $ sort firstnames.txt | uniq -c
       3 antoine
       1 patrick
@@ -91,7 +90,7 @@ $ sort firstnames.txt | uniq -c
       2 xavier
 ```
 
-```bash
+```
 $ sort firstnames.txt | uniq -cd
       3 antoine
       2 steven
@@ -106,7 +105,7 @@ Il comando `xargs` legge lo spazio bianco o gli argomenti delimitati da linefeed
 
 Un primo e più semplice esempio sarebbe il seguente:
 
-```bash
+```
 $ xargs
 use
 of
@@ -117,7 +116,7 @@ use of xargs
 
 Il comando `xargs` attende un input dallo standard input **stdin**. Sono state inserite tre linee. La fine dell'ingresso dell'utente in `xargs` è specificato dalla sequenza di tasti <kbd>CTRL</kbd>+<kbd>D</kbd>. `xargs` esegue quindi il comando predefinito `echo` seguito dai tre argomenti corrispondenti all'ingresso dell'utente, vale a dire:
 
-```bash
+```
 $ echo "use" "of" "xargs"
 use of xargs
 ```
@@ -126,7 +125,7 @@ use of xargs
 
 Nell'esempio seguente, `xargs` eseguirà il comando `ls -ld` sul set di cartelle specificate nell'input standard:
 
-```bash
+```
 $ xargs ls -ld
 /home
 /tmp
@@ -141,7 +140,7 @@ In pratica, il comando `xargs` esegue il comando `ls -ld /home /tmp /root`.
 
 Cosa succede se il comando da eseguire non accetta più di un argomento come nel caso del comando `find`?
 
-```bash
+```
 $ xargs find /var/log -name
 *.old
 *.log
@@ -150,14 +149,14 @@ find: paths must precede expression: *.log
 
 Il comando `xargs` tenta di eseguire il comando `find` con più argomenti dietro l'opzione `-name`, questo causa la generazione di un errore in `find`:
 
-```bash
+```
 $ find /var/log -name "*.old" "*.log"
 find: paths must precede expression: *.log
 ```
 
 In questo caso, il comando `xargs` deve essere costretto ad eseguire il comando `find` più volte (una volta per riga immessa come ingresso standard). L'opzione `-L` Seguito da un **intero** consente di specificare il numero massimo di voci da elaborare con il comando contemporaneamente:
 
-```bash
+```
 $ xargs -L 1 find /var/log -name
 *.old
 /var/log/dmesg.old
@@ -176,7 +175,7 @@ $ xargs -L 1 find /var/log -name
 
 Se vogliamo essere in grado di specificare entrambi gli argomenti sulla stessa linea, dobbiamo usare l'opzione `-n 1` :
 
-```bash
+```
 $ xargs -n 1 find /var/log -name
 *.old *.log
 /var/log/dmesg.old
@@ -194,7 +193,7 @@ $ xargs -n 1 find /var/log -name
 
 Caso di esempio di un backup con un `tar` basato su una ricerca:
 
-```bash
+```
 $ find /var/log/ -name "*.log" -mtime -1 | xargs tar cvfP /root/log.tar
 $ tar tvfP /root/log.tar
 -rw-r--r-- root/root      1720 2017-04-05 15:43 /var/log/boot.log
@@ -205,7 +204,7 @@ La caratteristica speciale del comando `xargs` è che posiziona l'argomento di i
 
 Ora, se prendiamo l'esempio del comando `cp` e vogliamo copiare un elenco di file in una directory, questo elenco di file verrà aggiunto alla fine del comando... ma quello che si aspetta il comando `cp` alla fine del comando è la destinazione. Per fare ciò, usiamo l'opzione `-I` per mettere gli argomenti di input da qualche altra parte rispetto alla fine della linea.
 
-```bash
+```
 $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 ```
 
@@ -216,7 +215,7 @@ L'opzione `-I` ti consente di specificare un carattere (nel nostro esempio ilcar
 Il pacchetto `yum-utils` è una raccolta di utilità da diversi autori per `yum`, che lo rendono più facile e più potente da usare.
 
 !!! Note "Nota"  
-    Mentre `yum` è stato sostituito da` dnf` in Rocky Linux 8, Il nome del pacchetto è rimasto `yum-utils` anche se può essere installato come `dnf-utils`. Queste sono le classiche utilità YUM implementate come CLI shims sopra a DNF per mantenere la compatibilità all'indietro con `yum-3`.
+Mentre `yum` è stato sostituito da`dnf` in Rocky Linux 8, Il nome del pacchetto è rimasto `yum-utils` anche se può essere installato come `dnf-utils`. Queste sono le classiche utilità YUM implementate come CLI shims sopra a DNF per mantenere la compatibilità all'indietro con `yum-3`.
 
 Ecco alcuni esempi di utilizzo:
 
@@ -226,15 +225,15 @@ Il comando `repoquery` interroga i repository.
 
 Esempi di utilizzo:
 
-* Conoscere le dipendenze di un pacchetto disinstallato:
+  * Conoscere le dipendenze di un pacchetto disinstallato:
 
-```bash
+```
 repoquery --requires <package>
 ```
 
-* Conoscere i file forniti da un pacchetto non installato:
+  * Conoscere i file forniti da un pacchetto non installato:
 
-```bash
+```
 $ repoquery -l yum-utils
 /etc/bash_completion.d
 /etc/bash_completion.d/yum-utils.bash
@@ -267,11 +266,11 @@ $ repoquery -l yum-utils
 Il comando `yumdownloader` scarica i pacchetti RPM dai repository.
 
 !!! Note "Nota"  
-    Questo comando è molto utile per costruire rapidamente un repository locale di alcuni rpm!
+Questo comando è molto utile per costruire rapidamente un repository locale di alcuni rpm!
 
 Esempio: `yumdownloader` scaricherà il pacchetto rpm _repoquery_ e tutte le sue dipendenze:
 
-```bash
+```
 $ yumdownloader --destdir /var/tmp --resolve repoquery
 ```
 
@@ -290,7 +289,7 @@ Il pacchetto `psmisc` contiene utilità per la gestione dei processi di sistema:
 
 Esempi:
 
-```bash
+```
 $ pstree
 systemd─┬─NetworkManager───2*[{NetworkManager}]
         ├─agetty
@@ -310,13 +309,13 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
         └─tuned───4*[{tuned}]
 ```
 
-```bash
+```
 # killall httpd
 ```
 
 Arresta i processi (opzione `-k`) che accedono al file `/etc/httpd/conf/httpd.conf`:
 
-```bash
+```
 # fuser -k /etc/httpd/conf/httpd.conf
 ```
 
@@ -326,20 +325,19 @@ Il comando `watch` esegue regolarmente un comando e visualizza il risultato nel 
 
 L'opzione `-n` consente di specificare il numero di secondi tra ogni esecuzione del comando.
 
-!!! Note "Nota"
-    Per uscire dal comando `watch`, devi digitare i tasti: <kbd>CTRL</kbd>+<kbd>C</kbd> per arrestare il processo.
+!!! Note "Nota" Per uscire dal comando `watch`, devi digitare i tasti: <kbd>CTRL</kbd>+<kbd>C</kbd> per arrestare il processo.
 
 Esempi:
 
 * Mostra la fine del file `/etc/passwd` ogni 5 secondi:
 
-```bash
+```
 $ watch -n 5 tail -n 3 /etc/passwd
 ```
 
 Risultato:
 
-```bash
+```
 Every 5,0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
 
 sssd:x:996:993:User for sssd:/:/sbin/nologin
@@ -349,12 +347,12 @@ sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 
 * Monitoraggio del numero di file in una cartella:
 
-```bash
+```
 $ watch -n 1 'ls -l | wc -l'
 ```
 
 * Mostra un orologio:
 
-```bash
+```
 $ watch -t -n 1 date
 ```
