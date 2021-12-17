@@ -1,11 +1,12 @@
 ---
 title: Introduzione a Linux
 ---
+
 # Introduzione al sistema operativo Linux
 
 In questo capitolo impareremo a conoscere le distribuzioni GNU/Linux.
 
----
+****
 
 **Obiettivi** : In questo capitolo imparerai a:
 
@@ -13,33 +14,31 @@ In questo capitolo impareremo a conoscere le distribuzioni GNU/Linux.
 :heavy_check_mark: Raccontare la storia di UNIX e GNU/Linux  
 :heavy_check_mark: Scegliere la distribuzione Linux giusta per le tue esigenze  
 :heavy_check_mark: Spiegare la filosofia del software libero e opensource  
-:heavy_check_mark: Scoprire l'utilità della SHELL.  
+:heavy_check_mark: Scoprire l'utilità della SHELL.
 
 :checkered_flag: **generalità**, **linux**, **distribuzioni**
 
 **Conoscenza**: :star:  
-**Complessità**: :star:  
+**Complessità**: :star:
 
 **Tempo di lettura**: 10 minuti
 
----
+****
 
 ## Che cos'è un sistema operativo?
 
 Linux, UNIX, BSD, Windows e MacOS sono tutti **sistemi operativi**.
 
 !!! abstract "astratto"  
-    Un sistema operativo è un **insieme di programmi che gestisce le risorse disponibili di un computer**.
+Un sistema operativo è un **insieme di programmi che gestisce le risorse disponibili di un computer**.
 
 Nella gestione di queste risorse, il sistema operativo deve:
 
 * Gestire la memoria fisica o virtuale.
   * La **memoria fisica** è costituita dalla RAM e dalla memoria cache del processore, che viene utilizzata per l'esecuzione dei programmi.
   * La **memoria virtuale** è una locazione sull'hard disk (la partizione di swap) che permette lo scarico della memoria fisica e il salvataggio dello stato attuale del sistema durante lo spegnimento elettrico del computer.
-* Intercettare **l'accesso alle periferiche**.
-  Raramente al software è consentito accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze molto specifiche).
-* Fornire alle applicazioni una corretta **gestione delle attività**.
-  Il sistema operativo è responsabile della pianificazione dei processi che occupano il processore.
+* Intercettare **l'accesso alle periferiche**. Raramente al software è consentito accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze molto specifiche).
+* Fornire alle applicazioni una corretta **gestione delle attività**. Il sistema operativo è responsabile della pianificazione dei processi che occupano il processore.
 * **Protezione dei file** da accessi non autorizzati.
 * **Raccolta di informazioni** sui programmi in uso o in esecuzione.
 
@@ -52,6 +51,7 @@ Nella gestione di queste risorse, il sistema operativo deve:
 #### UNIX
 
 * Dal **1964** al **1968**: MULTICS (MULTiplexed Information and Computing Service) è sviluppato per MIT, Bell Labs (AT&T) e General Electric.
+
 * **1969**: Dopo il ritiro della Bell (1969) e poi della General Electric dal progetto, due sviluppatori (Ken Thompson e Dennis Ritchie), affiancati in seguito da Brian Kernighan, giudicando MULTICS troppo complesso, lanciano lo sviluppo di UNIX (UNiplexed Information and Computing Service). Originariamente sviluppato in assembler, i progettisti di UNIX hanno sviluppato il linguaggio B e poi il linguaggio C (1971) e hanno completamente riscritto UNIX. Essendo stato sviluppato nel 1970, la data di riferimento dei sistemi UNIX/Linux è ancora fissata al 1° gennaio 1970.
 
 Il linguaggio C è ancora oggi uno dei linguaggi di programmazione più popolari! Linguaggio di basso livello, vicino all'hardware, consente l'adattamento del sistema operativo a qualsiasi architettura di macchina dotata di compilatore C.
@@ -67,12 +67,19 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 #### Linux
 
 * **1991**: Uno studente finlandese, **Linus Torvalds** , crea un sistema operativo dedicato al suo personal computer e lo chiama Linux. Pubblica la sua prima versione 0.02, sul forum di discussione Usenet e altri sviluppatori iniziano a contribuire al miglioramento del suo sistema. Il termine Linux è un gioco di parole tra il nome del fondatore, Linus, e UNIX.
+
 * **1993**: Viene creata la distribuzione Debian. Debian è una distribuzione non commerciale, basata sulla comunità. Sviluppato originariamente per essere utilizzato su server, è particolarmente adatto a questo ruolo, ma è pensato per essere un sistema universale e quindi utilizzabile anche su un personal computer. Debian è usata come base per molte altre distribuzioni, come Mint o Ubuntu.
+
 * **1994**: La distribuzione commerciale RedHat viene creata dalla società RedHat, che è oggi il principale distributore del sistema operativo GNU/Linux. RedHat supporta la versione community Fedora e recentemente la distribuzione gratuita CentOS.
+
 * **1997**: Viene creato l'ambiente desktop KDE. Si basa sulla libreria di componenti Qt e sul linguaggio di sviluppo C++.
+
 * **1999**: Viene creato l'ambiente desktop Gnome. Questo si basa sulla libreria di componenti GTK+.
-* **2002**: Viene creata la distribuzione Arch. La sua particolarità è quella di essere rilasciato in Rolling Release (aggiornamento continuo).
+
+* **2002**: Viene creata la distribuzione Arch. La sua particolarità deve essere rilasciata in Rolling Release (aggiornamento continuo).
+
 * **2004**: Ubuntu viene creato dalla società Canonical (Mark Shuttleworth). È basato su Debian, che include software gratuito e proprietario.
+
 * **2021**: Nascita di Rocky Linux, basato sulla distribuzione RedHat.
 
 ### Quota di mercato
@@ -139,7 +146,7 @@ Linux è basato su standard riconosciuti [posix](http://fr.wikipedia.org/wiki/PO
 * Tutto è un file.
 * Portabilità.
 * Fai solo una cosa e falla bene.
-* KISS: Mantienilo semplice stupido. (Keep It Simple Stupid)
+* KISS: Mantienilo semplice stupido (Keep It Simple Stupid).
 * "UNIX è fondamentalmente un sistema operativo semplice, Ma devi essere un genio per capirne la semplicità." (__Dennis Ritchie__)
 * "Unix è facile da usare. Solamente che non è chiaro con quali utenti sia amichevole." (__Steven King__)
 
@@ -294,4 +301,4 @@ Esistono diversi tipi di shell disponibili e configurabili su una piattaforma o 
 - [ ] Jason-Bourne shell (jbsh)
 - [ ] Bourne-Again shell (bash)
 - [ ] C shell (csh)
-- [ ] Korn shell (ksh)
+- [ ] Korn shell (ksh)   
