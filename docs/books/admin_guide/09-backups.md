@@ -562,6 +562,7 @@ Here, the `find /etc` command returns a list of files corresponding to the conte
 Do not forget the `>` sign when saving or the `F save_name_cpio`.
 
 | Options |	Description                                    |
+|---------|------------------------------------------------|
 | `-o`    |	Creates a backup (_output_).                   |
 | `-v`    |	Displays the name of the processed files.      |
 | `-F`    |	Designates the backup to be modified (medium). |
