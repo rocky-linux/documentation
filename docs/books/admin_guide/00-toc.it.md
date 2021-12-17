@@ -18,10 +18,10 @@ Possiamo quindi entrare nel profondo del funzionamento di Linux per scoprire com
 * file systems.
 * processi.
 
-Successivamente, tratteremo un argomento essenziale per l'amministratore di sistema: il processo di backup. 
-Molte soluzioni software vengono fornite con Linux per migliorare i backup (rsnapshot, lsyncd, ecc.) È bene conoscere i componenti essenziali del backup che si trovano all'interno del sistema operativo. In questo capitolo esamineremo due strumenti: `tar` e il meno diffuso `cpio`.
+Successivamente, tratteremo un argomento essenziale per l'amministratore di sistema: il processo di backup. Molte soluzioni software vengono fornite con Linux per migliorare i backup (rsnapshot, lsyncd, ecc.) È bene conoscere i componenti essenziali del backup che si trovano all'interno del sistema operativo. In questo capitolo esamineremo due strumenti: `tar` e il meno diffuso `cpio`.
 
 Per quanto riguarda la gestione del sistema durante il processo di avvio, si è evoluta enormemente negli ultimi anni dall'arrivo di systemd.
 
 
 Concluderemo esaminando la gestione delle attività, l'implementazione della rete e l'installazione del software.
+
