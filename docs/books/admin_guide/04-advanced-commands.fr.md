@@ -39,7 +39,7 @@ antoine
 steven
 ```
 
-!!! Note `uniq` requires the input file to be sorted because it only compares consecutive lines.
+!!! abstract Note `uniq` requires the input file to be sorted because it only compares consecutive lines.
 
 Without an argument, the `uniq` command will not display identical lines that follow each other in the `firstnames.txt` file:
 
@@ -214,7 +214,7 @@ The `-I` option allows you to specify a character (in our example the `%` charac
 
 The `yum-utils` package is a collection of utilities from different authors for `yum`, which make it easier and more powerful to use.
 
-!!! Note While `yum` has been replaced by `dnf` in Rocky Linux 8, the package name has remained `yum-utils` although it can be installed as `dnf-utils` as well. These are classic YUM utilities implemented as CLI shims on top of DNF to maintain backwards compatibility with `yum-3`.
+!!! abstract Note While `yum` has been replaced by `dnf` in Rocky Linux 8, the package name has remained `yum-utils` although it can be installed as `dnf-utils` as well. These are classic YUM utilities implemented as CLI shims on top of DNF to maintain backwards compatibility with `yum-3`.
 
 Here are some examples of usage:
 
@@ -264,7 +264,7 @@ $ repoquery -l yum-utils
 
 The `yumdownloader` command downloads RPM packages from the repositories.
 
-!!! Note This command is very useful to quickly build a local repository of a few rpm!
+!!! abstract Note This command is very useful to quickly build a local repository of a few rpm!
 
 Example: `yumdownloader` will download the _repoquery_ rpm package and all its dependencies:
 
@@ -323,7 +323,7 @@ The `watch` command regularly executes a command and displays the result in the 
 
 The `-n` option allows you to specify the number of seconds between each execution of the command.
 
-!!! Note To exit the `watch` command, you must type the keys: <kbd>CTRL</kbd>+<kbd>C</kbd> to kill the process.
+!!! abstract Note To exit the `watch` command, you must type the keys: <kbd>CTRL</kbd>+<kbd>C</kbd> to kill the process.
 
 Examples:
 
