@@ -41,7 +41,7 @@ Parmi cette gestion des ressources, le système d'exploitation doit :
 * **Protéger les fichiers** contre les accès non autorisés.
 * **Collecter des informations** sur les programmes utilisés ou en cours d'exécution.
 
-![Operation of an operating system](images/operating_system.png)
+![Fonctionnement d'un système d'exploitation](images/operating_system.png)
 
 ## Généralités UNIX - GNU/Linux
 
@@ -87,23 +87,23 @@ UNIX est toujours d'actualité aujourd'hui (HP-UX, AIX, Solaris, etc.)
 TODO: graphics with market share for servers and pc.
 -->
 
-Linux is still not well known by the general public, even though they use it regularly. Indeed, Linux is hidden in **smartphones**, **televisions**, **internet boxes**, etc. Almost **70% of the web pages** served in the world are served by a Linux or UNIX server!
+Linux n'est toujours pas bien connu du grand public, même s'ils l'utilisent régulièrement. En effet, Linux est caché dans les **smartphones**, **téléviseurs**, **boîtes Internet**, etc. Près de **70 % des pages web** servies dans le monde le sont par un serveur Linux ou UNIX !
 
-Linux equips a little more than **3% of personal computers** but more than **82% of smartphones**. **Android** being an operating system whose kernel is a Linux.
+Linux équipe un peu plus de **3% des ordinateurs personnels** mais plus de **82 % des smartphones**. **Android** étant un système d'exploitation dont le noyau est un Linux.
 
 <!-- TODO: review those stats -->
 
-Linux equips 100% of the 500 supercomputers since 2018. A supercomputer is a computer designed to achieve the highest possible performance with the techniques known at the time of its design, especially with regard to computing speed.
+Linux équipe 100% des 500 superordinateurs depuis 2018. Un superordinateur est un ordinateur conçu pour obtenir les meilleures performances possibles avec les techniques connues lors de sa conception, surtout en ce qui concerne la vitesse de calcul.
 
-### Architectural design
+### Conception architecturale
 
-* The **kernel** is the first software component.
-  * It is the heart of the Linux system.
-  * It manages the hardware resources of the system.
-  * The other software components must go through it to access the hardware.
-* The **shell** is a utility that interprets user commands and ensures their execution.
-  * Main shells: Bourne shell, C shell, Korn shell and Bourne-Again shell (bash).
-* Applications are user programs such as :
+* Le **noyau** est le premier composant logiciel.
+  * C'est le cœur du système Linux.
+  * Il gère les ressources matérielles du système.
+  * Les autres composants logiciels doivent passer par lui pour accéder au matériel.
+* Le **shell** est un utilitaire qui interprète les commandes utilisateur et assure leur exécution.
+  * Principaux shells : Bourne shell, C shell, Korn shell et Bourne-Again shell (bash).
+* Les applications sont des programmes utilisateur tels que :
   * Internet browser ;
   * the word processor ;
   * ...
