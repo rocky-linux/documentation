@@ -10,3 +10,14 @@ files:
       - '*.en.md'
       - '*.sv.md'
     translation: /%original_path%/%file_name%.%two_letters_code%.%file_extension%
+  - source: /docs/books/learning_ansible/*.md
+    ignore:
+      - '*.es.md'
+      - '*.fr.md'
+      - '*.zh.md'
+      - '*.it.md'
+      - '*.ja.md'
+      - '*.pt.md'
+      - '*.en.md'
+      - '*.sv.md'
+    translation: /%original_path%/%file_name%.%two_letters_code%.%file_extension%
