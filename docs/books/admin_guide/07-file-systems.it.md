@@ -429,7 +429,7 @@ Per definizione, un file system è una struttura ad albero delle directory creat
 
 ![Organization of a file system](images/07-file-systems-008.png)
 
-: Nota In Linux tutto è un file.
+!!! Nota In Linux tutto è un file.
 
 Documento di testo, directory, file binario, partizione, risorse di rete, schermo, tastiera, Unix kernel, programma utente, ...
 
@@ -518,7 +518,7 @@ Esempio:
 | `-w`    | Monta il file system in lettura/scrittura, per impostazione predefinita. (equivalente`-o rw`). |
 | `-o`    | Argomento seguito da un elenco di opzioni separate da virgole (`remount`, `ro`, ...).          |
 
-!!! !!! Note "Nota"  
+!!! Note "Nota"  
 Il comando `mount` da solo visualizza tutti i file system montati.
 
 #### comando `umount`
