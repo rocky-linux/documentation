@@ -1,5 +1,7 @@
 # Contribution Guide
 
+[![Crowdin](https://badges.crowdin.net/rockydocs/localized.svg)](https://crowdin.com/project/rockydocs)
+
 ## Introduction
 
 So you want to contribute to the Rocky Linux documentation, but aren't sure how to go about that? You've come to the right place. We're excited to have you on board with us.
