@@ -20,7 +20,7 @@ For your first synchronization use a mirror near to you. You can find all offici
 
 Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider `rsyncing` from a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
 
-## Setting up you mirror
+## Setting up your mirror
 
 Please set up a cron job to synchronize your mirror periodically and let it run around 6 times a day. But be sure to sync off the hour to help distribute the load over time. If you only check against changes of `fullfiletimelist-rocky` and only do a full sync if this file has changed you can synchronize every hour.
 
