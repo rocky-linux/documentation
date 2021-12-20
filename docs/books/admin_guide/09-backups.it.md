@@ -698,7 +698,7 @@ $ cpio –iv <etc.cpio
 
 * Ripristino in modalità assoluta di un file o di una directory
 
-The restoration of a particular file or directory requires the creation of a list file that must then be deleted.
+Il ripristino di un particolare file o directory richiede la creazione di un file di elenco che deve poi essere eliminato.
 
 ```
 echo "/etc/passwd" > tmp
@@ -708,24 +708,24 @@ rm -f tmp
 
 ## Utilità di Compressione - decompressione
 
-Using compression at the time of a backup can have a number of drawbacks:
+L'utilizzo della compressione al momento di un backup può avere una serie di inconvenienti:
 
 * Allunga il tempo di backup e il tempo di ripristino.
 * Rende impossibile aggiungere file al backup.
 
-!!! Note It is therefore better to make a backup and compress it than to compress it during the backup.
+!!! Note "Nota" È quindi meglio fare un backup e comprimerlo piuttosto che comprimerlo durante il backup.
 
 ### Compressione con `gzip`
 
-The `gzip` command compresses data.
+Il comando `gzip` comprime i dati.
 
-Syntax of the `gzip` command:
+Sintassi del comando `gzip`:
 
 ```
 gzip [options] [file ...]
 ```
 
-Example:
+Esempio:
 
 ```
 $ gzip usr.tar
@@ -733,21 +733,21 @@ $ ls
 usr.tar.gz
 ```
 
-The file receives the extension `.gz`.
+Il file riceve l'estensione `.gz`.
 
-It keeps the same rights and the same last access and modification dates.
+Mantiene gli stessi permessi e le stesse date di ultimo accesso e modifica.
 
 ### Compressione con `bunzip2`
 
-The `bunzip2` command also compresses data.
+Anche il comando `bunzip2` comprime i dati.
 
-Syntax of the `bzip2` command:
+Sintassi del comando `bzip2`:
 
 ```
 bzip2 [options] [file ...]
 ```
 
-Example:
+Esempio:
 
 ```
 $ bzip2 usr.cpio
@@ -755,21 +755,21 @@ $ ls
 usr.cpio.bz2
 ```
 
-The file name is given the extension `.bz2`.
+Al nome del file viene assegnata l'estensione `.bz2`.
 
-Compression by `bzip2` is better than compression by `gzip` but it takes longer to execute.
+La compressione con `bzip2` è migliore della compressione con `gzip` ma ci vuole più tempo per eseguirla.
 
 ### Decompressione con `gunzip`
 
-The `gunzip` command decompresses compressed data.
+Il comando `gunzip` decomprime i dati compressi.
 
-Syntax of the `gunzip` command:
+Sintassi del comando `gunzip`:
 
 ```
 gunzip [options] [file ...]
 ```
 
-Example:
+Esempio:
 
 ```
 $ gunzip usr.tar.gz
@@ -777,9 +777,9 @@ $ ls
 usr.tar
 ```
 
-The file name is truncated by `gunzip` and the extension `.gz` is removed.
+Il nome del file viene troncato da `gunzip` e l'estensione `.gz` viene rimossa.
 
-`gunzip` also decompresses files with the following extensions:
+`gunzip` decomprime anche i file con le seguenti estensioni:
 
 * `.z` ;
 * `-z` ;
@@ -787,15 +787,15 @@ The file name is truncated by `gunzip` and the extension `.gz` is removed.
 
 ### Decompressione con `bunzip2`
 
-The `bunzip2` command decompresses compressed data.
+Il comando `bunzip2` decomprime i dati compressi.
 
-Syntax of the `bzip2` command:
+Sintassi del comando `bzip2`:
 
 ```
 bzip2 [options] [file ...]
 ```
 
-Example:
+Esempio:
 
 ```
 $ bunzip2 usr.cpio.bz2
@@ -803,9 +803,9 @@ $ ls
 usr.cpio
 ```
 
-The file name is truncated by `bunzip2` and the extension `.bz2` is removed.
+Il nome del file viene troncato da `bunzip2` e l'estensione `.bz2` viene rimossa.
 
-`bunzip2` also decompresses the file with the following extensions:
+`bunzip2` decomprime anche il file con le seguenti estensioni:
 
 * `-bz` ;
 * `.tbz2` ;

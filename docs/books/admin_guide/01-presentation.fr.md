@@ -29,7 +29,7 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 
 Linux, UNIX, BSD, Windows et MacOS sont tous des **systèmes d'exploitation**.
 
-!!! abstract Un système d'exploitation est un ensemble de programmes qui gèrent les ressources disponibles d'un ordinateur.
+!!! abstract Un système d'exploitation est un **ensemble de programmes qui gèrent les ressources disponibles d'un ordinateur**.
 
 Parmi cette gestion des ressources, le système d'exploitation doit :
 
@@ -41,7 +41,7 @@ Parmi cette gestion des ressources, le système d'exploitation doit :
 * **Protéger les fichiers** contre les accès non autorisés.
 * **Collecter des informations** sur les programmes utilisés ou en cours d'exécution.
 
-![Operation of an operating system](images/operating_system.png)
+![Fonctionnement d'un système d'exploitation](images/operating_system.png)
 
 ## Généralités UNIX - GNU/Linux
 
@@ -87,172 +87,172 @@ UNIX est toujours d'actualité aujourd'hui (HP-UX, AIX, Solaris, etc.)
 TODO: graphics with market share for servers and pc.
 -->
 
-Linux is still not well known by the general public, even though they use it regularly. Indeed, Linux is hidden in **smartphones**, **televisions**, **internet boxes**, etc. Almost **70% of the web pages** served in the world are served by a Linux or UNIX server!
+Linux n'est toujours pas bien connu du grand public, même s'ils l'utilisent régulièrement. En effet, Linux est caché dans les **smartphones**, **téléviseurs**, **boîtes Internet**, etc. Près de **70 % des pages web** servies dans le monde le sont par un serveur Linux ou UNIX !
 
-Linux equips a little more than **3% of personal computers** but more than **82% of smartphones**. **Android** being an operating system whose kernel is a Linux.
+Linux équipe un peu plus de **3% des ordinateurs personnels** mais plus de **82 % des smartphones**. **Android** étant un système d'exploitation dont le noyau est un Linux.
 
 <!-- TODO: review those stats -->
 
-Linux equips 100% of the 500 supercomputers since 2018. A supercomputer is a computer designed to achieve the highest possible performance with the techniques known at the time of its design, especially with regard to computing speed.
+Linux équipe 100% des 500 superordinateurs depuis 2018. Un superordinateur est un ordinateur conçu pour obtenir les meilleures performances possibles avec les techniques connues lors de sa conception, surtout en ce qui concerne la vitesse de calcul.
 
-### Architectural design
+### Conception architecturale
 
-* The **kernel** is the first software component.
-  * It is the heart of the Linux system.
-  * It manages the hardware resources of the system.
-  * The other software components must go through it to access the hardware.
-* The **shell** is a utility that interprets user commands and ensures their execution.
-  * Main shells: Bourne shell, C shell, Korn shell and Bourne-Again shell (bash).
-* Applications are user programs such as :
-  * Internet browser ;
-  * the word processor ;
+* Le **noyau** est le premier composant logiciel.
+  * C'est le cœur du système Linux.
+  * Il gère les ressources matérielles du système.
+  * Les autres composants logiciels doivent passer par lui pour accéder au matériel.
+* Le **shell** est un utilitaire qui interprète les commandes utilisateur et assure leur exécution.
+  * Principaux shells : Bourne shell, C shell, Korn shell et Bourne-Again shell (bash).
+* Les applications sont des programmes utilisateur comme le :
+  * Navigateur Internet ;
+  * Traitement de texte ;
   * ...
 
-#### Multitask
+#### Multi-tâche
 
-Linux belongs to the family of time-sharing operating systems. It shares process time between several programs, switching from one to another in a transparent way for the user. This implies:
+Linux appartient à la famille des systèmes d'exploitation à temps partagé. Il partage le temps de traitement entre plusieurs programmes, passant d'un programme à l'autre d'une manière transparente pour l'utilisateur. Cela implique :
 
-* simultaneous execution of several programs;
-* distribution of CPU time by the scheduler;
-* reduction of problems due to a failed application;
-* reduced performance when there are too many programs running.
+* l'exécution simultanée de plusieurs programmes ;
+* la distribution du temps CPU par l’ordonnanceur ;
+* la réduction des problèmes dus à une application défaillante ;
+* une diminution des performances lorsqu’il y a trop de programmes lancés.
 
-#### Multi user
+#### Multi-utilisateurs
 
-The purpose of Multics was to allow several users to work from several terminals (screen and keyboard) on a single computer (very expensive at the time). Linux, which is inspired by this operating system, has kept this ability to work with several users simultaneously and independently, each one having its own user account, memory space and access rights to files and software.
+Le but de Multics était de permettre à plusieurs utilisateurs de travailler à partir de plusieurs terminaux (écran et clavier) sur un seul ordinateur (très cher à l'époque). Linux, qui est inspiré par ce système d'exploitation, a conservé cette capacité de travailler avec plusieurs utilisateurs simultanément et indépendamment, chacun ayant son propre compte utilisateur, son propre espace mémoire et ses droits d'accès aux fichiers et aux logiciels.
 
-#### Multiprocessor
+#### Multi-processeur
 
-Linux is able to work with multi-processor computers or with multi-core processors.
+Linux est capable de fonctionner sur des ordinateurs multi-processeurs ou avec des processeurs multi-cœurs.
 
-#### Multi platform
+#### Multi-plateforme
 
-Linux is written in a high-level language that can be adapted to different types of platforms during compilation. It therefore runs on :
+Linux est écrit dans un langage de haut niveau qui peut être adapté à différents types de plates-formes pendant la compilation. Il fonctionne donc sur :
 
-* home computers (PC or laptop);
-* servers (data, applications,...);
-* portable computers (smartphones or tablets)
-* embedded systems (car computer);
-* active network elements (routers, switches)
-* household appliances (TVs, refrigerators,...).
+* ordinateurs domestiques (PC ou ordinateur portable) ;
+* serveurs (données, applications, ...) ;
+* ordinateurs portables (smartphones ou tablettes)
+* systèmes embarqués (ordinateur de voiture) ;
+* éléments actifs de réseaux (routeurs, commutateurs) ;
+* appareils électroménagers (télé, réfrigérateur, ...).
 
-#### Open
+#### Ouvert
 
-Linux is based on recognized standards [posix](http://fr.wikipedia.org/wiki/POSIX), TCP/IP, NFS, Samba ... allowing to share data and services with other application systems.
+Linux est basé sur des normes reconnues [posix](http://fr.wikipedia.org/wiki/POSIX), TCP/IP, NFS, Samba, ..., permettant de partager des données et des services avec d'autres systèmes d'application.
 
-### The UNIX/Linux philosophy
+### La philosophie UNIX/Linux
 
-* Everything is a file.
-* Portability.
-* Do only one thing and do it well.
-* KISS: Keep It Simple Stupid.
-* "UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity." (__Dennis Ritchie__)
-* "Unix is user-friendly. It just isn't promiscuous about which users it's friendly with." (__Steven King__)
+* Tout est fichier.
+* Portabilité.
+* Ne faire qu’une seule chose et la faire bien.
+* KISS : Keep It Simple and Stupid.
+* “UNIX est simple, il faut juste être un génie pour comprendre sa simplicité” (__Dennis Ritchie__)
+* “UNIX est convivial. Cependant UNIX ne précise pas vraiment avec qui.” (__Steven King__)
 
-## The GNU/LINUX distributions
+## Les distributions GNU/LINUX
 
-A Linux distribution is a **consistent set of software** assembled around the Linux kernel and ready to be installed along with the necessary components to manage this software (installation, removal, configuration). There are **associative or community** distributions (Debian, Rocky) or **commercial** (RedHat, Ubuntu).
+Une distribution Linux est un **ensemble cohérent de logiciels** assemblés autour du noyau Linux et prêt à être installé ainsi que le nécessaire à la gestion de ces logiciels (installation, suppression, configuration). Il existe des **distributions associatives ou communautaires** (Debian, CentOS) ou **commerciales** (RedHat, Ubuntu).
 
-Each distribution offers one or more **desktop environments**, provides a set of pre-installed software and a library of additional software. Configuration options (kernel or services options for example) are specific to each one.
+Chaque distribution propose un ou plusieurs **environnements de bureau**, fournit un ensemble de logiciels pré-installés et une logithèque de logiciels supplémentaires. Des options de configuration (options du noyau ou des services par exemple) sont propres à chacune.
 
-This principle allows you to have distributions oriented to **beginners** (Ubuntu, Linux Mint...), to have a more complex approach (Gentoo, Arch), to be focused more towards **servers** (Debian, Redhat), or to be dedicated towards **workstations**.
+Ce principe permet d’avoir des distributions orientées **débutants** (Ubuntu, Linux Mint …) ou d’une approche plus complexe (Gentoo, Arch), destinées à faire du **serveur** (Debian, RedHat, …) ou dédiées à des **postes de travail**.
 
-### Desktop environments
+### Les environnements de bureau
 
-There are many graphic environments: **Gnome**, **KDE**, **LXDE**, **XFCE**, etc. There is something for everyone, and their **ergonomics** have nothing to be ashamed of when compared to Microsoft or Apple systems!
+Les environnements graphiques sont nombreux : **Gnome**, **KDE**, **LXDE**, **XFCE**, etc. Il y en a pour tous les goûts, et leurs **ergonomies** n’ont pas à rougir de ce que l’on peut retrouver sur les systèmes Microsoft ou Apple !
 
-So why is there so little enthusiasm for Linux, when **there are no (or almost no) viruses for this system**? Maybe because all editors (Adobe) or manufacturers (Nvidia) do not play the free game and do not provide a version of their software or their __drivers__ for GNU/Linux? Fear of change? The difficulty to find where to buy a Linux computer? Too few games (but not for long) distributed under Linux? Will the situation change with the arrival of the steam-box game console that runs on Linux?
+Alors pourquoi si peu d’engouement pour Linux, **alors qu’il n'existe pas (ou presque pas) de virus pour ce système** ? Peut-être parce que tous les éditeurs (Adobe) ou constructeur (NVidia) ne jouent pas le jeu du libre et ne fournissent pas de version de leurs logiciels ou de leurs __drivers__ pour GNU/Linux ? La peur du changement ? La difficulté de trouver où acheter un ordinateur Linux ? Le trop peu de jeux (mais plus pour longtemps) distribués sous Linux ? La donne changera-t-elle avec l’arrivée de la steam-box console de jeux qui fonctionne sous Linux ?
 
-![Gnome Desktop](images/01-presentation-gnome.png)
+![Le bureau Gnome](images/01-presentation-gnome.png)
 
-The **Gnome 3** desktop environment no longer uses the concept of Desktop but that of Gnome Shell (not to be confused with the command line shell). It serves as a desktop, a dashboard, a notification area and a window selector. The Gnome desktop environment is based on the GTK+ component library.
+L’environnement de bureau **Gnome 3** n’utilise plus le concept de Bureau mais celui de Gnome Shell (à ne pas confondre avec le shell de la ligne de commande). Il sert à la fois de bureau, de tableau de bord, de zone de notification et de sélecteur de fenêtre. L’environnement de bureau Gnome se base sur la bibliothèque de composants GTK+.
 
-![KDE Desktop](images/01-presentation-kde.png)
+![Le bureau KDE](images/01-presentation-kde.png)
 
-The **KDE** desktop environment is based on the **Qt** component library.
+L’environnement de bureau **KDE** se base sur la bibliothèque de composants **Qt**.
 
-It is traditionally more recommended for users coming from a Windows world.
+Il est traditionnellement plus conseillé aux utilisateurs venant d’un monde Windows.
 
-![Tux - The Linux mascot](images/tux.png)
+![Tux - La mascotte de Linux](images/tux.png)
 
-### Free / Open source
+### Libre / Open source
 
-A user of a Microsoft or Mac operating system must purchase a license to use the operating system. This license has a cost, although it is usually transparent (the price of the license is included in the price of the computer).
+Un utilisateur de système d’exploitation Microsoft ou Mac doit s’affranchir d’une licence d’utilisation du système d’exploitation. Cette licence a un coût, même s’il est généralement transparent (le prix de la licence étant inclus dans le prix de l’ordinateur).
 
-In the **GNU/Linux** world, the Free Software movement provides mostly free distributions.
+Dans le monde **GNU/Linux**, le mouvement du Libre permet de fournir des distributions majoritairement gratuites.
 
-**Free** does not mean free!
+**Libre** ne veut pas dire gratuit !
 
-**Open source**: the source codes are available, so it is possible to consult and modify them under certain conditions.
+**Open source** : les codes sources sont disponibles, il est donc possible de les consulter et de les modifier sous certaines conditions.
 
-A free software is necessarily Open Source, but the opposite is not true since an Open Source software is separated from the freedom proposed by the GPL license.
+Un logiciel libre est forcément Open Source mais l’inverse n’est pas vrai puisqu’un logiciel Open Source est amputé d’une liberté proposée par la licence GPL.
 
-#### GPL License (General Public License)
+#### License GPL (General Public License)
 
-The **GPL License** guarantees the author of a software its intellectual property, but allows modification, redistribution or resale of software by third parties, provided that the source codes are provided with the software. The GPL is the license that came out of the **GNU** (GNU is Not UNIX) project, which was instrumental in creating Linux.
+La **Licence GPL** garantit à l’auteur d’un logiciel sa propriété intellectuelle, mais autorise la modification, la rediffusion ou la revente de logiciels par des tiers, sous condition que les codes sources soient fournis avec le logiciel. La licence GPL est la licence issue du projet **GNU** (GNU is Not UNIX), projet déterminant dans la création de Linux.
 
-It implies :
+Elle implique :
 
-* the freedom to run the program, for any purpose;
-* the freedom to study how the program works and adapt it to your needs
-* the freedom to redistribute copies;
-* the freedom to improve the program and publish your improvements, for the benefit of the whole community.
+* la liberté d’exécuter le programme, pour tous les usages ;
+* la liberté d’étudier le fonctionnement du programme et de l’adapter aux besoins ;
+* la liberté de redistribuer des copies ;
+* la liberté d’améliorer le programme et de publier vos améliorations, pour en faire profiter toute la communauté.
 
-On the other hand, even products licensed under the GPL can be paid for. This is not the product itself, but the guarantee that a team of developers will continue to work on it to make it evolve and troubleshoot errors, or even provide support to users.
+Par contre, même des produits sous licences GPL peuvent être payants. Ce n’est pas le produit en lui-même mais la garantie qu’une équipe de développeurs continue à travailler dessus pour le faire évoluer et dépanner les erreurs, voire fournir un soutien aux utilisateurs.
 
-## Areas of use
+## Les domaines d’emploi
 
-A Linux distribution excels for :
+Une distribution Linux excelle pour :
 
-* **A server**: HTTP, email, groupware, file sharing, etc.
-* **Security**: Gateway, firewall, router, proxy, etc.
-* **Central computer**: Banks, insurance, industry, etc.
-* **Embedded system**: Routers, Internet boxes, SmartTV, etc.
+* **Un serveur** : HTTP, messagerie, groupware, partage de fichiers, etc.
+* **La sécurité** : Passerelle, pare-feu, routeur, proxy, etc.
+* **Ordinateur central** : Banques, assurances, industrie, etc.
+* **Système embarqué** : Routeurs, Box Internet, SmartTV, etc.
 
-Linux is a suitable choice for hosting databases or websites, or as a mail server, DNS or firewall. In short, Linux can do just about anything, which explains the quantity of specific distributions.
+Linux est un choix adapté pour l’hébergement de bases de données ou de sites Web, ou comme serveur de messagerie, DNS, pare-feu. Bref Linux peut à peu près tout faire, ce qui explique la quantité de distributions spécifiques.
 
-## Shell
+## Le Shell
 
-### Generalities
+### Généralités
 
-The **shell**, known as _command interface_, allows users to send commands to the operating system. It is less visible today, since the implementation of graphical interfaces, but remains a privileged means on Linux systems which do not all have graphical interfaces and whose services do not always have a setting interface.
+Le **shell**, _interface de commandes_ en français, permet aux utilisateurs d’envoyer des ordres au système d’exploitation. Il est moins visible aujourd’hui, depuis la mise en place des interfaces graphiques, mais reste un moyen privilégié sur les systèmes Linux qui ne possèdent pas tous des interfaces graphiques et dont les services ne possèdent pas toujours une interface de configuration.
 
-It offers a real programming language including the classical structures: loops, alternatives, and the common constituents: variables, passing of parameters, and sub-programs. It allows the creation of scripts to automate certain actions (backups, creation of users, system monitoring, etc.).
+Il offre un véritable langage de programmation comprenant les structures classiques : boucles, alternatives et les constituants courants : variables, passage de paramètres, sous-programmes. Il permet donc la création de scripts pour automatiser certaines actions (sauvegardes, création d’utilisateurs, surveillance du système,…).
 
-There are several types of shells available and configurable on a platform or according to the user's preference:
+Il existe plusieurs types de Shell disponibles et configurables sur une plate-forme ou selon le choix préférentiel de l’utilisateur :
 
-* sh, the POSIX standard shell ;
-* csh, command-oriented shell in C ;
-* bash, Bourne-Again Shell, Linux shell.
+* sh, le shell aux normes POSIX ;
+* csh, shell orienté commandes en C ;
+* bash, Bourne-Again Shell, le shell de Linux.
 * etc, ...
 
-## Functionalities
+## Fonctionnalités
 
-* Command execution (checks the command given and executes it);
-* Input/Output redirection (returns data to a file instead of writing it on the screen);
-* Connection process (manages the user's connection);
-* Interpreted programming language (allowing the creation of scripts);
-* Environment variables (access to information specific to the system during operation).
+* Exécution de commandes (vérifie la commande passée et l’exécute) ;
+* Redirections Entrées/Sorties (renvoi des données dans un fichier au lieu de l’inscrire sur l’écran) ;
+* Processus de connexion (gère la connexion de l’utilisateur) ;
+* Langage de programmation interprété (permettant la création de scripts) ;
+* Variables d’environnement (accès aux informations propres au système en cours de fonctionnement).
 
-### Principle
+### Principe
 
-![Operating principle of the SHELL](images/shell-principle.png)
+![Principe de fonctionnement du SHELL](images/shell-principle.png)
 
-## Check your Knowledge
+## Testez vos connaissances
 
-:heavy_check_mark: An operating system is a set of programs for managing the available resources of a computer:
+:heavy_check_mark: Un système d’exploitation est un ensemble de programmes permettant la gestion des ressources disponibles d’un ordinateur :
 
-- [ ] True
-- [ ] False
+- [ ] Vrai
+- [ ] Faux
 
-:heavy_check_mark: The operating system is brought to:
+:heavy_check_mark: Le système d’exploitation est amené à :
 
-- [ ] Manage physical and virtual memory
-- [ ] Allow direct access to peripherals
-- [ ] Subcontract the management of tasks to the processor
-- [ ] Collect information about the programs used or in use
+- [ ] Gérer la mémoire physique et virtuelle
+- [ ] Permettre l’accès direct au périphériques
+- [ ] Sous traiter la gestion des tâches au processeur
+- [ ] Collecter des informations sur les programmes utilisées ou en cours d’utilisation
 
-:heavy_check_mark: Among these personalities, which ones participated in the development of UNIX:
+:heavy_check_mark: Parmi ces personnalités, lesquelles ont participé au développement d’UNIX :
 
 - [ ] Linus Torvalds
 - [ ] Ken Thompson
@@ -260,41 +260,41 @@ There are several types of shells available and configurable on a platform or ac
 - [ ] Brian Kernighan
 - [ ] Andrew Stuart Tanenbaum
 
-:heavy_check_mark: The original nationality of Linus Torvalds, creator of the Linux kernel, is:
+:heavy_check_mark: La nationalité d’origine de Linus Torvalds, créateur du noyau Linux, est :
 
-- [ ] Swedish
-- [ ] Finnish
-- [ ] Norwegian
-- [ ] Flemish
-- [ ] French of course
+- [ ] Suédoise
+- [ ] Finlandaise
+- [ ] Norvégienne
+- [ ] Flamande
+- [ ] Française, évidement
 
-:heavy_check_mark: Which of the following distributions is the oldest:
+:heavy_check_mark: Parmi les distributions suivantes, quelle est la plus ancienne :
 
 - [ ] Debian
 - [ ] Slackware
 - [ ] RedHat
 - [ ] Arch
 
-:heavy_check_mark: Is the Linux kernel:
+:heavy_check_mark: Le noyau Linux est-il :
 
-- [ ] Multitasking
-- [ ] Multi user
-- [ ] Multiprocessor
-- [ ] Multi-core
-- [ ] Cross-platform
-- [ ] Open
+- [ ] Multitâche
+- [ ] Multiutilisateurs
+- [ ] Multiprocesseur
+- [ ] Multicoeurs
+- [ ] Multiplateforme
+- [ ] Ouvert
 
-:heavy_check_mark: Is free software necessarily open source?
+:heavy_check_mark: Un logiciel libre est-il forcément Open Source ?
 
-- [ ] True
-- [ ] False
+- [ ] Vrai
+- [ ] Faux
 
-:heavy_check_mark: Is Open Source software necessarily free?
+:heavy_check_mark: Un logiciel Open Source est-il forcément libre ?
 
-- [ ] True
-- [ ] False
+- [ ] Vrai
+- [ ] Faux
 
-:heavy_check_mark: Which of the following is not a shell:
+:heavy_check_mark: Parmi les propositions suivantes, laquelle n’est pas un shell :
 
 - [ ] Jason
 - [ ] Jason-Bourne shell (jbsh)

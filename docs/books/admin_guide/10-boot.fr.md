@@ -110,7 +110,7 @@ To password protect the GRUB2 bootloader:
 
 A `/boot/grub2/user.cfg` file will be created if it was not already present. It contains the hashed password of the GRUB2.
 
-!!! Note This command only supports configurations with a single root user.
+!!! abstract Note This command only supports configurations with a single root user.
 
 ```
 [root]# cat /boot/grub2/user.cfg
@@ -147,7 +147,7 @@ It is developed to:
 * remain compatible with older SysV initialization scripts,
 * provide many features, such as parallel start of system services at system startup, on-demand activation of daemons, support for snapshots, or management of dependencies between services.
 
-!!! Note Systemd is the default initialization system since RedHat/CentOS 7.
+!!! abstract Note Systemd is the default initialization system since RedHat/CentOS 7.
 
 Systemd introduces the concept of systemd units.
 
@@ -157,7 +157,7 @@ Systemd introduces the concept of systemd units.
 | Target unit  | `.target`      | A group of systemd units                 |
 | Mount unit   | `.automount`   | An automatic mount point for file system |
 
-!!! Note There are many types of units: Device unit, Mount unit, Path unit, Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit, Timer unit.
+!!! abstract Note There are many types of units: Device unit, Mount unit, Path unit, Scope unit, Slice unit, Snapshot unit, Socket unit, Swap unit, Timer unit.
 
 * Systemd supports system state snapshots and restore.
 
