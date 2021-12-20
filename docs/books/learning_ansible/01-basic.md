@@ -46,16 +46,14 @@ It will help you with:
 * automation,
 * orchestration (when more than 1 target is in use).
 
-[NOTE]
-====
-Ansible was originally written by Michael DeHaan, the founder of other tools such as Cobbler.
+!!! Note
+    Ansible was originally written by Michael DeHaan, the founder of other tools such as Cobbler.
 
-![Michael DeHaan](images/Michael_DeHaan01.jpg)
+    ![Michael DeHaan](images/Michael_DeHaan01.jpg)
 
-The earliest first version was 0.0.1, released on March 9, 2012.
+    The earliest first version was 0.0.1, released on March 9, 2012.
 
-On October 17, 2015, AnsibleWorks (the company behind Ansible) was acquired by Red Hat for $150 million.
-====
+    On October 17, 2015, AnsibleWorks (the company behind Ansible) was acquired by Red Hat for $150 million.
 
 ![The features of Ansible](images/ansible-001.png)
 
