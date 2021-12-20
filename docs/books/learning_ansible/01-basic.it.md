@@ -26,19 +26,6 @@ In questo capitolo imparerai come lavorare con Ansible.
 
 ****
 
-Quando si parla di Ansible, bisogna menzionare il suo autore, Michael DeHaan, il creatore di strumenti come Cobbler e Ansible.
-
-![Michael DeHaan](images/Michael_DeHaan01.jpg)
-
-| Periodo temporale | Società                                                   | Posizione                |
-| ----------------- | --------------------------------------------------------- | ------------------------ |
-| 2013-03 ~         | AnsibleWorks società open source                          | CTO                      |
-| 2011-06 ~ 2012-11 | Rpath, fondata nel 2005, è stata chiusa il 1 maggio 2013. | Ingegnere Senior         |
-| 2010-02 ~ 2010-07 | Puppet                                                    | Product Manager          |
-| 2006-03 ~ 2009-10 | Red Hat                                                   | Senior Software Engineer |
-
-La prima versione è stata la 0.0.1, rilasciata il 9 marzo 2012. il 17 ottobre 2015, AnsibleWorks è stato acquisito da Red Hat per 150 milioni di dollari.
-
 Ansible centralizza e automatizza i compiti di amministrazione. È:
 
 * **agentless** (non richiede implementazioni specifiche sui client),
@@ -57,6 +44,14 @@ Ti aiuterà con:
 * gestione della configurazione,
 * automazione
 * orchestrazione (quando è in uso più di 1 destinazione).
+
+!!! Note Nota Ansible è stato originariamente scritto da Michael DeHaan, il fondatore di altri strumenti come Cobbler.
+
+    ![Michael DeHaan](images/Michael_DeHaan01.jpg)
+    
+    La prima versione è stata la 0.0.1, rilasciata il 9 marzo 2012.
+    
+    Il 17 ottobre 2015, AnsibleWorks (la società dietro Ansible) è stata acquisita da Red Hat per 150 milioni di dollari.
 
 ![Le caratteristiche di Ansible](images/ansible-001.png)
 
@@ -160,7 +155,7 @@ $ sudo curl -o /etc/ansible/hosts https://raw.githubusercontent.com/ansible/ansi
 ```
 usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
 
-View ansible configuration.
+Visualizzare la configurazione di ansibile.
 
 positional arguments:
   {list,dump,view,init}
@@ -318,7 +313,7 @@ ansible rocky8 -i ./local-inventory -m command -a 'date'
 
 !!! Note Nota Come in questo esempio è a volte più semplice separare la dichiarazione dei dispositivi gestiti in diversi file (per esempio per un progetto cloud) e fornire ad Ansible i percorsi di questi file, piuttosto che mantenere un lungo archivio di inventario.
 
-| Opzione                  | Informazioni                                                                                                    |
+| Opzione                  | Informazione                                                                                                    |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------- |
 | `-a 'arguments'`         | Gli argomenti da passare al modulo.                                                                             |
 | `-b -K`                  | Richiede una password ed esegue il comando con privilegi superiori.                                             |
