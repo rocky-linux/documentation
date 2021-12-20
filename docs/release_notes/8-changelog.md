@@ -19,8 +19,8 @@ All Rocky Linux components are built from the sources hosted at [git.rockylinux.
 
 The following packages have been updated since December 16, 2021:
 
-selinux-policy: selinux-policy-3.14.3-80.el8 -> selinux-policy-3.14.3-80.el8_5.2
-systemd: systemd-239-51.el8 -> systemd-239-51.el8_5.3
+* selinux-policy: selinux-policy-3.14.3-80.el8 -> selinux-policy-3.14.3-80.el8_5.2
+* systemd: systemd-239-51.el8 -> systemd-239-51.el8_5.3
 
 ## 8.5 - 2021-12-13
 
