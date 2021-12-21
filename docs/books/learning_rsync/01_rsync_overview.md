@@ -23,7 +23,7 @@ What are the backup methods?
 
 ##  rsync in brief
 
-On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. But you shouldn't "put all of your eggs in the same basket." Once the hardware fails and cannot start normally, the data still cannot be retrieved. In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
+On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. But the way to do this is to "put all of your eggs in the same basket." Once the hardware fails and cannot start normally, the data still cannot be retrieved. In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
 
 Some people will say, can't I just use the `tar` or `cp` command on the first server and send it to the second server via `scp` or `sftp`?
 
@@ -45,7 +45,7 @@ The original `rsync` was maintained by the Australian programmer <font color=red
 ![ Wayne Davison ](images/Wayne_Davison.jpg)
 
 !!! note "Attention!"
-    **rsync itself is only an incremental backup tool and does not have the function of real-time data synchronization. It needs to be supplemented with another program. In addition to this, synchronization is one-way, and if you want two-way backup, you need to use another tool to achieve it. **
+     **rsync itself is only an incremental backup tool and does not have the function of real-time data synchronization. It needs to be supplemented with another program. In addition to this, synchronization is one-way, and if you want two-way backup, you need to use another tool to achieve it.**
 
 ###  Basic Principles and Features
 
