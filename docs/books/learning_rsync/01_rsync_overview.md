@@ -14,7 +14,7 @@ Backup refers to the duplication of data in the file system or database. In the 
 What are the backup methods?
 
 * Full backup: refers to a one-time copy of all files, folders or data in the hard disk or database. (Pros: the best, can recover data faster. Disadvantages: take up a larger hard disk space.)
-* Incremental backup: refers to the backup of the data updated after the last full backup or incremental backup. The process is like this, such as a full backup on the first day; a backup of the newly added data on the second day, as opposed to a full backup; on the third day, a backup of the newly added data on the basis of the second day. , Relative to the next day. And so on.
+* Incremental backup: refers to the backup of the data updated after the last full backup or incremental backup. The process is like this, such as a full backup on the first day; a backup of the newly added data on the second day, as opposed to a full backup; on the third day, a backup of the newly added data on the basis of the second day, Relative to the next day. And so on.
 * Differential backup: Refers to the backup of the changed files after the full backup. For example, a full backup on the first day; a backup of the new data on the second day; a backup of the new data from the second day to the third day on the third day; and a backup of all the new data from the second day to the fourth day on the fourth day. And so on.
 * Selective backup: Refers to backing up a part of the system.
 * Cold backup: refers to the backup when the system is in shutdown or maintenance state. The backed up data is exactly the same as the data in the system during this period.
