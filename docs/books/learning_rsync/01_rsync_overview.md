@@ -27,7 +27,7 @@ On a server, I backed up the first partition to the second partition, which is c
 
 Some people will say, can't I just use the `tar` or `cp` command on the first server and send it to the second server via `scp` or `sftp`?
 
-In a production environment, the amount of data is relatively large. First of all, `tar` or `cp` consumes a lot of time and occupies system performance. Transmission via `scp` or `sftp` also occupies a lot of network bandwidth, which is not allowed in the actual production environment. Secondly, these commands or tools need to be manually entered by the administrator and need to be combined with the crontab of the scheduled task. However, the time set by crontab is not easy to grasp, and the set time is too short. For example, if it is executed once every 1 minute, it may happen that the first script is not executed, and the second script is executed again; the set time has passed For example, if it is executed once every 5 hours, there may be data loss because the data is not backed up in time.
+In a production environment, the amount of data is relatively large. First of all, `tar` or `cp` consumes a lot of time and occupies system performance. Transmission via `scp` or `sftp` also occupies a lot of network bandwidth, which is not allowed in the actual production environment. Secondly, these commands or tools need to be manually entered by the administrator and need to be combined with the crontab of the scheduled task. However, the time set by crontab is not easy to grasp, and it is not appropriate for data to be backed up if the time is too short or too long.
 
 Therefore, there needs to be a data backup in the production environment which needs to meet the following requirements:
 
