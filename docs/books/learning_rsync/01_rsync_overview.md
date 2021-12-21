@@ -14,7 +14,7 @@ Backup refers to the duplication of data in the file system or database. In the 
 What are the backup methods?
 
 * Full backup: refers to a one-time copy of all files, folders or data in the hard disk or database. (Pros: the best, can recover data faster. Disadvantages: take up a larger hard disk space.)
-* Incremental backup: refers to the backup of the data updated after the last full backup or incremental backup. The process is like this, such as a full backup on the first day; a backup of the newly added data on the second day, as opposed to a full backup; on the third day, a backup of the newly added data on the basis of the second day. , Relative to the next day. And so on.
+* Incremental backup: refers to the backup of the data updated after the last full backup or incremental backup. The process is like this, such as a full backup on the first day; a backup of the newly added data on the second day, as opposed to a full backup; on the third day, a backup of the newly added data on the basis of the second day, Relative to the next day. And so on.
 * Differential backup: Refers to the backup of the changed files after the full backup. For example, a full backup on the first day; a backup of the new data on the second day; a backup of the new data from the second day to the third day on the third day; and a backup of all the new data from the second day to the fourth day on the fourth day. And so on.
 * Selective backup: Refers to backing up a part of the system.
 * Cold backup: refers to the backup when the system is in shutdown or maintenance state. The backed up data is exactly the same as the data in the system during this period.
@@ -23,7 +23,7 @@ What are the backup methods?
 
 ##  rsync in brief
 
-On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. But you shouldn't "put all of your eggs in the same basket." Once the hardware fails and cannot start normally, the data still cannot be retrieved. In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
+On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. Although the data is backed up on this server, if the hardware fails to boot up properly, the data will not be retrieved. In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
 
 Some people will say, can't I just use the `tar` or `cp` command on the first server and send it to the second server via `scp` or `sftp`?
 
@@ -45,7 +45,7 @@ The original `rsync` was maintained by the Australian programmer <font color=red
 ![ Wayne Davison ](images/Wayne_Davison.jpg)
 
 !!! note "Attention!"
-    **rsync itself is only an incremental backup tool and does not have the function of real-time data synchronization. It needs to be supplemented with another program. In addition to this, synchronization is one-way, and if you want two-way backup, you need to use another tool to achieve it. **
+     **rsync itself is only an incremental backup tool and does not have the function of real-time data synchronization. It needs to be supplemented with another program. In addition to this, synchronization is one-way, and if you want two-way backup, you need to use another tool to achieve it.**
 
 ###  Basic Principles and Features
 
