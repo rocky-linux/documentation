@@ -179,7 +179,8 @@ This set of manuals is divided into 8 sections, grouping information by topic, t
 6. Games;
 7. Miscellaneous;
 8. System administration tools and daemons.
-   Information about each section can be accessed by typing `man x intro`, where `x` is the section number.
+
+Information about each section can be accessed by typing `man x intro`, where `x` is the section number.
 
 The command:
 
@@ -228,6 +229,7 @@ Options:
 ### `history` command
 
 The `history` command displays the history of commands that have been entered by the user.
+
 The commands are stored in the `.bash_history` file in the user's login directory.
 
 Example of a history command
@@ -605,6 +607,7 @@ $ mkdir /home/rockstar/work
 ```
 
 The "rockstar" directory must exist to create the "work" directory.
+
 Otherwise, the `-p` option should be used. The `-p` option creates the parent directories if they do not exist.
 
 !!! Danger
@@ -763,7 +766,7 @@ $ cp -r /home/rockstar /tmp
 | `-f`    | Do not ask for confirmation if overwriting the destination file. |
 | `-p`    | Keeps the owner, permissions and timestamp of the copied file.   |
 | `-r`    | Copies a directory with its files and subdirectories.            |
-| `-s`    | Creates a symbolik links rather than copying            |
+| `-s`    | Creates a symbolik links rather than copying                     |
 
 ```bash
 cp file1 /repexist/file2
@@ -1120,7 +1123,6 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 
 The previous command searches for all files in the `/tmp` directory named `*.txt` and deletes them.
 
-
 !!! Tip "Understand the `-exec` option"
     In the example above, the `find` command will construct a string representing the command to be executed.
 
@@ -1243,6 +1245,7 @@ On UNIX and Linux systems, there are three standard streams. They allow programs
 These streams are called X channel or X file descriptor.
 
 By default:
+
 * the keyboard is the input device for channel 0, called **stdin** ;
 * the screen is the output device for channels 1 and 2, called **stdout** and **stderr**.
 
@@ -1487,23 +1490,24 @@ file1.txt  file2.txt  file3.txt
 
 ### Aliases and useful functions
 
-* `grep` alias
-Colorize the result of the `grep` command:
-`alias grep='grep --color=auto'`
+* `grep` alias.
+
+Colorize the result of the `grep` command: `alias grep='grep --color=auto'`
 
 * `mcd` function
-It is common to create a folder and then move around in it:
-`mcd() { mkdir -p "$1"; cd "$1"; }`
+
+It is common to create a folder and then move around in it: `mcd() { mkdir -p "$1"; cd "$1"; }`
 
 * `cls` function
-Move to a folder and list its contents:
-`cls() { cd "$1"; ls; }`
+
+Move to a folder and list its contents: `cls() { cd "$1"; ls; }`
 
 * `backup` function
-Create a backup copy of a file:
-`backup() { cp "$1"{,.bak}; }`
+
+Create a backup copy of a file: `backup() { cp "$1"{,.bak}; }`
 
 * `extract` function
+
 Extract any type of archive:
 
 ```bash
@@ -1531,12 +1535,9 @@ extract () {
 
 ```
 
-* If `alias cmount` returns the following:
-`alias cmount="mount | column -t"`
+* If `alias cmount` returns the following: `alias cmount="mount | column -t"`
 
-Then we can use cmount to show all of the system mounts in columns like this:
-
-`[root]# cmount`
+Then we can use cmount to show all of the system mounts in columns like this: `[root]# cmount`
 
 which would return our mounted filesystem in the following format:
 
@@ -1548,7 +1549,6 @@ none        on  /dev                                       type  devtmpfs     (r
 none        on  /dev/pts                                   type  devpts       (rw,relatime,mode=600,ptmxmode=000)
 none        on  /dev/shm                                   type  tmpfs        (rw,relatime)
 none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (rw,relatime)
-
 ```
 
 ### The character `;`
