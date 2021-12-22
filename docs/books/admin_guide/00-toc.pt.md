@@ -10,7 +10,7 @@ Inicialmente, discutiremos Linux, distribuições e todo o ecossistema em torno 
 
 Em seguida, vamos ver os comandos do usuário que são essenciais para acelerar o aprendizado com Linux. Os usuários mais experientes devem também consultar o capítulo dedicado aos "comandos avançados".
 
-O Capítulo seguinte trata sobre o editor de texto VI. Embora o Linux venha com muitos editores, VI é um dos mais poderosos. Outros comandos às vezes usam sintaxes idênticas(`sed` ou similares) aos comandos do VI . Portanto, saber algo sobre o VI, ou ao menos desmistificar suas funções essenciais (como abrir um arquivo, salvar, sair e salvar ou sair sem salvar) é muito importante. O usuário ficará mais confortável com as funções de VI a medida que usa o editor. Uma alternativa seria usar o editor de texto nano que vem instalado por padrão no Rocky Linux. Embora não seja versátil, é simples de usar, direto e supre as necessidade do trabalho a ser feito.
+O Capítulo seguinte trata sobre o editor de texto VI. Embora o Linux venha com muitos editores, VI é um dos mais poderosos. Outros comandos às vezes usam sintaxes idênticas(`sed` ou similares) aos comandos do VI . Portanto, saber algo sobre o VI, ou ao menos desmistificar suas funções essenciais (como abrir um arquivo, salvar, sair e salvar ou sair sem salvar) é muito importante. O usuário ficará mais confortável com as funções do VI a medida que usa o editor. Uma alternativa seria usar o editor de texto nano que vem instalado por padrão no Rocky Linux. Embora não seja versátil, é simples de usar, direto e supre as necessidade do trabalho a ser feito.
 
 Em seguida, podemos entrar no funcionamento mais profundo do Linux para compreender como o sistema funciona:
 
