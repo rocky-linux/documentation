@@ -15,6 +15,50 @@ Updates released since upstream are posted across our current architectures. We 
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
+## 8.5 - 2021-12-17
+
+The following packages have been updated since December 17, 2021:
+
+* 389-ds-base: 389-ds-base-1.4.3.23-10.module+el8.5.0+700+370e33d5 -> 389-ds-base-1.4.3.23-12.module+el8.5.0+722+e2a0b219
+* accountsservice: accountsservice-0.6.55-2.el8 -> accountsservice-0.6.55-2.el8_5.2
+* cloud-init: cloud-init-21.1-7.el8 -> cloud-init-21.1-7.el8_5.3
+* freeradius: freeradius-3.0.20-9.module+el8.5.0+704+21fb769d -> freeradius-3.0.20-10.module+el8.5.0+723+cc9aee6c
+* gnome-shell-extensions: gnome-shell-extensions-3.32.1-20.el8_5.1 -> gnome-shell-extensions-3.32.1-22.el8_5
+* java-11-openjdk: java-11-openjdk-1:11.0.13.0.8-3.el8_5 -> java-11-openjdk-1:11.0.13.0.8-4.el8_5
+* kernel: kernel-4.18.0-348.2.1.el8_5 -> kernel-4.18.0-348.7.1.el8_5
+* kernel-rt: kernel-rt-4.18.0-348.2.1.rt7.132.el8_5 -> kernel-rt-4.18.0-348.7.1.rt7.137.el8_5
+* kexec-tools: kexec-tools-2.0.20-57.el8 -> kexec-tools-2.0.20-57.el8_5.1
+* opencryptoki: opencryptoki-3.16.0-5.el8 -> opencryptoki-3.16.0-7.el8_5
+* openssl: openssl-1:1.1.1k-4.el8 -> openssl-1:1.1.1k-5.el8_5
+* poppler: poppler-20.11.0-3.el8 -> poppler-20.11.0-3.el8_5.1
+* postgresql: postgresql-12.7-2.module+el8.5.0+686+20453ecc -> postgresql-12.9-1.module+el8.5.0+724+9de6e501
+* qemu-kvm: qemu-kvm-15:4.2.0-59.module+el8.5.0+670+c4aa478c -> qemu-kvm-15:4.2.0-59.module+el8.5.0+726+ce09ee88.1
+* rocky-release: rocky-release-8.5-2.el8 -> rocky-release-8.5-3.el8
+* sssd: sssd-2.5.2-2.el8_5.1 -> sssd-2.5.2-2.el8_5.3
+
+Associated CVE's:
+
+* CVE-2021-20321
+* CVE-2021-3930
+* CVE-2021-20257
+* CVE-2021-3712
+
+The follow modules have been updated:
+
+* virt-rhel-8050020211221163306.b4937e53
+* virt-devel-rhel-8050020211221163306.b4937e53
+* postgresql-13-8050020211221161313.b4937e53
+* postgresql-12-8050020211221161311.b4937e53
+* freeradius-3.0-8050020211221161359.ab0f257b
+* 389-ds-1.4-8050020211221162652.1a75f91c
+
+### Release Engineering Notes
+
+rocky-release package has been updated to add the countme=1 to the base
+repositories for Rocky Linux, similar to how epel has their repos. If
+you have modified the repo files, you will have .rpmnew files generated,
+as to not overwrite your changes.
+
 ## 8.5 - 2021-12-16
 
 The following packages have been updated since December 16, 2021:
