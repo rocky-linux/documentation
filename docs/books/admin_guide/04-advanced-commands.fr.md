@@ -1,32 +1,32 @@
 ---
-title: Advanced Linux Commands
+title: Commandes avancées Linux
 ---
 
-# Advanced Commands for Linux users
+# Commandes avancées pour utilisateurs Linux
 
-In this chapter you will learn some advanced commands for Linux.
+Dans ce chapitre, vous apprendrez quelques commandes avancées pour Linux.
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn:
+**Objectifs** : Dans ce chapitre, les futurs administrateurs Linux vont apprendre :
 
-:heavy_check_mark: some useful commands not covered in the previous chapter;   
-:heavy_check_mark: some advanced commands.
+:heavy_check_mark: quelques commandes utiles non couvertes dans le chapitre précédent ;   
+:heavy_check_mark: quelques commandes avancées.
 
-:checkered_flag: **user commands**, **Linux**
+:checkered_flag: **commandes utilisateurs**, **Linux**
 
-**Knowledge**: :star:   
-**Complexity**: :star: :star: :star:
+**Connaissances : ** :star:   
+**Complexité : ** :star: :star: :star:
 
 **Temps de lecture : **20 minutes
 
 ****
 
-## `uniq` command
+## La commande `uniqu`
 
-The `uniq` command is a very powerful command, used with the `sort` command, especially for log file analysis. It allows you to sort and display entries by removing duplicates.
+La commande `uniq` est une commande, utilisée avec la commande `sort`, très puissante, notamment pour l’analyse de fichiers de logs. Elle permet de trier et d’afficher des entrées en supprimant les doublons.
 
-To illustrate how the `uniq` command works, let's use a `firstnames.txt` file containing a list of first names:
+Pour illustre le fonctionnement de la commande `uniq`, utilisons un fichier `firstnames.txt` contenant une liste de prénoms :
 
 ```
 antoine
@@ -39,9 +39,9 @@ antoine
 steven
 ```
 
-!!! abstract Note `uniq` requires the input file to be sorted because it only compares consecutive lines.
+!!! Note `uniq` réclame que le fichier d’entrée soit trié car il ne compare que les lignes consécutives.
 
-Without an argument, the `uniq` command will not display identical lines that follow each other in the `firstnames.txt` file:
+Sans argument, la commande `uniq` ne va pas afficher les lignes identiques qui se suivent du fichier `firstnames.txt` :
 
 ```
 $ sort firstnames.txt | uniq
@@ -51,14 +51,14 @@ steven
 xavier
 ```
 
-To display only the rows that appear only once, use the `-u` option:
+Pour n’afficher que les lignes n’apparaissant qu’une seule fois, il faut utiliser l’option `-u` :
 
 ```
 $ sort firstnames.txt | uniq -u
 patrick
 ```
 
-Conversely, to display only the lines that appear at least twice in the file, you must use the `-d` option:
+À l’inverse, pour n’afficher que les lignes apparaissant au moins deux fois dans le fichier, il faut utiliser l’option `-d` :
 
 ```
 $ sort firstnames.txt | uniq -d
@@ -67,7 +67,7 @@ steven
 xavier
 ```
 
-To simply delete lines that appear only once, use the `-D` option:
+Pour simplement supprimer les lignes qui n’apparaissent qu’une seule fois, il faut utiliser l’option `-D` :
 
 ```
 $ sort firstnames.txt | uniq -D
@@ -80,7 +80,7 @@ xavier
 xavier
 ```
 
-Finally, to count the number of occurrences of each line, use the `-c` option:
+Enfin, pour compter le nombre d’occurrences de chaque ligne, il faut utiliser l’option `-c` :
 
 ```
 $ sort firstnames.txt | uniq -c
@@ -97,13 +97,13 @@ $ sort firstnames.txt | uniq -cd
       2 xavier
 ```
 
-## `xargs` commands
+## La commande `xargs`
 
-The `xargs` command allows the construction and execution of command lines from standard input.
+La commande `xargs` permet la construction et l’exécution de lignes de commandes à partir de l’entrée standard.
 
-The `xargs` command reads whitespace or linefeed delimited arguments from standard input, and executes the command (`/bin/echo` by default) one or more times using the initial arguments followed by the arguments read from standard input.
+La commande `xargs` lit des arguments délimités par des blancs ou par des sauts de ligne depuis l’entrée standard, et exécute une ou plusieurs fois la commande (`/bin/echo` par défaut) en utilisant les arguments initiaux suivis des arguments lus depuis l’entrée standard.
 
-A first and simplest example would be the following:
+Un premier exemple le plus simple possible serait le suivant :
 
 ```
 $ xargs
@@ -114,16 +114,16 @@ xargs
 use of xargs
 ```
 
-The `xargs` command waits for an input from the standard **stdin** input. Three lines are entered. The end of the user input is specified to `xargs` by the keystroke sequence <kbd>CTRL</kbd>+<kbd>D</kbd>. `xargs` then executes the default command `echo` followed by the three arguments corresponding to the user input, namely :
+La commande `xargs` attend une saisie depuis l’entrée standard **stdin**. Trois lignes sont saisies. La fin de la saisie utilisateur est spécifiée à `xargs` par la séquence de touches <kbd>CTRL</kbd> + <kbd>D</kbd>. `xargs` exécute alors la commande par défaut `echo` suivi des trois arguments correspondants à la saisie utilisateur, soit :
 
 ```
 $ echo "use" "of" "xargs"
 use of xargs
 ```
 
-It is possible to specify a command to be run by `xargs`.
+Il est possible de spécifier une commande à lancer par `xargs`.
 
-In the following example, `xargs` will run the command `ls -ld` on the set of folders specified in the standard input:
+Dans l’exemple qui suit, `xargs` va exécuter la commande `ls -ld` sur l’ensemble des dossiers qui seront spécifiés depuis l’entrée standard :
 
 ```
 $ xargs ls -ld
@@ -136,9 +136,9 @@ dr-xr-x---. 2 root root 4096  5 avril 15:52 /root
 drwxrwxrwt. 3 root root 4096  6 avril 10:25 /tmp
 ```
 
-In practice, the `xargs` command executed the `ls -ld /home /tmp /root` command.
+En pratique, la commande `xargs` a exécuté la commande `ls -ld /home /tmp /root`.
 
-What happens if the command to be executed does not accept multiple arguments as is the case with the `find` command?
+Que se passe-t-il si la commande à exécuter n’accepte pas plusieurs arguments comme c’est le cas pour la commande `find` ?
 
 ```
 $ xargs find /var/log -name
@@ -147,14 +147,14 @@ $ xargs find /var/log -name
 find: paths must precede expression: *.log
 ```
 
-The `xargs` command attempted to execute the `find` command with multiple arguments behind the `-name` option, which caused `find` to generate an error:
+La commande `xargs` a tenté d’exécuter la commande `find` avec plusieurs arguments derrière l’option `-name`, ce qui fait généré par `find` une erreur :
 
 ```
 $ find /var/log -name "*.old" "*.log"
 find: paths must precede expression: *.log
 ```
 
-In this case, the `xargs` command must be forced to execute the `find` command several times (once per line entered as standard input). The `-L` option followed by an **integer** allows you to specify the maximum number of entries to be processed with the command at one time:
+Dans ce cas, il faut forcer la commande `xargs` à exécuter plusieurs fois (une fois par ligne saisie en entrée standard) la commande `find`. L’option `-L `suivie d’un nombre **entier** permet de spécifier le nombre maximal d’entrées à traiter avec la commande en une seule fois :
 
 ```
 $ xargs -L 1 find /var/log -name
@@ -173,7 +173,7 @@ $ xargs -L 1 find /var/log -name
 <CTRL+D>
 ```
 
-If we wanted to be able to specify both arguments on the same line, we would have to use the `-n 1` option:
+Si nous avions voulu pouvoir spécifier sur la même ligne les deux arguments, il aurait fallut utiliser l’option `-n 1` :
 
 ```
 $ xargs -n 1 find /var/log -name
@@ -191,7 +191,7 @@ $ xargs -n 1 find /var/log -name
 <CTRL+D>
 ```
 
-Case study of a backup with a `tar` based on a search:
+Cas concret d’une sauvegarde avec un `tar` en fonction d’une recherche :
 
 ```
 $ find /var/log/ -name "*.log" -mtime -1 | xargs tar cvfP /root/log.tar
@@ -200,37 +200,37 @@ $ tar tvfP /root/log.tar
 -rw-r--r-- root/root    499270 2017-04-06 11:01 /var/log/audit/audit.log
 ```
 
-The special feature of the `xargs` command is that it places the input argument at the end of the called command. This works very well with the above example since the files passed in will form the list of files to be added to the archive.
+La particularité de la commande `xargs` est quelle place l’argument en entrée à la fin de la commande appelée. Ceci fonctionne très bien avec l’exemple ci-dessus puisque les fichiers passés en entrée vont constituer la liste des fichiers à ajouter à l’archive.
 
-Now, if we take the example of the `cp` command and want to copy a list of files in a directory, this list of files will be added at the end of the command... but what the `cp` command expects at the end of the command is the destination. To do this, we use the `-I` option to put the input arguments somewhere else than at the end of the line.
+Maintenant, si nous prenons l’exemple de la commande `cp` en voulant copier une liste de fichiers dans un répertoire, cette liste de fichiers sera ajoutée en fin de commande… or ce qui est attendu par la commande `cp` en fin de commande est plutôt la destination. Pour ce faire, nous utilisons l’option `-I` afin de placer les arguments en entrée ailleurs qu’en fin de ligne.
 
 ```
 $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 ```
 
-The `-I` option allows you to specify a character (in our example the `%` character) where the input files to `xargs` will be placed.
+L’option `-I` permet de spécifier un caractère (dans notre exemple le caractère `%`) où seront placés les fichiers en entrée de `xargs`.
 
-## `yum-utils` package
+## Le paquet `yum-utils`
 
-The `yum-utils` package is a collection of utilities from different authors for `yum`, which make it easier and more powerful to use.
+Le paquet `yum-utils` est une collection d’utilitaires de différents auteurs pour `yum`, qui le rendent plus simple et plus puissant à utiliser.
 
-!!! abstract Note While `yum` has been replaced by `dnf` in Rocky Linux 8, the package name has remained `yum-utils` although it can be installed as `dnf-utils` as well. These are classic YUM utilities implemented as CLI shims on top of DNF to maintain backwards compatibility with `yum-3`.
+!!! Note Bien que `yum` ait été remplacé par `dnf` dans Rocky Linux 8, le nom du paquet est resté `yum-utils` mais il peut tout aussi bien être installé avec le paquet `dnf-utils`. Ce sont des utilitaires YUM classiques implémentés comme des CLI au-dessus de DNF pour maintenir une compatibilité ascendante avec `yum-3`.
 
-Here are some examples of usage:
+Voici quelques exemples d’utilisation :
 
-* `repoquery` command:
+* la commande `repoquery` :
 
-The `repoquery` command queries the repositories.
+La commande `repoquery` interroge les dépôts.
 
-Examples of use:
+Exemples d’utilisation :
 
-  * Knowing the dependencies of an uninstalled package:
+  * Connaître les dépendances d’un paquet non-installé :
 
 ```
 repoquery --requires <package>
 ```
 
-  * Know the files provided by a non-installed package:
+  * Connaître les fichiers fournis par un paquet non-installé :
 
 ```
 $ repoquery -l yum-utils
@@ -260,32 +260,32 @@ $ repoquery -l yum-utils
 …
 ```
 
-* `yumdownloader` command:
+* La commande `yumdownloader` :
 
-The `yumdownloader` command downloads RPM packages from the repositories.
+La commande `yumdownloader` télécharge les paquets RPM depuis les dépôts.
 
-!!! abstract Note This command is very useful to quickly build a local repository of a few rpm!
+!!! Note Cette commande est très pratique pour construire un dépôt local de quelques rpm !
 
-Example: `yumdownloader` will download the _repoquery_ rpm package and all its dependencies:
+Exemple : `yumdownloader` va télécharger le paquet rpm de _repoquery_ ainsi que toutes ses dépendances :
 
 ```
 $ yumdownloader --destdir /var/tmp -- resolve repoquery
 ```
 
-| Options     | Comments                                                        |
-| ----------- | --------------------------------------------------------------- |
-| -`-destdir` | The downloaded packages will be stored in the specified folder. |
-| `--resolve` | Also downloads the package dependencies.                        |
+| Options     | Commentaires                                                       |
+| ----------- | ------------------------------------------------------------------ |
+| -`-destdir` | Les paquets téléchargés seront conservés dans le dossier spécifié. |
+| `--resolve` | Télécharge également les dépendances du paquet.                    |
 
-## `psmisc` packages
+## Le paquet `psmisc`
 
-The `psmisc` package contains utilities for managing system processes:
+Le paquet `psmisc` contient des utilitaires pour gérer les processus du système :
 
-* `pstree`: the `pstree` command displays the current processes on the system in a tree-like structure.
-* `killall`: the `killall` command sends a kill signal to all processes identified by name.
-* `fuser`: the `fuser` command identifies the `PID` of processes that use the specified files or file systems.
+* `pstree` : la commande `pstree` affiche les processus en cours sur le système sous forme de structure en forme d’arbre.
+* `killall` : la commande `killall` envoie un signal d’extinction à tous les processus identifiés par un nom.
+* `fuser` : la commande `fuser` identifie les `PID` des processus qui utilisent les fichiers ou les systèmes de fichiers spécifiés.
 
-Examples:
+Exemples :
 
 ```
 $ pstree
@@ -311,29 +311,29 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
 # killall httpd
 ```
 
-Kill processes (option `-k`) that access the `/etc/httpd/conf/httpd.conf` file:
+Tue les processus (option `-k`) qui accèdent au fichier `/etc/httpd/conf/httpd.conf` :
 
 ```
 # fuser -k /etc/httpd/conf/httpd.conf
 ```
 
-## `watch` command
+## La commande `watch`
 
-The `watch` command regularly executes a command and displays the result in the terminal in full screen.
+La commande `watch` exécute régulièrement une commande et affiche le résultat dans le terminal en plein écran.
 
-The `-n` option allows you to specify the number of seconds between each execution of the command.
+L’option `-n` permet de spécifier le nombre de secondes entre chaque exécution de la commande.
 
-!!! abstract Note To exit the `watch` command, you must type the keys: <kbd>CTRL</kbd>+<kbd>C</kbd> to kill the process.
+!!! Note Pour quitter la commande `watch`, il faut saisir les touches : <kbd>CTRL</kbd>+<kbd>C</kbd> pour tuer le processus.
 
-Examples:
+Exemples :
 
-* Display the end of the `/etc/passwd` file every 5 seconds:
+* Afficher la fin du fichier `/etc/passwd` toutes les 5 secondes :
 
 ```
 $ watch -n 5 tail -n 3 /etc/passwd
 ```
 
-Result:
+Résultat :
 
 ```
 Every 5,0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
@@ -343,13 +343,13 @@ chrony:x:995:992::/var/lib/chrony:/sbin/nologin
 sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 ```
 
-* Monitoring the number of files in a folder:
+* Surveillance du nombre de fichier dans un dossier :
 
 ```
 $ watch -n 1 'ls -l | wc -l'
 ```
 
-* Display a clock:
+* Afficher une horloge :
 
 ```
 $ watch -t -n 1 date
