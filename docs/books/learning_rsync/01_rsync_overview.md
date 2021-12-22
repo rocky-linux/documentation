@@ -45,7 +45,7 @@ The original `rsync` was maintained by the Australian programmer <font color=red
 ![ Wayne Davison ](images/Wayne_Davison.jpg)
 
 !!! note "Attention!"
-     **rsync itself is only an incremental backup tool and does not have the function of real-time data synchronization. It needs to be supplemented with another program. In addition to this, synchronization is one-way, and if you want two-way backup, you need to use another tool to achieve it.**
+    **rsync itself is only an incremental backup tool and does not have the function of real-time data synchronization. It needs to be supplemented with another program. In addition to this, synchronization is one-way, and if you want two-way backup, you need to use another tool to achieve it.**
 
 ###  Basic Principles and Features
 
