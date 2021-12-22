@@ -144,7 +144,7 @@ Uso di una variabile memorizzata:
     var: homes.stdout_lines[1]
 ```
 
-!!! Note Nota La variabile `homes. tdout_lines` è un elenco di variabili di tipo stringa, un modo per organizzare variabili che non avevamo ancora incontrato.
+!!! Note Nota La variabile `homes.stdout_lines` è un elenco di variabili di tipo stringa, un modo per organizzare variabili che non avevamo ancora incontrato.
 
 Le stringhe che compongono la variabile memorizzata possono essere consultate tramite il valore `stdout` (che ti permette di fare cose come `homes.stdout.find("core") != -1`), per sfruttarli usando un ciclo (vedi `loop`), o semplicemente dai loro indici come visto nell'esempio precedente.
 
