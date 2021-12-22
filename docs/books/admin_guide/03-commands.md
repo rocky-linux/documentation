@@ -450,7 +450,7 @@ As you can see in the last example above, the command `cd` with no arguments mov
 
 ### `ls` command
 
-The `ls` command displays the contents of a directory
+The `ls` command displays the contents of a directory.
 
 ```bash
 ls [-a] [-i] [-l] [directory1] [directory2] […]
@@ -494,11 +494,11 @@ $ ls -lia /home
 | Value           | Information                                                                                                   |
 | --------------- | ------------------------------------------------------------------------------------------------------------- |
 | `78489`         | Inode Number.                                                                                                 |
-| `drwx------`    | File type (`d`) and rights (`rwx------`).                                                                       |
+| `drwx------`    | File type (`d`) and rights (`rwx------`).                                                                     |
 | `4`             | Number of subdirectories (`.` and `..` included). For a file of type physical link: number of physical links. |
-| `rockstar`      | For a physical link file: number of physical links.                                                           |
-| `rockstar`      | For a file of type physical link: number of physical links.                                                   |
-| `4096`          | For a physical link type file: number of physical links.                                                      |
+| `rockstar`      | User ownership.                                                                                               |
+| `rockstar`      | Group ownership.                                                                                              |
+| `4096`          | Size in bytes.                                                                                                |
 | `25 oct. 08:10` | Last modified date.                                                                                           |
 | `rockstar`      | The name of the file (or directory).                                                                          |
 
@@ -766,7 +766,7 @@ $ cp -r /home/rockstar /tmp
 | `-f`    | Do not ask for confirmation if overwriting the destination file. |
 | `-p`    | Keeps the owner, permissions and timestamp of the copied file.   |
 | `-r`    | Copies a directory with its files and subdirectories.            |
-| `-s`    | Creates a symbolik links rather than copying                     |
+| `-s`    | Creates a symbolik links rather than copying.                    |
 
 ```bash
 cp file1 /repexist/file2
@@ -841,12 +841,12 @@ The commands specific to `less` are:
 | Command           | Action                                          |
 | ----------------- | ----------------------------------------------- |
 | `h`               | Help.                                           |
-| `Arrows`          | Move up, down a line, or to the right or left.. |
+| `Arrows`          | Move up, down a line, or to the right or left.  |
 | `Enter`           | Move down one line.                             |
 | `Space`           | Move down one page.                             |
 | `PgUp` and `PgDn` | Move up or down one page.                       |
 | `Begin` and `End` | Move to the beginning or end of a file.         |
-| `/texte`          | Search for text.                                |
+| `/text`           | Search for text.                                |
 | `q`               | Quit the `less` command.                        |
 
 ### `cat` command
@@ -949,7 +949,7 @@ user1:x:500:500:grp1:/home/user1:/bin/bash
 
 With the `-f` option, the `tail` command does not give back and runs until the user interrupts it with the sequence <kbd>CTRL</kbd> + <kbd>C</kbd>. This option is very frequently used to track log files (the logs) in real time.
 
-Without the `-n` option, the tail command displays the last 10 lines of the file.
+Without the `-n` option, the `tail` command displays the last 10 lines of the file.
 
 ### `sort` command
 
@@ -969,14 +969,14 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-| Option                                                                                                                                                                                                                               | Observation                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
-| `-kx`                                                                                                                                                                                                                                | Specifies the `x` column to sort on          |
-| `-n`                                                                                                                                                                                                                                 | Requests a numeric sort                      |
-| `-o file   `                                                                                                                                                                                                                         | Saves the sort to the specified file         |
-| `-ty`                                                                                                                                                                                                                                | Specifies the field separator character `y`. |
-| `-r`                                                                                                                                                                                                                                 | Reverse the order of the result              |
-| `- u`                 | unique                                       |
+| Option    | Observation                                 |
+| --------- | ------------------------------------------- |
+| `-kx`     | Specifies the `x` column to sort on         |
+| `-n`      | Requests a numeric sort                     |
+| `-o file` | Saves the sort to the specified file        |
+| `-ty`     | Specifies the field separator character `y` |
+| `-r`      | Reverse the order of the result             |
+| `- u`     | Only keeps unique results                   |
 
 The `sort` command sorts the file only on the screen. The file is not modified by the sorting. To save the sort, use the `-o` option or an output redirection `>`.
 
@@ -1200,7 +1200,11 @@ grep -R "Virtual" /etc/httpd
 
 ### Meta-characters (wildcards)
 
-Meta-characters replace one or more characters (or even an absence of characters) during a search. These meta-characters are also known as wildcards. They can be combined. The `*` character replaces a string composed of any characters. The `*` character can also represent an absence of character.
+Meta-characters replace one or more characters (or even an absence of characters) during a search. These meta-characters are also known as wildcards.
+
+They can be combined.
+
+The `*` character replaces a string composed of any characters. The `*` character can also represent an absence of character.
 
 ```bash
 $ find /home -name "test*"
@@ -1221,7 +1225,7 @@ $ find /home -name "test?"
 /home/rockstar/tests
 ```
 
-The square brackets `[` are used to specify the values that a single character can take.
+The square brackets `[` and `]` are used to specify the values that a single character can take.
 
 ```bash
 $ find /home -name "test[123]*"
@@ -1537,7 +1541,7 @@ extract () {
 
 * If `alias cmount` returns the following: `alias cmount="mount | column -t"`
 
-Then we can use cmount to show all of the system mounts in columns like this: `[root]# cmount`
+Then we can use `cmount` to show all of the system mounts in columns like this: `[root]# cmount`
 
 which would return our mounted filesystem in the following format:
 
@@ -1565,9 +1569,9 @@ $ ls /; cd /home; ls -lia; cd /
 
 :heavy_check_mark: What defines a user under Linux? (7 answers)
 
-:heavy_check_mark: What characterizes a long option for an order?
+:heavy_check_mark: What characterizes a long option for a command?
 
-:heavy_check_mark: Which commands allow you to search for help on a command:
+:heavy_check_mark: Which commands allow you to search for help on a command?
 
 - [ ] `google`   
 - [ ] `chuck --norris`   
@@ -1587,7 +1591,7 @@ $ ls /; cd /home; ls -lia; cd /
 - [ ] `find`    
 - [ ] `grep`   
 
-:heavy_check_mark: Which command redirects the error stream of a command to a new `errors.log` file:
+:heavy_check_mark: Which command redirects the error stream of a command to a new `errors.log` file?
 
 - [ ] `ls -R / 2> errors.log`   
 - [ ] `ls -R / 2>> errors.log`   
