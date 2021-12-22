@@ -35,7 +35,7 @@ Therefore, there needs to be a data backup in the production environment which n
 2. Real-time data file synchronization
 3. Less occupancy of system resources and higher efficiency
 
-`rsync` appeared to meet the above needs. It uses the GNU open source license agreement. It is a fast incremental backup tool. The latest version is 3.2.3 (2020-08-06). You can visit [ Official website ] (https://rsync.samba.org/) for more information.
+`rsync` appeared to meet the above needs. It uses the GNU open source license agreement. It is a fast incremental backup tool. The latest version is 3.2.3 (2020-08-06). You can visit [ Official website ](https://rsync.samba.org/) for more information.
 
 In terms of platform support, most Unix-like systems are supported, whether it is GNU/Linux or BSD. In addition, there are related `rsync` under the Windows platform, such as cwRsync.
 
