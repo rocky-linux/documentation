@@ -1537,87 +1537,40 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 Le caractère`;` chaîne les commandes.
 
-Les commandes s’exécuteront toutes séquentiellement dans l’ordre de saisie une fois que l’utilisateur aura appuyé sur <kbd>ENTREE</kdb>.</p> 
+Les commandes s’exécuteront toutes séquentiellement dans l’ordre de saisie une fois que l’utilisateur aura appuyé sur ENTREE.
 
-<pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
-</code></pre>
+```bash
+$ ls /; cd /home; ls -lia; cd /
+```
 
-<h2 spaces-before="0">
-  Testez vos connaissances
-</h2>
+## Testez vos connaissances
 
-<p spaces-before="0">
-  :heavy_check_mark: Qu’est ce qui défini un utilisateur sous Linux ? (7 réponses)
-</p>
+:heavy_check_mark: Qu’est ce qui défini un utilisateur sous Linux ? (7 réponses)
 
-<p spaces-before="0">
-  :heavy_check_mark: Qu’est ce qui caractérise une option longue pour une commande ?
-</p>
+:heavy_check_mark: Qu’est ce qui caractérise une option longue pour une commande ?
 
-<p spaces-before="0">
-  :heavy_check_mark: Quelles commandes permettent de rechercher de l’aide sur une commande :
-</p>
+:heavy_check_mark: Quelles commandes permettent de rechercher de l’aide sur une commande :
 
-<ul>
-  <li>
-    [ ] <code>google</code>
-  </li>
-  <li>
-    [ ] <code>chuck --norris</code>
-  </li>
-  <li>
-    [ ] <code>info</code>
-  </li>
-  <li>
-    [ ] <code>apropos</code>
-  </li>
-  <li>
-    [ ] <code>whatis</code>
-  </li>
-</ul>
+- [ ] `google`
+- [ ] `chuck --norris`
+- [ ] `info`
+- [ ] `apropos`
+- [ ] `whatis`
 
-<p spaces-before="0">
-  :heavy_check_mark: Quelle commande permet de visualiser l’historique d’un utilisateur ?
-</p>
+:heavy_check_mark: Quelle commande permet de visualiser l’historique d’un utilisateur ?
 
-<p spaces-before="0">
-  :heavy_check_mark: Quelle commande permet de rechercher du texte dans un fichier ?
-</p>
+:heavy_check_mark: Quelle commande permet de rechercher du texte dans un fichier ?
 
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
+- [ ] `find`
+- [ ] `grep`
 
-<p spaces-before="0">
-  :heavy_check_mark: Quelle commande permet de rechercher un fichier ?
-</p>
+:heavy_check_mark: Quelle commande permet de rechercher un fichier ?
 
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
+- [ ] `find`
+- [ ] `grep`
 
-<p spaces-before="0">
-  :heavy_check_mark: Quelle commande redirige le flux des erreurs d’une commande vers un nouveau fichier <code>errors.log</code> :
-</p>
+:heavy_check_mark: Quelle commande redirige le flux des erreurs d’une commande vers un nouveau fichier `errors.log` :
 
-<ul>
-  <li>
-    [ ] <code>ls -R / 2&gt; errors.log</code>
-  </li>
-  <li>
-    [ ] <code>ls -R / 2&gt;&gt; errors.log</code>
-  </li>
-  <li>
-    [ ] <code>ls -R / 2&gt; errors.log 2&gt;&1</code>
-  </li>
-</ul>   
+- [ ] `ls -R / 2> errors.log`
+- [ ] `ls -R / 2>> errors.log`
+- [ ] `ls -R / 2> errors.log 2>&1`   
