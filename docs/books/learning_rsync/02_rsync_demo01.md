@@ -112,7 +112,7 @@ rsync error: some files/attrs were not transferred (see previous errors) (code 2
 
 **Prompt permission denied, how to deal with it?**
 
-First check the permissions of the /rsync/ directory. Obviously, there is no permission. We can use `setfacl` to give permission:
+First check the permissions of the /rsync/ directory. Obviously, there is no "w" permission. We can use `setfacl` to give permission:
 
 ```bash
 [root@Rocky ~ ] # ls -ld /rsync/
