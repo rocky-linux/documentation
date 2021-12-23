@@ -176,7 +176,9 @@ Una volta trovato con `apropos` o `whatis`, il manuale è letto da `man` ("Man �
 5. Formati di file ;
 6. Giochi;
 7. Varie;
-8. Strumenti e demoni dell'amministrazione del sistema. È possibile accedere alle informazioni su ciascuna sezione digitando `man x intro`, dove `x` è il numero della sezione.
+8. Strumenti e demoni dell'amministrazione del sistema.
+
+È possibile accedere alle informazioni su ciascuna sezione digitando `man x intro`, dove `x` è il numero della sezione.
 
 Il comando:
 
@@ -184,7 +186,7 @@ Il comando:
 man passwd
 ```
 
-dirà all'amministratore le opzioni, etc, del comando passwd. Mentre :
+dirà all'amministratore le opzioni, etc, del comando passwd. Mentre:
 
 ```bash
 $ man 5 passwd
@@ -198,7 +200,7 @@ La navigazione nel manuale viene eseguita con le frecce <kbd>↑</kbd> e <kbd>�
 
 ### comando `shutdown`
 
-Il comando `shutdown` ti permette di fare lo  **spegnimento elettrico** del server Linux, o immediatamente o dopo un certo periodo di tempo.
+Il comando `shutdown` ti permette di fare lo **spegnimento elettrico** del server Linux, o immediatamente o dopo un certo periodo di tempo.
 
 ```bash
 shutdown [-h] [-r] time [message]
@@ -215,7 +217,7 @@ Esempi:
 [root]# shutdown -r +5
 ```
 
-Opzioni :
+Opzioni:
 
 | Opzioni | Osservazioni                     |
 | ------- | -------------------------------- |
@@ -224,7 +226,9 @@ Opzioni :
 
 ### comando `history`
 
-Il comando `history` visualizza la cronologia dei comandi che sono stati inseriti dall'utente. I comandi sono memorizzati nel file `.bash_history` nella directory di accesso dell'utente.
+Il comando `history` visualizza la cronologia dei comandi che sono stati inseriti dall'utente.
+
+I comandi sono memorizzati nel file `.bash_history` nella directory di accesso dell'utente.
 
 Esempio di un comando history
 
@@ -281,7 +285,7 @@ L'opzione `-n` non tornerà alla linea dopo aver visualizzato il testo (che è i
 
 Per vari motivi, allo sviluppatore dello script potrebbe essere necessario utilizzare sequenze speciali (a partire da un carattere `\`). In questo caso, sara usata l'opzione `-e`, che consentirà l'interpretazione della sequenza.
 
-Tra le sequenze usate frequentemente, possiamo menzionare :
+Tra le sequenze usate frequentemente, possiamo menzionare:
 
 | Sequenza | Risultato                          |
 | -------- | ---------------------------------- |
@@ -308,9 +312,9 @@ $ date -d 20210517 +%j
 137
 ```
 
-In questo ultimo esempio, l'opzione `d` visualizza una data fornita. L'opzione `+%J` formatta questa data per mostrare solo il giorno dell'anno.
+In questo ultimo esempio, l'opzione `d` visualizza una data fornita. L'opzione `+%j` formatta questa data per mostrare solo il giorno dell'anno.
 
-!!! Warning "Avvertimento" Il formato di una data può cambiare in base al valore della lingua definita nella variabile di ambiente `$LANG`.
+!!! Warning Attenzione Il formato di una data può cambiare a seconda del valore della lingua definita nella variabile di ambiente `$LANG`.
 
 Il display della data può seguire i seguenti formati:
 
@@ -393,7 +397,7 @@ Un **percorso relativo** fa riferimento allo stesso file attraversando l'intero 
 
 Nell'esempio sopra, il "`..` " si riferisce alla directory principale della directory corrente.
 
-Una directory, anche se è vuota, conterrà necessariamente almeno **due riferimenti** :
+Una directory, anche se è vuota, conterrà necessariamente almeno **due riferimenti**:
 
 * `.`: riferimento a se stessa.
 * `..`: riferimento alla directory principale della directory corrente.
@@ -442,7 +446,7 @@ Come puoi vedere nell'ultimo esempio sopra, il comando `cd` senza argomenti spos
 
 ### comando `ls`
 
-Il comando `ls` visualizza il contenuto di una directory
+Il comando `ls` visualizza il contenuto di una directory.
 
 ```bash
 ls [-a] [-i] [-l] [directory1] [directory2] […]
@@ -455,7 +459,7 @@ $ ls /home
 .    ..    rockstar
 ```
 
-Le opzioni principali del comando `ls` sono :
+Le opzioni principali del comando `ls` sono:
 
 | Opzione | Informazione                                                                                                            |
 | ------- | ----------------------------------------------------------------------------------------------------------------------- |
@@ -488,13 +492,13 @@ $ ls -lia /home
 | `78489`         | Numero di inode.                                                                                                |
 | `drwx------`    | Tipo di file (`d`) e permessi (`rwx------`).                                                                    |
 | `4`             | Numero di sottodirectory. (`.` e `..` incluse). Per un file di tipo link fisico: numero di collegamenti fisici. |
-| `rockstar`      | Per un file di collegamento fisico: numero di collegamenti fisici.                                              |
-| `rockstar`      | Per un file di tipo link fisico: numero di collegamenti fisici.                                                 |
-| `4096`          | Per un file di tipo di collegamento fisico: numero di collegamenti fisici.                                      |
+| `rockstar`      | Proprietà dell'utente.                                                                                          |
+| `rockstar`      | Proprietà del gruppo.                                                                                           |
+| `4096`          | Dimensione in byte.                                                                                             |
 | `25 oct. 08:10` | Ultima data di modifica.                                                                                        |
 | `rockstar`      | Il nome del file (o directory).                                                                                 |
 
-!!! Note "Nota" Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni. 
+!!! Note Nota Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni.
 
     Questo è il caso dell'alias `ll`:
 
@@ -596,9 +600,11 @@ Esempio:
 $ mkdir /home/rockstar/work
 ```
 
-La directory "rockstar" deve esistere per creare la directory "work". Altrimenti, dovrebbe essere utilizzata l'opzione `-p`. L'opzione `-p` crea le directory genitore se queste non esistono.
+La directory "rockstar" deve esistere per creare la directory "work".
 
-!!! Danger "Pericolo" Non è consigliato utilizzare i nomi dei comandi Linux come directory o nomi di file.
+Altrimenti, dovrebbe essere utilizzata l'opzione `-p`. L'opzione `-p` crea le directory genitore se queste non esistono.
+
+!!! Danger Pericolo Non è consigliato utilizzare i nomi dei comandi Linux come directory o nomi di file.
 
 ### comando `touch`
 
@@ -608,7 +614,7 @@ Il comando `touch` cambia il timestamp di un file o crea un file vuoto se il fil
 touch [-t date] file
 ```
 
-Esempio :
+Esempio:
 
 ```bash
 $ touch /home/rockstar/myfile
@@ -620,7 +626,7 @@ $ touch /home/rockstar/myfile
 
 Formato data: `[AAAA]MMJJhhmm[ss]`
 
-!!! Tip "Suggerimento" Il comando `touch` viene utilizzato principalmente per creare un file vuoto, ma può essere utile per i backup incrementali o differenziali per esempio. Davvero, l'unico effetto di eseguire un `touch` su un file sarà quello di costringerlo a essere salvato durante il backup successivo.
+!!! Tip Suggerimento Il comando `touch` viene utilizzato principalmente per creare un file vuoto, ma può essere utile per i backup incrementali o differenziali per esempio. Davvero, l'unico effetto di eseguire un `touch` su un file sarà quello di costringerlo a essere salvato durante il backup successivo.
 
 ### comando `rmdir`
 
@@ -636,7 +642,7 @@ $ rmdir /home/rockstar/work
 | ------- | --------------------------------------------------------------------- |
 | `-p`    | Rimuove la directory o le directory principale fornite se sono vuote. |
 
-!!! Tip "Suggerimento" Per eliminare sia una directory non vuota che il suo contenuto, utilizzare il comando `rm`.
+!!! Tip Suggerimento Per eliminare sia una directory non vuota che il suo contenuto, utilizzare il comando `rm`.
 
 ### comando`rm`
 
@@ -646,7 +652,7 @@ Il comando `rm` elimina un file o una directory.
 rm [-f] [-r] file [file] [...]
 ```
 
-!!! Danger "Pericolo" Qualsiasi cancellazione di un file o directory è definitiva.
+!!! Danger Pericolo Qualsiasi cancellazione di un file o directory è definitiva.
 
 | Opzioni | Informazione                               |
 | ------- | ------------------------------------------ |
@@ -654,7 +660,7 @@ rm [-f] [-r] file [file] [...]
 | `-i`    | Richiede conferma di cancellazione.        |
 | `-r`    | Elimina ricorsivamente le sottodirectory.. |
 
-!!! Note "Nota" Il comando `rm` non chiede la conferma durante l'eliminazione dei file. Tuttavia, con una distribuzione RedHat/Rocky, `rm` chiede la conferma della cancellazione in quanto il comando `rm` è un`alias` di `rm -i`. Non sorprenderti se su un'altra distribuzione, come Debian, ad esempio, non ottieni una richiesta di conferma.
+!!! Note Nota Il comando `rm` non chiede la conferma durante l'eliminazione dei file. Tuttavia, con una distribuzione RedHat/Rocky, `rm` chiede la conferma della cancellazione in quanto il comando `rm` è un`alias` di `rm -i`. Non sorprenderti se su un'altra distribuzione, come Debian, ad esempio, non ottieni una richiesta di conferma.
 
 L'eliminazione di una cartella con il comando `rm`, che la cartella sia vuota o meno, richiederà l'aggiunta dell'opzione `-r`.
 
@@ -727,7 +733,7 @@ Se esiste la directory di destinazione, `file1` viene spostato in `/repexist`.
 $ mv file1 /wrongrep
 ```
 
-Se la directory di destinazione non esiste, `file1` è rinominato `wrongrep` nella directory principale (root).
+Se la directory di destinazione non esiste, `file1` viene rinominato in `wrongrep` nella directory principale.
 
 ### comando `cp`
 
@@ -749,7 +755,7 @@ $ cp -r /home/rockstar /tmp
 | `-f`    | Non chiedere conferma per la sovrascrittura del file di destinazione.        |
 | `-p`    | Mantiene il proprietario, le autorizzazioni e il timestamp del file copiato. |
 | `-r`    | Copia una directory con i suoi file e sottodirectory.                        |
-| `-s`    | Crea un collegamento simbolico invece di copiare                             |
+| `-s`    | Crea un collegamento simbolico invece di copiare.                            |
 
 ```bash
 cp file1 /repexist/file2
@@ -773,7 +779,7 @@ Se esiste la directory di destinazione, `file1` viene copiato in `/repexist`.
 $ cp file1 /wrongrep
 ```
 
-Se la directory di destinazione non esiste, `file1` è copiato sotto il nome `wrongrep` nella directory principale (root).
+Se la directory di destinazione non esiste, `file1` è copiato sotto il nome `wrongrep` nella directory principale.
 
 ## Visualizzazione
 
@@ -840,7 +846,7 @@ Il comando `cat` concatena il contenuto di più file e visualizza il risultato s
 cat file1 [files]
 ```
 
-Esempio 1 - Visualizzazione del contenuto di un file in output standard :
+Esempio 1 - Visualizzazione del contenuto di un file in output standard:
 
 ```bash
 $ cat /etc/passwd
@@ -852,13 +858,13 @@ Esempio 2 - Visualizzazione del contenuto di più file in output standard:
 $ cat /etc/passwd /etc/group
 ```
 
-Esempio 3 - Visualizzazione del contenuto di diversi file nel file `usersAndGroups.txt` :
+Esempio 3 - Visualizzazione del contenuto di diversi file nel file `usersAndGroups.txt`:
 
 ```bash
 $ cat /etc/passwd /etc/group > usersAndGroups.txt
 ```
 
-Esempio 4 - Visualizzazione della numerazione di linea :
+Esempio 4 - Visualizzazione della numerazione di linea:
 
 ```bash
 $ cat -n /etc/profile
@@ -932,7 +938,7 @@ user1:x:500:500:grp1:/home/user1:/bin/bash
 
 Con l'opzione `-f`, il comando `tail` non visualizza solo il file sullo standard output ma funziona finché l'utente non lo interrompe con la sequenza <kbd>CTRL</kbd> + <kbd>C</kbd>. Questa opzione è utilizzata molto frequentemente per tracciare i file di registro (i log) in tempo reale.
 
-Senza l'opzione `-n`, il comando tail visualizza le ultime 10 righe del file.
+Senza l'opzione `-n`, il comando `tail` mostra le ultime 10 righe del file.
 
 ### comando `sort`
 
@@ -952,14 +958,14 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-| Opzione   | Observation                                         |
-| --------- | --------------------------------------------------- |
-| `-kx`     | Specifica la colonna`x` per ordinare                |
-| `-n`      | Richiede un ordinamento numerico                    |
-| `-o file` | Salva l'ordinamento nel file specificato            |
-| `-ty`     | Specifica il carattere del separatore del campo `y` |
-| `-r`      | Inverte l'ordine del risultato                      |
-| `- u`     | unico                                               |
+| Opzione   | Observation                                    |
+| --------- | ---------------------------------------------- |
+| `-kx`     | Specifica la colonna`x` per ordinare           |
+| `-n`      | Richiede un ordinamento numerico               |
+| `-o file` | Salva l'ordinamento nel file specificato       |
+| `-ty`     | Specifica il carattere separatore di campo `y` |
+| `-r`      | Inverte l'ordine del risultato                 |
+| `- u`     | Conserva solo risultati unici                  |
 
 Il comando `sort` ordina il file solo sullo schermo. Il file non è modificato dall'ordinamento. Per salvare l'ordinamento, usa l'opzione `-o` o un reindirizzamento dell'output `>`.
 
@@ -973,7 +979,7 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-In questo esempio, il comando `sort` ordinerà il contenuto del file `/etc /passwd` questa volta dal UID più grande al più piccolo.
+In questo esempio, il comando `sort` ordinerà il contenuto del file `/etc /passwd` questa volta dal Uid più grande al più piccolo.
 
 Alcuni esempi avanzati di utilizzazione del comando `sort`:
 
@@ -1106,9 +1112,7 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 
 Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso `*.txt` e li elimina.
 
-
-!!! Tip "Comprendere l'opzione `-exec`"  
-Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
+!!! Tip "Comprendere l'opzione `-exec`" Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
 
     Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.txt`, il comando `find` costruirà la stringa sostituendo nella stringa `rm -f {} \;` le parentesi graffe con uno dei risultati della ricerca, e farà questo tutte le volte che ci sono dei risultati.
     
@@ -1121,7 +1125,7 @@ Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il 
 
     Il carattere `;` è un carattere speciale di shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
 
-!!! Tip "Suggerimento" `$ find /tmp -name *.txt -delete` fa la stessa cosa.
+!!! Tip Suggerimento `$ find /tmp -name *.txt -delete` fa la stessa cosa.
 
 ### comando `whereis`
 
@@ -1173,7 +1177,7 @@ Il comando `grep` restituisce la linea completa contenente la stringa che stai c
 $ grep -w "^root" /etc/passwd
 ```
 
-!!! Note "Nota" Questo comando è molto potente ed è altamente raccomandata la consultazione del manuale. Ha molti utilizzi derivati.
+!!! Note Nota Questo comando è molto potente ed è altamente raccomandata la consultazione del manuale. Ha molti utilizzi derivati.
 
 È possibile cercare una stringa in un albero di file con l'opzione `-R`.
 
@@ -1183,7 +1187,11 @@ grep -R "Virtual" /etc/httpd
 
 ### Meta-caratteri (wildcards)
 
-I Meta-caratteri sostituiscono uno o più caratteri (o anche un'assenza di caratteri) durante una ricerca. Questi meta-caratteri sono anche noti come wildcards. Possono essere combinati. Il carattere `*` sostituisce una stringa composta da qualsiasi carattere. Il carattere `*` può anche rappresentare un'assenza di caratteri.
+I Meta-caratteri sostituiscono uno o più caratteri (o anche un'assenza di caratteri) durante una ricerca. Questi meta-caratteri sono anche noti come wildcards.
+
+Possono essere combinati.
+
+Il carattere `*` sostituisce una stringa composta da qualsiasi carattere. Il carattere `*` può anche rappresentare un'assenza di caratteri.
 
 ```bash
 $ find /home -name "test*"
@@ -1204,7 +1212,7 @@ $ find /home -name "test?"
 /home/rockstar/tests
 ```
 
-Le parentesi quadre `[` sono usate per specificare i valori che un singolo carattere può prendere.
+Le parentesi quadre `[` e `]` sono usate per specificare i valori che un singolo carattere può assumere.
 
 ```bash
 $ find /home -name "test[123]*"
@@ -1213,9 +1221,9 @@ $ find /home -name "test[123]*"
 /home/rockstar/test362
 ```
 
-!!! Note "Nota" Delimita sempre le parole contenenti meta-caratteri con `"` per evitare che vengano sostituiti dai nomi dei file che soddisfano i criteri.
+!!! Note Nota Delimita sempre le parole contenenti meta-caratteri con `"` per evitare che vengano sostituiti dai nomi dei file che soddisfano i criteri.
 
-!!! Warning "Avvertimento" Non confondere i meta-caratteri della shell con i meta-caratteri dell'espressione regolare. Il comando `grep` usa i meta-caratteri dell'espressione regolare.
+!!! Warning Avvertimento Non confondere i meta-caratteri della shell con i meta-caratteri dell'espressione regolare. Il comando `grep` usa i meta-caratteri dell'espressione regolare.
 
 ## Reindirizzamenti e pipes
 
@@ -1223,27 +1231,28 @@ $ find /home -name "test[123]*"
 
 Sui sistemi UNIX e Linux, ci sono tre flussi standard. Consentono ai programmi, attraverso la libreria `stdio.h`, di inviare e ricevere informazioni.
 
-Questi flussi sono chiamati canale X descrittore di file X.
+Questi flussi sono chiamati canale X o descrittore di file X.
 
 Per impostazione predefinita:
+
 * la tastiera è il dispositivo di input per il canale 0, chiamato **stdin** ;
 * lo schermo è il dispositivo di uscita per i canali 1 e 2, chiamati **stdout** e **stderr**.
 
-![standards channels](images/input-output.png)
+![canali standard](images/input-output.png)
 
 **stderr** riceve i flussi di errore restituiti da un comando. Gli altri flussi sono diretti a **stdout**.
 
-Questi flussi puntano ai file delle periferiche, ma poiché tutto è un file in UNIX/Linux, i flussi di I/O possono essere facilmente deviati ad altri file. Questo principio è la forza della shell.
+Questi flussi puntano ai file delle periferiche, ma poiché tutto è un file in UNIX/Linux, i flussi di I/O possono essere facilmente indirizzati ad altri file. Questo principio è la forza della shell.
 
 ### Redirezione Input
 
-È possibile reindirizzare il flusso di input da un altro file con il carattere `<` o `<<`. Il comando leggerà il file anziché la tastiera:
+È possibile reindirizzare il flusso di input da un altro file con il carattere `<` o `<<`. Il comando leggerà il file anziché dalla tastiera:
 
 ```bash
 $ ftp -in serverftp << ftp-commands.txt
 ```
 
-!!! Note "Nota" Solo i comandi che richiedono l'input della tastiera saranno in grado di gestire il reindirizzamento dell'ingresso.
+!!! Note Nota Solo i comandi che richiedono l'input della tastiera saranno in grado di gestire il reindirizzamento dell'ingresso.
 
 Il reindirizzamento dell'ingresso può anche essere utilizzato per simulare l'interattività dell'utente. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
 
@@ -1269,7 +1278,7 @@ STOP
 
 La shell esce dal comando `ftp` quando riceve una linea contenente solo la parola chiave.
 
-!!! Warning "Avvertimento" La parola chiave finale, quì `END` o `STOP`, deve essere l'unica parola sulla linea e deve essere all'inizio della linea.
+!!! Warning Avvertimento La parola chiave finale, quì `END` o `STOP`, deve essere l'unica parola sulla linea e deve essere all'inizio della linea.
 
 Il reindirizzamento dell'ingresso standard viene usato raramente perché la maggior parte dei comandi accetta un nome di file come argomento.
 
@@ -1321,7 +1330,7 @@ Reindirizzamento delle 2 uscite a un singolo file:
 $ ls -R / >> log_file 2>&1
 ```
 
-Reindirizzamento del *stderr* a un "pozzo senza fondo" (`/dev/null`) :
+Reindirizzamento del *stderr* a un "pozzo senza fondo" (`/dev/null`):
 
 ```bash
 $ ls -R / 2>> /dev/null
@@ -1333,7 +1342,7 @@ Quando entrambi i flussi di uscita vengono reindirizzati, nessuna informazione v
 
 Una **pipe** è un meccanismo che consente di collegare l'output standard di un primo comando all'ingresso standard di un secondo comando.
 
-Questa comunicazione è UNI direzionale ed è fatta con il simbolo `|`. Il simbolo della pipe `|` è ottenuto premendo il tasto  <kbd>SHIFT</kbd> + <kbd>|</kbd> contemporaneamente.
+Questa comunicazione è unidirezionale ed è fatta con il simbolo `|`. Il simbolo della pipe `|` è ottenuto premendo il tasto  <kbd>SHIFT</kbd> + <kbd>|</kbd> contemporaneamente.
 
 ![pipe](images/pipe.png)
 
@@ -1377,7 +1386,7 @@ $ ls -lia / | grep fichier
 
 ### comando `tee`
 
-Il comando `tee` viene utilizzato per reindirizzare l'output standard di un comando a un file mantenendo il display dello schermo.
+Il comando `tee` viene utilizzato per reindirizzare l'output standard di un comando a un file mantenendo la visualizzazione sullo schermo.
 
 Viene combinato con la pipe `|` per ricevere come input l'output del comando da reindirizzare:
 
@@ -1404,7 +1413,7 @@ sostituirà il comando:
 $ ls -l
 ```
 
-Il comando `alias` elenca gli alias per la sessione corrente. Gli alias sono stabiliti per impostazione predefinita sulle distribuzioni Linux. Qui, gli alias per un server Rocky Linux :
+Il comando `alias` elenca gli alias per la sessione corrente. Gli alias sono stabiliti per impostazione predefinita sulle distribuzioni Linux. Qui, gli alias per un server Rocky Linux:
 
 ```bash
 $ alias
@@ -1422,7 +1431,7 @@ Per un uso permanente, devono essere creati nel:
 * `.bashrc` file nella directory di accesso dell'utente;
 * `/etc/profile.d/alias.sh` file per tutti gli utenti.
 
-!!! Warning "Avvertimento" Prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
+!!! Warning Avvertimento Prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
 
     ```bash
     alias cd='rm -Rf'
@@ -1467,15 +1476,25 @@ file1.txt  file2.txt  file3.txt
 
 ### Aliases e funzioni utili
 
-* `grep` alias Colora il risultato del comando `grep`: `alias grep='grep --color=auto'`
+* `grep` alias.
 
-* `mcd` function È comune creare una cartella e quindi muoversi in essa: `mcd() { mkdir -p "$1"; cd "$1"; }`
+Colora il risultato del comando `grep`: `alias grep='grep --color=auto'`
 
-* `cls` function Spostati in una cartella e elenca il suo contenuto: `cls() { cd "$1"; ls; }`
+* funzione `mcd`
 
-* `backup` function Creare una copia di backup di un file: `backup() { cp "$1"{,.bak}; }`
+È comune creare una cartella e poi muoversi dentro di essa: `mcd() { mkdir -p "$1"; cd "$1"; }`
 
-* `extract` function Estrai qualsiasi tipo di archivio:
+* funzione `cls`
+
+Muove in una cartella ed elenca i suoi contenuti: `cls() { cd "$1"; ls; }`
+
+* funzione `backup`
+
+Crea una copia di backup di un file: `backup() { cp "$1"{,.bak}; }`
+
+* funzione `extract`
+
+Estrae qualsiasi tipo di archivio:
 
 ```bash
 extract () {
@@ -1504,9 +1523,7 @@ extract () {
 
 * Se `alias cmount` restituisce quanto segue: `alias cmount="mount | column -t"`
 
-Possiamo usare il cmount per mostrare tutti i supporti del sistema in colonne come questa:
-
-`[root]# cmount`
+Quindi possiamo usare `cmount` per mostrare tutti i supporti di sistema in colonne come questo: `[root]# cmount`
 
 che ritornerà il nostro filesystem montato nel seguente formato:
 
@@ -1518,47 +1535,93 @@ none        on  /dev                                       type  devtmpfs     (r
 none        on  /dev/pts                                   type  devpts       (rw,relatime,mode=600,ptmxmode=000)
 none        on  /dev/shm                                   type  tmpfs        (rw,relatime)
 none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (rw,relatime)
-
 ```
 
 ### Il carattere `;`
 
 Il carattere `;` concatena i comandi.
 
-I comandi funzioneranno tutti in sequenza nell'ordine di ingresso una volta che l'utente preme ENTER.
+I comandi saranno tutti eseguiti sequenzialmente nell'ordine di input una volta che l'utente preme <kbd>INVIO</kdb>.</p> 
 
-```bash
-$ ls /; cd /home; ls -lia; cd /
-```
+<pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
+</code></pre>
 
-## Controlla la tua conoscenza
+<h2 spaces-before="0">
+  Controlla la tua conoscenza
+</h2>
 
-:heavy_check_mark: Cosa definisce un utente sotto Linux? (7 answers)
+<p spaces-before="0">
+  :heavy_check_mark: Cosa definisce un utente sotto Linux? (7 risposte)
+</p>
 
-:heavy_check_mark: Cosa caratterizza una lunga opzione per un ordine?
+<p spaces-before="0">
+  :heavy_check_mark: Cosa caratterizza un'opzione lunga per un comando?
+</p>
 
-:heavy_check_mark: Quali comandi consentono di cercare aiuto su un comando:
+<p spaces-before="0">
+  :heavy_check_mark: Quali comandi ti permettono di cercare aiuto su un comando?
+</p>
 
-- [ ] `google`
-- [ ] `chuck --norris`
-- [ ] `info`
-- [ ] `apropos`
-- [ ] `whatis`
+<ul>
+  <li>
+    [ ] <code>google</code>
+  </li>
+  <li>
+    [ ] <code>chuck --norris</code>
+  </li>
+  <li>
+    [ ] <code>info</code>
+  </li>
+  <li>
+    [ ] <code>apropos</code>
+  </li>
+  <li>
+    [ ] <code>whatis</code>
+  </li>
+</ul>
 
-:heavy_check_mark: Quale comando consente di visualizzare la cronologia di un utente?
+<p spaces-before="0">
+  :heavy_check_mark: Quale comando ti permette di vedere la cronologia di un utente?
+</p>
 
-:heavy_check_mark: Quale comando consente di cercare il testo in un file?
+<p spaces-before="0">
+  :heavy_check_mark: Quale comando ti permette di cercare del testo in un file?
+</p>
 
-- [ ] `find`
-- [ ] `grep`
+<ul>
+  <li>
+    [ ] <code>find</code>
+  </li>
+  <li>
+    [ ] <code>grep</code>
+  </li>
+</ul>
 
-:heavy_check_mark: Quale comando consente di cercare un file?
+<p spaces-before="0">
+  :heavy_check_mark: Quale comando ti permette di cercare un file?
+</p>
 
-- [ ] `find`
-- [ ] `grep`
+<ul>
+  <li>
+    [ ] <code>find</code>
+  </li>
+  <li>
+    [ ] <code>grep</code>
+  </li>
+</ul>
 
-:heavy_check_mark: Quale comando reindirizza il flusso di errore di un comando a un nuovo file `errors.log`:
+<p spaces-before="0">
+  :heavy_check_mark: Quale comando reindirizza il flusso di errore di un comando a un nuovo file <code>errors.log</code>?
+</p>
 
-- [ ] `ls -R / 2> errors.log`
-- [ ] `ls -R / 2>> errors.log`
-- [ ] `ls -R / 2> errors.log 2>&1`   
+<ul>
+  <li>
+    [ ] <code>ls -R / 2&gt; errors.log</code>
+  </li>
+  <li>
+    [ ] <code>ls -R / 2&gt;&gt; errors.log</code>
+  </li>
+  <li>
+    [ ] <code>ls -R / 2&gt; errors.log 2&gt;&1</code>
+  </li>
+</ul>   
