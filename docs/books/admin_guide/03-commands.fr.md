@@ -1256,7 +1256,7 @@ $ ftp -in serverftp << ftp-commands.txt
 
 La redirection d’entrée peut également être utilisée pour simuler une interactivité avec l’utilisateur. La commande lira le flux d’entrée jusqu’à rencontrer le mot clef défini après la redirection d’entrée.
 
-Le shell quitte la commande `ftp` lorsqu’il reçoit une ligne ne contenant que le mot clef.
+Cette fonctionnalité est utilisée pour scripter des commandes interactives :
 
 ```bash
 $ ftp -in serverftp << END
@@ -1276,13 +1276,13 @@ bye
 STOP
 ```
 
-La redirection de l’entrée standard est peu utilisée car la plupart des commandes acceptent un nom de fichier en argument.
+Le shell quitte la commande `ftp` lorsqu’il reçoit une ligne ne contenant que le mot clef.
 
 !!! Warning Le mot clé de fin, ici `END` ou `STOP`, pour terminer la commande doit être le seul mot de la ligne et doit être au début de sa ligne.
 
-Les sorties standards peuvent être redirigées vers d’autres fichiers grâce aux caractères `>` or `>>`.
+La redirection de l’entrée standard est peu utilisée car la plupart des commandes acceptent un nom de fichier en argument.
 
-La redirection simple `>` écrase le contenu du fichier de sortie :
+La commande `wc` pourrait s’utiliser ainsi :
 
 ```bash
 $ wc -l .bash_profile
@@ -1293,9 +1293,9 @@ $ wc -l < .bash_profile
 
 ### Les redirections de sortie
 
-alors que la redirection double `>>` ajoute (concatène) au contenu du fichier de sortie.
+Les sorties standards peuvent être redirigées vers d’autres fichiers grâce aux caractères `>` or `>>`.
 
-Dans les deux cas, le fichier est automatiquement créé lorsqu’il n’existe pas.
+La redirection simple `>` écrase le contenu du fichier de sortie :
 
 ```bash
 $ date +%F > date_file
@@ -1307,7 +1307,7 @@ alors que la redirection double `>>` ajoute (concatène) au contenu du fichier d
 $ date +%F >> date_file
 ```
 
-Redirection de 2 sorties vers 2 fichiers :
+Dans les deux cas, le fichier est automatiquement créé lorsqu’il n’existe pas.
 
 La sortie d’erreur standard peut être également redirigée vers un autre fichier. Cette fois-ci, il faudra préciser le numéro du canal (qui peut être omis pour les canaux 0 et 1) :
 
@@ -1318,7 +1318,7 @@ $ ls -R / 2>> errors_file
 
 ### Exemples de redirections
 
-Redirection de *stderr* vers un "puits sans fond" (`/dev/null`) :
+Redirection de 2 sorties vers 2 fichiers :
 
 ```bash
 $ ls -R / >> ok_file 2>> nok_file
@@ -1330,7 +1330,7 @@ Redirection des 2 sorties vers un fichier unique :
 $ ls -R / >> log_file 2>&1
 ```
 
-Un tube (**pipe** en anglais) est un mécanisme permettant de relier la sortie standard d’une première commande vers l’entrée standard d’une seconde.
+Redirection de *stderr* vers un "puits sans fond" (`/dev/null`) :
 
 ```bash
 $ ls -R / 2>> /dev/null
@@ -1346,37 +1346,37 @@ Cette communication est monodirectionnelle et se fait grâce au symbole `|`. Le 
 
 ![pipe](images/pipe.png)
 
-N'afficher que le début :
+Toutes les données envoyées par la commande à gauche du tube à travers le canal de sortie standard sont envoyées au canal d’entrée standard de la commande placée à droite.
 
-N'afficher que la fin :
+Les commandes particulièrement utilisées après un pipe sont des filtres.
 
 * Exemples :
 
-Trier le résultat :
+N'afficher que le début :
 
 ```bash
 $ ls -lia / | head
 ```
 
-Compter le nombre de mots / caractères :
+N'afficher que la fin :
 
 ```bash
 $ ls -lia / | tail
 ```
 
-Chercher une chaîne de caractères dans le résultat :
+Trier le résultat :
 
 ```bash
 $ ls -lia / | sort
 ```
 
-La commande `tee` permet de rediriger la sortie standard d’une commande vers un fichier tout en maintenant l’affichage à l’écran.
+Compter le nombre de mots / caractères :
 
 ```bash
 $ ls -lia / | wc
 ```
 
-Elle est combinée avec le pipe `|` pour recevoir en entrée la sortie de la commande à rediriger :
+Chercher une chaîne de caractères dans le résultat :
 
 ```bash
 $ ls -lia / | grep fichier
@@ -1386,20 +1386,20 @@ $ ls -lia / | grep fichier
 
 ### La commande `tee`
 
-L’option `-a` permet d’ajouter au fichier au lieu de l’écraser.
+La commande `tee` permet de rediriger la sortie standard d’une commande vers un fichier tout en maintenant l’affichage à l’écran.
 
-Utiliser les **alias** est un moyen pour demander au shell de se souvenir d’une commande particulière avec ses options et lui donner un nom.
+Elle est combinée avec le pipe `|` pour recevoir en entrée la sortie de la commande à rediriger :
 
 ```bash
 $ ls -lia / | tee fic
 $ cat fic
 ```
 
-Par exemple :
+L’option `-a` permet d’ajouter au fichier au lieu de l’écraser.
 
 ### Les commandes `alias` et `unalias`
 
-remplacera la commande :
+Utiliser les **alias** est un moyen pour demander au shell de se souvenir d’une commande particulière avec ses options et lui donner un nom.
 
 Par exemple :
 
@@ -1407,7 +1407,7 @@ Par exemple :
 $ ll
 ```
 
-Les alias ne sont définis que de façon temporaire, le temps de la session utilisateur.
+remplacera la commande :
 
 ```bash
 $ ls -l
@@ -1426,7 +1426,7 @@ alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-ti
 
 Les alias ne sont définis que de façon temporaire, le temps de la session utilisateur.
 
-La commande `unalias` permet de supprimer les alias.
+Pour une utilisation permanente, il faut les créer dans le fichier :
 
 * `.bashrc` du répertoire de connexion de l’utilisateur ;
 * `/etc/profile.d/alias.sh` pour tous les utilisateurs.
@@ -1437,35 +1437,35 @@ La commande `unalias` permet de supprimer les alias.
     alias cd='rm -Rf'
     ```
 
-Pour supprimer tous les alias:
+La commande `unalias` permet de supprimer les alias.
 
-Pour désactiver un alias temporairement, la combinaison est `\<nom de l'alias>`.
+Pour supprimer un seul alias :
 
 ```bash
 $ unalias ll
 ```
 
-Par exemple, si nous faisons:
+Pour supprimer tous les alias:
 
 ```bash
 $ unalias -a
 ```
 
-il pourrait nous retourner :
+Pour désactiver un alias temporairement, la combinaison est `\<alias name>`.
 
-Maintenant que nous savons que c'est le cas, nous pouvons voir les résultats de l'utilisation de l'alias ou le désactiver une fois avec le `\` en exécutant les commandes suivantes :
+Par exemple, si nous faisons:
 
 ```bash
 $ type ls
 ```
 
-Colorise le résultat de la commande `grep` : `alias grep='grep --color=auto'`
+il pourrait nous retourner :
 
 ```bash
 ls is an alias to « ls -rt »
 ```
 
-Il est fréquent de créer un dossier puis de se déplacer dedans : `mcd() { mkdir -p "$1"; cd "$1"; }`
+Maintenant que nous savons que c'est le cas, nous pouvons voir les résultats de l'utilisation de l'alias ou le désactiver une fois avec le `\` en exécutant les commandes suivantes :
 
 ```bash
 $ ls file*   # order by time
@@ -1478,23 +1478,23 @@ file1.txt  file2.txt  file3.txt
 
 * alias `grep`.
 
-Se déplacer dans un dossier et lister son contenu : `cls() { cd "$1"; ls; }`
+Colorise le résultat de la commande `grep` : `alias grep='grep --color=auto'`
 
 * fonction `mcd`
 
-Créer une copie de sauvegarde d’un fichier : `backup() { cp "$1"{,.bak}; }`
+Il est fréquent de créer un dossier puis de se déplacer dedans : `mcd() { mkdir -p "$1"; cd "$1"; }`
 
 * fonction `cls`
 
-Extrait tout type d’archive :
+Se déplacer dans un dossier et lister son contenu : `cls() { cd "$1"; ls; }`
 
 * fonction `backup`
 
-Alors nous pouvons utiliser cmount pour afficher tous les montages système dans des colonnes comme ceci : `[root]# cmount`
+Créer une copie de sauvegarde d’un fichier : `backup() { cp "$1"{,.bak}; }`
 
 * fonction `extract`
 
-qui retournera les système de fichiers montés comme ceci :
+Extrait tout type d’archive :
 
 ```bash
 extract () {
@@ -1523,9 +1523,9 @@ extract () {
 
 * Si `alias cmount` renvoie le résultat suivant : `alias cmount="mount | column -t"`
 
-Le caractère`;` chaîne les commandes.
+Alors nous pouvons utiliser `cmount` pour afficher tous les montages système dans des colonnes comme ceci : `[root]# cmount`
 
-Les commandes s’exécuteront toutes séquentiellement dans l’ordre de saisie une fois que l’utilisateur aura appuyé sur ENTREE.
+qui retournera les système de fichiers montés comme ceci :
 
 ```bash
 /dev/simfs  on  /                                          type  simfs        (rw,relatime,usrquota,grpquota)
@@ -1539,9 +1539,9 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 ### Le caractère `;`
 
-La commande `wc` pourrait s’utiliser ainsi :
+Le caractère`;` chaîne les commandes.
 
-:heavy_check_mark: Qu’est ce qui caractérise une option longue pour une commande ?
+Les commandes s’exécuteront toutes séquentiellement dans l’ordre de saisie une fois que l’utilisateur aura appuyé sur ENTREE.
 
 ```bash
 $ ls /; cd /home; ls -lia; cd /
@@ -1551,9 +1551,9 @@ $ ls /; cd /home; ls -lia; cd /
 
 :heavy_check_mark: Qu’est ce qui défini un utilisateur sous Linux ? (7 réponses)
 
-:heavy_check_mark: Quelle commande permet de visualiser l’historique d’un utilisateur ?
+:heavy_check_mark: Qu’est ce qui caractérise une option longue pour une commande ?
 
-:heavy_check_mark: Quelle commande permet de rechercher du texte dans un fichier ?
+:heavy_check_mark: Quelles commandes permettent de rechercher de l’aide sur une commande ?
 
 - [ ] `google`
 - [ ] `chuck --norris`
@@ -1561,19 +1561,19 @@ $ ls /; cd /home; ls -lia; cd /
 - [ ] `apropos`
 - [ ] `whatis`
 
+:heavy_check_mark: Quelle commande permet de visualiser l’historique d’un utilisateur ?
+
+:heavy_check_mark: Quelle commande permet de rechercher du texte dans un fichier ?
+
+- [ ] `find`
+- [ ] `grep`
+
 :heavy_check_mark: Quelle commande permet de rechercher un fichier ?
 
-:heavy_check_mark: Quelle commande redirige le flux des erreurs d’une commande vers un nouveau fichier `errors.log` :
-
 - [ ] `find`
 - [ ] `grep`
 
-:heavy_check_mark: Quelles commandes permettent de rechercher de l’aide sur une commande :
-
-- [ ] `find`
-- [ ] `grep`
-
-:heavy_check_mark: Which command redirects the error stream of a command to a new `errors.log` file:
+:heavy_check_mark: Quelle commande redirige le flux des erreurs d’une commande vers un nouveau fichier `errors.log` ?
 
 - [ ] `ls -R / 2> errors.log`
 - [ ] `ls -R / 2>> errors.log`
