@@ -10,29 +10,35 @@ Neste capítulo você aprenderá sobre as distribuições GNU/Linux.
 
 **Objetivos** : Neste capítulo você vai aprender como:
 
-:heavy_check_mark: Descrever os recursos e possíveis arquiteturas de um sistema operacional
+:heavy_check_mark: Descrever os recursos e possíveis arquiteturas de um sistema operacional   
+:heavy_check_mark: Recordar a História do UNIX e GNU/Linux   
+:heavy_check_mark: Escolher a distribuição Linux mais adequada para suas necessidades   
+:heavy_check_mark: Explicar a filosofia do software livre   
+:heavy_check_mark: Compreender a utilidade do SHELL.
 
-:heavy_check_mark: Recordar a História do UNIX e GNU/Linux
+:checkered_flag: **generalidades** **, ** linux**, **distribuições**</p>
 
-:heavy_check_mark: Escolher a distribuição Linux correta para suas necessidades
+**Conhecimento**: :star:    
+    
+**Complexidade**: :star:
 
-:heavy_check_mark: Explicar a filosofia do software livre
+**Tempo de leitura**: 10 minutos
 
 ****
 
 ## O que é um sistema operacional?
 
-:heavy_check_mark: Compreender a utilidade do SHELL.
+Linux, UNIX, BSD, Windows e MacOS são todos **sistemas operacionais**.
 
-!!! abstrata Um sistema operacional é um **conjunto de programas que gerencia os recursos disponíveis em um computador**.
+!!! Um sistema operacional é um **conjunto de programas que gerencia os recursos disponíveis em um computador**.
 
-**Conhecimento**: :star:
+Entre esta gestão de recursos, o sistema operacional tem de:
 
 * Gerenciar a memória física ou virtual.
   * A **memória física** é composta pelas barras de memória RAM e pela memória cache do processador, que é usada para a execução de programas.
   * A **memória virtual** é um local no disco rígido (a **partição swap**) que permite descarregar o conteúdo da memória física e salvar do estado atual do sistema durante o desligamento elétrico do computador.
 * Gerenciar o acesso aos** periféricos de entrada e saída**. O software raramente tem permissão para acessar hardware diretamente (exceto para placas gráficas em necessidades muito específicas).
-* Fornece aplicativos com **gerenciamento de tarefas** adequado. O sistema operacional é responsável por agendar processos para ocupar o uso do processador.
+* Fornecer aplicativos com **gerenciamento de tarefas** adequado. O sistema operacional é responsável por agendar processos para ocupar o uso do processador.
 * **Proteger arquivos** contra acesso não autorizado.
 * **Coletar informações** sobre programas em uso ou em andamento.
 
@@ -50,7 +56,7 @@ Neste capítulo você aprenderá sobre as distribuições GNU/Linux.
 
 A linguagem C ainda é uma das linguagens de programação mais populares do mundo! Uma linguagem de baixo nível, perto do *hardware*, permite a adaptação do sistema operacional a qualquer arquitetura de máquinas que tenha um compilador de C.
 
-A UNIX é um sistema operacional aberto e em evolução que desempenhou um papel importante na história da computação. Tem sido a base para muitos outros sistemas operacionais como Linux, BSD, MacOS, etc.
+O UNIX é um sistema operacional aberto e em evolução que desempenhou um papel importante na história da computação. Tem sido a base para muitos outros sistemas operacionais como Linux, BSD, MacOS, etc.
 
 O UNIX ainda é relevante nos dias de hoje (HP-UX, AIX, Solaris, etc.)
 
@@ -154,7 +160,7 @@ Este princípio permite que você tenha distribuições orientadas para **inicia
 
 ### Ambientes de Trabalho(Ambiente Gráfico)
 
-Existem muitos ambientes gráficos: **Gnome**, **KDE**, **LXDE**, **XFCE**, etc. Há interfaces para todos tipos de pessoas, e sua **ergonomia** não perde em nada para os sistemas Microsoft ou Apple!
+Existem diversos ambientes gráficos: **Gnome**, **KDE**, **LXDE**, **XFCE**, etc. Há interfaces para todos tipos de pessoas, e sua **ergonomia** não perde em nada para os sistemas Microsoft ou Apple!
 
 Então, por que há tão pouco entusiasmo para o Linux sendo que **não há(ou é pouco presente) vírus para esse sistema**? Talvez porque todos os editores(Adobe) ou fabricantes(Nvidia) não jogam o jogo gratuito e dessa forma não fornecem uma versão do seu software compatível com GNU/Linux? Medo da mudança? A dificuldade de onde encontrar e comprar um computador com Linux? Poucos jogos(Mas não por muito tempo) distribuídos no Linux? Essa situação vai mudar com a chegada do console de jogos steam-box que roda com Linux?
 
@@ -164,9 +170,9 @@ O ambiente gráfico **Gnome 3** não usa mais o conceito de Área de Trabalho(De
 
 ![KDE Desktop](images/01-presentation-kde.png)
 
-Existem muitos ambientes gráficos: **Gnome**, **KDE**, **LXDE**, **XFCE**, etc. há interfaces para todos tipos de pessoas, e sua **ergonomia** não perde em nada para os sistemas Microsoft ou Apple
+O ambiente gráfico **KDE** é baseado na biblioteca de componentes **Qt**.
 
-It is traditionally more recommended for users coming from a Windows world.
+Ele é mais recomendado para usuários que estão migrando do mundo Windows para o Linux.
 
 ![Tux - The Linux mascot](images/tux.png)
 
@@ -174,11 +180,11 @@ It is traditionally more recommended for users coming from a Windows world.
 
 Um usuário de um sistema operacional Windows ou Mac deve comprar uma licença para o uso legal do sistema operacional. Essa licença tem um custo, embora geralmente seja oculto ao comprador(o preço da licença está incluído no preço do computador).
 
-**Livre** não significa livre!
+No universo **GNU/Linux**, o movimento Software Livre fornece principalmente distribuições livres.
 
-O ambiente gráfico **KDE** é baseado na biblioteca de componentes **Qt**.
+**Grátis** não significa livre!
 
-Ele é mais recomendado para usuários que estão migrando do mundo Windows para o Linux.
+**Código Aberto**: os códigos-fonte estão disponíveis, por isso é possível consultá-los e modificá-los sob certas condições.
 
 Um software livre é necessariamente Código Aberto, mas o oposto não é verdade, uma vez que um software código aberto é separado da liberdade proposta pela licença GPL.
 
@@ -186,7 +192,7 @@ Um software livre é necessariamente Código Aberto, mas o oposto não é verdad
 
 A **Licença GPL** garante ao autor de um software sua propriedade intelectual, mas permite modificação, redistribuição ou revenda do software por terceiros, desde que os códigos-fonte sejam fornecidos com o software. O GPL é a licença que saiu do projeto **GNU** (GNU não é UNIX), que foi fundamental na criação do Linux.
 
-No universo **GNU/Linux**, o movimento Software Livre fornece principalmente distribuições livres.
+Isso implica:
 
 * a liberdade de executar o programa, para qualquer finalidade;
 * a liberdade de estudar como o programa funciona e adaptá-lo às suas necessidades;
@@ -197,7 +203,7 @@ Por outro lado, até mesmo produtos licenciados sob o GPL podem ser pagos. Este 
 
 ## Áreas de uso
 
-**Código Aberto**: os códigos-fonte estão disponíveis, por isso é possível consultá-los e modificá-los sob certas condições.
+Uma distribuição Linux se destaca em :
 
 * **Servidores**: HTTP, email, groupware, compartilhamento de arquivo, etc.
 * **Segurança**: Gateway, firewall, roteador, proxy, etc.
@@ -214,7 +220,7 @@ O **shell**, conhecido como _linha de comando_, permite que os usuários enviem 
 
 Oferece uma linguagem de programação real, incluindo as estruturas clássicas: laços de repetição, estruturas condicionais e os constituintes comuns: variáveis, passagem de parâmetros e subprogramas. Permite a criação de scripts para automatizar determinadas ações (backups, criação de usuários, monitoramento de sistemas, etc.).
 
-There are several types of shells available and configurable on a platform or according to the user's preference:
+Existem vários tipos de shells disponíveis e configuráveis em uma plataforma ou de acordo com a preferência do usuário:
 
 * sh, the POSIX standard shell ;
 * csh, command-oriented shell in C ;
@@ -235,19 +241,19 @@ There are several types of shells available and configurable on a platform or ac
 
 ## Verifique seu conhecimento
 
-Entre essa gestão de recursos, o sistema operacional tem que:
+:heavy_check_mark: Um sistema operacional é um conjunto de programas para gerenciar os recursos disponíveis de um computador:
 
-- [ ] Falso
+- [ ] Verdadeiro
 - [ ] Falso
 
-:heavy_check_mark: O Kernel Linux é:
+:heavy_check_mark: O sistema operacional tem como função:
 
 - [ ] Gerenciar a memória física e virtual
 - [ ] Permitir acesso direto aos periféricos
 - [ ] Subcontratar o gerenciamento de tarefas para o processador
 - [ ] Coletar informações sobre os programas utilizados ou em uso
 
-:heavy_check_mark: Among these personalities, which ones participated in the development of UNIX:
+:heavy_check_mark: Dentre essas personalidades, quais participaram do desenvolvimento do UNIX:
 
 - [ ] Linus Torvalds
 - [ ] Ken Thompson
@@ -255,7 +261,7 @@ Entre essa gestão de recursos, o sistema operacional tem que:
 - [ ] Brian Kernighan
 - [ ] Andrew Stuart Tanenbaum
 
-Existem vários tipos de shells disponíveis e configuráveis em uma plataforma ou de acordo com a preferência do usuário:
+:heavy_check_mark: A nacionalidade original de Linus Torvalds, criador do kernel Linux, é:
 
 - [ ] Sueco
 - [ ] Finlandês
@@ -263,14 +269,14 @@ Existem vários tipos de shells disponíveis e configuráveis em uma plataforma 
 - [ ] Flamengo(Flemish)
 - [ ] Francês
 
-:heavy_check_mark: Qual das seguintes distribuições é a mais antiga:
+:heavy_check_mark: Quais das seguintes distribuições é a mais antiga:
 
 - [ ] Debian
 - [ ] Slackware
 - [ ] RedHat
 - [ ] Arch
 
-:heavy_check_mark: Um sistema operacional é um conjunto de programas para gerenciar os recursos disponíveis de um computador:
+:heavy_check_mark: O Kernel Linux é:
 
 - [ ] Multitarefa
 - [ ] Multi-usuário
@@ -279,17 +285,17 @@ Existem vários tipos de shells disponíveis e configuráveis em uma plataforma 
 - [ ] Multiplataforma
 - [ ] Aberto
 
-:heavy_check_mark: O sistema operacional é levado a:
+:heavy_check_mark: Um software livre é necessariamente de código aberto?
 
+- [ ] Verdadeiro
 - [ ] Falso
-- [ ] Verdadeiro
 
-:heavy_check_mark: Entre essas personalidades, quais participaram do desenvolvimento do UNIX:
+:heavy_check_mark: O software de código aberto é necessariamente gratuito?
 
 - [ ] Verdadeiro
-- [ ] Verdadeiro
+- [ ] Falso
 
-:heavy_check_mark: A nacionalidade original de Linus Torvalds, criador do kernel Linux, é:
+:heavy_check_mark: Qual das seguintes opções não é um shell:
 
 - [ ] Jason
 - [ ] Jason-Bourne shell (jbsh)
