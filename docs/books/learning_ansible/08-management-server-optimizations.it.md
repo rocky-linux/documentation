@@ -17,9 +17,9 @@ Alcune interessanti opzioni di configurazione da commentare:
 
 * `gathering`: questa variabile cambia la politica per la raccolta dei fatti,. Per impostazione predefinita, il valore è `implicit`, il che implica che i fatti saranno raccolti sistematicamente. Il passaggio di questa variabile a `smart` consente di raccogliere i fatti solo quando non sono già stati acquisiti. Accoppiato con una cache di fatti (vedi sotto), questa opzione può aumentare notevolmente le prestazioni.
 
-* `host_key_check`: Fai attenzione alla sicurezza del tuo server! Tuttavia, se si è in controllo del vostro ambiente, può essere interessante disattivare il controllo della chiave dei server remoti e risparmiare un po 'di tempo alla connessione. È inoltre possibile, su server remoti, disabilitare l'utilizzo del DNS del server SSH (in `/etc/ssh/sshd_config`, opzione `UseDNS no`), questa opzione spreca tempo alla connessione ed è per la maggior parte del tempo, utilizzata solo nei registri di connessione.
+* `host_key_check`: Fai attenzione alla sicurezza del tuo server! Tuttavia, se si è in controllo del vostro ambiente, può essere interessante disattivare il controllo della chiave dei server remoti e risparmiare un po 'di tempo alla connessione. È inoltre possibile, sui server remoti, disabilitare l'utilizzo del DNS del server SSH (in `/etc/ssh/sshd_config`, opzione `UseDNS no`), questa opzione spreca tempo alla connessione ed è per la maggior parte del tempo, utilizzata solo nei registri di connessione.
 
-* `ansible_managed`: Questa variabile, contenente `Ansible managed` per impostazione predefinita, è tipicamente utilizzata nei modelli di file che vengono distribuiti su server remoti. Consente di specificare ad un amministratore che il file viene gestito automaticamente e che qualsiasi modifica apportata ad esso verrà potenzialmente persa. Può essere interessante lasciare che gli amministratori abbiano dei messaggi più completi. Fai attenzione, però, se cambi questa variabile, potrebbe causare il riavvio dei demoni (tramite i gestori associati ai modelli).
+* `ansible_managed`: Questa variabile, contenente `Ansible managed` per impostazione predefinita, è tipicamente utilizzata nei modelli di file che vengono distribuiti su server remoti. Consente di specificare ad un amministratore che il file viene gestito automaticamente e che qualsiasi modifica apportata ad esso verrà potenzialmente persa. Può essere interessante lasciare che gli amministratori abbiano dei messaggi più completi. Fai attenzione, però, la modifica di questa variabile, potrebbe causare il riavvio dei demoni (tramite i gestori associati ai modelli).
 
 * `ssh_args = -C -o ControlMaster=auto -o ControlPersist=300s -o PreferredAuthentications=publickey`: specifica le opzioni di connessione ssh. Disabilitando tutti i metodi di autenticazione diversi dalla chiave pubblica, puoi risparmiare molto tempo. È inoltre possibile aumentare il `ControlPersist` per migliorare le prestazioni (la documentazione suggerisce che un valore equivalente a 30 minuti può essere appropriato). La connessione a un client rimarrà aperta più a lungo e potrà essere riutilizzata quando ci si riconnette allo stesso server, il che rappresenta un notevole risparmio di tempo.
 
@@ -29,7 +29,7 @@ Alcune interessanti opzioni di configurazione da commentare:
 
 ## Memorizzazione dei fatti
 
-Raccogliere fatti è un processo che può richiedere un po 'di tempo. Può essere interessante disabilitare questa raccolta per i playbook che non ne hanno bisogno (tramite l'opzione `collect_facts`) o per mantenere questi fatti in memoria in una cache per un certo periodo di tempo (ad esempio 24H).
+Raccogliere fatti è un processo che può richiedere un certo tempo. Può essere interessante disabilitare questa raccolta per i playbook che non ne hanno bisogno (tramite l'opzione `collect_facts`) o per mantenere questi fatti in memoria in una cache per un certo periodo di tempo (ad esempio 24H).
 
 Questi fatti possono essere facilmente memorizzati in un database `redis`:
 
@@ -62,7 +62,7 @@ Le varie password e segreti non possono essere memorizzate in un testo in chiaro
 
 Ansible propone di utilizzare un gestore di cifratura: `ansible-vault`.
 
-Il principio è quello di cifrare una variabile o un intero file con il comando `ansible-vault`.
+Il principio è quello di crittografare una variabile o un intero file con il comando `ansible-vault`.
 
 Ansible sarà in grado di decifrare questo file durante l'esecuzione recuperando la chiave di crittografia dal file (ad esempio) `/etc/ansible/ansible.cfg`. Quest'ultimo può anche essere uno script python o altro.
 
@@ -79,7 +79,7 @@ Memorizza la password in questo file `/etc/ansible/vault_pass` e assegna i dirit
 mysecretpassword
 ```
 
-È quindi possibile cifrare i file con il comando:
+È quindi possibile crittografare i file con il comando:
 
 ```
 ansible-vault encrypt myfile.yml
@@ -96,7 +96,7 @@ $ANSIBLE_VAULT;1.1;AES256
 6334
 ```
 
-Una volta cifrato un file, esso può ancora essere modificato con il comando:
+Una volta cifrato, un file, esso può ancora essere modificato con il comando:
 
 ```
 ansible-vault edit myfile.yml
