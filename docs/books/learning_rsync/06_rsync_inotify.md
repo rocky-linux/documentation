@@ -7,7 +7,7 @@ update: 2021-11-04
 
 # Compile and install
 
-Perform the following operations in the server. In your environment, some dependent packages may be missing. Install-`dnf -y install autoconf automake libtool`
+Perform the following operations in the server. In your environment, some dependent packages may be missing. Install--`dnf -y install autoconf automake libtool`
 
 ```bash
 [root@Rocky ~]# wget -c https://github.com/inotify-tools/inotify-tools/archive/refs/tags/3.21.9.6.tar.gz
@@ -74,7 +74,7 @@ The inotify-tools tool has two commands, namely:
 -e specifies the event type of monitoring data, multiple event types are separated by commas in English status
 ```
 
-The events are as follows:
+The event types are as follows:
 
 | Event Type | Description |
 |---|---|
