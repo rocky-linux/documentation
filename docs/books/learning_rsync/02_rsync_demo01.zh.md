@@ -1,17 +1,18 @@
 ---
 title: rsync 演示01
 author: tianci li
+contributors: Steven Spencer
 update: 2021-11-04
 ---
 
 # 前言
 
-rsync 在进行数据同步之前需要先进行用户身份验证，**有两种协议方式进行身份验证：SSH协议与rsync协议（rsync协议的默认端口为873)**
+`rsync` 在进行数据同步之前需要先进行用户身份验证， **有两种协议方式进行身份验证：SSH协议与rsync协议(rsync协议的默认端口为873)**
 
-* SSH协议验证登录方式：使用SSH协议作为基础进行用户身份认证（也就是拿GNU/Linux本身的系统用户和密码做验证），然后进行数据同步。
-* rsync协议验证登录方式：使用rsync协议进行用户身份认证（非GNU/Linux本身的系统用户，类似于vsftpd虚拟用户），然后进行数据同步。
+* SSH协议验证登录方式：使用SSH协议作为基础进行用户身份认证(也就是拿GNU/Linux本身的系统用户和密码做验证)，然后进行数据同步。
+* rsync协议验证登录方式：使用rsync协议进行用户身份认证(非GNU/Linux本身的系统用户，类似于vsftpd虚拟用户)，然后进行数据同步。
 
-在具体演示rsync同步前，需要说一个命令———`rsync`命令，在Rocky Linux 8中，rsync 的rpm包默认是安装的，版本为3.1.3-12，如下:
+在具体演示rsync同步之前，您需要使用`rsync`命令。 在Rocky Linux 8中，默认安装了rsync rpm软件包，版本为3.1.3-12，如下所示:
 
 ```bash
 [root@Rocky ~]# rpm -qa|grep rsync
@@ -40,10 +41,10 @@ rsync-3.1.3-12.el8.x86_64
 
 ## 环境说明
 
-|项|说明|
-|---|---|
+| 项                     | 说明               |
+| --------------------- | ---------------- |
 | Rocky Linux 8(Server) | 192.168.100.4/24 |
-| Fedora 34(client) | 192.168.100.5/24 |
+| Fedora 34(client)     | 192.168.100.5/24 |
 
 您可以使用 Fedora 34 进行上传与下载
 
@@ -63,14 +64,13 @@ Fedora34-->|pull/下载|RockyLinux8;
 
 ## 基于SSH协议的演示
 
-!!! tip "注意!"
-    这里Rocky Linux 8和 Fedora 34都使用 root 用户进行登录。Fedora 34是客户端，Rocky Linux 8是服务器。
+!!! tip "注意!" 在这里，Rocky Linux 8 和 Fedora 34 都使用root用户登录。 Fedora 34是客户端，Rocky Linux 8是服务器。
 
 ### pull/下载
 
 既然是基于SSH协议，我们首先在服务器中创建一个用户：
 
-```bash 
+```bash
 [root@Rocky ~]# useradd testrsync
 [root@Rocky ~]# passwd testrsync
 ```
@@ -79,35 +79,30 @@ Fedora34-->|pull/下载|RockyLinux8;
 
 ```bash
 [root@fedora ~]# rsync -avz testrsync@192.168.100.4:/rsync/aabbcc  /root
-testrsync@192.168.100.4's password: 
+testrsync@192.168.100.4's password:
 receiving incremental file list
 aabbcc
-
 sent 43 bytes  received 85 bytes  51.20 bytes/sec
 total size is 0  speedup is 0.00
-
-[root@fedora ~]# cd 
-[root@fedora ~]# ls 
+[root@fedora ~]# cd
+[root@fedora ~]# ls
 aabbcc
 ```
-
 传输成功。
 
-!!! tip "注意"
-    如果服务器的SSH端口不是默认的22，您可以使用类似这样的方式指定端口——`rsync -avz -e 'ssh -p [port]'`。
+!!! tip "注意" 如果服务器的SSH端口不是默认的22，您可以使用类似这样的方式指定端口——`rsync -avz -e 'ssh -p [port]'`。
 
 ### push/上传
 
 ```bash
 [root@fedora ~]# touch fedora
 [root@fedora ~]# rsync -avz /root/*  testrsync@192.168.100.4:/rsync/
-testrsync@192.168.100.4's password: 
+testrsync@192.168.100.4's password:
 sending incremental file list
 anaconda-ks.cfg
 fedora
 rsync: mkstemp "/rsync/.anaconda-ks.cfg.KWf7JF" failed: Permission denied (13)
 rsync: mkstemp "/rsync/.fedora.fL3zPC" failed: Permission denied (13)
-
 sent 760 bytes  received 211 bytes  277.43 bytes/sec
 total size is 883  speedup is 0.91
 rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1330) [sender=3.2.3]
@@ -115,7 +110,7 @@ rsync error: some files/attrs were not transferred (see previous errors) (code 2
 
 **提示权限拒绝，如何处理？**
 
-首先查看 /rsync/ 这个目录的权限。很明显没有w权限，我们可以使用`setfacl`赋予权限
+首先查看 /rsync/ 这个目录的权限。 很明显没有w权限， 我们可以使用`setfacl`赋予权限:
 
 ```bash
 [root@Rocky ~]# ls -ld /rsync/
@@ -140,11 +135,10 @@ other::r-x
 
 ```bash
 [root@fedora ~]# rsync -avz /root/* testrsync@192.168.100.4:/rsync/
-testrsync@192.168.100.4's password: 
+testrsync@192.168.100.4's password:
 sending incremental file list
 anaconda-ks.cfg
 fedora
-
 sent 760 bytes  received 54 bytes  180.89 bytes/sec
 total size is 883  speedup is 1.08
 ```
