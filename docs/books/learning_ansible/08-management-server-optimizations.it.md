@@ -13,7 +13,7 @@ In questo capitolo, esamineremo le opzioni di configurazione che possono essere 
 
 Alcune interessanti opzioni di configurazione da commentare:
 
-* `forks`: per impostazione predefinita a 5, è il numero di processi che Ansible avvierà in parallelo per comunicare con host remoti. Più alto è questo numero, più clienti Ansible sarà in grado di gestire allo stesso tempo, e quindi accelerare l'elaborazione. Il valore che puoi impostare dipende dai limiti CPU/RAM del tuo server di gestione. Nota che il valore predefinito, `5`, è molto piccolo, la documentazione Ansible afferma che molti utenti la impostano a 50, anche 500 o più.
+* `forks`: per impostazione predefinita a 5, è il numero di processi che Ansible avvierà in parallelo per comunicare con gli host remoti. Più alto è questo numero, più clienti Ansible sarà in grado di gestire allo stesso tempo, e quindi accelerare l'elaborazione. Il valore che puoi impostare dipende dai limiti CPU/RAM del tuo server di gestione. Nota che il valore predefinito, `5`, è molto piccolo, la documentazione Ansible afferma che molti utenti la impostano a 50, anche 500 o più.
 
 * `gathering`: questa variabile cambia la politica per la raccolta dei fatti,. Per impostazione predefinita, il valore è `implicit`, il che implica che i fatti saranno raccolti sistematicamente. Il passaggio di questa variabile a `smart` consente di raccogliere i fatti solo quando non sono già stati acquisiti. Accoppiato con una cache di fatti (vedi sotto), questa opzione può aumentare notevolmente le prestazioni.
 
