@@ -27,7 +27,7 @@ Su un server, ho eseguito il backup della prima partizione nella seconda partizi
 
 Alcune persone diranno, non posso usare il comando `tar` o `cp` sul primo server e inviarlo al secondo server tramite `scp` o `sftp`?
 
-In un ambiente di produzione, la quantità di dati è relativamente elevata. Prima di tutto, `tar` o `cp` consuma molto tempo e occupa le prestazioni del sistema. La trasmissione tramite `scp` o `sftp` occupa anche un sacco di larghezza di banda di rete, che non è consentito nell'ambiente di produzione reale. In secondo luogo, questi comandi o strumenti devono essere inseriti manualmente dall'amministratore e devono essere combinati con il crontab dell'attività pianificata. Tuttavia, il tempo impostato da crontab non è facile da cogliere, e non è opportuno eseguire il backup dei dati se il tempo è troppo breve o troppo lungo.
+In un ambiente di produzione, la quantità di dati è relativamente elevata. Prima di tutto, `tar` o `cp` consumano molto tempo e occupano le prestazioni del sistema. La trasmissione tramite `scp` o `sftp` occupa anche un sacco di larghezza di banda di rete, che non è consentito nell'ambiente di produzione reale. In secondo luogo, questi comandi o strumenti devono essere inseriti manualmente dall'amministratore e devono essere combinati con il crontab dell'attività pianificata. Tuttavia, il tempo impostato da crontab non è facile da cogliere, e non è opportuno eseguire il backup dei dati se il tempo è troppo breve o troppo lungo.
 
 Pertanto, è necessario un backup dei dati nell'ambiente di produzione che deve soddisfare i seguenti requisiti:
 
