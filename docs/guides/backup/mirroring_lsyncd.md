@@ -150,7 +150,7 @@ Here's an example of a simple configuration file that synchronizes */home* to an
   settings {
    logfile = "/var/log/lsyncd.log",
    statusFile = "/var/log/lsyncd-status.log",
-   statusInterval = 20
+   statusInterval = 20,
    maxProcesses = 1
    }
 
