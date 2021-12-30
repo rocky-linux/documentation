@@ -7,7 +7,7 @@ update: 2021-12-26
 
 # Compilare e installare
 
-Eseguire le seguenti operazioni nel server. Nel vostro ambiente, alcuni pacchetti dipendenti potrebbero essere mancanti. Install-`dnf -y install autoconf automake libtool`
+Eseguire le seguenti operazioni nel server. Nel vostro ambiente, alcuni pacchetti dipendenti potrebbero essere mancanti. Installali utilizzando: `dnf -y install autoconf automake libtool`
 
 ```bash
 [root@Rocky ~]# wget -c https://github.com/inotify-tools/inotify-tools/archive/refs/tags/3.21.9.6.tar.gz
@@ -74,7 +74,7 @@ Lo strumento inotify-tools ha due comandi, chiamati:
 -e specifica il tipo di evento di dati di monitoraggio, più tipi di eventi sono separati da virgole nello stato inglese
 ```
 
-Gli eventi sono i seguenti:
+I tipi di eventi sono i seguenti:
 
 | Tipo di evento | Descrizione                                                                             |
 | -------------- | --------------------------------------------------------------------------------------- |
