@@ -7,7 +7,7 @@ update: 2021-11-04
 
 # 编译安装
 
-在服务器中执行以下操作， 在你的环境中，可能会缺少一些依赖的包， 在服务器中执行以下操作，在你的环境中，可能会缺少一些依赖的包，安装上——`dnf -y install autoconf automake libtool`
+在服务器中执行以下操作， 在你的环境中，可能会缺少一些依赖的包， 使用以下方式安装它们： `dnf -y install autoconf automake libtool`
 
 ```bash
 [root@Rocky ~]# wget -c https://github.com/inotify-tools/inotify-tools/archive/refs/tags/3.21.9.6.tar.gz
@@ -76,7 +76,7 @@ inotifywait 主要有以下选项：
 -e  指定监控数据的事件类型，多个事件类型用英文状态的逗号隔开
 ```
 
-事件有这些，如下：
+事件类型如下：
 
 | 事件类型          | 说明                         |
 | ------------- | -------------------------- |
