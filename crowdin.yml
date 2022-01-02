@@ -1,5 +1,5 @@
 files:
-  - source: /docs/books/**/*.md
+  - source: /docs/**/*.md
     ignore:
       - '*.es.md'
       - '*.fr.md'
@@ -9,4 +9,5 @@ files:
       - '*.pt.md'
       - '*.en.md'
       - '*.sv.md'
+      - '/docs/release_notes/8.5.md'
     translation: /%original_path%/%file_name%.%two_letters_code%.%file_extension%
