@@ -273,7 +273,7 @@ Il comando `clear` cancella il contenuto della schermata del terminale. Infatti,
 
 In un terminale, il display sarà permanentemente nascosto, mentre nell'interfaccia grafica, una barra di scorrimento ti permetterà sempre di scorrere la cronologia del terminale virtuale.
 
-!!! Tip "Suggerimento" <kbd>CTRL</kbd> + <kbd>L</kbd> avrà lo stesso effetto del comando `clear`
+!!! Tip Suggerimento <kbd>CTRL</kbd> + <kbd>L</kbd> avrà lo stesso effetto del comando `clear`
 
 ### comando `echo`
 
@@ -644,7 +644,7 @@ $ rmdir /home/rockstar/work
 
 !!! Tip Suggerimento Per eliminare sia una directory non vuota che il suo contenuto, utilizzare il comando `rm`.
 
-### comando`rm`
+### comando `rm`
 
 Il comando `rm` elimina un file o una directory.
 
