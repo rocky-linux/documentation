@@ -317,7 +317,8 @@ $ date -d 20210517 +%j
 
 In this last example, the `-d` option displays a given date. The `+%j` option formats this date to show only the day of the year.
 
-!!! Warning  
+!!! Warning
+
     The format of a date can change depending on the value of the language defined in the environment variable `$LANG`.
 
 The date display can follow the following formats:
@@ -502,7 +503,8 @@ $ ls -lia /home
 | `25 oct. 08:10` | Last modified date.                                                                                           |
 | `rockstar`      | The name of the file (or directory).                                                                          |
 
-!!! Note  
+!!! Note
+
     **Aliases** are frequently positioned in common distributions.
 
     This is the case of the alias `ll`:
@@ -611,6 +613,7 @@ The "rockstar" directory must exist to create the "work" directory.
 Otherwise, the `-p` option should be used. The `-p` option creates the parent directories if they do not exist.
 
 !!! Danger  
+
     It is not recommended to use Linux command names as directory or file names.
 
 ### `touch` command
@@ -634,6 +637,7 @@ $ touch /home/rockstar/myfile
 Date format: `[AAAA]MMJJhhmm[ss]`
 
 !!! Tip  
+
     The `touch` command is primarily used to create an empty file, but it can be useful for incremental or differential backups for example. Indeed, the only effect of executing a `touch` on a file will be to force it to be saved during the next backup.
 
 ### `rmdir` command
@@ -651,6 +655,7 @@ $ rmdir /home/rockstar/work
 | `-p` |  Removes the parent directory or directories provided if they are empty.           |
 
 !!! Tip  
+
     To delete both a non-empty directory and its contents, use the `rm` command.
 
 ### `rm` command
@@ -662,6 +667,7 @@ rm [-f] [-r] file [file] [...]
 ```
 
 !!! Danger  
+
     Any deletion of a file or directory is final.
 
 | Options | Information                              |
@@ -671,6 +677,7 @@ rm [-f] [-r] file [file] [...]
 | `-r`    | Recursively deletes subdirectories.      |
 
 !!! Note  
+
     The `rm` command itself does not ask for confirmation when deleting files. However, with a RedHat/Rocky distribution, `rm` does ask for confirmation of deletion because the `rm` command is an `alias` of the `rm -i` command. Don't be surprised if on another distribution, like Debian for example, you don't get a confirmation request.
 
 Deleting a folder with the `rm` command, whether the folder is empty or not, will require the `-r` option to be added.
@@ -1124,6 +1131,7 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 The previous command searches for all files in the `/tmp` directory named `*.txt` and deletes them.
 
 !!! Tip "Understand the `-exec` option"  
+
     In the example above, the `find` command will construct a string representing the command to be executed.
 
     If the `find` command finds three files named `log1.txt`, `log2.txt`, and `log3.txt`, then the `find` command will construct the string by replacing in the string `rm -f {} \;` the braces with one of the results of the search, and do this as many times as there are results.
@@ -1137,6 +1145,7 @@ The previous command searches for all files in the `/tmp` directory named `*.txt
     The `;` character is a special shell character that must be protected by a `\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).
 
 !!! Tip  
+
     `$ find /tmp -name *.txt -delete` does the same thing.
 
 ### `whereis` command
@@ -1190,6 +1199,7 @@ $ grep -w "^root" /etc/passwd
 ```
 
 !!! Note  
+
     This command is very powerful and it is highly recommended to consult its manual. It has many derivatives.
 
 It is possible to search for a string in a file tree with the `-R` option.
@@ -1235,9 +1245,11 @@ $ find /home -name "test[123]*"
 ```
 
 !!! Note  
+
     Always surround words containing meta-characters with `"` to prevent them from being replaced by the names of files that meet the criteria.
 
 !!! Warning  
+
     Do not confuse shell meta-characters with regular expression meta-characters. The `grep` command uses regular expression meta-characters.
 
 ## Redirects and pipes
@@ -1268,6 +1280,7 @@ $ ftp -in serverftp << ftp-commands.txt
 ```
 
 !!! Note  
+
     Only commands that require keyboard input will be able to handle input redirection.
 
 Input redirection can also be used to simulate user interactivity. The command will read the input stream until it encounters the defined keyword after the input redirection.
@@ -1295,6 +1308,7 @@ STOP
 The shell exits the `ftp` command when it receives a line containing only the keyword.
 
 !!! Warning  
+
     The ending keyword, here `END` or `STOP`, must be the only word on the line and must be at the beginning of the line.
 
 The standard input redirection is rarely used because most commands accept a filename as an argument.
