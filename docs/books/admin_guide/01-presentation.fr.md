@@ -29,7 +29,9 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 
 Linux, UNIX, BSD, Windows et MacOS sont tous des **systèmes d'exploitation**.
 
-!!! abstract Un système d'exploitation est un **ensemble de programmes qui gèrent les ressources disponibles d'un ordinateur**.
+!!! abstract
+
+    Un système d'exploitation est un **ensemble de programmes qui gèrent les ressources disponibles d'un ordinateur**.
 
 Parmi cette gestion des ressources, le système d'exploitation doit :
 
