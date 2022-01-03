@@ -23,7 +23,7 @@ In this chapter you will learn how to back up and restore your data with Linux.
 
 ****
 
-!!! Note
+!!! Note  
     Throughout this chapter the command structures use "device" to specify both a target location for backup, and the source location when restoring. The device can be either external media or a local file. You should get a feel for this as the chapter unfolds, but you can always refer back to this note for clarification if you need to.
 
 The backup will answer a need to conserve and restore data in a sure and effective way.
@@ -75,7 +75,7 @@ Backups require a lot of discipline and rigor from the system administrator. It 
 * **Pre-current** : at a given time (before a system update, ...).
 * **Periodic**: Daily, weekly, monthly, ...
 
-!!! Tip
+!!! Tip  
     Before a system change, it can be useful to make a backup. However, there is no point in backing up data every day that is only changed every month.
 
 ### Restoration methods
@@ -87,7 +87,7 @@ Depending on the utilities available, it will be possible to perform several typ
 
 It is possible to restore a whole backup but it is also possible to restore only a part of it. However, when restoring a directory, the files created after the backup are not deleted.
 
-!!! Tip
+!!! Tip  
     To recover a directory as it was at the time of the backup, it is necessary to completely delete its contents before launching the restoration.
 
 ### The tools
@@ -109,7 +109,7 @@ The commands we will use here are `tar` and `cpio`.
   * skips damaged files;
   * complete file system.
 
-!!! Note
+!!! Note  
     These commands save in a proprietary and standardized format.
 
 ### Naming convention
@@ -121,10 +121,10 @@ The use of a naming convention makes it possible to quickly target the contents 
 * options used;
 * date.
 
-!!! Tip
+!!! Tip  
     The name of the backup must be an explicit name.
 
-!!! Note
+!!! Note  
     The notion of extension under Linux does not exist. In other words, our use of extensions here is for the human operator. If the systems administrator sees a `.tar.gz` or `.tgz` file extension, for instance, then he knows how to deal with the file.
 
 ### Contents of a backup
@@ -138,7 +138,7 @@ A backup generally contains the following elements:
 * the permissions
 * access date.
 
-!!! Note
+!!! Note  
     The `inode` number is missing.
 
 ### Storage modes
@@ -164,7 +164,7 @@ The right questions to ask are:
 * where: the place where the data will be restored;
 * how: absolute or relative.
 
-!!! Warning
+!!! Warning  
     Before a restoration, it is important to take time to think about and determine the most appropriate method to avoid mistakes.
 
 Restorations are usually performed after a problem has occurred that needs to be resolved quickly. A poor restoration can, in some cases, make the situation worse.
@@ -188,7 +188,7 @@ $ tar cjf - /directory/to/backup/ | wc -c
 428
 ```
 
-!!! Warning
+!!! Warning  
     Beware, the presence of "-" in the command line disturbs `zsh`. Switch to `bash`!
 
 #### Naming convention for a `tar` backup
@@ -228,7 +228,7 @@ Example:
 | `v` | Displays the name of the processed files.              |
 | `f` | Allows you to specify the name of the backup (medium). |
 
-!!! Tip
+!!! Tip  
     The hyphen (`-`) in front of the `tar` keys is not necessary!
 
 ##### Create a backup in absolute mode
@@ -250,7 +250,7 @@ Example:
 | `P` |	Create a backup in absolute mode. |
 
 
-!!! Warning
+!!! Warning  
     With the `P` key, the path of the files to be backed up must be entered as **absolute**. If the two conditions (key `P` and path **absolute**) are not indicated, the backup is in relative mode.
 
 ##### Creating a compressed backup with `gzip`
@@ -266,10 +266,10 @@ $ tar cvzf backup.tar.gz dirname/
 | `z` |	Compresses the backup in _gzip_. |
 
 
-!!! Note
+!!! Note  
     The `.tgz` extension is an equivalent extension to `.tar.gz`.
 
-!!! Note
+!!! Note  
     Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the keys makes the command easier to understand (e.g. `cvfz` or `cvfj`, etc.).
 
 ##### Creating a compressed backup with `bzip`
@@ -284,7 +284,7 @@ $ tar cvfj backup.tar.bz2 dirname/
 |-----|-----------------------------------|
 | `j` |	Compresses the backup in _bzip2_. |
 
-!!! Note
+!!! Note  
     The `.tbz` and `.tb2` extensions are equivalent to `.tar.bz2` extensions.
 
 ##### Compression `compress`, `gzip`, `bzip2`, `lzip` and `xz`
@@ -324,7 +324,7 @@ $ tar rvf backup_name.tar dirtoadd
 | `r` |	Adds one or more files at the end of a direct access media backup (hard disk).   |
 | `A` |	Adds one or more files at the end of a backup on sequential access media (tape). |
 
-!!! Note
+!!! Note  
     It is not possible to add files or folders to a compressed backup.
 
     ```
@@ -333,7 +333,7 @@ $ tar rvf backup_name.tar dirtoadd
     Try `tar --help' or `tar --usage' for more information.
     ```
 
-!!! Note
+!!! Note  
     If the backup was performed in relative mode, add files in relative mode. If the backup was done in absolute mode, add files in absolute mode.
 
     Mixing modes can cause problems when restoring.
@@ -364,10 +364,10 @@ When the number of files in a backup becomes large, it is possible to _pipe_ the
 $ tar tvf backup.tar | less
 ```
 
-!!! Tip
+!!! Tip  
     To list or retrieve the contents of a backup, it is not necessary to mention the compression algorithm used when the backup was created. That is, a `tar tvf` is equivalent to `tar tvfj`, to read the contents, and a `tar xvf` is equivalent to `tar xvfj`, to extract.
 
-!!! Tip
+!!! Tip  
     Always check the contents of a backup.
 
 #### Check the integrity of a backup
@@ -384,7 +384,7 @@ The integrity of a backup can be tested with the key `d` after its creation:
 $ tar vfd file_name.tar dir/
 ```
 
-!!! Tip
+!!! Tip  
     By adding a second `v` to the previous key, you will get the list of archived files as well as the differences between the archived files and those present in the file system.
 
     ```
@@ -438,7 +438,7 @@ Extract all files from the backup `/backups/etc.133.P.tar` to their original dir
 $ tar xvfP /backups/etc.133.P.tar
 ```
 
-!!! Warning
+!!! Warning  
     Go to the right place.
 
     Check the contents of the backup.
@@ -460,10 +460,10 @@ Extracting a _tar-bzipped_ (`*.tar.bz2`) backup is done with the `xvfj` keys:
 $ tar xvfj backup.tar.bz2
 ```
 
-!!! Tip
+!!! Tip  
     To extract or list the contents of a backup, it is not necessary to mention the compression algorithm used to create the backup. That is, a `tar xvf` is equivalent to `tar xvfj`, to extract the contents, and a `tar tvf` is equivalent to `tar tvfj`, to list.
 
-!!! Warning
+!!! Warning  
     To restore the files in their original directory (key `P` of a `tar xvf`), you must have generated the backup with the absolute path. That is, with the `P` key of a `tar cvf`.
 
 ##### Extract only a file from a _tar_ backup
@@ -528,7 +528,7 @@ This list is provided with the commands `find`, `ls` or `cat`.
 * `ls` : list a directory, recursive or not;
 * `cat` : reads a file containing the trees or files to be saved.
 
-!!! Note
+!!! Note  
     `ls` cannot be used with `-l` (details) or `-R` (recursive).
 
     It requires a simple list of names.
@@ -593,7 +593,7 @@ $ find etc | cpio -o > /backups/etc.cpio
 $ find /etc | cpio -o > /backups/etc.A.cpio
 ```
 
-!!! Warning
+!!! Warning  
     If the path specified in the `find` command is **absolute** then the backup will be performed in **absolute**.
 
     If the path indicated in the `find` command is **relative** then the backup will be done in **relative**.
@@ -686,7 +686,7 @@ $ cpio -iv </backups/etc.152.cpio | less
 | `-u`                         | Replaces all files even if they exist.                              |
 | `--no-absolute-filenames`    | Allows to restore a backup made in absolute mode in a relative way. |
 
-!!! Warning
+!!! Warning  
     By default, at the time of restoration, files on the disk whose last modification date is more recent or equal to the date of the backup are not restored (in order to avoid overwriting recent information with older information).
 
     The `u` option, on the other hand, allows you to restore older versions of the files.
@@ -715,7 +715,7 @@ The long option `no-absolute-filenames` allows a restoration in relative mode. I
 $ cpio --no-absolute-filenames -divuF home.A.cpio
 ```
 
-!!! Tip
+!!! Tip  
     The creation of directories is perhaps necessary, hence the use of the `d` option
 
 * Restore a relative backup
@@ -741,7 +741,7 @@ Using compression at the time of a backup can have a number of drawbacks:
 * Lengthens the backup time as well as the restore time.
 * It makes it impossible to add files to the backup.
 
-!!! Note
+!!! Note  
     It is therefore better to make a backup and compress it than to compress it during the backup.
 
 ### Compressing with `gzip`

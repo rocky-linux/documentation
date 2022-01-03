@@ -44,7 +44,7 @@ Doing this effectively requires:
 * Linking to the `docs` folder within your cloned documentation repository (you can also just modify the mkdocs.yml file if you wish to load the correct folder, but linking keeps your mkdocs environment cleaner)
 * Running `mkdocs serve` within your clone of docs.rockylinux.org
 
-!!! Note
+!!! Note  
     This document was written in a Linux environment. If your environment is different (Windows or Mac), then you will need to do a little research on matching up to some of these steps. An editor or manager reading this can submit changes to it to add in steps for those environments.
 
 ### Installing
@@ -108,7 +108,7 @@ You can also use YAML formatting within an actual file. A reason for doing this 
 title: Apache With `mod_ssl`
 ---
 ```
-This changes the title as far as the navigation is concerned, but leaves the author's original title in place within the document. 
+This changes the title as far as the navigation is concerned, but leaves the author's original title in place within the document.
 
 There will probably not be a lot of need for additional `.pages` files. They should be used economically.
 

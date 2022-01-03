@@ -30,7 +30,7 @@ In this chapter, we can start to discover some more advanced notions of how to u
 
 ## The variables
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html).
 
 Under Ansible, there are different types of primitive variables:
@@ -145,7 +145,7 @@ Use of a stored variable:
     var: homes.stdout_lines[1]
 ```
 
-!!! Note
+!!! Note  
     The variable `homes.stdout_lines` is a list of variables of type string, a way to organize variables that we had not yet encountered.
 
 The strings that make up the stored variable can be accessed via the `stdout` value (which allows you to do things like `homes.stdout.find("core") != -1`), to exploit them using a loop (see `loop`), or simply by their indices as seen in the previous example.
@@ -176,7 +176,7 @@ The default type should be "web".
 
 With the help of loop, you can iterate a task over a list, a hash, or dictionary for example.
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html).
 
 Simple example of use, creation of 4 users:
@@ -262,14 +262,14 @@ Let's see this through a concrete example, showing the management of the system 
     loop: "{{ users | dict2items }}"
 ```
 
-!!! Note
+!!! Note  
     Many things can be done with the loops. You will discover the possibilities offered by loops when your use of Ansible pushes you to use them in a more complex way.
 
 ### Exercices
 
 * Display the content of the `service` variable from the previous exercise using a loop.
 
-!!! Note
+!!! Note  
     You will have to transform your `service` variable, which is a dictionary, to a list with the help of the jinja filter `list` as this:
 
     ```
@@ -278,12 +278,12 @@ Let's see this through a concrete example, showing the management of the system 
 
 ## Conditionals
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html).
 
 The `when` statement is very useful in many cases: not performing certain actions on certain types of servers, if a file or a user does not exist, etc.
 
-!!! Note
+!!! Note  
     Behind the `when` statement the variables do not need double braces (they are in fact Jinja2 expressions...).
 
 ```
@@ -349,7 +349,7 @@ You will probably have to test that a variable exists to avoid execution errors:
 
 ## Managing changes: the `handlers`
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html).
 
 Handlers allow to launch operations, like restarting a service, when changes occur.
@@ -416,7 +416,7 @@ tasks:
 
 ## Asynchronous tasks
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html).
 
 By default, SSH connections to hosts remain open during the execution of various playbook tasks on all nodes.
@@ -588,7 +588,7 @@ service:
 
 * Display the content of the `service` variable from the previous exercise using a loop.
 
-!!! Note
+!!! Note  
     You will have to transform your `service` variable, which is a dictionary, to an item or a list with the help of the jinja filters `dict2items` or `list` as this:
 
     ```

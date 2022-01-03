@@ -71,7 +71,7 @@ In this example, assuming you are performing this operation as the root user, ty
 00 22 *  *  * /usr/local/sbin/backup
 ```
 
-!!! tip "Attention"
+!!! tip "Attention"  
     The script needs to have execute permission (`chmod +x`) before cronie can run it.
 
 ####  Complex options
@@ -94,7 +94,7 @@ So far, the content discussed are very simple options, but how to complete more 
 |- | represents a continuous time range, such as "0 5 * * 1-6 ", which means that a command will be executed at five o'clock in the morning every day from Monday to Saturday |
 |*/n | Represents how often the interval is executed, such as "*/10 * * * *" means that it is executed every 10 minutes |
 
-!!! tip "Attention"
+!!! tip "Attention"  
     The smallest time unit that cronie can recognize is 1 minute; when using, for example, `30 4 1,15 * 5 command` , it will cause the command to run on the 1st and 15th of each month and 4:30 in the morning of every Friday ; The output information of some scripts or commands will prevent the execution of timed tasks, and output redirection is required, such as this- `*/10 * * * * /usr/local/sbin/backup &> /dev/null`
 
 ##  Q & A

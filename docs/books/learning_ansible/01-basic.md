@@ -33,7 +33,7 @@ Ansible centralizes and automates administration tasks. It is:
 
 It uses the **SSH** protocol to remotely configure Linux clients or the **WinRM** protocol to work with Windows clients. If none of these protocols is available, it is always possible for Ansible to use an API, which makes Ansible a real Swiss army knife for the configuration of servers, workstations, docker services, network equipment, etc. (Almost everything in fact).
 
-!!! Warning
+!!! Warning  
     The opening of SSH or WinRM flows to all clients from the Ansible server, makes it a critical element of the architecture that must be carefully monitored.
 
 As Ansible is push-based, it will not keep the state of its targeted servers between each of its executions. On the contrary, it will perform new state checks each time it is executed. It is said to be stateless.
@@ -46,7 +46,7 @@ It will help you with:
 * automation,
 * orchestration (when more than 1 target is in use).
 
-!!! Note
+!!! Note  
     Ansible was originally written by Michael DeHaan, the founder of other tools such as Cobbler.
 
     ![Michael DeHaan](images/Michael_DeHaan01.jpg)
@@ -59,7 +59,7 @@ It will help you with:
 
 To offer a graphical interface to your daily use of Ansible, you can install some tools like Ansible Tower (RedHat), which is not free, its opensource counterpart Awx, or other projects like Jenkins and the excellent Rundeck can also be used.
 
-!!! Abstract
+!!! Abstract  
     To follow this training, you will need at least 2 servers under Rocky8:
 
     * the first one will be the **management machine**, Ansible will be installed on it.
@@ -97,14 +97,14 @@ $ ansible --version
 ```
 As we want to use a newer version of Ansible, we will install it from `python3-pip`:
 
-!!! Note
+!!! Note  
     Remove Ansible if you have installed it previously from _EPEL_.
 
 ```
 $ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust cargo curl
 ```
 
-!!! Note
+!!! Note  
     `python3-argcomplete` is provided by _EPEL_. Please install epel-release if not done yet.
     This package will help you complete Ansible commands.
 
@@ -279,7 +279,7 @@ ansible <host-pattern> [-m module_name] [-a args] [options]
 
 Examples:
 
-!!! Warning
+!!! Warning  
     Since we have not yet configured authentication on our 2 test servers, not all the following examples will work. They are given as examples to facilitate understanding, and will be fully functional later in this chapter.
 
 * List the hosts belonging to the rocky8 group:
@@ -318,7 +318,7 @@ ansible ansible_clients --become -m command -a 'reboot'
 ansible rocky8 -i ./local-inventory -m command -a 'date'
 ```
 
-!!! Note
+!!! Note  
     As in this example, it is sometimes simpler to separate the declaration of managed devices into several files (by cloud project for example) and provide Ansible with the path to these files, rather than to maintain a long inventory file.
 
 | Option                   | 	Information                                                                                    |
@@ -368,7 +368,7 @@ Our goal here is to comment out the default, and uncomment the NOPASSWD option s
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 ```
 
-!!! Warning
+!!! Warning  
     If you receive the following error message when entering Ansible commands, it probably means that you forgot this step on one of your clients:
     `"msg": "Missing sudo password`
 
@@ -403,17 +403,17 @@ SSH password:
 }
 ```
 
-!!! Note
+!!! Note  
     You are asked for the `ansible` password of the remote servers, which is a security problem...
 
-!!! Tip
+!!! Tip  
     If you get this error `"msg": "to use the 'ssh' connection type with passwords, you must install the sshpass program"`, you can just install `sshpass` on the management station:
 
     ```
     $ sudo dnf install sshpass
     ```
 
-!!! Abstract
+!!! Abstract  
     You can now test the commands that didn't work previously in this chapter.
 
 ## Key authentication
@@ -477,7 +477,7 @@ For the next test, the `shell` module, allowing remote command execution, is use
 
 No password is required, private/public key authentication works!
 
-!!! Note
+!!! Note  
     In production environment, you should now remove the `ansible` passwords previously set to enforce your security (as now an authentication password is not necessary).
 
 ## Using Ansible
@@ -556,7 +556,7 @@ The installed software being a service, it is now necessary to start it with the
 }
 ```
 
-!!! Tip
+!!! Tip  
     Try to launch those last 2 commands twice. You will observe that the first time Ansible will take actions to reach the state set by the command. The second time, it will do nothing because it will have detected that the state is already reached!
 
 ### Exercises
@@ -573,7 +573,7 @@ To help discover more about Ansible and to get used to searching the Ansible doc
 * Update your client distribution
 * Restart your client
 
-!!! Warning
+!!! Warning  
     Do not use the shell module. Look in the documentation for the appropriate modules!
 
 #### `setup` module: introduction to facts
@@ -615,7 +615,7 @@ Now that we have seen how to configure a remote server with Ansible on the comma
 
 Ansible's playbooks describe a policy to be applied to remote systems, to force their configuration. Playbooks are written in an easily understandable text format that groups together a set of tasks: the `yaml` format.
 
-!!! Note
+!!! Note  
     Learn more about [yaml here](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 
 ```
@@ -637,7 +637,7 @@ The command returns the following error codes:
 | `99`  | Run interrupted by user           |
 | `250` | Unexpected error                  |
 
-!!! Note
+!!! Note  
     Please note that `ansible` will return Ok when there is no host matching your target, which might mislead you!
 
 ### Example of Apache and MySQL playbook
@@ -735,7 +735,7 @@ For more readability, it is recommended to write your playbooks in full yaml for
 ...
 ```
 
-!!! Tip
+!!! Tip  
     `dnf` is one of the modules that allow you to give it a list as argument.
 
 Note about collections: Ansible now provides modules in the form of collections.

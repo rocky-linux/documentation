@@ -206,7 +206,7 @@ This builder lets us configure the hardware we need:
   ],
 ```
 
-!!! Note
+!!! Note  
     You will never forget again to include CPU_hot_plug as it is automatic now!
 
 You can do more cool thing with the disk, cpu, etc. You should refer to the documentation if you are interested in making other adjustments.
@@ -221,7 +221,7 @@ To start the installation, you need an ISO image of Rocky Linux. Here is an exam
 
 Then you have to provide the complete command to be entered during the installation process: configuration of the IP and transmission of the path to the Kickstart response file.
 
-!!! Note
+!!! Note  
     This example takes the most complex case: using a static IP. If you have a DHCP server available, the process will be much easier.
 
 This is the most amusing part of the procedure: I'm sure you'll go and admire the VMWare console during the generation, just to see the automatic entry of the commands during the boot.
@@ -383,7 +383,7 @@ As we have chosen to use the minimal iso, instead of the Boot or DVD, not all re
 
 As Packer relies on VMWare Tools to detect the end of the installation, and the `open-vm-tools` package is only available in the AppStream repos, we have to specify to the installation process that we want to use as source both the cdrom and this remote repo:
 
-!!! Note
+!!! Note  
     If you don't have access to the external repos, you can use either a mirror of the repo, a squid proxy, or the dvd.
 
 ```
@@ -406,7 +406,7 @@ Remember we specified the user to connect via SSH with to Packer at the end of t
 rootpw mysecurepassword
 ```
 
-!!! Warning
+!!! Warning  
     You can use an insecure password here, as long as you make sure that this password will be changed immediately after the deployment of your VM, for example with Ansible.
 
 Here is the selected partition scheme. Much more complex things can be done. You can define a partition scheme that suits your needs, adapting it to the disk space defined in Packer, and which respects the security rules defined for your environment (dedicated partition for `/tmp`, etc.):
@@ -428,7 +428,7 @@ logvol swap --fstype="swap" --size=4092 --name=lv_swap --vgname=vg_root
 
 The next section concerns the packages that will be installed. A "best practice" is to limit the quantity of installed packages to only those you need, which limits the attack surface, especially in a server environment.
 
-!!! Note
+!!! Note  
     The author likes to limit the actions to be done in the installation process and to defer installing what is needed in the post installation script of Packer. So, in this case, we install only the minimum required packages.
 
 The `openssh-clients` package seems to be required for Packer to copy its scripts into the VM.
@@ -561,7 +561,7 @@ As this is not the behavior we want, we need to specify to cloud-init not to del
 
 For this, we create a file `/etc/cloud/cloud.cfg.d/99-manual.cfg` with the `manual_cache_clean: True` directive.
 
-!!! Note
+!!! Note  
     This implies that if you need to re-apply a network configuration via VSphere's customization tool (which, in normal use, should be quite rare), you will have to delete the cloud-init cache yourself.
 
 The rest of the script is commented and does not require more details
