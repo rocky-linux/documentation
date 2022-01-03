@@ -273,7 +273,8 @@ La commande `clear` permet d’effacer le contenu de l’écran du terminal. En 
 
 Dans un terminal, l’affichage sera définitivement masqué tandis que dans une interface graphique, un ascenseur permettra de remonter dans l’historique du terminal virtuel.
 
-!!! TIP <kbd>CTRL</kbd> + <kbd>L</kbd> aura le même effet que la commande `clear`
+!!! TIP  
+<kbd>CTRL</kbd> + <kbd>L</kbd> aura le même effet que la commande `clear`
 
 ### La commande `echo`
 
@@ -314,7 +315,8 @@ $ date -d 20210517 +%j
 
 Dans ce dernier exemple, l’option `-d` affiche une date donnée. L’option `+%j` formate cette date pour n’afficher que le quantième.
 
-!!! Warning Le format d’une date peut changer suivant la valeur de la langue définie dans la variable d’environnement `$LANG`.
+!!! Warning  
+Le format d’une date peut changer suivant la valeur de la langue définie dans la variable d’environnement `$LANG`.
 
 L’affichage de la date peut suivre les formats suivants :
 
@@ -498,7 +500,8 @@ $ ls -lia /home
 | `25 oct. 08:10` | Date de dernière modification.                                                                                      |
 | `rockstar`      | Nom du fichier (ou du répertoire).                                                                                  |
 
-!!! Note Des **alias**  sont fréquemment positionnés au sein des distributions courantes.
+!!! Note  
+Des **alias**  sont fréquemment positionnés au sein des distributions courantes.
 
     C’est le cas de l’alias `ll` :
 
@@ -604,7 +607,8 @@ Le répertoire « rockstar » devra exister pour créer le répertoire « work �
 
 Sinon, l’option `-p` devra être utilisée. L’option `-p` crée les répertoires parents s’ils n’existent pas.
 
-!!! Danger Il est vivement déconseillé de donner des noms de commandes Linux comme nom de répertoires ou fichiers.
+!!! Danger  
+Il est vivement déconseillé de donner des noms de commandes Linux comme nom de répertoires ou fichiers.
 
 ### La commande `touch`
 
@@ -626,7 +630,8 @@ $ touch /home/rockstar/myfile
 
 Date au format : `[AAAA]MMJJhhmm[ss]`
 
-!!! Tip La commande `touch` est utilisée en priorité pour créer un fichier vide, mais elle peut avoir un intérêt dans le cadre de sauvegarde incrémentale ou différentielle par exemple. En effet, le fait d’exécuter un `touch` sur un fichier aura pour seul effet de forcer sa sauvegarde lors de la sauvegarde suivante.
+!!! Tip  
+La commande `touch` est utilisée en priorité pour créer un fichier vide, mais elle peut avoir un intérêt dans le cadre de sauvegarde incrémentale ou différentielle par exemple. En effet, le fait d’exécuter un `touch` sur un fichier aura pour seul effet de forcer sa sauvegarde lors de la sauvegarde suivante.
 
 ### La commande `rmdir`
 
@@ -642,7 +647,8 @@ $ rmdir /home/rockstar/work
 | ------ | ------------------------------------------------------------------------------ |
 | `-p`   | Supprime le ou les répertoire(s) parent(s) à la condition qu’ils soient vides. |
 
-!!! Tip Pour supprimer à la fois un répertoire non-vide et son contenu, il faudra utiliser la commande `rm`.
+!!! Tip  
+Pour supprimer à la fois un répertoire non-vide et son contenu, il faudra utiliser la commande `rm`.
 
 ### La commande `rm`
 
@@ -652,7 +658,8 @@ La commande `rm` supprime un fichier ou un répertoire.
 rm [-f] [-r] file [file] [...]
 ```
 
-!!! Danger Toute suppression de fichier ou de répertoire est définitive.
+!!! Danger  
+Toute suppression de fichier ou de répertoire est définitive.
 
 | Options | Information                                       |
 | ------- | ------------------------------------------------- |
@@ -660,7 +667,8 @@ rm [-f] [-r] file [file] [...]
 | `-i`    | Demande de confirmation de la suppression.        |
 | `-r`    | Supprime récursivement les sous-répertoires.      |
 
-!!! Note La commande `rm` en elle-même ne demande pas de confirmation lors de la suppression de fichiers. Cependant avec une distribution RedHat/CentOS, `rm` demande une confirmation de suppression car la commande `rm` y est un `alias` de la commande `rm -i`. Ne soyez pas surpris sur une autre distribution, type Debian par exemple, de ne pas obtenir de demande de confirmation.
+!!! Note  
+La commande `rm` en elle-même ne demande pas de confirmation lors de la suppression de fichiers. Cependant avec une distribution RedHat/CentOS, `rm` demande une confirmation de suppression car la commande `rm` y est un `alias` de la commande `rm -i`. Ne soyez pas surpris sur une autre distribution, type Debian par exemple, de ne pas obtenir de demande de confirmation.
 
 La suppression d’un dossier à l’aide de la commande `rm`, que ce dossier soit vide ou non, nécessitera l’ajout de l’option `-r`.
 
@@ -1112,7 +1120,8 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 
 La commande précédente recherche tous les fichiers du répertoire `/tmp` nommés `*.txt` et les supprime.
 
-!!! Tip "Comprendre l’option `-exec`" Dans l’exemple ci-dessus, la commande `find` va construire une chaîne de caractères représentant la commande à exécuter.
+!!! Tip "Comprendre l’option `-exec`"  
+Dans l’exemple ci-dessus, la commande `find` va construire une chaîne de caractères représentant la commande à exécuter.
 
     Si la commande `find` trouve trois fichiers nommés `log1.txt`, `log2.txt` et `log3.txt`, alors la commande `find` va construire la chaîne en remplaçant dans la chaîne `rm -f {} \;` les accolades par un des résultats de la recherche, et cela autant de fois qu’il y a de résultats.
     
@@ -1125,7 +1134,8 @@ La commande précédente recherche tous les fichiers du répertoire `/tmp` nomm�
 
     Le caractère `;` est un caractère spécial du shell qui doit être protégé par un `\` pour éviter son interprétation trop tôt par la commande `find` (et non plus dans le `-exec`).
 
-!!! Tip `$ find /tmp -name *.txt -delete` fait la même chose.
+!!! Tip  
+`$ find /tmp -name *.txt -delete` fait la même chose.
 
 ### La commande `whereis`
 
@@ -1177,7 +1187,8 @@ La commande `grep` retourne la ligne complète comprenant la chaîne de caractè
 $ grep -w "^root" /etc/passwd
 ```
 
-!!! Note Cette commande est très puissante et il est fortement conseillé de consulter son manuel. Elle a de nombreux dérivés.
+!!! Note  
+Cette commande est très puissante et il est fortement conseillé de consulter son manuel. Elle a de nombreux dérivés.
 
 Il est possible de rechercher une chaîne de caractères dans une arborescence de fichiers avec l’option `-R`.
 
@@ -1221,9 +1232,11 @@ $ find /home -name "test[123]*"
 /home/rockstar/test362
 ```
 
-!!! Note Prendre soin de toujours encadrer les mots contenant des méta-caractères par des `"` pour éviter qu’ils soient remplacés par le nom des fichiers qui répondraient aux critères.
+!!! Note  
+Prendre soin de toujours encadrer les mots contenant des méta-caractères par des `"` pour éviter qu’ils soient remplacés par le nom des fichiers qui répondraient aux critères.
 
-!!! Warning Il ne faut pas confondre les méta-caractères du shell et ceux des expressions régulières. La commande `grep` utilise les méta-caractères des expressions régulières.
+!!! Warning  
+Il ne faut pas confondre les méta-caractères du shell et ceux des expressions régulières. La commande `grep` utilise les méta-caractères des expressions régulières.
 
 ## Redirections et tubes
 
@@ -1252,7 +1265,8 @@ Il est possible de rediriger le flux d’entrée depuis un autre fichier avec le
 $ ftp -in serverftp << ftp-commands.txt
 ```
 
-!!! Note Seules les commandes demandant une saisie au clavier pourront gérer la redirection d’entrée.
+!!! Note  
+Seules les commandes demandant une saisie au clavier pourront gérer la redirection d’entrée.
 
 La redirection d’entrée peut également être utilisée pour simuler une interactivité avec l’utilisateur. La commande lira le flux d’entrée jusqu’à rencontrer le mot clef défini après la redirection d’entrée.
 
@@ -1278,7 +1292,8 @@ STOP
 
 Le shell quitte la commande `ftp` lorsqu’il reçoit une ligne ne contenant que le mot clef.
 
-!!! Warning Le mot clé de fin, ici `END` ou `STOP`, pour terminer la commande doit être le seul mot de la ligne et doit être au début de sa ligne.
+!!! Warning  
+Le mot clé de fin, ici `END` ou `STOP`, pour terminer la commande doit être le seul mot de la ligne et doit être au début de sa ligne.
 
 La redirection de l’entrée standard est peu utilisée car la plupart des commandes acceptent un nom de fichier en argument.
 
@@ -1431,7 +1446,8 @@ Pour une utilisation permanente, il faut les créer dans le fichier :
 * `.bashrc` du répertoire de connexion de l’utilisateur ;
 * `/etc/profile.d/alias.sh` pour tous les utilisateurs.
 
-!!! Warning Une attention particulière doit être portée lors de l’usage d’alias qui peuvent potentiellement s’avérer dangereux ! Par exemple, un alias mis en place à l’insu de l’administrateur :
+!!! Warning  
+Une attention particulière doit être portée lors de l’usage d’alias qui peuvent potentiellement s’avérer dangereux ! Par exemple, un alias mis en place à l’insu de l’administrateur :
 
     ```bash
     alias cd='rm -Rf'
