@@ -18,7 +18,7 @@ The learning curve for LXD can be a bit steep, but this document will attempt to
 * For ZFS, make sure that UEFI secure boot is NOT enabled. Otherwise, you will end up having to sign the ZFS module in order to get it to load.
 * We will, for the moment, be using CentOS-based containers, as LXC does not yet have Rocky Linux images. Stay tuned for updates, because this will likely change with time.
 
-!!! Note
+!!! Note  
     This has changed! Feel free to substitute in Rocky Linux containers in the examples below.
 
 ## Part 1 : Getting The Environment Ready

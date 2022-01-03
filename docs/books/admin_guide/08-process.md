@@ -45,7 +45,7 @@ The _PID_ number represents the process at the time of execution. When the proce
 
 <!-- TODO ![Parent/child relationship between processes](images/FON-050-001.png) -->
 
-!!! Note
+!!! Note  
     Processes are not to be confused with _threads_. Each process has its own memory context (resources and address space), while _threads_ from the same process share this same context.
 
 ## Viewing processes
@@ -208,7 +208,7 @@ $ kill -9 1664
 
 Signals are the means of communication between processes. The `kill` command sends a signal to a process.
 
-!!! Tip
+!!! Tip  
     The complete list of signals taken into account by the `kill` command is available by typing the command :
 ```
 $ man 7 signal
@@ -229,7 +229,7 @@ $ nohup myprogram.sh 0</dev/null &
 
 `nohup` ignores the `SIGHUP` signal sent when a user logs out.
 
-!!! Note "Question"
+!!! Note "Question"  
     `nohup` handles standard output and error, but not standard input, hence the redirection of this input to `/dev/null`.
 
 ### [CTRL] + [Z]
@@ -307,7 +307,7 @@ $ nice -n+15 find / -name "file"
 
 Unlike `root`, a standard user can only reduce the priority of a process. Only values between +0 and +19 will be accepted.
 
-!!! Tip
+!!! Tip  
     This last limitation can be lifted on a per-user or per-group basis by modifying the `/etc/security/limits.conf` file.
 
 The `renice` command allows you to change the priority of a running process.
@@ -328,7 +328,7 @@ $ renice +15 -p 1664
 
 The `renice` command acts on processes already running. It is therefore possible to change the priority of a specific process, but also of several processes belonging to a user or a group.
 
-!!! Tip
+!!! Tip  
     The `pidof` command, coupled with the `xargs` command (see the Advanced Commands course), allows a new priority to be applied in a single command:
 ```
 $ pidof sleep | xargs renice 20

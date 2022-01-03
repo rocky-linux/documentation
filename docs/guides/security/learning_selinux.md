@@ -128,7 +128,7 @@ httpd_can_sendmail (off , off)  Allow httpd to send mail
 …
 ```
 
-!!! Note
+!!! Note  
     As you can see, there is a `default` state (eg. at startup) and a running state.
 
 The `setsebool` command is used to change the state of a boolean object:
@@ -148,7 +148,7 @@ sudo setsebool -P httpd_can_sendmail on
 | `-P`    | Changes the default value at startup (otherwise only until reboot) |
 | `-V`    | Deletes an object                                                  |
 
-!!! Warning
+!!! Warning  
     Don't forget the `-P` option to keep the state after the next startup.
 
 ### Administering Port objects
@@ -232,7 +232,7 @@ sudo setenforce 0
 
 The `/etc/sysconfig/selinux` file allows you to change the operating mode of SELinux.
 
-!!! Warning
+!!! Warning  
     Disabling SELinux is done at your own risk! It is better to learn how SELinux works than to disable it systematically!
 
 Edit the file `/etc/sysconfig/selinux`
@@ -241,7 +241,7 @@ Edit the file `/etc/sysconfig/selinux`
 SELINUX=disabled
 ```
 
-!!! Note
+!!! Note  
     `/etc/sysconfig/selinux` is a symlink to `/etc/selinux/config`
 
 Reboot the system:
@@ -250,7 +250,7 @@ Reboot the system:
 sudo reboot
 ```
 
-!!! Warning
+!!! Warning  
     Beware of the SELinux mode change!
 
 In permissive or disabled mode, newly created files will not have any labels.
@@ -342,7 +342,7 @@ To make a context change survive to a `restorecon`, you have to modify the defau
 semanage fcontext -a options file
 ```
 
-!!! Note
+!!! Note  
     If you are performing a context switch for a folder that is not standard for the system, creating the rule and then applying the context is a good practice as in the example below!
 
 Example:

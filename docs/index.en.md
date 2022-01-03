@@ -36,7 +36,7 @@ Of course not everyone has English as their first language! At Rocky Linux we wa
 1. Website interface localisation: if you choose another language, for example Français, you will note that the interface, for example the 'Next' and 'Previous' navigators, will be localised.
 1. Content: translating content is, obviously, an ongoing (significant) task. Not all content is translated into all languages yet. Any pages that have been translated (into the language selected) will be seen in the chosen language, those that have not will fall back to the default language English. If you want to contribute to the community through translations the documentation team would love to hear from you — see below for details.
 
-!!! note
+!!! note  
     Not all functionality may be available in all languages, this is a limitation of the underlying MkDocs modules available.
 
 ### Using Search

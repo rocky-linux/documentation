@@ -27,7 +27,7 @@ Directory, and will not include any extra configuration on the Windows side.
 
 ## Discovering and joining AD using SSSD
 
-!!! Note
+!!! Note  
     Throughout this guide, the domain name `ad.company.local` will be used to
     represent the Active Directory domain. To follow this guide, replace it with
     the actual domain name your AD domain uses.

@@ -33,7 +33,7 @@ Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 
 For example, `Rocky-8.5-x86_64-minimal.iso`
 
-!!! Note
+!!! Note  
     Rocky project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found [here](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
 ## Verifying the Installer ISO File
@@ -60,7 +60,7 @@ Rocky-8.5-x86_64-minimal.iso: OK
 
 ## The Installation
 
-!!! Tip
+!!! Tip  
     Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
 
 If the computer is setup to boot from the media that has the ISO file we can begin the installation process.
@@ -127,7 +127,7 @@ Under the _Software_ section of the _Installation Summary_ screen, you can selec
 
 Since we are performing our installation using a full Rocky 8 image, you will notice that _Local Media_ is automatically specified under the Installation Source section of the main _Installation Summary_ screen. We'll accept the preset defaults.
 
-!!! Tip
+!!! Tip  
     The installation Source area is where you can opt to perform a network based installation. For a network based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet.  To perform a network based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`.   Click `Done`.
 
 #### Software Selection
@@ -161,19 +161,19 @@ Once the installer determines that you have a usable disk, you will be returned 
 
 The final task of the installation procedure deals with network configuration, where you can configure or tweak network-related settings for the system.
 
-!!! Note
+!!! Note  
     After you click on the <kbd>Network & Hostname</kbd> option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen. Depending on the Linux distribution and the specific hardware setup, Ethernet devices in Linux have names similar to `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, and so on.
 
 For each interface, you can either configure it using DHCP or manually set the IP address. If you choose to configure manually, be sure to have all the pertinent information ready, such as the IP address, netmask, and so on.
 
 Clicking the <kbd>Network & Hostname</kbd> button in the main _Installation Summary_ screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system (the name defaults to `localhost.localdomain`).
 
-!!! Note
+!!! Note  
     You can easily change this name later on after the OS has been installed. For now, accept the default value supplied for the hostname.
 
 The next important configuration task is related to the network interfaces on the system. First, verify that an Ethernet card (or any network card) is listed in the left pane. Click any of the detected network devices in the left pane to select it. The configurable properties of the selected network adapter will appear in the right pane of the screen.
 
-!!! Note
+!!! Note  
     On our sample system, we have two Ethernet devices (`ens3` and `ens4`), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our sample system.
 
 Make sure the switch of the device you want to configure is flipped to the `ON` position in the right pane.
@@ -181,7 +181,7 @@ We'll accept all the defaults in this section.
 
 Click <kbd>Done</kbd> to return to the main _Installation Summary_ screen.
 
-!!! Warning
+!!! Warning  
     Pay attention to the IP address of the server in this section of this installer. If you don’t have physical or easy console access to the system, this information will come in handy later on when you need to connect to the server to continue working on it.
 
 ## Installer Phase
@@ -196,7 +196,7 @@ This section can be used for creating a password for the `root` user account and
 
 Click the _Root Password_ field under _User Settings_ to launch the _Root Password _ task screen. In the _Root Password_ text box, set a strong password for the root user.
 
-!!! Warning
+!!! Warning  
     The root superuser is the most privileged account on the system. Therefore, if you choose to use or enable it, it is crucial that you protect this account with a strong password.
 
 Enter the same password again in the _Confirm_ text box.
@@ -208,7 +208,7 @@ Click <kbd>Done</kbd>.
 
 Next click the _User Creation_ field under _User Settings_ to launch the _Create User_ task screen. This task area allows you to create a privileged or non-privileged (non-administrative) user account on the system.
 
-!!! Info
+!!! Info  
     Creating and using a non-privileged account for day-to-day tasks on a system is a good system administration practice.
 
 We’ll create a regular user that can invoke superuser (administrator) powers, the same as the root user, when needed.
@@ -237,7 +237,7 @@ _Confirm password_:
 
 Once you are satisfied with your choices for the various installation tasks, click the Begin Installation button on the main _Installation Summary_ screen. The installation will begin, and the installer will show the progress of the installation. When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.
 
-!!! Note
+!!! Note  
     If you do not wish to continue after clicking the Begin Installation button, you can still safely back out of the installation without any loss of data. To quit the installer, simply reset your system either by clicking the Quit button, pressing ctrl-alt-del on the keyboard, or pushing the reset or power switch.
 
 ### Complete the Installation

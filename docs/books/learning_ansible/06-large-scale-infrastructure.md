@@ -32,10 +32,10 @@ The organization of the configuration management system presented in this chapte
 
 However, be careful: using Ansible to ensure park compliance requires changing work habits. It is no longer possible to manually modify the configuration of a service manager without seeing these modifications overwritten the next time Ansible is run.
 
-!!! Note
+!!! Note  
     What we are going to set up below is not Ansible's favorite terrain. Technologies like Puppet or Salt will do much better. Let's remember that Ansible is a Swiss army knife of automation and is agentless, which explains the differences in performance.
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/sample_setup.html)
 
 ## Variables storage
@@ -74,7 +74,7 @@ For example, if you want to make the `PermitRootLogin` value in the `sshd_config
 
 The use of Ansible tags allows you to execute or skip a part of the tasks in your code.
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html)
 
 For example, let's modify our users creation task:
@@ -207,7 +207,7 @@ cms
     └── global_vars.yml
 ```
 
-!!! Note
+!!! Note  
     You are free to develop your roles within a collection
 
 ## Tests

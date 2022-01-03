@@ -29,7 +29,7 @@ Depending on your needs, you will have to use different Ansible modules to modif
 
 When you want to modify an INI file (section between `[]` then `key=value` pairs), the easiest way is to use the `ini_file` module.
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/collections/community/general/ini_file_module.html).
 
 The module requires:
@@ -53,7 +53,7 @@ Example of use:
 
 To ensure that a line is present in a file, or when a single line in a file needs to be added or modified, use the `linefile` module.
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html).
 
 In this case, the line to be modified in a file will be found using a regexp.
@@ -71,7 +71,7 @@ For example, to ensure that the line starting with `SELINUX=` in the `/etc/selin
 
 When a file has to be copied from the Ansible server to one or more hosts, it is better to use the `copy` module.
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html).
 
 Here we are copying `myflile.conf` from one location to another:
@@ -89,7 +89,7 @@ Here we are copying `myflile.conf` from one location to another:
 
 When a file has to be copied from a remote server to the local server, it is best to use the `fetch` module.
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fetch_module.html).
 
 This module does the opposite of the `copy` module:
@@ -105,7 +105,7 @@ This module does the opposite of the `copy` module:
 
 Ansible and its `template` module use the **Jinja2** template system (http://jinja.pocoo.org/docs/) to generate files on target hosts.
 
-!!! Note
+!!! Note  
     More information can be [found here](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html).
 
 For example:
