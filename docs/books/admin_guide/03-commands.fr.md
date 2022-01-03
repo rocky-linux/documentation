@@ -315,8 +315,9 @@ $ date -d 20210517 +%j
 
 Dans ce dernier exemple, l’option `-d` affiche une date donnée. L’option `+%j` formate cette date pour n’afficher que le quantième.
 
-!!! Warning  
-Le format d’une date peut changer suivant la valeur de la langue définie dans la variable d’environnement `$LANG`.
+!!! Warning
+
+    Le format d’une date peut changer suivant la valeur de la langue définie dans la variable d’environnement `$LANG`.
 
 L’affichage de la date peut suivre les formats suivants :
 
@@ -500,9 +501,10 @@ $ ls -lia /home
 | `25 oct. 08:10` | Date de dernière modification.                                                                                      |
 | `rockstar`      | Nom du fichier (ou du répertoire).                                                                                  |
 
-!!! Note  
-Des **alias**  sont fréquemment positionnés au sein des distributions courantes.
+!!! Note
 
+    Des **alias** sont fréquemment positionnés au sein des distributions courantes.
+    
     C’est le cas de l’alias `ll` :
 
     ```
@@ -594,7 +596,7 @@ $ ls /etc --hide=*.conf
 La commande `mkdir` crée un répertoire ou une arborescence de répertoire.
 
 ```bash
-mkdir [-p] repertoire [repertoire] [...]
+mkdir [-p] directory [directory] [...]
 ```
 
 Exemple :
@@ -608,7 +610,8 @@ Le répertoire « rockstar » devra exister pour créer le répertoire « work �
 Sinon, l’option `-p` devra être utilisée. L’option `-p` crée les répertoires parents s’ils n’existent pas.
 
 !!! Danger  
-Il est vivement déconseillé de donner des noms de commandes Linux comme nom de répertoires ou fichiers.
+
+    Il est vivement déconseillé de donner des noms de commandes Linux comme nom de répertoires ou fichiers.
 
 ### La commande `touch`
 
@@ -631,7 +634,8 @@ $ touch /home/rockstar/myfile
 Date au format : `[AAAA]MMJJhhmm[ss]`
 
 !!! Tip  
-La commande `touch` est utilisée en priorité pour créer un fichier vide, mais elle peut avoir un intérêt dans le cadre de sauvegarde incrémentale ou différentielle par exemple. En effet, le fait d’exécuter un `touch` sur un fichier aura pour seul effet de forcer sa sauvegarde lors de la sauvegarde suivante.
+
+    La commande touch est utilisée en priorité pour créer un fichier vide, mais elle peut avoir un intérêt dans le cadre de sauvegarde incrémentale ou différentielle par exemple. En effet, le fait d’exécuter un touch sur un fichier aura pour seul effet de forcer sa sauvegarde lors de la sauvegarde suivante.
 
 ### La commande `rmdir`
 
@@ -648,7 +652,8 @@ $ rmdir /home/rockstar/work
 | `-p`   | Supprime le ou les répertoire(s) parent(s) à la condition qu’ils soient vides. |
 
 !!! Tip  
-Pour supprimer à la fois un répertoire non-vide et son contenu, il faudra utiliser la commande `rm`.
+
+    Pour supprimer à la fois un répertoire non-vide et son contenu, il faudra utiliser la commande `rm`.
 
 ### La commande `rm`
 
@@ -659,7 +664,8 @@ rm [-f] [-r] file [file] [...]
 ```
 
 !!! Danger  
-Toute suppression de fichier ou de répertoire est définitive.
+
+    Toute suppression de fichier ou de répertoire est définitive.
 
 | Options | Information                                       |
 | ------- | ------------------------------------------------- |
@@ -668,7 +674,8 @@ Toute suppression de fichier ou de répertoire est définitive.
 | `-r`    | Supprime récursivement les sous-répertoires.      |
 
 !!! Note  
-La commande `rm` en elle-même ne demande pas de confirmation lors de la suppression de fichiers. Cependant avec une distribution RedHat/CentOS, `rm` demande une confirmation de suppression car la commande `rm` y est un `alias` de la commande `rm -i`. Ne soyez pas surpris sur une autre distribution, type Debian par exemple, de ne pas obtenir de demande de confirmation.
+
+    La commande rm en elle-même ne demande pas de confirmation lors de la suppression de fichiers. Cependant avec une distribution RedHat/CentOS, `rm` demande une confirmation de suppression car la commande `rm` y est un alias de la commande `rm -i`. Ne soyez pas surpris sur une autre distribution, type Debian par exemple, de ne pas obtenir de demande de confirmation.
 
 La suppression d’un dossier à l’aide de la commande `rm`, que ce dossier soit vide ou non, nécessitera l’ajout de l’option `-r`.
 
@@ -796,7 +803,7 @@ Si le répertoire de destination n’existe pas, `file1` est copié sous le nom 
 La commande `file` affiche le type d’un fichier.
 
 ```bash
-file fichier1 [fichiers]
+file file1 [files]
 ```
 
 Exemple :
@@ -812,7 +819,7 @@ $ file /etc/passwd /etc
 La commande `more` affiche le contenu d’un ou de plusieurs fichiers écran par écran.
 
 ```bash
-more fichier1 [fichiers]
+more file1 [files]
 ```
 
 Exemple :
@@ -830,7 +837,7 @@ En utilisant la touche <kbd>ENTREE</kbd>, le déplacement se fait ligne par lign
 La commande `less` affiche le contenu d’un ou de plusieurs fichiers. La commande `less` est interactive et possède des commandes d’utilisation qui lui sont propres.
 
 ```bash
-less fichier1 [fichiers]
+less file1 [files]
 ```
 
 Les commandes propres à `less` sont :
@@ -851,7 +858,7 @@ Les commandes propres à `less` sont :
 La commande `cat` concatène (mettre bout à bout) le contenu de plusieurs fichiers et affiche le résultat sur la sortie standard.
 
 ```bash
-cat fichier1 [fichiers]
+cat file1 [files]
 ```
 
 Exemple 1 - Afficher le contenu d’un fichier vers la sortie standard :
@@ -913,7 +920,7 @@ Exemple : Afficher un fichier de logs en affichant en premier la dernière ligne
 La commande `head` affiche le début d’un fichier.
 
 ```bash
-head [-n x] fichier
+head [-n x] file
 ```
 
 | Option | Observation                                 |
@@ -1063,7 +1070,7 @@ Voici un exemple avec le fichier `taille.txt` :
 ```
 
 ```bash
-$ sort -hr taille.txt
+$ sort -hr size.txt
 4,2G
 4G
 1,7G
@@ -1081,7 +1088,7 @@ $ sort -hr taille.txt
 La commande `wc` compte le nombre de lignes, mots et/ou octets d’un fichier.
 
 ```bash
-wc [-l] [-m] [-w] fichier [fichiers]
+wc [-l] [-m] [-w] file [files]
 ```
 
 | Option | Observation                     |
@@ -1120,9 +1127,10 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 
 La commande précédente recherche tous les fichiers du répertoire `/tmp` nommés `*.txt` et les supprime.
 
-!!! Tip "Comprendre l’option `-exec`"  
-Dans l’exemple ci-dessus, la commande `find` va construire une chaîne de caractères représentant la commande à exécuter.
+!!! Tip "Comprendre l'option `-exec`"  
 
+    Dans l'exemple ci-dessus, la commande `find` construira une chaîne représentant la commande à exécuter.
+    
     Si la commande `find` trouve trois fichiers nommés `log1.txt`, `log2.txt` et `log3.txt`, alors la commande `find` va construire la chaîne en remplaçant dans la chaîne `rm -f {} \;` les accolades par un des résultats de la recherche, et cela autant de fois qu’il y a de résultats.
     
     Ce qui nous donnera :
@@ -1135,7 +1143,8 @@ Dans l’exemple ci-dessus, la commande `find` va construire une chaîne de cara
     Le caractère `;` est un caractère spécial du shell qui doit être protégé par un `\` pour éviter son interprétation trop tôt par la commande `find` (et non plus dans le `-exec`).
 
 !!! Tip  
-`$ find /tmp -name *.txt -delete` fait la même chose.
+
+    `$ find /tmp -name *.txt -delete` does the same thing.
 
 ### La commande `whereis`
 
@@ -1188,7 +1197,8 @@ $ grep -w "^root" /etc/passwd
 ```
 
 !!! Note  
-Cette commande est très puissante et il est fortement conseillé de consulter son manuel. Elle a de nombreux dérivés.
+
+    Cette commande est très puissante et il est fortement conseillé de consulter son manuel. Elle a de nombreux dérivés.
 
 Il est possible de rechercher une chaîne de caractères dans une arborescence de fichiers avec l’option `-R`.
 
@@ -1233,10 +1243,12 @@ $ find /home -name "test[123]*"
 ```
 
 !!! Note  
-Prendre soin de toujours encadrer les mots contenant des méta-caractères par des `"` pour éviter qu’ils soient remplacés par le nom des fichiers qui répondraient aux critères.
+
+    Prendre soin de toujours encadrer les mots contenant des méta-caractères par des `"` pour éviter qu’ils soient remplacés par le nom des fichiers qui répondraient aux critères.
 
 !!! Warning  
-Il ne faut pas confondre les méta-caractères du shell et ceux des expressions régulières. La commande `grep` utilise les méta-caractères des expressions régulières.
+
+    Il ne faut pas confondre les méta-caractères du shell et ceux des expressions régulières. La commande `grep` utilise les méta-caractères des expressions régulières.
 
 ## Redirections et tubes
 
@@ -1266,7 +1278,8 @@ $ ftp -in serverftp << ftp-commands.txt
 ```
 
 !!! Note  
-Seules les commandes demandant une saisie au clavier pourront gérer la redirection d’entrée.
+
+    Seules les commandes demandant une saisie au clavier pourront gérer la redirection d’entrée.
 
 La redirection d’entrée peut également être utilisée pour simuler une interactivité avec l’utilisateur. La commande lira le flux d’entrée jusqu’à rencontrer le mot clef défini après la redirection d’entrée.
 
@@ -1293,7 +1306,8 @@ STOP
 Le shell quitte la commande `ftp` lorsqu’il reçoit une ligne ne contenant que le mot clef.
 
 !!! Warning  
-Le mot clé de fin, ici `END` ou `STOP`, pour terminer la commande doit être le seul mot de la ligne et doit être au début de sa ligne.
+
+    Le mot clé de fin, ici `END` ou `STOP`, pour terminer la commande doit être le seul mot de la ligne et doit être au début de sa ligne.
 
 La redirection de l’entrée standard est peu utilisée car la plupart des commandes acceptent un nom de fichier en argument.
 
