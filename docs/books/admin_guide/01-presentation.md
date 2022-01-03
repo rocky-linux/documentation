@@ -29,7 +29,7 @@ In this chapter you will learn about GNU/Linux distributions.
 
 Linux, UNIX, BSD, Windows, and MacOS are all **operating systems**.
 
-!!! abstract
+!!! abstract  
     An operating system is a **set of programs that manages the available resources of a computer**.
 
 Among this management of resources, the operating system has to:
