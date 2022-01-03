@@ -15,6 +15,16 @@ Updates released since upstream are posted across our current architectures. We 
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
+## 8.5 - 2021-12-22
+
+The following packages have been updated since December 22, 2021:
+
+* grafana: grafana-7.5.9-4.el8 -> grafana-7.5.9-5.el8_5
+
+Associated CVE's:
+
+* CVE-2021-44716
+
 ## 8.5 - 2021-12-17
 
 The following packages have been updated since December 17, 2021:
