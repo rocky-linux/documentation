@@ -10,6 +10,7 @@ date : 2021-10-20
 `mtr` is a network diagnostic tool that can diagnose network problems. It is used to replace the `ping` and `traceroute` commands. In terms of performance, the `mtr` command is faster.
 
 ##  Use `mtr`
+
 ```bash
 # Install mtr
 shell > dnf -y install mtr
