@@ -27,7 +27,8 @@ This particular workflow uses the following components:
 
 ---
 
-!!! Note  
+!!! Note
+
     While both Atom and Git Cola are described as optional, you'll need at least one of them for this particular workflow. This author likes to use both: one for the GitHub portion (Git Cola), and one for the editing portion (Atom).
 
 ---
@@ -157,7 +158,8 @@ I use Git Cola for setting up the remotes (as we have already seen), branching, 
 
 You always want to create a branch by using the "main" as the template. Make sure that "main" is selected in the "Branches" listing on the right-hand side of Git Cola, then click "Branch" top menu item and "Create." Type a name for your new branch.
 
-!!! Note  
+!!! Note
+
     When naming branches, consider using descriptive names. These will help add clarity when you push them upstream. For instance, the author uses an "rl_" prefix when creating a new document, and then appends the a descriptive short name for what the document is. For edits, the author uses "edit_" as the prefix followed by a short name about what the edit is for.
 
 As an example, below you can see the "Branches" listing, which shows "rl_git_workflow":

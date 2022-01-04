@@ -70,12 +70,14 @@ If you want to run scripts on a workstation or laptop in the `cron` "dot" direct
 * `/etc/cron.weekly` - Scripts placed here will run every 7 days, based on the calendar day of the last run time. (see tip)
 * `/etc/cron.monthly` - Scripts placed here will run monthly based on the calendar day of the last run time. (see tip)
 
-!!! tip  
+!!! tip
+
     These are likely to be run at similar (but not exactly the same) times every day, week, and month. For more exact running times, see the @options below.
 
 So provided you're alright with just letting the system auto-run your scripts, and allowing them to run sometime during the specified period, then it makes it very easy to automate tasks.
 
-!!! note  
+!!! note
+
     There is no rule that says a server administrator cannot use the randomized run times which `anacron` uses to run scripts in the "dot" directories. The use case for this would be for a script that is not time sensitive.
 
 ### Create Your Own `cron`
@@ -116,7 +118,8 @@ Notice that this particular `crontab` file has some of its own documentation bui
 
 Let's assume that we have a backup script that we want to run at 10 PM at night. The `crontab` uses a 24 hour clock, so this would be 22:00. Let's assume that the backup script is called "backup" and that it is currently in the _/usr/local/sbin_ directory.
 
-!!! note  
+!!! note
+
     Remember that this script needs to also be executable (`chmod +x`) in order for the `cron` to run it.
 
 To add the job, we would:
@@ -150,7 +153,8 @@ Another way to run jobs at a strictly scheduled time (i.e., day, week, month, ye
 * `@yearly` runs the script every year at midnight on the first day of January.
 * `@reboot` runs the script on system startup only.
 
-!!! note  
+!!! note
+
     Using these `crontab` entries bypasses the `anacron` system and reverts to the `crond.service` whether `anacron` is installed or not.
 
 For our backup script example, if we used use the @daily option to run the backup script at midnight, the entry would look like this:

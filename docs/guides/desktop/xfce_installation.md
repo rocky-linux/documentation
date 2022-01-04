@@ -38,7 +38,8 @@ You also need the Powertools and lightdm repositories. Go ahead and enable those
 
 `dnf copr enable stenstorp/lightdm`
 
-!!! Warning  
+!!! Warning
+
     The `copr` build system creates a repository that is known to work for installing `lightdm`, but is not maintained by the Rocky Linux community. Use at your own risk!
 
 Again, you will be presented with a warning message about the repository. Go ahead and answer `Y` to the prompt.

@@ -66,7 +66,8 @@ Next we need to modify the `macvlan` profile. But before we do, we need to know 
     link/ether a8:5e:45:52:f8:b6 brd ff:ff:ff:ff:ff:ff
     inet 192.168.1.141/24 brd 192.168.1.255 scope global dynamic noprefixroute eno1
 ```
-!!! Note  
+!!! Note
+
     In this case, the interface we are looking for is "eno1" but this could be completely different on your system. Use **your** interface information!
 
 Now that we know the LAN interface, we can modify our `macvlan` profile. To do this, at the command line type:

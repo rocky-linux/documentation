@@ -59,7 +59,8 @@ Last login: Tue Nov 2 21:42:44 2021 from 192.168.100.5
 [testrsync@Rocky ~]$
 ```
 
-!!! tip "Attention!"  
+!!! tip "Attention!"
+
     The server configuration file **/etc/ssh/sshd_config** should be opened <font color=red>PubkeyAuthentication yes</font>
 
 ## rsync protocol password-free authentication login
@@ -94,5 +95,6 @@ sent 30 bytes received 193 bytes 148.67 bytes/sec
 total size is 883 speedup is 3.96
 ```
 
-!!! tip "tip!"  
+!!! tip "tip!"
+
     You can write this variable into **/etc/profile** to make it take effect permanently. The content is: `export RSYNC_PASSWORD=13579`

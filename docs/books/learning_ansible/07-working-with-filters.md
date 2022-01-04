@@ -29,7 +29,8 @@ We have already had the opportunity, during the previous chapters, to use the ji
 
 These filters, written in python, allow us to manipulate and transform our ansible variables.
 
-!!! Note  
+!!! Note
+
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html).
 
 Throughout this chapter, we will use the following playbook to test the different filters presented:
@@ -71,7 +72,8 @@ Throughout this chapter, we will use the following playbook to test the differen
         var: zero
 ```
 
-!!! Note  
+!!! Note
+
     The following is a non-exhaustive list of filters that you are most likely to encounter or need.
     Fortunately, there are many others. You could even write your own!
 

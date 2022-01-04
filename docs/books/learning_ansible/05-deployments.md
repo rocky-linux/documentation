@@ -37,7 +37,8 @@ Ansistrano requires the following to run:
 
 It can download source code from `rsync`, `git`, `scp`, `http`, `S3`, ...
 
-!!! Note  
+!!! Note
+
     For our deployment example, we will use the `git` protocol.
 
 Ansistrano deploys applications by following these 5 steps:
@@ -119,7 +120,8 @@ Technical considerations:
 * The source code to be deployed contains a `html` folder which the vhost should point to. Its `DirectoryIndex` is `index.htm`.
 * The deployment is done by `git`, the package will be installed.
 
-!!! Note  
+!!! Note
+
     The target of our vhost will therefore be: `/var/www/site/current/html`.
 
 Our playbook to configure the server: `playbook-config-server.yml`
@@ -190,7 +192,8 @@ Server: Apache/2.4.37 (rocky) OpenSSL/1.1.1g
 Content-Type: text/html; charset=iso-8859-1
 ```
 
-!!! Note  
+!!! Note
+
     We have not yet deployed any code, so it is normal for `curl` to return a `404` HTTP code. But we can already confirm that the `httpd` service is working and that the firewall is open.
 
 ### Deploying the software
@@ -609,7 +612,8 @@ The `ansistrano_git_branch` variable is used to specify a `branch` or `tag` to d
      - { role: ansistrano.deploy }
 ```
 
-!!! Note  
+!!! Note
+
     You can have fun, during the deployment, refreshing your browser, to see in 'live' the change.
 
 ```

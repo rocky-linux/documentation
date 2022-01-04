@@ -11,7 +11,8 @@ On a Linux system, it is possible to install software in two ways:
 * Using an installation package;
 * Compiling from source files.
 
-!!! Note  
+!!! Note
+
     Installing from source is not covered here. As a rule, you should use the package method unless the software you want is not available via the package manager. The reason for this is that dependencies are generally managed by the package system, whereas with source, you need to manage the dependencies manually.
 
 **The package**: This is a single file containing all the data needed to install the program. It can be executed directly on the system from a software repository.
@@ -82,10 +83,12 @@ Example:
 | `-f`             | Shows the name of the package containing the specified file.                                   |
 | `--last`         | The list of packages is given by installation date (the last installed packages appear first). |
 
-!!! Warning  
+!!! Warning
+
     After the `-q` option, the package name must be exact. Metacharacters (wildcards) are not supported.
 
-!!! Tip  
+!!! Tip
+
     However, it is possible to list all installed packages and filter with the `grep` command.
 
 Example: list the last installed packages:

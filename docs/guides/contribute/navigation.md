@@ -44,7 +44,8 @@ Doing this effectively requires:
 * Linking to the `docs` folder within your cloned documentation repository (you can also just modify the mkdocs.yml file if you wish to load the correct folder, but linking keeps your mkdocs environment cleaner)
 * Running `mkdocs serve` within your clone of docs.rockylinux.org
 
-!!! Note  
+!!! Note
+
     This document was written in a Linux environment. If your environment is different (Windows or Mac), then you will need to do a little research on matching up to some of these steps. An editor or manager reading this can submit changes to it to add in steps for those environments.
 
 ### Installing
