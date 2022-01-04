@@ -7,6 +7,7 @@ date : 2021-10-16
 
 #  install `htop` 
 Every system administrator likes to use some of the more commonly used commands. Today I recommend `htop` as an alternative to the `top` command. To use the `htop` command normally , you need to install it first.
+
 ``` bash
 # Installation epel source (also called repository)
 dnf -y install epel-release
@@ -15,8 +16,10 @@ dnf makecache
 # Install htop
 dnf -y install htop
 ```
+
 #  Use `htop`
 You only need to type `htop` in the terminal, and the interactive interface is as follows:
+
 ```
 0[ |||                      3%]     Tasks: 24, 14thr; 1 running
 1[ |                        1%]     Load average: 0.00 0.00 0.05
@@ -25,6 +28,7 @@ Swap[                  0K/500M]
 PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Commad(merged)
 ...
 ```
+
 <kbd>F1</kbd>Help   <kbd>F2</kbd>Setup  <kbd>F3</kbd>Search <kbd>F4</kbd>Filter <kbd>F5</kbd>Tree   <kbd>F6</kbd>SortBy <kbd>F7</kbd>Nice   <kbd>F8</kbd>Nice+  <kbd>F9</kbd>Kill   <kbd>F10</kbd>Quit
 
 ##  Top Description
