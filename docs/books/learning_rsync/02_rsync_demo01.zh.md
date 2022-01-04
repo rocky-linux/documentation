@@ -64,7 +64,8 @@ Fedora34-->|pull/下载|RockyLinux8;
 
 ## 基于SSH协议的演示
 
-!!! tip "注意!" 在这里，Rocky Linux 8 和 Fedora 34 都使用root用户登录。 Fedora 34是客户端，Rocky Linux 8是服务器。
+!!! tip "注意!"  
+在这里，Rocky Linux 8 和 Fedora 34 都使用root用户登录。 Fedora 34是客户端，Rocky Linux 8是服务器。
 
 ### pull/下载
 
@@ -90,7 +91,8 @@ aabbcc
 ```
 传输成功。
 
-!!! tip "注意" 如果服务器的SSH端口不是默认的22，您可以使用类似这样的方式指定端口——`rsync -avz -e 'ssh -p [port]'`。
+!!! tip "注意"  
+如果服务器的SSH端口不是默认的22，您可以使用类似这样的方式指定端口——`rsync -avz -e 'ssh -p [port]'`。
 
 ### push/上传
 
