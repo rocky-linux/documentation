@@ -39,7 +39,8 @@ antoine
 steven
 ```
 
-!!! Note Nota `uniq` richiede che il file di input sia ordinato perché confronta solo le linee consecutive.
+!!! Nota  
+`uniq` richiede che il file di input sia ordinato perché compara solo le linee consecutive.
 
 Senza un argomento, il comando `uniq` non mostrerà righe identiche che si susseguono nel file `firstnames.txt`:
 
@@ -214,7 +215,8 @@ L'opzione `-I` ti consente di specificare un carattere (nel nostro esempio ilcar
 
 Il pacchetto `yum-utils` è una raccolta di utilità da diversi autori per `yum`, che lo rendono più facile e più potente da usare.
 
-!!! Note Nota Mentre `yum` è stato sostituito da`dnf` in Rocky Linux 8, Il nome del pacchetto è rimasto `yum-utils` anche se può essere installato come `dnf-utils`. Queste sono le classiche utilità YUM implementate come CLI shims sopra a DNF per mantenere la compatibilità all'indietro con `yum-3`.
+!!! Nota  
+Mentre `yum` è stato sostituito da `dnf` in Rocky Linux 8, il nome del pacchetto è rimasto `yum-utils` sebbene possa essere anche installato come `dnf-utils`. Queste sono le classiche utilità YUM implementate come CLI shims sopra a DNF per mantenere la compatibilità all'indietro con `yum-3`.
 
 Ecco alcuni esempi di utilizzo:
 
@@ -264,7 +266,8 @@ $ repoquery -l yum-utils
 
 Il comando `yumdownloader` scarica i pacchetti RPM dai repository.
 
-!!! Note Nota Questo comando è molto utile per costruire rapidamente un repository locale di alcuni rpm!
+!!! Nota  
+Questo comando è molto utile per costruire rapidamente una repository locale di qualche rpm!
 
 Esempio: `yumdownloader` scaricherà il pacchetto rpm _repoquery_ e tutte le sue dipendenze:
 
@@ -323,7 +326,8 @@ Il comando `watch` esegue regolarmente un comando e visualizza il risultato nel 
 
 L'opzione `-n` consente di specificare il numero di secondi tra ogni esecuzione del comando.
 
-!!! Note Nota Per uscire dal comando `watch`, devi digitare i tasti: <kbd>CTRL</kbd>+<kbd>C</kbd> per arrestare il processo.
+!!! Nota  
+Per uscire dal comando `watch`, devi digitare i tasti: <kbd>CTRL</kbd>+<kbd>C</kbd> per terminare il processo.
 
 Esempi:
 
