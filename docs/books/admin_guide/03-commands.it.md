@@ -273,7 +273,9 @@ Il comando `clear` cancella il contenuto della schermata del terminale. Infatti,
 
 In un terminale, il display sarà permanentemente nascosto, mentre nell'interfaccia grafica, una barra di scorrimento ti permetterà sempre di scorrere la cronologia del terminale virtuale.
 
-!!! Tip Suggerimento <kbd>CTRL</kbd> + <kbd>L</kbd> avrà lo stesso effetto del comando `clear`
+!!! Tip "Suggerimento"
+
+    <kbd>CTRL</kbd> + <kbd>L</kbd> avrà lo stesso effetto del comando `clear`
 
 ### comando `echo`
 
@@ -314,7 +316,9 @@ $ date -d 20210517 +%j
 
 In questo ultimo esempio, l'opzione `d` visualizza una data fornita. L'opzione `+%j` formatta questa data per mostrare solo il giorno dell'anno.
 
-!!! Warning Attenzione Il formato di una data può cambiare a seconda del valore della lingua definita nella variabile di ambiente `$LANG`.
+!!! Warning "Attenzione"
+
+    Il formato di una data può cambiare in base al valore della lingua definito nella variabile ambiente '$LANG'.
 
 Il display della data può seguire i seguenti formati:
 
@@ -498,8 +502,10 @@ $ ls -lia /home
 | `25 oct. 08:10` | Ultima data di modifica.                                                                                        |
 | `rockstar`      | Il nome del file (o directory).                                                                                 |
 
-!!! Note Nota Gli **Alias** sono spesso già inseriti nelle distribuzioni comuni.
+!!! Note "Nota"
 
+    Gli **Alias** sono spesso già posizionati nelle distribuzioni comuni.
+    
     Questo è il caso dell'alias `ll`:
 
     ```
@@ -604,7 +610,9 @@ La directory "rockstar" deve esistere per creare la directory "work".
 
 Altrimenti, dovrebbe essere utilizzata l'opzione `-p`. L'opzione `-p` crea le directory genitore se queste non esistono.
 
-!!! Danger Pericolo Non è consigliato utilizzare i nomi dei comandi Linux come directory o nomi di file.
+!!! Danger "Pericolo"
+
+    Non è consigliabile usare i nomi dei comandi Linux come directory o nomi di file.
 
 ### comando `touch`
 
@@ -626,7 +634,9 @@ $ touch /home/rockstar/myfile
 
 Formato data: `[AAAA]MMJJhhmm[ss]`
 
-!!! Tip Suggerimento Il comando `touch` viene utilizzato principalmente per creare un file vuoto, ma può essere utile per i backup incrementali o differenziali per esempio. Davvero, l'unico effetto di eseguire un `touch` su un file sarà quello di costringerlo a essere salvato durante il backup successivo.
+!!! Tip "Suggerimento"
+
+    Il comando `touch` viene utilizzato principalmente per creare un file vuoto, ma può essere utile per esempio per i backup incrementali o differenziali. In effetti, l'unico effetto di eseguire un `touch` su un file sarà quello di forzarlo a essere salvato durante il prossimo backup.
 
 ### comando `rmdir`
 
@@ -642,7 +652,9 @@ $ rmdir /home/rockstar/work
 | ------- | --------------------------------------------------------------------- |
 | `-p`    | Rimuove la directory o le directory principale fornite se sono vuote. |
 
-!!! Tip Suggerimento Per eliminare sia una directory non vuota che il suo contenuto, utilizzare il comando `rm`.
+!!! Tip "Suggerimento"
+
+    Per eliminare sia una directory non vuota che il suo contenuto, utilizzare il comando `rm`.
 
 ### comando `rm`
 
@@ -652,7 +664,9 @@ Il comando `rm` elimina un file o una directory.
 rm [-f] [-r] file [file] [...]
 ```
 
-!!! Danger Pericolo Qualsiasi cancellazione di un file o directory è definitiva.
+!!! Danger "Pericolo"
+
+    Qualsiasi eliminazione di un file o directory è definitiva.
 
 | Opzioni | Informazione                               |
 | ------- | ------------------------------------------ |
@@ -660,7 +674,9 @@ rm [-f] [-r] file [file] [...]
 | `-i`    | Richiede conferma di cancellazione.        |
 | `-r`    | Elimina ricorsivamente le sottodirectory.. |
 
-!!! Note Nota Il comando `rm` non chiede la conferma durante l'eliminazione dei file. Tuttavia, con una distribuzione RedHat/Rocky, `rm` chiede la conferma della cancellazione in quanto il comando `rm` è un`alias` di `rm -i`. Non sorprenderti se su un'altra distribuzione, come Debian, ad esempio, non ottieni una richiesta di conferma.
+!!! Note "Nota"
+
+    Il comando `rm` non chiede conferma quando si eliminano i file. Tuttavia, con una distribuzione RedHat/Rocky, `rm` chiede la conferma della cancellazione perché il comando `rm` è un `alias` del comando `rm -i`. Non sorprenderti se su un'altra distribuzione, come Debian, ad esempio, non ottieni una richiesta di conferma.
 
 L'eliminazione di una cartella con il comando `rm`, che la cartella sia vuota o meno, richiederà l'aggiunta dell'opzione `-r`.
 
@@ -669,9 +685,9 @@ La fine delle opzioni è segnalata alla shell da un doppio trattino `--`.
 Nell'esempio:
 
 ```bash
-$ >-hard-hard # Per creare un file vuoto chiamato -hard-hard
+$ >-hard-hard # To create an empty file called -hard-hard
 hard-hard
-[CTRL+C] Per interrompere la creazione del file
+[CTRL+C] To interrupt the creation of the file
 $ rm -f -- -hard-hard
 ```
 
@@ -947,7 +963,7 @@ Il comando `sort` ordina le linee di un file.
 Ti consente di ordinare il risultato di un comando o del contenuto di un file in un determinato ordine, numericamente, alfabeticamente, per dimensione (KB, MB, GB) o in ordine inverso.
 
 ```bash
-sort [-kx] [-n] [-o file] [-ty] file
+sort [-kx] [-n] [-u] [-o file] [-ty] file
 ```
 
 Esempio:
@@ -1112,8 +1128,10 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 
 Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso `*.txt` e li elimina.
 
-!!! Tip "Comprendere l'opzione `-exec`" Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
+!!! Tip "Comprendere l'opzione `-exec`"
 
+    Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
+    
     Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.txt`, il comando `find` costruirà la stringa sostituendo nella stringa `rm -f {} \;` le parentesi graffe con uno dei risultati della ricerca, e farà questo tutte le volte che ci sono dei risultati.
     
     Questo ci darà:
@@ -1123,9 +1141,11 @@ Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso 
     ```
 
 
-    Il carattere `;` è un carattere speciale di shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
+    Il carattere `;` è un carattere speciale della shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
 
-!!! Tip Suggerimento `$ find /tmp -name *.txt -delete` fa la stessa cosa.
+!!! Tip "Suggerimento"
+
+    `$ find /tmp -name *.txt -delete` does the same thing.
 
 ### comando `whereis`
 
@@ -1177,7 +1197,9 @@ Il comando `grep` restituisce la linea completa contenente la stringa che stai c
 $ grep -w "^root" /etc/passwd
 ```
 
-!!! Note Nota Questo comando è molto potente ed è altamente raccomandata la consultazione del manuale. Ha molti utilizzi derivati.
+!!! Note "Nota"
+
+    Questo comando è molto potente e si consiglia vivamente di consultare il suo manuale. Ha molti utilizzi derivati.
 
 È possibile cercare una stringa in un albero di file con l'opzione `-R`.
 
@@ -1221,9 +1243,13 @@ $ find /home -name "test[123]*"
 /home/rockstar/test362
 ```
 
-!!! Note Nota Delimita sempre le parole contenenti meta-caratteri con `"` per evitare che vengano sostituiti dai nomi dei file che soddisfano i criteri.
+!!! Note "Nota"
 
-!!! Warning Avvertimento Non confondere i meta-caratteri della shell con i meta-caratteri dell'espressione regolare. Il comando `grep` usa i meta-caratteri dell'espressione regolare.
+    Circonda sempre le parole contenenti meta-caratteri con `"` per evitare che vengano sostituite dai nomi dei file che soddisfano i criteri.
+
+!!! Warning "Attenzione"
+
+    Non confondere i meta-caratteri della shell con i meta-caratteri dell'espressione regolare. Il comando `grep` usa i meta-caratteri dell'espressione regolare.
 
 ## Reindirizzamenti e pipes
 
@@ -1252,7 +1278,9 @@ Questi flussi puntano ai file delle periferiche, ma poiché tutto è un file in 
 $ ftp -in serverftp << ftp-commands.txt
 ```
 
-!!! Note Nota Solo i comandi che richiedono l'input della tastiera saranno in grado di gestire il reindirizzamento dell'ingresso.
+!!! Note "Nota"
+
+    Solo i comandi che richiedono un input da tastiera saranno in grado di gestire il reindirizzamento dell'input.
 
 Il reindirizzamento dell'ingresso può anche essere utilizzato per simulare l'interattività dell'utente. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
 
@@ -1278,7 +1306,9 @@ STOP
 
 La shell esce dal comando `ftp` quando riceve una linea contenente solo la parola chiave.
 
-!!! Warning Avvertimento La parola chiave finale, quì `END` o `STOP`, deve essere l'unica parola sulla linea e deve essere all'inizio della linea.
+!!! Warning "Attenzione"
+
+    La parola chiave finale, qui `END` o `STOP`, deve essere l'unica parola sulla riga e deve essere all'inizio della riga.
 
 Il reindirizzamento dell'ingresso standard viene usato raramente perché la maggior parte dei comandi accetta un nome di file come argomento.
 
@@ -1286,9 +1316,9 @@ Il comando `wc` potrebbe essere usato in questo modo:
 
 ```bash
 $ wc -l .bash_profile
-27 .bash_profile # il numero di linee è seguito dal nome del file
+27 .bash_profile # the number of lines is followed by the file name
 $ wc -l < .bash_profile
-27 # restituisce solo il numero di linee
+27 # returns only the number of lines
 ```
 
 ### Redirezione Output
@@ -1431,7 +1461,8 @@ Per un uso permanente, devono essere creati nel:
 * `.bashrc` file nella directory di accesso dell'utente;
 * `/etc/profile.d/alias.sh` file per tutti gli utenti.
 
-!!! Warning Avvertimento Prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
+!!! Attenzione  
+Occorre prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
 
     ```bash
     alias cd='rm -Rf'
@@ -1462,15 +1493,15 @@ $ type ls
 potrebbe restituire quanto segue:
 
 ```bash
-ls is an alias to « ls -rt »
+ls è un alias di « ls -rt »
 ```
 
 Ora che questo è noto, possiamo vedere i risultati dell'utilizzo dell'alias o disabilitarlo in una volta con il carattere `\` eseguendo il seguente:
 
 ```bash
-$ ls file*   # ordine per data
+$ ls file*   # order by time
 file3.txt  file2.txt  file1.txt
-$ \ls file*  # ordine per nome
+$ \ls file*  # order by name
 file1.txt  file2.txt  file3.txt
 ```
 
