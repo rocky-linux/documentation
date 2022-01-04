@@ -121,8 +121,9 @@ If it isn’t, get the super-user to install it.
 
 `[ying@serverXY ying]$ gpg --list-keys`
 
-!!! NOTE  
-You shouldn’t have any keys in your key-ring yet. But the above command will also help create a default environment to enable you create a new key-pair successfully the first time.
+!!! NOTE
+
+    You shouldn’t have any keys in your key-ring yet. But the above command will also help create a default environment to enable you create a new key-pair successfully the first time.
 
 List the hidden directories in your home directory again. What is the name of the new directory added?
 
@@ -150,9 +151,9 @@ Your selection? 1
 
  At the prompt for the type of key your want to create accept the default i.e.(DSA and ElGamal). Type 1
 
-!!! WARNING  
+!!! WARNING
 
-Option (1) will create two key-pairs for you. The DSA key-pair will be the primary keypair - for making digital signatures and a subordinate ELGamel keypair for data encryption.
+    Option (1) will create two key-pairs for you. The DSA key-pair will be the primary keypair - for making digital signatures and a subordinate ELGamel keypair for data encryption.
 
 6. You will create an ELG-E keysize of 1024. Accept the default again at the prompt below:
 
@@ -317,17 +318,15 @@ To export your public keys
 
 [ying@serverXY ying\]$ ***gpg --output ying-pub.gpg --export &lt;your\_key’s\_user\_ID&gt;***
 
-!!! NOTE  
+!!! NOTE
 
-Please replace &lt;your\_key’s\_user\_ID&gt; with any string that correctly identifies
+    Please replace &lt;your\_key’s\_user\_ID&gt; with any string that correctly identifies your keys. On our sample system this value can be any one of the following:
 
-your keys. On our sample system this value can be any one of the following:
+    ying@serverXY, ying, yang
 
-ying@serverXY, ying, yang
+    OR
 
-OR
-
-The actual key ID - 1D12E484
+    The actual key ID - 1D12E484
 
 2. Export your public key to a file called “ying-pub.asc”. But this time generate it in
 
@@ -513,9 +512,9 @@ gpg: decryption failed: secret key not available
 
  command to decrypt the file. Were they more successful in decrypting the file.
 
-!!! NOTE  
+!!! NOTE
 
-Be very careful when decrypting binary files ( e.g. programs), because after successfully decrypting a file gpg will attempt to send the contents of the file to standard output.
+    Be very careful when decrypting binary files ( e.g. programs), because after successfully decrypting a file gpg will attempt to send the contents of the file to standard output.
 
 Make a habit of using the command below instead when decrypting files:
 
@@ -525,7 +524,7 @@ This forces sending the output to a file called “encrypt-sec”.
 
 Which can then be viewed (or run) using any program that is suited for the file (or content) type.
 
-!!! TIPS  
+!!! TIPS
 
 1. Most of the commands and options used with the gpg program also have short forms that results in less
 

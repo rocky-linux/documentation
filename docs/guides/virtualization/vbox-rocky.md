@@ -19,7 +19,8 @@ This document is an attempt to give a step-by-step set of instructions for getti
 * A copy of the Rocky Linux [DVD ISO](https://rockylinux.org/download) for your architecture. (x86_64 or ARM64).
 * Ensure that your OS is 64 bit and that hardware virtualization is turned on in your BIOS.
 
-!!! Note  
+!!! Note
+
     Hardware virtualization is 100% necessary in order to install a 64 bit OS. If your configuration screen shows only 32-bit options, then you need to stop and fix this before continuing.
 
 ## Preparing The VirtualBox&reg; Configuration
@@ -114,7 +115,8 @@ This time:
 * In the "Screen" tab on the right-hand side, you'll notice the "Video Memory" option with the default set to 16 MB.
 * Change this to the value that you want. You can adjust this upwards by coming back to this screen anytime. In our example, we are selecting 128 MB now.
 
-!!! Tip  
+!!! Tip
+
     There are ways to set the video memory up to 256 MB. If you need more, check out [this document](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vboxmanage-modifyvm.html) from Oracle's official documentation.
 
 Your screen should look something like this:
@@ -147,7 +149,8 @@ After installing and rebooting you will get a EULA license agreement screen that
 
 It is not the intent of this document to make you an expert on all of the features that VirtualBox&reg; can provide. For information on how to do specific things please check the [official documentation](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/).
 
-!!! tip "Advanced Tip"  
+!!! tip "Advanced Tip"
+
     VirtualBox&reg; offers extensive options at the command line using `VBoxManage`. While this document does not cover the use of `VBoxManage`, Oracle's official documentation provides [plenty of details](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vboxmanage-intro.html) if you would like to research this further.
 
 ## Conclusion

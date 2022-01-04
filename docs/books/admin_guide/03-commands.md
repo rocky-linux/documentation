@@ -275,7 +275,8 @@ The `clear` command clears the contents of the terminal screen. In fact, to be m
 
 In a terminal, the display will be permanently hidden, whereas in a graphical interface, a scrollbar will allow you to go back in the history of the virtual terminal.
 
-!!! Tip  
+!!! Tip
+
     <kbd>CTRL</kbd> + <kbd>L</kbd> will have the same effect as the `clear` command
 
 ### `echo` command
@@ -612,7 +613,7 @@ The "rockstar" directory must exist to create the "work" directory.
 
 Otherwise, the `-p` option should be used. The `-p` option creates the parent directories if they do not exist.
 
-!!! Danger  
+!!! Danger
 
     It is not recommended to use Linux command names as directory or file names.
 
@@ -636,7 +637,7 @@ $ touch /home/rockstar/myfile
 
 Date format: `[AAAA]MMJJhhmm[ss]`
 
-!!! Tip  
+!!! Tip
 
     The `touch` command is primarily used to create an empty file, but it can be useful for incremental or differential backups for example. Indeed, the only effect of executing a `touch` on a file will be to force it to be saved during the next backup.
 
@@ -654,7 +655,7 @@ $ rmdir /home/rockstar/work
 | ----------------------------------------------------------------------- | ----------- |
 | `-p` |  Removes the parent directory or directories provided if they are empty.           |
 
-!!! Tip  
+!!! Tip
 
     To delete both a non-empty directory and its contents, use the `rm` command.
 
@@ -666,7 +667,7 @@ The `rm` command deletes a file or directory.
 rm [-f] [-r] file [file] [...]
 ```
 
-!!! Danger  
+!!! Danger
 
     Any deletion of a file or directory is final.
 
@@ -676,7 +677,7 @@ rm [-f] [-r] file [file] [...]
 | `-i`    | Requires confirmation of deletion.       |
 | `-r`    | Recursively deletes subdirectories.      |
 
-!!! Note  
+!!! Note
 
     The `rm` command itself does not ask for confirmation when deleting files. However, with a RedHat/Rocky distribution, `rm` does ask for confirmation of deletion because the `rm` command is an `alias` of the `rm -i` command. Don't be surprised if on another distribution, like Debian for example, you don't get a confirmation request.
 
@@ -1130,7 +1131,7 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 
 The previous command searches for all files in the `/tmp` directory named `*.txt` and deletes them.
 
-!!! Tip "Understand the `-exec` option"  
+!!! Tip "Understand the `-exec` option"
 
     In the example above, the `find` command will construct a string representing the command to be executed.
 
@@ -1144,7 +1145,7 @@ The previous command searches for all files in the `/tmp` directory named `*.txt
 
     The `;` character is a special shell character that must be protected by a `\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).
 
-!!! Tip  
+!!! Tip
 
     `$ find /tmp -name *.txt -delete` does the same thing.
 
@@ -1198,7 +1199,7 @@ The `grep` command returns the complete line containing the string you are looki
 $ grep -w "^root" /etc/passwd
 ```
 
-!!! Note  
+!!! Note
 
     This command is very powerful and it is highly recommended to consult its manual. It has many derivatives.
 
@@ -1244,11 +1245,11 @@ $ find /home -name "test[123]*"
 /home/rockstar/test362
 ```
 
-!!! Note  
+!!! Note
 
     Always surround words containing meta-characters with `"` to prevent them from being replaced by the names of files that meet the criteria.
 
-!!! Warning  
+!!! Warning
 
     Do not confuse shell meta-characters with regular expression meta-characters. The `grep` command uses regular expression meta-characters.
 
@@ -1279,7 +1280,7 @@ It is possible to redirect the input stream from another file with the character
 $ ftp -in serverftp << ftp-commands.txt
 ```
 
-!!! Note  
+!!! Note
 
     Only commands that require keyboard input will be able to handle input redirection.
 
@@ -1307,7 +1308,7 @@ STOP
 
 The shell exits the `ftp` command when it receives a line containing only the keyword.
 
-!!! Warning  
+!!! Warning
 
     The ending keyword, here `END` or `STOP`, must be the only word on the line and must be at the beginning of the line.
 

@@ -33,7 +33,8 @@ Last login: Wed Nov 3 22:07:18 2021 from 192.168.100.5
 [testrsync@Rocky ~]$
 ```
 
-!!! tip "Attention"  
+!!! tip "Attention"
+
     The configuration files of the two machines **/etc/ssh/sshd_config** should be opened <font color=red>PubkeyAuthentication yes</font>
 
 ## Rocky Linux 8 install unison
@@ -131,13 +132,16 @@ done
 [root@fedora ~]# jobs -l
 ```
 
-!!! tip "Attention!"  
+!!! tip "Attention!"
+
     For two-way synchronization, the scripts of both machines must be started, otherwise an error will be reported.
 
-!!! tip "Attention!"  
+!!! tip "Attention!"
+
     If you want to start this script at boot
     `[root@Rocky ~]# echo "bash /root/unison1.sh &" >> /etc/rc.local`
     `[root@Rocky ~]# chmod +x /etc/rc.local`
 
-!!! tip "Attention!"  
+!!! tip "Attention!"
+
     If you want to stop the corresponding process of this script, you can find it in the `htop` command and then **kill**

@@ -38,7 +38,8 @@ The `cron` service is used for:
 
 `crontab` is short for **cron table**, but can be thought of as a task scheduling table.
 
-!!! Warning  
+!!! Warning
+
     To set up a schedule, the system must have the correct time set.
 
 ## How the service works
@@ -51,7 +52,8 @@ To check its status:
 [root] # systemctl status crond
 ```
 
-!!! Tip  
+!!! Tip
+
     If the `crond` daemon is not running, you will have to initialize it manually and/or automatically at startup. Indeed, even if tasks are scheduled, they will not be launched.
 
 Initialization of the `crond` daemon in manual:
@@ -75,7 +77,8 @@ This permission varies according to the information contained in the files below
 * `/etc/cron.allow`
 * `/etc/cron.deny`
 
-!!! Warning  
+!!! Warning
+
     If neither file is present, all users can use `cron`.
 
 ### The `cron.allow` and `cron.deny` Files
@@ -86,7 +89,8 @@ Only users contained in this file are allowed to use `cron`.
 
 If it exists and is empty, no users can use `cron`.
 
-!!! Warning  
+!!! Warning
+
     If `cron.allow` is present, `cron.deny` is **ignored**.
 
 File `/etc/cron.deny`
@@ -145,7 +149,8 @@ Example:
 | `-u`   | Name of the user whose schedule file is to be manipulated |
 | `-r`   | Delete the schedule file                                  |
 
-!!! Warning  
+!!! Warning
+
     `crontab` without option deletes the old schedule file and waits for the user to enter new lines. You have to press <kbd>ctrl</kbd> + <kbd>d</kbd> to exit this editing mode.
 
     Only `root` can use the `-u user` option to manage another user's schedule file.
@@ -165,7 +170,8 @@ On the other hand, the following points must be taken into account:
 * Provide redirections (stdin, stdout, stderr);
 * It is not relevant to run commands that use input/output requests on a terminal.
 
-!!! Note  
+!!! Note
+
     It is important to understand that the purpose of scheduling is to perform tasks automatically, without the need for external intervention.
 
 ## The `crontab` file
@@ -193,7 +199,8 @@ The `crontab` file is structured according to the following rules.
 | 5     | Day(s) of the week  | From 0 to 7 (0=7=sunday) |
 | 6     | Task to execute     | Full command or script   |
 
-!!! Warning  
+!!! Warning
+
     The tasks to be executed must use absolute paths and if possible use redirects.
 
 In order to simplify the notation for the definition of time, it is advisable to use special symbols.

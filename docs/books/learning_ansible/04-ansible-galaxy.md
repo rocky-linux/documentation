@@ -61,7 +61,8 @@ ansible-galaxy collection [import|init|install|login|remove|...]
 
 An Ansible role is a unit that promotes the reusability of playbooks.
 
-!!! Note  
+!!! Note
+
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 
 ### Installing useful Roles
@@ -427,7 +428,8 @@ Obviously, there is no limit to how much you can improve your role. Imagine that
 
 Collections are a distribution format for Ansible content that can include playbooks, roles, modules, and plugins.
 
-!!! Note  
+!!! Note
+
     More information can be [found here](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
 
 To install or upgrade a collection:
