@@ -1145,7 +1145,7 @@ Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso 
 
 !!! Tip "Suggerimento"
 
-    `$ find /tmp -name *.txt -delete` does the same thing.
+    `$ find /tmp -name *.txt -delete` fa la stessa cosa.
 
 ### comando `whereis`
 
