@@ -64,8 +64,9 @@ Fedora34-->|pull/下载|RockyLinux8;
 
 ## 基于SSH协议的演示
 
-!!! tip "注意!"  
-在这里，Rocky Linux 8 和 Fedora 34 都使用root用户登录。 Fedora 34是客户端，Rocky Linux 8是服务器。
+!!! tip "注意!"
+
+    在这里，Rocky Linux 8 和 Fedora 34 都使用root用户登录。 Fedora 34是客户端，Rocky Linux 8是服务器。
 
 ### pull/下载
 
@@ -79,35 +80,36 @@ Fedora34-->|pull/下载|RockyLinux8;
 在客户端这边，我们pull/下载过来，服务器的这个文件为/rsync/aabbcc
 
 ```bash
-[root@fedora ~]# rsync -avz testrsync@192.168.100.4:/rsync/aabbcc  /root
-testrsync@192.168.100.4's password:
+[root@fedora ~]# rsync -avz testrsync@192.168.100.4:/rsync/aabbcc /root
+testrsync@192.168.100.4 ' s password:
 receiving incremental file list
 aabbcc
-sent 43 bytes  received 85 bytes  51.20 bytes/sec
-total size is 0  speedup is 0.00
+sent 43 bytes received 85 bytes 51.20 bytes/sec
+total size is 0 speedup is 0.00
 [root@fedora ~]# cd
 [root@fedora ~]# ls
 aabbcc
 ```
 传输成功。
 
-!!! tip "注意"  
-如果服务器的SSH端口不是默认的22，您可以使用类似这样的方式指定端口——`rsync -avz -e 'ssh -p [port]'`。
+!!! tip "注意"
+
+    如果服务器的SSH端口不是默认的22，您可以使用类似这样的方式指定端口——`rsync -avz -e 'ssh -p [port]'`。
 
 ### push/上传
 
 ```bash
 [root@fedora ~]# touch fedora
-[root@fedora ~]# rsync -avz /root/*  testrsync@192.168.100.4:/rsync/
-testrsync@192.168.100.4's password:
+[root@fedora ~]# rsync -avz /root/* testrsync@192.168.100.4:/rsync/
+testrsync@192.168.100.4 ' s password:
 sending incremental file list
 anaconda-ks.cfg
 fedora
-rsync: mkstemp "/rsync/.anaconda-ks.cfg.KWf7JF" failed: Permission denied (13)
-rsync: mkstemp "/rsync/.fedora.fL3zPC" failed: Permission denied (13)
-sent 760 bytes  received 211 bytes  277.43 bytes/sec
-total size is 883  speedup is 0.91
-rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1330) [sender=3.2.3]
+rsync: mkstemp " /rsync/.anaconda-ks.cfg.KWf7JF " failed: Permission denied (13)
+rsync: mkstemp " /rsync/.fedora.fL3zPC " failed: Permission denied (13)
+sent 760 bytes received 211 bytes 277.43 bytes/sec
+total size is 883 speedup is 0.91
+rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1330) [sender = 3.2.3]
 ```
 
 **提示权限拒绝，如何处理？**
@@ -115,32 +117,32 @@ rsync error: some files/attrs were not transferred (see previous errors) (code 2
 首先查看 /rsync/ 这个目录的权限。 很明显没有w权限， 我们可以使用`setfacl`赋予权限:
 
 ```bash
-[root@Rocky ~]# ls -ld /rsync/
-drwxr-xr-x 2 root root 4096 11月  2 15:05 /rsync/
+[root@Rocky ~ ] # ls -ld /rsync/
+drwxr-xr-x 2 root root 4096 November 2 15:05 /rsync/
 ```
 
 ```bash
-[root@Rocky ~]# setfacl -m u:testrsync:rwx /rsync/
-[root@Rocky ~]# getfacl /rsync/
-getfacl: Removing leading '/' from absolute path names
+[root@Rocky ~ ] # setfacl -mu:testrsync:rwx /rsync/
+[root@Rocky ~ ] # getfacl /rsync/
+getfacl: Removing leading ' / ' from absolute path names
 # file: rsync/
 # owner: root
 # group: root
 user::rwx
 user:testrsync:rwx
-group::r-x
+group::rx
 mask::rwx
-other::r-x
+other::rx
 ```
 
 再次尝试，成功!
 
 ```bash
-[root@fedora ~]# rsync -avz /root/* testrsync@192.168.100.4:/rsync/
-testrsync@192.168.100.4's password:
+[root@fedora ~ ] # rsync -avz /root/* testrsync@192.168.100.4:/rsync/
+testrsync@192.168.100.4 ' s password:
 sending incremental file list
 anaconda-ks.cfg
 fedora
-sent 760 bytes  received 54 bytes  180.89 bytes/sec
-total size is 883  speedup is 1.08
+sent 760 bytes received 54 bytes 180.89 bytes/sec
+total size is 883 speedup is 1.08
 ```
