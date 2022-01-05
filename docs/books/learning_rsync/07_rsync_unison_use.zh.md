@@ -33,8 +33,9 @@ Last login: Wed Nov  3 22:07:18 2021 from 192.168.100.5
 [testrsync@Rocky ~]$
 ```
 
-!!! tip "注意"  
-两台机器的配置文件 **/etc/ssh/sshd_config** 应该打开 <font color=red>PubkeyAuthentication yes</font>
+!!! tip "注意"
+
+    服务器的配置文件 **/etc/ssh/sshd_config** 应该打开 <font color=red>PubkeyAuthentication yes</font>
 
 ## Rocky Linux 8 安装unison
 
@@ -46,10 +47,6 @@ ocaml是一门编程语言，unison的底层依赖它。
 [root@Rocky ~]# cd /usr/local/src/ocaml-4.12.0
 [root@Rocky /usr/local/src/ocaml-4.12.0]# ./configure --prefix=/usr/local/ocaml && make world opt && make install
 ...
-[root@Rocky ~]# ls /usr/local/ocaml/
-bin  lib  man
-[root@Rocky ~]# echo PATH=$PATH:/usr/local/ocaml/bin  >> /etc/profile
-[root@Rocky ~]# . /etc/profile
 [root@Rocky ~]# ls /usr/local/ocaml/
 bin lib man
 [root@Rocky ~]# echo PATH=$PATH:/usr/local/ocaml/bin >> /etc/profile
@@ -78,10 +75,6 @@ src/unison
 [root@fedora /usr/local/src/ocaml-4.12.0]# ./configure --prefix=/usr/local/ocaml && make world opt && make install
 ...
 [root@fedora ~]# ls /usr/local/ocaml/
-bin  lib  man
-[root@fedora ~]# echo PATH=$PATH:/usr/local/ocaml/bin  >> /etc/profile
-[root@fedora ~]# . /etc/profile
-[root@fedora ~]# ls /usr/local/ocaml/
 bin lib man
 [root@fedora ~]# echo PATH=$PATH:/usr/local/ocaml/bin >> /etc/profile
 [root@fedora ~]#. /etc/profile
@@ -93,9 +86,6 @@ bin lib man
 [root@fedora ~]# cd /usr/local/src/unison-2.51.4/
 [root@fedora /usr/local/src/unison-2.51.4]# make UISTYLE=txt
 ...
-[root@fedora /usr/local/src/unison-2.51.4]# ls src/unison
-src/unison
-[root@fedora /usr/local/src/unison-2.51.4]# cp -p src/unison /usr/local/bin
 [root@fedora /usr/local/src/unison-2.51.4]# ls src/unison
 src/unison
 [root@fedora /usr/local/src/unison-2.51.4]# cp -p src/unison /usr/local/bin
@@ -142,11 +132,16 @@ done
 [root@fedora ~]# jobs -l
 ```
 
-!!! tip "注意!"  
-要双向同步的话，两个机器的脚本必须都需要启动才可以，否则会报错。
+!!! tip "注意!"
 
-!!! tip "注意!"  
-如果您要开机自启动这个脚本的话 `[root@Rocky ~]# echo "bash /root/unison1.sh &" >> /etc/rc.local` `[root@Rocky ~]# chmod +x /etc/rc.local`
+    要双向同步的话，两个机器的脚本必须都需要启动才可以，否则会报错。
 
-!!! tip "注意!"  
-如果您要停止这个脚本的对应进程，可以在  `htop` 命令中找到它然后  **kill**
+!!! tip "注意!"
+
+    如果您要开机自启动这个脚本的话
+    `[root@Rocky ~]# echo "bash /root/unison1.sh &" >> /etc/rc.local`
+    `[root@Rocky ~]# chmod +x /etc/rc.local`
+
+!!! tip "注意!"
+
+    如果您要停止这个脚本的对应进程，可以在 `htop` 命令中找到它然后 **kill** 即可
