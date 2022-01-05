@@ -41,7 +41,9 @@ Da filiazioni successive, il processo `init` è il padre di tutti i processi.
 
 C'è una relazione genitore/figlio tra i processi. Un processo figlio è il risultato del processo genitore che chiama il _fork ()_ iniziale e duplicando il proprio codice crea un processo figlio. Il _PID_ del processo figlio viene restituito al processo genitore in modo che possa comunicare. Ogni processo figlio ha l'identificatore del suo processo genitore, il _PPID_.
 
-Il numero _PID_ rappresenta il processo al momento dell'esecuzione. Quando il processo finisce, il numero è di nuovo disponibile per un altro processo. Eseguendo lo stesso comando più volte produrrà un diverso _PID_ ogni volta.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! Note "Nota" I processi non devono essere confusi con i _threads_. Ogni processo ha il proprio contesto di memoria (risorse e spazio di indirizzamento), mentre il _threads_ dello stesso processo condivide lo stesso contesto.
+Il numero _PID_ rappresenta il processo al momento dell'esecuzione. Quando il processo finisce, il numero è di nuovo disponibile per un altro processo. Eseguendo lo stesso comando più volte produrrà un diverso _PID_ ogni volta.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! Note "Nota"
+
+    I processi non devono essere confusi con i _threads_. Ogni processo ha il proprio contesto di memoria (risorse e spazio di indirizzamento), mentre il threads dello stesso processo condivide lo stesso contesto.
 
 ## Visualizzazione dei processi
 
@@ -203,18 +205,20 @@ $ kill -9 1664
 
 I segnali sono i mezzi di comunicazione tra i processi. Il comando `kill` invia un segnale a un processo.
 
-!!! Tip "Suggerimento"  
-L'elenco completo dei segnali presi in considerazione dal comando `kill` è disponibile digitando il comando:
-```
-$ man 7 signal
-```
+!!! Tip "Suggerimento"
+
+    L'elenco completo dei segnali presi in considerazione dal comando `kill` è disponibile digitando il comando :
+
+    ```
+    $ man 7 signal
+    ```
 
 ### comando `nohup`
 
 `nohup` consente il lancio di un processo indipendentemente da una connessione.
 
 ```
-nohup command
+comando nohup
 ```
 
 Esempio:
@@ -224,8 +228,9 @@ $ nohup myprogram.sh 0</dev/null &
 
 `nohup` ignora il segnale `SIGHUP` inviato quando un utente si disconnette.
 
-!!! Note "Domanda"  
-`nohup` gestisce l'output e l'errore standard, ma non l'input standard, da qui il reindirizzamento di questo input a `/dev/null`.
+!!! Note "Domanda"
+
+    `nohup` gestisce l'output standard e l'errore, ma non l'input standard, quindi il reindirizzamento di questo input a `/dev/null`.
 
 ### [CTRL] + [Z]
 
@@ -292,7 +297,7 @@ Le colonne rappresentano:
 Il comando `nice` consente l'esecuzione di un comando specificando la sua priorità.
 
 ```
-nice priority command
+comando nice priority
 ```
 
 Esempio:
@@ -302,8 +307,9 @@ $ nice -n+15 find / -name "file"
 
 a differenza di `root`, un utente standard può solo ridurre la priorità di un processo. Saranno accettati solo valori tra +0 e +19.
 
-!!! Tip "Suggerimento"  
-Quest'ultima limitazione può essere modificata su base utente o per gruppo modificando il file `/etc/security/limits.conf`.
+!!! Tip "Suggerimento"
+
+    Quest'ultima limitazione può essere eliminata per utente o per gruppo modificando il file `/etc/security/limits.conf`.
 
 Il comando `renice` ti consente di modificare la priorità di un processo di esecuzione.
 
@@ -323,11 +329,13 @@ $ renice +15 -p 1664
 
 Il comando `renice` agisce sui processi già in esecuzione. È quindi possibile modificare la priorità di un processo specifico, ma anche di diversi processi appartenenti a un utente o un gruppo.
 
-!!! Tip "Suggerimento"  
-Il comando `pidof`, accoppiato con il comando `xargs` (vedi il pagina dei comandi avanzati), consente di applicare una nuova priorità in un singolo comando:
-```
-$ pidof sleep | xargs renice 20
-```
+!!! Tip "Suggerimento"
+
+    Il comando `pidof`, associato al comando `xargs` (vedi il corso Comandi avanzati), permette di applicare una nuova priorità in un singolo comando:
+
+    ```
+    $ pidof sleep | xargs renice 20
+    ```
 
 ### comando `top`
 
