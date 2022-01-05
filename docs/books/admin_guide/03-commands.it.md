@@ -1461,8 +1461,9 @@ Per un uso permanente, devono essere creati nel:
 * `.bashrc` file nella directory di accesso dell'utente;
 * `/etc/profile.d/alias.sh` file per tutti gli utenti.
 
-!!! Attenzione  
-Occorre prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
+!!! Warning "Attenzione"
+
+    Particolare attenzione deve essere prestata quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
 
     ```bash
     alias cd='rm -Rf'
@@ -1493,7 +1494,7 @@ $ type ls
 potrebbe restituire quanto segue:
 
 ```bash
-ls è un alias di « ls -rt »
+ls is an alias to « ls -rt »
 ```
 
 Ora che questo è noto, possiamo vedere i risultati dell'utilizzo dell'alias o disabilitarlo in una volta con il carattere `\` eseguendo il seguente:
