@@ -23,7 +23,9 @@ In questo capitolo imparerai come eseguire il backup e ripristinare i tuoi dati 
 
 ****
 
-!!! Note "Nota" In questo capitolo le strutture di comando utilizzano "dispositivo" per specificare sia un percorso di destinazione per il backup, e sia la posizione sorgente durante il ripristino. Il dispositivo può essere un supporto esterno o un file locale. Dovresti sviluppare una certa confidenza con questo concetto durante lo svolgimento del capitolo, ma puoi sempre ritornare a questa nota per chiarimenti se ne hai bisogno.
+!!! Note "Nota"
+
+    In tutto questo capitolo le strutture di comando usano "device" per specificare sia la posizione di destinazione per il backup, sia la posizione di origine durante il ripristino. Il dispositivo può essere un supporto esterno o un file locale. Dovresti sviluppare una certa confidenza con questo concetto durante lo svolgimento del capitolo, ma puoi sempre ritornare a questa nota per chiarimenti se ne hai bisogno.
 
 Il backup risponde a una necessità di conservare e ripristinare i dati in modo sicuro ed efficace.
 
@@ -74,7 +76,9 @@ I backup richiedono molta disciplina e rigore da parte dell'amministratore di si
 * **Pre-corrente** : in un dato momento (prima di un aggiornamento del sistema, ...).
 * **Periodica**: Ogni giorno, settimana, mese, ...
 
-!!! Tip "Suggerimento" Prima di effettuare modifiche al sistema, può essere utile effettuare un backup. Tuttavia, non ha senso eseguire il backup dei dati ogni giorno se vengono modificati solo ogni mese.
+!!! Tip "Suggerimento"
+
+    Prima di una modifica del sistema, può essere utile fare un backup. Tuttavia, non ha senso eseguire il backup dei dati ogni giorno se vengono modificati solo ogni mese.
 
 ### Metodi di ripristino
 
@@ -85,7 +89,9 @@ A seconda delle utilità disponibili, sarà possibile eseguire diversi tipi di r
 
 È possibile ripristinare un intero backup ma è anche possibile ripristinarne solo una parte. Tuttavia, quando si ripristina una directory, i file creati dopo il backup non vengono eliminati.
 
-!!! Tip "Suggerimento" Per ripristinare una directory com'era al momento del backup, è necessario eliminarne completamente il contenuto prima di avviare il ripristino.
+!!! Tip "Suggerimento"
+
+    Per ripristinare una directory come era al momento del backup, è necessario eliminare completamente il suo contenuto prima di avviare il ripristino.
 
 ### Gli strumenti
 
@@ -106,7 +112,9 @@ I comandi che useremo qui sono `tar` e `cpio`.
   * salta i file danneggiati;
   * file system completo.
 
-!!! Note "Nota" Questi comandi salvano in un formato proprietario e standardizzato.
+!!! Note "Nota"
+
+    Questi comandi salvano in un formato proprietario e standardizzato.
 
 ### Convenzione di denominazione
 
@@ -117,9 +125,13 @@ L'uso di una convenzione di denominazione consente di indirizzare rapidamente il
 * opzioni utilizzate;
 * data.
 
-!!! Tip "Suggerimento" Il nome del backup deve essere un nome esplicito.
+!!! Tip "Suggerimento"
 
-!!! Note "Nota" La nozione di estensione sotto Linux non esiste. In altre parole, il nostro uso delle estensioni qui è per l'operatore umano. Se l'amministratore di sistema vede un'estensione di file `.tar.gz` o `.tgz`, ad esempio, allora sa come gestire il file.
+    Il nome del backup deve essere un nome esplicito.
+
+!!! Note "Nota"
+
+    La nozione di estensione in Linux non esiste. In altre parole, il nostro uso delle estensioni qui è per l'operatore umano. Se l'amministratore di sistema vede un file `.tar.gz` o `.tgz`, per esempio, sa come gestire il file.
 
 ### Contenuto di un backup
 
@@ -132,7 +144,9 @@ Un backup contiene in genere i seguenti elementi:
 * i permessi;
 * data di accesso.
 
-!!! Note "Nota" Manca il numero di `inode`.
+!!! Note "Nota"
+
+    Manca il numero `inode`.
 
 ### Modalità di archiviazione
 
@@ -157,7 +171,9 @@ Le domande giuste da porsi sono:
 * dove: il luogo in cui i dati saranno ripristinati;
 * come: assoluto o relativo.
 
-!!! Warning "Avvertimento" Prima di un ripristino, è importante prendersi del tempo per pensare e determinare il metodo più appropriato, questo per evitare errori.
+!!! Warning "Attenzione"
+
+    Prima di un ripristino, è importante prendere del tempo per pensare e determinare il metodo più appropriato per evitare errori.
 
 I ripristini vengono solitamente eseguiti dopo che si è verificato un problema che deve essere risolto rapidamente. Un ripristino scadente può, in alcuni casi, peggiorare la situazione.
 
@@ -180,7 +196,9 @@ $ tar cjf - /directory/to/backup/ | wc -c
 428
 ```
 
-!!! Warning "Avvertimento" Attenzione, la presenza di "-" nella riga di comando disturba `zsh`. Passa a `bash`!
+!!! Warning "Attenzione"
+
+    Attenzione, la presenza di "-" nella riga di comando disturba `zsh`. Passa a `bash`!
 
 #### Convenzione di denominazione per un backup `tar`
 
@@ -219,14 +237,16 @@ Esempio:
 | `v`     | Visualizza il nome dei file elaborati.                 |
 | `f`     | Consente di specificare il nome del backup (supporto). |
 
-!!! Tip "Suggerimento" Il trattino (`-`) davanti alle opzioni di 'tar' non è necessario!
+!!! Tip "Suggerimento"
+
+    Il trattino (-) davanti alle opzioni di 'tar' non è necessario!
 
 ##### Creare un backup in modalità assoluta
 
 La creazione di un backup non compresso in modo esplicito in modalità assoluta viene eseguita con le opzioni `cvfP`:
 
 ```
-tar c[vf]P [device] [file(s)]
+$ tar c[vf]P [device] [file(s)]
 ```
 
 Esempio:
@@ -240,7 +260,9 @@ Esempio:
 | `P`     | Crea un backup in modalità assoluta. |
 
 
-!!! Warning "Avvertimento" Con la chiave `P`, il percorso dei file di cui eseguire il backup deve essere inserito come **assoluto**. Se le due condizioni (chiave `P` e percorso **assoluto**) non sono indicate, il backup è in modalità relativa.
+!!! Warning "Attenzione"
+
+    Con la chiave `P`, il percorso dei file su cui eseguire il backup deve essere inserito come **assoluto**. Se le due condizioni (chiave `P` e percorso **assoluto**) non sono indicate, il backup è in modalità relativa.
 
 ##### Creazione di un backup compresso con `gzip`
 
@@ -255,9 +277,13 @@ $ tar cvzf backup.tar.gz dirname/
 | `z`     | Comprime il backup con _gzip_. |
 
 
-!!! Note "Nota" L'estensione `.tgz` è un'estensione equivalente a `.tar.gz`.
+!!! Note "Nota"
 
-!!! Note "Nota" Mantenere invariate le opzioni `cvf` (`tvf` o `xvf`) per tutte le operazioni di backup e aggiungere semplicemente la chiave di compressione alla fine delle chiavi rende il comando più facile da capire (ad esempio `cvfz` o `cvfj`, ecc.).
+    L'estensione `.tgz` è un'estensione equivalente a `.tar.gz`.
+
+!!! Note "Nota"
+
+    Mantenere invariate le opzioni `cvf` (`tvf` o `xvf`) per tutte le operazioni di backup e semplicemente aggiungere la chiave di compressione alla fine delle opzioni rende il comando più facile da capire (e.. `cvfz` o `cvfj`, ecc.).
 
 ##### Creazione di un backup compresso con `bzip`
 
@@ -271,7 +297,9 @@ $ tar cvfj backup.tar.bz2 dirname/
 | ------- | -------------------------------- |
 | `j`     | Comprime il backup con_bzip2_. |
 
-!!! Note "Nota" Le estensioni `.tbz` and `.tb2` sono equivalenti all'estensione `.tar.bz2`.
+!!! Note "Nota"
+
+    Le estensioni `.tbz` e `.tb2` sono equivalenti alle estensioni `.tar.bz2`.
 
 ##### Compressione `compress`, `gzip`, `bzip2`, `lzip` e `xz`
 
@@ -310,7 +338,9 @@ $ tar rvf backup_name.tar dirtoadd
 | `r`     | Aggiunge uno o più file alla fine di un backup multimediale ad accesso diretto (disco rigido).  |
 | `A`     | Aggiunge uno o più file al termine di un backup su un supporto di accesso sequenziale (nastro). |
 
-!!! Note "Nota" Non è possibile aggiungere file o cartelle a un backup compresso.
+!!! Note "Nota"
+
+    Non è possibile aggiungere file o cartelle a un backup compresso.
 
     ```
     $ tar rvfz backup.tgz filetoadd
@@ -318,8 +348,10 @@ $ tar rvf backup_name.tar dirtoadd
     Try `tar --help' or `tar --usage' for more information.
     ```
 
-!!! Note "Nota" Se il backup è stato eseguito in modalità relativa, aggiungere i file in modalità relativa. Se il backup è stato eseguito in modalità assoluta, aggiungere i file in modalità assoluta.
+!!! Note "Nota"
 
+    Se il backup è stato eseguito in modalità relativa, aggiungere file in modalità relativa. Se il backup è stato eseguito in modalità assoluta, aggiungere i file in modalità assoluta.
+    
     Le modalità miste possono causare problemi durante il ripristino.
 
 #### Elencare il contenuto di un backup
@@ -348,9 +380,13 @@ Quando il numero di file in un backup diventa grande, è possibile inviare in  _
 $ tar tvf backup.tar | less
 ```
 
-!!! Tip "Suggerimento" Per elencare o recuperare il contenuto di un backup, non è necessario menzionare l'algoritmo di compressione utilizzato al momento della creazione del backup. Cioè, un `tar tvf` equivale a `tar tvfj`, per leggere il contenuto, e un `tar xvf` è equivalente a `tar xvfj`, per estrarre.
+!!! Tip "Suggerimento"
 
-!!! Tip "Suggerimento" Controllare sempre il contenuto di un backup.
+    Per elencare o recuperare il contenuto di un backup, non è necessario menzionare l'algoritmo di compressione utilizzato quando è stato creato il backup. Cioè, un `tar tvf` è equivalente a `tar tvfj`, per leggere il contenuto, e un `tar xvf` è equivalente a `tar xvfj`, per estrarre.
+
+!!! Tip "Suggerimento"
+
+    Controlla sempre il contenuto di un backup.
 
 #### Verificare l'integrità di un backup
 
@@ -366,7 +402,9 @@ L'integrità di un backup può essere testata con la chiave `d` dopo la sua crea
 $ tar vfd file_name.tar dir/
 ```
 
-!!! Tip "Suggerimento" Aggiungendo una seconda `v` alla chiave precedente, si otterrà l'elenco dei file archiviati e le differenze tra i file archiviati e quelli presenti nel file system.
+!!! Tip "Suggerimento"
+
+    Aggiungendo una seconda `v` alla chiave precedente, si otterrà l'elenco dei file archiviati così come le differenze tra i file archiviati e quelli presenti nel file system.
 
     ```
     $ tar vvfd  /tmp/quodlibet.tar .quodlibet/
@@ -419,8 +457,10 @@ Estrarre tutti i file dal backup `/backups/etc.133.P.tar` nella loro directory o
 $ tar xvfP /backups/etc.133.P.tar
 ```
 
-!!! Warning "Avvertimento" Posizionati nel posto giusto.
+!!! Warning "Attenzione"
 
+    Vai nel posto giusto.
+    
     Controlla il contenuto del backup.
 
 | Opzione | Descrizione                                   |
@@ -440,9 +480,13 @@ L'estrazione di un _tar-bzipped_ (`*.tar.bz2`) viene eseguita con le opzioni `xv
 $ tar xvfj backup.tar.bz2
 ```
 
-!!! Tip "Suggerimento" Per estrarre o elencare il contenuto di un backup, non è necessario menzionare l'algoritmo di compressione utilizzato per creare il backup. Cioè, un `tar xvf` equivale a `tar xvfj`, per estrarre il contenuto, e un `tar tvf` è equivalente a `tar tvfj`, per elencare.
+!!! Tip "Suggerimento"
 
-!!! Warning "Avvertimento" Per ripristinare i file nella loro directory originale (chiave `P` di un `tar xvf`), è necessario aver generato il backup con il percorso assoluto. Cioè, con la chiave `P` di un `tar cvf`.
+    Per estrarre o elencare il contenuto di un backup, non è necessario menzionare l'algoritmo di compressione utilizzato per creare il backup. Cioè, un `tar xvf` è equivalente a `tar xvfj`, per estrarre il contenuto, e un `tar tvf` è equivalente a `tar tvfj`, per elencare.
+
+!!! Warning "Attenzione"
+
+    Per ripristinare i file nella loro cartella originale (chiave `P` di un `tar xvf`), devi aver generato il backup con il percorso assoluto. Cioè, con la chiave `P` di un `tar cvf`.
 
 ##### Estrarre solo un file da un backup _tar_
 
@@ -505,8 +549,10 @@ Questo elenco è fornito con i comandi `find`, `ls` o `cat`.
 * `ls` : elencare una directory, ricorsiva o meno;
 * `cat` : legge un file contenente gli alberi delle directory o i file da salvare.
 
-!!! Note "Nota" `ls` non può essere usato con `-l` (dettagli) o `-R` (ricorsivo).
+!!! Note "Nota"
 
+    `ls` non può essere usato con `-l` (dettagli) o `-R` (ricorsivo).
+    
     Richiede un semplice elenco di nomi.
 
 ### Creare un backup con il comando `cpio`
@@ -569,8 +615,10 @@ $ find etc | cpio -o > /backups/etc.cpio
 $ find /etc | cpio -o > /backups/etc.A.cpio
 ```
 
-!!! Warning "Avvertimento" Se il percorso specificato nel comando `find` è **assoluto** il backup verrà eseguito in **modalità assoluta**.
+!!! Warning "Attenzione"
 
+    Se il percorso specificato nel comando `find` è **assoluto** il backup verrà eseguito in **assoluto**.
+    
     Se il percorso indicato nel comando `find` è **relativo** il backup verrà eseguito in **relativo**.
 
 ### Aggiungere a un backup
@@ -626,7 +674,7 @@ cpio -t [-options] [<fic-list]
 Esempio:
 
 ```
-$ cpio -tv < /backups/etc.152.cpio | less
+$ cpio -tv </backups/etc.152.cpio | less
 ```
 
 | Opzioni | Descrizione                        |
@@ -660,8 +708,10 @@ $ cpio -iv </backups/etc.152.cpio | less
 | `-u`                        | Sostituisce tutti i file anche se esistono.                                          |
 | `--no-absolute-filenames`   | Permette di ripristinare un backup effettuato in modalità assoluta in modo relativo. |
 
-!!! Warning "Avvertimento" Per impostazione predefinita, al momento del ripristino, i file sul disco la cui data di ultima modifica è più recente o uguale alla data del backup non vengono ripristinati (al fine di evitare di sovrascrivere le informazioni recenti con informazioni meno recenti).
+!!! Warning "Attenzione"
 
+    Per impostazione predefinita, al momento del ripristino, i file sul disco la cui ultima data di modifica è più recente o uguale alla data del backup non vengono ripristinati (per evitare di sovrascrivere le informazioni recenti con informazioni più vecchie).
+    
     L'opzione `u`, d'altra parte, consente di ripristinare le versioni precedenti dei file.
 
 Esempi:
@@ -688,7 +738,9 @@ L'opzione lunga `no-absolute-filenames` consente un ripristino in modalità rela
 $ cpio --no-absolute-filenames -divuF home.A.cpio
 ```
 
-!!! Tip "Suggerimento" La creazione di directory è forse necessaria, da qui l'uso dell'opzione `d`
+!!! Tip "Suggerimento"
+
+    La creazione di directory è forse necessaria, quindi l'utilizzo dell'opzione `d`
 
 * Ripristinare un backup relativo
 
@@ -713,7 +765,9 @@ L'utilizzo della compressione al momento di un backup può avere una serie di in
 * Allunga il tempo di backup e il tempo di ripristino.
 * Rende impossibile aggiungere file al backup.
 
-!!! Note "Nota" È quindi meglio fare un backup e comprimerlo piuttosto che comprimerlo durante il backup.
+!!! Note "Nota"
+
+    È quindi meglio fare un backup e comprimerlo piuttosto che comprimerlo durante il backup.
 
 ### Compressione con `gzip`
 
