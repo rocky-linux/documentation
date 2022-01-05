@@ -623,7 +623,7 @@ $ sudo passwd alain
 
 !!! Note "Nota"
 
-    Il comando `passwd` è disponibile per gli utenti per modificare la loro password (la vecchia password è richiesta). L'amministratore può modificare le password di tutti gli utenti senza restrizioni.
+    Il comando `passwd` è disponibile per gli utenti per modificare la loro password (è richiesta la vecchia password). L'amministratore può modificare le password di tutti gli utenti senza restrizioni.
 
 Dovranno rispettare le restrizioni di sicurezza.
 
