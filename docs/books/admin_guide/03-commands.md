@@ -1463,7 +1463,8 @@ For permanent use, they must be created in the:
 * `.bashrc` file in the user's login directory;
 * `/etc/profile.d/alias.sh` file for all users.
 
-!!! Warning  
+!!! Warning
+
     Special care must be taken when using aliases which can be potentially dangerous! For example, an alias set up without the administrator's knowledge:
 
     ```bash
