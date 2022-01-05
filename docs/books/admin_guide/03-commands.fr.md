@@ -273,8 +273,9 @@ La commande `clear` permet d’effacer le contenu de l’écran du terminal. En 
 
 Dans un terminal, l’affichage sera définitivement masqué tandis que dans une interface graphique, un ascenseur permettra de remonter dans l’historique du terminal virtuel.
 
-!!! TIP  
-<kbd>CTRL</kbd> + <kbd>L</kbd> aura le même effet que la commande `clear`
+!!! Tip
+
+    <kbd>CTRL</kbd> + <kbd>L</kbd> aura le même effet que la commande `clear`
 
 ### La commande `echo`
 
@@ -609,7 +610,7 @@ Le répertoire « rockstar » devra exister pour créer le répertoire « work �
 
 Sinon, l’option `-p` devra être utilisée. L’option `-p` crée les répertoires parents s’ils n’existent pas.
 
-!!! Danger  
+!!! Danger
 
     Il est vivement déconseillé de donner des noms de commandes Linux comme nom de répertoires ou fichiers.
 
@@ -633,7 +634,7 @@ $ touch /home/rockstar/myfile
 
 Date au format : `[AAAA]MMJJhhmm[ss]`
 
-!!! Tip  
+!!! Tip
 
     La commande touch est utilisée en priorité pour créer un fichier vide, mais elle peut avoir un intérêt dans le cadre de sauvegarde incrémentale ou différentielle par exemple. En effet, le fait d’exécuter un touch sur un fichier aura pour seul effet de forcer sa sauvegarde lors de la sauvegarde suivante.
 
@@ -651,7 +652,7 @@ $ rmdir /home/rockstar/work
 | ------ | ------------------------------------------------------------------------------ |
 | `-p`   | Supprime le ou les répertoire(s) parent(s) à la condition qu’ils soient vides. |
 
-!!! Tip  
+!!! Tip
 
     Pour supprimer à la fois un répertoire non-vide et son contenu, il faudra utiliser la commande `rm`.
 
@@ -663,7 +664,7 @@ La commande `rm` supprime un fichier ou un répertoire.
 rm [-f] [-r] file [file] [...]
 ```
 
-!!! Danger  
+!!! Danger
 
     Toute suppression de fichier ou de répertoire est définitive.
 
@@ -673,9 +674,9 @@ rm [-f] [-r] file [file] [...]
 | `-i`    | Demande de confirmation de la suppression.        |
 | `-r`    | Supprime récursivement les sous-répertoires.      |
 
-!!! Note  
+!!! Note
 
-    La commande rm en elle-même ne demande pas de confirmation lors de la suppression de fichiers. Cependant avec une distribution RedHat/CentOS, `rm` demande une confirmation de suppression car la commande `rm` y est un alias de la commande `rm -i`. Ne soyez pas surpris sur une autre distribution, type Debian par exemple, de ne pas obtenir de demande de confirmation.
+    La commande `rm` en elle-même ne demande pas de confirmation lors de la suppression de fichiers. Cependant avec une distribution RedHat/CentOS, `rm` demande une confirmation de suppression car la commande `rm` y est un alias de la commande `rm -i`. Ne soyez pas surpris sur une autre distribution, type Debian par exemple, de ne pas obtenir de demande de confirmation.
 
 La suppression d’un dossier à l’aide de la commande `rm`, que ce dossier soit vide ou non, nécessitera l’ajout de l’option `-r`.
 
@@ -684,10 +685,10 @@ La fin des options est signalée au shell par un double tiret `--`.
 Dans l’exemple :
 
 ```bash
-$ >-dur-dur # Pour créer un fichier vide appelé -dur-dur
-dur dur
-[CTRL+C] Pour interrompre la création du fichier
-$ rm -f -- -dur-dur
+$ >-hard-hard # To create an empty file called -hard-hard
+hard-hard
+[CTRL+C] To interrupt the creation of the file
+$ rm -f -- -hard-hard
 ```
 
 Le nom du fichier -dur-dur commence par un `-`. Sans l’usage du `--` le shell aurait interprété le `-d` de `-dur-dur` comme une option.
@@ -1127,7 +1128,7 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 
 La commande précédente recherche tous les fichiers du répertoire `/tmp` nommés `*.txt` et les supprime.
 
-!!! Tip "Comprendre l'option `-exec`"  
+!!! Tip "Comprendre l'option `-exec`"
 
     Dans l'exemple ci-dessus, la commande `find` construira une chaîne représentant la commande à exécuter.
     
@@ -1142,9 +1143,9 @@ La commande précédente recherche tous les fichiers du répertoire `/tmp` nomm�
 
     Le caractère `;` est un caractère spécial du shell qui doit être protégé par un `\` pour éviter son interprétation trop tôt par la commande `find` (et non plus dans le `-exec`).
 
-!!! Tip  
+!!! Tip
 
-    `$ find /tmp -name *.txt -delete` does the same thing.
+    `$ find /tmp -name *.txt -delete` fait la même chose.
 
 ### La commande `whereis`
 
@@ -1196,7 +1197,7 @@ La commande `grep` retourne la ligne complète comprenant la chaîne de caractè
 $ grep -w "^root" /etc/passwd
 ```
 
-!!! Note  
+!!! Note
 
     Cette commande est très puissante et il est fortement conseillé de consulter son manuel. Elle a de nombreux dérivés.
 
@@ -1242,11 +1243,11 @@ $ find /home -name "test[123]*"
 /home/rockstar/test362
 ```
 
-!!! Note  
+!!! Note
 
     Prendre soin de toujours encadrer les mots contenant des méta-caractères par des `"` pour éviter qu’ils soient remplacés par le nom des fichiers qui répondraient aux critères.
 
-!!! Warning  
+!!! Warning
 
     Il ne faut pas confondre les méta-caractères du shell et ceux des expressions régulières. La commande `grep` utilise les méta-caractères des expressions régulières.
 
@@ -1277,7 +1278,7 @@ Il est possible de rediriger le flux d’entrée depuis un autre fichier avec le
 $ ftp -in serverftp << ftp-commands.txt
 ```
 
-!!! Note  
+!!! Note
 
     Seules les commandes demandant une saisie au clavier pourront gérer la redirection d’entrée.
 
@@ -1305,7 +1306,7 @@ STOP
 
 Le shell quitte la commande `ftp` lorsqu’il reçoit une ligne ne contenant que le mot clef.
 
-!!! Warning  
+!!! Warning
 
     Le mot clé de fin, ici `END` ou `STOP`, pour terminer la commande doit être le seul mot de la ligne et doit être au début de sa ligne.
 

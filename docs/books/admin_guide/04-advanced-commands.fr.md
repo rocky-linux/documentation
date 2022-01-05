@@ -39,7 +39,9 @@ antoine
 steven
 ```
 
-!!! Note `uniq` réclame que le fichier d’entrée soit trié car il ne compare que les lignes consécutives.
+!!! Note
+
+    `uniq` nécessite que le fichier d'entrée soit trié car il ne compare que les lignes consécutives.
 
 Sans argument, la commande `uniq` ne va pas afficher les lignes identiques qui se suivent du fichier `firstnames.txt` :
 
@@ -214,7 +216,9 @@ L’option `-I` permet de spécifier un caractère (dans notre exemple le caract
 
 Le paquet `yum-utils` est une collection d’utilitaires de différents auteurs pour `yum`, qui le rendent plus simple et plus puissant à utiliser.
 
-!!! Note Bien que `yum` ait été remplacé par `dnf` dans Rocky Linux 8, le nom du paquet est resté `yum-utils` mais il peut tout aussi bien être installé avec le paquet `dnf-utils`. Ce sont des utilitaires YUM classiques implémentés comme des CLI au-dessus de DNF pour maintenir une compatibilité ascendante avec `yum-3`.
+!!! Note
+
+    Bien que `yum` ait été remplacé par `dnf` dans Rocky Linux 8, le nom du paquet est resté `yum-utils` mais il peut tout aussi bien être installé avec le paquet `dnf-utils`. Ce sont des utilitaires YUM classiques implémentés comme des CLI au-dessus de DNF pour maintenir une compatibilité ascendante avec `yum-3`.
 
 Voici quelques exemples d’utilisation :
 
@@ -264,7 +268,9 @@ $ repoquery -l yum-utils
 
 La commande `yumdownloader` télécharge les paquets RPM depuis les dépôts.
 
-!!! Note Cette commande est très pratique pour construire un dépôt local de quelques rpm !
+!!! Note
+
+    Cette commande est très pratique pour construire un dépôt local de quelques rpm !
 
 Exemple : `yumdownloader` va télécharger le paquet rpm de _repoquery_ ainsi que toutes ses dépendances :
 
@@ -323,7 +329,9 @@ La commande `watch` exécute régulièrement une commande et affiche le résulta
 
 L’option `-n` permet de spécifier le nombre de secondes entre chaque exécution de la commande.
 
-!!! Note Pour quitter la commande `watch`, il faut saisir les touches : <kbd>CTRL</kbd>+<kbd>C</kbd> pour tuer le processus.
+!!! Note
+
+    Pour quitter la commande `watch`, vous devez taper les clés : <kbd>CTRL</kbd>+<kbd>C</kbd> pour tuer le processus.
 
 Exemples :
 

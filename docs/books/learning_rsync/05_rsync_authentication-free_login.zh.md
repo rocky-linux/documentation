@@ -59,7 +59,9 @@ Last login: Tue Nov  2 21:42:44 2021 from 192.168.100.5
 [testrsync@Rocky ~]$
 ```
 
-!!! tip "注意!" 服务器的配置文件 **/etc/ssh/sshd_config** 应该打开 <font color=red>PubkeyAuthentication yes</font>
+!!! tip "注意!"
+
+    服务器的配置文件 **/etc/ssh/sshd_config** 应该打开 <font color=red>PubkeyAuthentication yes</font>
 
 ## rsync协议免密验证登录
 
@@ -89,8 +91,10 @@ li:13579
 receiving incremental file list
 ./
 
-sent 30 bytes  received 193 bytes  148.67 bytes/sec
-total size is 883  speedup is 3.96
+sent 30 bytes received 193 bytes 148.67 bytes/sec
+total size is 883 speedup is 3.96
 ```
 
-!!! tip "提示!" 您可以将这个变量写入到 **/etc/profile** 当中，让其永久生效。 内容为：`export RSYNC_PASSWORD=13579`
+!!! tip "提示!"
+
+    您可以将这个变量写入到 **/etc/profile** 当中，让其永久生效。 内容为：`export RSYNC_PASSWORD=13579`

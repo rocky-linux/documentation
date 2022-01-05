@@ -1,0 +1,70 @@
+---
+title: Elenco di Laboratori di Sicurezza
+---
+
+# Elenco di Laboratori di Sicurezza
+
+## [Introduzione](introduction.md)
+
+### Laboratorio 1: Installare Rocky Linux
+
+1. Installare il Sistema Operativo
+
+### Laboratorio 2: Patch del Sistema
+
+1. Aggiornamento e Patch
+1. Configurare e usare dnf
+1. Soluzioni di terze parti
+
+### Laboratorio 3: Controllo del Sistema
+1. Un semplice controllo dell'integrità fatto in casa
+1. Tripwire
+1. Controllo d'integrità e visualizzazione dei rapporti
+1. Messa a punto del tripwire
+
+### Laboratorio 4: Raccolta delle informazioni
+1. netstat
+1. lsof
+1. nmap
+1. rpcinfo
+1. tcpdump
+1. telnet
+
+### Laboratorio 5: Sicurezza Locale
+1. Crackare il sistema tramite il boot loader
+1. Proteggere il boot loader con password
+1. Disabilitare il tty non necessario
+1. Disabilitare il riavvio tramite CTRL+ALT+DEL
+1. Imporre la richiesta della password in modalità utente singolo
+1. Programmi Set-UID
+1. John the ripper
+
+### Laboratorio 6: Un Hack inscenata
+1. Il PERCORSO
+
+### Laboratorio 8: Wrapper TCP
+1. Tcp_wrapper
+
+### Laboratorio 8: Iptables
+1. Fondamenti delle Iptable
+1. Filtraggio di Base del Pacchetto
+1. Inoltro di Base del Pacchetto
+
+### Laboratorio 9: Criptografia
+1. GnuPG
+1. Amministrazione della Chiave
+1. Certificati di revoca
+1. Firme digitali
+1. Crittografare e decrittografare file
+1. sshd
+1. ssh
+1. scp
+1. Autenticare tramite Chiave Pubblica
+1. ssh-agent
+
+### Laboratorio 10: Sicurezza del Livello del Kernel
+1. Installare GRsecurity
+1. gradm
+1. ACL
+1. Modalità d'apprendimento di GRsecurity
+1. SElinux

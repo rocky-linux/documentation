@@ -32,7 +32,9 @@ Diversi utenti possono far parte dello stesso gruppo.
 
 Gli utenti possono appartenere ad altri gruppi. Questi utenti sono *invitati* a questi **gruppi secondari**.
 
-!!! Note Nota Ogni utente ha un gruppo primario e può essere invitato in uno o più gruppi secondari.
+!!! Note "Nota"
+
+    Ogni utente ha un gruppo primario e può essere invitato in uno o più gruppi secondari.
 
 I gruppi e gli utenti sono gestiti dai loro identificatori numerici unici `GID` e `UID`.
 
@@ -40,7 +42,9 @@ I file di dichiarazione dell'account e del gruppo si trovano in `/etc`.
 * `UID`: _User IDentifier_. ID utente unico..
 * `GID`: _Group IDentifier_. Identificatore di gruppo unico..
 
-!!! Danger Pericolo È necessario utilizzare sempre i comandi di amministrazione invece di modificare manualmente i file.
+!!! Danger "Pericolo"
+
+    Dovresti sempre usare i comandi di amministrazione invece di modificare manualmente i file.
 
 ## Gestione del gruppo
 
@@ -73,17 +77,17 @@ Regole di denominazione del gruppo:
 * Nessun accento o caratteri speciali;
 * Diverso dal nome di un utente o file di sistema esistenti.
 
-; Note Nota Sotto **Debian**, l'amministratore dovrebbe usare, tranne che negli script destinati ad essere portatili per tutte le distribuzioni Linux, i comandi `addgroup` e `delgroup` come specificato nell' `man`:
+!!! Note "Nota"
+
+    Sotto **Debian**, l'amministratore dovrebbe usare, tranne che negli script destinati ad essere portabili su tutte le distribuzioni Linux, i comandi `addgroup` e `delgroup` come specificato nel `man`:
 
     ```
     $ man addgroup
     DESCRIPTION
     adduser and addgroup add users and groups to the system according to command line options and configuration information
-    in /etc/adduser.conf. They are friendlier front ends to the low level tools like useradd, groupadd and usermod programs,
-    by default choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
-    running a custom script, and other features. They are friendlier front ends to the low level tools like useradd, groupadd and usermod programs,
-    by default choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
-    running a custom script, and other features.
+    in /etc/adduser.conf. Sono front ends più intuitivi degli strumenti di basso livello come i programmi useradd, groupadd e usermod,
+    per impostazione predefinita scelgono i valori UID e GID conformi ai criteri Debian, creano una home directory con la sua configurazione di base,
+    eseguono uno script personalizzato, e altre funzioni.
     ```
 
 ### Comando `groupmod`
@@ -128,13 +132,19 @@ Esempio:
 $ sudo groupdel GroupC
 ```
 
-!!! Tip Suggerimento Per essere cancellato, un gruppo non deve più contenere utenti.
+!!! Tip "Suggerimento"
+
+    Per essere eliminato, un gruppo non deve più contenere utenti.
 
 L'eliminazione dell'ultimo utente di un gruppo omonimo causerà l'eliminazione del gruppo stesso dal sistema.
 
-!!! Tip Suggerimento Ogni gruppo ha un unico `GID`. Un gruppo può essere duplicato. Per convenzione, il `GID` dei gruppi di sistema vanno da 0 (`root`) a 999.
+!!! Tip "Suggerimento"
 
-!!! Tip Suggerimento Dal momento che un utente è necessariamente parte di un gruppo, È meglio creare i gruppi prima di aggiungere gli utenti. Pertanto, un gruppo inizialmente potrebbe non avere membri.
+    Ogni gruppo ha un `GID` unico. Un gruppo può essere duplicato. Per convenzione, il `GID` dei gruppi di sistema varia da 0 (`root`) a 999.
+
+!!! Tip "Suggerimento"
+
+    Poiché un utente fa necessariamente parte di un gruppo, è meglio creare i gruppi prima di aggiungere gli utenti. Pertanto, un gruppo potrebbe non avere alcun membro.
 
 ### file `/etc/group`
 
@@ -151,7 +161,9 @@ GroupP:x:516:patrick
 * 3: GID.
 * 4: Membri ospiti (separati da virgole, non contiene membri di base).
 
-!!! Note Nota Ogni linea nel file `/etc/group` corrisponde a un gruppo. Gli utenti il cui gruppo è il loro gruppo principale non è elencato a questo livello. Questa informazione è infatti già fornita dal file `/etc/passwd` ...
+!!! Note "Nota"
+
+    Ogni riga nel file `/etc/group` corrisponde a un gruppo. Gli utenti il cui gruppo è il loro gruppo principale non è elencato a questo livello. Queste informazioni di appartenenza sono in realtà già fornite dal file `/etc/passwd`...
 
 ### file `/etc/gshadow`
 
@@ -168,7 +180,9 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 * 3: Amministratore del gruppo.
 * 4: Membri ospiti (separati da virgole, non contiene membri di base).
 
-!!! Warning Avvertimento Per ogni linea nel file `/etc/group` ci deve essere una linea corrispondente nel file `/etc/gshadow`.
+!!! Warning "Attenzione"
+
+    Per ogni riga del file `/etc/group` deve esserci una riga corrispondente nel file `/etc/gshadow`.
 
 Un `!` nella password indica che la password è bloccata. Quindi nessun utente può utilizzare la password per accedere al gruppo (dal momento che i membri del gruppo non ne hanno bisogno).
 
@@ -231,7 +245,9 @@ Regole di denominazione dell'account:
 * Diverso dal nome di un gruppo o file di sistema esistente;
 * Imposta le opzioni `-u`, `-g`, `-d` e `-s` alla creazione.
 
-!!! Warning Avvertimento L'albero della directory home deve essere già creato tranne per l'ultima directory.
+!!! Warning "Attenzione"
+
+    L'albero della directory home deve essere creato ad eccezione dell'ultima directory.
 
 L'ultima directory è creata dal comando `useradd`, che coglie l'occasione per copiare i file da `/etc/skel` dentro di essa.
 
@@ -245,13 +261,14 @@ Esempio:
 $ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
 ```
 
-!!! Note Nota In **Debian**, dovrai specificare l'opzione `-m` per forzare la creazione della directory di accesso o impostare la variabile `CREATE_HOME` nel file `/etc/login.defs`. In tutti i casi, l'amministratore dovrebbe usare i comandi `adduser` e `deluser` come specificato nelle pagine `man`, tranne per gli script destinati ad essere portabili su tutte le distribuzioni Linux:
+!!! Note "Nota"
+
+    Sotto **Debian**, dovrai specificare l'opzione `-m` per forzare la creazione della directory di login o impostare la variabile `CREATE_HOME` nel file `/etc/login.defs`. In ogni caso, l'amministratore dovrebbe usare i comandi `adduser` e `deluser` come specificato nel `man`, tranne negli script destinati a essere portabili su tutte le distribuzioni Linux:
 
     ```
     $ man useradd
     DESCRIPTION
-    **useradd** is a low level utility for adding users. On Debian, administrators should usually use **adduser(8)**
-     instead.
+        **useradd** is a low level utility for adding users. Su Debian, gli amministratori dovrebbero usare invece **adduser(8)**.
     ```
 
 #### Valori predefiniti per la creazione dell'utente.
@@ -305,7 +322,9 @@ Opzioni identiche al comando `useradd`.
 
 Con il comando `usermod`, bloccare un account di fatto significa inserire un `!` prima della password nel file `/etc/shadow`.
 
-!!! Tip Suggerimento Per essere modificato, un utente deve essere disconnesso e non avere processi in esecuzione.
+!!! Tip "Suggerimento"
+
+    Per essere modificato, un utente deve essere disconnesso e non avere processi in esecuzione.
 
 Dopo aver cambiato l'identificatore, i file appartenenti all'utente hanno un `UID` sconosciuto . Il nuovo `UID` deve essere riassegnato.
 
@@ -367,7 +386,9 @@ $ sudo userdel -r carine
 | ------- | ------------------------------------------------------- |
 | `-r`    | Elimina la directory di connessione e i file contenuti. |
 
-!!! Tip Suggerimento Per essere cancellato, un utente deve essere disconnesso e non avere processi in esecuzione.
+!!! Tip "Suggerimento"
+
+    Per essere eliminato, un utente deve essere disconnesso e non avere processi in esecuzione.
 
 `userdel` rimuove la linea dell'utente dal file `/etc/passwd` e da `/etc/gshadow`.
 
@@ -408,11 +429,15 @@ root:$6$...:15399:0:99999:7:::
 * 8: Tempo di scadenza dell'account.
 * 9: Riservato per un uso futuro.
 
-!!! Danger Pericolo Per ogni linea nel file `/etc/passwd` ci deve essere una linea corrispondente nel file `/etc/shadow`.
+!!! Danger "Pericolo"
+
+    Per ogni riga del file `/etc/passwd` deve esserci una riga corrispondente nel file `/etc/shadow`.
 
 ## Proprietari dei file
 
-!!! Danger Pericolo Tutti i file appartengono necessariamente a un utente e un gruppo.
+!!! Danger "Pericolo"
+
+    Tutti i file appartengono necessariamente a un utente e a un gruppo.
 
 Il gruppo principale dell'utente che crea il file è, per impostazione predefinita, il gruppo che possiede il file.
 
@@ -478,7 +503,9 @@ $ sudo chgrp group1 file
 | `-R`    | Modifica i gruppi proprietari della directory e dei suoi contenuti (ricorsivo). |
 | `-v`    | Visualizza le modifiche eseguite.                                               |
 
-!!! Note Nota È possibile applicare a un file un proprietario e un gruppo proprietario prendendo come riferimento quelli di un altro file:
+!!! Note "Nota"
+
+    È possibile applicare a un file un proprietario e un gruppo proprietario prendendo come riferimento quelli di un altro file:
 
 ```
 chown [options] --reference=RRFILE FILE
@@ -544,7 +571,9 @@ Esempio:
 [alain]$ newgrp GroupB
 ```
 
-!!! Note Nota Dopo aver usato questo comando, i file verranno creati con il `GID` del suo sottogruppo.
+!!! Note "Nota"
+
+    Dopo aver utilizzato questo comando, i file verranno creati con il `GID` del suo sottogruppo.
 
 Il comando `newgrp` senza parametri riassegna al gruppo principale.
 
@@ -592,7 +621,9 @@ Esempio:
 $ sudo passwd alain
 ```
 
-!!! Note Nota Il comando `passwd` è disponibile per gli utenti per cambiare la propria password (la vecchia password è richiesta). L'amministratore può modificare le password di tutti gli utenti senza restrizioni.
+!!! Note "Nota"
+
+    Il comando `passwd` è disponibile per gli utenti per modificare la loro password (è richiesta la vecchia password). L'amministratore può modificare le password di tutti gli utenti senza restrizioni.
 
 Dovranno rispettare le restrizioni di sicurezza.
 
@@ -604,7 +635,9 @@ Esempio:
 ```
 $ sudo echo "azerty,1" | passwd --stdin philippe
 ```
-!!! Warning Avvertimento La password è inserita in chiaro, `passwd` si prende cura di crittografarla.
+!!! Warning "Attenzione"
+
+    La password è inserita in un testo in chiaro, `passwd` si occupa di crittografarla.
 
 ### comando `chage`
 
@@ -637,7 +670,9 @@ $ sudo chage philippe
 $ sudo chage -d 0 philippe
 ```
 
-!!! Note Nota Se nessun utente è specificato, l'ordine riguarderà l'utente che entra.
+!!! Note "Nota"
+
+    Se nessun utente è specificato, l'ordine riguarderà l'utente che lo inserisce.
 
 ![User account management with chage](images/chage-timeline.png)
 
@@ -648,15 +683,19 @@ File di configurazione.:
 * `/etc/login.defs`
 * `/etc/skel`
 
-!!! Note Nota La modifica del file `/etc/default/useradd` è fatta con il comando `useradd`.
+!!! Note "Nota"
 
+    La modifica del file `/etc/default/useradd` viene eseguita con il comando `useradd`.
+    
     Gli altri file devono essere modificati con un editor di testo.
 
 ### file `/etc/default/useradd`
 
 Questo file contiene le impostazioni dei dati predefinite.
 
-!!! Tip Suggerimento Quando si crea un utente, se le opzioni non sono specificate, il sistema utilizza i valori predefiniti definiti in `/etc/default/useradd`.
+!!! Tip "Suggerimento"
+
+    Quando si crea un utente, se le opzioni non sono specificate, il sistema utilizza i valori di default definiti in `/etc/default/useradd`.
 
 Questo file è modificato dal comando `useradd -D` (`useradd -D` inserito senza nessun'altra opzione visualizza il contenuto del file `/etc/default/useradd`).
 
@@ -670,7 +709,9 @@ Questo file è modificato dal comando `useradd -D` (`useradd -D` inserito senza 
 | `SKEL`              | Skeleton Directory della directory di accesso.                                         |
 | `CREATE_MAIL_SPOOL` | Creazione della Mailbox in`/var/spool/mail`.                                           |
 
-!!! Warning Avvertimento Senza l'opzione `-g`, il comando `useradd` crea un gruppo dal nome dell'utente e il gruppo diventa il gruppo principale dell'utente.
+!!! Warning "Attenzione"
+
+    Senza l'opzione `-g`, il comando `useradd` crea un gruppo con il nome dell'utente e lo posiziona in quel gruppo.
 
 In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
 
@@ -728,7 +769,9 @@ Se il login non è specificato, sarà `root`.
 
 Gli utenti standard dovranno digitare la password per la nuova identità.
 
-!!! Tip Suggerimento Ci sono "strati" creati in successione (una pila di ambienti `bash`). Per passare da un utente all'altro, devi prima digitare il comando `exit` per riprendere la tua identità e poi il comando `su` per prendere un'altra identità.
+!!! Tip "Suggerimento"
+
+    Vengono creati dei 'layers' successivi (una pila di ambienti `bash`). Per passare da un utente all'altro, devi prima digitare il comando `exit` per riprendere la tua identità e quindi il comando `su` per prendere un'altra identità.
 
 #### Caricamento del profilo
 
