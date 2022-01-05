@@ -123,8 +123,9 @@ inotifywait 主要有以下选项：
 
 ## inotifywait和rsync的结合使用
 
-!!! tip "注意!"  
-我们是在Rocky Linux 8服务器上进行操作，使用SSH协议进行演示。
+!!! tip "注意!"
+
+    我们在Rocky Linux 8服务器上操作，使用SSH协议进行演示。
 
 SSH协议的免密验证登录，可参考 [rsync 免密验证登录](05_rsync_authentication-free_login.zh.md)，这里不具体说明。 bash脚本内容示例如下。 您可以根据需要，在命令的后面加上不同的选项来满足需求。 bash脚本内容示例如下，您可以根据需要，在命令的后面加上不同的选项来满足需求，例如还可以在`rsync`命令后面加入`--delete`
 
@@ -143,10 +144,15 @@ $a | while read directory event file
 [root@Rocky ~]# bash /root/rsync_inotify.sh &
 ```
 
-!!! tip "再次强调!"  
-使用SSH协议进行数据同步传输时，如果目标机器的SSH服务端口不是22 ，则您可以使用类似这样的方式—— `b="/usr/bin/rsync -avz -e 'ssh -p [port-number]' /rsync/* testfedora@192.168.100.5:/home/testfedora/"`
+!!! tip "再次强调!"
 
-!!! tip "注意!"  
-如果您要开机自启动这个脚本的话 `[root@Rocky ~]# echo "bash /root/rsync_inotify.sh &" >> /etc/rc.local` `[root@Rocky ~]# chmod +x /etc/rc.local`
+    使用SSH协议进行数据同步传输时，如果目标机器的SSH服务端口不是22 ，则您可以使用类似这样的方式——
+    `b="/usr/bin/rsync -avz -e 'ssh -p [port-number]' /rsync/* testfedora@192.168.100.5:/home/testfedora/"`
+
+!!! tip "注意!"
+
+    如果您要开机自启动这个脚本的话
+    `[root@Rocky ~]# echo "bash /root/rsync_inotify.sh &" >> /etc/rc.local`
+    `[root@Rocky ~]# chmod +x /etc/rc.local`
 
 如果您使用的是rsync协议进行同步，您需要配置目标机器的rsync服务，可参考[rsync 演示02](03_rsync_demo02.zh.md)、[rsync 配置文件](04_rsync_configure.zh.md)、[rsync 免密验证登录](05_rsync_authentication-free_login.zh.md)
