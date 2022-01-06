@@ -1494,7 +1494,7 @@ $ type ls
 potrebbe restituire quanto segue:
 
 ```bash
-ls is an alias to « ls -rt »
+ls è un alias di « ls -rt »
 ```
 
 Ora che questo è noto, possiamo vedere i risultati dell'utilizzo dell'alias o disabilitarlo in una volta con il carattere `\` eseguendo il seguente:
