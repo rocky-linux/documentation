@@ -71,7 +71,9 @@ Ci sono anche indirizzi specifici all'interno di una rete, che devono essere ide
 
 L'**indirizzo MAC** è un identificatore fisico scritto in fabbrica sul dispositivo. Questo a volte viene definito l'indirizzo hardware. Consiste di 6 byte spesso espressi in forma esadecimale (per esempio 5E:FF:56:A2:AF:15). È composto da: 3 byte dell'identificatore del produttore e 3 byte del numero di serie.
 
-!!! Warning "Avvertimento" Quest'ultima affermazione è al giorno d'oggi un po' meno vera con la virtualizzazione. Ci sono anche soluzioni software per cambiare l'indirizzo MAC.
+!!! Warning "Attenzione"
+
+    Quest'ultima affermazione è oggi un po' meno vera con la virtualizzazione. Ci sono anche soluzioni software per cambiare l'indirizzo MAC.
 
 Un indirizzo Internet Protocol (**IP**) è un numero di identificazione permanente o temporaneo assegnato a ciascun dispositivo collegato a una rete di computer che utilizza l'Internet Protocol. Una parte definisce l'indirizzo di rete (NetID o SubnetID  a seconda dei casi), l'altra parte definisce l'indirizzo dell'host nella rete (HostID). La dimensione relativa di ciascuna parte varia in base alla (sub)mask della rete.
 
@@ -97,7 +99,9 @@ Affinché un computer faccia parte di un dominio DNS, è necessario fornire un s
 
 ### Promemoria del modello OSI
 
-!!! Note " Aiuto alla memoria " Per ricordare l'ordine dei livelli del modello OSI, ricordare la seguente frase:  __Please Do Not Touch Steven's Pet Alligator__.
+!!! Note "Aiuto alla memoria"
+
+    Per ricordare l'ordine degli strati del modello OSI, ricorda la seguente frase: __Please Do Not Touch Steven's Pet Alligator__.
 
 | Livello                 | Protocolli                                 |
 | ----------------------- | ------------------------------------------ |
@@ -140,8 +144,10 @@ Sulle distribuzioni Linux Rocky 8, systemd nominerà le interfacce seguendo la n
 
 Dimentica il vecchio comando `ifconfig`! Pensa `ip`!
 
-... Note Nota Commento per gli amministratori dei vecchi sistemi Linux:
+... Note "Nota"
 
+    Commento per gli amministratori di vecchi sistemi Linux:
+    
     Il comando storico di gestione della rete è `ifconfig`. Questo comando è stato sostituito dal comando `ip`, che è già ben noto agli amministratori di rete.
     
     Il comando `ip` è l'unico comando per gestire **indirizzo IP, ARP, routing, ecc.**.
@@ -163,7 +169,9 @@ hostname [-f] [hostname]
 | `-f`    | Mostra il FQDN                          |
 | `-i`    | Visualizza gli indirizzi IP del sistema |
 
-!!! Tip "Suggerimento" Questo comando viene utilizzato da vari programmi di rete per identificare la macchina.
+!!! Tip "Suggerimento"
+
+    Questo comando viene utilizzato da vari programmi di rete per identificare la macchina.
 
 Per assegnare un nome host, è possibile utilizzare il comando`hostname`, ma le modifiche non verranno mantenute all'avvio successivo. Il comando senza argomenti visualizza il nome host.
 
@@ -182,7 +190,9 @@ Utilizza quindi il file `/etc/hosts` per valutare l'indirizzo IP principale del 
 
 È quindi essenziale compilare questi due file prima di qualsiasi configurazione dei servizi di rete.
 
-!!! Tip "Suggerimento" Per sapere se questa configurazione è ben fatta, i comandi `hostname` e `hostname -f` devono restituire i valori previsti.
+!!! Tip "Suggerimento"
+
+    Per sapere se questa configurazione è ben fatta, i comandi `hostname` e `hostname -f` devono rispondere con i valori previsti.
 
 ## /etc/hosts file
 
@@ -195,14 +205,16 @@ Il file `/etc/hosts` è una tabella di mapping dei nomi host statici, che segue 
 Esempio di un file `/etc/hosts`:
 
 ```
-127.0.0.1      localhost localhost.localdomain
-::1            localhost localhost.localdomain
-192.168.1.10   rockstar.rockylinux.lan rockstar
+127.0.0.1   localhost localhost.localdomain
+::1         localhost localhost.localdomain
+192.168.1.10    rockstar.rockylinux.lan rockstar
 ```
 
 Il file `/etc/hosts` viene ancora utilizzato dal sistema, soprattutto al momento dell'avvio quando viene determinato il nome di dominio completo del sistema (FQDN).
 
-!!! Tip "Suggerimento" RedHat raccomanda che sia compilata almeno una linea con il nome del sistema.
+!!! Tip "Suggerimento"
+
+    RedHat raccomanda che sia compilata almeno una linea con il nome del sistema.
 
 Se il servizio **DNS** (**D**domain **N**ame **S**ervice) non è presente, è necessario compilare tutti i nomi nel file hosts per ciascuno dei computer.
 
@@ -239,7 +251,9 @@ search mondomaine.lan
 nameserver 192.168.1.254
 ```
 
-!!! Tip "Suggerimento" Questo file è ormai storia. Non è più compilato direttamente!
+!!! Tip "Suggerimento"
+
+    Questo file è ormai storia. Non è più compilato direttamente!
 
 Le nuove generazioni di distribuzioni hanno generalmente integrato il servizio `NetworkManager`. Questo servizio consente di gestire la configurazione in modo più efficiente, sia in modalità grafica che console.
 
@@ -314,7 +328,9 @@ BOOTPROTO=dhcp
 HWADDR=00:0c:29:96:32:e3
 ```
 
-!!! Tip "Suggerimento" Se NetworkManager è installato, le modifiche vengono prese in considerazione automaticamente. In caso contrario, è necessario riavviare il servizio di rete.
+!!! Tip "Suggerimento"
+
+    Se NetworkManager è installato, le modifiche vengono prese in considerazione automaticamente. In caso contrario, è necessario riavviare il servizio di rete.
 
 * Riavviare il servizio di rete:
 
@@ -358,7 +374,9 @@ NETMASK=255.255.255.0
 PREFIX=24
 ```
 
-!!! Warning "Avvertimento" È necessario utilizzare il NETMASK o il PREFISSO - Non entrambi!
+!!! Warning "Attenzione"
+
+    È necessario utilizzare NETMASK O PREFIX - Non entrambi!
 
 ## Routing (Instradamento)
 
@@ -455,7 +473,9 @@ Esempio:
 [root]# ping –c 4 localhost
 ```
 
-!!! Tip "Suggerimento" Convalida la connettività da vicino a lontano
+!!! Tip "Suggerimento"
+
+    Convalida la connettività da vicino a lontano
 
 1) Convalidare il livello software TCP/IP
 
@@ -510,7 +530,7 @@ Esempi:
 76.223.126.88
 [root]# dig -t MX +short rockylinux.org                                                          ✔
 5 alt1.aspmx.l.google.com.
-!!!
+...
 ```
 
 Il comando `dig` viene utilizzato per eseguire query sui server DNS. È molto prolisso per impostazione predefinita, ma questo comportamento può essere modificato con l'opzione `+short`.
@@ -556,7 +576,9 @@ Esempio:
 BROADCAST=172.16.79.255
 ```
 
-!!! Tip "Suggerimento" Questo comando è interessante se seguito da un reindirizzamento per compilare automaticamente i file di configurazione delle interfacce:
+!!! Tip "Suggerimento"
+
+    Questo comando è interessante se seguito da un reindirizzamento per compilare automaticamente i file di configurazione delle interfacce:
 
     ```
     [root]# ipcalc –b 172.16.66.203 255.255.240.0 >> /etc/sysconfig/network-scripts/ifcfg-eth0
@@ -601,7 +623,9 @@ Quando si implementano i servizi di rete, è molto comune verificare con uno di 
 
 ### comando `netstat`
 
-!!! Warning "Avvertimento" Il comando `netstat` è ora deprecato e non è più installato per impostazione predefinita su Rocky Linux. Potresti ancora trovare alcune versioni di Linux che lo hanno installato, ma è meglio passare all'uso di `ss` per tutto ciò per cui avresti usato `netstat`.
+!!! Warning "Attenzione"
+
+    Il comando `netstat` è ora deprecato e non è più installato per impostazione predefinita su Rocky Linux. Si possono ancora trovare alcune versioni Linux che l'hanno installato, ma è meglio passare all'utilizzo di `ss` per tutto quello per cui avresti usato `netstat`.
 
 Il comando `netstat` (**statistiche di rete**) visualizza le porte in ascolto sulla rete.
 
@@ -644,7 +668,9 @@ $ arp-scan -I eth0 -l
 172.16.1.232   88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)
 ```
 
-!!! Tip "Suggerimento" Come mostra l'esempio precedente, è anche possibile avere conflitti di indirizzi MAC! Questi problemi sono causati dalle tecnologie di virtualizzazione e dalla copia delle macchine virtuali.
+!!! Tip "Suggerimento"
+
+    Come mostra l'esempio precedente, è anche possibile avere conflitti di indirizzo MAC! Questi problemi sono causati dalle tecnologie di virtualizzazione e dalla copia delle macchine virtuali.
 
 ## Configurazione a caldo
 

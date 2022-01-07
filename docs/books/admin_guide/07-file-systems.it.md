@@ -39,7 +39,9 @@ Lo stesso disco fisico può essere diviso in un massimo di 4 partizioni:
 * *Primary* (o main)
 * *Extended*
 
-!!! Warning "Avvertimento" Ci può essere solo una partizione estesa per disco fisico. Al fine di beneficiare di ulteriori unità, la partizione estesa può essere suddivisa in partizioni logiche
+!!! Warning "Attenzione"
+
+    Ci può essere solo una partizione estesa per disco fisico. Al fine di beneficiare di ulteriori unità, la partizione estesa può essere suddivisa in partizioni logiche
 
 ![Breakdown into only 4 primary partitions](images/07-file-systems-001.png)
 
@@ -53,8 +55,9 @@ I dispositivi di archiviazione sono denominati *hd* per i dischi rigidi IDE e *s
 
 Finalmente troveremo un numero che definisce il volume partizionato: *1* per la prima partizione primaria, ...
 
-!!! Warning "Avvertimento"  
-Attenzione, la partizione estesa, che non supporta un file system, ha ancora un numero.
+!!! Warning "Attenzione"
+
+    Attenzione, la partizione estesa, che non supporta un file system, ha ancora un numero.
 
 ![Identification of partitions](images/07-file-systems-003.png)
 
@@ -141,8 +144,9 @@ Lo svantaggio è che se uno dei volumi fisici va fuori servizio, allora tutti i 
 
 LVM è disponibile in Linux dalla versione del kernel 2.4.
 
-!!! Note "Nota"  
-LVM è gestito solo dal sistema operativo. Quindi, il _BIOS_ ha bisogno di almeno una partizione senza LVM per avviarsi.
+!!! Note "Nota"
+
+    LVM è gestita soltanto dal sistema operativo. Pertanto il _BIOS_ ha bisogno di almeno una partizione senza LVM per avviare.
 
 ### Gruppi di volumi
 
@@ -165,7 +169,9 @@ Un gruppo di volumi, *VG*, è diviso in volumi logici, *LV*, offrendo diverse mo
 
 ![Volumes in stripe mode](images/07-file-systems-006.png)
 
-!!! Tip "Suggerimento" _Striping_ migliora le prestazioni scrivendo i dati a un numero predeterminato di volumi fisici con una tecnica _round-robin_.
+!!! Tip "Suggerimento"
+
+    Striping_ migliora le prestazioni scrivendo i dati su un numero predeterminato di volumi fisici con una tecnica _round-robin_.
 
 ![Mirrored volumes](images/07-file-systems-007.png)
 
@@ -319,13 +325,15 @@ Esempio:
 | ------- | -------------------------------------------- |
 | `-t`    | Indica il tipo di file system da utilizzare. |
 
-!!! Warning "Avvertimento"  
-Senza un file system non è possibile utilizzare lo spazio su disco.
+!!! Warning "Attenzione"
+
+    Senza un file system non è possibile usare lo spazio su disco.
 
 Ogni file system ha una struttura identica su ciascuna partizione. Un **boot block** e **super block** inizializzato dal sistema e poi un **inode table** e una **data area** inizializzata dall'amministratore.
 
-!!! Note "Nota"  
-L'unica eccezione è la partizione **swap**.
+!!! Note "Nota"
+
+    L'unica eccezione è la partizione di **swap**.
 
 ### Blocco di avvio
 
@@ -355,8 +363,9 @@ Quando il sistema viene fermato, viene copiata anche questa tabella sull'hard di
 
 La dimensione della **tabella inode** è definito alla sua creazione ed è memorizzato sulla partizione. Consiste di record, chiamati inodes, corrispondenti ai file creati. Ogni record contiene gli indirizzi dei blocchi di dati che costituiscono il file.
 
-!!! Note "Nota"  
-Un numero inode è unico all'interno di un file system.
+!!! Note "Nota"
+
+    Un numero di inode è univoco all'interno di un file system.
 
 Una copia viene caricata nella memoria centrale non appena il sistema è inizializzato. Questa copia viene aggiornata non appena viene modificata e il sistema la salva periodicamente (comando `sync`).
 
@@ -364,8 +373,9 @@ Quando il sistema viene fermato, viene copiata anche questa tabella sull'hard di
 
 Un file è gestito dal suo numero di inode.
 
-!!! Note "Nota"  
-La dimensione della tabella di inode determina il numero massimo di file che il file system può contenere.
+!!! Note "Nota"
+
+    La dimensione della tabella inode determina il numero massimo di file che il FS può contenere.
 
 Informazioni presenti nella *tabella inode* :
 
@@ -388,8 +398,9 @@ La sua dimensione corrisponde al resto dello spazio disponibile nella partizione
 
 Quando il sistema viene fermato, viene copiata anche questa tabella sull'hard disk
 
-!!! Danger "Pericolo"  
-In caso di fermata improvvisa, il file system potrebbe perdere la sua coerenza e causare la perdita di dati.
+!!! Danger "Pericolo"
+
+    In caso di arresto improvviso, il file system può perdere la sua coerenza e causare la perdita di dati.
 
 ### Riparazione del file system
 
@@ -420,8 +431,9 @@ or
 [root]# shutdown –r -F now
 ```
 
-!!! Warning "Avvertimento"  
-La partizione da controllare deve essere smontata.
+!!! Warning "Attenzione"
+
+    La partizione da controllare deve essere smontata.
 
 ## Organizzazione di un file system
 
@@ -429,7 +441,9 @@ Per definizione, un file system è una struttura ad albero delle directory creat
 
 ![Organization of a file system](images/07-file-systems-008.png)
 
-!!! Nota In Linux tutto è un file.
+!!! Note "Nota"
+
+    In Linux tutto è un file.
 
 Documento di testo, directory, file binario, partizione, risorse di rete, schermo, tastiera, Unix kernel, programma utente, ...
 
@@ -464,7 +478,9 @@ Linux segue il **FHS** (_Filesystems Hierarchy Standard_) (vedi `man hier`) che 
 
 Il file `/etc/fstab` viene letto all'avvio del sistema e contiene i supporti da montare. Ogni file system da montare è descritto su una singola riga, I campi sono separati da spazi o tabulazioni.
 
-!!! Nota Le linee sono lette sequenzialmente (`fsck`, `mount`, `umount`).
+!!! Note "Nota"
+
+    Le linee sono lette in sequenza (`fsck`, `mount`, `umount`).
 
 ```
 /dev/mapper/VolGroup-lv_root   /         ext4    defaults        1   1
@@ -488,8 +504,9 @@ proc                           /proc     proc    defaults        0   0
 
 Il comando `mount -a` consente di montare i nuovi punti di montaggio senza riavvio. Vengono quindi scritti nel file `/etc/mtab` che contiene i supporti correnti.
 
-!!! Warning "Avvertimento"  
-Solo i punti di montaggio elencati in `/etc/fstab` saranno montati al riavvio.
+!!! Warning "Attenzione"
+
+    Solo i punti di montaggio elencati in `/etc/fstab` saranno montati al riavvio.
 
 È possibile fare una copia del file `/etc/mtab` o copiare il suo contenuto in `/etc/fstab`.
 
@@ -518,8 +535,9 @@ Esempio:
 | `-w`    | Monta il file system in lettura/scrittura, per impostazione predefinita. (equivalente`-o rw`). |
 | `-o`    | Argomento seguito da un elenco di opzioni separate da virgole (`remount`, `ro`, ...).          |
 
-!!! Note "Nota"  
-Il comando `mount` da solo visualizza tutti i file system montati.
+!!! Note "Nota"
+
+    Il comando `mount` da solo mostra tutti i file system montati.
 
 #### comando `umount`
 
@@ -543,8 +561,9 @@ Esempio:
 | `-f`    | Forza smontaggio.                                      |
 | `-a`    | Smontare tutti i filesystem menzionati in`/etc/fstab`. |
 
-!!! Note "Nota"  
-Quando si smontano, non devi essere posizionato al di sotto del punto di montaggio. Altrimenti, viene visualizzato il seguente messaggio di errore: `device is busy`.
+!!! Note "Nota"
+
+    Durante lo smontaggio, non si deve rimanere sotto il punto di montaggio. Altrimenti, viene visualizzato il seguente messaggio di errore: `device is busy`.
 
 ## Tipi di file
 
@@ -561,14 +580,17 @@ I gruppi di parole separati da spazi devono essere racchiusi tra virgolette:
 [root]# mkdir "working dir"
 ```
 
-!!! Note "Nota"  
-Anche se non c'è nulla di tecnicamente sbagliato nel creare un file o una directory con uno spazio in esso, generalmente è una "_pratica migliore_" evitarlo e sostituire qualsiasi spazio con una sottolineatura.
+!!! Note "Nota"
 
-!!! Note "Nota"  
-Il **.** all'inizio del nome del file serve solo a nasconderlo da un semplice `ls`.
+    Mentre non c'è nulla di tecnicamente sbagliato nella creazione di un file o una directory con uno spazio in esso, è generalmente una "pratica migliore" evitare questo e sostituire qualsiasi spazio con un underscore.
 
-!!! Warning "Avvertimento"  
-In Linux, l'estensione di un file non è un riferimento necessario per aprirlo o modificarlo. Tuttavia, può essere utile per l'utente.
+!!! Note "Nota"
+
+    Il **.** all'inizio del nome del file serve solo a nasconderlo da un semplice `ls`.
+
+!!! Warning "Attenzione"
+
+    Sotto Linux, l'estensione di un file non è un riferimento necessario per aprirlo o modificarlo. Tuttavia, può essere utile per l'utente.
 
 Esempi di estensioni comuni:
 
@@ -694,8 +716,9 @@ Esistono due tipi di file link:
 
 Il file di collegamento e il file di origine hanno lo stesso numero di _inode_ e il contatore dei collegamenti viene incrementato. Non è possibile collegare diverse directory o files da file system diversi.
 
-!!! Warning "Avvertimento"  
-Se il file sorgente viene distrutto, il contatore viene decrementato e il file di collegamento accede ancora al file.
+!!! Warning "Attenzione"
+
+    Se il file sorgente viene distrutto, il contatore viene decrementato e il file di collegamento accede ancora al file.
 
 ###### Commando `ln` per un link fisico
 
@@ -724,8 +747,9 @@ A differenza del collegamento fisico, il link simbolico coinvolge la creazione d
 
 Il file creato contiene solo un'indicazione del percorso verso il file. Questa nozione non ha più le limitazioni dei collegamenti fisici ed è ora possibile collegare directory e file appartenenti a diversi file system.
 
-!!! Warning "Avvertimento"  
-Se il file sorgente viene distrutto, il file di link non può più accedere al file.
+!!! Warning "Attenzione"
+
+    Se il file sorgente viene distrutto, il file di collegamento non può più accedere al file.
 
 ###### comando `ln` per un link simbolico
 
@@ -766,8 +790,9 @@ Ci sono 4 diritti di accesso ai file:
 * e**x**ecution; (esecuzione)
 * **-** no right. (nessun diritto)
 
-!!! Warning "Avvertimento"  
-I diritti associati ai file differiscono da quelli associati alle directory (vedi sotto).
+!!! Warning "Attenzione"
+
+    I diritti associati ai file differiscono da quelli associati alle directory (vedi sotto).
 
 I tipi di utente associati ai diritti di accesso ai file sono:
 
@@ -786,8 +811,9 @@ In alcuni comandi è possibile designare tutti con **a** (_all_).
 * e**x**ecute: Considera il file come un eseguibile e**X**ecutable (binario o script.).
 * **-**: Nessuna autorizzazione.
 
-!!! Note "Nota"  
-Spostare o rinominare un file dipende dai permessi della directory di destinazione. Eliminazione di un file dipende dai permessi della directory principale.
+!!! Note "Nota"
+
+    Lo spostamento o la rinomina di un file dipende dai diritti della directory di destinazione. L'eliminazione di un file dipende dai diritti della directory padre.
 
 ### Permessi associati alle directory
 
@@ -814,8 +840,9 @@ La visualizzazione dei permessi viene eseguita con il comando `ls -l`. Sono gli 
 | 4    | Proprietario del file                                         |
 | 5    | Proprietario del gruppo del file                              |
 
-!!! Note "Nota"  
-Le autorizzazioni si applicano a **u**ser, **g**roup e **o**ther (**ugo**) a seconda del proprietario e del gruppo.
+!!! Note "Nota"
+
+    I permessi si applicano a **u**ser, **g**roup e **o**ther (**ugo**) a seconda del proprietario e del gruppo.
 
 Per impostazione predefinita, il _proprietario_ di un file è quello che lo crea. IL _gruppo_ del file è il gruppo del proprietario che ha creato il file. Gli _others_ sono quelli che non sono interessati dai casi precedenti.
 
@@ -867,8 +894,9 @@ Ci sono due metodi per la realizzazione dei cambiamenti dei permessi:
 * Il metodo **ottale**;
 * Il metodo **simbolico**.
 
-!!! Warning "Avvertimento"  
-I permessi dei file e delle directory non sono dissociati. Per alcune operazioni, Sarà necessario conoscere i permessi della directory contenente il file. Un file protetto da scrittura può essere cancellato da un altro utente purché i permessi della directory che lo contengono consentono a questo utente di eseguire questa operazione.
+!!! Warning "Attenzione"
+
+    I diritti dei file e delle directory non sono dissociati. Per alcune operazioni, sarà necessario conoscere i diritti della directory contenente il file. Un file protetto da scrittura può essere cancellato da un altro utente purché i permessi della directory che lo contengono consentano a questo utente di eseguire questa operazione.
 
 #### Principio del metodo ottale
 
@@ -928,8 +956,9 @@ Come con i permessi fondamentali, i permessi particolari hanno ciascuno un valor
 
 ![Special rights](images/07-file-systems-015.png)
 
-!!! Danger "Pericolo"  
-`S`, `S` e `T` in maiuscolo **se il diritto non esiste**.
+!!! Danger "Pericolo"
+
+    `S`, `S` e `T` in lettere maiuscole **se il diritto non esiste**.
 
 #### Il sticky-bit
 
@@ -961,9 +990,10 @@ Questi permessi consentono l'esecuzione di un comando in base ai permessi impost
 
 Il comando viene eseguito con l'identità del proprietario (_SUID_) o del gruppo (_SGID_) del comando.
 
-!!! Note "Nota"  
-L'identità dell'utente che richiede l'esecuzione dell'ordine non è più presa in considerazione.
+!!! Note "Nota"
 
+    L'identità dell'utente che richiede l'esecuzione dell'ordine non viene più presa in considerazione.
+    
     Questa è una possibilità aggiuntiva dei permessi di accesso assegnata a un utente quando è necessario per loro avere gli stessi permessi del proprietario di un file o di quelli del gruppo in questione.
 
 Infatti, un utente potrebbe deve eseguire un programma (di solito un'utilità di sistema) ma non ha i permessi di accesso necessari. Impostando i permessi appropriati (**s** a livello proprietario e/o a livello di gruppo), l'utente del programma ha, per il tempo della sua esecuzione, l'identità del proprietario (o quella del gruppo) del programma.
@@ -999,8 +1029,10 @@ Verifica:
 -rwxrwsrwx … command2
 ```
 
-!!! Warning "Avvertimento"  
-Non è possibile passare il _SUID_ o _SGID_ a una shell script. Il sistema non lo consente perché è troppo pericoloso per la sicurezza!
+!!! Warning "Attenzione"
+
+    Non è possibile passare il _SUID_ o _SGID_ ad uno script di shell.
+    Il sistema non lo consente perché è troppo pericoloso per la sicurezza!
 
 #### SGID su un file
 
@@ -1073,9 +1105,13 @@ $ ls -la  umask_025
 | ------- | ------------------------------------------------ |
 | `-S`    | Visualizzazione simbolica dei permessi dei file. |
 
-!!! Warning "Avvertimento" `umask` non influisce sui file esistenti.
+!!! Warning "Attenzione"
 
-!!! Note "Nota" `umask` modifica la maschera fino alla disconnessione.
+    `umask` non influisce sui file esistenti.
+
+!!! Note "Nota"
+
+    `umask` modifica la maschera fino alla disconnessione.
 
 Per mantenere il valore, devi modificare i seguenti file del profilo: Per tutti gli utenti:
 
@@ -1086,8 +1122,10 @@ Per un determinato utente:
 
 * `~/.bashrc`
 
-!!! Warning "Avvertimento"  
-`umask -S` visualizza i permessi dei file (senza i permessi di esecuzione) dei file che verranno creati. Quindi non è il display della maschera utilizzata per sottrarre il valore massimo.
+!!! Warning "Attenzione"
 
-!!! Tip "Suggerimento"  
-Il comando `umask` è un comando _bash_, (un `type umask` ritorna `umask is a shell primitive`) devi cercare `umask` in `man bash`.
+    `umask -S` visualizza i diritti del file (senza il diritto di esecuzione) dei file che verranno creati. Quindi non è la visualizzazione della maschera utilizzata per sottrarre il valore massimo.
+
+!!! Tip "Suggerimento"
+
+    Il comando `umask` è un comando _bash_, (un `type umask` restituisce `umask is a shell primitive`) devi cercare `umask` in `man bash`.

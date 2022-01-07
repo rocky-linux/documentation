@@ -1145,7 +1145,7 @@ Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso 
 
 !!! Tip "Suggerimento"
 
-    `$ find /tmp -name *.txt -delete` does the same thing.
+    `$ find /tmp -name *.txt -delete` fa la stessa cosa.
 
 ### comando `whereis`
 
@@ -1461,8 +1461,9 @@ Per un uso permanente, devono essere creati nel:
 * `.bashrc` file nella directory di accesso dell'utente;
 * `/etc/profile.d/alias.sh` file per tutti gli utenti.
 
-!!! Attenzione  
-Occorre prestare particolare attenzione quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
+!!! Warning "Attenzione"
+
+    Particolare attenzione deve essere prestata quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
 
     ```bash
     alias cd='rm -Rf'

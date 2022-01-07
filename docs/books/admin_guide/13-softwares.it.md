@@ -11,7 +11,9 @@ Su un sistema Linux, è possibile installare il software in due modi:
 * Utilizzando un pacchetto di installazione;
 * Compilandolo da un file sorgente.
 
-!!! Note "Nota" L'installazione dall'origine non è trattata qui. Di norma, è necessario utilizzare il metodo del pacchetto a meno che il software desiderato non sia disponibile tramite il gestore pacchetti. La ragione di ciò è che le dipendenze sono generalmente gestite dal sistema di pacchetti, mentre con il sorgente, è necessario gestire manualmente le dipendenze.
+!!! Note "Nota"
+
+    L'installazione da sorgente non è trattata qui. Di norma, è necessario utilizzare il metodo del pacchetto a meno che il software desiderato non sia disponibile tramite il gestore pacchetti. La ragione di ciò è che le dipendenze sono generalmente gestite dal sistema di pacchetti, mentre con il sorgente, è necessario gestire manualmente le dipendenze.
 
 **Il pacchetto**: si tratta di un singolo file contenente tutti i dati necessari per installare il programma. Può essere eseguito direttamente sul sistema da un repository software.
 
@@ -81,9 +83,13 @@ Esempio:
 | `-f`             | Mostra il nome del pacchetto contenente il file specificato.                                                                  |
 | `--last`         | L'elenco dei pacchetti è indicato per data di installazione (gli ultimi pacchetti installati vengono visualizzati per primi). |
 
-!!! Warning "Avvertimento" Dopo l'opzione `-q`, il nome del pacchetto deve essere esatto. I metacaratteri (caratteri jolly) non sono supportati.
+!!! Warning "Attenzione"
 
-!!! Tip "Suggerimento" Tuttavia, è possibile elencare tutti i pacchetti installati e filtrarli con il comando 'grep'.
+    Dopo l'opzione `-q`, il nome del pacchetto deve essere esatto. I metacaratteri (wildcards) non sono supportati.
+
+!!! Tip "Suggerimento"
+
+    Tuttavia, è possibile elencare tutti i pacchetti installati e filtrarli con il comando `grep`.
 
 Esempio: elencare gli ultimi pacchetti installati:
 
