@@ -1,142 +1,151 @@
 ---
-title: User Management
+title: La gestion des utilisateurs
 ---
 
-# User Management
+# La gestion des utilisateurs
 
-In this chapter you will learn how to manage user.
+Dans ce chapitre, vous apprendrez à gérer les utilisateurs.
 
 ****
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**Objectifs** : Dans ce chapitre, les futurs administrateurs Linux vont apprendre comment :
 
-:heavy_check_mark: add, delete or modify a **group** ;   
-:heavy_check_mark: add, delete or modify a **user** ;   
-:heavy_check_mark: know the syntax of the files associated with the management of groups and users ;   
-:heavy_check_mark: change the *owner* or the *group owner* of a file;   
-:heavy_check_mark: *secure* user accounts;   
-:heavy_check_mark: change identity.
+:heavy_check_mark: ajouter, supprimer ou modifier un **groupe** ;   
+:heavy_check_mark: ajouter, supprimer ou modifier un **utilisateur** ;   
+:heavy_check_mark: connaître la syntaxe des fichiers associés à la gestion des groupes et des utilisateurs ;   
+:heavy_check_mark: changer le *propriétaire* ou le *groupe propriétaire* d'un fichier ;   
+:heavy_check_mark: *sécuriser* les comptes utilisateurs ;   
+:heavy_check_mark: changer d'identité.
 
-:checkered_flag: **users**
+:checkered_flag: **utilisateurs**
 
-**Knowledge**: :star: :star:   
-**Complexity**: :star: :star:
+**Connaissances : ** :star: :star:   
+**Complexité : ** :star: :star:
 
-**Reading time**: 30 minutes
+**Temps de lecture : **30 minutes
 ****
 
-## General
+## Généralités
 
-Each user is a member of at least one group: **this is their main group**.
+Chaque utilisateur est membre d’au moins un groupe : **c’est son groupe principal**.
 
-Several users can be part of the same group.
+Plusieurs utilisateurs peuvent faire partie d’un même groupe.
 
-Users can belong to other groups. These users are *invited* to these **secondary groups**.
+Les utilisateurs peuvent appartenir à d’autres groupes. Ces utilisateurs sont *invités* dans ces **groupes secondaires**.
 
-!!! abstract Note Each user has a primary group and can be invited into one or more secondary groups.
+!!! Note
 
-Groups and users are managed by their unique numerical identifiers `GID` and `UID`.
+    Chaque utilisateur a un groupe primaire et peut être invité dans un ou plusieurs groupes secondaires.
 
-Account and group declaration files are located in `/etc`.
-* `UID`: _User IDentifier_. Unique user ID.
-* `GID`: _Group IDentifier_. Unique group identifier.
+Les groupes et utilisateurs se gèrent par leur identifiant numérique unique `GID` et `UID`.
 
-!!! abstract Danger You should always use the administration commands instead of manually editing the files.
+Les fichiers de déclaration des comptes et groupes se trouvent dans `/etc`.
+* `UID` : _User IDentifier_. Identifiant unique d’utilisateur.
+* `GID` : _Group IDentifier_. Identifiant unique de groupe.
 
-## Group management
+!!! Danger
 
-Modified files, added lines:
+    Il est recommandé d’utiliser les commandes d’administration au lieu de modifier manuellement les fichiers.
+
+## Gestion des groupes
+
+Fichiers modifiés, ajout de lignes :
 
 * `/etc/group`
 * `/etc/gshadow`
 
-### `groupadd` command
+### La commande `groupadd`
 
-The `groupadd` command adds a group to the system.
+La commande `groupadd` permet d’ajouter un groupe au système.
 ```
-groupadd [-f] [-g GID] group
+groupadd [-f] [-g GID] groupe
 ```
 
-Example:
+Exemple :
 
 ```
 $ sudo groupadd -g 1012 GroupeB
 ```
 
-| Option   | Description                                                                                                                        |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `-g GID` | `GID` of the group to create.                                                                                                      |
-| `-f`     | The system chooses a `GID` if the one specified by the `-g` option already exists.                                                 |
-| `-r`     | Creates a system group with a `GID` between `SYS_GID_MIN` and `SYS_GID_MAX`. These two variables are defined in `/etc/login.defs`. |
+| Option   | Description                                                                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-g GID` | `GID` du groupe à créer.                                                                                                                    |
+| `-f`     | Le système choisit un `GID` si celui précisé par l’option `-g` existe déjà.                                                                 |
+| `-r`     | Crée un groupe système avec un `GID` compris entre `SYS_GID_MIN` et `SYS_GID_MAX`. Ces deux variables sont définies dans `/etc/login.defs`. |
 
-Group naming rules:
+Règles de nommage des groupes :
 
-* No accents or special characters;
-* Different from the name of an existing user or system files.
+* Pas d’accents, ni caractères spéciaux ;
+* Différents du nom d’un utilisateur ou fichier système existant.
 
-!!! abstract Note Under **Debian**, the administrator should use, except in scripts intended to be portable to all Linux distributions, the `addgroup` and `delgroup` commands as specified in the `man`:
+!!! Note
+
+    Sous **Debian**, l'administrateur devrait utiliser, sauf dans les scripts destinés à être portables sur toutes les distributions Linux, les commandes `addgroup` et `delgroup` spécifiées dans le `man`:
 
     ```
     $ man addgroup
     DESCRIPTION
-    adduser and addgroup add users and groups to the system according to command line options and configuration information
-    in /etc/adduser.conf. They are friendlier front ends to the low level tools like useradd, groupadd and usermod programs,
-    by default choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
-    running a custom script, and other features.
+        adduser et addgroup ajoutent des utilisateurs ou des groupes au système en fonction des options fournies en ligne de commande et des informations contenues dans le fichier de configuration /etc/adduser.conf. Ce sont des interfaces plus conviviales que les programmes useradd et groupadd. Elles  permettent de choisir par défaut des UID ou des GID conformes à la charte Debian, de créer un répertoire personnel configuré suivant un modèle (squelette), d'utiliser un script sur mesure, et d'autres fonctionnalités encore.
     ```
 
-### Command `groupmod`
+### La commande `groupmod`
 
-The `groupmod` command allows you to modify an existing group on the system.
-
-```
-groupmod [-g GID] [-n nom] group
-```
-
-Example:
+La commande `groupmod` permet de modifier un groupe existant sur le système.
 
 ```
-$ sudo groupmod -g 1016 GroupP
-$ sudo groupmod -n GroupC GroupB
+groupmod [-g GID] [-n nom] groupe
 ```
 
-| Option    | Description                       |
-| --------- | --------------------------------- |
-| `-g GID`  | New `GID` of the group to modify. |
-| `-n name` | New name.                         |
+Exemple :
 
-It is possible to change the name of a group, its `GID` or both simultaneously.
+```
+$ sudo groupmod -g 1016 GroupeP
+$ sudo groupmod -n GroupeC GroupeB
+```
 
-After modification, the files belonging to the group have an unknown `GID`. They must be reassigned the new `GID`.
+| Option   | Description                         |
+| -------- | ----------------------------------- |
+| `-g GID` | Nouveau `GID` du groupe à modifier. |
+| `-n nom` | Nouveau nom.                        |
+
+Il est possible de modifier le nom d’un groupe, son `GID` ou les deux simultanément.
+
+Après modification, les fichiers appartenant au groupe ont un `GID inconnu`. Il faut leur réattribuer le nouveau `GID`.
 
 ```
 $ sudo find / -gid 1002 -exec chgrp 1016 {} \;
 ```
 
-### `groupdel` command
+### La commande `groupdel`
 
-The `groupdel` command is used to delete an existing group on the system.
-
-```
-groupdel group
-```
-
-Example:
+La commande `groupdel` permet de supprimer un groupe existant sur le système.
 
 ```
-$ sudo groupdel GroupC
+groupdel groupe
 ```
 
-!!! abstract Tip To be deleted, a group must no longer contain users.
+Exemple :
 
-Deleting the last user of an eponymous group will cause the system to delete the group.
+```
+$ sudo groupdel GroupeC
+```
 
-!!! abstract Tip Each group has a unique `GID`. A group can be duplicated. By convention, the `GID` of system groups range from 0 (`root`) to 999.
+!!! Tip
 
-!!! abstract Tip Since a user is necessarily part of a group, it is best to create the groups before adding the users. Therefore, a group may not have any members.
+    Pour être supprimé, un groupe ne doit plus contenir d'utilisateurs.
 
-### `/etc/group` file
+La suppression du dernier utilisateur d’un groupe éponyme entraînera la suppression de ce groupe par le système.
 
-This file contains the group information (separated by `:`).
+!!! Tip
+
+    Chaque groupe a un `GID` unique. Un groupe peut être dupliqué. Par convention, les GID des groupes systèmes vont de 0 (root) à 999.
+
+!!! Tip
+
+    Un utilisateur faisant obligatoirement partie d’un groupe, il est préférable de créer les groupes avant d’ajouter les utilisateurs. Par conséquent, un groupe peut ne pas avoir de membres.
+
+### Le fichier `/etc/group`
+
+Ce fichier contient les informations de groupes (séparées par `:`).
 
 ```
 $ sudo tail -1 /etc/group
@@ -144,16 +153,18 @@ GroupP:x:516:patrick
   (1)  (2)(3)   (4)
 ```
 
-* 1: Name of the group.
-* 2: Password (`x` if defined in `/etc/gshadow`).
+* 1: Nom du groupe.
+* 2: Mot de passe (`x` si défini dans `/etc/gshadow`).
 * 3: GID.
-* 4: Guest members (separated by commas, does not contain core members).
+* 4: Membres invités (séparés par des virgules, ne contient pas les membres principaux).
 
-!!! abstract Note Each line in the `/etc/group` file corresponds to a group. Users whose group is their main group are not listed at this level. This membership information is in fact already provided by the `/etc/passwd` file...
+!!! Note
 
-### `/etc/gshadow` file
+    Chaque ligne du fichier `/etc/group` correspond à un groupe. Les utilisateurs dont ce groupe est leur groupe principal ne sont pas listés à ce niveau. Cette information d’appartenance est en fait déjà fournie par le fichier `/etc/passwd`...
 
-This file contains the security information about the groups (separated by `:`).
+### Le fichier `/etc/gshadow`
+
+Ce fichier contient les informations de sécurité sur les groupes (séparées par `:`).
 
 ```
 $ sudo grep GroupA /etc/gshadow
@@ -161,217 +172,227 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
    (1)      (2)            (3)      (4)
 ```
 
-* 1: Name of the group.
-* 2: Encrypted password.
-* 3: Administrator of the group.
-* 4: Guest members (separated by commas, does not contain core members).
+* 1: Nom du groupe.
+* 2: Mot de passe chiffré.
+* 3: Administrateur du groupe.
+* 4: Membres invités (séparés par des virgules, ne contient pas les membres principaux).
 
-!!! abstract Warning For each line in the `/etc/group` file there must be a corresponding line in the `/etc/gshadow` file.
+!!! Warning
 
-A `!` in the password indicates that it is locked. Thus no user can use the password to access the group (since group members do not need it).
+    Pour chaque ligne du fichier `/etc/group` doit correspondre une ligne du fichier `/etc/gshadow`.
 
-## User management
+Un `!` au niveau du mot de passe indique que celui-ci est bloqué. Ainsi aucun utilisateur ne peut utiliser le mot de passe pour accéder au groupe (sachant que les membres du groupe n’en ont pas besoin).
 
-### Definition
+## Gestion des utilisateurs
 
-A user is defined as follows in the `/etc/passwd` file:
+### Définition
 
-* 1: Login;
-* 2: Password;
-* 3: UID;
-* 4: GID of the main group;
-* 5: Comments;
-* 6: Home directory;
+Un utilisateur se définit comme suit dans le fichier `/etc/passwd` :
+
+* 1: Login ;
+* 2: Mot de passe ;
+* 3: UID ;
+* 4: GID du groupe principal ;
+* 5 : Commentaires ;
+* 6: Répertoire de connexion ;
 * 7: Shell (`/bin/bash`, `/bin/nologin`, ...).
 
-There are three types of users:
+Il existe trois types d’utilisateurs :
 
-* **root**: the system administrator ;
-* **system users**: Used by the system to manage application access rights ;
-* **regular user**: Other account to log in to the system.
+* **root** : Administrateur du système ;
+* **utilisateur système** : Utilisé par le système pour la gestion des droits d’accès des applications ;
+* **utilisateur ordinaire** : Autre compte permettant de se connecter au système.
 
-Modified files, added lines:
+Fichiers modifiés, ajout de lignes :
 
 * `/etc/passwd`
 * `/etc/shadow`
 
-### `useradd` command
+### La commande `useradd`
 
-The `useradd` command is used to add a user.
-
-```
-useradd [-u UID] [-g GID] [-d directory] [-s shell] login
-```
-
-Example:
+La commande `useradd` permet d’ajouter un utilisateur.
 
 ```
-$ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
+useradd [-u UID] [-g GID] [-d repertoire] [-s shell] login
 ```
 
-| Option         | Description                                                         |
-| -------------- | ------------------------------------------------------------------- |
-| `-u UID`       | `UID` of the user to create.                                        |
-| `-g GID`       | `GID` of the main group.                                            |
-| `-d directory` | Home directory.                                                     |
-| `-s shell`     | Shell.                                                              |
-| `-c`           | Add a comment.                                                      |
-| `-U`           | Adds the user to a group with the same name created simultaneously. |
-| `-M`           | Does not create the connection directory.                           |
-
-At creation, the account has no password and is locked.
-
-A password must be assigned to unlock the account.
-
-Account naming rules:
-
-* No accents, capital letters or special characters;
-* Different from the name of an existing group or system file;
-* Set the options `-u`, `-g`, `-d` and `-s` at creation.
-
-!!! abstract Warning The home directory tree must be created except for the last directory.
-
-The last directory is created by the `useradd` command, which takes the opportunity to copy the files from `/etc/skel` into it.
-
-**A user can belong to several groups in addition to their main group.**
-
-For secondary groups, the `-G` option must be used.
-
-Example:
+Exemple :
 
 ```
-$ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
+$ sudo useradd -u 1000 -g 1013 -d /home/GroupeC/carine carine
 ```
 
-!!! abstract Note Under **Debian**, you will have to specify the `-m` option to force the creation of the login directory or set the `CREATE_HOME` variable in the `/etc/login.defs` file. In all cases, the administrator should use the `adduser` and `deluser` commands as specified in the `man`, except in scripts intended to be portable to all Linux distributions:
+| Option          | Description                                                              |
+| --------------- | ------------------------------------------------------------------------ |
+| `-u UID`        | `UID` de l’utilisateur à créer.                                          |
+| `-g GID`        | `GID` du groupe principal.                                               |
+| `-d repertoire` | Répertoire de connexion.                                                 |
+| `-s shell`      | Interpréteur de commandes.                                               |
+| `-c`            | Ajoute un commentaire.                                                   |
+| `-U`            | Ajoute l’utilisateur à un groupe portant le même nom créé simultanément. |
+| `-M`            | Ne crée pas le répertoire de connexion.                                  |
+
+À la création, le compte ne possède pas de mot de passe et est verrouillé.
+
+Il faut assigner un mot de passe pour déverrouiller le compte.
+
+Règles de nommage des comptes :
+
+* Pas d’accents, de majuscules ni caractères spéciaux ;
+* Différents du nom d’un groupe ou fichier système existant ;
+* Définir les options `-u`, `-g`, `-d` et `-s` à la création.
+
+!!! Warning
+
+    L’arborescence du répertoire de connexion doit être créée à l’exception du dernier répertoire.
+
+Le dernier répertoire est créé par la commande `useradd` qui en profite pour y copier les fichiers de `/etc/skel`.
+
+**Un utilisateur peut faire partie de plusieurs groupes en plus de son groupe principal.**
+
+Pour les groupes secondaires, il faut utiliser l’option `-G`.
+
+Exemple :
+
+```
+$ sudo useradd -u 1000 -g GroupeA -G GroupeP,GroupeC albert
+```
+
+!!! Note
+
+    Sous Debian, il faudra spécifier l’option `-m` pour forcer la création du répertoire de connexion ou positionner la variable `CREATE_HOME` du fichier `/etc/login.defs`. Dans tous les cas, l’administrateur devrait privilégier, sauf dans des scripts ayant la vocation d’être portables sur toutes les distributions Linux, les commandes `adduser` et `deluser` comme précisé dans le `man` :
 
     ```
     $ man useradd
     DESCRIPTION
-        **useradd** is a low level utility for adding users. On Debian, administrators should usually use **adduser(8)**
-         instead.
+        **useradd** est un utilitaire de bas niveau pour ajouter des utilisateurs. Sur Debian, les administrateurs devraient généralement utiliser **adduser(8)**
+         à la place.
     ```
 
-#### Default value for user creation.
+#### Valeur par défaut de création d’utilisateur.
 
-Modification of the file `/etc/default/useradd`.
+Modification du fichier `/etc/default/useradd`.
 
 ```
-useradd -D [-b directory] [-g group] [-s shell]
+useradd -D [-b repertoire] [-g groupe] [-s shell]
 ```
 
-Example:
+Exemple :
 
 ```
 $ sudo useradd -D -g 1000 -b /home -s /bin/bash
 ```
 
-| Option         | Description                                                                   |
-| -------------- | ----------------------------------------------------------------------------- |
-| `-D`           | Sets the default values for user creation.                                    |
-| `-b directory` | Sets the default login directory.                                             |
-| `-g group`     | Sets the default group.                                                       |
-| `-s shell`     | Sets the default shell.                                                       |
-| `-f`           | The number of days after the password expires before the account is disabled. |
-| `-e`           | The date the account will be disabled.                                        |
+| Option          | Description                                                                                 |
+| --------------- | ------------------------------------------------------------------------------------------- |
+| `-D`            | Définit les valeurs par défaut de création d’utilisateur.                                   |
+| `-b repertoire` | Définit le répertoire de connexion par défaut.                                              |
+| `-g groupe`     | Définit le groupe par défaut.                                                               |
+| `-s shell`      | Définit le shell par défaut.                                                                |
+| `-f`            | Nombre de jours suivant l’expiration du mot de passe avant que le compte ne soit désactivé. |
+| `-e`            | Date à laquelle le compte sera désactivé.                                                   |
 
-### `usermod` command
+### La commande `usermod`
 
-The `usermod` command allows to modify a user.
+La commande `usermod` permet de modifier un utilisateur.
 
 ```
-usermod [-u UID] [-g GID] [-d directory] [-m] login
+usermod [-u UID] [-g GID] [-d repertoire] [-m] login
 ```
 
-Example:
+Exemple :
 
 ```
 $ sudo usermod -u 1044 carine
 ```
 
-Options identical to the `useradd` command.
+Options identiques à la commande `useradd`.
 
-| Option          | Description                                                                                    |
-| --------------- | ---------------------------------------------------------------------------------------------- |
-| `-m`            | Associated with the `-d` option, moves the contents of the old login directory to the new one. |
-| `-l login`      | New name.                                                                                      |
-| `-e AAAA-MM-JJ` | Account expiration date.                                                                       |
-| `-L`            | Locks the account.                                                                             |
-| `-U`            | Unlocks the account.                                                                           |
-| `-a`            | Prevents the user from being deleted from a subgroup when added to another subgroup.           |
-| `-G`            | Specifies multiple subgroups when adding.                                                      |
+| Option          | Description                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------------------- |
+| `-m`            | Associé à l'option `-d` , déplace le contenu de l'ancien répertoire de connexion vers le nouveau.               |
+| `-l login`      | Nouveau nom.                                                                                                    |
+| `-e AAAA-MM-JJ` | Date d’expiration du compte.                                                                                    |
+| `-L`            | Verrouille le compte.                                                                                           |
+| `-U`            | Déverrouille le compte.                                                                                         |
+| `-a`            | Empêche la suppression de l’utilisateur d’un groupe secondaire lors de l’ajout dans un autre groupe secondaire. |
+| `-G`            | Précise plusieurs groupes secondaires lors de l’ajout.                                                          |
 
-With the `usermod` command, locking an account results in the addition of `!` before the password in the `/etc/shadow` file.
+Avec la commande `usermod`, le verrouillage d’un compte se traduit par l’ajout de `!` devant le mot de passe dans le fichier `/etc/shadow`.
 
-!!! abstract Tip To be modified, a user must be disconnected and have no running processes.
+!!! Tip
 
-After changing the identifier, the files belonging to the user have an unknown `UID`. It must be reassigned the new `UID`.
+    Pour être modifié, un utilisateur doit être déconnecté et ne pas avoir de processus en cours.
+
+Après modification de l’identifiant, les fichiers appartenant à l’utilisateur ont un `UID` inconnu. Il faut leur réattribuer le nouvel `UID`.
 
 ```
 $ sudo find / -uid 1000 -exec chown 1044: {} \;
 ```
 
-Where `1000` is the old `UID` and `1044` is the new one.
+Où `1000` est l’ancien `UID` et `1044` le nouveau.
 
-It is possible to invite a user into one or more subgroups with the options *-a* and *-G*.
+Il est possible d’inviter un utilisateur dans un ou plusieurs groupes secondaires avec les options *-a* et *-G*.
 
-Example:
-
-```
-$ sudo usermod -aG GroupP,GroupC albert
-```
-
-The `usermod` command acts as a modification and not as an addition.
-
-For a user invited to a group by this command and already positioned as a guest in other secondary groups, it will be necessary to indicate in the group management command all the groups to which he belongs otherwise he will disappear from them.
-
-The *-a* option changes this behavior.
-
-Examples:
-
-* Invite `albert` in the group `GroupP`.
+Exemple :
 
 ```
-$ sudo usermod -G GroupP albert
+$ sudo usermod -aG GroupeP,GroupeC albert
 ```
 
-* Invites `albert` into the `GroupG` group, but removes him from the `GroupP` guest list.
+La commande `usermod` agit en modification et non en ajout.
+
+Pour un utilisateur invité dans un groupe par l’intermédiaire de cette commande et déjà positionné comme invité dans d’autres groupes secondaires, il faudra indiquer dans la commande de gestion de groupe tous les groupes dont il fait partie sinon il disparaîtra de ceux-ci.
+
+L'option *-a* modifie ce comportement.
+
+Exemples :
+
+* Invite `albert` dans le groupe `GroupeP`.
 
 ```
-$ sudo usermod -G GroupG albert
+$ sudo usermod -G GroupeP albert
 ```
 
-* So either :
+* Invite `albert` dans le groupe `GroupeG`, mais le supprime de la liste des invités de `GroupeP`.
 
 ```
-$ sudo usermod -G GroupP,GroupG albert
+$ sudo usermod -G GroupeG albert
 ```
 
-* Or :
+* Donc soit :
 
 ```
-$ sudo usermod -aG GroupG albert
+$ sudo usermod -G GroupeP,GroupeG albert
 ```
 
-### `userdel` command
+* Ou :
 
-The `userdel` command allows you to delete a user's account.
+```
+$ sudo usermod -aG GroupeG albert
+```
+
+### La commande `userdel`
+
+La commande `userdel` permet de supprimer le compte d’un utilisateur.
 
 ```
 $ sudo userdel -r carine
 ```
 
-| Option | Description                                               |
-| ------ | --------------------------------------------------------- |
-| `-r`   | Deletes the connection directory and the contained files. |
+| Option | Description                                                   |
+| ------ | ------------------------------------------------------------- |
+| `-r`   | Supprime le répertoire de connexion et les fichiers contenus. |
 
-!!! abstract Tip To be deleted, a user must be logged out and have no running processes.
+!!! Tip
 
-`userdel` removes the user's line from the `/etc/passwd` and `/etc/gshadow` files.
+    Pour être modifié, un utilisateur doit être déconnecté et ne pas avoir de processus en cours.
 
-### `/etc/passwd` file
+`userdel` supprime la ligne de l’utilisateur dans les fichiers `/etc/passwd` et `/etc/gshadow`.
 
-This file contains user information (separated by `:`).
+### Le fichier `/etc/passwd`
+
+Ce fichier contient les informations des utilisateurs (séparées par `:`).
 
 ```
 $ sudo head -1 /etc/passwd
@@ -380,16 +401,16 @@ root:x:0:0:root:/root:/bin/bash
 ```
 
 * 1: Login.
-* 2: Password (`x` if defined in `/etc/shadow`).
+* 2: Mot de passe (`x` si défini dans `/etc/shadow`).
 * 3: UID.
-* 4: GID of the main group.
-* 5: Comment.
-* 6: Home directory.
-* 7: Shell.
+* 4: GID du groupe principal.
+* 5: Commentaire.
+* 6: Répertoire de connexion.
+* 7: Interpréteur de commandes.
 
-### `/etc/shadow` file
+### Le fichier `/etc/shadow`
 
-This file contains the users' security information (separated by `:`).
+Ce fichier contient les informations de sécurité des utilisateurs (séparées par `:`).
 ```
 $ sudo tail -1 /etc/shadow
 root:$6$...:15399:0:99999:7:::
@@ -397,340 +418,362 @@ root:$6$...:15399:0:99999:7:::
 ```
 
 * 1: Login.
-* 2: Encrypted password.
-* 3: Date of last change.
-* 4: Minimum lifetime of the password.
-* 5: Maximum lifetime of the password.
-* 6: Number of days before warning.
-* 7: Time to deactivate account after expiration.
-* 8: Account expiration time.
-* 9: Reserved for future use.
+* 2: Mot de passe chiffré.
+* 3: Date du dernier changement.
+* 4: Durée de vie minimale du mot de passe.
+* 5: Durée de vie maximale du mot de passe.
+* 6: Nombre de jours avant avertissement.
+* 7: Délai avant désactivation du compte après expiration.
+* 8: Délai d’expiration du compte.
+* 9: Réservé pour une utilisation future.
 
-!!! abstract Danger For each line in the `/etc/passwd` file there must be a corresponding line in the `/etc/shadow` file.
+!!! Danger
 
-## File owners
+    Pour chaque ligne du fichier `/etc/passwd` doit correspondre une ligne du fichier `/etc/shadow`.
 
-!!! abstract Danger All files necessarily belong to one user and one group.
+## Les propriétaires des fichiers
 
-The main group of the user creating the file is, by default, the group that owns the file.
+!!! Danger
 
-### Modification commands
+    Tous les fichiers appartiennent forcément à un utilisateur et à un groupe.
 
-#### `chown` command
+Le groupe principal de l’utilisateur qui crée le fichier est, par défaut, le groupe propriétaire du fichier.
 
-The `chown` command allows you to change the owners of a file.
+### Commandes de modifications
+
+#### La commande `chown`
+
+La commande `chown` permet de modifier les propriétaires d’un fichier.
 ```
-chown [-R] [-v] login[:group] file
-```
-
-Examples:
-```
-$ sudo chown root myfile
-$ sudo chown albert:GroupA myfile
+chown [-R] [-v] login[:groupe] fichier
 ```
 
-| Option | Description                                           |
-| ------ | ----------------------------------------------------- |
-| `-R`   | Changes the owners of the directory and its contents. |
-| `-v`   | Displays the executed changes.                        |
-
-To change only the owner user:
-
+Exemples :
 ```
-$ sudo chown albert file
+$ sudo chown root monfichier
+$ sudo chown albert:GroupeA monfichier
 ```
 
-To modify only the owner group:
+| Option | Description                                                |
+| ------ | ---------------------------------------------------------- |
+| `-R`   | Modifie les propriétaires du répertoire et de son contenu. |
+| `-v`   | Affiche les modifications exécutées.                       |
+
+Pour ne modifier que l’utilisateur propriétaire :
 
 ```
-$ sudo chown :GroupA file
+$ sudo chown albert fichier
 ```
 
-Changing the user and owner group:
+Pour ne modifier que le groupe propriétaire :
 
 ```
-$ sudo chown albert:GroupA file
+$ sudo chown :GroupeA fichier
 ```
 
-In the following example the group assigned will be the main group of the specified user.
+Modification de l’utilisateur et du groupe propriétaire :
 
 ```
-$ sudo chown albert: file
+$ sudo chown albert:GroupeA fichier
 ```
 
-### `chgrp` command
-
-The `chgrp` command allows you to change the owner group of a file.
+Dans l’exemple suivant le groupe attribué sera le groupe principal de l’utilisateur précisé.
 
 ```
-chgrp [-R] [-v] group file
+$ sudo chown albert: fichier
 ```
 
-Example:
-```
-$ sudo chgrp group1 file
-```
+### La commande `chgrp`
 
-| Option | Description                                                              |
-| ------ | ------------------------------------------------------------------------ |
-| `-R`   | Modifies the owner groups of the directory and its contents (recursion). |
-| `-v`   | Displays the executed changes.                                           |
-
-!!! abstract Note It is possible to apply to a file an owner and an owner group by taking as reference those of another file:
+La commande `chgrp` permet de modifier le groupe propriétaire d’un fichier.
 
 ```
-chown [options] --reference=RRFILE FILE
+chgrp [-R] [-v] groupe fichier
 ```
 
-For example:
+Exemple :
+```
+$ sudo chgrp groupe1 fichier
+```
+
+| Option | Description                                                                      |
+| ------ | -------------------------------------------------------------------------------- |
+| `-R`   | Modifie les groupes propriétaires du répertoire et de son contenu (récursivité). |
+| `-v`   | Affiche les modifications exécutées.                                             |
+
+!!! Note
+
+    Il est possible d’appliquer à un fichier un propriétaire et un groupe propriétaire en prenant comme référence ceux d’un autre fichier :
+
+```
+chown [options] --reference=RRFICHIER FICHIER
+```
+
+Par exemple :
 
 ```
 chown --reference=/etc/groups /etc/passwd
 ```
 
-## Guest management
+## Gestion des invités
 
-### `gpasswd` command
+### La commande `gpasswd`
 
-The command `gpasswd` allows to manage a group.
-
-```
-gpasswd [-a login] [-A login] [-d login] [-M login] group
-```
-
-Examples:
+La commande `gpasswd` permet de gérer un groupe.
 
 ```
-$ sudo gpasswd -A alain GroupA
-[alain]$ gpasswd -a patrick GroupA
+gpasswd [-a login] [-A login] [-d login] [-M login] groupe
 ```
 
-| Option     | Description                          |
-| ---------- | ------------------------------------ |
-| `-a login` | Adds the user to the group.          |
-| `-A login` | Sets the group administrator.        |
-| `-d login` | Remove the user from the group.      |
-| `-M login` | Defines the complete list of guests. |
+Exemples :
 
-The command `gpasswd -M` acts as a modification, not an addition.
+```
+$ sudo gpasswd -A alain GroupeA
+[alain]$ gpasswd -a patrick GroupeA
+```
+
+| Option     | Description                              |
+| ---------- | ---------------------------------------- |
+| `-a login` | Ajoute l’utilisateur au groupe.          |
+| `-A login` | Définit l’administrateur du groupe.      |
+| `-d login` | Retire l’utilisateur du groupe.          |
+| `-M login` | Définit la liste exhaustive des invités. |
+
+La commande `gpasswd -M` agit en modification et non en ajout.
 ```
 # gpasswd GroupeA
 New Password :
 Re-enter new password :
 ```
 
-### `id` command
+### La commande `id`
 
-The `id` command displays the group names of a user.
+La commande `id` affiche les noms des groupes d’un utilisateur.
 ```
 id login
 ```
-Example:
+Exemple :
 ```
 $ sudo id alain
-uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
+uid=1000(alain) gid=1000(GroupeA) groupes=1000(GroupeA),1016(GroupeP)
 ```
 
-### `newgrp` command
+### La commande `newgrp`
 
-The `newgrp` command allows you to temporarily use a secondary group for file creation.
+La commande `newgrp` permet d’utiliser temporairement un groupe secondaire pour la création de fichiers.
 ```
-newgrp [secondarygroups]
+newgrp [groupesecondaire]
 ```
-Example:
+Exemple :
 ```
-[alain]$ newgrp GroupB
+[alain]$ newgrp GroupeB
 ```
 
-!!! abstract Note After using this command, the files will be created with the `GID` of its subgroup.
+!!! Note
 
-The command `newgrp` without parameters reassigns the main group.
+    Après utilisation de cette commande, les fichiers seront créés avec le `GID` de son groupe secondaire.
 
-## Securing
+La commande `newgrp` sans paramètre réaffecte le groupe principal.
 
-### `passwd` command
+## Sécurisation
 
-The `passwd` command is used to manage a password.
+### La commande `passwd`
+
+La commande `passwd` permet de gérer un mot de passe.
 ```
 passwd [-d] [-l] [-S] [-u] [login]
 ```
-Examples:
+Exemples :
 ```
 $ sudo passwd -l albert
 $ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
 
-| Option    | Description                                          |
-| --------- | ---------------------------------------------------- |
-| `-d`      | Removes the password.                                |
-| `-l`      | Locks the account.                                   |
-| `-S`      | Displays the account status.                         |
-| `-u`      | Unlocks the account.                                 |
-| `-e`      | Expires the password.                                |
-| `-n days` | Minimum password lifetime.                           |
-| `-x days` | Maximum password lifetime.                           |
-| `-w days` | Warning time before expiration.                      |
-| `-i days` | Delay before deactivation when the password expires. |
+| Option     | Description                                               |
+| ---------- | --------------------------------------------------------- |
+| `-d`       | Supprime le mot de passe.                                 |
+| `-l`       | Verrouille le compte.                                     |
+| `-S`       | Affiche le statut du compte.                              |
+| `-u`       | Déverrouille le compte.                                   |
+| `-e`       | Fait expirer le mot de passe.                             |
+| `-n jours` | Durée de vie minimale du mot de passe.                    |
+| `-x jours` | Durée de vie maximale du mot de passe.                    |
+| `-w jours` | Délai d’avertissement avant expiration.                   |
+| `-i jours` | Délai avant désactivation lorsque le mot de passe expire. |
 
-With the `passwd` command, locking an account is accomplished by adding `!!` before the password in the `/etc/shadow` file.
+Avec la commande `passwd`, le verrouillage d’un compte se traduit par l’ajout de `!!` devant le mot de passe dans le fichier `/etc/shadow`.
 
-Using the command `usermod -U` command only removes one of the `!`. So the account remains locked.
+L’utilisation de la commande `usermod -U` ne supprime qu’un seul des `!`. Le compte reste donc verrouillé.
 
-Example:
+Exemple :
 
-* Alain changes his password:
+* Alain change son mot de passe :
 
 ```
 [alain]$ passwd
 ```
 
-* root changes Alain's password
+* root change le mot de passe d’Alain :
 
 ```
 $ sudo passwd alain
 ```
 
-!!! abstract Note The `passwd` command is available to users to change their password (the old password is requested). The administrator can change the passwords of all users without restriction.
+!!! Note
 
-They will have to comply with the security restrictions.
+    La commande `passwd` est accessible aux utilisateurs pour modifier leur mot de passe (l’ancien mot de passe est demandé). L’administrateur peut modifier les mots de passe de tous les utilisateurs sans restriction.
 
-When managing user accounts by shell script, it may be useful to set a default password after creating the user.
+Ils devront se soumettre aux restrictions de sécurité.
 
-This can be done by passing the password to the `passwd` command.
+Lors d’une gestion des comptes utilisateurs par script shell, il peut être utile de définir un mot de passe par défaut après avoir créé l’utilisateur.
 
-Example:
+Ceci peut se faire en passant le mot de passe à la commande `passwd`.
+
+Exemple :
 ```
 $ sudo echo "azerty,1" | passwd --stdin philippe
 ```
-!!! abstract Warning The password is entered in clear text, `passwd` takes care of encrypting it.
+!!! Warning
 
-### `chage` command
+    Le mot de passe est saisi en clair, `passwd` se charge de le chiffrer.
 
-The `chage` command is used to manage the account strategy.
+### La commande `chage`
+
+La commande `chage` permet de gérer la stratégie de compte.
 ```
-chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
+chage [-d date] [-E date] [-I jours] [-l] [-m jours] [-M jours] [-W jours] [login]
 ```
-Example:
+Exemple :
 ```
 $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
 
-| Option          | Description                                  |
-| --------------- | -------------------------------------------- |
-| `-I days`       | Delay before deactivation, password expired. |
-| `-l`            | Displays the policy details.                 |
-| `-m days`       | Minimum lifetime of the password.            |
-| `-M days`       | Maximum lifetime of the password.            |
-| `-d AAAA-MM-JJ` | Last password change.                        |
-| `-E AAAA-MM-JJ` | Account expiration date.                     |
-| `-W days`       | Warning time before expiration.              |
+| Option          | Description                                                   |
+| --------------- | ------------------------------------------------------------- |
+| `-I jours`      | Délai avant désactivation, mot de passe expiré (i majuscule). |
+| `-l`            | Affiche le détail de la stratégie (l minuscule).              |
+| `-m jours`      | Durée de vie minimale du mot de passe.                        |
+| `-M jours`      | Durée de vie maximale du mot de passe.                        |
+| `-d AAAA-MM-JJ` | Dernière modification du mot de passe.                        |
+| `-E AAAA-MM-JJ` | Date d’expiration du compte.                                  |
+| `-W jours`      | Délai d’avertissement avant expiration.                       |
 
-The `chage` command also offers an interactive mode.
+La commande `chage` propose également un mode intéractif.
 
-The `-d` option forces the password to be changed at login.
+L’option `-d` force la modification du mot de passe à la connexion.
 
-Examples:
+Exemples :
 ```
 $ sudo chage philippe
 $ sudo chage -d 0 philippe
 ```
 
-!!! abstract Note If no user is specified, the order will concern the user who enters it.
+!!! Note
 
-![User account management with chage](images/chage-timeline.png)
+    En l’absence d’utilisateur précisé, la commande concernera l’utilisateur qui la saisit.
 
-## Advanced management
+![Gestion du compte utilisateur avec chage](images/chage-timeline.png)
 
-Configuration files:
+## Gestion avancée
+
+Fichiers de configuration :
 * `/etc/default/useradd`
 * `/etc/login.defs`
 * `/etc/skel`
 
-!!! abstract Note Editing the `/etc/default/useradd` file is done with the `useradd` command.
+!!! Note
 
-    The other files are to be modified with a text editor.
+    L’édition du fichier `/etc/default/useradd` se fait grâce à la commande `useradd`.
+    
+    Les autres fichiers sont à modifier avec un éditeur de texte.
 
-### `/etc/default/useradd` file
+### Fichier `/etc/default/useradd`
 
-This file contains the default data settings.
+Ce fichier contient le paramétrage des données par défaut.
 
-!!! abstract Tip When creating a user, if the options are not specified, the system uses the default values defined in `/etc/default/useradd`.
+!!! Tip
 
-This file is modified by the command `useradd -D` (`useradd -D` entered without any other option displays the contents of the `/etc/default/useradd` file).
+    Lors de la création d’un utilisateur, si les options ne sont pas précisées, le système utilise les valeurs par défaut définies dans `/etc/default/useradd`.
 
-| Value               | Comment                                                                   |
-| ------------------- | ------------------------------------------------------------------------- |
-| `GROUP`             | Default group.                                                            |
-| `HOME`              | Path where the login directory for the user's name will be created.       |
-| `INACTIVE`          | Number of days after the password expires before the account is disabled. |
-| `EXPIRE`            | Account expiration date.                                                  |
-| `SHELL`             | Command interpreter.                                                      |
-| `SKEL`              | Skeleton directory of the login directory.                                |
-| `CREATE_MAIL_SPOOL` | Mailbox creation in `/var/spool/mail`.                                    |
+Ce fichier est modifié par la commande `useradd -D` (`useradd-D` saisie sans autre option affiche le contenu du fichier `/etc/default/useradd`).
 
-!!! abstract Warning Without the `-g` option, the `useradd` command creates a group of the user's name name and places it there.
+| Valeur              | Commentaire                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------- |
+| `GROUP`             | Groupe par défaut.                                                                          |
+| `HOME`              | Chemin dans lequel le répertoire de connexion au nom de l’utilisateur sera créé.            |
+| `INACTIVE`          | Nombre de jours suivant l’expiration du mot de passe avant que le compte ne soit désactivé. |
+| `EXPIRE`            | Date d’expiration du compte.                                                                |
+| `SHELL`             | Interpréteur de commandes.                                                                  |
+| `SKEL`              | Répertoire squelette du répertoire de connexion.                                            |
+| `CREATE_MAIL_SPOOL` | Création de la boîte aux lettres dans `/var/spool/mail`.                                    |
 
-In order for the `useradd` command to retrieve the value of the `GROUP` field from the `/etc/default/useradd` file, you must specify the `-N` option.
+!!! Warning
 
-Example:
+    Sans l’option `-g`, la commande `useradd` crée un groupe du nom de l’utilisateur et l’y place.
+
+Pour que la commande `useradd` récupère la valeur du champ `GROUP` du fichier `/etc/default/useradd`, il faut préciser l’option `-N`.
+
+Exemple :
 ```
 $ sudo useradd -u 501 -N GroupeA
 ```
 
-### `/etc/login.defs` file
+### Fichier `/etc/login.defs`
 
-This file contains many default parameters useful for creating or modifying users. This information is grouped by paragraph according to their use:
+Ce fichier contient de nombreux paramètres par défaut utiles aux commandes de création ou de modification d’utilisateurs. Ces informations sont regroupées par paragraphe en fonction de leur utilisation :
 
-* Mailboxes;
-* Passwords ;
-* UID and GID ;
+* Boîtes aux lettres ;
+* Mots de passe ;
+* UID et GID ;
 * Umask ;
-* Connections;
-* Terminals.
+* Connexions ;
+* Terminaux.
 
-### `/etc/skel` directory
+### Fichier `/etc/skel`
 
-When a user is created, their home directory and environment files are created.
+Lors de la création d’un utilisateur, son répertoire personnel et ses fichiers d’environnement sont créés.
 
-These files are automatically copied from the `/etc/skel` directory.
+Ces fichiers sont copiés automatiquement à partir du répertoire `/etc/skel`.
 
 * `.bash_logout`
 * `.bash_profile`
 * `.bashrc`
 
-All files and directories placed in this directory will be copied to the user tree when they are created.
+Tous les fichiers et répertoires placés dans ce répertoire seront copiés dans l’arborescence des utilisateurs lors de leur création.
 
-## Identity change
+## Changement d’identité
 
-### `su` command
+### La commande `su`
 
-The `su` command allows you to change the identity of the connected user.
+La commande `su` permet de modifier l’identité de l’utilisateur connecté.
 
 ```
 su [-] [-c command] [login]
 ```
 
-Examples:
+Exemples :
 
 ```
 $ sudo su - alain
 [albert]$ su -c "passwd alain"
 ```
 
-| Option       | Description                                     |
-| ------------ | ----------------------------------------------- |
-| `-`          | Loads the user's complete environment.          |
-| `-c` command | Executes the command under the user's identity. |
+| Option       | Description                                           |
+| ------------ | ----------------------------------------------------- |
+| `-`          | Charge l’environnement complet de l’utilisateur.      |
+| `-c` command | Exécute la commande sous l’identité de l’utilisateur. |
 
-If the login is not specified, it will be `root`.
+Si le login n’est pas spécifié, ce sera `root`.
 
-Standard users will have to type the password for the new identity.
+Les utilisateurs standards devront taper le mot de passe de la nouvelle identité.
 
-!!! abstract Tip There are successive 'layers' created (a stack of `bash` environments). To switch from one user to another, you must first type the `exit` command to take back your identity and then the `su` command to take another identity.
+!!! Tip
 
-#### Profile loading
+    Il y a création de 'couches' successives (un empilement d’environnement `bash`). Pour passer d’un utilisateur à un autre, il faut d’abord taper la commande `exit` pour reprendre son identité puis la commande `su` pour prendre une autre identité.
 
-`root` endorses the identity of the user `alain` with `su`:
+#### Chargement du profil
+
+`root` endosse l’identité de l’utilisateur `alain` avec `su` :
 
 ```
 ...
@@ -739,7 +782,7 @@ Standard users will have to type the password for the new identity.
 ...
 ```
 
-`root` assumes the identity of the user `alain` with `su -`:
+`root` endosse l’identité de l’utilisateur `alain` avec `su -` :
 
 ```
 ...
@@ -749,10 +792,10 @@ Standard users will have to type the password for the new identity.
 ...
 ```
 
-A user can temporarily (for another command or an entire session) assume the identity of another account.
+Un utilisateur peut endosser temporairement (pour une autre commande ou une session entière) l’identité d’un autre compte.
 
-If no user is specified, the command will be for `root` (`su -`).
+Si aucun utilisateur n’est précisé, la commande concernera `root` (`su -`).
 
-It is necessary to know the password of the user whose identity is being endorsed unless it is `root` that is executing the command.
+Il est nécessaire de connaître le mot de passe de l’utilisateur dont l’identité est endossé sauf si c’est `root` qui exécute la commande.
 
-An administrator can thus work on a standard user account and use the rights of the `root` account only occasionally.
+Un administrateur peut ainsi travailler sur un compte utilisateur standard et n’utiliser les droits du compte `root` que ponctuellement.
