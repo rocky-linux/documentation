@@ -33,7 +33,9 @@ Ansible centralizza e automatizza i compiti di amministrazione. È:
 
 Utilizza il protocollo **SSH** per configurare in remoto i client Linux o il protocollo **WinRM** per funzionare con i client Windows. Se nessuno di questi protocolli è disponibile, è sempre possibile per Ansible utilizzare un'API, che rende Ansible un vero coltellino svizzero per la configurazione di server, postazioni di lavoro, servizi docker, attrezzature di rete, ecc. (Quasi tutto in realtà).
 
-!!! Warning Attenzione L'apertura di flussi SSH o WinRM a tutti i client dal server Ansible lo rende un elemento critico dell'architettura che deve essere attentamente monitorato.
+!!! Warning "Attenzione"
+
+    L'apertura di flussi SSH o WinRM a tutti i client dal server Ansible lo rende un elemento critico dell'architettura che deve essere attentamente monitorato.
 
 Poiché Ansible è basato sui push, non manterrà lo stato dei server di destinazione tra ciascuna delle sue esecuzioni. Al contrario, eseguirà nuovi controlli di stato ogni volta che viene eseguito. Si dice che sia senza stato.
 
@@ -45,8 +47,10 @@ Ti aiuterà con:
 * automazione
 * orchestrazione (quando è in uso più di 1 destinazione).
 
-!!! Note Nota Ansible è stato originariamente scritto da Michael DeHaan, il fondatore di altri strumenti come Cobbler.
+!!! Note "Nota"
 
+    Ansible è stato originariamente scritto da Michael DeHaan, il fondatore di altri strumenti come Cobbler.
+    
     ![Michael DeHaan](images/Michael_DeHaan01.jpg)
     
     La prima versione è stata la 0.0.1, rilasciata il 9 marzo 2012.
@@ -57,7 +61,9 @@ Ti aiuterà con:
 
 Per offrire un'interfaccia grafica al tuo uso quotidiano di Ansible, puoi installare alcuni strumenti come Ansible Tower (RedHat), che non è gratuito, la sua controparte opensource Awx, o possono anche essere utilizzati altri progetti come Jenkins e l'eccellente Rundeck.
 
-!!! Abstract Astratto Per seguire questa formazione, avrai bisogno di almeno 2 server con Rocky8:
+!!! Abstract "Astratto"
+
+    Per seguire questa formazione, avrai bisogno di almeno 2 server con Rocky8:
 
     * il primo sarà la **macchina di gestione**, Ansible sarà installato su di esso.
     * il secondo sarà il server da configurare e gestire (un altro Linux diverso da Rocky Linux andrà altrettanto bene).
@@ -94,13 +100,18 @@ $ ansible --version
 ```
 Poiché vogliamo utilizzare una nuova versione di Ansible, la installeremo da `python3-pip`:
 
-!!! Note Nota Rimuovi Ansible se l'hai installato precedentemente da  _EPEL_.
+!!! Note "Nota"
+
+    Rimuovi Ansible se l'hai installato in precedenza da _EPEL_.
 
 ```
 $ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust cargo curl
 ```
 
-!!! Note Nota `python3-argcomplete` è fornito da _EPEL_. Per favore installa epel-release se non l'hai ancora fatto. Questo pacchetto ti aiuterà a completare i comandi Ansible.
+!!! Note "Nota"
+
+    `python3-argcomplete` è fornito da _EPEL_. Per favore installa epel-release se non l'hai ancora fatto.
+    Questo pacchetto ti aiuterà a completare i comandi Ansible.
 
 Prima di installare Ansible, dobbiamo dire a Rocky Linux che vogliamo utilizzare la nuova versione installata di Python. Il motivo è che se continuiamo l'installazione senza questo, verrà usato il python3 di default (versione 3.6 al momento in cui scriviamo), invece della nuova versione 3.8 appena installata. Imposta la versione che vuoi usare inserendo il seguente comando:
 
@@ -157,12 +168,12 @@ usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
 
 Visualizzare la configurazione di ansibile.
 
-positional arguments:
+argomenti di posizione:
   {list,dump,view,init}
-    list                Print all config options
-    dump                Dump configuration
-    view                View configuration file
-    init                Create initial configuration
+    list Stampa tutte le opzioni di configurazione
+    dump Configurazione Dump
+    view Visualizza i file di configurazione
+    init Crea configurazione iniziale
 ```
 
 Esempio:
@@ -273,7 +284,9 @@ ansible <host-pattern> [-m module_name] [-a args] [options]
 
 Esempi:
 
-!!! Warning Attenzione Poiché non abbiamo ancora configurato l'autenticazione sui nostri 2 server di prova, non tutti gli esempi seguenti funzioneranno. Essi sono forniti come esempi per facilitare la comprensione e saranno pienamente operativi in un secondo momento in questo capitolo.
+!!! Warning "Attenzione"
+
+    Dal momento che non abbiamo ancora configurato l'autenticazione sui nostri 2 server di test, non tutti gli esempi seguenti funzioneranno. Essi sono forniti come esempi per facilitare la comprensione e saranno pienamente operativi in un secondo momento in questo capitolo.
 
 * Elenca gli host appartenenti al gruppo rocky8:
 
@@ -311,7 +324,9 @@ ansible ansible_clients --become -m command -a 'reboot'
 ansible rocky8 -i ./local-inventory -m command -a 'date'
 ```
 
-!!! Note Nota Come in questo esempio è a volte più semplice separare la dichiarazione dei dispositivi gestiti in diversi file (per esempio per un progetto cloud) e fornire ad Ansible i percorsi di questi file, piuttosto che mantenere un lungo archivio di inventario.
+!!! Note "Nota"
+
+    Come in questo esempio, è a volte più semplice separare la dichiarazione dei dispositivi gestiti in diversi file (per esempio per progetto cloud) e fornire ad Ansible il percorso di questi file, piuttosto che mantenere un lungo file di inventario.
 
 | Opzione                  | Informazione                                                                                                    |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------- |
@@ -360,7 +375,10 @@ Il nostro obiettivo qui è quello di commentare il default, e decommentare l'opz
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 ```
 
-!!! Warning Attenzione Se si riceve il seguente messaggio di errore quando si inseriscono i comandi Ansible probabilmente significa che hai dimenticato questo passo su uno dei tuoi client: `"msg": "Missing sudo password"`
+!!! Warning "Attenzione"
+
+    Se si riceve il seguente messaggio di errore quando si inseriscono i comandi Ansible probabilmente significa che hai dimenticato questo passo su uno dei tuoi client:
+    `"msg": "Missing sudo password`
 
 Quando usate la gestione da questo punto in poi, iniziate a lavorare con questo nuovo utente:
 
@@ -393,15 +411,21 @@ SSH password:
 }
 ```
 
-!!! Note Nota Ti viene richiesta la password `ansible` dei server remoti, che è un problema di sicurezza...
+!!! Note "Nota"
 
-!!! Tip Suggerimento Se si ottiene questo errore `"msg": "to use the 'ssh' connection type with passwords, you must install the sshpass program"`, è possibile installare `sshpass` sulla stazione di gestione:
+    Ti viene richiesta la password `ansible` dei server remoti, che è un problema di sicurezza...
+
+!!! Tip "Suggerimento"
+
+    Se ottieni questo errore `"msg": "to use the 'ssh' connection type with passwords, you must install the sshpass program""`, puoi semplicemente installare `sshpass` sulla stazione di gestione:
 
     ```
     $ sudo dnf install sshpass
     ```
 
-!!! Abstract Astratto Ora puoi testare i comandi che non hanno funzionato in precedenza in questo capitolo.
+!!! Abstract "Astratto"
+
+    Ora puoi testare i comandi che non hanno funzionato in precedenza in questo capitolo.
 
 ## Autenticazione con chiave
 
@@ -464,7 +488,9 @@ Per il prossimo test, viene utilizzato il modulo `shell`, che consente l'esecuzi
 
 Nessuna password è richiesta, l'autenticazione a chiave privata/pubblica funziona!
 
-!!! Note Nota In un ambiente di produzione, dovresti ora rimuovere le password `ansible` precedentemente impostate per rinforzare la tua sicurezza (poichè ora non è necessaria una password di autenticazione).
+!!! Note "Nota"
+
+    In un ambiente di produzione, dovresti rimuovere le password `ansible` precedentemente impostate per far rispettare la tua sicurezza (in qunato ora non è necessaria una password di autenticazione).
 
 ## Usare Ansible
 
@@ -542,7 +568,9 @@ Il software installato è un servizio, ora è necessario avviarlo con il modulo 
 }
 ```
 
-!!! Tip Suggerimento Prova a lanciare gli ultimi 2 comandi due volte. Osserverai che la prima volta che Ansible intraprenderà azioni per raggiungere lo stato impostato dal comando. La seconda volta, non farà nulla perché avrà rilevato che lo stato è già raggiunto!
+!!! Tip "Suggerimento"
+
+    Prova a lanciare gli ultimi 2 comandi due volte. Osserverai che la prima volta che Ansible intraprenderà azioni per raggiungere lo stato impostato dal comando. La seconda volta, non farà nulla perché avrà rilevato che lo stato è già raggiunto!
 
 ### Esercizi
 
@@ -558,7 +586,9 @@ Per aiutarti a scoprire di più su Ansible e per abituarti alla ricerca della do
 * Aggiorna la distribuzione del client
 * Riavvia il tuo client
 
-!!! Warning Attenzione Non usare il modulo shell. Cerca nella documentazione i moduli appropriati!
+!!! Warning "Attenzione"
+
+    Non usare il modulo di shell. Cerca nella documentazione i moduli appropriati!
 
 #### modulo `setup`: introduzione ai fatti
 
@@ -599,7 +629,9 @@ Ora che abbiamo visto come configurare un server remoto con Ansible dalla riga d
 
 I playbook di Ansible descrivono un criterio da applicare ai sistemi remoti, per forzare la loro configurazione. I playbook sono scritti in un formato di testo facilmente comprensibile che raggruppa una serie di compiti: il formato `yaml`.
 
-!!! Note Nota Per saperne di più su [yaml qui](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
+!!! Note "Nota"
+
+    Ulteriori informazioni su [yaml qui](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 
 ```
 ansible-playbook <file.yml> ... [options]
@@ -620,7 +652,9 @@ Il comando restituisce i seguenti codici di errore:
 | `99`   | Esecuzione interrotta dall'utente   |
 | `250`  | Errore inaspettato                  |
 
-!!! Note Nota Si prega di notare che `ansible` restituirà Ok quando non c'è un host corrispondente al tuo obiettivo, il che potrebbe ingannarti!
+!!! Note "Nota"
+
+    Si prega di notare che `ansible` restituirà Ok quando non c'è un host corrispondente al tuo target, il che potrebbe ingannarti!
 
 ### Esempio di playbook Apache e MySQL
 
@@ -717,7 +751,9 @@ Per una maggiore leggibilità, si consiglia di scrivere i tuoi playbook in forma
 ...
 ```
 
-!!! Tip Suggerimento `dnf` è uno dei moduli che consentono di dargli una lista come argomento.
+!!! Tip "Suggerimento"
+
+    `dnf` è uno dei moduli che consentono di dargli una lista come argomento.
 
 Nota sulle collezioni: Ansible ora fornisce moduli sotto forma di collezioni. Alcuni moduli sono forniti di default nella collezione `ansible.builtin`, altri devono essere installati manualmente tramite il:
 
