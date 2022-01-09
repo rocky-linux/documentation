@@ -151,7 +151,7 @@ Ci sono due file di configurazione principali:
 * Il file di configurazione principale `ansible.cfg` dove risiedono i comandi, moduli, plugin e configurazione ssh;
 * Il file di inventario di gestione delle macchine client `hosts` dove vengono dichiarati i client e i gruppi di client.
 
-Poichè abbiamo installato Ansible con `pip`, quei file non esistono. Dovremo crearli a mano.
+Poichè abbiamo installato Ansible con `pip`, questi file non esistono. Dovremo crearli a mano.
 
 Un esempio di `ansible.cfg` lo puoi trovare [qui](https://github.com/ansible/ansible/blob/devel/examples/ansible.cfg) e un esempio di file `host` [qui](https://github.com/ansible/ansible/blob/devel/examples/hosts).
 
@@ -490,7 +490,7 @@ Nessuna password è richiesta, l'autenticazione a chiave privata/pubblica funzio
 
 !!! Note "Nota"
 
-    In un ambiente di produzione, dovresti rimuovere le password `ansible` precedentemente impostate per far rispettare la tua sicurezza (in qunato ora non è necessaria una password di autenticazione).
+    In un ambiente di produzione, dovresti rimuovere le password `ansible` precedentemente impostate per far rispettare la tua sicurezza (in quanto ora non è necessaria una password di autenticazione).
 
 ## Usare Ansible
 
