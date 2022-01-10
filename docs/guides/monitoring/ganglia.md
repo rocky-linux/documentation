@@ -2,7 +2,7 @@
 title: Monitoring Rocky Linux nodes or clusters by Ganglia
 author: berlin2123
 contributors: 
-updated: 2021-11-15
+updated: 2022-1-10
 ---
 
 # Monitoring Rocky Linux nodes or clusters by Ganglia
