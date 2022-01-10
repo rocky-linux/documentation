@@ -14,12 +14,20 @@ This guide walks through the detailed steps to install Ganglia packages in Rocky
 !!! General Overview
     Ganglia is a very good software package for monitoring the historical state of clusters or nodes. However, the current ganglia web interface (3.7.5) is based on php-5.6. If you are using a higher version php, such as that in the default environment of **Rocky Linux 8**, ganglia web interface will not be displayed normally. Therefore, configuring and using php-5.6 was the necessary option to run the ganglia web interface in Rocky linux. Docker can easily solve this problem. That is, **running Ganglia-web inside a centos7 container** in the Rocky linux 8 system, which container can easily run the php-5.6. It will **ensure the normal display of the ganglia-web interface**.
 
-### Manually build the container image by Yourself
+### Get the container image
 
-##### Downlaod this Dockerfile into your system
+#### Just simply Pull (recommended)
+```
+podman pull berlin2123/ganglia-web-centos7
+```
+
+#### Or build the container image by Yourself
+
+##### Downlaod this `Dockerfile` and `run-services.sh` into your system
 
 ```
 wget https://raw.githubusercontent.com/berlin2123/ganglia-web-docker/main/ganglia-web-centos7/Dockerfile
+wget https://raw.githubusercontent.com/berlin2123/ganglia-web-docker/main/ganglia-web-centos7/run-services.sh
 ```
 
 ##### Manually build this container:
@@ -28,55 +36,27 @@ wget https://raw.githubusercontent.com/berlin2123/ganglia-web-docker/main/gangli
 podman build -t <name_of_the_container_image>  <Path_to_the_Dockerfile>
 ```
 
-If the Dockerfile is saved to "/root/dockertest/cent7ganglia/", and you want to name this image as "mybuild/cent7ganglia", you can just run:  
+If the `Dockerfile` and `run-services.sh` are saved to `/root/dockertest/cent7ganglia/`, and you want to name this image as `mybuild/cent7ganglia`, you can just run:  
 
 ```
 podman build -t mybuild/cent7ganglia /root/dockertest/cent7ganglia/
 ```
 
 
-
 ### Run the container
 
-1. In order to ensure the normal operation of init (systemd) inside container, the host machine needs to open the permission. (When SELinux is enabled)
-
+1. You can run the container with the setting of timezone `-e TZ=timezone_code`
    ```
-   setsebool -P container_manage_cgroup true
+   podman run -t -d --name ganglia -e TZ=Europe/Berlin -p 1380:80 --restart always berlin2123/ganglia-web-centos7
    ```
-2. Run the container
-
-   ```
-   podman run -t -d --name ganglia -p 1380:80 --restart always localhost/mybuild/cent7ganglia
-   ```
-
-   You may need to use your own image name. 
+   You may need to use your own image or timezone name. 
 
    You can check the runing state by 
-
    ```
    podman logs --since 10m ganglia
    ```
    
-3. Modify the internal configuration of the container
-
-   ```
-   # enter the container
-   podman exec -u root -it ganglia /bin/bash
-   # set time zone, to use your time zone, such as,
-   timedatectl  set-timezone Asia/Shanghai
-   
-   # vi /etc/ganglia/gmetad.conf 
-   # change the line:
-   data_source "my cluster" localhost 
-   # to
-   data_source "cluster" 10.88.0.1:8649
-   # you can use other cluster_name
-   
-   # After the modification is completed, exit from the container
-   exit
-   ```
-   
-4. Create a service (systemd) that automatically starts the ganglia container
+2. Create a service (systemd) that automatically starts the ganglia container
 
    ```
    podman generate systemd --name ganglia > /etc/systemd/system/container-ganglia.service
@@ -87,6 +67,26 @@ podman build -t mybuild/cent7ganglia /root/dockertest/cent7ganglia/
    ```
    systemctl enable --now container-ganglia.service 
    ```
+
+3. Modify the internal configuration of the container  (If you want to use another cluster name)
+   ```
+   # enter the container
+   podman exec -u root -it ganglia /bin/bash   
+   # vi /etc/ganglia/gmetad.conf 
+   # change the line:
+   data_source "cluster" 10.88.0.1:8649 
+   # to
+   data_source "your_cluster_name" 10.88.0.1:8649
+   
+   # After the modification is completed, exit from the container
+   exit
+   ```
+   Restart is required for the changes to take effect,
+   ```
+   systemctl restart container-ganglia.service 
+   ```
+
+
 
 ### Create a reverse proxy on the host machine
 
