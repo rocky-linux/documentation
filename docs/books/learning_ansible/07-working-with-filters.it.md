@@ -29,7 +29,9 @@ Abbiamo già avuto la possibilità, durante i capitoli precedenti, di utilizzare
 
 Questi filtri, scritti in python, ci permettono di manipolare e trasformare le nostre variabili ansible.
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html).
+!!! Note "Nota"
+
+    Maggiori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html).
 
 In tutto questo capitolo, useremo il seguente playbook per testare i diversi filtri presentati:
 
@@ -70,7 +72,10 @@ In tutto questo capitolo, useremo il seguente playbook per testare i diversi fil
         var: zero
 ```
 
-!!! Note Nota Di seguito è riportato un elenco non esaustivo di filtri che è più probabile incontrare o necessari. Fortunatamente, ce ne sono molti altri. Potresti anche scrivere il tuo!
+!!! Note "Nota"
+
+    Di seguito è riportato un elenco non esaustivo di filtri che si hanno più probabilità di incontrare o necessitare.
+    Fortunatamente, ce ne sono molti altri. Potresti anche scrivere il tuo!
 
 Il playbook sarà riprodotto come segue:
 

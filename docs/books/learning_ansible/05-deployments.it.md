@@ -36,7 +36,9 @@ Ansistrano richiede quanto segue:
 
 Può scaricare il codice sorgente da `rsync`, `git`, `scp`, `http`, `S3`, ...
 
-!!! Note Nota Per il nostro esempio di distribuzione, useremo il protocollo `git`.
+!!! Note "Nota"
+
+    Per il nostro esempio di distribuzione, utilizzeremo il protocollo `git`.
 
 Ansistrano distribuisce applicazioni seguendo questi 5 passaggi:
 
@@ -117,7 +119,9 @@ Considerazioni tecniche:
 * Il codice sorgente da distribuire contiene una cartella `html` alla quale il vhost dovrebbe puntare. Il suo `DirectoryIndex` è `index.htm`.
 * La distribuzione è fatta da `git`, il pacchetto sarà installato.
 
-!!! Note Nota Il bersaglio del nostro vhost sarà: `/var/www/site/current/html`.
+!!! Note "Nota"
+
+    Il target del nostro vhost sarà: `/var/www/site/current/html`.
 
 Il nostro playbook per configurare il server: `playbook-config-server.yml`
 
@@ -187,7 +191,9 @@ Server: Apache/2.4.37 (rocky) OpenSSL/1.1.1g
 Content-Type: text/html; charset=iso-8859-1
 ```
 
-!!! Note Nota Non abbiamo ancora distribuito alcun codice, quindi è normale che `curl` restituisca un codice HTTP `404`. Ma possiamo già confermare che il servizio `httpd` funziona e che il firewall è aperto.
+!!! Note "Nota"
+
+    Non abbiamo ancora distribuito alcun codice, quindi è normale che `curl` restituisca un codice HTTP `404`. Ma possiamo già confermare che il servizio `httpd` sta funzionando e che il firewall è aperto.
 
 ### Distribuzione del software
 
@@ -605,7 +611,9 @@ La variabile `ansistrano_git_branch` è usata per specificare un `branch` o un `
      - { role: ansistrano.deploy }
 ```
 
-!!! Note Nota Puoi divertirti, durante la distribuzione, aggiornando il tuo browser, per vedere in 'live' il cambiamento.
+!!! Note "Nota"
+
+    Per divertirti, durante la distribuzione, puoi aggiornare il browser, per vedere in 'live' il cambiamento.
 
 ```
 $ curl http://192.168.1.11

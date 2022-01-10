@@ -61,7 +61,9 @@ ansible-galaxy collection [import|init|install|login|remove|...]
 
 Un ruolo Ansible è un'unità che promuove la riutilizzabilità dei playbook.
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
+!!! Note "Nota"
+
+    Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 
 ### Installazione di ruoli utili
 
@@ -242,7 +244,7 @@ I ruoli consentono di eliminare la necessità di includere i file. Non c'è biso
 
 La struttura di un ruolo è abbastanza evidente da capire.
 
-Le variabili sono semplicemente memorizzate in `vars/main.yml` se le variabili non devono essere sovrascritte, oppure in `default/main. ml` se vuoi lasciare la possibilità di sovrascrivere il contenuto variabile dall'esterno del tuo ruolo.
+Le variabili sono semplicemente memorizzate in `vars/main.yml` se le variabili non devono essere sovrascritte, oppure in `default/main.yml` se vuoi lasciare la possibilità di sovrascrivere il contenuto variabile dall'esterno del tuo ruolo.
 
 I gestori, i file e i modelli necessari per il tuo codice sono memorizzati rispettivamente in `handlers/main.yml`, `files` e `templates`.
 
@@ -426,7 +428,9 @@ Ovviamente, non c'è limite a quanto si può migliorare il proprio ruolo. Immagi
 
 Le collezioni sono un formato di distribuzione per i contenuti Ansible che possono includere libri di gioco, ruoli, moduli e plugin.
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
+!!! Note "Nota"
+
+    Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
 
 Per installare o aggiornare una collezione:
 

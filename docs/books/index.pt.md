@@ -4,7 +4,7 @@ author: Steven Spencer
 contributors: '@fromoz'
 ---
 
-# Books de Instrução do Rocky Linux
+# Livros de Instrução do Rocky Linux
 
 Você chegou até a sessão **Books** da documentação. Aqui é o local onde são mantidas as informações detalhadas da documentação. Esses documentos são divididos em seções ou "capítulos" para facilitar o progresso de compreensão no ritmo do leitor. Esses documentos foram criados por pessoas como você, com paixão por certos assuntos.
 

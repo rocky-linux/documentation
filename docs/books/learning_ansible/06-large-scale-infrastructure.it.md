@@ -32,9 +32,13 @@ L'organizzazione del sistema di gestione della configurazione presentato in ques
 
 Tuttavia, attenzione: utilizzare Ansible per garantire la conformità al parco richiede cambiamenti nelle abitudini lavorative. Non è più possibile modificare manualmente la configurazione di un service manager senza vedere queste modifiche sovrascritte alla prossima esecuzione di Ansible.
 
-!!! Note Nota Quello che stiamo per impostare qui sotto non è il terreno preferito di Ansible. Tecnologie come Puppet o Salt faranno molto meglio. Ricordiamo che Ansible è un coltello svizzero dell'automazione ed è senza agenti, il che spiega le differenze nelle prestazioni.
+!!! Note "Nota"
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/sample_setup.html)
+    Quello che stiamo per impostare qui sotto non è il terreno preferito di Ansible. Tecnologie come Puppet o Salt faranno molto meglio. Ricordiamo che Ansible è un coltello svizzero dell'automazione ed è senza agenti, il che spiega le differenze nelle prestazioni.
+
+!!! Note "Nota"
+
+    Maggiori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/sample_setup.html)
 
 ## Archiviazione variabili
 
@@ -72,7 +76,9 @@ Ad esempio, se si desidera rendere il valore `PermitRootLogin` nel file `sshd_co
 
 L'uso di tag Ansible ti permette di eseguire o saltare una parte delle attività nel tuo codice.
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html)
+!!! Note "Nota"
+
+    Maggiori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html)
 
 Ad esempio, modifichiamo l'attività di creazione degli utenti:
 
@@ -204,7 +210,9 @@ cms
     └── global_vars.yml
 ```
 
-!!! Note Nota Sei libero di sviluppare i tuoi ruoli all'interno di una collezione
+!!! Note "Nota"
+
+    Sei libero di sviluppare i tuoi ruoli all'interno di una collezione
 
 ## Test
 

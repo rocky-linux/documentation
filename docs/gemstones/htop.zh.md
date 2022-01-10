@@ -82,7 +82,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S    CPU%   MEM%   TIME+   Commad(mer
 ## 快捷键说明
 在交互界面，按<kbd>F1</kbd>按键，即可看到对应的快捷键说明。
 
-上下左右的方向按键，可以在交互界面滚动，<kbd>space</kbd> 则可以对对应的进程进行标记，以黄色进行标识。
+* 上下左右的方向按键，可以在交互界面滚动，<kbd>space</kbd> 则可以对对应的进程进行标记，以黄色进行标识。
 * <kbd>N</kbd>按键 、<kbd>P</kbd>按键 、<kbd>M</kbd>按键 、<kbd>T</kbd>按键，分别以PID、CPU%、MEM%、TIME+进行排序。 当然，你也可以用鼠标点击的方式，以某个字段升序或降序排列。
 
 ## 其他常用

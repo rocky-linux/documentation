@@ -30,7 +30,9 @@ In questo capitolo, possiamo iniziare a scoprire alcune nozioni più avanzate su
 
 ## Le variabili
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html).
+!!! Note "Nota"
+
+    Maggiori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html).
 
 Sotto Ansible, ci sono diversi tipi di variabili primitive:
 
@@ -144,7 +146,9 @@ Uso di una variabile memorizzata:
     var: homes.stdout_lines[1]
 ```
 
-!!! Note Nota La variabile `homes.stdout_lines` è un elenco di variabili di tipo stringa, un modo per organizzare variabili che non avevamo ancora incontrato.
+!!! Note "Nota"
+
+    La variabile `homes.stdout_lines` è una lista di variabili di tipo stringa, un modo per organizzare variabili che non avevamo ancora incontrato.
 
 Le stringhe che compongono la variabile memorizzata possono essere consultate tramite il valore `stdout` (che ti permette di fare cose come `homes.stdout.find("core") != -1`), per sfruttarli usando un ciclo (vedi `loop`), o semplicemente dai loro indici come visto nell'esempio precedente.
 
@@ -174,7 +178,9 @@ Il tipo predefinito dovrebbe essere "web".
 
 Con l'aiuto di loop, è possibile iterare un compito su una lista, un hash, o dizionario, per esempio.
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html).
+!!! Note "Nota"
+
+    Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html).
 
 Semplice esempio di utilizzo, creazione di 4 utenti:
 
@@ -259,13 +265,17 @@ Vediamo questo attraverso un esempio concreto, mostrando la gestione degli utent
     loop: "{{ users | dict2items }}"
 ```
 
-!!! Note Nota Molte cose possono essere fatte con i cicli. Scoprirete le possibilità offerte dai loop quando il vostro uso di Ansible vi spingerà ad usarli in modo più complesso.
+!!! Note "Nota"
+
+    Molte cose possono essere fatte con i loops. Scoprirete le possibilità offerte dai loop quando il vostro uso di Ansible vi spingerà ad usarli in modo più complesso.
 
 ### Esercizi
 
 * Visualizza il contenuto della variabile `service` dell'esercizio precedente utilizzando un loop.
 
-!!! Note Nota Dovrai trasformare la variabile `service`, che è un dizionario, in una lista con l'aiuto del filtro jinja `list` in questo modo:
+!!! Note "Nota"
+
+    Dovrai trasformare la tua variabile `service`, che è un dizionario, in una lista con l'aiuto del filtro jinja `list` in questo modo:
 
     ```
     {{ service.values() | list }}
@@ -273,11 +283,15 @@ Vediamo questo attraverso un esempio concreto, mostrando la gestione degli utent
 
 ## Condizionali
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html).
+!!! Note "Nota"
+
+    Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html).
 
 L'istruzione `when` è molto utile in molti casi: non eseguire determinate azioni su determinati tipi di server, se un file o un utente non esistono, ecc.
 
-!!! Nota Dietro la  dichiarazione `when` le variabili non hanno bisogno di parentesi graffe doppie (sono infatti espressioni Jinja2...).
+!!! Note "Nota"
+
+    Dietro la dichiarazione `when` le variabili non hanno bisogno di parentesi graffe doppie (sono infatti espressioni Jinja2...).
 
 ```
 - name: "Reboot only Debian servers"
@@ -342,7 +356,9 @@ Probabilmente dovrai verificare che esiste una variabile per evitare errori di e
 
 ## Gestione delle modifiche: gli `handlers`
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html).
+!!! Note "Nota"
+
+    Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html).
 
 I gestori consentono di avviare operazioni, come il riavvio di un servizio, quando si verificano modifiche.
 
@@ -408,7 +424,9 @@ tasks:
 
 ## Attività asincrone
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html).
+!!! Note "Nota"
+
+    Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html).
 
 Per impostazione predefinita, le connessioni SSH agli host rimangono aperte durante l'esecuzione delle varie attività di playbook su tutti i nodi.
 
@@ -579,7 +597,9 @@ service:
 
 * Visualizza il contenuto della variabile `service` dell'esercizio precedente utilizzando un ciclo.
 
-!!! Note Nota Dovrai trasformare la tua variabile `service`, che è un dizionario, in un elemento o una lista con l'aiuto dei filtri jinja `dict2items` o `list` come segue:
+!!! Note "Nota"
+
+    Dovrai trasformare la tua variabile `service`, che è un dizionario, in una lista con l'aiuto del filtro jinja `list` in questo modo:
 
     ```
     {{ service | dict2items }}

@@ -30,7 +30,9 @@ Neste capítulo você aprenderá sobre as distribuições GNU/Linux.
 
 Linux, UNIX, BSD, Windows e MacOS são todos **sistemas operacionais**.
 
-!!! Um sistema operacional é um **conjunto de programas que gerencia os recursos disponíveis em um computador**.
+!!! resumo
+
+    Um sistema operacional é um **conjunto de programas que gerenciam a disponibilidade de recursos em um computador**.
 
 Entre esta gestão de recursos, o sistema operacional tem de:
 
