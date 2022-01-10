@@ -29,7 +29,9 @@ A seconda delle vostre esigenze, dovrete utilizzare diversi moduli Ansible per m
 
 Quando si desidera modificare un file INI (sezione tra doppie `[]` e `key=value`), il modo più semplice è usare il modulo `ini_file`.
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/collections/community/general/ini_file_module.html).
+!!! Note "Nota"
+
+    Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/collections/community/general/ini_file_module.html).
 
 Il modulo richiede:
 
@@ -52,7 +54,9 @@ Esempio di utilizzo:
 
 Per garantire che una riga sia presente in un file, o quando una singola riga in un file debba essere aggiunta o modificata, usa il modulo `linefile`.
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html).
+!!! Note "Nota"
+
+    Maggiori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html).
 
 In questo caso, la riga da modificare in un file verrà trovata usando un regexp.
 
@@ -69,7 +73,9 @@ Ad esempio, per garantire che la linea che inizia con `SELINUX=` nel file `/etc/
 
 Quando un file deve essere copiato dal server Ansible in uno o più host, è meglio utilizzare il modulo `copy`.
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html).
+!!! Note "Nota"
+
+    Maggiori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html).
 
 Qui stiamo copiando `myflile.conf` da una posizione all'altra:
 
@@ -86,7 +92,9 @@ Qui stiamo copiando `myflile.conf` da una posizione all'altra:
 
 Quando un file deve essere copiato da un server remoto al server locale, è meglio utilizzare il modulo `fetch`.
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fetch_module.html).
+!!! Note "Nota"
+
+    Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fetch_module.html).
 
 Questo modulo fa il contrario del modulo `copy`:
 
@@ -101,7 +109,9 @@ Questo modulo fa il contrario del modulo `copy`:
 
 Ansible e il suo modulo `template` utilizzano il sistema di template **Jinja2** (http://jinja.pocoo.org/docs/) per generare file sugli host di destinazione.
 
-!!! Note Nota Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html).
+!!! Note "Nota"
+
+    Ulteriori informazioni possono essere [trovate qui](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html).
 
 Per esempio:
 
