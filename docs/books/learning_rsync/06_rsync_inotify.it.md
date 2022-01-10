@@ -121,7 +121,9 @@ Torna al primo terminale pts/0, le informazioni di output sono le seguenti:
 
 ## Combinazione di  `inotifywait` and `rsync`
 
-!!! tip "Attenzione!" Stiamo operando nel server Rocky Linux 8, utilizzando il protocollo SSH per la dimostrazione.
+!!! tip "Attenzione!"
+
+    Stiamo operando nel server Rocky Linux 8, utilizzando il protocollo SSH per la dimostrazione.
 
 Per il login di autenticazione senza password del protocollo SSH, si prega di fare riferimento a [rsync accesso di autenticazione senza password](05_rsync_authentication-free_login.md), che non è descritto qui. Un esempio del contenuto di uno script bash è il seguente. È possibile aggiungere diverse opzioni dopo il comando in base alle esigenze per soddisfare le vostre esigenze. Ad esempio, puoi anche aggiungere `--delete` dopo il comando `rsync`.
 
@@ -140,8 +142,15 @@ $a | while read directory event file
 [root@Rocky ~]# bash /root/rsync_inotify.sh &
 ```
 
-!!! tip "sottolineare ancora!" Quando si utilizza il protocollo SSH per la trasmissione della sincronizzazione dei dati, se la porta di servizio SSH della macchina di destinazione non è 22, puoi usare un metodo simile a questo—— `b="/usr/bin/rsync -avz -e 'ssh -p [port-number]' /rsync/* testfedora@192. 68.100.5:/home/testfedora/"`
+!!! tip "sottolineare ancora!"
 
-!!! tip "Attenzione!" Se vuoi avviare questo script all' avvio `[root@Rocky ~]# echo "bash /root/rsync_inotify. h &" >> /etc/rc ocali` `[root@Rocky ~]# chmod +x /etc/rc.local`
+    Quando si utilizza il protocollo SSH per la trasmissione della sincronizzazione dei dati, se la porta di servizio SSH della macchina di destinazione non è la 22, puoi usare un metodo simile a questo——
+    `b="/usr/bin/rsync -avz -e 'ssh -p [port-number]' /rsync/* testfedora@192. 68.100.5:/home/testfedora/"`
+
+!!! tip "Attenzione!"
+
+    Se vuoi avviare questa script all'avvio
+    `[root@Rocky ~]# echo "bash /root/rsync_inotify. h &" >> /etc/rc.local`
+    `[root@Rocky ~]# chmod +x /etc/rc.local`
 
 Se si sta utilizzando il protocollo rsync per la sincronizzazione, è necessario configurare il servizio rsync della macchina di destinazione, fare riferimento a [rsync demo 02](03_rsync_demo02.md), [rsync file di configurazione](04_rsync_configure.md), [accesso senza autenticazione segreta rsync](05_rsync_authentication-free_login.md)
