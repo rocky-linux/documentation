@@ -33,7 +33,9 @@ Alcuni parametri e valori di questo file sono i seguenti, [ qui ](04_rsync_confi
 | auth users = li                           | Abilita gli utenti virtuali e definisci come viene chiamato un utente virtuale. Devi crearlo da solo                                                                            |
 | secrets file = /etc/rsyncd_users.db       | Usato per specificare la posizione del file password dell'utente virtuale, che deve terminare in .db. Il formato del contenuto del file è "Nome utente: Password", uno per riga |
 
-!!! tip "Attenzione!" Il permesso del file password deve essere <font color=red>600</font>
+!!! tip "Attenzione!"
+
+    Il permesso del file password deve essere <font color=red>600</font>
 
 Scrivi il contenuto del file su <font color=red>/etc/rsyncd.conf</font>e scrivi il nome utente e la password su /etc/rsyncd_users.db, il permesso è 600
 
