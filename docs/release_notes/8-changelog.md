@@ -15,6 +15,13 @@ Updates released since upstream are posted across our current architectures. We 
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
+## 8.5 - 2022-01-03
+
+The following packages have been updated since January 03, 2022:
+
+* dotnet6.0: dotnet6.0-6.0.100-0.10.el8_5 -> dotnet6.0-6.0.101-2.el8_5                                                         
+* rpaste: rpaste-0.1-3.el8.2 -> rpaste-0.2.0-1.el8
+
 ## 8.5 - 2021-12-22
 
 The following packages have been updated since December 22, 2021:
