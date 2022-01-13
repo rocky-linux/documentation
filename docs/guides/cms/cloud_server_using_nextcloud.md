@@ -1,3 +1,10 @@
+---
+title: Cloud Server Using Nextcloud
+author: Steven Spencer
+contributors: Ezequiel Bruni
+update: Jan-13-2022
+---
+
 # Cloud Server Using Nextcloud
 
 ## Prerequisites And Assumptions
