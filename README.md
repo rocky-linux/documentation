@@ -58,6 +58,8 @@ The first line of the text detail for the admonition must have that extra line f
 
     Any number of other indented markdown elements.
 
+If you are reading this on GitHub, it will not display the admonition. You can see how it actually displays [here](https://docs.rockylinux.org/guides/contribute/).    
+
 ## Using Git
 
 Like many other projects out there, Rocky Linux uses "git" to manage its code and files, including documentation files. This tutorial assumes a fundamental knowledge of Git and how it works. The second example also presupposes familiarity with the command line.
