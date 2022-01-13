@@ -21,60 +21,49 @@ Nextcloud offers an open source cloud with security and flexibility in mind. Not
 
 ## Installing And Configuring Repositories
 
-For this installation, we will require two repositories. We need to install the EPEL (Extra Packages for Enterprise Linux) and the Remi Repository for PHP 7.4 (version 7.3 or 7.4 is required and Rocky Linux provides 7.2.x).
+For this installation, we need to install the EPEL (Extra Packages for Enterprise Linux).
 
 To install the EPEL run:
 
 `dnf install epel-release`
 
-And then once installed, run an update to make sure you are at the very latest epel version:
+And then once installed, run an update to make sure you are at the very latest EPEL version:
 
 `dnf update`
 
-To install the Remi repository run:
-
-`dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm`
-
-Run the following to see a list of php modules that can be enabled:
+Rocky Linux comes with PHP 7.2 enabled, but we need PHP 7.4. This is now a module.
 
 `dnf module list php`
 
 Which should give you output like this:
 
 ```
-CentOS Linux 8 - AppStream
-Name                   Stream                         Profiles                                    Summary                                
-php                    7.2 [d]                        common [d], devel, minimal                  PHP scripting language                 
-php                    7.3                            common [d], devel, minimal                  PHP scripting language                 
-php                    7.4                            common [d], devel, minimal                  PHP scripting language                 
-
-Remi's Modular repository for Enterprise Linux 8 - x86_64
-Name                   Stream                         Profiles                                    Summary                                
-php                    remi-7.2                       common [d], devel, minimal                  PHP scripting language                 
-php                    remi-7.3                       common [d], devel, minimal                  PHP scripting language                 
-php                    remi-7.4                       common [d], devel, minimal                  PHP scripting language                 
-php                    remi-8.0                       common [d], devel, minimal                  PHP scripting language                 
+Rocky Linux 8 - AppStream
+Name                    Stream                     Profiles                                     Summary                                 
+php                     7.2 [d]                    common [d], devel, minimal                   PHP scripting language                  
+php                     7.3                        common [d], devel, minimal                   PHP scripting language                  
+php                     7.4                        common [d], devel, minimal                   PHP scripting language               
 
 Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
 We want to grab the newest PHP that Nextcloud is compatible with, which at this moment is 7.4, so we will enable that module by doing:
 
-`dnf module enable php:remi-7.4`
+`dnf module enable php:7.4`
 
-To see how this changes the output of the module list, run that command again and you will see the "[e]" next to remi-7.4:
+To see how this changes the output of the module list, run that command again and you will see the "[e]" next to 7.4:
 
 `dnf module list php`
 
 And the output again is the same except for this line:
 
-`php                    remi-7.4 [e]                   common [d], devel, minimal                  PHP scripting language`
+`php                     7.4 [e]                    common [d], devel, minimal                   PHP scripting language`
 
 ## Installing Packages
 
-We need a lot of packages installed. Some of these may already be installed with your default Rocky Linux installation, but make sure by running the following command the following:
+We need a number of packages installed. Some of these may already be installed with your default Rocky Linux installation, but make sure by running the following:
 
-`dnf install httpd mariadb-server vim wget zip unzip libxml2 openssl php74-php php74-php-ctype php74-php-curl php74-php-gd php74-php-iconv php74-php-json php74-php-libxml php74-php-mbstring php74-php-openssl php74-php-posix php74-php-session php74-php-xml php74-php-zip php74-php-zlib php74-php-pdo php74-php-mysqlnd php74-php-intl php74-php-bcmath php74-php-gmp`
+`dnf install httpd mariadb-server vim wget zip unzip libxml2 openssl php php-common php-gd php-json php-mbstring php-process php-xml php-zip php-pdo php-mysqlnd php-intl php-bcmath php-gmp`
 
 ## Configuring Packages And Directories
 
