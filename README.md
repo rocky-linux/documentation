@@ -37,6 +37,27 @@ ReText is good, but if you feel like exploring your other options, there are a f
 
 You can get a good feel for how to write Markdown files, by taking a look at [Mastering Markdown](https://guides.github.com/features/mastering-markdown/). This online resource will get you up-to-speed in no time.
 
+### Admonitions and Translations
+
+Towards the end of 2021, we started translating our documents using [Crowdin](https://crowdin.com/). We need more translators for this effort, so if you would like to translate these documents into your language, please consider joining that effort. You can find more information by joining the conversation [here](https://chat.rockylinux.org/rocky-linux/channels/documentation).
+
+It should be noted that admonitions are **NOT** required, but if you choose to use them, they should be formatted a little differently than the default. Here is the default way of creating an admonition:
+```
+!!! type "optional additional title within double quotes"
+    Any number of other indented markdown elements.
+```
+To make this work for our translators in Crowdin, however, we need to format it like this:
+```
+!!! type "optional additional title within double quotes"
+
+    Any number of other indented markdown elements.
+```
+The first line of the text detail for the admonition must have that extra line feed. Note that each example shows that there are 4 spaces before the actual text begins. When the page is rendered, the document will not have the extra line feed. Here's what the admonition above looks like:
+
+!!! type "optional additional title within double quotes"
+
+    Any number of other indented markdown elements.
+
 ## Using Git
 
 Like many other projects out there, Rocky Linux uses "git" to manage its code and files, including documentation files. This tutorial assumes a fundamental knowledge of Git and how it works. The second example also presupposes familiarity with the command line.
