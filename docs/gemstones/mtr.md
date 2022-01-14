@@ -44,27 +44,27 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
  6. 219.158.24.134 0.0% 10 13.1 14.5 11.9 18.9 2.2
  7. 219.158.10.30 0.0% 10 14.9 21.2 12.0 29.8 6.9
  8. 219.158.33.114 0.0% 10 17.7 17.1 13.0 20.0 2.0
-9. ??? 100.0 10 0.0 0.0 0.0 0.0 0.0
+ 9. ??? 100.0 10 0.0 0.0 0.0 0.0 0.0
 10. ??? 100.0 10 0.0 0.0 0.0 0.0 0.0
 11. ??? 100.0 10 0.0 0.0 0.0 0.0 0.0
 12. ??? 100.0 10 0.0 0.0 0.0 0.0 0.0
- 13. a-0001.a-msedge.net 0.0% 10 18.4 15.7 9.5 19.3 3.1
+13. a-0001.a-msedge.net 0.0% 10 18.4 15.7 9.5 19.3 3.1
 ...
 ```
 
-* Loss%-packet loss rate
-* Snt-the number of packets sent
-* Last-the delay of the last packet
-* Avg-average delay
-* Best-lowest latency
-* Wrst-Worst time delay
-* StDev-variance (stability)
+* Loss% - packet loss rate
+* Snt - the number of packets sent
+* Last - the delay of the last packet
+* Avg - average delay
+* Best - lowest latency
+* Wrst - Worst time delay
+* StDev - variance (stability)
 
 ##  Shortcut keys for interaction
-<kbd>p</kbd>-pause;
-<kbd>d</kbd>-switch display mode;
-<kbd>n</kbd>-turn on/off DNS;
-<kbd>r</kbd>-reset all counters;
-<kbd>j</kbd>-Toggle delay display information;
-<kbd>y</kbd>-switch IP information;
-<kbd>q</kbd>-Quit interaction.
+<kbd>p</kbd> - pause;
+<kbd>d</kbd> - switch display mode;
+<kbd>n</kbd> - turn on/off DNS;
+<kbd>r</kbd> - reset all counters;
+<kbd>j</kbd> - Toggle delay display information;
+<kbd>y</kbd> - switch IP information;
+<kbd>q</kbd> - Quit interaction.
