@@ -15,10 +15,6 @@ Updates released since upstream are posted across our current architectures. We 
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
-## 8.5 - 2022-01-13
-
-No changes to report on this day. Test
-
 ## 8.5 - 2022-01-11
 
 The following packages have been updated since January 11, 2022:
