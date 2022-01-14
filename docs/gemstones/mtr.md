@@ -61,10 +61,10 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 * StDev - variance (stability)
 
 ##  Shortcut keys for interaction
-<kbd>p</kbd>-pause;
-<kbd>d</kbd>-switch display mode;
-<kbd>n</kbd>-turn on/off DNS;
-<kbd>r</kbd>-reset all counters;
-<kbd>j</kbd>-Toggle delay display information;
-<kbd>y</kbd>-switch IP information;
-<kbd>q</kbd>-Quit interaction.
+<kbd>p</kbd> - pause;
+<kbd>d</kbd> - switch display mode;
+<kbd>n</kbd> - turn on/off DNS;
+<kbd>r</kbd> - reset all counters;
+<kbd>j</kbd> - Toggle delay display information;
+<kbd>y</kbd> - switch IP information;
+<kbd>q</kbd> - Quit interaction.
