@@ -36,7 +36,7 @@ update: 2022-01-13
 
 * grafana: grafana-7.5.9-4.el8 -> grafana-7.5.9-5.el8_5
 
-关联的 CVE：
+关联的CVE：
 
 * CVE-2021-44716
 
@@ -61,7 +61,7 @@ update: 2022-01-13
 * rocky-release: rocky-release-8.5-2.el8 -> rocky-release-8.5-3.el8
 * sssd: sssd-2.5.2-2.el8_5.1 -> sssd-2.5.2-2.el8_5.3
 
-关联的 CVE：
+关联的CVE：
 
 * CVE-2021-20321
 * CVE-2021-3930
