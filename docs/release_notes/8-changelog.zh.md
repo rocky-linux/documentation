@@ -2,7 +2,7 @@
 title: 更改日志
 author: Louis Abel
 contributors: tianci li, Steven Spencer
-update: 20-Dec-2021
+update: 2022-01-13
 ---
 
 # Rocky Linux 8 更改日志
@@ -15,13 +15,28 @@ update: 20-Dec-2021
 
 所有Rocky Linux组件都是由托管在[git.rockylinux.org](https://git.rockylinux.org) 上的源代码进行构建的。 此外，SRPM与存储库将一起发布在对应的"source"目录中， 您可以在我们的任意镜像网站上找到它们， 镜像网站的源码包与我们发布的每个二进制RPM相同。
 
+## 8.5 - 2022-01-11
+
+以下软件包自2022年01月12日起进行了更新：
+
+* firefox: 更新至78.14.0firefox: firefox-91.4.0-1.el8_5 -> firefox-91.5.0-1.el8_5
+* thunderbird: 更新至78.14.0thunderbird: thunderbird-91.4.0-2.el8_5 -> thunderbird-91.5.0-1.el8_5
+* thunderbird: thunderbird-91.4.0-2.el8.plus -> thunderbird-91.5.0-1.el8.plus
+
+## 8.5 - 2022-01-03
+
+以下软件包自2022年01月03日起进行了更新：
+
+* dotnet6.0: dotnet6.0-6.0.100-0.10.el8_5 -> dotnet6.0-6.0.101-2.el8_5
+* rpaste: rpaste-0.1-3.el8.2 -> rpaste-0.2.0-1.el8
+
 ## 8.5 - 2021-12-22
 
 以下软件包自2021年12月22日起进行了更新：
 
 * grafana: grafana-7.5.9-4.el8 -> grafana-7.5.9-5.el8_5
 
-关联的CVE：
+关联的 CVE：
 
 * CVE-2021-44716
 
@@ -86,7 +101,7 @@ rocky-release 软件包已经更新，您可以将 countme=1 添加到 Rocky Lin
 
 * kernel-rt: kernel-rt-kvm added to RT
 
-关联的 CVE：
+关联的CVE：
 
 * CVE-2020-25717
 
@@ -175,11 +190,11 @@ sos：主要是外观上的变化。 它带来了 Rocky 的策略， 查阅 [thi
 * mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
 * mailman-3:2.1.29-12.module+el8.5.0+717+27fd1ba7.2
 
-关联的 CVE：
+关联的CVE：
 
 * mailman: CVE-2021-44227
 
-以下模块自2021年11月02日起已更新：
+以下模块自2021年12月02日起已更新：
 
 * mailman-2.1-8050020211202160117.fd901a62
 
@@ -216,7 +231,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 * kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
 * nss: nss-3.67.0-6.el8_4 -> nss-3.67.0-7.el8_5
 
-关联的 CVE：
+关联的CVE：
 
 * nss-3.67.0-7.el8_5: CVE-2021-43527
 
@@ -238,7 +253,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 * mailman-2.1-8050020211123230959.fd901a62
 
-关联的 CVE：
+关联的CVE：
 
 * CVE-2021-42096
 * CVE-2021-42097
@@ -312,7 +327,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-09-21
 
-以下软件包已经更新：
+以下软件包已更新:
 
 * kernel: kernel-4.18.0-305.19.1 (9-15)
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.2
@@ -345,7 +360,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 以下软件包已更新：
 
 * thunderbird: 更新至78.14.0
-* Firefox: 更新至78.14.0
+* firefox: 更新至78.14.0
 * cyrus-imapd: 更新至3.0.7-20.el8_4.1(地址 CVE-2021-33582)
 * systemtap将根据dyinest 10.2进行重新构建，以解决漏洞报告
 * rocky-release -> 更新为允许"centos"作为ID
@@ -356,12 +371,12 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-08-24
 
-以下软件包已更新:
+以下软件包已更新：
 
 * dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
 * libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Addresses
 
-  * Addresses a heap buffer overflow that allowed arbitrary code execution from a wav file
+  * 解决了允许从wav文件执行任意代码的堆缓冲区溢出问题。
 
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.1
 
@@ -472,7 +487,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-07-12
 
-以下软件包已更新：
+以下软件包已经更新：
 
 * rocky-release
 * linuxptp
@@ -565,7 +580,7 @@ repo_gpgcheck=1
 * rocky-release
 
   * 为未来的情况添加 devel 和 debuginfo 存储库
-  * 这是为了 模拟/buildroot 目的而提供的
+  * 这是为了 模拟/构建根 目的而提供的
 
 * rocky-logos
 
