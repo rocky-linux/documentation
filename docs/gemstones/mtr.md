@@ -52,13 +52,13 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 ...
 ```
 
-* Loss%-packet loss rate
-* Snt-the number of packets sent
-* Last-the delay of the last packet
-* Avg-average delay
-* Best-lowest latency
-* Wrst-Worst time delay
-* StDev-variance (stability)
+* Loss% - packet loss rate
+* Snt - the number of packets sent
+* Last - the delay of the last packet
+* Avg - average delay
+* Best - lowest latency
+* Wrst - Worst time delay
+* StDev - variance (stability)
 
 ##  Shortcut keys for interaction
 <kbd>p</kbd>-pause;
