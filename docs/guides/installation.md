@@ -201,7 +201,7 @@ This section can be used for creating a password for the `root` user account and
 
 ### Set the Root Password
 
-Click the _Root Password_ field under _User Settings_ to launch the _Root Password _ task screen. In the _Root Password_ text box, set a strong password for the root user.
+Click the _Root Password_ field under _User Settings_ to launch the _Root Password_ task screen. In the _Root Password_ text box, set a strong password for the root user.
 
 !!! Warning
 
