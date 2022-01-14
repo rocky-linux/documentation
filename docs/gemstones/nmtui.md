@@ -30,7 +30,7 @@ You can use the <kbd>Tab</kbd> key or the <kbd>↑</kbd><kbd>↓</kbd><kbd>←</
 
 ###  DHCP IPv4
 
-For IPv4, if it is to obtain network information using DHCP way, you only need to select *IPv4 CONFIGURATION* back ** &lt;Automatic&gt; ** , and then run your terminal under `systemctl restart NetworkManager.service` , large In most cases, it can take effect. In rare cases, you need to switch the network card to take effect. For example, this way- `nmcli connection down ens33` , `nmcli connection up ens33`
+For IPv4, if it is to obtain network information using DHCP way, you only need to select *IPv4 CONFIGURATION* back **&lt;Automatic&gt;** , and then run your terminal under `systemctl restart NetworkManager.service` , large In most cases, it can take effect. In rare cases, you need to switch the network card to take effect. For example, this way- `nmcli connection down ens33` , `nmcli connection up ens33`
 
 ### Manually fix network information
 
