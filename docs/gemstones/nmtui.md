@@ -34,7 +34,7 @@ For IPv4, if it is to obtain network information using DHCP way, you only need t
 
 ### Manually fix network information
 
-If you want to manually fix all IPv4 network information, you need to select ** &lt;Manual&gt;  ** after *IPv4 CONFIGURATION* and add it line by line. For example, I like this:
+If you want to manually fix all IPv4 network information, you need to select **&lt;Manual&gt;** after *IPv4 CONFIGURATION* and add it line by line. For example, I like this:
 
 |Item|Value|
 |---|---|
