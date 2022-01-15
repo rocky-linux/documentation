@@ -123,15 +123,15 @@ A seconda della fonte di installazione, l'opzione _Ora da rete_ potrebbe essere 
 
 ### Sezione Software
 
-Nella sezione _Software_ della schermata _Riepilogo installazione_, è possibile selezionare la sorgente di installazione e i pacchetti aggiuntivi (applicazioni) che verranno installati.
+Nella sezione _Software_ della schermata _Riepilogo Installazione_, è possibile selezionare la sorgente di installazione e i pacchetti aggiuntivi (applicazioni) che verranno installati.
 
 #### Sorgente Installazione
 
-Dal momento che stiamo eseguendo la nostra installazione utilizzando un'immagine completa Rocky 8, noterai che _Media Locale_ è automaticamente specificato nella sezione Installazione Source della schermata principale _Riepilogo Installazione_. Accetteremo i valori preimpostati.
+Dal momento che stiamo eseguendo la nostra installazione utilizzando un'immagine completa Rocky 8, noterai che _Media Locale_ è automaticamente specificato nella sezione Installation Source della schermata principale _Riepilogo Installazione_. Accetteremo i valori preimpostati.
 
 !!! Tip "Suggerimento"
 
-    L'area Installation Source è dove è possibile scegliere di eseguire un'installazione basata sulla rete. Per un'installazione basata sulla rete, è necessario prima assicurarsi che una scheda di rete sul sistema di destinazione sia configurata correttamente, ed sia in grado di raggiungere internet.  Per eseguire un'installazione basata sulla rete, clicca su `Installation Source` e quindi seleziona il pulsante radio `On the network`. Una volta selezionato, scegli il protocollo `https` e digita il seguente URL nel campo di testo `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`.   Fare clic su `Fatto`.
+    L'area Installation Source è dove è possibile scegliere di eseguire un'installazione basata sulla rete. Per un'installazione basata sulla rete, è necessario prima assicurarsi che una scheda di rete sul sistema di destinazione sia configurata correttamente, ed sia in grado di raggiungere internet.  Per eseguire un'installazione basata sulla rete, clicca su `Installation Source` e quindi seleziona il pulsante radio `On the network`. Una volta selezionato, scegli il protocollo `https` e digita il seguente URL nel campo di testo `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`.   Clicca su `Fatto`.
 
 #### Selezione Software
 
@@ -152,7 +152,7 @@ La sezione Sistema della schermata _Riepilogo Installazione_ viene utilizzata pe
 
 Dalla schermata _Riepilogo Installazione_, clicca sull'opzione <kbd>Destinazione Installazione</kbd>. Questo ti porta all'area di attività corrispondente.
 
-Verrà visualizzata una schermata che mostra tutte le unità disco candidate disponibili sul sistema di destinazione. Se avete un solo disco sul sistema, come sul nostro sistema di esempio, vedrai l'unità elencata sotto _Dischi locali standard_ con un segno di spunta accanto ad essa. Facendo clic sull'icona del disco si attiverà o disattiverà il segno di spunta per la selezione del disco. Vogliamo che sia selezionato/verificato qui.
+Verrà visualizzata una schermata che mostra tutte le unità disco candidate disponibili sul sistema di destinazione. Se avete un solo disco sul sistema, come sul nostro sistema di esempio, vedrai l'unità elencata sotto _Dischi locali standard_ con un segno di spunta accanto ad essa. Facendo clic sull'icona del disco si attiverà o disattiverà il segno di spunta per la selezione del disco. Vogliamo che sia selezionato/spuntato qui.
 
 Sotto la sezione Opzioni _Configurazione di archiviazione_, selezionare il pulsante radio <kbd>Automatic</kbd>.
 
