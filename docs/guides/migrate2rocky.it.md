@@ -50,7 +50,7 @@ Quindi, carica l'eseguibile sul tuo server con ssh eseguendo questo comando sull
 scp PATH/TO/FILE/migrate2rocky.sh root@yourdomain.com:/home/
 ```
 
-Solamente, cioè, regolare tutti i percorsi dei file e i domini del server o gli indirizzi IP secondo necessità.
+Correggi, cioè, regola tutti i percorsi dei file e i domini del server o gli indirizzi IP secondo necessità.
 
 ### Il modo git
 
@@ -82,7 +82,7 @@ Questo comando scaricherà il file direttamente sul server e *solo* il file che 
 
 ## Esecuzione dello script e installazione
 
-Usa il comando `cd` per passare alla directory in cui si trova lo script, assicurarsi che il file sia eseguibile e dare al proprietario del file di script i permessi x.
+Usa il comando `cd` per passare alla directory in cui si trova lo script, assicurarsi che il file sia eseguibile e dare al proprietario del file dello script i permessi x.
 
 ```
 chmod u+x migrate2rocky.sh
@@ -106,6 +106,6 @@ Se vedi un messaggio **Complete!** alla fine, allora tutto va bene e puoi riavvi
 
 ![messaggio di migrazione OS riuscito](images/migrate2rocky-convert-02.png)
 
-Dagli un po' di tempo, accedi di nuovo, e si dovrebbe avere una fantastico nuovo server Rocky Linux per giocare a wi... Intendo farci un lavoro molto serio. Esegui il comando `hostnamectl` per controllare che il tuo sistema operativo sia stato migrato correttamente, e sei pronto ad andare.
+Dagli un po' di tempo, accedi di nuovo, e si dovrebbe avere un fantastico nuovo server Rocky Linux per giocare a wi... Intendo farci un lavoro molto serio. Esegui il comando `hostnamectl` per controllare che il tuo sistema operativo sia stato migrato correttamente, e sei pronto ad andare.
 
 ![Il risultato del comando hostnamectl](images/migrate2rocky-convert-03.png)
