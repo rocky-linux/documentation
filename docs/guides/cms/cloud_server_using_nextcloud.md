@@ -28,7 +28,7 @@ Nextcloud offers an open source cloud with security and flexibility in mind. Not
 
 ## Nextcloud - Module Install
 
-As noted in the prerequisites, Nextcloud offers a great many ways to install. Why use the nextcloud module?  After enabling the module we can then install nextcloud, which will download nearly all of the dependencies for you. You will still have to install your database of choice (mariadb, postgresql, or sqlite) but your web platform will be handled by the nextcloud packages as well as any back-end scripts. The downside to this particular method, is that you lose control over where you want nextcloud to install. When operating a bunch of servers or containers with web applications on them, a Systems Administrator would prefer to look for things in the same spot, not try to keep up with where package 'A' installed itself as opposed to package 'B'.
+As noted in the prerequisites, Nextcloud offers a great many ways to install. Why use the Nextcloud module?  After enabling the module we can then install Nextcloud, which will download nearly all of the dependencies for you. You will still have to install your database of choice (mariadb, postgresql, or sqlite) but your web platform will be handled by the Nextcloud packages as well as any back-end scripts. The downside to this particular method, is that you lose control over where you want Nextcloud to install. When operating a bunch of servers or containers with web applications on them, a Systems Administrator would prefer to look for things in the same spot, not try to keep up with where package 'A' installed itself as opposed to package 'B'.
 
 ### Installing And Configuring Repositories
 <a name="repositories"></a>
@@ -73,7 +73,7 @@ php                     remi-8.1                   common [d], devel, minimal   
 Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
-We want to grab the newest PHP that nextcloud is compatible with, which at this moment is 8.0, so we will enable that module by doing:
+We want to grab the newest PHP that Nextcloud is compatible with, which at this moment is 8.0, so we will enable that module by doing:
 
 `dnf module enable php:remi-8.0`
 
@@ -85,13 +85,13 @@ And the output again is the same except for this line:
 
 `php                    remi-8.0 [e]                   common [d], devel, minimal                  PHP scripting language`
 
-The final step is to enable the stable version of nextcloud from the modules. This is as easy as:
+The final step is to enable the stable version of Nextcloud from the modules. This is as easy as:
 
 `dnf module enable nextcloud:nextcloud-stable`
 
 ### Installing Packages
 
-To see what enabling the nextcloud module will offer for you to install, do the following:
+To see what enabling the Nextcloud module will offer for you to install, do the following:
 
 `dnf list available | grep nextcloud` which will show you output like this:
 
@@ -124,9 +124,9 @@ then start it:
 
 `systemctl start httpd`
 
-#### Using nextcloud's Built-in Configuration
+#### Using Nextcloud's Built-in Configuration
 
-When you install nextcloud using the module, the configuration is created for you. In fact, there are multiple configurations. You can find these by looking in conf.d directory like this: `ls -al /etc/httpd/conf.d` which should show you output similar to this:
+When you install Nextcloud using the module, the configuration is created for you. In fact, there are multiple configurations. You can find these by looking in conf.d directory like this: `ls -al /etc/httpd/conf.d` which should show you output similar to this:
 
 ```
 -rw-r--r--. 1 root root  400 Nov 15 03:13 README
@@ -141,11 +141,11 @@ When you install nextcloud using the module, the configuration is created for yo
 -rw-r--r--. 1 root root 1252 Nov 15 03:10 userdir.conf
 -rw-r--r--. 1 root root  574 Nov 15 03:10 welcome.conf
 ```
-The primary configuration here for nextcloud is `nextcloud.conf`, but you should review the rest of these files. There are instructions on how to use them at the top of each file. In our lab installation, the localhost is not available from any web interface. If you look at the top of the `nextcloud-access.conf.avail` you will see a warning to enable this only after the admin account and initial installation have been complete. Since this is not possible in the lab instance, we are doing this early:
+The primary configuration here for Nextcloud is `nextcloud.conf`, but you should review the rest of these files. There are instructions on how to use them at the top of each file. In our lab installation, the localhost is not available from any web interface. If you look at the top of the `nextcloud-access.conf.avail` you will see a warning to enable this only after the admin account and initial installation have been complete. Since this is not possible in the lab instance, we are doing this early:
 
 `ln -s /etc/httpd/conf.d/nextcloud-access.conf.avail /etc/httpd/conf.d/z-nextcloud-access.conf`
 
-We also need a special empty file so that we can install nextcloud. This file resides in `/etc/nextcloud` and is called CAN_INSTALL. To create it, simply do the following:
+We also need a special empty file so that we can install Nextcloud. This file resides in `/etc/nextcloud` and is called CAN_INSTALL. To create it, simply do the following:
 
 `touch /etc/nextcloud/CAN_INSTALL`
 
@@ -210,7 +210,7 @@ To do the initial configuration, we want to actually load the site in a web brow
 
 `http://192.168.1.108/nextcloud`
 
-Assuming that you've done everything correctly so far, you should be presented with a nextcloud setup screen:
+Assuming that you've done everything correctly so far, you should be presented with a Nextcloud setup screen:
 
 ![nextcloud login screen](../images/nextcloud_screen.jpg)
 
@@ -226,7 +226,7 @@ Once you have all this, click `Finish Setup` and you should be up and running.
 
 ### Notes for the Systems Administrator
 
-As noted earlier, if using the module install for nextcloud, nextcloud is going to put things where it thinks they should be, not where the Systems Administrator might go looking for them. For this reason, as part of the setup steps, I recommend that a README.txt file be created in each location where the Systems Administrator would logically look. I came from an environment where we used `/etc/httpd/sites-enabled` for configuration files (see the alternate install steps for more) and put our web files in `/var/www/sub-domains/[site_name]/html`. If I were to use the module install of nextcloud, then, I would want to put a README.txt file in both locations.
+As noted earlier, if using the module install for Nextcloud, Nextcloud is going to put things where it thinks they should be, not where the Systems Administrator might go looking for them. For this reason, as part of the setup steps, I recommend that a README.txt file be created in each location where the Systems Administrator would logically look. I came from an environment where we used `/etc/httpd/sites-enabled` for configuration files (see the alternate install steps for more) and put our web files in `/var/www/sub-domains/[site_name]/html`. If I were to use the module install of Nextcloud, then, I would want to put a README.txt file in both locations.
 
 The README.txt file in `/etc/httpd/sites-enabled/` might contain:
 
@@ -241,7 +241,7 @@ Nextcloud was installed using the module. You can find the web files in /usr/sha
 
 ## Nextcloud .zip Install
 
-If the module install is so easy, why consider using the .zip file install method? The reason is environment control. As noted in the nextcloud module install procedure, nextcloud chooses where to put the web files, where to put the configuration files, and most of the remaining setup options. Using the .zip file install method is definitely more intensive than the module install method, but it *does* give the Systems Administrator more control over where things will end up.
+If the module install is so easy, why consider using the .zip file install method? The reason is environment control. As noted in the Nextcloud module install procedure, Nextcloud chooses where to put the web files, where to put the configuration files, and most of the remaining setup options. Using the .zip file install method is definitely more intensive than the module install method, but it *does* give the Systems Administrator more control over where things will end up.
 
 ### Installing And Configuring Repositories (same procedure)
 
@@ -326,7 +326,7 @@ The next few steps assume that you are remotely connected to your Nextcloud serv
 * In your remote console on the Nextcloud server, type "wget" and then a space and paste in what you just copied. You should get something like the following: `wget https://download.nextcloud.com/server/releases/nextcloud-21.0.1.zip`
 * Once you hit enter, the download of the .zip file will start and will be completed fairly quickly.
 
-Once the download is complete, unzip the nextcloud zip file by using the following:
+Once the download is complete, unzip the Nextcloud zip file by using the following:
 
 `unzip nextcloud-21.0.1.zip`
 
