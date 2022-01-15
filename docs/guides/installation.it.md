@@ -237,7 +237,7 @@ _Conferma password_: `04302021`
 
 ### Avviare l'installazione
 
-Una volta che siete soddisfatti delle vostre scelte per le varie attività di installazione, fate clic sul pulsante Avvia installazione nella schermata principale _Riepilogo Installazione_. L'installazione inizierà, e l'installatore mostrerà i progressi dell'installazione. Quando inizia l'installazione, varie attività inizieranno ad essere eseguite in background, come il partizionamento del disco, la formattazione delle partizioni o i volumi di LVM, controllare e risolvere le dipendenze del software, scrivere il sistema operativo sul disco e così via.
+Una volta che siete soddisfatti delle vostre scelte per le varie attività dell'installazione, fate clic sul pulsante Avvia installazione nella schermata principale _Riepilogo Installazione_. L'installazione inizierà, e l'installatore mostrerà i progressi dell'installazione. Quando inizia l'installazione, varie attività inizieranno ad essere eseguite in background, come il partizionamento del disco, la formattazione delle partizioni o i volumi di LVM, controllare e risolvere le dipendenze del software, scrivere il sistema operativo sul disco e così via.
 
 !!! Note "Nota"
 
@@ -245,7 +245,7 @@ Una volta che siete soddisfatti delle vostre scelte per le varie attività di in
 
 ### Completare l'installazione
 
-Dopo aver completato tutte le sotto attività obbligatorie, e l'installatore ha eseguito il suo corso, ti verrà presentata una schermata di avanzamento dell'installazione finale con un messaggio completo.
+Dopo aver completato tutte le sotto-attività obbligatorie, e l'installatore ha eseguito il suo corso, ti verrà presentata una schermata di avanzamento dell'installazione finale con un messaggio di completamento.
 
 Infine, completare la procedura facendo clic sul pulsante <kbd>Reboot System</kbd>. Il sistema verrà riavviato.
 
@@ -257,7 +257,7 @@ Il sistema è ora configurato e pronto per l'uso. Vedrete la console Rocky Linux
 
 Per accedere al sistema, digita `rockstar` al prompt di accesso e premi <kbd>Invio</kbd>.
 
-Al prompt della Password, digita `04302021` (la password di rockstar) e premi <kbd>Invio</kbd> (la password ***non*** sarà visualizzata sullo schermo, che è normale).
+Al prompt della Password, digita `04302021` (la password di rockstar) e premi <kbd>Invio</kbd> (la password ***non*** sarà visualizzata sullo schermo, questo è normale).
 
 Eseguiremo il comando `whoami` dopo l'accesso, questo comando mostra il nome dell'utente attualmente connesso.
 
