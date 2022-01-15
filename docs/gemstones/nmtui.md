@@ -38,8 +38,8 @@ If you want to manually fix all IPv4 network information, you need to select **&
 
 |Item|Value|
 |---|---|
-|Addresses|192.168.100.4/24||
-|Gateway|192.168.100.1||
+|Addresses|192.168.100.4/24|
+|Gateway|192.168.100.1|
 |DNS servers|8.8.8.8|
 
 Then click \< OK \> , return to the terminal interface step by step, and execute `systemctl restart NetworkManager.service`. Similarly, in rare cases, the network card needs to be switched on and off to take effect.
