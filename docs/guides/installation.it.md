@@ -158,11 +158,11 @@ Sotto la sezione Opzioni _Configurazione di archiviazione_, selezionare il pulsa
 
 Quindi clicca su <kbd>Fatto</kbd> nella parte superiore dello schermo.
 
-Una volta che il programma di installazione determina che si dispone di un disco utilizzabile, si verrà restituiti alla schermata _Riepilogo installazione_.
+Una volta che il programma di installazione determina che si dispone di un disco utilizzabile, verrete reindirizzati alla schermata _Riepilogo Installazione_.
 
 ### Rete & Nome Host
 
-L'attività finale della procedura di installazione riguarda la configurazione della rete, dove è possibile configurare o modificare le impostazioni relative alla rete per il sistema.
+L'attività finale della procedura d'installazione riguarda la configurazione della rete, dove è possibile configurare o modificare le impostazioni relative alla rete per il sistema.
 
 !!! Note "Nota"
 
@@ -188,11 +188,11 @@ Clicca <kbd>Fatto</kbd> per tornare alla schermata principale _Riepilogo Install
 
 !!! Warning "Attenzione"
 
-    Prestare attenzione all'indirizzo IP del server in questa sezione del programma di installazione. Se non si dispone di un accesso fisico o facile alla console del sistema, queste informazioni saranno utili in seguito quando è necessario connettersi al server per continuare a lavorare.
+    Prestare attenzione all'indirizzo IP del server in questa sezione del programma d'installazione. Se non si dispone di un accesso fisico o facile alla console del sistema, queste informazioni saranno utili in seguito quando è necessario connettersi al server per continuare a lavorare.
 
 ## Fase di Installazione
 
-Una volta che siete soddisfatti delle vostre scelte per le varie attività di installazione, la fase successiva del processo di installazione inizierà l'installazione vera e propria.
+Una volta che siete soddisfatti delle vostre scelte per le varie attività dell'installazione, la fase successiva del processo d'installazione inizierà l'installazione vera e propria.
 
 ### Sezione Impostazioni Utente
 
