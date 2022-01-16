@@ -17,7 +17,7 @@ update: 2022-01-13
 
 ## 8.5 - 2022-01-11
 
-以下软件包自2022年01月12日起进行了更新：
+以下软件包自2022年01月11日起进行了更新：
 
 * firefox: 更新至78.14.0firefox: firefox-91.4.0-1.el8_5 -> firefox-91.5.0-1.el8_5
 * thunderbird: 更新至78.14.0thunderbird: thunderbird-91.4.0-2.el8_5 -> thunderbird-91.5.0-1.el8_5
@@ -327,7 +327,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-09-21
 
-以下软件包已更新:
+以下软件包已更新：
 
 * kernel: kernel-4.18.0-305.19.1 (9-15)
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.2
