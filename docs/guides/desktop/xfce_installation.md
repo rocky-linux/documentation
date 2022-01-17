@@ -84,10 +84,12 @@ Also install lightdm:
 
 ## Final Steps
 
-We need to disable `gdm`, which gets added and enabled during *dnf groupinstall "xfce"*
+We need to disable `gdm`, which gets added and enabled during *dnf groupinstall "xfce"*:
+
 `systemctl disable gdm`
 
-Now we can enable *lightdm*
+Now we can enable *lightdm*:
+
 `systemctl enable lightdm`
 
 We need to tell the system after booting use only the graphical user interface, so for that set the default target system to the GUI interface:
