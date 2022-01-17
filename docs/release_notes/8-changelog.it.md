@@ -2,7 +2,7 @@
 title: Change Log
 author: Louis Abel
 contributors: Steven Spencer, tianci li, Colussi Franco, GiorgioHerbie
-update: 06-Jan-2022
+update: 13-Jan-2022
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,21 @@ Rocky Linux 8 riceverà aggiornamenti incrementali e aggiornamenti di versione m
 Gli aggiornamenti rilasciati dall'upstream sono pubblicati attraverso le nostre architetture attuali. Raccomandiamo vivamente che tutti gli utenti applichino *tutti* gli aggiornamenti, compreso il contenuto rilasciato oggi, sulle macchine Rocky Linux esistenti. Questo può essere fatto eseguendo `dnf update`.
 
 Tutti i componenti di Rocky Linux sono costruiti dalle fonti ospitate su [git.rockylinux.org](https://git.rockylinux.org). Inoltre, gli SRPM sono in corso di pubblicazione accanto ai repository in una corrispondente directory "source". Puoi trovarli su uno qualsiasi dei nostri mirrors. Questi pacchetti sorgente corrispondono ad ogni RPM binario che rilasciamo.
+
+## 8.5 - 2022-01-11
+
+I seguenti pacchetti sono stati aggiornati dal 11 gennaio 2022:
+
+* firefox: firefox-91.4.0-1.el8_5 -> firefox-91.5.0-1.el8_5
+* thunderbird: thunderbird-91.4.0-2.el8_5 -> thunderbird-91.5.0-1.el8_5
+* thunderbird: thunderbird-91.4.0-2.el8.plus -> thunderbird-91.5.0-1.el8.plus
+
+## 8.5 - 2022-01-03
+
+I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+
+* dotnet6.0: dotnet6.0-6.0.100-0.10.el8_5 -> dotnet6.0-6.0.101-2.el8_5
+* rpaste: rpaste-0.1-3.el8.2 -> rpaste-0.2.0-1.el8
 
 ## 8.5 - 2021-12-22
 
@@ -196,7 +211,7 @@ I seguenti pacchetti sono stati aggiunti al repository plus:
 
 ### Note su Plus
 
-Il repository plus contiene elementi che non sono forniti nei repository base, o perché non sono disponibili a causa della configurazione dei comps e dei pungi (basati sui repository RHEL) o perché sono richiesti come build alternative con patch/funzionalità aggiuntive non trovate nella base. Mantenere il repository plus abilitato dovrebbe essere sicuro.
+Il repository plus contiene elementi che non sono forniti nei repository base, o perché non sono disponibili a causa della configurazione dei comps e dei pungi (basati sui repository RHEL) o perché sono richiesti come build alternative con patch/funzionalità aggiuntive non trovate nella base. Il repository plus dovrebbe essere sicuro per mantenersi abilitato.
 
 Gli attuali pacchetti in plus (a partire dal 2021-11-30) sono:
 
