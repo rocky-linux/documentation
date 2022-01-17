@@ -11,4 +11,4 @@ files:
       - '*.sv.md'
       - '/docs/release_notes/8.5.md'
     translation: /%original_path%/%file_name%.%two_letters_code%.%file_extension%
-    update_option: update_without_changes
+    update_option: update_as_unapproved
