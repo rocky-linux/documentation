@@ -69,7 +69,7 @@ A new page will load listing all of the sites under the account. The first time 
 A new page will load with an important Export Compliance statement to read. Then fill out the following information:
 
 * "Site Name"
-* "Site Password" - used by report_mirrors script, you make this anything you want
+* "Site Password" - used by `report_mirrors` script, you make this anything you want
 * "Organization URL" - Company/School/Organization URL e.g. https://rockylinux.org/
 * "Private" - Checking this box hides this site from public use.
 * "User active" - Uncheck this box to temporarily disable this site, it will be removed from public listings.
