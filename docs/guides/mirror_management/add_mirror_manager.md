@@ -82,7 +82,7 @@ Upon clicking "Submit" you will be returned to the main mirror page.
 
 From the main mirror page, select the drop down then click "My sites".
 
-The account site page will load and the site should be listed. Click it to go to the Information Site.
+The account site page will load and the site should be listed. Click on it to go to the Information Site.
 
 All of the options from the last section are listed again. At the bottom of the page are three new options: Admins, Hosts, and Delete site. Click on the "Hosts [add]".
 
