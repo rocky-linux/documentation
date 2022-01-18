@@ -71,7 +71,7 @@ A new page will load with an important Export Compliance statement to read. Then
 * "Site Name"
 * "Site Password" - used by `report_mirrors` script, you make this anything you want
 * "Organization URL" - Company/School/Organization URL e.g. https://rockylinux.org/
-* "Private" - Checking this box hides this site from public use.
+* "Private" - Checking this box hides your mirror from public use.
 * "User active" - Uncheck this box to temporarily disable this site, it will be removed from public listings.
 * "All sites can pull from me?" - Enable all mirror sites to pull from me without explicitly adding them to my list.
 * "Comments for downstream siteadmins. Please include your synchronization source here to avoid dependency loops."
