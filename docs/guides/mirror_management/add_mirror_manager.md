@@ -7,11 +7,11 @@ contributors: Amin Vakil, Steven Spencer
 
 ## Minimal requirements for public mirrors
 
-We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 data center like environment. Available bandwidth should be at least 1 GBit/s. We prefer mirrors offering dual-stack (IPv4 & IPv6). Please no dynamic DNS. If you are offering a mirror in a region that has only few mirrors, we will also accept slower speeds.
+We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 data center like environment. Available bandwidth should be at least 1 GBit/s. We prefer mirrors offering dual-stack (IPv4 & IPv6). Please do not submit mirrors configured using dynamic DNS. If you are offering a mirror in a region that has only few mirrors, we will also accept slower speeds.
 
-Please do not submit mirrors which are hosted in a Anycast-CDN like Cloudflare etc. as this can lead to sub-optimal performance with the selection of fastest mirror in `dnf`.
+Please do not submit mirrors which are hosted in a Anycast-CDN like Cloudflare, etc. as this can lead to sub-optimal performance with the selection of fastest mirror in `dnf`.
 
-Please note that we are not allowed to accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations
+Please note that we are not allowed to accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: [https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations](https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations)
 
 Hard disk space requirements are around 500 GB at the moment but expect it to grow over time. 600 GB space should be sufficient for the next few years.
 
@@ -45,9 +45,9 @@ rsync -aqH --delete source-mirror destination-dir
 ```
 Consider using a locking mechanism to avoid running more than one `rsync` job simultaneously when we push a new release.
 
-You can also use and modify our example script implementing locking and full sync if required. It can be found at https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh.
+You can also use and modify our example script implementing locking and full sync if required. It can be found at [https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh](https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh).
 
-After your first complete synchronization check that everything is fine with your mirror. Most importantly check all files and dirs got synchronized, your chron job is working properly and your mirror is reachable from the public internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
+After your first complete synchronization check that everything is fine with your mirror. Most importantly check all files and dirs got synchronized, your cron job is working properly and your mirror is reachable from the public Internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
 
 If you have any questions setting up your mirror join https://chat.rockylinux.org/rocky-linux/channels/infrastructure
 
@@ -69,9 +69,9 @@ A new page will load listing all of the sites under the account. The first time 
 A new page will load with an important Export Compliance statement to read. Then fill out the following information:
 
 * "Site Name"
-* "Site Password" - used by report_mirrors script, you make this anything you want
+* "Site Password" - used by `report_mirrors` script, you make this anything you want
 * "Organization URL" - Company/School/Organization URL e.g. https://rockylinux.org/
-* "Private" - Checking this box hides this site from public use.
+* "Private" - Checking this box hides your mirror from public use.
 * "User active" - Uncheck this box to temporarily disable this site, it will be removed from public listings.
 * "All sites can pull from me?" - Enable all mirror sites to pull from me without explicitly adding them to my list.
 * "Comments for downstream siteadmins. Please include your synchronization source here to avoid dependency loops."
@@ -82,7 +82,7 @@ Upon clicking "Submit" you will be returned to the main mirror page.
 
 From the main mirror page, select the drop down then click "My sites".
 
-The account site page will load and the site should be listed. Click it to go to the Information Site.
+The account site page will load and the site should be listed. Click on it to go to the Information Site.
 
 All of the options from the last section are listed again. At the bottom of the page are three new options: Admins, Hosts, and Delete site. Click on the "Hosts [add]".
 
