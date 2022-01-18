@@ -11,7 +11,7 @@ We always welcome new public mirrors. But they should be well maintained and hos
 
 Please do not submit mirrors which are hosted in a Anycast-CDN like Cloudflare, etc. as this can lead to sub-optimal performance with the selection of fastest mirror in `dnf`.
 
-Please note that we are not allowed to accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations
+Please note that we are not allowed to accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: [https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations](https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations)
 
 Hard disk space requirements are around 500 GB at the moment but expect it to grow over time. 600 GB space should be sufficient for the next few years.
 
