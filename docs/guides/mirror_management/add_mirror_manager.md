@@ -7,7 +7,7 @@ contributors: Amin Vakil, Steven Spencer
 
 ## Minimal requirements for public mirrors
 
-We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 data center like environment. Available bandwidth should be at least 1 GBit/s. We prefer mirrors offering dual-stack (IPv4 & IPv6). Please no dynamic DNS. If you are offering a mirror in a region that has only few mirrors, we will also accept slower speeds.
+We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 data center like environment. Available bandwidth should be at least 1 GBit/s. We prefer mirrors offering dual-stack (IPv4 & IPv6). Please do not submit mirrors configured using dynamic DNS. If you are offering a mirror in a region that has only few mirrors, we will also accept slower speeds.
 
 Please do not submit mirrors which are hosted in a Anycast-CDN like Cloudflare etc. as this can lead to sub-optimal performance with the selection of fastest mirror in `dnf`.
 
