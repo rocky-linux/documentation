@@ -45,7 +45,7 @@ rsync -aqH --delete source-mirror destination-dir
 ```
 Consider using a locking mechanism to avoid running more than one `rsync` job simultaneously when we push a new release.
 
-You can also use and modify our example script implementing locking and full sync if required. It can be found at https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh.
+You can also use and modify our example script implementing locking and full sync if required. It can be found at [https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh](https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh).
 
 After your first complete synchronization check that everything is fine with your mirror. Most importantly check all files and dirs got synchronized, your chron job is working properly and your mirror is reachable from the public internet. Double check your firewall rules! To avoid any problems do not enforce http to https redirection.
 
