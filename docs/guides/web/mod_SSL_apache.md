@@ -1,12 +1,15 @@
 ---
-title: Apache With `mod_ssl`
+title: Apache With 'mod_ssl'
+author: Garthus
+contributors: Steven Spencer, David Hensley
+update: 20-Jan-2022
 ---
 
-# `mod_ssl` on Rocky Linux in an httpd Apache Web-Server Environment
+# 'mod_ssl' on Rocky Linux in an httpd Apache Web-Server Environment
 
-Apache Web-Server has been used for many years now; `mod_ssl`is used to provide greater security for the Web-Server and can be installed on almost any version of Linux, including Rocky Linux. The installation of `mod_ssl` will be part of the creation of a Lamp-Server for Rocky Linux.
+Apache Web-Server has been used for many years now; 'mod_ssl' is used to provide greater security for the Web-Server and can be installed on almost any version of Linux, including Rocky Linux. The installation of 'mod_ssl' will be part of the creation of a Lamp-Server for Rocky Linux.
 
-This procedure is designed to get you up and running with Rocky Linux using `mod_ssl` in an Apache Web-Server environment..
+This procedure is designed to get you up and running with Rocky Linux using 'mod_ssl' in an Apache Web-Server environment..
 
 ## Prerequisites
 
@@ -47,11 +50,11 @@ powertools                                                       Rocky Linux 8 -
 
 ## Installing Packages
 
-To install `mod_ssl`, run:
+To install 'mod_ssl', run:
 
 `dnf install mod_ssl`
 
-To enable the `mod_ssl` module, run:
+To enable the 'mod_ssl' module, run:
 
 `apachectl restart httpd`
 `apachectl -M | grep ssl`
@@ -69,7 +72,7 @@ firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
 ```
 
-At this point you should be able to access the Apache Web-Server via HTTPS. Enter `https://your-server-ip` or `https://your-server-hostname` to confirm the `mod_ssl` configuration.
+At this point you should be able to access the Apache Web-Server via HTTPS. Enter `https://your-server-ip` or `https://your-server-hostname` to confirm the 'mod_ssl' configuration.
 
 ## Generate SSL Certificate
 
@@ -132,7 +135,7 @@ Then reload the Apache Web-Server by running:
 
 `systemctl reload httpd`
 
-## Test the `mod_ssl` configuration
+## Test the 'mod_ssl' configuration
 
 Enter the following in a web browser:
 
@@ -163,7 +166,7 @@ The Apache Web-Server will now be configured to  redirect any incoming traffic f
 
 ## Final Steps
 
-We have seen how to install and configure `mod_ssl`. And, create a new SSL Certificate in order to run a Web-Server under HTTPS Service.
+We have seen how to install and configure 'mod_ssl'. And, create a new SSL Certificate in order to run a Web-Server under HTTPS Service.
 
 ## Conclusion
 
