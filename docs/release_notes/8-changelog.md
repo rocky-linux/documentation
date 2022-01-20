@@ -2,7 +2,7 @@
 title: Change Log
 author: Louis Abel
 contributors: Steven Spencer, tianci li
-update: 13-Jan-2022
+update: 20-Jan-2022
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,23 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+# 8.5 - 2022-01-12
+
+The following packages have been updated since January 12, 2022:
+
+* gegl04: gegl04-0.4.4-6.el8 -> gegl04-0.4.4-6.el8_5.2
+* java-17-openjdk: java-17-openjdk-1:17.0.1.0.12-2.el8_5 -> java-17-openjdk-1:17.0.2.0.8-4.el8_5
+* kernel: kernel-4.18.0-348.7.1.el8_5 -> kernel-4.18.0-348.12.2.el8_5
+* kernel-rt: kernel-rt-4.18.0-348.7.1.rt7.137.el8_5 -> kernel-rt-4.18.0-348.12.2.rt7.143.el8_5
+* libarchive: libarchive-3.3.3-1.el8 -> libarchive-3.3.3-1.el8_5
+* libreswan: libreswan-4.4-1.el8 -> libreswan-4.4-4.el8_5
+
+Associated CVE's:
+
+* CVE-2022-0185
+* CVE-2021-45463
+* CVE-2021-4155
 
 ## 8.5 - 2022-01-11
 
