@@ -65,7 +65,7 @@ Se così fosse, ora siamo pronti a creare o aggiungere il file *authorized_keys*
 
 `ls -a .ssh`
 
-**Importante! Assicurati di leggere attentamente tutto ciò che segue. Se non sei sicuro di rompere qualcosa, poi fare una copia di backup di authorized_keys (se esiste) su ciascuna macchina prima di continuare.**
+**Importante! Assicurati di leggere attentamente tutto ciò che segue. Se non siete sicuri di rompere qualcosa, allora fate una copia di backup di authorized_keys (se esiste) su ciascuna delle macchine prima di continuare.**
 
 Se non c'è nessun file *authorized_keys* elencato, lo creeremo inserendo questo comando mentre siamo nella nostra directory _/root_:
 
