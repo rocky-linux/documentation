@@ -10,7 +10,7 @@
 
 # Introduzione
 
-Quasi tutti i siti web oggi _dovrebbero_ essere in esecuzione con un certificato SSL (secure socket layer). Questa procedura vi guiderà attraverso la generazione della chiave privata per il vostro sito web e poi da questo, generando il CSR (certificate signing request) che utilizzerai per acquistare il nuovo certificato.
+Quasi tutti i siti web oggi _dovrebbero_ essere in esecuzione con un certificato SSL (secure socket layer). Questa procedura vi guiderà attraverso la generazione della chiave privata per il vostro sito web e poi da questa, verrà generato il CSR (certificate signing request) che utilizzerai per acquistare il nuovo certificato.
 
 ## Genera La Chiave Privata
 
@@ -18,7 +18,7 @@ Per le chiavi private SSL non inizializzate, si possono avere dimensioni diverse
 
 A partire dal 2021, la dimensione della chiave privata raccomandata per un sito web è ancora 2048 bits. Si può aumentare, ma raddoppiare la dimensione della chiave da 2048 bit a 4096 bit è solo circa il 16% più sicuro, richiede più spazio per memorizzare la chiave, provoca carichi di CPU più elevati quando la chiave viene elaborata.
 
-Questo rallenta le prestazioni del sito web senza ottenere alcuna sicurezza significativa. Rimaniamo con la dimensione della chiave a 2048 e tenere sempre sotto controllo ciò che è attualmente raccomandato.
+Questo rallenta le prestazioni del sito web senza ottenere alcuna sicurezza significativa. Rimaniamo con la dimensione della chiave a 2048 tenendo sempre sotto controllo ciò che è attualmente raccomandato.
 
 Per cominciare, assicuriamoci che OpenSSL sia installato sia sulla tua workstation che sul server:
 
