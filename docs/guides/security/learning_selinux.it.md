@@ -67,7 +67,7 @@ Un processo il cui contesto ha la sicurezza __dominio D__ può accedere a oggett
 
 #### Il contesto SELinux di processi importanti
 
-I programmi più importanti sono assegnati un dominio dedicato.
+I programmi più importanti sono assegnati a un dominio dedicato.
 
 Ogni eseguibile è etichettato con un tipo dedicato (qui **sshd_exec_t**) che passa automaticamente il processo associato al contesto **sshd_t** (invece di **user_t**).
 
