@@ -1,4 +1,4 @@
-# Generazione di Chiavi Ssl - Let's Encrypt
+# Generazione di Chiavi SSL - Let's Encrypt
 
 ## Prerequisiti
 
@@ -58,7 +58,7 @@ Prima di continuare, vogliamo assicurarci che tutti i pacchetti snap siano aggio
 
 Se ci sono degli aggiornamenti, verranno installati qui.
 
-Solo nel caso in cui ti sia anticipato e hai installato _certbot_ dal RPM (che non funzionerà, a proposito), assicurarsi di rimuoverlo con:
+Solo nel caso in cui ti sia anticipato e abbia già installato _certbot_ dal RPM (che non funzionerà, a proposito), assicurati di rimuoverlo con:
 
 `dnf remove certbot`
 
