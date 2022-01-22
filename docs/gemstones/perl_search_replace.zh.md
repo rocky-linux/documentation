@@ -12,6 +12,7 @@ author: Steven Spencer
 ```
 perl -pi -w -e 's/search_for/replace_with/g;' ~/Dir_to_search/*.html
 ```
+
 对于可能有多个字符串实例的单个文件，可以指定该文件：
 
 ```
