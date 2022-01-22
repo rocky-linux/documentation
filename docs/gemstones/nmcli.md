@@ -3,7 +3,7 @@ title: nmcli - set connection autoconnect
 author: wale soyinka
 ---
 
-# `Modify NetworkManager connection profile autoconnect property `
+# Modify NetworkManager connection profile autoconnect property
 
 First use nmcli to query and display the current value of the autoconnect property for all network connections on a Rocky Linux system. Type:
 
