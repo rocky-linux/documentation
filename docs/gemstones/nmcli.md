@@ -1,6 +1,6 @@
 ---
-title: nmcli - set connection autoconnect 
-author: wale soyinka
+Title: nmcli - set connection autoconnect 
+Author: wale soyinka
 ---
 
 # `Modify NetworkManager connection profile autoconnect property `
@@ -21,10 +21,10 @@ sudo nmcli con mod ens3 connection.autoconnect yes
 ## Commands Explained
 
 ```
-connection (con) : NetworkManager connection object. 
-modify (mod)  :  Modify one or more properties of a given connection profile
+connection (con)       : NetworkManager connection object. 
+modify (mod)           :  Modify one or more properties of a given connection profile
 connection.autoconnect : The setting and property (<setting>.<property>)
--f, --fields :  specify fields to output
+-f, --fields           :  specify fields to output
 
 ```
 
