@@ -1,6 +1,6 @@
 ---
-Title: nmcli - set connection autoconnect 
-Author: wale soyinka
+title: nmcli - set connection autoconnect 
+author: wale soyinka
 ---
 
 # `Modify NetworkManager connection profile autoconnect property `
