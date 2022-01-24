@@ -273,6 +273,24 @@ To activate the page, setup its access path via the `pm.status_path` directive:
 pm.status_path = /status
 ```
 
+```
+$ curl http://localhost/status_php
+pool:                 www
+process manager:      dynamic
+start time:           03/Dec/2021:14:00:00 +0100
+start since:          600
+accepted conn:        548
+listen queue:         0
+max listen queue:     15
+listen queue len:     128
+idle processes:       3
+active processes:     3
+total processes:      5
+max active processes: 5
+max children reached: 0
+slow requests:        0
+```
+
 #### Logging long requests
 
 The slowlog directive specifies the file that receives logging of requests that are too long (i.e., whose time exceeds the value of the `request_slowlog_timeout` directive).
@@ -342,6 +360,23 @@ location ~ \.php$ {
 
 ### Apache integration
 
+The configuration of apache to use a php pool is quite simple. You just have to use the proxy modules with a `ProxyPassMatch` directive, for example:
+
+```
+<VirtualHost *:80>
+  ServerName web.rockylinux.org
+  DocumentRoot "/var/www/html/current/public"
+
+  <Directory "/var/www/html/current/public">
+    AllowOverride All
+    Options -Indexes +FollowSymLinks
+    Require all granted
+  </Directory>
+  ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/html/current/public"
+
+</VirtualHost>
+
+```
 
 ### Solid configuration of php pools
 
@@ -354,3 +389,72 @@ while true; do ps --no-headers -o "rss,cmd" -C php-fpm | grep "pool www" | awk '
 ```
 
 After a while, this should give us a pretty accurate idea of the average memory footprint of a php process on this server.
+
+For the rest of this document, let's say that the result is a memory footprint of 120MB per process at full load.
+
+On a server with 8Gb of RAM, keeping 1Gb for the system and 1Gb for the OPCache (see the rest of this document), there is 6Gb left to process PHP requests from clients.
+
+We can easily conclude that this server can accept at most **50 threads** `((6*1024) / 120)`.
+
+A good configuration of `php-fpm` specific to this use case would be:
+
+```
+pm = dynamic
+pm.max_children = 50
+pm.start_servers = 12
+pm.min_spare_servers = 12
+pm.max_spare_servers = 36
+pm.process_idle_timeout = 10s;
+pm.max_requests = 500
+```
+
+with:
+
+* `pm.start_servers` = 25% of `max_children`
+* `pm.min_spare_servers` = 25% of `max_children`
+* `pm.max_spare_servers` = 75% of `max_children`
+
+### Opcache configuration
+
+The `opcache` (Optimizer Plus Cache) is the first level of cache on which we can influence.
+
+It keeps in memory the compiled php scripts which strongly impacts the execution of the web pages (removes the reading on disk of the script + the compilation time).
+
+To configure it, we must work on :
+
+* The size of the memory dedicated to the opcache according to the hit ratio
+
+By configuring correctly :
+
+* the number of php scripts to cache (number of keys + maximum number of scripts)
+* the number of strings to cache
+
+To install it:
+
+```
+$ sudo dnf install php-opcache
+```
+
+To configure it, edit the `/etc/php.d/10-opcache.ini` configuration file:
+
+```
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=4000
+```
+
+where:
+
+* `opcache.memory_consumption` corresponds to the amount of memory needed for the opcache (to be increased until a correct hit ratio is obtained)
+* `opcache.interned_strings_buffer` the amount of strings to cache.
+* `opcache.max_accelerated_files` is near to the result of the `find ./ -iname "*.php"|wc -l` command.
+
+You can refer to an `info.php` page (including the `phpinfo();`) to configure the opcache (see for example the values of `Cached scripts` and `Cached strings`).
+
+!!! Note
+
+    At each new deployment of new code, it will be necessary to empty the opcache (for example by restarting the php-fpm process)
+
+!!! Note
+
+    Don't underestimate the speed gain that can be achieved by setting up and configuring the opcache correctly.
