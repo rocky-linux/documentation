@@ -1,5 +1,8 @@
 ---
 title: Automatic Template Creation - Packer - Ansible - VMware vSphere
+author: Antoine Le Morvan
+contributors: Steven Spencer, Ryan Johnson
+update: Jan-24-2022
 ---
 
 # Automatic template creation with Packer and deployment with Ansible in a VMware vSphere environment
@@ -658,3 +661,7 @@ It is at this point that you can launch the final configuration of your virtual 
 As we have seen, there are now fully automated DevOps solutions to create and deploy VMs.
 
 At the same time, this represents an undeniable saving of time, especially in cloud or data center environments. It also facilitates a standard compliance across all of the computers in the company (servers and workstations), and an easy maintenance / evolution of templates.
+
+## Other References
+
+For a detailed project that also covers the deployment of Rocky Linux and other operating systems using the latest in vSphere, Packer, and the Packer Plugin for vSphere, please visit [this project](https://github.com/vmware-samples/packer-examples-for-vsphere). 
