@@ -1,8 +1,8 @@
 ---
-title: Automatic Template Creation - Packer - Ansible - VMWare VSphere
+title: Automatic Template Creation - Packer - Ansible - VMware vSphere
 ---
 
-# Automatic template creation with Packer and deployment with Ansible in a VMWare VSphere environment
+# Automatic template creation with Packer and deployment with Ansible in a VMware vSphere environment
 
 **Knowledge**: :star: :star: :star:   
 **Complexity**: :star: :star: :star:   
@@ -11,16 +11,16 @@ title: Automatic Template Creation - Packer - Ansible - VMWare VSphere
 
 ## Prerequisites, Assumptions, and General Notes
 
-* A VSphere environment available, and a user with granted access
+* A vSphere environment available, and a user with granted access
 * An internal web server to store files
-* Web access to the rocky repositories
+* Web access to the Rocky Linux repositories
 * An Ansible environment available
 * It is assumed that you have some knowledge on each product mentioned. If not, dig into that documentation before you begin.
 * Vagrant is **not** in use here. It was pointed out that with Vagrant, an SSH key that was not self-signed would be provided. If you want to dig into that you can do so, but it is not covered in this document.
 
 ## Introduction
 
-This document covers the VMWare template creation with Packer and how to deploy the artifact as new virtual machines with Ansible.
+This document covers the vSphere virtual machine template creation with Packer and how to deploy the artifact as new virtual machines with Ansible.
 
 ## Possible adjustments
 
@@ -45,7 +45,7 @@ This choice is up to you. It impacts in particular the bandwidth you will need f
 
 It is assumed that you are on Linux to perform the following tasks.
 
-As we will connect to a VMware vCenter server to send our commands via Packer, we need to store our credentials outside the configuration files that we will create next.
+As we will connect to a VMware vCenter Server to send our commands via Packer, we need to store our credentials outside the configuration files that we will create next.
 
 Let's create a hidden file with our credentials in our home directory. This is a json file:
 
@@ -56,7 +56,7 @@ $ vim .vsphere-secrets.json {
   }
 ```
 
-Those credentials needs some grant access to your VSphere environment.
+Those credentials needs some grant access to your vSphere environment.
 
 Let's create a json file (in the future, the format of this file will change to the HCL):
 
@@ -168,11 +168,11 @@ Next part is interesting, and will be covered later by providing you the script 
 ],
 ```
 
-After the installation is finished, the VM will reboot. As soon as Packer detects an IP address (thanks to the VMWare Tools), it will copy the `requirements.sh` and execute it. It's a nice feature to clean the VM after the installation process (remove SSH keys, clean the history, etc.) and install some extra package.
+After the installation is finished, the VM will reboot. As soon as Packer detects an IP address (thanks to the VMware Tools), it will copy the `requirements.sh` and execute it. It's a nice feature to clean the VM after the installation process (remove SSH keys, clean the history, etc.) and install some extra package.
 
 ### The builders section
 
-You can declare one or more builders to target something other than your VSphere environment (perhaps a Vagrant template).
+You can declare one or more builders to target something other than your vSphere environment (perhaps a Vagrant template).
 
 But here we are using the `vsphere-iso` builder:
 
@@ -212,7 +212,7 @@ This builder lets us configure the hardware we need:
 
 You can do more cool thing with the disk, cpu, etc. You should refer to the documentation if you are interested in making other adjustments.
 
-To start the installation, you need an ISO image of Rocky Linux. Here is an example of how to use an image located in a VMWare Content Library. You can of course store the ISO elsewhere, but in the case of a VMWare Content Library, you have to get the full path to the ISO file on the server hosting the Content Library (in this case it is a Synology, so directly on the DSM explorer).
+To start the installation, you need an ISO image of Rocky Linux. Here is an example of how to use an image located in a vSphere content library. You can of course store the ISO elsewhere, but in the case of a vSphere content library, you have to get the full path to the ISO file on the server hosting the Content Library (in this case it is a Synology, so directly on the DSM explorer).
 
 ```
   "iso_paths": [
@@ -226,7 +226,7 @@ Then you have to provide the complete command to be entered during the installat
 
     This example takes the most complex case: using a static IP. If you have a DHCP server available, the process will be much easier.
 
-This is the most amusing part of the procedure: I'm sure you'll go and admire the VMWare console during the generation, just to see the automatic entry of the commands during the boot.
+This is the most amusing part of the procedure: I'm sure you'll go and admire the VMware console during the generation, just to see the automatic entry of the commands during the boot.
 
 ```
 "boot_command": [
@@ -247,7 +247,7 @@ At the end of the process, the VM must be stopped. It's a little bit more compli
 "shutdown_command": "/sbin/halt -h -p",
 ```
 
-Next, we deal with the VSphere configuration. The only notable things here are the use of the variables defined at the beginning of the document in our home directory, as well as the `insecure_connection` option, because our VSphere uses a self-signed certificate (See note in Assumptions at the top of this document):
+Next, we deal with the vSphere configuration. The only notable things here are the use of the variables defined at the beginning of the document in our home directory, as well as the `insecure_connection` option, because our vSphere uses a self-signed certificate (See note in Assumptions at the top of this document):
 
 ```
 "insecure_connection": "true",
@@ -263,7 +263,7 @@ Next, we deal with the VSphere configuration. The only notable things here are t
 "notes": "Template RockyLinux version {{ user `version` }}"
 ```
 
-And finally, we will ask VSphere to convert our stopped VM to a template.
+And finally, we will ask vSphere to convert our stopped VM to a template.
 
 At this stage, you could also elect to just use the VM as is (not converting it to a template). In this case, you can decide to take a snapshot instead:
 
@@ -383,7 +383,7 @@ systemctl start vmtoolsd
 
 As we have chosen to use the minimal iso, instead of the Boot or DVD, not all required installation packages will be available.
 
-As Packer relies on VMWare Tools to detect the end of the installation, and the `open-vm-tools` package is only available in the AppStream repos, we have to specify to the installation process that we want to use as source both the cdrom and this remote repo:
+As Packer relies on VMware Tools to detect the end of the installation, and the `open-vm-tools` package is only available in the AppStream repos, we have to specify to the installation process that we want to use as source both the cdrom and this remote repo:
 
 !!! Note
 
@@ -438,7 +438,7 @@ The next section concerns the packages that will be installed. A "best practice"
 
 The `openssh-clients` package seems to be required for Packer to copy its scripts into the VM.
 
-The `open-vm-tools` is also needed by Packer to detect the end of the installation, this explains the addition of the AppStream repository. `perl` and `perl-File-Temp` will also be required by VMWare Tools during the deployment part. This is a shame because it requires a lot of other dependent packages. `python3` (3.6) will also be required in the future for Ansible to work (if you won't use Ansible or python, remove them!).
+The `open-vm-tools` is also needed by Packer to detect the end of the installation, this explains the addition of the AppStream repository. `perl` and `perl-File-Temp` will also be required by VMware Tools during the deployment part. This is a shame because it requires a lot of other dependent packages. `python3` (3.6) will also be required in the future for Ansible to work (if you won't use Ansible or python, remove them!).
 
 ```
 %packages --ignoremissing --excludedocs
@@ -480,7 +480,7 @@ echo "ansible ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/ansible
 chmod 440 /etc/sudoers.d/ansible
 ```
 
-Now we need to enable and start `vmtoolsd` (the process that manages open-vm-tools). VSphere will detect the IP address after the reboot of the VM.
+Now we need to enable and start `vmtoolsd` (the process that manages open-vm-tools). vSphere will detect the IP address after the reboot of the VM.
 
 ```
 systemctl enable vmtoolsd
@@ -560,7 +560,7 @@ dnf -y install cloud-init
 echo "manual_cache_clean: True" > /etc/cloud/cloud.cfg.d/99-manual.cfg
 ```
 
-Since VSphere now uses cloud-init via the VMware Tools to configure the network of a centos8 guest machine, it must be installed. However, if you do nothing, the configuration will be applied on the first reboot and everything will be fine. But on the next reboot, cloud-init will not receive any new information from VSphere. In these cases, without information about what to do, cloud-init will reconfigure the VM's network interface to use DHCP, and you will loose your static configuration.
+Since vSphere now uses cloud-init via the VMware Tools to configure the network of a centos8 guest machine, it must be installed. However, if you do nothing, the configuration will be applied on the first reboot and everything will be fine. But on the next reboot, cloud-init will not receive any new information from vSphere. In these cases, without information about what to do, cloud-init will reconfigure the VM's network interface to use DHCP, and you will loose your static configuration.
 
 As this is not the behavior we want, we need to specify to cloud-init not to delete its cache automatically, and therefore to reuse the configuration information it received during its first reboot and each reboot after that.
 
@@ -568,7 +568,7 @@ For this, we create a file `/etc/cloud/cloud.cfg.d/99-manual.cfg` with the `manu
 
 !!! Note
 
-    This implies that if you need to re-apply a network configuration via VSphere's customization tool (which, in normal use, should be quite rare), you will have to delete the cloud-init cache yourself.
+    This implies that if you need to re-apply a network configuration via vSphere guest customizations (which, in normal use, should be quite rare), you will have to delete the cloud-init cache yourself.
 
 The rest of the script is commented and does not require more details
 
@@ -584,11 +584,11 @@ Simply enter this at the command line:
 ./packer build -var-file=~/.vsphere-secrets.json rockylinux8/template.json
 ```
 
-You can quickly go to VSphere and admire the work.
+You can quickly go to vSphere and admire the work.
 
 You will see the machine being created, started, and if you launch a console, you will see the automatic entry of commands and the installation process.
 
-At the end of the creation, you will find your template ready to use in VSphere.
+At the end of the creation, you will find your template ready to use in vSphere.
 
 ## Deployment part
 
