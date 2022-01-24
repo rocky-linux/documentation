@@ -2,7 +2,7 @@
 title: 更改日志
 author: Louis Abel
 contributors: tianci li, Steven Spencer
-update: 2022-01-13
+update: 2022-01-20
 ---
 
 # Rocky Linux 8 更改日志
@@ -15,12 +15,29 @@ update: 2022-01-13
 
 所有Rocky Linux组件都是由托管在[git.rockylinux.org](https://git.rockylinux.org) 上的源代码进行构建的。 此外，SRPM与存储库将一起发布在对应的"source"目录中， 您可以在我们的任意镜像网站上找到它们， 镜像网站的源码包与我们发布的每个二进制RPM相同。
 
+# 8.5 - 2022-01-12
+
+以下软件包自2022年01月12日起进行了更新：
+
+* gegl04: gegl04-0.4.4-6.el8 -> gegl04-0.4.4-6.el8_5.2
+* java-17-openjdk: java-17-openjdk-1:17.0.1.0.12-2.el8_5 -> java-17-openjdk-1:17.0.2.0.8-4.el8_5
+* kernel: kernel-4.18.0-348.7.1.el8_5 -> kernel-4.18.0-348.12.2.el8_5
+* kernel-rt: kernel-rt-4.18.0-348.7.1.rt7.137.el8_5 -> kernel-rt-4.18.0-348.12.2.rt7.143.el8_5
+* libarchive: libarchive-3.3.3-1.el8 -> libarchive-3.3.3-1.el8_5
+* libreswan: libreswan-4.4-1.el8 -> libreswan-4.4-4.el8_5
+
+关联的CVE：
+
+* CVE-2022-0185
+* CVE-2021-45463
+* CVE-2021-4155
+
 ## 8.5 - 2022-01-11
 
 以下软件包自2022年01月11日起进行了更新：
 
-* firefox: 更新至78.14.0firefox: firefox-91.4.0-1.el8_5 -> firefox-91.5.0-1.el8_5
-* thunderbird: 更新至78.14.0thunderbird: thunderbird-91.4.0-2.el8_5 -> thunderbird-91.5.0-1.el8_5
+* firefox: firefox-91.4.0-1.el8_5 -> firefox-91.5.0-1.el8_5
+* thunderbird: thunderbird-91.4.0-2.el8_5 -> thunderbird-91.5.0-1.el8_5
 * thunderbird: thunderbird-91.4.0-2.el8.plus -> thunderbird-91.5.0-1.el8.plus
 
 ## 8.5 - 2022-01-03
@@ -94,7 +111,7 @@ rocky-release 软件包已经更新，您可以将 countme=1 添加到 Rocky Lin
 
 * dotnet5.0: dotnet5.0-5.0.209-1.el8_5 -> dotnet5.0-5.0.210-1.el8_5
 * go-toolset: go-toolset-1.16.7-1.module+el8.5.0+694+f77f0bfd -> go-toolset-1.16.12-1.module+el8.5.0+720+c057d5cf
-* golang: golang-1.16.7-1.module+el8.5.0+694+f77f0bfd -> golang-1.16.12-1.module+el8.5.0+720+c057d5cf
+* nodejs-16-8050020211215195043-b4937e53
 * ipa: ipa-4.9.6-6.module+el8.5.0+675+61f67439 -> ipa-4.9.6-10.module+el8.5.0+719+4f06efb6
 * nodejs: nodejs-1:16.8.0-1.module+el8.5.0+702+221f14e6 -> nodejs-1:16.13.1-3.module+el8.5.0+721+4c107270
 * nodejs-nodemon: nodejs-nodemon-2.0.7-1.module+el8.5.0+702+221f14e6 -> nodejs-nodemon-2.0.15-1.module+el8.5.0+721+4c107270
@@ -194,7 +211,7 @@ sos：主要是外观上的变化。 它带来了 Rocky 的策略， 查阅 [thi
 
 * mailman: CVE-2021-44227
 
-以下模块自2021年12月02日起已更新：
+以下模块自2021年11月02日起已更新：
 
 * mailman-2.1-8050020211202160117.fd901a62
 
@@ -231,7 +248,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 * kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
 * nss: nss-3.67.0-6.el8_4 -> nss-3.67.0-7.el8_5
 
-关联的CVE：
+关联的 CVE：
 
 * nss-3.67.0-7.el8_5: CVE-2021-43527
 
@@ -390,7 +407,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-08-11
 
-以下软件包已更新：
+以下软件包已经更新：
 
 * 389-ds-base: 389-ds-base-1.4.3.16-16.module+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.module+el8.4.0+636+837ee950
 * NetworkManager: NetworkManager-1:1.30.0-9.el8_4 -> NetworkManager-1:1.30.0-10.el8_4
@@ -487,7 +504,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-07-12
 
-以下软件包已经更新：
+以下软件包已更新：
 
 * rocky-release
 * linuxptp
