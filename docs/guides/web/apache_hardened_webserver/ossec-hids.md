@@ -1,3 +1,10 @@
+---
+title: Host-based Intrustion Detection System (HIDS)
+author: Steven Spencer
+contributors: Ezequiel Bruni
+update: Jan-25-2022
+---
+
 # Host-based Intrusion Detection System (HIDS)
 
 ## Prerequisites
@@ -76,13 +83,13 @@ We will break apart this configuration showing the changes in line and explainin
 </global>
 ```
 
-By default, email notifications are turned off and the `<global>` configuration is basically empty. You want to turn on email notification and identify the people who should receive the email reports by email address.
+By default, email notifications are turned off and the &lt;global&gt; configuration is basically empty. You want to turn on email notification and identify the people who should receive the email reports by email address.
 
-The `<smtp_server>` section currently shows localhost, however you can specify an email server relay if you prefer, or simply setup the postfix email settings for the local host by following [this guide](../../email/postfix_reporting.md).
+The &lt;smtp_server&gt; section currently shows localhost, however you can specify an email server relay if you prefer, or simply setup the postfix email settings for the local host by following [this guide](../../email/postfix_reporting.md).
 
 You need to set the "from" address, so that you can deal with SPAM filters on your email server which may see this email as SPAM. To avoid getting inundated with email, set the email reporting to 1 per hour. You can expand this or remark out this command if you like while you are getting started with _ossec-hids_ and need to see things quickly.
 
-The `<white_list>` sections deal with the server's localohost IP and with the "public" address (remember, we are using a private address to demonstrate this) of the firewall, from which all connections on the trusted network will show. You can add multiple `<white_list>` entries as needed.
+The &lt;white_list&gt; sections deal with the server's localohost IP and with the "public" address (remember, we are using a private address to demonstrate this) of the firewall, from which all connections on the trusted network will show. You can add multiple &lt;white_list&gt; entries as needed.
 
 ```
 <syscheck>
@@ -92,11 +99,11 @@ The `<white_list>` sections deal with the server's localohost IP and with the "p
 </syscheck>
 ```
 
-The `<syscheck>` section takes a look at a list of directories to include and exclude when looking for compromised files. Think of this as yet another tool for watching and protecting the file system against vulnerabilities. You should review the list of directories and see if there are others that you want to add in to the `<syscheck>` section.
+The &lt;syscheck&gt; section takes a look at a list of directories to include and exclude when looking for compromised files. Think of this as yet another tool for watching and protecting the file system against vulnerabilities. You should review the list of directories and see if there are others that you want to add in to the &lt;syscheck&gt; section.
 
-The `<rootcheck>` section just beneath the `<syscheck>` section is yet another protection layer. The locations that both `<syscheck>` and `<rootcheck>` watch are editable, but you probably will not need to make any changes to them.  
+The &lt;rootcheck&gt; section just beneath the &lt;syscheck&gt; section is yet another protection layer. The locations that both &lt;syscheck&gt; and &lt;rootcheck&gt; watch are editable, but you probably will not need to make any changes to them.  
 
-Changing the `<frequency>` for the `<rootcheck>` run to once every 24 hours (86400 seconds) from the default of 22 hours is an optional change shown above.
+Changing the &lt;frequency&gt; for the &lt;rootcheck&gt; run to once every 24 hours (86400 seconds) from the default of 22 hours is an optional change shown above.
 
 ```
 <localfile>
@@ -109,7 +116,7 @@ Changing the `<frequency>` for the `<rootcheck>` run to once every 24 hours (864
 </localfile>
 ```
 
-The `<localfile>` section deals with the locations of the logs we want to watch. There are entries already in place for _syslog_ and _secure_ logs that you just need to verify the path to, but everything else can be left as is.
+The &lt;localfile&gt; section deals with the locations of the logs we want to watch. There are entries already in place for _syslog_ and _secure_ logs that you just need to verify the path to, but everything else can be left as is.
 
 We do need to add in the Apache log locations however, and we want to add these in as wild_cards, because we could have a bunch of logs for a lot of different web customers. That format is shown above.
 
@@ -128,7 +135,7 @@ We do need to add in the Apache log locations however, and we want to add these 
   </active-response>
 ```
 
-Finally, towards the end of the file we need to add the active response section. This section contains two parts, a `<command>` section, and the `<active-response>` section.
+Finally, towards the end of the file we need to add the active response section. This section contains two parts, a &lt;command&gt; section, and the &lt;active-response&gt; section.
 
 The "firewall-drop" script already exists within the ossec path.  It tells _ossec\_hids_ that if a level of 7 is reached, add a firewall rule to block the IP address for 20 minutes. Obviously, you can change the timeout value. Just remember that the configuration file times are all in seconds.
 
