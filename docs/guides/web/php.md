@@ -1,5 +1,8 @@
 ---
 title: PHP and PHP-FPM
+author: Antoine Le Morvan
+contributors: Steven Spencer
+update: 25-Jan-2022
 ---
 
 # PHP and PHP-FPM
@@ -10,12 +13,12 @@ title: PHP and PHP-FPM
 
 ## Generalities
 
-**CGI** (**C**ommon **G**ateway **I**nterface) and **FastCGI** allow communication between the Web server (Apache, Nginx, ...) and a development language (Php, Python, Java):
+**CGI** (**C**ommon **G**ateway **I**nterface) and **FastCGI** allow communication between the web server (Apache, Nginx, ...) and a development language (Php, Python, Java):
 
 * In the case of **CGI**, each request leads to the creation of a **new process**, which is less efficient in terms of performance.
 * **FastCGI** relies on a **certain number of processes** for the treatment of its client requests.
 
-PHP-FPM, brings **in addition to better performances**:
+PHP-FPM, **in addition to better performances**, brings:
 
 * The possibility of better **partitioning the applications**: launching processes with different uid/gid, with personalized php.ini files,
 * The management of the statistics,
@@ -28,7 +31,7 @@ PHP-FPM, brings **in addition to better performances**:
 
 ## Choose a php version
 
-Rocky offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [ supported-versions ](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
+Rocky Linux, like its upstream, offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [ supported-versions ](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
 
 To obtain a list of available versions, simply enter the following command:
 
@@ -43,7 +46,7 @@ php          7.4             common [d], devel, minimal         PHP scripting la
 Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
-Rocky provides, from its AppStream repository, different PHP module.
+Rocky provides, from its AppStream repository, different PHP modules.
 
 You will note that the default version of a Rocky 8.5 is 7.2 which has already reached its end of life at the time of writing.
 
@@ -132,7 +135,7 @@ phpinfo();
 ?>
 ```
 
-Check that the server is working properly by going, via a browser, to the page http://yourip/info.php.
+Use a web browser to check that the server is working properly by going to the page http://yourip/info.php.
 
 !!! Warning
 
@@ -144,7 +147,7 @@ As we highlighted earlier in this document, there are many advantages to switchi
 
 ### Installation
 
-The installation is limited to the additional installation of the php-fpm package.
+The installation is limited to the php-fpm package:
 
 ```
 $ sudo dnf install php-fpm
@@ -172,7 +175,7 @@ daemonize = yes
 
 !!! Note
 
-    The php-fpm configuration files are widely commented. Go and have a look !
+    The php-fpm configuration files are widely commented. Go and have a look!
 
 As you can see, the files in the `/etc/php-fpm/` directory with the `.conf` extension are always included.
 
@@ -211,17 +214,19 @@ php_value[soap.wsdl_cache_dir]  = /var/lib/php/wsdlcache
 
 There are 2 ways to connect.
 
-Via an inet interface:
+Via an inet interface such as:
 
-Example : `listen = 127.0.0.1:9000`.
+`listen = 127.0.0.1:9000`.
 
-Or via a Unix socket : `listen = /run/php-fpm/www.sock`.
+Or via a Unix socket:
+
+`listen = /run/php-fpm/www.sock`.
 
 !!! Note
 
-    The use of a socket when the web server and the php server are on the same machine allows to get rid of the TCP/IP layer and optimizes the performances.
+    The use of a socket when the web server and the php server are on the same machine allows the removal of the TCP/IP layer and optimizes the performances.
 
-When working via an interface, you have to configure `listen.owner`, `listen.group`, `listen.mode` to specify the owner, the owner group and the rights of the Unix socket. Warning : both servers (web and php) must have access rights on the socket.
+When working via an interface, you have to configure `listen.owner`, `listen.group`, `listen.mode` to specify the owner, the owner group and the rights of the Unix socket. **Warning:** both servers (web and php) must have access rights on the socket.
 
 When working via a socket, you have to configure `listen.allowed_clients` to restrict access to the php server to certain IP addresses.
 
@@ -252,11 +257,11 @@ pm.min_spare_servers = 1
 pm.max_spare_servers = 3
 ```
 
-PHP-FPM will create a new process to replace a process that has processed a number of requests equivalent to `pm.max_requests`.
+PHP-FPM will create a new process to replace one that has processed a number of requests equivalent to `pm.max_requests`.
 
 By default, `pm.max_requests` is set to 0, which means that processes are never recycled. Using the `pm.max_requests` option can be interesting for applications with memory leaks.
 
-There is a third mode of operation, the `ondemand` mode. This mode only starts a process when it receives a request. It is not an optimal mode for sites with strong influences, it is to be reserved for specific needs (sites with very weak requests, management backend, etc.)
+There is a third mode of operation, the `ondemand` mode. This mode only starts a process when it receives a request. It is not an optimal mode for sites with strong influences, and is to be reserved for specific needs (sites with very weak requests, management backend, etc.)
 
 !!! Note
 
@@ -349,7 +354,7 @@ location ~ \.php$ {
 }
 ```
 
-If php-fpm is listening on a unix socket :
+If php-fpm is listening on a unix socket:
 
 ```
 location ~ \.php$ {
@@ -380,9 +385,9 @@ The configuration of apache to use a php pool is quite simple. You just have to 
 
 ### Solid configuration of php pools
 
-It is essential, to optimize the quantity of requests which will be able to be served, to analyze the memory used by the php scripts and thus to optimize the maximum quantity of launched thread.
+It is essential, to optimize the quantity of requests which will be able to be served, to analyze the memory used by the php scripts and thus to optimize the maximum quantity of launched threads.
 
-First of all, we need to know the average amount of memory used by a PHP process, with the command :
+First of all, we need to know the average amount of memory used by a PHP process, with the command:
 
 ```
 while true; do ps --no-headers -o "rss,cmd" -C php-fpm | grep "pool www" | awk '{ sum+=$1 } END { printf ("%d%s\n", sum/NR/1024,"Mb") }' >> avg_php_proc; sleep 60; done
@@ -420,11 +425,15 @@ The `opcache` (Optimizer Plus Cache) is the first level of cache on which we can
 
 It keeps in memory the compiled php scripts which strongly impacts the execution of the web pages (removes the reading on disk of the script + the compilation time).
 
-To configure it, we must work on :
+To configure it, we must work on:
 
 * The size of the memory dedicated to the opcache according to the hit ratio
 
-By configuring correctly :
+By configuring correctly
+
+
+
+
 
 * the number of php scripts to cache (number of keys + maximum number of scripts)
 * the number of strings to cache
