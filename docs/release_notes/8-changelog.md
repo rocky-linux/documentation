@@ -2,7 +2,7 @@
 title: Change Log
 author: Louis Abel
 contributors: Steven Spencer, tianci li
-update: 25-Jan-2022
+update: 26-Jan-2022
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,22 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+# 8.5 - 2022-01-24
+
+The following packages have been updated since January 24, 2022:
+
+* httpd: httpd-2.4.37-43.module+el8.5.0+714+5ec56ee8 -> httpd-2.4.37-43.module+el8.5.0+727+743c5577.1
+* polkit: polkit-0.115-12.el8 -> polkit-0.115-13.el8_5.1
+
+The following modules have been updated:
+
+* httpd
+
+Associated CVE's:
+
+* CVE-2021-44790
+* CVE-2021-4034
 
 # 8.5 - 2022-01-19
 
