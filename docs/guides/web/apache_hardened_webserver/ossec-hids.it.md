@@ -134,7 +134,7 @@ Abbiamo comunque bisogno di aggiungere le posizioni dei log di Apache, e vogliam
 
 Infine, verso la fine del file dobbiamo aggiungere la sezione di risposta attiva. Questa sezione contiene due parti, una sezione &lt;command&gt;, e la sezione &lt;active-response&gt;.
 
-Lo script "firewall-drop" esiste già nel percorso ossec.  Dice a _ossec\hids_ che se viene raggiunto un livello 7, aggiunge una regola del firewall per bloccare l'indirizzo IP per 20 minuti. Ovviamente, è possibile modificare il valore di timeout. Basta ricordare che i tempi dei file di configurazione sono tutti in secondi.
+Lo script "firewall-drop" esiste già nel percorso ossec.  Dice a _ossec\_hids_ che se viene raggiunto un livello 7, aggiunge una regola del firewall per bloccare l'indirizzo IP per 20 minuti. Ovviamente, è possibile modificare il valore di timeout. Basta ricordare che i tempi dei file di configurazione sono tutti in secondi.
 
 Una volta fatte tutte le modifiche di configurazione necessarie, basta abilitare e avviare il servizio. Se tutto inizia correttamente, dovreste essere pronti ad andare avanti:
 
