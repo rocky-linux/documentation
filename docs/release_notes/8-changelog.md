@@ -2,7 +2,7 @@
 title: Change Log
 author: Louis Abel
 contributors: Steven Spencer, tianci li
-update: 26-Jan-2022
+update: 28-Jan-2022
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,26 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+# 8.5 - 2022-01-26
+
+The following packages have been updated since January 26, 2022:
+
+* java-1.8.0-openjdk: java-1.8.0-openjdk-1:1.8.0.312.b07-2.el8_5 -> java-1.8.0-openjdk-1:1.8.0.322.b06-2.el8_5
+
+# 8.5 - 2022-01-25
+
+The following packages have been updated since January 25, 2022:
+
+* parfait: parfait-0.5.4-2.module+el8.3.0+214+edf13b3f -> parfait-0.5.4-4.module+el8.5.0+728+553fbdb8
+
+The following packages have been dropped:
+
+* log4j12: log4j12-1.2.17-22.module+el8.3.0+214+edf13b3f
+
+The following modules have been updated:
+
+* parfait
 
 # 8.5 - 2022-01-24
 
