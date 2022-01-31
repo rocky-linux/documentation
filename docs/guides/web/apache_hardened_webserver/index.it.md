@@ -24,15 +24,15 @@ Si potrebbe scegliere di utilizzare un paio di questi strumenti, e non gli altri
 * Un buon firewall di filtraggio dei pacchetti basato sulle porte (iptables, firewalld, o firewall hardware - useremo _iptables_ per il nostro esempio) [procedura _iptables_](#iptablesstart)
 * Un sistema di rilevamento di intrusione basato sull'host (HIDS) Host-based Intrusion Detection System, in questo caso _ossec-hids_ [Rafforzamento Apache Web Server - ossec-hids](ossec-hids.md)
 * Un Web based Application Firewall (WAF), con regole _mod\_security_ [Rafforzamento Apache Web Server - mod_security](modsecurity.md)
-* Rootkit Hunter (rkhunter): uno strumento di scansione che controlla il malware Linux [Rafforzammento Apache Web Server - rkhunter](rkhunter.md)
+* Rootkit Hunter (rkhunter): uno strumento di scansione che controlla i malware di Linux [Rafforzammento Apache Web Server - rkhunter](rkhunter.md)
 * Sicurezza del database (qui stiamo usando _mariadb-server_) [Server database MariaDB](../../database/database_mariadb-server.md)
 * Un server FTP o SFTP sicuro (qui stiamo usando _vsftpd_) [Server FTP Secure - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md)
 
-Questa procedura non sostituisce l'impostazione [Apache Web Server Multi-Site Setup](../apache-sites-enabled.md), ma aggiunge semplicemente questi elementi di sicurezza. Se non lo hai letto, prenditi del tempo per guardarlo prima di procedere.
+Questa procedura non sostituisce l'impostazione [Impostazione Multi-Sito Apache](../apache-sites-enabled.md), ma aggiunge semplicemente questi elementi di sicurezza. Se non lo hai letto, prenditi del tempo per guardarlo prima di procedere.
 
 ## Altre Considerazioni
 
-Alcuni degli strumenti delineati qui hanno sia opzioni gratuite che a pagamento. A seconda delle vostre esigenze o dei requisiti di supporto, potreste voler considerare le versioni a pagamento. Dovreste ricercare quello che c'è là fuori e prendere una decisione dopo aver soppesato tutte le vostre opzioni.
+Alcuni degli strumenti delineati qui hanno l'opzione sia gratuita che a pagamento. A seconda delle vostre esigenze o dei requisiti di supporto, potreste voler considerare le versioni a pagamento. Dovreste ricercare quello che c'è là fuori e prendere una decisione dopo aver soppesato tutte le vostre opzioni.
 
 Sappiate anche che la maggior parte di queste opzioni possono essere acquistate come apparecchiature hardware. Se preferisci non preoccuparti d'installare e mantenere il tuo sistema, ci sono altre opzioni disponibili oltre a quelle descritte qui.
 
