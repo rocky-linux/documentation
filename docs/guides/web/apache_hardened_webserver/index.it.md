@@ -11,7 +11,7 @@
 
 ## Introduzione
 
-Che tu stia ospitando più siti web per i clienti, o uno singolo, molto importante, per la tua azienda, irrobustire il vostro server web vi darà la pace interiore, al costo di un po' più di lavoro iniziale per l'amministratore.
+Che voi stiate ospitando più siti web per i clienti, o uno singolo, molto importante, per la vostra azienda, irrobustire il vostro server web vi darà la pace interiore, al costo di un po' più di lavoro iniziale per l'amministratore.
 
 Con più siti web caricati dai vostri clienti, potete essere quasi sicuri che uno di loro caricherà un Content Management System (CMS) con la possibilità di vulnerabilità. La maggior parte dei clienti sono focalizzati sulla facilità d'uso, non sulla sicurezza, e ciò che accade è che l'aggiornamento del proprio CMS diventa un processo che esce del tutto dalla loro lista di priorità.
 
