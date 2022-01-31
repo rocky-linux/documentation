@@ -27,7 +27,7 @@ PHP-FPM, **in addition to better performances**, brings:
 
 !!! Note
 
-    Apache having a php module, the use of php-fpm is less common than for the Nginx server.
+    Since Apache has a php module, the use of php-fpm is more commonly used on an Nginx server.
 
 ## Choose a php version
 
