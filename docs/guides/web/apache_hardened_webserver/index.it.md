@@ -42,7 +42,7 @@ Se preferisci usare _firewalld_, salta semplicemente questo passaggio e applica 
 
 Tutti questi strumenti devono essere adattati al vostro sistema. Questo può essere fatto solo con un attento monitoraggio dei registri, e l'esperienza web riportata dai vostri clienti. Inoltre, scoprirete che ci sarà bisogno di una messa a punto continua nel tempo.
 
-Anche se stiamo usando un indirizzo IP privato per simularne uno pubblico, tutto questo _potrebbe_ essere fatto usando un NAT one-to-one sul firewall hardware e collegando il server web a quel firewall hardware, piuttosto che al router gateway, con un indirizzo IP privato.
+Anche se stiamo usando un indirizzo IP privato per simularne uno pubblico, tutto questo _potrebbe_ essere fatto usando un NAT one-to-one sul firewall hardware e collegando l'indirizzo IP privato del server web a quel firewall hardware, piuttosto che al router gateway.
 
 Spiegare ciò richiede di approfondire nel firewall hardware mostrato di seguito, e poiché ciò è al di fuori dello scopo di questo documento, è meglio attenersi al nostro esempio di un indirizzo IP pubblico simulato.
 
