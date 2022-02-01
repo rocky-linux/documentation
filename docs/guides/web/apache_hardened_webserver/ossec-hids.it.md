@@ -1,8 +1,8 @@
 - - -
-title: Host-based Intrustion Detection System (HIDS) author: Steven Spencer contributors: Ezequiel Bruni, Franco Colussi update: Jan-27-2022
+title: Sistema Intrusion Detection System Host-based (HIDS) author: Steven Spencer contributors: Ezequiel Bruni, Franco Colussi update: Feb-01-2022
 - - -
 
-# Sistema Intrusion Detection System (HIDS) basato sull'host
+# Sistema Intrusion Detection System (HIDS) basato sull'Host
 
 ## Prerequisiti
 
@@ -13,17 +13,17 @@ title: Host-based Intrustion Detection System (HIDS) author: Steven Spencer cont
 
 ## Introduzione
 
-Se volete usare questo insieme ad altri strumenti per il rinforzamento, fate riferimento al documento [Apache Web Server Rinforzato](index.md). Il presente documento utilizza anche tutte le ipotesi e le convenzioni delineate in tale documento originale, quindi è una buona idea rivederlo prima di continuare.
+Se volete usare questo insieme ad altri strumenti per il rafforzamento, fate riferimento al documento [Apache Web Server Rinforzato](index. md). Il presente documento utilizza anche tutte le ipotesi e le convenzioni delineate in tale documento originale, quindi è una buona idea rivederlo prima di continuare.
 
 Per installare _ossec-hids_, abbiamo bisogno di un repository di terze parti da Atomicorp. Atomicorp offre anche una versione supportata a prezzi ragionevoli per coloro che desiderano un supporto professionale se si trovano in difficoltà.
 
 ## Installare il Repository di Atomicorp
 
+Se preferisci il supporto, e hai il budget per farlo, dai un'occhiata alla versione a pagamento di [Atomicorp _ossec-hids_](https://atomicorp.com/atomic-enterprise-ossec/). Atomicorp offre anche una versione supportata a prezzi ragionevoli per coloro che desiderano un supporto professionale se si trovano in difficoltà.
+
 Se preferisci il supporto, e hai il budget per farlo, dai un'occhiata alla versione a pagamento di [Atomicorp _ossec-hids_](https://atomicorp.com/atomic-enterprise-ossec/). Poiché avremo bisogno solo di alcuni pacchetti dal repository gratuito di Atomicorp, modificheremo il repository dopo averlo scaricato.
 
-Il download del repository richiede _wget_ in modo da installarlo prima se non ce l'hai. Installare anche il repository EPEL se non lo avete già installato, con:
-
-Per scaricare il repository è richiesto _wget_ quindi installalo prima se non ce l'hai. Installare anche il repository EPEL se non lo avete già installato, con:
+Scaricare il repository richiede _wget_ quindi installalo prima se non ce l'hai. Installare anche il repository EPEL se non lo avete già installato, con:
 
 `dnf install wget epel-release`
 
@@ -45,9 +45,9 @@ E poi aggiungete questa linea sotto "enabled = 1" nella sezione superiore:
 
 `includepkgs = ossec* inotify-tools`
 
-Questo limita il repository di Atomicorp ad installare e aggiornare solo questi pacchetti.
+Questo è l'unico cambiamento di cui abbiamo bisogno, quindi salvate le vostre modifiche e uscite dal repository, (in vi sarebbe <kbd>esc</kbd> per entrare in modalità comando, poi `: wq` per salvare e uscire).
 
-Ora che abbiamo il repository scaricato e configurato, dobbiamo installare i pacchetti:
+Questo limita il repository di Atomicorp ad installare e aggiornare solo questi pacchetti.
 
 ## Installazione ossec-hids
 
@@ -57,7 +57,7 @@ Ora che abbiamo il repository scaricato e configurato, dobbiamo installare i pac
 
 ### Configurare ossec-hids
 
-_ossec-hids_ guarda i log per cercare di determinare se c'è un attacco e se applicare una mitigazione. Invia anche rapporti all'amministratore del server, sia solo come notifica, o che una procedura di mitigazione è stata attivata in base a ciò che _ossec-hids_ ha visto.
+Ci sono una serie di modifiche che devono essere apportate al file di configurazione _ossec-hids_. La maggior parte di queste hanno a che fare con le notifiche dell'amministratore del server e le posizioni del registro.
 
 _ossec-hids_ guarda i registri per provare a determinare se c'è un attacco, e se applicare la mitigazione. Invia anche rapporti all'amministratore del server, sia solo come notifica, o che una procedura di mitigazione è stata attivata in base a ciò che _ossec-hids_ ha visto.
 
@@ -65,7 +65,7 @@ Per modificare il file di configurazione digita:
 
 `vi /var/ossec/etc/ossec.conf`
 
-Scomponiamo questa configurazione mostrando i cambiamenti in linea e spiegandoli man mano:
+Scomponiamo questa configurazione mostrando i cambiamenti alle righe e spiegandoli man mano:
 
 ```
 <global>
@@ -80,7 +80,7 @@ Scomponiamo questa configurazione mostrando i cambiamenti in linea e spiegandoli
 </global>
 ```
 
-Per impostazione predefinita, le notifiche email sono disattivate e la configurazione &lt;global&gt; è fondamentalmente vuota. Vuoi attivare la notifica e-mail e identificare le persone che dovrebbero ricevere i rapporti via e-mail per indirizzo e-mail.
+Per impostazione predefinita, le notifiche email sono disattivate e la configurazione &lt;global&gt; è fondamentalmente vuota. Vorrai attivare la notifica e-mail e identificare le persone che dovrebbero ricevere i rapporti via mail per indirizzo e-mail.
 
 La sezione &lt;smtp_server&gt; attualmente mostra localhost, tuttavia è possibile specificare un relay di un server di posta elettronica se si preferisce, o semplicemente configurare le impostazioni di posta elettronica postfix per l'host locale seguendo [questa guida](../../email/postfix_reporting.md).
 
