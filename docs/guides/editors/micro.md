@@ -1,6 +1,8 @@
 ---
-title: How to Install micro on Rocky Linux
+title: Install micro on Rocky Linux
 author: Ezequiel Bruni
+contributors: Steven Spencer
+tested version: 8.5
 ---
 
 # Install micro on Rocky Linux
@@ -18,9 +20,9 @@ author: Ezequiel Bruni
 
 And here’s how it looks in my own terminal:
 
-![A screenshot of the micro text editor](D:\dev\RockyLinux\documentation\docs\gemstones\images\micro-text-editor.png)
+![A screenshot of the micro text editor](images/micro-text-editor.png)
 
-!!!Note
+!!! Note
 
     You *can* install micro via a snap app. If you're already using snap on your machine.. I mean... why not? But I prefer to get it straight from the source.
 
