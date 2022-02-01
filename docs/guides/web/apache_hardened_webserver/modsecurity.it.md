@@ -1,4 +1,4 @@
-# Applicazione Firewall basato sul web (WAF)
+# Applicazione Firewall basato sul Web (WAF)
 
 ## Prerequisiti
 
@@ -11,7 +11,7 @@
 
 ## Introduzione
 
-_mod\_security_ è un firewall applicativo basato su web open-source (WAF). È solo un possibile componente di una configurazione di server Apache rinforzato e può essere utilizzato con o senza altri strumenti.
+_mod\_security_ è un applicativo firewall open-source basato sul web (WAF). È solo un possibile componente di una configurazione di server Apache rinforzato e può essere utilizzato con o senza altri strumenti.
 
 Se si desidera utilizzare questo insieme ad altri strumenti per il rafforzamento, fare riferimento alla guida [Apache Web Server Rinforzato](index.md). Il presente documento utilizza anche tutte le ipotesi e le convenzioni delineate in tale documento originale, quindi è una buona idea rivederlo prima di continuare.
 
@@ -124,7 +124,7 @@ Per risolvere questo problema, dobbiamo installare manualmente le regole dal sit
 
 Esempio: `scp cwaf_rules-1.233.tgz root@mywebserversdomainname.com:/root/`
 
-Una volta che il file gzip tar è stato copiato, spostare il file nella directory delle regole:
+Una volta che il file gzip tar è stato copiato, sposta il file nella directory delle regole:
 
 `mv /root/cwaf_rules-1.233.tgz /usr/local/cwaf/rules/`
 
@@ -173,7 +173,7 @@ Successivamente vai in fondo a questo file di configurazione. Dobbiamo dire a _m
 </IfModule>
 ```
 
-Dobbiamo aggiungere una riga in basso per aggiungere la configurazione CWAF, che a sua volta carica le regole CWAF. Quella riga è `Include "/usr/local/cwaf/etc/cwaf.conf"`. Il parte inferiore di questo file dovrebbe apparire così quando avete finito:
+Dobbiamo aggiungere una riga in basso per aggiungere la configurazione CWAF, che a sua volta carica le regole CWAF. Quella riga è `Include "/usr/local/cwaf/etc/cwaf.conf"`. La parte inferiore di questo file dovrebbe apparire così quando avete finito:
 
 ```
     # ModSecurity Core Rules Set and Local configuration
