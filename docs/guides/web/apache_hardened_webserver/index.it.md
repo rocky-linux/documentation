@@ -49,7 +49,7 @@ Spiegare ciò richiede di approfondire nel firewall hardware mostrato di seguito
 ## Convenzioni
 
 * **Indirizzi IP:** Qui stiamo simulando l'indirizzo IP pubblico con un blocco privato: 192.168.1.0/24 e stiamo usando il blocco di indirizzi IP della LAN come 10.0.0.0/24 In altre parole, non può essere instradato su Internet. In realtà, nessuno dei due blocchi IP può essere instradato su Internet perché sono entrambi riservati all'uso privato, ma non c'è un buon modo per simulare il blocco IP pubblico, senza usare un indirizzo IP reale che è assegnato a qualche azienda. Basta ricordare che per i nostri scopi, il blocco 192.168.1.0/24 è il blocco IP "pubblico" e il 10.0.0.0/24 è il blocco IP "privato".
-* **Hardware Firewall:** Questo è il firewall che controlla l'accesso ai vostri dispositivi della sala server dalla vostra rete fidata. Questo non è lo stesso del nostro firewall _iptables_, anche se potrebbe essere un'altra istanza di _iptables_ in esecuzione su un'altra macchina. Questo dispositivo permetterà a ICMP (ping) e SSH (shell sicura) di utilizzare i nostri dispositivi affidabili. La definizione di questo dispositivo non rientra nel campo di applicazione del presente documento. L'autore ha utilizzato con grande successo sia [PfSense](https://www.pfsense.org/) che [OPNSense](https://opnsense.org/) e installato su hardware dedicato per questo dispositivo. Questo dispositivo avrà due indirizzi IP assegnati. Uno che si collegherà all'IP pubblico simulato del router Internet (192.168.1.2) e uno che si collegherà alla nostra rete locale, 10.0.0.1.
+* **Hardware Firewall:** Questo è il firewall che controlla l'accesso ai vostri dispositivi della sala server dalla vostra rete fidata. Questo non è lo stesso del nostro firewall _iptables_, anche se potrebbe essere un'altra istanza di _iptables_ in esecuzione su un'altra macchina. Questo dispositivo permetterà a ICMP (ping) e SSH (shell sicura) di utilizzare i nostri dispositivi affidabili. La definizione di questo dispositivo non rientra nel campo di applicazione del presente documento. L'autore ha usato sia [PfSense](https://www.pfsense.org/) che [OPNSense](https://opnsense.org/) e installato su hardware dedicato a questo dispositivo con grande successo. Questo dispositivo avrà due indirizzi IP assegnati. Uno che si collegherà all'IP pubblico simulato del router Internet (192.168.1.2) e uno che si collegherà alla nostra rete locale, 10.0.0.1.
 * **Internet Router IP:** Lo stiamo simulando con 192.168.1.1/24
 * **Web Server IP:** Questo è l'indirizzo IP "pubblico" assegnato al nostro server web. Ancora una volta, stiamo simulando questo con l'indirizzo IP privato 192.168.1.10/24
 
@@ -60,7 +60,7 @@ Il diagramma sopra mostra il nostro layout generale. Il firewall basato su pacch
 
 ## Installare Pacchetti
 
-Ogni singola sezione del pacchetto ha i file di installazione necessari e qualsiasi procedura di configurazione elencata. Le istruzioni di installazione di _iptables_ fanno parte della procedura [disabilitare firewalld e abilitare i servizi iptables](../../security/enabling_iptables_firewall.md).
+Ogni singola sezione del pacchetto ha i file d'installazione necessari e qualsiasi procedura di configurazione elencata. Le istruzioni di installazione di _iptables_ fanno parte della procedura [disabilitare firewalld e abilitare i servizi iptables](../../security/enabling_iptables_firewall.md).
 
 ## <a name="iptablesstart"></a>Configurazione di iptables
 
