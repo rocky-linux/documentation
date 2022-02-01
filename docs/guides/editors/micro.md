@@ -1,5 +1,5 @@
 ---
-title: Install micro on Rocky Linux
+title: micro
 author: Ezequiel Bruni
 contributors: Steven Spencer
 tested version: 8.5
