@@ -1,4 +1,5 @@
 ---
+order: asc
 nav:
     - micro: micro*.md   
     - vi : https://docs.rockylinux.org/books/admin_guide/05-vi/
