@@ -69,6 +69,6 @@ rm -rf /home/[username]/.config/micro
 
 If you want a full guide to using *micro*, check out the [main website](https://micro-editor.github.io), and the documentation in the [Github repo](https://github.com/zyedidia/micro/tree/master/runtime/help). You can also press “Control-G” to open the main help file inside of the app itself.
 
-*micro* probably won’t meet the needs of those who have dedicated themselves to the *vim* or *emacs* experience, but it’s perfect for people like me. I’ve always wanted that old Sublime Text exoerience in the terminal, and now I have something *really* close.
+*micro* probably won’t meet the needs of those who have dedicated themselves to the *vim* or *emacs* experience, but it’s perfect for people like me. I’ve always wanted that old Sublime Text experience in the terminal, and now I have something *really* close.
 
 Try it out, see if it works for you.
