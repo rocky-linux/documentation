@@ -12,6 +12,7 @@ nav:
     - Database: database
     - Desktop: desktop
     - DNS: dns
+    - Editors: editors
     - Email: email
     - File Sharing Services: file_sharing
     - Git: git
