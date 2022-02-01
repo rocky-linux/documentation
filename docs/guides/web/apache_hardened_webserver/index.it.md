@@ -66,7 +66,7 @@ Ogni singola sezione del pacchetto ha i file d'installazione necessari e qualsia
 
 Questa parte della documentazione presuppone che abbiate scelto di installare i servizi e le utilità _iptables_ e che non stiate pensando di usare _firewalld_.
 
-Se hai intenzione di usare _firewalld_, puoi usare questo script _iptables_ per guidarti nella creazione delle regole appropriate nel formato _firewalld_. Una volta che lo script è mostrato qui, lo scomporremo per descrivere ciò che sta accadendo. Qui è necessaria solo la catena INPUT. Lo script viene posizionato nella directory /etc/ e per il nostro esempio, viene chiamato firewall.conf:
+Se hai intenzione di usare _firewalld_, puoi usare questo script _iptables_ per guidarti nella creazione delle regole appropriate nel formato _firewalld_. Una volta mostrato lo script qui, lo scomporremo per descrivere ciò che sta accadendo. Qui è necessaria solo la catena INPUT. Lo script viene posizionato nella directory /etc/ e per il nostro esempio, viene chiamato firewall.conf:
 
 `vi /etc/firewall.conf`
 
@@ -106,7 +106,7 @@ Ecco quindi cosa sta succedendo sopra:
 * Quando iniziamo, puliamo tutte le regole
 * Abbiamo quindi impostato la policy di default per la nostra catena INPUT a DROP, che dice: "Ehi, se non ti abbiamo esplicitamente permesso qui, allora ti stiamo abbandonando!"
 * Quindi permettiamo SSH (porta 22) dalla nostra rete affidabile, i dispositivi dietro il firewall hardware
-* Consentiamo DNS da alcuni risolutori DNS pubblici. (questi possono anche essere server DNS locali, se li hai)
+* Consentiamo i DNS da alcuni risolutori DNS pubblici. (questi possono anche essere server DNS locali, se li hai)
 * Permettiamo al nostro traffico web di entrare da qualsiasi punto sulla porta 80 e 443.
 * Permettiamo FTP standard (porte 20-21) e le porte passive necessarie per scambiare comunicazioni bidirezionali in FTP (7000-7500). Queste porte possono essere modificate arbitrariamente in altre porte in base alla configurazione del server ftp.
 * Permettiamo qualsiasi traffico sull'interfaccia locale (127.0.0.1)
