@@ -1,4 +1,9 @@
-# Install the micro text editor on Rocky Linux
+---
+title: How to Install micro on Rocky Linux
+author: Ezequiel Bruni
+---
+
+# Install micro on Rocky Linux
 
 ## Introduction
 
