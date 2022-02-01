@@ -47,6 +47,10 @@ sudo mv micro /usr/bin/
 
 And that’s it! Happy text editing.
 
+### The Really Easy Way
+
+I created a dead-simple script that basically just runs all of those commands. You can find it in my [Github gists](https://gist.github.com/EzequielBruni/0e29f2c0a63500baf6fe9e8c51c7b02f), and either copy/paste the text to a file on your machine, or download it with `wget`.
+
 ## Uninstalling micro
 
 Go to the folder you installed *micro* in and (using your godly root powers as necessary) run:
