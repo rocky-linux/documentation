@@ -7,7 +7,7 @@ contributors: Steven Spencer (most likely)
 
 ## Introduction
 
-To give credit where credit is due, I came up with exactly none of this. This guide is based heavily on [the one by Joshua James](https://www.linuxcapable.com/how-to-install-latest-nginx-mainline-on-rocky-linux-8/) on [LinuxCapable](https://www.linuxcapable.com). Go give his site a read some time, there’s a lot of good stuff there. On to this (beginner-friendly) guide:
+To give credit where credit is due, I came up with exactly none of this. In particular, this guide is based heavily on [the one by Joshua James](https://www.linuxcapable.com/how-to-install-latest-nginx-mainline-on-rocky-linux-8/) on [LinuxCapable](https://www.linuxcapable.com). Go give his site a read some time, there’s a lot of good stuff there. Now, on to this (beginner-friendly) guide:
 
 *Nginx* is a web server designed to be fast, efficient, and compatible with just about anything you can imagine. I personally use it a fair bit and—once you get the hang of it—it’s actually pretty easy to set up and configure. Here’s a short rundown of the standout features; Nginx is/has/can be:
 
@@ -19,7 +19,7 @@ To give credit where credit is due, I came up with exactly none of this. This gu
 * FastCGI support
 * And, of course, IPv6
 
-It’s great! So just `sudo dnf install nginx`, right? Well, not exactly. Let’s be clear: **Rocky Linux repositories don’t actually have the latest production-ready version of Nginx.** Since our goal is bug-for bug compatibility with Red Hat Enterprise Linux, you can always ask them to update their repos. Or asking the *Nginx* people might work better (you’ll see what I mean).
+It’s great! So just `sudo dnf install nginx`, right? Well, not exactly. **Rocky Linux repositories don’t have the latest production-ready version of Nginx.** Since our goal is bug-for bug compatibility with Red Hat Enterprise Linux, you can always ask them to update their repos. Or asking the *Nginx* people might work better (you’ll see what I mean).
 
 What *you* can do, right now, is install the “mainline” branch of Nginx yourself. It has all the latest updates and toys, and (to my mind) a simpler directory structure for its configuration files. Here’s how to see it all for yourself:
 
@@ -225,7 +225,7 @@ For now, just run:
 sudo nano /etc/nginx/conf.d
 ```
 
-When the file is open, look for the line that looks like `root   /usr/share/nginx/html`. Change it to your chosen website root folder, eg. 
+When the file is open, look for the line that looks like `root   /usr/share/nginx/html`. Change it to your chosen website root folder, eg.
 
 ### Changing File Permissions
 
