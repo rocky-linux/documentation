@@ -89,7 +89,7 @@ The `<smtp_server>` section currently shows localhost, however you can specify a
 
 You need to set the "from" address, so that you can deal with SPAM filters on your email server which may see this email as SPAM. To avoid getting inundated with email, set the email reporting to 1 per hour. You can expand this or remark out this command if you like while you are getting started with _ossec-hids_ and need to see things quickly.
 
-The <white_list> sections deal with the server's localohost IP and with the "public" address (remember, we are using a private address to demonstrate this) of the firewall, from which all connections on the trusted network will show. You can add multiple <white_list> entries as needed.
+The `<white_list>` sections deal with the server's localohost IP and with the "public" address (remember, we are using a private address to demonstrate this) of the firewall, from which all connections on the trusted network will show. You can add multiple `<white_list>` entries as needed.
 
 ```
 <syscheck>
@@ -135,7 +135,7 @@ We do need to add in the Apache log locations however, and we want to add these 
   </active-response>
 ```
 
-Finally, towards the end of the file we need to add the active response section. This section contains two parts, a <command> section, and the <active-response> section.
+Finally, towards the end of the file we need to add the active response section. This section contains two parts, a `<command>` section, and the `<active-response>` section.
 
 The "firewall-drop" script already exists within the ossec path.  It tells _ossec\_hids_ that if a level of 7 is reached, add a firewall rule to block the IP address for 20 minutes. Obviously, you can change the timeout value. Just remember that the configuration file times are all in seconds.
 
