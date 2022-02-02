@@ -80,7 +80,7 @@ module_hotfixes=true
 
 This code basically just lets you use the *Nginx*-made-and-hosted repositories for CentOS, and it allows you use the previously-mentioned “stable” branch if you want to. I mean, don’t. But you could.
 
-Save the file with “Control-S” (if using *nano*) and exit with “Control-X”.
+Save the file with Control-S (if using *nano*) and exit with Control-X.
 
 ## Installing and Running Nginx
 
@@ -110,27 +110,148 @@ To verify that the lastest version of *Nginx* has been installed, run:
 nginx -v
 ```
 
+From there, you could just start dropping HTML files into the `/usr/share/nginx/html/` directory to build a simple, static website. The configuration file for the default website/virtual host is called “default.conf” and it’s in `/etc/nginx/conf.d/`.
+
 ## Configuring the Firewall
 
 !!! Note
 
-    If you are installing Nginx on a container such as LXD/LXC or Docker, you can just skip this part.
+    If you are installing Nginx on a container such as LXD/LXC or Docker, you can just skip this part for now. The firewall should be handled by the host OS.
 
 If you try to view a web page at your machine’s IP address or domain name from another computer, you’re probably going to get a big fat nothing. Well, that’ll be the case as long as you have a firewall up and running.
 
-Here’s how to open up the necessary ports to actually see your web pages with *firewalld*, Rocky Linux’s default firewall:
+Here’s how to open up the necessary ports to actually see your web pages with *firewalld*, Rocky Linux’s default firewall with the `firewall-cmd` command. To add a new port, just run this:
 
+```bash
+sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
+```
 
+Let’s break this down: 
 
-## Additional Configuration Options
+* The `-–permanent` flag tells the firewall to make sure this configuration is used every time the firewall is restarted, and when the server itself is restarted. 
+* `–-zone=public` tells the firewall to take incoming connections to this port from everyone.
+* Lastly, `–-add-port=80/tcp` tells the firewall to accept incoming connections over port 80, as long as they’re using the Transmission Control Protocol, which is what you want in this case.
 
-If you want to see how to make *Nginx* work with PHP, and PHP-FPM specifically, check out our [guide to PHP on Rocky Linux](../web/php.md).
+To repeat the process for SSL/HTTPS traffic, just run the command again, and change the number.
 
+```bash
+sudo firewall-cmd --permanent --zone=public --add-port=443/tcp
+```
 
+These configurations won’t take effect until you force the issue. To do that, tell *firewalld* to relead its configurations, like so:
 
+```bash
+sudo firewall-cmd --reload
+```
 
+Now, there’s a very small chance that this won’t work. In those rare cases, make *firewalld* do your bidding with the old turn-it-off-and-turn-it-on-again.
+
+```bash
+systemctl restart firewalld
+```
+
+To make sure the ports have been added properly, run `firewall-cmd --list-all`. A properly-configured firewall will look a bit like this (I have a few extra ports open on my local server, ignore them):
+
+```bash
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: enp9s0
+  sources:
+  services: cockpit dhcpv6-client ssh
+  ports: 81/tcp 444/tcp 15151/tcp 80/tcp 443/tcp
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+```
+
+And that should be everything you need, firewall-wise.
+
+*Now* you should be able to see a web page that looks something like this:
+
+![The Nginx welcome page](nginx/images/welcome-nginx.png)
+
+It’s not much at all, but it means the server is working.
+
+## Creating a Server User and Changing the Website Root Folder
+
+While you *can* just drop your website into the default directory and go (and this might be fine for *Nginx* when it’s running inside a container, or on a test/development server), it’s not what we call best practice. Instead, it’s a good idea to create a specific Linux user on your system for your website, and put your website files in a directory made just for that user. 
+
+If you want to build multiple websites, it’s actually a good idea to create multiple users and root directories, both for the sake of organization and the sake of security. 
+
+In this guide, I’m going to have just the one user: a handsome devil named “www”. We’re going to put all of his website files under a directory in its home folder: `/home/www/`. You can actually put the folder anywhere you want, but on a dedicated server machine, using home folders makes perfect sense.
+
+### Creating the User
+
+First, we make the folder we’re going to use:
+
+```bash
+sudo mkdir /home/www/
+```
+
+Then, we create the user:
+
+```bash
+sudo adduser -g 'Nginx www user' -h /home/www/ www
+```
+
+That command tells the machine to
+
+* Make a user called “www” (as per the last bit of text), 
+* put all of its files in `/home/www`,
+* and add it to the following groups: “Nginx”, “www”, and “user”.
+
+All three are important, but that “Nginx” group does some real magic. It allows the web server to read and modify files that belong to the “www” user, and the “www” user group. See the Rocky Linux [guide to user management](../../books/admin_guide/06-users.md) for more information.
+
+You will, at this point, be prompted to give the new user a password. Type it in, press Enter, and repeat.
+
+From now on, when you’re actually going to add files to your website, it’s a good idea to do it as the web server user. You can log in to the server user account with by running the following command, and then typing in that password you chose:
+
+```bash
+sudo su www
+```
+
+### Changing the Server Root Folder
+
+Now that you have your fancy new user account, it’s time to make *Nginx* look for your website files in that folder. It;s time to grab your favorite text editor again.
+
+For now, just run:
+
+```bash
+sudo nano /etc/nginx/conf.d
+```
+
+When the file is open, look for the line that looks like `root   /usr/share/nginx/html`. Change it to your chosen website root folder, eg. 
+
+### Changing File Permissions
+
+To make sure that *Nginx* can read, write to, and execute any files in the website directory, permissions need to be set properly, especially if you uploaded the files while using the root account. 
+
+First, make sure that all files in the root folder are owned by the server user and its user group with:
+
+```bash
+sudo chown -R www:www /home/www
+```
+
+And then, to make sure that users who want to actually browse your website can actually see the pages, you should make you can run this command:
+
+```bash
+sudo chmod -R 755 /home/www 
+```
+
+That basically gives everyone the right to look at files on the server, but not modify them. Only the owners get to do that. If you’re feeling paranoid, you can run that particular command every time you upload new HTML/CSS/JS/image files to a static website.
+
+## Additional Configuration Options and Guides
+
+* If you want to see how to make *Nginx* work with PHP, and PHP-FPM specifically, check out our [guide to PHP on Rocky Linux](../web/php.md).
+* Instructions on multi-site configuration are coming in another guide. Instructions for SSL certificates are coming as well, and this guide will be updated with links when they’re ready.
 
 ## Conclusion
 
+The basic installation and configuration of *Nginx* are easy, even if it’s more complicated than it should be to get the latest version. But, just follow the steps, and you’ll have one of the best server options out there up and running quickly.
 
-
+Now you just have to go and build yourself a website? What could that take, another ten minutes? *Sobs quietly in Web Designer*
