@@ -225,7 +225,32 @@ For now, just run:
 sudo nano /etc/nginx/conf.d
 ```
 
-When the file is open, look for the line that looks like `root   /usr/share/nginx/html`. Change it to your chosen website root folder, eg.
+When the file is open, look for the line that looks like `root   /usr/share/nginx/html;`. Change it to your chosen website root folder, eg. `root   /home/www;`. Save and close the file, then test your *Nginx* configuration to make sure you didn’t skip a semi-colon or anything:
+
+```bash
+nginx -t
+```
+
+If you get the collowing success message, everything went right:
+
+```
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+
+Then, give the server a soft restart with:
+
+```bash
+sudo systemctl reload nginx
+```
+
+If the soft restart doesn’t work, give *Nginx* a kick in the pants with:
+
+```bash
+sudo systemctl restart nginx
+```
+
+Any HTML files in your new root folder should now be browsable from… your browser.
 
 ### Changing File Permissions
 
