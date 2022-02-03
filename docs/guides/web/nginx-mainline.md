@@ -80,7 +80,7 @@ module_hotfixes=true
 
 This code basically just lets you use the *Nginx*-made-and-hosted repositories for CentOS, and it allows you use the previously-mentioned “stable” branch if you want to. I mean, don’t. But you could.
 
-Save the file with Control-S (if using *nano*) and exit with Control-X.
+Save the file with <kbd>Control</kbd>-<kbd>S</kbd> (if using `nano`) and exit with <kbd>Control</kbd>-<kbd>X</kbd>.
 
 ## Installing and Running Nginx
 
