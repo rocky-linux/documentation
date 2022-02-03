@@ -52,7 +52,7 @@ Now, make sure the `dnf-utils` package is installed, and any command-line text e
 sudo dnf install dnf-utils
 ```
 
-Once that’s all installed, power up your text editor of choice. You’ll want to create a file called (for the sake of simplicity) “nginx.repo”, and put it in `/etc/yum.repos.d/`. You can do this real quick like so:
+Once that’s all installed, power up your text editor of choice. You’ll want to create a file called (for the sake of simplicity) `nginx.repo`, and put it in `/etc/yum.repos.d/`. You can do this real quick like so:
 
 ```bash
 sudo nano /etc/yum.repos.d/nginx.repo
