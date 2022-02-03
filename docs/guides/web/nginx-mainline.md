@@ -98,7 +98,7 @@ sudo dnf install nginx
 
 The terminal will ask you if you’re fine with installing the repository’s GPG key. You need that, so choose `Y` for yes.
 
-Once the installation is done, start *Nginx* and enable it to automatically start on reboot all in one go with:
+Once the installation is done, start the `nginx` service and enable it to automatically start on reboot all in one go with:
 
 ```bash
 sudo systemctl enable --now nginx
