@@ -80,13 +80,13 @@ Scomponiamo questa configurazione mostrando i cambiamenti alle righe e spiegando
 </global>
 ```
 
-Per impostazione predefinita, le notifiche email sono disattivate e la configurazione &lt;global&gt; è fondamentalmente vuota. Vorrai attivare la notifica e-mail e identificare le persone che dovrebbero ricevere i rapporti via mail per indirizzo e-mail.
+Per impostazione predefinita, le notifiche email sono disattivate e la configurazione `<global>` è fondamentalmente vuota. Vorrai attivare la notifica e-mail e identificare le persone che dovrebbero ricevere i rapporti via mail per indirizzo e-mail.
 
-La sezione &lt;smtp_server&gt; attualmente mostra localhost, tuttavia è possibile specificare un relay di un server di posta elettronica se si preferisce, o semplicemente configurare le impostazioni di posta elettronica postfix per l'host locale seguendo [questa guida](../../email/postfix_reporting.md).
+La sezione `<smtp_server>` attualmente mostra localhost, tuttavia puoi specificare un relay di un server email se preferisci, o semplicemente configurare le impostazioni email di postfix per l'host locale seguendo [questa guida](../../email/postfix_reporting.md).
 
 È necessario impostare l'indirizzo "from" in modo da poter trattare con i filtri SPAM sul tuo server di posta elettronica che potrebbe vedere questa email come SPAM. Per evitare di essere inondato di e-mail, imposta la segnalazione delle e-mail a 1 all'ora. Puoi espandere questo o rimarcare questo comando se vuoi mentre stai iniziando con _ossec-hids_ e hai bisogno di vedere le cose velocemente.
 
-Le sezioni &lt;white_list&gt; si occupano dell'IP localhost del server e dell'indirizzo "pubblico" (ricordate, stiamo usando un indirizzo privato per dimostrarlo) del firewall, da cui appariranno tutte le connessioni sulla rete fidata. Puoi aggiungere più voci &lt;white_list&gt; secondo necessità.
+Le sezioni `<white_list>` si occupano dell'IP localohost del server e dell'indirizzo "pubblico" (ricordate, stiamo usando un indirizzo privato per la dimostrazione) del firewall, da cui appariranno tutte le connessioni sulla rete fidata. Puoi aggiungere più voci `<white_list>` secondo necessità.
 
 ```
 <syscheck>
@@ -96,11 +96,11 @@ Le sezioni &lt;white_list&gt; si occupano dell'IP localhost del server e dell'in
 </syscheck>
 ```
 
-La sezione &lt;syscheck&gt; prende in esame una lista di directory da includere ed escludere quando si cercano file compromessi. Pensate a questo come a un altro strumento per controllare e proteggere il file system dalle vulnerabilità. Si dovrebbe rivedere l'elenco delle directory e vedere se ci sono altre che si desidera aggiungere alla sezione &lt;syscheck&gt;.
+La sezione `<syscheck>` guarda a una lista di directory da includere ed escludere quando si cercano file compromessi. Pensate a questo come a un altro strumento per controllare e proteggere il file system dalle vulnerabilità. Dovresti rivedere la lista delle directory e vedere se ce ne sono altre che vuoi aggiungere nella sezione `<syscheck>`.
 
-La sezione &lt;rootcheck&gt; appena sotto la sezione &lt;syscheck&gt; è ancora un altro strato di protezione. Le posizioni che entrambi &lt;syscheck&gt; e &lt;rootcheck&gt; guardano sono modificabili, ma probabilmente non avrete bisogno di fare alcun cambiamento.
+La sezione `<rootcheck>` appena sotto la sezione `<syscheck>` è ancora un altro strato di protezione. Le posizioni che sia `<syscheck>` che `<rootcheck>` guardano sono modificabili, ma probabilmente non avrete bisogno di fare alcun cambiamento.
 
-Cambiare il &lt;frequency&gt; per l'esecuzione &lt;rootcheck&gt; a una volta ogni 24 ore (86400 secondi) dal valore predefinito di 22 ore è un cambiamento opzionale mostrato sopra.
+Cambiare il `<frequency>` per l'esecuzione `<rootcheck>` a una volta ogni 24 ore (86400 secondi) dal valore predefinito di 22 ore è un cambiamento opzionale mostrato sopra.
 
 ```
 <localfile>
@@ -113,7 +113,7 @@ Cambiare il &lt;frequency&gt; per l'esecuzione &lt;rootcheck&gt; a una volta ogn
 </localfile>
 ```
 
-La sezione &lt;localfile&gt; si occupa delle posizioni dei log che vogliamo guardare. Ci sono già delle voci per i log _syslog_ e _secure_ di cui devi solo verificare il percorso, ma tutto il resto può essere lasciato com'è.
+La sezione `<localfile>` si occupa delle posizioni dei log che vogliamo guardare. Ci sono già delle voci per i log _syslog_ e _secure_ di cui devi solo verificare il percorso, ma tutto il resto può essere lasciato com'è.
 
 Abbiamo comunque bisogno di aggiungere le posizioni dei log di Apache, e vogliamo aggiungerle come wild_cards, perché potremmo avere un mucchio di log per un sacco di clienti web diversi. Quel formato è mostrato sopra.
 
@@ -132,7 +132,7 @@ Abbiamo comunque bisogno di aggiungere le posizioni dei log di Apache, e vogliam
   </active-response>
 ```
 
-Infine, verso la fine del file dobbiamo aggiungere la sezione di risposta attiva. Questa sezione contiene due parti, una sezione &lt;command&gt;, e la sezione &lt;active-response&gt;.
+Infine, verso la fine del file dobbiamo aggiungere la sezione di risposta attiva. Questa sezione contiene due parti, una sezione `<command>` e la sezione `<active-response>`.
 
 Lo script "firewall-drop" esiste già nel percorso ossec.  Dice a _ossec\_hids_ che se viene raggiunto un livello 7, aggiunge una regola del firewall per bloccare l'indirizzo IP per 20 minuti. Ovviamente, è possibile modificare il valore di timeout. Basta ricordare che i tempi dei file di configurazione sono tutti in secondi.
 
