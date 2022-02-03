@@ -138,7 +138,7 @@ To repeat the process for SSL/HTTPS traffic, just run the command again, and cha
 sudo firewall-cmd --permanent --zone=public --add-port=443/tcp
 ```
 
-These configurations won’t take effect until you force the issue. To do that, tell *firewalld* to relead its configurations, like so:
+These configurations won’t take effect until you force the issue. To do that, tell `firewalld` to relead its configurations, like so:
 
 ```bash
 sudo firewall-cmd --reload
