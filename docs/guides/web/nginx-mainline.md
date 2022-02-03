@@ -46,7 +46,7 @@ First, make sure your machine is updated:
 sudo dnf update
 ```
 
-Now, make sure the *dnf-utils* package is installed, and any command-line text editor you may want:
+Now, make sure the `dnf-utils` package is installed, and any command-line text editor you may want:
 
 ```bash
 sudo dnf install dnf-utils
