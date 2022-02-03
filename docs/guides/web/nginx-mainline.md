@@ -144,11 +144,13 @@ These configurations won’t take effect until you force the issue. To do that, 
 sudo firewall-cmd --reload
 ```
 
-Now, there’s a very small chance that this won’t work. In those rare cases, make *firewalld* do your bidding with the old turn-it-off-and-turn-it-on-again.
+!!! Note
 
-```bash
-systemctl restart firewalld
-```
+    Now, there’s a very small chance that this won’t work. In those rare cases, make `firewalld` do your bidding with the old turn-it-off-and-turn-it-on-again.
+
+    ```bash
+    systemctl restart firewalld
+    ```
 
 To make sure the ports have been added properly, run `firewall-cmd --list-all`. A properly-configured firewall will look a bit like this (I have a few extra ports open on my local server, ignore them):
 
