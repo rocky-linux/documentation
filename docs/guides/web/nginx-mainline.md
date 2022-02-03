@@ -90,7 +90,7 @@ Now, let’s enable the repository file you just made with one simple command:
 sudo yum-config-manager --enable nginx-mainline
 ```
 
-Then, install *Nginx*:
+Then, install the package `nginx` from the previously added repository:
 
 ```bash
 sudo dnf install nginx
