@@ -120,7 +120,7 @@ From there, you could just start dropping HTML files into the `/usr/share/nginx/
 
 If you try to view a web page at your machine’s IP address or domain name from another computer, you’re probably going to get a big fat nothing. Well, that’ll be the case as long as you have a firewall up and running.
 
-Here’s how to open up the necessary ports to actually see your web pages with *firewalld*, Rocky Linux’s default firewall with the `firewall-cmd` command. To add a new port, just run this:
+Here’s how to open up the necessary ports to actually see your web pages with `firewalld`, Rocky Linux’s default firewall with the `firewall-cmd` command. To add a new port, just run this:
 
 ```bash
 sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
