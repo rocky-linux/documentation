@@ -34,7 +34,7 @@ You’ll need:
 * An internet-connected Rocky Linux machine or server.
 * A basic familiarity with the command line.
 * The ability to run commands as root, either as the root user or with `sudo`.
-* A text editor of your choice, whether graphical or command-line based. For this tutorial, I’m using *nano*.
+* A text editor of your choice, whether graphical or command-line based. For this tutorial, I’m using `nano`.
 
 ## Installing the Repository
 
