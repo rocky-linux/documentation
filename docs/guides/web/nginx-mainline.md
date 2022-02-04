@@ -295,8 +295,8 @@ sudo chown -R www:www /usr/share/nginx/html/www
 And then, to make sure that users who want to actually browse your website can actually see the pages, you should make you can run these commands (and yes, those semicolons matter):
 
 ```bash
-sudo find /usr/share/nginx/html/www -type d -exec chmod 555 "{}" ;
-sudo find /usr/share/nginx/html/www -type f -exec chmod 444 "{}" ;
+sudo find /usr/share/nginx/html/www -type d -exec chmod 555 "{}" \;
+sudo find /usr/share/nginx/html/www -type f -exec chmod 444 "{}" \;
 ```
 
 That basically gives everyone the right to look at files on the server, but not modify them. Only the root and server users get to do that.
