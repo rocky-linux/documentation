@@ -1,7 +1,8 @@
 ---
 title: Nginx
 author: Ezequiel Bruni
-contributors: Steven Spencer (most likely)
+contributors: Antoine Le Morvan, Steven Spencer
+tested with: 8.5
 ---
 # How to Install the Latest Nginx on Rocky Linux
 
@@ -19,21 +20,21 @@ To give credit where credit is due, I came up with exactly none of this. In part
 * FastCGI support
 * And, of course, IPv6
 
-It’s great! So just `sudo dnf install nginx`, right? Well, not exactly. **Rocky Linux repositories don’t have the latest production-ready version of Nginx.** Since our goal is bug-for bug compatibility with Red Hat Enterprise Linux, you can always ask them to update their repos. Or asking the *Nginx* people might work better (you’ll see what I mean).
+It’s great! So just `sudo dnf install nginx`, right? Well, not exactly. **Rocky Linux repositories don’t have the latest production-ready version of Nginx.** Since the goal for Rocky Linux is to be bug-for bug compatible with Red Hat Enterprise Linux, you can always ask Red Hat to update their repos. Or asking the *Nginx* people might work better (you’ll see what I mean).
 
 What *you* can do, right now, is install the “mainline” branch of Nginx yourself. It has all the latest updates and toys, and (to my mind) a simpler directory structure for its configuration files. Here’s how to see it all for yourself:
 
-!!! Note 
+!!! Note
 
-    There's another branch called "stable", but it's actually a little outdated for most use cases. It will receive no new features as they are developed, and only the most urgently-needed bug fixes and security upgrades. 
-    
-    The developers of Nginx consider the "mainline" branch to be the well-tested and stable for general use, *as it gets all new features, all security fixes, and all bug fixes.*
+    There's another branch called "stable", but it's actually a little outdated for most use cases. It will receive no new features as they are developed, and only the most urgently-needed bug fixes and security upgrades.
+
+    The developers of Nginx consider the "mainline" branch to be well-tested and stable for general use, *as it gets all new features, all security fixes, and all bug fixes.*
 
     The only reasons to use the "stable" branch include:
     * You *really* want to be sure that new features and big-fixes won't break any third-party code or custom code of your own.
     * You want to stick with the Rocky Linux software repositories only.
 
-    There will be a tutorial at the end of this guide detailing how to enable and install the "stable" branch with minimal fuss. 
+    There will be a tutorial at the end of this guide detailing how to enable and install the "stable" branch with minimal fuss.
 
 ## Prerequisites and Assumptions
 
@@ -136,9 +137,9 @@ The official way opens up the firewall to the `http` service, which is of course
 sudo firewall-cmd --permanent --zone=public --add-service=http
 ```
 
-Let’s break this down: 
+Let’s break this down:
 
-* The `-–permanent` flag tells the firewall to make sure this configuration is used every time the firewall is restarted, and when the server itself is restarted. 
+* The `-–permanent` flag tells the firewall to make sure this configuration is used every time the firewall is restarted, and when the server itself is restarted.
 * `–-zone=public` tells the firewall to take incoming connections to this port from everyone.
 * Lastly, `--add-service=http` tells `firewalld` to let all HTTP traffic through to the server.
 
@@ -205,13 +206,13 @@ curl -I http://[your-ip-address]
 
 ## Creating a Server User and Changing the Website Root Folder
 
-While you *can* just drop your website into the default directory and go (and this might be fine for *Nginx* when it’s running inside a container, or on a test/development server), it’s not what we call best practice. Instead, it’s a good idea to create a specific Linux user on your system for your website, and put your website files in a directory made just for that user. 
+While you *can* just drop your website into the default directory and go (and this might be fine for *Nginx* when it’s running inside a container, or on a test/development server), it’s not what we call best practice. Instead, it’s a good idea to create a specific Linux user on your system for your website, and put your website files in a directory made just for that user.
 
-If you want to build multiple websites, it’s actually a good idea to create multiple users and root directories, both for the sake of organization and the sake of security. 
+If you want to build multiple websites, it’s actually a good idea to create multiple users and root directories, both for the sake of organization and the sake of security.
 
 In this guide, I’m going to have just the one user: a handsome devil named “www”. Deciding where to put your website files gets more complicated.
 
-Depending on your server setup, you can put your website files in a couple of different places. If you're on a bare-metal (physical) server, or you're installing `nginx` directly on a VPS, you probably have Security Enhanced Linux (SELinux) running. SELinux is a tool that does a lot to protect your machine, but it also kind of dictates where you can put certain things, like web pages. 
+Depending on your server setup, you can put your website files in a couple of different places. If you're on a bare-metal (physical) server, or you're installing `nginx` directly on a VPS, you probably have Security Enhanced Linux (SELinux) running. SELinux is a tool that does a lot to protect your machine, but it also kind of dictates where you can put certain things, like web pages.
 
 So if you're installing `nginx` directly to your machine, then you'll want to put your websites in subdirectories of the default root folder. In this case, the default root is `/usr/share/nginx/html`, so the website for the “www” user might go into `/usr/share/nginx/html/www`.
 
@@ -227,21 +228,26 @@ First, we make the folder we’re going to use:
 sudo mkdir /usr/share/nginx/html/www
 ```
 
+Next, create the www group:
+
+```bash
+sudo groupadd www
+```
 Then, we create the user:
 
 ```bash
-sudo adduser -g 'Nginx www' -h /usr/share/nginx/html/www www --system --shell=/bin/false
+sudo adduser -G nginx -g www -d /usr/share/nginx/html/www www --system --shell=/bin/false
 ```
 
 That command tells the machine to:
 
-* Make a user called “www” (as per the middle bit of text), 
+* Make a user called “www” (as per the middle bit of text),
 * put all of its files in `/usr/share/nginx/html/www`,
-* and add it to the following groups: “Nginx”, “www”.
+* and add it to the following groups: “mginx” as supplemental , “www” as primary.
 * The `--system` flag says that the user is not a human user, it's reserved for the system. If you want to create human user accounts to manage different websites, that's a whole other guide.
 * `--shell=/bin/false` makes sure no one can even *try* to log in as the “www” user.
 
-The “Nginx” group does some real magic. It allows the web server to read and modify files that belong to the “www” user, and the “www” user group. See the Rocky Linux [guide to user management](../../books/admin_guide/06-users.md) for more information.
+The “nginx” group does some real magic. It allows the web server to read and modify files that belong to the “www” user, and the “www” user group. See the Rocky Linux [guide to user management](../../books/admin_guide/06-users.md) for more information.
 
 ### Changing the Server Root Folder
 
@@ -250,7 +256,7 @@ Now that you have your fancy new user account, it’s time to make `nginx` look 
 For now, just run:
 
 ```bash
-sudo nano /etc/nginx/conf.d
+sudo nano /etc/nginx/conf.d/default.conf
 ```
 
 When the file is open, look for the line that looks like `root   /usr/share/nginx/html;`. Change it to your chosen website root folder, eg. `root   /usr/share/nginx/html/www;` (or `/home/www` if you're running `nginx` in containers like I do). Save and close the file, then test your `nginx` configuration to make sure you didn’t skip a semi-colon or anything:
@@ -259,7 +265,7 @@ When the file is open, look for the line that looks like `root   /usr/share/ngin
 nginx -t
 ```
 
-If you get the collowing success message, everything went right:
+If you get the following success message, everything went right:
 
 ```
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
@@ -284,7 +290,7 @@ Any HTML files in your new root folder should now be browsable from… your brow
 
 ### Changing File Permissions
 
-To make sure that *`nginx` can read, write to, and execute any files in the website directory, permissions need to be set properly. 
+To make sure that *`nginx` can read, write to, and execute any files in the website directory, permissions need to be set properly.
 
 First, make sure that all files in the root folder are owned by the server user and its user group with:
 
