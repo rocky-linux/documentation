@@ -243,7 +243,7 @@ That command tells the machine to:
 
 * Make a user called “www” (as per the middle bit of text),
 * put all of its files in `/usr/share/nginx/html/www`,
-* and add it to the following groups: “mginx” as supplemental , “www” as primary.
+* and add it to the following groups: “nginx” as supplemental , “www” as primary.
 * The `--system` flag says that the user is not a human user, it's reserved for the system. If you want to create human user accounts to manage different websites, that's a whole other guide.
 * `--shell=/bin/false` makes sure no one can even *try* to log in as the “www” user.
 
