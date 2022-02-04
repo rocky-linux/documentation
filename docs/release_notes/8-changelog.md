@@ -2,7 +2,7 @@
 title: Change Log
 author: Louis Abel
 contributors: Steven Spencer, tianci li
-update: 20-Jan-2022
+update: 02-Feb-2022
 ---
 
 # Rocky Linux 8 Change Log
@@ -15,7 +15,102 @@ Updates released since upstream are posted across our current architectures. We 
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
-# 8.5 - 2022-01-12
+## 8.5 - 2022-02-01
+
+The following packages have been updated since February 01, 2022:
+
+* clevis: clevis-15-1.el8 -> clevis-15-1.el8_5.1
+* cockpit: cockpit-251.1-1.el8 -> cockpit-251.3-1.el8_5
+* cryptsetup: cryptsetup-2.3.3-4.el8 -> cryptsetup-2.3.3-4.el8_5.1
+* dnf-plugins-core: dnf-plugins-core-4.0.21-3.el8 -> dnf-plugins-core-4.0.21-4.el8_5
+* frr: frr-7.5-4.el8 -> frr-7.5-4.el8_5.2
+* gnome-control-center: gnome-control-center-3.28.2-28.el8 -> gnome-control-center-3.28.2-29.el8_5
+* nispor: nispor-1.1.1-1.el8 -> nispor-1.1.1-2.el8_5
+* nmstate: nmstate-1.1.0-3.el8 -> nmstate-1.1.0-5.el8_5
+* ostree: ostree-2021.3-1.el8 -> ostree-2021.3-2.el8_5
+* resource-agents: resource-agents-4.1.1-98.el8 -> resource-agents-4.1.1-98.el8_5.2
+* rpm: rpm-4.14.3-19.el8 -> rpm-4.14.3-19.el8_5.2
+* sos: sos-4.1-5.el8.rocky.3 -> sos-4.1-9.el8_5.rocky.3
+* spirv-tools: spirv-tools-2021.3-1.20210825.git1fbed83.el8 -> spirv-tools-2021.4-3.20211110.git21e3f68.el8_5
+* sssd: sssd-2.5.2-2.el8_5.3 -> sssd-2.5.2-2.el8_5.4
+* tcpdump: tcpdump-14:4.9.3-2.el8 -> tcpdump-14:4.9.3-2.el8_5.1
+* tigervnc: tigervnc-1.11.0-9.el8 -> tigervnc-1.11.0-10.el8_5
+* vim: vim-2:8.0.1763-16.el8 -> vim-2:8.0.1763-16.el8_5.4
+* virtio-win: virtio-win-1.9.19-1.el8 -> virtio-win-1.9.24-2.el8_5
+* vulkan-headers: vulkan-headers-1.2.189.0-1.el8 -> vulkan-headers-1.2.198.0-1.el8_5
+* vulkan-loader: vulkan-loader-1.2.189.0-1.el8 -> vulkan-loader-1.2.198.0-2.el8_5
+* vulkan-tools: vulkan-tools-1.2.189.0-1.el8 ->vulkan-tools-1.2.198.0-1.el8_5
+* vulkan-validation-layers: vulkan-validation-layers-1.2.189.0-2.el8 ->vulkan-validation-layers-1.2.198.0-4.el8_5
+
+The following modules have been updated:
+
+* containertools
+* freeradius
+* nodejs
+* pki-core
+* virt
+* virt-devel
+
+## 8.5 - 2022-01-27
+
+The following packages have been updated since January 27, 2022:
+
+* dotnet-build-reference-packages: dotnet-build-reference-packages-0-10.20200608gitcd5a8c6.el8 ->dotnet-build-reference-packages-0-11.20211215git045b288.el8_5
+* nginx: nginx-1:1.20.0-2.module+el8.5.0+669+b11495b0 -> nginx-1:1.20.1-1.module+el8.5.0+729+3f70613e
+* samba: samba-4.14.5-7.el8_5 -> samba-4.14.5-9.el8_5
+
+The following modules have been updated:
+
+* nginx
+
+Associated CVE's:
+
+* CVE-2021-44142
+* CVE-2021-23017
+
+## 8.5 - 2022-01-26
+
+The following packages have been updated since January 26, 2022:
+
+* java-1.8.0-openjdk: java-1.8.0-openjdk-1:1.8.0.312.b07-2.el8_5 -> java-1.8.0-openjdk-1:1.8.0.322.b06-2.el8_5
+
+## 8.5 - 2022-01-25
+
+The following packages have been updated since January 25, 2022:
+
+* parfait: parfait-0.5.4-2.module+el8.3.0+214+edf13b3f -> parfait-0.5.4-4.module+el8.5.0+728+553fbdb8
+
+The following packages have been dropped:
+
+* log4j12: log4j12-1.2.17-22.module+el8.3.0+214+edf13b3f
+
+The following modules have been updated:
+
+* parfait
+
+## 8.5 - 2022-01-24
+
+The following packages have been updated since January 24, 2022:
+
+* httpd: httpd-2.4.37-43.module+el8.5.0+714+5ec56ee8 -> httpd-2.4.37-43.module+el8.5.0+727+743c5577.1
+* polkit: polkit-0.115-12.el8 -> polkit-0.115-13.el8_5.1
+
+The following modules have been updated:
+
+* httpd
+
+Associated CVE's:
+
+* CVE-2021-44790
+* CVE-2021-4034
+
+## 8.5 - 2022-01-19
+
+The following packages have been updated since January 19, 2022:
+
+* java-11-openjdk: java-11-openjdk-1:11.0.13.0.8-4.el8_5 -> java-11-openjdk-1:11.0.14.0.9-2.el8_5
+
+## 8.5 - 2022-01-12
 
 The following packages have been updated since January 12, 2022:
 

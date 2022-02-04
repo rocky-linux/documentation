@@ -18,7 +18,7 @@ Stop _firewalld_:
 
 Disabilita _firewalld_ in modo che non si parta all'avvio:
 
-`systemctl disabilita firewalld`
+`systemctl disable firewalld`
 
 Maschera il servizio in modo che non possa essere trovato:
 
