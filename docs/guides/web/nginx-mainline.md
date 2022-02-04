@@ -154,7 +154,7 @@ sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
 To repeat the process for SSL/HTTPS traffic, just run the command again, and change the service and/or the port number.
 
 ```bash
-sudo firewall-cmd --permanent --zone=public --add-service=http
+sudo firewall-cmd --permanent --zone=public --add-service=https
 # Or, in some other cases:
 sudo firewall-cmd --permanent --zone=public --add-port=443/tcp
 ```
