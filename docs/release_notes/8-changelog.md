@@ -2,7 +2,7 @@
 title: Change Log
 author: Louis Abel
 contributors: Steven Spencer, tianci li
-update: 07-Feb-2022
+update: 08-Feb-2022
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,16 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - 2022-02-04
+
+The following packages have been updated since February 04, 2022:
+
+* aide: aide-0.16-14.el8 -> aide-0.16-14.el8_5.1
+
+Associated CVE's:
+
+* CVE-2021-45417
 
 ## 8.5 - 2022-02-02
 
