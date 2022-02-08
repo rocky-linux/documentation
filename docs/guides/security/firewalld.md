@@ -38,6 +38,8 @@ To really get your head around `firewalld`, you need to understand the use of zo
 | internal      | for your internal network device access                                                                           |
 | trusted       | all network connections are accepted                                                                              |
 
+!!! Note
+
 firewall-cmd is the command line program for managing the firewalld daemon.
 
 To list existing zones on your system, type:
