@@ -11,7 +11,7 @@ Ever since `firewalld` came out as the default firewall (I believe this was with
 
 From the manual page: `firewalld` provides a dynamically managed firewall with support for network/firewall zones to define the trust level of network connections or interfaces. It has support for IPv4, IPv6 firewall settings and for Ethernet bridges and has a separation of runtime and permanent configuration options. It also supports an interface for services or applications to add firewall rules directly.
 
-`firewalld` is actually a front end to nftables in Rocky Linux.
+`firewalld` is actually a front end to the netfilter and nftables Kernel sub-systems in Rocky Linux.
 
 ## Prerequisites and Assumptions
 
@@ -37,6 +37,12 @@ To really get your head around `firewalld`, you need to understand the use of zo
 | home          | for use in home areas (nope, I don't get this one either)                                                         |
 | internal      | for your internal network device access                                                                           |
 | trusted       | all network connections are accepted                                                                              |
+
+firewall-cmd is the command line program for managing the firewalld daemon.
+
+To list existing zones on your system, type:
+
+`firewall-cmd --get-zones`
 
 To be honest, I mostly hate the names of these zones. Drop, block, public, and trusted are perfectly clear, but some aren't good enough for perfect granular security. Let's take this `iptables` rule section as an example:
 
@@ -113,7 +119,7 @@ Let's look at another line in our `iptables` firewall that we want to emulate in
 
  `firewall-cmd --zone=trusted --add-icmp-block={echo-request,echo-reply} --permanent`
 
- We've introduced something new here: The brackets "{}" allow us to specify more than one parameter.  As always, after making changes like this, we need to reload:
+ We've introduced something new here: The curly braces "{}" allow us to specify more than one parameter.  As always, after making changes like this, we need to reload:
 
  `firewall-cmd --reload`
 
