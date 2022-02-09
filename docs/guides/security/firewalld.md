@@ -1,8 +1,8 @@
 ---
 title: firewalld
 author: Steven Spencer
-contributors:
-update:
+contributors: @wsoyinka, Ezequiel Bruni (probably)
+update: 09-Feb-2022
 ---
 
 # Basic Guide To `firewalld` - Introduction
@@ -40,7 +40,7 @@ To really get your head around `firewalld`, you need to understand the use of zo
 
 !!! Note
 
-firewall-cmd is the command line program for managing the firewalld daemon.
+    firewall-cmd is the command line program for managing the firewalld daemon.
 
 To list existing zones on your system, type:
 
@@ -99,7 +99,7 @@ When you've finished adding rules, don't forget to reload:
 
 !!! Warning
 
-    By default the "public" zone has the ssh service enabled. You need to remove the ssh service from public once you have your administrative zone created and assigned to ssh!
+    By default the "public" zone has the ssh service enabled. You need to remove the ssh service from "public" once you have your administrative zone created and assigned to ssh!
 
 If you have more than one administrative IP that you need to add (quite likely), then just add it to the sources for the zone. In this case, we are adding an IP to the "admin" zone:
 
@@ -152,7 +152,7 @@ firewall-cmd --zone=public --add-service=http --add-service=https --permanent
 
 OK, that is all fine, but what if you are running for example, a Nextcloud service on http/https and you only wanted your trusted network to have access to it?  It's not unusual! This sort of thing happens all the time, and just publicly allowing traffic, without considering who actually needs access, is a huge security hole.
 
-We can't actually use the trusted zone information that we've used above. That was for testing. We have to assume that we have at minimum our LAN IP block added to "trusted". That would look like this:
+We can't actually use the "trusted" zone information that we've used above. That was for testing. We have to assume that we have at minimum our LAN IP block added to "trusted". That would look like this:
 
 `firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent`
 
@@ -244,7 +244,7 @@ public
   icmp-blocks: echo-reply echo-request
   rich rules:
 ```
-Note that we have removed "ssh" access form services and blocked icmp echo-reply and echo-request.
+Note that we have removed "ssh" access from services and blocked icmp echo-reply and echo-request.
 
 In our "admin" zone so far, it looks like this:
 
