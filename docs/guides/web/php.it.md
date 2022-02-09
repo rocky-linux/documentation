@@ -2,7 +2,7 @@
 title: PHP e PHP-FPM
 author: Antoine Le Morvan
 contributors: Steven Spencer, Franco Colussi
-update: 05-Feb-2022
+update: 09-Feb-2022
 ---
 
 # PHP e PHP-FPM
