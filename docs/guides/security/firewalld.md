@@ -5,13 +5,13 @@ contributors: @wsoyinka, Ezequiel Bruni
 update: 09-Feb-2022
 ---
 
-# Basic Guide To `firewalld` - Introduction
+# `iptables` Guide To `firewalld` - Introduction
 
-Ever since `firewalld` came out as the default firewall (I believe this was with CentOS 7, even though it was introduced in 2011), I've made it my mission in life to return to `iptables` at all costs. There were two reasons for this. First, the documentation that was available at the time used simplistic rules that did not properly show how the server was being secured *down to the IP level*. 
+Ever since `firewalld` came out as the default firewall (I believe this was with CentOS 7, even though it was introduced in 2011), I've made it my mission in life to return to `iptables` at all costs. There were two reasons for this. First, the documentation that was available at the time used simplistic rules that did not properly show how the server was being secured *down to the IP level*.
 
-Second, and probably the primary reason, I had a long history with `iptables` going back many years, and it was frankly easier to just continue using `iptables`. Every server I deployed, whether it was public facing or internal, used an `iptables` firewall rule set. It was easy to simply adjust a default set of rules for the server we were dealing with and deploy. In order to do this on CentOS 7, CentOS 8, and now Rocky Linux 8, I needed to use [this procedure](enabling_iptables_firewall.md). 
+Second, and probably the primary reason, I had a long history with `iptables` going back many years, and it was frankly easier to just continue using `iptables`. Every server I deployed, whether it was public facing or internal, used an `iptables` firewall rule set. It was easy to simply adjust a default set of rules for the server we were dealing with and deploy. In order to do this on CentOS 7, CentOS 8, and now Rocky Linux 8, I needed to use [this procedure](enabling_iptables_firewall.md).
 
-So why am I writing this document? First, to address the limitations of most `firewalld` references and, second, to force myself to find ways to use `firewalld` to mimick those more granular firewall rules. 
+So why am I writing this document? First, to address the limitations of most `firewalld` references and, second, to force myself to find ways to use `firewalld` to mimick those more granular firewall rules.
 
 And, of course, to help beginners get a handle on Rocky Linux's default firewall.
 
@@ -91,8 +91,8 @@ We also want to remove the service ssh from the zone:
 
 !!! Warning
 
-    If you're working on a remote server or VPS, hold off on that last instruction! *NEVER remove the `ssh` service from a remote server* unless you have another way to access the shell (see below). 
-    
+    If you're working on a remote server or VPS, hold off on that last instruction! *NEVER remove the `ssh` service from a remote server* unless you have another way to access the shell (see below).
+
     If you lock yourself out of `ssh` access via the firewall, you'll need to (in the worst-case scenarios) go fix your server in person, contact support, or possibly reinstall the OS from your control panel (depending on whether the server is physical or virtual).
 
 ### Using A New Zone - Adding Administrative IPs
@@ -120,8 +120,8 @@ If you have more than one administrative IP that you need to add (quite likely),
 
 !!! Note
 
-    Keep in mind that if you are working on a remote server or VPS, and have an internet connection that doesn't always use the same IP, you may want to open your `ssh` service to a range of IP addresses used by your internet service provider or geographical region. This, again, is so you don't get locked out by your own firewall. 
-    
+    Keep in mind that if you are working on a remote server or VPS, and have an internet connection that doesn't always use the same IP, you may want to open your `ssh` service to a range of IP addresses used by your internet service provider or geographical region. This, again, is so you don't get locked out by your own firewall.
+
     Many ISPs charge extra for dedicated IP adresses, if they're offered at all, so it's a real concern.
 
 ## ICMP Rules
@@ -200,9 +200,9 @@ iptables -A INPUT -p tcp -m tcp --dport 20-21 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 7000-7500 -j ACCEPT
 ```
 
-This portion of the script deals with the standard FTP ports (20 and 21) as well as opening some additional passive ports. This sort of a rule set is often needed by such ftp servers as [VSFTPD](../file_sharing/secure_ftp_server_vsftpd.md). Generally, this sort of rule would be on a publicly facing web server, and is there for allowing ftp connections from your customers. 
+This portion of the script deals with the standard FTP ports (20 and 21) as well as opening some additional passive ports. This sort of a rule set is often needed by such ftp servers as [VSFTPD](../file_sharing/secure_ftp_server_vsftpd.md). Generally, this sort of rule would be on a publicly facing web server, and is there for allowing ftp connections from your customers.
 
-There is no ftp-data service (port 20) with `firewalld`. The ports 7000 through 7500 listed here are for passive FTP connections, and again, there's no direct way to do this in `firewalld`. You could switch to SFTP, which would simplify the port allow rules here, and is likely the recommended way these days. 
+There is no ftp-data service (port 20) with `firewalld`. The ports 7000 through 7500 listed here are for passive FTP connections, and again, there's no direct way to do this in `firewalld`. You could switch to SFTP, which would simplify the port allow rules here, and is likely the recommended way these days.
 
 What we are trying to demonstrate here, however, is the conversion of a set of `iptables` rules to `firewalld`. To get around all of these issues, we can do the following.
 
@@ -300,9 +300,9 @@ Although I can find no document that specifically states this, it appears that `
 
 ## Interfaces
 
-By default, `firewalld` will listen on all available interfaces. On a bare-metal server with multiple interfaces facing multiple networks, it will be necessary for you to assign an interface to a zone based on the network it faces. 
+By default, `firewalld` will listen on all available interfaces. On a bare-metal server with multiple interfaces facing multiple networks, it will be necessary for you to assign an interface to a zone based on the network it faces.
 
-In our examples, we've not added any interfaces, because we are working with an LXD container for lab testing. We only have one interface to work with. Let's say that your "public" zone needs to be configured to use Ethernet port enp3s0 as this port has the public IP on it, and let's say that your "trusted" and "admin" zones are on the LAN interface, which might be enp3s1. 
+In our examples, we've not added any interfaces, because we are working with an LXD container for lab testing. We only have one interface to work with. Let's say that your "public" zone needs to be configured to use Ethernet port enp3s0 as this port has the public IP on it, and let's say that your "trusted" and "admin" zones are on the LAN interface, which might be enp3s1.
 
 To assign these zones to the appropriate interface, we would use the following commands:
 
@@ -330,8 +330,8 @@ There are a great many `firewall-cmd` options not covered here, but this gives y
 
 ## Conclusion
 
-Since `firewalld` is the recommended and included firewall with Rocky Linux, it is a good idea to get your head around how it  works. Simplistic rules, included in documentation for applying services using `firewalld` often do not take into account what the server is being used for, and offer no options other than publicly allowing the service. This is a drawback that comes with security holes that just don't need to be there. 
+Since `firewalld` is the recommended and included firewall with Rocky Linux, it is a good idea to get your head around how it  works. Simplistic rules, included in documentation for applying services using `firewalld` often do not take into account what the server is being used for, and offer no options other than publicly allowing the service. This is a drawback that comes with security holes that just don't need to be there.
 
-When you see these instructions, think about what your server is being used for and whether or not the service in question needs to be open to the world. If not, consider using more granularity in your rules as described above. While the author still isn't 100% commfortable with switching over to `firewalld`, it is highly probable that I'll use `firewalld` in future documentation. 
+When you see these instructions, think about what your server is being used for and whether or not the service in question needs to be open to the world. If not, consider using more granularity in your rules as described above. While the author still isn't 100% commfortable with switching over to `firewalld`, it is highly probable that I'll use `firewalld` in future documentation.
 
 The process of writing this document and lab-testing the results have been very helpful to me. Hopefully, they will be helpful to someone else as well. This is not meant to be an exhaustive guide to `firewalld`, but rather a starting point.                                         
