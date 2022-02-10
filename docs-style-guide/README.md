@@ -60,3 +60,8 @@ A few tips to help you make the best images you can for tutorials.
 * If there's a lot going on in your screenshot, consider adding a couple of helpful arrows pointing at the things that matter.
 * Terminal commands are best put into a `code` element or block. If you must screenshot your terminal, make sure the text is big enough for people to easily see without zooming in. This is an accessibility concern, so please do be careful of those with visual impairments.
 * Speaking of accessibility, make sure every image has alt text.
+
+## Talk to us!
+If you have any questions about getting started, want feedback, or just want to talk, head on over to the [Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) on our Mattermost server. Sing up, ask your questions, and people will usually get back to you in less than a day.
+
+Sometimes a lot faster. We'd be happy to have you.
