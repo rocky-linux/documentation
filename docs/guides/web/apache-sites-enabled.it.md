@@ -122,7 +122,7 @@ Se siete nuovi alla sintassi "ad albero" per fare le directory, quello detto sop
 
 Solo una nota in anticipo: Non è necessario per il funzionamento del server web che il file CSR sia memorizzato nell'albero.
 
-Se avete bisogno di riemettere il certificato da un altro fornitore, ecc., è una buona idea avere una copia memorizzata del file CSR. La domanda diventa dove si può memorizzare in modo che si ricordi, e memorizzarlo all'interno dell'albero del tuo sito web è logico.
+Se avete bisogno di riemettere il certificato da un altro fornitore, ecc., è una buona idea avere una copia memorizzata del file CSR. La domanda diventa dove si può memorizzare in modo che ci si ricordi, e memorizzarlo all'interno dell'albero del tuo sito web è logico.
 
 Supponendo che abbiate nominato i vostri file key, csr e crt (certificato) con il nome del vostro sito, e che li abbiate memorizzati in _/root_, li copiamo nelle rispettive posizioni che abbiamo appena creato:
 
