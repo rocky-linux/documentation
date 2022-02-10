@@ -1,8 +1,8 @@
 ---
 title: firewalld
 author: Steven Spencer
-contributors: @wsoyinka, Ezequiel Bruni
-update: 09-Feb-2022
+contributors: wsoyinka, Ezequiel Bruni
+update: 10-Feb-2022
 ---
 
 # `iptables` Guide To `firewalld` - Introduction
@@ -11,7 +11,7 @@ Ever since `firewalld` came out as the default firewall (I believe this was with
 
 Second, and probably the primary reason, I had a long history with `iptables` going back many years, and it was frankly easier to just continue using `iptables`. Every server I deployed, whether it was public facing or internal, used an `iptables` firewall rule set. It was easy to simply adjust a default set of rules for the server we were dealing with and deploy. In order to do this on CentOS 7, CentOS 8, and now Rocky Linux 8, I needed to use [this procedure](enabling_iptables_firewall.md).
 
-So why am I writing this document? First, to address the limitations of most `firewalld` references and, second, to force myself to find ways to use `firewalld` to mimick those more granular firewall rules.
+So why am I writing this document? First, to address the limitations of most `firewalld` references and, second, to force myself to find ways to use `firewalld` to mimic those more granular firewall rules.
 
 And, of course, to help beginners get a handle on Rocky Linux's default firewall.
 
@@ -46,7 +46,7 @@ To really get your head around `firewalld`, you need to understand the use of zo
 
 !!! Note
 
-    firewall-cmd is the command line program for managing the firewalld daemon.
+    `firewall-cmd` is the command line program for managing the `firewalld` daemon.
 
 To list existing zones on your system, type:
 
@@ -60,7 +60,7 @@ Here we have a single IP address being allowed for SSH (port 22) into the server
 
 ```
 firewall-cmd --zone=trusted --add-source=192.168.1.122 --permanent
-firewall-cmd --zone trusted --add-service ssh --permanent
+firewall-cmd --zone trusted --add-service=ssh --permanent
 ```
 
 But what if on this server we also have an intranet that is accessible to only the IP blocks that our organization is assigned?  Would we use the "internal" zone now to apply to that rule? Frankly, I'd prefer to create a zone that deals with the admin users' IPs (those allowed to secure-shell into the server). Truth be told, I'd prefer to add all of my own zones, but that might be ridiculous to do.
@@ -73,21 +73,54 @@ To add a zone, we need to use the `firewall-cmd` with the `--new-zone` parameter
 
 !!! Note
 
-    We have used the --permanent flag throughout. For testing, it is recommended to add the rule without the --permanent flag, test it, and if it works as expected, then use the `firewall-cmd --runtime-to-permanent` to move the rule live prior to running `firewall-cmd --reload`. Just be aware of this.
+    We have used the --permanent flag a great deal throughout. For testing, it is recommended to add the rule without the `--permanent` flag, test it, and if it works as expected, then use the `firewall-cmd --runtime-to-permanent` to move the rule live prior to running `firewall-cmd --reload`. If the risk is low (in other words, you won't lock yourself out), you can add the `--permanent` flag as I've done here.
 
 Before this zone can actually be used, we need to reload the firewall:
 
 `firewall-cmd --reload`
 
+### Listing Zones
+
+Before we go any further, we need to take a look at the process of listing zones. Rather than a tabular output provided by `iptables -L` listing, you get a single column of output with headers. Listing a zone is done with the command `firewall-cmd --zone=[zone_name] --list-all`. Here's what this looks like when we list out the newly created "admin" zone:
+
+`firewall-cmd --zone=admin --list-all`
+
+```bash
+admin
+  target: default
+  icmp-block-inversion: no
+  interfaces:
+  sources:
+  services:
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+```
+
 ### Removing an IP and Service from a Zone
 
-If you actually followed the earlier instruction adding the IP to the "trusted" zone, we need to now remove it from that zone:
+If you actually followed the earlier instruction adding the IP to the "trusted" zone, we need to now remove it from that zone. Remember our note about using the `--permanent` flag? This is a good place to avoid using it while doing proper testing before taking this rule live:
 
-`firewall-cmd --zone=trusted --remove-source=192.168.1.122 --permanent`
+`firewall-cmd --zone=trusted --remove-source=192.168.1.122`
 
 We also want to remove the service ssh from the zone:
 
-`firewall-cmd --zone trusted --remove-service ssh --permanent`
+`firewall-cmd --zone=trusted --remove-service ssh`
+
+Then test. You want to make sure that you have a way in via `ssh` from another zone before doing the final two steps. (See **Warning** below!).
+
+Once you are satisfied, move the runtime rules to permanent:
+
+`firewall-cmd --runtime-to-permanent`
+
+and reload:
+
+`firewall-cmd --reload`
 
 !!! Warning
 
@@ -100,19 +133,27 @@ We also want to remove the service ssh from the zone:
 Now just repeat our original steps using the "admin" zone:
 
 ```
-firewall-cmd --zone=admin --add-source=192.168.1.122 --permanent
-firewall-cmd --zone admin --add-service ssh --permanent
+firewall-cmd --zone=admin --add-source=192.168.1.122
+firewall-cmd --zone admin --add-service=ssh
 ```
 
-There are obviously other services that might need to be added to the "admin" zone, but ssh is the most logical for now.
+Now list the zone to make sure that the zone looks correct and has the service properly added:
+
+`firewall-cmd --zone=admin --list-all`
+
+Test your rule to make sure it works, and then move the runtime rules to permanent:
+
+`firewall-cmd --runtime-to-permanent`
 
 When you've finished adding rules, don't forget to reload:
 
 `firewall-cmd --reload`
 
+There are obviously other services that might need to be added to the "admin" zone, but ssh is the most logical for now.
+
 !!! Warning
 
-    By default the "public" zone has the `ssh` service enabled; this can be a security liability. Once you have your administrative zone created and assigned to `ssh`, you can remove the service from the public zone.
+    By default the "public" zone has the `ssh` service enabled; this can be a security liability. Once you have your administrative zone created, assigned to `ssh`, and tested, you can remove the service from the public zone.
 
 If you have more than one administrative IP that you need to add (quite likely), then just add it to the sources for the zone. In this case, we are adding an IP to the "admin" zone:
 
@@ -158,9 +199,9 @@ From 192.168.1.104 icmp_seq=2 Packet filtered
 From 192.168.1.104 icmp_seq=3 Packet filtered
 ```
 
-## Web Server Rules
+## Web Server Ports
 
-Here's the `iptables` script for publicly allowing `http` and `https`, the protocols you'd need to server web pages:
+Here's the `iptables` script for publicly allowing `http` and `https`, the protocols you'd need to serve web pages:
 
 ```
 iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
@@ -216,19 +257,55 @@ Then let's add the ftp-data port:
 
 Next let's add the passive connection ports:
 
-`firewall-cmd --zone=public --add-port=7000-7500/tcp`
+`firewall-cmd --zone=public --add-port=7000-7500/tcp --permanent`
 
 And then, you guessed it, reload:
 
 `firewall-cmd --reload`
 
-## Listing Rules
+## Database Ports
+
+If you are dealing with a web server, you are almost certainly dealing with a database. The access to that database should be handled with the same care that you apply to other services. If access is not needed from the world, apply your rule to something other than "public".  The other consideration is, do you need to offer access at all? Again, this probably depends on your environment. Where I was previously employed, we ran a hosted web server for our customers. Many had Wordpress sites, and none of them really needed or requested access to any front-end for `MariaDB`. If a customer needed more access, we created an LXD container for their web server, set up the firewall the way the customer wanted it, and left them responsible for what happened on the server. Still, if your server is public, you may need to offer access to `phpmyadmin` or some other front-end to `MariaDB`. In this case, you need to concern yourself with the password requirements for the database and set the database user to something other than defaults. For me, password length is the [primary consideration when creating passwords](https://xkcd.com/936/).
+
+Obviously, password security is a discussion for another document dealing with just that, so we will assume that you've a good password policy for your database access and the `iptables` line in your firewall dealing with the database looks like this:
+
+`iptables -A INPUT -p tcp -m tcp --dport=3600 -j ACCEPT`
+
+ In this case, we simply add the service to the "public" zone for a `firewalld` conversion:
+
+`firewall-cmd --zone=public --add-service=mysql --permanent`
+
+### Postgresql Considerations
+
+Postgresql uses it's own service port. Here's an IP tables rule example:
+
+`iptables -A INPUT -p tcp -m tcp --dport 5432 -s 192.168.1.0/24 -j ACCEPT`
+
+While it is less common on publicly facing web servers, it might be more common as an internal resource. The same security considerations apply. If you have a server on your trusted network (192.168.1.0/24 in our example), you might not want or need to give access to everyone on that network. Postgresql has an access list available to take care of the more granular access rights. Our `firewalld` rule would look something like this:
+
+`firewall-cmd --zone=trusted --add-services=postgresql`
+
+## DNS Ports
+
+Having a private or public DNS server also means taking precautions in the rules you write to protect those services. If you have a private DNS server, with iptables rules that looked like this (note that most DNS services are UDP, rather than TCP, but not always):
+
+`iptables -A INPUT -p udp -m udp -s 192.168.1.0/24 --dport 53 -j ACCEPT`
+
+then allowing only your "trusted" zone would be correct. We've already setup our "trusted" zone's sources, so all you would need to do would be to add the service to the zone:
+
+`firewall-cmd --zone=trusted --add-service=dns`
+
+With a public facing DNS server, you would just need to add the same service to the "public" zone:
+
+`firewall-cmd --zone=public --add-service=dns`
+
+## More on Listing Rules
 
 !!! Note
 
     You *can* list all of the rules if you like, by listing the nftables rules. It's ugly, and I don't recommend it, but if you really must, you can do a `nft list ruleset`.
 
-One thing that we haven't done yet is to list the rules. This is something that you can do by zone. Here are examples with the zones we have used:
+One thing that we haven't done much of yet is to list the rules. This is something that you can do by zone. Here are examples with the zones we have used. Please note that you can list the zone before you move a rule permanent too, which is a good idea.
 
 `firewall-cmd --list-all --zone=trusted`
 
@@ -240,7 +317,7 @@ trusted (active)
   icmp-block-inversion: no
   interfaces:
   sources: 192.168.1.0/24
-  services: http https
+  services:
   ports:
   protocols:
   forward: no
@@ -251,7 +328,7 @@ trusted (active)
   rich rules:
 ```
 
-This can be applied to any zone. For instance, here is the "public" zone so far. Note that the `http` and `https` are not listed here. They are in the "trusted" zone where we added them earlier. The ftp ports *do* show here however:
+This can be applied to any zone. For instance, here is the "public" zone so far:
 
 `firewall-cmd --list-all --zone=public`
 
@@ -261,7 +338,7 @@ public
   icmp-block-inversion: no
   interfaces:
   sources:
-  services: cockpit dhcpv6-client ftp
+  services: cockpit dhcpv6-client ftp http https
   ports: 20/tcp 7000-7500/tcp
   protocols:
   forward: no
@@ -294,6 +371,8 @@ In our "admin" zone so far, it looks like this:
   rich rules:
 ```
 
+## Establised Related Rules
+
 Although I can find no document that specifically states this, it appears that `firewalld` handles the following `iptables` rule internally by default (if you know that this is incorrect, please correct this!):
 
 `iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT`
@@ -307,9 +386,9 @@ In our examples, we've not added any interfaces, because we are working with an 
 To assign these zones to the appropriate interface, we would use the following commands:
 
 ```
-firewall-cmd --zone=public --change-interface=enp3s0 --permanent`
-firewall-cmd --zone=trusted --change-interface=enp3s1 --permanent`
-firewall-cmd --zone=admin --change-interface=enp3s1 --permanent`
+firewall-cmd --zone=public --change-interface=enp3s0 --permanent
+firewall-cmd --zone=trusted --change-interface=enp3s1 --permanent
+firewall-cmd --zone=admin --change-interface=enp3s1 --permanent
 firewall-cmd --reload
 ```
 ## Common firewall-cmd Commands
