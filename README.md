@@ -30,7 +30,6 @@ ReText is good, but if you feel like exploring your other options, there are a f
 * [Mark Text](https://marktext.app) - Free, cross-platform, and open source
 * [ghostwriter](https://wereturtle.github.io/ghostwriter/) - Free, Windows and Linux, open source
 * [Remarkable](https://remarkableapp.github.io) - Linux-only, open source
-* [Typora](https://typora.io) - Free and cross-platform, but *not* open source
 * [Atom](https://atom.io) - Free, cross-platform and open source. Not _only_ a Markdown editor. Has integration with Git and GitHub built-in.
 
 ### Markdown Tutorial
