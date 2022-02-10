@@ -28,9 +28,9 @@ Ricorda solo che potresti aver bisogno anche di moduli, come forse php-bcmath o 
 
 Questo metodo usa un paio di directory aggiuntive, ma attualmente non esistono sul sistema. Dobbiamo aggiungere due directory in */etc/httpd/* chiamate "sites-available" e "sites-enabled."
 
-* Dala riga di comando digita `mkdir /etc/httpd/sites-available` e poi `mkdir /etc/httpd/sites-enabled`
+* Dalla riga di comando digita `mkdir /etc/httpd/sites-available` e poi `mkdir /etc/httpd/sites-enabled`
 
-* Abbiamo anche bisogno di una directory dove risiederanno i nostri siti. Questo può essere ovunque, ma un buon modo per mantenere le cose organizzate è quello di creare una directory chiamata sub-domains. Per semplificare le cose, mettilo in /var/www: `mkdir /var/www/sub-domains/`
+* Abbiamo anche bisogno di una directory dove risiederanno i nostri siti. Questo può essere ovunque, ma un buon modo per mantenere le cose organizzate è quello di creare una directory chiamata sub-domains. Per semplificare le cose, mettila in /var/www: `mkdir /var/www/sub-domains/`
 
 ## Configurazione
 Dobbiamo anche aggiungere una riga in fondo al file httpd.conf. Per fare questo, digita `vi /etc/httpd/conf/httpd.conf` e vai in fondo al file e aggiungi `Include /etc/httpd/sites-enabled`.
