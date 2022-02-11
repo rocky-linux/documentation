@@ -118,6 +118,13 @@ $ sudo dnf install glusterfs glusterfs-libs glusterfs-server
 A few rules are necessary for the service to work:
 
 ```
+$ sudo firewall-cmd --zone=public --add-service=glusterfs --permanent
+$ sudo firewall-cmd --reload
+```
+
+or:
+
+```
 $ sudo firewall-cmd --zone=public --add-port=24007-24008/tcp --permanent
 $ sudo firewall-cmd --zone=public --add-port=49152/tcp --permanent
 $ sudo firewall-cmd --reload
