@@ -52,6 +52,28 @@ It can be helpful, but not strictly necessary, to style app names such as `nginx
 * **Styling directories**
 Folders and paths should *always* be styled with the inline code backticks, eg. `/usr/local/bin/`.
 
+### Admonitions and call-outs
+
+One useful bit of (non-standard) styline that our documentation supports is in the form of callouts, AKA Admonitions. These are blocks of content specifically designed to draw the eye to important information, such as useful tips, notes, and dire warnings. 
+
+Example:
+```
+!!! note This is a note with a custom title
+
+    This is the content for the note with the custom title. This is more content for the content for the note with... Look, I just watched some Animaniacs. Don't judge me.
+```
+
+The above code will render like so:
+
+
+!!! note This is a note with a custom title.
+
+    This is the content for the note with the custom title. This is more content for the content for the note with... Look, I just watched some Animaniacs. Don't judge me.
+
+Other Admonition types include "tip", "info", "warning", "quote", "success", "failure", and more.
+
+You can learn more about how to write and format Admonitions in markdown on the [Material for MkDocs website](https://squidfunk.github.io/mkdocs-material/reference/admonitions/).
+
 ## Images & screenshots
 A few tips to help you make the best images you can for tutorials.
 
