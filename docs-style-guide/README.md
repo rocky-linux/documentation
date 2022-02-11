@@ -39,17 +39,51 @@ There *will* be documentation aimed at beginners who've never used Rocky Linux, 
 Put the "show" in "show and tell". 'Nuff said.
 * **List the requirements at the top.**  
 On every tutorial, guide, or doc, list the things the reader will need to know or have installed first. There's no worse feeling than getting into the middle of a tutorial, then reading, "Okay, now SSH into your server..." when you haven't had any experience with SSH yet.
+* **Link to other guides on the Rocky docs site when it makes sense**
+If you're writing a tutorial for beginners, and you reference another technology or process for which we have an existing guide, link it. You can say something like, "If you want to know more about SELinux, check out [our guide on the topic](../docs/guides/security/learning_selinux.md)."
 * **Use the metaphor, Luke. And also watch out for the metaphors...**  
-And the anaologies, similes, idioms, and more obscure cultural references. While *we generally encourage* the use of all these literary devices to spice up documentation (especially the beginner-focused docs), do your best to keep them simple. Non-native English speakers still need to understand our documentation, especially those who will be translating it.
+And the analogies, similes, idioms, and more obscure cultural references. While *we generally encourage* the use of all these literary devices to spice up documentation (especially the beginner-focused docs), do your best to keep them simple. Non-native English speakers still need to understand our documentation, especially those who will be translating it.
 * **The Oxford comma**  
 Also known as the serial comma. Love it, use it, and [read up on it](https://en.wikipedia.org/wiki/Serial_comma) if you want to.
 * **Things to italicize**  
-The first time you mention a software package in any article, italicize it, eg _rsnapshot_. Specific files and folders (eg _/home/[user]_) should _always_ be italicized. You can, of course, use italics and bold text for emphasis where needed, but do it sparingly. If everything is makred as bold text, then the boldness of the text loses its impact altogether.
+Things have changed since the last version of this document, and italics should be used as they usually are: for *emphasis*. Nothing more, nothing less.
+* **Styling program names**
+It can be helpful, but not strictly necessary, to style app names such as `nginx` with inline code backticks (eg `` `an-app-name` ``). We recommend it because it helps people to find app-specific tips and instructions while skimming.
+* **Styling directories**
+Folders and paths should *always* be styled with the inline code backticks, eg. `/usr/local/bin/`.
+
+### Admonitions and call-outs
+
+One useful bit of (non-standard) styline that our documentation supports is in the form of callouts, AKA Admonitions. These are blocks of content specifically designed to draw the eye to important information, such as useful tips, notes, and dire warnings. 
+
+Example:
+```
+!!! note This is a note with a custom title
+
+    This is the content for the note with the custom title. This is more content for the content for the note with... Look, I just watched some Animaniacs. Don't judge me.
+```
+
+The above code will render like so:
+
+
+!!! note This is a note with a custom title.
+
+    This is the content for the note with the custom title. This is more content for the content for the note with... Look, I just watched some Animaniacs. Don't judge me.
+
+Other Admonition types include "tip", "info", "warning", "quote", "success", "failure", and more.
+
+You can learn more about how to write and format Admonitions in markdown on the [Material for MkDocs website](https://squidfunk.github.io/mkdocs-material/reference/admonitions/).
 
 ## Images & screenshots
 A few tips to help you make the best images you can for tutorials.
 
-* [Recommended image sizes?]
-* The recommended format for images is JPG.
+* There is no strict size requirement for images. Just make sure whatever you want is clearly visible, but don't make the image so big that it'll mess with people on slow connections. Think 1080p max, for most cases.
+* The recommended format for images is JPG, though PNGs are acceptable for simple, vector-style graphics.
 * If there's a lot going on in your screenshot, consider adding a couple of helpful arrows pointing at the things that matter.
-* Terminal commands are best put into a `code` element or block. If you must screenshot your terminal, make sure the text is big enough for people to easily see without zooming in.
+* Terminal commands are best put into a `code` element or block. If you must screenshot your terminal, make sure the text is big enough for people to easily see without zooming in. This is an accessibility concern, so please do be careful of those with visual impairments.
+* Speaking of accessibility, make sure every image has alt text.
+
+## Talk to us!
+If you have any questions about getting started, want feedback, or just want to talk, head on over to the [Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) on our Mattermost server. Sing up, ask your questions, and people will usually get back to you in less than a day.
+
+Sometimes a lot faster. We'd be happy to have you.
