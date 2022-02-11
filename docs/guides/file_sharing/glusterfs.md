@@ -1,3 +1,10 @@
+---
+title: Clustering-GlusterFS
+author: Antoine Le Morvan
+contributors: Steven Spencer
+update: 11-Feb-2022
+---
+
 # High availability cluster with GlusterFS
 
 ## Prerequisites
@@ -10,26 +17,26 @@
 
 GlusterFS is a distributed file system.
 
-It allows to store a large amount of data distributed on clusters of servers with a very high availability.
+It allows for storage of large amount of data distributed across clusters of servers with a very high availability.
 
 It is composed of a server part to be installed on all the nodes of the server clusters.
 
-Clients can access the data via the glusterfs client or the mount command.
+Clients can access the data via the `glusterfs` client or the `mount` command.
 
-Cluster can operate 2 modes:
+GlusterFS can operate in two modes:
 
-  * A replicated mode: each node of the cluster has all the data.
-  * A distributed mode: no data redundancy. If a storage fails, the data on the failed node is lost.
+  * replicated mode: each node of the cluster has all the data.
+  * distributed mode: no data redundancy. If a storage fails, the data on the failed node is lost.
 
 Both modes can be used together to provide both a replicated and distributed file system as long as you have the right number of servers.
 
-Data are store inside bricks.
+Data is stored inside bricks.
 
 > A Brick is the basic unit of storage in GlusterFS, represented by an export directory on a server in the trusted storage pool.
 
 ## Test platform
 
-Our fictitious platform is composed of 2 servers and a client, all Rocky Linux servers.
+Our fictitious platform is composed of two servers and a client, all Rocky Linux servers.
 
 * First node: node1.cluster.local - 192.168.1.10
 * Second node: node2.cluster.local - 192.168.1.11
@@ -43,7 +50,7 @@ Each server in the cluster has a second disk for data storage.
 
 ## Preparation of the disks
 
-We will create a new LVM logical volum that will be mount on `/data/glusterfs/vol0` on both cluster's servers.
+We will create a new LVM logical volume that will be mounted on `/data/glusterfs/vol0` on both of the cluster's servers:
 
 ```
 $ sudo pvcreate /dev/sdb
@@ -61,7 +68,7 @@ $ sudo mkdir -p /data/glusterfs/volume1
     $ sudo dnf install lvm2
     ```
 
-We can add now that logical volume to the `/etc/fstab` file:
+We can now add that logical volume to the `/etc/fstab` file:
 
 ```
 /dev/mapper/vg_data-lv_data /data/glusterfs/volume1        xfs     defaults        1 2
@@ -141,15 +148,14 @@ You can let DNS handle the name resolution of the servers in your cluster, or yo
 
 ## Starting the service
 
-
-Without further delay start the service:
+Without further delay, let's start the service:
 
 ```
 $ sudo systemctl enable glusterfsd.service
 $ sudo systemctl start glusterfsd.service
 ```
 
-We are ready to join the 2 nodes to the same pool.
+We are ready to join the two nodes to the same pool.
 
 This command is to be performed only once on a single node (here on node1):
 
@@ -183,7 +189,7 @@ Other names:
 192.168.10.10
 ```
 
-We can now create a volume with 2 replica:
+We can now create a volume with 2 replicas:
 
 ```
 $ sudo gluster volume create volume1 replica 2 node1.cluster.local:/data/glusterfs/volume1/brick0/ node2.cluster.local:/data/glusterfs/volume1/brick0/
@@ -245,7 +251,7 @@ nfs.disable: on
 performance.client-io-threads: off
 ```
 
-The status must be Started.
+The status must be "Started".
 
 We can already restrict access on the volume a little bit:
 
@@ -285,7 +291,7 @@ total 0
 -rw-r--r--. 2 root root 0 Feb  3 19:21 test
 ```
 
-Sound good! But what happens if the node 1 falls? It is the one that was specified when mounting the remote access.
+Sound good! But what happens if the node 1 fails? It is the one that was specified when mounting the remote access.
 
 Let's stop the node one:
 
@@ -329,3 +335,7 @@ $ ll /data/test
 File is already there.
 
 Upon connection, the glusterfs client receives a list of nodes it can address, which explains the transparent switchover we just witnessed.
+
+## Conclusions
+
+While there are no current repositories, using the archived repositories that CentOS had for GlusterFS will still work. As outlined, GlusterFS is pretty easy to install and maintain. Using the command line tools is a pretty straight forward process. GlusterFS will help with creating and maintaining high-availability clusters for data storage and redundancy. You can find more information on GlusterFS and tool usage from the [official documentation pages.](https://docs.gluster.org/en/latest/)
