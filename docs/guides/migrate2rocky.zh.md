@@ -9,42 +9,42 @@ update: 11-23-2021
 
 ## 所需的条件与假设
 
-* 运行着Centos、Alma Linux、RHEL或者Oracle Linux的硬件服务器或VPS，它们的版本统一为8.5。
-* 了解Linux的命令行知识
-* 了解SSH远程知识
-* 温和的冒险态度
-* 所有的命令都应该以 root 身份运行。要么以 root 身份登陆，要么每次输入命令行前键入"sudo"
+* 运行着 Centos、Alma Linux、RHEL或者Oracle Linux的硬件服务器或VPS， 当前支持的版本为8.5。
+* 了解Linux的命令行知识。
+* 了解SSH远程知识。
+* 轻度冒险的态度。
+* 所有的命令都应该以 root 身份运行。 要么以 root 身份登陆，要么每次输入命令行前键入"sudo"。
 
-## 介绍
+## 引言
 
-在本指南中，您将学习如何将上面列出的所有发行版操作系统转换为功能齐全的Rocky Linux，这可能是在各种情况下迁移到Rocky Linux的最佳方法之一。
+在本指南中，您将学习如何将上面列出的所有发行版操作系统转换为功能齐全的Rocky Linux。 这可能是在各种情况下迁移到Rocky Linux的最佳方法之一，也是针对不同情况的人最方便的。
 
-例如，一些服务器提供商在一段时间内默认不支持Rocky Linux ；或者您可能在生产环境下有一台服务器，希望在不重新安装所有内容的情况下，将其转换为Rocky Linux。
+例如，一些服务器提供商在默认情况下暂时不支持Rocky Linux。 或者您可能在生产环境下有一台服务器，希望在不重新安装所有内容的情况下，将其转换为Rocky Linux。
 
 是的，我们为您准备了工具 [migrate2rocky](https://github.com/rocky-linux/rocky-tools/tree/main/migrate2rocky)
 
-这是一个脚本，当执行时，会将您的存储库更改为Rocky Linux的存储库，软件包将根据需要进行安装和升级/降级。
+这是一个脚本，当执行时，会将您的存储库更改为Rocky Linux的存储库， 软件包将根据需要进行安装和升级/降级，所有操作系统的品牌也将发生变化。
 
-如果您是新手系统管理员，别担心，我们会尽可能的保持此脚本界面的友好性。是的，就像命令行那样的友好。
+如果您是新手系统管理员，别担心，我们会尽可能的保持此脚本界面的友好性。 是的，就像命令行那样的友好。
 
 ### 注意事项与警告
 
-1. 请查看  migrate2rocky 的 README 页面（上面链接），希望您知道列出的已知问题。随着时间的推移，我们很可能会发现（并最终修复）更多的冲突与不兼容性。
-2. 此脚本最有可能在全新安装时正常工作。**如果要在实际的生产环境下使用，请先做好数据备份以及系统快照，或者在临时的测试环境中进行。**
+1. 请查看 migrate2rocky 的 README 页面（上面链接），因为脚本和Katello的存储库之间存在已知冲突。 随着时间的推移，我们很可能会发现（并最终修复）更多的冲突与不兼容性，尤其对于生成服务器，您需要了解这些。
+2. 此脚本最有可能在全新安装时正常工作。 _如果要在实际的生产环境下使用，**请先做好数据备份以及系统快照，或者首先在临时的测试环境中进行。 **_
 
-准备好了吗？让我们开始吧！
+确定？ 准备好了吗？ 让我们开始吧！
 
 ## 准备你的服务器
 
-您可以通过多种方式从存储库中获取脚本文件。
+您需要从存储库中获取实际的脚本文件， 可以通过多种方式做到这一点。
 
 ### 手动方式
 
-从 GitHub 下载压缩文件并提取您需要的文件（即 *migrate2rocky.sh*）。您可以在存储库主页的右侧找到这个zip 文件：
+从 GitHub 下载压缩文件并提取您需要的文件（即 *migrate2rocky.sh*）。 您可以在存储库主页的右侧找到这个zip 文件：
 
-![The "Download Zip" button](images/migrate2rocky-github-zip.png)
+!["Download Zip"按钮](images/migrate2rocky-github-zip.png)
 
-然后，通过在本地计算机上运行以下命令，使用`scp`命令将可执行文件上传到您的服务器：
+然后，通过在本地计算机上运行以下命令，使用ssh将可执行文件上传到服务器：
 
 ```
 scp PATH/TO/FILE/migrate2rocky.sh root@yourdomain.com:/home/
@@ -54,23 +54,23 @@ scp PATH/TO/FILE/migrate2rocky.sh root@yourdomain.com:/home/
 
 ### git方式
 
-首先在您的服务器上安装git：
+在您的服务器上安装git：
 
 ```
-shell > dnf install git
+dnf install git
 ```
 
-clone克隆远程库：
+克隆rocky-tools存储库：
 
 ```
-shell > git clone https://github.com/rocky-linux/rocky-tools.git
+git clone https://github.com/rocky-linux/rocky-tools.git
 ```
 
-注:这种方式将下载rocky-tools远程库的所有脚本与文件
+注: 这种方式将下载rocky-tools存储库的所有脚本与文件
 
 ### 简单但不太安全的方式
 
-这不一定是最好的方式，但胜在简单，存在一定的安全性问题，希望您知道。
+好吧，从安全角度来说，这不一定是最好的做法。 但是，这是获取脚本的最简单方法。
 
 运行以下命令将脚本下载到您当前所在的目录下：
 
@@ -78,34 +78,34 @@ shell > git clone https://github.com/rocky-linux/rocky-tools.git
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
 ```
 
-该命令会将文件直接下载到您的服务器，并且*只*会下载您想要的文件。但同样还需要说明的是——有一些安全问题表明这不一定是最好的做法，所以要记住这一点。
+该命令会将文件直接下载到您的服务器，并且*只*会下载您想要的文件。 但同样，出于安全考虑，这并不一定是最佳做法，所以请记住这一点。
 
 ## 执行脚本与安装
 
 使用`cd`命令切换到脚本所在的目录，确认该文件是可执行的，给脚本文件的所有者赋予 x 的权限。
 
 ```
-shell > chmod u+x migrate2rocky.sh
+chmod u+x migrate2rocky.sh
 ```
 
-现在，执行脚本与对应选项
+现在，终于可以执行脚本了：
 
 ```
-shell > ./migrate2rocky.sh -r
+./migrate2rocky.sh -r
 ```
 
 "-r" 选项表示安装所有内容
 
-如果您做对了，终端窗口看起来像这样：
+如果您做的一切都是正确的，那么您的终端窗口应该看起来有点像这样：
 
-![a successful script startup](images/migrate2rocky-convert-01.png)
+![成功启动脚本](images/migrate2rocky-convert-01.png)
 
-现在，脚本需要一段时间来转换所有内容，具体取决于实际机器的硬件性能与网络连接情况。
+现在，脚本需要一段时间来转换所有内容，具体取决于实际机器/服务器的硬件性能与网络连接情况。
 
 如果您最后看到 **Complete!** 消息，则表示一切正常，重启服务器即可。
 
-![a successful OS migration message](images/migrate2rocky-convert-02.png)
+![一个成功的 OS 迁移消息](images/migrate2rocky-convert-02.png)
 
-给它一定的时间重启，重新登录，键入 `hostnamectl`即可检查您的操作系统是否一切正常的迁移。
+给它一些时间，重新登录，你应该有一个漂亮的新的Rocky Linux服务器来玩wi... 我的意思是做非常严肃的工作。 给它一定的时间重启，重新登录，键入 `hostnamectl`即可检查您的操作系统是否一切正常的迁移。
 
-![The results of the hostnamectl command](images/migrate2rocky-convert-03.png)
+![hostnamectl命令的结果](images/migrate2rocky-convert-03.png)
