@@ -30,5 +30,5 @@ connection.autoconnect : The setting and property (<setting>.<property>)
 
 ## Notes
 
-This tip shows how to modify an existing NetworkManager connection profile.  This is useful when the network interface does not automatically get activated after a fresh Rocky Linux installation or system update. 
+This tip shows how to modify an existing NetworkManager connection profile. This is useful when the network interface does not automatically get activated after a fresh Rocky Linux installation or system update. 
 The reason for this is often because the value of autoconnect property is set to `no`. You can use the `nmcli` command to quickly change the value to `yes`.  
