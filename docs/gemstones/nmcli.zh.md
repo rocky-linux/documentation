@@ -11,7 +11,7 @@ author: wale soyinka
 nmcli -f name,autoconnect connection 
 ```
 
-要更改网络连接的属性值，请使用 `nmcli connect` 的子命令 `modify`。 例如，要将 `ens3` 网卡的配置中的自动连接属性值 从 `no` 改为 `yes`，输入：
+要更改网络连接的属性值，请使用 `nmcli connect` 的子命令 `modify`。 例如，要将 `ens3` 网卡的配置中的自动连接属性值从 `no` 改为 `yes`，输入：
 
 ```
 sudo nmcli con mod ens3 connection.autoconnect yes
