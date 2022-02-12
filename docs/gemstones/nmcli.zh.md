@@ -29,4 +29,4 @@ connection.autoconnect :  设置项和要更改的属性 (<setting>.<property>)
 
 ## 说明
 
-这篇提示说明了修改现存的 NetworkManager 连接文件的方法。  当网络接口在新的Rocky Linux安装或系统更新后没有自动激活时，这很有用。 没有自动激活网络接口的原因往往是 autoconnect 属性值被设置为 `no`。 您可以使用 `nmcli` 命令快速将值更改为 `yes`。  
+这篇提示说明了修改现存的 NetworkManager 连接文件的方法。 当网络接口在新的Rocky Linux安装或系统更新后没有自动激活时，这很有用。 没有自动激活网络接口的原因往往是 autoconnect 属性值被设置为 `no`。 您可以使用 `nmcli` 命令快速将值更改为 `yes`。  
