@@ -4,7 +4,7 @@
 
 * Un server Rocky Linux
 * Competenza con un editor a riga di comando (stiamo usando _vi_ in questo esempio)
-* Un livello di comfort elevato con l'emissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
+* Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
 * Una comprensione dei database _mariadb-server_ è utile
 * Tutti i comandi sono eseguiti come utente root o _sudo_
 
@@ -61,7 +61,7 @@ root user without the proper authorisation.
 Set root password? [Y/n] 
 ```
 
-È' assolutamente _necessario_ avere una password di root impostata. Dovrete capire cosa dovrebbe essere e documentarlo in un gestore di password da qualche parte in modo da poterlo richiamare se necessario. Iniziate premendo 'Enter' per accettare il valore predefinito "Y". Questo farà apparire la finestra di dialogo della password:
+È' assolutamente _necessario_ avere una password di root impostata. Dovrete capire cosa dovrebbe essere e documentarlo in un gestore di password da qualche parte in modo da poterlo richiamare se necessario. Iniziate premendo 'Invio' per accettare il valore predefinito "Y". Questo farà apparire la finestra di dialogo della password:
 
 ```
 New password: 
