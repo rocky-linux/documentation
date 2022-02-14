@@ -63,7 +63,7 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
 #### Minix
 
-* **1987**: AS Tanenbaum sviluppa MINIX, un UNIX semplificato, per insegnare i sistemi operativi in modo semplice. Mr.
+* **1987**: Andrew S. Tanenbaum sviluppa MINIX, un UNIX semplificato, per insegnare i sistemi operativi in modo semplice. Il signor Tanenbaum rende disponibile il codice sorgente del suo sistema operativo.
 
 #### Linux
 
