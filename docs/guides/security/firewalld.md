@@ -1,15 +1,13 @@
 ---
 title: firewalld
 author: Steven Spencer
-contributors: wsoyinka, Ezequiel Bruni
-update: 10-Feb-2022
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni
+update: 14-Feb-2022
 ---
 
 # `iptables` Guide To `firewalld` - Introduction
 
-Ever since `firewalld` came out as the default firewall (I believe this was with CentOS 7, even though it was introduced in 2011), I've made it my mission in life to return to `iptables` at all costs. There were two reasons for this. First, the documentation that was available at the time used simplistic rules that did not properly show how the server was being secured *down to the IP level*.
-
-Second, and probably the primary reason, I had a long history with `iptables` going back many years, and it was frankly easier to just continue using `iptables`. Every server I deployed, whether it was public facing or internal, used an `iptables` firewall rule set. It was easy to simply adjust a default set of rules for the server we were dealing with and deploy. In order to do this on CentOS 7, CentOS 8, and now Rocky Linux 8, I needed to use [this procedure](enabling_iptables_firewall.md).
+Ever since `firewalld` came out as the default firewall (I believe this was with CentOS 7, even though it was introduced in 2011), I've made it my mission in life to return to `iptables` at all costs. There were two reasons for this. First, the documentation that was available at the time used simplistic rules that did not properly show how the server was being secured *down to the IP level*. Second, and probably the primary reason: I had a long history with `iptables` going back many years, and it was frankly easier to just continue using `iptables`. Every server I deployed, whether it was public facing or internal, used an `iptables` firewall rule set. It was easy to simply adjust a default set of rules for the server we were dealing with and deploy. In order to do this on CentOS 7, CentOS 8, and now Rocky Linux 8, I needed to use [this procedure](enabling_iptables_firewall.md).
 
 So why am I writing this document? First, to address the limitations of most `firewalld` references and, second, to force myself to find ways to use `firewalld` to mimic those more granular firewall rules.
 
@@ -97,7 +95,7 @@ Before this zone can actually be used, we need to reload the firewall:
 
 ### Listing Zones
 
-Before we go any further, we need to take a look at the process of listing zones. Rather than a tabular output provided by `iptables -L` listing, you get a single column of output with headers. Listing a zone is done with the command `firewall-cmd --zone=[zone_name] --list-all`. Here's what this looks like when we list out the newly created "admin" zone:
+Before we go any further, we need to take a look at the process of listing zones. Rather than a tabular output provided by `iptables -L`, you get a single column of output with headers. Listing a zone is done with the command `firewall-cmd --zone=[zone_name] --list-all`. Here's what this looks like when we list out the newly created "admin" zone:
 
 `firewall-cmd --zone=admin --list-all`
 
@@ -128,7 +126,7 @@ We also want to remove the service ssh from the zone:
 
 `firewall-cmd --zone=trusted --remove-service ssh`
 
-Then test. You want to make sure that you have a way in via `ssh` from another zone before doing the final two steps. (See **Warning** below!).
+Then test. You want to make sure that you have a way in via `ssh` from another zone before doing the final two steps. (See **Warning** below!). If you've made no other changes, then the "public" zone will still have ssh allowed, as it is there by default.
 
 Once you are satisfied, move the runtime rules to permanent:
 
@@ -157,7 +155,16 @@ Now list the zone to make sure that the zone looks correct and has the service p
 
 `firewall-cmd --zone=admin --list-all`
 
-Test your rule to make sure it works, and then move the runtime rules to permanent:
+Test your rule to make sure it works. To test:
+
+1. SSH as root from your source IP (above it is 192.168.1.122) (*the root user is used here because we are going to run commands on the host that require it*)
+2. Once connected, run `tail /var/log/secure`  and you should get output that looks similar to this:
+
+```bash
+Feb 14 22:02:34 serverhostname sshd[9805]: Accepted password for root from 192.168.1.122 port 42854 ssh2
+Feb 14 22:02:34 serverhostname sshd[9805]: pam_unix(sshd:session): session opened for user root by (uid=0)
+```
+This shows that the source IP for our SSH connection was indeed the same IP that we just added to the "admin" zone. So we should be safe to move this rule permanent:
 
 `firewall-cmd --runtime-to-permanent`
 
@@ -179,7 +186,9 @@ If you have more than one administrative IP that you need to add (quite likely),
 
     Keep in mind that if you are working on a remote server or VPS, and have an internet connection that doesn't always use the same IP, you may want to open your `ssh` service to a range of IP addresses used by your internet service provider or geographical region. This, again, is so you don't get locked out by your own firewall.
 
-    Many ISPs charge extra for dedicated IP adresses, if they're offered at all, so it's a real concern.
+    Many ISPs charge extra for dedicated IP addresses, if they're offered at all, so it's a real concern.
+
+    The examples here assume that you are using IPs on your own private network to access a server that is also local.
 
 ## ICMP Rules
 
@@ -333,7 +342,7 @@ trusted (active)
   icmp-block-inversion: no
   interfaces:
   sources: 192.168.1.0/24
-  services:
+  services: dns
   ports:
   protocols:
   forward: no
@@ -425,7 +434,7 @@ There are a great many `firewall-cmd` options not covered here, but this gives y
 
 ## Conclusion
 
-Since `firewalld` is the recommended and included firewall with Rocky Linux, it is a good idea to get your head around how it  works. Simplistic rules, included in documentation for applying services using `firewalld` often do not take into account what the server is being used for, and offer no options other than publicly allowing the service. This is a drawback that comes with security holes that just don't need to be there.
+Since `firewalld` is the recommended and included firewall with Rocky Linux, it is a good idea to get your head around how it works. Simplistic rules, included in documentation for applying services using `firewalld` often do not take into account what the server is being used for, and offer no options other than publicly allowing the service. This is a drawback that comes with security holes that just don't need to be there.
 
 When you see these instructions, think about what your server is being used for and whether or not the service in question needs to be open to the world. If not, consider using more granularity in your rules as described above. While the author still isn't 100% commfortable with switching over to `firewalld`, it is highly probable that I'll use `firewalld` in future documentation.
 
