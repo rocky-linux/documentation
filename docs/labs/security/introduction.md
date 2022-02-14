@@ -6,8 +6,7 @@ title: Introduction
 
 A fictitious company (called Example Incorporated) is the subject for designing the labs. Example Incorporated has offices all over the world. Example Incorporated makes widgets. The company has all the usual bells and whistles that a modern company requires to conduct its business. 
 
-The Example Organization has Networked Branch offices, with computers which perform
-different roles. Some computers are workstations, some are firewalls, and some are servers (file servers, web servers, mail servers, database servers, application servers, dialup servers, etcetera). 
+The Example Organization has Networked Branch offices, with computers which perform different roles. Some computers are workstations, some are firewalls, and some are servers (file servers, web servers, mail servers, database servers, application servers, dialup servers, etcetera). 
 
 And of most significant importance to us in this manual – the company has administrators administer/manage the computers. You, The Reader, will be the administrator at one of the branch offices.
 
