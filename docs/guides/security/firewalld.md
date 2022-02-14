@@ -51,6 +51,22 @@ To really get your head around `firewalld`, you need to understand the use of zo
 To list existing zones on your system, type:
 
 `firewall-cmd --get-zones`
+!!! Warning
+
+    Remember to check the status of your firewall, if the `firewalld-cmd` returns you an error, with either:
+
+    the command firewall-cmd:
+
+    ```
+    $ firewall-cmd --state
+    running
+    ```
+
+    the systemctl command:
+
+    ```
+    $ systemctl status firewalld
+    ```
 
 To be honest, I mostly hate the names of these zones. Drop, block, public, and trusted are perfectly clear, but some aren't good enough for perfect granular security. Let's take this `iptables` rule section as an example:
 
