@@ -122,6 +122,7 @@ You can list out the active zones on your system by using this command:
 !!! Note "Important: Active Zones"
 
     A zone can *only* be in an active state if it has one of these two conditions:
+    
     1. The zone is assigned to a network interface
     2. The zone is assigned source IPs or network ranges.
 
