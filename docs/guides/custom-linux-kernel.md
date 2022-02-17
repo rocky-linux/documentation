@@ -12,7 +12,9 @@ In this guide, we’ll walk through the process of acquiring a kernel source tre
 Most often, when people say _Linux_, they are usually referring to a "_Linux distribution_" —for example, Rocky Linux and Debian are types of Linux distribution. A distribution comprises everything necessary to get Linux to exist as a functional operating system. 
 Distributions make use of code from various open source projects that are independent of Linux.
 
-Linux is The kernel. The kernel literarily seats right at the heart of the [operating system] matter. The only thing more fundamental than the kernel is the system hardware itself. 
+Linux is The kernel. The kernel literarily seats right at the heart of the [operating system] matter. 
+
+The only thing more fundamental than the kernel is the system hardware itself. 
 Although the kernel is a small part of a complete Linux distribution, it is by far the most critical element. If the kernel fails or crashes, the rest of the system goes with it. 
 
 
@@ -21,12 +23,14 @@ Although the kernel is a small part of a complete Linux distribution, it is by f
 The Rocky Linux distribution has the source code for the specific kernel version it supports available in one form or another. These could be in the form of a compiled binary (*.src.rpm), a source RPM (*.srpm), or the like.
 
 If you need to download a different (possibly newer) version than the one your specific Rocky Linux distro provides, the first place to look for the source code is at the official kernel web site:
-www.kernel.org. 
+
+www.kernel.org 
 
 This site maintains a listing of web sites mirroring the kernel source, as well as tons of other open source software, distributions and general-purpose utilities. 
 
-The list of mirrors is maintained at :
-http://mirrors.kernel.org. 
+The list of mirrors is maintained at:
+
+http://mirrors.kernel.org
 
 !!! TIP 
 
@@ -35,7 +39,7 @@ However, the final steps that require actual installation or altering of system 
 
 We are able to do most of the work as an unprivileged user because we will be using a special kernel build option, which allows us to specify a custom working or output directory. Specifically, we’ll use the O=~/build/kernel option for all applicable invocations of make. 
 
-Where ~/build/kernel is equivalent to /home/<username>/build/kernel or  $HOME/build/kernel
+Where `~/build/kernel` is equivalent to `/home/$USER/build/kernel` or  `$HOME/build/kernel`
 
 ## Kernel versions and naming conventions
 
