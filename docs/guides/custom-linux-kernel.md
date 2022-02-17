@@ -30,7 +30,7 @@ This site maintains a listing of web sites mirroring the kernel source, as well 
 
 The list of mirrors is maintained at:
 
-http://mirrors.kernel.org
+[mirrors.kernel.org](http://mirrors.kernel.org)
 
 !!! TIP 
 
@@ -207,7 +207,8 @@ Use the arrow keys to navigate down to NTFS debugging support (NEW) and then pre
 Use the arrow keys to navigate down to NTFS write support and then press y to include it.
 When you are done, the letter M or an asterisk symbol (*) should appear beside each option, like the ones shown here:
 
-*** please insert new Il02-kernel.png  illustration here.
+![Kernel Configuration File Systems screen](images/Il02-kernel.png)
+
 
 !!! TIP
 
