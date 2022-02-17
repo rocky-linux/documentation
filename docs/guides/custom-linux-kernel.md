@@ -9,7 +9,9 @@ In this guide, we’ll walk through the process of acquiring a kernel source tre
 
 # The Kernel
 
-Most often, when people say “Linux,” they are usually referring to a “Linux distribution”—for example, Rocky Linux and Debian are types of Linux distribution. A distribution comprises everything necessary to get Linux to exist as a functional operating system. Distributions make use of code from various open source projects that are independent of Linux.
+Most often, when people say _Linux_, they are usually referring to a "_Linux distribution_" —for example, Rocky Linux and Debian are types of Linux distribution. A distribution comprises everything necessary to get Linux to exist as a functional operating system. 
+Distributions make use of code from various open source projects that are independent of Linux.
+
 Linux is The kernel. The kernel literarily seats right at the heart of the [operating system] matter. The only thing more fundamental than the kernel is the system hardware itself. 
 Although the kernel is a small part of a complete Linux distribution, it is by far the most critical element. If the kernel fails or crashes, the rest of the system goes with it. 
 
@@ -84,7 +86,7 @@ Let’s begin the process.
 ```
 2. The kernel source that you will download from the Internet is a file that has been compressed and tarred. Therefore, to use the source, you need to decompress and untar the source file. Make sure you are in the directory that download the Kernel tarball into. Use the tar command to unpack and decompress the file, by running:
 ```
-       tar xvJf linux-5.*.tar.xz
+tar xvJf linux-5.*.tar.xz
 ```
 
 # Building the Kernel
@@ -96,7 +98,7 @@ The Linux design philosophy allows the individual to decide on the important par
 Two main steps are required in building a kernel: 
 
 - configuring
- - compiling 
+- compiling 
 
 The first step in building the kernel is configuring its features. Usually, your desired feature list will be based on whatever hardware you need to support. This, of course, means that you’ll need a list of that hardware.
        
@@ -110,16 +112,17 @@ With a rough idea of the types of hardware and features that our new kernel need
 The Linux kernel source tree contains several files named Makefile (a makefile is simply a text file with directives and it also describes the relationships among the files in a program). 
        These makefiles help to glue together the thousands of other files that make up the kernel source. What is more important to us here is that the makefiles also contain targets. The targets are the commands, or directives, that are executed by the make program.
 
-!!! Tip
+!!! Caution
        
 ### Avoid Needless Kernel Upgrades
 Bear in mind that if you have a working system that is stable and well behaved, there is little reason to upgrade the kernel unless one of these conditions holds for you:
-
-    - A security or bug fix affects your system and must be applied
-    - You need a specific new feature in a stable release
        
- In the case of a security fix, decide whether the risk really affects you—for example, if the security issue is found in a device driver that you don’t use, then there may be no reason to upgrade. In the case of a bug fix release, read carefully through the release notes and decide if the bugs really affect you—if you have a stable system, upgrading the kernel with patches you never use may be pointless. 
-       On production systems, the kernel shouldn’t simply be upgraded just to have “the latest kernel”; you should have a truly compelling reason to upgrade.
+- A security or bug fix affects your system and must be applied
+- You need a specific new feature in a stable release
+       
+In the case of a security fix, decide whether the risk really affects you—for example, if the security issue is found in a device driver that you don’t use, then there may be no reason to upgrade. In the case of a bug fix release, read carefully through the release notes and decide if the bugs really affect you—if you have a stable system, upgrading the kernel with patches you never use may be pointless. 
+
+On production systems, the kernel shouldn’t simply be upgraded just to have “the latest kernel”; you should have a truly compelling reason to upgrade.
 
 
 The Makefile in the root of the kernel source tree contains specific targets that can be used in prepping the kernel build environment, configuring the kernel, compiling the kernel, installing the kernel, and so on. Some of the targets are discussed in more detail here:
@@ -167,7 +170,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
 
 We use `uname -r` here to help us obtain the configuration file for the running kernel. The uname -r command prints the running kernel’s release. Using it helps ensure that we are getting the exact version we want, just in case other versions are present.
 
-NOTE!!!
+!!! NOTE
        
 The Linux kernel configuration editor specifically starts up looking for, and ends up generating, a file named .config (pronounced “dot config”) at the root of the kernel source tree. This file is hidden.
 
@@ -187,6 +190,7 @@ The main body of the screen shows an expandable tree-structured list of the over
 And finally, the bottom of the screen displays the actual actions/options that the user can choose.
 
 3. Next, for demonstration purposes we’ll add support for NTFS into our custom kernel.
+
 While at the main configuration screen, use your arrow keys to navigate to and highlight the File systems item. With File systems selected, press enter to view the sub-menu or child items for File systems.
 In the File Systems section, use your arrow keys to navigate to DOS/FAT/NT Filesystems. Press enter to see the child items for DOS/FAT/NT Filesystems.
 
@@ -224,17 +228,22 @@ sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config
 ```
 
 !!! TIP
-       To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example to view the effect of the NTFS file system support that we enabled previously, type the following:
+
+To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example to view the effect of the NTFS file system support that we enabled previously, type the following:
+```
 >  grep NTFS ~/build/kernel/.config
 CONFIG_NTFS_FS=m
 CONFIG_NTFS_DEBUG=y
 CONFIG_NTFS_RW=y
-
+```
 
 !!! NOTE
 
 ### A Quick Note on Kernel Modules
-Loadable module support is a Linux kernel feature that allows the dynamic loading (or removal) of kernel modules. Kernel modules are pieces of compiled code that can be dynamically inserted into the running kernel, rather than being permanently built into the kernel. Features not often used can thus be enabled, but they won’t occupy any room in memory when they aren’t being used.
+Loadable module support is a Linux kernel feature that allows the dynamic loading (or removal) of kernel modules.
+
+Kernel modules are pieces of compiled code that can be dynamically inserted into the running kernel, rather than being permanently built into the kernel. Features not often used can thus be enabled, but they won’t occupy any room in memory when they aren’t being used.
+
 Thankfully, the Linux kernel can automatically determine what to load and when. Naturally, not every feature is eligible to be compiled as a module. The kernel must know a few things before it can load and unload modules, such as how to access the hard disk and parse through the file system where the loadable modules are stored. Some kernel modules are also commonly referred to as drivers.
        
 
@@ -248,24 +257,24 @@ The compilation stage of the kernel-building process is by far the easiest, but 
        
 Because of the amount of code that needs to be compiled, be prepared to wait a few minutes, at the very least, depending on the processing power of your system. Let’s dig into the specific steps required to compile your new kernel.
    
-   1. First we’ll add an extra piece to the identification string for the kernel we are about to build. While still in the root of the kernel source tree, we’ll use the sed utility edit the Makefile in place. The variable we want to change is close to the top of the file. 
-       We want to change the line in the file that looks like this:
+1. First we’ll add an extra piece to the identification string for the kernel we are about to build. While still in the root of the kernel source tree, we’ll use the sed utility edit the Makefile in place. The variable we want to change is close to the top of the file. 
+We want to change the line in the file that looks like this:
 
 ```
 EXTRAVERSION =
 To this:
 EXTRAVERSION = -custom
-       ```
+```
 
 Use the following sed command to make the change. Type:
 
 ```
-       sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
-       ```
+sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
+```
 
 Of course you can also use any text editor that you are comfortable with to make the change. Just remember to save your changes to the file!
-       
-    2. Pass the kernelversion target to the make command to view the full version of the kernel that you just customized:
+
+2. Pass the kernelversion target to the make command to view the full version of the kernel that you just customized:
 
 ```
 > make O=~/build/kernel kernelversion
@@ -274,10 +283,12 @@ Of course you can also use any text editor that you are comfortable with to make
 !!! Tip
        
 You can take advantage of all that extra processing power (CPUs, cores and so on) on most modern systems and greatly speed up CPU-intensive operations like compiling the kernel. To do this, you can pass a parameter to the make command that specifies the number of jobs to run simultaneously. The specified number of jobs are then distributed and executed simultaneously on each CPU core. The syntax for the command is:
+
 ```
        > make -j N
 ```
        where N is the number of jobs to run simultaneously. For example, if you have a octa (8) core–capable CPU, you can type:
+
 ```
        > make -j 8
 ```
@@ -313,17 +324,26 @@ make[1]: Leaving directory '/home/super/build/kernel'
 ```
 
 On our Rocky system, this command will install all the compiled kernel modules into the /lib/modules/<new_kernel-version> directory. In this example, this path will translate to  /lib/modules/5.16.9-custom/. This is the path from which the kernel will load all loadable modules, as needed.
-TIP The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result you could easily end up with a  /lib/modules/5.16.9-custom/ directory that is close to  5GB in size! For this guide we avoid this large size by including the INSTALL_MOD_STRIP=1 option in our make modules_install invocation. You can reduce the total size by orders of magnitude (For example - less than 200 MB!!) by stripping away these debugging symbols.  This can be done by including the INSTALL_MOD_STRIP=1 option to the make modules_install command.
+
+!!! TIP
+ 
+The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result you could easily end up with a `/lib/modules/5.16.9-custom/` directory that is close to  5GB in size! 
+
+For this guide we avoid this large size by including the INSTALL_MOD_STRIP=1 option in our make modules_install invocation. You can reduce the total size by orders of magnitude (For example - less than 200 MB!!) by stripping away these debugging symbols.  
+
+This can be done by including the `INSTALL_MOD_STRIP=1` option to the `make modules_install` command.
 
 ## Installing the Kernel
        
-Assuming you have a PC and are working out of the ~/build/kernel/ directory, the compiled kernel that was created in the previous exercise will be located in this path - <kernel-build-dir>/arch/x86/boot/bzImage or, to be precise, in our example  ~/build/kernel/arch/x86/boot/bzImage.
+Assuming you have a PC and are working out of the `~/build/kernel/` directory, the compiled kernel that was created in the previous exercise will be located in this path - `<kernel-build-dir>/arch/x86/boot/bzImage` or, to be precise, in our example  `~/build/kernel/arch/x86/boot/bzImage`.
        
 The corresponding map file for this will be located at ~/build/kernel/System.map. You’ll need both files for the install phase.
        
-The System.map file is useful when the kernel is misbehaving and generating “Oops” messages. An “Oops” is generated on some kernel errors because of kernel bugs or faulty hardware. This error is akin to the Blue Screen of Death (BSOD) in Microsoft Windows. These messages include a lot of detail about the current state of the system, including several hexadecimal numbers. 
+The System.map file is useful when the kernel is misbehaving and generating “Oops” messages. An “Oops” is generated on some kernel errors because of kernel bugs or faulty hardware. 
+
+This error is akin to the Blue Screen of Death (BSOD) in Microsoft Windows. These messages include a lot of detail about the current state of the system, including several hexadecimal numbers. 
        
-       System.map gives Linux a chance to turn those hexadecimal numbers into readable names, making debugging easier. Although this is mostly for the benefit of developers, it can be handy when you’re reporting a problem.
+System.map gives Linux a chance to turn those hexadecimal numbers into readable names, making debugging easier. Although this is mostly for the benefit of developers, it can be handy when you’re reporting a problem.
        
 Let’s go through the steps required to install the new kernel image.
 
@@ -351,27 +371,35 @@ The decision to name the kernel image vmlinuz-5.16.9-custom is somewhat arbitrar
 > sudo cp -v  ~/build/kernel/System.map \
  /boot/System.map-5.16.9-custom
 ```
-    3. With the kernel in place, the System.map file in place, and the modules in place, we are now ready for the final step. The syntax for the command needed is:
+
+3. With the kernel in place, the System.map file in place, and the modules in place, we are now ready for the final step. The syntax for the command needed is:
+
 ```
 > kernel-install add   <kernel-version>  <kernel-image>
-```
-Here, <kernel-version> is the version number (and name) of the kernel. And <kernel-image> is the path to the newly compiled kernel image. For our example, type:
 
-       ```
+```
+Here, <kernel-version> is the version number (and name) of the kernel. And <kernel-image> is the path to the newly compiled kernel image. 
+
+For our example, type:
+
+```
 > sudo kernel-install \ 
 add  5.16.9-custom /boot/vmlinuz-5.16.9-custom
 ```
        
 The kernel-install command used here is a nifty little shell script. It might not be available in every Linux distribution, but it is available in newer Fedora, RHEL, CentOS distros. This tool automates a lot of the final manual things we’d ordinarily have to do to set up the system to boot the new kernel we just built.
        
-       In particular, the tool does the following:
+In particular, the tool does the following:
        
-    • It creates the appropriate initial RAM file system image (the initramfs image—that is, the /boot/initramfs-<kernel-version>.img file).
-       
+- It creates the appropriate initial RAM file system image (the initramfs image—that is, the /boot/initramfs-<kernel-version>.img file).
 To do this manually on systems where kernel-install is not available, use the mkinitramfs command.
-    • It runs the depmod command (which creates a list of module dependencies).
-    • It updates the boot loader configuration.
-For systems running the newer versions of GRUB2, the file will be /boot/grub2/grub.cfg. For EFI based systems /boot/efi/<distro>/fedora/grub.cfg is also updated. And for systems running the legacy versions of GRUB, this will be the /boot/grub/grub.conf or /boot/grub/menu.lst file. And for very new distros that have implemented the new Boot Loader Specification (BLS) a new boot loader entry will be added to the /boot/loader/entries/  directory or any directory pointed to by the variable named "blsdir".
+- It runs the depmod command (which creates a list of module dependencies).
+- It updates the boot loader configuration.
+
+For systems running the newer versions of GRUB2, the file will be `/boot/grub2/grub.cfg`. For EFI based systems /boot/efi/<distro>/fedora/grub.cfg is also updated. 
+
+And for systems running the legacy versions of GRUB, this will be the /boot/grub/grub.conf or /boot/grub/menu.lst file. And for very new distros that have implemented the new Boot Loader Specification (BLS) a new boot loader entry will be added to the /boot/loader/entries/  directory or any directory pointed to by the variable named "blsdir".
+
 On our demo EFI based Rocky server running GRUB 2 using BLS, a new boot entry is created in the boot loader file located here: `/boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-5.16.9-custom.conf`
 
 ```
@@ -394,7 +422,7 @@ Most distros, have several grub2-* utilities readily available that can be used 
 ## Booting the Kernel
 The next stage is to test the new kernel to make sure that the system can indeed boot with it.
        
-    1. Assuming you did everything the exact way that the doctor prescribed and that everything worked out exactly as the doctor said it would, you can safely reboot the system and select the new kernel from the boot loader menu during system bootup:
+1. Assuming you did everything the exact way that the doctor prescribed and that everything worked out exactly as the doctor said it would, you can safely reboot the system and select the new kernel from the boot loader menu during system bootup:
 
 ```
 >  sudo reboot
@@ -417,4 +445,4 @@ description:    NTFS 1.2/3.x driver - Copyright …..
 ...<OUTPUT TRUNCATED>...
 ```
 
-And that’s it !!
+And that’s it !
