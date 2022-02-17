@@ -33,6 +33,7 @@ The list of mirrors is maintained at:
 
 [mirrors.kernel.org](http://mirrors.kernel.org)
 
+- - - -
 !!! TIP 
 
 The majority of the downloading, configuring and compiling of the Linux kernel done in the following sections can/should be done as an unprivileged user. 
@@ -41,6 +42,7 @@ However, the final steps that require actual installation or altering of system 
 We are able to do most of the work as an unprivileged user because we will be using a special kernel build option, which allows us to specify a custom working or output directory. Specifically, we’ll use the `O=~/build/kernel` option for all applicable invocations of make. 
 
 Where `~/build/kernel` is equivalent to `/home/$USER/build/kernel` or  `$HOME/build/kernel`
+- - - -
 
 ## Kernel versions and naming conventions
 
