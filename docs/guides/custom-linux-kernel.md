@@ -2,7 +2,6 @@
 title: Building and Installing Custom Linux Kernels
 author: wale soyinka
 update: 17-Feb-2022
-
 ---
 
 
