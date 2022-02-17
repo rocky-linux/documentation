@@ -4,10 +4,11 @@ author: wale soyinka
 update: 17-Feb-2022
 ---
 
-
-# The Kernel
-
+# Overview
 In this guide, we’ll walk through the process of acquiring a kernel source tree, configuring it, compiling it, and, finally, installing and booting the kernel.
+
+
+## The Kernel
 
 Most often, when people say _Linux_, they are usually referring to a "_Linux distribution_" —for example, Rocky Linux and Debian are types of Linux distribution. A distribution comprises everything necessary to get Linux to exist as a functional operating system. 
 Distributions make use of code from various open source projects that are independent of Linux.
@@ -49,7 +50,7 @@ The current convention is to name and number major new kernel releases as “Lin
        
 Any minor changes or updates within each major release version will be reflected by increments to the third digit. These are commonly referred to as stable point releases. Thus, the next stable point release for the 5.0.0 series kernel will be Linux version 5.0.1, followed by version 5.0.2, and so forth. Another way of stating this is to say, for example, that Linux version 5.0.4 is the fourth stable release based on the Linux 5.0.0 series.
 
-# Installing prerequisite tools and libraries 
+## Installing prerequisite tools and libraries 
 
 A common source of failure encountered during the kernel build process may be caused by not having all the requisite software available for compiling and building the mainline Linux Kernel.  The missing tools and libraries can be installed using the DNF package manager on a Rocky Linux distro. We’ll take care of this in this section.
 
@@ -95,7 +96,7 @@ Make sure you are in the directory that download the Kernel tarball into. Use th
 tar xvJf linux-5.*.tar.xz
 ```
 
-# Building the Kernel
+## Building the Kernel
 
 In this section, we’re going to review the process of configuring and building a kernel. This is in contrast to macOS or Windows-based operating systems, which come preconfigured and therefore contain support for many features you may or may not want.
 
@@ -114,7 +115,7 @@ On a system that is already running Linux, you can run commands like – lspci, 
 
 Having a better understanding of what constitutes your underlying hardware can help you better determine what you need in your custom kernel. You’re ready to start configuring the kernel.
 
-## Preparing to Configure the Kernel
+### Preparing to Configure the Kernel
 
 With a rough idea of the types of hardware and features that our new kernel needs to support, we can begin the actual configuration. But first, some background information.
 The Linux kernel source tree contains several files named Makefile (a makefile is simply a text file with directives and it also describes the relationships among the files in a program). 
@@ -154,7 +155,7 @@ But before beginning the actual kernel configuration, you should clean (prepare)
 > **make  O=~/build/kernel mrproper**
 ```
 
-## Kernel Configuration
+### Kernel Configuration
        
 Next, we will step through the process of configuring a Linux 5.* series kernel. To explore some of the innards of this process, we will enable the support of a specific feature that we’ll pretend is a MUST have feature on the system. Once you understand how this works, you can apply the same procedure to add support for any other new kernel feature that you want. Specifically, we’ll enable support for the NTFS file system into our custom kernel.
        
@@ -254,7 +255,7 @@ Kernel modules are pieces of compiled code that can be dynamically inserted into
 Thankfully, the Linux kernel can automatically determine what to load and when. Naturally, not every feature is eligible to be compiled as a module. The kernel must know a few things before it can load and unload modules, such as how to access the hard disk and parse through the file system where the loadable modules are stored. Some kernel modules are also commonly referred to as drivers.
        
 
-## Compiling the Kernel
+### Compiling the Kernel
        
 In the preceding section, we walked through the process of creating a configuration file for the custom kernel that we want to build. In this section, we will perform the actual build of the kernel. But before doing this, we will add one more simple customization to the entire process.
 
@@ -430,7 +431,7 @@ grub_class kernel
 
 Most distros, have several grub2-* utilities readily available that can be used for performing various GRUB2 and boot loader house keeping tasks. For example you can use the grub2-set-default command to change or set the default kernel to be booted at system startup.
 
-## Booting the Kernel
+## Booting the custom Kernel
 The next stage is to test the new kernel to make sure that the system can indeed boot with it.
        
 1. Assuming you did everything the exact way that the doctor prescribed and that everything worked out exactly as the doctor said it would, you can safely reboot the system and select the new kernel from the boot loader menu during system bootup:
