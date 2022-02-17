@@ -1,7 +1,8 @@
 ---
 Title: Installazione di Rocky Linux
-contributors: tianci li, Steven Spencer, Colussi Franco
-updated: 01-15-2022
+author: tianci li, Steven Spencer, Colussi Franco
+contributors: 01-15-2022
+updated: 12-22-2021
 ---
 
 # Installazione di Rocky Linux
