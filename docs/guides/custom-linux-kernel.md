@@ -122,14 +122,15 @@ Bear in mind that if you have a working system that is stable and well behaved, 
 
 
 The Makefile in the root of the kernel source tree contains specific targets that can be used in prepping the kernel build environment, configuring the kernel, compiling the kernel, installing the kernel, and so on. Some of the targets are discussed in more detail here:
+
        
-    • **make mrproper** This target cleans up the build environment of any stale files and dependencies that might have been left over from a previous kernel build. All previous kernel configurations will be cleaned (deleted) from the build environment.
-    • **make clean** This target does not do as thorough a job as the mrproper target. It deletes only most generated files. It does not delete the kernel configuration file (.config).
-    • **make menuconfig** This target invokes a text-based editor interface with menus, option lists, and text-based dialog boxes for configuring the kernel.
-    • **make xconfig** This is a GUI based kernel configuration tool/target that relies on the Qt graphical development libraries. These libraries are used by KDE/Plasma-based applications.
-    • **make gconfig** This is also a GUI  based kernel configuration tool/target, but it relies on the GTK+  toolkit. This GTK toolkit is heavily used in the GNOME desktop world.
-    • **make olddefconfig** This target uses the existing .config file in the current working directory, updates the dependencies, and automatically sets new symbols to their default values.
-    • **make help** This target will show you all the other possible make targets and also serves as a quick online help system.
+   - **make mrproper** This target cleans up the build environment of any stale files and dependencies that might have been left over from a previous kernel build. All previous kernel configurations will be cleaned (deleted) from the build environment.
+    - **make clean** This target does not do as thorough a job as the mrproper target. It deletes only most generated files. It does not delete the kernel configuration file (.config).
+    - **make menuconfig** This target invokes a text-based editor interface with menus, option lists, and text-based dialog boxes for configuring the kernel.
+    - **make xconfig** This is a GUI based kernel configuration tool/target that relies on the Qt graphical development libraries. These libraries are used by KDE/Plasma-based applications.
+    - **make gconfig** This is also a GUI  based kernel configuration tool/target, but it relies on the GTK+  toolkit. This GTK toolkit is heavily used in the GNOME desktop world.
+    - **make olddefconfig** This target uses the existing .config file in the current working directory, updates the dependencies, and automatically sets new symbols to their default values.
+    - **make help** This target will show you all the other possible make targets and also serves as a quick online help system.
 
 To configure the kernel in this section, we will use only one of the targets. In particular, we will use the make menuconfig command. The menuconfig kernel config editor is a simple and popular text-based configuration utility that consists of menus, radio button lists, and dialogs.  
        
