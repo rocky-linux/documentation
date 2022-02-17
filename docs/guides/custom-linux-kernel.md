@@ -24,7 +24,7 @@ The Rocky Linux distribution has the source code for the specific kernel version
 
 If you need to download a different (possibly newer) version than the one your specific Rocky Linux distro provides, the first place to look for the source code is at the official kernel web site:
 
-www.kernel.org 
+(www.kernel.org)[https://www.kernel.org] 
 
 This site maintains a listing of web sites mirroring the kernel source, as well as tons of other open source software, distributions and general-purpose utilities. 
 
@@ -37,7 +37,7 @@ The list of mirrors is maintained at:
 The majority of the downloading, configuring and compiling of the Linux kernel done in the following sections can/should be done as an unprivileged user. 
 However, the final steps that require actual installation or altering of system files and binaries need to be done with elevated privileges. 
 
-We are able to do most of the work as an unprivileged user because we will be using a special kernel build option, which allows us to specify a custom working or output directory. Specifically, we’ll use the O=~/build/kernel option for all applicable invocations of make. 
+We are able to do most of the work as an unprivileged user because we will be using a special kernel build option, which allows us to specify a custom working or output directory. Specifically, we’ll use the `O=~/build/kernel` option for all applicable invocations of make. 
 
 Where `~/build/kernel` is equivalent to `/home/$USER/build/kernel` or  `$HOME/build/kernel`
 
@@ -60,20 +60,20 @@ A common source of failure encountered during the kernel build process may be ca
 2. Some other libraries, header files and applications that you might need can also be obtained by installing the following packages. Type:
 
 ```
-> sudo dnf -y install \
-ncurses-devel openssl-devel elfutils-libelf-devel python3
+> **sudo dnf -y install \
+ncurses-devel openssl-devel elfutils-libelf-devel python3**
 ```
 
 3. Finally, we need some other utilities that are only available in some supported 3rd party repositories. One of such repositories is the Powertools repo. Let’s enable that repo on our Rocky system. Type:
 
 ```
-> sudo dnf config-manager --set-enabled powertools
+> **sudo dnf config-manager --set-enabled powertools**
 ```
     
 4. Finally, let’s install one of the needed packages from the Powertool repo. Type:
   
 ```
-> sudo  dnf -y install dwarves 
+> **sudo  dnf -y install dwarves **
 ```
 
 That’s it for the prerequisite packages needed for actual Kernel building! 
@@ -86,9 +86,11 @@ Let’s begin the process.
 
 1. First, use the following curl command to download the needed kernel source into your current working directory. Type:
 ```
-       curl -L -o linux-5.16.9.tar.xz \ https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz
+**curl -L -o linux-5.16.9.tar.xz \ https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz**
 ```
-2. The kernel source that you will download from the Internet is a file that has been compressed and tarred. Therefore, to use the source, you need to decompress and untar the source file. Make sure you are in the directory that download the Kernel tarball into. Use the tar command to unpack and decompress the file, by running:
+2. The kernel source that you will download from the Internet is a file that has been compressed and tarred. Therefore, to use the source, you need to decompress and untar the source file. 
+
+Make sure you are in the directory that download the Kernel tarball into. Use the tar command to unpack and decompress the file, by running:
 ```
 tar xvJf linux-5.*.tar.xz
 ```
@@ -97,7 +99,9 @@ tar xvJf linux-5.*.tar.xz
 
 In this section, we’re going to review the process of configuring and building a kernel. This is in contrast to macOS or Windows-based operating systems, which come preconfigured and therefore contain support for many features you may or may not want.
 
-The Linux design philosophy allows the individual to decide on the important parts of the kernel.This individualized design has the important benefit of letting you thin down the feature list so that Linux can run as efficiently as possible. This is also one of the reasons why it is possible to customize Linux to run in various hardware setups, from low-end systems, to embedded systems, to high-end systems. 
+The Linux design philosophy allows the individual to decide on the important parts of the kernel.This individualized design has the important benefit of letting you thin down the feature list so that Linux can run as efficiently as possible. 
+
+This is also one of the reasons why it is possible to customize Linux to run in various hardware setups, from low-end systems, to embedded systems, to high-end systems. 
 
 Two main steps are required in building a kernel: 
 
@@ -125,12 +129,10 @@ Bear in mind that if you have a working system that is stable and well behaved, 
 - You need a specific new feature in a stable release
        
 In the case of a security fix, decide whether the risk really affects you—for example, if the security issue is found in a device driver that you don’t use, then there may be no reason to upgrade. In the case of a bug fix release, read carefully through the release notes and decide if the bugs really affect you—if you have a stable system, upgrading the kernel with patches you never use may be pointless. 
-
 On production systems, the kernel shouldn’t simply be upgraded just to have “the latest kernel”; you should have a truly compelling reason to upgrade.
 
 
 The Makefile in the root of the kernel source tree contains specific targets that can be used in prepping the kernel build environment, configuring the kernel, compiling the kernel, installing the kernel, and so on. Some of the targets are discussed in more detail here:
-
        
 - **make mrproper** This target cleans up the build environment of any stale files and dependencies that might have been left over from a previous kernel build. All previous kernel configurations will be cleaned (deleted) from the build environment.
 - **make clean** This target does not do as thorough a job as the mrproper target. It deletes only most generated files. It does not delete the kernel configuration file (.config).
@@ -148,8 +150,8 @@ We need to change (cd) into the kernel source directory, after which we can begi
 But before beginning the actual kernel configuration, you should clean (prepare) the kernel build environment by using the make mrproper command:
 
 ```
-> cd linux-5.*
-> make  O=~/build/kernel mrproper
+> **cd linux-5.***
+> **make  O=~/build/kernel mrproper**
 ```
 
 ## Kernel Configuration
@@ -169,7 +171,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
  1. To begin, we’ll copy over and rename the preexisting config file from the /boot directory into our kernel build environment:
 
 ```
-> cp /boot/config-`uname -r` ~/build/kernel/.config
+> **cp /boot/config-`uname -r` ~/build/kernel/.config**
 ```
 
 We use `uname -r` here to help us obtain the configuration file for the running kernel. The uname -r command prints the running kernel’s release. Using it helps ensure that we are getting the exact version we want, just in case other versions are present.
@@ -181,7 +183,7 @@ The Linux kernel configuration editor specifically starts up looking for, and en
 2. Launch the graphical kernel configuration utility:
 
 ```       
-> make O=~/build/kernel menuconfig
+> **make O=~/build/kernel menuconfig**
 ```
 
 A screen similar to this will appear:
@@ -229,14 +231,14 @@ You are almost ready to build your kernel!
 9. We need to complete a few more customizations on our Rocky distro. Type:
 
 ```
-sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config
+**sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config**
 ```
 
 !!! TIP
 
 To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example to view the effect of the NTFS file system support that we enabled previously, type the following:
 ```
->  grep NTFS ~/build/kernel/.config
+>  **grep NTFS ~/build/kernel/.config**
 CONFIG_NTFS_FS=m
 CONFIG_NTFS_DEBUG=y
 CONFIG_NTFS_RW=y
@@ -267,14 +269,18 @@ We want to change the line in the file that looks like this:
 
 ```
 EXTRAVERSION =
+```
+
 To this:
+
+```
 EXTRAVERSION = -custom
 ```
 
 Use the following sed command to make the change. Type:
 
 ```
-sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
+**sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile**
 ```
 
 Of course you can also use any text editor that you are comfortable with to make the change. Just remember to save your changes to the file!
@@ -282,7 +288,7 @@ Of course you can also use any text editor that you are comfortable with to make
 2. Pass the kernelversion target to the make command to view the full version of the kernel that you just customized:
 
 ```
-> make O=~/build/kernel kernelversion
+> **make O=~/build/kernel kernelversion**
 ```
 
 !!! Tip
@@ -290,18 +296,18 @@ Of course you can also use any text editor that you are comfortable with to make
 You can take advantage of all that extra processing power (CPUs, cores and so on) on most modern systems and greatly speed up CPU-intensive operations like compiling the kernel. To do this, you can pass a parameter to the make command that specifies the number of jobs to run simultaneously. The specified number of jobs are then distributed and executed simultaneously on each CPU core. The syntax for the command is:
 
 ```
-       > make -j N
+> **make -j N**
 ```
        where N is the number of jobs to run simultaneously. For example, if you have a octa (8) core–capable CPU, you can type:
 
 ```
-       > make -j 8
+**> make -j 8**
 ```
        
 3. The only command that is needed here to compile the kernel is the make command:
 
 ```
-> make  O=~/build/kernel
+> **make  O=~/build/kernel**
 make[1]: Entering directory '/home/super/build/kernel'
   SYNC    include/config/auto.conf.cmd
   GEN     Makefile
@@ -325,7 +331,7 @@ make[1]: Leaving directory '/home/super/build/kernel'
 5. Because we compiled portions of the kernel as modules (for example, the NTFS module), we need to install the modules. Type the following:
 
 ```
->  sudo make O=~/build/kernel modules_install
+>  **sudo make O=~/build/kernel modules_install**
 ```
 
 On our Rocky system, this command will install all the compiled kernel modules into the /lib/modules/<new_kernel-version> directory. In this example, this path will translate to  /lib/modules/5.16.9-custom/. This is the path from which the kernel will load all loadable modules, as needed.
@@ -355,15 +361,15 @@ Let’s go through the steps required to install the new kernel image.
 1. While in the root of your kernel build directory, copy and rename the bzImage file into the /boot directory:
 
 ```
-> sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
-/boot/vmlinuz-<kernel-version>
+> **sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
+/boot/vmlinuz-<kernel-version>**
 ```
 
 Here, kernel-version is the version number of the kernel. For the sample kernel we are using in this guide, the filename would be vmlinuz-5.16.9-custom. So here’s the exact command for this example:
 
 ```
-> sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
-/boot/vmlinuz-5.16.9-custom
+> **sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
+/boot/vmlinuz-5.16.9-custom**
 ```
 
 !!! Note
@@ -373,8 +379,8 @@ The decision to name the kernel image vmlinuz-5.16.9-custom is somewhat arbitrar
 2. Now that the kernel image is in place, copy over and rename the corresponding System.map file into the /boot directory using the same naming convention:
 
 ```
-> sudo cp -v  ~/build/kernel/System.map \
- /boot/System.map-5.16.9-custom
+> **sudo cp -v  ~/build/kernel/System.map \
+ /boot/System.map-5.16.9-custom**
 ```
 
 3. With the kernel in place, the System.map file in place, and the modules in place, we are now ready for the final step. The syntax for the command needed is:
@@ -388,8 +394,8 @@ Here, <kernel-version> is the version number (and name) of the kernel. And <kern
 For our example, type:
 
 ```
-> sudo kernel-install \ 
-add  5.16.9-custom /boot/vmlinuz-5.16.9-custom
+> **sudo kernel-install \ 
+add  5.16.9-custom /boot/vmlinuz-5.16.9-custom**
 ```
        
 The kernel-install command used here is a nifty little shell script. It might not be available in every Linux distribution, but it is available in newer Fedora, RHEL, CentOS distros. This tool automates a lot of the final manual things we’d ordinarily have to do to set up the system to boot the new kernel we just built.
@@ -408,7 +414,7 @@ And for systems running the legacy versions of GRUB, this will be the /boot/grub
 On our demo EFI based Rocky server running GRUB 2 using BLS, a new boot entry is created in the boot loader file located here: `/boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-5.16.9-custom.conf`
 
 ```
-> sudo cat  /boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-5.16.9-custom.conf
+> **sudo cat  /boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-5.16.9-custom.conf**
 title Rocky Linux (5.16.9-custom) 8.5 (Green Obsidian)
 version 5.16.9-custom
 linux /vmlinuz-5.16.9-custom
@@ -430,24 +436,25 @@ The next stage is to test the new kernel to make sure that the system can indeed
 1. Assuming you did everything the exact way that the doctor prescribed and that everything worked out exactly as the doctor said it would, you can safely reboot the system and select the new kernel from the boot loader menu during system bootup:
 
 ```
->  sudo reboot
+>  **sudo reboot**
 ```
 
 2. After the system boots up, you can use the uname command to find out the name of the current kernel:
 
 ```
->  uname -r
+>  **uname -r**
 5.16.9-custom
 ```
 
 3. You will recall that one of the features that we added to our new kernel is the ability to support the NTFS file system. Make sure that the new kernel does indeed have support for NTFS by displaying information about the NTFS module:
 ```
-[rockstar ~]$ modinfo ntfs
+[rockstar ~]$ **modinfo ntfs**
 filename:       /lib/modules/5.16.9-custom/kernel/fs/ntfs/ntfs.ko
 license:        GPL
 version:        2.1.32
 description:    NTFS 1.2/3.x driver - Copyright …..
 ...<OUTPUT TRUNCATED>...
+       
 ```
 
 And that’s it !
