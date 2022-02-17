@@ -114,8 +114,9 @@ The Linux kernel source tree contains several files named Makefile (a makefile i
        
 ### Avoid Needless Kernel Upgrades
 Bear in mind that if you have a working system that is stable and well behaved, there is little reason to upgrade the kernel unless one of these conditions holds for you:
-    • A security or bug fix affects your system and must be applied
-    • You need a specific new feature in a stable release
+
+    - A security or bug fix affects your system and must be applied
+    - You need a specific new feature in a stable release
        
  In the case of a security fix, decide whether the risk really affects you—for example, if the security issue is found in a device driver that you don’t use, then there may be no reason to upgrade. In the case of a bug fix release, read carefully through the release notes and decide if the bugs really affect you—if you have a stable system, upgrading the kernel with patches you never use may be pointless. 
        On production systems, the kernel shouldn’t simply be upgraded just to have “the latest kernel”; you should have a truly compelling reason to upgrade.
@@ -125,7 +126,9 @@ The Makefile in the root of the kernel source tree contains specific targets tha
 
        
    - **make mrproper** This target cleans up the build environment of any stale files and dependencies that might have been left over from a previous kernel build. All previous kernel configurations will be cleaned (deleted) from the build environment.
+       
     - **make clean** This target does not do as thorough a job as the mrproper target. It deletes only most generated files. It does not delete the kernel configuration file (.config).
+       
     - **make menuconfig** This target invokes a text-based editor interface with menus, option lists, and text-based dialog boxes for configuring the kernel.
     - **make xconfig** This is a GUI based kernel configuration tool/target that relies on the Qt graphical development libraries. These libraries are used by KDE/Plasma-based applications.
     - **make gconfig** This is also a GUI  based kernel configuration tool/target, but it relies on the GTK+  toolkit. This GTK toolkit is heavily used in the GNOME desktop world.
