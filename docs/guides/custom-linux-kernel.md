@@ -106,7 +106,7 @@ Having a better understanding of what constitutes your underlying hardware can h
 
 ## Preparing to Configure the Kernel
 
-       With a rough idea of the types of hardware and features that our new kernel needs to support, we can begin the actual configuration. But first, some background information.
+With a rough idea of the types of hardware and features that our new kernel needs to support, we can begin the actual configuration. But first, some background information.
 The Linux kernel source tree contains several files named Makefile (a makefile is simply a text file with directives and it also describes the relationships among the files in a program). 
        These makefiles help to glue together the thousands of other files that make up the kernel source. What is more important to us here is that the makefiles also contain targets. The targets are the commands, or directives, that are executed by the make program.
 
@@ -123,20 +123,20 @@ Bear in mind that if you have a working system that is stable and well behaved, 
 
 The Makefile in the root of the kernel source tree contains specific targets that can be used in prepping the kernel build environment, configuring the kernel, compiling the kernel, installing the kernel, and so on. Some of the targets are discussed in more detail here:
        
-    • make mrproper This target cleans up the build environment of any stale files and dependencies that might have been left over from a previous kernel build. All previous kernel configurations will be cleaned (deleted) from the build environment.
-    • make clean This target does not do as thorough a job as the mrproper target. It deletes only most generated files. It does not delete the kernel configuration file (.config).
-    • make menuconfig This target invokes a text-based editor interface with menus, option lists, and text-based dialog boxes for configuring the kernel.
-    • make xconfig This is a GUI based kernel configuration tool/target that relies on the Qt graphical development libraries. These libraries are used by KDE/Plasma-based applications.
-    • make gconfig This is also a GUI  based kernel configuration tool/target, but it relies on the GTK+  toolkit. This GTK toolkit is heavily used in the GNOME desktop world.
-    • make olddefconfig This target uses the existing .config file in the current working directory, updates the dependencies, and automatically sets new symbols to their default values.
-    • make help This target will show you all the other possible make targets and also serves as a quick online help system.
+    • **make mrproper** This target cleans up the build environment of any stale files and dependencies that might have been left over from a previous kernel build. All previous kernel configurations will be cleaned (deleted) from the build environment.
+    • **make clean** This target does not do as thorough a job as the mrproper target. It deletes only most generated files. It does not delete the kernel configuration file (.config).
+    • **make menuconfig** This target invokes a text-based editor interface with menus, option lists, and text-based dialog boxes for configuring the kernel.
+    • **make xconfig** This is a GUI based kernel configuration tool/target that relies on the Qt graphical development libraries. These libraries are used by KDE/Plasma-based applications.
+    • **make gconfig** This is also a GUI  based kernel configuration tool/target, but it relies on the GTK+  toolkit. This GTK toolkit is heavily used in the GNOME desktop world.
+    • **make olddefconfig** This target uses the existing .config file in the current working directory, updates the dependencies, and automatically sets new symbols to their default values.
+    • **make help** This target will show you all the other possible make targets and also serves as a quick online help system.
 
 To configure the kernel in this section, we will use only one of the targets. In particular, we will use the make menuconfig command. The menuconfig kernel config editor is a simple and popular text-based configuration utility that consists of menus, radio button lists, and dialogs.  
        
-       It has a simple and clean interface that can be easily navigated with your keyboard and is almost intuitive to use. 
+It has a simple and clean interface that can be easily navigated with your keyboard and is almost intuitive to use. 
        
-       We need to change (cd) into the kernel source directory, after which we can begin the kernel configuration. 
-       But before beginning the actual kernel configuration, you should clean (prepare) the kernel build environment by using the make mrproper command:
+We need to change (cd) into the kernel source directory, after which we can begin the kernel configuration. 
+But before beginning the actual kernel configuration, you should clean (prepare) the kernel build environment by using the make mrproper command:
 
 ```
 > cd linux-5.*
@@ -158,17 +158,22 @@ Using a known, preexisting config file as a framework for creating our own custo
 The following steps cover how to configure the kernel. We will be using a text-based kernel configuration utility, which will allow you to follow along in your terminal regardless of whether you are using a GUI desktop environment or not.
  
  1. To begin, we’ll copy over and rename the preexisting config file from the /boot directory into our kernel build environment:
+
 ```
-       > cp /boot/config-`uname -r` ~/build/kernel/.config
+> cp /boot/config-`uname -r` ~/build/kernel/.config
 ```
-       We use `uname -r` here to help us obtain the configuration file for the running kernel. The uname -r command prints the running kernel’s release. Using it helps ensure that we are getting the exact version we want, just in case other versions are present.
+
+We use `uname -r` here to help us obtain the configuration file for the running kernel. The uname -r command prints the running kernel’s release. Using it helps ensure that we are getting the exact version we want, just in case other versions are present.
 
 NOTE!!!
        
 The Linux kernel configuration editor specifically starts up looking for, and ends up generating, a file named .config (pronounced “dot config”) at the root of the kernel source tree. This file is hidden.
 
 2. Launch the graphical kernel configuration utility:
+
+```       
 > make O=~/build/kernel menuconfig
+```
 
 A screen similar to this will appear:
 
@@ -184,8 +189,11 @@ While at the main configuration screen, use your arrow keys to navigate to and h
 In the File Systems section, use your arrow keys to navigate to DOS/FAT/NT Filesystems. Press enter to see the child items for DOS/FAT/NT Filesystems.
 
 4. In the DOS/FAT/NT Filesystems section, navigate to NTFS file system support.
+
 Type M (uppercase) to enable support for the NTFS file system via modules.
+
 Use the arrow keys to navigate down to NTFS debugging support (NEW) and then press y to include it.
+
 Use the arrow keys to navigate down to NTFS write support and then press y to include it.
 When you are done, the letter M or an asterisk symbol (*) should appear beside each option, like the ones shown here:
 
@@ -193,7 +201,9 @@ When you are done, the letter M or an asterisk symbol (*) should appear beside e
 
 !!! TIP
 
-For each of the configurable options, in the kernel configuration utility, empty angle parentheses, <>, indicates that the feature in question is disabled. The letter M in angle parentheses, <M>, indicates that the feature is to be compiled as a module. And the asterisk symbol in angle parentheses, <*>, indicates that support for the feature will be directly built into the kernel. You can usually toggle through all the possible options using the spacebar on your keyboard.
+For each of the configurable options, in the kernel configuration utility, empty angle parentheses, <>, indicates that the feature in question is disabled. The letter M in angle parentheses, <M>, indicates that the feature is to be compiled as a module. 
+
+And the asterisk symbol in angle parentheses, <*>, indicates that support for the feature will be directly built into the kernel. You can usually toggle through all the possible options using the spacebar on your keyboard.
 
 5. Navigate back to the parent File Systems screen by pressing the esc key twice on your keyboard in the DOS/FAT/NT Filesystems screen.
 Return to the main kernel configuration screen by pressing esc twice again on your keyboard.
