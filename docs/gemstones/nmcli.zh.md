@@ -11,7 +11,7 @@ author: wale soyinka
 nmcli -f name,autoconnect connection 
 ```
 
-要更改网络连接的属性值，请使用 `nmcli connect` 的子命令 `modify`。 例如，要将 `ens3` 网卡的配置中的自动连接属性值 从 `no` 改为 `yes`，输入：
+要更改网络连接的属性值，请使用 `nmcli connect` 的子命令 `modify`。 例如，要将 `ens3` 连接配置文件中的 autoconnect 属性值从 `no` 改为 `yes`，输入：
 
 ```
 sudo nmcli con mod ens3 connection.autoconnect yes
@@ -29,4 +29,4 @@ connection.autoconnect :  设置项和要更改的属性 (<setting>.<property>)
 
 ## 说明
 
-这篇提示说明了修改现存的 NetworkManager 的连接档案的方法。  在刚刚安装 Rocky Linux 或收到系统更新后，网络接口不会自动被激活的情况下，本篇提示是非常有用的。 该问题的原因往往是自动连接属性的值被设置为 `no`。 您可以使用 `nmcli` 命令快速将值更改为 `yes`。  
+这篇提示说明了修改现存的 NetworkManager 连接配置文件的方法。 当网络接口在新的Rocky Linux安装或系统更新后没有自动激活时，这很有用。 没有自动激活网络接口的原因往往是 autoconnect 属性值被设置为 `no`。 您可以使用 `nmcli` 命令快速将值更改为 `yes`。  

@@ -64,7 +64,7 @@ O UNIX ainda é relevante nos dias de hoje (HP-UX, AIX, Solaris, etc.)
 
 #### Minix
 
-* **Complexidade**: :star: **1987**: A.S. Tanenbaum desenvolve MINIX, um UNIX simplificado, com o intuito de ensinar os sistemas operacionais de uma forma simples. O Sr. Tanenbaum disponibiliza o código fonte do seu sistema operacional.
+* **Complexidade**: :star: **1987**: A.S. Tanenbaum desenvolve MINIX, um UNIX simplificado, com o intuito de ensinar os sistemas operacionais de uma forma simples.
 
 #### Linux
 
