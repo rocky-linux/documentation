@@ -91,7 +91,8 @@ Let’s begin the process.
 
 1. First, use the following curl command to download the needed kernel source into your current working directory. Type:
 ```
-curl -L -o linux-5.16.9.tar.xz \ https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz
+curl -L -o linux-5.16.9.tar.xz \ 
+https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz
 ```
 2. The kernel source that you will download from the Internet is a file that has been compressed and tarred. Therefore, to use the source, you need to decompress and untar the source file. 
 
@@ -119,11 +120,13 @@ On a system that is already running Linux, you can run commands like – lspci, 
 
 Having a better understanding of what constitutes your underlying hardware can help you better determine what you need in your custom kernel. You’re ready to start configuring the kernel.
 
-### Preparing to Configure the Kernel
+### Sanitizing the build environment
 
 With a rough idea of the types of hardware and features that our new kernel needs to support, we can begin the actual configuration. But first, some background information.
+
 The Linux kernel source tree contains several files named Makefile (a makefile is simply a text file with directives and it also describes the relationships among the files in a program). 
-       These makefiles help to glue together the thousands of other files that make up the kernel source. What is more important to us here is that the makefiles also contain targets. The targets are the commands, or directives, that are executed by the make program.
+
+These makefiles help to glue together the thousands of other files that make up the kernel source. What is more important to us here is that the makefiles also contain targets. The targets are the commands, or directives, that are executed by the make program.
 
 - - - -
 !!! Caution
@@ -166,8 +169,8 @@ But before beginning the actual kernel configuration, you should clean (prepare)
 Next, we will step through the process of configuring a Linux 5.* series kernel. To explore some of the innards of this process, we will enable the support of a specific feature that we’ll pretend is a MUST have feature on the system. Once you understand how this works, you can apply the same procedure to add support for any other new kernel feature that you want. Specifically, we’ll enable support for the NTFS file system into our custom kernel.
        
 Most modern Linux distros ship with a kernel configuration file for the running kernel available on the local file system as a compressed or regular file. On our sample Rocky system, this file resides in the /boot directory and is usually named something like config-4.*. 
-       
-       The configuration file contains a list of the options and features that were enabled for the particular kernel it represents. A config file similar to this one is what we aim to create through the process of configuring the kernel. The only difference between the file we’ll create and the ready-made one is that we will add further minor customization to ours.
+
+The configuration file contains a list of the options and features that were enabled for the particular kernel it represents. A config file similar to this one is what we aim to create through the process of configuring the kernel. The only difference between the file we’ll create and the ready-made one is that we will add further minor customization to ours.
 
 - - - -
 !!! TIP
@@ -201,9 +204,9 @@ The Linux kernel configuration editor specifically starts up looking for, and en
 
 A screen similar to this will appear:
 
-**** please insert new illustration Il01-kernel.png here ****
+**** ws needs to insert new illustration Il01-kernel.png here ****
 
-    The kernel configuration screen that appears is divided into roughly three areas.
+The kernel configuration screen that appears is divided into roughly three areas.
 The top part shows various helpful information, keyboard shortcuts, and legends that can help you navigate the application.
 The main body of the screen shows an expandable tree-structured list of the overall configurable kernel options. You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items.
 And finally, the bottom of the screen displays the actual actions/options that the user can choose.
@@ -236,11 +239,11 @@ And the asterisk symbol in angle parentheses, <*>, indicates that support for th
 5. Navigate back to the parent File Systems screen by pressing the esc key twice on your keyboard in the DOS/FAT/NT Filesystems screen.
 Return to the main kernel configuration screen by pressing esc twice again on your keyboard.
 
-    6. Finally, save your changes to the .config file in the root of your kernel source tree and exit the kernel configuration application after saving the file by pressing esc twice again on your keyboard.
+6. Finally, save your changes to the .config file in the root of your kernel source tree and exit the kernel configuration application after saving the file by pressing esc twice again on your keyboard.
 
-       7. A dialog box will appear prompting you to save your new configuration. Make sure that Yes is selected and then press enter.
+7. A dialog box will appear prompting you to save your new configuration. Make sure that Yes is selected and then press enter.
     
-       8. After the kernel configuration utility exits, you will be thrown back to your shell—inside the kernel source tree.
+8. After the kernel configuration utility exits, you will be thrown back to your shell—inside the kernel source tree.
 You are almost ready to build your kernel!
 
 9. We need to complete a few more customizations on our Rocky distro. Type:
