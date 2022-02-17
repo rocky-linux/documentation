@@ -25,7 +25,7 @@ The Rocky Linux distribution has the source code for the specific kernel version
 
 If you need to download a different (possibly newer) version than the one your specific Rocky Linux distro provides, the first place to look for the source code is at the official kernel web site:
 
-(www.kernel.org)[https://www.kernel.org] 
+[www.kernel.org](https://www.kernel.org) 
 
 This site maintains a listing of web sites mirroring the kernel source, as well as tons of other open source software, distributions and general-purpose utilities. 
 
@@ -55,39 +55,41 @@ Any minor changes or updates within each major release version will be reflected
 A common source of failure encountered during the kernel build process may be caused by not having all the requisite software available for compiling and building the mainline Linux Kernel.  The missing tools and libraries can be installed using the DNF package manager on a Rocky Linux distro. We’ll take care of this in this section.
 
 1. On a Rocky Lniux distro, you can quickly get most of the necessary development tools installed by running this command:
-
+```
 > sudo dnf -y groupinstall 'C Development Tools and Libraries'
-
+```
 2. Some other libraries, header files and applications that you might need can also be obtained by installing the following packages. Type:
 
 ```
-> **sudo dnf -y install \
-ncurses-devel openssl-devel elfutils-libelf-devel python3**
+> sudo dnf -y install \
+ncurses-devel openssl-devel elfutils-libelf-devel python3
 ```
 
 3. Finally, we need some other utilities that are only available in some supported 3rd party repositories. One of such repositories is the Powertools repo. Let’s enable that repo on our Rocky system. Type:
 
 ```
-> **sudo dnf config-manager --set-enabled powertools**
+> sudo dnf config-manager --set-enabled powertools
 ```
     
 4. Finally, let’s install one of the needed packages from the Powertool repo. Type:
   
 ```
-> **sudo  dnf -y install dwarves **
+> sudo  dnf -y install dwarves
 ```
 
 That’s it for the prerequisite packages needed for actual Kernel building! 
 
 ## Downloading and unpacking the Linux Kernel
 
-The version of the kernel that we are going to build in the following section is version 5.16.9, which is available at www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz.
+The version of the kernel that we are going to build in the following section is version 5.16.9, which is available at:
+
+[www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz](www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz)
        
 Let’s begin the process.
 
 1. First, use the following curl command to download the needed kernel source into your current working directory. Type:
 ```
-**curl -L -o linux-5.16.9.tar.xz \ https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz**
+curl -L -o linux-5.16.9.tar.xz \ https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz
 ```
 2. The kernel source that you will download from the Internet is a file that has been compressed and tarred. Therefore, to use the source, you need to decompress and untar the source file. 
 
@@ -151,8 +153,8 @@ We need to change (cd) into the kernel source directory, after which we can begi
 But before beginning the actual kernel configuration, you should clean (prepare) the kernel build environment by using the make mrproper command:
 
 ```
-> **cd linux-5.***
-> **make  O=~/build/kernel mrproper**
+> cd linux-5.*
+> make  O=~/build/kernel mrproper
 ```
 
 ### Kernel Configuration
@@ -172,7 +174,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
  1. To begin, we’ll copy over and rename the preexisting config file from the /boot directory into our kernel build environment:
 
 ```
-> **cp /boot/config-`uname -r` ~/build/kernel/.config**
+> cp /boot/config-`uname -r` ~/build/kernel/.config
 ```
 
 We use `uname -r` here to help us obtain the configuration file for the running kernel. The uname -r command prints the running kernel’s release. Using it helps ensure that we are getting the exact version we want, just in case other versions are present.
@@ -184,7 +186,7 @@ The Linux kernel configuration editor specifically starts up looking for, and en
 2. Launch the graphical kernel configuration utility:
 
 ```       
-> **make O=~/build/kernel menuconfig**
+> make O=~/build/kernel menuconfig
 ```
 
 A screen similar to this will appear:
@@ -232,14 +234,14 @@ You are almost ready to build your kernel!
 9. We need to complete a few more customizations on our Rocky distro. Type:
 
 ```
-**sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config**
+sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config
 ```
 
 !!! TIP
 
 To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example to view the effect of the NTFS file system support that we enabled previously, type the following:
 ```
->  **grep NTFS ~/build/kernel/.config**
+> grep NTFS ~/build/kernel/.config
 CONFIG_NTFS_FS=m
 CONFIG_NTFS_DEBUG=y
 CONFIG_NTFS_RW=y
@@ -281,7 +283,7 @@ EXTRAVERSION = -custom
 Use the following sed command to make the change. Type:
 
 ```
-**sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile**
+sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
 ```
 
 Of course you can also use any text editor that you are comfortable with to make the change. Just remember to save your changes to the file!
@@ -289,21 +291,23 @@ Of course you can also use any text editor that you are comfortable with to make
 2. Pass the kernelversion target to the make command to view the full version of the kernel that you just customized:
 
 ```
-> **make O=~/build/kernel kernelversion**
+> make O=~/build/kernel kernelversion
 ```
 
+- - - -
 !!! Tip
        
 You can take advantage of all that extra processing power (CPUs, cores and so on) on most modern systems and greatly speed up CPU-intensive operations like compiling the kernel. To do this, you can pass a parameter to the make command that specifies the number of jobs to run simultaneously. The specified number of jobs are then distributed and executed simultaneously on each CPU core. The syntax for the command is:
 
 ```
-> **make -j N**
+> make -j N
 ```
        where N is the number of jobs to run simultaneously. For example, if you have a octa (8) core–capable CPU, you can type:
 
 ```
-**> make -j 8**
+> make -j 8
 ```
+- - - -
        
 3. The only command that is needed here to compile the kernel is the make command:
 
@@ -369,8 +373,8 @@ Let’s go through the steps required to install the new kernel image.
 Here, kernel-version is the version number of the kernel. For the sample kernel we are using in this guide, the filename would be vmlinuz-5.16.9-custom. So here’s the exact command for this example:
 
 ```
-> **sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
-/boot/vmlinuz-5.16.9-custom**
+> sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
+/boot/vmlinuz-5.16.9-custom
 ```
 
 !!! Note
@@ -380,8 +384,8 @@ The decision to name the kernel image vmlinuz-5.16.9-custom is somewhat arbitrar
 2. Now that the kernel image is in place, copy over and rename the corresponding System.map file into the /boot directory using the same naming convention:
 
 ```
-> **sudo cp -v  ~/build/kernel/System.map \
- /boot/System.map-5.16.9-custom**
+> sudo cp -v  ~/build/kernel/System.map \
+ /boot/System.map-5.16.9-custom
 ```
 
 3. With the kernel in place, the System.map file in place, and the modules in place, we are now ready for the final step. The syntax for the command needed is:
@@ -395,8 +399,8 @@ Here, <kernel-version> is the version number (and name) of the kernel. And <kern
 For our example, type:
 
 ```
-> **sudo kernel-install \ 
-add  5.16.9-custom /boot/vmlinuz-5.16.9-custom**
+> sudo kernel-install \ 
+add  5.16.9-custom /boot/vmlinuz-5.16.9-custom
 ```
        
 The kernel-install command used here is a nifty little shell script. It might not be available in every Linux distribution, but it is available in newer Fedora, RHEL, CentOS distros. This tool automates a lot of the final manual things we’d ordinarily have to do to set up the system to boot the new kernel we just built.
@@ -426,10 +430,11 @@ grub_users $grub_users
 grub_arg --unrestricted
 grub_class kernel
 ```
-
+- - - -
 !!! Note
 
 Most distros, have several grub2-* utilities readily available that can be used for performing various GRUB2 and boot loader house keeping tasks. For example you can use the grub2-set-default command to change or set the default kernel to be booted at system startup.
+- - - -
 
 ## Booting the custom Kernel
 The next stage is to test the new kernel to make sure that the system can indeed boot with it.
