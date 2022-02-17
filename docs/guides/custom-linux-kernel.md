@@ -5,9 +5,10 @@ update: 17-Feb-2022
 
 ---
 
-In this guide, we’ll walk through the process of acquiring a kernel source tree, configuring it, compiling it, and, finally, installing and booting the kernel.
 
 # The Kernel
+
+In this guide, we’ll walk through the process of acquiring a kernel source tree, configuring it, compiling it, and, finally, installing and booting the kernel.
 
 Most often, when people say _Linux_, they are usually referring to a "_Linux distribution_" —for example, Rocky Linux and Debian are types of Linux distribution. A distribution comprises everything necessary to get Linux to exist as a functional operating system. 
 Distributions make use of code from various open source projects that are independent of Linux.
