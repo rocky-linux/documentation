@@ -13,7 +13,7 @@ title: Sistema Intrusion Detection System Host-based (HIDS) author: Steven Spenc
 
 ## Introduzione
 
-Se volete usare questo insieme ad altri strumenti per il rafforzamento, fate riferimento al documento [Apache Web Server Rinforzato](index.md). Il presente documento utilizza anche tutte le ipotesi e le convenzioni delineate in tale documento originale, quindi è una buona idea rivederlo prima di continuare.
+Se volete usare questo insieme ad altri strumenti per il rafforzamento, fate riferimento al documento [Apache Web Server Rinforzato](index. md). Il presente documento utilizza anche tutte le ipotesi e le convenzioni delineate in tale documento originale, quindi è una buona idea rivederlo prima di continuare.
 
 Per installare _ossec-hids_, abbiamo bisogno di un repository di terze parti da Atomicorp. Atomicorp offre anche una versione supportata a prezzi ragionevoli per coloro che desiderano un supporto professionale se si trovano in difficoltà.
 
