@@ -125,6 +125,7 @@ With a rough idea of the types of hardware and features that our new kernel need
 The Linux kernel source tree contains several files named Makefile (a makefile is simply a text file with directives and it also describes the relationships among the files in a program). 
        These makefiles help to glue together the thousands of other files that make up the kernel source. What is more important to us here is that the makefiles also contain targets. The targets are the commands, or directives, that are executed by the make program.
 
+- - - -
 !!! Caution
        
 ### Avoid Needless Kernel Upgrades
@@ -135,6 +136,7 @@ Bear in mind that if you have a working system that is stable and well behaved, 
        
 In the case of a security fix, decide whether the risk really affects you—for example, if the security issue is found in a device driver that you don’t use, then there may be no reason to upgrade. In the case of a bug fix release, read carefully through the release notes and decide if the bugs really affect you—if you have a stable system, upgrading the kernel with patches you never use may be pointless. 
 On production systems, the kernel shouldn’t simply be upgraded just to have “the latest kernel”; you should have a truly compelling reason to upgrade.
+- - - -
 
 
 The Makefile in the root of the kernel source tree contains specific targets that can be used in prepping the kernel build environment, configuring the kernel, compiling the kernel, installing the kernel, and so on. Some of the targets are discussed in more detail here:
@@ -167,9 +169,11 @@ Most modern Linux distros ship with a kernel configuration file for the running 
        
        The configuration file contains a list of the options and features that were enabled for the particular kernel it represents. A config file similar to this one is what we aim to create through the process of configuring the kernel. The only difference between the file we’ll create and the ready-made one is that we will add further minor customization to ours.
 
+- - - -
 !!! TIP
        
 Using a known, preexisting config file as a framework for creating our own custom file helps ensure that we don’t waste too much time duplicating the efforts that other people have already put into finding what works and what doesn’t work!
+- - - -
        
 The following steps cover how to configure the kernel. We will be using a text-based kernel configuration utility, which will allow you to follow along in your terminal regardless of whether you are using a GUI desktop environment or not.
  
@@ -181,9 +185,13 @@ The following steps cover how to configure the kernel. We will be using a text-b
 
 We use `uname -r` here to help us obtain the configuration file for the running kernel. The uname -r command prints the running kernel’s release. Using it helps ensure that we are getting the exact version we want, just in case other versions are present.
 
+
+- - - -
 !!! NOTE
        
 The Linux kernel configuration editor specifically starts up looking for, and ends up generating, a file named .config (pronounced “dot config”) at the root of the kernel source tree. This file is hidden.
+- - - -
+
 
 2. Launch the graphical kernel configuration utility:
 
@@ -216,12 +224,14 @@ When you are done, the letter M or an asterisk symbol (*) should appear beside e
 
 ![Kernel Configuration File Systems screen](images/Il02-kernel.png)
 
-
+- - - -
 !!! TIP
 
 For each of the configurable options, in the kernel configuration utility, empty angle parentheses, <>, indicates that the feature in question is disabled. The letter M in angle parentheses, <M>, indicates that the feature is to be compiled as a module. 
 
 And the asterisk symbol in angle parentheses, <*>, indicates that support for the feature will be directly built into the kernel. You can usually toggle through all the possible options using the spacebar on your keyboard.
+- - - -
+
 
 5. Navigate back to the parent File Systems screen by pressing the esc key twice on your keyboard in the DOS/FAT/NT Filesystems screen.
 Return to the main kernel configuration screen by pressing esc twice again on your keyboard.
@@ -239,6 +249,7 @@ You are almost ready to build your kernel!
 sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config
 ```
 
+- - - -
 !!! TIP
 
 To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example to view the effect of the NTFS file system support that we enabled previously, type the following:
@@ -257,7 +268,8 @@ Loadable module support is a Linux kernel feature that allows the dynamic loadin
 Kernel modules are pieces of compiled code that can be dynamically inserted into the running kernel, rather than being permanently built into the kernel. Features not often used can thus be enabled, but they won’t occupy any room in memory when they aren’t being used.
 
 Thankfully, the Linux kernel can automatically determine what to load and when. Naturally, not every feature is eligible to be compiled as a module. The kernel must know a few things before it can load and unload modules, such as how to access the hard disk and parse through the file system where the loadable modules are stored. Some kernel modules are also commonly referred to as drivers.
-       
+- - - -
+
 
 ### Compiling the Kernel
        
