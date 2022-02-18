@@ -344,7 +344,64 @@ First, you can use a "rich rule" to your public zone, and it would look somethin
 
 Once the rich rule is in place, *don't* make the rules permanent yet. First, remove the SSH service from the public zone configuration, and test your connection to make sure you can still access the server via SSH.
 
+Your configuration should now look like this:
+
+```bash
+your@server ~# firewall-cmd --list-all
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: wlp3s0
+  sources:
+  services: cockpit dhcpv6-client
+  ports: 80/tcp 443/tcp
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+        rule family="ipv4" source address="192.168.1.0/24" service name="ssh" accept
+```
+
+
 Secondly, you can use two different zones at a time. If you have your interface bound to the public zone, you can activate a second zone (the "trusted" zone for example) by adding a source IP or IP range to it as shown above. Then, add the SSH service to the trusted zone, and remove it from the public zone.
+
+When you're done, the output should look a bit like this:
+
+```bash
+your@server ~# firewall-cmd --list-all
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: wlp3s0
+  sources:
+  services: cockpit dhcpv6-client
+  ports: 80/tcp 443/tcp
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+your@server ~# firewall-cmd --list-all --zone=trusted
+trusted (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces:
+  sources: 192.168.0.0/24
+  services: ssh
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+```
 
 If you get locked out, restart the server (most VPS control panels have an option for this) and try again.
 
