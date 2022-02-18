@@ -1,7 +1,8 @@
 ---
 title: Building and Installing Custom Linux Kernels
 author: wale soyinka
-update: 17-Feb-2022
+contributors: Steven Spencer
+update: 18-Feb-2022
 ---
 
 # Overview
@@ -33,16 +34,14 @@ The list of mirrors is maintained at:
 
 [mirrors.kernel.org](http://mirrors.kernel.org)
 
-- - - -
+
 !!! TIP
 
-The majority of the downloading, configuring and compiling of the Linux kernel done in the following sections can/should be done as an unprivileged user.
-However, the final steps that require actual installation or altering of system files and binaries need to be done with elevated privileges.
+    The majority of the downloading, configuring and compiling of the Linux kernel done in the following sections can/should be done as an unprivileged user.However, the final steps that require actual installation or altering of system files and binaries need to be done with elevated privileges.
 
-We are able to do most of the work as an unprivileged user because we will be using a special kernel build option, which allows us to specify a custom working or output directory. Specifically, we’ll use the `O=~/build/kernel` option for all applicable invocations of make.
+    We are able to do most of the work as an unprivileged user because we will be using a special kernel build option, which allows us to specify a custom working or output directory. Specifically, we’ll use the `O=~/build/kernel` option for all applicable invocations of make.
 
-Where `~/build/kernel` is equivalent to `/home/$USER/build/kernel` or  `$HOME/build/kernel`
-- - - -
+    Where `~/build/kernel` is equivalent to `/home/$USER/build/kernel` or  `$HOME/build/kernel`
 
 ## Kernel versions and naming conventions
 
@@ -128,19 +127,17 @@ The Linux kernel source tree contains several files named Makefile (a makefile i
 
 These makefiles help to glue together the thousands of other files that make up the kernel source. What is more important to us here is that the makefiles also contain targets. The targets are the commands, or directives, that are executed by the make program.
 
-- - - -
-!!! Caution
 
-### Avoid Needless Kernel Upgrades
-Bear in mind that if you have a working system that is stable and well behaved, there is little reason to upgrade the kernel unless one of these conditions holds for you:
+!!! Caution "Caution: Avoid Needless Kernel Upgrades"
 
-- A security or bug fix affects your system and must be applied
-- You need a specific new feature in a stable release
+    Bear in mind that if you have a working system that is stable and well behaved, there is little reason to upgrade the kernel unless one of these conditions holds for you:
 
-In the case of a security fix, decide whether the risk really affects you—for example, if the security issue is found in a device driver that you don’t use, then there may be no reason to upgrade. In the case of a bug fix release, read carefully through the release notes and decide if the bugs really affect you—if you have a stable system, upgrading the kernel with patches you never use may be pointless.
-On production systems, the kernel shouldn’t simply be upgraded just to have “the latest kernel”; you should have a truly compelling reason to upgrade.
-- - - -
+    - A security or bug fix affects your system and must be applied
+    - You need a specific new feature in a stable release
 
+    In the case of a security fix, decide whether the risk really affects you—for example, if the security issue is found in a device driver that you don’t use, then there may be no reason to upgrade. In the case of a bug fix release, read carefully through the release notes and decide if the bugs really affect you—if you have a stable system, upgrading the kernel with patches you never use may be pointless.
+
+    On production systems, the kernel shouldn’t simply be upgraded just to have “the latest kernel”; you should have a truly compelling reason to upgrade.
 
 The Makefile in the root of the kernel source tree contains specific targets that can be used in prepping the kernel build environment, configuring the kernel, compiling the kernel, installing the kernel, and so on. Some of the targets are discussed in more detail here:
 
@@ -172,11 +169,11 @@ Most modern Linux distros ship with a kernel configuration file for the running 
 
 The configuration file contains a list of the options and features that were enabled for the particular kernel it represents. A config file similar to this one is what we aim to create through the process of configuring the kernel. The only difference between the file we’ll create and the ready-made one is that we will add further minor customization to ours.
 
-- - - -
+
 !!! TIP
 
-Using a known, preexisting config file as a framework for creating our own custom file helps ensure that we don’t waste too much time duplicating the efforts that other people have already put into finding what works and what doesn’t work!
-- - - -
+    Using a known, preexisting config file as a framework for creating our own custom file helps ensure that we don’t waste too much time duplicating the efforts that other people have already put into finding what works and what doesn’t work!
+
 
 The following steps cover how to configure the kernel. We will be using a text-based kernel configuration utility, which will allow you to follow along in your terminal regardless of whether you are using a GUI desktop environment or not.
 
@@ -189,11 +186,11 @@ The following steps cover how to configure the kernel. We will be using a text-b
 We use `uname -r` here to help us obtain the configuration file for the running kernel. The uname -r command prints the running kernel’s release. Using it helps ensure that we are getting the exact version we want, just in case other versions are present.
 
 
-- - - -
+
 !!! NOTE
 
-The Linux kernel configuration editor specifically starts up looking for, and ends up generating, a file named .config (pronounced “dot config”) at the root of the kernel source tree. This file is hidden.
-- - - -
+    The Linux kernel configuration editor specifically starts up looking for, and ends up generating, a file named .config (pronounced “dot config”) at the root of the kernel source tree. This file is hidden.
+
 
 
 2. Launch the graphical kernel configuration utility:
@@ -227,14 +224,11 @@ When you are done, the letter M or an asterisk symbol (*) should appear beside e
 
 ![Kernel Configuration File Systems screen](images/Il02-kernel.png)
 
-- - - -
 !!! TIP
 
-For each of the configurable options, in the kernel configuration utility, empty angle parentheses, <>, indicates that the feature in question is disabled. The letter M in angle parentheses, <M>, indicates that the feature is to be compiled as a module.
+    For each of the configurable options, in the kernel configuration utility, empty angle parentheses, <>, indicates that the feature in question is disabled. The letter M in angle parentheses, <M>, indicates that the feature is to be compiled as a module.
 
-And the asterisk symbol in angle parentheses, <*>, indicates that support for the feature will be directly built into the kernel. You can usually toggle through all the possible options using the spacebar on your keyboard.
-- - - -
-
+    And the asterisk symbol in angle parentheses, <*>, indicates that support for the feature will be directly built into the kernel. You can usually toggle through all the possible options using the spacebar on your keyboard.
 
 5. Navigate back to the parent File Systems screen by pressing the esc key twice on your keyboard in the DOS/FAT/NT Filesystems screen.
 Return to the main kernel configuration screen by pressing esc twice again on your keyboard.
@@ -252,27 +246,24 @@ You are almost ready to build your kernel!
 sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config
 ```
 
-- - - -
+
 !!! TIP
 
-To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example to view the effect of the NTFS file system support that we enabled previously, type the following:
-```
-> grep NTFS ~/build/kernel/.config
-CONFIG_NTFS_FS=m
-CONFIG_NTFS_DEBUG=y
-CONFIG_NTFS_RW=y
-```
+    To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example to view the effect of the NTFS file system support that we enabled previously, type the following:
+    ```
+    > grep NTFS ~/build/kernel/.config
+    CONFIG_NTFS_FS=m
+    CONFIG_NTFS_DEBUG=y
+    CONFIG_NTFS_RW=y
+    ```
 
-!!! NOTE
+!!! NOTE "A Quick Note on Kernel Modules"
 
-### A Quick Note on Kernel Modules
-Loadable module support is a Linux kernel feature that allows the dynamic loading (or removal) of kernel modules.
+    Loadable module support is a Linux kernel feature that allows the dynamic loading (or removal) of kernel modules.
 
-Kernel modules are pieces of compiled code that can be dynamically inserted into the running kernel, rather than being permanently built into the kernel. Features not often used can thus be enabled, but they won’t occupy any room in memory when they aren’t being used.
+    Kernel modules are pieces of compiled code that can be dynamically inserted into the running kernel, rather than being permanently built into the kernel. Features not often used can thus be enabled, but they won’t occupy any room in memory when they aren’t being used.
 
-Thankfully, the Linux kernel can automatically determine what to load and when. Naturally, not every feature is eligible to be compiled as a module. The kernel must know a few things before it can load and unload modules, such as how to access the hard disk and parse through the file system where the loadable modules are stored. Some kernel modules are also commonly referred to as drivers.
-- - - -
-
+    Thankfully, the Linux kernel can automatically determine what to load and when. Naturally, not every feature is eligible to be compiled as a module. The kernel must know a few things before it can load and unload modules, such as how to access the hard disk and parse through the file system where the loadable modules are stored. Some kernel modules are also commonly referred to as drivers.
 
 ### Compiling the Kernel
 
@@ -310,20 +301,18 @@ Of course you can also use any text editor that you are comfortable with to make
 > make O=~/build/kernel kernelversion
 ```
 
-- - - -
 !!! Tip
 
-You can take advantage of all that extra processing power (CPUs, cores and so on) on most modern systems and greatly speed up CPU-intensive operations like compiling the kernel. To do this, you can pass a parameter to the make command that specifies the number of jobs to run simultaneously. The specified number of jobs are then distributed and executed simultaneously on each CPU core. The syntax for the command is:
+    You can take advantage of all that extra processing power (CPUs, cores and so on) on most modern systems and greatly speed up CPU-intensive operations like compiling the kernel. To do this, you can pass a parameter to the make command that specifies the number of jobs to run simultaneously. The specified number of jobs are then distributed and executed simultaneously on each CPU core. The syntax for the command is:
 
-```
-> make -j N
-```
-       where N is the number of jobs to run simultaneously. For example, if you have a octa (8) core–capable CPU, you can type:
+    ```
+    > make -j N
+    ```
+    where N is the number of jobs to run simultaneously. For example, if you have a octa (8) core–capable CPU, you can type:
 
-```
-> make -j 8
-```
-- - - -
+    ```
+    > make -j 8
+    ```
 
 3. The only command that is needed here to compile the kernel is the make command:
 
@@ -359,11 +348,11 @@ On our Rocky system, this command will install all the compiled kernel modules i
 
 !!! TIP
 
-The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result you could easily end up with a `/lib/modules/5.16.9-custom/` directory that is close to  5GB in size!
+    The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result you could easily end up with a `/lib/modules/5.16.9-custom/` directory that is close to  5GB in size!
 
-For this guide we avoid this large size by including the INSTALL_MOD_STRIP=1 option in our make modules_install invocation. You can reduce the total size by orders of magnitude (For example - less than 200 MB!!) by stripping away these debugging symbols.  
+    For this guide we avoid this large size by including the INSTALL_MOD_STRIP=1 option in our make modules_install invocation. You can reduce the total size by orders of magnitude (For example - less than 200 MB!!) by stripping away these debugging symbols.  
 
-This can be done by including the `INSTALL_MOD_STRIP=1` option to the `make modules_install` command.
+    This can be done by including the `INSTALL_MOD_STRIP=1` option to the `make modules_install` command.
 
 ## Installing the Kernel
 
@@ -395,7 +384,7 @@ Here, kernel-version is the version number of the kernel. For the sample kernel 
 
 !!! Note
 
-The decision to name the kernel image vmlinuz-5.16.9-custom is somewhat arbitrary. It’s convenient, because kernel images are commonly referred to as vmlinuz, and the suffix of the version number is useful when you have multiple kernels available or kernels that provide specific functionality (For example  vmlinuz-6.50.0-ws).
+    The decision to name the kernel image vmlinuz-5.16.9-custom is somewhat arbitrary. It’s convenient, because kernel images are commonly referred to as vmlinuz, and the suffix of the version number is useful when you have multiple kernels available or kernels that provide specific functionality (For example  vmlinuz-6.50.0-ws).
 
 2. Now that the kernel image is in place, copy over and rename the corresponding System.map file into the /boot directory using the same naming convention:
 
@@ -446,11 +435,10 @@ grub_users $grub_users
 grub_arg --unrestricted
 grub_class kernel
 ```
-- - - -
+
 !!! Note
 
-Most distros, have several grub2-* utilities readily available that can be used for performing various GRUB2 and boot loader house keeping tasks. For example you can use the grub2-set-default command to change or set the default kernel to be booted at system startup.
-- - - -
+    Most distros, have several grub2-* utilities readily available that can be used for performing various GRUB2 and boot loader house keeping tasks. For example you can use the grub2-set-default command to change or set the default kernel to be booted at system startup.
 
 ## Booting the custom Kernel
 The next stage is to test the new kernel to make sure that the system can indeed boot with it.
