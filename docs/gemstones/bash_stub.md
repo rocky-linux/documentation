@@ -20,6 +20,7 @@ The stub is well documented, but keep in mind that this is by no means an exhaus
 export PATH="$PATH:/bin:/usr/bin:/usr/local/bin"
 
 # Determine and save absolute path to program directory.
+# Attention! In bash, the ' 'represents the string itself; But " " is a little different. $, ` `, and \ represent call variable values, reference commands, and escape characters, respectively
 # When done will be in same directory as script:
 
 PGM=`basename $0`				# Name of the program
