@@ -3,6 +3,7 @@ nav:
     - ... | index*.md
     - ... | installation*.md
     - ... | migrate2rocky*.md
+    - ... | custom-linux-kernel*.md
     - Contribute: contribute
     - Automation: automation
     - Backup & Sync: backup
