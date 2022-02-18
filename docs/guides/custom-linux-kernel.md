@@ -278,7 +278,7 @@ Thankfully, the Linux kernel can automatically determine what to load and when. 
        
 In the preceding section, we walked through the process of creating a configuration file for the custom kernel that we want to build. In this section, we will perform the actual build of the kernel. But before doing this, we will add one more simple customization to the entire process.
 
-       The final customization will be to add an extra piece of information used in the final name of our kernel. This will help us be able to differentiate this kernel from any other kernel with the same version number. We will add the tag “custom” to the kernel version information. This can be done by editing the main Makefile and appending the tag that we want to the EXTRAVERSION variable.
+The final customization will be to add an extra piece of information used in the final name of our kernel. This will help us be able to differentiate this kernel from any other kernel with the same version number. We will add the tag “custom” to the kernel version information. This can be done by editing the main Makefile and appending the tag that we want to the EXTRAVERSION variable.
        
 The compilation stage of the kernel-building process is by far the easiest, but it also takes the most time. All that is needed at this point is simply to execute the make command, which will then automatically generate and take care of any dependency issues, compile the kernel itself, and compile any features (or drivers) that were enabled as loadable modules.
        
@@ -297,14 +297,13 @@ To this:
 EXTRAVERSION = -custom
 ```
 
-Use the following sed command to make the change. Type:
+Use the following `sed` command to make the change. Type:
 
 ```
 sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
 ```
 
 Of course you can also use any text editor that you are comfortable with to make the change. Just remember to save your changes to the file!
-
 2. Pass the kernelversion target to the make command to view the full version of the kernel that you just customized:
 
 ```
@@ -329,7 +328,7 @@ You can take advantage of all that extra processing power (CPUs, cores and so on
 3. The only command that is needed here to compile the kernel is the make command:
 
 ```
-> **make  O=~/build/kernel**
+> make  O=~/build/kernel**
 make[1]: Entering directory '/home/super/build/kernel'
   SYNC    include/config/auto.conf.cmd
   GEN     Makefile
@@ -353,7 +352,7 @@ make[1]: Leaving directory '/home/super/build/kernel'
 5. Because we compiled portions of the kernel as modules (for example, the NTFS module), we need to install the modules. Type the following:
 
 ```
->  **sudo make O=~/build/kernel modules_install**
+> sudo make O=~/build/kernel modules_install
 ```
 
 On our Rocky system, this command will install all the compiled kernel modules into the /lib/modules/<new_kernel-version> directory. In this example, this path will translate to  /lib/modules/5.16.9-custom/. This is the path from which the kernel will load all loadable modules, as needed.
@@ -436,7 +435,7 @@ And for systems running the legacy versions of GRUB, this will be the /boot/grub
 On our demo EFI based Rocky server running GRUB 2 using BLS, a new boot entry is created in the boot loader file located here: `/boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-5.16.9-custom.conf`
 
 ```
-> **sudo cat  /boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-5.16.9-custom.conf**
+> sudo cat  /boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-5.16.9-custom.conf
 title Rocky Linux (5.16.9-custom) 8.5 (Green Obsidian)
 version 5.16.9-custom
 linux /vmlinuz-5.16.9-custom
@@ -459,19 +458,19 @@ The next stage is to test the new kernel to make sure that the system can indeed
 1. Assuming you did everything the exact way that the doctor prescribed and that everything worked out exactly as the doctor said it would, you can safely reboot the system and select the new kernel from the boot loader menu during system bootup:
 
 ```
->  **sudo reboot**
+>  sudo reboot
 ```
 
 2. After the system boots up, you can use the uname command to find out the name of the current kernel:
 
 ```
->  **uname -r**
+>  uname -r
 5.16.9-custom
 ```
 
 3. You will recall that one of the features that we added to our new kernel is the ability to support the NTFS file system. Make sure that the new kernel does indeed have support for NTFS by displaying information about the NTFS module:
 ```
-[rockstar ~]$ **modinfo ntfs**
+[rockstar ~]$ modinfo ntfs
 filename:       /lib/modules/5.16.9-custom/kernel/fs/ntfs/ntfs.ko
 license:        GPL
 version:        2.1.32
