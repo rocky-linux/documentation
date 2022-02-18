@@ -1,5 +1,6 @@
 ---
 Title: Installing Rocky Linux
+author: wale soyinka
 contributors: tianci li, Steven Spencer
 updated: 11-23-2021
 ---

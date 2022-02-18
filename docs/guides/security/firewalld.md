@@ -1,8 +1,8 @@
 ---
-title: firewalld
+title: firewalld from iptables
 author: Steven Spencer
 contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni
-update: 14-Feb-2022
+update: 17-Feb-2022
 ---
 
 # `iptables` Guide To `firewalld` - Introduction
@@ -115,6 +115,16 @@ admin
   icmp-blocks:
   rich rules:
 ```
+You can list out the active zones on your system by using this command:
+
+`firewall-cmd --get-active-zones`
+
+!!! Note "Important: Active Zones"
+
+    A zone can *only* be in an active state if it has one of these two conditions:
+    
+    1. The zone is assigned to a network interface
+    2. The zone is assigned source IPs or network ranges.
 
 ### Removing an IP and Service from a Zone
 
