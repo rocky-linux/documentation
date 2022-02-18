@@ -17,6 +17,8 @@ From the manual page: "`firewalld` provides a dynamically managed firewall with 
 
 Fun fact: `firewalld` is actually a front end to the netfilter and nftables Kernel sub-systems in Rocky Linux.
 
+This guide focuses on applying rules from an `iptables` firewall to a `firewalld` firewall. If you are really at the beginning of your firewall journey, [this document](firewalld-beginners.md) might help you more. Consider reading through both documents to get the most out of `firewalld`.
+
 ## Prerequisites and Assumptions
 
 * Throughout this document, we assume that you are either the root user or have used `sudo` to become so
@@ -122,7 +124,7 @@ You can list out the active zones on your system by using this command:
 !!! Note "Important: Active Zones"
 
     A zone can *only* be in an active state if it has one of these two conditions:
-    
+
     1. The zone is assigned to a network interface
     2. The zone is assigned source IPs or network ranges.
 
