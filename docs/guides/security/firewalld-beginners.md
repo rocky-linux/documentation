@@ -79,11 +79,15 @@ systemctl restart firewalld
 firewall-cmd --state
 ```
 
-After every change to your firewall, you'll need to reload it to see the changes. You can give the firewall configurations a "soft restart" with:
+After every *permanent* change to your firewall, you'll need to reload it to see the changes. You can give the firewall configurations a "soft restart" with:
 
 ```bash
 firewall-cmd --reload
 ```
+
+!!! Note
+
+    If you reload your configurations that haven't been made permanent, they'll disappear on you.
 
 You can see all of your configurations and settings at once with:
 
@@ -138,9 +142,10 @@ If your machine has multiple ways to connect to different networks (eg. Ethernet
 
 !!! Note
 
-    A network interface (Ethernet, WiFi, or what-have-you) can *only* be assigned to one zone at a time. If you're running `firewalld` on a remote server or VPS, and it doesn't come with extra network interfaces (physical or virtual) then you can only have one zone that's actually active and doing anything at a time.
+    A zone can *only* be in an active state if it has one of these two conditions:
 
-    That zone should be the "public" zone, if you're running a web server.
+    1. The zone is assigned to a network interface
+    2. The zone is assigned source IPs or network ranges. (More on that below)
 
 Default zones include the following (I've taken this explanation from [DigitalOcean's guide to `firewalld`](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-8), which you should also read):
 
@@ -315,29 +320,31 @@ firewall-cmd --zone=public --remove-service=http
 
 Let's say you have a server, and you just don't want to make it public. if you want to define just who is allowed to access it via SSH, or view some private web pages/apps, you can do that.
 
-There are a couple of methods to accomplish this. First, for a more locked-down server, you can pick one of the more restrictive zones, and add the SSH service to it as shown above, and then whitelist your own public IP address like so:
+There are a couple of methods to accomplish this. First, for a more locked-down server, you can pick one of the more restrictive zones, assign your network device to it, add the SSH service to it as shown above, and then whitelist your own public IP address like so:
 
 ```bash
-firewall-cmd --permanent --add-source=192.168.1.0 [< insert your IP here]
+firewall-cmd --permanent --zone=trusted --add-source=192.168.1.0 [< insert your IP here]
 ```
 
 You can make it a range of IP addresses by adding a higher number at the end like so:
 
 ```bash
-firewall-cmd --permanent --add-source=192.168.1.0/24 [< insert your IP here]
+firewall-cmd --permanent --zone=trusted --add-source=192.168.1.0/24 [< insert your IP here]
 ```
 
 Again, just change `--add-source` to `--remove-source` in order to reverse the process.
 
-However, if you're managing a remote server with a website on it that needs to be public, and still only want to open up SSH for one IP address or a small range of them, it gets a little more complicated. Remember, you can't have two sets of rules (the zones) working on the same network interface.
+However, if you're managing a remote server with a website on it that needs to be public, and still only want to open up SSH for one IP address or a small range of them, you have a couple of options. In both of these examples, the sole network interface is assigned to the public zone.
 
-In this case, you'll need a "rich rule", and it would look something like this:
+First, you can use a "rich rule" to your public zone, and it would look something like this:
 
 ```bash
 # firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="192.168.1.0/24" service name="ssh" accept'
 ```
 
 Once the rich rule is in place, *don't* make the rules permanent yet. First, remove the SSH service from the public zone configuration, and test your connection to make sure you can still access the server via SSH.
+
+Secondly, you can use two different zones at a time. If you have your interface bound to the public zone, you can activate a second zone (the "trusted" zone for example) by adding a source IP or IP range to it as shown above. Then, add the SSH service to the trusted zone, and remove it from the public zone.
 
 If you get locked out, restart the server (most VPS control panels have an option for this) and try again.
 
