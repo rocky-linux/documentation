@@ -56,27 +56,29 @@ Any minor changes or updates within each major release version will be reflected
 A common source of failure encountered during the kernel build process may be caused by not having all the requisite software available for compiling and building the mainline Linux Kernel.  The missing tools and libraries can be installed using the DNF package manager on a Rocky Linux distro. We’ll take care of this in this section.
 
 1. On a Rocky Lniux distro, you can quickly get most of the necessary development tools installed by running this command:
-```
-> sudo dnf -y groupinstall 'C Development Tools and Libraries'
-```
+
+    ```
+    > sudo dnf -y groupinstall 'C Development Tools and Libraries'
+    ```
+
 2. Some other libraries, header files and applications that you might need can also be obtained by installing the following packages. Type:
 
-```
-> sudo dnf -y install \
-ncurses-devel openssl-devel elfutils-libelf-devel python3
-```
+    ```
+    > sudo dnf -y install \
+    ncurses-devel openssl-devel elfutils-libelf-devel python3
+    ```
 
-3. Finally, we need some other utilities that are only available in some supported 3rd party repositories. One of such repositories is the Powertools repo. Let’s enable that repo on our Rocky system. Type:
+3. Next, we need some other utilities that are only available in some supported 3rd party repositories. One of such repositories is the Powertools repo. Let’s enable that repo on our Rocky system. Type:
 
-```
-> sudo dnf config-manager --set-enabled powertools
-```
+    ```
+    > sudo dnf config-manager --set-enabled powertools
+    ```
 
 4. Finally, let’s install one of the needed packages from the Powertool repo. Type:
 
-```
-> sudo  dnf -y install dwarves
-```
+    ```
+    > sudo  dnf -y install dwarves
+    ```
 
 That’s it for the prerequisite packages needed for actual Kernel building!
 
@@ -89,16 +91,19 @@ The version of the kernel that we are going to build in the following section is
 Let’s begin the process.
 
 1. First, use the following curl command to download the needed kernel source into your current working directory. Type:
-```
-curl -L -o linux-5.16.9.tar.xz \
-https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz
-```
+
+    ```
+    curl -L -o linux-5.16.9.tar.xz \
+    https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz
+    ```
+
 2. The kernel source that you will download from the Internet is a file that has been compressed and tarred. Therefore, to use the source, you need to decompress and untar the source file.
 
-Make sure you are in the directory that download the Kernel tarball into. Use the tar command to unpack and decompress the file, by running:
-```
-tar xvJf linux-5.*.tar.xz
-```
+    Make sure you are in the directory that download the Kernel tarball into. Use the tar command to unpack and decompress the file, by running:
+
+    ```
+    tar xvJf linux-5.*.tar.xz
+    ```
 
 ## Building the Kernel
 
@@ -174,96 +179,85 @@ The configuration file contains a list of the options and features that were ena
 
     Using a known, preexisting config file as a framework for creating our own custom file helps ensure that we don’t waste too much time duplicating the efforts that other people have already put into finding what works and what doesn’t work!
 
-
 The following steps cover how to configure the kernel. We will be using a text-based kernel configuration utility, which will allow you to follow along in your terminal regardless of whether you are using a GUI desktop environment or not.
 
- 1. To begin, we’ll copy over and rename the preexisting config file from the /boot directory into our kernel build environment:
+1. To begin, we’ll copy over and rename the preexisting config file from the /boot directory into our kernel build environment:
+    ```
+    > cp /boot/config-`uname -r` ~/build/kernel/.config
+    ```
+    We use `uname -r` here to help us obtain the configuration file for the running kernel. The uname -r command prints the running kernel’s release. Using it helps ensure that we are getting the exact version we want, just in case other versions are present.
 
-```
-> cp /boot/config-`uname -r` ~/build/kernel/.config
-```
+    !!! NOTE
 
-We use `uname -r` here to help us obtain the configuration file for the running kernel. The uname -r command prints the running kernel’s release. Using it helps ensure that we are getting the exact version we want, just in case other versions are present.
-
-
-
-!!! NOTE
-
-    The Linux kernel configuration editor specifically starts up looking for, and ends up generating, a file named .config (pronounced “dot config”) at the root of the kernel source tree. This file is hidden.
-
-
+        The Linux kernel configuration editor specifically starts up looking for, and ends up generating, a file named .config (pronounced “dot config”) at the root of the kernel source tree. This file is hidden.
 
 2. Launch the graphical kernel configuration utility:
 
-```       
-> make O=~/build/kernel menuconfig
-```
+    ```       
+    > make O=~/build/kernel menuconfig
+    ```
 
-A screen similar to this will appear:
+    A screen similar to this will appear:
 
-**** ws needs to insert new illustration Il01-kernel.png here ****
+    **** ws needs to insert new illustration Il01-kernel.png here ****
 
-The kernel configuration screen that appears is divided into roughly three areas.
-The top part shows various helpful information, keyboard shortcuts, and legends that can help you navigate the application.
-The main body of the screen shows an expandable tree-structured list of the overall configurable kernel options. You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items.
-And finally, the bottom of the screen displays the actual actions/options that the user can choose.
+    The kernel configuration screen that appears is divided into roughly three areas.
+    The top part shows various helpful information, keyboard shortcuts, and legends that can help you navigate the application.
+    The main body of the screen shows an expandable tree-structured list of the overall configurable kernel options. You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items. And finally, the bottom of the screen displays the actual actions/options that the user can choose.
 
 3. Next, for demonstration purposes we’ll add support for NTFS into our custom kernel.
 
-While at the main configuration screen, use your arrow keys to navigate to and highlight the File systems item. With File systems selected, press enter to view the sub-menu or child items for File systems.
-In the File Systems section, use your arrow keys to navigate to DOS/FAT/NT Filesystems. Press enter to see the child items for DOS/FAT/NT Filesystems.
+    While at the main configuration screen, use your arrow keys to navigate to and highlight the File systems item. With File systems selected, press enter to view the sub-menu or child items for File systems.
+
+    In the File Systems section, use your arrow keys to navigate to DOS/FAT/NT Filesystems. Press enter to see the child items for DOS/FAT/NT Filesystems.
 
 4. In the DOS/FAT/NT Filesystems section, navigate to NTFS file system support.
 
-Type M (uppercase) to enable support for the NTFS file system via modules.
+    Type M (uppercase) to enable support for the NTFS file system via modules.
 
-Use the arrow keys to navigate down to NTFS debugging support (NEW) and then press y to include it.
+    Use the arrow keys to navigate down to NTFS debugging support (NEW) and then press y to include it.
 
-Use the arrow keys to navigate down to NTFS write support and then press y to include it.
-When you are done, the letter M or an asterisk symbol (*) should appear beside each option, like the ones shown here:
+    Use the arrow keys to navigate down to NTFS write support and then press y to include it.
+    When you are done, the letter M or an asterisk symbol (*) should appear beside each option, like the ones shown here:
 
-![Kernel Configuration File Systems screen](images/Il02-kernel.png)
+    ![Kernel Configuration File Systems screen](images/Il02-kernel.png)
 
-!!! TIP
+    !!! TIP
 
-    For each of the configurable options, in the kernel configuration utility, empty angle parentheses, <>, indicates that the feature in question is disabled. The letter M in angle parentheses, <M>, indicates that the feature is to be compiled as a module.
+        For each of the configurable options, in the kernel configuration utility, empty angle parentheses, <>, indicates that the feature in question is disabled. The letter M in angle parentheses, <M>, indicates that the feature is to be compiled as a module.
 
     And the asterisk symbol in angle parentheses, <*>, indicates that support for the feature will be directly built into the kernel. You can usually toggle through all the possible options using the spacebar on your keyboard.
 
-5. Navigate back to the parent File Systems screen by pressing the esc key twice on your keyboard in the DOS/FAT/NT Filesystems screen.
-Return to the main kernel configuration screen by pressing esc twice again on your keyboard.
+5. Navigate back to the parent File Systems screen by pressing the esc key twice on your keyboard in the DOS/FAT/NT Filesystems screen.Return to the main kernel configuration screen by pressing esc twice again on your keyboard.
 
 6. Finally, save your changes to the .config file in the root of your kernel source tree and exit the kernel configuration application after saving the file by pressing esc twice again on your keyboard.
 
 7. A dialog box will appear prompting you to save your new configuration. Make sure that Yes is selected and then press enter.
 
-8. After the kernel configuration utility exits, you will be thrown back to your shell—inside the kernel source tree.
-You are almost ready to build your kernel!
+8. After the kernel configuration utility exits, you will be thrown back to your shell—inside the kernel source tree.You are almost ready to build your kernel!
 
 9. We need to complete a few more customizations on our Rocky distro. Type:
 
-```
-sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config
-```
-
-
-!!! TIP
-
-    To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example to view the effect of the NTFS file system support that we enabled previously, type the following:
     ```
-    > grep NTFS ~/build/kernel/.config
-    CONFIG_NTFS_FS=m
-    CONFIG_NTFS_DEBUG=y
-    CONFIG_NTFS_RW=y
+    sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config
     ```
 
-!!! NOTE "A Quick Note on Kernel Modules"
+    !!! TIP
 
-    Loadable module support is a Linux kernel feature that allows the dynamic loading (or removal) of kernel modules.
+        To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example to view the effect of the NTFS file system support that we enabled previously, type the following:
+        ```
+        > grep NTFS ~/build/kernel/.config
+        CONFIG_NTFS_FS=m
+        CONFIG_NTFS_DEBUG=y
+        CONFIG_NTFS_RW=y
+        ```
+    !!! NOTE "A Quick Note on Kernel Modules"
 
-    Kernel modules are pieces of compiled code that can be dynamically inserted into the running kernel, rather than being permanently built into the kernel. Features not often used can thus be enabled, but they won’t occupy any room in memory when they aren’t being used.
+        Loadable module support is a Linux kernel feature that allows the dynamic loading (or removal) of kernel modules.
 
-    Thankfully, the Linux kernel can automatically determine what to load and when. Naturally, not every feature is eligible to be compiled as a module. The kernel must know a few things before it can load and unload modules, such as how to access the hard disk and parse through the file system where the loadable modules are stored. Some kernel modules are also commonly referred to as drivers.
+        Kernel modules are pieces of compiled code that can be dynamically inserted into the running kernel, rather than being permanently built into the kernel. Features not often used can thus be enabled, but they won’t occupy any room in memory when they aren’t being used.
+
+        Thankfully, the Linux kernel can automatically determine what to load and when. Naturally, not every feature is eligible to be compiled as a module. The kernel must know a few things before it can load and unload modules, such as how to access the hard disk and parse through the file system where the loadable modules are stored. Some kernel modules are also commonly referred to as drivers.
 
 ### Compiling the Kernel
 
@@ -278,32 +272,33 @@ Because of the amount of code that needs to be compiled, be prepared to wait a f
 1. First we’ll add an extra piece to the identification string for the kernel we are about to build. While still in the root of the kernel source tree, we’ll use the sed utility edit the Makefile in place. The variable we want to change is close to the top of the file.
 We want to change the line in the file that looks like this:
 
-```
-EXTRAVERSION =
-```
+    ```
+    EXTRAVERSION =
+    ```
 
-To this:
+    To this:
 
-```
-EXTRAVERSION = -custom
-```
+    ```
+    EXTRAVERSION = -custom
+    ```
 
-Use the following `sed` command to make the change. Type:
+    Use the following `sed` command to make the change. Type:
 
-```
-sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
-```
+    ```
+    sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
+    ```
 
-Of course you can also use any text editor that you are comfortable with to make the change. Just remember to save your changes to the file!
+    Of course you can also use any text editor that you are comfortable with to make the change. Just remember to save your changes to the file!
+
 2. Pass the kernelversion target to the make command to view the full version of the kernel that you just customized:
 
-```
-> make O=~/build/kernel kernelversion
-```
+    ```
+    > make O=~/build/kernel kernelversion
+    ```
 
-!!! Tip
+    !!! Tip
 
-    You can take advantage of all that extra processing power (CPUs, cores and so on) on most modern systems and greatly speed up CPU-intensive operations like compiling the kernel. To do this, you can pass a parameter to the make command that specifies the number of jobs to run simultaneously. The specified number of jobs are then distributed and executed simultaneously on each CPU core. The syntax for the command is:
+        You can take advantage of all that extra processing power (CPUs, cores and so on) on most modern systems and greatly speed up CPU-intensive operations like compiling the kernel. To do this, you can pass a parameter to the make command that specifies the number of jobs to run simultaneously. The specified number of jobs are then distributed and executed simultaneously on each CPU core. The syntax for the command is:
 
     ```
     > make -j N
@@ -316,43 +311,43 @@ Of course you can also use any text editor that you are comfortable with to make
 
 3. The only command that is needed here to compile the kernel is the make command:
 
-```
-> make  O=~/build/kernel**
-make[1]: Entering directory '/home/super/build/kernel'
-  SYNC    include/config/auto.conf.cmd
-  GEN     Makefile
-  HOSTCC  scripts/kconfig/conf.o
-  HOSTLD  scripts/kconfig/conf
-  GEN     Makefile
-...<OUTPUT TRUNCATED>…
- LD [M]  sound/usb/usx2y/snd-usb-usx2y.ko
-  LD [M]  sound/x86/snd-hdmi-lpe-audio.ko
-  LD [M]  sound/xen/snd_xen_front.ko
-  LD [M]  virt/lib/irqbypass.ko
-make[1]: Leaving directory '/home/super/build/kernel'
-```
+    ```
+    > make  O=~/build/kernel**
+    make[1]: Entering directory '/home/super/build/kernel'
+    SYNC    include/config/auto.conf.cmd
+    GEN     Makefile
+    HOSTCC  scripts/kconfig/conf.o
+    HOSTLD  scripts/kconfig/conf
+    GEN     Makefile
+    ...<OUTPUT TRUNCATED>…
+    LD [M]  sound/usb/usx2y/snd-usb-usx2y.ko
+    LD [M]  sound/x86/snd-hdmi-lpe-audio.ko
+    LD [M]  sound/xen/snd_xen_front.ko
+    LD [M]  virt/lib/irqbypass.ko
+    make[1]: Leaving directory '/home/super/build/kernel'
+    ```
 
 4. The end product of this command (that is, the kernel) is sitting pretty and waiting in the path:
 
-```
-~/build/kernel/arch/x86/boot/bzImage
-```
+    ```
+    ~/build/kernel/arch/x86/boot/bzImage
+    ```
 
 5. Because we compiled portions of the kernel as modules (for example, the NTFS module), we need to install the modules. Type the following:
 
-```
-> sudo make O=~/build/kernel modules_install
-```
+    ```
+    > sudo make O=~/build/kernel modules_install
+    ```
 
-On our Rocky system, this command will install all the compiled kernel modules into the /lib/modules/<new_kernel-version> directory. In this example, this path will translate to  /lib/modules/5.16.9-custom/. This is the path from which the kernel will load all loadable modules, as needed.
+    On our Rocky system, this command will install all the compiled kernel modules into the /lib/modules/<new_kernel-version> directory. In this example, this path will translate to  /lib/modules/5.16.9-custom/. This is the path from which the kernel will load all loadable modules, as needed.
 
-!!! TIP
+    !!! TIP
 
-    The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result you could easily end up with a `/lib/modules/5.16.9-custom/` directory that is close to  5GB in size!
+        The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result you could easily end up with a `/lib/modules/5.16.9-custom/` directory that is close to  5GB in size!
 
-    For this guide we avoid this large size by including the INSTALL_MOD_STRIP=1 option in our make modules_install invocation. You can reduce the total size by orders of magnitude (For example - less than 200 MB!!) by stripping away these debugging symbols.  
+        For this guide we avoid this large size by including the INSTALL_MOD_STRIP=1 option in our make modules_install invocation. You can reduce the total size by orders of magnitude (For example - less than 200 MB!!) by stripping away these debugging symbols.  
 
-    This can be done by including the `INSTALL_MOD_STRIP=1` option to the `make modules_install` command.
+        This can be done by including the `INSTALL_MOD_STRIP=1` option to the `make modules_install` command.
 
 ## Installing the Kernel
 
@@ -370,43 +365,43 @@ Let’s go through the steps required to install the new kernel image.
 
 1. While in the root of your kernel build directory, copy and rename the bzImage file into the /boot directory:
 
-```
-> **sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
-/boot/vmlinuz-<kernel-version>**
-```
+    ```
+    > **sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
+    /boot/vmlinuz-<kernel-version>**
+    ```
 
-Here, kernel-version is the version number of the kernel. For the sample kernel we are using in this guide, the filename would be vmlinuz-5.16.9-custom. So here’s the exact command for this example:
+    Here, kernel-version is the version number of the kernel. For the sample kernel we are using in this guide, the filename would be vmlinuz-5.16.9-custom. So here’s the exact command for this example:
 
-```
-> sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
-/boot/vmlinuz-5.16.9-custom
-```
+    ```
+    > sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
+    /boot/vmlinuz-5.16.9-custom
+    ```
 
-!!! Note
+    !!! Note
 
-    The decision to name the kernel image vmlinuz-5.16.9-custom is somewhat arbitrary. It’s convenient, because kernel images are commonly referred to as vmlinuz, and the suffix of the version number is useful when you have multiple kernels available or kernels that provide specific functionality (For example  vmlinuz-6.50.0-ws).
+        The decision to name the kernel image vmlinuz-5.16.9-custom is somewhat arbitrary. It’s convenient, because kernel images are commonly referred to as vmlinuz, and the suffix of the version number is useful when you have multiple kernels available or kernels that provide specific functionality (For example  vmlinuz-6.50.0-ws).
 
 2. Now that the kernel image is in place, copy over and rename the corresponding System.map file into the /boot directory using the same naming convention:
 
-```
-> sudo cp -v  ~/build/kernel/System.map \
- /boot/System.map-5.16.9-custom
-```
+    ```
+    > sudo cp -v  ~/build/kernel/System.map \
+    /boot/System.map-5.16.9-custom
+    ```
 
 3. With the kernel in place, the System.map file in place, and the modules in place, we are now ready for the final step. The syntax for the command needed is:
 
-```
-> kernel-install add   <kernel-version>  <kernel-image>
+    ```
+    > kernel-install add   <kernel-version>  <kernel-image>
+    ```
 
-```
-Here, <kernel-version> is the version number (and name) of the kernel. And <kernel-image> is the path to the newly compiled kernel image.
+    Here, <kernel-version> is the version number (and name) of the kernel. And <kernel-image> is the path to the newly compiled kernel image.
 
-For our example, type:
+    For our example, type:
 
-```
-> sudo kernel-install \
-add  5.16.9-custom /boot/vmlinuz-5.16.9-custom
-```
+    ```
+    > sudo kernel-install \
+    add  5.16.9-custom /boot/vmlinuz-5.16.9-custom
+    ```
 
 The kernel-install command used here is a nifty little shell script. It might not be available in every Linux distribution, but it is available in newer Fedora, RHEL, CentOS distros. This tool automates a lot of the final manual things we’d ordinarily have to do to set up the system to boot the new kernel we just built.
 
@@ -445,26 +440,26 @@ The next stage is to test the new kernel to make sure that the system can indeed
 
 1. Assuming you did everything the exact way that the doctor prescribed and that everything worked out exactly as the doctor said it would, you can safely reboot the system and select the new kernel from the boot loader menu during system bootup:
 
-```
->  sudo reboot
-```
+    ```
+    >  sudo reboot
+    ```
 
 2. After the system boots up, you can use the uname command to find out the name of the current kernel:
 
-```
->  uname -r
-5.16.9-custom
-```
+    ```
+    >  uname -r
+    5.16.9-custom
+    ```
 
 3. You will recall that one of the features that we added to our new kernel is the ability to support the NTFS file system. Make sure that the new kernel does indeed have support for NTFS by displaying information about the NTFS module:
-```
-[rockstar ~]$ modinfo ntfs
-filename:       /lib/modules/5.16.9-custom/kernel/fs/ntfs/ntfs.ko
-license:        GPL
-version:        2.1.32
-description:    NTFS 1.2/3.x driver - Copyright …..
-...<OUTPUT TRUNCATED>...
 
-```
+    ```
+    [rockstar ~]$ modinfo ntfs
+    filename:       /lib/modules/5.16.9-custom/kernel/fs/ntfs/ntfs.ko
+    license:        GPL
+    version:        2.1.32
+    description:    NTFS 1.2/3.x driver - Copyright …..
+    ...<OUTPUT TRUNCATED>...
+    ```
 
 And that’s it !
