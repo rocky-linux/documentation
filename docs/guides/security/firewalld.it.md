@@ -13,9 +13,9 @@ Allora perché sto scrivendo questo documento? In primo luogo, per affrontare le
 
 E, naturalmente, per aiutare i principianti a gestire il firewall di default di Rocky Linux.
 
-Dalla pagina del manuale:`"firewalld` fornisce un firewall gestito dinamicamente con supporto per zone di rete/firewall per definire il livello di fiducia delle connessioni o interfacce di rete. Ha il supporto per le impostazioni firewall IPv4, IPv6 e per i bridge Ethernet e ha una separazione delle opzioni di configurazione runtime e permanente. Supporta anche un'interfaccia per i servizi o le applicazioni per aggiungere direttamente le regole del firewall"
+Dalla pagina del manuale:`"firewalld` fornisce un firewall gestito dinamicamente con supporto per zone di rete/firewall per definire il livello di fiducia delle connessioni o delle interfacce di rete. Ha il supporto per le impostazioni firewall IPv4, IPv6 e per i bridge Ethernet e ha una separazione delle opzioni di configurazione runtime e permanente. Supporta anche un'interfaccia per i servizi o le applicazioni per aggiungere direttamente le regole del firewall"
 
-Curiosità: `firewalld` è in realtà un front end per i sottosistemi del kernel netfilter e nftables in Rocky Linux.
+Curiosità: `firewalld` in Rocky Linux è in realtà un front end per i sottosistemi del kernel netfilter e nftables.
 
 Per capire veramente `firewalld`, è necessario comprendere l'uso delle zone. Le zone sono dove viene applicata la granularità dei set di regole del firewall. Considerate di leggere entrambi i documenti per ottenere il massimo da `firewalld`.
 
@@ -50,11 +50,11 @@ Per capire veramente `firewalld`, è necessario comprendere l'uso delle zone. Le
 
 Per elencare le zone esistenti sul vostro sistema, digitate:
 
-Ad essere onesti, odio soprattutto i nomi di queste zone. Drop, block, public e trusted sono perfettamente chiari, ma alcuni non sono abbastanza buoni per una perfetta sicurezza granulare.
+`firewall-cmd --get-zones` !!! Warning "Attenzione"
 
-    Ricordatevi di controllare lo stato del vostro firewall, se il `firewalld-cmd` vi restituisce un errore, con o:
+    Ricordatevi di controllare lo stato del vostro firewall, se il `firewalld-cmd` vi restituisce un errore:
     
-    il comando firewall-cmd:
+    con il comando firewall-cmd:
 
     ```
     $ firewall-cmd --state
@@ -62,7 +62,7 @@ Ad essere onesti, odio soprattutto i nomi di queste zone. Drop, block, public e 
     ```
 
 
-    il comando systemctl:
+    o con il comando systemctl:
 
     ```
     $ systemctl status firewalld
@@ -72,14 +72,14 @@ Ad essere onesti, odio soprattutto i nomi di queste zone. Drop, block, public e 
 
 `iptables -A INPUT -p tcp -m tcp -s 192.168.1.122 --dport 22 -j ACCEPT`
 
-Ma cosa succede se su questo server abbiamo anche una intranet che è accessibile solo ai blocchi IP assegnati alla nostra organizzazione? Useremmo ora la zona "interna" per applicarla a questa regola? Francamente, preferirei creare una zona che si occupi degli IP degli utenti admin (quelli autorizzati a fare secure-shell nel server).
+Qui abbiamo un singolo indirizzo IP al quale viene permesso il SSH (porta 22) nel server. Se decidiamo di usare le zone integrate, potremmo usare "trusted" per questo. In primo luogo, aggiungiamo l'IP alla zona e in secondo luogo, applichiamo la regola alla zona:
 
 ```
 firewall-cmd --zone=trusted --add-source=192.168.1.122 --permanent
 firewall-cmd --zone trusted --add-service=ssh --permanent
 ```
 
-Per aggiungere una zona, dobbiamo usare il `firewall-cmd` con il parametro `--new-zone`.  Aggiungeremo "admin" (per amministrativo) come zona: Francamente, preferirei creare una zona che si occupi degli IP degli utenti admin (quelli autorizzati a fare secure-shell nel server). A dire il vero, preferirei aggiungere tutte le mie zone, ma questo potrebbe essere ridicolo da fare.
+Ma cosa succede se su questo server abbiamo anche una intranet che è accessibile solo ai blocchi IP assegnati alla nostra organizzazione?  Useremmo ora la zona "interna" per applicarla a questa regola? Francamente, preferirei creare una zona che si occupi degli IP degli utenti admin (quelli autorizzati a fare secure-shell nel server). A dire il vero, preferirei aggiungere tutte le mie zone, ma questo potrebbe essere ridicolo da fare.
 
 ### Aggiungere zone
 
