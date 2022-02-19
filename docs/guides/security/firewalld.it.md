@@ -79,7 +79,7 @@ firewall-cmd --zone=trusted --add-source=192.168.1.122 --permanent
 firewall-cmd --zone trusted --add-service=ssh --permanent
 ```
 
-Ma cosa succede se su questo server abbiamo anche una intranet che è accessibile solo ai blocchi IP assegnati alla nostra organizzazione?  Useremmo ora la zona "interna" per applicarla a questa regola? Francamente, preferirei creare una zona che si occupi degli IP degli utenti admin (quelli autorizzati a fare secure-shell nel server). A dire il vero, preferirei aggiungere tutte le mie zone, ma questo potrebbe essere ridicolo da fare.
+Ma cosa succede se su questo server abbiamo anche una intranet che è accessibile solo ai blocchi IP assegnati alla nostra organizzazione?  Useremmo ora la zona "internal" per applicarla a questa regola? Francamente, preferirei creare una zona che si occupi degli IP degli utenti admin (quelli autorizzati a fare secure-shell nel server). A dire il vero, preferirei aggiungere tutte le mie zone, ma questo potrebbe essere ridicolo da fare.
 
 ### Aggiungere zone
 
@@ -138,7 +138,7 @@ Vogliamo anche rimuovere il servizio ssh dalla zona:
 
 `firewall-cmd --zone=trusted --remove-service ssh`
 
-Allora prova. Volete assicurarvi di avere un modo per entrare via `ssh` da un'altra zona prima di fare gli ultimi due passi. (Vedere l'**avvertimento** qui sotto!). Se non avete fatto altri cambiamenti, allora la zona "public" avrà ancora il permesso per ssh, poiché è lì per default.
+Quindi prova. Volete assicurarvi di avere un modo per entrare via `ssh` da un'altra zona prima di fare gli ultimi due passi. (Vedere l'**avvertimento** qui sotto!). Se non avete fatto altri cambiamenti, allora la zona "public" avrà ancora il permesso per ssh, poiché è lì per default.
 
 Una volta che siete soddisfatti, spostate le regole di runtime su permanente:
 
