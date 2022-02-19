@@ -1,13 +1,13 @@
 ---
 title: Rocky Docs Formatting
 author: Steven Spencer
-contributors:
-update:
+contributors: tianci li
+update: 19-Feb-2022
 ---
 
 # Rocky Docs Formatting - Introduction
 
-Over the last year and change, a lot has changed with Rocky documentation. This guide is meant to help contributors who want to use admonitions, numbered lists, tables, and more, get the most out of using these markdown tools. To be clear, a document may or may not need to contain any of these elements. If you feel that your document will benefit from them, then this guide should help.
+Over the last year, a lot has changed with Rocky documentation. This guide is meant to help contributors who want to use admonitions, numbered lists, tables, and more, get the most out of using these markdown tools. To be clear, a document may or may not need to contain any of these elements. If you feel that your document will benefit from them, then this guide should help.
 
 ## Admonitions
 
@@ -251,4 +251,4 @@ You can even embed a table or block quote (quite literally any formatting item t
 
 ## Conclusion
 
-Document formatting with admonitions, tables, numbered lists, and block quotes, can add clarity to your document. If you overuse these elements, however, they can simply add clutter where none is needed. Learning to use these formatting items conservatively and well can be very helpful to get your point across in a document.
+Document formatting with admonitions, tables, numbered lists, and block quotes, can add clarity to your document. When using admonitions, take care to pick the correct type. This can make it easier to visually see the importance of the admonition. Overuse of any of these elements can simply add clutter where none is needed. Learning to use these formatting items conservatively and well can be very helpful to get your point across in a document. To make formatting easier, consider changing your markdown editor's TAB value to four (4) spaces.
