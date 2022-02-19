@@ -138,7 +138,7 @@ Vogliamo anche rimuovere il servizio ssh dalla zona:
 
 `firewall-cmd --zone=trusted --remove-service ssh`
 
-Quindi prova. Volete assicurarvi di avere un modo per entrare via `ssh` da un'altra zona prima di fare gli ultimi due passi. (Vedere l'**avvertimento** qui sotto!). Se non avete fatto altri cambiamenti, allora la zona "public" avrà ancora il permesso per ssh, poiché è lì per default.
+Quindi prova. Vorrete assicurarvi di avere un modo per entrare via `ssh` da un'altra zona prima di fare gli ultimi due passi. (Vedere l'**avvertimento** qui sotto!). Se non avete fatto altri cambiamenti, allora la zona "public" avrà ancora il permesso per ssh, poiché è lì per default.
 
 Una volta che siete soddisfatti, spostate le regole di runtime su permanente:
 
@@ -159,11 +159,11 @@ e ricaricare:
 Ora basta ripetere i nostri passi originali usando la zona "admin":
 
 ```
-Feb 14 22:02:34 serverhostname sshd[9805]: Accepted password for root from 192.168.1.122 port 42854 ssh2
-Feb 14 22:02:34 serverhostname sshd[9805]: pam_unix(sshd:session): session opened for user root by (uid=0)
+firewall-cmd --zone=admin --add-source=192.168.1.122
+firewall-cmd --zone admin --add-service=ssh
 ```
 
-Ora elenca la zona per assicurarti che la zona sembri corretta e che il servizio sia stato aggiunto correttamente:
+Ora elenca la zona per assicurarti che la zona risulti corretta e che il servizio sia stato aggiunto correttamente:
 
 `firewall-cmd --zone=admin --list-all`
 
