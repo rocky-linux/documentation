@@ -180,7 +180,7 @@ Questo mostra che l'IP sorgente per la nostra connessione SSH era effettivamente
 
 `firewall-cmd --runtime-to-permanent`
 
-Quando hai finito di aggiungere regole, non dimenticare di ricaricare:
+Quando hai finito di aggiungere regole, non dimenticarti di ricaricare:
 
 `firewall-cmd --reload`
 
@@ -241,17 +241,17 @@ From 192.168.1.104 icmp_seq=3 Packet filtered
 Ecco lo script `iptables` per permettere pubblicamente `http` e `https`, i protocolli di cui avete bisogno per servire le pagine web:
 
 ```
-firewall-cmd --zone=public --add-service=http --add-service=https --permanent
+iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
 ```
 
 Ed ecco l'equivalente di `firewalld` che probabilmente avete già visto molte volte:
 
 ```
-iptables -A INPUT -p tcp -m tcp --dport 20-21 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp --dport 7000-7500 -j ACCEPT
+firewall-cmd --zone=public --add-service=http --add-service=https --permanent
 ```
 
-OK, tutto ciò va bene, ma cosa succede se state eseguendo, per esempio, un servizio Nextcloud su http/https e volete che solo la vostra rete fidata vi abbia accesso?  Non è insolito! Questo genere di cose succede di continuo, e permettere semplicemente il traffico pubblicamente, senza considerare chi ha effettivamente bisogno di accedere, è un enorme buco di sicurezza.
+OK, tutto ciò va bene, ma cosa succede se state eseguendo, per esempio, un servizio Nextcloud su http/https e volete che solo la vostra rete fidata vi abbia accesso?  Non è insolito! Questo genere di cose succedono di continuo, e permettere semplicemente il traffico pubblicamente, senza considerare chi ha effettivamente bisogno di accedere, è un enorme buco di sicurezza.
 
 In realtà non possiamo usare le informazioni della zona "trusted" che abbiamo usato sopra. Questo era per i test. Dobbiamo assumere che abbiamo almeno il nostro blocco IP della LAN aggiunto a "trusted". Sarebbe così:
 
@@ -302,7 +302,7 @@ E poi, avete indovinato, ricaricare:
 
 ## Porte del Database
 
-Se avete a che fare con un server web, avete quasi certamente a che fare con un database. L'accesso a questo database dovrebbe essere gestito con la stessa cura che si applica agli altri servizi. Se l'accesso non è necessario al mondo, applicate la vostra regola a qualcosa di diverso da "public".  L'altra considerazione è: è necessario offrire l'accesso a tutti? Di nuovo, questo probabilmente dipende dal vostro ambiente. Dove lavoravo prima, gestivamo un server web ospitato per i nostri clienti. Molti avevano siti Wordpress, e nessuno di loro aveva davvero bisogno o richiesto l'accesso a qualsiasi front-end per `MariaDB`. Se un cliente aveva bisogno di più accesso, creavamo un contenitore LXD per il loro server web, impostavamo il firewall nel modo in cui il cliente voleva, e lo lasciavamo responsabile di ciò che accadeva sul server. Tuttavia, se il tuo server è pubblico, potresti aver bisogno di offrire l'accesso a `phpmyadmin` o qualche altro front-end a `MariaDB`. In questo caso, dovete preoccuparvi dei requisiti della password per il database e impostare l'utente del database su qualcosa di diverso da quello predefinito. Per me, la lunghezza della password è la [considerazione principale quando si creano le password](https://xkcd.com/936/).
+Se avete a che fare con un server web, avete quasi certamente a che fare con un database. L'accesso a questo database dovrebbe essere gestito con la stessa cura che si applica agli altri servizi. Se l'accesso non è necessario al mondo, applicate la vostra regola a qualcosa di diverso da "public".  L'altra considerazione è: è necessario offrire l'accesso a tutti? Di nuovo, questo probabilmente dipende dal vostro ambiente. Dove lavoravo prima, gestivamo un server web ospitato per i nostri clienti. Molti avevano siti Wordpress, e nessuno di loro aveva davvero bisogno o richiesto l'accesso a qualsiasi front-end per `MariaDB`. Se un cliente aveva bisogno di più accesso, creavamo un container LXD per il loro server web, impostavamo il firewall nel modo in cui il cliente voleva, e lo lasciavamo responsabile di ciò che accadeva sul server. Tuttavia, se il tuo server è pubblico, potresti aver bisogno di offrire l'accesso a `phpmyadmin` o qualche altro front-end a `MariaDB`. In questo caso, dovete preoccuparvi dei requisiti della password per il database e impostare l'utente del database su qualcosa di diverso da quello predefinito. Per me, la lunghezza della password è la [considerazione principale quando si creano le password](https://xkcd.com/936/).
 
 Ovviamente, la sicurezza delle password è una discussione per un altro documento che tratta proprio di questo, quindi assumeremo che abbiate una buona politica di password per l'accesso al vostro database e la linea `iptables` nel vostro firewall che tratta con il database assomiglia a questa:
 
@@ -392,10 +392,20 @@ Nella nostra zona "admin" ancora, si presenta così:
 `firewall-cmd --list-all --zone=admin`
 
 ```bash
-  firewall-cmd --zone=public --change-interface=enp3s0 --permanent
-firewall-cmd --zone=trusted --change-interface=enp3s1 --permanent
-firewall-cmd --zone=admin --change-interface=enp3s1 --permanent
-firewall-cmd --reload
+  admin (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces:
+  sources: 192.168.1.122 192.168.1.151
+  services: ssh
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
 ```
 
 ## Regole Correlate Stabilite
