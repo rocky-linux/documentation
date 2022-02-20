@@ -1,7 +1,7 @@
 ---
 title: Migrazione A Rocky Linux
 author: Ezequiel Bruni
-contributors: tianci li, Steven Spencer, Colussi Franco
+contributors: 01-15-2022
 update: 01-15-2022
 ---
 

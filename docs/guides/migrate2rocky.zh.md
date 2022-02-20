@@ -1,7 +1,7 @@
 ---
 title: 迁移到Rocky Linux
 author: Ezequiel Bruni
-contributors: tianci li, Steven Spencer
+contributors: 11-23-2021
 update: 11-23-2021
 ---
 
