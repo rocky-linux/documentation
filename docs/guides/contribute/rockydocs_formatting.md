@@ -7,7 +7,7 @@ update: 19-Feb-2022
 
 # Rocky Docs Formatting - Introduction
 
-Over the last year, a lot has changed with Rocky documentation. This guide is meant to help contributors get familiar with our more advanced formatting options: including  admonitions, numbered lists, tables, and more. 
+Over the last year, a lot has changed with Rocky documentation. This guide is meant to help contributors get familiar with our more advanced formatting options: including  admonitions, numbered lists, tables, and more.
 
 To be clear, a document may or may not need to contain any of these elements. If you feel that your document will benefit from them, then this guide should help.
 
@@ -29,7 +29,7 @@ Admonitions are special visual "boxes" that allow you to call attention to impor
 | custom <sub>1</sub> | always renders a blue text box                  |
 | custom <sub>2</sub> | uses a custom title within another type       |
 
-So there is no limit on the types of admonitions you can use as noted in custom <sub>1</sub> above. A custom title can be added to any of the other admonition types to get the colored box you want for a specific admonition, as noted in custom <sub>2</sub> above. 
+So there is no limit on the types of admonitions you can use as noted in custom <sub>1</sub> above. A custom title can be added to any of the other admonition types to get the colored box you want for a specific admonition, as noted in custom <sub>2</sub> above.
 
 An admonition is always entered in this way:
 
@@ -109,7 +109,7 @@ Numbered lists sound like they are easy to create and use, and once you get the 
 
 3. Item 3
 
-If you need to add code blocks, multiple lines or even paragraphs of text to a numbered list, then the text should be indented with those same four (4) spaces that we used in the admonitions. 
+If you need to add code blocks, multiple lines or even paragraphs of text to a numbered list, then the text should be indented with those same four (4) spaces that we used in the admonitions.
 
 You can't use your eyes to line them up under the numbered item, however, as this is one space off. If you are using a good markdown editor, you can set your tab value to four (4), which will make formatting everything a bit easier.
 
@@ -181,7 +181,7 @@ That ends up looking like this when the page is rendered:
 
 ## Grouping Different Formatting Types
 
-Thins really get crazy, when you need to combine multiple elements within another one. For instance, an admonition with a numbered list:
+Things really get crazy, when you need to combine multiple elements within another one. For instance, an admonition with a numbered list:
 
 !!! note
 
@@ -276,8 +276,8 @@ You can even embed a table or block quote (quite literally any formatting item t
 
 ## Conclusion
 
-Document formatting with admonitions, tables, numbered lists, and block quotes, can add clarity to your document. When using admonitions, take care to pick the correct type. This can make it easier to visually see the importance of the particular admonition. 
+Document formatting with admonitions, tables, numbered lists, and block quotes, can add clarity to your document. When using admonitions, take care to pick the correct type. This can make it easier to visually see the importance of the particular admonition.
 
-Overuse of any of these elements can simply add clutter where none is needed. Learning to use these formatting items conservatively and well can be very helpful to get your point across in a document. 
+Overuse of any of these elements can simply add clutter where none is needed. Learning to use these formatting items conservatively and well can be very helpful to get your point across in a document.
 
 Lastly, to make formatting easier, consider changing your markdown editor's TAB value to four (4) spaces.
