@@ -42,3 +42,4 @@ fi
 * Next the script creates the CSR (Certificate Signing Request), which can then be used to purchase an SSL certificate from a provider.
 * Finally, the cleanup step removes the previously created key with the password attached.
 * Entering the script name without the parameter generates the error: "requires keyname parameter".
+* The positional parameter variable, i.e. $n, is used here. Where $0 represents the command itself and $1 to $9 represent the first to ninth parameters. When the number is greater than 10, you need to use braces, such as ${10}
