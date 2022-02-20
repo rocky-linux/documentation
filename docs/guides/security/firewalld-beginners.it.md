@@ -2,14 +2,14 @@
 title: firewalld per Principianti
 author: Ezequiel Bruni
 contributors: Steven Spencer, Franco Colussi
-update: 19-feb-2022
+update: 20-feb-2022
 ---
 
 # `firewalld` per Principianti
 
 ## Introduzione
 
-Molto tempo fa, ero un piccolo utente di computer alle prime armi che aveva sentito dire che avere un firewall *doveva* essere super buono. Mi permetterebbe di decidere cosa entra e cosa esce dal mio computer, giusto? Ma sembrava soprattutto impedire ai miei videogiochi di accedere a internet; *non* ero felice e contento.
+Molto tempo fa, ero un piccolo utente di computer alle prime armi che aveva sentito dire che avere un firewall *doveva* essere super buono. Mi permetterebbe di decidere cosa entra e cosa esce dal mio computer, giusto? Ma sembrava soprattutto impedire ai miei videogiochi di accedere a internet; e *non* ero felice e contento.
 
 Naturalmente, se siete qui, probabilmente avete un'idea migliore di me su cosa sia un firewall e cosa faccia. Ma se la vostra esperienza con il firewall equivale a dire a Windows Defender che sì, per l'amore di tutto ciò che è santo, la vostra nuova applicazione ha il permesso di usare internet, non preoccupatevi. C'è scritto "per Principianti" in alto; ti ho preso.
 
@@ -26,11 +26,11 @@ Qui imparerete:
 
 Questa *non* vuole essere una guida completa o esaustiva.
 
-### Una nota sull'uso della linea di comando per la gestione del firewall
+### Una nota sull'uso della riga di comando per la gestione del firewall
 
 Beh... ci *sono* opzioni di configurazione grafica del firewall. Sul desktop, c'è `firewall-config` che può essere installato dai repo, e sui server puoi [installare Cockpit](https://linoxide.com/install-cockpit-on-almalinux-or-rocky-linux/) per aiutarti a gestire i firewall e un sacco di altre cose. **Tuttavia, in questo tutorial vi insegnerò il modo a riga di comando per fare le cose per un paio di ragioni:**
 
-1. Se state gestendo un server, userete comunque la linea di comando per la maggior parte di queste cose. Molti tutorial e guide per il server Rocky daranno istruzioni a riga di comando per la gestione del firewall, ed è meglio che tu capisca queste istruzioni, piuttosto che copiare e incollare qualsiasi cosa tu veda.
+1. Se state gestendo un server, userete comunque la riga di comando per la maggior parte di queste cose. Molti tutorial e guide per il server Rocky daranno istruzioni a riga di comando per la gestione del firewall, ed è meglio che tu capisca queste istruzioni, piuttosto che copiare e incollare qualsiasi cosa tu veda.
 2. Capire come funzionano i comandi `firewalld` potrebbe aiutarvi a capire meglio come funziona il software del firewall. Potete prendere gli stessi principi che imparate qui, e avere un'idea migliore di quello che state facendo se decidete di usare un'interfaccia grafica in futuro.
 
 ## Prerequisiti e presupposti
@@ -131,7 +131,7 @@ firewall-cmd --runtime-to-permanent
 Tuttavia, se sei assolutamente sicuro di quello che stai facendo, e vuoi solo aggiungere la regola e andare avanti con la tua vita, puoi aggiungere il flag `--permanent` a qualsiasi comando di configurazione:
 
 ```bash
-firewall-cmd --permanent [the rest of your command]
+firewall-cmd --permanent [resto del tuo comando]
 ```
 
 ## Gestire le Zone
@@ -147,7 +147,7 @@ Se la tua macchina ha più modi per connettersi a reti diverse (ad esempio, Ethe
     1. La zona è assegnata a un'interfaccia di rete
     2. Alla zona vengono assegnati IP sorgente o intervalli di rete. (Per saperne di più sotto)
 
-Le zone predefinite includono le seguenti (ho preso questa spiegazione dalla [guida di DigitalOcean`firewalld`](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-8), che dovreste anche leggere):
+Le zone predefinite includono le seguenti (ho preso questa spiegazione dalla [guida di DigitalOcean `firewalld`](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-8), che dovreste anche leggere):
 
 > **drop:** Il livello più basso di fiducia. Tutte le connessioni in entrata sono abbandonate senza risposta e solo le connessioni in uscita sono possibili.
 
@@ -188,31 +188,31 @@ firewall-cmd --get-active-zones
 Per cambiare la zona predefinita:
 
 ```bash
-firewall-cmd --set-default-zone [your-zone]
+firewall-cmd --set-default-zone [tua-zona]
 ```
 
 Per aggiungere un'interfaccia di rete a una zona:
 
 ```bash
-firewall-cmd --zone=[your-zone] --add-interface=[your-network-device]
+firewall-cmd --zone=[tua-zona] --add-interface=[tua-intefaccia-di-rete]
 ```
 
 Per cambiare la zona di un'interfaccia di rete:
 
 ```bash
-firewall-cmd --zone=[your-zone] --change-interface=[your-network-device]
+firewall-cmd --zone=[tua-zona] --change-interface=[tua-interfaccia-di-rete]
 ```
 
 Per rimuovere completamente un'interfaccia da una zona:
 
 ```bash
-firewall-cmd --zone=[your-zone] --remove-interface=[your-network-device]
+firewall-cmd --zone=[tua-zona] --remove-interface=[tua-intefaccia-di-rete]
 ```
 
 Per creare una zona nuova di zecca con un set di regole completamente personalizzato, e per controllare che sia stata aggiunta correttamente:
 
 ```bash
-firewall-cmd --new-zone=[your-new-zone]
+firewall-cmd --new-zone=[tua-nuova-zona]
 firewall-cmd --get-zones
 ```
 
@@ -226,7 +226,7 @@ Ogni porta è definita da un numero, e alcune porte sono riservate a servizi spe
 
 In particolare, la porta 80 permette di trasferire dati tramite il protocollo HTTP (Hypertext Transfer Protocol), e la porta 443 è riservata ai dati HTTPS (Hypertext Transfer Protocol Secure). *
 
-La porta 22 è riservata al protocollo Secure Shell (SSH) che ti permette di accedere e gestire altre macchine attraverso la linea di comando (vedi la [nostra breve guida](ssh_public_private_keys.md) su questo argomento). Un server remoto nuovo di zecca potrebbe permettere solo connessioni sulla porta 22 per SSH, e nient'altro.
+La porta 22 è riservata al protocollo Secure Shell (SSH) che ti permette di accedere e gestire altre macchine attraverso la riga di comando (vedi la [nostra breve guida](ssh_public_private_keys.md) su questo argomento). Un server remoto nuovo di zecca potrebbe permettere solo connessioni sulla porta 22 per SSH, e nient'altro.
 
 Altri esempi sono FTP (porte 20 e 21), SSH (porta 22), e molti altri. È anche possibile impostare porte personalizzate per essere utilizzate da nuove applicazioni che potreste installare, che non hanno già un numero standard.
 
