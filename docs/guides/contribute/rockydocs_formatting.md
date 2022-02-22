@@ -179,6 +179,17 @@ That ends up looking like this when the page is rendered:
 
 > **another item** - Another description of  an item
 
+## Keyboard
+
+Another way to make sure that you add as much clarity to your documents as possible is to represent keys on the keyboard that must be entered, in the correct manner. This is done with `<kbd>key</kbd>`. For instance, to represent that you need to hit the escape key in your document, you would use `<kbd>ESC</kbd`. When you need to indicate that multiple keys must be pressed add a `+` between them like this: `<kbd>CTRL</kbd> + <kbd>F4</kbd>` if keys need to be pressed simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here's an example of a keyboard instruction in your editor:
+
+```
+A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
+```
+And here's how that renders when displayed:
+
+A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
+
 ## Grouping Different Formatting Types
 
 Things really get crazy, when you need to combine multiple elements within another one. For instance, an admonition with a numbered list:
@@ -200,6 +211,10 @@ Things really get crazy, when you need to combine multiple elements within anoth
 Or what if you have a numbered list, with an additional admonition:
 
 1. This item is something very important
+
+    Here we are adding a keyboard command to the list item:
+
+    Press <kbd>ESC</kbd> for no particular reason.
 
 2. But this item is something very important and has multiple paragraphs to it
 
