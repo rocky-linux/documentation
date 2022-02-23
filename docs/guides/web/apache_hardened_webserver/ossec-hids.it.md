@@ -15,11 +15,11 @@ title: Sistema Intrusion Detection System Host-based (HIDS) author: Steven Spenc
 
 _ossec-hids_ è un sistema di rilevamento delle intrusioni nell'host che offre passi automatici di azione-risposta per aiutare a mitigare gli attacchi di intrusione nell'host. È solo un possibile componente di una configurazione rinforzata del server web Apache e può essere utilizzato con o senza altri strumenti.
 
-Per installare _ossec-hids_, abbiamo bisogno di un repository di terze parti da Atomicorp. Atomicorp offre anche una versione supportata a prezzi ragionevoli per coloro che desiderano un supporto professionale se si trovano in difficoltà.
+Se volete usare questo insieme ad altri strumenti per il rinforzamento, fate riferimento al documento [Apache Web Server Rinforzato](index.md). Il presente documento utilizza anche tutte le ipotesi e le convenzioni delineate in tale documento originale, quindi è una buona idea rivederlo prima di continuare.
 
 ## Installare il Repository di Atomicorp
 
-Se preferisci il supporto, e hai il budget per farlo, dai un'occhiata alla versione a pagamento di [Atomicorp _ossec-hids_](https://atomicorp.com/atomic-enterprise-ossec/). Atomicorp offre anche una versione supportata a prezzi ragionevoli per coloro che desiderano un supporto professionale se si trovano in difficoltà.
+Per installare _ossec-hids_, abbiamo bisogno di un repository di terze parti da Atomicorp. Atomicorp offre anche una versione supportata a prezzi ragionevoli per coloro che desiderano un supporto professionale se si trovano in difficoltà.
 
 Se preferisci il supporto, e hai il budget per farlo, dai un'occhiata alla versione a pagamento di [Atomicorp _ossec-hids_](https://atomicorp.com/atomic-enterprise-ossec/). Poiché avremo bisogno solo di alcuni pacchetti dal repository gratuito di Atomicorp, modificheremo il repository dopo averlo scaricato.
 
@@ -86,7 +86,7 @@ La sezione `<smtp_server>` attualmente mostra localhost, tuttavia puoi specifica
 
 È necessario impostare l'indirizzo "from" in modo da poter trattare con i filtri SPAM sul tuo server di posta elettronica che potrebbe vedere questa email come SPAM. Per evitare di essere inondato di e-mail, imposta la segnalazione delle e-mail a 1 all'ora. Puoi espandere questo o rimarcare questo comando se vuoi mentre stai iniziando con _ossec-hids_ e hai bisogno di vedere le cose velocemente.
 
-Le sezioni `<white_list>` si occupano dell'IP localohost del server e dell'indirizzo "pubblico" (ricordate, stiamo usando un indirizzo privato per la dimostrazione) del firewall, da cui appariranno tutte le connessioni sulla rete fidata. Puoi aggiungere più voci `<white_list>` secondo necessità.
+Le sezioni `<white_list>` si occupano dell'IP localhost del server e dell'indirizzo "pubblico" (ricordate, stiamo usando un indirizzo privato per la dimostrazione) del firewall, da cui appariranno tutte le connessioni sulla rete fidata. Puoi aggiungere più voci `<white_list>` secondo necessità.
 
 ```
 <syscheck>
