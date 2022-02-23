@@ -13,7 +13,7 @@ title: Sistema Intrusion Detection System Host-based (HIDS) author: Steven Spenc
 
 ## Introduzione
 
-_ossec-hids_ è un sistema di rilevamento delle intrusioni nell'host che offre passi automatici di azione-risposta per aiutare a mitigare gli attacchi di intrusione nell'host. Il presente documento utilizza anche tutte le ipotesi e le convenzioni delineate in tale documento originale, quindi è una buona idea rivederlo prima di continuare.
+_ossec-hids_ è un sistema di rilevamento delle intrusioni nell'host che offre passi automatici di azione-risposta per aiutare a mitigare gli attacchi di intrusione nell'host. È solo un possibile componente di una configurazione rinforzata del server web Apache e può essere utilizzato con o senza altri strumenti.
 
 Per installare _ossec-hids_, abbiamo bisogno di un repository di terze parti da Atomicorp. Atomicorp offre anche una versione supportata a prezzi ragionevoli per coloro che desiderano un supporto professionale se si trovano in difficoltà.
 
