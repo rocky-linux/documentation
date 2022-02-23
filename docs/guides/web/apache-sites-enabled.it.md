@@ -28,9 +28,9 @@ Ricorda solo che potresti aver bisogno anche di moduli, come forse php-bcmath o 
 
 Questo metodo usa un paio di directory aggiuntive, ma attualmente non esistono sul sistema. Dobbiamo aggiungere due directory in */etc/httpd/* chiamate "sites-available" e "sites-enabled."
 
-* Dala riga di comando digita `mkdir /etc/httpd/sites-available` e poi `mkdir /etc/httpd/sites-enabled`
+* Dalla riga di comando digita `mkdir /etc/httpd/sites-available` e poi `mkdir /etc/httpd/sites-enabled`
 
-* Abbiamo anche bisogno di una directory dove risiederanno i nostri siti. Questo può essere ovunque, ma un buon modo per mantenere le cose organizzate è quello di creare una directory chiamata sub-domains. Per semplificare le cose, mettilo in /var/www: `mkdir /var/www/sub-domains/`
+* Abbiamo anche bisogno di una directory dove risiederanno i nostri siti. Questo può essere ovunque, ma un buon modo per mantenere le cose organizzate è quello di creare una directory chiamata sub-domains. Per semplificare le cose, mettila in /var/www: `mkdir /var/www/sub-domains/`
 
 ## Configurazione
 Dobbiamo anche aggiungere una riga in fondo al file httpd.conf. Per fare questo, digita `vi /etc/httpd/conf/httpd.conf` e vai in fondo al file e aggiungi `Include /etc/httpd/sites-enabled`.
@@ -122,7 +122,7 @@ Se siete nuovi alla sintassi "ad albero" per fare le directory, quello detto sop
 
 Solo una nota in anticipo: Non è necessario per il funzionamento del server web che il file CSR sia memorizzato nell'albero.
 
-Se avete bisogno di riemettere il certificato da un altro fornitore, ecc., è una buona idea avere una copia memorizzata del file CSR. La domanda diventa dove si può memorizzare in modo che si ricordi, e memorizzarlo all'interno dell'albero del tuo sito web è logico.
+Se avete bisogno di riemettere il certificato da un altro fornitore, ecc., è una buona idea avere una copia memorizzata del file CSR. La domanda diventa dove si può memorizzare in modo che ci si ricordi, e memorizzarlo all'interno dell'albero del tuo sito web è logico.
 
 Supponendo che abbiate nominato i vostri file key, csr e crt (certificato) con il nome del vostro sito, e che li abbiate memorizzati in _/root_, li copiamo nelle rispettive posizioni che abbiamo appena creato:
 

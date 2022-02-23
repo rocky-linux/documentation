@@ -63,7 +63,7 @@ UNIX est toujours d'actualité aujourd'hui (HP-UX, AIX, Solaris, etc.)
 
 #### Minix
 
-* **1987** : A.S. Tanenbaum développe MINIX, un UNIX simplifié, pour enseigner les systèmes d'exploitation de manière simple. M. Tanenbaum met à disposition le code source de son système d'exploitation.
+* **1987** : A.S. Tanenbaum développe MINIX, un UNIX simplifié, pour enseigner les systèmes d'exploitation de manière simple.
 
 #### Linux
 

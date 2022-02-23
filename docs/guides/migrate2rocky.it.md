@@ -1,7 +1,7 @@
 ---
 title: Migrazione A Rocky Linux
 author: Ezequiel Bruni
-contributors: tianci li, Steven Spencer, Colussi Franco
+contributors: 01-15-2022
 update: 01-15-2022
 ---
 
@@ -9,7 +9,7 @@ update: 01-15-2022
 
 ## Prerequisiti & Presupposti
 
-* Un server hardware o VPS in esecuzione, bene... CentOS Stream, CentOS, Alma Linux, RHEL, o Oracle Linux. La versione attuale supportata per ciascuno di questi è la 8.5.
+* CentOS Stream, CentOS, Alma Linux, RHEL, o Oracle Linux che funziona bene su un server hardware o VPS. La versione attuale supportata per ciascuno di questi è la 8.5.
 * Conoscenza operativa della riga di comando.
 * Conoscenza operativa di SSH per macchine remote.
 * Un atteggiamento lievemente rischioso.

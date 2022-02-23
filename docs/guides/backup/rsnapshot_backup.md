@@ -318,7 +318,7 @@ Then we make the script executable:
 
 Then create the crontab for root to run the backup script:
 
-`chrontab -e`
+`crontab -e`
 
 And add this line:
 

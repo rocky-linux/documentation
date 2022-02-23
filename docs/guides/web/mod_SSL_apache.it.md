@@ -2,10 +2,10 @@
 title: Apache Con 'mod_ssl'
 author: Garthus
 contributors: Steven Spencer, David Hensley, Franco Colussi
-update: 28-Jan-2022
+update: 10-Feb-2022
 ---
 
-# 'mod_ssl' su Rocky Linux in un ambiente server web httpd Apache
+# 'mod_ssl' su Rocky Linux in un ambiente server web Httpd Apache
 
 Apache Web-Server è usato da molti anni ormai; 'mod_ssl' è usato per fornire maggiore sicurezza al Web-Server e può essere installato su quasi tutte le versioni di Linux, incluso Rocky Linux. L'installazione di 'mod_ssl' farà parte della creazione di un Lamp-Server per Rocky Linux.
 
@@ -117,7 +117,7 @@ Per includere il tuo certificato SSL appena creato nella configurazione del serv
 
 `nano /etc/httpd/conf.d/ssl.conf`
 
-Poi cambiate le seguenti linee:
+Poi cambia le seguenti linee:
 
 DA:
 ```
@@ -130,7 +130,7 @@ SSLCertificateFile /etc/pki/tls/certs/httpd.crt
 SSLCertificateKeyFile /etc/pki/tls/private/httpd.key
 ```
 
-Poi ricaricare il server web Apache eseguendo:
+Poi ricarica il server web Apache eseguendo:
 
 `systemctl reload httpd`
 
