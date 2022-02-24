@@ -103,7 +103,8 @@ wsl -d rocky_rc
 ```bash
 yum update
 yum install glibc-langpack-en -y
-yum reinstall passwd sudo cracklib-dicts -y
+yum install passwd sudo -y
+yum reinstall cracklib-dicts -y
 newUsername=<your new username>
 adduser -G wheel $newUsername
 echo -e "[user]\ndefault=$newUsername" >> /etc/wsl.conf
