@@ -36,7 +36,7 @@ It is also important to be familiar with the limitations of WSL, which will caus
 #### Pull From Docker Hub (on the same PC as your WSL2 install)
 1. From powershell or another WSL2 distro create a rocky container using the version you wish to start with. Replace the tag with your desired tag
 ```powershell
-docker run --name rocky-container rockylinux/rockylinux:8.4
+docker run --name rocky-container rockylinux/rockylinux:8.5
 ```
 2. Confirm the container exists
 ```powershell
