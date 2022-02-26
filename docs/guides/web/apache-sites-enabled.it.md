@@ -132,7 +132,7 @@ cp /root/com.wiki.www.csr /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.csr/
 cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
 ```
 
-### La Configurazione del Sito - https
+### Ottenere il Certificato di Let's Encrypt
 
 Una volta che hai generato le tue chiavi e acquistato il certificato SSL, puoi ora andare avanti con la configurazione del sito web utilizzando le tue nuove chiavi.
 
