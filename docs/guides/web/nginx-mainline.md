@@ -311,7 +311,7 @@ That basically gives everyone the right to look at files on the server, but not 
 
 As of now, our [guide to getting SSL certificates with certbot](../security/generating_ssl_keys_lets_encrypt.md) has been updated with some basic instructions for `nginx`. Go give that a look, as it has full instructions for installing certbot, as well as generating the certificates.
 
-The time is coming when browsers maight even just stop letting people see sites without certificates be used at all, so make sure you get one for every site.
+The time is coming when browsers maight even just stop letting people see sites without certificates at all, so make sure you get one for every site.
 
 ## Additional Configuration Options and Guides
 
