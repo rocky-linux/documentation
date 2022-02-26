@@ -234,7 +234,7 @@ The rest of the text you'll see is awful similar to what's above. The results wi
 
 ```
 server {
-    server_name  yourwebsite.com;
+    server_name yourwebsite.com;
     
     listen 80;
 	listen [::]:80;
