@@ -2,7 +2,7 @@
 title: Change Log
 author: Louis Abel
 contributors: Steven Spencer, tianci li
-update: 18-Feb-2022
+update: 23-Feb-2022
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +14,18 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - 2022-02-16
+
+The following packages have been updated since February 16, 2022:
+
+* python-pillow: python-pillow-5.1.1-16.el8 -> python-pillow-5.1.1-18.el8_5
+
+Associated CVE's:
+
+* CVE-2022-22815
+* CVE-2022-22816
+* CVE-2022-22817
 
 ## 8.5 - 2022-02-15
 

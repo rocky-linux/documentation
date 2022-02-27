@@ -179,6 +179,36 @@ That ends up looking like this when the page is rendered:
 
 > **another item** - Another description of  an item
 
+## Inline and Block-Level Code Blocks
+
+Our approach to using code blocks is pretty simple. If `your code` is short enough that you can (and want to) use it in a sentence like you just saw, use single backticks <kbd>`</kbd>, like so:
+
+```
+A sentence with a `commmand of your choosing` in it.
+```
+
+Any command that is not used inside of a text paragraph (especially the long bits of code with multiple lines) should be a full code block, defined with triple backticks <kbd>`</kbd>:
+
+````markdown
+```bash
+sudo dnf install the-kitchen-sink 
+```
+````
+
+The `bash` bit of that formatting is a non-essential code identifier, but can help with syntax highlighting. Of course, if you're showcasing Python, PHP, Ruby, HTML, CSS, or any other kind of code, the "bash" should be changed to whatever language you're using.
+
+Incidentally, if you need to show a code block within a code block, just add one more backtick <kbd>`</kbd> to the parent block, like so:
+
+`````markdown
+````markdown
+```bash
+sudo dnf install the-kitchen-sink 
+```
+````
+`````
+
+And yes, the code block you just saw used five backticks at the beginning and end to make it render properly.
+
 ## Keyboard
 
 Another way to make sure that you add as much clarity to your documents as possible is to represent keys on the keyboard that must be entered, in the correct manner. This is done with `<kbd>key</kbd>`. For instance, to represent that you need to hit the escape key in your document, you would use `<kbd>ESC</kbd`. When you need to indicate that multiple keys must be pressed add a `+` between them like this: `<kbd>CTRL</kbd> + <kbd>F4</kbd>` if keys need to be pressed simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here's an example of a keyboard instruction in your editor:

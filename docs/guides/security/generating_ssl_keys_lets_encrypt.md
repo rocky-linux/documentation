@@ -1,22 +1,26 @@
+---
+title: Generating SSL Keys - Let's Encrypt
+author: Steven Spencer
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni
+update: 26-Feb-2022
+---
+
 # Generating SSL Keys - Let's Encrypt
 
-## Prerequisites
+## Prerequisites & Assumptions
 
 * Comfort with the command line
 * Familiarity with securing web sites with SSL certificates is a plus
 * Knowledge of command line text editors (this example uses _vi_)
 * An already running web server open to the world on port 80 (http)
 * Familiarity with _ssh_ (secure shell) and the ability to access your server with _ssh_
+* All commands assume that you are either the root user or that you have used _sudo_ to gain root access.
 
 # Introduction
 
 One of the most popular ways to secure a web site, currently, is using Let's Encrypt SSL certificates, which are also free. 
 
 These are actual certificates, not self-signed or snake oil, etc., so they are great for a low-budget security solution. This document will walk you through the process of installing and using Let's Encrypt certificates on a Rocky Linux web server.
-
-## Assumptions
-
-* All commands assume that you are either the root user or that you have used _sudo_ to gain root access.
 
 ## Installation 
 
@@ -70,7 +74,7 @@ This should install _certbot_. The final step is to put the _certbot_ command in
 
 `ln -s /snap/bin/certbot /usr/bin/certbot`
 
-## Getting The Let's Encrypt Certificate
+## Getting The Let's Encrypt Certificate for the Apache Server
 
 There are two ways to retrieve your Let's Encrypt certificate, either using the command to modify the http configuration file for you, or to just retrieve the certificate. If you are using the procedure for a multi-site setup suggested for one or more sites in the procedure [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md), then you will only want to retrieve your certificate. 
 
@@ -205,8 +209,79 @@ Here's what's happening above. You may want to review the [Apache Web Server Mul
 * SSLCertificateKeyFile - the PEM file for the private key, generated with the _certbot_ request.
 * SSLCertificateChainFile - the certificate from your certificate provider, often called the intermediate certificate, in this case exactly like the 'SSLCertificateFile' location above.
 
-Once you have made all of your changes, simply restart _httpd_ and if it starts test your site to make sure you now have a valid certificate file showing. If so, you are ready to move on to the next step.
+Once you have made all of your changes, simply restart _httpd_ and if it starts test your site to make sure you now have a valid certificate file showing. If so, you are ready to move on to the next step: automation.
 
+## Using Certbot With Nginx
+
+A quick note: using certbot with Nginx is pretty much the same as with Apache. Here's the short, short version of the guide:
+
+Run this command to get started:
+
+```bash
+certbot --nginx
+```
+
+You'll be asked a couple of questions as shown above, including your email address, and which site you want to get a certificate for. Assuming you have at least one site comfigured (with a domain name pointing at the server), you'll see a list like this:
+
+```
+1. yourwebsite.com
+2. subdomain.yourwebsite.com
+```
+
+If you have more than one site, just press the number that corresponds to the site you want a certificate for.
+
+The rest of the text you'll see is awful similar to what's above. The results will be a bit different, of course. If you have a dead-simple `nginx` config file that looks like this:
+
+```
+server {
+    server_name yourwebsite.com;
+    
+    listen 80;
+	listen [::]:80;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+}
+
+```
+
+After certbot gets through with it, it'll look like a bit this:
+
+```
+server {
+    server_name  yourwebsite.com;
+
+    listen [::]:443 ssl; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/yourwebsite.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/yourwebsite.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+	
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+}
+
+server {
+    if ($host = yourwebsite.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+  listen 80;
+  listen [::]:80;
+  server_name yourwebsite.com;
+    return 404; # managed by Certbot
+}
+```
+
+Depending on a couple of things (for example, if you're using Nginx as a reverse proxy), you may need to dive into the new config file to fix up a few things that certbot won't handle perfectly on its own.
+
+Or write your own config file the hard way.
 ## Automating Let's Encrypt Certificate Renewal
 
 The beauty of installing _certbot_ is that the Let's Encrypt certificate will be automatically renewed. There is no need to create a process to do this. We do need to test the renewal with:
