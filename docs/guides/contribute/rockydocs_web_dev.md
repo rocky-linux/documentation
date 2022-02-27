@@ -1,5 +1,8 @@
 ---
-title: Running A Local Copy of Documentation
+title: Local Documentation - Docker
+author: Wale Soyinka
+contributors: Steve Spencer
+update: 27-Feb-2022
 ---
 
 # Running a local copy of the docs.rockylinux.org website for web development and/or content authors
