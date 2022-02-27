@@ -221,7 +221,7 @@ Run this command to get started:
 certbot --nginx
 ```
 
-You'll be asked a couple of questions as shown above, including your email address, and which site you want to get a certificate for. Assuming you have at least one site comfigured (with a domain name pointing at the server), you'll see a list like this:
+You'll be asked a couple of questions as shown above, including your email address, and which site you want to get a certificate for. Assuming you have at least one site configured (with a domain name pointing at the server), you'll see a list like this:
 
 ```
 1. yourwebsite.com
