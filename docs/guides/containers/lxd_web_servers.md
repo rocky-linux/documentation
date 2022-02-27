@@ -19,7 +19,7 @@ In this case, we’ll be running Rocky Linux in our containers, on top of our �
 
 Conceptually, it’s something like this:
 
-![A graph showing how one computer can pretend to be several](D:\dev\RockyLinux\documentation\docs\guides\images\lxd-web-server-01.png)
+![A graph showing how one computer can pretend to be several](../images/lxd-web-server-01.png)
 
 If you’ve ever played with VirtualBox to run some Windows apps, or run a web app on Docker, it’s like that, but not. Unlike virtual machines, Linux Containers don’t emulate an entire hardware environment for each container. Rather, they share all share few virtual devices by default for networking and storage, though you can add more virtual devices. As a result, they require a lot less overhead (processing power and RAM) than a virtual machine.
 
@@ -27,24 +27,28 @@ For those Docker fiends out there, Linux Containers are less ephemeral than what
 
 Heh.
 
-LXD, specifically, is a command-line application that helps you to set up and manage Linux Containers. It works alongside the basic LXC app to help you with the initial setup of your containers, and the virtual devices needed to run them.
+LXD, specifically, is a command-line application that helps you to set up and manage Linux Containers. It works alongside the basic LXC app to help you with the initial setup of your containers, and the virtual devices needed to run them. It also helps you to manage your containers down the line.
 
 We’ll be using them both to create an environment that works something like this:
 
-![A diagram of the intended Linux Container structure](D:\dev\RockyLinux\documentation\docs\guides\images\lxd-web-server-02.png)
+![A diagram of the intended Linux Container structure](../images/lxd-web-server-02.png)
 
 Specifically, I’m going to show you how to set up simple Nginx and Apache web servers inside of your server containers, and use another container with Nginx as a reverse proxy. Again, this setup should work in any environment: from local networks to virtual private servers.
 
-*Note:* A reverse proxy is a program that takes incoming connections from the internet (or your local network) and routes them to the right server, container, or app. If you’d rather use a dedicated proxy tool like HaProxy, please see the guide linked above.
+!!! Note 
+
+    A reverse proxy is a program that takes incoming connections from the internet (or your local network) and routes them to the right server, container, or app. There are also dedicated tools for this job like HaProxy... but weirdly enough, I find Nginx a lot easier to use.
 
 ## Prerequisites And Assumptions
 
 * Basic familiarity with the Linux command line interface. You should know how to use SSH if you’re installing LXC/LXD on a remote server.
 * An internet-connected server, physical or virtual, with Rocky Linux already running on it.
-* A domain name pointed right at your server with an A record.
+* Two domain names pointed right at your server with an A record.
+    * Two subdomains would also work just as well. One domain with a wildcard subdomain record would also, or a custom LAN domain... you get the picture.
 * A command-line text editor. *nano* will do, *micro* is my favorite, but use whatever makes you comfortable.
 * You *can* follow this whole tutorial as the root user, but you probably shouldn’t. After the initial installation of LXC/LXD, we’ll guide you in creating an unprivileged user specifically for operating LXD commands.
 * We now have Rocky Linux images to base your containers on, and they’re awesome.
+* If you're not too familaiar with Nginx or Apache, you **will** need to check out some of our other guides if you want to get a full productions server up and running. Don't worry, I'll link them below.
 
 ## Setting Up The Host Server Environment
 
@@ -106,63 +110,95 @@ If you’re running LXD in a virtual environment, just reboot and read on.
 
 Now that the environment is all set up, we are ready to initialize LXD. This is an automated script that asks a series of questions to get your LXD instance up and running:
 
-`lxd init`
+```bash
+lxd init
+```
 
 Here are the questions and our answers for the script, with a little explanation where warranted:
 
-`Would you like to use LXD clustering? (yes/no) [default=no]:`
+```
+Would you like to use LXD clustering? (yes/no) [default=no]:
+```
 
 If you are interested in clustering, do some additional research on that [here](https://lxd.readthedocs.io/en/latest/clustering/). Otherwise, just press “Enter” to accept the default option.
 
-`Do you want to configure a new storage pool? (yes/no) [default=yes]:`
+```
+Do you want to configure a new storage pool? (yes/no) [default=yes]:
+```
 
  Accept the default.
 
-`Name of the new storage pool [default=default]: storage`
+```
+Name of the new storage pool [default=default]: server-storage
+```
 
 Choose a name for your storage pool. I like to name it after the server LXD is running on. (A storage pool is basically a set amount of hard drive space set aside for your containers.)
 
-`Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]: lvm`
+```
+Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]: lvm
+```
 
-The above question is about what sort of file system you want to use for storage, and the default may vary depending on what’s available on your system. If using zfs, again, refer back to the guide linked above. In a virtual environment, I have found that “lvm” works fine, and it’s usually what I use. Accept the default on the next questions, too.
+The above question is about what sort of file system you want to use for storage, and the default may vary depending on what’s available on your system. If you're on a bare metal server, and want to use ZFS, again, refer back to the guide linked above.
 
-`Create a new LVM pool? (yes/no) [default=yes]: `
+In a virtual environment, I have found that “LVM” works fine, and it’s usually what I use. Accept the default on the next questions, too.
+
+```
+Create a new LVM pool? (yes/no) [default=yes]:
 
 `Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]:`
+```
 
 If you have a specific hard drive or partition you’d like to use for the whole storage pool, write “yes”. If you’re doing all of this on a VPS, you’ll probably *have* to choose “no”.
 
-`Would you like to connect to a MAAS server? (yes/no) [default=no]:`
+```
+Would you like to connect to a MAAS server? (yes/no) [default=no]:
+```
 
-Metal As A Service (MAAS) is outside the scope of this document. And frankly, I don’t know what it does.
+Metal As A Service (MAAS) is outside the scope of this document. Accept the defaults for this next bit.
 
-`Would you like to create a new local network bridge? (yes/no) [default=yes]:`
+```
+Would you like to create a new local network bridge? (yes/no) [default=yes]:
 
-`What should the new bridge be called? [default=lxdbr0]: `
+What should the new bridge be called? [default=lxdbr0]: `
 
-`What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:`
+What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
+```
 
-`What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]: none`
+If you want to use IPv6 on your LXD containers, you can turn on this next option. That is up to you, but you mostly shouldn’t need to. I think. I tend to leave it on out of laziness.
 
-If you want to use IPv6 on your LXD containers, you can turn on this option. That is up to you, but you mostly shouldn’t need to. I think.
+```
+What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
+```
 
-`Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes`
+This is necessary to easily back up the server, and can allow you to manage your LXD install from other computers. If that all sounds good to you, answer "yes" here/
 
-This is necessary to easily back up the server, so answer "yes" here.
+```
+Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
+```
 
-`Address to bind LXD to (not including port) [default=all]:`
+If you did say yes to the last questions, take the defaults here:
 
-`Port to bind LXD to [default=8443]:`
+```
+Address to bind LXD to (not including port) [default=all]:
 
-`Trust password for new clients:`
+Port to bind LXD to [default=8443]:
+```
 
-`Again:`
+Now you'll be asked for a trust password. That's  how you will connect to the LXC host server from other computers and servers, so set this with something that makes sense in your environment. Save this password to a secure location, such as a password manager.
 
-This trust password is how you will connect to the LXC host server from other computers and servers, so set this with something that makes sense in your environment. (Again, that’s useful for backups.) Save this password to a secure location, such as a password manager.
+```
+Trust password for new clients:
 
-`Would you like stale cached images to be updated automatically? (yes/no) [default=yes]`
+Again:
+```
 
-`Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:`
+And then keep taking the defaults from here on out:
+
+```
+Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
+
+Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
+```
 
 #### Setting Up User Privileges
 
@@ -186,7 +222,17 @@ Before we do anything else with containers, you need to be able to access your p
 
 The other LXD guide will show you how to do this with the *iptables* firewall, if that’s what you want to do. I tend to use the CentOS default firewall: *firewalld*. So that’s what we’re doing, this time.
 
-*firewalld* is configured via the `firewall-cmd` command. To add a new port, just run this:
+`firewalld` is configured via the `firewall-cmd` command. **The absolute first thing we want to do,** before we open any ports, is make sure that your containers can be assigned their IP addresses automatically:
+
+```bash
+firewall-cmd --zone=trusted --permanent --change-interface=lxdbr0
+```
+
+!!! Warning
+
+    If you don't that last step, your containers will not be able to proerly access the internet, or each other. This is crazy-essential, and knowing it will save you *ages* of frustration.
+
+Now, to add a new port, just run this:
 
 ```bash
 firewall-cmd --permanent --zone=public --add-port=80/tcp
@@ -239,9 +285,13 @@ And that should be everything you need, firewall-wise.
 
 ## Setting Up The Containers
 
-Actually managing containers is pretty easy. Just think of it as being able to conjure up a whole computer on command, and start or stop it at will. You can also log into said “computer” and run any commands you like, just as you would  
+Actually managing containers is pretty easy. Just think of it as being able to conjure up a whole computer on command, and start or stop it at will. You can also log into said “computer” and run any commands you like, just as you would with your host server.
 
-From here on out, every command should be run as the lxdadmin user, though some will require the use of *sudo* for temporary root privileges. You’re going to need three containers for this tutorial: the reverse proxy server, a test Nginx server, and a test Apache server, all running on Rocky-based containers.
+!!! Note
+
+    From here on out, every command should be run as the `lxdadmin` user, or whatever you decided to call it, though some will require the use of *sudo* for temporary root privileges. 
+
+You’re going to need three containers for this tutorial: the reverse proxy server, a test Nginx server, and a test Apache server, all running on Rocky-based containers.
 
 If for some reason you need a fully privileged container (and you mostly shouldn’t), you can run all of these commands as root.
 
@@ -323,6 +373,8 @@ That should give you output that looks a bit like this (though, if you opted to 
 ```
 
 ### *Essential Step:* Configuring the “proxy-server” Container to Take all Incoming Server Traffic
+
+Again, you might want to do this later when you actually create the proxy server, but here are the instructions you'll need:
 
 Remember when we opened up ports 80 and 443 in the firewall? Here’s where we make the “proxy-server” container listen to those ports, and take all the traffic directed at them.
 
@@ -406,6 +458,8 @@ lxc exec my-container fish
 ```
 
 In almost all instances, you’ll automatically be placed on the root account, and in the `/root` directory.
+
+Finally, if you've opened a shell into a container, you leave it the same way you leave any shell: with a simple `exit` command.
 
 #### Copying Containers
 
@@ -491,9 +545,11 @@ lxc exec apache-server dnf install nano -y
 
 I’ll be using *nano* in all of the text-editor-related commands going forward, but you do you.
 
-### The Apache Website Server
+### The Apache website server
 
-First, open up a shell into your container:
+We're going to keep this short, for learning and testing purposes. Look below for a link to your full Apache guides. 
+
+First, open up a shell into your container. Note that by default, containers will drop you into the root account. For our purposes, that's fine, though you may want to create a specific web server user for actual production purposes.
 
 ```bash
 lxc exec apache-server bash
@@ -515,38 +571,334 @@ Once *Apache* is installed, make sure it’s running, and can keep running on re
 systemctl enable --now httpd
 ```
 
-The `–-now` flag lets you skip the command to start the actual server. For reference, that would be:
+The `--now` flag lets you skip the command to start the actual server. For reference, that would be:
 
 ```bash
 systemctl start httpd
 ```
 
+If you have `curl` installed on your server host, you can make sure the default web page is up and running with:
 
+```bash
+curl [container-ip-address]
+```
 
+Remember, you can see all contkainer IPs with `lxc list`. And if you install curl on all your containers, you *could* just run:
 
+```bash
+curl localhost
+```
 
-RemoteIP
+#### Getting real user IPs from the proxy server
 
+Now here's a step that you'll need to do to prepare Apache for using the reverse proxy. By default, the actual IP addresses of users will not be logged by the servers in your web server containers. You want those IP addresses to go through because some web apps need user IPs for things like moderation, banning, and troubleshooting.
 
+To make your visitor's IP addresses get past the proxy server, you need two parts: the right settings in the proxy server (we'll cover that later), and a simple configuration file for the Apache server.
 
-#### Further Apache Configuration
+A big thanks goes out to Linode and [their own LXD guide](https://www.linode.com/docs/guides/beginners-guide-to-lxd-reverse-proxy) for the templates for these config files.
 
-Configure root
+Make a new config file:
 
+```bash
+nano /etc/httpd/conf.d/real-ip.conf
+```
 
+And add this text to it:
 
+```
+RemoteIPHeader X-Real-IP
+RemoteIPTrustedProxy proxy-server.lxd
+```
 
+Remember to change `proxy-server.lxd` to whatever you called your actual proxy container, if necessary. Now **don't restart the Apache server just yet.** That configuration file we added could cause problems *until* we get the proxy server up and running.
 
-### The Nginx Website Server
+Exit the shell for now, and let's start on the Nginx server.
 
+!!! Note
 
+    While this technique *does* work (your web apps and websites will get the users' real IPs), Apache's own access logs *will not show the right IPs.* They'll usually show the IP of the container that your reverse proxy is in. This is apparently a problem with how Apache logs things. 
+    
+    I've found loads of solutions on Google, and none of them have actually worked for me. Watch this space for someone much smarter than I am to figure it out. In the meantime, you can check the proxy server's access logs if you need to see the IP addresses yourself, or check the logs of whatever web app you're installing.
 
-### The Reverse Proxy Server 
+### The Nginx website server
 
+Again, we're keeping this short. If you want to use the latest (and recommended) version of Nginx in production, check out our [beginner's guide to installing Nginx](../web/nginx-mainline.md). That covers the full install guide, and some best practices for configuring your server.
 
+For testing and learning, you can just install the "stable" branch (which is tehnically a little outdated). First, you'll need to enable the right module from Rocky Linux's repos. Start by entering the shell for the "nginx-server" container:
 
+```bash
+lxc exec nginx-server bash
+```
 
+Once you're in, search for the latest version of Nginx available on our servers:
 
+```bash
+dnf module list nginx
+```
 
+That should get you a list that looks like this:
+
+```bash
+Rocky Linux 8 - AppStream
+Name       Stream        Profiles        Summary
+nginx      1.14 [d]      common [d]      nginx webserver
+nginx      1.16          common [d]      nginx webserver
+nginx      1.18          common [d]      nginx webserver
+nginx      1.20          common [d]      nginx webserver
+```
+
+Choose the highest number on the list, and enable its module like so:
+
+```bash
+dnf module enable nginx:1.20
+```
+
+You'll be asked if you're sure you want to do this, so just choose `Y` as usual. Then, use the default command to install Nginx:
+
+```bash
+dnf install nginx
+```
+
+Then, enable and start Nginx:
+
+```bash
+dnf enable --now nginx
+```
+
+!!! Note
+
+    Remember when I said to wait before creating the proxy container? Here's why: at this point, you can save yourself some time by leaving the "nginx-server" container, and copying it to make the "proxy-server" container:
+
+    ```bash
+    lxc copy nginx-server proxy-server
+    ```
+
+    Make sure to start the proxy container with `lxc start proxy-server`, and add the proxy ports to the container as detailed above.
+
+Again, you can make sure the container is working from the host with:
+
+```bash
+curl [your-container-ip]
+```
+
+#### Getting real user IPs from the proxy server (again)
+
+The logs *should* work this time. Should. To do this, we're putting a very similar file in `/etc/nginx/conf.d`:
+
+```bash
+nano /etc/nginx/conf.d/real-ip.conf
+```
+
+Then put this text in it:
+
+```bash
+real_ip_header    X-Real-IP;
+set_real_ip_from  proxy-server.lxd;
+```
+
+Lastly, **don't restart the server yet**. Again, that config file could cause problems until the proxy server is set up.
+
+### The Reverse Proxy Server
+
+So remember when I said you'd need two domains or subdomains? This is where you need them. The subdomains I'm using for this tutorial are:
+
+* apache.server.test
+* nginx.server.test
+
+Change them in all the files and instructions as needed.
+
+If you copied the "proxy-server" container from your "nginx-server" container, and you've added your proxy devices to it, just jump on into the shell. If you created the container earlier, you'll need to repeat all the steps for installing Nginx in the "proxy-server" container.
+
+Once it's installed and you know it runs okay, you just need to set up a couple of configuration files to direct traffic from your chosen domains to the actual website servers.
+
+Before you do that, make sure you can access both servers via their internal domains:
+
+```bash
+curl apache-server.lxd
+curl nginx-server.lxd
+```
+
+If those two commands load the HTML of the default server welcome pages in your terminal, then everything has been set up correctly.
+
+#### Directing traffic to the Apache server
+
+In the "proxy-server" container, create a configuration file called `apache-server.conf` in `/etc/nginx/conf.d/`:
+
+```bash
+nano /etc/nginx/conf.d/apache-server.conf 
+```
+
+Then paste this test in, change the domain name as necessary, and save it:
+
+```
+upstream apache-server {
+    server apache-server.lxd:80;
+}
+
+server {
+    listen 80 proxy_protocol;
+    listen [::]:80 proxy_protocol;
+    server_name apache.server.test; #< Your domain goes here
+
+    location / {
+        proxy_pass http://apache-server;
+
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+Let's break that down a little:
+
+* The `upstream` section is defining exactly where the reverse proxy is going to send all its traffic. Specifically, it's sending traffic to the "apache-server" container's internal domain name: `apache-server.lxd`.
+* The two lines that start with `listen` are telling the server to listen to traffic coming in on port 80 with the proxy protocol. The first via IPv4, and the second via IPv6.
+* The `server_name` function takes all the traffic that's specifically coming to "apache.server.test" and routes it through the reverse proxy. 
+* The `proxy-pass` function is the part that actually directs all traffic captured by the `server_name` variable, and sends it to the server defined in the `upstream` section.
+* The `proxy_redirect` function can apparently interfere with reverse proxies, so we're making sure it's turned off.
+* All of the `proxy-set-header` options are sending information like the user's IP and more to the web server.
+
+!!! warning
+
+    The `proxy_protocol` bit in the `listen` variables is *essential* for the proxy server to work. Never leave it out.
+
+For every LXD/website configuration file, you'll need to change the `upstream`, `server`, `server_name`, and `proxy_pass` settings accordlingly. The text after "http://" in `proxy-pass` must match the txt that comes after the `upstream` text.
+
+Reload the server with `systemctl restart nginx`, then point your browser at whatever domain you're using instead of `apache.server.test`. If you see a page that looks like this, you're golden:
+
+![A screenshot of the default Rocky Linux Apache welcome page](../images/lxd-web-server-03.png)
+
+!!! Note
+
+    You can name the config files whatever you like. I'm using simplified names for the tutorials, but some sysadmins recommand names based on the actual domain, but backwards. It's an alphabetical order-based organization thing.
+
+    eg. "apache.server.test" would get a configuration file named `test.server.apache.conf`.
+#### Directing traffic to the Nginx server
+
+Just kinda repeat the process. Create a file just like before:
+
+```bash
+nano /etc/nginx/conf.d/nginx-server.conf
+```
+
+Add the approriate text:
+
+```
+upstream nginx-server {
+    server rocky-nginx.lxd:80;
+}
+
+server {
+    listen 80 proxy_protocol;
+    listen [::]:80 proxy_protocol;
+    server_name nginx.server.test; #< Your domain goes here
+
+    location / {
+        proxy_pass http://nginx-server;
+
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+Again, reload the proxy server, point your browser at the appropriate address, and hope to whatever deity your prefer that you see this:
+
+![A screenshot of the default Rocky Linux Nginx welcome page](../images/lxd-web-server-04.png)
+
+#### Restart the servers in your web server containers
+
+Exit back out of the "proxy-server" container, and restart the servers in your other two containers with one simple command:
+
+```bash
+lxc exec apache-server systemctl restart httpd && lxc exec nginx-server restart nginx
+```
+
+That will apply the "real-ip.conf" files we made to their respective server configurations.
+
+#### Getting SSL certificates for your websites
+Getting official, proper SSL certificates is easiest with Let's Encrypt, and a little application called certbot. certbot will automatically detect your websites, get SSL certificates for them, and configure the sites itself. It will even renew the certificates for you every 30 days or so, without any intervention from you or cron jobs.
+
+This all has to be done from the "proxy-server" container, so log into that shell. Once there, install the EPEL repositiopries, just like you did on the host. Make sure the container is updated first:
+
+```bash
+dnf update
+```
+
+Then, add the EPEL repository:
+
+```bash
+dnf install epel-release
+```
+
+Then you just need to install certbot and its Nginx module:
+
+```bash
+dnf install certbot python3-certbot-nginx
+```
+
+Once installed, as long as you already have a couple of websites configured, just run:
+
+```bash
+certbot --nginx
+```
+
+Certbot will read your Nginx configuration, and figure out how many websites you have and if they need SSL certificates. At this point, you'll be asked a few questions. Do you accept the terms of service, do you want emails, etc? 
+
+The most important questions are as follows. Enter your email address when you see this:
+
+```
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Enter email address (used for urgent renewal and security notices)
+ (Enter 'c' to cancel):
+```
+
+Here you can choose which websites get certificates. Just hit enter to get certificates for all of them. 
+
+```
+Which names would you like to activate HTTPS for?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: apache.server.test
+2: nginx.server.test
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate numbers separated by commas and/or spaces, or leave input
+blank to select all options shown (Enter 'c' to cancel):
+```
+
+You'll see a bunch of confirmation text, and it'll be done. But if you go to your websites, you might find that they don't work. This is because when certbot creates the updated configuration, it forgets one very important thing.
+
+Go into your `apache-server.conf` and `nginx-server.conf` files, and find the following two lines:
+
+```
+listen [::]:443 ssl ipv6only=on; # managed by Certbot
+listen 443 ssl; # managed by Certbot
+```
+
+Yep, they're missing the `proxy_protocol` setting, and that's bad. Add it in yourself.
+
+```
+listen proxy_protocol [::]:443 ssl ipv6only=on; # managed by Certbot
+listen proxy_protocol 443 ssl; # managed by Certbot
+```
+
+Save the file, restart the server, and your websites should load without any issue.
+
+## Notes
+
+1. In this tutorial, I didn't mention configuring the actual web servers much. The very least you should do, in production, is change the domains names in the server config files in your actual web server containers, and not just the proxy container. And maybe set up a web server user in each.
+2. If you want to know a bit more about managing SSL certificates and SSL server configurations manually, check out [our guide to installing certbot and generating SSL certificates](../security/generating_ssl_keys_lets_encrypt.md).
+3. Apps like Nextcloud will require some extra configuration (for security reasons) if you put them in an LXD container behind a proxy.
 
 ## Conclusion
+
+There's a lot more to learn about LXD/LXC, containerization, web servers, and running websites, but that should honestly give you a good start. Once you learn how everything should be set up, and how to configure things the way you like, you can even begin to automate the process.
+
+You might use Ansible, or you might be like me, and just have a custom-written set of scripts that you run to make everything go faster. You can even create small "template containers" with all of your favorite software preinstalled, then just copy them and expand their storage capacity as needed.
+
+Okay. This is done. I'm off to play video games. Have fun!
