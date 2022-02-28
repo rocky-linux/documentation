@@ -1,39 +1,39 @@
 ---
 title: cron - 自动化命令
-author: unknown
-contributors: Steven Spencer,tianci li
-update:2021-12-08
+author: 史蒂文 斯本
+contributors: 埃泽基尔·布鲁尼
+update: 2021-10-22
 ---
 
-# 在 Rocky Linux 中使用 cron 和 crontab 自动化进程
+# 使用 `cron` 和 `crontab 自动处理`
 
-## 准备工作
+## 先决条件
 
-* 一台运行 Rocky Linux 的机器。
-* 知道如何在命令行环境下使用您喜欢的编辑器修改配置文件（本文将使用 _vi_）。
+* 运行Rocky Linux的机器。
+* 能够使用编辑器(这里使用`vi`) 在命令行中的修改配置文件
 
-## <a name="assumptions"></a>假定
+## <a name="assumptions"></a> 前提条件
 
-* 您已了解 bash、python 或其他脚本/编程工具的基本知识，并期望自动运行脚本。
-* 您已以 root 用户身份运行，或使用 `sudo -s` 切换到 root 用户。
-**（您可以以自己的用户身份在自己的目录中运行某些脚本。在这种情况下，无需切换到 root。）**
-* 我们认为，你是非常酷的人。
+* 有关于基础、python或其他脚本/编程工具的基本知识，以及希望自动运行脚本。
+* 您要么以根用户身份运行，要么已用 `sudo-s`  
+  **切换到 root (您可以作为自己的用户在自己的目录中运行某些脚本。 在这种情况下，不需要切换到 root。)**
+* 我们假定你非常酷。
 
-## 简介
+## 介绍
 
-Linux提供了 _cron_ 系统，一个基于时间的作业调度程序，用于自动化进程。它很简单，也很强大。想让脚本或程序每天下午 5 点运行吗？设置 cron 即可。
+Linux为流程自动化提供了 _cron_ 系统，一个基于时间的作业计划器。 它是很简单，但却相当强大。 想要一个脚本或程序每天在 5 PM运行吗？ 这是您设置的地方。
 
-_crontab_ 本质上是一个列表，用户可以在其中添加自己的自动化任务和作业，并且有许多可以进一步简化操作的选项。本文将探讨其中的一些选项。本文对有一定经验的用户而言是一个很好的温习，对新用户而言将系统学习 cron。
+_crontab_ 基本上是一个用户添加自己的自动任务和工作的列表。 而且它有一些可以进一步简化事情的备选办法。 本文将探讨其中的一些问题。 对于那些具有一些经验的人来说，这是一个很好的温习，新用户可以将 `cron` 系统添加到他们的知识中。
 
-这里参考`cron`的"点"目录简要讨论`anacron`。`anacron`由`cron`运行，对于工作站和笔记本电脑等不是一直处于运行状态的机器来说非常有利，这里因为，当`cron`按照计划运行作业时，如果在调度作业时机器处于关闭状态，作业就不会运行。使用`anacron`，当机器重新开机时，作业会被重新拾起且运行，即使计划的运行时间已经过去。不过，`anacron`使用了一种更随机的方法来运行时间不准确的任务，这对于工作站与笔记本电脑来说是有意义的，但对服务器来说就没有那么有意义。例如，对于需要在特定时间运行的服务器备份等情况，这可能是个问题，所以！`cron`解决了服务器管理员的痛点。话虽如此，服务器管理员或工作站用户给或笔记本电脑用户，可以根据需要轻松混合搭配这两种方法，有关`anacron` 的更多消息，请参阅[anacron - 自动化命令](anacron.zh.md)
+`anacron` 在这里以 `cron` "dot" 目录的形式简短讨论。 `anacron` 由 `cron`运行， 而且对并非一直都在使用的机器，如工作站和笔记本计算机具有优势。 原因是 `cron` 按计划运行任务， 如果计划任务时机器已关闭，任务将不运行。 使用 `anacron` 当机器再次运行时，任务会被拿起并运行。 即使计划运行是过去。 `anacron` 不过，在时间不准确的情况下，使用更多的随机方式来运行任务。 这对工作站和膝上型计算机来说是可以的，但对服务器来说却是不合适的。  这可能是像服务器备份这样的问题，而这种备份需要在特定时间运行。 那就是 `cron` 继续为服务器管理员提供最好的解决方案。 尽管如此，服务器管理员和工作站或笔记本电脑用户可以从这两种方法中获得一些好处。 您可以根据您的需要轻松地混合和匹配。  关于 `anacron` 的更多信息，见 [anacron - 自动命令](anacron.md)。
 
-## <a name="starting-easy"></a>轻松入门 —— cron 点目录
+### <a name="starting-easy"></a>启动简单- `cron.d` 目录
 
-包括 Rock Linux 在内的许多 Linux 发行版都内置了 `cron` "点"文件，这些文件有助于快速配置自动化进程，它们显示为 `cron` 系统根据其命名约定调用的目录。然而，它们的调用是不同的，这取决于分配给它们的进程是`cron`还是`anacron`，默认是使用`anacron`。但这可以由服务器、工作站或笔记本电脑的管理员更改。
+现在构建到许多版本的 Linux 系统中， `cron` "dot" 目录有助于快速自动处理。 这些将被 `cron` 根据他们的命名约定进行调用。 然而，他们被不同的调用，基于谁来调用他们， `anacron` 或 `cron` 默认行为是使用 `anacron`, 但这可以由服务器、 工作站或笔记本管理员来更改。
 
-#### <a name="for_servers"></a>对于服务器
+#### <a name="for_servers"></a>服务器
 
-如简介中说的那样，`cron`现在通常运行`anacron`来执行这些"点"目录中的脚本。不过，您"可能"也想在服务器上使用这些"点"目录，如果是这样的话，您可以采取两个步骤来确保这些"点"目录按照严格的时间表运行。为此，我们需要安装一个软件包并删除另一个软件包:
+如导言所述， `cron` 通常运行 `anacron` 这些天来执行这些"dot"目录中的脚本。 你 *可能*, 但也想要在服务器上使用这些"点"目录, 如果情况是这样。 然后您可以采取两个步骤来确保这些"点"目录是按严格的时间表运行的。 为此，我们需要安装一个软件包并删除另一个软件包：
 
 `dnf install cronie-noanacron`
 
@@ -41,145 +41,149 @@ _crontab_ 本质上是一个列表，用户可以在其中添加自己的自动�
 
 `dnf remove cronie-anacron`
 
-正如您所料，这将从服务器中删除`anacron`，并恢复到严格按照时间表在"点"目录中运行任务。这是由以下文件定义的：`/etc/cron.d/dailyjobs`，该文件具有以下内容：
+正如你可能期望的那样，这将从服务器上移除 `anacron` 并恢复到严格的计划中的“dot”目录内的任务。 这个定义在了: `/etc/cron.d/dailyjob`, 其中包含以下内容：
 
 ```
-# Run the daily, weekly, and monthly jobs if cronie-anacron is not installed
+# 每日运行，每周运行， 如果未安装 cronie-anacron
 SHELL=/bin/bash
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
+PATH=/sbin:/usr/sbin:/bin
 MAILTO=root
 
 # run-parts
-02 4 * * * root [ ! -f /etc/cron.hourly/0anacron ] && run-parts /etc/cron.daily
-22 4 * * 0 root [ ! -f /etc/cron.hourly/0anacron ] && run-parts /etc/cron.weekly
+02 * * * * root [ ！ -f /etc/cron.hourly/0anacron ] && run-part /etc/cron.day
+22 4 * 0 root [ ! -f /etc/cron.hourly/0anacron ] && run-parts /etc/cron.weekly
 42 4 1 * * root [ ! -f /etc/cron.hourly/0anacron ] && run-parts /etc/cron.monthly
 ```
 
-这意味着: 
+这就意味着：
 
-* 每天的04:02:00，在"cron.daily"中运行脚本。
-* 每周星期日的04:22:00，在"cron.weekly"中运行脚本。
-* 每月第一天的04:42:00，在"cron.monthly"中运行脚本。
+* 运行脚本 `cron.daily` 于每日04:02:00。
+* 运行脚本`cron.weekly` 于每周的周日 04:22:00。
+* 运行脚本 `cron.monthly` 于每月第一天04:42:00。
 
-#### <a name="for_workstations"></a>对于工作站
+#### <a name="for_workstations"></a>工作站
 
-如果您想在工作站或笔记本电脑上的`cron`"点"目录中运行脚本，那么您无需执行任何特殊操作。只需将脚本文件复制到相关的目录中，并确保它是可执行的。以下是目录：
+如果您想要在一个工作站或笔记本电脑在 `cron`  "."目录中运行脚本 那么你不需要做任何特殊事。 只需将您的脚本文件复制到相关目录，并确保它是可执行的。 以下是这些目录：
 
-* `/etc/cron.hourly` -此处放置的脚本将每小时运行一次。(无论是否安装了`anacron`，都由`cron`运行)
-* `/etc/cron.daily` - 此处放置的脚本将每天运行。`anacron`可以调整这些的时间。(见提示)
-* `/etc/cron.weekly` - 此处放置的脚本将每7天运行一次，以最后一次运行时间的日历日为基准。(见提示)
-* `/etc/cron.monthly` - 此处放置的脚本将根据上次运行时间的日历日每月运行一次。（见提示）
-  
-!!! tip "提示"
-    它们可能在每天、每周和每月的类似（但不完全相同的）时间运行。有关更精确的运行时间，请参阅下面的 @options。
+* `/etc/cron.hourly` - 放置在这里的脚本将每小时运行一次。 (这是由 `cron` 运行的，无论 `anacron` 是否安装)
+* `/etc/cron.daily` - 放在这里的脚本将每天运行。 `anacron` 调整了这些任务的时间。 （参考提示）
+* `/etc/cron.week` - 放置在这里的脚本每7天运行一次。 （参考提示）
+* `/etc/cron.monthly` - 放在这里的脚本将每月运行。 （参考提示）
 
-因此，只要你不介意让系统自动运行你的脚本，并允许它们在指定的时间段内运行，那么自动化任务就非常容易了。
+!!! 提示
 
-!!! note "笔记"
-    没有规则规定服务器管理员不能使用`anacron`，它的随机运行时间也是可以用来运行"点"目录中的脚本，这方面的使用例子是对时间不敏感的脚本。
+    这些活动很可能每天、每周和每月都会在类似（但并非完全相同）的情况下进行。 更确切的运行时间，请参阅下面的@options
 
-## 创建自定义 cron
+所以让系统自动运行您的脚本，让您也能正常运行， 并且允许他们在指定的时间段内运行，然后它会使任务自动化变得非常容易。
 
-当然，无论出于何种原因，自动化时间都不能很好地为您工作，那么您可以创建自定义时间。本示例中，假设您以 root 用户身份执行此操作。为此，[请参见假定](##-assumptions)，键入以下内容：
+!!! 说明
+
+    没有规定说服务器管理员不能随意运行 'anacron' 的"."目录中的脚本。 对此使用的大小写将是一个不具有时间敏感性的脚本。
+
+### 创建您自己的 `cron`
+
+当然，如果自动、随机化的时间在 [对超过](#for-workstations)的工作站来说不那么合适， 和 [中的预定时间。对于前面提到](#for-servers)的服务器，你可以创建自己的计划任务。 在这个例子中，我们认为您是root用户。 [见前提条件](#assumptions) 要做到这一点，请输入以下内容：
 
 `crontab -e`
 
-这将调出 root 用户的 crontab，就像它此时存在于您选择的编辑器中一样，可能如下所示。请继续阅读以下注释，因为它包含接下来将使用的每个字段的描述：
+这将会拉取根用户的 `crontab` 内容，将会显示在您选定的编辑器中，可能看起来就像这样。 继续阅读里面的注释内容，因为它包含了我们下一步操作的说明：
 
 ```
-# 编辑此文件以引入要由 cron 运行的任务。
+# Edit this file to introduce tasks to be run by cron.
 #
-# 一行定义一个要运行的任务
-# 在一行中用不同的字段指示何时运行该任务
-# 以及为该任务运行的命令
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
 #
-# 要定义时间，可以为
-# 分钟（m）、小时（h）、月日（dom）、月（mon）和星期（dow）
-# 提供具体值，或者在这些字段中使用"*"（表示"任何"）。
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
 #
-# 注意，将根据 cron 的系统守护程序的时间和
-# 时区概念启动任务。
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
 #
-# 作业的输出（包括错误）通过电子邮件发送给
-# crontab 文件所属的用户（除非重定向）。
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
 # cron
-# 例如，每周一上午 5 点运行所有用户
-# 帐户的备份：
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
 # 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
 #
-# 有关更多信息，请参见 crontab（5）和 cron（8）的手册页
+# For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
 ```
 
-注意，这个特定的 `crontab` 文件内置了一些自己的文档，但并非总是如此。在容器或极简操作系统上修改 `crontab` 时，`crontab` 将是一个空文件，除非已经在其中放置了条目。
+请注意这个特殊的 `crontab` 文件有自己的文档内置. 情况并非总是如此。 在容器或最低操作系统上修改 `crontab` 时， `crontab` 将是一个空文件，除非已经有条目已经放入它。
 
-假设有一个备份脚本，希望在晚上 10 点运行。`crontab` 使用 24 小时制，因此应该是 22:00。假设备份脚本名为“backup”，并且当前位于 _/usr/local/sbin_ 目录中。
+让我们假设我们有一个备份脚本，我们想要在晚上运行10个PM。 `crontab` 使用了一个24小时钟，所以这将是22:00。 让我们假定备份脚本叫做“backup”，它目前位于 _/usr/local/sbin_ 目录中。
 
-!!! note "笔记"
-    请记住，此脚本还需要是可执行的(`chmod+x`)，`cron`才能运行它。
+!!! 说明
 
-要添加作业，我们将执行以下操作:
+    请记住，这个脚本也需要可执行(`chmod +x`)，才能运行 `cron` 。
+
+要添加作业，我们将：
 
 `crontab -e`
 
- `crontab`代表"cron table"，文件的格式实际上是松散的表布局。现在在 `crontab` 中，转到文件的底部并添加新条目。如果您使用 `vi` 作为默认的系统编辑器，那么可以通过以下键来完成：
+`crontab` 表示"cron table"，文件的格式实际上是一个松散的表布局。 现在我们在 `crontab`中，转到文件的底部，然后添加您的新条目。 如果您使用 `vi` 作为您的系统默认编辑器，那么使用以下按键完成：
 
 `Shift : $`
 
-现在，您位于文件的底部，插入一行并键入简短的注释以描述条目的内容。注释是通过在行首添加“＃”来完成的：
+现在你处于文件底部， 插入一行并输入简短的注释来描述您的条目正在发生什么事情。 这是通过在行首添加一个“#”来完成的：
 
-`# 每晚 10 点备份系统`
+`# 每晚在 10PM 上备份系统`
 
-现在按回车键。您应该仍然处于插入模式，因此下一步是添加条目。如空注释的`crontab`（上面） 所示，**m** 表示分钟，**h** 表示小时，**dom** 表示日，**mon** 表示月，**dow** 表示星期。
+现在按回车键。 您仍然应该在插入模式，下一步是添加您的条目。 如 `crontab` 上面的注释 所示，这将是 **m** 分钟， **h** 小时数， **dom** (day of month) 一个月的某天， **mon** 月份 ， **dow**(day of week) 一周的某天。
 
-要在每晚 10:00 运行备份脚本，条目如下所示：
+如果每天10:00时运行我们的备份脚本，该条目看起来就像这样：
 
-`00  22  *  *  *   /usr/local/sbin/backup`
+`00 22 * * /usr/local/sbin/backup`
 
-这表示在每月、每周和每日的晚上 10 点运行脚本。显然，这是一个非常简单的示例，当您需要详细说明时，情况可能会变得非常复杂。
+这表明脚本是每月10 PM，每个月每天、每个月和每周的每一天都是如此。 显然，这是一个非常简单的例子，当你需要具体的时候，事情可能会变得相当复杂。
 
-### crontab 的 @选项
+### `crontab的@选项`
 
-另一种在严格计划的时间(即日、周、月、年等)运行作业的方法，就是使用 @选项，它提供使用更自然的时间的能力。@选项包括：
+另一种在严格规定的时间(即白天、周、月份、年份等)进行工作的方式 使用 @options 提供了使用更加自然的时间的能力。 @options 由以下内容组成：
 
-* `@hourly` 在每天每小时的 0 分钟后运行脚本。(这也正是将你的脚本放在`/etc/cron.hourly`中的结果）
-* `@daily` 在每天午夜运行脚本。
-* `@weekly` 在每周的周日午夜运行脚本。
-* `@monthly` 在每个月的第一天午夜运行脚本。
-* `@yearly` 在每年 1 月 1 日午夜运行脚本。
+* `@hourly` 每小时 0 分钟运行脚本。 (这正是将您的脚本放入 `/etc/cron.hourly` 的结果)
+* `@daily` 每天午夜运行脚本。
+* `@weekly` 每周在星期日午夜运行脚本。
+* `@monthly` 每月在该月第一天午夜运行脚本。
+* `@year` 每年在1月第一天午夜运行脚本。
 * `@reboot` 仅在系统启动时运行脚本。
 
-!!! note "笔记"
-    使用这些`crontab`条目将绕过`anacron`系统，无论是否安装了`anacron`，都会恢复为`crond.service`。
+!!! 说明
 
-对于备份脚本示例，如果使用 @daily 选项在午夜运行备份脚本，则该条目将如下所示：
+    使用这些`crontab`条目绕过了`anacron`系统，并恢复到`crond.service`，不管是否安装了`anacron`。
 
-`@daily  /usr/local/sbin/backup`
+对于我们的备份脚本示例，如果我们使用 @daily 选项在午夜运行备份脚本，那么该条目看起来就像这样：
 
-### 更复杂的选项
+`@day/usr/local/sbin/backup`
 
-到目前为止，所讨论的内容都是非常简单的选项，但是更复杂的定时任务又该如何完成呢？假设要在一天中每 10 分钟运行一次备份脚本（可能不切实际，但是，仅是一个示例！）。为此，将编写以下内容：
+### 更多复杂选项
+
+到目前为止，我们所谈到的一切都有相当简单的选择，但是更复杂的任务时间是怎样呢？ 比如说，你想要每隔10分钟运行一次你的备份脚本(可能不是一个非常实际的事情需要做的。 但，嘿，这是一个例子！)。 要做到这一点，您将写：
 
 `*/10  *   *   *   *   /usr/local/sbin/backup`
 
-如果您只想在星期一、星期三和星期五的每 10 分钟运行一次备份呢？:
+如果你想每隔10分钟、但仅在星期一、星期三和星期五运行备份怎么办？
 
 `*/10  *   *   *   1,3,5   /usr/local/sbin/backup`
 
-除了星期六和星期日，每天每 10 分钟备份一次又如何？
+除星期六和星期天外，每隔10分钟？
 
-`*/10  *   *   *   1-5   /usr/local/sbin/backup`
+`*/10  *   *   *    1-5    /usr/local/sbin/backup`
 
-在表中，逗号用于指定字段中的单个条目，而破折号用于指定字段中的值范围。它可以在任何字段中使用，也可以同时在多个字段中使用。如您所见，情况会变得相当复杂。
+在表中，逗号让您在一个字段中指定单独的条目。 当破折号允许您在字段中指定一个值范围。 这可以同时在任何一个字段和多个字段发生。 如您所见，事情可能变得相当复杂。
 
-在确定何时运行脚本时，您需要花费时间并进行规划，尤其是在条件复杂的情况下。
+当决定何时运行脚本时，您需要花费时间并规划它，尤其是如果标准很复杂。
 
-## 总结
+## 结语
 
-对于 Rocky Linux 桌面用户或系统管理员而言，cron/crontab 系统是一个非常强大的工具。它可以让您自动执行任务和脚本，这样您就不必记住手动运行它们。这里提供了更多的示例：
+_cron/crontab_ 系统是Rocky Linux系统管理员或桌面用户非常强大的工具。 它可以允许您自动执行任务和脚本，这样您就不必记住手动运行它们了。 这里提供了更多的例子：
 
-* 对于不是一天 24 小时运行的机器，探索 [anacron - 自动化命令](anacron.zh.md)。
-* 有关`cron`进程的简明描述，请查看[cronie - 定时任务](cronie.zh.md)
+* 对于那些 **不**是24小时运行的机器，浏览 [anacron - 自动化命令](anacron.md).
+* 关于 `cron` 的简明描述，请参阅 [cronie - 计划任务](cronie.md)
 
-虽然基础知识很简单，但实际任务可能很复杂。有关 crontab 的更多信息，请访问 [crontab 手册页](https://man7.org/linux/man-pages/man5/crontab.5.html)。您还可以简单地在网上搜索"crontab"，它将为您提供大量搜索结果，帮助您微调 `crontab` 表达式。
+虽然基础知识非常容易，但你可以得到更多的复杂程度。 关于 `crontab` 的更多信息，直到 [crontab 手册页面](https://man7.org/linux/man-pages/man5/crontab.5.html)。 在大多数系统中，您也可以输入 `man crontab` 获取额外的命令细节。 您也可以简单地进行网页搜索“crontab”，为您提供丰富的结果，帮助您提高 `crontab` 技能。
