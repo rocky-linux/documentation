@@ -29,7 +29,11 @@ For those Docker fiends out there, Linux Containers are less ephemeral than what
 
 Heh.
 
-LXD, specifically, is a command-line application that helps you to set up and manage Linux Containers. It works alongside the basic LXC app to help you with the initial setup of your containers, and the virtual devices needed to run them. It also provides additional features to LXC and helps you to manage your containers down the line.
+LXD, specifically, is a command-line application that helps you to set up and manage Linux Containers. That's what we're going to be installing on our Rocky Linux host server today. I'm going to be writing LXC/LXD a lot though, as there's a lot of old documentation which refers to LXC only, and I'm trying to make it easier for people to find updated guides like this one.
+
+!!! Note
+
+    There was a precursor app to LXD which was also called "LXC". As it stands today: LXC is the technology, LXD is the app.
 
 We’ll be using them both to create an environment that works something like this:
 
@@ -374,29 +378,6 @@ That should give you output that looks a bit like this (though, if you opted to 
 +---------------+---------+-----------------------+------+-----------+-----------+
 ```
 
-### *Essential Step:* Configuring the “proxy-server” Container to Take all Incoming Server Traffic
-
-Again, you might want to do this later when you actually create the proxy server, but here are the instructions you'll need:
-
-Remember when we opened up ports 80 and 443 in the firewall? Here’s where we make the “proxy-server” container listen to those ports, and take all the traffic directed at them.
-
-Just run these two commands in succession:
-
-```bash
-lxc config device add proxy-server myproxy80 proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80
-lxc config device add proxy-server myproxy443 proxy listen=tcp:0.0.0.0:443 connect=tcp:127.0.0.1:443
-```
-
-Let’s break that down. Each command is adding a virtual “device” to the proxy-server container. Those devices are set to listen on the host OS’ port 80 and port 443, and bind them to the container’s port 80 and port 443. Each device needs a name, so I’ve chosen “myproxy80”, and “myproxy443”.
-
-The “listen” option is the port on the host OS, and if I’m not mistaken, 0.0.0.0 is the IP address for the host on the “lxdbr0” bridge. The “connect” option is the local IP address and ports being connected to.
-
-!!! Note
-
-    Once these devices have been set up, you should reboot all the containers, just to be sure. Instructions below.
-
-These virtual device names have to be unique. You can’t add another “myport80” device to another container; it’ll have to be called something else. Likewise, only one container can listen on any specific host OS port at a time.
-
 #### A Word on Container Networking
 
 So the other guide linked at the beginning of this one has a whole tutorial on how to set LXC/LXD up to work with Macvlan. This is especially useful if you’re running a local server, and you want each container to have an IP address visible on the local network.
@@ -721,6 +702,31 @@ curl nginx-server.lxd
 ```
 
 If those two commands load the HTML of the default server welcome pages in your terminal, then everything has been set up correctly.
+
+#### *Essential Step:* Configuring the “proxy-server” Container to Take all Incoming Server Traffic
+
+Again, you might want to do this later when you actually create the proxy server, but here are the instructions you'll need:
+
+Remember when we opened up ports 80 and 443 in the firewall? Here’s where we make the “proxy-server” container listen to those ports, and take all the traffic directed at them.
+
+Just run these two commands in succession:
+
+```bash
+lxc config device add proxy-server myproxy80 proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80
+lxc config device add proxy-server myproxy443 proxy listen=tcp:0.0.0.0:443 connect=tcp:127.0.0.1:443
+```
+
+Let’s break that down. Each command is adding a virtual “device” to the proxy-server container. Those devices are set to listen on the host OS’ port 80 and port 443, and bind them to the container’s port 80 and port 443. Each device needs a name, so I’ve chosen “myproxy80”, and “myproxy443”.
+
+The “listen” option is the port on the host OS, and if I’m not mistaken, 0.0.0.0 is the IP address for the host on the “lxdbr0” bridge. The “connect” option is the local IP address and ports being connected to.
+
+!!! Note
+
+    Once these devices have been set up, you should reboot all the containers, just to be sure.
+
+These virtual device should ideally be unique. It's usually best not to add a “myport80” device to another container that's currently running; it’ll have to be called something else. 
+
+*Likewise, only one container can listen on any specific host OS port at a time.*
 
 #### Directing traffic to the Apache server
 
