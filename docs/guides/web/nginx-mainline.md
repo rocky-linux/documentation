@@ -290,7 +290,7 @@ Any HTML files in your new root folder should now be browsable from… your brow
 
 ### Changing File Permissions
 
-To make sure that *`nginx` can read, write to, and execute any files in the website directory, permissions need to be set properly.
+To make sure that `nginx` can read, write to, and execute any files in the website directory, permissions need to be set properly.
 
 First, make sure that all files in the root folder are owned by the server user and its user group with:
 
@@ -307,10 +307,16 @@ sudo find /usr/share/nginx/html/www -type f -exec chmod 444 "{}" \;
 
 That basically gives everyone the right to look at files on the server, but not modify them. Only the root and server users get to do that.
 
+## Getting SSL Certificates for Your Site
+
+As of now, our [guide to getting SSL certificates with certbot](../security/generating_ssl_keys_lets_encrypt.md) has been updated with some basic instructions for `nginx`. Go give that a look, as it has full instructions for installing certbot, as well as generating the certificates.
+
+The time is coming when browsers maight even just stop letting people see sites without certificates at all, so make sure you get one for every site.
+
 ## Additional Configuration Options and Guides
 
 * If you want to see how to make *Nginx* work with PHP, and PHP-FPM specifically, check out our [guide to PHP on Rocky Linux](../web/php.md).
-* Instructions on multi-site configuration are coming in another guide. Instructions for SSL certificates are coming as well, and this guide will be updated with links when they’re ready.
+* Instructions on multi-site configuration are coming in another guide.
 
 ## Installing the Stable Branch From Rocky's Own Repos
 
