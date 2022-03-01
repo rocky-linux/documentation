@@ -23,9 +23,9 @@ Conceptually, it’s something like this:
 
 ![A graph showing how one computer can pretend to be several](../images/lxd-web-server-01.png)
 
-If you’ve ever played with VirtualBox to run some Windows apps, or run a web app on Docker, it’s like that, but not (though Docker is a container system as well, of course). Unlike virtual machines, Linux Containers don’t emulate an entire hardware environment for each container. Rather, they all share a few virtual devices by default for networking and storage, though you can add more virtual devices. As a result, they require a lot less overhead (processing power and RAM) than a virtual machine.
+If you’ve ever played with VirtualBox to run some Windows apps, it’s like that, but not. Unlike virtual machines, Linux Containers don’t emulate an entire hardware environment for each container. Rather, they all share a few virtual devices by default for networking and storage, though you can add more virtual devices. As a result, they require a lot less overhead (processing power and RAM) than a virtual machine.
 
-For those Docker fiends out there, Linux Containers are less ephemeral than what you’re used to. All data in every container instance is persistent, and any changes you make are permanent unless you revert to a backup. In short, shutting down the container won’t erase your sins.
+For those Docker fiends out there (Docker being another container-based system, *not* a VM system), Linux Containers are less ephemeral than what you’re used to. All data in every container instance is persistent, and any changes you make are permanent unless you revert to a backup. In short, shutting down the container won’t erase your sins.
 
 Heh.
 
