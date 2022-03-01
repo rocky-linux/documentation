@@ -146,21 +146,25 @@ Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]: l
 
 The above question is about what sort of file system you want to use for storage, and the default may vary depending on what’s available on your system. If you're on a bare metal server, and want to use ZFS, again, refer back to the guide linked above.
 
-In a virtual environment, I have found that “LVM” works fine, and it’s usually what I use. Accept the default on the next questions, too.
+In a virtual environment, I have found that “LVM” works fine, and it’s usually what I use. You can accept the default on the next question.
 
 ```
 Create a new LVM pool? (yes/no) [default=yes]:
+```
 
+If you have a specific hard drive or partition you’d like to use for the whole storage pool, write “yes” next. If you’re doing all of this on a VPS, you’ll probably *have* to choose “no”.
+
+```
 `Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]:`
 ```
 
-If you have a specific hard drive or partition you’d like to use for the whole storage pool, write “yes”. If you’re doing all of this on a VPS, you’ll probably *have* to choose “no”.
+Metal As A Service (MAAS) is outside the scope of this document. Accept the defaults for this next bit.
 
 ```
 Would you like to connect to a MAAS server? (yes/no) [default=no]:
 ```
 
-Metal As A Service (MAAS) is outside the scope of this document. Accept the defaults for this next bit.
+And more defaults. It's all good.
 
 ```
 Would you like to create a new local network bridge? (yes/no) [default=yes]:
