@@ -231,7 +231,7 @@ You'll be asked a couple of questions as shown above, including your email addre
 
 If you have more than one site, just press the number that corresponds to the site you want a certificate for.
 
-The rest of the text you'll see is awful similar to what's above. The results will be a bit different, of course. If you have a dead-simple `nginx` config file that looks like this:
+The rest of the text you'll see is awful similar to what's above. The results will be a bit different, of course. If you have a dead-simple Nginx config file that looks like this:
 
 ```
 server {
@@ -254,8 +254,8 @@ After certbot gets through with it, it'll look like a bit this:
 server {
     server_name  yourwebsite.com;
 
-    listen [::]:443 ssl; # managed by Certbot
     listen 443 ssl; # managed by Certbot
+    listen [::]:443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/yourwebsite.com/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/yourwebsite.com/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
