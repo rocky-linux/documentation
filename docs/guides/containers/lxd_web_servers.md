@@ -54,7 +54,7 @@ Specifically, I’m going to show you how to set up simple Nginx and Apache web 
 * A command-line text editor. *nano* will do, *micro* is my favorite, but use whatever makes you comfortable.
 * You *can* follow this whole tutorial as the root user, but you probably shouldn’t. After the initial installation of LXC/LXD, we’ll guide you in creating an unprivileged user specifically for operating LXD commands.
 * We now have Rocky Linux images to base your containers on, and they’re awesome.
-* If you're not too familaiar with Nginx or Apache, you **will** need to check out some of our other guides if you want to get a full productions server up and running. Don't worry, I'll link them below.
+* If you're not too familiar with Nginx or Apache, you **will** need to check out some of our other guides if you want to get a full productions server up and running. Don't worry, I'll link them below.
 
 ## Setting Up The Host Server Environment
 
