@@ -611,13 +611,15 @@ Exit the shell for now, and let's start on the Nginx server.
 
 Again, we're keeping this short. If you want to use the latest (and recommended) version of Nginx in production, check out our [beginner's guide to installing Nginx](../web/nginx-mainline.md). That covers the full install guide, and some best practices for configuring your server.
 
-For testing and learning, you can just install the "stable" branch (which is technically a little outdated). First, you'll need to enable the right module from Rocky Linux's repos. Start by entering the shell for the "nginx-server" container:
+For testing and learning, you *could* just install Nginx normally, but I recommend installing the latest version, which is called the "mainline" branch.
+
+First, log into the container's shell:
 
 ```bash
 lxc exec nginx-server bash
 ```
 
-Once you're in, search for the latest version of Nginx available on our servers:
+Once you're in, you can search for the latest version of Nginx available on our servers:
 
 ```bash
 dnf module list nginx
@@ -632,12 +634,13 @@ nginx      1.14 [d]      common [d]      nginx webserver
 nginx      1.16          common [d]      nginx webserver
 nginx      1.18          common [d]      nginx webserver
 nginx      1.20          common [d]      nginx webserver
+nginx      mainline      common [d]      nginx webserver
 ```
 
-Choose the highest number on the list, and enable its module like so:
+The one you want is, you guessed it: the mainline branch. Enable the module with this command:
 
 ```bash
-dnf module enable nginx:1.20
+dnf enable module nginx:mainline
 ```
 
 You'll be asked if you're sure you want to do this, so just choose `Y` as usual. Then, use the default command to install Nginx:
