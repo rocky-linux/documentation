@@ -68,7 +68,9 @@ systemctl stop firewalld
 E per dare al servizio un riavvio forte:
 
 ```bash
-systemctl restart firewalld
+sudo firewall-cmd --permanent --zone=public --add-service=https
+# Or, in some other cases:
+sudo firewall-cmd --permanent --zone=public --add-port=443/tcp
 ```
 
 ### Comandi di base per la configurazione e la gestione di `firewalld`
