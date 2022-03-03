@@ -663,7 +663,7 @@ dnf enable --now nginx
     lxc copy nginx-server proxy-server
     ```
 
-    Make sure to start the proxy container with `lxc start proxy-server`, and add the proxy ports to the container as detailed above.
+    Make sure to start the proxy container with `lxc start proxy-server`, and add the proxy ports to the container as detailed below.
 
 Again, you can make sure the container is working from the host with:
 
