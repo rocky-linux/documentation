@@ -20,9 +20,7 @@ To give credit where credit is due, I came up with exactly none of this. In part
 * FastCGI support
 * And, of course, IPv6
 
-It’s great! So just `sudo dnf install nginx`, right? Well, not exactly. **Rocky Linux repositories don’t have the latest production-ready version of Nginx.** Since the goal for Rocky Linux is to be bug-for bug compatible with Red Hat Enterprise Linux, you can always ask Red Hat to update their repos. Or asking the *Nginx* people might work better (you’ll see what I mean).
-
-What *you* can do, right now, is install the “mainline” branch of Nginx yourself. It has all the latest updates and toys, and (to my mind) a simpler directory structure for its configuration files. Here’s how to see it all for yourself:
+It’s great! So just `sudo dnf install nginx`, right? Well, not exactly. We just have to enable the right module first, to enable the "mainline" branch, so you can have the latest version of Nginx.
 
 !!! Note
 
@@ -47,7 +45,7 @@ You’ll need:
 
 ## Installing the Repository
 
-This part isn’t quite as simple as installing an extra repository usually is. We’re going to have to create a custom repo file for `dnf` to use, and download *Nginx* from. Technically, we’re sort of repurposing  repositories for CentOS that were made and hosted by *Nginx* themselves. This solution may or may not be viable in the long term, but it’s working great for now.
+This part isn’t quite as simple as installing an extra repository usually is. 
 
 First, make sure your machine is updated:
 
@@ -55,49 +53,15 @@ First, make sure your machine is updated:
 sudo dnf update
 ```
 
-Now, make sure the `dnf-utils` package is installed, and any command-line text editor you may want:
+Then enable the right module for the latest version of `nginx`. This module will always be called `nginx:manline`, so just enable it with `dnf` like so:
 
 ```bash
-sudo dnf install dnf-utils
+sudo dnf module enable nginx:mainline
 ```
 
-Once that’s all installed, power up your text editor of choice. You’ll want to create a file called (for the sake of simplicity) `nginx.repo`, and put it in `/etc/yum.repos.d/`. You can do this real quick like so:
-
-```bash
-sudo nano /etc/yum.repos.d/nginx.repo
-```
-
-In that file, paste this bit of code, unmodified:
-
-```bash
-[nginx-stable]
-name=nginx stable repo
-baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
-gpgcheck=1
-enabled=1
-gpgkey=https://nginx.org/keys/nginx_signing.key
-module_hotfixes=true
-
-[nginx-mainline]
-name=nginx mainline repo
-baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
-gpgcheck=1
-enabled=0
-gpgkey=https://nginx.org/keys/nginx_signing.key
-module_hotfixes=true
-```
-
-This code basically just lets you use the *Nginx*-made-and-hosted repositories for CentOS, and it allows you use the previously-mentioned “stable” branch if you want to. I mean, don’t. But you could.
-
-Save the file with <kbd>Control</kbd>-<kbd>S</kbd> (if using `nano`) and exit with <kbd>Control</kbd>-<kbd>X</kbd>.
+It'll give you the usual "Are you you want to do that?", but this isn't 2nd Edition D&D with Gary Gygax himself, so yes. Of course you do. Hit <kbd>y</kbd> to confirm.
 
 ## Installing and Running Nginx
-
-Now, let’s enable the repository file you just made with one simple command:
-
-```bash
-sudo yum-config-manager --enable nginx-mainline
-```
 
 Then, install the package `nginx` from the previously added repository:
 
