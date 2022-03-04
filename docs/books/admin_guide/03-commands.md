@@ -171,14 +171,15 @@ clear (1)            - clear the terminal screen
 Once found by `apropos` or `whatis`, the manual is read by `man` ("Man is your friend").
 This set of manuals is divided into 8 sections, grouping information by topic, the default section being 1:
 
-1. User Commands;
-2. System Calls;
-3. C library functions;
-4. Peripherals and special files;
-5. File formats ;
-6. Games;
-7. Miscellaneous;
-8. System administration tools and daemons.
+1. Executable programs or commands
+2. System calls (functions given by the kernel)
+3. Library calls (functions given by the library)
+4. Special files (usually found in /dev)
+5. File Formats and conventions (configuration files such as etc/passwd)
+6. Games (such as character-based applications)
+7. Miscellaneous (e.g. man (7))
+8. System administration commands (usually only for root)
+9. Kernel routines (non-standard)
 
 Information about each section can be accessed by typing `man x intro`, where `x` is the section number.
 
