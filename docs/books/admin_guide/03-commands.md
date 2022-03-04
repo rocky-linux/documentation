@@ -85,7 +85,7 @@ The name of the command is **often in lower case**.
 
 A space separates each item.
 
-Short **options** begin with a dash (`-l`), while **long options** begin with two dashes (`--list`).
+**Short options** begin with a dash (`-l`), while **long options** begin with two dashes (`--list`).
 A double dash (`--`) indicates the end of the option list.
 
 It is possible to group some short options together:
