@@ -197,7 +197,7 @@ $ man 5 passwd
 
 will inform him about the files related to the command.
 
-Not all manuals are translated from English. However, English manuals are usually very accurate and provide all the information you need. The grammar rules and separation rules it uses may confuse beginner administrators, but after practice, I'm sure you'll find the information you want.
+Not all manuals pages are translated from English. However, English manual pages are usually very accurate and provide all the information you need. The grammar rules and separation rules it uses may confuse beginner administrators, but after practice, I'm sure you'll find the information you want.
 
 The navigation in the manual is done with the arrows <kbd>↑</kbd> and <kbd>↓</kbd>. The manual is exited by pressing the <kbd>q</kbd> key.
 
