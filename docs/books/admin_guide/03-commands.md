@@ -243,7 +243,7 @@ $ history
 
 | Options | Comments                                                                                                           |
 | ------- | ------------------------------------------------------------------------------------------------------------------ |
-| `-w`    | The `-w` option will copy the history of the current session to it.                                                |
+| `-w`    | write the current history to the history file                                                |
 | `-c`    | The `-c` option will delete the history of the current session (but not the contents of the `.bash_history` file). |
 
 * Manipulating history:
