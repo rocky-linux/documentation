@@ -171,15 +171,15 @@ clear (1)            - clear the terminal screen
 Once found by `apropos` or `whatis`, the manual is read by `man` ("Man is your friend").
 This set of manuals is divided into 8 sections, grouping information by topic, the default section being 1:
 
-1. Executable programs or commands
-2. System calls (functions given by the kernel)
-3. Library calls (functions given by the library)
-4. Special files (usually found in /dev)
-5. File Formats and conventions (configuration files such as etc/passwd)
-6. Games (such as character-based applications)
-7. Miscellaneous (e.g. man (7))
-8. System administration commands (usually only for root)
-9. Kernel routines (non-standard)
+1. Executable programs or commands;
+2. System calls (functions given by the kernel);
+3. Library calls (functions given by the library);
+4. Special files (usually found in /dev);
+5. File Formats and conventions (configuration files such as etc/passwd);
+6. Games (such as character-based applications);
+7. Miscellaneous (e.g. man (7));
+8. System administration commands (usually only for root);
+9. Kernel routines (non-standard).
 
 Information about each section can be accessed by typing `man x intro`, where `x` is the section number.
 
@@ -243,7 +243,7 @@ $ history
 
 | Options | Comments                                                                                                           |
 | ------- | ------------------------------------------------------------------------------------------------------------------ |
-| `-w`    | write the current history to the history file                                                |
+| `-w`    | Write the current history to the history file                                                |
 | `-c`    | The `-c` option will delete the history of the current session (but not the contents of the `.bash_history` file). |
 
 * Manipulating history:
