@@ -8,9 +8,9 @@ tested with: 8.5
 
 ## Introduction
 
-To give credit where credit is due, I came up with exactly none of this. In particular, this guide is based heavily on [the one by Joshua James](https://www.linuxcapable.com/how-to-install-latest-nginx-mainline-on-rocky-linux-8/) on [LinuxCapable](https://www.linuxcapable.com). Go give his site a read some time, there’s a lot of good stuff there. Now, on to this (beginner-friendly) guide:
+*Nginx* is a web server designed to be fast, efficient, and compatible with just about anything you can imagine. I personally use it a fair bit and—once you get the hang of it—it’s actually pretty easy to set up and configure. To that end, I've written this beginner's guide.
 
-*Nginx* is a web server designed to be fast, efficient, and compatible with just about anything you can imagine. I personally use it a fair bit and—once you get the hang of it—it’s actually pretty easy to set up and configure. Here’s a short rundown of the standout features; Nginx is/has/can be:
+Here’s a short rundown of the ways Nginx stands out:
 
 * A basic web server (one would hope)
 * A reverse proxy for directing traffic to multiple sites
