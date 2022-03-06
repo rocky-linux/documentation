@@ -55,7 +55,7 @@ Any minor changes or updates within each major release version will be reflected
 
 A common source of failure encountered during the kernel build process may be caused by not having all the requisite software available for compiling and building the mainline Linux Kernel.  The missing tools and libraries can be installed using the DNF package manager on a Rocky Linux distro. We’ll take care of this in this section.
 
-1. On a Rocky Lniux distro, you can quickly get most of the necessary development tools installed by running this command:
+1. On a Rocky Linux distro, you can quickly get most of the necessary development tools installed by running this command:
 
     ```
     > sudo dnf -y groupinstall 'C Development Tools and Libraries'
