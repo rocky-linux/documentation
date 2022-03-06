@@ -10,7 +10,7 @@ tested with: 8.5
 
 *Nginx* is a web server designed to be fast, efficient, and compatible with just about anything you can imagine. I personally use it a fair bit and—once you get the hang of it—it’s actually pretty easy to set up and configure. To that end, I've written this beginner's guide.
 
-Here’s a short rundown of the ways Nginx stands out:
+Here’s a short rundown of the ways Nginx stands out/features it has:
 
 * A basic web server (one would hope)
 * A reverse proxy for directing traffic to multiple sites
