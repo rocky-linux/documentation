@@ -2,7 +2,7 @@
 title: Generating SSL Keys - Let's Encrypt
 author: Steven Spencer
 contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni
-update: 26-Feb-2022
+update: 28-Feb-2022
 ---
 
 # Generating SSL Keys - Let's Encrypt
@@ -26,65 +26,66 @@ These are actual certificates, not self-signed or snake oil, etc., so they are g
 
 To do the next steps, use _ssh_ to log into your server. If your server's fully qualified DNS name was www.myhost.com, then you would use:
 
-`ssh -l root www.myhost.com` 
+```bash
+ssh -l root www.myhost.com
+```
 
 Or, if you must access your server as an unprivileged user first. Use your username:
 
-`ssh -l username www.myhost.com`
+```bash
+ssh -l username www.myhost.com
+```
 
 And then:
 
-`sudo -s`
+```bash
+sudo -s
+```
 
 You will need your _sudo_ user's credentials in this case to gain access to the system as root.
 
-Let's Encrypt uses a package called _certbot_ which needs to be installed via a snap package. To install _snapd_ on Rocky Linux, you will need to install the EPEL repository if you have not done so already:
+Let's Encrypt uses a package called _certbot_ which needs to be installed via the EPEL repositories. Add those first:
 
-`dnf install epel-release`
+```bash
+dnf install epel-release
+```
 
-Besides _snapd_ you may also need _fuse_ and _squashfuse_ depending on your system. We also need to make sure that _mod\_ssl_ is installed. To install them all use:
+Then, just install the appropriate packages, depending on whether you're using Apache or Nginx as your web server. For Apache that's:
 
-`dnf install snapd fuse squashfuse mod_ssl`
+```bash
+dnf install certbot python3-cerbot-apache
+```
 
-_snapd_ requires a bunch of dependencies that will install along with it, so answer yes to the installation prompt.
+For Nginx, just change out one... partial word?
 
-Once _snapd_  and all of the dependencies are installed, enable the _snapd_ service with:
+```bash
+dnf install certbot python3-cerbot-nginx
+```
 
-`systemctl enable --now snapd.socket`
+You can always install both server modules if necessary, of course.
 
-_certbot_ requires classic _snapd_ support, so we need to enable that with a symbolic link: 
+!!! Note
 
-`ln -s /var/lib/snapd/snap /snap`
+    An earlier version of this guide required the snap package version of certbot, as it was found to be necessary at the time. The RPM versions have been re-tested recently, and are working now.
 
-Before continuing on, we want to make sure that all of the snap packages are up to date. To do this use: 
-
-`snap install core; snap refresh core`
-
-If there are any updates, they will install here.
-
-Just in case you got ahead of yourself and installed _certbot_ from the RPM (which will not work, by the way), make sure that you remove it with: 
-
-`dnf remove certbot`
-
-And finally, it's time to install _certbot_ with:
-
-`snap install --classic certbot`
-
-This should install _certbot_. The final step is to put the _certbot_ command in a path that Rocky Linux can find easily. This is done with another symbolic link:
-
-`ln -s /snap/bin/certbot /usr/bin/certbot`
 
 ## Getting The Let's Encrypt Certificate for the Apache Server
 
 There are two ways to retrieve your Let's Encrypt certificate, either using the command to modify the http configuration file for you, or to just retrieve the certificate. If you are using the procedure for a multi-site setup suggested for one or more sites in the procedure [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md), then you will only want to retrieve your certificate. 
 
-We are assuming that you **are** using this procedure so we will only retrieve the certificate. If you are running a standalone web server using the default configuration, you can retrieve the certificate and modify the configuration file in one step using `certbot --apache`. 
+We are assuming that you **are** using this procedure so we will only retrieve the certificate. If you are running a standalone web server using the default configuration, you can retrieve the certificate and modify the configuration file in one step using: 
 
-To retrieve the certificate only, use this command:
+```bash
+certbot --apache
+```
 
-`certbot certonly --apache`
+That's really the easiest way to get things done. However, sometimes you want to take a more manual approach, and just want to grab the certificate. To retrieve the certificate only, use this command:
 
-This will generate a set of prompts that you will need to answer. The first is to give an email address for important information:
+```bash
+certbot certonly --apache
+```
+
+Both commands will generate a set of prompts that you will need to answer. The first is to give an email address for important information:
 
 ```
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -155,7 +156,7 @@ IMPORTANT NOTES:
 
 ## The Site Configuration - https
 
-Applying the configuration file to our site is slightly different than if we were using a purchased SSL certificate from another provider. 
+Applying the configuration file to our site is slightly different than if we were using a purchased SSL certificate from another provider (and if we didn't let certbot do it automatically). 
 
 The certificate and chain file are included in a single PEM (Privacy Enhanced Mail) file. This is a common format for all certificate files now, so even though it has "Mail" in the reference, it is just a type of certificate file. To illustrate the configuration file, we will show it in it's entirety and then describe what is happening:
 
@@ -230,7 +231,7 @@ You'll be asked a couple of questions as shown above, including your email addre
 
 If you have more than one site, just press the number that corresponds to the site you want a certificate for.
 
-The rest of the text you'll see is awful similar to what's above. The results will be a bit different, of course. If you have a dead-simple `nginx` config file that looks like this:
+The rest of the text you'll see is awful similar to what's above. The results will be a bit different, of course. If you have a dead-simple Nginx config file that looks like this:
 
 ```
 server {
@@ -253,8 +254,8 @@ After certbot gets through with it, it'll look like a bit this:
 server {
     server_name  yourwebsite.com;
 
-    listen [::]:443 ssl; # managed by Certbot
     listen 443 ssl; # managed by Certbot
+    listen [::]:443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/yourwebsite.com/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/yourwebsite.com/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
@@ -286,7 +287,9 @@ Or write your own config file the hard way.
 
 The beauty of installing _certbot_ is that the Let's Encrypt certificate will be automatically renewed. There is no need to create a process to do this. We do need to test the renewal with:
 
-`certbot renew --dry-run`
+```bash
+certbot renew --dry-run
+```
 
 When you run this command, you'll get a nice output showing the renewal process:
 
@@ -318,7 +321,9 @@ Congratulations, all simulated renewals succeeded:
 
 The [_certbot_ documentation](https://certbot.eff.org/lets-encrypt/centosrhel8-apache.html) tells you in their step number 8, that the automatic renewal process could be in a couple of different spots, depending on your system. For a Rocky Linux install, you are going to find the process by using:
 
-`systemctl list-timers`
+```bash
+systemctl list-timers
+```
 
 Which gives you a list of processes, one of which will be for _certbot_:
 
