@@ -1,7 +1,5 @@
 - - -
-title: Host-based Intrustion Detection System (HIDS) 
-author: Steven Spencer contributors: Ezequiel Bruni, Franco Colussi 
-update: Feb-28-2022
+title: Host-based Intrustion Detection System (HIDS) author: Steven Spencer contributors: Ezequiel Bruni, Franco Colussi update: Feb-28-2022
 - - -
 
 # Sistema Intrusion Detection System (HIDS) basato sull'Host
