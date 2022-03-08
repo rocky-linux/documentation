@@ -2,7 +2,7 @@
 title: rsync brief description
 author: tianci li
 contributors: Steven Spencer
-update : 2021-11-04
+update : 2022-Mar-08
 ---
 
 #  Backup Brief
@@ -14,8 +14,8 @@ Backup refers to the duplication of data in the file system or database. In the 
 What are the backup methods?
 
 * Full backup: refers to a one-time copy of all files, folders or data in the hard disk or database. (Pros: the best, can recover data faster. Disadvantages: take up a larger hard disk space.)
-* Incremental backup: refers to the backup of the data updated after the last full backup or incremental backup. The process is like this, such as a full backup on the first day; a backup of the newly added data on the second day, as opposed to a full backup; on the third day, a backup of the newly added data on the basis of the second day, Relative to the next day. And so on.
-* Differential backup: Refers to the backup of the changed files after the full backup. For example, a full backup on the first day; a backup of the new data on the second day; a backup of the new data from the second day to the third day on the third day; and a backup of all the new data from the second day to the fourth day on the fourth day. And so on.
+* Incremental backup: refers to the backup of the data updated after the last full backup or incremental backup. The process is like this, such as a full backup on the first day; a backup of the newly added data on the second day, as opposed to a full backup; on the third day, a backup of the newly added data on the basis of the second day, relative to the next day, and so on.
+* Differential backup: Refers to the backup of the changed files after the full backup. For example, a full backup on the first day; a backup of the new data on the second day; a backup of the new data from the second day to the third day on the third day; and a backup of all the new data from the second day to the fourth day on the fourth day, and so on.
 * Selective backup: Refers to backing up a part of the system.
 * Cold backup: refers to the backup when the system is in shutdown or maintenance state. The backed up data is exactly the same as the data in the system during this period.
 * Hot backup: Refers to the backup when the system is in normal operation. As the data in the system is updated at any time, the backed-up data has a certain lag relative to the real data of the system.
@@ -23,7 +23,7 @@ What are the backup methods?
 
 ##  rsync in brief
 
-On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. Although the data is backed up on this server, if the hardware fails to boot up properly, the data will not be retrieved. In order to solve the local backup For this problem, we introduced another kind of backup --- "remote backup".
+On a server, I backed up the first partition to the second partition, which is commonly known as "Local backup." The specific backup tools are `tar` , `dd` , `dump` , `cp `, etc. can be achieved. Although the data is backed up on this server, if the hardware fails to boot up properly, the data will not be retrieved. In order to solve this problem with the local backup, we introduced another kind of backup --- "remote backup".
 
 Some people will say, can't I just use the `tar` or `cp` command on the first server and send it to the second server via `scp` or `sftp`?
 
@@ -35,7 +35,7 @@ Therefore, there needs to be a data backup in the production environment which n
 2. Real-time data file synchronization
 3. Less occupancy of system resources and higher efficiency
 
-`rsync` appeared to meet the above needs. It uses the GNU open source license agreement. It is a fast incremental backup tool. The latest version is 3.2.3 (2020-08-06). You can visit the [Official website](https://rsync.samba.org/) for more information.
+`rsync` appears to meet the above needs. It uses the GNU open source license agreement. It is a fast incremental backup tool. The latest version is 3.2.3 (2020-08-06). You can visit the [Official website](https://rsync.samba.org/) for more information.
 
 In terms of platform support, most Unix-like systems are supported, whether it is GNU/Linux or BSD. In addition, there are related `rsync` under the Windows platform, such as cwRsync.
 
