@@ -1,5 +1,5 @@
 - - -
-title: Sistema Intrusion Detection System Host-based (HIDS) author: Steven Spencer contributors: Ezequiel Bruni, Franco Colussi update: Feb-01-2022
+title: Host-based Intrustion Detection System (HIDS) author: Steven Spencer contributors: Ezequiel Bruni, Franco Colussi update: Feb-28-2022
 - - -
 
 # Sistema Intrusion Detection System (HIDS) basato sull'Host
@@ -14,7 +14,6 @@ title: Sistema Intrusion Detection System Host-based (HIDS) author: Steven Spenc
 ## Introduzione
 
 _ossec-hids_ è un sistema di rilevamento delle intrusioni nell'host che offre passi automatici di azione-risposta per aiutare a mitigare gli attacchi di intrusione nell'host. È solo un possibile componente di una configurazione rinforzata del server web Apache e può essere utilizzato con o senza altri strumenti.
-
 
 Se volete usare questo insieme ad altri strumenti per il rinforzamento, fate riferimento al documento [Apache Web Server Rinforzato](index.md). Il presente documento utilizza anche tutte le ipotesi e le convenzioni delineate in tale documento originale, quindi è una buona idea rivederlo prima di continuare.
 

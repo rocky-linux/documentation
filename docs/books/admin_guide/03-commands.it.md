@@ -85,7 +85,7 @@ Il nome del comando è **spesso in minuscolo**.
 
 Uno spazio separa ogni oggetto.
 
-Le **opzioni** abbreviate iniziano con un trattino (`-l`), mentre le **opzioni lunghe** iniziano con due trattini (`--list`). Un doppio trattino (`--`) indica la fine dell'elenco delle opzioni.
+Le **opzioni abbreviate** iniziano con un trattino (`-l`), mentre le **opzioni lunghe** iniziano con due trattini (`--list`). Un doppio trattino (`--`) indica la fine dell'elenco delle opzioni.
 
 È possibile raggruppare alcune opzioni brevi insieme:
 
