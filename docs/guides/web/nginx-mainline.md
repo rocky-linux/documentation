@@ -280,7 +280,7 @@ The time is coming when browsers maight even just stop letting people see sites 
 ## Additional Configuration Options and Guides
 
 * If you want to see how to make *Nginx* work with PHP, and PHP-FPM specifically, check out our [guide to PHP on Rocky Linux](../web/php.md).
-* Instructions on multi-site configuration are coming in another guide.
+* If you want to learn how to set up *Nginx* for multiple websites, we now have [a guide on just that subject](nginx-multisite.md).
 
 ## Installing the Stable Branch From Rocky's Own Repos
 
