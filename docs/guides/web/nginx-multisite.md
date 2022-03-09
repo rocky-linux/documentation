@@ -9,13 +9,15 @@ tested with: 8.5
 
 ## Introduction
 
-Here it is, my promised guide to Nginx multisite setups on Rocky Linux. I'm going to start off with a note for beginners; the rest of you know what you're here for, so scroll on down. 
+Here it is, my promised guide to Nginx multisite setups on Rocky Linux. I'm going to start off with a note for beginners; the rest of you know what you're here for, so scroll on down.
 
 Hi Newbies! One of the things that Nginx does *very* well is direct traffic from one central point to multiple websites and apps on one server, or on several other servers. This feature is called a "reverse proxy", and the relative ease with which Nginx does this is one of the reasons I started using it.
 
-Here I'll be showing you how to manage multiple websites on a single Nginx installation, and how to do it in a simple and organized way that will let you make changes quickly and easily. 
+Here I'll be showing you how to manage multiple websites on a single Nginx installation, and how to do it in a simple and organized way that will let you make changes quickly and easily.
 
-I'll be explaining a *lot* of details... but in the end, the whole process bascially involves setting up some folders, and making some small text files. We won't be using overly-complicated website configurations for this guide, so relax with a coffee and have some fun. Once you know how to do it, it'll only take minutes to do every time. This one's easy.\*
+For those looking for a similar setup for Apache, take a [look at this guide.](apache-sites-enabled.md)
+
+I'll be explaining a *lot* of details... but in the end, the whole process basically involves setting up some folders, and making some small text files. We won't be using overly-complicated website configurations for this guide, so relax with a coffee and have some fun. Once you know how to do it, it'll only take minutes to do every time. This one's easy.\*
 
 \* For given values of "easy".
 
@@ -24,10 +26,16 @@ I'll be explaining a *lot* of details... but in the end, the whole process basci
 This is everything you'll need:
 
 * A Rocky Linux server connected to the internet, with Nginx already running on it. If you haven't gotten that far, you can follow [our guide to installing Nginx](nginx-mainline.md) first.
-* Some comfort with doing things on the command line, and a terminal-based text editor like `nano` installed. 
-    * In a pinch, you could use something like Filezilla or WinSCP — and a regular GUI-based text editor — to replicate these steps, but we'll be doing things the nerdy way in this tutorial.
+* Some comfort with doing things on the command line, and a terminal-based text editor like `nano` installed.
+
+    !!! hint "In a pinch"
+        you could use something like Filezilla or WinSCP — and a regular GUI-based text editor — to replicate these steps, but we'll be doing things the nerdy way in this tutorial.
+
 * At least one domain pointed at your server for one of the test websites. You can use either a second domain or a subdomain for the other.
-    * If you're doing all of this on a local server, adjust your hosts file as necessary to create simulated domain names. Instructions below.
+
+    !!! hint
+        If you're doing all of this on a local server, adjust your hosts file as necessary to create simulated domain names. Instructions below.
+
 * We are assuming that you're running Nginx on a bare metal server or regular VPS, and that SELinux is running. All instructions will be compatible with SELinux by default.
 * *All commands must be run as root,* either by logging in as the root user, or using `sudo`.
 
@@ -51,12 +59,12 @@ mkdir -p test.server.site1/html
 mkdir -p test.server.site2/html
 ```
 
-So that command will make, for example, the `test.server.site1` folder, and put another folder called `html` inside of it. That is where you're going to put the actual files you want to server via the webserver. (You could also call it "webroot" or something like that.)
+So that command will make, for example, the `test.server.site1` folder, and put another folder called `html` inside of it. That is where you're going to put the actual files you want to serve via the web server. (You could also call it "webroot" or something like that.)
 
 This is so you can put website-related files that you *don't* want to make public in the parent directory, while still keeping everything in one place.
 
 !!! Note
-    
+
     The `-p` flag tells the `mkdir` command to create any missing folders in the path you just defined, so you don't have to make each folder one at a time.
 
 For this test, we're keeping the "websites" themselves very simple. Just make an HTML file in the first folder with your favorite text editor:
@@ -97,7 +105,7 @@ cd /etc/nginx/
 If you run the `ls` command to see what files and folders are in here, you'll see a bunch of different things, most of which are irrelevant today. The ones to note are these:
 
 * `nginx.conf` is the file that contains, you guessed it, the default Nginx configuration. We'll be editing that later.
-* `conf.d` is a directory where you can put custom configuration files. You *could* use this for websites, but itls better to use it for feature-specific settings that you want on all of your websites.
+* `conf.d` is a directory where you can put custom configuration files. You *could* use this for websites, but it's better to use it for feature-specific settings that you want on all of your websites.
 * `default.d` is a directory where your website config *might* go if you were only running one site on the server, or if your server has a "primary" website. Leave it alone for now.
 
 We want to create two new folders called `sites-available` and `sites-enabled`:
@@ -107,7 +115,7 @@ mkdir sites-available
 mkdir sites-enabled
 ```
 
-What we're going to do is put all of our website configuration files in the `sites-available` folder. There, you can work on the configuration files as long as you need to, until you're ready to activate the files with a symbolic link to the `sites-enabled` folder. 
+What we're going to do is put all of our website configuration files in the `sites-available` folder. There, you can work on the configuration files as long as you need to, until you're ready to activate the files with a symbolic link to the `sites-enabled` folder.
 
 I'll show you how that works below. For now, we're done with making folders.
 
@@ -135,7 +143,7 @@ I'll show you how that works below. For now, we're done with making folders.
 
 ### Editing nginx.conf
 
-By default, Rocky Linux's implementation of Nginx is open to all HTTP traffic, and directs it all to the demo page you might have seen in our guide to installing Nginx. We don't want that. We want traffic from the domains we specificy to go to the websites we specify.
+By default, Rocky Linux's implementation of Nginx is open to all HTTP traffic, and directs it all to the demo page you might have seen in our guide to installing Nginx. We don't want that. We want traffic from the domains we specify to go to the websites we specify.
 
 So from the `/etc/nginx/` directory, open up `nginx.conf` in your favorite text editor:
 
@@ -157,7 +165,7 @@ include /etc/nginx/sites-enabled/*.conf;
 
 That will load in our website configuration files when they're ready to go live.
 
-Now head down to the section that looks like this, and either **comment it out** it with the hash sign <kbd>#</kbd>, or delete it if you feel so inclined:
+Now head down to the section that looks like this, and either **comment it out** with the hash sign <kbd>#</kbd>, or delete it if you feel so inclined:
 
 ```
 server {
@@ -213,10 +221,10 @@ Now no one will see the demo page, at least.
 
 ### Adding the website configuration files
 
-Now let's make your test websites available on the server. As previously mentioned, we're going to to this with symbolic links so we have an easy way of turning the websites on and off at will. 
+Now let's make your test websites available on the server. As previously mentioned, we're going to to this with symbolic links so we have an easy way of turning the websites on and off at will.
 
 !!! Note
-    
+
     For absolute newbies, symbolic links are basically a way of letting files pretend to be in two folders at once. Change the original file (or "target"), and it's changed everywhere that you've linked to it. If you use a program to edit the file via a link, the original gets changed.
 
     However, if you delete a link to the target, nothing at all happens to the original file. This trick is what allows us to put the website configuration files in a working directory (`sites-available`), and then "activate" them by linking to those files from `sites-enabled`.
@@ -233,8 +241,8 @@ Now paste in this code. This is about the simplest working Nginx configuration y
 ```
 server {
     listen 80;
-    listen [::]:80; 
-    
+    listen [::]:80;
+
     # virtual server name i.e. domain name #
     server_name site1.server.test;
 
@@ -276,7 +284,7 @@ Then point your browser at the domain you're using for this first site (in my ca
 
 !!! Note
 
-    Some browsers will very well-intentionedly force you to use HTTPS when you type your server domain into the address bar. If you don;t have HTTPS configured, that'll just throw errors at you.
+    Some browsers will (very well intentioned) force you to use HTTPS when you type your server domain into the address bar. If you don;t have HTTPS configured, that'll just throw errors at you.
 
     Make sure to manually specify "http://" in your browser address bar to avoid this issue. If that doesn't work, clear the cache, or use a less picky browser for this part of the testing. I recommend [Min](https://minbrowser.org).
 
@@ -296,7 +304,7 @@ If *all* of that goes right, *repeat the steps above, changing the names of the 
 
 ### Disabling a website
 
-If you need to stop one of your websites to work on it before taking it live again, just delete the symbolic link in sites-enabled, eg.:
+If you need to stop one of your websites to work on it before taking it live again, just delete the symbolic link in sites-enabled:
 
 ```bash
 rm /etc/nginx/sites-enabled/test.server.site1.conf
@@ -314,7 +322,7 @@ Since pointing external domains at your local machines is a hassle (and potentia
 
 The easiest way to do this is with the hosts file on your computer. The hosts file is literally just a text file that can override DNS settings. As in, you can manually specify a domain name to go with any IP address you want. It'll *only* work on that one computer, though.
 
-So on Mac and Linux, the hosts files is in the `/etc/` directory, and can be edited via the command line (you'll need root access) super easily. Assuming you're working on a Rocky Linux workstation, just run:
+So on Mac and Linux, the hosts file is in the `/etc/` directory, and can be edited via the command line super easily (you'll need root access). Assuming you're working on a Rocky Linux workstation, just run:
 
 ```bash
 nano /etc/hosts
@@ -336,7 +344,7 @@ If you're running your Nginx server on another machine on the network, just use 
 192.168.0.45           site2.server.test
 ```
 
-Then you'll be able to point your browser those domains and it should work as intended.
+Then you'll be able to point your browser to those domains and it should work as intended.
 
 ## Setting Up SSL Certificates for Your Sites
 
@@ -344,7 +352,7 @@ Go check out [our guide to getting SSL certificates with Let's Encrypt and certb
 
 ## Conclusion
 
-Remember, most of the folder/file organization and naming conventions here are technically optional. Your website configuration files mostly just have to go anywhere inside `/etc/nginx/` and `nginx.conf` needs to know where those files are. 
+Remember, most of the folder/file organization and naming conventions here are technically optional. Your website configuration files mostly just have to go anywhere inside `/etc/nginx/` and `nginx.conf` needs to know where those files are.
 
 The actual website files should be somewhere in `/usr/share/nginx/`, and the rest is gravy.
 
