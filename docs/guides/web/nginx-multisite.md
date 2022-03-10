@@ -29,7 +29,7 @@ This is everything you'll need:
 * Some comfort with doing things on the command line, and a terminal-based text editor like `nano` installed.
 
     !!! hint "In a pinch"
-        you could use something like Filezilla or WinSCP — and a regular GUI-based text editor — to replicate these steps, but we'll be doing things the nerdy way in this tutorial.
+        ... you could use something like Filezilla or WinSCP — and a regular GUI-based text editor — to replicate most of these steps, but we'll be doing things the nerdy way in this tutorial.
 
 * At least one domain pointed at your server for one of the test websites. You can use either a second domain or a subdomain for the other.
 
@@ -209,7 +209,7 @@ What that would look like "commented out":
 #}
 ```
 
-Personally, if you're a beginner, you might want to keep the commented code around for reference, and that goes for the example HTTPS code that's already commented out further down in the file.
+If you're a beginner, you might want to keep the commented code around for reference, and that goes for the example HTTPS code that's already commented out further down in the file.
 
 Save and close the file, then restart the server with:
 
@@ -284,7 +284,7 @@ Then point your browser at the domain you're using for this first site (in my ca
 
 !!! Note
 
-    Some browsers will (very well intentioned) force you to use HTTPS when you type your server domain into the address bar. If you don;t have HTTPS configured, that'll just throw errors at you.
+    Some browsers will (with all the best intentions) force you to use HTTPS when you type your server domain into the address bar. If you don't have HTTPS configured, that'll just throw errors at you.
 
     Make sure to manually specify "http://" in your browser address bar to avoid this issue. If that doesn't work, clear the cache, or use a less picky browser for this part of the testing. I recommend [Min](https://minbrowser.org).
 
