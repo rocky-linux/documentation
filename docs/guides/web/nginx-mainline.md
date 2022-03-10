@@ -43,14 +43,18 @@ You’ll need:
 * The ability to run commands as root, either as the root user or with `sudo`.
 * A text editor of your choice, whether graphical or command-line based. For this tutorial, I’m using `nano`.
 
-## Installing the Repository
-
-This part isn’t quite as simple as installing an extra repository usually is. 
+## Installing the Repository & Enabling the Module
 
 First, make sure your machine is updated:
 
 ```bash
 sudo dnf update
+```
+
+Then, install the `epel-release` software repository:
+
+```bash
+sudo dnf install epel-release
 ```
 
 Then enable the right module for the latest version of `nginx`. This module will always be called `nginx:manline`, so just enable it with `dnf` like so:
