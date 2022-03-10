@@ -28,12 +28,11 @@ To check the currently running kernel config for a particular value:
 cat /boot/config-$(uname -r) | grep -i <keyword>
 ```
 Results will show 
-    "=m" if compiled in as a kernel module
-    "=y" if compiled statically into the kernel
-     doesn't have entries for anything **NOT** configured
-(i.e. it will not show "=n"(not compiled in at all))
+  - "=m" if compiled in as a kernel module
+  - "=y" if compiled statically into the kernel
+  - "is not set" if the setting exists but is not enabled (a boolean)
 
-Some distibutions, like Gentoo and Arch, use `/proc/config.gz` by default instead:
+Some distributions, like Gentoo and Arch, use `/proc/config.gz` by default instead:
 ```bash
 zcat /proc/config.gz | grep -i <keyword>
 zgrep <keyword> /proc/config.gz
