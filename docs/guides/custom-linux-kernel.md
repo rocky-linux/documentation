@@ -201,8 +201,6 @@ The following steps cover how to configure the kernel. We will be using a text-b
     
 ![Main Kernel Configuration screen](images/Il01-kernel.png)
 
-    **** ws needs to insert new illustration Il01-kernel.png here ****
-
     The kernel configuration screen that appears is divided into roughly three areas.
     The top part shows various helpful information, keyboard shortcuts, and legends that can help you navigate the application.
     The main body of the screen shows an expandable tree-structured list of the overall configurable kernel options. You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items. And finally, the bottom of the screen displays the actual actions/options that the user can choose.
