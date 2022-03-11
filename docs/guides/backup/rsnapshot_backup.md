@@ -2,7 +2,9 @@
 title: Backup Solution - Rsnapshot
 author: Steven Spencer
 contributors: Ezequiel Bruni
-updated: Jan-12-2022
+tags:
+  - backup
+  - rsnapshot
 ---
 
 # Backup Solution - Rsnapshot
@@ -10,7 +12,7 @@ updated: Jan-12-2022
 ## Prerequisites
 
   * Know how to install additional repositories and snapshots from the command-line
-  * Know about mounting filesystems external of your machine (external Hard Drive, remote filesystem, etc.)
+  * Know about mounting filesystems external of your machine (external hard drive, remote filesystem, etc.)
   * Know how to use an editor (`vi` is used here, but you can use your favorite editor)
   * Know a little BASH scripting
   * Know how to modify the crontab for the root user
@@ -70,7 +72,7 @@ Is this ok [y/N]: y
 In this step, we show how to mount a hard drive, such as an external USB hard drive, that will be used to back up your system. This particular step is only necessary if you are backing up a single machine or server, as seen in our first example below.
 
 1. Plug in the USB drive.
-2. Type `dmesg | grep sd` which should show you the drive should show you the drive you want to use. In this case, it'll be called _sda1_.  
+2. Type `dmesg | grep sd` which should show you the drive you want to use. In this case, it'll be called _sda1_.  
 Example: `EXT4-fs (sda1): mounting ext2 file system using the ext4 subsystem`.
 3. Unfortunately (or fortunately depending on your opinion) most modern Linux desktop operating systems automount the drive if they can. This means that, depending on various factors, _rsnapshot_ might lose track of the hard drive. We want the drive to "mount" or make its files available in the same place every time.  
 To do that, take the drive information revealed in the dmesg command above and type `mount | grep sda1`, which should show something like this: `/dev/sda1 on /media/username/8ea89e5e-9291-45c1-961d-99c346a2628a`
@@ -197,7 +199,7 @@ When the backup finishes, navigate to /mnt/backup and take a look at the directo
 
 ### Further Explanation
 
-Each time the backup is run, it will create a new beta increment, 0-6, or 7 days worth of backups. The newest backup will always be beta.0 where as yesterday's backup will always be beta.1.
+Each time the backup is run, it will create a new beta increment, 0-6, or 7 days worth of backups. The newest backup will always be beta.0 whereas yesterday's backup will always be beta.1.
 
 The size of each of these backups will appear to take up the same amount (or more) of disk space, but this is because of _rsnapshot's_ use of hard links. To restore files from yesterday's backup, you would simply copy them back from beta.1's directory structure.
 
@@ -230,7 +232,7 @@ If running these backups from across the Internet, you need to make sure that bo
 
 We are assuming that you are running _rsnapshot_ from a machine remotely, on-premise. This exact configuration can be duplicated, as indicated above, remotely off-premise as well.
 
-In this case, you will want to install _rsnapshot_ on the machine that is doing all of the backups. We are also assuming
+In this case, you will want to install _rsnapshot_ on the machine that is doing all of the backups. We are also assuming:
 
 * That the servers you will be backing up to, have a firewall rule that allows the remote machine to SSH into it
 * That each server that you will be backing up has a recent version of `rsync` installed. For Rocky Linux servers, run `dnf install rsync` to update your system's version of `rsync`.
@@ -240,7 +242,7 @@ In this case, you will want to install _rsnapshot_ on the machine that is doing 
 
 For the server that will be running the backups, we need to generate an SSH key-pair for use during the backups. For our example, we will be creating RSA keys.
 
-If you already have a set of keys generated, you can skip this step. You can find out by doing an `ls -al .ssh` and looking for an id_rsa and id_rsa.pub key pair. If none exists use the following link to set up your keys and the servers that you want to access:
+If you already have a set of keys generated, you can skip this step. You can find out by doing an `ls -al .ssh` and looking for an id_rsa and id_rsa.pub key pair. If none exists, use the following link to set up keys for your machine and the server(s) that you want to access:
 
 [SSH Public Private Key Pairs](../security/ssh_public_private_keys.md)
 
@@ -329,7 +331,7 @@ And add this line:
 
 ## Reporting The Backup Status
 
-To make sure that everything is backing up according to plan, you might want to send the backup log files to your email. If your are running multiple machine backups using _rsnapshot_, each log file will have its own name, which you can then send to your email for review by [Using postfix For Server Process Reporting](../email/postfix_reporting.md) procedure.
+To make sure that everything is backing up according to plan, you might want to send the backup log files to your email. If your are running multiple machine backups using _rsnapshot_, each log file will have its own name, which you can then send to your email for review by [Using the postfix For Server Process Reporting](../email/postfix_reporting.md) procedure.
 
 ## Conclusions and Other Resources
 
