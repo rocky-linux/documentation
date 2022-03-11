@@ -97,6 +97,10 @@ Example: `git commit -m "Added the help.md file"`
 
 Once all of the above is complete, you wait for confirmation that Github successfully merged your request. (Or not, as the case may be.)
 
+## More Advanced Documents
+
+If you are wanting to add more advanced elements in your document than just text (admonitions, tables, block quotes, etc.), [this document](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) will help you get there.
+
 ## Keep Up With The Conversation
 
 If you haven't already, join the conversation on the [Rocky Linux Mattermost Server](https://chat.rockylinux.org/rocky-linux/) and stay up-to-date with what is going on. Join the [~Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation), or any other channel you are interested in. We'd be glad to have you with us!
