@@ -54,7 +54,7 @@ Doing this effectively requires:
     You can build totally separate environments for `mkdocs` by using either of these two procedures as well:
 
     * [Local Documentation - Docker](rockydocs_web_dev.md)
-    * [Local Doccuentation - LXD](mkdocs_lsyncd.md)
+    * [Local Documentation - LXD](mkdocs_lsyncd.md)
 
 !!! Note
 
