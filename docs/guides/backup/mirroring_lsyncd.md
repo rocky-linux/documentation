@@ -2,9 +2,11 @@
 title: Mirroring Solution - lsyncd
 author: Steven Spencer
 contributors: Ezequiel Bruni, tianci li
-updated: 10-28-2021
+tags:
+  - lsyncd
+  - synchronization
+  - mirroring
 ---
-
 # Mirroring Solution - `lsyncd`
 
 ## Prerequisites
@@ -219,7 +221,7 @@ And then:
 
 `tail /var/log/lsyncd-status.log`
 
-Assuming that this all looks correct, navigate to the `/home/[user]` directory, where `[user]` is a user on the machine and crate a new file there with *touch*.
+Assuming that this all looks correct, navigate to the `/home/[user]` directory, where `[user]` is a user on the machine and create a new file there with *touch*.
 
 `touch /home/[user]/testfile`
 
