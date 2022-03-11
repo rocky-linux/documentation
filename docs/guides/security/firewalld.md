@@ -3,6 +3,9 @@ title: firewalld from iptables
 author: Steven Spencer
 contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni
 update: 17-Feb-2022
+tags:
+  - security
+  - firewalld
 ---
 
 # `iptables` Guide To `firewalld` - Introduction
@@ -68,7 +71,7 @@ To list existing zones on your system, type:
     $ systemctl status firewalld
     ```
 
-To be honest, I mostly hate the names of these zones. Drop, block, public, and trusted are perfectly clear, but some aren't good enough for perfect granular security. Let's take this `iptables` rule section as an example:
+To be honest, I mostly hate the names of these zones. drop, block, public, and trusted are perfectly clear, but some aren't good enough for perfect granular security. Let's take this `iptables` rule section as an example:
 
 `iptables -A INPUT -p tcp -m tcp -s 192.168.1.122 --dport 22 -j ACCEPT`
 
@@ -85,7 +88,7 @@ But what if on this server we also have an intranet that is accessible to only t
 
 To add a zone, we need to use the `firewall-cmd` with the `--new-zone` parameter. We are going to add "admin" (for administrative) as a zone:
 
-`firewall-cmd --new-zone admin --permanent`
+`firewall-cmd --new-zone=admin --permanent`
 
 !!! Note
 
@@ -94,6 +97,33 @@ To add a zone, we need to use the `firewall-cmd` with the `--new-zone` parameter
 Before this zone can actually be used, we need to reload the firewall:
 
 `firewall-cmd --reload`
+
+!!! hint
+
+    A note about custom zones: If you need to add a zone that will be a trusted zone, but will only contain a particular source IP or interface and no protocols or services, and the "trusted" zone doesn't work for you, probably because you've already used it for something else, etc.  You can add a custom zone to do this, but you must change the target of the zone from "default" to "ACCEPT" (REJECT or DROP can also be used, depending on your goals). Here's an example using a bridge interface (lxdbr0 in this case) on an LXD machine.
+
+    First, we add the zone and reload so that we can use it:
+
+    ```
+    firewall-cmd --new-zone=bridge --permanent
+    firewall-cmd --reload
+    ```
+
+    Next, we change the target of the zone from "default" to "ACCEPT" (**note that the "--permanent" option is required for changing a target**) then assign the interface, and reload:
+
+    ```
+    firewall-cmd --zone=bridge --set-target=ACCEPT --permanent
+    firewall-cmd --zone=bridge --add-interface=lxdbr0 --permanent
+    firewall-cmd --reload
+    ```
+
+    This tells the firewall that you:
+
+    1. are changing the target of the zone to ACCEPT
+    2. are adding the bridge interface "lxdbr0" to the zone
+    3. reloading the firewall
+
+    All of which says that you are accepting all traffic from the bridge interface.
 
 ### Listing Zones
 
