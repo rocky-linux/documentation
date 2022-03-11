@@ -1,5 +1,10 @@
 ---
 title: Navigational Changes
+author: Steven Spencer
+contributors: Ezequiel Bruni
+tags:
+  - contribute
+  - navigation
 ---
 
 # Navigational Changes - A Process Document for Managers/Editors
@@ -43,6 +48,13 @@ Doing this effectively requires:
 * Cloning this Rocky GitHub repository:[https://github.com/rocky-linux/docs.rockylinux.org](https://github.com/rocky-linux/docs.rockylinux.org)
 * Linking to the `docs` folder within your cloned documentation repository (you can also just modify the mkdocs.yml file if you wish to load the correct folder, but linking keeps your mkdocs environment cleaner)
 * Running `mkdocs serve` within your clone of docs.rockylinux.org
+
+!!! Hint
+
+    You can build totally separate environments for `mkdocs` by using either of these two procedures as well:
+
+    * [Local Documentation - Docker](rockydocs_web_dev.md)
+    * [Local Documentation - LXD](mkdocs_lsyncd.md)
 
 !!! Note
 

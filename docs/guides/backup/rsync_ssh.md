@@ -2,7 +2,9 @@
 title: Synchronization With rsync
 author: Steven Spencer
 contributors: Ezequiel Bruni, tianci li
-updated: 2021-11-02
+tags:
+  - synchronization
+  - rsync
 ---
 
 # Using `rsync` To Keep Two Machines Synchronized
@@ -37,11 +39,11 @@ If the package is not installed, `dnf` will ask you to confirm the installation,
 
 ### Preparing The Environment
 
-This particular example will use `rsync` on the target machine to pull from the source instead of pushing from the source to the target, so you need to set up a [SSH key pair](../security/ssh_public_private_keys.md) for this . Once the SSH key pair has been created and password-free access from the target computer to the source computer has been confirmed, you can start.
+This particular example will use `rsync` on the target machine to pull from the source instead of pushing from the source to the target, so you need to set up an [SSH key pair](../security/ssh_public_private_keys.md) for this . Once the SSH key pair has been created and password-free access from the target computer to the source computer has been confirmed, you can start.
 
 ### `rsync` Parameters And Setting Up A Script
 
-Before we get terribly carried away with the setting up a script, we first need to decide what parameters we want to use with `rsync`. There are a many possibilities, so take a look at the [manual for rsync](https://linux.die.net/man/1/rsync). The most common way to use `rsync` is to use the -a option, because -a, or archive, combines a number of options into one and these are very common options. What does -a include?
+Before we get terribly carried away with setting up a script, we first need to decide what parameters we want to use with `rsync`. There are many possibilities, so take a look at the [manual for rsync](https://linux.die.net/man/1/rsync). The most common way to use `rsync` is to use the `-a` option, because `-a`, or archive, combines a number of options into one and these are very common options. What does -a include?
 
 * -r, recurse the directories
 * -l, maintain symbolic links as symbolic links
@@ -72,7 +74,10 @@ Now, scripting makes it super simple and safe so that you can test it fearlessly
 #!/bin/bash
 /usr/bin/rsync -ae ssh --delete root@source.domain.com:/home/your_user /home
 ```
-In this case, we assume that your home directory does not exist on the target machine. **If it exists, you may want to back it up before executing the script!**
+
+!!! attention
+
+    In this case, we assume that your home directory does not exist on the target machine. **If it exists, you may want to back it up before executing the script!**
 
 Now run the script:
 
@@ -80,7 +85,7 @@ Now run the script:
 
 If all is well, you should get a completely synchronized copy of your home directory on the target machine. Check to be sure this is the case.
 
-Assuming all of that worked out as we hoped, go next go ahead and create a new file on the source machine in your home directory:
+Assuming all of that worked out as we hoped, go ahead and create a new file on the source machine in your home directory:
 
 `touch /home/your_user/testfile.txt`
 
@@ -112,7 +117,7 @@ Assuming all of this worked as expected, go ahead and modify the script to synch
 
 ## Automating Everything
 
-We may not want to manually run this script every time we want to synchronize, so the next step is to do this automatically. Suppose you want to run this script at 11 PM every night. To automate using Rocky Linux, use crontab:
+We may not want to manually run this script every time we want to synchronize, so the next step is to do this automatically. Suppose you want to run this script at 11 PM every night. To automate this, use crontab:
 
 `crontab -e`
 

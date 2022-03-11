@@ -198,8 +198,8 @@ The following steps cover how to configure the kernel. We will be using a text-b
     ```
 
     A screen similar to this will appear:
-
-    **** ws needs to insert new illustration Il01-kernel.png here ****
+    
+![Main Kernel Configuration screen](images/Il01-kernel.png)
 
     The kernel configuration screen that appears is divided into roughly three areas.
     The top part shows various helpful information, keyboard shortcuts, and legends that can help you navigate the application.

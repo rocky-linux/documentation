@@ -2,7 +2,11 @@
 title: cron - Automating Commands
 author: Steven Spencer
 contributors: Ezequiel Bruni
-update: 2021-10-22
+tested on: 8.5
+tags:
+  - job automation
+  - automation
+  - cron
 ---
 
 # Automating Processes with `cron` and `crontab`
@@ -144,7 +148,7 @@ This says run the script at 10 PM, every day of the month, every month, and ever
 
 ### The @options for `crontab`
 
-Another way to run jobs at a strictly scheduled time (i.e., day, week, month, year, etc.) is to use the @options offer the ability to use more natural timing. The @options consist of:
+Another way to run jobs at a strictly scheduled time (i.e., day, week, month, year, etc.) is to use the @options, which offer the ability to use more natural timing. The @options consist of:
 
 * `@hourly` runs the script every hour of every day at 0 minutes past the hour. (this is exactly the result of placing your script in `/etc/cron.hourly` too)
 * `@daily` runs the script every day at midnight.
