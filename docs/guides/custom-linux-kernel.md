@@ -198,6 +198,8 @@ The following steps cover how to configure the kernel. We will be using a text-b
     ```
 
     A screen similar to this will appear:
+    
+![Main Kernel Configuration screen](images/Il01-kernel.png)
 
     **** ws needs to insert new illustration Il01-kernel.png here ****
 
