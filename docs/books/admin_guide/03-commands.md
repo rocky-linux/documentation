@@ -286,7 +286,16 @@ The `echo` command is used to display a string of characters.
 
 This command is most commonly used in administration scripts to inform the user during execution.
 
-The `-n` option will not return to the line after displaying the text (which is the default behavior of the command).
+The `-n` option indicates no newline output string (by default, newline output string).
+
+```bash
+shell > echo -n "123";echo "456"
+123456
+
+shell > echo "123";echo "456"
+123
+456
+```
 
 For various reasons, the script developer may need to use special sequences (starting with a `\` character). In this case, the `-e` option will be stipulated, allowing interpretation of the sequences.
 
