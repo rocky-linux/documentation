@@ -2,7 +2,9 @@
 title: Change Log
 author: Louis Abel
 contributors: Steven Spencer, tianci li
-update: 07-Mar-2022
+tags:
+  - rocky changelog
+  - changelog
 ---
 
 # Rocky Linux 8 Change Log
@@ -14,6 +16,22 @@ Rocky Linux 8 will receive incremental updates, and minor version upgrades, over
 Updates released since upstream are posted across our current architectures. We strongly recommend that all users apply *all* updates, including the content released today, on your existing Rocky Linux machines. This can be done by running `dnf update`.
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
+
+## 8.5 - 2022-02-24
+
+The following packages have been updated since February 24, 2022:
+
+* dotnet3.1: dotnet3.1-3.1.416-3.el8_5 -> dotnet3.1-3.1.417-1.el8_5
+* dotnet5.0: dotnet5.0-5.0.211-1.el8_5 -> dotnet5.0-5.0.212-1.el8_5
+* dotnet6.0: dotnet6.0-6.0.102-1.el8_5 -> dotnet6.0-6.0.103-4.el8_5
+* firefox: firefox-91.6.0-1.el8_5 -> firefox-91.7.0-3.el8_5
+* kernel: kernel-4.18.0-348.12.2.el8_5 -> kernel-4.18.0-348.20.1.el8_5
+* kernel-rt: kernel-rt-4.18.0-348.12.2.rt7.143.el8_5 -> kernel-rt-4.18.0-348.20.1.rt7.150.el8_5
+
+Associated CVE's:
+
+* CVE-2022-0435
+* CVE-2022-0847
 
 ## 8.5 - 2022-02-22
 
