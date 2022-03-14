@@ -1,5 +1,11 @@
 ---
 title: Bind Private DNS Server
+author: Steven Spencer
+contributors: Ezequiel Bruni
+tested with: 8.5
+tags:
+  - dns
+  - bind
 ---
 
 # Private DNS Server Using Bind
@@ -136,7 +142,7 @@ devel IN A 192.168.1.15
 
 Add as many hosts as you need to the bottom of the file along with their IP addresses and then save your changes.
 
-Next, we need a reverse file to map our hostname to the IP address, In this case, the only part of the IP that you need is the last octet (in an IPv4 address each number separated by a comma, is an octet) of the host and then the PTR and hostname.
+Next, we need a reverse file to map our hostname to the IP address, In this case, the only part of the IP that you need is the last octet (in an IPv4 address each number separated by a period, is an octet) of the host and then the PTR and hostname.
 
 `vi /var/named/ourdomain.lan.rev`
 
@@ -244,7 +250,7 @@ TYPE=Ethernet
 MTU=
 ```
 
-We want to substitute in our new DNS server for the primary (DNS1) and then move each of the other DNS servers down one so that it like this:
+We want to substitute in our new DNS server for the primary (DNS1) and then move each of the other DNS servers down one so that it is like this:
 
 ```
 DEVICE=eth0

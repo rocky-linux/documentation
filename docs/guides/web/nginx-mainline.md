@@ -3,7 +3,11 @@ title: Nginx
 author: Ezequiel Bruni
 contributors: Antoine Le Morvan, Steven Spencer
 tested with: 8.5
+tags:
+  - nginx
+  - web
 ---
+
 # How to Install the Latest Nginx on Rocky Linux
 
 ## Introduction
@@ -97,7 +101,7 @@ From there, you could just start dropping HTML files into the `/usr/share/nginx/
 
 If you try to view a web page at your machine’s IP address or domain name from another computer, you’re probably going to get a big fat nothing. Well, that’ll be the case as long as you have a firewall up and running.
 
-Now to open up the necessary ports to actually see your web pages with `firewalld`, Rocky Linux’s default firewall with the `firewall-cmd` command. There are two ways to do it: the official way, and the manual way. *In this instance, the official way is best,* but you should know both for future reference.
+To open up the necessary ports so that you can actually "see" your web pages, we will use Rocky Linux's build-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`. There are two ways to do it: the official way, and the manual way. *In this instance, the official way is best,* but you should know both for future reference.
 
 The official way opens up the firewall to the `http` service, which is of course the service that handles web pages. Just run this:
 
@@ -266,7 +270,7 @@ First, make sure that all files in the root folder are owned by the server user 
 sudo chown -R www:www /usr/share/nginx/html/www
 ```
 
-And then, to make sure that users who want to actually browse your website can actually see the pages, you should make you can run these commands (and yes, those semicolons matter):
+And then, to make sure that users who want to actually browse your website can actually see the pages, you should run these commands (and yes, those semicolons matter):
 
 ```bash
 sudo find /usr/share/nginx/html/www -type d -exec chmod 555 "{}" \;
@@ -279,7 +283,7 @@ That basically gives everyone the right to look at files on the server, but not 
 
 As of now, our [guide to getting SSL certificates with certbot](../security/generating_ssl_keys_lets_encrypt.md) has been updated with some basic instructions for `nginx`. Go give that a look, as it has full instructions for installing certbot, as well as generating the certificates.
 
-The time is coming when browsers maight even just stop letting people see sites without certificates at all, so make sure you get one for every site.
+The time is coming when browsers might just stop letting people see sites without certificates at all, so make sure you get one for every site.
 
 ## Additional Configuration Options and Guides
 

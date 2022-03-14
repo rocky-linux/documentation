@@ -1,3 +1,14 @@
+---
+title: Secure FTP Server - vsftpd
+author: Steven Spencer
+contributors: Ezequiel Bruni
+tested with: 8.5
+tags:
+  - security
+  - ftp
+  - vsftpd
+---
+
 # Secure FTP Server - vsftpd
 
 ## Prerequisites
@@ -7,11 +18,11 @@
 * An understanding of PAM, as well as _openssl_ commands is helpful.
 * All commands are run as the root user or sudo
 
-## Introduction 
+## Introduction
 
-_vsftpd_ is the  Very Secure FTP Daemon (FTP being the file transfer protocol). It has been available for many years now, and is actually the default FTP daemon in Rocky Linux, as well as many other Linux distributions. 
+_vsftpd_ is the  Very Secure FTP Daemon (FTP being the file transfer protocol). It has been available for many years now, and is actually the default FTP daemon in Rocky Linux, as well as many other Linux distributions.
 
-_vsftpd_ allows for the use of virtual users with pluggable authentication modules (PAM). These virtual users don't exist in the system, and have no other permissions except to use FTP. This means that if a virtual user gets compromised, the person with those credentials would have no other permissions once they gained access. Using this setup is very secure indeed, but does require a bit of extra work. 
+_vsftpd_ allows for the use of virtual users with pluggable authentication modules (PAM). These virtual users don't exist in the system, and have no other permissions except to use FTP. This means that if a virtual user gets compromised, the person with those credentials would have no other permissions once they gained access. Using this setup is very secure indeed, but does require a bit of extra work.
 
 ## Installing vsftpd
 
@@ -21,7 +32,7 @@ We also need to make sure _openssl_ is installed. If you are running a web serve
 
 You will also want to enable the vsftpd service:
 
-`systemctl enable vsftpd` 
+`systemctl enable vsftpd`
 
 But _don't start the service just yet._
 
@@ -69,7 +80,7 @@ nopriv_user=vsftpd
 guest_username=vsftpd
 ```
 
-We need to add a section near the bottom of the file to force passwords sent over the internet to be encrypted. We need _openssl_ installed and we will need to create the certificate file for this as well. 
+We need to add a section near the bottom of the file to force passwords sent over the internet to be encrypted. We need _openssl_ installed and we will need to create the certificate file for this as well.
 
 Start by adding these lines at the bottom of the file:
 
@@ -92,19 +103,19 @@ Now save your configuration. (That's `SHIFT:wq` if using _vi_.)
 
 ## Setting Up The RSA Certificate
 
-We need to create the _vsftpd_ RSA certificate file. The author generally figures that a server is good for 4 or 5 years, so set the number of days for this certificate based on the number of years you believe you'll have the server up and running on this hardware. 
+We need to create the _vsftpd_ RSA certificate file. The author generally figures that a server is good for 4 or 5 years, so set the number of days for this certificate based on the number of years you believe you'll have the server up and running on this hardware.
 
 Edit the number of days as you see fit, and then use the below format of the command to create the certificate and private key files:
 
 `openssl req -x509 -nodes -days 1825 -newkey rsa:2048 -keyout /etc/vsftpd/vsftpd.key -out /etc/vsftpd/vsftpd.pem`
 
-Like all certificate creation processes, this will start a script that will ask you for some information. This is not a difficult process. Many fields can be left blank. 
+Like all certificate creation processes, this will start a script that will ask you for some information. This is not a difficult process. Many fields can be left blank.
 
 The first field is the country code field, fill this one in with your country two letter code:
 
 `Country Name (2 letter code) [XX]:`
 
-Next comes the state or province, fill this in by typing the whole name, not the abbreviation: 
+Next comes the state or province, fill this in by typing the whole name, not the abbreviation:
 
 `State or Province Name (full name) []:`
 
@@ -147,7 +158,7 @@ Now navigate to the configuration directory for _vsftpd_:
 
 `cd /etc/vsftpd`
 
-We need to create a new password database that will be used to authenticate our virtual users. We need to create a file to read the virtual users and passwords from that will create the database. 
+We need to create a new password database that will be used to authenticate our virtual users. We need to create a file to read the virtual users and passwords from. This will create the database.
 
 In the future, when adding new users, we will want to duplicate this process as well:
 
@@ -191,7 +202,7 @@ When adding new users, simply use _vi_ to create a new vusers.txt file, and re-r
 
 ## Setting Up PAM
 
-_vsftpd_ installs a default pam file when you install the package. We are going to replace this with our own content, so **always** make a backup copy of the old file first. 
+_vsftpd_ installs a default pam file when you install the package. We are going to replace this with our own content, so **always** make a backup copy of the old file first.
 
 Make a directory for your backup file in /root:
 
@@ -219,7 +230,7 @@ This will enable login for your virtual users defined in `vsftpd-virtual-user.db
 
 ## Setting Up The Virtual User's Configuration
 
-Each virtual user has their own configuration file, which specifies their own local_root directory. This local root must be owned by the user "vsftpd" and the group "nogroup". 
+Each virtual user has their own configuration file, which specifies their own local_root directory. This local root must be owned by the user "vsftpd" and the group "nogroup".
 
 Remember that this was set up in the [Setting Up Virtual Users section above.](#virtualusers) To change the ownership for the directory, simply type this at the command line:
 
@@ -243,14 +254,14 @@ Once all of this is completed, start the _vsftpd_ service and then test your use
 
 ### Testing vsftpd
 
-You can test your setup using the command line on a machine and test access to the machine using FTP. That said, the easiest way to test is to test with an FTP client, such as [FileZilla](https://filezilla-project.org/). 
+You can test your setup using the command line on a machine and test access to the machine using FTP. That said, the easiest way to test is to test with an FTP client, such as [FileZilla](https://filezilla-project.org/).
 
-When you test with a virtual user to the server running _vsftpd_, you should get an SSL certificate trust message. This trust message is saying to the person using the FTP client that the server uses a certificate and asks them to approve the certificate before continuing. Once connected as a virtual user, you should be able to place files in the "local_root" folder that we setup for that user. 
+When you test with a virtual user to the server running _vsftpd_, you should get an SSL certificate trust message. This trust message is saying to the person using the FTP client that the server uses a certificate and asks them to approve the certificate before continuing. Once connected as a virtual user, you should be able to place files in the "local_root" folder that we setup for that user.
 
 If you are unable to upload a file, then you may need to go back and make sure that each of the above steps is completed. For instance, it could be that the ownership permissions for the "local_root" have not been set to the "vsftpd" user and the "nogroup" group.
 
 ## Conclusion
 
-_vsftpd_ is a popular and common ftp server and can be set up as a stand alone server, or as part of an [Apache Hardened Web Server](../web/apache_hardened_webserver/index.md). If set up to use virtual users and a certificate, it is quite secure. 
+_vsftpd_ is a popular and common ftp server and can be set up as a stand alone server, or as part of an [Apache Hardened Web Server](../web/apache_hardened_webserver/index.md). If set up to use virtual users and a certificate, it is quite secure.
 
 While there are quite a number of steps to setting up _vsftpd_ as outlined in this document, taking the extra time to set it up correctly will ensure that your server is as secure as it can be.

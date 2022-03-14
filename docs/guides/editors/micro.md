@@ -3,6 +3,10 @@ title: micro
 author: Ezequiel Bruni
 contributors: Steven Spencer
 tested version: 8.5
+tags:
+  - editor
+  - editors
+  - micro
 ---
 
 # Install micro on Rocky Linux
@@ -46,7 +50,7 @@ Next, you’ll need the installer from *micro*’s website. The following comman
 curl https://getmic.ro | bash
 ```
 
-To install the app system-wide (and so you can just type “micro” to open up the app), you can run the script as root inside of `/usr/bin/`. However, if you want to check the it out first and be careful about it, you can install the *micro* to any folder you want, and then move the app later with:
+To install the app system-wide (and so you can just type “micro” to open up the app), you can run the script as root inside of `/usr/bin/`. However, if you want to check it out first and be careful about it, you can install the *micro* to any folder you want, and then move the app later with:
 
 ```bash
 sudo mv micro /usr/bin/

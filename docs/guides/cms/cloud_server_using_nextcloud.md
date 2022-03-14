@@ -2,7 +2,10 @@
 title: Cloud Server Using Nextcloud
 author: Steven Spencer
 contributors: Ezequiel Bruni
-update: Jan-16-2022
+tested with: 8.5
+tags:
+  - cloud
+  - nextcloud
 ---
 
 # Cloud Server Using Nextcloud
@@ -32,7 +35,7 @@ There are several steps here that are the same regardless of which install metho
 
 ## Nextcloud - Module Method
 
-Why use the Nextcloud module?  After enabling the module we can then install Nextcloud, which will download nearly all of the dependencies for you. You will still have to install your database of choice (mariadb, postgresql, or sqlite) but your web platform will be handled by the Nextcloud packages, as well as any back-end scripts. The downside to this particular method is that you lose control over where you want Nextcloud to install. 
+Why use the Nextcloud module?  After enabling the module we can then install Nextcloud, which will download nearly all of the dependencies for you. You will still have to install your database of choice (mariadb, postgresql, or sqlite) but your web platform will be handled by the Nextcloud packages, as well as any back-end scripts. The downside to this particular method is that you lose control over where you want Nextcloud to install.
 
 When operating a bunch of servers or containers with web applications on them, a Systems Administrator would prefer to look for things in the same spot, not try to keep up with where package 'A' installed itself as opposed to package 'B'.
 
@@ -149,7 +152,7 @@ We also need a special empty file so that we can install Nextcloud. This file re
 #### Configuring PHP
 <a name="confphp"></a>
 
-We need to set the timezone for PHP. To do this, open up php.ini with your test editor of choice:
+We need to set the timezone for PHP. To do this, open up php.ini with your text editor of choice:
 
 `vi /etc/php.ini`
 
@@ -219,7 +222,7 @@ Once you have all this, click `Finish Setup` and you should be up and running.
 
 ### Notes for the Systems Administrator
 
-As noted earlier, if using the module install for Nextcloud, Nextcloud is going to put things where it thinks they should be, not where the Systems Administrator might go looking for them. For this reason, as part of the setup steps, I recommend that a README.txt file be created in each location where the Systems Administrator would logically look. 
+As noted earlier, if using the module install for Nextcloud, Nextcloud is going to put things where it thinks they should be, not where the Systems Administrator might go looking for them. For this reason, as part of the setup steps, I recommend that a README.txt file be created in each location where the Systems Administrator would logically look.
 
 I came from an environment where we used `/etc/httpd/sites-enabled` for configuration files (see the alternate install steps for more) and put our web files in `/var/www/sub-domains/[site_name]/html`. If I were to use the module install of Nextcloud, then, I would want to put a README.txt file in both locations.
 
@@ -374,7 +377,7 @@ There are a couple of things that we want to do differently than the defaults th
 
 Now cross your fingers and click "Finish Setup".
 
-The browser window will refresh for a bit and then usually not reload the site. Enter your URL in the browser window again and you should be confronted with the default first pages. 
+The browser window will refresh for a bit and then usually not reload the site. Enter your URL in the browser window again and you should be confronted with the default first pages.
 
 Your administrative user is already (or should be) logged in at this point, and there are several informational pages designed to get you up to speed. The "Dashboard" is what users will see when they first login. The administrative user can now create other users, install other applications and many other tasks.
 
