@@ -2,7 +2,9 @@
 title: Rocky Docs Formatting
 author: Steven Spencer
 contributors: tianci li, Ezequiel Bruni
-update: 19-Feb-2022
+tags:
+  - contribute
+  - formatting
 ---
 
 # Rocky Docs Formatting - Introduction
@@ -10,6 +12,26 @@ update: 19-Feb-2022
 Over the last year, a lot has changed with Rocky documentation. This guide is meant to help contributors get familiar with our more advanced formatting options: including  admonitions, numbered lists, tables, and more.
 
 To be clear, a document may or may not need to contain any of these elements. If you feel that your document will benefit from them, then this guide should help.
+
+!!! note "A Note About Headings"
+
+    Headings are not really special formatting characters, but rather standard markdown syntax. They include a **single** level one heading:
+
+    ```
+    # This is Level one
+    ```
+
+    and any number of sub-heading values, levels 2 through 6:
+
+    ```
+    ## A Level 2 heading
+    ### A Level 3 heading
+    #### A Level 4 heading
+    ##### A Level 5 heading
+    ###### A Level 6 heading
+    ```
+
+    The key here is that there can be as many of the 2 through 6 headings as you want to use, but only **ONE** level 1 heading. While the documentation will build with more than one level 1 heading, the automatically generated table of contents for the document that appears on the right-hand side, will **NOT** display correctly (or sometimes at all), with more than one. Keep this in mind when writing your documents.
 
 ## Admonitions
 
@@ -191,7 +213,7 @@ Any command that is not used inside of a text paragraph (especially the long bit
 
 ````markdown
 ```bash
-sudo dnf install the-kitchen-sink 
+sudo dnf install the-kitchen-sink
 ```
 ````
 
@@ -202,7 +224,7 @@ Incidentally, if you need to show a code block within a code block, just add one
 `````markdown
 ````markdown
 ```bash
-sudo dnf install the-kitchen-sink 
+sudo dnf install the-kitchen-sink
 ```
 ````
 `````
