@@ -1,3 +1,13 @@
+---
+title: MATE Desktop
+author: unknown
+contributors: Steven Spencer
+tested with: 8.5
+tags:
+  - mate
+  - desktop
+---
+
 # MATE Desktop Environment
 
 The MATE desktop environment was created to fork and continue GNOME2 in the wake of the somewhat negative reception that GNOME3 received when introduced. MATE has a loyal set of followers, who immediately install it on their OS of choice. MATE can be installed on many flavors of Linux, including Rocky Linux.
@@ -77,4 +87,4 @@ You should end up with a login prompt in the MATE GUI, and when you login, you w
 
 ## Conclusion
 
-Some people are not satisfied with the newer GNOME implementations or are a lot of users who simply prefer the older MATE GNOME 2 look and feel. For those people, getting MATE installed in Rocky Linux will provide a nice, stable alternative.
+Some people are not satisfied with the newer GNOME implementations or simply prefer the older MATE GNOME 2 look and feel. For those people, getting MATE installed in Rocky Linux will provide a nice, stable alternative.
