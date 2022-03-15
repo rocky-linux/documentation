@@ -17,6 +17,19 @@ Updates released since upstream are posted across our current architectures. We 
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
+## 8.5 - 2022-03-10
+
+The following packages have been updated since March 10, 2022:
+
+* thunderbird: thunderbird-91.6.0-1.el8_5 -> thunderbird-91.7.0-2.el8_5
+* thunderbird: thunderbird-91.6.0-1.el8_5.plus -> thunderbird-91.7.0-2.el8_5.plus
+
+Associated CVE's:
+
+* CVE-2022-25315
+* CVE-2022-25235
+* CVE-2022-25236
+
 ## 8.5 - 2022-02-24
 
 The following packages have been updated since February 24, 2022:
