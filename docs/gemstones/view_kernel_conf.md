@@ -26,7 +26,16 @@ These two interfaces allow you to view and change the parameters of the currentl
 Note that if you do an [`ls -l`](https://man7.org/linux/man-pages/man1/ls.1.html) on some of these files, they will show as "0" length, but if you [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html) them out they actually contain data; most of them are
 ASCII and editable, however some are binary, and in either case commands like [`file`](https://man7.org/linux/man-pages/man1/file.1.html) or [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) will typically just return "empty file" or "0" for lengths, although they will show you other information.
 
-The preferred and standard programs for interacting with these provided functions are [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html), [`modinfo`](https://man7.org/linux/man-pages/man8/modinfo.8.html) and [`sysctl`](https://man7.org/linux/man-pages/man8/sysctl.8.html), among others.
+The preferred and standard programs for interacting with these functions are [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html), [`modinfo`](https://man7.org/linux/man-pages/man8/modinfo.8.html) and [`sysctl`](https://man7.org/linux/man-pages/man8/sysctl.8.html), among others.
+```bash
+sysctl -a | grep -i <keyword>
+```
+```bash
+lsmod | grep -i <keyword>
+```
+```bash
+modinfo <module>
+```
 
 See what your currently running "kernel release" version is with:
 
@@ -106,20 +115,14 @@ You can look in any of the following for details on the config values used to bu
 /usr/src/kernels/<kernel-release>+debug/.config
 ```
 
-If using a debug kernel package the same info is in:
-
-```bash
-/lib/modules/<kernel-release>+debug/build/.config
-/usr/src/kernels/<kernel-release>+debug/.config
-```
-
 Configured modules for the currently running kernel, whether compiled as builtin (i.e. statically into the kernel itself) or a loadable module are listed by sub directories named as the module name in:
 
 ```bash
 /sys/module/
 ```
 
-You can examine these files to make sure the currently running kernel was compiled with the functions you need depending on which packages you actually have installed:
+For each installed kernel-release you can examine these files to see what values were compiled into that kernel, and what version of [GCC](https://man7.org/linux/man-pages/man1/gcc.1.html) was used to compile it:
+
 ```bash
 cat /lib/modules/$(uname -r)/config | grep -i <keyword>
 ```
@@ -135,15 +138,6 @@ cat /usr/src/kernels/$(uname -r)+debug/.config | grep -i <keyword>
 ```bash
 ls -lh /sys/module/ | grep -i <keyword>
 ```
-```bash
-sysctl -a | grep -i <keyword>
-```
-```bash
-lsmod | grep -i <keyword>
-```
-```bash
-modinfo <module>
-```
 
 You can check for kernel module dependencies in the file:
 
@@ -151,7 +145,7 @@ You can check for kernel module dependencies in the file:
 /lib/modules/<kernel-release>/modules.dep
 ```
 
-but it is *MUCH* easier to read or parse the output of the "Used-by" field in [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html).
+but it is easier to read or parse the output of the "Used-by" field in [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html).
 
 ## Reference:
 
