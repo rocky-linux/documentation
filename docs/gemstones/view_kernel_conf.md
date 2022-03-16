@@ -19,20 +19,23 @@ The Linux kernel stores running kernel information in two places via special fil
 
 !!! caution
 
-    Be cautious if examining the files mentioned here, altering them can change the behavoir of the actual running kernel!
+    Be cautious if examining the files mentioned here, altering them can change the behavior of the actual running kernel!
 
 
 These two interfaces allow you to view and change the parameters of the currently running kernel.
-Note that if you do an [`ls -l`](https://man7.org/linux/man-pages/man1/ls.1.html) on some of these files, they will show as "0" length, but if you [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html) them out they actually contain data; most of them are
-ASCII and editable, however some are binary, and in either case commands like [`file`](https://man7.org/linux/man-pages/man1/file.1.html) or [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) will typically just return "empty file" or "0" for lengths, although they will show you other information.
 
-The preferred and standard programs for interacting with these functions are [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html), [`modinfo`](https://man7.org/linux/man-pages/man8/modinfo.8.html) and [`sysctl`](https://man7.org/linux/man-pages/man8/sysctl.8.html), among others.
+Note that if you do an [`ls -l`](https://man7.org/linux/man-pages/man1/ls.1.html) on some of these files, they will show as "0" length, but if you [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html) them out they actually contain data; most of them are ASCII and editable, however some are binary, and in either case commands like [`file`](https://man7.org/linux/man-pages/man1/file.1.html) or [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) will typically just return "empty file" or "0" for lengths, although they will show you other information.
+
+The preferred and standard programs for interacting with these functions are [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html), [`modinfo`](https://man7.org/linux/man-pages/man8/modinfo.8.html), and [`sysctl`](https://man7.org/linux/man-pages/man8/sysctl.8.html), among others.
+
 ```bash
 sysctl -a | grep -i <keyword>
 ```
+
 ```bash
 lsmod | grep -i <keyword>
 ```
+
 ```bash
 modinfo <module>
 ```
@@ -55,6 +58,7 @@ cat /boot/config-$(uname -r) | grep -i <keyword>
 ```
 
 Results will show:
+
   - "=m" if compiled in as a kernel module
   - "=y" if compiled statically into the kernel
   - "is not set" if that setting was commented out
@@ -68,24 +72,23 @@ zcat /proc/config.gz | grep -i <keyword>
 zgrep <keyword> /proc/config.gz
 ```
 
-For any distribution, if your running kernel has set both `CONFIG_IKCONFIG` and `CONFIG_IKCONFIG_PROC`
-and if
+For any distribution, if your running kernel has set both `CONFIG_IKCONFIG` and `CONFIG_IKCONFIG_PROC` and if
 
 ```bash
 ls -lh /sys/module/configs
 ```
 
-exists and is executable (searchable in the case of a dir)
-then you can create `/proc/config.gz` with this command if it is not present:
+exists and is executable (searchable in the case of a dir) then you can create `/proc/config.gz` with this command if it is not present:
 
 ```bash
 modprobe configs
 ```
 
-!!! Enabled Repos:
+!!! note "Enabled Repos"
 
     This document does not currently cover kernel packages that might have come from non-default repos such as:
-        appstream-debug, appstream-source, baseos-debug, baseos-source, or devel
+
+    appstream-debug, appstream-source, baseos-debug, baseos-source, or devel
 
 
 The `kernel-devel` packages install the config file used to compile each installed standard kernel package as an ASCII file in the following location:
@@ -115,7 +118,7 @@ You can look in any of the following for details on the config values used to bu
 /usr/src/kernels/<kernel-release>+debug/.config
 ```
 
-Configured modules for the currently running kernel, whether compiled as builtin (i.e. statically into the kernel itself) or a loadable module are listed by sub directories named as the module name in:
+Configured modules for the currently running kernel, whether compiled as builtin (i.e. statically into the kernel itself) or a loadable module, are listed by sub directories named as the module name in:
 
 ```bash
 /sys/module/
@@ -126,15 +129,19 @@ For each installed kernel-release you can examine these files to see what values
 ```bash
 cat /lib/modules/$(uname -r)/config | grep -i <keyword>
 ```
+
 ```bash
 cat /lib/modules/$(uname -r)/build/.config | grep -i <keyword>
 ```
+
 ```bash
 cat /usr/src/kernels/$(uname -r)/.config | grep -i <keyword>
 ```
+
 ```bash
 cat /usr/src/kernels/$(uname -r)+debug/.config | grep -i <keyword>
 ```
+
 ```bash
 ls -lh /sys/module/ | grep -i <keyword>
 ```
