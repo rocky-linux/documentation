@@ -17,6 +17,40 @@ Updates released since upstream are posted across our current architectures. We 
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
+## 8.5 - 2022-03-14
+
+The following packages have been updated since March 14, 2022:
+
+* 389-ds-base: 389-ds-base-1.4.3.23-12.module+el8.5.0+722+e2a0b219 -> 389-ds-base-1.4.3.23-14.module+el8.5.0+745+c5be6847
+* cloud-init: cloud-init-21.1-7.el8_5.3 -> cloud-init-21.1-7.el8_5.4
+* fence-agents: fence-agents-4.2.1-75.el8 -> fence-agents-4.2.1-75.el8_5.2
+* firewalld: firewalld-0.9.3-7.el8 -> firewalld-0.9.3-7.el8_5.1
+* gdm: gdm-1:40.0-15.el8 -> gdm-1:40.0-15.el8_5.1
+* glibc: glibc-2.28-164.el8 -> glibc-2.28-164.el8_5.3
+* httpd: httpd-2.4.37-43.module+el8.5.0+727+743c5577.1 -> httpd-2.4.37-43.module+el8.5.0+746+b6ce3176.2
+* java-11-openjdk: java-11-openjdk-1:11.0.14.0.9-2.el8_5 -> java-11-openjdk-1:11.0.14.1.1-2.el8_5
+* libarchive: libarchive-3.3.3-1.el8_5 -> libarchive-3.3.3-3.el8_5
+* libxml2: libxml2-2.9.7-11.el8 -> libxml2-2.9.7-12.el8_5
+* linux-firmware: linux-firmware-20210702-103.gitd79c2677.el8 -> linux-firmware-20210702-104.gitd79c2677.el8_5
+* lvm2: lvm2-8:2.03.12-10.el8 -> lvm2-8:2.03.12-11.el8_5
+* nmstate: nmstate-1.1.0-5.el8_5 -> nmstate-1.1.0-6.el8_5
+* pcs: pcs-0.10.10-4.el8.rocky.0 -> pcs-0.10.10-4.el8_5.1.rocky.0
+* plymouth: plymouth-0.9.4-10.20200615git1e36e30.el8 -> plymouth-0.9.4-10.20200615git1e36e30.el8_5.1
+* qemu-kvm: qemu-kvm-15:4.2.0-59.module+el8.5.0+726+ce09ee88.1 -> qemu-kvm-15:4.2.0-59.module+el8.5.0+744+67293bef.2
+* redhat-support-lib-python: redhat-support-lib-python-0.11.3-1.el8 -> redhat-support-lib-python-0.13.0-0.el8_5
+* redhat-support-tool: redhat-support-tool-0.11.3-2.el8 -> redhat-support-tool-0.13.0-0.el8_5
+* samba: samba-4.14.5-9.el8_5 -> samba-4.14.5-10.el8_5
+* subscription-manager: subscription-manager-1.28.21-3.el8 -> subscription-manager-1.28.21-5.el8_5
+* systemd: systemd-239-51.el8_5.3 -> systemd-239-51.el8_5.5
+* vim: vim-2:8.0.1763-16.el8_5.4 -> vim-2:8.0.1763-16.el8_5.12
+
+The following modules have been updated:
+
+* 389-ds
+* httpd
+* virt
+* virt-devel
+
 ## 8.5 - 2022-03-10
 
 The following packages have been updated since March 10, 2022:
