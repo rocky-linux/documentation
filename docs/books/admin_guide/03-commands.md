@@ -334,24 +334,25 @@ In this last example, the `-d` option displays a given date. The `+%j` option fo
 
 The date display can follow the following formats:
 
-| Option  | Format                           |
-| --------| -------------------------------- |
-| `+%A`   | Full Name of Day                 |
-| `+%B`   | Full Name of Month               |
-| `+%c`   | Full Date Display                |
-| `+%d`   | Day number                       |
-| `+%F`   | Date in `YYYY-MM-DD` format      |
-| `+%G`   | Year                             |
-| `+%H`   | Time of day                      |
-| `+%j`   | Day of the year                  |
-| `+%m`   | Month number                     |
-| `+%M`   | Minute                           |
-| `+%R`   | Time in `hh:mm` format           |
-| `+%s`   | Seconds since January 1, 1970    |
-| `+%T`   | Time in `hh:mm:ss` format        |
-| `+%u`   | Day of the week (`1` for Monday) |
-| `+%V`   | Week number (`+%V`)              |
-| `+%x`   | Date in format `DD/MM/YYYY`      |
+| Option  | Format                                                    |
+| --------| --------------------------------------------------------- |
+| `+%A`   | Locale's full weekday name (e.g., Sunday)                 |
+| `+%B`   | Locale's full month name (e.g., January)                  |
+| `+%c`   | Locale's date and time (e.g., Thu Mar  3 23:05:25 2005)   |
+| `+%d`   | Day of month (e.g., 01)                                   |
+| `+%F`   | Date in `YYYY-MM-DD` format                               |
+| `+%G`   | Year                                                      |
+| `+%H`   | Hour (00..23)                                             |
+| `+%j`   | Day of the year (001..366)                                |
+| `+%m`   | Month number (01..12)                                     |
+| `+%M`   | Minute  (00..59)                                          |
+| `+%R`   | Time in `hh:mm` format                                    |
+| `+%s`   | Seconds since January 1, 1970                             |
+| `+%S`   | Second (00..60)                                           |
+| `+%T`   | Time in `hh:mm:ss` format                                 |
+| `+%u`   | Day of the week (`1` for Monday)                          |
+| `+%V`   | Week number (`+%V`)                                       |
+| `+%x`   | Date in format `DD/MM/YYYY`                               |
 
 The `date` command also allows you to change the system date and time. In this case, the `-s` option will be used.
 
