@@ -368,7 +368,7 @@ date -s "[AA]AA-MM-JJ hh:mm:[ss]"
 
 ### `id`, `who` and `whoami` commands
 
-The `id` command displays the name of the current user and its groups or those of a user, if the user's login is given as an argument.
+The `id` command is used to display information about users and groups. By default, no user parameter is added, and the information of the currently logged in user and group is displayed。
 
 ```bash
 $ id rockstar
