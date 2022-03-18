@@ -392,7 +392,7 @@ Since Linux is multi-user, it is likely that multiple sessions are open on the s
 * tty: represents a terminal.
 * pts/: represents a virtual console in a graphical environment with the number after representing the instance of the virtual console (0, 1, 2...)
 
-The `-r` option also displays the execution level (see chapter "startup").
+The `-r` option also displays the runlevel (see chapter "startup").
 
 ## File tree
 
