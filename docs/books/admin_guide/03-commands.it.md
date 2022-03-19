@@ -1,7 +1,7 @@
 ---
 title: Comandi Linux
 author: Antoine Le Morvan
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Aditya Putta, Franco Colussi
 update: 11-10-2021
 ---
 
@@ -169,14 +169,15 @@ clear (1)            - clear the terminal screen
 
 Una volta trovato con `apropos` o `whatis`, il manuale è letto da `man` ("Man è tuo amico"). Questo set di manuali è diviso in 8 sezioni, raggruppando le informazioni per argomento, la sezione predefinita è la 1:
 
-1. Comandi utente;
-2. Chiamate di sistema;
-3. Funzioni della libreria C;
-4. Periferiche e file speciali;
-5. Formati di file ;
-6. Giochi;
-7. Varie;
-8. Strumenti e demoni dell'amministrazione del sistema.
+1. Programmi o comandi eseguibili;
+2. Chiamate di sistema (funzioni date dal kernel);
+3. Chiamate di libreria (funzioni date dalla libreria);
+4. File speciali (di solito si trovano in /dev);
+5. Formati di file e convenzioni (file di configurazione come etc/passwd);
+6. Giochi (come le applicazioni basate sui personaggi);
+7. Varie (es. man (7));
+8. Comandi di amministrazione del sistema (di solito solo per root);
+9. Routine del Kernel (non standard).
 
 È possibile accedere alle informazioni su ciascuna sezione digitando `man x intro`, dove `x` è il numero della sezione.
 
@@ -240,7 +241,7 @@ $ history
 
 | Opzioni | Commenti                                                                                                      |
 | ------- | ------------------------------------------------------------------------------------------------------------- |
-| `-w`    | L'opzione`-w` copierà la cronologia della sessione corrente nel file.                                         |
+| `-w`    | Scrive la cronologia corrente nel file della cronologia                                                       |
 | `-c`    | L'opzione`-c` eliminerà la cronologia della sessione corrente (ma non il contenuto del file `.bash_history`). |
 
 * Manipolazione della history:
@@ -283,7 +284,16 @@ Il comando `echo` è usato per visualizzare una stringa di caratteri.
 
 Questo comando è più comunemente usato negli script amministrativi per informare l'utente durante l'esecuzione.
 
-L'opzione `-n` non tornerà alla linea dopo aver visualizzato il testo (che è il comportamento predefinito del comando).
+L'opzione `-n` indica nessuna stringa di output newline (di default, stringa di output newline).
+
+```bash
+shell > echo -n "123";echo "456"
+123456
+
+shell > echo "123";echo "456"
+123
+456
+```
 
 Per vari motivi, allo sviluppatore dello script potrebbe essere necessario utilizzare sequenze speciali (a partire da un carattere `\`). In questo caso, sara usata l'opzione `-e`, che consentirà l'interpretazione della sequenza.
 
@@ -318,7 +328,7 @@ In questo ultimo esempio, l'opzione `d` visualizza una data fornita. L'opzione `
 
 !!! Warning "Attenzione"
 
-    Il formato di una data può cambiare in base al valore della lingua definito nella variabile ambiente '$LANG'.
+    Il formato di una data può cambiare in base al valore della lingua definito nella variabile ambientale '$LANG'.
 
 Il display della data può seguire i seguenti formati:
 
@@ -414,8 +424,8 @@ Gli errori nei percorsi possono causare molti problemi: dalla creazione di carte
 
 Nell'esempio sopra, stiamo cercando la posizione del file `myfile` nella directory di bob.
 
-* in un **percorso assoluto**, la directory corrente non ha importanza. Iniziamo dalla radice e scendiamo fino alle directory `home`, `groupA`, `alice` e infine il file `myfile`: `/home/groupA/alice/myfile`.
-* in un **percorso relativo**, il nostro punto di partenza è la directory corrente `bob`, saliamo di un livello con `..` (i.e., nella directpry `groupA`), poi giù nella directory di alice, e infine il file `myfile`: `../alice/myfile`.
+* Con un **percorso assoluto**, la directory corrente non ha importanza. Iniziamo dalla radice e scendiamo fino alle directory `home`, `groupA`, `alice` e infine il file `myfile`: `/home/groupA/alice/myfile`.
+* Con un **percorso relativo**, il nostro punto di partenza è la directory corrente `bob`, saliamo di un livello attraverso `..` (cioè nella directory `groupA` ), poi giù nella directory alice e infine nel file `myfile`: `../alice/myfile`.
 
 ### comando `pwd`
 
@@ -435,15 +445,7 @@ A seconda dell'interprete di comando, il prompt dei comandi può anche visualizz
 Il comando `cd` (Change Directory) consente di modificare la directory corrente, in altre parole, serve per spostarsi attraverso l'albero.
 
 ```bash
-$ cd /tmp
-$ pwd
-/tmp
-$ cd ../
-$ pwd
-/
-$ cd
-$ pwd
-/home/rockstar
+ls [-a] [-i] [-l] [directory1] [directory2] […]
 ```
 
 Come puoi vedere nell'ultimo esempio sopra, il comando `cd` senza argomenti sposta la directory corrente alla `home directory`.
@@ -482,7 +484,7 @@ Il comando `ls`, tuttavia, ha molte opzioni (vedi `man`):
 | `-A`    | Visualizza tutti i file nella directory tranne`.` e `..`.                                                                                             |
 | `-R`    | Visualizza il contenuto delle sottodirectory in modo ricorsivo.                                                                                       |
 | `-F`    | Visualizza il tipo di file. Stampa un`/` per una directory, `*` per gli eseguibili, `@` per un collegamento simbolico, e niente per un file di testo. |
-| `-X`    | ordina i file in base alle loro estensioni.                                                                                                           |
+| `-X`    | Ordina i file secondo le loro estensioni.                                                                                                             |
 
 * Descrizione delle colonne:
 
@@ -969,7 +971,7 @@ sort [-kx] [-n] [-u] [-o file] [-ty] file
 Esempio:
 
 ```bash
-$ sort -k3 -t: -n /etc/passwd
+$ sort -k3 -t: -n -r /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
@@ -1130,9 +1132,9 @@ Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso 
 
 !!! Tip "Comprendere l'opzione `-exec`"
 
-    Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
+    Nell'esempio precedente, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
     
-    Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.txt`, il comando `find` costruirà la stringa sostituendo nella stringa `rm -f {} \;` le parentesi graffe con uno dei risultati della ricerca, e farà questo tutte le volte che ci sono dei risultati.
+    Se il comando `find` trova tre file chiamati `log1.txt`, `log2.txt` e `log3.txt`, allora il comando `find` costruirà la stringa sostituendo le parentesi nella stringa `rm -f {} \;` con uno dei risultati della ricerca, e lo farà tante volte quanti sono i risultati.
     
     Questo ci darà:
 
@@ -1141,7 +1143,7 @@ Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso 
     ```
 
 
-    Il carattere `;` è un carattere speciale della shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
+    Il carattere `;` è un carattere speciale di shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
 
 !!! Tip "Suggerimento"
 
@@ -1199,7 +1201,7 @@ $ grep -w "^root" /etc/passwd
 
 !!! Note "Nota"
 
-    Questo comando è molto potente e si consiglia vivamente di consultare il suo manuale. Ha molti utilizzi derivati.
+    Questo comando è molto potente e si raccomanda vivamente di consultare il suo manuale. Ha molti derivati.
 
 È possibile cercare una stringa in un albero di file con l'opzione `-R`.
 
@@ -1245,11 +1247,11 @@ $ find /home -name "test[123]*"
 
 !!! Note "Nota"
 
-    Circonda sempre le parole contenenti meta-caratteri con `"` per evitare che vengano sostituite dai nomi dei file che soddisfano i criteri.
+    Circonda sempre le parole che contengono meta-caratteri con `"` per evitare che siano sostituite dai nomi dei file che soddisfano i criteri.
 
 !!! Warning "Attenzione"
 
-    Non confondere i meta-caratteri della shell con i meta-caratteri dell'espressione regolare. Il comando `grep` usa i meta-caratteri dell'espressione regolare.
+    Non confondete i meta-caratteri della shell con i meta-caratteri delle espressioni regolari. Il comando `grep` utilizza meta-caratteri di espressione regolare.
 
 ## Reindirizzamenti e pipes
 
@@ -1280,7 +1282,7 @@ $ ftp -in serverftp << ftp-commands.txt
 
 !!! Note "Nota"
 
-    Solo i comandi che richiedono un input da tastiera saranno in grado di gestire il reindirizzamento dell'input.
+    Solo i comandi che richiedono l'input da tastiera saranno in grado di gestire il reindirizzamento dell'input.
 
 Il reindirizzamento dell'ingresso può anche essere utilizzato per simulare l'interattività dell'utente. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
 
@@ -1308,7 +1310,7 @@ La shell esce dal comando `ftp` quando riceve una linea contenente solo la parol
 
 !!! Warning "Attenzione"
 
-    La parola chiave finale, qui `END` o `STOP`, deve essere l'unica parola sulla riga e deve essere all'inizio della riga.
+    La parola chiave finale, qui `END` o `STOP`, deve essere l'unica parola sulla linea e deve essere all'inizio della linea.
 
 Il reindirizzamento dell'ingresso standard viene usato raramente perché la maggior parte dei comandi accetta un nome di file come argomento.
 
@@ -1494,15 +1496,15 @@ $ type ls
 potrebbe restituire quanto segue:
 
 ```bash
-ls è un alias di « ls -rt »
+ls is an alias to « ls -rt »
 ```
 
 Ora che questo è noto, possiamo vedere i risultati dell'utilizzo dell'alias o disabilitarlo in una volta con il carattere `\` eseguendo il seguente:
 
 ```bash
-$ ls file*   # order by time
+$ ls file*   # ordine per data
 file3.txt  file2.txt  file1.txt
-$ \ls file*  # order by name
+$ \ls file*  # ordine per nome
 file1.txt  file2.txt  file3.txt
 ```
 

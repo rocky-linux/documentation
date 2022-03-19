@@ -2,7 +2,7 @@
 title: rsync breve descrizione
 author: tianci li
 contributors: Steven Spencer, Franco Colussi
-update: 2021-12-25
+update: 2022-Mar-14
 ---
 
 # Backup in Sintesi
@@ -14,7 +14,7 @@ Il backup si riferisce alla duplicazione dei dati nel file system o nel database
 Quali sono i metodi di backup?
 
 * Backup completo: si riferisce a una copia unica di tutti i file, le cartelle o i dati nel disco rigido o nel database. (Pro: il migliore, può recuperare i dati più velocemente. Svantaggi: occupa più spazio su disco rigido.)
-* Backup incrementale: si riferisce al backup dei dati aggiornati dopo l'ultimo backup completo o incrementale. Il processo è così, un backup completo il primo giorno; un backup dei nuovi dati aggiunti il secondo giorno, anziché un backup completo; il terzo giorno, un backup dei dati appena aggiunti sulla base del secondo giorno. Relativo al giorno successivo.
+* Backup incrementale: si riferisce al backup dei dati aggiornati dopo l'ultimo backup completo o incrementale. Il processo è come questo: un backup completo il primo giorno; un backup dei dati appena aggiunti il secondo giorno, al contrario di un backup completo; il terzo giorno, un backup dei dati appena aggiunti sulla base del secondo giorno, relativo al giorno successivo, e così via.
 * Backup differenziale: Si riferisce al backup dei file modificati dopo il backup completo. Ad esempio, un backup completo il primo giorno; un backup dei nuovi dati il secondo giorno; un backup dei nuovi dati dal secondo giorno al terzo giorno del terzo giorno; e un backup di tutti i nuovi dati dal secondo giorno al quarto giorno il quarto giorno.
 * Backup selettivo: Si riferisce al backup di una parte del sistema.
 * Backup a freddo: si riferisce al backup quando il sistema è in stato di arresto o manutenzione. I dati di backup sono esattamente gli stessi dei dati nel sistema durante questo periodo.
@@ -23,7 +23,7 @@ Quali sono i metodi di backup?
 
 ## rsync in sintesi
 
-Su un server, ho eseguito il backup della prima partizione nella seconda partizione, comunemente nota come "Backup locale." Gli strumenti di backup specifici da poter utilizzare sono `tar` , `dd` , `dump` , `cp`, ecc. Anche se i dati vengono salvati su questo server, se l'hardware non riesce ad avviarsi correttamente, i dati non verranno recuperati. Al fine di risolvere il backup locale Per questo problema, abbiamo introdotto un altro tipo di backup --- "backup remoto".
+Su un server, ho eseguito il backup della prima partizione nella seconda partizione, comunemente nota come "Backup locale." Gli strumenti di backup specifici da poter utilizzare sono `tar` , `dd` , `dump` , `cp`, ecc. Anche se i dati vengono salvati su questo server, se l'hardware non riesce ad avviarsi correttamente, i dati non verranno recuperati. Per risolvere questo problema con il backup locale, abbiamo introdotto un altro tipo di backup --- "backup remoto".
 
 Alcune persone diranno, non posso usare il comando `tar` o `cp` sul primo server e inviarlo al secondo server tramite `scp` o `sftp`?
 
