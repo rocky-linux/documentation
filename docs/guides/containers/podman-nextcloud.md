@@ -1,8 +1,12 @@
 ---
 title: Nextcloud on Podman
 author: Ananda Kammampati
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Steven Spencer
 tested with: 8.5
+tags:
+  - podman
+  - containers
+  - nextcloud
 ---
 # Running Nextcloud as a Podman Container on Rocky Linux
 
@@ -22,9 +26,9 @@ You could run most of the commands in the guide manually, but setting up a few b
 
 !!! Note "Note for Beginners:"
 
-    Podman is tool for managing containers, specifically OCI (Open Containers Initiative) Containers. It's designed to be pretty much Docker-compatible, in that most if not all of the same commands will work for both tools. If "Docker" means nothing to you—or even if you're just curious—you can read more about Podman and how it works on [Podman's own website](https://podman.io).
+    Podman is tool for managing containers, specifically OCI (Open Containers Initiative) containers. It's designed to be pretty much Docker-compatible, in that most if not all of the same commands will work for both tools. If "Docker" means nothing to you—or even if you're just curious—you can read more about Podman and how it works on [Podman's own website](https://podman.io).
 
-    `buildah` is a tool that builds Podman Podman container images based on "DockerFiles".
+    `buildah` is a tool that builds Podman container images based on "DockerFiles".
 
     This guide was designed as an exercise to help people get familair with running Podman containers in general, and on Rocky Linux specifically.
 
@@ -34,7 +38,7 @@ Here's everything you'll need, or need to know, in order to make this guide work
 
 * Familiarity with the command line, bash scripts, and editing Linux configuration files.
 * SSH access if working on a remote machine.
-* A command-line based text editor if your choice. We'll be using `vi` for this guide. 
+* A command-line based text editor of your choice. We'll be using `vi` for this guide. 
 * An internet-connected Rocky Linux machine (again, a Raspberry Pi will work nicely).
 * Many of these commands must be run as root, so you'll need a root or sudo-capable user on the machine.
 * Familiarity with web servers and MariaDB would definitely help.
@@ -51,13 +55,13 @@ dnf update
 Then you'll want to install the `epel-release` repository for all the extra packages we'll be using.
 
 ```bash
-dnf install epel-release 
+dnf -y install epel-release 
 ```
 
 Once that's done, you can update again (which sometimes helps) or just go ahead and install the packages we need:
 
 ```bash
-dnf -y podman buildah
+dnf -y install podman buildah
 ```
 
 Once they're installed, run `podman --version` and `buildah --version` to make sure everything is working correctly.
@@ -152,7 +156,7 @@ And run it:
 ./build.sh
 ```
 
-Wait 'til it's done, and move on to the next step.
+Wait until it's done, and move on to the next step.
 
 ## Step 03: Create the `db-tools` Container Image  
 
@@ -262,7 +266,7 @@ vi db-init.sh
 
 And here's the code you'll need:
 
-!!! Warning
+!!! warning
 
     For the purposes of this guide, the following script will deleted all Podman Volumes. If you have other applications running with their own volumes, modify/comment the line "podman volume rm --all";
 
@@ -309,7 +313,7 @@ echo "Creating ncdb Database for nextcloud ....."
 podman run --rm --net host db-tools /root/db-create.sh ;
 ```
 
-And lastly, here's your build script that'll put the whole mariadb container togather:
+And lastly, here's your build script that'll put the whole mariadb container together:
 
 ```bash
 vi build.sh
@@ -352,6 +356,10 @@ Set up your DockerFile first this time, for variety:
 ```bash
 vi Dockerfile
 ```
+
+!!! note
+
+    This next bit assumes ARM architexture (for the Raspberry Pi), so if you are using another architexture, remember to change this. 
 
 And paste in this bit:
 
@@ -443,7 +451,7 @@ CONTAINER ID IMAGE                              COMMAND              CREATED    
 32534e5a5890 docker.io/arm64v8/nextcloud:latest apache2-foregroun... 12 seconds ago Up 12 seconds ago          nextcloud
 ```
 
-From there, you should be able to Point your browser to your server IP address (eg. http://10.1.1.160), and see Nextcloud up and running.
+From there, you should be able to point your browser to your server IP address (eg. http://10.1.1.160), and see Nextcloud up and running.
 
 ## Conclusion
 
