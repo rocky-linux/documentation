@@ -24,13 +24,15 @@ You could run most of the commands in the guide manually, but setting up a few b
 
     Podman is tool for managing containers, specifically OCI (Open Containers Initiative) Containers. It's designed to be pretty much Docker-compatible, in that most if not all of the same commands will work for both tools. If "Docker" means nothing to you—or even if you're just curious—you can read more about Podman and how it works on [Podman's own website](https://podman.io).
 
+    `buildah` is a tool that builds Podman Podman container images based on "DockerFiles".
+
     This guide was designed as an exercise to help people get familair with running Podman containers in general, and on Rocky Linux specifically.
 
 ## Prerequisites and Assumptions
 
 Here's everything you'll need, or need to know, in order to make this guide work:
 
-* Familiarity with the command line, bash scriptsm, and editing Linux configuration files.
+* Familiarity with the command line, bash scripts, and editing Linux configuration files.
 * SSH access if working on a remote machine.
 * A command-line based text editor if your choice. We'll be using `vi` for this guide. 
 * An internet-connected Rocky Linux machine (again, a Raspberry Pi will work nicely).
@@ -167,7 +169,7 @@ First, change to the folder where you'll be building the db-tools image:
 cd /root/db-tools
 ```
 
-Now set up some bash scripts that will be used inside the docker image. First, make the script that will automatically build your database for you: 
+Now set up some bash scripts that will be used inside the Podman container image. First, make the script that will automatically build your database for you: 
 
 ```bash
 vi db-create.sh
@@ -262,7 +264,7 @@ And here's the code you'll need:
 
 !!! Warning
 
-    For the purposes of this guide, the following script will deleted all P{odman Volumes. If you have other applications running with their own volumes, modify/comment the line "podman volume rm --all";
+    For the purposes of this guide, the following script will deleted all Podman Volumes. If you have other applications running with their own volumes, modify/comment the line "podman volume rm --all";
 
 ```
 #!/bin/bash
@@ -373,7 +375,7 @@ buildah bud --no-cache -t nextcloud . ;
 buildah images -a
 ```
 
-Now, we're going to set up a binch of local folders on the host server (*not* in any Podman container), so that we can rebuild our containers and databases without fear of losing all of our files:
+Now, we're going to set up a bunch of local folders on the host server (*not* in any Podman container), so that we can rebuild our containers and databases without fear of losing all of our files:
 
 ```bash
 mkdir -p /usr/local/nc/nextcloud /usr/local/nc/apps /usr/local/nc/config /usr/local/nc/data
