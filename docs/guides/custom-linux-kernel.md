@@ -14,7 +14,7 @@ In this guide, we’ll walk through the process of acquiring a kernel source tre
 Most often, when people say _Linux_, they are usually referring to a "_Linux distribution_" —for example, Rocky Linux and Debian are types of Linux distribution. A distribution comprises everything necessary to get Linux to exist as a functional operating system.
 Distributions make use of code from various open source projects that are independent of Linux.
 
-Linux is The kernel. The kernel literarily seats right at the heart of the [operating system] matter.
+Linux is The kernel. The kernel literally sits right at the heart of the [operating system] matter.
 
 The only thing more fundamental than the kernel is the system hardware itself.
 Although the kernel is a small part of a complete Linux distribution, it is by far the most critical element. If the kernel fails or crashes, the rest of the system goes with it.

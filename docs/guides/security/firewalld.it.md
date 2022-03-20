@@ -2,7 +2,10 @@
 title: firewalld da iptables
 author: Steven Spencer
 contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Franco Colussi
-update: 19-Feb-2022
+update: 11-Mar-2022
+tags:
+  - security
+  - firewalld
 ---
 
 # Guida da `iptables` a `firewalld` - Introduzione
@@ -17,7 +20,7 @@ Dalla pagina del manuale:`"firewalld` fornisce un firewall gestito dinamicamente
 
 Curiosità: `firewalld` in Rocky Linux è in realtà un front end per i sottosistemi del kernel netfilter e nftables.
 
-Per capire veramente `firewalld`, è necessario comprendere l'uso delle zone. Le zone sono dove viene applicata la granularità dei set di regole del firewall. Considerate di leggere entrambi i documenti per ottenere il massimo da `firewalld`.
+Questa guida si concentra sull'applicazione di regole da un firewall `iptables` a un firewall `firewalld`. Se sei davvero all'inizio del tuo viaggio nel firewall, [questo documento](firewalld-beginners.md) potrebbe aiutarti di più. Considerate di leggere entrambi i documenti per ottenere il massimo da `firewalld`.
 
 ## Prerequisiti e presupposti
 
@@ -68,7 +71,7 @@ Per elencare le zone esistenti sul vostro sistema, digitate:
     $ systemctl status firewalld
     ```
 
-Ad essere onesti, odio soprattutto i nomi di queste zone. Drop, block, public e trusted sono perfettamente chiari, ma alcuni non sono abbastanza buoni per una perfetta sicurezza granulare. Prendiamo questa sezione di regole `iptables` come esempio:
+Ad essere onesti, odio soprattutto i nomi di queste zone. drop, block, public e trusted sono perfettamente chiari, ma alcuni non sono abbastanza efficaci per una perfetta sicurezza granulare. Prendiamo questa sezione di regole `iptables` come esempio:
 
 `iptables -A INPUT -p tcp -m tcp -s 192.168.1.122 --dport 22 -j ACCEPT`
 
@@ -85,7 +88,7 @@ Ma cosa succede se su questo server abbiamo anche una intranet che è accessibil
 
 Per aggiungere una zona, dobbiamo usare il `firewall-cmd` con il parametro `--new-zone`. Aggiungeremo "admin" (per amministrativo) come zona:
 
-`firewall-cmd --new-zone admin --permanent`
+`firewall-cmd --new-zone=admin --permanent`
 
 !!! Note "Nota"
 
@@ -95,9 +98,38 @@ Prima che questa zona possa essere effettivamente utilizzata, dobbiamo ricaricar
 
 `firewall-cmd --reload`
 
+!!! hint "Suggerimento"
+
+    Una nota sulle zone personalizzate: Se avete bisogno di aggiungere una zona che sarà una zona fidata, ma conterrà solo un particolare IP sorgente o interfaccia e nessun protocollo o servizio, e la zona "fidata" non funziona per voi, probabilmente perché l'avete già usata per qualcos'altro, ecc.  Potete aggiungere una zona personalizzata per fare questo, ma dovete cambiare l'obiettivo della zona da "default" ad "ACCEPT" (si può anche usare REJECT o DROP, a seconda dei vostri obiettivi). Ecco un esempio che usa un'interfaccia bridge (lxdbr0 in questo caso) su una macchina LXD.
+    
+    Per prima cosa, aggiungiamo la zona e la ricarichiamo per poterla utilizzare:
+
+    ```
+    firewall-cmd --new-zone=bridge --permanent
+    firewall-cmd --reload
+    ```
+
+
+    Poi, cambiamo il target della zona da "default" a "ACCEPT" (**notare che l'opzione "--permanent" è richiesta per cambiare un target**) poi assegniamo l'interfaccia e ricarichiamo:
+
+    ```
+    firewall-cmd --zone=bridge --set-target=ACCEPT --permanent
+    firewall-cmd --zone=bridge --add-interface=lxdbr0 --permanent
+    firewall-cmd --reload
+    ```
+
+
+    Questo dice al firewall che voi:
+
+    1. state cambiando l'obiettivo della zona in ACCEPT
+    2. state aggiungendo l'interfaccia bridge "lxdbr0" alla zona
+    3. ricaricate il firewall
+
+    Tutto questo dice che state accettando tutto il traffico dall'interfaccia di bridge.
+
 ### Elencazione delle Zone
 
-Prima di andare avanti, dobbiamo dare un'occhiata al processo di elencazione delle zone. Piuttosto che un output tabellare fornito da `iptables -L`, si ottiene una singola colonna di output con intestazioni. L'elenco di una zona è fatto con il comando `firewall-cmd --zone=[nome_zona] --list-all.` Ecco come appare quando elenchiamo la zona "admin" appena creata:
+Prima di andare avanti, dobbiamo dare un'occhiata al processo di elencazione delle zone. Piuttosto che un output tabellare fornito da `iptables -L`, si ottiene una singola colonna di output con intestazioni. L'elenco di una zona è fatto con il comando `firewall-cmd --zone=[nome_zona] --list-all.`. Ecco come appare quando elenchiamo la zona "admin" appena creata:
 
 `firewall-cmd --zone=admin --list-all`
 
@@ -150,11 +182,11 @@ e ricaricare:
 
 !!! Warning "Attenzione"
 
-    Se stai lavorando su un server remoto o su una VPS, rimanda l'ultima istruzione! *Non rimuovere MAI il servizio `ssh` da un server remoto* a meno che tu non abbia un altro modo per accedere alla shell (vedi sotto).
+    Se stai lavorando su un server remoto o su un VPS, rimanda l'ultima istruzione! *NON rimuovere MAI il servizio `ssh` da un server remoto* a meno che tu non abbia un altro modo per accedere alla shell (vedi sotto).
     
     Se ti chiudi fuori dall'accesso `ssh` tramite il firewall, dovrai (nel peggiore dei casi) andare a riparare il tuo server di persona, contattare il supporto, o eventualmente reinstallare il sistema operativo dal tuo pannello di controllo (a seconda che il server sia fisico o virtuale).
 
-### Utilizzo di una nuova zona - Aggiunta di IP Amministrativi
+### Utilizzo di una Nuova Zona - Aggiunta di IP Amministrativi
 
 Ora basta ripetere i nostri passi originali usando la zona "admin":
 
@@ -176,7 +208,7 @@ Testate la vostra regola per assicurarvi che funzioni. Per testare:
 Feb 14 22:02:34 serverhostname sshd[9805]: Accepted password for root from 192.168.1.122 port 42854 ssh2
 Feb 14 22:02:34 serverhostname sshd[9805]: pam_unix(sshd:session): session opened for user root by (uid=0)
 ```
-Questo mostra che l'IP sorgente per la nostra connessione SSH era effettivamente lo stesso IP che abbiamo appena aggiunto alla zona "admin". Quindi dovremmo essere sicuri di spostare questa regola in modo permanente:
+Questo mostra che l'IP sorgente per la nostra connessione SSH era effettivamente lo stesso IP che abbiamo appena aggiunto alla zona "admin". Quindi dovremmo essere al sicuro nello spostare questa regola in modo permanente:
 
 `firewall-cmd --runtime-to-permanent`
 
@@ -196,7 +228,7 @@ Se avete più di un IP amministrativo da aggiungere (molto probabile), allora ag
 
 !!! Note "Nota"
 
-    Tenete a mente che se state lavorando su un server remoto o VPS, e avete una connessione internet che non usa sempre lo stesso IP, potreste voler aprire il vostro servizio `ssh` ad una gamma di indirizzi IP usati dal vostro provider di servizi internet o regione geografica. Questo, di nuovo, è per non essere bloccati dal proprio firewall.
+    Tenete a mente che se state lavorando su un server remoto o VPS, e avete una connessione internet che non usa sempre lo stesso IP, potreste voler aprire il vostro servizio `ssh` a una gamma di indirizzi IP usati dal vostro provider di servizi internet o regione geografica. Questo, di nuovo, è per non essere bloccati dal proprio firewall.
     
     Molti ISP fanno pagare un extra per gli indirizzi IP dedicati, se vengono offerti, quindi è una vera preoccupazione.
     
@@ -210,9 +242,9 @@ Guardiamo un'altra linea nel nostro firewall `iptables` che vogliamo emulare in 
 
 Per i neofiti, ICMP è un protocollo di trasferimento dati progettato per la segnalazione di errori. Fondamentalmente, ti dice quando c'è stato un qualsiasi tipo di problema di connessione a una macchina.
 
-In realtà, lasceremmo probabilmente ICMP aperto a tutti i nostri IP locali (in questo caso 192.168.1.0/24). Tenete a mente, però, che le nostre zone "public" e "admin" avranno l'ICMP attivo per impostazione predefinita, quindi la prima cosa da fare per limitare ICMP a quell'unico indirizzo di rete è bloccare queste richieste su "public" e "admin" .
+In realtà, lasceremmo probabilmente ICMP aperto a tutti i nostri IP locali (in questo caso 192.168.1.0/24). Tenete a mente, però, che le nostre zone "public" e "admin" avranno l'ICMP attivo per impostazione predefinita, quindi la prima cosa da fare per limitare l'ICMP a quell'unico indirizzo di rete è bloccare queste richieste su "public" e "admin".
 
-Di nuovo, questo è a scopo dimostrativo. Vorrete sicuramente che i vostri utenti amministrativi abbiano l'ICMP ai vostri server, e probabilmente lo faranno ancora, perché sono membri della rete LAN IP.
+Di nuovo, questo è a scopo dimostrativo. Vorrete sicuramente che i vostri utenti amministrativi abbiano ICMP per i vostri server, e probabilmente lo avranno ancora, poiché sono membri della rete LAN IP.
 
 Per disattivare l'ICMP sulla zona "public", dovremmo:
 
@@ -238,7 +270,7 @@ From 192.168.1.104 icmp_seq=3 Packet filtered
 
 ## Porte del Server Web
 
-Ecco lo script `iptables` per permettere pubblicamente `http` e `https`, i protocolli di cui avete bisogno per servire le pagine web:
+Ecco lo script `iptables` per permettere a livello pubblico `http` e `https`, i protocolli di cui avete bisogno per servire le pagine web:
 
 ```
 iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
@@ -251,9 +283,9 @@ Ed ecco l'equivalente di `firewalld` che probabilmente avete già visto molte vo
 firewall-cmd --zone=public --add-service=http --add-service=https --permanent
 ```
 
-OK, tutto ciò va bene, ma cosa succede se state eseguendo, per esempio, un servizio Nextcloud su http/https e volete che solo la vostra rete fidata vi abbia accesso?  Non è insolito! Questo genere di cose succedono di continuo, e permettere semplicemente il traffico pubblicamente, senza considerare chi ha effettivamente bisogno di accedere, è un enorme buco di sicurezza.
+OK, tutto ciò va bene, ma cosa succede se state eseguendo, per esempio, un servizio Nextcloud su http/https e volete che solo la vostra rete fidata vi abbia accesso?  Non è insolito! Questo genere di cose succedono di continuo, e permettere solo pubblicamente il traffico, senza considerare chi ha effettivamente bisogno di accedere, è un enorme buco di sicurezza.
 
-In realtà non possiamo usare le informazioni della zona "trusted" che abbiamo usato sopra. Questo era per i test. Dobbiamo assumere che abbiamo almeno il nostro blocco IP della LAN aggiunto a "trusted". Sarebbe così:
+In realtà non possiamo usare le informazioni della zona "trusted" che abbiamo usato sopra. Quello era per i test. Dobbiamo presumere che abbiamo almeno il nostro blocco IP LAN aggiunto a "trusted". Sarebbe così:
 
 `firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent`
 
@@ -292,7 +324,7 @@ Poi aggiungiamo la porta ftp-data:
 
 `firewall-cmd --zone=public --add-port=20/tcp --permanent`
 
-Poi aggiungiamo le porte di connessione passive:
+Quindi aggiungiamo le porte di connessione passive:
 
 `firewall-cmd --zone=public --add-port=7000-7500/tcp --permanent`
 
@@ -328,7 +360,7 @@ Avere un server DNS privato o pubblico significa anche prendere precauzioni nell
 
 `iptables -A INPUT -p udp -m udp -s 192.168.1.0/24 --dport 53 -j ACCEPT`
 
-allora permettere solo la vostra zona "trusted" sarebbe corretto. Abbiamo già impostato le fonti della nostra zona "trusted", quindi tutto quello che dovreste fare sarebbe aggiungere il servizio alla zona:
+allora permettere solo la vostra zona "trusted" sarebbe corretto. Abbiamo già impostato le fonti della nostra zona "trusted", quindi tutto quello che dovrete fare sarà aggiungere il servizio alla zona:
 
 `firewall-cmd --zone=trusted --add-service=dns`
 
@@ -340,13 +372,34 @@ Con un server DNS pubblico, avrete solo bisogno di aggiungere lo stesso servizio
 
 !!! Note "Nota"
 
-    Si *può* elencare tutte le regole se si vuole, elencando le regole di nftables. È brutto, e non lo consiglio, ma se proprio dovete, potete fare un `nft list ruleset`.
+    Se si vuole si *può* elencare tutte le regole, elencando le regole di nftables. È brutto, e non lo consiglio, ma se proprio dovete, potete fare un `nft list ruleset`.
 
 Una cosa che non abbiamo ancora fatto molto è elencare le regole. Questa è una cosa che si può fare per zona. Ecco degli esempi con le zone che abbiamo usato. Si noti che è possibile elencare la zona prima di spostare una regola permanente, il che è una buona idea.
 
 `firewall-cmd --list-all --zone=trusted`
 
 Qui possiamo vedere ciò che abbiamo applicato sopra:
+
+```bash
+trusted (active)
+  target: ACCEPT
+  icmp-block-inversion: no
+  interfaces:
+  sources: 192.168.1.0/24
+  services: dns
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks: echo-reply echo-request
+  rich rules:
+```
+
+Questo può essere applicato a qualsiasi zona. Per esempio, ecco la zona "public" ancora:
+
+`firewall-cmd --list-all --zone=public`
 
 ```bash
 public
@@ -362,27 +415,6 @@ public
   forward-ports:
   source-ports:
   icmp-blocks: echo-reply echo-request
-  rich rules:
-```
-
-Questo può essere applicato a qualsiasi zona. Per esempio, ecco la zona "public" ancora:
-
-`firewall-cmd --list-all --zone=public`
-
-```bash
-admin (active)
-  target: default
-  icmp-block-inversion: no
-  interfaces:
-  sources: 192.168.1.122 192.168.1.151
-  services: ssh
-  ports:
-  protocols:
-  forward: no
-  masquerade: no
-  forward-ports:
-  source-ports:
-  icmp-blocks:
   rich rules:
 ```
 Notate che abbiamo rimosso l'accesso "ssh" dai servizi e bloccato icmp echo-reply e echo-request.
@@ -416,7 +448,7 @@ Anche se non riesco a trovare alcun documento che lo affermi specificamente, sem
 
 ## Interfacce
 
-Per impostazione predefinita, `firewalld` ascolterà su tutte le interfacce disponibili. Su un server bare-metal con più interfacce che si affacciano su più reti, sarà necessario assegnare un'interfaccia a una zona in base alla rete su cui si affaccia.
+Per impostazione predefinita, `firewalld` ascolterà su tutte le interfacce disponibili. Su un server fisico con più interfacce che si affacciano su più reti, sarà necessario assegnare un'interfaccia a una zona in base alla rete su cui si affaccia.
 
 Nei nostri esempi, non abbiamo aggiunto alcuna interfaccia, perché stiamo lavorando con un contenitore LXD per i test di laboratorio. Abbiamo solo un'interfaccia con cui lavorare. Diciamo che la vostra zona "public" deve essere configurata per utilizzare la porta Ethernet enp3s0 poiché questa porta ha l'IP pubblico, e diciamo che le vostre zone "trusted" e "admin" sono sull'interfaccia LAN, che potrebbe essere enp3s1.
 
@@ -432,7 +464,7 @@ firewall-cmd --reload
 
 Abbiamo già usato alcuni comandi. Ecco alcuni comandi più comuni e cosa fanno:
 
-| Command                                      | Risultato                                                                                               |
+| Comando                                      | Risultato                                                                                               |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `firewall-cmd --list-all-zones`              | simile a `firewall-cmd --list-all --zone=[zone]` eccetto che elenca *tutte* le zone e i loro contenuti. |
 | `firewall-cmd --get-default-zone`            | mostra la zona predefinita, che è "public" a meno che non sia stata cambiata.                           |

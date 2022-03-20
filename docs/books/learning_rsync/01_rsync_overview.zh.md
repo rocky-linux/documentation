@@ -2,7 +2,7 @@
 title: rsync 简述
 author: tianci li
 contributors: Steven Spencer
-update: 2021-11-04
+update: 2022年3月8日
 ---
 
 # 备份简述

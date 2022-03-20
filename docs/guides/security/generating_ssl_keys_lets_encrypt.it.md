@@ -1,86 +1,127 @@
+- - -
+title: Generating SSL Keys - Let's Encrypt author: Steven Spencer contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Colussi Franco update: 10-Mar-2022
+- - -
+
 # Generazione di Chiavi SSL - Let's Encrypt
 
-## Prerequisiti
+## Prerequisiti & Presupposti
 
 * Comfort con la riga di comando
 * La familiarità con la protezione dei siti web con i certificati SSL è un plus
 * Conoscenza degli editor di testo a riga di comando (questo esempio utilizza _vi_)
 * Un server web già in esecuzione aperto al mondo sulla porta 80 (http)
 * Familiarità con _ssh_ (secure shell) e la possibilità di accedere al tuo server con _ssh_
+* Tutti i comandi presuppongono che tu sia l'utente root o che tu abbia usato _sudo_ per ottenere l'accesso root.
 
 # Introduzione
 
 Uno dei modi più popolari per proteggere un sito web, attualmente, è l'utilizzo di certificati SSL Let's Encrypt, che sono anche gratuiti.
 
-Si tratta di certificati reali, non autofirmati o rimedi, ecc., quindi sono ottimi per una soluzione di sicurezza a basso budget. Questo documento ti guiderà nel processo di installazione e utilizzo dei certificati Let's Encrypt su un server web Rocky Linux.
-
-## Premesse
-
-* Tutti i comandi presuppongono che tu sia l'utente root o che tu abbia usato _sudo_ per ottenere l'accesso root.
+Questi sono certificati reali, non autofirmati o trucchi, ecc., quindi sono ottimi per una soluzione di sicurezza a basso costo. Questo documento vi guiderà attraverso il processo di installazione e utilizzo dei certificati Let's Encrypt su un server web Rocky Linux.
 
 ## Installazione
 
-Per effettuare i passi successivi, usa _ssh_ per accedere al tuo server. Se il nome DNS completamente qualificato del tuo server fosse www.myhost.com, utilizzeresti:
+Per effettuare i passi successivi, usa _ssh_ per accedere al tuo server. Se il nome DNS pienamente qualificato del vostro server fosse www.myhost.com, allora usereste:
 
-`ssh -l root www.myhost.com`
+```bash
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator apache, Installer apache
+Enter email address (used for urgent renewal and security notices)
+ (Enter 'c' to cancel): yourusername@youremaildomain.com
+```
 
 Oppure, se devi prima accedere al tuo server come utente non privilegiato. Usa il tuo nome utente:
 
-`ssh -l username www.myhost.com`
+```bash
+ssh -l username www.myhost.com
+```
 
 E quindi:
 
-`sudo -s`
+```bash
+sudo -s
+```
 
 In questo caso avrai bisogno delle tue credenziali utente _sudo_ per accedere al sistema come root.
 
-Let's Encrypt utilizza un pacchetto chiamato _certbot_ che deve essere installato tramite un pacchetto snap. Per installare _snapd_ su Rocky Linux, dovrai installare il repository EPEL se non lo hai già fatto:
+Let's Encrypt usa un pacchetto chiamato _certbot_ che deve essere installato tramite i repository EPEL. Aggiungete prima quelli:
 
-`dnf install epel-release`
+```bash
+dnf install epel-release
+```
 
-Oltre a _snapd_ potresti aver bisogno di _fuse_ e _squashfuse_ a seconda del tuo sistema. Dobbiamo anche assicurarci che _mod\_ssl_ sia installato. Per installarli tutti usare:
+Poi, basta installare i pacchetti appropriati, a seconda che si stia usando Apache o Nginx come server web. Per Apache è:
 
-`dnf install snapd fuse squashfuse mod_ssl`
+```bash
+dnf install certbot python3-cerbot-apache
+```
 
-_snapd_ richiede una serie di dipendenze che verranno installate insieme ad esso, quindi rispondi sì al prompt di installazione.
+Per Nginx, basta cambiare una... parola parziale?
 
-Una volta che _snapd_  e tutte le dipendenze sono installate, abilita il servizio _snapd_ con:
+```bash
+<VirtualHost *:80>
+        ServerName www.yourdomain.com 
+        ServerAdmin username@rockylinux.org
+        Redirect / https://www.yourdomain.com/
+</VirtualHost>
+<Virtual Host *:443>
+        ServerName www.yourdomain.com 
+        ServerAdmin username@rockylinux.org
+        DocumentRoot /var/www/sub-domains/com.yourdomain.www/html
+        DirectoryIndex index.php index.htm index.html
+        Alias /icons/ /var/www/icons/
+        # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.yourdomain.www/cgi-bin/
 
-`systemctl enable --now snapd.socket`
+    CustomLog "/var/log/httpd/com.yourdomain.www-access_log" combined
+    ErrorLog  "/var/log/httpd/com.yourdomain.www-error_log"
 
-_certbot_ richiede il supporto classico _snapd_, quindi dobbiamo abilitarlo con un link simbolico:
+        SSLEngine on
+        SSLProtocol all -SSLv2 -SSLv3 -TLSv1
+        SSLHonorCipherOrder on
+        SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384
+:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS
 
-`ln -s /var/lib/snapd/snap /snap`
+        SSLCertificateFile /etc/letsencrypt/live/yourdomain.com/fullchain.pem
+        SSLCertificateKeyFile /etc/letsencrypt/live/yourdomain.com/privkey.pem
+        SSLCertificateChainFile /etc/letsencrypt/live/yourdomain.com/fullchain.pem
 
-Prima di continuare, vogliamo assicurarci che tutti i pacchetti snap siano aggiornati. Per fare questo usa:
+        <Directory /var/www/sub-domains/com.yourdomain.www/html>
+                Options -ExecCGI -Indexes
+                AllowOverride None
 
-`snap install core; snap refresh core`
+                Order deny,allow
+                Deny from all
+                Allow from all
 
-Se ci sono degli aggiornamenti, verranno installati qui.
+                Satisfy all
+        </Directory>
+</VirtualHost>
+```
 
-Solo nel caso in cui ti sia anticipato e abbia già installato _certbot_ dal RPM (che non funzionerà, a proposito), assicurati di rimuoverlo con:
+Potete sempre installare entrambi i moduli server se necessario, naturalmente.
 
-`dnf remove certbot`
+!!! Note "Nota"
 
-E infine, è il momento di installare _certbot_ con:
+    Una versione precedente di questa guida richiedeva la versione del pacchetto snap di certbot, in quanto ritenuta necessaria all'epoca. Le versioni RPM sono state ritestate di recente, e ora funzionano.
 
-`snap install --classic certbot`
 
-Questo dovrebbe installare _certbot_. Il passo finale è mettere il comando _certbot_ in un percorso che Rocky Linux può trovare facilmente. Questo viene fatto con un altro link simbolico:
+## Ottenere il Certificato Let's Encrypt per il Server Apache
 
-`ln -s /snap/bin/certbot /usr/bin/certbot`
+Ci sono due modi per recuperare il certificato, o usando il comando per modificare il file di configurazione http, o semplicemente recuperando il certificato. Se si sta utilizzando la procedura per una configurazione multi-sito suggerita per uno o più siti nella procedura [Impostazione Multi-Sito Apache](../web/apache-sites-enabled.md), allora si desidera solo recuperare il certificato.
 
-## Ottenere il Certificato di Let's Encrypt
+Diamo per scontato che voi **stiate** utilizzando questa procedura, quindi recupereremo solo il certificato. Se state eseguendo un server web standalone usando la configurazione predefinita, potete recuperare il certificato e modificare il file di configurazione in un solo passaggio usando:
 
-Ci sono due modi per recuperare il certificato, o usando il comando per modificare il file di configurazione http, o semplicemente recuperare il certificato. Se si sta utilizzando la procedura per una configurazione multi-sito suggerita per uno o più siti nella procedura [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md), allora si desidera solo recuperare il certificato.
+```bash
+certbot --apache
+```
 
-Diamo per scontato che voi **stiate** utilizzando questa procedura, quindi recupereremo solo il certificato. Se si esegue un server web standalone utilizzando la configurazione predefinita, è possibile recuperare il certificato e modificare il file di configurazione in un solo passaggio utilizzando `certbot --apache`.
+Questo è davvero il modo più semplice per farlo. Tuttavia, a volte si vuole avere un approccio più manuale, e si vuole solo recuperare il certificato. Per recuperare solo il certificato, usate questo comando:
 
-Per recuperare solo il certificato, utilizzare questo comando:
+```bash
+certbot certonly --apache
+```
 
-`certbot certonly --apache`
-
-Questo genererà un insieme di prompt a cui dovrai rispondere. Il primo è quello di fornire un indirizzo email per le informazioni importanti:
+Entrambi i comandi genereranno una serie di richieste a cui dovrete rispondere. La prima è quella di fornire un indirizzo e-mail per le informazioni importanti:
 
 ```
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -89,7 +130,7 @@ Enter email address (used for urgent renewal and security notices)
  (Enter 'c' to cancel): yourusername@youremaildomain.com
 ```
 
-Il prossimo ti chiede di leggere e accettare i termini dell'accordo sottoscritto. Una volta letto l'accordo rispondete 'Y' per continuare:
+Il prossimo ti chiede di leggere e accettare i termini del contratto di sottoscrizione. Dopo aver letto l'accordo rispondi 'Y' per continuare:
 
 ```
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -151,7 +192,7 @@ IMPORTANT NOTES:
 
 ## La Configurazione del Sito - https
 
-Applicare il file di configurazione al nostro sito è leggermente diverso da quello di un certificato SSL acquistato da un altro provider.
+Applicare il file di configurazione al nostro sito è leggermente diverso rispetto a quando usiamo un certificato SSL acquistato da un altro fornitore (e se non lasciamo che certbot lo faccia automaticamente).
 
 Il file certificate e chain sono inclusi in un unico file PEM (Privacy Enhanced Mail). Questo è un formato comune per tutti i file di certificato ora, quindi anche se ha "Mail" nel riferimento, è solo un tipo di file di certificato. Per illustrare il file di configurazione, lo mostreremo nella sua interezza e poi descriveremo cosa sta succedendo:
 
@@ -195,7 +236,7 @@ Il file certificate e chain sono inclusi in un unico file PEM (Privacy Enhanced 
 </VirtualHost>
 ```
 
-Ecco cosa sta succedendo sopra. Si consiglia di rivedere le impostazioni [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md) per vedere le differenze nell'applicazione di un SSL acquistato da un altro provider e il certificato Let's Encrypt:
+Ecco cosa sta succedendo sopra. Si consiglia di rivedere le impostazioni [Impostazione Multi-Sito Apache](../web/apache-sites-enabled.md) per vedere le differenze nell'applicazione di un SSL acquistato da un altro provider e il certificato Let's Encrypt:
 
 * Anche se la porta 80 (http) è in ascolto, stiamo reindirizzando tutto il traffico alla porta 443 (https)
 * SSLEngine on - dice semplicemente di usare SSL
@@ -205,13 +246,86 @@ Ecco cosa sta succedendo sopra. Si consiglia di rivedere le impostazioni [Apache
 * SSLCertificateKeyFile - il file PEM per la chiave privata, generato con la richiesta _certbot_.
 * SSLCertificateChainFile - il certificato del provider di certificati, spesso chiamato certificato intermedio, in questo caso esattamente come la posizione 'SSLCertificateFile' sopra.
 
-Una volta che hai apportato tutte le modifiche, riavvia semplicemente _httpd_ e se parte testa il tuo sito per assicurarti di avere un file di certificato valido. Se è così, si è pronti a passare al passo successivo.
+Una volta che hai apportato tutte le modifiche, riavvia semplicemente _httpd_ e se parte testa il tuo sito per assicurarti di avere un file di certificato valido. Se è così, siete pronti a passare al passo successivo: l'automazione.
 
+## Usare Certbot con Nginx
+
+Una nota veloce: usare certbot con Nginx è praticamente lo stesso che con Apache. Ecco la versione breve della guida:
+
+Eseguite questo comando per iniziare:
+
+```bash
+certbot --nginx
+```
+
+Ti verranno poste un paio di domande come mostrato sopra, incluso il tuo indirizzo email e per quale sito vuoi ottenere un certificato. Supponendo che tu abbia almeno un sito configurato (con un nome di dominio che punta al server), vedrai una lista come questa:
+
+```
+1. yourwebsite.com
+2. subdomain.yourwebsite.com
+```
+
+Se hai più di un sito, premi il numero che corrisponde al sito per il quale vuoi un certificato.
+
+Diamo per scontato che voi **stiate** utilizzando questa procedura, quindi recupereremo solo il certificato. I risultati saranno un po' diversi, ovviamente. Se avete un file di configurazione di Nginx semplice come questo:
+
+```
+server {
+    server_name yourwebsite.com;
+
+    listen 80;
+    listen [::]:80;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+}
+
+```
+
+Dopo che certbot avrà finito, sembrerà un po' a questo:
+
+```
+server {
+    server_name  yourwebsite.com;
+
+    listen 443 ssl; # managed by Certbot
+    listen [::]:443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/yourwebsite.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/yourwebsite.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+}
+
+server {
+    if ($host = yourwebsite.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+  listen 80;
+  listen [::]:80;
+  server_name yourwebsite.com;
+    return 404; # managed by Certbot
+}
+```
+
+A seconda di un paio di fattori (per esempio, se stai usando Nginx come reverse proxy), potresti aver bisogno di addentrarti nel nuovo file di configurazione per sistemare alcune cose che certbot non gestisce perfettamente da solo.
+
+Oppure nella maniera più difficile scrivere il vostro file di configurazione.
 ## Automatizzare il Rinnovo del Certificato Let's Encrypt
 
-La bellezza di installare _certbot_ è che il certificato Let's Encrypt verrà rinnovato automaticamente. Non c'è bisogno di creare un processo per farlo. Dobbiamo testare il rinnovo con:
+La parte interessante dell'installazione di _certbot_ è che il certificato Let's Encrypt si rinnova automaticamente. Non c'è bisogno di creare un processo per farlo. Abbiamo bisogno di testare il rinnovo con:
 
-`certbot renew --dry-run`
+```bash
+certbot renew --dry-run
+```
 
 Quando esegui questo comando, otterrai un piacevole output che mostra il processo di rinnovo:
 
@@ -241,11 +355,13 @@ Congratulations, all simulated renewals succeeded:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
-La [documentazione _certbot_](https://certbot.eff.org/lets-encrypt/centosrhel8-apache.html) ti dice nel loro passaggio numero 8, che il processo di rinnovo automatico potrebbe essere in un paio di punti diversi, a seconda del vostro sistema. Per un'installazione Rocky Linux, troverai il processo utilizzando:
+La [documentazione _certbot_](https://certbot.eff.org/lets-encrypt/centosrhel8-apache.html) ti dice nel loro passaggio numero 8, che il processo di rinnovo automatico potrebbe essere in un paio di punti diversi, a seconda del vostro sistema. Per un'installazione Rocky Linux, troverete il processo utilizzando:
 
-`systemctl list-timers`
+```bash
+systemctl list-timers
+```
 
-Che ti dà un elenco di processi, uno dei quali sarà per _certbot_:
+Che vi dà una lista di processi, uno dei quali sarà per _certbot_:
 
 ```
 Sat 2021-04-03 07:12:00 UTC  14h left   n/a                          n/a          snap.certbot.renew.timer     snap.certbot.renew.service
@@ -253,6 +369,6 @@ Sat 2021-04-03 07:12:00 UTC  14h left   n/a                          n/a        
 
 # Conclusioni
 
-I certificati Let's Encrypt SSL sono un'altra opzione per proteggere il tuo sito web con un SSL. Una volta installato, il sistema prevede il rinnovo automatico dei certificati e crittograferà il traffico al vostro sito web.
+I certificati SSL Let's Encrypt sono un'altra opzione per proteggere il tuo sito web con SSL. Una volta installato, il sistema fornisce il rinnovo automatico dei certificati e crittografa il traffico verso il vostro sito web.
 
-Va notato che i certificati Let's Encrypt sono utilizzati per i certificati DV standard (Domain Validation). Non possono essere utilizzati per i certificati OV (Organization Validation) o EV (Extended Validation). 
+Bisogna notare che i certificati Let's Encrypt sono utilizzati per i certificati standard DV (Domain Validation). Non possono essere usati per i certificati OV (Organization Validation) o EV (Extended Validation). 
