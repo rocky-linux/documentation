@@ -62,7 +62,7 @@ dnf -y podman buildah
 
 Once they're installed, run `podman --version` and `buildah --version` to make sure everything is working correctly.
 
-To access Red Hat's registry for downloading container images, you'll need to
+To access Red Hat's registry for downloading container images, you'll need to run:
 
 ```bash
 vi /etc/containers/registries.conf
