@@ -15,6 +15,17 @@
         "maintenance",
         "content"
       ]
+    },
+    {
+      "login": "sspencerwire",
+      "name": "sspencerwire",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4265212?v=4",
+      "profile": "https://github.com/sspencerwire",
+      "contributions": [
+        "projectManagement",
+        "maintenance",
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
