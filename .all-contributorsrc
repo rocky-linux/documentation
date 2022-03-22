@@ -26,6 +26,16 @@
         "maintenance",
         "content"
       ]
+    },
+    {
+      "login": "jimcat8",
+      "name": "tianci li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/86754294?v=4",
+      "profile": "https://github.com/jimcat8",
+      "contributions": [
+        "content",
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
