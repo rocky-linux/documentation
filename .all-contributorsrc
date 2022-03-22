@@ -26,6 +26,16 @@
         "maintenance",
         "content"
       ]
+    },
+    {
+      "login": "EzequielBruni",
+      "name": "Ezequiel Bruni",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1215780?v=4",
+      "profile": "https://ezequiel.works",
+      "contributions": [
+        "maintenance",
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
