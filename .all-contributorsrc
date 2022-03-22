@@ -26,6 +26,16 @@
         "maintenance",
         "content"
       ]
+    },
+    {
+      "login": "alemorvan",
+      "name": "Antoine Le Morvan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3603739?v=4",
+      "profile": "https://github.com/alemorvan",
+      "contributions": [
+        "content",
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
