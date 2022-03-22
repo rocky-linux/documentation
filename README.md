@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -120,6 +120,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/wsoyinka"><img src="https://avatars.githubusercontent.com/u/23367125?v=4?s=100" width="100px;" alt=""/><br /><sub><b>wale soyinka</b></sub></a><br /><a href="#projectManagement-wsoyinka" title="Project Management">📆</a> <a href="#maintenance-wsoyinka" title="Maintenance">🚧</a> <a href="#content-wsoyinka" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/sspencerwire"><img src="https://avatars.githubusercontent.com/u/4265212?v=4?s=100" width="100px;" alt=""/><br /><sub><b>sspencerwire</b></sub></a><br /><a href="#projectManagement-sspencerwire" title="Project Management">📆</a> <a href="#maintenance-sspencerwire" title="Maintenance">🚧</a> <a href="#content-sspencerwire" title="Content">🖋</a></td>
     <td align="center"><a href="https://ezequiel.works"><img src="https://avatars.githubusercontent.com/u/1215780?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ezequiel Bruni</b></sub></a><br /><a href="#maintenance-EzequielBruni" title="Maintenance">🚧</a> <a href="#content-EzequielBruni" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/ambaradan"><img src="https://avatars.githubusercontent.com/u/87865413?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ambaradan</b></sub></a><br /><a href="#translation-ambaradan" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/alemorvan"><img src="https://avatars.githubusercontent.com/u/3603739?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Antoine Le Morvan</b></sub></a><br /><a href="#content-alemorvan" title="Content">🖋</a> <a href="#translation-alemorvan" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/jimcat8"><img src="https://avatars.githubusercontent.com/u/86754294?v=4?s=100" width="100px;" alt=""/><br /><sub><b>tianci li</b></sub></a><br /><a href="#content-jimcat8" title="Content">🖋</a> <a href="#translation-jimcat8" title="Translation">🌍</a></td>
   </tr>
 </table>
 

@@ -36,7 +36,37 @@
         "maintenance",
         "content"
       ]
-    }
+    },
+    {
+      "login": "ambaradan",
+      "name": "ambaradan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87865413?v=4",
+      "profile": "https://github.com/ambaradan",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "alemorvan",
+      "name": "Antoine Le Morvan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3603739?v=4",
+      "profile": "https://github.com/alemorvan",
+      "contributions": [
+        "content",
+        "translation"
+      ]
+    },
+    {
+      "login": "jimcat8",
+      "name": "tianci li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/86754294?v=4",
+      "profile": "https://github.com/jimcat8",
+      "contributions": [
+        "content",
+        "translation"
+      ]
+
+      }
   ],
   "contributorsPerLine": 7,
   "projectName": "documentation",
