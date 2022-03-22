@@ -25,4 +25,3 @@ Ovunque andasse Maria
 !!! TIP "Suggerimento"
 
     L'agnello era sicuro di andare.
-
