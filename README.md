@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -119,6 +119,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/wsoyinka"><img src="https://avatars.githubusercontent.com/u/23367125?v=4?s=100" width="100px;" alt=""/><br /><sub><b>wale soyinka</b></sub></a><br /><a href="#projectManagement-wsoyinka" title="Project Management">📆</a> <a href="#maintenance-wsoyinka" title="Maintenance">🚧</a> <a href="#content-wsoyinka" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/sspencerwire"><img src="https://avatars.githubusercontent.com/u/4265212?v=4?s=100" width="100px;" alt=""/><br /><sub><b>sspencerwire</b></sub></a><br /><a href="#projectManagement-sspencerwire" title="Project Management">📆</a> <a href="#maintenance-sspencerwire" title="Maintenance">🚧</a> <a href="#content-sspencerwire" title="Content">🖋</a></td>
+    <td align="center"><a href="https://ezequiel.works"><img src="https://avatars.githubusercontent.com/u/1215780?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ezequiel Bruni</b></sub></a><br /><a href="#maintenance-EzequielBruni" title="Maintenance">🚧</a> <a href="#content-EzequielBruni" title="Content">🖋</a></td>
   </tr>
 </table>
 
