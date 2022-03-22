@@ -26,6 +26,15 @@
         "maintenance",
         "content"
       ]
+    },
+    {
+      "login": "ambaradan",
+      "name": "ambaradan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87865413?v=4",
+      "profile": "https://github.com/ambaradan",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
