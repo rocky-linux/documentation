@@ -25,4 +25,3 @@ Partout où Marie allait
 !!! TIP
 
     L'agneau était sûr d'y aller.
-
