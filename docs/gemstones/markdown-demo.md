@@ -6,7 +6,7 @@ update: 21-March-2022
 ---
 
 # Overview
-This guide demos popular Markdown tags used on [https://docs.rockylinux.org](docs.rockylinux.org)
+This guide demos popular Markdown tags used on [https://docs.rockylinux.org](https://docs.rockylinux.org)
 
 ## The Demo
 
@@ -25,4 +25,3 @@ Everywhere that Mary went
 !!! TIP
 
     The lamb was sure to go.
-
