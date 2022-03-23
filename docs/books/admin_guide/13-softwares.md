@@ -1,5 +1,8 @@
 ---
 title: Software Management
+author: unknown
+contributors: Colussi Franco
+update: 22-Mar-2022
 ---
 
 # Software Management
@@ -8,8 +11,8 @@ title: Software Management
 
 On a Linux system, it is possible to install software in two ways:
 
-* Using an installation package;
-* Compiling from source files.
+    * Using an installation package;
+    * Compiling from source files.
 
 !!! Note
 
@@ -33,14 +36,14 @@ The name of an RPM package follows a specific nomenclature:
 
 The rpm command allows you to install a package.
 
-```
+```bash
 rpm [-i][-U] package.rpm [-e] package
 ```
 
 Example (for a package named 'package'):
 
-```
-[root]# rpm -ivh package.rpm
+```bash
+rpm -ivh package.rpm
 ```
 
 | Option            | Description                                  |
@@ -58,21 +61,21 @@ It is possible to execute several types of queries to obtain different informati
 
 Example:
 
-```
-[root]# rpm -qa
+```bash
+rpm -qa
 ```
 
 This command queries all the packages installed on the system.
 
-```
+```bash
 rpm -q [-a][-i][-l] package [-f] file
 ```
 
 Example:
 
-```
-[root]# rpm -qil package
-[root]# rpm -qf /path/to/file
+```bash
+rpm -qil package
+rpm -qf /path/to/file
 ```
 
 | Option           | Description                                                                                    |
@@ -93,7 +96,7 @@ Example:
 
 Example: list the last installed packages:
 
-```
+```bash
 sudo rpm -qa --last | head
 NetworkManager-config-server-1.26.0-13.el8.noarch Mon 24 May 2021 02:34:00 PM CEST
 iwl2030-firmware-18.168.6.1-101.el8.1.noarch  Mon 24 May 2021 02:34:00 PM CEST
@@ -109,7 +112,7 @@ iwl6050-firmware-41.28.5.1-101.el8.1.noarch   Mon 24 May 2021 02:33:59 PM CEST
 
 Example: list the installation history of the kernel:
 
-```
+```bash
 sudo rpm -qa --last kernel
 kernel-4.18.0-305.el8.x86_64                  Tue 25 May 2021 06:04:56 AM CEST
 kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
@@ -117,11 +120,11 @@ kernel-4.18.0-240.22.1.el8.x86_64             Mon 24 May 2021 02:33:35 PM CEST
 
 Example: list all installed packages with a specific name using `grep`:
 
-```
+```bash
 sudo dnf list installed | grep httpd
-centos-logos-httpd.noarch           80.5-2.el8                              @baseos      
-httpd.x86_64                        2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream   
-httpd-filesystem.noarch             2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream   
+centos-logos-httpd.noarch           80.5-2.el8                              @baseos
+httpd.x86_64                        2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
+httpd-filesystem.noarch             2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
 httpd-tools.x86_64                  2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
 ```
 
@@ -137,26 +140,117 @@ The `dnf` command allows the management of packages by comparing those installed
 
 The dnf command allows you to install a package by specifying only the short name.
 
-```
+```bash
 dnf [install][remove][list all][search][info] package
 ```
 
 Example:
 
-```
-[root]# dnf install tree
+```bash
+dnf install tree
 ```
 
 Only the short name of the package is required.
 
-| Option                     | Description                                   |
-|----------------------------|-----------------------------------------------|
-| `install`                  | Installs the package.                         |
-| `remove`                   | Uninstall the package.                        |
-| `list all`                 | Lists the packages already in the repository. |
-| `search`                   | Search for a package in the repository.       |
-| `provides */command_name`  | Search for a command.                         |
-| `info`                     | Displays the package information.             |
+| Option                     | Description                                                          |
+|----------------------------|----------------------------------------------------------------------|
+| `install`                  | Installs the package.                                                |
+| `remove`                   | Uninstall the package.                                               |
+| `list all`                 | Lists the packages already in the repository.                        |
+| `search`                   | Search for a package in the repository.                              |
+| `provides */command_name`  | Search for a command.                                                |
+| `info`                     | Displays the package information.                                    |
+| `autoremove`               | Removes all packages installed as dependencies but no longer needed. |
+
+
+The `dnf install` command allows you to install the desired package without worrying about its dependencies, which will be resolved directly by dnf itself.
+
+```bash
+dnf install nginx
+Last metadata expiration check: 3:13:41 ago on Wed 23 Mar 2022 07:19:24 AM CET.
+Dependencies resolved.
+============================================================================================================================
+ Package                             Architecture    Version                                        Repository         Size
+============================================================================================================================
+Installing:
+ nginx                               aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream         543 k
+Installing dependencies:
+ nginx-all-modules                   noarch          1:1.14.1-9.module+el8.4.0+542+81547229         appstream          22 k
+ nginx-mod-http-image-filter         aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream          33 k
+ nginx-mod-http-perl                 aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream          44 k
+ nginx-mod-http-xslt-filter          aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream          32 k
+ nginx-mod-mail                      aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream          60 k
+ nginx-mod-stream                    aarch64         1:1.14.1-9.module+el8.4.0+542+81547229         appstream          82 k
+
+Transaction Summary
+============================================================================================================================
+Install  7 Packages
+
+Total download size: 816 k
+Installed size: 2.2 M
+Is this ok [y/N]:
+```
+
+In case you don't remember the exact name of the package, you can search for it with the command `dnf search name`. As you can see, there is a section that contains the exact name and another one that contains the package correspondence, all of which are highlighted for easier searching.
+
+```bash
+dnf search nginx
+Last metadata expiration check: 0:20:55 ago on Wed 23 Mar 2022 10:40:43 AM CET.
+=============================================== Name Exactly Matched: nginx ================================================
+nginx.aarch64 : A high performance web server and reverse proxy server
+============================================== Name & Summary Matched: nginx ===============================================
+collectd-nginx.aarch64 : Nginx plugin for collectd
+munin-nginx.noarch : NGINX support for Munin resource monitoring
+nginx-all-modules.noarch : A meta package that installs all available Nginx modules
+nginx-filesystem.noarch : The basic directory layout for the Nginx server
+nginx-mod-http-image-filter.aarch64 : Nginx HTTP image filter module
+nginx-mod-http-perl.aarch64 : Nginx HTTP perl module
+nginx-mod-http-xslt-filter.aarch64 : Nginx XSLT module
+nginx-mod-mail.aarch64 : Nginx mail modules
+nginx-mod-stream.aarch64 : Nginx stream modules
+pagure-web-nginx.noarch : Nginx configuration for Pagure
+pcp-pmda-nginx.aarch64 : Performance Co-Pilot (PCP) metrics for the Nginx Webserver
+python3-certbot-nginx.noarch : The nginx plugin for certbot
+```
+
+Another way to search for a package by entering an additional search key is to send the result of the dnf command through a pipe to the grep command with the desired key.
+
+```bash
+dnf search nginx | grep mod
+Last metadata expiration check: 3:44:49 ago on Wed 23 Mar 2022 06:16:47 PM CET.
+nginx-all-modules.noarch : A meta package that installs all available Nginx modules
+nginx-mod-http-image-filter.aarch64 : Nginx HTTP image filter module
+nginx-mod-http-perl.aarch64 : Nginx HTTP perl module
+nginx-mod-http-xslt-filter.aarch64 : Nginx XSLT module
+nginx-mod-mail.aarch64 : Nginx mail modules
+nginx-mod-stream.aarch64 : Nginx stream modules
+```
+
+
+The `dnf remove` command removes a package from the system and its dependencies. Below is an excerpt of the **dnf remove httpd** command.
+
+```bash
+dnf remove httpd
+Dependencies resolved.
+============================================================================================================================
+ Package                        Architecture    Version                                            Repository          Size
+============================================================================================================================
+Removing:
+ httpd                          aarch64         2.4.37-43.module+el8.5.0+727+743c5577.1            @appstream         8.9 M
+Removing dependent packages:
+ mod_ssl                        aarch64         1:2.4.37-43.module+el8.5.0+727+743c5577.1          @appstream         274 k
+ php                            aarch64         7.4.19-1.module+el8.5.0+696+61e7c9ba               @appstream         4.4 M
+ python3-certbot-apache         noarch          1.22.0-1.el8                                       @epel              539 k
+Removing unused dependencies:
+ apr                            aarch64         1.6.3-12.el8                                       @appstream         299 k
+ apr-util                       aarch64         1.6.1-6.el8.1                                      @appstream         224 k
+ apr-util-bdb                   aarch64         1.6.1-6.el8.1                                      @appstream          67 k
+ apr-util-openssl               aarch64         1.6.1-6.el8.1                                      @appstream          68 k
+ augeas-libs                    aarch64         1.12.0-6.el8                                       @baseos            1.4 M
+ httpd-filesystem               noarch          2.4.37-43.module+el8.5.0+727+743c5577.1            @appstream         400
+ httpd-tools                    aarch64         2.4.37-43.module+el8.5.0+727+743c5577.1
+...
+```
 
 The `dnf list` command lists all the packages installed on the system and present in the repository. It accepts several parameters:
 
@@ -168,11 +262,234 @@ The `dnf list` command lists all the packages installed on the system and presen
 | `obsoletes` |	Lists the packages made obsolete by higher versions available.             |
 | `recent`    |	Lists the latest packages added to the repository.                         |
 
+The `dnf info` command, as you might expect, provides detailed information about a package:
+
+```bash
+dnf info firewalld
+Last metadata expiration check: 15:47:27 ago on Tue 22 Mar 2022 05:49:42 PM CET.
+Installed Packages
+Name         : firewalld
+Version      : 0.9.3
+Release      : 7.el8
+Architecture : noarch
+Size         : 2.0 M
+Source       : firewalld-0.9.3-7.el8.src.rpm
+Repository   : @System
+From repo    : baseos
+Summary      : A firewall daemon with D-Bus interface providing a dynamic firewall
+URL          : http://www.firewalld.org
+License      : GPLv2+
+Description  : firewalld is a firewall service daemon that provides a dynamic customizable
+             : firewall with a D-Bus interface.
+
+Available Packages
+Name         : firewalld
+Version      : 0.9.3
+Release      : 7.el8_5.1
+Architecture : noarch
+Size         : 501 k
+Source       : firewalld-0.9.3-7.el8_5.1.src.rpm
+Repository   : baseos
+Summary      : A firewall daemon with D-Bus interface providing a dynamic firewall
+URL          : http://www.firewalld.org
+License      : GPLv2+
+Description  : firewalld is a firewall service daemon that provides a dynamic customizable
+             : firewall with a D-Bus interface.
+```
+
+Sometimes you only know the executable you want to use but not the package that contains it, in this case you can use the command `dnf provides */package_name` which will search the database for you for the desired match.
+
 Example of a search for the `semanage` command:
 
+```bash
+dnf provides */semanage
+Last metadata expiration check: 1:12:29 ago on Wed 23 Mar 2022 10:40:43 AM CET.
+libsemanage-devel-2.9-6.el8.aarch64 : Header files and libraries used to build policy manipulation tools
+Repo        : powertools
+Matched from:
+Filename    : /usr/include/semanage
+
+policycoreutils-python-utils-2.9-16.el8.noarch : SELinux policy core python utilities
+Repo        : baseos
+Matched from:
+Filename    : /usr/sbin/semanage
+Filename    : /usr/share/bash-completion/completions/semanage
 ```
-[root]# dnf provides */semanage
+
+The `dnf autoremove` command does not need any parameters. Dnf takes care of searching for candidate packages for removal.
+
+```bash
+dnf autoremove
+Last metadata expiration check: 0:24:40 ago on Wed 23 Mar 2022 06:16:47 PM CET.
+Dependencies resolved.
+Nothing to do.
+Complete!
 ```
+
+### Other useful dnf options
+
+| Option                     | Description                                      |
+|----------------------------|--------------------------------------------------|
+| `repolist`                 | Lists the repositories configured on the system. |
+| `grouplist`                | Lists available package collections.             |
+| `clean`                    | Removes temporary files.                         |
+
+The `dnf repolist` command lists the repositories configured on the system. By default it lists only the enabled repositories but can be used with these parameters:
+
+| Parameter    | Description                       |
+|--------------|-----------------------------------|
+| `--all`      | Lists all the repositories.       |
+| `--enabled`  | Default                           |
+| `--disabled` | Lists only disabled repositories. |
+
+Example:
+
+```bash
+dnf repolist
+repo id                                                  repo name
+appstream                                                Rocky Linux 8 - AppStream
+baseos                                                   Rocky Linux 8 - BaseOS
+epel                                                     Extra Packages for Enterprise Linux 8 - aarch64
+epel-modular                                             Extra Packages for Enterprise Linux Modular 8 - aarch64
+extras                                                   Rocky Linux 8 - Extras
+powertools                                               Rocky Linux 8 - PowerTools
+rockyrpi                                                 Rocky Linux 8 - Rasperry Pi
+```
+
+And an excerpt of the command with the `--all` flag.
+
+```bash
+dnf repolist --all
+
+...
+repo id                                             repo name                                                                                       status
+appstream                                           Rocky Linux 8 - AppStream                                                                       enabled
+appstream-debug                                     Rocky Linux 8 - AppStream - Source                                                              disabled
+appstream-source                                    Rocky Linux 8 - AppStream - Source                                                              disabled
+baseos                                              Rocky Linux 8 - BaseOS                                                                          enabled
+baseos-debug                                        Rocky Linux 8 - BaseOS - Source                                                                 disabled
+baseos-source                                       Rocky Linux 8 - BaseOS - Source                                                                 disabled
+devel                                               Rocky Linux 8 - Devel WARNING! FOR BUILDROOT AND KOJI USE                                       disabled
+epel                                                Extra Packages for Enterprise Linux 8 - aarch64                                                 enabled
+epel-debuginfo                                      Extra Packages for Enterprise Linux 8 - aarch64 - Debug                                         disabled
+epel-modular                                        Extra Packages for Enterprise Linux Modular 8 - aarch64                                         enabled
+epel-modular-debuginfo                              Extra Packages for Enterprise Linux Modular 8 - aarch64 - Debug                                 disabled
+epel-modular-source                                 Extra Packages for Enterprise Linux Modular 8 - aarch64 - Source
+...
+```
+
+And below is an excerpt from the list of disabled repositories.
+
+```bash
+dnf repolist --disabled
+repo id                                 repo name
+appstream-debug                         Rocky Linux 8 - AppStream - Source
+appstream-source                        Rocky Linux 8 - AppStream - Source
+baseos-debug                            Rocky Linux 8 - BaseOS - Source
+baseos-source                           Rocky Linux 8 - BaseOS - Source
+devel                                   Rocky Linux 8 - Devel WARNING! FOR BUILDROOT AND KOJI USE
+epel-debuginfo                          Extra Packages for Enterprise Linux 8 - aarch64 - Debug
+epel-modular-debuginfo                  Extra Packages for Enterprise Linux Modular 8 - aarch64 - Debug
+epel-modular-source                     Extra Packages for Enterprise Linux Modular 8 - aarch64 - Source
+epel-source                             Extra Packages for Enterprise Linux 8 - aarch64 - Source
+epel-testing                            Extra Packages for Enterprise Linux 8 - Testing - aarch64
+...
+```
+
+Using the `-v` option enhances the list with a lot of additional information. Below you can see part of the result of the command.
+
+```bash
+dnf repolist -v
+
+...
+Repo-id            : powertools
+Repo-name          : Rocky Linux 8 - PowerTools
+Repo-revision      : 8.5
+Repo-distro-tags      : [cpe:/o:rocky:rocky:8]:  ,  , 8, L, R, c, i, k, n, o, u, x, y
+Repo-updated       : Wed 16 Mar 2022 10:07:49 PM CET
+Repo-pkgs          : 1,650
+Repo-available-pkgs: 1,107
+Repo-size          : 6.4 G
+Repo-mirrors       : https://mirrors.rockylinux.org/mirrorlist?arch=aarch64&repo=PowerTools-8
+Repo-baseurl       : http://mirror.netweaver.uk/rocky/8.5/PowerTools/aarch64/os/ (56 more)
+Repo-expire        : 172,800 second(s) (last: Tue 22 Mar 2022 05:49:24 PM CET)
+Repo-filename      : /etc/yum.repos.d/Rocky-PowerTools.repo
+...
+```
+
+!!! info "Using Groups"
+
+    Groups are a collection of a set of packages (you can think of them as a virtual packages) that logically groups a set of applications to accomplish a purpose (a desktop environment, a server, development tools, etc.).
+
+The `dnf grouplist` command lists all available groups.
+
+```bash
+dnf grouplist
+Last metadata expiration check: 1:52:00 ago on Wed 23 Mar 2022 02:11:43 PM CET.
+Available Environment Groups:
+   Server with GUI
+   Server
+   Minimal Install
+   KDE Plasma Workspaces
+   Custom Operating System
+Available Groups:
+   Container Management
+   .NET Core Development
+   RPM Development Tools
+   Development Tools
+   Headless Management
+   Legacy UNIX Compatibility
+   Network Servers
+   Scientific Support
+   Security Tools
+   Smart Card Support
+   System Tools
+   Fedora Packager
+   Xfce
+```
+
+The `dnf groupinstall` command allows you to install one of these groups.
+
+```bash
+dnf groupinstall "Network Servers"
+Last metadata expiration check: 2:33:26 ago on Wed 23 Mar 2022 02:11:43 PM CET.
+Dependencies resolved.
+================================================================================
+ Package           Architecture     Version             Repository         Size
+================================================================================
+Installing Groups:
+ Network Servers
+
+Transaction Summary
+================================================================================
+
+Is this ok [y/N]:
+```
+
+Note that it is good practice to enclose the group name in double quotes as without the command it will only execute correctly if the group name does not contain spaces.
+
+So a `dnf groupinstall Network Servers` produces the following error.
+
+```bash
+dnf groupinstall Network Servers
+Last metadata expiration check: 3:05:45 ago on Wed 23 Mar 2022 02:11:43 PM CET.
+Module or Group 'Network' is not available.
+Module or Group 'Servers' is not available.
+Error: Nothing to do.
+```
+
+The corresponding command to remove a group is `dnf groupremove "name group"`.
+
+The `dnf clean` command cleans all caches and temporary files created by dnf. It can be used with the following parameters.
+
+| Parameters         | Description                                                   |
+|--------------------|---------------------------------------------------------------|
+| `all`              | Removes all temporary files created for enabled repositories. |
+| `dbcache`          | Removes cache files for the repository  metadata.             |
+| `expire-cache`     | Remove the local cookie files.                                |
+| `metadata`         | Removes all the repositories metadata.                        |
+| `packages`         | Removes any cached packages.                                  |
+
 
 ### How DNF works
 
@@ -182,7 +499,7 @@ These files are located in `/etc/yum.repos.d/` and must end with `.repo` in orde
 
 Example:
 
-```
+```bash
 /etc/yum.repos.d/Rocky-BaseOS.repo
 ```
 
