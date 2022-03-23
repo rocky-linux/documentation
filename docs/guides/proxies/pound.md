@@ -12,18 +12,24 @@ tags:
 
 ## Introduction
 
-Pound is a web server agnostic reverse proxy and load balancer that is very easy to setup and manage. It does not use a web service itself but does listen on the web service ports (http, https). There are a lot of proxy server options, some referenced in these documentation pages. There is a document on using [HAProxy here](haproxy_apache_lxd.md) and there have been references in other documents to using Nginx for a reverse proxy. Load balancing services are quite useful for a busy web server environment. Many proxy servers, including the previously mentioned HAProxy, can be used for many service types. In the case of Pound, it can only be used for web services.
+Pound is a web server agnostic reverse proxy and load balancer that is very easy to setup and manage. It does not use a web service itself, but does listen on the web service ports (http, https). 
+
+Now, there are a lot of proxy server options, some referenced in these documentation pages. There is a document on using [HAProxy here](haproxy_apache_lxd.md) and there have been references in other documents to using Nginx for a reverse proxy.
+
+Load balancing services are quite useful for a busy web server environment. Many proxy servers, including the previously mentioned HAProxy, can be used for many service types. 
+
+In the case of Pound, it can only be used for web services, but it's good at what it does.
 
 ## Prerequisites and Assumptions
 
 The following are minimum requirements for using this procedure:
 
 * A desire to load balance between a few websites, or a desire to learn a new tool do do the same.
-* Able to execute commands as the root user or use `sudo` to get there.
+* The ability to execute commands as the root user or use `sudo` to get there.
 * Familiarity with a command-line editor. We are using `vi` or `vim` here, but feel free to substitute in your favorite editor.
-* Comfortable changing the listen ports on a few types of web servers
+* Comfort with changing the listen ports on a few types of web servers.
 * We are assuming that both the Nginx and the Apache servers are already installed.
-* We are assuming Rocky Linux servers or containers for everything here.
+* We are assuming that you are using Rocky Linux servers or containers for everything here.
 * While we make all kinds of statements regarding `https` below, this guide only deals with the `http` service. To properly do `https`, you'll need to configure your pound server with a real certificate from a real certificate authority.
 
 !!! hint
@@ -42,7 +48,11 @@ The following are minimum requirements for using this procedure:
 
 ## Conventions
 
-For this procedure, we are going to be using two web servers (known as back end servers), one running Nginx (192.168.1.111) and one running Apache (192.168.1.108). Our Pound server (192.168.1.103) will be considered the gateway. We will be switching our listen ports on both of the back end servers to 8080 for the Nginx server and 8081 for the Apache server. Everything will be detailed below as we go, so no need to worry about these for the moment.
+For this procedure, we are going to be using two web servers (known as back end servers), one running Nginx (192.168.1.111) and one running Apache (192.168.1.108). 
+
+Our Pound server (192.168.1.103) will be considered the gateway. 
+
+We will be switching our listen ports on both of the back end servers to 8080 for the Nginx server and 8081 for the Apache server. Everything will be detailed below as we go, so no need to worry about these for the moment.
 
 !!! note
 
@@ -190,7 +200,7 @@ systemctl restart httpd
 Once you have your web services up and running and listening on the right ports on each of our servers, the next step is to turn up the pound service on the Pound server:
 
 ```
-systemctl enable --mow pound
+systemctl enable --now pound
 ```
 
 !!! attention
@@ -237,15 +247,21 @@ Service
 End
 ```
 
-This server might only display a message "Down For Maintenance"
+This server might only display a message that says, "Down For Maintenance".
 
 ## Security Considerations
 
-Something that most documents dealing with load balancing proxy servers will not deal with are the security issues. For instance, if this is a public facing web server, you will need to have the `http` and `https` services open to the world on the load balancing proxy. But what about the "BackEnd" servers? Those should only need to be accessed by their ports from the Pound server itself, but since the Pound server is redirecting to 8080 or 8081 on the BackEnd servers, and since the BackEnd servers have `http` listening on those subsequent ports, you can just use the service names for the firewall commands on those BackEnd servers. In this section we will deal with those concerns and the `firewalld` commands needed to lock everything down.
+Something that most documents dealing with load balancing proxy servers will not deal with are the security issues. For instance, if this is a public facing web server, you will need to have the `http` and `https` services open to the world on the load balancing proxy. But what about the "BackEnd" servers? 
+
+Those should only need to be accessed by their ports from the Pound server itself, but since the Pound server is redirecting to 8080 or 8081 on the BackEnd servers, and since the BackEnd servers have `http` listening on those subsequent ports, you can just use the service names for the firewall commands on those BackEnd servers. I
+
+n this section we will deal with those concerns, and the `firewalld` commands needed to lock everything down.
 
 !!! warning
 
     We are assuming that you have direct access to the servers in question and are not remote to them. If you are remote, take extreme caution when removing services from a `firewalld` zone!
+
+    You could lock yourself out of your server by accident.
 
 ### Firewall - Pound Server
 
@@ -302,7 +318,7 @@ We also need to add `http` and `https` services:
 firewall-cmd --zone=public --add-service=http --add-service=https --permanent
 ```
 
-then we need to reload before this will be active and before you can see the changes:
+Then we need to reload the firewall before you can see the changes:
 
 ```
 firewall-cmd --reload
@@ -326,11 +342,16 @@ public
   icmp-blocks:
   rich rules:
 ```
+
 Within our lab environment, those are the only changes we need to make to our pound server load balancer.
 
 ### Firewall - Back End Servers
 
-For the "BackEnd" servers, we do not need to allow access from the world for anything and definitely not for our listen ports that the load balancer will be using. We will need to allow `ssh` from the LAN IPs, and `http` and `https` from our pound load balancer. That's pretty much it. Again, we are going to add the `ssh` service to our "trusted" zone, with the essentially the same commands we used for our pound server. Then we are going to add a zone called "balance" that we will use for the remaining `http` and `https`, and set the source IPs to that of the load balancer. Are you having fun yet?
+For the "BackEnd" servers, we do not need to allow access from the world for anything and definitely not for our listen ports that the load balancer will be using. We will need to allow `ssh` from the LAN IPs, and `http` and `https` from our pound load balancer. 
+
+That's pretty much it. 
+
+Again, we are going to add the `ssh` service to our "trusted" zone, with the essentially the same commands we used for our pound server. Then we are going to add a zone called "balance" that we will use for the remaining `http` and `https`, and set the source IPs to that of the load balancer. Are you having fun yet?
 
 To be quick, let's use all of those commands tht we used for the "trusted" zone in a single set of commands:
 
@@ -340,6 +361,8 @@ firewall-cmd --zone=trusted --add-service=ssh --permanent
 firewall-cmd --reload
 firewall-cmd --zone=trusted --list-all
 ```
+
+After, the "trusted" zone should look like this:
 
 ```bash
 trusted (active)
@@ -357,6 +380,7 @@ trusted (active)
   icmp-blocks:
   rich rules:
 ```
+
 Again, test your `ssh` rule from an IP on the LAN, and then remove the `ssh` service from the "public" zone. **Remember our warning from above, and do this only if you have local access to the server!**
 
 ```
@@ -364,6 +388,8 @@ firewall-cmd --zone=public --remove-service=ssh --permanent
 firewall-cmd --reload
 firewall-cmd --zone=public --list-all
 ```
+
+The public zone should now look like this:
 
 ```bash
 public
@@ -398,6 +424,8 @@ firewall-cmd --reload
 firewall-cmd --zone=balance --list-all
 ```
 
+The result:
+
 ```bash
 balance (active)
   target: ACCEPT
@@ -423,8 +451,12 @@ Once you have your firewall rules added to everything, test your pound server ag
 
 There are a *LOT* of options that can be included in your `pound.conf` file, including error message directives, logging options, time out values, etc. You can find more on what is available by [looking here.](https://linux.die.net/man/8/pound)
 
-Pound automatically figures out if one of the "BackEnd" servers is off-line and disables it so that web services can continue without delay. It also automatically sees them again when they are back on-line.
+Conveniently, Pound automatically figures out if one of the "BackEnd" servers is off-line and disables it so that web services can continue without delay. It also automatically sees them again when they are back on-line.
 
 ## Conclusion
 
-Pound as a load balancing server is very easy to install, set up and use. As noted here, Pound can also be used as a reverse proxy. There are a lot of proxy and load balancing options available. Pound offers another option for those who do not want to use HAProxy or Nginx as for load balancing. You should always remember to keep security in mind when setting up any service, including a load-balancing proxy server.  We've touched a little on security in this document.
+Pound offers another option for those who do not want to use HAProxy or Nginx as for load balancing. 
+
+Pound as a load balancing server is very easy to install, set up and use. As noted here, Pound can also be used as a reverse proxy, and there are a lot of proxy and load balancing options available. 
+
+And remember, you should always remember to keep security in mind when setting up any service, including a load-balancing proxy server.
