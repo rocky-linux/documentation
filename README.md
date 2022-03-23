@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-61-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -111,7 +111,6 @@ If you haven't already, join the conversation on the [Rocky Linux Mattermost Ser
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -123,6 +122,77 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ambaradan"><img src="https://avatars.githubusercontent.com/u/87865413?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ambaradan</b></sub></a><br /><a href="#translation-ambaradan" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/alemorvan"><img src="https://avatars.githubusercontent.com/u/3603739?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Antoine Le Morvan</b></sub></a><br /><a href="#content-alemorvan" title="Content">🖋</a> <a href="#translation-alemorvan" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/jimcat8"><img src="https://avatars.githubusercontent.com/u/86754294?v=4?s=100" width="100px;" alt=""/><br /><sub><b>tianci li</b></sub></a><br /><a href="#content-jimcat8" title="Content">🖋</a> <a href="#translation-jimcat8" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/Student"><img src="https://avatars.githubusercontent.com/u/19212264?v=4?s=100" width="100px;" alt=""/><br /><sub><b>student</b></sub></a><br /><a href="#content-Student" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/NezSez"><img src="https://avatars.githubusercontent.com/u/17833417?v=4?s=100" width="100px;" alt=""/><br /><sub><b>NezSez</b></sub></a><br /><a href="#content-NezSez" title="Content">🖋</a> <a href="#ideas-NezSez" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/justasojourner"><img src="https://avatars.githubusercontent.com/u/66750169?v=4?s=100" width="100px;" alt=""/><br /><sub><b>justasojourner</b></sub></a><br /><a href="#content-justasojourner" title="Content">🖋</a> <a href="#ideas-justasojourner" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://shrug.pw/"><img src="https://avatars.githubusercontent.com/u/680198?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Neil Hanlon</b></sub></a><br /><a href="#content-NeilHanlon" title="Content">🖋</a> <a href="#maintenance-NeilHanlon" title="Maintenance">🚧</a> <a href="#ideas-NeilHanlon" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/pajamian"><img src="https://avatars.githubusercontent.com/u/92609?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Peter Ajamian</b></sub></a><br /><a href="#content-pajamian" title="Content">🖋</a></td>
+    <td align="center"><a href="http://www.flaviosiqueira.com.br/"><img src="https://avatars.githubusercontent.com/u/3700397?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Flávio Siqueira Prado</b></sub></a><br /><a href="#translation-Bakrog" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/Norio4"><img src="https://avatars.githubusercontent.com/u/25744143?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Norio4</b></sub></a><br /><a href="#translation-Norio4" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://www.volted.net/"><img src="https://avatars.githubusercontent.com/u/40760290?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sébastien Pascal-Poher</b></sub></a><br /><a href="#translation-sjpp" title="Translation">🌍</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/ltrecanao"><img src="https://avatars.githubusercontent.com/u/76416245?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lucas Trecanao</b></sub></a><br /><a href="#translation-ltrecanao" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/calderds"><img src="https://avatars.githubusercontent.com/u/37597884?v=4?s=100" width="100px;" alt=""/><br /><sub><b>calderds</b></sub></a><br /><a href="#content-calderds" title="Content">🖋</a> <a href="https://github.com/rocky-linux/documentation/pulls?q=is%3Apr+reviewed-by%3Acalderds" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/execion"><img src="https://avatars.githubusercontent.com/u/49331776?v=4?s=100" width="100px;" alt=""/><br /><sub><b>execion</b></sub></a><br /><a href="#translation-execion" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/lillolollo"><img src="https://avatars.githubusercontent.com/u/730814?v=4?s=100" width="100px;" alt=""/><br /><sub><b>lillolollo</b></sub></a><br /><a href="#content-lillolollo" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/batashi"><img src="https://avatars.githubusercontent.com/u/6708191?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ahmed alBattashi</b></sub></a><br /><a href="#content-batashi" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/StackKorora"><img src="https://avatars.githubusercontent.com/u/42156355?v=4?s=100" width="100px;" alt=""/><br /><sub><b>StackKorora</b></sub></a><br /><a href="#content-StackKorora" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/3xtant"><img src="https://avatars.githubusercontent.com/u/13157282?v=4?s=100" width="100px;" alt=""/><br /><sub><b>3xtant</b></sub></a><br /><a href="#content-3xtant" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/almrv"><img src="https://avatars.githubusercontent.com/u/18002181?v=4?s=100" width="100px;" alt=""/><br /><sub><b>almrv</b></sub></a><br /><a href="#translation-almrv" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://hbjy.dev/"><img src="https://avatars.githubusercontent.com/u/22327045?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hayden</b></sub></a><br /><a href="#content-hbjydev" title="Content">🖋</a></td>
+    <td align="center"><a href="https://linuxguideandhints.com/"><img src="https://avatars.githubusercontent.com/u/11469736?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Louis Abel</b></sub></a><br /><a href="#content-nazunalika" title="Content">🖋</a></td>
+    <td align="center"><a href="https://www.threemysticapes.com/"><img src="https://avatars.githubusercontent.com/u/787308?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ron</b></sub></a><br /><a href="#content-tikicoder" title="Content">🖋</a></td>
+    <td align="center"><a href="https://aminvakil.com/"><img src="https://avatars.githubusercontent.com/u/12948692?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Amin Vakil</b></sub></a><br /><a href="#content-aminvakil" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/prasad15"><img src="https://avatars.githubusercontent.com/u/12524081?v=4?s=100" width="100px;" alt=""/><br /><sub><b>K.Prasad</b></sub></a><br /><a href="#content-prasad15" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/IncorrigiblyBelligerent"><img src="https://avatars.githubusercontent.com/u/77499937?v=4?s=100" width="100px;" alt=""/><br /><sub><b>IncorrigiblyBelligerent</b></sub></a><br /><a href="#content-IncorrigiblyBelligerent" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/jaijunior"><img src="https://avatars.githubusercontent.com/u/53584770?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jairo Nonato Júnior</b></sub></a><br /><a href="#content-jaijunior" title="Content">🖋</a></td>
+    <td align="center"><a href="https://saifhalila.github.io/"><img src="https://avatars.githubusercontent.com/u/10274380?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Saif Eddine Halila</b></sub></a><br /><a href="#content-saifhalila" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/DrCool2"><img src="https://avatars.githubusercontent.com/u/32649803?v=4?s=100" width="100px;" alt=""/><br /><sub><b>DrCool2</b></sub></a><br /><a href="#content-DrCool2" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/bzuelly"><img src="https://avatars.githubusercontent.com/u/15173198?v=4?s=100" width="100px;" alt=""/><br /><sub><b>codedude</b></sub></a><br /><a href="#content-bzuelly" title="Content">🖋</a></td>
+    <td align="center"><a href="https://cubeops.net/"><img src="https://avatars.githubusercontent.com/u/16643747?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Graham</b></sub></a><br /><a href="#content-gp-Airee" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/theputta"><img src="https://avatars.githubusercontent.com/u/22313054?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aditya Putta</b></sub></a><br /><a href="#content-theputta" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/yangxuan74"><img src="https://avatars.githubusercontent.com/u/20755861?v=4?s=100" width="100px;" alt=""/><br /><sub><b>yangxuan74</b></sub></a><br /><a href="#content-yangxuan74" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/xpseudonym"><img src="https://avatars.githubusercontent.com/u/5032475?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Morgan Read</b></sub></a><br /><a href="#content-xpseudonym" title="Content">🖋</a></td>
+    <td align="center"><a href="https://ersei.saggis.com/"><img src="https://avatars.githubusercontent.com/u/17993169?v=4?s=100" width="100px;" alt=""/><br /><sub><b>9p4</b></sub></a><br /><a href="#content-9p4" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/liquidspikes"><img src="https://avatars.githubusercontent.com/u/5150291?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Zimmerman</b></sub></a><br /><a href="#content-liquidspikes" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/viscountstyx"><img src="https://avatars.githubusercontent.com/u/46753436?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andrew Faulkner</b></sub></a><br /><a href="#content-viscountstyx" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/televi"><img src="https://avatars.githubusercontent.com/u/3333248?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Todd Levi</b></sub></a><br /><a href="#content-televi" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/tahder"><img src="https://avatars.githubusercontent.com/u/5017393?v=4?s=100" width="100px;" alt=""/><br /><sub><b>tahder</b></sub></a><br /><a href="#content-tahder" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/tacahiroy"><img src="https://avatars.githubusercontent.com/u/76614?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Takahiro Yoshihara</b></sub></a><br /><a href="#content-tacahiroy" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/garthus1"><img src="https://avatars.githubusercontent.com/u/12569720?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gerard Arthus</b></sub></a><br /><a href="#content-garthus1" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/HadManySons"><img src="https://avatars.githubusercontent.com/u/3620051?v=4?s=100" width="100px;" alt=""/><br /><sub><b>HadManySons</b></sub></a><br /><a href="#content-HadManySons" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/bmayfi3ld"><img src="https://avatars.githubusercontent.com/u/563214?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brandon Mayfield</b></sub></a><br /><a href="#content-bmayfi3ld" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/astauntonie"><img src="https://avatars.githubusercontent.com/u/25220665?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Anthony Staunton</b></sub></a><br /><a href="#content-astauntonie" title="Content">🖋</a></td>
+    <td align="center"><a href="https://blog.iclouds.work/"><img src="https://avatars.githubusercontent.com/u/21030747?v=4?s=100" width="100px;" alt=""/><br /><sub><b>whg517</b></sub></a><br /><a href="#content-whg517" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/MrSkribb"><img src="https://avatars.githubusercontent.com/u/44088296?v=4?s=100" width="100px;" alt=""/><br /><sub><b>MrSkribb</b></sub></a><br /><a href="#content-MrSkribb" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/payagej"><img src="https://avatars.githubusercontent.com/u/20729061?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jules</b></sub></a><br /><a href="#content-payagej" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/brendanfattig"><img src="https://avatars.githubusercontent.com/u/54815652?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brendan Fattig</b></sub></a><br /><a href="#content-brendanfattig" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/bittin"><img src="https://avatars.githubusercontent.com/u/43197?v=4?s=100" width="100px;" alt=""/><br /><sub><b>bittin</b></sub></a><br /><a href="#content-bittin" title="Content">🖋</a></td>
+    <td align="center"><a href="https://ichibariki.com/"><img src="https://avatars.githubusercontent.com/u/4787502?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ichibariki</b></sub></a><br /><a href="#content-ichibariki" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/bernipuig"><img src="https://avatars.githubusercontent.com/u/12746940?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Bernat Puigdomenech Pascual</b></sub></a><br /><a href="#content-bernipuig" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/netzwergehh"><img src="https://avatars.githubusercontent.com/u/79668910?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dennis Körner</b></sub></a><br /><a href="#content-netzwergehh" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/bezunartea"><img src="https://avatars.githubusercontent.com/u/13090619?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pedro Bezunartea López</b></sub></a><br /><a href="#translation-bezunartea" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/danopogac"><img src="https://avatars.githubusercontent.com/u/8373145?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Daniel Pogac</b></sub></a><br /><a href="#content-danopogac" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Oats"><img src="https://avatars.githubusercontent.com/u/18314360?v=4?s=100" width="100px;" alt=""/><br /><sub><b>oats</b></sub></a><br /><a href="#content-Oats" title="Content">🖋</a></td>
+    <td align="center"><a href="http://alexharden.org/"><img src="https://avatars.githubusercontent.com/u/8281207?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Harden</b></sub></a><br /><a href="#content-aharden" title="Content">🖋</a></td>
+    <td align="center"><a href="https://jorp.xyz/"><img src="https://avatars.githubusercontent.com/u/18096435?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jordan Pisaniello</b></sub></a><br /><a href="#content-jorp" title="Content">🖋</a></td>
+    <td align="center"><a href="https://hennig.mse.ufl.edu/"><img src="https://avatars.githubusercontent.com/u/8710634?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Richard Hennig</b></sub></a><br /><a href="#content-rhennig" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/caffenix"><img src="https://avatars.githubusercontent.com/u/64636709?v=4?s=100" width="100px;" alt=""/><br /><sub><b>caffenix</b></sub></a><br /><a href="#content-caffenix" title="Content">🖋</a></td>
   </tr>
 </table>
 
