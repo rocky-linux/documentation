@@ -116,7 +116,7 @@ End
 * The "User" and "Group" was taken care of when we did the install
 * The "Control" file does not appear to be used anywhere.
 * The "ListenHTTP" section represents the service `http` (Port 80) and the "Address" that the proxy will listen on. We will change this to the actual IP of our Pound server.
-* The "ListenHTTPS" section represents the service `https` (Port 443) and the "Address" that the proxy will listen on. As with the above, we will change this the IP to that of the Pound server. The "Cert" option is the self-signed certificate provided by the Pound install process. You would want to replace this in a production environment with a real certificate using either one of these procedures: [Generating SSL Keys](../security/ssl_keys_https.md) or [SSL Keys with Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
+* The "ListenHTTPS" section represents the service `https` (Port 443) and the "Address" that the proxy will listen on. As with the above, we will change this to the IP to that of the Pound server. The "Cert" option is the self-signed certificate provided by the Pound install process. You would want to replace this in a production environment with a real certificate using either one of these procedures: [Generating SSL Keys](../security/ssl_keys_https.md) or [SSL Keys with Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
 * The "Service" section is where the "BackEnd" servers are configured along with their listening ports. You can have as many "BackEnd" servers as you need.
 
 ### Changing The Configuration
@@ -253,9 +253,9 @@ This server might only display a message that says, "Down For Maintenance".
 
 Something that most documents dealing with load balancing proxy servers will not deal with are the security issues. For instance, if this is a public facing web server, you will need to have the `http` and `https` services open to the world on the load balancing proxy. But what about the "BackEnd" servers? 
 
-Those should only need to be accessed by their ports from the Pound server itself, but since the Pound server is redirecting to 8080 or 8081 on the BackEnd servers, and since the BackEnd servers have `http` listening on those subsequent ports, you can just use the service names for the firewall commands on those BackEnd servers. I
+Those should only need to be accessed by their ports from the Pound server itself, but since the Pound server is redirecting to 8080 or 8081 on the BackEnd servers, and since the BackEnd servers have `http` listening on those subsequent ports, you can just use the service names for the firewall commands on those BackEnd servers.
 
-n this section we will deal with those concerns, and the `firewalld` commands needed to lock everything down.
+In this section we will deal with those concerns, and the `firewalld` commands needed to lock everything down.
 
 !!! warning
 
@@ -353,7 +353,7 @@ That's pretty much it.
 
 Again, we are going to add the `ssh` service to our "trusted" zone, with the essentially the same commands we used for our pound server. Then we are going to add a zone called "balance" that we will use for the remaining `http` and `https`, and set the source IPs to that of the load balancer. Are you having fun yet?
 
-To be quick, let's use all of those commands tht we used for the "trusted" zone in a single set of commands:
+To be quick, let's use all of those commands that we used for the "trusted" zone in a single set of commands:
 
 ```
 firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent
@@ -443,7 +443,7 @@ balance (active)
   rich rules:
 ```
 
-Now repeat those steps on the both web server back ends.
+Now repeat those steps on the other web server back end.
 
 Once you have your firewall rules added to everything, test your pound server again from your workstation browser.
 
@@ -459,4 +459,4 @@ Pound offers another option for those who do not want to use HAProxy or Nginx as
 
 Pound as a load balancing server is very easy to install, set up and use. As noted here, Pound can also be used as a reverse proxy, and there are a lot of proxy and load balancing options available. 
 
-And remember, you should always remember to keep security in mind when setting up any service, including a load-balancing proxy server.
+And you should always remember to keep security in mind when setting up any service, including a load-balancing proxy server.
