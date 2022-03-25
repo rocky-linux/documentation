@@ -6,9 +6,12 @@ update: 21-March-2022
 ---
 
 # Overview
+
 This guide demos popular Markdown tags used on [https://docs.rockylinux.org](https://docs.rockylinux.org)
 
 ## The Demo
+
+> This story is based on true stories
 
 Mary had a little _lamb_
 
@@ -17,11 +20,14 @@ Mary had a little _lamb_
 Mary had a little lamb
 
 Its fleece was white as `snow`
+
 - And everywhere that Mary went
 - Mary went, Mary went
+
 ```
-Everywhere that Mary went
+$ Everywhere that Mary went
 ```
+
 !!! TIP
 
     The lamb was sure to go.
