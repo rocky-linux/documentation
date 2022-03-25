@@ -6,9 +6,12 @@ update: 21-March-2022
 ---
 
 # Sommario
-Questa guida mostra i tag Markdown più popolari usati su [https://docs.rockylinux.org](docs.rockylinux.org)
+
+Questa guida mostra i tag Markdown più popolari usati su [https://docs.rockylinux.org](https://docs.rockylinux.org)
 
 ## La Demo
+
+> Questa storia si basa su storie vere
 
 Mary aveva un piccolo _agnello_
 
@@ -17,11 +20,14 @@ Mary aveva un piccolo _agnello_
 Mary aveva un piccolo agnello
 
 Il suo vello era bianco come `neve`
+
 - E ovunque andasse Maria
 - Maria è andata, Maria è andata
+
 ```
-Ovunque andasse Maria
+$ Ovunque andasse Maria
 ```
+
 !!! TIP "Suggerimento"
 
     L'agnello era sicuro di andare.
