@@ -1,6 +1,6 @@
 ---
 title: MATE Desktop
-author: unknown
+author: lillolollo
 contributors: Steven Spencer
 tested with: 8.5
 tags:
@@ -83,7 +83,7 @@ Now just keep your fingers crossed and reboot:
 
 `sudo reboot`
 
-You should end up with a login prompt in the MATE GUI, and when you login, you will have all of the MATE environment.
+Next, click on your user name on the screen, but before you enter your password and login, click on the gear icon to the left of the "Sign in" option. Select "MATE" from the available desktop choices and then you can enter your password and login. Future logins will remember your selection.
 
 ## Conclusion
 
