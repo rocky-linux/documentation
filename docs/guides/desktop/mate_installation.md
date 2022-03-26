@@ -88,3 +88,7 @@ Next, click on your user name on the screen, but before you enter your password 
 ## Conclusion
 
 Some people are not satisfied with the newer GNOME implementations or simply prefer the older MATE GNOME 2 look and feel. For those people, getting MATE installed in Rocky Linux will provide a nice, stable alternative.
+
+!!! attention
+
+    After further testing, the desktop selection does **NOT** stick, even though MATE remains selected. Attempts to login produce a return to the login screen. To login to a MATE session, you must select MATE again, even though it will already show as selected. This is why the warning exists at the top of this procedure. Please use this guide at your own risk. If you discover a workaround that will help other users continue to use MATE with Rocky Linux, please report your workaround.
