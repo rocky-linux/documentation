@@ -34,7 +34,7 @@ ReText is good, but if you feel like exploring your other options, there are a f
 * [ghostwriter](https://wereturtle.github.io/ghostwriter/) - Free, Windows and Linux, open source
 * [Remarkable](https://remarkableapp.github.io) - Linux-only, open source
 * [Atom](https://atom.io) - Free, cross-platform and open source. Not _only_ a Markdown editor. Has integration with Git and GitHub built-in.
-* [VS code](https://code.visualstudio.com/) - Microsoft's open source project, a lightweight and powerful editor, is suitable for Windows, Linux and MacOS. To contribute to this document project, you need these plug-ins: git graph, HTML preview, HTML snippets, markdown all in one, markdown preview enhanced, markdown preview Mermaid support, etc.
+* [VS code](https://code.visualstudio.com/) - Microsoft's open source project. a lightweight and powerful editor, is suitable for Windows, Linux and MacOS. To contribute to this document project, you need these plug-ins: Git Graph, HTML Preview, HTML Snippets, Markdown All in One, Markdown Preview Enhanced, Markdown Preview Mermaid Support, etc.
 
 ### Markdown Tutorial
 
