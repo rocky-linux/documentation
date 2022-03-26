@@ -34,7 +34,8 @@ ReText is good, but if you feel like exploring your other options, there are a f
 * [ghostwriter](https://wereturtle.github.io/ghostwriter/) - Free, Windows and Linux, open source
 * [Remarkable](https://remarkableapp.github.io) - Linux-only, open source
 * [Atom](https://atom.io) - Free, cross-platform and open source. Not _only_ a Markdown editor. Has integration with Git and GitHub built-in.
-
+* [VS Code](https://code.visualstudio.com/) - A partially open source project from non other than Microsoft; VS Code is a lightweight and powerful editor available for Windows, Linux and MacOS. To contribute to this document project, you should get the following extensions: Git Graph, HTML Preview, HTML Snippets, Markdown All in One, Markdown Preview Enhanced, Markdown Preview Mermaid Support, and any more that catch your fancy.
+ 
 ### Markdown Tutorial
 
 You can get a good feel for how to write Markdown files, by taking a look at [Mastering Markdown](https://guides.github.com/features/mastering-markdown/). This online resource will get you up-to-speed in no time.
