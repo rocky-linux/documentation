@@ -439,9 +439,9 @@ $ pwd
 /home/rockstar
 ```
 
-To move around using a relative path, you must know its position in the tree.
+Use a relative path to reference a file or directory, or use the `cd` command to move to another directory, You must know its location in the file tree.
 
-Depending on the command interpreter, the command prompt may also display the name of the current directory.
+Depending on the type of shell and the different parameters of its configuration file, the terminal prompt (also known as the command prompt) will display the absolute or relative path of the current directory.
 
 ### `cd` command
 
