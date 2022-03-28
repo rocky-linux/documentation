@@ -1,8 +1,12 @@
 ---
 title: Software Management
-author: unknown
-contributors: Colussi Franco
-update: 22-Mar-2022
+author: Antoine Le Morvan
+contributors: Colussi Franco, Steven Spencer
+tested version: 8.5
+tags:
+  - education
+  - software
+  - software management
 ---
 
 # Software Management
@@ -138,7 +142,7 @@ The `dnf` command allows the management of packages by comparing those installed
 
 ### `dnf` command
 
-The dnf command allows you to install a package by specifying only the short name.
+The `dnf` command allows you to install a package by specifying only the short name.
 
 ```bash
 dnf [install][remove][list all][search][info] package
@@ -163,7 +167,7 @@ Only the short name of the package is required.
 | `autoremove`               | Removes all packages installed as dependencies but no longer needed. |
 
 
-The `dnf install` command allows you to install the desired package without worrying about its dependencies, which will be resolved directly by dnf itself.
+The `dnf install` command allows you to install the desired package without worrying about its dependencies, which will be resolved directly by `dnf` itself.
 
 ```bash
 dnf install nginx
@@ -213,7 +217,7 @@ pcp-pmda-nginx.aarch64 : Performance Co-Pilot (PCP) metrics for the Nginx Webser
 python3-certbot-nginx.noarch : The nginx plugin for certbot
 ```
 
-Another way to search for a package by entering an additional search key is to send the result of the dnf command through a pipe to the grep command with the desired key.
+Another way to search for a package by entering an additional search key is to send the result of the `dnf` command through a pipe to the grep command with the desired key.
 
 ```bash
 dnf search nginx | grep mod
@@ -326,7 +330,7 @@ Nothing to do.
 Complete!
 ```
 
-### Other useful dnf options
+### Other useful `dnf` options
 
 | Option                     | Description                                      |
 |----------------------------|--------------------------------------------------|
@@ -480,7 +484,7 @@ Error: Nothing to do.
 
 The corresponding command to remove a group is `dnf groupremove "name group"`.
 
-The `dnf clean` command cleans all caches and temporary files created by dnf. It can be used with the following parameters.
+The `dnf clean` command cleans all caches and temporary files created by `dnf`. It can be used with the following parameters.
 
 | Parameters         | Description                                                   |
 |--------------------|---------------------------------------------------------------|
@@ -525,11 +529,11 @@ By default, the `enabled` directive is absent which means that the repository is
 
 **EPEL** (**E**xtra **P**ackages for **E**nterprise **L**inux) is an open-source and free community-based repository maintained by the [EPEL Fedora Special Interest Group](https://docs.fedoraproject.org/en-US/epel/) that provides a set of additional packages for RHEL (and CentOS, Rocky Linux, and others) from the Fedora sources.
 
-It provides packages that are not included in the official RHEL repositories, these are not included because they are not considered necessary in an enterprise environment or deemed outside the scope of RHEL, we must not forget that RHEL is an enterprise class distribution and desktop utilities or other specialized software may not be a priority for an enterprise project.
+It provides packages that are not included in the official RHEL repositories. These are not included because they are not considered necessary in an enterprise environment or deemed outside the scope of RHEL. We must not forget that RHEL is an enterprise class distribution, and desktop utilities or other specialized software may not be a priority for an enterprise project.
 
 ### Installation
 
-Installation of the necessary files can be easily done with the package provided by default by Rocky Linux.
+Installation of the necessary files can be easily done with the package provided by default from Rocky Linux.
 
 If you are behind an internet proxy:
 
@@ -564,7 +568,7 @@ Description  : This package contains the Extra Packages for Enterprise Linux
              : (EPEL) repository GPG key as well as configuration for yum.
 ```
 
-The package as you can see from the package description above, does not contain executables, libraries, etc.. but only the configuration files and GPG keys for setting up the repository.
+The package, as you can see from the package description above, does not contain executables, libraries, etc.. but only the configuration files and GPG keys for setting up the repository.
 
 Another way to verify the correct installation is to query the rpm database.
 
@@ -573,7 +577,7 @@ rpm -qa | grep epel
 epel-release-8-14.el8.noarch
 ```
 
-Now you need to run an update to let dnf recognize the repository. You will be asked to accept the GPG keys of the repositories, clearly you have to answer YES in order to use them.
+Now you need to run an update to let `dnf` recognize the repository. You will be asked to accept the GPG keys of the repositories. Clearly, you have to answer YES in order to use them.
 
 ```bash
 dnf update
@@ -600,7 +604,7 @@ ll /etc/yum.repos.d/ | grep epel
 -rw-r--r--. 1 root root 1521 Jan 31 17:19 epel-testing.repo
 ```
 
-And below we can see the contents of the file epel.repo.
+And below we can see the contents of the file `epel.repo`.
 
 ```bash
 [epel]
@@ -637,7 +641,7 @@ gpgcheck=1
 
 ### Using EPEL
 
-At this point, once configured, we are ready to install the packages from EPEL. To start we can list the packages available in the repository with the command:
+At this point, once configured, we are ready to install the packages from EPEL. To start, we can list the packages available in the repository with the command:
 
 ```bash
 dnf --disablerepo="*" --enablerepo="epel" list available
