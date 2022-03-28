@@ -565,6 +565,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "lento234",
+      "name": "Lento Manickathan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3255070?v=4",
+      "profile": "https://manickathan.ch/",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
