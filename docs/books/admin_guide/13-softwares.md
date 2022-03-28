@@ -646,7 +646,7 @@ dnf --disablerepo="*" --enablerepo="epel" list available
 And an excerpt of the command
 
 ```bash
-dnf --disablerepo="*" --enablerepo="epel" list available | more
+dnf --disablerepo="*" --enablerepo="epel" list available | less
 Last metadata expiration check: 1:58:22 ago on Fri 25 Mar 2022 09:23:29 AM CET.
 Available Packages
 3proxy.aarch64                                                    0.8.13-1.el8                                    epel
