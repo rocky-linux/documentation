@@ -1,8 +1,12 @@
 ---
 title: Software Management
-author: unknown
-contributors: Colussi Franco
-update: 22-Mar-2022
+author: Antoine Le Morvan
+contributors: Colussi Franco, Steven Spencer
+tested version: 8.5
+tags:
+  - education
+  - software
+  - software management
 ---
 
 # Software Management
@@ -138,7 +142,7 @@ The `dnf` command allows the management of packages by comparing those installed
 
 ### `dnf` command
 
-The dnf command allows you to install a package by specifying only the short name.
+The `dnf` command allows you to install a package by specifying only the short name.
 
 ```bash
 dnf [install][remove][list all][search][info] package
@@ -163,7 +167,7 @@ Only the short name of the package is required.
 | `autoremove`               | Removes all packages installed as dependencies but no longer needed. |
 
 
-The `dnf install` command allows you to install the desired package without worrying about its dependencies, which will be resolved directly by dnf itself.
+The `dnf install` command allows you to install the desired package without worrying about its dependencies, which will be resolved directly by `dnf` itself.
 
 ```bash
 dnf install nginx
@@ -213,7 +217,7 @@ pcp-pmda-nginx.aarch64 : Performance Co-Pilot (PCP) metrics for the Nginx Webser
 python3-certbot-nginx.noarch : The nginx plugin for certbot
 ```
 
-Another way to search for a package by entering an additional search key is to send the result of the dnf command through a pipe to the grep command with the desired key.
+Another way to search for a package by entering an additional search key is to send the result of the `dnf` command through a pipe to the grep command with the desired key.
 
 ```bash
 dnf search nginx | grep mod
@@ -326,7 +330,7 @@ Nothing to do.
 Complete!
 ```
 
-### Other useful dnf options
+### Other useful `dnf` options
 
 | Option                     | Description                                      |
 |----------------------------|--------------------------------------------------|
@@ -480,7 +484,7 @@ Error: Nothing to do.
 
 The corresponding command to remove a group is `dnf groupremove "name group"`.
 
-The `dnf clean` command cleans all caches and temporary files created by dnf. It can be used with the following parameters.
+The `dnf clean` command cleans all caches and temporary files created by `dnf`. It can be used with the following parameters.
 
 | Parameters         | Description                                                   |
 |--------------------|---------------------------------------------------------------|
@@ -521,20 +525,175 @@ By default, the `enabled` directive is absent which means that the repository is
 
 ## The EPEL repository
 
-**EPEL** (**E**xtra **P**ackages for **E**nterprise **L**inux) is a repository containing additional software packages for Enterprise Linux, which includes RedHat Enterprise Linux (RHEL), RockyLinux, CentOS, etc.
+### What is EPEL and how is it used?
+
+**EPEL** (**E**xtra **P**ackages for **E**nterprise **L**inux) is an open-source and free community-based repository maintained by the [EPEL Fedora Special Interest Group](https://docs.fedoraproject.org/en-US/epel/) that provides a set of additional packages for RHEL (and CentOS, Rocky Linux, and others) from the Fedora sources.
+
+It provides packages that are not included in the official RHEL repositories. These are not included because they are not considered necessary in an enterprise environment or deemed outside the scope of RHEL. We must not forget that RHEL is an enterprise class distribution, and desktop utilities or other specialized software may not be a priority for an enterprise project.
 
 ### Installation
 
-Download and install the rpm from the repository:
+Installation of the necessary files can be easily done with the package provided by default from Rocky Linux.
 
 If you are behind an internet proxy:
 
-```
-[root]# export http_proxy=http://172.16.1.10:8080
+```bash
+export http_proxy=http://172.16.1.10:8080
 ```
 
 Then:
 
+```bash
+dnf install epel-release
 ```
-[root]# dnf install epel-release
+
+Once installed you can check that the package has been installed correctly with the command `dnf info`.
+
+```bash
+dnf info epel-release
+Last metadata expiration check: 1:30:29 ago on Thu 24 Mar 2022 09:36:42 AM CET.
+Installed Packages
+Name         : epel-release
+Version      : 8
+Release      : 14.el8
+Architecture : noarch
+Size         : 32 k
+Source       : epel-release-8-14.el8.src.rpm
+Repository   : @System
+From repo    : epel
+Summary      : Extra Packages for Enterprise Linux repository configuration
+URL          : http://download.fedoraproject.org/pub/epel
+License      : GPLv2
+Description  : This package contains the Extra Packages for Enterprise Linux
+             : (EPEL) repository GPG key as well as configuration for yum.
 ```
+
+The package, as you can see from the package description above, does not contain executables, libraries, etc.. but only the configuration files and GPG keys for setting up the repository.
+
+Another way to verify the correct installation is to query the rpm database.
+
+```bash
+rpm -qa | grep epel
+epel-release-8-14.el8.noarch
+```
+
+Now you need to run an update to let `dnf` recognize the repository. You will be asked to accept the GPG keys of the repositories. Clearly, you have to answer YES in order to use them.
+
+```bash
+dnf update
+```
+
+Once the update is complete you can check that the repository has been configured correctly with the `dnf repolist` command which should now list the new repositories.
+
+```bash
+dnf repolist
+repo id            repo name
+...
+epel               Extra Packages for Enterprise Linux 8 - aarch64
+epel-modular       Extra Packages for Enterprise Linux Modular 8 - aarch64
+...
+```
+
+The repository configuration files are located in `/etc/yum.repos.d/`.
+
+```
+ll /etc/yum.repos.d/ | grep epel
+-rw-r--r--. 1 root root 1485 Jan 31 17:19 epel-modular.repo
+-rw-r--r--. 1 root root 1422 Jan 31 17:19 epel.repo
+-rw-r--r--. 1 root root 1584 Jan 31 17:19 epel-testing-modular.repo
+-rw-r--r--. 1 root root 1521 Jan 31 17:19 epel-testing.repo
+```
+
+And below we can see the contents of the file `epel.repo`.
+
+```bash
+[epel]
+name=Extra Packages for Enterprise Linux $releasever - $basearch
+# It is much more secure to use the metalink, but if you wish to use a local mirror
+# place its address here.
+#baseurl=https://download.example/pub/epel/$releasever/Everything/$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=1
+gpgcheck=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+
+[epel-debuginfo]
+name=Extra Packages for Enterprise Linux $releasever - $basearch - Debug
+# It is much more secure to use the metalink, but if you wish to use a local mirror
+# place its address here.
+#baseurl=https://download.example/pub/epel/$releasever/Everything/$basearch/debug
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+
+[epel-source]
+name=Extra Packages for Enterprise Linux $releasever - $basearch - Source
+# It is much more secure to use the metalink, but if you wish to use a local mirror
+# place it's address here.
+#baseurl=https://download.example/pub/epel/$releasever/Everything/source/tree/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-source-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+```
+
+### Using EPEL
+
+At this point, once configured, we are ready to install the packages from EPEL. To start, we can list the packages available in the repository with the command:
+
+```bash
+dnf --disablerepo="*" --enablerepo="epel" list available
+```
+
+And an excerpt of the command
+
+```bash
+dnf --disablerepo="*" --enablerepo="epel" list available | less
+Last metadata expiration check: 1:58:22 ago on Fri 25 Mar 2022 09:23:29 AM CET.
+Available Packages
+3proxy.aarch64                                                    0.8.13-1.el8                                    epel
+AMF-devel.noarch                                                  1.4.23-2.el8                                    epel
+AMF-samples.noarch                                                1.4.23-2.el8                                    epel
+AusweisApp2.aarch64                                               1.22.3-1.el8                                    epel
+AusweisApp2-data.noarch                                           1.22.3-1.el8                                    epel
+AusweisApp2-doc.noarch                                            1.22.3-1.el8                                    epel
+BackupPC.aarch64                                                  4.4.0-1.el8                                     epel
+BackupPC-XS.aarch64                                               0.62-1.el8                                      epel
+BibTool.aarch64                                                   2.68-1.el8                                      epel
+CCfits.aarch64                                                    2.5-14.el8                                      epel
+CCfits-devel.aarch64                                              2.5-14.el8                                      epel
+...
+```
+
+From the command we can see that to install from EPEL we must force **dnf** to query the requested repository with the options `--disablerepo` and `--enablerepo`, this is because otherwise a match found in other optional repositories (RPM Fusion, REMI, ELRepo, etc.) could be newer and therefore have priority. These options are not necessary if you have only installed EPEL as an optional repository because the packages in the repository will never be available in the official ones. At least in the same version!
+
+!!! attention "Support consideration"
+
+    One aspect to consider regarding support (updates, bug fixes, security patches) is that EPEL packages have no official support from RHEL and technically their life could last the space of a development of Fedora (six months) and then disappear. This is a remote possibility but one to consider.
+
+So to install a package from the EPEL repositories you would use:
+
+```bash
+dnf --disablerepo="*" --enablerepo="epel" install nmon
+Last metadata expiration check: 2:01:36 ago on Fri 25 Mar 2022 04:28:04 PM CET.
+Dependencies resolved.
+==============================================================================================================================================================
+ Package                            Architecture                          Version                                    Repository                          Size
+==============================================================================================================================================================
+Installing:
+ nmon                               aarch64                               16m-1.el8                                  epel                                71 k
+
+Transaction Summary
+==============================================================================================================================================================
+Install  1 Package
+
+Total download size: 71 k
+Installed size: 214 k
+Is this ok [y/N]:
+```
+
+### Conclusion
+
+EPEL is not an official repository for RHEL. But it can be useful for administrators and developers who work with RHEL or derivatives and need some utilities prepared for RHEL from a source they can feel confident about.
