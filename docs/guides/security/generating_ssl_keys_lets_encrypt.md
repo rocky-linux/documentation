@@ -6,7 +6,7 @@ tested with: 8.5
 tags:
   - security
   - ssl
-  - cerbot
+  - certbot
 ---
 
 # Generating SSL Keys - Let's Encrypt
@@ -57,13 +57,13 @@ dnf install epel-release
 Then, just install the appropriate packages, depending on whether you're using Apache or Nginx as your web server. For Apache that's:
 
 ```bash
-dnf install certbot python3-cerbot-apache
+dnf install certbot python3-certbot-apache
 ```
 
 For Nginx, just change out one... partial word?
 
 ```bash
-dnf install certbot python3-cerbot-nginx
+dnf install certbot python3-certbot-nginx
 ```
 
 You can always install both server modules if necessary, of course.
