@@ -16,19 +16,17 @@ Neste capítulo você aprenderá sobre as distribuições GNU/Linux.
 :heavy_check_mark: Explicar a filosofia do software livre   
 :heavy_check_mark: Compreender a utilidade do SHELL.
 
-:checkered_flag: **generalidades** **, ** linux**, **distribuições**</p>
+:checkered_flag: **generalidades** **, ** linux**, **distribuições**
 
-**Conhecimento**: :star:    
-    
+**Conhecimento**: :star:
+
 **Complexidade**: :star:
-
-**Tempo de leitura**: 10 minutos
 
 ****
 
 ## O que é um sistema operacional?
 
-Linux, UNIX, BSD, Windows e MacOS são todos **sistemas operacionais**.
+**Tempo de leitura**: 10 minutos
 
 !!! resumo
 
@@ -64,7 +62,7 @@ O UNIX ainda é relevante nos dias de hoje (HP-UX, AIX, Solaris, etc.)
 
 #### Minix
 
-* **Complexidade**: :star: **1987**: A.S. Tanenbaum desenvolve MINIX, um UNIX simplificado, com o intuito de ensinar os sistemas operacionais de uma forma simples.
+* **Complexidade**: :star: **1987**: A.S. Tanenbaum desenvolve MINIX, um UNIX simplificado, com o intuito de ensinar os sistemas operacionais de uma forma simples. **1987**: A.S. Tanenbaum desenvolve MINIX, um UNIX simplificado, com o intuito de ensinar os sistemas operacionais de uma forma simples.
 
 #### Linux
 
@@ -172,9 +170,9 @@ O ambiente gráfico **Gnome 3** não usa mais o conceito de Área de Trabalho(De
 
 ![KDE Desktop](images/01-presentation-kde.png)
 
-O ambiente gráfico **KDE** é baseado na biblioteca de componentes **Qt**.
+Existem diversos ambientes gráficos: **Gnome**, **KDE**, **LXDE**, **XFCE**, etc. Há interfaces para todos tipos de pessoas, e sua **ergonomia** não perde em nada para os sistemas Microsoft ou Apple!
 
-Ele é mais recomendado para usuários que estão migrando do mundo Windows para o Linux.
+O ambiente gráfico **KDE** é baseado na biblioteca de componentes **Qt**.
 
 ![Tux - The Linux mascot](images/tux.png)
 
@@ -184,11 +182,11 @@ Um usuário de um sistema operacional Windows ou Mac deve comprar uma licença p
 
 No universo **GNU/Linux**, o movimento Software Livre fornece principalmente distribuições livres.
 
+No universo **GNU/Linux**, o movimento Software Livre fornece principalmente distribuições livres.
+
 **Grátis** não significa livre!
 
 **Código Aberto**: os códigos-fonte estão disponíveis, por isso é possível consultá-los e modificá-los sob certas condições.
-
-Um software livre é necessariamente Código Aberto, mas o oposto não é verdade, uma vez que um software código aberto é separado da liberdade proposta pela licença GPL.
 
 #### Licença GPL (General Public License)
 
@@ -248,14 +246,14 @@ Existem vários tipos de shells disponíveis e configuráveis em uma plataforma 
 - [ ] Verdadeiro
 - [ ] Falso
 
-:heavy_check_mark: O sistema operacional tem como função:
+:heavy_check_mark: Um sistema operacional é um conjunto de programas para gerenciar os recursos disponíveis de um computador:
 
 - [ ] Gerenciar a memória física e virtual
 - [ ] Permitir acesso direto aos periféricos
 - [ ] Subcontratar o gerenciamento de tarefas para o processador
 - [ ] Coletar informações sobre os programas utilizados ou em uso
 
-:heavy_check_mark: Dentre essas personalidades, quais participaram do desenvolvimento do UNIX:
+:heavy_check_mark: O sistema operacional tem como função:
 
 - [ ] Linus Torvalds
 - [ ] Ken Thompson
@@ -263,7 +261,7 @@ Existem vários tipos de shells disponíveis e configuráveis em uma plataforma 
 - [ ] Brian Kernighan
 - [ ] Andrew Stuart Tanenbaum
 
-:heavy_check_mark: A nacionalidade original de Linus Torvalds, criador do kernel Linux, é:
+:heavy_check_mark: Dentre essas personalidades, quais participaram do desenvolvimento do UNIX:
 
 - [ ] Sueco
 - [ ] Finlandês
@@ -271,14 +269,14 @@ Existem vários tipos de shells disponíveis e configuráveis em uma plataforma 
 - [ ] Flamengo(Flemish)
 - [ ] Francês
 
-:heavy_check_mark: Quais das seguintes distribuições é a mais antiga:
+:heavy_check_mark: A nacionalidade original de Linus Torvalds, criador do kernel Linux, é:
 
 - [ ] Debian
 - [ ] Slackware
 - [ ] RedHat
 - [ ] Arch
 
-:heavy_check_mark: O Kernel Linux é:
+:heavy_check_mark: Quais das seguintes distribuições é a mais antiga:
 
 - [ ] Multitarefa
 - [ ] Multi-usuário
@@ -287,17 +285,17 @@ Existem vários tipos de shells disponíveis e configuráveis em uma plataforma 
 - [ ] Multiplataforma
 - [ ] Aberto
 
+:heavy_check_mark: O Kernel Linux é:
+
+- [ ] Verdadeiro
+- [ ] Falso
+
 :heavy_check_mark: Um software livre é necessariamente de código aberto?
 
 - [ ] Verdadeiro
 - [ ] Falso
 
 :heavy_check_mark: O software de código aberto é necessariamente gratuito?
-
-- [ ] Verdadeiro
-- [ ] Falso
-
-:heavy_check_mark: Qual das seguintes opções não é um shell:
 
 - [ ] Jason
 - [ ] Jason-Bourne shell (jbsh)
