@@ -410,9 +410,9 @@ Se rimani bloccato, riavvia il server (la maggior parte dei pannelli di controll
     
     Se siete bloccati con un provider di servizi internet che cambia il vostro indirizzo IP ogni volta che il modem si riavvia, non usate queste regole (almeno non per SSH) fino a quando non avrete una soluzione per questo. Ti chiuderai fuori dal tuo server
     
-    O aggiornate il vostro piano/provider internet
+    O aggiorni il tuo piano/provider internet, o prendi una VPN che ti fornisce un IP dedicato, e *mai e poi mai* perderlo.
     
-    Nel frattempo, [installare e configurare fail2ban](https://wiki.crowncloud.net/?How_to_Install_Fail2Ban_on_RockyLinux_8), che può aiutare a ridurre gli attacchi brute force.
+    Nel frattempo, [installare e configurare fail2ban](https://wiki.crowncloud.net/?How_to_Install_Fail2Ban_on_RockyLinux_8), che può aiutare a ridurre gli attacchi di brute force.
     
     Ovviamente, su una rete locale che controllate (e dove potete impostare manualmente l'indirizzo IP di ogni macchina), potete usare tutte queste regole quanto volete.
 

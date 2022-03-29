@@ -53,6 +53,10 @@ SHELL=/bin/sh
 PATH=/sbin:/usr/sbin:/bin
 MAILTO=root
 # 每个指定作业的默认45分钟延迟随机增加0-45分钟。
+SHELL=/bin/sh
+PATH=/sbin:/usr/sbin:/bin
+MAILTO=root
+# 每个指定作业的默认45分钟延迟随机增加0-45分钟。
 RANDOM_DELAY=45
 # 指定工作时间范围 在这里代表 3:00~22:00
 START_HOURS_RANGE=3-22
@@ -78,6 +82,13 @@ MAILTO=root
 ```
 shell > journalctl -u crond.service
 - Logs begin at Wed 2021-10-20 19:27:39 CST, end at Wed 2021-10-2023:32:42 CST. October 20 19:27:42 li systemd[1]: Started Command Scheduler.
+October 20 19:27:42 li crond[733]: (CRON) STARTUP (1.5.2)
+October 20 19:27:42 li crond[733]: (CRON) INFO (RANDOM_DELAY will be scaled with factor 76% if used.)
+October 20 19:27:42 li crond[733]: (CRON) INFO (running with inotify support)
+October 20 20:01:01 li CROND[1897]: (root) CMD (run-parts /etc/cron.hourly)
+October 20 21:01:01 li CROND[1922]: (root) CMD (run-parts /etc/cron.hourly)
+October 20 22:01:01 li CROND[1947]: (root) CMD (run-parts /etc/cron.hourly)
+October 20 23:01:01 li CROND[2037]: (root) CMD (run-parts /etc/cron.hourly) October 20 19:27:42 li systemd[1]: Started Command Scheduler.
 October 20 19:27:42 li crond[733]: (CRON) STARTUP (1.5.2)
 October 20 19:27:42 li crond[733]: (CRON) INFO (RANDOM_DELAY will be scaled with factor 76% if used.)
 October 20 19:27:42 li crond[733]: (CRON) INFO (running with inotify support)
