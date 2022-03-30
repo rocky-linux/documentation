@@ -347,9 +347,9 @@ Il display della data può seguire i seguenti formati:
 | `+%R`   | Tempo nel formato `hh:mm`                                                      |
 | `+%s`   | Secondi dal 1° gennaio 1970                                                    |
 | `+%S`   | Secondo (00..60)                                                               |
-| `+%T`   | Giorno della settimana (`1` per Lunedì)                                        |
-| `+%u`   | Numero della settimana (`+%V`)                                                 |
-| `+%V`   | Data in formato`DD/MM/YYYY`                                                    |
+| `+%T`   | Tempo nel formato `hh:mm:ss`                                                   |
+| `+%u`   | Giorno della settimana (`1` per Lunedì)                                        |
+| `+%V`   | Numero della settimana (`+%V`)                                                 |
 | `+%x`   | Data nel formato `GG/MM/AAAA`                                                  |
 
 Il comando `date` consente anche di modificare la data e l'ora del sistema. In questo caso, verrà utilizzata l'opzione `-s`.
