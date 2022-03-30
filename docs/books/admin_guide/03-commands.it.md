@@ -332,24 +332,25 @@ In questo ultimo esempio, l'opzione `d` visualizza una data fornita. L'opzione `
 
 Il display della data può seguire i seguenti formati:
 
-| Opzione | Formato                                 |
-| ------- | --------------------------------------- |
-| `+%A`   | Nome completo del giorno                |
-| `+%B`   | Nome completo del mese                  |
-| `+%c`   | Visualizzazione completa della data     |
-| `+%d`   | Numero del giorno                       |
-| `+%F`   | Data nel formato`YYYY-MM-DD`            |
-| `+%G`   | Anno                                    |
-| `+%H`   | Ora del giorno                          |
-| `+%j`   | Giorno dell'anno                        |
-| `+%m`   | Numero del mese                         |
-| `+%M`   | Minuti                                  |
-| `+%R`   | Tempo nel formato`hh:mm`                |
-| `+%s`   | Secondi dal 1° gennaio 1970             |
-| `+%T`   | Tempo nel formato`hh:mm:ss`             |
-| `+%u`   | Giorno della settimana (`1` per Lunedì) |
-| `+%V`   | Numero della settimana (`+%V`)          |
-| `+%x`   | Data in formato`DD/MM/YYYY`             |
+| Opzione | Formato                                                                        |
+| ------- | ------------------------------------------------------------------------------ |
+| `+%A`   | Nome completo del giorno della settimana della località (ad esempio, domenica) |
+| `+%B`   | Nome completo del mese della località (ad esempio, Gennaio)                    |
+| `+%c`   | Data e ora di Locale (ad esempio, Gio Mar 3 23:05:25 2005)                     |
+| `+%d`   | Giorno del mese (ad es. 01)                                                    |
+| `+%F`   | Data nel formato `YYYY-MM-DD`                                                  |
+| `+%G`   | Anno                                                                           |
+| `+%H`   | Ora (00..23)                                                                   |
+| `+%j`   | Giorno dell'anno                                                               |
+| `+%m`   | Numero del mese (01..12)                                                       |
+| `+%M`   | Minuto (00..59)                                                                |
+| `+%R`   | Tempo nel formato `hh:mm`                                                      |
+| `+%s`   | Secondi dal 1° gennaio 1970                                                    |
+| `+%S`   | Secondo (00..60)                                                               |
+| `+%T`   | Giorno della settimana (`1` per Lunedì)                                        |
+| `+%u`   | Numero della settimana (`+%V`)                                                 |
+| `+%V`   | Data in formato`DD/MM/YYYY`                                                    |
+| `+%x`   | Data nel formato `GG/MM/AAAA`                                                  |
 
 Il comando `date` consente anche di modificare la data e l'ora del sistema. In questo caso, verrà utilizzata l'opzione `-s`.
 
@@ -365,7 +366,7 @@ date -s "[AA]AA-MM-JJ hh:mm:[ss]"
 
 ### comando `id`, `who` e `whoami`
 
-Il comando `id` visualizza il nome dell'attuale utente e dei suoi gruppi o quelli di un utente, se il login dell'utente viene assegnato come argomento.
+Il comando `id` visualizza il nome dell'attuale utente e dei suoi gruppi o quelli di un utente, se il login dell'utente viene assegnato come argomento. Per impostazione predefinita, non viene aggiunto alcun parametro utente e vengono visualizzate le informazioni dell'utente e del gruppo attualmente loggato。
 
 ```bash
 $ id rockstar
@@ -462,7 +463,7 @@ Esempio:
 
 ```bash
 $ ls /home
-.    ..    rockstar
+.    ..    ..
 ```
 
 Le opzioni principali del comando `ls` sono:
