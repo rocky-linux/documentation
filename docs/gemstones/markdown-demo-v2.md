@@ -1,7 +1,7 @@
 ---
 title: Simple Markdown Demo 2
 author: Einstein
-contributors: Dr. Ben Dover
+contributors: Dr. Ben Dover, Sweet Gypsy Rose
 tested with: 8.5
 tags:
   - sample
@@ -9,6 +9,8 @@ tags:
 ---
 
 # Overview
+
+As you can tell by reading, this is a pretty silly example, designed to be used to test some translation issues that we are having. It's fun to write though!
 
 This guide demos popular Markdown tags used on [https://docs.rockylinux.org](https://docs.rockylinux.org)
 
@@ -29,6 +31,7 @@ Or multiple commands:
 ```
 dnf install my_stapler
 dnf update my_pencil
+systemctl enable my_stapler
 ```
 
 At other times, you need bulleted or numbered lists:
@@ -43,4 +46,13 @@ And you could need an admonition:
 
 !!! TIP
 
-    Pencils and staplers are really old-school. 
+    Pencils and staplers are really old-school.
+
+More times than not, when a command has multiple options, or you need to list specifics, you might want to use a table to identify things:
+
+|  Tool    |   Use               |   Additional Information                                  |
+|----------|---------------------|-----------------------------------------------------------|
+| pencil   | writing or printing | often replaced with a pen                                 |
+| pen      | writing or printing | often replaced with a stylus                              |
+| stylus   | writing or printing on an electronic device | sometimes replaced by a keyboard  |
+| keyboard | writing or printing on an electronic device | never replaced - used until full of food crumbs |
