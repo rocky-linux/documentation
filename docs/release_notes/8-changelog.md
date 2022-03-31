@@ -17,6 +17,42 @@ Updates released since upstream are posted across our current architectures. We 
 
 All Rocky Linux components are built from the sources hosted at [git.rockylinux.org](https://git.rockylinux.org). In addition, SRPMs are being published alongside the repositories in a corresponding "source" directory. You can find these on any of our mirrors. These source packages match every binary RPM we release.
 
+## 8.5 - 2022-03-15
+
+The following packages have been updated since March 15, 2022:
+
+* expat-2.2.5-4.el8_5.3
+* tzdata-2022a-1.el8
+* httpd-2.4.37-43.module+el8.5.0+747+83fae388.3
+* openssl-1.1.1k-6.el8_5
+
+The following modules have been updated:
+
+* httpd
+
+Associated CVE's:
+
+* CVE-2022-25236
+* CVE-2022-25235
+* CVE-2022-25315
+* CVE-2022-23852
+* CVE-2021-45960
+* CVE-2021-46143
+* CVE-2022-22827
+* CVE-2022-22826
+* CVE-2022-22825
+* CVE-2022-22824
+* CVE-2022-22823
+* CVE-2022-22822
+* CVE-2022-0778
+* CVE-2022-22720
+
+### Additional Information
+
+We would like to apologize for the lack of announcements in the past two weeks. Currently these announcements are manual and there are ongoing plans to make these more automated with less human interaction.
+
+With the release of the RHEL 8.6 beta, we will be looking into what is changing and what and how we will need to do our builds for the next few weeks before its potential GA in late April or May. During this, we have also been working on bootstrapping the RHEL 9 beta packages to eventually be imported, rebuilt, and tested in our new build system.
+
 ## 8.5 - 2022-03-14
 
 The following packages have been updated since March 14, 2022:
