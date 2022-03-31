@@ -4,19 +4,21 @@ author: Einstein
 contributors: Dr. Ben Dover
 tested with: 8.5
 tags:
-  - campione
+  - sample
   - crowdin
 ---
 
 # Sommario
 
-Come si può dire leggendo, questo è un esempio abbastanza sciocco, progettato per essere utilizzato per testare alcuni problemi di traduzione che stiamo hanno. È divertente scrivere però!
+Come potete capire leggendo, questo è un esempio abbastanza stupido, progettato per essere usato per testare alcuni problemi di traduzione che stiamo avendo. È divertente scrivere però!
 
-A volte vedrai cose come _questo_..
+Questa guida mostra i tag Markdown più popolari usati su [https://docs.rockylinux.org](https://docs.rockylinux.org)
 
 ## La Demo
 
 > Questo è un esempio di citazione. Ben formattato.
+
+A volte vedrai cose come _questo_..
 
 Che ne dici di un po ' **grassetto**
 
@@ -26,14 +28,13 @@ A volte è necessario mostrare un `comando`
 
 O comandi multipli:
 
-Altre volte, hai bisogno di elenchi puntati o numerati:
-
 ```
 dnf install my_stapler
 dnf update my_pencil
+systemctl enable my_stapler
 ```
 
-E potrebbe essere necessario un ammonimento:
+Altre volte, hai bisogno di elenchi puntati o numerati:
 
 - Credo che tu abbia la mia cucitrice
 - In caso contrario, si prega di restituire almeno la mia matita
@@ -47,11 +48,11 @@ E potrebbe essere necessario un ammonimento:
 
     Matite e cucitrici sono davvero vecchia scuola.
 
-Più volte che no, quando un comando ha più opzioni, o è necessario elencare le specifiche, si potrebbe voler utilizzare una tabella per identificare le cose:
+Il più delle volte, quando un comando ha più opzioni, o è necessario elencare le specifiche, si potrebbe voler utilizzare una tabella per identificare le cose:
 
-| Strumento | Usa                                              | Note Tecniche di Rilascio                                         |
-| --------- | ------------------------------------------------ | ----------------------------------------------------------------- |
-| matita    | scrittura o stampa                               | spesso sostituito con una penna                                   |
-| penna     | scrittura o stampa                               | spesso sostituito con uno stilo                                   |
-| stylus    | scrittura o stampa su un dispositivo elettronico | a volte sostituito da una tastiera                                |
-| tastiera  | scrittura o stampa su un dispositivo elettronico | mai sostituito - usato fino a quando pieno di briciole alimentari |
+| Strumento | Uso                                              | Ulteriori informazioni                                           |
+| --------- | ------------------------------------------------ | ---------------------------------------------------------------- |
+| matita    | scrittura o stampa                               | spesso sostituito con una penna                                  |
+| penna     | scrittura o stampa                               | spesso sostituito con una stilo                                  |
+| stylus    | scrittura o stampa su un dispositivo elettronico | a volte sostituito da una tastiera                               |
+| tastiera  | scrittura o stampa su un dispositivo elettronico | mai sostituito - usato fino a quando è pieno di briciole di cibo |
