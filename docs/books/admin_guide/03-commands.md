@@ -554,9 +554,9 @@ $ ls -lhR  /var | grep \- | grep [1-9]*M
 
 Of course, we highly recommend that you use the `find` command.
 
-...bash
+```bash
 $ find /var -size +1M -a -size -1024M  -a -type f  -exec ls -lh {} \;
-...
+```
 
 * Show the rights on a folder:
 
