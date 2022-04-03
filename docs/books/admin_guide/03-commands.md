@@ -544,13 +544,19 @@ total 1332
 * List `/var` files larger than 1 megabyte but less than 1 gigabyte:
 
 ```bash
-$ ls -Rlh /var | grep [0-9]M
+$ ls -lhR  /var | grep \- | grep [1-9]*M
 ...
--rw-r--r--. 1 apache apache 1,2M 10 may.  13:02 XB RiyazBdIt.ttf
--rw-r--r--. 1 apache apache 1,2M 10 may.  13:02 XB RiyazBd.ttf
--rw-r--r--. 1 apache apache 1,1M 10 may.  13:02 XB RiyazIt.ttf
+-rw-r--r--. 1 apache apache 1.2M 10 may.  13:02 XB RiyazBdIt.ttf
+-rw-r--r--. 1 apache apache 1.2M 10 may.  13:02 XB RiyazBd.ttf
+-rw-r--r--. 1 apache apache 1.1M 10 may.  13:02 XB RiyazIt.ttf
 ...
 ```
+
+Of course, we highly recommend that you use the `find` command.
+
+...bash
+$ find /var -size +1M -a -size -1024M  -a -type f  -exec ls -lh {} \;
+...
 
 * Show the rights on a folder:
 
