@@ -508,7 +508,7 @@ $ ls -lia /home
 | --------------- | ------------------------------------------------------------------------------------------------------------- |
 | `78489`         | Inode Number.                                                                                                 |
 | `drwx------`    | File type (`d`) and rights (`rwx------`).                                                                     |
-| `4`             | Number of subdirectories (`.` and `..` included). For a file of type physical link: number of physical links. |
+| `4`             | Number of subdirectories (`.` and `..` included). For a file, it represents the number of hard links, and 1 represents itself. |
 | `rockstar`      | User ownership.                                                                                               |
 | `rockstar`      | Group ownership.                                                                                              |
 | `4096`          | Size in bytes.                                                                                                |
