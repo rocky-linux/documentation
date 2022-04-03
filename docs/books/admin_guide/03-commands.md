@@ -492,7 +492,7 @@ The `ls` command, however, has a lot of options (see `man`):
 | `-g`                                                         | Displays UID and GID rather than owner names.                                                                                        |
 | `-h`                                                         | Displays file sizes in the most appropriate format (byte, kilobyte, megabyte, gigabyte, ...). `h` stands for Human Readable.         |
 | `-s`                                                         | Displays the number of blocks occupied by the file. One block equals 400K.                                                                                      |
-| `-A`                                                         | Displays all files in the directory except `.` and `.`.                                                                              |
+| `-A`                                                         | Displays all files in the directory except `.` and `..`                                                                              |
 | `-R`                                                         | Displays the contents of subdirectories recursively.                                                                                 |
 | `-F`                                                         | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file. |
 | `-X`                                                         | Sort files according to their extensions.                                                                                            |
