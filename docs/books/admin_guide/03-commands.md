@@ -511,7 +511,7 @@ $ ls -lia /home
 | `4`             | Number of subdirectories (`.` and `..` included). For a file, it represents the number of hard links, and 1 represents itself. |
 | `rockstar`      | User ownership.                                                                                               |
 | `rockstar`      | Group ownership.                                                                                              |
-| `4096`          | Size in bytes.                                                                                                |
+| `4096`          | For files, it shows the size of the file. For directories, it shows the fixed value of 4096 bytes occupied by the file naming. To calculate the total size of a directory, use `du -sh rockstar/` |
 | `25 oct. 08:10` | Last modified date.                                                                                           |
 | `rockstar`      | The name of the file (or directory).                                                                          |
 
