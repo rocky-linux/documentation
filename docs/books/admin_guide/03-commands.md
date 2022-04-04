@@ -492,7 +492,7 @@ The `ls` command, however, has a lot of options (see `man`):
 | `-g`                                                         | Displays UID and GID rather than owner names.                                                                                        |
 | `-h`                                                         | Displays file sizes in the most appropriate format (byte, kilobyte, megabyte, gigabyte, ...). `h` stands for Human Readable.         |
 | `-s`                                                         | Displays the number of blocks occupied by the file. One block equals 400K.                                                                                      |
-| `-A`                                                         | Displays all files in the directory except `.` and `.`.                                                                              |
+| `-A`                                                         | Displays all files in the directory except `.` and `..`                                                                              |
 | `-R`                                                         | Displays the contents of subdirectories recursively.                                                                                 |
 | `-F`                                                         | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file. |
 | `-X`                                                         | Sort files according to their extensions.                                                                                            |
@@ -508,10 +508,10 @@ $ ls -lia /home
 | --------------- | ------------------------------------------------------------------------------------------------------------- |
 | `78489`         | Inode Number.                                                                                                 |
 | `drwx------`    | File type (`d`) and rights (`rwx------`).                                                                     |
-| `4`             | Number of subdirectories (`.` and `..` included). For a file of type physical link: number of physical links. |
+| `4`             | Number of subdirectories (`.` and `..` included). For a file, it represents the number of hard links, and 1 represents itself. |
 | `rockstar`      | User ownership.                                                                                               |
 | `rockstar`      | Group ownership.                                                                                              |
-| `4096`          | Size in bytes.                                                                                                |
+| `4096`          | For files, it shows the size of the file. For directories, it shows the fixed value of 4096 bytes occupied by the file naming. To calculate the total size of a directory, use `du -sh rockstar/` |
 | `25 oct. 08:10` | Last modified date.                                                                                           |
 | `rockstar`      | The name of the file (or directory).                                                                          |
 
@@ -544,12 +544,18 @@ total 1332
 * List `/var` files larger than 1 megabyte but less than 1 gigabyte:
 
 ```bash
-$ ls -Rlh /var | grep [0-9]M
+$ ls -lhR  /var | grep \- | grep [1-9]*M
 ...
--rw-r--r--. 1 apache apache 1,2M 10 may.  13:02 XB RiyazBdIt.ttf
--rw-r--r--. 1 apache apache 1,2M 10 may.  13:02 XB RiyazBd.ttf
--rw-r--r--. 1 apache apache 1,1M 10 may.  13:02 XB RiyazIt.ttf
+-rw-r--r--. 1 apache apache 1.2M 10 may.  13:02 XB RiyazBdIt.ttf
+-rw-r--r--. 1 apache apache 1.2M 10 may.  13:02 XB RiyazBd.ttf
+-rw-r--r--. 1 apache apache 1.1M 10 may.  13:02 XB RiyazIt.ttf
 ...
+```
+
+Of course, we highly recommend that you use the `find` command.
+
+```bash
+$ find /var -size +1M -a -size -1024M  -a -type f  -exec ls -lh {} \;
 ```
 
 * Show the rights on a folder:
