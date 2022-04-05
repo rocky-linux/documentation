@@ -44,7 +44,7 @@ When the shell encounters an error, it displays a message to identify the proble
 But there are mechanisms to stop the execution of a script when an error occurs.
 Command-specific errors are also displayed on the screen or inside files.
 
-What is a good script? It is a:
+What is a good script? It is:
 
 * **reliable**: its operation is flawless even in case of misuse;
 * **commented**: its code is annotated to facilitate the rereading and the future evolutions;
