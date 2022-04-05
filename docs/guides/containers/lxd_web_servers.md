@@ -619,7 +619,13 @@ First, log into the container's shell:
 lxc exec nginx-server bash
 ```
 
-Once you're in, you can search for the latest version of Nginx available on our servers:
+Then, install the `epel-release` repository so you can install the latest version of Nginx:
+
+```bash
+dnf install epel-release
+```
+
+Once that's done, search for the latest version of Nginx with:
 
 ```bash
 dnf module list nginx
