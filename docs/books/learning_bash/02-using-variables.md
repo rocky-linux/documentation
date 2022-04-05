@@ -95,7 +95,7 @@ $ file=file_name
 $ touch $file
 ```
 
-It is strongly recommended to protect variables with apostrophes, as in this example below:
+It is strongly recommended to protect variables with quotes, as in this example below:
 
 ```
 $ file=file name
