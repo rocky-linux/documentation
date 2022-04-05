@@ -34,7 +34,7 @@ To start writing a shell script, it is convenient to use a text editor that supp
 
 The name of the script should respect some rules:
 
-* no names of existing commands ;
+* no names of existing commands;
 * only alphanumeric characters, i.e. no accented characters or spaces;
 * extension .sh to indicate that it is a shell script.
 
