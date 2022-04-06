@@ -1,38 +1,38 @@
 ---
-title: Change Log
-author: Louis Abel
-contributors: Steven Spencer, tianci li, Colussi Franco, GiorgioHerbie
+title: ログの変更
+author: ルイ・アベル
+contributors: Steven Spencer, tianci li
 tags:
-  - changelog roccioso
-  - changelog
+  - '♪rocky changelog ♪'
+  - 更新履歴
 ---
 
-# Rocky Linux 8 Change Log
+# Rocky Linux 8 変更ログ
 
-Rocky Linux 8 riceverà aggiornamenti incrementali e aggiornamenti di versione minori, nel tempo come la build upstream e ne caricherà di propri. Questa pagina fornirà dettagli e informazioni sui cambiamenti che si verificano. Un sistema con in esecuzione Rocky Linux può aggiornare il proprio sistema in qualsiasi momento eseguendo `dnf update`. L'aggiornamento di questo documento può a volte essere ritardato. Per controllare nuovi aggiornamenti, puoi andare all'archivio [Rocky Announce](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/) della mailing list.
+Rocky Linux 8は、アップストリームのビルドとプッシュの間に、インクリメンタルアップデートとマイナーバージョンアップグレードを受け取ります。 このページでは、変更内容の詳細や変更内容をご案内します。 Rocky Linuxを実行しているシステムは、 `dnf update` を実行することで、いつでもシステムを完全に更新することができます。 この文書の更新が遅れることがあります。 新しいアップデートを確認するには、 [Rocky Announce](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/) メーリングリストのアーカイブを参照してください。
 
-### Aggiornamenti
+### 更新
 
-Gli aggiornamenti rilasciati dall'upstream sono pubblicati attraverso le nostre architetture attuali. Raccomandiamo vivamente che tutti gli utenti applichino *tutti* gli aggiornamenti, compreso il contenuto rilasciato oggi, sulle macchine Rocky Linux esistenti. Questo può essere fatto eseguendo `dnf update`.
+アップストリーム以降にリリースされたアップデートは、現在のアーキテクチャに掲載されます。 既存の Rocky Linux マシンには、本日リリースされたコンテンツを含め、すべてのユーザーが ** すべてのアップデートを適用することを強くお勧めします。 これは `dnf update` を実行することで行うことができます。
 
-Tutti i componenti di Rocky Linux sono costruiti dalle fonti ospitate su [git.rockylinux.org](https://git.rockylinux.org). Inoltre, gli SRPM sono in corso di pubblicazione accanto ai repository in una corrispondente directory "source". Puoi trovarli su uno qualsiasi dei nostri mirrors. Questi pacchetti sorgente corrispondono ad ogni RPM binario che rilasciamo.
+すべての Rocky Linux コンポーネントは、 [git.rockylinux.org](https://git.rockylinux.org) でホストされるソースから構築されています。 さらに、SRPMは、対応する「source」ディレクトリのリポジトリとともに公開されています。 あなたは私たちのミラーのいずれかにこれらを見つけることができます。 これらのソースパッケージは私たちがリリースするすべてのバイナリRPMと一致します。
 
-## 8.5 - 2022-01-11
+## 8.5 - 2022-03-15
 
-I seguenti pacchetti sono stati aggiornati dal 11 gennaio 2022:
+2022年3月15日以降、以下のパッケージが更新されました。
 
-* httpd: httpd-2.4.37-41.module+el8.5.0+695+1fa8055e -> httpd-2.4.37-43.module+el8.5.0+714+5ec56e8
+* expat-2.2.5-4.el8_5.3
 * tzdata-2022a-1.el8
-* resource-agent -> resource-agents-4.1.1-90.el8_4.5
+* httpd-2.4.37-43.module+el8.5.0+747+83fae388.3
 * openssl-1.1.1k-6.el8_5
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+以下のモジュールが更新されました：
 
-* 389-ds-1,4-8050020211221162652,1a75f91c
+* httpd
 
-I seguenti pacchetti sono stati aggiornati dal 22 dicembre 2021:
+関連付けられた CVE:
 
-* thunderbird: aggiornato a 78.14.0
+* CVE-2022-25236
 * CVE-2022-25235
 * CVE-2022-25315
 * CVE-2022-23852
@@ -47,19 +47,19 @@ I seguenti pacchetti sono stati aggiornati dal 22 dicembre 2021:
 * CVE-2022-0778
 * CVE-2022-22720
 
-### Note Tecniche di Rilascio
+### 追加情報
 
-Ci scusiamo per la mancanza di annunci nelle ultime due settimane. Attualmente questi annunci sono manuali e ci sono piani in corso per rendere questi più automatizzati con meno interazione umana.
+2週間以内にお知らせがなかったことをお詫び申し上げます。 現在、これらの発表は手作業で行われており、人とのやり取りが少なく、より自動化される計画が進行中です。
 
-Con il rilascio del RHEL 8. beta, esamineremo cosa sta cambiando e cosa e come dovremo fare le nostre costruzioni per le prossime settimane prima della sua potenziale GA a fine aprile o maggio. Durante questo processo, abbiamo anche lavorato sul bootstrapping dei pacchetti beta RHEL 9 per essere importati, ricostruito, e testato nel nostro nuovo sistema di costruzione.
+RHEL 8のリリースと。 ベータ! 私たちは、何が変化しているのか、そして4月下旬または5月にその潜在的なGAの前に、今後数週間のために私たちのビルドを行う必要がある方法を検討します。 この間、RHEL 9ベータパッケージの起動にも取り組んでおり、最終的にインポートされるようになりました。 新しいビルドシステムで再構築テストを行いました
 
-## 8.5 - 2022-01-03
+## 8.5 - 2022-03-14
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+2022年3月14日以降、以下のパッケージが更新されました。
 
-* CVE-2021-44716
+* 389-ds-base: 389-ds-base-1.4.3.23-12.module+el8.5.0+722+e2a0b219 -> 389-ds-base-1.4.3.23-14.module+el8.5.0+745+c5be6847
 * cloud-init: cloud-init-21.1-7.el8_5.3 -> cloud-init-21.1-7.el8_5.4
-* resource-agent -> resource-agents-4.1.1-90.el8_4.5
+* fence-agents: fence-agents-4.2.1-75.el8 -> fence-agents-4.2.1-75.el8_5.2
 * firewalld: firewalld-0.9.3-7.el8 -> firewalld-0.9.3-7.el8_5.1
 * gdm: gdm-1:40.0-15.el8 -> gdm-1:40.0-15.el8_5.1
 * glibc: glibc-2.28-164.el8 -> glibc-2.28-164.el8_5.3
@@ -69,7 +69,7 @@ I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
 * libxml2: libxml2-2.9.7-11.el8 -> libxml2-2.9.7-12.el8_5
 * linux-firmware: linux-firmware-20210702-103.gitd79c2677.el8 -> linux-firmware-20210702-104.gitd79c2677.el8_5
 * lvm2: lvm2-8:2.03.12-10.el8 -> lvm2-8:2.03.12-11.el8_5
-* nmstate -> nmstate-1,0,2-11,el8_4
+* nmstate: nmstate-1.1.0-5.el8_5 -> nmstate-1.1.0-6.el8_5
 * pcs: pcs-0.10.10-4.el8.rocky.0 -> pcs-0.10.10-4.el8_5.1.rocky.0
 * plymouth: plymouth-0.9.4-10.20200615git1e36e30.el8 -> plymouth-0.9.4-10.20200615git1e36e30.el8_5.1
 * qemu-kvm: qemu-kvm-15:4.2.0-59.module+el8.5.0+726+ce09ee88.1 -> qemu-kvm-15:4.2.0-59.module+el8.5.0+744+67293bef.2
@@ -80,112 +80,112 @@ I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
 * systemd: systemd-239-51.el8_5.3 -> systemd-239-51.el8_5.5
 * vim: vim-2:8.0.1763-16.el8_5.4 -> vim-2:8.0.1763-16.el8_5.12
 
-I seguenti moduli sono stati aggiornati:
+以下のモジュールが更新されました：
 
-* 389-ds-base: 389-ds-base-1.4.3.23-10.module+el8.5.0+700+370e33d5 -> 389-ds-base-1.4.3.23-12.module+el8.5.0+722+e2a0b219
-* 389-ds-1,4-8050020211221162652,1a75f91c
+* 389-ds
+* httpd
 * virt
-* virt-who: virt-who-1,30,5-1,el8 -> virt-who-1,30,5-2,el8_4
+* virt-devel
 
-## 8.5 - 2021-12-22
+## 8.5 - 2022-03-10
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+2022年3月10日以降、以下のパッケージが更新されました。
 
-* CVE-2021-20321
+* thunderbird: thunderbird-91.6.0-1.el8_5 -> thunderbird-91.7.0-2.el8_5
 * thunderbird: thunderbird-91.6.0-1.el8_5.plus -> thunderbird-91.7.0-2.el8_5.plus
 
-I seguenti pacchetti sono stati aggiornati dal 16 Dicembre, 2021:
+関連付けられた CVE:
 
-* cyrus-imapd: aggiornato a 3.0.7-20.el8_4.1 (indirizzi CVE-2021-33582)
+* CVE-2022-25315
 * CVE-2022-25235
-* thunderbird: aggiornato a 78.14.0
+* CVE-2022-25236
 
-## 8.5 - 2021-12-17
+## 8.5 - 2022-02-24
 
-I seguenti moduli sono stati aggiornati:
+2022年2月24日以降、以下のパッケージが更新されました。
 
-* selinux-policy: selinux-policy-3.14.3-80.el8 -> selinux-policy-3.14.3-80.el8_5.2
+* dotnet3.1: dotnet3.1-3.1.416-3.el8_5 -> dotnet3.1-3.1.417-1.el8_5
 * dotnet5.0: dotnet5.0-5.0.211-1.el8_5 -> dotnet5.0-5.0.212-1.el8_5
 * dotnet6.0: dotnet6.0-6.0.102-1.el8_5 -> dotnet6.0-6.0.103-4.el8_5
 * firefox: firefox-91.6.0-1.el8_5 -> firefox-91.7.0-3.el8_5
 * kernel: kernel-4.18.0-348.12.2.el8_5 -> kernel-4.18.0-348.20.1.el8_5
-* kernel-rt: kernel-rt-kvm aggiunto a RT
+* kernel-rt: kernel-rt-4.18.0-348.12.2.rt7.143.el8_5 -> kernel-rt-4.18.0-348.20.1.rt7.150.el8_5
 
-CVE Associati:
+関連付けられた CVE:
 
-* python2 -> aggiunge rocky alle dists supportate
+* CVE-2022-0435
 * CVE-2022-0847
 
-## 8.5 - 2021-12-16
+## 8.5 - 2022-02-22
 
-I seguenti moduli sono stati aggiornati:
+2022年2月22日以降、以下のパッケージが更新されました。
 
-* CVE-2020-25717
+* cyrus-sasl: cyrus-sasl-2.1.27-5.el8 -> cyrus-sasl-2.1.27-6.el8_5
 
-Sulla base di una richiesta, il pacchetto kernel-rt-kvm è stato aggiunto al repository RT.
+関連付けられた CVE:
 
-* ruby:2,5 -> 2.5.9-107
+* CVE-2022-24407
 
-## 8.5 - 2021-12-13
+## 8.5 - 2022-02-16
 
-I seguenti pacchetti sono stati aggiornati dal 12 Dicembre, 2021:
+2022年2月16日以降、以下のパッケージが更新されました。
 
-* thunderbird con supporto PGP (tutte le architetture)
+* python-pillow: python-pillow-5.1.1-16.el8 -> python-pillow-5.1.1-18.el8_5
 
-CVE Associati:
+関連付けられた CVE:
 
-* CVE-2016-2124
+* CVE-2022-22815
 * CVE-2022-22816
 * CVE-2022-22817
 
-## 8.5 - 2021-12-12
+## 8.5 - 2022-02-15
 
-I seguenti pacchetti sono stati aggiornati dal 10 Dicembre, 2021:
+以下のモジュールは2022年2月15日から更新されました。
 
-* WALinuxAgent: WALinuxAgent-2.3.0.2-2.el8 -> WALinuxAgent-2.3.0.2-2.el8.rocky.0
-* ruby:2,6 -> 2,6,7-107
+* ruby-2.5-8050020216182135.b4937e53
+* ruby-2.6-8050020216165459.b4937e53
 
-## 8.5 - 2021-12-10
+## 8.5 - 2022-02-14
 
-The follow modules have been updated:
+2022年2月14日以降、以下のパッケージが更新されました。
 
-* python27
+* thunderbird: thunderbird-91.5.0-1.el8_5 -> thunderbird-91.6.0-1.el8_5
 * thunderbird: thunderbird-91.5.0-1.el8.plus -> thunderbird-91.6.0-1.el8_5.plus
 
-## 8.5 - 2021-12-09
+## 8.5 - 2022-02-09
 
-Questi aggiornamenti sono per lo più di natura estetica e non influenzano le funzionalità.
+2022年2月9日以降、以下のパッケージが更新されました。
 
-* WALinuxAgent -> Abbiamo aggiunto il supporto diretto a Rocky quì così come a monte in un PR a Microsoft
+* dotnet3.1: dotnet3.1-3.1.120-2.el8_5 -> dotnet3.1-3.1.416-3.el8_5
 * dotnet5.0: dotnet5.0-5.0.210-1.el8_5 -> dotnet5.0-5.0.211-1.el8_5
 * dotnet6.0: dotnet6.0-6.0.101-2.el8_5 -> dotnet6.0-6.0.102-1.el8_5
 * firefox: firefox-91.5.0-1.el8_5 -> firefox-91.6.0-1.el8_5
 
-## 8.5 - 2021-12-03
+## 8.5 - 2022-02-04
 
-I seguenti pacchetti sono stati aggiornati dal 09 dicembre 2021:
+2022年2月4日以降、以下のパッケージが更新されました。
 
-* thunderbird: thunderbird-91.3.0-2.el8_4 ->
+* aide: aide-0.16-14.el8 -> aide-0.16-14.el8_5.1
 
-Questi aggiornamenti sono per lo più di natura estetica e non influenzano le funzionalità.
+関連付けられた CVE:
 
-* abrt: abrt-2.10.9-21.el8 -> abrt-2.10.9-21.el8.rocky.0
+* CVE-2021-45417
 
-## 8.5 - 2021-12-02
+## 8.5 - 2022-02-02
 
-I seguenti pacchetti sono stati aggiornati dal 03 dicembre 2021:
+2022年2月02日以降、以下のモジュール/パッケージが更新されました。
 
-* mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
+* varnish-6.0.8-1.module+el8.5.0+677+2a78a869 -> varnish-6.0.8-1.module+el8.5.0+736+fec10e21.1
 
-The follow modules have been updated:
+関連付けられた CVE:
 
-* mailman: CVE-2021-44227
+* CVE-2022-23959
 
-## 8.5 - Supplemento - 2021-11-30
+## 8.5 - 2022-02-01
 
-I seguenti pacchetti sono stati aggiornati dal 03 dicembre 2021:
+2022年2月1日以降、以下のパッケージが更新されました。
 
-* mailman-2.1-8050020211202160117.fd901a62
+* clevis: clevis-15-1.el8 -> clevis-15-1.el8_5.1
 * cockpit: cockpit-251.1-1.el8 -> cockpit-251.3-1.el8_5
 * cryptsetup: cryptsetup-2.3.3-4.el8 -> cryptsetup-2.3.3-4.el8_5.1
 * dnf-plugins-core: dnf-plugins-core-4.0.21-3.el8 -> dnf-plugins-core-4.0.21-4.el8_5
@@ -208,121 +208,121 @@ I seguenti pacchetti sono stati aggiornati dal 03 dicembre 2021:
 * vulkan-tools: vulkan-tools-1.2.189.0-1.el8 ->vulkan-tools-1.2.198.0-1.el8_5
 * vulkan-validation-layers: vulkan-validation-layers-1.2.189.0-2.el8 ->vulkan-validation-layers-1.2.198.0-4.el8_5
 
-Firefox: Questa è una versione aggiornata di ESR per Firefox.
+以下のモジュールが更新されました：
 
-* ncurses-static
-* freeradius
+* containertools
+* フリーラディウス
 * nodejs
 * pki-core
 * virt
-* virt-who: virt-who-1,30,5-1,el8 -> virt-who-1,30,5-2,el8_4
+* virt-devel
 
-## 8.5 - 2021-11-29
+## 8.5 - 2022-01-27
 
-I seguenti pacchetti sono stati aggiornati:
+2022年1月27日以降、以下のパッケージが更新されました。
 
-* open-vm-tools (aarch64 specific build only)
+* dotnet-build-reference-packages: dotnet-build-reference-packages-0-10.20200608gitcd5a8c6.el8 ->dotnet-build-reference-packages-0-11.20211215git045b288.el8_5
 * nginx: nginx-1:1.20.0-2.module+el8.5.0+669+b11495b0 -> nginx-1:1.20.1-1.module+el8.5.0+729+3f70613e
 * samba: samba-4.14.5-7.el8_5 -> samba-4.14.5-9.el8_5
 
-I seguenti pacchetti sono stati aggiornati:
+以下のモジュールが更新されました：
 
-* openldap-servers (all architectures)
+* nginx
 
-I seguenti moduli sono stati aggiornati dal 2 dicembre 2021:
+関連付けられた CVE:
 
-* kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
+* CVE-2021-44142
 * CVE-2021-23017
 
-## 8.5 - 2021-11-24
+## 8.5 - 2022-01-26
 
-I seguenti pacchetti sono stati aggiunti al repository devel:
+2022年1月26日以降、以下のパッケージが更新されました。
 
-* nss-3.67.0-7.el8_5: CVE-2021-43527
+* java-1.8.0-openjdk: java-1.8.0-openjdk-1:1.8.0.312.b07-2.el8_5 -> java-1.8.0-openjdk-1:1.8.0.322.b06-2.el8_5
 
-## 8.5 - 2021-11-22
+## 8.5 - 2022-01-25
 
-I seguenti pacchetti sono stati aggiunti al repository plus:
+2022年1月25日以降、以下のパッケージが更新されました。
 
-* systemd -> systemd-239-45.el8_4.2 -> Indirizzi CVE-2021-33910
+* parfait: parfait-0.5.4-2.module+el8.3.0+214+edf13b3f -> parfait-0.5.4-4.module+el8.5.0+728+553fbdb8
 
-I seguenti pacchetti sono stati aggiunti al repository devel:
+次のパッケージがドロップされました：
 
-* mailman: mailman-3:2.1.29-12.module+el8.5.0+703+19300c10 -> mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1
+* log4j12: log4j12-1.2.17-22.module+el8.3.0+214+edf13b3f
 
-Gli attuali pacchetti in plus (a partire dal 2021-11-30) sono:
+以下のモジュールが更新されました：
 
-* mailman-2.1-8050020211123230959.fd901a62
+* parfait
 
-## 8.5 - 2021-11-16
+## 8.5 - 2022-01-24
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+2022年1月24日以降、以下のパッケージが更新されました。
 
-* CVE-2021-42096
+* httpd: httpd-2.4.37-43.module+el8.5.0+714+5ec56ee8 -> httpd-2.4.37-43.module+el8.5.0+727+743c5577.1
 * polkit: polkit-0.115-12.el8 -> polkit-0.115-13.el8_5.1
 
-I seguenti pacchetti sono stati aggiornati dal 29 Nov, 2021:
+以下のモジュールが更新されました：
 
-* clang: clang-12.0.1-2.module+el8.5.0+692+8756646f -> clang-12.0.1-4.module+el8.5.0+715+58f51d49
+* httpd
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+関連付けられた CVE:
 
-* llvm-toolset-rhel8-8050020211122023437.b4937e53
+* CVE-2021-44790
 * CVE-2021-4034
 
-## 8.5 - 2021-11-14
+## 8.5 - 2022-01-19
 
-I seguenti pacchetti sono stati aggiornati dal 24 Nov, 2021:
+以下のパッケージは2022年1月19日から更新されました。
 
-* annobin: annobin-9.65-1.el8 -> annobin-9.72-1.el8_5.2
+* java-11-openjdk: java-11-openjdk-1:11.0.13.0.8-4.el8_5 -> java-11-openjdk-1:11.0.14.0.9-2.el8_5
 
-## 8.4 - 2021-09-21
+## 8.5 - 2022-01-12
 
-I seguenti pacchetti sono stati aggiornati dal 22 Nov, 2021 (inclusi i pacchetti dei moduli aggiornati):
+2022年1月12日以降、以下のパッケージが更新されました。
 
-* insights-client: insights-client-3.1.5-1.el8 (Standard Group)
+* gegl04: gegl04-0.4.4-6.el8 -> gegl04-0.4.4-6.el8_5.2
 * java-17-openjdk: java-17-openjdk-1:17.0.1.0.12-2.el8_5 -> java-17-openjdk-1:17.0.2.0.8-4.el8_5
 * kernel: kernel-4.18.0-348.7.1.el8_5 -> kernel-4.18.0-348.12.2.el8_5
 * kernel-rt: kernel-rt-4.18.0-348.7.1.rt7.137.el8_5 -> kernel-rt-4.18.0-348.12.2.rt7.143.el8_5
 * libarchive: libarchive-3.3.3-1.el8 -> libarchive-3.3.3-1.el8_5
 * libreswan: libreswan-4.4-1.el8 -> libreswan-4.4-4.el8_5
 
-I seguenti moduli sono stati aggiornati dal 23 Nov, 2021:
+関連付けられた CVE:
 
-* rust-toolset-rhel8-8050020211112021616.f73640c0
+* CVE-2022-0185
 * CVE-2021-45463
 * CVE-2021-4155
 
-## 8.4 - 2021-09-13
+## 8.5 - 2022-01-11
 
-CVE Associati:
+2022年1月11日以降、以下のパッケージが更新されました。
 
-* kernel: kernel-4.18.0-305.19.1 (9-15)
-* idm-DL1-8050020211215093947-3d2c466f
+* firefox: firefox-91.4.0-1.el8_5 -> firefox-91.5.0-1.el8_5
+* thunderbird: thunderbird-91.4.0-2.el8_5 -> thunderbird-91.5.0-1.el8_5
 * thunderbird: thunderbird-91.4.0-2.el8.plus -> thunderbird-91.5.0-1.el8.plus
 
-## 8.4 - 2021-08-24
+## 8.5 - 2022-01-03
 
-I seguenti pacchetti sono stati aggiornati dal 16 Nov, 2021 (inclusi i pacchetti dei moduli aggiornati):
+以下のパッケージは2022年1月3日から更新されました。
 
-* thunderbird: aggiornato a 78.14.0
-* firefox: aggiornato a 78.14.0
+* dotnet6.0: dotnet6.0-6.0.100-0.10.el8_5 -> dotnet6.0-6.0.101-2.el8_5
+* rpaste: rpaste-0.1-3.el8.2 -> rpaste-0.2.0-1.el8
 
-## 8.4 - 2021-08-11
+## 8.5 - 2021-12-22
 
-Sulla base di una richiesta, il pacchetto kernel-rt-kvm è stato aggiunto al repository RT.
+2021年12月22日以降、以下のパッケージが更新されました。
 
-* extra -> sono stati aggiunti i CentOS sig release packages
+* grafana: grafana-7.5.9-4.el8 -> grafana-7.5.9-5.el8_5
 
-I seguenti pacchetti sono stati aggiornati dalla release 8.5 il 14 Nov, 2021 (inclusi i pacchetti dei moduli aggiornati):
+関連付けられた CVE:
 
-* dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
+* CVE-2021-44716
 
-## 8.4 - 2021-08-02
+## 8.5 - 2021-12-17
 
-I seguenti pacchetti sono stati eliminati e anche rimossi dai gruppi dnf:
+2021年12月17日以降、以下のパッケージが更新されました。
 
-* extra -> CentOS sig release packages sono stati aggiunti
+* 389-ds-base: 389-ds-base-1.4.3.23-10.module+el8.5.0+700+370e33d5 -> 389-ds-base-1.4.3.23-12.module+el8.5.0+722+e2a0b219
 * accountsservice: accountsservice-0.6.55-2.el8 -> accountsservice-0.6.55-2.el8_5.2
 * cloud-init: cloud-init-21.1-7.el8 -> cloud-init-21.1-7.el8_5.3
 * freeradius: freeradius-3.0.20-9.module+el8.5.0+704+21fb769d -> freeradius-3.0.20-10.module+el8.5.0+723+cc9aee6c
@@ -339,14 +339,14 @@ I seguenti pacchetti sono stati eliminati e anche rimossi dai gruppi dnf:
 * rocky-release: rocky-release-8.5-2.el8 -> rocky-release-8.5-3.el8
 * sssd: sssd-2.5.2-2.el8_5.1 -> sssd-2.5.2-2.el8_5.3
 
-Per i pacchetti che sono stati eliminati, è sicuro rimuoverli usando `dnf remove`
+関連付けられた CVE:
 
-* 389-ds-base: 389-ds-base-1.4.3.16-16.module+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.module+el8.4.0+636+837ee950
-* extra -> sono stati aggiunti i CentOS sig release packages
+* CVE-2021-20321
+* CVE-2021-3930
 * CVE-2021-20257
 * CVE-2021-3712
 
-I seguenti moduli sono stati aggiornati dalla versione 8.5 del 14 novembre 2021:
+フォローモジュールが更新されました：
 
 * virt-rhel-8050020211221163306.b4937e53
 * virt-devel-rhel-8050020211221163306.b4937e53
@@ -355,167 +355,167 @@ I seguenti moduli sono stati aggiornati dalla versione 8.5 del 14 novembre 2021:
 * freeradius-3.0-8050020211221161359.ab0f257b
 * 389-ds-1.4-8050020211221162652.1a75f91c
 
-### Note Tecniche di Rilascio
+### エンジニアリングノート
 
-il pacchetto rocky-release è stato aggiornato per aggiungere il countme=1 ai repository base di Rocky Linux, analogamente a come epel ha nei loro repos. Se hai modificato i file dei repository, avrete i file .rpmnew generati, per non sovrascrivere le vostre modifiche.
+rocky-release パッケージが更新され、epel のリポジトリと同様に、Rocky Linux のベース リポジトリに countme=1 を追加します。 でリポジトリファイルを変更した場合、変更を上書きしないように .rpmnew ファイルが生成されます。
 
-## 8.4 - 2021-07-27
+## 8.5 - 2021-12-16
 
-I seguenti moduli sono stati aggiornati dalla versione 8.5 del 14 novembre 2021:
+2021年12月16日以降、以下のパッケージが更新されました。
 
 * selinux-policy: selinux-policy-3.14.3-80.el8 -> selinux-policy-3.14.3-80.el8_5.2
-* extra -> CentOS sig release packages sono stati aggiunti
+* systemd: systemd-239-51.el8 -> systemd-239-51.el8_5.3
 
-## 8.4 - 2021-07-21
+## 8.5 - 2021-12-13
 
-I seguenti pacchetti sono stati aggiornati:
+2021年12月13日以降、以下のパッケージが更新されました。
 
-* thunderbird -> thunderbird-78.12.0-3.el8_4
+* dotnet5.0: dotnet5.0-5.0.209-1.el8_5 -> dotnet5.0-5.0.210-1.el8_5
 * go-toolset: go-toolset-1.16.7-1.module+el8.5.0+694+f77f0bfd -> go-toolset-1.16.12-1.module+el8.5.0+720+c057d5cf
 * golang: golang-1.16.7-1.module+el8.5.0+694+f77f0bfd -> golang-1.16.12-1.module+el8.5.0+720+c057d5cf
 * ipa: ipa-4.9.6-6.module+el8.5.0+675+61f67439 -> ipa-4.9.6-10.module+el8.5.0+719+4f06efb6
 * nodejs: nodejs-1:16.8.0-1.module+el8.5.0+702+221f14e6 -> nodejs-1:16.13.1-3.module+el8.5.0+721+4c107270
 * nodejs-nodemon: nodejs-nodemon-2.0.7-1.module+el8.5.0+702+221f14e6 -> nodejs-nodemon-2.0.15-1.module+el8.5.0+721+4c107270
 
-* kernel-rt: kernel-rt-kvm added to RT
+* kernel-rt: kernel-rt-kvm を RT に追加しました
 
-I seguenti pacchetti sono stati aggiornati dal 22 dicembre 2021:
+関連付けられた CVE:
 
-* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
+* CVE-2020-25717
 
-Sono stati aggiornati i seguenti repos:
+フォローモジュールが更新されました：
 
 * go-toolset-rhel8-8050020211215173118-8aa62369
 * idm-DL1-8050020211215093947-3d2c466f
 * nodejs-16-8050020211215195043-b4937e53
 
 
-### Note Tecniche di Rilascio
+### エンジニアリングノート
 
-I seguenti pacchetti sono stati aggiornati:
+リクエストに基づいて、kernel-rt-kvm パッケージが RT リポジトリに追加されました。
 
-## 8.4 - 2021-07-12
+## 8.5 - 2021-12-12
 
-Sono stati aggiunti i seguenti repos/pacchetti:
+2021年12月12日以降、以下のパッケージが更新されました。
 
-* python36
+* samba: samba-4.14.5-2.el8 -> samba-4.14.5-7.el8_5
 
-I seguenti pacchetti sono stati aggiornati dal 22 dicembre 2021:
+関連付けられた CVE:
 
-* openscap -> Mancavano delle informazioni per Rocky Linux.
-* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
+* CVE-2016-2124
+* CVE-2020-25717
 * CVE-2021-23192
 
-## 8.4 - 2021-06-30
+## 8.5 - 2021-12-10
 
-I seguenti pacchetti sono stati aggiornati:
+2021年12月10日以降、以下のパッケージが更新されました。
 
-* NetworkManager -> NetworkManager-11.30.0-9.el8_4
+* WALinuxAgent: WALinuxAgent-2.3.0.2-2.el8 -> WALinuxAgent-2.3.0.2-2.el8.rocky.0
 * libreoffice: libreoffice-1:6.4.7.2-5.el8.1 -> libreoffice-1:6.4.7.2-5.el8.2.rocky
 * openscap: openscap-1.3.5-6.el8 -> openscap-1.3.5-6.el8.rocky.0.1
 * pcs: pcs-0.10.10-4.el8 -> pcs-0.10.10-4.el8.rocky.0
 * python2: python2-2.7.18-7.module+el8.5.0+706+735ec4b3.rocky.0.1 -> python2-2.7.18-7.module+el8.5.0+718+67e45b5f.rocky.0.2
 * rocky-release: rocky-release-8.5-1.el8 -> rocky-release-8.5-2.el8
 
-Aggiunti kickstart repos per i seguenti repository:
+フォローモジュールが更新されました：
 
 * python27
 
-### Note Tecniche di Rilascio
+### エンジニアリングノート
 
-Questi aggiornamenti sono per lo più di natura estetica e non influenzano le funzionalità.
+これらのアップデートはほとんどが自然の中で化粧品であり、機能には影響しません。
 
-* WALinuxAgent -> Abbiamo aggiunto il supporto diretto a Rocky quì così come a monte in un PR a Microsoft
-* libreoffice -> È stato trovato un marchio del cappello rosso. Questo aggiornamento riguarda il marchio.
-* openscap -> Mancavano delle informazioni per Rocky Linux.
-* pcs -> Il logo aveva un marchio che non è stato rimosso
-* rocky-release -> semplifica CPE_NAME
-* python2 -> aggiunge rocky alle dists supportate
+* WALinuxAgent -> マイクロソフトのPRアップストリームに直接Rockyサポートを追加しました。
+* libreoffice -> 赤い帽子のブランディングが見つかりました。 このアップデートはブランディングに対応しています。
+* openscap -> Rocky Linuxの情報がありませんでした。
+* pcs -> ロゴには削除されなかった商標がありました
+* rocky-release -> CPE_NAME を簡略化
+* python2 -> サポートされているdistsにrockyを追加
 
 ## 8.5 - 2021-12-09
 
-I seguenti pacchetti sono stati aggiornati dal 09 dicembre 2021:
+2021年12月9日以降、以下のパッケージが更新されました。
 
-* Un repository "devel" è ora fornito per scopi mock/buildroot
+* thunderbird: thunderbird-91.3.0-2.el8_4 ->
 * thunderbird-91.4.0-2.el8_5
 * thunderbird: thunderbird-91.3.0-2.el8.plus ->
 * thunderbird-91.4.0-2.el8.plus
 
-### Note Tecniche di Rilascio
+### エンジニアリングノート
 
-Thunderbird: Questo è un normale aggiornamento di compilazione ESR per thunderbird. Questo aggiornamento è per entrambi i repository base e Plus. Il repository Plus contiene una versione di thunderbird con supporto PGP.
+Thunderbird:これは、サンダーバードの通常のESRビルドアップデートです。 このアップデートは、ベースリポジトリと Plus の両方に対応しています。 Plusリポジトリには、PGP対応の雷鳥バージョンが含まれています。
 
 ## 8.5 - 2021-12-03
 
-I seguenti moduli sono stati aggiornati:
+2021年12月3日以降、以下のパッケージが更新されました。
 
 * abrt: abrt-2.10.9-21.el8 -> abrt-2.10.9-21.el8.rocky.0
 * firefox: firefox-91.3.0-1.el8_4 -> firefox-91.4.0-1.el8_5
 * sos: sos-4.1-5.el8 -> sos-4.1-5.el8.rocky.2
 
-### Note su Plus
+### エンジニアリングノート
 
-I seguenti pacchetti sono stati aggiornati:
+Firefox: これはFirefox用の更新されたESRビルドです。
 
-abrt: Questo è un cambiamento per lo più estetico. Rimuove le dipendenze dai plugin libreport-rhel* e rhtsupport. Questi pacchetti possono essere rimossi in modo sicuro dopo l'aggiornamento al nuovo pacchetto abrt.
+abrt: これはほとんどが化粧品の変化です。 libreport-rhel* と rhtsupport プラグインへの依存を削除します。 これらのパッケージは、新しい擦り付けパッケージにアップデートした後、安全に削除できます。
 
-sos: Questo è un cambiamento per lo più estetico. Abbassa la politica di Rocky a monte. Vedi [questo PR per maggiori dettagli](https://github.com/sosreport/sos/pull/2784)
+これはほとんどが化粧品の変化です それは上流のロッキー政策をダウンさせる。 詳細は [この PR を参照してください](https://github.com/sosreport/sos/pull/2784)
 
 ## 8.5 - 2021-12-02
 
-I seguenti pacchetti sono stati aggiornati dal 02 dicembre 2021:
+2021年12月02日以降、以下のパッケージが更新されました。
 
 * mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
 * mailman-3:2.1.29-12.module+el8.5.0+717+27fd1ba7.2
 
-I pacchetti regolari di Rocky sono stati aggiornati per affrontare i seguenti aspetti:
+関連付けられた CVE:
 
 * mailman: CVE-2021-44227
 
-I seguenti moduli sono stati aggiornati dal 2 dicembre 2021:
+followモジュールは2021年12月02日から更新されました。
 
 * mailman-2.1-8050020211202160117.fd901a62
 
 
-## 8.5 - Supplemento - 2021-11-30
+## 8.5 - 補足-2021-11-30
 
-I pacchetti regolari di Rocky sono stati aggiornati per affrontare i seguenti aspetti:
+以下のパッケージが devel リポジトリに追加されました:
 
 * ncurses-static
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+plus リポジトリに次のパッケージが追加されました:
 
-* open-vm-tools (aarch64 specific build only)
+* open-vm-tools（aarch64固有のビルドのみ）
 
-### Note su Devel
+### 追加メモ
 
-Il repository plus contiene elementi che non sono forniti nei repository base, o perché non sono disponibili a causa della configurazione dei comps e dei pungi (basati sui repository RHEL) o perché sono richiesti come build alternative con patch/funzionalità aggiuntive non trovate nella base. Mantenere il repository plus abilitato dovrebbe essere sicuro.
+プラスリポジトリには、ベース リポジトリに提供されていないアイテムが含まれています。 コンプと pungi の設定 (RHEL リポジトリに基づく) のために利用できないか、ベースにはパッチ/機能がない追加のビルドとして要求されます。 プラスリポジトリは安全に有効にしておく必要があります。
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+現在のパッケージプラス(2021-11-30)は次のとおりです。
 
-* openldap-servers (all architectures)
-* thunderbird with PGP support (all architectures)
-* ncurses-static (all architectures)
-* open-vm-tools (aarch64 specific build only)
+* openldap-servers (すべてのアーキテクチャ)
+* sunderbird with PGP support (all architures)
+* ncurses-static (すべてのアーキテクチャ)
+* open-vm-tools（aarch64固有のビルドのみ）
 
-### Problemi noti
+### Devel Notes
 
-Il repository devel dovrebbe essere usato con attenzione. È destinato per scopi koji o buildroot e non dovrebbe essere abilitato il 100% del tempo. Se trovate che c'è un pacchetto che si desidera vedere nel repo di devel, inviate una email a rocky-devel e/o aprite una segnalazione di bug su https://bugs.rockylinux.org
+devel リポジトリは注意深く使われるべきです。 これは麹やビルドルートの目的のためのもので、100%有効にしないでください。 あなたが見つけた場合は、あなたがdevel repoで見たいパッケージがあります。 rock-devel にメールを送ったり、バグ報告を https://bugs で開いてください。 ockylinux.org
 
 ## 8.5 - 2021-11-29
 
-CVE Associati:
+2021年11月29日以降、以下のパッケージが更新されました。
 
 * kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
 * nss: nss-3.67.0-6.el8_4 -> nss-3.67.0-7.el8_5
 
-I seguenti pacchetti sono stati aggiornati:
+関連付けられた CVE:
 
 * nss-3.67.0-7.el8_5: CVE-2021-43527
 
 ## 8.5 - 2021-11-24
 
-I seguenti pacchetti sono stati aggiornati dal 24 Nov, 2021:
+2021年11月24日以降、以下のパッケージが更新されました。
 
 * dotnet5.0: dotnet5.0-5.0.208-2.el8_5 -> dotnet5.0-5.0.209-1.el8_5
 * dotnet5.0-build-reference-packages: dotnet5.0-build-reference-packages-0-11.20210607git5f10a4b.el8 -> dotnet5.0-build-reference-packages-0-12.20211117git6ce5818.el8_5
@@ -523,33 +523,33 @@ I seguenti pacchetti sono stati aggiornati dal 24 Nov, 2021:
 
 ## 8.5 - 2021-11-22
 
-I seguenti pacchetti sono stati aggiornati:
+2021年11月22日以降、以下のパッケージが更新されました(更新されたモジュールパッケージを含む):
 
 * mailman: mailman-3:2.1.29-12.module+el8.5.0+703+19300c10 -> mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1
 
-I seguenti moduli sono stati aggiornati dal 23 Nov, 2021:
+次のモジュールは2021年11月23日から更新されました。
 
 * mailman-2.1-8050020211123230959.fd901a62
 
-I seguenti pacchetti sono stati aggiornati:
+関連付けられた CVE:
 
 * CVE-2021-42096
 * CVE-2021-42097
 
 ## 8.5 - 2021-11-16
 
-I seguenti pacchetti sono stati aggiornati dal 16 Nov, 2021 (inclusi i pacchetti dei moduli aggiornati):
+2021年11月16日以降、以下のパッケージが更新されました(更新されたモジュールパッケージを含む):
 
 * clang: clang-12.0.1-2.module+el8.5.0+692+8756646f -> clang-12.0.1-4.module+el8.5.0+715+58f51d49
 * llvm-toolset: llvm-toolset-12.0.1-1.module+el8.5.0+692+8756646f -> llvm-toolset-12.0.1-1.module+el8.5.0+715+58f51d49
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+次のモジュールは2021年11月16日から更新されました。
 
 * llvm-toolset-rhel8-8050020211122023437.b4937e53
 
 ## 8.5 - 2021-11-14
 
-I seguenti pacchetti sono stati aggiornati dalla release 8.5 il 14 Nov, 2021 (inclusi i pacchetti dei moduli aggiornati):
+2021 年 11 月 8 日リリース以降、以下のパッケージが更新されました (更新されたモジュールパッケージを含む):
 
 * annobin: annobin-9.65-1.el8 -> annobin-9.72-1.el8_5.2
 * binutils: binutils-2.30-108.el8 -> binutils-2.30-108.el8_5.1
@@ -566,15 +566,15 @@ I seguenti pacchetti sono stati aggiornati dalla release 8.5 il 14 Nov, 2021 (in
 * gcc-toolset-10-gcc: gcc-toolset-10-gcc-10.2.1-8.2.el8 -> gcc-toolset-10-gcc-10.3.1-1.2.el8_5
 * gcc-toolset-11-annobin: gcc-toolset-11-annobin-9.73-1.el8 -> gcc-toolset-11-annobin-9.85-1.el8_5.1
 * gcc-toolset-11-binutils: gcc-toolset-11-binutils-2.36.1-1.el8 -> gcc-toolset-11-binutils-2.36.1-1.el8_5.1
-* gcc-toolset-11-dyninst: gcc-toolset-11-dyninst-11.0.0-1.el8 -> gcc-toolset-11-dyninst-11.0.0-2.el8
-* gcc-toolset-11-gcc: gcc-toolset-11-gcc-11.1.1-3.el8 -> gcc-toolset-11-gcc-11.2.1-1.2.el8_5
+* gcc-toolset-11-dyninst: gcc-toolset-11-dyninst-11.0.0-1.el8 -> gcc-toolset-11.0.0-2.el8
+* gcc-toolset-11-gcc: gcc-toolset-11-gcc-11.1.1-3.el8 -> gcc-toolset-11.2.1-1.2.el8_5
 * gcc-toolset-11-systemtap: gcc-toolset-11-systemtap-4.5-3.el8 -> gcc-toolset-11-systemtap-4.5-4.el8
 * gcc-toolset-11-valgrind: gcc-toolset-11-valgrind-1:3.17.0-4.el8 -> gcc-toolset-11-valgrind-1:3.17.0-6.el8
 * gnome-settings-daemon: gnome-settings-daemon-3.32.0-14.el8 -> gnome-settings-daemon-3.32.0-16.el8
 * gnome-shell-extensions: gnome-shell-extensions-3.32.1-20.el8 -> gnome-shell-extensions-3.32.1-20.el8_5.1
 * httpd: httpd-2.4.37-41.module+el8.5.0+695+1fa8055e -> httpd-2.4.37-43.module+el8.5.0+714+5ec56ee8
 * ibus: ibus-1.5.19-13.el8 -> ibus-1.5.19-14.el8_5
-* poppler: 20,11,0-2,el8_4,1
+* java-1.8.0-openjdk: java-1.8.0-openjdk-1:1.8.0.302.b08-3.el8 -> java-1.8.0-openjdk-1:1.8.0.312.b07-2.el8_5
 * java-11-openjdk: java-11-openjdk-1:11.0.12.0.7-4.el8 -> java-11-openjdk-1:11.0.13.0.8-3.el8_5
 * java-17-openjdk: java-17-openjdk-1:17.0.0.0.35-4.el8 -> java-17-openjdk-1:17.0.1.0.12-2.el8_5
 * kernel: kernel-4.18.0-348.el8.0.2 -> kernel-4.18.0-348.2.1.el8_5
@@ -586,32 +586,32 @@ I seguenti pacchetti sono stati aggiornati dalla release 8.5 il 14 Nov, 2021 (in
 * thunderbird: thunderbird-78.13.0-1.el8 -> thunderbird-91.3.0-2.el8
 * udftools: udftools-2.2-5.el8 -> udftools-2.3-2.el8
 
-Alcuni moduli e pacchetti sono stati aggiornati di routine da upstream.
+以下のパッケージが削除され、dnfグループからも削除されました。
 
-* firefox: aggiornato a 78.14.0
+* insights-client: insights-client-3.1.5-1.el8 (Standard Group)
 
-Alcuni moduli e pacchetti sono stati aggiornati di routine da upstream.
+削除されたパッケージの場合、 `dnf remove` を使用して削除しても安全です。
 
-I seguenti pacchetti sono stati aggiornati:
+以下のモジュールは2021年11月14日の8.5リリースから更新されました。
 
-* rust-toolset-rhel8-8050020211112021616.f73640c0
-* httpd-2.4-8050020211115030420.b4937e53
+* rust-toolset-rhel8-80500202112021616.f73640c0
+* httpd-2.4-805002021115030420.b4937e53
 
-### Modifiche Aggiuntive
+### 既知の問題
 
-Alcuni moduli e pacchetti sono stati aggiornati di routine da upstream.
+[バグ 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) - ESXi などの vmware システムでは、 `kdump` が動作しない問題を認識しています。
 
-Siamo anche a conoscenza del nostro sistema mirror che riporta la directory sbagliata per fare gli aggiornamenti. Sarebbe stata `kickstart` piuttosto che `os`. Questo dovrebbe essere risolto e gli aggiornamenti dovrebbero funzionare normalmente.
+また、ミラーシステムがアップデートを行うために間違ったディレクトリを報告していることも認識しています。 `os` ではなく、 `kickstart` にしようとしていました。 これは解決されるべきであり、更新は正常に動作するはずです。
 
 ## 8.4 - 2021-09-21
 
-I seguenti pacchetti sono stati aggiornati:
+次のパッケージが更新されました:
 
 * kernel: kernel-4.18.0-305.19.1 (9-15)
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.2
 * golang: 1.15.14-2
 * nss: 3.67.0-6
-* ca-certificates: 2021.2.50-80.0
+* ca証明書: 2021.2.50-80.0
 * opencryptoki: 3.15.1-7
 * krb5: 1.18.2-8.3
 * platform-python: 3.6.8-38
@@ -621,7 +621,7 @@ I seguenti pacchetti sono stati aggiornati:
 * python-ldap: 3.3.1-1.1
 * subscription-manager: 1.28.13-4
 * pcp: 5.2.5-6
-* strace: 5.7-2.1
+* ストリング: 5.7-2.1
 * nspr: 4.32.0-1
 * gcc-toolset-10-elfutils: 0.182-6
 * gcc-toolset-10-binutils: 2.35-8.el8_4.4
@@ -635,40 +635,40 @@ I seguenti pacchetti sono stati aggiornati:
 
 ## 8.4 - 2021-09-13
 
-I seguenti pacchetti sono stati aggiornati:
+次のパッケージが更新されました:
 
-* thunderbird: aggiornato a 78.14.0
-* firefox: aggiornato a 78.14.0
-* cyrus-imapd: aggiornato a 3.0.7-20.el8_4.1 (indirizzi CVE-2021-33582)
-* systemtap ricostruito contro dininst 10.2 per affrontare una segnalazione di bug
-* rocky-release -> Aggiornato per permettere "centos" come ID
+* サンダーバード：78.14.0に更新
+* firefox:78.14.0に更新
+* cyrus-imapd: 3.0.7-20.el8_4.1 (アドレス CVE-2021-33582) に更新
+* systemtapはdynst 10.2に対して再構築されたバグレポートに対処します
+* rocky-release -> "centos" を ID として許可するように更新されました
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+次のリポジトリが更新されました:
 
-* extra -> sono stati aggiunti i CentOS sig release packages
+* 追加機能 -> CentOS sig リリースパッケージが追加されました
 
 ## 8.4 - 2021-08-24
 
-I seguenti pacchetti sono stati aggiornati:
+次のパッケージが更新されました:
 
 * dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
-* libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Addresses
+* libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- アドレス
 
-  * Indirizza un overflow heap buffer che consente l'esecuzione arbitraria di codice da un file wav
+  * wavファイルから任意のコードを実行できるヒープバッファオーバーフローに対応します。
 
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.1
 
-  * Addresses RLBZ#108
+  * アドレス RLBZ#108
 
-Alcuni moduli e pacchetti sono stati aggiornati di routine da upstream.
+次のリポジトリ/パッケージが追加されました:
 
-* RT (realtime) - Abilitato eseguendo `dnf config-manager --set-enabled rt`
+* RT (リアルタイム) - `dnf config-manager --set-enabled rt`
 
-  * kernel-rt (kernel in tempo reale)
+  * kernel-rt (リアルタイムカーネル)
 
 ## 8.4 - 2021-08-11
 
-I seguenti pacchetti sono stati aggiornati:
+次のパッケージが更新されました:
 
 * 389-ds-base: 389-ds-base-1.4.3.16-16.module+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.module+el8.4.0+636+837ee950
 * NetworkManager: NetworkManager-1:1.30.0-9.el8_4 -> NetworkManager-1:1.30.0-10.el8_4
@@ -677,7 +677,7 @@ I seguenti pacchetti sono stati aggiornati:
 * cloud-init: cloud-init-20.3-10.el8_4.3 -> cloud-init-20.3-10.el8_4.5
 * cockpit-podman: cockpit-podman-29-2.module+el8.4.0+556+40122d08 -> cockpit-podman-32-2.module+el8.4.0+643+525e162a
 * conmon: conmon-2:2.0.26-3.module+el8.4.0+556+40122d08 -> conmon-2:2.0.29-1.module+el8.4.0+643+525e162a
-* container-selinux: container-selinux-2:2.162.0-1.module+el8.4.0+556+40122d08 -> container-selinux-2:2.164.1-1.module+el8.4.0+643+525e162a
+* container-selinux: container-selinux-2:2.162.0-1.module+el8.4.0+556+40122d08 -> container-selinux-2:2.164.1-1.module+el8.0+643+525e162a
 * crun: crun-0.18-2.module+el8.4.0+556+40122d08 -> crun-0.20.1-1.module+el8.4.0+643+525e162a
 * dotnet3.1 dotnet3.1-3.1.117-1.el8_4 -> dotnet3.1-3.1.118-1.el8_4
 * edk2: edk2-20200602gitca407c7246bf-4.el8_4.1 -> edk2-20200602gitca407c7246bf-4.el8_4.2
@@ -726,7 +726,7 @@ I seguenti pacchetti sono stati aggiornati:
 * udica: udica-0.2.4-1.module+el8.4.0+556+40122d08 -> udica-0.2.4-2.module+el8.4.0+643+525e162a
 * valgrind: valgrind-1:3.16.0-4.el8 -> valgrind-1:3.16.0-4.el8_4
 * virt-what: virt-what-1.18-6.el8 -> virt-what-1.18-9.el8_4
-* virt-who: virt-who-1.30.5-1.el8 -> virt-who-1.30.5-2.el8_4
+* virt-who-1.30.5-1.el8 -> virt-who-1.30.5-2.el8_4
 * virtio-win: virtio-win-1.9.16-2.el8 -> virtio-win-1.9.17-4.el8_4
 * vulkan-headers: vulkan-headers-1.2.162.0-1.el8 -> vulkan-headers-1.2.182.0-1.el8_4
 * vulkan-loader: vulkan-loader-1.2.162.0-1.el8 -> vulkan-loader-1.2.182.0-1.el8_4
@@ -735,29 +735,29 @@ I seguenti pacchetti sono stati aggiornati:
 
 ## 8.4 - 2021-08-02
 
-I seguenti pacchetti sono stati aggiornati:
+次のパッケージが更新されました:
 
-* varnish -> varnish-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> Addresses CVE-2021-36740
+* varnish -> varnish-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> アドレス CVE-2021-36740
 
-Aggiunti kickstart repos per i seguenti repository:
+次のリポジトリに kickstart リポジトリを追加しました:
 
 * BaseOS
 * AppStream
 * PowerTools
-* High Availability
-* Resilient Storage
+* 高可用性あり
+* 弾力性のあるストレージ
 
 ## 8.4 - 2021-07-27
 
-I seguenti pacchetti sono stati aggiornati:
+次のパッケージが更新されました:
 
 * thunderbird -> thunderbird-78.12.0-3.el8_4
 
 ## 8.4 - 2021-07-21
 
-I seguenti pacchetti sono stati aggiornati:
+次のパッケージが更新されました:
 
-* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
+* kanner -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
 * systemd -> systemd-239-45.el8_4.2 -> Addresses CVE-2021-33910
 * firefox
 * java-1.8.0-openjdk
@@ -765,40 +765,40 @@ I seguenti pacchetti sono stati aggiornati:
 
 ## 8.4 - 2021-07-12
 
-I seguenti pacchetti sono stati aggiornati:
+次のパッケージが更新されました:
 
 * rocky-release
 * linuxptp
 * rpaste
 * ovn2.13 (NFV)
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+以下のモジュールが更新されました：
 
 * python36
 
-### In Arrivo...
+### 追加の変更
 
-L'archivio extra per aarch64 è stato aggiornato per includere vari pacchetti che non sono inclusi da upstream. Esempi di ciò sarebbero libreoffice e altre applicazioni gnome.
+実験的なリポジトリメタデータ署名が実装されました。 これを試してみたい場合は、Rocky-X.repoファイルで次のオプションを設定してください。
 
 ```
 repo_gpgcheck=1
 ```
 
-### Aggiornamenti Pacchetti
+### 近日登場...
 
-* Storage addon repositories:
+* ストレージアドオンリポジトリ:
 
-  * Aggiunti i repository devel e debuginfo per lo stato futuro
+  * Glusterfs 9のサポート
 
 ## 8.4 - 2021-06-30
 
-### Contesto
+### パッケージの更新
 
-I seguenti pacchetti sono stati aggiornati:
+次のパッケージが更新されました:
 
-* Un repository "devel" è ora fornito per scopi mock/buildroot
-* Il repository extra per aarch64 è stato aggiornato per includere i pacchetti mancanti non forniti da upstream per l'uso desktop
-* rpaste è stato aggiornato per accettare l'input stdin
+* NetworkManager -> NetworkManager-11.30.0-9.el8_4
+* cloud-init -> cloud-init-20.3-10.el8_4.3
+* cmake -> cmake-3.18.2-11.el8_4
 * edk2 -> edk2-20200602gitca407c7246bf-4.el8_4.1
 * exiv2 -> exiv2-0.27.3-2.el8
 * firewalld -> firewalld-0.8.2-7.el8_4
@@ -826,22 +826,22 @@ I seguenti pacchetti sono stati aggiornati:
 * tuned -> tuned-2.15.0-2.el8_4.1
 * unzip -> unzip-6.0-45.el8_4
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+以下のモジュールが更新されました：
 
 * PyYAML -> PyYAML-5.4.1-1.module+el8.4.0+595+c96abaa2
 * 389-ds -> 1.4.3.16-16
 * go-toolset -> go-toolset-1.15.13-1.module+el8.4.0+591+0da41cc3
 * golang -> golang-1.15.13-3.module+el8.4.0+591+0da41cc3
 * idm:DL1 -> ipa-4.9.2-4
-* idm:client -> (ricostruito con ipaplatform=rhel per sincronizzare con il modulo DL1)
+* idm:client -> (DL1モジュールと同期するためにipaplatform=rhelで再構築)
 * pgaudit -> pgaudit-1.4.0-6.module+el8.4.0+587+d46efd10
 * postgres-decoderbufs -> postgres-decoderbufs-0.10.0-2.module+el8.4.0+587+d46efd10
 * postgresql -> postgresql-12.7-1.module+el8.4.0+587+d46efd10
 * python38 -> python38-3.8.6-3.module+el8.4.0+595+c96abaa2
 * ruby -> ruby-2.5.9-107.module+el8.4.0+592+03ff458a
-* ruby:2,5 -> 2.5.9-107
-* ruby:2,6 -> 2,6,7-107
-* ruby:2,7 -> 2,7,3-136
+* ruby:2.5 -> 2.5.9-107
+* ruby:2.6 -> 2.6.7-107
+* ruby:2.7 -> 2.7.3-136
 * rubygem-abrt -> rubygem-abrt-0.3.0-4 / rubygem-abrt-0.4.0-1
 * rubygem-bson -> rubygem-bson-4.3.0-2 / rubygem-bson-4.5.0-1 / rubygem-bson-4.8.1-1
 * rubygem-bundler -> rubygem-bundler-1.16.1-3.module+el8.4.0+592+03ff458a
@@ -849,29 +849,29 @@ I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
 * rubygem-pg -> rubygem-pg-1.0.0-2 / rubygem-pg-1.1.4-1 / rubygem-pg-1.2.3-1
 
 
-### Modifiche Aggiuntive
+### コンテキスト
 
-Alcuni moduli e pacchetti sono stati aggiornati di routine da upstream.
+いくつかのモジュールとパッケージは、上流によって定期的に更新されています。
 
-I pacchetti regolari di Rocky sono stati aggiornati per affrontare i seguenti aspetti:
+通常の岩石パッケージは以下の対応のために更新されました:
 
 * rocky-release
 
-  * Aggiunti i repository devel e debuginfo per lo stato futuro
-  * Questo è fornito per scopi mock/buildroot
+  * devel と debuginfo リポジトリを将来の状態に追加します。
+  * これはmock/buildroot 目的のために提供されています
 
 * rocky-logos
 
-  * Migliora le icone per le future immagini live ufficiali
+  * 今後の公式ライブ画像のためのアイコンを改善する
 
 
-### In Arrivo...
+### 追加の変更
 
-L'archivio extra per aarch64 è stato aggiornato per includere vari pacchetti che non sono inclusi da upstream. Esempi di ciò sarebbero libreoffice e altre applicazioni gnome. Poiché non sono in BaseOS o AppStream, il repository extra è il posto appropriato per questi pacchetti.
+aarch64 用の extras リポジトリが更新され、上流に含まれていない様々なパッケージが含まれるようになりました。 これの例はlibreofficeや他のノームアプリです。 これらのリポジトリは BaseOS または AppStream に含まれていないため、これらのパッケージに適した場所となります。
 
-* Un repository "devel" è ora fornito per scopi mock/buildroot
-* Il repository extra per aarch64 è stato aggiornato per includere i pacchetti mancanti non forniti da upstream per l'uso desktop
-* rpaste è stato aggiornato per accettare l'input stdin
-* I pacchetti più vecchi saranno forniti nei repos durante la vita di un punto di rilascio.
+* mock/buildroot 目的のために「devel」リポジトリが提供されました。
+* aarch64 用の追加リポジトリは、デスクトップで使用するためのアップストリームで提供されていない不足しているパッケージを含むように更新されました
+* rpasteは標準入力を受け付けるように更新されました
+* 古いパッケージは、ポイントリリースの期間中にリポジトリに提供されます。
 
-  * Questo consente di declassare i pacchetti in caso di regressione da upstream o risoluzione dei problemi.
+  * これにより、上流からの回帰やトラブルシューティングの場合にパッケージをダウングレードすることができます。

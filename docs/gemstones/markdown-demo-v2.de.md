@@ -10,13 +10,13 @@ tags:
 
 # Übersicht
 
-Diese Anleitung zeigt beliebte Markdown-Tags an, die auf [https://docs.rockylinux.org verwendet werden](https://docs.rockylinux.org)
+Wie Sie beim Lesen feststellen können, ist dies ein ziemlich dummes Beispiel, das dazu gedacht ist, einige Übersetzungsprobleme, die wir haben, zu testen. Es macht Spaß, aber zu schreiben!
+
+Manchmal sehen Sie Dinge wie _diese_..
 
 ## Die Demo
 
 > Dies ist ein Beispiel für ein Zitat. Schön formatiert.
-
-Manchmal sehen Sie Dinge wie _diese_..
 
 Wie wäre es mit einem kleinen **kühnen Gesicht**
 
@@ -26,12 +26,14 @@ Manchmal musst du einen `Befehl` anzeigen
 
 Oder mehrere Befehle:
 
+Zu anderen Zeiten benötigen Sie Aufzählungen oder nummerierte Listen:
+
 ```
 dnf install my_stapler
 dnf update my_pencil
 ```
 
-Zu anderen Zeiten benötigen Sie Aufzählungen oder nummerierte Listen:
+Und Sie könnten eine Ermahnung brauchen:
 
 - Ich glaube, Sie haben meinen Grundpfeiler
 - Falls nicht, bitte zumindest meinen Bleistift zurückgeben
@@ -43,4 +45,13 @@ Und Sie könnten eine Ermahnung brauchen:
 
 !!! TIP
 
-    Stifte und Stapler sind wirklich alte Schule. 
+    Stifte und Stapler sind wirklich alte Schule.
+
+Mehr als nein, wenn ein Befehl mehrere Optionen hat, oder Sie müssen Details auflisten, Sie möchten vielleicht eine Tabelle verwenden, um Dinge zu identifizieren:
+
+| Werkzeug | Benutzen                                              | Zusätzliche Informationen                           |
+| -------- | ----------------------------------------------------- | --------------------------------------------------- |
+| stift    | schreiben oder drucken                                | oft ersetzt durch einen Stift                       |
+| stift    | schreiben oder drucken                                | oft ersetzt durch einen Stift                       |
+| stylus   | Schreiben oder Drucken auf einem elektronischen Gerät | manchmal durch eine Tastatur ersetzt                |
+| keyboard | Schreiben oder Drucken auf einem elektronischen Gerät | nie ersetzt - bis voll mit Nahrung Krümel verwendet |

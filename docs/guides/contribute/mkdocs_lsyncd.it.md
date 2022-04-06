@@ -241,7 +241,8 @@ Per ora, assumiamo che stiate usando una workstation Rocky Linux e che stiate us
 
 ### Configurazione
 
-!!! Note "Nota" L'utente root deve eseguire il demone, quindi è necessario essere root per creare i file di configurazione e i log. Per questo stiamo impiegando `sudo -s`.
+!!! Note "Nota"
+    L'utente root deve eseguire il demone, quindi è necessario essere root per creare i file di configurazione e i log. Per questo stiamo impiegando `sudo -s`.
 
 Abbiamo bisogno di avere dei file di log disponibili per `lsyncd` per scriverci:
 

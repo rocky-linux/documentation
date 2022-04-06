@@ -1,38 +1,38 @@
 ---
-title: Change Log
+title: Ändra logg
 author: Louis Abel
-contributors: Steven Spencer, tianci li, Colussi Franco, GiorgioHerbie
+contributors: Steven Spencer, tianci li
 tags:
-  - changelog roccioso
-  - changelog
+  - stenig ändringslogg
+  - ändringslogg
 ---
 
-# Rocky Linux 8 Change Log
+# Rocky Linux 8-ändringslogg
 
-Rocky Linux 8 riceverà aggiornamenti incrementali e aggiornamenti di versione minori, nel tempo come la build upstream e ne caricherà di propri. Questa pagina fornirà dettagli e informazioni sui cambiamenti che si verificano. Un sistema con in esecuzione Rocky Linux può aggiornare il proprio sistema in qualsiasi momento eseguendo `dnf update`. L'aggiornamento di questo documento può a volte essere ritardato. Per controllare nuovi aggiornamenti, puoi andare all'archivio [Rocky Announce](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/) della mailing list.
+Rocky Linux 8 kommer att få inkrementella uppdateringar och mindre versionsuppgraderingar, med tiden som uppströmsbyggen och driver sina egna. Denna sida kommer att ge information och information om förändringar när de inträffar. Ett system som kör Rocky Linux kan uppdatera sitt system till fullo när som helst genom att köra `dnf update`. Uppdateringen av detta dokument kan ibland fördröjas. För att söka efter nya uppdateringar kan du gå till [Rocky Announce](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/) sändlistearkivet.
 
-### Aggiornamenti
+### Uppdateringar
 
-Gli aggiornamenti rilasciati dall'upstream sono pubblicati attraverso le nostre architetture attuali. Raccomandiamo vivamente che tutti gli utenti applichino *tutti* gli aggiornamenti, compreso il contenuto rilasciato oggi, sulle macchine Rocky Linux esistenti. Questo può essere fatto eseguendo `dnf update`.
+Uppdateringar som släppts sedan uppströms publiceras över våra nuvarande arkitekturer. Vi rekommenderar starkt att alla användare tillämpar *alla* -uppdateringar, inklusive det innehåll som släpptes idag, på dina befintliga Rocky Linux-maskiner. Detta kan göras genom att köra `dnf update`.
 
-Tutti i componenti di Rocky Linux sono costruiti dalle fonti ospitate su [git.rockylinux.org](https://git.rockylinux.org). Inoltre, gli SRPM sono in corso di pubblicazione accanto ai repository in una corrispondente directory "source". Puoi trovarli su uno qualsiasi dei nostri mirrors. Questi pacchetti sorgente corrispondono ad ogni RPM binario che rilasciamo.
+Alla komponenter i Rocky Linux är byggda från källkoden på [git.rockylinux.org](https://git.rockylinux.org). Dessutom publiceras SRPMs tillsammans med arkiven i en motsvarande "källkatalog". Du kan hitta dessa på någon av våra speglar. Dessa källkodspaket matchar varje binär RPM vi släpper.
 
-## 8.5 - 2022-01-11
+## 8.5 - 2022-03-15
 
-I seguenti pacchetti sono stati aggiornati dal 11 gennaio 2022:
+Följande paket har uppdaterats sedan 15 mars 2022:
 
-* httpd: httpd-2.4.37-41.module+el8.5.0+695+1fa8055e -> httpd-2.4.37-43.module+el8.5.0+714+5ec56e8
+* expat-2.2.5-4.el8_5.3
 * tzdata-2022a-1.el8
-* resource-agent -> resource-agents-4.1.1-90.el8_4.5
+* httpd-2.4.37-43.module+el8.5.0+747+83fae388.3
 * openssl-1.1.1k-6.el8_5
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+Följande moduler har uppdaterats:
 
-* 389-ds-1,4-8050020211221162652,1a75f91c
+* httpd
 
-I seguenti pacchetti sono stati aggiornati dal 22 dicembre 2021:
+Associerade CVE:s:
 
-* thunderbird: aggiornato a 78.14.0
+* CVE-2022-25236
 * CVE-2022-25235
 * CVE-2022-25315
 * CVE-2022-23852
@@ -47,19 +47,19 @@ I seguenti pacchetti sono stati aggiornati dal 22 dicembre 2021:
 * CVE-2022-0778
 * CVE-2022-22720
 
-### Note Tecniche di Rilascio
+### Ytterligare information
 
-Ci scusiamo per la mancanza di annunci nelle ultime due settimane. Attualmente questi annunci sono manuali e ci sono piani in corso per rendere questi più automatizzati con meno interazione umana.
+Vi vill be om ursäkt för bristen på tillkännagivanden under de senaste två veckorna. För närvarande är dessa tillkännagivanden manuella och det finns pågående planer på att göra dessa mer automatiserade med mindre mänsklig interaktion.
 
-Con il rilascio del RHEL 8. beta, esamineremo cosa sta cambiando e cosa e come dovremo fare le nostre costruzioni per le prossime settimane prima della sua potenziale GA a fine aprile o maggio. Durante questo processo, abbiamo anche lavorato sul bootstrapping dei pacchetti beta RHEL 9 per essere importati, ricostruito, e testato nel nostro nuovo sistema di costruzione.
+Med frisläppandet av RHEL 8. beta, Vi kommer att undersöka vad som förändras och vad och hur vi kommer att behöva göra våra byggen för de närmaste veckorna innan dess potentiella GA i slutet av april eller maj. Under detta har vi även arbetat med att bootstrapping av betapaketen RHEL 9 för att så småningom importeras, ombyggda, och testade i vårt nya byggsystem.
 
-## 8.5 - 2022-01-03
+## 8.5 - 2022-03-14
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+Följande paket har uppdaterats sedan den 14 mars 2022:
 
-* CVE-2021-44716
+* 389-ds-base: 389-ds-base-1.4.3.23-12.modul+el8.5.0+722+e2a0b219 -> 389-ds-base-1.4.3.23-14.modul+el8.5.0+745+c5be6847
 * cloud-init: cloud-init-21.1-7.el8_5.3 -> cloud-init-21.1-7.el8_5.4
-* resource-agent -> resource-agents-4.1.1-90.el8_4.5
+* fence-agents: fence-agents-4.2.1-75.el8 -> fence-agents-4.2.1-75.el8_5.2
 * firewalld: firewalld-0.9.3-7.el8 -> firewalld-0.9.3-7.el8_5.1
 * gdm: gdm-1:40.0-15.el8 -> gdm-1:40.0-15.el8_5.1
 * glibc: glibc-2.28-164.el8 -> glibc-2.28-164.el8_5.3
@@ -69,123 +69,123 @@ I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
 * libxml2: libxml2-2.9.7-11.el8 -> libxml2-2.9.7-12.el8_5
 * linux-firmware: linux-firmware-20210702-103.gitd79c2677.el8 -> linux-firmware-20210702-104.gitd79c2677.el8_5
 * lvm2: lvm2-8:2.03.12-10.el8 -> lvm2-8:2.03.12-11.el8_5
-* nmstate -> nmstate-1,0,2-11,el8_4
+* nmstate: nmstate-1.1.0-5.el8_5 -> nmstate-1.1.0-6.el8_5
 * pcs: pcs-0.10.10-4.el8.rocky.0 -> pcs-0.10.10-4.el8_5.1.rocky.0
 * plymouth: plymouth-0.9.4-10.20200615git1e36e30.el8 -> plymouth-0.9.4-10.20200615git1e36e30.el8_5.1
 * qemu-kvm: qemu-kvm-15:4.2.0-59.module+el8.5.0+726+ce09ee88.1 -> qemu-kvm-15:4.2.0-59.module+el8.5.0+744+67293bef.2
 * redhat-support-lib-python: redhat-support-lib-python-0.11.3-1.el8 -> redhat-support-lib-python-0.13.0-0.el8_5
 * redhat-support-tool: redhat-support-tool-0.11.3-2.el8 -> redhat-support-tool-0.13.0-0.el8_5
 * samba: samba-4.14.5-9.el8_5 -> samba-4.14.5-10.el8_5
-* subscription-manager: subscription-manager-1.28.21-3.el8 -> subscription-manager-1.28.21-5.el8_5
+* abonnemang-manager: abonnemang-manager-1.28.21-3.el8 -> abonnemang-manager-1.28.21-5.el8_5
 * systemd: systemd-239-51.el8_5.3 -> systemd-239-51.el8_5.5
 * vim: vim-2:8.0.1763-16.el8_5.4 -> vim-2:8.0.1763-16.el8_5.12
 
-I seguenti moduli sono stati aggiornati:
+Följande moduler har uppdaterats:
 
-* 389-ds-base: 389-ds-base-1.4.3.23-10.module+el8.5.0+700+370e33d5 -> 389-ds-base-1.4.3.23-12.module+el8.5.0+722+e2a0b219
-* 389-ds-1,4-8050020211221162652,1a75f91c
+* 389-ds
+* httpd
 * virt
-* virt-who: virt-who-1,30,5-1,el8 -> virt-who-1,30,5-2,el8_4
+* virt-devel
 
-## 8.5 - 2021-12-22
+## 8.5 - 2022-03-10
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+Följande paket har uppdaterats sedan den 10 mars 2022:
 
-* CVE-2021-20321
+* thunderbird: thunderbird-91.6.0-1.el8_5 -> thunderbird-91.7.0-2.el8_5
 * thunderbird: thunderbird-91.6.0-1.el8_5.plus -> thunderbird-91.7.0-2.el8_5.plus
 
-I seguenti pacchetti sono stati aggiornati dal 16 Dicembre, 2021:
+Associerade CVE:s:
 
-* cyrus-imapd: aggiornato a 3.0.7-20.el8_4.1 (indirizzi CVE-2021-33582)
+* CVE-2022-25315
 * CVE-2022-25235
-* thunderbird: aggiornato a 78.14.0
+* CVE-2022-25236
 
-## 8.5 - 2021-12-17
+## 8.5 - 2022-02-24
 
-I seguenti moduli sono stati aggiornati:
+Följande paket har uppdaterats sedan 24 februari 2022:
 
-* selinux-policy: selinux-policy-3.14.3-80.el8 -> selinux-policy-3.14.3-80.el8_5.2
+* dotnet3.1: dotnet3.1-3.1.416-3.el8_5 -> dotnet3.1-3.1.417-1.el8_5
 * dotnet5.0: dotnet5.0-5.0.211-1.el8_5 -> dotnet5.0-5.0.212-1.el8_5
 * dotnet6.0: dotnet6.0-6.0.102-1.el8_5 -> dotnet6.0-6.0.103-4.el8_5
 * firefox: firefox-91.6.0-1.el8_5 -> firefox-91.7.0-3.el8_5
 * kernel: kernel-4.18.0-348.12.2.el8_5 -> kernel-4.18.0-348.20.1.el8_5
-* kernel-rt: kernel-rt-kvm aggiunto a RT
+* kernel-rt: kernel-rt-4.18.0-348.12.2.rt7.143.el8_5 -> kernel-rt-4.18.0-348.20.1.rt7.150.el8_5
 
-CVE Associati:
+Associerade CVE:s:
 
-* python2 -> aggiunge rocky alle dists supportate
+* CVE-2022-0435
 * CVE-2022-0847
 
-## 8.5 - 2021-12-16
+## 8.5 - 2022-02-22
 
-I seguenti moduli sono stati aggiornati:
+Följande paket har uppdaterats sedan den 22 februari 2022:
 
-* CVE-2020-25717
+* cyrus-sasl: cyrus-sasl-2.1.27-5.el8 -> cyrus-sasl-2.1.27-6.el8_5
 
-Sulla base di una richiesta, il pacchetto kernel-rt-kvm è stato aggiunto al repository RT.
+Associerade CVE:s:
 
-* ruby:2,5 -> 2.5.9-107
+* CVE-2022-24407
 
-## 8.5 - 2021-12-13
+## 8.5 - 2022-02-16
 
-I seguenti pacchetti sono stati aggiornati dal 12 Dicembre, 2021:
+Följande paket har uppdaterats sedan 16 februari 2022:
 
-* thunderbird con supporto PGP (tutte le architetture)
+* python-pillow: python-pillow-5.1.1-16.el8 -> python-pillow-5.1.1-18.el8_5
 
-CVE Associati:
+Associerade CVE:s:
 
-* CVE-2016-2124
+* CVE-2022-22815
 * CVE-2022-22816
 * CVE-2022-22817
 
-## 8.5 - 2021-12-12
+## 8.5 - 2022-02-15
 
-I seguenti pacchetti sono stati aggiornati dal 10 Dicembre, 2021:
+Följande moduler har uppdaterats sedan den 15 februari 2022:
 
-* WALinuxAgent: WALinuxAgent-2.3.0.2-2.el8 -> WALinuxAgent-2.3.0.2-2.el8.rocky.0
-* ruby:2,6 -> 2,6,7-107
+* ruby-2,5-8050020220216182135.b4937e53
+* ruby-2,6-8050020216165459.b4937e53
 
-## 8.5 - 2021-12-10
+## 8.5 - 2022-02-14
 
-The follow modules have been updated:
+Följande paket har uppdaterats sedan den 14 februari 2022:
 
-* python27
-* thunderbird: thunderbird-91.5.0-1.el8.plus -> thunderbird-91.6.0-1.el8_5.plus
+* thunderbird: thunderbird-91.5.0-1.el8_5 -> thunderbird-91.6.0-1.el8_5
+* thunderbird: åskfågel-91.5.0-1.el8.plus -> åskfågel-91.6.0-1.el8_5.plus
 
-## 8.5 - 2021-12-09
+## 8.5 - 2022-02-09
 
-Questi aggiornamenti sono per lo più di natura estetica e non influenzano le funzionalità.
+Följande paket har uppdaterats sedan den 9 februari 2022:
 
-* WALinuxAgent -> Abbiamo aggiunto il supporto diretto a Rocky quì così come a monte in un PR a Microsoft
+* dotnet3.1: dotnet3.1-3.1.120-2.el8_5 -> dotnet3.1-3.1.416-3.el8_5
 * dotnet5.0: dotnet5.0-5.0.210-1.el8_5 -> dotnet5.0-5.0.211-1.el8_5
 * dotnet6.0: dotnet6.0-6.0.101-2.el8_5 -> dotnet6.0-6.0.102-1.el8_5
 * firefox: firefox-91.5.0-1.el8_5 -> firefox-91.6.0-1.el8_5
 
-## 8.5 - 2021-12-03
+## 8.5 - 2022-02-04
 
-I seguenti pacchetti sono stati aggiornati dal 09 dicembre 2021:
+Följande paket har uppdaterats sedan den 04 februari 2022:
 
-* thunderbird: thunderbird-91.3.0-2.el8_4 ->
+* aide: aide-0.16-14.el8 -> aide-0.16-14.el8_5.1
 
-Questi aggiornamenti sono per lo più di natura estetica e non influenzano le funzionalità.
+Associerade CVE:s:
 
-* abrt: abrt-2.10.9-21.el8 -> abrt-2.10.9-21.el8.rocky.0
+* CVE-2021-45417
 
-## 8.5 - 2021-12-02
+## 8.5 - 2022-02-02
 
-I seguenti pacchetti sono stati aggiornati dal 03 dicembre 2021:
+Följande moduler/paket har uppdaterats sedan den 02 februari 2022:
 
-* mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
+* lack: lack-6.0.8-1.modul+el8.5.0+677+2a78a869 -> lack-6.0.8-1.modul+el8.5.0+736+fec10e21.1
 
-The follow modules have been updated:
+Associerade CVE:s:
 
-* mailman: CVE-2021-44227
+* CVE-2022-23959
 
-## 8.5 - Supplemento - 2021-11-30
+## 8.5 - 2022-02-01
 
-I seguenti pacchetti sono stati aggiornati dal 03 dicembre 2021:
+Följande paket har uppdaterats sedan februari 01, 2022:
 
-* mailman-2.1-8050020211202160117.fd901a62
+* clevis: clevis-15-1.el8 -> clevis-15-1.el8_5.1
 * cockpit: cockpit-251.1-1.el8 -> cockpit-251.3-1.el8_5
 * cryptsetup: cryptsetup-2.3.3-4.el8 -> cryptsetup-2.3.3-4.el8_5.1
 * dnf-plugins-core: dnf-plugins-core-4.0.21-3.el8 -> dnf-plugins-core-4.0.21-4.el8_5
@@ -206,123 +206,123 @@ I seguenti pacchetti sono stati aggiornati dal 03 dicembre 2021:
 * vulkan-headers: vulkan-headers-1.2.189.0-1.el8 -> vulkan-headers-1.2.198.0-1.el8_5
 * vulkan-loader: vulkan-loader-1.2.189.0-1.el8 -> vulkan-loader-1.2.198.0-2.el8_5
 * vulkan-tools: vulkan-tools-1.2.189.0-1.el8 ->vulkan-tools-1.2.198.0-1.el8_5
-* vulkan-validation-layers: vulkan-validation-layers-1.2.189.0-2.el8 ->vulkan-validation-layers-1.2.198.0-4.el8_5
+* vulkanvalideringslager: vulkanvalideringslager-1.2.189.0-2.el8 ->vulkanvalideringslager-1.2.198.0-4.el8_5
 
-Firefox: Questa è una versione aggiornata di ESR per Firefox.
+Följande moduler har uppdaterats:
 
-* ncurses-static
+* containerverktyg
 * freeradius
 * nodejs
-* pki-core
+* pki-kärna
 * virt
-* virt-who: virt-who-1,30,5-1,el8 -> virt-who-1,30,5-2,el8_4
+* virt-devel
 
-## 8.5 - 2021-11-29
+## 8.5 - 2022-01-27
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats sedan den 27 januari 2022:
 
-* open-vm-tools (aarch64 specific build only)
+* dotnet-build-reference-packages: dotnet-build-reference-packages-0-10.20200608gitcd5a8c6.el8 ->dotnet-build-reference-packages-0-11.20211215git045b288.el8_5
 * nginx: nginx-1:1.20.0-2.module+el8.5.0+669+b11495b0 -> nginx-1:1.20.1-1.module+el8.5.0+729+3f70613e
 * samba: samba-4.14.5-7.el8_5 -> samba-4.14.5-9.el8_5
 
-I seguenti pacchetti sono stati aggiornati:
+Följande moduler har uppdaterats:
 
-* openldap-servers (all architectures)
+* nginx
 
-I seguenti moduli sono stati aggiornati dal 2 dicembre 2021:
+Associerade CVE:s:
 
-* kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
+* CVE-2021-44142
 * CVE-2021-23017
 
-## 8.5 - 2021-11-24
+## 8.5 - 2022-01-26
 
-I seguenti pacchetti sono stati aggiunti al repository devel:
+Följande paket har uppdaterats sedan 26 januari 2022:
 
-* nss-3.67.0-7.el8_5: CVE-2021-43527
+* java-1.8.0-openjdk: java-1.8.0-openjdk-1:1.8.0.312.b07-2.el8_5 -> java-1.8.0-openjdk-1:1.8.0.322.b06-2.el8_5
 
-## 8.5 - 2021-11-22
+## 8.5 - 2022-01-25
 
-I seguenti pacchetti sono stati aggiunti al repository plus:
+Följande paket har uppdaterats sedan den 25 januari 2022:
 
-* systemd -> systemd-239-45.el8_4.2 -> Indirizzi CVE-2021-33910
+* parfait: parfait-0.5.4-2.module+el8.3.0+214+edf13b3f -> parfait-0.5.4-4.module+el8.5.0+728+553fbdb8
 
-I seguenti pacchetti sono stati aggiunti al repository devel:
+Följande paket har tagits bort:
 
-* mailman: mailman-3:2.1.29-12.module+el8.5.0+703+19300c10 -> mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1
+* log4j12: log4j12-1.2.17-22.modul+el8.3.0+214+edf13b3f
 
-Gli attuali pacchetti in plus (a partire dal 2021-11-30) sono:
+Följande moduler har uppdaterats:
 
-* mailman-2.1-8050020211123230959.fd901a62
+* parfait
 
-## 8.5 - 2021-11-16
+## 8.5 - 2022-01-24
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+Följande paket har uppdaterats sedan 24 januari 2022:
 
-* CVE-2021-42096
+* httpd: httpd-2.4.37-43.module+el8.5.0+714+5ec56ee8 -> httpd-2.4.37-43.module+el8.5.0+727+743c5577.1
 * polkit: polkit-0.115-12.el8 -> polkit-0.115-13.el8_5.1
 
-I seguenti pacchetti sono stati aggiornati dal 29 Nov, 2021:
+Följande moduler har uppdaterats:
 
-* clang: clang-12.0.1-2.module+el8.5.0+692+8756646f -> clang-12.0.1-4.module+el8.5.0+715+58f51d49
+* httpd
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+Associerade CVE:s:
 
-* llvm-toolset-rhel8-8050020211122023437.b4937e53
+* CVE-2021-44790
 * CVE-2021-4034
 
-## 8.5 - 2021-11-14
+## 8.5 - 2022-01-19
 
-I seguenti pacchetti sono stati aggiornati dal 24 Nov, 2021:
+Följande paket har uppdaterats sedan den 19 januari 2022:
 
-* annobin: annobin-9.65-1.el8 -> annobin-9.72-1.el8_5.2
+* java-11-openjdk: java-11-openjdk-1:11.0.13.0.8-4.el8_5 -> java-11-openjdk-1:11.0.14.0.9-2.el8_5
 
-## 8.4 - 2021-09-21
+## 8.5 - 2022-01-12
 
-I seguenti pacchetti sono stati aggiornati dal 22 Nov, 2021 (inclusi i pacchetti dei moduli aggiornati):
+Följande paket har uppdaterats sedan den 12 januari 2022:
 
-* insights-client: insights-client-3.1.5-1.el8 (Standard Group)
+* gegl04: gegl04-0.4.4-6.el8 -> gegl04-0.4.4-6.el8_5.2
 * java-17-openjdk: java-17-openjdk-1:17.0.1.0.12-2.el8_5 -> java-17-openjdk-1:17.0.2.0.8-4.el8_5
 * kernel: kernel-4.18.0-348.7.1.el8_5 -> kernel-4.18.0-348.12.2.el8_5
 * kernel-rt: kernel-rt-4.18.0-348.7.1.rt7.137.el8_5 -> kernel-rt-4.18.0-348.12.2.rt7.143.el8_5
 * libarchive: libarchive-3.3.3-1.el8 -> libarchive-3.3.3-1.el8_5
 * libreswan: libreswan-4.4-1.el8 -> libreswan-4.4-4.el8_5
 
-I seguenti moduli sono stati aggiornati dal 23 Nov, 2021:
+Associerade CVE:s:
 
-* rust-toolset-rhel8-8050020211112021616.f73640c0
+* CVE-2022-0185
 * CVE-2021-45463
 * CVE-2021-4155
 
-## 8.4 - 2021-09-13
+## 8.5 - 2022-01-11
 
-CVE Associati:
+Följande paket har uppdaterats sedan den 11 januari 2022:
 
-* kernel: kernel-4.18.0-305.19.1 (9-15)
-* idm-DL1-8050020211215093947-3d2c466f
-* thunderbird: thunderbird-91.4.0-2.el8.plus -> thunderbird-91.5.0-1.el8.plus
+* firefox: firefox-91.4.0-1.el8_5 -> firefox-91.5.0-1.el8_5
+* thunderbird: thunderbird-91.4.0-2.el8_5 -> thunderbird-91.5.0-1.el8_5
+* dunderbird: dunderbird-91.4.0-2.el8.plus -> dunderbird-91.5.0-1.el8.plus
 
-## 8.4 - 2021-08-24
+## 8.5 - 2022-01-03
 
-I seguenti pacchetti sono stati aggiornati dal 16 Nov, 2021 (inclusi i pacchetti dei moduli aggiornati):
+Följande paket har uppdaterats sedan den 03 januari 2022:
 
-* thunderbird: aggiornato a 78.14.0
-* firefox: aggiornato a 78.14.0
+* dotnet6.0: dotnet6.0-6.0.100-0.10.el8_5 -> dotnet6.0-6.0.101-2.el8_5
+* rpaste: rpaste-0.1-3.el8.2 -> rpaste-0.2.0-1.el8
 
-## 8.4 - 2021-08-11
+## 8.5 - 2021-12-22
 
-Sulla base di una richiesta, il pacchetto kernel-rt-kvm è stato aggiunto al repository RT.
+Följande paket har uppdaterats sedan den 22 december 2021:
 
-* extra -> sono stati aggiunti i CentOS sig release packages
+* grafana: grafana-7.5.9-4.el8 -> grafana-7.5.9-5.el8_5
 
-I seguenti pacchetti sono stati aggiornati dalla release 8.5 il 14 Nov, 2021 (inclusi i pacchetti dei moduli aggiornati):
+Associerade CVE:s:
 
-* dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
+* CVE-2021-44716
 
-## 8.4 - 2021-08-02
+## 8.5 - 2021-12-17
 
-I seguenti pacchetti sono stati eliminati e anche rimossi dai gruppi dnf:
+Följande paket har uppdaterats sedan 17 december 2021:
 
-* extra -> CentOS sig release packages sono stati aggiunti
+* 389-ds-base: 389-ds-base-1.4.3.23-10.modul+el8.5.0+700+370e33d5 -> 389-ds-base-1.4.3.23-12.modul+el8.5.0+722+e2a0b219
 * accountsservice: accountsservice-0.6.55-2.el8 -> accountsservice-0.6.55-2.el8_5.2
 * cloud-init: cloud-init-21.1-7.el8 -> cloud-init-21.1-7.el8_5.3
 * freeradius: freeradius-3.0.20-9.module+el8.5.0+704+21fb769d -> freeradius-3.0.20-10.module+el8.5.0+723+cc9aee6c
@@ -339,183 +339,183 @@ I seguenti pacchetti sono stati eliminati e anche rimossi dai gruppi dnf:
 * rocky-release: rocky-release-8.5-2.el8 -> rocky-release-8.5-3.el8
 * sssd: sssd-2.5.2-2.el8_5.1 -> sssd-2.5.2-2.el8_5.3
 
-Per i pacchetti che sono stati eliminati, è sicuro rimuoverli usando `dnf remove`
+Associerade CVE:s:
 
-* 389-ds-base: 389-ds-base-1.4.3.16-16.module+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.module+el8.4.0+636+837ee950
-* extra -> sono stati aggiunti i CentOS sig release packages
+* CVE-2021-20321
+* CVE-2021-3930
 * CVE-2021-20257
 * CVE-2021-3712
 
-I seguenti moduli sono stati aggiornati dalla versione 8.5 del 14 novembre 2021:
+Följande moduler har uppdaterats:
 
 * virt-rhel-8050020211221163306.b4937e53
 * virt-devel-rhel-8050020211221163306.b4937e53
 * postgresql-13-8050020211221161313.b4937e53
 * postgresql-12-8050020211221161311.b4937e53
-* freeradius-3.0-8050020211221161359.ab0f257b
-* 389-ds-1.4-8050020211221162652.1a75f91c
+* freeradius-3,0-8050020211221161359.ab0f257b
+* 389-ds-1,4-8050020211221162652,1a75f91c
 
-### Note Tecniche di Rilascio
+### Anteckningar för Release Engineering
 
-il pacchetto rocky-release è stato aggiornato per aggiungere il countme=1 ai repository base di Rocky Linux, analogamente a come epel ha nei loro repos. Se hai modificato i file dei repository, avrete i file .rpmnew generati, per non sovrascrivere le vostre modifiche.
+rocky-release-paketet har uppdaterats för att lägga till countme=1 till databasen -förråd för Rocky Linux, liknande hur epel har sina repos. Om du har ändrat repo-filerna kommer du att ha .rpmnew filer, för att inte skriva över dina ändringar.
 
-## 8.4 - 2021-07-27
+## 8.5 - 2021-12-16
 
-I seguenti moduli sono stati aggiornati dalla versione 8.5 del 14 novembre 2021:
+Följande paket har uppdaterats sedan den 16 december 2021:
 
 * selinux-policy: selinux-policy-3.14.3-80.el8 -> selinux-policy-3.14.3-80.el8_5.2
-* extra -> CentOS sig release packages sono stati aggiunti
+* systemd: systemd-239-51.el8 -> systemd-239-51.el8_5.3
 
-## 8.4 - 2021-07-21
+## 8.5 - 2021-12-13
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats sedan den 13 december 2021:
 
-* thunderbird -> thunderbird-78.12.0-3.el8_4
+* dotnet5.0: dotnet5.0-5.0.209-1.el8_5 -> dotnet5.0-5.0.210-1.el8_5
 * go-toolset: go-toolset-1.16.7-1.module+el8.5.0+694+f77f0bfd -> go-toolset-1.16.12-1.module+el8.5.0+720+c057d5cf
 * golang: golang-1.16.7-1.module+el8.5.0+694+f77f0bfd -> golang-1.16.12-1.module+el8.5.0+720+c057d5cf
 * ipa: ipa-4.9.6-6.module+el8.5.0+675+61f67439 -> ipa-4.9.6-10.module+el8.5.0+719+4f06efb6
 * nodejs: nodejs-1:16.8.0-1.module+el8.5.0+702+221f14e6 -> nodejs-1:16.13.1-3.module+el8.5.0+721+4c107270
 * nodejs-nodemon: nodejs-nodemon-2.0.7-1.module+el8.5.0+702+221f14e6 -> nodejs-nodemon-2.0.15-1.module+el8.5.0+721+4c107270
 
-* kernel-rt: kernel-rt-kvm added to RT
+* kernel-rt: kernel-rt-kvm tillagd i RT
 
-I seguenti pacchetti sono stati aggiornati dal 22 dicembre 2021:
+Associerade CVE:s:
 
-* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
+* CVE-2020-25717
 
-Sono stati aggiornati i seguenti repos:
+Följande moduler har uppdaterats:
 
 * go-toolset-rhel8-8050020211215173118-8aa62369
 * idm-DL1-8050020211215093947-3d2c466f
 * nodejs-16-8050020211215195043-b4937e53
 
 
-### Note Tecniche di Rilascio
+### Anteckningar för Release Engineering
 
-I seguenti pacchetti sono stati aggiornati:
+Baserat på en begäran har paketet kernel-rt-kvm lagts till i RT-rapo.
 
-## 8.4 - 2021-07-12
+## 8.5 - 2021-12-12
 
-Sono stati aggiunti i seguenti repos/pacchetti:
+Följande paket har uppdaterats sedan den 12 december 2021:
 
-* python36
+* samba: samba-4.14.5-2.el8 -> samba-4.14.5-7.el8_5
 
-I seguenti pacchetti sono stati aggiornati dal 22 dicembre 2021:
+Associerade CVE:s:
 
-* openscap -> Mancavano delle informazioni per Rocky Linux.
-* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
+* CVE-2016-2124
+* CVE-2020-25717
 * CVE-2021-23192
 
-## 8.4 - 2021-06-30
+## 8.5 - 2021-12-10
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats sedan den 10 december 2021:
 
-* NetworkManager -> NetworkManager-11.30.0-9.el8_4
+* WALinuxAgent: WALinuxAgent-2.3.0.2-2.el8 -> WALinuxAgent-2.3.0.2-2.el8.rocky.0
 * libreoffice: libreoffice-1:6.4.7.2-5.el8.1 -> libreoffice-1:6.4.7.2-5.el8.2.rocky
-* openscap: openscap-1.3.5-6.el8 -> openscap-1.3.5-6.el8.rocky.0.1
+* Öppen bild-1.3.5-6.el8 -> öppen bild-1.3.5-6.el8.rocky.0.1
 * pcs: pcs-0.10.10-4.el8 -> pcs-0.10.10-4.el8.rocky.0
 * python2: python2-2.7.18-7.module+el8.5.0+706+735ec4b3.rocky.0.1 -> python2-2.7.18-7.module+el8.5.0+718+67e45b5f.rocky.0.2
 * rocky-release: rocky-release-8.5-1.el8 -> rocky-release-8.5-2.el8
 
-Aggiunti kickstart repos per i seguenti repository:
+Följande moduler har uppdaterats:
 
 * python27
 
-### Note Tecniche di Rilascio
+### Anteckningar för Release Engineering
 
-Questi aggiornamenti sono per lo più di natura estetica e non influenzano le funzionalità.
+Dessa uppdateringar är mestadels kosmetiska till sin natur och påverkar inte funktionalitet.
 
-* WALinuxAgent -> Abbiamo aggiunto il supporto diretto a Rocky quì così come a monte in un PR a Microsoft
-* libreoffice -> È stato trovato un marchio del cappello rosso. Questo aggiornamento riguarda il marchio.
-* openscap -> Mancavano delle informazioni per Rocky Linux.
-* pcs -> Il logo aveva un marchio che non è stato rimosso
-* rocky-release -> semplifica CPE_NAME
-* python2 -> aggiunge rocky alle dists supportate
+* WALinuxAgent -> Vi har lagt till direkt Rocky-stöd här samt i en PR uppströms till Microsoft
+* libreoffice -> Det var röd hatt varumärke hittades. Den här uppdateringen tar upp varumärket.
+* openscap -> Det saknades information för Rocky Linux.
+* pcs -> Logotypen hade ett varumärke som inte togs bort
+* rocky-release -> förenklar CPE_NAME
+* python2 -> lägger till stenig till stödda dister
 
 ## 8.5 - 2021-12-09
 
-I seguenti pacchetti sono stati aggiornati dal 09 dicembre 2021:
+Följande paket har uppdaterats sedan december 09, 2021:
 
-* Un repository "devel" è ora fornito per scopi mock/buildroot
+* thunderbird: thunderbird-91.3.0-2.el8_4 ->
 * thunderbird-91.4.0-2.el8_5
-* thunderbird: thunderbird-91.3.0-2.el8.plus ->
+* thunderbird: åskfågel-91.3.0-2.el8.plus ->
 * thunderbird-91.4.0-2.el8.plus
 
-### Note Tecniche di Rilascio
+### Anteckningar för Release Engineering
 
-Thunderbird: Questo è un normale aggiornamento di compilazione ESR per thunderbird. Questo aggiornamento è per entrambi i repository base e Plus. Il repository Plus contiene una versione di thunderbird con supporto PGP.
+Thunderbird: Detta är en vanlig ESR bygguppdatering för åskfågel. Den här uppdateringen är både för basdatabasen och Plus. Plus-arkivet innehåller en version av åska med PGP-stöd.
 
 ## 8.5 - 2021-12-03
 
-I seguenti moduli sono stati aggiornati:
+Följande paket har uppdaterats sedan den 3 december 2021:
 
 * abrt: abrt-2.10.9-21.el8 -> abrt-2.10.9-21.el8.rocky.0
 * firefox: firefox-91.3.0-1.el8_4 -> firefox-91.4.0-1.el8_5
 * sos: sos-4.1-5.el8 -> sos-4.1-5.el8.rocky.2
 
-### Note su Plus
+### Anteckningar för Release Engineering
 
-I seguenti pacchetti sono stati aggiornati:
+Firefox: Detta är en uppdaterad ESR-version för Firefox.
 
-abrt: Questo è un cambiamento per lo più estetico. Rimuove le dipendenze dai plugin libreport-rhel* e rhtsupport. Questi pacchetti possono essere rimossi in modo sicuro dopo l'aggiornamento al nuovo pacchetto abrt.
+abrt: Detta är en mestadels kosmetisk förändring. Det tar bort beroendet av libreport-rhel* och rhtsupport plugins. Dessa paket kan tas bort säkert efter att de uppdaterats till det nya abrt-paketet.
 
-sos: Questo è un cambiamento per lo più estetico. Abbassa la politica di Rocky a monte. Vedi [questo PR per maggiori dettagli](https://github.com/sosreport/sos/pull/2784)
+sos: Detta är en mestadels kosmetisk förändring. Det sänker politiken för Rocky uppströms. Se [denna PR för mer detaljer](https://github.com/sosreport/sos/pull/2784)
 
 ## 8.5 - 2021-12-02
 
-I seguenti pacchetti sono stati aggiornati dal 02 dicembre 2021:
+Följande paket har uppdaterats sedan den 02 december 2021:
 
 * mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
 * mailman-3:2.1.29-12.module+el8.5.0+717+27fd1ba7.2
 
-I pacchetti regolari di Rocky sono stati aggiornati per affrontare i seguenti aspetti:
+Associerade CVE:s:
 
 * mailman: CVE-2021-44227
 
-I seguenti moduli sono stati aggiornati dal 2 dicembre 2021:
+Följande moduler har uppdaterats sedan den 02 december 2021:
 
 * mailman-2.1-8050020211202160117.fd901a62
 
 
-## 8.5 - Supplemento - 2021-11-30
+## 8,5 - Kompletterande - 2021-11-30
 
-I pacchetti regolari di Rocky sono stati aggiornati per affrontare i seguenti aspetti:
+Följande paket har lagts till i utvecklingskatalogen:
 
-* ncurses-static
+* sjuksköterskor-statisk
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+Följande paket har lagts till i pluskatalogen:
 
-* open-vm-tools (aarch64 specific build only)
+* open-vm-verktyg (endast aarch64-specifik byggning)
 
-### Note su Devel
+### Plus anteckningar
 
-Il repository plus contiene elementi che non sono forniti nei repository base, o perché non sono disponibili a causa della configurazione dei comps e dei pungi (basati sui repository RHEL) o perché sono richiesti come build alternative con patch/funzionalità aggiuntive non trovate nella base. Mantenere il repository plus abilitato dovrebbe essere sicuro.
+The plus repository contains items which are not provided in the base repositories, (Automatic Copy) antingen för att de inte är tillgängliga på grund av comps och pungi konfiguration (baserat på RHEL utvecklingskataloger) eller för att de efterfrågas som alternativa byggnationer med ytterligare patch/funktioner som inte finns i basen. Plus-arkivet bör vara säkert att hålla aktiverat.
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+De aktuella paketen i plus (från 2021-11-30) är:
 
-* openldap-servers (all architectures)
-* thunderbird with PGP support (all architectures)
-* ncurses-static (all architectures)
-* open-vm-tools (aarch64 specific build only)
+* openldap-servrar (alla arkitekturer)
+* thunderbird med PGP-stöd (alla arkitekturer)
+* ncurses-static (alla arkitekturer)
+* open-vm-verktyg (endast aarch64-specifik byggning)
 
-### Problemi noti
+### Devel anteckningar
 
-Il repository devel dovrebbe essere usato con attenzione. È destinato per scopi koji o buildroot e non dovrebbe essere abilitato il 100% del tempo. Se trovate che c'è un pacchetto che si desidera vedere nel repo di devel, inviate una email a rocky-devel e/o aprite una segnalazione di bug su https://bugs.rockylinux.org
+Förrådet bör användas med försiktighet. Det är avsett för koji eller byggdroot ändamål och bör inte aktiveras 100% av tiden. Om du hittar ett paket som du vill se i devel repo, skicka ett mail på rocky-devel och/eller öppna en felrapport på https://bugs. ockylinux.org
 
 ## 8.5 - 2021-11-29
 
-CVE Associati:
+Följande paket har uppdaterats sedan 29 nov 2021:
 
 * kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
 * nss: nss-3.67.0-6.el8_4 -> nss-3.67.0-7.el8_5
 
-I seguenti pacchetti sono stati aggiornati:
+Associerade CVE:s:
 
 * nss-3.67.0-7.el8_5: CVE-2021-43527
 
 ## 8.5 - 2021-11-24
 
-I seguenti pacchetti sono stati aggiornati dal 24 Nov, 2021:
+Följande paket har uppdaterats sedan den 24 november 2021:
 
 * dotnet5.0: dotnet5.0-5.0.208-2.el8_5 -> dotnet5.0-5.0.209-1.el8_5
 * dotnet5.0-build-reference-packages: dotnet5.0-build-reference-packages-0-11.20210607git5f10a4b.el8 -> dotnet5.0-build-reference-packages-0-12.20211117git6ce5818.el8_5
@@ -523,33 +523,33 @@ I seguenti pacchetti sono stati aggiornati dal 24 Nov, 2021:
 
 ## 8.5 - 2021-11-22
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats sedan 22 november 2021 (inklusive uppdaterade modulpaket):
 
 * mailman: mailman-3:2.1.29-12.module+el8.5.0+703+19300c10 -> mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1
 
-I seguenti moduli sono stati aggiornati dal 23 Nov, 2021:
+Följande moduler har uppdaterats sedan den 23 november 2021:
 
 * mailman-2.1-8050020211123230959.fd901a62
 
-I seguenti pacchetti sono stati aggiornati:
+Associerade CVE:s:
 
 * CVE-2021-42096
 * CVE-2021-42097
 
 ## 8.5 - 2021-11-16
 
-I seguenti pacchetti sono stati aggiornati dal 16 Nov, 2021 (inclusi i pacchetti dei moduli aggiornati):
+Följande paket har uppdaterats sedan 16 november 2021 (inklusive uppdaterade modulpaket):
 
 * clang: clang-12.0.1-2.module+el8.5.0+692+8756646f -> clang-12.0.1-4.module+el8.5.0+715+58f51d49
 * llvm-toolset: llvm-toolset-12.0.1-1.module+el8.5.0+692+8756646f -> llvm-toolset-12.0.1-1.module+el8.5.0+715+58f51d49
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+Följande moduler har uppdaterats sedan 16 november 2021:
 
 * llvm-toolset-rhel8-8050020211122023437.b4937e53
 
 ## 8.5 - 2021-11-14
 
-I seguenti pacchetti sono stati aggiornati dalla release 8.5 il 14 Nov, 2021 (inclusi i pacchetti dei moduli aggiornati):
+Följande paket har uppdaterats sedan 8.5 utgåva 14 november 2021 (inklusive uppdaterade modulpaket):
 
 * annobin: annobin-9.65-1.el8 -> annobin-9.72-1.el8_5.2
 * binutils: binutils-2.30-108.el8 -> binutils-2.30-108.el8_5.1
@@ -559,7 +559,7 @@ I seguenti pacchetti sono stati aggiornati dalla release 8.5 il 14 Nov, 2021 (in
 * dotnet6.0: dotnet6.0-6.0.0-0.6.28be3e9a006d90d8c6e87d4353b77882829df718.el8.0.1 -> dotnet6.0-6.0.100-0.10.el8_5
 * firefox: firefox-78.13.0-2.el8 -> firefox-91.3.0-1.el8
 * flatpak: flatpak-1.8.5-4.el8 -> flatpak-1.8.5-5.el8_5
-* freerdp: freerdp-2:2.2.0-2.el8 -> freerdp-2:2.2.0-7.el8_5
+* freerdp: freerdp-2:2.2.0-2.el8 -> freerdp-2:2.0-7.el8_5
 * gcc: gcc-8.5.0-3.el8 -> gcc-8.5.0-4.el8_5
 * gcc-toolset-10-annobin: gcc-toolset-10-annobin-9.29-1.el8 -> gcc-toolset-10-annobin-9.29-1.el8_5.2
 * gcc-toolset-10-binutils: gcc-toolset-10-binutils-2.35-8.el8_4.4 -> gcc-toolset-10-binutils-2.35-8.el8_5.6
@@ -572,9 +572,9 @@ I seguenti pacchetti sono stati aggiornati dalla release 8.5 il 14 Nov, 2021 (in
 * gcc-toolset-11-valgrind: gcc-toolset-11-valgrind-1:3.17.0-4.el8 -> gcc-toolset-11-valgrind-1:3.17.0-6.el8
 * gnome-settings-daemon: gnome-settings-daemon-3.32.0-14.el8 -> gnome-settings-daemon-3.32.0-16.el8
 * gnome-shell-extensions: gnome-shell-extensions-3.32.1-20.el8 -> gnome-shell-extensions-3.32.1-20.el8_5.1
-* httpd: httpd-2.4.37-41.module+el8.5.0+695+1fa8055e -> httpd-2.4.37-43.module+el8.5.0+714+5ec56ee8
+* httpd: httpd-2.4.37-41.modul+el8.5.0+695+1fa8055e -> httpd-2.4.37-43.modul+el8.5.0+714+5ec56ee8
 * ibus: ibus-1.5.19-13.el8 -> ibus-1.5.19-14.el8_5
-* poppler: 20,11,0-2,el8_4,1
+* java-1.8.0-openjdk: java-1.8.0-openjdk-1:1.8.0.302.b08-3.el8 -> java-1.8.0-openjdk-1:1.8.0.312.b07-2.el8_5
 * java-11-openjdk: java-11-openjdk-1:11.0.12.0.7-4.el8 -> java-11-openjdk-1:11.0.13.0.8-3.el8_5
 * java-17-openjdk: java-17-openjdk-1:17.0.0.0.35-4.el8 -> java-17-openjdk-1:17.0.1.0.12-2.el8_5
 * kernel: kernel-4.18.0-348.el8.0.2 -> kernel-4.18.0-348.2.1.el8_5
@@ -586,42 +586,42 @@ I seguenti pacchetti sono stati aggiornati dalla release 8.5 il 14 Nov, 2021 (in
 * thunderbird: thunderbird-78.13.0-1.el8 -> thunderbird-91.3.0-2.el8
 * udftools: udftools-2.2-5.el8 -> udftools-2.3-2.el8
 
-Alcuni moduli e pacchetti sono stati aggiornati di routine da upstream.
+Följande paket har tagits bort och även tagits bort från dnf-grupper:
 
-* firefox: aggiornato a 78.14.0
+* insights-klient: insights-klient-3,1.5-1.el8 (Standard Group)
 
-Alcuni moduli e pacchetti sono stati aggiornati di routine da upstream.
+För paket som har tagits bort är det säkert att ta bort dem med `dnf ta bort`
 
-I seguenti pacchetti sono stati aggiornati:
+Följande moduler har uppdaterats sedan 8.5 utgåva 14 nov 2021:
 
-* rust-toolset-rhel8-8050020211112021616.f73640c0
+* rost-toolset-rhel8-8050020211112021616.f73640c0
 * httpd-2.4-8050020211115030420.b4937e53
 
-### Modifiche Aggiuntive
+### Kända problem
 
-Alcuni moduli e pacchetti sono stati aggiornati di routine da upstream.
+[bug 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) - Vi är medvetna om ett problem som `kdump` inte fungerar på vmware-system som ESXi.
 
-Siamo anche a conoscenza del nostro sistema mirror che riporta la directory sbagliata per fare gli aggiornamenti. Sarebbe stata `kickstart` piuttosto che `os`. Questo dovrebbe essere risolto e gli aggiornamenti dovrebbero funzionare normalmente.
+Vi är också medvetna om att vårt spegelsystem rapporterar tillbaka fel katalog för att göra uppdateringar. Det skulle `kickstart` snarare än `os`. Detta bör lösas och uppdateringar bör fungera normalt.
 
 ## 8.4 - 2021-09-21
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats:
 
-* kernel: kernel-4.18.0-305.19.1 (9-15)
+* kärna: kärna-4.18.0-305.19.1 (9-15)
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.2
 * golang: 1.15.14-2
 * nss: 3.67.0-6
-* ca-certificates: 2021.2.50-80.0
+* ca-certifikat: 2021.2.50-80.0
 * opencryptoki: 3.15.1-7
 * krb5: 1.18.2-8.3
-* platform-python: 3.6.8-38
+* plattform-python: 3.6.8-38
 * libdb: 5.3.28-42
-* rng-tools: 6.8-4
+* rng-verktyg: 6,8-4
 * sos: 4.0-12
 * python-ldap: 3.3.1-1.1
-* subscription-manager: 1.28.13-4
+* abonnemangshanterare: 1.28.13-4
 * pcp: 5.2.5-6
-* strace: 5.7-2.1
+* <unk> : 5.7-2.1
 * nspr: 4.32.0-1
 * gcc-toolset-10-elfutils: 0.182-6
 * gcc-toolset-10-binutils: 2.35-8.el8_4.4
@@ -629,48 +629,48 @@ I seguenti pacchetti sono stati aggiornati:
 * mysql: 8.0.26
 * selinux-policy: 3.14.3-67.el8_4.2
 * grub2: 2.02-99.el8_4.1.1
-* resource-agents: 4.1.1-90.el8_4.7
+* resursagenter: 4.1.1-90.el8_4.7
 * poppler: 20.11.0-2.el8_4.1
 * pacemaker: 2.0.5-9.el8_4.3
 
 ## 8.4 - 2021-09-13
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats:
 
-* thunderbird: aggiornato a 78.14.0
-* firefox: aggiornato a 78.14.0
-* cyrus-imapd: aggiornato a 3.0.7-20.el8_4.1 (indirizzi CVE-2021-33582)
-* systemtap ricostruito contro dininst 10.2 per affrontare una segnalazione di bug
-* rocky-release -> Aggiornato per permettere "centos" come ID
+* thunderbird: uppdaterad till 78.14.0
+* firefox: uppdaterad till 78.14.0
+* cyrus-imapd: uppdaterad till 3.0.7-20.el8_4.1 (adresser CVE-2021-33582)
+* systemtap ombyggd mot dyninst 10.2 för att ta itu med en felrapport
+* rock-release -> Uppdaterad för att tillåta "centos" som ett ID
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+Följande repos har uppdaterats:
 
-* extra -> sono stati aggiunti i CentOS sig release packages
+* extramaterial -> CentOS sig release paket har lagts till
 
 ## 8.4 - 2021-08-24
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats:
 
 * dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
-* libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Addresses
+* libsndfil: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Adresser
 
-  * Indirizza un overflow heap buffer che consente l'esecuzione arbitraria di codice da un file wav
+  * Adresser ett heapbuffertspill som tillät exekvering av godtycklig kod från en wav-fil
 
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.1
 
-  * Addresses RLBZ#108
+  * Adresser RLBZ#108
 
-Alcuni moduli e pacchetti sono stati aggiornati di routine da upstream.
+Följande repos/paket har lagts till:
 
-* RT (realtime) - Abilitato eseguendo `dnf config-manager --set-enabled rt`
+* RT (realtid) - Aktiverad genom att köra `dnf config-manager --set-enabled rt`
 
-  * kernel-rt (kernel in tempo reale)
+  * kernel-rt (Realtime kernel)
 
 ## 8.4 - 2021-08-11
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats:
 
-* 389-ds-base: 389-ds-base-1.4.3.16-16.module+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.module+el8.4.0+636+837ee950
+* 389-ds-base: 389-ds-base-1.4.3.16-16.modul+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.modul+el8.4.0+636+837ee950
 * NetworkManager: NetworkManager-1:1.30.0-9.el8_4 -> NetworkManager-1:1.30.0-10.el8_4
 * autofs: autofs-1:5.1.4-48.el8 -> autofs-1:5.1.4-48.el8_4.1
 * buildah: buildah-1.19.7-2.module+el8.4.0+556+40122d08 -> buildah-1.21.4-1.module+el8.4.0+643+525e162a
@@ -731,74 +731,74 @@ I seguenti pacchetti sono stati aggiornati:
 * vulkan-headers: vulkan-headers-1.2.162.0-1.el8 -> vulkan-headers-1.2.182.0-1.el8_4
 * vulkan-loader: vulkan-loader-1.2.162.0-1.el8 -> vulkan-loader-1.2.182.0-1.el8_4
 * vulkan-tools: vulkan-tools-1.2.162.0-1.el8 -> vulkan-tools-1.2.182.0-1.el8_4
-* vulkan-validation-layers: vulkan-validation-layers-1.2.162.0-1.el8 -> vulkan-validation-layers-1.2.182.0-1.el8_4
+* vulkanvalideringslager: vulkanvalideringslager-1.2.162.0-1.el8 -> vulkanvalideringslager-1.2.182.0-1.el8_4
 
 ## 8.4 - 2021-08-02
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats:
 
-* varnish -> varnish-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> Addresses CVE-2021-36740
+* lack -> lack-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> Adresser CVE-2021-36740
 
-Aggiunti kickstart repos per i seguenti repository:
+Lade till kickstart repos för följande utvecklingskataloger:
 
 * BaseOS
 * AppStream
-* PowerTools
-* High Availability
-* Resilient Storage
+* Verktyg
+* Hög tillgänglighet
+* Resilient Lagring
 
 ## 8.4 - 2021-07-27
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats:
 
 * thunderbird -> thunderbird-78.12.0-3.el8_4
 
 ## 8.4 - 2021-07-21
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats:
 
-* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
-* systemd -> systemd-239-45.el8_4.2 -> Addresses CVE-2021-33910
+* kärna -> kernel-4.18.0-305.10.2.el8_4 -> Adresser CVE-2021-33909
+* systemd -> systemd-239-45.el8_4.2 -> Adresser CVE-2021-33910
 * firefox
 * java-1.8.0-openjdk
 * java-11-openjdk
 
 ## 8.4 - 2021-07-12
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats:
 
 * rocky-release
 * linuxptp
 * rpaste
 * ovn2.13 (NFV)
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+Följande moduler har uppdaterats:
 
 * python36
 
-### In Arrivo...
+### Ytterligare ändringar
 
-L'archivio extra per aarch64 è stato aggiornato per includere vari pacchetti che non sono inclusi da upstream. Esempi di ciò sarebbero libreoffice e altre applicazioni gnome.
+Metadatapaket för experimentellt utvecklingskatalog har implementerats. Om du vill prova detta, ange följande alternativ i Rocky-X.repo-filerna:
 
 ```
 repo_gpgcheck=1
 ```
 
-### Aggiornamenti Pacchetti
+### Kommer snart...
 
-* Storage addon repositories:
+* Lagring addon utvecklingskataloger:
 
-  * Aggiunti i repository devel e debuginfo per lo stato futuro
+  * Glusterfs 9 stöd
 
 ## 8.4 - 2021-06-30
 
-### Contesto
+### Paketuppdateringar
 
-I seguenti pacchetti sono stati aggiornati:
+Följande paket har uppdaterats:
 
-* Un repository "devel" è ora fornito per scopi mock/buildroot
-* Il repository extra per aarch64 è stato aggiornato per includere i pacchetti mancanti non forniti da upstream per l'uso desktop
-* rpaste è stato aggiornato per accettare l'input stdin
+* NetworkManager -> NetworkManager-11.30.0-9.el8_4
+* cloud-init -> cloud-init-20.3-10.el8_4.3
+* cmake -> cmake-3.18.2-11.el8_4
 * edk2 -> edk2-20200602gitca407c7246bf-4.el8_4.1
 * exiv2 -> exiv2-0.27.3-2.el8
 * firewalld -> firewalld-0.8.2-7.el8_4
@@ -814,34 +814,34 @@ I seguenti pacchetti sono stati aggiornati:
 * nvme-cli -> nvme-cli-1.12-4.el8_4
 * openldap -> openldap-2.4.46-17.el8_4
 * osbuild-composer -> osbuild-composer-28.6-1.el8_4
-* resource-agents -> resource-agents-4.1.1-90.el8_4.5
+* resursagenter -> resursagenter-4.1.1-90.el8_4.5
 * rocky-logos -> rocky-logos-84.5-8.el8
-* rocky-release -> rocky-release-8.4-29.el8
+* rocky-release -> rocky-release-8,4-29.el8
 * rpm -> rpm-4.14.3-14.el8_4
 * rsyslog -> rsyslog-8.1911.0-7.el8_4.2
 * sanlock -> sanlock-3.8.3-3.el8_4
 * sssd -> sssd-2.4.0-9.el8_4.1
-* subscription-manager -> subscription-manager-1.28.13-3.el8_4
+* abonnemang-manager -> abonnemang-manager-1,28.13-3.el8_4
 * systemd -> systemd-239-45.el8_4.1
 * tuned -> tuned-2.15.0-2.el8_4.1
 * unzip -> unzip-6.0-45.el8_4
 
-I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
+Följande moduler har uppdaterats:
 
 * PyYAML -> PyYAML-5.4.1-1.module+el8.4.0+595+c96abaa2
 * 389-ds -> 1.4.3.16-16
 * go-toolset -> go-toolset-1.15.13-1.module+el8.4.0+591+0da41cc3
 * golang -> golang-1.15.13-3.module+el8.4.0+591+0da41cc3
 * idm:DL1 -> ipa-4.9.2-4
-* idm:client -> (ricostruito con ipaplatform=rhel per sincronizzare con il modulo DL1)
+* idm:client -> (ombyggd med ipaplatform=rhel för att synkronisera med DL1-modulen)
 * pgaudit -> pgaudit-1.4.0-6.module+el8.4.0+587+d46efd10
 * postgres-decoderbufs -> postgres-decoderbufs-0.10.0-2.module+el8.4.0+587+d46efd10
 * postgresql -> postgresql-12.7-1.module+el8.4.0+587+d46efd10
 * python38 -> python38-3.8.6-3.module+el8.4.0+595+c96abaa2
 * ruby -> ruby-2.5.9-107.module+el8.4.0+592+03ff458a
-* ruby:2,5 -> 2.5.9-107
-* ruby:2,6 -> 2,6,7-107
-* ruby:2,7 -> 2,7,3-136
+* ruby:2.5 -> 2.5.9-107
+* ruby:2.6 -> 2.6.7-107
+* ruby:2.7 -> 2.7.3-136
 * rubygem-abrt -> rubygem-abrt-0.3.0-4 / rubygem-abrt-0.4.0-1
 * rubygem-bson -> rubygem-bson-4.3.0-2 / rubygem-bson-4.5.0-1 / rubygem-bson-4.8.1-1
 * rubygem-bundler -> rubygem-bundler-1.16.1-3.module+el8.4.0+592+03ff458a
@@ -849,29 +849,29 @@ I seguenti pacchetti sono stati aggiornati dal 03 gennaio 2022:
 * rubygem-pg -> rubygem-pg-1.0.0-2 / rubygem-pg-1.1.4-1 / rubygem-pg-1.2.3-1
 
 
-### Modifiche Aggiuntive
+### Kontext
 
-Alcuni moduli e pacchetti sono stati aggiornati di routine da upstream.
+Vissa moduler och paket har uppdaterats på ett rutinmässigt sätt av uppströms.
 
-I pacchetti regolari di Rocky sono stati aggiornati per affrontare i seguenti aspetti:
+De vanliga rockiga paketen har uppdaterats för att ta itu med följande:
 
 * rocky-release
 
-  * Aggiunti i repository devel e debuginfo per lo stato futuro
-  * Questo è fornito per scopi mock/buildroot
+  * Lägg till devel och debuginfo utvecklingskataloger för framtida tillstånd
+  * Detta tillhandahålls för mock/buildroot ändamål
 
-* rocky-logos
+* sten-logotyper
 
-  * Migliora le icone per le future immagini live ufficiali
+  * Förbättra ikoner för framtida officiella live-bilder
 
 
-### In Arrivo...
+### Ytterligare ändringar
 
-L'archivio extra per aarch64 è stato aggiornato per includere vari pacchetti che non sono inclusi da upstream. Esempi di ciò sarebbero libreoffice e altre applicazioni gnome. Poiché non sono in BaseOS o AppStream, il repository extra è il posto appropriato per questi pacchetti.
+Det extra arkivet för aarch64 har uppdaterats för att inkludera olika paket som inte inkluderas i uppströms. Exempel på detta skulle vara libreoffice och andra gnome-appar. Eftersom de inte finns i BaseOS eller AppStream, är det extra arkivet rätt plats för dessa paket.
 
-* Un repository "devel" è ora fornito per scopi mock/buildroot
-* Il repository extra per aarch64 è stato aggiornato per includere i pacchetti mancanti non forniti da upstream per l'uso desktop
-* rpaste è stato aggiornato per accettare l'input stdin
-* I pacchetti più vecchi saranno forniti nei repos durante la vita di un punto di rilascio.
+* Ett "devel" arkiv finns nu för mock/buildroot ändamål
+* Extraförrådet för aarch64 har uppdaterats för att inkludera försvunna paket som inte tillhandahålls av uppströms för skrivbordsanvändning
+* rpaste har uppdaterats för att acceptera stdin input
+* Äldre paket kommer att tillhandahållas i repos under loppet av en punktutgåva.
 
-  * Questo consente di declassare i pacchetti in caso di regressione da upstream o risoluzione dei problemi.
+  * Detta gör det möjligt att nedgradera paket vid regressioner från uppströms eller felsökning.
