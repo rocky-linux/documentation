@@ -51,7 +51,7 @@ wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/CHECKSUM
 Use the `sha256sum` utility to verify the integrity of the ISO file against corruption and/or tampering.
 
 ```
-sha256sum -c CHECKSUM --ignore-missing  Rocky-8.5-x86_64-minimal.iso
+grep "(Rocky-8.5-x86_64-minimal.iso)" CHECKSUM | sha256sum Rocky-8.5-x86_64-minimal.iso
 ```
 
 The output should show:
