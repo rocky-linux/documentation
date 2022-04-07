@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-62-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-63-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -195,6 +195,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://hennig.mse.ufl.edu/"><img src="https://avatars.githubusercontent.com/u/8710634?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Richard Hennig</b></sub></a><br /><a href="#content-rhennig" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/caffenix"><img src="https://avatars.githubusercontent.com/u/64636709?v=4?s=100" width="100px;" alt=""/><br /><sub><b>caffenix</b></sub></a><br /><a href="#content-caffenix" title="Content">🖋</a></td>
     <td align="center"><a href="https://manickathan.ch/"><img src="https://avatars.githubusercontent.com/u/3255070?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lento Manickathan</b></sub></a><br /><a href="#content-lento234" title="Content">🖋</a></td>
+    <td align="center"><a href="http://www.depts.ttu.edu/cac/"><img src="https://avatars.githubusercontent.com/u/2364484?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alan Sill</b></sub></a><br /><a href="#content-alansill" title="Content">🖋</a></td>
   </tr>
 </table>
 
