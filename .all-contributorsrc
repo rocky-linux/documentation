@@ -574,6 +574,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "alansill",
+      "name": "Alan Sill",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2364484?v=4",
+      "profile": "http://www.depts.ttu.edu/cac/",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
