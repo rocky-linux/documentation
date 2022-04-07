@@ -572,7 +572,7 @@ drwxr-xr-x.  2 root root   4096 17 nov.  17:48 alternatives
 ...
 ```
 
-The above command will display the contents of the folder(inside) by default. For the folder itself, you can use the `-d` option.
+The above command will display the contents of the folder (inside) by default. For the folder itself, you can use the `-d` option.
 
 ```bash
 $ ls -ld /etc
