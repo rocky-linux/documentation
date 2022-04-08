@@ -579,13 +579,13 @@ $ ls -ld /etc
 drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc
 ```
 
-* List files by size:
+* Sort by file size, largest first:
 
 ```bash
 $ ls -lhS
 ```
 
-* Display the modification date in "timestamp" format:
+* time/date format with `-l`:
 
 ```bash
 $ ls -l --time-style="+%Y-%m-%d %m-%d %H:%M" /
