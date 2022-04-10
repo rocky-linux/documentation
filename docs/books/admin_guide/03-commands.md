@@ -737,7 +737,7 @@ A few concrete cases will help you understand the difficulties that can arise:
 $ mv /home/rockstar/file1 /home/rockstar/file2
 ```
 
-Renames `file1` to `file2`, if `file2` already exists, it will be replaced by `file1`.
+Renames `file1` to `file2`, if `file2` already exists, Replace the contents of the file with `file1`.
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
