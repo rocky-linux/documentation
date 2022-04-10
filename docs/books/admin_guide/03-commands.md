@@ -688,9 +688,9 @@ rm [-f] [-r] file [file] [...]
 
 | Options | Information                              |
 | ------- | ---------------------------------------- |
-| `-f`    | Do not ask for confirmation of deletion. |
-| `-i`    | Requires confirmation of deletion.       |
-| `-r`    | Recursively deletes subdirectories.      |
+| `-f`    | Do not ask whether to delete. |
+| `-i`    | Ask whether to delete.       |
+| `-r`    | Delete a directory and recursively delete its subdirectories.      |
 
 !!! Note
 
