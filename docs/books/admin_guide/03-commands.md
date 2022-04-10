@@ -863,14 +863,14 @@ The commands specific to `less` are:
 
 | Command           | Action                                          |
 | ----------------- | ----------------------------------------------- |
-| `h`               | Help.                                           |
-| `Arrows`          | Move up, down a line, or to the right or left.  |
-| `Enter`           | Move down one line.                             |
-| `Space`           | Move down one page.                             |
-| `PgUp` and `PgDn` | Move up or down one page.                       |
-| `Begin` and `End` | Move to the beginning or end of a file.         |
+| <kbd>h</kbd>               | Help.                                           |
+| <kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd><kbd>←</kbd>         | Move up, down a line, or to the right or left.  |
+| <kbd>Enter</kbd>           | Move down one line.                             |
+| <kbd>Space</kbd>           | Move down one page.                             |
+| <kbd>PgUp</kbd> and <kbd>PgDn</kbd> | Move up or down one page.                       |
+| <kbd>gg</kbd> and <kbd>G</kbd> | Move to the first and last pages         |
 | `/text`           | Search for text.                                |
-| `q`               | Quit the `less` command.                        |
+| <kbd>q</kbd>               | Quit the `less` command.                        |
 
 ### `cat` command
 
