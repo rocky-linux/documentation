@@ -892,7 +892,7 @@ Example 2 - Displaying the contents of multiple files to standard output:
 $ cat /etc/passwd /etc/group
 ```
 
-Example 3 - Displaying the contents of several files in the file `usersAndGroups.txt`:
+Example 3 - Combining the contents of multiple files into one file using output redirection:
 
 ```bash
 $ cat /etc/passwd /etc/group > usersAndGroups.txt
