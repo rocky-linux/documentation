@@ -29,7 +29,7 @@ We assume:
 * you are comfortable executing commands at the command line
 * you can use a command line editor, such as `vi` (used here), `nano`, `micro`, etc.
 * you understand basic Linux commands used for adding groups and users, or can follow along well
-* your multisite website is set up like this: [Apache Multisite](../web/apache-sites-enabled/)
+* your multisite website is set up like this: [Apache Multisite](../../web/apache-sites-enabled/)
 * that `httpd` has already been installed on the server
 
 !!! note
@@ -103,7 +103,7 @@ Then save the file and exit.
 
 !!! hint "About the Following"
 
-    While we are setting up the web environment here, we aren't going to enable or start `httpd`. We know that this setup works. If you want to complete the process, all that you would need to do is populate your domain `../html` directories with an index.html file (using `sftp`) and then enable and start `httpd`. The enabling of `httpd` is discussed in the previously referenced  [Apache Multisite](../web/apache-sites-enabled/) document. Once you have completed all of the setup in this document, feel free to continue on to enabling, starting, and testing the web service.
+    While we are setting up the web environment here, we aren't going to enable or start `httpd`. We know that this setup works. If you want to complete the process, all that you would need to do is populate your domain `../html` directories with an index.html file (using `sftp`) and then enable and start `httpd`. The enabling of `httpd` is discussed in the previously referenced  [Apache Multisite](../../web/apache-sites-enabled/) document. Once you have completed all of the setup in this document, feel free to continue on to enabling, starting, and testing the web service.
 
 We need two sites created. We will create the configurations in `/etc/httpd/sites-available` and then link them to `../sites-enabled`:
 
@@ -386,7 +386,7 @@ For an exhaustive list of options and more, take a look at the [SFTP manual page
 
 ## Part 3: Administrative Access with SSH key pairs
 
-Please note that we will be using concepts discussed in the document [SSH Public and Private Keys](../security/ssh_public_private_keys) in this section, but also improving on it. If you are new to the process, feel free to read that article first before continuing.
+Please note that we will be using concepts discussed in the document [SSH Public and Private Keys](../../security/ssh_public_private_keys) in this section, but also improving on it. If you are new to the process, feel free to read that article first before continuing.
 
 ### Creating the public/private Key Pairs
 
@@ -534,4 +534,4 @@ Now anyone attempting to login as the root user remotely over `ssh` will get the
 
 ## Conclusion
 
-We've covered a lot of bits and pieces in this document but they are all designed to make a multisite web server more secure and less prone to attack vectors over SSH when turning on SFTP for customer access. Turning on and using SFTP is much more secure than using FTP, even if you are using really *GOOD* ftp servers and have them set up as securely as possible as noted in this [document on VSFTPD](secure_ftp_server_vsftpd). By implementing *all* of the steps in this document, you can feel comfortable opening up port 22 (SSH) to your public zone and still know that your environment is secure.
+We've covered a lot of bits and pieces in this document but they are all designed to make a multisite web server more secure and less prone to attack vectors over SSH when turning on SFTP for customer access. Turning on and using SFTP is much more secure than using FTP, even if you are using really *GOOD* ftp servers and have them set up as securely as possible as noted in this [document on VSFTPD](../secure_ftp_server_vsftpd). By implementing *all* of the steps in this document, you can feel comfortable opening up port 22 (SSH) to your public zone and still know that your environment is secure.
