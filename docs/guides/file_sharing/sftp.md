@@ -42,15 +42,15 @@ Everything is made up here. Any resemblance to persons or sites that are real, i
 
 **Sites:**
 
-    * mybrokenaxel.com
-        user = mybroken
-    * myfixedaxel.com
-        user = myfixed
+* mybrokenaxel.com
+    user = mybroken
+* myfixedaxel.com
+    user = myfixed
 
 **Administrators**
 
-    * Steve Simpson = ssimpson
-    * Laura Blakely = lblakely
+* Steve Simpson = ssimpson
+* Laura Blakely = lblakely
 
 ## Part 2: SFTP Change Root Jail
 
@@ -101,10 +101,6 @@ Then save the file and exit.
 
 ### Website Configuration
 
-!!! hint "About the Following"
-
-    While we are setting up the web environment here, we aren't going to enable or start `httpd`. We know that this setup works. If you want to complete the process, all that you would need to do is populate your domain `../html` directories with an index.html file (using `sftp`) and then enable and start `httpd`. The enabling of `httpd` is discussed in the previously referenced  [Apache Multisite](../../web/apache-sites-enabled/) document. Once you have completed all of the setup in this document, feel free to continue on to enabling, starting, and testing the web service.
-
 We need two sites created. We will create the configurations in `/etc/httpd/sites-available` and then link them to `../sites-enabled`:
 
 ```
@@ -119,7 +115,7 @@ vi /etc/httpd/sites-available/com.mybrokenaxel
 <VirtualHost *:80>
         ServerName www.mybrokenaxel.com
         ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.mybrokenaxel.www/html
+        DocumentRoot /var/www/sub-domains/com.mybrokenaxel/html
         DirectoryIndex index.php index.htm index.html
         Alias /icons/ /var/www/icons/
 
@@ -127,7 +123,7 @@ vi /etc/httpd/sites-available/com.mybrokenaxel
     CustomLog "/var/log/httpd/com.mybrokenaxel.www-access_log" combined
     ErrorLog  "/var/log/httpd/com.mybrokenaxel.www-error_log"
 
-        <Directory /var/www/sub-domains/com.mybrokenaxel.www/html>
+        <Directory /var/www/sub-domains/com.mybrokenaxel/html>
                 Options -ExecCGI -Indexes
                 AllowOverride None
 
@@ -149,7 +145,7 @@ vi /etc/httpd/sites-available/com.myfixedaxel
 <VirtualHost *:80>
         ServerName www.myfixedaxel.com
         ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.myfixedaxel.www/html
+        DocumentRoot /var/www/sub-domains/com.myfixedaxel/html
         DirectoryIndex index.php index.htm index.html
         Alias /icons/ /var/www/icons/
 
@@ -157,7 +153,7 @@ vi /etc/httpd/sites-available/com.myfixedaxel
     CustomLog "/var/log/httpd/com.myfixedaxel.www-access_log" combined
     ErrorLog  "/var/log/httpd/com.myfixedaxel.www-error_log"
 
-        <Directory /var/www/sub-domains/com.myfixedaxel.www/html>
+        <Directory /var/www/sub-domains/com.myfixedaxel/html>
                 Options -ExecCGI -Indexes
                 AllowOverride None
 
@@ -176,6 +172,11 @@ Once the two configuration files are created, go ahead and link them from within
 ```
 ln -s ../sites-available/com.mybrokenaxel
 ln -s ../sites-available/com.myfixedaxel
+```
+Now enable and start the `httpd` process:
+
+```
+systemctl enable --now httpd
 ```
 
 ### User Creation
@@ -281,11 +282,17 @@ This template should have the following:
 
 ```
 Match User replaceuser
+  PasswordAuthentication yes
   ChrootDirectory replacedirectory
   ForceCommand internal-sftp
   AllowTcpForwarding no
   X11Forwarding no
 ```
+
+!!! note
+
+    The `PasswordAuthentication yes` would not normally be required for the change root jail, BUT, we will be turning off `PasswordAuthentication` later on for everyone else, so it is important to have this line in the template.
+
 We want a directory for our user files that we will create from the template too:
 
 ```
@@ -352,6 +359,14 @@ A couple of things to know about the script and about an SFTP change root in gen
 
 The SFTP change root requires that the path given in the `sshd_config` is owned by root. For this reason we do not need the `html` directory added to the end of the path. Once the user is authenticated, the change root will switch the user's home directory, in this case the `../html`, directory to whichever domain we are entering. Our script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
 
+Now that our script is created, let's make it executable:
+
+```
+chmod +x /usr/local/sbin/webuser
+```
+
+Then run the script for our two test domains.
+
 ### Testing SSH Denial and SFTP Access
 
 First, test using `ssh` from another machine to our host machine as one of the SFTP users. You should receive this after entering a password:
@@ -363,10 +378,10 @@ This service allows sftp connections only.
 
 If you *do* receive that message, then the next thing is to test SFTP access. If you would like to do things the easy way, you can use a graphical FTP application that supports SFTP such as Filezilla. In such cases, your fields would look something like this:
 
-* Host: sftp://hostname_or_IP_of_the_server
-* Username: (Example: myfixed)
-* Password: (the password of the SFTP user)
-* Port: (You shouldn't need to enter one, provided you are using SSH and SFTP on the default port 22)
+* **Host:** sftp://hostname_or_IP_of_the_server
+* **Username:** (Example: myfixed)
+* **Password:** (the password of the SFTP user)
+* **Port:** (You shouldn't need to enter one, provided you are using SSH and SFTP on the default port 22)
 
 Once filled in, you can click the "Quickconnect" (Filezilla) button and you should be connected to the `../html` directory of the appropriate site. Then double-click on the "html" directory to put yourself inside it, and try to drop a file into the directory. If you are successful, then you are good.
 
@@ -374,7 +389,7 @@ Once filled in, you can click the "Quickconnect" (Filezilla) button and you shou
 
 You can obviously do all of this from the command line on a machine that has SSH installed. (most Linux installations). Here's a very brief overview of the command line method for connection and a few options:
 
-* sftp username (Example: myfixed)@ hostname or IP of the server: sftp myfixed@192.168.1.116
+* sftp username (Example: myfixed@ hostname or IP of the server: sftp myfixed@192.168.1.116)
 * Enter the password when prompted
 * cd html (change to the html directory)
 * pwd (should show that you are in the html directory)
@@ -383,6 +398,47 @@ You can obviously do all of this from the command line on a machine that has SSH
 * put filename (will copy a file to `..html` directory)
 
 For an exhaustive list of options and more, take a look at the [SFTP manual page](https://man7.org/linux/man-pages/man1/sftp.1.html).
+
+### Web Test Files
+
+For our dummy domains, we want to create a couple of `index.html` files that we can populate the `../html` directory with. Once these are created, you simply need to put them in the directory for each domain using the SFTP credentials for that domain. These files are super simple. We just want something so that we can see definitively that our sites are up and running and that the SFTP portion is working as expected.  Here's an example of this file. You can of course modify it as you like:
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Broken Axel</title>
+</head>
+<body>
+
+<h1>My Broken Axel</h1>
+<p>A test page for the site.</p>
+
+</body>
+</html>
+```
+
+### Web Tests
+
+To test that these files show up and load as expected, you simply need to modify your hosts file on your workstation. For Linux, that would be `sudo vi /etc/hosts` and then simply add in the IP and host names we are testing with like this:
+
+```
+127.0.0.1	localhost
+192.168.1.116	www.mybrokenaxel.com	mybrokenaxel.com
+192.168.1.116	www.myfixedaxel.com	myfixedaxel.com
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+
+!!! hint
+
+    For real domains, you would want to populate your DNS server's with the hosts above. You can, though, use this *Poor Man's DNS* for testing any domain, even one that hasn't been taken live on real DNS servers.
+
+Now, open your web browser and check to make sure that your `index.html` file for each domain displays by entering the URL in your browser's address bar. Example: "http://mybrokenaxel.com" if your test index files load, everything is working correctly.
 
 ## Part 3: Administrative Access with SSH key pairs
 
@@ -417,7 +473,7 @@ Enter same passphrase again:
 
 Repeat whatever passphrase you entered earlier or hit enter for none.
 
-At this point both the public and private keys have been created.
+At this point both the public and private keys have been created. Repeat this step for our other system administrator example user.
 
 ### Transferring The Public key to the SFTP Server
 
