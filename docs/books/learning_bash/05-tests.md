@@ -205,3 +205,186 @@ $ echo $?
 | `!=`   | Tests if the first string is different from the second one    |
 | `<`    | Tests if the first string is before the second in ASCII order |
 | `>`    | Tests if the first string is after the second in ASCII order  |
+
+## Comparison of integer numbers
+
+Syntax for testing integers:
+
+```
+[[ "num1" -eq|-ne|-gt|-lt "num2" ]]
+```
+
+Example:
+
+```
+$ var=1
+$ [[ "$var" -eq "1" ]]
+$ echo $?
+0
+```
+
+```
+$ var=2
+$ [[ "$var" -eq "1" ]]
+$ echo $?
+1
+```
+
+| Option | Observation                                           |
+|--------|-------------------------------------------------------|
+| `-eq`  | Test if the first number is equal to the second       |
+| `-ne`  | Test if the first number is different from the second |
+| `-gt`  | Test if the first number is greater than the second   |
+| `-lt`  | Test if the first number is less than the second      |
+
+!!! Note
+
+    Since numerics are treated by the shell as regular characters (or strings), a test on a character can return the same result whether it is treated as a numeric or not.
+
+    ```
+    $ test "1" = "1"
+    $ echo $?
+    0
+    $ test "1" -eq "1"
+    $ echo $?
+    0
+    ```
+
+    But the result of the test will not have the same meaning:
+
+    * In the first case, it will mean that the two characters have the same value in the ASCII table.
+    * In the second case, it will mean that the two numbers are equal.
+
+## Combined tests
+
+The combination of tests allows you to perform several tests in one command.
+It is possible to test the same argument (file, string or numeric) several times or different arguments.
+
+```
+[ option1 argument1 [-a|-o] option2 argument 2 ]
+```
+
+```
+$ ls -lad /etc
+drwxr-xr-x 142 root root 12288 sept. 20 09:25 /etc
+$ [ -d /etc -a -x /etc ]
+$ echo $?
+0
+```
+
+| Option | Observation                                                |
+|--------|------------------------------------------------------------|
+| `-a`   | AND: The test will be true if all patterns are true.       |
+| `-o`   | OR: The test will be true if at least one pattern is true. |
+
+
+With the internal command, you should better use this syntax:
+
+```
+$ [[ -d "/etc" && -x "/etc" ]]
+```
+
+Tests can be grouped with parentheses `(` `)` to give them priority.
+
+```
+(TEST1 -a TEST2) -a TEST3
+```
+
+The `!` character is used to perform the reverse test of the one requested by the option:
+
+```
+test -e /file # true if file exists
+! test -e /file # true if file does not exist
+```
+
+## Numerical operations
+
+The `expr` command performs an operation with numeric integers.
+
+```
+expr num1 [+] [-] [\*] [/] [%] num2
+```
+
+Example:
+
+```
+$ expr 2 + 2
+4
+```
+
+!!! Warning
+
+    Be careful to surround the operation sign with a space, you will get an error message if you forget.
+    In the case of a multiplication, the wildcard character `*` is preceded by `\` to avoid a wrong interpretation.
+
+| Option | Observation            |
+|--------|------------------------|
+| `+`    | Addition               |
+| `-`    | Subtraction            |
+| `\*`   | Multiplication         |
+| `/`    | Division quotient      |
+| `%`    | Modulo of the division |
+
+
+## The `typeset` command
+
+The `typeset -i` command declares a variable as an integer.
+
+Example:
+
+```
+$ typeset -i var1
+$ var1=1+1
+$ var2=1+1
+$ echo $var1
+2
+$ echo $var2
+1+1
+```
+
+## The `let` command
+
+The `let` command  tests if a character is numeric.
+
+Example:
+
+```
+$ var1="10"
+$ var2="AA"
+$ let $var1
+$ echo $?
+0
+$ let $var2
+$ echo $?
+1
+```
+
+!!! Warning
+
+    The `let` command does not return a consistent return code when it evaluates the numeric `0`.
+
+    ```
+    $ let 0
+    $ echo $?
+    1
+    ```
+
+The `let` command also allows you to perform mathematical operations:
+
+```
+$ let var=5+5
+$ echo $var
+10
+```
+
+`let` can be substituted by `$(( ))`.
+
+```
+$ echo $((5+2))
+7
+$ echo $((5*2))
+10
+$ var=$((5*3))
+$ echo $var
+15
+```
