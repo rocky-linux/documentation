@@ -592,6 +592,49 @@ systemctl restart sshd
 
 Now anyone attempting to login as the root user remotely over `ssh` will get the same denial message as before, but will **still** not be able to access the server even if they have a public/private key pair for root.
 
+## Addendum: New System Administrators
+
+One thing that we haven't discussed yet is what happens when a new system administrator comes on board? With password authentication off, `ssh-copy-id` will not work. Here's what the author recommends for these situations. Note that there is more than one solution:
+
+### Solution One - Sneaker Net
+
+This solution assumes physical access to the server and that the server is physical hardware and not virtual (container or VM):
+
+* Add the user to the "wheel" group on the SFTP server
+* Have the user generate his SSH public and private keys
+* Using a USB drive, copy the public key to the drive and physically walk it over to the server and install it manually in the new system administrators `/home/[username]/.ssh` directory
+
+### Solution Two - Temporarily Edit The `sshd_config`
+
+This solution is prone to human error, but since it isn't done often, it would probably be OK if carefully done:
+
+* Add the user to the "wheel" group on the SFTP server
+* Have another system administrator who already has key based authentication, temporarily turn on "PasswordAuthentication yes" in the `sshd_config` file and restart `sshd`
+* Have the new system administrator run `ssh-copy-id` using his/her password to copy the ssh key to the server.
+
+### Solution Three - Script The Process
+
+This is the author's favorite. It uses a system administrator which already has key-based access and a script that must be run with `bash [script-name]` to accomplish the same thing as "Solution Two" above:
+
+* manually edit the `sshd_config` file and remove the remarked out line that looks like this: `#PasswordAuthentication no`. This line is documenting the process of turning password authentication off, but it will get in the way of the script below, because our script will look for the first occurrence of `PasswordAuthentication no` and later the first occurrence of `PasswordAuthentication yes`. If you remove this one line, our script will work fine.
+* create a script on the SFTP server called "quickswitch", or whatever you want to call it. The contents of this script would look like this:
+
+```
+#!/bin/bash
+# for use in adding a new system administrator
+
+/usr/bin/cp -f /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+
+/usr/bin/sed -i '0,/PasswordAuthentication no/ s/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+/usr/bin/systemctl restart sshd
+echo "Have the user send his keys, and then hit enter."
+read yn
+/usr/bin/sed -i '0,/PasswordAuthentication yes/ s/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+/usr/bin/systemctl restart sshd
+echo "Changes reversed"
+```
+Script explanation: We don't make this script executable. The reason is that we don't want it accidentally run. The script would need to be run (as noted above) like this: `bash /usr/local/sbin/quickswitch`. This script makes a backup copy of the `sshd_config` file just like all of our other examples above. It then edits the `sshd_config` file in place and searches for the *FIRST* occurrence of `PasswordAuthentication no` and changes it to `PasswordAuthentication yes` then restarts `sshd` and waits for the script user to hit <kbd>ENTER</kbd> before continuing. The system administrator running the script would be in communication with the new system administrator, and once that new system administrator runs `ssh-copy-id` to copy his key to the server, the system administrator who is running the script hits enter and the change is reversed.
+
 ## Conclusion
 
 We've covered a lot of bits and pieces in this document but they are all designed to make a multisite web server more secure and less prone to attack vectors over SSH when turning on SFTP for customer access. Turning on and using SFTP is much more secure than using FTP, even if you are using really *GOOD* ftp servers and have them set up as securely as possible as noted in this [document on VSFTPD](../secure_ftp_server_vsftpd). By implementing *all* of the steps in this document, you can feel comfortable opening up port 22 (SSH) to your public zone and still know that your environment is secure.
