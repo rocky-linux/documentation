@@ -970,7 +970,7 @@ tcpdump::x:72:72::/:/sbin/nologin
 user1:x:500:500:grp1:/home/user1:/bin/bash
 ```
 
-With the `-f` option, the `tail` command does not give back and runs until the user interrupts it with the sequence <kbd>CTRL</kbd> + <kbd>C</kbd>. This option is very frequently used to track log files (the logs) in real time.
+With the `-f` option, the change information of the file will always be output unless the user exits the monitoring state with <kbd>CTRL</kbd> + <kbd>C</kbd>. This option is very frequently used to track log files (the logs) in real time.
 
 Without the `-n` option, the `tail` command displays the last 10 lines of the file.
 
