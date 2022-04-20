@@ -355,6 +355,10 @@ echo "You can verify that your information was added to the sshd_config by doing
 echo "A backup of the working sshd_conf was created when this script was run: sshd_config.bak"
 ```
 
+!!! tip
+
+    If you take a look at the script above, you will note that we have changed the delimiter that `sed` uses by default from `/` to `,`. `sed` allows you to use any single-byte character as a delimiter. What we are searching for in the file has a bunch of "/" characters in it, and we would have had to escape each one (add a "\" in front of them) to search and replace these strings. Changing the delimiter makes this infinitely easier to do because it eliminates the need to do those escapes.
+
 A couple of things to know about the script and about an SFTP change root in general. First, we are prompting for the needed information and then echoing it back to the user so they can verify it. If we answer "N" to the confirmation question, the script bails and does nothing. The script makes a backup of `sshd_config` the way it was prior to our running of the script. In this way, if we screw something up with an entry, we can simply restore `/etc/ssh/sshd_config.bak` to `sshd_config` and restart `sshd` to get things working again.
 
 The SFTP change root requires that the path given in the `sshd_config` is owned by root. For this reason we do not need the `html` directory added to the end of the path. Once the user is authenticated, the change root will switch the user's home directory, in this case the `../html`, directory to whichever domain we are entering. Our script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
