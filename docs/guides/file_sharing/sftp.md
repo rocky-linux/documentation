@@ -14,23 +14,36 @@ tags:
 
 ## Introduction
 
-It may seem strange to have a document dedicated to the "secure" use of SFTP (a part of openssh-server package) when SSH is itself secure. I hear what you are thinking. But most system administrators do not want to open up SSH to everyone in order to implement SFTP for everyone.  This document will describe how to implement a change root jail for SFTP while keeping SSH access limited. There are many documents out there that deal with creating an SFTP change root jail, but most do not take into account a use case where the user that is set up would be accessing a web directory on a server with multiple websites. This document deals with that. If that isn't your use case, you can easily adapt these concepts to use in different situations.
+It may seem strange to have a document dedicated to the "secure" use of SFTP (a part of openssh-server package) when the SSH proptocol is itself secure. I hear what you are thinking. But most system administrators do not want to open up SSH to everyone in order to implement SFTP for everyone. This document will describe how to implement a change root jail<sup>1</sup> for SFTP while keeping SSH access limited. 
 
-The author also doesn't feel like making the change root jail document for SFTP without also discussing the other things that you should do as a system administrator to minimize the SSH target that you offer to the world is a good idea. For this reason, this document is divided into four parts. The first deals with the general information that we will use for the entire document. The second deals with the setup of the change root jail, and if you decide that you want to stop with that, that's totally up to you. The third part deals with setting up public/private key SSH access for your system administrators and turning off remote password based authentication. The fourth, and last section of this document deals with turning off remote root logins.
+There are many documents out there that deal with creating an SFTP change root jail, but most do not take into account a use case where the user that is set up would be accessing a web directory on a server with multiple websites. This document deals with that. If that isn't your use case, you can easily adapt these concepts to use in different situations.
 
-Taking all of these steps will allow you to offer secure SFTP access for your customers while also minimizing the possibility that port 22 (SSH) will be compromised by a bad actor.
+The author also doesn't feel like making the change root jail document for SFTP without also discussing the other things that you should do as a system administrator to minimize the target that you offer to the world via SSH. For this reason, this document is divided into four parts: 
+
+1. The first deals with the general information that we will use for the entire document. 
+2. The second deals with the setup of the change root jail, and if you decide that you want to stop there, that's totally up to you. 
+3. The third part deals with setting up public/private key SSH access for your system administrators and turning off remote password based authentication. 
+4. The fourth, and last section of this document deals with turning off remote root logins.
+
+Taking all of these steps will allow you to offer secure SFTP access for your customers while also minimizing the possibility that port 22 (the one reserved for SSH access) will be compromised by a bad actor.
+
+!!! Note "<sup>1</sup> Change root jails for beginners:"
+
+    Change root (or chroot) jails are a way to restrict what a process and all of its various child processes can do on your computer. It essentially allows you to choose a specific directory/folder on your machine, and make that the "root" dirtectory for any given process or program.
+
+    From there on, that process or program can *only* access that folder and its subfolders.
 
 ## Part 1: General Information
 
 ### Assumptions and Conventions
 
-We assume:
+We assume that:
 
-* you are comfortable executing commands at the command line
+* you are comfortable executing commands at the command line.
 * you can use a command line editor, such as `vi` (used here), `nano`, `micro`, etc.
-* you understand basic Linux commands used for adding groups and users, or can follow along well
+* you understand basic Linux commands used for adding groups and users, or can follow along well.
 * your multisite website is set up like this: [Apache Multisite](../../web/apache-sites-enabled/)
-* that `httpd` has already been installed on the server
+* `httpd` (Apache) has already been installed on the server.
 
 !!! note
 
@@ -66,7 +79,7 @@ dnf install openssh-server
 
 #### Directories
 
-* The directory path structure will be `/var/www/sub-domains/[ext.domainname]/html` and the `html` directory in this path will be the change root jail for the SFTP user.
+The directory path structure will be `/var/www/sub-domains/[ext.domainname]/html` and the `html` directory in this path will be the change root jail for the SFTP user.
 
 Creating the configuration directories:
 
@@ -209,8 +222,8 @@ passwd: all authentication tokens updated successfully.
 
 Now test access to the server via ssh for your two administrative users. You should be able to:
 
-* `ssh` as one of the administrative users to the server. (Example: `ssh lblakely@192.168.1.116` or `ssh lblakely@mywebserver.com`)
-* once the server is accessed, you should be able to access root with `sudo -s` and entering the administrative user's password
+* use `ssh` to log in as one of the administrative users to the server. (Example: `ssh lblakely@192.168.1.116` or `ssh lblakely@mywebserver.com`)
+* once the server is accessed, you should be able to access root with `sudo -s` and entering the administrative user's password.
 
 If this works for both administrative users, you should be ready to go to the next step.
 
@@ -223,7 +236,15 @@ useradd -M -d /var/www/sub-domains/com.mybrokenaxel/html -g apache -s /usr/sbin/
 useradd -M -d /var/www/sub-domains/com.myfixedaxel/html -g apache -s /usr/sbin/nologin myfixed
 ```
 
-Let's break down that command a bit. The `-M` option says don't create the home directory, `-d` specifies that what comes after is the actual home directory, `-g` says that the group that this user belongs to is `apache`, and `-s` says that the shell the user is assigned is `/usr/sbin/nologin` which is followed by the actual user we are adding. For an Nginx server, you would use `nginx` as the group.
+Let's break down those commands a bit:
+
+* The `-M` option says to *not* create create the standard home directory for the user. 
+* `-d` specifies that what comes after is the *actual* home directory. 
+* `-g` says that the group that this user belongs to is `apache`.
+* `-s` says that the shell the user is assigned is `/usr/sbin/nologin`
+* At the end is the actual username for the user. 
+
+**Note:** For an Nginx server, you would use `nginx` as the group.
 
 Our SFTP users still need a password. So let's go ahead and setup a secure password for each now. Since we have already seen the command output above, we won't be repeating it here:
 
@@ -298,11 +319,14 @@ We want a directory for our user files that we will create from the template too
 ```
 mkdir /usr/local/sbin/templates
 ```
+
 Now let's create our script:
 
 ```
 vi /usr/local/sbin/webuser
 ```
+
+And put this code in it:
 
 ```
 #!/bin/bash
@@ -357,11 +381,17 @@ echo "A backup of the working sshd_conf was created when this script was run: ss
 
 !!! tip
 
-    If you take a look at the script above, you will note that we have changed the delimiter that `sed` uses by default from `/` to `,`. `sed` allows you to use any single-byte character as a delimiter. What we are searching for in the file has a bunch of "/" characters in it, and we would have had to escape each one (add a "\" in front of them) to search and replace these strings. Changing the delimiter makes this infinitely easier to do because it eliminates the need to do those escapes.
+    If you take a look at the script above, you will note that we have changed the delimiter that `sed` uses by default from `/` to `,`. 
+    
+    `sed` allows you to use any single-byte character as a delimiter. What we are searching for in the file has a bunch of "/" characters in it, and we would have had to escape each one (add a "\\" in front of them) to search and replace these strings. 
+    
+    Changing the delimiter makes this infinitely easier to do because it eliminates the need to do those escapes.
 
-A couple of things to know about the script and about an SFTP change root in general. First, we are prompting for the needed information and then echoing it back to the user so they can verify it. If we answer "N" to the confirmation question, the script bails and does nothing. The script makes a backup of `sshd_config` the way it was prior to our running of the script. In this way, if we screw something up with an entry, we can simply restore `/etc/ssh/sshd_config.bak` to `sshd_config` and restart `sshd` to get things working again.
+A couple of things to know about the script and about an SFTP change root in general. First, we are prompting for the needed information and then echoing it back to the user so they can verify it. If we answer "N" to the confirmation question, the script bails and does nothing. 
 
-The SFTP change root requires that the path given in the `sshd_config` is owned by root. For this reason we do not need the `html` directory added to the end of the path. Once the user is authenticated, the change root will switch the user's home directory, in this case the `../html`, directory to whichever domain we are entering. Our script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
+Also, the script makes a backup of `sshd_config` the way it was prior to our running of the script. In this way, if we screw something up with an entry, we can simply restore `/etc/ssh/sshd_config.bak` to `sshd_config` and restart `sshd` to get things working again.
+
+The SFTP change root requires that the path given in the `sshd_config` is owned by root. For this reason we do not need the `html` directory added to the end of the path. Once the user is authenticated, the change root will switch the user's home directory, in this case the `../html`, directory to whichever domain we are entering. Our script has appropriately changed the owner of the `../html` directory to the sftp user and the apache group.
 
 Now that our script is created, let's make it executable:
 
@@ -450,7 +480,7 @@ Please note that we will be using concepts discussed in the document [SSH Public
 
 ### Creating the public/private Key Pairs
 
-From one of the administrative user's workstations command line, (Example: lblakely) do the following:
+From one of the administrative user accounts (example: lblakely), do the following:
 
 ```
 ssh-keygen -t rsa
@@ -633,8 +663,17 @@ read yn
 /usr/bin/systemctl restart sshd
 echo "Changes reversed"
 ```
-Script explanation: We don't make this script executable. The reason is that we don't want it accidentally run. The script would need to be run (as noted above) like this: `bash /usr/local/sbin/quickswitch`. This script makes a backup copy of the `sshd_config` file just like all of our other examples above. It then edits the `sshd_config` file in place and searches for the *FIRST* occurrence of `PasswordAuthentication no` and changes it to `PasswordAuthentication yes` then restarts `sshd` and waits for the script user to hit <kbd>ENTER</kbd> before continuing. The system administrator running the script would be in communication with the new system administrator, and once that new system administrator runs `ssh-copy-id` to copy his key to the server, the system administrator who is running the script hits enter and the change is reversed.
+
+Script explanation: We don't make this script executable. The reason is that we don't want it accidentally run. The script would need to be run (as noted above) like this: `bash /usr/local/sbin/quickswitch`. 
+
+This script makes a backup copy of the `sshd_config` file just like all of our other examples above. It then edits the `sshd_config` file in place and searches for the *FIRST* occurrence of `PasswordAuthentication no` and changes it to `PasswordAuthentication yes` then restarts `sshd` and waits for the script user to hit <kbd>ENTER</kbd> before continuing. 
+
+The system administrator running the script would be in communication with the new system administrator, and once that new system administrator runs `ssh-copy-id` to copy his key to the server, the system administrator who is running the script hits enter and the change is reversed.
 
 ## Conclusion
 
-We've covered a lot of bits and pieces in this document but they are all designed to make a multisite web server more secure and less prone to attack vectors over SSH when turning on SFTP for customer access. Turning on and using SFTP is much more secure than using FTP, even if you are using really *GOOD* ftp servers and have them set up as securely as possible as noted in this [document on VSFTPD](../secure_ftp_server_vsftpd). By implementing *all* of the steps in this document, you can feel comfortable opening up port 22 (SSH) to your public zone and still know that your environment is secure.
+We've covered a lot of bits and pieces in this document but they are all designed to make a multisite web server more secure and less prone to attack vectors over SSH when turning on SFTP for customer access. 
+
+Turning on and using SFTP is much more secure than using FTP, even if you are using really *GOOD* ftp servers and have them set up as securely as possible as noted in this [document on VSFTPD](../secure_ftp_server_vsftpd). 
+
+By implementing *all* of the steps in this document, you can feel comfortable opening up port 22 (SSH) to your public zone and still know that your environment is secure.
