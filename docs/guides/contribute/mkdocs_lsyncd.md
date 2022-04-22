@@ -183,7 +183,7 @@ Next we need to set up `mkdocs` with an additional directory. Right now, `mkdocs
 ```
 mkdir docs
 cd docs
-ln -s ../documentation/docs
+ln -s ../../documentation/docs
 ```
 ### Testing mkdocs
 
