@@ -11,10 +11,10 @@ update: 31-mar-2022
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: ;
-:heavy_check_mark: ;
-:heavy_check_mark: ;
-:heavy_check_mark: ;
+:heavy_check_mark: work with the return code;
+:heavy_check_mark: test files and compare them;
+:heavy_check_mark: test variables, strings and integers;
+:heavy_check_mark: perform an operation with numeric integers;
 
 :checkered_flag: **linux**, **script**, **bash**, **variable**
 
