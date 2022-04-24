@@ -180,3 +180,11 @@ When the value is subject to variation, it is advisable to use wildcards `[]` to
   echo "yes"
   ;;
 ```
+
+The character `|` also allows to specify a value or another:
+
+```
+"yes" | "YES")
+  echo "yes"
+  ;;
+```
