@@ -1,5 +1,6 @@
 ---
 Title: 安装Rocky Linux
+author: wale soyinka
 contributors: tianci li, Steven Spencer
 updated: 11-23-2021
 ---
@@ -50,10 +51,10 @@ wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/CHECKSUM
 使用 `sha256sum` 工具来验证ISO文件的完整性，防止损坏或者被篡改。
 
 ```
-sha256sum -c CHECKSUM --ignore-missing  Rocky-8.5-x86_64-minimal.iso
+sha256sum -c CHECKSUM --ignore-missing
 ```
 
-输出应该是：
+这将检查先前下载的ISO文件的完整性，前提是该文件位于同一目录中。 输出应显示：
 
 ```
 Rocky-8.5-x86_64-minimal.iso: OK
