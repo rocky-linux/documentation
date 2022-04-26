@@ -2,7 +2,11 @@
 title: Bash - Loops
 author: Antoine Le Morvan
 contributors: Steven Spencer
-update: 25-apr-2022
+tested with: 8.5
+tags:
+  - education
+  - bash scripting
+  - bash
 ---
 
 # Bash - Loops
@@ -15,15 +19,14 @@ update: 25-apr-2022
 
 :checkered_flag: **linux**, **script**, **bash**, **loops**
 
-**Knowledge**: :star: :star:
-**Complexity**: :star: :star: :star:
+**Knowledge**: :star: :star:  
+**Complexity**: :star: :star: :star:  
 
 **Reading time**: 20 minutes
 
 ****
 
-The bash shell allows the use of **loops**.
-These structures allow the execution of **a block of commands several times** (from 0 to infinity) according to a statically defined value, dynamically or on condition:
+The bash shell allows for the use of **loops**. These structures allow for the execution of **a block of commands several times** (from 0 to infinity) according to a statically defined value, dynamically or on condition:
 
 * `while`
 * `until`
@@ -34,13 +37,13 @@ Whatever the loop used, the commands to be repeated are placed **between the wor
 
 ## The while conditional loop structure
 
-The `while` / `do` / `done` structure evaluates the command placed after while.
+The `while` / `do` / `done` structure evaluates the command placed after `while`.
 
 If this command is true (`$? = 0`), the commands placed between `do` and `done` are executed. The script then returns to the beginning to evaluate the command again.
 
 When the evaluated command is false (`$? != 0`), the shell resumes the execution of the script at the first command after done.
 
-Syntax of the conditional loop structure `while` :
+Syntax of the conditional loop structure `while`:
 
 ```
 while command
@@ -49,7 +52,7 @@ do
 done
 ```
 
-Example using the while conditional structure :
+Example using the `while` conditional structure:
 
 ```
 while [[ -e /etc/passwd ]]
@@ -58,9 +61,7 @@ do
 done
 ```
 
-If the evaluated command does not vary, the loop will be infinite and the shell will never execute the commands placed after the script. This can be intentional, but it can also be an error.
-
-So you have to be **very careful with the command that manage the loop and find a way to get out of it**.
+If the evaluated command does not vary, the loop will be infinite and the shell will never execute the commands placed after the script. This can be intentional, but it can also be an error. So you have to be **very careful with the commands that manage the loop and find a way to get out of it**.
 
 To get out of a `while` loop, you have to make sure that the command being evaluated is no longer true, which is not always possible.
 
@@ -89,8 +90,7 @@ echo $?
 1
 ```
 
-The `exit` command ends the script immediately.
-It is possible to specify the return code of the script by specifying it as an argument (from `0` to `255`).
+The `exit` command ends the script immediately. It is possible to specify the return code of the script by giving it as an argument (from `0` to `255`).
 If no argument is given, the return code of the last command of the script will be passed to the `$?` variable.
 
 ## The `break` / `continue` commands
@@ -114,17 +114,17 @@ done
 The `true` command always returns `true` while the `false` command always returns `false`.
 
 ```
-$ true
+true
 echo $?
 0
-$ false
-$ echo $?
+false
+echo $?
 1
 ```
 
-Used as a condition of a loop, they allow either to execute an infinite loop or to deactivate this loop.
+Used as a condition of a loop, they allow for either an execution of an infinite loop or the deactivation of this loop.
 
-Example :
+Example:
 
 ```
 while true
@@ -165,20 +165,20 @@ done
 
 ## The alternative choice structure `select`
 
-The structure `select` / `do` / `done` allows to quickly display a menu with several choices and an input request.
+The structure `select` / `do` / `done` allows for the display of a menu with several choices and an input request.
 
 Each item in the list has a numbered choice. When you enter a choice, the value chosen is assigned to the variable placed after `select` (created for this purpose).
 
 It then executes the commands placed between `do` and `done` with this value.
 
 * The variable `PS3` contains the invitation to enter the choice;
-* The variable `REPLY` will allow to get the number of the choice.
+* The variable `REPLY` will return the number of the choice.
 
 A `break` command is needed to exit the loop.
 
 !!! Note
 
-    The select structure is very useful for small and simple menus. To customize a more complete display, the `echo` and `read` commands must be used in a `while` loop.
+    The `select` structure is very useful for small and simple menus. To customize a more complete display, the `echo` and `read` commands must be used in a `while` loop.
 
 Syntax of the conditional loop structure `select`:
 
@@ -200,7 +200,7 @@ do
 done
 ```
 
-which gives at runtime:
+If this script is run, it shows something like this:
 
 ```
 1) Coffee
@@ -213,11 +213,7 @@ Your choice:
 
 ## The loop structure on a list of values `for`
 
-The `for` / `do` / `done` structure assigns the first element of the list to the variable placed after `for` (created on this occasion).
-
-It then executes the commands placed between `do` and `done` with this value. The script then returns to the beginning to assign the next element of the list to the working variable.
-
-When the last element has been used, the shell resumes execution at the first command after `done`.
+The `for` / `do` / `done` structure assigns the first element of the list to the variable placed after `for` (created on this occasion). It then executes the commands placed between `do` and `done` with this value. The script then returns to the beginning to assign the next element of the list to the working variable. When the last element has been used, the shell resumes execution at the first command after `done`.
 
 Syntax of the loop structure on list of values `for`:
 
@@ -242,7 +238,7 @@ Any command producing a list of values can be placed after the `in` using a sub-
 * With the variable `IFS` containing `$' \t\n'`, the `for` loop will take **each word** of the result of this command as a list of elements to loop on.
 * With the `IFS` variable containing `$'\t\n'` (i.e. without spaces), the `for` loop will take each line of the result of this command.
 
-This can be the files in a directory. In this case, the variable will take as value each of the words of the file names present:
+This can be the files in a directory. In this case, the variable will take as a value each of the words of the file names present:
 
 ```
 for file in $(ls -d /tmp/*)
@@ -251,14 +247,14 @@ do
 done
 ```
 
-It can be a file. In this case, the variable will take as value each word contained in the file browsed, from the beginning to the end:
+It can be a file. In this case, the variable will take as a value each word contained in the file browsed, from the beginning to the end:
 
 ```
-$ cat my_file.txt
+cat my_file.txt
 first line
 second line
 third line
-$ for LINE in $(cat my_file.txt); do echo $LINE; done
+for LINE in $(cat my_file.txt); do echo $LINE; done
 first
 line
 second
@@ -270,8 +266,8 @@ line
 To read a file line by line, you must modify the value of the `IFS` environment variable.
 
 ```
-$ IFS=$'\t\n'
-$ for LINE in $(cat my_file.txt); do echo $LINE; done
+IFS=$'\t\n'
+for LINE in $(cat my_file.txt); do echo $LINE; done
 first line
 second line
 third line

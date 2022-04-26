@@ -2,7 +2,11 @@
 title: Bash - Tests
 author: Antoine Le Morvan
 contributors: Steven Spencer
-update: 31-mar-2022
+tested with: 8.5
+tags:
+  - education
+  - bash scripting
+  - bash
 ---
 
 # Bash - Tests
@@ -11,15 +15,15 @@ update: 31-mar-2022
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: work with the return code;
-:heavy_check_mark: test files and compare them;
-:heavy_check_mark: test variables, strings and integers;
-:heavy_check_mark: perform an operation with numeric integers;
+:heavy_check_mark: work with the return code;  
+:heavy_check_mark: test files and compare them;  
+:heavy_check_mark: test variables, strings and integers;  
+:heavy_check_mark: perform an operation with numeric integers;  
 
 :checkered_flag: **linux**, **script**, **bash**, **variable**
 
-**Knowledge**: :star: :star:
-**Complexity**: :star: :star: :star:
+**Knowledge**: :star: :star:  
+**Complexity**: :star: :star: :star:  
 
 **Reading time**: 10 minutes
 
@@ -35,41 +39,41 @@ You should refer to the manual of the `man command` to know the different values
 The return code is not visible directly, but is stored in a special variable: `$?`.
 
 ```
-$ mkdir directory
+mkdir directory
 echo $?
 0
 ```
 
 ```
-$ mkdir /directory
+mkdir /directory
 mkdir: unable to create directory
-$ echo $?
+echo $?
 1
 ```
 
 ```
-$ command_that_does_not_exist
+command_that_does_not_exist
 command_that_does_not_exist: command not found
 echo $?
 127
 ```
 
 
-!!! NOTE
+!!! note
 
     The display of the contents of the `$?` variable with the `echo` command is done immediately after the command you want to evaluate because this variable is updated after each execution of a command, a command line or a script.
 
-!!! TIP
+!!! tip
 
     Since the value of `$?` changes after each command execution, it is better to put its value in a variable that will be used afterwards, for a test or to display a message.
 
     ```
-    $ ls no_file
+    ls no_file
     ls: cannot access 'no_file': No such file or directory
-    $ result=$?
-    $ echo $?
+    result=$?
+    echo $?
     0
-    $ echo $result
+    echo $result
     2
     ```
 
@@ -77,9 +81,9 @@ It is also possible to create return codes in a script.
 To do so, you just need to add a numeric argument to the `exit` command.
 
 ```
-$ bash # to avoid being disconnected after the "exit 2
-$ exit 123
-$ echo $?
+bash # to avoid being disconnected after the "exit 2
+exit 123
+echo $?
 123
 ```
 
@@ -91,7 +95,7 @@ In addition to the correct execution of a command, the shell offers the possibil
 
 The result of the test:
 
-* `$?=0` : the test was correctly executed and is true ;
+* `$?=0` : the test was correctly executed and is true;
 * `$?=1` : the test was correctly executed and is false;
 * `$?=2` : the test was not correctly executed.
 
@@ -136,19 +140,19 @@ Options of the test command on files:
 Example:
 
 ```
-$ test -e /etc/passwd
-$ echo $?
+test -e /etc/passwd
+echo $?
 0
-$ [ -w /etc/passwd ]
-$ echo $?
+[ -w /etc/passwd ]
+echo $?
 1
 ```
 
-An internal command to some shells (including bash) more modern and providing more features than the external command `test`, has appeared:
+An internal command to some shells (including bash) that is more modern, and provides more features than the external command `test`, has been created.
 
 ```
-$ [[ -s /etc/passwd ]]
-$ echo $?
+[[ -s /etc/passwd ]]
+echo $?
 1
 ```
 
@@ -194,8 +198,8 @@ It is also possible to compare two strings:
 Example:
 
 ```
-$ [[ "$var" = "Rocky rocks!" ]]
-$ echo $?
+[[ "$var" = "Rocky rocks!" ]]
+echo $?
 0
 ```
 
@@ -217,16 +221,16 @@ Syntax for testing integers:
 Example:
 
 ```
-$ var=1
-$ [[ "$var" -eq "1" ]]
-$ echo $?
+var=1
+[[ "$var" -eq "1" ]]
+echo $?
 0
 ```
 
 ```
-$ var=2
-$ [[ "$var" -eq "1" ]]
-$ echo $?
+var=2
+[[ "$var" -eq "1" ]]
+echo $?
 1
 ```
 
@@ -239,14 +243,14 @@ $ echo $?
 
 !!! Note
 
-    Since numerics are treated by the shell as regular characters (or strings), a test on a character can return the same result whether it is treated as a numeric or not.
+    Since numeric values are treated by the shell as regular characters (or strings), a test on a character can return the same result whether it is treated as a numeric or not.
 
     ```
-    $ test "1" = "1"
-    $ echo $?
+    test "1" = "1"
+    echo $?
     0
-    $ test "1" -eq "1"
-    $ echo $?
+    test "1" -eq "1"
+    echo $?
     0
     ```
 
@@ -265,10 +269,10 @@ It is possible to test the same argument (file, string or numeric) several times
 ```
 
 ```
-$ ls -lad /etc
+ls -lad /etc
 drwxr-xr-x 142 root root 12288 sept. 20 09:25 /etc
-$ [ -d /etc -a -x /etc ]
-$ echo $?
+[ -d /etc -a -x /etc ]
+echo $?
 0
 ```
 
@@ -278,10 +282,10 @@ $ echo $?
 | `-o`   | OR: The test will be true if at least one pattern is true. |
 
 
-With the internal command, you should better use this syntax:
+With the internal command, it is better to use this syntax:
 
 ```
-$ [[ -d "/etc" && -x "/etc" ]]
+[[ -d "/etc" && -x "/etc" ]]
 ```
 
 Tests can be grouped with parentheses `(` `)` to give them priority.
@@ -308,13 +312,13 @@ expr num1 [+] [-] [\*] [/] [%] num2
 Example:
 
 ```
-$ expr 2 + 2
+expr 2 + 2
 4
 ```
 
 !!! Warning
 
-    Be careful to surround the operation sign with a space, you will get an error message if you forget.
+    Be careful to surround the operation sign with a space. You will get an error message if you forget.
     In the case of a multiplication, the wildcard character `*` is preceded by `\` to avoid a wrong interpretation.
 
 | Option | Observation            |
@@ -333,12 +337,12 @@ The `typeset -i` command declares a variable as an integer.
 Example:
 
 ```
-$ typeset -i var1
-$ var1=1+1
-$ var2=1+1
-$ echo $var1
+typeset -i var1
+var1=1+1
+var2=1+1
+echo $var1
 2
-$ echo $var2
+echo $var2
 1+1
 ```
 
@@ -349,13 +353,13 @@ The `let` command  tests if a character is numeric.
 Example:
 
 ```
-$ var1="10"
-$ var2="AA"
-$ let $var1
-$ echo $?
+var1="10"
+var2="AA"
+let $var1
+echo $?
 0
-$ let $var2
-$ echo $?
+let $var2
+echo $?
 1
 ```
 
@@ -364,27 +368,27 @@ $ echo $?
     The `let` command does not return a consistent return code when it evaluates the numeric `0`.
 
     ```
-    $ let 0
-    $ echo $?
+    let 0
+    echo $?
     1
     ```
 
 The `let` command also allows you to perform mathematical operations:
 
 ```
-$ let var=5+5
-$ echo $var
+let var=5+5
+echo $var
 10
 ```
 
 `let` can be substituted by `$(( ))`.
 
 ```
-$ echo $((5+2))
+echo $((5+2))
 7
-$ echo $((5*2))
+echo $((5*2))
 10
-$ var=$((5*3))
-$ echo $var
+var=$((5*3))
+echo $var
 15
 ```

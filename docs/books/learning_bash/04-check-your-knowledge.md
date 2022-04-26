@@ -2,7 +2,11 @@
 title: Bash - Check your knowledge
 author: Antoine Le Morvan
 contributors: Steven Spencer
-update: 31-mar-2022
+tested with: 8.5
+tags:
+  - education
+  - bash scripting
+  - bash
 ---
 
 # Bash - Check your knowledge

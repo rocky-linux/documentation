@@ -2,7 +2,11 @@
 title: Bash - Check your knowledge
 author: Antoine Le Morvan
 contributors: Steven Spencer
-update: 25-apr-2022
+tested with: 8.5
+tags:
+  - education
+  - bash scripting
+  - bash
 ---
 
 # Bash - Check your knowledge
@@ -22,7 +26,7 @@ update: 25-apr-2022
 - [ ] True   
 - [ ] False
 
-:heavy_check_mark: The test command allows to:
+:heavy_check_mark: The test command allows you to:
 
 - [ ] Test the type of a file
 - [ ] Test a variable

@@ -2,26 +2,30 @@
 title: Bash - Using Variables
 author: Antoine Le Morvan
 contributors: Steven Spencer
-update: 29-mar-2022
+tested with: 8.5
+tags:
+  - education
+  - bash scripting
+  - bash
 ---
 
 # Bash - Using Variables
 
-In this chapter you will learn how to use variables into your scripts in bash.
+In this chapter you will learn how to use variables in your bash scripts.
 
 ****
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Store information for later use;
-:heavy_check_mark: Delete and lock variables;
-:heavy_check_mark: Use environment variables;
-:heavy_check_mark: Substitute commands;
+:heavy_check_mark: Store information for later use;  
+:heavy_check_mark: Delete and lock variables;  
+:heavy_check_mark: Use environment variables;  
+:heavy_check_mark: Substitute commands;  
 
 :checkered_flag: **linux**, **script**, **bash**, **variable**
 
-**Knowledge**: :star: :star:
-**Complexity**: :star:
+**Knowledge**: :star: :star:  
+**Complexity**: :star:  
 
 **Reading time**: 10 minutes
 
@@ -29,18 +33,13 @@ In this chapter you will learn how to use variables into your scripts in bash.
 
 ## Storing information for later use
 
-As in any programming language, the shell script uses variables.
-They are used to store information in memory to be reused at will during the script.
+As in any programming language, the shell script uses variables. They are used to store information in memory to be reused as needed during the script.
 
-A variable is created when it receives its content.
-It remains valid until the end of the execution of the script or at the explicit request of the script author.
-Since the script is executed sequentially from start to finish, it is impossible to call a variable before it is created.
+A variable is created when it receives its content. It remains valid until the end of the execution of the script or at the explicit request of the script author. Since the script is executed sequentially from start to finish, it is impossible to call a variable before it is created.
 
-The content of a variable can be changed during the script, the variable continues to exist.
-If the content is deleted, the variable remains active but contains nothing.
+The content of a variable can be changed during the script, as the variable continues to exist until the script ends. If the content is deleted, the variable remains active but contains nothing.
 
-The notion of variable type in shell script is possible but is very rarely used.
-The content of a variable is always a character or a string.
+The notion of a variable type in a shell script is possible but is very rarely used. The content of a variable is always a character or a string.
 
 ```
 #!/usr/bin/env bash
@@ -71,13 +70,9 @@ cp $FILE1 $FILE2 $FILE3 $FILE4 $DESTINATION
 echo "Backup ended!"
 ```
 
-This script makes use of variables.
-The name of a variable must start with a letter but can contain any sequence of letters or numbers.
-Except for the underscore "_", special characters cannot be used.
+This script makes use of variables. The name of a variable must start with a letter but can contain any sequence of letters or numbers. Except for the underscore "_", special characters cannot be used.
 
-By convention, variables created by a user have a name in lower case.
-This name must be chosen with care so as not to be too evasive or too complicated.
-However, a variable can be named with upper case letters, as in this case, if it is a global variable that should not be modified by the program.
+By convention, variables created by a user have a name in lower case. This name must be chosen with care so as not to be too evasive or too complicated. However, a variable can be named with upper case letters, as in this case, if it is a global variable that should not be modified by the program.
 
 The character `=` assigns content to a variable:
 
@@ -91,26 +86,26 @@ There is no space before or after the `=` sign.
 Once the variable is created, it can be used by prefixing it with a dollar $.
 
 ```
-$ file=file_name
-$ touch $file
+file=file_name
+touch $file
 ```
 
 It is strongly recommended to protect variables with quotes, as in this example below:
 
 ```
-$ file=file name
-$ touch $file
-$ touch "$file"
+file=file name
+touch $file
+touch "$file"
 ```
 
 As the content of the variable contains a space, the first `touch` will create 2 files while the second `touch` will create a file whose name will contain a space.
 
-To isolate the name of the variable from the rest of the text, you must use apostrophes or braces:
+To isolate the name of the variable from the rest of the text, you must use quotes or braces:
 
 ```
-$ file=file_name
-$ touch "$file"1
-$ touch ${file}1
+file=file_name
+touch "$file"1
+touch ${file}1
 ```
 
 **The systematic use of braces is recommended.**
@@ -118,26 +113,26 @@ $ touch ${file}1
 The use of apostrophes inhibits the interpretation of special characters.
 
 ```
-$ message="Hello"
-$ echo "This is the content of the variable message: $message"
+message="Hello"
+echo "This is the content of the variable message: $message"
 Here is the content of the variable message: Hello
-$ echo 'Here is the content of the variable message: $message'
+echo 'Here is the content of the variable message: $message'
 Here is the content of the variable message: $message
 ```
 
 ## Delete and lock variables
 
-The `unset` command allows to delete a variable.
+The `unset` command allows for the deletion of a variable.
 
 Example:
 
 ```
-$ name="NAME"
-$ firstname="Firstname
-$ echo "$name $firstname"
+name="NAME"
+firstname="Firstname"
+echo "$name $firstname"
 NAME Firstname
-$ unset firstname
-$ echo "$name $firstname"
+unset firstname
+echo "$name $firstname"
 NAME
 ```
 
@@ -146,11 +141,11 @@ The `readonly` or `typeset -r` command locks a variable.
 Example:
 
 ```
-$ name="NAME"
-$ readonly name
+name="NAME"
+readonly name
 name="OTHER NAME"
 bash: name: read-only variable
-$ unset name
+unset name
 bash: name: read-only variable
 ```
 
@@ -160,11 +155,9 @@ bash: name: read-only variable
 
 ## Use environment variables
 
-**Environment variables** and **system variables** are variables used by the system for its operation.
-By convention they have a name in capital letters.
+**Environment variables** and **system variables** are variables used by the system for its operation. By convention these are named with capital letters.
 
-Like all variables, they can be displayed when a script is executed.
-Even if this is strongly discouraged, they can also be modified.
+Like all variables, they can be displayed when a script is executed. Even if this is strongly discouraged, they can also be modified.
 
 The `env` command displays all the environment variables used.
 
@@ -184,12 +177,11 @@ Among the dozens of environment variables, several are of interest to be used in
 
 The `export` command allows you to export a variable.
 
-A variable is only valid in the environment of the shell script process.
-In order for the **child processes** of the script to know the variables and their contents, they must be exported.
+A variable is only valid in the environment of the shell script process. In order for the **child processes** of the script to know the variables and their contents, they must be exported.
 
 The modification of a variable exported in a child process cannot be traced back to the parent process.
 
-!!! NOTE
+!!! note
 
     Without any option, the `export` command displays the name and values of the exported variables in the environment.
 

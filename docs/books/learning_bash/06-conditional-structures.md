@@ -2,7 +2,11 @@
 title: Bash - Conditional structures if and case
 author: Antoine Le Morvan
 contributors: Steven Spencer
-update: 24-apr-2022
+tested with: 8.5
+tags:
+  - education
+  - bash scripting
+  - bash
 ---
 
 # Bash - Conditional structures if and case
@@ -11,13 +15,13 @@ update: 24-apr-2022
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: use the conditionnal syntax `if`;
-:heavy_check_mark: use the conditionnal syntax `case`;
+:heavy_check_mark: use the conditional syntax `if`;  
+:heavy_check_mark: use the conditional syntax `case`;  
 
 :checkered_flag: **linux**, **script**, **bash**, **conditional structures**
 
-**Knowledge**: :star: :star:
-**Complexity**: :star: :star: :star:
+**Knowledge**: :star: :star:  
+**Complexity**: :star: :star: :star:  
 
 **Reading time**: 20 minutes
 
@@ -44,7 +48,7 @@ fi
 The command placed after the word `if` can be any command since it is its return code (`$?`) that will be evaluated.
 It is often convenient to use the `test` command to define several actions depending on the result of this test (file exists, variable not empty, write rights set).
 
-Using a classical command (`mkdir`, `tar`, ...) allows to define the actions to be performed in case of success or the error messages to be displayed in case of failure.
+Using a classical command (`mkdir`, `tar`, ...) allows you to define the actions to be performed in case of success, or the error messages to be displayed in case of failure.
 
 Examples:
 
@@ -62,7 +66,7 @@ then
 fi
 ```
 
-If the `else` block starts with a new `if` structure, it is possible to merge `else` and `if` :
+If the `else` block starts with a new `if` structure, you can merge the `else` and `if` with `elif` as shown below:
 
 ```
 [...]
@@ -85,7 +89,7 @@ elif [[ -e /etc ]]
 
     The `else` block is optional.
 
-    There is a need to perform some actions only if the evaluation of the command is true and to have nothing to do if it is false.
+    There is often a need to perform some actions only if the evaluation of the command is true and to do nothing if it is false.
 
     The word `fi` closes the structure.
 
@@ -96,8 +100,8 @@ The command to execute if `$?` is `true` is placed after `&&` while the command 
 Example:
 
 ```
-$ [[ -e /etc/passwd ]] && echo "The file exists" || echo "The file does not exist"
-$ mkdir dir && echo "The directory is created".
+[[ -e /etc/passwd ]] && echo "The file exists" || echo "The file does not exist"
+mkdir dir && echo "The directory is created".
 ```
 
 It is also possible to evaluate and replace a variable with a lighter structure than `if`.
@@ -105,45 +109,43 @@ It is also possible to evaluate and replace a variable with a lighter structure 
 This syntax implements the braces:
 
 * Displays a replacement value if the variable is empty:
-
-```
-${variable:-value}
-```
-
+    ```
+    ${variable:-value}
+    ```
 * Displays a replacement value if the variable is not empty:
-
-```
-${variable:+value}
-```
-
+    ```
+    ${variable:+value}
+    ```
 * Assigns a new value to the variable if it is empty:
-
-```
-${variable:=value}
-```
+    ```
+    ${variable:=value}
+    ```
 
 Examples:
 
 ```
-$ name=""
-$ echo ${name:-linux}
+name=""
+echo ${name:-linux}
 linux
-$ echo $name
+echo $name
 
-$ echo ${name:=linux}
+echo ${name:=linux}
 linux
-$ echo $name
+echo $name
 linux
-$ echo ${name:+tux}
+echo ${name:+tux}
 tux
-$ echo $name
+echo $name
 linux
 ```
 
+!!! hint
+
+    When deciding on the use of `if`, `then`, `else`, `fi` OR the use of the simpler syntax examples described, keep in mind the readability of your script. If no one is going to use the script but yourself, then you can use what works best for you. If someone else might need to review, debug, or trace through the script that you create, either use the more self documenting form (`if`,`then`, etc) or make sure that you document your script thoroughly so that the simpler syntax is actually understood by those who may need to modify and use the script. Documenting the script is *always* a good thing to do anyway, as noted several times earlier in these lessons.
+
 ## Alternative conditional: structure `case`
 
-A succession of `if` structures can quickly become heavy and complex.
-When it concerns the evaluation of the same variable, it is possible to use a conditional structure with several branches.
+A succession of `if` structures can quickly become heavy and complex. When it concerns the evaluation of the same variable, it is possible to use a conditional structure with several branches.
 The values of the variable can be specified or belong to a list of possibilities.
 
 **Wildcards can be used**.
@@ -156,7 +158,7 @@ The variable evaluated and the values proposed can be strings or results of sub-
 
 Placed at the end of the structure, the choice `*` indicates the actions to be executed for all the values that have not been previously tested.
 
-Syntax of the conditional alternative case :
+Syntax of the conditional alternative case:
 
 ```
 case $variable in
@@ -181,7 +183,7 @@ When the value is subject to variation, it is advisable to use wildcards `[]` to
   ;;
 ```
 
-The character `|` also allows to specify a value or another:
+The character `|` also allows you to specify a value or another:
 
 ```
 "yes" | "YES")

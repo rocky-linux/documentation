@@ -1,30 +1,37 @@
 ---
 title: Learning bash with Rocky
+author: Antoine Le Morvan
+contributors: Steven Spencer
+tested with: 8.5
+tags:
+  - education
+  - bash scripting
+  - bash
 ---
 
 # Learning Bash with Rocky
 
-In this part, you will learn more about Bash scripting, an exercise that every administrator will have to perform one day or another.
+In this section, you will learn more about Bash scripting, an exercise that every administrator will have to perform one day or another.
 
 ## Generalities
 
 The shell is the command interpreter of Linux.
 It is a binary that is not part of the kernel, but forms an additional layer, hence its name "shell".
 
-It parses the commands entered by the user and then makes them executed by the system.
+It parses the commands entered by the user and then executes them by the system.
 
 There are several shells, all of which share some common features.
-The user is free to use the one that suits him best among (among others):
+The user is free to use the one that suits him/her best. Some examples are:
 
 * the **Bourne-Again shell** (`bash`),
 * the **Korn shell** (`ksh`),
 * the **C shell** (`csh`),
 * etc.
 
-The `bash` is present by default on the main Linux distributions.
+`bash` is present by default in most (all) Linux distributions.
 It is characterized by its practical and user-friendly features.
 
-The shell is also a **basic programming language** which, thanks to some dedicated commands, allows :
+The shell is also a **basic programming language** which, thanks to some dedicated commands, allows:
 
 * the use of **variables**,
 * **conditional execution** of commands,
@@ -34,10 +41,10 @@ Shell scripts have the advantage that they can be created **quickly** and **reli
 
 !!! NOTE
 
-    Although the shell is a "basic" programming language, it is still very powerful and sometimes faster than bad compiled code.
+    Although the shell is a "basic" programming language, it is still very powerful and sometimes faster than badly compiled code.
 
 To write a shell script, you just have to put all the necessary commands in a single text file.
-By making this file executable, the shell will read it sequentially and execute the commands in it one by one.
+By making this file executable the shell reads it sequentially, and executes the commands in it one by one.
 It is also possible to execute it by passing the name of the script as an argument to the bash binary.
 
 When the shell encounters an error, it displays a message to identify the problem but continues to execute the script.
@@ -47,6 +54,6 @@ Command-specific errors are also displayed on the screen or inside files.
 What is a good script? It is:
 
 * **reliable**: its operation is flawless even in case of misuse;
-* **commented**: its code is annotated to facilitate the rereading and the future evolutions;
+* **commented**: its code is annotated to facilitate the rereading and future evolution;
 * **readable**: the code is indented appropriately, the commands are spaced out, ...
 * **portable**: the code runs on any Linux system, dependency management, rights management, etc.
