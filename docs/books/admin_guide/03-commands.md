@@ -981,25 +981,25 @@ The `sort` command sorts the lines of a file.
 It allows you to order the result of a command or the content of a file in a given order, numerically, alphabetically, by size (KB, MB, GB) or in reverse order.
 
 ```bash
-sort [-kx] [-n] [-u] [-o file] [-ty] file
+sort [-k] [-n] [-u] [-o file] [-t] file
 ```
 
 Example:
 
 ```bash
-$ sort -k3 -t: -n /etc/passwd
+$ sort -k 3,4 -t ":" -n /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
 | Option    | Observation                                 |
 | --------- | ------------------------------------------- |
-| `-kx`     | Specifies the `x` column to sort on         |
+| `-k`     | Specify the columns to be separated. You can specify multiple columns         |
 | `-n`      | Requests a numeric sort                     |
 | `-o file` | Saves the sort to the specified file        |
-| `-ty`     | Specifies the field separator character `y` |
-| `-r`      | Reverse the order of the result             |
-| `- u`     | Only keeps unique results                   |
+| `-t`     | Specify a delimiter, which requires that the contents of the corresponding file must be regularly delimited column contents, otherwise they cannot be sorted properly |
+| `-r`      | Reverse the order of the result. Used in conjunction with the `-n` option to sort in order from largest to smallest             |
+| `-u`     | Only keeps unique results                   |
 
 The `sort` command sorts the file only on the screen. The file is not modified by the sorting. To save the sort, use the `-o` option or an output redirection `>`.
 
@@ -1008,9 +1008,10 @@ By default, the numbers are sorted according to their character. Thus, "110" wil
 The `sort` command reverses the order of the results, with the `-r` option:
 
 ```bash
-$ sort -k3 -t: -n -r /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-adm:x:3:4:adm:/var/adm/:/sbin/nologin
+$ sort -k 3 -t ":" -n -r /etc/passwd
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+polkitd:x:998:996:User for polkitd:/:/sbin/nologin
 ```
 
 In this example, the `sort` command will sort the contents of the `/etc/passwd` file this time from largest uid to smallest.
