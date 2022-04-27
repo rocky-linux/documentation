@@ -999,7 +999,7 @@ adm:x:3:4:adm:/var/adm/:/sbin/nologin
 | `-o file` | Saves the sort to the specified file        |
 | `-t`     | Specify a delimiter, which requires that the contents of the corresponding file must be regularly delimited column contents, otherwise they cannot be sorted properly |
 | `-r`      | Reverse the order of the result. Used in conjunction with the `-n` option to sort in order from largest to smallest             |
-| `-u`     | Only keeps unique results                   |
+| `-u`     | Remove duplicates after sorting. Equivalent to `sort file | uniq`                   |
 
 The `sort` command sorts the file only on the screen. The file is not modified by the sorting. To save the sort, use the `-o` option or an output redirection `>`.
 
