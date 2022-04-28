@@ -3,6 +3,10 @@ title: Apache Multisite
 author: Steven Spencer
 contributors: Ezequiel Bruni
 tested with: 8.5
+tags:
+  - web
+  - apache
+  - multisite
 ---
 
 # Apache Web Server Multisite Setup

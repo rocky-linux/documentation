@@ -2,11 +2,15 @@
 title: Rocky on VirtualBox
 author: Steven Spencer
 contributors: Trevor Cooper, Ezequiel Bruni
-update: 11-24-2021
-tested on: Rocky Linux 8.4, 8.5
+tested on: 8.4, 8.5
+tags:
+  - virtualbox
+  - virtualization
 ---
 
-# Introduction
+# Rocky on VirtualBox
+
+## Introduction
 
 VirtualBox&reg; is a powerful virtualization product for both enterprise and home use. Once in a while, someone posts that they are having trouble getting Rocky Linux to run in VirtualBox&reg;. It has been tested multiple times going back to the release candidate, and works just fine. The problems people usually report often involve video.
 

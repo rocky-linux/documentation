@@ -1,3 +1,14 @@
+---
+title: Apache Hardened Webserver
+author: Steven Spencer
+contributors: Ezequiel Bruni
+tested with: 8.5
+tags:
+  - apache
+  - web
+  - security
+---
+
 # Apache Hardened Webserver
 
 ## Prerequisites and Assumptions
@@ -26,7 +37,7 @@ You might elect to use a couple of these tools, and not the others, so for clari
 * A Web-based Application Firewall (WAF), with _mod\_security_ rules [Apache Hardened Web Server - mod_security](modsecurity.md)
 * Rootkit Hunter (rkhunter): A scan tool that checks against Linux malware [Apache Hardened Web Server - rkhunter](rkhunter.md)
 * Database security (we are using _mariadb-server_ here) [MariaDB Database Server](../../database/database_mariadb-server.md)
-* A secure FTP or SFTP server (we are using _vsftpd_ here) [Secure FTP Server - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md)
+* A secure FTP or SFTP server (we are using _vsftpd_ here) [Secure FTP Server - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md) but we also have _sftp_ and SSH lock down procedures [here](../../file_sharing/sftp.md)
 
 This procedure does not replace the [Apache Web Server Multi-Site Setup](../apache-sites-enabled.md), it simply adds these security elements to it. If you haven't read it, take some time to look at it before proceeding.
 
@@ -36,7 +47,7 @@ Some of the tools outlined here have both free and fee-based options. Depending 
 
 Know, too, that most of these options can be purchased as hardware appliances. If you'd prefer not to hassle with installing and maintaining your own system, there are options available other than those outlined here.
 
-This document uses a straight _iptables_ firewall and requires [this procedure on Rocky Linux to disable firewalld and enable the iptables services](../../security/enabling_iptables_firewall.md).
+This document uses a straight _iptables_ firewall and requires [this procedure on Rocky Linux to disable firewalld and enable the iptables services](../../security/enabling_iptables_firewall.md). Since this document was first written, we now have a couple of excellent _firewalld_ guides; one that allows someone with knowledge of _iptables_ to transfer what they know to _firewalld_ [here](../../security/firewalld.md), and one that is a more dedicated to beginners [here](../../security/firewalld-beginners.md).
 
 If you prefer to use _firewalld_, simply skip this step and apply the rules needed. The firewall in our examples here, needs no OUTPUT or FORWARD chains, only INPUT. Your needs may differ!
 
