@@ -24,6 +24,10 @@ _vsftpd_ is the  Very Secure FTP Daemon (FTP being the file transfer protocol). 
 
 _vsftpd_ allows for the use of virtual users with pluggable authentication modules (PAM). These virtual users don't exist in the system, and have no other permissions except to use FTP. This means that if a virtual user gets compromised, the person with those credentials would have no other permissions once they gained access. Using this setup is very secure indeed, but does require a bit of extra work.
 
+!!! hint "Consider `sftp`"
+
+    Even with the security settings used here to set up `vsftpd`, you may want to consider `sftp` instead. `sftp` will encrypt the entire connection stream and is more secure for this reason. We've created a document [here](../sftp) that deals with setting up `sftp` and the locking down SSH. 
+
 ## Installing vsftpd
 
 We also need to make sure _openssl_ is installed. If you are running a web server, this probably **is** already installed, but just to make sure, you can run:

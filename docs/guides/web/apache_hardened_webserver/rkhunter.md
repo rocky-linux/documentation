@@ -1,3 +1,14 @@
+---
+title: Rootkit Hunter
+author: Steven Spencer
+contributors: Ezequiel Bruni
+tested with: 8.5
+tags:
+  - server
+  - security
+  - rkhunter
+---
+
 # Rootkit Hunter
 
 ## Prerequisites
@@ -44,7 +55,7 @@ You may also need to setup [Postfix Email for Reporting](../../email/postfix_rep
 
 ## Running rkhunter
 
-_rkhunter_ can be run by typing it at the command-line. There is a cron job installed for you in `/etc/cron.daily`, but if you want to automate the procedure on a different schedule, look at the [Automating cron jobs guide](../../automation/cron_jobs_howto.md). 
+_rkhunter_ can be run by typing it at the command-line. There is a cron job installed for you in `/etc/cron.daily`, but if you want to automate the procedure on a different schedule, look at the [Automating cron jobs guide](../../automation/cron_jobs_howto.md).
 
 You'll also need to move the script somewhere other than `/etc/cron.daily`, such as `/usr/local/sbin` and then call it from your custom cron job. The easiest method, of course, is to leave the default cron.daily setup intact.
 

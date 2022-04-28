@@ -2,7 +2,12 @@
 title: Host-based Intrustion Detection System (HIDS)
 author: Steven Spencer
 contributors: Ezequiel Bruni
-update: Jan-25-2022
+tested with: 8.5
+tags:
+  - web
+  - security
+  - ossec-hids
+  - hids
 ---
 
 # Host-based Intrusion Detection System (HIDS)

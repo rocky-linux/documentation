@@ -1,3 +1,15 @@
+---
+title: Web-based Application firewall (WAF)
+author: Steven Spencer
+contributors: Ezequiel Bruni
+tested with: 8.5
+tags:
+  - web
+  - security
+  - apache
+  - nginx
+---
+  
 # Web-based Application Firewall (WAF)
 
 ## Prerequisites
@@ -11,13 +23,13 @@
 
 ## Introduction
 
-_mod\_security_ is an open-source web-based application firewall (WAF). It is just one possible component of a hardened Apache web server setup and can be used with, or without, other tools. 
+_mod\_security_ is an open-source web-based application firewall (WAF). It is just one possible component of a hardened Apache web server setup and can be used with, or without, other tools.
 
 If you'd like to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server guide](index.md). This document also uses all of the assumptions and conventions outlined in that original document, so it is a good idea to review it before continuing.
 
-One thing that is missing with _mod\_security_ when installed from the generic Rocky Linux repositories, is that the rules installed are minimal at best. To get a more extensive package of free mod_security rules, we are using [Comodo's](https://www.comodo.com/) WAF installation procedure after installing the base package. 
+One thing that is missing with _mod\_security_ when installed from the generic Rocky Linux repositories, is that the rules installed are minimal at best. To get a more extensive package of free mod_security rules, we are using [Comodo's](https://www.comodo.com/) WAF installation procedure after installing the base package.
 
-Note that Comodo is a business that sells lots of tools to help secure networks. The free _mod\_security_ tools may not be free forever and they do require that you setup a login with Comodo in order to gain access to the rules. 
+Note that Comodo is a business that sells lots of tools to help secure networks. The free _mod\_security_ tools may not be free forever and they do require that you setup a login with Comodo in order to gain access to the rules.
 
 ## Installing mod_security
 
@@ -27,9 +39,9 @@ To install the base package, use this command which will install any missing dep
 
 ## Setting Up Your Comodo account
 
-To setup your free account, go to [Comodo's WAF site](https://waf.comodo.com/), and click the "Signup" link at the top of the page. You will be required to setup username and password information but no credit-card or other billing will be done. 
+To setup your free account, go to [Comodo's WAF site](https://waf.comodo.com/), and click the "Signup" link at the top of the page. You will be required to setup username and password information but no credit-card or other billing will be done.
 
-The credentials that you use for signing on to the web site will be used in your setup of Comodo's software and also to obtain the rules, so you will need to keep these safe in a password manager somewhere. 
+The credentials that you use for signing on to the web site will be used in your setup of Comodo's software and also to obtain the rules, so you will need to keep these safe in a password manager somewhere.
 
 Please note that the "Terms and Conditions" section of the form that you need to fill out to use Comodo Web Application Firewall (CWAF) is written to cover all of their products and services. That said, you should read this carefully before agreeing to the terms!
 
@@ -43,7 +55,7 @@ In addition, you will need to have your web server running for Comodo to see _mo
 
 `systemctl start httpd`
 
-After signing up with Comodo, you will get an email with instructions on what to do next. Essentially, what you need to do is to login to the web site with your new credentials and then download the client install script. 
+After signing up with Comodo, you will get an email with instructions on what to do next. Essentially, what you need to do is to login to the web site with your new credentials and then download the client install script.
 
 From the root directory of your server, use the wget command to download the installer:
 
@@ -71,7 +83,7 @@ Enter password for 'username@domain.com' (will not be shown): ******************
 Confirm password for 'username@domain.com' (will not be shown): ************************
 ```
 
-Please note here that you will probably have to download the rules and install them in the correct location, as the password field requires a punctuation or special character, but the configuration file apparently has issues with this when sending it to Comodo's site from the installer or update script. 
+Please note here that you will probably have to download the rules and install them in the correct location, as the password field requires a punctuation or special character, but the configuration file apparently has issues with this when sending it to Comodo's site from the installer or update script.
 
 These scripts will always fail with a credentials error. This probably doesn't affect administrators who have web servers running with a GUI front end (Cpanel / Plesk) but if you are running the program standalone as we are in our example, it does. [You can find the workaround below](#cwaf_fix).
 
@@ -169,7 +181,7 @@ Next go to the bottom of this configuration file. We need to tell _mod\_security
     # ModSecurity Core Rules Set and Local configuration
 	IncludeOptional modsecurity.d/*.conf
 	IncludeOptional modsecurity.d/activated_rules/*.conf
-	IncludeOptional modsecurity.d/local_rules/*.conf 
+	IncludeOptional modsecurity.d/local_rules/*.conf
 </IfModule>
 ```
 
@@ -180,7 +192,7 @@ We need to add in one line at the bottom to add the CWAF configuration, which in
 	IncludeOptional modsecurity.d/*.conf
 	IncludeOptional modsecurity.d/activated_rules/*.conf
 	IncludeOptional modsecurity.d/local_rules/*.conf
-   	Include "/usr/local/cwaf/etc/cwaf.conf" 
+   	Include "/usr/local/cwaf/etc/cwaf.conf"
 </IfModule>
 ```
 
@@ -192,8 +204,8 @@ If httpd starts OK, then you are ready to start using _mod\_security_ with the C
 
 ## Conclusion
 
-_mod\_security_ with CWAF is another tool that can be used to help harden an Apache web server. Because CWAF's passwords require punctuation and because the standalone installation does not send that punctuation correctly, managing CWAF rules requires logging into the CWAF site and downloading rules and changes. 
+_mod\_security_ with CWAF is another tool that can be used to help harden an Apache web server. Because CWAF's passwords require punctuation and because the standalone installation does not send that punctuation correctly, managing CWAF rules requires logging into the CWAF site and downloading rules and changes.
 
-_mod\_security_, like other hardening tools, has the potential of false-positive responses, so you must be prepared to tune this tool to your installation. 
+_mod\_security_, like other hardening tools, has the potential of false-positive responses, so you must be prepared to tune this tool to your installation.
 
 Like other solutions mentioned in the [Apache Hardened Web Server guide](index.md), there are other free and fee-based solutions for _mod\_security_ rules, and for that matter, other WAF applications available. You can take a look at one of these at [Atomicorp's _mod\_security_ site](https://atomicorp.com/atomic-modsecurity-rules/).

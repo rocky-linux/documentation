@@ -3,6 +3,10 @@ title: Nginx Multisite
 author: Ezequiel Bruni
 contributors: Steven Spencer
 tested with: 8.5
+tags:
+  - web
+  - nginx
+  - multisite
 ---
 
 # How to Set up Nginx for Multiple Websites on Rocky Linux
