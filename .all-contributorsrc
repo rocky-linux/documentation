@@ -592,6 +592,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "williamperron",
+      "name": "William Perron",
+      "avatar_url": "https://avatars.githubusercontent.com/u/15235219?v=4",
+      "profile": "http://www.williamperron.com",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
