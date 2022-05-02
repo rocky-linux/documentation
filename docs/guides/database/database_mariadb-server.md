@@ -1,3 +1,13 @@
+---
+title: MariaDB Database Server
+author: Steven Spencer
+contributors: Ezequiel Bruni, William Perron
+tested with: 8.5
+tags:
+  - database
+  - mariadb
+---
+
 # MariaDB Database Server
 
 ## Prerequisites
@@ -12,7 +22,7 @@
 
 The _mariadb-server_ and it's client _mariadb_ are the open source alternatives to _mysql-server_ and _mysql_, and they share command structure. _mariadb-server_ can be found running on many web servers, due to the popular [Wordpress CMS](https://wordpress.org/) which requires it. This database, though, has many other uses.
 
-If you'd like to use this along with other tools for hardening a web server, refer back to the [Apache Hardened Web Server guide](../web/apache_hardened_webserver/index.md). 
+If you'd like to use this along with other tools for hardening a web server, refer back to the [Apache Hardened Web Server guide](../web/apache_hardened_webserver/index.md).
 
 ## Installing mariadb-server
 
@@ -26,7 +36,7 @@ To strengthen the security of _mariadb-server_ we need to run a script, but befo
 
 `systemctl enable mariadb`
 
-And then: 
+And then:
 
 `systemctl start mariadb`
 
@@ -34,10 +44,15 @@ Next, run this command:
 
 `mysql_secure_installation`
 
-or
+!!! hint
 
-`mariadb-secure-installation`
+    The version of mariadb-server that comes enabled by default in Rocky Linux 8.5 is 10.3.32. You can install 10.5.13 by enabling the module:
 
+    ```
+    dnf module enable mariadb:10.5
+    ```
+
+    And then installing `mariadb`. As of version 10.4.6 of MariaDB, MariaDB specific commands are available that you can use instead of the old `mysql` prefixed commands. These include the previously mentioned `mysql_secure_installation` which can now be called with the MariaDB version `mariadb-secure-installation`.
 
 This brings up a dialog:
 
@@ -50,7 +65,7 @@ password for the root user.  If you've just installed MariaDB, and
 you haven't set the root password yet, the password will be blank,
 so you should just press enter here.
 
-Enter current password for root (enter for none): 
+Enter current password for root (enter for none):
 ```
 
 Since this is a brand new installation, there is no root password set. So just hit enter here.
@@ -63,13 +78,13 @@ OK, successfully used password, moving on...
 Setting the root password ensures that nobody can log into the MariaDB
 root user without the proper authorisation.
 
-Set root password? [Y/n] 
+Set root password? [Y/n]
 ```
 
 You absolutely _do_ want to have a root password set. You'll want to figure out what this should be and document it in a password manager somewhere so that you can pull it up if necessary. Start by hitting 'Enter' to accept the default "Y". This will bring up the password dialog:
 
 ```
-New password: 
+New password:
 Re-enter new password:
 ```
 
@@ -90,7 +105,7 @@ them.  This is intended only for testing, and to make the installation
 go a bit smoother.  You should remove them before moving into a
 production environment.
 
-Remove anonymous users? [Y/n] 
+Remove anonymous users? [Y/n]
 ```
 
 The answer here is "Y" so just hit 'Enter' to accept the default.
@@ -118,7 +133,7 @@ By default, MariaDB comes with a database named 'test' that anyone can
 access.  This is also intended only for testing, and should be removed
 before moving into a production environment.
 
-Remove test database and access to it? [Y/n] 
+Remove test database and access to it? [Y/n]
 ```
 
 Again, the answer here is the default, so just hit 'Enter' to remove it.
@@ -134,7 +149,7 @@ Finally, the dialog ask you if you want to reload the privileges:
 Reloading the privilege tables will ensure that all changes made so far
 will take effect immediately.
 
-Reload privilege tables now? [Y/n] 
+Reload privilege tables now? [Y/n]
 ```
 
 Again, simply hit 'Enter' to do this. If all goes well, you should receive this message:
@@ -154,5 +169,4 @@ MariaDB should now be ready to use.
 
 ## Conclusion
 
-A database server, such as _mariadb-server_, can be used for many purposes. Because of the popularity of the Wordpress CMS, it is often found on web servers. Before we run the database in production, however, it is a good idea to strengthen its security. 
-
+A database server, such as _mariadb-server_, can be used for many purposes. Because of the popularity of the Wordpress CMS, it is often found on web servers. Before we run the database in production, however, it is a good idea to strengthen its security.
