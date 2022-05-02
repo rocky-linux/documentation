@@ -34,6 +34,11 @@ Next, run this command:
 
 `mysql_secure_installation`
 
+or
+
+`mariadb-secure-installation`
+
+
 This brings up a dialog:
 
 ```
