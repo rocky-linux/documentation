@@ -118,7 +118,7 @@ It is impossible for an administrator at any level to know all the commands and 
 
 The command `apropos` allows you to search by keyword within these manual pages:
 
-| Options                                     | Observations                                               |
+| Options                                     | Description                                               |
 | ------------------------------------------- | ---------------------------------------------------------- |
 | `-s`, `--sections list` or `--section list` | Limited to manual sections.                                |
 | `-a` or `--and`                             | Displays only the item matching all the provided keywords. |
@@ -942,7 +942,7 @@ The `head` command displays the beginning of a file.
 head [-n x] file
 ```
 
-| Option                                                                                                | Observation                             |
+| Option                                                                                                | Description                            |
 | ----------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | `-n x`                                                                                                | Display the first `x` lines of the file |
 
@@ -956,7 +956,7 @@ The `tail` command displays the end of a file.
 tail [-f] [-n x] file
 ```
 
-| Option   | Observation                               |
+| Option   | Description                             |
 | -------- | ----------------------------------------- |
 | `-n x`   | Displays the last `x` lines of the file   |
 | `-f`     | Displays changes to the file in real time |
@@ -992,7 +992,7 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-| Option    | Observation                                 |
+| Option    | Description                              |
 | --------- | ------------------------------------------- |
 | `-k`     | Specify the columns to be separated. You can specify multiple columns         |
 | `-n`      | Requests a numeric sort                     |
@@ -1111,7 +1111,7 @@ The `wc` command counts the number of lines, words and/or bytes in a file.
 wc [-l] [-m] [-w] file [files]
 ```
 
-| Option | Observation                     |
+| Option | Description                    |
 | ------ | ------------------------------- |
 | `-c`   | Count the number of bytes.      |
 | `-m`   | Count the number of characters. |
@@ -1132,7 +1132,7 @@ Since there are so many options to the `find` command, it is best to refer to th
 
 If the search directory is not specified, the `find` command will search from the current directory.
 
-| Option              | Observation                            |
+| Option              | Description                            |
 | ------------------- | -------------------------------------- |
 | `-perm permissions` | Search for files by their permissions. |
 | `-size size`        | Search for files by size.              |
@@ -1180,7 +1180,7 @@ $ whereis -b ls
 ls: /bin/ls
 ```
 
-| Option | Observation                     |
+| Option | Description                     |
 | ------ | ------------------------------- |
 | `-b`   | Search only the binary file.    |
 | `-m`   | Searches only for man pages.    |
@@ -1201,7 +1201,7 @@ $ grep -w "root:" /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 ```
 
-| Option                                                                                  | Observation                             |
+| Option                                                                                  | Description                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------- |
 | `-i`                                                                                    | Ignore the case of the searched string. |
 | `-v`                                                                                    | Excludes lines containing the string.   |
