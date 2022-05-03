@@ -1,26 +1,26 @@
 ---
-title: Linux Commands
+title: Linux 命令
 author: Antoine Le Morvan
-contributors: Steven Spencer, Aditya Putta
+contributors: Steven Spencer, Aditya Putta, tianci li
 update: 11-08-2021
 ---
 
-# Commands for Linux Users
+# 针对Linux用户的命令
 
-In this chapter you will learn how to work with Linux with the commands.
+在本章中，您将学习如何使用Linux中的命令。
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**目标** : 在本章中，未来的 Linux 管理员们将学习如何：
 
-:heavy_check_mark: **move** in the system tree;   
-:heavy_check_mark: **create** a text file, **display** its contents and **modify** it;   
-:heavy_check_mark: use the most useful Linux commands.
+:heavy_check_mark: 在系统树中 **移动**   
+:heavy_check_mark: **创建** 一个文本文件, **显示** 它的内容并 **修改** 它;   
+:heavy_check_mark: 使用最实用的Linux命令
 
-:checkered_flag: **user commands**, **linux**
+:checkered_flag: **用户命令**, **linux**
 
-**Knowledge**: :star:   
-**Complexity**: :star:
+**知识**: :star:   
+**复杂度**: :star:
 
 **阅读时间**: 40 分钟
 
@@ -28,101 +28,101 @@ In this chapter you will learn how to work with Linux with the commands.
 
 ## 概论
 
-Current Linux systems have graphical utilities dedicated to the work of an administrator. However, it is important to be able to use the interface in command line mode for several reasons:
+现代的 Linux 系统配备有专门用于协助管理员工作的图形工具。 但是，能够使用命令行模式也是很重要的，原因如下：
 
-* The majority of system commands are common to all Linux distributions, which is not the case for graphical tools.
-* It can happen that the system does not start correctly but that a backup command interpreter remains accessible.
-* Remote administration is done on the command line with an SSH terminal.
-* In order to preserve server resources, the graphical interface is either not installed or launched on demand.
-* Administration is done by scripts.
+* 大多数系统命令对于所有Linux发行版都是通用的，而图形工具则不是这样。
+* 可能发生的情况是——系统不能正确启动，但备份的命令解释器仍然可以被访问。
+* 远程管理是通过在 SSH 终端下的命令行完成的。
+* 为了保留服务器资源，图形界面要么不安装，要么按需启动。
+* 管理工作是由脚本完成的。
 
-Learning these commands allows the administrator to connect to a Linux terminal, to manage its resources, its files, to identify the station, the terminal, and the connected users, etc.
+学习这些命令可以让系统管理员通过一个 Linux 终端来管理服务器的资源、文件，识别站点、终端和已连接的用户等等。
 
-### The users
+### 用户
 
-The user of a Linux system is defined in the `/etc/passwd` file, by:
+在 Linux系统中，用户是通过 `/etc/passwd` 文件中的以下条目定义的：
 
-* a **login name**, more commonly called "login", containing no spaces;
-* a numeric identifier : **UID** (User Identifier);
-* a group identifier : **GID** (Group Identifier);
-* a **command interpreter**, a shell, which can be different from one user to another;
-* a **connection directory**, the __home directory__.
+* **登录名**，更普遍的叫法是 “用户名”，不含有空格；
+* 数字标识符 : **UID** (用户标识符)；
+* 用户组标识符：**GID** (用户组标识符)；
+* **命令解释器**（shell），不同用户可以不同；
+* **连接目录**，__家目录__。
 
-In other files by:
+在其他文件中，用户由以下条目定义：
 
-* a **password**, which will be encrypted before being stored (`/etc/shadow`);
-* a **command prompt**, or __prompt__ login, which will be symbolized by a `#` for administrators and a `$` for other users (`/etc/profile`).
+* **密码**，它会在储存之前被加密 (`/etc/shadow`)；
+* **命令提示符**，或登录__提示符__, `#` 代表管理员，`$` 代表其他用户 (`/etc/profile`)。
 
-Depending on the security policy implemented on the system, the password will have to contain a certain number of characters and meet certain complexity requirements.
+取决于系统执行的安全策略，密码必须包含一定数量的字符，并满足某些复杂度的要求。
 
-Among the existing command interpreters, the **Bourne-Again Shell** (`/bin/bash`) is the one most frequently used. It is assigned by default to new users. For various reasons, advanced Linux users can choose alternative shells from among the Korn Shell (`ksh`), the C Shell (`csh`), etc.
+在现有的命令解释器中，**Bourne-Again Shell** (`/bin/bash`) 是最常用的。 默认情况下，它会被分配给新用户。 出于各种原因，高阶的 Linux 用户可以选择代替品，如 Korn Shell (`ksh`)， C Shell (`csh`) 等。
 
-The user's login directory is by convention stored in the `/home` directory of the workstation. It will contain the user's personal data and the configuration files of his applications. By default, at login, the login directory is selected as the current directory.
+通常，用户的登录目录被储存在工作站的 `/home` 目录中。 它将包含用户的个人数据和应用程序的配置文件。 默认情况下，登录时会选择 登录目录 作为当前目录。
 
-A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
+一个工作站类型的安装 (带有图形界面) 将在终端 1 上开启此界面。 Linux是多用户的，可以在不同的**物理终端**(TTY) 或**虚拟终端**(PTS) 上连接多个用户。 虚拟终端可以在图形化环境中使用。 一个用户可以通过 <kbd>Alt</kbd> + <kbd>Fx</kbd> 或 <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd> 来切换物理终端。
 
-### The shell
+### shell
 
-Once the user is connected to a console, the shell displays the command **prompt**. It then behaves like an infinite loop, with each statement entered:
+一旦用户连接到控制台，shell就会显示命令**prompt**。 然后，在输入每条语句时，它的表现就像一个无限循环：
 
-* displaying the command prompt;
-* reading the command ;
-* syntax analysis ;
-* substitution of special characters ;
-* execute the command;
-* display the command prompt;
-* etc.
+* 显示命令提示符；
+* 读取命令；
+* 语法分析；
+* 特殊字符的替换；
+* 执行命令；
+* 显示命令提示符；
+* 等等
 
-The key sequence <kbd>CTRL</kbd> + <kbd>C</kbd> is used to interrupt a running command.
+<kbd>CTRL</kbd> + <kbd>C</kbd>两个按键用于中断正在运行的命令。
 
-The use of a command generally follows this sequence:
+命令的使用通常遵循以下顺序：
 
 ```bash
 command [option(s)] [arguments(s)]
 ```
 
-The name of the command is **often in lower case**.
+命令的名称 **通常为小写**。
 
-A space separates each item.
+每一项都用空格隔开。
 
-Short **options** begin with a dash (`-l`), while **long options** begin with two dashes (`--list`). A double dash (`--`) indicates the end of the option list.
+**短选项**以破折号开头(`-l`)，而**长选项**以两个破折号（`--list`）开头。 双破折号（`--`）表示选项列表的结尾。
 
-It is possible to group some short options together:
+可以将一些短选项组合在一起，例如：
 
 ```bash
 $ ls -l -i -a
 ```
 
-is equivalent to:
+等同于：
 
 ```bash
 $ ls -lia
 ```
 
-There can of course be several arguments after an option:
+当然，在选项后面可以跟几个对象：
 
 ```bash
 $ ls -lia /etc /home /var
 ```
 
-In the literature, the term "option" is equivalent to the term "parameter," which is more commonly used in programming. The optional side of an option or argument is symbolized by enclosing it in square brackets `[` and `]`. When more than one option is possible, a vertical bar called a "pipe" separates them `[a|e|i]`.
+在文献资料中，术语 "option"（选项） 相当于术语"parameter"（参数），这在编程中更常用。 选项或参数的可选部分用方括号括起来 —— `[` 和 `]`。 当可能有多个选项时，一个称为 "管道" 的垂直条将它们分隔开来 `[a|e|i]`。
 
-## General commands
+## 常规命令
 
-### `apropos`, `whatis` and `man` commands
+### `apropos`，`whatis` 和 `man` 命令
 
-It is impossible for an administrator at any level to know all the commands and options in detail. A manual is usually available for all installed commands.
+任何级别的管理员都不可能详细了解所有的命令和选项。 所以所有已经安装的命令通常都会有一个手册。
 
-#### `apropos` command
+#### `apropos` 命令
 
-The command `apropos` allows you to search by keyword within these manual pages:
+命令 `apropos` 允许您在这些手册页中按关键字搜索：
 
-| Options                                     | Observations                                               |
-| ------------------------------------------- | ---------------------------------------------------------- |
-| `-s`, `--sections list` or `--section list` | Limited to manual sections.                                |
-| `-a` or `--and`                             | Displays only the item matching all the provided keywords. |
+| 选项                                          | 描述                   |
+| ------------------------------------------- | -------------------- |
+| `-s`, `--sections list` 或者 `--section list` | 仅限于手册部分。             |
+| `-a` 或者 `--and`                             | 只显示与所提供的所有关键词相匹配的项目。 |
 
-Example:
+示例：
 
 ```bash
 $ apropos clear
@@ -142,7 +142,7 @@ XClearWindow (3)     - clear area or window
 XSelectionClearEvent (3) - SelectionClear event structure
 ```
 
-To find the command that will allow changing the password of an account:
+要查找允许更改帐户密码的命令，请执行以下操作：
 
 ```bash
 $ apropos --exact password  -a change
@@ -150,83 +150,88 @@ chage (1)            - change user password expiry information
 passwd (1)           - change user password
 ```
 
-#### `whatis` command
+#### `whatis` 命令
 
-The `whatis` command displays the description of the command passed as argument:
+`whatis` 命令显示命令的描述信息：
 
 ```bash
 whatis clear
 ```
 
-Example:
+示例：
 
 ```bash
 $ whatis clear
 clear (1)            - clear the terminal screen
 ```
 
-#### `man` command
+#### `man` 命令
 
-Once found by `apropos` or `whatis`, the manual is read by `man` ("Man is your friend"). This set of manuals is divided into 8 sections, grouping information by topic, the default section being 1:
+手册一旦被`apropos` 或 `whatis`发现，就会被`man`读取（“手册是你的朋友”）。 这套手册分为8个部分，按主题对信息进行分组，默认部分为1：
 
-1. User Commands;
-2. System Calls;
-3. C library functions;
-4. Peripherals and special files;
-5. File formats ;
-6. Games;
-7. Miscellaneous;
-8. System administration tools and daemons. Information about each section can be accessed by typing `man x intro`, where `x` is the section number.
+1. 可执行的程序或命令；
+2. 系统调用(内核给定的函数)；
+3. 库调用(库给出的函数)；
+4. 特殊文件(通常位于/dev中)；
+5. 文件格式和约定(配置文件如/etc/passwd)；
+6. 游戏(例如基于角色的应用程序)；
+7. 杂项(如：man(7)；
+8. 系统管理命令(通常仅适用于root用户)；
+9. 跟内核有关的文件。
 
-The command:
+可以通过键入`man x intro`访问有关每个部分的信息，其中`x`是数字编号。
+
+命令：
 
 ```bash
 man passwd
 ```
 
-will tell the administrator about the passwd command, its options, etc. While a:
+这将告诉管理员 passwd 命令及其选项等。 但这条命令：
 
 ```bash
 $ man 5 passwd
 ```
 
-will inform him about the files related to the command.
+将告知用户 passwd 命令有关的文件。
 
-Not all pages of the manual are translated from English. However, they are generally very accurate and provide all the information needed. The syntax used and the division may confuse the beginner administrator, but with practice, he will quickly find the information he is looking for.
+并不是所有的手册页都是从英文翻译过来的。 然而，英语手册页通常非常准确，并提供了所需的所有信息。 其使用的语法规则和分隔规则可能会让初学者管理员感到困惑，但经过练习，我相信你会找到你想要的信息。
 
-The navigation in the manual is done with the arrows <kbd>↑</kbd> and <kbd>↓</kbd>. The manual is exited by pressing the <kbd>q</kbd> key.
+本手册中的导航是使用 <kbd>↑</kbd> 和 <kbd>↓</kbd>箭头完成的， 按 <kbd>q</kbd> 键退出手册。
 
-### `shutdown` command
+### `shutdown` 命令
 
-The `shutdown` command allows you to **electrically shut down** a Linux server, either immediately or after a certain period of time.
+`shutdown`命令允许您立即或在一段时间后以 **电方式关闭** Linux服务器。
 
 ```bash
 shutdown [-h] [-r] time [message]
 ```
 
-The shutdown time should be specified in the format `hh:mm` for a precise time, or `+mm` for a delay in minutes.
+应以`hh:mm`格式指定精准的关闭时间，或者以 `+mm` 指定延迟多长时间。
 
-To force an immediate stop, the word `now` will replace the time. In this case, the optional message is not sent to other users of the system.
+若要强制立即关闭，请使用单词 `now`，用来替代时间。 在这种情况下，可选的消息不会被发送给系统的其他用户。
 
-Examples:
+示例：
 
 ```bash
 [root]# shutdown -h 0:30 "Server shutdown at 0:30"
 [root]# shutdown -r +5
 ```
 
-Options:
+选项：
 
-| Options | Remarks                          |
-| ------- | -------------------------------- |
-| `-h`    | Shutdown the system electrically |
-| `-r`    | Restarts the system              |
+| 选项   | 备注       |
+| ---- | -------- |
+| `-h` | 以电方式关闭系统 |
+| `-r` | 重启系统     |
 
-### `history` command
+### `history` 命令
 
-The `history` command displays the history of commands that have been entered by the user. The commands are stored in the `.bash_history` file in the user's login directory.
+`history` 命令显示用户输入命令的历史记录。
 
-Example of a history command
+这些命令存储在用户登录目录的 `.bash_history` 文件中。
+
+history命令示例
 
 ```bash
 $ history
@@ -234,72 +239,83 @@ $ history
 148 man history
 ```
 
-| Options | Comments                                                                                                           |
-| ------- | ------------------------------------------------------------------------------------------------------------------ |
-| `-w`    | The `-w` option will copy the history of the current session to it.                                                |
-| `-c`    | The `-c` option will delete the history of the current session (but not the contents of the `.bash_history` file). |
+| 选项   | 解释                                              |
+| ---- | ----------------------------------------------- |
+| `-w` | 将当前历史记录写入到历史文件                                  |
+| `-c` | `-c`选项将删除当前会话的历史记录(但不会删除`.bash_history`文件中的内容)。 |
 
-* Manipulating history:
+* 操作历史：
 
-To manipulate the history, the following commands entered from the command prompt will:
+要操作历史记录，从命令提示符中输入以下命令即可：
 
-| Keys               | Function                                                  |
-| ------------------ | --------------------------------------------------------- |
-| <kdb>!!</kdb>      | Recall the last command placed.                           |
-| <kdb>!n</kdb>      | Recall the command by its number in the list.             |
-| <kdb>!string</kdb> | Recall the most recent command beginning with the string. |
-| <kdb>↑</kdb>       | Recall the most recent command beginning with the string. |
-| <kdb>↓</kdb>       | Recall the most recent command beginning with the string. |
+| 键盘输入               | 功能                   |
+| ------------------ | -------------------- |
+| <kdb>!!</kdb>      | 调出最后使用的命令。           |
+| <kdb>!n</kdb>      | 根据该命令在列表中的编号重新调用该命令。 |
+| <kdb>!string</kdb> | 调出以字符串开头的最近的命令。      |
+| <kdb>↑</kdb>       | 调出以字符串开头的最近的命令。      |
+| <kdb>↓</kdb>       | 调出以字符串开头的最近的命令。      |
 
-### The auto-completion
+### 命令自动补全
 
-Auto-completion is also a great help.
+自动补全也可以为你提供很好的帮助。
 
-* It allows you to complete commands, entered paths, or file names.
-* A press of the <kbd>TAB</kbd> key completes the entry in the case of a single solution.
-* Otherwise, a second press will be required to obtain the list of possibilities.
+* 它允许你完成命令、输入路径或文件名的补全。
+* 如果是单一的补全，按一下<kbd>TAB</kbd>键就完成了输入补全。
+* 否则，将需要按二次TAB键才能获得可能性列表。
 
-If a double press of the <kbd>TAB</kbd> key causes no reaction from the system, then there is no solution to the current completion.
+如果双击<kbd>Tab</kbd>键没有引起系统反应，则当前没有完成自动补全。
 
-## Display and identification
+## 显示和标识
 
-### `clear` command
+### `clear` 命令
 
-The `clear` command clears the contents of the terminal screen. In fact, to be more precise, it shifts the display so that the command prompt is at the top of the screen on the first line.
+`clear` 命令表示清除终端屏幕的内容， 事实上更准确地说——它改变了显示方式，使命令提示符位于屏幕第一行的顶部。
 
-In a terminal, the display will be permanently hidden, whereas in a graphical interface, a scrollbar will allow you to go back in the history of the virtual terminal.
+在终端中，过往历史命令的输出内容将永久隐藏，而在图形界面中，滚动条将允许你回到虚拟终端的历史记录中去。
 
-!!! Tip <kbd>CTRL</kbd> + <kbd>L</kbd> will have the same effect as the `clear` command
+!!! tip "提示"
 
-### `echo` command
+    <kbd>CTRL</kbd> + <kbd>L</kbd> 快捷键与 `clean` 命令具有相同的效果
 
-The `echo` command is used to display a string of characters.
+### `echo` 命令
 
-This command is most commonly used in administration scripts to inform the user during execution.
+`echo` 命令用来输出字符串内容。
 
-The `-n` option will not return to the line after displaying the text (which is the default behavior of the command).
+此命令最常在管理脚本中使用，用于在执行期间通知用户。
 
-For various reasons, the script developer may need to use special sequences (starting with a `\` character). In this case, the `-e` option will be stipulated, allowing interpretation of the sequences.
+`-n` 选项表示不换行输出（默认情况下，换行输出字符串）。
 
-Among the frequently used sequences, we can mention:
+```bash
+shell > echo -n "123";echo "456"
+123456
 
-| Sequence | Result                |
-| -------- | --------------------- |
-| `\a`    | Send a sonor bip      |
-| `\b`    | Back                  |
-| `\n`    | Adds a line break     |
-| `\t`    | Adds a horizontal tab |
-| `\v`    | Adds vertical tab     |
+shell > echo "123";echo "456"
+123
+456
+```
 
-### `date` command
+由于各种原因，脚本开发人员可能需要使用特殊的转义符(以`\`字符开始)。 在这种情况下，使用 `-e` 选项，从而允许对转义符进行解释。
 
-The `date` command displays the date and time. The command has the following syntax:
+在常用的转义符中，我们提到的有：
+
+| 转义符   | 结果                                 |
+| ----- | ---------------------------------- |
+| `\a` | 发出警告声                              |
+| `\b` | 退格，删除前一个字符                         |
+| `\n` | 添加换行符，光标移动到下一行的行首                  |
+| `\t` | 添加一个tab                            |
+| `\v` | 换行，但是光标的位置不变，即上一行在什么位置，下一行还是一样的位置。 |
+
+### `date` 命令
+
+`date` 命令用来显示日期和时间。 该命令具有以下语法：
 
 ```bash
 date [-d AAAAMMJJ] [format]
 ```
 
-Examples:
+示例：
 
 ```bash
 $ date
@@ -308,57 +324,60 @@ $ date -d 20210517 +%j
 137
 ```
 
-In this last example, the `-d` option displays a given date. The `+%j` option formats this date to show only the day of the year.
+在最后一个示例中，`-d`选项表示显示给定的日期。 `+%j` 选项表示此格式转化为一年当中的第几天。
 
-!!! Warning The format of a date can change depending on the value of the language defined in the environment variable `$LANG`.
+!!! warning "警告"
 
-The date display can follow the following formats:
+    日期的格式可能会根据环境变量`$LANG`中定义的语言值而变化。
 
-| Option | Format                           |
-| ------ | -------------------------------- |
-| `+%A`  | Full Name of Day                 |
-| `+%B`  | Full Name of Month               |
-| `+%c`  | Full Date Display                |
-| `+%d`  | Day number                       |
-| `+%F`  | Date in `YYYY-MM-DD` format      |
-| `+%G`  | Year                             |
-| `+%H`  | Time of day                      |
-| `+%j`  | Day of the year                  |
-| `+%m`  | Month number                     |
-| `+%M`  | Minute                           |
-| `+%R`  | Time in `hh:mm` format           |
-| `+%s`  | Seconds since January 1, 1970    |
-| `+%T`  | Time in `hh:mm:ss` format        |
-| `+%u`  | Day of the week (`1` for Monday) |
-| `+%V`  | Week number (`+%V`)              |
-| `+%x`  | Date in format `DD/MM/YYYY`      |
+日期显示可以遵循以下格式：
 
-The `date` command also allows you to change the system date and time. In this case, the `-s` option will be used.
+| 选项    | 格式                                     |
+| ----- | -------------------------------------- |
+| `+%A` | 本地的完整平日名称（例如 Sunday）                   |
+| `+%B` | 本地的完整月份名称（例如，January）                  |
+| `+%c` | 本地的日期与时间 （例如 Thu Mar  3 23:05:25 2005） |
+| `+%d` | 月份的第几天（例如01）                           |
+| `+%F` | `YYYY-MM-DD`格式的日期                      |
+| `+%G` | 年                                      |
+| `+%H` | 小时 （00..23）                            |
+| `+%j` | 一年中的哪一天（001..366）                      |
+| `+%m` | 月份数（01..12）                            |
+| `+%M` | 分钟（0..59）                              |
+| `+%R` | `hh:mm`格式的时间                           |
+| `+%s` | 自1970年1月1日以来的秒数                        |
+| `+%S` | 秒（00..60）                              |
+| `+%T` | `hh:mm:ss`格式的时间                        |
+| `+%u` | 星期几（用`1`表示星期1）                         |
+| `+%V` | 周数（`+%V`）                              |
+| `+%x` | `DD/MM/YYYY`格式的日期                      |
+
+`date`  命令还允许您更改系统的日期与时间。 在这种情况下您需要使用 `-s`选项。
 
 ```bash
 [root]# date -s "2021-05-24 10:19"
 ```
 
-The format to be used following the `-s` option is this:
+`-s`选项后面使用的格式如下：
 
 ```bash
 date -s "[AA]AA-MM-JJ hh:mm:[ss]"
 ```
 
-### `id`, `who` and `whoami` commands
+### `id`、`who`和`whoami`命令
 
-The `id` command displays the name of the current user and its groups or those of a user, if the user's login is given as an argument.
+`id` 命令用于显示有关用户和组的信息。 默认情况下，没有添加用户参数，则显示当前登录用户和组的信息。
 
 ```bash
 $ id rockstar
 uid=1000(rockstar) gid=1000(rockstar) groups=1000(rockstar),10(wheel)
 ```
 
-The `-g`, `-G`, `-n` and `-u` options display the main group GID, subgroup GIDs, names instead of numeric identifiers, and the user's UID respectively.
+`-g`、`-G`、`-n` 和 `-u`选项分别表示显示主组GID、附加组GID、名称而不是数字标识符、用户的UID。
 
-The `whoami` command displays the login of the current user.
+`whoami`命令用来显示当前用户的登录信息。
 
-The `who` command alone displays the names of logged in users:
+`who`命令仅显示登录用户名：
 
 ```bash
 $ who
@@ -366,65 +385,65 @@ rockstar tty1   2021-05-24 10:30
 root     pts/0  2021-05-24 10:31
 ```
 
-Since Linux is multi-user, it is likely that multiple sessions are open on the same station, either physically or over the network. It is interesting to know which users are logged in, if only to communicate with them by sending messages.
+由于Linux是多用户的，因此很可能在同一台机器上打开了多个会话，无论是在物理机器上还是通过网络。 了解哪些用户已登录是一件很有趣的事情，即使只是通过发送消息与他们进行通信。
 
-* tty: represents a terminal.
-* pts/: represents a virtual console in a graphical environment with the number after representing the instance of the virtual console (0, 1, 2...)
+* tty：代表一个终端。
+* pts/：表示图形环境中的虚拟控制台，后面的数字代表虚拟控制台的实例（0、1、2...）。
 
-The `-r` option also displays the execution level (see chapter "startup").
+`-r`选项显示运行级别（参见"startup"篇章）。
 
-## File tree
+## 文件树
 
-In Linux, the file tree is an inverted tree, called a **single hierarchical tree**, whose root is the directory `/`.
+在Linux当中，文件树是一棵倒置的树，我们叫它** 单一层次树**，根目录为`/`。
 
-The **current directory** is the directory where the user is located.
+**当前目录**是指用户所在的目录。
 
-The **connection directory** is the working directory associated with the user. The login directories are, by default, stored in the `/home` directory.
+**连接目录**是与用户相关联的工作目录， 登录目录默认存储在`/home`目录下。
 
-When the user logs in, the current directory is the login directory.
+用户登录时，当前目录为登录目录。
 
-An **absolute path** references a file from the root by traversing the entire tree to the file level:
+一个**绝对路径**通过遍历整个树到文件级，从根目录上引用文件：
 
 * `/home/groupA/alice/file`
 
-The **relative path** references that same file by traversing the entire tree from the current directory:
+**相对路径**通过从当前目录遍历整个树来引用相同的文件：
 
 * `../alice/file`
 
-In the above example, the "`..`" refers to the parent directory of the current directory.
+在上面的示例中，"`..`"指的是当前目录的父目录。
 
-A directory, even if it is empty, will necessarily contain at least **two references**:
+一个目录即使是空的，也必须至少包含**两个引用**：
 
-* `.`: reference to itself.
-* `..`: reference to the parent directory of the current directory.
+* `.`：引用本身。
+* `..`：引用当前目录的父目录。
 
-A relative path can thus start with `./` or `../`. When the relative path refers to a subdirectory or file in the current directory, then the `./` is often omitted. Mentioning the first `./` in the tree will only really be required to run an executable file.
+因此，相对路径可以以`./`或者`../`开始。 当相对路径引用当前目录中的子目录或文件时，`./`通常被忽略。 提到树中的第一个`./`，只有在运行可执行文件时才会被真正需要。
 
-Errors in paths can cause many problems: creating folders or files in the wrong places, unintentional deletions, etc. It is therefore strongly recommended to use auto-completion when entering paths.
+路径错误会导致很多问题：在错误的位置创建文件夹或文件，无意删除等。 因此，强烈建议在输入路径时使用自动补全功能。
 
-![our example tree](images/commands-pathabsolute.png)
+![我们的示例树](images/commands-pathabsolute.png)
 
-In the above example, we are looking to give the location of the file `myfile` from the directory of bob.
+在上面的示例中，我们希望提供文件`myfile`在bob目录中的位置。
 
-* By an **absolute path**, the current directory does not matter. We start at the root, and work our way down to the directories `home`, `groupA`, `alice` and finally the file `myfile`: `/home/groupA/alice/myfile`.
-* By a **relative path**, our starting point being the current directory `bob`, we go up one level through `..` (i.e., into the `groupA` directory), then down into the alice directory, and finally the `myfile` file: `../alice/myfile`.
+* 通过**绝对路径**的方式，当前目录无关紧要。 我们从根目录开始，一直到`home`、`groupA`、 `alice`这些目录，最后到`myfile`这个文件：`/home/groupA/alice/myfile`。
+* 通过**相对路径**的方式，我们的起点是当前目录`bob`，上一级我们通过`..`指定（即进入到`groupA`目录），然后向下进入到 alice 目录，最后是`myfile`文件：`../alice/myfile`。
 
-### `pwd` command
+### `pwd`命令
 
-The `pwd` (Print Working Directory) command displays the absolute path of the current directory.
+`pwd` (Print Working Directory，打印工作目录) 命令显示当前目录的绝对路径。
 
 ```bash
 $ pwd
 /home/rockstar
 ```
 
-To move around using a relative path, you must know its position in the tree.
+使用相对路径引用文件或目录，或使用`cd`命令移动到另一个目录，您必须知道其在文件树中的位置。
 
-Depending on the command interpreter, the command prompt may also display the name of the current directory.
+根据 shell 的类型及其配置文件的不同参数，终端提示符（也称为命令提示符） 将显示当前目录的绝对路径或相对路径。
 
-### `cd` command
+### `cd` 命令
 
-The `cd` (Change Directory) command allows you to change the current directory, in other words, to move through the tree.
+`cd` (Change Directory，更改目录) 命令允许您更改当前目录，换句话就是在文件树中移动。
 
 ```bash
 $ cd /tmp
@@ -438,73 +457,75 @@ $ pwd
 /home/rockstar
 ```
 
-As you can see in the last example above, the command `cd` with no arguments moves the current directory to the `home directory`.
+正如您在上面的最后一个示例中看到的，不带参数的命令`cd`将当前目录移动到`家目录`。
 
-### `ls` command
+### `ls`命令
 
-The `ls` command displays the contents of a directory
+`ls`命令用来目录中的内容。
 
 ```bash
 ls [-a] [-i] [-l] [directory1] [directory2] […]
 ```
 
-Example:
+示例：
 
 ```bash
 $ ls /home
 .    ..    rockstar
 ```
 
-The main options of the `ls` command are:
+`ls`命令的主要选项包括：
 
-| Option | Information                                                                                          |
-| ------ | ---------------------------------------------------------------------------------------------------- |
-| `-a`   | Displays all files, even hidden ones. Hidden files in Linux are those beginning with `.`.            |
-| `-i`   | Displays inode numbers.                                                                              |
-| `-l`   | The `-l` command displays a vertical list of files with additional information formatted in columns. |
+| 选项   | 信息                                      |
+| ---- | --------------------------------------- |
+| `-a` | 显示所有文件，即使是隐藏的文件。 Linux中的隐藏文件是以`.`开头的文件。 |
+| `-i` | 显示inode编号。                              |
+| `-l` | `-l`命令以列的形式显示文件的垂直列表和附加信息。              |
 
-The `ls` command, however, has a lot of options (see `man`):
+但是，`ls`命令有很多选项（见`man`）：
 
-| Option | Information                                                                                                                          |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `-d`   | Displays information about a directory instead of listing its contents.                                                              |
-| `-g`   | Displays UID and GID rather than owner names.                                                                                        |
-| `-h`   | Displays file sizes in the most appropriate format (byte, kilobyte, megabyte, gigabyte, ...). `h` stands for Human Readable.         |
-| `-s`   | Displays the size in bytes (unless `k` option).                                                                                      |
-| `-A`   | Displays all files in the directory except `.` and `.`.                                                                              |
-| `-R`   | Displays the contents of subdirectories recursively.                                                                                 |
-| `-F`   | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file. |
-| `-X`   | Sort files according to their extensions.                                                                                            |
+| 选项   | 信息                                                    |
+| ---- | ----------------------------------------------------- |
+| `-d` | 显示有关目录的信息，而不是列出其内容。                                   |
+| `-g` | 显示UID和GID，而非其对应名称。                                    |
+| `-h` | 以最合适的格式显示文件大小(字节、千字节、兆字节、千兆字节等)。 `h` 表示站在人类角度的可读性。    |
+| `-s` | 显示文件占用的块数量。 一个块等于 400K。                               |
+| `-A` | 显示目录中除`.`和`..`之外的所有文件                                 |
+| `-R` | 递归显示子目录的内容。                                           |
+| `-F` | 显示文件的类型。 为目录打印`/`，为执行文件打印`*`，为符号链接打印`@`，对文本文件不打印任何内容。 |
+| `-X` | 根据文件的扩展名对文件进行排序。                                      |
 
-* Description of columns:
+* 列的说明：
 
 ```bash
 $ ls -lia /home
 78489 drwx------ 4 rockstar rockstar 4096 25 oct. 08:10 rockstar
 ```
 
-| Value           | Information                                                                                                   |
-| --------------- | ------------------------------------------------------------------------------------------------------------- |
-| `78489`         | Inode Number.                                                                                                 |
-| `drwx------`    | File type (`d`) and rights (`rwx------`).                                                                     |
-| `4`             | Number of subdirectories (`.` and `..` included). For a file of type physical link: number of physical links. |
-| `rockstar`      | For a physical link file: number of physical links.                                                           |
-| `rockstar`      | For a file of type physical link: number of physical links.                                                   |
-| `4096`          | For a physical link type file: number of physical links.                                                      |
-| `25 oct. 08:10` | Last modified date.                                                                                           |
-| `rockstar`      | The name of the file (or directory).                                                                          |
+| 值               | 信息                                                                           |
+| --------------- | ---------------------------------------------------------------------------- |
+| `78489`         | 文件序列号。                                                                       |
+| `drwx------`    | 文件类型 (`d`) 和权限 (`rwx------`)。                                                |
+| `4`             | 子目录的数量(包括`.`和`..`)。 对于文件，它代表硬链接的数量，1代表文件本身。                                  |
+| `rockstar`      | 所有者。                                                                         |
+| `rockstar`      | 所属组。                                                                         |
+| `4096`          | 对于文件，它显示文件的大小。 对于目录，它显示的是文件命名所占用的4096字节的固定值。 要计算目录的总大小，请使用`du -sh rockstar/` |
+| `25 oct. 08:10` | 最后修改日期                                                                       |
+| `rockstar`      | 文件（或目录）的名称。                                                                  |
 
-!!! Note **Aliases** are frequently positioned in common distributions.
+!!! Note "说明"
 
-    This is the case of the alias `ll`:
+    **别名** 经常被放置在常见的发行版中。
+    
+    别名 `ll` 的情况如下：
 
     ```
     alias ll='ls -l --color=auto'
     ```
 
-The `ls` command has many options and here are some advanced examples of uses:
+`ls`命令有许多选项，下面是一些高级用法示例：
 
-* List the files in `/etc` in order of last modification:
+* 按上次修改的时间顺序列出`/etc`中的文件：
 
 ```bash
 $ ls -ltr /etc
@@ -518,20 +539,26 @@ total 1332
 -rw-r--r--.  1 root root    283 18 may.  17:05 mtab
 ```
 
-* List `/var` files larger than 1 megabyte but less than 1 gigabyte:
+* 列出`/var`目录下大于1 MB但小于1 GB的文件：
 
 ```bash
-$ ls -Rlh /var | grep [0-9]M
+$ ls -lhR  /var | grep \- | grep [1-9]*M
 ...
--rw-r--r--. 1 apache apache 1,2M 10 may.  13:02 XB RiyazBdIt.ttf
--rw-r--r--. 1 apache apache 1,2M 10 may.  13:02 XB RiyazBd.ttf
--rw-r--r--. 1 apache apache 1,1M 10 may.  13:02 XB RiyazIt.ttf
+-rw-r--r--. 1 apache apache 1.2M 10 may.  13:02 XB RiyazBdIt.ttf
+-rw-r--r--. 1 apache apache 1.2M 10 may.  13:02 XB RiyazBd.ttf
+-rw-r--r--. 1 apache apache 1.1M 10 may.  13:02 XB RiyazIt.ttf
 ...
 ```
 
-* Show the rights on a folder:
+当然，我们强烈建议您使用`Find`命令。
 
-To find out the rights to a folder, in our example `/etc`, the following command would not be appropriate:
+```bash
+$ find /var -size +1M -a -size -1024M  -a -type f  -exec ls -lh {} \;
+```
+
+* 显示文件夹的权限：
+
+要找出文件夹的权限，在我们的示例`/etc`中，使用以下命令是不合适的：
 
 ```bash
 $ ls -l /etc
@@ -543,22 +570,20 @@ drwxr-xr-x.  2 root root   4096 17 nov.  17:48 alternatives
 ...
 ```
 
-since the command lists by default the contents of the folder and not the container.
-
-To do this, use the `-d` option:
+默认情况下，上述命令将显示文件夹(里面)的内容。 对于文件夹本身，您可以使用 `-d` 选项。
 
 ```bash
 $ ls -ld /etc
 drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc
 ```
 
-* List files by size:
+* 按文件大小排序，最大优先：
 
 ```bash
 $ ls -lhS
 ```
 
-* Display the modification date in "timestamp" format:
+* 使用`-l`的时间/日期格式。
 
 ```bash
 $ ls -l --time-style="+%Y-%m-%d %m-%d %H:%M" /
@@ -567,225 +592,237 @@ dr-xr-xr-x. 2 root root 4096 2014-11-23 11-23 03:13 bin
 dr-xr-xr-x. 5 root root 1024 2014-11-23 11-23 05:29 boot
 ```
 
-* Add the _trailing slash_ to the end of folders:
+* 将 _反斜杠_ 添加到文件夹的末尾：
 
-By default, the `ls` command does not display the last slash of a folder. In some cases, like for scripts for example, it is useful to display them:
+默认情况下，`ls`命令不显示文件夹的最后一个斜杠。 在某些情况下，例如对于脚本，显示它们很有用：
 
 ```bash
 $ ls -dF /etc
 /etc/
 ```
 
-* Hide some extensions:
+* 隐藏一些扩展名：
 
 ```bash
 $ ls /etc --hide=*.conf
 ```
 
-### `mkdir` command
+### `mkdir` 命令
 
-The `mkdir` command creates a directory or directory tree.
+`mkdir`命令用来创建目录或目录树。
 
 ```bash
 mkdir [-p] directory [directory] [...]
+
 ```
 
-Example:
+示例：
 
 ```bash
 $ mkdir /home/rockstar/work
 ```
 
-The "rockstar" directory must exist to create the "work" directory. Otherwise, the `-p` option should be used. The `-p` option creates the parent directories if they do not exist.
+必须存在 "rockstar" 目录才能创建 "work" 目录。
 
-!!! Danger It is not recommended to use Linux command names as directory or file names.
+否则，应使用`-p`选项。 `-p`选项会创建父目录（如果父目录不存在的话）。
 
-### `touch` command
+!!! Danger "危险"
 
-The `touch` command changes the timestamp of a file or creates an empty file if the file does not exist.
+    不建议将Linux命令名称用作目录名或文件名。
+
+### `touch`命令
+
+`ouch`命令用来更改文件的时间戳，或者如果文件不存在，则创建一个空文件。
 
 ```bash
 touch [-t date] file
 ```
 
-Example:
+示例：
 
 ```bash
 $ touch /home/rockstar/myfile
 ```
 
-| Option    | Information                                                                |
-| --------- | -------------------------------------------------------------------------- |
-| `-t date` | Changes the date of last modification of the file with the specified date. |
+| 选项        | 信息                 |
+| --------- | ------------------ |
+| `-t date` | 用指定的日期更改文件的最后修改日期。 |
 
-Date format: `[AAAA]MMJJhhmm[ss]`
+日期格式：`[AAAA]MMJJhhmm[ss]`
 
-!!! Tip The `touch` command is primarily used to create an empty file, but it can be useful for incremental or differential backups for example. Indeed, the only effect of executing a `touch` on a file will be to force it to be saved during the next backup.
+!!! tip "提示"
 
-### `rmdir` command
+    `touch`命令主要用来创建空文件，但它对于增量备份或差异备份也很有用。 事实上，对一个文件执行 `touch` 的唯一效果是强迫它在下一次备份中被保存。
 
-The `rmdir` command deletes an empty directory.
+### `rmdir` 命令
 
-Example:
+`rmdir` 命令用来删除空目录。
+
+示例：
 
 ```bash
 $ rmdir /home/rockstar/work
 ```
 
-| Option | Information                                                             |
-| ------ | ----------------------------------------------------------------------- |
-| `-p`   | Removes the parent directory or directories provided if they are empty. |
+| 选项   | 信息                      |
+| ---- | ----------------------- |
+| `-p` | 删除所提供的父目录或目录（如果它们是空的话）。 |
 
-!!! Tip To delete both a non-empty directory and its contents, use the `rm` command.
+!!! tip "提示"
 
-### `rm` command
+    要同时删除非空目录及其内容，请使用`rm`命令。
 
-The `rm` command deletes a file or directory.
+### `rm`命令
+
+`rm` 命令用来删除文件或目录。
 
 ```bash
 rm [-f] [-r] file [file] [...]
 ```
 
-!!! Danger Any deletion of a file or directory is final.
+!!! Danger "危险"
 
-| Options | Information                              |
-| ------- | ---------------------------------------- |
-| `-f`    | Do not ask for confirmation of deletion. |
-| `-i`    | Requires confirmation of deletion.       |
-| `-r`    | Recursively deletes subdirectories.      |
+    任何文件或目录的删除结果都是不可以改变的。
 
-!!! Note The `rm` command itself does not ask for confirmation when deleting files. However, with a RedHat/Rocky distribution, `rm` does ask for confirmation of deletion because the `rm` command is an `alias` of the `rm -i` command. Don't be surprised if on another distribution, like Debian for example, you don't get a confirmation request.
+| 选项   | 信息             |
+| ---- | -------------- |
+| `-f` | 不询问是否删除        |
+| `-i` | 询问是否删除。        |
+| `-r` | 删除目录并递归删除其子目录。 |
 
-Deleting a folder with the `rm` command, whether the folder is empty or not, will require the `-r` option to be added.
+!!! note "说明"
 
-The end of the options is signaled to the shell by a double dash `--`.
+    `rm`命令本身在删除文件时不会被询问。 然而，对于RedHat/Rocky发行版，`rm`会询问是否要删除，因为`rm`命令是`rm-i`命令的`alias`。 如果在另一个发行版上，例如Debian，您不会收到询问请求，请勿感到意外。
 
-In the example:
+使用`rm`命令删除文件夹，无论该文件夹是否为空，都需要添加`-r`选项。
 
-```bash
-$ >-hard-hard # To create an empty file called -hard-hard
+选项的末尾通过双破折号`--</code向shell发送信号。</p>
+
+<p spaces-before="0">在该示例中：</p>
+
+<pre><code class="bash">$ >-hard-hard # To create an empty file called -hard-hard
 hard-hard
 [CTRL+C] To interrupt the creation of the file
 $ rm -f -- -hard-hard
-```
+`</pre>
 
-The hard-hard file name starts with a `-`. Without the use of the `--` the shell would have interpreted the `-d` in `-hard-hard` as an option.
+hard-hard的文件名是以`-`开始的。 如果没有使用`--`，shell会将`-hard-hard`中的`-d`解释为一个选项。
 
-### `mv` command
+### `mv` 命令
 
-The `mv` command moves and renames a file.
+`mv` 命令用来移动和重命名文件。
 
 ```bash
 mv file [file ...] destination
 ```
 
-Examples:
+示例：
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2
 $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
-| Options | Information                                                     |
-| ------- | --------------------------------------------------------------- |
-| `-f`    | Don't ask for confirmation if overwriting the destination file. |
-| `-i`    | Request confirmation if overwriting destination file (default). |
+| 选项   | 信息                  |
+| ---- | ------------------- |
+| `-f` | 如果要覆盖目标文件，不要询问。     |
+| `-i` | 如果覆盖目标文件，则请求询问(默认)。 |
 
-A few concrete cases will help you understand the difficulties that can arise:
+以下几个具体案例将帮助您了解可能出现的困难：
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2
 ```
 
-Renames `file1` to `file2`, if `file2` already exists, it will be replaced by `file1`.
+将 `file1` 重命名为 `file2`. 如果 `file2` 已经存在，则将文件内容替换为`file1`。
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
-Moves `file1` and `file2` into the `/tmp` directory.
+将 `file1` 和 `file2` 移动到 `/tmp` 目录。
 
 ```bash
 $ mv file1 /repexist/file2
 ```
 
-Moves `file1` into `repexist` and renames it `file2`.
+将 `file1` 移动到 `repext` 并重命名为 `file2`。
 
 ```bash
 $ mv file1 file2
 ```
 
-`file1` is renamed to `file2`.
+`file1`已重命名为`file2`。
 
 ```bash
 $ mv file1 /repexist
 ```
 
-If the destination directory exists, `file1` is moved to `/repexist`.
+如果目标目录存在， `file1` 将移动到 `/repext`。
 
 ```bash
 $ mv file1 /wrongrep
 ```
 
-If the destination directory does not exist, `file1` is renamed to `wrongrep` in the root directory.
+如果目标目录不存在，`file1`将在根目录中被重命名为`errorep`。
 
-### `cp` command
+### `cp` 命令
 
-The `cp` command copies a file.
+`cp` 命令用来复制文件。
 
 ```bash
 cp file [file ...] destination
 ```
 
-Example:
+示例：
 
 ```bash
 $ cp -r /home/rockstar /tmp
 ```
 
-| Options | Information                                                      |
-| ------- | ---------------------------------------------------------------- |
-| `-i`    | Request confirmation if overwriting (default).                   |
-| `-f`    | Do not ask for confirmation if overwriting the destination file. |
-| `-p`    | Keeps the owner, permissions and timestamp of the copied file.   |
-| `-r`    | Copies a directory with its files and subdirectories.            |
-| `-s`    | Creates a symbolik links rather than copying                     |
+| 选项   | 信息                  |
+| ---- | ------------------- |
+| `-i` | 要求确认是否覆盖（默认）。       |
+| `-f` | 如果覆盖目标文件，不会要求确认。    |
+| `-p` | 保留复制文件时的所有者、权限和时间戳。 |
+| `-r` | 复制目录及其文件和子目录。       |
+| `-s` | 创建符号链接，而不是复制。       |
 
 ```bash
 cp file1 /repexist/file2
 ```
 
-`file1` is copied to `/repexist` under the name `file2`.
+`file1`将复制到 `/repexist`目录下，且文件名为`file2`。
 
 ```bash
 $ cp file1 file2
 ```
 
-`file1` is copied as `file2` to this directory.
+在此目录中，`file1` 已经复制为`file2`。
 
 ```bash
 $ cp file1 /repexist
 ```
 
-If the destination directory exists, `file1` is copied to `/repexist`.
+如果目标目录存在，则`file1`将被复制到`/repexist`目录中。
 
 ```bash
 $ cp file1 /wrongrep
 ```
 
-If the destination directory does not exist, `file1` is copied under the name `wrongrep` to the root directory.
+如果目标目录不存在，`file1`将被复制到根目录下且名称为`wrongrep`。
 
-## Visualization
+## 可视化
 
-### `file` command
+### `file` 命令
 
-The `file` command displays the type of a file.
+`file` 命令用来显示文件的类型。
 
 ```bash
 file file1 [files]
 ```
 
-Example:
+示例：
 
 ```bash
 $ file /etc/passwd /etc
@@ -793,15 +830,15 @@ $ file /etc/passwd /etc
 /etc:        directory
 ```
 
-### `more` command
+### `more` 命令
 
-The `more` command displays the contents of one or more files screen by screen.
+`more`命令用来通过屏幕显示一个或多个文件的内容。
 
 ```bash
 more file1 [files]
 ```
 
-Example:
+示例：
 
 ```bash
 $ more /etc/passwd
@@ -809,56 +846,56 @@ root:x:0:0:root:/root:/bin/bash
 ...
 ```
 
-Using the <kbd>ENTER</kbd> key, the move is line by line. Using the <kbd>SPACE</kbd> key, the move is page by page. `/text` allows you to search for the occurrence in the file.
+使用<kbd>ENTER</kbd>回车键可逐行移动。 使用<kbd>SPACE</kbd>空格键可逐页移动。 `/Text`允许您在文件中搜索匹配项。
 
-### `less` command
+### `less` 命令
 
-The `less` command displays the contents of one or more files. The `less` command is interactive and has its own commands for use.
+`less`命令用来显示一个或多个文件的内容。 `less`命令是交互式的，并且有自己的命令可供使用。
 
 ```bash
 less file1 [files]
 ```
 
-The commands specific to `less` are:
+`less`的特定命令有：
 
-| Command           | Action                                          |
-| ----------------- | ----------------------------------------------- |
-| `h`               | Help.                                           |
-| `Arrows`          | Move up, down a line, or to the right or left.. |
-| `Enter`           | Move down one line.                             |
-| `Space`           | Move down one page.                             |
-| `PgUp` and `PgDn` | Move up or down one page.                       |
-| `Begin` and `End` | Move to the beginning or end of a file.         |
-| `/texte`          | Search for text.                                |
-| `q`               | Quit the `less` command.                        |
+| 命令                                               | 动作             |
+| ------------------------------------------------ | -------------- |
+| <kbd>h</kbd>                                     | 帮助。            |
+| <kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd><kbd>←</kbd> | 向上、向下、向右或向左移动。 |
+| <kbd>Enter</kbd>                                 | 下移一行。          |
+| <kbd>Space</kbd>                                 | 向下移动一页。        |
+| <kbd>PgUp</kbd> 和 <kbd>PgDn</kbd>                | 向上或向下移动一个页面。   |
+| <kbd>gg</kbd> 和 <kbd>G</kbd>                     | 移动到文件的首页或尾页。   |
+| `/texte`                                         | 搜索文本。          |
+| <kbd>q</kbd>                                     | 退出`less`交互式命令。 |
 
-### `cat` command
+### `cat` 命令
 
-The `cat` command concatenates the contents of multiple files and displays the result on the standard output.
+`cat` 命令用来将多个文件的内容连接起来，且将结果显示在标准输出上。
 
 ```bash
 cat file1 [files]
 ```
 
-Example 1 - Displaying the contents of a file to the standard output:
+例1 - 在标准输出中显示文件的内容：
 
 ```bash
 $ cat /etc/passwd
 ```
 
-Example 2 - Displaying the contents of multiple files to standard output:
+例2 - 在标准输出中显示多个文件的内容：
 
 ```bash
 $ cat /etc/passwd /etc/group
 ```
 
-Example 3 - Displaying the contents of several files in the file `usersAndGroups.txt`:
+例3 - 使用输出重定向将多个文件的内容合并为一个文件：
 
 ```bash
 $ cat /etc/passwd /etc/group > usersAndGroups.txt
 ```
 
-Example 4 - Displaying the line numbering:
+例4 - 显示行号：
 
 ```bash
 $ cat -n /etc/profile
@@ -871,7 +908,7 @@ $ cat -n /etc/profile
 …
 ```
 
-Example 5 - Shows the numbering of non-empty lines:
+例5 - 显示非空行的编号：
 
 ```bash
 $ cat -b /etc/profile
@@ -884,44 +921,44 @@ $ cat -b /etc/profile
 …
 ```
 
-### `tac` command
+### `tac` 命令
 
-The `tac` command does almost the opposite of the `cat` command. It displays the contents of a file starting from the end (which is particularly interesting for reading logs!).
+`tac`命令的作用几乎与`cat`命令相反。 它从文件末尾开始显示文件的内容（这对于阅读日志来说特别有趣！）。
 
-Example: Display a log file by displaying the last line first:
+示例：通过首先显示最后一行来显示日志文件：
 
 ```bash
 [root]# tac /var/log/messages | less
 ```
 
-### `head` command
+### `head` 命令
 
-The `head` command displays the beginning of a file.
+`head` 命令用来显示文件的开头部分。
 
 ```bash
-head [-n x] file
+尾色 [-f] [-n x] 文件
 ```
 
-| Option | Observation                             |
-| ------ | --------------------------------------- |
-| `-n x` | Display the first `x` lines of the file |
+| 选项     | 描述         |
+| ------ | ---------- |
+| `-n x` | 显示文件的前`x`行 |
 
-By default (without the `-n` option), the `head` command will display the first 10 lines of the file.
+默认情况下(没有 `-n` 选项)， `head` 命令将显示文件的前10行。
 
-### `tail` command
+### `tail` 命令
 
-The `tail` command displays the end of a file.
+`tail` 命令用来显示文件的结尾部分。
 
 ```bash
 tail [-f] [-n x] file
 ```
 
-| Option | Observation                               |
-| ------ | ----------------------------------------- |
-| `-n x` | Displays the last `x` lines of the file   |
-| `-f`   | Displays changes to the file in real time |
+| 选项     | 描述            |
+| ------ | ------------- |
+| `-n x` | 显示文件的最后 `x` 行 |
+| `-f`   | 实时显示文件的变化     |
 
-Example:
+示例：
 
 ```bash
 tail -n 3 /etc/passwd
@@ -930,66 +967,67 @@ tcpdump::x:72:72::/:/sbin/nologin
 user1:x:500:500:grp1:/home/user1:/bin/bash
 ```
 
-With the `-f` option, the `tail` command does not give back and runs until the user interrupts it with the sequence <kbd>CTRL</kbd> + <kbd>C</kbd>. This option is very frequently used to track log files (the logs) in real time.
+对于`-f`选项，除非用户使用<kbd>CTRL</kbd> + <kbd>C</kbd>退出监控状态，否则将始终输出文件的更改信息。 此选项经常用于实时跟踪日志文件(的日志)。
 
-Without the `-n` option, the tail command displays the last 10 lines of the file.
+如果不使用`-n`选项， `tail`命令将显示文件的最后10行。
 
-### `sort` command
+### `sort` 命令
 
-The `sort` command sorts the lines of a file.
+`sort` 命令用来对文件的行进行排序。
 
-It allows you to order the result of a command or the content of a file in a given order, numerically, alphabetically, by size (KB, MB, GB) or in reverse order.
+它允许您以给定的顺序对命令的结果或文件的内容进行排序，包括按数字、字母顺序、按大小（KB、MB、GB）或相反的顺序。
 
 ```bash
-sort [-kx] [-n] [-u] [-o file] [-ty] file
+sort [-k] [-n] [-u] [-o file] [-t] file
 ```
 
-Example:
+示例：
 
 ```bash
-$ sort -k3 -t: -n /etc/passwd
+$ sort -k 3,4 -t ":" -n /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-| Option    | Observation                                  |
-| --------- | -------------------------------------------- |
-| `-kx`     | Specifies the `x` column to sort on          |
-| `-n`      | Requests a numeric sort                      |
-| `-o file` | Saves the sort to the specified file         |
-| `-ty`     | Specifies the field separator character `y`. |
-| `-r`      | Reverse the order of the result              |
-| `- u`     | unique                                       |
+| 选项        | 描述                                   |
+| --------- | ------------------------------------ |
+| `-k`      | 指定要分隔的列。 您可以指定多个列                    |
+| `-n`      | 要求进行数字排序                             |
+| `-o file` | 将排序结果保存到指定的文件中                       |
+| `-t`      | 指定分隔符，要求相应文件的内容必须是以规则分隔的列内容，否则无法正确排序 |
+| `-r`      | 将结果的顺序颠倒。 与`-n`选项一起使用，按从大到小的顺序进行排序   |
+| `-u`      | 排序后删除重复项。 相当于`sort file | uniq`      |
 
-The `sort` command sorts the file only on the screen. The file is not modified by the sorting. To save the sort, use the `-o` option or an output redirection `>`.
+`sort`命令仅在屏幕上对文件进行排序， 该文件不会因为排序而被修改。 要保存排序后的结果，请使用`-o`选项或者输出重定向 `>` 。
 
-By default, the numbers are sorted according to their character. Thus, "110" will be before "20", which will itself be before "3". The `-n` option must be specified so that the numeric character blocks are sorted by their value.
+默认情况下，数字会根据其字符进行排序。 因此，"110" 将在 "20" 之前，而 "20" 将在 "3" 之前。 当指定`-n`选项后，将按数值对数字字符块进行排序。
 
-The `sort` command reverses the order of the results, with the `-r` option:
+`sort`命令使用`-r`选项会将结果的顺序颠倒过来：
 
 ```bash
-$ sort -k3 -t: -n -r /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-adm:x:3:4:adm:/var/adm/:/sbin/nologin
+$ sort -k 3 -t ":" -n -r /etc/passwd
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+polkitd:x:998:996:User for polkitd:/:/sbin/nologin
 ```
 
-In this example, the `sort` command will sort the contents of the `/etc/passwd` file this time from largest uid to smallest.
+在这个示例中，`sort`命令将对`/etc/passwd`文件的内容进行排序，这次是从最大的uid到最小的uid。
 
-Some advanced examples of using the `sort` command:
+使用`sort`命令的一些高级示例：
 
-* Shuffling values
+* 随机排序值
 
-The `sort` command also allows you to shuffle values with the `-R` option:
+`sort` 命令也允许您用 `-R` 选项来随机排序值：
 
 ```bash
 $ sort -R /etc/passwd
 ```
 
-* Sorting IP addresses
+* 对 IP 地址进行排序
 
-A system administrator is quickly confronted with the processing of IP addresses from the logs of his services such as SMTP, VSFTP or Apache. These addresses are typically extracted with the `cut` command.
+系统管理员很快就会面临处理其服务(如SMTP、VSFTP或Apache)日志中的IP地址的问题。 通常使用`cut`命令提取这些地址。
 
-Here is an example with the file `dns-client.txt`:
+以下是文件`dns-client.txt`的示例：
 
 ```
 192.168.1.10
@@ -1008,11 +1046,11 @@ $ sort -nr dns-client.txt
 5.1.150.146
 ```
 
-* Sorting file by removing duplicates
+* 通过删除重复项对文件进行排序
 
-The `sort` command knows how to remove the duplicates from the file output using `-u` as option.
+`sort`命令知道如何使用`-u`作为选项从文件输出中删除重复项。
 
-Here is an example with the file `colours.txt`:
+这是文件 `colours.txt` 的示例：
 
 ```
 Red
@@ -1029,11 +1067,11 @@ Pink
 Red
 ```
 
-* Sorting file by sizes
+* 按大小排序文件
 
-The `sort` command knows how to recognize file sizes, from commands like `ls` with the `-h` option.
+`sort`命令知道如何从带有`-h`选项的`ls`等命令识别文件大小。
 
-Here is an example with the file `size.txt`:
+这是文件 `size.txt` 的示例：
 
 ```
 1,7G
@@ -1062,127 +1100,136 @@ $ sort -hr size.txt
 69K
 ```
 
-### `wc` command
+### `wc` 命令
 
-The `wc` command counts the number of lines, words and/or bytes in a file.
+`wc` 命令用来计算文件中的行数、 单词数和字节数。
 
 ```bash
 wc [-l] [-m] [-w] file [files]
 ```
 
-| Option | Observation                     |
-| ------ | ------------------------------- |
-| `-c`   | Count the number of bytes.      |
-| `-m`   | Count the number of characters. |
-| `-l`   | Counts the number of lines.     |
-| `-w`   | Counts the number of words.     |
+| 选项   | 描述     |
+| ---- | ------ |
+| `-c` | 计数字节数。 |
+| `-m` | 计算字符数。 |
+| `-l` | 计算行数。  |
+| `-w` | 计算单词数。 |
 
-## Search
+## 搜索
 
-### `find` command
+### `find` 命令
 
-The `find` command searches for files or directories location.
+`find`命令用来搜索文件或目录的位置。
 
 ```bash
 find directory [-name name] [-type type] [-user login] [-date date]
 ```
 
-Since there are so many options to the `find` command, it is best to refer to the `man`.
+由于`find`命令有这么多选项，因此最好参考`man`。
 
-If the search directory is not specified, the `find` command will search from the current directory.
+如果未指定搜索目录，`find`命令将从当前目录进行搜索。
 
-| Option              | Observation                            |
-| ------------------- | -------------------------------------- |
-| `-perm permissions` | Search for files by their permissions. |
-| `-size size`        | Search for files by size.              |
+| 选项         | 描述           |
+| ---------- | ------------ |
+| `-perm 权限` | 通过它们的权限搜索文件。 |
+| `-size 大小` | 按文件大小搜索文件。   |
 
-### `-exec` option of the `find` command
+### `find` 命令的`-exec` 选项
 
-It is possible to use the `-exec` option of the `find` command to execute a command on each result line:
+可以使用`find`命令的`-exec`选项对每个结果行执行命令：
 
 ```bash
 $ find /tmp -name *.txt -exec rm -f {} \;
 ```
 
-The previous command searches for all files in the `/tmp` directory named `*.txt` and deletes them.
+如上命令所示，在`/tmp`目录下搜索所有的`*.txt`文件并将其删除。
 
+!!! tip "了解`-exec`选项"
 
-!!! Tip "Understand the `-exec` option" In the example above, the `find` command will construct a string representing the command to be executed.
-
-    If the `find` command finds three files named `log1.txt`, `log2.txt`, and `log3.txt`, then the `find` command will construct the string by replacing in the string `rm -f {} \;` the braces with one of the results of the search, and do this as many times as there are results.
+    在上面的示例中，`find` 命令将组成一个表示执行命令的字符串。
     
-    This will give us:
+    如果`find`命令找到名为`log1.txt`、`log2.txt`和`log3.txt`这三个文件，则`find`命令通过`rm -f {} \;`将字符串中的大括号替换为搜索结果之一来组合字符串，并尽可能多次地执行此操作。
+    
+    这将给我们带来：
 
     ```
     rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
     ```
 
 
-    The `;` character is a special shell character that must be protected by a `\` to prevent it from being interpreted too early by the `find` command (and not in the `-exec`).
+    `;`字符是一个特殊的shell字符，必须由`\`保护，以防止被`-find`命令（而不是`-exec`）过早地解释它。
 
-!!! Tip `$ find /tmp -name *.txt -delete` does the same thing.
+!!! tip "提示"
 
-### `whereis` command
+    `$ find /tmp -name *.txt -delete` 可以做同样的事情。
 
-The `whereis` command searches for files related to a command.
+### `whereis` 命令
+
+`whereis` 命令用来搜索与命令相关的文件。
 
 ```bash
 whereis [-b] [-m] [-s] command
 ```
 
-Example:
+示例：
 
 ```bash
 $ whereis -b ls
 ls: /bin/ls
 ```
 
-| Option | Observation                     |
-| ------ | ------------------------------- |
-| `-b`   | Search only the binary file.    |
-| `-m`   | Searches only for man pages.    |
-| `-s`   | Searches only for source files. |
+| 选项   | 描述        |
+| ---- | --------- |
+| `-b` | 只搜索二进制文件。 |
+| `-m` | 只搜索手册页。   |
+| `-s` | 只搜索源文件。   |
 
-### `grep` command
+### `grep` 命令
 
-The `grep` command searches for a string in a file.
+`grep` 命令用来搜索文件中的字符串。
 
 ```bash
 grep [-w] [-i] [-v] "string" file
 ```
 
-Example:
+示例：
 
 ```bash
 $ grep -w "root:" /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 ```
 
-| Option | Observation                             |
-| ------ | --------------------------------------- |
-| `-i`   | Ignore the case of the searched string. |
-| `-v`   | Excludes lines containing the string.   |
-| `-w`   | Search for the exact word.              |
+| 选项   | 描述           |
+| ---- | ------------ |
+| `-i` | 忽略搜索字符串的大小写。 |
+| `-v` | 排除包含字符串的行。   |
+| `-w` | 搜索准确的单词。     |
 
-The `grep` command returns the complete line containing the string you are looking for.
-* The `^` special character is used to search for a string at the beginning of a line.
-* The special character `$` searches for a string at the end of a line.
+`grep`命令返回包含您要查找的字符串的完整行。
+* `^`特殊字符用于搜索行首的字符串。
+* 特殊字符`$`用来搜索行尾的字符串。
 
 ```bash
 $ grep -w "^root" /etc/passwd
 ```
 
-!!! Note This command is very powerful and it is highly recommended to consult its manual. It has many derivatives.
+!!! Note "说明"
 
-It is possible to search for a string in a file tree with the `-R` option.
+    该命令非常强大，强烈建议参考其手册。 它有很多的衍生产品。
+
+可以使用`-R`选项在文件树中搜索字符串。
 
 ```bash
 grep -R "Virtual" /etc/httpd
 ```
 
-### Meta-characters (wildcards)
+### 元字符（通配符）
 
-Meta-characters replace one or more characters (or even an absence of characters) during a search. These meta-characters are also known as wildcards. They can be combined. The `*` character replaces a string composed of any characters. The `*` character can also represent an absence of character.
+在搜索过程中，元字符将代替一个或多个字符（甚至不包含字符）。 这些元字符也称为通配符。
+
+它们可以组合起来使用。
+
+`*`字符用来代替由任意字符组成的字符串。 `*` 字符也可以表示没有字符。
 
 ```bash
 $ find /home -name "test*"
@@ -1193,9 +1240,9 @@ $ find /home -name "test*"
 /home/rockstar/test362
 ```
 
-Meta-characters allow more complex searches by replacing all or part of a word. Simply replace the unknowns with these special characters.
+元字符可以通过代替单词的全部或部分来进行更复杂的搜索。 只需用这些特殊字符来代替未知的字符。
 
-The character `?` replaces a single character, whatever it is.
+字符 `?` 代替单个字符，不管它是什么。
 
 ```bash
 $ find /home -name "test?"
@@ -1203,7 +1250,7 @@ $ find /home -name "test?"
 /home/rockstar/tests
 ```
 
-The square brackets `[` are used to specify the values that a single character can take.
+方括号`[`和`]`用于指定单个字符可以接受的值。
 
 ```bash
 $ find /home -name "test[123]*"
@@ -1212,41 +1259,48 @@ $ find /home -name "test[123]*"
 /home/rockstar/test362
 ```
 
-!!! Note Always surround words containing meta-characters with `"` to prevent them from being replaced by the names of files that meet the criteria.
+!!! Note "说明"
 
-!!! Warning Do not confuse shell meta-characters with regular expression meta-characters. The `grep` command uses regular expression meta-characters.
+    始终使用 `"` 括起包含元字符的单词，以防止它们被符合条件的文件名代替。
 
-## Redirects and pipes
+!!! warning "警告"
 
-### Standard input and output
+    不要将shell元字符与正则表达式元字符混淆。 `grep`命令使用正则表达式元字符。
 
-On UNIX and Linux systems, there are three standard streams. They allow programs, via the `stdio.h` library, to input or output information.
+## 重定向和管道
 
-These streams are called X channel or X file descriptor.
+### 标准输入和输出
 
-By default:
-* the keyboard is the input device for channel 0, called **stdin** ;
-* the screen is the output device for channels 1 and 2, called **stdout** and **stderr**.
+关于UNIX和Linux系统，有三个标准流。 它们允许程序通过`stdio.h`库输入或输出信息。
 
-![standards channels](images/input-output.png)
+这些流称为X通道或X文件描述符。
 
-**stderr** receives the error streams returned by a command. The other streams are directed to **stdout**.
+默认情况下：
 
-These streams point to peripheral files, but since everything is a file in UNIX/Linux, I/O streams can easily be diverted to other files. This principle is the strength of the shell.
+* 键盘是通道0的输入设备，称为 **stdin**；
+* 屏幕是通道1和2的输出设备，称为 **stdout** 和 **stderr**。
 
-### Input redirection
+![标准通道](images/input-output.png)
 
-It is possible to redirect the input stream from another file with the character `<` or `<<`. The command will read the file instead of the keyboard:
+**stderr** 接收命令返回的错误流， 其他流定向到**stdout**。
+
+这些流指向外部文件，但由于在UNIX/Linux中所有文件都是一个文件，所以I/O流可以很容易地被转移到其他文件。 这项原则是shell的长处。
+
+### 输入重定向
+
+可以使用字符 `<` 或 `<<` 重定向来自另一个文件的输入流。 命令将读取文件，而不是键盘：
 
 ```bash
 $ ftp -in serverftp << ftp-commands.txt
 ```
 
-!!! Note Only commands that require keyboard input will be able to handle input redirection.
+!!! Note "说明"
 
-Input redirection can also be used to simulate user interactivity. The command will read the input stream until it encounters the defined keyword after the input redirection.
+    只有需要键盘输入的命令才能处理输入重定向。
 
-This feature is used to script interactive commands:
+还可以使用输入重定向来模拟用户交互。 命令将读取输入流，直到在输入重定向后遇到定义的关键字。
+
+此功能用于编写交互式命令的脚本：
 
 ```bash
 $ ftp -in serverftp << END
@@ -1256,7 +1310,7 @@ bye
 END
 ```
 
-The keyword `END` can be replaced by any word.
+关键字`END`可以替换为任何单词。
 
 ```bash
 $ ftp -in serverftp << STOP
@@ -1266,13 +1320,15 @@ bye
 STOP
 ```
 
-The shell exits the `ftp` command when it receives a line containing only the keyword.
+当 shell 收到只包含关键字的行时，它将退出`ftp`命令。
 
-!!! Warning The ending keyword, here `END` or `STOP`, must be the only word on the line and must be at the beginning of the line.
+!!! warning "警告"
 
-The standard input redirection is rarely used because most commands accept a filename as an argument.
+    结尾关键字 `END` 或 `STOP` 必须是行中唯一的单词，并且必须位于行的开头。
 
-The command `wc` could be used like this:
+标准输入重定向很少使用，因为大多数命令都接受一个文件名作为参数。
+
+命令 `wc` 可以像这样使用：
 
 ```bash
 $ wc -l .bash_profile
@@ -1281,129 +1337,129 @@ $ wc -l < .bash_profile
 27 # returns only the number of lines
 ```
 
-### Output redirection
+### 输出重定向
 
-Standard output can be redirected to other files using the `>` or `>>` characters.
+可以使用 `>` 或 `>>` 字符将标准输出重定向到其他文件。
 
-The simple `>` redirection overwrites the contents of the output file:
+简单的使用 `>` 重定向覆盖输出文件的内容：
 
 ```bash
 $ date +%F > date_file
 ```
 
-while the double redirection `>>` adds (concatenates) to the content of the output file.
+当使用 `>>` 字符时，它表示命令的输出结果被追加到文件内容中。
 
 ```bash
 $ date +%F >> date_file
 ```
 
-In both cases, the file is automatically created when it does not exist.
+在这两种情况下，文件在不存在时自动创建。
 
-The standard error output can also be redirected to another file. This time it will be necessary to specify the channel number (which can be omitted for channels 0 and 1):
+也可以将标准错误输出重定向到另一个文件。 这一次需要指定通道编号(通道0和1可以省略该编号)：
 
 ```bash
 $ ls -R / 2> errors_file
 $ ls -R / 2>> errors_file
 ```
 
-### Examples of redirection
+### 重定向示例
 
-Redirection of 2 outputs to 2 files:
+将2个输出重定向到 2 个文件：
 
 ```bash
 $ ls -R / >> ok_file 2>> nok_file
 ```
 
-Redirection of the 2 outputs to a single file:
+将2个输出重定向到单个文件：
 
 ```bash
 $ ls -R / >> log_file 2>&1
 ```
 
-Redirection of *stderr* to a "bottomless pit" (`/dev/null`):
+*stderr* 重定向到 "无底洞" (`/dev/null`)：
 
 ```bash
 $ ls -R / 2>> /dev/null
 ```
 
-When both output streams are redirected, no information is displayed on the screen. To use both the output redirection and to keep the display, you will have to use the command `tee`.
+当两个输出流都被重定向时，屏幕上不会显示任何信息。 要同时使用输出重定向且保持显示，您必须使用命令`tee`。
 
-### Pipes
+### 管道
 
-A **pipe** is a mechanism allowing you to link the standard output of a first command to the standard input of a second command.
+**管道**是一种机制，允许您将第一个命令的标准输出链接到第二个命令的标准输入。
 
-This communication is uni directional and is done with the `|` symbol. The pipe symbol `|` is obtained by pressing the  <kbd>SHIFT</kbd> + <kbd>|</kbd> simultaneously.
+这种传递是单向的，用`|`符号完成。 管道符 `|` 通过同时按 <kbd>Shift</kbd> + <kbd>|</kbd> 获得。
 
-![pipe](images/pipe.png)
+![管道](images/pipe.png)
 
-All data sent by the control on the left of the pipe through the standard output channel is sent to the standard input channel of the control on the right.
+管道左侧控件通过标准输出通道发送的所有数据都被发送到右侧控件的标准输入通道。
 
-The commands particularly used after a pipe are filters.
+管道后使用特别的命令进行过滤筛选
 
-* Examples:
+* 示例：
 
-Display only the beginning:
+仅显示开头：
 
 ```bash
 $ ls -lia / | head
 ```
 
-Display only the end:
+只显示末尾：
 
 ```bash
 $ ls -lia / | tail
 ```
 
-Sort the result:
+对结果进行排序：
 
 ```bash
 $ ls -lia / | sort
 ```
 
-Count the number of words / characters:
+计算单词/字符的数量：
 
 ```bash
 $ ls -lia / | wc
 ```
 
-Search for a string in the result:
+在结果中搜索字符串：
 
 ```bash
 $ ls -lia / | grep fichier
 ```
 
-## Special points
+## 特殊点
 
-### `tee` command
+### `tee` 命令
 
-The `tee` command is used to redirect the standard output of a command to a file while maintaining the screen display.
+`tee`命令用于将命令的标准输出重定向到文件，同时保持屏幕显示。
 
-It is combined with the `|` pipe to receive as input the output of the command to be redirected:
+它与`|`管道结合使用，以接收要重定向的命令的输出作为输入：
 
 ```bash
 $ ls -lia / | tee fic
 $ cat fic
 ```
 
-The `-a` option adds to the file instead of overwriting it.
+`-a`选项表示添加到文件当中，而不是覆盖文件。
 
-### `alias` and `unalias` commands
+### `alias` 和 `unalias` 命令
 
-Using **alias** is a way to ask the shell to remember a particular command with its options and give it a name.
+使用**别名**是要求shell记住特定命令及其选项并为其命名的一种方法。
 
-For example:
+例如：
 
 ```bash
 $ ll
 ```
 
-will replace the command:
+将替换该命令：
 
 ```bash
 $ ls -l
 ```
 
-The `alias` command lists the aliases for the current session. Aliases are set by default on Linux distributions. Here, the aliases for a Rocky server:
+`alias`命令会列出当前会话的别名。 在Linux发行版上，别名是默认设置的。 这里是 Rocky 服务器的别名：
 
 ```bash
 $ alias
@@ -1414,48 +1470,50 @@ alias vi='vim'
 alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
 ```
 
-The aliases are only defined temporarily, for the time of the user session.
+别名仅在用户会话期间临时定义。
 
-For permanent use, they must be created in the:
+要永久使用，必须在以下位置创建它们：
 
-* `.bashrc` file in the user's login directory;
-* `/etc/profile.d/alias.sh` file for all users.
+* 用户登录目录中的`.bashrc`文件；
+* `/etc/bashrc` 文件，适用于所有用户。
 
-!!! Warning Special care must be taken when using aliases which can be potentially dangerous! For example, an alias set up without the administrator's knowledge:
+!!! warning "警告"
+
+    在使用可能有潜在危险的别名时，必须特别小心！ 例如，在管理员不知情的情况下设置的别名：
 
     ```bash
     alias cd='rm -Rf'
     ```
 
-The `unalias` command allows you to delete aliases.
+`unalias` 命令允许您删除别名。
 
-To delete a single alias:
+删除单个别名：
 
 ```bash
 $ unalias ll
 ```
 
-To delete all aliases:
+要删除所有别名：
 
 ```bash
 $ unalias -a
 ```
 
-To disable an alias temporarily, the combination is `\<alias name>`.
+要暂时禁用别名，组合为 `\<alias name>` 。
 
-For example if we do:
+例如，如果我们这样做：
 
 ```bash
 $ type ls
 ```
 
-it might return the following:
+它可能会返回以下内容：
 
 ```bash
 ls is an alias to « ls -rt »
 ```
 
-Now that this is known, we can see the results of using the alias or disabling it one time with the `\` by executing the following:
+现在已经知道了这一点，我们可以通过执行以下命令来查看使用别名或使用`\`一次性禁用别名的结果：
 
 ```bash
 $ ls file*   # order by time
@@ -1464,17 +1522,27 @@ $ \ls file*  # order by name
 file1.txt  file2.txt  file3.txt
 ```
 
-### Aliases and useful functions
+### 别名和有用的函数
 
-* `grep` alias Colorize the result of the `grep` command: `alias grep='grep --color=auto'`
+* `grep`别名
 
-* `mcd` function It is common to create a folder and then move around in it: `mcd() { mkdir -p "$1"; cd "$1"; }`
+对`grep`命令的结果进行上色：`alias grep='grep --color=auto'`
 
-* `cls` function Move to a folder and list its contents: `cls() { cd "$1"; ls; }`
+* `mcd`方法
 
-* `backup` function Create a backup copy of a file: `backup() { cp "$1"{,.bak}; }`
+创建文件夹然后在其中移动是很常见的：`mcd() { mkdir -p "$1"; cd "$1"; }`
 
-* `extract` function Extract any type of archive:
+* `cls` 方法
+
+移动到文件夹并列出其内容：`cls() { cd "$1"; ls; }`
+
+* `backup` 方法
+
+创建文件的备份副本：`backup() { cp "$1"{,.bak}; }`
+
+* `extract` 方法
+
+提取任何类型的归档：
 
 ```bash
 extract () {
@@ -1501,13 +1569,11 @@ extract () {
 
 ```
 
-* If `alias cmount` returns the following: `alias cmount="mount | column -t"`
+* 如果`alias cmount`返回以下内容：`alias cmount="mount | column -t"`
 
-Then we can use cmount to show all of the system mounts in columns like this:
+然后我们可以使用`cmount`在如下列中显示所有系统挂载：`[root]# cmount`
 
-`[root]# cmount`
-
-which would return our mounted filesystem in the following format:
+它将以以下格式返回我们挂载的文件系统：
 
 ```bash
 /dev/simfs  on  /                                          type  simfs        (rw,relatime,usrquota,grpquota)
@@ -1517,47 +1583,93 @@ none        on  /dev                                       type  devtmpfs     (r
 none        on  /dev/pts                                   type  devpts       (rw,relatime,mode=600,ptmxmode=000)
 none        on  /dev/shm                                   type  tmpfs        (rw,relatime)
 none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (rw,relatime)
-
 ```
 
-### The character `;`
+### 字符 `;`
 
-The `;` character strings the commands.
+`;` 字符将命令串在一起。
 
-The commands will all run sequentially in the order of input once the user presses ENTER.
+一旦用户按<kbd>ENTER</kdb>，所有命令都将按输入顺序运行。</p> 
 
-```bash
-$ ls /; cd /home; ls -lia; cd /
-```
+<pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
+</code></pre>
 
-## 检测所学知识
+<h2 spaces-before="0">
+  检测所学知识
+</h2>
 
-:heavy_check_mark: What defines a user under Linux? (7 answers)
+<p spaces-before="0">
+  :heavy_check_mark: Linux下用户的定义是什么？ （7个答案）
+</p>
 
-:heavy_check_mark: What characterizes a long option for an order?
+<p spaces-before="0">
+  :heavy_check_mark: 命令的长选项的特点是什么？
+</p>
 
-:heavy_check_mark: Which commands allow you to search for help on a command:
+<p spaces-before="0">
+  :heavy_check_mark: 哪些命令允许您搜索有关命令的帮助？
+</p>
 
-- [ ] `google`
-- [ ] `chuck --norris`
-- [ ] `info`
-- [ ] `apropos`
-- [ ] `whatis`
+<ul>
+  <li>
+    [ ] <code>google</code>
+  </li>
+  <li>
+    [ ] <code>chuck --norris</code>
+  </li>
+  <li>
+    [ ] <code>info</code>
+  </li>
+  <li>
+    [ ] <code>apropos</code>
+  </li>
+  <li>
+    [ ] <code>whatis</code>
+  </li>
+</ul>
 
-:heavy_check_mark: Which command allows you to view a user's history?
+<p spaces-before="0">
+  :heavy_check_mark: 哪个命令允许您查看用户的历史记录？
+</p>
 
-:heavy_check_mark: Which command allows you to search for text in a file?
+<p spaces-before="0">
+  :heavy_check_mark: 哪个命令允许您在文件中搜索文本？
+</p>
 
-- [ ] `find`
-- [ ] `grep`
+<ul>
+  <li>
+    [ ] <code>find</code>
+  </li>
+  <li>
+    [ ] <code>grep</code>
+  </li>
+</ul>
 
-:heavy_check_mark: Which command allows you to search for a file?
+<p spaces-before="0">
+  :heavy_check_mark: 哪个命令允许您搜索文件？
+</p>
 
-- [ ] `find`
-- [ ] `grep`
+<ul>
+  <li>
+    [ ] <code>find</code>
+  </li>
+  <li>
+    [ ] <code>grep</code>
+  </li>
+</ul>
 
-:heavy_check_mark: Which command redirects the error stream of a command to a new `errors.log` file:
+<p spaces-before="0">
+  :heavy_check_mark: 哪个命令将命令的错误流重定向到新的 <code>errors.log</code> 文件？
+</p>
 
-- [ ] `ls -R / 2> errors.log`
-- [ ] `ls -R / 2>> errors.log`
-- [ ] `ls -R / 2> errors.log 2>&1`   
+<ul>
+  <li>
+    [ ] <code>ls -R / 2&gt; errors.log</code>
+  </li>
+  <li>
+    [ ] <code>ls -R / 2&gt;&gt; errors.log</code>
+  </li>
+  <li>
+    [ ] <code>ls -R / 2&gt; errors.log 2&gt;&1</code>
+  </li>
+</ul>   
