@@ -1349,7 +1349,7 @@ The simple `>` redirection overwrites the contents of the output file:
 $ date +%F > date_file
 ```
 
-while the double redirection `>>` adds (concatenates) to the content of the output file.
+When the `>>` character is used, it indicates that the output result of the command is appended to the file content.
 
 ```bash
 $ date +%F >> date_file
