@@ -1477,7 +1477,7 @@ The aliases are only defined temporarily, for the time of the user session.
 For permanent use, they must be created in the:
 
 * `.bashrc` file in the user's login directory;
-* `/etc/profile.d/alias.sh` file for all users.
+* `/etc/bashrc` file for all users.
 
 !!! Warning
 
