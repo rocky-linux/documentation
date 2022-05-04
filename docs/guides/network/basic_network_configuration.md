@@ -1,7 +1,7 @@
 ---
 title: Networking Configuration
 author: unknown
-contributors: Steven Spencer
+contributors: Steven Spencer, Hayden Young
 tested with: 8.5
 tags:
   - networking
@@ -31,113 +31,207 @@ At the user level, the networking stack is managed by *NetworkManager*. This too
 systemctl status NetworkManager
 ```
 
-### Configuration files
+=== "Configuration files"
 
-NetworkManager simply applies a configuration read from the files found in `/etc/sysconfig/network-scripts/ifcfg-<IFACE_NAME>`.
-Each network interface has its configuration file. The following shows an example for the default configuration of a server:
+    NetworkManager simply applies a configuration read from the files found in `/etc/sysconfig/network-scripts/ifcfg-<IFACE_NAME>`.
+    Each network interface has its configuration file. The following shows an example for the default configuration of a server:
 
-```bash
-TYPE=Ethernet
-PROXY_METHOD=none
-BROWSER_ONLY=no
-BOOTPROTO=none
-DEFROUTE=yes
-IPV4_FAILURE_FATAL=no
-IPV6INIT=no
-NAME=ens18
-UUID=74c5ccee-c1f4-4f45-883f-fc4f765a8477
-DEVICE=ens18
-ONBOOT=yes
-IPADDR=192.168.0.1
-PREFIX=24
-GATEWAY=192.168.0.254
-DNS1=192.168.0.254
-DNS2=1.1.1.1
-IPV6_DISABLED=yes
-```
+    ```bash
+    TYPE=Ethernet
+    PROXY_METHOD=none
+    BROWSER_ONLY=no
+    BOOTPROTO=none
+    DEFROUTE=yes
+    IPV4_FAILURE_FATAL=no
+    IPV6INIT=no
+    NAME=ens18
+    UUID=74c5ccee-c1f4-4f45-883f-fc4f765a8477
+    DEVICE=ens18
+    ONBOOT=yes
+    IPADDR=192.168.0.1
+    PREFIX=24
+    GATEWAY=192.168.0.254
+    DNS1=192.168.0.254
+    DNS2=1.1.1.1
+    IPV6_DISABLED=yes
+    ```
 
-The interface's name is **ens18** so this file's name will be `/etc/sysconfig/network-scripts/ifcfg-ens18`.
+    The interface's name is **ens18** so this file's name will be `/etc/sysconfig/network-scripts/ifcfg-ens18`.
 
-!!! hint "**Tips:**"  
+    !!! hint "**Tips:**"  
 
-	There are a few ways or mechanisms by which systems can be assigned their IP configuration information. The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
+        There are a few ways or mechanisms by which systems can be assigned their IP configuration information. The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
 
-	The static IP configuration scheme is very popular on server class systems or networks.
+        The static IP configuration scheme is very popular on server class systems or networks.
 
-	The dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP).
+        The dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP).
 
-Very often, home/office users don't have to worry or know about DHCP. This is because the somebody or something else is automagically taking care of that in the background. The only thing that the end user needs to do is to physically or wirelessly connect to the right network (and of course make sure that their systems are powered on)!
+    Very often, home/office users don't have to worry or know about DHCP. This is because the somebody or something else is automagically taking care of that in the background. The only thing that the end user needs to do is to physically or wirelessly connect to the right network (and of course make sure that their systems are powered on)!
 
-#### IP Address
+    #### IP Address
 
-In the previous `/etc/sysconfig/network-scripts/ifcfg-ens18` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. This means that the system being configured is set to a static IP address scheme.
+    In the previous `/etc/sysconfig/network-scripts/ifcfg-ens18` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. This means that the system being configured is set to a static IP address scheme.
 
-If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all of that information will be automaically obtained from any available DHCP server.
+    If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all of that information will be automaically obtained from any available DHCP server.
 
-To configure a static IP address attribution, set the following:
+    To configure a static IP address attribution, set the following:
 
-* IPADDR: the IP address to assign the interface
-* PREFIX: the subnet mask in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
-* GATEWAY: the default gateway
+    * IPADDR: the IP address to assign the interface
+    * PREFIX: the subnet mask in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+    * GATEWAY: the default gateway
 
-The `ONBOOT` parameter set to `yes` indicates that this connection will be activated during boot time.
+    The `ONBOOT` parameter set to `yes` indicates that this connection will be activated during boot time.
 
-#### DNS resolution
+    #### DNS resolution
 
-To get proper name resolution, the following parameters must be set:
+    To get proper name resolution, the following parameters must be set:
 
-* DNS1: IP address of the main nameserver
-* DNS2: the secondary nameserver IP address
+    * DNS1: IP address of the main nameserver
+    * DNS2: the secondary nameserver IP address
+    
+    #### Apply configuration
 
+    To apply the network configuration, the `nmcli` command can be used:
 
-### Apply configuration
+    ```
+    nmcli connection up ens18
+    ```
 
-To apply the network configuration, the `nmcli` command can be used:
+    To get the connection state, simply use:
 
-```
-nmcli connection up ens18
-```
+    ```
+    nmcli connection show
+    ```
 
-To get the connection state, simply use:
+    You can also use the `ifup` and `ifdown` commands to bring the interface up and down (they are simple wrappers around `nmcli`):
 
-```
-nmcli connection show
-```
+    ```
+    ifup ens18
+    ifdown ens18
+    ```
 
-You can also use the `ifup` and `ifdown` commands to bring the interface up and down (they are simple wrappers around `nmcli`):
+    #### Checking configuration
 
-```
-ifup ens18
-ifdown ens18
-```
+    You can check that the configuration has been correctly applied with the following `nmcli` command:
 
-### Checking configuration
+    ```
+    nmcli device show ens18
+    ```
 
-You can check that the configuration has been correctly applied with the following `nmcli` command:
+    which should give you the following output:
 
-```
-nmcli device show ens18
-```
+    ```
+    GENERAL.DEVICE:                         ens18
+    GENERAL.TYPE:                           ethernet
+    GENERAL.HWADDR:                         6E:86:C0:4E:15:DB
+    GENERAL.MTU:                            1500
+    GENERAL.STATE:                          100 (connecté)
+    GENERAL.CONNECTION:                     ens18
+    GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/1
+    WIRED-PROPERTIES.CARRIER:               marche
+    IP4.ADDRESS[1]:                         192.168.0.1/24
+    IP4.GATEWAY:                            192.168.0.254
+    IP4.ROUTE[1]:                           dst = 192.168.0.0/24, nh = 0.0.0.0, mt = 100
+    IP4.ROUTE[2]:                           dst = 0.0.0.0/0, nh = 192.168.0.254, mt = 100
+    IP4.DNS[1]:                             192.168.0.254
+    IP4.DNS[2]:                             1.1.1.1
+    IP6.GATEWAY:                            --
+    ```
 
-which should give you the following output:
+=== "CLI"
 
-```
-GENERAL.DEVICE:                         ens18
-GENERAL.TYPE:                           ethernet
-GENERAL.HWADDR:                         6E:86:C0:4E:15:DB
-GENERAL.MTU:                            1500
-GENERAL.STATE:                          100 (connecté)
-GENERAL.CONNECTION:                     ens18
-GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/1
-WIRED-PROPERTIES.CARRIER:               marche
-IP4.ADDRESS[1]:                         192.168.0.1/24
-IP4.GATEWAY:                            192.168.0.254
-IP4.ROUTE[1]:                           dst = 192.168.0.0/24, nh = 0.0.0.0, mt = 100
-IP4.ROUTE[2]:                           dst = 0.0.0.0/0, nh = 192.168.0.254, mt = 100
-IP4.DNS[1]:                             192.168.0.254
-IP4.DNS[2]:                             1.1.1.1
-IP6.GATEWAY:                            --
-```
+    NetworkManager's primary function is managing "connections", which map a physical device to more logical network components like an IP address and DNS settings.
+    To view the existing connections NetworkManager maintains, you can run `nmcli connection show`.
+    
+    ```shell
+    [root@server ~]# nmcli connection show
+    NAME    UUID                                  TYPE      DEVICE
+    enp1s0  625a8aef-175d-4692-934c-2c4a85f11b8c  ethernet  enp1s0
+    ```
+    
+    From the output above, we can determine that NetworkManager manages a connection called `enp1s0` that maps to the physical device `enp1s0`.
+    
+    !!! hint "Connection name"
+
+        In this example, both the connection and device share the same name, but this may not always be the case. It is common to see a connection called `System eth0` that maps to a device called `eth0`, for example.
+    
+    #### IP Address
+
+    Now that we know the name of our connection, we can view the settings for it. To do this, use the `nmcli connection show [connection]` command, which will print out all of the settings NetworkManager registers for the given connection.
+    
+    ```shell
+    [root@server ~]# nmcli connection show enp1s0
+    ...
+    802-3-ethernet.mtu:                     auto
+    802-3-ethernet.s390-subchannels:        --
+    802-3-ethernet.s390-nettype:            --
+    802-3-ethernet.s390-options:            --
+    802-3-ethernet.wake-on-lan:             default
+    802-3-ethernet.wake-on-lan-password:    --
+    802-3-ethernet.accept-all-mac-addresses:-1 (default)
+    ipv4.method:                            auto
+    ipv4.dns:                               --
+    ipv4.dns-search:                        --
+    ipv4.dns-options:                       --
+    ipv4.dns-priority:                      0
+    ipv4.addresses:                         --
+    ipv4.gateway:                           --
+    ipv4.routes:                            --
+    ipv4.route-metric:                      -1
+    ipv4.route-table:                       0 (unspec)
+    ipv4.routing-rules:                     --
+    ipv4.ignore-auto-routes:                no
+    ipv4.ignore-auto-dns:                   no
+    ipv4.dhcp-client-id:                    --
+    ipv4.dhcp-iaid:                         --
+    ipv4.dhcp-timeout:                      0 (default)
+    ipv4.dhcp-send-hostname:                yes
+    ...
+    ```
+    
+    Down the left-hand column, we see the name of the setting, and down the right we see the value.
+    
+    For example, we can see here that `ipv4.method` here is currently set to `auto`. There are many allowed values for the `ipv4.method` setting, but the main two you will most likely see are:
+    
+    - `auto`: the appropriate automatic method (DHCP, PPP, etc) is used for the interface and most other properties can be left unset.
+    - `manual`: static IP addressing is used and at least one IP address must be given in the 'addresses' property.
+
+    If instead you want to configure the system to use a static IP address scheme, you will have to change the value of `ipv4.method` to `manual`, and also specify the `ipv4.gateway` and `ipv4.addresses`.
+    
+    To modify a setting, you can use the nmcli command `nmcli connection modify [connection] [setting] [value]`.
+    
+    ```shell
+    # set 10.0.0.10 as the static ipv4 address
+    [root@server ~]# nmcli connection modify enp1s0 ipv4.addresses 10.0.0.10
+    
+    # set 10.0.0.1 as the ipv4 gateway
+    [root@server ~]# nmcli connection modify enp1s0 ipv4.gateway 10.0.0.1
+    
+    # change ipv4 method to use static assignments (set in the previous two commands)
+    [root@server ~]# nmcli connection modify enp1s0 ipv4.method manual
+    ```
+    
+    !!!hint "When does the connection get updated?"
+        
+        `nmcli connection modify` will not modify the _runtime_ configuration, but update the `/etc/sysconfig/network-scripts` configuration files with the appropriate values based on what you have told `nmcli` to configure.
+
+    #### DNS resolution
+
+    To configure your DNS servers with NetworkManager via the CLI, you can modify the `ipv4.dns` setting.
+
+    ```shell
+    # set 10.0.0.2 and 10.0.0.3 as the first and second DNS servers
+    [root@server ~]# nmcli connection modify enp1s0 ipv4.dns '10.0.0.2 10.0.0.3'
+    ```
+    
+    #### Apply configuration
+
+    To apply the network configuration, you can use the `nmcli connection up [connection]` command.
+
+    ```
+    [root@server ~]# nmcli connection up enp1s0
+    Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/2)
+    ```
 
 ## Using ip utility
 
