@@ -59,6 +59,7 @@ IPV6_DISABLED=yes
 The interface's name is **enp1s0** so this file's name will be `/etc/sysconfig/network-scripts/ifcfg-enp1s0`.
 
 !!! hint "**Tips:**"  
+
     There are a few ways or mechanisms by which systems can be assigned their IP configuration information. The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
 
     The static IP configuration scheme is very popular on server class systems or networks.
@@ -130,6 +131,7 @@ enp1s0  625a8aef-175d-4692-934c-2c4a85f11b8c  ethernet  enp1s0
 From the output above, we can determine that NetworkManager manages a connection (`NAME`) called `enp1s0` that maps to the physical device (`DEVICE`) `enp1s0`.
 
 !!! hint "Connection name"
+
     In this example, both the connection and device share the same name, but this may not always be the case. It is common to see a connection called `System eth0` that maps to a device called `eth0`, for example.
 
 Now that we know the name of our connection, we can view the settings for it. To do this, use the `nmcli connection show [connection]` command, which will print out all of the settings NetworkManager registers for the given connection.
@@ -159,7 +161,7 @@ ipv4.dhcp-send-hostname:                yes
 
 Down the left-hand column, we see the name of the setting, and down the right we see the value.
 
-For example, we can see here that `ipv4.method` here is currently set to `auto`. There are many allowed values for the `ipv4.method` setting, but the main two you will most likely see are:
+For example, we can see that the `ipv4.method` here is currently set to `auto`. There are many allowed values for the `ipv4.method` setting, but the main two you will most likely see are:
 
 * `auto`: the appropriate automatic method (DHCP, PPP, etc) is used for the interface and most other properties can be left unset.
 * `manual`: static IP addressing is used and at least one IP address must be given in the 'addresses' property.
@@ -180,6 +182,7 @@ To modify a setting, you can use the nmcli command `nmcli connection modify [con
 ```
 
 !!!hint "When does the connection get updated?"
+
     `nmcli connection modify` will not modify the *runtime* configuration, but update the `/etc/sysconfig/network-scripts` configuration files with the appropriate values based on what you have told `nmcli` to configure.
 
 To configure your DNS servers with NetworkManager via the CLI, you can modify the `ipv4.dns` setting.
@@ -233,7 +236,8 @@ ip a
 ```
 
 !!! hint "**Pro tips:**"
-	* use the `-c` flag to get a more readable coloured output: `ip -c a`.
+
+    * use the `-c` flag to get a more readable coloured output: `ip -c a`.
 	* `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
 
 ### Bring interface up or down
