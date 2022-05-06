@@ -1,25 +1,27 @@
 ---
-title: Patching servers with dnf-automatic
+title: Patching with dnf-automatic
 author: Antoine Le Morvan
 contributors: Steven Spencer
-update: 05-may-2022
+tested with: 8.5
 tags:
   - security
   - dnf
+  - automation
   - updates
 ---
 
 # Patching servers with `dnf-automatic`
 
-Managing the installation of security updates is an important matter for the system administrator.
+Managing the installation of security updates is an important matter for the system administrator. The process of providing software updates is a well-trodden path that ultimately causes few problems.
+For these reasons, it is reasonable to automate the download and application of updates daily and automatically on Rocky servers.
 
-The process of providing software updates is a well-trodden path that ultimately causes few problems.
+The security of your information system will be strengthened. `dnf-automatic` is an additional tool that will allow you to achieve this.
 
-For these reasons, it is reasonable to automate the download and application of updates daily and automatically on the Rocky servers.
+!!! hint "If you are worried..."
 
-The security of your information system will be strengthened.
+    Years ago, applying updates automatically like this would have been a recipe for disaster. There were many times where an update applied might cause issues. That still happens rarely, when an update of a package removes a deprecated feature that is being used on the server, but for the most part, this simply isn't an issue these days. That said though, if you still feel uncomfortable letting `dnf-automatic` handle the updates, consider using it to download and/or notify you that updates are available. That way your server doesn't remain unpatched for long. These features are `dnf-automatic-notifyonly` and `dnf-automatic-download`
 
-The `dnf-automatic` software is an additional tool that will allow you to achieve this.
+    For more on these features, take a look at the [official documentation](https://dnf.readthedocs.io/en/latest/automatic.html).
 
 ## Installation
 
@@ -29,11 +31,9 @@ You can install `dnf-automatic` from the rocky repositories:
 sudo dnf install dnf-automatic
 ```
 
-## configuration
+## Configuration
 
-By default, the update process will start at 6am, with a random extra time delta to avoid all your machines updating at the same time.
-
-To change this behavior, you must override the timer configuration associated with the application service.
+By default, the update process will start at 6am, with a random extra time delta to avoid all your machines updating at the same time. To change this behavior, you must override the timer configuration associated with the application service:
 
 ```
 sudo systemctl edit dnf-automatic.timer
@@ -53,17 +53,21 @@ Persistent=true
 WantedBy=timers.target
 ```
 
-The previous configuration allows to reduce the start-up delay between 6:00 and 6:10 am. A server that would be shut down at this time would be automatically patched after its restart.
+This configuration reduces the start-up delay between 6:00 and 6:10 am. (A server that would be shut down at this time would be automatically patched after its restart.)
 
-And then activate the timer associated to the service (not the service itself):
+Then activate the timer associated to the service (not the service itself):
 
 ```
 $ sudo systemctl enable --now dnf-automatic.timer
 ```
 
-## What about CentOS 7 servers ?
+## What about CentOS 7 servers?
 
-The process under centos 7 is almost similar but uses a different software: `yum-cron`.
+!!! tip
+
+    Yes, this is Rocky Linux documentation, but if you are a system or network administrator, you may have some CentOS 7 machines still in play. We get that, and that is why we are including this section.
+
+The process under CentOS 7 is similar but uses: `yum-cron`.
 
 ```
 $ sudo yum install yum-cron
