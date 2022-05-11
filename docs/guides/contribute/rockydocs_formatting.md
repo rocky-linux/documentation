@@ -331,6 +331,19 @@ You can even embed a table or block quote (quite literally any formatting item t
 3. There are more examples, but I think you get that everything can be nested within. Just remember the four (4) magic spaces.
 ```
 
+## One Final Item - Comments
+
+From time to time you may want to add a comment to your markdown that will not display when rendered. There are a lot of reasons why you might want to do this. For instance, if you want to add a placeholder for something that will be added later, you could use a comment to mark your spot.
+
+The best way to add a comment to your markdown is to use the square brackets "[]" with two forward slashes "//" followed by a colon and the content. This would look like this:
+
+```
+
+[//]: This is a comment to be replaced later
+
+```
+A comment should have a blank line before and after the comment.
+
 ## More Reading
 
 * The Rocky Linux [how to contribute document](README.md)
