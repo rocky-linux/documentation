@@ -21,7 +21,7 @@ Dans ce guide, vous apprendrez comment convertir tous les systèmes d'exploitati
 
 Par exemple dans le cas de certains hébergeurs qui ne fournissent pas encore de VPS avec Rocky Linux. Ou encore si vous avez un serveur de production que vous voulez convertir en Rocky Linux sans avoir à tout réinstaller.
 
-Nous avons le outil adéquat pour vous: [migrate2rocky](https://github.com/rocky-linux/rocky-tools/tree/main/migrate2rocky).
+Nous avons l'outil adéquat pour vous: [migrate2rocky](https://github.com/rocky-linux/rocky-tools/tree/main/migrate2rocky).
 
 Il s'agît d'un script qui, lors de son exécution, va changer tous vos dépôts par ceux de Rocky Linux. Les paquets seront installés, mis à jour ou rétrogradés lorsque nécessaire et toutes les marques, noms et logos seront également modifiés.
 
