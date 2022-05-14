@@ -333,6 +333,22 @@ Then you can enable the service and configure your server as detailed above.
 
     The default configuration file, in this case, is in the base `nginx` configuration folder at `/etc/nginx/nginx.conf`. The root website folder is the same, though.
 
+## SELinux rules
+
+Beware that when enforced, nginx proxy_pass directives will fail with "502 Bad Gateway"
+
+You can either disable setenforce for development purposes
+
+```bash
+sudo setenforce 0
+```
+
+or you can enable http_d or other services that related to nginx in /var/log/audit/audit.log 
+
+```bash
+sudo setsebool httpd_can_network_connect 1 -P
+```
+
 ## Conclusion
 
 The basic installation and configuration of `nginx` are easy, even if it’s more complicated than it should be to get the latest version. But, just follow the steps, and you’ll have one of the best server options out there up and running quickly.
