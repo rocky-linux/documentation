@@ -1,12 +1,13 @@
 ---
 title: Secure Server - sftp
 author: Steven Spencer
-contributors:
+contributors: Ezequiel Bruni
 tested with: 8.5
 tags:
   - security
   - file transfer
   - sftp
+  - ssh
   - web
   - multisite
 ---
@@ -14,15 +15,15 @@ tags:
 
 ## Introduction
 
-It may seem strange to have a document dedicated to the "secure" use of SFTP (a part of openssh-server package) when the SSH proptocol is itself secure. I hear what you are thinking. But most system administrators do not want to open up SSH to everyone in order to implement SFTP for everyone. This document will describe how to implement a change root jail<sup>1</sup> for SFTP while keeping SSH access limited. 
+It may seem strange to have a document dedicated to the "secure" use of SFTP (a part of openssh-server package) when the SSH proptocol is itself secure. I hear what you are thinking. But most system administrators do not want to open up SSH to everyone in order to implement SFTP for everyone. This document will describe how to implement a change root jail<sup>1</sup> for SFTP while keeping SSH access limited.
 
 There are many documents out there that deal with creating an SFTP change root jail, but most do not take into account a use case where the user that is set up would be accessing a web directory on a server with multiple websites. This document deals with that. If that isn't your use case, you can easily adapt these concepts to use in different situations.
 
-The author also doesn't feel like making the change root jail document for SFTP without also discussing the other things that you should do as a system administrator to minimize the target that you offer to the world via SSH. For this reason, this document is divided into four parts: 
+The author also doesn't feel like making the change root jail document for SFTP without also discussing the other things that you should do as a system administrator to minimize the target that you offer to the world via SSH. For this reason, this document is divided into four parts:
 
-1. The first deals with the general information that we will use for the entire document. 
-2. The second deals with the setup of the change root jail, and if you decide that you want to stop there, that's totally up to you. 
-3. The third part deals with setting up public/private key SSH access for your system administrators and turning off remote password based authentication. 
+1. The first deals with the general information that we will use for the entire document.
+2. The second deals with the setup of the change root jail, and if you decide that you want to stop there, that's totally up to you.
+3. The third part deals with setting up public/private key SSH access for your system administrators and turning off remote password based authentication.
 4. The fourth, and last section of this document deals with turning off remote root logins.
 
 Taking all of these steps will allow you to offer secure SFTP access for your customers while also minimizing the possibility that port 22 (the one reserved for SSH access) will be compromised by a bad actor.
@@ -79,7 +80,7 @@ dnf install openssh-server
 
 #### Directories
 
-The directory path structure will be `/var/www/sub-domains/[ext.domainname]/html` and the `html` directory in this path will be the change root jail for the SFTP user.
+* The directory path structure will be `/var/www/sub-domains/[ext.domainname]/html` and the `html` directory in this path will be the change root jail for the SFTP user.
 
 Creating the configuration directories:
 
@@ -238,11 +239,11 @@ useradd -M -d /var/www/sub-domains/com.myfixedaxel/html -g apache -s /usr/sbin/n
 
 Let's break down those commands a bit:
 
-* The `-M` option says to *not* create create the standard home directory for the user. 
-* `-d` specifies that what comes after is the *actual* home directory. 
+* The `-M` option says to *not* create create the standard home directory for the user.
+* `-d` specifies that what comes after is the *actual* home directory.
 * `-g` says that the group that this user belongs to is `apache`.
 * `-s` says that the shell the user is assigned is `/usr/sbin/nologin`
-* At the end is the actual username for the user. 
+* At the end is the actual username for the user.
 
 **Note:** For an Nginx server, you would use `nginx` as the group.
 
