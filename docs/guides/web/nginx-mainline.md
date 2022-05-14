@@ -343,7 +343,7 @@ You can either disable setenforce for development purposes
 sudo setenforce 0
 ```
 
-or you can enable http_d or other services that related to nginx in /var/log/audit/audit.log 
+or you can enable `http_d` or other services that related to nginx in `/var/log/audit/audit.log`
 
 ```bash
 sudo setsebool httpd_can_network_connect 1 -P
