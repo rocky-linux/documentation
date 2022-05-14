@@ -19,7 +19,7 @@ It may seem strange to have a document dedicated to the "secure" use of SFTP (a 
 
 There are many documents out there that deal with creating an SFTP change root jail, but most do not take into account a use case where the user that is set up would be accessing a web directory on a server with multiple websites. This document deals with that. If that isn't your use case, you can easily adapt these concepts to use in different situations.
 
-The author also doesn't feel like making the change root jail document for SFTP without also discussing the other things that you should do as a system administrator to minimize the target that you offer to the world via SSH. For this reason, this document is divided into four parts:
+The author also feels that it is necessary when making the change root jail document for SFTP to also discuss the other things that you should do as a system administrator to minimize the target that you offer to the world via SSH. For this reason, this document is divided into four parts:
 
 1. The first deals with the general information that we will use for the entire document.
 2. The second deals with the setup of the change root jail, and if you decide that you want to stop there, that's totally up to you.
