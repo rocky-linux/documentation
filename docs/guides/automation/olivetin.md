@@ -15,14 +15,14 @@ tags:
 
 Have you ever gotten tired of typing in the same CLI commands over and over again? Have you ever wanted everyone else in your house to be able to restart the Plex server without your intervention? Do you want to just type in a name in a web panel, push a button, and watch a customized Docker/LXD container magically appear?
 
-Then you might want to check out OliveTin. OliveTin is literally just an app that lets you generate a web page with from a config file, and that web page has buttons. Push the buttons, and OliveTin will run preset bash commands that you set up yourself.
+Then you might want to check out OliveTin. OliveTin is literally just an app that lets you generate a web page from a config file, and that web page has buttons. Push the buttons, and OliveTin will run preset bash commands that you set up yourself.
 
 Sure, you could technically create something like this yourself, from scratch, with enough programming experience... but this is *way* easier. It looks a little something like this when set up (image courtesy of the [OliveTin repository](https://https://github.com/OliveTin/OliveTin)):
 
 ![A screenshot of OliveTin on the desktop; it features several squares in a grid, with labels and actions for each command that can be run.](olivetin/screenshotDesktop.png)
 
 !!! Warning "NEVER run this app on a public server"
-    
+
     This app is, by design and the creator's own admission, meant to be used on local networks, *maybe* on dev setups. However, it has no user authentication system at present, and (until the developer fixes this) *runs as root by default*.
 
     So yeah, use this all you want on a secured and firewalled network. *Don't* put it on anything meant to be used by the public. For now.
@@ -58,11 +58,11 @@ Now OliveTin can run as a normal `systemd` service, but don't enable it just yet
 
 !!! Note
 
-    After some testing, I hsve determined that these same install instructions will work just fine in a Rocky Linux LXD container. For anyone who likes Docker, pre-built images are available.
+    After some testing, I have determined that these same install instructions will work just fine in a Rocky Linux LXD container. For anyone who likes Docker, pre-built images are available.
 
 ## Configuring OliveTin Actions
 
-OliveTin can do anything bash can do, and more. You can use it to execute apps with CLI options, run bash scripts, restart service, etc. To get started, open up the configuration file with the text editor of your choice with root/sudo:
+OliveTin can do anything bash can do, and more. You can use it to execute apps with CLI options, run bash scripts, restart services, etc. To get started, open up the configuration file with the text editor of your choice with root/sudo:
 
 ```bash
 sudo nano /etc/OliveTin/config.yaml
@@ -87,7 +87,7 @@ actions:
 
 I'm not going to go into every detail of the customization options, but you can also use text inputs and dropdown menus to add variables and options to the commands you want to run. If you do, OliveTin will prompt you for input before the command is run.
 
-Doing this, you can run any program, control remote machines via SSH, trigger webhooks, and more. Check out [the official documentation](https://docs.olivetin.app/actions.html) for more ideas. 
+Doing this, you can run any program, control remote machines via SSH, trigger webhooks, and more. Check out [the official documentation](https://docs.olivetin.app/actions.html) for more ideas.
 
 But here's an example of my own: I have a personal script that I use to generate LXD containers with web servers pre-installed on them. With OliveTin, I was able to quickly make a GUI for said script like this:
 
