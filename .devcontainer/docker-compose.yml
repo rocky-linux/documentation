@@ -25,7 +25,6 @@ services:
     image: wsoyinka/rockydocs:latest
     volumes:
       - docs-data:/documentation
-    container_name: rocky
     ports:
       - "8000:8000"
 volumes:
