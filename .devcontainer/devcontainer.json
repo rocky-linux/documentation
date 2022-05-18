@@ -1,39 +1,40 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.233.0/containers/markdown
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.234.0/containers/docker-in-docker
 {
-  "name": "Markdown Editing",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspaces",
+	"name": "RockyLinux Documentation",
+	"dockerFile": "Dockerfile",
+	"runArgs": ["--init", "--privileged"],
+	"mounts": ["source=dind-var-lib-docker,target=/var/lib/docker,type=volume"],
+	"overrideCommand": false,
+	
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	  },
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"esbenp.prettier-vscode",
+		"yzhang.markdown-all-in-one",
+		"streetsidesoftware.code-spell-checker",
+		"DavidAnson.vscode-markdownlint",
+		"shd101wyy.markdown-preview-enhanced",
+		"github.vscode-pull-request-github",
+		"eamodio.gitlens",
+		"bierner.github-markdown-preview",
+		"ms-azuretools.vscode-docker"
+	],
+	
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [8000],
 
-  // Set *default* container specific settings.json values on container create.
-  "settings": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "docker --version",
 
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "esbenp.prettier-vscode",
-    "yzhang.markdown-all-in-one",
-    "streetsidesoftware.code-spell-checker",
-    "DavidAnson.vscode-markdownlint",
-    "shd101wyy.markdown-preview-enhanced",
-    "github.vscode-pull-request-github",
-    "eamodio.gitlens",
-    "bierner.github-markdown-preview"
-  ],
-
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [8000],
-
-  // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "ln -s /docs-data/docs ./docs",
-
-  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "vscode",
-  "features": {
-    "git": "os-provided",
-    "github-cli": "latest"
-  }
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+	"features": {
+		"git": "os-provided",
+		"github-cli": "latest"
+	}
 }
