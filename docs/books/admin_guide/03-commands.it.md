@@ -463,7 +463,7 @@ Esempio:
 
 ```bash
 $ ls /home
-.    ..    ..
+.    ..    rockstar
 ```
 
 Le opzioni principali del comando `ls` sono:
@@ -481,7 +481,7 @@ Il comando `ls`, tuttavia, ha molte opzioni (vedi `man`):
 | `-d`    | Visualizza le informazioni di una directory invece di elencare i suoi contenuti.                                                                      |
 | `-g`    | Visualizza UID e GID al posto dei nomi dei proprietari.                                                                                               |
 | `-h`    | Visualizza le dimensioni dei file nel formato più appropriato (byte, kilobyte, megabyte, gigabyte, ...). `h` stà per Human Readable.                  |
-| `-s`    | Visualizza la dimensione in byte (tranne l'opzione`k`).                                                                                               |
+| `-s`    | Visualizza il numero di blocchi occupati dal file. Un blocco è uguale a 400K.                                                                         |
 | `-A`    | Visualizza tutti i file nella directory tranne`.` e `..`.                                                                                             |
 | `-R`    | Visualizza il contenuto delle sottodirectory in modo ricorsivo.                                                                                       |
 | `-F`    | Visualizza il tipo di file. Stampa un`/` per una directory, `*` per gli eseguibili, `@` per un collegamento simbolico, e niente per un file di testo. |
@@ -494,16 +494,16 @@ $ ls -lia /home
 78489 drwx------ 4 rockstar rockstar 4096 25 oct. 08:10 rockstar
 ```
 
-| Valore          | Informazione                                                                                                    |
-| --------------- | --------------------------------------------------------------------------------------------------------------- |
-| `78489`         | Numero di inode.                                                                                                |
-| `drwx------`    | Tipo di file (`d`) e permessi (`rwx------`).                                                                    |
-| `4`             | Numero di sottodirectory. (`.` e `..` incluse). Per un file di tipo link fisico: numero di collegamenti fisici. |
-| `rockstar`      | Proprietà dell'utente.                                                                                          |
-| `rockstar`      | Proprietà del gruppo.                                                                                           |
-| `4096`          | Dimensione in byte.                                                                                             |
-| `25 oct. 08:10` | Ultima data di modifica.                                                                                        |
-| `rockstar`      | Il nome del file (o directory).                                                                                 |
+| Valore          | Informazione                                                                                                                                                                                             |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `78489`         | Numero di inode.                                                                                                                                                                                         |
+| `drwx------`    | Tipo di file (`d`) e permessi (`rwx------`).                                                                                                                                                             |
+| `4`             | Numero di sottodirectory. (`.` e `..` incluse). Per un file di tipo link fisico: numero di collegamenti fisici.                                                                                          |
+| `rockstar`      | Proprietà dell'utente.                                                                                                                                                                                   |
+| `rockstar`      | Proprietà del gruppo.                                                                                                                                                                                    |
+| `4096`          | Per i file, mostra la dimensione del file. Per le directory, mostra il valore fisso di 4096 byte occupati dal nome del file. Per calcolare la dimensione totale di una directory, usa `du -sh rockstar/` |
+| `25 oct. 08:10` | Ultima data di modifica.                                                                                                                                                                                 |
+| `rockstar`      | Il nome del file (o directory).                                                                                                                                                                          |
 
 !!! Note "Nota"
 
@@ -542,23 +542,26 @@ $ ls -Rlh /var | grep [0-9]M
 ...
 ```
 
+Naturalmente, si consiglia vivamente di utilizzare il comando `find`.
+
+```bash
+$ find /var -size +1M -a -size -1024M -a -type f -exec ls -lh {} \;
+```
+
 * Mostra i permessi di una cartella:
 
 Per scoprire i permessi di una cartella, nel nostro esempio `/etc`, il seguente comando non sarebbe appropriato:
 
 ```bash
-$ ls -l /etc
-total 1332
--rw-r--r--.  1 root root     44 18 nov.  17:04 adjtime
+$ ls -ld /etc
+drwxr-xr-x.  69 root root 4096 18 nov.  17:04 adjtime
 -rw-r--r--.  1 root root   1512 12 janv.  2010 aliases
 -rw-r--r--.  1 root root  12288 17 nov.  17:41 aliases.db
 drwxr-xr-x.  2 root root   4096 17 nov.  17:48 alternatives
 ...
 ```
 
-dal momento che elenca il contenuto della cartella e non la cartella stessa.
-
-Per fare ciò, useremo l'opzione `d`:
+Il comando precedente visualizzerà il contenuto della cartella (all'interno) per impostazione predefinita. Per la cartella stessa, è possibile utilizzare l'opzione `-d`.
 
 ```bash
 $ ls -ld /etc
@@ -571,7 +574,7 @@ drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc
 $ ls -lhS
 ```
 
-* Visualizza la data di modifica nel formato "timestamp":
+* formato ora/data con `-l`:
 
 ```bash
 $ ls -l --time-style="+%Y-%m-%d %m-%d %H:%M" /
@@ -585,14 +588,13 @@ dr-xr-xr-x. 5 root root 1024 2014-11-23 11-23 05:29 boot
 Per impostazione predefinita, il comando `ls` non visualizza l'ultima barra di una cartella. In alcuni casi, come per gli script, ad esempio, è utile visualizzarla:
 
 ```bash
-$ ls -dF /etc
-/etc/
+$ ls /etc --hide=*.conf
 ```
 
 * Nascondi alcune estensioni:
 
 ```bash
-$ ls /etc --hide=*.conf
+mkdir [-p] directory [directory] [...]
 ```
 
 ### comando `mkdir`
@@ -600,7 +602,7 @@ $ ls /etc --hide=*.conf
 Il comando `mkdir` crea una directory o un albero di directory.
 
 ```bash
-mkdir [-p] directory [directory] [...]
+$ mkdir /home/rockstar/work
 ```
 
 Esempio:
@@ -622,7 +624,7 @@ Altrimenti, dovrebbe essere utilizzata l'opzione `-p`. L'opzione `-p` crea le di
 Il comando `touch` cambia il timestamp di un file o crea un file vuoto se il file non esiste.
 
 ```bash
-touch [-t date] file
+$ touch /home/rockstar/myfile
 ```
 
 Esempio:
@@ -688,10 +690,7 @@ La fine delle opzioni è segnalata alla shell da un doppio trattino `--`.
 Nell'esempio:
 
 ```bash
-$ >-hard-hard # To create an empty file called -hard-hard
-hard-hard
-[CTRL+C] To interrupt the creation of the file
-$ rm -f -- -hard-hard
+mv file [file ...] destination
 ```
 
 Il nome del file hard-hard inizia con un `-`. Senza l'uso del `--` la shell avrebbe interpretato il `-d` in `-hard-hard` come un'opzione.
@@ -701,14 +700,14 @@ Il nome del file hard-hard inizia con un `-`. Senza l'uso del `--` la shell avre
 Il comando `mv` muove e rinomina un file.
 
 ```bash
-mv file [file ...] destination
+$ mv /home/rockstar/file1 /home/rockstar/file2
+$ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
 Esempi:
 
 ```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2
-$ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
 | Opzioni | Informazione                                                                  |
@@ -719,37 +718,37 @@ $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 Alcuni casi concreti ti aiuteranno a capire le difficoltà che possono sorgere:
 
 ```bash
-$ mv /home/rockstar/file1 /home/rockstar/file2
-```
-
-Rinominare `file1` in `file2`, se `file2` esiste già, sarà sostituito da `file1`.
-
-```bash
 $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
-Muovere `file1` e `file2` nella directory `/tmp`.
+Rinomina `file1` a `file2`. Se `file2` esiste già, sostituisci il contenuto del file con `file1`.
 
 ```bash
 $ mv file1 /repexist/file2
 ```
 
-Muovere `file1` in `repexist` e rinominarlo `file2`.
+Muovere `file1` e `file2` nella directory `/tmp`.
 
 ```bash
 $ mv file1 file2
 ```
 
-`file1` è rinominato con `file2`.
+Muovere `file1` in `repexist` e rinominarlo `file2`.
 
 ```bash
 $ mv file1 /repexist
 ```
 
-Se esiste la directory di destinazione, `file1` viene spostato in `/repexist`.
+`file1` è rinominato con `file2`.
 
 ```bash
 $ mv file1 /wrongrep
+```
+
+Se esiste la directory di destinazione, `file1` viene spostato in `/repexist`.
+
+```bash
+cp file [file ...] destination
 ```
 
 Se la directory di destinazione non esiste, `file1` viene rinominato in `wrongrep` nella directory principale.
@@ -759,13 +758,13 @@ Se la directory di destinazione non esiste, `file1` viene rinominato in `wrongre
 Il comando `cp` copia un file.
 
 ```bash
-cp file [file ...] destination
+$ cp -r /home/rockstar /tmp
 ```
 
 Esempio:
 
 ```bash
-$ cp -r /home/rockstar /tmp
+cp file1 /repexist/file2
 ```
 
 | Opzioni | Informazione                                                                 |
@@ -777,25 +776,25 @@ $ cp -r /home/rockstar /tmp
 | `-s`    | Crea un collegamento simbolico invece di copiare.                            |
 
 ```bash
-cp file1 /repexist/file2
+$ cp file1 file2
 ```
 
 `file1` viene copiato in `/repexist` con il nome `file2`.
 
 ```bash
-$ cp file1 file2
+$ cp file1 /repexist
 ```
 
 `file1` è copiato come `file2` in questa directory.
 
 ```bash
-$ cp file1 /repexist
+$ cp file1 /wrongrep
 ```
 
 Se esiste la directory di destinazione, `file1` viene copiato in `/repexist`.
 
 ```bash
-$ cp file1 /wrongrep
+file file1 [files]
 ```
 
 Se la directory di destinazione non esiste, `file1` è copiato sotto il nome `wrongrep` nella directory principale.
@@ -807,15 +806,15 @@ Se la directory di destinazione non esiste, `file1` è copiato sotto il nome `wr
 Il comando `file` visualizza il tipo di un file.
 
 ```bash
-file file1 [files]
+$ file /etc/passwd /etc
+/etc/passwd:    ASCII text
+/etc:        directory
 ```
 
 Esempio:
 
 ```bash
-$ file /etc/passwd /etc
-/etc/passwd:    ASCII text
-/etc:        directory
+more file1 [files]
 ```
 
 ### comando `more`
@@ -823,15 +822,15 @@ $ file /etc/passwd /etc
 Il comando `more` visualizza il contenuto di uno o più files tramite schermo.
 
 ```bash
-more file1 [files]
+$ more /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+...
 ```
 
 Esempio:
 
 ```bash
-$ more /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-...
+less file1 [files]
 ```
 
 Usando il tasto <kbd>ENTER</kbd>, lo spostamento è linea per linea. Usando il tasto <kbd>SPACE</kbd>, lo spostamento è pagina per pagina. `/text` Ti consente di cercare la corrispondenza nel file.
@@ -841,40 +840,40 @@ Usando il tasto <kbd>ENTER</kbd>, lo spostamento è linea per linea. Usando il t
 Il comando `Less` visualizza il contenuto di uno o più file. Il comando `less` è interattivo e ha i propri comandi per l'uso.
 
 ```bash
-less file1 [files]
+cat file1 [files]
 ```
 
 I comandi specifici per `less` sono:
 
-| Command           | Action                                              |
-| ----------------- | --------------------------------------------------- |
-| `h`               | Aiuto.                                              |
-| `Arrows`          | Sposta su, giù di una linea, o a destra e sinistra. |
-| `Enter`           | Sposta giù di una riga.                             |
-| `Space`           | Sposta giù di una pagina.                           |
-| `PgUp` and `PgDn` | Sposta su o giù di una pagina.                      |
-| `Begin` and `End` | Passa all'inizio o alla fine di un file.            |
-| `/text`           | Cerca il testo.                                     |
-| `q`               | Chiude il comando`less`.                            |
+| Command                                          | Action                                              |
+| ------------------------------------------------ | --------------------------------------------------- |
+| <kbd>h</kbd>                                     | Aiuto.                                              |
+| <kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd><kbd>←</kbd> | Sposta su, giù di una linea, o a destra e sinistra. |
+| <kbd>Invio</kbd>                                 | Sposta giù di una riga.                             |
+| <kbd>Spazio</kbd>                                | Sposta giù di una pagina.                           |
+| `PgUp` and `PgDn`                                | Sposta su o giù di una pagina.                      |
+| `Begin` and `End`                                | Passare alla prima e all'ultima pagina              |
+| `/text`                                          | Cerca il testo.                                     |
+| <kbd>q</kbd>                                     | Chiude il comando`less`.                            |
 
 ### comando `cat`
 
 Il comando `cat` concatena il contenuto di più file e visualizza il risultato sull'output standard.
 
 ```bash
-cat file1 [files]
+$ cat /etc/passwd
 ```
 
 Esempio 1 - Visualizzazione del contenuto di un file in output standard:
 
 ```bash
-$ cat /etc/passwd
+$ cat /etc/passwd /etc/group
 ```
 
 Esempio 2 - Visualizzazione del contenuto di più file in output standard:
 
 ```bash
-$ cat /etc/passwd /etc/group
+$ cat /etc/passwd /etc/group > usersAndGroups.txt
 ```
 
 Esempio 3 - Visualizzazione del contenuto di diversi file nel file `usersAndGroups.txt`:
@@ -886,13 +885,12 @@ $ cat /etc/passwd /etc/group > usersAndGroups.txt
 Esempio 4 - Visualizzazione della numerazione di linea:
 
 ```bash
-$ cat -n /etc/profile
+$ cat -b /etc/profile
      1    # /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
      2    # and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
-     3
-     4    if [ "`id -u`" -eq 0 ]; then
-     5      PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-     6    else
+     3    if [ "`id -u`" -eq 0 ]; then
+     4      PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+     5    else
 …
 ```
 
@@ -916,7 +914,7 @@ Il comando `tac` fa quasi il contrario del comando `cat`. Visualizza il contenut
 Esempio: Visualizza un file di log visualizzando prima l'ultima riga:
 
 ```bash
-[root]# tac /var/log/messages | less
+head [-n x] file
 ```
 
 ### comando `head`
@@ -924,7 +922,7 @@ Esempio: Visualizza un file di log visualizzando prima l'ultima riga:
 Il comando `head` visualizza l'inizio di un file.
 
 ```bash
-head [-n x] file
+tail [-f] [-n x] file
 ```
 
 | Opzione | Osservazione                      |
@@ -938,7 +936,10 @@ Per impostazione predefinita (senza l'opzione `-n`), il comando `head` visualizz
 Il comando `tail` visualizza la fine di un file.
 
 ```bash
-tail [-f] [-n x] file
+tail -n 3 /etc/passwd
+sshd:x:74:74:Privilege-separeted sshd:/var/empty /sshd:/sbin/nologin
+tcpdump::x:72:72::/:/sbin/nologin
+user1:x:500:500:grp1:/home/user1:/bin/bash
 ```
 
 | Opzione | Osservazione                                   |
@@ -949,10 +950,7 @@ tail [-f] [-n x] file
 Esempio:
 
 ```bash
-tail -n 3 /etc/passwd
-sshd:x:74:74:Privilege-separeted sshd:/var/empty /sshd:/sbin/nologin
-tcpdump::x:72:72::/:/sbin/nologin
-user1:x:500:500:grp1:/home/user1:/bin/bash
+sort [-kx] [-n] [-u] [-o file] [-ty] file
 ```
 
 Con l'opzione `-f`, il comando `tail` non visualizza solo il file sullo standard output ma funziona finché l'utente non lo interrompe con la sequenza <kbd>CTRL</kbd> + <kbd>C</kbd>. Questa opzione è utilizzata molto frequentemente per tracciare i file di registro (i log) in tempo reale.
@@ -966,7 +964,9 @@ Il comando `sort` ordina le linee di un file.
 Ti consente di ordinare il risultato di un comando o del contenuto di un file in un determinato ordine, numericamente, alfabeticamente, per dimensione (KB, MB, GB) o in ordine inverso.
 
 ```bash
-sort [-kx] [-n] [-u] [-o file] [-ty] file
+$ sort -k3 -t: -n -r /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
 Esempio:
@@ -977,14 +977,14 @@ root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ```
 
-| Opzione   | Observation                                    |
-| --------- | ---------------------------------------------- |
-| `-kx`     | Specifica la colonna`x` per ordinare           |
-| `-n`      | Richiede un ordinamento numerico               |
-| `-o file` | Salva l'ordinamento nel file specificato       |
-| `-ty`     | Specifica il carattere separatore di campo `y` |
-| `-r`      | Inverte l'ordine del risultato                 |
-| `- u`     | Conserva solo risultati unici                  |
+| Opzione   | Observation                                                                                                                 |
+| --------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `-kx`     | Specifica le colonne da separare. È possibile specificare più colonne                                                       |
+| `-n`      | Richiede un ordinamento numerico                                                                                            |
+| `-o file` | Salva l'ordinamento nel file specificato                                                                                    |
+| `-ty`     | Specifica il carattere separatore di campo `y`                                                                              |
+| `-r`      | Inverte l'ordine del risultato. Usato in combinazione con l'opzione `-n` per ordinare in ordine da più grande a più piccolo |
+| `- u`     | Rimuovi i duplicati dopo l'ordinamento. Equivalente a `ordinare il file <unk> uniq`                                      |
 
 Il comando `sort` ordina il file solo sullo schermo. Il file non è modificato dall'ordinamento. Per salvare l'ordinamento, usa l'opzione `-o` o un reindirizzamento dell'output `>`.
 
@@ -993,9 +993,7 @@ Per impostazione predefinita, i numeri sono ordinati in base al loro carattere. 
 Il comanda `sort` inverte l'ordine del risultato, con l'opzione `-r`:
 
 ```bash
-$ sort -k3 -t: -n -r /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-adm:x:3:4:adm:/var/adm/:/sbin/nologin
+$ sort -R /etc/passwd
 ```
 
 In questo esempio, il comando `sort` ordinerà il contenuto del file `/etc /passwd` questa volta dal Uid più grande al più piccolo.
@@ -1007,7 +1005,11 @@ Alcuni esempi avanzati di utilizzazione del comando `sort`:
 Il comando `sort` ti consente anche di mescolare valori con l'opzione `-R`:
 
 ```bash
-$ sort -R /etc/passwd
+192.168.1.10
+192.168.1.200
+5.1.150.146
+208.128.150.98
+208.128.150.99
 ```
 
 * Ordinamento degli indirizzi IP
@@ -1017,20 +1019,20 @@ Un amministratore di sistema si deve spesso confrontare con l'elaborazione di in
 Ecco un esempio con il file `dns-client.txt`:
 
 ```
-192.168.1.10
-192.168.1.200
-5.1.150.146
-208.128.150.98
-208.128.150.99
-```
-
-```bash
 $ sort -nr dns-client.txt
 208.128.150.99
 208.128.150.98
 192.168.1.200
 192.168.1.10
 5.1.150.146
+```
+
+```bash
+Red
+Green
+Blue
+Red
+Pink
 ```
 
 * Ordinamento file rimuovendo i duplicati
@@ -1040,26 +1042,12 @@ Il comando `sort` sa come rimuovere i duplicati dall'output del file usando `-u`
 Ecco un esempio con il file `colours.txt`:
 
 ```
-Red
-Green
-Blue
-Red
-Pink
-```
-```
 $ sort -u colours.txt
 Blue
 Green
 Pink
 Red
 ```
-
-* Ordinamento file per dimensioni
-
-Il comando `sort` sa riconoscere le dimensioni dei file, da comandi come `ls` con l'opzione `-h`.
-
-Ecco un esempio con il file `size.txt`:
-
 ```
 1,7G
 18M
@@ -1073,7 +1061,13 @@ Ecco un esempio con il file `size.txt`:
 4G
 ```
 
-```bash
+* Ordinamento file per dimensioni
+
+Il comando `sort` sa riconoscere le dimensioni dei file, da comandi come `ls` con l'opzione `-h`.
+
+Ecco un esempio con il file `size.txt`:
+
+```
 $ sort -hr size.txt
 4,2G
 4G
@@ -1087,12 +1081,16 @@ $ sort -hr size.txt
 69K
 ```
 
+```bash
+wc [-l] [-m] [-w] file [files]
+```
+
 ### comando `wc`
 
 Il comando `wc` conta il numero di linee, parole e/o byte in un file.
 
 ```bash
-wc [-l] [-m] [-w] file [files]
+find directory [-name name] [-type type] [-user login] [-date date]
 ```
 
 | Option | Osservazione                  |
@@ -1109,7 +1107,7 @@ wc [-l] [-m] [-w] file [files]
 Il comando `find` ricerca per file o posizione della directory.
 
 ```bash
-find directory [-name name] [-type type] [-user login] [-date date]
+$ find /tmp -name *.txt -exec rm -f {} \;
 ```
 
 Dal momento che ci sono così tante opzioni nel comando `find`, è meglio fare riferimento a `man`.
@@ -1133,9 +1131,9 @@ Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso 
 
 !!! Tip "Comprendere l'opzione `-exec`"
 
-    Nell'esempio precedente, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
+    Nell'esempio sopra, il comando `find` costruirà una stringa che rappresenta il comando da eseguire.
     
-    Se il comando `find` trova tre file chiamati `log1.txt`, `log2.txt` e `log3.txt`, allora il comando `find` costruirà la stringa sostituendo le parentesi nella stringa `rm -f {} \;` con uno dei risultati della ricerca, e lo farà tante volte quanti sono i risultati.
+    Se il comando `find` trova tre file denominati `log1.txt`, `log2.txt`, e `log3.txt`, il comando `find` costruirà la stringa sostituendo nella stringa `rm -f {} \;` le parentesi graffe con uno dei risultati della ricerca, e farà questo tutte le volte che ci sono dei risultati.
     
     Questo ci darà:
 
@@ -1144,7 +1142,7 @@ Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso 
     ```
 
 
-    Il carattere `;` è un carattere speciale di shell che deve essere protetto da `\` per evitare che venga interpretato troppo presto dal comando `find` (e non nel `-exec`).
+    `$ find /tmp -name *.txt -delete` fa la stessa cosa.
 
 !!! Tip "Suggerimento"
 
@@ -1155,14 +1153,14 @@ Il comando precedente cerca tutti i file nella directory `/tmp` con il suffisso 
 Il comando `whereis` ricerca i file relativi a un comando.
 
 ```bash
-whereis [-b] [-m] [-s] command
+$ whereis -b ls
+ls: /bin/ls
 ```
 
 Esempio:
 
 ```bash
-$ whereis -b ls
-ls: /bin/ls
+grep [-w] [-i] [-v] "string" file
 ```
 
 | Opzione | Osservazione                    |
@@ -1176,14 +1174,14 @@ ls: /bin/ls
 Il comando `grep` ricerca una stringa in un file.
 
 ```bash
-grep [-w] [-i] [-v] "string" file
+$ grep -w "root:" /etc/passwd
+root:x:0:0:root:/root:/bin/bash
 ```
 
 Esempio:
 
 ```bash
-$ grep -w "root:" /etc/passwd
-root:x:0:0:root:/root:/bin/bash
+$ grep -w "^root" /etc/passwd
 ```
 
 | Opzione | Osservazione                                         |
@@ -1202,12 +1200,17 @@ $ grep -w "^root" /etc/passwd
 
 !!! Note "Nota"
 
-    Questo comando è molto potente e si raccomanda vivamente di consultare il suo manuale. Ha molti derivati.
+    Questo comando è molto potente e si consiglia vivamente di consultare il suo manuale. Ha molti utilizzi derivati.
 
 È possibile cercare una stringa in un albero di file con l'opzione `-R`.
 
 ```bash
-grep -R "Virtual" /etc/httpd
+$ find /home -name "test*"
+/home/rockstar/test
+/home/rockstar/test1
+/home/rockstar/test11
+/home/rockstar/tests
+/home/rockstar/test362
 ```
 
 ### Meta-caratteri (wildcards)
@@ -1248,17 +1251,17 @@ $ find /home -name "test[123]*"
 
 !!! Note "Nota"
 
-    Circonda sempre le parole che contengono meta-caratteri con `"` per evitare che siano sostituite dai nomi dei file che soddisfano i criteri.
+    Circonda sempre le parole contenenti meta-caratteri con `"` per evitare che vengano sostituite dai nomi dei file che soddisfano i criteri.
 
 !!! Warning "Attenzione"
 
-    Non confondete i meta-caratteri della shell con i meta-caratteri delle espressioni regolari. Il comando `grep` utilizza meta-caratteri di espressione regolare.
+    Non confondere i meta-caratteri della shell con i meta-caratteri dell'espressione regolare. Il comando `grep` usa i meta-caratteri dell'espressione regolare.
 
 ## Reindirizzamenti e pipes
 
 ### Standard input e output
 
-Sui sistemi UNIX e Linux, ci sono tre flussi standard. Consentono ai programmi, attraverso la libreria `stdio.h`, di inviare e ricevere informazioni.
+On UNIX and Linux systems, there are three standard streams. Consentono ai programmi, attraverso la libreria `stdio.h`, di inviare e ricevere informazioni.
 
 Questi flussi sono chiamati canale X o descrittore di file X.
 
@@ -1285,16 +1288,16 @@ $ ftp -in serverftp << ftp-commands.txt
 
     Solo i comandi che richiedono l'input da tastiera saranno in grado di gestire il reindirizzamento dell'input.
 
-Il reindirizzamento dell'ingresso può anche essere utilizzato per simulare l'interattività dell'utente. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
+Input redirection can also be used to simulate user interactivity. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
 
 Questa funzione è utilizzata per i comandi interattivi negli script:
 
 ```bash
-$ ftp -in serverftp << END
+$ ftp -in serverftp << STOP
 user alice password
 put file
 bye
-END
+STOP
 ```
 
 La parola chiave `END` può essere sostituita da qualsiasi parola.
@@ -1318,10 +1321,7 @@ Il reindirizzamento dell'ingresso standard viene usato raramente perché la magg
 Il comando `wc` potrebbe essere usato in questo modo:
 
 ```bash
-$ wc -l .bash_profile
-27 .bash_profile # the number of lines is followed by the file name
-$ wc -l < .bash_profile
-27 # returns only the number of lines
+$ date +%F > date_file
 ```
 
 ### Redirezione Output
@@ -1331,13 +1331,14 @@ L'output standard può essere reindirizzato ad altri file usando il carattere `>
 Il semplice `>` reindirizzamento sovrascrive il contenuto del file di output:
 
 ```bash
-$ date +%F > date_file
+$ date +%F >> date_file
 ```
 
-mentre il doppio reindirizzamento `>>` aggiunge (concatena) al contenuto del file di output.
+Dove il carattere `>>` indica che il risultato del comando viene aggiunto al contenuto del file.
 
 ```bash
-$ date +%F >> date_file
+$ ls -R / 2> errors_file
+$ ls -R / 2>> errors_file
 ```
 
 In entrambi i casi, il file viene creato automaticamente quando non esiste.
@@ -1345,8 +1346,7 @@ In entrambi i casi, il file viene creato automaticamente quando non esiste.
 L'output di errore standard può anche essere reindirizzato a un altro file. Questa volta sarà necessario specificare il numero del canale (che può essere omesso per i canali 0 e 1):
 
 ```bash
-$ ls -R / 2> errors_file
-$ ls -R / 2>> errors_file
+$ ls -R / >> ok_file 2>> nok_file
 ```
 
 ### Esempi di reindirizzamento
@@ -1354,19 +1354,19 @@ $ ls -R / 2>> errors_file
 Reindirizzamento di 2 uscite a 2 file:
 
 ```bash
-$ ls -R / >> ok_file 2>> nok_file
+$ ls -R / >> log_file 2>&1
 ```
 
 Reindirizzamento delle 2 uscite a un singolo file:
 
 ```bash
-$ ls -R / >> log_file 2>&1
+$ ls -R / 2>> /dev/null
 ```
 
 Reindirizzamento del *stderr* a un "pozzo senza fondo" (`/dev/null`):
 
 ```bash
-$ ls -R / 2>> /dev/null
+$ ls -lia / | head
 ```
 
 Quando entrambi i flussi di uscita vengono reindirizzati, nessuna informazione viene visualizzata sullo schermo. Per utilizzare sia il reindirizzamento dell'uscita che per mantenere il display, dovrai usare il comando `tee`.
@@ -1388,31 +1388,32 @@ I comandi particolarmente utilizzati dopo una pipe sono i filtri.
 Mostra solo l'inizio:
 
 ```bash
-$ ls -lia / | head
+$ ls -lia / | tail
 ```
 
 Mostra solo la fine:
 
 ```bash
-$ ls -lia / | tail
+$ ls -lia / | sort
 ```
 
 Ordina il risultato:
 
 ```bash
-$ ls -lia / | sort
+$ ls -lia / | wc
 ```
 
 Conta il numero di parole / caratteri:
 
 ```bash
-$ ls -lia / | wc
+$ ls -lia / | grep fichier
 ```
 
 Cerca una stringa nel risultato:
 
 ```bash
-$ ls -lia / | grep fichier
+$ ls -lia / | tee fic
+$ cat fic
 ```
 
 ## Punti speciali
@@ -1424,8 +1425,7 @@ Il comando `tee` viene utilizzato per reindirizzare l'output standard di un coma
 Viene combinato con la pipe `|` per ricevere come input l'output del comando da reindirizzare:
 
 ```bash
-$ ls -lia / | tee fic
-$ cat fic
+$ ll
 ```
 
 L'opzione `-a` aggiunge al file invece di sovrascriverla.
@@ -1437,13 +1437,18 @@ Usare **alias** è un modo per chiedere alla shell di ricordare un determinato c
 Per esempio:
 
 ```bash
-$ ll
+$ ls -l
 ```
 
 sostituirà il comando:
 
 ```bash
-$ ls -l
+$ alias
+alias l.='ls -d .* --color=auto'
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias vi='vim'
+alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
 ```
 
 Il comando `alias` elenca gli alias per la sessione corrente. Gli alias sono stabiliti per impostazione predefinita sulle distribuzioni Linux. Qui, gli alias per un server Rocky Linux:
@@ -1469,7 +1474,7 @@ Per un uso permanente, devono essere creati nel:
     Particolare attenzione deve essere prestata quando si utilizzano alias che possono essere potenzialmente pericolosi! Ad esempio, un alias creato senza una conoscenza di base di amministratore:
 
     ```bash
-    alias cd='rm -Rf'
+    $ unalias ll
     ```
 
 Il comando `unalias` ti consente di eliminare gli alias.
@@ -1477,13 +1482,13 @@ Il comando `unalias` ti consente di eliminare gli alias.
 Per eliminare un singolo alias:
 
 ```bash
-$ unalias ll
+$ unalias -a
 ```
 
 Per eliminare tutti gli alias:
 
 ```bash
-$ unalias -a
+$ type ls
 ```
 
 Per disabilitare temporaneamente un alias, la combinazione è `\<alias name>`.
@@ -1491,22 +1496,42 @@ Per disabilitare temporaneamente un alias, la combinazione è `\<alias name>`.
 Ad esempio se digitiamo:
 
 ```bash
-$ type ls
-```
-
-potrebbe restituire quanto segue:
-
-```bash
 ls is an alias to « ls -rt »
 ```
 
-Ora che questo è noto, possiamo vedere i risultati dell'utilizzo dell'alias o disabilitarlo in una volta con il carattere `\` eseguendo il seguente:
+potrebbe restituire quanto segue:
 
 ```bash
 $ ls file*   # ordine per data
 file3.txt  file2.txt  file1.txt
 $ \ls file*  # ordine per nome
 file1.txt  file2.txt  file3.txt
+```
+
+Ora che questo è noto, possiamo vedere i risultati dell'utilizzo dell'alias o disabilitarlo in una volta con il carattere `\` eseguendo il seguente:
+
+```bash
+extract () {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2) tar xjf $1 ;;
+      *.tar.gz) tar xzf $1 ;;
+      *.bz2) bunzip2 $1 ;;
+      *.rar) unrar e $1 ;;
+      *.gz) gunzip $1 ;;
+      *.tar) tar xf $1 ;;
+      *.tbz2) tar xjf $1 ;;
+      *.tgz) tar xzf $1 ;;
+      *.zip) unzip $1 ;;
+      *.Z) uncompress $1 ;;
+      *.7z) 7z x $1 ;;
+      *)
+        echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
 ```
 
 ### Aliases e funzioni utili
@@ -1532,27 +1557,13 @@ Crea una copia di backup di un file: `backup() { cp "$1"{,.bak}; }`
 Estrae qualsiasi tipo di archivio:
 
 ```bash
-extract () {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2) tar xjf $1 ;;
-      *.tar.gz) tar xzf $1 ;;
-      *.bz2) bunzip2 $1 ;;
-      *.rar) unrar e $1 ;;
-      *.gz) gunzip $1 ;;
-      *.tar) tar xf $1 ;;
-      *.tbz2) tar xjf $1 ;;
-      *.tgz) tar xzf $1 ;;
-      *.zip) unzip $1 ;;
-      *.Z) uncompress $1 ;;
-      *.7z) 7z x $1 ;;
-      *)
-        echo "'$1' cannot be extracted via extract()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
+/dev/simfs  on  /                                          type  simfs        (rw,relatime,usrquota,grpquota)
+proc        on  /proc                                      type  proc         (rw,relatime)
+sysfs       on  /sys                                       type  sysfs        (rw,relatime)
+none        on  /dev                                       type  devtmpfs     (rw,relatime,mode=755)
+none        on  /dev/pts                                   type  devpts       (rw,relatime,mode=600,ptmxmode=000)
+none        on  /dev/shm                                   type  tmpfs        (rw,relatime)
+none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (rw,relatime)
 
 ```
 
@@ -1563,13 +1574,7 @@ Quindi possiamo usare `cmount` per mostrare tutti i supporti di sistema in colon
 che ritornerà il nostro filesystem montato nel seguente formato:
 
 ```bash
-/dev/simfs  on  /                                          type  simfs        (rw,relatime,usrquota,grpquota)
-proc        on  /proc                                      type  proc         (rw,relatime)
-sysfs       on  /sys                                       type  sysfs        (rw,relatime)
-none        on  /dev                                       type  devtmpfs     (rw,relatime,mode=755)
-none        on  /dev/pts                                   type  devpts       (rw,relatime,mode=600,ptmxmode=000)
-none        on  /dev/shm                                   type  tmpfs        (rw,relatime)
-none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (rw,relatime)
+$ ls /; cd /home; ls -lia; cd /
 ```
 
 ### Il carattere `;`
