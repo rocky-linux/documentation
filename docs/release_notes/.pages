@@ -1,6 +1,8 @@
 ---
 nav:
-    - Current: 8_6.md
+    - ... | index*.md
+    - Current 9: 9_0.md
+    - Current 8: 8_6.md
     - ... | 8.5.md
     - ... | 8_4*.md
     - ... | 8-changelog*.md
