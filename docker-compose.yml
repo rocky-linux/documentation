@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  rockydocs:
+    image: wsoyinka/rockydocs:latest
+    volumes:
+      - type: bind
+        source: .
+        target: /documentation
+    container_name: rocky
+    ports:
+      - "8000:8000"
