@@ -8,13 +8,14 @@ services:
       args:
         VARIANT: 0-bullseye
     volumes:
-      - docs-data:/workspace/documentation-rockylinux:cached
+      - ..:/workspaces
+      - docs-data:/docs-data
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
 
     # Runs app on the same network as the rockydocs container, allows "forwardPorts" in devcontainer.json function.
-    # network_mode: service:rockydocs
+    network_mode: service:rockydocs
     # Uncomment the next line to use a non-root user for all processes.
     # user: customuser
 
@@ -27,5 +28,9 @@ services:
       - docs-data:/documentation
     ports:
       - "8000:8000"
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 15s
 volumes:
   docs-data:
