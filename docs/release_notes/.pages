@@ -1,8 +1,8 @@
 ---
 nav:
     - ... | index*.md
-    - Release 9.0: 9_0.md
-    - Release 8.6: 8_6.md
+    - Release 9.0: 9_0*.md
+    - Release 8.6: 8_6*.md
     - ... | 8.5.md
     - ... | 8_4*.md
     - ... | 8-changelog*.md
