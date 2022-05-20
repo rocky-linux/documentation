@@ -47,6 +47,6 @@ Quando la shell incontra un errore, visualizza un messaggio per identificare il 
 Che cos'è una buona script? Lo è:
 
 * **affidabile**: il suo funzionamento è impeccabile anche in caso di uso improprio;
-* **commentato**: il suo codice è annotato per facilitarne la rilettura e l'evoluzione futura;
+* **commentata**: il suo codice è annotato per facilitarne la rilettura e l'evoluzione futura;
 * **leggibile**: il codice è indentato in modo appropriato, i comandi sono distanziati, ...
-* **portabilità**: il codice viene eseguito su qualsiasi sistema Linux, gestione delle dipendenze, gestione dei diritti, ecc.
+* **portabile**: il codice viene eseguito su qualsiasi sistema Linux, gestione delle dipendenze, gestione dei diritti, ecc.
