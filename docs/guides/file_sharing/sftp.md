@@ -2,7 +2,7 @@
 title: Secure Server - sftp
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5
+tested with: 8.5, 8.6
 tags:
   - security
   - file transfer
@@ -33,6 +33,10 @@ Taking all of these steps will allow you to offer secure SFTP access for your cu
     Change root (or chroot) jails are a way to restrict what a process and all of its various child processes can do on your computer. It essentially allows you to choose a specific directory/folder on your machine, and make that the "root" dirtectory for any given process or program.
 
     From there on, that process or program can *only* access that folder and its subfolders.
+
+!!! hint "Updates for Rocky Linux 8.6"
+
+    This document has been updated to include new changes that came out with version 8.6 that will make this procedure even safer. If you are using 8.6, then there are specific sections in the document below, prefixed with "8.6 -". For clarity sake, the sections specific to Rocky Linux 8.5 have been prefixed with "8.5 - ". Other than those sections specifically prefixed, this document is generic for both versions of the OS.
 
 ## Part 1: General Information
 
@@ -290,9 +294,11 @@ Save and exit the file.
 
 Just like before, let's describe what we are doing a little here. Both the `sftp-server` and `internal-sftp` are part of OpenSSH. The `internal-sftp`, while not too different from the `sftp-server`, simplifies configurations using `ChrootDirectory` to force a different file system root on clients. So that is why we want to use `internal-sftp`.
 
-### The Template And The Script
+### 8.5 - The Template And The Script
 
 Why are we creating a template and a script for this next part? The reason is simply to avoid human error as much as possible. We aren't done modifying that `/etc/ssh/sshd_config` file yet, but we want to eliminate as many errors as possible whenever we need to make these modifications. We will create all of this in `/usr/local/sbin`.
+
+#### The Template
 
 First, let's create our template:
 
@@ -320,6 +326,8 @@ We want a directory for our user files that we will create from the template too
 ```
 mkdir /usr/local/sbin/templates
 ```
+
+#### 8.5 - The Script
 
 Now let's create our script:
 
@@ -377,16 +385,111 @@ cat /usr/local/sbin/templates/$dom.txt >> /etc/ssh/sshd_config
 echo " "
 echo "Please check the status of sshd with systemctl status sshd."
 echo "You can verify that your information was added to the sshd_config by doing a more of the sshd_config"
-echo "A backup of the working sshd_conf was created when this script was run: sshd_config.bak"
+echo "A backup of the working sshd_config was created when this script was run: sshd_config.bak"
 ```
+
+### 8.6 - The Template And The Script
+
+With the release of Rocky Linux 8.6, a new option is available for the `sshd_config` file that allows for drop in configurations. This is a **GREAT** change. What this means is that for 8.6, we will make a single additional change to the `sshd_config` file, and then our script will build out sftp changes in a separate configuration file. While the 8.5 procedure above is pretty darned safe, this new change makes things even safer. Safety is good!!
+
+#### 8.6 The Template
+
+There are no changes between 8.5 and 8.6 as far as the template is concerned. So use [that procedure above](#the-template) and then return here for the script.
+
+#### 8.6 - The Script and `sshd_config` Changes
+
+Because of the changes allowed for the `sshd_config` file in Rocky Linux 8.6, our script will use a new drop in configuration file: `/etc/ssh/sftp/sftp_config`.
+
+To start with, create that directory:
+
+```
+mkdir /etc/ssh/sftp
+```
+
+Now make a backup copy of the `sshd_config`:
+
+```
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+```
+
+And finally edit the `sshd_config` file, scroll to the very bottom of the file, and add this line:
+
+```
+Include /etc/ssh/sftp/sftp_config
+```
+
+Save your changes and exit the file. We will need to restart `sshd` but our script will do that for us after we update `sftp_config` file, so let's create the script and run it.
+
+```
+vi /usr/local/sbin/webuser
+```
+
+And put this code in it:
+
+```
+#!/bin/bash
+# script to populate the SSHD configuration for web users.
+
+# Set variables
+
+tempfile="/usr/local/sbin/sshd_template"
+dompath="/var/www/sub-domains/"
+
+# Prompt for user and domain in reverse (ext.domainname):
+
+clear
+
+echo -n "Enter the web sftp user: "
+read sftpuser
+echo -n "Enter the domain in reverse. Example: com.domainname: "
+read dom
+echo -n "Is all of this correct: sftpuser = $sftpuser and domain = $dom (Y/N)? "
+read yn
+if [ "$yn" = "n" ] || [ "$yn" = "N" ]
+then
+	exit
+fi
+if [ "$yn" = "y" ] || [ "$yn" = "Y" ]
+then
+	/usr/bin/cat $tempfile > /usr/local/sbin/templates/$dom.txt
+	/usr/bin/sed -i "s,replaceuser,$sftpuser,g" /usr/local/sbin/templates/$dom.txt
+	/usr/bin/sed -i "s,replacedirectory,$dompath$dom,g" /usr/local/sbin/templates/$dom.txt
+	/usr/bin/chown -R $sftpuser.apache $dompath$dom/html
+fi
+
+## Make a backup of /etc/ssh/sftp/sftp_config
+
+/usr/bin/rm -f /etc/ssh/sftp/sftp_config.bak
+
+/usr/bin/cp /etc/ssh/sftp/sftp_config /etc/ssh/sftp/sftp_config.bak
+
+## Now append our new user information to to the file
+
+cat /usr/local/sbin/templates/$dom.txt >> /etc/ssh/sftp/sftp_config
+
+## Restart sshd
+
+/usr/bin/systemctl restart sshd
+
+echo " "
+echo "Please check the status of sshd with systemctl status sshd."
+echo "You can verify that your information was added by doing a more of the sftp_config"
+echo "A backup of the working sftp_config was created when this script was run: sftp_config.bak"
+```
+
+### Final Changes and Script Notes for both 8.5 and 8.6
 
 !!! tip
 
-    If you take a look at the script above, you will note that we have changed the delimiter that `sed` uses by default from `/` to `,`. `sed` allows you to use any single-byte character as a delimiter. What we are searching for in the file has a bunch of "/" characters in it, and we would have had to escape each one (add a "\\" in front of them) to search and replace these strings. Changing the delimiter makes this infinitely easier to do because it eliminates the need to do those escapes.
+    If you take a look at either of the scripts above, you will note that we have changed the delimiter that `sed` uses by default from `/` to `,`. `sed` allows you to use any single-byte character as a delimiter. What we are searching for in the file has a bunch of "/" characters in it, and we would have had to escape each one (add a "\" in front of them) to search and replace these strings. Changing the delimiter makes this infinitely easier to do because it eliminates the need to do those escapes.
 
-A couple of things to know about the script and about an SFTP change root in general. First, we are prompting for the needed information and then echoing it back to the user so they can verify it. If we answer "N" to the confirmation question, the script bails and does nothing. The script makes a backup of `sshd_config` the way it was prior to our running of the script. In this way, if we screw something up with an entry, we can simply restore `/etc/ssh/sshd_config.bak` to `sshd_config` and restart `sshd` to get things working again.
+A couple of things to know about the script and about an SFTP change root in general. First, we are prompting for the needed information and then echoing it back to the user so they can verify it. If we answer "N" to the confirmation question, the script bails and does nothing. The script for 8.5 makes a backup of `sshd_config` (`/etc/ssh/sshd_config.bak`) the way it was prior to our running of the script. The 8.6 script does the same for the `sftp_config` file (`/etc/ssh/sftp/sftp_config.bak`). In this way, if we screw something up with an entry, we can simply restore the appropriate backup file and then restart `sshd` to get things working again.
 
 The SFTP change root requires that the path given in the `sshd_config` is owned by root. For this reason we do not need the `html` directory added to the end of the path. Once the user is authenticated, the change root will switch the user's home directory, in this case the `../html`, directory to whichever domain we are entering. Our script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
+
+!!! attention "Script Compatibility"
+
+    While you can use the script that we created for Rocky Linxux 8.5 on either 8.5 or 8.6 successfully, the same cannot be said for the 8.6 script. Since the drop in configuration file option (`Include` directive) was not enabled in 8.5, attempting to use the 8.6 script in Rocky Linux 8.5 will fail.
 
 Now that our script is created, let's make it executable:
 
