@@ -268,7 +268,7 @@ questo ci darà:
      Backup Script - Backup on desktop                      
 ****************************************************************
 The backup will be made in the folder backup-088.
-Creazione della directory...
+Creating the directory...
 Starting the backup of /etc/passwd, /etc/shadow, /etc/group, /etc/gshadow to /root/backup-088:
 Backup ended!
 ```
