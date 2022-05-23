@@ -100,7 +100,7 @@ o con :
 
 Questa prima riga si chiama "`shebang`". Inizia con i caratteri `#!` seguiti dal percorso del binario dell'interprete dei comandi da utilizzare.
 
-!!! accenno "Sullo shebang"
+!!! hint "Sullo shebang"
 
     Può capitare di incontrare lo "shebang" in uno script che non contiene la sezione "env" e contiene semplicemente l'interprete da usare. (Esempio: `#!/bin/bash`). Il metodo dell'autore è considerato il modo raccomandato e corretto per formattare il "shebang".
     
