@@ -224,45 +224,43 @@ Here are some examples of usage:
 
 * `repoquery` command:
 
-The `repoquery` command queries the repositories.
+The `repoquery` command is used to query the packages in the repository.
 
 Examples of use:
 
-  * Knowing the dependencies of an uninstalled package:
+  * Knowing the dependencies of an  package(it can be a software package that has been installed or not installed), Equivalent to `dnf deplist <package-name>`.
+    
+    repoquery --requires <package-name>
 
-```
-repoquery --requires <package>
-```
+  * Know the files provided by a installed package(does not work for packages that are not installed), Equivalent to `rpm -ql <package-name>`
 
-  * Know the files provided by a non-installed package:
-
-```
-$ repoquery -l yum-utils
-/etc/bash_completion.d
-/etc/bash_completion.d/yum-utils.bash
-/usr/bin/debuginfo-install
-/usr/bin/find-repos-of-install
-/usr/bin/needs-restarting
-/usr/bin/package-cleanup
-/usr/bin/repo-graph
-/usr/bin/repo-rss
-/usr/bin/repoclosure
-/usr/bin/repodiff
-/usr/bin/repomanage
-/usr/bin/repoquery
-/usr/bin/reposync
-/usr/bin/repotrack
-/usr/bin/show-changed-rco
-/usr/bin/show-installed
-/usr/bin/verifytree
-/usr/bin/yum-builddep
-/usr/bin/yum-config-manager
-/usr/bin/yum-debug-dump
-/usr/bin/yum-debug-restore
-/usr/bin/yum-groups-manager
-/usr/bin/yumdownloader
-…
-```
+    ```
+    $ repoquery -l yum-utils
+    /etc/bash_completion.d
+    /etc/bash_completion.d/yum-utils.bash
+    /usr/bin/debuginfo-install
+    /usr/bin/find-repos-of-install
+    /usr/bin/needs-restarting
+    /usr/bin/package-cleanup
+    /usr/bin/repo-graph
+    /usr/bin/repo-rss
+    /usr/bin/repoclosure
+    /usr/bin/repodiff
+    /usr/bin/repomanage
+    /usr/bin/repoquery
+    /usr/bin/reposync
+    /usr/bin/repotrack
+    /usr/bin/show-changed-rco
+    /usr/bin/show-installed
+    /usr/bin/verifytree
+    /usr/bin/yum-builddep
+    /usr/bin/yum-config-manager
+    /usr/bin/yum-debug-dump
+    /usr/bin/yum-debug-restore
+    /usr/bin/yum-groups-manager
+    /usr/bin/yumdownloader
+    …
+    ```
 
 * `yumdownloader` command:
 
