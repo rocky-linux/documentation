@@ -264,16 +264,18 @@ Examples of use:
 
 * `yumdownloader` command:
 
-The `yumdownloader` command downloads RPM packages from the repositories.
+The `yumdownloader` command downloads RPM packages from the repositories.  Equivalent to `dnf download --downloadonly --downloaddir ./  package-name`
 
 !!! Note
 
-    This command is very useful to quickly build a local repository of a few rpm!
+    This command is very useful to quickly build a local repository of a few rpms!
 
-Example: `yumdownloader` will download the _repoquery_ rpm package and all its dependencies:
+Example: `yumdownloader` will download the _samba_ rpm package and all its dependencies:
 
 ```
-$ yumdownloader --destdir /var/tmp -- resolve repoquery
+$ yumdownloader --destdir /var/tmp --resolve samba
+or
+$ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 ```
 
 | Options     |  Comments                                                       |
