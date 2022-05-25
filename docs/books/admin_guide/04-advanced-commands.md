@@ -268,7 +268,7 @@ The `yumdownloader` command downloads RPM packages from the repositories.  Equiv
 
 !!! Note
 
-    This command is very useful to quickly build a local repository of a few rpm!
+    This command is very useful to quickly build a local repository of a few rpms!
 
 Example: `yumdownloader` will download the _samba_ rpm package and all its dependencies:
 
