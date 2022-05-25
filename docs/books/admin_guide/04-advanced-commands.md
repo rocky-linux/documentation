@@ -228,11 +228,11 @@ The `repoquery` command is used to query the packages in the repository.
 
 Examples of use:
 
-  * Knowing the dependencies of an  package(it can be a software package that has been installed or not installed), Equivalent to `dnf deplist <package-name>`.
+  * Display the dependencies of an  package(it can be a software package that has been installed or not installed), Equivalent to `dnf deplist <package-name>`.
     
     repoquery --requires <package-name>
 
-  * Know the files provided by a installed package(does not work for packages that are not installed), Equivalent to `rpm -ql <package-name>`
+  * Display the files provided by a installed package(does not work for packages that are not installed), Equivalent to `rpm -ql <package-name>`
 
     ```
     $ repoquery -l yum-utils

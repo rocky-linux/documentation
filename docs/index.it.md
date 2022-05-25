@@ -1,7 +1,7 @@
 ---
 title: Home
 ---
-# Documentazione Rocky Linux
+[^1]# Documentazione Rocky Linux
 
 ## Benvenuto!
 
