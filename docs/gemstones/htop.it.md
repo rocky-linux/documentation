@@ -93,5 +93,5 @@ Per gestire il processo, utilizzare il tasto <kbd>F9</kbd> per inviare diversi s
 | 9       | Usato per terminare immediatamente l'esecuzione del programma, usato per terminare forzatamente il processo, simile alla fine forzata nella barra delle applicazioni di Windows                     |
 | 15      | Il segnale predefinito per il comando kill. A volte, se si è verificato un problema nel processo e il processo non può essere terminato normalmente con questo segnale, si proverà con il segnale 9 |
 
-## End
+## Fine
 `htop` è molto più facile da usare rispetto al `top` fornito con il sistema, è più intuitivo e migliora notevolmente l'uso quotidiano. Per questo motivo, di solito l'autore lo installa per primo dopo aver installato il sistema operativo.
