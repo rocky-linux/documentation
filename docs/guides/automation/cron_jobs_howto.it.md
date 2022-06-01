@@ -2,7 +2,11 @@
 title: cron - Automatizzare i comandi
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-update: 2022-02-13
+tested on: 8.5
+tags:
+  - automazione del lavoro
+  - automazione
+  - cron
 ---
 
 # Automatizzare i Processi con `cron` e `crontab`
@@ -144,7 +148,7 @@ Questo dice di eseguire lo script alle 10 PM, ogni giorno del mese, ogni mese e 
 
 ### Le @options per `crontab`
 
-Un altro modo per eseguire i lavori ad un orario strettamente programmato (cioè, giorno, settimana, mese, anno, ecc.) è quello di utilizzare le @options che offrono la possibilità di utilizzare tempi più naturali. Le @options consistono in:
+Un altro modo per eseguire i lavori a un orario strettamente programmato (cioè, giorno, settimana, mese, anno, ecc.) è quello di usare le @options, che offrono la capacità di usare tempistiche più naturali. Le @options consistono in:
 
 * `@hourly` esegue lo script ogni ora di ogni giorno a 0 minuti dopo l'ora. (questo è esattamente il risultato di mettere il tuo script anche in `/etc/cron.hourly` )
 * `@daily` esegue lo script ogni giorno a mezzanotte.
