@@ -2,3 +2,4 @@
 nav:
     - ... | index*.md
     - System Security Labs: security
+    - System Administration Labs: sys_admin_1
