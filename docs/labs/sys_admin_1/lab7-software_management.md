@@ -59,7 +59,7 @@ Query options (with -q or --query):
   -s, --state                        display the states of the listed files
 ```
 
-** VERIFYING PACKAGES **
+**VERIFYING PACKAGES**
 
 ```
 Verify options (with -V or --verify):
@@ -70,7 +70,7 @@ Verify options (with -V or --verify):
 
 ```
 
-** INSTALLING, UPGRADING, AND REMOVING PACKAGES **
+**INSTALLING, UPGRADING, AND REMOVING PACKAGES**
 
 ```
 Install/Upgrade/Erase options:
