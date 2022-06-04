@@ -45,7 +45,7 @@ Some popular command-line options and syntax for the RPM command are listed next
 
 Usage: rpm [OPTION...]
 
-### QUERYING PACKAGES
+**QUERYING PACKAGES**
 
 ```
 Query options (with -q or --query):
@@ -59,7 +59,7 @@ Query options (with -q or --query):
   -s, --state                        display the states of the listed files
 ```
 
-### VERIFYING PACKAGES
+** VERIFYING PACKAGES **
 
 ```
 Verify options (with -V or --verify):
@@ -70,7 +70,7 @@ Verify options (with -V or --verify):
 
 ```
 
-### INSTALLING, UPGRADING, AND REMOVING PACKAGES:
+** INSTALLING, UPGRADING, AND REMOVING PACKAGES **
 
 ```
 Install/Upgrade/Erase options:
@@ -218,6 +218,7 @@ $ rpm -ql curl
 
 
 ### Exercise 2
+
 #### Package integrity
 
 1.  It is possible to download or end up with a corrupted or tainted file. Verify the integrity of the wget package that you downloaded. Type:
