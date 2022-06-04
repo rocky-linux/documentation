@@ -102,7 +102,7 @@ Install/Upgrade/Erase options:
 In this Lab you will learn how to use the RPM system and you will also install a sample application on your system.
 
 !!! TIP:
-    You have lots of options per where to obtain Rocky Linux packages from. You can manually download them from trusted [or untrusted] repositories. You can get them from the distribution ISO. You can get them from a centrally shared location using protocols such as - nfs, git, https, ftp, smb, cifs and so on. If you are curious you can view the following official website and browse through the applicable repository for the desired package(s)  :
+    You have lots of options per where to obtain Rocky Linux packages from. You can manually download them from trusted [or untrusted] repositories. You    can get them from the distribution ISO. You can get them from a centrally shared location using protocols such as - nfs, git, https, ftp, smb, cifs and so  on. If you are curious you can view the following official website and browse through the applicable repository for the desired package(s)  :
     https://download.rockylinux.org/pub/rocky/8.5/
 
 
@@ -131,8 +131,8 @@ Epoch       : 1
 ```
 That's a lot of information (metadata)!
 
-3.  Let's say we are only interested in the Summary field of the previous command. We can use rpm's query format option filter the information that we get back from the query option. 
-For example to view only the summary field , type:
+3.  Let's say we are only interested in the Summary field of the previous command. We can use rpm's query format option filter the information that we get  back from the query option.
+ For example to view only the summary field , type:
    
 ```
 $ rpm -q --queryformat '%{summary}\n' NetworkManager
@@ -147,9 +147,10 @@ $ rpm -q --queryformat '%{version}  %{summary}\n' NetworkManager
 5.  Type the command to view information about the bash package that is installed on the system.
 
 !!! NOTE
-    The previous exercises were querying and working with packages that are already installed on the system. In the following exercises, we'll start off working with packages that are not yet installed.We'll use the DNF application to download the packages that we'll be using in the next steps.
+    The previous exercises were querying and working with packages that are already installed on the system. In the following exercises, we'll start off  working with packages that are not yet installed.We'll use the DNF application to download the packages that we'll be using in the next steps.
 
 6.  First check to make sure that wget application is not already installed on the system. Type:
+
  ```
 $ rpm -q wget
     package wget is not installed
@@ -158,14 +159,16 @@ Great! It looks like wget is not installed on our demo system.
 
 1. The curl utility is a popular open source application used for transfering data. 
    Let's use curl to download the wget package from the official Rocky Linux online repository. Type:
+
 ```
 curl --output "wget-1.19.5-10.el8.x86_64.rpm" \
 http://download.rockylinux.org/pub/rocky/8.5/AppStream/x86_64/os/Packages/w/wget-1.19.5-10.el8.x86_64.rpm
 ```
 8. Use the ls command to make sure that the package was downloaded into your current directory. Type:
-    ```
-    $ ls -lh wg*
-    ```
+
+```
+$ ls -lh wg*
+```
 
 2. Use the rpm command to query for information about the downloaded wget-*.rpm. Type:
 
@@ -249,10 +252,9 @@ Very different message now. The output "DIGESTS SIGNATURES NOT OK" is a clear wa
 
 4.  Use the rm command to delete the corrupted wget package file and download a fresh copy using dnf. Type:
     
-    ```
-    $ rm wget-*.rpm  && dnf download wget
-    ```
-
+```
+$ rm wget-*.rpm  && dnf download wget
+```
 Check one more time that the newly downloaded package passes RPMs integrity checks. 
 
 
@@ -273,6 +275,7 @@ The low level RPM utility often knows about the inter-depencies between applicat
 In this exercise you will try to install the wget package (wget-*.rpm).
 
 1. Try installing the wget application. Use RPM's -ivh commandline options. Type:
+
 ```
 $ rpm -ivh wget-*.rpm
 error: Failed dependencies:
@@ -288,32 +291,34 @@ Right out the gate - a dependency problem! The sample output shows that wget nee
 
 2. RPM has helpfully given us a hint for what's missing. You'll remember that rpm knows the whats and hows but does not necessarily know the wheres. Let's use the dnf utility to try to figure out the package name that provides the missing library. Type:
     
-    ```
-    $ dnf whatprovides libmetalink.so.3
+```
+$ dnf whatprovides libmetalink.so.3
 ...<TRUNCATED>...
 libmetalink-* : Metalink library written in C
 Repo        : baseos
 Matched from:
 Provide    : libmetalink.so.3
-    ```
+```
+
 3. From the output, we need to download the libmetalink package which provides the missing liberary. 
 Specificvally we want the 64bit version of the library. 
 Let's call on a separate utility (dnf) to help us find and download the package for our demo 64bit (x86_64) architecture . Type:
 
 ```
- dnf download --arch x86_64  libmetalink
+dnf download --arch x86_64  libmetalink
 
 ```
 4. You should now have at least 2 rpm packages in your working directory. Use the ls command to confirm this.
+
 5. Installing the missing libmetalink dependency. Type:
     
-    ```
-    $ sudo rpm -ivh libmetalink-*.rpm
-    ```
+```
+$ sudo rpm -ivh libmetalink-*.rpm
+```
 
 6. With the dependency now installed, we can now revisit our original objective of installing the wget package. Type:
 
-    ```
+```
     $ sudo rpm -ivh wget-*.rpm
     ```
     
