@@ -220,9 +220,9 @@ $ rpm -ql curl
     You'll notice that you didn't have to refer to the full name of the curl package in the previous command. This is because curl is already installed. 
 
 
-### Exercise 2
+## Exercise 2
 
-#### Package integrity
+### Package integrity
 
 1.  It is possible to download or end up with a corrupted or tainted file. Verify the integrity of the wget package that you downloaded. Type:
 
@@ -258,9 +258,9 @@ $ rm wget-*.rpm  && dnf download wget
 Check one more time that the newly downloaded package passes RPMs integrity checks. 
 
 
-### Exercise 3
+## Exercise 3
 
-##### Installing Packages
+### Installing Packages
 
 While trying to install software on your system, you might stumble on issues of “failed dependencies”. This is especially common when using the low-level RPM utility to manually manage applications on a system.
 
@@ -270,7 +270,7 @@ The issue of dependencies comes up because software applications almost always d
 
 The low level RPM utility often knows about the inter-depencies between applications. But it does not usually know how or where to obtain the application or library needed to resolve the issue. Stated another way, RPM knows the *what* and *how* but does not have the built-in ability to answer the *where* question. This is where tools like DNF, yum and so on shine. 
 
-##### To install packages
+#### To install packages
 
 In this exercise you will try to install the wget package (wget-*.rpm).
 
@@ -328,9 +328,9 @@ $ sudo rpm -ivh libmetalink-*.rpm
 
 7. Moment of truth now. Try running the wget program without any option to see if it is installed. Type:
 
-    ```
-    $ wget
-    ```
+```
+$ wget
+```
 8. Let's see wget in action. Use wget to download a file from the internet from the command line. Type:
     
 9. Use rpm to view a list of all the files that come with the wget application. 
@@ -350,12 +350,11 @@ Que: What gives ? Why can't you run or execute libmetalink ?
 
 
 
-##### To import a public key via rpm
+#### To import a public key via rpm
 
 !!! TIP:
-    The GPG keys used for signing packages used in the Rocky Linux project can be obtained from various sources such as - the Project website, ftp site,  distribution media, local source and so on. 
-    Just in case the proper key is missing on your RL system's keyring, you can use the `rpm`'s `--import` option to import Rocky Linux’s public key from your local RL system by running: `sudo  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial`
- 
+    The GPG keys used for signing packages used in the Rocky Linux project can be obtained from various sources such as - the Project website, ftp site,    distribution media, local source and so on. 
+    Just in case the proper key is missing on your RL system's keyring, you can use the `rpm`'s `--import` option to import Rocky Linux’s public key from   your local RL system by running: `sudo  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial`
 
 
 !!! QUESTION:
@@ -363,15 +362,15 @@ Que: What gives ? Why can't you run or execute libmetalink ?
     Consult the man page for rpm.
 
 
-### Exercise 4
+## Exercise 4
 
-#### Uninstalling packages
+### Uninstalling packages
 
 Un-installing packages is just as easy as installing, with Red Hat’s package manager (RPM).
 
 In this exercise you will try to use rpm to un-install some packages from the system.
 
-##### To un-install packages
+#### To un-install packages
 
 1. Un-install the libmetalink package from your system. Type:
 
@@ -399,9 +398,9 @@ $ sudo rpm -e libmetalink wget
     iii. Forcefully removing a package “xyz” that another installed package “abc” relies on effectively makes package “abc” unusable or somewhat broken.
 
 
-### Exercise 5
+## Exercise 5
 
-#### DNF - Package Manager
+### DNF - Package Manager
 
  DNF is a package manager for RPM-based Linux distributions. It is the successor to the popular YUM utility. DNF maintains compatibility with YUM and both utilities share very similar command-line options and syntax.
 
@@ -448,7 +447,7 @@ upgrade-minimal           upgrade, but only 'newest' package match which fixes a
 
 ```
 
-##### To use dnf for package installation
+#### To use dnf for package installation
 
 Assuming you've already uninstalled the wget utility from an exercise, we'll use DNF to install the package in the following steps. The 2 - 3 step process that we needed earlier when we installed wget via rpm should be reduced to a one steps process using dnf. 
 dnf will quietly take care of resolving any dependencies.
@@ -468,7 +467,6 @@ Dependencies resolved.
 ...<TRUNCATED>...
 Installed:
 libmetalink-*           wget-*
-
 Complete!
 ```
 !!! TIP:
@@ -485,13 +483,11 @@ $ dnf group list
    $ dnf group info "Development Tools"
    ```
 3. Later on, we are going to need some programs that come with the Development Tools group. Install the "Development Tools" group using dnf by running:
-   ```
-   $ sudo dnf -y group install "Development Tools"
-   ```
-4. 
+```
+$ sudo dnf -y group install "Development Tools"
+```
 
-
-##### To use dnf for uninstalling packages
+#### To use dnf for uninstalling packages
 
 
 1.  To use dnf to un-install the wget package type:
@@ -512,7 +508,7 @@ $ wget
 ```
 
 
-##### To use dnf for package update
+#### To use dnf for package update
 DNF can be used to check for and install the latest version of individual packages that are available in repositories. It can also be used to install specific versions of packages. 
 
 1. Use the list option with dnf to view all available versions of the wget program that are available for your system. Type
@@ -546,7 +542,7 @@ $ dnf  --security check-update kernel
 ```
 
 
-##### To use dnf for system updates
+#### To use dnf for system updates
 
 DNF can be used to check for and install the latest versions all packages installed on a system. Periodically checking for installing updates is an important aspect of system administration. 
 
@@ -568,10 +564,9 @@ $ dnf --security check-update
 $ dnf -y check-update
 ```
 
+## Exercise 6
 
-### Exercise 6
-
-#### Building Software from Source
+### Building Software from Source
 
 All software/applications/packages originate from plain human-readable text files. The files are collectively known as source code. The RPM packages that are installed on Linux distros are born from source code. 
 
@@ -583,14 +578,14 @@ You can learn more about the project here - http://www.gnu.org/software/hello/he
 
 
 
-##### To download the source file
+#### To download the source file
 
 1.  Use curl to download the latest source code for the hello application. Let's download and save the file in the Downloads folder. 
 
 https://ftp.gnu.org/gnu/hello/hello-2.12.tar.gz
 
 
-##### To un-tar the file
+#### To un-tar the file
 
 1. Change to the directory on your local machine where you downloaded the hello source code.
 
@@ -625,7 +620,7 @@ $ less INSTALL
 
 Exit the pager when you are done reviewing the file.
 
-##### To configure the package
+#### To configure the package
 
 Most applications have features that can be enabled or disabled by the user. This is one of the benefits of having access to the source code and being able to install from same. You have control over configurable features that the application has; this is in contrast to accepting everything a package manager installs from pre-compiled binaries.
 
@@ -654,11 +649,11 @@ $ ./configure
 
     configure: error: no acceptable C compiler found in $PATH
 
-    The above error simply means that you don’t have a  C Compiler (e.g. gcc) installed on the system or the compiler is installed somewhere that is not in your PATH variable.
+    The above error simply means that you don’t have a  C Compiler (e.g. gcc) installed on the system or the compiler is installed somewhere that is not  in your PATH variable.
 
 
 
-##### To compile the package
+#### To compile the package
 
 You will build the hello application in the following steps. This is where some of the programs that come with the Development Tools group that you installed earlier using DNF come in handy. 
 
@@ -676,7 +671,7 @@ If all goes well - this important make step is the step that will help generate 
 
 2. List the files in your current working directory again. You should see some newly created files in there including the hello program.
 
-##### To install the applictaion
+#### To install the applictaion
 
 Amongst other house keeping tasks, the final installation step also involves copying any application binaries and libraries over to the proper folders. 
 
@@ -687,7 +682,7 @@ $ sudo make install
 ```
 This will install package into the location specified by the default prefix (--prefix) argument that may have been used with the “configure” script earlier. If no --prefix was set, a default prefix of `/usr/local/` will be used. 
 
-##### To run the hello program
+#### To run the hello program
 
 
 1. Use the whereis command to see where the hello program is on your system. Type:
