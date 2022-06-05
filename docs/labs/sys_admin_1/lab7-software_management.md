@@ -306,11 +306,11 @@ Let's call on a separate utility (dnf) to help us find and download the package 
 
 ```
 dnf download --arch x86_64  libmetalink
-
 ```
+
 4. You should now have at least 2 rpm packages in your working directory. Use the ls command to confirm this.
 
-5. Installing the missing libmetalink dependency. Type:
+5. Install the missing libmetalink dependency. Type:
     
 ```
 $ sudo rpm -ivh libmetalink-*.rpm
@@ -319,11 +319,11 @@ $ sudo rpm -ivh libmetalink-*.rpm
 6. With the dependency now installed, we can now revisit our original objective of installing the wget package. Type:
 
 ```
-    $ sudo rpm -ivh wget-*.rpm
-    ```
+$ sudo rpm -ivh wget-*.rpm
+```
     
 !!! NOTE
-     RPM supports transactions. In the previous exercises we could have performed a single rpm transaction that included the original package we wanted to install (i.e. ) as well as all the packages and libraries it depends on. A single command such as the one below would have sufficed:
+    RPM supports transactions. In the previous exercises we could have performed a single rpm transaction that included the original package we wanted to     install (i.e. ) as well as all the packages and libraries it depends on. A single command such as the one below would have sufficed:
     `$  rpm -Uvh  wget-*.rpm  libmetalink-*.rpm`
 
 7. Moment of truth now. Try running the wget program without any option to see if it is installed. Type:
@@ -331,8 +331,14 @@ $ sudo rpm -ivh libmetalink-*.rpm
 ```
 $ wget
 ```
+
 8. Let's see wget in action. Use wget to download a file from the internet from the command line. Type:
-    
+
+```
+wget  https://kernel.org
+```
+This will download the default index.html from kernel.org website! 
+
 9. Use rpm to view a list of all the files that come with the wget application. 
     
 10. Use rpm to view any documentation that comes packaged with wget. Type:
@@ -346,7 +352,7 @@ $ libmetalink
 -bash: libmetalink: command not found
 ```
 
-Que: What gives ? Why can't you run or execute libmetalink ?
+!!! Que: What gives ? Why can't you run or execute libmetalink ?
 
 
 
@@ -356,11 +362,9 @@ Que: What gives ? Why can't you run or execute libmetalink ?
     The GPG keys used for signing packages used in the Rocky Linux project can be obtained from various sources such as - the Project website, ftp site,    distribution media, local source and so on. 
     Just in case the proper key is missing on your RL system's keyring, you can use the `rpm`'s `--import` option to import Rocky Linux’s public key from   your local RL system by running: `sudo  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial`
 
-
 !!! QUESTION:
     When installing packages, what's the difference between `rpm -Uvh` and `rpm -ivh`. 
     Consult the man page for rpm.
-
 
 ## Exercise 4
 
