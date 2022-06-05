@@ -15,7 +15,7 @@ Estimated time to complete this lab: 90 minutes
 
 
 
-## BINARY FILES AND SOURCE FILES
+## Binary files and source files
 
 The applications that you currently have installed on your system are dependent on a few factors. The major factor is dependent on the software package groups that were selected during the Operating system installation. The other factor is dependent on what has been done to the system since its been in use.
 
@@ -41,7 +41,7 @@ The applications used for managing software on Linux distros are called package 
 
 Some popular command-line options and syntax for the RPM command are listed next:
 
-## rpm
+**rpm**
 
 Usage: rpm [OPTION...]
 
@@ -95,9 +95,9 @@ Install/Upgrade/Erase options:
       --reinstall=<packagefile>+     reinstall package(s)
 ```
 
-### Exercise 1
+## Exercise 1
 
-#### Installing, Querying and Uninstalling Packages
+### Installing, Querying and Uninstalling Packages
 
 In this Lab you will learn how to use the RPM system and you will also install a sample application on your system.
 
@@ -106,7 +106,7 @@ In this Lab you will learn how to use the RPM system and you will also install a
     https://download.rockylinux.org/pub/rocky/8.5/
 
 
-##### To query packages for information.
+#### To query packages for information.
 
 1.  To see a list of all the packages currently install on your local system type:
 
@@ -151,13 +151,13 @@ $ rpm -q --queryformat '%{version}  %{summary}\n' NetworkManager
 
 6.  First check to make sure that wget application is not already installed on the system. Type:
 
- ```
-$ rpm -q wget
-    package wget is not installed
 ```
-Great! It looks like wget is not installed on our demo system.
+$ rpm -q wget
+package wget is not installed
+```
+It looks like wget is not installed on our demo system.
 
-1. The curl utility is a popular open source application used for transfering data. 
+7. The curl utility is a popular open source application used for transfering data. 
    Let's use curl to download the wget package from the official Rocky Linux online repository. Type:
 
 ```
@@ -170,7 +170,7 @@ http://download.rockylinux.org/pub/rocky/8.5/AppStream/x86_64/os/Packages/w/wget
 $ ls -lh wg*
 ```
 
-2. Use the rpm command to query for information about the downloaded wget-*.rpm. Type:
+9. Use the rpm command to query for information about the downloaded wget-*.rpm. Type:
 
 ```
 $ rpm -qip wget-*.rpm
