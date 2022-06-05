@@ -224,58 +224,58 @@ Voici quelques exemples d’utilisation :
 
 * la commande `repoquery` :
 
-La commande `repoquery` interroge les dépôts.
+La commande `repoquery` est utilisée pour rechercher les paquets dans le dépôt.
 
 Exemples d’utilisation :
 
-  * Connaître les dépendances d’un paquet non-installé :
+  * Affiche les dépendances d'un paquet (il peut s'agir d'un paquet logiciel qui a été installé ou non installé), Équivalent à `dnf deplist <package-name>`.
 
-```
-repoquery --requires <package>
-```
+    repoquery --requires <package-name>
 
-  * Connaître les fichiers fournis par un paquet non-installé :
+  * Affiche les fichiers fournis par un paquet installé (ne fonctionne pas pour les paquets qui ne sont pas installés), équivalent à `rpm -ql <package-name>`
 
-```
-$ repoquery -l yum-utils
-/etc/bash_completion.d
-/etc/bash_completion.d/yum-utils.bash
-/usr/bin/debuginfo-install
-/usr/bin/find-repos-of-install
-/usr/bin/needs-restarting
-/usr/bin/package-cleanup
-/usr/bin/repo-graph
-/usr/bin/repo-rss
-/usr/bin/repoclosure
-/usr/bin/repodiff
-/usr/bin/repomanage
-/usr/bin/repoquery
-/usr/bin/reposync
-/usr/bin/repotrack
-/usr/bin/show-changed-rco
-/usr/bin/show-installed
-/usr/bin/verifytree
-/usr/bin/yum-builddep
-/usr/bin/yum-config-manager
-/usr/bin/yum-debug-dump
-/usr/bin/yum-debug-restore
-/usr/bin/yum-groups-manager
-/usr/bin/yumdownloader
-…
-```
+    ```
+    $ repoquery -l yum-utils
+    /etc/bash_completion.d
+    /etc/bash_completion.d/yum-utils.bash
+    /usr/bin/debuginfo-install
+    /usr/bin/find-repos-of-install
+    /usr/bin/needs-restarting
+    /usr/bin/package-cleanup
+    /usr/bin/repo-graph
+    /usr/bin/repo-rss
+    /usr/bin/repoclosure
+    /usr/bin/repodiff
+    /usr/bin/repomanage
+    /usr/bin/repoquery
+    /usr/bin/reposync
+    /usr/bin/repotrack
+    /usr/bin/show-changed-rco
+    /usr/bin/show-installed
+    /usr/bin/verifytree
+    /usr/bin/yum-builddep
+    /usr/bin/yum-config-manager
+    /usr/bin/yum-debug-dump
+    /usr/bin/yum-debug-restore
+    /usr/bin/yum-groups-manager
+    /usr/bin/yumdownloader
+    …
+    ```
 
 * La commande `yumdownloader` :
 
-La commande `yumdownloader` télécharge les paquets RPM depuis les dépôts.
+La commande `yumdownloader` télécharge les paquets RPM depuis les dépôts.  Équivalent à `dnf download --downloadonly --downloaddir ./ package-name`
 
 !!! Note
 
     Cette commande est très pratique pour construire un dépôt local de quelques rpm !
 
-Exemple : `yumdownloader` va télécharger le paquet rpm de _repoquery_ ainsi que toutes ses dépendances :
+Exemple : `yumdownloader` va télécharger le paquet rpm de _samba_ ainsi que toutes ses dépendances :
 
 ```
-$ yumdownloader --destdir /var/tmp -- resolve repoquery
+$ yumdownloader --destdir /var/tmp --resolve samba
+or
+$ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 ```
 
 | Options     | Commentaires                                                       |
@@ -331,7 +331,7 @@ L’option `-n` permet de spécifier le nombre de secondes entre chaque exécuti
 
 !!! Note
 
-    Pour quitter la commande `watch`, vous devez taper les clés : <kbd>CTRL</kbd>+<kbd>C</kbd> pour tuer le processus.
+    Pour quitter la commande `watch`, vous devez appuyer sur les touches : <kbd>CTRL</kbd>+<kbd>C</kbd> pour tuer le processus.
 
 Exemples :
 
@@ -351,7 +351,7 @@ chrony:x:995:992::/var/lib/chrony:/sbin/nologin
 sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 ```
 
-* Surveillance du nombre de fichier dans un dossier :
+* Surveiller le nombre de fichier dans un dossier :
 
 ```
 $ watch -n 1 'ls -l | wc -l'

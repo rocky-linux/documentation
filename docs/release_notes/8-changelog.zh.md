@@ -1,10 +1,10 @@
 ---
-title: 更改日志
+title: 变更日志
 author: Louis Abel
 contributors: tianci li, Steven Spencer
 tags:
-  - 岩石更新日志
-  - 更新日志
+  - rocky的变更日志
+  - 变更日志
 ---
 
 # Rocky Linux 8 更改日志
@@ -17,24 +17,24 @@ tags:
 
 所有Rocky Linux组件都是由托管在[git.rockylinux.org](https://git.rockylinux.org) 上的源代码进行构建的。 此外，SRPM与存储库将一起发布在对应的"source"目录中， 您可以在我们的任意镜像网站上找到它们， 镜像网站的源码包与我们发布的每个二进制RPM相同。
 
-## 2022-01-20
+## 8.5 - 2022-03-15
 
-以下软件包自2022年2月4日起进行了更新：
+以下软件包自2022年03月15日起进行了更新：
 
-* aide: aide-0.16-14.el8 -> aide-0.16-14.el8_5.1
+* expat-2.2.5-4.el8_5.3
 * tzdata-2022a-1.el8
 * httpd-2.4.37-43.module+el8.5.0+747+83fae388.3
 * openssl-1.1.1k-6.el8_5
 
+以下模块已更新：
+
+* httpd
+
 关联的CVE：
 
-* CVE-2021-45417
-
-以下软件包自2022年01月11日起进行了更新：
-
-* thunderbird: 更新至78.14.0
+* CVE-2022-25236
 * CVE-2022-25235
-* cyrus-imapd: 更新至3.0.7-20.el8_4.1(地址 CVE-2021-33582)
+* CVE-2022-25315
 * CVE-2022-23852
 * CVE-2021-45960
 * CVE-2021-46143
@@ -47,27 +47,27 @@ tags:
 * CVE-2022-0778
 * CVE-2022-22720
 
-### 发布工程说明
+### 附加信息
 
-我们要对过去两个星期中没有作出宣布表示歉意。 目前这些公告都是手工发布的，目前正在制定计划，使这些公告更加自动化，并减少人与人之间的互动。
+我们为过去两周没有发布公告而道歉。 目前，这些公告都是人工手动发布的，目前正在制定计划，减少人工交互，使这些公告更加自动化。
 
-释放了RHEL 8。 beta, 我们将研究正在变化的情况以及我们将需要如何在其可能于4月底或5月举行的大会之前的几个星期内完成我们的工作。 在此期间，我们还一直致力于启动RHEL 9 测试包，最终将被导入， 重建并在我们的新构建系统中测试。
+随着 RHEL 8.6 测试版的发布，我们将在4月底或5月正式版本（GA）发布之前的几周内，研究哪些方面发生了变化以及需要如何构建我们的版本。 在此期间，我们还一直在努力引导 RHEL 9测试包，最终将在我们的新构建系统中导入、重建和测试。
 
-## 8.5 - 2022-01-03
+## 8.5 - 2022-03-14
 
-关联的CVE：
+以下软件包自2022年03月14日起进行了更新：
 
-* dotnet6.0: dotnet6.0-6.0.100-0.10.el8_5 -> dotnet6.0-6.0.101-2.el8_5
-* 云内：云内-21.1-7.el8_5.3 -> 云内-21.1-7.el8_5.4
+* 389-ds-base: 389-ds-base-1.4.3.23-12.module+el8.5.0+722+e2a0b219 -> 389-ds-base-1.4.3.23-14.module+el8.5.0+745+c5be6847
+* cloud-init: cloud-init-21.1-7.el8_5.3 -> cloud-init-21.1-7.el8_5.4
 * fence-agents: fence-agents-4.2.1-75.el8 -> fence-agents-4.2.1-75.el8_5.2
 * firewalld: firewalld-0.9.3-7.el8 -> firewalld-0.9.3-7.el8_5.1
 * gdm: gdm-1:40.0-15.el8 -> gdm-1:40.0-15.el8_5.1
 * glibc: glibc-2.28-164.el8 -> glibc-2.28-164.el8_5.3
-* httpd-2.4.37-43.module+el8.5.0+727+743c5577.1 -> httpd-2.4.37-43.module+el8.5.0+746+b6ce3176.2
+* httpd: httpd-2.4.37-43.module+el8.5.0+727+743c5577.1 -> httpd-2.4.37-43.module+el8.5.0+746+b6ce3176.2
 * java-11-openjdk: java-11-openjdk-1:11.0.14.0.9-2.el8_5 -> java-11-openjdk-1:11.0.14.1.1-2.el8_5
 * libarchive: libarchive-3.3.3-1.el8_5 -> libarchive-3.3.3-3.el8_5
 * libxml2: libxml2-2.9.7-11.el8 -> libxml2-2.9.7-12.el8_5
-* linux-firmware：linux-firmware20210702-103.gitd79c2677.el8 -> linux-firmware20210702-104.gitd79c2677.el8_5
+* linux-firmware: linux-firmware-20210702-103.gitd79c2677.el8 -> linux-firmware-20210702-104.gitd79c2677.el8_5
 * lvm2: lvm2-8:2.03.12-10.el8 -> lvm2-8:2.03.12-11.el8_5
 * nmstate: nmstate-1.1.0-5.el8_5 -> nmstate-1.1.0-6.el8_5
 * pcs: pcs-0.10.10-4.el8.rocky.0 -> pcs-0.10.10-4.el8_5.1.rocky.0
@@ -76,116 +76,116 @@ tags:
 * redhat-support-lib-python: redhat-support-lib-python-0.11.3-1.el8 -> redhat-support-lib-python-0.13.0-0.el8_5
 * redhat-support-tool: redhat-support-tool-0.11.3-2.el8 -> redhat-support-tool-0.13.0-0.el8_5
 * samba: samba-4.14.5-9.el8_5 -> samba-4.14.5-10.el8_5
-* 订阅管理器: 订阅经理-1.28.21-3.el8 -> 订阅经理-1.28.21-5.el8_5
+* subscription-manager: subscription-manager-1.28.21-3.el8 -> subscription-manager-1.28.21-5.el8_5
 * systemd: systemd-239-51.el8_5.3 -> systemd-239-51.el8_5.5
 * vim: vim-2:8.0.1763-16.el8_5.4 -> vim-2:8.0.1763-16.el8_5.12
 
-以下软件包自2022年1月27日起进行了更新：
+以下模块已更新：
 
-* grafana: grafana-7.5.9-4.el8 -> grafana-7.5.9-5.el8_5
-* CVE-2021-45417
+* 389-ds
+* httpd
 * virt
 * virt-devel
 
-## 8.5 - 2022-02-01
+## 8.5 - 2022-03-10
 
-关联的CVE：
+以下软件包自2022年03月10日起进行了更新：
 
-* containertools
-* thunderbird：thunderbird-91.6.0-1.el8_5.Plus -> thunderbird-91.7.0-2.el8_5.plus
+* thunderbird: thunderbird-91.6.0-1.el8_5 -> thunderbird-91.7.0-2.el8_5
+* thunderbird: thunderbird-91.6.0-1.el8_5.plus -> thunderbird-91.7.0-2.el8_5.plus
 
-以下模块已更新：
+关联的 CVE：
 
-* cyrus-imapd: 更新至3.0.7-20.el8_4.1(地址 CVE-2021-33582)
+* CVE-2022-25315
 * CVE-2022-25235
-* thunderbird: 更新至78.14.0
+* CVE-2022-25236
 
-## 8.5 - 2022-01-27
+## 8.5 - 2022-02-24
 
-关联的CVE：
+以下软件包自2022年02月24日起进行了更新：
 
-* CVE-2021-20321
+* dotnet3.1: dotnet3.1-3.1.416-3.el8_5 -> dotnet3.1-3.1.417-1.el8_5
 * dotnet5.0: dotnet5.0-5.0.211-1.el8_5 -> dotnet5.0-5.0.212-1.el8_5
 * dotnet6.0: dotnet6.0-6.0.102-1.el8_5 -> dotnet6.0-6.0.103-4.el8_5
-* firefox: 更新至78.14.0firefox: firefox-91.6.0-1.el8_5 -> firefox-91.7.0-3.el8_5
+* firefox: firefox-91.6.0-1.el8_5 -> firefox-91.7.0-3.el8_5
 * kernel: kernel-4.18.0-348.12.2.el8_5 -> kernel-4.18.0-348.20.1.el8_5
 * kernel-rt: kernel-rt-4.18.0-348.12.2.rt7.143.el8_5 -> kernel-rt-4.18.0-348.20.1.rt7.150.el8_5
 
-以下软件包自2021年12月16日起进行了更新：
+关联的CVE：
 
-* virt-rhel-8050020211221163306.b4937e53
+* CVE-2022-0435
 * CVE-2022-0847
 
-## 8.5 - 2022-01-26
+## 8.5 - 2022-02-22
 
-以下软件包自2021年12月13日起进行了更新：
+以下软件包自2022年02月22日起进行了更新：
 
-* java-1.8.0-openjdk: java-1.8.0-openjdk-1:1.8.0.312.b07-2.el8_5 -> java-1.8.0-openjdk-1:1.8.0.322.b06-2.el8_5
+* cyrus-sasl: cyrus-sasl-2.1.27-5.el8 -> cyrus-sasl-2.1.27-6.el8_5
 
 关联的CVE：
 
-* dotnet5.0: dotnet5.0-5.0.209-1.el8_5 -> dotnet5.0-5.0.210-1.el8_5
+* CVE-2022-24407
 
-## 8.5 - 2022-01-25
+## 8.5 - 2022-02-16
 
-以下软件包自2021年12月17日起进行了更新：
+以下软件包自2022年02月16日起进行了更新：
 
-* CVE-2020-25717
+* python-pillow: python-pillow-5.1.1-16.el8 -> python-pillow-5.1.1-18.el8_5
 
-以请求为基础，将 kernel-rt-kvm 软件包添加到 RT 存储库中。
+关联的CVE：
 
-* go-toolset-rhel8-8050020211215173118-8aa62369
+* CVE-2022-22815
 * CVE-2022-22816
 * CVE-2022-22817
 
-## 8.5 - 2021-12-12
+## 8.5 - 2022-02-15
 
-以下软件包自2021年12月12日起进行了更新：
+以下模块自2022年02月15日起进行了更新：
 
-* samba: samba-4.14.5-2.el8 -> samba-4.14.5-7.el8_5
-* rubby-2.6-805002202165459.b4937e53
+* ruby-2.5-8050020220216182135.b4937e53
+* ruby-2.6-8050020220216165459.b4937e53
 
-## 8.5 - 2021-12-10
+## 8.5 - 2022-02-14
 
-关联的CVE：
+以下软件包自2022年02月14日起进行了更新：
 
-* CVE-2016-2124
-* thunderbird：thunderbird-91.5.0-1.el8.plus -> thunderbird-91.6.0-1.el8_5.plus
+* thunderbird: thunderbird-91.5.0-1.el8_5 -> thunderbird-91.6.0-1.el8_5
+* thunderbird: thunderbird-91.5.0-1.el8.plus -> thunderbird-91.6.0-1.el8_5.plus
 
-## 8.5 - 2021-12-09
+## 8.5 - 2022-02-09
 
-以下软件包自2021年12月10日起进行了更新：
+以下软件包自2022年02月09日起进行了更新：
 
-* WALinuxAgent: WALinuxAgent-2.3.0.2-2.el8 -> WALinuxAgent-2.3.0.2-2.el8.rocky.0
+* dotnet3.1: dotnet3.1-3.1.120-2.el8_5 -> dotnet3.1-3.1.416-3.el8_5
 * dotnet5.0: dotnet5.0-5.0.210-1.el8_5 -> dotnet5.0-5.0.211-1.el8_5
 * dotnet6.0: dotnet6.0-6.0.101-2.el8_5 -> dotnet6.0-6.0.102-1.el8_5
-* firefox: 更新至78.14.0firefox: firefox-91.5.0-1.el8_5 -> firefox-91.6.0-1.el8_5
+* firefox: firefox-91.5.0-1.el8_5 -> firefox-91.6.0-1.el8_5
 
-## 8.5 - 2021-12-03
+## 8.5 - 2022-02-04
 
-以下模块已更新：
+以下软件包自2022年02月04日起进行了更新：
 
-* python27
-
-这些更新主要是外观上的，并不影响功能。
-
-* WALinuxAgent -> 我们在这里以及微软的PR上游中添加了对 Rocky 的直接支持
-
-## 8.5 - 2021-12-02
-
-以下软件包自2021年12月09日起进行了更新：
-
-* thunderbird: thunderbird-91.3.0-2.el8_4 ->
+* aide: aide-0.16-14.el8 -> aide-0.16-14.el8_5.1
 
 关联的CVE：
 
-* abrt: abrt-2.10.9-21.el8 -> abrt-2.10.9-21.el8.rocky.0
+* CVE-2021-45417
 
-## 8.5 - 补充部分 - 2021-11-30
+## 8.5 - 2022-02-02
 
-以下软件包自2021年12月03日起进行了更新：
+以下模块/软件包自2022年02月02日起进行了更新：
 
-* mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
+* varnish: varnish-6.0.8-1.module+el8.5.0+677+2a78a869 -> varnish-6.0.8-1.module+el8.5.0+736+fec10e21.1
+
+关联的CVE：
+
+* CVE-2022-23959
+
+## 8.5 - 2022-02-01
+
+以下软件包自2022年02月01日起进行了更新：
+
+* clevis: clevis-15-1.el8 -> clevis-15-1.el8_5.1
 * cockpit: cockpit-251.1-1.el8 -> cockpit-251.3-1.el8_5
 * cryptsetup: cryptsetup-2.3.3-4.el8 -> cryptsetup-2.3.3-4.el8_5.1
 * dnf-plugins-core: dnf-plugins-core-4.0.21-3.el8 -> dnf-plugins-core-4.0.21-4.el8_5
@@ -208,121 +208,121 @@ tags:
 * vulkan-tools: vulkan-tools-1.2.189.0-1.el8 ->vulkan-tools-1.2.198.0-1.el8_5
 * vulkan-validation-layers: vulkan-validation-layers-1.2.189.0-2.el8 ->vulkan-validation-layers-1.2.198.0-4.el8_5
 
-Firefox: 这是一个针对 Firefox 的 ESR 构建更新。
+以下模块已更新：
 
-* mailman: CVE-2021-44227
+* containertools
 * freeradius
 * nodejs
 * pki-core
 * virt
 * virt-devel
 
-## 8.5 - 2021-11-29
+## 8.5 - 2022-01-27
 
-添加了以下存储库/软件包：
+以下软件包自2022年01月27日起进行了更新：
 
-* mailman-2.1-8050020211202160117.fd901a62
+* dotnet-build-reference-packages: dotnet-build-reference-packages-0-10.20200608gitcd5a8c6.el8 ->dotnet-build-reference-packages-0-11.20211215git045b288.el8_5
 * nginx: nginx-1:1.20.0-2.module+el8.5.0+669+b11495b0 -> nginx-1:1.20.1-1.module+el8.5.0+729+3f70613e
 * samba: samba-4.14.5-7.el8_5 -> samba-4.14.5-9.el8_5
 
-添加了以下存储库/软件包：
+以下模块已更新：
 
-* ncurses-static
+* nginx
 
-以下软件包自2021年12月02日起进行了更新：
+关联的CVE：
 
-* open-vm-tools (仅适用于aarch64的构建)
+* CVE-2021-44142
 * CVE-2021-23017
 
-## 8.5 - 2021-11-24
+## 8.5 - 2022-01-26
 
-关联的CVE：
+以下软件包自2022年01月26日起进行了更新：
 
-* openldap-servers (所有架构)
+* java-1.8.0-openjdk: java-1.8.0-openjdk-1:1.8.0.312.b07-2.el8_5 -> java-1.8.0-openjdk-1:1.8.0.322.b06-2.el8_5
 
-## 8.5 - 2021-11-22
+## 8.5 - 2022-01-25
 
-以下模块自2021年11月02日起已更新：
+以下软件包自2022年01月25日起进行了更新：
 
-* kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
+* parfait: parfait-0.5.4-2.module+el8.3.0+214+edf13b3f -> parfait-0.5.4-4.module+el8.5.0+728+553fbdb8
 
-以下软件包已添加到 devel 存储库中：
+以下软件包已被丢弃：
 
-* nss-3.67.0-7.el8_5: CVE-2021-43527
+* log4j12: log4j12-1.2.17-22.module+el8.3.0+214+edf13b3f
 
-以下软件包已添加到 plus 存储库中：
+以下模块已更新：
 
-* dotnet5.0: dotnet5.0-5.0.208-2.el8_5 -> dotnet5.0-5.0.209-1.el8_5
+* parfait
 
-## 8.5 - 2021-11-16
+## 8.5 - 2022-01-24
 
-关联的CVE：
+以下软件包自2022年01月24日起进行了更新：
 
-* mailman: mailman-3:2.1.29-12.module+el8.5.0+703+19300c10 -> mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1
+* httpd: httpd-2.4.37-43.module+el8.5.0+714+5ec56ee8 -> httpd-2.4.37-43.module+el8.5.0+727+743c5577.1
 * polkit: polkit-0.115-12.el8 -> polkit-0.115-13.el8_5.1
 
-在plus 存储库中的当前软件包是(截至2021-11-30)：
+以下模块已更新：
 
-* mailman-2.1-8050020211123230959.fd901a62
+* httpd
 
 关联的CVE：
 
-* CVE-2021-42096
+* CVE-2021-44790
 * CVE-2021-4034
 
-## 8.5 - 2021-11-14
+## 8.5 - 2022-01-19
 
-以下软件包自2021年11月29日起已更新：
+以下软件包自2022年1月19日起进行了更新：
 
-* clang: clang-12.0.1-2.module+el8.5.0+692+8756646f -> clang-12.0.1-4.module+el8.5.0+715+58f51d49
+* java-11-openjdk: java-11-openjdk-1:11.0.13.0.8-4.el8_5 -> java-11-openjdk-1:11.0.14.0.9-2.el8_5
 
-## 8.4 - 2021-09-21
+## 8.5 - 2022-01-12
 
-关联的 CVE：
+以下软件包自2022年01月12日起进行了更新：
 
-* llvm-toolset-rhel8-8050020211122023437.b4937e53
+* gegl04: gegl04-0.4.4-6.el8 -> gegl04-0.4.4-6.el8_5.2
 * java-17-openjdk: java-17-openjdk-1:17.0.1.0.12-2.el8_5 -> java-17-openjdk-1:17.0.2.0.8-4.el8_5
 * kernel: kernel-4.18.0-348.7.1.el8_5 -> kernel-4.18.0-348.12.2.el8_5
 * kernel-rt: kernel-rt-4.18.0-348.7.1.rt7.137.el8_5 -> kernel-rt-4.18.0-348.12.2.rt7.143.el8_5
 * libarchive: libarchive-3.3.3-1.el8 -> libarchive-3.3.3-1.el8_5
 * libreswan: libreswan-4.4-1.el8 -> libreswan-4.4-4.el8_5
 
-以下软件包自2021年11月24日起已更新：
+关联的CVE：
 
-* annobin: annobin-9.65-1.el8 -> annobin-9.72-1.el8_5.2
+* CVE-2022-0185
 * CVE-2021-45463
 * CVE-2021-4155
 
-## 8.4 - 2021-09-13
+## 8.5 - 2022-01-11
 
-以下软件包自2021年11月22日起进行了更新(包含更新后的模块软件包)：
+以下软件包自2022年01月11日起进行了更新：
 
-* insights-client: insights-client-3.1.5-1.el8 (标准软件包组)
-* thunderbird: 更新至78.14.0thunderbird: thunderbird-91.4.0-2.el8_5 -> thunderbird-91.5.0-1.el8_5
+* firefox: firefox-91.4.0-1.el8_5 -> firefox-91.5.0-1.el8_5
+* thunderbird: thunderbird-91.4.0-2.el8_5 -> thunderbird-91.5.0-1.el8_5
 * thunderbird: thunderbird-91.4.0-2.el8.plus -> thunderbird-91.5.0-1.el8.plus
 
-## 8.4 - 2021-08-24
+## 8.5 - 2022-01-03
 
-以下模块自2021年11月23日起已更新：
+以下软件包自2022年01月03日起进行了更新：
 
-* rust-toolset-rhel8-8050020211112021616.f73640c0
-* llvm-toolset-rhel8-8050020211122023437.b4937e53
+* dotnet6.0: dotnet6.0-6.0.100-0.10.el8_5 -> dotnet6.0-6.0.101-2.el8_5
+* rpaste: rpaste-0.1-3.el8.2 -> rpaste-0.2.0-1.el8
 
-## 8.4 - 2021-08-11
+## 8.5 - 2021-12-22
 
 以下软件包自2021年12月22日起进行了更新：
 
-* kernel: kernel-4.18.0-305.19.1 (9-15)
+* grafana: grafana-7.5.9-4.el8 -> grafana-7.5.9-5.el8_5
 
-以下软件包自2021年11月16日起进行了更新(包含更新后的模块软件包)：
+关联的CVE：
 
-* thunderbird: 更新至78.14.0
+* CVE-2021-44716
 
-## 8.4 - 2021-08-02
+## 8.5 - 2021-12-17
 
-以下模块自2021年11月16日起已更新：
+以下软件包自2021年12月17日起进行了更新：
 
-* extras -> CentOS SIG(Special Interest Group,特别兴趣小组) 发布包已被添加
+* 389-ds-base: 389-ds-base-1.4.3.23-10.module+el8.5.0+700+370e33d5 -> 389-ds-base-1.4.3.23-12.module+el8.5.0+722+e2a0b219
 * accountsservice: accountsservice-0.6.55-2.el8 -> accountsservice-0.6.55-2.el8_5.2
 * cloud-init: cloud-init-21.1-7.el8 -> cloud-init-21.1-7.el8_5.3
 * freeradius: freeradius-3.0.20-9.module+el8.5.0+704+21fb769d -> freeradius-3.0.20-10.module+el8.5.0+723+cc9aee6c
@@ -339,14 +339,14 @@ Firefox: 这是一个针对 Firefox 的 ESR 构建更新。
 * rocky-release: rocky-release-8.5-2.el8 -> rocky-release-8.5-3.el8
 * sssd: sssd-2.5.2-2.el8_5.1 -> sssd-2.5.2-2.el8_5.3
 
-从2021年11月14日发布 8.5 版本以来，以下软件包已更新(包含更新后的模块软件包)：
+关联的CVE：
 
-* dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
-* kernel: kernel-4.18.0-305.19.1 (9-15)
+* CVE-2021-20321
+* CVE-2021-3930
 * CVE-2021-20257
 * CVE-2021-3712
 
-以下软件包已被丢弃，同时也从 dnf 软件包组中删除：
+以下模块已更新：
 
 * virt-rhel-8050020211221163306.b4937e53
 * virt-devel-rhel-8050020211221163306.b4937e53
@@ -359,18 +359,18 @@ Firefox: 这是一个针对 Firefox 的 ESR 构建更新。
 
 rocky-release 软件包已经更新，您可以将 countme=1 添加到 Rocky Linux 的 base 存储库中，类似于 epel 的存储库。 如果您已经修改了 repo 文件，将会生成 .rpmnew 文件，这样就不会覆盖您的更改。
 
-## 8.4 - 2021-07-27
+## 8.5 - 2021-12-16
 
-从2021年11月14日发布 8.5 版本以来，以下模块已经更新：
+以下软件包自2021年12月16日起进行了更新：
 
 * selinux-policy: selinux-policy-3.14.3-80.el8 -> selinux-policy-3.14.3-80.el8_5.2
-* extras -> CentOS SIG(Special Interest Group,特别兴趣小组) 发布包已被添加
+* systemd: systemd-239-51.el8 -> systemd-239-51.el8_5.3
 
-## 8.4 - 2021-07-21
+## 8.5 - 2021-12-13
 
-[bug 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) - 我们注意到一个问题，即`kdump` 在ESXi等VMware系统上不起作用。
+以下软件包自2021年12月13日起进行了更新：
 
-* varnish -> varnish-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> Addresses CVE-2021-36740
+* dotnet5.0: dotnet5.0-5.0.209-1.el8_5 -> dotnet5.0-5.0.210-1.el8_5
 * go-toolset: go-toolset-1.16.7-1.module+el8.5.0+694+f77f0bfd -> go-toolset-1.16.12-1.module+el8.5.0+720+c057d5cf
 * golang: golang-1.16.7-1.module+el8.5.0+694+f77f0bfd -> golang-1.16.12-1.module+el8.5.0+720+c057d5cf
 * ipa: ipa-4.9.6-6.module+el8.5.0+675+61f67439 -> ipa-4.9.6-10.module+el8.5.0+719+4f06efb6
@@ -379,11 +379,11 @@ rocky-release 软件包已经更新，您可以将 countme=1 添加到 Rocky Lin
 
 * kernel-rt: kernel-rt-kvm added to RT
 
-以下软件包自2022年01月11日起进行了更新：
+关联的CVE：
 
-* BaseOS
+* CVE-2020-25717
 
-以下软件包已更新：
+以下模块已更新：
 
 * go-toolset-rhel8-8050020211215173118-8aa62369
 * idm-DL1-8050020211215093947-3d2c466f
@@ -392,32 +392,32 @@ rocky-release 软件包已经更新，您可以将 countme=1 添加到 Rocky Lin
 
 ### 发布工程说明
 
-以下软件包已更新：
+以请求为基础，将 kernel-rt-kvm 软件包添加到 RT 存储库中。
 
-## 8.4 - 2021-07-12
+## 8.5 - 2021-12-12
 
-以下存储库已更新：
+以下软件包自2021年12月12日起进行了更新：
 
-* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
+* samba: samba-4.14.5-2.el8 -> samba-4.14.5-7.el8_5
 
-以下软件包自2022年01月11日起进行了更新：
+关联的CVE：
 
-* rocky-release
-* BaseOS
+* CVE-2016-2124
+* CVE-2020-25717
 * CVE-2021-23192
 
-## 8.4 - 2021-06-30
+## 8.5 - 2021-12-10
 
-添加了以下存储库/软件包：
+以下软件包自2021年12月10日起进行了更新：
 
-* python36
+* WALinuxAgent: WALinuxAgent-2.3.0.2-2.el8 -> WALinuxAgent-2.3.0.2-2.el8.rocky.0
 * libreoffice: libreoffice-1:6.4.7.2-5.el8.1 -> libreoffice-1:6.4.7.2-5.el8.2.rocky
 * openscap: openscap-1.3.5-6.el8 -> openscap-1.3.5-6.el8.rocky.0.1
 * pcs: pcs-0.10.10-4.el8 -> pcs-0.10.10-4.el8.rocky.0
 * python2: python2-2.7.18-7.module+el8.5.0+706+735ec4b3.rocky.0.1 -> python2-2.7.18-7.module+el8.5.0+718+67e45b5f.rocky.0.2
 * rocky-release: rocky-release-8.5-1.el8 -> rocky-release-8.5-2.el8
 
-以下软件包已经更新：
+以下模块已更新：
 
 * python27
 
@@ -436,7 +436,7 @@ rocky-release 软件包已经更新，您可以将 countme=1 添加到 Rocky Lin
 
 以下软件包自2021年12月09日起进行了更新：
 
-* PyYAML -> PyYAML-5.4.1-1.module+el8.4.0+595+c96abaa2
+* thunderbird: thunderbird-91.3.0-2.el8_4 ->
 * thunderbird-91.4.0-2.el8_5
 * thunderbird: thunderbird-91.3.0-2.el8.plus ->
 * thunderbird-91.4.0-2.el8.plus
@@ -447,15 +447,15 @@ Thunderbird：这是一个针对 Thunderbird 常规的 ESR 构建更新， 此�
 
 ## 8.5 - 2021-12-03
 
-以下软件包已更新：
+以下软件包自2021年12月03日起进行了更新：
 
 * abrt: abrt-2.10.9-21.el8 -> abrt-2.10.9-21.el8.rocky.0
 * firefox: firefox-91.3.0-1.el8_4 -> firefox-91.4.0-1.el8_5
 * sos: sos-4.1-5.el8 -> sos-4.1-5.el8.rocky.2
 
-### 附加注释
+### 发布工程说明
 
-为以下存储库添加了kickstart repos：
+Firefox: 这是一个针对 Firefox 的 ESR 构建更新。
 
 abrt：主要是外观上的变化。 移除了对 libreport-rhel* 和 rhtsupport 这些插件的依赖， 您可以在更新到新的 abrt 软件包之后，将这些软件包安全的删除。
 
@@ -468,48 +468,48 @@ sos：主要是外观上的变化。 它带来了 Rocky 的策略， 查阅 [thi
 * mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
 * mailman-3:2.1.29-12.module+el8.5.0+717+27fd1ba7.2
 
-以下模块已更新：
+关联的CVE：
 
-* open-vm-tools (仅适用于aarch64的构建)
+* mailman: CVE-2021-44227
 
 以下模块自2021年11月02日起已更新：
 
-* ncurses-static (所有架构)
+* mailman-2.1-8050020211202160117.fd901a62
 
 
 ## 8.5 - 补充部分 - 2021-11-30
 
-常规的 Rocky 软件包已进行更新，以解决以下问题：
+以下软件包已添加到 devel 存储库中：
 
 * ncurses-static
 
-关联的CVE：
+以下软件包已添加到 plus 存储库中：
 
 * open-vm-tools (仅适用于aarch64的构建)
 
-### 开发笔记
+### 附加注释
 
-plus 存储库包含了 base 存储库中没有提供的项目，原因可能是由于comps和pungi配置 (基于 RHEL 存储库) 而无法使用这些项目，或者是在 base 存储库中找不到其他补丁/功能，被要求作为替代构建。 但 plus 存储库应该可以安全地保持启用状态。
+plus 存储库包含了 base 存储库中没有提供的项目，原因可能是由于 comps 和 pungi 的配置 (基于 RHEL 存储库) 而无法使用这些项目，或者是在 base 存储库中找不到其他补丁/功能，被要求作为替代构建。 但 plus 存储库应该可以安全地保持启用状态。
 
-关联的CVE：
+在 plus 存储库中的当前软件包是(截至2021-11-30)：
 
 * openldap-servers (所有架构)
 * thunderbird with PGP support (所有架构)
 * ncurses-static (所有架构)
 * open-vm-tools (仅适用于aarch64的构建)
 
-### 已知问题
+### devel 笔记
 
 应谨慎使用 devel 存储库， 它是被用于 koji 或 buildroot 目的的，不应该100%启用。 如果您希望在 devel 存储库中找到您想要查看的软件包，请在rocky-devel上发送邮件和（或者）在 https://bugs.rockylinux.org 上打开bug报告
 
 ## 8.5 - 2021-11-29
 
-以下软件包自2022年01月03日起进行了更新：
+以下软件包自2021年11月29日起已更新：
 
 * kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
 * nss: nss-3.67.0-6.el8_4 -> nss-3.67.0-7.el8_5
 
-以下软件包已更新：
+关联的CVE：
 
 * nss-3.67.0-7.el8_5: CVE-2021-43527
 
@@ -523,7 +523,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.5 - 2021-11-22
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包自2021年11月22日起进行了更新(包含更新后的模块软件包)：
 
 * mailman: mailman-3:2.1.29-12.module+el8.5.0+703+19300c10 -> mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1
 
@@ -531,7 +531,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 * mailman-2.1-8050020211123230959.fd901a62
 
-一些模块和软件包已经被上游以常规方式更新。
+关联的CVE：
 
 * CVE-2021-42096
 * CVE-2021-42097
@@ -540,10 +540,10 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 以下软件包自2021年11月16日起进行了更新(包含更新后的模块软件包)：
 
-* insights-client: insights-client-3.1.5-1.el8 (标准软件包组)
+* clang: clang-12.0.1-2.module+el8.5.0+692+8756646f -> clang-12.0.1-4.module+el8.5.0+715+58f51d49
 * llvm-toolset: llvm-toolset-12.0.1-1.module+el8.5.0+692+8756646f -> llvm-toolset-12.0.1-1.module+el8.5.0+715+58f51d49
 
-以下模块已更新：
+以下模块自2021年11月16日起已更新：
 
 * llvm-toolset-rhel8-8050020211122023437.b4937e53
 
@@ -586,26 +586,26 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 * thunderbird: thunderbird-78.13.0-1.el8 -> thunderbird-91.3.0-2.el8
 * udftools: udftools-2.2-5.el8 -> udftools-2.3-2.el8
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包已被丢弃，同时也从 dnf 软件包组中删除：
 
-* firefox: 更新至78.14.0
+* insights-client: insights-client-3.1.5-1.el8 (标准软件包组)
 
-一些模块和软件包已经被上游以常规方式更新。
+对于被丢弃的软件包，可以使用 `dnf remove`安全地将其删除。
 
-一些模块和软件包已经被上游以常规方式更新。
+从2021年11月14日发布 8.5 版本以来，以下模块已经更新：
 
-* extras -> CentOS SIG(Special Interest Group,特别兴趣小组) 发布包已被添加
+* rust-toolset-rhel8-8050020211112021616.f73640c0
 * httpd-2.4-8050020211115030420.b4937e53
 
-### 附加更改
+### 已知问题
 
-一些模块和软件包已经被上游以常规方式更新。
+[bug 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) - 我们注意到一个问题，即`kdump` 在ESXi等VMware系统上不起作用。
 
 我们还了解到镜像系统做更新时报告了有错误的目录， 它应该去到`kickstart` 请求应答文件而不是 `OS`(操作系统)。 这个问题应该可以通过更新来解决，使其正常工作。
 
 ## 8.4 - 2021-09-21
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包已更新：
 
 * kernel: kernel-4.18.0-305.19.1 (9-15)
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.2
@@ -635,32 +635,32 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-09-13
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包已更新：
 
 * thunderbird: 更新至78.14.0
-* Firefox: 更新至78.14.0
+* firefox: 更新至78.14.0
 * cyrus-imapd: 更新至3.0.7-20.el8_4.1(地址 CVE-2021-33582)
-* systemtap将根据dyinest 10.2进行重新构建，以解决漏洞报告
+* systemtap将根据 dyinest 10.2 进行重新构建，以解决漏洞 bug
 * rocky-release -> 更新为允许"centos"作为ID
 
-以下模块已更新：
+以下存储库已更新：
 
 * extras -> CentOS SIG(Special Interest Group,特别兴趣小组) 发布包已被添加
 
 ## 8.4 - 2021-08-24
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包已更新：
 
 * dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
 * libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Addresses
 
-  * Addresses a heap buffer overflow that allowed arbitrary code execution from a wav file
+  * 解决了允许从 wav 文件执行任意代码的堆缓冲区溢出问题。
 
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.1
 
   * Addresses RLBZ#108
 
-一些模块和软件包已经被上游以常规方式更新。
+添加了以下存储库/软件包：
 
 * RT (realtime) - 通过运行 `dnf config-manager --set-enabled rt` 来启用
 
@@ -668,7 +668,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-08-11
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包已更新：
 
 * 389-ds-base: 389-ds-base-1.4.3.16-16.module+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.module+el8.4.0+636+837ee950
 * NetworkManager: NetworkManager-1:1.30.0-9.el8_4 -> NetworkManager-1:1.30.0-10.el8_4
@@ -735,7 +735,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-08-02
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包已更新：
 
 * varnish -> varnish-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> Addresses CVE-2021-36740
 
@@ -749,13 +749,13 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-07-27
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包已更新：
 
 * thunderbird -> thunderbird-78.12.0-3.el8_4
 
 ## 8.4 - 2021-07-21
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包已更新：
 
 * kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
 * systemd -> systemd-239-45.el8_4.2 -> Addresses CVE-2021-33910
@@ -765,40 +765,40 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ## 8.4 - 2021-07-12
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包已更新：
 
 * rocky-release
 * linuxptp
 * rpaste
 * ovn2.13 (NFV)
 
-关联的CVE：
+以下模块已更新：
 
 * python36
 
-### 即将到来
+### 附加更改
 
-aarch64 的 extras 存储库已更新，以包含上游未包含的各种软件包。 例如 libreoffice 和其他 gnome 应用程序。
+已经实现了实验性的存储库元数据签名。 如果要尝试此操作，请在 Rocky-X.repo 文件中设置以下选项：
 
 ```
 repo_gpgcheck=1
 ```
 
-### 软件包更新
+### 即将到来
 
 * 存储插件库
 
-  * 为未来的情况添加 devel 和 debuginfo 存储库
+  * 对 Glusterfs 9 文件系统的支持
 
 ## 8.4 - 2021-06-30
 
-### 背景
+### 软件包更新
 
-一些模块和软件包已经被上游以常规方式更新。
+以下软件包已更新：
 
-* 现在提供了一个用于 模拟/构建根 目的的"devel"存储库
-* aarch64 的 Extras 存储库已更新，以包含上游未提供给桌面使用的缺失软件包
-* rpaste已经更新，可以接受标准输入。
+* NetworkManager -> NetworkManager-11.30.0-9.el8_4
+* cloud-init -> cloud-init-20.3-10.el8_4.3
+* cmake -> cmake-3.18.2-11.el8_4
 * edk2 -> edk2-20200602gitca407c7246bf-4.el8_4.1
 * exiv2 -> exiv2-0.27.3-2.el8
 * firewalld -> firewalld-0.8.2-7.el8_4
@@ -826,7 +826,7 @@ repo_gpgcheck=1
 * tuned -> tuned-2.15.0-2.el8_4.1
 * unzip -> unzip-6.0-45.el8_4
 
-关联的CVE：
+以下模块已更新：
 
 * PyYAML -> PyYAML-5.4.1-1.module+el8.4.0+595+c96abaa2
 * 389-ds -> 1.4.3.16-16
@@ -849,7 +849,7 @@ repo_gpgcheck=1
 * rubygem-pg -> rubygem-pg-1.0.0-2 / rubygem-pg-1.1.4-1 / rubygem-pg-1.2.3-1
 
 
-### 附加更改
+### 背景
 
 一些模块和软件包已经被上游以常规方式更新。
 
@@ -862,16 +862,16 @@ repo_gpgcheck=1
 
 * rocky-logos
 
-  * 改进未来官方的live镜像图标
+  * 改进未来官方的 live 镜像图标
 
 
-### 即将到来
+### 附加更改
 
 aarch64 的 extras 存储库已更新，以包含上游未包含的各种软件包。 例如 libreoffice 和其他 gnome 应用程序。 因为它们不在 BaseOS 或 AppStream 中，所以 extras 存储库是存放这些软件包的合适地方。
 
-* 现在提供了一个用于 模拟/构建根 目的的"devel"存储库
-* aarch64 的 Extras 存储库已更新，以包含上游未提供给桌面使用的缺失软件包
-* rpaste已经更新，可以接受标准输入。
+* 现在提供了一个用于 模拟/构建根 目的的 "devel" 存储库
+* aarch64 的 extras 存储库已更新，以包含上游未提供给桌面使用的缺失软件包
+* rpaste 已经更新，可以接受标准输入。
 * 在点发布(point release)的生命周期内，将在 repos 中提供较旧的包。
 
   * 这将允许在上游软件包回归(regressions)或者需要排查问题的情况下，将其降级到已知的良好版本。

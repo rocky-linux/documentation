@@ -1,32 +1,32 @@
 ---
-title: Advanced Linux Commands
+title: 高级Linux 命令
 ---
 
-# Advanced Commands for Linux users
+# Linux 用户的高级命令
 
-In this chapter you will learn some advanced commands for Linux.
+在本章中，您将学习一些针对Linux的高级命令。
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn:
+**目标** : 在本章中，未来的Linux管理员将学习：
 
-:heavy_check_mark: some useful commands not covered in the previous chapter;   
-:heavy_check_mark: some advanced commands.
+:heavy_check_mark: 上一章没有介绍的一些有用的命令；   
+:heavy_check_mark: 一些高级命令
 
-:checkered_flag: **user commands**, **Linux**
+:checkered_flag: **用户命令**, **Linux**
 
-**Knowledge**: :star:   
-**Complexity**: :star: :star: :star:
+**知识**: :star:   
+**复杂度**: :star: :star: :star:
 
 **阅读时间**: 20 分钟
 
 ****
 
-## `uniq` command
+## `uniq` 命令
 
-The `uniq` command is a very powerful command, used with the `sort` command, especially for log file analysis. It allows you to sort and display entries by removing duplicates.
+`uniq`命令是一个非常强大的命令，与`sort`命令一起使用尤其适合用于日志文件分析。 它允许您通过删除重复项来排序和显示条目。
 
-To illustrate how the `uniq` command works, let's use a `firstnames.txt` file containing a list of first names:
+为了说明`uniq`命令的工作原理，让我们使用一个包含名字列表的`firstnames.txt`文件：
 
 ```
 antoine
@@ -39,9 +39,11 @@ antoine
 steven
 ```
 
-!!! Note `uniq` requires the input file to be sorted because it only compares consecutive lines.
+!!! note "说明"
 
-Without an argument, the `uniq` command will not display identical lines that follow each other in the `firstnames.txt` file:
+    `uniq`需要对输入文件进行排序，因为它只比较连续的行。
+
+如果不带选项，`uniq`命令将不会显示`firstnames.txt`文件中紧随其后的相同行：
 
 ```
 $ sort firstnames.txt | uniq
@@ -51,14 +53,14 @@ steven
 xavier
 ```
 
-To display only the rows that appear only once, use the `-u` option:
+要仅显示只出现一次的行，请使用`-u`选项：
 
 ```
 $ sort firstnames.txt | uniq -u
 patrick
 ```
 
-Conversely, to display only the lines that appear at least twice in the file, you must use the `-d` option:
+相反，要只显示文件中至少出现两次的行，必须使用`-d`选项：
 
 ```
 $ sort firstnames.txt | uniq -d
@@ -67,7 +69,7 @@ steven
 xavier
 ```
 
-To simply delete lines that appear only once, use the `-D` option:
+要简单地删除只出现一次的行，请使用`-D`选项：
 
 ```
 $ sort firstnames.txt | uniq -D
@@ -80,7 +82,7 @@ xavier
 xavier
 ```
 
-Finally, to count the number of occurrences of each line, use the `-c` option:
+最后，要计算每行出现的次数，请使用`-c`选项：
 
 ```
 $ sort firstnames.txt | uniq -c
@@ -97,13 +99,13 @@ $ sort firstnames.txt | uniq -cd
       2 xavier
 ```
 
-## `xargs` commands
+## `xargs` 命令
 
-The `xargs` command allows the construction and execution of command lines from standard input.
+`xargs`命令允许从标准输入构建和执行命令行。
 
-The `xargs` command reads whitespace or linefeed delimited arguments from standard input, and executes the command (`/bin/echo` by default) one or more times using the initial arguments followed by the arguments read from standard input.
+`xargs` 命令从标准输入中读取以空格或换行符分隔的参数，并使用初始参数和从标准输入中读取的参数执行一次或多次命令（默认为`/bin/echo`）。
 
-A first and simplest example would be the following:
+第一个也是最简单的示例如下：
 
 ```
 $ xargs
@@ -114,16 +116,16 @@ xargs
 use of xargs
 ```
 
-The `xargs` command waits for an input from the standard **stdin** input. Three lines are entered. The end of the user input is specified to `xargs` by the keystroke sequence <kbd>CTRL</kbd>+<kbd>D</kbd>. `xargs` then executes the default command `echo` followed by the three arguments corresponding to the user input, namely :
+`xargs`命令等待来自标准**stdin**输入的输入， 输入三行。 用户输入的结束是通过按键顺序<kbd>CTRL</kbd>+<kbd>D</kbd>指定给`xargs`的。 `xargs`然后执行默认命令`echo`，后跟与用户输入对应的三个参数，即：
 
 ```
 $ echo "use" "of" "xargs"
 use of xargs
 ```
 
-It is possible to specify a command to be run by `xargs`.
+可以通过`xargs`来指定一个要运行的命令。
 
-In the following example, `xargs` will run the command `ls -ld` on the set of folders specified in the standard input:
+在下面的示例中，`xargs`将对标准输入中指定的一组文件夹上运行命令`ls-ld`：
 
 ```
 $ xargs ls -ld
@@ -136,9 +138,9 @@ dr-xr-x---. 2 root root 4096  5 avril 15:52 /root
 drwxrwxrwt. 3 root root 4096  6 avril 10:25 /tmp
 ```
 
-In practice, the `xargs` command executed the `ls -ld /home /tmp /root` command.
+实际上，`xargs`命令执行的是 `ls -ld /home /tmp /root`命令。
 
-What happens if the command to be executed does not accept multiple arguments as is the case with the `find` command?
+如果要执行的命令不像`find`命令那样接受多个参数，会发生什么情况？
 
 ```
 $ xargs find /var/log -name
@@ -147,14 +149,14 @@ $ xargs find /var/log -name
 find: paths must precede expression: *.log
 ```
 
-The `xargs` command attempted to execute the `find` command with multiple arguments behind the `-name` option, which caused `find` to generate an error:
+`xargs`命令试图执行`-name`选项后面带有多个参数的`find`命令，这导致`find`产生错误：
 
 ```
 $ find /var/log -name "*.old" "*.log"
 find: paths must precede expression: *.log
 ```
 
-In this case, the `xargs` command must be forced to execute the `find` command several times (once per line entered as standard input). The `-L` option followed by an **integer** allows you to specify the maximum number of entries to be processed with the command at one time:
+在这种情况下，必须强制`xargs`命令多次执行find命令（每行输入一次作为标准输入）。 `-L`选项后跟 **整数**允许您指定一次使用该命令能处理的最大条目数：
 
 ```
 $ xargs -L 1 find /var/log -name
@@ -173,7 +175,7 @@ $ xargs -L 1 find /var/log -name
 <CTRL+D>
 ```
 
-If we wanted to be able to specify both arguments on the same line, we would have to use the `-n 1` option:
+如果我们希望能够在同一行中指定这两个参数，则必须使用`-n 1`选项：
 
 ```
 $ xargs -n 1 find /var/log -name
@@ -191,7 +193,7 @@ $ xargs -n 1 find /var/log -name
 <CTRL+D>
 ```
 
-Case study of a backup with a `tar` based on a search:
+基于搜索使用`tar`进行备份的案例研究：
 
 ```
 $ find /var/log/ -name "*.log" -mtime -1 | xargs tar cvfP /root/log.tar
@@ -200,92 +202,96 @@ $ tar tvfP /root/log.tar
 -rw-r--r-- root/root    499270 2017-04-06 11:01 /var/log/audit/audit.log
 ```
 
-The special feature of the `xargs` command is that it places the input argument at the end of the called command. This works very well with the above example since the files passed in will form the list of files to be added to the archive.
+`xargs`命令的特殊功能是将输入参数放在被调用命令的结尾， 这对于上面的示例非常有效，因为传入的文件将形成要添加到归档中的文件列表。
 
-Now, if we take the example of the `cp` command and want to copy a list of files in a directory, this list of files will be added at the end of the command... but what the `cp` command expects at the end of the command is the destination. To do this, we use the `-I` option to put the input arguments somewhere else than at the end of the line.
+现在，如果我们以`cp`命令为例并希望复制目录中的文件列表，则该文件列表将被添加到该命令的结尾... 但是`cp`命令在命令结尾要求的是目标文件。 为此，我们使用 `-I`选项将输入参数放在行尾以外的其他位置。
 
 ```
 $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 ```
 
-The `-I` option allows you to specify a character (in our example the `%` character) where the input files to `xargs` will be placed.
+`-I`选项允许您指定一个字符(在我们的示例中是`%`字符)，用于放置`xargs`的输入文件。
 
-## `yum-utils` package
+## `yum-utils` 软件包
 
-The `yum-utils` package is a collection of utilities from different authors for `yum`, which make it easier and more powerful to use.
+`yum-utils` 软件包是不同作者为`yum`提供的实用程序的集合，这使得yum更易于使用且功能更强大。
 
-!!! Note While `yum` has been replaced by `dnf` in Rocky Linux 8, the package name has remained `yum-utils` although it can be installed as `dnf-utils` as well. These are classic YUM utilities implemented as CLI shims on top of DNF to maintain backwards compatibility with `yum-3`.
+!!! note "说明"
 
-Here are some examples of usage:
+    在Rocky Linux 8中，`yum`被替换为`dnf`，虽然也可以安装`dnf-utils`，但包名仍然是`yum-utils`。 这些都是经典的YUM工具，在DNF之上以CLI shims的形式实现，以保持与`yum-3`的向后兼容。
 
-* `repoquery` command:
+以下是一些用法示例：
 
-The `repoquery` command queries the repositories.
+* `repoquery` 命令：
 
-Examples of use:
+`repoquery` 命令用于查询存储库中的软件包。
 
-  * Knowing the dependencies of an uninstalled package:
+使用示例：
+
+  * 显示软件包的依赖 (它可以是已安装或未安装的软件包)， 等同于`dnf deplist <package-name>`。
+
+    repoquery --requires <package-name>
+
+  * 显示已安装软件包提供的文件（对于未安装的软件包不起作用），相当于`rpm -ql <package-name>`
+
+    ```
+    $ repoquery -l yum-utils
+    /etc/bash_completion.d
+    /etc/bash_completion.d/yum-utils.bash
+    /usr/bin/debuginfo-install
+    /usr/bin/find-repos-of-install
+    /usr/bin/needs-restarting
+    /usr/bin/package-cleanup
+    /usr/bin/repo-graph
+    /usr/bin/repo-rss
+    /usr/bin/repoclosure
+    /usr/bin/repodiff
+    /usr/bin/repomanage
+    /usr/bin/repoquery
+    /usr/bin/reposync
+    /usr/bin/repotrack
+    /usr/bin/show-changed-rco
+    /usr/bin/show-installed
+    /usr/bin/verifytree
+    /usr/bin/yum-builddep
+    /usr/bin/yum-config-manager
+    /usr/bin/yum-debug-dump
+    /usr/bin/yum-debug-restore
+    /usr/bin/yum-groups-manager
+    /usr/bin/yumdownloader
+    …
+    ```
+
+* `yumdownloader` 命令：
+
+`yumdownloader`命令用来从存储库下载RPM软件包。  等同于 `dnf download --downloadonly --downloaddir ./  package-name`
+
+!!! note "说明"
+
+    这个命令对于快速构建几个rpm的本地存储库非常有用！
+
+示例：`yumdownloader` 将下载 _samba_及其所有依赖项：
 
 ```
-repoquery --requires <package>
+$ yumdownloader --destdir /var/tmp --resolve samba
+or
+$ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 ```
 
-  * Know the files provided by a non-installed package:
+| 选项          | 解释                 |
+| ----------- | ------------------ |
+| -`-destdir` | 下载的软件包将存储在指定的文件夹中。 |
+| `--resolve` | 同时下载软件包依赖项。        |
 
-```
-$ repoquery -l yum-utils
-/etc/bash_completion.d
-/etc/bash_completion.d/yum-utils.bash
-/usr/bin/debuginfo-install
-/usr/bin/find-repos-of-install
-/usr/bin/needs-restarting
-/usr/bin/package-cleanup
-/usr/bin/repo-graph
-/usr/bin/repo-rss
-/usr/bin/repoclosure
-/usr/bin/repodiff
-/usr/bin/repomanage
-/usr/bin/repoquery
-/usr/bin/reposync
-/usr/bin/repotrack
-/usr/bin/show-changed-rco
-/usr/bin/show-installed
-/usr/bin/verifytree
-/usr/bin/yum-builddep
-/usr/bin/yum-config-manager
-/usr/bin/yum-debug-dump
-/usr/bin/yum-debug-restore
-/usr/bin/yum-groups-manager
-/usr/bin/yumdownloader
-…
-```
+## `psmisc` 软件包
 
-* `yumdownloader` command:
+`psmisc`软件包包含用于管理系统进程的实用程序：
 
-The `yumdownloader` command downloads RPM packages from the repositories.
+* `pstree`：`pstree`命令会以树状结构显示系统上的当前进程。
+* `killall`：`killall` 命令会向按名称标识的所有进程发送一个 kill 信号。
+* `fuser`：`fuser`命令用于标识指定文件或文件系统的进程`PID`。
 
-!!! Note This command is very useful to quickly build a local repository of a few rpm!
-
-Example: `yumdownloader` will download the _repoquery_ rpm package and all its dependencies:
-
-```
-$ yumdownloader --destdir /var/tmp -- resolve repoquery
-```
-
-| Options     | Comments                                                        |
-| ----------- | --------------------------------------------------------------- |
-| -`-destdir` | The downloaded packages will be stored in the specified folder. |
-| `--resolve` | Also downloads the package dependencies.                        |
-
-## `psmisc` packages
-
-The `psmisc` package contains utilities for managing system processes:
-
-* `pstree`: the `pstree` command displays the current processes on the system in a tree-like structure.
-* `killall`: the `killall` command sends a kill signal to all processes identified by name.
-* `fuser`: the `fuser` command identifies the `PID` of processes that use the specified files or file systems.
-
-Examples:
+示例：
 
 ```
 $ pstree
@@ -311,29 +317,31 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
 # killall httpd
 ```
 
-Kill processes (option `-k`) that access the `/etc/httpd/conf/httpd.conf` file:
+结束访问`/etc/httpd/conf/httpd.conf`文件的进程(`-k`选项)：
 
 ```
 # fuser -k /etc/httpd/conf/httpd.conf
 ```
 
-## `watch` command
+## `watch` 命令
 
-The `watch` command regularly executes a command and displays the result in the terminal in full screen.
+`watch`命令会定期执行一条命令，并在终端全屏显示结果。
 
-The `-n` option allows you to specify the number of seconds between each execution of the command.
+`-n`选项允许您指定每次执行命令之间的秒数。
 
-!!! Note To exit the `watch` command, you must type the keys: <kbd>CTRL</kbd>+<kbd>C</kbd> to kill the process.
+!!! note "说明"
 
-Examples:
+    要退出`watch`命令，您必须键入按键：<kbd>CTRL</kbd>+<kbd>C</kbd> 来终止进程。
 
-* Display the end of the `/etc/passwd` file every 5 seconds:
+示例：
+
+* 每5秒显示一次`/etc/passwd`文件的结尾：
 
 ```
 $ watch -n 5 tail -n 3 /etc/passwd
 ```
 
-Result:
+结果：
 
 ```
 Every 5,0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
@@ -343,13 +351,13 @@ chrony:x:995:992::/var/lib/chrony:/sbin/nologin
 sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 ```
 
-* Monitoring the number of files in a folder:
+* 监控文件夹中的文件数：
 
 ```
 $ watch -n 1 'ls -l | wc -l'
 ```
 
-* Display a clock:
+* 显示时钟：
 
 ```
 $ watch -t -n 1 date

@@ -224,49 +224,47 @@ Ecco alcuni esempi di utilizzo:
 
 * comando `repoquery`:
 
-Il comando `repoquery` interroga i repository.
+Il comando `repoquery` viene utilizzato per interrogare i pacchetti nel repository.
 
 Esempi di utilizzo:
 
-  * Conoscere le dipendenze di un pacchetto disinstallato:
+  * Visualizza le dipendenze di un pacchetto (può essere un pacchetto software installato o non installato), Equivalente a `dnf deplist <package-name>`.
 
-```
-repoquery --requires <package>
-```
+    repoquery --requires <package-name>
 
-  * Conoscere i file forniti da un pacchetto non installato:
+  * Visualizza i file forniti da un pacchetto installato (non funziona per i pacchetti che non sono installati), Equivalente a `rpm -ql <package-name>`
 
-```
-$ repoquery -l yum-utils
-/etc/bash_completion.d
-/etc/bash_completion.d/yum-utils.bash
-/usr/bin/debuginfo-install
-/usr/bin/find-repos-of-install
-/usr/bin/needs-restarting
-/usr/bin/package-cleanup
-/usr/bin/repo-graph
-/usr/bin/repo-rss
-/usr/bin/repoclosure
-/usr/bin/repodiff
-/usr/bin/repomanage
-/usr/bin/repoquery
-/usr/bin/reposync
-/usr/bin/repotrack
-/usr/bin/show-changed-rco
-/usr/bin/show-installed
-/usr/bin/verifytree
-/usr/bin/yum-builddep
-/usr/bin/yum-config-manager
-/usr/bin/yum-debug-dump
-/usr/bin/yum-debug-restore
-/usr/bin/yum-groups-manager
-/usr/bin/yumdownloader
-…
-```
+    ```
+    $ repoquery -l yum-utils
+    /etc/bash_completion.d
+    /etc/bash_completion.d/yum-utils.bash
+    /usr/bin/debuginfo-install
+    /usr/bin/find-repos-of-install
+    /usr/bin/needs-restarting
+    /usr/bin/package-cleanup
+    /usr/bin/repo-graph
+    /usr/bin/repo-rss
+    /usr/bin/repoclosure
+    /usr/bin/repodiff
+    /usr/bin/repomanage
+    /usr/bin/repoquery
+    /usr/bin/reposync
+    /usr/bin/repotrack
+    /usr/bin/show-changed-rco
+    /usr/bin/show-installed
+    /usr/bin/verifytree
+    /usr/bin/yum-builddep
+    /usr/bin/yum-config-manager
+    /usr/bin/yum-debug-dump
+    /usr/bin/yum-debug-restore
+    /usr/bin/yum-groups-manager
+    /usr/bin/yumdownloader
+    …
+    ```
 
 * comando `yumdownloader`:
 
-Il comando `yumdownloader` scarica i pacchetti RPM dai repository.
+Il comando `yumdownloader` scarica i pacchetti RPM dai repository.  Equivalente a `dnf scaricare --downloadonly --downloaddir ./ package-name`
 
 !!! Note "Nota"
 
@@ -275,7 +273,7 @@ Il comando `yumdownloader` scarica i pacchetti RPM dai repository.
 Esempio: `yumdownloader` scaricherà il pacchetto rpm _repoquery_ e tutte le sue dipendenze:
 
 ```
-$ yumdownloader --destdir /var/tmp -- resolve repoquery
+$ yumdownloader --destdir /var/tmp --resolve repoquery
 ```
 
 | Opzioni     | Commenti                                                               |
@@ -292,6 +290,16 @@ Il pacchetto `psmisc` contiene utilità per la gestione dei processi di sistema:
 * `fuser`: il comando `fuser` Identifica il `PID` di processi che utilizzano i file o i file system specificati.
 
 Esempi:
+
+```
+Questo comando è molto utile per creare rapidamente un repository locale di alcuni rpm!
+```
+
+```
+$ yumdownloader --destdir /var/tmp -- resolve repoquery
+```
+
+Arresta i processi (opzione `-k`) che accedono al file `/etc/httpd/conf/httpd.conf`:
 
 ```
 $ pstree
@@ -313,16 +321,6 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
         └─tuned───4*[{tuned}]
 ```
 
-```
-# killall httpd
-```
-
-Arresta i processi (opzione `-k`) che accedono al file `/etc/httpd/conf/httpd.conf`:
-
-```
-# fuser -k /etc/httpd/conf/httpd.conf
-```
-
 ## comando `watch`
 
 Il comando `watch` esegue regolarmente un comando e visualizza il risultato nel terminale a schermo intero.
@@ -331,14 +329,14 @@ L'opzione `-n` consente di specificare il numero di secondi tra ogni esecuzione 
 
 !!! Note "Nota"
 
-    Per uscire dal comando `watch`, devi digitare le chiavi: <kbd>CTRL</kbd>+<kbd>C</kbd> per terminare il processo.
+    Per uscire dal comando `watch', è necessario digitare i tasti: <kbd>CTRL</kbd>+<kbd>C</kbd> per terminare il processo.
 
 Esempi:
 
-* Mostra la fine del file `/etc/passwd` ogni 5 secondi:
+* Visualizza la fine del file `/etc/passwd` ogni 5 secondi:
 
 ```
-$ watch -n 5 tail -n 3 /etc/passwd
+# fuser -k /etc/httpd/conf/httpd.conf
 ```
 
 Risultato:
@@ -354,11 +352,15 @@ sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 * Monitoraggio del numero di file in una cartella:
 
 ```
-$ watch -n 1 'ls -l | wc -l'
+$ watch -n 5 tail -n 3 /etc/passwd
 ```
 
-* Mostra un orologio:
+* Mostra la fine del file `/etc/passwd` ogni 5 secondi:
 
 ```
-$ watch -t -n 1 date
+Every 5,0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
+
+sssd:x:996:993:User for sssd:/:/sbin/nologin
+chrony:x:995:992::/var/lib/chrony:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 ```

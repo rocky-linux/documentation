@@ -110,7 +110,7 @@ Uso dell comando `anacron`, le opzioni comunemente usate sono:
 | Opzioni | Descrizione                                                         |
 | ------- | ------------------------------------------------------------------- |
 | -f      | Eseguire tutti i lavori, ignorando i timestamp                      |
-| -u      | Aggiorna il timestamp all'ora corrente senza eseguire alcuna azione |
+| - u     | Aggiorna il timestamp all'ora corrente senza eseguire alcuna azione |
 | -T      | Verificare la validità del file di configurazione /etc/anacrontab   |
 
 Per ulteriori informazioni di aiuto, [sfogliare la pagina del manuale](https://man7.org/linux/man-pages/man8/anacron.8.html)
