@@ -1,5 +1,5 @@
 - - -
-title: Soluzione di Backup - Rsnapshot author: Steven Spencer contributors: Ezequiel Bruni, Colussi Franco tags:
+title: Backup Solution - Rsnapshot author: Steven Spencer contributors: Ezequiel Bruni tested with: 8.5, 8.6 tags:
   - backup
   - rsnapshot
 - - -
