@@ -1,5 +1,5 @@
 - - -
-title: Server LXD author: Steven Spencer contributors: Ezequiel Bruni, Colussi Franco tested with: 8.5 tags:
+title: LXD Server author: Steven Spencer contributors: Ezequiel Bruni tested with: 8.5, 8.6 tags:
   - lxd
   - enterprise
 - - -
