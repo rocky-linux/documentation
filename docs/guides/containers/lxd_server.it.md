@@ -5,6 +5,7 @@ title: Server LXD author: Steven Spencer contributors: Ezequiel Bruni, Colussi F
 - - -
 
 # Creare un server LXD completo
+
 ## Introduzione
 
 LXD è meglio descritto sul [sito web ufficiale](https://linuxcontainers.org/lxd/introduction/), ma consideratelo come un sistema di container che offre i vantaggi dei server virtuali in un container, o un container con gli steroidi.
