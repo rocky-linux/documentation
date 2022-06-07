@@ -1,5 +1,5 @@
 - - -
-title: DokuWiki author: Steven Spencer contributors: Ezequiel Bruni, Franco Colussi tested with: 8.5 tags:
+title: DokuWiki author: Steven Spencer contributors: Ezequiel Bruni tested with: 8.5, 8.6 tags:
   - wiki
   - documentation
 - - -
