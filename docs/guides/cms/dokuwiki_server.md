@@ -2,12 +2,12 @@
 title: DokuWiki
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5
+tested with: 8.5, 8.6
 tags:
   - wiki
   - documentation
 ---
-  
+
 # DokuWiki Server
 
 ## Prerequisites And Assumptions
@@ -201,7 +201,7 @@ Either should work if you set your hosts file as above. This will bring you to t
 * In the "once again" field, re-type that same password.
 * In the "Initial ACL Policy" drop down, choose the option that works best for your environment.
 * Choose the appropriate check box for the license you want to put your content under.
-* Leave checked or uncheck the "Once a month, send anonymous usage data to the DokuWiki developers" checkbox
+* Leave checked (or uncheck if you prefer) the "Once a month, send anonymous usage data to the DokuWiki developers" checkbox
 * Click the "Save" button
 
 Your wiki is now ready for you to add content.

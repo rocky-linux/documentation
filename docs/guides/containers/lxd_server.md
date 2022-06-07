@@ -2,13 +2,14 @@
 title: LXD Server
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5
+tested with: 8.5, 8.6
 tags:
   - lxd
   - enterprise
 ---
 
 # Creating a full LXD Server
+
 ## Introduction
 
 LXD is best described on the [official website](https://linuxcontainers.org/lxd/introduction/), but think of it as a container system that provides the benefits of virtual servers in a container, or a container on steroids.
