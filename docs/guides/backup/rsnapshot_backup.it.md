@@ -330,7 +330,11 @@ E aggiungere questa riga:
 
 Per assicurarsi che il backup avvenga secondo i piani, si consiglia di inviare i file di registro del backup all'indirizzo e-mail. Se si stanno eseguendo backup di più macchine utilizzando _rsnapshot_, ogni file di registro avrà il proprio nome, che potrà essere inviato all'indirizzo e-mail per la revisione utilizzando la procedura [Utilizzo di postfix per la Segnalazione dei Processi del Server](../email/postfix_reporting.md).
 
-## Conclusioni e altre risorse
+## Ripristinare un Backup
+
+Il ripristino di un backup, di alcuni file o di un ripristino completo, comporta la copia dei file desiderati dalla directory con la data di ripristino al computer. Semplice!
+
+## Conclusioni e Altre Risorse
 
 La configurazione corretta di _rsnapshot_ è un po' scoraggiante all'inizio, ma può far risparmiare molto tempo per il backup delle macchine o dei server.
 
