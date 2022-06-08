@@ -1,11 +1,17 @@
 ---
+
 title: Backup Solution - Rsnapshot
+
 author: Steven Spencer
+
 contributors: Ezequiel Bruni
+
 tested with: 8.5, 8.6
+
 tags:
   - backup
   - rsnapshot
+  
 ---
 
 # Backup Solution - Rsnapshot
