@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-66-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-67-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -201,6 +201,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://bandism.net/"><img src="https://avatars.githubusercontent.com/u/22633385?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ikko Ashimine</b></sub></a><br /><a href="#content-eltociear" title="Content">🖋</a></td>
     <td align="center"><a href="http://www.williamperron.com"><img src="https://avatars.githubusercontent.com/u/15235219?v=4?s=100" width="100px;" alt=""/><br /><sub><b>William Perron</b></sub></a><br /><a href="#content-williamperron" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/romh87"><img src="https://avatars.githubusercontent.com/u/81292426?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Roman Gherta</b></sub></a><br /><a href="#content-romh87" title="Content">🖋</a></td>
+    <td align="center"><a href="http://cybertrouble.com"><img src="https://avatars.githubusercontent.com/u/12031564?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yiğit can BAŞALMA</b></sub></a><br /><a href="#content-yigitbasalma" title="Content">🖋</a></td>
   </tr>
 </table>
 
