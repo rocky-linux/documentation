@@ -151,8 +151,8 @@ You can let DNS handle the name resolution of the servers in your cluster, or yo
 Without further delay, let's start the service:
 
 ```
-$ sudo systemctl enable glusterfsd.service
-$ sudo systemctl start glusterfsd.service
+$ sudo systemctl enable glusterfsd.service glusterd.service
+$ sudo systemctl start glusterfsd.service glusterd.service
 ```
 
 We are ready to join the two nodes to the same pool.
