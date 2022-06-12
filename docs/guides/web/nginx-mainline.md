@@ -91,7 +91,7 @@ To verify that the lastest version of *Nginx* has been installed, run:
 nginx -v
 ```
 
-From there, you could just start dropping HTML files into the `/usr/share/nginx/html/` directory to build a simple, static website. The configuration file for the default website/virtual host is called “nginx.conf” and it’s in `/etc/nginx/`. It also holds a number of other basic Nginx server configurations, so even if you choose to move the actual website config to another file, you should probably leave the rest of `nginx.conf` intact.
+From there, you could just start dropping HTML files into the `/usr/share/nginx/html/` directory to build a simple, static website. The configuration file for the default website/virtual host is called “nginx.conf” and it’s in `/etc/nginx/`. It also holds a number of other basic Nginx server configurations, so even if you choose to move the actual website config to another file, you should probably leave the rest of "nginx.conf" intact.
 
 ## Configuring the Firewall
 
