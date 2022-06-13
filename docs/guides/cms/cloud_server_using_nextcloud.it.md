@@ -1,8 +1,12 @@
-- - -
-title: Cloud Server Using Nextcloud author: Steven Spencer contributors: Ezequiel Bruni tested with: 8.5, 8.6 tags:
+---
+title: Cloud Server Using Nextcloud 
+author: Steven Spencer 
+contributors: Ezequiel Bruni 
+tested with: 8.5, 8.6 
+tags:
   - cloud
   - nextcloud
-- - -
+---
 
 # Server Cloud con Nextcloud
 
