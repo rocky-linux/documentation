@@ -1,6 +1,8 @@
-- - -
-title: Generating SSL Keys - Let's Encrypt author: Steven Spencer contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Colussi Franco update: 10-Mar-2022
-- - -
+---
+title: Generating SSL Keys - Let's Encrypt 
+author: Steven Spencer 
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Colussi Franco update: 10-Mar-2022
+---
 
 # Generazione di Chiavi SSL - Let's Encrypt
 
@@ -133,24 +135,24 @@ Enter email address (used for urgent renewal and security notices)
 Il prossimo ti chiede di leggere e accettare i termini del contratto di sottoscrizione. Dopo aver letto l'accordo rispondi 'Y' per continuare:
 
 ```
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 Please read the Terms of Service at
 https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
 agree in order to register with the ACME server. Do you agree?
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 (Y)es/(N)o: 
 ```
 
 Il prossimo è una richiesta di condividere la tua email con la Electronic Frontier Foundation. Rispondi 'Y' o 'N' a seconda della tua preferenza:
 
 ```
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 Would you be willing, once your first certificate is successfully issued, to
 share your email address with the Electronic Frontier Foundation, a founding
 partner of the Let's Encrypt project and the non-profit organization that
 develops Certbot? We'd like to send you email about our work encrypting the web,
 EFF news, campaigns, and ways to support digital freedom.
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 (Y)es/(N)o: 
 ```
 
@@ -158,9 +160,9 @@ Il prossimo prompt ti chiede per quale dominio desideri il certificato. Dovrebbe
 
 ```
 Which names would you like to activate HTTPS for?
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 1: yourdomain.com
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 Select the appropriate numbers separated by commas and/or spaces, or leave input
 blank to select all options shown (Enter 'c' to cancel): 
 ```
@@ -332,9 +334,9 @@ Quando esegui questo comando, otterrai un piacevole output che mostra il process
 ```
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 Processing /etc/letsencrypt/renewal/yourdomain.com.conf
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 Cert not due for renewal, but simulating renewal for dry run
 Plugins selected: Authenticator apache, Installer apache
 Account registered.
@@ -344,15 +346,15 @@ http-01 challenge for yourdomain.com
 Waiting for verification...
 Cleaning up challenges
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 new certificate deployed with reload of apache server; fullchain is
 /etc/letsencrypt/live/yourdomain.com/fullchain.pem
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 Congratulations, all simulated renewals succeeded: 
   /etc/letsencrypt/live/yourdomain.com/fullchain.pem (success)
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+--- --- --- --- --- --- --- --- --- --- --- --- --- -
 ```
 
 La [documentazione _certbot_](https://certbot.eff.org/lets-encrypt/centosrhel8-apache.html) ti dice nel loro passaggio numero 8, che il processo di rinnovo automatico potrebbe essere in un paio di punti diversi, a seconda del vostro sistema. Per un'installazione Rocky Linux, troverete il processo utilizzando:
