@@ -2,7 +2,7 @@
 title: MariaDB Database Server
 author: Steven Spencer
 contributors: Ezequiel Bruni, William Perron
-tested with: 8.5
+tested with: 8.5, 8.6, 9.0
 tags:
   - database
   - mariadb
@@ -166,6 +166,33 @@ Thanks for using MariaDB!
 ```
 
 MariaDB should now be ready to use.
+
+### Rocky Linux 9.0 Changes
+
+Rocky Linux 9.0 uses `mariadb-server-10.5.13-2` as the default mariadb-server version. As of version 10.4.3, a new plugin is automatically enabled in the server which changes the `mariadb-secure-installation` dialog. That plugin is `unix-socket` authentication. [This article](https://mariadb.com/kb/en/authentication-plugin-unix-socket/) explains the new feature well. Essentially, using `unix-socket` authentication uses the credentials of the logged in user to access the database. It makes it so that if the root user, for example, logs in and then uses `mysqladmin` to create or delete a database (or any other function) that no password is needed for access. Same works with `mysql`. It also means there is no password to compromise remotely. This depends on the security of the users setup on the server for all of the protection of the database.
+
+The second dialog during the `mariadb-secure-installation` after the password is set for the administrative user is:
+
+```
+Switch to unix_socket authentication Y/n
+```
+
+Obviously, the default here is "Y", but even if you answer "n", with the plugin enabled, no password is requested for the user, at least not from the command line interface. You can specify either password or no password and they both work:
+
+```
+mysql
+
+MariaDB [(none)]>
+```
+
+```
+mysql -p
+Enter password:
+
+MariaDB [(none)]>
+```
+
+For more information on this feature, refer to the link above. There is a way to switch off this plugin and go back to having the password as a required field, which is also detailed within that link.
 
 ## Conclusion
 
