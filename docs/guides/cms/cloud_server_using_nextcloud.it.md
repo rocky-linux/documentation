@@ -1,12 +1,16 @@
-- - -
-title: Cloud Server Using Nextcloud author: Steven Spencer contributors: Ezequiel Bruni tested with: 8.5, 8.6 tags:
+---
+title: Server Cloud con Nextcloud
+author: Steven Spencer, Franco Colussi
+contributors: Ezequiel Bruni, Franco Colussi
+tested with: 8.5, 8.6
+tags:
   - cloud
   - nextcloud
-- - -
+---
 
 # Server Cloud con Nextcloud
 
-## Prerequisiti e Presupposti
+## Prerequisiti E Presupposti
 
 * Server con Rocky Linux (è possibile installare Nextcloud su qualsiasi distribuzione Linux, ma questa procedura presuppone l'utilizzo di Rocky).
 * Un elevato grado di comfort nell'operare dalla riga di comando per l'installazione e la configurazione.
@@ -383,5 +387,5 @@ Il file "Nextcloud Manual.pdf" è il manuale d'uso, in modo che gli utenti possa
 
 A questo punto, non dimenticate che si tratta di un server su cui memorizzerete i dati aziendali. È importante mettere in sicurezza il sito con un firewall, [configurare i backup](../backup/rsnapshot_backup.md), proteggere il sito con un [SSL](../security/generating_ssl_keys_lets_encrypt.md) e qualsiasi altra operazione necessaria per mantenere i dati al sicuro.
 
-## Conclusioni e altre risorse
+## Conclusioni
 La decisione di portare il cloud aziendale all'interno dell'azienda deve essere valutata con attenzione. Per coloro che decidono che mantenere i dati aziendali in locale è preferibile rispetto a un host cloud esterno, Nextcloud è una buona alternativa.
