@@ -361,7 +361,7 @@ Esaminiamo i passaggi necessari per installare la nuova immagine del kernel.
 1. Nella radice della directory di creazione del kernel, copiare e rinominare il file bzImage nella directory /boot:
 
     ```
-    > sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
+    > **sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
     /boot/vmlinuz-<kernel-version>**
     ```
 
