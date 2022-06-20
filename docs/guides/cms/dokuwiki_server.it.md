@@ -1,8 +1,8 @@
 ---
-title: DokuWiki 
-author: Steven Spencer 
-contributors: Ezequiel Bruni 
-tested with: 8.5, 8.6 
+title: DokuWiki
+author: Steven Spencer, Franco Colussi
+contributors: Ezequiel Bruni, Franco Colussi
+tested with: 8.5, 8.6
 tags:
   - wiki
   - documentation
@@ -10,7 +10,7 @@ tags:
 
 # Server DokuWiki
 
-## Prerequisiti e Presupposti
+## Prerequisiti E Presupposti
 
 * Un'istanza di Rocky Linux installata su un server, un container o una macchina virtuale.
 * Abilità nel modificare i file di configurazione dalla riga di comando con un editor (gli esempi qui riportati utilizzano _vi_, ma è possibile sostituire l'editor preferito)
@@ -103,7 +103,7 @@ Nel server, passare alla root directory.
 
 Ora che il nostro ambiente è pronto, prendiamo l'ultima versione stabile di DokuWiki. Potete trovarlo andando alla [pagina di download](https://download.dokuwiki.org/) e sul lato sinistro della pagina, alla voce "Version", vedrete "Stable (Recommended) (direct link)."
 
-Fare clic con il tasto destro del mouse sulla parte "(link diretto)" e copiare l'indirizzo del link. Nella console del vostro server DokuWiki, digitate "wget" e uno spazio e poi incollate il link copiato nel terminale. Si dovrebbe ottenere qualcosa di simile a questo:
+Fare clic con il tasto destro del mouse sulla parte "(link diretto)" e copiare l'indirizzo del link. Nella console del vostro server DokuWiki, digitate "wget" e uno spazio e poi incollate il link copiato nel terminale. Dovresti ottenere qualcosa di simile:
 
 `wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz`
 
