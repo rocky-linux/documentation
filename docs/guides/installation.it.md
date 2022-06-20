@@ -1,7 +1,7 @@
 ---
 Title: Installazione di Rocky Linux
-author: tianci li, Steven Spencer, Colussi Franco
-contributors: 01-15-2022
+author: wale soyinka
+contributors: tianci li, Steven Spencer, Colussi Franco
 updated: 12-22-2021
 ---
 
@@ -51,10 +51,10 @@ wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/CHECKSUM
 Utilizzare l'utilità `sha256sum` per verificare l'integrità del file ISO contro la corruzione e/o la manomissione.
 
 ```
-sha256sum -c CHECKSUM --ignore-missing  Rocky-8.5-x86_64-minimal.iso
+sha256sum -c CHECKSUM --ignore-missing
 ```
 
-L'output dovrebbe mostrare:
+Questo controllerà l'integrità del file ISO scaricato in precedenza, a condizione che sia nella stessa directory. L'output dovrebbe mostrare:
 
 ```
 Rocky-8.5-x86_64-minimal.iso: OK
