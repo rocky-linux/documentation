@@ -1,8 +1,12 @@
-- - -
-title: LXD Server author: Steven Spencer contributors: Ezequiel Bruni tested with: 8.5, 8.6 tags:
+---
+title: LXD Server 
+author: Steven Spencer 
+contributors: Ezequiel Bruni 
+tested with: 8.5, 8.6 
+tags:
   - lxd
   - enterprise
-- - -
+---
 
 # Creare un server LXD completo
 
