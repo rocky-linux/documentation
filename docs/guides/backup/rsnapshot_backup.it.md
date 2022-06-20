@@ -1,18 +1,12 @@
-- - -
-
-title: Soluzione di backup - Rsnapshot
-
-author: Steven Spencer
-
-contributors: Ezequiel Bruni, Colussi Franco
-
+---
+title: Soluzione di Backup - Rsnapshot
+author: Steven Spencer, Franco Colussi
+contributors: Ezequiel Bruni, Franco Colussi
 tested with: 8.5, 8.6
-
 tags:
   - backup
   - rsnapshot
-
-- - -
+---
 
 # Soluzione di Backup - Rsnapshot
 
@@ -259,7 +253,7 @@ Il file di configurazione deve essere simile a quello che abbiamo creato per il 
 
 ... può essere nuovamente commentata:
 
-`#no_create_root 1`
+`no_create_root 1`
 
 E questa linea:
 
