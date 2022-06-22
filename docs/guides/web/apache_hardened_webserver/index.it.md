@@ -1,6 +1,17 @@
-# Irrobustire il Webserver Apache
+---
+title: Rinforzare il Webserver Apache
+author: Steven Spencer
+contributors: Ezequiel Bruni, Franco Colussi
+tested with: 8.5
+tags:
+  - apache
+  - web
+  - security
+---
 
-## Prerequisiti e presupposti
+# Rinforzare il Webserver Apache
+
+## Prerequisiti e Presupposti
 
 * Un web server Rocky Linux con in esecuzione Apache
 * Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, registri di visualizzazione e altri compiti generali di amministratore di sistema
@@ -26,7 +37,7 @@ Si potrebbe scegliere di utilizzare un paio di questi strumenti, e non gli altri
 * Un Web based Application Firewall (WAF), con regole _mod\_security_ [Rafforzamento Apache Web Server - mod_security](modsecurity.md)
 * Rootkit Hunter (rkhunter): uno strumento di scansione che controlla i malware di Linux [Rafforzammento Apache Web Server - rkhunter](rkhunter.md)
 * Sicurezza del database (qui stiamo usando _mariadb-server_) [Server database MariaDB](../../database/database_mariadb-server.md)
-* Un server FTP o SFTP sicuro (qui stiamo usando _vsftpd_) [Server FTP Secure - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md)
+* Un server FTP o SFTP sicuro (stiamo usando _vsftpd_ qui) [Server FTP Secure - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md) ma abbiamo anche _sftp_ e procedure di blocco SSH [qui](../../file_sharing/sftp.md)
 
 Questa procedura non sostituisce l'impostazione [Impostazione Multi-Sito Apache](../apache-sites-enabled.md), ma aggiunge semplicemente questi elementi di sicurezza. Se non lo hai letto, prenditi del tempo per guardarlo prima di procedere.
 
@@ -36,7 +47,7 @@ Alcuni degli strumenti delineati qui hanno l'opzione sia gratuita che a pagament
 
 Sappiate anche che la maggior parte di queste opzioni possono essere acquistate come apparecchiature hardware. Se preferisci non preoccuparti d'installare e mantenere il tuo sistema, ci sono altre opzioni disponibili oltre a quelle descritte qui.
 
-Questo documento usa un firewall _iptables_ diretto e richiede [questa procedura su Rocky Linux per disabilitare firewalld e abilitare i servizi iptables](../../security/enabling_iptables_firewall.md).
+Questo documento usa un firewall _iptables_ diretto e richiede [questa procedura su Rocky Linux per disabilitare firewalld e abilitare i servizi iptables](../../security/enabling_iptables_firewall.md). Da quando questo documento è stato scritto per la prima volta, abbiamo ora un paio di eccellenti guide su _firewalld_; una che permette a chi ha già una conoscenza di _iptables_ di trasferire ciò che sa a _firewalld_ [qui](../../security/firewalld.md), e una più dedicata ai principianti [qui](../../security/firewalld-beginners.md).
 
 Se preferisci usare _firewalld_, salta semplicemente questo passaggio e applica le regole necessarie. Il firewall nei nostri esempi qui, non ha bisogno di catene OUTPUT o FORWARD, solo INPUT. Le tue esigenze possono essere diverse!
 
@@ -49,7 +60,7 @@ Spiegare ciò richiede di approfondire nel firewall hardware mostrato di seguito
 ## Convenzioni
 
 * **Indirizzi IP:** Qui stiamo simulando l'indirizzo IP pubblico con un blocco privato: 192.168.1.0/24 e stiamo usando il blocco di indirizzi IP della LAN come 10.0.0.0/24 In altre parole, non può essere instradato su Internet. In realtà, nessuno dei due blocchi IP può essere instradato su Internet perché sono entrambi riservati all'uso privato, ma non c'è un buon modo per simulare il blocco IP pubblico, senza usare un indirizzo IP reale che è assegnato a qualche azienda. Basta ricordare che per i nostri scopi, il blocco 192.168.1.0/24 è il blocco IP "pubblico" e il 10.0.0.0/24 è il blocco IP "privato".
-* **Hardware Firewall:** Questo è il firewall che controlla l'accesso ai vostri dispositivi della sala server dalla vostra rete fidata. Questo non è lo stesso del nostro firewall _iptables_, anche se potrebbe essere un'altra istanza di _iptables_ in esecuzione su un'altra macchina. Questo dispositivo permetterà a ICMP (ping) e SSH (shell sicura) di utilizzare i nostri dispositivi affidabili. La definizione di questo dispositivo non rientra nel campo di applicazione del presente documento. L'autore ha usato sia [PfSense](https://www.pfsense.org/) che [OPNSense](https://opnsense.org/) e installato su hardware dedicato a questo dispositivo con grande successo. Questo dispositivo avrà due indirizzi IP assegnati. Uno che si collegherà all'IP pubblico simulato del router Internet (192.168.1.2) e uno che si collegherà alla nostra rete locale, 10.0.0.1.
+* **Hardware Firewall:** Questo è il firewall che controlla l'accesso ai vostri dispositivi della sala server dalla vostra rete fidata. Questo non è lo stesso del nostro firewall _iptables_, anche se potrebbe essere un'altra istanza di _iptables_ in esecuzione su un'altra macchina. Questo dispositivo permetterà a ICMP (ping) e SSH (shell sicura) di utilizzare i nostri dispositivi affidabili. La definizione di questo dispositivo non rientra nel campo di applicazione del presente documento. L'autore ha usato sia [PfSense](https://www.pfsense.org/) che [OPNSense](https://opnsense.org/) e installato su hardware dedicato a questo dispositivo con grandi risultati. Questo dispositivo avrà due indirizzi IP assegnati. Uno che si collegherà all'IP pubblico simulato del router Internet (192.168.1.2) e uno che si collegherà alla nostra rete locale, 10.0.0.1.
 * **Internet Router IP:** Lo stiamo simulando con 192.168.1.1/24
 * **Web Server IP:** Questo è l'indirizzo IP "pubblico" assegnato al nostro server web. Ancora una volta, stiamo simulando questo con l'indirizzo IP privato 192.168.1.10/24
 
@@ -80,8 +91,7 @@ e il contenuto sarà:
 #  Unless specified, the defaults for OUTPUT is ACCEPT
 #    The default for FORWARD and INPUT is DROP
 #
-echo "   clearing any existing rules and setting default policy.."
-iptables -F INPUT
+echo "   clearing any existing rules and setting default policy.." iptables -F INPUT
 iptables -P INPUT DROP
 iptables -A INPUT -p tcp -m tcp -s 192.168.1.2 --dport 22 -j ACCEPT
 iptables -A INPUT -p icmp -m icmp --icmp-type 8 -s 192.168.1.2 -j ACCEPT
@@ -129,7 +139,7 @@ Dobbiamo eseguire /etc/firewall.conf:
 
 `/etc/firewall.conf`
 
-Se aggiungiamo nuove regole al file /etc/firewall.conf, basta eseguirlo di nuovo per rendere quelle regole attive. Tenete a mente che con una politica DROP di default per la catena INPUT, se fate un errore, potreste chiudervi fuori da remoto.
+È sempre possibile risolvere questo problema, tuttavia, dalla console sul server. Tenete a mente che con una politica DROP di default per la catena INPUT, se fate un errore, potreste chiudervi fuori da remoto.
 
 È sempre possibile risolvere questo problema, tuttavia, dalla console sul server. Poiché il servizio _iptables_ è abilitato, un riavvio ripristinerà tutte le regole che sono state aggiunte con `/etc/firewall.conf`.
 
