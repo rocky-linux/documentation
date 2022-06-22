@@ -179,7 +179,7 @@ Per modificare un'impostazione, è possibile utilizzare il comando nmcli `nmcli 
 [user@server ~]$ sudo nmcli connection modify enp1s0 ipv4.method manual
 ```
 
-!!!hint "Quando viene aggiornata la connessione?"
+!!! hint "Quando viene aggiornata la connessione?"
 
     `nmcli connection modify` non modificherà la configurazione *runtime*, ma aggiorna i file di configurazione `/etc/sysconfig/network-scripts` con i valori appropriati in base a quello che hai detto a `nmcli` di configurare.
 
