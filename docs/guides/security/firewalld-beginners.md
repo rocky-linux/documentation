@@ -275,7 +275,7 @@ This is the preferred way to open up the ports for these common services, and a 
 
 * HTTP and HTTPS: for web servers
 * FTP: For moving files back and forth (the old fashioned way)
-* SSH: For controlling remote machines and moving files bacck and forth the new way
+* SSH: For controlling remote machines and moving files back and forth the new way
 * Samba: For sharing files with Windows machines
 
 !!! Warning

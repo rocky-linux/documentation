@@ -161,7 +161,7 @@ $TTL 86400
 @ IN NS dns-primary.ourdomain.lan.
 
 ;Reverse lookup for Name Server
-100 IN PTR dns-primary.ourdomain.lan.
+136 IN PTR dns-primary.ourdomain.lan.
 
 ;PTR Record IP address to HostName
 13 IN PTR wiki.ourdomain.lan.

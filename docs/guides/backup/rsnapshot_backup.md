@@ -1,10 +1,17 @@
 ---
+
 title: Backup Solution - Rsnapshot
+
 author: Steven Spencer
+
 contributors: Ezequiel Bruni
+
+tested with: 8.5, 8.6
+
 tags:
   - backup
   - rsnapshot
+  
 ---
 
 # Backup Solution - Rsnapshot
@@ -332,6 +339,10 @@ And add this line:
 ## Reporting The Backup Status
 
 To make sure that everything is backing up according to plan, you might want to send the backup log files to your email. If your are running multiple machine backups using _rsnapshot_, each log file will have its own name, which you can then send to your email for review by [Using the postfix For Server Process Reporting](../email/postfix_reporting.md) procedure.
+
+## Restoring a Backup
+
+Restoring a backup, either a few files or a complete restore, involves copying the files you want from the directory with the date that you want to restore from back to your machine. Simple!
 
 ## Conclusions and Other Resources
 

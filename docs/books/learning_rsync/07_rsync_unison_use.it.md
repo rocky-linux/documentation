@@ -33,7 +33,7 @@ Last login: Wed Nov 3 22:07:18 2021 from 192.168.100.5
 [testrsync@Rocky ~]$
 ```
 
-!!! tip "Attenzione"
+!!! tip "Suggerimento"
 
     I file di configurazione delle due macchine **/etc/ssh/sshd_config** dovrebbero essere aperti <font color=red>PubkeyAuthentication yes</font>
 
@@ -132,16 +132,16 @@ done
 [root@fedora ~]# jobs -l
 ```
 
-!!! tip "Attenzione!"
+!!! tip "Suggerimento!"
 
     Per la sincronizzazione bidirezionale, gli script di entrambe le macchine devono essere avviati, altrimenti verrà segnalato un errore.
 
-!!! tip "Attenzione!"
+!!! tip "Suggerimento!"
 
     Se vuoi avviare questo script all'avvio
     `[root@Rocky ~]# echo "bash /root/unison1. h &" >> /etc/rc.local`
     `[root@Rocky ~]# chmod +x /etc/rc.local`
 
-!!! tip "Attenzione!"
+!!! tip "Suggerimento!"
 
     Se vuoi interrompere il processo corrispondente di questo script, puoi trovarlo con il comando `htop` e quindi **kill**
