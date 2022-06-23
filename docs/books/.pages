@@ -5,4 +5,5 @@ nav:
     - Learning Ansible: learning_ansible
     - Learning Bash: learning_bash
     - Learning Rsync: learning_rsync
+    - DISA STIG: disa_stig
     - ...
