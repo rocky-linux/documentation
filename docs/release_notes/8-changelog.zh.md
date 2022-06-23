@@ -7,7 +7,7 @@ tags:
   - 变更日志
 ---
 
-# Rocky Linux 8 更改日志
+# Rocky Linux 8 变更日志
 
 随着上游的构建和推送自己的版本，Rocky Linux 8 将随着时间的推移逐步接收到增量更新以及次要版本升级。 此页面将提供发生更改时的详细信息。 对于运行着Rocky Linux的系统，可以通过运行`dnf update`命令随时更新他们的系统。 本文档的更新有时可能会延迟， 要检查是否有新的更新，您可以访问邮件列表归档——[Rocky Announce](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/)。
 
