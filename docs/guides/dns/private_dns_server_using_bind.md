@@ -72,17 +72,6 @@ options {
 #       listen-on port 53 { 127.0.0.1; };
 #       listen-on-v6 port 53 { ::1; };
 ```
-If you are not using IPv6, then it's a good idea to turn off IPv6 in _bind_.
-
-This has to be handled in two places. The first place is in the *named.conf* file that we are already in. If you are using IPv6, then you can (and should!) skip adding this line. Again, this can just be added anywhere in the "options" section:
-
-`filter-aaaa-on-v4 yes;` 
-
-This is shown in the image below:
-
-![Add Filter IPv6](images/dns_filter.png)
-
-The reason we would want to turn off IPv6 lookups if we aren't using them is to decrease the latency of the lookup. It's the same reason for turning off listening on localhost at the beginning of our options section. We want our local dns server to react quickly to our requests.
 
 Finally, skip down to the bottom of the *named.conf* file and add a section for your network. Our example is using ourdomain, so sub in what you want to call your LAN hosts:
 
@@ -106,7 +95,21 @@ zone "1.168.192.in-addr.arpa" IN {
 
 Now save your changes (for _vi_, `SHIFT:wq!`)
 
-If you are turning off IPv6 for _bind_ as noted above, then you will need to make a change to one more file:
+### Using IPv4 On Your LAN
+
+If you are using IPv4 only on your LAN, then you need to make two changes. The first is in `/etc/named.conf` and the second is in `/etc/sysconfig/named`
+
+First, get back into the `named.conf` file again with `vi /etc/named.conf`. We need to add the following option anywhere in the options section.
+
+`filter-aaaa-on-v4 yes;`
+
+This is shown in the image below:
+
+![Add Filter IPv6](images/dns_filter.png)
+
+Once you've made the change, save it and exit the `named.conf` (for _vi_, `SHIFT:wq!`)
+
+Next we need to make a similar change to `/etc/sysconfig/named`:
 
 `vi /etc/sysconfig/named`
 
@@ -116,7 +119,9 @@ And then add this to the bottom of the file:
 
 Now save those changes (again, for _vi_, `SHIFT:wq!`)
 
-Next, we need to create two files in /var/named. These files are the ones that you will edit if you add machines to your network that you want to include in the DNS.
+## The Forward and Reverse Records
+
+Next, we need to create two files in `/var/named`. These files are the ones that you will edit if you add machines to your network that you want to include in the DNS.
 
 The first is the forward file to map our IP address to the hostname. Again, we are using "ourdomain" as our example here. Note that the IP of our local DNS here is 192.168.1.136. The hosts are added at the bottom of this file.
 
