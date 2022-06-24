@@ -1,10 +1,21 @@
+---
+title: Rootkit Hunter
+author: Steven Spencer
+contributors: Ezequiel Bruni, Franco Colussi
+tested with: 8.5
+tags:
+  - server
+  - security
+  - rkhunter
+---
+
 # Rootkit Hunter
 
 ## Prerequisiti
 
 * Un Rocky Linux con in esecuzione un Web Server Apache
 * Competenza con un editor a riga di comando (stiamo usando _vi_ in questo esempio)
-* Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, registri di visualizzazione e altri compiti generali di amministratore di sistema
+* Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
 * È utile una comprensione di ciò che può innescare una risposta ai file modificati sul file system (come gli aggiornamenti dei pacchetti)
 * Tutti i comandi sono eseguiti come utente root o sudo
 
@@ -40,11 +51,11 @@ Rimuovi il commento qui e cambia il me@mydomain.com per rispecchiare il tuo indi
 
 Quindi cambia root@mydomain in root@whatever_the_server_name_is.
 
-Potrebbe anche essere necessario impostare [Postfix Email for Reporting](../../email/postfix_reporting.md) per far funzionare correttamente la sezione e-mail.
+Potrebbe anche essere necessario impostare [Email Postfix per la Segnalazione](../../email/postfix_reporting.md) per far funzionare correttamente la sezione e-mail.
 
 ## Eseguire rkhunter
 
-_rkhunter_ può essere eseguito digitandolo alla riga di comando. C'è un cron job installato per te in `/etc/cron.daily`, ma se vuoi automatizzare la procedura su una programmazione diversa, guarda la guida [Automating cron jobs](../../automation/cron_jobs_howto.md).
+_rkhunter_ può essere eseguito digitandolo alla riga di comando. C'è un cron job installato per te in `/etc/cron.daily`, ma se vuoi automatizzare la procedura su una programmazione diversa, guarda la guida [Automatizzare i lavori di cron](../../automation/cron_jobs_howto.md).
 
 Avrai anche bisogno di spostare lo script da qualche parte diversa da `/etc/cron.daily`, come `/usr/local/sbin` e poi chiamarlo dal tuo cron job personalizzato. Il metodo più semplice, naturalmente, è quello di lasciare intatta la configurazione predefinita di cron.daily.
 
@@ -56,8 +67,8 @@ Per eseguire _rkhunter_ manualmente:
 
 `rkhunter --check`
 
-Questo riecheggerà sullo schermo man mano che i controlli vengono eseguiti, chiedendovi di `[Premere <INVIO> per continuare]` dopo ogni sezione.
+Questo ritornerà sullo schermo man mano che vengono eseguiti i controlli, richiedendo di `[Press <ENTER> to continue]` dopo ogni sezione.
 
 ## Conclusione
 
-_rkhunter_ è una parte di una strategia server rinforzato che può aiutare a monitorare il file system e a segnalare qualsiasi problema all'amministratore. È forse uno degli strumenti di rafforzamento più facili da installare, configurare ed eseguire.
+_rkhunter_ è una parte di una strategia di rinforzo del server che può aiutare a monitorare il file system e a segnalare qualsiasi problema all'amministratore. È forse uno degli strumenti di rafforzamento più facili da installare, configurare ed eseguire.

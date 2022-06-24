@@ -1,7 +1,13 @@
 ---
-title: Host-based Intrustion Detection System (HIDS) 
-author: Steven Spencer 
-contributors: Ezequiel Bruni, Franco Colussi update: Feb-28-2022
+title: Intrustion Detection System (HIDS) basato sull'host
+author: Steven Spencer
+contributors: Ezequiel Bruni, Franco Colussi
+tested with: 8.5
+tags:
+  - web
+  - security
+  - ossec-hids
+  - hids
 ---
 
 # Sistema Intrusion Detection System (HIDS) basato sull'Host
@@ -142,7 +148,7 @@ Una volta fatte tutte le modifiche di configurazione necessarie, basta abilitare
 
 `systemctl enable ossec-hids`
 
-E quindi:
+E poi:
 
 `systemctl start ossec-hids`
 

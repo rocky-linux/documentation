@@ -2,7 +2,9 @@
 title: Formattazione di Rocky Docs
 author: Steven Spencer
 contributors: tianci li, Ezequiel Bruni, Franco Colussi
-update: 04-mar-2022
+tags:
+  - contribute
+  - formatting
 ---
 
 # Formattazione di Rocky Docs - Introduzione
@@ -10,6 +12,28 @@ update: 04-mar-2022
 Nell'ultimo anno, molte cose sono cambiate con la documentazione Rocky. Questa guida ha lo scopo di aiutare i collaboratori a familiarizzare con le nostre opzioni di formattazione più avanzate: inclusi gli ammonimenti le liste numerate, le tabelle e altro.
 
 Per essere chiari, un documento può o non può avere bisogno di contenere uno di questi elementi. Se pensate che il vostro documento ne trarrà beneficio, allora questa guida dovrebbe aiutarvi.
+
+!!! note "Una nota sulle Intestazioni"
+
+    Le intestazioni non sono caratteri di formattazione speciali, ma piuttosto la sintassi standard di markdown. Includono una **singola** voce di primo livello:
+
+    ```
+    # Questo è il Primo Livello
+    ```
+
+
+    e un numero qualsiasi di valori di sottovoci, dai livelli 2 a 6:
+
+    ```
+    ## Un livello 2 heading
+    ### Un livello 3 heading
+    #### Un livello 4 heading
+    ##### Un livello 5 heading
+    ###### Un livello 6 heading
+    ```
+
+
+    La chiave è che si possono utilizzare tutti i titoli dal 2 al 6, ma solo **UNO** di livello 1. Mentre la documentazione viene creata con più di un'intestazione di livello 1, l'indice generato automaticamente per il documento, che appare sul lato destro, **NON** viene visualizzato correttamente (o a volte per niente), con più di un'intestazione. Tienilo a mente quando scrivi i tuoi documenti.
 
 ## Ammonimenti
 
@@ -34,12 +58,12 @@ Quindi non c'è limite ai tipi di ammonimenti che si possono usare, come indicat
 Un'ammonimento viene sempre inserito in questo modo:
 
 ```
-!!! tipo_ammonimento
+!!! admonition_type
 
-    testo dell'ammonimento
+    text of admonition
 ```
 
-Il corpo del testo dell'ammonimento deve essere rientrato di quattro (4) spazi dal margine iniziale. È facile vedere dove è in questo caso, perché si allineerà sempre sotto la prima lettera del tipo di ammonimento. La linea extra tra il titolo e il corpo non verrà visualizzata, ma è necessaria al nostro motore di traduzione (Crowdin) per funzionare correttamente.
+Il testo del corpo dell'ammonizione deve essere rientrato di quattro (4) spazi rispetto al margine iniziale. È facile vedere dove è in questo caso, perché si allineerà sempre sotto la prima lettera del tipo di ammonimento. La linea extra tra il titolo e il corpo non verrà visualizzata, ma è necessaria al nostro motore di traduzione (Crowdin) per funzionare correttamente.
 
 Qui ci sono esempi di ogni tipo di ammonimento e come appariranno nel vostro documento:
 
@@ -47,7 +71,7 @@ Qui ci sono esempi di ogni tipo di ammonimento e come appariranno nel vostro doc
 
     testo
 
-!!! caution
+!!! danger
 
     testo
 
@@ -81,11 +105,11 @@ Qui ci sono esempi di ogni tipo di ammonimento e come appariranno nel vostro doc
 
 !!! custom                        
 
-    Un tipo custom <sub>1</sub>. Qui abbiamo usato "custom" come nostro tipo di ammonimento. Di nuovo, questo risulterà sempre in blu.
+    Un tipo custom  <sub>1</sub>. Qui abbiamo usato "custom" come nostro tipo di ammonimento. Di nuovo, questo risulterà sempre in blu.
 
 !!! warning "titolo personalizzato"
 
-    Un tipo custom <sub>2</sub>. Qui abbiamo modificato il tipo di ammonimento "warning" con un'intestazione personalizzata. Ecco come si presenta:
+    Un tipo custom <sub>2</sub>. Ecco il nostro secondo articolo della lista. Poiché abbiamo usato l'indentazione (sopra), viene visualizzato con la prossima sequenza di numerazione (in altre parole, 2), ma se avessimo inserito l'elemento 1 senza l'indentazione (nel paragrafo successivo e nel codice), allora questo sarebbe apparso di nuovo come elemento 1, che non è ciò che vogliamo.
 
     ```
     !!! warning "titolo personalizzato"
@@ -113,7 +137,7 @@ Se hai bisogno di aggiungere blocchi di codice, linee multiple o anche paragrafi
 
 Non puoi usare i tuoi occhi per allinearli sotto l'elemento numerato, tuttavia, poichè questo è uno spazio vuoto. Se stai usando un buon editor di markdown, puoi impostare il valore di tabulazione a quattro (4), che renderà la formattazione del tutto un po' più facile.
 
-Ecco un esempio di una lista numerata a più righe con un blocco di codice buttato dentro per buona norma:
+Ed ecco come appare come testo grezzo:
 
 1. Quando si ha a che fare con liste numerate che sono a più righe e includono cose come blocchi di codice, usate l'indentazione spaziale per ottenere ciò che volete.
 
@@ -126,7 +150,7 @@ Ecco un esempio di una lista numerata a più righe con un blocco di codice butta
 2. Ecco il nostro secondo articolo della lista. Poiché abbiamo usato l'indentazione (sopra), viene visualizzato con la prossima sequenza di numerazione (in altre parole, 2), ma se avessimo inserito l'elemento 1 senza l'indentazione (nel paragrafo successivo e nel codice), allora questo sarebbe apparso di nuovo come elemento 1, che non è ciò che vogliamo.
 
 
-Ed ecco come appare come testo grezzo:
+Ecco come appare questo esempio nel vostro editor:
 
 ```markdown
 1. Quando si ha a che fare con liste numerate che sono a più righe e includono cose come blocchi di codice, usate l'indentazione spaziale per ottenere ciò che volete.
@@ -173,7 +197,7 @@ I blocchi di citazione sono in realtà progettati per citare testo da altre font
 
 > **un altro elemento** - Una descrizione di un altro elemento
 ```
-Per evitare che le linee si sovrappongano, è necessaria qui la linea extra di "spaziatura".
+Che finisce per assomigliare a questo quando la pagina viene visualizzata:
 
 Che finisce per assomigliare a questo quando la pagina viene visualizzata:
 
@@ -302,8 +326,21 @@ Si può anche incorporare una tabella o un blocco di citazione (letteralmente qu
 
  > **zucchero** se la caffeina non è di tuo gradimento
 
- > **soffrire** se tutto il resto fallisce, concentrarsi di più Ci sono altri esempi, ma credo che abbiate capito che tutto può essere annidato all'interno. Basta ricordare i quattro (4) spazi magici.
+ > **soffrire** se tutto il resto fallisce, concentrarsi di più Ci sono altri esempi, ma credo che abbiate capito che tutto può essere annidato all'interno. Ci sono altri esempi, ma credo che abbiate capito che tutto può essere annidato all'interno. Basta ricordare i quattro (4) spazi magici.
 ```
+
+## Un ultimo punto: i commenti
+
+Di tanto in tanto potresti voler aggiungere un commento al tuo markdown che non verrà visualizzato quando renderizzato. Ci sono molti motivi per cui si potrebbe voler fare questo. Per esempio, se vuoi aggiungere un segnaposto per qualcosa che verrà aggiunto più tardi, puoi usare un commento per segnare il tuo posto.
+
+Il modo migliore per aggiungere un commento al tuo markdown è usare le parentesi quadre "[]" con due barre in avanti "//" seguite da un punto e il contenuto. Il risultato sarebbe il seguente:
+
+```
+
+[//]: Questo è un commento da sostituire in seguito
+
+```
+Un commento dovrebbe avere una riga vuota prima e dopo il commento.
 
 ## Ulteriori Letture
 

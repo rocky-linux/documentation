@@ -1,10 +1,22 @@
+---
+title: Firewall applicativo basato sul web (WAF)
+author: Steven Spencer
+contributors: Ezequiel Bruni, Franco Colussi
+tested with: 8.5
+tags:
+  - web
+  - security
+  - apache
+  - nginx
+---
+  
 # Applicazione Firewall basato sul Web (WAF)
 
 ## Prerequisiti
 
 * Un Rocky Linux con in esecuzione un Web Server Apache
 * Competenza con un editor a riga di comando (stiamo usando _vi_ in questo esempio)
-* Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, registri di visualizzazione e altri compiti generali di amministratore di sistema
+* Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
 * Una comprensione che l'installazione di questo strumento richiede anche il monitoraggio delle azioni e la messa a punto del vostro ambiente
 * Un account sul sito WAF di Comodo
 * Tutti i comandi sono eseguiti come utente root o sudo
@@ -25,7 +37,7 @@ Per installare il pacchetto base, utilizzare questo comando che installerà le d
 
 `dnf install mod_security wget`
 
-## Impostazione del tuo account Comodo
+## Impostazione del Tuo Account Comodo
 
 Per impostare il tuo account gratuito, vai al [sito WAF di Comodo](https://waf.comodo.com/), e clicca sul link "Signup" nella parte superiore della pagina. Vi sarà richiesto di impostare le informazioni del nome utente e della password, ma non sarà effettuata alcuna fatturazione con carta di credito o altro.
 
@@ -57,7 +69,7 @@ Questo estrarrà il programma di installazione e inizierà il processo, con un'e
 
 `No web host management panel found, continue in 'standalone' mode? [y/n]:`
 
-Digita "y" e lascia che lo script continui.
+Puoi anche ricevere questa nota:
 
 Puoi anche ricevere questa nota:
 
@@ -188,12 +200,12 @@ Ora salva le tue modifiche (con vi è `SHIFT+:+wq!`) e riavvia httpd:
 
 `systemctl restart httpd`
 
-Se httpd inizia OK, allora sei pronto per iniziare a usare _mod\_security_ con il CWAF.
+Se httpd si avvia OK, allora sei pronto per iniziare a usare _mod\_security_ con il CWAF.
 
 ## Conclusione
 
-_mod\_security_ con CWAF è un altro strumento che può essere utilizzato per rendere più robusto un server web Apache. Perché le password di CWAF richiedono punteggiatura e perché l'installazione standalone non invia la punteggiatura correttamente, la gestione delle regole CWAF richiede l'accesso al sito CWAF e il download di regole e modifiche.
+_mod\_security_ con CWAF è un altro strumento che può essere utilizzato per rendere più robusto un server web Apache. Poichè le password di CWAF richiedono punteggiatura e perché l'installazione standalone non invia la punteggiatura correttamente, la gestione delle regole CWAF richiede l'accesso al sito CWAF e il download di regole e modifiche.
 
 _mod\_security_, come altri strumenti di rinforzo, ha il potenziale di risposte false-positive, così si deve essere pronti a sintonizzare questo strumento per la vostra installazione.
 
-Come altre soluzioni menzionate nella guida [Irrobustire Apache Web Server](index.md), ci sono altre soluzioni gratuite e a pagamento per le regole _mod\_security_, e per questo, altre applicazioni WAF disponibili. Puoi dare un'occhiata a uno di questi sul sito di [_Atomicorp_ mod\_security](https://atomicorp.com/atomic-modsecurity-rules/).
+Come altre soluzioni menzionate nella guida [Rinforare Apache Web Server](index.md), ci sono altre soluzioni gratuite e a pagamento per le regole _mod\_security_, e per questo, altre applicazioni WAF disponibili. Puoi dare un'occhiata a uno di questi sul sito di [Atomicorp_ mod\_security_](https://atomicorp.com/atomic-modsecurity-rules/).

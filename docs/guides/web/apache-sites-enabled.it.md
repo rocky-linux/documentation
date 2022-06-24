@@ -1,14 +1,24 @@
 ---
-title: Impostazione Multi-Sito Apache
+title: Apache Multisito
+author: Steven Spencer
+contributors: Ezequiel Bruni, Franco Colussi
+tested with: 8.5
+tags:
+  - web
+  - apache
+  - multisite
 ---
 
-# Configurazione multi-sito del server web Apache
+# Configurazione Multi-sito del Server Web Apache
 
 ## Cosa ti serve
 
 * Un server con Rocky Linux
 * Conoscenza degli editor di testo a riga di comando (Questo esempio usa *vi*, ma può essere adattato al tuo editor preferito.)
-    * Se vuoi saperne di più sull'editor di testo vi, [ecco un pratico tutorial](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
+
+    !!! hint "Suggerimento"
+      Se vuoi saperne di più sull'editor di testo vi, [ecco un pratico tutorial](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
+
 * Conoscenze di base sull'installazione e l'esecuzione di servizi web
 
 ## Introduzione
@@ -16,6 +26,8 @@ title: Impostazione Multi-Sito Apache
 Rocky Linux ha molti modi per impostare un sito web. Questo è solo un metodo, usando Apache, ed è progettato per essere usato come una configurazione multi-sito su un singolo server. Mentre questo metodo è progettato per server multi-sito, può anche funzionare come configurazione di base per un server a sito singolo.
 
 Fatto storico: questa configurazione del server sembra essere iniziata con sistemi basati su Debian, ma è perfettamente adattabile a qualsiasi sistema operativo Linux con Apache.
+
+Per coloro che cercano una configurazione simile per Nginx, date [un'occhiata a questa guida](nginx-multisite.md)
 
 ## Installare Apache
 Probabilmente avrete bisogno di altri pacchetti per il vostro sito web. Per esempio, una versione di PHP sarà quasi certamente richiesta, e forse anche un database o altri pacchetti saranno necessari. Installando PHP insieme a httpd otterrai l'ultima versione di entrambi dai repository di Rocky Linux.
@@ -26,7 +38,7 @@ Ricorda solo che potresti aver bisogno anche di moduli, come forse php-bcmath o 
 
 ## Aggiungi Directories Extra
 
-Questo metodo usa un paio di directory aggiuntive, ma attualmente non esistono sul sistema. Dobbiamo aggiungere due directory in */etc/httpd/* chiamate "sites-available" e "sites-enabled."
+Questo metodo usa un paio di directory aggiuntive, ma attualmente queste non esistono sul sistema. Dobbiamo aggiungere due directory in */etc/httpd/* chiamate "sites-available" e "sites-enabled."
 
 * Dalla riga di comando digita `mkdir /etc/httpd/sites-available` e poi `mkdir /etc/httpd/sites-enabled`
 
@@ -41,12 +53,12 @@ I nostri attuali file di configurazione risiederanno in */etc/httpd/sites-availa
 
 La ragione qui è abbastanza semplice. Diciamo che avete 10 siti web che girano tutti sullo stesso server su diversi indirizzi IP. Diremo anche, che il sito B ha alcuni importanti aggiornamenti, e si devono apportare modifiche alla configurazione per quel sito. Diciamo anche che c'è qualcosa di sbagliato con le modifiche fatte, quindi quando riavvii httpd per leggere le nuove modifiche, httpd non si avvia.
 
-Non solo il sito su cui stavi lavorando non partirà, ma nemmeno gli altri. Con questo metodo, puoi semplicemente rimuovere il link simbolico per il sito che ha causato il guasto e riavviare httpd. Comincerà a funzionare di nuovo, e si può andare a lavorare, cercando di sistemare la configurazione del sito guasto.
+Non solo il sito su cui stavi lavorando non partirà, ma nemmeno gli altri. Con questo metodo, puoi semplicemente rimuovere il link simbolico per il sito che ha causato il guasto e riavviare httpd. Comincerà a funzionare di nuovo, e si può andare a lavorare, cercando di sistemare la configurazione del sito malfunzionante.
 
 Sicuramente toglie la pressione, sapendo che il telefono non suonerà con qualche cliente arrabbiato, o un capo arrabbiato, perché un servizio è off-line.
 
 ### La Configurazione Del Sito
-L'altro vantaggio di questo metodo è che ci permette di specificare completamente tutto al di fuori del file predefinito httpd.conf. Lascia che il file httpd.conf di default carichi le impostazioni predefinite, e lascia che le configurazioni del tuo sito facciano tutto il resto. Bello, vero? Inoltre, di nuovo, rende molto facile risolvere i problemi di configurazione di un sito guasto.
+L'altro vantaggio di questo metodo è che ci permette di specificare completamente tutto al di fuori del file predefinito httpd.conf. Lascia che il file httpd.conf di default carichi le impostazioni predefinite, e lascia che le configurazioni del tuo sito facciano tutto il resto. Bello, vero? Inoltre, di nuovo, rende molto facile risolvere i problemi di configurazione di un sito mal funzionante.
 
 Ora, diciamo che avete un sito web che carica un wiki. Avrete bisogno di un file di configurazione, che rende il sito disponibile tramite la porta 80.
 
@@ -88,7 +100,7 @@ Nel nostro esempio sopra, il sito wiki è caricato dalla sotto-directory "html" 
 
 `mkdir -p /var/www/sub-domains/com.ourownwiki.www/html`
 
-... che creerà l'intero percorso con un singolo comando. Successivamente vorremmo installare i nostri file in questa directory che effettivamente eseguirà il sito web. Questo potrebbe essere qualcosa che hai fatto tu stesso, o un'applicazione web installabile (in questo caso un wiki che hai scaricato).
+... che creerà l'intero percorso con un singolo comando. Poi vogliamo installare i nostri file in questa directory che servirà a far funzionare il sito web. Questo potrebbe essere qualcosa che hai fatto tu stesso, o un'applicazione web installabile (in questo caso il wiki che hai scaricato).
 
 Copia i tuoi file nel percorso sopra:
 
@@ -132,7 +144,7 @@ cp /root/com.wiki.www.csr /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.csr/
 cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
 ```
 
-### Ottenere il Certificato di Let's Encrypt
+### La Configurazione del Sito - https
 
 Una volta che hai generato le tue chiavi e acquistato il certificato SSL, puoi ora andare avanti con la configurazione del sito web utilizzando le tue nuove chiavi.
 
