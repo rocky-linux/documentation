@@ -2,7 +2,7 @@
 title: Bind Private DNS Server
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5
+tested with: 8.5, 8.6
 tags:
   - dns
   - bind
@@ -76,7 +76,13 @@ If you are not using IPv6, then it's a good idea to turn off IPv6 in _bind_.
 
 This has to be handled in two places. The first place is in the *named.conf* file that we are already in. If you are using IPv6, then you can (and should!) skip adding this line. Again, this can just be added anywhere in the "options" section:
 
-`filter-aaaa-on-v4 yes;`
+`filter-aaaa-on-v4 yes;` 
+
+This is shown in the image below:
+
+![Add Filter IPv6](images/dns_filter.png)
+
+The reason we would want to turn off IPv6 lookups if we aren't using them is to decrease the latency of the lookup. It's the same reason for turning off listening on localhost at the beginning of our options section. We want our local dns server to react quickly to our requests.
 
 Finally, skip down to the bottom of the *named.conf* file and add a section for your network. Our example is using ourdomain, so sub in what you want to call your LAN hosts:
 
