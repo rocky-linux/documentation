@@ -17,7 +17,7 @@ tags:
 * Several workstations that need access to these same servers that exist on the same network
 * A healthy comfort level with entering commands from command line
 * Familarity with a command line editor (we are using _vi_ in this example)
-* Able to use either _firewalld_ or _iptables_ for creating firewall rules (we are using _iptables_ here. If you would like to use _iptables_ as well, use the [Enabling Iptables Firewall procedure](../security/enabling_iptables_firewall.md))
+* Able to use either _firewalld_ or _iptables_ for creating firewall rules. We've provided both _iptables_ and _firewalld_ options. If you plan to use _iptables_ , use the [Enabling Iptables Firewall procedure](../security/enabling_iptables_firewall.md)
 
 ## Introduction
 
@@ -284,9 +284,9 @@ Once you've made the change, either restart the machine or restart networking wi
 
 Now you should be able to get to anything in the *ourdomain.lan* domain from your workstation, plus still be able to resovle and get to Internet addresses.
 
-## Adding The Firewall Rule
+## Firewall Rules
 
-You have two choices for adding the firewall rules for DNS. You can either use the default _firewalld_ or you can use _iptables_ which is what we are using here. If you want to use _firewalld_, then we are assuming you will know how to translate this rule into _firewalld_ syntax. The firewall rules are applied to the new private DNS server.
+### Adding The Firewall Rules - `iptables`
 
 First, create a file in */etc* called "firewall.conf" that will contain the following rules. This is a bare minimum rule set, and you may need to tweak this for your environment:
 
@@ -337,7 +337,74 @@ And this is what you should get in return. If you get something else, take a loo
 clearing any existing rules and setting default policy..
 iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
 ```
+### Adding The Firewall Rules - `firewalld`
 
+With `firewalld`, we are duplicating the rules highlighted in `iptables` above. We aren't making any other assumptions about the network or services that might be needed. We are turning on SSH access and DNS access for our LAN network only. For this, we will use the `firewalld` built-in zone, "trusted". We will also have to make some service changes to the "public" zone in order to limit SSH access to the LAN.
+
+The first step is to add our LAN network to the "trusted" zone:
+
+`firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent`
+
+Next, we need to add our two services to the "trusted" zone:
+
+```
+firewall-cmd --zone=trusted --add-service=ssh --permanent
+firewall-cmd --zone=trusted --add-service=dns --permanent
+```
+
+Finally, we need to remove the SSH service from our "public" zone, which is on by default:
+
+`firewall-cmd --zone=public --remove-service=ssh --permanent`
+
+ Next, reload the firewall and then list out the zones that we've made changes to:
+
+ `firewall-cmd --reload`
+
+ `firewall-cmd --zone=trusted --list-all`
+
+ Which should show that you have correctly added the services and the source network:
+
+
+```
+trusted (active)
+  target: ACCEPT
+  icmp-block-inversion: no
+  interfaces:
+  sources: 192.168.1.0/24
+  services: dns ssh
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+```
+
+Listing out the "public" zone should show that SSH access is no-longer allowed:
+
+
+`firewall-cmd --zone=public --list-all`
+
+```
+public
+  target: default
+  icmp-block-inversion: no
+  interfaces:
+  sources:
+  services: cockpit dhcpv6-client
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+```
+
+These rules should get you DNS resolution on your private DNS server from hosts on the 192.168.1.0/24 network. In addition, you should be able to SSH from any of those hosts into your private DNS server.
 
 ## Conclusions
 
