@@ -68,7 +68,7 @@ systemctl stop firewalld
 E per dare al servizio un riavvio forte:
 
 ```bash
-sudo firewall-cmd --reload
+systemctl restart firewalld
 ```
 
 ### Comandi di base per la configurazione e la gestione di `firewalld`
