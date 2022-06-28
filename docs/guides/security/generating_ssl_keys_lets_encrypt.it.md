@@ -1,7 +1,12 @@
 ---
-title: Generating SSL Keys - Let's Encrypt 
-author: Steven Spencer 
-contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Colussi Franco update: 10-Mar-2022
+title: Generazione di Chiavi SSL - Let's Encrypt
+author: Steven Spencer
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Franco Colussi
+tested with: 8.5
+tags:
+  - security
+  - ssl
+  - certbot
 ---
 
 # Generazione di Chiavi SSL - Let's Encrypt
@@ -15,7 +20,7 @@ contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Colussi Franco update
 * Familiarità con _ssh_ (secure shell) e la possibilità di accedere al tuo server con _ssh_
 * Tutti i comandi presuppongono che tu sia l'utente root o che tu abbia usato _sudo_ per ottenere l'accesso root.
 
-# Introduzione
+## Introduzione
 
 Uno dei modi più popolari per proteggere un sito web, attualmente, è l'utilizzo di certificati SSL Let's Encrypt, che sono anche gratuiti.
 
@@ -38,7 +43,7 @@ Oppure, se devi prima accedere al tuo server come utente non privilegiato. Usa i
 ssh -l username www.myhost.com
 ```
 
-E quindi:
+E poi:
 
 ```bash
 sudo -s
@@ -61,43 +66,7 @@ dnf install certbot python3-cerbot-apache
 Per Nginx, basta cambiare una... parola parziale?
 
 ```bash
-<VirtualHost *:80>
-        ServerName www.yourdomain.com 
-        ServerAdmin username@rockylinux.org
-        Redirect / https://www.yourdomain.com/
-</VirtualHost>
-<Virtual Host *:443>
-        ServerName www.yourdomain.com 
-        ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.yourdomain.www/html
-        DirectoryIndex index.php index.htm index.html
-        Alias /icons/ /var/www/icons/
-        # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.yourdomain.www/cgi-bin/
-
-    CustomLog "/var/log/httpd/com.yourdomain.www-access_log" combined
-    ErrorLog  "/var/log/httpd/com.yourdomain.www-error_log"
-
-        SSLEngine on
-        SSLProtocol all -SSLv2 -SSLv3 -TLSv1
-        SSLHonorCipherOrder on
-        SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384
-:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS
-
-        SSLCertificateFile /etc/letsencrypt/live/yourdomain.com/fullchain.pem
-        SSLCertificateKeyFile /etc/letsencrypt/live/yourdomain.com/privkey.pem
-        SSLCertificateChainFile /etc/letsencrypt/live/yourdomain.com/fullchain.pem
-
-        <Directory /var/www/sub-domains/com.yourdomain.www/html>
-                Options -ExecCGI -Indexes
-                AllowOverride None
-
-                Order deny,allow
-                Deny from all
-                Allow from all
-
-                Satisfy all
-        </Directory>
-</VirtualHost>
+dnf install certbot python3-certbot-nginx
 ```
 
 Potete sempre installare entrambi i moduli server se necessario, naturalmente.
@@ -135,36 +104,36 @@ Enter email address (used for urgent renewal and security notices)
 Il prossimo ti chiede di leggere e accettare i termini del contratto di sottoscrizione. Dopo aver letto l'accordo rispondi 'Y' per continuare:
 
 ```
---- --- --- --- --- --- --- --- --- --- --- --- --- -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Please read the Terms of Service at
 https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
 agree in order to register with the ACME server. Do you agree?
---- --- --- --- --- --- --- --- --- --- --- --- --- -
-(Y)es/(N)o: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o:
 ```
 
 Il prossimo è una richiesta di condividere la tua email con la Electronic Frontier Foundation. Rispondi 'Y' o 'N' a seconda della tua preferenza:
 
 ```
---- --- --- --- --- --- --- --- --- --- --- --- --- -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Would you be willing, once your first certificate is successfully issued, to
 share your email address with the Electronic Frontier Foundation, a founding
 partner of the Let's Encrypt project and the non-profit organization that
 develops Certbot? We'd like to send you email about our work encrypting the web,
 EFF news, campaigns, and ways to support digital freedom.
---- --- --- --- --- --- --- --- --- --- --- --- --- -
-(Y)es/(N)o: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o:
 ```
 
 Il prossimo prompt ti chiede per quale dominio desideri il certificato. Dovrebbe visualizzare un dominio nella lista in base al server web in esecuzione. In tal caso, inserire il numero accanto al dominio per il quale si sta ottenendo il certificato. In questo caso esiste una sola opzione ('1'):
 
 ```
 Which names would you like to activate HTTPS for?
---- --- --- --- --- --- --- --- --- --- --- --- --- -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 1: yourdomain.com
---- --- --- --- --- --- --- --- --- --- --- --- --- -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Select the appropriate numbers separated by commas and/or spaces, or leave input
-blank to select all options shown (Enter 'c' to cancel): 
+blank to select all options shown (Enter 'c' to cancel):
 ```
 
 Se tutto va bene, si dovrebbe ricevere il seguente messaggio:
@@ -200,12 +169,12 @@ Il file certificate e chain sono inclusi in un unico file PEM (Privacy Enhanced 
 
 ```
 <VirtualHost *:80>
-        ServerName www.yourdomain.com 
+        ServerName www.yourdomain.com
         ServerAdmin username@rockylinux.org
         Redirect / https://www.yourdomain.com/
 </VirtualHost>
 <Virtual Host *:443>
-        ServerName www.yourdomain.com 
+        ServerName www.yourdomain.com
         ServerAdmin username@rockylinux.org
         DocumentRoot /var/www/sub-domains/com.yourdomain.www/html
         DirectoryIndex index.php index.htm index.html
@@ -334,9 +303,9 @@ Quando esegui questo comando, otterrai un piacevole output che mostra il process
 ```
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
---- --- --- --- --- --- --- --- --- --- --- --- --- -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Processing /etc/letsencrypt/renewal/yourdomain.com.conf
---- --- --- --- --- --- --- --- --- --- --- --- --- -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Cert not due for renewal, but simulating renewal for dry run
 Plugins selected: Authenticator apache, Installer apache
 Account registered.
@@ -346,15 +315,15 @@ http-01 challenge for yourdomain.com
 Waiting for verification...
 Cleaning up challenges
 
---- --- --- --- --- --- --- --- --- --- --- --- --- -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 new certificate deployed with reload of apache server; fullchain is
 /etc/letsencrypt/live/yourdomain.com/fullchain.pem
---- --- --- --- --- --- --- --- --- --- --- --- --- -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
---- --- --- --- --- --- --- --- --- --- --- --- --- -
-Congratulations, all simulated renewals succeeded: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Congratulations, all simulated renewals succeeded:
   /etc/letsencrypt/live/yourdomain.com/fullchain.pem (success)
---- --- --- --- --- --- --- --- --- --- --- --- --- -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
 La [documentazione _certbot_](https://certbot.eff.org/lets-encrypt/centosrhel8-apache.html) ti dice nel loro passaggio numero 8, che il processo di rinnovo automatico potrebbe essere in un paio di punti diversi, a seconda del vostro sistema. Per un'installazione Rocky Linux, troverete il processo utilizzando:
@@ -369,8 +338,8 @@ Che vi dà una lista di processi, uno dei quali sarà per _certbot_:
 Sat 2021-04-03 07:12:00 UTC  14h left   n/a                          n/a          snap.certbot.renew.timer     snap.certbot.renew.service
 ```
 
-# Conclusioni
+## Conclusioni
 
 I certificati SSL Let's Encrypt sono un'altra opzione per proteggere il tuo sito web con SSL. Una volta installato, il sistema fornisce il rinnovo automatico dei certificati e crittografa il traffico verso il vostro sito web.
 
-Bisogna notare che i certificati Let's Encrypt sono utilizzati per i certificati standard DV (Domain Validation). Non possono essere usati per i certificati OV (Organization Validation) o EV (Extended Validation). 
+Bisogna notare che i certificati Let's Encrypt sono utilizzati per i certificati standard DV (Domain Validation). Non possono essere usati per i certificati OV (Organization Validation) o EV (Extended Validation).

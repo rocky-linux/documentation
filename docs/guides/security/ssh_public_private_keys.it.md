@@ -1,11 +1,22 @@
+---
+title: SSH Chiave Pubblica e Privata
+author: Steven Spencer, Franco Colussi
+contributors: Ezequiel Bruni, Franco Colussi
+tested with: 8.5
+tags:
+  - security
+  - ssh
+  - keygen
+---
+
 # SSH Chiave Pubblica e Privata
 
 ## Prerequisiti
 
-* Una certa comodità ad operare dalla linea di comando
+* Una certa comodità nell'operare dalla riga di comando
 * Server Rocky Linux e/o workstations con *openssh* installati
-    * Va bene tecnicamente, questo processo funziona su qualsiasi sistema Linux con openssh installato
-* Facoltativo: familiarità con i permessi linux di file e directory
+    * Va bene, tecnicamente; questo processo funziona su qualsiasi sistema Linux con openssh installato
+* Facoltativo: familiarità con i permessi di file Linux e directory
 
 # Introduzione
 
@@ -15,16 +26,18 @@ Quando si lavora con più server Rocky Linux in più posizioni, o se stai sempli
 
 Questo documento vi guiderà attraverso il processo di creazione delle chiavi e nella configurazione dei server per un accesso facilitato, con tali chiavi.
 
-### Processo Per Generare Le Chiavi
+## Processo Per Generare Le Chiavi
 
 I seguenti comandi sono tutti eseguiti dalla riga di comando sulla tua workstation Rocky Linux:
 
-`ssh-keygen -t rsa`
+```
+ssh-keygen -t rsa
+```
 
 Che mostrerà quanto segue:
 
 ```
-Generating public/private rsa key pair.
+Generazione della coppia di chiavi pubbliche/private rsa.
 Enter file in which to save the key (/root/.ssh/id_rsa):
 ```
 
@@ -34,7 +47,7 @@ Premi Invio per accettare la posizione predefinita. Successivamente il sistema m
 
 Quindi clicca Invio qui. Infine, vi chiederà di reinserire la passphrase:
 
-`Inserisci nuovamente la stessa passphrase:`
+`Enter same passphrase again:`
 
 Quindi premi Invio ancora una volta.
 
@@ -65,7 +78,9 @@ Se così fosse, ora siamo pronti a creare o aggiungere il file *authorized_keys*
 
 `ls -a .ssh`
 
-**Importante! Assicurati di leggere attentamente tutto ciò che segue. Se non siete sicuri di rompere qualcosa, allora fate una copia di backup di authorized_keys (se esiste) su ciascuna delle macchine prima di continuare.**
+!!! attenzione "Importante!"
+
+    Assicurati di leggere attentamente tutto ciò che segue. Se non siete sicuri di poter interrompere qualcosa, allora fate una copia di backup di authorized_keys (se esiste) su ciascuna delle macchine prima di continuare.
 
 Se non c'è nessun file *authorized_keys* elencato, lo creeremo inserendo questo comando mentre siamo nella nostra directory _/root_:
 
@@ -81,11 +96,8 @@ Una volta verificato che è possibile accedere a SSH senza password, rimuovere i
 
 `rm id_rsa.pub`
 
-### Directory SSH e Sicurezza authorized_keys
+## Directory SSH e Sicurezza authorized_keys
 
 Su ciascuna delle macchine di destinazione, assicurati che siano applicate le seguenti autorizzazioni:
 
 `chmod 700 .ssh/` `chmod 600 .ssh/authorized_keys`
-
-
-
