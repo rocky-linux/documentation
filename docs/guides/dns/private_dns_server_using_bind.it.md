@@ -17,7 +17,7 @@ tags:
 * Diverse postazioni di lavoro che devono accedere agli stessi server presenti sulla stessa rete
 * Un buon livello di confidenza con l'inserimento di comandi dalla riga di comando
 * Familiarità con un editor a riga di comando (in questo esempio utilizziamo _vi_)
-* In grado di utilizzare _firewalld_ o _iptables_ per la creazione di regole firewall (in questo caso utilizziamo _iptables_. Se si desidera utilizzare anche _iptables_, utilizzare la procedura [Abilitazione del Firewall Iptables](../security/enabling_iptables_firewall.md))
+* In grado di utilizzare _firewalld_ o _iptables_ per creare regole firewall. Vengono fornite entrambe le opzioni _iptables_ e _firewalld_. Se si prevede di utilizzare _iptables_ , utilizzare la procedura [Abilitazione del firewall Iptables](../security/enabling_iptables_firewall.md)
 
 ## Introduzione
 
@@ -284,9 +284,9 @@ Una volta effettuata la modifica, riavviare il computer o riavviare la rete con:
 
 Ora dovreste essere in grado di accedere a qualsiasi cosa nel dominio *ourdomain.lan* dalla vostra workstation, oltre a poter risalire e raggiungere gli indirizzi Internet.
 
-## Aggiungere La Regola Del Firewall
+## Regole Firewall
 
-Per aggiungere le regole del firewall per il DNS si hanno due possibilità. È possibile utilizzare l'opzione predefinita _firewalld_ oppure _iptables_, che è quella che stiamo utilizzando qui. Se si vuole usare _firewalld_, si presume che si sappia come tradurre questa regola nella sintassi di _firewalld_. Le regole del firewall vengono applicate al nuovo server DNS privato.
+### Aggiunta delle regole del firewall - `iptables`
 
 Per prima cosa, create un file in */etc* chiamato "firewall.conf" che conterrà le seguenti regole. Si tratta di una serie di regole minime, che possono essere modificate in base al proprio ambiente:
 
@@ -337,7 +337,74 @@ E questo è ciò che dovreste ottenere in risposta. Se si ottiene qualcos'altro,
 clearing any existing rules and setting default policy..
 iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
 ```
+### Aggiunta delle Regole del Firewall - `firewalld`
 
+Con `firewalld`, stiamo duplicando le regole evidenziate in `iptables` sopra. Non facciamo altre ipotesi sulla rete o sui servizi che potrebbero essere necessari. Stiamo attivando l'accesso SSH e l'accesso DNS solo per la nostra rete LAN. Per questo, utilizzeremo la zona incorporata `firewalld`, "trusted". Dovremo inoltre apportare alcune modifiche di servizio alla zona "pubblica" per limitare l'accesso SSH alla LAN.
+
+Il primo passo è quello di aggiungere la nostra rete LAN alla zona "trusted":
+
+`firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent`
+
+Successivamente, dobbiamo aggiungere i nostri due servizi alla zona "trusted":
+
+```
+firewall-cmd --zone=trusted --add-service=ssh --permanent
+firewall-cmd --zone=trusted --add-service=dns --permanent
+```
+
+Infine, dobbiamo rimuovere il servizio SSH dalla nostra zona "pubblica", che è attiva per impostazione predefinita:
+
+`firewall-cmd --zone=public --remove-service=ssh --permanent`
+
+ Quindi, ricaricare il firewall ed elencare le zone che sono state modificate:
+
+ `firewall-cmd --reload`
+
+ `firewall-cmd --zone=trusted --list-all`
+
+ Questo dovrebbe mostrare che i servizi e la rete di origine sono stati aggiunti correttamente:
+
+
+```
+trusted (active)
+  target: ACCEPT
+  icmp-block-inversion: no
+  interfaces:
+  sources: 192.168.1.0/24
+  services: dns ssh
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+```
+
+L'elenco della zona "public" dovrebbe mostrare che l'accesso SSH non è più consentito:
+
+
+`firewall-cmd --zone=public --list-all`
+
+```
+public
+  target: default
+  icmp-block-inversion: no
+  interfaces:
+  sources:
+  services: cockpit dhcpv6-client
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+```
+
+Queste regole dovrebbero garantire la risoluzione DNS sul server DNS privato da parte degli host sulla rete 192.168.1.0/24. Inoltre, dovreste essere in grado di accedere al vostro server DNS privato tramite SSH da uno qualsiasi di questi host.
 
 ## Conclusioni
 
