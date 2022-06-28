@@ -1,5 +1,5 @@
 ---
-title: Change Log
+title: Journal des modifications
 author: Louis Abel
 contributors: Steven Spencer, tianci li
 tags:
@@ -7,9 +7,9 @@ tags:
   - changelog
 ---
 
-# Rocky Linux 8 Change Log
+# Journal des modifications Rocky Linux 8
 
-Rocky Linux 8 recevra, au fil du temps, des mises à jour incrémentielles et des mises à jour mineures, lorsque leurs versions en amont seront mises à jour et pousseront les leurs. Cette page fournira des détails et des informations sur les changements au fur et à mesure des évolutions. Un système exécutant Rocky Linux peut mettre à jour son système à tout moment en exécutant `dnf update`. La mise à jour de ce document peut parfois être retardée. Pour vérifier la présence de nouvelles mises à jour, vous pouvez visiter les archives de la liste de diffusion [Annonces de Rocky](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/).
+Rocky Linux 8 recevra, au fil du temps, des mises à jour incrémentielles et des mises à jour mineures, lorsque leurs versions en amont seront mises à jour et poussées. Cette page fournira des détails et des informations sur les changements au fur et à mesure qu'ils surviennent. Un système exécutant Rocky Linux peut mettre à jour son système entièrement à tout moment en exécutant la commande `dnf update`. La mise à jour de ce document peut parfois être retardée. Pour vérifier la présence de nouvelles mises à jour, vous pouvez visiter les archives de la liste de diffusion [Annonces de Rocky](https://lists.resf.org/archives/list/rocky-announce@lists.resf.org/).
 
 ### Mises à jour
 
@@ -26,15 +26,15 @@ Les paquets suivants ont été mis à jour depuis le 15 mars 2022 :
 * httpd-2.4.37-43.module+el8.5.0+747+83fae388.3
 * openssl-1.1.1k-6.el8_5
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les modules suivants ont été mis à jour :
 
-* dotnet6.0: dotnet6.0-6.0.100-0.10.el8_5 -> dotnet6.0-6.0.101-2.el8_5
+* httpd
 
-Les paquets suivants ont été mis à jour depuis le 22 décembre 2021 :
+CVE associées :
 
-* grafana: grafana-7.5.9-4.el8 -> grafana-7.5.9-5.el8_5
+* CVE-2022-25236
 * CVE-2022-25235
-* virt-rhel-8050020211221163306.b4937e53
+* CVE-2022-25315
 * CVE-2022-23852
 * CVE-2021-45960
 * CVE-2021-46143
@@ -47,17 +47,17 @@ Les paquets suivants ont été mis à jour depuis le 22 décembre 2021 :
 * CVE-2022-0778
 * CVE-2022-22720
 
-### Notes techniques de version
+### Informations supplémentaires
 
 Nous voudrions nous excuser pour le manque d'annonces au cours des deux dernières semaines. Actuellement ces annonces sont manuelles et il y a des plans en cours pour les rendre plus automatisés avec moins d'interaction humaine.
 
-Avec la sortie du RHEL 8. bêta, nous examinerons ce qui est en train de changer et ce que et comment nous devrons faire nos constructions dans les semaines à venir avant son éventuelle GA fin avril ou mai. Pendant ce temps, nous avons également travaillé sur l'amorçage des paquets RHEL 9 bêta pour éventuellement être importés, reconstruit, et testé dans notre nouveau système de compilation.
+Avec la sortie de la RHEL 8. bêta, nous examinerons ce qui est en train de changer et quoi et comment faire nos constructions dans les semaines à venir avant son éventuelle GA fin avril ou mai. Pendant ce temps, nous avons également travaillé sur l'amorçage des paquets RHEL 9 bêta pour éventuellement être importés, reconstruit, et testé dans notre nouveau système de compilation.
 
-## 8.5 - 2022-01-03
+## 8.5 - 2022-03-14
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour depuis le 14 mars 2022 :
 
-* CVE-2021-44716
+* 389-ds-base: 389-ds-base-1.4.3.23-12.module+el8.5.0+722+e2a0b219 -> 389-ds-base-1.4.3.23-14.module+el8.5.0+745+c5be6847
 * cloud-init: cloud-init-21.1-7.el8_5.3 -> cloud-init-21.1-7.el8_5.4
 * fence-agents: fence-agents-4.2.1-75.el8 -> fence-agents-4.2.1-75.el8_5.2
 * firewalld: firewalld-0.9.3-7.el8 -> firewalld-0.9.3-7.el8_5.1
@@ -82,110 +82,110 @@ Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
 
 Les modules suivants ont été mis à jour :
 
-* 389-ds-base: 389-ds-base-1.4.3.23-10.module+el8.5.0+700+370e33d5 -> 389-ds-base-1.4.3.23-12.module+el8.5.0+722+e2a0b219
-* dotnet6.0: dotnet6.0-6.0.100-0.10.el8_5 -> dotnet6.0-6.0.101-2.el8_5
+* 389-ds
+* httpd
 * virt
-* dévelope-viral
+* virt-devel
 
-## 8.5 - 2021-12-22
+## 8.5 - 2022-03-10
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour depuis le 10 mars 2022 :
 
-* CVE-2021-20321
+* thunderbird: thunderbird-91.6.0-1.el8_5 -> thunderbird-91.7.0-2.el8_5
 * thunderbird: thunderbird-91.6.0-1.el8_5.plus -> thunderbird-91.7.0-2.el8_5.plus
 
-Les paquets suivants ont été mis à jour depuis le 16 décembre 2021 :
+CVE associées :
 
-* virt-rhel-8050020211221163306.b4937e53
+* CVE-2022-25315
 * CVE-2022-25235
-* grafana: grafana-7.5.9-4.el8 -> grafana-7.5.9-5.el8_5
+* CVE-2022-25236
 
-## 8.5 - 2021-12-17
+## 8.5 - 2022-02-24
 
-Les modules suivants ont été mis à jour :
+Les paquets suivants ont été mis à jour depuis le 24 février 2022 :
 
-* selinux-policy: selinux-policy-3.14.3-80.el8 -> selinux-policy-3.14.3-80.el8_5.2
+* dotnet3.1: dotnet3.1-3.1.416-3.el8_5 -> dotnet3.1-3.1.417-1.el8_5
 * dotnet5.0: dotnet5.0-5.0.211-1.el8_5 -> dotnet5.0-5.0.212-1.el8_5
 * dotnet6.0: dotnet6.0-6.0.102-1.el8_5 -> dotnet6.0-6.0.103-4.el8_5
 * firefox: firefox-91.6.0-1.el8_5 -> firefox-91.7.0-3.el8_5
 * kernel: kernel-4.18.0-348.12.2.el8_5 -> kernel-4.18.0-348.20.1.el8_5
 * kernel-rt: kernel-rt-4.18.0-348.12.2.rt7.143.el8_5 -> kernel-rt-4.18.0-348.20.1.rt7.150.el8_5
 
-CVE associés :
+CVE associées :
 
-* dotnet5.0: dotnet5.0-5.0.209-1.el8_5 -> dotnet5.0-5.0.210-1.el8_5
+* CVE-2022-0435
 * CVE-2022-0847
 
-## 8.5 - 2021-12-16
+## 8.5 - 2022-02-22
 
-Les modules suivants ont été mis à jour :
+Les paquets suivants ont été mis à jour depuis le 22 février 2022 :
 
-* CVE-2020-25717
+* cyrus-sasl: cyrus-sasl-2.1.27-5.el8 -> cyrus-sasl-2.1.27-6.el8_5
 
-Suite à une demande, le paquet kernel-rt-kvm a été ajouté au dépôt RT.
+CVE associées :
 
-* go-toolset-rhel8-8050020211215173118-8aa62369
+* CVE-2022-24407
 
-## 8.5 - 2021-12-13
+## 8.5 - 2022-02-16
 
-Les modules suivants ont été mis à jour :
+Les paquets suivants ont été mis à jour depuis le 16 février 2022 :
 
-* samba: samba-4.14.5-2.el8 -> samba-4.14.5-7.el8_5
+* python-pillow: python-pillow-5.1.1-16.el8 -> python-pillow-5.1.1-18.el8_5
 
-CVE associés :
+CVE associées :
 
-* CVE-2016-2124
+* CVE-2022-22815
 * CVE-2022-22816
 * CVE-2022-22817
 
-## 8.5 - 2021-12-12
+## 8.5 - 2022-02-15
 
-Les paquets suivants ont été mis à jour depuis le 10 décembre 2021 :
+Les modules suivants ont été mis à jour depuis le 15 février 2022 :
 
-* WALinuxAgent: WALinuxAgent-2.3.0.2-2.el8 -> WALinuxAgent-2.3.0.2-2.el8.rocky.0
+* ruby-2.5-8050020220216182135.b4937e53
 * ruby-2.6-8050020220216165459.b4937e53
 
-## 8.5 - 2021-12-10
+## 8.5 - 2022-02-14
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour depuis le 14 février 2022 :
 
-* python27
+* thunderbird: thunderbird-91.5.0-1.el8_5 -> thunderbird-91.6.0-1.el8_5
 * thunderbird: thunderbird-91.5.0-1.el8.plus -> thunderbird-91.6.0-1.el8_5.plus
 
-## 8.5 - 2021-12-09
+## 8.5 - 2022-02-09
 
-Suite à une demande, le paquet kernel-rt-kvm a été ajouté au dépôt RT.
+Les paquets suivants ont été mis à jour depuis le 9 février 2022 :
 
-* WALinuxAgent -> Nous avons ajouté le soutient direct à Rocky ici ainsi que dans une PR amont à Microsoft
+* dotnet3.1: dotnet3.1-3.1.120-2.el8_5 -> dotnet3.1-3.1.416-3.el8_5
 * dotnet5.0: dotnet5.0-5.0.210-1.el8_5 -> dotnet5.0-5.0.211-1.el8_5
 * dotnet6.0: dotnet6.0-6.0.101-2.el8_5 -> dotnet6.0-6.0.102-1.el8_5
 * firefox: firefox-91.5.0-1.el8_5 -> firefox-91.6.0-1.el8_5
 
-## 8.5 - 2021-12-03
+## 8.5 - 2022-02-04
 
-Les paquets suivants ont été mis à jour depuis le 09 décembre 2021 :
+Les paquets suivants ont été mis à jour depuis le 4 février 2022 :
 
-* thunderbird: thunderbird-91.3.0-2.el8_4 ->
+* aide: aide-0.16-14.el8 -> aide-0.16-14.el8_5.1
 
-CVE associés :
+CVE associées :
 
-* abrt: abrt-2.10.9-21.el8 -> abrt-2.10.9-21.el8.rocky.0
+* CVE-2021-45417
 
-## 8.5 - 2021-12-02
+## 8.5 - 2022-02-02
 
-Les paquets suivants ont été mis à jour depuis le 03 décembre 2021 :
+Les modules/paquets suivants ont été mis à jour depuis le 2 février 2022 :
 
-* mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
+* varnish: varnish-6.0.8-1.module+el8.5.0+677+2a78a869 -> varnish-6.0.8-1.module+el8.5.0+736+fec10e21.1
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+CVE associées :
 
-* mailman: CVE-2021-44227
+* CVE-2022-23959
 
-## 8.5 - Supplémentaire - 2021-11-30
+## 8.5 - 2022-02-01
 
-Les paquets suivants ont été mis à jour :
+Les paquets suivants ont été mis à jour depuis le 1er février 2022 :
 
-* mailman-2.1-8050020211202160117.fd901a62
+* clevis: clevis-15-1.el8 -> clevis-15-1.el8_5.1
 * cockpit: cockpit-251.1-1.el8 -> cockpit-251.3-1.el8_5
 * cryptsetup: cryptsetup-2.3.3-4.el8 -> cryptsetup-2.3.3-4.el8_5.1
 * dnf-plugins-core: dnf-plugins-core-4.0.21-3.el8 -> dnf-plugins-core-4.0.21-4.el8_5
@@ -203,101 +203,101 @@ Les paquets suivants ont été mis à jour :
 * tigervnc: tigervnc-1.11.0-9.el8 -> tigervnc-1.11.0-10.el8_5
 * vim: vim-2:8.0.1763-16.el8 -> vim-2:8.0.1763-16.el8_5.4
 * virtio-win: virtio-win-1.9.19-1.el8 -> virtio-win-1.9.24-2.el8_5
-* header-vulkan-headers: vulkan-headers-1.2.189.0-1.el8 -> vulkan-headers-1.2.198.0-1.el8_5
+* vulkan-headers: vulkan-headers-1.2.189.0-1.el8 -> vulkan-headers-1.2.198.0-1.el8_5
 * vulkan-loader: vulkan-loader-1.2.189.0-1.el8 -> vulkan-loader-1.2.198.0-2.el8_5
 * vulkan-tools: vulkan-tools-1.2.189.0-1.el8 ->vulkan-tools-1.2.198.0-1.el8_5
 * vulkan-validation-layers: vulkan-validation-layers-1.2.189.0-2.el8 ->vulkan-validation-layers-1.2.198.0-4.el8_5
 
-Les paquets suivants ont été mis à jour depuis le 22 décembre 2021 :
+Les modules suivants ont été mis à jour :
 
-* ncurses-static
+* containertools
 * freeradius
 * nodejs
 * pki-core
 * virt
-* dévelope-viral
+* virt-devel
 
-## 8.5 - 2021-11-29
+## 8.5 - 2022-01-27
 
-Les paquets suivants ont été mis à jour :
+Les paquets suivants ont été mis à jour depuis le 27 janvier 2022 :
 
-* open-vm-tools (version spécifique aarch64 uniquement)
+* dotnet-build-reference-packages: dotnet-build-reference-packages-0-10.20200608gitcd5a8c6.el8 ->dotnet-build-reference-packages-0-11.20211215git045b288.el8_5
 * nginx: nginx-1:1.20.0-2.module+el8.5.0+669+b11495b0 -> nginx-1:1.20.1-1.module+el8.5.0+729+3f70613e
 * samba: samba-4.14.5-7.el8_5 -> samba-4.14.5-9.el8_5
 
-Les paquets suivants ont été mis à jour :
+Les modules suivants ont été mis à jour :
 
-* openldap-servers (toutes architectures)
+* nginx
 
-Les paquets suivants ont été mis à jour depuis le 22 décembre 2021 :
+CVE associées :
 
-* kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
+* CVE-2021-44142
 * CVE-2021-23017
 
-## 8.5 - 2021-11-24
+## 8.5 - 2022-01-26
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour depuis le 26 janvier 2022 :
 
-* nss-3.67.0-7.el8_5: CVE-2021-43527
+* java-1.8.0-openjdk: java-1.8.0-openjdk-1:1.8.0.312.b07-2.el8_5 -> java-1.8.0-openjdk-1:1.8.0.322.b06-2.el8_5
 
-## 8.5 - 2021-11-22
+## 8.5 - 2022-01-25
 
-CVE associés :
+Les paquets suivants ont été mis à jour depuis le 25 janvier 2022 :
 
-* dotnet5.0: dotnet5.0-5.0.208-2.el8_5 -> dotnet5.0-5.0.209-1.el8_5
+* parfait: parfait-0.5.4-2.module+el8.3.0+214+edf13b3f -> parfait-0.5.4-4.module+el8.5.0+728+553fbdb8
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été supprimés :
 
-* mailman: mailman-3:2.1.29-12.module+el8.5.0+703+19300c10 -> mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1
+* log4j12: log4j12-1.2.17-22.module+el8.3.0+214+edf13b3f
 
-Les paquets actuels dans plus (à partir du 30-11-2021) sont :
+Les modules suivants ont été mis à jour :
 
-* mailman-2.1-8050020211123230959.fd901a62
+* parfait
 
-## 8.5 - 2021-11-16
+## 8.5 - 2022-01-24
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour depuis le 24 janvier 2022 :
 
-* CVE-2021-42096
+* httpd: httpd-2.4.37-43.module+el8.5.0+714+5ec56ee8 -> httpd-2.4.37-43.module+el8.5.0+727+743c5577.1
 * polkit: polkit-0.115-12.el8 -> polkit-0.115-13.el8_5.1
 
-Les paquets suivants ont été mis à jour depuis le 17 décembre 2021 :
+Les modules suivants ont été mis à jour :
 
-* clang: clang-12.0.1-2.module+el8.5.0+692+8756646f -> clang-12.0.1-4.module+el8.5.0+715+58f51d49
+* httpd
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+CVE associées :
 
-* llvm-toolset-rhel8-8050020211122023437.b4937e53
+* CVE-2021-44790
 * CVE-2021-4034
 
-## 8.5 - 2021-11-14
+## 8.5 - 2022-01-19
 
-Les paquets suivants ont été mis à jour depuis le 22 décembre 2021 :
+Les paquets suivants ont été mis à jour depuis le 19 janvier 2022 :
 
-* annobin: annobin-9.65-1.el8 -> annobin-9.72-1.el8_5.2
+* java-11-openjdk: java-11-openjdk-1:11.0.13.0.8-4.el8_5 -> java-11-openjdk-1:11.0.14.0.9-2.el8_5
 
 ## 8.5 - 2022-01-12
 
-CVE associés :
+Les paquets suivants ont été mis à jour depuis le 12 janvier 2022 :
 
-* insights-client: insights-client-3.1.5-1.el8 (Groupe Standard)
+* gegl04: gegl04-0.4.4-6.el8 -> gegl04-0.4.4-6.el8_5.2
 * java-17-openjdk: java-17-openjdk-1:17.0.1.0.12-2.el8_5 -> java-17-openjdk-1:17.0.2.0.8-4.el8_5
 * kernel: kernel-4.18.0-348.7.1.el8_5 -> kernel-4.18.0-348.12.2.el8_5
 * kernel-rt: kernel-rt-4.18.0-348.7.1.rt7.137.el8_5 -> kernel-rt-4.18.0-348.12.2.rt7.143.el8_5
 * libarchive: libarchive-3.3.3-1.el8 -> libarchive-3.3.3-1.el8_5
 * libreswan: libreswan-4.4-1.el8 -> libreswan-4.4-4.el8_5
 
-Les paquets suivants ont été mis à jour depuis le 17 décembre 2021 :
+CVE associées :
 
-* rust-toolset-rhel8-8050020211112021616.f73640c0
+* CVE-2022-0185
 * CVE-2021-45463
 * CVE-2021-4155
 
 ## 8.5 - 2022-01-11
 
-CVE associés :
+Les paquets suivants ont été mis à jour depuis le 11 janvier 2022 :
 
-* kernel: kernel-4.18.0-305.19.1 (9-15)
+* firefox: firefox-91.4.0-1.el8_5 -> firefox-91.5.0-1.el8_5
 * thunderbird: thunderbird-91.4.0-2.el8_5 -> thunderbird-91.5.0-1.el8_5
 * thunderbird: thunderbird-91.4.0-2.el8.plus -> thunderbird-91.5.0-1.el8.plus
 
@@ -305,18 +305,18 @@ CVE associés :
 
 Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
 
-* thunderbird: mis à jour en 78.14.0
-* insights-client: insights-client-3.1.5-1.el8 (Groupe Standard)
+* dotnet6.0: dotnet6.0-6.0.100-0.10.el8_5 -> dotnet6.0-6.0.101-2.el8_5
+* rpaste: rpaste-0.1-3.el8.2 -> rpaste-0.2.0-1.el8
 
 ## 8.5 - 2021-12-22
 
 Les paquets suivants ont été mis à jour depuis le 22 décembre 2021 :
 
-* extras -> Les paquets CentOS sig release ont été ajoutés
+* grafana: grafana-7.5.9-4.el8 -> grafana-7.5.9-5.el8_5
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+CVE associées :
 
-* dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
+* CVE-2021-44716
 
 ## 8.5 - 2021-12-17
 
@@ -339,14 +339,14 @@ Les paquets suivants ont été mis à jour depuis le 17 décembre 2021 :
 * rocky-release: rocky-release-8.5-2.el8 -> rocky-release-8.5-3.el8
 * sssd: sssd-2.5.2-2.el8_5.1 -> sssd-2.5.2-2.el8_5.3
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+CVE associées :
 
-* 389-ds-base: 389-ds-base-1.4.3.16-16.module+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.module+el8.4.0+636+837ee950
-* extras -> Les paquets CentOS sig release ont été ajoutés
+* CVE-2021-20321
+* CVE-2021-3930
 * CVE-2021-20257
 * CVE-2021-3712
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les modules suivants ont été mis à jour :
 
 * virt-rhel-8050020211221163306.b4937e53
 * virt-devel-rhel-8050020211221163306.b4937e53
@@ -368,9 +368,9 @@ Les paquets suivants ont été mis à jour depuis le 16 décembre 2021 :
 
 ## 8.5 - 2021-12-13
 
-CVE associés :
+Les paquets suivants ont été mis à jour depuis le 13 décembre 2021 :
 
-* thunderbird -> thunderbird-78.12.0-3.el8_4
+* dotnet5.0: dotnet5.0-5.0.209-1.el8_5 -> dotnet5.0-5.0.210-1.el8_5
 * go-toolset: go-toolset-1.16.7-1.module+el8.5.0+694+f77f0bfd -> go-toolset-1.16.12-1.module+el8.5.0+720+c057d5cf
 * golang: golang-1.16.7-1.module+el8.5.0+694+f77f0bfd -> golang-1.16.12-1.module+el8.5.0+720+c057d5cf
 * ipa: ipa-4.9.6-6.module+el8.5.0+675+61f67439 -> ipa-4.9.6-10.module+el8.5.0+719+4f06efb6
@@ -379,11 +379,11 @@ CVE associés :
 
 * kernel-rt: kernel-rt-kvm added to RT
 
-Les paquets suivants ont été mis à jour depuis le 22 décembre 2021 :
+CVE associées :
 
-* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
+* CVE-2020-25717
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les modules suivants ont été mis à jour :
 
 * go-toolset-rhel8-8050020211215173118-8aa62369
 * idm-DL1-8050020211215093947-3d2c466f
@@ -398,26 +398,26 @@ Suite à une demande, le paquet kernel-rt-kvm a été ajouté au dépôt RT.
 
 Les paquets suivants ont été mis à jour depuis le 12 décembre 2021 :
 
-* python36
+* samba: samba-4.14.5-2.el8 -> samba-4.14.5-7.el8_5
 
-Les paquets suivants ont été mis à jour depuis le 22 décembre 2021 :
+CVE associées :
 
 * CVE-2016-2124
-* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
+* CVE-2020-25717
 * CVE-2021-23192
 
 ## 8.5 - 2021-12-10
 
 Les paquets suivants ont été mis à jour depuis le 10 décembre 2021 :
 
-* NetworkManager -> NetworkManager-11.30.0-9.el8_4
+* WALinuxAgent: WALinuxAgent-2.3.0.2-2.el8 -> WALinuxAgent-2.3.0.2-2.el8.rocky.0
 * libreoffice: libreoffice-1:6.4.7.2-5.el8.1 -> libreoffice-1:6.4.7.2-5.el8.2.rocky
 * openscap: openscap-1.3.5-6.el8 -> openscap-1.3.5-6.el8.rocky.0.1
 * pcs: pcs-0.10.10-4.el8 -> pcs-0.10.10-4.el8.rocky.0
 * python2: python2-2.7.18-7.module+el8.5.0+706+735ec4b3.rocky.0.1 -> python2-2.7.18-7.module+el8.5.0+718+67e45b5f.rocky.0.2
 * rocky-release: rocky-release-8.5-1.el8 -> rocky-release-8.5-2.el8
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les modules suivants ont été mis à jour :
 
 * python27
 
@@ -426,9 +426,9 @@ Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
 Ces mises à jour sont principalement cosmétiques par nature et n'affectent pas les fonctionnalités.
 
 * WALinuxAgent -> Nous avons ajouté le soutient direct à Rocky ici ainsi que dans une PR amont à Microsoft
-* libreoffice -> Il y a eu une marque red hat trouvé. Cette mise à jour concerne la marque.
+* libreoffice -> Une image de marque de red hat a été trouvée. Cette mise à jour concerne la marque.
 * openscap -> Il manquait des informations pour Rocky Linux.
-* pcs -> Le logo avait une marque qui n'a pas été retirée
+* pcs -> Le logo avait une marque qui n'avait pas été retirée
 * rocky-release -> simplifies CPE_NAME
 * python2 -> ajoute rocky aux distributions supportées
 
@@ -447,15 +447,15 @@ Thunderbird : Ceci est une mise à jour normale de la version ESR pour thunderbi
 
 ## 8.5 - 2021-12-03
 
-CVE associés :
+Les paquets suivants ont été mis à jour depuis le 3 décembre 2021 :
 
 * abrt: abrt-2.10.9-21.el8 -> abrt-2.10.9-21.el8.rocky.0
 * firefox: firefox-91.3.0-1.el8_4 -> firefox-91.4.0-1.el8_5
 * sos: sos-4.1-5.el8 -> sos-4.1-5.el8.rocky.2
 
-### Notes supplémentaires
+### Notes techniques de version
 
-Les paquets suivants ont été mis à jour :
+Firefox: Il s'agit d'une version ESR mise à jour de Firefox.
 
 abrt : Il s'agit d'un changement presque cosmétique. Il supprime la dépendance aux plugins libreport-rhel* et rhtsupport. Ces paquets peuvent être supprimés en toute sécurité après la mise à jour du nouveau paquet abrt.
 
@@ -468,11 +468,11 @@ Les paquets suivants ont été mis à jour depuis le 02 décembre 2021 :
 * mailman: mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1 ->
 * mailman-3:2.1.29-12.module+el8.5.0+717+27fd1ba7.2
 
-Les paquets suivants ont été mis à jour depuis le 22 décembre 2021 :
+CVE associées :
 
 * mailman: CVE-2021-44227
 
-Les paquets suivants ont été mis à jour depuis le 02 décembre 2021 :
+Les modules suivants ont été mis à jour depuis le 2 décembre 2021 :
 
 * mailman-2.1-8050020211202160117.fd901a62
 
@@ -483,33 +483,33 @@ Les paquets suivants ont été ajoutés au dépôt devel :
 
 * ncurses-static
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été ajoutés au dépôt plus :
 
 * open-vm-tools (version spécifique aarch64 uniquement)
 
-### Notes de développement
+### Notes plus
 
 Le dépôt plus contient des éléments qui ne sont pas fournis dans les dépôts de base, soit parce qu'ils ne sont pas disponibles en raison de la configuration de comps et de pungi (basé sur les dépôts RHEL), soit parce qu'ils sont demandés comme versions alternatives avec des correctifs ou des fonctionnalités supplémentaires qui ne sont pas trouvées dans le dépôt de base. Le dépôt plus devrait être sécurisé pour pouvoir le conserver activé.
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets actuels dans plus (à partir du 30-11-2021) sont :
 
 * openldap-servers (toutes architectures)
 * thunderbird avec support PGP (toutes architectures)
 * ncurses-static (toutes architectures)
 * open-vm-tools (version spécifique aarch64 uniquement)
 
-### Problèmes connus
+### Notes de développement
 
 Le dépôt devel doit être utilisé avec précaution. Il est destiné à des fins de koji ou de buildroot et ne doit pas être activé à 100% du temps. Si vous trouvez un paquet que vous souhaitez voir dans le dépôt des développements, envoyer un mail sur rocky-devel et/ou ouvrir un rapport de bug sur https://bugs. ockylinux.org
 
 ## 8.5 - 2021-11-29
 
-CVE associés :
+Les paquets suivants ont été mis à jour depuis le 29 novembre 2021 :
 
 * kronosnet: kronosnet-1.18-2.el8 -> kronosnet-1.18-4.el8_5
 * nss: nss-3.67.0-6.el8_4 -> nss-3.67.0-7.el8_5
 
-Les paquets suivants ont été mis à jour :
+CVE associées :
 
 * nss-3.67.0-7.el8_5: CVE-2021-43527
 
@@ -523,7 +523,7 @@ Les paquets suivants ont été mis à jour depuis le 24 novembre 2021 :
 
 ## 8.5 - 2021-11-22
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour depuis le 22 novembre 2021 (y compris les paquets de modules mis à jour) :
 
 * mailman: mailman-3:2.1.29-12.module+el8.5.0+703+19300c10 -> mailman-3:2.1.29-12.module+el8.5.0+716+66d1ab43.1
 
@@ -531,7 +531,7 @@ Les paquets suivants ont été mis à jour depuis le 23 novembre 2021 :
 
 * mailman-2.1-8050020211123230959.fd901a62
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+CVE associées :
 
 * CVE-2021-42096
 * CVE-2021-42097
@@ -543,7 +543,7 @@ Les paquets suivants ont été mis à jour depuis le 16 novembre 2021 (y compris
 * clang: clang-12.0.1-2.module+el8.5.0+692+8756646f -> clang-12.0.1-4.module+el8.5.0+715+58f51d49
 * llvm-toolset: llvm-toolset-12.0.1-1.module+el8.5.0+692+8756646f -> llvm-toolset-12.0.1-1.module+el8.5.0+715+58f51d49
 
-Les paquets suivants ont été mis à jour :
+Les modules suivants ont été mis à jour depuis le 16 novembre 2021:
 
 * llvm-toolset-rhel8-8050020211122023437.b4937e53
 
@@ -586,26 +586,26 @@ Les paquets suivants ont été mis à jour depuis la version 8.5 du 14 novembre 
 * thunderbird: thunderbird-78.13.0-1.el8 -> thunderbird-91.3.0-2.el8
 * udftools: udftools-2.2-5.el8 -> udftools-2.3-2.el8
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été abandonnés et supprimés des groupes dnf :
 
 * insights-client: insights-client-3.1.5-1.el8 (Groupe Standard)
 
-Les paquets suivants ont été mis à jour :
+Pour les paquets qui ont été supprimés, ils peuvent être supprimés en toute sécurité en utilisant `dnf remove`
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les modules suivants ont été mis à jour depuis la version 8.5 du 14 novembre 2021 :
 
 * rust-toolset-rhel8-8050020211112021616.f73640c0
 * httpd-2.4-8050020211115030420.b4937e53
 
-### Changements supplémentaires
+### Problèmes connus
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+[bogue 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) - Nous sommes au courant du problème que `kdump` ne fonctionne pas sur des systèmes vmware type ESXi.
 
 Nous sommes également au courant que notre système miroir rapporte le mauvais répertoire pour faire des mises à jour. Il allait à `kickstart` au lieu de `os`. Cela devrait être résolu et les mises à jour devraient fonctionner normalement.
 
 ## 8.4 - 2021-09-21
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour :
 
 * kernel: kernel-4.18.0-305.19.1 (9-15)
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.2
@@ -635,40 +635,40 @@ Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
 
 ## 8.4 - 2021-09-13
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour :
 
 * thunderbird: mis à jour en 78.14.0
 * firefox: mis à jour en 78.14.0
-* cyrus-imapd: mis à jour en 3.0.7-20.el8_4.1 (concerne CVE-2021-33582)
+* cyrus-imapd: mis à jour en 3.0.7-20.el8_4.1 (concerne la CVE-2021-33582)
 * systemtap recompilé avec dyninst 10.2 pour résoudre un rapport de bug
 * rocky-release -> Mis à jour pour permettre "centos" comme identifiant
 
-Les paquets suivants ont été mis à jour :
+Les dépôts suivants ont été mis à jour :
 
 * extras -> Les paquets CentOS sig release ont été ajoutés
 
 ## 8.4 - 2021-08-24
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour :
 
 * dotnet: dotnet-2.1.525.el8_4 -> dotnet-2.1.526.el8_4
 * libsndfile: libsndfile-1.0.28-10.el8_4 -> libsndfile-1.0.28-10.el8_4.1 -- Addresses
 
-  * Adresse un dépassement de tampon de tas qui permettait l'exécution de code arbitraire à partir d'un fichier wav
+  * Adresse un dépassement de tampon de la pile qui permettait l'exécution de code arbitraire à partir d'un fichier wav
 
 * scap-security-guide: scap-security-guide-0.1.54-5.el8.rocky.1
 
-  * Adresses RLBZ#108
+  * Adresse RLBZ#108
 
-Les paquets suivants ont été mis à jour :
+Les repos/paquets suivants ont été ajoutés :
 
 * RT (temps réel) - Activé en exécutant `dnf config-manager --set-enabled rt`
 
-  * kernel-rt (realtime kernel)
+  * kernel-rt (kernel temps réel)
 
 ## 8.4 - 2021-08-11
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour :
 
 * 389-ds-base: 389-ds-base-1.4.3.16-16.module+el8.4.0+596+159889e5 -> 389-ds-base-1.4.3.16-19.module+el8.4.0+636+837ee950
 * NetworkManager: NetworkManager-1:1.30.0-9.el8_4 -> NetworkManager-1:1.30.0-10.el8_4
@@ -735,7 +735,7 @@ Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
 
 ## 8.4 - 2021-08-02
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour :
 
 * varnish -> varnish-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> Addresses CVE-2021-36740
 
@@ -749,34 +749,34 @@ Ajout d'un repos kickstart pour les dépôts suivants :
 
 ## 8.4 - 2021-07-27
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour :
 
 * thunderbird -> thunderbird-78.12.0-3.el8_4
 
 ## 8.4 - 2021-07-21
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour :
 
-* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Addresses CVE-2021-33909
-* systemd -> systemd-239-45.el8_4.2 -> Addresses CVE-2021-33910
+* kernel -> kernel-4.18.0-305.10.2.el8_4 -> Concerne la CVE-2021-33909
+* systemd -> systemd-239-45.el8_4.2 -> Concerne la CVE-2021-33910
 * firefox
 * java-1.8.0-openjdk
 * java-11-openjdk
 
 ## 8.4 - 2021-07-12
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour :
 
 * rocky-release
 * linuxptp
 * rpaste
 * ovn2.13 (NFV)
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les modules suivants ont été mis à jour :
 
 * python36
 
-### Prochainement...
+### Changements supplémentaires
 
 La signature de métadonnées de référentiel expérimentales a été implémentée. Si vous souhaitez essayer ceci, définissez l'option suivante dans les fichiers Rocky-X.repo :
 
@@ -784,7 +784,7 @@ La signature de métadonnées de référentiel expérimentales a été implémen
 repo_gpgcheck=1
 ```
 
-### Mises à jour des paquets
+### Prochainement...
 
 * Dépôts d'addon de stockage :
 
@@ -792,9 +792,9 @@ repo_gpgcheck=1
 
 ## 8.4 - 2021-06-30
 
-### Contexte
+### Mises à jour des paquets
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les paquets suivants ont été mis à jour :
 
 * NetworkManager -> NetworkManager-11.30.0-9.el8_4
 * cloud-init -> cloud-init-20.3-10.el8_4.3
@@ -826,14 +826,14 @@ Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
 * tuned -> tuned-2.15.0-2.el8_4.1
 * unzip -> unzip-6.0-45.el8_4
 
-Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
+Les modules suivants ont été mis à jour :
 
 * PyYAML -> PyYAML-5.4.1-1.module+el8.4.0+595+c96abaa2
 * 389-ds -> 1.4.3.16-16
 * go-toolset -> go-toolset-1.15.13-1.module+el8.4.0+591+0da41cc3
 * golang -> golang-1.15.13-3.module+el8.4.0+591+0da41cc3
 * idm:DL1 -> ipa-4.9.2-4
-* idm:client -> (rebuilt with ipaplatform=rhel to sync with DL1 module)
+* idm:client -> (recompilé avec ipaplatform=rhel pour le synchroniser avec le module DL1)
 * pgaudit -> pgaudit-1.4.0-6.module+el8.4.0+587+d46efd10
 * postgres-decoderbufs -> postgres-decoderbufs-0.10.0-2.module+el8.4.0+587+d46efd10
 * postgresql -> postgresql-12.7-1.module+el8.4.0+587+d46efd10
@@ -851,25 +851,25 @@ Les paquets suivants ont été mis à jour depuis le 3 janvier 2022 :
 
 ### Contexte
 
-Certains modules et paquets ont été mis à jour de façon routinière par amont.
+Certains modules et paquets ont été mis à jour de façon routinière par upstream.
 
-Les paquets rocheux réguliers ont été mis à jour pour répondre aux questions suivantes :
+Les paquets Rocky standards ont été mis à jour pour traiter les points suivants :
 
 * rocky-release
 
-  * Ajouter les dépôts devel et debuginfo pour le futur état
+  * Ajouter les dépôts devel et debuginfo pour un futur état
   * Ceci est fourni à des fins de mock/buildroot
 
 * rocky-logos
 
-  * Améliorer les icônes pour les futures images officielles en direct
+  * Améliorer les icônes pour les futures images live officielles
 
 
-### Prochainement...
+### Changements supplémentaires
 
-Le dépôt d'extras pour aarch64 a été mis à jour pour inclure divers paquets qui ne sont pas inclus par amont. Des exemples de ceci serait libreoffice et d'autres applications gnome. Comme ils ne sont pas dans BaseOS ou AppStream, le dépôt d'extras est l'endroit approprié pour ces paquets.
+Le dépôt d'extras pour aarch64 a été mis à jour pour inclure divers paquets qui ne sont pas inclus par upstream. Des exemples de ceci serait libreoffice et d'autres applications gnome. Comme ils ne sont pas dans BaseOS ou AppStream, le dépôt d'extras est l'endroit approprié pour ces paquets.
 
-* Un dépôt « Développement» est maintenant fourni à des fins de mock/buildroot
+* Un dépôt « devel » est maintenant fourni à des fins de mock/buildroot
 * Le dépôt d'extras pour aarch64 a été mis à jour pour inclure les paquets manquants non fournis par le serveur amont pour une utilisation sur le bureau
 * rpaste a été mis à jour pour accepter l'entrée stdin
 * Les paquets plus anciens seront fournis dans le repos pendant la durée de vie d'une version ponctuelle.
