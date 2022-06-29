@@ -13,7 +13,7 @@ tags:
 ## Prerequisiti
 
 * Un server Rocky Linux
-* Competenza con un editor a riga di comando (stiamo usando _vi_ in questo esempio)
+* Conoscenza di un editor a riga di comando (in questo esempio utilizziamo _vi_)
 * Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
 * Una comprensione dei database _mariadb-server_ è utile
 * Tutti i comandi sono eseguiti come utente root o _sudo_
