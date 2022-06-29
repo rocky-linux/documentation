@@ -15,7 +15,7 @@ tags:
 ## Prerequisiti
 
 * Un Rocky Linux con in esecuzione un Web Server Apache
-* Competenza con un editor a riga di comando (stiamo usando _vi_ in questo esempio)
+* Conoscenza di un editor a riga di comando (in questo esempio utilizziamo _vi_)
 * Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
 * Una comprensione che l'installazione di questo strumento richiede anche il monitoraggio delle azioni e la messa a punto del vostro ambiente
 * Un account sul sito WAF di Comodo
