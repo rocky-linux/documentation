@@ -14,7 +14,7 @@ tags:
 ## Prerequisiti
 
 * Un Rocky Linux con in esecuzione un Web Server Apache
-* Competenza con un editor a riga di comando (stiamo usando _vi_ in questo esempio)
+* Conoscenza di un editor a riga di comando (in questo esempio utilizziamo _vi_)
 * Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
 * È utile una comprensione di ciò che può innescare una risposta ai file modificati sul file system (come gli aggiornamenti dei pacchetti)
 * Tutti i comandi sono eseguiti come utente root o sudo
