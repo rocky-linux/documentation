@@ -1,8 +1,8 @@
 ---
-title: LXD Server 
-author: Steven Spencer 
-contributors: Ezequiel Bruni 
-tested with: 8.5, 8.6 
+title: Server LXD
+author: Steven Spencer, Franco Colussi
+contributors: Ezequiel Bruni, Franco Colussi
+tested with: 8.5, 8.6
 tags:
   - lxd
   - enterprise
@@ -20,7 +20,7 @@ LXD è meglio descritto sul [sito web ufficiale](https://linuxcontainers.org/lxd
 
 La curva di apprendimento di LXD può essere un po' ripida, ma questo documento cercherà di fornire un bagaglio di conoscenze a portata di mano, per aiutarvi a distribuire e utilizzare LXD su Rocky Linux.
 
-## Prerequisiti e Presupposti
+## Prerequisiti E Presupposti
 
 * Un server Linux Rocky, ben configurato. In un ambiente di produzione si dovrebbe considerare un disco rigido separato per lo spazio su disco ZFS (è necessario se si usa ZFS). E sì, si presume che si tratti di un server bare metal, non di un VPS.
 * Questo dovrebbe essere considerato un argomento avanzato, ma abbiamo fatto del nostro meglio per renderlo il più semplice possibile da capire per tutti. Detto questo, conoscere alcune nozioni di base sulla gestione dei container vi porterà lontano.
@@ -39,11 +39,11 @@ Per tutta la "Parte 1" dovrete essere l'utente root o dovrete essere in grado di
 
 ### <a name="repos"></a>Installare i repository EPEL e OpenZFS
 
-LXD richiede il repository EPEL (Extra Packages for Enterprise Linux), che sono facili da installare:
+LXD richiede il repository EPEL (Extra Packages for Enterprise Linux), che è facile da installare con:
 
 `dnf install epel-release`
 
-Una volta installato, verificare la presenza di aggiornamenti:
+Una volta installato, controllate gli aggiornamenti:
 
 `dnf update`
 
@@ -246,7 +246,7 @@ Se siete interessati al clustering, fate qualche ricerca aggiuntiva su questo ar
 
 `Do you want to configure a new storage pool? (yes/no) [default=yes]:`
 
-Questo può sembrare controintuitivo, dato che abbiamo già creato il nostro pool ZFS, ma sarà risolto in una domanda successiva. Accept the default.
+Questo può sembrare controintuitivo, dato che abbiamo già creato il nostro pool ZFS, ma sarà risolto in una domanda successiva. Accetta il predefinito.
 
 `Name of the new storage pool [default=default]: storage`
 
@@ -264,7 +264,7 @@ Qui si risolve la domanda precedente sulla creazione di un pool di storage.
 
 `Would you like to connect to a MAAS server? (yes/no) [default=no]:`
 
-Il Metal As A Service (MAAS) non rientra nell'ambito di questo documento.
+Metal As A Service (MAAS) non rientra nel campo di applicazione del presente documento.
 
 `Would you like to create a new local network bridge? (yes/no) [default=yes]:`
 
@@ -294,7 +294,7 @@ Questa password di fiducia è il modo in cui ci si connetterà al server snapsho
 
 `Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:`
 
-#### Impostazione dei Privilegi degli Utenti
+#### Impostazione Privilegi Utente
 
 Prima di continuare, dobbiamo creare l'utente "lxdadmin" e assicurarci che abbia i privilegi necessari. Abbiamo bisogno che l'utente "lxdadmin" sia in grado di fare il _sudo_ a root e che sia membro del gruppo lxd. Per aggiungere l'utente e assicurarsi che sia membro di entrambi i gruppi, procedere come segue:
 
@@ -841,7 +841,7 @@ Quindi elencare nuovamente i container:
 +-------------+---------+----------------------+------+-----------+-----------+
 ```
 
-Riuscito!
+Success!
 
 La configurazione dell'IP statico è leggermente diversa, ma non è affatto difficile. Occorre modificare il file .yaml associato alla connessione del contenitore (/10-lxc.yaml). Per questo IP statico, utilizzeremo 192.168.1.201:
 
@@ -883,7 +883,7 @@ Quando si elencano nuovamente i container, si dovrebbe vedere il nuovo IP static
 +-------------+---------+----------------------+------+-----------+-----------+
 ```
 
-Riuscito!
+Success!
 
 Negli esempi utilizzati nella Parte 2, abbiamo scelto intenzionalmente un container difficile da configurare e uno facile. Ci sono ovviamente molte altre versioni di Linux disponibili nell'elenco delle immagini. Se ce n'è  uno preferito, provare a installarlo, assegnando il modello macvlan e impostando gli IP.
 
@@ -1021,7 +1021,7 @@ Snapshots:
   ubuntu-test-1 (taken at 2021/04/29 15:57 UTC) (stateless)
 ```
 
-Riuscito! La nostra istantanea è pronta.
+Success! La nostra istantanea è pronta.
 
 Ora, entrare nel container ubuntu-test:
 
@@ -1139,7 +1139,7 @@ Dopo un breve periodo di tempo, la copia sarà completa. Volete scoprirlo con ce
 +-------------+---------+------+------+-----------+-----------+
 ```
 
-Riuscito! Ora proviamo ad avviarlo. Poiché lo stiamo avviando sul server lxd-snapshot, dobbiamo prima fermarlo sul server lxd-primary:
+Success! Ora proviamo ad avviarlo. Poiché lo stiamo avviando sul server lxd-snapshot, dobbiamo prima fermarlo sul server lxd-primary:
 
 `lxc stop centos-test`
 
