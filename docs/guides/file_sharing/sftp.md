@@ -243,7 +243,7 @@ useradd -M -d /var/www/sub-domains/com.myfixedaxel/html -g apache -s /usr/sbin/n
 
 Let's break down those commands a bit:
 
-* The `-M` option says to *not* create create the standard home directory for the user.
+* The `-M` option says to *not* create the standard home directory for the user.
 * `-d` specifies that what comes after is the *actual* home directory.
 * `-g` says that the group that this user belongs to is `apache`.
 * `-s` says that the shell the user is assigned is `/usr/sbin/nologin`
