@@ -250,7 +250,7 @@ Vediamo di scomporre un po' questi comandi:
 
 **Note:** Per un server Nginx, si usa `nginx` come gruppo.
 
-Our SFTP users still need a password. Procediamo quindi con l'impostazione di una password sicura per ciascuno di essi. Poiché abbiamo già visto l'output del comando sopra, non lo ripeteremo qui:
+I nostri utenti SFTP hanno ancora bisogno di una password. Procediamo quindi con l'impostazione di una password sicura per ciascuno di essi. Poiché abbiamo già visto l'output del comando sopra, non lo ripeteremo qui:
 
 ```
 passwd mybroken
