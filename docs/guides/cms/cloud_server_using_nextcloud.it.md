@@ -91,7 +91,7 @@ Il passo finale consiste nell'abilitare la versione stabile di Nextcloud dai mod
 
 `dnf module enable nextcloud:nextcloud-stable`
 
-### Installazione dei pacchetti
+### Installazione dei Pacchetti
 
 Per vedere cosa offre l'abilitazione del modulo Nextcloud da installare, procedere come segue:
 
@@ -245,7 +245,7 @@ Se l'installazione del modulo è così semplice, perché prendere in considerazi
 
 L'operazione si svolge esattamente come la [procedura di installazione del modulo](#repositories).
 
-### Installazione dei pacchetti
+### Installazione dei Pacchetti
 
 Abbiamo bisogno di molti pacchetti installati. Alcuni di questi potrebbero essere già installati con l'installazione predefinita di Rocky Linux, ma è bene accertarsene eseguendo il seguente comando:
 
