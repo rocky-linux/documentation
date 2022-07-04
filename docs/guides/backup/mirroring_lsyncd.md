@@ -2,6 +2,7 @@
 title: Mirroring Solution - lsyncd
 author: Steven Spencer
 contributors: Ezequiel Bruni, tianci li
+tested with: 8.5, 8.6, 9.0
 tags:
   - lsyncd
   - synchronization
@@ -66,6 +67,16 @@ We will need some dependencies: a few that are required by `lsyncd` itself, and 
 
 `dnf groupinstall 'Development Tools'`
 
+!!! important "For Rocky Linux 9.0"
+
+    `lsyncd` has been fully tested in Rocky Linux 9.0, and will work as expected. In order to get all of the needed dependencies installed, however, you will need to enable an additional repository:
+
+    ```
+    dnf config-manager --enable crb
+    ```
+
+    Doing this in 9 before then next steps, will allow you to finish the build without backtracking.
+
 And here are the dependencies we need for `lsyncd` itself, and its build process:
 
 `dnf install lua lua-libs lua-devel cmake unzip wget rsync`
@@ -102,13 +113,13 @@ make install
 
 When done, you should have the `lsyncd` binary installed and ready for use in */usr/local/bin*
 
-## `lsyncd` Systemd Service
+### `lsyncd` Systemd Service
 
 With the RPM install method, the systemd service will be installed for you, but if you choose to install from source, you will need to create the systemd service. While you can start the binary without the systemd service, we want to make sure that it *does* start on boot. If not, a server reboot would stop your synchronization effort and if you forgot to start it again, which is highly likely, that could be very embarrassing for any systems administrator!
 
 Creating the systemd service is not terribly difficult, though, and will save you a lot of time in the long run.
 
-## Create The `lsyncd` Service File
+#### Create The `lsyncd` Service File
 
 This file can be created anywhere, even in the root directory of your server. Once it is created, we can easily move it the right location.
 
