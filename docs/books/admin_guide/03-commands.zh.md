@@ -17,7 +17,7 @@ update: 11-08-2021
 :heavy_check_mark: **创建** 一个文本文件, **显示** 它的内容并 **修改** 它;   
 :heavy_check_mark: 使用最实用的Linux命令
 
-:checkered_flag: **用户命令**, **linux**
+:checkered_flag: **用户命令**，**linux**
 
 **知识**: :star:   
 **复杂度**: :star:
