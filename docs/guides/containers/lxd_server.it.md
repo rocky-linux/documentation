@@ -39,7 +39,7 @@ Per tutta la "Parte 1" dovrete essere l'utente root o dovrete essere in grado di
 
 ### <a name="repos"></a>Installare i repository EPEL e OpenZFS
 
-LXD richiede il repository EPEL (Extra Packages for Enterprise Linux), che è facile da installare con:
+LXD richiede il repository EPEL (Extra Packages for Enterprise Linux), che è facile da installare:
 
 `dnf install epel-release`
 
@@ -294,7 +294,7 @@ Questa password di fiducia è il modo in cui ci si connetterà al server snapsho
 
 `Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:`
 
-#### Impostazione Privilegi Utente
+#### Impostazione dei Privilegi degli Utenti
 
 Prima di continuare, dobbiamo creare l'utente "lxdadmin" e assicurarci che abbia i privilegi necessari. Abbiamo bisogno che l'utente "lxdadmin" sia in grado di fare il _sudo_ a root e che sia membro del gruppo lxd. Per aggiungere l'utente e assicurarsi che sia membro di entrambi i gruppi, procedere come segue:
 

@@ -2,6 +2,7 @@
 title: Soluzione di mirroring - lsyncd
 author: Steven Spencer
 contributors: Ezequiel Bruni, tianci li, Franco Colussi
+tested with: 8.5, 8.6, 9.0
 tags:
   - lsyncd
   - synchronization
@@ -67,6 +68,17 @@ Avremo bisogno di alcune dipendenze: alcune richieste da `lsyncd` stesso e altre
 
 `dnf groupinstall 'Development Tools'`
 
+!!! important "Per Rocky Linux 9.0"
+
+    `lsyncd` è stato completamente testato in Rocky Linux 9.0 e funzionerà come previsto. Per poter installare tutte le dipendenze necessarie, tuttavia, è necessario abilitare un repository aggiuntivo:
+
+    ```
+    dnf config-manager --enable crb
+    ```
+
+
+    Eseguendo questa operazione in 9 prima delle fasi successive, si potrà terminare la costruzione senza tornare indietro.
+
 Ecco le dipendenze necessarie per `lsyncd` stesso e per il suo processo di compilazione:
 
 `dnf install lua lua-libs lua-devel cmake unzip wget rsync`
@@ -85,7 +97,7 @@ Verrà creata una directory chiamata "lsyncd-master". Dobbiamo passare a questa 
 
 `cd lsyncd-master`
 
-E poi:
+E quindi:
 
 `mkdir build`
 
@@ -103,13 +115,13 @@ make install
 
 Al termine, il binario `lsyncd` dovrebbe essere installato e pronto per l'uso in */usr/local/bin*
 
-## `lsyncd` Servizio Systemd
+### `lsyncd` Servizio Systemd
 
 Con il metodo di installazione RPM, il servizio systemd sarà installato per voi, ma se scegliete di installare da sorgente, dovrete creare il servizio systemd. Anche se è possibile avviare il binario senza il servizio systemd, vogliamo assicurarci che *parta* all'avvio. In caso contrario, un riavvio del server interromperebbe lo sforzo di sincronizzazione e se ci si dimenticasse di riavviarlo, cosa molto probabile, ciò potrebbe essere molto imbarazzante per qualsiasi amministratore di sistema!
 
 La creazione del servizio systemd, tuttavia, non è molto difficile e a lungo andare vi farà risparmiare molto tempo.
 
-## Creare il Service File `lsyncd`
+#### Creare il Service File `lsyncd`
 
 Questo file può essere creato ovunque, anche nella directory principale del server. Una volta creato, possiamo facilmente spostarlo nella posizione giusta.
 
@@ -141,7 +153,7 @@ Infine, ricaricare il demone `systemctl` in modo che systemd "veda" il nuovo fil
 
 `systemctl daemon-reload`
 
-## Configurazione di`lsyncd`
+## Configurazione di `lsyncd`
 
 Qualunque sia il metodo scelto per installare `lsyncd`, è necessario un file di configurazione: */etc/lsyncd.conf*. La prossima sezione spiega come costruire un semplice file di configurazione e come testarlo.
 
@@ -204,7 +216,7 @@ Se stessimo sincronizzando la cartella /etc del nostro computer, ci sarebbe un c
 /etc/fstab
 ```
 
-## Prova e Riprendi
+## Test e Messa in Funzione
 
 Ora che tutto il resto è stato impostato, possiamo testare il tutto. Per cominciare, assicuriamoci che il servizio systemd lsyncd.service si avvii:
 
@@ -232,7 +244,7 @@ Ora andate sul computer di destinazione e verificate se il file viene visualizza
 
 E dovreste essere pronti a partire.
 
-## Ricordate di essere prudenti
+## Ricordatevi di Essere Prudenti
 
 Ogni volta che si sincronizza un insieme di file o directory su un'altra macchina, è necessario pensare attentamente all'effetto che avrà sulla macchina di destinazione. Se si torna al **File lsyncd.exclude** dell'esempio precedente, si può immaginare cosa potrebbe accadere se */etc/fstab* venisse sincronizzato?
 
