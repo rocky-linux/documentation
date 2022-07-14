@@ -1,8 +1,23 @@
+---
+title: Enabling `iptables` Firewall
+author: Steven Spencer
+contributors: Ezequiel Bruni
+tested with: 8.5, 8.6, 9.0
+tags:
+ - security
+ - iptables
+ - deprecated
+---
+
 # Enabling iptables Firewall
 
 ## Prerequisites
 
 * A burning, unquenchable desire to disable the default _firewalld_ application, and enable _iptables_.
+
+!!! warning "This Process Is Deprecated"
+
+    As of Rocky Linux 9.0, `iptables` and all of the utilities associated with it, are deprecated. This means that future releases of the OS will be removing `iptables`. For that reason, it is highly recommended that you not use this process. If you are familiar with iptables, we recommend using [`iptables` Guide To `firewalld`](firewalld.md). If you are new to firewall concepts, then we recommend [`firewalld` For Beginners](firewalld-beginners.md).
 
 ## Introduction
 
