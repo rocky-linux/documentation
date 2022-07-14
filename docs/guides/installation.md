@@ -5,7 +5,7 @@ contributors: Steven Spencer
 updated: 07-14-2022
 ---
 
-# Installing Rocky Linux
+# Installing Rocky Linux 9
 
 This is a detailed guide for installing a 64-bit version of the Rocky Linux distribution on a stand-alone system.  We will be performing a server class install. We will step through the installation and customization steps in the following sections.
 
