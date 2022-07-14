@@ -4,7 +4,7 @@ author: Antoine Le Morvan
 contributors: Steven Spencer, Franco Colussi
 tested with: 8.5
 tags:
-  - security
+  - Un ardente, inestinguibile desiderio di disabilitare l'applicazione di default <em x-id="4">firewalld</em> e abilitare <em x-id="4">iptables</em>.
   - dnf
   - automation
   - updates
