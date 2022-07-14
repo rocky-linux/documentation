@@ -1,5 +1,5 @@
 ---
-Title: Installing Rocky Linux
+Title: Installing Rocky Linux 9.0
 author: wale soyinka
 contributors: Steven Spencer
 updated: 07-14-2022
@@ -23,7 +23,7 @@ https://www.rockylinux.org/download/
 To download the ISO directly from the command line on an existing Linux based system use the `wget` command:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-9.0-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/9.0/isos/x86_64/Rocky-9.0-x86_64-minimal.iso
 ```
 
 Rocky Linux ISOs are named following this convention:
@@ -45,7 +45,7 @@ If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, y
 First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky Linux ISO download the checksum file for the ISO, type:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/9/isos/x86_64/CHECKSUM
+wget https://download.rockylinux.org/pub/rocky/9.0/isos/x86_64/CHECKSUM
 ```
 
 Use the `sha256sum` utility to verify the integrity of the ISO file against corruption and/or tampering.
