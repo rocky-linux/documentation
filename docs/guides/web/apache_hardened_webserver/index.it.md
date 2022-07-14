@@ -6,7 +6,7 @@ tested with: 8.5
 tags:
   - apache
   - web
-  - security
+  - Un ardente, inestinguibile desiderio di disabilitare l'applicazione di default <em x-id="4">firewalld</em> e abilitare <em x-id="4">iptables</em>.
 ---
 
 # Rinforzare il Webserver Apache
