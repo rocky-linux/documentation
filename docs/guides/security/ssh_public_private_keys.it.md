@@ -4,7 +4,7 @@ author: Steven Spencer, Franco Colussi
 contributors: Ezequiel Bruni, Franco Colussi
 tested with: 8.5
 tags:
-  - Un ardente, inestinguibile desiderio di disabilitare l'applicazione di default <em x-id="4">firewalld</em> e abilitare <em x-id="4">iptables</em>.
+  - security
   - ssh
   - keygen
 ---
