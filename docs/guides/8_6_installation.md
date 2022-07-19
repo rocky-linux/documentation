@@ -1,11 +1,11 @@
 ---
-Title: Installing Rocky Linux
+Title: Installing Rocky Linux 8.6
 author: wale soyinka
 contributors: tianci li, Steven Spencer
 updated: 11-23-2021
 ---
 
-# Installing Rocky Linux
+# Installing Rocky Linux 8.6
 
 This guide walks through the detailed steps to install a 64-bit version of the Rocky Linux distribution on a stand-alone system.  We will be performing a server class install using an operating system installer image downloaded from the Rocky Linux project website. We will step through the installation and customization steps in the following sections.
 
