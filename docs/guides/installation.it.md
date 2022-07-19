@@ -217,7 +217,7 @@ Clicca su <kbd>Fatto</kbd>.
 
 Poi clicca sul campo *Creazione utente* sotto *Impostazioni Utente* per avviare la schermata *Crea utente*. Questa area di attività consente di creare un account utente privilegiato o non privilegiato (non amministrativo) sul sistema.
 
-!!! Info
+!!! Info "Informazione"
 
     Creare e utilizzare un account non privilegiato per i compiti quotidiani di un sistema è una buona pratica di amministrazione del sistema.
 
