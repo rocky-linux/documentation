@@ -2,7 +2,10 @@
 title: Documentazione Locale - LXD
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-update: 09-Mar-2022
+tested with: 8.5, 8.6
+tags:
+  - contribute
+  - local envirmonent lxd
 ---
 
 # Introduzione
@@ -57,6 +60,18 @@ In primo luogo, entrare nel container con:
 ```
 lxc exec mkdocs bash
 ```
+
+!!! importante "Cambiamenti nel requirements.txt per 8.x"
+
+    L'attuale `requirements.txt' richiederà una versione di Python più recente di quella installata di default in Rocky Linux 8.5 o 8.6. Per poter installare tutte le altre dipendenze, procedere come segue:
+
+    ```
+    sudo dnf module enable python38
+    sudo dnf install python38
+    ```
+
+
+    Si può quindi saltare l'installazione di `python3-pip` nei pacchetti che si trovano di seguito.
 
 Avremo bisogno di alcuni pacchetti per realizzare ciò che dobbiamo fare:
 
@@ -183,7 +198,7 @@ Poi abbiamo bisogno di impostare `mkdocs` con una directory aggiuntiva. Al momen
 ```
 mkdir docs
 cd docs
-ln -s ../documentation/docs
+ln -s ../../documentation/docs
 ```
 ### Testare mkdocs
 
