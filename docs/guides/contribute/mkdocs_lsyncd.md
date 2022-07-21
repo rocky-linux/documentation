@@ -2,7 +2,10 @@
 title: Local Documentation - LXD
 author: Steven Spencer
 contributors: Ezequiel Bruni
-update: 27-Feb-2022
+tested with: 8.5, 8.6
+tags:
+  - contribute
+  - local envirmonent lxd
 ---
 
 # Introduction
@@ -57,6 +60,17 @@ First, get into the container with:
 ```
 lxc exec mkdocs bash
 ```
+
+!!! important "Changes in requirements.txt for 8.x"
+
+    The current `requirements.txt` will require a newer version of Python than what is installed by default in Rocky Linux 8.5 or 8.6. To be able to install all the other dependencies, do the following: 
+
+    ```
+    sudo dnf module enable python38
+    sudo dnf install python38
+    ```
+
+    You can then skip installing `python3-pip` in the packages found below.
 
 We will need a few packages to accomplish what we need to do:
 
