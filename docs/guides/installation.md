@@ -84,18 +84,18 @@ A quick media verification step will take place. This media verification step ca
 
 After the media check runs to completion and the media is successfully verified to be usable, the installer will automatically continue to the next screen.
 
-Select the language you want to use to perform the installation in this screen. For this guide, we select _English (United States)_. Then click the <kbd>Continue</kbd> button.
+Select the language you want to use to perform the installation in this screen. For this guide, we select *English (United States)*. Then click the <kbd>Continue</kbd> button.
 
 ## Installation Summary
 
-The _Installation Summary_ screen is an all-in-one area where you make the important decisions about the system to be installed.
+The *Installation Summary* screen is an all-in-one area where you make the important decisions about the system to be installed.
 
 The screen is roughly divided into the following sections:
 
-- _LOCALIZATION_: (Keyboard, Language Support, and Time & Date)
-- _SOFTWARE_: (Installation Source and Software Selection)
-- _SYSTEM_: (Installation Destination, KDUMP, Network & Hostname and Security Profile)
-- _USER SETTINGS_: (Root Password and User Creation)
+- *LOCALIZATION*: (Keyboard, Language Support, and Time & Date)
+- *SOFTWARE*: (Installation Source and Software Selection)
+- *SYSTEM*: (Installation Destination, KDUMP, Network & Hostname and Security Profile)
+- *USER SETTINGS*: (Root Password and User Creation)
 
 We will delve into each of these sections next and make changes where necessary.
 
@@ -105,33 +105,33 @@ This section is used for customizing items related to the geographic locality of
 
 #### Keyboard
 
-On our demo system in this guide, we accept the default value (_English US_) and make no changes.
+On our demo system in this guide, we accept the default value (*English US*) and make no changes.
 
-However if you need to make any changes here, from the _Installation Summary_ screen, click the <kbd>Keyboard</kbd> option to specify the keyboard layout of the system. Using the <kbd>+</kbd> button, you can add additional keyboard layouts if you need to in the ensuing screen and even specify your preferred order.
+However if you need to make any changes here, from the *Installation Summary* screen, click the <kbd>Keyboard</kbd> option to specify the keyboard layout of the system. Using the <kbd>+</kbd> button, you can add additional keyboard layouts if you need to in the ensuing screen and even specify your preferred order.
 
 Click <kbd>Done</kbd> when you are finished with this screen.
 
 #### Language Support
 
-The <kbd>Language Support</kbd> option on the _Installation Summary_ screen enables you to specify support for additional languages that you may need.
+The <kbd>Language Support</kbd> option on the *Installation Summary* screen enables you to specify support for additional languages that you may need.
 
-We will accept the default value - __English (United States)__ and make no change, click <kbd>Done</kbd>.
+We will accept the default value - **English (United States)** and make no change, click <kbd>Done</kbd>.
 
 #### Time & Date
 
-Click the <kbd>Time & Date</kbd> option on the main _Installation Summary_ screen to bring up another screen that will allow you to select the time zone in which the machine is located. Scroll through the list of regions and cities and select the area closest to you.
+Click the <kbd>Time & Date</kbd> option on the main *Installation Summary* screen to bring up another screen that will allow you to select the time zone in which the machine is located. Scroll through the list of regions and cities and select the area closest to you.
 
-Depending on your installation source, the _Network Time_ option could be set to _ON_ or _OFF_ by default. Accept the default _ON_ setting; this allows the system to automatically set the correct time using the Network Time Protocol (NTP). 
+Depending on your installation source, the *Network Time* option could be set to *ON* or *OFF* by default. Accept the default *ON* setting; this allows the system to automatically set the correct time using the Network Time Protocol (NTP). 
 
 Click <kbd>Done</kbd> after making any changes.
 
 ### Software Section
 
-Under the _Software_ section of the _Installation Summary_ screen, you can select the installation source as well as additional packages (applications) that get installed.
+Under the *Software* section of the *Installation Summary* screen, you can select the installation source as well as additional packages (applications) that get installed.
 
 #### Installation Source
 
-Since we are performing our installation using a Rocky Linux 9 ISO image, you will notice that _Local Media_ is automatically specified under the Installation Source section of the main _Installation Summary_ screen. We'll accept the preset defaults.
+Since we are performing our installation using a Rocky Linux 9 ISO image, you will notice that *Local Media* is automatically specified under the Installation Source section of the main *Installation Summary* screen. We'll accept the preset defaults.
 
 !!! Tip
 
@@ -139,30 +139,30 @@ Since we are performing our installation using a Rocky Linux 9 ISO image, you wi
 
 #### Software Selection
 
-Clicking the <kbd>Software Selection</kbd> option on the main _Installation Summary_ screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into :
+Clicking the <kbd>Software Selection</kbd> option on the main *Installation Summary* screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into :
 
-- __Base Environment__ : Minimal Install and Custom Operating System
-- __Additional software for Selected Environment__ : Selecting a Base Environment on the left side presents a variety of related additional software that can be installed for the given environment on the right side. Please note that this is only applicable if you were installing from a full Rocky Linux 9 DVD or if you have additional repositories configured.
+- **Base Environment** : Minimal Install and Custom Operating System
+- **Additional software for Selected Environment** : Selecting a Base Environment on the left side presents a variety of related additional software that can be installed for the given environment on the right side. Please note that this is only applicable if you were installing from a full Rocky Linux 9 DVD or if you have additional repositories configured.
 
-Select the _Minimal Install_ (Basic functionality) option.
+Select the *Minimal Install* (Basic functionality) option.
 
 Click <kbd>Done</kbd> at the top of the screen.
 
 ### System Section
 
-The System section of the _Installation Summary_ screen is used for customizing and making changes to things related to the underlying hardware of the target system. This is where you create your hard drive partitions or volumes, specify the file system to be used, specify the network configuration, enable/disable KDUMP or select a Security Profile.
+The System section of the *Installation Summary* screen is used for customizing and making changes to things related to the underlying hardware of the target system. This is where you create your hard drive partitions or volumes, specify the file system to be used, specify the network configuration, enable/disable KDUMP or select a Security Profile.
 
 #### Installation Destination
 
-From the _Installation Summary_ screen, click the <kbd>Installation Destination</kbd> option. This takes you to the corresponding task area.
+From the *Installation Summary* screen, click the <kbd>Installation Destination</kbd> option. This takes you to the corresponding task area.
 
-You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you will see the drive listed under _Local Standard Disks_ with a check mark beside it. Clicking the disk icon will toggle on or off the disk selection check mark. We want it selected/checked here.
+You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you will see the drive listed under *Local Standard Disks* with a check mark beside it. Clicking the disk icon will toggle on or off the disk selection check mark. We want it selected/checked here.
 
-Under the _Storage Configuration_ Options section, select the <kbd>Automatic</kbd> radio button.
+Under the *Storage Configuration* Options section, select the <kbd>Automatic</kbd> radio button.
 
 Then click <kbd>Done</kbd> at the top of the screen.
 
-Once the installer determines that you have a usable disk, you will be returned to the _Installation Summary_ screen.
+Once the installer determines that you have a usable disk, you will be returned to the *Installation Summary* screen.
 
 ### Network & Host Name
 
@@ -174,7 +174,7 @@ The final task of the installation procedure deals with network configuration, w
 
 For each interface, you can either configure it using DHCP or manually set the IP address. If you choose to configure manually, be sure to have all the pertinent information ready, such as the IP address, netmask, and so on.
 
-Clicking the <kbd>Network & Hostname</kbd> button in the main _Installation Summary_ screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system (the name defaults to `localhost.localdomain`).
+Clicking the <kbd>Network & Hostname</kbd> button in the main *Installation Summary* screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system (the name defaults to `localhost.localdomain`).
 
 !!! Note
 
@@ -189,7 +189,7 @@ The next important configuration task is related to the network interfaces on th
 Make sure the switch of the device you want to configure is flipped to the `ON` (blue) position in the right pane.
 We'll accept all the defaults in this section.
 
-Click <kbd>Done</kbd> to return to the main _Installation Summary_ screen.
+Click <kbd>Done</kbd> to return to the main *Installation Summary* screen.
 
 !!! Warning
 
@@ -201,22 +201,22 @@ This section can be used for creating a password for the `root` user account and
 
 #### Root Password
 
-Click the _Root Password_ field under _User Settings_ to launch the _Root Password_ task screen.
+Click the *Root Password* field under *User Settings* to launch the *Root Password* task screen.
 
 !!! Warning
 
     The root superuser is the most privileged account on the system. Therefore, if you choose to use or enable it, it is crucial that you protect this account with a strong password.
 
- In the _Root Password_ text box, set a strong password for the root user.
+ In the *Root Password* text box, set a strong password for the root user.
 
-Enter the same password again in the _Confirm_ text box.
+Enter the same password again in the *Confirm* text box.
 
 Click <kbd>Done</kbd>.
 
 
 #### User Creation
 
-Next click the _User Creation_ field under _User Settings_ to launch the _Create User_ task screen. This task area allows you to create a privileged or non-privileged (non-administrative) user account on the system.
+Next click the *User Creation* field under *User Settings* to launch the *Create User* task screen. This task area allows you to create a privileged or non-privileged (non-administrative) user account on the system.
 
 !!! Info
 
@@ -224,24 +224,24 @@ Next click the _User Creation_ field under _User Settings_ to launch the _Create
 
 We’ll create a regular user that can invoke superuser (administrator) powers when needed.
 
-Complete the fields in the _Create User_ screen with the following information and then click <kbd>Done</kbd>:
+Complete the fields in the *Create User* screen with the following information and then click <kbd>Done</kbd>:
 
-_Full name_:
+*Full name*:
 `rockstar`
 
-_Username_:
+*Username*:
 `rockstar`
 
-_Make this user administrator_:
+*Make this user administrator*:
 Checked
 
-_Require a password to use this account_:
+*Require a password to use this account*:
 Checked
 
-_Password_:
+*Password*:
 `04302021`
 
-_Confirm password_:
+*Confirm password*:
 `04302021`
 
 
@@ -254,7 +254,7 @@ Once you are satisfied with your choices for the various installation tasks, the
 
 ### Start the Installation
 
-Once you are satisfied with your choices for the various installation tasks, click the <kbd>Begin Installation</kbd> button on the main _Installation Summary_ screen.
+Once you are satisfied with your choices for the various installation tasks, click the <kbd>Begin Installation</kbd> button on the main *Installation Summary* screen.
 
 The installation will begin, and the installer will show the progress of the installation. When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.
 
