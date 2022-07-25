@@ -2,7 +2,7 @@
 title: PAM authentication modules
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ezequiel Bruni
-tested with: 8.5
+tested with: 8.5, 8.6
 tags:
   - security
   - pam
@@ -61,11 +61,10 @@ For example, here's the config file `/etc/pam.d/sudo`:
 
 ```
 #%PAM-1.0
-auth       include     system-auth
-account    include     system-auth
-password   include     system-auth
-session    optional    pam_keyinit.so revoke
-session	   required    pam_limits.so
+auth       include      system-auth
+account    include      system-auth
+password   include      system-auth
+session    include      system-auth
 ```
 
 ## Mechanisms
@@ -243,7 +242,7 @@ Options:
 
 ### `pam_time`
 
-The `pam_time` module allows to limit the access times to services managed by PAM.
+The `pam_time` module allows you to limit the access times to services managed by PAM.
 
 To activate it, edit `/etc/pam.d/system-auth` and add:
 
@@ -349,4 +348,4 @@ Mount points are configured in the `/etc/security/pam_mount.conf` file:
 
 By now, you should have a much better idea of what PAM can do, and how to make changes when needed. However, we must reiterate the importance of being very, *very* careful with any changes you make to PAM modules. You could lock yourself out of your system, or worse, let everyone else in.
 
-We would stringly recommend testing all changes in an environment that can be easily reverted to a previous configuration. That said, have fun with it!
+We would strongly recommend testing all changes in an environment that can be easily reverted to a previous configuration. That said, have fun with it!
