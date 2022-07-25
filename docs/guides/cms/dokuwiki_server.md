@@ -2,7 +2,7 @@
 title: DokuWiki
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5, 8.6
+tested with: 8.5, 8.6, 9.0
 tags:
   - wiki
   - documentation
@@ -30,7 +30,7 @@ DokuWiki is just one of many wiki's available, though it's a pretty good one. On
 
 ## Installing Dependencies
 
-The minimum PHP version for DokuWiki is now 7.2, which is exactly what Rocky Linux 8 comes with. We are specifying packages here that may already be installed:
+The minimum PHP version for DokuWiki is now 7.2, which is exactly what Rocky Linux 8 comes with. Rocky Linux 9.0 comes with PHP version 8.0, which is also fully supported. We are specifying packages here that may already be installed:
 
 `dnf install tar wget httpd php php-gd php-xml php-json php-mbstring`
 
@@ -109,7 +109,7 @@ Right-click on the "(direct link)" portion of this and copy the link address. In
 
 Before we decompress the archive, take a look at the contents using `tar ztf` to see the contents of the archive:
 
-`tar ztv dokuwiki-stable.tgz`
+`tar ztvf dokuwiki-stable.tgz`
 
 Notice the named dated directory ahead of all the other files that looks something like this?
 
@@ -212,9 +212,19 @@ Besides the ACL policy that you just created, consider:
 
 ### Your Firewall
 
-Before you call everything done, you need to think about security. First, you should be running a firewall on the server. We will assume that you are using _iptables_ and have [Enabled _iptables_](../security/enabling_iptables_firewall.md), but if you want to use _firewalld_ instead, simply modify your _firewalld_ rules accordingly.
+!!! note
 
-Instead of everyone having access to the wiki, we are going to assume that anyone on the 10.0.0.0/8 network is on your private Local Area Network, and that those are the only people who need access to the site. A simple _iptables_ firewall script for this is down below.
+    Neither of these firewall examples makes any sort of assumptions about what other services you might need to allow on your Dokuwiki server. These rules are based on our testing environment and **ONLY** deal with allowing access to a LOCAL network ip block. You will need more services allowed for a production server.
+
+Before you call everything done, you need to think about security. First, you should be running a firewall on the server. We will assume you are using one of the firewalls below.
+
+Instead of everyone having access to the wiki, we are going to assume that anyone on the 10.0.0.0/8 network is on your private Local Area Network, and that those are the only people who need access to the site.
+
+#### `iptables` Firewall (deprecated)
+
+!!! important
+
+    The `iptables` firewall process here has been deprecated in Rocky Linux 9.0 (still available, but likely to disappear in future releases, perhaps as early as Rocky Linux 9.1). For this reason, we recommend skipping to the `firewalld` procedure below if you are doing this on 9.0 or better. 
 
 Please note that you may need other rules for other services on this server, and that this example only takes into account the web services.
 
@@ -251,6 +261,43 @@ Then execute the script:
 `/etc/firewall.conf`
 
 This will execute the rules and save them so that they will be reloaded on the next start of _iptables_ or on boot.
+
+#### `firewalld` Firewall
+
+If you are using `firewalld` as your firewall (and by this time, you probably *should* be) you can apply the same concepts using `firewalld's firewall-cmd` syntax.
+
+We will duplicate the `iptables` rules (above) with `firewalld` rules:
+
+```
+firewall-cmd --zone=trusted --add-source=10.0.0.0/8 --permanent
+firewall-cmd --zone=trusted --add-service=http --add-service=https --permanent
+firewall-cmd --reload
+```
+
+Once you have the above rules added and the firewalld service reloaded, list out your zone to make sure that everything is there that you need:
+
+```
+firewall-cmd --zone=trusted --list-all
+```
+
+which should show you something like this if all of the above has worked correctly:
+
+```
+trusted (active)
+  target: ACCEPT
+  icmp-block-inversion: no
+  interfaces: 
+  sources: 10.0.0.0/8
+  services: http https
+  ports: 
+  protocols: 
+  forward: yes
+  masquerade: no
+  forward-ports: 
+  source-ports: 
+  icmp-blocks: 
+  rich rules:
+```
 
 ### SSL
 

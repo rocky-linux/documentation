@@ -2,7 +2,7 @@
 title: Apache Multisite
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5
+tested with: 8.5, 8.6, 9.0
 tags:
   - web
   - apache
