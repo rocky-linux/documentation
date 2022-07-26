@@ -2,7 +2,7 @@
 title: Bind Private DNS Server
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5, 8.6
+tested with: 8.5, 8.6, 9.0
 tags:
   - dns
   - bind
@@ -287,6 +287,10 @@ Now you should be able to get to anything in the *ourdomain.lan* domain from you
 ## Firewall Rules
 
 ### Adding The Firewall Rules - `iptables`
+
+!!! note "Regarding `iptables` and Rocky Linux 9.0"
+
+    If you are doing this procedure on Rocky Linux 9.0 or above, please move down to the `firewalld` rules below. As of 9.0, `iptables` and it's associated utilities are officially deprecated. While they still exist in version 9.0, they may disappear quite soon, perhaps as early as Rocky Linux 9.1. Using the `firewalld` rules will avoid potential problems in the future.
 
 First, create a file in */etc* called "firewall.conf" that will contain the following rules. This is a bare minimum rule set, and you may need to tweak this for your environment:
 
