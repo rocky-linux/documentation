@@ -2,7 +2,7 @@
 title: Apache Multisito
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5
+tested with: 8.5, 8.6, 9.0
 tags:
   - web
   - apache
