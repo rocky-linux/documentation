@@ -2,13 +2,17 @@
 title: Pound
 author: Steven Spencer
 contributors:
-tested with: 8.5
+tested with: 8.5, 8.6
 tags:
   - proxy
   - proxies
 ---
 
 # Pound Proxy Server
+
+!!! important "Pound Missing from EPEL-9"
+
+    As of this writing, Rocky Linux 9.0 cannot be installed from the EPEL repository. While there are sources out there for SRPM packages, we can't verify the integrity of these sources. For this reason, we do not recommend installing the Pound proxy server on Rocky Linux 9.0 at this time. This may change if the EPEL once again picks up Pound.  Use this procedure specifically for Rocky Linux 8.5 or 8.6.
 
 ## Introduction
 
@@ -37,13 +41,13 @@ The following are minimum requirements for using this procedure:
     If you don't have either of these servers installed, you can do so on a container environment (LXD or Docker) or on bare metal, and get them up and running. For this procedure, you merely need to install them with their respective packages, and enable and start the services. We won't be modifying them significantly in any way.
 
     ```
-    dnf -y install nginx && dnf enable --now nginx
+    dnf -y install nginx && systemctl enable --now nginx
     ```
 
     or
 
     ```
-    dnf -y install httpd && dnf enable --now httpd
+    dnf -y install httpd && systemctl enable --now httpd
     ```
 
 ## Conventions
