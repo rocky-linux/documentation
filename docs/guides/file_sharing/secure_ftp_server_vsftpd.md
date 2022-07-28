@@ -2,7 +2,7 @@
 title: Secure FTP Server - vsftpd
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5
+tested with: 8.5, 8.6, 9.0
 tags:
   - security
   - ftp
@@ -242,7 +242,10 @@ Remember that this was set up in the [Setting Up Virtual Users section above.](#
 
 We need to create the file that contains the virtual user's configuration:
 
-`vi /etc/vsftpd/vsftpd_user_conf/username`
+```
+mkdir /etc/vsftpd/vsftpd_user_conf
+vi /etc/vsftpd/vsftpd_user_conf/username
+```
 
 This will have a single line in it that specifies the virtual user's local_root:
 

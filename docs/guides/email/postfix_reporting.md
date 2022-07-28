@@ -1,5 +1,12 @@
 ---
 title: Postfix Process Reporting
+author: Steven Spencer
+contributors: Ezequiel Bruni
+tested with: 8.5, 8.6, 9.0
+tags:
+  - email
+  - reports
+  - tools
 ---
 
 # Using Postfix For Server Process Reporting
@@ -31,6 +38,14 @@ postfix is a server daemon used for sending email. It is more secure and simpler
 Aside from postfix, we will need _mailx_ for testing our ability to send emails. To install both, and any dependencies required, enter the following on the Rocky Linux server command line:
 
 `dnf install postfix mailx`
+
+!!! important "Rocky Linux 9.0 Changes"
+
+    This procedure works perfectly fine in Rocky Linux 9.0. The difference here is where the `mailx` command comes from. While you can install it by name in 8.x, `mailx` comes from the appstream package `s-nail` in 9.0. To install the needed packages, you need to use:
+
+    ```
+    dnf install postfix s-nail
+    ```
 
 ## Testing And Configuring Postfix
 
