@@ -2,7 +2,7 @@
 title: Server Cloud con Nextcloud
 author: Steven Spencer, Franco Colussi
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5, 8.6
+tested with: 8.5, 8.6, 9.0
 tags:
   - cloud
   - nextcloud

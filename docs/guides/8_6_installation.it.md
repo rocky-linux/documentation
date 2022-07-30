@@ -1,11 +1,10 @@
 ---
-Title: Installazione di Rocky Linux
+Title: Installazione Di Rocky Linux 8.6
 author: wale soyinka
 contributors: tianci li, Steven Spencer, Colussi Franco
-updated: 12-22-2021
 ---
 
-# Installazione di Rocky Linux
+# Installazione Di Rocky Linux 8.6
 
 Questa guida mostra nel dettaglio i passaggi per installare una versione a 64 bit della distribuzione Rocky Linux su un sistema stand-alone.  Effettueremo un'installazione di categoria server utilizzando un'immagine di installazione del sistema operativo scaricata dal sito web del progetto Rocky Linux. Passeremo attraverso i passaggi di installazione e personalizzazione nelle sezioni seguenti.
 
@@ -23,7 +22,7 @@ https://www.rockylinux.org/download/
 Per scaricare l'ISO direttamente dalla riga di comando utilizzare il comando `wget`:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-8.5-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/8.6/isos/x86_64/Rocky-8.6-x86_64-minimal.iso
 ```
 
 Le ISO di Rocky Linux sono denominate seguendo questa convenzione:
@@ -32,7 +31,7 @@ Le ISO di Rocky Linux sono denominate seguendo questa convenzione:
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-Ad esempio, `Rocky-8.5-x86_64-minimal.iso`
+Ad esempio, `Rocky-8.6-x86_64-minimal.iso`
 
 !!! Note "Nota"
 
@@ -45,7 +44,7 @@ Se hai scaricato le ISO di Rocky Linux su una distribuzione Linux esistente, è 
 In primo luogo scaricare il file che contiene i checksum ufficiali per le ISO disponibili. Mentre siete ancora nella cartella che contiene la ISO scaricata di Rocky Linux scaricate il file di checksum per la ISO, digitando:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/CHECKSUM
+wget https://download.rockylinux.org/pub/rocky/8.6/isos/x86_64/CHECKSUM
 ```
 
 Utilizzare l'utilità `sha256sum` per verificare l'integrità del file ISO contro la corruzione e/o la manomissione.
@@ -57,7 +56,7 @@ sha256sum -c CHECKSUM --ignore-missing
 Questo controllerà l'integrità del file ISO scaricato in precedenza, a condizione che sia nella stessa directory. L'output dovrebbe mostrare:
 
 ```
-Rocky-8.5-x86_64-minimal.iso: OK
+Rocky-8.6-x86_64-minimal.iso: OK
 ```
 
 ## L'Installazione
@@ -151,7 +150,7 @@ La sezione Sistema della schermata _Riepilogo Installazione_ viene utilizzata pe
 
 #### Destinazione Installazione
 
-Dalla schermata _Riepilogo Installazione_, clicca sull'opzione <kbd>Destinazione Installazione</kbd>. Questo ti porta all'area di attività corrispondente.
+Dalla schermata _Riepilogo Installazione_, clicca sull'opzione <kbd>Destinazione Installazione</kbd>. Questo ti porta alla corrispondente area di attività.
 
 Verrà visualizzata una schermata che mostra tutte le unità disco candidate disponibili sul sistema di destinazione. Se avete un solo disco sul sistema, come sul nostro sistema di esempio, vedrai l'unità elencata sotto _Dischi locali standard_ con un segno di spunta accanto ad essa. Facendo clic sull'icona del disco si attiverà o disattiverà il segno di spunta per la selezione del disco. Vogliamo che sia selezionato/spuntato qui.
 
