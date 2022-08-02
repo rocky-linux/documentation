@@ -1,12 +1,17 @@
 ---
 title: SELinux Security
+author: Antoine Le Morvan
+contributors: Steven Spencer, markooff
+tags:
+  - security
+  - SELinux
 ---
 
 # SELinux security
 
 With the arrival of kernel version 2.6, a new security system was introduced to provide a security mechanism to support access control security policies.
 
-This system is called **SELinux** (**S**ecurity **E**nhanced **Linux**) and was created by the **NSA** (**N**ational **S**ecurity **A**dministration) to implement a robust **M**andatory **A**ccess **C**ontrol (**MAC**) architecture in the Linux kernel subsystems.
+This system is called **SELinux** (**S**ecurity **E**nhanced **Linux**) and was created by the **NSA** (**N**ational **S**ecurity **A**gency) to implement a robust **M**andatory **A**ccess **C**ontrol (**MAC**) architecture in the Linux kernel subsystems.
 
 If, throughout your career, you have either disabled or ignored SELinux, this document will be a good introduction to this system. SELinux works to limit privileges or remove the risks associated with compromising a program or daemon.
 
