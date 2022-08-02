@@ -619,6 +619,16 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "markooff",
+      "name": "markooff",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24265888?v=4",
+      "profile": "https://github.com/markooff",
+      "contributions": [
+        "content",
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
