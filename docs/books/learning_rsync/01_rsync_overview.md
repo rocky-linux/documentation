@@ -44,7 +44,7 @@ The original `rsync` was maintained by the Australian programmer <font color=red
 ![ Andrew Tridgell ](images/Andrew_Tridgell.jpg)
 ![ Wayne Davison ](images/Wayne_Davison.jpg)
 
-!!! note "Attention!"
+!!! note "note"
 
     **rsync itself is only an incremental backup tool and does not have the function of real-time data synchronization (it needs to be supplemented by other programs). In addition, synchronization is one-way. If you want to realize two-way synchronization, you need to cooperate with other tools.**
 

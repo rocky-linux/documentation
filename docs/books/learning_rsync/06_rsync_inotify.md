@@ -121,7 +121,7 @@ Back to the first terminal pts/0, the output information is as follows:
 
 ## Combination of  `inotifywait` and `rsync`
 
-!!! tip "Attention!"
+!!! tip "tip"
 
     We are operating in Rocky Linux 8 server, using SSH protocol for demonstration.
 
@@ -142,12 +142,12 @@ $a | while read directory event file
 [root@Rocky ~]# bash /root/rsync_inotify.sh &
 ```
 
-!!! tip "emphasize again!"
+!!! tip "tip"
 
     When using the SSH protocol for data synchronization transmission, if the SSH service port of the target machine is not 22, you can use a method similar to this——
     `b="/usr/bin/rsync -avz -e 'ssh -p [port-number]' /rsync/* testfedora@192.168.100.5:/home/testfedora/"`
 
-!!! tip "Attention!"
+!!! tip "tip"
 
     If you want to start this script at boot
     `[root@Rocky ~]# echo "bash /root/rsync_inotify.sh &" >> /etc/rc.local`

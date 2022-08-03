@@ -33,7 +33,7 @@ Some parameters and values ​​of this file are as follows, [ here ](04_rsync_
 | auth users = li| Enable virtual users and define what a virtual user is called. Need to create it yourself|
 | secrets file = /etc/rsyncd_users.db | Used to specify the location of the virtual user's password file, which must end in .db. The content format of the file is "Username: Password", one per line |
 
-!!! tip "Attention!"
+!!! tip "tip"
 
     The permission of the password file must be <font color=red>600</font>
 

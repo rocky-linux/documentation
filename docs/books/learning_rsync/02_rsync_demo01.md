@@ -64,7 +64,7 @@ Fedora34-->|pull/download|RockyLinux8;
 
 ##  Demonstration based on SSH protocol
 
-!!! tip "Attention!"
+!!! tip "tip"
 
     Here, both Rocky Linux 8 and Fedora 34 use the root user to log in. Fedora 34 is the client and Rocky Linux 8 is the server.
 
@@ -92,7 +92,7 @@ aabbcc
 ```
 The transfer was successful.
 
-!!! tip "Attention"
+!!! tip "tip"
 
     If the server's SSH port is not the default 22, you can specify the port in a similar way---`rsync -avz -e 'ssh -p [port]' `.
 
