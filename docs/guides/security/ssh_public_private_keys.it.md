@@ -18,7 +18,7 @@ tags:
     * Va bene, tecnicamente; questo processo funziona su qualsiasi sistema Linux con openssh installato
 * Facoltativo: familiarità con i permessi di file Linux e directory
 
-# Introduzione
+## Introduzione
 
 SSH è un protocollo utilizzato per accedere da una macchina ad un'altra, di solito tramite la riga di comando. Con SSH è possibile eseguire comandi su computer e server remoti, inviare file e in genere gestire tutto ciò che si fa da un unico posto.
 
