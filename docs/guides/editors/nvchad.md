@@ -2,7 +2,7 @@
 title: NvChad
 tags:
     - nvchad
-    - codindg
+    - coding
 ---
 
 ## Using Neovim as an IDE
