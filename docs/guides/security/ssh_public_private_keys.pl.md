@@ -100,4 +100,5 @@ Kiedy już zweryfikujemy pomyśłnie nowy sposób logowania się, możemy bezpie
 
 Upewnijmy się że na każdym z serwerów zostaną ustawione następujące prawa dostępu:
 
-`chmod 700 .ssh/` `chmod 600 .ssh/authorized_keys`
+`chmod 700 .ssh/` 
+`chmod 600 .ssh/authorized_keys`
