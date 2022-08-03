@@ -18,7 +18,7 @@ tags:
     * OK, z technicznego punktu widzenia, ta metoda powinna działać na każdej dystrybucji Linuxa z zainstalowanym pakietem *openssh*
 * Opcjonalnie - znajomość systemu uprawnień w systemie Linux
 
-# Wstęp
+## Wstęp
 
 SSH jest protokołem używanym do zdalnego łączenia się z jednej maszyny do drugiej, zwykle z poziomu konsoli. Z pomocą SSH możesz zdalnie wykonywać polecenia na serwerach, jak również przesyłać pliki, czyli w ogólności zarządzać wszystkimi swoimi zdalnymi maszynami z jednego miejsca.
 
