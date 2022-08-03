@@ -1,5 +1,7 @@
 ---
 title: NvChad
+author: Franco Colussi
+contributors: Steven Spencer
 tags:
     - nvchad
     - coding
@@ -7,7 +9,7 @@ tags:
 
 ## Using Neovim as an IDE
 
-Nvchad is a project created for the purpose of providing through a custom configuration of Neovim a starting point on which to build your own IDE (Integrated Development Environment) with minimal effort.
+Nvchad is a project created for the purpose of providing, through a custom configuration of Neovim, a starting point on which to build your own IDE (Integrated Development Environment) with minimal effort.
 
 The configuration is written in Lua, a very fast programming language that allows NvChad to have very fast startup and execution times for commands and keystrokes. This is also made possible by the `Lazy loading` technique used for plugins that allows plugins to load only when required.
 
@@ -19,7 +21,7 @@ As the developers of NvChad are keen to point out, the project is only intended 
 
 ### Main Features
 
-- **Designed to be fast.** From the choice of programming language to techniques for loading components everything is designed to minimize execution time.
+- **Designed to be fast.** From the choice of programming language to techniques for loading components, everything is designed to minimize execution time.
 
 - **Attractive Interface.** Despite being a _cli_ application the interface looks modern and beautiful graphically, plus all the components fit the UI perfectly.
 
@@ -50,9 +52,9 @@ As the developers of NvChad are keen to point out, the project is only intended 
 
 ### Installation from EPEL
 
-Before moving on to the installation of NvChad we need to make sure that we have an installation of Neovim available, in case it is not already installed you can install it from the EPEL Repository, even if the version provided does not meet the minimum requirements.
+Before moving on to the installation of NvChad we need to make sure that we have an installation of Neovim available. If it is not already installed you can install it from the EPEL Repository, even if the version provided does not meet the minimum requirements.
 
-To install the Neovim release provided by EPEL, we install if you have not already done so the repository.
+To install the Neovim release provided by EPEL, we need the repository installed:
 
 ```bash
 dnf install epel-release
@@ -66,12 +68,12 @@ dnf install neovim
 
 ### Installation from Precompiled Package
 
-In order to meet the minimum requirements of NvChad, it is possible to install the precompiled package provided by Neovim this allows to solve the problem of the version provided by EPEL (currently 0.7.0.1) which does not meet the minimum requirement.
+In order to meet the minimum requirements of NvChad, it is possible to install the precompiled package provided by Neovim. This solves the problem of the version provided by EPEL (currently 0.7.0.1) which does not meet the minimum requirement.
 
 In order to use all the features of the new version we still have to satisfy the dependencies required by Neovim, so if we decide to remove or not install the outdated version at all we have to provide _our_ `nvim` with the dependencies manually. The required packages can be installed with:
 
 ```bash
-dnf install compat-lua-libs libtermkey libtree-sitter libvterm luajit luajit2.1-luv msgpack unibilium xsel
+dnf install compat-lua-libs libtermkey libtree-sitter libvterm luajit luajit2.1-luv msgpack unibilium xsel git
 ```
 
 First we download the compressed archive for our architecture (linux64), from this address:
@@ -117,9 +119,9 @@ Run :checkhealth for more info
 
 ## Installation of NvChad
 
-Now that we have the basic editor installed we can move on to installing NvChad. This is actually not a real installation but rather writing a custom Neovim configuration into our user configuration.
+Now that we have the basic editor installed we can move on to installing NvChad. This is actually not a real installation but rather writing a custom Neovim configuration. This is written to the user's `.config` folder.
 
-To do this, simply run the following command from any location within your _home directory_ (Git of course needs to be installed):
+To do this, simply run the following command from any location within your _home directory_:
 
 ``` bash
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
@@ -171,3 +173,6 @@ The terminal font should change and NvChad should look better.
 
 ![NvChad Final](images/nvchad_final.png)
 
+## Conclusion
+
+As you have seen, NvChad modifies the excellent editor Nvim, to create a development environment specific to the user's needs. As such, this document only scratches the surface. Doing a search through the available plugins will give you insight into how *you* can modify Nvim to better suit your needs.
