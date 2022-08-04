@@ -33,7 +33,7 @@ Last login: Wed Nov  3 22:07:18 2021 from 192.168.100.5
 [testrsync@Rocky ~]$
 ```
 
-!!! tip "注意"
+!!! tip "提示"
 
     服务器的配置文件 **/etc/ssh/sshd_config** 应该打开 <font color=red>PubkeyAuthentication yes</font>
 
@@ -132,16 +132,16 @@ done
 [root@fedora ~]# jobs -l
 ```
 
-!!! tip "注意"
+!!! tip "提示"
 
     要双向同步的话，两个机器的脚本必须都需要启动才可以，否则会报错。
 
-!!! tip "注意"
+!!! tip "提示"
 
     如果您要开机自启动这个脚本的话
     `[root@Rocky ~]# echo "bash /root/unison1.sh &" >> /etc/rc.local`
     `[root@Rocky ~]# chmod +x /etc/rc.local`
 
-!!! tip "注意"
+!!! tip "提示"
 
     如果您要停止这个脚本的对应进程，可以在 `htop` 命令中找到它然后 **kill** 即可
