@@ -629,6 +629,15 @@
         "content",
         "translation"
       ]
+    },
+    {
+      "login": "dengwenbin",
+      "name": "Deng Wenbin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20312281?v=4",
+      "profile": "http://www.dengwenbin.com",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
