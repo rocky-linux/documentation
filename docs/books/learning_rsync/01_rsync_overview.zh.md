@@ -43,7 +43,7 @@ update: 2022年3月8日
 
 ![ 安德鲁-特里杰尔 ](images/Andrew_Tridgell.jpg) ![ 韦恩-戴维森 ](images/Wayne_Davison.jpg)
 
-!!! note "注意!"
+!!! note "笔记"
 
     Rsync本身只是一个增量备份工具，不具备实时数据同步功能(需要其他程序做补充)。 此外，同步是单向的。 如果您要实现双向同步，需要配合其他工具。**
 
