@@ -59,7 +59,7 @@ Last login: Tue Nov  2 21:42:44 2021 from 192.168.100.5
 [testrsync@Rocky ~]$
 ```
 
-!!! tip "注意"
+!!! tip "提示"
 
     服务器的配置文件 **/etc/ssh/sshd_config** 应该打开 <font color=red>PubkeyAuthentication yes</font>
 
