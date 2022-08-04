@@ -548,7 +548,7 @@ Una volta effettuato l'accesso, è sufficiente installare *Apache* in modo sempl
 dnf install httpd
 ```
 
-Ora, si potrebbe seguire la nostra guida [Impostazione Apache Multi-Sito](.../web/apache-sites-enabled.md) da qui in avanti, ma in realtà è un po' eccessivo per i nostri scopi. Di solito non si vuole configurare Apache per più siti web in un ambiente containerizzato come questo. Il punto centrale dei container è la separazione delle operazioni, dopotutto.
+Ora, si potrebbe seguire la nostra guida [Impostazione Apache Multi-Sito](../web/apache-sites-enabled.md) da qui in avanti, ma in realtà è un po' eccessivo per i nostri scopi. Di solito non si vuole configurare Apache per più siti web in un ambiente containerizzato come questo. Il punto centrale dei container è la separazione delle operazioni, dopotutto.
 
 Inoltre, i certificati SSL andranno sul server proxy, quindi manterremo le cose semplici.
 

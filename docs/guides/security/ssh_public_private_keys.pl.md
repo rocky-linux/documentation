@@ -9,7 +9,7 @@ tags:
   - keygen
 ---
 
-# Zabezpieczenie kluczy SSH i pliku authorized_keys
+# Klucze Publiczne i Prywatne SSH
 
 ## Wymagania
 
@@ -96,8 +96,8 @@ Kiedy już zweryfikujemy pomyśłnie nowy sposób logowania się, możemy bezpie
 
 `rm id_rsa.pub`
 
-## Proces generowania kluczy
+## Zabezpieczenie kluczy SSH i pliku authorized_keys
 
-Upewnijmy isę że na każdym z serwerów zostaną ustawione następujące prawa dostępu:
+Upewnijmy się że na każdym z serwerów zostaną ustawione następujące prawa dostępu:
 
 `chmod 700 .ssh/` `chmod 600 .ssh/authorized_keys`

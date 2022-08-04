@@ -33,7 +33,7 @@ update: 2021-11-04
 | auth users = li                           | 启用虚拟用户，定义个虚拟用户叫什么。 需要自行创建                       |
 | secrets file = /etc/rsyncd_users.db       | 用来指定虚拟用户的密码文件位置，必须以.db结尾。 文件的内容格式是"用户名:密码"，一行一个 |
 
-!!! tip "注意"
+!!! tip "提示"
 
     密码文件的权限必须是<font color=red>600</font>
 
