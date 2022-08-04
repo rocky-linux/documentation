@@ -123,7 +123,7 @@ inotifywait 主要有以下选项：
 
 ## inotifywait和rsync的结合使用
 
-!!! tip "注意"
+!!! tip "提示"
 
     我们在Rocky Linux 8服务器上操作，使用SSH协议进行演示。
 
@@ -144,12 +144,12 @@ $a | while read directory event file
 [root@Rocky ~]# bash /root/rsync_inotify.sh &
 ```
 
-!!! tip "再次强调"
+!!! tip "提示"
 
     使用SSH协议进行数据同步传输时，如果目标机器的SSH服务端口不是22 ，则您可以使用类似这样的方式——
     `b="/usr/bin/rsync -avz -e 'ssh -p [port-number]' /rsync/* testfedora@192.168.100.5:/home/testfedora/"`
 
-!!! tip "注意"
+!!! tip "提示"
 
     如果您要开机自启动这个脚本的话
     `[root@Rocky ~]# echo "bash /root/rsync_inotify.sh &" >> /etc/rc.local`
