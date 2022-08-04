@@ -308,6 +308,10 @@ As with the other passwords, save this to a secure location.
 
 ### <a name="firewallsetup"></a>Firewall Set Up - iptables
 
+!!! note "A note regarding Rocky Linux 9.0"
+
+    Starting with Rocky Linux 9.0, `iptables` and all of the associated utilities are officially deprecated. This means that in future versions of the OS, perhaps as early as 9.1, they will disappear altogether. For this reason, you should skip down to the `firewalld` procedure below before continuing.
+
 Before continuing, you will want a firewall set up on your server. This example is using _iptables_ and [this procedure](../security/enabling_iptables_firewall.md) to disable _firewalld_. If you prefer to use _firewalld_, simply substitute in _firewalld_ rules using the instructions below this section.
 
 Create your firewall.conf script:

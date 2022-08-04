@@ -31,7 +31,7 @@ Even so, it's a program worth learning for any sysadmin.
 
 The best description of `lsyncd`, comes from its own man page. Slightly paraphrased, `lsyncd` is a light-weight live mirror solution that is comparatively easy to install. It doesn't require new filesystems or blockdevices, and does not hamper local filesystem performance. In short, it mirrors files.
 
-`lsyncd` watches a local directory trees event monitor interface (inotify). It aggregates and combines events for a few seconds, and then spawns one (or more) process(es) to synchronize the changes. By default this is `rsync`.
+`lsyncd` watches a local directory tree's event monitor interface (inotify). It aggregates and combines events for a few seconds, and then spawns one (or more) process(es) to synchronize the changes. By default this is `rsync`.
 
 For the purposes of this guide, we will call the system with the original files the "master", and the one that we are synchronizing to will be the "target". It is actually possible to completely mirror a server using `lsyncd` by very carefully specifying directories and files that you want to synchronize. It's pretty sweet!
 
@@ -75,7 +75,7 @@ We will need some dependencies: a few that are required by `lsyncd` itself, and 
     dnf config-manager --enable crb
     ```
 
-    Doing this in 9 before then next steps, will allow you to finish the build without backtracking.
+    Doing this in 9 before the next steps, will allow you to finish the build without backtracking.
 
 And here are the dependencies we need for `lsyncd` itself, and its build process:
 
