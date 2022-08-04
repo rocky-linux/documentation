@@ -43,6 +43,7 @@ As the developers of NvChad are keen to point out, the project is only intended 
 - Neovim 0.7.2, this is the minimum version required. EPEL provides an outdated version but the required version can be installed from the precompiled package.
 - A Nerd Font for your terminal, this allows you to have fonts representing various icons (folders, tasks, etc.). Installation will be covered at the end of this document.
 - A basic knowledge of Vim, this is perhaps the most important requirement since all operations are performed by the _statusline_ in the form of text commands, it should be noted that NvChad already implements some functionality involving mouse integration but basic knowledge of the commands is essential.
+- Be sure to delete the `~/.local/share/nvim` folder. This is to prevent files from a previous configuration from conflicting with the new NvChad installation.
 
 #### Semi-Optional
 
@@ -117,11 +118,41 @@ See ":help feature-compile"
 Run :checkhealth for more info
 ```
 
-## Installation of NvChad
+## Installing NvChad
 
-Now that we have the basic editor installed we can move on to installing NvChad. This is actually not a real installation but rather writing a custom Neovim configuration. This is written to the user's `.config` folder.
+!!! warning "Performing a Clean Installation"
 
-To do this, simply run the following command from any location within your _home directory_:
+    As specified in the requirements, installing this new configuration on top of a previous one can create unfixable problems. A clean installation is recommended.
+
+#### Preliminary Operations
+
+If you have used the Neovim installation before, it will have created three folders in which to write your files, which are:
+
+```text
+~/.config/nvim
+~/.local/share/nvim
+~/.cache/nvim
+```
+
+To perform a clean installation of the configuration, we need to back up the previous one first:
+
+```bash
+mkdir ~/backup_nvim
+cp -r ~/.config/nvim ~/backup_nvim
+cp -r ~/.local/share/nvim ~/backup_nvim
+cp -r ~/.cache/nvim ~/backup_nvim
+```
+And then we delete all previous configurations and files:
+
+```bash
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.cache/nvim
+```
+
+Now that we have cleaned up, we can move on to installing NvChad. Again, this is actually not a real "installation", but rather writing a custom Neovim configuration. This is written to the user's `.config` folder.
+
+To do this, simply run the following command from any location within your *home directory*:
 
 ``` bash
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
