@@ -8,7 +8,7 @@ The Docker Engine can be used running native Docker style container workloads on
 
 # Add the docker repository
 
-Use the dnf utility to add the docker repository to your Rocky Linux server. Type:
+Use the `dnf` utility to add the docker repository to your Rocky Linux server. Type:
 
 ```
 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
@@ -16,7 +16,7 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/dock
 
 # Install the needed packages
 
-Install the latest version of Docker Engine, containerd, and Docker Compose , type:
+Install the latest version of Docker Engine, containerd, and Docker Compose , by running:
 
 ```
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
@@ -34,10 +34,10 @@ sudo systemctl --now enable docker
 ## Notes
 
 ```
-docker-ce       : This package provides the underlying technology for building and running docker containers (dockerd) 
-docker-ce-cli           :  Provides the command line interface (CLI) client docker tool (docker)
-containerd.io : Provides the container runtime (runc)
-docker-compose-plugin           :  A plugin that provides the 'docker compose' subcommand 
+docker-ce               : This package provides the underlying technology for building and running docker containers (dockerd) 
+docker-ce-cli           : Provides the command line interface (CLI) client docker tool (docker)
+containerd.io           : Provides the container runtime (runc)
+docker-compose-plugin   : A plugin that provides the 'docker compose' subcommand 
 
 ```
 
