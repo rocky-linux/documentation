@@ -100,4 +100,7 @@ Una vez que haya verificado que puede acceder vía SSH sin utilizar su contrase�
 
 En cada uno de los equipos de destino, asegúrese de que se aplican los siguientes permisos:
 
-`chmod 700 .ssh/` `chmod 600 .ssh/authorized_keys`
+```
+chmod 700 .ssh/
+chmod 600 .ssh/authorized_keys
+```
