@@ -226,7 +226,7 @@ The `/etc/hosts` file is still used by the system, especially at boot time when 
 
     RedHat recommends that at least one line containing the system name be filled in.
 
-If the **DNS** service (**D**domain **N**ame **S**ervice) is not in place, you must fill in all the names in the hosts file for each of your machines.
+If the **DNS** service (**D**omain **N**ame **S**ervice) is not in place, you must fill in all the names in the hosts file for each of your machines.
 
 The `/etc/hosts` file contains one line per entry, with the IP address, the FQDN, then the host name (in that order) and a series of aliases (alias1 alias2 ...). The alias is an option.
 
