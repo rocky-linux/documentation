@@ -17,7 +17,7 @@ Have you ever gotten tired of typing in the same CLI commands over and over agai
 
 Then you might want to check out OliveTin. OliveTin is literally just an app that lets you generate a web page from a config file, and that web page has buttons. Push the buttons, and OliveTin will run preset bash commands that you set up yourself.
 
-Sure, you could technically create something like this yourself, from scratch, with enough programming experience... but this is *way* easier. It looks a little something like this when set up (image courtesy of the [OliveTin repository](https://https://github.com/OliveTin/OliveTin)):
+Sure, you could technically create something like this yourself, from scratch, with enough programming experience... but this is *way* easier. It looks a little something like this when set up (image courtesy of the [OliveTin repository](https://github.com/OliveTin/OliveTin)):
 
 ![A screenshot of OliveTin on the desktop; it features several squares in a grid, with labels and actions for each command that can be run.](olivetin/screenshotDesktop.png)
 
