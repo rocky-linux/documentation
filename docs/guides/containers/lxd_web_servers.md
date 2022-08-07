@@ -9,7 +9,7 @@ update: 28-Feb-2022
 
 ## Introduction
 
-Okay, so we already have [a guide on installing LXD/LXC on Rocky Linux](lxd_server.md), but that was written by someone who knows what he’s doing, and wanted to build a containerized network of servers and/or apps on a physical machine on his local network. It’s great, and I’ll be straight up stealing bits of it so I don’t have to write as much.
+Okay, so we already have [a guide on installing LXD/LXC on Rocky Linux](../../books/lxd_server/00-toc.md), but that was written by someone who knows what he’s doing, and wanted to build a containerized network of servers and/or apps on a physical machine on his local network. It’s great, and I’ll be straight up stealing bits of it so I don’t have to write as much.
 
 But, if you’ve just heard about Linux Containers, and don’t really understand how they work yet, but you want to host some websites, this is the guide for you. *This tutorial will teach you how to host basic websites with LXD and LXC on any system, including virtual private servers and cloud hosting.*
 

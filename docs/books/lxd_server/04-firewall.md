@@ -19,7 +19,7 @@ As with any server, you need to make sure that it is secured from the outside wo
 
     Starting with Rocky Linux 9.0, `iptables` and all of the associated utilities are officially deprecated. This means that in future versions of the OS, perhaps as early as 9.1, they will disappear altogether. For this reason, you should skip down to the `firewalld` procedure below before continuing.
 
-Before continuing, you will want a firewall set up on your server. This example is using _iptables_ and [this procedure](../security/enabling_iptables_firewall.md) to disable _firewalld_. If you prefer to use _firewalld_, simply substitute in _firewalld_ rules using the instructions below this section.
+Before continuing, you will want a firewall set up on your server. This example is using _iptables_ and [this procedure](../../guides/security/enabling_iptables_firewall.md) to disable _firewalld_. If you prefer to use _firewalld_, simply substitute in _firewalld_ rules using the instructions below this section.
 
 Create your firewall.conf script:
 
@@ -54,7 +54,7 @@ iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
 
 ## Firewall Set Up - firewalld
 
-For _firewalld_ rules, we need to use [this basic procedure](../security/firewalld.md) or be familiar with those concepts. Our assumptions are the same as with the _iptables_ rules above: LAN network of 192.168.1.0/24 and a bridge named lxdbr0. To be clear, you might have multiple interfaces on your LXD server, with one perhaps facing your WAN as well. We are also going to create a zone for the bridged and local networks. This is just for zone clarity sake, as the other names do not really apply. The below assumes that you already know the basics of _firewalld_.
+For _firewalld_ rules, we need to use [this basic procedure](../../guides/security/firewalld.md) or be familiar with those concepts. Our assumptions are the same as with the _iptables_ rules above: LAN network of 192.168.1.0/24 and a bridge named lxdbr0. To be clear, you might have multiple interfaces on your LXD server, with one perhaps facing your WAN as well. We are also going to create a zone for the bridged and local networks. This is just for zone clarity sake, as the other names do not really apply. The below assumes that you already know the basics of _firewalld_.
 
 ```
 firewall-cmd --new-zone=bridge --permanent

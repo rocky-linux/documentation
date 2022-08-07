@@ -20,7 +20,7 @@ LXD is best described on the [official website](https://linuxcontainers.org/lxd/
 
 It is very powerful, and with the right hardware and set up, can be leveraged to run a lot of server instances on a single piece of hardware. If you pair that with a snapshot server, you also have a set of containers that you can spin up almost immediately in the event that your primary server goes down.
 
-(You should not think of this as a traditional backup. You still need a regular backup system of some sort, like [rsnapshot](../backup/rsnapshot_backup.md).)
+(You should not think of this as a traditional backup. You still need a regular backup system of some sort, like [rsnapshot](../../guides/backup/rsnapshot_backup.md).)
 
 The learning curve for LXD can be a bit steep, but this book will attempt to give you a wealth of knowledge at your fingertips, to help you deploy and use LXD on Rocky Linux.
 
