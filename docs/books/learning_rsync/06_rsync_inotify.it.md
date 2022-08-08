@@ -142,7 +142,7 @@ $a | while read directory event file
 [root@Rocky ~]# bash /root/rsync_inotify.sh &
 ```
 
-!!! tip "sottolineare ancora!"
+!!! tip "Suggerimento!"
 
     Quando si utilizza il protocollo SSH per la trasmissione della sincronizzazione dei dati, se la porta di servizio SSH della macchina di destinazione non è la 22, puoi usare un metodo simile a questo——
     `b="/usr/bin/rsync -avz -e 'ssh -p [port-number]' /rsync/* testfedora@192. 68.100.5:/home/testfedora/"`
