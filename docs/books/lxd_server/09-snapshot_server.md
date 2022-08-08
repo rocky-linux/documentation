@@ -13,7 +13,7 @@ tags:
 
 As noted at the beginning, the snapshot server for LXD should be a mirror of the production server in every way possible. The reason is that you may need to take it to production in the event of a hardware failure, and having not only backups, but a quick way to bring up production containers, keeps those systems administrator panic phone calls and text messages to a minimum. THAT is ALWAYS good!
 
-So the process of building the snapshot server is exactly like the production server. To fully emulate our production server set up, do all of Chapters 1-4 again on ther snapshot server, and when completed, return to this spot.
+So the process of building the snapshot server is exactly like the production server. To fully emulate our production server set up, do all of **Chapters 1-4** again on the snapshot server, and when completed, return to this spot.
 
 You're back!! Congratulations, this must mean that you have successfully completed the basic install for the snapshot server. That's great news!!
 

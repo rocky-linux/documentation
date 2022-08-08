@@ -13,7 +13,7 @@ tags:
 
 Throughout this section you will need to be the root user or you will need to be able to _sudo_ to root.
 
-## Install EPEL and OpenZFS (8.6 Only) Repositories
+## Install EPEL and OpenZFS Repositories
 
 LXD requires the EPEL (Extra Packages for Enterprise Linux) repository, which is easy to install using:
 
@@ -24,13 +24,17 @@ dnf install epel-release
 Once installed, check for updates:
 
 ```
-dnf update
+dnf upgrade
 ```
 
-If you're using ZFS, install the OpenZFS repository with:
+If there were any kernel updates during the upgrade process, reboot the server.
+
+### OpenZFS Repository for 8.6 and 9.0
+
+Install the OpenZFS repository with:
 
 ```
-dnf install https://zfsonlinux.org/epel/zfs-release.el8_6.noarch.rpm
+dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
 ```
 
 We also need the GPG key, so use this command to get that:
@@ -38,8 +42,6 @@ We also need the GPG key, so use this command to get that:
 ```
 gpg --import --import-options show-only /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 ```
-
-If there were kernel updates during the update process above, reboot your server
 
 ## Install snapd, dkms, vim, and kernel-devel
 
@@ -71,7 +73,7 @@ Installing LXD requires the use of the snap command. At this point, we are just 
 snap install lxd
 ```
 
-## Install OpenZFS (8.6 Only)
+## Install OpenZFS 
 
 ```
 dnf install zfs
