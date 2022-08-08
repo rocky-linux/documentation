@@ -96,6 +96,10 @@ lxc config set ubuntu-test limits.cpu 2
 
 That says to limit the number of cpu cores that the container can use to 2.
 
+!!! note
+
+    When this document was rewritten for Rocky Linux 9.0, the ZFS repository for 9 was not available. For this reason all of our test containers were built using "dir" in the init process. That is why the example below shows a "dir" instead of "zfs" storage pool.
+
 Remember when we set up our storage pool in the ZFS chapter?  We named the pool "storage," but we could have named it anything. If we want to look at this, we can use this command, which works equally well for any of the other pool types too (as shown for dir):
 
 ```

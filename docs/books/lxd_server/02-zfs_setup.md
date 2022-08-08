@@ -1,15 +1,15 @@
 ---
-title: 2 ZFS Setup (8.6 Only)
+title: 2 ZFS Setup
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5, 8.6
+tested with: 8.5, 8.6, 9.0
 tags:
   - lxd
   - enterprise
   - lxd zfs
 ---
 
-# Chapter 2: ZFS Setup (8.6 Only)
+# Chapter 2: ZFS Setup
 
 If you are using Rocky Linux 8.6 and have already installed ZFS, this section will walk you through ZFS setup.
 
