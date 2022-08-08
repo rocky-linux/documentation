@@ -14,7 +14,7 @@ tags:
 
 VirtualBox&reg; es un poderoso producto de virtualización de uso tanto empresarial como doméstico. De vez en cuando, alguien publica que tiene problemas para ejecutar Rocky Linux en VirtualBox&reg;. Ha sido testeado múltiples veces desde el release candidate y funciona bien. Los problemas usualmente reportados son a menudo relativos al video.
 
-Este documento intenta brindar un conjunto de instrucciones paso a paso para poner en funcionamiento Rocky Linux en VirtualBox&reg;. El ordenador utilizado para crear esta documentación ejecutaba Linux, pero puede usar cualquier de los sistemas operativos soportados.
+Este documento intenta brindar un conjunto de instrucciones paso a paso para poner en funcionamiento Rocky Linux en VirtualBox&reg;. El ordenador utilizado para crear esta documentación ejecutaba Linux, pero puede usar cualquiera de los sistemas operativos soportados.
 
 ## Requisitos previos
 
