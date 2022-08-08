@@ -2,7 +2,7 @@
 title: LXD Server
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5, 8.6
+tested with: 8.5, 8.6, 9.0
 tags:
   - lxd
   - enterprise
@@ -12,7 +12,13 @@ tags:
 
 !!! note "A note about Rocky Linux 9.0"
 
-    This procedure works just fine for 9.0. The exception is the ZFS procedure, as the latest version supported in their repository is 8.6. This will probably change going forward, but for now, if you want to use ZFS storage pools, consider staying on Rocky Linux 8.6. The chapter dealing with ZFS has been marked as specific to 8.6.
+    Days after the research for implementing this procedure in Rocky Linux 9.0 was completed, and after the documents were rewritten, the repository for ZFS was released for 9. This means that there are some needed edits to this procedure. For now, just know if you want to use ZFS and Rocky Linux 9, you simply need to substute this URL for the ZFS repository:
+
+    ```
+    https://github.com/zfsonlinux/zfsonlinux.github.com/blob/master/epel/zfs-release-2-2.el9.noarch.rpm
+    ```
+
+    and then go ahead and follow the ZFS Setup. An edit of this procedure to take advantage of the changes will happen soon.
 
 ## Introduction
 
