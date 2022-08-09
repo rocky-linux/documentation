@@ -20,7 +20,7 @@ It is very powerful, and with the right hardware and set up, can be leveraged to
 
 The learning curve for LXD can be a bit steep, but this book will attempt to give you a wealth of knowledge at your fingertips, to help you deploy and use LXD on Rocky Linux.
 
-For those wanting to use LXD as a lab environment on their own laptops or workstations, see **Appendix A: Workstation Setup**.
+For those wanting to use LXD as a lab environment on their own laptops or workstations, see [Appendix A: Workstation Setup](30-appendix_a.md).
 
 ## Prerequisites And Assumptions
 
