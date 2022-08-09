@@ -12,7 +12,7 @@ tags:
 
 The MATE desktop environment was created to fork and continue GNOME2 in the wake of the somewhat negative reception that GNOME3 received when introduced. MATE has a loyal set of followers, who immediately install it on their OS of choice. MATE can be installed on many flavors of Linux, including Rocky Linux.
 
-This procedure is designed to get you up and running with Rocky Linux using MATE.
+This procedure is designed to get you up and running with Rocky Linux 8 using MATE.
 
 !!! Warning
 
