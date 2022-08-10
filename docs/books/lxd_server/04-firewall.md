@@ -11,6 +11,8 @@ tags:
 
 # Chapter 4: Firewall Setup
 
+Throughout this chapter you will need to be root or able to `sudo` to become root.
+
 As with any server, you need to make sure that it is secured from the outside world and on your LAN. While our example server only has a LAN interface, it is totally possible to have two interfaces, one each facing your LAN and WAN networks. While we cover `iptables` rules in this procedure, we **highly** recommend using the `firewalld` procedure instead (see the note below). 
 
 ## Firewall Set Up - iptables
@@ -18,6 +20,8 @@ As with any server, you need to make sure that it is secured from the outside wo
 !!! note "A note regarding Rocky Linux 9.0"
 
     Starting with Rocky Linux 9.0, `iptables` and all of the associated utilities are officially deprecated. This means that in future versions of the OS, perhaps as early as 9.1, they will disappear altogether. For this reason, you should skip down to the `firewalld` procedure below before continuing.
+
+    It's actually a good idea to use `firewalld` for Rocky Linux 8.6 as well, but we *do* offer you the option of using `iptables` if you really want it.
 
 Before continuing, you will want a firewall set up on your server. This example is using _iptables_ and [this procedure](../../guides/security/enabling_iptables_firewall.md) to disable _firewalld_. If you prefer to use _firewalld_, simply substitute in _firewalld_ rules using the instructions below this section.
 

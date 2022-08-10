@@ -12,7 +12,7 @@ tags:
 
 # Chapter 3: LXD Initialization and User Setup
 
-There are separate procedures for Rocky Linux 8.6 and 9.0 below, with the 8.6 version assuming that you are using a ZFS storage pool.
+Throughout this chapter you will need to be root or able to `sudo` to become root. In addition, we are assuming that you have setup a ZFS storage pool as described in [Chapter 2](02-zfs_setup). You can use a different storage pool if you have chosen not to use ZFS, but you will need to make adjustments to the initialization questions and answers.
 
 ## LXD Initialization
 

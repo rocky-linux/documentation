@@ -11,6 +11,8 @@ tags:
 
 # Chapter 9: Snapshot Server
 
+This chapter uses a combination of the privileged (root) user, and the unprivileged (lxdadmin) user, based on the tasks we are executing.
+
 As noted at the beginning, the snapshot server for LXD should be a mirror of the production server in every way possible. The reason is that you may need to take it to production in the event of a hardware failure, and having not only backups, but a quick way to bring up production containers, keeps those systems administrator panic phone calls and text messages to a minimum. THAT is ALWAYS good!
 
 So the process of building the snapshot server is exactly like the production server. To fully emulate our production server set up, do all of **Chapters 1-4** again on the snapshot server, and when completed, return to this spot.
@@ -32,7 +34,7 @@ In our lab, the primary LXD server is running on 192.168.1.106 and the snapshot 
 
 Next, we need to allow all traffic between the two servers. To do this, we are going to modify the /etc/firewall.conf file with the following. First, on the lxd-primary server, add this line:
 
-### IPTables - Rocky Linux 8.6 and below only
+### Iptables - (Use the `firewalld` procedure if possible)
 
 ```
 IPTABLES -A INPUT -s 192.168.1.141 -j ACCEPT
@@ -46,7 +48,7 @@ IPTABLES -A INPUT -s 192.168.1.106 -j ACCEPT
 
 This allows bi-directional traffic of all types to travel between the two servers.
 
-### Firewalld - Rocky Linux 9.0 (also works with 8.x)
+### Firewalld
 
 ```
 firewall-cmd zone=trusted add-source=192.168.1.141 --permanent
@@ -66,7 +68,7 @@ firewall-cmd reload
 
 ## Setting Up The Primary and Snapshot Server Relationship (continued)
 
-Next, as the "lxdadmin" user, we need to set the trust relationship between the two machines. This is done by executing the following on lxd-primary:
+Next, as our unprivileged (lxdadmin) user, we need to set the trust relationship between the two machines. This is done by executing the following on lxd-primary:
 
 ```
 lxc remote add lxd-snapshot
@@ -127,7 +129,7 @@ After a short period of time has expired, the copy will be complete. Want to fin
 +-------------------+---------+------+------+-----------+-----------+
 ```
 
-Success! Now let's try starting it. Because we are starting it on the lxd-snapshot server, we need to stop it first on the lxd-primary server:
+Success! Now let's try starting it. Because we are starting it on the lxd-snapshot server, we need to stop it first on the lxd-primary server to avoid an IP address conflict:
 
 ```
 lxc stop rockylinux-test-9
@@ -182,4 +184,3 @@ GREAT, but we certainly don't want a new snapshot every day without getting rid 
 ```
 lxc config set rockylinux-test-9 snapshots.expiry 1d
 ```
-

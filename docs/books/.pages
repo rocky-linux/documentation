@@ -5,6 +5,6 @@ nav:
     - Learning Ansible: learning_ansible
     - Learning Bash: learning_bash
     - Learning Rsync: learning_rsync
-    - LXD Production Server: lxd_server
+    - LXD Server: lxd_server
     - DISA STIG: disa_stig
     - ...

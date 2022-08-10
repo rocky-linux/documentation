@@ -11,6 +11,8 @@ tags:
 
 # Chapter 7: Container Configuration Options
 
+Throughout this chapter you will need to execute commands as your unprivileged user ("lxdadmin" if you've been following from the beginning in this book).
+
 There are a wealth of options for configuring the container once you have it installed. Before we get into how to see those, however, let's take a look at the info command for a container. In this example, we will use the ubuntu-test container:
 
 ```
