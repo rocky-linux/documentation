@@ -1,5 +1,5 @@
 ---
-title: Gestión de archivos
+title: Gestión de ficheros
 ---
 
 # Ansible - Gestión de archivos
@@ -54,7 +54,7 @@ Ejemplo de uso:
 
 Para asegurarse de que una línea está presente en un archivo, o cuando se necesita añadir o modificar una sola línea en un archivo, utilice el módulo `linefile`.
 
-!!! El comando leerá el flujo de entrada hasta que encuentre la palabra clave definida después de la redirección de entrada.
+!!! Note
 
     Puede encontrar más información [aquí](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html).
 
@@ -73,7 +73,7 @@ Por ejemplo, para garantizar que la línea que comienza con `SELINUX=` en el arc
 
 Cuando hay que copiar un archivo desde el servidor Ansible a uno o más hosts, es mejor utilizar el módulo `copy`.
 
-!!! El comando leerá el flujo de entrada hasta que encuentre la palabra clave definida después de la redirección de entrada.
+!!! Note
 
     Puede encontrar más información [aquí](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html).
 
@@ -92,7 +92,7 @@ Aquí estamos copiando el archivo `myflile.conf` de una ubicación a otra:
 
 Cuando hay que copiar un archivo de un servidor remoto a un servidor local, lo mejor es utilizar el módulo `fetch`.
 
-!!! El comando leerá el flujo de entrada hasta que encuentre la palabra clave definida después de la redirección de entrada.
+!!! Note
 
     Puede encontrar más información [aquí](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fetch_module.html).
 
@@ -109,7 +109,7 @@ Este módulo hace lo contrario que el módulo `copy`:
 
 Ansible y su módulo `template` utilizan el sistema de plantillas **Jinja2** (http://jinja.pocoo.org/docs/) para generar archivos en los hosts de destino.
 
-!!! El comando leerá el flujo de entrada hasta que encuentre la palabra clave definida después de la redirección de entrada.
+!!! Note
 
     Puede encontrar más información [aquí](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html).
 
