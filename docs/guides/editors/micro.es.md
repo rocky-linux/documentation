@@ -26,7 +26,7 @@ Y así es como se ve en mi propio terminal:
 
 ![Una captura de pantalla del editor de micro texto](images/micro-text-editor.png)
 
-!!! Aviso
+!!! Note
 
     *Puede* instalar micro a través de una aplicación Snap. Si ya está utilizando snap en su máquina... Quiero decir... ¿por qué no? Pero yo prefiero hacerlo directamente desde su origen.
 
