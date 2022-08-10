@@ -72,7 +72,7 @@ A lo largo de este capítulo, utilizaremos el siguiente playbook para probar los
         var: zero
 ```
 
-!!! El comando leerá el flujo de entrada hasta que encuentre la palabra clave definida después de la redirección de entrada.
+!!! Note
 
     La siguiente es una lista no exhaustiva de los filtros que probablemente se encontrará o necesitará mientras trabaje con Ansible.
     Afortunadamente, hay muchos otros. ¡Incluso podría escribir el suyo propio!
@@ -256,7 +256,7 @@ ok: [localhost] => {
 
 Los filtros `dict2items` y `itemstodict`, son filtros más complejos de implementar y se utilizan frecuentemente, especialmente en bucles.
 
-Tenga en cuenta que es posible especificar el nombre de la clave y del valor a utilizar en la transformación.
+Observe que es posible especificar el nombre de la clave y del valor a utilizar en la transformación.
 
 ```
 - name: Display a dictionary
