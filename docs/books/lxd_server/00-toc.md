@@ -34,10 +34,10 @@ For those wanting to use LXD as a lab environment on their own laptops or workst
 ## Synopsis
 
 * **Chapter 1: Install and Configuration** deals with the installation of the primary server. In general, the proper way to do LXD in production is to have both a primary server and a snapshot server.
-* **Chapter 2: ZFS Setup** deals with the setup and configuration of the ZFS. ZFS is an open-source logical volume manager and file system created by Sun Microsystems, originally for its Solaris operating system. It is technically possible for you to build ZFS from source for 9.0, however ZFS is complicated, so if you really want to use it on 9.0, your best bet is to wait for the ZFS repository to be updated. 
-* **Chapter 3: LXD Initialization and User Setup** Deals with the base initialization and options and covers both Rocky Linux 8.6 and 9.0. It also deals with the setup of our unprivileged user that we will use throughout most of the rest of the process.
-* **Chapter 4: Firewall Setup** deals with both `iptables` and `firewalld` setup options, but we recommend that you use `firewalld`for both 8.6 and 9.0.
-* **Chapter 5: Setting Up and Managing Images** describes the process for installing OS images to a container and configuring them. It discusses the challenges of using `macvlan` for IP addressing on 9.0 and outlines a workaround procedure for doing so.
+* **Chapter 2: ZFS Setup** deals with the setup and configuration of the ZFS. ZFS is an open-source logical volume manager and file system created by Sun Microsystems, originally for its Solaris operating system.
+* **Chapter 3: LXD Initialization and User Setup** Deals with the base initialization and options. It also deals with the setup of our unprivileged user that we will use throughout most of the rest of the process.
+* **Chapter 4: Firewall Setup** deals with both `iptables` and `firewalld` setup options, but we recommend that you use `firewalld`for all current Rocky Linux versions.
+* **Chapter 5: Setting Up and Managing Images** describes the process for installing OS images to a container and configuring them.
 * **Chapter 6: Profiles** deals with adding profiles and applying them to containers and particularly covers macvlan and its importance for IP addressing on your LAN or WAN
 * **Chapter 7: Container Configuration Options** briefly covers some of the basic configuration options for containers and offers some pros and cons for modifying configuration options.
 * **Chapter 8: Container Snapshots** details the snapshot process for containers on the primary server.
