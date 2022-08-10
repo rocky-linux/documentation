@@ -11,6 +11,8 @@ tags:
 
 # Chapter 10: Automating Snapshots
 
+Throughout this chapter you will need to be root or able to `sudo` to become root.
+
 Automating the snapshot process makes things a whole lot easier. 
 
 ## Automating The Snapshot Copy Process

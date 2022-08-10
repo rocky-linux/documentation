@@ -11,7 +11,9 @@ tags:
 
 # Chapter 2: ZFS Setup
 
-If you are using Rocky Linux 8.6 and have already installed ZFS, this section will walk you through ZFS setup.
+Throughout this chapter you will need to be the root user or able to `sudo` to become root.
+
+If you have already installed ZFS, this section will walk you through ZFS setup.
 
 ## Enabling ZFS and setting Up the pool
 

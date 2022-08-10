@@ -10,7 +10,7 @@ tags:
 
 # Appendix A - Workstation Setup
 
-While not a part of the chapters for an LXD Production Server, this procedure will help those who wish to have a lab environment, or semi-permanent OS and application, running on a Rocky Linux workstation or laptop.
+While not a part of the chapters for an LXD Server, this procedure will help those who wish to have a lab environment, or semi-permanent OS and application, running on a Rocky Linux workstation or laptop.
 
 ## Prerequisites
 

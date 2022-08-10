@@ -11,6 +11,8 @@ tags:
 
 # Chapter 6: Profiles
 
+Throughout this chapter you will need to execute commands as your unprivileged user ("lxdadmin" if you've been following from the beginning in this book).
+
 You get a default profile when you install LXD, and this profile cannot be removed or modified. That said, you can use the default profile to create new profiles to use with your containers.
 
 If you look at our container listing you will notice that the IP address in each case is assigned from the bridged interface. In a production environment, you may want to use something else. This might be a DHCP assigned address from your LAN interface or even a statically assigned address from your WAN.

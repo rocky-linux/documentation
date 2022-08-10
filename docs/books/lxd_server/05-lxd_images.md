@@ -11,7 +11,7 @@ tags:
 
 # Chapter 5: Setting Up and Managing Images
 
-Throughout this chapter and from here on out unless otherwise noted, you will be running commands as your unprivileged user. ("lxdadmin" if you are following along with these documents).
+Throughout this chapter you will need to execute commands as your unprivileged user ("lxdadmin" if you have been following this book from the beginning).
 
 ## List Available Images
 
