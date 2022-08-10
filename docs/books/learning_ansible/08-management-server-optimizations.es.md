@@ -1,19 +1,19 @@
 ---
-title: Optimizaciones del servidor de administración
+title: Optimizaciones del servidor de gestión
 author: Antoine Le Morvan
 contributors: Steven Spencer
 update: 06-Dec-2021
 ---
 
-# Optimizaciones del servidor de administración
+# Optimizaciones del servidor de gestión
 
-En este capítulo revisaremos las opciones de configuración que pueden ser de interés para optimizar nuestro servidor de administración de Ansible.
+En este capítulo revisaremos las opciones de configuración que pueden ser de interés para optimizar nuestro servidor de gestión de Ansible.
 
 ## El archivo de configuración `ansible.cfg`
 
 A continuación vamos a comentar algunas opciones de configuración interesantes de Ansible:
 
-* `forks`: Establecido por defecto a 5, es el número de procesos que Ansible lanzará en paralelo para comunicarse con los hosts remotos. Cuanto más alto sea este número, más clientes podrá gestionar Ansible al mismo tiempo, y así acelerar los procesos. El valor que puede establecer depende de los límites de CPU/RAM de su servidor de administración. Observe que el valor por defecto, `5`, es muy pequeño, la documentación de Ansible indica que muchos usuarios lo establecen en 50, en 500 o incluso en valores más altos.
+* `forks`: Establecido por defecto a 5, es el número de procesos que Ansible lanzará en paralelo para comunicarse con los hosts remotos. Cuanto más alto sea este número, más clientes podrá gestionar Ansible al mismo tiempo, y así acelerar los procesos. El valor que puede establecer depende de los límites de CPU/RAM de su servidor de gestión. Observe que el valor por defecto, `5`, es muy pequeño, la documentación de Ansible indica que muchos usuarios lo establecen en 50, en 500 o incluso en valores más altos.
 
 * `gathering`: Esta variable cambia la política de recogida de datos. Por defecto, el valor se establece a `implicit`, lo que implica que los datos se recopilarán sistemáticamente. El cambio de esta variable a `smart` permite recopilar las colecciones de datos sólo cuando no se han recogido con anterioridad. Si se combina con una caché de datos (véase más adelante), esta opción puede aumentar considerablemente el rendimiento.
 
@@ -137,7 +137,7 @@ if __name__ == '__main__':
 
 ## Trabajar con servidores Windows
 
-Será necesario instalar en el servidor de gestión varios paquetes:
+Será necesario instalar varios paquetes en el servidor de gestión:
 
 * Mediante el gestor de paquetes:
 
