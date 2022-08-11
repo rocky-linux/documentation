@@ -71,7 +71,7 @@ Puede encontrar toda la documentación de Ansistrano en su [repositorio de Githu
 
 Seguirá trabajando en sus 2 servidores:
 
-El servidor de administración:
+El servidor de gestión:
 
 * Ansible ya está instalado. Tendrá que instalar el rol `ansistrano.deploy`.
 
@@ -611,7 +611,7 @@ La variable `ansistrano_git_branch` se utiliza para especificar una `rama` o una
      - { role: ansistrano.deploy }
 ```
 
-!!! El comando leerá el flujo de entrada hasta que encuentre la palabra clave definida después de la redirección de entrada.
+!!! Note
 
     Puede divertirse, durante el despliegue, refrescando su navegador, para ver el cambio en 'vivo'.
 

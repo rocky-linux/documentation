@@ -61,7 +61,7 @@ ansible-galaxy collection [import|init|install|login|remove|...]
 
 Un rol de Ansible es una unidad que promueve la reutilización de los playbooks.
 
-!!! El comando leerá el flujo de entrada hasta que encuentre la palabra clave definida después de la redirección de entrada.
+!!! Note
 
     Puede encontrar más información [aquí](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 
@@ -428,7 +428,7 @@ Evidentemente, no hay límite a la hora de mejorar su rol. Imagine que para uno 
 
 Las colecciones son un formato de distribución para contenido de Ansible que puede incluir playbooks, roles, módulos y plugins.
 
-!!! El comando leerá el flujo de entrada hasta que encuentre la palabra clave definida después de la redirección de entrada.
+!!! Note
 
     Puede encontrar más información [aquí](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
 

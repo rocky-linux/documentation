@@ -23,7 +23,7 @@ Este documento intenta brindar un conjunto de instrucciones paso a paso para pon
 * Una copia del [DVD ISO](https://rockylinux.org/download) de Rocky Linux para su arquitectura. (x86_64 o ARM64).
 * Asegúrese de que su sistema operativo sea de 64 bit y de que la virtualización del hardware esté habilitada en su BIOS.
 
-!!! El comando leerá el flujo de entrada hasta que encuentre la palabra clave definida después de la redirección de entrada.
+!!! Note
 
     La virtualización del hardware es 100% necesaria para instalar un sistema operativo de 64 bit. Si su pantalla de configuración muestra solo opciones de 32 bits, entonces deberá detenerse y solucionar ese problema antes de continuar.
 
