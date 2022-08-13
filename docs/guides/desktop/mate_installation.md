@@ -31,19 +31,12 @@ When installing Rocky Linux, we used the following sets of packages:
 
 ## Enabling Repositories
 
-We need the unofficial repository for MATE. You can find more information on that repository here: [Stenstorp/MATE](https://copr.fedorainfracloud.org/coprs/stenstorp/MATE/)
-
-Enable this repository by entering:
-
-`dnf copr enable stenstorp/MATE`
-
 !!! Warning
 
-    The `copr` build system creates a repository that is known to work for installing `mate` and `lightdm` (below), but is not maintained by the Rocky Linux community. Use at your own risk!
+    This procedure is known to work for installing `mate` and `lightdm` (below), but is not maintained by the Rocky Linux community. Use at your own risk!
 
-You will get a warning message about the repository, but go ahead and enable it by typing `Y` to allow.
 
-As noted from the link above, you also need the Powertools repository and the EPEL. Go ahead and enable those now:
+You need the Powertools repository and the EPEL. Go ahead and enable those now:
 
 `sudo dnf config-manager --set-enabled powertools`  
 
@@ -51,27 +44,19 @@ As noted from the link above, you also need the Powertools repository and the EP
 
 And answer 'Y' to install the EPEL.
 
-We also need the Stenstorp Lightdm repository, so lets enable that as well. You can find more on this repository by going to this link: [Stenstorp/Lighdm](https://copr.fedorainfracloud.org/coprs/stenstorp/lightdm/)
-
-To enable that repository, simply type:
-
-`sudo dnf copr enable stenstorp/lightdm`
-
-Again, you will be presented with a warning message about the repository. Go ahead and answer `Y` to the prompt.
-
 Go ahead and run `dnf update` to make sure all of the enabled repositories are read into the system.
 
 ## Installing Packages
 
 The next thing we need are a lot of packages. You can install these by simply copying and pasting the following into the command line on your machine:
 
-`sudo dnf install NetworkManager-adsl NetworkManager-bluetooth NetworkManager-libreswan-gnome NetworkManager-openvpn-gnome NetworkManager-ovs NetworkManager-ppp NetworkManager-team NetworkManager-wifi NetworkManager-wwan abrt-desktop abrt-java-connector adwaita-gtk2-theme alsa-plugins-pulseaudio atril atril-caja atril-thumbnailer caja caja-actions caja-image-converter caja-open-terminal caja-sendto caja-wallpaper caja-xattr-tags dconf-editor engrampa eom firewall-config gnome-disk-utility gnome-epub-thumbnailer gstreamer1-plugins-ugly-free gtk2-engines gucharmap gvfs-afc gvfs-afp gvfs-archive gvfs-fuse gvfs-gphoto2 gvfs-mtp gvfs-smb initial-setup-gui libmatekbd libmatemixer libmateweather libsecret lm_sensors marco mate-applets mate-backgrounds mate-calc mate-control-center mate-desktop mate-dictionary mate-disk-usage-analyzer mate-icon-theme mate-media mate-menus mate-menus-preferences-category-menu mate-notification-daemon mate-panel mate-polkit mate-power-manager mate-screensaver mate-screenshot mate-search-tool mate-session-manager mate-settings-daemon mate-system-log mate-system-monitor mate-terminal mate-themes mate-user-admin mate-user-guide mozo network-manager-applet nm-connection-editor p7zip p7zip-plugins pluma seahorse seahorse-caja xdg-user-dirs-gtk brisk-menu`
+`sudo dnf install NetworkManager-adsl NetworkManager-bluetooth NetworkManager-libreswan-gnome NetworkManager-openvpn-gnome NetworkManager-ovs NetworkManager-ppp NetworkManager-team NetworkManager-wifi NetworkManager-wwan abrt-desktop abrt-java-connector adwaita-gtk2-theme alsa-plugins-pulseaudio atril atril-caja atril-thumbnailer caja caja-actions caja-image-converter caja-open-terminal caja-sendto caja-wallpaper caja-xattr-tags dconf-editor engrampa eom firewall-config gnome-disk-utility gnome-epub-thumbnailer gstreamer1-plugins-ugly-free gtk2-engines gucharmap gvfs-afc gvfs-afp gvfs-archive gvfs-fuse gvfs-gphoto2 gvfs-mtp gvfs-smb initial-setup-gui libmatekbd libmatemixer libmateweather libsecret lm_sensors marco mate-applets mate-backgrounds mate-calc mate-control-center mate-desktop mate-dictionary mate-disk-usage-analyzer mate-icon-theme mate-media mate-menus mate-menus-preferences-category-menu mate-notification-daemon mate-panel mate-polkit mate-power-manager mate-screensaver mate-screenshot mate-search-tool mate-session-manager mate-settings-daemon mate-system-log mate-system-monitor mate-terminal mate-themes mate-user-admin mate-user-guide mozo network-manager-applet nm-connection-editor p7zip p7zip-plugins pluma seahorse seahorse-caja xdg-user-dirs-gtk`
 
 This will install these needed packages plus all of the dependencies.
 
-Let's go ahead and install lightdm-gtk as well:
+Let's go ahead and install llightdm-settings and lightdm as well:
 
-`sudo dnf install lightdm-gtk`
+`sudo dnf install lightdm-settings lightdm`
 
 ## Final Steps
 
