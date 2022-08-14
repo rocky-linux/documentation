@@ -2,7 +2,7 @@
 title: MATE Desktop
 author: lillolollo
 contributors: Steven Spencer
-tested with: 8.5
+tested with: 8.5, 8.6
 tags:
   - mate
   - desktop
@@ -13,10 +13,6 @@ tags:
 The MATE desktop environment was created to fork and continue GNOME2 in the wake of the somewhat negative reception that GNOME3 received when introduced. MATE has a loyal set of followers, who immediately install it on their OS of choice. MATE can be installed on many flavors of Linux, including Rocky Linux.
 
 This procedure is designed to get you up and running with Rocky Linux 8 using MATE.
-
-!!! Warning
-
-    MATE does not come from Rocky Linux repositories. It is not officially supported by Rocky Linux. For most users, this procedure will work as expected, but if you have issues, please note that the Rocky developers and test group will do NO work on any failures!  If you want MATE badly enough, then troubleshoot your issues and fix as needed. If you find something that you feel should be included in this procedure to help others, push a change to the document.
 
 ## Prerequisites
 
@@ -30,11 +26,6 @@ When installing Rocky Linux, we used the following sets of packages:
 * Standard
 
 ## Enabling Repositories
-
-!!! Warning
-
-    This procedure is known to work for installing `mate` and `lightdm` (below), but is not maintained by the Rocky Linux community. Use at your own risk!
-
 
 You need the Powertools repository and the EPEL. Go ahead and enable those now:
 
