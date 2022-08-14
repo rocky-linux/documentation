@@ -45,7 +45,7 @@ The next thing we need are a lot of packages. You can install these by simply co
 
 This will install these needed packages plus all of the dependencies.
 
-Let's go ahead and install llightdm-settings and lightdm as well:
+Let's go ahead and install lightdm-settings and lightdm as well:
 
 `sudo dnf install lightdm-settings lightdm`
 
