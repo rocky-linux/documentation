@@ -3,5 +3,6 @@ nav:
     - ... | README*.md
     - ... | rockydocs_web_dev*.md
     - ... | mkdocs_lsyncd*.md
+    - ... | local_docs*.md
     - ... | navigation*.md
     - ... | rockydocs_formatting*.md 

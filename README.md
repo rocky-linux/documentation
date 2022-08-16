@@ -114,7 +114,7 @@ The advantage of having Documentation running on a local server instance, is tha
 
 There is a third method, that will get you up and running fast without either Docker or LXD, but read the caveats of this procedure carefully:
 
-* Fast Documentation System [here](https://docs.rockylinux.org/guides/contribute/local_docs.md)
+* Fast Documentation System [here](https://docs.rockylinux.org/guides/contribute/local_docs/)
 
 
 ## Keep Up With The Conversation
