@@ -1,0 +1,4 @@
+---
+nav:
+    - ... | builtin_plugins*.md
+    - ... | nvchad_ui*.md
