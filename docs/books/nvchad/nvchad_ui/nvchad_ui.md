@@ -1,9 +1,11 @@
 ---
-title: WIP - User Interface
+title: NvChad UI
 tags:
     - nvchad
     - coding
 ---
+
+# NvChad UI
 
 ## NvChad Interface
 
@@ -11,7 +13,7 @@ Once Neovim is installed and the NvChad configuration is entered, our IDE should
 
 ![NvChad Default](../images/ui_default.png)
 
-The interface already comes with some advanced functionality (such as indicating the status of the git repository) but can be further enhanced by using the [Language Servers](../custom/lsp.md) for example, and customized by overriding some basic configurations. The basic modules that make it up are:
+The interface already comes with some advanced functionality (such as indicating the status of the git repository) but can be further enhanced by using, for example, the [Language Servers](lsp.md) and customized by overriding some basic configurations. The basic modules that make it up are:
 
 ### Tabufline
 
@@ -39,11 +41,37 @@ At the bottom we find the Statusline, which handles status information. On the r
 
 - **COMMAND**
 
+- **VISUAL**
+
 Editing a document starts from the **NORMAL** state where you open the file, switch to **INSERT** mode for editing, and when finished exit with <kbd>ESC</kbd> and return to **NORMAL** mode. Now to save the file you switch to **COMMAND** mode by typing `:` in the statusline followed by `w` (*write*) to write it and with <kbd>ESC</kbd> you return to **NORMAL** mode. The status indication is very useful while learning how to use it if one is not very familiar with the Vim workflow.
 
 We then find the name of the open file, and if we are working on a git repository we will have indications of the status of the repository, this is thanks to the *lewis6991/gitsigns.nvim* plugin.
 
 Turning to the right side we find the indication of the folder from which we opened the editor, this also in the case of the use of LSPs indicates the folder that is taken into account as `workspace` and consequently evaluated during diagnostics, and to follow the position of the cursor within the file.
+
+### Integrated Help
+
+NvChad and Neovim provide some useful commands for displaying preset key combinations and available options.
+
+If the `<escape>` key alone is pressed it will provide a legend of associated commands as in the following screenshot:
+
+![Space Key](../images/ui_escape_key.png)
+
+To view all the commands included in the editor we can use the `<leader>wK` command, which will give the following result:
+
+![leader wK](../images/ui_wK_key.png)
+
+and by pressing <kbd>d</kbd> we can display the remaining commands:
+
+![leader wK d](../images/ui_wK_01.png)
+
+As we can see almost all the commands refer to navigation within the document or buffer, no commands for opening the file are included, these are provided by the Neovim commands.
+
+To view all of Neovim's options, the `:options` command is available, which will present a tree of options indexed by category.
+
+![Nvim Options](../images/nvim_options.png)
+
+This gives us a way through the built-in help to learn the commands while using the editor and also to delve into the available options.
 
 ### NvimTree
 
@@ -51,7 +79,7 @@ In order to work with our files we need a File Explorer and this is provided by 
 
 ![NvimTree](../images/nvim_tree.png)
 
-As we can see below after NORMAL the open file is not shown but the buffer with NvimTree, in case we are not in the right buffer we can use the <kbd>CTRL</kbd> <kbd>h</kbd> command provided by NvChad to place ourselves in the buffer on the left.
+As we can see below after NORMAL the open file is not shown but the buffer with NvimTree, in case we are not in the right buffer we can use the <kbd>leader</kbd> <kbd>e</kbd> command provided by NvChad to switch the focus on NvimTree.
 
 Once positioned we will have a series of commands for working on the file tree. The most common commands are:
 
@@ -78,7 +106,3 @@ Once positioned we will have a series of commands for working on the file tree. 
 All available commands can be viewed on [this page](https://github.com/kyazdani42/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt) of the NvimTree project in section *6. Mappings*.
 
 Now that we have explored the interface components we can move on to using NvChad.
-
-
-
-
