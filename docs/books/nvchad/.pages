@@ -1,0 +1,9 @@
+---
+nav:
+    - ... | index*.md
+    - ... | additional_software*.md
+    - ... | install_nvim*.md
+    - ... | install_nvchad*.md
+    - ... | nerd_fonts*.md
+    - NvChad UI: nvchad_ui
+    - Customisation: custom
