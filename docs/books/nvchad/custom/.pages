@@ -1,0 +1,4 @@
+---
+nav:
+    - ... | custom_folder*.md
+    - ... | lsp.md
