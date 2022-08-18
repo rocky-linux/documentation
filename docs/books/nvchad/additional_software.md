@@ -8,6 +8,8 @@ tags:
     - coding
 ---
 
+# Additional Software
+
 ## Additional Software Needed
 
 ### RipGrep
