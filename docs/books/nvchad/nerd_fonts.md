@@ -2,6 +2,7 @@
 title: wip - Installing Nerd Fonts
 author: Franco Colussi
 contributors: Steven Spencer
+tested: 9.0
 tags:
     - nvchad
     - coding
