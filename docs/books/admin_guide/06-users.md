@@ -26,15 +26,15 @@ In this chapter you will learn how to manage user.
 
 ## General
 
-Each user is a member of at least one group: **this is their main group**.
+Each user must have a group, which is called the user's **primary group**.
 
 Several users can be part of the same group.
 
-Users can belong to other groups. These users are *invited* to these **secondary groups**.
+A group other than the primary group is called the user's **supplementary groups**.
 
 !!! Note
 
-    Each user has a primary group and can be invited into one or more secondary groups.
+    Each user has a primary group and can be invited into one or more supplementary groups.
 
 Groups and users are managed by their unique numerical identifiers `GID` and `UID`.
 
