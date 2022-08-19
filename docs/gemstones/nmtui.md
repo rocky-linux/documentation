@@ -46,7 +46,11 @@ Then click \< OK \> , return to the terminal interface step by step, and execute
 
 ## Change the way of configuration files
 
-All RHEL distributions, whether upstream or downstream, are configured in the same way. The configuration file of network information is stored in the **/etc/sysconfig/network-scripts/** directory, and one network card corresponds to one configuration file. The configuration file has many parameters, as shown in the following table. Notice! The parameters must be capitalized.
+All RHEL <font color="red">7.x</font> or <font color="red">8.x</font> distributions, whether upstream or downstream, are configured in the same way. The configuration file of network information is stored in the **/etc/sysconfig/network-scripts/** directory, and one network card corresponds to one configuration file. The configuration file has many parameters, as shown in the following table. Notice! The parameters must be capitalized.
+
+!!! warning
+
+    In RHEL 9.x distributions, the location of the directory where the NIC configuration file is stored has been changed, i.e. **/etc/NetworkManager/system-connections/**. See [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index) for more information.
 
 ```bash
 shell > ls /etc/sysconfig/network-scripts/
