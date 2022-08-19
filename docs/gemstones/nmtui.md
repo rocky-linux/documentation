@@ -50,7 +50,7 @@ All RHEL <font color="red">7.x</font> or <font color="red">8.x</font> distributi
 
 !!! warning
 
-    In RHEL 9.x distributions, the location of the directory where the NIC configuration file is located has been changed, i.e. **/etc/NetworkManager/system-connections/**. See [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index) for more information.
+    In RHEL 9.x distributions, the location of the directory where the NIC configuration file is stored has been changed, i.e. **/etc/NetworkManager/system-connections/**. See [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index) for more information.
 
 ```bash
 shell > ls /etc/sysconfig/network-scripts/
