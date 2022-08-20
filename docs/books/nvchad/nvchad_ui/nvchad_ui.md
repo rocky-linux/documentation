@@ -61,7 +61,7 @@ Turning to the right side we find the indication of the folder from which we ope
 
 NvChad and Neovim provide some useful commands for displaying preset key combinations and available options.
 
-If the `<escape>` key alone is pressed it will provide a legend of associated commands as in the following screenshot:
+If the `<leader>` key alone is pressed it will provide a legend of associated commands as in the following screenshot:
 
 ![Space Key](../images/ui_escape_key.png)
 
