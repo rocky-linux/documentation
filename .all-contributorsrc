@@ -647,6 +647,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "hopnux",
+      "name": "hopnux",
+      "avatar_url": "https://avatars.githubusercontent.com/u/110078361?v=4",
+      "profile": "https://github.com/hopnux",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
