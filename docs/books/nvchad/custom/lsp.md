@@ -38,10 +38,6 @@ To learn about all available commands, simply press the <kbd>?</kbd> key to have
 
 The combined use of the two plugins allows the required language servers to be downloaded and automatically configured by NvChad.
 
-!!! note "Mason's Default Path."
-
-    Since the installation of Neovim was done at the user level it will require manual intervention on the $PATH
-
 #### Downloading Language Servers
 
 To download the language server of choice, we open the interface of *Mason* from our editor with the command `:Mason`. Suppose we want to install the language server for *Markdown*. To do so, we type <kbd>2</kbd> to take us to the `LSP` section. Now we go down with the arrow key until we find the language server `marksman`. By pressing the space bar we can get some information about the server as you can see in the screenshot below.
@@ -54,39 +50,14 @@ To install the server, simply press the <kbd>i</kbd> key, and after Mason comple
 
 The servers to be installed by this procedure are:
 
-- marksman: for markdown support
-- yaml-language-server: for frontmatter support
-- lua-language-server: for lua support
-- html-lsp: for HTML support
-
-*Mason* installs the servers by default in:
-
-`/home/user/.local/share/nvim/mason/packages`
-
-And it connects them in:
-
-`/home/user/.local/share/nvim/mason/bin`
-
-Clearly, replace _user_ with your user name.
-
-The path to the executables, however, is not in the `$PATH`, so we will have to add it for the system to find the servers. To do this we will use the following command:
-
-```bash
-export PATH=$PATH:/home/user/.local/share/nvim/mason/bin
-```
-
-Remember to replace *user* with your user name.
-
-Once we enter the search path we will have our servers available and if we have installed the _marksman_ server as shown above, it will now be available:
-
-```text
-marksman --version
-1.0.0
-```
+- **marksman**: for markdown support
+- **yaml-language-server**: for frontmatter support
+- **lua-language-server**: for lua support
+- **html-lsp**: for HTML support
 
 ### Configure `lspdconfig.lua`
 
-Installed servers, although available on the system, are not yet configured in NvChad. To perform server registration we need to perform additional configuration.
+Installed servers are not yet configured in NvChad. To perform server registration we need to perform additional configuration.
 
 First we create the `custom/plugins` folder in `~/.local/nvim/lua`: 
 
