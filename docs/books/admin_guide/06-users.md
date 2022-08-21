@@ -9,11 +9,11 @@ In this chapter you will learn how to manage user.
 ****
 **Objectives** : In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: add, delete or modify a **group** ;   
-:heavy_check_mark: add, delete or modify a **user** ;   
-:heavy_check_mark: know the syntax of the files associated with the management of groups and users ;   
-:heavy_check_mark: change the *owner* or the *group owner* of a file;   
-:heavy_check_mark: *secure* user accounts;   
+:heavy_check_mark: add, delete or modify a **group** ;
+:heavy_check_mark: add, delete or modify a **user** ;
+:heavy_check_mark: Understand the files associated with users and groups and learn how to manage them;
+:heavy_check_mark: change the *owner* or the *group owner* of a file;
+:heavy_check_mark: *secure* user accounts;
 :heavy_check_mark: change identity.
 
 :checkered_flag: **users**
@@ -26,15 +26,15 @@ In this chapter you will learn how to manage user.
 
 ## General
 
-Each user is a member of at least one group: **this is their main group**.
+Each user must have a group, which is called the user's **primary group**.
 
 Several users can be part of the same group.
 
-Users can belong to other groups. These users are *invited* to these **secondary groups**.
+A group other than the primary group is called the user's **supplementary groups**.
 
 !!! Note
 
-    Each user has a primary group and can be invited into one or more secondary groups.
+    Each user has a primary group and can be invited into one or more supplementary groups.
 
 Groups and users are managed by their unique numerical identifiers `GID` and `UID`.
 
