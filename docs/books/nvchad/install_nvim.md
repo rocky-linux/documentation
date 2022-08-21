@@ -103,6 +103,88 @@ See ":help feature-compile"
 Run :checkhealth for more info
 ```
 
+### Installation from Source
+
+Installation from precompiled package provides an installation for only the user who runs it, in case you want to make Neovim available to all users of the system you will have to do an installation from source. Compiling Neovim is not particularly difficult and consists of the following steps.
+
+We first install the packages required for compilation:
+
+```bash
+dnf install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
+```
+
+Once we have installed the necessary packages we need to download the Neovim sources, sources that are distributed with *Git*. In our example we will have a folder already created for the purpose in `/home/user/lab/build`. Adapt your commands according to the structure you choose.
+
+The Neovim clone by default is synchronized with the Neovim development branch (currently the 8.0), to compile the stable version we will have to switch to the corresponding branch before cloning with:
+
+```bash
+cd ~/lab/build
+git checkout stable
+```
+
+And subsequently clone the repository:
+
+```bash
+git clone https://github.com/neovim/neovim
+```
+
+Once the operation is finished we will have a folder named *neovim* containing all the necessary files, the next step is to configure and compile the sources, an operation that is done with the `make` command, we then go to the *neovim* folder and proceed with the configuration:
+
+```bash
+cd ~/lab/build/neovim/
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+```
+
+We chose the `RelWithDebInfo` type because it provides not only optimizations but also a useful debugging layer for later customizations, you could have also used the `Release` type if you want maximum performance.
+
+The process takes care of configuring and compiling the files that are to be put into our system, files that are saved in `neovim/build`, to install them we will still use the *make* command:
+
+```bash
+make install
+```
+
+This command going to modify the filesystem needs superuser (sudo) privileges or to be run as the root user.
+
+Once the installation is finished, we can verify that everything went well by checking the path to Neovim:
+
+```
+whereis nvim
+nvim: /usr/local/bin/nvim
+```
+
+And verifying the version:
+
+```bash
+nvim --version
+NVIM v0.8.0-dev-885-ga5ed89c97
+Build type: RelWithDebInfo
+LuaJIT 2.1.0-beta3
+....
+```
+
+As you can see from the command excerpt above, an installation of the development version was performed here. Both versions, stable and development, work perfectly with NvChad on Rocky Linux 9.
+
+#### Uninstall
+
+In case we need to remove the installation, for example to switch to another version, we will have to take ourselves back to the build folder and use the `target` cmake provided by Neovim itself, to perform the uninstallation, you need to execute the following command:
+
+```bash
+cmake --build build/ --target uninstall
+```
+
+This command also requires superuser privileges or to be run as a *root* user.
+
+Alternatively, you can use the manual method by removing the executable and libraries with:
+
+```bash
+rm /usr/local/bin/nvim
+rm -r /usr/local/share/nvim/
+```
+
+Always with administrator permissions.
+
+## Neovim Basic
+
 As you can see from the screenshot, a basic installation of Neovim provides an editor that cannot yet be compared to an IDE.
 
 ![Neovim Standard](images/nvim_standard.png)
