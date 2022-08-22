@@ -9,9 +9,7 @@ tags:
     - nvchad interface
 ---
 
-# NvChad UI
-
-## NvChad Interface
+# NvChad Interface
 
 Once Neovim is installed and the NvChad configuration is entered, our IDE should look like this:
 
@@ -19,7 +17,7 @@ Once Neovim is installed and the NvChad configuration is entered, our IDE should
 
 The interface already comes with some advanced functionality (such as indicating the status of the git repository) but can be further enhanced by using, for example, the [Language Servers](../custom/lsp.md) and customized by overriding some basic configurations. The basic modules that make it up are:
 
-### Tabufline
+## Tabufline
 
 ![Tabufline](../images/ui_tabufline.png) 
 
@@ -31,13 +29,13 @@ To the right is the icon for setting the *dark* or *light* theme. By clicking on
 
 On the right also we have the icon for closing our editor.
 
-### Middle Section - Open Buffers
+## Middle Section - Open Buffers
 
 The central part of the editor is composed of the buffer active on the editor at that moment (*index.en.md*). To anticipate some additional functionality we can work simultaneously on several buffers by opening one more in the example (*index.en.md*). In the editor we will have the first buffer in the foreground and the second one listed in the Tabufline. Now if we split the first buffer with the `:vsplit` command and select the right buffer, clicking on the name of the second file (*index.it.md*) in the tabufline, this will be opened in the right buffer and we can work with the two files side by side.
 
 ![NvChad Split](../images/ui_nvchad_split.png)
 
-### Statusline
+## Statusline
 
 ![Statusline](../images/ui_statusline.png) 
 
@@ -57,7 +55,7 @@ We then find the name of the open file, and if we are working on a git repositor
 
 Turning to the right side we find the indication of the folder from which we opened the editor. In the case of the use of LSPs, this indicates the folder that is taken into account as `workspace`, and consequently evaluated during diagnostics, and to follow the position of the cursor within the file.
 
-### Integrated Help
+## Integrated Help
 
 NvChad and Neovim provide some useful commands for displaying preset key combinations and available options.
 
@@ -81,7 +79,7 @@ To view all of Neovim's options, the `:options` command is available, which will
 
 This gives us a way, through the built-in help, to learn the commands while using the editor, and also to delve into the available options.
 
-### NvimTree
+## NvimTree
 
 In order to work with our files we need a File Explorer, and this is provided by the *kyazdani42/nvim-tree.lua* plugin. With the combination <kbd>CTRL</kbd> <kbd>n</kbd> we can open NvimTree.
 
