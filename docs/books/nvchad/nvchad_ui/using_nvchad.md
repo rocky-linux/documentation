@@ -53,7 +53,7 @@ Once the file is open we can start editing it, to do this we need to switch to I
 
 As specified above the key `C` corresponds to the <kbd>Ctrl</kbd> key so to go to the previous line will be the combination of <kbd>Ctrl</kbd> + <kbd>k</kbd>.
 
-Learning all the combinations takes some time but once acquired they will make navigation very fast. For example, if we want to edit the end of the next line to where the cursor is positioned we can get to the end of the current line with `<C-e>` and then get to the next one with a `<C-j>` and already be in position to add the change.
+Learning all the combinations takes some time but once acquired they will make navigation very fast. For example, if we want to edit the end of the next line to where the cursor is positioned we can get to the end of the current line with `<C-e>` and then get to the next one with a `<C-j>` and already be in position to add the changes.
 
 Navigation in the document can also be done using the arrow keys on the keyboard, or the mouse.
 
