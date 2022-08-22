@@ -5,9 +5,9 @@ tags:
     - coding
 ---
 
-## Advanced configuration of the Custom Folder
+# Advanced configuration of the Custom Folder
 
-### Introduction
+## Introduction
 
 NvChad uses the version manager `git` for updates, this implies that at every update part or the whole configuration is overwritten by new commits, consequently it would be useless to make customizations within the default configuration. To solve this problem the NvChad developers have set up the possibility to make your changes in a folder called `custom` which must be mandatorily placed in `.config/nvim/lua/`. Below we have a representation of the basic structure of a standard NvChad installation 
 
@@ -96,6 +96,3 @@ Let us now move on to the `plugins` folder, the folder contains all the configur
 
 The only plugin required is _neovim/nvim-lspconfig_, which enables LSP (language server) functionality for advanced editing.
 
-### Other Plugins
-
-The "Useful Plugins" section shows a few plugins and their configurations selected for the purpose of creating an IDE for writing documentation in Markdown but they may well be substituted by those of your preference.
