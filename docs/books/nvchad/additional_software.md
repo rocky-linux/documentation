@@ -8,11 +8,11 @@ tags:
     - coding
 ---
 
-# Additional Software
+# Additional Software Needed
 
-## Additional Software Needed
+There are several pieces of additional software that, while not required, will aid in the overall use of NvChad. The sections below will walk you through that software and its uses.
 
-### RipGrep
+## RipGrep
 
 `ripgrep` is a line-oriented search tool that recursively searches the current directory for a _regex_ (regular expression) pattern. By default, _ripgrep_ respects the rules of _gitignore_ and automatically skips hidden files/directories and binaries. Ripgrep offers excellent support on Windows, macOS and Linux, with binaries available for each release.
 
@@ -45,7 +45,7 @@ ripgrep 13.0.0
 
 RipGrep is needed for recursive searches with `:Telescope`.
 
-### Lazygit
+## Lazygit
 
 [LazyGit](https://github.com/jesseduffield/lazygit) is an ncurses-style interface that allows you to perform all `git` operations in a more user-friendly way, it is required by the _lazygit.nvim_ plugin, this plugin makes it possible to use LazyGit directly from NvChad, it opens a floating window from where you can perform all operations on your repositories, thus allowing you to make all changes to the _git repository_ without leaving the editor.
 
