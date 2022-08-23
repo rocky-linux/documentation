@@ -44,16 +44,14 @@ Thanks to the work done by the developers of NvChad we are provided with an addi
 
 Once the file is open we can start editing it, to do this we need to switch to INSERT mode which is activated by pressing the <kbd>i</kbd> (insert) key. The mode indicator in the Statusline should change from NORMAL to INSERT and the cursor placed in the buffer should also change from a colored rectangle to a `|` pipe. Now all the characters we type are inserted into the document starting from the cursor position, to move the cursor in INSERT mode the Nvchad developers have set up some convenient mappings which are:
 
-- `<C-b>` to go to the beginning of the line
-- `<C-e>` to go to the end of the line
-- `<C-h>` to move one character to the left
-- `<C-l>` to move one character to the right
-- `<C-j>` to go to the next line
-- `<C-k>` to go to the previous line
+- <kbd>Ctrl</kbd> + <kbd>b</kbd> to go to the beginning of the line
+- <kbd>Ctrl</kbd> + <kbd>e</kbd> to go to the end of the line
+- <kbd>Ctrl</kbd> + <kbd>h</kbd> to move one character to the left
+- <kbd>Ctrl</kbd> + <kbd>l</kbd> to move one character to the right
+- <kbd>Ctrl</kbd> + <kbd>j</kbd> to go to the next line
+- <kbd>Ctrl</kbd> + <kbd>k</kbd> to go to the previous line
 
-As specified above the key `C` corresponds to the <kbd>Ctrl</kbd> key so to go to the previous line will be the combination of <kbd>Ctrl</kbd> + <kbd>k</kbd>.
-
-Learning all the combinations takes some time but once acquired they will make navigation very fast. For example, if we want to edit the end of the next line to where the cursor is positioned we can get to the end of the current line with `<C-e>` and then get to the next one with a `<C-j>` and already be in position to add the changes.
+Learning all the combinations takes some time but once acquired they will make navigation very fast. For example, if we want to edit the end of the next line to where the cursor is positioned we can get to the end of the current line with <kbd>Ctrl</kbd> + <kbd>e</kbd> and then get to the next one with a <kbd>Ctrl</kbd> + <kbd>j</kbd> and already be in position to add the changes.
 
 Navigation in the document can also be done using the arrow keys on the keyboard, or the mouse.
 
