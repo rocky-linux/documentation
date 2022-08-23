@@ -1,5 +1,8 @@
 ---
 title: Using NvChad
+author: Franco Colussi
+contributors: Steven Spencer
+tested with: 8.6, 9.0
 tags:
     - nvchad
     - coding
@@ -8,41 +11,38 @@ tags:
 
 # Editing with NvChad
 
-This document will introduce some NvChad-specific commands and some standard Neovim (vim) commands. The NvChad commands are set in the `nvim/lua/core/mapping.lua` file and allow keys to be used to execute sometimes very long composite commands. All sequences are started by a main key followed by the specific options. The four main keys are:
+This chapter will introduce some NvChad-specific commands and some standard Neovim (vim) commands.  NvChad commands are set in the `nvim/lua/core/mapping.lua` file and allow keys to be used to execute sometimes very long composite commands. All sequences are started with a primary key followed by an option. The four main keys are:
 
 - C = <kbd>Ctrl</kbd>
-
 - leader = <kbd>Space</kbd>
-
 - A = <kbd>Alt</kbd>
-
 - S = <kbd>shift</kbd>
 
 ## Open a file
 
-To open a file in our editor we can use various methods, we can simply start from the command line by indicating the file name with:
+To open a file in our editor we can use various methods. We can simply start from the command line by indicating the file name with:
 
 ```bash
 nvim /path/to/the/file
 ```
 
-Or open the editor with the `nvim` command.
+or open the editor with the `nvim` command.
 
-At this point we have several possibilities, we can open the file in the buffer with the command `:e` (edit) followed by the path or by having the command followed by the <kbd>Tab</kbd> key which will show us all the available files and folders starting from the root of the project, about the <kbd>Tab</kbd> key it is good to remember that all file opening commands followed by *Tab* provide the possibility to select the file from a convenient drop-down menu, after opening the menu we continue to navigate within it with the <kbd>Tab</kbd> key.
+If we use the latter method we have several possibilities. We can open the file in the buffer with the command `:e` (edit) followed by the path or by having the command followed by the <kbd>Tab</kbd> key.  This will show us all the available files and folders starting from the root of the project. It is good to remember that when we use the <kbd>Tab</kbd> key in file opening commands, we can select the file from a convenient drop-down menu. Once this drop-down menu is open, we continue to navigate within it by repeated use of the <kbd>Tab</kbd> key.
 
 ![Command :e + TAB](../images/e_tab_command.png) 
 
-In case we just want to view the file without the ability to edit it we can use the `:view` command which will open the file in read-only mode thus avoiding, for example, making unwanted changes to critical files. We can also open a file side by side with the command ` :split ` or open it in a new *tab* with the command ` :tabedit `.
+In case we just want to view the file without the ability to edit it we can use the `:view` command. This will open the file in read-only mode avoiding the possibility of making unwanted changes to critical files. We can also open a file side by side with the command ` :split ` or open it in a new *tab* with the command ` :tabedit `.
 
 ![Vsplit Open](../images/vsplit_open.png)
 
-Thanks to the work done by the developers of NvChad we are provided with an additional way to open a file which is to use the *nvim-telescope/telescope.nvim* plugin, this plugin when used in combination with *RipGrep* allows us to search for the file to be opened in interactive mode, upon typing the initial characters of the file we are looking for the plugin will delete all non-matching files and present us with only those that match our search, this allows for very smooth searching and opening of files.
+Thanks to the work done by the developers of NvChad we are provided with an additional way to open a file which is to use the *nvim-telescope/telescope.nvim* plugin. This plugin, when used in combination with *RipGrep*, allows us to search for the file to be opened in interactive mode. By typing the initial characters of the file we are looking for, the plugin will delete all non-matching files and present us with only those that match our search. This allows for a very smooth search and open process.
 
 ![<leader>ff](../images/leader_ff.png) 
 
 ## Working with the Editor
 
-Once the file is open we can start editing it, to do this we need to switch to INSERT mode which is activated by pressing the <kbd>i</kbd> (insert) key. The mode indicator in the Statusline should change from NORMAL to INSERT and the cursor placed in the buffer should also change from a colored rectangle to a `|` pipe. Now all the characters we type are inserted into the document starting from the cursor position, to move the cursor in INSERT mode the Nvchad developers have set up some convenient mappings which are:
+Once the file is open we can start editing it. To do this we need to switch to INSERT mode which is activated by pressing the <kbd>i</kbd> (insert) key. The mode indicator in the Statusline should change from NORMAL to INSERT, and the cursor placed in the buffer should also change from a colored rectangle to a `|` pipe. Now all the characters we type are inserted into the document starting from the position of the cursor. To move the cursor in INSERT mode the Nvchad developers have set up some convenient mappings which are:
 
 - <kbd>Ctrl</kbd> + <kbd>b</kbd> to go to the beginning of the line
 - <kbd>Ctrl</kbd> + <kbd>e</kbd> to go to the end of the line
@@ -57,19 +57,19 @@ Navigation in the document can also be done using the arrow keys on the keyboard
 
 ### Text Selection
 
-Text selection can also be done with the mouse and is very convenient but for this guide we will use the traditional method.
+Text selection can also be done with the mouse and is very convenient, but for this chapter we will use the traditional method.
 
-To select text we need to enter the VISUAL mode, to do this we must first exit the insert mode and switch to normal mode, this operation is done with the <kbd>ESC</kbd> key, once we place the cursor at the beginning of the part we want to select with the combination of the keys <kbd>Ctrl</kbd> + <kbd>v</kbd> we enter the V-BLOC (Visual Block) mode, now moving with the cursor we will see that our selection will be highlighted, at this point we can work on the selected part. If we want to copy the selection to the clipboard we will use the <kbd>y</kbd> key, if we want to delete it the <kbd>d</kbd> key, once the operation is done the text will no longer be highlighted. For an overview of all the operations that can be performed in Visual Mode you can consult the help directly from the editor with `:help Visual-Mode`.
+To select text we need to enter the VISUAL mode. To do this we must first exit the insert mode and switch to normal mode, which is done with the <kbd>ESC</kbd> key. Once we place the cursor at the beginning of the part we want to select, we use the keys <kbd>Ctrl</kbd> + <kbd>v</kbd> to enter the V-BLOC (Visual Block) mode. Now moving with the cursor we will see that our selection will be highlighted. At this point we can work on the selected part. If we want to copy the selection to the clipboard we will use the <kbd>y</kbd> key. If we want to delete it the <kbd>d</kbd> key. Once the operation is done, the text will no longer be highlighted. For an overview of all the operations that can be performed in Visual Mode you can consult the help directly from the editor with `:help Visual-Mode`.
 
 ![Help Visual Mode](../images/help_visual_mode.png) 
 
 ### Text search
 
-To search, the slash character <kbd>/</kbd> followed by the search key `/search_key` is used, which highlights all occurrences found, to move to the next one the combination <kbd>/</kbd> + <kbd>Enter</kbd> is used, while to move to the previous one <kbd>?</kbd> + <kbd>Enter</kbd>, once the changes are finished, the highlighting is removed with the command `:noh` (no highlight).
+To search, the slash character <kbd>/</kbd> followed by the search key `/search_key` is used, which highlights all occurrences found. To move to the next one, the combination <kbd>/</kbd> + <kbd>Enter</kbd> is used. To move to the previous one <kbd>?</kbd> + <kbd>Enter</kbd>. Once the changes are finished, the highlighting is removed with the command `:noh` (no highlight).
 
 ![Find Command](../images/find_command.png)
 
-Searches can be even much more complex than the one illustrated above; wildcards, counters, and other options can be used. The help `:help /` can be used to consult the options.
+Searches can be even more complex than the one illustrated above; wildcards, counters, and other options can be used. The help `:help /` can be used to consult the options.
 
 ## Saving the Document
 
@@ -81,5 +81,5 @@ Once the file is created or modified it is saved with the command `:w` (write) w
 
 To save and simultaneously close the editor, the command `:wq` (write - quit) is used.
 
-In this section we have made only an introduction to the use of the editor which has much more advanced features than those described, these features can be consulted on the [Neovim help](https://neovim.io/doc/user/) page or by typing in the editor `:help`.
+In this chapter we have introduced you to the editor. There are many more advanced features than those described here. These features can be consulted on the [Neovim help](https://neovim.io/doc/user/) page or by typing in the editor `:help`.
 
