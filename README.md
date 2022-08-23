@@ -221,7 +221,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/hopnux"><img src="https://avatars.githubusercontent.com/u/110078361?v=4?s=100" width="100px;" alt=""/><br /><sub><b>hopnux</b></sub></a><br /><a href="#translation-hopnux" title="Translation">🌍</a></td>
   <tr>
     <td align="center"><a href="https://github.com/BreakingPitt"><img src="https://avatars.githubusercontent.com/u/10740572?v=4?s=100" width="100px;" alt=""/><br /><sub><b>hopnux</b></sub></a><br /><a href="#content-BreakingPitt" title="Content">🖋 </a><a href="#translation-BreakingPitt" title="Translation">🌍</a></td>
-  </tr>
 </table>
 
 <!-- markdownlint-restore -->
