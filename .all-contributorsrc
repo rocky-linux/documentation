@@ -656,6 +656,16 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "BreakingPitt",
+      "name": "BreakingPitt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10740572?v=4",
+      "profile": "https://github.com/BreakingPitt",
+      "contributions": [
+        "content",
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
