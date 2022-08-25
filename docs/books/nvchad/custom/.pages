@@ -3,4 +3,5 @@ nav:
     - ... | custom_folder*.md
     - ... | chadrc_lua*.md
     - ... | init_lua*.md
+    - ... | override_lua*.md
     - ... | lsp*.md
