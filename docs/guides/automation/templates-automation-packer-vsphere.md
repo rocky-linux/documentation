@@ -14,11 +14,11 @@ update: Aug-26-2022
 
 ## Prerequisites, Assumptions, and General Notes
 
-* A vSphere environment available, and a user with granted access
-* An internal web server to store files
-* Web access to the Rocky Linux repositories
-* An ISO of Rocky Linux. Although I'm using the minimal ISO image here, you could choose to use the DVD image (much bigger and perhaps too big) or the boot image (much smaller and perhaps too small).This choice is up to you. It impacts in particular the bandwidth you will need for the installation, and thus the provisioning time. We will discuss next the impact of the default choice and how to remedy it.
-* An Ansible environment available
+* A vSphere environment available, and a user with granted access.
+* An internal web server to store files.
+* Web access to the Rocky Linux repositories.
+* An ISO of Rocky Linux.
+* An Ansible environment available.
 * It is assumed that you have some knowledge on each product mentioned. If not, dig into that documentation before you begin.
 * Vagrant is **not** in use here. It was pointed out that with Vagrant, an SSH key that was not self-signed would be provided. If you want to dig into that you can do so, but it is not covered in this document.
 
@@ -29,6 +29,8 @@ This document covers the vSphere virtual machine template creation with Packer a
 ## Possible adjustments
 
 Of course, you can adapt this how-to for other hypervisors.
+
+Although we're using the minimal ISO image here, you could choose to use the DVD image (much bigger and perhaps too big) or the boot image (much smaller and perhaps too small).This choice is up to you. It impacts in particular the bandwidth you will need for the installation, and thus the provisioning time. We will discuss next the impact of the default choice and how to remedy it.
 
 You can also choose not to convert the virtual machine into a template, in this case you will use Packer to deploy each new VM, which is still quite feasible (an installation starting from 0 takes less than 10 minutes without human interaction).
 
