@@ -11,6 +11,10 @@ tags:
 
 # Networking configuration
 
+!!! attention "This document was written for 8.6"
+
+    The documentation team is in the process of testing documents against Rocky Linux 9.0. This particular document was written for version 8.6, and we know that the network changes made upstream do **NOT** work for 9.0. We will try to build a new version of this document for 9.0 soon. 
+
 ## Prerequisites
 
 * A certain amount of comfort operating from the command line
