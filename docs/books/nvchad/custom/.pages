@@ -5,4 +5,5 @@ nav:
     - ... | init_lua*.md
     - ... | mappings_lua*.md
     - ... | override_lua*.md
+    - Plugins: plugins
     - ... | lsp*.md
