@@ -8,9 +8,15 @@ tags:
     - codindg
 ---
 
+# Introduction
+
+Throughout this book, you will find ways to implement Neovim, along with NvChad, to create a fully functional **I**ntegrated **D**evelopment **E**nvironment (IDE). I say "ways" because there are many possibilities. The author focuses the chapters here on using these tools for writing markdown, but if markdown isn't your focus, don't worry simply read on. If you are unfamiliar with either of these tools (NvChad or Neovim), then this book will give you an introduction to both, and if you step through the chapters here, you'll soon realize that you can set up this environment to be a huge help for whatever your programming or script writing needs are. Want an IDE that will help in writing Ansible playbooks? You can get that! Want and IDE for Golang? That's available too. Simply want a good interface for writing BASH scripts? That's also available. Through the use of **L**anguage **S**erver **P**rotocols and linters, you can setup an environment that is customized just for you. The best part is that once you have the environment setup, it can quickly be updated when new changes are available through the use of Packer and Mason, both of which are covered here.
+
+Because Neovim is a fork of `vim`, the overall interface will be familiar to `vim` users. If you aren't a `vim` user, then you will pick up on the syntax of the commands quickly using this book. There's a lot of information covered here but it's easy to follow along, and once you've completed the chapters you'll know enough to build your own IDE for *your* needs with these tools.
+
 ## Using Neovim as an IDE
 
-Nvchad is a project created for the purpose of providing, through a custom configuration of Neovim, a starting point on which to build your own IDE (**I**ntegrated **D**evelopment **E**nvironment) with minimal effort.
+The basic installation of Neovim provides an excellent editor for development, but it cannot yet be called an IDE; all the features even if already preset are not yet activated. To do this we need to pass the necessary configurations to Neovim, and this is where NvChad comes to our aid, which allows us to have a basic configuration out of the box with just one command!
 
 The configuration is written in Lua, a very fast programming language that allows NvChad to have startup and execution times for commands and keystrokes that are very fast as well. This is also made possible by the `Lazy loading` technique used for plugins that allows them to load only when required.
 
