@@ -38,9 +38,21 @@ A group other than the primary group is called the user's **supplementary groups
 
 Groups and users are managed by their unique numerical identifiers `GID` and `UID`.
 
-Account and group declaration files are located in `/etc`.
 * `UID`: _User IDentifier_. Unique user ID.
 * `GID`: _Group IDentifier_. Unique group identifier.
+
+Both UID and GID are recognized by the kernel, which means that the Super Admin is not necessarily the **root** user, as long as the **uid=0** user is the Super Admin.
+
+The files related to users/groups are:
+
+* /etc/passwd
+* /etc/shadow
+* /etc/group
+* /etc/gshadow
+* /etc/default/
+* /etc/skel/
+* /etc/default/useradd
+* /etc/login.defs
 
 !!! Danger
 

@@ -1,8 +1,8 @@
 ---
 title: Automatic Template Creation - Packer - Ansible - VMware vSphere
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ryan Johnson
-update: Jan-24-2022
+contributors: Steven Spencer, Ryan Johnson, Pedro Garcia
+update: Aug-26-2022
 ---
 
 # Automatic template creation with Packer and deployment with Ansible in a VMware vSphere environment
@@ -14,10 +14,11 @@ update: Jan-24-2022
 
 ## Prerequisites, Assumptions, and General Notes
 
-* A vSphere environment available, and a user with granted access
-* An internal web server to store files
-* Web access to the Rocky Linux repositories
-* An Ansible environment available
+* A vSphere environment available, and a user with granted access.
+* An internal web server to store files.
+* Web access to the Rocky Linux repositories.
+* An ISO of Rocky Linux.
+* An Ansible environment available.
 * It is assumed that you have some knowledge on each product mentioned. If not, dig into that documentation before you begin.
 * Vagrant is **not** in use here. It was pointed out that with Vagrant, an SSH key that was not self-signed would be provided. If you want to dig into that you can do so, but it is not covered in this document.
 
@@ -29,11 +30,25 @@ This document covers the vSphere virtual machine template creation with Packer a
 
 Of course, you can adapt this how-to for other hypervisors.
 
+Although we're using the minimal ISO image here, you could choose to use the DVD image (much bigger and perhaps too big) or the boot image (much smaller and perhaps too small).This choice is up to you. It impacts in particular the bandwidth you will need for the installation, and thus the provisioning time. We will discuss next the impact of the default choice and how to remedy it.
+
 You can also choose not to convert the virtual machine into a template, in this case you will use Packer to deploy each new VM, which is still quite feasible (an installation starting from 0 takes less than 10 minutes without human interaction).
 
 ## Packer
 
-Packer is a Hashicorp tool to automate the creation of a virtual machine.
+### Introduction to Packer
+
+Packer is an open source virtual machine imaging tool, released under the MPL 2.0 license and created by Hashicorp. It will help you automate the process of creating virtual machine images withpre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments. 
+
+With Packer you can create images to be used on the following platforms:
+
+* [Amazon Web Services](https://aws.amazon.com). 
+* [Azure](https://azure.microsoft.com).
+* [GCP](https://cloud.google.com).
+* [DigitalOcean](https://www.digitalocean.com). 
+* [OpenStack](https://www.openstack.org).
+* [VirtualBox](https://www.virtualbox.org/).
+* [VMware](https://www.vmware.com).
 
 You can have a look at these resources for additional information:
 
@@ -41,10 +56,89 @@ You can have a look at these resources for additional information:
 * [Packer documentation](https://www.packer.io/docs)
 * The builder `vsphere-iso`'s [documentation](https://www.packer.io/docs/builders/vsphere/vsphere-iso)
 
+### Installing Packer
+
+There are two ways of install Packer in your Rocky Linux system.
+
+#### Installing Packer from the Hashicorp repo
+
+HashiCorp maintains and signs packages for different Linux distributions. To install packer in our Rocky Linux sytem, please follow the next steps:
+
+
+#### Download and install from the Packer website
+
+1. Install dnf-config-manager:
+
+```bash
+$ sudo dnf install -y dnf-plugins-core
+```
+
+2. Add the Hashicorp repository to the available repos in our Rocky Linux system:
+
+```bash
+$ sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+```
+
+3. Install Packer:
+
+```bash
+$ sudo dnf -y install packer
+```
+
+#### Download and install from the Packer website
+
+
 You can start by downloading the binaries for you own platform with [Packer downloads](https://www.packer.io/downloads).
 
-You will also need an iso copy of Rocky Linux. Although I'm using the minimal ISO image here, you could choose to use the DVD image (much bigger and perhaps too big) or the boot image (much smaller and perhaps too small).
-This choice is up to you. It impacts in particular the bandwidth you will need for the installation, and thus the provisioning time. We will discuss next the impact of the default choice and how to remedy it.
+1. In the download page, copy the download link in the Linux Binary Download section that corresponds to your system architecture.
+
+2. From a shell or terminal download it using ```wget``` tool:
+
+```bash
+$ wget https://releases.hashicorp.com/packer/1.8.3/packer_1.8.3_linux_amd64.zip
+```
+This will download a .zip file.
+
+3.  To decompress the downloaded archive, run the following command in the shell:
+
+```bash
+$ unzip packer_1.8.3_linux_amd64.zip
+```
+
+!!! tip "Attention"
+
+    If you get an error and you don’t have the unzip app installed on your system, you can install it by executing this command ```sudo dnf install unzip```
+
+4. Move the Packer app to the bin folder:
+
+```bash
+$ sudo mv packer /usr/local/bin/
+```
+
+####  Verification of the correct installation of Packer
+
+If all the steps of the previous procedures have been completed correctly, we can proceed to verify the installation of Packer on our system.
+
+To verify that Packer has been installed correctly, run the packer command and you will get the result shown below:
+
+```bash
+$ packer 
+Usage: packer [--version] [--help] <command> [<args>]
+
+Available commands are:
+    build           build image(s) from template
+    console         creates a console for testing variable interpolation
+    fix             fixes templates from old versions of packer
+    fmt             Rewrites HCL2 config files to canonical format
+    hcl2_upgrade    transform a JSON template into an HCL2 configuration
+    init            Install missing plugins or upgrade plugins
+    inspect         see components of a template
+    plugins         Interact with Packer plugins and catalog
+    validate        check that a template is valid
+    version         Prints the Packer version
+```
+
+### Template creation with Packer
 
 It is assumed that you are on Linux to perform the following tasks.
 
