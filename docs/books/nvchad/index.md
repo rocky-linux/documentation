@@ -5,7 +5,8 @@ contributors: Steven Spencer
 tested with: 9.0
 tags:
     - nvchad
-    - codindg
+    - coding
+    - editor
 ---
 
 # Introduction
