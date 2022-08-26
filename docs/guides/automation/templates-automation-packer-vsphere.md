@@ -95,8 +95,9 @@ You can start by downloading the binaries for you own platform with [Packer down
 ```bash
 $ wget https://releases.hashicorp.com/packer/1.8.3/packer_1.8.3_linux_amd64.zip
 ```
+This will download a .zip file.
 
-3. This will download a .zip file, to decompress it, run the following command in the shell:
+3.  To decompress the downloaded archive, run the following command in the shell:
 
 ```bash
 $ unzip packer_1.8.3_linux_amd64.zip
@@ -104,7 +105,7 @@ $ unzip packer_1.8.3_linux_amd64.zip
 
 !!! tip "Attention"
 
-    If you get an error and you don’t have the unzip app installed on your system, you can install it by executing this command ```sudo dfn install unzip```
+    If you get an error and you don’t have the unzip app installed on your system, you can install it by executing this command ```sudo dnf install unzip```
 
 4. Move the Packer app to the bin folder:
 
