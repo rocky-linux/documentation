@@ -52,7 +52,7 @@ git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 
 The command runs a clone of the NvChad configuration hosted on GitHub in the user folder `~/.config/nvim`.
 
-To finish the configuration you need to open a terminal and start an instance of `nvim`. In this first startup, the plugins that are part of the default configuration will be installed and configured and when finished, you will have the IDE ready for editing.
+Once the cloning process is finished, the plugins that are part of the default configuration will be installed and configured and when finished, you will have the IDE ready for editing.
 
 ![NvChad Themes](images/nvchad_init.png)
 
