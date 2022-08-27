@@ -23,7 +23,7 @@ NvChad provides an automatic mechanism for installing language servers through t
 
 ![Mason UI](../images/mason_ui.png)
 
-To learn about all available commands, simply press the <kbd>?</kbd> key to have the full legend available.
+To learn about all available commands, simply press the <kbd>g?</kbd> key to have the full legend available.
 
 ![Mason Help](../images/mason_help.png)
 
