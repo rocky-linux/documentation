@@ -31,7 +31,7 @@ On the right also we have the icon for closing our editor.
 
 ## Middle Section - Open Buffers
 
-The central part of the editor is composed of the buffer active on the editor at that moment (*index.en.md*). To anticipate some additional functionality we can work simultaneously on several buffers by opening one more in the example (*index.en.md*). In the editor we will have the first buffer in the foreground and the second one listed in the Tabufline. Now if we split the first buffer with the `:vsplit` command and select the right buffer, clicking on the name of the second file (*index.it.md*) in the tabufline, this will be opened in the right buffer and we can work with the two files side by side.
+The central part of the editor is composed of the buffer active on the editor at that moment (*index.en.md*). To anticipate some additional functionality we can work simultaneously on two files in a split buffer by opening one more in the example (*index.it.md*). In the editor we will have the first buffer in the foreground and the second one listed in the Tabufline. Now if we split the first buffer with the `:vsplit` command and select the right buffer, clicking on the name of the second file (*index.it.md*) in the tabufline, this will be opened in the right buffer and we can work with the two files side by side.
 
 ![NvChad Split](../images/ui_nvchad_split.png)
 
@@ -90,7 +90,7 @@ As we can see below, after NORMAL the open file is not shown but instead the buf
 Once positioned, we will have a series of commands for working on the file tree. The most common commands are:
 
 - <kbd>></kbd> and <kbd><</kbd> to navigate up and down the tree (mouse support for navigation is also active)
-- <kbd>Enter</kbd> o <kbd>o</kbd> to open the file in the buffer, subsequent openings of other files will always be done on the same buffer in a new tab but placed in the backgroud, to change the default behavior you can use the following keys:
+- <kbd>Enter</kbd> or <kbd>o</kbd> to open the file in the buffer, subsequent openings of other files will always be done on the same buffer in a new tab but placed in the backgroud, to change the default behavior you can use the following keys:
     - <kbd>CTRL</kbd> <kbd>v</kbd> to open the new file in the vertically divided buffer
     - <kbd>CTRL</kbd> <kbd>x</kbd> to open the new file in the horizontally split buffer
     - <kbd>CTRL</kbd> <kbd>t</kbd> to open the new file in a new tab in a new buffer
