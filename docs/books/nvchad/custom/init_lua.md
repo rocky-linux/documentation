@@ -16,6 +16,7 @@ Our file will look like this:
 
 ```lua
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
 
 local opt = vim.opt
 
