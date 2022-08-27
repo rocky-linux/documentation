@@ -28,10 +28,10 @@ Once the necessary software is installed, we can install `ripgrep` with:
 cargo install ripgrep
 ```
 
-The installation will save the `rg` executable in the `~/.cargo/bin` folder which is outside the PATH, to use it at the user level we will move it to `~/.local/bin/`.
+The installation will save the `rg` executable in the `~/.cargo/bin` folder which is outside the PATH, to use it at the user level we will link it to `~/.local/bin/`.
 
 ```bash
-mv ~/.cargo/bin/rg ~/.local/bin/
+ln -s ~/.cargo/bin/rg ~/.local/bin/
 ```
 
 At this point we can check that everything is okay with:
