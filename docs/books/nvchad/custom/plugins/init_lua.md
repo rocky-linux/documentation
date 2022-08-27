@@ -37,7 +37,7 @@ As we can see, the first plugin calls the configuration function and reads first
 
 The second is an example of a plugin that needs no additional configuration allows once installed to access Git repository management directly from the editor with the command `:LazyGit`. For the installation of LazyGit you can refer to the [Additional Software](../../additional_software.md) page.
 
-The third is an example of putting configurations to be overwritten directly into the file, in this case the only change is the reactivation of the default disabled plugin.
+The third is an example of putting configurations to be overwritten directly into the file, in this case the only change is the reactivation of the default disabled plugin. This plugin is enclosed by two single quotes that can replace double quotes; the two notations are equivalent.
 
 Once you have finished configuring the file and related configuration files, to activate the new plugins, it is recommended that you exit the editor, re-enter and perform a `:PackerSync`
 
