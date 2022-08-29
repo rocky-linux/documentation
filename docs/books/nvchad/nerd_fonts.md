@@ -1,0 +1,56 @@
+---
+title: wip - Installing Nerd Fonts
+author: Franco Colussi
+contributors: Steven Spencer
+tested: 9.0
+tags:
+    - nvchad
+    - coding
+    - fonts
+---
+
+# Nerd Fonts - Fonts for Developers
+
+![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts is a collection of modified fonts aimed at developers with a large number of glyphs (icons). In particular, "iconic fonts" such as Font Awesome, Devicons, Octicons etc. are used to add extra glyphs.
+
+Nerd Fonts takes the most popular programming fonts and modifies them by adding a group of glyphs. A font patcher is also available if the desired font has not already been edited. A convenient preview is available on the site, allowing you to see how the font should look in the editor.  For more information, check the [site](https://www.nerdfonts.com/).
+
+## Download
+
+Fonts are available for download at:
+
+```text
+https://www.nerdfonts.com/font-downloads
+```
+
+## Installation
+
+The procedure for installing fonts on Rocky Linux is to save the fonts you want to add somewhere and then install them with the `fc-cache` command; the procedure is not a true installation so much as a registration of the new fonts in the system.
+
+!!! important "Creation of compressed packages"
+
+	The procedure described below is not a standard procedure as each developer has packaged fonts using a custom scheme. So once downloaded and extracted, the contents must be checked to choose the procedure for copying the fonts.
+
+For this guide we will use the `Sauce Code Pro Nerd` font.
+
+Download the package with:
+
+```bash
+https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip
+```
+
+Next, unzip the contents of the folder and copy the fonts to `~/.local/share/fonts/` with:
+
+```bash
+mkdir ~/.local/share/fonts
+unzip SourceCodePro.zip -d ~/.local/share/fonts/
+fc-cache ~/.local/share/fonts
+```
+
+## Configuration
+
+At this point the _font nerd_ should be available for selection. To actually select it you must refer to the desktop you are using.
+
+![Font Manager](images/font_nerd_view.png) 
+
+If you are using the default Rocky Linux desktop (Gnome), to change the font in the terminal emulator you will just need to open `gnome-terminal`, go to "Preferences", and set the Nerd Font for your profile.
