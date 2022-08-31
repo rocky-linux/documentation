@@ -49,7 +49,6 @@ The files related to users/groups are:
 * /etc/shadow
 * /etc/group
 * /etc/gshadow
-* /etc/default/
 * /etc/skel/
 * /etc/default/useradd
 * /etc/login.defs
@@ -175,7 +174,7 @@ GroupP:x:516:patrick
 
 !!! Note
 
-    Each line in the `/etc/group` file corresponds to a group. Users whose group is their main group are not listed at this level. This membership information is in fact already provided by the `/etc/passwd` file...
+    Each line in the `/etc/group` file corresponds to a group. Users whose group is their primary group are not listed at this level. This membership information is in fact already provided by the `/etc/passwd` file...
 
 ### `/etc/gshadow` file
 
@@ -208,7 +207,7 @@ A user is defined as follows in the `/etc/passwd` file:
 * 1: Login;
 * 2: Password;
 * 3: UID;
-* 4: GID of the main group;
+* 4: GID of the primary group;
 * 5: Comments;
 * 6: Home directory;
 * 7: Shell (`/bin/bash`, `/bin/nologin`, ...).
@@ -241,7 +240,7 @@ $ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 | Option        |	Description                                                        |
 | --------------| ------------------------------------------------------------------ |
 |`-u UID`       |	`UID` of the user to create.                                       |
-|`-g GID`       |	`GID` of the main group.                                           |
+|`-g GID`       |	`GID` of the primary group.                                           |
 |`-d directory` |	Home directory.                                                    |
 |`-s shell`     | Shell.                                                             |
 |`-c`           | Add a comment.                                                     |
@@ -264,9 +263,9 @@ Account naming rules:
 
 The last directory is created by the `useradd` command, which takes the opportunity to copy the files from `/etc/skel` into it.
 
-**A user can belong to several groups in addition to their main group.**
+**A user can belong to several groups in addition to their primary group.**
 
-For secondary groups, the `-G` option must be used.
+For supplementary groups, the `-G` option must be used.
 
 Example:
 
@@ -358,7 +357,7 @@ $ sudo usermod -aG GroupP,GroupC albert
 
 The `usermod` command acts as a modification and not as an addition.
 
-For a user invited to a group by this command and already positioned as a guest in other secondary groups, it will be necessary to indicate in the group management command all the groups to which he belongs otherwise he will disappear from them.
+For a user invited to a group by this command and already positioned as a guest in other supplementary groups, it will be necessary to indicate in the group management command all the groups to which he belongs otherwise he will disappear from them.
 
 The *-a* option changes this behavior.
 
@@ -419,7 +418,7 @@ root:x:0:0:root:/root:/bin/bash
 * 1: Login.   
 * 2: Password (`x` if defined in `/etc/shadow`).   
 * 3: UID.   
-* 4: GID of the main group.   
+* 4: GID of the primary group.   
 * 5: Comment.   
 * 6: Home directory.   
 * 7: Shell.
@@ -453,7 +452,7 @@ root:$6$...:15399:0:99999:7:::
 
     All files necessarily belong to one user and one group.
 
-The main group of the user creating the file is, by default, the group that owns the file.
+The primary group of the user creating the file is, by default, the group that owns the file.
 
 ### Modification commands
 
@@ -493,7 +492,7 @@ Changing the user and owner group:
 $ sudo chown albert:GroupA file
 ```
 
-In the following example the group assigned will be the main group of the specified user.
+In the following example the group assigned will be the primary group of the specified user.
 
 ```
 $ sudo chown albert: file
@@ -589,7 +588,7 @@ Example:
 
     After using this command, the files will be created with the `GID` of its subgroup.
 
-The command `newgrp` without parameters reassigns the main group.
+The command `newgrp` without parameters reassigns the primary group.
 
 ## Securing
 
