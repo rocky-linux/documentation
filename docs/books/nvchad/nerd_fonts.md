@@ -1,8 +1,8 @@
 ---
-title: wip - Installing Nerd Fonts
+title: Installing Nerd Fonts
 author: Franco Colussi
 contributors: Steven Spencer
-tested: 9.0
+tested: 8.6, 9.0
 tags:
     - nvchad
     - coding
@@ -11,7 +11,9 @@ tags:
 
 # Nerd Fonts - Fonts for Developers
 
-![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts is a collection of modified fonts aimed at developers with a large number of glyphs (icons). In particular, "iconic fonts" such as Font Awesome, Devicons, Octicons etc. are used to add extra glyphs.
+Installation of Nerd Fonts does not change the function of Neovim or NvChad, but simply adds fonts that are more pleasing to the eye than whatever the standard terminal font is currently. 
+
+![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts are a collection of modified fonts aimed at developers with a large number of glyphs (icons). In particular, "iconic fonts" such as Font Awesome, Devicons, Octicons etc. are used to add extra glyphs.
 
 Nerd Fonts takes the most popular programming fonts and modifies them by adding a group of glyphs. A font patcher is also available if the desired font has not already been edited. A convenient preview is available on the site, allowing you to see how the font should look in the editor.  For more information, check the [site](https://www.nerdfonts.com/).
 
@@ -25,7 +27,7 @@ https://www.nerdfonts.com/font-downloads
 
 ## Installation
 
-The procedure for installing fonts on Rocky Linux is to save the fonts you want to add somewhere and then install them with the `fc-cache` command; the procedure is not a true installation so much as a registration of the new fonts in the system.
+The procedure for installing fonts on Rocky Linux is to save the fonts you want to add somewhere, and then install them with the `fc-cache` command. This procedure is not a true installation so much as a registration of the new fonts in the system.
 
 !!! important "Creation of compressed packages"
 

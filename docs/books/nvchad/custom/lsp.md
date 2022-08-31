@@ -2,7 +2,7 @@
 title: Language Server Protocol
 author: Franco Colussi
 contributors: Steven Spencer
-tested with: 9.0
+tested with: 8.6, 9.0
 tags:
   - NvChad
   - coding
@@ -40,7 +40,7 @@ The combined use of the two plugins allows the required language servers to be d
 
 #### Downloading Language Servers
 
-To download the language server of choice, we open the interface of *Mason* from our editor with the command `:Mason`. Suppose we want to install the language server for *Markdown*. To do so, we type <kbd>2</kbd> to take us to the `LSP` section. Now we go down with the arrow key until we find the language server `marksman`. By pressing the space bar we can get some information about the server as you can see in the screenshot below.
+To download the language server of choice, we open the interface of *Mason* from our editor with the command <kbd>SHIFT</kbd> + <kbd>:Mason</kbd>. Suppose we want to install the language server for *Markdown*. To do so, we type <kbd>2</kbd> to take us to the `LSP` section. Now we go down with the arrow key until we find the language server `marksman`. By pressing the space bar we can get some information about the server as you can see in the screenshot below.
 
 ![Mason Marksman](../images/mason_marksman.png)
 
@@ -59,13 +59,13 @@ The servers to be installed by this procedure are:
 
 Installed servers are not yet configured in NvChad. To perform server registration we need to perform additional configuration.
 
-First we create the `custom/plugins` folder in `~/.local/nvim/lua`: 
+First we create the `custom/plugins` folder in `~/.local/nvim/lua`. Note that if you are following along completely, this path may already be created:
 
 ```bash
 mkdir -p ~/.local/nvim/lua/custom/plugins
 ```
 
-We used the `-p` flag since the _custom_ folder was definitely not present. Once the folder is created, we need to create two files: `init.lua`, which will take care of instructing *Packer* to install the plugin, and `lspconfig.lua`, which will define our servers. 
+We used the `-p` flag since we want to create the entire path if it doesn't already exist. Once the folder is created, we need to create two files: `init.lua`, which will take care of instructing *Packer* to install the plugin, and `lspconfig.lua`, which will define our servers. 
 
 Let's start by creating the two files first:
 
@@ -107,7 +107,7 @@ nvim ~/.config/nvim/lua/custom/plugins/init.lua
 
 ![NvChad init.lua](../images/init_custom_plugins.png)
 
-Once the changes are finished, we save the file with the command `:wq`.
+Once the changes are finished, we save the file with the command <kbd>SHIFT</kbd> + <kbd>:wq</kbd>.
 
 We can now edit the configuration file of our local servers.
 
@@ -139,9 +139,9 @@ nvim ~/.config/nvim/lua/custom/plugins/lspconfig.lua
 
 ![Custom lspconfig.lua](../images/lspconfig_custom.png)
 
-After finishing the changes we save and close the editor as before with `:wq`
+After finishing the changes we save and close the editor as before with <kbd>SHIFT</kbd> + <kbd>:wq</kbd>.
 
-As we can see, we have added in the table of `local servers` the servers we have installed with *Mason*:
+As we can see, we have added to the table of `local servers` the servers we have installed with *Mason*:
 
 ```lua
 local servers = { "html", "marksman", "yamlls"}
@@ -149,7 +149,7 @@ local servers = { "html", "marksman", "yamlls"}
 
 This gives *nvim-lspconfig* a way to retrieve the configurations needed for their operation in the IDE.
 
-Once we have finished the changes, to make them effective we need to tell *Packer* to synchronize them. This is done with a simple `:PackerSync` at the end of which the new installation of *neovim/nvim-lspconfig* will be highlighted in the log. Now opening a Markdown file should bring up a gear icon in the lower right corner and say `LSP - marksman`.
+Once we have finished the changes, to make them effective we need to tell *Packer* to synchronize them. This is done with a simple <kbd>SHIFT</kbd> + <kbd>:PackerSync</kbd> at the end of which the new installation of *neovim/nvim-lspconfig* will be highlighted in the log. Now opening a Markdown file should bring up a gear icon in the lower right corner and say `LSP - marksman`.
 
 ![Marksman Enable](../images/marksman_enable.png)
 
@@ -193,4 +193,4 @@ Once installed it will spring into action whenever we open a `.yaml` file by mak
 
 The use of LSPs greatly aids the editing process, enriching it with advanced features. It also allows us to keep track of its consistency in real time. It is definitely a tool to have in our IDE.
 
-The introduction of *Mason*, although some manual intervention is still required to configure the environment, has made available an automated procedure for the installation of language servers, and more importantly, allows us to avoid the periodic checks for updates that would have been necessary in the case of manual installation. Once installed and configured, all our servers will be upgradeable from the *Mason GUI* with a simple press of the <kbd>U</kbd> key.
+The introduction of *Mason*, although some manual intervention is still required to configure the environment, has made available an automated procedure for the installation of language servers. More importantly, it allows us to avoid the periodic checks for updates that would have been necessary in the case of manual installation. Once installed and configured, all our servers will be upgradeable from the *Mason GUI* with a simple press of the <kbd>U</kbd> key.

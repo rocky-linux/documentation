@@ -1,15 +1,19 @@
 ---
-title: WIP -Custom Folder
+title: Custom Folder
+author: Franco Colussi
+contributors: Steven Spencer
+tested with: 8.6, 9.0
 tags:
     - nvchad
     - coding
+    - custom
 ---
 
 # Advanced configuration of the Custom Folder
 
 ## Introduction
 
-NvChad uses the version manager `git` for updates, this implies that at every update part or the whole configuration is overwritten by new commits, consequently it would be useless to make customizations within the default configuration. To solve this problem the NvChad developers have set up the possibility to make your changes in a folder called `custom` which must be mandatorily placed in `.config/nvim/lua/`. Below we have a representation of the basic structure of a standard NvChad installation 
+NvChad uses the version manager `git` for updates. This implies that at every update, part or the whole configuration is overwritten by new commits. Consequently it would be useless to make customizations within the default configuration. To solve this problem the NvChad developers have set up the possibility to make your changes in a folder called `custom` which **must** be placed in `.config/nvim/lua/`. Below we have a representation of the basic structure of a standard NvChad installation. 
 
 ```text
 nvim/
@@ -27,7 +31,7 @@ nvim/
 
 ### Structure Creation
 
-To start the customization we have to create for first the `custom` folder that will contain all our files, let's take the opportunity to also create the `plugins` folder that will contain the _configuration files_ of our plugins, since surely the folders will not be present we will use the `-p` flag to tell the _mkdir_ command to create the missing folders, the command will be as follows:
+To start the customization we have to create the `custom` folder that will contain all our files and also the `plugins` folder that will contain the _configuration files_ of our plugins. Since the folders will not be present, we will use the `-p` flag to tell the `mkdir` command to create the missing folders. The command will be as follows:
 
 ```bash
 mkdir -p ~/.config/nvim/lua/custom/plugins
@@ -43,7 +47,7 @@ The structure of the `nvim/lua` folder should now look like this:
 │   └── plugins
 ```
 
-The choice of path is not accidental but responds to the need to preserve this folder from updates, otherwise with each update the folder would simply be deleted as it is not part of the repository. The NvChad developers have prepared a `.gitignore` file for this, which determines its exclusion.
+The choice of path is not accidental. It responds to the need to preserve this folder from updates. Without this, with each update the folder would simply be deleted as it is not part of the repository. The NvChad developers have prepared a `.gitignore` file for this, which determines its exclusion.
 
 ```bash
 cat .config/nvim/.gitignore 
@@ -67,9 +71,9 @@ custom/
     └── lspconfig.lua
 ```
 
-We are going to analyze its contents and briefly describe the files it contains; the files will be analyzed in detail later on the pages dedicated to them.
+We are going to analyze its contents, and briefly describe the files it contains. The files will be analyzed in detail later, on the pages dedicated to them.
 
-- `chadrc.lua`: this file allows the override of default configurations. It also allows plugins to be overridden so that they can then be associated with _override.lua_ configurations. For example, it is used to save the interface theme with:
+- `chadrc.lua`: This file allows for the override of default configurations. It also allows plugins to be overridden so that they can then be associated with _override.lua_ configurations. For example, it is used to save the interface theme with:
 
 ```lua
 M.ui = {
@@ -77,22 +81,21 @@ M.ui = {
 }
 ```
 
-- `init.lua`: this file is executed after the main `init.lua` file contained in `nvim/lua/core/` and allows the execution of personalized commands at NvChad startup.
+- `init.lua`: This file is executed after the primary `init.lua` file, contained in `nvim/lua/core/`, and allows the execution of personalized commands at NvChad startup.
 
-- `mappings.lua`: allows the setting of custom commands, these commands are normally used to abbreviate standard commands. An example is the abbreviation of the command `:Telescope find_files` which with this setting in _mapping.lua_:
+- `mappings.lua`: Allows for the setting of custom commands. These commands are normally used to abbreviate standard commands. An example is the abbreviation of the command `:Telescope find_files`, which with this setting in _mapping.lua_:
 
 ```lua
 ["\\\\"] = { "<cmd> Telescope find_files<CR>", "file finder" },
 ```
 
-Allows you to retrieve **:Telescope find_files** by typing two `\\`
+allows you to retrieve **:Telescope find_files** by typing two `\\`
 
 ![Telescope Find Files](../images/telescope_find_files.png) 
 
 
-- `override.lua`: this file contains the custom configurations that replace the default ones, this is possible thanks to the override effected upstream in _chadrc.lua_.
+- `override.lua`: This file contains the custom configurations that replaces the default ones. This is made possible thanks to the override effected upstream in _chadrc.lua_.
 
-Let us now move on to the `plugins` folder, the folder contains all the configuration files of the various plugins installed and most importantly the `init.lua` file. In the `init.lua` file should be inserted the plugins we want to install on our IDE. Once inserted and configured, if necessary, they will be installable via the `:PackerSync` command.
+Let us now move on to the `plugins` folder. This folder contains all the configuration files of the various plugins installed. It also contains the `init.lua` file for the customizations. The `init.lua` file should contain the plugins we want to install on our IDE. Once inserted and configured, they will be installable via the `:PackerSync` command.
 
 The only plugin required is _neovim/nvim-lspconfig_, which enables LSP (language server) functionality for advanced editing.
-
