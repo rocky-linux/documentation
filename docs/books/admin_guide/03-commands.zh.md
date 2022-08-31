@@ -650,7 +650,7 @@ $ touch /home/rockstar/myfile
 
 日期格式：`[AAAA]MMJJhhmm[ss]`
 
-!!! tip "提示"
+!!! Tip "提示"
 
     `touch`命令主要用来创建空文件，但它对于增量备份或差异备份也很有用。 事实上，对一个文件执行 `touch` 的唯一效果是强迫它在下一次备份中被保存。
 
@@ -668,7 +668,7 @@ $ rmdir /home/rockstar/work
 | ---- | ----------------------- |
 | `-p` | 删除所提供的父目录或目录（如果它们是空的话）。 |
 
-!!! tip "提示"
+!!! Tip "提示"
 
     要同时删除非空目录及其内容，请使用`rm`命令。
 
@@ -1159,7 +1159,7 @@ $ find /tmp -name *.txt -exec rm -f {} \;
 
     `;`字符是一个特殊的shell字符，必须由`\`保护，以防止被`-find`命令（而不是`-exec`）过早地解释它。
 
-!!! tip "提示"
+!!! Tip "提示"
 
     `$ find /tmp -name *.txt -delete` 可以做同样的事情。
 
@@ -1263,7 +1263,7 @@ $ find /home -name "test[123]*"
 
     始终使用 `"` 括起包含元字符的单词，以防止它们被符合条件的文件名代替。
 
-!!! warning "警告"
+!!! Wanning "警告"
 
     不要将shell元字符与正则表达式元字符混淆。 `grep`命令使用正则表达式元字符。
 
@@ -1322,7 +1322,7 @@ STOP
 
 当 shell 收到只包含关键字的行时，它将退出`ftp`命令。
 
-!!! warning "警告"
+!!! Wanning "警告"
 
     结尾关键字 `END` 或 `STOP` 必须是行中唯一的单词，并且必须位于行的开头。
 
@@ -1477,7 +1477,7 @@ alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-ti
 * 用户登录目录中的`.bashrc`文件；
 * `/etc/bashrc` 文件，适用于所有用户。
 
-!!! warning "警告"
+!!! Wanning "警告"
 
     在使用可能有潜在危险的别名时，必须特别小心！ 例如，在管理员不知情的情况下设置的别名：
 
