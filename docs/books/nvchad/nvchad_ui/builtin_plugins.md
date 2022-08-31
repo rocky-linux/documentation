@@ -2,13 +2,14 @@
 title: Built-In Plugins
 author: Franco Colussi
 contributors: Steven Spencer
+tested with: 8.6, 9.0
 tags:
     - nvchad
     - coding
     - plugins
 ---
 
-## Basic configuration plugins
+# Basic configuration plugins
 
 !!! note "Plugin Naming Convention"
 
@@ -39,9 +40,9 @@ local plugins = {
 require("core.packer").run(plugins)
 ```
 
-It is necessary to acknowledge the huge amount of work done by the NvChad developers, whose contributions have created an integrated environment among all plugins. Everything is perfectly adhered to the user interface making it very clean and professional. In addition, plugins that work *under the hood* allow advanced editing and other useful features. All of this allows ordinary users to have, in an instant, a basic IDE to start working with and an extensible configuration so that it can adapt to our needs.
+There's a huge amount of work by the NvChad developers that must be acknowledged. They have created an integrated environment among all plugins which makes the user interface clean and professional. In addition, plugins that work *under the hood* allow for enhanced editing and other features. All of this means that ordinary users can have, in an instant, a basic IDE to start working, and an extensible configuration that can adapt to their needs.  
 
-### Main Plugins
+## Main Plugins
 
 The following is a brief analysis of the main plugins:
 
@@ -67,9 +68,9 @@ The following is a brief analysis of the main plugins:
 
 - [NvChad/nvterm](https://github.com/NvChad/nvterm) Provides a terminal to our IDE where we can issue commands. The terminal can be opened within the buffer in various ways:
   
-  - `<A-h>` opens a terminal by dividing the buffer horizontally
-  - `<A-v>` opens the terminal by dividing the buffer vertically
-  - `<A-i>` opens a terminal in a floating tab 
+  - `<ALT-h>` opens a terminal by dividing the buffer horizontally
+  - `<ALT-v>` opens the terminal by dividing the buffer vertically
+  - `<ALT-i>` opens a terminal in a floating tab 
 
 - [kyazdani42/nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) Adds icons (requires a Font Nerd) to file types and folders in our IDE. This allows us to visually identify file types in our File Explorer by speeding up operations.
 
@@ -81,7 +82,7 @@ The following is a brief analysis of the main plugins:
 
 - [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) Provides decoration for *git* with reports for added, removed, and changed lines-reports that are also integrated into the *statusline*.
 
-### LSP functionality
+## LSP functionality
 
 Now let's move on to the plugins that provide the functionality to integrate LSPs (Language Server Protocols) into our projects. This is definitely one of the best features provided by NvChad. Thanks to LSPs we can be in control of what we write in real time.
 
@@ -100,9 +101,9 @@ Now let's move on to the plugins that provide the functionality to integrate LSP
   - `:LspStop`
   - `:LspRestart`
 
-### Lua Code
+## Lua Code
 
-Following LSP, come all the plugins that provide functionality in writing and executing Lua code such as snippets, lsp commands, buffers etc. We will not go into detail for these plugins, but they can be viewed in their respective projects on GitHub. 
+Following LSP, come all the plugins that provide functionality in writing and executing Lua code such as snippets, lsp commands, buffers etc. We will not go into detail on these, but they can be viewed in their respective projects on GitHub. 
 
 The plugins are: 
 
@@ -115,7 +116,7 @@ The plugins are:
 - [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)
 
-### Mixed Plugins
+## Mixed Plugins
 
 - [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) Thanks to this plugin we have the functionality of automatic closing of parentheses and other characters. For example, by inserting a beginning parenthesis `(` completion will automatically insert the closing parenthesis `)` placing the cursor in the middle.
 
@@ -123,7 +124,7 @@ The plugins are:
 
 - [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) Provides advanced functionality for code commenting.
 
-### File Management
+## File Management
 
 - [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) A File Explorer for Neovim that allows the most common operations on files (copy, paste, etc.), has an integration with Git, identifies files with different icons, and other features. Most importantly, it updates automatically (this is very useful when you work with Git repositories).
   
@@ -139,4 +140,4 @@ The plugins are:
 
 - [lewis6991/impatient.nvim](https://github.com/lewis6991/impatient.nvim) Performs several operations at the start of the editor to make the loading of modules faster.
 
-Now having introduced the plugins that make up the basic configuration of NvChad we can move on to the description of the interface.
+Having introduced the plugins that make up the basic configuration of NvChad, we can move on to the description of the interface.

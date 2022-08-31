@@ -2,7 +2,7 @@
 title: Additional Software
 author: Franco Colussi
 contributors: Steven Spencer
-tested with: 9.0
+tested with: 8.6, 9.0
 tags:
     - nvchad
     - coding
@@ -47,7 +47,7 @@ RipGrep is needed for recursive searches with `:Telescope`.
 
 ## Lazygit
 
-[LazyGit](https://github.com/jesseduffield/lazygit) is an ncurses-style interface that allows you to perform all `git` operations in a more user-friendly way, it is required by the _lazygit.nvim_ plugin, this plugin makes it possible to use LazyGit directly from NvChad, it opens a floating window from where you can perform all operations on your repositories, thus allowing you to make all changes to the _git repository_ without leaving the editor.
+[LazyGit](https://github.com/jesseduffield/lazygit) is an ncurses-style interface that allows you to perform all `git` operations in a more user-friendly way. It is required by the _lazygit.nvim_ plugin. This plugin makes it possible to use LazyGit directly from NvChad, it opens a floating window from where you can perform all operations on your repositories, thus allowing you to make all changes to the _git repository_ without leaving the editor.
 
 To install it we can use the repository for Fedora. On Rocky Linux 9 it works perfectly.
 
@@ -64,4 +64,4 @@ with the <kbd>x</kbd> key we can bring up the menu with all available commands.
 
 ![LazyGit UI](images/lazygit_menu.png)
 
-Now that we have all the necessary supporting software on our system we can move on to installing the basic software, the editor on which all the configuration is based, [Neovim](install_nvim.md).
+Now that we have all the necessary supporting software on our system we can move on to installing the basic software. We will start with the editor on which all the configuration is based, [Neovim](install_nvim.md).
