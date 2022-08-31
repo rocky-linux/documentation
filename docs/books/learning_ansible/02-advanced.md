@@ -152,7 +152,7 @@ Use of a stored variable:
 
 The strings that make up the stored variable can be accessed via the `stdout` value (which allows you to do things like `homes.stdout.find("core") != -1`), to exploit them using a loop (see `loop`), or simply by their indices as seen in the previous example.
 
-### Exercices
+### Exercises
 
 * Write a  playbook `play-vars.yml` that prints the distribution name of the target with its major version, using global variables.
 
@@ -269,7 +269,7 @@ Let's see this through a concrete example, showing the management of the system 
 
     Many things can be done with the loops. You will discover the possibilities offered by loops when your use of Ansible pushes you to use them in a more complex way.
 
-### Exercices
+### Exercises
 
 * Display the content of the `service` variable from the previous exercise using a loop.
 
@@ -350,7 +350,7 @@ You will probably have to test that a variable exists to avoid execution errors:
   when: myboolean is defined and myboolean
 ```
 
-### Exercices
+### Exercises
 
 * Print the value of `service.web` only when `type` equals to `web`.
 

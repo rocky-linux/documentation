@@ -851,7 +851,7 @@ test.yml
   8:1       error    syntax error: could not find expected ':' (syntax)
 ```
 
-## Exercices results
+## Exercises results
 
 * Create the groups Paris, Tokio, NewYork
 * Create the user `supervisor`
