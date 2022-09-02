@@ -63,6 +63,30 @@ The first line of the text detail for the admonition must have that extra line f
 
 If you are reading this on GitHub, it will not display the admonition. You can see how it actually displays [here](https://docs.rockylinux.org/guides/contribute/).    
 
+## Author, Contributor, and Other Meta Content
+
+We started to add specific meta to our documentation some time ago. The idea is to get the primary information in the meta. This is done in the source (English) documents. Here's an example of the meta information as it currently stands:
+
+```
+---
+title: Document title or the title that appears in the table of contents. (this can be overridden with `.pages` by editors if necessary.) 
+author: the author of the source (English) version of the document.
+contributors: a comma separated list of contributors to the source document.
+tested with: a comma separated list of versions example: 8.6, 9.0
+tags: 
+  - displayable tags
+  - these are also searchable
+  - they are two space indented and start with a "-" as shown here
+  - generally, they should be one word
+---
+```
+
+We ask those involved in translations to leave the meta as is in the document you are translating. We definitely **DO** want to acknowledge those involved in our translation efforts! That is what the all-contributors bot is for. If you scroll to the bottom of this page, you'll see a list of those who have contributed to the documentation project, even if it was just to change a word or phrase or fix an error. 
+
+If a translator runs into a word or phrase that does not translate well from the source document to their language, we ask them to go ahead and push a change to the source document through the normal Git processes. When they do this, they definitely *should* add their name to the "contributors:" meta!
+
+If you notice that your effort is not properly acknowledged in the all-contributors section, please let someone know in the [Mattermost channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) so that we can fix it for you. Thank you to everyone who participates!
+
 ## Using Git
 
 Like many other projects out there, Rocky Linux uses "git" to manage its code and files, including documentation files. This tutorial assumes a fundamental knowledge of Git and how it works. The second example also presupposes familiarity with the command line.
