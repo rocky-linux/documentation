@@ -1,7 +1,7 @@
 ---
 title: Parcheo con dnf-automatic
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Pedro Garcia
 tested with: 8.5
 tags:
   - seguridad
