@@ -145,13 +145,56 @@ $ sudo groupdel GroupC
 
 !!! Tip
 
-    To be deleted, a group must no longer contain users.
-
-Deleting the last user of an eponymous group will cause the system to delete the group.
+    When deleting a group, there are two conditions that can occur:
+    
+    * If a user has a unique primary group and you issue the `groupdel` command on that group, you will be prompted that there is a specific user under the group and it cannot be deleted.
+    * If a user belongs to a suplementary group (not the primary group for the user) and that group is not the primary group for antoher user on the system, then the `groupdel` command will delete the group without any additional prompts.
+    
+    Examples: 
+  
+    ```bash
+    Shell > useradd testa
+    Shell > id testa
+    uid=1000(testa) gid=1000(testa) group=1000(testa)
+    Shell > groupdel testa
+    groupdel: cannot remove the primary group of user 'testa'
+    
+    Shell > groupadd -g 1001 testb
+    Shell > usermod -G testb root
+    Shell > id root
+    uid=0(root) gid=0(root) group=0(root),1001(testb)
+    Shell > groupdel testb
+    ```
 
 !!! Tip
 
-    Each group has a unique `GID`. A group can be duplicated. By convention, the `GID` of system groups range from 0 (`root`) to 999.
+    When you delete a user using the `userdel -r` command, the corresponding primary group is also deleted. The primary group name is usually the same as the user name.
+
+!!! Tip
+
+    Each group has a unique `GID`. A group can be used by multiple users as a supplementary group. By convention, The GID of super administrator is 0. The GIDS reserved for some services or processes are 201~999, which are called system groups or pseudo user groups. The GID for users is usually greater than or equal to 1000. These are related to <font color=red>/etc/login.defs</font>, which we will talk about later.
+
+    ```bash
+    shell > egrep -v "^#|^$" /etc/login.defs
+    MAIL_DIR        /var/spool/mail
+    UMASK           022
+    HOME_MODE       0700
+    PASS_MAX_DAYS   99999
+    PASS_MIN_DAYS   0
+    PASS_MIN_LEN    5
+    PASS_WARN_AGE   7
+    UID_MIN                  1000
+    UID_MAX                 60000
+    SYS_UID_MIN               201
+    SYS_UID_MAX               999
+    GID_MIN                  1000
+    GID_MAX                 60000
+    SYS_GID_MIN               201
+    SYS_GID_MAX               999
+    CREATE_HOME     yes
+    USERGROUPS_ENAB yes
+    ENCRYPT_METHOD SHA512
+    ```
 
 !!! Tip
 
