@@ -13,7 +13,11 @@ tags:
 
 !!! note "A few words about `mappings.lua`"
 
-    Throughtout NvChad's official documentation, commands such as `<leader>` are mentioned, along with other keys that might not be understandable to the casual reader. The reason for this is the default `mappings.lua` file (`../nvim/lua/core/mappings.lua`). This file and the key mappings it describes are outlined [here](https://nvchad.com/config/Mappings). To be clear, you can override any key mappings using a custom `mappings.lua` file (`../nvim/lua/custom/mappings.lua`). To avoid confusion in the documents you are now reading, we are going to assume that you are using the default `mappings.lua` file and will substitute in the actual commands that you need to use to access a function. Standard key references are:
+    Throughtout NvChad's official documentation, commands such as `<leader>` are mentioned, along with other keys that might not be understandable to the casual reader. The reason for this is the default `mappings.lua` file (`../nvim/lua/core/mappings.lua`). 
+	
+	This file and the key mappings it describes are outlined [here](https://nvchad.com/config/Mappings). To be clear, you can override any key mappings using a custom `mappings.lua` file (`../nvim/lua/custom/mappings.lua`). 
+	
+	To avoid confusion in the documents you are now reading, we are going to assume that you are using the default `mappings.lua` file and will substitute in the actual commands that you need to use to access a function. Standard key references are:
 
     * leader = <kbd>SPACE</kbd>
     * A = <kbd>ALT</kbd>
@@ -34,7 +38,9 @@ The interface already comes with some advanced functionality, such as indicating
 
 ![Tabufline](../images/ui_tabufline.png) 
 
-The user interface presents a top bar called `Tabufline` where the open buffers are managed. `Tabufline` only shows if you have more than one file open. The open buffer presents the file type icon, the file name, and its status. Status is indicated with an icon. If as in the screenshot we have a red `x`, it means that the file can be closed as it is already saved. If instead the icon is a green dot `.`, then the file needs to be saved, and a close command <kbd>SHIFT</kbd> + <kbd>:q</kbd> will produce a warning: "No write since last change".
+The user interface presents a top bar called `Tabufline` where the open buffers are managed. `Tabufline` only shows if you have more than one file open. The open buffer presents the file type icon, the file name, and its status. Status is indicated with an icon. 
+
+If, as in the screenshot, we have a red `x`, it means that the file can be closed as it is already saved. If instead the icon is a green dot `.`, then the file needs to be saved, and a close command <kbd>SHIFT</kbd> + <kbd>:q</kbd> will produce a warning: "No write since last change".
 
 To the right is the icon for setting the *dark* or *light* theme. By clicking on it with the mouse, we can select the theme we want.
 
@@ -44,7 +50,9 @@ On the right we also have the icon for closing our editor.
 
 ## Middle Section - Open Buffers
 
-The central part of the editor is composed of the buffer active on the editor at that moment (*index.en.md*). To anticipate some additional functionality we can work simultaneously on two files in a split buffer by opening one more in the example (*index.it.md*). In the editor we will have the first buffer in the foreground and the second one listed in the Tabufline. Now if we split the first buffer with the <kbd>SHIFT</kbd> + <kbd>:vsplit</kbd> command and select the right buffer, clicking on the name of the second file (*index.it.md*) in the tabufline, this will be opened in the right buffer and we can work with the two files side by side.
+The central part of the editor is composed of the buffer active on the editor at that moment (*index.en.md*). To introduce some additional functionality, we can work simultaneously on two files in a split buffer by opening one more in the example (*index.it.md*). 
+
+In the editor we will have the first buffer in the foreground and the second one listed in the Tabufline. Now if we split the first buffer with the <kbd>SHIFT</kbd> + <kbd>:vsplit</kbd> command and select the right buffer, clicking on the name of the second file (*index.it.md*) in the tabufline, this will be opened in the right buffer and we can work with the two files side by side.
 
 ![NvChad Split](../images/ui_nvchad_split.png)
 
@@ -59,11 +67,13 @@ At the bottom we find the Statusline, which handles status information. On the r
 - **COMMAND**
 - **VISUAL**
 
-Editing a document starts from the **NORMAL** state where you open the file, switch to **INSERT** mode for editing, and when finished exit with <kbd>ESC</kbd> and return to **NORMAL** mode. Now to save the file you switch to **COMMAND** mode by typing `:` in the statusline followed by `w` (*write*) to write it and with <kbd>ESC</kbd> you return to **NORMAL** mode. The status indication is very useful while learning how to use it, particularly if one is not very familiar with the Vim workflow.
+Editing a document starts from the **NORMAL** mode where you open the file, then you can switch to **INSERT** mode for editing, and when finished exit with <kbd>ESC</kbd> and return to **NORMAL** mode. 
+
+Now to save the file you switch to **COMMAND** mode by typing `:` in the statusline followed by `w` (*write*) to write it and with <kbd>ESC</kbd> you return to **NORMAL** mode. The status indication is very useful while learning how to use it, particularly if one is not very familiar with the Vim workflow.
 
 We then find the name of the open file, and if we are working on a git repository, we will have indications of the status of the repository. This is thanks to the *lewis6991/gitsigns.nvim* plugin.
 
-Turning to the right side we find the indication of the folder from which we opened the editor. In the case of the use of LSPs, this indicates the folder that is taken into account as `workspace`, and consequently evaluated during diagnostics, and to follow the position of the cursor within the file.
+Turning to the right side we find the name of the folder from which we opened the editor. In the case of the use of LSPs, this indicates the folder that is taken into account as `workspace`, and consequently evaluated during diagnostics, and to follow the position of the cursor within the file.
 
 ## Integrated Help
 
@@ -77,7 +87,7 @@ To view all the commands included in the editor we can use the <kbd>SPACE</kbd> 
 
 ![leader wK](../images/ui_wK_key.png)
 
-and by pressing <kbd>d</kbd> we can display the remaining commands:
+And by pressing <kbd>d</kbd> we can display the remaining commands:
 
 ![leader wK d](../images/ui_wK_01.png)
 
@@ -95,7 +105,7 @@ In order to work with our files we need a File Explorer, and this is provided by
 
 ![NvimTree](../images/nvim_tree.png)
 
-As we can see below, after NORMAL the open file is not shown but instead the buffer with NvimTree. In case we are not in the right buffer, we can use the <kbd>SPACE</kbd> + <kbd>e</kbd> command provided by NvChad to switch the focus on NvimTree.
+As we can see below, after the "NORMAL" text, the open file is not shown but instead the buffer with NvimTree. In case we are not in the right buffer, we can use the <kbd>SPACE</kbd> + <kbd>e</kbd> command provided by NvChad to switch the focus to NvimTree.
 
 Once positioned, we will have a series of commands for working on the file tree. The most common commands are:
 

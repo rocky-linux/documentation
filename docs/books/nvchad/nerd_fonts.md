@@ -13,9 +13,9 @@ tags:
 
 Installation of Nerd Fonts does not change the function of Neovim or NvChad, but simply adds fonts that are more pleasing to the eye than whatever the standard terminal font is currently. 
 
-![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts are a collection of modified fonts aimed at developers with a large number of glyphs (icons). In particular, "iconic fonts" such as Font Awesome, Devicons, Octicons etc. are used to add extra glyphs.
+![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts are a collection of modified fonts aimed at developers. In particular, "iconic fonts" such as Font Awesome, Devicons, Octicons etc. are used to add extra glyphs.
 
-Nerd Fonts takes the most popular programming fonts and modifies them by adding a group of glyphs. A font patcher is also available if the desired font has not already been edited. A convenient preview is available on the site, allowing you to see how the font should look in the editor.  For more information, check the [site](https://www.nerdfonts.com/).
+Nerd Fonts takes the most popular programming fonts and modifies them by adding a group of glyphs (icons). A font patcher is also available if the font you'd like to use has not already been edited. A convenient preview is available on the site, allowing you to see how the font should look in the editor. For more information, check the project's main [site](https://www.nerdfonts.com/).
 
 ## Download
 
@@ -51,7 +51,7 @@ fc-cache ~/.local/share/fonts
 
 ## Configuration
 
-At this point the _font nerd_ should be available for selection. To actually select it you must refer to the desktop you are using.
+At this point the Nerd Font of your choice should be available for selection. To actually select it you must refer to the desktop you are using.
 
 ![Font Manager](images/font_nerd_view.png) 
 

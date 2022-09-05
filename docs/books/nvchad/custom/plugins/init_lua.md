@@ -11,7 +11,9 @@ tags:
 
 # `init.lua`
 
-The file `custom/plugins/init.lua` closes the NvChad configuration. It is the last `init.lua` that is read and inserts our additional plugins into the configuration. Its configuration consists of inserting the plugins in the format:
+The file `custom/plugins/init.lua` closes the NvChad configuration. It is the last `init.lua` that is read, and inserts our additional plugins into the configuration. 
+
+Its configuration consists of inserting the plugins in the following format:
 
 ```lua
   ["github_username/plugin_name"] = {},
@@ -34,11 +36,11 @@ return {
 }
 ```
 
-In this configuration we have included only the two necessary plugins *nvim-lspconfig* and *which-key*, plus one that requires no additional configuration as an example. The two plugins are necessary since without their configuration we will not have support for LSPs (language servers) even if they are installed.  The functionality of *which-key* is disabled by default, and we want to enable it here.
+In this configuration we have included only the two necessary plugins *nvim-lspconfig* and *which-key*, plus one that requires no additional configuration as an example. The two plugins are necessary since without their configuration we will not have support for LSPs (language servers) even if they are installed. The functionality of *which-key* is disabled by default, and we want to enable it here.
 
 As we can see, the first plugin calls the configuration function and reads first the file `nvim/lua/plugins/configs/lspconfig.lua`, and then *our* file `nvim/lua/custom/plugins/lspconfig.lua`. In this case an additional file is used for personal configurations. The choice depends on the number of changes to be made.
 
-The second is an example of a plugin that needs no additional configuration. Once installed, it is allowed to access Git repository management directly from the editor with the command <kbd>SHIFT</kbd> + <kbd>:LazyGit</kbd>. For the installation of LazyGit you can refer to the [Additional Software](../../additional_software.md) page.
+The second is an example of a plugin that needs no additional configuration. Once installed, it allows you to access Git repository management directly from the editor with the command <kbd>SHIFT</kbd> + <kbd>:LazyGit</kbd>. For the installation of LazyGit you can refer to the [Additional Software](../../additional_software.md) page.
 
 The third is an example of putting configurations to be overwritten directly into the file. In this case, the only change is the reactivation of the default disabled plugin (which-key). This plugin is enclosed by two single quotes that can replace double quotes. The two notations are equivalent.
 

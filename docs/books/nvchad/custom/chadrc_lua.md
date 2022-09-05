@@ -40,7 +40,11 @@ M.plugins = {
 return M
 ```
 
-The first call you encounter refers to the inclusion of our `custom/override.lua` file containing the custom settings for the plugins in the *override* table defined in `M.plugins`. In particular, the customizations refer to the state of the files with respect to a Git *repository* (if you are working with one), the automatic installation of *treesitter parsers*, and the exclusion of the reference lines of nested routines and commands. This functionality in writing documentation in Markdown is not that important. If you want to have this functionality as well, just remove the line:
+The first call you encounter refers to the inclusion of our `custom/override.lua` file containing the custom settings for the plugins in the *override* table defined in `M.plugins`. 
+
+In particular, the customizations refer to the state of the files in a Git *repository* (if you are working with one), the automatic installation of *treesitter parsers*, and the exclusion of the reference lines of nested routines and commands. This functionality in writing documentation in Markdown is not that important. 
+
+If you want to have this functionality as well, just remove the line:
 
 ```lua
 ["lukas-reineke/indent-blankline.nvim"] = override.blankline,

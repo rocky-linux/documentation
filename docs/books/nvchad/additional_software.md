@@ -60,8 +60,8 @@ Once installed we open a terminal and type the command `lazygit` and an interfac
 
 ![LazyGit UI](images/lazygit_ui.png)
 
-with the <kbd>x</kbd> key we can bring up the menu with all available commands.
+With the <kbd>x</kbd> key, we can bring up the menu with all available commands.
 
 ![LazyGit UI](images/lazygit_menu.png)
 
-Now that we have all the necessary supporting software on our system we can move on to installing the basic software. We will start with the editor on which all the configuration is based, [Neovim](install_nvim.md).
+Now that we have all the necessary supporting software on our system we can move on to installing the basic software. We will start with the editor on which the whole configuration is based, [Neovim](install_nvim.md).

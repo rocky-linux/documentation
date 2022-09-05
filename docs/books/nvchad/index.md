@@ -13,7 +13,7 @@ tags:
 
 Throughout this book, you will find ways to implement Neovim, along with NvChad, to create a fully functional **I**ntegrated **D**evelopment **E**nvironment (IDE).
 
-I say "ways" because there are many possibilities. The author focuses the sections here on using these tools for writing markdown, but if markdown isn't your focus, don't worry simply read on. If you are unfamiliar with either of these tools (NvChad or Neovim), then this book will give you an introduction to both, and if you step through these documents, you'll soon realize that you can set up this environment to be a huge help for whatever your programming or script writing needs are.
+I say "ways" because there are many possibilities. The author focuses here on using these tools for writing markdown, but if markdown isn't your focus, don't worry simply read on. If you are unfamiliar with either of these tools (NvChad or Neovim), then this book will give you an introduction to both, and if you step through these documents, you'll soon realize that you can set up this environment to be a huge help for whatever your programming or script writing needs are.
 
 Want an IDE that will help in writing Ansible playbooks? You can get that! Want and IDE for Golang? That's available too. Simply want a good interface for writing BASH scripts? It's also available.
 
@@ -25,7 +25,7 @@ It was the author's intent **not** to break this book down into chapters. The re
 
 ## Using Neovim as an IDE
 
-The basic installation of Neovim provides an excellent editor for development, but it cannot yet be called an IDE; all the features, even if already preset, are not yet activated. To do this we need to pass the necessary configurations to Neovim, and this is where NvChad comes to our aid. This allows us to have a basic configuration out of the box with just one command!
+The basic installation of Neovim provides an excellent editor for development, but it cannot yet be called an IDE; all the more advanced IDE features, even if already preset, are not yet activated. To do this we need to pass the necessary configurations to Neovim, and this is where NvChad comes to our aid. This allows us to have a basic configuration out of the box with just one command!
 
 The configuration is written in Lua, a very fast programming language that allows NvChad to have startup and execution times for commands and keystrokes that are very fast. This is also made possible by the `Lazy loading` technique used for plugins that loads them only when required.
 
@@ -41,9 +41,9 @@ As the developers of NvChad are keen to point out, the project is only intended 
 
 - **Attractive Interface.** Despite being a _cli_ application the interface looks modern and beautiful graphically, plus all the components fit the UI perfectly.
 
-- **Extremely Configurable.** Due to the modularity derived from the base used (NeoVim), the editor can be adapted perfectly to one's needs. Keep in mind, however, that when we talk about customization we are referring to functionality not to the appearance of the interface.
+- **Extremely Configurable.** Due to the modularity derived from the base application (NeoVim), the editor can be adapted perfectly to one's needs. Keep in mind, however, that when we talk about customization we are referring to functionality, and not to the appearance of the interface.
 
-- **Automatic update mechanism.** The editor comes with a mechanism (through the use of _git_) that allows updating with a simple `<space>uu` command.
+- **Automatic update mechanism.** The editor comes with a mechanism (through the use of _git_) that allows updates with a simple `<space>uu` command.
 
 - **Powered by Lua.** NvChad's configuration is written entirely in _lua_, which allows it to integrate seamlessly into Neovim's configuration by taking advantage of the full potential of the editor on which it is based.
 
@@ -88,7 +88,7 @@ Lua is not interpreted directly through a Lua file like other languages, for exa
 
 ### Neovim
 
-Neovim is dealt with in detail on its [dedicated page](install_nvim.md) so we will just dwell on the main features, which are:
+Neovim is described in detail on its [dedicated page](install_nvim.md) so we will just dwell on the main features, which are:
 
 - Performance: Very fast.
 

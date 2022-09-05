@@ -40,7 +40,9 @@ The combined use of the two plugins allows the required language servers to be d
 
 #### Downloading Language Servers
 
-To download the language server of choice, we open the interface of *Mason* from our editor with the command <kbd>SHIFT</kbd> + <kbd>:Mason</kbd>. Suppose we want to install the language server for *Markdown*. To do so, we type <kbd>2</kbd> to take us to the `LSP` section. Now we go down with the arrow key until we find the language server `marksman`. By pressing the space bar we can get some information about the server as you can see in the screenshot below.
+To download the language server of choice, we open the interface of *Mason* from our editor with the command <kbd>SHIFT</kbd> + <kbd>:Mason</kbd>. Suppose we want to install the language server for *Markdown*. To do so, we type <kbd>2</kbd> to take us to the `LSP` section. 
+
+Now we go down with the arrow key until we find the language server `marksman`. By pressing the space bar we can get some information about the server as you can see in the screenshot below.
 
 ![Mason Marksman](../images/mason_marksman.png)
 
@@ -59,7 +61,7 @@ The servers to be installed by this procedure are:
 
 Installed servers are not yet configured in NvChad. To perform server registration we need to perform additional configuration.
 
-First we create the `custom/plugins` folder in `~/.local/nvim/lua`. Note that if you are following along completely, this path may already be created:
+First we create the `custom/plugins` folder in `~/.local/nvim/lua`. Note that if you've been following the rest of this guide already, this path may already be created:
 
 ```bash
 mkdir -p ~/.local/nvim/lua/custom/plugins
@@ -86,7 +88,9 @@ We now move on to edit the two files to include support for *Language Servers*.
 
 #### init.lua
 
-Inserting the following code tells Packer to install the `neovim/nvim-lspconfig` plugin using the code contained in *nvim/lua/plugins/lspconfig.lua* and *nvim/lua/custom/plugins/lspconfig.lua* respectively. For configuration, through, we need `require` calls. Special attention should be paid to the sequence of the calls as they use the override technique, and reversing the order could result in inconsistencies in the configuration.
+Inserting the following code tells Packer to install the `neovim/nvim-lspconfig` plugin using the code contained in *nvim/lua/plugins/lspconfig.lua* and *nvim/lua/custom/plugins/lspconfig.lua* respectively. For configuration, through, we need `require` calls. 
+
+Special attention should be paid to the sequence of the calls as they use the override technique, and reversing the order could result in inconsistencies in the configuration.
 
 ```lua
 return {
@@ -161,7 +165,7 @@ Once we have finished the changes, to make them effective we need to tell *Packe
 
 A very important component is the `lua-language-server`, which completely changes the experience of writing Lua code, and consequently also the editing of NvChad configuration files that are written in this language. This is also the default LSP for *lua* 
 
-The executable is provided by the [SumnekoLua](https://github.com/sumneko/lua-language-server).
+The executable is provided by the [SumnekoLua](https://github.com/sumneko/lua-language-server) plugin.
 
 ![Lua Language Server](../images/lua-language-server.png)
 
@@ -193,4 +197,6 @@ Once installed it will spring into action whenever we open a `.yaml` file by mak
 
 The use of LSPs greatly aids the editing process, enriching it with advanced features. It also allows us to keep track of its consistency in real time. It is definitely a tool to have in our IDE.
 
-The introduction of *Mason*, although some manual intervention is still required to configure the environment, has made available an automated procedure for the installation of language servers. More importantly, it allows us to avoid the periodic checks for updates that would have been necessary in the case of manual installation. Once installed and configured, all our servers will be upgradeable from the *Mason GUI* with a simple press of the <kbd>U</kbd> key.
+The introduction of *Mason*, although some manual intervention is still required to configure the environment, has made available an automated procedure for the installation of language servers. More importantly, it allows us to avoid the periodic checks for updates that would have been necessary in the case of manual installation. 
+
+Once installed and configured, all our servers will be upgradeable from the *Mason GUI* with a simple press of the <kbd>U</kbd> key.

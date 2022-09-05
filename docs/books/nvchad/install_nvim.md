@@ -13,13 +13,13 @@ tags:
 
 Neovim is one of the best code editors due of its speed, ease of customization, and configuration.
 
-Neovim is a fork of the `Vim` editor. It was born in 2014, mainly due to the lack at the time of asynchronous support in Vim. Written in the Lua language with the goal of modularizing the code to make it more manageable, Neovim was designed with the modern user in mind. As the official website states, "Neovim is built for users who want the best parts of Vim, and more".
+Neovim is a fork of the `Vim` editor. It was born in 2014, mainly due to the lack at the time of asynchronous job support in Vim. Written in the Lua language with the goal of modularizing the code to make it more manageable, Neovim was designed with the modern user in mind. As the official website states, "Neovim is built for users who want the best parts of Vim, and more".
 
 The developers of Neovim chose Lua as it was perfect for embedding, using LuaJIT quickly, and with a simple, script-oriented syntax.
 
 From version 0.5 Neovim includes Treesitter (a parser generator tool) and supports Language Server Protocol (LSP). This reduces the number of plugins needed to achieve advanced editing functions. It improves the performance of operations such as code completion and linting.
 
-One of its strengths is its customization. All of its configuration is contained in a single file that can be distributed to the various installations through a version manager (Git or other) so that they are always synchronized.
+One of its strengths is its customization. All of its configuration is contained in a single file that can be distributed to various installations through version control systems (Git or other) so that they are always synchronized.
 
 ### Community of developers
 
@@ -41,13 +41,13 @@ As with Vim, Neovim requires a basic knowledge of its commands and options. You 
 
 Before moving on to the installation of NvChad, we need to make sure that we have an installation of Neovim available. If it is not already installed, you can install it from the EPEL repository. Keep in mind, though, that this version is older and does not provide everything that is needed for a fully functioning NvChad installation. For this reason, the author recommends that you skip the EPEL install procedure and use the "Installation from Precompiled Package" below. The EPEL version *is* an option however, so it is included here.
 
-To install the Neovim release provided by EPEL, we install if you have not already done so the repository.
+To install the Neovim release provided by EPEL, you'll need to install the repository itself if you have not done so already.
 
 ```bash
 dnf install epel-release
 ```
 
-And we type the following command to install the application:
+Type the following command to install the application:
 
 ```bash
 dnf install neovim
