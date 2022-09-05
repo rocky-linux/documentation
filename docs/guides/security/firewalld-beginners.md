@@ -154,7 +154,8 @@ Default zones include the following (I've taken this explanation from [DigitalOc
 > **block:** Similar to the above, but instead of simply dropping connections, incoming requests are rejected with an icmp-host-prohibited or icmp6-adm-prohibited message.
 
 > **public:** Represents public, untrusted networks. You don’t trust other computers but may allow selected incoming connections on a case-by-case basis.
-external: External networks in the event that you are using the firewall as your gateway. It is configured for NAT masquerading so that your internal network remains private but reachable.
+
+> **external:** External networks in the event that you are using the firewall as your gateway. It is configured for NAT masquerading so that your internal network remains private but reachable.
 
 > **internal:** The other side of the external zone, used for the internal portion of a gateway. The computers are fairly trustworthy and some additional services are available.
 
