@@ -1,0 +1,4 @@
+---
+nav:
+    - ... | init_lua*.md
+    - ... | lspconfig_lua*.md
