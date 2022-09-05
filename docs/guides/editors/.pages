@@ -1,5 +1,5 @@
 ---
 nav:
     - ... | micro*.md   
-    - ... | nvchad*.md   
+    - NvChad: https://docs.rockylinux.org/books/nvchad/
     - vi: https://docs.rockylinux.org/books/admin_guide/05-vi/
