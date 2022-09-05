@@ -1,7 +1,7 @@
 ---
 title: Servidor de base de datos MariaDB
 author: Steven Spencer
-contributors: Ezequiel Bruni, William Perron
+contributors: Ezequiel Bruni, William Perron, Pedro Garcia
 tested with: 8.5, 8.6, 9.0
 tags:
   - base de datos
