@@ -1,7 +1,7 @@
 ---
 title: DokuWiki
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Pedro Garcia
 tested with: 8.5, 8.6, 9.0
 tags:
   - wiki

@@ -1,6 +1,12 @@
+- - -
+title: Entorno de escritorio XFCE autor: Gerard Arthus colaboradores: Steven Spencer, Antoine Le Morvan, K.Prasad, Pedro Garcia etiquetas:
+  - xfce
+  - desktop
+- - -
+
 # Entorno de escritorio XFCE
 
-El entorno de escritorio XFCE fue creado como una bifurcación de Common Desktop Environmentn (CDE). Xfce encarna la filosofía tradicional de Unix en relación a la modularidad y usabilidad. XFCE se puede instalar en casi cualquier versión de Linux, incluyendo Rocky Linux.
+El entorno de escritorio XFCE fue creado como una bifurcación de Common Desktop Environment (CDE). Xfce encarna la filosofía tradicional de Unix en relación a la modularidad y usabilidad. XFCE se puede instalar en casi cualquier versión de Linux, incluyendo Rocky Linux.
 
 Este procedimiento está diseñado para que pueda trabajar con Rocky Linux utilizando XFCE.
 

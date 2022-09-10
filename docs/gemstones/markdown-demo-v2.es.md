@@ -1,14 +1,14 @@
 ---
 title: Demo simple de Markdown 2
 author: Einstein
-contributors: Dr. Ben Dover
+contributors: Dr. Ben Dover, Sweet Gypsy Rose, Pedro Garcia
 tested with: 8.5
 tags:
-  - muestra
+  - ejemplo
   - crowdin
 ---
 
-# Resumen
+# Visión general
 
 Como se puede decir al leer, este es un ejemplo bastante tonto, diseñado para ser utilizado para probar algunos problemas de traducción que tenemos. Sin embargo, ¡es divertido escribir!
 

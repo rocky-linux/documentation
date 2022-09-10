@@ -238,7 +238,7 @@ L'altra guida di LXD mostra come farlo con il firewall *iptables*, se è questo 
 firewall-cmd --zone=trusted --permanent --change-interface=lxdbr0
 ```
 
-!!! Warning "Attenzione"
+!!! Warning
 
     Se non si esegue quest'ultimo passaggio, i contenitori non saranno in grado di accedere correttamente a Internet o tra loro. Si tratta di un elemento pazzescamente essenziale, e conoscerlo vi risparmierà *anni* di frustrazione.
 

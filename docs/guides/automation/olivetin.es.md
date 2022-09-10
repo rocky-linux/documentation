@@ -56,7 +56,7 @@ sudo rpm -i OliveTin_2022-04-07_linux_amd64.rpm
 
 Ahora OliveTin puede ejecutarse como un servicio normal de `systemd`, pero no lo habilite todavía. Necesita configurar su archivo de configuración primero.
 
-!!! El comando leerá el flujo de entrada hasta que encuentre la palabra clave definida después de la redirección de entrada.
+!!! Note
 
     Después de algunas pruebas, hemos determinado que estas mismas instrucciones de instalación funcionarán perfectamente en un contenedor LXD de Rocky Linux. Para cualquiera que le guste Docker, hay imágenes preconstruidas disponibles.
 
