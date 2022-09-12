@@ -1,12 +1,16 @@
 ---
 titie: About the color of the string
 author: tianci li
-update: 2022-09-12
+contributors: Steven Spencer
+tested with: 8.6, 9.0
+tags:
+  - bash
+  - color
 ---
 
 # Introduction
 
-When we download bash scripts that have been written by others in our daily work, sometimes some key strings are marked with special colors, How can this effect be achieved by writing in a script?
+When we download bash scripts that have been written by others in our daily work, sometimes some key strings are marked with special colors. How can this effect be achieved by writing in a script?
 
 ## Font color
 
