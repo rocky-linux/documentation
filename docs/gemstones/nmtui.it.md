@@ -48,6 +48,10 @@ Quindi fare clic su \< OK \>, tornare all'interfaccia del terminale passo dopo p
 
 Tutte le distribuzioni RHEL, sia upstream che downstream, sono configurate allo stesso modo. Il file di configurazione delle informazioni di rete è memorizzato nella directory **/etc/sysconfig/network-scripts/** e una scheda di rete corrisponde a un file di configurazione. Il file di configurazione ha molti parametri, come mostrato nella tabella seguente. Avviso! I parametri devono essere scritti in maiuscolo.
 
+!!! warning "Attenzione"
+
+    Nelle distribuzioni RHEL 9.x è stata modificata la posizione della directory in cui è memorizzato il file di configurazione NIC, cioè **/etc/NetworkManager/system-connections/**. Vedi [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index) per ulteriori informazioni.
+
 ```bash
 shell > ls /etc/sysconfig/network-scripts/
 ifcfg-ens33
@@ -78,7 +82,7 @@ ifcfg-ens33
 | IPV6_FAILURE_FATAL    | Dopo che la configurazione IPV6 è fallita, se disabilitare o meno il dispositivo                                                                                                                                                  | IPV6_FAILURE_FATAL=no             |
 | IPV6_ADDR_GEN_MODE    | Genera il modello di indirizzo IPV6, i valori opzionali sono stable-privacy e eui64                                                                                                                                               | IPV6_ADDR_GEN_MODE=stable-privacy |
 
-Dopo che il file di configurazione è stato modificato con successo, ricordarsi di riavviare il servizio della scheda di rete `systemctl restart NetworkManager.service`
+`ip a` or `nmcli device show`
 
 ### Configurazione consigliata per IPV4
 
@@ -87,15 +91,11 @@ TYPE=Ethernet
 ONBOOT=yes
 DEVICE=ens33
 USERCTL=no
-IPV4_FAILURE_FATAL=no
 BROWSER_ONLY=no
-BOOTPROTO=static
-PEERDNS=no
-IPADDR=192.168.100.4
-PREFIX=24
-GATEWAY=192.168.100.1
-DNS1=8.8.8.8
-DNS2=114.114.114.114
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
 ```
 
 ### Configurazione consigliata per IPV6
