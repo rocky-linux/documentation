@@ -39,7 +39,7 @@ As with Vim, Neovim requires a basic knowledge of its commands and options. You 
 
 ### Installation from EPEL
 
-Before moving on to the installation of NvChad, we need to make sure that we have an installation of Neovim available. If it is not already installed, you can install it from the EPEL repository. The EPEL repository provides the minimum version required by NvChad (currently 0.7.2), in case you want to use a newer version we recommend installation from precompiled package or from source
+Before moving on to the installation of NvChad, we need to make sure that we have an installation of Neovim available. If it is not already installed, you can install it from the EPEL repository. The EPEL repository provides the minimum version required by NvChad (currently 0.7.2). In case you want to use a newer version, we recommend installation from precompiled package or from source
 
 To install the Neovim release provided by EPEL, you'll need to install the repository itself if you have not done so already.
 
@@ -55,7 +55,7 @@ dnf install neovim
 
 ### Installation from Precompiled Package
 
-Installation from the precompiled package allows the development versions of Neovim (0.8 and later) to be tested; installation of the two versions can coexist on the same system since the version from the precompiled package remains confined entirely to the user level.
+Installation from the precompiled package allows the development versions of Neovim (0.8 and later) to be tested. The two versions (installations) can coexist on the same system since the version from the precompiled package remains confined entirely to the user level.
 
 In order to use all the features of the new version, we still have to satisfy the dependencies required by Neovim, we have to provide _our_ `nvim` with the dependencies manually. The required packages can be installed with:
 
