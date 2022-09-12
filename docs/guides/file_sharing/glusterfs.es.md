@@ -1,7 +1,7 @@
 ---
 title: Cluster de almacenamiento con GlusterFS
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Pedro Garcia
 update: 11-Feb-2022
 ---
 

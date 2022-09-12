@@ -1,3 +1,12 @@
+---
+title: XFCE Desktop Environment
+author: Gerard Arthus
+contributors: Steven Spencer, Antoine Le Morvan, K.Prasad
+tags:
+  - xfce
+  - desktop
+---
+
 # XFCE Desktop Environment
 
 The XFCE desktop environment was created as a fork of the Common Desktop Environment (CDE). Xfce embodies the traditional Unix philosophy of Modularity and Re-usability. XFCE can be installed on almost any version of Linux, including Rocky Linux.

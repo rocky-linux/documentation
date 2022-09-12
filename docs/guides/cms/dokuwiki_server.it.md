@@ -2,7 +2,7 @@
 title: DokuWiki
 author: Steven Spencer, Franco Colussi
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5, 8.6
+tested with: 8.5, 8.6, 9.0
 tags:
   - wiki
   - documentation
@@ -30,7 +30,7 @@ DokuWiki è solo uno dei tanti wiki disponibili, anche se è piuttosto buono. Un
 
 ## Installazione delle Dipendenze
 
-La versione minima di PHP per DokuWiki è ora la 7.2, che è esattamente quella con cui Rocky Linux 8 viene fornito. Qui si specificano pacchetti che potrebbero essere già installati:
+La versione minima di PHP per DokuWiki è ora la 7.2, che è esattamente quella con cui Rocky Linux 8 viene fornito. Rocky Linux 9.0 è fornito della versione 8.0 di PHP, anch'essa pienamente supportata. Qui si specificano pacchetti che potrebbero essere già installati:
 
 `dnf install tar wget httpd php php-gd php-xml php-json php-mbstring`
 
@@ -109,7 +109,7 @@ Fare clic con il tasto destro del mouse sulla parte "(link diretto)" e copiare l
 
 Prima di decomprimere l'archivio, si può dare un'occhiata al contenuto usando `tar ztf` per vedere il contenuto dell'archivio:
 
-`tar ztv dokuwiki-stable.tgz`
+`tar ztvf dokuwiki-stable.tgz`
 
 Notate la directory datata che precede tutti gli altri file e che ha un aspetto simile a questo?
 
@@ -212,9 +212,19 @@ Oltre al criterio ACL appena creato, si consideri che:
 
 ### Il vostro firewall
 
-Prima di definire il tutto, è necessario pensare alla sicurezza. Innanzitutto, il server dovrebbe essere dotato di un firewall. Si presuppone che si stia usando _iptables_ e che si sia [abilitato _iptables_](../security/enabling_iptables_firewall.md), ma se si vuole usare invece _firewalld_, basta modificare le regole di _firewalld_ di conseguenza.
+!!! note "Nota"
 
-Invece di consentire a tutti l'accesso al wiki, assumeremo che chiunque si trovi sulla rete 10.0.0.0/8 sia sulla vostra rete locale privata e che queste siano le uniche persone che hanno bisogno di accedere al sito. Di seguito è riportato un semplice script per il firewall _iptables_.
+    Nessuno di questi esempi di firewall fa alcuna ipotesi su quali altri servizi sia necessario consentire sul server Dokuwiki. Queste regole sono basate sul nostro ambiente di test e si occupano **SOLO** di consentire l'accesso a un blocco ip di rete LOCALE. È necessario un numero maggiore di servizi consentiti per un server di produzione.
+
+Prima di definire il tutto, è necessario pensare alla sicurezza. Innanzitutto, il server dovrebbe essere dotato di un firewall. Si presume che si stia utilizzando uno dei firewall indicati di seguito.
+
+Invece di consentire a tutti l'accesso al wiki, assumeremo che chiunque si trovi sulla rete 10.0.0.0/8 sia sulla vostra rete locale privata e che queste siano le uniche persone che hanno bisogno di accedere al sito.
+
+#### `iptables` Firewall (deprecato)
+
+!!! important
+
+    Il processo del firewall `iptables` qui è stato deprecato in Rocky Linux 9. (ancora disponibile, ma probabilmente scomparirà nelle versioni future, forse già come Rocky Linux 9.1). Per questo motivo, si consiglia di passare alla procedura `firewalld` che segue se si sta eseguendo questa operazione su 9.0 o superiore.
 
 Si noti che potrebbero essere necessarie altre regole per altri servizi su questo server e che questo esempio prende in considerazione solo i servizi web.
 
@@ -251,6 +261,43 @@ Eseguire quindi lo script:
 `/etc/firewall.conf`
 
 Questo eseguirà le regole e le salverà in modo che vengano ricaricate al successivo avvio di _iptables_ o al boot.
+
+#### `firewalld` Firewall
+
+Se si usa `firewalld` come firewall (e a questo punto probabilmente si *dovrebbe*), si possono applicare gli stessi concetti usando la sintassi `firewall-cmd` di firewalld.
+
+Duplicheremo le regole `iptables` (sopra) con `regole firewalld`:
+
+```
+firewall-cmd --zone=trusted --add-source=10.0.0.0/8 --permanent
+firewall-cmd --zone=trusted --add-service=http --add-service=https --permanent
+firewall-cmd --reload
+```
+
+Una volta aggiunte le regole di cui sopra e ricaricato il servizio firewalld, elencare la zona per assicurarsi che ci sia tutto ciò che serve:
+
+```
+firewall-cmd --zone=trusted --list-all
+```
+
+che dovrebbe mostrarvi qualcosa del genere se tutto quanto sopra ha funzionato correttamente:
+
+```
+trusted (active)
+  target: ACCEPT
+  icmp-block-inversion: no
+  interfaces: 
+  sources: 10.0.0.0/8
+  services: http https
+  ports: 
+  protocols: 
+  forward: yes
+  masquerade: no
+  forward-ports: 
+  source-ports: 
+  icmp-blocks: 
+  rich rules:
+```
 
 ### SSL
 
