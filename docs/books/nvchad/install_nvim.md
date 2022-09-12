@@ -4,9 +4,9 @@ author: Franco Colussi
 contributors: Steven Spencer
 tested with: 8.6, 9.0
 tags:
-    - nvchad
-    - nvim
-    - coding
+  - nvchad
+  - nvim
+  - coding
 ---
 
 ## Introduction to Neovim
@@ -28,18 +28,18 @@ Although Vim and Neovim are both open-source projects and hosted on GitHub, ther
 ### Key Features
 
 - Performance: Very fast.
-- Customizable: Wide ecosystem of plugins and themes 
-- Syntax highlighting: Integrated with Treesitter and LSP, but requires some configuration 
+- Customizable: Wide ecosystem of plugins and themes
+- Syntax highlighting: Integrated with Treesitter and LSP, but requires some configuration
 
 As with Vim, Neovim requires a basic knowledge of its commands and options. You can get an overview of its features through the `:Tutor` command that invokes a file where you can read, and practice using it. Learning takes longer than a fully graphical IDE, but once you learn the shortcuts to the commands and the included features, you will proceed very smoothly in editing documents.
 
-![Nvim Tutor](images/neovim_tutor.png) 
+![Nvim Tutor](images/neovim_tutor.png)
 
 ## Neovim Installation
 
 ### Installation from EPEL
 
-Before moving on to the installation of NvChad, we need to make sure that we have an installation of Neovim available. If it is not already installed, you can install it from the EPEL repository. Keep in mind, though, that this version is older and does not provide everything that is needed for a fully functioning NvChad installation. For this reason, the author recommends that you skip the EPEL install procedure and use the "Installation from Precompiled Package" below. The EPEL version *is* an option however, so it is included here.
+Before moving on to the installation of NvChad, we need to make sure that we have an installation of Neovim available. If it is not already installed, you can install it from the EPEL repository. The EPEL repository provides the minimum version required by NvChad (currently 0.7.2), in case you want to use a newer version we recommend installation from precompiled package or from source
 
 To install the Neovim release provided by EPEL, you'll need to install the repository itself if you have not done so already.
 
@@ -55,9 +55,9 @@ dnf install neovim
 
 ### Installation from Precompiled Package
 
-In order to meet the minimum requirements of NvChad, it is suggested that you install the precompiled package provided by Neovim instead. This solves the problem of the version provided by EPEL (currently 0.7.0.1), which does not meet the minimum requirement.
+Installation from the precompiled package allows the development versions of Neovim (0.8 and later) to be tested; installation of the two versions can coexist on the same system since the version from the precompiled package remains confined entirely to the user level.
 
-In order to use all the features of the new version, we still have to satisfy the dependencies required by Neovim. If we decide to remove or not install the outdated version from EPEL at all, we have to provide _our_ `nvim` with the dependencies manually. The required packages can be installed with:
+In order to use all the features of the new version, we still have to satisfy the dependencies required by Neovim, we have to provide _our_ `nvim` with the dependencies manually. The required packages can be installed with:
 
 ```bash
 dnf install compat-lua-libs libtermkey libtree-sitter libvterm luajit luajit2.1-luv msgpack unibilium xsel
@@ -90,18 +90,9 @@ Now verify you have the correct version with the `nvim -v` command, which should
 
 ```txt
 nvim -v
-NVIM v0.7.2
-Build type: Release
+NVIM v0.8.0-dev-877-g35653e6bc
+Build type: RelWithDebInfo
 LuaJIT 2.1.0-beta3
-Compiled by runner@fv-az164-457
-
-Features: +acl +iconv +tui
-See ":help feature-compile"
-
-   system vimrc file: "$VIM/sysinit.vim"
-  fall-back for $VIM: "/share/nvim"
-
-Run :checkhealth for more info
 ```
 
 ### Installation from Source
@@ -114,9 +105,9 @@ We first install the packages required for compilation:
 dnf install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
 ```
 
-Once we have installed the necessary packages we need to download the Neovim sources that are distributed with *Git*. In our example we will have a folder already created for this purpose in `/home/user/lab/build`. Adapt your commands according to the structure you choose.
+Once we have installed the necessary packages we need to download the Neovim sources that are distributed with _Git_. In our example we will have a folder already created for this purpose in `/home/user/lab/build`. Adapt your commands according to the structure you choose.
 
-The Neovim clone, by default, is synchronized with the Neovim development branch (at the time of this writing,  version 8.0). To compile the stable version we will have to switch to the corresponding branch before cloning with:
+The Neovim clone, by default, is synchronized with the Neovim development branch (at the time of this writing, version 8.0). To compile the stable version we will have to switch to the corresponding branch before cloning with:
 
 ```bash
 cd ~/lab/build
@@ -129,7 +120,7 @@ And subsequently clone the repository:
 git clone https://github.com/neovim/neovim
 ```
 
-Once the operation is finished, we will have a folder named *neovim* containing all the necessary files. The next step is to configure and compile the sources. This is done with the `make` command in the *neovim* folder we created:
+Once the operation is finished, we will have a folder named _neovim_ containing all the necessary files. The next step is to configure and compile the sources. This is done with the `make` command in the _neovim_ folder we created:
 
 ```bash
 cd ~/lab/build/neovim/
@@ -138,7 +129,7 @@ make CMAKE_BUILD_TYPE=RelWithDebInfo
 
 We chose the `RelWithDebInfo` type because it provides not only optimizations, but also a useful debugging layer for later customizations. You could have also used the `Release` type if you want maximum performance.
 
-The process takes care of configuring and compiling the files that are to be put into our system. These files are saved in `neovim/build`. To install them, we will use the *make install* command:
+The process takes care of configuring and compiling the files that are to be put into our system. These files are saved in `neovim/build`. To install them, we will use the _make install_ command:
 
 ```bash
 make install
@@ -173,7 +164,7 @@ In case we need to remove the installation, for example to switch to another ver
 cmake --build build/ --target uninstall
 ```
 
-This command also requires superuser privileges or to be run as a *root* user.
+This command also requires superuser privileges or to be run as a _root_ user.
 
 Alternatively, you can use the manual method by removing the executable and libraries with:
 
