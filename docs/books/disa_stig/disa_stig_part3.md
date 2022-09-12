@@ -1,5 +1,5 @@
 ---
-title: DISA STIG On Rocky Linux 8 - Part 3
+title: DISA Apache Web server STIG 
 author: Scott Shinn
 contributors: Steven Spencer
 tested with: 8.6
@@ -10,7 +10,7 @@ tags:
   - enterprise
 ---
 
-# Introduction - DISA Apache Web server STIG
+# Introduction 
 
 In part 1 of this series we covered how to build our web server with the base RHEL8 DISA STIG applied, and in part 2 we learned how to test the STIG compliance with the OpenSCAP tool. Now we’re going to actually do something with the system, and build a simple web application and apply the DISA web server STIG: https://www.stigviewer.com/stig/web_server/
 
