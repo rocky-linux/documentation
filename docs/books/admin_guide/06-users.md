@@ -211,13 +211,13 @@ GroupP:x:516:patrick
 ```
 
 * 1: Name of the group.
-* 2: Password (`x` if defined in `/etc/gshadow`).
+* 2: The group password is identified by `x`. The group password is stored in `/etc/gshadow`.
 * 3: GID.
-* 4: Guest members (separated by commas, does not contain core members).
+* 4: Supplementary users in the group (excluding the unique primary user).
 
 !!! Note
 
-    Each line in the `/etc/group` file corresponds to a group. Users whose group is their primary group are not listed at this level. This membership information is in fact already provided by the `/etc/passwd` file...
+   Each line in the `/etc/group` file corresponds to a group. The primary user info is stored in `/etc/passwd`.
 
 ### `/etc/gshadow` file
 
