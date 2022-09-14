@@ -1,17 +1,11 @@
 ---
-
 title: Backup Solution - Rsnapshot
-
 author: Steven Spencer
-
 contributors: Ezequiel Bruni
-
-tested with: 8.5, 8.6
-
+tested with: 8.5, 8.6, 9.0
 tags:
   - backup
   - rsnapshot
-  
 ---
 
 # Backup Solution - Rsnapshot
@@ -33,7 +27,7 @@ _rsnapshot_ uses `rsync` and is written entirely in perl with no library depende
 
 This documentation covers the installation of _rsnapshot_ on Rocky Linux only.
 
-## Installing Rsnapshot
+## Rocky Linux 8.6 - Installing Rsnapshot
 
 All commands shown here are from the command-line on your server or workstation unless otherwise noted.
 
@@ -74,6 +68,85 @@ Total download size: 543 k
 Installed size: 1.2 M
 Is this ok [y/N]: y
 ```
+
+## Rocky Linux 9.0 - Installing Rsnapshot
+
+Since the release of Rocky Linux 9.0, the EPEL repository has not yet built _rsnapshot_ in RPM form. There are currently bugzilla entries referencing others who would like to have this happen, but as of now, that has not happened. The workaround is to install _rsnapshot_ from source. Because this is going to require build utilities, you'll need to install the 'Development Tools' group so that you have everything you need.
+
+### Installing Development Tools and Downloading the Source
+
+As stated, the first step here is to install the 'Development Tools' group:
+
+```
+dnf groupinstall 'Development Tools'
+```
+
+You also need a few other packages:
+
+```
+dnf install wget unzip rsync openssh-server
+```
+
+Next we will need to download the source files from the GitHub repository. You can do this multiple ways, but the easiest in this case is probably just to download the ZIP file from the repository.
+
+1. Go to https://github.com/rsnapshot/rsnapshot
+2. Click on the Green "Code" button on the right
+![Code](images/code.png)
+3. Right-click on the "Download ZIP" and copy the link location
+![Zip](images/zip.png)
+4. Use `wget` or `curl` to download the copied link. Example:
+```
+wget https://github.com/rsnapshot/rsnapshot/archive/refs/heads/master.zip
+```
+5. Unzip the `master.zip` file
+```
+unzip master.zip
+```
+
+### Building the Source
+
+Now that we've got everything on our machine, the next step is to build. When we unzipped the `master.zip` file, we ended up with an `rsnapshot-master` directory. We will need to change into this for our build procedure. Note that our build is using all of the package defaults, so if you want something else, you'll need to do a little investigation. Also, these steps are directly taken from the [GitHub Installation](https://github.com/rsnapshot/rsnapshot/blob/master/INSTALL.md) page:
+
+```
+cd rsnapshot-master
+```
+
+Run the `authogen.sh` script to generate the configure script:
+
+```
+./autogen.sh
+```
+
+!!! note
+
+    You may get several lines that look like this:
+
+    ```
+    fatal: not a git repository (or any of the parent directories): .git
+    ```
+
+    These are not fatal.
+
+Next, we need to run `configure` with the configuration directory set:
+
+```
+./configure --sysconfdir=/etc
+```
+
+Finally, run `make install`:
+
+```
+sudo make install
+```
+
+During all of this, the `rsnapshot.conf` file will be created as `rsnapshot.conf.default`. We need to copy this over to `rsnapshot.conf` and then edit it to fit what we need on our system.
+
+```
+sudo cp /etc/rsnapshot.conf.default /etc/rsnapshot.conf
+```
+
+This covers copying the configuration file over. The section below on "Configuring rsnapshot" will cover the configuration for _rsnapshot_.
+
 ## Mounting A Drive or Filesystem For Backup
 
 In this step, we show how to mount a hard drive, such as an external USB hard drive, that will be used to back up your system. This particular step is only necessary if you are backing up a single machine or server, as seen in our first example below.
