@@ -27,125 +27,133 @@ _rsnapshot_ uses `rsync` and is written entirely in perl with no library depende
 
 This documentation covers the installation of _rsnapshot_ on Rocky Linux only.
 
-## Rocky Linux 8.6 - Installing Rsnapshot
+??? note "Rocky Linux 8.6 - Installing Rsnapshot"
 
-All commands shown here are from the command-line on your server or workstation unless otherwise noted.
+    ## Rocky Linux 8.6 - Installing Rsnapshot
 
-### Installing The EPEL repository
+    All commands shown here are from the command-line on your server or workstation unless otherwise noted.
 
-We need the EPEL software repository from Fedora to install _rsnapshot_. To install the repository, just use this command:
+    ### Installing The EPEL repository
 
-`sudo dnf install epel-release`
-
-The repository should now be active.
-
-### Install the Rsnapshot Package
-
-Next, install _rsnapshot_ itself:
-
-`sudo dnf install rsnapshot`
-
-If there are any missing dependencies, those will show up and you simply need to answer the prompt to continue. For example:
-
-```
-dnf install rsnapshot
-Last metadata expiration check: 0:00:16 ago on Mon Feb 22 00:12:45 2021.
-Dependencies resolved.
-========================================================================================================================================
- Package                           Architecture                 Version                              Repository                    Size
-========================================================================================================================================
-Installing:
- rsnapshot                         noarch                       1.4.3-1.el8                          epel                         121 k
-Installing dependencies:
- perl-Lchown                       x86_64                       1.01-14.el8                          epel                          18 k
- rsync                             x86_64                       3.1.3-9.el8                          baseos                       404 k
-
-Transaction Summary
-========================================================================================================================================
-Install  3 Packages
-
-Total download size: 543 k
-Installed size: 1.2 M
-Is this ok [y/N]: y
-```
-
-## Rocky Linux 9.0 - Installing Rsnapshot
-
-Since the release of Rocky Linux 9.0, the EPEL repository has not yet built _rsnapshot_ in RPM form. There are currently bugzilla entries referencing others who would like to have this happen, but as of now, that has not happened. The workaround is to install _rsnapshot_ from source. Because this is going to require build utilities, you'll need to install the 'Development Tools' group so that you have everything you need.
-
-### Installing Development Tools and Downloading the Source
-
-As stated, the first step here is to install the 'Development Tools' group:
-
-```
-dnf groupinstall 'Development Tools'
-```
-
-You also need a few other packages:
-
-```
-dnf install wget unzip rsync openssh-server
-```
-
-Next we will need to download the source files from the GitHub repository. You can do this multiple ways, but the easiest in this case is probably just to download the ZIP file from the repository.
-
-1. Go to https://github.com/rsnapshot/rsnapshot
-2. Click on the Green "Code" button on the right
-![Code](images/code.png)
-3. Right-click on the "Download ZIP" and copy the link location
-![Zip](images/zip.png)
-4. Use `wget` or `curl` to download the copied link. Example:
-```
-wget https://github.com/rsnapshot/rsnapshot/archive/refs/heads/master.zip
-```
-5. Unzip the `master.zip` file
-```
-unzip master.zip
-```
-
-### Building the Source
-
-Now that we've got everything on our machine, the next step is to build. When we unzipped the `master.zip` file, we ended up with an `rsnapshot-master` directory. We will need to change into this for our build procedure. Note that our build is using all of the package defaults, so if you want something else, you'll need to do a little investigation. Also, these steps are directly taken from the [GitHub Installation](https://github.com/rsnapshot/rsnapshot/blob/master/INSTALL.md) page:
-
-```
-cd rsnapshot-master
-```
-
-Run the `authogen.sh` script to generate the configure script:
-
-```
-./autogen.sh
-```
-
-!!! note
-
-    You may get several lines that look like this:
+    We need the EPEL software repository from Fedora to install _rsnapshot_. To install the repository, just use this command:
 
     ```
-    fatal: not a git repository (or any of the parent directories): .git
+    sudo dnf install epel-release
     ```
 
-    These are not fatal.
+    The repository should now be active.
 
-Next, we need to run `configure` with the configuration directory set:
+    ### Install the Rsnapshot Package
 
-```
-./configure --sysconfdir=/etc
-```
+    Next, install _rsnapshot_ itself:
 
-Finally, run `make install`:
+    ``` 
+    sudo dnf install rsnapshot
+    ```
 
-```
-sudo make install
-```
+    If there are any missing dependencies, those will show up and you simply need to answer the prompt to continue. For example:
 
-During all of this, the `rsnapshot.conf` file will be created as `rsnapshot.conf.default`. We need to copy this over to `rsnapshot.conf` and then edit it to fit what we need on our system.
+    ```
+    dnf install rsnapshot
+    Last metadata expiration check: 0:00:16 ago on Mon Feb 22 00:12:45 2021.
+    Dependencies resolved.
+    ========================================================================================================================================
+    Package                           Architecture                 Version                              Repository                    Size
+    ========================================================================================================================================
+    Installing:
+    rsnapshot                         noarch                       1.4.3-1.el8                          epel                         121 k
+    Installing dependencies:
+    perl-Lchown                       x86_64                       1.01-14.el8                          epel                          18 k
+    rsync                             x86_64                       3.1.3-9.el8                          baseos                       404 k
 
-```
-sudo cp /etc/rsnapshot.conf.default /etc/rsnapshot.conf
-```
+    Transaction Summary
+    ========================================================================================================================================
+    Install  3 Packages
 
-This covers copying the configuration file over. The section below on "Configuring rsnapshot" will cover the configuration for _rsnapshot_.
+    Total download size: 543 k
+    Installed size: 1.2 M
+    Is this ok [y/N]: y
+    ```
+
+??? note "Rocky Linux 9.0 - Installing Rsnapshot"
+
+    ## Rocky Linux 9.0 - Installing Rsnapshot
+
+    Since the release of Rocky Linux 9.0, the EPEL repository has not yet built _rsnapshot_ in RPM form. There are currently bugzilla entries referencing others who would like to have this happen, but as of now, that has not happened. The workaround is to install _rsnapshot_ from source. Because this is going to require build utilities, you'll need to install the 'Development Tools' group so that you have everything you need.
+
+    ### Installing Development Tools and Downloading the Source
+
+    As stated, the first step here is to install the 'Development Tools' group:
+
+    ```
+    dnf groupinstall 'Development Tools'
+    ```
+
+    You also need a few other packages:
+
+    ```
+    dnf install wget unzip rsync openssh-server
+    ```
+
+    Next we will need to download the source files from the GitHub repository. You can do this multiple ways, but the easiest in this case is probably just to download the ZIP file from the repository.
+
+    1. Go to https://github.com/rsnapshot/rsnapshot
+    2. Click on the Green "Code" button on the right
+    ![Code](images/code.png)
+    3. Right-click on the "Download ZIP" and copy the link location
+    ![Zip](images/zip.png)
+    4. Use `wget` or `curl` to download the copied link. Example:
+    ```
+    wget https://github.com/rsnapshot/rsnapshot/archive/refs/heads/master.zip
+    ```
+    5. Unzip the `master.zip` file
+    ```
+    unzip master.zip
+    ```
+
+    ### Building the Source
+
+    Now that we've got everything on our machine, the next step is to build. When we unzipped the `master.zip` file, we ended up with an `rsnapshot-master` directory. We will need to change into this for our build procedure. Note that our build is using all of the package defaults, so if you want something else, you'll need to do a little investigation. Also, these steps are directly taken from the [GitHub Installation](https://github.com/rsnapshot/rsnapshot/blob/master/INSTALL.md) page:
+
+    ```
+    cd rsnapshot-master
+    ```
+
+    Run the `authogen.sh` script to generate the configure script:
+
+    ```
+    ./autogen.sh
+    ```
+
+    !!! hint
+
+        You may get several lines that look like this:
+
+        ```
+        fatal: not a git repository (or any of the parent directories): .git
+        ```
+
+        These are not fatal.
+
+    Next, we need to run `configure` with the configuration directory set:
+
+    ```
+    ./configure --sysconfdir=/etc
+    ```
+
+    Finally, run `make install`:
+
+    ```
+    sudo make install
+    ```
+
+    During all of this, the `rsnapshot.conf` file will be created as `rsnapshot.conf.default`. We need to copy this over to `rsnapshot.conf` and then edit it to fit what we need on our system.
+
+    ```
+    sudo cp /etc/rsnapshot.conf.default /etc/rsnapshot.conf
+    ```
+
+    This covers copying the configuration file over. The section below on "Configuring rsnapshot" will cover the configuration for _rsnapshot_.
 
 ## Mounting A Drive or Filesystem For Backup
 
