@@ -296,11 +296,32 @@ At creation, the account has no password and is locked.
 
 A password must be assigned to unlock the account.
 
+When the `useradd` command does not have any options, it appears:
+
+* Create a home directory with the same name. 
+* Create a primary group with the same name. 
+* The default shell is bash
+* The user's `uid` and primary group `gid` are automatically recorded from 1000, and usually uid and gid are the same.
+
+```bash
+Shell > useradd test1
+
+Shell > tail -n 1 /etc/passwd
+test1:x:1000:1000::/home/test1:/bin/bash
+
+Shell > tail -n 1 /etc/shadow
+test1:!!:19253:0:99999:7:::
+
+Shell > tail -n 1 /etc/group ; tail -n 1 /etc/gshadow
+test1:x:1000:
+test1:!::
+```
+
 Account naming rules:
 
 * No accents, capital letters or special characters;
 * Different from the name of an existing group or system file;
-* Set the options `-u`, `-g`, `-d` and `-s` at creation.
+* Optional: set the options `-u`, `-g`, `-d` and `-s` at creation.
 
 !!! Warning
 
