@@ -231,12 +231,12 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
 * 1: Name of the group.
 * 2: Encrypted password.
-* 3: Administrator of the group.
-* 4: Guest members (separated by commas, does not contain core members).
+* 3: Name of the group administrator.
+* 4: Supplementary users in the group (excluding the unique primary user).
 
 !!! Warning
 
-    For each line in the `/etc/group` file there must be a corresponding line in the `/etc/gshadow` file.
+    The name of the group in **/etc/group** and **/etc/gshadow** must correspond one by one, that is, each line in the **/etc/group** file must have a corresponding line in the **/etc/gshadow** file.
 
 A `!` in the password indicates that it is locked.
 Thus no user can use the password to access the group (since group members do not need it).
