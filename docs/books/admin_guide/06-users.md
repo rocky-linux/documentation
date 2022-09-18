@@ -283,12 +283,14 @@ $ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 | Option        |	Description                                                        |
 | --------------| ------------------------------------------------------------------ |
 |`-u UID`       |	`UID` of the user to create.                                       |
-|`-g GID`       |	`GID` of the primary group.                                           |
+|`-g GID`       |	`GID` of the primary group. The `GID` here can also be a `group name`.                                          |
+|`-G GID1,[GID2]...`       |	`GID` of the primary group. The `GID` here can also be a `group name`. Multiple supplementary groups can be specified, separated by commas. |
 |`-d directory` |	Home directory.                                                    |
 |`-s shell`     | Shell.                                                             |
-|`-c`           | Add a comment.                                                     |
-|`-U`           | Adds the user to a group with the same name created simultaneously.|
-|`-M`           | Does not create the connection directory.                          |
+|`-c COMMENT`           | Add a comment.                                                     |
+|`-U`           | Adds the user to a group with the same name created simultaneously. If this option is not written by default, a group with the same name will be created when the user is created. |
+|`-M`           | Do not create the user's home directory.                          |
+|`-r`           | Create a system account. |
 
 At creation, the account has no password and is locked.
 
@@ -307,8 +309,6 @@ Account naming rules:
 The last directory is created by the `useradd` command, which takes the opportunity to copy the files from `/etc/skel` into it.
 
 **A user can belong to several groups in addition to their primary group.**
-
-For supplementary groups, the `-G` option must be used.
 
 Example:
 
