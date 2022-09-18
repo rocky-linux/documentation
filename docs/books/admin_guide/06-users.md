@@ -247,8 +247,8 @@ Thus no user can use the password to access the group (since group members do no
 
 A user is defined as follows in the `/etc/passwd` file:
 
-* 1: Login;
-* 2: Password;
+* 1: Login name;
+* 2: Password identification, `x` indicates that the user has a password;
 * 3: UID;
 * 4: GID of the primary group;
 * 5: Comments;
@@ -257,9 +257,9 @@ A user is defined as follows in the `/etc/passwd` file:
 
 There are three types of users:
 
-* **root**: the system administrator ;
-* **system users**:	Used by the system to manage application access rights ;
-* **regular user**:	Other account to log in to the system.
+* **root(uid=0)**: the system administrator ;
+* **system users(uid is one of the 201~999)**:	Used by the system to manage application access rights ;
+* **regular user(uid>=1000)**:	Other account to log in to the system.
 
 Modified files, added lines:
 
