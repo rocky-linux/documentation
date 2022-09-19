@@ -231,12 +231,12 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
 * 1: Name of the group.
 * 2: Encrypted password.
-* 3: Administrator of the group.
-* 4: Guest members (separated by commas, does not contain core members).
+* 3: Name of the group administrator.
+* 4: Supplementary users in the group (excluding the unique primary user).
 
 !!! Warning
 
-    For each line in the `/etc/group` file there must be a corresponding line in the `/etc/gshadow` file.
+    The name of the group in **/etc/group** and **/etc/gshadow** must correspond one by one, that is, each line in the **/etc/group** file must have a corresponding line in the **/etc/gshadow** file.
 
 A `!` in the password indicates that it is locked.
 Thus no user can use the password to access the group (since group members do not need it).
@@ -247,8 +247,8 @@ Thus no user can use the password to access the group (since group members do no
 
 A user is defined as follows in the `/etc/passwd` file:
 
-* 1: Login;
-* 2: Password;
+* 1: Login name;
+* 2: Password identification, `x` indicates that the user has a password;
 * 3: UID;
 * 4: GID of the primary group;
 * 5: Comments;
@@ -257,9 +257,9 @@ A user is defined as follows in the `/etc/passwd` file:
 
 There are three types of users:
 
-* **root**: the system administrator ;
-* **system users**:	Used by the system to manage application access rights ;
-* **regular user**:	Other account to log in to the system.
+* **root(uid=0)**: the system administrator ;
+* **system users(uid is one of the 201~999)**:	Used by the system to manage application access rights ;
+* **regular user(uid>=1000)**:	Other account to log in to the system.
 
 Modified files, added lines:
 
@@ -283,22 +283,45 @@ $ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 | Option        |	Description                                                        |
 | --------------| ------------------------------------------------------------------ |
 |`-u UID`       |	`UID` of the user to create.                                       |
-|`-g GID`       |	`GID` of the primary group.                                           |
+|`-g GID`       |	`GID` of the primary group. The `GID` here can also be a `group name`.                                          |
+|`-G GID1,[GID2]...`       |	`GID` of the primary group. The `GID` here can also be a `group name`. Multiple supplementary groups can be specified, separated by commas. |
 |`-d directory` |	Home directory.                                                    |
 |`-s shell`     | Shell.                                                             |
-|`-c`           | Add a comment.                                                     |
-|`-U`           | Adds the user to a group with the same name created simultaneously.|
-|`-M`           | Does not create the connection directory.                          |
+|`-c COMMENT`           | Add a comment.                                                     |
+|`-U`           | Adds the user to a group with the same name created simultaneously. If this option is not written by default, a group with the same name will be created when the user is created. |
+|`-M`           | Do not create the user's home directory.                          |
+|`-r`           | Create a system account. |
 
 At creation, the account has no password and is locked.
 
 A password must be assigned to unlock the account.
 
+When the `useradd` command does not have any options, it appears:
+
+* Create a home directory with the same name. 
+* Create a primary group with the same name. 
+* The default shell is bash
+* The user's `uid` and primary group `gid` are automatically recorded from 1000, and usually uid and gid are the same.
+
+```bash
+Shell > useradd test1
+
+Shell > tail -n 1 /etc/passwd
+test1:x:1000:1000::/home/test1:/bin/bash
+
+Shell > tail -n 1 /etc/shadow
+test1:!!:19253:0:99999:7:::
+
+Shell > tail -n 1 /etc/group ; tail -n 1 /etc/gshadow
+test1:x:1000:
+test1:!::
+```
+
 Account naming rules:
 
 * No accents, capital letters or special characters;
 * Different from the name of an existing group or system file;
-* Set the options `-u`, `-g`, `-d` and `-s` at creation.
+* Optional: set the options `-u`, `-g`, `-d` and `-s` at creation.
 
 !!! Warning
 
@@ -307,8 +330,6 @@ Account naming rules:
 The last directory is created by the `useradd` command, which takes the opportunity to copy the files from `/etc/skel` into it.
 
 **A user can belong to several groups in addition to their primary group.**
-
-For supplementary groups, the `-G` option must be used.
 
 Example:
 
