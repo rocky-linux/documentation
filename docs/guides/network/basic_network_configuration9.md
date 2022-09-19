@@ -1,19 +1,17 @@
 ---
-title: Networking Configuration
+title: Networking Configuration - Rocky Linux 9.0
 author: unknown
 contributors: Steven Spencer, Hayden Young
-tested with: 8.5, 8.6
+tested with: 9.0 
 tags:
   - networking
   - configuration
   - network
 ---
 
-# Networking configuration
+# Networking Configuration - Rocky Linux 9.0
 
-!!! attention "Document tested for Rocky Linux 8.6"
-
-    Please note that due to changes in the network stack upstream, many parts of this document will **not** work or be accurate for Rocky Linux 9.0. We will be working on a version of this document for Rocky Linux 9.0, or will modify this document for 9.0 as soon as possible. 
+A lot has changed with network configuration as of Rocky Linux 9.0. One of the major changes is the move from Network-Scripts (still available to install-but effectively deprecated) to the use of Network Manager and key files, rather than `ifcfg` based files. `NetworManager` as of 9.0, prioritizes `keyfiles` over the previous `ifcfg` files. Since this is now the default, the act of configuring the network should now take the default as the proper way of doing things, given that other changes over the years have meant the eventual deprecation and removal of older utilities. This guide will attempt to walk you through the use of Network Manager and the latest changes within Rocky Linux 9.0. 
 
 ## Prerequisites
 
@@ -21,15 +19,9 @@ tags:
 * Elevated or administrative privileges on the system (For example root, `sudo` and so on)
 * Optional: familiarity with networking concepts
 
-## Introduction
-
-Nowadays a computer without network connectivity is almost useless by itself. Whether you need to update the packages on a server or simply browse external Websites from your laptop - you will need network access!
-
-This guide aims to provide Rocky Linux users the basic knowledge on how to setup network connectivity on a Rocky Linux system.
-
 ## Using NetworkManager service
 
-At the user level, the networking stack is managed by *NetworkManager*. This tool runs as a service, and you can check its state with the following command:
+At the user level, the networking stack is managed by `NetworkManager`. This tool runs as a service, and you can check its state with the following command:
 
 ```bash
 systemctl status NetworkManager
@@ -37,30 +29,56 @@ systemctl status NetworkManager
 
 ### Configuration files
 
-NetworkManager simply applies a configuration read from the files found in `/etc/sysconfig/network-scripts/ifcfg-<IFACE_NAME>`.
-Each network interface has its configuration file. The following shows an example for the default configuration of a server:
+As noted at the beginning, the configuration files by default are now key files. You can see how `NetworkManager` prioritizes these files by running the following command:
 
-```bash
-TYPE=Ethernet
-PROXY_METHOD=none
-BROWSER_ONLY=no
-BOOTPROTO=none
-DEFROUTE=yes
-IPV4_FAILURE_FATAL=no
-IPV6INIT=no
-NAME=enp1s0
-UUID=74c5ccee-c1f4-4f45-883f-fc4f765a8477
-DEVICE=enp1s0
-ONBOOT=yes
-IPADDR=10.0.0.10
-PREFIX=24
-GATEWAY=10.0.0.1
-DNS1=10.0.0.1
-DNS2=1.1.1.1
-IPV6_DISABLED=yes
+```
+NetworkManager --print-config
 ```
 
-The interface's name is **enp1s0** so this file's name will be `/etc/sysconfig/network-scripts/ifcfg-enp1s0`.
+This gives you output that looks like this:
+
+```
+[main]
+# plugins=keyfile,ifcfg-rh
+# rc-manager=auto
+# auth-polkit=true
+# iwd-config-path=
+dhcp=dhclient
+configure-and-quit=no
+
+[logging]
+# backend=journal
+# audit=false
+
+[device]
+# wifi.backend=wpa_supplicant
+
+# no-auto-default file "/var/lib/NetworkManager/no-auto-default.state"
+```
+
+Note at the top of the configuration file the reference to `keyfile` followed by `ifcfg-rh`. This means that `keyfile` is the default. Any time you run any of the `NetworkManager` tools to configure an interface, it will automatically build or update key files. The primary (but not the only) utility used for configuring a network interface is the `nmcli` command. Here, the `nmcli` is used to show the setup of a particular interface: 
+
+```
+device show enp0s3
+GENERAL.DEVICE:                         enp0s3
+GENERAL.TYPE:                           ethernet
+GENERAL.HWADDR:                         08:00:27:BA:CE:88
+GENERAL.MTU:                            1500
+GENERAL.STATE:                          100 (connected)
+GENERAL.CONNECTION:                     enp0s3
+GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/1
+WIRED-PROPERTIES.CARRIER:               on
+IP4.ADDRESS[1]:                         192.168.1.151/24
+IP4.GATEWAY:                            192.168.1.1
+IP4.ROUTE[1]:                           dst = 192.168.1.0/24, nh = 0.0.0.0, mt = 100
+IP4.ROUTE[2]:                           dst = 0.0.0.0/0, nh = 192.168.1.1, mt = 100
+IP4.DNS[1]:                             8.8.8.8
+IP4.DNS[2]:                             8.8.4.4
+IP4.DNS[3]:                             192.168.1.1
+IP6.ADDRESS[1]:                         fe80::a00:27ff:feba:ce88/64
+IP6.GATEWAY:                            --
+IP6.ROUTE[1]:                           dst = fe80::/64, nh = ::, mt = 1024
+```
 
 !!! hint "**Tips:**"  
 
