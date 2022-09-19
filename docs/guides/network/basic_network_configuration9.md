@@ -56,10 +56,16 @@ configure-and-quit=no
 # no-auto-default file "/var/lib/NetworkManager/no-auto-default.state"
 ```
 
-Note at the top of the configuration file the reference to `keyfile` followed by `ifcfg-rh`. This means that `keyfile` is the default. Any time you run any of the `NetworkManager` tools to configure an interface, it will automatically build or update key files. The primary (but not the only) utility used for configuring a network interface is the `nmcli` command. Here, the `nmcli` is used to show the setup of a particular interface: 
+Note at the top of the configuration file the reference to `keyfile` followed by `ifcfg-rh`. This means that `keyfile` is the default. Any time you run any of the `NetworkManager` tools to configure an interface (example: `nmcli` or `nmtui`), it will automatically build or update key files.
+
+!!! Hint "Configuration Storage Location"
+
+    In Rocky Linux 8.6, the storage location for network configuration was in `/etc/sysconfig/Network-Scripts/`. With Rocky Linux 9.0, the new default storage location for the key files is in `/etc/NetworkManager/system-connections`. 
+
+The primary (but not the only) utility used for configuring a network interface is the `nmtui` command. This can also be done with the `nmcli` command, but is much less intuitive. We can show the interface as it is currently configured using `nmcli` with: 
 
 ```
-device show enp0s3
+nmcli device show enp0s3
 GENERAL.DEVICE:                         enp0s3
 GENERAL.TYPE:                           ethernet
 GENERAL.HWADDR:                         08:00:27:BA:CE:88
@@ -80,19 +86,39 @@ IP6.GATEWAY:                            --
 IP6.ROUTE[1]:                           dst = fe80::/64, nh = ::, mt = 1024
 ```
 
+
 !!! hint "**Tips:**"  
 
     There are a few ways or mechanisms by which systems can be assigned their IP configuration information. The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
 
     The static IP configuration scheme is very popular on server class systems or networks.
 
-    The dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP).
-
-Very often, home/office users don't have to worry or know about DHCP. This is because the somebody or something else is automagically taking care of that in the background. The only thing that the end user needs to do is to physically or wirelessly connect to the right network (and of course make sure that their systems are powered on)!
+    The dynamic IP approach is popular on home and office networks or workstation and desktop class systems in a business environment.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP). On a home network, and even on most business networks, this service is provided by a DHCP Server configured for the purpose. This can be a separate server, or can be part of a router configuration.
 
 #### IP Address
 
-In the previous `/etc/sysconfig/network-scripts/ifcfg-enp1s0` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. This means that the system being configured is set to a static IP address scheme.
+In the previous section, the displayed configuration for the interface `enp0s3` is generated from the `.ini` file  `/etc/NetworkManager/system-connections/enp0s3.nmconnection`. This shows that the IP4.ADDRESS[1] has been statically configured, rather than dynamically configured via DHCP. If we want to switch this interface back to to a dynamically allocated address, the easiest way is to use the `nmtui` command. 
+
+1. First, run the `nmtui` command at the command-line which should show you the following
+![nmtui](images/nmtui_initial.png)
+2. It's already on the selection we need "Edit a connection" so hit the <kbd>TAB</kbd> key so that "OK" is highlighted and hit <kbd>ENTER</kbd>
+3. This will bring up a screen showing the Ethernet connections on the machine and allow you to choose one. In our case, there is *ONLY* one, so it is already highlighted, we simply need to hit the <kbd>TAB</kbd> key until "Edit" is highlighted and then hit <kbd>ENTER</kbd>
+![nmtui_edit](images/nmtui_edit.png)
+4. Once we've done this, we will be to the screen that shows our current configuration. What we need to do is switch from "Manual" to "Automatic" so hit the <kbd>TAB</kbd> key several times until you get to where "Manual" is highlighted and then hit <kbd>ENTER</kbd>.
+![nmtui_manaual](images/nmtui_manual.png)
+5. Arrow up until "Automatic" is highlighted and then hit <kbd>ENTER</kbd>
+![nmtui_automatic](images/nmtui_automatic.png)
+6. Once we have switched the interface over to "Automatic" we need to remove the statically assigned IP so hit the <kbd>TAB</kbd> key unti lthe "Remove" is highlighted next to the IP address and hit <kbd>ENTER</kbd>
+![nmtui_remove](images/nmtui_remove.png)
+7. Finally, hit the <kbd>TAB</kbd> key several times until you get to the bottom of the `nmtui` screen and the "OK" is highlighted and hit <kbd>ENTER</kbd>
+
+
+
+To verify that it worked, go ahead and check using either the `ip addr` command, or the the `nmcli device show enp0s3` command that we used earlier.
+
+```
+ip addr
+```
 
 If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all of that information will be automaically obtained from any available DHCP server.
 
