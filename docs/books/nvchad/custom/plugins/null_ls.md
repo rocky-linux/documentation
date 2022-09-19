@@ -1,5 +1,5 @@
 ---
-title: Null-ls
+title: Linter & Formatter
 author: Franco Colussi
 contributors: Steven Spencer
 tested with: 8.6, 9.0
