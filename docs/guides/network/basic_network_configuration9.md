@@ -90,7 +90,8 @@ IP6.ROUTE[1]:                           dst = fe80::/64, nh = ::, mt = 1024
 
 !!! hint "**Tips:**"  
 
-    There are a few ways or mechanisms by which systems can be assigned their IP configuration information. The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
+    There are a few ways or mechanisms by which systems can be assigned their IP configuration information.
+    The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
 
     The static IP configuration scheme is very popular on server class systems or networks.
 
