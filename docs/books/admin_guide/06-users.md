@@ -284,7 +284,7 @@ $ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 | --------------| ------------------------------------------------------------------ |
 |`-u UID`       |	`UID` of the user to create.                                       |
 |`-g GID`       |	`GID` of the primary group. The `GID` here can also be a `group name`.                                          |
-|`-G GID1,[GID2]...`       |	`GID` of the primary group. The `GID` here can also be a `group name`. Multiple supplementary groups can be specified, separated by commas. |
+|`-G GID1,[GID2]...`       |	`GID` of the supplementary groups. The `GID` here can also be a `group name`. Multiple supplementary groups can be specified, separated by commas. |
 |`-d directory` |	Home directory.                                                    |
 |`-s shell`     | Shell.                                                             |
 |`-c COMMENT`           | Add a comment.                                                     |
@@ -298,9 +298,9 @@ A password must be assigned to unlock the account.
 
 When the `useradd` command does not have any options, it appears:
 
-* Create a home directory with the same name. 
-* Create a primary group with the same name. 
-* The default shell is bash
+* Create a home directory with the same name; 
+* Create a primary group with the same name;
+* The default shell is bash;
 * The user's `uid` and primary group `gid` are automatically recorded from 1000, and usually uid and gid are the same.
 
 ```bash
