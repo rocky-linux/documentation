@@ -117,7 +117,7 @@ In the previous section, the displayed configuration for the interface `enp0s3` 
     
     ![nmtui_automatic](images/nmtui_automatic.png)
 
-6. Once we have switched the interface over to "Automatic" we need to remove the statically assigned IP so hit the <kbd>TAB</kbd> key unti lthe "Remove" is highlighted next to the IP address and hit <kbd>ENTER</kbd>.
+6. Once we have switched the interface over to "Automatic" we need to remove the statically assigned IP so hit the <kbd>TAB</kbd> key until the "Remove" is highlighted next to the IP address and hit <kbd>ENTER</kbd>.
 
     ![nmtui_remove](images/nmtui_remove.png)
 
