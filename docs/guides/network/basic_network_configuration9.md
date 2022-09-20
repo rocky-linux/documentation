@@ -97,7 +97,7 @@ IP6.ROUTE[1]:                           dst = fe80::/64, nh = ::, mt = 1024
 
 ## IP Address
 
-In the previous section, the displayed configuration for the interface `enp0s3` is generated from the `.ini` file  `/etc/NetworkManager/system-connections/enp0s3.nmconnection`. This shows that the IP4.ADDRESS[1] has been statically configured, rather than dynamically configured via DHCP. If we want to switch this interface back to to a dynamically allocated address, the easiest way is to use the `nmtui` command. 
+In the previous section, the displayed configuration for the interface `enp0s3` is generated from the `.ini` file  `/etc/NetworkManager/system-connections/enp0s3.nmconnection`. This shows that the IP4.ADDRESS[1] has been statically configured, rather than dynamically configured via DHCP. If we want to switch this interface back to a dynamically allocated address, the easiest way is to use the `nmtui` command. 
 
 1. First, run the `nmtui` command at the command-line which should show you the following
     
