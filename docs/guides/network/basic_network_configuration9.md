@@ -131,7 +131,7 @@ nmcli con down enp0s3 && nmcli con up enp0s3
 
 Think of this as the equivalent to the old `ifdown enp0s3 && ifup enp0s3` used in older versions of the OS.
 
-To verify that it worked, go ahead and check using either the `ip addr` command, or the the `nmcli device show enp0s3` command that we used earlier.
+To verify that it worked, go ahead and check using either the `ip addr` command, or the `nmcli device show enp0s3` command that we used earlier.
 
 ```
 ip addr
