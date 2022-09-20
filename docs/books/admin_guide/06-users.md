@@ -298,9 +298,9 @@ A password must be assigned to unlock the account.
 
 When the `useradd` command does not have any options, it appears:
 
-* Create a home directory with the same name. 
-* Create a primary group with the same name. 
-* The default shell is bash
+* Create a home directory with the same name; 
+* Create a primary group with the same name;
+* The default shell is bash;
 * The user's `uid` and primary group `gid` are automatically recorded from 1000, and usually uid and gid are the same.
 
 ```bash
