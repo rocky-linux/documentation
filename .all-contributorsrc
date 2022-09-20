@@ -674,6 +674,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "SergeCroise",
+      "name": "Serge Croisé",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11520535?v=4",
+      "profile": "http://www.meteocontrol.cn",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
