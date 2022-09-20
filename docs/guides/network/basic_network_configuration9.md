@@ -60,7 +60,8 @@ Note at the top of the configuration file the reference to `keyfile` followed by
 
 !!! Hint "Configuration Storage Location"
 
-    In Rocky Linux 8.6, the storage location for network configuration was in `/etc/sysconfig/Network-Scripts/`. With Rocky Linux 9.0, the new default storage location for the key files is in `/etc/NetworkManager/system-connections`. 
+    In Rocky Linux 8.6, the storage location for network configuration was in `/etc/sysconfig/Network-Scripts/`.
+    With Rocky Linux 9.0, the new default storage location for the key files is in `/etc/NetworkManager/system-connections`. 
 
 The primary (but not the only) utility used for configuring a network interface is the `nmtui` command. This can also be done with the `nmcli` command, but is much less intuitive. We can show the interface as it is currently configured using `nmcli` with: 
 
