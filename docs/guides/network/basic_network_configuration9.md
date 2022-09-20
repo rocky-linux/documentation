@@ -225,7 +225,8 @@ ip a
 
 !!! note 
 
-    While it is still possible to use this method for bringing the interface up and down in Rocky Linux 9.0, the command reacts a great deal slower than simply using the `nmcli` command in our previous examples.
+    While it is still possible to use this method for bringing the interface up and down in Rocky Linux 9.0, 
+    the command reacts a great deal slower than simply using the `nmcli` command in our previous examples.
 
 To bring the *enp0s3* down and up again we can simply use: 
 
