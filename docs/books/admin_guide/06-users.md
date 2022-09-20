@@ -284,7 +284,7 @@ $ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 | --------------| ------------------------------------------------------------------ |
 |`-u UID`       |	`UID` of the user to create.                                       |
 |`-g GID`       |	`GID` of the primary group. The `GID` here can also be a `group name`.                                          |
-|`-G GID1,[GID2]...`       |	`GID` of the primary group. The `GID` here can also be a `group name`. Multiple supplementary groups can be specified, separated by commas. |
+|`-G GID1,[GID2]...`       |	`GID` of the supplementary groups. The `GID` here can also be a `group name`. Multiple supplementary groups can be specified, separated by commas. |
 |`-d directory` |	Home directory.                                                    |
 |`-s shell`     | Shell.                                                             |
 |`-c COMMENT`           | Add a comment.                                                     |
