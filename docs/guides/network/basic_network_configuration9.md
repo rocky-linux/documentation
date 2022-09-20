@@ -111,7 +111,7 @@ In the previous section, the displayed configuration for the interface `enp0s3` 
 
 4. Once we've done this, we will be to the screen that shows our current configuration. What we need to do is switch from "Manual" to "Automatic" so hit the <kbd>TAB</kbd> key several times until you get to where "Manual" is highlighted and then hit <kbd>ENTER</kbd>.
 
-    ![nmtui_manaual](images/nmtui_manual.png)
+    ![nmtui_manual](images/nmtui_manual.png)
 
 5. Arrow up until "Automatic" is highlighted and then hit <kbd>ENTER</kbd>
     
