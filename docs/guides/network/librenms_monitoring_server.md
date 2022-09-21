@@ -1,3 +1,13 @@
+---
+title: LibreNMS Monitoring Server
+author: Steven Spencer
+contributors: Ezequiel Bruni
+tested with: 8.5, 8.6, 9.0
+tags:
+  - monitoring
+  - network
+---  
+
 # LibreNMS Monitoring Server
 
 ## Introduction
@@ -22,18 +32,21 @@ While the installation will follow pretty closely to the official install instru
 
 These commands should be entered as the root user. Before we begin, note that this installation procedure focuses on httpd, rather than nginx. If you prefer to use the latter, head up to the [Librenms Install Instructions](https://docs.librenms.org/Installation/Install-LibreNMS/) and follow the guide there. We are assuming a fresh install, so we need to do a few things with the repositories before we can continue. First, we need to install the EPEL repository (Extra Packages for Enterprise Linux):
 
-`dnf install -y epel-release`
-
-Next, we need to tell the repositories to enable PHP 7.3 as the default PHP:
-
 ```
-dnf module reset php
-dnf module enable php:7.3
+dnf install -y epel-release
 ```
 
-This will return a listing for httpd, nginx, and php, just answer "y" to the prompt to continue. Next, we need to install a bunch of packages:
+The current version of LibreNMS requires a minimum PHP version of 8.1. The default package in Rocky Linux 9.0 is PHP 8.0, so we will need to enable a third party repository (true for Rocky Linux 8.6 as well) for this newer version. We will install the REMI repository for this. The version of the repository you install will depend on the version of Rocky Linux you are running. Simply replace the "[v#]" below with either 8 or 9:
 
-`dnf install bash-completion cronie fping git httpd ImageMagick mariadb-server mtr net-snmp net-snmp-utils nmap php-fpm php-cli php-common php-curl php-gd php-json php-mbstring php-process php-snmp php-xml php-zip php-mysqlnd python3 python3-PyMySQL python3-redis python3-memcached python3-pip python3-systemd rrdtool unzip`
+```
+dnf install http://rpms.remirepo.net/enterprise/remi-release-[v#].rpm
+```
+
+Once both the EPEL and REMI repositories are installed, it's time to install the packages we will need:
+
+```
+dnf install bash-completion cronie fping git httpd ImageMagick mariadb-server mtr net-snmp net-snmp-utils nmap php81-php-fpm php81-php-cli php81-php-common php81-php-curl php81-php-gd php81-php-json php81-php-mbstring php81-php-process php81-php-snmp php81-php-xml php81-php-zip php81-php-mysqlnd python3 python3-PyMySQL python3-redis python3-memcached python3-pip python3-systemd rrdtool unzip wget
+```
 
 All of these packages represent some portion of the LibreNMS feature set.
 
@@ -41,19 +54,25 @@ All of these packages represent some portion of the LibreNMS feature set.
 
 To do this, copy and paste (or type) the following:
 
-`useradd librenms -d /opt/librenms -M -r -s "$(which bash)"`
+```
+useradd librenms -d /opt/librenms -M -r -s "$(which bash)"
+```
 
-With this command, we are setting the default directory for our new user to "/opt/librenms" however the "-M" option says "don't create the directory." The reason, of course, is that we will be creating it when we install libreNMS. The "-r" says to make this user a system account and the "-s" says to set the shell (in this case, to "bash")
+With this command, we are setting the default directory for our new user to "/opt/librenms" however the "-M" option says "don't create the directory." The reason, of course, is that we will be creating it when we install LibreNMS. The "-r" says to make this user a system account and the "-s" says to set the shell (in this case, to "bash")
 
 ## Download LibreNMS and Set Permissions
 
 The download is all done through git. You may be familiar with the process as it is used for many projects these days. First, switch over to the /opt directory:
 
-`cd /opt`
+```
+cd /opt
+```
 
 Then clone the repository:
 
-`git clone https://github.com/librenms/librenms.git`
+```
+git clone https://github.com/librenms/librenms.git
+```
 
 Next change permissions for the directory:
 
@@ -70,47 +89,55 @@ The _setfacl_ command stands for "set file access control lists" and is another 
 
 All of the above commands were executed as root or _sudo_, but the PHP dependencies within LibreNMS need to be installed as the librenms user. To do this,
 
-`su - librenms`
+```
+su - librenms
+```
 
 And then enter the following:
 
-`./scripts/composer_wrapper.php install --no-dev`
+```
+./scripts/composer_wrapper.php install --no-dev
+```
 
 Once the script is completed, exit back to root:
 
-`exit`
+```
+exit
+```
 
 ### Failure Of PHP Dependency Install Workaround
 
-LibreNMS documentation says that when you are behind a proxy server, the above procedure may fail. If so, use this procedure as a workaround. Note, too, that this workaround would have to be run as the root user, because it makes modifications to /usr/bin:
-
-```
-wget https://getcomposer.org/composer-stable.phar
-mv composer-stable.phar /usr/bin/composer
-chmod +x /usr/bin/composer
-```
+LibreNMS documentation says that when you are behind a proxy server, the above procedure may fail. I've found that it can fail for other reasons as well. For this reason, I've added a procedure for installing Composer later in the process. 
 
 ## Set Timezone
 
 We need to make sure that this is set correctly, both for the system and for PHP. You can find a list of valid timezone settings for PHP [here](https://php.net/manual/en/timezones.php). For instance, for the Central timezone, a common entry would be "America/Chicago". Let's start by editing the php.ini file:
 
-`vi /etc/php.ini`
+```
+vi /etc/opt/remi/php81/php.ini
+```
 
 Find the `date.timezone` line and modify it. Note that it is remarked out, so remove the ";" from the beginning of the line and add your timezone after the "=" sign. For our Central timezone example we will use:
 
-`date.timezone = America/Chicago`
+```
+date.timezone = America/Chicago
+```
 
 Save your changes and exit the php.ini file.
 
 We also need to make sure that the system timezone is correct. Again, using our Central timezone as the example, we would do this with:
 
-`timedatectl set-timezone America/Chicago`
+```
+timedatectl set-timezone America/Chicago
+```
 
 ## MariaDB Setup
 
 Before we get into the database setup required for LibreNMS, run through the [MariaDB procedure](../database/database_mariadb-server.md) and specifically the section for "Securing mariadb-server", and then come back here for these specific settings. The first thing we need to do is modify the mariadb-server.cnf file:
 
-`vi /etc/my.cnf.d/mariadb-server.cnf`
+```
+vi /etc/my.cnf.d/mariadb-server.cnf
+```
 
 And add the following lines to the "[Mysqld]" section:
 
@@ -128,7 +155,10 @@ systemctl restart mariadb
 
 Now gain access to mariadb as the root user. Remember to use the password that you created when folloing the "Securing mariadb-server" section that you performed above:
 
-`mysql -u root -p`
+
+```
+mysql -u root -p
+```
 
 The next thing we need to do is make some specific changes for LibreNMS. With the command below, remember to change the password "password" to something secure and document what that is in a safe spot, such as a password manager, so that you will have it later. At the mysql prompt do:
 
@@ -143,19 +173,16 @@ Once you've done this, type "exit" to exit back out of mariadb.
 
 ## Configure PHP-FPM
 
-This section is basically unchanged from the official documentation. First, copy the www.conf:
+This section is basically unchanged from the official documentation except for the path to the files. First, copy the www.conf:
 
-`cp /etc/php-fpm.d/www.conf /etc/php-fpm.d/librenms.conf`
+```
+cp /etc/opt/remi/php81/php-fpm.d/www.conf /etc/opt/remi/php81/php-fpm.d/librenms.conf
+```
 
 Next modify the librenms.conf file:
 
-`vi /etc/php-fpm.d/librenms.conf`
-
-Near the top, add these two lines to fix a path issue for the librenms user that will come up later:
-
 ```
-; Set the ENV path to fix broken Centos web page issue
-env[PATH] = /usr/local/bin:/usr/bin:/bin
+vi /etc/opt/remi/php81/php-fpm.d/librenms.conf
 ```
 
 Change "[www]" to ["librenms]"
@@ -169,11 +196,15 @@ group = librenms
 
 And finally change the "listen" line to reflect a unique name:
 
-`listen = /run/php-fpm-librenms.sock`
+```
+listen = /run/php-fpm-librenms.sock
+```
 
 Save your changes and exit the file. If this is the only web service that will be running on this machine, feel free to remove the old www.conf file that we copied:
 
-`rm -f /etc/php-fpm.d/www.conf`
+```
+rm -f /etc/opt/remi/php81/php-fpm.d/www.conf
+```
 
 ## Configure Apache
 
@@ -181,7 +212,9 @@ Normally, we would use the [Apache sites-enabled](../web/apache-sites-enabled.md
 
 Again, in this case we aren't using that procedure and just going with the default, suggested setup. To do this, start by creating this file:
 
-`vi /etc/httpd/conf.d/librenms.conf`
+```
+vi /etc/httpd/conf.d/librenms.conf
+```
 
 And placing the following in that file:
 
@@ -210,13 +243,15 @@ And placing the following in that file:
 
 You should also remove the old default site, welcome.conf:
 
-`rm /etc/httpd/conf.d/welcome.conf`
+```
+rm /etc/httpd/conf.d/welcome.conf
+```
 
 Finally, we need to enable both _httpd_ and _php-fpm_:
 
 ```
 systemctl enable --now httpd
-systemctl enable --now php-fpm
+systemctl enable --now php81-php-fpm
 ```
 ## SELinux
 
@@ -224,7 +259,9 @@ Please note that if you don't plan on using SELinux, skip this and head to the n
 
 To setup everything with SELinux, you'll need an additional package installed:
 
-`dnf install policycoreutils-python-utils`
+```
+dnf install policycoreutils-python-utils
+```
 
 ### Configure LibreNMS Contexts
 
@@ -265,13 +302,13 @@ semodule -i http_fping.pp
 ```
 If you run into problems and you suspect it might be due to an SELinux issue, run the following:
 
-`audit2why < /var/log/audit/audit.log`
+```
+audit2why < /var/log/audit/audit.log
+```
 
-## Firewall Configuration
+## Firewall Configuration - `firewalld`
 
-We will include the _firewalld_ instructions from the official documentation, however we will be using _iptables_ in the lab, so will also include those instructions. To use _iptables_ simply follow [this procedure](../security/enabling_iptables_firewall.md) and then use the _iptables_ script found in this procedure, and make modifications to it for your network.
-
-### firewalld
+We will include the _firewalld_ instructions from the official documentation. 
 
 The command to use for _firewalld_ allow rules are as follows:
 
@@ -280,59 +317,21 @@ firewall-cmd --zone public --add-service http --add-service https
 firewall-cmd --permanent --zone public --add-service http --add-service https
 ```
 
-The author has problems with the simplistic nature of _firewalld_. This rule allows your web services to be open to the world, but is that what you want for a monitoring server?  I would say that this is usually **not** the case. I prefer _iptables_ rules, because it is easy to see at a glance what you are allowing.
-
-### iptables
-
-Create a script to run for adding, changing firewall rules called firewall.conf and put this in /etc
-
-`vi /etc/firewall.conf`
-
-Place the following in the file, substituting your network IP addresses as needed. This script allows UDP, SSH, HTTP and HTTPS from the local network in the lab, 192.168.1.0/24. It also allows ICMP type 8 (which stands for "Echo Request" or more commonly "ping") from our network gateway, 192.168.1.2:
-
-```
-#!/bin/sh
-#
-#IPTABLES=/usr/sbin/iptables
-
-#  Unless specified, the defaults for OUTPUT is ACCEPT
-#    The default for FORWARD and INPUT is DROP
-#
-echo "   clearing any existing rules and setting default policy.."
-iptables -F INPUT
-iptables -P INPUT DROP
-iptables -A INPUT -p udp -m udp -s 192.168.1.0/24 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp -s 192.168.1.0/24 --dport 22 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp -s 192.168.1.0/24 --dport 80 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp -s 192.168.1.0/24 --dport 443 -j ACCEPT
-iptables -A INPUT -p icmp -m icmp --icmp-type 8 -s 192.168.1.2 -j ACCEPT
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
-iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
-
-/usr/sbin/service iptables save
-```
-
-Make the script executable:
-
-`chmod +x /etc/firewall.conf`
-
-Run the script:
-
-`/etc/firewall.conf`
-
-Assuming no errors, you should be ready to go.
+The author has problems with this sort of simplistic _firewalld_ rule set. This rule allows your web services to be open to the world, but is that what you want for a monitoring server?  I would say that this is usually **not** the case. If you'd like a more granular approach to using _firewalld_, take a look at [this document](../security/firewalld.md) and then make changes to your _firewalld_ rules accordingly.
 
 ## Enable Symbolic Link And Tab-Autocomplete For lnms Commands
 
 First, we need a symbolic link on our _lnms_ command so that it can be executed from anywhere:
 
-`ln -s /opt/librenms/lnms /usr/bin/lnms`
+```
+ln -s /opt/librenms/lnms /usr/bin/lnms
+```
 
 Next, we need to set it up for autocomplete:
 
-`cp /opt/librenms/misc/lnms-completion.bash /etc/bash_completion.d/`
+```
+cp /opt/librenms/misc/lnms-completion.bash /etc/bash_completion.d/
+```
 
 ## Configure snmpd
 
@@ -340,19 +339,27 @@ _SNMP_ stands for "Simple Network Management Protocol" and is used in many monit
 
 First, copy the snmp.conf file from LibreNMS:
 
-`cp /opt/librenms/snmpd.conf.example /etc/snmp/snmpd.conf`
+```
+cp /opt/librenms/snmpd.conf.example /etc/snmp/snmpd.conf
+```
 
 Next, edit this file and change the community string from "RANDOMSTRINGGOESHERE" to whatever your community string is or will be. In our example, we are changing it to "LABone":
 
-`vi /etc/snmp/snmpd.conf`
+```
+vi /etc/snmp/snmpd.conf
+```
 
 and change this line:
 
-`com2sec readonly  default         RANDOMSTRINGGOESHERE`
+```
+com2sec readonly  default         RANDOMSTRINGGOESHERE
+```
 
 to
 
-`com2sec readonly  default         LABone`
+```
+com2sec readonly  default         LABone
+```
 
 Now save your changes and exit.
 
@@ -360,13 +367,44 @@ Now save your changes and exit.
 
 Do the following:
 
-`cp /opt/librenms/librenms.nonroot.cron /etc/cron.d/librenms`
+```
+cp /opt/librenms/librenms.nonroot.cron /etc/cron.d/librenms
+```
+
+It's important that the poller has run once, even though there will be nothing to poll, before the web setup procedure is run. It saves a lot of head scratching trying to figure out what is wrong when you get poller errors in the validation section later on. The poller is run by the "librenms" user, and while it would be possible to switch to this user and run the cron files, it's really better to let the poller do it on its own, so make sure that at least 5 minutes have passed between this section and the "Web Setup" section below. 
 
 ## Log Rotation
 
 LibreNMS will create a large set of logs over time. You'll need to setup log rotation for this so that it doesn't eat up too much disk space. To do this, simply do the following now:
 
-`cp /opt/librenms/misc/librenms.logrotate /etc/logrotate.d/librenms`
+```
+cp /opt/librenms/misc/librenms.logrotate /etc/logrotate.d/librenms
+```
+
+## Installing Composer
+
+PHP Composer is required for the current installation (mentioned in the earlier procedure). If the install you ran earlier fails, you'll need to run the following procedure.
+
+Before we start, we need to link our current version of the `php` binary to a location in the path. Since we used the REMI installation to get the correct version of PHP, it is not installed within the path. This is easy enough to fix with a symbolic link and will make your life much easier as you go through the remaining steps:
+
+```
+ln -s /opt/remi/php81/root/usr/bin/php /usr/bin/php
+```
+
+Now go to the [Composer website](https://getcomposer.org/download/) and make sure that the following steps haven't changed. If not, go ahead and run these commands somewhere on the machine (the location isn't important as we will move composer when we are done): 
+
+```
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
+
+Move it to a spot within our path. We are using `/usr/local/bin/` for this:
+
+```
+mv composer.phar /usr/local/bin/composer
+```
 
 ## Web Setup
 
@@ -400,11 +438,15 @@ Again, one of our assumptions was that you are using SNMP v2. Remember that each
 
 First, install _snmpd_ on the workstation while also updating packages, just to be safe:
 
-`sudo update && sudo apt-get upgrade && sudo apt-get install snmpd`
+```
+sudo update && sudo apt-get upgrade && sudo apt-get install snmpd
+```
 
 Next, you need to modify the snmpd.conf file:
 
-`sudo vi /etc/snmpd/snmpd.conf`
+```
+sudo vi /etc/snmpd/snmpd.conf
+```
 
 Go ahead and find the lines that describe your workstation and change them to things that identify the workstation. These lines are shown below:
 
@@ -415,11 +457,15 @@ sysContact     Username <user@mydomain.com>
 
 By default, when you install snmpd on Ubuntu, it only binds to the local address. It does not listen on your machine IP address. This will not allow LibreNMS to connect to it. We need to remark out this line:
 
-`agentaddress  127.0.0.1,[::1]`
+```
+agentaddress  127.0.0.1,[::1]
+```
 
 And add a new line that looks like what follows here: (In this example, the IP address of our workstation is 192.168.1.122 and the UDP port we are setting is "161")
 
-`agentAddress udp:127.0.0.1:161,udp:192.168.1.122:161`
+```
+agentAddress udp:127.0.0.1:161,udp:192.168.1.122:161
+```
 
 Next, we need to specify the read only access community string. Find the below lines and remark them out. (note that we are showing them as remarked out below):
 
@@ -430,7 +476,9 @@ Next, we need to specify the read only access community string. Find the below l
 
 Next, add a new line:
 
-`rocommunity LABone`
+```
+rocommunity LABone
+```
 
 Now save your changes and exit.
 
@@ -447,15 +495,21 @@ If you are running a firewall on your internal workstations, then you will need 
 
 We are assuming that you are root here or that you can _sudo_ to become so. First, we need to install some packages:
 
-`dnf install net-snmp net-snmp-utils`
+```
+dnf install net-snmp net-snmp-utils
+```
 
 Next, we want to create a snmpd.conf file. Rather than try to navigate through the file that is included, move this file to rename it, and create a brand new empty file:
 
-`mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.orig`
+```
+mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.orig
+```
 
 and
 
-`vi /etc/snmp/snmpd.conf`
+```
+vi /etc/snmp/snmpd.conf
+```
 
 Next copy the below into the new file:
 
@@ -492,33 +546,13 @@ systemctl start snmpd
 
 #### Firewall
 
-If you are running a server, then you **are** running a firewall, right?  We are assuming _iptables_ as noted above, so we need to modify our firewall configuration, (in this case, /etc/firewall.conf) and add access for UDP and ICMP traffic coming from the monitoring server. If you are running _firewalld_, just substitute in the appropriate rules for _firewalld_. Here's a rule set for our example server:
+If you are running a server, then you **are** running a firewall, right?  If you are running _firewalld_ (as you should be) we will assume that we are using the "trusted" zone here and we just want to allow all traffic from our monitoring server, 192.168.1.140:
 
 ```
-#!/bin/sh
-#
-#IPTABLES=/usr/sbin/iptables
-
-#  Unless specified, the defaults for OUTPUT is ACCEPT
-#    The default for FORWARD and INPUT is DROP
-#
-echo "   clearing any existing rules and setting default policy.."
-iptables -F INPUT
-iptables -P INPUT DROP
-iptables -A INPUT -p icmp --icmp-type 8 -s 192.168.1.140 -j ACCEPT
-iptables -A INPUT -p udp -m udp -s 192.168.1.140 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp -s 192.168.1.0/24 --dport 22 -j ACCEPT
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
-iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
-
-/usr/sbin/service iptables save
+firewall-cmd --zone=trusted --add-source=192.168.1.140 --permanent
 ```
 
-If you are new to this particular _iptables_ concept, the /etc/firewall.conf is executable, and it's our way of making changes to the saved _iptables_ rules that will be restored on boot. In the above example, we are allowing "ping" and UDP traffic from our monitoring server and SSH from our local network. Many other rules may be necessary for your server functions, perhaps http rules or mysql port allow rules, etc. Once you've made the changes to /etc/firewall.conf, execute it with:
-
-`/etc/firewall.conf`
+Again, we assumed the "trusted" zone here, but you may want something else, even "public", just consder your rules and their affects before adding them in.
 
 ## Adding The Devices In Librenms
 
