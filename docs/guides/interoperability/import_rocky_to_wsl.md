@@ -42,3 +42,7 @@ This feature should be available on every supported Windows 10 and 11 version ri
 !!! hint "Windows Terminal"
 
     If you have Windows Terminal installed, the new WSL distro name will appear as an option on the pull-down menu, which is quite handy for launching in the future. You can then customize it with colors, fonts, etc.
+
+!!! hint "systemd"
+
+    Microsoft finally decided to bring systemd into the WSL. ([ref](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl)) You only need to add `systemd=true` to the `boot` ini section in the `/etc/wsl.conf` file! (Please make sure you are running a WSL version equals or later 0.67.6)
