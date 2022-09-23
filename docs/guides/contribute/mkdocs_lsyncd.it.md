@@ -22,7 +22,7 @@ Alcune cose che dovresti avere/conoscere/essere:
 
 * Familiarità e comfort con la riga di comando
 * Essere a proprio agio con l'uso di strumenti per l'editing, SSH e la sincronizzazione, o essere disposti a seguire e imparare
-* Faremo riferimento a LXD - c'è un lungo documento su come costruire e usare LXD su un server [qui](../../books/lxd_server/00-toc.md), ma noi useremo solo un'installazione di base sulla nostra postazione Linux. Questo documento presuppone che stiate già usando LXD per altre cose, e non copre la costruzione e l'inizializzazione di LXD.
+* Faremo riferimento a LXD - c'è un lungo documento su [costruzione e utilizzo di LXD su un server qui](../../books/lxd_server/00-toc.md), ma noi useremo solo un'installazione di base sulla nostra workstation Linux. Questo documento presuppone che stiate già usando LXD per altre cose, e non copre la costruzione e l'inizializzazione di LXD.
 * Useremo `lsyncd` per il mirroring dei file, e puoi trovare la documentazione a riguardo [qui](../backup/mirroring_lsyncd.md)
 * Avrete bisogno di chiavi pubbliche generate per il vostro utente e per l'utente "root" sulla vostra postazione locale usando [questo documento](../security/ssh_public_private_keys.md)
 * La nostra interfaccia bridge è in esecuzione su 10.56.233.1 e il nostro container è in esecuzione nei nostri esempi qui sotto su 10.56.233.189.
