@@ -115,7 +115,7 @@ Here are examples of each admonition type, and how they will look in your docume
 
 ### Expandable Admonitions
 
-If an admonition will have content that is very long, consier using an expandable admonition. This is treated the same way as a regular admonition but starts with three question marks, rather than three exclamation marks. All of the other admonition rules apply. An expandable admonition looks like this: 
+If an admonition will have content that is very long, consider using an expandable admonition. This is treated the same way as a regular admonition but starts with three question marks, rather than three exclamation marks. All of the other admonition rules apply. An expandable admonition looks like this: 
 
 ??? warning "Warning Content"
 
