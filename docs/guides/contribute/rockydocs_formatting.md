@@ -113,6 +113,48 @@ Here are examples of each admonition type, and how they will look in your docume
     !!! warning "custom title"
     ```
 
+### Expandable Admonitions
+
+If an admonition will have content that is very long, consier using an expandable admonition. This is treated the same way as a regular admonition but starts with three question marks, rather than three exclamation marks. All of the other admonition rules apply. An expandable admonition looks like this: 
+
+??? warning "Warning Content"
+
+    This is a warning, with not very much content. You'd want to use a regular admonition for this, but Hey, this is just an example!
+
+Which looks like this in your editor:
+
+```
+??? warning "Warning Content"
+    
+    This is a warning, with not very much content. You'd want to use a regular admonition for this, but Hey, this is just an example!
+```
+
+## Tabbed Content within a Document
+
+Tabbed content is formatted in a similar way to admonitions. Instead of three exclamation marks or three question marks, it begins with three equal signs. All of the admonition formatting (4 spaces, etc.) applies to this content. An example of this is where documentation might need a different procedure for a different Rocky Linux version. That might look like this:
+
+=== "8.6"
+
+    The procedure for doing this in 8.6
+
+=== "9.0"
+
+    The procedure for doing this in 9.0
+
+Which would look like this in your editor:
+
+```
+=== "8.6"
+
+    The procedure for doing this in 8.6
+
+=== "9.0"
+
+    The procedure for doing this in 9.0
+```
+
+Keep in mind that everything that falls inside of the section, must continue to use the 4 space indentation until the section is completed. This is a very handy feature!
+
 ## Numbered Lists
 
 Numbered lists sound like they are easy to create and use, and once you get the hang of them, they really are. If you just have a single list of items with no complexity, then this sort of format works fine:
