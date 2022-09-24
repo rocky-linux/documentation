@@ -389,66 +389,55 @@ Options identical to the `useradd` command.
 
 | Option         |	Description                                                                                  |
 | -------------- | --------------------------------------------------------------------------------------------- |
-|`-m`            | Associated with the `-d` option, moves the contents of the old login directory to the new one.|
-|`-l login`      | New name.                                                                                     |
-|`-e AAAA-MM-JJ` | Account expiration date.                                                                      |
-|`-L`            | Locks the account.                                                                            |
+|`-m`            | Associated with the `-d` option, moves the contents of the old login directory to the new one.If the old home directory does not exist, a new home directory will not be created; If the new home directory does not exist, it is created.|
+|`-l login`      | New login name. After you modify the login name, you also need to modify the name of the home directory to match it.     |
+|`-e YYYY-MM-DD` | Account expiration date.                                                                      |
+|`-L`            | Permanently lock account. That is, a `!` is added at the beginning of the `/etc/shadow` password field     |
 |`-U`            | Unlocks the account.                                                                          |
-|`-a`            | Prevents the user from being deleted from a subgroup when added to another subgroup.          |
-|`-G`            | Specifies multiple subgroups when adding.                                                     |
-
-With the `usermod` command, locking an account results in the addition of `!` before the password in the `/etc/shadow` file.
+|`-a`            | Append the user's supplementary groups, which must be used together with the `-G` option.         |
+|`-G`            | Modify the user's supplementary groups to overwrite the previous supplementary groups.        |
 
 !!! Tip
 
     To be modified, a user must be disconnected and have no running processes.
 
-After changing the identifier, the files belonging to the user have an unknown `UID`. It must be reassigned the new `UID`.
+After changing the identifier, the files belonging to the user have an unknown `UID`. It must be reassigned the new `UID`. 
+
+Where `1000` is the old `UID` and `1044` is the new one. Examples are as follows:
 
 ```
 $ sudo find / -uid 1000 -exec chown 1044: {} \;
 ```
 
-Where `1000` is the old `UID` and `1044` is the new one.
-
-It is possible to invite a user into one or more subgroups with the options *-a* and *-G*.
-
-Example:
+Locking and unlocking of user account, Examples are as follows:
 
 ```
-$ sudo usermod -aG GroupP,GroupC albert
+Shell > usermod -L test1
+Shell > grep test1 /etc/shadow
+test1:!$6$n.hxglA.X5r7X0ex$qCXeTx.kQVmqsPLeuvIQnNidnSHvFiD7bQTxU7PLUCmBOcPNd5meqX6AEKSQvCLtbkdNCn.re2ixYxOeGWVFI0:19259:0:99999:7:::
+
+Shell > usermod -U test1
 ```
 
-The `usermod` command acts as a modification and not as an addition.
+The difference between the `-aG` option and the `-G` option can be explained by the following example:
 
-For a user invited to a group by this command and already positioned as a guest in other supplementary groups, it will be necessary to indicate in the group management command all the groups to which he belongs otherwise he will disappear from them.
+```bash
+Shell > useradd test1
+Shell > passwd test1
+Shell > groupadd groupA ; groupadd groupB ; groupadd groupC ; groupadd groupD
+Shell > id test1
+uid=1000(test1) gid=1000(test1) groups=1000(test1)
 
-The *-a* option changes this behavior.
+Shell > gpasswd -a test1 groupA
+Shell > id test1
+uid=1000(test1) gid=1000(test1) groups=1000(test1),1002(groupA)
 
-Examples:
+Shell > usermod -G groupB,groupC test1
+Shell > id test1 
+uid=1000(test1) gid=1000(test1) gorups=1000(test1),1003(groupB),1004(groupC)
 
-* Invite `albert` in the group `GroupP`.
-
-```
-$ sudo usermod -G GroupP albert
-```
-
-* Invites `albert` into the `GroupG` group, but removes him from the `GroupP` guest list.
-
-```
-$ sudo usermod -G GroupG albert
-```
-
-* So either :
-
-```
-$ sudo usermod -G GroupP,GroupG albert
-```
-
-* Or :
-
-```
-$ sudo usermod -aG GroupG albert
+Shell > usermod -aG groupD test1
+uid=1000(test1) gid=1000(test1) groups=1000(test1),1003(groupB),1004(groupC),1005(groupD)
 ```
 
 ### `userdel` command
