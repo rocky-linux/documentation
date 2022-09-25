@@ -47,3 +47,7 @@ This feature should be available on every supported Windows 10 and 11 version ri
 !!! hint "systemd"
 
     Microsoft finally decided to bring systemd into the WSL. ([ref](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl)) You only need to add `systemd=true` to the `boot` ini section in the `/etc/wsl.conf` file! (Please make sure you are running a WSL version equals or later 0.67.6)
+
+!!! hint "Microsoft Store"
+
+    Currently there is no image in the Microsoft Store, if you want to help with bringing it to there join the conversation in the Mattermost SIG/Containers channel! There has been [some effort](https://github.com/rocky-linux/WSL-DistroLauncher) a long time ago, which can get picked up again.
