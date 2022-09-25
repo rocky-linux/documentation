@@ -26,9 +26,11 @@ This feature should be available on every supported Windows 10 and 11 version ri
 
     - Download the image from the [CDN images folder](https://dl.rockylinux.org/pub/rocky/9/images/) (if it is available)
     - Download the image from the latest [Github Action build](https://github.com/rocky-linux/sig-cloud-instance-images/actions/workflows/build.yml)
-    - Extract the image from either Docker Hub or Quay.io ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#export-the-tar-from-a-container))<br>`<podman/docker> export rockylinux:9 > rocky-9-image.tar`
+    - Download the image (the layer.tar.xz file) from one of the branches of the [Github repo](https://github.com/rocky-linux/sig-cloud-instance-images/branches)
+    - Extract the image from either Docker Hub or Quay.io ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#export-the-tar-from-a-container))\
+    `<podman/docker> export rockylinux:9 > rocky-9-image.tar`
 
-2. (optional) You might have to extract the docker rootfs layer from the image you got
+2. (optional) You might have to extract the docker rootfs layer from the image you got (you need the tar file)
 3. Create the directory where the WSL will store its files (mostly somewhere in the userprofile)
 4. Finally, import the image into WSL ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#import-the-tar-file-into-wsl)):
 
