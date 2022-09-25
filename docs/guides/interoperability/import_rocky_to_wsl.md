@@ -13,7 +13,7 @@ tags:
 
 ## Prerequisites
 
-The Windows-Subsystem for Linux feature has to be enable. This is possible with either of these options:
+The Windows-Subsystem for Linux feature has to be enabled. This is possible with either of these options:
 
 - Open an administrative Terminal (either PowerShell or Command-Prompt) and run `wsl --install` ([ref.](https://docs.microsoft.com/en-us/windows/wsl/install))
 - Go to the graphical Windows Settings and enable the optional feature `Windows-Subsystem for Linux`
