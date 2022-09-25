@@ -24,7 +24,6 @@ This feature should be available on every supported Windows 10 and 11 version ri
 
 1. Get the container rootfs. This is possible in multiple ways:
 
-    - Download the image from the [CDN images folder](https://dl.rockylinux.org/pub/rocky/9/images/) (if it is available)
     - Download the image from the latest [Github Action build](https://github.com/rocky-linux/sig-cloud-instance-images/actions/workflows/build.yml)
     - Download the image (the layer.tar.xz file) from one of the branches of the [Github repo](https://github.com/rocky-linux/sig-cloud-instance-images/branches)
     - Extract the image from either Docker Hub or Quay.io ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#export-the-tar-from-a-container))\
