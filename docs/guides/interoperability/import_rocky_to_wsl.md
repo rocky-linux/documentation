@@ -13,7 +13,7 @@ tags:
 
 ## Prerequisites
 
-The Windows-Subsystem for Linux feature has to be enable. This is possible with either of these options:
+The Windows-Subsystem for Linux feature has to be enabled. This is possible with one of these options:
 
 - Open an administrative Terminal (either PowerShell or Command-Prompt) and run `wsl --install` ([ref.](https://docs.microsoft.com/en-us/windows/wsl/install))
 - Go to the graphical Windows Settings and enable the optional feature `Windows-Subsystem for Linux`
@@ -24,11 +24,12 @@ This feature should be available on every supported Windows 10 and 11 version ri
 
 1. Get the container rootfs. This is possible in multiple ways:
 
-    - Download the image from the [CDN images folder](https://dl.rockylinux.org/pub/rocky/9/images/) (if it is available)
     - Download the image from the latest [Github Action build](https://github.com/rocky-linux/sig-cloud-instance-images/actions/workflows/build.yml)
-    - Extract the image from either Docker Hub or Quay.io ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#export-the-tar-from-a-container))<br>`<podman/docker> export rockylinux:9 > rocky-9-image.tar`
+    - Download the image (the layer.tar.xz file) from one of the branches of the [Github repo](https://github.com/rocky-linux/sig-cloud-instance-images/branches)
+    - Extract the image from either Docker Hub or Quay.io ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#export-the-tar-from-a-container))\
+    `<podman/docker> export rockylinux:9 > rocky-9-image.tar`
 
-2. (optional) You might have to extract the docker rootfs layer from the image you got
+2. (optional) You might have to extract the docker rootfs layer from the image you got (you need the tar file)
 3. Create the directory where the WSL will store its files (mostly somewhere in the userprofile)
 4. Finally, import the image into WSL ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#import-the-tar-file-into-wsl)):
 
@@ -42,3 +43,11 @@ This feature should be available on every supported Windows 10 and 11 version ri
 !!! hint "Windows Terminal"
 
     If you have Windows Terminal installed, the new WSL distro name will appear as an option on the pull-down menu, which is quite handy for launching in the future. You can then customize it with colors, fonts, etc.
+
+!!! hint "systemd"
+
+    Microsoft finally decided to bring systemd into the WSL. ([ref](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl)) You only need to add `systemd=true` to the `boot` ini section in the `/etc/wsl.conf` file! (Please make sure you are running a WSL version equals or later 0.67.6)
+
+!!! hint "Microsoft Store"
+
+    Currently there is no image in the Microsoft Store, if you want to help with bringing it to there join the conversation in the Mattermost SIG/Containers channel! There has been [some effort](https://github.com/rocky-linux/WSL-DistroLauncher) a long time ago, which can get picked up again.
