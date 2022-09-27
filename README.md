@@ -33,7 +33,7 @@ ReText is good, but if you feel like exploring your other options, there are a f
 * [Mark Text](https://marktext.app) - Free, cross-platform, and open source
 * [ghostwriter](https://wereturtle.github.io/ghostwriter/) - Free, Windows and Linux, open source
 * [Remarkable](https://remarkableapp.github.io) - Linux-only, open source
-* [NvChad](https://nvchad.github.io) for the `vi`/`vim` user and the `nvim` client. A lot of plugins are available to enhance the editor for markdown. See [this document](https://docs.rockylinux.org/guides/editors/nvchad/) for a nice set of installation instructions.
+* [NvChad](https://nvchad.github.io) for the `vi`/`vim` user and the `nvim` client. A lot of plugins are available to enhance the editor for markdown. See [this document](https://docs.rockylinux.org/books/nvchad/) for a nice set of installation instructions.
 * [VS Code](https://code.visualstudio.com/) - A partially open source project from none other than Microsoft; VS Code is a lightweight and powerful editor available for Windows, Linux and MacOS. To contribute to this document project, you should get the following extensions: Git Graph, HTML Preview, HTML Snippets, Markdown All in One, Markdown Preview Enhanced, Markdown Preview Mermaid Support, and any more that catch your fancy.
 
 ### Markdown Tutorial
