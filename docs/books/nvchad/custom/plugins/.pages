@@ -3,3 +3,4 @@ nav:
     - ... | init_lua*.md
     - ... | lspconfig_lua*.md
     - ... | null_ls*.md
+    - ... | md_preview*.md
