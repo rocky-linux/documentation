@@ -23,7 +23,7 @@ tags:
 
 _rsnapshot_ is a very powerful backup utility that can be installed on any Linux-based machine. It can either back up a machine locally, or you can back up multiple machines, say servers for instance, from a single machine.
 
-_rsnapshot_ uses `rsync` and is written entirely in perl with no library dependencies, so there are no weird requirements to installing it. In the case of Rocky Linux, you should generally be able to install _rnapshot_ by using the EPEL repository. However, the EPEL for 9.0 does not yet have _rsnapshot_ available. For this reason, on Rocky Linux 9.0, we've included the instructions for installing from source.
+_rsnapshot_ uses `rsync` and is written entirely in perl with no library dependencies, so there are no weird requirements to install it. In the case of Rocky Linux, you should generally be able to install _rnapshot_ by using the EPEL repository. However, the EPEL for 9.0 does not yet have _rsnapshot_ available. For this reason, on Rocky Linux 9.0, we've included the instructions for installing from source.
 
 This documentation covers the installation of _rsnapshot_ on Rocky Linux only.
 
