@@ -27,54 +27,6 @@ _rsnapshot_ uses `rsync` and is written entirely in perl with no library depende
 
 This documentation covers the installation of _rsnapshot_ on Rocky Linux only.
 
-=== "8.6 Install"
-
-    ## Rocky Linux 8.6 - Installing Rsnapshot
-
-    All commands shown here are from the command-line on your server or workstation unless otherwise noted.
-
-    ### Installing The EPEL repository
-
-    We need the EPEL software repository from Fedora to install _rsnapshot_. To install the repository, just use this command:
-
-    ```
-    sudo dnf install epel-release
-    ```
-
-    The repository should now be active.
-
-    ### Install the Rsnapshot Package
-
-    Next, install _rsnapshot_ itself:
-
-    ``` 
-    sudo dnf install rsnapshot
-    ```
-
-    If there are any missing dependencies, those will show up and you simply need to answer the prompt to continue. For example:
-
-    ```
-    dnf install rsnapshot
-    Last metadata expiration check: 0:00:16 ago on Mon Feb 22 00:12:45 2021.
-    Dependencies resolved.
-    ========================================================================================================================================
-    Package                           Architecture                 Version                              Repository                    Size
-    ========================================================================================================================================
-    Installing:
-    rsnapshot                         noarch                       1.4.3-1.el8                          epel                         121 k
-    Installing dependencies:
-    perl-Lchown                       x86_64                       1.01-14.el8                          epel                          18 k
-    rsync                             x86_64                       3.1.3-9.el8                          baseos                       404 k
-
-    Transaction Summary
-    ========================================================================================================================================
-    Install  3 Packages
-
-    Total download size: 543 k
-    Installed size: 1.2 M
-    Is this ok [y/N]: y
-    ```
-
 === "9.0 Install"
 
     ## Rocky Linux 9.0 - Installing Rsnapshot
@@ -154,6 +106,55 @@ This documentation covers the installation of _rsnapshot_ on Rocky Linux only.
     ```
 
     This covers copying the configuration file over. The section below on "Configuring rsnapshot" will cover the changes needed in this configuration file.
+
+=== "8.6 Install"
+
+    ## Rocky Linux 8.6 - Installing Rsnapshot
+
+    All commands shown here are from the command-line on your server or workstation unless otherwise noted.
+
+    ### Installing The EPEL repository
+
+    We need the EPEL software repository from Fedora to install _rsnapshot_. To install the repository, just use this command:
+
+    ```
+    sudo dnf install epel-release
+    ```
+
+    The repository should now be active.
+
+    ### Install the Rsnapshot Package
+
+    Next, install _rsnapshot_ itself:
+
+    ``` 
+    sudo dnf install rsnapshot
+    ```
+
+    If there are any missing dependencies, those will show up and you simply need to answer the prompt to continue. For example:
+
+    ```
+    dnf install rsnapshot
+    Last metadata expiration check: 0:00:16 ago on Mon Feb 22 00:12:45 2021.
+    Dependencies resolved.
+    ========================================================================================================================================
+    Package                           Architecture                 Version                              Repository                    Size
+    ========================================================================================================================================
+    Installing:
+    rsnapshot                         noarch                       1.4.3-1.el8                          epel                         121 k
+    Installing dependencies:
+    perl-Lchown                       x86_64                       1.01-14.el8                          epel                          18 k
+    rsync                             x86_64                       3.1.3-9.el8                          baseos                       404 k
+
+    Transaction Summary
+    ========================================================================================================================================
+    Install  3 Packages
+
+    Total download size: 543 k
+    Installed size: 1.2 M
+    Is this ok [y/N]: y
+    ```
+
 
 ## Mounting A Drive or Filesystem For Backup
 
