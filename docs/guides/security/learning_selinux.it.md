@@ -1,5 +1,10 @@
 ---
 title: Sicurezza SELinux
+author: Antoine Le Morvan
+contributors: Steven Spencer, markooff, Franco Colussi
+tags:
+  - security
+  - Configurazione del firewall
 ---
 
 # Sicurezza SELinux
