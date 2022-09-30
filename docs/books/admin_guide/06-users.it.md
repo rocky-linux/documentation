@@ -7,14 +7,9 @@ title: Gestione utenti
 In questo capitolo imparerai come gestire l'utente.
 
 ****
-**Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come:
+**Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come fare per:
 
-:heavy_check_mark: aggiungere, eliminare o modificare un **gruppo**;  
-:heavy_check_mark: aggiungere, eliminare o modificare un **utente**;  
-:heavy_check_mark: conoscere la sintassi dei file associati alla gestione di gruppi e utenti;  
-:heavy_check_mark: cambiare il *proprietario* o il *proprietario del gruppo* di un file;  
-:heavy_check_mark: *assicurare* i profili utente;  
-:heavy_check_mark: cambiare identità.
+:heavy_check_mark: aggiungere, eliminare o modificare un **gruppo** ; :heavy_check_mark: aggiungere, eliminare o modificare un **utente** ; :heavy_check_mark: Comprendere i file associati agli utenti e ai gruppi e scoprire come gestirli; :heavy_check_mark: cambiare il *proprietario* o il *proprietario del gruppo* di un file; :heavy_check_mark: *sicuro* account utente; :heavy_check_mark: cambiare identità.
 
 :checkered_flag: **utenti**
 
@@ -26,22 +21,22 @@ In questo capitolo imparerai come gestire l'utente.
 
 ## Generale
 
-Ogni utente è membro di almeno un gruppo: **questo è il loro gruppo principale**.
+Ogni utente deve avere un gruppo, che è chiamato il gruppo **primario dell'utente**.
 
 Diversi utenti possono far parte dello stesso gruppo.
 
-Un gruppo diverso dal gruppo primario è chiamato **gruppi supplementari dell'utente**.
+Un gruppo diverso dal gruppo primario è chiamato **gruppo supplementare dell'utente**.
 
 !!! Note "Nota"
 
-    Ogni utente ha un gruppo primario e può essere invitato in uno o più gruppi secondari.
+    Ogni utente ha un gruppo primario e può essere invitato in uno o più gruppi supplementari.
 
 I gruppi e gli utenti sono gestiti dai loro identificatori numerici unici `GID` e `UID`.
 
-* `UID`: _User IDentifier_. ID utente unico..
-* `GID`: _Group IDentifier_. Identificatore di gruppo unico..
+* `UID`: _User IDentifier_. ID utente unico.
+* `GID`: _Group IDentifier_. Identificatore di gruppo unico.
 
-I file di dichiarazione dell'account e del gruppo si trovano in `/etc`.
+Sia UID che GID sono riconosciuti dal kernel, il che significa che il Super Admin non è necessariamente l'utente **root**, purché l'utente **uid=0** sia il Super Admin.
 
 I file relativi agli utenti/gruppi sono:
 
@@ -49,9 +44,9 @@ I file relativi agli utenti/gruppi sono:
 * /etc/shadow
 * /etc/group
 * /etc/gshadow
-* /etc/default/
 * /etc/skel/
 * /etc/default/useradd
+* /etc/login.defs
 
 !!! Danger "Pericolo"
 
@@ -71,13 +66,13 @@ Il comando `groupadd` aggiunge un gruppo al sistema.
 groupadd [-f] [-g GID] group
 ```
 
-Regole di denominazione del gruppo:
+Esempio:
 
 ```
 $ sudo groupadd -g 1012 GroupeB
 ```
 
-| Opzione  | Descrizione                                                                                                                        |
+| Option   | Descrizione                                                                                                                        |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `-g GID` | `GID` del gruppo da creare.                                                                                                        |
 | `-f`     | Il sistema sceglie un`GID` se quello specificato dall'opzione `-g` esiste già.                                                     |
@@ -86,7 +81,7 @@ $ sudo groupadd -g 1012 GroupeB
 Regole di denominazione del gruppo:
 
 * Nessun accento o carattere speciale;
-* 2: Password (`x` se definita in `/etc/gshadow`).
+* Diverso dal nome di un utente o file di sistema esistenti.
 
 !!! Note "Nota"
 
@@ -96,9 +91,9 @@ Regole di denominazione del gruppo:
     $ man addgroup
     DESCRIPTION
     adduser and addgroup add users and groups to the system according to command line options and configuration information
-    in /etc/adduser.conf. Sono front ends più intuitivi degli strumenti di basso livello come i programmi useradd, groupadd e usermod,
-    per impostazione predefinita scelgono i valori UID e GID conformi ai criteri Debian, creano una home directory con la sua configurazione di base,
-    eseguono uno script personalizzato, e altre funzioni.
+    in /etc/adduser.conf. They are friendlier front ends to the low level tools like useradd, groupadd and usermod programs,
+    by default choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
+    running a custom script, and other features.
     ```
 
 ### Comando `groupmod`
@@ -116,10 +111,10 @@ $ sudo groupmod -g 1016 GroupP
 $ sudo groupmod -n GroupC GroupB
 ```
 
-| Opzione   | Descrizione                          |
-| --------- | ------------------------------------ |
-| `-g GID`  | Nuovo`GID` del gruppo da modificare. |
-| `-n name` | Nuovo nome.                          |
+| Opzione   | Descrizione                           |
+| --------- | ------------------------------------- |
+| `-g GID`  | Nuovo `GID` del gruppo da modificare. |
+| `-n name` | Nuovo nome.                           |
 
 È possibile cambiare il nome di un gruppo, il  `GID` o entrambi simultaneamente.
 
@@ -147,7 +142,7 @@ $ sudo groupdel GroupC
 
     Quando si elimina un gruppo, si possono verificare due condizioni:
 
-    * 1: Nome del gruppo.
+    * Se un utente ha un gruppo primario unico e si lancia il comando `groupdel` su quel gruppo, verrà indicato che c'è un utente specifico sotto il gruppo e che non può essere cancellato.
     * Se un utente appartiene a un gruppo supplementare (non al gruppo primario per l'utente) e tale gruppo non è il gruppo primario per l'utente antoher sul sistema, quindi il comando `groupdel` eliminerà il gruppo senza alcun prompt aggiuntivo.
 
     Esempi:
@@ -162,40 +157,56 @@ $ sudo groupdel GroupC
     Shell > groupadd -g 1001 testb
     Shell > usermod -G testb root
     Shell > id root
-    uid=0(root) gid=0(root) group=0(root) group=0(root), 001(testb)
+    uid=0(root) gid=0(root) group=0(root),1001(testb)
     Shell > groupdel testb
     ```
 
 !!! Tip "Suggerimento"
 
-    Ogni gruppo ha un `GID` unico. Un gruppo può essere duplicato.
+    Quando si elimina un utente con il comando `userdel -r`, viene eliminato anche il gruppo primario corrispondente. Il nome del gruppo primario di solito corrisponde al nome dell'utente.
 
 !!! Tip "Suggerimento"
 
-    Poiché un utente fa necessariamente parte di un gruppo, è meglio creare i gruppi prima di aggiungere gli utenti. Pertanto, un gruppo potrebbe non avere alcun membro. Per convenzione, il GID del super amministratore è 0. Il GIDS riservato ad alcuni servizi o processi sono 201~999, che sono chiamati gruppi di sistema o gruppi di utenti pseudo. Il GID per gli utenti è solitamente maggiore o uguale a 1000. Questi sono relativi a <font color=red>/etc/login.defs</font>, di cui parleremo più tardi.
+    Ogni gruppo ha un `GID` unico. Un gruppo può essere utilizzato da più utenti come gruppo supplementare. Per convenzione, il GID del super amministratore è 0. Il GIDS riservato ad alcuni servizi o processi sono 201~999, che sono chiamati gruppi di sistema o gruppi di utenti pseudo. Il GID per gli utenti è solitamente maggiore o uguale a 1000. Questi sono relativi a <font color=red>/etc/login.defs</font>, di cui parleremo più tardi.
 
     ```bash
-    $ sudo tail -1 /etc/group
-GroupP:x:516:patrick
-  (1)  (2)(3)   (4)
+    shell > egrep -v "^#|^$" /etc/login.defs
+    MAIL_DIR        /var/spool/mail
+    UMASK           022
+    HOME_MODE       0700
+    PASS_MAX_DAYS   99999
+    PASS_MIN_DAYS   0
+    PASS_MIN_LEN    5
+    PASS_WARN_AGE   7
+    UID_MIN                  1000
+    UID_MAX                 60000
+    SYS_UID_MIN               201
+    SYS_UID_MAX               999
+    GID_MIN                  1000
+    GID_MAX                 60000
+    SYS_GID_MIN               201
+    SYS_GID_MAX               999
+    CREATE_HOME     yes
+    USERGROUPS_ENAB yes
+    ENCRYPT_METHOD SHA512
     ```
 
 !!! Tip "Suggerimento"
 
-    Ogni riga nel file `/etc/group` corrisponde a un gruppo. Gli utenti il cui gruppo è il loro gruppo principale non è elencato a questo livello.
+    Poiché un utente fa necessariamente parte di un gruppo, è meglio creare i gruppi prima di aggiungere gli utenti. Pertanto, un gruppo potrebbe non avere alcun membro.
 
 ### file `/etc/group`
 
-Questo file contiene le informazioni del Gruppo (divisi da `:`).
+Questo file contiene le informazioni del Gruppo (divise da `:`).
 
 ```
-$ sudo grep GroupA /etc/gshadow
-GroupA:$6$2,9,v...SBn160:alain:rockstar
-   (1)      (2)            (3)      (4)
+$ sudo tail -1 /etc/group
+GroupP:x:516:patrick
+  (1)  (2)(3)   (4)
 ```
 
 * 1: Nome del gruppo.
-* 2: La password del gruppo è identificata da `x`. La password del gruppo è memorizzata in `/etc/gshadow`.
+* 2: La password del gruppo è identificata da una `x`. La password del gruppo è memorizzata in `/etc/gshadow`.
 * 3: GID.
 * 4: Utenti supplementari del gruppo (escluso l'utente primario unico).
 
@@ -215,12 +226,12 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
 * 1: Nome del gruppo.
 * 2: Password criptata.
-* **utente normale**: Altro account per accedere al sistema.
-* 4: Membri ospiti (separati da virgole, non contiene membri del core).
+* 3: Nome dell'amministratore del gruppo.
+* 4: Utenti supplementari del gruppo (escluso l'utente primario unico).
 
 !!! Warning "Attenzione"
 
-    Per ogni riga del file `/etc/group` deve esserci una riga corrispondente nel file `/etc/gshadow`.
+    Il nome del gruppo in **/etc/group** e **/etc/gshadow** deve corrispondere uno a uno, cioè ogni riga del file **/etc/group** deve avere una riga corrispondente nel file **/etc/gshadow**.
 
 Un `!` nella password indica che la password è bloccata. Quindi nessun utente può utilizzare la password per accedere al gruppo (dal momento che i membri del gruppo non ne hanno bisogno).
 
@@ -228,10 +239,10 @@ Un `!` nella password indica che la password è bloccata. Quindi nessun utente p
 
 ### Definizione
 
-File modificati, linee aggiunte:
+Un utente è definito come segue nel file `/etc/passwd`:
 
-* **root**: L'amministratore di sistema ;
-* **utenti di sistema**: Utilizzato dal sistema per gestire i diritti di accesso alle applicazioni ;
+* 1: Login name;
+* 2: Identificazione della password, `x` indica che l'utente ha una password;
 * 3: UID;
 * 4: GID del gruppo primario;
 * 5: Commenti;
@@ -240,21 +251,21 @@ File modificati, linee aggiunte:
 
 Esistono tre tipi di utenti:
 
-* **root**: L'amministratore di sistema ;
-* **utenti di sistema**: Utilizzato dal sistema per gestire i diritti di accesso alle applicazioni ;
-* **utente normale**: Altro account per accedere al sistema.
+* **root(uid=0)**: l'amministratore di sistema;
+* **system users(uid is one of the 201~999)**: Utilizzato dal sistema per gestire i diritti di accesso alle applicazioni ;
+* **utente normale (uid>=1000)**: Altro account per accedere al sistema.
 
-Esempio:
+File modificati, righe aggiunte:
 
 * `/etc/passwd`
 * `/etc/shadow`
 
 ### comando `useradd`
 
-Alla creazione, l'account non ha una password ed è bloccato.
+Il comando `useradd` è usato per aggiungere un utente.
 
 ```
-$ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
+useradd [-u UID] [-g GID] [-d directory] [-s shell] login
 ```
 
 Esempio:
@@ -263,26 +274,26 @@ Esempio:
 $ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 ```
 
-| Opzione             | Descrizione                                                                                                                                                                                                    |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-u UID`            | `UID` dell'utente da creare.                                                                                                                                                                                   |
-| `-g GID`            | `GID` del gruppo primario. Il `GID` qui può anche essere un `nome del gruppo`.                                                                                                                                 |
-| `-G GID1,[GID2]...` | `GID` dei gruppi supplementari. Il `GID` qui può anche essere un `nome del gruppo`. Si possono specificare più gruppi supplementari, separati da virgole.                                                      |
-| `-s shell`          | Shell.                                                                                                                                                                                                         |
-| `-c`                | Aggiungi un commento.                                                                                                                                                                                          |
-| `-U`                | Aggiunge l'utente a un gruppo con lo stesso nome creato simultaneamente.                                                                                                                                       |
-| `-M`                | Aggiunge l'utente a un gruppo con lo stesso nome creato simultaneamente. Se questa opzione non è scritta per impostazione predefinita, verrà creato un gruppo con lo stesso nome quando l'utente viene creato. |
-| `-M`                | Non creare la directory home dell'utente.                                                                                                                                                                      |
-| `-r`                | Crea un account di sistema.                                                                                                                                                                                    |
+| Opzione             | Descrizione                                                                                                                                                                                                                   |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-u UID`            | `UID` dell'utente da creare.                                                                                                                                                                                                  |
+| `-g GID`            | `GID` del gruppo primario. Il `GID` qui può anche essere un `nome di un gruppo`.                                                                                                                                              |
+| `-G GID1,[GID2]...` | `GID` dei gruppi supplementari. Il `GID` qui può anche essere un `nome di un gruppo`. Si possono specificare più gruppi supplementari, separati da virgole.                                                                   |
+| `-d directory`      | Home directory.                                                                                                                                                                                                               |
+| `-s shell`          | Shell.                                                                                                                                                                                                                        |
+| `-c COMMENT`        | Aggiunge un commento.                                                                                                                                                                                                         |
+| `-U`                | Aggiunge l'utente a un gruppo con lo stesso nome che viene creato nello stesso momento. Se questa opzione non è scritta per impostazione predefinita, verrà creato un gruppo con lo stesso nome quando l'utente viene creato. |
+| `-M`                | Non creare la directory home dell'utente.                                                                                                                                                                                     |
+| `-r`                | Crea un account di sistema.                                                                                                                                                                                                   |
 
 Alla creazione, l'account non ha una password ed è bloccato.
 
 Per sbloccare l'account è necessario assegnare una password.
 
-Regole di denominazione dell'account:
+Quando il comando `useradd` non ha opzioni, appare:
 
-* Niente accenti, lettere maiuscole o caratteri speciali;
-* Diverso dal nome di un gruppo o file di sistema esistente;
+* Crea una home directory con lo stesso nome;
+* Crea un gruppo primario con lo stesso nome;
 * La shell predefinita è bash;
 * L'utente `uid` e il gruppo primario `gid` vengono automaticamente registrati da 1000, e di solito uid e gid sono gli stessi.
 
@@ -293,7 +304,8 @@ Shell > tail -n 1 /etc/passwd
 test1:x:1000:1000::/home/test1:/bin/bash
 
 Shell > tail -n 1 /etc/shadow
-test1:!!:19253:0:99999:7:::
+test1:!!:19253:0:99999:7
+:::
 
 Shell > tail -n 1 /etc/group ; tail -n 1 /etc/gshadow
 test1:x:1000:
@@ -327,8 +339,8 @@ $ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
     ```
     $ man useradd
     DESCRIPTION
-        **useradd** is a low level utility for adding users. Su Debian, gli amministratori dovrebbero di solito utilizzare **adduser(8)**
-         al suo posto.
+        **useradd** is a low level utility for adding users. On Debian, administrators should usually use **adduser(8)**
+         instead.
     ```
 
 #### Valori predefiniti per la creazione dell'utente.
@@ -336,13 +348,13 @@ $ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
 Modifica del file `/etc/default/useradd`.
 
 ```
-usermod [-u UID] [-g GID] [-d directory] [-m] login
+useradd -D [-b directory] [-g group] [-s shell]
 ```
 
 Esempio:
 
 ```
-$ sudo usermod -u 1044 carine
+$ sudo useradd -D -g 1000 -b /home -s /bin/bash
 ```
 
 | Opzione        | Descrizione                                                                          |
@@ -356,10 +368,10 @@ $ sudo usermod -u 1044 carine
 
 ### comando `usermod`
 
-Opzioni identiche al comando `useradd`.
+Il comando `usermod` permette di modificare un utente.
 
 ```
-$ sudo usermod -u 1044 carine
+usermod [-u UID] [-g GID] [-d directory] [-m] login
 ```
 
 Esempio:
@@ -368,25 +380,25 @@ Esempio:
 $ sudo usermod -u 1044 carine
 ```
 
-Con il comando `usermod`, bloccare un account di fatto significa inserire un `!` prima della password nel file `/etc/shadow`.
+Opzioni identiche al comando `useradd`.
 
-| Opzione         | Descrizione                                                                                                                          |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `-m`            | Associato all'opzione`-d`, sposta il contenuto della vecchia directory di accesso a quello nuova.                                    |
-| `-l login`      | Nuovo nome login. Dopo aver modificato il nome di accesso, è anche necessario modificare il nome della directory home per abbinarlo. |
-| `-e AAAA-MM-JJ` | Data di scadenza dell'account.                                                                                                       |
-| `-L`            | Blocca permanentemente l'account. Cioè, un `!` viene aggiunto all'inizio del campo password `/etc/shadow`                            |
-| `-U`            | Sblocca l'account.                                                                                                                   |
-| `-a`            | Previene l'utente dal essere eliminato da un sottogruppo quando viene aggiunto ad un altro sottogruppo.                              |
-| `-G`            | Specifica più sottogruppi durante l'aggiunta.                                                                                        |
+| Opzione         | Descrizione                                                                                                                                                                                                                          |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `-m`            | Associato all'opzione `-d` , sposta i contenuti della vecchia directory di login nella nuova. f la vecchia directory home non esiste, una nuova directory home non sarà creata; Se la nuova directory home non esiste, viene creata. |
+| `-l login`      | Nuovo nome login. Dopo aver modificato il nome di accesso, è anche necessario modificare il nome della directory home per abbinarlo.                                                                                                 |
+| `-e YYYY-MM-DD` | Account expiration date.                                                                                                                                                                                                             |
+| `-L`            | Blocca permanentemente l'account. Cioè, un `!` viene aggiunto all'inizio del campo password `/etc/shadow`                                                                                                                            |
+| `-U`            | Sblocca l'account.                                                                                                                                                                                                                   |
+| `-a`            | Aggiungi i gruppi supplementari dell'utente, che devono essere utilizzati insieme all'opzione `-G`.                                                                                                                                  |
+| `-G`            | Modificare i gruppi supplementari dell'utente per sovrascrivere i gruppi supplementari precedenti.                                                                                                                                   |
 
 !!! Tip "Suggerimento"
 
     Per essere modificato, un utente deve essere disconnesso e non avere processi in corso.
 
-After changing the identifier, the files belonging to the user have an unknown `UID`. Deve essere riassegnato il nuovo `UID`.
+Dopo aver cambiato l'identificatore, i file appartenenti all'utente hanno un `UID` sconosciuto . Deve essere riassegnato il nuovo `UID`.
 
-Dopo aver cambiato l'identificatore, i file appartenenti all'utente hanno un `UID` sconosciuto . Gli esempi sono i seguenti:
+Dove `1000` è il vecchio `UID` e `1044` quello nuovo. Gli esempi sono i seguenti:
 
 ```
 $ sudo find / -uid 1000 -exec chown 1044: {} \;
@@ -395,13 +407,33 @@ $ sudo find / -uid 1000 -exec chown 1044: {} \;
 Blocco e sblocco dell'account utente, gli esempi sono i seguenti:
 
 ```
-$ sudo usermod -G GroupG albert
+Shell > usermod -L test1
+Shell > grep test1 /etc/shadow
+test1:!$6$n.hxglA.X5r7X0ex$qCXeTx.kQVmqsPLeuvIQnNidnSHvFiD7bQTxU7PLUCmBOcPNd5meqX6AEKSQvCLtbkdNCn.re2ixYxOeGWVFI0:19259:0:99999:7
+:::
+
+Shell > usermod -U test1
 ```
 
 La differenza tra l'opzione `-aG` e l'opzione `-G` può essere spiegata dal seguente esempio:
 
 ```bash
-$ sudo usermod -G GroupP,GroupG albert
+Shell > useradd test1
+Shell > passwd test1
+Shell > groupadd groupA ; groupadd groupB ; groupadd groupC ; groupadd groupD
+Shell > id test1
+uid=1000(test1) gid=1000(test1) groups=1000(test1)
+
+Shell > gpasswd -a test1 groupA
+Shell > id test1
+uid=1000(test1) gid=1000(test1) groups=1000(test1),1002(groupA)
+
+Shell > usermod -G groupB,groupC test1
+Shell > id test1 
+uid=1000(test1) gid=1000(test1) gorups=1000(test1),1003(groupB),1004(groupC)
+
+Shell > usermod -aG groupD test1
+uid=1000(test1) gid=1000(test1) groups=1000(test1),1003(groupB),1004(groupC),1005(groupD)
 ```
 
 ### comando `userdel`
@@ -409,7 +441,7 @@ $ sudo usermod -G GroupP,GroupG albert
 Il comando `userdel` consente di eliminare l'account di un utente.
 
 ```
-$ sudo usermod -aG GroupG albert
+$ sudo userdel -r carine
 ```
 
 | Opzione | Descrizione                                             |
@@ -420,17 +452,19 @@ $ sudo usermod -aG GroupG albert
 
     Per essere eliminato, un utente deve essere disconnesso e non avere processi in esecuzione.
 
-Per un utente invitato a un gruppo da questo comando e già posizionato come ospite in altri gruppi supplementari, sarà necessario indicare nel comando di gestione dei gruppi tutti i gruppi a cui appartiene, altrimenti scomparirà da essi.
+`userdel` rimuove la riga dell'utente dai file `/etc/passwd` e `/etc/gshadow`.
 
 ### file `/etc/passwd`
 
-Il comando `userdel` ti consente di eliminare l'account di un utente.
+Questo file contiene le informazioni utente (divise da `:`).
 
 ```
-$ sudo userdel -r carine
+$ sudo head -1 /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+(1)(2)(3)(4)(5)  (6)    (7)
 ```
 
-* Invita `albert` nel gruppo `GroupG`, ma lo rimuove dall'elenco degli ospiti di `GroupP`.
+* 1: Login.
 * 2: Password (`x` se definita in `/etc/shadow`).
 * 3: UID.
 * 4: GID del gruppo primario.
@@ -442,9 +476,10 @@ $ sudo userdel -r carine
 
 Questo file contiene le informazioni di sicurezza degli utenti (separate da `:`).
 ```
-$ sudo head -1 /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-(1)(2)(3)(4)(5)  (6)    (7)
+$ sudo tail -1 /etc/shadow
+root:$6$...:15399:0:99999:7
+:::
+ (1)    (2)  (3) (4) (5) (6)(7,8,9)
 ```
 
 * 1: Login.
@@ -459,23 +494,21 @@ root:x:0:0:root:/root:/bin/bash
 
 !!! Danger "Pericolo"
 
-    $ sudo tail -1 /etc/shadow
-    root:$6$...:15399:0:99999:7:::
-     (1)    (2)  (3) (4) (5) (6)(7,8,9)
+    Per ogni riga del file `/etc/passwd` deve esserci una riga corrispondente nel file `/etc/shadow`.
 
 ## Proprietari dei file
 
-!!! Tip "Suggerimento"
+!!! Danger "Pericolo"
 
-    Per ogni riga del file `/etc/passwd` deve esserci una riga corrispondente nel file `/etc/shadow`.
+    Tutti i file appartengono necessariamente a un utente e a un gruppo.
 
-Questo file contiene le informazioni sulla sicurezza degli utenti (divisi da `:`).
+Il gruppo primario dell'utente che crea il file è, per impostazione predefinita, il gruppo proprietario del file.
 
 ### Comandi di modifica
 
 #### comando `chown`
 
-Questo file contiene le informazioni sulla sicurezza degli utenti (divisi da `:`).
+Il comando `chown` consente di cambiare i proprietari di un file.
 ```
 chown [-R] [-v] login[:group] file
 ```
@@ -494,39 +527,38 @@ $ sudo chown albert:GroupA myfile
 Per cambiare solo l'utente proprietario:
 
 ```
-$ sudo chown root myfile
-$ sudo chown albert:GroupA myfile
+$ sudo chown albert file
 ```
 
 Per modificare solo il gruppo proprietario:
 
 ```
-$ sudo chown albert file
+$ sudo chown :GroupA file
 ```
 
 Modifica dell'utente e del gruppo proprietario:
 
 ```
-$ sudo chown :GroupA file
-```
-
-Il comando `chown` consente di cambiare i proprietari di un file.
-
-```
 $ sudo chown albert:GroupA file
 ```
 
-### comando `chgrp` command
-
-Il comando `chgrp` consente di cambiare il gruppo proprietario di un file.
+Nell'esempio seguente, il gruppo assegnato sarà il gruppo primario dell'utente specificato.
 
 ```
 $ sudo chown albert: file
 ```
 
-Per cambiare il gruppo proprietario e l'utente proprietario:
+### comando `chgrp`
+
+Il comando `chgrp` consente di cambiare il gruppo proprietario di un file.
+
 ```
 chgrp [-R] [-v] group file
+```
+
+Esempio:
+```
+$ sudo chgrp group1 file
 ```
 
 | Opzione | Descrizione                                                                     |
@@ -539,10 +571,10 @@ chgrp [-R] [-v] group file
     È possibile applicare a un file un proprietario e un gruppo di proprietari prendendo come riferimento quelli di un altro file:
 
 ```
-$ sudo chgrp group1 file
+chown [options] --reference=RRFILE FILE
 ```
 
-Modifica dell'utente e del gruppo proprietario:
+Per esempio:
 
 ```
 chown --reference=/etc/groups /etc/passwd
@@ -552,16 +584,17 @@ chown --reference=/etc/groups /etc/passwd
 
 ### comando `gpasswd`
 
-Nell'esempio seguente, il gruppo assegnato sarà il gruppo primario dell'utente specificato.
+Il comando `gpasswd` permette di gestire un gruppo.
 
 ```
-chown --reference=/etc/groups /etc/passwd
+gpasswd [-a login] [-A login] [-d login] [-M login] group
 ```
 
 Esempi:
 
 ```
-gpasswd [-a login] [-A login] [-d login] [-M login] group
+$ sudo gpasswd -A alain GroupA
+[alain]$ gpasswd -a patrick GroupA
 ```
 
 | Opzione    | Descrizione                               |
@@ -582,33 +615,30 @@ Re-enter new password :
 
 Il comando `id` visualizza i nomi del gruppo di un utente.
 ```
-$ sudo gpasswd -A alain GroupA
-[alain]$ gpasswd -a patrick GruppoA
+id login
 ```
-Esempi:
-```
-# gpasswd GroupeA
-Nuova password :
-Reinserire la nuova password :
-```
-
-### comando `newgrp`
-
-Il comando `gpasswd -M` agisce come una modifica, non come un'aggiunta.
+Esempio:
 ```
 $ sudo id alain
 uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 ```
-Esempi:
+
+### comando `newgrp`
+
+Il comando `newgrp` consente di utilizzare temporaneamente un gruppo secondario per la creazione di file.
 ```
 newgrp [secondarygroups]
+```
+Esempio:
+```
+[alain]$ newgrp GroupB
 ```
 
 !!! Note "Nota"
 
     Dopo aver usato questo comando, i file saranno creati con il `GID` del suo sottogruppo.
 
-Il comando `newgrp` consente di utilizzare temporaneamente un gruppo secondario per la creazione di file.
+Il comando `newgrp` senza parametri riassegna il gruppo primario.
 
 ## Protezione
 
@@ -616,7 +646,7 @@ Il comando `newgrp` consente di utilizzare temporaneamente un gruppo secondario 
 
 Il comando `passwd` viene utilizzato per gestire una password.
 ```
-[alain]$ newgrp GruppoB
+passwd [-d] [-l] [-S] [-u] [login]
 ```
 Esempi:
 ```
@@ -629,7 +659,7 @@ $ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 | `-d`      | Rimuove la password.                                         |
 | `-l`      | Blocca l'account.                                            |
 | `-S`      | Visualizza lo stato dell'account.                            |
-| `-u`      | Sblocca l'account.                                           |
+| `- u`     | Sblocca l'account.                                           |
 | `-e`      | Scadenza della password.                                     |
 | `-n days` | Durata minima della password.                                |
 | `-x days` | Durata massima della password.                               |
@@ -638,21 +668,20 @@ $ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 
 Con il comando `passwd`, il blocco di un account si ottiene aggiungendo `!!` prima della password nel file `/etc/shadow`.
 
-Using the command `usermod -U` command only removes one of the `!`. Quindi l'account rimane bloccato.
+Usando il comando `usermod -U` rimuove solo uno dei `!`. Quindi l'account rimane bloccato.
 
-Esempi:
+Esempio:
 
-* Oppure :
+* Alain cambia la sua password:
 
 ```
-$ sudo passwd -l albert
-$ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
+[alain]$ passwd
 ```
 
 * root cambia la password di Alain
 
 ```
-[alain]$ passwd
+$ sudo passwd alain
 ```
 
 !!! Note "Nota"
@@ -661,25 +690,25 @@ $ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 
 Dovranno rispettare le restrizioni di sicurezza.
 
-Con il comando `passwd`, bloccare un account è ottenuto aggiungendo `!!` prima della password nel file `/etc/shadow`.
+Quando si gestiscono gli account utente tramite script di shell, può essere utile impostare una password predefinita dopo la creazione dell'utente.
 
 Questo può essere fatto passando la password al comando `passwd`.
 
 Esempio:
 ```
-[alain]$ passwd
+$ sudo echo "azerty,1" | passwd --stdin philippe
 ```
-!!! Note "Nota"
+!!! Warning "Attenzione"
 
     La password viene inserita in chiaro, `passwd` si occupa di crittografarla.
 
 ### comando `chage`
 
-Questo può essere fatto passando la password al comando `passwd`.
+Il comando `chage` è usato per gestire la strategia dell'account.
 ```
 chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
 ```
-Esempi:
+Esempio:
 ```
 $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
@@ -694,13 +723,14 @@ $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 | `-E AAAA-MM-JJ` | Data di scadenza dell'account.                          |
 | `-W days`       | Tempo di avvertimento prima della scadenza.             |
 
-Questo può essere fatto passando la password al comando `passwd`.
+Il comando `chage` offre anche una modalità interattiva.
 
 L'opzione `-d` forza la modifica della password all'accesso.
 
 Esempi:
 ```
-$ sudo chage -m 60 -M 90 -W 80 -I 10 alain
+$ sudo chage philippe
+$ sudo chage -d 0 philippe
 ```
 
 !!! Note "Nota"
@@ -712,8 +742,8 @@ $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ## Gestione avanzata
 
 File di configurazione:
-* `/etc/skel/`
 * `/etc/default/useradd`
+* `/etc/login.defs`
 * `/etc/skel`
 
 !!! Note "Nota"
@@ -726,15 +756,15 @@ File di configurazione:
 
 Questo file contiene le impostazioni predefinite dei dati.
 
-!!! Note "Nota"
+!!! Tip "Suggerimento"
 
-    Se non viene specificato alcun utente, l'ordine riguarderà l'utente che lo inserisce.
+    Quando si crea un utente, se le opzioni non sono specificate, il sistema utilizza i valori di default definiti in `/etc/default/useradd`.
 
 Questo file è modificato dal comando `useradd -D` (`useradd -D` inserito senza nessun'altra opzione visualizza il contenuto del file `/etc/default/useradd`).
 
 | Valore              | Commento                                                                               |
 | ------------------- | -------------------------------------------------------------------------------------- |
-| `GROUP`             | Gruppo predefinito..                                                                   |
+| `GROUP`             | Gruppo predefinito.                                                                    |
 | `HOME`              | Percorso in cui verrà creata la directory di accesso per il nome dell'utente.          |
 | `INACTIVE`          | Numero di giorni dopo la scadenza della password prima che l'account sia disabilitato. |
 | `EXPIRE`            | Data di scadenza dell'account.                                                         |
@@ -744,29 +774,29 @@ Questo file è modificato dal comando `useradd -D` (`useradd -D` inserito senza 
 
 !!! Warning "Attenzione"
 
-    Se non viene specificato alcun utente, l'ordine riguarderà l'utente che lo inserisce.
+    Senza l'opzione `-g', il comando `useradd' crea un gruppo con il nome dell'utente e lo colloca lì.
 
 In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
 
-Esempi:
+Esempio:
 ```
 $ sudo useradd -u 501 -N GroupeA
 ```
 
 ### file `/etc/login.defs`
 
-This file contains many default parameters useful for creating or modifying users. Queste informazioni sono raggruppate per paragrafo in base al loro utilizzo:
+Questo file contiene molti parametri predefiniti utili per la creazione o la modifica degli utenti. Queste informazioni sono raggruppate per paragrafo in base al loro utilizzo:
 
 * Mailboxes;
-* Password ;
+* Passwords ;
 * UID e GID ;
 * Umask ;
 * Connessioni;
-* 6: Numero di giorni prima dell'avviso.
+* Terminali.
 
 ### directory `/etc/skel`
 
-Questo file è modificato dal comando `useradd -D` (`useradd -D` inserito senza nessun'altra opzione visualizza il contenuto del file `/etc/default/useradd`).
+Quando viene creato un utente, vengono creati anche la home directory e i file d'ambiente.
 
 Questi file vengono automaticamente copiati dalla directory `/etc/skel`.
 
@@ -774,7 +804,7 @@ Questi file vengono automaticamente copiati dalla directory `/etc/skel`.
 * `.bash_profile`
 * `.bashrc`
 
-In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
+Tutti i file e le directory collocati in questa directory saranno copiati nell'albero utente al momento della loro creazione.
 
 ## Cambiamento di identità
 
@@ -789,7 +819,8 @@ su [-] [-c command] [login]
 Esempi:
 
 ```
-su [-] [-c command] [login]
+$ sudo su - alain
+[albert]$ su -c "passwd alain"
 ```
 
 | Opzione      | Descrizione                                                 |
@@ -797,9 +828,9 @@ su [-] [-c command] [login]
 | `-`          | Carica l'ambiente completo dell'utente.                     |
 | `-c` comando | Esegue il comando sotto l'identità dell'utente specificato. |
 
-Tutti i file e le directory inseriti in questa directory verranno copiati nell'albero utente alla creazione dello stesso.
+Se il login non è specificato, sarà `root`.
 
-Il comando `su` consente di modificare l'identità dell'utente connesso.
+Gli utenti standard dovranno digitare la password per la nuova identità.
 
 !!! Tip "Suggerimento"
 
@@ -816,7 +847,7 @@ Il comando `su` consente di modificare l'identità dell'utente connesso.
 ...
 ```
 
-Esempi:
+`root` assume l'identità dell'utente `alain` con `su -`:
 
 ```
 ...
@@ -826,9 +857,9 @@ Esempi:
 ...
 ```
 
-Gli utenti standard dovranno digitare la password per la nuova identità.
+Un utente può temporaneamente (per un altro comando o per un'intera sessione) assumere l'identità di un altro account.
 
-Gli utenti standard dovranno digitare la password per la nuova identità.
+Se nessun utente è specificato, il comando sarà per `root` (`su -`).
 
 È necessario conoscere la password dell'utente la cui identità viene approvata a meno che non sia `root` che esegue il comando.
 
