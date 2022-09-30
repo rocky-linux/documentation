@@ -333,7 +333,7 @@ $ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
 
 #### Valori predefiniti per la creazione dell'utente.
 
-Il comando `usermod` permette di modificare un utente.
+Modifica del file `/etc/default/useradd`.
 
 ```
 usermod [-u UID] [-g GID] [-d directory] [-m] login
