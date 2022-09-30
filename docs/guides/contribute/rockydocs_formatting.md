@@ -131,26 +131,26 @@ Which looks like this in your editor:
 
 ## Tabbed Content within a Document
 
-Tabbed content is formatted in a similar way to admonitions. Instead of three exclamation marks or three question marks, it begins with three equal signs. All of the admonition formatting (4 spaces, etc.) applies to this content. An example of this is where documentation might need a different procedure for a different Rocky Linux version. That might look like this:
-
-=== "8.6"
-
-    The procedure for doing this in 8.6
+Tabbed content is formatted in a similar way to admonitions. Instead of three exclamation marks or three question marks, it begins with three equal signs. All of the admonition formatting (4 spaces, etc.) applies to this content. An example of this is where documentation might need a different procedure for a different Rocky Linux version. When using tabbed content for versions, the most recent release of Rocky Linux should come first. At the time of this writing, that was 9.0:
 
 === "9.0"
 
     The procedure for doing this in 9.0
+
+=== "8.6"
+
+    The procedure for doing this in 8.6
 
 Which would look like this in your editor:
 
 ```
-=== "8.6"
-
-    The procedure for doing this in 8.6
-
 === "9.0"
 
     The procedure for doing this in 9.0
+
+=== "8.6"
+
+    The procedure for doing this in 8.6
 ```
 
 Keep in mind that everything that falls inside of the section, must continue to use the 4 space indentation until the section is completed. This is a very handy feature!
