@@ -5,7 +5,7 @@ contributors: Steven Spencer, Aditya Putta, Franco Colussi
 update: 11-10-2021
 ---
 
-# Comandi per gli utenti Linux
+# Comandi per gli Utenti Linux
 
 In questo capitolo imparerai come lavorare con Linux e con i comandi.
 
@@ -117,7 +117,7 @@ In letteratura, il termine "opzione" è equivalente al termine "parametro," che 
 
 Il comando `apropos` ti consente di cercare per parola chiave all'interno di queste pagine manuali:
 
-| Opzioni                                    | Osservazioni                                                             |
+| Opzioni                                    | Descrizione                                                              |
 | ------------------------------------------ | ------------------------------------------------------------------------ |
 | `-s`, `--sections list` o `--section list` | Limitato alle sezioni manuali.                                           |
 | `-a` o `--and`                             | Visualizza solo la voce corrispondente a tutte le parole chiave fornite. |
@@ -1261,7 +1261,7 @@ $ find /home -name "test[123]*"
 
 ### Standard input e output
 
-On UNIX and Linux systems, there are three standard streams. Consentono ai programmi, attraverso la libreria `stdio.h`, di inviare e ricevere informazioni.
+Sui sistemi UNIX e Linux, ci sono tre flussi standard. Consentono ai programmi, attraverso la libreria `stdio.h`, di inviare e ricevere informazioni.
 
 Questi flussi sono chiamati canale X o descrittore di file X.
 
@@ -1288,7 +1288,7 @@ $ ftp -in serverftp << ftp-commands.txt
 
     Solo i comandi che richiedono l'input da tastiera saranno in grado di gestire il reindirizzamento dell'input.
 
-Input redirection can also be used to simulate user interactivity. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
+Il reindirizzamento dell'ingresso può anche essere utilizzato per simulare l'interattività dell'utente. Il comando leggerà il flusso di input finché non incontrerà la parola chiave definita dopo il reindirizzamento dell'ingresso.
 
 Questa funzione è utilizzata per i comandi interattivi negli script:
 
