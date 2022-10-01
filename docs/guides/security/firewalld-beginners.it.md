@@ -19,7 +19,7 @@ Quindi parliamo di ciò per cui siamo qui. `firewalld` è l'applicazione firewal
 
 Qui imparerete:
 
-* Le basi di come funziona `firewalld`
+* Le basi del funzionamento di `firewalld`
 * Come usare `firewalld` per limitare o permettere le connessioni in entrata e in uscita
 * Come permettere solo alle persone di certi indirizzi IP o luoghi di accedere alla tua macchina da remoto
 * Come gestire alcune caratteristiche `specifiche di firewalld` come le Zone.
@@ -153,15 +153,17 @@ Le zone predefinite includono le seguenti (ho preso questa spiegazione dalla [gu
 
 > **block:** Simile al precedente, ma invece di abbandonare semplicemente le connessioni, le richieste in entrata sono rifiutate con un messaggio icmp-host-prohibited o icmp6-adm-prohibited.
 
-> **public:** Rappresenta le reti pubbliche, non fidate. Non ti fidi degli altri computer, ma puoi permettere connessioni in entrata selezionate caso per caso. external: Reti esterne nel caso in cui si utilizzi il firewall come gateway. È configurato per il NAT masquerading in modo che la vostra rete interna rimanga privata ma raggiungibile.
+> **public:** Rappresenta le reti pubbliche, non fidate. Non ti fidi degli altri computer, ma puoi permettere connessioni in entrata selezionate caso per caso.
 
 > **internal:** L'altro lato della zona esterna, usata per la parte interna di un gateway. I computer sono abbastanza affidabili e sono disponibili alcuni servizi aggiuntivi.
 
 > **dmz:** utilizzato per i computer situati in una DMZ (computer isolati che non avranno accesso al resto della vostra rete). Solo certe connessioni in entrata sono permesse.
 
-> **work:** Usato per le macchine da lavoro. Fidatevi della maggior parte dei computer della rete. Qualche altro servizio potrebbe essere permesso.
+> **work:** Usato per le macchine da lavoro. Fidatevi della maggior parte dei computer della rete.
 
-> **home:** Un ambiente domestico. Generalmente implica che vi fidate della maggior parte degli altri computer e che qualche servizio in più sarà accettato.
+> **home:** Un ambiente domestico. Generalmente implica che vi fidate della maggior parte degli altri computer e che qualche servizio in più sarà accettato. Qualche altro servizio potrebbe essere permesso.
+
+> **trusted:** Fidati di tutte le macchine della rete. La più aperta delle opzioni disponibili e dovrebbe essere usata con parsimonia.
 
 > **trusted:** Fidati di tutte le macchine della rete. La più aperta delle opzioni disponibili e dovrebbe essere usata con parsimonia.
 
