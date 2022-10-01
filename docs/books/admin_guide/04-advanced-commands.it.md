@@ -273,7 +273,9 @@ Il comando `yumdownloader` scarica i pacchetti RPM dai repository.  Equivalente 
 Esempio: `yumdownloader` scaricherà il pacchetto rpm _repoquery_ e tutte le sue dipendenze:
 
 ```
-$ yumdownloader --destdir /var/tmp --resolve repoquery
+$ yumdownloader --destdir /var/tmp --resolve samba
+o
+$ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 ```
 
 | Opzioni     | Commenti                                                               |
@@ -296,29 +298,13 @@ Questo comando è molto utile per creare rapidamente un repository locale di alc
 ```
 
 ```
-$ yumdownloader --destdir /var/tmp -- resolve repoquery
+# killall httpd
 ```
 
 Arresta i processi (opzione `-k`) che accedono al file `/etc/httpd/conf/httpd.conf`:
 
 ```
-$ pstree
-systemd─┬─NetworkManager───2*[{NetworkManager}]
-        ├─agetty
-        ├─auditd───{auditd}
-        ├─crond
-        ├─dbus-daemon───{dbus-daemon}
-        ├─firewalld───{firewalld}
-        ├─lvmetad
-        ├─master─┬─pickup
-        │        └─qmgr
-        ├─polkitd───5*[{polkitd}]
-        ├─rsyslogd───2*[{rsyslogd}]
-        ├─sshd───sshd───bash───pstree
-        ├─systemd-journal
-        ├─systemd-logind
-        ├─systemd-udevd
-        └─tuned───4*[{tuned}]
+# fuser -k /etc/httpd/conf/httpd.conf
 ```
 
 ## comando `watch`
@@ -336,7 +322,7 @@ Esempi:
 * Visualizza la fine del file `/etc/passwd` ogni 5 secondi:
 
 ```
-# fuser -k /etc/httpd/conf/httpd.conf
+$ watch -n 5 tail -n 3 /etc/passwd
 ```
 
 Risultato:
@@ -352,15 +338,11 @@ sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 * Monitoraggio del numero di file in una cartella:
 
 ```
-$ watch -n 5 tail -n 3 /etc/passwd
+$ watch -n 1 'ls -l | wc -l'
 ```
 
-* Mostra la fine del file `/etc/passwd` ogni 5 secondi:
+* Mostra un orologio:
 
 ```
-Every 5,0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
-
-sssd:x:996:993:User for sssd:/:/sbin/nologin
-chrony:x:995:992::/var/lib/chrony:/sbin/nologin
-sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+$ watch -t -n 1 date
 ```
