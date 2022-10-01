@@ -332,7 +332,7 @@ Complete!
 
 ### Altre utili opzioni `dnf`
 
-| Opzione     | Osservazioni                                   |
+| Opzione     | Descrizione                                    |
 | ----------- | ---------------------------------------------- |
 | `repolist`  | Elenca i repository configurati sul sistema.   |
 | `grouplist` | Elenca le collezioni di pacchetti disponibili. |
@@ -340,7 +340,7 @@ Complete!
 
 Il comando `dnf repolist` elenca i repository configurati sul sistema. Per impostazione predefinita elenca solo i repository abilitati, ma può essere utilizzato con questi parametri:
 
-| Parametro    | Osservazioni                           |
+| Parametro    | Descrizione                            |
 | ------------ | -------------------------------------- |
 | `--all`      | Elenca tutti i repository.             |
 | `--enabled`  | Default                                |
@@ -486,7 +486,7 @@ Il comando corrispondente per rimuovere un gruppo è `dnf groupremove "name grou
 
 Il comando `dnf clean` pulisce tutte le cache e i file temporanei creati da `dnf`. Può essere utilizzato con i seguenti parametri.
 
-| Parametri      | Osservazioni                                                       |
+| Parametri      | Descrizione                                                        |
 | -------------- | ------------------------------------------------------------------ |
 | `all`          | Rimuove tutti i file temporanei creati per i repository abilitati. |
 | `dbcache`      | Rimuove i file cache per i metadati del repository.                |
