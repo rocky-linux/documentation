@@ -238,7 +238,7 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
     The name of the group in **/etc/group** and **/etc/gshadow** must correspond one by one, that is, each line in the **/etc/group** file must have a corresponding line in the **/etc/gshadow** file.
 
-A `!` in the password indicates that it is locked.
+An `!` in the password indicates that it is locked.
 Thus, no user can use the password to access the group (since group members do not need it).
 
 ## User management
@@ -392,7 +392,7 @@ Options identical to the `useradd` command.
 |`-m`            | Associated with the `-d` option, moves the contents of the old login directory to the new one.If the old home directory does not exist, a new home directory will not be created; If the new home directory does not exist, it is created.|
 |`-l login`      | New login name. After you modify the login name, you also need to modify the name of the home directory to match it.     |
 |`-e YYYY-MM-DD` | Account expiration date.                                                                      |
-|`-L`            | Permanently lock account. That is, a `!` is added at the beginning of the `/etc/shadow` password field     |
+|`-L`            | Permanently lock account. That is, an `!` is added at the beginning of the `/etc/shadow` password field     |
 |`-U`            | Unlocks the account.                                                                          |
 |`-a`            | Append the user's supplementary groups, which must be used together with the `-G` option.         |
 |`-G`            | Modify the user's supplementary groups to overwrite the previous supplementary groups.        |
