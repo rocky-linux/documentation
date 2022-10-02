@@ -186,7 +186,7 @@ firewall-cmd --permanent --add-port=30000-32767/tcp
 firewall-cmd --reload
 ```
 
-Then install necessary packages:
+Then install the necessary packages:
 
 ```
 yum install -y kubelet kubeadm --disableexcludes=kubernetes
