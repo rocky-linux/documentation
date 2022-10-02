@@ -1,7 +1,7 @@
 ---
 title: Kubernetes cluster
 author: Antoine Le Morvan, Ezaquiel Bruni
-contributors: Steven Spencer
+contributors: Steven Spencer, Serge Croisé 
 tested with: 8.6
 tags:
   - podman
