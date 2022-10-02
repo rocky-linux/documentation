@@ -468,13 +468,13 @@ root:x:0:0:root:/root:/bin/bash
 (1)(2)(3)(4)(5)  (6)    (7)
 ```
 
-* 1: Login.   
-* 2: Password (`x` if defined in `/etc/shadow`).   
-* 3: UID.   
-* 4: GID of the primary group.   
-* 5: Comment.   
-* 6: Home directory.   
-* 7: Shell.
+* 1: Login name;
+* 2: Password identification, `x` indicates that the user has a password;
+* 3: UID;
+* 4: GID of the primary group;
+* 5: Comments;
+* 6: Home directory;
+* 7: Shell (`/bin/bash`, `/bin/nologin`, ...).
 
 ### `/etc/shadow` file
 
