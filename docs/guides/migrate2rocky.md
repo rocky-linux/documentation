@@ -68,11 +68,11 @@ git clone https://github.com/rocky-linux/rocky-tools.git
 
 Note: this method will download all of the scripts and files in the rocky-tools repository.
 
-### The easy-but-slightly-less-secure way
+### The easy way
 
-Okay, this is not necessarily the best thing to do, security-wise. But, it is the easiest way to grab the script.
+This is probably the easiest way to obtain the script. You only need a suitable HTTP client (curl, wget, lynx and so on) installed on the server.
 
-Run this command to download the script into whatever directory you're using:
+Assuming you have the `curl` utility installed, run this command to download the script into whatever directory you're using:
 
 ```
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
