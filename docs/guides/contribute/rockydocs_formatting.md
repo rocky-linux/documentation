@@ -31,11 +31,11 @@ To be clear, a document may or may not need to contain any of these elements. If
     ###### A Level 6 heading
     ```
 
-    The key here is that there can be as many of the 2 through 6 headings as you want to use, but only **ONE** level 1 heading. While the documentation will build with more than one level 1 heading, the automatically generated table of contents for the document that appears on the right-hand side, will **NOT** display correctly (or sometimes at all), with more than one. Keep this in mind when writing your documents.
+    The key here is that there can be as many of the 2 through 6 headings as you want to use, but only **ONE** level 1 heading. While the documentation will be build with more than one level 1 heading, the automatically generated table of contents for the document that appears on the right-hand side, will **NOT** display correctly (or sometimes at all), with more than one. Keep this in mind when writing your documents.
 
 ## Admonitions
 
-Admonitions are special visual "boxes" that allow you to call attention to important facts and highlight them in a way that makes them stick out from the rest of the text. Admonitions types are as follows:
+Admonitions are special visual "boxes" that allow you to call attention to important facts and highlight them in a way that makes them stick out from the rest of the text. Admonition types are as follows:
 
 | type      | Description                                               |
 |-----------|-----------------------------------------------------------|
@@ -47,11 +47,11 @@ Admonitions are special visual "boxes" that allow you to call attention to impor
 | important | renders a green text box                                  |
 | note      | renders a blue text box                                   |
 | tip       | renders a green text box                                  |
-| warning   | renders a orange text box                                 |
+| warning   | renders an orange text box                                |
 | custom <sub>1</sub> | always renders a blue text box                  |
 | custom <sub>2</sub> | uses a custom title within another type       |
 
-So there is no limit on the types of admonitions you can use as noted in custom <sub>1</sub> above. A custom title can be added to any of the other admonition types to get the colored box you want for a specific admonition, as noted in custom <sub>2</sub> above.
+So, there is no limit on the types of admonitions you can use as noted in custom <sub>1</sub> above. A custom title can be added to any of the other admonition types to get the colored box you want for a specific admonition, as noted in custom <sub>2</sub> above.
 
 An admonition is always entered in this way:
 
@@ -61,7 +61,7 @@ An admonition is always entered in this way:
     text of admonition
 ```
 
-The body text of the admonition must be indented four (4) spaces from the beginning margin. It's easy to see where that is in this case, because it will always line up under the first letter of the admonition type. The extra line between the title and body will not show up, but is required for our translation engine (Crowdin) to function correctly.
+The body text of the admonition must be indented four (4) spaces from the beginning margin. It's easy to see where that is in this case, because it will always line up under the first letter of the admonition type. The extra line between the title and body will not show up but is required for our translation engine (Crowdin) to function correctly.
 
 Here are examples of each admonition type, and how they will look in your document:
 
@@ -103,7 +103,7 @@ Here are examples of each admonition type, and how they will look in your docume
 
 !!! custom                        
 
-    A custom  <sub>1</sub> type. Here we've used "custom" as our admonition type. Again, this will always render in blue.
+    A custom <sub>1</sub> type. Here we've used "custom" as our admonition type. Again, this will always render in blue.
 
 !!! warning "custom title"
 
@@ -153,7 +153,7 @@ Which would look like this in your editor:
     The procedure for doing this in 8.6
 ```
 
-Keep in mind that everything that falls inside of the section, must continue to use the 4 space indentation until the section is completed. This is a very handy feature!
+Keep in mind that everything that falls inside of the section must continue to use the 4-space indentation until the section is completed. This is a very handy feature!
 
 ## Numbered Lists
 
@@ -219,7 +219,7 @@ Tables help us to lay out command options, or in the above case, admonition type
 | important | renders a green text box                                  |
 | note      | renders a blue text box                                   |
 | tip       | renders a green text box                                  |
-| warning   | renders a orange text box                                 |
+| warning   | renders an orange text box                                |
 | custom <sub>1</sub> | always renders a blue text box                  |
 | custom <sub>2</sub> | uses a customer title within another type       |
 ```
@@ -259,7 +259,7 @@ sudo dnf install the-kitchen-sink
 ```
 ````
 
-The `bash` bit of that formatting is a non-essential code identifier, but can help with syntax highlighting. Of course, if you're showcasing Python, PHP, Ruby, HTML, CSS, or any other kind of code, the "bash" should be changed to whatever language you're using.
+The `bash` bit of that formatting is a non-essential code identifier but can help with syntax highlighting. Of course, if you're showcasing Python, PHP, Ruby, HTML, CSS, or any other kind of code, the "bash" should be changed to whatever language you're using.
 
 Incidentally, if you need to show a code block within a code block, just add one more backtick <kbd>`</kbd> to the parent block, like so:
 
@@ -334,7 +334,7 @@ You can even embed a table or block quote (quite literally any formatting item t
         |-----------------|----------------------------------|
         | tea             | it will get you there eventually |
         | coffee          | for discerning taste buds        |
-        | red bull        | tastes terrible - but it will keep you going!|
+        | red bull        | tastes terrible - but it will keep you going! |
         | mountain dew    | over hyped                       |
 
         > **sugar** if caffeine isn't to your liking
@@ -363,7 +363,7 @@ You can even embed a table or block quote (quite literally any formatting item t
         |-----------------|----------------------------------|
         | tea             | it will get you there eventually |
         | coffee          | for discerning taste buds        |
-        | red bull        | tastes terrible - but it will keep you going!|
+        | red bull        | tastes terrible - but it will keep you going! |
         | mountain dew    | over hyped                       |
 
         > **sugar** if caffeine isn't to your liking
@@ -375,7 +375,7 @@ You can even embed a table or block quote (quite literally any formatting item t
 
 ## One Final Item - Comments
 
-From time to time you may want to add a comment to your markdown that will not display when rendered. There are a lot of reasons why you might want to do this. For instance, if you want to add a placeholder for something that will be added later, you could use a comment to mark your spot.
+From time to time, you may want to add a comment to your markdown that will not display when rendered. There are a lot of reasons why you might want to do this. For instance, if you want to add a placeholder for something that will be added later, you could use a comment to mark your spot.
 
 The best way to add a comment to your markdown is to use the square brackets "[]" with two forward slashes "//" followed by a colon and the content. This would look like this:
 
