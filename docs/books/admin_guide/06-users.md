@@ -450,7 +450,7 @@ $ sudo userdel -r carine
 
 | Option |	Description                                              |
 | -------| --------------------------------------------------------- |
-| `-r`   | Deletes the connection directory and the contained files. |
+| `-r`   | Delete the user's home directory and mail files located in the `/var/spool/mail/` directory |
 
 !!! Tip
 
