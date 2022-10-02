@@ -223,7 +223,7 @@ NAME                          STATUS   ROLES           AGE    VERSION
 master.k8s.priv   Ready    control-plane   118s   v1.25.0
 ```
 
-Once the nodes have been joined to the master :
+Once the nodes have been joined to the master:
 
 ```
 [root@master ~]# kubectl get nodes
