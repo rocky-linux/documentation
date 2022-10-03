@@ -248,7 +248,7 @@ Thus, no user can use the password to access the group (since group members do n
 A user is defined as follows in the `/etc/passwd` file:
 
 * 1: Login name;
-* 2: Password identification, `x` indicates that the user has a password;
+* 2: Password identification, `x` indicates that the user has a password, the encrypted password is stored in the second field of `/etc/shadow`;
 * 3: UID;
 * 4: GID of the primary group;
 * 5: Comments;
@@ -450,13 +450,13 @@ $ sudo userdel -r carine
 
 | Option |	Description                                              |
 | -------| --------------------------------------------------------- |
-| `-r`   | Deletes the connection directory and the contained files. |
+| `-r`   | Delete the user's home directory and mail files located in the `/var/spool/mail/` directory |
 
 !!! Tip
 
     To be deleted, a user must be logged out and have no running processes.
 
-`userdel` removes the user's line from the `/etc/passwd` and `/etc/gshadow` files.
+The `userdel` command removes the corresponding lines in `/etc/passwd`, `/ etc/shadow`, `/etc/group`, `/etc/gshadow`. As mentioned above, `userdel -r` will also delete the corresponding primary group of the user. 
 
 ### `/etc/passwd` file
 
@@ -468,13 +468,13 @@ root:x:0:0:root:/root:/bin/bash
 (1)(2)(3)(4)(5)  (6)    (7)
 ```
 
-* 1: Login.   
-* 2: Password (`x` if defined in `/etc/shadow`).   
-* 3: UID.   
-* 4: GID of the primary group.   
-* 5: Comment.   
-* 6: Home directory.   
-* 7: Shell.
+* 1: Login name;
+* 2: Password identification, `x` indicates that the user has a password, the encrypted password is stored in the second field of `/etc/shadow`;
+* 3: UID;
+* 4: GID of the primary group;
+* 5: Comments;
+* 6: Home directory;
+* 7: Shell (`/bin/bash`, `/bin/nologin`, ...).
 
 ### `/etc/shadow` file
 
