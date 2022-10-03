@@ -485,19 +485,29 @@ root:$6$...:15399:0:99999:7:::
  (1)    (2)  (3) (4) (5) (6)(7,8,9)
 ```
 
-* 1: Login.   
-* 2: Encrypted password.   
-* 3: Date of last change.   
-* 4: Minimum lifetime of the password.   
-* 5: Maximum lifetime of the password.   
-* 6: Number of days before warning.   
-* 7: Time to deactivate account after expiration.   
-* 8: Account expiration time.   
+* 1: Login name.   
+* 2: Encrypted password. Uses the SHA512 encryption algorithm, defined by the `ENCRYPT_METHOD` of `/etc/login.defs`.
+* 3: The time when the password was last changed, the timestamp format, in days. The so-called timestamp is based on January 1, 1970 as the standard time. Every time one day goes by, the timestamp is +1. 
+* 4: Minimum lifetime of the password. That is, The time interval between two password changes (related to the third field), in days.  Defined by the `PASS_MIN_DAYS` of `/etc/login.defs`, the default is 0, that is, when you change the password for the second time, there is no restriction. However, if it is 5, it means that it is not allowed to change the password within 5 days, and only after 5 days.  
+* 5: Maximum lifetime of the password. That is, the validity period of the password (related to the third field). Defined by the `PASS_MAX_DAYS` of `/etc/login.defs`.
+* 6: The number of warning days before the password expires (related to the fifth field). The default is 7 days, defined by the `PASS_WARN_AGE` of `/etc/login.defs`.
+* 7: Number of days of grace after password expiration (related to the fifth field).  
+* 8: Account expiration time, the timestamp format, in days. **Note that an account expiration differs from a password expiration. In case of an account expiration, the user shall not be allowed to login. In case of a password expiration, the user is not allowed to login using her password.**
 * 9: Reserved for future use.   
 
 !!! Danger
 
     For each line in the `/etc/passwd` file there must be a corresponding line in the `/etc/shadow` file.
+
+For time stamp and date conversion, please refer to the following command format:
+
+```bash
+# The timestamp is converted to a date, "17718" indicates the timestamp to be filled in.
+Shell > date -d "1970-01-01 17718 days" 
+
+# The date is converted to a timestamp, "2018-07-06" indicates the date to be filled in.
+Shell > echo $(($(date --date="2018/07/06" +%s)/86400+1))
+```
 
 ## File owners
 
