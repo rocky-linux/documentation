@@ -506,7 +506,7 @@ For time stamp and date conversion, please refer to the following command format
 Shell > date -d "1970-01-01 17718 days" 
 
 # The date is converted to a timestamp, "2018-07-06" indicates the date to be filled in.
-Shell > echo $(($(date --date="2018/07/06" +%s)/86400+1))
+Shell > echo $(($(date --date="2018-07-06" +%s)/86400+1))
 ```
 
 ## File owners
