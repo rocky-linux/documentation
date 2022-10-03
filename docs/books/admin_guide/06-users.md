@@ -456,7 +456,7 @@ $ sudo userdel -r carine
 
     To be deleted, a user must be logged out and have no running processes.
 
-The `usedel` command removes the corresponding lines in `/etc/passwd`, `/ etc/shadow`, `/etc/group`, `/etc/gshadow`. As mentioned above, `userdel -r` will also delete the corresponding primary group of the user. 
+The `userdel` command removes the corresponding lines in `/etc/passwd`, `/ etc/shadow`, `/etc/group`, `/etc/gshadow`. As mentioned above, `userdel -r` will also delete the corresponding primary group of the user. 
 
 ### `/etc/passwd` file
 
