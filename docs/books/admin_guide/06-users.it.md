@@ -4,10 +4,10 @@ title: Gestione utenti
 
 # Gestione utenti
 
-In questo capitolo imparerai come gestire l'utente.
+In questo capitolo imparerai come gestire gli utenti.
 
 ****
-**Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come fare per:
+**Obiettivi**: In questo capitolo, i futuri amministratori di Linux impareranno a:
 
 :heavy_check_mark: aggiungere, eliminare o modificare un **gruppo** ; :heavy_check_mark: aggiungere, eliminare o modificare un **utente** ; :heavy_check_mark: Comprendere i file associati agli utenti e ai gruppi e scoprire come gestirli; :heavy_check_mark: cambiare il *proprietario* o il *proprietario del gruppo* di un file; :heavy_check_mark: *sicuro* account utente; :heavy_check_mark: cambiare identità.
 
@@ -25,7 +25,7 @@ Ogni utente deve avere un gruppo, che è chiamato il gruppo **primario dell'uten
 
 Diversi utenti possono far parte dello stesso gruppo.
 
-Un gruppo diverso dal gruppo primario è chiamato **gruppo supplementare dell'utente**.
+Gruppo diversi dal gruppo primario sono chiamati **gruppi supplementari**.
 
 !!! Note "Nota"
 
@@ -72,7 +72,7 @@ Esempio:
 $ sudo groupadd -g 1012 GroupeB
 ```
 
-| Option   | Descrizione                                                                                                                        |
+| Opzione  | Descrizione                                                                                                                        |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `-g GID` | `GID` del gruppo da creare.                                                                                                        |
 | `-f`     | Il sistema sceglie un`GID` se quello specificato dall'opzione `-g` esiste già.                                                     |
@@ -143,7 +143,7 @@ $ sudo groupdel GroupC
     Quando si elimina un gruppo, si possono verificare due condizioni:
 
     * Se un utente ha un gruppo primario unico e si lancia il comando `groupdel` su quel gruppo, verrà indicato che c'è un utente specifico sotto il gruppo e che non può essere cancellato.
-    * Se un utente appartiene a un gruppo supplementare (non al gruppo primario per l'utente) e tale gruppo non è il gruppo primario per l'utente antoher sul sistema, quindi il comando `groupdel` eliminerà il gruppo senza alcun prompt aggiuntivo.
+    * Se un utente appartiene a un gruppo supplementare (non al gruppo primario per l'utente) e tale gruppo non è il gruppo primario per un altro utente sul sistema, il comando `groupdel` eliminerà il gruppo senza alcun prompt aggiuntivo.
 
     Esempi:
 
@@ -242,7 +242,7 @@ Un `!` nella password indica che la password è bloccata. Quindi nessun utente p
 Un utente è definito come segue nel file `/etc/passwd`:
 
 * 1: Login name;
-* 2: Identificazione della password, `x` indica che l'utente ha una password;
+* 2: Identificazione della password, `x` indica che l'utente ha una password, la password criptata è memorizzata nel secondo campo di `/etc/shadow`;
 * 3: UID;
 * 4: GID del gruppo primario;
 * 5: Commenti;
@@ -252,7 +252,7 @@ Un utente è definito come segue nel file `/etc/passwd`:
 Esistono tre tipi di utenti:
 
 * **root(uid=0)**: l'amministratore di sistema;
-* **system users(uid is one of the 201~999)**: Utilizzato dal sistema per gestire i diritti di accesso alle applicazioni ;
+* **system users(uid è uno da 201~999)**: Utilizzato dal sistema per gestire i diritti di accesso alle applicazioni;
 * **utente normale (uid>=1000)**: Altro account per accedere al sistema.
 
 File modificati, righe aggiunte:
@@ -386,7 +386,7 @@ Opzioni identiche al comando `useradd`.
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `-m`            | Associato all'opzione `-d` , sposta i contenuti della vecchia directory di login nella nuova. f la vecchia directory home non esiste, una nuova directory home non sarà creata; Se la nuova directory home non esiste, viene creata. |
 | `-l login`      | Nuovo nome login. Dopo aver modificato il nome di accesso, è anche necessario modificare il nome della directory home per abbinarlo.                                                                                                 |
-| `-e YYYY-MM-DD` | Account expiration date.                                                                                                                                                                                                             |
+| `-e YYYY-MM-DD` | Data di scadenza dell'account.                                                                                                                                                                                                       |
 | `-L`            | Blocca permanentemente l'account. Cioè, un `!` viene aggiunto all'inizio del campo password `/etc/shadow`                                                                                                                            |
 | `-U`            | Sblocca l'account.                                                                                                                                                                                                                   |
 | `-a`            | Aggiungi i gruppi supplementari dell'utente, che devono essere utilizzati insieme all'opzione `-G`.                                                                                                                                  |
@@ -444,15 +444,15 @@ Il comando `userdel` consente di eliminare l'account di un utente.
 $ sudo userdel -r carine
 ```
 
-| Opzione | Descrizione                                             |
-| ------- | ------------------------------------------------------- |
-| `-r`    | Elimina la directory di connessione e i file contenuti. |
+| Opzione | Descrizione                                                                                               |
+| ------- | --------------------------------------------------------------------------------------------------------- |
+| `-r`    | Elimina la directory home dell'utente e i file di posta che si trovano nella directory `/var/spool/mail/` |
 
 !!! Tip "Suggerimento"
 
     Per essere eliminato, un utente deve essere disconnesso e non avere processi in esecuzione.
 
-`userdel` rimuove la riga dell'utente dai file `/etc/passwd` e `/etc/gshadow`.
+Il comando `userdel` rimuove le righe corrispondenti in `/etc/passwd`, `/ etc/shadow`, `/etc/group`, `/etc/gshadow`. Come accennato in precedenza, `userdel -r` cancellerà anche il corrispondente gruppo primario dell'utente.
 
 ### file `/etc/passwd`
 
@@ -464,13 +464,13 @@ root:x:0:0:root:/root:/bin/bash
 (1)(2)(3)(4)(5)  (6)    (7)
 ```
 
-* 1: Login.
-* 2: Password (`x` se definita in `/etc/shadow`).
+* 1: Login name;
+* 2: Identificazione della password, `x` indica che l'utente ha una password, la password criptata è memorizzata nel secondo campo di `/etc/shadow`;
 * 3: UID.
-* 4: GID del gruppo primario.
-* 5: Commenti.
-* 6: Home directory.
-* 7: Shell.
+* 4: GID del gruppo primario;
+* 5: Commenti;
+* 6: Home directory;
+* 7: Shell (`/bin/bash`, `/bin/nologin`, ...).
 
 ### file `/etc/shadow`
 
@@ -607,8 +607,8 @@ $ sudo gpasswd -A alain GroupA
 Il comando `gpasswd -M` agisce come una modifica, non come un'aggiunta.
 ```
 # gpasswd GroupeA
-New Password :
-Re-enter new password :
+New Password:
+Re-enter new password:
 ```
 
 ### comando `id`
@@ -788,8 +788,8 @@ $ sudo useradd -u 501 -N GroupeA
 Questo file contiene molti parametri predefiniti utili per la creazione o la modifica degli utenti. Queste informazioni sono raggruppate per paragrafo in base al loro utilizzo:
 
 * Mailboxes;
-* Passwords ;
-* UID e GID ;
+* Passwords;
+* UID e GID;
 * Umask ;
 * Connessioni;
 * Terminali.
