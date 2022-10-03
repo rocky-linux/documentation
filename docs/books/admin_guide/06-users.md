@@ -4,13 +4,13 @@ title: User Management
 
 # User Management
 
-In this chapter you will learn how to manage user.
+In this chapter you will learn how to manage users.
 
 ****
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: add, delete or modify a **group** ;
-:heavy_check_mark: add, delete or modify a **user** ;
+:heavy_check_mark: add, delete or modify a **group**;
+:heavy_check_mark: add, delete or modify a **user**;
 :heavy_check_mark: Understand the files associated with users and groups and learn how to manage them;
 :heavy_check_mark: change the *owner* or the *group owner* of a file;
 :heavy_check_mark: *secure* user accounts;
@@ -30,7 +30,7 @@ Each user must have a group, which is called the user's **primary group**.
 
 Several users can be part of the same group.
 
-A group other than the primary group is called the user's **supplementary groups**.
+Groups other than the primary group are called the user's **supplementary groups**.
 
 !!! Note
 
@@ -96,7 +96,7 @@ Group naming rules:
     $ man addgroup
     DESCRIPTION
     adduser and addgroup add users and groups to the system according to command line options and configuration information
-    in /etc/adduser.conf. They are friendlier front ends to the low level tools like useradd, groupadd and usermod programs,
+    in /etc/adduser.conf. They are friendlier front ends to the low-level tools like useradd, groupadd and usermod programs,
     by default choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
     running a custom script, and other features.
     ```
@@ -148,7 +148,7 @@ $ sudo groupdel GroupC
     When deleting a group, there are two conditions that can occur:
     
     * If a user has a unique primary group and you issue the `groupdel` command on that group, you will be prompted that there is a specific user under the group and it cannot be deleted.
-    * If a user belongs to a suplementary group (not the primary group for the user) and that group is not the primary group for antoher user on the system, then the `groupdel` command will delete the group without any additional prompts.
+    * If a user belongs to a supplementary group (not the primary group for the user) and that group is not the primary group for antoher user on the system, then the `groupdel` command will delete the group without any additional prompts.
     
     Examples: 
   
@@ -168,7 +168,7 @@ $ sudo groupdel GroupC
 
 !!! Tip
 
-    When you delete a user using the `userdel -r` command, the corresponding primary group is also deleted. The primary group name is usually the same as the user name.
+    When you delete a user using the `userdel -r` command, the corresponding primary group is also deleted. The primary group name is usually the same as the username.
 
 !!! Tip
 
@@ -238,8 +238,8 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
     The name of the group in **/etc/group** and **/etc/gshadow** must correspond one by one, that is, each line in the **/etc/group** file must have a corresponding line in the **/etc/gshadow** file.
 
-A `!` in the password indicates that it is locked.
-Thus no user can use the password to access the group (since group members do not need it).
+An `!` in the password indicates that it is locked.
+Thus, no user can use the password to access the group (since group members do not need it).
 
 ## User management
 
@@ -257,8 +257,8 @@ A user is defined as follows in the `/etc/passwd` file:
 
 There are three types of users:
 
-* **root(uid=0)**: the system administrator ;
-* **system users(uid is one of the 201~999)**:	Used by the system to manage application access rights ;
+* **root(uid=0)**: the system administrator;
+* **system users(uid is one of the 201~999)**:	Used by the system to manage application access rights;
 * **regular user(uid>=1000)**:	Other account to log in to the system.
 
 Modified files, added lines:
@@ -344,7 +344,7 @@ $ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
     ```
     $ man useradd
     DESCRIPTION
-        **useradd** is a low level utility for adding users. On Debian, administrators should usually use **adduser(8)**
+        **useradd** is a low-level utility for adding users. On Debian, administrators should usually use **adduser(8)**
          instead.
     ```
 
@@ -392,7 +392,7 @@ Options identical to the `useradd` command.
 |`-m`            | Associated with the `-d` option, moves the contents of the old login directory to the new one.If the old home directory does not exist, a new home directory will not be created; If the new home directory does not exist, it is created.|
 |`-l login`      | New login name. After you modify the login name, you also need to modify the name of the home directory to match it.     |
 |`-e YYYY-MM-DD` | Account expiration date.                                                                      |
-|`-L`            | Permanently lock account. That is, a `!` is added at the beginning of the `/etc/shadow` password field     |
+|`-L`            | Permanently lock account. That is, an `!` is added at the beginning of the `/etc/shadow` password field     |
 |`-U`            | Unlocks the account.                                                                          |
 |`-a`            | Append the user's supplementary groups, which must be used together with the `-G` option.         |
 |`-G`            | Modify the user's supplementary groups to overwrite the previous supplementary groups.        |
@@ -401,7 +401,7 @@ Options identical to the `useradd` command.
 
     To be modified, a user must be disconnected and have no running processes.
 
-After changing the identifier, the files belonging to the user have an unknown `UID`. It must be reassigned the new `UID`. 
+After changing the identifier, the files belonging to the user have an unknown `UID`. It must be reassigned to the new `UID`. 
 
 Where `1000` is the old `UID` and `1044` is the new one. Examples are as follows:
 
@@ -610,8 +610,8 @@ $ sudo gpasswd -A alain GroupA
 The command `gpasswd -M` acts as a modification, not an addition.
 ```
 # gpasswd GroupeA
-New Password :
-Re-enter new password :
+New Password:
+Re-enter new password:
 ```
 
 ### `id` command
@@ -671,7 +671,7 @@ $ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 
 With the `passwd` command, locking an account is accomplished by adding `!!` before the password in the `/etc/shadow` file.
 
-Using the command `usermod -U` command only removes one of the `!`. So the account remains locked.
+Using the command `usermod -U` command only removes one of the `!`. So, the account remains locked.
 
 Example:
 
@@ -791,8 +791,8 @@ $ sudo useradd -u 501 -N GroupeA
 This file contains many default parameters useful for creating or modifying users. This information is grouped by paragraph according to their use:
 
 * Mailboxes;
-* Passwords ;
-* UID and GID ;
+* Passwords;
+* UID and GID;
 * Umask ;
 * Connections;
 * Terminals.
