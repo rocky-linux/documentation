@@ -482,19 +482,29 @@ root:$6$...:15399:0:99999:7
  (1)    (2)  (3) (4) (5) (6)(7,8,9)
 ```
 
-* 1: Login.
-* 2: Password criptata.
-* 3: Data dell'ultima modifica.
-* 4: Durata minima della password.
-* 5: Durata massima della password.
-* 6: Numero di giorni prima dell'avviso.
-* 7: Ora di disattivazione dell'account dopo la scadenza.
-* 8: Tempo di scadenza dell'account.
+* 1: Nome Login.
+* 2: Password criptata. Utilizza l'algoritmo di crittografia SHA512, definito dal `ENCRYPT_METHOD` di `/etc/login.defs`.
+* 3: L'ora in cui la password è stata cambiata l'ultima volta, il formato timestamp, in giorni. Il cosiddetto timestamp si basa sul 1 gennaio 1970 come orario standard. Ogni volta che un giorno passa, il timestamp è +1.
+* 4: Durata minima della password. Cioè, l'intervallo di tempo tra due modifiche password (relative al terzo campo), in giorni.  Definito dal `PASS_MIN_DAYS` di `/etc/login.defs`, il valore predefinito è 0, cioè, quando cambi la password per la seconda volta, non c'è alcuna restrizione. Tuttavia, se è 5, significa che non è permesso cambiare la password entro 5 giorni, e solo dopo 5 giorni.
+* 5: Durata massima della password. Cioè, il periodo di validità della password (relativo al terzo campo). Definito dal `PASS_MAX_DAYS` di `/etc/login.defs`.
+* 6: Il numero di giorni di avviso prima della scadenza della password (relativo al quinto campo). Il valore predefinito è di 7 giorni, definito dal `PASS_WARN_AGE` di `/etc/login.defs`.
+* 7: Numero di giorni di tolleranza dopo la scadenza della password (in relazione al quinto campo).
+* 8: Tempo di scadenza dell'account, il formato del timestamp, in giorni. **Nota che la scadenza di un account differisce dalla scadenza di una password. In caso di scadenza di un account, l'utente non può effettuare il login. In caso di scadenza della password, all'utente non è consentito effettuare il login utilizzando la sua password.**
 * 9: Riservato per un uso futuro.
 
 !!! Danger "Pericolo"
 
     Per ogni riga del file `/etc/passwd` deve esserci una riga corrispondente nel file `/etc/shadow`.
+
+Per la conversione della data e dell'ora, fare riferimento al seguente formato di comando:
+
+```bash
+# Il timestamp viene convertito in una data, "17718" indica il timestamp da inserire.
+Shell > date -d "1970-01-01 17718 days" 
+
+# La data è convertita in un timestamp, "2018-07-06" indica la data da compilare.
+Shell > echo $(($(date --date="2018-07-06" +%s)/86400+1))
+```
 
 ## Proprietari dei file
 
@@ -668,7 +678,7 @@ $ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 
 Con il comando `passwd`, il blocco di un account si ottiene aggiungendo `!!` prima della password nel file `/etc/shadow`.
 
-Usando il comando `usermod -U` rimuove solo uno dei `!`. Quindi l'account rimane bloccato.
+Usando il comando `usermod -U` si rimuove solo uno dei `!`. Quindi l'account rimane bloccato.
 
 Esempio:
 
@@ -737,7 +747,7 @@ $ sudo chage -d 0 philippe
 
     Se non viene specificato alcun utente, l'ordine riguarderà l'utente che lo inserisce.
 
-![User account management with chage](images/chage-timeline.png)
+![Gestione degli account utente con chage](images/chage-timeline.png)
 
 ## Gestione avanzata
 
@@ -774,7 +784,7 @@ Questo file è modificato dal comando `useradd -D` (`useradd -D` inserito senza 
 
 !!! Warning "Attenzione"
 
-    Senza l'opzione `-g', il comando `useradd' crea un gruppo con il nome dell'utente e lo colloca lì.
+    Senza l'opzione `-g`, il comando `useradd` crea un gruppo con il nome dell'utente e lo posiziona in quel gruppo.
 
 In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
 
@@ -861,6 +871,6 @@ Un utente può temporaneamente (per un altro comando o per un'intera sessione) a
 
 Se nessun utente è specificato, il comando sarà per `root` (`su -`).
 
-È necessario conoscere la password dell'utente la cui identità viene approvata a meno che non sia `root` che esegue il comando.
+È necessario conoscere la password dell'utente di cui si sta verificando l'identità, a meno che non sia `root` a eseguire il comando.
 
 Un amministratore può quindi lavorare con un account utente standard e utilizzare i diritti dell'account `root` solo occasionalmente.
