@@ -151,7 +151,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
     sudo reboot
     ```
 
-    Next, click on your user name on the screen, but before you enter your password and login, click on the gear icon to the left of the "Sign in" option. Select "MATE" from the available desktop choices and then you can enter your password and login. Future logins will remember your selection.
+    Next, click on your username on the screen, but before you enter your password and login, click on the gear icon to the left of the "Sign in" option. Select "MATE" from the available desktop choices and then you can enter your password and login. Future logins will remember your selection.
 
     ## 8.6: Conclusion
 
