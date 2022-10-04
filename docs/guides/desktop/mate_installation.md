@@ -77,7 +77,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ![mate_install_2](images/mate_install_2.png)
 
-    After the installatin to the hard drive is complete, you'll be faced with the following screen:
+    After the installation to the hard drive is complete, you'll be faced with the following screen:
 
     ![mate_install_final](images/mate_install_final.png)
 
