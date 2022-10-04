@@ -100,4 +100,7 @@ Una volta verificato che è possibile accedere a SSH senza password, rimuovere i
 
 Su ciascuna delle macchine di destinazione, assicurati che siano applicate le seguenti autorizzazioni:
 
-`chmod 700 .ssh/` `chmod 600 .ssh/authorized_keys`
+```
+chmod 700 .ssh/
+chmod 600 .ssh/authorized_keys
+```
