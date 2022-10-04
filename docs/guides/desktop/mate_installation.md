@@ -59,7 +59,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ## 9.0: Installing MATE
 
-    At this point, you can use the MATE environment and see if you like it. Once you've decided that you would like to use it permanently, double-click the option to **Install to Hard Drive.**
+    At this point, you can use the MATE environment and see if you like it. Once you've decided that you would like to use it permanently, double-click the option to **Install to Hard Drive**.
 
     This will start a pretty familiar installation process for those who have installed Rocky Linux before. In the following screen, we've highlighted things that you *may* wish to change.
 
