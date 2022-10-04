@@ -43,7 +43,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
     Rocky-9.0-MATE-x86_64-20220912.1.iso: OK
     ```
     
-    If the checksum for the file returns OK, you are now ready to write your ISO image to your media. This procedure is different by the OS you are using, the media, and the tools. We are asssuming here that you know how to write the image to your media.
+    If the checksum for the file returns OK, you are now ready to write your ISO image to your media. This procedure is different by the OS you are using, the media, and the tools. We are assuming here that you know how to write the image to your media.
 
     ## 9.0: Booting
 
