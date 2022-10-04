@@ -53,7 +53,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     If so, you are on your way! If you want to test the media, you can select that option first, or you can simply type **S** to **Start Rocky Linux Mate 9.0.**
 
-    Remeber, this is a live image, so it's going to take a bit of time to boot to the first screen. Don't panic-just wait! Once the live image is booted up, you should see this screen:
+    Remember, this is a live image, so it's going to take a bit of time to boot to the first screen. Don't panic-just wait! Once the live image is booted up, you should see this screen:
 
     ![mate-live](images/mate_live.png)
 
