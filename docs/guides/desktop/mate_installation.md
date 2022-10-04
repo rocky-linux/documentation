@@ -94,10 +94,6 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ![mate_desktop](images/mate_desktop.png)
 
-    ## 9.0: Conclusion
-
-    For those that do not like the typical GNOME installed desktop environment, there are many options available. One of the most popular options is MATE, and the Rocky Linux 9.0 developers have made it easy for you to install the OS and Desktop using the MATE live image.
-
 === "8.6"
 
     ## 8.6: Install Rocky Linux Minimal
@@ -152,6 +148,6 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     Next, click on your username on the screen, but before you enter your password and login, click on the gear icon to the left of the "Sign in" option. Select "MATE" from the available desktop choices and then you can enter your password and login. Future logins will remember your selection.
 
-    ## 8.6: Conclusion
+## Conclusion
 
-    Some people are not satisfied with the newer GNOME implementations or simply prefer the older MATE GNOME 2 look and feel. For those people, getting MATE installed in Rocky Linux will provide a nice, stable alternative.
+Some people are not satisfied with the newer GNOME implementations or simply prefer the older MATE GNOME 2 look and feel. For those people, getting MATE installed in Rocky Linux will provide a nice, stable alternative. For Rocky Linux 9.0, the developers have made the whole process very easy with the available live image.
