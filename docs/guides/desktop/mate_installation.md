@@ -87,7 +87,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ![eula](images/eula.png)
 
-    Go ahead and click the **I accept license agreement** check box, and then click **Done.** This will get you to the final screen as far as the installation is concerned. On this screen, click **Finish Configuration**.
+    Go ahead and click the **I accept the license agreement** check box, and then click **Done**. This will get you to the final screen as far as the installation is concerned. On this screen, click **Finish Configuration**.
 
     ![mate_finish](images/mate_finish.png)
 
