@@ -81,7 +81,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ![mate_install_final](images/mate_install_final.png)
 
-    Go ahead and click **Finish Installation**
+    Go ahead and click **Finish Installation**.
 
     At this point the OS will reboot, and you should remove your boot media. When the OS comes up for the first time, there is a licensing agreement screen:
 
