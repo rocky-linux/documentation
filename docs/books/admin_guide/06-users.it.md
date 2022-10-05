@@ -4,10 +4,10 @@ title: Gestione utenti
 
 # Gestione utenti
 
-In questo capitolo imparerai come gestire l'utente.
+In questo capitolo imparerai come gestire gli utenti.
 
 ****
-**Obiettivi** : In questo capitolo, futuri amministratori Linux impareranno come fare per:
+**Obiettivi**: In questo capitolo, i futuri amministratori di Linux impareranno a:
 
 :heavy_check_mark: aggiungere, eliminare o modificare un **gruppo** ; :heavy_check_mark: aggiungere, eliminare o modificare un **utente** ; :heavy_check_mark: Comprendere i file associati agli utenti e ai gruppi e scoprire come gestirli; :heavy_check_mark: cambiare il *proprietario* o il *proprietario del gruppo* di un file; :heavy_check_mark: *sicuro* account utente; :heavy_check_mark: cambiare identità.
 
@@ -25,7 +25,7 @@ Ogni utente deve avere un gruppo, che è chiamato il gruppo **primario dell'uten
 
 Diversi utenti possono far parte dello stesso gruppo.
 
-Un gruppo diverso dal gruppo primario è chiamato **gruppo supplementare dell'utente**.
+Gruppo diversi dal gruppo primario sono chiamati **gruppi supplementari**.
 
 !!! Note "Nota"
 
@@ -72,7 +72,7 @@ Esempio:
 $ sudo groupadd -g 1012 GroupeB
 ```
 
-| Option   | Descrizione                                                                                                                        |
+| Opzione  | Descrizione                                                                                                                        |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `-g GID` | `GID` del gruppo da creare.                                                                                                        |
 | `-f`     | Il sistema sceglie un`GID` se quello specificato dall'opzione `-g` esiste già.                                                     |
@@ -143,7 +143,7 @@ $ sudo groupdel GroupC
     Quando si elimina un gruppo, si possono verificare due condizioni:
 
     * Se un utente ha un gruppo primario unico e si lancia il comando `groupdel` su quel gruppo, verrà indicato che c'è un utente specifico sotto il gruppo e che non può essere cancellato.
-    * Se un utente appartiene a un gruppo supplementare (non al gruppo primario per l'utente) e tale gruppo non è il gruppo primario per l'utente antoher sul sistema, quindi il comando `groupdel` eliminerà il gruppo senza alcun prompt aggiuntivo.
+    * Se un utente appartiene a un gruppo supplementare (non al gruppo primario per l'utente) e tale gruppo non è il gruppo primario per un altro utente sul sistema, il comando `groupdel` eliminerà il gruppo senza alcun prompt aggiuntivo.
 
     Esempi:
 
@@ -242,7 +242,7 @@ Un `!` nella password indica che la password è bloccata. Quindi nessun utente p
 Un utente è definito come segue nel file `/etc/passwd`:
 
 * 1: Login name;
-* 2: Identificazione della password, `x` indica che l'utente ha una password;
+* 2: Identificazione della password, `x` indica che l'utente ha una password, la password criptata è memorizzata nel secondo campo di `/etc/shadow`;
 * 3: UID;
 * 4: GID del gruppo primario;
 * 5: Commenti;
@@ -252,7 +252,7 @@ Un utente è definito come segue nel file `/etc/passwd`:
 Esistono tre tipi di utenti:
 
 * **root(uid=0)**: l'amministratore di sistema;
-* **system users(uid is one of the 201~999)**: Utilizzato dal sistema per gestire i diritti di accesso alle applicazioni ;
+* **system users(uid è uno da 201~999)**: Utilizzato dal sistema per gestire i diritti di accesso alle applicazioni;
 * **utente normale (uid>=1000)**: Altro account per accedere al sistema.
 
 File modificati, righe aggiunte:
@@ -386,7 +386,7 @@ Opzioni identiche al comando `useradd`.
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `-m`            | Associato all'opzione `-d` , sposta i contenuti della vecchia directory di login nella nuova. f la vecchia directory home non esiste, una nuova directory home non sarà creata; Se la nuova directory home non esiste, viene creata. |
 | `-l login`      | Nuovo nome login. Dopo aver modificato il nome di accesso, è anche necessario modificare il nome della directory home per abbinarlo.                                                                                                 |
-| `-e YYYY-MM-DD` | Account expiration date.                                                                                                                                                                                                             |
+| `-e YYYY-MM-DD` | Data di scadenza dell'account.                                                                                                                                                                                                       |
 | `-L`            | Blocca permanentemente l'account. Cioè, un `!` viene aggiunto all'inizio del campo password `/etc/shadow`                                                                                                                            |
 | `-U`            | Sblocca l'account.                                                                                                                                                                                                                   |
 | `-a`            | Aggiungi i gruppi supplementari dell'utente, che devono essere utilizzati insieme all'opzione `-G`.                                                                                                                                  |
@@ -444,15 +444,15 @@ Il comando `userdel` consente di eliminare l'account di un utente.
 $ sudo userdel -r carine
 ```
 
-| Opzione | Descrizione                                             |
-| ------- | ------------------------------------------------------- |
-| `-r`    | Elimina la directory di connessione e i file contenuti. |
+| Opzione | Descrizione                                                                                               |
+| ------- | --------------------------------------------------------------------------------------------------------- |
+| `-r`    | Elimina la directory home dell'utente e i file di posta che si trovano nella directory `/var/spool/mail/` |
 
 !!! Tip "Suggerimento"
 
     Per essere eliminato, un utente deve essere disconnesso e non avere processi in esecuzione.
 
-`userdel` rimuove la riga dell'utente dai file `/etc/passwd` e `/etc/gshadow`.
+Il comando `userdel` rimuove le righe corrispondenti in `/etc/passwd`, `/ etc/shadow`, `/etc/group`, `/etc/gshadow`. Come accennato in precedenza, `userdel -r` cancellerà anche il corrispondente gruppo primario dell'utente.
 
 ### file `/etc/passwd`
 
@@ -464,13 +464,13 @@ root:x:0:0:root:/root:/bin/bash
 (1)(2)(3)(4)(5)  (6)    (7)
 ```
 
-* 1: Login.
-* 2: Password (`x` se definita in `/etc/shadow`).
+* 1: Login name;
+* 2: Identificazione della password, `x` indica che l'utente ha una password, la password criptata è memorizzata nel secondo campo di `/etc/shadow`;
 * 3: UID.
-* 4: GID del gruppo primario.
-* 5: Commenti.
-* 6: Home directory.
-* 7: Shell.
+* 4: GID del gruppo primario;
+* 5: Commenti;
+* 6: Home directory;
+* 7: Shell (`/bin/bash`, `/bin/nologin`, ...).
 
 ### file `/etc/shadow`
 
@@ -482,19 +482,29 @@ root:$6$...:15399:0:99999:7
  (1)    (2)  (3) (4) (5) (6)(7,8,9)
 ```
 
-* 1: Login.
-* 2: Password criptata.
-* 3: Data dell'ultima modifica.
-* 4: Durata minima della password.
-* 5: Durata massima della password.
-* 6: Numero di giorni prima dell'avviso.
-* 7: Ora di disattivazione dell'account dopo la scadenza.
-* 8: Tempo di scadenza dell'account.
+* 1: Nome Login.
+* 2: Password criptata. Utilizza l'algoritmo di crittografia SHA512, definito dal `ENCRYPT_METHOD` di `/etc/login.defs`.
+* 3: L'ora in cui la password è stata cambiata l'ultima volta, il formato timestamp, in giorni. Il cosiddetto timestamp si basa sul 1 gennaio 1970 come orario standard. Ogni volta che un giorno passa, il timestamp è +1.
+* 4: Durata minima della password. Cioè, l'intervallo di tempo tra due modifiche password (relative al terzo campo), in giorni.  Definito dal `PASS_MIN_DAYS` di `/etc/login.defs`, il valore predefinito è 0, cioè, quando cambi la password per la seconda volta, non c'è alcuna restrizione. Tuttavia, se è 5, significa che non è permesso cambiare la password entro 5 giorni, e solo dopo 5 giorni.
+* 5: Durata massima della password. Cioè, il periodo di validità della password (relativo al terzo campo). Definito dal `PASS_MAX_DAYS` di `/etc/login.defs`.
+* 6: Il numero di giorni di avviso prima della scadenza della password (relativo al quinto campo). Il valore predefinito è di 7 giorni, definito dal `PASS_WARN_AGE` di `/etc/login.defs`.
+* 7: Numero di giorni di tolleranza dopo la scadenza della password (in relazione al quinto campo).
+* 8: Tempo di scadenza dell'account, il formato del timestamp, in giorni. **Nota che la scadenza di un account differisce dalla scadenza di una password. In caso di scadenza di un account, l'utente non può effettuare il login. In caso di scadenza della password, all'utente non è consentito effettuare il login utilizzando la sua password.**
 * 9: Riservato per un uso futuro.
 
 !!! Danger "Pericolo"
 
     Per ogni riga del file `/etc/passwd` deve esserci una riga corrispondente nel file `/etc/shadow`.
+
+Per la conversione della data e dell'ora, fare riferimento al seguente formato di comando:
+
+```bash
+# Il timestamp viene convertito in una data, "17718" indica il timestamp da inserire.
+Shell > date -d "1970-01-01 17718 days" 
+
+# La data è convertita in un timestamp, "2018-07-06" indica la data da compilare.
+Shell > echo $(($(date --date="2018-07-06" +%s)/86400+1))
+```
 
 ## Proprietari dei file
 
@@ -607,8 +617,8 @@ $ sudo gpasswd -A alain GroupA
 Il comando `gpasswd -M` agisce come una modifica, non come un'aggiunta.
 ```
 # gpasswd GroupeA
-New Password :
-Re-enter new password :
+New Password:
+Re-enter new password:
 ```
 
 ### comando `id`
@@ -668,7 +678,7 @@ $ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 
 Con il comando `passwd`, il blocco di un account si ottiene aggiungendo `!!` prima della password nel file `/etc/shadow`.
 
-Usando il comando `usermod -U` rimuove solo uno dei `!`. Quindi l'account rimane bloccato.
+Usando il comando `usermod -U` si rimuove solo uno dei `!`. Quindi l'account rimane bloccato.
 
 Esempio:
 
@@ -737,7 +747,7 @@ $ sudo chage -d 0 philippe
 
     Se non viene specificato alcun utente, l'ordine riguarderà l'utente che lo inserisce.
 
-![User account management with chage](images/chage-timeline.png)
+![Gestione degli account utente con chage](images/chage-timeline.png)
 
 ## Gestione avanzata
 
@@ -774,7 +784,7 @@ Questo file è modificato dal comando `useradd -D` (`useradd -D` inserito senza 
 
 !!! Warning "Attenzione"
 
-    Senza l'opzione `-g', il comando `useradd' crea un gruppo con il nome dell'utente e lo colloca lì.
+    Senza l'opzione `-g`, il comando `useradd` crea un gruppo con il nome dell'utente e lo posiziona in quel gruppo.
 
 In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
 
@@ -788,8 +798,8 @@ $ sudo useradd -u 501 -N GroupeA
 Questo file contiene molti parametri predefiniti utili per la creazione o la modifica degli utenti. Queste informazioni sono raggruppate per paragrafo in base al loro utilizzo:
 
 * Mailboxes;
-* Passwords ;
-* UID e GID ;
+* Passwords;
+* UID e GID;
 * Umask ;
 * Connessioni;
 * Terminali.
@@ -861,6 +871,6 @@ Un utente può temporaneamente (per un altro comando o per un'intera sessione) a
 
 Se nessun utente è specificato, il comando sarà per `root` (`su -`).
 
-È necessario conoscere la password dell'utente la cui identità viene approvata a meno che non sia `root` che esegue il comando.
+È necessario conoscere la password dell'utente di cui si sta verificando l'identità, a meno che non sia `root` a eseguire il comando.
 
 Un amministratore può quindi lavorare con un account utente standard e utilizzare i diritti dell'account `root` solo occasionalmente.
