@@ -534,7 +534,7 @@ $ sudo chown albert:GroupA myfile
 
 | Option |	Description                                           |
 | ------ | ------------------------------------------------------ |
-| `-R`   |	Changes the owners of the directory and its contents. |
+| `-R`   |	Recursively changes the owner of the directory and all files under the directory.|
 | `-v`   |	Displays the executed changes.                        |
 
 To change only the owner user:
@@ -561,6 +561,12 @@ In the following example the group assigned will be the primary group of the spe
 $ sudo chown albert: file
 ```
 
+Change the owner and group of all files in a directory
+
+```
+$ sudo chown -R albert:GroupA /dir1
+```
+
 ### `chgrp` command
 
 The `chgrp` command allows you to change the owner group of a file.
@@ -576,7 +582,7 @@ $ sudo chgrp group1 file
 
 | Option | Description                                                              |
 | ------ | ------------------------------------------------------------------------ |
-| `-R`   | Modifies the owner groups of the directory and its contents (recursion). |
+| `-R`   | Recursively changes the group of the directory and all files under the directory. |
 | `-v`   | Displays the executed changes.                                           |
 
 !!! Note
