@@ -534,7 +534,7 @@ $ sudo chown albert:GroupA myfile
 
 | Option |	Description                                           |
 | ------ | ------------------------------------------------------ |
-| `-R`   |	Recursively changes the owner of the directory and all files under the directory.|
+| `-R`   |	Recursively changes the owners of the directory and all files under the directory.|
 | `-v`   |	Displays the executed changes.                        |
 
 To change only the owner user:
@@ -582,7 +582,7 @@ $ sudo chgrp group1 file
 
 | Option | Description                                                              |
 | ------ | ------------------------------------------------------------------------ |
-| `-R`   | Recursively changes the group of the directory and all files under the directory. |
+| `-R`   | Recursively changes the groups of the directory and all files under the directory. |
 | `-v`   | Displays the executed changes.                                           |
 
 !!! Note
