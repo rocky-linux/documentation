@@ -96,7 +96,7 @@ And finally finish the configuration:
 
 ![kde_finish_config](images/kde_finish_config.png)
 
-Once this step is completed, the user name that you created earlier will show up. Enter the password you created for the user and hit <kbd>ENTER</kbd>. This should show you a pristine KDE desktop screen:
+Once this step is completed, the username that you created earlier will show up. Enter the password you created for the user and hit <kbd>ENTER</kbd>. This should show you a pristine KDE desktop screen:
 
 ![kde_screen](images/kde_screen.png)
 
