@@ -12,7 +12,7 @@ tags:
 
 The XFCE desktop environment was created as a fork of the Common Desktop Environment (CDE). XFCE embodies the traditional Unix philosophy of modularity and re-usability. XFCE can be installed on almost any version of Linux, including Rocky Linux.
 
-This procedure is designed to get you up and running with Rocky Linux using XFCE.
+It is also one of the easiest desktop environments to combine with alternate window managers, such as awesome or i3. This procedure, however is designed to get you up and running with Rocky Linux using a more typical XFCE installation.
 
 ## Prerequisites
 
@@ -28,7 +28,9 @@ This procedure is designed to get you up and running with Rocky Linux using XFCE
     ## 9.0: Get, Verify, and Write the XFCE Live Image
 
     Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest XFCE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.0/live/x86_64/). 
-    Note this particular link assumes x86_64 as your architecture. As of this writing, you can use either x86_64 or aarch64 architectures for this live image. Download both the live image and checksum files. 
+    Note that this particular link assumes x86_64 is your processor's architecture. 
+	
+	As of this writing, you can use either x86_64 or aarch64 architectures for this live image. Download both the live image and checksum files. 
 
     Now verify the image with the CHECKSUM file using the following 
     (note this is an example! Make sure your image name and CHECKSUM files match): 
@@ -43,7 +45,7 @@ This procedure is designed to get you up and running with Rocky Linux using XFCE
     Rocky-9-XFCE-x86_64-latest.iso: OK
     ```
 
-    If the checksum for the file returns OK, you are now ready to write your ISO image to your media. This procedure is different by the OS you are using, the media, and the tools. We are assuming here that you know how to write the image to your media.
+    If the checksum for the file returns OK, you are now ready to write your ISO image to your media. This procedure is different depending on the OS you are using, the media, and the tools. We are assuming here that you know how to write the image to your media.
 
     ## 9.0: Booting
 
@@ -53,7 +55,7 @@ This procedure is designed to get you up and running with Rocky Linux using XFCE
 
     If so, you are on your way! If you want to test the media, you can select that option first, or you can simply type **S** to **Start Rocky Linux XFCE 9.0**.
 
-    Remember, this is a live image, so it's going to take a bit of time to boot to the first screen. Don't panic-just wait! Once the live image is booted up, you should see this screen:
+    Remember, this is a live image, so it's going to take a bit of time to boot to the first screen. Don't panic, just wait! Once the live image is booted up, you should see this screen:
 
     ![xfce_install](images/xfce_install.png)
 
@@ -69,15 +71,15 @@ This procedure is designed to get you up and running with Rocky Linux using XFCE
 
     ![xfce_install2](images/xfce_install_2.png)
 
-    1. **Keyboard** Take a look at this option and make sure that it matches up to the keyboard layout that you use.
-    2. **Time & Date** Make sure this matches up to your time zone.
-    3. **Installation Destination** You'll need to click into this option, even if it is just to accept what is already there.
-    4. **Network & Host Name** Verify that you have what you want here. As long as the network is enabled, you can always change this later if you need to.
-    5. **Root Password** Go ahead and set a root password. Remember to save this somewhere safe (password manager), particularly if it isn't something you will be using often.
-    6. **User Creation** Definitely create at least one user. If you want the user to have administrative rights, remember to set this option when creating the user.
-    7. **Begin Installation** Once all of the settings have been set or verified, go ahead and click this option.
+    1. **Keyboard** - Take a look at this option and make sure that it matches up to the keyboard layout that you use.
+    2. **Time & Date** - Make sure this matches up to your time zone.
+    3. **Installation Destination** - You'll need to click into this option, even if it is just to accept what is already there.
+    4. **Network & Host Name** - Verify that you have what you want here. As long as the network is enabled, you can always change this later if you need to.
+    5. **Root Password** - Go ahead and set a root password. Remember to save this somewhere safe (password manager), particularly if it isn't something you will be using often.
+    6. **User Creation** - Definitely create at least one user. If you want the user to have administrative rights, remember to set this option when creating the user.
+    7. **Begin Installation** - Once all of the settings have been set or verified, go ahead and click this option.
 
-    Once you do step 7, the installation process should start installing packages, as in the below screenshot:
+    Once you do step 7, the installation process should start installing packages, as in the screenshot below:
 
     ![xfce_install3](images/xfce_install_3.png)
 
@@ -116,15 +118,15 @@ This procedure is designed to get you up and running with Rocky Linux using XFCE
 
     ## 8.6: Enabling Repositories
 
-    We need the unofficial repository for XFCE in the EPEL, to run on Rocky 8.x versions.
+    We need the unofficial repository for XFCE in the EPEL repository, to run on Rocky 8.x versions.
 
     Enable this repository by entering:
 
     ```
-    dnf install epel-release`
+    dnf install epel-release
     ```
 
-    And answer 'Y' to install the EPEL.
+    And answer 'Y' to install it.
 
     You also need the Powertools and lightdm repositories. Go ahead and enable those now:
 
