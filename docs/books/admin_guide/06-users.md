@@ -618,7 +618,7 @@ $ sudo gpasswd -A alain GroupA
 
 | Option        |	Description                         |
 | ----------    | ------------------------------------ |
-| `-a USER`     | Adds the user to the group. For user, this group is an supplementary group. |
+| `-a USER`     | Adds the user to the group. For the added user, this group is a supplementary group. |
 | `-A USER,...` | Set the list of administrative users.       |
 | `-d USER`     | Remove the user from the group.     |
 | `-M USER,...` | Set the list of group members.|
