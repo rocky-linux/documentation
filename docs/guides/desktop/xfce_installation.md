@@ -27,7 +27,8 @@ This procedure is designed to get you up and running with Rocky Linux using XFCE
 
     ## 9.0: Get, Verify, and Write the XFCE Live Image
 
-    Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest XFCE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.0/live/x86_64/). Note this particular link assumes x86_64 as your architecture. As of this writing, you can use either x86_64 or aarch64 architectures for this live image. Download both the live image and checksum files. 
+    Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest XFCE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.0/live/x86_64/). 
+    Note this particular link assumes x86_64 as your architecture. As of this writing, you can use either x86_64 or aarch64 architectures for this live image. Download both the live image and checksum files. 
 
     Now verify the image with the CHECKSUM file using the following 
     (note this is an example! Make sure your image name and CHECKSUM files match): 
