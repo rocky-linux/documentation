@@ -6,10 +6,10 @@ title: Software Management
 
 ## 概论
 
-On a Linux system, it is possible to install software in two ways:
+在一个 Linux 系统中，我们有两种可能的途径来安装软件。
 
-* Using an installation package;
-* Compiling from source files.
+* 使用一个安装包（installation package）；
+* 从源文件编译。
 
 !!! Note Installing from source is not covered here. As a rule, you should use the package method unless the software you want is not available via the package manager. The reason for this is that dependencies are generally managed by the package system, whereas with source, you need to manage the dependencies manually.
 
@@ -19,7 +19,7 @@ On a Linux system, it is possible to install software in two ways:
 
 ## RPM : RedHat Package Manager
 
-**RPM** (RedHat Package Manager) is a software management system. It is possible to install, uninstall, update or check software contained in packages.
+**RPM** (RedHat Package Manager) 是一个软件管理系统。它可以用于安装（install）、卸载（uninstall）、升级（update）或者检查（check）软件包中含有的软件。
 
 **RPM** is the format used by all RedHat based distributions (RockyLinux, Fedora, CentOS, SuSe, Mandriva, ...). Its equivalent in the Debian world is DPKG (Debian Package).
 
@@ -121,7 +121,7 @@ httpd-tools.x86_64                  2.4.37-30.module_el8.3.0+561+97fdbbcc   @app
 
 ## DNF : Dandified Yum
 
-**DNF** (**Dandified Yum**) is a software package manager, successor of **YUM** (**Yellow dog **U**pdater **M**odified). It works with **RPM** packages grouped in a local or remote repository (a directory for storing packages). For the most common commands, its usage is identical to that of `yum`.
+**DNF** (**Dandified Yum**) 是一个软件包管理器，successor of **YUM** (**Yellow dog **U**pdater **M**odified). It works with **RPM** packages grouped in a local or remote repository (a directory for storing packages). For the most common commands, its usage is identical to that of `yum`.
 
 The `dnf` command allows the management of packages by comparing those installed on the system with those in the repositories defined on the server. It also automatically installs dependencies, if they are also present in the repositories.
 
