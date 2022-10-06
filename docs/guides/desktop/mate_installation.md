@@ -10,7 +10,7 @@ tags:
 
 # MATE Desktop Environment
 
-The MATE desktop environment was created to fork and continue GNOME2 in the wake of the somewhat negative reception that GNOME3 received when introduced. MATE has a loyal set of followers, who immediately install it on their OS of choice. MATE can be installed on many flavors of Linux, including Rocky Linux.
+The MATE desktop environment was created to fork and continue GNOME2 in the wake of the somewhat negative reception that GNOME3 received when introduced. MATE has a loyal set of followers, who usually immediately install it on their OS of choice. MATE can be installed on many flavors of Linux, including Rocky Linux.
 
 This procedure is designed to get you up and running with Rocky Linux using MATE.
 
@@ -42,7 +42,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
     Rocky-9.0-MATE-x86_64-20220912.1.iso: OK
     ```
     
-    If the checksum for the file returns OK, you are now ready to write your ISO image to your media. This procedure is different by the OS you are using, the media, and the tools. We are assuming here that you know how to write the image to your media.
+    If the checksum for the file returns OK, you are now ready to write your ISO image to your media. This procedure is different depending the OS you are using, the media, and the tools. We are assuming here that you know how to write the image to your media.
 
     ## 9.0: Booting
 
@@ -52,7 +52,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     If so, you are on your way! If you want to test the media, you can select that option first, or you can simply type **S** to **Start Rocky Linux Mate 9.0**.
 
-    Remember, this is a live image, so it's going to take a bit of time to boot to the first screen. Don't panic-just wait! Once the live image is booted up, you should see this screen:
+    Remember, this is a live image, so it's going to take a bit of time to boot to the first screen. Don't panic, just wait! Once the live image is booted up, you should see this screen:
 
     ![mate-live](images/mate_live.png)
 
@@ -64,13 +64,13 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ![mate_install](images/mate_install.png)
 
-    1. **Keyboard** Take a look at this option and make sure that it matches up to the keyboard layout that you use.
-    2. **Time & Date**  Make sure this matches up to your time zone.
-    3. **Installation Destination** You'll need to click into this option, even if it is just to accept what is already there.
-    4. **Network & Host Name** Verify that you have what you want here. As long as the network is enabled, you can always change this later if you need to.
-    5. **Root Password** Go ahead and set a root password. Remember to save this somewhere safe (password manager), particularly if it isn't something you will be using often.
-    6. **User Creation** Definitely create at least one user. If you want the user to have administrative rights, remember to set this option when creating the user. 
-    7. **Begin Installation** Once all of the settings have been set or verified, go ahead and click this option.
+    1. **Keyboard** - Take a look at this option and make sure that it matches up to the keyboard layout that you use.
+    2. **Time & Date** -  Make sure this matches up to your time zone.
+    3. **Installation Destination** - You'll need to click into this option, even if it is just to accept what is already there.
+    4. **Network & Host Name** - Verify that you have what you want here. As long as the network is enabled, you can always change this later if you need to.
+    5. **Root Password** - Go ahead and set a root password. Remember to save this somewhere safe (password manager), particularly if it isn't something you will be using often.
+    6. **User Creation** - Definitely create at least one user. If you want the user to have administrative rights, remember to set this option when creating the user. 
+    7. **Begin Installation** - Once all of the settings have been set or verified, go ahead and click this option.
 
     Once you do step 7, the installation process should start installing packages, as in the below screenshot:
 
@@ -105,14 +105,14 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ## 8.6: Enabling Repositories
 
-    You need the Powertools repository and the EPEL. Go ahead and enable those now:
+    You need the Powertools repository and the EPEL repository. Go ahead and enable those now:
 
     ```
     sudo dnf config-manager --set-enabled powertools
     sudo dnf install epel-release
     ```
 
-    And answer 'Y' to install the EPEL.
+    And answer 'Y' to install the EPEL repository.
 
     Go ahead and run `dnf update` to make sure all of the enabled repositories are read into the system.
 
