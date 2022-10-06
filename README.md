@@ -9,9 +9,9 @@ So you want to contribute to the Rocky Linux documentation, but aren't sure how 
 
 One of our main goals for Rocky is to have not just good but GREAT documentation, and we cannot do it alone. This document will get you started and will (hopefully) ease any worries you might have about doing so. We will always be here to help, so feel free to ask questions and join in the conversation.
 
-## Documentation Subject Matter
+## Documentation Subjects
 
-If you can dream it — or better yet, have done it before — then your subject matter is probably important to the Rocky Linux documentation project. Now that a Rocky Linux release is available, we expect that documentation submissions will increase.
+If you can dream it — or better yet, have done it before — then your subject is probably important to the Rocky Linux documentation project.
 
 Where do you come in — both now and in the future? If you have experience with anything Linux-related and can translate that to Rocky Linux, we would like you to start writing!
 
@@ -30,9 +30,8 @@ Pick one to use that is compatible with your Operating System [ReText](https://g
 ReText is good, but if you feel like exploring your other options, there are a few:
 
 * [Zettlr](https://www.zettlr.com) - Free, cross-platform, and open source
-* [Mark Text](https://marktext.app) - Free, cross-platform, and open source
-* [ghostwriter](https://wereturtle.github.io/ghostwriter/) - Free, Windows and Linux, open source
-* [Remarkable](https://remarkableapp.github.io) - Linux-only, open source
+* [Mark Text](https://github.com/marktext/marktext) - Free, cross-platform, and open source
+* [Remarkable](https://remarkableapp.github.io) - Linux and Windows, open source
 * [NvChad](https://nvchad.github.io) for the `vi`/`vim` user and the `nvim` client. A lot of plugins are available to enhance the editor for markdown. See [this document](https://docs.rockylinux.org/books/nvchad/) for a nice set of installation instructions.
 * [VS Code](https://code.visualstudio.com/) - A partially open source project from none other than Microsoft; VS Code is a lightweight and powerful editor available for Windows, Linux and MacOS. To contribute to this document project, you should get the following extensions: Git Graph, HTML Preview, HTML Snippets, Markdown All in One, Markdown Preview Enhanced, Markdown Preview Mermaid Support, and any more that catch your fancy.
 
