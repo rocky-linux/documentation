@@ -616,12 +616,12 @@ $ sudo gpasswd -A alain GroupA
 [alain]$ gpasswd -a patrick GroupA
 ```
 
-| Option     |	Description                         |
-| ---------- | ------------------------------------ |
-| `-a USER` |	Adds the user to the group. For user, this group is an supplementary group. |
-| `-A USER,...` |	Set the list of administrative users.       |
-| `-d USER` |	Remove the user from the group.     |
-| `-M USER,...` |	Set the list of group members.|
+| Option        |	Description                         |
+| ----------    | ------------------------------------ |
+| `-a USER`     | Adds the user to the group. For user, this group is an supplementary group. |
+| `-A USER,...` | Set the list of administrative users.       |
+| `-d USER`     | Remove the user from the group.     |
+| `-M USER,...` | Set the list of group members.|
 
 The command `gpasswd -M` acts as a modification, not an addition.
 
