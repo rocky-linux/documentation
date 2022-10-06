@@ -24,6 +24,65 @@ Kubernetes:
 * was originally designed by Google and then offered to the CNCF (Cloud Native Computing Foundation),
 * facilitates both declarative configuration and automation.
 
+----
+
+Note from Ezequiel: These are the notes for the intro I was working on to introduce a lot of the basic concepts. Is it overkill, maybe?
+
+## Introduction
+
+If you just want to know how to install Kubernetes, skip this introduction, it's gonna be a long one.
+
+See the Introduction to Kubernetes course on EDX for more details. You can access the actual course material for free.
+
+### Microservices vs regular apps
+
+Microservice vs the monolith
+
+Scaling apps and processes individually
+
+Basic example: web servers and database servers
+
+Useful particularly in cloud computing environments, but usable on hardware, VPSs, and more.
+
+### What is Container orchestration
+
+Orchestrators group systems (hosts/computers/servers) together into "clusters"
+
+Orchestrators automate container deployment
+
+Schedule containers to run based on available resources
+
+Enable containers to "talk to" each other easily even when they're on separate machines
+
+Load balancing
+
+Save money on cloud computing
+
+Containers in this system come with usually only *one* pre defined function
+
+### Kubernetes
+
+Automatic resource management
+
+Can be extended with custom code
+
+Self healing
+
+Load balancing
+
+Automated rollouts and rollbacks
+
+Storage orchastration
+
+### Architecture
+
+Control plane node is the "brain"
+
+Worker nodes
+
+----
+
+
 ## Concepts
 
 ### Pods
