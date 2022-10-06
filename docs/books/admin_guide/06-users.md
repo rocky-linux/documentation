@@ -827,7 +827,7 @@ This file contains many default parameters useful for creating or modifying user
 * Mailboxes;
 * Passwords;
 * UID and GID;
-* Umask ;
+* Umask;
 * Connections;
 * Terminals.
 
