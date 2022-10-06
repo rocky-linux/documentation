@@ -606,7 +606,7 @@ chown --reference=/etc/groups /etc/passwd
 The command `gpasswd` allows to manage a group.
 
 ```
-gpasswd [-a login] [-A login] [-d login] [-M login] group
+gpasswd [option] group
 ```
 
 Examples:
@@ -616,27 +616,35 @@ $ sudo gpasswd -A alain GroupA
 [alain]$ gpasswd -a patrick GroupA
 ```
 
-| Option     |	Description                         |
-| ---------- | ------------------------------------ |
-| `-a login` |	Adds the user to the group.         |
-| `-A login` |	Sets the group administrator.       |
-| `-d login` |	Remove the user from the group.     |
-| `-M login` |	Defines the complete list of guests.|
+| Option        |	Description                         |
+| ----------    | ------------------------------------ |
+| `-a USER`     | Adds the user to the group. For the added user, this group is a supplementary group. |
+| `-A USER,...` | Set the list of administrative users.       |
+| `-d USER`     | Remove the user from the group.     |
+| `-M USER,...` | Set the list of group members.|
 
 The command `gpasswd -M` acts as a modification, not an addition.
+
 ```
 # gpasswd GroupeA
 New Password:
 Re-enter new password:
 ```
 
+!!! note
+
+    In addition to using `gpasswd -a` to add users to a group, you can also use the `usermod -G` or `usermod -AG` mentioned earlier.
+
 ### `id` command
 
 The `id` command displays the group names of a user.
+
 ```
-id login
+id USER
 ```
+
 Example:
+
 ```
 $ sudo id alain
 uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
@@ -645,10 +653,13 @@ uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 ### `newgrp` command
 
 The `newgrp` command allows you to temporarily use a secondary group for file creation.
+
 ```
 newgrp [secondarygroups]
 ```
+
 Example:
+
 ```
 [alain]$ newgrp GroupB
 ```
@@ -714,9 +725,11 @@ When managing user accounts by shell script, it may be useful to set a default p
 This can be done by passing the password to the `passwd` command.
 
 Example:
+
 ```
 $ sudo echo "azerty,1" | passwd --stdin philippe
 ```
+
 !!! Warning
 
     The password is entered in clear text, `passwd` takes care of encrypting it.
@@ -724,10 +737,13 @@ $ sudo echo "azerty,1" | passwd --stdin philippe
 ### `chage` command
 
 The `chage` command is used to manage the account strategy.
+
 ```
 chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
 ```
+
 Example:
+
 ```
 $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
@@ -747,6 +763,7 @@ The `chage` command also offers an interactive mode.
 The `-d` option forces the password to be changed at login.
 
 Examples:
+
 ```
 $ sudo chage philippe
 $ sudo chage -d 0 philippe
@@ -798,6 +815,7 @@ This file is modified by the command `useradd -D` (`useradd -D` entered without 
 In order for the `useradd` command to retrieve the value of the `GROUP` field from the `/etc/default/useradd` file, you must specify the `-N` option.
 
 Example:
+
 ```
 $ sudo useradd -u 501 -N GroupeA
 ```
@@ -809,7 +827,7 @@ This file contains many default parameters useful for creating or modifying user
 * Mailboxes;
 * Passwords;
 * UID and GID;
-* Umask ;
+* Umask;
 * Connections;
 * Terminals.
 
