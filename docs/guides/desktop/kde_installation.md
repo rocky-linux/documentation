@@ -10,7 +10,9 @@ tags:
 
 !!! note
 
-    This procedure is specific to Rocky Linux 9.0. There is currently no procedure written for installing KDE for earlier versions of Rocky Linux. Feel free to write one up!
+    This procedure is specific to Rocky Linux 9.0. 
+    There is currently no procedure written for installing KDE for earlier versions of Rocky Linux. 
+    Feel free to write one up!
 
 # Introduction
 
