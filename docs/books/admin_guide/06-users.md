@@ -652,7 +652,7 @@ uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 
 ### `newgrp` command
 
-The `newgrp` command allows you to temporarily use a secondary group for file creation.
+The `newgrp` command can select a group from the user's supplementary groups as the user's new **temporary** primary group. The `newgrp` command  every time you switch a user's primary group, there will be a new **child shell**（child process）. Be careful! **child shell** and **sub shell** are different. 
 
 ```
 newgrp [secondarygroups]
@@ -661,14 +661,40 @@ newgrp [secondarygroups]
 Example:
 
 ```
-[alain]$ newgrp GroupB
+Shell > useradd test1
+Shell > passwd test1
+Shell > groupadd groupA ; groupadd groupB 
+Shell > usermod -G groupA,groupB test1
+Shell > id test1
+uid=1000(test1) gid=1000(test1) groups=1000(test1),1001(groupA),1002(groupB)
+Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+1
+0
+
+Shell > su - test1
+Shell > touch a.txt
+Shell > ll
+-rw-rw-r-- 1 test1 test1 0 10月  7 14:02 a.txt
+Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+1
+0
+
+# Generate a new child shell
+Shell > newgrp groupA
+Shell > touch b.txt
+Shell > ll
+-rw-rw-r-- 1 test1 test1  0 10月  7 14:02 a.txt
+-rw-r--r-- 1 test1 groupA 0 10月  7 14:02 b.txt
+Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+2
+0
+
+# You can exit the child shell using the `exit` command
+Shell > exit
+Shell > logout
+Shell > whoami
+root
 ```
-
-!!! Note
-
-    After using this command, the files will be created with the `GID` of its subgroup.
-
-The command `newgrp` without parameters reassigns the primary group.
 
 ## Securing
 
