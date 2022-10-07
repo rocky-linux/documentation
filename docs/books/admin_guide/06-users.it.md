@@ -529,10 +529,10 @@ $ sudo chown root myfile
 $ sudo chown albert:GroupA myfile
 ```
 
-| Opzione | Descrizione                                                |
-| ------- | ---------------------------------------------------------- |
-| `-R`    | Cambia i proprietari della directory e dei suoi contenuti. |
-| `-v`    | Visualizza le modifiche eseguite.                          |
+| Opzione | Descrizione                                                                              |
+| ------- | ---------------------------------------------------------------------------------------- |
+| `-R`    | Cambia ricorsivamente i proprietari della directory e di tutti i file in essa contenuti. |
+| `-v`    | Visualizza le modifiche eseguite.                                                        |
 
 Per cambiare solo l'utente proprietario:
 
@@ -556,6 +556,12 @@ Nell'esempio seguente, il gruppo assegnato sarà il gruppo primario dell'utente 
 
 ```
 $ sudo chown albert: file
+```
+
+Cambia il proprietario e il gruppo di tutti i file in una directory
+
+```
+$ sudo chown -R albert:GroupA /dir1
 ```
 
 ### comando `chgrp`
@@ -607,27 +613,35 @@ $ sudo gpasswd -A alain GroupA
 [alain]$ gpasswd -a patrick GroupA
 ```
 
-| Opzione    | Descrizione                               |
-| ---------- | ----------------------------------------- |
-| `-a login` | Aggiunge l'utente al gruppo.              |
-| `-A login` | Imposta l'amministratore del gruppo.      |
-| `-d login` | Rimuove l'utente dal gruppo.              |
-| `-M login` | Definisce l'elenco completo degli ospiti. |
+| Opzione       | Descrizione                                                                                  |
+| ------------- | -------------------------------------------------------------------------------------------- |
+| `-a login`    | Aggiunge l'utente al gruppo. Per l'utente aggiunto, questo gruppo è un gruppo supplementare. |
+| `-A login`    | Imposta l'elenco degli utenti amministrativi.                                                |
+| `-d USER`     | Rimuove l'utente dal gruppo.                                                                 |
+| `-M USER,...` | Imposta l'elenco dei membri del gruppo.                                                      |
 
 Il comando `gpasswd -M` agisce come una modifica, non come un'aggiunta.
+
 ```
 # gpasswd GroupeA
 New Password:
 Re-enter new password:
 ```
 
+!!! note "Nota"
+
+    Oltre a usare `gpasswd -a` per aggiungere utenti a un gruppo, si può anche usare `usermod -G` o `usermod -AG` menzionati prima.
+
 ### comando `id`
 
 Il comando `id` visualizza i nomi del gruppo di un utente.
+
 ```
-id login
+id USER
 ```
+
 Esempio:
+
 ```
 $ sudo id alain
 uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
@@ -636,10 +650,13 @@ uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 ### comando `newgrp`
 
 Il comando `newgrp` consente di utilizzare temporaneamente un gruppo secondario per la creazione di file.
+
 ```
 newgrp [secondarygroups]
 ```
+
 Esempio:
+
 ```
 [alain]$ newgrp GroupB
 ```
@@ -705,9 +722,11 @@ Quando si gestiscono gli account utente tramite script di shell, può essere uti
 Questo può essere fatto passando la password al comando `passwd`.
 
 Esempio:
+
 ```
 $ sudo echo "azerty,1" | passwd --stdin philippe
 ```
+
 !!! Warning "Attenzione"
 
     La password viene inserita in chiaro, `passwd` si occupa di crittografarla.
@@ -715,10 +734,13 @@ $ sudo echo "azerty,1" | passwd --stdin philippe
 ### comando `chage`
 
 Il comando `chage` è usato per gestire la strategia dell'account.
+
 ```
 chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
 ```
+
 Esempio:
+
 ```
 $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
@@ -738,6 +760,7 @@ Il comando `chage` offre anche una modalità interattiva.
 L'opzione `-d` forza la modifica della password all'accesso.
 
 Esempi:
+
 ```
 $ sudo chage philippe
 $ sudo chage -d 0 philippe
@@ -789,6 +812,7 @@ Questo file è modificato dal comando `useradd -D` (`useradd -D` inserito senza 
 In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
 
 Esempio:
+
 ```
 $ sudo useradd -u 501 -N GroupeA
 ```
