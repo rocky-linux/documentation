@@ -701,30 +701,31 @@ root
 ### `passwd` command
 
 The `passwd` command is used to manage a password.
+
 ```
 passwd [-d] [-l] [-S] [-u] [login]
 ```
+
 Examples:
+
 ```
-$ sudo passwd -l albert
-$ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
+Shell > passwd -l albert
+Shell > passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
 
 | Option | Description                                            |
 | ------ | ------------------------------------------------------ |
-| `-d` | Removes the password.                                    |
-| `-l` | Locks the account.                                       |
-| `-S` | Displays the account status.                             |
-| `-u` | Unlocks the account.                                     |
-| `-e` | Expires the password.                                    |
-| `-n days` | Minimum password lifetime.                          |
-| `-x days` | Maximum password lifetime.                          |
-| `-w days` | Warning time before expiration.                     |
-| `-i days` | Delay before deactivation when the password expires.|
+| `-d` | Permanently removes the password. For root (uid=0) use only.         |
+| `-l` | Permanently lock user account. For root (uid=0) use only.            |
+| `-S` | Displays the account status. For root (uid=0) use only.  |
+| `-u` | Permanently unlocks user account. For root (uid=0) use only.          |
+| `-e` | Permanently expires the password. For root (uid=0) use only.         |
+| `-n DAYS` | Minimum password lifetime. Permanent change. For root (uid=0) use only. |
+| `-x DAYS` | Maximum password lifetime. Permanent change. For root (uid=0) use only. |
+| `-w DAYS` | Warning time before expiration. Permanent change. For root (uid=0) use only. |
+| `-i DAYS` | Delay before deactivation when the password expires. Permanent change. For root (uid=0) use only.|
 
-With the `passwd` command, locking an account is accomplished by adding `!!` before the password in the `/etc/shadow` file.
-
-Using the command `usermod -U` command only removes one of the `!`. So, the account remains locked.
+Use `password -l`, that is, add "!!" at the beginning of the password field of the user corresponding to `/etc/shadow`.
 
 Example:
 
