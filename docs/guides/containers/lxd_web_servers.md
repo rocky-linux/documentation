@@ -180,7 +180,7 @@ If you want to use IPv6 on your LXD containers, you can turn on this next option
 What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
 ```
 
-This is necessary to easily back up the server, and can allow you to manage your LXD install from other computers. If that all sounds good to you, answer "yes" here/
+This is necessary to easily back up the server, and can allow you to manage your LXD install from other computers. If that all sounds good to you, answer "yes" here
 
 ```
 Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
@@ -570,7 +570,7 @@ If you have `curl` installed on your server host, you can make sure the default 
 curl [container-ip-address]
 ```
 
-Remember, you can see all contkainer IPs with `lxc list`. And if you install curl on all your containers, you *could* just run:
+Remember, you can see all container IPs with `lxc list`. And if you install curl on all your containers, you *could* just run:
 
 ```bash
 curl localhost
@@ -844,7 +844,7 @@ lxc exec apache-server systemctl restart httpd && lxc exec nginx-server restart 
 That will apply the "real-ip.conf" files we made to their respective server configurations.
 
 #### Getting SSL certificates for your websites
-Getting official, proper SSL certificates is easiest with Let's Encrypt, and a little application called certbot. certbot will automatically detect your websites, get SSL certificates for them, and configure the sites itself. It will even renew the certificates for you every 30 days or so, without any intervention from you or cron jobs.
+Getting official, proper SSL certificates is easiest with Let's Encrypt, and a little application called certbot. certbot will automatically detect your websites, get SSL certificates for them, and configure the sites themselves. It will even renew the certificates for you every 30 days or so, without any intervention from you or cron jobs.
 
 This all has to be done from the "proxy-server" container, so log into that shell. Once there, install the EPEL repositories, just like you did on the host. Make sure the container is updated first:
 
