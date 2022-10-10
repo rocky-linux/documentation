@@ -22,7 +22,7 @@ jobs:
           retry_count: 2
           timeout: 3
           force_pass: true # Don't block deployment
-          save: output.csv
+          save: "${{ process.env.GITHUB_WORKSPACE }}/output.csv"
           verbose: true
 
   comment:
