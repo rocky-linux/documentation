@@ -17,7 +17,7 @@ jobs:
         with:
           subfolder: docs
           file_types: .en.md,.md
-          files: '\/([\w-]+)\.(en\.)?md'
+          include_files: '\/([\w-]+)\.(en\.)?md'
           print_all: false
           retry_count: 2
           timeout: 3
