@@ -22,7 +22,7 @@ jobs:
           retry_count: 2
           timeout: 3
           force_pass: true # Don't block deployment
-          save: "${{ process.env.GITHUB_WORKSPACE }}/output.csv"
+          save: "${{ GITHUB_WORKSPACE }}/output.csv"
           verbose: true
 
   comment:
@@ -32,8 +32,6 @@ jobs:
     steps:
       - name: Comment
         uses: actions/github-script@v5
-        env:
-           URLS: "${{ needs.test.outputs.results }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
