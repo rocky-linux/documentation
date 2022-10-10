@@ -82,11 +82,12 @@ Once completed, you can try running `mkdocs serve` to see if you get your desire
 
 ## Navigation and Other Changes
 
-Navigation is handled with mkdocs `.pages` files. Are not terribly complex, BUT, if something is left out, it can cause the server to fail to load. That's why this procedure is **ONLY** for Managers and Editors. These individuals are going to have the tools in place (local install of mkdocs, plus clones of both documentation and docs.rockylinux.org) so that something pushed and merged to GitHub will not break the serving of the documentation website. A contributor cannot be expected to have even one of these requirements in place.
+Navigation is handled with mkdocs `.pages` files **OR** by the value of the "title:" meta in the document front matter. The `.pages` files are not terribly complex, BUT, if something is left out, it can cause the server to fail to load. That's why this procedure is **ONLY** for Managers and Editors. These individuals are going to have the tools in place (local install of mkdocs, plus clones of both documentation and docs.rockylinux.org) so that something pushed and merged to GitHub will not break the serving of the documentation website. A contributor cannot be expected to have even one of these requirements in place.
+
 
 ### `.pages` Files
 
-As already stated, the .pages files are generally pretty simple. They are a YAML formatted file that `mkdocs` reads before rendering the content. To take a look at one of the more complex `.pages` files, let's look at the one created to help format the side navigation:
+As already stated, the `.pages` files are generally pretty simple. They are a YAML formatted file that `mkdocs` reads before rendering the content. To take a look at one of the more complex `.pages` files, let's look at the one created to help format the side navigation:
 
 ```
 ---

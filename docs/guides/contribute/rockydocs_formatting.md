@@ -9,7 +9,7 @@ tags:
 
 # Rocky Docs Formatting - Introduction
 
-Over the last year, a lot has changed with Rocky documentation. This guide is meant to help contributors get familiar with our more advanced formatting options: including  admonitions, numbered lists, tables, and more.
+Over the last year, a lot has changed with Rocky documentation. This guide is meant to help contributors get familiar with our more advanced formatting options including:  admonitions, numbered lists, tables, and more.
 
 To be clear, a document may or may not need to contain any of these elements. If you feel that your document will benefit from them, then this guide should help.
 
@@ -31,7 +31,7 @@ To be clear, a document may or may not need to contain any of these elements. If
     ###### A Level 6 heading
     ```
 
-    The key here is that there can be as many of the 2 through 6 headings as you want to use, but only **ONE** level 1 heading. While the documentation will be build with more than one level 1 heading, the automatically generated table of contents for the document that appears on the right-hand side, will **NOT** display correctly (or sometimes at all), with more than one. Keep this in mind when writing your documents.
+    The key here is that there can be as many of the 2 through 6 headings as you want to use, but only **ONE** level 1 heading. While the documentation will be built with more than one level 1 heading, the automatically generated table of contents for the document that appears on the right-hand side will **NOT** display correctly (or sometimes at all) with more than one. Keep this in mind when writing your documents.
 
 ## Admonitions
 
@@ -179,7 +179,7 @@ You can't use your eyes to line them up under the numbered item, however, as thi
 
 Here's an example of a multi-line numbered list with a code block thrown in for good measure:
 
-1. When dealing with numbered lists that are multi line and include things like code blocks, use the space indentation to get what you want.
+1. When dealing with numbered lists that are multi-line and include things like code blocks, use the space indentation to get what you want.
 
     For example: this is indented four (4) spaces and represents a new paragraph of text. And here, we are adding a code block in. It is also indented by the same four (4) spaces as our paragraph:
 
@@ -275,7 +275,7 @@ And yes, the code block you just saw used five backticks at the beginning and en
 
 ## Keyboard
 
-Another way to make sure that you add as much clarity to your documents as possible is to represent keys on the keyboard that must be entered, in the correct manner. This is done with `<kbd>key</kbd>`. For instance, to represent that you need to hit the escape key in your document, you would use `<kbd>ESC</kbd`. When you need to indicate that multiple keys must be pressed add a `+` between them like this: `<kbd>CTRL</kbd> + <kbd>F4</kbd>` if keys need to be pressed simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here's an example of a keyboard instruction in your editor:
+Another way to make sure that you add as much clarity to your documents as possible is to represent keys on the keyboard that must be entered in the correct manner. This is done with `<kbd>key</kbd>`. For instance, to represent that you need to hit the escape key in your document you would use `<kbd>ESC</kbd`. When you need to indicate that multiple keys must be pressed add a `+` between them like this: `<kbd>CTRL</kbd> + <kbd>F4</kbd>`. If keys need to be pressed simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here's an example of a keyboard instruction in your editor:
 
 ```
 A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
@@ -286,7 +286,7 @@ A workstation type installation (with graphical interface) starts this interface
 
 ## Grouping Different Formatting Types
 
-Things really get crazy, when you need to combine multiple elements within another one. For instance, an admonition with a numbered list:
+Things really get crazy when you need to combine multiple elements within another one. For instance, an admonition with a numbered list:
 
 !!! note
 
@@ -398,7 +398,7 @@ A comment should have a blank line before and after the comment.
 
 ## Conclusion
 
-Document formatting with admonitions, tables, numbered lists, and block quotes, can add clarity to your document. When using admonitions, take care to pick the correct type. This can make it easier to visually see the importance of the particular admonition.
+Document formatting with admonitions, tables, numbered lists, and block quotes can add clarity to your document. When using admonitions, take care to pick the correct type. This can make it easier to visually see the importance of the particular admonition.
 
 Overuse of any of these elements can simply add clutter where none is needed. Learning to use these formatting items conservatively and well can be very helpful to get your point across in a document.
 
