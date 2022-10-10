@@ -1,0 +1,77 @@
+name: Run Tests
+on:
+  pull_request_target:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: check urls
+        uses: urlstechie/urlchecker-action@0.0.25
+        with:
+          subfolder: docs
+          file_types: .md
+          print_all: false
+          retry_count: 3
+          exclude_files: docs/archive
+          force_pass: true # Don't block deployment
+          save: output.csv
+
+  comment:
+    name: "Comment on PR"
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment
+        uses: actions/github-script@v5
+        env:
+           URLS: "${{ needs.test.outputs.results }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const commentText = 'Test results for ' + context.payload.pull_request.head.sha + ':';
+            const fs = require('fs');
+            const output = fs.readFileSync(process.env.GITHUB_WORKSPACE + '/output.csv').toString().trimEnd();
+            var body = "<details>\n<summary>" + commentText + "</summary>\n\n```csv\n" + output + "\n```\n\n</details>";
+
+            fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, body);
+            needNewComment = true;
+            console.log('Reviewing existing comments...');
+            for await (const { data: comments } of github.paginate.iterator(
+              github.rest.issues.listComments,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+              }
+            )) {
+              for (const comment of comments) {
+                if (comment.user.login === 'github-actions[bot]') {
+                  if (needNewComment && comment.body.includes(commentText)) {
+                    needNewComment = false;
+                  } else {
+                    console.log('Deleting comment: ' + comment.id);
+                    await github.rest.issues.deleteComment({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      comment_id: comment.id,
+                    });
+                  }
+                }
+              }
+            }
+            if (needNewComment) {
+              console.log('Creating new comment...');
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: body,
+              });
+            }
