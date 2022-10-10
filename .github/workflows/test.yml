@@ -13,13 +13,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: check urls
-        uses: urlstechie/urlchecker-action@0.0.25
+        uses: urlstechie/urlchecker-action@0.0.33
         with:
           subfolder: docs
-          file_types: .md
+          file_types: ^([\w-]+)\.(en\.)?md
           print_all: false
-          retry_count: 3
-          exclude_files: docs/archive
+          retry_count: 2
+          timeout: 3
           force_pass: true # Don't block deployment
           save: output.csv
 
