@@ -16,12 +16,14 @@ jobs:
         uses: urlstechie/urlchecker-action@0.0.33
         with:
           subfolder: docs
-          file_types: ^([\w-]+)\.(en\.)?md
+          file_types: .en.md,.md
+          files: '\/([\w-]+)\.(en\.)?md'
           print_all: false
           retry_count: 2
           timeout: 3
           force_pass: true # Don't block deployment
           save: output.csv
+          verbose: true
 
   comment:
     name: "Comment on PR"
