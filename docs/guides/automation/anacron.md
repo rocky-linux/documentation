@@ -16,7 +16,7 @@ update : 2021-10-20
 ##  Assumptions
 
 * You have understood the basic knowledge of bash, python or other scripting/programming tools, and want to run the script automatically.
-* You are logged in as the root user, or switch to root with `su - root`
+* You are logged in as the root user, or switch to root with `su - root`.
 
 ##  `anacron` Introduction
 
