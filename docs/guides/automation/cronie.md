@@ -10,7 +10,7 @@ update: 2021-10-26
 * A machine running Rocky Linux.
 * Know how to use your favorite editor to modify the configuration file in the command line environment (this article will use `vi`).
 * You have understood the basic knowledge of bash, python or other scripting/programming tools, and expect to run the script automatically.
-* You have connected to your machine via ssh (it can be root user or ordinary user with UID greater than 1000)
+* You have connected to your machine via ssh (it can be root user or ordinary user with UID greater than 1000).
 * We think you are a very cool person.
 
 ##  cron Introduction
