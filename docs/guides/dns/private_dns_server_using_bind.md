@@ -71,9 +71,9 @@ These changes require us to edit the named.conf file, to do this, we are using _
 vi /etc/named.conf
 ```
 
-First thing we want to do is turn off listening on the localhost, this is done by remarking out with a "#" sign, these two lines in the "options" section. What this does is to effectively shutdown any connection to the outside world.
+First thing we want to do is turn off listening on the localhost, this is done by remarking out with a "#" sign, these two lines in the "options" section. What this does is to effectively shut down any connection to the outside world.
 
-This is helpful, particularly when we go to add this DNS to our workstations, because we want these DNS server to only respond when the IP address requesting the service is local, and simply not respond at all if the service that is being looked up is on the Internet.
+This is helpful, particularly when we go to add this DNS to our workstations, because we want the DNS server to only respond when the IP address requesting the service is local, and simply not respond at all if the service that is being looked up is on the Internet.
 
 This way, the other configured DNS servers will take over nearly immediately to look up the Internet based services:
 
