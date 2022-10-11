@@ -39,27 +39,37 @@ The authoritative server is the storage area for all IP addresses and host names
 
 The first step is to install packages. In the case of _bind_ we need to execute the following command:
 
-`dnf install bind bind-utils`
+```
+dnf install bind bind-utils
+```
 
 The service daemon for _bind_ is called _named_, and we need to enable this to start on boot:
 
-`systemctl enable named`
+```
+systemctl enable named
+```
 
 And then we need to start it:
 
-`systemctl start named`
+```
+systemctl start named
+```
 
 ## Configuration
 
 Before making changes to any configuration file, it is a good idea to make a backup copy of the original installed working file, in this case _named.conf_:
 
-`cp /etc/named.conf /etc/named.conf.orig`
+```
+cp /etc/named.conf /etc/named.conf.orig
+```
 
 That will help in the future if errors are introduced into the configuration file. It is *always* a good idea to make a backup copy before making changes.
 
 These changes require us to edit the named.conf file, to do this, we are using _vi_, but you can substitute your favorite command line editor (the editor `nano` is also installed in Rocky Linux and is easier to use than `vi`):
 
-`vi /etc/named.conf`
+```
+vi /etc/named.conf
+```
 
 First thing we want to do is turn off listening on the localhost, this is done by remarking out with a "#" sign, these two lines in the "options" section. What this does is to effectively shutdown any connection to the outside world.
 
@@ -95,37 +105,15 @@ zone "1.168.192.in-addr.arpa" IN {
 
 Now save your changes (for _vi_, `SHIFT:wq!`)
 
-### Using IPv4 On Your LAN
-
-If you are using IPv4 only on your LAN, then you need to make two changes. The first is in `/etc/named.conf` and the second is in `/etc/sysconfig/named`
-
-First, get back into the `named.conf` file again with `vi /etc/named.conf`. We need to add the following option anywhere in the options section.
-
-`filter-aaaa-on-v4 yes;`
-
-This is shown in the image below:
-
-![Add Filter IPv6](images/dns_filter.png)
-
-Once you've made the change, save it and exit the `named.conf` (for _vi_, `SHIFT:wq!`)
-
-Next we need to make a similar change to `/etc/sysconfig/named`:
-
-`vi /etc/sysconfig/named`
-
-And then add this to the bottom of the file:
-
-`OPTIONS="-4"`
-
-Now save those changes (again, for _vi_, `SHIFT:wq!`)
-
 ## The Forward and Reverse Records
 
 Next, we need to create two files in `/var/named`. These files are the ones that you will edit if you add machines to your network that you want to include in the DNS.
 
 The first is the forward file to map our IP address to the hostname. Again, we are using "ourdomain" as our example here. Note that the IP of our local DNS here is 192.168.1.136. The hosts are added at the bottom of this file.
 
-`vi /var/named/ourdomain.lan.db`
+```
+vi /var/named/ourdomain.lan.db
+```
 
 The file will look something like this when you are done:
 
@@ -155,7 +143,9 @@ Add as many hosts as you need to the bottom of the file along with their IP addr
 
 Next, we need a reverse file to map our hostname to the IP address, In this case, the only part of the IP that you need is the last octet (in an IPv4 address each number separated by a period, is an octet) of the host and then the PTR and hostname.
 
-`vi /var/named/ourdomain.lan.rev`
+```
+vi /var/named/ourdomain.lan.rev
+```
 
 And the file should look something like this when you are done.:
 
@@ -205,13 +195,17 @@ Once we have gotten all of our files created, we need to make sure that the conf
 
 Check the main configuration:
 
-`named-checkconf`
+```
+named-checkconf
+```
 
 This should return an empty result if everything is OK.
 
 Then check the forward zone:
 
-`named-checkzone ourdomain.lan /var/named/ourdomain.lan.db`
+```
+named-checkzone ourdomain.lan /var/named/ourdomain.lan.db
+```
 
 This should return something like this if all is well:
 
@@ -222,7 +216,9 @@ OK
 
 And finally check the reverse zone:
 
-`named-checkzone 192.168.1.136 /var/named/ourdomain.lan.rev`
+```
+named-checkzone 192.168.1.136 /var/named/ourdomain.lan.rev
+```
 
 Which should return something like this if all is well:
 
@@ -233,182 +229,405 @@ OK
 
 Assuming that everything looks good, go ahead and restart _bind_:
 
-`systemctl restart named`
-
-## Testing Machines
-
-You need to add the DNS server (in our example 192.168.1.136) to each machine that you want to have access to the servers that you added to your new local DNS. We are only going to show you an example of how to do this on a Rocky Linux workstation, but there are similar methods for other Linux distributions, as well as Windows and Mac machines.
-
-Keep in mind that you will want to just add the DNS server in the list, as you will still need Internet access, which will require your currently assigned DNS servers. These might be assigned via DHCP (Dynamic Host Configuration Protocol) or statically assigned.
-
-On a Rocky Linux workstation where the enabled network interface is eth0, you would use:
-
-`vi /etc/sysconfig/network-scripts/ifcfg-eth0`
-
-If your enabled network interface is different, you will need to substitute that interface name. The configuration file that you open will look something like this for a statically assigned IP (not DHCP as mentioned above). In the example below, our machine's IP address is 192.168.1.151:
-
 ```
-DEVICE=eth0
-BOOTPROTO=none
-IPADDR=192.168.1.151
-PREFIX=24
-GATEWAY=192.168.1.1
-DNS1=8.8.8.8
-DNS2=8.8.4.4
-ONBOOT=yes
-HOSTNAME=tender-kiwi
-TYPE=Ethernet
-MTU=
+systemctl restart named
 ```
 
-We want to substitute in our new DNS server for the primary (DNS1) and then move each of the other DNS servers down one so that it is like this:
+=== "9.0"
 
-```
-DEVICE=eth0
-BOOTPROTO=none
-IPADDR=192.168.1.151
-PREFIX=24
-GATEWAY=192.168.1.1
-DNS1=192.168.1.136
-DNS2=8.8.8.8
-DNS3=8.8.4.4
-ONBOOT=yes
-HOSTNAME=tender-kiwi
-TYPE=Ethernet
-MTU=
-```
+    ## 9.0 Using IPv4 On Your LAN
 
-Once you've made the change, either restart the machine or restart networking with:
+    In order to use ONLY IPv4 on your LAN, you need to make one change in `/etc/sysconfig/named`:
 
-`systemctl restart network`
+    ```
+    vi /etc/sysconfig/named
+    ```
+    and then add this at the bottom of the file:
 
-Now you should be able to get to anything in the *ourdomain.lan* domain from your workstation, plus still be able to resovle and get to Internet addresses.
+    ```
+    OPTIONS="-4"
+    ```
+    
+    Now save those changes (again, for _vi_, `SHIFT:wq!`)
 
-## Firewall Rules
+    ## 9.0 Testing Machines
 
-### Adding The Firewall Rules - `iptables`
+    You need to add the DNS server (in our example 192.168.1.136) to each machine that you want to have access to the servers that you added to your local DNS. We are only going to show you an example of how to do this on a Rocky Linux workstation, but there are similar methods for other Linux distributions, as well as Windows and Mac machines.
 
-!!! note "Regarding `iptables` and Rocky Linux 9.0"
+    Keep in mind that you will want to just add the DNS servers to the list, not replace what is currently there, as you will still need Internet access, which will require your currently assigned DNS servers. These might be assigned via DHCP (Dynamic Host Configuration Protocol) or statically assigned.
 
-    If you are doing this procedure on Rocky Linux 9.0 or above, please move down to the `firewalld` rules below. As of 9.0, `iptables` and it's associated utilities are officially deprecated. While they still exist in version 9.0, they may disappear quite soon, perhaps as early as Rocky Linux 9.1. Using the `firewalld` rules will avoid potential problems in the future.
+    We will add our local DNS with `nmcli` and then restart the connection. 
 
-First, create a file in */etc* called "firewall.conf" that will contain the following rules. This is a bare minimum rule set, and you may need to tweak this for your environment:
+    ??? warning "Stupid Profile Names"
 
-```
-#!/bin/sh
-#
-#IPTABLES=/usr/sbin/iptables
+        In NetworkManager, the connections are not modified by the name of the device but by the name of the profile. This can be things like "Wired connection 1" or "Wireless connection 1". You can see the profile by running `nmcli` without any parameters:
 
-#  Unless specified, the defaults for OUTPUT is ACCEPT
-#    The default for FORWARD and INPUT is DROP
-#
-echo "   clearing any existing rules and setting default policy.."
-iptables -F INPUT
-iptables -P INPUT DROP
-iptables -A INPUT -p tcp -m tcp -s 192.168.1.0/24 --dport 22 -j ACCEPT
-# dns rules
-iptables -A INPUT -p udp -m udp -s 192.168.1.0/24 --dport 53 -j ACCEPT
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
-iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+        ```
+        nmcli
+        ```
+        
+        This will show you output such as this:
 
-/usr/sbin/service iptables save
-```
+        ```bash
+        enp0s3: connected to Wired Connection 1
+        "Intel 82540EM"
+        ethernet (e1000), 08:00:27:E4:2D:3D, hw, mtu 1500
+        ip4 default
+        inet4 192.168.1.140/24
+        route4 192.168.1.0/24 metric 100
+        route4 default via 192.168.1.1 metric 100
+        inet6 fe80::f511:a91b:90b:d9b9/64
+        route6 fe80::/64 metric 1024
 
-Let's evaluate the rules above:
+        lo: unmanaged
+            "lo"
+            loopback (unknown), 00:00:00:00:00:00, sw, mtu 65536
 
-* The first "iptables" line flushes the rules that are currently loaded (-F).
-* Next, we are setting a default policy for the INPUT chain of DROP. This means, if the traffic is not explicitly allowed here, it is dropped.
-* Next, we have an SSH rule for our local network, so that we can get into the DNS server remotely.
-* Then we have our DNS allow rule, only for our local network. Note that DNS uses the UDP protocol (User Datagram Protocol).
-* Next we allow INPUT from the local interface.
-* Then if you have established a connection for something else, we are allowing related packets in as well.
-* And finally we reject everything else.
-* The last line tells iptables to save the rules so that when the machine restarts, the rules will load as well.
+        DNS configuration:
+            servers: 192.168.1.1
+            domains: localdomain
+            interface: enp0s3
 
-Once our firewall.conf file is created, we need to make it executable:
+        Use "nmcli device show" to get complete information about known devices and
+        "nmcli connection show" to get an overview on active connection profiles.
+        ```
+        
+        Before we even start modifying the connection, you should name this something sane, like the name of the interface (**note** the "\" below escapes the spaces in the name):
 
-`chmod +x /etc/firewall.conf`
+        ```
+        nmcli connection modify Wired\ connection\ 1 con-name enp0s3
+        ```
 
-Then run it:
+        Once you've done this, run `nmcli` by itself again and you will see something like this:
 
-`/etc/firewall.conf`
+        ```bash
+        enp0s3: connected to enp0s3
+        "Intel 82540EM"
+        ethernet (e1000), 08:00:27:E4:2D:3D, hw, mtu 1500
+        ip4 default
+        inet4 192.168.1.140/24
+        route4 192.168.1.0/24 metric 100
+        route4 default via 192.168.1.1 metric 100
+        ...
+        ```
+        
+        This will make the remaining configuration for the DNS much easier!
 
-And this is what you should get in return. If you get something else, take a look at your script for errors:
+    Assuming that your connection profile name is "enp0s3", we will include the already configured DNS but add our local DNS server first:
 
-```
-clearing any existing rules and setting default policy..
-iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
-```
-### Adding The Firewall Rules - `firewalld`
+    ```
+    nmcli con mod enp0s3 ipv4.dns '192.168.1.138,192.168.1.1'
+    ```
 
-With `firewalld`, we are duplicating the rules highlighted in `iptables` above. We aren't making any other assumptions about the network or services that might be needed. We are turning on SSH access and DNS access for our LAN network only. For this, we will use the `firewalld` built-in zone, "trusted". We will also have to make some service changes to the "public" zone in order to limit SSH access to the LAN.
+    You can have more DNS servers, and for a machine configured with public DNS servers, say Google's open DNS, you can have something like this instead:
 
-The first step is to add our LAN network to the "trusted" zone:
+    ```
+    nmcli con mod enp0s3 ipv4.dns '192.168.1.138,8.8.8.8,8.8.4.4'
+    ```
 
-`firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent`
+    Once you've added the DNS servers that you want to the connection, you should be able to resolve hosts in *ourdomain.lan*, as well as Internet hosts.
 
-Next, we need to add our two services to the "trusted" zone:
+    ## 9.0 Firewall Rules - `firewalld`
 
-```
-firewall-cmd --zone=trusted --add-service=ssh --permanent
-firewall-cmd --zone=trusted --add-service=dns --permanent
-```
+    !!! note "`firewalld` By Default"
 
-Finally, we need to remove the SSH service from our "public" zone, which is on by default:
+        With Rocky Linux 9.0 and above, using `iptables` rules is deprecated. You should use `firewalld` instead.
 
-`firewall-cmd --zone=public --remove-service=ssh --permanent`
+    We aren't making any assumptions about the network or services that might be needed, except that we are turning on SSH access and DNS access for our LAN network only. For this, we will use the `firewalld` built-in zone, "trusted". We will also have to make some service changes to the "public" zone in order to limit SSH access to the LAN.
 
- Next, reload the firewall and then list out the zones that we've made changes to:
+    The first step is to add our LAN network to the "trusted" zone:
+    
+    ```
+    firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent
+    ```
 
- `firewall-cmd --reload`
+    Next, we need to add our two services to the "trusted" zone:
 
- `firewall-cmd --zone=trusted --list-all`
+    ```
+    firewall-cmd --zone=trusted --add-service=ssh --permanent
+    firewall-cmd --zone=trusted --add-service=dns --permanent
+    ```
 
- Which should show that you have correctly added the services and the source network:
+    Finally, we need to remove the SSH service from our "public" zone, which is on by default:
+
+    ```
+    firewall-cmd --zone=public --remove-service=ssh --permanent
+    ```
+
+    Next, reload the firewall and then list out the zones that we've made changes to:
+
+    ```
+    firewall-cmd --reload
+    firewall-cmd --zone=trusted --list-all
+    ```
+    
+    Which should show that you have correctly added the services and the source network:
+
+    ```
+    trusted (active)
+        target: ACCEPT
+        icmp-block-inversion: no
+        interfaces:
+        sources: 192.168.1.0/24
+        services: dns ssh
+        ports:
+        protocols:
+        forward: no
+        masquerade: no
+        forward-ports:
+        source-ports:
+        icmp-blocks:
+        rich rules:
+    ```
+
+    Listing out the "public" zone should show that SSH access is no-longer allowed:
+
+    ```
+    firewall-cmd --zone=public --list-all
+    ```
+
+    Which should show you:
+
+    ```
+    public
+        target: default
+        icmp-block-inversion: no
+        interfaces:
+        sources:
+        services: cockpit dhcpv6-client
+        ports:
+        protocols:
+        forward: no
+        masquerade: no
+        forward-ports:
+        source-ports:
+        icmp-blocks:
+        rich rules:
+    ```
+
+    These rules should get you DNS resolution on your private DNS server from hosts on the 192.168.1.0/24 network. In addition, you should be able to SSH from any of those hosts into your private DNS server.
+
+=== "8.6"
+
+    ## 8.6 Using IPv4 On Your LAN
+
+    If you are using IPv4 only on your LAN, then you need to make two changes. The first is in `/etc/named.conf` and the second is in `/etc/sysconfig/named`
+
+    First, get back into the `named.conf` file again with `vi /etc/named.conf`. We need to add the following option anywhere in the options section.
+
+    ```
+    filter-aaaa-on-v4 yes;
+    ```
+
+    This is shown in the image below:
+
+    ![Add Filter IPv6](images/dns_filter.png)
+
+    Once you've made the change, save it and exit the `named.conf` (for _vi_, `SHIFT:wq!`)
+
+    Next we need to make a similar change to `/etc/sysconfig/named`:
+
+    ```
+    vi /etc/sysconfig/named
+    ```
+
+    And then add this to the bottom of the file:
+
+    ```
+    OPTIONS="-4"
+    ```
+
+    Now save those changes (again, for _vi_, `SHIFT:wq!`)
 
 
-```
-trusted (active)
-  target: ACCEPT
-  icmp-block-inversion: no
-  interfaces:
-  sources: 192.168.1.0/24
-  services: dns ssh
-  ports:
-  protocols:
-  forward: no
-  masquerade: no
-  forward-ports:
-  source-ports:
-  icmp-blocks:
-  rich rules:
-```
+    ## 8.6 Testing Machines
 
-Listing out the "public" zone should show that SSH access is no-longer allowed:
+    You need to add the DNS server (in our example 192.168.1.136) to each machine that you want to have access to the servers that you added to your new local DNS. We are only going to show you an example of how to do this on a Rocky Linux workstation, but there are similar methods for other Linux distributions, as well as Windows and Mac machines.
 
+    Keep in mind that you will want to just add the DNS server in the list, as you will still need Internet access, which will require your currently assigned DNS servers. These might be assigned via DHCP (Dynamic Host Configuration Protocol) or statically assigned.
 
-`firewall-cmd --zone=public --list-all`
+    On a Rocky Linux workstation where the enabled network interface is eth0, you would use:
 
-```
-public
-  target: default
-  icmp-block-inversion: no
-  interfaces:
-  sources:
-  services: cockpit dhcpv6-client
-  ports:
-  protocols:
-  forward: no
-  masquerade: no
-  forward-ports:
-  source-ports:
-  icmp-blocks:
-  rich rules:
-```
+    ```
+    vi /etc/sysconfig/network-scripts/ifcfg-eth0
+    ```
 
-These rules should get you DNS resolution on your private DNS server from hosts on the 192.168.1.0/24 network. In addition, you should be able to SSH from any of those hosts into your private DNS server.
+    If your enabled network interface is different, you will need to substitute that interface name. The configuration file that you open will look something like this for a statically assigned IP (not DHCP as mentioned above). In the example below, our machine's IP address is 192.168.1.151:
+
+    ```
+    DEVICE=eth0
+    BOOTPROTO=none
+    IPADDR=192.168.1.151
+    PREFIX=24
+    GATEWAY=192.168.1.1
+    DNS1=8.8.8.8
+    DNS2=8.8.4.4
+    ONBOOT=yes
+    HOSTNAME=tender-kiwi
+    TYPE=Ethernet
+    MTU=
+    ```
+
+    We want to substitute in our new DNS server for the primary (DNS1) and then move each of the other DNS servers down one so that it is like this:
+
+    ```
+    DEVICE=eth0
+    BOOTPROTO=none
+    IPADDR=192.168.1.151
+    PREFIX=24
+    GATEWAY=192.168.1.1
+    DNS1=192.168.1.136
+    DNS2=8.8.8.8
+    DNS3=8.8.4.4
+    ONBOOT=yes
+    HOSTNAME=tender-kiwi
+    TYPE=Ethernet
+    MTU=
+    ```
+
+    Once you've made the change, either restart the machine or restart networking with:
+
+    ```
+    systemctl restart network
+    ```
+
+    Now you should be able to get to anything in the *ourdomain.lan* domain from your workstations, plus still be able to resovle and get to Internet addresses.
+
+    ## 8.6 Firewall Rules
+
+    ### Adding The Firewall Rules - `iptables`
+
+    !!! note "Regarding `iptables`"
+
+        While `iptables` rules still work in Rocky Linux 8.6, we recommend moving to the `firewalld` rules in the section below. The reason is that in future versions of Rocky Linux, `iptables` will be deprecated and removed. In addition, `firewalld` is the default way of doing things. You will find more examples of using `firewalld` when looking for help, than for using `iptables`. We've included the `iptables` rules here, but for the best results and for future-proofing, we recommend moving to `firewalld` now.
+
+    First, create a file in */etc* called "firewall.conf" that will contain the following rules. This is a bare minimum rule set, and you may need to tweak this for your environment:
+
+    ```
+    #!/bin/sh
+    #
+    #IPTABLES=/usr/sbin/iptables
+
+    #  Unless specified, the defaults for OUTPUT is ACCEPT
+    #    The default for FORWARD and INPUT is DROP
+    #
+    echo "   clearing any existing rules and setting default policy.."
+    iptables -F INPUT
+    iptables -P INPUT DROP
+    iptables -A INPUT -p tcp -m tcp -s 192.168.1.0/24 --dport 22 -j ACCEPT
+    # dns rules
+    iptables -A INPUT -p udp -m udp -s 192.168.1.0/24 --dport 53 -j ACCEPT
+    iptables -A INPUT -i lo -j ACCEPT
+    iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+    iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
+    iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+
+    /usr/sbin/service iptables save
+    ```
+
+    Let's evaluate the rules above:
+
+    * The first "iptables" line flushes the rules that are currently loaded (-F).
+    * Next, we are setting a default policy for the INPUT chain of DROP. This means, if the traffic is not explicitly allowed here, it is dropped.
+    * Next, we have an SSH rule for our local network, so that we can get into the DNS server remotely.
+    * Then we have our DNS allow rule, only for our local network. Note that DNS uses the UDP protocol (User Datagram Protocol).
+    * Next we allow INPUT from the local interface.
+    * Then if you have established a connection for something else, we are allowing related packets in as well.
+    * And finally we reject everything else.
+    * The last line tells iptables to save the rules so that when the machine restarts, the rules will load as well.
+
+    Once our firewall.conf file is created, we need to make it executable:
+
+    ```
+    chmod +x /etc/firewall.conf
+    ```
+
+    Then run it:
+
+    ```
+    /etc/firewall.conf
+    ```
+
+    And this is what you should get in return. If you get something else, take a look at your script for errors:
+
+    ```bash
+    clearing any existing rules and setting default policy..
+    iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
+    ```
+
+    ### Adding The Firewall Rules - `firewalld`
+
+    With `firewalld`, we are duplicating the rules highlighted in `iptables` above. We aren't making any other assumptions about the network or services that might be needed. We are turning on SSH access and DNS access for our LAN network only. For this, we will use the `firewalld` built-in zone, "trusted". We will also have to make some service changes to the "public" zone in order to limit SSH access to the LAN.
+
+    The first step is to add our LAN network to the "trusted" zone:
+
+    ```
+    firewall-cmd --zone=trusted --add-source=192.168.1.0/24 --permanent
+    ```
+
+    Next, we need to add our two services to the "trusted" zone:
+
+    ```
+    firewall-cmd --zone=trusted --add-service=ssh --permanent
+    firewall-cmd --zone=trusted --add-service=dns --permanent
+    ```
+
+    Finally, we need to remove the SSH service from our "public" zone, which is on by default:
+
+    ```
+    firewall-cmd --zone=public --remove-service=ssh --permanent
+    ```
+
+    Next, reload the firewall and then list out the zones that we've made changes to:
+
+    ```
+    firewall-cmd --reload
+    firewall-cmd --zone=trusted --list-all
+    ```
+
+    Which should show that you have correctly added the services and the source network:
+
+    ```bash
+    trusted (active)
+        target: ACCEPT
+        icmp-block-inversion: no
+        interfaces:
+        sources: 192.168.1.0/24
+        services: dns ssh
+        ports:
+        protocols:
+        forward: no
+        masquerade: no
+        forward-ports:
+        source-ports:
+        icmp-blocks:
+        rich rules:
+    ```
+
+    Listing out the "public" zone should show that SSH access is no-longer allowed:
+
+    ```
+    firewall-cmd --zone=public --list-all
+    ```
+
+    ```bash
+    public
+        target: default
+        icmp-block-inversion: no
+        interfaces:
+        sources:
+        services: cockpit dhcpv6-client
+        ports:
+        protocols:
+        forward: no
+        masquerade: no
+        forward-ports:
+        source-ports:
+        icmp-blocks:
+        rich rules:
+    ```
+
+    These rules should get you DNS resolution on your private DNS server from hosts on the 192.168.1.0/24 network. In addition, you should be able to SSH from any of those hosts into your private DNS server.
 
 ## Conclusions
 
