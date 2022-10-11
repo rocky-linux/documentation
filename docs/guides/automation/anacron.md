@@ -5,7 +5,7 @@ contributors: Steven Spencer
 update : 2021-10-20
 ---
 
-#  anacron- Run commands regularly
+#  `anacron` - Run Commands Regularly
 
 ##  Prerequisites
 
@@ -103,7 +103,7 @@ Let's use cron.daily to illustrate the execution process of /etc/anacrontab:
 4. Check whether a file is executed after 5 minutes after booting. When the first one is executed, it will be randomly delayed for 0～45 minutes to execute the next one.
 5. Use the nice parameter to specify the default priority, and use the run-parts parameter to execute all executable files in the /etc/cron.daily/ directory.
 
-## Related commands
+## Related Commands
 
 Use the command `anacron`, commonly used options are:
 
