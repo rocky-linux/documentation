@@ -75,7 +75,7 @@ In the example that follows, assuming you are performing this operation as the r
 ```
 
 * Once the above has been entered (again assuming `vi` is the system editor), press <kbd>ESC</kbd> to exit insert mode.
-* Save and exit your file with <kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq!</kbd> (displayed at the bottom of the editor)
+* Save and exit your file with <kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq!</kbd> (displayed at the bottom of the editor).
 
 Now the script will run every night at 22:00. Obviously, this is a very simple example. Things can become more complicated if you need something more elaborate.
 
