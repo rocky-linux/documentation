@@ -11,7 +11,7 @@ update : 2021-10-20
 
 * A machine running Rocky Linux.
 * Know how to use your favorite editor to modify the configuration file (such as *vim*) in the command line environment.
-* Understand basic RPM package management
+* Understand basic RPM package management.
 
 ##  Assumptions
 
