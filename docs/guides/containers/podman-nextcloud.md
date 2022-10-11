@@ -268,7 +268,7 @@ And here's the code you'll need:
 
 !!! warning
 
-    For the purposes of this guide, the following script will deleted all Podman Volumes. If you have other applications running with their own volumes, modify/comment the line "podman volume rm --all";
+    For the purposes of this guide, the following script will delete all Podman Volumes. If you have other applications running with their own volumes, modify/comment the line "podman volume rm --all";
 
 ```
 #!/bin/bash
@@ -419,7 +419,7 @@ podman run --name nextcloud --net host --privileged -d -p 80:80 \
 nextcloud ;
 ```
 
-Save and close that out,, make all of your scripts executable, then run the image building script first: 
+Save and close that out, make all of your scripts executable, then run the image building script first: 
 
 ```bash
 chmod +x *.sh

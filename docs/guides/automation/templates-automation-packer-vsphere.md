@@ -38,7 +38,7 @@ You can also choose not to convert the virtual machine into a template, in this 
 
 ### Introduction to Packer
 
-Packer is an open source virtual machine imaging tool, released under the MPL 2.0 license and created by Hashicorp. It will help you automate the process of creating virtual machine images withpre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments. 
+Packer is an open source virtual machine imaging tool, released under the MPL 2.0 license and created by Hashicorp. It will help you automate the process of creating virtual machine images with pre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments. 
 
 With Packer you can create images to be used on the following platforms:
 
@@ -58,7 +58,7 @@ You can have a look at these resources for additional information:
 
 ### Installing Packer
 
-There are two ways of install Packer in your Rocky Linux system.
+There are two ways to install Packer on your Rocky Linux system.
 
 #### Installing Packer from the Hashicorp repo
 
@@ -119,7 +119,7 @@ $ sudo mv packer /usr/local/bin/
 
 If all the steps of the previous procedures have been completed correctly, we can proceed to verify the installation of Packer on our system.
 
-To verify that Packer has been installed correctly, run the packer command and you will get the result shown below:
+To verify that Packer has been installed correctly, run the `packer` command and you will get the result shown below:
 
 ```bash
 $ packer 
@@ -142,7 +142,7 @@ Available commands are:
 
 It is assumed that you are on Linux to perform the following tasks.
 
-As we will connect to a VMware vCenter Server to send our commands via Packer, we need to store our credentials outside the configuration files that we will create next.
+As we will connect to a VMware vCenter Server to send our commands via Packer, we need to store our credentials outside the configuration files which we will create next.
 
 Let's create a hidden file with our credentials in our home directory. This is a json file:
 
@@ -236,13 +236,13 @@ In a first step, we declare variables, mainly for the sake of readability:
 
 We will use the variable `version` later in the template name we will create. You can easily increment this value to suit your needs.
 
-We will also need our booting virtual machine to access a ks.cfg (Kickstart) file.
+We will also need our booting virtual machine to access a `ks.cfg` (Kickstart) file.
 
 A Kickstart file contains the answers to the questions asked during the installation process. This file passes all its contents to Anaconda (the installation process), which allows you to fully automate the creation of the template.
 
-The author likes to store his ks.cfg file in an internal web server accessible from his template, but other possibilities exists that you may chose to use instead.
+The author likes to store his `ks.cfg` file in an internal web server accessible from his template, but other possibilities exists that you may chose to use instead.
 
-For example, the ks.cfg file is accessible from the VM at this url in our lab: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. You would need to set up something similar to use this method.
+For example, the `ks.cfg` file is accessible from the VM at this url in our lab: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. You would need to set up something similar to use this method.
 
 Since we want to keep our password private, It is declared as a sensitive variable. Example:
 

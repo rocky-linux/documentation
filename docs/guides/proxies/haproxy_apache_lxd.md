@@ -21,7 +21,7 @@ If your problem is website performance, however, you may need to distribute your
 * Complete comfort at the command line on a Linux machine
 * Experience with a command line editor (we are using `vim` here)
 * Experience with `crontab`
-* Knowledge of LXD. For more information, you may want to consult the [LXD Server](https://docs.rockylinux.org/guides/containers/lxd_server) document. It is perfectly fine to install LXD on a laptop or workstation as well without doing the full-blown server install. This document is being written with a lab machine that is running LXD, but is not set up as a full server as the document linked above uses.
+* Knowledge of LXD. For more information, you may want to consult the [LXD Server](../../books/lxd_server/00-toc.md) document. It is perfectly fine to install LXD on a laptop or workstation as well without doing the full-blown server install. This document is being written with a lab machine that is running LXD, but is not set up as a full server as the document linked above uses.
 * Some knowledge on installing, configuring, and using web servers.
 * We will assume that LXD is already installed and ready to create containers.
 
@@ -99,7 +99,7 @@ lxc profile assign web2 default,macvlan
 lxc profile assign proxyha default,macvlan
 ```
 
-Unfortunately, the default behavior of `macvlan` as implemented in the kernel, is inexplicably broken within an LXD container (see [this document](https://docs.rockylinux.org/guides/containers/lxd_server/#centos-macvlan)). This has been the case with the upstream provider since version 8 was released. To get around these issues, we will need to run `dhclient` on boot in each of the containers.
+Unfortunately, the default behavior of `macvlan` as implemented in the kernel, is inexplicably broken within an LXD container (see [this document](../../books/lxd_server/06-profiles.md)) `dhclient` on boot in each of the containers.
 
 Doing this is pretty simple when using DHCP. Just follow this for each container:
 

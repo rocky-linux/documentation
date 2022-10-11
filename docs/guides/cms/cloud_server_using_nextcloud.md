@@ -16,6 +16,11 @@ tags:
 * A high degree of comfort operating from the command line for installation and for configuration.
 * Knowledge of a command-line editor. For this example, we are using _vi_, but you can use your favorite editor if you have one.
 * While Nextcloud can be installed via a snap application, we will be documenting two installation methods, the module and the .zip file.
+
+!!! note "Specifics for Rocky Linux 9.0"
+
+    You will need to use the .zip file install method for Rocky Linux 9.0 as the module does not exist on 9.0.
+
 * We will be applying concepts from the Apache "sites enabled" document (linked to down below) for directory setup in the .zip file method.
 * We will also be using the _mariadb-server_ hardening procedure (also linked to later) for database setup.
 * Throughout this document we will assume that you are root, or that you can be by using _sudo_.

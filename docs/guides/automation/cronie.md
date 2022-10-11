@@ -10,14 +10,14 @@ update: 2021-10-26
 * A machine running Rocky Linux.
 * Know how to use your favorite editor to modify the configuration file in the command line environment (this article will use `vi`).
 * You have understood the basic knowledge of bash, python or other scripting/programming tools, and expect to run the script automatically.
-* You have connected to your machine via ssh (it can be root user or ordinary user with UID greater than 1000)
+* You have connected to your machine via ssh (it can be root user or ordinary user with UID greater than 1000).
 * We think you are a very cool person.
 
-##  cron introduction
+##  cron Introduction
 
-GNU/Linux provides the *cron* system, which is a time-based `cron` jobs program for automated processes. It is simple, but quite powerful. Want a script or program to run at 5 pm every day? `cron` can do it. There are different branches (or variants) of `cron`, which have the same functions. In this document, **cronie** is used, and the version is 1.5.2. You can click [here](https://github .com/cronie-crond/cronie) to find the latest version and update log.
+GNU/Linux provides the *cron* system, which is a time-based `cron` jobs program for automated processes. It is simple, but quite powerful. Want a script or program to run at 5 pm every day? `cron` can do it. There are different branches (or variants) of `cron`, which have the same functions. In this document, **cronie** is used, and the version is 1.5.2. You can click [here](https://github.com/cronie-crond/cronie) to find the latest version and update log.
 
-##  cronie's description
+##  cronie's Description
 
 *  **cronie** -package name, Rocky Linux includes cronie by default;
 *  **crontab** -command to maintain `crontab` (task schedule) for each user;
@@ -26,7 +26,7 @@ GNU/Linux provides the *cron* system, which is a time-based `cron` jobs program 
 *  **/var/log/cron \* ** -Cronie's log, by default, does log rotation and ends with a date suffix. \* Here means wildcard
 *  **anacron** -part of cronie . For more information about `anacron`, see [anacron-automation commands](anacron.md).
 
-##  `crontab` command
+##  `crontab` Command
 
 `crontab` is a command obtained after installation of the cronie package. Compared with `anacron`, it is more suitable for servers that work 7 \* 24 hours a day. Common options of `crontab` are:
 
@@ -64,18 +64,26 @@ MAILTO=root
 |The 4th\*|The month of the year|1-12|
 |The 5th\*|Day of the week|0-7 (0 and 7 both indicate Sunday)|
 
-In this example, assuming you are performing this operation as the root user, type the following: `crontab -e`, this will bring up the timed tasks of the root user, if you use `vi` as the default system editor, press <kbd>i </kbd> key to enter the insert mode, enter the following content, # means this is a line of comment. Press <kbd>Esc</kbd> to exit insert mode, enter: wq (displayed at the bottom) to save and exit `vi`, which means to run the script once every night at 22:00. Obviously, this is a very simple example, and the situation can become very complicated when you need to elaborate.
+In the example that follows, assuming you are performing this operation as the root user, type the following: 
+
+* `crontab -e` which will bring up the timed tasks of the root user. If you use `vi` as the default system editor, press <kbd>i</kbd> key to enter the insert mode. 
+* "#" means this is a line of comment.  
 
 ```bash
 # Nightly 10:00 backup system
 00 22 *  *  * /usr/local/sbin/backup
 ```
 
+* Once the above has been entered (again assuming `vi` is the system editor), press <kbd>ESC</kbd> to exit insert mode.
+* Save and exit your file with <kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq!</kbd> (displayed at the bottom of the editor).
+
+Now the script will run every night at 22:00. Obviously, this is a very simple example. Things can become more complicated if you need something more elaborate.
+
 !!! tip "Attention"
 
     The script needs to have execute permission (`chmod +x`) before cronie can run it.
 
-####  Complex options
+####  Complex Options
 
 So far, the content discussed are very simple options, but how to complete more complex timed tasks?
 

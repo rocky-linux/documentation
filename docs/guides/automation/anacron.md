@@ -10,23 +10,23 @@ update : 2021-10-20
 ##  Prerequisites
 
 * A machine running Rocky Linux.
-* Know how to use your favorite editor to modify the configuration file (such as *vim* ) in the command line environment .
-* Understand basic RPM package management
+* Know how to use your favorite editor to modify the configuration file (such as *vim*) in the command line environment.
+* Understand basic RPM package management.
 
-##  Assumption
+##  Assumptions
 
 * You have understood the basic knowledge of bash, python or other scripting/programming tools, and want to run the script automatically.
-* You are logged in as the root user, or switch to root with `su - root`
+* You are logged in as the root user, or switch to root with `su - root`.
 
-##  Anacron Introduction
+##  `anacron` Introduction
 
-**anacron is used to run commands on a regular basis, and the operating frequency is defined in units of days. It is suitable for computers that do not run 24/7, such as laptops and desktops. Suppose you have a scheduled task (such as a backup script) to be run in the early morning of every day using crontab. When you fall asleep, your desktop/laptop is shut down. Your backup script will not be executed. However, if you use anacron, you can rest assured that the next time you turn on the desktop/laptop, the backup script will be executed.**
+**`anacron` is used to run commands on a regular basis, and the operating frequency is defined in units of days. It is suitable for computers that do not run 24/7, such as laptops and desktops. Suppose you have a scheduled task (such as a backup script) to be run in the early morning of every day using crontab. When you fall asleep, your desktop/laptop is shut down. Your backup script will not be executed. However, if you use `anacron`, you can rest assured that the next time you turn on the desktop/laptop, the backup script will be executed.**
 
-The appearance of anacron is not to replace crontab, but to complement crontab. Their relationship is as follows:
+The appearance of `anacron` is not to replace `crontab`, but to complement `crontab`. Their relationship is as follows:
 
 ![ Relations ](../images/anacron_01.png)
 
-##  anacron configuration file
+## `anacron` Configuration File
 
 ```bash
 shell > rpm -ql cronie-anacron
@@ -97,7 +97,7 @@ In order to make certain files run within these automatically defined times, all
 
 Let's use cron.daily to illustrate the execution process of /etc/anacrontab:
 
-1. Anacron reads the ** /var/spool/anacron/cron.daily ** file, and the content of the file shows the time of the last execution.
+1. `anacron` reads the ** /var/spool/anacron/cron.daily ** file, and the content of the file shows the time of the last execution.
 2. Compared with the current time, if the difference between the two times exceeds 1 day, the cron.daily job will be executed.
 3. This work can only be performed from 03:00-22:00.
 4. Check whether a file is executed after 5 minutes after booting. When the first one is executed, it will be randomly delayed for 0～45 minutes to execute the next one.

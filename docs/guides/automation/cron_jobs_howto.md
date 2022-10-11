@@ -161,7 +161,7 @@ Another way to run jobs at a strictly scheduled time (i.e., day, week, month, ye
 
     Using these `crontab` entries bypasses the `anacron` system and reverts to the `crond.service` whether `anacron` is installed or not.
 
-For our backup script example, if we used use the @daily option to run the backup script at midnight, the entry would look like this:
+For our backup script example, if we use the @daily option to run the backup script at midnight, the entry would look like this:
 
 `@daily  /usr/local/sbin/backup`
 
