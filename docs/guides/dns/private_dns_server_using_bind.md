@@ -178,7 +178,7 @@ Now that we have all of this added in and are preparing to restart our _bind_ DN
 
 Just making things work isn't good enough if you don't know what each term means, right?
 
-* **TTL** appears in both files and it stands for "Time To Live." TTL tells the DNS server how long to keep its cache in place before requesting a fresh copy. In this case, the TTL is the default setting for all records unless a specific record TTL is set. The default here is 86400 seconds or 24 hours.
+* **TTL** appears in both files and it stands for "Time To Live". TTL tells the DNS server how long to keep its cache in place before requesting a fresh copy. In this case, the TTL is the default setting for all records unless a specific record TTL is set. The default here is 86400 seconds or 24 hours.
 * **IN** stands for Internet. In this case, we aren't actually using the Internet, so think of this as the Intranet.
 * **SOA** stands for "Start Of Authority" or what the primary DNS server is for the domain.
 * **NS** stands for "name server"
