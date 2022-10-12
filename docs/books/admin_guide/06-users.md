@@ -782,7 +782,7 @@ $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 | `-m DAYS` | Minimum lifetime of the password. Permanent change.          |
 | `-M DAYS` | Maximum lifetime of the password. Permanent change.          |
 | `-d LAST_DAY` | Last password change. You can use the days' timestamp style or the YYYY-MM-DD style. Permanent change.                |
-| `-E EXPIRE_DATE` | Account expiration date. You can use the days timestamp style or the YYYY-MM-DD style. Permanent change.             |
+| `-E EXPIRE_DATE` | Account expiration date. You can use the days' timestamp style or the YYYY-MM-DD style. Permanent change.             |
 | `-W WARN_DAYS` | Warning time before expiration. Permanent change.            |
 
 Examples:
