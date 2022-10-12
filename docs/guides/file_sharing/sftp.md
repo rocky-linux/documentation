@@ -15,7 +15,7 @@ tags:
 
 ## Introduction
 
-It may seem strange to have a document dedicated to the "secure" use of SFTP (a part of openssh-server package) when the SSH proptocol is itself secure. I hear what you are thinking. But most system administrators do not want to open up SSH to everyone in order to implement SFTP for everyone. This document will describe how to implement a change root jail<sup>1</sup> for SFTP while keeping SSH access limited.
+It may seem strange to have a document dedicated to the "secure" use of SFTP (a part of openssh-server package) when the SSH protocol is itself secure. I hear what you are thinking. But most system administrators do not want to open up SSH to everyone in order to implement SFTP for everyone. This document will describe how to implement a change root jail<sup>1</sup> for SFTP while keeping SSH access limited.
 
 There are many documents out there that deal with creating an SFTP change root jail, but most do not take into account a use case where the user that is set up would be accessing a web directory on a server with multiple websites. This document deals with that. If that isn't your use case, you can easily adapt these concepts to use in different situations.
 
@@ -23,7 +23,7 @@ The author also feels that it is necessary when making the change root jail docu
 
 1. The first deals with the general information that we will use for the entire document.
 2. The second deals with the setup of the change root jail, and if you decide that you want to stop there, that's totally up to you.
-3. The third part deals with setting up public/private key SSH access for your system administrators and turning off remote password based authentication.
+3. The third part deals with setting up public/private key SSH access for your system administrators and turning off remote password-based authentication.
 4. The fourth, and last section of this document deals with turning off remote root logins.
 
 Taking all of these steps will allow you to offer secure SFTP access for your customers while also minimizing the possibility that port 22 (the one reserved for SSH access) will be compromised by a bad actor.
@@ -294,7 +294,7 @@ Save and exit the file.
 
 Just like before, let's describe what we are doing a little here. Both the `sftp-server` and `internal-sftp` are part of OpenSSH. The `internal-sftp`, while not too different from the `sftp-server`, simplifies configurations using `ChrootDirectory` to force a different file system root on clients. So that is why we want to use `internal-sftp`.
  
-### The Template And The Script
+### The Template and The Script
 
 Why are we creating a template and a script for this next part? The reason is simply to avoid human error as much as possible. We aren't done modifying that `/etc/ssh/sshd_config` file yet, but we want to eliminate as many errors as possible whenever we need to make these modifications. We will create all of this in `/usr/local/sbin`.
 
@@ -461,7 +461,7 @@ mkdir /usr/local/sbin/templates
 
     /usr/bin/cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 
-    ## Now append our new user information to to the file
+    ## Now append our new user information to the file
 
     cat /usr/local/sbin/templates/$dom.txt >> /etc/ssh/sshd_config
 
@@ -484,7 +484,7 @@ mkdir /usr/local/sbin/templates
 
 A couple of things to know about the script and about an SFTP change root in general. First, we are prompting for the needed information and then echoing it back to the user so they can verify it. If we answer "N" to the confirmation question, the script bails and does nothing. The script for 8.5 makes a backup of `sshd_config` (`/etc/ssh/sshd_config.bak`) the way it was prior to our running of the script. The 8.6 or 9.0 script does the same for the `sftp_config` file (`/etc/ssh/sftp/sftp_config.bak`). In this way, if we screw something up with an entry, we can simply restore the appropriate backup file and then restart `sshd` to get things working again.
 
-The SFTP change root requires that the path given in the `sshd_config` is owned by root. For this reason we do not need the `html` directory added to the end of the path. Once the user is authenticated, the change root will switch the user's home directory, in this case the `../html` directory, to whichever domain we are entering. Our script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
+The SFTP change root requires that the path given in the `sshd_config` is owned by root. For this reason, we do not need the `html` directory added to the end of the path. Once the user is authenticated, the change root will switch the user's home directory, in this case the `../html` directory, to whichever domain we are entering. Our script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
 
 !!! attention "Script Compatibility"
 
@@ -514,11 +514,11 @@ If you *do* receive that message, then the next thing is to test SFTP access. If
 * **Password:** (the password of the SFTP user)
 * **Port:** (You shouldn't need to enter one, provided you are using SSH and SFTP on the default port 22)
 
-Once filled in, you can click the "Quickconnect" (Filezilla) button and you should be connected to the `../html` directory of the appropriate site. Then double-click on the "html" directory to put yourself inside it, and try to drop a file into the directory. If you are successful, then you are good.
+Once filled in, you can click the "Quickconnect" (Filezilla) button and you should be connected to the `../html` directory of the appropriate site. Then double-click on the "html" directory to put yourself inside it and try to drop a file into the directory. If you are successful, then you are good.
 
 #### Command Line Tool Testing
 
-You can obviously do all of this from the command line on a machine that has SSH installed. (most Linux installations). Here's a very brief overview of the command line method for connection and a few options:
+You can obviously do all of this from the command line on a machine that has SSH installed (most Linux installations). Here's a very brief overview of the command line method for connection and a few options:
 
 * sftp username (Example: myfixed@ hostname or IP of the server: sftp myfixed@192.168.1.116)
 * Enter the password when prompted
@@ -532,7 +532,7 @@ For an exhaustive list of options and more, take a look at the [SFTP manual page
 
 ### Web Test Files
 
-For our dummy domains, we want to create a couple of `index.html` files that we can populate the `../html` directory with. Once these are created, you simply need to put them in the directory for each domain using the SFTP credentials for that domain. These files are super simple. We just want something so that we can see definitively that our sites are up and running and that the SFTP portion is working as expected.  Here's an example of this file. You can of course modify it as you like:
+For our dummy domains, we want to create a couple of `index.html` files that we can populate the `../html` directory with. Once these are created, you simply need to put them in the directory for each domain using the SFTP credentials for that domain. These files are super simple. We just want something so that we can see definitively that our sites are up and running and that the SFTP portion is working as expected. Here's an example of this file. You can of course modify it as you like:
 
 ```
 <!DOCTYPE html>
@@ -567,7 +567,7 @@ ff02::2 ip6-allrouters
 
 !!! hint
 
-    For real domains, you would want to populate your DNS server's with the hosts above. You can, though, use this *Poor Man's DNS* for testing any domain, even one that hasn't been taken live on real DNS servers.
+    For real domains, you would want to populate your DNS servers with the hosts above. You can, though, use this *Poor Man's DNS* for testing any domain, even one that hasn't been taken live on real DNS servers.
 
 Now, open your web browser and check to make sure that your `index.html` file for each domain displays by entering the URL in your browser's address bar. (Example: "http://mybrokenaxel.com") If your test index files load, everything is working correctly.
 
@@ -743,7 +743,7 @@ This solution is prone to human error, but since it isn't done often, it would p
 
 This is the author's favorite. It uses a system administrator which already has key-based access and a script that must be run with `bash [script-name]` to accomplish the same thing as "Solution Two" above:
 
-* manually edit the `sshd_config` file and remove the remarked out line that looks like this: `#PasswordAuthentication no`. This line is documenting the process of turning password authentication off, but it will get in the way of the script below, because our script will look for the first occurrence of `PasswordAuthentication no` and later the first occurrence of `PasswordAuthentication yes`. If you remove this one line, our script will work fine.
+* manually edit the `sshd_config` file and remove the remarked-out line that looks like this: `#PasswordAuthentication no`. This line is documenting the process of turning password authentication off, but it will get in the way of the script below, because our script will look for the first occurrence of `PasswordAuthentication no` and later the first occurrence of `PasswordAuthentication yes`. If you remove this one line, our script will work fine.
 * create a script on the SFTP server called "quickswitch", or whatever you want to call it. The contents of this script would look like this:
 
 ```
