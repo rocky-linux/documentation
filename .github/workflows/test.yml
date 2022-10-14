@@ -31,7 +31,7 @@ jobs:
       - name: Affected URLs
         id: gather
         run: |
-          OUT="$(awk -F, '((NR>1 && $2==\"failed\") || NR==1 ){print}' output.csv)"
+          OUT="$(awk -F, '((NR>1 && $2==\\"failed\\") || NR==1 ){print}' output.csv)"
           echo 'URLS<<EOF' >> $GITHUB_OUTPUT
           echo $OUT >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
