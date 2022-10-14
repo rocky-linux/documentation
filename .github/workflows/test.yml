@@ -35,13 +35,13 @@ jobs:
 
   comment:
     name: "Comment on PR"
-    needs: gather
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Comment
         uses: actions/github-script@v5
         env:
-          URLS: ${{ needs.gather.outputs.urls }}
+          URLS: ${{ needs.test.outputs.urls }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
