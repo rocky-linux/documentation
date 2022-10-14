@@ -31,11 +31,14 @@ jobs:
       - name: Affected URLs
         id: gather
         run: |
+          OUT="$(awk -F, '((NR>1 && $2==\"failed\") || NR==1 ){print}' output.csv)"
           echo 'URLS<<EOF' >> $GITHUB_OUTPUT
-          cat output.csv >> $GITHUB_OUTPUT
+          echo $OUT >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
+          echo "COUNT_U=$(wc -l <<<$OUT)" >> $GITHUB_OUTPUT
     outputs:
       URLS: ${{ steps.gather.outputs.URLS }}
+      COUNT_U: ${{ steps.gather.outputs.COUNT_U }}
 
   comment:
     name: "Comment on PR"
@@ -46,14 +49,16 @@ jobs:
         uses: actions/github-script@v5
         env:
           URLS: "${{ needs.test.outputs.URLS }}"
+          COUNT_U: "${{ needs.test.outputs.COUNT_U }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const commentText = 'Test results for ' + context.payload.pull_request.head.sha + ':';
-            const fs = require('fs');
+            const count_u = process.env.COUNT_U.toString();
+            const commentText = 'Test results for ' + context.payload.pull_request.head.sha + ":\n\nNumber of broken URLs: " + count_u + "\n";
             const output = process.env.URLS.toString().trimEnd();
             var body = "<details>\n<summary>" + commentText + "</summary>\n\n```csv\n" + output + "\n```\n\n</details>";
 
+            const fs = require('fs');
             fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, body);
             needNewComment = true;
             console.log('Reviewing existing comments...');
