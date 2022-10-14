@@ -1,8 +1,8 @@
 ---
-title: `systemd` Service - Python Script
+title: Systemd Service - Python Script
 author: Antoine Le Morvan
 contributors: Steven Spencer
-date: 2022-10-14
+tested with: 8.6, 9.0
 tags:
   - python
   - systemd
