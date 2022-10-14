@@ -18,12 +18,12 @@ jobs:
           subfolder: docs
           file_types: .en.md,.md
           include_files: '\/([\w-]+)\.(en\.)?md'
-          exclude_patterns: 'avatars.githubusercontent.com,example.com,download.example,192.168,172.16,127.0.01,localhost,download.rockylinux.org'
+          exclude_patterns: 'avatars.githubusercontent.com,example.com,download.example,192.168,172.16,127.0.0.1,localhost,download.rockylinux.org'
           print_all: false
           retry_count: 2
           timeout: 5
           force_pass: true # Don't block deployment
-          save: "${{ env.GITHUB_WORKSPACE }}/output.csv"
+          save: "output.csv"
           verbose: true
 
   comment:
