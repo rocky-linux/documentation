@@ -31,9 +31,9 @@ jobs:
       - name: Affected URLs
         id: gather
         run: |
-          echo "::set-output name=urls::$(cat output.csv)"
+          echo urls="$(cat output.csv)" >> $GITHUB_ENV
     outputs:
-      urls: '${{ steps.gather.outputs.urls }}'
+      urls: '${{ env.urls }}'
 
   comment:
     name: "Comment on PR"
