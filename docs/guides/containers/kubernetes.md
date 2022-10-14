@@ -1,6 +1,6 @@
 ---
 title: Kubernetes cluster
-author: Antoine Le Morvan, Ezaquiel Bruni
+author: Antoine Le Morvan, Ezequiel Bruni
 contributors: Steven Spencer, Serge Croisé 
 tested with: 8.6
 tags:
