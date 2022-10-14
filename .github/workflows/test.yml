@@ -31,11 +31,11 @@ jobs:
       - name: Affected URLs
         id: gather
         run: |
-          OUT="$(awk -F, '((NR>1 && $2==\\"failed\\") || NR==1 ){print}' output.csv)"
+          OUT="$(awk -F, '((NR>1 && $2=="failed") || NR==1 ){print}' output.csv)"
           echo 'URLS<<EOF' >> $GITHUB_OUTPUT
           echo $OUT >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
-          echo "COUNT_U=$(wc -l <<<$OUT)" >> $GITHUB_OUTPUT
+          echo "COUNT_U=$(( $(wc -l <<<$OUT) - 1 ))" >> $GITHUB_OUTPUT
     outputs:
       URLS: ${{ steps.gather.outputs.URLS }}
       COUNT_U: ${{ steps.gather.outputs.COUNT_U }}
