@@ -26,19 +26,28 @@ jobs:
           save: "output.csv"
           verbose: true
 
+      - name: Affected URLs
+        id: gather
+        run: |
+          echo "::set-output name=urls::$(cat output.csv)"
+    outputs:
+      urls: '${{ steps.gather.outputs.urls }}'
+
   comment:
     name: "Comment on PR"
-    needs: test
+    needs: gather
     runs-on: ubuntu-latest
     steps:
       - name: Comment
         uses: actions/github-script@v5
+        env:
+          URLS: ${{ needs.gather.outputs.urls }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const commentText = 'Test results for ' + context.payload.pull_request.head.sha + ':';
             const fs = require('fs');
-            const output = fs.readFileSync(process.env.GITHUB_WORKSPACE + '/output.csv').toString().trimEnd();
+            const output = process.env.URLS.toString().trimEnd();
             var body = "<details>\n<summary>" + commentText + "</summary>\n\n```csv\n" + output + "\n```\n\n</details>";
 
             fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, body);
