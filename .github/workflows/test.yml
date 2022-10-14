@@ -34,6 +34,8 @@ jobs:
           echo 'URLS<<EOF' >> $GITHUB_OUTPUT
           cat output.csv >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
+    outputs:
+      URLS: ${{ steps.gather.outputs.URLS }}
 
   comment:
     name: "Comment on PR"
