@@ -72,7 +72,7 @@ Load balancing
 
 Automated rollouts and rollbacks
 
-Storage orchastration
+Storage orchestration
 
 ### Architecture
 
