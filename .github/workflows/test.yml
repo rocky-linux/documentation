@@ -43,7 +43,7 @@ jobs:
       - name: Comment
         uses: actions/github-script@v5
         env:
-          URLS: ${{ needs.test.outputs.urls }}
+          URLS: "${{ needs.test.outputs.urls }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
