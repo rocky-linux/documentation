@@ -31,9 +31,9 @@ jobs:
       - name: Affected URLs
         id: gather
         run: |
-          echo urls="$(cat output.csv)" >> $GITHUB_ENV
-    outputs:
-      urls: '${{ env.urls }}'
+          echo 'URLS<<EOF' >> $GITHUB_OUTPUT
+          cat output.csv >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
 
   comment:
     name: "Comment on PR"
@@ -43,7 +43,7 @@ jobs:
       - name: Comment
         uses: actions/github-script@v5
         env:
-          URLS: "${{ needs.test.outputs.urls }}"
+          URLS: "${{ needs.test.outputs.URLS }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
