@@ -6,7 +6,7 @@ contributors: Ezequiel Bruni
 
 # Bash - Script Stub
 
-Where I was previously employed, we had an ace programmer who knew a bunch of languages. He was also the go-to guy when you had questions on how to accomplish something with a script. He finally created a little stub, a files full of scripting examples that you could just strip out and edit as needed. Eventually, I got good enough at these routines that I didn't have to look at the stub, but it was a good learning tool, and something that others may find useful.
+Where I was previously employed, we had an ace programmer who knew a bunch of languages. He was also the go-to guy when you had questions on how to accomplish something with a script. He finally created a little stub, a file full of scripting examples that you could just strip out and edit as needed. Eventually, I got good enough at these routines that I didn't have to look at the stub, but it was a good learning tool, and something that others may find useful.
 
 ## The Actual Stub
 
