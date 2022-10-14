@@ -1,5 +1,5 @@
 ---
-title: Systemd service for a python script
+title: `systemd` Service - Python Script
 author: Antoine Le Morvan
 contributors: Steven Spencer
 date: 2022-10-14
@@ -9,24 +9,24 @@ tags:
   - cron
 ---
 
-# Systemd service for a python script
+# `systemd` Service for a Python script
 
-If, like many sysadmins, you are an affictionado of cron scripts launched with `* * * * * /I/launch/my/script.sh`, this article should make you think of another way to do it, using all the power and ease offered by systemd.
+If, like many sysadmins, you are an aficionado of cron scripts launched with `* * * * * /I/launch/my/script.sh`, this article should make you think of another way to do it using all the power and ease offered by `systemd`.
 
 We will write a python script that will provide a continuous loop to execute the actions you define.
 
-We will see how to run this script as a systemd service, view the logs in journalctl and see what happens if the script crashes.
+We will see how to run this script as a `systemd` service, view the logs in journalctl, and see what happens if the script crashes.
 
 ## Prerequisites
 
-Let's start by installing some python dependencies to use journalctl:
+Let's start by installing some python dependencies needed for the script to use journalctl:
 
 ```
 shell > sudo dnf install python36-devel systemd-devel
-shell > pip3 install systemd
+shell > sudo pip3 install systemd
 ```
 
-## Writing the script
+## Writing the Script
 
 Let's consider the following script `my_service.py`:
 
@@ -74,13 +74,13 @@ if __name__ == '__main__':
     Service()
 ```
 
-We start by instantiating the necessary to send logs in journald. The script then launches an infinite loop and pauses for 60 seconds (which is the minimum of a cron execution, so we can go below this limitation).
+We start by instantiating the necessary variables to send logs in journald. The script then launches an infinite loop and pauses for 60 seconds (which is the minimum of a cron execution, so we can go below this limitation).
 
 !!! Note
 
     I personally use this script in a more advanced form, which continuously queries a database and executes jobs based on the information retrieved via the rundeck API
 
-## Systemd integration
+## Systemd Integration
 
 Now that we have a script that can serve as a basis for your imagination, we can install it as a systemd service.
 
@@ -171,6 +171,6 @@ As you can see, the restart feature of systemd is very useful.
 
 ## Conclusion
 
-Systemd and Journald provide us the tools to make robust and powerful scripts easily enough to replace our old good crontab scripts.
+`systemd` and `journald` provide us the tools to make robust and powerful scripts easily enough to replace our old reliable crontab scripts.
 
 I hope this solution will be useful for you.
