@@ -6,7 +6,7 @@ date : 2021-10-16
 ---
 
 #  install `htop` 
-Every system administrator likes to use some of the more commonly used commands. Today I recommend `htop` as an alternative to the `top` command. To use the `htop` command normally , you need to install it first.
+Every system administrator likes to use some of the more commonly used commands. Today I recommend `htop` as an alternative to the `top` command. To use the `htop` command usually, you need to install it first.
 
 ``` bash
 # Installation epel source (also called repository)
@@ -25,7 +25,7 @@ You only need to type `htop` in the terminal, and the interactive interface is a
 1[ |                        1%]     Load average: 0.00 0.00 0.05
 Mem[ |||||||           197M/8G]     Uptime: 00:31:39
 Swap[                  0K/500M]
-PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Commad(merged)
+PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(merged)
 ...
 ```
 
@@ -76,7 +76,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Commad(merg
 
 * MEM%-Percentage of memory consumed by each process
 * TIME+-shows the running time since the process was started
-* Commad-the command corresponding to the process
+* Command-the command corresponding to the process
 
 ##  Shortcut key description
 In the interactive interface, press the <kbd>F1</kbd> button to see the corresponding shortcut key description.
