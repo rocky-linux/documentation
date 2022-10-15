@@ -71,4 +71,4 @@ The script loops through all of the files created in `phpfiles.txt`, creates a b
 
 ## Conclusion
 
-`sed` is a powerful tools and works very well for search and replace functions, particularly where the delimiter needs to be flexible.
+`sed` is a powerful tool and works very well for search and replace functions, particularly where the delimiter needs to be flexible.
