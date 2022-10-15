@@ -34,7 +34,7 @@ fi
 
 ## Breakdown
 
-This simple shell script uses `rsync` to pull repository files from the nearest mirror.  It also utilizes the "exclude" option which is defined in a text file in the form of keywords that shouldnt be included.  Excludes are good if you have limited disk space or just dont want everything for whatever reason.  We can use  `*` as a wildcard character.  Be careful using  `*/ng` as it will exclude anything that matches those characters.  An example is below:
+This simple shell script uses `rsync` to pull repository files from the nearest mirror.  It also utilizes the "exclude" option which is defined in a text file in the form of keywords that should not be included.  Excludes are good if you have limited disk space or just do not want everything for whatever reason.  We can use  `*` as a wildcard character.  Be careful using  `*/ng` as it will exclude anything that matches those characters.  An example is below:
 
 ```
 */source*
