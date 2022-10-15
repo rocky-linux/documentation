@@ -11,7 +11,7 @@ For novice users who are new to GNU/Linux for the first time, the first thing to
 
 ##  nmtui
 
-`NetworkManager` is a standard Linux network configuration tool suite, which supports server and desktop environments. Nowadays, most popular distributions support it. This set of network configuration tools is suitable for Rocky Linux 8 and later versions. If you want to configure network information graphically (i.e. the command line `nmtui` ), you only need to do this:
+`NetworkManager` is a standard Linux network configuration tool suite, which supports server and desktop environments. Nowadays, most popular distributions support it. This set of network configuration tools is suitable for Rocky Linux 8 and later versions. If you want to configure network information graphically (i.e. the command line `nmtui`), you only need to do this:
 
 ```bash
 shell > dnf -y install NetworkManager NetworkManager-tui
@@ -30,7 +30,7 @@ You can use the <kbd>Tab</kbd> key or the <kbd>↑</kbd><kbd>↓</kbd><kbd>←</
 
 ###  DHCP IPv4
 
-For IPv4, if it is to obtain network information using DHCP way, you only need to select *IPv4 CONFIGURATION* back **&lt;Automatic&gt;** , and then run your terminal under `systemctl restart NetworkManager.service` , large In most cases, it can take effect. In rare cases, you need to switch the network card to take effect. For example, this way- `nmcli connection down ens33` , `nmcli connection up ens33`
+For IPv4, if it is to obtain network information using DHCP way, you only need to select *IPv4 CONFIGURATION* back **&lt;Automatic&gt;**, and then run your terminal under `systemctl restart NetworkManager.service` , large In most cases, it can take effect. In rare cases, you need to switch the network card to take effect. For example, this way- `nmcli connection down ens33`, `nmcli connection up ens33`
 
 ### Manually fix network information
 
@@ -42,7 +42,7 @@ If you want to manually fix all IPv4 network information, you need to select **&
 |Gateway|192.168.100.1|
 |DNS servers|8.8.8.8|
 
-Then click \< OK \> , return to the terminal interface step by step, and execute `systemctl restart NetworkManager.service`. Similarly, in rare cases, the network card needs to be switched on and off to take effect.
+Then click \< OK \>, return to the terminal interface step by step, and execute `systemctl restart NetworkManager.service`. Similarly, in rare cases, the network card needs to be switched on and off to take effect.
 
 ## Change the way of configuration files
 
@@ -50,7 +50,7 @@ All RHEL <font color="red">7.x</font> or <font color="red">8.x</font> distributi
 
 !!! warning
 
-    In RHEL 9.x distributions, the location of the directory where the NIC configuration file is stored has been changed, i.e. **/etc/NetworkManager/system-connections/**. See [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index) for more information.
+    In RHEL 9.x distributions, the location of the directory where the NIC configuration file is stored has been changed, i.e., **/etc/NetworkManager/system-connections/**. See [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index) for more information.
 
 ```bash
 shell > ls /etc/sysconfig/network-scripts/
@@ -77,12 +77,12 @@ ifcfg-ens33
 |PROXY_METHOD|Proxy method, generally none, can be left blank||
 |IPV4_FAILURE_FATAL|If it is yes, it means that the device will be disabled after ipv4 configuration fails; if it is no, it means it will not be disabled. |IPV4_FAILURE_FATAL=no|
 |IPV6INIT|Whether to enable IPV6, yes to enable, no not to enable. When IPV6INIT=yes, the two parameters IPV6ADDR and IPV6_DEFAULTGW can also be enabled. The former represents the IPV6 address and the latter represents the designated gateway |IPV6INIT=yes|
-|IPV6_AUTOCONF|Whether to use IPV6 automatic configuration, yes means use; no means not use |IPV6_AUTOCONF=yes|
+|IPV6_AUTOCONF|Whether to use IPV6 automatic configuration, yes means use; no means do not use |IPV6_AUTOCONF=yes|
 |IPV6_DEFROUTE|Whether to give IPV6 the default route|IPV6_DEFROUTE=yes|
 |IPV6_FAILURE_FATAL|After IPV6 configuration fails, whether to disable the device|IPV6_FAILURE_FATAL=no|
 |IPV6_ADDR_GEN_MODE|Generate IPV6 address model, optional values ​​are stable-privacy and eui64|IPV6_ADDR_GEN_MODE=stable-privacy|
 
-After the configuration file is modified successfully, remember to restart the network card service `systemctl restart NetworkManager.service`
+After the configuration file is modified successfully, remember to restart the network card service `systemctl restart NetworkManager.service`.
 
 ###  Recommended configuration for IPV4
 
