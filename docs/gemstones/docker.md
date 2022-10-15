@@ -26,7 +26,7 @@ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 # Start and enable the systemd docker service (dockerd)
 
-Use the `systemctl` utility to configure the dockerd daemon to automatically startup with the next system reboot and simultanously start it for the current session. Type:
+Use the `systemctl` utility to configure the dockerd daemon to automatically startup with the next system reboot and simultaneously start it for the current session. Type:
 
 ```
 sudo systemctl --now enable docker
