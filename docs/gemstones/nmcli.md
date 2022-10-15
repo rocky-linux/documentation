@@ -12,7 +12,7 @@ nmcli -f name,autoconnect connection
 ```
 
 To change the value of a property for a network connection use the `modify` sub-command with `nmcli connection`. 
-For example to change the autoconnect property value from `no` to `yes` for the `ens3` connection profile, type:
+For example, to change the autoconnect property value from `no` to `yes` for the `ens3` connection profile, type:
 
 ```
 sudo nmcli con mod ens3 connection.autoconnect yes
@@ -22,9 +22,9 @@ sudo nmcli con mod ens3 connection.autoconnect yes
 
 ```
 connection (con)       : NetworkManager connection object. 
-modify (mod)           :  Modify one or more properties of a given connection profile
+modify (mod)           : Modify one or more properties of a given connection profile.
 connection.autoconnect : The setting and property (<setting>.<property>)
--f, --fields           :  specify fields to output
+-f, --fields           : specify fields to output.
 
 ```
 
