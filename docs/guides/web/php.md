@@ -139,7 +139,7 @@ phpinfo();
 ?>
 ```
 
-Use a web browser to check that the server is working properly by going to the page <span>http://yourip/info.php</span>.
+Use a web browser to check that the server is working properly by going to the page http[]()://yourip/info.php.
 
 !!! Warning
 
