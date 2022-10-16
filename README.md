@@ -119,7 +119,7 @@ Example: `mv /home/myname/help.md /home/myname/documentation/`
 Example:  `git add help.md`
 4. Now, run git commit for the changes you have made.  
 Example: `git commit -m "Added the help.md file"`
-5. Next, push your changes to your forked repository: `git push https://github.com/your_fork_name/documentation main`
+5. Next, push your changes to your forked repository: `git push <span>https://github.com/your_fork_name/documentation.git</span> main`
 6. Next, we repeat steps 6 and 7 above: Create a Pull Request. This request lets the upstream administrators know that you have a new file (or files) that you would like them to merge with the master branch. Click on "Pull Request" in the upper-left of the screen
 
 Once all of the above is complete, you wait for confirmation that GitHub successfully merged your request. (Or not, as the case may be.)
