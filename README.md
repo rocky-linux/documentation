@@ -112,7 +112,7 @@ Click on "Pull Request" in the upper-left of the screen.
 
 If you prefer to run Git locally on your machine, you can clone the Rocky Linux Documentation repository, make changes, and then commit changes afterward. To make things simple, execute steps 1-3 on from *With the GitHub GUI* above then:
 
-1. Git clone the repository: `git clone https://github.com/your_fork_name/documentation.git`
+1. Git clone the repository: `git clone <span>https://github.com/your_fork_name/documentation.git</span>`
 2. Now, on your machine, add files to the directory.  
 Example: `mv /home/myname/help.md /home/myname/documentation/`
 3. Next, run Git add for that file name.  
