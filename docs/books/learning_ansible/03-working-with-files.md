@@ -138,11 +138,11 @@ It is possible to add a validation step if the targeted service allows it (for e
 
 ## `get_url` module
 
-To upload files from a web site or ftp to one or more hosts, use the `get_url` module:
+To upload files from a web site (e.g., http://example.com) or ftp to one or more hosts, use the `get_url` module:
 
 ```
 - get_url:
-    url: http://site.com/archive.zip
+    url: http://example.com/archive.zip
     dest: /tmp/archive.zip
     mode: 0640
     checksum: sha256:f772bd36185515581aa9a2e4b38fb97940ff28764900ba708e68286121770e9a
