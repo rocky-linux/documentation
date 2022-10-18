@@ -20,4 +20,4 @@ Note: Use spaces, not tabs.
 When srpmproc goes to import the package to Rocky, it will see the work done in https://git.rockylinux.org/patch/PACKAGE , and apply the stored debranding patches by reading the config file(s) under ROCKY/CFG/*.cfg
 
 
-from https://wiki.rockylinux.org/en/team/development/debranding/how-to
+from [debranding wiki page](https://wiki.rockylinux.org/team/release_engineering/debranding/)

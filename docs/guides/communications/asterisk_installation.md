@@ -1,6 +1,16 @@
 ---
 title: Installing Asterisk
+contributors: Steven Spencer
+tested with: 8.5
+tags:
+  - asterisk
+  - pbx
+  - communications
 ---
+
+!!! note
+
+    The last version of Rocky Linux that this procedure was tested on was version 8.5. Because the bulk of this procedure relies on source builds directly from Asterisk and a simple set of Development Tools from Rocky Linux, it should work on all versions. If you run into a problem, please let us know!
 
 # Installing Asterisk on Rocky Linux
 
@@ -26,38 +36,50 @@ At minimum, you will need the following skills and tools to complete this guide:
 
 ## Update Rocky Linux and Install `wget`
 
-`sudo dnf -y update`
+```
+sudo dnf -y update
+```
 
 This will get your server up-to-date with all packages that have been released or updated since the last update or install. Then run:
 
-`sudo dnf install wget`
+```
+sudo dnf install wget
+```
 
 ## Set Hostname
 
 Set your host name to the domain you'll be using for Asterisk.
 
-`sudo hostnamectl set-hostname asterisk.example.com`
+```
+sudo hostnamectl set-hostname asterisk.example.com
+```
 
 ## Add Needed Repositories
 
 First, install the EPEL (Extra Packages for Enterprise Linux):
 
-`sudo dnf -y install epel-release`
+```
+sudo dnf -y install epel-release
+```
 
 Next, enable Rocky Linux' PowerTools:
 
-`sudo dnf config-manager --set-enabled powertools`
+```
+sudo dnf config-manager --set-enabled powertools
+```
 
 ## Install Development Tools
-    sudo dnf group -y install "Development Tools"
-    sudo dnf -y install git wget  
 
+```
+sudo dnf group -y install "Development Tools"
+sudo dnf -y install git wget  
+```
 
 ## Install Asterisk
 
 ### Downloading and Configuring the Asterisk Build
 
-Before you download this script, make sure you have the latest version. To do so, navigate to http://downloads.asterisk.org/pub/telephony/asterisk/ and look for the latest build of Asterisk. Then copy the link location. As of the writing of this document, the following was the latest build:
+Before you download this script, make sure you have the latest version. To do so, navigate to [the Asterisk download link here](http://downloads.asterisk.org/pub/telephony/asterisk/) and look for the latest build of Asterisk. Then copy the link location. As of the writing of this document, the following was the latest build:
 
 ```    
 wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18.6.0.tar.gz
@@ -82,7 +104,9 @@ You should see the following when the script completes:
 
 Now that all of the required packages are installed, our next step is to configure and build Asterisk:
 
-`./configure --libdir=/usr/lib64 --with-jansson-bundled=yes`
+```
+./configure --libdir=/usr/lib64 --with-jansson-bundled=yes
+```
 
 Assuming that the configuration runs without issue, you should get a large ASCII  Asterisk emblem, followed by the following on Rocky Linux:
 
@@ -98,9 +122,13 @@ configure: host-cpu:vendor:os: x86_64 : pc : linux-gnu :
 
 This is one of the steps where the administrator is going to need to do his homework. There are a lot of menu options that you may or may not need. Running the following command:
 
-`make menuselect`
+```
+make menuselect
+```
 
-will bring you to a [menuselect screen](../images/asterisk_menuselect.png)
+will bring you to a menu select screen:
+
+![menuselect screen](../images/asterisk_menuselect.png)
 
 Look through these options carefully and make selections based on your requirements. As stated earlier, this may take some additional homework.
 
@@ -115,7 +143,9 @@ make install
 
 Installing the documentation isn't required, but unless you are a communications server expert, you'll want them installed:
 
-`make progdocs`
+```
+make progdocs
+```
 
 Next install the basic PBX and make the config. The basic PBX is just that, very basic! You will probably need to make changes going forward to get your PBX to function as you want it to.
 
@@ -139,11 +169,15 @@ restorecon -vr {/etc/asterisk,/var/lib/asterisk,/var/log/asterisk,/var/spool/ast
 
 Now that the bulk of our work is completed, go ahead and exit out of the `sudo -s` command. This will require that most of the remaining commands use _sudo_ again:
 
-`exit`
+```
+exit
+```
 
 ### Set Default User & Group
 
-`sudo vi /etc/sysconfig/asterisk`
+```
+sudo vi /etc/sysconfig/asterisk
+```
 
 Remove the comments on the two lines below and save:
 
@@ -152,7 +186,9 @@ AST_USER="asterisk"
 AST_GROUP="asterisk"
 ```
 
-`sudo vi /etc/asterisk/asterisk.conf`
+```
+sudo vi /etc/asterisk/asterisk.conf
+```
 
 Remove the comments on the two lines below and save:
 
@@ -163,7 +199,9 @@ rungroup = asterisk ; The group to run as.
 
 ### Configure Asterisk Service
 
-`sudo systemctl enable asterisk`
+```
+sudo systemctl enable asterisk
+```
 
 ### Configure Firewall
 
@@ -178,7 +216,9 @@ sudo firewall-cmd --zone=public --add-port=10000-20000/udp --permanent
 
 Since we've made the `firewalld` commands permanent, we will need to do a reboot of the server. You can do that with:
 
-`sudo shutdown -r now`
+```
+sudo shutdown -r now
+```
 
 ## Test
 
@@ -186,25 +226,35 @@ Since we've made the `firewalld` commands permanent, we will need to do a reboot
 
 To test, let's connect to the Asterisk console:
 
-`sudo asterisk -r`
+```
+sudo asterisk -r
+```
 
 Which will bring you into the Asterisk command-line client. You will see this prompt after the basic Asterisk information is displayed:
 
-`asterisk*CLI>`
+```
+asterisk*CLI>
+```
 
 To change the verbosity of the console, use the following:
 
-`core set verbose 4`
+```
+core set verbose 4
+```
 
 Which should show you the following in the Asterisk console:
 
-`Console verbose was OFF and is now 4.`
+```bash
+Console verbose was OFF and is now 4.
+```
 
 ### Show Sample End-Point Authentications
 
 At the Asterisk command-line client prompt, type:
 
-`pjsip show auth 1101`
+```
+pjsip show auth 1101
+```
 
 This will return username and password information that you can then use to connect any SIP client with.
 

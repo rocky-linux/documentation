@@ -38,7 +38,7 @@ DISA is just one of many Security Profiles supported by the Rocky Linux SCAP def
 
 * [ANSSI](https://www.ssi.gouv.fr/en/)
 * [CIS](https://cisecurity.org)
-* [Australian Cyber Security Center](https://www.cyber.gov.au/)
+* [Australian Cyber Security Center](https://cyber.gov.au/)
 * [NIST-800-171](https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final)
 * [HIPAA](https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html)
 * [PCI-DSS](https://www.pcisecuritystandards.org/)

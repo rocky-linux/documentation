@@ -76,7 +76,7 @@ lxc config set ubuntu-test
 
 and then hit TAB.
 
-This shows you all of the options for configuring a container. If you have questions about what one of the configuration options does, head up to the [official documentation for LXD](https://lxd.readthedocs.io/en/stable-4.0/instances/) and do a search for the configuration parameter, or Google the entire string, such as "lxc config set limits.memory" and take a look at the results of the search.
+This shows you all of the options for configuring a container. If you have questions about what one of the configuration options does, head up to the [official documentation for LXD](https://linuxcontainers.org/lxd/docs/master/instances/) and do a search for the configuration parameter, or Google the entire string, such as "lxc config set limits.memory" and take a look at the results of the search.
 
 We will look at a few of the most used configuration options. For example, if you want to set the max amount of memory that a container can use:
 
