@@ -40,10 +40,10 @@ dnf install -y epel-release
 
 The current version of LibreNMS requires a minimum PHP version of 8.1. The default package in Rocky Linux 9.0 is PHP 8.0, so we will need to enable a third party repository (true for Rocky Linux 8.6 as well) for this newer version. 
 
-We will install the REMI repository for this. The version of the repository you install will depend on the version of Rocky Linux you are running. Simply replace the "[v#]" below with either 8 or 9:
+We will install the REMI repository for this. The version of the repository you install will depend on the version of Rocky Linux you are running. We are assuming version 9 below, but change this accordingly for the version you are running: 
 
 ```
-dnf install http://rpms.remirepo.net/enterprise/remi-release-[v#].rpm
+dnf install http://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
 
 Once both the EPEL and REMI repositories are installed, it's time to install the packages we will need:
