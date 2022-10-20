@@ -72,17 +72,17 @@ The configuration file configuration content would look something like this:
 
 ```apache
 <VirtualHost *:80>
-        ServerName www.ourownwiki.com
+        ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.ourownwiki.www/html
+        DocumentRoot /var/www/sub-domains/your-server-hostname/html
         DirectoryIndex index.php index.htm index.html
         Alias /icons/ /var/www/icons/
-        # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.ourownwiki.www/cgi-bin/
+        # ScriptAlias /cgi-bin/ /var/www/sub-domains/your-server-hostname/cgi-bin/
 
-	CustomLog "/var/log/httpd/com.ourownwiki.www-access_log" combined
-	ErrorLog  "/var/log/httpd/com.ourownwiki.www-error_log"
+	CustomLog "/var/log/httpd/your-server-hostname-access_log" combined
+	ErrorLog  "/var/log/httpd/your-server-hostname-error_log"
 
-        <Directory /var/www/sub-domains/com.ourownwiki.www/html>
+        <Directory /var/www/sub-domains/your-server-hostname/html>
                 Options -ExecCGI -Indexes
                 AllowOverride None
 
@@ -96,15 +96,15 @@ The configuration file configuration content would look something like this:
 ```
 Once the file is created, we need to write (save) it with: `shift : wq`
 
-In our example above, the wiki site is loaded from the "html" sub-directory of _com.ourownwiki.www_, which means that the path we created in _/var/www_ (above) will need some additional directories to satisfy this:
+In our example above, the wiki site is loaded from the "html" sub-directory of _your-server-hostname_, which means that the path we created in _/var/www_ (above) will need some additional directories to satisfy this:
 
-`mkdir -p /var/www/sub-domains/com.ourownwiki.www/html`
+`mkdir -p /var/www/sub-domains/your-server-hostname/html`
 
 ... which will create the entire path with a single command. Next we would want to install our files to this directory that will actually run the website. This could be something you made yourself, or an installable web application (in this case a wiki that you downloaded).
 
 Copy your files to the path above:
 
-`cp -Rf wiki_source/* /var/www/sub-domains/com.ourownwiki.www/html/`
+`cp -Rf wiki_source/* /var/www/sub-domains/your-server-hostname/html/`
 
 ## <a name="https"></a>Configuration https - Using an SSL Certificate
 
@@ -118,7 +118,7 @@ You can also use this alternate process for using an [SSL certificate from Let's
 
 ### Placement of the SSL keys and Certificate's
 
-Now that you have your keys and certificate files, we need to place them logically in your file system on the web server. As we've seen with the example configuration file (above), we are placing our web files in _/var/www/sub-domains/com.ourownwiki.www/html_.
+Now that you have your keys and certificate files, we need to place them logically in your file system on the web server. As we've seen with the example configuration file (above), we are placing our web files in _/var/www/sub-domains/your-server-hostname/html_.
 
 We want to place our certificate and key files with the domain, but NOT in the document root, which in this case is the _html_ folder.
 
@@ -126,7 +126,7 @@ We never want our certificates and keys to potentially be exposed to the web. Th
 
 Instead, we will create a new directory structure for our SSL files, outside the document root:
 
-`mkdir -p /var/www/sub-domains/com.ourownwiki.www/ssl/{ssl.key,ssl.crt,ssl.csr}`
+`mkdir -p /var/www/sub-domains/your-server-hostname/ssl/{ssl.key,ssl.crt,ssl.csr}`
 
 If you are new to the "tree" syntax for making directories, what the above says is:
 
@@ -139,9 +139,9 @@ If you ever need to re-issue the certificate from a different provider, etc., it
 Assuming that you have named your key, csr, and crt (certificate) files with the name of your site, and that you have them stored in _/root_, we will then copy them up to their respective locations that we just created:
 
 ```
-cp /root/com.wiki.www.key /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/
-cp /root/com.wiki.www.csr /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.csr/
-cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
+cp /root/com.wiki.www.key /var/www/sub-domains/your-server-hostname/ssl/ssl.key/
+cp /root/com.wiki.www.csr /var/www/sub-domains/your-server-hostname/ssl/ssl.csr/
+cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
 ```
 
 ### The Site Configuration - https
@@ -154,9 +154,9 @@ We want them to go to port 443 (or http secure, better known as SSL). Our port 8
 
 ```
 <VirtualHost *:80>
-        ServerName www.ourownwiki.com
+        ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
-        Redirect / https://www.ourownwiki.com/
+        Redirect / https://your-server-hostname/
 </VirtualHost>
 ```
 
@@ -168,20 +168,20 @@ Next, we need to define the https portion of the configuration file. The http se
 
 ```
 <VirtualHost *:80>
-        ServerName www.ourownwiki.com
+        ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
-        Redirect / https://www.ourownwiki.com/
+        Redirect / https://your-server-hostname/
 </VirtualHost>
 <Virtual Host *:443>
-        ServerName www.ourownwiki.com
+        ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.ourownwiki.www/html
+        DocumentRoot /var/www/sub-domains/your-server-hostname/html
         DirectoryIndex index.php index.htm index.html
         Alias /icons/ /var/www/icons/
-        # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.ourownwiki.www/cgi-bin/
+        # ScriptAlias /cgi-bin/ /var/www/sub-domains/your-server-hostname/cgi-bin/
 
-	CustomLog "/var/log/httpd/com.ourownwiki.www-access_log" combined
-	ErrorLog  "/var/log/httpd/com.ourownwiki.www-error_log"
+	CustomLog "/var/log/httpd/your-server-hostname-access_log" combined
+	ErrorLog  "/var/log/httpd/your-server-hostname-error_log"
 
         SSLEngine on
         SSLProtocol all -SSLv2 -SSLv3 -TLSv1
@@ -189,11 +189,11 @@ Next, we need to define the https portion of the configuration file. The http se
         SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384
 :EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS
 
-        SSLCertificateFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/com.wiki.www.crt
-        SSLCertificateKeyFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/com.wiki.www.key
-        SSLCertificateChainFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/your_providers_intermediate_certificate.crt
+        SSLCertificateFile /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/com.wiki.www.crt
+        SSLCertificateKeyFile /var/www/sub-domains/your-server-hostname/ssl/ssl.key/com.wiki.www.key
+        SSLCertificateChainFile /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/your_providers_intermediate_certificate.crt
 
-        <Directory /var/www/sub-domains/com.ourownwiki.www/html>
+        <Directory /var/www/sub-domains/your-server-hostname/html>
                 Options -ExecCGI -Indexes
                 AllowOverride None
 
@@ -223,7 +223,7 @@ Remember that our *httpd.conf* file is including */etc/httpd/sites-enabled* at t
 
 That's by design, so that we can easily remove things in the event that `httpd` fails to restart. So to enable our configuration file, we need to create a symbolic link to that file in *sites-enabled* and then start or restart the web service. To do this, we use this command:
 
-`ln -s /etc/httpd/sites-available/com.ourownwiki.www /etc/httpd/sites-enabled/`
+`ln -s /etc/httpd/sites-available/your-server-hostname /etc/httpd/sites-enabled/`
 
 This will create the link to the configuration file in *sites-enabled*, just like we want.
 

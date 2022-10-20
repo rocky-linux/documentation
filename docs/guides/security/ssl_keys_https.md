@@ -37,32 +37,32 @@ To start with, let's make sure that OpenSSL is installed on both your workstatio
 
 If it is not installed, your system will install it and any needed dependencies.
 
-Our example domain is ourownwiki.com. Keep in mind that you would need to purchase and register your domain ahead of time. You can purchase domains through a number of "Registrars".
+Our example domain is example.com. Keep in mind that you would need to purchase and register your domain ahead of time. You can purchase domains through a number of "Registrars".
 
 If you are not running your own DNS (Domain Name System), you can often use the same providers for DNS hosting. DNS translates your named domain, to numbers (IP addresses, either IPv4 or IPv6) that the Internet can understand. These IP addresses will be where the web site is actually hosted.
 
 Let's generate the key using openssl:
 
-`openssl genrsa -des3 -out ourownwiki.com.key.pass 2048`
+`openssl genrsa -des3 -out example.com.key.pass 2048`
 
 Note that we named the key, with a .pass extension. That's because as soon as we execute this command, it requests that you enter a passphrase. Enter a simple passphrase that you can remember as we are going to be removing this shortly:
 
 ```
-Enter pass phrase for ourownwiki.com.key.pass:
-Verifying - Enter pass phrase for ourownwiki.com.key.pass:
+Enter pass phrase for example.com.key.pass:
+Verifying - Enter pass phrase for example.com.key.pass:
 ```
 
 Next, let's remove that passphrase. The reason for this is that if you don't remove it, each time your web server restarts and loads up your key, you will need to enter that passphrase.
 
 You might not even be around to enter it, or worse, might not have a console at the ready to enter it. Remove it now to avoid all of that:
 
-`openssl rsa -in ourownwiki.com.key.pass -out ourownwiki.com.key`
+`openssl rsa -in example.com.key.pass -out example.com.key`
 
 This will request that passphrase once again to remove the passphrase from the key:
 
-`Enter pass phrase for ourownwiki.com.key.pass:`
+`Enter pass phrase for example.com.key.pass:`
 
-Now that you have entered the passphrase a third time, it has been removed from the key file and saved as ourownwiki.com.key
+Now that you have entered the passphrase a third time, it has been removed from the key file and saved as example.com.key
 
 ## Generate the CSR
 
@@ -70,9 +70,9 @@ Next, we need to generate the CSR (certificate signing request) that we will use
 
 During the generation of the CSR, you will be prompted for several pieces of information. These are the X.509 attributes of the certificate.
 
-One of the prompts will be for "Common Name (e.g., YOUR name)". It is important that this field be filled in with the fully qualified domain name of the server to be protected by SSL. If the website to be protected will be https://www.ourownwiki.com, then enter www.ourownwiki.com at this prompt:
+One of the prompts will be for "Common Name (e.g., YOUR name)". It is important that this field be filled in with the fully qualified domain name of the server to be protected by SSL. If the website to be protected will be https://www.example.com, then enter www.example.com at this prompt:
 
-`openssl req -new -key ourownwiki.com.key -out ourownwiki.com.csr`
+`openssl req -new -key example.com.key -out example.com.csr`
 
 This opens up a dialog:
 
@@ -86,7 +86,7 @@ This opens up a dialog:
 
 `Organizational Unit Name (eg, section) []:` This would describe the division of the organization that your domain falls under. Again, you can just hit 'Enter' to skip.
 
-`Common Name (eg, your name or your server's hostname) []:` Here, we have to enter our site hostname, example "www.ourownwiki.com"
+`Common Name (eg, your name or your server's hostname) []:` Here, we have to enter our site hostname, example "www.example.com"
 
 `Email Address []:` This field is optional, you can decide to fill it out or just hit 'Enter' to skip.
 
@@ -105,7 +105,7 @@ Now you should have generated your CSR.
 
 Each certificate vendor will have basically the same procedure. You purchase the SSL and term (1 or 2 years, etc.) and then you submit your CSR. To do this, you will need to use the `more` command, and then copy the contents of your CSR file.
 
-`more ourownwiki.com.csr`
+`more example.com.csr`
 
 Which will show you something like this:
 
