@@ -60,9 +60,9 @@ Everything is made up here. Any resemblance to persons or sites that are real, i
 
 **Sites:**
 
-* mybrokenaxel.com
+* mybrokenaxel = (site1.com)
     user = mybroken
-* myfixedaxel.com
+* myfixedaxel = (site2.com)
     user = myfixed
 
 **Administrators**
@@ -96,8 +96,8 @@ mkdir -p /etc/httpd/sites-enabled
 Creating the web directories:
 
 ```
-mkdir -p /var/www/sub-domains/com.mybrokenaxel/html
-mkdir -p /var/www/sub-domains/com.myfixedaxel/html
+mkdir -p /var/www/sub-domains/com.site1/html
+mkdir -p /var/www/sub-domains/com.site2/html
 ```
 We will deal with the ownership of these directories in the script application found below.
 
@@ -122,7 +122,7 @@ Then save the file and exit.
 We need two sites created. We will create the configurations in `/etc/httpd/sites-available` and then link them to `../sites-enabled`:
 
 ```
-vi /etc/httpd/sites-available/com.mybrokenaxel
+vi /etc/httpd/sites-available/com.site1
 ```
 
 !!! note
@@ -131,17 +131,17 @@ vi /etc/httpd/sites-available/com.mybrokenaxel
 
 ```
 <VirtualHost *:80>
-        ServerName www.mybrokenaxel.com
+        ServerName www.site1.com
         ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.mybrokenaxel/html
+        DocumentRoot /var/www/sub-domains/com.site1/html
         DirectoryIndex index.php index.htm index.html
         Alias /icons/ /var/www/icons/
 
 
-    CustomLog "/var/log/httpd/com.mybrokenaxel.www-access_log" combined
-    ErrorLog  "/var/log/httpd/com.mybrokenaxel.www-error_log"
+    CustomLog "/var/log/httpd/com.site1.www-access_log" combined
+    ErrorLog  "/var/log/httpd/com.site1.www-error_log"
 
-        <Directory /var/www/sub-domains/com.mybrokenaxel/html>
+        <Directory /var/www/sub-domains/com.site1/html>
                 Options -ExecCGI -Indexes
                 AllowOverride None
 
@@ -156,22 +156,22 @@ vi /etc/httpd/sites-available/com.mybrokenaxel
 Save this file and exit.
 
 ```
-vi /etc/httpd/sites-available/com.myfixedaxel
+vi /etc/httpd/sites-available/com.site2
 ```
 
 ```
 <VirtualHost *:80>
-        ServerName www.myfixedaxel.com
+        ServerName www.site2.com
         ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.myfixedaxel/html
+        DocumentRoot /var/www/sub-domains/com.site2/html
         DirectoryIndex index.php index.htm index.html
         Alias /icons/ /var/www/icons/
 
 
-    CustomLog "/var/log/httpd/com.myfixedaxel.www-access_log" combined
-    ErrorLog  "/var/log/httpd/com.myfixedaxel.www-error_log"
+    CustomLog "/var/log/httpd/com.site2.www-access_log" combined
+    ErrorLog  "/var/log/httpd/com.site2.www-error_log"
 
-        <Directory /var/www/sub-domains/com.myfixedaxel/html>
+        <Directory /var/www/sub-domains/com.site2/html>
                 Options -ExecCGI -Indexes
                 AllowOverride None
 
@@ -188,8 +188,8 @@ Save this file and exit.
 Once the two configuration files are created, go ahead and link them from within `/etc/httpd/sites-enabled`:
 
 ```
-ln -s ../sites-available/com.mybrokenaxel
-ln -s ../sites-available/com.myfixedaxel
+ln -s ../sites-available/com.site1
+ln -s ../sites-available/com.site2
 ```
 Now enable and start the `httpd` process:
 
@@ -237,8 +237,8 @@ If this works for both administrative users, you should be ready to go to the ne
 We need to add our web users. That `../html` directory structure already exists, so we don't want to create it when we add the user, but we *do* want to specify it. We also do not want any login other than via SFTP so we need to use a shell that denies logins.
 
 ```
-useradd -M -d /var/www/sub-domains/com.mybrokenaxel/html -g apache -s /usr/sbin/nologin mybroken
-useradd -M -d /var/www/sub-domains/com.myfixedaxel/html -g apache -s /usr/sbin/nologin myfixed
+useradd -M -d /var/www/sub-domains/com.site1/html -g apache -s /usr/sbin/nologin mybroken
+useradd -M -d /var/www/sub-domains/com.site2/html -g apache -s /usr/sbin/nologin myfixed
 ```
 
 Let's break down those commands a bit:
@@ -555,8 +555,8 @@ To test that these files show up and load as expected, you simply need to modify
 
 ```
 127.0.0.1	localhost
-192.168.1.116	www.mybrokenaxel.com	mybrokenaxel.com
-192.168.1.116	www.myfixedaxel.com	myfixedaxel.com
+192.168.1.116	www.site1.com site1.com
+192.168.1.116	www.site2.com site2.com
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
 fe00::0 ip6-localnet
@@ -569,7 +569,7 @@ ff02::2 ip6-allrouters
 
     For real domains, you would want to populate your DNS servers with the hosts above. You can, though, use this *Poor Man's DNS* for testing any domain, even one that hasn't been taken live on real DNS servers.
 
-Now, open your web browser and check to make sure that your `index.html` file for each domain displays by entering the URL in your browser's address bar. (Example: "http://mybrokenaxel.com") If your test index files load, everything is working correctly.
+Now, open your web browser and check to make sure that your `index.html` file for each domain displays by entering the URL in your browser's address bar. (Example: "http://site1.com") If your test index files load, everything is working correctly.
 
 ## Part 3: Administrative Access with SSH key pairs
 

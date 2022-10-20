@@ -16,7 +16,7 @@ tags:
 * Comfort with modifying configuration files from the command line with an editor (our examples here will use _vi_, but you can substitute your favorite editor)
 * Some knowledge about web applications and setup.
 * Our example will use the [Apache Sites Enabled](../web/apache-sites-enabled.md) for setup, so it is a good idea to review that routine if you plan on following along.
-* We will be using "wiki-doc.yourdomain.com" as the domain name throughout this example.
+* We will be using "example.com" as the domain name throughout this example.
 * We will assume throughout this document that you are the root user or can get there with _sudo_.
 * We are assuming a fresh install of the OS, however that is **NOT** a requirement.
 
@@ -58,16 +58,16 @@ And add this to the very bottom of the file:
 
 Create the site configuration file in sites-available:
 
-`vi /etc/httpd/sites-available/com.yourdomain.wiki-doc`
+`vi /etc/httpd/sites-available/com.example`
 
 That configuration file should look something like this:
 
 ```
 <VirtualHost *>
-	ServerName    wiki-doc.yourdomain.com
-	DocumentRoot  /var/www/sub-domains/com.yourdomain.wiki-doc/html
+	ServerName    example.com
+	DocumentRoot  /var/www/sub-domains/com.example/html
 
-	<Directory ~ "/var/www/sub-domains/com.yourdomain.wiki-doc/html/(bin/|conf/|data/|inc/)">
+	<Directory ~ "/var/www/sub-domains/com.example/html/(bin/|conf/|data/|inc/)">
 	    <IfModule mod_authz_core.c>
                 AllowOverride All
         	Require all denied
@@ -78,7 +78,7 @@ That configuration file should look something like this:
 	    </IfModule>
 	</Directory>
 
-	ErrorLog   /var/log/httpd/wiki-doc.yourdomain.com_error.log
+	ErrorLog   /var/log/httpd/example.com_error.log
 	CustomLog  /var/log/httpd/wiki-doc.yourdomain_access.log combined
 </VirtualHost>
 ```
@@ -87,13 +87,13 @@ Note that the "AllowOverride All" above, allows the .htaccess (directory specifi
 
 Go ahead and link the configuration file into sites-enabled, but don't start web services as yet:
 
-`ln -s /etc/httpd/sites-available/com.yourdomain.wiki-doc /etc/httpd/sites-enabled/`
+`ln -s /etc/httpd/sites-available/com.example /etc/httpd/sites-enabled/`
 
 ### Apache DocumentRoot
 
 We also need to create our _DocumentRoot_. To do this:
 
-`mkdir -p /var/www/sub-domains/com.yourdomain.wiki-doc/html`
+`mkdir -p /var/www/sub-domains/com.example/html`
 
 ## Installing DokuWiki
 
@@ -124,7 +124,7 @@ We don't want that leading named directory when we decompress the archive, so we
 
 The second option is the "-C" option, and that tells tar where we want the archive to be decompressed to. So decompress the archive with this command:
 
-`tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.yourdomain.wiki-doc/html/`
+`tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.example/html/`
 
 Once we have executed this command, all of DokuWiki should be in our _DocumentRoot_.
 
@@ -132,11 +132,11 @@ We need to make a copy of the _.htaccess.dist_ file that came with DokuWiki and 
 
 In the process, we will be changing the name of this file to simply _.htaccess_ which is what _apache_ will be looking for. To do this:
 
-`cp /var/www/sub-domains/com.yourdomain.wiki-doc/html/.htaccess{.dist,}`
+`cp /var/www/sub-domains/com.example/html/.htaccess{.dist,}`
 
 Now we need to change ownership of the new directory and its files to the _apache_ user and group:
 
-`chown -Rf apache.apache /var/www/sub-domains/com.yourdomain.wiki-doc/html`
+`chown -Rf apache.apache /var/www/sub-domains/com.example/html`
 
 ## Setting Up DNS Or /etc/hosts
 
@@ -151,7 +151,7 @@ And then modify your hosts file to look something like this (note the IP address
 ```
 127.0.0.1	localhost
 127.0.1.1	myworkstation-home
-10.56.233.179	wiki-doc.yourdomain.com 	wiki-doc
+10.56.233.179	example.com 	wiki-doc
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
@@ -189,7 +189,7 @@ Now that our host name is set for testing and the web service has been started, 
 
 OR
 
-`http://wiki-doc.yourdomain.com/install.php`
+`http://example.com/install.php`
 
 Either should work if you set your hosts file as above. This will bring you to the setup screen so that you can finish the setup:
 
