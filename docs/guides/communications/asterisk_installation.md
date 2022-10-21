@@ -82,9 +82,9 @@ sudo dnf -y install git wget
 Before you download this script, make sure you have the latest version. To do so, navigate to [the Asterisk download link here](http://downloads.asterisk.org/pub/telephony/asterisk/) and look for the latest build of Asterisk. Then copy the link location. As of the writing of this document, the following was the latest build:
 
 ```    
-wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18.6.0.tar.gz
-tar xvfz asterisk-18-current.tar.gz
-cd asterisk-18.6.0/
+wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-20-current.tar.gz 
+tar xvfz asterisk-20-current.tar.gz
+cd asterisk-20.0.0/
 ```
 
 Before running the `install_prereq` below (and the remaining commands), you are going to need to be the superuser or root. It's much easier at this point to get into _sudo_ permanently for a while. We will exit back out of _sudo_ later in the process:

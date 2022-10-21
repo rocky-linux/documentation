@@ -603,8 +603,6 @@ The following modules have been updated since the 8.5 release Nov 14, 2021:
 
 ### Known Issues
 
-[bug 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) - We are aware of an issue that `kdump` does not work on vmware systems such as ESXi.
-
 We are also aware of our mirror system reporting back the wrong directory for doing updates. It was going to `kickstart` rather than `os`. This should be resolved and updates should work normally.
 
 ## 8.4 - 2021-09-21
