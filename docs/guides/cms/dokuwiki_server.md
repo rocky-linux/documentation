@@ -13,7 +13,7 @@ tags:
 ## Prerequisites And Assumptions
 
 * A Rocky Linux instance installed on a server, container, or virtual machine.
-* Comfort with modifying configuration files from the command line with an editor (our examples here will use _vi_, but you can substitute your favorite editor)
+* Comfort with modifying configuration files from the command line with an editor (our examples here will use _vi_, but you can substitute your favorite editor).
 * Some knowledge about web applications and setup.
 * Our example will use the [Apache Sites Enabled](../web/apache-sites-enabled.md) for setup, so it is a good idea to review that routine if you plan on following along.
 * We will be using "example.com" as the domain name throughout this example.
@@ -301,7 +301,7 @@ trusted (active)
 
 ### SSL
 
-For the best security, you should consider using an SSL so that all web traffic is encrypted. You can purchase an SSL from an SSL provider or use [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md)
+For the best security, you should consider using an SSL so that all web traffic is encrypted. You can purchase an SSL from an SSL provider or use [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
 
 ## Conclusion
 
