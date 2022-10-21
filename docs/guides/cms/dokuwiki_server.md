@@ -26,7 +26,7 @@ Documentation can take many forms in an organization. Having a repository that y
 
 DokuWiki is a mature, fast, wiki that runs without a database, has built in security features, and is relatively easy to deploy. For more information on what DokuWiki can do, check out their [web page](https://www.dokuwiki.org/dokuwiki).
 
-DokuWiki is just one of many wiki's available, though it's a pretty good one. One big pro is that DokuWiki is relatively lightweight and can run on a server that is already running other services, provided you have space and memory available.
+DokuWiki is just one of many wikis available, though it's a pretty good one. One big pro is that DokuWiki is relatively lightweight and can run on a server that is already running other services, provided you have space and memory available.
 
 ## Installing Dependencies
 
