@@ -2,11 +2,15 @@
 title: Package Build & Troubleshooting
 ---
 
+!!! danger
+
+This article was written originally in Early 2021 during the bootstrap of Rocky Linux. Content on this page is kept for historical reasons, but has been edited lightly to fix links, provide context, or remove instructions that are no longer relevant to prevent confusion. This document will be archived.
+
 # First get Familiar with the Mock build tool:
 
 Once you get through that, the biggest and most relevant technical/intro page for our package debugging effort is this:
 
-https://wiki.rockylinux.org/en/team/development/Mock_Build_Howto
+https://wiki.rockylinux.org/archive/legacy/mock_building_guide/
 
 We are using the “mock” program to perform our builds, just like the real Rocky infrastructure will. You should install it and get very used to it. Please use this guide to get started, and explain a bit about what we hope to achieve and why we have to build all these packages in a specific order.
 
@@ -14,10 +18,7 @@ Please read those carefully, and maybe dip your toe in the water by feeding your
 
 Mock is really great, as it’s an easy-to-call program that constructs an entire system inside a chroot to perform the build, then cleans it up afterwards.
 
-If you’d like a reference for Mock config files to look at or play with, there are some published here (that correspond with the “Build Passes” being done to test package builds): https://rocky.lowend.ninja/RockyDevel/mock_configs/
-
-Once you’re familiar with Mock (and especially digging through its output logs), we have a list of failing packages that we need to investigate and come up with explanations and/or fixes for.
-
+Please use the mock configurations for Rocky Linux provided by the `mock` package in EPEL.
 
 
 ## Intro - What needs to be done  
@@ -30,15 +31,11 @@ We’re rebuilding CentOS 8.3 as “practice”, so we can figure out any issues
 
 Once you are familiar with Mock, and especially with debugging its output, you can begin looking at failing packages. Some of this information is also on the Mock HowTo page linked above.
 
-Find a failing package on the newest build pass failures page (currently Build Pass 10: https://wiki.rockylinux.org/en/team/development/Build_Order/Build_Pass_10_Failure)
-
-Make sure the package hasn’t already been looked at and/or fixed: https://wiki.rockylinux.org/en/team/development/Package_Error_Tracking
-
 Let other debuggers know what you’re working on! We don’t want to duplicate effort. Hop on chat.rockylinux.org (#dev/packaging channel) and let us know!
 
 Set your mock program up with the most recent configs that we are using (linked above). You can use it to attempt the build in the same way as we do (with external dependencies, extra repos, etc.)
 
-Investigate the error(s): You can use your own mock, as well as the log files from when the build failed, located here: https://rocky.lowend.ninja/RockyDevel/MOCK_RAW/
+Investigate the error(s).
 
 Figure out what’s going on, and how to fix it. It may take the form of special mock settings, or a patch added to the program + specfile. Report your findings to the #Dev/Packaging channel, and someone will record them on the Wiki Package_Error_Tracking page linked above.
 
