@@ -235,8 +235,8 @@ First, modify or create the _/etc/firewall.conf_ file:
 ```
 #IPTABLES=/usr/sbin/iptables
 
-#  Unless specified, the defaults for OUTPUT is ACCEPT
-#    The default for FORWARD and INPUT is DROP
+#  Unless specified, the default for OUTPUT is ACCEPT
+#  The default for FORWARD and INPUT is DROP
 #
 echo "   clearing any existing rules and setting default policy.."
 iptables -F INPUT
