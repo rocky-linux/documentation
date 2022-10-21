@@ -1,5 +1,9 @@
 # Development Tutorial
 
+!!! danger
+
+This article was written originally in Early 2021 during the bootstrap of Rocky Linux. Content on this page is kept for historical reasons, but has been edited lightly to fix links, provide context, or remove instructions that are no longer relevant to prevent confusion. This document will be archived.
+
 - [Download Rocky Devtools](#1-download-rocky-devtools)
 - [Install Rocky Devtools](#2-install-rocky-devtools)
 - [Download Source RPMs (rockyget)](#3-use-rocky-devtools-rockyget-to-search-for-and-download-source-rpms-srpms)
@@ -12,7 +16,7 @@
 Rocky Devtools refers to a set of home grown scripts and utlities created by members of the Rocky Linux community to help with sourcing, creating, branding, patching and building software packages distributed with the Rocky Linux Operating system.
 Rocky devtools consists of `rockyget`, `rockybuild`, `rockypatch`, and `rockyprep`.
 
-At a low level Rocky Devtools is a wrapper for running some custom and tradtional programs that are used for various package management tasks. Rocky Devtools relies heavily on [`srpmproc`](https://github.com/mstg/srpmproc), `go`, `git`, and `rpmbuild`.
+At a low level Rocky Devtools is a wrapper for running some custom and tradtional programs that are used for various package management tasks. Rocky Devtools relies heavily on [`srpmproc`](https://github.com/rocky-linux/srpmproc), `go`, `git`, and `rpmbuild`.
 
 You'll need an existing modern RPM based Linux system to install and use Rocky devtools.
 
