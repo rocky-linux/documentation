@@ -79,7 +79,7 @@ That configuration file should look something like this:
 	</Directory>
 
 	ErrorLog   /var/log/httpd/example.com_error.log
-	CustomLog  /var/log/httpd/wiki-doc.yourdomain_access.log combined
+	CustomLog  /var/log/httpd/example.com_access.log combined
 </VirtualHost>
 ```
 
@@ -151,7 +151,7 @@ And then modify your hosts file to look something like this (note the IP address
 ```
 127.0.0.1	localhost
 127.0.1.1	myworkstation-home
-10.56.233.179	example.com 	wiki-doc
+10.56.233.179	example.com     example	
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
@@ -185,7 +185,7 @@ And then start it:
 
 Now that our host name is set for testing and the web service has been started, the next step is to open up a web browser and type this in the address bar:
 
-`http://wiki-doc/install.php`
+`http://example.com/install.php`
 
 OR
 
