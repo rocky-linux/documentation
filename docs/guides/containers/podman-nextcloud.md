@@ -30,7 +30,7 @@ You could run most of the commands in the guide manually, but setting up a few b
 
     `buildah` is a tool that builds Podman container images based on "DockerFiles".
 
-    This guide was designed as an exercise to help people get familair with running Podman containers in general, and on Rocky Linux specifically.
+    This guide was designed as an exercise to help people get familiar with running Podman containers in general, and on Rocky Linux specifically.
 
 ## Prerequisites and Assumptions
 
@@ -359,7 +359,7 @@ vi Dockerfile
 
 !!! note
 
-    This next bit assumes ARM architexture (for the Raspberry Pi), so if you are using another architexture, remember to change this. 
+    This next bit assumes ARM architecture (for the Raspberry Pi), so if you are using another architecture, remember to change this. 
 
 And paste in this bit:
 
@@ -451,7 +451,7 @@ CONTAINER ID IMAGE                              COMMAND              CREATED    
 32534e5a5890 docker.io/arm64v8/nextcloud:latest apache2-foregroun... 12 seconds ago Up 12 seconds ago          nextcloud
 ```
 
-From there, you should be able to point your browser to your server IP address. (If you are following along and have the same IP as our example, you can substitute that in here) (eg. http://your-server-ip), and see Nextcloud up and running.
+From there, you should be able to point your browser to your server IP address. If you are following along and have the same IP as our example, you can substitute that in here (e.g., http://your-server-ip) and see Nextcloud up and running.
 
 ## Conclusion
 
