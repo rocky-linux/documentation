@@ -157,7 +157,7 @@ We also need a special empty file so that we can install Nextcloud. This file re
 #### Configuring PHP
 <a name="confphp"></a>
 
-We need to set the timezone for PHP. To do this, open up php.ini with your text editor of choice:
+We need to set the time zone for PHP. To do this, open up php.ini with your text editor of choice:
 
 `vi /etc/php.ini`
 
@@ -165,7 +165,7 @@ Then find the line:
 
 `;date.timezone =`
 
-We need to remove the remark (;) and set our timezone. For our example timezone, we would put in either:
+We need to remove the remark (;) and set our time zone. For our example time zone, we would put in either:
 
 `date.timezone = "America/Chicago"`
 
@@ -175,11 +175,11 @@ OR
 
 Then save an exit the php.ini file.
 
-Note that for the sake of keeping things the same, your timezone in the _php.ini_ file should match up to your machine's timezone setting. You can find out what this is set to by doing the following:
+Note that for the sake of keeping things the same, your time zone in the _php.ini_ file should match up to your machine's time zone setting. You can find out what this is set to by doing the following:
 
 `ls -al /etc/localtime`
 
-Which should show you something like this, assuming you set your timezone when you installed Rocky Linux and are living in the Central time zone:
+Which should show you something like this, assuming you set your time zone when you installed Rocky Linux and are living in the Central time zone:
 
 `/etc/localtime -> /usr/share/zoneinfo/America/Chicago`
 
@@ -219,9 +219,9 @@ There are a couple of things that we want to do differently than the defaults th
 
 * At the top of the web page, where it says "Create an admin account", set the user and password. For the sake of this document, we are entering "admin" and setting a strong password. Remember to save this somewhere safe (like a password manager) so that you don't lose it! Even though you have typed into this field, don't hit 'Enter' until we have done all of the setup fields!
 * Under the "Configure the database" section, change from "SQLite" to "MySQL/MariaDB" by clicking on that button.
-* Type the MariaDB root user and password that you set earlier into the "Database user" and "Database password" fields
-* In the "Database name" field, type "nextcloud"
-* In the "localhost" field, type "localhost:3306" (3306 is the default _mariadb_ connect port)
+* Type the MariaDB root user and password that you set earlier into the "Database user" and "Database password" fields.
+* In the "Database name" field, type "nextcloud".
+* In the "localhost" field, type "localhost:3306" (3306 is the default _mariadb_ connect port).
 
 Once you have all this, click `Finish Setup` and you should be up and running.
 
@@ -319,10 +319,10 @@ This install method for Nextcloud uses the server install .zip file.
 
 The next few steps assume that you are remotely connected to your Nextcloud server via _ssh_ with a remote console open:
 
-* Navigate to the [Nextcloud web site](https://nextcloud.com/)
-* Let your mouse hover over "Get Nextcloud" which will bring up a drop down menu.
+* Navigate to the [Nextcloud web site](https://nextcloud.com/).
+* Let your mouse hover over "Get Nextcloud" which will bring up a drop-down menu.
 * Click on "Server Packages".
-* Right-click on "Download Nextcloud" and copy the link address. (the exact syntax of this is different browser to browser)
+* Right-click on "Download Nextcloud" and copy the link address (the exact syntax of this is different browser to browser).
 * In your remote console on the Nextcloud server, type "wget" and then a space and paste in what you just copied. You should get something like the following: `wget https://download.nextcloud.com/server/releases/nextcloud-21.0.1.zip`
 * Once you hit enter, the download of the .zip file will start and will be completed fairly quickly.
 
@@ -374,11 +374,11 @@ And you should see this screen:
 There are a couple of things that we want to do differently than the defaults that show up:
 
 * At the top of the web page, where it says "Create an admin account", set the user and password. For the sake of this document, we are entering "admin" and setting a strong password. Remember to save this somewhere safe (like a password manager) so that you don't lose it! Even though you have typed into this field, don't hit 'Enter' until we have done all of the setup fields!
-* Under the "Storage & database" section, change the "Data folder" location from the default document root, to where we moved the data folder earlier: `/var/www/sub-domains/com.yourdomain.nextcloud/data`
+* Under the "Storage & database" section, change the "Data folder" location from the default document root, to where we moved the data folder earlier: `/var/www/sub-domains/com.yourdomain.nextcloud/data`.
 * Under the "Configure the database" section, change from "SQLite" to "MySQL/MariaDB" by clicking on that button.
 * Type the MariaDB root user and password that you set earlier into the "Database user" and "Database password" fields
-* In the "Database name" field, type "nextcloud"
-* In the "localhost" field, type "localhost:3306" (3306 is the default _mariadb_ connect port)
+* In the "Database name" field, type "nextcloud".
+* In the "localhost" field, type "localhost:3306" (3306 is the default _mariadb_ connect port).
 
 Now cross your fingers and click "Finish Setup".
 
