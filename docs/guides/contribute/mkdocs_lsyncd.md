@@ -236,10 +236,10 @@ INFO     -  [14:12:56] Reloading browsers
 
 Now for the moment of truth!  If you've done everything correctly above, you should be able to open a web browser and go to the IP of your container on port :8000, and see the documentation site.
 
-In our example, we would enter the following in the browser address:
+In our example, we would enter the following in the browser address (**NOTE** To avoid broken URLs, the IP here has been changed to "your-server-ip". You just need to substitute in the IP):
 
 ```
-http://10.56.233.189:8000
+http://your-server-ip:8000
 ```
 ## lsyncd
 

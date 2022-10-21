@@ -451,7 +451,7 @@ CONTAINER ID IMAGE                              COMMAND              CREATED    
 32534e5a5890 docker.io/arm64v8/nextcloud:latest apache2-foregroun... 12 seconds ago Up 12 seconds ago          nextcloud
 ```
 
-From there, you should be able to point your browser to your server IP address (eg. http://10.1.1.160), and see Nextcloud up and running.
+From there, you should be able to point your browser to your server IP address. (If you are following along and have the same IP as our example, you can substitute that in here) (eg. http://your-server-ip), and see Nextcloud up and running.
 
 ## Conclusion
 
