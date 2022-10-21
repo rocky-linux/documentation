@@ -157,7 +157,7 @@ We also need a special empty file so that we can install Nextcloud. This file re
 #### Configuring PHP
 <a name="confphp"></a>
 
-We need to set the timezone for PHP. To do this, open up php.ini with your text editor of choice:
+We need to set the time zone for PHP. To do this, open up php.ini with your text editor of choice:
 
 `vi /etc/php.ini`
 
@@ -175,7 +175,7 @@ OR
 
 Then save an exit the php.ini file.
 
-Note that for the sake of keeping things the same, your timezone in the _php.ini_ file should match up to your machine's time zone setting. You can find out what this is set to by doing the following:
+Note that for the sake of keeping things the same, your time zone in the _php.ini_ file should match up to your machine's time zone setting. You can find out what this is set to by doing the following:
 
 `ls -al /etc/localtime`
 
