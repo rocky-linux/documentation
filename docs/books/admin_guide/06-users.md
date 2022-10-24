@@ -175,7 +175,8 @@ $ sudo groupdel GroupC
     Each group has a unique `GID`. A group can be used by multiple users as a supplementary group. By convention, The GID of super administrator is 0. The GIDS reserved for some services or processes are 201~999, which are called system groups or pseudo user groups. The GID for users is usually greater than or equal to 1000. These are related to <font color=red>/etc/login.defs</font>, which we will talk about later.
 
     ```bash
-    shell > egrep -v "^#|^$" /etc/login.defs
+    # Comment line ignored
+    shell > cat  /etc/login.defs
     MAIL_DIR        /var/spool/mail
     UMASK           022
     HOME_MODE       0700
@@ -766,7 +767,7 @@ $ sudo echo "azerty,1" | passwd --stdin philippe
 The `chage` command is change user password expiry information.
 
 ```
-chage [options] LOGIN
+chage [-d LAST_DAY] [-E EXPIRE_DATE] [-I DAYS] [-l] [-m DAYS] [-M DAYS [-W WARN_DAYS] [login]
 ```
 
 Example:
@@ -852,8 +853,9 @@ uid=1001(test2) gid=100(users) groups=100(users)
 
 ### `/etc/login.defs` file
 
-```
-shell > egrep -v "^#|^$" /etc/login.defs
+```bash
+# Comment line ignored
+shell > cat  /etc/login.defs
 MAIL_DIR        /var/spool/mail
 UMASK           022
 HOME_MODE       0700
