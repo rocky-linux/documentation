@@ -767,7 +767,7 @@ $ sudo echo "azerty,1" | passwd --stdin philippe
 The `chage` command is change user password expiry information.
 
 ```
-chage [-d LAST_DAY] [-E EXPIRE_DATE] [-I DAYS] [-l] [-m DAYS] [-M DAYS [-W WARN_DAYS] [login]
+chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
 ```
 
 Example:
