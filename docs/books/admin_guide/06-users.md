@@ -175,7 +175,8 @@ $ sudo groupdel GroupC
     Each group has a unique `GID`. A group can be used by multiple users as a supplementary group. By convention, The GID of super administrator is 0. The GIDS reserved for some services or processes are 201~999, which are called system groups or pseudo user groups. The GID for users is usually greater than or equal to 1000. These are related to <font color=red>/etc/login.defs</font>, which we will talk about later.
 
     ```bash
-    shell > egrep -v "^#|^$" /etc/login.defs
+    # Comment line ignored
+    shell > cat  /etc/login.defs
     MAIL_DIR        /var/spool/mail
     UMASK           022
     HOME_MODE       0700
@@ -652,7 +653,7 @@ uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 
 ### `newgrp` command
 
-The `newgrp` command allows you to temporarily use a secondary group for file creation.
+The `newgrp` command can select a group from the user's supplementary groups as the user's new **temporary** primary group. The `newgrp` command  every time you switch a user's primary group, there will be a new **child shell**（child process）. Be careful! **child shell** and **sub shell** are different. 
 
 ```
 newgrp [secondarygroups]
@@ -661,44 +662,71 @@ newgrp [secondarygroups]
 Example:
 
 ```
-[alain]$ newgrp GroupB
+Shell > useradd test1
+Shell > passwd test1
+Shell > groupadd groupA ; groupadd groupB 
+Shell > usermod -G groupA,groupB test1
+Shell > id test1
+uid=1000(test1) gid=1000(test1) groups=1000(test1),1001(groupA),1002(groupB)
+Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+1
+0
+
+Shell > su - test1
+Shell > touch a.txt
+Shell > ll
+-rw-rw-r-- 1 test1 test1 0 10月  7 14:02 a.txt
+Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+1
+0
+
+# Generate a new child shell
+Shell > newgrp groupA
+Shell > touch b.txt
+Shell > ll
+-rw-rw-r-- 1 test1 test1  0 10月  7 14:02 a.txt
+-rw-r--r-- 1 test1 groupA 0 10月  7 14:02 b.txt
+Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+2
+0
+
+# You can exit the child shell using the `exit` command
+Shell > exit
+Shell > logout
+Shell > whoami
+root
 ```
-
-!!! Note
-
-    After using this command, the files will be created with the `GID` of its subgroup.
-
-The command `newgrp` without parameters reassigns the primary group.
 
 ## Securing
 
 ### `passwd` command
 
 The `passwd` command is used to manage a password.
+
 ```
 passwd [-d] [-l] [-S] [-u] [login]
 ```
+
 Examples:
+
 ```
-$ sudo passwd -l albert
-$ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
+Shell > passwd -l albert
+Shell > passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
 
 | Option | Description                                            |
 | ------ | ------------------------------------------------------ |
-| `-d` | Removes the password.                                    |
-| `-l` | Locks the account.                                       |
-| `-S` | Displays the account status.                             |
-| `-u` | Unlocks the account.                                     |
-| `-e` | Expires the password.                                    |
-| `-n days` | Minimum password lifetime.                          |
-| `-x days` | Maximum password lifetime.                          |
-| `-w days` | Warning time before expiration.                     |
-| `-i days` | Delay before deactivation when the password expires.|
+| `-d` | Permanently removes the password. For root (uid=0) use only.         |
+| `-l` | Permanently lock user account. For root (uid=0) use only.            |
+| `-S` | Displays the account status. For root (uid=0) use only.  |
+| `-u` | Permanently unlocks user account. For root (uid=0) use only.          |
+| `-e` | Permanently expires the password. For root (uid=0) use only.         |
+| `-n DAYS` | Minimum password lifetime. Permanent change. For root (uid=0) use only. |
+| `-x DAYS` | Maximum password lifetime. Permanent change. For root (uid=0) use only. |
+| `-w DAYS` | Warning time before expiration. Permanent change. For root (uid=0) use only. |
+| `-i DAYS` | Delay before deactivation when the password expires. Permanent change. For root (uid=0) use only.|
 
-With the `passwd` command, locking an account is accomplished by adding `!!` before the password in the `/etc/shadow` file.
-
-Using the command `usermod -U` command only removes one of the `!`. So, the account remains locked.
+Use `password -l`, that is, add "!!" at the beginning of the password field of the user corresponding to `/etc/shadow`.
 
 Example:
 
@@ -736,7 +764,7 @@ $ sudo echo "azerty,1" | passwd --stdin philippe
 
 ### `chage` command
 
-The `chage` command is used to manage the account strategy.
+The `chage` command is change user password expiry information.
 
 ```
 chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
@@ -750,34 +778,30 @@ $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 
 | Option | Description                                    |
 | ------ | ---------------------------------------------- |
-| `-I days` | Delay before deactivation, password expired.|
+| `-I DAYS` | Delay before deactivation, password expired. Permanent change.|
 | `-l`      | Displays the policy details.                |
-| `-m days` | Minimum lifetime of the password.           |
-| `-M days` | Maximum lifetime of the password.           |
-| `-d AAAA-MM-JJ` | Last password change.                 |
-| `-E AAAA-MM-JJ` | Account expiration date.              |
-| `-W days` | Warning time before expiration.             |
-
-The `chage` command also offers an interactive mode.
-
-The `-d` option forces the password to be changed at login.
+| `-m DAYS` | Minimum lifetime of the password. Permanent change.          |
+| `-M DAYS` | Maximum lifetime of the password. Permanent change.          |
+| `-d LAST_DAY` | Last password change. You can use the days' timestamp style or the YYYY-MM-DD style. Permanent change.                |
+| `-E EXPIRE_DATE` | Account expiration date. You can use the days' timestamp style or the YYYY-MM-DD style. Permanent change.             |
+| `-W WARN_DAYS` | Warning time before expiration. Permanent change.            |
 
 Examples:
 
 ```
+# The `chage` command also offers an interactive mode.
 $ sudo chage philippe
+
+# The `-d` option forces the password to be changed at login.
 $ sudo chage -d 0 philippe
 ```
-
-!!! Note
-
-    If no user is specified, the order will concern the user who enters it.
 
 ![User account management with chage](images/chage-timeline.png)
 
 ## Advanced management
 
 Configuration files:
+
 * `/etc/default/useradd`
 * `/etc/login.defs`
 * `/etc/skel`
@@ -798,42 +822,83 @@ This file contains the default data settings.
 
 This file is modified by the command `useradd -D` (`useradd -D` entered without any other option displays the contents of the `/etc/default/useradd` file).
 
-| Value      | Comment                                                                  |
+```
+Shell > grep -v ^# /etc/default/useradd 
+GROUP=100
+HOME=/home
+INACTIVE=-1
+EXPIRE=
+SHELL=/bin/bash
+SKEL=/etc/skel
+CREATE_MAIL_SPOOL=yes
+```
+
+| Parameters | Comment                                                                  |
 | ---------- | ------------------------------------------------------------------------ |
-| `GROUP`    | Default group.                                                           |
-| `HOME`     | Path where the login directory for the user's name will be created.      |
-| `INACTIVE` | Number of days after the password expires before the account is disabled.|
-| `EXPIRE`   | Account expiration date.                                                 |
+| `GROUP`    | Default primary group GID.                                               |
+| `HOME`     | Define the directory path of the upper level of the common user's home directory.      |
+| `INACTIVE` | Number of days of grace after password expiration. Corresponds to the 7th field of the `/etc/shadow` file. `-1` value means that the grace period feature is turned off.|
+| `EXPIRE`   | Account expiration date. Corresponds to the 8th field of the `/etc/shadow` file.                                                |
 | `SHELL`    | Command interpreter.                                                     |
 | `SKEL`     | Skeleton directory of the login directory.                               |
-| `CREATE_MAIL_SPOOL` |	Mailbox creation in `/var/spool/mail`.                          |
+| `CREATE_MAIL_SPOOL` |	Mailbox creation in `/var/spool/mail/`.                          |
 
-!!! Warning
-
-    Without the `-g` option, the `useradd` command creates a group of the user's name name and places it there.
-
-In order for the `useradd` command to retrieve the value of the `GROUP` field from the `/etc/default/useradd` file, you must specify the `-N` option.
-
-Example:
+If you do not need a primary group with the same name when creating users, you can do this:
 
 ```
-$ sudo useradd -u 501 -N GroupeA
+Shell > useradd -N test2
+Shell > id test2
+uid=1001(test2) gid=100(users) groups=100(users)
 ```
 
 ### `/etc/login.defs` file
 
-This file contains many default parameters useful for creating or modifying users. This information is grouped by paragraph according to their use:
+```bash
+# Comment line ignored
+shell > cat  /etc/login.defs
+MAIL_DIR        /var/spool/mail
+UMASK           022
+HOME_MODE       0700
+PASS_MAX_DAYS   99999
+PASS_MIN_DAYS   0
+PASS_MIN_LEN    5
+PASS_WARN_AGE   7
+UID_MIN                  1000
+UID_MAX                 60000
+SYS_UID_MIN               201
+SYS_UID_MAX               999
+GID_MIN                  1000
+GID_MAX                 60000
+SYS_GID_MIN               201
+SYS_GID_MAX               999
+CREATE_HOME     yes
+USERGROUPS_ENAB yes
+ENCRYPT_METHOD SHA512
+```
 
-* Mailboxes;
-* Passwords;
-* UID and GID;
-* Umask;
-* Connections;
-* Terminals.
+`UMASK 022`: This means that the permission to create a file is 755 (rwxr-xr-x). However, for the sake of security, GNU/Linux does not have **x** permission for newly created files, this restriction applies to root(uid=0) and ordinary users(uid>=1000). For example:
+
+```
+Shell > touch a.txt
+Shell > ll
+-rw-r--r-- 1 root root     0 Oct  8 13:00 a.txt
+```
+
+`HOME_MODE 0700`: The permissions of an ordinary user's home directory. Does not work for root's home directory.
+
+```
+Shell > ll -d /root
+dr-xr-x---. 10 root root 4096 Oct  8 13:12 /root
+
+Shell > ls -ld /home/test1/
+drwx------ 2 test1 test1 4096 Oct  8 13:10 /home/test1/
+```
+
+`USERGROUPS_ENAB yes`:  "When you delete a user using the `userdel -r` command, the corresponding primary group is also deleted." Why? That's the reason.
 
 ### `/etc/skel` directory
 
-When a user is created, their home directory and environment files are created.
+When a user is created, their home directory and environment files are created. You can think of the files in the `/etc/skel/` directory as the file templates you need to create users.
 
 These files are automatically copied from the `/etc/skel` directory.
 
@@ -857,7 +922,7 @@ Examples:
 
 ```
 $ sudo su - alain
-[albert]$ su -c "passwd alain"
+[albert]$ su - root -c "passwd alain"
 ```
 
 | Option | Description                                           |
@@ -871,33 +936,55 @@ Standard users will have to type the password for the new identity.
 
 !!! Tip
 
-    There are successive 'layers' created (a stack of `bash` environments). To switch from one user to another, you must first type the `exit` command to take back your identity and then the `su` command to take another identity.
+    You can use the `exit`/`logout` command to exit users who have been switched. It should be noted that after switching users, there is no new `child shell` or `sub shell`, for example:
 
-#### Profile loading
+    ```
+    Shell > whoami
+    root
+    Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+    1
+    0
 
-`root` endorses the identity of the user `alain` with `su`:
+    Shell > su - test1
+    Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+    1
+    0
+    ```
+
+Attention please! `su` and `su -` are different, as shown in the following example:
 
 ```
+Shell > whoami
+test1
+Shell > su root
+Shell > pwd
+/home/test1
+
+Shell > env
 ...
-/home/GroupA/alain/.bashrc
-/etc/bashrc
+USER=test1
+PWD=/home/test1
+HOME=/root
+MAIL=/var/spool/mail/test1
+LOGNAME=test1
 ...
 ```
 
-`root` assumes the identity of the user `alain` with `su -`:
-
 ```
+Shell > whoami
+test1
+Shell > su - root
+Shell > pwd
+/root
+
+Shell > env
 ...
-/home/GroupA/alain/.bash_profile
-/home/GroupA/alain/.bashrc
-/etc/bashrc
+USER=root
+PWD=/root
+HOME=/root
+MAIL=/var/spool/mail/root
+LOGNAME=root
 ...
 ```
 
-A user can temporarily (for another command or an entire session) assume the identity of another account.
-
-If no user is specified, the command will be for `root` (`su -`).
-
-It is necessary to know the password of the user whose identity is being endorsed unless it is `root` that is executing the command.
-
-An administrator can thus work on a standard user account and use the rights of the `root` account only occasionally.
+So, when you want to switch users, remember not to lose the `-`. Because the necessary environment variable files are not loaded, there may be problems running some programs.
