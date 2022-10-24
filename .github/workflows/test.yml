@@ -22,7 +22,7 @@ jobs:
           include_files: '\/([\w-]+)\.(en\.)?md'
           exclude_patterns: 'avatars.githubusercontent.com,example.com,your-server-ip,your-server-hostname,nginx-server,apache-server,site1.com,site2.com,site.com,$releasever,zfs-release,$host$request,fileserver.rockylinux.lan,your_fork_name,rundeck.rockylinux.org,manickathan.ch,breakingpitt.es,download.example,192.168,172.16,127.0.0.1,localhost,download.rockylinux.org'
           print_all: false
-          retry_count: 2
+          retry_count: 3
           timeout: 7
           force_pass: true # Don't block deployment
           save: "output.csv"
