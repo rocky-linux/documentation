@@ -599,8 +599,6 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 
 ### 已知问题
 
-[bug 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) - 我们注意到一个问题，即`kdump` 在ESXi等VMware系统上不起作用。
-
 我们还了解到镜像系统做更新时报告了有错误的目录， 它应该去到`kickstart` 请求应答文件而不是 `OS`(操作系统)。 这个问题应该可以通过更新来解决，使其正常工作。
 
 ## 8.4 - 2021-09-21
@@ -643,7 +641,7 @@ plus 存储库包含了 base 存储库中没有提供的项目，原因可能是
 * systemtap将根据 dyinest 10.2 进行重新构建，以解决漏洞 bug
 * rocky-release -> 更新为允许"centos"作为ID
 
-以下存储库已更新：
+以下软件包已更新：
 
 * extras -> CentOS SIG(Special Interest Group,特别兴趣小组) 发布包已被添加
 
