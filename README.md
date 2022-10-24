@@ -86,6 +86,22 @@ If a translator runs into a word or phrase that does not translate well from the
 
 If you notice that your effort is not properly acknowledged in the all-contributors section, please let someone know in the [Mattermost channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) so that we can fix it for you. Thank you to everyone who participates!
 
+## A Note About Links
+
+When writing documentation you often need to use links. This can be links to other documents in the documentation (internal links), or links to external resources (external links). The format for all links within the documentation is square brackets around the descriptive name or label: [our site] followed by your link in parenthesis: (https://example.com). There's a third type of link which we will call a lab-based link. This is a link that does not resolve internally or externally, but refers to examples within your document. In October 22, we instituted a URL checking script within our GitHub PR test process. This script tests for failures of URLs and is great for keeping the documentation clean and accurate. It poses a special set of circumstances for lab-based URLs, however, as those lab-based URLs need to either fit within a set of already excluded names, or the author (you) would need to request that a new exclusion be added. An editor can also adjust your lab-based URL for you, or add an exclusion if they think it is warranted. 
+
+The following list of lab-based URLs can be used without requesting exceptions:
+
+* example.com
+* site.com
+* site1.com
+* site2.com
+* apache-server
+* nginx-server
+* your-server-ip
+* your-server-hostname
+* localhost
+
 ## Using Git
 
 Like many other projects out there, Rocky Linux uses "git" to manage its code and files, including documentation files. This tutorial assumes a fundamental knowledge of Git and how it works. The second example also presupposes familiarity with the command line.
