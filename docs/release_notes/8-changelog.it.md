@@ -599,8 +599,6 @@ I seguenti moduli sono stati aggiornati dalla versione 8.5 del 14 novembre 2021:
 
 ### Problemi noti
 
-[bug 174](https://bugs.rockylinux.org/show_bug.cgi?id=174) - Siamo a conoscenza di un problema per cui `kdump` non funziona su sistemi vmware come ESXi.
-
 Siamo anche consapevoli del fatto che il nostro sistema mirror riporta la directory sbagliata per effettuare gli aggiornamenti. Avrebbe preso il `kickstart` piuttosto che l'`os`. Il problema dovrebbe essere risolto e gli aggiornamenti dovrebbero funzionare normalmente.
 
 ## 8.4 - 2021-09-21
@@ -660,7 +658,7 @@ Sono stati aggiornati i seguenti pacchetti:
 
   * Addresses RLBZ#108
 
-Sono stati aggiunti i seguenti repository/pacchetti:
+Sono stati aggiunti i seguenti repos/pacchetti:
 
 * RT (realtime) - Abilitato eseguendo `dnf config-manager --set-enabled rt`
 
@@ -739,7 +737,7 @@ Sono stati aggiornati i seguenti pacchetti:
 
 * varnish -> varnish-0:6.0.6-2.module+el8.4.0+628+e1687553.1 -> Addresses CVE-2021-36740
 
-Aggiunti i repository kickstart per i seguenti repository:
+Aggiunti kickstart repos per i seguenti repository:
 
 * BaseOS
 * AppStream
@@ -853,7 +851,7 @@ Sono stati aggiornati i seguenti moduli:
 
 Alcuni moduli e pacchetti sono stati aggiornati di routine dall'upstream.
 
-I pacchetti rocky regolari sono stati aggiornati per risolvere i seguenti problemi:
+I pacchetti regolari di Rocky sono stati aggiornati per affrontare i seguenti aspetti:
 
 * rocky-release
 
