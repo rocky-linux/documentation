@@ -6,7 +6,7 @@ date: 16-10-2021
 ---
 
 # Instalar `htop`
-A todo administrador de sistemas le gusta usar algunos de los comandos más utilizados. Hoy recomiendo `htop` como alternativa al comando `top`. Para utilizar el comando `htop` con normalidad, es necesario instalarlo primero.
+A todo administrador de sistemas le gusta usar algunos de los comandos más utilizados. Hoy recomiendo `htop` como alternativa al comando `top`. Para utilizar el comando `htop`, es necesario instalarlo primero.
 
 ``` bash
 # Installation epel source (also called repository)
@@ -25,7 +25,7 @@ Sólo tiene que escribir `htop` en el terminal, y se mostrará la siguiente inte
 1[ |                        1%]     Load average: 0.00 0.00 0.05
 Mem[ |||||||           197M/8G]     Uptime: 00:31:39
 Swap[                  0K/500M]
-PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Commad(merged)
+PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(merged)
 ...
 ```
 
