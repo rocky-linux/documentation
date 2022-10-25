@@ -13,7 +13,7 @@ tags:
 ## Requisitos previos y supuestos
 
 * Una instancia de Rocky Linux instalada en un servidor, contenedor o máquina virtual.
-* Comodidad para modificar los archivos de configuración desde la línea de comandos con un editor (nuestros ejemplos aquí utilizarán _vi_, pero puede sustituirlo por su editor favorito)
+* Comodidad para modificar archivos de configuración desde la línea de comandos con un editor de texto (nuestros ejemplos aquí utilizarán _vi_, pero puede sustituirlo por su editor favorito).
 * Algunos conocimientos sobre aplicaciones web y su configuración.
 * Nuestro ejemplo utilizará la rutina [Apache Sites Enabled](../web/apache-sites-enabled.md) para la configuración, por lo que es una buena idea revisar esa rutina si planea seguir adelante.
 * Utilizaremos "wiki-doc.sudominio.com" como nombre de dominio a lo largo de este ejemplo.
@@ -58,16 +58,16 @@ Y añada esto al final del archivo:
 
 Cree el archivo de configuración del sitio en la carpeta sites-available:
 
-`vi /etc/httpd/sites-available/com.yourdomain.wiki-doc`
+`vi /etc/httpd/sites-available/com.example`
 
 Ese archivo de configuración debería ser algo así:
 
 ```
 <VirtualHost *>
-    ServerName    wiki-doc.yourdomain.com
-    DocumentRoot  /var/www/sub-domains/com.yourdomain.wiki-doc/html
+    ServerName    example.com
+    DocumentRoot  /var/www/sub-domains/com.subdominio/html
 
-    <Directory ~ "/var/www/sub-domains/com.yourdomain.wiki-doc/html/(bin/|conf/|data/|inc/)">
+    <Directory ~ "/var/www/sub-domains/com.subdominio/html/(bin/|conf/|data/|inc/)">
         <IfModule mod_authz_core.c>
                 AllowOverride All
             Require all denied
@@ -78,8 +78,8 @@ Ese archivo de configuración debería ser algo así:
         </IfModule>
     </Directory>
 
-    ErrorLog   /var/log/httpd/wiki-doc.yourdomain.com_error.log
-    CustomLog  /var/log/httpd/wiki-doc.yourdomain_access.log combined
+    ErrorLog   /var/log/httpd/subdominio.com_error.log
+    CustomLog  /var/log/httpd/subdominio.com_access.log combined
 </VirtualHost>
 ```
 
@@ -87,13 +87,13 @@ Tenga en cuenta que la opción "AllowOverride All" incluido más arriba, permite
 
 Continue y enlace el archivo de configuración en sites-enabled, pero todavía no inicie los servicios web:
 
-`ln -s /etc/httpd/sites-available/com.yourdomain.wiki-doc /etc/httpd/sites-enabled/`
+`ln -s /etc/httpd/sites-available/com.subdominio /etc/httpd/sites-enabled/`
 
 ### Apache DocumentRoot
 
 También necesitamos crear nuestro _DocumentRoot_. Para hacer esto:
 
-`mkdir -p /var/www/sub-domains/com.yourdomain.wiki-doc/html`
+`mkdir -p /var/www/sub-domains/com.example/html`
 
 ## Instalar DokuWiki
 
@@ -124,7 +124,7 @@ No queremos ese directorio con nombre inicial al descomprimir el archivo, así q
 
 La segunda opción es la opción "-C", y que le indica al comando `tar` dónde queremos que se descomprima el archivo. Así que descomprima el archivo con siguiente comando:
 
-`tar xzf dokuwiki-stable.tgz --strip-components=1 -C /var/www/sub-domains/com.yourdomain.wiki-doc/html/`
+`tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.subdominio/html/`
 
 Una vez que hayamos ejecutado este comando, DokuWiki debería descomprimido estar en nuestro _DocumentRoot_.
 
@@ -132,11 +132,11 @@ Necesitamos hacer una copia del archivo_.htaccess.dist _ que viene con DokuWiki 
 
 En el proceso, cambiaremos el nombre de este archivo a _. htaccess_ que es lo que _Apache_ buscará. Para hacer esto:
 
-`cp /var/www/sub-domains/com.yourdomain.wiki-doc/html/.htaccess{.dist,}`
+`cp /var/www/sub-domains/com.subdominio/html/.htaccess{.dist,}`
 
 Ahora necesitamos cambiar el propietario del nuevo directorio y sus archivos al usuario y grupo _apache_:
 
-`chown -Rf apache.apache /var/www/sub-domains/com.yourdomain.wiki-doc/html`
+`chown -Rf apache.apache /var/www/sub-domains/com.subdominio/html`
 
 ## Configurar DNS o /etc/hosts
 
@@ -151,7 +151,7 @@ Y luego modifique su archivo de hosts para que se vea tal y como se muestra a co
 ```
 127.0.0.1   localhost
 127.0.1.1   myworkstation-home
-10.56.233.179   wiki-doc.yourdomain.com     wiki-doc
+10.56.233.179   example.com     example 
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
@@ -185,11 +185,11 @@ Y luego iniciar el servicio:
 
 Ahora que nuestro nombre de host está configurado para las pruebas y el servicio web se ha iniciado, el siguiente paso es abrir un navegador web y escribir la siguiente URL en la barra de direcciones:
 
-`http://wiki-doc/install.php`
+`http://wiki-doc.sudominio.com/install.php`
 
 O
 
-`http://wiki-doc.yourdomain.com/install.php`
+`http://wiki-doc.sudominio.com/install.php`
 
 Cualquiera de los dos debería funcionar si se configura el archivo de hosts como se indica más arriba. Esto le llevará a la pantalla de configuración para que pueda terminar la configuración:
 
@@ -235,8 +235,8 @@ En primer lugar, modifique o cree el archivo _/etc/firewall.conf_:
 ```
 #IPTABLES=/usr/sbin/iptables
 
-#  Unless specified, the defaults for OUTPUT is ACCEPT
-#    The default for FORWARD and INPUT is DROP
+#  Unless specified, the default for OUTPUT is ACCEPT
+#  The default for FORWARD and INPUT is DROP
 #
 echo "   clearing any existing rules and setting default policy.."
 iptables -F INPUT
