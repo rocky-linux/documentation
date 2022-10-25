@@ -37,32 +37,32 @@ Para empezar, asegurémonos de que OpenSSL esté instalado tanto ensu estación 
 
 Si no está instalado, su sistema lo instalará junto con las dependencias necesarias.
 
-Nuestro dominio de ejemplo es ourownwiki.com. Ten en cuenta que necesitará comprar y registrar su dominio con antelación. Usted puede comprar dominios a través del amplio número de proveedores de dominio.
+Nuestro dominio de ejemplo es example.com. Ten en cuenta que necesitará comprar y registrar su dominio con antelación. Usted puede comprar dominios a través del amplio número de proveedores de dominio.
 
 Si no está ejecutando su propio DNS (Sistema de nombres de dominio), puede utilizar los mismos proveedores para el alojamiento DNS. DNS traduce el nombre de su dominio, a números (direcciones IP, ya sean IPv4 o IPv6) que Internet puede entender. Esas direcciones IP se corresponden con donde está realmente alojado el sitio web.
 
 Vamos a generar la clave utilizando openssl:
 
-`openssl genrsa -des3 -out ourownwiki.com.key.pass 2048`
+`openssl genrsa -des3 -out example.com.key.pass 2048`
 
 Tenga en cuenta que guardaremos la clave, con una extensión .pass. Esto es debido a que tan pronto como ejecutemos este comando, se le pedirá que introduzca una contraseña. Introduce una contraseña simple que pueda recordar ya que la vamos a eliminar en breve:
 
 ```
-Enter pass phrase for ourownwiki.com.key.pass:
-Verifying - Enter pass phrase for ourownwiki.com.key.pass:
+Enter pass phrase for example.com.key.pass:
+Verifying - Enter pass phrase for example.com.key.pass:
 ```
 
 A continuación, quitemos esa contraseña. La razón por la que esto es así es que si no la elimina, cada vez que reinicie su servidor web y cargue su clave, necesitará introducir esa contraseña.
 
 Puede que ni siquiera esté ahí para introducirla, o peor aún, puede que no tenga una consola preparada para entrar en ella. Eliminela ahora para evitar todo eso:
 
-`openssl rsa -in ourownwiki.com.key.pass -out ourownwiki.com.key`
+`openssl rsa -in example.com.key.pass -out example.com.key`
 
 Al ejecutar este comando se le solicitará que introduzca esa contraseña una vez más para eliminarla de la clave:
 
-`Enter pass phrase for ourownwiki.com.key.pass:`
+`Enter pass phrase for example.com.key.pass:`
 
-Ahora que ha introducido la contraseña por tercera vez, se ha eliminado del archivo y se ha guardado con el nombre de ourownwiki.com.key
+Ahora que ha introducido la contraseña por tercera vez, se ha eliminado del archivo y se ha guardado con el nombre de example.com.key
 
 ## Generar el archivo CSR
 
@@ -70,9 +70,9 @@ A continuación, necesitamos generar la solicitud de firma de certificados (CSR)
 
 Durante la generación del CSR, se le pedirán diversa informacion, relativa al proceso. Esta información son los atributos X.509 del certificado.
 
-Una de las preguntas será "Common Name (e.g., YOUR name)". Es importante que este campo se rellene con el nombre de dominio completo del servidor que será protegido por SSL. Si el sitio web a proteger es https://www.ourownwiki.com, entonces introduzca a www.ourownwiki.com en esta pregunta:
+Una de las preguntas será "Common Name (e.g., YOUR name)". Es importante que este campo se rellene con el nombre de dominio completo del servidor que será protegido por SSL. Si el sitio web a proteger es https://www.example.com, entonces introduzca a www.example.com en esta pregunta:
 
-`openssl req -new -key ourownwiki.com.key -out ourownwiki.com.csr`
+`openssl req -new -key example.com.key -out example.com.csr`
 
 Esto abrirá el siguiente cuadro de diálogo:
 
@@ -86,7 +86,7 @@ Esto abrirá el siguiente cuadro de diálogo:
 
 `Organizational Unit Name (eg, section) []:` Describiría la división de la organización a la que pertenece su dominio. De nuevo, sólo puede pulsar la tecla 'Enter' para omitir este paso.
 
-`Common Name (eg, your name or your server's hostname) []:` Aquí, debemos introducir el nombre de nuestro sitio web, ejemplo "www.ourownwiki.com"
+`Common Name (eg, your name or your server's hostname) []:` Aquí, debemos introducir el nombre de nuestro sitio web, ejemplo "www.example.com"
 
 `Email Address []:` Este campo es opcional, puede decidir rellenarlo o simplemente pulsar 'Entrar' para evitar introducir esta información.
 
@@ -105,7 +105,7 @@ Ahora debería haber generado su CSR.
 
 Cada proveedor de certificados tendrá básicamente el mismo procedimiento. Usted compra el certificado SSL y por un plazo determinado (1 o 2 años, etc.) y luego envíe su CSR. Para hacer esto, necesitará utilizar el comando `mmoreás`, y luego copiar el contenido de su archivo CSR.
 
-`more ourownwiki.com.csr`
+`more example.com.csr`
 
 Que le mostrará algo similar a esto:
 
