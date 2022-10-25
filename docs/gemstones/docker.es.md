@@ -18,7 +18,7 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/dock
 
 # Instalar los paquetes necesarios
 
-Instale la última versión de Docker Engine, containerd y Docker Compose , ejecutando:
+Instale la última versión de Docker Engine, containerd y Docker Compose, ejecutando:
 
 ```
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
