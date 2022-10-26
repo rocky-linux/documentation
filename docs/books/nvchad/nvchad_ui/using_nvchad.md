@@ -11,7 +11,7 @@ tags:
 
 # Editing with NvChad
 
-This chapter will introduce some NvChad-specific commands and some standard Neovim (vim) commands.  As previously outlined in [NvChad UI](./nvchad_ui.md), NvChad commands are set in the `..nvim/lua/core/mapping.lua` file, and allow keys to be used to execute sometimes very long composite commands. 
+This chapter will introduce some NvChad-specific commands and some standard Neovim (vim) commands.  As previously outlined in [NvChad UI](nvchad_ui.md), NvChad commands are set in the `..nvim/lua/core/mapping.lua` file, and allow keys to be used to execute sometimes very long composite commands. 
 
 All sequences are started with a primary key followed by an option. The four main keys are:
 
