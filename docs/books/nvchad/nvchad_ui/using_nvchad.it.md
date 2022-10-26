@@ -11,7 +11,7 @@ tags:
 
 # Modificare con NvChad
 
-Questo capitolo introduce alcuni comandi specifici di NvChad e alcuni comandi standard di Neovim (vim).  Come descritto in precedenza nell'[interfaccia utente di NvChad](../nvchad_ui.md), i comandi di NvChad sono impostati nel file `..nvim/lua/core/mapping.lua` e consentono di utilizzare i tasti per eseguire comandi compositi talvolta molto lunghi.
+Questo capitolo introduce alcuni comandi specifici di NvChad e alcuni comandi standard di Neovim (vim).  Come descritto in precedenza nell'[interfaccia utente di NvChad](nvchad_ui.md), i comandi di NvChad sono impostati nel file `..nvim/lua/core/mapping.lua` e consentono di utilizzare i tasti per eseguire comandi compositi talvolta molto lunghi.
 
 Tutte le sequenze iniziano con una chiave primaria seguita da un'opzione. Le quattro chiavi principali sono:
 
