@@ -6,7 +6,7 @@ contributors: Ezequiel Bruni, Pedro Garcia
 
 # Bash - Script Stub
 
-En el lugar en el que trabajé anteriormente, teníamos un programador experto que conocía un montón de lenguajes. También era la persona a la que se recurría cuando se tenía alguna duda sobre cómo realizar algo con un script. Finalmente creó un pequeño <0>stub</0>, un archivo lleno de ejemplos de scripting que podías desmontar y editar según la necesidad. Con el tiempo, llegué a ser lo suficientemente bueno en estas rutinas como para no tener que mirar el <0>stub</0>, pero fue una herramienta de aprendizaje buena, y algo que otros pueden encontrar útil.
+En el lugar en el que trabajé anteriormente, teníamos un programador experto que conocía un montón de lenguajes. También era la persona a la que se recurría cuando se tenía alguna duda sobre cómo realizar algo con un script. Finalmente creó un pequeño <0>stub</0>, un archivo lleno de ejemplos de scripting que podías destripar y editar según la necesidad. Con el tiempo, llegué a ser lo suficientemente bueno en estas rutinas como para no tener que mirar el <0>stub</0>, pero fue una herramienta de aprendizaje buena, y algo que otros pueden encontrar útil.
 
 ## El Stub
 

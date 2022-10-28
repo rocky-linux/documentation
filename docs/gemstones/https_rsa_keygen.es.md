@@ -37,7 +37,7 @@ fi
 ## Breve descripción
 
 * Este script de bash requiere que introduzca un parámetro ($1) que es el nombre del sitio sin www, etc. Por ejemplo, "misitioweb".
-* El script crea la clave por defecto con una contraseña y una longitud de 2048 bits (puede editarlo, como se señaló anteriormente para que se utilice una longitud más larga de 4096 bits)
+* El script crea la clave con una contraseña por defecto y una longitud de 2048 bits (puede editarlo, como se señaló anteriormente para que se utilice una longitud más larga de 4096 bits)
 * La contraseña se elimina de la clave inmediatamente, el motivo se debe a que los reinicios que se produzcan en el servidor web requerirían que se introdujera la contraseña cada vez, lo que en la práctica puede ser algo problemático.
 * A continuación, el script crea el archivo CSR (Certificate Signing Request), que se puede utilizar para adquirir un certificado SSL de un proveedor.
 * Por último, el paso de limpieza elimina la clave creada anteriormente con la contraseña adjunta.

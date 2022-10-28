@@ -71,4 +71,4 @@ El script recorre todos los archivos indicados en el archivo `phpfiles.txt`, cre
 
 ## Conclusión
 
-`sed` es una potente herramienta que funciona muy bien para las funciones de búsqueda y reemplazo, particularmente cuando el delimitador utilizado debe ser flexible.
+`sed` es una potente herramienta que funciona muy bien para realizar funciones de búsqueda y reemplazo, particularmente cuando el delimitador utilizado debe ser flexible.
