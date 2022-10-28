@@ -68,11 +68,11 @@ git clone https://github.com/rocky-linux/rocky-tools.git
 
 Remarque : cette méthode téléchargera tous les scripts et fichiers du dépôt rocky-tools.
 
-### La méthode simple mais légèrement moins sécurisée
+### La manière simple
 
-D'accord, ce n'est pas forcément la meilleure chose à faire, côté sécurité. Mais c'est le moyen le plus simple de récupérer le script.
+C'est surement la façon la plus facile pour obtenir le script. Vous aurez seulement besoin d'un client HTTP (curl, wget, lynx, etc.) installé sur le serveur.
 
-Exécutez cette commande pour télécharger le script dans le répertoire dans lequel vous vous trouvez :
+En estimant que vous avez l'utilitaire `curl` d'installé, exécutez cette commande pour télécharger le script dans le répertoire courant :
 
 ```
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
