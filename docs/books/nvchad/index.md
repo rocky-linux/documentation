@@ -47,7 +47,7 @@ As the developers of NvChad are keen to point out, the project is only intended 
 
 - **Powered by Lua.** NvChad's configuration is written entirely in _lua_, which allows it to integrate seamlessly into Neovim's configuration by taking advantage of the full potential of the editor on which it is based.
 
-- **Numerous inbuilt themes.** The configuration already includes a large number of themes to use, always keeping in mind that we are talking about a _cli_ application, themes can be selected with the `<escape>th` key.
+- **Numerous inbuilt themes.** The configuration already includes a large number of themes to use, always keeping in mind that we are talking about a _cli_ application, themes can be selected with the `<escape>` key.
 
 ![NvChad Themes](images/nvchad_th.png)
 
@@ -104,7 +104,7 @@ Neovim is described in detail on its [dedicated page](install_nvim.md) so we wil
 
 What is the **L**anguage **S**erver **P**rotocol?
 
-A language server is a standardized language library that uses its own procedure (protocol) to provide support for functions such as autocomplete, goto definition, or mouseover definitions.
+A language server is a standardized language library that uses its own procedure (protocol) to provide support for functions such as autocomplete, goto-definition, or mouseover definitions.
 
 The idea behind the Language Server Protocol (LSP) is to standardize the communication protocol between tools and servers, so that a single language server can be reused in multiple development tools. In this way, developers can simply integrate these libraries into their editors and reference existing language infrastructures, instead of customizing their code to include them.
 
