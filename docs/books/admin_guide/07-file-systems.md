@@ -34,36 +34,58 @@ Partitioning will allow the installation of several operating systems because it
 
 The division of the physical disk into partitioned volumes is recorded in the partition table, stored in the first sector of the disk (MBR: _Master Boot Record_).
 
-The same physical disk can be divided into a maximum of 4 partitions:
+For **MBR** partition table types,, the same physical disk can be divided into a maximum of 4 partitions:
 
-* *Primary* (or main)
-* *Extended*
+* *Primary partition* (or main partition)
+* *Extended partition*
 
 !!! Warning
 
-    There can be only one extended partition per physical disk. In order to benefit from additional drives, the extended partition can be split into logical partitions
+    There can be only one extended partition per physical disk, That is, a physical disk can have in the MBR partition table up to:
+    
+    1. Three primary partitions plus one extended partition
+    2. 4 primary partitions 
+
+    The extended partition cannot write data and format, and can only contain logical partitions. The largest physical disk that can be recognized by the MBR partition table is **2TB**.
 
 ![Breakdown into only 4 primary partitions](images/07-file-systems-001.png)
 
 ![Breakdown into 3 primary partitions and one extended](images/07-file-systems-002.png)
 
+### Naming conventions for device file names
+
+In the world of GNU/Linux, everything is a file. For disks, they are recognized in the system as:
+
+| Hardware               | Device file name       | 
+|---                     |---                     |
+|IDE hard disk           | /dev/hd[a-d]           | 
+|SCSI/SATA/USB hard disk | /dev/sd[a-z]           |
+|Optical drive           | /dev/cdrom or /dev/sr0 |
+|Floppy disk             | /dev/fd[0-7]           |
+|Printer (25 pins)       | /dev/lp[0-2...]        |
+|Printer (USB)           | /dev/usb/lp[0-15]      |
+|Mouse                   | /dev/mouse             |  
+|Virtual hard disk       | /dev/vd[a-z]           |
+
 The _devices_ are the files identifying the various hardware detected by the motherboard. These files are stored without `/dev`. The service which detects new devices and gives them names is called *udev*.
 
 They are identified by their type.
 
-Storage devices are named *hd* for IDE hard drives and *sd* for other media. Then comes a letter that starts with *a* for the first device, then *b*, *c*, ...
+For more information, please see [here](https://www.kernel.org/doc/html/latest/admin-guide/devices.html).
 
-Finally we will find a number that defines the partitioned volume: *1* for the first primary partition, ...
+### Device partition number 
+
+The number after the block device (storage device) indicates a partition. For MBR partition tables, the number 5 must be the first logical partition.
 
 !!! Warning
 
-    Beware, the extended partition, which does not support a file system, still has a number.
+    Attention please! The partition number we mentioned here mainly refers to the partition number of the block device (storage device).
 
 ![Identification of partitions](images/07-file-systems-003.png)
 
 There are at least two commands for partitioning a disk: `fdisk` and `cfdisk`. Both commands have an interactive menu. `cfdisk` is more reliable and better optimized, so it is best to use it.
 
-The only reason to use `fdisk` is when you want to list all logical devices with the `-l` option.
+The only reason to use `fdisk` is when you want to list all logical devices with the `-l` option. `fdisk` uses MBR partition tables, so it is not supported for **GPT** partition tables and cannot be processed for disks larger than **2TB**.
 
 ```
 sudo fdisk -l
@@ -73,7 +95,7 @@ sudo fdisk -l /dev/sdc2
 
 ### `parted` command
 
-The `parted` (_partition editor_) command is able to partition a disk.
+The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`, So we recommend that you use the `parted` command even more.
 
 ```
 parted [-l] [device]
