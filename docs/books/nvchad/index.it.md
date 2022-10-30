@@ -11,13 +11,13 @@ tags:
 
 # Introduzione
 
-In questo libro troverete il modo di implementare Neovim, insieme a NvChad, per creare un **ambiente**di **sviluppo** **integrato**(IDE) completamente funzionale.
+In questo libro troverete il modo di implementare Neovim, insieme a NvChad, per creare un **A**mbiente di **S**viluppo **I**ntegrato (IDE) completamente funzionale.
 
 Dico "modi" perché ci sono molte possibilità. L'autore si concentra sull'uso di questi strumenti per la scrittura di markdown, ma se il markdown non è il vostro obiettivo, non preoccupatevi, continuate a leggere. Se non conoscete nessuno di questi strumenti (NvChad o Neovim), questo libro vi fornirà un'introduzione a entrambi e, se seguirete questi documenti, vi renderete presto conto che potete configurare questo ambiente in modo che sia di grande aiuto per qualsiasi esigenza di programmazione o di scrittura di script.
 
 Volete un IDE che vi aiuti a scrivere i playbook di Ansible? Puoi ottenerlo! Volete un IDE per Golang? Anche questo è disponibile. Volete semplicemente una buona interfaccia per scrivere script BASH? È anche disponibile.
 
-Grazie all'uso dei **protocolli**e dei linters **del Language** **Server**, è possibile configurare un ambiente personalizzato per l'utente. La cosa migliore è che una volta configurato l'ambiente, è possibile aggiornarlo rapidamente quando sono disponibili nuove modifiche attraverso l'uso di Packer e Mason, entrambi trattati qui.
+Attraverso l'uso dei **L**anguage **S**erver **P**rotocols e dei linters, è possibile configurare un ambiente personalizzato. La cosa migliore è che una volta configurato l'ambiente, è possibile aggiornarlo rapidamente quando sono disponibili nuove modifiche attraverso l'uso di Packer e Mason, entrambi trattati qui.
 
 Poiché Neovim è un fork di `vim`, l'interfaccia generale sarà familiare agli utenti di `vim`. Se non siete utenti di `vim`, con questo libro imparerete rapidamente la sintassi dei comandi. Le informazioni trattate sono molte, ma è facile seguirle e, una volta completato il contenuto, si saprà abbastanza per costruire il proprio IDE per le _proprie_ esigenze con questi strumenti.
 
