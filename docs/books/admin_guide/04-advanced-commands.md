@@ -8,7 +8,7 @@ In this chapter you will learn some advanced commands for Linux.
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn:
+**Objectives**: In this chapter, future Linux administrators will learn:
 
 :heavy_check_mark: some useful commands not covered in the previous chapter;   
 :heavy_check_mark: some advanced commands.
@@ -116,7 +116,7 @@ xargs
 use of xargs
 ```
 
-The `xargs` command waits for an input from the standard **stdin** input. Three lines are entered. The end of the user input is specified to `xargs` by the keystroke sequence <kbd>CTRL</kbd>+<kbd>D</kbd>. `xargs` then executes the default command `echo` followed by the three arguments corresponding to the user input, namely :
+The `xargs` command waits for an input from the standard **stdin** input. Three lines are entered. The end of the user input is specified to `xargs` by the keystroke sequence <kbd>CTRL</kbd>+<kbd>D</kbd>. `xargs` then executes the default command `echo` followed by the three arguments corresponding to the user input, namely:
 
 ```
 $ echo "use" "of" "xargs"
@@ -228,11 +228,11 @@ The `repoquery` command is used to query the packages in the repository.
 
 Examples of use:
 
-  * Display the dependencies of a package(it can be a software package that has been installed or not installed), Equivalent to `dnf deplist <package-name>`.
+  * Display the dependencies of a package (it can be a software package that has been installed or not installed), equivalent to `dnf deplist <package-name>`.
     
     repoquery --requires <package-name>
 
-  * Display the files provided by an installed package(does not work for packages that are not installed), Equivalent to `rpm -ql <package-name>`
+  * Display the files provided by an installed package (does not work for packages that are not installed), equivalent to `rpm -ql <package-name>`
 
     ```
     $ repoquery -l yum-utils
