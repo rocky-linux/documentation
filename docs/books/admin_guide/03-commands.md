@@ -11,7 +11,7 @@ In this chapter you will learn how to work with Linux with the commands.
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**Objectives**: In this chapter, future Linux administrators will learn how to:
 
 :heavy_check_mark: **move** in the system tree;   
 :heavy_check_mark: **create** a text file, **display** its contents and **modify** it;   
@@ -43,8 +43,8 @@ Learning these commands allows the administrator to connect to a Linux terminal,
 The user of a Linux system is defined in the `/etc/passwd` file, by:
 
 * a **login name**, more commonly called "login", containing no spaces;
-* a numeric identifier : **UID** (User Identifier);
-* a group identifier : **GID** (Group Identifier);
+* a numeric identifier: **UID** (User Identifier);
+* a group identifier: **GID** (Group Identifier);
 * a **command interpreter**, a shell, which can be different from one user to another;
 * a **connection directory**, the __home directory__.
 
@@ -66,9 +66,9 @@ A workstation type installation (with graphical interface) starts this interface
 Once the user is connected to a console, the shell displays the command **prompt**. It then behaves like an infinite loop, with each statement entered:
 
 * displaying the command prompt;
-* reading the command ;
-* syntax analysis ;
-* substitution of special characters ;
+* reading the command;
+* syntax analysis;
+* substitution of special characters;
 * execute the command;
 * display the command prompt;
 * etc.
@@ -789,7 +789,7 @@ $ cp -r /home/rockstar /tmp
 | `-f`    | Do not ask for confirmation if overwriting the destination file. |
 | `-p`    | Keeps the owner, permissions and timestamp of the copied file.   |
 | `-r`    | Copies a directory with its files and subdirectories.            |
-| `-s`    | Creates a symbolik links rather than copying.                    |
+| `-s`    | Creates a symbolic link rather than copying.                    |
 
 ```bash
 cp file1 /repexist/file2
