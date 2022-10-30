@@ -8,7 +8,7 @@ In this chapter you will learn how to work with processes.
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**Objectives**: In this chapter, future Linux administrators will learn how to:
 
 :heavy_check_mark: Recognize the `PID` and `PPID` of a process;   
 :heavy_check_mark: View and search for processes;   
@@ -31,8 +31,8 @@ When a program runs, the system will create a process by placing the program dat
 
 Each process has:
 
-* a _PID_ : _**P**rocess **ID**entifier_, a unique process identifier;
-* a _PPID_ : _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process.
+* a _PID_: _**P**rocess **ID**entifier_, a unique process identifier;
+* a _PPID_: _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process.
 
 By successive filiations, the `init` process is the father of all processes.
 
@@ -211,7 +211,7 @@ Signals are the means of communication between processes. The `kill` command sen
 
 !!! Tip
 
-    The complete list of signals taken into account by the `kill` command is available by typing the command :
+    The complete list of signals taken into account by the `kill` command is available by typing the command:
 
     ```
     $ man 7 signal
