@@ -8,7 +8,7 @@ In this chapter you will learn how to back up and restore your data with Linux.
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**Objectives**: In this chapter, future Linux administrators will learn how to:
 
 :heavy_check_mark: use the `tar` and `cpio` command to make a backup;   
 :heavy_check_mark: check their backups and restore data;   
@@ -33,7 +33,7 @@ The backup allows you to protect yourself from the following:
 
 * **Destruction**: voluntary or involuntary. Human or technical. Virus, ...
 * **Deletion**: voluntary or involuntary. Human or technical. Virus, ...
-* **Integrity** : data becomes unusable.
+* **Integrity**: data becomes unusable.
 
 No system is infallible, no human is infallible, so to avoid losing data, it must be backed up to be able to restore after a problem.
 
@@ -73,7 +73,7 @@ Backups require a lot of discipline and rigor from the system administrator. It 
 
 ### Periodicity
 
-* **Pre-current** : at a given time (before a system update, ...).
+* **Pre-current**: at a given time (before a system update, ...).
 * **Periodic**: Daily, weekly, monthly, ...
 
 !!! Tip
@@ -87,7 +87,7 @@ Depending on the utilities available, it will be possible to perform several typ
 * **Complete restoration**: trees, ...
 * **Selective restoration**: part of tree, files, ...
 
-It is possible to restore a whole backup but it is also possible to restore only a part of it. However, when restoring a directory, the files created after the backup are not deleted.
+It is possible to restore a whole backup, but it is also possible to restore only a part of it. However, when restoring a directory, the files created after the backup are not deleted.
 
 !!! Tip
 
@@ -97,16 +97,16 @@ It is possible to restore a whole backup but it is also possible to restore only
 
 There are many utilities to make backups.
 
-* **editor tools** ;
+* **editor tools**;
 * **graphical tools**;
 * **command line tools**: `tar`, `cpio`, `pax`, `dd`, `dump`, ...
 
 The commands we will use here are `tar` and `cpio`.
 
 * `tar`:
-  * easy to use ;
+  * easy to use;
   * allows adding files to an existing backup.
-* `cpio` :
+* `cpio`:
   * retains owners;
   * retains groups, dates and rights;
   * skips damaged files;
@@ -283,7 +283,7 @@ $ tar cvzf backup.tar.gz dirname/
 
 !!! Note
 
-    Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the keys makes the command easier to understand (e.g. `cvfz` or `cvfj`, etc.).
+    Keeping the `cvf` (`tvf` or `xvf`) keys unchanged for all backup operations and simply adding the compression key to the end of the keys makes the command easier to understand (e.g., `cvfz` or `cvfj`, etc.).
 
 ##### Creating a compressed backup with `bzip`
 
@@ -523,13 +523,13 @@ $ tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 
 Specify a _regex_ to extract the files matching the specified selection pattern.
 
-For example, to extract all files with the extension `.conf` :
+For example, to extract all files with the extension `.conf`:
 
 ```
 $ tar xvf backup.tar --wildcards '*.conf'
 ```
 
-keys :
+keys:
 
   * **--wildcards *.conf** corresponds to files with the extension `.conf`.
 
@@ -540,7 +540,7 @@ The `cpio` command allows saving on several successive media without specifying 
 It is possible to extract all or part of a backup.
 
 There is no option, unlike the `tar` command, to backup and compress at the same time.
-So it is done in two steps: backup and compression.
+So, it is done in two steps: backup and compression.
 
 To perform a backup with `cpio`, you have to specify a list of files to backup.
 
@@ -572,7 +572,7 @@ With a redirection of the output of `cpio`:
 $ find /etc | cpio -ov > /backups/etc.cpio
 ```
 
-Using the name of a backup media :
+Using the name of a backup media:
 
 ```
 $ find /etc | cpio -ovF /backups/etc.cpio
@@ -590,7 +590,7 @@ Do not forget the `>` sign when saving or the `F save_name_cpio`.
 | `-v`    |	Displays the name of the processed files.      |
 | `-F`    |	Designates the backup to be modified (medium). |
 
-Backup to a media :
+Backup to a media:
 
 ```
 $ find /etc | cpio -ov > /dev/rmt0
@@ -598,7 +598,7 @@ $ find /etc | cpio -ov > /dev/rmt0
 
 The support can be of several types:
 
-* tape drive: `/dev/rmt0`  ;
+* tape drive: `/dev/rmt0`;
 * a partition: `/dev/sda5`, `/dev/hda5`, etc.
 
 ### Type of backup
@@ -618,9 +618,9 @@ $ find /etc | cpio -o > /backups/etc.A.cpio
 
 !!! Warning
 
-    If the path specified in the `find` command is **absolute** then the backup will be performed in **absolute**.
+    If the path specified in the `find` command is **absolute**, then the backup will be performed in **absolute**.
 
-    If the path indicated in the `find` command is **relative** then the backup will be done in **relative**.
+    If the path indicated in the `find` command is **relative**, then the backup will be done in **relative**.
 
 ### Add to a backup
 
@@ -663,7 +663,7 @@ So it is done in two steps: saving and compressing.
 
 The syntax of the first method is easier to understand and remember, because it is done in two steps.
 
-For the first method, the backup file is automatically renamed by the `gzip` utility which adds `.gz` to the end of the file name. Similarly the `bzip2` utility automatically adds `.bz2`.
+For the first method, the backup file is automatically renamed by the `gzip` utility which adds `.gz` to the end of the file name. Similarly, the `bzip2` utility automatically adds `.bz2`.
 
 ### Read the contents of a backup
 
