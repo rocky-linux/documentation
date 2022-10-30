@@ -8,7 +8,7 @@ In this chapter you will learn how to work with filesystems.
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**Objectives**: In this chapter, future Linux administrators will learn how to:
 
 :heavy_check_mark: manage partitions on disk;   
 :heavy_check_mark: use LVM for a better use of disk resources;   
@@ -53,7 +53,7 @@ They are identified by their type.
 
 Storage devices are named *hd* for IDE hard drives and *sd* for other media. Then comes a letter that starts with *a* for the first device, then *b*, *c*, ...
 
-Finally we will find a number that defines the partitioned volume: *1* for the first primary partition, ...
+Finally, we will find a number that defines the partitioned volume: *1* for the first primary partition, ...
 
 !!! Warning
 
@@ -146,7 +146,7 @@ LVM is available under Linux from kernel version 2.4.
 
 !!! Note
 
-    LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
+    LVM is only managed by the operating system. Therefore, the _BIOS_ needs at least one partition without LVM to boot.
 
 ### Volume groups
 
@@ -154,8 +154,8 @@ The physical volumes *PV* _Physical Volumes_ (from partitions) are combined into
 Each *VG* represents disk space that can be partitioned into *LV* _Logical Volumes_.
 *Extension* is the smallest unit of fixed-size space that can be allocated.
 
-* **PE** : _Physical Extension_
-* **LE** : _Logical Extension_
+* **PE**: _Physical Extension_
+* **LE**: _Logical Extension_
 
 ![Volume group, PE size equal to 4MB](images/07-file-systems-004.png)
 
@@ -379,7 +379,7 @@ A file is managed by its inode number.
 
     The size of the inode table determines the maximum number of files the FS can contain.
 
-Information present in the *inode table* :
+Information present in the *inode table*:
 
 * Inode number;
 * File type and access permissions;
@@ -782,7 +782,7 @@ Linux is a multi-user operating system where the control of access to files is e
 
 These controls are functions of:
 
-* file access permissions ;
+* file access permissions;
 * users (_ugo_ _Users Groups Others_).
 
 The command `ls -l` allows to display the attributes.
@@ -1071,7 +1071,7 @@ This behavior is defined by the **default mask**.
 
 The principle is to remove the value defined by the mask at maximum rights without the execution right.
 
-For a directory :
+For a directory:
 
 ![How the SUID works](images/07-file-systems-017.png)
 
@@ -1129,7 +1129,7 @@ For a particular user:
 
 !!! Warning
 
-    `umask -S` displays the file rights (without the execute right) of the files that will be created. So it is not the display of the mask used to subtract the maximum value.
+    `umask -S` displays the file rights (without the execute right) of the files that will be created. So, it is not the display of the mask used to subtract the maximum value.
 
 !!! Tip
 
