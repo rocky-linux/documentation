@@ -194,7 +194,7 @@ eof
 Salvare e chiudere, quindi ripetere i passaggi con lo script per l'eliminazione dei database, se necessario:
 
 ```bash
-vi db-drop.sh
+vi db-delete.sh
 ```
 
 Copiate e incollate questo codice nel nuovo file:
