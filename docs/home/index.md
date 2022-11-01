@@ -23,11 +23,11 @@ When you open a document, on the right hand side you will see a 'Table of conten
 The main sections of the documentation site are:
 
 * **Guides**: which cover specific ways to set up and use Rocky Linux.
-* **Books**: are more detailed information based around a specific area.
+* **Books**: are more detailed information based around a specific area
 * **Labs**: it's 'back to school', but these tutorials you will enjoy doing!
-* **Gemstones**: Some common script or command usage tips can be shared here.
-* **Release Notes**: Covers Rocky Linux release notes and version update information.
-* **Rocky Linux**: Official website home page jump link.
+* **Gemstones**: Some common script or command usage tips can be shared here
+* **Release Notes**: Covers Rocky Linux release notes and version update information
+* **Rocky Linux**: Official website home page jump link
 
 ### Multiple Languages
 
