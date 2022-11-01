@@ -38,7 +38,8 @@ Of course not everyone has English as their first language! At Rocky Linux we wa
 
 !!! note
 
-    Not all functionality may be available in all languages, this is a limitation of the underlying MkDocs modules available.
+    Not all functionality may be available in all languages, 
+    this is a limitation of the underlying MkDocs modules available.
 
 ### Using Search
 
