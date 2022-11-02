@@ -16,18 +16,18 @@ This home page will give you an introduction to the documentation website and ho
 
 ### Getting Around
 
-Right now you are on the home page of the documentation. If you glance at the top menu (which is always available, including on mobile devices) you can see the main structure showing the top-level sections of the documentation site. If you click on each top menu item (try 'Guides' for example) then on the left hand side you will see the list of *sub-sections* for each main section. Guides has many topics of interest.
+Right now you are on the home page of the documentation. If you glance at the top menu (which is always available, including on mobile devices) you can see the main structure showing the top-level sections of the documentation site. If you click on each top menu item (try 'Guides' for example) then on the left-hand side you will see the list of *sub-sections* for each main section. Guides has many topics of interest.
 
-When you open a document, on the right hand side you will see a 'Table of contents' with clickable navigation links for that document (for mobile devices try landscape orientation). For long documents, like the [Release Notes](release_notes/8.5.md), the table of contents makes it easy to jump around the document. If you are reading a long document and want to go back to the top press <kbd>pg up</kbd> and you will see a `Back to top` button appear at the top of the screen.
+When you open a document, on the right-hand side you will see a 'Table of contents' with clickable navigation links for that document (for mobile devices try landscape orientation). For long documents, like the [Release Notes](release_notes/8.5.md), the table of contents makes it easy to jump around the document. If you are reading a long document and want to go back to the top press <kbd>pg up</kbd> and you will see a `Back to top` button appear at the top of the screen.
 
 The main sections of the documentation site are:
 
 * **Guides**: which cover specific ways to set up and use Rocky Linux.
-* **Books**: are more detailed information based around a specific area
+* **Books**: are more detailed information based around a specific area.
 * **Labs**: it's 'back to school', but these tutorials you will enjoy doing!
-* **Gemstones**: Some common script or command usage tips can be shared here
-* **Release Notes**: Covers Rocky Linux release notes and version update information
-* **Rocky Linux**: Official website home page jump link
+* **Gemstones**: some common script or command usage tips can be shared here.
+* **Release Notes**: covers Rocky Linux release notes and version update information.
+* **Rocky Linux**: official website home page jump link.
 
 ### Multiple Languages
 
