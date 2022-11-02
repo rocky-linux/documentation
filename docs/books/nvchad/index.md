@@ -47,7 +47,7 @@ As the developers of NvChad are keen to point out, the project is only intended 
 
 - **Powered by Lua.** NvChad's configuration is written entirely in _lua_, which allows it to integrate seamlessly into Neovim's configuration by taking advantage of the full potential of the editor on which it is based.
 
-- **Numerous inbuilt themes.** The configuration already includes a large number of themes to use, always keeping in mind that we are talking about a _cli_ application, themes can be selected with the `<leader> + th` key.
+- **Numerous inbuilt themes.** The configuration already includes a large number of themes to use, always keeping in mind that we are talking about a _cli_ application, themes can be selected with the `<leader> + th` command.
 
 ![NvChad Themes](images/nvchad_th.png)
 
