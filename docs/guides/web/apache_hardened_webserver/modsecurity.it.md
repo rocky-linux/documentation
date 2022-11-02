@@ -55,7 +55,7 @@ Inoltre, dovrete avere il vostro server web in funzione affinché Comodo veda _m
 
 `systemctl start httpd`
 
-Dopo esserti iscritto a Comodo, riceverai un'email con le istruzioni su cosa fare dopo. In sostanza, ciò che devi fare è accedere al sito web con le tue nuove credenziali e quindi scaricare lo script di installazione del client.
+Dopo esserti iscritto a Comodo, riceverai un'e-mail con le istruzioni su cosa fare dopo. In sostanza, ciò che devi fare è accedere al sito web con le tue nuove credenziali e quindi scaricare lo script di installazione del client.
 
 Dalla directory radice del server, utilizzare il comando wget per scaricare l'installatore:
 

@@ -11,7 +11,7 @@ tags:
 
 # Plugins della configurazione di base
 
-!!! nota "Convenzione Nomeclatura Plugin"
+!!! note "Convenzione Nomenclatura Plugin"
 
     In questo capitolo, il formato `user_github/nome_plugin` sarà usato per identificare il plugin. Questo per evitare possibili errori con plugin dal nome simile e per introdurre il formato usato per l'inserimento dei plugin sia da NvChad che dalla configurazione `custom`.
 
