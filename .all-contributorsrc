@@ -683,6 +683,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "bamtests",
+      "name": "bamtests",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17178592?v=4",
+      "profile": "https://github.com/bamtests",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
