@@ -21,7 +21,7 @@ Attraverso l'uso dei **L**anguage **S**erver **P**rotocols e dei linters, è pos
 
 Poiché Neovim è un fork di `vim`, l'interfaccia generale sarà familiare agli utenti di `vim`. Se non siete utenti di `vim`, con questo libro imparerete rapidamente la sintassi dei comandi. Le informazioni trattate sono molte, ma è facile seguirle e, una volta completato il contenuto, si saprà abbastanza per costruire il proprio IDE per le _proprie_ esigenze con questi strumenti.
 
-L'intento dell'autore era quello di **non** suddividere il libro in capitoli. Il motivo è che ciò implica un ordine da seguire che, nella maggior parte dei casi, non è necessario.  *Si* consiglia di iniziare da questa pagina, leggere e seguire le sezioni "Software aggiuntivo", "Installare Neovim" e "Installare NvChad", ma da lì si può scegliere come procedere.
+L'intento dell'autore era quello di **non** suddividere il libro in capitoli. Il motivo è che ciò implica un ordine da seguire che, nella maggior parte dei casi, non è necessario. *Si* consiglia di iniziare da questa pagina, leggere e seguire le sezioni "Software aggiuntivo", "Installare Neovim" e "Installare NvChad", ma da lì si può scegliere come procedere.
 
 ## Utilizzo di Neovim come IDE
 
@@ -43,11 +43,11 @@ Come gli sviluppatori di NvChad tengono a precisare, il progetto vuole essere so
 
 - **Estremamente configurabile.** Grazie alla modularità derivata dall'applicazione di base (NeoVim), l'editor può essere adattato perfettamente alle proprie esigenze. Tenete presente, tuttavia, che quando parliamo di personalizzazione ci riferiamo alla funzionalità e non all'aspetto dell'interfaccia.
 
-- **Meccanismo di aggiornamento automatico.** L'editor è dotato di un meccanismo (attraverso l'uso di _git_) che consente di effettuare aggiornamenti con un semplice comando `<spazio>uu`.
+- **Meccanismo di aggiornamento automatico.** L'editor è dotato di un meccanismo (attraverso l'uso di _git_) che consente di effettuare aggiornamenti con un semplice comando `<leader> + uu`.
 
 - **Powered by Lua.** La configurazione di NvChad è scritta interamente in _lua_, il che le consente di integrarsi perfettamente nella configurazione di Neovim, sfruttando tutte le potenzialità dell'editor su cui si basa.
 
-- **Numerosi temi incorporati.** La configurazione include già un gran numero di temi da utilizzare, tenendo sempre presente che stiamo parlando di un'applicazione _cli_, i temi possono essere selezionati con il tasto `<escape>`.
+- **Numerosi temi incorporati.** La configurazione include già un gran numero di temi da utilizzare, tenendo sempre presente che stiamo parlando di un'applicazione _cli_, i temi possono essere selezionati con il tasto `<leader> + th`.
 
 ![Temi NvChad](images/nvchad_th.png)
 
