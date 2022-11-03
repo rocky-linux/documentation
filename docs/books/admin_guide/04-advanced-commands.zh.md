@@ -8,7 +8,7 @@ title: 高级Linux 命令
 
 ****
 
-**目标** : 在本章中，未来的Linux管理员将学习：
+**目标**：在本章中，未来的Linux管理员将学习：
 
 :heavy_check_mark: 上一章没有介绍的一些有用的命令；   
 :heavy_check_mark: 一些高级命令
