@@ -24,9 +24,9 @@ Su un sistema Linux, è possibile installare il software in due modi:
 
 **Il pacchetto**: si tratta di un singolo file contenente tutti i dati necessari per installare il programma. Può essere eseguito direttamente sul sistema da un repository software.
 
-**I file sorgente** : Alcuni software non sono forniti in pacchetti pronti per essere installati, ma tramite un archivio contenente i file sorgente. Spetta all'amministratore preparare questi file e compilarli per installare il programma.
+**I file sorgente**: Alcuni software non sono forniti in pacchetti pronti per essere installati, ma tramite un archivio contenente i file sorgente. Spetta all'amministratore preparare questi file e compilarli per installare il programma.
 
-## RPM : Gestione pacchetti RedHat
+## RPM: Gestione pacchetti RedHat
 
 **RPM** (RedHat Package Manager) è un sistema di gestione software. È possibile installare, disinstallare, aggiornare o controllare il software contenuto nei pacchetti.
 
@@ -132,7 +132,7 @@ httpd-filesystem.noarch             2.4.37-30.module_el8.3.0+561+97fdbbcc   @app
 httpd-tools.x86_64                  2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
 ```
 
-## DNF : Dandified Yum
+## DNF: Dandified Yum
 
 **DNF** (**Dandified Yum**) è un gestore di pacchetti software, successore di **YUM** (**Y**ellow Dog **U**pdater **M**odified). Funziona con pacchetti **RPM** raggruppati in un repository locale o remoto (una directory per l'archiviazione dei pacchetti). Per i comandi più comuni, il suo utilizzo è identico a quello di `yum`.
 
@@ -568,7 +568,7 @@ Description  : This package contains the Extra Packages for Enterprise Linux
              : (EPEL) repository GPG key as well as configuration for yum.
 ```
 
-Il pacchetto, come puoi vedere dalla descrizione del pacchetto di cui sopra, non contiene eseguibili, librerie, ecc.. ma solo i file di configurazione e le chiavi GPG per la configurazione del repository.
+Il pacchetto, come puoi vedere dalla descrizione del pacchetto di cui sopra, non contiene eseguibili, librerie, ecc. . ma solo i file di configurazione e le chiavi GPG per la configurazione del repository.
 
 Un altro modo per verificare la corretta installazione è quello di interrogare il database rpm.
 
