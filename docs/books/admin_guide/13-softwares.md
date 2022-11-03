@@ -24,9 +24,9 @@ On a Linux system, it is possible to install software in two ways:
 
 **The package**: This is a single file containing all the data needed to install the program. It can be executed directly on the system from a software repository.
 
-**The source files** : Some software is not provided in packages ready to be installed, but via an archive containing the source files. It is up to the administrator to prepare these files and compile them to install the program.
+**The source files**: Some software is not provided in packages ready to be installed, but via an archive containing the source files. It is up to the administrator to prepare these files and compile them to install the program.
 
-## RPM : RedHat Package Manager
+## RPM: RedHat Package Manager
 
 **RPM** (RedHat Package Manager) is a software management system. It is possible to install, uninstall, update or check software contained in packages.
 
@@ -132,9 +132,9 @@ httpd-filesystem.noarch             2.4.37-30.module_el8.3.0+561+97fdbbcc   @app
 httpd-tools.x86_64                  2.4.37-30.module_el8.3.0+561+97fdbbcc   @appstream
 ```
 
-## DNF : Dandified Yum
+## DNF: Dandified Yum
 
-**DNF** (**Dandified Yum**) is a software package manager, successor of **YUM** (**Yellow dog **U**pdater **M**odified). It works with **RPM** packages grouped in a local or remote repository (a directory for storing packages). For the most common commands, its usage is identical to that of `yum`.
+**DNF** (**Dandified Yum**) is a software package manager, successor of **YUM** (**Y**ellow dog **U**pdater **M**odified). It works with **RPM** packages grouped in a local or remote repository (a directory for storing packages). For the most common commands, its usage is identical to that of `yum`.
 
 The `dnf` command allows the management of packages by comparing those installed on the system with those in the repositories defined on the server. It also automatically installs dependencies, if they are also present in the repositories.
 
@@ -338,7 +338,7 @@ Complete!
 | `grouplist`                | Lists available package collections.             |
 | `clean`                    | Removes temporary files.                         |
 
-The `dnf repolist` command lists the repositories configured on the system. By default it lists only the enabled repositories but can be used with these parameters:
+The `dnf repolist` command lists the repositories configured on the system. By default, it lists only the enabled repositories but can be used with these parameters:
 
 | Parameter    | Description                       |
 |--------------|-----------------------------------|
@@ -568,7 +568,7 @@ Description  : This package contains the Extra Packages for Enterprise Linux
              : (EPEL) repository GPG key as well as configuration for yum.
 ```
 
-The package, as you can see from the package description above, does not contain executables, libraries, etc.. but only the configuration files and GPG keys for setting up the repository.
+The package, as you can see from the package description above, does not contain executables, libraries, etc... but only the configuration files and GPG keys for setting up the repository.
 
 Another way to verify the correct installation is to query the rpm database.
 
@@ -673,7 +673,7 @@ From the command we can see that to install from EPEL we must force **dnf** to q
 
     One aspect to consider regarding support (updates, bug fixes, security patches) is that EPEL packages have no official support from RHEL and technically their life could last the space of a development of Fedora (six months) and then disappear. This is a remote possibility but one to consider.
 
-So to install a package from the EPEL repositories you would use:
+So, to install a package from the EPEL repositories you would use:
 
 ```bash
 dnf --disablerepo="*" --enablerepo="epel" install nmon
