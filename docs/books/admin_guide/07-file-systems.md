@@ -97,11 +97,11 @@ sudo fdisk -l /dev/sdc2
 
 The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`, So we recommend that you use the `parted` command even more.
 
+The `parted` command can be used either command-line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
+
 ```
 parted [-l] [device]
 ```
-
-It also has a recovery function capable of rewriting a deleted partition table.
 
 Under graphical interface, there is the very complete `gparted` tool: *G*nome *PAR*tition *ED*itor.
 
@@ -154,7 +154,7 @@ The preparation, without _LVM_, of the physical media goes through five steps:
 
 **L**ogical **V**olume **M**anager (*LVM]*)
 
-Volume management creates an abstract layer on top of physical storage, offering advantages over using physical storage directly:
+The partition created by the **standard partition** cannot dynamically adjust the resources of the hard disk, once the partition is mounted, the capacity is completely fixed, This constraint is unacceptable on the server. Although the standard partition can be forcibly expanded or shrunk through certain technical means, it is easy to cause data loss. LVM can solve this problem very well, and its main features are:
 
 * More flexible disk capacity;
 * Online data movement;
@@ -162,24 +162,26 @@ Volume management creates an abstract layer on top of physical storage, offering
 * Mirrored volumes (recopy);
 * Volume snapshots (_snapshot_).
 
-The disadvantage is that if one of the physical volumes becomes out of order, then all the logical volumes that use this physical volume are lost. You will have to use LVM on raid disks.
+The principle of LVM is very simple, that is, a logical abstraction layer is added between the physical disk (or disk partition) and the file system, merge multiple disks (or disk partition) into Volume Group(**VG**) and perform underlying disk management operations on them through something called Logical Volume(**LV**).
 
-LVM is available under Linux from kernel version 2.4.
+**The physical media**: The storage medium of the LVM can be the entire hard disk, disk partition, or RAID array. The device must be converted, or initialized, to an LVM Physical Volume(**PV**), before further operations can be performed.
+
+**PV(Physical Volume)**: The basic storage logic block of LVM. To create a physical volume, you can use a disk partition or the disk itself.
+
+**VG(Volume Group)**: Similar to physical disks in a standard partition, a VG consists of one or more PV.
+
+**LV(Logical Volume)**: Similar to hard disk partitions in standard partitions, LV is built on top of VG. You can set up a file system on LV.
+
+*PE*:
+*LE*:
+
+![Volume group, PE size equal to 4MB](images/07-file-systems-004.png)
+
+The disadvantage is that if one of the physical volumes becomes out of order, then all the logical volumes that use this physical volume are lost. You will have to use LVM on raid disks.
 
 !!! Note
 
-    LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
-
-### Volume groups
-
-The physical volumes *PV* _Physical Volumes_ (from partitions) are combined into volume groups *VG*.
-Each *VG* represents disk space that can be partitioned into *LV* _Logical Volumes_.
-*Extension* is the smallest unit of fixed-size space that can be allocated.
-
-* **PE** : _Physical Extension_
-* **LE** : _Logical Extension_
-
-![Volume group, PE size equal to 4MB](images/07-file-systems-004.png)
+    LVM is available under Linux from kernel version 2.4. LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
 
 ### Logical volumes
 
