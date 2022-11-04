@@ -154,7 +154,7 @@ The preparation, without _LVM_, of the physical media goes through five steps:
 
 **L**ogical **V**olume **M**anager (*LVM]*)
 
-The partition created by the **standard partition** cannot dynamically adjust the resources of the hard disk, once the partition is mounted, the capacity is completely fixed, This constraint is unacceptable on the server. Although the standard partition can be forcibly expanded or shrunk through certain technical means, it is easy to cause data loss. LVM can solve this problem very well, and its main features are:
+The partition created by the **standard partition** cannot dynamically adjust the resources of the hard disk, once the partition is mounted, the capacity is completely fixed, This constraint is unacceptable on the server. Although the standard partition can be forcibly expanded or shrunk through certain technical means, it is easy to cause data loss. LVM can solve this problem very well. LVM is available under Linux from kernel version 2.4, and its main features are:
 
 * More flexible disk capacity;
 * Online data movement;
@@ -172,8 +172,9 @@ The principle of LVM is very simple, that is, a logical abstraction layer is add
 
 **LV(Logical Volume)**: Similar to hard disk partitions in standard partitions, LV is built on top of VG. You can set up a file system on LV.
 
-*PE*:
-*LE*:
+<b><font color="blue">PE</font></b>: The smallest unit of storage that can be allocated in a Physical Volume, default to <b>4MB</b>. You can specify an additional size
+
+<b><font color="blue">LE</font></b>: The smallest unit of storage that can be allocated in a Logical Volume. In the same VG, PE and LE are the same and correspond one to one.
 
 ![Volume group, PE size equal to 4MB](images/07-file-systems-004.png)
 
@@ -181,25 +182,22 @@ The disadvantage is that if one of the physical volumes becomes out of order, th
 
 !!! Note
 
-    LVM is available under Linux from kernel version 2.4. LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
+    LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
 
-### Logical volumes
+!!! info
 
-A volume group, *VG*, is divided into logical volumes, *LV*, offering different operating modes:
+    In the physical disk, the smallest storage unit is the **sector**; in the file system, the smallest storage unit of GNU/Linux is the **block**, and the Windows is called the **cluster**; in RAID, the smallest storage unit is **chunk**.
+
+### The Writing Mechanism of LVM
+
+There are several storage mechanisms when storing data to **LV**, two of which are:
 
 * Linear volumes;
 * Volumes in _stripe_ mode;
-* Mirrored volumes.
 
 ![Linear volumes](images/07-file-systems-005.png)
 
 ![Volumes in stripe mode](images/07-file-systems-006.png)
-
-!!! Tip
-
-    Striping_ improves performance by writing data to a predetermined number of physical volumes with a _round-robin_ technique.
-
-![Mirrored volumes](images/07-file-systems-007.png)
 
 ### LVM commands for volume management
 
