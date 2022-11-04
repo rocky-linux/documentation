@@ -34,14 +34,14 @@ Partitioning will allow the installation of several operating systems because it
 
 The division of the physical disk into partitioned volumes is recorded in the partition table, stored in the first sector of the disk (MBR: _Master Boot Record_).
 
-For **MBR** partition table types,, the same physical disk can be divided into a maximum of 4 partitions:
+For **MBR** partition table types, the same physical disk can be divided into a maximum of 4 partitions:
 
 * *Primary partition* (or main partition)
 * *Extended partition*
 
 !!! Warning
 
-    There can be only one extended partition per physical disk, That is, a physical disk can have in the MBR partition table up to:
+    There can be only one extended partition per physical disk, that is, a physical disk can have in the MBR partition table up to:
     
     1. Three primary partitions plus one extended partition
     2. 4 primary partitions 
