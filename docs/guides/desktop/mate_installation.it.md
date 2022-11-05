@@ -2,7 +2,7 @@
 title: Desktop MATE
 author: lillolollo
 contributors: Steven Spencer, Franco Colussi
-tested with: 8.5
+tested with: 8.5, 8.6, 9.0
 tags:
   - mate
   - desktop
@@ -14,81 +14,145 @@ L'ambiente desktop MATE è stato creato come fork e continuazione di GNOME2, sul
 
 Questa procedura è stata ideata per farvi iniziare a lavorare con Rocky Linux utilizzando MATE.
 
-!!! Warning "Attenzione"
-
-    MATE non proviene dai repository Rocky Linux. Non è ufficialmente supportato da Rocky Linux. Per la maggior parte degli utenti, questa procedura funzionerà come previsto, ma se si verificano dei problemi, si prega di notare che gli sviluppatori e il gruppo di test di Rocky non interverranno in caso di fallimento!  Se volete MATE a tutti i costi, allora risolvete i vostri problemi e sistemate le cose come si deve. Se trovate qualcosa che ritenete debba essere incluso in questa procedura per aiutare gli altri, inviate una modifica al documento.
-
 ## Prerequisiti
 
-* Un computer con schermo e tutto il resto, preferibilmente con Rocky Linux già installato.
+* Un computer (portatile o workstation) con schermo e tutto il resto.
+* Il desiderio di eseguire il desktop MATE invece di quello predefinito di GNOME.
 
-## Installare Rocky Linux Minimal
+=== "9.0"
 
-Durante l'installazione di Rocky Linux, abbiamo utilizzato i seguenti pacchetti:
+    ## 9.0: Introduzione
+    
+    Il team di sviluppo di Rocky Linux 9.0 ha reso facile l'installazione di MATE e di altri ambienti desktop popolari, includendo immagini live. Un'immagine live, per chi non lo sapesse, è un'immagine avviabile che carica il sistema operativo senza installazione. Una volta caricato, è possibile installarlo nell'unità disco del computer e utilizzarlo. 
+    
+    ## 9.0: Ottenere, verificare e scrivere l'immagine live di MATE
+    
+    Prima dell'installazione, il primo passo è scaricare l'immagine live e scriverla su un DVD o una chiavetta USB. Come detto in precedenza, l'immagine sarà avviabile, proprio come qualsiasi altro supporto di installazione per Linux. È possibile trovare l'ultima immagine MATE nella sezione download di Rocky Linux 9 [immagini live](https://dl.rockylinux.org/pub/rocky/9.0/live/x86_64/). Si noti che questo particolare link presuppone che l'architettura sia x86_64 e, al momento in cui scriviamo, questa è l'unica architettura per cui è disponibile questa particolare immagine live. Scaricare sia l'immagine live che i file di checksum. 
+    
+    Ora verificare l'immagine con il file CHECKSUM utilizzando il seguente metodo
+    (si noti che questo è un esempio! Assicurarsi che il nome dell'immagine e i file CHECKSUM corrispondano):
 
-* Minimal
-* Standard
+    ```
+    sha256sum -c CHECKSUM --ignore-missing Rocky-9.0-MATE-x86_64-20220912.1.iso.CHECKSUM
+    ```
 
-## Abilitazione dei repository
 
-Abbiamo bisogno del repository non ufficiale di MATE. Potete trovare maggiori informazioni su questo repository qui: [Stenstorp/MATE](https://copr.fedorainfracloud.org/coprs/stenstorp/MATE/)
+    Se tutto va bene, dovreste ricevere questo messaggio:
 
-Abilitare questo repository inserendo:
+    ```
+    Rocky-9.0-MATE-x86_64-20220912.1.iso: OK
+    ```
 
-`dnf copr enable stenstorp/MATE`
 
-!!! Warning "Attenzione"
+    Se il checksum per il file restituisce OK, ora sei pronto a scrivere la tua immagine ISO sul tuo supporto. Questa procedura varia a seconda del sistema operativo in uso, del supporto e degli strumenti. Si presuppone che sappiate come scrivere l'immagine sul vostro supporto.
+    
+    ## 9.0: Avvio
+    
+    Anche in questo caso la procedura varia a seconda della macchina, del BIOS, del sistema operativo e così via.  È necessario assicurarsi che la macchina sia impostata per l'avvio da qualsiasi supporto (DVD o USB) come primo dispositivo di avvio. In caso di successo, dovrebbe essere visualizzata questa schermata
+    
+    ![mate_boot](images/mate_boot.png)
+    
+    Se è così, siete sulla buona strada! Se si desidera testare il supporto, si può selezionare prima questa opzione, oppure si può semplicemente digitare **S** per **Avviare Rocky Linux Mate 9.0**.
+    
+    Ricordate che si tratta di un'immagine live, quindi ci vorrà un po' di tempo per avviare la prima schermata. Non fatevi prendere dal panico, aspettate! Una volta avviata l'immagine live, si dovrebbe vedere questa schermata:
+    
+    ![mate-live](images/mate_live.png)
+    
+    ## 9.0: Installazione di MATE
+    
+    A questo punto, si può usare l'ambiente MATE e vedere se ci piace. Una volta deciso di utilizzarlo in modo permanente, fare doppio clic sull'opzione **Installa sul disco rigido**.
+    
+    Si avvia così un processo di installazione abbastanza familiare per chi ha già installato Rocky Linux. Nella schermata seguente, abbiamo evidenziato le cose che *potreste* voler modificare.
+    
+    ![mate_install](images/mate_install.png)
 
-    Il sistema di compilazione `copr` crea un repository che è noto per funzionare per l'installazione di `mate` e `lightdm` (sotto), ma non è mantenuto dalla comunità Rocky Linux. Utilizzare a proprio rischio e pericolo!
+    1. **Tastiera** - Date un'occhiata a questa opzione e assicuratevi che corrisponda al layout della tastiera che utilizzate.
+    2. **Ora e data** - Assicurarsi che corrisponda al proprio fuso orario.
+    3. **Destinazione di installazione** - È necessario fare clic su questa opzione, anche solo per accettare ciò che è già presente.
+    4. **Rete e Nome host** - Verificare che sia presente ciò che si desidera. Finché la rete è abilitata, è sempre possibile modificare questo punto in seguito se è necessario.
+    5. **Password di root** - Procedere con l'impostazione di una password di root. Ricordate di salvarla in un luogo sicuro (gestore di password), soprattutto se non la utilizzate spesso.
+    6. **Creazione di un utente** - Crea sicuramente almeno un utente. Se si desidera che l'utente abbia diritti amministrativi, ricordarsi di impostare questa opzione al momento della creazione dell'utente.
+    7. **Iniziare l'installazione** - Una volta impostate o verificate tutte le impostazioni, fare clic su questa opzione.
 
-Verrà visualizzato un messaggio di avvertimento sul repository, ma è possibile abilitarlo digitando `Y` per consentirlo.
+    Una volta eseguito il passo 7, il processo di installazione dovrebbe iniziare a installare i pacchetti, come nella schermata seguente:
 
-Come indicato nel link precedente, sono necessari anche il repository Powertools e EPEL. Procedere con l'abilitazione di questi elementi:
+    ![mate_install_2](images/mate_install_2.png)
 
-`sudo dnf config-manager --set-enabled powertools`
+    Al termine dell'installazione sul disco rigido, verrà visualizzata la seguente schermata:
 
-`sudo dnf install epel-release`
+    ![mate_install_final](images/mate_install_final.png)
 
-E rispondere "Y" per installare l'EPEL.
+    Procedere e fare clic su **Fine dell'installazione**.
 
-Abbiamo anche bisogno del repository Stenstorp Lightdm, quindi abilitiamo anche quello. Per saperne di più su questo repository, visitate questo link: [Stenstorp/Lighdm](https://copr.fedorainfracloud.org/coprs/stenstorp/lightdm/)
+    A questo punto è necessario riavviare il sistema operativo e rimuovere il supporto di avvio. Quando il sistema operativo viene avviato per la prima volta, viene visualizzata la schermata del contratto di licenza:
 
-Per abilitare il repository, è sufficiente digitare:
+    ![eula](images/eula.png)
 
-`sudo dnf copr enable stenstorp/lightdm`
+    Fare clic sulla casella di controllo **Accetto il contratto di licenza** e quindi su **Fine**. In questo modo si arriva alla schermata finale dell'installazione. In questa schermata, fare clic su **Fine della configurazione**.
 
-Anche in questo caso, verrà presentato un messaggio di avvertimento sul repository. Rispondete pure a `Y` alla domanda.
+    ![mate_finish](images/mate_finish.png)
 
-Eseguire `dnf update` per assicurarsi che tutti i repository abilitati siano letti dal sistema.
+    Si aprirà quindi una schermata di accesso con l'utente creato in precedenza. Inserite la vostra password e accederete al desktop MATE:
 
-## Installazione dei pacchetti
+    ![mate_desktop](images/mate_desktop.png)
 
-La prossima cosa di cui abbiamo bisogno sono un sacco di pacchetti. È possibile installarli semplicemente copiando e incollando quanto segue nella riga di comando del computer:
+=== "8.6"
 
-`sudo dnf install NetworkManager-adsl NetworkManager-bluetooth NetworkManager-libreswan-gnome NetworkManager-openvpn-gnome NetworkManager-ovs NetworkManager-ppp NetworkManager-team NetworkManager-wifi NetworkManager-wwan abrt-desktop abrt-java-connector adwaita-gtk2-theme alsa-plugins-pulseaudio atril atril-caja atril-thumbnailer caja caja-actions caja-image-converter caja-open-terminal caja-sendto caja-wallpaper caja-xattr-tags dconf-editor engrampa eom firewall-config gnome-disk-utility gnome-epub-thumbnailer gstreamer1-plugins-ugly-free gtk2-engines gucharmap gvfs-afc gvfs-afp gvfs-archive gvfs-fuse gvfs-gphoto2 gvfs-mtp gvfs-smb initial-setup-gui libmatekbd libmatemixer libmateweather libsecret lm_sensors marco mate-applets mate-backgrounds mate-calc mate-control-center mate-desktop mate-dictionary mate-disk-usage-analyzer mate-icon-theme mate-media mate-menus mate-menus-preferences-category-menu mate-notification-daemon mate-panel mate-polkit mate-power-manager mate-screensaver mate-screenshot mate-search-tool mate-session-manager mate-settings-daemon mate-system-log mate-system-monitor mate-terminal mate-themes mate-user-admin mate-user-guide mozo network-manager-applet nm-connection-editor p7zip p7zip-plugins pluma seahorse seahorse-caja xdg-user-dirs-gtk brisk-menu`
+    ## 8.6: Installare Rocky Linux Minimal
+    
+    Durante l'installazione di Rocky Linux, abbiamo utilizzato i seguenti pacchetti:
 
-Questo installerà i pacchetti necessari e tutte le dipendenze.
+    * Minimal
+    * Standard
 
-Procediamo con l'installazione di lightdm-gtk:
 
-`sudo dnf install lightdm-gtk`
+    ## 8.6: Abilitazione dei repository
 
-## Fasi finali
+    È necessario disporre del repository Powertools e del repository EPEL. Procedere con l'abilitazione di questi elementi:
 
-Ora che abbiamo installato tutto ciò che ci serve, la prossima cosa da fare è impostare l'installazione minima in modo che si avvii nell'interfaccia grafica utente (GUI). Possiamo farlo inserendo:
+    ```
+    sudo dnf config-manager --set-enabled powertools
+    sudo dnf install epel-release
+    ```
 
-`sudo systemctl set-default graphical.target`
+    E rispondere 'Y' per installare il repository EPEL.
 
-Ora basta incrociare le dita e riavviare:
+    Eseguire `dnf update` per assicurarsi che tutti i repository abilitati siano letti dal sistema.
 
-`sudo reboot`
 
-Successivamente, cliccate sul vostro nome utente sullo schermo, ma prima di inserire la password e di effettuare il login, cliccate sull'icona dell'ingranaggio a sinistra dell'opzione "Accedi". Selezionare "MATE" tra le opzioni disponibili per il desktop, quindi inserire la password e accedere. I futuri accessi ricorderanno la selezione effettuata.
+    ## 8.6: Installazione dei pacchetti
+
+    La prossima cosa di cui abbiamo bisogno sono un sacco di pacchetti. È possibile installarli semplicemente copiando e incollando quanto segue nella riga di comando del computer:
+
+    ```
+    sudo dnf install NetworkManager-adsl NetworkManager-bluetooth NetworkManager-libreswan-gnome NetworkManager-openvpn-gnome NetworkManager-ovs NetworkManager-ppp NetworkManager-team NetworkManager-wifi NetworkManager-wwan abrt-desktop abrt-java-connector adwaita-gtk2-theme alsa-plugins-pulseaudio atril atril-caja atril-thumbnailer caja caja-actions caja-image-converter caja-open-terminal caja-sendto caja-wallpaper caja-xattr-tags dconf-editor engrampa eom firewall-config gnome-disk-utility gnome-epub-thumbnailer gstreamer1-plugins-ugly-free gtk2-engines gucharmap gvfs-afc gvfs-afp gvfs-archive gvfs-fuse gvfs-gphoto2 gvfs-mtp gvfs-smb initial-setup-gui libmatekbd libmatemixer libmateweather libsecret lm_sensors marco mate-applets mate-backgrounds mate-calc mate-control-center mate-desktop mate-dictionary mate-disk-usage-analyzer mate-icon-theme mate-media mate-menus mate-menus-preferences-category-menu mate-notification-daemon mate-panel mate-polkit mate-power-manager mate-screensaver mate-screenshot mate-search-tool mate-session-manager mate-settings-daemon mate-system-log mate-system-monitor mate-terminal mate-themes mate-user-admin mate-user-guide mozo network-manager-applet nm-connection-editor p7zip p7zip-plugins pluma seahorse seahorse-caja xdg-user-dirs-gtk
+    ```
+
+    Questo installerà i pacchetti necessari e tutte le dipendenze.
+
+    Procediamo con l'installazione di lightdm-settings e lightdm:
+
+    ```
+    sudo dnf install lightdm-settings lightdm
+    ```
+
+
+    ## 8.6: Fasi finali
+
+    Ora che abbiamo installato tutto ciò che ci serve, la prossima cosa da fare è impostare l'installazione minima in modo che si avvii nell'interfaccia grafica utente (GUI). Possiamo farlo inserendo:
+
+    ```
+    sudo systemctl set-default graphical.target
+    ```
+
+    Ora basta incrociare le dita e riavviare:
+
+    ```
+    sudo reboot
+    ```
+
+    Successivamente, cliccate sul vostro nome utente sullo schermo, ma prima di inserire la password e di effettuare il login, cliccate sull'icona dell'ingranaggio a sinistra dell'opzione "Accedi". Selezionare "MATE" tra le opzioni disponibili per il desktop, quindi inserire la password e accedere. I futuri accessi ricorderanno la selezione effettuata.
 
 ## Conclusione
 
-Alcune persone non sono soddisfatte delle nuove implementazioni di GNOME o semplicemente preferiscono l'aspetto di MATE GNOME 2. Per queste persone, l'installazione di MATE in Rocky Linux fornirà un'alternativa piacevole e stabile.
-
-!!! attention "Attenzione"
-
-    Dopo ulteriori prove, la selezione del desktop non rimane, anche se MATE rimane selezionato. I tentativi di accesso producono un ritorno alla schermata di accesso. Per accedere a una sessione MATE, è necessario selezionare nuovamente MATE, anche se viene già visualizzato come selezionato. Questo è il motivo per cui l'avvertenza è presente all'inizio di questa procedura. Utilizzate questa guida a vostro rischio e pericolo. Se si scopre una soluzione che aiuta gli altri utenti a continuare a usare MATE con Rocky Linux, si prega di segnalarla.
+Alcune persone non sono soddisfatte delle nuove implementazioni di GNOME o semplicemente preferiscono l'aspetto di MATE GNOME 2. Per queste persone, l'installazione di MATE in Rocky Linux fornirà un'alternativa piacevole e stabile. Per Rocky Linux 9.0, gli sviluppatori hanno reso l'intero processo molto semplice grazie all'immagine live disponibile.
