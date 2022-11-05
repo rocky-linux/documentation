@@ -66,9 +66,9 @@ Un'installazione di tipo workstation (con interfaccia grafica) avvia questa inte
 Una volta che l'utente è collegato a una console, la shell visualizza il **prompt** dei comandi. Quindi inizia un loop (ciclo infinito), con ogni stringa inserita:
 
 * visualizzazione del prompt dei comandi;
-* lettura del comando ;
-* analisi della sintassi ;
-* sostituzione di caratteri speciali ;
+* lettura del comando;
+* analisi della sintassi;
+* sostituzione di caratteri speciali;
 * esecuzione del comando;
 * visualizza il prompt dei comandi;
 * etc.
