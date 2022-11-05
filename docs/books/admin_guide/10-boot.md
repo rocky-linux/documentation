@@ -7,7 +7,7 @@ title: System Startup
 In this chapter you will learn how the system start.
 
 ****
-**Objectives** : In this chapter, future Linux administrators will learn:
+**Objectives**: In this chapter, future Linux administrators will learn:
 
 :heavy_check_mark: The different stages of the booting process;   
 :heavy_check_mark: How Rocky Linux supports this boot via GRUB2 and systemd;   
@@ -31,7 +31,7 @@ The boot process includes:
 
 ### The BIOS startup
 
-The **BIOS** (Basic Input/Output System) performs the **POST** (power on self test) to detect, test and initialize the system hardware components.
+The **BIOS** (Basic Input/Output System) performs the **POST** (power on self-test) to detect, test and initialize the system hardware components.
 
 It then loads the **MBR** (Master Boot Record).
 
@@ -77,7 +77,7 @@ root          1      0  0 02:10 ?        00:00:02 /usr/lib/systemd/systemd --swi
 
 ### `systemd`
 
-Systemd is the parent of all system processes. It reads the target of the `/etc/systemd/system/default.target` link (e.g. `/usr/lib/systemd/system/multi-user.target`) to determine the default target of the system. The file defines the services to be started.
+Systemd is the parent of all system processes. It reads the target of the `/etc/systemd/system/default.target` link (e.g., `/usr/lib/systemd/system/multi-user.target`) to determine the default target of the system. The file defines the services to be started.
 
 Systemd then places the system in the target-defined state by performing the following initialization tasks:
 
