@@ -116,7 +116,7 @@ xargs
 use of xargs
 ```
 
-Il comando `xargs` attende un input dallo standard input **stdin**. Sono state inserite tre linee. La fine dell'ingresso dell'utente in `xargs` è specificato dalla sequenza di tasti <kbd>CTRL</kbd>+<kbd>D</kbd>. `xargs` esegue quindi il comando predefinito `echo` seguito dai tre argomenti corrispondenti all'ingresso dell'utente, vale a dire:
+Il comando `xargs` attende un input dallo standard input **stdin**. Sono state inserite tre linee. La fine dell'ingresso dell'utente in `xargs` è specificato dalla sequenza di tasti <kbd>CTRL</kbd>+<kbd>D</kbd>. `xargs` esegue quindi il comando predefinito `echo` seguito dai tre argomenti corrispondenti all'input dell'utente, vale a dire:
 
 ```
 $ echo "use" "of" "xargs"
