@@ -6,7 +6,7 @@ contributors: Ezequiel Bruni, Franco Colussi
 
 # Bash - Script Stub
 
-Dove lavoravo prima, avevamo un programmatore eccezionale che conosceva un sacco di linguaggi. Era anche l'uomo di riferimento quando si avevano domande su come realizzare qualcosa con uno script. Alla fine ha creato un piccolo stub, un file pieno di esempi di scripting dal quale si può semplicemente togliere e modificare le parti a seconda delle necessità. Alla fine sono diventato abbastanza bravo in queste routine da non dover guardare lo stub, ma è stato un buon strumento di apprendimento e qualcosa che altri potrebbero trovare utile.
+Dove lavoravo prima, avevamo un programmatore eccezionale che conosceva un sacco di linguaggi. Era anche l'uomo di riferimento quando si avevano domande su come realizzare qualcosa con uno script. Alla fine ha creato un piccolo stub, un file pieno di esempi di scripting da cui è possibile attingere e modificare a seconda delle necessità. Alla fine sono diventato abbastanza bravo in queste routine da non dover guardare lo stub, ma è stato un buon strumento di apprendimento e qualcosa che altri potrebbero trovare utile.
 
 ## Lo Stub Effettivo
 
