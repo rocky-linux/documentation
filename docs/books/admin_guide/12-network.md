@@ -8,7 +8,7 @@ In this chapter you will learn how to work with and manage the network.
 
 ****
 
-**Objectives** : In this chapter you will learn how to:
+**Objectives**: In this chapter you will learn how to:
 
 :heavy_check_mark: Configure a workstation to use DHCP;  
 :heavy_check_mark: Configure a workstation to use a static configuration;   
@@ -31,7 +31,7 @@ To illustrate this chapter, we will use the following architecture.
 
 ![Illustration of our network architecture](images/network-001.png)
 
-It will allow us to consider :
+It will allow us to consider:
 
 * integration in a LAN (local area network);
 * the configuration of a gateway to reach a remote server;
@@ -39,7 +39,7 @@ It will allow us to consider :
 
 The minimum parameters to be defined for the machine are:
 
-* the name of the machine ;
+* the name of the machine;
 * the IP address;
 * the subnet mask.
 
@@ -70,7 +70,7 @@ There are also specific addresses within a network, which must be identified. Th
 ### MAC address / IP address
 
 A **MAC address** is a physical identifier written in the factory onto the device. This is sometimes referred to as the hardware address. It consists of 6 bytes often given in hexadecimal form (for example 5E:FF:56:A2:AF:15).
-It is composed of : 3 bytes of the manufacturer identifier and 3 bytes of the serial number.
+It is composed of: 3 bytes of the manufacturer identifier and 3 bytes of the serial number.
 
 !!! Warning
 
@@ -91,7 +91,7 @@ IP and MAC addresses must be unique on a network!
 
 ### DNS Domain
 
-Client machines can be part of a DNS (**Domain Name System**, e.g. `mydomain.lan`) domain.
+Client machines can be part of a DNS (**Domain Name System**, e.g., `mydomain.lan`) domain.
 
 The fully qualified machine name (**FQDN**) becomes `pc-rocky.mydomain.lan`.
 
@@ -131,7 +131,7 @@ Unit: the segment or the datagram.
 
 **Layer 5** (Session) supports the communication between two computers.
 
-**Layer 6** (Presentation) represents the area that is independent of data at the application layer. Essentially this layer translates from network format to the application format, or or from the application format to the network format.
+**Layer 6** (Presentation) represents the area that is independent of data at the application layer. Essentially this layer translates from network format to the application format, or from the application format to the network format.
 
 **Layer 7** (Application) represents the contact with the user.
 It provides the services offered by the network: http, dns, ftp, imap,
@@ -215,9 +215,9 @@ The `/etc/hosts` file is a static host name mapping table, which follows the fol
 Example of `/etc/hosts` file:
 
 ```
-127.0.0.1 	localhost localhost.localdomain
-::1 		localhost localhost.localdomain
-192.168.1.10 	rockstar.rockylinux.lan rockstar
+127.0.0.1       localhost localhost.localdomain
+::1             localhost localhost.localdomain
+192.168.1.10    rockstar.rockylinux.lan rockstar
 ```
 
 The `/etc/hosts` file is still used by the system, especially at boot time when the system FQDN is determined.
@@ -232,7 +232,7 @@ The `/etc/hosts` file contains one line per entry, with the IP address, the FQDN
 
 ## `/etc/nsswitch.conf` file
 
-The **NSS** (**N**ame **S**ervice **S**witch) allows configuration files (e.g. `/etc/passwd`, `/etc/group`, `/etc/hosts`) to be substituted for one or more centralized databases.
+The **NSS** (**N**ame **S**ervice **S**witch) allows configuration files (e.g., `/etc/passwd`, `/etc/group`, `/etc/hosts`) to be substituted for one or more centralized databases.
 
 The `/etc/nsswitch.conf` file is used to configure the name service databases.
 
@@ -273,7 +273,7 @@ It allows for the addition of DNS servers from the configuration file of a netwo
 
 The `ip` command from the `iproute2` package allows you to configure an interface and its routing table.
 
-Display interfaces :
+Display interfaces:
 
 ```
 [root]# ip link
@@ -285,7 +285,7 @@ Display interfaces information:
 [root]# ip addr show
 ```
 
-Display the information of an interface :
+Display the information of an interface:
 
 ```
 [root]# ip addr show eth0
@@ -301,7 +301,7 @@ All historical network management commands have been grouped under the `ip` comm
 
 ## DHCP configuration
 
-The **DHCP** protocol (**D**ynamic **H**ost **C**Control **P**rotocol) allows you to obtain a complete IP configuration via the network. This is the default configuration mode of a network interface under Rocky Linux, which explains why a system connected to the network of an Internet router can function without additional configuration.
+The **DHCP** protocol (**D**ynamic **H**ost **C**ontrol **P**rotocol) allows you to obtain a complete IP configuration via the network. This is the default configuration mode of a network interface under Rocky Linux, which explains why a system connected to the network of an Internet router can function without additional configuration.
 
 The configuration of interfaces under Rocky Linux is done in the `/etc/sysconfig/network-scripts/` folder.
 
@@ -314,7 +314,7 @@ BOOTPROTO=dhcp
 HWADDR=00:0c:29:96:32:e3
 ```
 
-*  Interface name : (must be in the file name)
+*  Interface name: (must be in the file name)
 
 ```
 DEVICE=eth0
@@ -332,7 +332,7 @@ ONBOOT=yes
 BOOTPROTO=dhcp
 ```
 
-* Specify the MAC address (optional but useful when there are several interfaces) :
+* Specify the MAC address (optional but useful when there are several interfaces):
 
 ```
 HWADDR=00:0c:29:96:32:e3
@@ -605,7 +605,7 @@ BROADCAST=172.16.79.255
 |---------------|---------------|------------------------------------------------------------------------------|
 | `-b`          | `--broadcast` | Displays the broadcast address of the given IP address and the network mask. |
 | `-h`          | `--hostname`  | Displays the hostname of the IP address given via DNS.                       |
-| `-n`          | `--netmask`   | Calculates the network mask for the given IP address. Assumes that the IP address is part of a complete class A, B, or C network. Many networks do not use default network masks, in which case an incorrect incorrect value will be returned. |
+| `-n`          | `--netmask`   | Calculates the network mask for the given IP address. Assumes that the IP address is part of a complete class A, B, or C network. Many networks do not use default network masks, in which case an incorrect value will be returned. |
 | `-p`          | `--prefix`    | Indicates the prefix of the mask/IP address.                                 |
 | `-n`          | `--network`   | Indicates the network address of the given IP address and mask.              |
 | `-s`          | `--silent`    | Never displays any error messages.                                           |
@@ -675,7 +675,7 @@ $ arp-scan -I eth0 -l
 172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 2)
 172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 3)
 172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 4)
-172.16.1.232   88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)
+172.16.1.232  88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)
 ```
 
 !!! Tip
@@ -725,7 +725,7 @@ Example:
 
 ## In summary
 
-The files used in this chapter are :
+The files used in this chapter are:
 
 ![Synthesis of the files implemented in the network part](images/network-003.png)
 
@@ -749,7 +749,7 @@ The troubleshooting method should go from closest to farthest:
 1. ping localhost (software test)
 2. ping IP-address (hardware test)
 3. ping gateway (connectivity test)
-4. ping remote-server (routing test)
+4. ping remote server (routing test)
 5. DNS query (dig or ping)
 
 ![Method of troubleshooting or network validation](images/network-004.png)
