@@ -8,7 +8,7 @@ In this chapter you will learn how to manage scheduled tasks.
 
 ****
 
-**Objectives** : In this chapter, future Linux administrators will learn how to:
+**Objectives**: In this chapter, future Linux administrators will learn how to:
 
 :heavy_check_mark: Linux deals with the tasks scheduling;   
 :heavy_check_mark: restrict the use of **`cron`** to certain users;   
@@ -201,7 +201,7 @@ The `crontab` file is structured according to the following rules.
 
 !!! Warning
 
-    The tasks to be executed must use absolute paths and if possible use redirects.
+    The tasks to be executed must use absolute paths and if possible, use redirects.
 
 In order to simplify the notation for the definition of time, it is advisable to use special symbols.
 
