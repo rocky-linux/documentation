@@ -141,7 +141,7 @@ Un backup contiene in genere i seguenti elementi:
 * il nome;
 * il proprietario;
 * la dimensione;
-* i permessi;
+* le autorizzazioni
 * data di accesso.
 
 !!! Note "Nota"
@@ -204,7 +204,7 @@ $ tar cjf - /directory/to/backup/ | wc -c
 
 Ecco un esempio di convenzione di denominazione per un backup `tar`, sapendo che la data deve essere aggiunta al nome.
 
-| Opzioni | Files   | Suffisso         | Osservazione                                      |
+| chiavi  | Files   | Suffisso         | Osservazione                                      |
 | ------- | ------- | ---------------- | ------------------------------------------------- |
 | `cvf`   | `home`  | `home.tar`       | `/home` in modalità relativa, forma non compressa |
 | `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in modalità assoluta, nessuna compressione |
@@ -283,7 +283,7 @@ $ tar cvzf backup.tar.gz dirname/
 
 !!! Note "Nota"
 
-    Mantenere invariate le opzioni `cvf` (`tvf` o `xvf`) per tutte le operazioni di backup e semplicemente aggiungere la chiave di compressione alla fine delle opzioni rende il comando più facile da capire (e.. `cvfz` o `cvfj`, ecc.).
+    Mantenere le chiavi `cvf` (`tvf` o `xvf`) invariate per tutte le operazioni di backup e aggiungere semplicemente la chiave di compressione alla fine delle chiavi rende il comando più facile da capire (ad esempio, `cvfz` o `cvfj`, ecc.).
 
 ##### Creazione di un backup compresso con `bzip`
 
