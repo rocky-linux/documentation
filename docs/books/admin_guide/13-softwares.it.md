@@ -568,7 +568,7 @@ Description  : This package contains the Extra Packages for Enterprise Linux
              : (EPEL) repository GPG key as well as configuration for yum.
 ```
 
-Il pacchetto, come puoi vedere dalla descrizione del pacchetto di cui sopra, non contiene eseguibili, librerie, ecc. . ma solo i file di configurazione e le chiavi GPG per la configurazione del repository.
+Il pacchetto, come puoi vedere dalla descrizione di cui sopra, non contiene eseguibili, librerie, ecc... ma solo i file di configurazione e le chiavi GPG per l'impostazione del repository.
 
 Un altro modo per verificare la corretta installazione è quello di interrogare il database rpm.
 
