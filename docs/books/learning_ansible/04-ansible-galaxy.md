@@ -11,7 +11,7 @@ In this chapter you will learn how to use, install, and manage Ansible roles and
 **Objectives**: In this chapter you will learn how to:
 
 :heavy_check_mark: install and manage collections;       
-:heavy_check_mark: install and manage roles;.   
+:heavy_check_mark: install and manage roles.   
 
 :checkered_flag: **ansible**, **ansible-galaxy**, **roles**, **collections**
 
@@ -41,7 +41,7 @@ ansible-galaxy role [import|init|install|login|remove|...]
 | `install`    | installs a role.                                          |
 | `remove`     | remove one or more roles.                                 |
 | `list`       | display the name and the version of installed roles.      |
-| `info`       | display information about a role.                        |
+| `info`       | display information about a role.                         |
 | `init`       | generate a skeleton of a new role.                        |
 | `import`     | import a role from the galaxy web site. Requires a login. |
 
