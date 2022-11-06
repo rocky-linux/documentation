@@ -10,7 +10,7 @@ In this chapter you will learn how to use, install, and manage Ansible roles and
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: install and manage collections;       
+:heavy_check_mark: install and manage collections.       
 :heavy_check_mark: install and manage roles.   
 
 :checkered_flag: **ansible**, **ansible-galaxy**, **roles**, **collections**
