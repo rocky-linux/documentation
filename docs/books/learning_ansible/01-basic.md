@@ -15,7 +15,7 @@ In this chapter you will learn how to work with Ansible.
 
 :heavy_check_mark: Implement Ansible;       
 :heavy_check_mark: Apply configuration changes on a server;   
-:heavy_check_mark: Create first Ansible playbooks;   
+:heavy_check_mark: Create first Ansible playbooks.   
 
 :checkered_flag: **ansible**, **module**, **playbook**
 
@@ -29,9 +29,9 @@ In this chapter you will learn how to work with Ansible.
 Ansible centralizes and automates administration tasks. It is:
 
 * **agentless** (it does not require specific deployments on clients),
-* **idempotent** (same effect each time it is run)
+* **idempotent** (same effect each time it is run).
 
-It uses the **SSH** protocol to remotely configure Linux clients or the **WinRM** protocol to work with Windows clients. If none of these protocols is available, it is always possible for Ansible to use an API, which makes Ansible a real Swiss army knife for the configuration of servers, workstations, docker services, network equipment, etc. (Almost everything in fact).
+It uses the **SSH** protocol to remotely configure Linux clients or the **WinRM** protocol to work with Windows clients. If none of these protocols is available, it is always possible for Ansible to use an API, which makes Ansible a real Swiss army knife for the configuration of servers, workstations, docker services, network equipment, etc. (almost everything in fact).
 
 !!! Warning
 
@@ -42,7 +42,7 @@ As Ansible is push-based, it will not keep the state of its targeted servers bet
 It will help you with:
 
 * provisioning (deploying a new VM),
-* application deployments
+* application deployments,
 * configuration management,
 * automation,
 * orchestration (when more than 1 target is in use).
@@ -74,7 +74,7 @@ To offer a graphical interface to your daily use of Ansible, you can install som
 
 * The **management machine**: the machine on which Ansible is installed. Since Ansible is **agentless**, no software is deployed on the managed servers.
 * The **inventory**: a file containing information about the managed servers.
-* The **tasks**: a task is a block defining a procedure to be executed (e.g. create a user or a group, install a software package, etc.).
+* The **tasks**: a task is a block defining a procedure to be executed (e.g., create a user or a group, install a software package, etc.).
 * A **module**: a module abstracts a task. There are many modules provided by Ansible.
 * The **playbooks**: a simple file in yaml format defining the target servers and the tasks to be performed.
 * A **role**: a role allows you to organize the playbooks and all the other necessary files (templates, scripts, etc.) to facilitate the sharing and reuse of code.
@@ -365,7 +365,7 @@ Modify the sudoers config to allow members of the `wheel` group to sudo without 
 $ sudo visudo
 ```
 
-Our goal here is to comment out the default, and uncomment the NOPASSWD option so that these lines looks like this when we are done:
+Our goal here is to comment out the default, and uncomment the NOPASSWD option so that these lines look like this when we are done:
 
 ```
 ## Allows people in group wheel to run all commands
@@ -388,7 +388,7 @@ $ sudo su - ansible
 
 ### Test with the ping module
 
-By default password login is not allowed by Ansible.
+By default, password login is not allowed by Ansible.
 
 Uncomment the following line from the `[defaults]` section in the `/etc/ansible/ansible.cfg` configuration file and set it to True:
 
@@ -512,7 +512,7 @@ ansible <host-pattern> [-m module_name] [-a args] [options]
 
 There is a module for almost every need! It is thus advised, instead of using the shell module, to look for a module adapted to the need.
 
-Each category of need has its own module. Here is a non exhaustive list:
+Each category of need has its own module. Here is a non-exhaustive list:
 
 | Type                | Examples                                                     |
 |---------------------|--------------------------------------------------------------|
@@ -582,7 +582,7 @@ To help discover more about Ansible and to get used to searching the Ansible doc
 * Change the user so that it belongs to the Paris group
 * Install the tree software
 * Stop the crond service
-* Create en empty file with `644` rights
+* Create an empty file with `644` rights
 * Update your client distribution
 * Restart your client
 
@@ -761,7 +761,7 @@ Some modules are provided by default within the `ansible.builtin` collection, ot
 ```
 ansible-galaxy collection install [collectionname]
 ```
-where [collectionname] is the name of the collection. (the square brackets here are used to highlight the need to replace this with an actual collection name, and are NOT part of the command.)
+where [collectionname] is the name of the collection (the square brackets here are used to highlight the need to replace this with an actual collection name, and are NOT part of the command).
 
 The previous example should be written like this:
 
@@ -859,7 +859,7 @@ test.yml
 * Change the user so that it belongs to the Paris group
 * Install the tree software
 * Stop the crond service
-* Create en empty file with `0644` rights
+* Create an empty file with `0644` rights
 * Update your client distribution
 * Restart your client
 
