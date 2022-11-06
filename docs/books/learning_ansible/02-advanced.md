@@ -8,7 +8,7 @@ In this chapter you will continue to learn how to work with Ansible.
 
 ****
 
-**Objectives** : In this chapter you will learn how to:
+**Objectives**: In this chapter you will learn how to:
 
 :heavy_check_mark: work with variables;       
 :heavy_check_mark: use loops;   
