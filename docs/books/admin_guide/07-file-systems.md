@@ -201,6 +201,18 @@ There are several storage mechanisms when storing data to **LV**, two of which a
 
 ### LVM commands for volume management
 
+The main relevant commands are as follows:
+
+| Item                | PV       | VG       | LV        |
+|:---:                |:---:     |:---:     |:---:      |
+| scan                | pcscan   |vgscan    | lvscan    |
+| create              | pvcreate | vgcreate | lvcreate  |
+| display             | pvdisplay| vgdisplay| lvdisplay |
+| remove              | pvremove | vgremove | lvremove  |
+| extend              |          | vgextend | lvextend  |
+| reduce              |          | vgreduce | lvreduce  |
+| summary information | pvs      | vgs      | lvs       |
+
 #### `pvcreate` command
 
 The `pvcreate` command is used to create physical volumes. It turns Linux partitions (or disks) into physical volumes.
