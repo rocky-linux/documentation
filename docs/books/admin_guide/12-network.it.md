@@ -205,8 +205,8 @@ Il file `/etc/hosts` è una tabella di mapping dei nomi host statici, che segue 
 Esempio di un file `/etc/hosts`:
 
 ```
-127.0.0.1   localhost localhost.localdomain
-::1         localhost localhost.localdomain
+127.0.0.1       localhost localhost.localdomain
+::1             localhost localhost.localdomain
 192.168.1.10    rockstar.rockylinux.lan rockstar
 ```
 
@@ -665,7 +665,7 @@ $ arp-scan -I eth0 -l
 172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 2)
 172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 3)
 172.16.1.253  00:50:56:b6:78:ec       VMWare, Inc. (DUP: 4)
-172.16.1.232   88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)
+172.16.1.232  88:51:fb:5e:fa:b3       (Unknown) (DUP: 2)
 ```
 
 !!! Tip "Suggerimento"
