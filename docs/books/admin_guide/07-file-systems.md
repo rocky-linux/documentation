@@ -233,18 +233,22 @@ You can also use a whole disk (which facilitates disk size increases in virtual 
 ```
 [root]# pvcreate /dev/hdb
 pvcreate -- physical volume « /dev/hdb » successfully created
+
+# It can also be written in other ways, such as
+[root]# pvcreate /dev/sd{b,c,d}1
+[root]# pvcreate /dev/sd[b-d]1
 ```
 
 | Option | Description                                                                        |
 |--------|------------------------------------------------------------------------------------|
-| `-f`   | Forces the creation of the volume (disk already transformed into physical volume). |
+| `-f`   | Forces the creation of the volume (disk already transformed into physical volume). Use with extreme caution.|
 
 #### `vgcreate` command
 
 The `vgcreate` command is used to create volume groups. It groups one or more physical volumes into a volume group.
 
 ```
-vgcreate volume physical_volume [PV...]
+vgcreate  VG_name  PV_name...  [OPTION] 
 ```
 
 Example:
@@ -253,6 +257,9 @@ Example:
 [root]# vgcreate volume1 /dev/hdb1
 …
 vgcreate – volume group « volume1 » successfully created and activated
+
+[root]# vgcreate vg01 /dev/sd{b,c,d}1
+[root]# vgcreate vg02 /dev/sd[b-d]1
 ```
 
 #### `lvcreate` command
@@ -274,6 +281,11 @@ lvcreate -- logical volume « /dev/volume1/VolLog1 » successfully created
 |-----------|---------------------------------------------------------------------|
 | `-L size` | Logical volume size in K, M or G.                                   |
 | `-n name` | LV name. Special file created in `/dev/name_volume` with this name. |
+| `-l  number`  | In addition to using the capacity unit of the hard disk, you can also use the number of PE. One PE equals 4MB. |
+
+!!! info
+
+    After you create a logical volume with the `lvcreate` command, the naming rule of the operating system is - `/dev/VG_name/LV_name`, this file type is a soft link (otherwise known as a symbolic link). The link file points to files like `/dev/dm-0` and `/dev/dm-1`.
 
 ### LVM commands to view volume information
 
@@ -345,7 +357,7 @@ The Linux operating system is able to use different file systems (ext2, ext3, ex
 
 ### `mkfs` command
 
-The `mkfs` command allows you to create a Linux file system.
+The `mkfs`(make file system) command allows you to create a Linux file system. 
 
 ```
 mkfs [-t fstype] filesys
