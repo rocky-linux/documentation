@@ -25,7 +25,7 @@ dnf -y install htop
 1[ |                        1%]     Load average: 0.00 0.00 0.05
 Mem[ |||||||           197M/8G]     Uptime: 00:31:39
 Swap[                  0K/500M]
-PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Commad(merged)
+PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(merged)
 ...
 ```
 
