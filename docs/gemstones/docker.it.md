@@ -26,7 +26,7 @@ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 # Avviare il servizio docker di systemd (dockerd) e attivarlo per l'avvio automatico
 
-Usa l'utilità `systemctl` per configurare il demone dockerd per avviare automaticamente con il prossimo riavvio del sistema e avviarlo contemporaneamente per la sessione corrente. Digita:
+Usare l'utilità `systemctl` per configurare il demone dockerd in modo che si avvii automaticamente al prossimo riavvio del sistema e contemporaneamente si avvii per la sessione corrente. Digita:
 
 ```
 sudo systemctl --now enable docker
