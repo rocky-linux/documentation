@@ -8,7 +8,7 @@ In questo capitolo continuerete a imparare come lavorare con Ansible.
 
 ****
 
-**Obiettivi** : In questo capitolo imparerai a:
+**Obiettivi**: In questo capitolo imparerai a:
 
 :heavy_check_mark: lavorare con le variabili;       
 :heavy_check_mark: usare i cicli;   
