@@ -29,7 +29,7 @@ In questo capitolo imparerai come lavorare con Ansible.
 Ansible centralizza e automatizza i compiti di amministrazione. È:
 
 * **agentless** (non richiede implementazioni specifiche sui client),
-* **idempotent** (stesso effetto ogni volta che viene eseguito)
+* **idempotent** (stesso effetto ogni volta che viene eseguito).
 
 Utilizza il protocollo **SSH** per configurare in remoto i client Linux o il protocollo **WinRM** per funzionare con i client Windows. Se nessuno di questi protocolli è disponibile, è sempre possibile per Ansible utilizzare un'API, che rende Ansible un vero coltellino svizzero per la configurazione di server, postazioni di lavoro, servizi docker, attrezzature di rete, ecc. (Quasi tutto in realtà).
 
@@ -582,7 +582,7 @@ Per aiutarti a scoprire di più su Ansible e per abituarti alla ricerca della do
 * Cambia l'utente in modo che appartenga al gruppo Parigi
 * Installare il software ad albero
 * Ferma il servizio di crond
-* Crea un file vuoto con diritti `644`
+* Crea un file vuoto con i permessi `644`
 * Aggiorna la distribuzione del client
 * Riavvia il tuo client
 
@@ -760,7 +760,7 @@ Nota sulle collezioni: Ansible ora fornisce moduli sotto forma di collezioni. Al
 ```
 ansible-galaxy collection install [collectionname]
 ```
-dove [collectionname] è il nome della collezione. (le parentesi quadre qui sono usate per evidenziare la necessità di sostituire questo con un nome di collezione effettivo, e NON fanno parte del comando.)
+dove [collectionname] è il nome della collezione (le parentesi quadre qui sono usate per evidenziare la necessità di sostituirla con un nome di collezione effettivo; e NON fanno parte del comando).
 
 L'esempio precedente dovrebbe essere scritto come segue:
 
@@ -858,7 +858,7 @@ test.yml
 * Cambia l'utente in modo che appartenga al gruppo Parigi
 * Installare il software ad albero
 * Ferma il servizio di crond
-* Crea un file vuoto con diritti `0644`
+* Crea un file vuoto con i permessi `0644`
 * Aggiorna la distribuzione del client
 * Riavvia il tuo client
 
