@@ -6,7 +6,7 @@ update: 26-gen-2022
 
 # https - Generazione di chiavi RSA
 
-Questo script è stato usato da me molte volte. Indipendentemente dalla frequenza con cui si utilizza la struttura del comando openssl, a volte è necessario fare riferimento alla procedura. Questo script consente di automatizzare la generazione di chiavi per un sito web utilizzando RSA. Si noti che questo script è codificato con una chiave di lunghezza pari a 2048 bit. Per coloro che ritengono che la lunghezza minima della chiave debba essere di 4096 bit, è sufficiente modificare questa parte dello script. È sufficiente sapere che è necessario soppesare la memoria e la velocità di caricamento di un sito su un dispositivo, rispetto alla sicurezza di una lunghezza di chiave maggiore.
+Questo script è stato usato da me molte volte. Indipendentemente dalla frequenza con cui si utilizza la struttura del comando openssl, a volte è necessario fare riferimento alla procedura. Questo script consente di automatizzare la generazione di chiavi per un sito web utilizzando RSA. Si noti che questo script è codificato con una lunghezza di chiave di 2048 bit. Per coloro che ritengono che la lunghezza minima della chiave debba essere di 4096 bit, è sufficiente modificare questa parte dello script. È sufficiente sapere che è necessario soppesare la memoria e la velocità di caricamento di un sito su un dispositivo, rispetto alla sicurezza di una lunghezza di chiave maggiore.
 
 ## Script
 
