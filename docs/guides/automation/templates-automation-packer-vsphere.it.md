@@ -58,7 +58,7 @@ Per ulteriori informazioni, potete consultare queste risorse:
 
 ### Installazione di Packer
 
-Ci sono due modi di installare Packer nel vostro sistema Rocky Linux.
+Esistono due modi per installare Packer nel sistema Rocky Linux.
 
 #### Installazione di Packer dal repo di Hashicorp
 
@@ -119,7 +119,7 @@ $ sudo mv packer /usr/local/bin/
 
 Se tutti i passaggi delle procedure precedenti sono stati completati correttamente, possiamo procedere alla verifica dell'installazione di Packer sul nostro sistema.
 
-Per verificare che Packer sia stato installato correttamente, eseguite il comando packer e otterrete il risultato mostrato di seguito:
+Per verificare che Packer sia stato installato correttamente, eseguite il comando `packer` e otterrete il risultato mostrato di seguito:
 
 ```bash
 $ packer 
@@ -236,13 +236,13 @@ In una prima fase, dichiariamo le variabili, soprattutto per motivi di leggibili
 
 Useremo la variabile `version` più tardi nel nome del modello che creeremo. È possibile incrementare facilmente questo valore in base alle proprie esigenze.
 
-È inoltre necessario che la macchina virtuale in fase di avvio acceda a un file ks.cfg (Kickstart).
+È inoltre necessario che la macchina virtuale in fase di avvio acceda a un file `ks.cfg` (Kickstart).
 
 Un file Kickstart contiene le risposte alle domande poste durante il processo di installazione. Questo file passa tutto il suo contenuto ad Anaconda (il processo di installazione), il che permette di automatizzare completamente la creazione del modello.
 
-All'autore piace memorizzare il suo file ks.cfg in un server web interno accessibile dal suo modello, ma esistono altre possibilità che potresti invece scegliere di usare.
+All'autore piace memorizzare il suo file `ks.cfg` in un server web interno accessibile dal suo modello, ma esistono altre possibilità che potresti invece scegliere di usare.
 
-For example, the ks.cfg file is accessible from the VM at this url in our lab: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. Avrete bisogno di impostare qualcosa di simile per usare questo metodo.
+For example, the `ks.cfg` file is accessible from the VM at this url in our lab: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. Avrete bisogno di impostare qualcosa di simile per usare questo metodo.
 
 Dato che vogliamo mantenere la nostra password privata, è dichiarata come una variabile sensibile. Esempio:
 
@@ -303,7 +303,7 @@ Questo builder ci permette di configurare l'hardware di cui abbiamo bisogno:
   ],
 ```
 
-!!! Note "Nota"
+Alla fine del processo, la VM deve essere fermata. Note "Nota"
 
     Non dimenticherete mai più di includere CPU_hot_plug perché ora è automatico!
 
@@ -499,14 +499,14 @@ Passiamo alla configurazione della rete, poiché ancora una volta, in questo ese
 network --bootproto=static --device=ens192 --gateway=192.168.1.254 --ip=192.168.1.11 --nameserver=192.168.1.254,4.4.4.4 --netmask=255.255.255.0 --onboot=on --ipv6=auto --activate
 ```
 
-Remember we specified the user to connect via SSH with to Packer at the end of the installation. Dal momento che controlliamo l'ambiente in cui il nostro hardware funzionerà, possiamo rimuovere qualsiasi firmware che sarà inutile per noi:
+Ricorda che abbiamo specificato l'utente con cui connettersi via SSH a Packer alla fine dell'installazione. Dal momento che controlliamo l'ambiente in cui il nostro hardware funzionerà, possiamo rimuovere qualsiasi firmware che sarà inutile per noi:
 
 ```
 # Root password
 rootpw mysecurepassword
 ```
 
-!!! Warning "Attenzione"
+La parte successiva aggiunge alcuni utenti. Warning "Attenzione"
 
     Puoi usare una password insicura qui, a patto che ti assicuri che questa password sarà cambiata immediatamente dopo la distribuzione della tua VM, per esempio con Ansible.
 
