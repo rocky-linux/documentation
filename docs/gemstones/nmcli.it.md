@@ -21,9 +21,9 @@ sudo nmcli con mod ens3 connection.autoconnect yes
 
 ```
 connection (con) : oggetto di connessione NetworkManager. 
-modify (mod) : modifica di una o più proprietà di un dato profilo di connessione
-connection.autoconnect : L'impostazione e la proprietà (<setting>.<property>)
--f, --fields : specificare i campi da emettere
+modify (mod)           : Modifica una o più proprietà di un determinato profilo di connessione.
+connection.autoconnect : L'ambiente e la proprietà (<setting>.<property>)
+-f, --fields : specifica i campi da visualizzare.
 
 ```
 

@@ -193,7 +193,7 @@ Ahora podemos crear un volumen con 2 réplicas:
 
 ```
 $ sudo gluster volume create volume1 replica 2 node1.cluster.local:/data/glusterfs/volume1/brick0/ node2.cluster.local:/data/glusterfs/volume1/brick0/
-Replica 2 volúmenes son propensos a dividir cero. Use Arbiter or Replica 3 to avoid this. See: http://docs.gluster.org/en/latest/Administrator%20Guide/Split%20brain%20and%20ways%20to%20deal%20with%20it/.
+Replica 2 volúmenes son propensos a dividir cero. Use Arbiter or Replica 3 to avoid this. Vea: https://docs.gluster.org/en/latest/Administrator-Guide/Split-brain-and-ways-to-deal-with-it/.
 Do you still want to continue?
  (y/n) y
 volume create: volume1: success: please start the volume to access data

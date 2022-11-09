@@ -8,7 +8,7 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 
 ****
 
-**Objectifs : **Dans ce chapitre, vous apprendrez à :
+**Objectifs** : Dans ce chapitre, vous apprendrez à :
 
 :heavy_check_mark: Décrire les caractéristiques et les architectures possibles d'un système d'exploitation.   
 :heavy_check_mark: Retracer l'histoire d'UNIX et de GNU/Linux   
@@ -18,10 +18,10 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 
 :checkered_flag: **généralités**, **linux**, **distributions**
 
-**Connaissances : ** :star:    
-**Complexité : ** :star:
+**Connaissances** : :star:    
+**Complexité** : :star:
 
-**Temps de lecture : **10 minutes
+**Temps de lecture** : 10 minutes
 
 ****
 

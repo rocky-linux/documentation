@@ -30,7 +30,7 @@ shell > nmtui
 
 ### DHCP IPv4
 
-Per IPv4, se si tratta di ottenere le informazioni di rete utilizzando il metodo DHCP, è sufficiente selezionare *IPv4 CONFIGURATION* indietro **&lt;Automatico&gt;**, quindi eseguire nel terminale `systemctl restart NetworkManager.service`, grande Nella maggior parte dei casi, può avere effetto. In rari casi, è necessario cambiare la scheda di rete per ottenere l'effetto desiderato. Ad esempio, in questo modo: `nmcli connection down ens33`, `nmcli connection up ens33`
+Per IPv4, se si tratta di ottenere informazioni di rete utilizzando il metodo DHCP, è sufficiente selezionare *IPv4 CONFIGURATION* indietro **&lt;Automatic&gt;**, quindi eseguire nel terminale `systemctl restart NetworkManager.service` , nella maggior parte dei casi, ciò può essere efficace. In rari casi, è necessario cambiare la scheda di rete per ottenere l'effetto desiderato. Ad esempio, in questo modo: `nmcli connection down ens33`, `nmcli connection up ens33`
 
 ### Correggere manualmente le informazioni di rete
 
@@ -50,7 +50,7 @@ Tutte le distribuzioni RHEL, sia upstream che downstream, sono configurate allo 
 
 !!! warning "Attenzione"
 
-    Nelle distribuzioni RHEL 9.x è stata modificata la posizione della directory in cui è memorizzato il file di configurazione NIC, cioè **/etc/NetworkManager/system-connections/**. Vedi [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index) per ulteriori informazioni.
+    Nelle distribuzioni RHEL 9.x, il percorso della directory in cui è memorizzato il file di configurazione del NIC è stato modificato, ovvero **/etc/NetworkManager/system-connections/**. Vedi [quì](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index) per ulteriori informazioni.
 
 ```bash
 shell > ls /etc/sysconfig/network-scripts/
@@ -82,7 +82,7 @@ ifcfg-ens33
 | IPV6_FAILURE_FATAL    | Dopo che la configurazione IPV6 è fallita, se disabilitare o meno il dispositivo                                                                                                                                                  | IPV6_FAILURE_FATAL=no             |
 | IPV6_ADDR_GEN_MODE    | Genera il modello di indirizzo IPV6, i valori opzionali sono stable-privacy e eui64                                                                                                                                               | IPV6_ADDR_GEN_MODE=stable-privacy |
 
-`ip a` or `nmcli device show`
+Dopo che il file di configurazione è stato modificato con successo, ricordarsi di riavviare il servizio della scheda di rete `systemctl restart NetworkManager.service`.
 
 ### Configurazione consigliata per IPV4
 
