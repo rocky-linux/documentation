@@ -1,5 +1,5 @@
 ---
-titie: About the color of the string
+title: bash - String Color
 author: tianci li
 contributors: Steven Spencer
 tested with: 8.6, 9.0
