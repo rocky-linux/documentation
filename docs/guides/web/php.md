@@ -35,7 +35,7 @@ PHP-FPM, **in addition to better performances**, brings:
 
 ## Choose a php version
 
-Rocky Linux, like its upstream, offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [ supported-versions ](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
+Rocky Linux, like its upstream, offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [ supported versions ](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
 
 To obtain a list of available versions, simply enter the following command:
 
@@ -234,7 +234,7 @@ When working via an interface, you have to configure `listen.owner`, `listen.gro
 
 When working via a socket, you have to configure `listen.allowed_clients` to restrict access to the php server to certain IP addresses.
 
-Example : `listen.allowed_clients = 127.0.0.1`
+Example: `listen.allowed_clients = 127.0.0.1`
 
 #### Static or dynamic configuration
 
