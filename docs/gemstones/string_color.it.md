@@ -1,5 +1,5 @@
 ---
-titie: Il colore della stringa
+title: bash - Colore della stringa
 author: tianci li
 contributors: Steven Spencer, Franco Colussi
 tested with: 8.6, 9.0
