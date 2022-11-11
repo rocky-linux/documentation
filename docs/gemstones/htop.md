@@ -1,11 +1,16 @@
 ---
-title: htop-Process Management
+title: htop - Process Management
 author: tianci li
 contributors: Steven Spencer
 date : 2021-10-16
+tags:
+  - htop
+  - processes
 ---
 
-#  install `htop` 
+# htop - Process Management
+
+## install `htop` 
 Every system administrator likes to use some of the more commonly used commands. Today I recommend `htop` as an alternative to the `top` command. To use the `htop` command usually, you need to install it first.
 
 ``` bash
@@ -17,7 +22,7 @@ dnf makecache
 dnf -y install htop
 ```
 
-#  Use `htop`
+## Use `htop`
 You only need to type `htop` in the terminal, and the interactive interface is as follows:
 
 ```
@@ -31,7 +36,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 
 <kbd>F1</kbd>Help   <kbd>F2</kbd>Setup  <kbd>F3</kbd>Search <kbd>F4</kbd>Filter <kbd>F5</kbd>Tree   <kbd>F6</kbd>SortBy <kbd>F7</kbd>Nice   <kbd>F8</kbd>Nice+  <kbd>F9</kbd>Kill   <kbd>F10</kbd>Quit
 
-##  Top Description
+### Top Description
 
 * The top 0 and 1 indicate the number of your CPU cores, and the percentage indicates the occupancy rate of a single core (of course, the total occupancy rate of the CPU can also be displayed)
     * The different colors of the progress bar indicate the percentage of different process types:
@@ -58,7 +63,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 * Load average, the three values ​​respectively represent the average load of the system in the last 1 minute, the last 5 minutes, and the last 15 minutes
 * Uptime, which means the running time after booting
 
-##  Process information description
+### Process information description
 
 * **PID-Process ID number**
 
@@ -78,13 +83,13 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 * TIME+-shows the running time since the process was started
 * Command-the command corresponding to the process
 
-##  Shortcut key description
+### Shortcut key description
 In the interactive interface, press the <kbd>F1</kbd> button to see the corresponding shortcut key description.
 
 * The up, down, left, and right direction keys can scroll through the interactive interface, and <kbd>space</kbd> can mark the corresponding process, which is marked in yellow.
 * The <kbd>N</kbd> button, the <kbd>P</kbd> button, the <kbd>M</kbd> button and the <kbd>T</kbd> button are respectively PID, CPU%, MEM%, TIME+ is used for sorting. Of course, you can also use the mouse to click to sort in ascending or descending order of a certain field.
 
-##  Other commonly used
+### Other commonly used
 To manage the process, use the <kbd>F9</kbd> button to send different signals to the process. The list of signals can be found in `kill -l`. The more commonly used ones are:
 
 | Signal | Description |
@@ -93,5 +98,5 @@ To manage the process, use the <kbd>F9</kbd> button to send different signals to
 |9 | Used to immediately end the running of the program, used to forcibly terminate the process, similar to the forced end in the windows taskbar |
 |15 | The default signal for the kill command. Sometimes if a problem has occurred in the process and the process cannot be terminated normally with this signal, we will try signal 9 |
 
-##  End
+## End
 `htop` is much easier to use than the `top` that comes with the system, it is more intuitive, and it improves daily use greatly. This is why usually the first thing after installing the operating system the author installs it.
