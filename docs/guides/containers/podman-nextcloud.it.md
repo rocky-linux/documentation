@@ -194,7 +194,7 @@ eof
 Salvare e chiudere, quindi ripetere i passaggi con lo script per l'eliminazione dei database, se necessario:
 
 ```bash
-vi db-delete.sh
+vi db-drop.sh
 ```
 
 Copiate e incollate questo codice nel nuovo file:
@@ -269,7 +269,7 @@ Ecco il codice necessario:
 
 !!! warning "Attenzione"
 
-    Ai fini di questa guida, il seguente script cancellerà tutti i volumi Podman. Se ci sono altre applicazioni in esecuzione con i propri volumi, modificare/commentare la riga "podman volume rm --all";
+    Ai fini di questa guida, il seguente script cancellerà tutti i Volumi Podman. Se ci sono altre applicazioni in esecuzione con i propri volumi, modificare/commentare la riga "podman volume rm --all";
 
 ```
 #!/bin/bash
@@ -452,7 +452,7 @@ CONTAINER ID IMAGE                              COMMAND              CREATED    
 32534e5a5890 docker.io/arm64v8/nextcloud:latest apache2-foregroun... 12 seconds ago Up 12 seconds ago          nextcloud
 ```
 
-Da qui, dovreste essere in grado di puntare il vostro browser all'indirizzo IP del vostro server (ad esempio http://10.1.1.160) e vedere Nextcloud in funzione.
+Da qui, si dovrebbe essere in grado di puntare il browser all'indirizzo IP del server. Se state seguendo e avete lo stesso IP del nostro esempio, potete sostituirlo qui (ad esempio, http://your-server-ip) e vedere Nextcloud in funzione.
 
 ## Conclusione
 
