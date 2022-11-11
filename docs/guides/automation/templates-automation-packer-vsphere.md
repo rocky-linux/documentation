@@ -30,7 +30,7 @@ This document covers the vSphere virtual machine template creation with Packer a
 
 Of course, you can adapt this how-to for other hypervisors.
 
-Although we're using the minimal ISO image here, you could choose to use the DVD image (much bigger and perhaps too big) or the boot image (much smaller and perhaps too small).This choice is up to you. It impacts in particular the bandwidth you will need for the installation, and thus the provisioning time. We will discuss next the impact of the default choice and how to remedy it.
+Although we're using the minimal ISO image here, you could choose to use the DVD image (much bigger and perhaps too big) or the boot image (much smaller and perhaps too small). This choice is up to you. It impacts in particular the bandwidth you will need for the installation, and thus the provisioning time. We will discuss next the impact of the default choice and how to remedy it.
 
 You can also choose not to convert the virtual machine into a template, in this case you will use Packer to deploy each new VM, which is still quite feasible (an installation starting from 0 takes less than 10 minutes without human interaction).
 
@@ -371,7 +371,7 @@ At this stage, you could also elect to just use the VM as is (not converting it 
 
 ## The ks.cfg file
 
-As noted above, we need to provide a Kicstart response file that will be used by Anaconda.
+As noted above, we need to provide a kickstart response file that will be used by Anaconda.
 
 Here's an example of that file:
 
