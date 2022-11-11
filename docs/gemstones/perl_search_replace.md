@@ -1,6 +1,9 @@
 ---
-title: Perl - Search and Replace
+title: perl - Search and Replace
 author: Steven Spencer
+tags:
+  - perl
+  - search
 ---
 
 # `perl` Search and Replace
