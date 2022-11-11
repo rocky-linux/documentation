@@ -209,10 +209,10 @@ php_value[session.save_path]    = /var/lib/php/session
 php_value[soap.wsdl_cache_dir]  = /var/lib/php/wsdlcache
 ```
 
-| Istruzioni | Descrizione                                                                                                                                                    |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `[pool]`   | Nome del pool di processi. Il file di configurazione può essere composto da diversi pool di processi (il nome del pool tra parentesi inizia una nuova sezione) |
-| `listen`   | Definisce l'interfaccia di ascolto o il socket unix utilizzato.                                                                                                |
+| Istruzioni | Descrizione                                                                                                                                                     |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `[pool]`   | Nome del pool di processi. Il file di configurazione può essere composto da diversi pool di processi (il nome del pool tra parentesi inizia una nuova sezione). |
+| `listen`   | Definisce l'interfaccia di ascolto o il socket unix utilizzato.                                                                                                 |
 
 #### Configurare il modo di accedere ai processi php-fpm
 
@@ -234,11 +234,11 @@ Quando si lavora tramite un'interfaccia, bisogna configurare `listen.owner`, `li
 
 Quando si lavora tramite un socket, bisogna configurare `listen.allowed_clients` per limitare l'accesso al server php a certi indirizzi IP.
 
-Esempio : `listen.allowed_clients = 127.0.0.1`
+Esempio: `listen.allowed_clients = 127.0.0.1`
 
 #### Configurazione statica o dinamica
 
-I processi di php-fpm possono essere gestiti staticamente o dinamicamente
+I processi di php-fpm possono essere gestiti staticamente o dinamicamente.
 
 In modalità statica, il numero di processi figli è impostato dal valore di `pm.max_children`;
 
@@ -265,7 +265,7 @@ PHP-FPM creerà un nuovo processo per sostituire uno che ha processato un numero
 
 Per impostazione predefinita, `pm.max_requests` è impostato a 0, il che significa che i processi non vengono mai riciclati. L'uso dell'opzione `pm.max_requests` può essere interessante per applicazioni con perdite di memoria.
 
-C'è una terza modalità di funzionamento, la modalità `ondemand`. Questa modalità avvia un processo solo quando riceve una richiesta. Non è una modalità ottimale per i siti con forti influenze, ed è da riservare per esigenze specifiche (siti con richieste molto deboli, backend di gestione, ecc.)
+C'è una terza modalità di funzionamento, la modalità `ondemand`. Questa modalità avvia un processo solo quando riceve una richiesta. Non è una modalità ottimale per i siti con forti influenze, ed è da riservare per esigenze specifiche (siti con richieste molto deboli, backend di gestione, ecc.).
 
 !!! Note "Nota"
 
@@ -458,7 +458,7 @@ opcache.max_accelerated_files=4000
 
 dove:
 
-* `opcache.memory_consumption` corrisponde alla quantità di memoria necessaria per l'opcache (da aumentare fino a ottenere un corretto hit ratio)
+* `opcache.memory_consumption` corrisponde alla quantità di memoria necessaria per l'opcache (da aumentare fino a ottenere un corretto rapporto di successo).
 * `opcache.interned_strings_buffer` la quantità di stringhe da mettere in cache.
 * `opcache.max_accelerated_files` è vicino al risultato del comando `find ./ -iname "*.php"|wc -l`.
 
@@ -466,7 +466,7 @@ Puoi fare riferimento alla pagina `info.php` (incluso il `phpinfo();`) per confi
 
 !!! Note "Nota"
 
-    Ad ogni nuovo inserimento di nuovo codice, sarà necessario svuotare l'opcache (per esempio riavviando il processo php-fpm)
+    Ad ogni nuovo inserimento di nuovo codice, sarà necessario svuotare l'opcache (per esempio riavviando il processo php-fpm).
 
 !!! Note "Nota"
 
