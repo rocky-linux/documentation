@@ -129,13 +129,13 @@ Available commands are:
     build           build image(s) from template
     console         creates a console for testing variable interpolation
     fix             fixes templates from old versions of packer
-    fmt             Rewrites HCL2 config files to canonical format
+    fmt             rewrites HCL2 config files to canonical format
     hcl2_upgrade    transform a JSON template into an HCL2 configuration
-    init            Install missing plugins or upgrade plugins
+    init            install missing plugins or upgrade plugins
     inspect         see components of a template
-    plugins         Interact with Packer plugins and catalog
+    plugins         interact with Packer plugins and catalog
     validate        check that a template is valid
-    version         Prints the Packer version
+    version         prints the Packer version
 ```
 
 ### Template creation with Packer
@@ -307,7 +307,7 @@ This builder lets us configure the hardware we need:
 
     You will never forget again to include CPU_hot_plug as it is automatic now!
 
-You can do more cool thing with the disk, cpu, etc. You should refer to the documentation if you are interested in making other adjustments.
+You can do more cool things with the disk, cpu, etc. You should refer to the documentation if you are interested in making other adjustments.
 
 To start the installation, you need an ISO image of Rocky Linux. Here is an example of how to use an image located in a vSphere content library. You can of course store the ISO elsewhere, but in the case of a vSphere content library, you have to get the full path to the ISO file on the server hosting the Content Library (in this case it is a Synology, so directly on the DSM explorer).
 
@@ -376,7 +376,7 @@ As noted above, we need to provide a kickstart response file that will be used b
 Here's an example of that file:
 
 ```
-# Use CDROM installation media
+# Use CD-ROM installation media
 repo --name="AppStream" --baseurl="http://download.rockylinux.org/pub/rocky/8.4/AppStream/x86_64/os/"
 cdrom
 # Use text install
