@@ -35,7 +35,7 @@ PHP-FPM, **in addition to better performances**, brings:
 
 ## Choose a php version
 
-Rocky Linux, like its upstream, offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [ supported-versions ](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
+Rocky Linux, like its upstream, offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [ supported versions ](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
 
 To obtain a list of available versions, simply enter the following command:
 
@@ -211,7 +211,7 @@ php_value[soap.wsdl_cache_dir]  = /var/lib/php/wsdlcache
 
 | Instructions | Description                                                   |
 |--------------|---------------------------------------------------------------|
-| `[pool]`     | Process pool name. The configuration file can be composed of several process pools (the name of the pool in brackets starts a new section) |
+| `[pool]`     | Process pool name. The configuration file can be composed of several process pools (the name of the pool in brackets starts a new section). |
 | `listen`     | Defines the listening interface or the unix socket used. |
 
 #### Configuring the way to access php-fpm processes
@@ -234,11 +234,11 @@ When working via an interface, you have to configure `listen.owner`, `listen.gro
 
 When working via a socket, you have to configure `listen.allowed_clients` to restrict access to the php server to certain IP addresses.
 
-Example : `listen.allowed_clients = 127.0.0.1`
+Example: `listen.allowed_clients = 127.0.0.1`
 
 #### Static or dynamic configuration
 
-The processes of php-fpm can be managed statically or dynamically
+The processes of php-fpm can be managed statically or dynamically.
 
 In static mode, the number of child processes is set by the value of `pm.max_children`;
 
@@ -265,7 +265,7 @@ PHP-FPM will create a new process to replace one that has processed a number of 
 
 By default, `pm.max_requests` is set to 0, which means that processes are never recycled. Using the `pm.max_requests` option can be interesting for applications with memory leaks.
 
-There is a third mode of operation, the `ondemand` mode. This mode only starts a process when it receives a request. It is not an optimal mode for sites with strong influences, and is to be reserved for specific needs (sites with very weak requests, management backend, etc.)
+There is a third mode of operation, the `ondemand` mode. This mode only starts a process when it receives a request. It is not an optimal mode for sites with strong influences, and is to be reserved for specific needs (sites with very weak requests, management backend, etc.).
 
 !!! Note
 
@@ -413,7 +413,7 @@ pm.max_children = 50
 pm.start_servers = 12
 pm.min_spare_servers = 12
 pm.max_spare_servers = 36
-pm.process_idle_timeout = 10s;
+pm.process_idle_timeout = 10s
 pm.max_requests = 500
 ```
 
@@ -458,7 +458,7 @@ opcache.max_accelerated_files=4000
 
 where:
 
-* `opcache.memory_consumption` corresponds to the amount of memory needed for the opcache (to be increased until a correct hit ratio is obtained)
+* `opcache.memory_consumption` corresponds to the amount of memory needed for the opcache (to be increased until a correct hit ratio is obtained).
 * `opcache.interned_strings_buffer` the amount of strings to cache.
 * `opcache.max_accelerated_files` is near to the result of the `find ./ -iname "*.php"|wc -l` command.
 
@@ -466,7 +466,7 @@ You can refer to an `info.php` page (including the `phpinfo();`) to configure th
 
 !!! Note
 
-    At each new deployment of new code, it will be necessary to empty the opcache (for example by restarting the php-fpm process)
+    At each new deployment of new code, it will be necessary to empty the opcache (for example by restarting the php-fpm process).
 
 !!! Note
 

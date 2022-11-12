@@ -1,14 +1,17 @@
 ---
-title: Install Docker Engine
+title: Docker - Install Engine
 author: wale soyinka
 contributors:
 date: 2021-08-04
+tags:
+  - docker
 ---
 
+# Introduction
 
 The Docker Engine can be used running native Docker style container workloads on Rocky Linux servers. This is sometimes preferred to running the full Docker Desktop environment.
 
-# Add the docker repository
+## Add the docker repository
 
 Use the `dnf` utility to add the docker repository to your Rocky Linux server. Type:
 
@@ -16,7 +19,7 @@ Use the `dnf` utility to add the docker repository to your Rocky Linux server. T
 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
-# Install the needed packages
+## Install the needed packages
 
 Install the latest version of Docker Engine, containerd, and Docker Compose, by running:
 
@@ -24,7 +27,7 @@ Install the latest version of Docker Engine, containerd, and Docker Compose, by 
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
-# Start and enable the systemd docker service (dockerd)
+## Start and enable the systemd docker service (dockerd)
 
 Use the `systemctl` utility to configure the dockerd daemon to automatically startup with the next system reboot and simultaneously start it for the current session. Type:
 
@@ -33,7 +36,7 @@ sudo systemctl --now enable docker
 ```
 
 
-## Notes
+### Notes
 
 ```
 docker-ce               : This package provides the underlying technology for building and running docker containers (dockerd) 
