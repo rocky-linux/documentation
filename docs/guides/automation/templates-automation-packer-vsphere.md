@@ -38,7 +38,7 @@ You can also choose not to convert the virtual machine into a template, in this 
 
 ### Introduction to Packer
 
-Packer is an open source virtual machine imaging tool, released under the MPL 2.0 license and created by Hashicorp. It will help you automate the process of creating virtual machine images with pre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments. 
+Packer is an open-source virtual machine imaging tool, released under the MPL 2.0 license and created by Hashicorp. It will help you automate the process of creating virtual machine images with pre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments. 
 
 With Packer you can create images to be used on the following platforms:
 
@@ -62,7 +62,7 @@ There are two ways to install Packer on your Rocky Linux system.
 
 #### Installing Packer from the Hashicorp repo
 
-HashiCorp maintains and signs packages for different Linux distributions. To install packer in our Rocky Linux sytem, please follow the next steps:
+HashiCorp maintains and signs packages for different Linux distributions. To install packer in our Rocky Linux system, please follow the next steps:
 
 
 #### Download and install from the Packer website
@@ -153,7 +153,7 @@ $ vim .vsphere-secrets.json {
   }
 ```
 
-Those credentials needs some grant access to your vSphere environment.
+Those credentials need some grant access to your vSphere environment.
 
 Let's create a json file (in the future, the format of this file will change to the HCL):
 
@@ -240,11 +240,11 @@ We will also need our booting virtual machine to access a `ks.cfg` (Kickstart) f
 
 A Kickstart file contains the answers to the questions asked during the installation process. This file passes all its contents to Anaconda (the installation process), which allows you to fully automate the creation of the template.
 
-The author likes to store his `ks.cfg` file in an internal web server accessible from his template, but other possibilities exists that you may chose to use instead.
+The author likes to store his `ks.cfg` file in an internal web server accessible from his template, but other possibilities exists that you may choose to use instead.
 
-For example, the `ks.cfg` file is accessible from the VM at this url in our lab: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. You would need to set up something similar to use this method.
+For example, the `ks.cfg` file is accessible from the VM at this URL in our lab: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. You would need to set up something similar to use this method.
 
-Since we want to keep our password private, It is declared as a sensitive variable. Example:
+Since we want to keep our password private, it is declared as a sensitive variable. Example:
 
 ```
   "sensitive-variables": ["vcenter_password"],
@@ -338,13 +338,13 @@ After the first reboot, Packer will connect to your server by SSH. You can use t
 "ssh_username": "root",
 ```
 
-At the end of the process, the VM must be stopped. It's a little bit more complicated with a non root user, but it's is well documented:
+At the end of the process, the VM must be stopped. It's a little bit more complicated with a non-root user, but it is well documented:
 
 ```
 "shutdown_command": "/sbin/halt -h -p",
 ```
 
-Next, we deal with the vSphere configuration. The only notable things here are the use of the variables defined at the beginning of the document in our home directory, as well as the `insecure_connection` option, because our vSphere uses a self-signed certificate (See note in Assumptions at the top of this document):
+Next, we deal with the vSphere configuration. The only notable things here are the use of the variables defined at the beginning of the document in our home directory, as well as the `insecure_connection` option, because our vSphere uses a self-signed certificate (see note in Assumptions at the top of this document):
 
 ```
 "insecure_connection": "true",
@@ -480,14 +480,14 @@ systemctl start vmtoolsd
 
 As we have chosen to use the minimal iso, instead of the Boot or DVD, not all required installation packages will be available.
 
-As Packer relies on VMware Tools to detect the end of the installation, and the `open-vm-tools` package is only available in the AppStream repos, we have to specify to the installation process that we want to use as source both the cdrom and this remote repo:
+As Packer relies on VMware Tools to detect the end of the installation, and the `open-vm-tools` package is only available in the AppStream repos, we have to specify to the installation process that we want to use as source both the CD-ROM and this remote repo:
 
 !!! Note
 
-    If you don't have access to the external repos, you can use either a mirror of the repo, a squid proxy, or the dvd.
+    If you don't have access to the external repos, you can use either a mirror of the repo, a squid proxy, or the DVD.
 
 ```
-# Use CDROM installation media
+# Use CD-ROM installation media
 repo --name="AppStream" --baseurl="http://download.rockylinux.org/pub/rocky/8.4/AppStream/x86_64/os/"
 cdrom
 ```
@@ -562,7 +562,7 @@ You can not only add packages but also remove them. Since we control the environ
 ...
 ```
 
-The next part adds some users. It's interesting in our case to create an `ansible` user, without password but with a pubkey. This allows all of our new VMs to be accessible from our Ansible server to run the post-install actions:
+The next part adds some users. It's interesting in our case to create an `ansible` user, without password but with a public key. This allows all of our new VMs to be accessible from our Ansible server to run the post-install actions:
 
 ```
 # Manage Ansible access
@@ -657,7 +657,7 @@ dnf -y install cloud-init
 echo "manual_cache_clean: True" > /etc/cloud/cloud.cfg.d/99-manual.cfg
 ```
 
-Since vSphere now uses cloud-init via the VMware Tools to configure the network of a centos8 guest machine, it must be installed. However, if you do nothing, the configuration will be applied on the first reboot and everything will be fine. But on the next reboot, cloud-init will not receive any new information from vSphere. In these cases, without information about what to do, cloud-init will reconfigure the VM's network interface to use DHCP, and you will loose your static configuration.
+Since vSphere now uses cloud-init via the VMware Tools to configure the network of a centos8 guest machine, it must be installed. However, if you do nothing, the configuration will be applied on the first reboot and everything will be fine. But on the next reboot, cloud-init will not receive any new information from vSphere. In these cases, without information about what to do, cloud-init will reconfigure the VM's network interface to use DHCP, and you will lose your static configuration.
 
 As this is not the behavior we want, we need to specify to cloud-init not to delete its cache automatically, and therefore to reuse the configuration information it received during its first reboot and each reboot after that.
 
