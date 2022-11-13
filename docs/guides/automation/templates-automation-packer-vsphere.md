@@ -30,7 +30,7 @@ This document covers the vSphere virtual machine template creation with Packer a
 
 Of course, you can adapt this how-to for other hypervisors.
 
-Although we're using the minimal ISO image here, you could choose to use the DVD image (much bigger and perhaps too big) or the boot image (much smaller and perhaps too small). This choice is up to you. It impacts in particular the bandwidth you will need for the installation, and thus the provisioning time. We will discuss next the impact of the default choice and how to remedy it.
+Although we are using the minimal ISO image here, you could choose to use the DVD image (much bigger and perhaps too big) or the boot image (much smaller and perhaps too small). This choice is up to you. It impacts in particular the bandwidth you will need for the installation, and thus the provisioning time. We will discuss next the impact of the default choice and how to remedy it.
 
 You can also choose not to convert the virtual machine into a template, in this case you will use Packer to deploy each new VM, which is still quite feasible (an installation starting from 0 takes less than 10 minutes without human interaction).
 
@@ -38,7 +38,7 @@ You can also choose not to convert the virtual machine into a template, in this 
 
 ### Introduction to Packer
 
-Packer is an open-source virtual machine imaging tool, released under the MPL 2.0 license and created by Hashicorp. It will help you automate the process of creating virtual machine images with pre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments. 
+Packer is an open-source virtual machine imaging tool, released under the MPL 2.0 license, and created by Hashicorp. It will help you automate the process of creating virtual machine images with pre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments. 
 
 With Packer you can create images to be used on the following platforms:
 
@@ -144,7 +144,7 @@ It is assumed that you are on Linux to perform the following tasks.
 
 As we will connect to a VMware vCenter Server to send our commands via Packer, we need to store our credentials outside the configuration files which we will create next.
 
-Let's create a hidden file with our credentials in our home directory. This is a json file:
+Let us create a hidden file with our credentials in our home directory. This is a json file:
 
 ```
 $ vim .vsphere-secrets.json {
@@ -155,7 +155,7 @@ $ vim .vsphere-secrets.json {
 
 Those credentials need some grant access to your vSphere environment.
 
-Let's create a json file (in the future, the format of this file will change to the HCL):
+Let us create a json file (in the future, the format of this file will change to the HCL):
 
 ```
 {
@@ -265,7 +265,7 @@ Next part is interesting, and will be covered later by providing you the script 
 ],
 ```
 
-After the installation is finished, the VM will reboot. As soon as Packer detects an IP address (thanks to the VMware Tools), it will copy the `requirements.sh` and execute it. It's a nice feature to clean the VM after the installation process (remove SSH keys, clean the history, etc.) and install some extra package.
+After the installation is finished, the VM will reboot. As soon as Packer detects an IP address (thanks to the VMware Tools), it will copy the `requirements.sh` and execute it. It is a nice feature to clean the VM after the installation process (remove SSH keys, clean the history, etc.) and install some extra package.
 
 ### The builders section
 
@@ -323,7 +323,7 @@ Then you have to provide the complete command to be entered during the installat
 
     This example takes the most complex case: using a static IP. If you have a DHCP server available, the process will be much easier.
 
-This is the most amusing part of the procedure: I'm sure you'll go and admire the VMware console during the generation, just to see the automatic entry of the commands during the boot.
+This is the most amusing part of the procedure: i am sure you will go and admire the VMware console during the generation, just to see the automatic entry of the commands during the boot.
 
 ```
 "boot_command": [
@@ -338,7 +338,7 @@ After the first reboot, Packer will connect to your server by SSH. You can use t
 "ssh_username": "root",
 ```
 
-At the end of the process, the VM must be stopped. It's a little bit more complicated with a non-root user, but it is well documented:
+At the end of the process, the VM must be stopped. It is a little bit more complicated with a non-root user, but it is well documented:
 
 ```
 "shutdown_command": "/sbin/halt -h -p",
@@ -484,7 +484,7 @@ As Packer relies on VMware Tools to detect the end of the installation, and the 
 
 !!! Note
 
-    If you don't have access to the external repos, you can use either a mirror of the repo, a squid proxy, or the DVD.
+    If you do not have access to the external repos, you can use either a mirror of the repo, a squid proxy, or the DVD.
 
 ```
 # Use CD-ROM installation media
@@ -492,7 +492,7 @@ repo --name="AppStream" --baseurl="http://download.rockylinux.org/pub/rocky/8.4/
 cdrom
 ```
 
-Let's jump to the network configuration, as once again, in this example we aren't using a DHCP server:
+Let us jump to the network configuration, as once again, in this example we are not using a DHCP server:
 
 ```
 # Network information
@@ -535,7 +535,7 @@ The next section concerns the packages that will be installed. A "best practice"
 
 The `openssh-clients` package seems to be required for Packer to copy its scripts into the VM.
 
-The `open-vm-tools` is also needed by Packer to detect the end of the installation, this explains the addition of the AppStream repository. `perl` and `perl-File-Temp` will also be required by VMware Tools during the deployment part. This is a shame because it requires a lot of other dependent packages. `python3` (3.6) will also be required in the future for Ansible to work (if you won't use Ansible or python, remove them!).
+The `open-vm-tools` is also needed by Packer to detect the end of the installation, this explains the addition of the AppStream repository. The packages `perl` and `perl-File-Temp` will also be required by VMware Tools during the deployment part. This is a shame because it requires a lot of other dependent packages. `python3` (3.6) will also be required in the future for Ansible to work (if you won't use Ansible or python, remove them!).
 
 ```
 %packages --ignoremissing --excludedocs
@@ -562,7 +562,7 @@ You can not only add packages but also remove them. Since we control the environ
 ...
 ```
 
-The next part adds some users. It's interesting in our case to create an `ansible` user, without password but with a public key. This allows all of our new VMs to be accessible from our Ansible server to run the post-install actions:
+The next part adds some users. It is interesting in our case to create an `ansible` user, without password but with a public key. This allows all of our new VMs to be accessible from our Ansible server to run the post-install actions:
 
 ```
 # Manage Ansible access
@@ -673,7 +673,7 @@ You can check the [Bento project](https://github.com/chef/bento/tree/master/pack
 
 ## Template creation
 
-Now it's time to launch Packer and check that the creation process, which is completely automatic, works well.
+Now it is time to launch Packer and check that the creation process, which is completely automatic, works well.
 
 Simply enter this at the command line:
 
@@ -742,13 +742,13 @@ This playbook that we provide you, must be adapted to your needs and your way of
 
 You can store sensitive data in the `./vars/credentials.yml`, which you will obviously have encrypted beforehand with `ansible-vault` (especially if you use git for your work). As everything uses a variable, you can easily make it suit your needs.
 
-If you don't use something like Rundeck or Awx, you can launch the deployment with a command line similar to this one:
+If you do not use something like Rundeck or Awx, you can launch the deployment with a command line similar to this one:
 
 ```
 ansible-playbook -i ./inventory/hosts  -e '{"comments":"my comments","cluster_name":"CS_NAME","esxi_hostname":"ESX_NAME","state":"started","storage_folder":"PROD","datacenter_name":"DC_NAME}","datastore_name":"DS_NAME","template_name":"template-rockylinux8-0.0.1","vm_name":"test_vm","network_name":"net_prod","network_ip":"192.168.1.20","network_gateway":"192.168.1.254","network_mask":"255.255.255.0","memory_mb":"4","num_cpu":"2","domain":"rockylinux.lan","dns_servers":"192.168.1.254","guest_id":"centos8_64Guest"}' ./vmware/create_vm.yml --vault-password-file /etc/ansible/vault_pass.py
 ```
 
-It is at this point that you can launch the final configuration of your virtual machine using Ansible. Don't forget to change the root password, secure SSH, register the new VM in your monitoring tool and in your IT inventory, etc.
+It is at this point that you can launch the final configuration of your virtual machine using Ansible. Do not forget to change the root password, secure SSH, register the new VM in your monitoring tool and in your IT inventory, etc.
 
 ## In summary
 
