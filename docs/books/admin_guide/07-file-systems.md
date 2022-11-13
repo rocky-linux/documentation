@@ -385,15 +385,21 @@ Each file system has a structure which is identical on each partition. A **Boot 
 
 ### Boot sector
 
-Boot sector is the first sector of bootable storage media, that is, 0 cylinder, 0 track, 1 sector. It consists of three parts:
+Boot sector is the first sector of bootable storage media, that is, 0 cylinder, 0 track, 1 sector(1 sector equals 512 bytes). It consists of three parts:
 
-MBR(master boot record):
-DPT(disk partition table):
-BRID(boot record ID):
+1. MBR(master boot record): 446 bytes.
+2. DPT(disk partition table): 64 bytes.
+3. BRID(boot record ID): 2 bytes.
+
+|   Item      |   Description |
+|   ---       |   ---         |
+|   MBR       | Stores the "boot loader"(or "GRUB"); load the kernel, pass parameters; provide a menu interface at boot time; transfer to another loader, such as when multiple operating systems are installed. |
+|   DPT       | Record the partition status of the entire disk.              |
+|   BRID      | Its function is to determine whether the device can be used to boot.               |
 
 ### Super block
 
-The size of the **super block** table is defined at creation. It is present on each partition and contains the elements necessary for its utilization.
+The size of the **Super block** table is defined at creation. It is present on each partition and contains the elements necessary for its utilization.
 
 It describes the File System:
 
@@ -442,7 +448,7 @@ Information present in the *inode table* :
 * Date of the last modification of the inode (= creation);
 * Table of several pointers (block table) to the logical blocks containing the pieces of the file.
 
-### Data area
+### Data block
 
 Its size corresponds to the rest of the available space of the partition. This area contains the catalogs corresponding to each directory and the data blocks corresponding to the contents of the files.
 
