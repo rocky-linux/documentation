@@ -377,15 +377,19 @@ Example:
 
     Without a file system it is not possible to use the disk space.
 
-Each file system has a structure which is identical on each partition. A **boot block** and a **super block** initialized by the system and then an **inode table** and a **data area** initialized by the administrator.
+Each file system has a structure which is identical on each partition. A **Boot Sector** and a **Super block** initialized by the system and then an **Inode table** and a **Data block** initialized by the administrator.
 
 !!! Note
 
     The only exception is the **swap** partition.
 
-### Boot block
+### Boot sector
 
-The **boot block** occupies the first block on the disk and is present on all partitions. It contains the program that starts and initializes the system and is therefore only filled in for the boot partition.
+Boot sector is the first sector of bootable storage media, that is, 0 cylinder, 0 track, 1 sector. It consists of three parts:
+
+MBR(master boot record):
+DPT(disk partition table):
+BRID(boot record ID):
 
 ### Super block
 
