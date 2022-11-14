@@ -518,6 +518,7 @@ Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) whic
 | `/usr`     | Everything that is not necessary for minimal system operation | _UNIX System Resources_       |
 | `/mnt`     | For mounting temporary SF                                     | _mount_                       |
 | `/media`   | For mounting removable media                                  |                               |
+| `/misc`    | Mount the shared directory of the NFS service.                |                               |
 | `/root`    | Administrator's login directory                               |                               |
 | `/home`    | User data                                                     |                               |
 | `/tmp`     | Temporary files                                               | _temporary_                   |
@@ -526,6 +527,9 @@ Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) whic
 | `/opt`     | Specific to installed applications                            | _optional_                    |
 | `/proc`    | Virtual file system representing different processes          | _processes_                   |
 | `/var`     | Miscellaneous variable files                                  | _variables_                   |
+| `/sys`     | Virtual file system, similar to /proc                         |                               |
+| `/run`     | That is /var/run                                              |                               |
+| `/srv`     | Service Data Directory                                        | _service_                     |
 
 * To perform a mount or unmount, at the tree level, you must not be under its mount point.
 * Mounting on a non-empty directory does not delete the content. It is only hidden.
@@ -560,14 +564,27 @@ proc                           /proc     proc    defaults        0   0
 | 5      | Enable or disable backup management (0:not backed up, 1:backed up)                                |
 | 6      | Check order when checking the SF with the `fsck` command (0:no check, 1:priority, 2:not priority) |
 
-The `mount -a` command allows new mounts to be taken into account without rebooting.
-They are then written to the `/etc/mtab` file which contains the current mounts.
+The `mount -a` command allows you to mount automatically based on the contents of the configuration file `/etc/fstab`, The mounted information is then written to `/etc/mtab`.
 
 !!! Warning
 
-    Only the mount points listed in `/etc/fstab` will be mounted on reboot.
+    Only the mount points listed in `/etc/fstab` will be mounted on reboot. Generally speaking, we do not recommend writing USB flash disk and removable hard drives to the `/etc/fstab` file, because when the external device is unplugged and rebooted, the system will prompt that the device cannot be found, resulting in a failure to boot. So what am I supposed to do? Temporary mount, for example:
+    
+    ```bash
+    Shell > mkdir /mnt/usb     
+    Shell > mount -t  vfat  /dev/sdb1  /mnt/usb  
+    
+    # Read the information of the USB flash disk
+    Shell > cd /mnt/usb/
 
-It is possible to make a copy of the `/etc/mtab` file or to copy its contents to `/etc/fstab`.
+    # When not needed, execute the following command to pull out the USB flash disk
+    Shell > umount /mnt/usb
+    ```
+
+!!! info
+
+    It is possible to make a copy of the `/etc/mtab` file or to copy its contents to `/etc/fstab`.
+    If you want to view the UUID of the device partition number, type the following command: `lsblk -o name,uuid`. UUID is the abbreviation of `Universally Unique Identifier`.
 
 ### Mount management commands
 
@@ -624,14 +641,14 @@ Example:
 
     When disassembling, you must not stay below the mounting point. Otherwise, the following error message is displayed: `device is busy`.
 
-## Types of files
+## File naming convention
 
 As in any system, in order to be able to find one's way through the tree structure and the file management, it is important to respect the file naming rules.
 
 * Files are coded on 255 characters;
 * All ASCII characters can be used;
 * Uppercase and lowercase letters are differentiated;
-* No notion of extension.
+* Most files have no concept of file extension. In the GNU/Linux world, most file extensions are not required, except for a few (for example, .jpg, .mp4, .gif, etc.).
 
 Groups of words separated by spaces must be enclosed in quotation marks:
 
@@ -647,11 +664,7 @@ Groups of words separated by spaces must be enclosed in quotation marks:
 
     The **.** at the beginning of the file name only serves to hide it from a simple `ls`.
 
-!!! Warning
-
-    Under Linux, the extension of a file is not a necessary reference to open or modify it. However, it can be useful for the user.
-
-Examples of extension agreements:
+Examples of file extension agreements:
 
 * `.c` : source file in C language;
 * `.h` : C and Fortran header file;
@@ -670,17 +683,29 @@ Examples of extension agreements:
 1      2    3     4  5    6    7       8               9
 ```
 
-| Row |	Description                                                |
-|-----|------------------------------------------------------------|
-| `1` | Inode number                                               |
-| `2` | File type (1st character of the block of 10)               |
-| `3` | Access rights (last 9 characters of the block of 10)       |
-| `4` | Number of links (ordinary) or subdirectories (directories) |
-| `5` | Name of the owner                                          |
-| `6` | Name of the group                                          |
-| `7` | Size (byte, kilo, mega)                                    |
-| `8` | Date of last update                                        |
-| `9` | Name of the file                                           |
+| Row |	Description                                                                       |
+|-----|-----------------------------------------------------------------------------------|
+| `1` | Inode number                                                                      |
+| `2` | File type (1st character of the block of 10), "-" means this is an ordinary file. |
+| `3` | Access rights (last 9 characters of the block of 10)                              |
+| `4` | Number of links (ordinary) or subdirectories (directories)                        |
+| `5` | Name of the owner                                                                 |
+| `6` | Name of the group                                                                 |
+| `7` | Size (byte, kilo, mega)                                                           |
+| `8` | Date of last update                                                               |
+| `9` | Name of the file                                                                  |
+
+In the GNU/Linux world, there are seven file types:
+
+| File types  | Description                                                                                                                                |
+|:-----------:|--------------------------------------------------------------------------------------------------------------------------------------------|
+| **-**       | Represents a ordinary file. Including plain text files (ASCII); binary files (binary); data format files (data); various compressed files. |
+| **d**       | Represents a directory. |
+| **b**       | Block device file. Including all kinds of hard drives, USB drives and so on. | 
+| **c**       | Character device. Interface device of serial port, such as mouse, keyboard, etc. |
+| **s**       | Socket file. It is a file specially used for network communication. | 
+| **p**       | Pipe file. It is a special file type, the main purpose is to solve the errors caused by multiple programs accessing a file at the same time. FIFO is the abbreviation of first-in-first-out. |
+| **l**       | Soft link files, also called symbolic link files, are similar to shortcuts in Windows. | 
 
 ### Different types of files
 
