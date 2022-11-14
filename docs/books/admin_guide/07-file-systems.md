@@ -683,12 +683,12 @@ Examples of file extension agreements:
 1      2    3     4  5    6    7       8               9
 ```
 
-| Row |	Description                                                                       |
+| Part |	Description                                                                       |
 |-----|-----------------------------------------------------------------------------------|
 | `1` | Inode number                                                                      |
 | `2` | File type (1st character of the block of 10), "-" means this is an ordinary file. |
 | `3` | Access rights (last 9 characters of the block of 10)                              |
-| `4` | Number of links (ordinary) or subdirectories (directories)                        |
+| `4` | If this is a directory, this number represents how many subdirectories there are in that directory, including hidden ones. If this is a file, indicates the number of hard links, when the number 1 is, that is, there is only one hard link, that is, it itself.                   |
 | `5` | Name of the owner                                                                 |
 | `6` | Name of the group                                                                 |
 | `7` | Size (byte, kilo, mega)                                                           |
@@ -700,49 +700,32 @@ In the GNU/Linux world, there are seven file types:
 | File types  | Description                                                                                                                                |
 |:-----------:|--------------------------------------------------------------------------------------------------------------------------------------------|
 | **-**       | Represents a ordinary file. Including plain text files (ASCII); binary files (binary); data format files (data); various compressed files. |
-| **d**       | Represents a directory. |
+| **d**       | Represents a directory file. |
 | **b**       | Block device file. Including all kinds of hard drives, USB drives and so on. | 
-| **c**       | Character device. Interface device of serial port, such as mouse, keyboard, etc. |
+| **c**       | Character device file. Interface device of serial port, such as mouse, keyboard, etc. |
 | **s**       | Socket file. It is a file specially used for network communication. | 
 | **p**       | Pipe file. It is a special file type, the main purpose is to solve the errors caused by multiple programs accessing a file at the same time. FIFO is the abbreviation of first-in-first-out. |
-| **l**       | Soft link files, also called symbolic link files, are similar to shortcuts in Windows. | 
+| **l**       | Soft link files, also called symbolic link files, are similar to shortcuts in Windows. Hard link file, also known as physical link file.| 
 
-### Different types of files
+#### Supplementary description of directory
 
-The following types of files can be found on a system:
+In each directory, there are two hidden files - **.** and **..**. You need to use `ls -al` to view, for example:
 
-* Ordinary (text, binary, ...);
-* Directories;
-* Special (printers, screens, ...);
-* Links;
-* Communications (tubes and socket).
+```bash
+# . Indicates that in the current directory, for example, you need to execute a script in a directory, usually:
+Shell > ./scripts
 
-#### Ordinary files
+# .. represents the directory one level above the current directory, for example:
+Shell > cd /etc/
+Shell > cd ..
+Shell > pwd
+/
 
-These are text, program (source), executable (after compilation) or data (binary, ASCII) and multimedia files.
-
+# For an empty directory, its fourth part must be greater than or equal to 2. Because there are "." and ".."
+Shell > mkdir /tmp/t1
+Shell > ls -ldi /tmp/t1
+1179657 drwxr-xr-x 2 root root 4096 Nov 14 18:41 /tmp/t1
 ```
-[root]# ls -l myfile
--rwxr-xr-x   1   root  root  26  nov  31  15:21 myfile
-```
-
-The dash `-` at the beginning of the rights group (10-character block) indicates that it is an ordinary file type.
-
-#### Directory files
-
-Directory files contain references to other files.
-
-By default in each directory are present **.**  and **..**.
-
-* The **.** represents the position in the tree.
-* The **..** represents the father of the current position.
-
-```
-[root]# ls -l mydirectory
-drwxr-xr-x   1   root  root  26  nov  31  15:21 mydirectory
-```
-
-The letter `d` at the beginning of the rights group indicates that it is a directory type file.
 
 #### Special files
 
@@ -755,29 +738,15 @@ They are defined in two modes:
 * **block** mode;
 * **character** mode.
 
-##### Block mode
-
-The special **block mode** file allows, using the system buffers, to transfer data to the device.
-
-```
-[root]# ls -l /dev/sda
+```bash
+# Block device file
+Shell > ls -l /dev/sda
 brw-------   1   root  root  8, 0 jan 1 1970 /dev/sda
-```
 
-The letter `b` at the beginning of the rights group indicates that it is a special file **block**.
-
-##### Character mode
-
-The special *character mode* file is used to transfer data to the device as a stream of one character at a time without using a buffer. These are devices like printer, screen or DAT tapes, ...
-
-The standard output is the screen.
-
-```
-[root]# ls -l /dev/tty0
+# Character device file
+Shell > ls -l /dev/tty0
 crw-------   1   root  root  8, 0 jan 1 1970 /dev/tty0
 ```
-
-The letter `c` at the beginning of the rights group indicates that it is a special character file.
 
 #### Communication files
 
@@ -794,68 +763,44 @@ These files give the possibility to give several logical names to the same physi
 
 There are two types of link files:
 
-* Physical links;
-* Symbolic links.
+* Soft link file, also called symbolic link files;
+* Hard link file, also called physical link files.
 
-##### Physical link
+Their main features are:
 
-The link file and the source file have the same _inode_ number and the link counter is incremented. It is not possible to link different directories or files from different file systems.
+| Link types        | Description        | 
+| ---               | ---                |
+| soft link file    | A shortcut similar to Windows. It has permission of 777 and points to the original file. When the original file is deleted, the linked file and the original file are displayed in red.|
+| Hard link file    | The original file has the same _ inode_ number as the hard-linked file. They can be updated synchronously, including the contents of the file and when it was modified. Cannot cross partitions, cannot cross file systems. Cannot be used for directories. |
 
-!!! Warning
+Specific examples are as follows:
 
-    If the source file is destroyed, the counter is decremented and the link file still accesses the file.
+```bash
+# Permissions and the original file to which they point
+Shell > ls -l /etc/rc.locol
+lrwxrwxrwx 1 root root 13 Oct 25 15:41 /etc/rc.local -> rc.d/rc.local
 
-###### Command `ln` for a physical link
-
-The `ln` command allows you to create physical links.
-
+# When deleting the original file. "-s" represents the soft link option
+Shell > touch /root/Afile
+Shell > ln -s /root/Afile /root/slink1
+Shell > rm -rf /root/Afile
 ```
-[root]# ls –li letter
+
+![Present the effect](images/07-file-systems-019.png)
+
+```bash
+Shell > cd /home/paul/
+Shell > ls –li letter
 666 –rwxr--r-- 1 root root … letter
-```
 
-```
-[root]# ln /home/paul/letter /home/jack/read
-```
+# The ln command does not add any options, indicating a hard link
+Shell > ln /home/paul/letter /home/jack/read
 
-```
-[root]# ls –li /home/*/*
+# The essence of hard links is the file mapping of the same inode number in different directories.
+Shell > ls –li /home/*/*
 666 –rwxr--r-- 2 root root … letter
 666 –rwxr--r-- 2 root root … read
 ```
-
-![Representation of a physical link](images/07-file-systems-009.png)
-
-##### Symbolic link
-
-Unlike the physical link, the symbolic link involves the creation of a new _inode_. At the symbolic link level, only a path is stored in the inode table.
-
-The file created contains only an indication of the path to the file. This notion no longer has the limitations of physical links and it is now possible to link directories and files belonging to different file systems.
-
-!!! Warning
-
-    If the source file is destroyed, the link file can no longer access the file.
-
-###### `ln` command for a symbolic link
-
-The command `ln` with the argument `-s` allows to create symbolic links.
-
-```
-[root]# ls –li letter
-666 -rwxr--r-- 1 root root … letter
-```
-
-```
-[root]# ln -s /home/paul/letter /tmp/read
-```
-
-```
-[root]# ls –li /home/paul/letter /tmp/read
-666 -rwxr--r--- 1 root root … letter
-678 lrwxrwxrwx 1 root root … read -> letter
-```
-
-![Representation of a symbolic link](images/07-file-systems-010.png)
 
 ## File attributes
 
