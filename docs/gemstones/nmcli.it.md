@@ -1,6 +1,8 @@
 ---
-title: nmcli - imposta connessione automatica
+title: nmcli - Impostare la Connessione Automatica
 author: wale soyinka
+tags:
+  - nmcli
 ---
 
 # Modifica della proprietà di autoconnessione del profilo di connessione di NetworkManager
