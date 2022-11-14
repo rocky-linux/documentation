@@ -800,6 +800,10 @@ Shell > ln /home/paul/letter /home/jack/read
 Shell > ls –li /home/*/*
 666 –rwxr--r-- 2 root root … letter
 666 –rwxr--r-- 2 root root … read
+
+# If you use a hard link to a directory, you will be prompted:
+Shell > ln  /etc/  /root/etc_hardlink
+ln: /etc: hard link not allowed for directory
 ```
 
 ## File attributes
