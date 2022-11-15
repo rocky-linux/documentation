@@ -591,10 +591,39 @@ Here we can see the "[e]" for "enabled" next to stream 12, so we know that versi
 
 ### Installing packages from the module stream
 
-Now that our module stream is enabled, the next step is to install `postgresql`. Keep in mind that if we are installing postgresql server, then you would be able to just use `dnf install postgresql` without specifying a profile, as "server" is the default. In this example, let's assume that we only want the client profile applied to our installation. To do this, we simply enter this command:
+Now that our module stream is enabled, the next step is to install `postgresql`, the client application for the postgresql server. This can be achieved by running the following command:
 
 ```
-dnf install postgresql/client
+dnf install postgresql
+```
+
+Which should give you this output:
+
+```
+========================================================================================================================================
+ Package                    Architecture           Version                                              Repository                 Size
+========================================================================================================================================
+Installing group/module packages:
+ postgresql                 x86_64                 12.12-1.module+el8.6.0+1049+f8fc4c36                 appstream                 1.5 M
+Installing dependencies:
+ libpq                      x86_64                 13.5-1.el8                                           appstream                 197 k
+
+Transaction Summary
+========================================================================================================================================
+Install  2 Packages
+Total download size: 1.7 M
+Installed size: 6.1 M
+Is this ok [y/N]:
+```
+
+After approving by typing "y" you installed the application.
+
+### Installing packages from module stream profiles
+
+It's also possible to directly install packages without even having to enable the module stream! In this example, let's assume that we only want the client profile applied to our installation. To do this, we simply enter this command:
+
+```
+dnf install postgresql:12/client
 ```
 
 Which should give you this output:
@@ -608,7 +637,9 @@ Installing group/module packages:
 Installing dependencies:
  libpq                      x86_64                 13.5-1.el8                                           appstream                 197 k
 Installing module profiles:
- postgresql/client                                                                                                                     
+ postgresql/client
+Enabling module streams:
+ postgresql                                        12
 
 Transaction Summary
 ========================================================================================================================================
