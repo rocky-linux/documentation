@@ -15,8 +15,8 @@ tags:
 
 On a Linux system, it is possible to install software in two ways:
 
-    * Using an installation package;
-    * Compiling from source files.
+* Using an installation package;
+* Compiling from source files.
 
 !!! Note
 
@@ -522,6 +522,209 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial # GPG public key path
 ```
 
 By default, the `enabled` directive is absent which means that the repository is enabled. To disable a repository, you must specify the `enabled=0` directive.
+
+## DNF modules
+
+Modules were introduced in Rocky Linux 8 by the upstream. In order to use modules, the AppStream repository must exist and be enabled.
+
+!!! hint "Package Confusion"
+
+    The creation of module streams in the AppStream repository caused a lot of people confusion. Since modules are packaged within a stream (see our examples below), a particular package would show up in our RPMs, but if an attempt was made to install it without enabling the module, nothing would happen. Remember to look at modules if you attempt to install a package and it fails to find it.
+
+### What are modules
+
+Modules come from the AppStream repository and contain both streams and profiles. These can be described as follows:
+
+* **module streams:** A module stream can be thought of as a separate repository within the AppStream repository that contains different application versions. These module repositories contain the application RPMs, dependencies, and documentation for that particular stream. An example of a module stream in Rocky Linux 8 would be `postgresql`. If you install `postgresql` using the standard `sudo dnf install postgresql` you will get version 10. However, using modules, you can instead install versions 9.6, 12 or 13.
+
+* **module profiles:** What a module profile does is take into consideration the use case for the module stream when installing the package. Applying a profile adjusts the package RPMs, dependencies and documentation to account for the module's use. Using the same `postgresql` stream in our example, you can apply a profile of either "server" or "client". Obviously, you do not need the same packages installed on your system if you are just going to use `postgresql` as a client to access a server.
+
+### Listing modules
+
+You can obtain a list of all modules by executing the following command:
+
+```
+dnf module list
+```
+
+This will give you a long list of the available modules and the profiles that can be used for them. The thing is you probably already know what package you are interested in, so to find out if there are modules for a particular package, add the package name after "list". We will use our `postgresql` package example again here:
+
+```
+dnf module list postgresql
+```
+
+This will give you output that looks like this:
+
+```
+Rocky Linux 8 - AppStream
+Name                       Stream                 Profiles                           Summary                                            
+postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
+postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
+postgresql                 12                     client, server [d]                 PostgreSQL server and client module                
+postgresql                 13                     client, server [d]                 PostgreSQL server and client module
+```
+
+Notice in the listing the "[d]". This means that this is the default. It shows that the default version is 10 and that regardless of which version you choose, if you do not specify a profile, then the server profile will be the profile used, as it is the default as well.
+
+### Enabling Modules
+
+Using our example `postgresql` package, let's say that we want to enable version 12. To do this, you simply use the following:
+
+```
+dnf module enable postgresql:12
+```
+
+Here the enable command requires the module name followed by a ":" and the stream name.
+
+To verify that you have enabled `postgresql` module stream version 12, use your list command again which should show you the following output:
+
+```
+Rocky Linux 8 - AppStream
+Name                       Stream                 Profiles                           Summary                                            
+postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
+postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
+postgresql                 12 [e]                 client, server [d]                 PostgreSQL server and client module                
+postgresql                 13                     client, server [d]                 PostgreSQL server and client module
+```
+
+Here we can see the "[e]" for "enabled" next to stream 12, so we know that version 12 is enabled.
+
+### Installing packages from the module stream
+
+Now that our module stream is enabled, the next step is to install `postgresql`, the client application for the postgresql server. This can be achieved by running the following command:
+
+```
+dnf install postgresql
+```
+
+Which should give you this output:
+
+```
+========================================================================================================================================
+ Package                    Architecture           Version                                              Repository                 Size
+========================================================================================================================================
+Installing group/module packages:
+ postgresql                 x86_64                 12.12-1.module+el8.6.0+1049+f8fc4c36                 appstream                 1.5 M
+Installing dependencies:
+ libpq                      x86_64                 13.5-1.el8                                           appstream                 197 k
+
+Transaction Summary
+========================================================================================================================================
+Install  2 Packages
+Total download size: 1.7 M
+Installed size: 6.1 M
+Is this ok [y/N]:
+```
+
+After approving by typing "y" you installed the application.
+
+### Installing packages from module stream profiles
+
+It's also possible to directly install packages without even having to enable the module stream! In this example, let's assume that we only want the client profile applied to our installation. To do this, we simply enter this command:
+
+```
+dnf install postgresql:12/client
+```
+
+Which should give you this output:
+
+```
+========================================================================================================================================
+ Package                    Architecture           Version                                              Repository                 Size
+========================================================================================================================================
+Installing group/module packages:
+ postgresql                 x86_64                 12.12-1.module+el8.6.0+1049+f8fc4c36                 appstream                 1.5 M
+Installing dependencies:
+ libpq                      x86_64                 13.5-1.el8                                           appstream                 197 k
+Installing module profiles:
+ postgresql/client
+Enabling module streams:
+ postgresql                                        12
+
+Transaction Summary
+========================================================================================================================================
+Install  2 Packages
+
+Total download size: 1.7 M
+Installed size: 6.1 M
+Is this ok [y/N]:
+```
+
+Answering "y" to the prompt will install everything you need to use postgresql version 12 as a client.
+
+### Module Removal and Reset or Switch-To
+
+After you install, you may decide that for whatever reason, you need a different version of the stream. The first step is to remove your packages. Using our example `postgresql` package again, we would do this with:
+
+```
+dnf remove postgresql
+```
+
+This will display similar output as the install procedure above, except it will be removing the package and all of its dependencies. Answer "y" to the prompt and hit enter to uninstall `postgresql`.
+
+Once this step is complete, you can issue the reset command for the module using:
+
+```
+dnf module reset postgresql
+```
+
+Which will give you output like this:
+
+```
+Dependencies resolved.
+========================================================================================================================================
+ Package                         Architecture                   Version                           Repository                       Size
+========================================================================================================================================
+Disabling module profiles:
+ postgresql/client                                                                                                                     
+Resetting modules:
+ postgresql                                                                                                                            
+
+Transaction Summary
+========================================================================================================================================
+
+Is this ok [y/N]:
+```
+
+Answering "y" to the prompt will then reset `postgresql` back to the default stream with the stream that we had enabled (12 in our example) no longer enabled:
+
+```
+Rocky Linux 8 - AppStream
+Name                       Stream                 Profiles                           Summary                                            
+postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
+postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
+postgresql                 12                     client, server [d]                 PostgreSQL server and client module                
+postgresql                 13                     client, server [d]                 PostgreSQL server and client module
+```
+
+Now you can use the default.
+
+You can also use the switch-to sub-command to switch from one enabled stream to another. Using this method not only switches to the new stream, but installs the needed packages (either downgrade or upgrade) without a separate step. To use this method to enable `postgresql` stream version 13 and use the "client" profile, you would use:
+
+```
+dnf module switch-to postgresql:13/client
+```
+
+### Disable a module stream
+
+There may be times when you wish to disable the ability to install packages from a module stream. In the case of our `postgresql` example, this could be because you want to use the repository directly from [PostgreSQL](https://www.postgresql.org/download/linux/redhat/) so that you could use a newer version (at the time of this writing, versions 14 and 15 are available from this repository). Disabling a module stream, makes installing any of those packages impossible without first enabling them again.
+
+To disable the module streams for `postgresql` simply do:
+
+```
+dnf module disable postgresql
+```
+
+And if you list out the `postgresql` modules again, you will see the following showing all `postgresql` module versions disabled:
+
+```
+Rocky Linux 8 - AppStream
+Name                       Stream                   Profiles                          Summary                                           
+postgresql                 9.6 [x]                  client, server [d]                PostgreSQL server and client module               
+postgresql                 10 [d][x]                client, server [d]                PostgreSQL server and client module               
+postgresql                 12 [x]                   client, server [d]                PostgreSQL server and client module               
+postgresql                 13 [x]                   client, server [d]                PostgreSQL server and client module
+```
 
 ## The EPEL repository
 
