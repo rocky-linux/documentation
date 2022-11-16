@@ -323,7 +323,7 @@ Then you have to provide the complete command to be entered during the installat
 
     This example takes the most complex case: using a static IP. If you have a DHCP server available, the process will be much easier.
 
-This is the most amusing part of the procedure: I am sure you will go and admire the VMware console during the generation, just to see the automatic entry of the commands during the boot.
+This is the most amusing part of the procedure: I'm sure you will go and admire the VMware console during the generation, just to see the automatic entry of the commands during the boot.
 
 ```
 "boot_command": [
