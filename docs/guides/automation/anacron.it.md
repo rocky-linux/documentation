@@ -5,28 +5,28 @@ contributors: Steven Spencer, Franco Colussi
 update: 2022-02-13
 ---
 
-# anacron- Eseguire i comandi regolarmente
+# `anacron` - Eseguire i Comandi con Regolarità
 
 ## Prerequisiti
 
 * Una macchina con Rocky Linux.
-* Sapere come usare il vostro editor preferito per modificare il file di configurazione (come *vim* ) nell'ambiente della riga di comando.
-* Comprendere la gestione di base dei pacchetti RPM
+* Sapere come utilizzare l'editor preferito per modificare il file di configurazione (ad esempio *vim*) nell'ambiente da riga di comando.
+* Comprendere la gestione di base dei pacchetti RPM.
 
-## Presupposto
+## Presupposti
 
 * Avete capito la conoscenza di base di bash, python o altri strumenti di scripting/programmazione, e volete eseguire lo script automaticamente.
-* Sei loggato come utente root, o passa a root con `su - root`
+* Si è connessi come utente root, oppure si passa a root con `su - root`.
 
-## Anacron Introduzione
+## `anacron` Introduzione
 
-**anacron è usato per eseguire comandi su base regolare, e la frequenza operativa è definita in unità di giorni. È adatto ai computer che non funzionano 24/7, come i computer portatili e i desktop. Supponiamo che abbiate un compito programmato (come uno script di backup) da eseguire la mattina presto di ogni giorno usando crontab. Quando ti addormenti, il tuo desktop/laptop si spegne. Il tuo script di backup non verrà eseguito. Tuttavia, se si usa anacron, si può essere certi che la prossima volta che si accende il desktop/laptop, lo script di backup verrà eseguito.**
+**`anacron` è usato per eseguire comandi su base periodica, e la frequenza operativa è definita in unità di giorni. È adatto ai computer che non funzionano 24/7, come i computer portatili e i desktop. Supponiamo che abbiate un compito programmato (come uno script di backup) da eseguire la mattina presto di ogni giorno usando crontab. Quando ti addormenti, il tuo desktop/laptop si spegne. Il tuo script di backup non verrà eseguito. Tuttavia, se si usa `anacron`, si può essere certi che la prossima volta che si accende il desktop/laptop, lo script di backup verrà eseguito.**
 
-L'aspetto di anacron non è quello di sostituire crontab, ma di completare crontab. La loro relazione è la seguente:
+L'aspetto di `anacron` non è quello di sostituire `crontab`, ma di completare `crontab`. La loro relazione è la seguente:
 
 ![ Relazioni ](../images/anacron_01.png)
 
-## file di configurazione di anacron
+## `anacron` File di Configurazione
 
 ```bash
 shell > rpm -ql cronie-anacron
@@ -97,13 +97,13 @@ Per fare in modo che certi file vengano eseguiti entro questi tempi definiti aut
 
 Usiamo cron.daily per illustrare il processo di esecuzione di /etc/anacrontab:
 
-1. Anacron legge il file ** /var/spool/anacron/cron.daily **, e il contenuto del file mostra il tempo dell'ultima esecuzione.
+1. `anacron` legge il file ** /var/spool/anacron/cron.daily **, e il contenuto del file mostra l'ora dell'ultima esecuzione.
 2. Rispetto all'ora corrente, se la differenza tra i due tempi supera 1 giorno, il lavoro cron.daily verrà eseguito.
 3. Questo lavoro può essere eseguito solo dalle 03:00-22:00.
 4. Controlla se un file viene eseguito dopo 5 minuti dall'avvio. Quando il primo viene eseguito, sarà casualmente ritardato di 0～45 minuti per eseguire il successivo.
 5. Usa il parametro nice per specificare la priorità predefinita e usa il parametro run-parts per eseguire tutti i file eseguibili nella directory /etc/cron.daily/.
 
-## Comandi correlati
+## Comandi Correlati
 
 Uso dell comando `anacron`, le opzioni comunemente usate sono:
 

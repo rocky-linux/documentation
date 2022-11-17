@@ -180,7 +180,7 @@ Se si desidera utilizzare IPv6 sui propri contenitori LXD, è possibile attivare
 What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
 ```
 
-Questo è necessario per eseguire facilmente il backup del server e può consentire di gestire l'installazione di LXD da altri computer. Se tutto questo vi convince, rispondete "sì" qui/
+Questo è necessario per eseguire facilmente il backup del server e può consentire di gestire l'installazione di LXD da altri computer. Se tutto questo vi convince, rispondete "yes" qui
 
 ```
 Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
@@ -570,7 +570,7 @@ Se avete installato `curl` sul vostro host server, potete assicurarvi che la pag
 curl [container-ip-address]
 ```
 
-Ricordate che potete vedere tutti gli IP dei container con `lxc list`. E se si installa curl su tutti i container, si *potrebbe* eseguire semplicemente:
+Ricordare che è possibile vedere tutti gli IP del contenitore con `lxc list`. E se si installa curl su tutti i container, si *potrebbe* eseguire semplicemente:
 
 ```bash
 curl localhost
@@ -845,7 +845,7 @@ lxc exec apache-server systemctl restart httpd && lxc exec nginx-server restart 
 Questo applicherà i file "real-ip.conf" che abbiamo creato nelle rispettive configurazioni dei server.
 
 #### Ottenere i certificati SSL per i tuoi siti web
-Ottenere certificati SSL ufficiali e corretti è più facile con Let's Encrypt e una piccola applicazione chiamata certbot. certbot rileverà automaticamente i vostri siti web, otterrà i certificati SSL per essi e configurerà i siti stessi. Rinnova anche i certificati per voi ogni 30 giorni circa, senza alcun intervento da parte vostra o cron job.
+Ottenere certificati SSL ufficiali e corretti è più facile con Let's Encrypt e una piccola applicazione chiamata certbot. certbot rileva automaticamente i vostri siti web, ottiene i certificati SSL e configura i siti stessi. Rinnova anche i certificati per voi ogni 30 giorni circa, senza alcun intervento da parte vostra o cron job.
 
 Tutto questo deve essere fatto dal container "proxy-server", quindi si deve accedere a quella shell. Una volta lì, installare i repository EPEL, proprio come si è fatto sull'host. Assicurarsi che il container sia stato prima aggiornato:
 

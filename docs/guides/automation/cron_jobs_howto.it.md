@@ -161,7 +161,7 @@ Un altro modo per eseguire i lavori a un orario strettamente programmato (cioè,
 
     L'uso di queste voci di `crontab` bypassa il sistema `anacron` e ritorna al `crond.service` sia che `anacron` sia installato o meno.
 
-Per il nostro esempio di script di backup, se usassimo l'opzione @daily per eseguire lo script di backup a mezzanotte, la voce sarebbe come questa:
+Per il nostro esempio di script di backup, se usiamo l'opzione @daily per eseguire lo script di backup a mezzanotte, la voce avrà il seguente aspetto:
 
 `@daily  /usr/local/sbin/backup`
 
