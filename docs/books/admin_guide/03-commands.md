@@ -2,7 +2,6 @@
 title: Linux Commands
 author: Antoine Le Morvan
 contributors: Steven Spencer, Aditya Putta, tianci li
-update: 11-08-2021
 ---
 
 # Commands for Linux Users
