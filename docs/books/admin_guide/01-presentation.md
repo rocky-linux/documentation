@@ -8,7 +8,7 @@ In this chapter you will learn about GNU/Linux distributions.
 
 ****
 
-**Objectives** : In this chapter you will learn how to:
+**Objectives**: In this chapter you will learn how to:
 
 :heavy_check_mark: Describe the features and possible architectures of an operating system   
 :heavy_check_mark: Recount the history of UNIX and GNU/Linux   
@@ -58,7 +58,7 @@ Among this management of resources, the operating system has to:
 
 * **1969**: After the withdrawal of Bell (1969) and then General Electric from the project, two developers (Ken Thompson and Dennis Ritchie), joined later by Brian Kernighan, judging MULTICS to be too complex, launched the development of UNIX (UNiplexed Information and Computing Service). Originally developed in assembler, the designers of UNIX developed the B language and then the C language (1971) and completely rewrote UNIX. Having been developed in 1970, the reference date of UNIX/Linux systems is still set at January 01, 1970.
 
-The C language is still one of the most popular programming languages today! A low level language, close to the hardware, it allows the adaptation of the operating system to any machine architecture having a C compiler.
+The C language is still one of the most popular programming languages today! A low-level language, close to the hardware, it allows the adaptation of the operating system to any machine architecture having a C compiler.
 
 UNIX is an open and evolving operating system that has played a major role in the history of computing. It has been the basis for many other systems: Linux, BSD, MacOS, etc.
 
@@ -82,7 +82,7 @@ UNIX is still relevant today (HP-UX, AIX, Solaris, etc.)
 
 * **2002**: The Arch distribution is created. Its particularity is to be released in Rolling Release (continuous update).
 
-* **2004**: Ubuntu is created by the Canonical company (Mark Shuttleworth). It is based on Debian, but includes free and proprietary software.
+* **2004**: Ubuntu is created by the Canonical company (Mark Shuttleworth). It is based on Debian but includes free and proprietary software.
 
 * **2021**: Birth of Rocky Linux, based on RedHat distribution.
 
@@ -108,9 +108,9 @@ Linux equips 100% of the 500 supercomputers since 2018. A supercomputer is a com
   * The other software components must go through it to access the hardware.
 * The **shell** is a utility that interprets user commands and ensures their execution.
   * Main shells: Bourne shell, C shell, Korn shell and Bourne-Again shell (bash).
-* Applications are user programs such as :
-  * Internet browser ;
-  * the word processor ;
+* Applications are user programs such as:
+  * Internet browser;
+  * the word processor;
   * ...
 
 #### Multitask
@@ -132,14 +132,14 @@ Linux is able to work with multi-processor computers or with multi-core processo
 
 #### Multi platform
 
-Linux is written in a high-level language that can be adapted to different types of platforms during compilation. It therefore runs on :
+Linux is written in a high-level language that can be adapted to different types of platforms during compilation. It therefore runs on:
 
 * home computers (PC or laptop);
-* servers (data, applications,...);
-* portable computers (smartphones or tablets)
+* servers (data, applications...);
+* portable computers (smartphones or tablets);
 * embedded systems (car computer);
-* active network elements (routers, switches)
-* household appliances (TVs, refrigerators,...).
+* active network elements (routers, switches);
+* household appliances (TVs, refrigerators...).
 
 #### Open
 
@@ -160,7 +160,7 @@ A Linux distribution is a **consistent set of software** assembled around the Li
 
 Each distribution offers one or more **desktop environments**, provides a set of pre-installed software and a library of additional software. Configuration options (kernel or services options for example) are specific to each one.
 
-This principle allows you to have distributions oriented to **beginners** (Ubuntu, Linux Mint...), to have a more complex approach (Gentoo, Arch), to be focused more towards **servers** (Debian, Redhat), or to be dedicated towards **workstations**.
+This principle allows you to have distributions oriented to **beginners** (Ubuntu, Linux Mint...), to have a more complex approach (Gentoo, Arch), to be focused more on **servers** (Debian, Redhat), or to be dedicated towards **workstations**.
 
 ### Desktop environments
 
@@ -196,7 +196,7 @@ A free software is necessarily Open Source, but the opposite is not true since a
 
 The **GPL License** guarantees the author of a software its intellectual property, but allows modification, redistribution or resale of software by third parties, provided that the source codes are provided with the software. The GPL is the license that came out of the **GNU** (GNU is Not UNIX) project, which was instrumental in creating Linux.
 
-It implies :
+It implies:
 
 * the freedom to run the program, for any purpose;
 * the freedom to study how the program works and adapt it to your needs
@@ -207,7 +207,7 @@ On the other hand, even products licensed under the GPL can be paid for. This is
 
 ## Areas of use
 
-A Linux distribution excels for :
+A Linux distribution excels for:
 
 * **A server**: HTTP, email, groupware, file sharing, etc.
 * **Security**: Gateway, firewall, router, proxy, etc.
@@ -226,10 +226,10 @@ It offers a real programming language including the classical structures: loops,
 
 There are several types of shells available and configurable on a platform or according to the user's preference:
 
-* sh, the POSIX standard shell ;
-* csh, command-oriented shell in C ;
+* sh, the POSIX standard shell;
+* csh, command-oriented shell in C;
 * bash, Bourne-Again Shell, Linux shell.
-* etc, ...
+* etc.
 
 ## Functionalities
 
@@ -294,7 +294,7 @@ There are several types of shells available and configurable on a platform or ac
 - [ ] True   
 - [ ] False   
 
-:heavy_check_mark: Is Open Source software necessarily free?
+:heavy_check_mark: Is Open-Source software necessarily free?
 
 - [ ] True   
 - [ ] False   
