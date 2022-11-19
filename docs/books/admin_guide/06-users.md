@@ -9,11 +9,11 @@ In this chapter you will learn how to manage users.
 ****
 **Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: add, delete or modify a **group**;
-:heavy_check_mark: add, delete or modify a **user**;
-:heavy_check_mark: Understand the files associated with users and groups and learn how to manage them;
-:heavy_check_mark: change the *owner* or the *group owner* of a file;
-:heavy_check_mark: *secure* user accounts;
+:heavy_check_mark: add, delete or modify a **group**;   
+:heavy_check_mark: add, delete or modify a **user**;   
+:heavy_check_mark: Understand the files associated with users and groups and learn how to manage them;   
+:heavy_check_mark: change the *owner* or the *group owner* of a file;   
+:heavy_check_mark: *secure* user accounts;   
 :heavy_check_mark: change identity.
 
 :checkered_flag: **users**
@@ -148,7 +148,7 @@ $ sudo groupdel GroupC
     When deleting a group, there are two conditions that can occur:
     
     * If a user has a unique primary group and you issue the `groupdel` command on that group, you will be prompted that there is a specific user under the group and it cannot be deleted.
-    * If a user belongs to a supplementary group (not the primary group for the user) and that group is not the primary group for antoher user on the system, then the `groupdel` command will delete the group without any additional prompts.
+    * If a user belongs to a supplementary group (not the primary group for the user) and that group is not the primary group for another user on the system, then the `groupdel` command will delete the group without any additional prompts.
     
     Examples: 
   
@@ -489,7 +489,7 @@ root:$6$...:15399:0:99999:7:::
 * 1: Login name.   
 * 2: Encrypted password. Uses the SHA512 encryption algorithm, defined by the `ENCRYPT_METHOD` of `/etc/login.defs`.
 * 3: The time when the password was last changed, the timestamp format, in days. The so-called timestamp is based on January 1, 1970 as the standard time. Every time one day goes by, the timestamp is +1. 
-* 4: Minimum lifetime of the password. That is, The time interval between two password changes (related to the third field), in days.  Defined by the `PASS_MIN_DAYS` of `/etc/login.defs`, the default is 0, that is, when you change the password for the second time, there is no restriction. However, if it is 5, it means that it is not allowed to change the password within 5 days, and only after 5 days.  
+* 4: Minimum lifetime of the password. That is, the time interval between two password changes (related to the third field), in days.  Defined by the `PASS_MIN_DAYS` of `/etc/login.defs`, the default is 0, that is, when you change the password for the second time, there is no restriction. However, if it is 5, it means that it is not allowed to change the password within 5 days, and only after 5 days.  
 * 5: Maximum lifetime of the password. That is, the validity period of the password (related to the third field). Defined by the `PASS_MAX_DAYS` of `/etc/login.defs`.
 * 6: The number of warning days before the password expires (related to the fifth field). The default is 7 days, defined by the `PASS_WARN_AGE` of `/etc/login.defs`.
 * 7: Number of days of grace after password expiration (related to the fifth field).  
