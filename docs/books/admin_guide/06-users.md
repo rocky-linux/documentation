@@ -11,7 +11,7 @@ In this chapter you will learn how to manage users.
 
 :heavy_check_mark: add, delete or modify a **group**;   
 :heavy_check_mark: add, delete or modify a **user**;   
-:heavy_check_mark: Understand the files associated with users and groups and learn how to manage them;   
+:heavy_check_mark: understand the files associated with users and groups and learn how to manage them;   
 :heavy_check_mark: change the *owner* or the *group owner* of a file;   
 :heavy_check_mark: *secure* user accounts;   
 :heavy_check_mark: change identity.
@@ -97,7 +97,7 @@ Group naming rules:
     DESCRIPTION
     adduser and addgroup add users and groups to the system according to command line options and configuration information
     in /etc/adduser.conf. They are friendlier front ends to the low-level tools like useradd, groupadd and usermod programs,
-    by default choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
+    by default, choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
     running a custom script, and other features.
     ```
 
@@ -653,7 +653,7 @@ uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 
 ### `newgrp` command
 
-The `newgrp` command can select a group from the user's supplementary groups as the user's new **temporary** primary group. The `newgrp` command  every time you switch a user's primary group, there will be a new **child shell**（child process）. Be careful! **child shell** and **sub shell** are different. 
+The `newgrp` command can select a group from the user's supplementary groups as the user's new **temporary** primary group. The `newgrp` command every time you switch a user's primary group, there will be a new **child shell**（child process). Be careful! **child shell** and **sub shell** are different. 
 
 ```
 newgrp [secondarygroups]
