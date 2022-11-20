@@ -95,7 +95,7 @@ sudo fdisk -l /dev/sdc2
 
 ### `parted` command
 
-The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`, So we recommend that you use the `parted` command even more.
+The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`. So we recommend that you use the `parted` command even more.
 
 The `parted` command can be used either command-line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
 
@@ -154,7 +154,7 @@ The preparation, without _LVM_, of the physical media goes through five steps:
 
 **L**ogical **V**olume **M**anager (*LVM]*)
 
-The partition created by the **standard partition** cannot dynamically adjust the resources of the hard disk, once the partition is mounted, the capacity is completely fixed, This constraint is unacceptable on the server. Although the standard partition can be forcibly expanded or shrunk through certain technical means, it is easy to cause data loss. LVM can solve this problem very well. LVM is available under Linux from kernel version 2.4, and its main features are:
+The partition created by the **standard partition** cannot dynamically adjust the resources of the hard disk, once the partition is mounted, the capacity is completely fixed, this constraint is unacceptable on the server. Although the standard partition can be forcibly expanded or shrunk through certain technical means, it is easy to cause data loss. LVM can solve this problem very well. LVM is available under Linux from kernel version 2.4, and its main features are:
 
 * More flexible disk capacity;
 * Online data movement;
@@ -186,7 +186,7 @@ The disadvantage is that if one of the physical volumes becomes out of order, th
 
 !!! info
 
-    In the physical disk, the smallest storage unit is the **sector**; in the file system, the smallest storage unit of GNU/Linux is the **block**, and the Windows is called the **cluster**; in RAID, the smallest storage unit is **chunk**.
+    In the physical disk, the smallest storage unit is the **sector**; in the file system, the smallest storage unit of GNU/Linux is the **block**, which is called **cluster** in Windows operating system.; in RAID, the smallest storage unit is **chunk**.
 
 ### The Writing Mechanism of LVM
 
@@ -564,7 +564,7 @@ proc                           /proc     proc    defaults        0   0
 | 5      | Enable or disable backup management (0:not backed up, 1:backed up)                                |
 | 6      | Check order when checking the SF with the `fsck` command (0:no check, 1:priority, 2:not priority) |
 
-The `mount -a` command allows you to mount automatically based on the contents of the configuration file `/etc/fstab`, The mounted information is then written to `/etc/mtab`.
+The `mount -a` command allows you to mount automatically based on the contents of the configuration file `/etc/fstab`, the mounted information is then written to `/etc/mtab`.
 
 !!! Warning
 
@@ -729,7 +729,7 @@ Shell > ls -ldi /tmp/t1
 
 #### Special files
 
-In order to communicate with peripherals (hard disks, printers, ...), Linux uses interface files called special files (_device file_ or _special file_). They allow identification by the peripherals.
+In order to communicate with peripherals (hard disks, printers...), Linux uses interface files called special files (_device file_ or _special file_). They allow identification by the peripherals.
 
 These files are special because they do not contain data but specify the access mode to communicate with the device.
 
@@ -1001,7 +1001,7 @@ $ ls -la  umask_025
 
 !!! Warning
 
-    `umask` does not affect existing files. `umask -S` displays the file rights (without the execute right) of the files that will be created. So it is not the display of the mask used to subtract the maximum value.
+    `umask` does not affect existing files. `umask -S` displays the file rights (without the execute right) of the files that will be created. So, it is not the display of the mask used to subtract the maximum value.
 
 !!! Note
 
