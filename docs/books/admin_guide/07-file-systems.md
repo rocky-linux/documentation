@@ -815,46 +815,41 @@ These controls are functions of:
 * file access permissions ;
 * users (_ugo_ _Users Groups Others_).
 
-The command `ls -l` allows to display the attributes.
+### Basic permissions of files and directories
 
-There are 4 file access rights:
+The description of **file permissions** is as follows:
 
-* **r**ead;
-* **w**rite;
-* e**x**ecution;
-* **-** no right.
+| File permissions | Description                                                                        |
+| :---------------:| -------------                                                                      |
+| r                | Read. Allows reading a file (`cat`, `less`, ...) and copying a file (`cp`, ...).   |
+| w                | Write. Allows modification of the file content (`cat`, `>>`, `vim`, ...).          |
+| x                | Execute. Considers the file as an e**X**ecutable (binary or script).               |
+| -                | No right                                                                           |
 
-!!! Warning
+The description of **directory permissions** is as follows:
 
-    The rights associated with files differ from those associated with directories (see below).
+| Directory permissions | Description                                                                        |
+| :---------------:     | -------------                                                                      |
+| r                     | Read. Allows reading the contents of a directory (`ls -R`).                        |
+| w                     | Write. Allows you to create, and delete  files/directories in this directory, such as commands `mkdir`, `rmdir`, `rm`, `touch`, and so on.  |
+| x                     | Execute. Allows descending in the directory (`cd`).                                |
+| -                     | No right                                                                           |
 
-The user types associated with file access rights are:
+!!! info
 
-* **u**ser_ (owner) ;
-* **g**roup_ (owner group);
-* **o**thers (others users);
+    For the permissions of a directory, `r` and `x` usually appear at the same time. Moving or renaming a file depends on whether the directory where the file is located has `w` permission, and so does deleting a file.
 
-In some commands it is possible to designate everyone with **a** (_all_).
+### User type corresponding to basic permission
 
-**a = ugo**
+| User type| Description                    |
+| :---:   | ------                         |
+| u        | Owner                          |
+| g        | Owner group                    |
+| o        | Others users                   |
 
-### Rights associated with ordinary files
+!!! info
 
-* **r**ead: Allows reading a file (`cat`, `less`, ...) and copying a file (`cp`, ...).
-* **w**rite: Allows modification of the file content (`cat`, `>>`, `vim`, ...).
-* e**x**ecute: Considers the file as an e**X**ecutable (binary or script).
-* **-**: No permissions.
-
-!!! Note
-
-    Moving or renaming a file depends on the rights of the target directory. Deleting a file depends on the rights of the parent directory.
-
-### Rights associated with directories
-
-* **r**ead: Allows reading the contents of a directory (`ls -R`).
-* **w**rite: Allows modification of the contents of a directory (`touch`) and allows creation and deletion of files if the **x** permission is enabled.
-* e**x**ecute: Allows descending in the directory (`cd`).
-* **-**: No rights.
+    In some commands it is possible to designate everyone with **a** (_all_). **a = ugo**.
 
 ### Attribute management
 
@@ -866,17 +861,13 @@ The display of rights is done with the command `ls -l`. It is the last 9 charact
   1  2  3       4     5
 ```
 
-| Row |	Description                                                   |
+| Part |	Description                                                   |
 |-----|---------------------------------------------------------------|
 | 1   | Owner (**u**ser) permissions, here `rwx`                      |
 | 2   | Owner group permissions (**g**roup), here `rw-`               |
 | 3   | Other users' permissions (**o**thers), here `r-x`             |
 | 4   | File owner                                                    |
 | 5   | Group owner of the file                                       |
-
-!!! Note
-
-    Permissions apply to **u**ser, **g**roup and **o**ther (**ugo**) depending on the owner and group.
 
 By default, the _owner_ of a file is the one who creates it. The _group_ of the file is the group of the owner who created the file. The _others_ are those which are not concerned by the previous cases.
 
@@ -892,26 +883,43 @@ The `chmod` command allows you to change the access permissions to a file.
 chmod [option] mode file
 ```
 
+| Option |	Observation                                                           |
+|--------|------------------------------------------------------------------------|
+| `-R`   |  Recursively change the permissions of the directory and all files under the directory. |
+
+!!! Warning
+
+    The rights of files and directories are not dissociated. For some operations, it will be necessary to know the rights of the directory containing the file. A write-protected file can be deleted by another user as long as the rights of the directory containing it allow this user to perform this operation.
+
 The mode indication can be an octal representation (e.g. `744`) or a symbolic representation ([`ugoa`][`+=-`][`rwxst`]).
 
-Several symbolic operations can be separated by commas
+##### Octal （or number）representation：
 
-Example:
+| Number | Description      |
+| :---:  |      ---         |
+| 4      |      r           |
+| 2      |      w           | 
+| 1      |      x           |
+| 0      |      -           |
+
+Add the three numbers together to get one user type permission. E.g. **755=rwxr-xr-x**.
+
+![Octal representation](images/07-file-systems-011.png)
+
+![Rights 777](images/07-file-systems-012.png)
+
+![Rights 741](images/07-file-systems-013.png)
+
+!!! info
+
+    Sometimes you will see `chmod 4755`. The number 4 here refers to the special permission **set uid**. Special permissions will not be expanded here for the moment, just as a basic understanding.
 
 ```
-[root]# chmod -R u+rwx,g+wx,o-r /tmp/file1
-[root]# chmod g=x,o-r /tmp/file2
-[root]# chmod -R o=r /tmp/file3
-```
-
-```
-[root]# ls -l /tmp/fic*
+[root]# ls -l /tmp/fil*
 -rwxrwx--- 1 root root … /tmp/file1
 -rwx--x--- 1 root root … /tmp/file2
 -rwx--xr-- 1 root root … /tmp/file3
-```
 
-```
 [root]# chmod 741 /tmp/file1
 [root]# chmod -R 744 /tmp/file2
 [root]# ls -l /tmp/fic*
@@ -919,176 +927,17 @@ Example:
 -rwxr--r-- 1 root root … /tmp/file2
 ```
 
-| Option |	Observation                                                           |
-|--------|------------------------------------------------------------------------|
-| `-R`   |  Recursively modify the permissions of directories and their contents. |
-
-There are two methods for making rights changes:
-
-* The **octal** method;
-* The **symbolic** method.
-
-!!! Warning
-
-    The rights of files and directories are not dissociated. For some operations, it will be necessary to know the rights of the directory containing the file. A write-protected file can be deleted by another user as long as the rights of the directory containing it allow this user to perform this operation.
-
-#### Principle of the octal method
-
-Each right has a value.
-
-![Octal method](images/07-file-systems-011.png)
-
-```
-[root]# ls -l /tmp/myfile
--rwxrwxrwx  1  root  root  ... /tmp/myfile
-```
-
-![Rights 777](images/07-file-systems-012.png)
-
-```
-[root]# chmod 741 /tmp/myfile
--rwxr----x  1  root  root  ... /tmp/myfile
-```
-
-![Rights 741](images/07-file-systems-013.png)
-
-#### Principle of the symbolic method
+##### symbolic representation
 
 This method can be considered as a "literal" association between a user type, an operator, and rights.
 
 ![Symbolic method](images/07-file-systems-014.png)
 
 ```
-[root]# chmod u+rwx,g+wx,o-r /tmp/myfile
-[root]# chmod g=x,o-r /tmp/myfile
-[root]# chmod o=r /tmp/myfile
+[root]# chmod -R u+rwx,g+wx,o-r /tmp/file1
+[root]# chmod g=x,o-r /tmp/file2
+[root]# chmod -R o=r /tmp/file3
 ```
-
-```
-[root]# ls -l /tmp/myfile
-r--r-- 1 root root … /tmp/myfile
-```
-
-```
-[root]# chmod u+rwx,g+wx,o-r /tmp/myfile
-```
-
-```
-[root]# ls -l /tmp/myfile
--rwxrwx--- 1 root root … /tmp/myfile
-```
-
-### Special rights
-
-In addition to the fundamental rights (`rwx`), there are the particular rights:
-
-* **set-user-ID** (_SUID]_)
-* **set-group-ID** (_SGID]_)
-* **sticky-bit**
-
-As with the fundamental rights, the particular rights each have a value. This value is placed before the `ugo` set of rights.
-
-![Special rights](images/07-file-systems-015.png)
-
-!!! Danger
-
-    `S`, `S` and `T` in capital letters **if the right does not exist**.
-
-#### The sticky-bit
-
-One of the peculiarities of rights in Linux is that the right to write to a directory also allows deletion of *all* files, owner or not.
-
-The _sticky-bit_ set on the directory will only allow users to delete files they own. This is the basic case for the `/tmp` directory.
-
-The setting of the _sticky-bit_ can be done as follows:
-
-Octal method:
-```
-[root]# chmod 1777 directory
-```
-
-Symbolic method:
-```
-[root]# chmod o+t directory
-```
-
-Verification:
-```
-[root]# ls -l
-drwxrwxrwt … directory
-```
-
-#### SUID and SGID on a command
-
-These rights allow execution of a command according to the rights set on the command, and not according to the user's rights.
-
-The command is executed with the identity of the owner (_SUID_) or the group (_SGID_) of the command.
-
-!!! Note
-
-    The identity of the user requesting the execution of the order is no longer taken into account.
-
-    This is an additional possibility of access rights assigned to a user when it is necessary for them to have the same rights as the owner of a file or those of the group concerned.
-
-Indeed, a user may have to run a program (usually a system utility) but not have the necessary access rights. By setting the appropriate rights (**s** at the owner level and/or at the group level), the user of the program has, for the time of its execution, the identity of the owner (or that of the group) of the program.
-
-Example:
-
-The file `/usr/bin/passwd` is an executable file (a command) with a _SUID_.
-
-When the user _bob_ runs it, he will have to access the `/etc/shadow` file, but the permissions on this file do not allow _bob_ to access it.
-
-Having a _SUID_ this command, `/usr/bin/passwd`, will be executed with the _UID_ of root and the _GID_ of _root_. The latter being the owner of the `/etc/shadow` file, he will have read rights.
-
-![How the SUID works](images/07-file-systems-016.png)
-
-The setting of _SUID_ and _SGID_ can be done as below with the command `chmod`:
-
-Octal method:
-```
-[root]# chmod 4777 command1
-[root]# chmod 2777 command2
-```
-
-Symbolic method:
-```
-[root]# chmod u+s command1
-[root]# chmod g+s command2
-```
-
-Verification:
-```
-[root]# ls -l
--rwsrwxrwx … command1
--rwxrwsrwx … command2
-```
-
-!!! Warning
-
-    It is not possible to pass the _SUID_ or _SGID_ to a shell script.
-    The system does not allow it because it is too dangerous for security!
-
-#### SGID on a file
-
-In a directory with the _SGID_ right, any file created will inherit the group that owns the directory instead of that of the creating user.
-
-Example:
-```
-[rockstar] $ ls -ld /data/
-drwxrwsr-x 2 root users 4096 26 oct. 19:43 /data
-```
-
-```
-[rockstar] $ touch /data/test_sgid /tmp/fic_reference
-```
-
-```
-[rockstar] $ ls -ld /data/test_sgid /tmp/fic_reference
--rw-r--r--. 1 rockstar users 0 26 oct. 19:43 /data/test_sgid <1>
--rw-r--r--. 1 rockstar rockstar 0 26 oct. 19:43  /tmp/fic_ref
-```
-
-<1> The `test_sgid` file inherits the group owner of its `/data` folder (in this case `users`) whatever the main group of the `rockstar` user is.
 
 ## Default rights and mask
 
