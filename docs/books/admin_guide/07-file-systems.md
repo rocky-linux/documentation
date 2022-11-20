@@ -958,6 +958,17 @@ For a file, the execution rights are removed:
 
 ![Default rights of a file](images/07-file-systems-018.png)
 
+!!! info
+
+    The `/etc/login.defs` file defines the default UMASK, with a value of **022**. This means that the permission to create a file is 755 (rwxr-xr-x). However, for the sake of security, GNU/Linux does not have **x** permission for newly created files, this restriction applies to root(uid=0) and ordinary users(uid>=1000).
+
+    ```bash
+    # root user
+    Shell > touch a.txt
+    Shell > ll
+    -rw-r--r-- 1 root root     0 Oct  8 13:00 a.txt
+    ```
+
 ### `umask` command
 
 The `umask` command allows you to display and modify the mask.
@@ -990,13 +1001,18 @@ $ ls -la  umask_025
 
 !!! Warning
 
-    `umask` does not affect existing files.
+    `umask` does not affect existing files. `umask -S` displays the file rights (without the execute right) of the files that will be created. So it is not the display of the mask used to subtract the maximum value.
 
 !!! Note
 
     `umask` modifies the mask until the disconnection.
 
-To keep the value, you have to modify the following profile files:
+!!! info
+
+    The `umask` command belongs to bash's built-in commands, so when you use `man umask`, all built-in commands will be displayed. If you only want to view the help of `umask`, you need to use the `help umask` command.
+
+To keep the value, you have to modify the following profile files：
+
 For all users:
 
 * `/etc/profile`
@@ -1006,10 +1022,4 @@ For a particular user:
 
 * `~/.bashrc`
 
-!!! Warning
-
-    `umask -S` displays the file rights (without the execute right) of the files that will be created. So it is not the display of the mask used to subtract the maximum value.
-
-!!! Tip
-
-    The `umask` command being a _bash_ command, (a `type umask` returns `umask is a shell primitive`) you have to search `umask` in `man bash`.
+When the above file is written, it actually overrides the **UMASK** parameter of `/etc/login.defs`. If you want to improve the security of the operating system, you can set umask to **027** or **077**.
