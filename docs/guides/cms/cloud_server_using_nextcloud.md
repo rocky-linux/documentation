@@ -176,7 +176,7 @@ This is where our Nextcloud instance will be installed.
 We need to set the time zone for PHP. To do this, open up php.ini with your text editor of choice:
 
 ```
-vi /etc/php.ini
+vi /etc/opt/remi/php80/php.ini
 ```
 
 Then find the line:
