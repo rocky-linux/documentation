@@ -2,7 +2,6 @@
 title: Comandi Linux
 author: Antoine Le Morvan
 contributors: Steven Spencer, Aditya Putta, Franco Colussi
-update: 11-10-2021
 ---
 
 # Comandi per gli Utenti Linux
