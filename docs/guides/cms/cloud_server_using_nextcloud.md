@@ -254,7 +254,7 @@ This is done exactly the same way as the with the [module install procedure](#re
 
 We need a lot of packages installed. Some of these may already be installed with your default Rocky Linux installation, but make sure by running the following command the following:
 
-`dnf install httpd mariadb-server vim wget zip unzip libxml2 openssl php80-php php80-php-ctype php80-php-curl php80-php-gd php80-php-iconv php80-php-json php80-php-libxml php80-php-mbstring php80-php-openssl php80-php-posix php80-php-session php80-php-xml php80-php-zip php80-php-zlib php80-php-pdo php80-php-mysqlnd php80-php-intl php80-php-bcmath php80-php-gmp`
+`dnf install httpd mariadb-server vim wget zip unzip libxml2 openssl php php80-php php80-php-ctype php80-php-curl php80-php-gd php80-php-iconv php80-php-json php80-php-libxml php80-php-mbstring php80-php-openssl php80-php-posix php80-php-session php80-php-xml php80-php-zip php80-php-zlib php80-php-pdo php80-php-mysqlnd php80-php-intl php80-php-bcmath php80-php-gmp`
 
 ### Configuring Packages And Directories
 
