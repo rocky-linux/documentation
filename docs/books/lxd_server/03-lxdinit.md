@@ -90,12 +90,6 @@ Would you like stale cached images to be updated automatically? (yes/no) [defaul
 Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
 ```
 
-Trust password for new clients:
-Again:
-```
-
-This trust password is how you will connect to the snapshot server or back from the snapshot server, so set this with something that makes sense in your environment. Save this entry to a secure location, such as a password manager.
-
 ## Setting Up User Privileges
 
 Before we continue on, we need to create our "lxdadmin" user and make sure that it has the privileges it needs. We need the "lxdadmin" user to be able to _sudo_ to root and we need it to be a member of the lxd group. To add the user and make sure it is a member of both groups do:
