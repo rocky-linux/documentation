@@ -23,7 +23,7 @@ While you can create documentation in **any format** (seriously, we will accept 
 
 As we've said already, the best way to create Markdown files, particularly if you've not done it before, is to grab an editor for the operating system that you use on your PC or Laptop. A simple web search for "Markdown editors" will show you a bunch to choose from.
 
-Pick one to use that is compatible with your Operating System [ReText](https://github.com/retext-project/retext), a cross-platform Markdown editor, was used to create this document. Again, if you prefer to create your Markdown files in your text editor that you are already familiar with, that is just fine.
+Pick one to use that is compatible with your Operating System. [ReText](https://github.com/retext-project/retext), a cross-platform Markdown editor, was used to create this document. Again, if you prefer to create your Markdown files in your text editor that you are already familiar with, that is just fine.
 
 #### Alternate Markdown Editors
 
