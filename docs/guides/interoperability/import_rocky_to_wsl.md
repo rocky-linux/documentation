@@ -15,7 +15,8 @@ tags:
 
 The Windows-Subsystem for Linux feature has to be enabled. This is possible with one of these options:
 
-- Open an administrative Terminal (either PowerShell or Command-Prompt) and run `wsl --install` ([ref.](https://docs.microsoft.com/en-us/windows/wsl/install))
+- Since very shortly there is now [a new WSL version available in the Microsoft Store](https://apps.microsoft.com/store/detail/windows-subsystem-for-linux/9P9TQF7MRM4R), which has more features use this if possible
+- Open an administrative Terminal (either PowerShell or Command-Prompt) and<br>run `wsl --install` ([ref.](https://docs.microsoft.com/en-us/windows/wsl/install))
 - Go to the graphical Windows Settings and enable the optional feature `Windows-Subsystem for Linux`
 
 This feature should be available on every supported Windows 10 and 11 version right now.
@@ -24,17 +25,30 @@ This feature should be available on every supported Windows 10 and 11 version ri
 
 1. Get the container rootfs. This is possible in multiple ways:
 
-    - Download the image from the latest [Github Action build](https://github.com/rocky-linux/sig-cloud-instance-images/actions/workflows/build.yml)
-    - Download the image (the layer.tar.xz file) from one of the branches of the [Github repo](https://github.com/rocky-linux/sig-cloud-instance-images/branches)
-    - Extract the image from either Docker Hub or Quay.io ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#export-the-tar-from-a-container))\
-    `<podman/docker> export rockylinux:9 > rocky-9-image.tar`
+    - **Prefered:** Download the image from the CDN:
+        - 8: [Base x86_64](https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-Base.latest.x86_64.tar.xz), [Minimal x86_64](https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-Minimal.latest.x86_64.tar.xz), [UBI x86_64](https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-UBI.latest.x86_64.tar.xz),<br>[Base aarch64](https://dl.rockylinux.org/pub/rocky/8/images/aarch64/Rocky-8-Container-Base.latest.aarch64.tar.xz), [Minimal aarch64](https://dl.rockylinux.org/pub/rocky/8/images/aarch64/Rocky-8-Container-Minimal.latest.aarch64.tar.xz), [UBI aarch64](https://dl.rockylinux.org/pub/rocky/8/images/aarch64/Rocky-8-Container-UBI.latest.aarch64.tar.xz)
+        - 9: [Base x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-Base.latest.x86_64.tar.xz), [Minimal x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-Minimal.latest.x86_64.tar.xz), [UBI x86_64](https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-UBI.latest.x86_64.tar.xz),<br>[Base aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-Container-Base.latest.aarch64.tar.xz), [Minimal aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-Container-Minimal.latest.aarch64.tar.xz), [UBI aarch64](https://dl.rockylinux.org/pub/rocky/9/images/aarch64/Rocky-9-Container-UBI.latest.aarch64.tar.xz)
+    - Extract the image from either Docker Hub or Quay.io ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#export-the-tar-from-a-container))
 
-2. (optional) You might have to extract the docker rootfs layer from the image you got (you need the tar file)
+        ```sh
+        <podman/docker> export rockylinux:9 > rocky-9-image.tar
+        ```
+
+2. (optional) You will have to extract the .tar file from the .tar.xz file if you are using not one of the latest WSL versions
 3. Create the directory where the WSL will store its files (mostly somewhere in the userprofile)
 4. Finally, import the image into WSL ([ref.](https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro#import-the-tar-file-into-wsl)):
 
-    - WSL: `wsl --import <machine-name> <path-to-vm-dir> <path-to/rocky-9-image.tar>`
-    - WSL 2: `wsl --import <machine-name> <path-to-vm-dir> <path-to/rocky-9-image.tar> --version 2`
+    - WSL:
+
+        ```sh
+        wsl --import <machine-name> <path-to-vm-dir> <path-to/rocky-9-image.tar.xz>
+        ```
+
+    - WSL 2:
+
+        ```sh
+        wsl --import <machine-name> <path-to-vm-dir> <path-to/rocky-9-image.tar.xz> --version 2
+        ```
 
 !!! hint "WSL vs. WSL 2"
 
@@ -46,7 +60,7 @@ This feature should be available on every supported Windows 10 and 11 version ri
 
 !!! hint "systemd"
 
-    Microsoft finally decided to bring systemd into the WSL. ([ref](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl)) You only need to add `systemd=true` to the `boot` ini section in the `/etc/wsl.conf` file! (Please make sure you are running a WSL version equals or later 0.67.6)
+    Microsoft finally decided to bring systemd into the WSL. This feature is in the new WSL version from the Microsoft Store. You only need to add `systemd=true` to the `boot` ini section in the `/etc/wsl.conf` file! ([ref.](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings))
 
 !!! hint "Microsoft Store"
 
