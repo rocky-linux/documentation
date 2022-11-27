@@ -701,6 +701,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "bertronika",
+      "name": "Nejc Bertoncelj",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42844753?v=4",
+      "profile": "https://github.com/bertronika",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
