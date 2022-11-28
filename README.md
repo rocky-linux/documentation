@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-77-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-78-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Introduction
@@ -265,6 +265,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center"><a href="https://github.com/bamtests"><img src="https://avatars.githubusercontent.com/u/17178592?v=4?s=100" width="100px;" alt="bamtests"/><br /><sub><b>bamtests</b></sub></a><br /><a href="#content-bamtests" title="Content">🖋</a></td>
       <td align="center"><a href="https://social.linux.pizza/@jahway603"><img src="https://avatars.githubusercontent.com/u/64485701?v=4?s=100" width="100px;" alt="jahway603"/><br /><sub><b>jahway603</b></sub></a><br /><a href="#content-jahway603" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/bertronika"><img src="https://avatars.githubusercontent.com/u/42844753?v=4?s=100" width="100px;" alt="Nejc Bertoncelj"/><br /><sub><b>Nejc Bertoncelj</b></sub></a><br /><a href="#content-bertronika" title="Content">🖋</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/bakerds"><img src="https://avatars.githubusercontent.com/u/16193241?v=4?s=100" width="100px;" alt="Dan Baker"/><br /><sub><b>Dan Baker</b></sub></a><br /><a href="#content-bakerds" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
