@@ -22,7 +22,7 @@ When we download bash scripts that have been written by others in our daily work
 |  33            |    yellow    |
 |  34            |     blue     | 
 |  35            |     purple   |
-|  36            |   Dark green |
+|  36            |   dark green |
 |  37            |    white     |
 
 ## Background color of font
@@ -30,12 +30,12 @@ When we download bash scripts that have been written by others in our daily work
 | **Background color code** | **describe** |
 |    :---:       |    :---:     |
 |     40         |    black     |
-|     41         |    Crimson   |
+|     41         |    crimson   |
 |     42         |    green     |
 |     43         |    yellow    |
 |     44         |    blue      |
 |     45         |    purple    |
-|     46         |  Dark green  |
+|     46         |  dark green  |
 |     47         |   white      |
 
 ## Display mode
@@ -45,9 +45,9 @@ When we download bash scripts that have been written by others in our daily work
 |    0     |Terminal default settings|
 |    1     |Highlight|
 |    4     |Underline|
-|    5     |Currsor blinks|
+|    5     |Cursor blinks|
 |    7     |Reverse display|
-|    8     | hide |
+|    8     |Hide |
 
 ## Mode of execution
 
@@ -66,7 +66,7 @@ We can write a script to observe the color change.
 # Font color cycle
 for color1 in {31..37}
     do
-        echo -e "\033[0;${color1};40m---hello! world---\033[0m"
+        echo -e "\033[0;${color1};40m---hello! Rocky---\033[0m"
     done
 
 echo "-------"
@@ -74,7 +74,7 @@ echo "-------"
 # Background color cycle
 for color2 in {40..47}
     do
-        echo -e "\033[30;${color2}m---hello! world---\033[0m"
+        echo -e "\033[30;${color2}m---hello! Rocky---\033[0m"
     done
 
 echo "-------"
@@ -82,7 +82,7 @@ echo "-------"
 # Cycle of display mode
 for color3 in 0 1 4 5 7 8
     do
-        echo -e "\033[${color3};37;40m---hello! world---\033[0m"
+        echo -e "\033[${color3};37;40m---hello! Rocky---\033[0m"
     done
 ```
 
