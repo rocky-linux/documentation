@@ -14,7 +14,7 @@ When we download bash scripts that have been written by others in our daily work
 
 ## Font color
 
-| **color code** | **describe** |
+| **color code** | **description** |
 |    :---:       |    :---:     |
 |  30            |    black     |
 |  31            |     red      |
@@ -27,7 +27,7 @@ When we download bash scripts that have been written by others in our daily work
 
 ## Background color of font
 
-| **Background color code** | **describe** |
+| **background color code** | **description** |
 |    :---:       |    :---:     |
 |     40         |    black     |
 |     41         |    crimson   |
@@ -40,7 +40,7 @@ When we download bash scripts that have been written by others in our daily work
 
 ## Display mode
 
-| **code** | **describe** |
+| **code** | **description** |
 |  :---:   |    :---:     |
 |    0     |Terminal default settings|
 |    1     |Highlight|
