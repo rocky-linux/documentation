@@ -9,12 +9,7 @@ In questo capitolo imparerai come gestire gli utenti.
 ****
 **Obiettivi**: In questo capitolo, i futuri amministratori di Linux impareranno a:
 
-:heavy_check_mark: aggiungere, eliminare o modificare un **gruppo** ;   
-:heavy_check_mark: aggiungere, eliminare o modificare un **utente** ;   
-:heavy_check_mark: comprendere i file associati agli utenti e ai gruppi e scoprire come gestirli;   
-:heavy_check_mark: cambiare il *proprietario* o il *proprietario del gruppo* di un file;   
-:heavy_check_mark: *sicuro* account utente;   
-:heavy_check_mark: cambiare identità.
+:heavy_check_mark: aggiungere, eliminare o modificare un **gruppo** ; :heavy_check_mark: aggiungere, eliminare o modificare un **utente** ; :heavy_check_mark: Comprendere i file associati agli utenti e ai gruppi e scoprire come gestirli; :heavy_check_mark: cambiare il *proprietario* o il *proprietario del gruppo* di un file; :heavy_check_mark: *sicuro* account utente; :heavy_check_mark: cambiare identità.
 
 :checkered_flag: **utenti**
 
@@ -96,8 +91,8 @@ Regole di denominazione del gruppo:
     $ man addgroup
     DESCRIPTION
     adduser and addgroup add users and groups to the system according to command line options and configuration information
-    in /etc/adduser.conf. They are friendlier front ends to the low-level tools like useradd, groupadd and usermod programs,
-    by default, choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
+    in /etc/adduser.conf. They are friendlier front ends to the low level tools like useradd, groupadd and usermod programs,
+    by default choosing Debian policy conformant UID and GID values, creating a home directory with skeletal configuration,
     running a custom script, and other features.
     ```
 
@@ -148,7 +143,7 @@ $ sudo groupdel GroupC
     Quando si elimina un gruppo, si possono verificare due condizioni:
 
     * Se un utente ha un gruppo primario unico e si lancia il comando `groupdel` su quel gruppo, verrà indicato che c'è un utente specifico sotto il gruppo e che non può essere cancellato.
-    * Se un utente appartiene a un gruppo supplementare (non il gruppo primario dell'utente) e tale gruppo non è il gruppo primario di un altro utente del sistema, il comando `groupdel` eliminerà il gruppo senza ulteriori richieste.
+    * Se un utente appartiene a un gruppo supplementare (non al gruppo primario per l'utente) e tale gruppo non è il gruppo primario per un altro utente sul sistema, il comando `groupdel` eliminerà il gruppo senza alcun prompt aggiuntivo.
 
     Esempi:
 
@@ -175,8 +170,7 @@ $ sudo groupdel GroupC
     Ogni gruppo ha un `GID` unico. Un gruppo può essere utilizzato da più utenti come gruppo supplementare. Per convenzione, il GID del super amministratore è 0. Il GIDS riservato ad alcuni servizi o processi sono 201~999, che sono chiamati gruppi di sistema o gruppi di utenti pseudo. Il GID per gli utenti è solitamente maggiore o uguale a 1000. Questi sono relativi a <font color=red>/etc/login.defs</font>, di cui parleremo più tardi.
 
     ```bash
-    # Comment line ignored
-    shell > cat  /etc/login.defs
+    shell > egrep -v "^#|^$" /etc/login.defs
     MAIL_DIR        /var/spool/mail
     UMASK           022
     HOME_MODE       0700
@@ -491,7 +485,7 @@ root:$6$...:15399:0:99999:7
 * 1: Nome Login.
 * 2: Password criptata. Utilizza l'algoritmo di crittografia SHA512, definito dal `ENCRYPT_METHOD` di `/etc/login.defs`.
 * 3: L'ora in cui la password è stata cambiata l'ultima volta, il formato timestamp, in giorni. Il cosiddetto timestamp si basa sul 1 gennaio 1970 come orario standard. Ogni volta che un giorno passa, il timestamp è +1.
-* 4: Durata minima della password. Ovvero, l'intervallo di tempo tra due modifiche della password (relative al terzo campo), in giorni.  Definito dal `PASS_MIN_DAYS` di `/etc/login.defs`, il valore predefinito è 0, cioè, quando cambi la password per la seconda volta, non c'è alcuna restrizione. Tuttavia, se è 5, significa che non è permesso cambiare la password entro 5 giorni, e solo dopo 5 giorni.
+* 4: Durata minima della password. Cioè, l'intervallo di tempo tra due modifiche password (relative al terzo campo), in giorni.  Definito dal `PASS_MIN_DAYS` di `/etc/login.defs`, il valore predefinito è 0, cioè, quando cambi la password per la seconda volta, non c'è alcuna restrizione. Tuttavia, se è 5, significa che non è permesso cambiare la password entro 5 giorni, e solo dopo 5 giorni.
 * 5: Durata massima della password. Cioè, il periodo di validità della password (relativo al terzo campo). Definito dal `PASS_MAX_DAYS` di `/etc/login.defs`.
 * 6: Il numero di giorni di avviso prima della scadenza della password (relativo al quinto campo). Il valore predefinito è di 7 giorni, definito dal `PASS_WARN_AGE` di `/etc/login.defs`.
 * 7: Numero di giorni di tolleranza dopo la scadenza della password (in relazione al quinto campo).
@@ -655,7 +649,7 @@ uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 
 ### comando `newgrp`
 
-Il comando `newgrp` può selezionare un gruppo, dai gruppi supplementari dell'utente, come nuovo gruppo primario **temporaneo**. Il comando `newgrp` ogni volta che viene cambiato il gruppo primario di un utente, crea una nuova **child shell** (child process). Fai attenzione! **child shell** e **sub shell** sono diverse.
+Il comando `newgrp` consente di utilizzare temporaneamente un gruppo secondario per la creazione di file.
 
 ```
 newgrp [secondarygroups]
@@ -664,71 +658,44 @@ newgrp [secondarygroups]
 Esempio:
 
 ```
-Shell > useradd test1
-Shell > passwd test1
-Shell > groupadd groupA ; groupadd groupB 
-Shell > usermod -G groupA,groupB test1
-Shell > id test1
-uid=1000(test1) gid=1000(test1) groups=1000(test1),1001(groupA),1002(groupB)
-Shell > echo $SHLVL ; echo $BASH_SUBSHELL
-1
-0
-
-Shell > su - test1
-Shell > touch a.txt
-Shell > ll
--rw-rw-r-- 1 test1 test1 0 10月  7 14:02 a.txt
-Shell > echo $SHLVL ; echo $BASH_SUBSHELL
-1
-0
-
-# Generate a new child shell
-Shell > newgrp groupA
-Shell > touch b.txt
-Shell > ll
--rw-rw-r-- 1 test1 test1  0 10月  7 14:02 a.txt
--rw-r--r-- 1 test1 groupA 0 10月  7 14:02 b.txt
-Shell > echo $SHLVL ; echo $BASH_SUBSHELL
-2
-0
-
-# You can exit the child shell using the `exit` command
-Shell > exit
-Shell > logout
-Shell > whoami
-root
+[alain]$ newgrp GroupB
 ```
+
+!!! Note "Nota"
+
+    Dopo aver usato questo comando, i file saranno creati con il `GID` del suo sottogruppo.
+
+Il comando `newgrp` senza parametri riassegna il gruppo primario.
 
 ## Protezione
 
 ### commando `passwd`
 
 Il comando `passwd` viene utilizzato per gestire una password.
-
 ```
 passwd [-d] [-l] [-S] [-u] [login]
 ```
-
 Esempi:
-
 ```
-Shell > passwd -l albert
-Shell > passwd -n 60 -x 90 -w 80 -i 10 patrick
+$ sudo passwd -l albert
+$ sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
 
-| Opzione   | Descrizione                                                                                                     |
-| --------- | --------------------------------------------------------------------------------------------------------------- |
-| `-d`      | Rimuove in modo permanente la password. Solo per root (uid=0).                                                  |
-| `-l`      | Blocca in modo permanente l'account utente. Solo per root (uid=0).                                              |
-| `-S`      | Visualizza lo stato dell'account. Solo per root (uid=0).                                                        |
-| `- u`     | Sblocca in modo permanente l'account utente. Solo per root (uid=0).                                             |
-| `-e`      | Fa scadere definitivamente la password. Solo per root (uid=0).                                                  |
-| `-n DAYS` | Durata minima della password. Cambiamento permanente. Solo per root (uid=0).                                    |
-| `-x DAYS` | Durata massima della password. Cambiamento permanente. Solo per root (uid=0).                                   |
-| `-w DAYS` | Tempo di avviso prima della scadenza. Cambiamento permanente. Solo per root (uid=0).                            |
-| `-i DAYS` | Ritardo prima della disattivazione alla scadenza della password. Cambiamento permanente. Solo per root (uid=0). |
+| Opzione   | Descrizione                                                  |
+| --------- | ------------------------------------------------------------ |
+| `-d`      | Rimuove la password.                                         |
+| `-l`      | Blocca l'account.                                            |
+| `-S`      | Visualizza lo stato dell'account.                            |
+| `- u`     | Sblocca l'account.                                           |
+| `-e`      | Scadenza della password.                                     |
+| `-n days` | Durata minima della password.                                |
+| `-x days` | Durata massima della password.                               |
+| `-w days` | Tempo di avvertimento prima della scadenza.                  |
+| `-i days` | Ritardo prima della disattivazione quando la password scade. |
 
-Usare `password -l`, cioè aggiungere "!!" all'inizio del campo della password dell'utente corrispondente a `/etc/shadow`.
+Con il comando `passwd`, il blocco di un account si ottiene aggiungendo `!!` prima della password nel file `/etc/shadow`.
+
+Usando il comando `usermod -U` si rimuove solo uno dei `!`. Quindi l'account rimane bloccato.
 
 Esempio:
 
@@ -766,7 +733,7 @@ $ sudo echo "azerty,1" | passwd --stdin philippe
 
 ### comando `chage`
 
-Il comando `chage` modifica le informazioni sulla scadenza della password utente.
+Il comando `chage` è usato per gestire la strategia dell'account.
 
 ```
 chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
@@ -778,32 +745,36 @@ Esempio:
 $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
 
-| Opzione          | Descrizione                                                                                                                             |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `-I DAYS`        | Ritardo prima della disattivazione, a password scaduta. Cambiamento permanente.                                                         |
-| `-l`             | Visualizza i dettagli della politica.                                                                                                   |
-| `-m DAYS`        | Durata minima della password. Cambiamento permanente.                                                                                   |
-| `-M DAYS`        | Durata massima della password. Cambiamento permanente.                                                                                  |
-| `-d LAST_DAY`    | Ultima modifica della password. È possibile utilizzare lo stile di data e ora dei giorni o lo stile YYYY-MM-DD. Cambiamento permanente. |
-| `-E EXPIRE_DATE` | Data di scadenza dell'account. È possibile utilizzare lo stile di data e ora dei giorni o lo stile YYYY-MM-DD. Cambiamento permanente.  |
-| `-W WARN_DAYS`   | Tempo di avviso prima della scadenza. Cambiamento permanente.                                                                           |
+| Opzione         | Descrizione                                             |
+| --------------- | ------------------------------------------------------- |
+| `-I days`       | Ritardo prima della disattivazione, a password scaduta. |
+| `-l`            | Visualizza i dettagli della politica.                   |
+| `-m days`       | Durata minima della password.                           |
+| `-M days`       | Durata massima della password.                          |
+| `-d AAAA-MM-JJ` | Ultima modifica della password.                         |
+| `-E AAAA-MM-JJ` | Data di scadenza dell'account.                          |
+| `-W days`       | Tempo di avvertimento prima della scadenza.             |
+
+Il comando `chage` offre anche una modalità interattiva.
+
+L'opzione `-d` forza la modifica della password all'accesso.
 
 Esempi:
 
 ```
-# Il comando `chage` offre anche una modalità interattiva.
 $ sudo chage philippe
-
-# L'opzione `-d` costringe la password a essere cambiata al login.
 $ sudo chage -d 0 philippe
 ```
+
+!!! Note "Nota"
+
+    Se non viene specificato alcun utente, l'ordine riguarderà l'utente che lo inserisce.
 
 ![Gestione degli account utente con chage](images/chage-timeline.png)
 
 ## Gestione avanzata
 
 File di configurazione:
-
 * `/etc/default/useradd`
 * `/etc/login.defs`
 * `/etc/skel`
@@ -824,85 +795,44 @@ Questo file contiene le impostazioni predefinite dei dati.
 
 Questo file è modificato dal comando `useradd -D` (`useradd -D` inserito senza nessun'altra opzione visualizza il contenuto del file `/etc/default/useradd`).
 
-```
-Shell > grep -v ^# /etc/default/useradd 
-GROUP=100
-HOME=/home
-INACTIVE=-1
-EXPIRE=
-SHELL=/bin/bash
-SKEL=/etc/skel
-CREATE_MAIL_SPOOL=yes
-```
+| Valore              | Commento                                                                               |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| `GROUP`             | Gruppo predefinito.                                                                    |
+| `HOME`              | Percorso in cui verrà creata la directory di accesso per il nome dell'utente.          |
+| `INACTIVE`          | Numero di giorni dopo la scadenza della password prima che l'account sia disabilitato. |
+| `EXPIRE`            | Data di scadenza dell'account.                                                         |
+| `SHELL`             | Interprete dei comandi.                                                                |
+| `SKEL`              | Skeleton Directory della directory di accesso.                                         |
+| `CREATE_MAIL_SPOOL` | Creazione della Mailbox in`/var/spool/mail`.                                           |
 
-| Parametri           | Commento                                                                                                                                                                          |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `GROUP`             | GID del gruppo primario predefinito.                                                                                                                                              |
-| `HOME`              | Definisce il percorso della directory del livello superiore della home directory dell'utente comune.                                                                              |
-| `INACTIVE`          | Numero di giorni di tolleranza dopo la scadenza della password. Corrisponde al 7° campo del file `/etc/shadow`. Il valore `-1` indica che il periodo di tolleranza è disattivato. |
-| `EXPIRE`            | Data di scadenza dell'account. Corrisponde all'ottavo campo del file `/etc/shadow`.                                                                                               |
-| `SHELL`             | Interprete dei comandi.                                                                                                                                                           |
-| `SKEL`              | Skeleton Directory della directory di accesso.                                                                                                                                    |
-| `CREATE_MAIL_SPOOL` | Creazione della Mailbox in`/var/spool/mail/`.                                                                                                                                     |
+!!! Warning "Attenzione"
 
-Se non si ha bisogno di un gruppo primario con lo stesso nome quando si creano gli utenti, si può fare così:
+    Senza l'opzione `-g`, il comando `useradd` crea un gruppo con il nome dell'utente e lo posiziona in quel gruppo.
+
+In ordine al comando `useradd` per poter recuperare il valore del campo `GROUP` dal file `/etc/default/useradd`, devi specificare l'opzione `-N`.
+
+Esempio:
 
 ```
-Shell > useradd -N test2
-Shell > id test2
-uid=1001(test2) gid=100(users) groups=100(users)
+$ sudo useradd -u 501 -N GroupeA
 ```
 
 ### file `/etc/login.defs`
 
-```bash
-# Comment line ignored
-shell > cat  /etc/login.defs
-MAIL_DIR        /var/spool/mail
-UMASK           022
-HOME_MODE       0700
-PASS_MAX_DAYS   99999
-PASS_MIN_DAYS   0
-PASS_MIN_LEN    5
-PASS_WARN_AGE   7
-UID_MIN                  1000
-UID_MAX                 60000
-SYS_UID_MIN               201
-SYS_UID_MAX               999
-GID_MIN                  1000
-GID_MAX                 60000
-SYS_GID_MIN               201
-SYS_GID_MAX               999
-CREATE_HOME     yes
-USERGROUPS_ENAB yes
-ENCRYPT_METHOD SHA512
-```
+Questo file contiene molti parametri predefiniti utili per la creazione o la modifica degli utenti. Queste informazioni sono raggruppate per paragrafo in base al loro utilizzo:
 
-`UMASK 022`: Ciò significa che il permesso di creare un file è 755 (rwxr-xr-x). Tuttavia, per motivi di sicurezza, GNU/Linux non prevede il permesso **x** per i file appena creati; questa restrizione si applica a root (uid=0) e agli utenti ordinari (uid>=1000). Per esempio:
-
-```
-Shell > touch a.txt
-Shell > ll
--rw-r--r-- 1 root root     0 Oct  8 13:00 a.txt
-```
-
-`HOME_MODE 0700`: I permessi della directory home di un utente ordinario. Non funziona per la directory home di root.
-
-```
-Shell > ll -d /root
-dr-xr-x---. 10 root root 4096 Oct  8 13:12 /root
-
-Shell > ls -ld /home/test1/
-drwx------ 2 test1 test1 4096 Oct  8 13:10 /home/test1/
-```
-
-`USERGROUPS_ENAB sì`: "Quando si elimina un utente con il comando `userdel -r`, viene eliminato anche il gruppo primario corrispondente." Perché? Questo è il motivo.
+* Mailboxes;
+* Passwords;
+* UID e GID;
+* Umask ;
+* Connessioni;
+* Terminali.
 
 ### directory `/etc/skel`
 
-Quando viene creato un utente, vengono creati la sua home directory e i suoi file di ambiente. I file della directory `/etc/skel/` sono i modelli di file necessari per creare gli utenti.
+Quando viene creato un utente, vengono creati anche la home directory e i file d'ambiente.
 
-Questi file vengono copiati automaticamente dalla directory `/etc/skel`.
+Questi file vengono automaticamente copiati dalla directory `/etc/skel`.
 
 * `.bash_logout`
 * `.bash_profile`
@@ -924,7 +854,7 @@ Esempi:
 
 ```
 $ sudo su - alain
-[albert]$ su - root -c "passwd alain"
+[albert]$ su -c "passwd alain"
 ```
 
 | Opzione      | Descrizione                                                 |
@@ -938,55 +868,33 @@ Gli utenti standard dovranno digitare la password per la nuova identità.
 
 !!! Tip "Suggerimento"
 
-    You can use the `exit`/`logout` command to exit users who have been switched. Si noti che dopo il cambio di utente non esiste una nuova `child shell` o `sub shell`, ad esempio:
+    Vengono creati dei 'layers' successivi (una pila di ambienti `bash`). Per passare da un utente all'altro, devi prima digitare il comando `exit` per riprendere la tua identità e quindi il comando `su` per prendere un'altra identità.
 
-    ```
-    Shell > whoami
-    root
-    Shell > echo $SHLVL ; echo $BASH_SUBSHELL
-    1
-    0
+#### Caricamento del profilo
 
-    Shell > su - test1
-    Shell > echo $SHLVL ; echo $BASH_SUBSHELL
-    1
-    0
-    ```
-
-Attenzione! `su` e `su -` sono diversi, come mostrato nell'esempio seguente:
+`root` approva l'identità dell'utente `alain` con `su`:
 
 ```
-Shell > whoami
-test1
-Shell > su root
-Shell > pwd
-/home/test1
-
-Shell > env
 ...
-USER=test1
-PWD=/home/test1
-HOME=/root
-MAIL=/var/spool/mail/test1
-LOGNAME=test1
+/home/GroupA/alain/.bashrc
+/etc/bashrc
 ...
 ```
 
-```
-Shell > whoami
-test1
-Shell > su - root
-Shell > pwd
-/root
+`root` assume l'identità dell'utente `alain` con `su -`:
 
-Shell > env
+```
 ...
-USER=root
-PWD=/root
-HOME=/root
-MAIL=/var/spool/mail/root
-LOGNAME=root
+/home/GroupA/alain/.bash_profile
+/home/GroupA/alain/.bashrc
+/etc/bashrc
 ...
 ```
 
-Quindi, quando si vuole cambiare utente, ricordarsi di non dimenticare il `-`. Poiché non vengono caricati i file delle variabili d'ambiente necessarie, potrebbero verificarsi problemi nell'esecuzione di alcuni programmi.
+Un utente può temporaneamente (per un altro comando o per un'intera sessione) assumere l'identità di un altro account.
+
+Se nessun utente è specificato, il comando sarà per `root` (`su -`).
+
+È necessario conoscere la password dell'utente di cui si sta verificando l'identità, a meno che non sia `root` a eseguire il comando.
+
+Un amministratore può quindi lavorare con un account utente standard e utilizzare i diritti dell'account `root` solo occasionalmente.

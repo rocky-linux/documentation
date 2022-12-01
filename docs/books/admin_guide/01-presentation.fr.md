@@ -226,7 +226,7 @@ Il existe plusieurs types de Shell disponibles et configurables sur une plate-fo
 * sh, le shell aux normes POSIX ;
 * csh, shell orienté commandes en C ;
 * bash, Bourne-Again Shell, le shell de Linux.
-* etc.
+* etc, ...
 
 ## Fonctionnalités
 

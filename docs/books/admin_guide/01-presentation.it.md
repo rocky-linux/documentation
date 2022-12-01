@@ -8,7 +8,7 @@ In questo capitolo impareremo a conoscere le distribuzioni GNU/Linux.
 
 ****
 
-**Obiettivi**: In questo capitolo imparerai a:
+**Obiettivi** : In questo capitolo imparerai a:
 
 :heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo  
 :heavy_check_mark: Raccontare la storia di UNIX e GNU/Linux  
@@ -133,9 +133,9 @@ Linux è scritto in un linguaggio di alto livello che può essere adattato a div
 
 * computer di casa (PC o laptop);
 * server (dati, applicazioni,...);
-* computer portatili (smartphone o tablet);
+* computer portatili (smartphone o tablet)
 * sistemi integrati (computer per auto);
-* elementi di rete attivi (router, switch);
+* elementi di rete attivi (router, switch)
 * elettrodomestici (TV, frigoriferi,...).
 
 #### Aperto
@@ -193,7 +193,7 @@ Un software gratuito è necessariamente Open Source, ma il contrario non è vero
 
 La **Licenza GPL** garantisce all'autore di un software la sua proprietà intellettuale, ma consente la modifica, ridistribuzione o rivendita del software da parte di terzi, a condizione che i codici sorgente siano forniti con il software. La GPL è la licenza dalla quale esce il progetto **GNU** (GNU is Not UNIX), che è stato strumentale nella creazione di Linux.
 
-Questo implica:
+Questo implica :
 
 * la libertà di eseguire il programma, per qualsiasi scopo;
 * la libertà di studiare come funziona il programma e di adattarlo alle proprie esigenze;
@@ -204,7 +204,7 @@ D'altra parte, anche i prodotti rilasciati sotto la licenza GPL possono essere p
 
 ## Aree di utilizzo
 
-Una distribuzione Linux eccelle per:
+Una distribuzione Linux eccelle per :
 
 * **Un server**: HTTP, email, groupware, condivisione file, etc.
 * **Sicurezza**: Gateway, firewall, router, proxy, etc.
@@ -223,10 +223,10 @@ Offre un vero linguaggio di programmazione incluse le strutture classiche: loops
 
 Esistono diversi tipi di shell disponibili e configurabili su una piattaforma o in base alle preferenze dell'utente:
 
-* sh, la shell standard POSIX;
-* csh, command-oriented shell in C;
+* sh, la shell standard POSIX ;
+* csh, command-oriented shell in C ;
 * bash, Bourne-Again Shell, Linux shell.
-* ecc.
+* etc, ...
 
 ## Funzionalità
 
@@ -291,7 +291,7 @@ Esistono diversi tipi di shell disponibili e configurabili su una piattaforma o 
 - [ ] Vero
 - [ ] Falso
 
-:heavy_check_mark: Il software Open-Source è necessariamente gratuito?
+:heavy_check_mark: Is Open Source software necessarily free?
 
 - [ ] Vero
 - [ ] Falso

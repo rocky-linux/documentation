@@ -1,9 +1,6 @@
 ---
 title: Perl - 搜索与替换
 author: Steven Spencer
-tags:
-  - perl
-  - 搜索
 ---
 
 # `perl` 搜索与替换
