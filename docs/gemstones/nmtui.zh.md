@@ -11,7 +11,7 @@ update: 2021-10-23
 
 ## nmtui
 
-`NetworkManager` 是一个标准的Linux网络配置工具套件，支持服务器，也支持桌面环境， 发展到如今，绝大多数流行的发行版都支持它。 这套网络配置工具适用于 Rocky Linux 8 及更高版本。 如果您希望以图形化的方式配置网络信息(即命令行`nmtui`)，只需要这么做：
+`NetworkManager` 是一个标准的Linux网络配置工具套件，支持服务器，也支持桌面环境， 发展到如今，绝大多数流行的发行版都支持它。 这套网络配置工具适用于 Rocky Linux 8 及更高版本， 如果您希望以图形化的方式配置网络信息(即命令行`nmtui`)，只需要这么做：
 
 ```bash
 shell > dnf -y install NetworkManager NetworkManager-tui
@@ -30,7 +30,7 @@ shell > nmtui
 
 ### DHCP的IPv4
 
-针对IPv4，如果是使用DHCP的方式获取网络信息，则只需要选择 *IPv4 CONFIGURATION* 后面的**&lt;Automatic&gt;**，然后在您的终端中运行下`systemctl restart NetworkManager.service`，大多数的情况下都能生效。 极少数的情况下需要开关网卡才能生效。 例如这样的方式——`nmcli connection down ens33`，`nmcli connection up ens33`
+针对IPv4，如果是使用DHCP的方式获取网络信息，则只需要选择 *IPv4 CONFIGURATION* 后面的**&lt;Automatic&gt;**，然后在您的终端中运行下`systemctl restart NetworkManager.service`，大多数的情况下都能生效。 极少数的情况下需要开关网卡才能生效， 例如这样的方式——`nmcli connection down ens33`，`nmcli connection up ens33`
 
 ### 手动固定网络信息
 
@@ -47,10 +47,6 @@ shell > nmtui
 ## 更改配置文件的方式
 
 所有的RHEL发行版，不管是上游的还是下游的，都是一样的配置方式。 网络信息的配置文件保存在 **/etc/sysconfig/network-scripts/** 目录下面，一个网卡对应一个配置文件。 配置文件的参数非常的多，如下表所示。 注意！ 参数一定要大写。
-
-!!! warning "警告"
-
-    在 RHEL 9.x 分发中，存储 NIC 配置文件的目录的位置已被更改，即**/etc/NetworkManager/system-connections/**。 更多信息请见 [这里](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-sinle/configuring_and_managing_networking/index)。
 
 ```bash
 shell > ls /etc/sysconfig/network-scripts/
@@ -82,7 +78,7 @@ ifcfg-ens33
 | IPV6_FAILURE_FATAL | IPV6配置失败后，是否禁用设备                                                                              | IPV6_FAILURE_FATAL=no             |
 | IPV6_ADDR_GEN_MODE | 产生IPV6地址的模型，可选值有stable-privacy与eui64                                                          | IPV6_ADDR_GEN_MODE=stable-privacy |
 
-配置文件修改成功后，记得重启网卡服务 `systemctl restart NetworkManager.service` 。
+配置文件修改成功后，记得重启网卡服务`systemctl restart NetworkManager.service`
 
 ### IPV4的推荐配置
 

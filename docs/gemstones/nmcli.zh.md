@@ -1,8 +1,6 @@
 ---
 title: nmcli - 设置自动连接
 author: wale soyinka
-tags:
-  - nmcli
 ---
 
 # 修改 NetworkManager 配置文件的自动连接属性
@@ -23,8 +21,8 @@ sudo nmcli con mod ens3 connection.autoconnect yes
 
 ```
 connection (con)       :  NetworkManager 连接对象 
-modify (mod)           :  修改给定连接配置文件的一个或多个属性。
-connection.autoconnect :  设置属性 (<setting>.<property>)
+modify (mod)           :  修改给定连接配置文件的一个或多个属性
+connection.autoconnect :  设置项和要更改的属性 (<setting>.<property>)
 -f, --fields           :  指定要输出的字段
 
 ```

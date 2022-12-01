@@ -3,15 +3,10 @@ title: htop - 进程管理
 author: tianci li
 contributors: Steven Spencer
 date: 2021-10-16
-tags:
-  - htop
-  - processes
 ---
 
-# htop - 进程管理
-
-## 安装 `htop`
-每个系统管理员都喜欢用一些比较常用的命令。 今天推荐的是`htop`，作为 `top` 命令的替代。 要正常使用 `htop`命令，需要首先安装它。
+# 安装 `htop`
+每个系统管理员都喜欢用一些比较常用的命令， 今天推荐的是`htop`，作为 `top` 命令的替代。 要正常使用 `htop`命令，需要首先安装它。
 
 ``` bash
 # 安装epel源（也叫存储库）
@@ -22,7 +17,7 @@ dnf makecache
 dnf -y install htop
 ```
 
-## 使用 `htop`
+# 使用 `htop`
 您只需要在终端中键入`htop` 即可，交互界面如下：
 
 ```
@@ -37,7 +32,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S    CPU%   MEM%   TIME+   Commad(mer
 
 <kbd>F1</kbd>Help   <kbd>F2</kbd>Setup  <kbd>F3</kbd>Search <kbd>F4</kbd>Filter <kbd>F5</kbd>Tree   <kbd>F6</kbd>SortBy <kbd>F7</kbd>Nice   <kbd>F8</kbd>Nice+  <kbd>F9</kbd>Kill   <kbd>F10</kbd>Quit
 
-### 顶部说明
+## 顶部说明
 
 * 最上面的0和1，表示你的CPU核心数，百分比表示单个内核的占用率（当然也可以显示CPU总的占有率）
     * 进度条的不同颜色表示不同的进程类型占有百分比
@@ -64,7 +59,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S    CPU%   MEM%   TIME+   Commad(mer
 * Load average，三个值分别表示了系统在最后1分钟、最后5分钟、最后15分钟的平均负载
 * Uptime，表示开机以后的运行时间
 
-### 进程信息说明
+## 进程信息说明
 
 * **PID - 进程的ID号**
 
@@ -82,15 +77,15 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S    CPU%   MEM%   TIME+   Commad(mer
 
 * MEM%-每个进程消耗的内存百分比
 * TIME+-显示了自进程开启以来的运行时间
-* Command-进程所对应的命令
+* Commad-进程所对应的命令
 
-### 快捷键说明
+## 快捷键说明
 在交互界面，按<kbd>F1</kbd>按键，即可看到对应的快捷键说明。
 
 * 上下左右的方向按键，可以在交互界面滚动，<kbd>space</kbd> 则可以对对应的进程进行标记，以黄色进行标识。
 * <kbd>N</kbd>按键 、<kbd>P</kbd>按键 、<kbd>M</kbd>按键 、<kbd>T</kbd>按键，分别以PID、CPU%、MEM%、TIME+进行排序。 当然，你也可以用鼠标点击的方式，以某个字段升序或降序排列。
 
-### 其他常用
+## 其他常用
 对进程进行管理，使用<kbd>F9</kbd>按键，可以对进程发送不同的信号。 信号列表可以在`kill -l`中找到， 比较常用的有：
 
 | 信号 | 说明                                                 |

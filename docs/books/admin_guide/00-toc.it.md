@@ -8,9 +8,9 @@ La Guida all'amministrazione è una raccolta di documenti didattici incentrati s
 
 Inizialmente, discuteremo di Linux, delle distribuzioni e dell'intero ecosistema che ruota attorno al nostro sistema operativo.
 
-Vedremo quindi i comandi utente che sono essenziali per prendere confidenza con Linux. Gli utenti più esperti dovrebbero consultare anche il capitolo dedicato ai 'Comandi' più "avanzati".
+Vedremo quindi i comandi utente che sono essenziali per prendere confidenza con Linux. Gli utenti più esperti dovrebbero consultare anche il capitolo dedicato ai "Comandi avanzati”.
 
-Segue il capitolo sull'editor VI. Mentre Linux viene fornito con molti editor, VI è uno dei più potenti. Altri comandi a volte usano sintassi identiche a VI (come il comando `sed`). Quindi, conoscere qualcosa di VI, o almeno demistificare le sue funzioni essenziali (come aprire un file, salvare, uscire o uscire senza salvare), è molto importante. L'utente si sentirà più a suo agio con le altre funzioni di VI mentre usa l'editor. Un'alternativa sarebbe usare nano che viene installato di default in Rocky Linux. Sebbene non sia così versatile, è semplice da usare, diretto e porta a termine il lavoro.
+Segue il capitolo sull'editor VI. Mentre Linux viene fornito con molti editor, VI è uno dei più potenti. Altri comandi a volte usano sintassi identiche a VI (come il comando `sed`). Quindi sapere qualcosa su VI, o almeno demistificare le sue funzioni essenziali (come aprire un file, salvare, uscire o uscire senza salvare), è molto importante da sapere. L'utente si sentirà più a suo agio con le altre funzioni di VI mentre usa l'editor. Un'alternativa sarebbe usare nano che viene installato di default in Rocky Linux. Sebbene non sia così versatile, è semplice da usare, diretto e porta a termine il lavoro.
 
 Possiamo quindi entrare nel profondo del funzionamento di Linux per scoprire come gestisce il sistema:
 
@@ -18,7 +18,7 @@ Possiamo quindi entrare nel profondo del funzionamento di Linux per scoprire com
 * file systems.
 * processi.
 
-Successivamente, tratteremo un argomento essenziale per l'amministratore di sistema: il processo di backup. Molte soluzioni software vengono fornite con Linux per migliorare i backup (rsnapshot, lsyncd, ecc.). È bene conoscere i componenti essenziali del backup che si trovano all'interno del sistema operativo. In questo capitolo analizzeremo due strumenti: `tar` e il meno diffuso `cpio`.
+Successivamente, tratteremo un argomento essenziale per l'amministratore di sistema: il processo di backup. Molte soluzioni software vengono fornite con Linux per migliorare i backup (rsnapshot, lsyncd, ecc.) È bene conoscere i componenti essenziali del backup che si trovano all'interno del sistema operativo. In questo capitolo esamineremo due strumenti: `tar` e il meno diffuso `cpio`.
 
 Per quanto riguarda la gestione del sistema durante il processo di avvio, si è evoluta enormemente negli ultimi anni dall'arrivo di systemd.
 
