@@ -29,7 +29,7 @@ dnf upgrade
 
 If there were any kernel updates during the upgrade process, reboot the server.
 
-### OpenZFS Repository for 8.6 and 9.0
+### OpenZFS Repository for 8 and 9
 
 Install the OpenZFS repository with:
 
