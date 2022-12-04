@@ -141,7 +141,7 @@ A backup generally contains the following elements:
 * the name;
 * the owner;
 * the size;
-* the permissions
+* the permissions;
 * access date.
 
 !!! Note
