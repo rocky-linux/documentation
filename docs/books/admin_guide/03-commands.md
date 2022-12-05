@@ -1,20 +1,20 @@
 ---
 title: Linux Commands
 author: Antoine Le Morvan
-contributors: Steven Spencer, Aditya Putta, tianci li
+contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque
 ---
 
 # Commands for Linux Users
 
-In this chapter you will learn how to work with Linux with the commands.
+In this chapter you will learn Linux commands and how to use them.
 
 ****
 
 **Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: **move** in the system tree;   
-:heavy_check_mark: **create** a text file, **display** its contents and **modify** it;   
-:heavy_check_mark: use the most useful Linux commands.
+:heavy_check_mark: **Move** within the system tree.   
+:heavy_check_mark: **Create** a text file, **display** its contents and **modify** it.   
+:heavy_check_mark: **Use** the most useful Linux commands.
 
 :checkered_flag: **user commands**, **linux**
 
@@ -35,42 +35,42 @@ Current Linux systems have graphical utilities dedicated to the work of an admin
 * In order to preserve server resources, the graphical interface is either not installed or launched on demand.
 * Administration is done by scripts.
 
-Learning these commands allows the administrator to connect to a Linux terminal, to manage its resources, its files, to identify the station, the terminal, and the connected users, etc.
+Learning these commands allows the administrator to connect to a Linux terminal, to manage its resources and files, to identify the station, the terminal, and the connected users, etc.
 
 ### The users
 
-The user of a Linux system is defined in the `/etc/passwd` file, by:
+The user of a Linux system will be defined in the `/etc/passwd` file, by:
 
-* a **login name**, more commonly called "login", containing no spaces;
-* a numeric identifier: **UID** (User Identifier);
-* a group identifier: **GID** (Group Identifier);
-* a **command interpreter**, a shell, which can be different from one user to another;
-* a **connection directory**, the __home directory__.
+* A **login name**, more commonly called "login", containing no spaces.
+* A numeric identifier: **UID** (User Identifier).
+* A group identifier: **GID** (Group Identifier).
+* A **command interpreter**, e.g., a shell, which can be different from one user to another.
+* A **connection directory**, e.g., the __home directory__.
 
-In other files by:
+In other files the user will be defined by:
 
-* a **password**, which will be encrypted before being stored (`/etc/shadow`);
-* a **command prompt**, or __prompt__ login, which will be symbolized by a `#` for administrators and a `$` for other users (`/etc/profile`).
+* A **password**, which is encrypted before being stored (`/etc/shadow`).
+* A **command prompt**, or __prompt__ login, which is symbolized by a `#` for administrators and a `$` for other users (`/etc/profile`).
 
-Depending on the security policy implemented on the system, the password will have to contain a certain number of characters and meet certain complexity requirements.
+Depending on the security policy implemented on the system, the password will require a certain number of characters and meet certain complexity requirements.
 
-Among the existing command interpreters, the **Bourne-Again Shell** (`/bin/bash`) is the one most frequently used. It is assigned by default to new users. For various reasons, advanced Linux users can choose alternative shells from among the Korn Shell (`ksh`), the C Shell (`csh`), etc.
+Among the existing command interpreters, the **Bourne-Again Shell** (`/bin/bash`) is the one most frequently used. It is assigned by default to new users. For various reasons, advanced Linux users can choose alternative shells such as the Korn Shell (`ksh`), the C Shell (`csh`), etc.
 
 The user's login directory is by convention stored in the `/home` directory of the workstation. It will contain the user's personal data and the configuration files of his applications. By default, at login, the login directory is selected as the current directory.
 
-A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
+A workstation-type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
 
 ### The shell
 
-Once the user is connected to a console, the shell displays the command **prompt**. It then behaves like an infinite loop, with each statement entered:
+Once the user is connected to a console, the shell displays the **command prompt**. It then behaves like an infinite loop, repeating the same pattern with each statement entered:
 
-* displaying the command prompt;
-* reading the command;
-* syntax analysis;
-* substitution of special characters;
-* execute the command;
-* display the command prompt;
-* etc.
+* Display the command prompt.
+* Reading the command.
+* Analyze syntax.
+* Substitute special characters.
+* Execute the command.
+* Display the command prompt.
+* Etc.
 
 The key sequence <kbd>CTRL</kbd> + <kbd>C</kbd> is used to interrupt a running command.
 
@@ -80,7 +80,7 @@ The use of a command generally follows this sequence:
 command [option(s)] [arguments(s)]
 ```
 
-The name of the command is **often in lower case**.
+The name of the command is often **lower case**.
 
 A space separates each item.
 
@@ -99,7 +99,7 @@ is equivalent to:
 $ ls -lia
 ```
 
-There can of course be several arguments after an option:
+There can be several arguments after an option:
 
 ```bash
 $ ls -lia /etc /home /var
@@ -134,7 +134,7 @@ clearerr_unlocked (3) - nonlocking stdio functions
 feclearexcept (3)    - floating-point rounding and exception handling
 fwup_clear_status (3) - library to support management of system firmware updates
 klogctl (3)          - read and/or clear kernel message ring buffer; set console_loglevel
-sgt-samegame (6)     - Block-clearing puzzle
+sgt-samegame (6)     - block-clearing puzzle
 syslog (2)           - read and/or clear kernel message ring buffer; set console_loglevel
 timerclear (3)       - timeval operations
 XClearArea (3)       - clear area or window
@@ -170,14 +170,14 @@ clear (1)            - clear the terminal screen
 Once found by `apropos` or `whatis`, the manual is read by `man` ("Man is your friend").
 This set of manuals is divided into 8 sections, grouping information by topic, the default section being 1:
 
-1. Executable programs or commands;
-2. System calls (functions given by the kernel);
-3. Library calls (functions given by the library);
-4. Special files (usually found in /dev);
-5. File Formats and conventions (configuration files such as etc/passwd);
-6. Games (such as character-based applications);
-7. Miscellaneous (e.g. man (7));
-8. System administration commands (usually only for root);
+1. Executable programs or commands.
+2. System calls (functions given by the kernel).
+3. Library calls (functions given by the library).
+4. Special files (usually found in /dev).
+5. File Formats and conventions (configuration files such as etc/passwd).
+6. Games (such as character-based applications).
+7. Miscellaneous (e.g. man (7)).
+8. System administration commands (usually only for root).
 9. Kernel routines (non-standard).
 
 Information about each section can be accessed by typing `man x intro`, where `x` is the section number.
@@ -196,21 +196,19 @@ $ man 5 passwd
 
 will inform him about the files related to the command.
 
-Not all manual pages are translated from English. However, English manual pages are usually very accurate and provide all the information you need. The grammar and separation rules it uses may confuse beginner administrators, but after practice, I'm sure you'll find the information you want.
-
-The navigation in the manual is done with the arrows <kbd>↑</kbd> and <kbd>↓</kbd>. The manual is exited by pressing the <kbd>q</kbd> key.
+Navigate through the manual with the arrows <kbd>↑</kbd> and <kbd>↓</kbd>. Exit the manual by pressing the <kbd>q</kbd> key.
 
 ### `shutdown` command
 
-The `shutdown` command allows you to **electrically shut down** a Linux server, either immediately or after a certain period of time.
+The `shutdown` command allows you to **electronically shut down** a Linux server, either immediately or after a certain period of time.
 
 ```bash
 shutdown [-h] [-r] time [message]
 ```
 
-The shutdown time should be specified in the format `hh:mm` for a precise time, or `+mm` for a delay in minutes.
+Specify the shutdown time in the format `hh:mm` for a precise time, or `+mm` for a delay in minutes.
 
-To force an immediate stop, the word `now` will replace the time. In this case, the optional message is not sent to other users of the system.
+To force an immediate stop, use the word `now` in place of the time. In this case, the optional message is not sent to other users of the system.
 
 Examples:
 
@@ -223,8 +221,8 @@ Options:
 
 | Options | Remarks                          |
 | ------- | -------------------------------- |
-| `-h`    | Shutdown the system electrically |
-| `-r`    | Restarts the system              |
+| `-h`    | Shuts down the system electronically. |
+| `-r`    | Restarts the system.              |
 
 ### `history` command
 
@@ -242,8 +240,8 @@ $ history
 
 | Options | Comments                                                                                                           |
 | ------- | ------------------------------------------------------------------------------------------------------------------ |
-| `-w`    | Write the current history to the history file                                                |
-| `-c`    | The `-c` option will delete the history of the current session (but not the contents of the `.bash_history` file). |
+| `-w`    | Writes the current history to the history file.                                                |
+| `-c`    | Deletes the history of the current session (but not the contents of the `.bash_history` file). |
 
 * Manipulating history:
 
@@ -251,29 +249,29 @@ To manipulate the history, the following commands entered from the command promp
 
 | Keys               | Function                                                  |
 | ------------------ | --------------------------------------------------------- |
-| <kdb>!!</kdb>      | Recall the last command placed.                           |
-| <kdb>!n</kdb>      | Recall the command by its number in the list.             |
-| <kdb>!string</kdb> | Recall the most recent command beginning with the string. |
-| <kdb>↑</kdb>       | Recall the most recent command beginning with the string. |
-| <kdb>↓</kdb>       | Recall the most recent command beginning with the string. |
+| <kdb>!!</kdb>      | Recalls the last command placed.                           |
+| <kdb>!n</kdb>      | Recalls the command by its number in the list.             |
+| <kdb>!string</kdb> | Recalls the most recent command beginning with the string. |
+| <kdb>↑</kdb>       | Navigates through your history working backward in time from the most recent command. |
+| <kdb>↓</kdb>       | Navigates through your history working forward in time. |
 
-### The auto-completion
+### Auto-complete
 
-Auto-completion is also a great help.
+Auto-completion is a great help.
 
-* It allows you to complete commands, entered paths, or file names.
-* A press of the <kbd>TAB</kbd> key completes the entry in the case of a single solution.
-* Otherwise, a second press will be required to obtain the list of possibilities.
+* Completes commands, entered paths, or file names.
+* Press the <kbd>TAB</kbd> key to complete the entry in the case of a single solution.
+* In the case of multiple solutions, press <kbd>TAB</kbd> a second time to see options.
 
-If a double press of the <kbd>TAB</kbd> key causes no reaction from the system, then there is no solution to the current completion.
+If double-pressing the <kbd>TAB</kbd> key presents no options, then there is no solution to the current completion.
 
-## Display and identification
+## Display and Identification
 
 ### `clear` command
 
-The `clear` command clears the contents of the terminal screen. In fact, to be more precise, it shifts the display so that the command prompt is at the top of the screen on the first line.
+The `clear` command clears the contents of the terminal screen. More accurately, it shifts the display so that the command prompt is at the top of the screen on the first line.
 
-In a terminal, the display will be permanently hidden, whereas in a graphical interface, a scrollbar will allow you to go back in the history of the virtual terminal.
+On a physical terminal, the display will be permanently hidden, whereas in a graphical interface, a scrollbar will allow you to go back in the history of the virtual terminal.
 
 !!! Tip
 
@@ -302,11 +300,11 @@ Among the frequently used sequences, we can mention:
 
 | Sequence | Result                |
 | -------- | --------------------- |
-| `\a`     | Send a sonor bip      |
+| `\a`     | Sends a sonar beep      |
 | `\b`     | Back                  |
 | `\n`     | Adds a line break     |
 | `\t`     | Adds a horizontal tab |
-| `\v`     | Adds vertical tab     |
+| `\v`     | Adds a vertical tab     |
 
 ### `date` command
 
@@ -386,14 +384,14 @@ rockstar tty1   2021-05-24 10:30
 root     pts/0  2021-05-24 10:31
 ```
 
-Since Linux is multi-user, it is likely that multiple sessions are open on the same station, either physically or over the network. It is interesting to know which users are logged in, if only to communicate with them by sending messages.
+Since Linux is multi-user, it is possible that multiple sessions are open on the same station, either physically or over the network. It is interesting to know which users are logged in, if only to communicate with them by sending messages.
 
 * tty: represents a terminal.
 * pts/: represents a virtual console in a graphical environment with the number after representing the instance of the virtual console (0, 1, 2...)
 
 The `-r` option also displays the runlevel (see chapter "startup").
 
-## File tree
+## File Tree
 
 In Linux, the file tree is an inverted tree, called a **single hierarchical tree**, whose root is the directory `/`.
 
@@ -438,13 +436,13 @@ $ pwd
 /home/rockstar
 ```
 
-Use a relative path to reference a file or directory, or use the `cd` command to move to another directory, You must know its location in the file tree.
+To use a relative path to reference a file or directory, or use the `cd` command to move to another directory, you must know its location in the file tree.
 
 Depending on the type of shell and the different parameters of its configuration file, the terminal prompt (also known as the command prompt) will display the absolute or relative path of the current directory.
 
 ### `cd` command
 
-The `cd` (Change Directory) command allows you to change the current directory, in other words, to move through the tree.
+The `cd` (Change Directory) command allows you to change the current directory -- in other words, to move through the tree.
 
 ```bash
 $ cd /tmp
@@ -481,7 +479,7 @@ The main options of the `ls` command are:
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `-a`                                                         | Displays all files, even hidden ones. Hidden files in Linux are those beginning with `.`.                                            |
 | `-i`                                                         | Displays inode numbers.                                                                                                              |
-| `-l`                                                         | The `-l` command displays a vertical list of files with additional information formatted in columns.                                 |
+| `-l`                                                         | Displays a vertical list of files with additional information formatted in columns.                                 |
 
 The `ls` command, however, has a lot of options (see `man`):
 
@@ -494,9 +492,9 @@ The `ls` command, however, has a lot of options (see `man`):
 | `-A`                                                         | Displays all files in the directory except `.` and `..`                                                                              |
 | `-R`                                                         | Displays the contents of subdirectories recursively.                                                                                 |
 | `-F`                                                         | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file. |
-| `-X`                                                         | Sort files according to their extensions.                                                                                            |
+| `-X`                                                         | Sorts files according to their extensions.                                                                                            |
 
-* Description of columns:
+* Description of columns generated by running the `ls -lia` command:
 
 ```bash
 $ ls -lia /home
@@ -524,7 +522,7 @@ $ ls -lia /home
     alias ll='ls -l --color=auto'
     ```
 
-The `ls` command has many options and here are some advanced examples of uses:
+The `ls` command has many options. Here are some advanced examples of uses:
 
 * List the files in `/etc` in order of last modification:
 
@@ -559,7 +557,7 @@ $ find /var -size +1M -a -size -1024M  -a -type f  -exec ls -lh {} \;
 
 * Show the rights on a folder:
 
-To find out the rights to a folder, in our example `/etc`, the following command would not be appropriate:
+To find out the rights to a folder, in our example `/etc`, the following command would **not** be appropriate:
 
 ```bash
 $ ls -l /etc
@@ -693,7 +691,7 @@ rm [-f] [-r] file [file] [...]
 
 !!! Note
 
-    The `rm` command itself does not ask for confirmation when deleting files. However, with a RedHat/Rocky distribution, `rm` does ask for confirmation of deletion because the `rm` command is an `alias` of the `rm -i` command. Don't be surprised if on another distribution, like Debian for example, you don't get a confirmation request.
+    The `rm` command itself does not ask for confirmation when deleting files. However, with a Red Hat/Rocky distribution, `rm` does ask for confirmation of deletion because the `rm` command is an `alias` of the `rm -i` command. Don't be surprised if on another distribution, like Debian for example, you don't get a confirmation request.
 
 Deleting a folder with the `rm` command, whether the folder is empty or not, will require the `-r` option to be added.
 
@@ -993,12 +991,12 @@ adm:x:3:4:adm:/var/adm/:/sbin/nologin
 
 | Option    | Description                              |
 | --------- | ------------------------------------------- |
-| `-k`     | Specify the columns to be separated. You can specify multiple columns         |
-| `-n`      | Requests a numeric sort                     |
-| `-o file` | Saves the sort to the specified file        |
-| `-t`     | Specify a delimiter, which requires that the contents of the corresponding file must be regularly delimited column contents, otherwise they cannot be sorted properly |
-| `-r`      | Reverse the order of the result. Used in conjunction with the `-n` option to sort in order from largest to smallest             |
-| `-u`     | Remove duplicates after sorting. Equivalent to `sort file | uniq`                   |
+| `-k`     | Specify the columns to be separated. You can specify multiple columns.         |
+| `-n`      | Requests a numeric sort.                     |
+| `-o file` | Saves the sort to the specified file.        |
+| `-t`     | Specify a delimiter, which requires that the contents of the corresponding file must be regularly delimited column contents, otherwise they cannot be sorted properly. |
+| `-r`      | Reverse the order of the result. Used in conjunction with the `-n` option to sort in order from largest to smallest.             |
+| `-u`     | Remove duplicates after sorting. Equivalent to `sort file | uniq`.                   |
 
 The `sort` command sorts the file only on the screen. The file is not modified by the sorting. To save the sort, use the `-o` option or an output redirection `>`.
 
@@ -1013,7 +1011,7 @@ systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
 polkitd:x:998:996:User for polkitd:/:/sbin/nologin
 ```
 
-In this example, the `sort` command will sort the contents of the `/etc/passwd` file this time from largest uid to smallest.
+In this example, the `sort` command will sort the contents of the `/etc/passwd` file this time from largest uid (user identifier) to smallest.
 
 Some advanced examples of using the `sort` command:
 
@@ -1076,29 +1074,29 @@ The `sort` command knows how to recognize file sizes, from commands like `ls` wi
 Here is an example with the file `size.txt`:
 
 ```
-1,7G
+1.7G
 18M
 69K
-2,4M
-1,2M
-4,2G
+2.4M
+1.2M
+4.2G
 6M
 124M
-12,4M
+12.4M
 4G
 ```
 
 ```bash
 $ sort -hr size.txt
-4,2G
+4.2G
 4G
-1,7G
+1.7G
 124M
 18M
-12,4M
+12.4M
 6M
-2,4M
-1,2M
+2.4M
+1.2M
 69K
 ```
 
@@ -1181,7 +1179,7 @@ ls: /bin/ls
 
 | Option | Description                     |
 | ------ | ------------------------------- |
-| `-b`   | Search only the binary file.    |
+| `-b`   | Searches only the binary file.    |
 | `-m`   | Searches only for man pages.    |
 | `-s`   | Searches only for source files. |
 
@@ -1202,9 +1200,9 @@ root:x:0:0:root:/root:/bin/bash
 
 | Option                                                                                  | Description                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------- |
-| `-i`                                                                                    | Ignore the case of the searched string. |
+| `-i`                                                                                    | Ignores the case of the searched string. |
 | `-v`                                                                                    | Excludes lines containing the string.   |
-| `-w`                                                                                    | Search for the exact word.              |
+| `-w`                                                                                    | Searches for the exact word.              |
 
 The `grep` command returns the complete line containing the string you are looking for.
 * The `^` special character is used to search for a string at the beginning of a line.
@@ -1429,7 +1427,7 @@ Search for a string in the result:
 $ ls -lia / | grep fichier
 ```
 
-## Special points
+## Special Points
 
 ### `tee` command
 
@@ -1523,7 +1521,7 @@ $ \ls file*  # order by name
 file1.txt  file2.txt  file3.txt
 ```
 
-### Aliases and useful functions
+### Aliases and Useful Functions
 
 * `grep` alias.
 
