@@ -69,7 +69,7 @@ Once the user is connected to a console, the shell displays the **command prompt
 * Analyze syntax.
 * Substitute special characters.
 * Execute the command.
-* Display the command prompt.
+* Displays the command prompt.
 * Etc.
 
 The key sequence <kbd>CTRL</kbd> + <kbd>C</kbd> is used to interrupt a running command.
