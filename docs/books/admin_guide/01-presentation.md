@@ -13,7 +13,7 @@ In this chapter you will learn about GNU/Linux distributions.
 :heavy_check_mark: Describe the features and possible architectures of an operating system.   
 :heavy_check_mark: Recount the history of UNIX and GNU/Linux.   
 :heavy_check_mark: Choose the right Linux distribution for your needs.   
-:heavy_check_mark: Explain the philosophy of free and Open Source software.   
+:heavy_check_mark: Explain the philosophy of Free and Open-source Software.   
 :heavy_check_mark: Discover the usefulness of the shell.   
 
 :checkered_flag: **generalities**, **linux**, **distributions**
@@ -43,7 +43,7 @@ As part of this management of resources, the operating system has to:
 * Provide applications with proper **task management**.
   The operating system is responsible for scheduling processes to occupy the processor.
 * **Protect files** from unauthorized access.
-* **Collecting information** about programs in use or in progress.
+* **Collect information** about programs in use or in progress.
 
 ![Operation of an operating system](images/operating_system.png)
 
@@ -84,7 +84,7 @@ UNIX is still relevant today (HP-UX, AIX, Solaris, etc.).
 
 * **2004**: Ubuntu is created by the Canonical company (Mark Shuttleworth). It is based on Debian but includes free and proprietary software.
 
-* **2021**: Birth of Rocky Linux, based on Red Hat distribution.
+* **2021**: Rocky Linux is created, based on Red Hat distribution.
 
 ### Market share
 
@@ -92,9 +92,9 @@ UNIX is still relevant today (HP-UX, AIX, Solaris, etc.).
 TODO: graphics with market share for servers and pc.
 -->
 
-Despite its prevalence, Linux remains relatively unknown by the general public, . Linux is hidden in **smartphones**, **televisions**, **internet boxes**, etc. Almost **70% of the websites** in the world are hosted on a Linux or UNIX server!
+Despite its prevalence, Linux remains relatively unknown by the general public. Linux is hidden within **smartphones**, **televisions**, **internet boxes**, etc. Almost **70% of the websites** in the world are hosted on a Linux or UNIX server!
 
-Linux equips more than **3% of personal computers** but more than **82% of smartphones**. The **Android** operating system uses a Linux kernel.
+Linux equips about **3% of personal computers** but more than **82% of smartphones**. The **Android** operating system, for example, uses a Linux kernel.
 
 <!-- TODO: review those stats -->
 
@@ -115,16 +115,16 @@ Linux equips 100% of the top 500 supercomputers since 2018. A supercomputer is a
 
 #### Multi-task
 
-Linux belongs to the family of time-sharing operating systems. It shares process time between several programs, switching from one to another in a transparent way for the user. This implies:
+Linux belongs to the family of time-sharing operating systems. It divides processing time between several programs, switching from one to another in a transparent way for the user. This implies:
 
-* Simultaneous execution of several programs
-* Distribution of CPU time by the scheduler
-* Reduction of problems caused by a failed application
-* Reduced performance in the event of too many programs running
+* Simultaneous execution of several programs.
+* Distribution of CPU time by the scheduler.
+* Reduction of problems caused by a failed application.
+* Reduced performance in the event of too many programs running.
 
 #### Multi-user
 
-The purpose of MULTICS was to allow several users to work from several terminals (screen and keyboard) from a single computer (very expensive at the time). Linux, inspired by this operating system, kept this ability to work with several users simultaneously and independently, each one having their own user account, memory space and access rights to files and software.
+The purpose of MULTICS was to allow several users to work from several terminals (screen and keyboard) from a single computer (very expensive at the time). Linux, inspired by this operating system, kept this ability to work with several users simultaneously and independently, each one having their own user account with memory space and access rights to files and software.
 
 #### Multi-processor
 
@@ -137,7 +137,7 @@ Linux is written in a high-level language that can be adapted to different types
 * Home computers (PC and laptop)
 * Servers (data and applications)
 * Portable computers (smartphones and tablets)
-* Embedded systems (car computer)
+* Embedded systems (car computers)
 * Active network elements (routers and switches)
 * Household appliances (TVs and refrigerators)
 
@@ -160,7 +160,7 @@ A Linux distribution is a **consistent set of software** assembled around the Li
 
 Each distribution offers one or more **desktop environments**, and provides a set of pre-installed software and a library of additional software. Configuration options (kernel or services options for example) are specific to each distribution.
 
-This principle allows you to have distributions geared to **beginners** (Ubuntu, Linux Mint...) or fully customizable for **advanced users** (Gentoo, Arch); to be more adept with **servers** (Debian, Red Hat) or **workstations** (Fedora).
+This principle allows distributions to be geared to **beginners** (Ubuntu, Linux Mint...) or fully customizable for **advanced users** (Gentoo, Arch);  distributions can also be more adept with **servers** (Debian, Red Hat) or **workstations** (Fedora).
 
 ### Desktop environments
 
@@ -174,13 +174,11 @@ The **GNOME 3** desktop environment no longer uses the concept of desktop but th
 
 ![KDE Desktop](images/01-presentation-kde.png)
 
-The **KDE** desktop environment is based on the **Qt** component library.
-
-It is traditionally recommended for users familiar with a Windows environmnent.
+The **KDE** desktop environment is based on the **Qt** component library. It is traditionally recommended for users familiar with a Windows environment.
 
 ![Tux - The Linux mascot](images/tux.png)
 
-### Free / Open source
+### Free / Open Source
 
 A user of a Microsoft or Mac operating system must purchase a license to use the operating system. This license has a cost, although it is usually transparent (the price of the license is included in the price of the computer).
 
@@ -188,31 +186,31 @@ In the **GNU/Linux** world, the Free Software movement provides mostly free dist
 
 **Free** does not mean free!
 
-**Open Source**: the source codes are available, so it is possible to consult and modify them under certain conditions.
+**Open Source**: the source code is available, so it is possible to consult and modify it under certain conditions.
 
-A free software is necessarily Open Source, but the opposite is not true since an Open Source software is separated from the freedom proposed by the GPL license.
+A free software is necessarily open-source, but the opposite is not true since open-source software is distinct from the freedom offered by the GPL license.
 
 #### GPL (General Public License)
 
-The **GPL** guarantees the author of a software its intellectual property, but allows modification, redistribution or resale of software by third parties, provided that the source codes are included with the software. The GPL is the license that came out of the **GNU** (GNU is Not UNIX) project, which was instrumental in creating Linux.
+The **GPL** guarantees the author of a software its intellectual property, but allows modification, redistribution or resale of software by third parties, provided that the source code is included with the software. The GPL is the license that came out of the **GNU** (GNU is Not UNIX) project, which was instrumental in creating Linux.
 
 It implies:
 
-* The freedom to run the program, for any purpose
-* The freedom to study how the program works and adapt it to your needs
-* The freedom to redistribute copies
-* The freedom to improve the program and publish those improvements, for the benefit of the whole community
+* The freedom to run the program, for any purpose.
+* The freedom to study how the program works and adapt it to your needs.
+* The freedom to redistribute copies.
+* The freedom to improve the program, and publish those improvements for the benefit of the whole community.
 
-On the other hand, even products licensed under the GPL can be paid for. This is not the product itself, but the **guarantee that a team of developers will continue to work on it to make it evolve and troubleshoot errors, or even provide support to users**.
+On the other hand, even products licensed under the GPL can have a cost. This is not for the product itself, but the **guarantee that a team of developers will continue to work on it to make it evolve and troubleshoot errors, or even provide support to users**.
 
 ## Areas of use
 
 A Linux distribution excels for:
 
-* **A server**: HTTP, email, groupware, file sharing, etc.
+* **Servers**: HTTP, email, groupware, file sharing, etc.
 * **Security**: Gateway, firewall, router, proxy, etc.
-* **Central computer**: Banks, insurance, industry, etc.
-* **Embedded system**: Routers, Internet boxes, SmartTV, etc.
+* **Central computers**: Banks, insurance, industry, etc.
+* **Embedded systems**: Routers, Internet boxes, SmartTVs, etc.
 
 Linux is a suitable choice for hosting databases or websites, or as a mail server, DNS or firewall. In short, Linux can do just about anything, which explains the quantity of specific distributions.
 
@@ -220,9 +218,9 @@ Linux is a suitable choice for hosting databases or websites, or as a mail serve
 
 ### Generalities
 
-The **shell**, known as _command interface_, allows users to send commands to the operating system. It is less visible today, since the implementation of graphical interfaces, but remains a privileged means on Linux systems which do not all have graphical interfaces and whose services do not always have a setting interface.
+The **shell**, known as _command interface_, allows users to send commands to the operating system. It is less visible today since the implementation of graphical interfaces, but remains a privileged means on Linux systems which do not all have graphical interfaces and whose services do not always have a setting interface.
 
-It offers a real programming language including the classical structures: loops, alternatives, and the common constituents: variables, passing of parameters, and sub-programs. It allows the creation of scripts to automate certain actions (backups, creation of users, system monitoring, etc.).
+It offers a real programming language including classical structures (loops, alternatives) and common constituents (variables, passing of parameters, and sub-programs). It allows the creation of scripts to automate certain actions (backups, creation of users, system monitoring, etc.).
 
 There are several types of shells available and configurable on a platform or according to the user's preference. A few examples include:
 
@@ -232,11 +230,11 @@ There are several types of shells available and configurable on a platform or ac
 
 ### Functionalities
 
-* Command execution (checks the command given and executes it)
-* Input/Output redirection (returns data to a file instead of writing it on the screen)
-* Connection process (manages the user's connection)
-* Interpreted programming language (allowing the creation of scripts)
-* Environmental variables (access to information specific to the system during operation)
+* Command execution (checks the command given and executes it).
+* Input/Output redirection (returns data to a file instead of writing it on the screen).
+* Connection process (manages the user's connection).
+* Interpreted programming language (allowing the creation of scripts).
+* Environment variables (access to information specific to the system during operation).
 
 ### Principle
 
@@ -288,12 +286,12 @@ There are several types of shells available and configurable on a platform or ac
 - [ ] Cross-platform   
 - [ ] Open   
 
-:heavy_check_mark: Is free software necessarily Open Source?
+:heavy_check_mark: Is free software necessarily open-source?
 
 - [ ] True   
 - [ ] False   
 
-:heavy_check_mark: Is Open Source software necessarily free?
+:heavy_check_mark: Is open-source software necessarily free?
 
 - [ ] True   
 - [ ] False   
