@@ -65,7 +65,7 @@ A workstation-type installation (with graphical interface) starts this interface
 Once the user is connected to a console, the shell displays the **command prompt**. It then behaves like an infinite loop, repeating the same pattern with each statement entered:
 
 * Displays the command prompt.
-* Reading the command.
+* Reads the command.
 * Analyze syntax.
 * Substitute special characters.
 * Execute the command.
