@@ -68,7 +68,7 @@ Once the user is connected to a console, the shell displays the **command prompt
 * Reads the command.
 * Analyzes the syntax.
 * Substitutes special characters.
-* Execute the command.
+* Executes the command.
 * Displays the command prompt.
 * Etc.
 
