@@ -199,7 +199,7 @@ Now list the zone to make sure that the zone looks correct and has the service p
 
 Test your rule to make sure it works. To test:
 
-1. SSH as root from your source IP (above it is 192.168.1.122) (*the root user is used here because we are going to run commands on the host that require it*)
+1. SSH as root, or your sudo capable user, from your source IP (above it is 192.168.1.122) (*the root user is used here because we are going to run commands on the host that require it. If using your sudo user, remember to `sudo -s` once connected.*)
 2. Once connected, run `tail /var/log/secure`  and you should get output that looks similar to this:
 
 ```bash
@@ -350,7 +350,7 @@ Postgresql uses it's own service port. Here's an IP tables rule example:
 
 While it is less common on publicly facing web servers, it might be more common as an internal resource. The same security considerations apply. If you have a server on your trusted network (192.168.1.0/24 in our example), you might not want or need to give access to everyone on that network. Postgresql has an access list available to take care of the more granular access rights. Our `firewalld` rule would look something like this:
 
-`firewall-cmd --zone=trusted --add-services=postgresql`
+`firewall-cmd --zone=trusted --add-service=postgresql`
 
 ## DNS Ports
 
