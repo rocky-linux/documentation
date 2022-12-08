@@ -1,5 +1,5 @@
 ---
-title: Backup Solution - Rsnapshot
+title: Backup Solution - _rsnapshot_
 author: Steven Spencer
 contributors: Ezequiel Bruni
 tested with: 8.5, 8.6, 9.0
@@ -8,7 +8,7 @@ tags:
   - rsnapshot
 ---
 
-# Backup Solution - Rsnapshot
+# Backup Solution - _rsnapshot_
 
 ## Prerequisites
 
@@ -23,15 +23,63 @@ tags:
 
 _rsnapshot_ is a very powerful backup utility that can be installed on any Linux-based machine. It can either back up a machine locally, or you can back up multiple machines, say servers for instance, from a single machine.
 
-_rsnapshot_ uses `rsync` and is written entirely in perl with no library dependencies, so there are no weird requirements to install it. In the case of Rocky Linux, you should generally be able to install _rnapshot_ by using the EPEL repository. However, the EPEL for 9.0 does not yet have _rsnapshot_ available. For this reason, on Rocky Linux 9.0, we've included the instructions for installing from source.
+_rsnapshot_ uses `rsync` and is written entirely in perl with no library dependencies, so there are no weird requirements for installation. In the case of Rocky Linux, you should generally be able to install _rnapshot_ by using the EPEL repository. After the initial release of Rocky Linux 9.0, there was a period of time when the EPEL did not contain the _rsnapshot_ package. That has since been rectified, but we have included a method of installing from source just in case this should happen again.
 
 This documentation covers the installation of _rsnapshot_ on Rocky Linux only.
 
-=== "9.0 Install"
+=== "EPEL Install"
 
-    ## Rocky Linux 9.0 - Installing Rsnapshot
+    ## Installing _rsnapshot_
 
-    Since the release of Rocky Linux 9.0, the EPEL repository has not yet built _rsnapshot_ in RPM form. There are currently bugzilla entries referencing others who would like to have this happen, but as of now, that has not happened. The workaround is to install _rsnapshot_ from source. Because this is going to require build utilities, you'll need to install the 'Development Tools' group so that you have everything you need.
+    All commands shown here are from the command-line on your server or workstation unless otherwise noted.
+
+    ### Installing The EPEL repository
+
+    We need the EPEL software repository from Fedora to install _rsnapshot_. To install the repository, just use this command:
+
+    ```
+    sudo dnf install epel-release
+    ```
+
+    The repository should now be active.
+
+    ### Install the _rsnapshot_ Package
+
+    Next, install _rsnapshot_ and some other needed tools, which are probably already installed:
+
+    ``` 
+    sudo dnf install rsnapshot openssh-server rsync
+    ```
+
+    If there are any missing dependencies, those will show up and you simply need to answer the prompt to continue. For example:
+
+    ```
+    dnf install rsnapshot
+    Last metadata expiration check: 0:00:16 ago on Mon Feb 22 00:12:45 2021.
+    Dependencies resolved.
+    ========================================================================================================================================
+    Package                           Architecture                 Version                              Repository                    Size
+    ========================================================================================================================================
+    Installing:
+    rsnapshot                         noarch                       1.4.3-1.el8                          epel                         121 k
+    Installing dependencies:
+    perl-Lchown                       x86_64                       1.01-14.el8                          epel                          18 k
+    rsync                             x86_64                       3.1.3-9.el8                          baseos                       404 k
+
+    Transaction Summary
+    ========================================================================================================================================
+    Install  3 Packages
+
+    Total download size: 543 k
+    Installed size: 1.2 M
+    Is this ok [y/N]: y
+    ```
+
+=== "Source Install"
+
+    ## Installing _rsnapshot_ From Source
+
+    Installing _rsnapshot_ from source is not difficult. It does come with a downside, however, in that if there is a new version released, it would require a fresh install from source to update the version, whereas the EPEL installation method would keep you up-to-date with a simple `dnf upgrade`. 
 
     ### Installing Development Tools and Downloading the Source
 
@@ -107,55 +155,6 @@ This documentation covers the installation of _rsnapshot_ on Rocky Linux only.
 
     This covers copying the configuration file over. The section below on "Configuring rsnapshot" will cover the changes needed in this configuration file.
 
-=== "8.6 Install"
-
-    ## Rocky Linux 8.6 - Installing Rsnapshot
-
-    All commands shown here are from the command-line on your server or workstation unless otherwise noted.
-
-    ### Installing The EPEL repository
-
-    We need the EPEL software repository from Fedora to install _rsnapshot_. To install the repository, just use this command:
-
-    ```
-    sudo dnf install epel-release
-    ```
-
-    The repository should now be active.
-
-    ### Install the Rsnapshot Package
-
-    Next, install _rsnapshot_ itself:
-
-    ``` 
-    sudo dnf install rsnapshot
-    ```
-
-    If there are any missing dependencies, those will show up and you simply need to answer the prompt to continue. For example:
-
-    ```
-    dnf install rsnapshot
-    Last metadata expiration check: 0:00:16 ago on Mon Feb 22 00:12:45 2021.
-    Dependencies resolved.
-    ========================================================================================================================================
-    Package                           Architecture                 Version                              Repository                    Size
-    ========================================================================================================================================
-    Installing:
-    rsnapshot                         noarch                       1.4.3-1.el8                          epel                         121 k
-    Installing dependencies:
-    perl-Lchown                       x86_64                       1.01-14.el8                          epel                          18 k
-    rsync                             x86_64                       3.1.3-9.el8                          baseos                       404 k
-
-    Transaction Summary
-    ========================================================================================================================================
-    Install  3 Packages
-
-    Total download size: 543 k
-    Installed size: 1.2 M
-    Is this ok [y/N]: y
-    ```
-
-
 ## Mounting A Drive or Filesystem For Backup
 
 In this step, we show how to mount a hard drive, such as an external USB hard drive, that will be used to back up your system. This particular step is only necessary if you are backing up a single machine or server, as seen in our first example below.
@@ -164,14 +163,14 @@ In this step, we show how to mount a hard drive, such as an external USB hard dr
 2. Type `dmesg | grep sd` which should show you the drive you want to use. In this case, it'll be called _sda1_.  
 Example: `EXT4-fs (sda1): mounting ext2 file system using the ext4 subsystem`.
 3. Unfortunately (or fortunately depending on your opinion) most modern Linux desktop operating systems automount the drive if they can. This means that, depending on various factors, _rsnapshot_ might lose track of the hard drive. We want the drive to "mount" or make its files available in the same place every time.  
-To do that, take the drive information revealed in the dmesg command above and type `mount | grep sda1`, which should show something like this: `/dev/sda1 on /media/username/8ea89e5e-9291-45c1-961d-99c346a2628a`
+To do that, take the drive information revealed in the `dmesg` command above and type `mount | grep sda1`, which should show something like this: `/dev/sda1 on /media/username/8ea89e5e-9291-45c1-961d-99c346a2628a`
 4. Type `sudo umount /dev/sda1` to unmount your external hard drive.
 5. Next, create a new mount point for the backup: `sudo mkdir /mnt/backup`
 6. Now mount the drive to your backup folder location: `sudo mount /dev/sda1 /mnt/backup`
 7. Now type `mount | grep sda1` again, and you should see something like this: `/dev/sda1 on /mnt/backup type ext2 (rw,relatime)`
 8. Next create a directory that must exist for the backup to continue on the mounted drive. We are using a folder called "storage" for this example: `sudo mkdir /mnt/backup/storage`
 
-Note that for a single machine, you will have to either repeat the umount and mount steps each time the drive is plugged in again, or each time the system reboots, or automate these commands with a script.
+Note that for a single machine, you will have to either repeat the `umount` and `mount` steps each time the drive is plugged in again, or each time the system reboots, or automate these commands with a script.
 
 We recommend automation. Automation is the sysadmin way.
 
@@ -199,7 +198,7 @@ We need to change this to our mount point that we created above plus the additio
 
 `snapshot_root   /mnt/backup/storage/`
 
-We also want to tell the backup NOT to run if the drive is not mounted. To do this, remove the "#" sign (also called a remark, pound sign, number sign, hash symbol, etc.) next to no_create_root so that it looks like this:
+We also want to tell the backup NOT to run if the drive is not mounted. To do this, remove the "#" sign (also called a remark, pound sign, number sign, hash symbol, etc.) next to `no_create_root` so that it looks like this:
 
 `no_create_root 1`
 
@@ -211,7 +210,7 @@ So that it now reads:
 
 `cmd_cp         /usr/bin/cp`
 
-While we do not need cmd_ssh for this particular configuration, we will need it for our other option below and it doesn't hurt to have it enabled. So find the line that says:
+While we do not need `cmd_ssh` for this particular configuration, we will need it for our other option below and it doesn't hurt to have it enabled. So find the line that says:
 
 `#cmd_ssh        /usr/bin/ssh`
 
@@ -246,13 +245,13 @@ For now write your changes (`SHIFT :wq!` for `vi`) and exit the configuration fi
 
 ### Checking The Configuration
 
-We want to make sure that we didn't add spaces or any other glaring errors to our configuration file while we were editing it. To do this, we run _rsnapshot_ against our configuration with the configtest option:
+We want to make sure that we didn't add spaces or any other glaring errors to our configuration file while we were editing it. To do this, we run _rsnapshot_ against our configuration with the `configtest` option:
 
 `rsnapshot configtest` will show `Syntax OK` if there are no errors in the configuration.
 
-You should get into the habit of running configtest against a particular configuration. The reason for that will be more evident when we get into the **Multiple Machine or Multiple Server Backups** section.
+You should get into the habit of running `configtest` against a particular configuration. The reason for that will be more evident when we get into the **Multiple Machine or Multiple Server Backups** section.
 
-To run configtest against a particular configuration file, run it with the -c option to specify the configuration:
+To run `configtest` against a particular configuration file, run it with the -c option to specify the configuration:
 
 `rsnapshot -c /etc/rsnapshot.conf configtest`
 
@@ -331,11 +330,11 @@ In this case, you will want to install _rsnapshot_ on the machine that is doing 
 
 For the server that will be running the backups, we need to generate an SSH key-pair for use during the backups. For our example, we will be creating RSA keys.
 
-If you already have a set of keys generated, you can skip this step. You can find out by doing an `ls -al .ssh` and looking for an id_rsa and id_rsa.pub key pair. If none exists, use the following link to set up keys for your machine and the server(s) that you want to access:
+If you already have a set of keys generated, you can skip this step. You can find out by doing an `ls -al .ssh` and looking for an `id_rsa` and `id_rsa.pub` key pair. If none exists, use the following link to set up keys for your machine and the server(s) that you want to access:
 
 [SSH Public Private Key Pairs](../security/ssh_public_private_keys.md)
 
-## Rsnapshot Configuration
+## _rsnapshot_ Configuration
 
 The configuration file needs to be just like the one we created for the **Basic Machine or Single Server Backup** above, except that we want to change some of the options.
 
@@ -397,7 +396,7 @@ Automating backups for the multiple machine/server version is slightly different
 With the content:
 
 ```
-#!/bin/bash
+#!/bin/bash/
 # script to run rsnapshot backups in succession
 /usr/bin/rsnapshot -c /etc/rsnapshot_web.conf beta
 /usr/bin/rsnapshot -c /etc/rsnapshot_mail.conf beta
@@ -430,4 +429,4 @@ Restoring a backup, either a few files or a complete restore, involves copying t
 
 Getting the setup right with _rsnapshot_ is a little daunting at first, but can save you loads of time backing up your machines or servers.
 
-_rsnapshot_ is very powerful, very fast, and very economical on disk space usage. You can find more information on Rsnapshot, by visiting [rsnapshot.org](https://rsnapshot.org/download.html)
+_rsnapshot_ is very powerful, very fast, and very economical on disk space usage. You can find more information on _rsnapshot_, by visiting [rsnapshot.org](https://rsnapshot.org/download.html)
