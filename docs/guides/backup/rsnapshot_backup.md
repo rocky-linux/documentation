@@ -31,7 +31,7 @@ This documentation covers the installation of _rsnapshot_ on Rocky Linux only.
 
     ## Installing _rsnapshot_
 
-    All commands shown here are from the command-line on your server or workstation unless otherwise noted.
+    All commands shown here are called from the command-line on your server or workstation unless otherwise noted.
 
     ### Installing The EPEL repository
 
