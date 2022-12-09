@@ -37,12 +37,6 @@ Install the OpenZFS repository with:
 dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
 ```
 
-We also need the GPG key, so use this command to get that:
-
-```
-gpg --import --import-options show-only /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
-```
-
 ## Install snapd, dkms, vim, and kernel-devel
 
 LXD must be installed from a snap for Rocky Linux. For this reason, we need to install `snapd` (and a few other useful programs) with:
