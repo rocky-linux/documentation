@@ -4,13 +4,13 @@ title: Advanced Linux Commands
 
 # Advanced Commands for Linux users
 
-In this chapter you will learn some advanced commands for Linux.
+Advanced commands provide greater customization and controls in more specialized situations once you become familiar with basic commands.
 
 ****
 
 **Objectives**: In this chapter, future Linux administrators will learn:
 
-:heavy_check_mark: some useful commands not covered in the previous chapter;   
+:heavy_check_mark: some useful commands not covered in the previous chapter.   
 :heavy_check_mark: some advanced commands.
 
 :checkered_flag: **user commands**, **Linux**
@@ -41,9 +41,9 @@ steven
 
 !!! Note
 
-    `uniq` requires the input file to be sorted because it only compares consecutive lines.
+    `uniq` requires the input file to be sorted before running because it only compares consecutive lines.
 
-Without an argument, the `uniq` command will not display identical lines that follow each other in the `firstnames.txt` file:
+With no argument, the `uniq` command will not display identical lines that follow each other in the `firstnames.txt` file:
 
 ```
 $ sort firstnames.txt | uniq
@@ -60,7 +60,7 @@ $ sort firstnames.txt | uniq -u
 patrick
 ```
 
-Conversely, to display only the lines that appear at least twice in the file, you must use the `-d` option:
+Conversely, to display only the lines that appear at least twice in the file, use the `-d` option:
 
 ```
 $ sort firstnames.txt | uniq -d
@@ -140,7 +140,7 @@ drwxrwxrwt. 3 root root 4096  6 avril 10:25 /tmp
 
 In practice, the `xargs` command executed the `ls -ld /home /tmp /root` command.
 
-What happens if the command to be executed does not accept multiple arguments as is the case with the `find` command?
+What happens if the command to be executed does not accept multiple arguments, such as with the `find` command?
 
 ```
 $ xargs find /var/log -name
@@ -175,7 +175,7 @@ $ xargs -L 1 find /var/log -name
 <CTRL+D>
 ```
 
-If we wanted to be able to specify both arguments on the same line, we would have to use the `-n 1` option:
+To specify both arguments on the same line, use the `-n 1` option:
 
 ```
 $ xargs -n 1 find /var/log -name
@@ -204,34 +204,35 @@ $ tar tvfP /root/log.tar
 
 The special feature of the `xargs` command is that it places the input argument at the end of the called command. This works very well with the above example since the files passed in will form the list of files to be added to the archive.
 
-Now, if we take the example of the `cp` command and want to copy a list of files in a directory, this list of files will be added at the end of the command... but what the `cp` command expects at the end of the command is the destination. To do this, we use the `-I` option to put the input arguments somewhere else than at the end of the line.
+Using the example of the `cp` command, to copy a list of files in a directory, this list of files will be added at the end of the command... but what the `cp` command expects at the end of the command is the destination. To do this,  use the `-I` option to put the input arguments somewhere else than at the end of the line.
 
 ```
 $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 ```
 
-The `-I` option allows you to specify a character (in our example the `%` character) where the input files to `xargs` will be placed.
+The `-I` option allows you to specify a character (the `%` character in the above example) where the input files to `xargs` will be placed.
 
 ## `yum-utils` package
 
-The `yum-utils` package is a collection of utilities from different authors for `yum`, which make it easier and more powerful to use.
+The `yum-utils` package is a collection of utilities, built for `yum` by various authors, which make it easier and more powerful to use.
 
 !!! Note
 
-    While `yum` has been replaced by `dnf` in Rocky Linux 8, the package name has remained `yum-utils` although it can be installed as `dnf-utils` as well. These are classic YUM utilities implemented as CLI shims on top of DNF to maintain backwards compatibility with `yum-3`.
+    While `yum` has been replaced by `dnf` in Rocky Linux 8, the package name has remained `yum-utils`, although it can be installed as `dnf-utils` as well. These are classic YUM utilities implemented as CLI shims on top of DNF to maintain backwards compatibility with `yum-3`.
 
-Here are some examples of usage:
+Here are some examples of these utilities:
 
-* `repoquery` command:
+* `repoquery` command
 
 The `repoquery` command is used to query the packages in the repository.
 
 Examples of use:
 
-  * Display the dependencies of a package (it can be a software package that has been installed or not installed), equivalent to `dnf deplist <package-name>`.
-    
+  * Display the dependencies of a package (it can be a software package that has been installed or not installed), equivalent to `dnf deplist <package-name>`
+    ```
     repoquery --requires <package-name>
-
+    ```
+    
   * Display the files provided by an installed package (does not work for packages that are not installed), equivalent to `rpm -ql <package-name>`
 
     ```
@@ -280,7 +281,7 @@ $ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 
 | Options     |  Comments                                                       |
 |-------------|-----------------------------------------------------------------|
-| -`-destdir` | The downloaded packages will be stored in the specified folder. |
+| `--destdir` | The downloaded packages will be stored in the specified folder. |
 | `--resolve` | Also downloads the package dependencies.                        |
 
 ## `psmisc` packages
@@ -344,7 +345,7 @@ $ watch -n 5 tail -n 3 /etc/passwd
 Result:
 
 ```
-Every 5,0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
+Every 5.0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
 
 sssd:x:996:993:User for sssd:/:/sbin/nologin
 chrony:x:995:992::/var/lib/chrony:/sbin/nologin
