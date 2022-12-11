@@ -35,7 +35,9 @@ Note that Comodo is a business that sells lots of tools to help secure networks.
 
 To install the base package, use this command which will install any missing dependencies. We also need _wget_ so if you haven't installed it, do that as well:
 
-`dnf install mod_security wget`
+```
+dnf install mod_security wget
+```
 
 ## Setting Up Your Comodo account
 
@@ -49,31 +51,43 @@ Please note that the "Terms and Conditions" section of the form that you need to
 
 Before you start, in order for the script to actually run after we download it, you are going to need some development tools. Install the package with:
 
-`dnf group install 'Development Tools'`
+```
+dnf group install 'Development Tools'
+```
 
 In addition, you will need to have your web server running for Comodo to see _mod\_security_ correctly. So start it if it is not already running:
 
-`systemctl start httpd`
+```
+systemctl start httpd
+```
 
 After signing up with Comodo, you will get an email with instructions on what to do next. Essentially, what you need to do is to login to the web site with your new credentials and then download the client install script.
 
 From the root directory of your server, use the wget command to download the installer:
 
-`wget https://waf.comodo.com/cpanel/cwaf_client_install.sh`
+```
+wget https://waf.comodo.com/cpanel/cwaf_client_install.sh
+```
 
 Run the installer by typing:
 
-`bash cwaf_client_install.sh`
+```
+bash cwaf_client_install.sh
+```
 
 This will extract the installer and start the process, echoing to the screen. You'll get a message part way down:
 
-`No web host management panel found, continue in 'standalone' mode? [y/n]:`
+```
+No web host management panel found, continue in 'standalone' mode? [y/n]:
+```
 
 Type "y" and let the script continue.
 
 You may also get this notice:
 
-`Some required perl modules are missed. Install them? This can take a while. [y/n]: `
+```
+Some required perl modules are missed. Install them? This can take a while. [y/n]:
+```
 
 If so type "y" and allow those missing modules to install.
 
@@ -96,7 +110,9 @@ Just accept the path as given and then type "y" in the next field for the instal
 
 If you have a non-standard path to the configuration file for Apache/nginx, you would enter it here, otherwise just hit 'Enter' for no changes:
 
-`If you have non-standard Apache/nginx config path enter it here:`
+```
+If you have non-standard Apache/nginx config path enter it here:
+```
 
 Here is where the failure comes in, and the only workaround is to manually download and install the rules. Answer the prompts as shown below:
 
@@ -134,19 +150,29 @@ That's a little frustrating. You can go to your account on the Comodo web site a
 
 To fix this, we need to manually install the rules from the web site. This is done by logging into your account on https://waf.comodo.com and clicking on the the "Download Full Rule Set" link. You'll then need to copy the rules to your web server using scp'
 
-Example: `scp cwaf_rules-1.233.tgz root@mywebserversdomainname.com:/root/`
+Example:
+
+```
+scp cwaf_rules-1.233.tgz root@mywebserversdomainname.com:/root/
+```
 
 Once the tar gzip file has been copied over, move the file to the rules directory:
 
-`mv /root/cwaf_rules-1.233.tgz /usr/local/cwaf/rules/`
+```
+mv /root/cwaf_rules-1.233.tgz /usr/local/cwaf/rules/
+```
 
 Then navigate to the rules directory:
 
-`cd /usr/local/cwaf/rules/`
+```
+cd /usr/local/cwaf/rules/
+```
 
 And uncompress the rules:
 
-`tar xzvf cwaf_rules-1.233.tgz`
+```
+tar xzvf cwaf_rules-1.233.tgz
+```
 
 Any partial updates to the rules will have to be handled in the same way.
 
@@ -156,7 +182,9 @@ This is where paying for rules and support can come in handy. It all depends on 
 
 When we installed _mod\_security_, the default configuration file was installed in `/etc/httpd/conf.d/mod_security.conf`. The next thing we need to do is to modify this in two places. Start by editing the file:
 
-`vi /etc/httpd/conf.d/mod_security.conf`
+```
+vi /etc/httpd/conf.d/mod_security.conf
+```
 
 At the very top of the file, you will see:
 
@@ -198,7 +226,9 @@ We need to add in one line at the bottom to add the CWAF configuration, which in
 
 Now save your changes (with vi it's `SHIFT+:+wq!`) and restart httpd:
 
-`systemctl restart httpd`
+```
+systemctl restart httpd
+```
 
 If httpd starts OK, then you are ready to start using _mod\_security_ with the CWAF.
 
