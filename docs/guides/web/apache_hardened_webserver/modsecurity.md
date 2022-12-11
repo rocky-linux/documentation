@@ -1,5 +1,5 @@
 ---
-title: Web-based Application firewall (WAF)
+title: Web-based Application Firewall (WAF)
 author: Steven Spencer
 contributors: Ezequiel Bruni
 tested with: 8.5
