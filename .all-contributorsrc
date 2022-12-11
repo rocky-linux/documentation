@@ -719,6 +719,24 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "quartsize",
+      "name": "Laura Hild",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37243063?v=4",
+      "profile": "https://git.sr.ht/%7Equartsize/",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "Grammaresque",
+      "name": "Grammaresque",
+      "avatar_url": "https://avatars.githubusercontent.com/u/119525559?v=4",
+      "profile": "https://github.com/Grammaresque",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,

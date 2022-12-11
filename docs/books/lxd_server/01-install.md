@@ -29,18 +29,12 @@ dnf upgrade
 
 If there were any kernel updates during the upgrade process, reboot the server.
 
-### OpenZFS Repository for 8.6 and 9.0
+### OpenZFS Repository for 8 and 9
 
 Install the OpenZFS repository with:
 
 ```
 dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
-```
-
-We also need the GPG key, so use this command to get that:
-
-```
-gpg --import --import-options show-only /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 ```
 
 ## Install snapd, dkms, vim, and kernel-devel

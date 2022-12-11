@@ -18,7 +18,7 @@ Nous pourrons ensuite entrer dans le fonctionnement profond de Linux pour décou
 * les systèmes de fichiers.
 * les processus.
 
-Ensuite, nous aborderons un sujet essentiel pour l'administrateur systèmes : Le processus de sauvegarde. De nombreuses solutions logicielles sont fournies avec Linux pour améliorer les sauvegardes (rsnapshot, lsyncd, etc..). Il est bon de connaître les composants essentiels de la sauvegarde qui se trouvent dans le système d'exploitation. Nous allons étudier deux outils : `tar` et le moins répandu `cpio` dans ce chapitre.
+Ensuite, nous aborderons un sujet essentiel pour l'administrateur systèmes : Le processus de sauvegarde. De nombreuses solutions logicielles sont fournies avec Linux pour améliorer les sauvegardes (rsnapshot, lsyncd, etc.). Il est bon de connaître les composants essentiels de la sauvegarde qui se trouvent dans le système d'exploitation. Dans ce chapitre, nous allons étudier deux outils : d'une part `tar` et d'autre part `cpio` qui est moins répandu.
 
 La gestion du système pendant le processus de démarrage a beaucoup évolué ces dernières années depuis l'arrivée de systemd.
 

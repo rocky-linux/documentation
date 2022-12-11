@@ -8,7 +8,7 @@ title: Linux 简介
 
 ****
 
-**目标** : 本章将讲解以下内容：
+**目标**: 在本章中，您将学习以下内容：
 
 :heavy_check_mark: 操作系统的特性和可能的架构   
 :heavy_check_mark: UNIX 和 GNU/Linux 的历史   
@@ -153,11 +153,11 @@ Linux 基于 [posix](http://fr.wikipedia.org/wiki/POSIX)、TCP/IP、NFS、Samba 
 
 ## GNU/LINUX 发行版
 
-Linux 发行版是围绕 Linux 内核组装的一组稳定的软件，可以与管理（安装、删除、配置）此软件的必要组件一起安装。 有**关联或社区**发行版（Debian、Rocky），或者**商业发行版** （RedHat、Ubuntu）。
+Linux 发行版是围绕 Linux 内核组装的一组 **稳定的软件集** ，可以与管理此软件的必要组件一起安装（安装、删除、配置）。 有 **关联的或社区的** 发行版（Debian、Rocky），或者 **商业发行版** （RedHat、Ubuntu）。
 
 每个发行版都提供一个或多个**桌面环境**，并提供一组预装软件和一个附加软件库。 配置选项（例如内核或服务选项）特定于每个选项。
 
-这一原则允许您拥有面向**初学者**的发行版（Ubuntu、Linux Mint等），拥有更复杂的发行版（Gentoo、Arch），拥有更专注于 **服务器**的发行版（Debian、Redhat），或者拥有专注于**工作站**的发行版。
+这一原则允许您拥有面向 **初学者** 的发行版（Ubuntu、Linux Mint等），拥有更复杂的发行版（Gentoo、Arch），拥有更专注于 **服务器** 的发行版（Debian、Redhat），或者拥有专注于 **工作站** 的发行版。
 
 ### 桌面环境
 
