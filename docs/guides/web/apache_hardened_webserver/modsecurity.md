@@ -14,12 +14,12 @@ tags:
 
 ## Prerequisites
 
-* A Rocky Linux Web Server running Apache
-* Proficiency with a command-line editor (we are using _vi_ in this example)
-* A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
-* An understanding that installing this tool also requires monitoring of actions and tuning to your environment
-* An account on Comodo's WAF site
-* All commands are run as the root user or sudo
+* A Rocky Linux Web Server running Apache.
+* Proficiency with a command-line editor (we are using _vi_ in this example).
+* A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties.
+* An understanding that installing this tool also requires monitoring of actions and tuning to your environment.
+* An account on Comodo's WAF site.
+* All commands are run as the root user or sudo.
 
 ## Introduction
 
@@ -41,7 +41,7 @@ dnf install mod_security wget
 
 ## Setting Up Your Comodo account
 
-To setup your free account, go to [Comodo's WAF site](https://waf.comodo.com/), and click the "Signup" link at the top of the page. You will be required to setup username and password information but no credit-card or other billing will be done.
+To setup your free account, go to [Comodo's WAF site](https://waf.comodo.com/), and click the "Signup" link at the top of the page. You will be required to setup username and password information, but no credit-card or other billing will be done.
 
 The credentials that you use for signing on to the web site will be used in your setup of Comodo's software and also to obtain the rules, so you will need to keep these safe in a password manager somewhere.
 
@@ -55,7 +55,7 @@ Before you start, in order for the script to actually run after we download it, 
 dnf group install 'Development Tools'
 ```
 
-In addition, you will need to have your web server running for Comodo to see _mod\_security_ correctly. So start it if it is not already running:
+In addition, you will need to have your web server running for Comodo to see _mod\_security_ correctly. So, start it if it is not already running:
 
 ```
 systemctl start httpd
@@ -144,7 +144,7 @@ But expect to get the next message as well:
 | LOG : Exiting
 ```
 
-That's a little frustrating. You can go to your account on the Comodo web site and change your password and re-run the install script, BUT, it won't change anything. The credentials will still fail.
+That's a little frustrating. You can go to your account on the Comodo web site and change your password and re-run the install script, BUT it won't change anything. The credentials will still fail.
 
 ### <a name="cwaf_fix"></a> CWAF Rules File Workaround
 
