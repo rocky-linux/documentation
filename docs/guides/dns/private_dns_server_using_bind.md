@@ -233,9 +233,9 @@ Assuming that everything looks good, go ahead and restart _bind_:
 systemctl restart named
 ```
 
-=== "9.0"
+=== "9"
 
-    ## 9.0 Using IPv4 On Your LAN
+    ## 9 Using IPv4 On Your LAN
 
     In order to use ONLY IPv4 on your LAN, you need to make one change in `/etc/sysconfig/named`:
 
@@ -250,7 +250,7 @@ systemctl restart named
     
     Now save those changes (again, for _vi_, `SHIFT:wq!`)
 
-    ## 9.0 Testing Machines
+    ## 9 Testing Machines
 
     You need to add the DNS server (in our example 192.168.1.136) to each machine that you want to have access to the servers that you added to your local DNS. We are only going to show you an example of how to do this on a Rocky Linux workstation, but there are similar methods for other Linux distributions, as well as Windows and Mac machines.
 
@@ -327,7 +327,7 @@ systemctl restart named
 
     Once you've added the DNS servers that you want to the connection, you should be able to resolve hosts in *ourdomain.lan*, as well as Internet hosts.
 
-    ## 9.0 Firewall Rules - `firewalld`
+    ## 9 Firewall Rules - `firewalld`
 
     !!! note "`firewalld` By Default"
 
@@ -407,9 +407,9 @@ systemctl restart named
 
     These rules should get you DNS resolution on your private DNS server from hosts on the 192.168.1.0/24 network. In addition, you should be able to SSH from any of those hosts into your private DNS server.
 
-=== "8.6"
+=== "8"
 
-    ## 8.6 Using IPv4 On Your LAN
+    ## 8 Using IPv4 On Your LAN
 
     If you are using IPv4 only on your LAN, then you need to make two changes. The first is in `/etc/named.conf` and the second is in `/etc/sysconfig/named`
 
@@ -440,7 +440,7 @@ systemctl restart named
     Now save those changes (again, for _vi_, `SHIFT:wq!`)
 
 
-    ## 8.6 Testing Machines
+    ## 8 Testing Machines
 
     You need to add the DNS server (in our example 192.168.1.136) to each machine that you want to have access to the servers that you added to your new local DNS. We are only going to show you an example of how to do this on a Rocky Linux workstation, but there are similar methods for other Linux distributions, as well as Windows and Mac machines.
 
@@ -493,13 +493,13 @@ systemctl restart named
 
     Now you should be able to get to anything in the *ourdomain.lan* domain from your workstations, plus still be able to resovle and get to Internet addresses.
 
-    ## 8.6 Firewall Rules
+    ## 8 Firewall Rules
 
     ### Adding The Firewall Rules - `iptables`
 
     !!! note "Regarding `iptables`"
 
-        While `iptables` rules still work in Rocky Linux 8.6, we recommend moving to the `firewalld` rules in the section below. The reason is that in future versions of Rocky Linux, `iptables` will be deprecated and removed. In addition, `firewalld` is the default way of doing things. You will find more examples of using `firewalld` when looking for help, than for using `iptables`. We've included the `iptables` rules here, but for the best results and for future-proofing, we recommend moving to `firewalld` now.
+        While `iptables` rules still work in Rocky Linux 8.x, we recommend moving to the `firewalld` rules in the section below. The reason is that in future versions of Rocky Linux, `iptables` will be deprecated and removed. In addition, `firewalld` is the default way of doing things. You will find more examples of using `firewalld` when looking for help, than for using `iptables`. We've included the `iptables` rules here, but for the best results and for future-proofing, we recommend moving to `firewalld` now.
 
     First, create a file in */etc* called "firewall.conf" that will contain the following rules. This is a bare minimum rule set, and you may need to tweak this for your environment:
 
