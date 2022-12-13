@@ -1,5 +1,5 @@
 ---
-title: Backup Solution - _rsnapshot_
+title: Backup Solution - rsnapshot
 author: Steven Spencer
 contributors: Ezequiel Bruni
 tested with: 8.5, 8.6, 9.0

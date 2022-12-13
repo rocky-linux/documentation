@@ -19,11 +19,11 @@ You can't do much with a computer these days without network connectivity. Wheth
 * Elevated or administrative privileges on the system (For example root, `sudo` and so on)
 * Optional: familiarity with networking concepts
 
-=== "9.0"
+=== "9"
     
-    ## Network Configuration - Rocky Linux 9.0
+    ## Network Configuration - Rocky Linux 9
 
-    A lot has changed with network configuration as of Rocky Linux 9.0. One of the major changes is the move from Network-Scripts (still available to install-but effectively deprecated) to the use of Network Manager and key files, rather than `ifcfg` based files. `NetworkManager` as of 9.0, prioritizes `keyfiles` over the previous `ifcfg` files. Since this is now the default, the act of configuring the network should now take the default as the proper way of doing things, given that other changes over the years have meant the eventual deprecation and removal of older utilities. This guide will attempt to walk you through the use of Network Manager and the latest changes within Rocky Linux 9.0. 
+    A lot has changed with network configuration as of Rocky Linux 9. One of the major changes is the move from Network-Scripts (still available to install-but effectively deprecated) to the use of Network Manager and key files, rather than `ifcfg` based files. `NetworkManager` as of 9, prioritizes `keyfiles` over the previous `ifcfg` files. Since this is now the default, the act of configuring the network should now take the default as the proper way of doing things, given that other changes over the years have meant the eventual deprecation and removal of older utilities. This guide will attempt to walk you through the use of Network Manager and the latest changes within Rocky Linux 9. 
 
     ## Prerequisites
 
@@ -72,8 +72,8 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     !!! Hint "Configuration Storage Location"
 
-        In Rocky Linux 8.6, the storage location for network configuration was in `/etc/sysconfig/Network-Scripts/`.
-        With Rocky Linux 9.0, the new default storage location for the key files is in `/etc/NetworkManager/system-connections`. 
+        In Rocky Linux 8, the storage location for network configuration was in `/etc/sysconfig/Network-Scripts/`.
+        With Rocky Linux 9, the new default storage location for the key files is in `/etc/NetworkManager/system-connections`. 
 
     The primary (but not the only) utility used for configuring a network interface is the `nmtui` command. This can also be done with the `nmcli` command, but is much less intuitive. We can show the interface as it is currently configured using `nmcli` with: 
 
@@ -237,7 +237,7 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     !!! note 
 
-        While it is still possible to use this method for bringing the interface up and down in Rocky Linux 9.0, the command reacts a great deal slower than simply using the `nmcli` command in our previous examples.
+        While it is still possible to use this method for bringing the interface up and down in Rocky Linux 9, the command reacts a great deal slower than simply using the `nmcli` command in our previous examples.
 
     To bring the *enp0s3* down and up again we can simply use: 
 
@@ -353,11 +353,11 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     ## Conclusions
 
-    There are a great deal of changes to the networking stack in Rocky Linux 9.0. Among these are the prioritization of `keyfile` over the formerly used `ifcfg` files found in Network-Scripts. Since it is evident that the direction of movement here in future versions of Rocky Linux will completely deprecate and remove Network-Scripts as an option, it's best to focus attention on methodologies such as `nmcli`, `nmtui`, and in some cases `ip`, for network configuration.
+    There are a great deal of changes to the networking stack in Rocky Linux 9. Among these are the prioritization of `keyfile` over the formerly used `ifcfg` files found in Network-Scripts. Since it is evident that the direction of movement here in future versions of Rocky Linux will completely deprecate and remove Network-Scripts as an option, it's best to focus attention on methodologies such as `nmcli`, `nmtui`, and in some cases `ip`, for network configuration.
 
-=== "8.6"
+=== "8"
 
-    ## Network Configuration - Rocky Linux 8.6
+    ## Network Configuration - Rocky Linux 8
 
     ## Using NetworkManager service
 
@@ -700,4 +700,4 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     ## Conclusions
 
-    Rocky Linux 8.6 has the tools to configure your network from the command line. This document should get you up and running with those tools in no time.
+    Rocky Linux 8 has the tools to configure your network from the command line. This document should get you up and running with those tools in no time.
