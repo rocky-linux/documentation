@@ -64,6 +64,12 @@ UNIX is an open and evolving operating system that has played a major role in th
 
 UNIX is still relevant today (HP-UX, AIX, Solaris, etc.).
 
+#### GNU Project
+
+* **1984**: Richard Matthew Stallman launched the GNU (GNU's Not Unix) Project, which aims to establish a **free** and **open** Unix system, in which the more important tools are: gcc compiler, bash shell, Emacs editor and so on. GNU is a Unix-like operating system. The development of GNU, started in January 1984, is known as the GNU Project. Many of the programs in GNU are released under the auspices of the GNU Project; those we call GNU packages.
+
+* **1990**: GNU's own kernel, the GNU Hurd, was started in 1990 (before Linux was started).
+
 #### MINIX
 
 * **1987**: Andrew S. Tanenbaum develops MINIX, a simplified UNIX, to teach operating systems in a simple way. Mr. Tanenbaum makes the source code of his operating system available.
@@ -85,6 +91,10 @@ UNIX is still relevant today (HP-UX, AIX, Solaris, etc.).
 * **2004**: Ubuntu is created by the Canonical company (Mark Shuttleworth). It is based on Debian but includes free and proprietary software.
 
 * **2021**: Rocky Linux is created, based on Red Hat distribution.
+
+!!! info
+
+    Dispute over the name: although people are accustomed to calling the Linux operating system verbally, Linux is strictly a kernel. We must not forget the development and contribution of the GNU project to the open source cause, so! I prefer to call it the GNU/Linux operating system.
 
 ### Market share
 
