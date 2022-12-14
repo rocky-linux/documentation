@@ -15,7 +15,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: check urls
-        uses: urlstechie/urlchecker-action@latest
+        uses: urlstechie/urlchecker-action@master
         with:
           subfolder: docs
           file_types: .en.md,.md
