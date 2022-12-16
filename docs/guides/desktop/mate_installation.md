@@ -19,13 +19,13 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 * A computer (laptop or workstation) with a screen and everything.
 * A desire to run the MATE desktop instead of the default GNOME one.
 
-=== "9.0"
+=== "9"
     
-    ## 9.0: Introduction 
+    ## 9: Introduction 
 
-    The development team for Rocky Linux 9.0 have made installing MATE, and other popular desktop environments, easy by including live images. A live image, for those that may not know what that is, is a bootable image that will load the OS without installation. Once loaded, you have the option to install it to your machine's disk drive and use it. 
+    The development team for Rocky Linux 9 have made installing MATE, and other popular desktop environments, easy by including live images. A live image, for those that may not know what that is, is a bootable image that will load the OS without installation. Once loaded, you have the option to install it to your machine's disk drive and use it. 
 
-    ## 9.0: Get, Verify, and Write the MATE Live Image
+    ## 9: Get, Verify, and Write the MATE Live Image
 
     Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest MATE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.0/live/x86_64/). Note this particular link assumes x86_64 as your architecture, and as of this writing, that is the only architecture this particular live image is available for. Download both the live image and checksum files. 
 
@@ -44,7 +44,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
     
     If the checksum for the file returns OK, you are now ready to write your ISO image to your media. This procedure is different depending the OS you are using, the media, and the tools. We are assuming here that you know how to write the image to your media.
 
-    ## 9.0: Booting
+    ## 9: Booting
 
     This again is different by machine, BIOS, OS, etc.  You'll need to make sure that your machine is set to boot to whatever your media is (DVD or USB) as the first boot device. You should be presented with this screen if you are successful: 
 
@@ -56,7 +56,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ![mate-live](images/mate_live.png)
 
-    ## 9.0: Installing MATE
+    ## 9: Installing MATE
 
     At this point, you can use the MATE environment and see if you like it. Once you've decided that you would like to use it permanently, double-click the option to **Install to Hard Drive**.
 
@@ -94,16 +94,16 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ![mate_desktop](images/mate_desktop.png)
 
-=== "8.6"
+=== "8"
 
-    ## 8.6: Install Rocky Linux Minimal
+    ## 8: Install Rocky Linux Minimal
 
     When installing Rocky Linux, we used the following sets of packages:
 
     * Minimal
     * Standard
 
-    ## 8.6: Enabling Repositories
+    ## 8: Enabling Repositories
 
     You need the Powertools repository and the EPEL repository. Go ahead and enable those now:
 
@@ -116,7 +116,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     Go ahead and run `dnf update` to make sure all of the enabled repositories are read into the system.
 
-    ## 8.6: Installing Packages
+    ## 8: Installing Packages
 
     The next thing we need are a lot of packages. You can install these by simply copying and pasting the following into the command line on your machine:
 
@@ -132,7 +132,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
     sudo dnf install lightdm-settings lightdm
     ```
 
-    ## 8.6: Final Steps
+    ## 8: Final Steps
 
     Now that we have everything we need installed, the next thing we need to do is set the minimal install to boot into the Graphical User Interface (GUI). We can do this by entering:
 
