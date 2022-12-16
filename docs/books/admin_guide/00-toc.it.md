@@ -4,24 +4,24 @@ title: Imparare Linux Con Rocky
 
 # Imparare Linux con Rocky
 
-La Guida all'amministrazione è una raccolta di documenti didattici incentrati sugli amministratori di sistema. Possono essere utilizzati dai futuri amministratori di sistema che cercano di migliorarsi, dagli attuali amministratori di sistema che desiderano un aggiornamento o da qualsiasi utente Linux che desideri saperne di più sull'ambiente, i comandi, i processi e altro ancora di Linux. Come tutti i documenti di questo tipo, si evolverà e si aggiornerà nel tempo.
+La Guida dell'Amministratore è una raccolta di documenti didattici dedicati agli Amministratori di Sistema. Possono essere utilizzati dai futuri amministratori di sistema che cercano di aggiornarsi, dagli attuali amministratori di sistema che desiderano un ripasso o da qualsiasi utente di Linux che desideri saperne di più sull'ambiente Linux, sui comandi, sui processi e altro ancora. Come tutti i documenti di questo tipo, si evolverà e si aggiornerà nel tempo.
 
-Inizialmente, discuteremo di Linux, delle distribuzioni e dell'intero ecosistema che ruota attorno al nostro sistema operativo.
+Si inizia con Introduzione a Linux, che illustra Linux, le distribuzioni e l'intero ecosistema che ruota attorno al nostro sistema operativo.
 
-Vedremo quindi i comandi utente che sono essenziali per prendere confidenza con Linux. Gli utenti più esperti dovrebbero consultare anche il capitolo dedicato ai 'Comandi' più "avanzati".
+I Comandi utente contengono i comandi essenziali per iniziare a lavorare con Linux. Gli utenti più esperti possono consultare anche il capitolo seguente sui Comandi Avanzati di Linux.
 
-Segue il capitolo sull'editor VI. Mentre Linux viene fornito con molti editor, VI è uno dei più potenti. Altri comandi a volte usano sintassi identiche a VI (come il comando `sed`). Quindi, conoscere qualcosa di VI, o almeno demistificare le sue funzioni essenziali (come aprire un file, salvare, uscire o uscire senza salvare), è molto importante. L'utente si sentirà più a suo agio con le altre funzioni di VI mentre usa l'editor. Un'alternativa sarebbe usare nano che viene installato di default in Rocky Linux. Sebbene non sia così versatile, è semplice da usare, diretto e porta a termine il lavoro.
+L'editor di testo VI merita un capitolo a sé. Sebbene Linux sia dotato di molti editor, VI è uno dei più potenti. Altri comandi a volte utilizzano una sintassi identica a quella di VI (mi viene in mente `sed` ). È quindi molto importante sapere qualcosa su VI, o almeno demistificarne le funzioni essenziali (come aprire un file, salvare, uscire o uscire senza salvare). Con l'uso dell'editor, l'utente si troverà a suo agio con le altre funzioni di VI. Un'alternativa potrebbe essere quella di usare nano, che è installato di default in Rocky Linux. Sebbene non sia altrettanto versatile, è semplice da usare, diretto e in grado di svolgere il proprio lavoro.
 
-Possiamo quindi entrare nel profondo del funzionamento di Linux per scoprire come gestisce il sistema:
+Possiamo quindi addentrarci nel funzionamento più approfondito di Linux per scoprire come gestisce il sistema:
 
-* utenti.
-* file systems.
-* processi.
+* Gestione Utenti
+* File Systems
+* Gestione dei Processi
 
-Successivamente, tratteremo un argomento essenziale per l'amministratore di sistema: il processo di backup. Molte soluzioni software vengono fornite con Linux per migliorare i backup (rsnapshot, lsyncd, ecc.). È bene conoscere i componenti essenziali del backup che si trovano all'interno del sistema operativo. In questo capitolo analizzeremo due strumenti: `tar` e il meno diffuso `cpio`.
+Il Backup e il Ripristino sono informazioni essenziali per l'Amministratore di Sistema. Linux è dotato di molte soluzioni software per migliorare i backup (rsnapshot, lsyncd, ecc.). È importante conoscere i componenti essenziali del backup che esistono all'interno del sistema operativo. In questo capitolo analizziamo due strumenti: `tar` e il meno diffuso `cpio`.
 
-Per quanto riguarda la gestione del sistema durante il processo di avvio, si è evoluta enormemente negli ultimi anni dall'arrivo di systemd.
+L'Avvio del Sistema è una lettura importante anche perché la gestione del sistema durante il processo di avvio si è evoluta in modo significativo negli ultimi anni dopo l'arrivo di systemd.
 
 
-Concluderemo esaminando la gestione delle attività, l'implementazione della rete e l'installazione del software.
+I capitoli finali trattano la Gestione dei Compiti, l'Implementazione della Rete e la Gestione del Software, compresa l'installazione.
 

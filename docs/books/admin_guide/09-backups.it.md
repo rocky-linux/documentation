@@ -141,7 +141,7 @@ Un backup contiene in genere i seguenti elementi:
 * il nome;
 * il proprietario;
 * la dimensione;
-* le autorizzazioni
+* le autorizzazioni;
 * data di accesso.
 
 !!! Note "Nota"
