@@ -19,13 +19,13 @@ It is also one of the easiest desktop environments to combine with alternate win
 * A Workstation or Laptop
 * A desire to run XFCE as your desktop instead of the default GNOME desktop
 
-=== "9.0"
+=== "9"
 
-    ## 9.0: Introduction
+    ## 9: Introduction
 
-    The development team for Rocky Linux 9.0 have made installing XFCE, and other popular desktop environments, easy by including live images. A live image, for those that may not know what that is, is a bootable image that will load the OS without installation. Once loaded, you have the option to install it to your machine's disk drive and use it.
+    The development team for Rocky Linux 9 have made installing XFCE, and other popular desktop environments, easy by including live images. A live image, for those that may not know what that is, is a bootable image that will load the OS without installation. Once loaded, you have the option to install it to your machine's disk drive and use it.
 
-    ## 9.0: Get, Verify, and Write the XFCE Live Image
+    ## 9: Get, Verify, and Write the XFCE Live Image
 
     Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest XFCE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.0/live/x86_64/). 
     Note that this particular link assumes x86_64 is your processor's architecture. 
@@ -47,7 +47,7 @@ It is also one of the easiest desktop environments to combine with alternate win
 
     If the checksum for the file returns OK, you are now ready to write your ISO image to your media. This procedure is different depending on the OS you are using, the media, and the tools. We are assuming here that you know how to write the image to your media.
 
-    ## 9.0: Booting
+    ## 9: Booting
 
     This again is different by machine, BIOS, OS, etc.  You'll need to make sure that your machine is set to boot to whatever your media is (DVD or USB) as the first boot device. You should be presented with this screen if you are successful:
 
@@ -59,7 +59,7 @@ It is also one of the easiest desktop environments to combine with alternate win
 
     ![xfce_install](images/xfce_install.png)
 
-    ## 9.0: Installing XFCE
+    ## 9: Installing XFCE
 
     At this point, you can use the XFCE environment and see if you like it. Once you've decided that you would like to use it permanently, double-click the option to Install to Hard Drive.
 
@@ -95,9 +95,9 @@ It is also one of the easiest desktop environments to combine with alternate win
 
     ![xfce_desktop](images/xfce_desktop.png)
 
-=== "8.6"
+=== "8"
 
-    ## 8.6: Install Rocky Linux Minimal
+    ## 8: Install Rocky Linux Minimal
 
     !!! note
 
@@ -108,7 +108,7 @@ It is also one of the easiest desktop environments to combine with alternate win
     * Minimal
     * Standard
 
-    ## 8.6: Run System Update
+    ## 8: Run System Update
 
     First, run the server update command to let the system rebuild the repository cache, so that it could recognize the packages available in that.
 
@@ -116,7 +116,7 @@ It is also one of the easiest desktop environments to combine with alternate win
     dnf update
     ```
 
-    ## 8.6: Enabling Repositories
+    ## 8: Enabling Repositories
 
     We need the unofficial repository for XFCE in the EPEL repository, to run on Rocky 8.x versions.
 
@@ -141,7 +141,7 @@ It is also one of the easiest desktop environments to combine with alternate win
 
     Again, you will be presented with a warning message about the repository. Go ahead and answer `Y` to the prompt.
 
-    ## 8.6: Check The Available Environments and Tools in the Group
+    ## 8: Check The Available Environments and Tools in the Group
 
     Now that the repositories are enabled, run the following commands to check everything.
 
@@ -173,7 +173,7 @@ It is also one of the easiest desktop environments to combine with alternate win
 
     Go ahead and run `dnf update` one more time to make sure all of the enabled repositories are read into the system.
 
-    ## 8.6: Installing Packages
+    ## 8: Installing Packages
 
     To install XFCE, run:
 
@@ -187,7 +187,7 @@ It is also one of the easiest desktop environments to combine with alternate win
     dnf install lightdm
     ```
 
-    ## 8.6: Final Steps
+    ## 8: Final Steps
 
     We need to disable `gdm`, which gets added and enabled during *dnf groupinstall "xfce"*:
 
@@ -217,4 +217,4 @@ It is also one of the easiest desktop environments to combine with alternate win
 
 ## Conclusion
 
-XFCE is a light environment with simple interface. It is an alternative to the default GNOME desktop on Rocky Linux. If you are running Rocky Linux 9.0, the developers have created a handy live image that speeds the installation process.
+XFCE is a light environment with simple interface. It is an alternative to the default GNOME desktop on Rocky Linux. If you are running Rocky Linux 9, the developers have created a handy live image that speeds up the installation process.
