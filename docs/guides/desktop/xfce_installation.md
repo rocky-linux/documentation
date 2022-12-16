@@ -217,4 +217,4 @@ It is also one of the easiest desktop environments to combine with alternate win
 
 ## Conclusion
 
-XFCE is a light environment with simple interface. It is an alternative to the default GNOME desktop on Rocky Linux. If you are running Rocky Linux 9, the developers have created a handy live image that speeds the installation process.
+XFCE is a light environment with simple interface. It is an alternative to the default GNOME desktop on Rocky Linux. If you are running Rocky Linux 9, the developers have created a handy live image that speeds up the installation process.
