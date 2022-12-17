@@ -200,7 +200,7 @@ In the **GNU/Linux** world, the Free Software movement provides mostly free dist
 
 A free software is necessarily open-source, but the opposite is not true since open-source software is distinct from the freedom offered by the GPL license.
 
-#### GPL (General Public License)
+#### GPL (GNU General Public License)
 
 The **GPL** guarantees the author of a software its intellectual property, but allows modification, redistribution or resale of software by third parties, provided that the source code is included with the software. The GPL is the license that came out of the **GNU** (GNU is Not UNIX) project, which was instrumental in creating Linux.
 
