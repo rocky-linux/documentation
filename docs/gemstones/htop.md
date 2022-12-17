@@ -26,7 +26,7 @@ dnf -y install htop
 You only need to type `htop` in the terminal, and the interactive interface is as follows:
 
 ```
-0[ |||                      3%]     Tasks: 24, 14thr; 1 running
+0[ |||                      3%]     Tasks: 22, 46thr, 174 kthr 1 running
 1[ |                        1%]     Load average: 0.00 0.00 0.05
 Mem[ |||||||           197M/8G]     Uptime: 00:31:39
 Swap[                  0K/500M]
@@ -41,24 +41,29 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 * The top 0 and 1 indicate the number of your CPU cores, and the percentage indicates the occupancy rate of a single core (of course, the total occupancy rate of the CPU can also be displayed)
     * The different colors of the progress bar indicate the percentage of different process types:
 
-        | Color | Description |
-        | ---------| ------------|
-        | Blue | Percentage of CPU used by low-priority processes |
-        | Green | Percentage of process CPU owned by ordinary users |
-        | Red | Percentage of CPU used by system processes |
-        | Orange | Percentage of CPU used by IRQ time |
-        | Magenta  | Percentage of CPU used by soft IRQ time |
-        | Gray | Percentage of CPU occupied by IO waiting time |
-        | Cyan | Percentage of CPU consumed by Steal time |
+        | Color | Description | Names displayed in other styles|
+        | ---------| ------------|------------|        
+        | Blue | Percentage of CPU used by low-priority processes | low |
+        | Green | Percentage of process CPU owned by ordinary users |   |
+        | Red | Percentage of CPU used by system processes |  sys |
+        | Cyan | Percentage of CPU consumed by Steal time | vir |
 
-* Tasks: 24, 14thr; 1 running, process information. In my example, it means that my current machine has 24 tasks, which are divided into 14 threads, of which only 1 process is in a running state.
-* Mem memory and swap information. Similarly, use different colors to distinguish:
+* Tasks: 22, 46thr, 174 kthr 1 running. In my example, it means that my current machine has 22 tasks, which are divided into 46 threads, of which only 1 process is in a running state, "kthr" indicates how many kernel threads there are. 
+* Mem information. Similarly, use different colors to distinguish:
 
- | Color|Description|
- |----|----|
- |Blue|Percentage of memory consumed by the buffer |
- |Green|Percentage of memory consumed by the memory area|
- |Orange|Percentage of memory consumed by the cache area|
+   | Color | Description | Names displayed in other styles |
+   |----|----|----|
+   | Blue |Percentage of memory consumed by the buffer | buffers |
+   | Green |Percentage of memory consumed by the memory area| used |
+   | Yellow/Orange |Percentage of memory consumed by the cache area| cache |
+   | Magent | Percentage of memory occupied by shared memory area | shared | 
+
+* Swap information. 
+  
+   | Color | Description | Names displayed in other styles |
+   |----|----|----|
+   | Green | Percentage of swap consumed by the swap area | used |
+   | Yellow/Orange | Percentage of swap consumed by the cache area | cache |
 
 * Load average, the three values ​​respectively represent the average load of the system in the last 1 minute, the last 5 minutes, and the last 15 minutes
 * Uptime, which means the running time after booting
