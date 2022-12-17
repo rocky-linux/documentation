@@ -56,7 +56,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
    | Blue |Percentage of memory consumed by the buffer | buffers |
    | Green |Percentage of memory consumed by the memory area| used |
    | Yellow/Orange |Percentage of memory consumed by the cache area| cache |
-   | Magent | Percentage of memory occupied by shared memory area | shared | 
+   | Magenta | Percentage of memory occupied by shared memory area | shared | 
 
 * Swap information. 
   
