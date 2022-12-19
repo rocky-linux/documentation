@@ -74,7 +74,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 * USER - The owner of the process
 * PRI - Display the process priority as seen by the Linux kernel
 * NI - Displays the process priority of reset by normal user or root super user
-* VIRI - Virtual memory being consumed by a process
+* VIRT - Virtual memory being consumed by a process
 * **RES - Physical memory being consumed by a process**
 * SHR - Shared memory being consumed by a process
 * S - The current state of the process, there is a special state to pay attention to! That is Z (zombie process). When there are a large number of zombie processes in the machine, it will affect the performance of the machine.
