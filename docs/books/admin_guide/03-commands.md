@@ -69,7 +69,7 @@ Once the user is connected to a console, the shell displays the **command prompt
 * Analyzes the syntax.
 * Substitutes special characters.
 * Executes the command.
-* Displays the command prompt.
+* Standard output (i.e. /dev/stdout), standard input (i.e. /dev/stdin), and input/output redirection.
 * Etc.
 
 The key sequence <kbd>CTRL</kbd> + <kbd>C</kbd> is used to interrupt a running command.
