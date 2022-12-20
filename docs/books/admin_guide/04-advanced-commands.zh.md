@@ -4,14 +4,14 @@ title: 高级Linux 命令
 
 # Linux 用户的高级命令
 
-在本章中，您将学习一些针对Linux的高级命令。
+熟悉基本命令后，高级命令可在更特殊的情况下提供更好的自定义和控制。
 
 ****
 
 **目标**：在本章中，未来的Linux管理员将学习：
 
-:heavy_check_mark: 上一章没有介绍的一些有用的命令；   
-:heavy_check_mark: 一些高级命令
+:heavy_check_mark: 上一章没有介绍的一些有用命令。   
+:heavy_check_mark: 一些高级命令。
 
 :checkered_flag: **用户命令**, **Linux**
 
@@ -41,7 +41,7 @@ steven
 
 !!! note "说明"
 
-    `uniq`需要对输入文件进行排序，因为它只比较连续的行。
+    `uniq` 要求在运行之前对输入文件进行排序，因为它只比较连续的行。
 
 如果不带选项，`uniq`命令将不会显示`firstnames.txt`文件中紧随其后的相同行：
 
@@ -60,7 +60,7 @@ $ sort firstnames.txt | uniq -u
 patrick
 ```
 
-相反，要只显示文件中至少出现两次的行，必须使用`-d`选项：
+相反，要只显示文件中至少出现两次的行，请使用`-d`选项：
 
 ```
 $ sort firstnames.txt | uniq -d
@@ -204,33 +204,34 @@ $ tar tvfP /root/log.tar
 
 `xargs`命令的特殊功能是将输入参数放在被调用命令的结尾， 这对于上面的示例非常有效，因为传入的文件将形成要添加到归档中的文件列表。
 
-现在，如果我们以`cp`命令为例并希望复制目录中的文件列表，则该文件列表将被添加到该命令的结尾... 但是`cp`命令在命令结尾要求的是目标文件。 为此，我们使用 `-I`选项将输入参数放在行尾以外的其他位置。
+现在，如果我们以 `cp` 命令为例并希望复制目录中的文件列表，则该文件列表将被添加到该命令的结尾... 但是 `cp` 命令在命令结尾要求的是目标文件。 为此，我们使用 `-I` 选项将输入参数放在行尾以外的其他位置。
 
 ```
 $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 ```
 
-`-I`选项允许您指定一个字符(在我们的示例中是`%`字符)，用于放置`xargs`的输入文件。
+`-I`选项允许您指定一个字符(上面示例中是`%`字符)，用于放置`xargs`的输入文件。
 
 ## `yum-utils` 软件包
 
-`yum-utils` 软件包是不同作者为`yum`提供的实用程序的集合，这使得yum更易于使用且功能更强大。
+`yum-utils`软件包是由不同作者为`yum`构建的实用程序集合，这使其更易于使用且功能更强大。
 
 !!! note "说明"
 
-    在Rocky Linux 8中，`yum`被替换为`dnf`，虽然也可以安装`dnf-utils`，但包名仍然是`yum-utils`。 这些都是经典的YUM工具，在DNF之上以CLI shims的形式实现，以保持与`yum-3`的向后兼容。
+    在 Rocky Linux 8 中，`yum`被替换为`dnf`，虽然也可以安装`dnf-utils`，但包名仍然是`yum-utils`。 这些都是经典的YUM工具，在DNF之上以CLI shims的形式实现，以保持与`yum-3`的向后兼容。
 
-以下是一些用法示例：
+以下是这些实用程序的一些示例：
 
-* `repoquery` 命令：
+* `repoquery` 命令
 
 `repoquery` 命令用于查询存储库中的软件包。
 
 使用示例：
 
-  * 显示软件包的依赖 (它可以是已安装或未安装的软件包)， 等同于`dnf deplist <package-name>`。
-
+  * 显示软件包的依赖关系 (它可以是已安装或未安装的软件包)， 等同于`dnf deplist <package-name>`
+    ```
     repoquery --requires <package-name>
+    ```
 
   * 显示已安装软件包提供的文件（对于未安装的软件包不起作用），相当于`rpm -ql <package-name>`
 
@@ -270,7 +271,7 @@ $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 
     这个命令对于快速构建几个rpm的本地存储库非常有用！
 
-示例：`yumdownloader` 将下载 _samba_及其所有依赖项：
+示例：`yumdownloader` 将下载 _samba_软件包及其所有依赖项：
 
 ```
 $ yumdownloader --destdir /var/tmp --resolve samba
@@ -280,16 +281,16 @@ $ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 
 | 选项          | 解释                 |
 | ----------- | ------------------ |
-| -`-destdir` | 下载的软件包将存储在指定的文件夹中。 |
+| `--destdir` | 下载的软件包将存储在指定的文件夹中。 |
 | `--resolve` | 同时下载软件包依赖项。        |
 
 ## `psmisc` 软件包
 
 `psmisc`软件包包含用于管理系统进程的实用程序：
 
-* `pstree`：`pstree`命令会以树状结构显示系统上的当前进程。
+* `pstree`：`pstree` 命令会以树状结构显示系统上的当前进程。
 * `killall`：`killall` 命令会向按名称标识的所有进程发送一个 kill 信号。
-* `fuser`：`fuser`命令用于标识指定文件或文件系统的进程`PID`。
+* `fuser`：`fuser` 命令用于标识指定文件或文件系统的进程`PID`。
 
 示例：
 
@@ -317,7 +318,7 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
 # killall httpd
 ```
 
-结束访问`/etc/httpd/conf/httpd.conf`文件的进程(`-k`选项)：
+结束访问 `/etc/httpd/conf/httpd.conf` 文件的进程(`-k`选项)：
 
 ```
 # fuser -k /etc/httpd/conf/httpd.conf
@@ -325,9 +326,9 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
 
 ## `watch` 命令
 
-`watch`命令会定期执行一条命令，并在终端全屏显示结果。
+`watch` 命令会定期执行一条命令，并在终端全屏显示结果。
 
-`-n`选项允许您指定每次执行命令之间的秒数。
+`-n` 选项允许您指定每次执行命令之间的秒数。
 
 !!! note "说明"
 
@@ -335,7 +336,7 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
 
 示例：
 
-* 每5秒显示一次`/etc/passwd`文件的结尾：
+* 每5秒显示一次 `/etc/passwd` 文件的结尾：
 
 ```
 $ watch -n 5 tail -n 3 /etc/passwd

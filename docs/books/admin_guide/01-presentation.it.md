@@ -2,23 +2,23 @@
 title: Introduzione a Linux
 ---
 
-# Introduzione al sistema operativo Linux
+# Introduzione al Sistema Operativo Linux
 
-In questo capitolo impareremo a conoscere le distribuzioni GNU/Linux.
+In questo capitolo imparerete a conoscere le distribuzioni GNU/Linux.
 
 ****
 
 **Obiettivi**: In questo capitolo imparerai a:
 
-:heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo  
-:heavy_check_mark: Raccontare la storia di UNIX e GNU/Linux  
-:heavy_check_mark: Scegliere la distribuzione Linux giusta per le tue esigenze  
-:heavy_check_mark: Spiegare la filosofia del software libero e opensource  
-:heavy_check_mark: Scoprire l'utilità della SHELL.
+:heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo.   
+:heavy_check_mark: Raccontare la storia di UNIX e GNU/Linux.   
+:heavy_check_mark: Scegliere la distribuzione Linux più adatta alle proprie esigenze.   
+:heavy_check_mark: Spiegare la filosofia del Software Libero e Open Source.   
+:heavy_check_mark: Scoprire l'utilità della shell.</br></br></br></br>
 
 :checkered_flag: **generalità**, **linux**, **distribuzioni**
 
-**Conoscenza**: :star:  
+**Conoscenza**: :star:    
 **Complessità**: :star:
 
 **Tempo di lettura**: 10 minuti
@@ -33,17 +33,17 @@ Linux, UNIX, BSD, Windows e MacOS sono tutti **sistemi operativi**.
 
     Un sistema operativo è un **insieme di programmi che gestisce le risorse disponibili di un computer**.
 
-Nella gestione di queste risorse, il sistema operativo deve:
+Nell'ambito di questa gestione delle risorse, il sistema operativo deve:
 
-* Gestire la memoria fisica o virtuale.
-  * La **memoria fisica** è costituita dalla RAM e dalla memoria cache del processore, che viene utilizzata per l'esecuzione dei programmi.
-  * La **memoria virtuale** è una locazione sull'hard disk (la partizione di swap) che permette lo scarico della memoria fisica e il salvataggio dello stato attuale del sistema durante lo spegnimento elettrico del computer.
+* Gestire la memoria **fisica** o **virtuale**.
+    * La **memoria fisica** è costituita dalla RAM e dalla memoria cache del processore, utilizzate per l'esecuzione dei programmi.
+    * La **memoria virtuale** è una posizione sul disco rigido (la partizione di **swap** ) che consente di scaricare la memoria fisica e di salvare lo stato attuale del sistema durante lo spegnimento elettrico del computer.
 * Intercettare **l'accesso alle periferiche**. Raramente al software è consentito accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze molto specifiche).
 * Fornire alle applicazioni una corretta **gestione delle attività**. Il sistema operativo è responsabile della pianificazione dei processi che occupano il processore.
-* **Protezione dei file** da accessi non autorizzati.
-* **Raccolta di informazioni** sui programmi in uso o in esecuzione.
+* **Proteggere i file** da accessi non autorizzati.
+* **Raccogliere informazioni** sui programmi in uso o in corso.
 
-![Operation of an operating system](images/operating_system.png)
+![Funzionamento di un sistema operativo](images/operating_system.png)
 
 ## Generalità UNIX - GNU/Linux
 
@@ -51,17 +51,17 @@ Nella gestione di queste risorse, il sistema operativo deve:
 
 #### UNIX
 
-* Dal **1964** al **1968**: MULTICS (MULTiplexed Information and Computing Service) è sviluppato per MIT, Bell Labs (AT&T) e General Electric.
+* **1964 - 1968**: MULTICS (MULTiplexed Information and Computing Service) viene sviluppato per il MIT, i Bell Labs (AT&T) e la General Electric.
 
-* **1969**: Dopo il ritiro della Bell (1969) e poi della General Electric dal progetto, due sviluppatori (Ken Thompson e Dennis Ritchie), affiancati in seguito da Brian Kernighan, giudicando MULTICS troppo complesso, lanciano lo sviluppo di UNIX (UNiplexed Information and Computing Service). Originariamente sviluppato in assembler, i progettisti di UNIX hanno sviluppato il linguaggio B e poi il linguaggio C (1971) e hanno completamente riscritto UNIX. Essendo stato sviluppato nel 1970, la data di riferimento dei sistemi UNIX/Linux è ancora fissata al 1° gennaio 1970.
+* **1969 - 1971**: Dopo il ritiro di Bell (1969) e poi di General Electric dal progetto, due sviluppatori, Ken Thompson e Dennis Ritchie (a cui si aggiunge in seguito Brian Kernighan), giudicando MULTICS troppo complesso, iniziano lo sviluppo di UNIX (UNiplexed Information and Computing Service). Sebbene sia stato originariamente creato in linguaggio Assembly, i creatori di UNIX svilupparono alla fine il linguaggio B e poi il linguaggio C (1971) e riscrissero completamente UNIX. Poiché è stato sviluppato nel 1970, la data di riferimento (epoch) per l'inizio del tempo dei sistemi UNIX/Linux è fissata al 01 gennaio 1970.
 
-Il linguaggio C è ancora oggi uno dei linguaggi di programmazione più popolari! Linguaggio di basso livello, vicino all'hardware, consente l'adattamento del sistema operativo a qualsiasi architettura di macchina dotata di compilatore C.
+Il linguaggio C rimane ad oggi uno dei linguaggi di programmazione più diffusi. Un linguaggio di basso livello, vicino all'hardware, che permette di adattare il sistema operativo a qualsiasi architettura di macchina dotata di un compilatore C.
 
-UNIX è un sistema operativo aperto e in evoluzione che ha svolto un ruolo importante nella storia dell'informatica. È stato la base per molti altri sistemi: Linux, BSD, Mac OSX, ecc.
+UNIX è un sistema operativo aperto e in continua evoluzione che ha svolto un ruolo fondamentale nella storia dell'informatica. Costituisce la base di molti altri sistemi come Linux, BSD, MacOS e altri ancora.
 
 UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
-#### Minix
+#### MINIX
 
 * **1987**: Andrew S. Tanenbaum sviluppa MINIX, un UNIX semplificato, per insegnare i sistemi operativi in modo semplice. Il signor Tanenbaum rende disponibile il codice sorgente del suo sistema operativo.
 
@@ -69,19 +69,19 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
 * **1991**: Uno studente finlandese, **Linus Torvalds** , crea un sistema operativo dedicato al suo personal computer e lo chiama Linux. Pubblica la sua prima versione 0.02, sul forum di discussione Usenet e altri sviluppatori iniziano a contribuire al miglioramento del suo sistema. Il termine Linux è un gioco di parole tra il nome del fondatore, Linus, e UNIX.
 
-* **1993**: Viene creata la distribuzione Debian. Debian è una distribuzione non commerciale, basata sulla comunità. Sviluppato originariamente per essere utilizzato su server, è particolarmente adatto a questo ruolo, ma è pensato per essere un sistema universale e quindi utilizzabile anche su un personal computer. Debian è usata come base per molte altre distribuzioni, come Mint o Ubuntu.
+* **1993**: Viene creata la distribuzione Debian. Debian è una distribuzione non commerciale, basata sulla comunità. Sviluppato originariamente per l'uso sui server, è ben adatto a questo ruolo; tuttavia è un sistema universale, utilizzabile anche su un personal computer. Debian costituisce la base per molte altre distribuzioni, come Mint o Ubuntu.
 
-* **1994**: La distribuzione commerciale RedHat viene creata dalla società RedHat, che è oggi il principale distributore del sistema operativo GNU/Linux. RedHat supporta la versione community Fedora e recentemente la distribuzione gratuita CentOS.
+* **1994**: la distribuzione commerciale Red Hat viene creata dalla società Red Hat, che oggi è il principale distributore del sistema operativo GNU/Linux. Red Hat supporta la versione comunitaria Fedora e, fino a poco tempo fa, la distribuzione gratuita CentOS.
 
 * **1997**: Viene creato l'ambiente desktop KDE. Si basa sulla libreria di componenti Qt e sul linguaggio di sviluppo C++.
 
-* **1999**: Viene creato l'ambiente desktop Gnome. Questo si basa sulla libreria di componenti GTK+.
+* **1999**: Viene creato l'ambiente desktop GNOME. Questo si basa sulla libreria di componenti GTK+.
 
-* **2002**: Viene creata la distribuzione Arch. La sua particolarità deve essere rilasciata in Rolling Release (aggiornamento continuo).
+* **2002**: Viene creata la distribuzione Arch. Il suo tratto distintivo è che offre una rolling release (aggiornamento continuo).
 
-* **2004**: Ubuntu viene creato dalla società Canonical (Mark Shuttleworth). È basato su Debian, che include software gratuito e proprietario.
+* **2004**: Ubuntu viene creato dalla società Canonical (Mark Shuttleworth). È basato su Debian ma include software libero e proprietario.
 
-* **2021**: Nascita di Rocky Linux, basato sulla distribuzione RedHat.
+* **2021**: Viene creato Rocky Linux, basato sulla distribuzione Red Hat.
 
 ### Quota di mercato
 
@@ -89,63 +89,63 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 TODO: graphics with market share for servers and pc.
 -->
 
-Linux non è ancora molto conosciuto dal grande pubblico, anche se lo usa regolarmente. Linux infatti è nascosto in **smartphone**, **televisori**, **internet box**, ecc. Quasi il **70% delle pagine web** servite nel mondo sono servite da un server Linux o UNIX!
+Nonostante la sua diffusione, Linux rimane relativamente sconosciuto al grande pubblico. Linux infatti è nascosto in **smartphone**, **televisori**, **internet box**, ecc. Quasi il **70% delle pagine web** servite nel mondo sono servite da un server Linux o UNIX!
 
-Linux equipaggia poco più del **3% dei personal computer** ma più dell'**82% degli smartphone**. **Android** è un sistema operativo il cui kernel è Linux.
+Linux equipaggia poco più del **3% dei personal computer** ma più dell'**82% degli smartphone**. Il sistema operativo **Android**, ad esempio, utilizza un kernel Linux.
 
 <!-- TODO: review those stats -->
 
-Linux equipaggia il 100% dei 500 supercomputer dal 2018. Un supercomputer è un computer progettato per ottenere le massime prestazioni possibili con le tecniche note al momento della sua progettazione, in particolare per quanto riguarda la velocità di calcolo.
+Linux equipaggia il 100% dei 500 supercomputer dal 2018. Un supercomputer è un computer progettato per ottenere le massime prestazioni possibili con le tecniche conosciute al momento della sua progettazione, soprattutto per quanto riguarda la velocità di calcolo.
 
 ### Progettazione dell'architettura
 
 * Il **kernel** è il primo componente software.
-  * È il cuore del sistema Linux.
-  * Gestisce le risorse hardware del sistema.
-  * Gli altri componenti software devono attraversarlo per accedere all'hardware.
-* La **shell** è un'utilità di sistema che interpreta i comandi dell'utente e ne garantisce l'esecuzione.
-  * Shell principali: shell Bourne, shell C, shell Korn e shell Bourne-Again (bash).
-* Le applicazioni sono programmi utente come:
-  * Browser Internet ;
-  * l'elaboratore di testi ;
-  * ...
+    * È il cuore del sistema Linux.
+    * Gestisce le risorse hardware del sistema.
+    * Gli altri componenti software devono attraversarlo per accedere all'hardware.
+* La **shell** è un'utilità che interpreta i comandi dell'utente e ne assicura l'esecuzione.
+    * Shell principali: shell Bourne, shell C, shell Korn e shell Bourne-Again (bash).
+* **Applicazioni** sono programmi utente inclusi, ma non limitati a:
+    * Browser Internet
+    * Elaboratore di Testi
+    * Fogli di calcolo
 
-#### Multitask
+#### Multi-task
 
-Linux appartiene alla famiglia dei sistemi operativi time-sharing (tempo condiviso). Condivide il tempo di elaborazione tra più programmi, passando da uno all'altro in modo trasparente per l'utente. Ciò implica:
+Linux appartiene alla famiglia dei sistemi operativi con condivisione del tempo. Divide il tempo di elaborazione tra diversi programmi, passando da uno all'altro in modo trasparente per l'utente. Questo implica:
 
-* esecuzione simultanea di più programmi;
-* distribuzione del tempo CPU da parte dello scheduler;
-* riduzione dei problemi dovuti ad un'applicazione arrestata in modo anomalo;
-* prestazioni ridotte quando ci sono troppi programmi in esecuzione.
+* Esecuzione simultanea di più programmi.
+* Distribuzione del tempo di CPU da parte dello scheduler.
+* Riduzione dei problemi causati da un'applicazione interrotta.
+* Prestazioni ridotte in caso di troppi programmi in esecuzione.
 
-#### Multi utente
+#### Multiutente
 
-Lo scopo di Multics era quello di consentire a più utenti di lavorare da più terminali (schermo e tastiera) su un unico computer (molto costoso all'epoca). Linux, che si ispira a questo sistema operativo, ha mantenuto questa capacità di lavorare con più utenti contemporaneamente e indipendentemente, ognuno con il proprio account utente, spazio di memoria e diritti di accesso a file e software.
+Lo scopo di MULTICS era quello di consentire a più utenti di lavorare su più terminali (schermo e tastiera) da un unico computer (all'epoca molto costoso). Linux, ispirandosi a questo sistema operativo, ha mantenuto la capacità di lavorare con più utenti contemporaneamente e in modo indipendente, ognuno dei quali dispone di un proprio account utente con spazio di memoria e diritti di accesso a file e software.
 
 #### Multiprocessore
 
-Linux è in grado di funzionare con computer multiprocessore o con processori multicore.
+Linux è in grado di lavorare con computer multiprocessore o con processori multi-core.
 
-#### Multi piattaforma
+#### Multipiattaforma
 
-Linux è scritto in un linguaggio di alto livello che può essere adattato a diversi tipi di piattaforme durante la compilazione. Funziona quindi su:
+Linux è scritto in un linguaggio di alto livello che può essere adattato a diversi tipi di piattaforme durante la compilazione. Questo permette di funzionare su:
 
-* computer di casa (PC o laptop);
-* server (dati, applicazioni,...);
-* computer portatili (smartphone o tablet);
-* sistemi integrati (computer per auto);
-* elementi di rete attivi (router, switch);
-* elettrodomestici (TV, frigoriferi,...).
+* Computer di casa (PC o laptop)
+* Server (dati, applicazioni,...)
+* Computer portatili (smartphone o tablet)
+* Sistemi integrati (computer per auto)
+* Elementi di rete attivi (router, switch)
+* Elettrodomestici (TV, frigoriferi,...)
 
 #### Aperto
 
-Linux è basato su standard riconosciuti [posix](http://fr.wikipedia.org/wiki/POSIX), TCP/IP, NFS, Samba ... che consentono di condividere dati e servizi con altri sistemi operativi.
+Linux si basa su standard riconosciuti come [POSIX](http://en.wikipedia.org/wiki/POSIX), [TCP/IP](https://en.wikipedia.org/wiki/Internet_protocol_suite), [NFS](https://en.wikipedia.org/wiki/Network_File_System) e [Samba](https://en.wikipedia.org/wiki/Samba_(software)), che gli consentono di condividere dati e servizi con altri sistemi operativi.
 
-### La filosofia Unix/Linux
+### La filosofia UNIX/Linux
 
-* Tutto è un file.
-* Portabilità.
+* Trattare tutto come un file.
+* Portabilità del valore.
 * Fai solo una cosa e falla bene.
 * KISS: Mantienilo semplice stupido (Keep It Simple Stupid).
 * "UNIX è fondamentalmente un sistema operativo semplice, Ma devi essere un genio per capirne la semplicità." (__Dennis Ritchie__)
@@ -155,106 +155,103 @@ Linux è basato su standard riconosciuti [posix](http://fr.wikipedia.org/wiki/PO
 
 Una distribuzione Linux è un **insieme coerente di software** assemblato attorno al kernel Linux e pronto per essere installato insieme ai componenti necessari per gestire questo software (installazione, rimozione, configurazione). Ci sono distribuzioni **associative o comunitarie** (Debian, Rocky) o **commerciali** (RedHat, Ubuntu).
 
-Ogni distribuzione offre uno o più **ambienti desktop**, fornisce un set di software preinstallato e una libreria di software aggiuntivo. Le opzioni di configurazione (opzioni del kernel o servizi ad esempio) sono specifiche per ciascuno.
+Ogni distribuzione offre uno o più **ambienti desktop**, fornisce un set di software preinstallato e una libreria di software aggiuntivo. Le opzioni di configurazione (ad esempio le opzioni del kernel o dei servizi) sono specifiche per ogni distribuzione.
 
-Questo principio ti consente di avere distribuzioni per **principianti** (Ubuntu, Linux Mint...), distribuzioni con un approccio più complesso (Gentoo, Arch), o essere focalizzate di più verso **servers** (Debian, Redhat), o **workstations**.
+Questo principio permette alle distribuzioni di essere orientate ai **principianti** (Ubuntu, Linux Mint...) o completamente personalizzabili per gli **utenti avanzati** (Gentoo, Arch); le distribuzioni possono anche essere più adatte ai **server** (Debian, Red Hat) o alle **workstation** (Fedora).
 
 ### Ambienti desktop
 
-Ci sono molti ambienti grafici: **Gnome**, **KDE**, **LXDE**, **XFCE**, etc. C'è qualcosa per ogni esigenza, e la loro **ergonomicità** non ha nulla da invidiare rispetto a Microsoft o Apple Systems!
+Ci sono molti ambienti grafici: **GNOME**, **KDE**, **LXDE**, **XFCE**, etc. Ce n'è per tutti i gusti e l'**ergonomia** è all'altezza dei sistemi Microsoft o Apple.
 
-Allora perché c'è così poco entusiasmo per Linux, quando **non ci sono virus (o quasi) per questo sistema**? Forse perché tutti gli editori (Adobe) o produttori (NVidia) non giocano il gioco gratuito e non forniscono una versione del loro software o dei loro __drivers__ per GNU/Linux? Paura del cambiamento? La difficoltà a trovare dove acquistare un computer Linux? Troppo pochi giochi (ma non ancora per molto) distribuiti sotto Linux? La situazione cambierà con l'arrivo della console di gioco steam-box che funziona con Linux?
+Allora perché c'è così poco entusiasmo per Linux, quando questo sistema è praticamente **privo di virus**? Forse perché molti editori (Adobe) e produttori (Nvidia) non fanno il gioco della libertà e non forniscono una versione del loro software o dei loro __driver__ per GNU/Linux? Forse è la paura del cambiamento, o la difficoltà di trovare dove acquistare un computer Linux, o ancora i pochi giochi distribuiti sotto Linux. Almeno quest'ultima scusa non dovrebbe essere vera a lungo, con l'avvento del motore di gioco Steam per Linux.
 
-![Gnome Desktop](images/01-presentation-gnome.png)
+![Desktop GNOME](images/01-presentation-gnome.png)
 
-L'ambiente Desktop **GNOME 3** non usa più il concetto di desktop ma quello di Gnome Shell (da non confondere con la shell, riga di comando). Serve come desktop, come dashboard, area di notifica e selettore di finestre. L'ambiente desktop GNOME si basa sulla libreria di componenti GTK+.
+L'ambiente desktop di **GNOME 3** non utilizza più il concetto di desktop ma quello di GNOME Shell (da non confondere con la shell a riga di comando). Serve come desktop, come dashboard, area di notifica e selettore di finestre. L'ambiente desktop GNOME si basa sulla libreria di componenti GTK+.
 
-![KDE Desktop](images/01-presentation-kde.png)
+![Desktop KDE](images/01-presentation-kde.png)
 
-L'ambiente del desktop **KDE** è basato sulla libreria di componenti **Qt**.
+L'ambiente desktop **KDE** si basa sulla libreria di componenti **Qt**. È tradizionalmente consigliato agli utenti che hanno familiarità con l'ambiente Windows.
 
-È tradizionalmente più raccomandato per gli utenti provenienti da un mondo Windows.
-
-![Tux - La mascotte di Linux.](images/tux.png)
+![Tux - La mascotte di Linux](images/tux.png)
 
 ### Libero / Open source
 
 Un utente di un sistema operativo Microsoft o Mac deve acquistare una licenza per utilizzare il sistema operativo. Questa licenza ha un costo, anche se di solito è trasparente (il prezzo della licenza è incluso nel prezzo del computer).
 
-Nel mondo **GNU/Linux**, il movimento del Software Libero fornisce principalmente distribuzioni gratuite.
+Nel mondo **GNU/Linux**, il movimento del Software Libero fornisce principalmente distribuzioni libere.
 
 **Libero** non significa gratuito!
 
-**Open source**: i codici sorgente sono disponibili, quindi è possibile consultare e modificarli a determinate condizioni.
+**Open Source**: il codice sorgente è disponibile, quindi è possibile consultarlo e modificarlo a determinate condizioni.
 
-Un software gratuito è necessariamente Open Source, ma il contrario non è vero poiché un software open source è separato dalla libertà proposta dalla licenza GPL.
+**Open source**: i codici sorgente sono disponibili, quindi è possibile consultare e modificarli a determinate condizioni.
 
 #### Licenza GPL (General Public License)
 
-La **Licenza GPL** garantisce all'autore di un software la sua proprietà intellettuale, ma consente la modifica, ridistribuzione o rivendita del software da parte di terzi, a condizione che i codici sorgente siano forniti con il software. La GPL è la licenza dalla quale esce il progetto **GNU** (GNU is Not UNIX), che è stato strumentale nella creazione di Linux.
+La **GPL** garantisce all'autore di un software la sua proprietà intellettuale, ma consente modifiche, redistribuzione o rivendita di software da parte di terzi, a condizione che il codice sorgente sia incluso nel software. La GPL è la licenza nata dal progetto **GNU** (GNU is Not UNIX), che è stato determinante per la creazione di Linux.
 
-Questo implica:
+Implica:
 
-* la libertà di eseguire il programma, per qualsiasi scopo;
-* la libertà di studiare come funziona il programma e di adattarlo alle proprie esigenze;
-* la libertà di ridistribuire copie;
-* la libertà di migliorare il programma e pubblicare i tuoi miglioramenti, a beneficio dell'intera comunità.
+* La libertà di eseguire il programma, per qualsiasi scopo.
+* La libertà di studiare il funzionamento del programma e di adattarlo alle proprie esigenze.
+* La libertà di ridistribuire le copie.
+* La libertà di migliorare il programma e di pubblicare tali miglioramenti a beneficio dell'intera comunità.
 
-D'altra parte, anche i prodotti rilasciati sotto la licenza GPL possono essere pagati. Questo non è per il prodotto in se, ma è dato dalla garanzia che un team di sviluppatori continuerà a lavorare su di esso per farlo evolvere e risolvere gli errori, o anche fornire supporto agli utenti.
+D'altra parte, anche i prodotti concessi sotto licenza GPL possono avere un costo. Non si tratta del prodotto in sé, ma della **garanzia che un team di sviluppatori continuerà a lavorarci per farlo evolvere e per risolvere gli errori, o anche per fornire assistenza agli utenti**.
 
 ## Aree di utilizzo
 
 Una distribuzione Linux eccelle per:
 
-* **Un server**: HTTP, email, groupware, condivisione file, etc.
-* **Sicurezza**: Gateway, firewall, router, proxy, etc.
-* **Computer centrali**: Banche, assicurazioni, industrie, etc.
-* **Embedded system**: Routers, Internet boxes, SmartTV, etc.
+* **Server**: HTTP, e-mail, groupware, condivisione di file, ecc.
+* **Sicurezza**: Gateway, firewall, router, proxy, ecc.
+* **Computer centrali**: Banche, assicurazioni, industria, ecc.
+* **Sistemi integrati**: Router, Internet box, SmartTV, ecc.
 
-Linux è una scelta adatta per l'hosting di database o siti Web, o per mail server, DNS o firewall. In breve, Linux può fare qualsiasi cosa, il che spiega la quantità di distribuzioni specifiche.
+Linux è una scelta adatta per ospitare database o siti web, oppure come server di posta, DNS o firewall. In breve, Linux può fare praticamente tutto, il che spiega la quantità di distribuzioni specifiche.
 
 ## Shell
 
 ### Generalità
 
-La **shell**, conosciuta anche come _command interface_, consente agli utenti di inviare comandi al sistema operativo. È meno visibile oggi, e questo è dovuto all'implementazione delle interfacce grafiche, ma rimane un mezzo privilegiato sui sistemi Linux che non hanno interfacce grafiche e i cui servizi non sempre hanno un'interfaccia di impostazione.
+La **shell**, nota come _interfaccia di comando_, consente agli utenti di inviare comandi al sistema operativo. Oggi è meno visibile dopo l'implementazione delle interfacce grafiche, ma rimane un mezzo privilegiato sui sistemi Linux che non dispongono tutti di interfacce grafiche e i cui servizi non sempre hanno un'interfaccia di impostazione.
 
-Offre un vero linguaggio di programmazione incluse le strutture classiche: loops, alternative, e i costituenti comuni: variabili, passaggio dei parametri, e sotto-programmi. Permette la creazione di script per automatizzare determinate azioni (backups, creazione di utenti, monitoraggio del sistema, etc.).
+Offre un vero e proprio linguaggio di programmazione che include strutture classiche (cicli, alternative) e componenti comuni (variabili, passaggio di parametri e sottoprogrammi). Consente la creazione di script per automatizzare determinate azioni (backup, creazione di utenti, monitoraggio del sistema, ecc.)
 
-Esistono diversi tipi di shell disponibili e configurabili su una piattaforma o in base alle preferenze dell'utente:
+Sono disponibili diversi tipi di shell, configurabili su una piattaforma o in base alle preferenze dell'utente. Alcuni esempi sono:
 
-* sh, la shell standard POSIX;
-* csh, command-oriented shell in C;
-* bash, Bourne-Again Shell, Linux shell.
-* ecc.
+* sh, la shell standard POSIX
+* csh, shell orientata ai comandi in C
+* bash, Bourne-Again Shell, shell di Linux
 
-## Funzionalità
+### Funzionalità
 
-* Esecuzione del comando (controlla il comando assegnato lo esegue);
-* Redirezione Input/Output (restituisce i dati su un file invece di scriverlo sullo schermo);
-* Processi di connessione (gestisce le connessioni degli utenti);
-* Linguaggio di programmazione interpretato (permettendo la creazione di script);
-* Variabili d'ambiente (accesso alle informazioni specifiche per il sistema durante il funzionamento).
+* Esecuzione del comando (verifica il comando dato e lo esegue).
+* Reindirizzamento di Input/Output (restituisce i dati a un file invece di scriverli sullo schermo).
+* Processo di connessione (gestisce la connessione dell'utente).
+* Linguaggio di programmazione interpretato (che consente la creazione di script).
+* Variabili d'ambiente (accesso a informazioni specifiche del sistema durante il funzionamento).
 
 ### Principio
 
 ![Principio di funzionamento della SHELL](images/shell-principle.png)
 
-## Controlla la tua conoscenza
+## Verificare le proprie conoscenze
 
 :heavy_check_mark: Un sistema operativo è un insieme di programmi per la gestione delle risorse disponibili di un computer:
 
 - [ ] Vero
 - [ ] Falso
 
-:heavy_check_mark: Il sistema operativo è portato a:
+:heavy_check_mark: Il sistema operativo è necessario per:
 
 - [ ] Gestire la memoria fisica e virtuale
-- [ ] Consentire accesso diretto alle periferiche
-- [ ] Controllo della gestione delle attività al processore
+- [ ] Consentire l'accesso diretto alle periferiche
+- [ ] Subappaltare la gestione dei compiti al processore
 - [ ] Raccogliere informazioni sui programmi utilizzati o in uso
 
-:heavy_check_mark: Tra queste personalità, quali hanno partecipato allo sviluppo di UNIX:
+:heavy_check_mark: Tra queste personalità, quali hanno partecipato allo sviluppo di UNIX?
 
 - [ ] Linus Torvalds
 - [ ] Ken Thompson
@@ -268,16 +265,16 @@ Esistono diversi tipi di shell disponibili e configurabili su una piattaforma o 
 - [ ] Finlandese
 - [ ] Norvegese
 - [ ] Fiamminga
-- [ ] Francese ovviamente
+- [ ] Francese
 
-:heavy_check_mark: Quale delle seguenti distribuzioni è la più antica:
+:heavy_check_mark: Quale delle seguenti distribuzioni è la più vecchia:
 
 - [ ] Debian
 - [ ] Slackware
 - [ ] RedHat
 - [ ] Arch
 
-:heavy_check_mark: È il kernel di Linux:
+:heavy_check_mark: È il kernel Linux:
 
 - [ ] Multitasking
 - [ ] Multi utente
@@ -286,17 +283,17 @@ Esistono diversi tipi di shell disponibili e configurabili su una piattaforma o 
 - [ ] Cross-platform
 - [ ] Aperto
 
-:heavy_check_mark: Il software gratuito è necessariamente open source?
+:heavy_check_mark: Il software libero è necessariamente open-source?
 
 - [ ] Vero
 - [ ] Falso
 
-:heavy_check_mark: Il software Open-Source è necessariamente gratuito?
+:heavy_check_mark: Il software open-source è necessariamente gratuito?
 
 - [ ] Vero
 - [ ] Falso
 
-:heavy_check_mark: Quale dei seguenti non è un shell:
+:heavy_check_mark: Quale delle seguenti non è una shell:
 
 - [ ] Jason
 - [ ] Jason-Bourne shell (jbsh)

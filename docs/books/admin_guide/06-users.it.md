@@ -938,7 +938,7 @@ Gli utenti standard dovranno digitare la password per la nuova identità.
 
 !!! Tip "Suggerimento"
 
-    You can use the `exit`/`logout` command to exit users who have been switched. Si noti che dopo il cambio di utente non esiste una nuova `child shell` o `sub shell`, ad esempio:
+    È possibile utilizzare il comando `exit`/`logout` per far uscire gli utenti che sono stati commutati. Si noti che dopo il cambio di utente non esiste una nuova `child shell` o `sub shell`, ad esempio:
 
     ```
     Shell > whoami

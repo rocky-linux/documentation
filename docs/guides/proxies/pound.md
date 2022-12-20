@@ -12,7 +12,7 @@ tags:
 
 !!! important "Pound Missing from EPEL-9"
 
-    As of this writing, Rocky Linux 9.0 cannot be installed from the EPEL repository. While there are sources out there for SRPM packages, we can't verify the integrity of these sources. For this reason, we do not recommend installing the Pound proxy server on Rocky Linux 9.0 at this time. This may change if the EPEL once again picks up Pound.  Use this procedure specifically for Rocky Linux 8.5 or 8.6.
+    As of this writing, on Rocky Linux 9.0, Pound cannot be installed from the EPEL repository. While there are sources out there for SRPM packages, we can't verify the integrity of these sources. For this reason, we do not recommend installing the Pound proxy server on Rocky Linux 9.0 at this time. This may change if the EPEL once again picks up Pound.  Use this procedure specifically for Rocky Linux 8.x versions.
 
 ## Introduction
 
