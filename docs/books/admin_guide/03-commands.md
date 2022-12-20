@@ -479,7 +479,7 @@ The main options of the `ls` command are:
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `-a`                                                         | Displays all files, even hidden ones. Hidden files in Linux are those beginning with `.`.                                            |
 | `-i`                                                         | Displays inode numbers.                                                                                                              |
-| `-l`                                                         | Displays a vertical list of files with additional information formatted in columns.                                 |
+| `-l`                                                         | Use a long listing format, that is, each line displays long format information for a file/directory.                                 |
 
 The `ls` command, however, has a lot of options (see `man`):
 
