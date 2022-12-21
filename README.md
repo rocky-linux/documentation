@@ -6,19 +6,18 @@
 
 ## Introduction
 
-_With Rocky Linux emerging as a major RHEL-compatible distribution, this is an exciting time in the open source community. Rocky’s [mission](https://rockylinux.org/community-charter/) is to provide companies a **stable foundation of open source software** for their enterprise and HPC needs. We are here to support that mission with excellent documentation._ 
+_With Rocky Linux emerging as a major RHEL-compatible distribution, this is an exciting time in the open source community. Rocky Linux’s [mission](https://rockylinux.org/community-charter/) is to provide companies and individuals with a **stable foundation of open source software** for their enterprise and HPC needs. We are here to support that mission with excellent documentation._ 
 
 To us, excellent documentation hits these marks:
-
 
 
 * Educate users how to admin this distribution and its associated programs.
 * Support users of all skill levels with manuals and troubleshooting guides to make the most of this distribution.
 * Apply a consistent standard across all related documents, for ease of reading and translation.
 * Keep documentation up to date (and error free) with current versions.
-* Allow users to contribute Guides, Docs, Gemstones (scripts and favorite code snippets) and more, to enhance Rocky for fellow users.
+* Allow users to contribute Guides, Docs, Gemstones (scripts and favorite code snippets) and more, to enhance Rocky Linux for fellow users.
 
-We welcome anyone who wants to be part of this mission. No specific degree, years of experience, or company affiliation required. Be bold! You won’t break anything even if you fumble your first attempt. Promise.
+We welcome anyone who wants to be part of this mission. No specific degree, years of experience, or company affiliation required. Be bold! We promise, you won’t break anything even if you fumble your first attempt.
 
 
 ## Technical requirements
@@ -133,7 +132,7 @@ Please include the following **meta** information at the top of all new document
 
 ---
 
-title: Document title or the title that appears in the table of contents. (this can be overridden with `.pages` by editors if necessary.) 
+title: Document title 
 
 author: the author of the source (English) version of the document.
 
