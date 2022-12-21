@@ -32,7 +32,7 @@ You can complete almost all tasks from the web GUI on GitHub. Here's an example 
 
 ### From the Git Command-Line
 
-If you prefer to run Git locally on your machine, you can clone the [Rocky Linux Documentation](https://github.com/rocky-linux/documentation) repository, make changes, and then commit changes afterward. To make things simple, execute steps 1-3 on from With the GitHub GUI above, then:
+If you prefer to run Git locally on your machine, you can clone the [Rocky Linux Documentation](https://github.com/rocky-linux/documentation) repository, make changes, and then commit changes afterward. To make things simple, execute steps 1-3 using the **With the GitHub GUI** approach above, then:
 
 
 
