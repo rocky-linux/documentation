@@ -3,94 +3,180 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-80-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+
 ## Introduction
 
-So you want to contribute to the Rocky Linux documentation, but aren't sure how to go about that? You've come to the right place. We're excited to have you on board with us.
+_With Rocky Linux emerging as a major RHEL-compatible distribution, this is an exciting time in the open source community. Rocky Linux’s [mission](https://rockylinux.org/community-charter/) is to provide companies and individuals with a **stable foundation of open source software** for their enterprise and HPC needs. We are here to support that mission with excellent documentation._ 
 
-One of our main goals for Rocky is to have not just good but GREAT documentation, and we cannot do it alone. This document will get you started and will (hopefully) ease any worries you might have about doing so. We will always be here to help, so feel free to ask questions and join in the conversation.
+To us, excellent documentation hits these marks:
 
-## Documentation Subjects
 
-If you can dream it — or better yet, have done it before — then your subject is probably important to the Rocky Linux documentation project.
+* Educate users how to admin this distribution and its associated programs.
+* Support users of all skill levels with manuals and troubleshooting guides to make the most of this distribution.
+* Apply a consistent standard across all related documents, for ease of reading and translation.
+* Keep documentation up to date (and error free) with current versions.
+* Allow users to contribute Guides, Docs, Gemstones (scripts and favorite code snippets) and more, to enhance Rocky Linux for fellow users.
 
-Where do you come in — both now and in the future? If you have experience with anything Linux-related and can translate that to Rocky Linux, we would like you to start writing!
+We welcome anyone who wants to be part of this mission. No specific degree, years of experience, or company affiliation required. Be bold! We promise, you won’t break anything even if you fumble your first attempt.
 
-## Where to Start
 
-While you can create documentation in **any format** (seriously, we will accept it any way you create it), the preferred format is Markdown. You can easily create documents in Markdown, plus Markdown is super-easy to learn. The best way to get started with Markdown is to have a Markdown editor installed and read the tutorial. You can create Markdown files with any text editor, but most Markdown editors allow you to preview what you've input already, so they can be very helpful.
+## Technical requirements
 
-### Markdown Editor
+_Our standards for Rocky documentation._
 
-As we've said already, the best way to create Markdown files, particularly if you've not done it before, is to grab an editor for the operating system that you use on your PC or Laptop. A simple web search for "Markdown editors" will show you a bunch to choose from.
+### Style Guide
 
-Pick one to use that is compatible with your Operating System. [ReText](https://github.com/retext-project/retext), a cross-platform Markdown editor, was used to create this document. Again, if you prefer to create your Markdown files in your text editor that you are already familiar with, that is just fine.
+The RL [Style Guide](https://github.com/rocky-linux/documentation/blob/main/docs-style-guide/README.md) outlines standards for the wording within your document. 
 
-#### Alternate Markdown Editors
 
-ReText is good, but if you feel like exploring your other options, there are a few:
+### GitHub  
 
-* [Zettlr](https://www.zettlr.com) - Free, cross-platform, and open source
-* [Mark Text](https://github.com/marktext/marktext) - Free, cross-platform, and open source
-* [Remarkable](https://remarkableapp.github.io) - Linux and Windows, open source
-* [NvChad](https://nvchad.github.io) for the `vi`/`vim` user and the `nvim` client. A lot of plugins are available to enhance the editor for markdown. See [this document](https://docs.rockylinux.org/books/nvchad/) for a nice set of installation instructions.
-* [VS Code](https://code.visualstudio.com/) - A partially open source project from none other than Microsoft; VS Code is a lightweight and powerful editor available for Windows, Linux and MacOS. To contribute to this document project, you should get the following extensions: Git Graph, HTML Preview, HTML Snippets, Markdown All in One, Markdown Preview Enhanced, Markdown Preview Mermaid Support, and any more that catch your fancy.
+Rocky Linux uses GitHub to manage its code and files, including documentation files. Login to GitHub and follow the official [Rocky Linux documentation repository](https://github.com/rocky-linux/documentation). 
 
-### Markdown Tutorial
 
-You can get a good feel for how to write Markdown files, by taking a look at [Mastering Markdown](https://guides.github.com/features/mastering-markdown/). This online resource will get you up-to-speed in no time.
+### Markdown
 
-### Admonitions and Translations
+Documentation is welcome in whatever format you are used to creating. It does not need to be perfect, just submit what you have and the team will give you feedback to help get it in line with our voice and tone. 
 
-Towards the end of 2021, we started translating our documents using [Crowdin](https://crowdin.com/). We need more translators for this effort, so if you would like to translate these documents into your language, please consider joining that effort. You can find more information by joining the conversation [here](https://chat.rockylinux.org/rocky-linux/channels/documentation).
+That said, RL Documentation uses Markdown as the standard. It is easy to learn and use. Run a text converter on your content or start from scratch with this [basic writing and formatting guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) by GitHub. 
 
-It should be noted that admonitions are **NOT** required, but if you choose to use them, they should be formatted a little differently than the default. Here is the default way of creating an admonition:
-```
-!!! type "optional additional title within double quotes"
-    Any number of other indented markdown elements.
-```
-To make this work for our translators in Crowdin, however, we need to format it like this:
-```
-!!! type "optional additional title within double quotes"
+As you become a regular contributor, you’ll need to create a **local repository**. See our [guide](link to the first time contributor guide, once published) for how to install a Markdown editor and create a local repository on your home computer.
 
-    Any number of other indented markdown elements.
-```
-The first line of the text detail for the admonition must have that extra line feed. Note that each example shows that there are 4 spaces before the actual text begins. When the page is rendered, the document will not have the extra line feed. Here's what the admonition above looks like:
 
-!!! type "optional additional title within double quotes"
+## Contribution Process
 
-    Any number of other indented markdown elements.
+_The actual process of reporting an issue, revising, or creating a doc. Please see special notes afterward about translations, links, and meta content._
 
-If you are reading this on GitHub, it will not display the admonition. You can see how it actually displays [here](https://docs.rockylinux.org/guides/contribute/).    
 
-## Author, Contributor, and Other Meta Content
+### Report an issue
 
-We started to add specific meta to our documentation some time ago. The idea is to get the primary information in the meta. This is done in the source (English) documents. Here's an example of the meta information as it currently stands:
+Maybe you’ve found a broken link or incorrect information while exploring the Rocky docs. This is called an **issue**, and we want to know about it. You can mention it on the Mattermost Documentation channel, or visit GitHub and make a proper issue report. GitHub has [a handy guide](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue) for how to create an issue.
 
-```
+
+### Submit an update
+
+_Add a missing word, correct an error, clarify a confusing bit of text. You won’t break anything because someone will review your contribution before it goes live. Here is the basic process._
+
+
+
+1. Start on the page you want to update on [https://docs.rockylinux.org/](https://docs.rockylinux.org/). 
+
+Click the “Edit” pencil in the upper right corner of the document. You will be taken to the original document stored on GitHub. 
+
+The first time you contribute to the RL repository, you will be prompted with a green button to “**Fork** this **repository** and propose changes.” This creates a duplicate copy of the RL repository where you make your suggested edits. Click the green button and continue.
+
+
+
+2. Make your changes
+
+Follow the existing Markdown formatting. Make the necessary change.
+
+
+
+3. Propose changes
+
+At the bottom of the page, write a brief description in the title of the block entitled Propose changes.
+
+Then click Propose changes, which will **Commit** your changes to a completed document within your forked repository.
+
+
+
+4. Review changes 
+
+Now you can look at what you’ve done, line by line. If you missed anything, back up to the previous page and correct it again (you’ll have to start over), then click Propose Changes again.
+
+Once the doc is the way you want it, click the green button that says Create Pull Request. This provides one more chance to double check your changes and confirm the doc is ready.
+
+
+
+5. Create Pull Request
+
+So far you have been working in your own repository. Next you submit it to the documentation team to merge your version into the main version of the document.
+
+Click the green button that says Create Pull Request, which sends it to the RL documentation team for review.
+
+
+
+6. Wait
+
+Once the RL team reviews your request, they will respond in one of three ways.
+
+
+
+* Accept and merge your PR
+* Comment with feedback and ask for changes
+* Deny your PR with explanation
+
+If you have to make changes, you will suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable.
+
+Need more in-depth explanation? Here are the [same directions](https://docs.google.com/document/d/1Gkwxt3lsxC0HJdLB7YIEMBfPe0td1yVJZ8y5Bjs9oks/edit?usp=sharing) with more words and illustrations.
+
+Success? Welcome to the team, you are officially a Rocky Linux documentation contributor. Your profile will be added to the contributor list at the bottom of this document shortly.
+
+
+### Become a frequent contributor
+
+For more than a word or two of occasional edits, we recommend that you [setup a local repository](add link to how to create a new document, once published) on your own machine. From there, you can revise documentation from your clone of the RL repository, Commit it to your online GitHub repository, and then create Pull Requests to merge with the main repository.
+
+Advanced users may wish to create a complete documentation server on your local Linux workstation or VM. We have guides to set that up with [Docker](https://docs.rockylinux.org/guides/contribute/rockydocs_web_dev/) or [LXD](https://docs.rockylinux.org/guides/contribute/mkdocs_lsyncd/). We also have a [fast documentation system](https://docs.rockylinux.org/guides/contribute/local_docs/) with special caveats if you are using Python on the same server.
+
+
+### Submit a new document
+
+_Rocky Linux documentation includes guides, books, labs, and [gemstones](https://docs.rockylinux.org/gemstones/). Your original contributions are welcome in any of these categories._
+
+
+#### Meta
+
+Please include the following **meta** information at the top of all new documentation:
+
 ---
-title: Document title or the title that appears in the table of contents. (this can be overridden with `.pages` by editors if necessary.) 
+
+title: Document title 
+
 author: the author of the source (English) version of the document.
+
 contributors: a comma separated list of contributors to the source document.
+
 tested with: a comma separated list of versions example: 8.6, 9.0
+
 tags: 
+
   - displayable tags
+
   - these are also searchable
+
   - they are two space indented and start with a "-" as shown here
+
   - generally, they should be one word
+
 ---
-```
 
-We ask those involved in translations to leave the meta as is in the document you are translating. We definitely **DO** want to acknowledge those involved in our translation efforts! That is what the all-contributors bot is for. If you scroll to the bottom of this page, you'll see a list of those who have contributed to the documentation project, even if it was just to change a word or phrase or fix an error. 
 
-If a translator runs into a word or phrase that does not translate well from the source document to their language, we ask them to go ahead and push a change to the source document through the normal Git processes. When they do this, they definitely *should* add their name to the "contributors:" meta!
+#### Formatting
 
-If you notice that your effort is not properly acknowledged in the all-contributors section, please let someone know in the [Mattermost channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) so that we can fix it for you. Thank you to everyone who participates!
+To add more advanced elements to your Markdown-formatted document beyond text, visit the [formatting guide](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/). This covers Admonitions, Tables, Quotes, and more.
 
-## A Note About Links
 
-When writing documentation you often need to use links. This can be links to other documents in the documentation (internal links), or links to external resources (external links). The format for all links within the documentation is square brackets around the descriptive name or label: [our site] followed by your link in parenthesis: (https://example.com). There's a third type of link which we will call a lab-based link. This is a link that does not resolve internally or externally, but refers to examples within your document. In October 22, we instituted a URL checking script within our GitHub PR test process. This script tests for failures of URLs and is great for keeping the documentation clean and accurate. It poses a special set of circumstances for lab-based URLs, however, as those lab-based URLs need to either fit within a set of already excluded names, or the author (you) would need to request that a new exclusion be added. An editor can also adjust your lab-based URL for you, or add an exclusion if they think it is warranted. 
+#### Contribute
 
-The following list of lab-based URLs can be used without requesting exceptions:
+The process for [submitting original content](link to first time contributors guide, once published)  is similar to updating an existing document from your local repository. Create a new document within your Markdown editor, Commit it to your GitHub repository, then submit a Pull Request to merge into the main branch of the repository. The documentation leads will decide where the new document will live.
+
+
+## Special Notes
+
+
+### Links
+
+Links can be internal (other docs within our domain), external (publicly hosted URLs), or lab-based (used as examples within your document).
+
+The format for all links within the documentation is square brackets around the descriptive name or label: 
+
+[our site] followed by your link in parenthesis: (https://example.com)
+
+To help lab-based URLs pass our automatic URL checker, we have created a list of excluded names you may use. You may request that a new exclusion be added. An editor may adjust your lab-based URL, or add an exclusion if they think it is warranted.
+
+
 
 * example.com
 * site.com
@@ -102,66 +188,36 @@ The following list of lab-based URLs can be used without requesting exceptions:
 * your-server-hostname
 * localhost
 
-## Using Git
 
-Like many other projects out there, Rocky Linux uses "git" to manage its code and files, including documentation files. This tutorial assumes a fundamental knowledge of Git and how it works. The second example also presupposes familiarity with the command line.
+### Translation 
 
-The steps  listed below will get you started. In the meantime (and until we inevitably develop our guide), you can learn Git in-depth with this [free Udacity course](https://www.udacity.com/course/version-control-with-git--ud123). If you don't have the time for that, here's [a shorter guide](https://blog.udacity.com/2015/06/a-beginners-git-github-tutorial.html).
 
-To submit your text, we ask that you create a GitHub account. When you are ready to submit your written documentation for approval, follow these easy steps:
+#### CrowdIn
 
-### With the GitHub GUI
+We are adding to these docs in new languages at the speed of getting translators on board. Seeking contributors for this area especially. We use [CrowdIn](https://crowdin.com/) for updates. 
 
-You can complete almost all tasks from the web GUI on GitHub. Here's an example of adding a file you've created on your local machine to the Rocky Linux documentation GitHub repository.
 
-1. log in to your GitHub account.
-2. Navigate to the Rocky Linux Documentation repository at [https://github.com/rocky-linux/documentation.git](https://github.com/rocky-linux/documentation.git)
-3. You should be on the "Main" branch, so check the drop-down label down in the middle section to be sure you are. Your document might not ultimately end up in the "Main" branch, but admins will move it around to where it logically fits later.  
-On the right-hand side of the page, click the "Fork" button, which will create your copy of the documentation.
-4. In the middle of the page on the forked copy, just to the left of the Green "Code" drop-down, is an "Add file" button. Click this and choose the "Upload files" option.
-5. This will give you a way to either drag and drop files here or browse to them on your computer. Go ahead and use the method which you prefer.
-6. Once the file is uploaded, the next thing you need to do is create a Pull Request. This request lets the upstream administrators know that you have a new file (or files) that you would like them to merge with the master.  
-Click on "Pull Request" in the upper-left of the screen.
-7. Write a brief message in the "Write" section letting the administrators know what you've done. (New document, revision, suggested change, etc.,) then submit your change.
+#### Translation and Meta content
 
-### From the Git Command-Line
+Translators, if you find a word in the source document that does not translate well into your language, or an error that prevents a perfect translation, please fix that in the source document and make a Pull Request. In that case, please add yourself as a contributor in the meta content of that document. 
 
-If you prefer to run Git locally on your machine, you can clone the Rocky Linux Documentation repository, make changes, and then commit changes afterward. To make things simple, execute steps 1-3 on from *With the GitHub GUI* above then:
+However, unless you modify the source document, please do not modify the meta content.
 
-1. Git clone the repository: `git clone https://github.com/your_fork_name/documentation.git`
-2. Now, on your machine, add files to the directory.  
-Example: `mv /home/myname/help.md /home/myname/documentation/`
-3. Next, run Git add for that file name.  
-Example:  `git add help.md`
-4. Now, run git commit for the changes you have made.  
-Example: `git commit -m "Added the help.md file"`
-5. Next, push your changes to your forked repository: `git push https://github.com/your_fork_name/documentation main`
-6. Next, we repeat steps 6 and 7 above: Create a Pull Request. This request lets the upstream administrators know that you have a new file (or files) that you would like them to merge with the master branch. Click on "Pull Request" in the upper-left of the screen
+The place where we do want to acknowledge you is in the all-contributors section--at the bottom of this page. This is a list of everyone who has been part of this documentation project, whether creating content, spotting and fixing errors, or translating. Translators, you may add yourself (or [request to be added](https://chat.rockylinux.org/rocky-linux/channels/documentation)) here. We appreciate your contribution! 
 
-Once all of the above is complete, you wait for confirmation that GitHub successfully merged your request. (Or not, as the case may be.)
 
-## More Advanced Documents
+## Communication channel
 
-If you are wanting to add more advanced elements in your document than just text (admonitions, tables, block quotes, etc.), [this document](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) will help you get there.
+_For reporting issues, asking questions, getting support, and getting to know the documentarians._
 
-## Documentation Local Server 
+For general questions about installing and using the distro, visit our [community forums](https://forums.rockylinux.org). For questions about the behind-the-scenes stuff like documentation, we have other channels.
 
-The advantage of having documentation running on a local server instance is that you get to see how your changes will look when they are taken to the live system. You can build a complete documentation system on your local Linux workstation or VM. This procedure isn't for everyone, and is definitely a more advanced topic. There are two documents that will get you to a nice, complete, and protected documentation system, using either Docker or LXD:
 
-* Docker Version [here](https://docs.rockylinux.org/guides/contribute/rockydocs_web_dev/)
-* LXD Version [here](https://docs.rockylinux.org/guides/contribute/mkdocs_lsyncd/)
+### Mattermost
 
-There is a third method that will get you up and running fast without either Docker or LXD, but read the caveats of this procedure carefully:
+To ask real-time questions, create a profile on the [Mattermost](https://mattermost.com/) server, then navigate to the Rocky Linux [General](https://chat.rockylinux.org/rocky-linux/channels/town-square) or [Documentation](https://chat.rockylinux.org/rocky-linux/channels/documentation) channel--or whichever channel seems appropriate to your question. You should get a response within hours if not right away.
 
-* Fast Documentation System [here](https://docs.rockylinux.org/guides/contribute/local_docs/)
-
-## Keep Up With The Conversation
-
-If you haven't already, join the conversation on the [Rocky Linux Mattermost Server](https://chat.rockylinux.org/rocky-linux/) and stay up-to-date with what is going on. Join the [~Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation), or any other channel you are interested in. We'd be glad to have you with us!
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
