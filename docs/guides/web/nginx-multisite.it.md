@@ -297,7 +297,7 @@ Se *tutto* va bene, *ripetete i passaggi precedenti, cambiando man mano i nomi d
 
 ![Una schermata dei due siti web di prova affiancati](nginx/images/multisite-nginx.png)
 
-!!! Note "Nota"
+!!! Note
 
     È anche possibile creare collegamenti dall'esterno della directory abilitata ai siti con la forma lunga del comando `ln -s`. Il risultato sarà `ln -s [file sorgente] [link]`.
     
