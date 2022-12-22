@@ -4,13 +4,13 @@ title: Comandi Avanzati Linux
 
 # Comandi avanzati per gli utenti Linux
 
-In questo capitolo imparerai alcuni comandi avanzati per Linux.
+I comandi avanzati offrono una maggiore personalizzazione e controlli in situazioni più specialistiche una volta acquisita familiarità con i comandi di base.
 
 ****
 
 **Obiettivi** : In questo capitolo, i futuri amministratori Linux impareranno:
 
-:heavy_check_mark: alcuni comandi utili non trattati nel capitolo precedente;  
+:heavy_check_mark: alcuni comandi utili non trattati nel capitolo precedente.   
 :heavy_check_mark: alcuni comandi avanzati.
 
 :checkered_flag: **comandi utente**, **Linux**
@@ -43,7 +43,7 @@ steven
 
     `uniq` richiede che il file di input sia ordinato perché confronta solo le righe consecutive.
 
-Senza un argomento, il comando `uniq` non mostrerà righe identiche che si susseguono nel file `firstnames.txt`:
+Senza argomenti, il comando `uniq` non visualizza le righe identiche che si susseguono nel file `firstnames.txt`:
 
 ```
 $ sort firstnames.txt | uniq
@@ -60,7 +60,7 @@ $ sort firstnames.txt | uniq -u
 patrick
 ```
 
-Al contrario, per visualizzare solo le linee che appaiono almeno due volte nel file, è necessario utilizzare l'opzione `-d`:
+Al contrario, per visualizzare solo le righe che compaiono almeno due volte nel file, utilizzare l'opzione `-d`:
 
 ```
 $ sort firstnames.txt | uniq -d
@@ -140,7 +140,7 @@ drwxrwxrwt. 3 root root 4096  6 avril 10:25 /tmp
 
 In pratica, il comando `xargs` esegue il comando `ls -ld /home /tmp /root`.
 
-Cosa succede se il comando da eseguire non accetta più di un argomento come nel caso del comando `find`?
+Cosa succede se il comando da eseguire non accetta argomenti multipli, come nel caso del comando `find`?
 
 ```
 $ xargs find /var/log -name
@@ -175,7 +175,7 @@ $ xargs -L 1 find /var/log -name
 <CTRL+D>
 ```
 
-Se vogliamo essere in grado di specificare entrambi gli argomenti sulla stessa linea, dobbiamo usare l'opzione `-n 1` :
+Per specificare entrambi gli argomenti sulla stessa riga, utilizzare l'opzione `-n 1`:
 
 ```
 $ xargs -n 1 find /var/log -name
@@ -204,33 +204,34 @@ $ tar tvfP /root/log.tar
 
 La caratteristica speciale del comando `xargs` è che posiziona l'argomento di input alla fine del comando chiamato. Questo funziona molto bene con l'esempio sopra riportato dal momento che i file passati formano l'elenco dei file da aggiungere all'archivio.
 
-Ora, se prendiamo l'esempio del comando `cp` e vogliamo copiare un elenco di file in una directory, questo elenco di file verrà aggiunto alla fine del comando... ma quello che si aspetta il comando `cp` alla fine del comando è la destinazione. Per fare ciò, usiamo l'opzione `-I` per mettere gli argomenti di input da qualche altra parte rispetto alla fine della linea.
+Utilizzando l'esempio del comando `cp`, per copiare un elenco di file in una directory, questo elenco di file verrà aggiunto alla fine del comando... ma ciò che il comando `cp` si aspetta alla fine del comando è la destinazione. Per farlo, si può usare l'opzione `-I` per inserire gli argomenti di input in un punto diverso dalla fine della riga.
 
 ```
 $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 ```
 
-L'opzione `-I` ti consente di specificare un carattere (nel nostro esempio ilcarattere `%`) dove saranno collocati i file di input di `xargs`.
+L'opzione `-I` consente di specificare un carattere (il carattere `%` nell'esempio precedente) in cui verranno inseriti i file di input di `xargs`.
 
 ## pacchetto `yum-utils`
 
-Il pacchetto `yum-utils` è una raccolta di utilità da diversi autori per `yum`, che lo rendono più facile e più potente da usare.
+Il pacchetto `yum-utils` è una raccolta di utilità, realizzate per `yum` da vari autori, che ne rendono più facile e potente l'uso.
 
 !!! Note "Nota"
 
-    Mentre `yum` è stato sostituito da `dnf` in Rocky Linux 8, il nome del pacchetto è rimasto `yum-utils` anche se può essere installato come `dnf-utils'. Queste sono le classiche utilities YUM implementate come shims CLI sopra a DNF per mantenere la retrocompatibilità con `yum-3`.
+    Mentre `yum` è stato sostituito da `dnf` in Rocky Linux 8, il nome del pacchetto è rimasto `yum-utils`, sebbene possa essere installato anche come `dnf-utils`. Queste sono le classiche utilities YUM implementate come shims CLI sopra a DNF per mantenere la retrocompatibilità con `yum-3`.
 
 Ecco alcuni esempi di utilizzo:
 
-* comando `repoquery`:
+* comando `repoquery`
 
 Il comando `repoquery` viene utilizzato per interrogare i pacchetti nel repository.
 
 Esempi di utilizzo:
 
-  * Visualizza le dipendenze di un pacchetto (può essere un pacchetto software installato o non installato), Equivalente a `dnf deplist <package-name>`.
-
+  * Visualizza le dipendenze di un pacchetto (può essere un pacchetto software che è stato installato o non è stato installato), equivalente a `dnf deplist <nome-pacchetto>`
+    ```
     repoquery --requires <package-name>
+    ```
 
   * Visualizza i file forniti da un pacchetto installato (non funziona per i pacchetti che non sono installati), Equivalente a `rpm -ql <package-name>`
 
@@ -280,7 +281,7 @@ $ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 
 | Opzioni     | Commenti                                                               |
 | ----------- | ---------------------------------------------------------------------- |
-| -`-destdir` | I pacchetti scaricati verranno memorizzati nella cartella specificata. |
+| `--destdir` | I pacchetti scaricati verranno memorizzati nella cartella specificata. |
 | `--resolve` | Scarica anche le dipendenze del pacchetto.                             |
 
 ## pacchetto `psmisc`
@@ -328,7 +329,7 @@ $ watch -n 5 tail -n 3 /etc/passwd
 Risultato:
 
 ```
-Every 5,0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
+Every 5.0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
 
 sssd:x:996:993:User for sssd:/:/sbin/nologin
 chrony:x:995:992::/var/lib/chrony:/sbin/nologin
