@@ -22,7 +22,7 @@ Quando scarichiamo script bash che sono stati scritti da altri nel nostro lavoro
 |        33         |     giallo      |
 |        34         |       blu       |
 |        35         |      viola      |
-|        36         |   Verde scuro   |
+|        36         |   verde scuro   |
 |        37         |     bianco      |
 
 ## Colore di sfondo del carattere
@@ -30,12 +30,12 @@ Quando scarichiamo script bash che sono stati scritti da altri nel nostro lavoro
 | **Codice del colore di sfondo** | **descrizione** |
 |:-------------------------------:|:---------------:|
 |               40                |      nero       |
-|               41                |     Crimson     |
+|               41                |     crimson     |
 |               42                |      verde      |
 |               43                |     giallo      |
 |               44                |       blu       |
 |               45                |      viola      |
-|               46                |   Verde scuro   |
+|               46                |   verde scuro   |
 |               47                |     bianco      |
 
 ## Modalità display
@@ -47,7 +47,7 @@ Quando scarichiamo script bash che sono stati scritti da altri nel nostro lavoro
 |     4      |              Sottolineato              |
 |     5      |          Il cursore lampeggia          |
 |     7      |        Visualizzazione inversa         |
-|     8      |                nascondi                |
+|     8      |                Nascondi                |
 
 ## Modalità di esecuzione
 
@@ -64,7 +64,7 @@ Possiamo scrivere uno script per osservare il cambiamento di colore.
 # Font color cycle
 for color1 in {31..37}
     do
-        echo -e "\033[0;${color1};40m---hello! world---\033[0m"
+        echo -e "\033[0;${color1};40m---hello! Rocky---\033[0m"
     done
 
 echo "-------"
@@ -72,7 +72,7 @@ echo "-------"
 # Background color cycle
 for color2 in {40..47}
     do
-        echo -e "\033[30;${color2}m---hello! world---\033[0m"
+        echo -e "\033[30;${color2}m---hello! Rocky---\033[0m"
     done
 
 echo "-------"
@@ -80,7 +80,7 @@ echo "-------"
 # Cycle of display mode
 for color3 in 0 1 4 5 7 8
     do
-        echo -e "\033[${color3};37;40m---hello! world---\033[0m"
+        echo -e "\033[${color3};37;40m---hello! Rocky---\033[0m"
     done
 ```
 
