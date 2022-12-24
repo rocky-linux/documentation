@@ -541,7 +541,7 @@ total 1332
 * List `/var` files larger than 1 megabyte but less than 1 gigabyte:
 
 ```bash
-$ ls -lhR  /var | grep \- | grep [1-9]*M
+$ ls -lhR /var/ | grep ^\- | grep -E "[1-9]*\.[0-9]*M" 
 ...
 -rw-r--r--. 1 apache apache 1.2M 10 may.  13:02 XB RiyazBdIt.ttf
 -rw-r--r--. 1 apache apache 1.2M 10 may.  13:02 XB RiyazBd.ttf
