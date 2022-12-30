@@ -13,7 +13,7 @@ Si prega di non inviare mirror che sono ospitati in un Anycast-CDN come Cloudfla
 
 Si prega di notare che non siamo autorizzati ad accettare mirror pubblici in paesi soggetti alle norme di esportazione degli Stati Uniti. L'elenco di questi Paesi è disponibile qui: [https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations](https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations)
 
-Lo spazio su disco rigido richiesto è attualmente di circa 500 GB, ma si prevede una crescita nel tempo. 600 GB di spazio dovrebbero essere sufficienti per i prossimi anni.
+Al momento in cui scriviamo (fine 2022), lo spazio di archiviazione richiesto per il mirroring di tutte le versioni attuali e passate di Rocky Linux è di circa 2 TB.
 
 Il nostro master mirror è `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/` Per la prima sincronizzazione utilizzare un mirror vicino a voi. Puoi trovare tutti i mirror ufficiali qui: https://mirrors.rockylinux.org
 
