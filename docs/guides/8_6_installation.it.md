@@ -1,10 +1,10 @@
 ---
-Title: Installazione Di Rocky Linux 8.6
+Title: Installazione Di Rocky Linux 8
 author: wale soyinka
 contributors: tianci li, Steven Spencer, Colussi Franco
 ---
 
-# Installazione Di Rocky Linux 8.6
+# Installazione Di Rocky Linux 8
 
 Questa guida mostra nel dettaglio i passaggi per installare una versione a 64 bit della distribuzione Rocky Linux su un sistema stand-alone.  Effettueremo un'installazione di categoria server utilizzando un'immagine di installazione del sistema operativo scaricata dal sito web del progetto Rocky Linux. Passeremo attraverso i passaggi di installazione e personalizzazione nelle sezioni seguenti.
 
