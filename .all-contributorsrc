@@ -737,6 +737,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "bdacus01",
+      "name": "Brent Dacus",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22330436?v=4",
+      "profile": "https://github.com/bdacus01",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
