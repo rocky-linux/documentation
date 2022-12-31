@@ -61,7 +61,7 @@ A common source of failure encountered during the kernel build process may be ca
     > sudo dnf -y groupinstall 'C Development Tools and Libraries'
     ```
     
-    if you get 'Module or Group 'C Development Tools and Libraries' is not available.' error the below command is equivalent to above
+    If you get 'Module or Group 'C Development Tools and Libraries' is not available.' error the below command is equivalent to above:
     
      ```
     > sudo dnf -y groupinstall 'Development Tools'
