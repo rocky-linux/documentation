@@ -23,28 +23,30 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
     
     ## 9: Introduction 
 
-    The development team for Rocky Linux 9 have made installing MATE, and other popular desktop environments, easy by including live images. A live image, for those that may not know what that is, is a bootable image that will load the OS without installation. Once loaded, you have the option to install it to your machine's disk drive and use it. 
+    The development team for Rocky Linux 9 have made installing MATE, and other popular desktop environments, easy by including live images. A live image, for those that may not know what that is, is a bootable image that will load the OS without installation. Once loaded, you have the option to install it to your machine's disk drive and use it. In addition to the live image instructions, we have included installation instructions for those of you who want to install MATE after the OS has already been installed.
 
-    ## 9: Get, Verify, and Write the MATE Live Image
+    ## 9: MATE from Live Image
 
-    Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest MATE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.0/live/x86_64/). Note this particular link assumes x86_64 as your architecture, and as of this writing, that is the only architecture this particular live image is available for. Download both the live image and checksum files. 
+    ### 9: Get, Verify, and Write the MATE Live Image
+
+    Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest MATE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.1/live/x86_64/). Note this particular link assumes x86_64 as your architecture, and as of this writing, that is the only architecture this particular live image is available for. Download both the live image and checksum files. 
 
     Now verify the image with the CHECKSUM file using the following 
     (note this is an example! Make sure your image name and CHECKSUM files match): 
 
     ```
-    sha256sum -c CHECKSUM --ignore-missing Rocky-9.0-MATE-x86_64-20220912.1.iso.CHECKSUM
+    sha256sum -c CHECKSUM --ignore-missing Rocky-9.1-MATE-x86_64-20221124.0.iso.CHECKSUM
     ```
 
     If all goes well, you should receive this message:
 
     ```
-    Rocky-9.0-MATE-x86_64-20220912.1.iso: OK
+    Rocky-9.1-MATE-x86_64-20221124.0.iso: OK
     ```
     
     If the checksum for the file returns OK, you are now ready to write your ISO image to your media. This procedure is different depending the OS you are using, the media, and the tools. We are assuming here that you know how to write the image to your media.
 
-    ## 9: Booting
+    ### 9: Booting
 
     This again is different by machine, BIOS, OS, etc.  You'll need to make sure that your machine is set to boot to whatever your media is (DVD or USB) as the first boot device. You should be presented with this screen if you are successful: 
 
@@ -56,7 +58,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ![mate-live](images/mate_live.png)
 
-    ## 9: Installing MATE
+    ### 9: Installing MATE
 
     At this point, you can use the MATE environment and see if you like it. Once you've decided that you would like to use it permanently, double-click the option to **Install to Hard Drive**.
 
@@ -93,6 +95,53 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
     Next you will get a login screen with the user you created above. Go ahead and enter your password, which will get you to the MATE desktop:
 
     ![mate_desktop](images/mate_desktop.png)
+
+    ## 9: MATE after OS Install
+
+    MATE can also be installed after the OS has been installed. This takes a few more steps, but is not a difficult process. Just follow these instructions.
+
+    ### 9: Enabling Repositories
+
+    You need the CRB repository and the EPEL repository. Go ahead and enable those now:
+
+    ```
+    sudo dnf config-manager --set-enabled crb
+    sudo dnf install epel-release
+    ```
+
+    Go ahead and run `dnf upgrade` to make sure all of the enabled repositories are read into the system.
+
+    ### 9: Installing Packages
+
+    The next thing we need are a lot of packages. You can install these by simply copying and pasting the following into the command line on your machine:
+
+    ```
+    sudo dnf install NetworkManager-adsl NetworkManager-bluetooth NetworkManager-libreswan-gnome NetworkManager-openvpn-gnome NetworkManager-ovs NetworkManager-ppp NetworkManager-team NetworkManager-wifi NetworkManager-wwan adwaita-gtk2-theme alsa-plugins-pulseaudio atril atril-caja atril-thumbnailer caja caja-actions caja-image-converter caja-open-terminal caja-sendto caja-wallpaper caja-xattr-tags dconf-editor engrampa eom firewall-config gnome-disk-utility gnome-epub-thumbnailer gstreamer1-plugins-ugly-free gtk2-engines gucharmap gvfs-fuse gvfs-gphoto2 gvfs-mtp gvfs-smb initial-setup-gui libmatekbd libmatemixer libmateweather libsecret lm_sensors marco mate-applets mate-backgrounds mate-calc mate-control-center mate-desktop mate-dictionary mate-disk-usage-analyzer mate-icon-theme mate-media mate-menus mate-menus-preferences-category-menu mate-notification-daemon mate-panel mate-polkit mate-power-manager mate-screensaver mate-screenshot mate-search-tool mate-session-manager mate-settings-daemon mate-system-log mate-system-monitor mate-terminal mate-themes mate-user-admin mate-user-guide mozo network-manager-applet nm-connection-editor p7zip p7zip-plugins pluma seahorse seahorse-caja xdg-user-dirs-gtk
+    ```
+    
+    This will install these needed packages plus all of the dependencies.
+
+    Let's go ahead and install lightdm-settings and lightdm as well:
+
+    ```
+    sudo dnf install lightdm-settings lightdm
+    ```
+
+    ### 9: Final Steps
+
+    If your system had Gnome or another desktop installed prior to installing MATE, you should be ready to reboot at this time. If no desktop was installed, you'll need to use the following command to set the graphical target:
+
+    ```
+    sudo systemctl set-default graphical.target
+    ```
+    
+    Then reboot
+
+    ```
+    sudo reboot
+    ```
+
+    When the system reboots, click on your user name, but before you enter your password, click on the gear icon in the lower right of the screen and select MATE from the desktop list. Then login and you should have a fully functional MATE desktop. Future logins should remember your selection.
 
 === "8"
 
