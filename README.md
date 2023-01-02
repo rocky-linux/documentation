@@ -61,53 +61,41 @@ _Add a missing word, correct an error, clarify a confusing bit of text. You won�
 
 1. Start on the page you want to update on [https://docs.rockylinux.org/](https://docs.rockylinux.org/). 
 
-Click the “Edit” pencil in the upper right corner of the document. You will be taken to the original document stored on GitHub. 
+    Click the “Edit” pencil in the upper right corner of the document. You will be taken to the original document stored on GitHub. 
 
-The first time you contribute to the RL repository, you will be prompted with a green button to “**Fork** this **repository** and propose changes.” This creates a duplicate copy of the RL repository where you make your suggested edits. Click the green button and continue.
-
-
+    The first time you contribute to the RL repository, you will be prompted with a green button to “**Fork** this **repository** and propose changes.” This creates a duplicate copy of the RL repository where you make your suggested edits. Click the green button and continue.
 
 2. Make your changes
 
-Follow the existing Markdown formatting. Make the necessary change.
-
-
+    Follow the existing Markdown formatting. Make the necessary change.
 
 3. Propose changes
 
-At the bottom of the page, write a brief description in the title of the block entitled Propose changes.
+    At the bottom of the page, write a brief description in the title of the block entitled Propose changes.
 
-Then click Propose changes, which will **Commit** your changes to a completed document within your forked repository.
-
-
+    Then click Propose changes, which will **Commit** your changes to a completed document within your forked repository.
 
 4. Review changes 
 
-Now you can look at what you’ve done, line by line. If you missed anything, back up to the previous page and correct it again (you’ll have to start over), then click Propose Changes again.
+    Now you can look at what you’ve done, line by line. If you missed anything, back up to the previous page and correct it again (you’ll have to start over), then click Propose Changes again.
 
-Once the doc is the way you want it, click the green button that says Create Pull Request. This provides one more chance to double check your changes and confirm the doc is ready.
-
-
+    Once the doc is the way you want it, click the green button that says Create Pull Request. This provides one more chance to double check your changes and confirm the doc is ready.
 
 5. Create Pull Request
 
-So far you have been working in your own repository. Next you submit it to the documentation team to merge your version into the main version of the document.
+    So far you have been working in your own repository. Next you submit it to the documentation team to merge your version into the main version of the document.
 
-Click the green button that says Create Pull Request, which sends it to the RL documentation team for review.
-
-
+    Click the green button that says Create Pull Request, which sends it to the RL documentation team for review.
 
 6. Wait
 
-Once the RL team reviews your request, they will respond in one of three ways.
+    Once the RL team reviews your request, they will respond in one of three ways.
 
+    * Accept and merge your PR
+    * Comment with feedback and ask for changes
+    * Deny your PR with explanation
 
-
-* Accept and merge your PR
-* Comment with feedback and ask for changes
-* Deny your PR with explanation
-
-If you have to make changes, you will suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable.
+    If you have to make changes, you will suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable.
 
 Need more in-depth explanation? Here are the [same directions](https://docs.google.com/document/d/1Gkwxt3lsxC0HJdLB7YIEMBfPe0td1yVJZ8y5Bjs9oks/edit?usp=sharing) with more words and illustrations.
 
