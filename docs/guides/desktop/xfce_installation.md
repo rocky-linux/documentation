@@ -91,7 +91,7 @@ It is also one of the easiest desktop environments to combine with alternate win
 
     When you've done this, it will take you back to the live image screen. Reboot your machine and remove the boot media you used for the XFCE install.
 
-    Next you will get a login screen with the user you created above. Go ahead and enter your password, which will get you to the MATE desktop:
+    Next you will get a login screen with the user you created above. Go ahead and enter your password, which will get you to the XFCE desktop:
 
     ![xfce_desktop](images/xfce_desktop.png)
 
