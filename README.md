@@ -61,53 +61,41 @@ _Add a missing word, correct an error, clarify a confusing bit of text. You won�
 
 1. Start on the page you want to update on [https://docs.rockylinux.org/](https://docs.rockylinux.org/). 
 
-Click the “Edit” pencil in the upper right corner of the document. You will be taken to the original document stored on GitHub. 
+    Click the “Edit” pencil in the upper right corner of the document. You will be taken to the original document stored on GitHub. 
 
-The first time you contribute to the RL repository, you will be prompted with a green button to “**Fork** this **repository** and propose changes.” This creates a duplicate copy of the RL repository where you make your suggested edits. Click the green button and continue.
-
-
+    The first time you contribute to the RL repository, you will be prompted with a green button to “**Fork** this **repository** and propose changes.” This creates a duplicate copy of the RL repository where you make your suggested edits. Click the green button and continue.
 
 2. Make your changes
 
-Follow the existing Markdown formatting. Make the necessary change.
-
-
+    Follow the existing Markdown formatting. Make the necessary change.
 
 3. Propose changes
 
-At the bottom of the page, write a brief description in the title of the block entitled Propose changes.
+    At the bottom of the page, write a brief description in the title of the block entitled Propose changes.
 
-Then click Propose changes, which will **Commit** your changes to a completed document within your forked repository.
-
-
+    Then click Propose changes, which will **Commit** your changes to a completed document within your forked repository.
 
 4. Review changes 
 
-Now you can look at what you’ve done, line by line. If you missed anything, back up to the previous page and correct it again (you’ll have to start over), then click Propose Changes again.
+    Now you can look at what you’ve done, line by line. If you missed anything, back up to the previous page and correct it again (you’ll have to start over), then click Propose Changes again.
 
-Once the doc is the way you want it, click the green button that says Create Pull Request. This provides one more chance to double check your changes and confirm the doc is ready.
-
-
+    Once the doc is the way you want it, click the green button that says Create Pull Request. This provides one more chance to double check your changes and confirm the doc is ready.
 
 5. Create Pull Request
 
-So far you have been working in your own repository. Next you submit it to the documentation team to merge your version into the main version of the document.
+    So far you have been working in your own repository. Next you submit it to the documentation team to merge your version into the main version of the document.
 
-Click the green button that says Create Pull Request, which sends it to the RL documentation team for review.
-
-
+    Click the green button that says Create Pull Request, which sends it to the RL documentation team for review.
 
 6. Wait
 
-Once the RL team reviews your request, they will respond in one of three ways.
+    Once the RL team reviews your request, they will respond in one of three ways.
 
+    * Accept and merge your PR
+    * Comment with feedback and ask for changes
+    * Deny your PR with explanation
 
-
-* Accept and merge your PR
-* Comment with feedback and ask for changes
-* Deny your PR with explanation
-
-If you have to make changes, you will suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable.
+    If you have to make changes, you will suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable.
 
 Need more in-depth explanation? Here are the [same directions](https://docs.google.com/document/d/1Gkwxt3lsxC0HJdLB7YIEMBfPe0td1yVJZ8y5Bjs9oks/edit?usp=sharing) with more words and illustrations.
 
@@ -316,7 +304,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
     <tr>
       <td align="center"><a href="https://github.com/hopnux"><img src="https://avatars.githubusercontent.com/u/110078361?v=4?s=100" width="100px;" alt="hopnux"/><br /><sub><b>hopnux</b></sub></a><br /><a href="#translation-hopnux" title="Translation">🌍</a></td>
       <td align="center"><a href="https://www.breakingpitt.es"><img src="https://avatars.githubusercontent.com/u/10740572?v=4?s=100" width="100px;" alt="Pedro Garcia Rodriguez"/><br /><sub><b>Pedro Garcia Rodriguez</b></sub></a><br /><a href="#translation-BreakingPitt" title="Translation">🌍</a></td>
-      <td align="center"><a href="http://laurenzkruty.de"><img src="https://avatars.githubusercontent.com/u/37706897?v=4?s=100" width="100px;" alt="Lau"/><br /><sub><b>Lau</b></sub></a><br /><a href="#content-LauKr" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/LauKr"><img src="https://avatars.githubusercontent.com/u/37706897?v=4?s=100" width="100px;" alt="Lau"/><br /><sub><b>Lau</b></sub></a><br /><a href="#content-LauKr" title="Content">🖋</a></td>
       <td align="center"><a href="http://www.meteocontrol.cn"><img src="https://avatars.githubusercontent.com/u/11520535?v=4?s=100" width="100px;" alt="Serge Croisé"/><br /><sub><b>Serge Croisé</b></sub></a><br /><a href="#content-SergeCroise" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/bamtests"><img src="https://avatars.githubusercontent.com/u/17178592?v=4?s=100" width="100px;" alt="bamtests"/><br /><sub><b>bamtests</b></sub></a><br /><a href="#content-bamtests" title="Content">🖋</a></td>
       <td align="center"><a href="https://social.linux.pizza/@jahway603"><img src="https://avatars.githubusercontent.com/u/64485701?v=4?s=100" width="100px;" alt="jahway603"/><br /><sub><b>jahway603</b></sub></a><br /><a href="#content-jahway603" title="Content">🖋</a></td>
@@ -327,7 +315,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center"><a href="https://git.sr.ht/%7Equartsize/"><img src="https://avatars.githubusercontent.com/u/37243063?v=4?s=100" width="100px;" alt="Laura Hild"/><br /><sub><b>Laura Hild</b></sub></a><br /><a href="#content-quartsize" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/Grammaresque"><img src="https://avatars.githubusercontent.com/u/119525559?v=4?s=100" width="100px;" alt="Grammaresque"/><br /><sub><b>Grammaresque</b></sub></a><br /><a href="#content-Grammaresque" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/bdacus01"><img src="https://avatars.githubusercontent.com/u/22330436?v=4?s=100" width="100px;" alt="Brent Dacus"/><br /><sub><b>Brent Dacus</b></sub></a><br /><a href="#content-bdacus01" title="Content">🖋</a></td>
-      <td align="center"><a href="http://sauveur.xyz"><img src="https://avatars.githubusercontent.com/u/7724090?v=4?s=100" width="100px;" alt="Rawk Akani"/><br /><sub><b>Rawk Akani</b></sub></a><br /><a href="#content-rawkakani" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/rawkakani"><img src="https://avatars.githubusercontent.com/u/7724090?v=4?s=100" width="100px;" alt="Rawk Akani"/><br /><sub><b>Rawk Akani</b></sub></a><br /><a href="#content-rawkakani" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
