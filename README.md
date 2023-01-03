@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-82-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-83-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -304,7 +304,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
     <tr>
       <td align="center"><a href="https://github.com/hopnux"><img src="https://avatars.githubusercontent.com/u/110078361?v=4?s=100" width="100px;" alt="hopnux"/><br /><sub><b>hopnux</b></sub></a><br /><a href="#translation-hopnux" title="Translation">🌍</a></td>
       <td align="center"><a href="https://www.breakingpitt.es"><img src="https://avatars.githubusercontent.com/u/10740572?v=4?s=100" width="100px;" alt="Pedro Garcia Rodriguez"/><br /><sub><b>Pedro Garcia Rodriguez</b></sub></a><br /><a href="#translation-BreakingPitt" title="Translation">🌍</a></td>
-      <td align="center"><a href="https://github.com/LauKr"><img src="https://avatars.githubusercontent.com/u/37706897?v=4?s=100" width="100px;" alt="Lau"/><br /><sub><b>Lau</b></sub></a><br /><a href="#content-LauKr" title="Content">🖋</a></td>
+      <td align="center"><a href="http://laurenzkruty.de"><img src="https://avatars.githubusercontent.com/u/37706897?v=4?s=100" width="100px;" alt="Lau"/><br /><sub><b>Lau</b></sub></a><br /><a href="#content-LauKr" title="Content">🖋</a></td>
       <td align="center"><a href="http://www.meteocontrol.cn"><img src="https://avatars.githubusercontent.com/u/11520535?v=4?s=100" width="100px;" alt="Serge Croisé"/><br /><sub><b>Serge Croisé</b></sub></a><br /><a href="#content-SergeCroise" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/bamtests"><img src="https://avatars.githubusercontent.com/u/17178592?v=4?s=100" width="100px;" alt="bamtests"/><br /><sub><b>bamtests</b></sub></a><br /><a href="#content-bamtests" title="Content">🖋</a></td>
       <td align="center"><a href="https://social.linux.pizza/@jahway603"><img src="https://avatars.githubusercontent.com/u/64485701?v=4?s=100" width="100px;" alt="jahway603"/><br /><sub><b>jahway603</b></sub></a><br /><a href="#content-jahway603" title="Content">🖋</a></td>
@@ -315,7 +315,8 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center"><a href="https://git.sr.ht/%7Equartsize/"><img src="https://avatars.githubusercontent.com/u/37243063?v=4?s=100" width="100px;" alt="Laura Hild"/><br /><sub><b>Laura Hild</b></sub></a><br /><a href="#content-quartsize" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/Grammaresque"><img src="https://avatars.githubusercontent.com/u/119525559?v=4?s=100" width="100px;" alt="Grammaresque"/><br /><sub><b>Grammaresque</b></sub></a><br /><a href="#content-Grammaresque" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/bdacus01"><img src="https://avatars.githubusercontent.com/u/22330436?v=4?s=100" width="100px;" alt="Brent Dacus"/><br /><sub><b>Brent Dacus</b></sub></a><br /><a href="#content-bdacus01" title="Content">🖋</a></td>
-      <td align="center"><a href="https://github.com/rawkakani"><img src="https://avatars.githubusercontent.com/u/7724090?v=4?s=100" width="100px;" alt="Rawk Akani"/><br /><sub><b>Rawk Akani</b></sub></a><br /><a href="#content-rawkakani" title="Content">🖋</a></td>
+      <td align="center"><a href="http://sauveur.xyz"><img src="https://avatars.githubusercontent.com/u/7724090?v=4?s=100" width="100px;" alt="Rawk Akani"/><br /><sub><b>Rawk Akani</b></sub></a><br /><a href="#content-rawkakani" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/nm583"><img src="https://avatars.githubusercontent.com/u/121867206?v=4?s=100" width="100px;" alt="nm583"/><br /><sub><b>nm583</b></sub></a><br /><a href="#content-nm583" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
