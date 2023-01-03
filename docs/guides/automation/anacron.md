@@ -46,7 +46,7 @@ shell > rpm -ql cronie-anacron
 
 First check the default configuration file:
 ```bash
-shell > cat /etc/anacontab
+shell > cat /etc/anacrontab
 # /etc/anacrontab: configuration file for anacron
 # See anacron(8) and anacrontab(5) for details.
 SHELL=/bin/sh
