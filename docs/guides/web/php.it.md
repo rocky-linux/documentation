@@ -413,7 +413,6 @@ pm.max_children = 50
 pm.start_servers = 12
 pm.min_spare_servers = 12
 pm.max_spare_servers = 36
-pm.process_idle_timeout = 10s;
 pm.max_requests = 500
 ```
 
