@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-83-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-84-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -317,6 +317,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center"><a href="https://github.com/bdacus01"><img src="https://avatars.githubusercontent.com/u/22330436?v=4?s=100" width="100px;" alt="Brent Dacus"/><br /><sub><b>Brent Dacus</b></sub></a><br /><a href="#content-bdacus01" title="Content">🖋</a></td>
       <td align="center"><a href="http://sauveur.xyz"><img src="https://avatars.githubusercontent.com/u/7724090?v=4?s=100" width="100px;" alt="Rawk Akani"/><br /><sub><b>Rawk Akani</b></sub></a><br /><a href="#content-rawkakani" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/nm583"><img src="https://avatars.githubusercontent.com/u/121867206?v=4?s=100" width="100px;" alt="nm583"/><br /><sub><b>nm583</b></sub></a><br /><a href="#content-nm583" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/MrPaulAR"><img src="https://avatars.githubusercontent.com/u/3765696?v=4?s=100" width="100px;" alt="MrPaulAR"/><br /><sub><b>MrPaulAR</b></sub></a><br /><a href="#content-MrPaulAR" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
