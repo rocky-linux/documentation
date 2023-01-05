@@ -40,7 +40,7 @@ Documentation is welcome in whatever format you are used to creating. It does no
 
 That said, RL Documentation uses Markdown as the standard. It is easy to learn and use. Run a text converter on your content or start from scratch with this [basic writing and formatting guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) by GitHub. 
 
-As you become a regular contributor, you’ll need to create a **local repository**. See our [guide](link to the first time contributor guide, once published) for how to install a Markdown editor and create a local repository on your home computer.
+As you become a regular contributor, you’ll need to create a **local repository**. See our [guide](https://docs.rockylinux.org/guides/contribute/beginners) for how to install a Markdown editor and create a local repository on your home computer.
 
 
 ## Contribution Process
@@ -97,14 +97,14 @@ _Add a missing word, correct an error, clarify a confusing bit of text. You won�
 
     If you have to make changes, you will suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable.
 
-Need more in-depth explanation? Here are the [same directions](https://docs.google.com/document/d/1Gkwxt3lsxC0HJdLB7YIEMBfPe0td1yVJZ8y5Bjs9oks/edit?usp=sharing) with more words and illustrations.
+Need more in-depth explanation? Here are the [same directions](https://docs.rockylinux.org/guides/contribute/beginners) with more elaboration under the heading, "Submit an update."
 
 Success? Welcome to the team, you are officially a Rocky Linux documentation contributor. Your profile will be added to the contributor list at the bottom of this document shortly.
 
 
 ### Become a frequent contributor
 
-For more than a word or two of occasional edits, we recommend that you [setup a local repository](add link to how to create a new document, once published) on your own machine. From there, you can revise documentation from your clone of the RL repository, Commit it to your online GitHub repository, and then create Pull Requests to merge with the main repository.
+For more than a word or two of occasional edits, we recommend that you [setup a local repository](https://docs.rockylinux.org/guides/contribute/createnew) on your own machine. From there, you can revise documentation from your clone of the RL repository, Commit it to your online GitHub repository, and then create Pull Requests to merge with the main repository.
 
 Advanced users may wish to create a complete documentation server on your local Linux workstation or VM. We have guides to set that up with [Docker](https://docs.rockylinux.org/guides/contribute/rockydocs_web_dev/) or [LXD](https://docs.rockylinux.org/guides/contribute/mkdocs_lsyncd/). We also have a [fast documentation system](https://docs.rockylinux.org/guides/contribute/local_docs/) with special caveats if you are using Python on the same server.
 
@@ -126,7 +126,7 @@ author: the author of the source (English) version of the document.
 
 contributors: a comma separated list of contributors to the source document.
 
-tested with: a comma separated list of versions example: 8.6, 9.0
+tested with: a comma separated list of versions, for example 8.6, 9.0
 
 tags: 
 
@@ -148,7 +148,7 @@ To add more advanced elements to your Markdown-formatted document beyond text, v
 
 #### Contribute
 
-The process for [submitting original content](link to first time contributors guide, once published)  is similar to updating an existing document from your local repository. Create a new document within your Markdown editor, Commit it to your GitHub repository, then submit a Pull Request to merge into the main branch of the repository. The documentation leads will decide where the new document will live.
+The process for [submitting original content](https://docs.rockylinux.org/guides/contribute/createnew)  is similar to updating an existing document from your local repository. Create a new document within your Markdown editor, Commit it to your GitHub repository, then submit a Pull Request to merge into the main branch of the repository. The documentation leads will decide where the new document will live.
 
 
 ## Special Notes
