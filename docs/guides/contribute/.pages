@@ -1,6 +1,8 @@
 ---
 nav:
     - ... | README*.md
+    - ... | beginners*.md
+    - ... | createnew*.md
     - ... | rockydocs_web_dev*.md
     - ... | mkdocs_lsyncd*.md
     - ... | local_docs*.md

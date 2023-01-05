@@ -1,5 +1,4 @@
-
-<!-----
+---
 title: First Time Contributors Guide
 author: Grammaresque
 contributors: Ezequiel Bruni
@@ -8,21 +7,21 @@ tags:
   - documentation
   - beginners
   - howto
+---
 
------>
-## First time contributors guide
+# First time contributors guide
 
 _Everybody starts somewhere. If this is the first time you’ve contributed to open source documentation on GitHub, congratulations for taking this step. We can’t wait to see what you have to say!_
 
 
-### Git and GitHub
+## Git and GitHub
 
 Learn the basics of GitHub with this 12-minute [Beginner’s Guide to Git and GitHub](https://www.udacity.com/blog/2015/06/a-beginners-git-github-tutorial.html) from Udemy.
 
 You may not start out creating and managing repositories for Rocky Linux, but this [Hello World tutorial](https://docs.github.com/en/get-started/quickstart/hello-world) walks you through creating a GitHub account, learning the lingo, and understanding how repositories work. Focus on learning how to make and Commit updates to existing docs, and how to create a Pull Request.
 
 
-### Markdown
+## Markdown
 
 Markdown is an easy language that allows you to include formatting, code, and plain text in the same file. The first time you update a document, just follow the existing code. It won’t be long before you are ready to explore additional features. When the time comes, here’s are the basics.
 
@@ -33,7 +32,7 @@ Markdown is an easy language that allows you to include formatting, code, and pl
 * Some of the more [advanced formatting](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) options we use in our repository
 
 
-### Local Repository Editor
+## Local Repository Editor
 
 To create a local repository, first find and install a Markdown editor that works with your computer and operating system. Here are some options, but there are others. Use what you know.
 
@@ -49,7 +48,7 @@ To create a local repository, first find and install a Markdown editor that work
 
 [VS Code](https://code.visualstudio.com/) - Partially open source, by Microsoft. VS Code is a lightweight and powerful editor available for Windows, Linux and MacOS. To contribute to this document project, you should get the following extensions: Git Graph, HTML Preview, HTML Snippets, Markdown All in One, Markdown Preview Enhanced, Markdown Preview Mermaid Support, and any more that catch your fancy.
 
-### Create a local repository
+## Create a local repository
 
 Once you have a Markdown editor installed, follow instructions to connect it to your GitHub account and download your repository to your local machine. Every time you prepare to update a document, follow these steps to sync your local and online forks with the main branch to ensure you are working with the most current version:
 
@@ -62,7 +61,7 @@ Once you have a Markdown editor installed, follow instructions to connect it to 
 7. Within GitHub, find the updated document in your fork and create a Pull Request to merge it with the main document.
 
 
-### Submit an update
+## Submit an update
 
 _Add a missing word, correct an error, clarify a confusing bit of text._
 
