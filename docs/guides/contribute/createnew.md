@@ -1,19 +1,18 @@
-<!-----
-title: How to Create a New Document in GitHub
+---
+title: Create a New Document in GitHub
 author: Ezequiel Bruni
 contributors: Grammaresque
 tags:
   - contributing
   - documentation
+---
 
------>
-
-## Create a new document
+# How To Create a New Document in GitHub
 
 _When you are ready to submit your original written documentation for approval, follow these easy steps:_
 
 
-### With the GitHub GUI
+## With the GitHub GUI
 
 You can complete almost all tasks from the web GUI on GitHub. Here's an example of adding a file you've created on your local machine to the Rocky Linux documentation GitHub repository.
 
@@ -30,7 +29,7 @@ You can complete almost all tasks from the web GUI on GitHub. Here's an example 
 9. Write a brief message in the "Write" section letting the administrators know what you've done. (New document, revision, suggested change, etc.,) then submit your change.
 
 
-### From the Git Command-Line
+## From the Git Command-Line
 
 If you prefer to run Git locally on your machine, you can clone the [Rocky Linux Documentation](https://github.com/rocky-linux/documentation) repository, make changes, and then commit changes afterward. To make things simple, execute steps 1-3 using the **With the GitHub GUI** approach above, then:
 
