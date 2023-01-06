@@ -1,8 +1,10 @@
 ---
 title: RL9 - network manager 
 author : tianci li
-contributors: 
-update : 2023-01-06
+contributors: Steven Spencer 
+tags:
+  - networkmanager
+  - RL9
 ---
 
 # NetworkManager Network configuration tool suite
@@ -48,13 +50,13 @@ ens160.nmconnection
 ```
 
 The `ens160` here refers to the name of the network card in the system. You may wonder why the name looks so strange?
-The `udev` device manager , it supports many different naming schemes. By default, fixed names are assigned according to firmware, topology, and location information. Its advantages include:
+This is because of the `udev` device manager. It supports many different naming schemes. By default, fixed names are assigned according to firmware, topology, and location information. Its advantages include:
 
 * Device names are fully predictable.
 * Device names stay fixed even if you add or remove hardware, because no re-enumeration takes place.
 * Defective hardware can be seamlessly replaced.
 
-In RHEL 9 and the corresponding community version operating system, consistent device naming is enabled by default (disabling is not supported). The `udev` device manager will generate device names according to the following scheme:
+In RHEL 9 and the corresponding community version operating systems, consistent device naming is enabled by default (disabling is not supported). The `udev` device manager will generate device names according to the following scheme:
 
 | Scheme  | Description | Example     |
 |---------|-------------|-------------|
