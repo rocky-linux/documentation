@@ -126,6 +126,10 @@ You can also modify one or more properties of the connection directly from the c
 Shell > nmcli connection modify CONNECTION_NAME autoconnect yes ipv6.method dhcp
 ```
 
+!!! info
+
+    Operations through `nmcli` or `nmtui` are saved permanently, not temporarily.
+
 #### Link aggregation
 
 Some use multiple network cards for link aggregation. In the early days, using **bonding** technology, there were seven working modes (0~6), and the bond mode only supported two network cards at most; Later, the **teming** technology is gradually used as an alternative, there are five working modes, and the team mode can use up to eight network cards. Comparison link between bonding and teming——https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding
