@@ -194,6 +194,7 @@ There are several storage mechanisms when storing data to **LV**, two of which a
 
 * Linear volumes;
 * Volumes in _stripe_ mode;
+* Mirrored volumes.
 
 ![Linear volumes](images/07-file-systems-005.png)
 
@@ -248,7 +249,7 @@ pvcreate -- physical volume « /dev/hdb » successfully created
 The `vgcreate` command is used to create volume groups. It groups one or more physical volumes into a volume group.
 
 ```
-vgcreate  VG_name  PV_name...  [OPTION] 
+vgcreate  <VG_name>  <PV_name...>  [option] 
 ```
 
 Example:
