@@ -35,7 +35,7 @@ shell > nmtui
 ```bash
 Shell > nmcli connection show                                                                                                        
 NAME    UUID                                  TYPE      DEVICE                                                                              
-color=green>ens160  25106d13-ba04-37a8-8eb9-64daa05168c9  ethernet  ens160
+ens160  25106d13-ba04-37a8-8eb9-64daa05168c9  ethernet  ens160
 ```
 
 For RockyLinux 8.x, we introduced how to configure its network [here](./nmtui.md). You can use `vim` to edit the network card configuration file in the **/etc/sysconfig/network-script/** directory, or you can use `nmcli`/`nmtui`, both of which are acceptable.
@@ -66,7 +66,7 @@ In RHEL 9 and the corresponding community version operating systems, consistent 
 | 4       | Device names incorporate the MAC address. Red Hat Enterprise Linux does not use this scheme by default, but administrators can optionally use it. | enx525400d5e0fb |
 | 5       | The traditional unpredictable kernel naming scheme. If `udev` cannot apply any of the other schemes, the device manager uses this scheme. | eth0 |
 
-`udev` device Manager names the prefix of the Nic based on the type of interface: 
+`udev` device Manager names the prefix of the NIC based on the type of interface: 
 
 * **en** for Ethernet. 
 * **wl** for wireless LAN (WLAN). 
@@ -134,14 +134,14 @@ Shell > nmcli connection modify CONNECTION_NAME autoconnect yes ipv6.method dhcp
 
 #### Link aggregation
 
-Some use multiple network cards for link aggregation. In the early days, using **bonding** technology, there were seven working modes (0~6), and the bond mode only supported two network cards at most; Later, the **teming** technology is gradually used as an alternative, there are five working modes, and the team mode can use up to eight network cards. Comparison link between bonding and teming——https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding
+Some use multiple network cards for link aggregation. In the early days, using **bonding** technology, there were seven working modes (0~6), and the bond mode only supported two network cards at most; Later, the **teaming** technology is gradually used as an alternative, there are five working modes, and the team mode can use up to eight network cards. Comparison link between bonding and teaming——https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding
 
 For example, the 0 mode of bonding:
 
 ```bash
 Shell > nmcli  connection  add  type  bond  con-name  BOND_CONNECTION_NAME   ifname  BOND_NIC_DEVICE_NAME  mode 0  
-Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME1   masster  BOND_NIC_DEVICE_NAME
-Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   masster  BOND_NIC_DEVICE_NAME
+Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME1   master  BOND_NIC_DEVICE_NAME
+Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   master  BOND_NIC_DEVICE_NAME
 ```
 
 ## Configuration file of the network card (it is not recommended to modify it by means of vim, etc.)
@@ -182,7 +182,7 @@ method=disabled
 
 | key name       | description |
 |----------------|-------------|
-| id             | sThe alias of con-name, whose value is a string.|
+| id             | The alias of con-name, whose value is a string.|
 | uuid           | Universal unique identifier, whose value is a string. |
 | type           | The type of connection, whose values can be ethernet, bluetooth, vpn, vlan, and so on. You can use `man  nmcli` to view all supported types. |
 | interface-name | Network card device name. |
