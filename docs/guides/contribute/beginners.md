@@ -11,7 +11,7 @@ tags:
 
 # First time contributors guide
 
-_Everybody starts somewhere. If this is the first time you’ve contributed to open source documentation on GitHub, congratulations for taking this step. We can’t wait to see what you have to say!_
+_Everybody starts somewhere. If this is the first time you’ve contributed to open-source documentation on GitHub, congratulations for taking this step. We can’t wait to see what you have to say!_
 
 
 ## Git and GitHub
@@ -77,9 +77,9 @@ Follow the Markdown formatting. Perhaps there’s a missing word, or the link on
 
 3. Propose changes
 
-At the bottom of the page, write a one line description in the title of the block entitled, “**Propose changes”**. It is helpful, but not necessary, to reference the file name found at the top of the doc.
+At the bottom of the page, write a one-line description in the title of the block entitled, “**Propose changes”**. It is helpful, but not necessary, to reference the file name found at the top of the doc.
 
-So if you updated a link within line 21 of the markdown text, you’d say something like, "Update README.md with correct links." 
+So, if you updated a link within line 21 of the markdown text, you’d say something like, "Update README.md with correct links." 
 
 **Note: Word your action in the present tense.** 
 
