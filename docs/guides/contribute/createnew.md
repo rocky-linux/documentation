@@ -25,8 +25,8 @@ You can complete almost all tasks from the web GUI on GitHub. Here's an example 
 5. In the middle of the page on the forked copy, just to the left of the Green "Code" drop-down, is an "Add file" button. Click this and choose the "Upload files" option.
 6. This will give you a way to either drag and drop files here or browse to them on your computer. Go ahead and use the method which you prefer.
 7. Once the file is uploaded, the next thing you need to do is create a Pull Request. This request lets the upstream administrators know that you have a new file (or files) that you would like them to merge with the master.
-8. Click on "Pull Request" in the upper-left of the screen.
-9. Write a brief message in the "Write" section letting the administrators know what you've done. (New document, revision, suggested change, etc.,) then submit your change.
+8. Click on "Pull Request" in the upper-left corner of the screen.
+9. Write a brief message in the "Write" section letting the administrators know what you've done. (New document, revision, suggested change, etc.) then submit your change.
 
 
 ## From the Git Command-Line
@@ -43,6 +43,6 @@ If you prefer to run Git locally on your machine, you can clone the [Rocky Linux
 6. Now, run git commit for the changes you have made.
 7. Example: git commit -m "Added the help.md file"
 8. Next, push your changes to your forked repository: git push https://github.com/your_fork_name/documentation main
-9. Next, repeat steps 6 and 7 above: Create a Pull Request. This request lets the upstream administrators know that you have a new file (or files) that you would like them to merge with the master branch. Click on "Pull Request" in the upper-left of the screen
+9. Next, repeat steps 6 and 7 above: Create a Pull Request. This request lets the upstream administrators know that you have a new file (or files) that you would like them to merge with the master branch. Click on "Pull Request" in the upper-left corner of the screen.
 
 Watch for comments within the PR for requested revisions and clarifications. 
