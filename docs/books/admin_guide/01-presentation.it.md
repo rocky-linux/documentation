@@ -61,6 +61,12 @@ UNIX è un sistema operativo aperto e in continua evoluzione che ha svolto un ru
 
 UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
+#### Progetto GNU
+
+* **1984**: Richard Matthew Stallman ha lanciato il progetto GNU (GNU's Not Unix), che mira a stabilire un **libero** e **aperto** sistema Unix, in cui gli strumenti più importanti sono: gcc compiler, bash shell, Emacs editor e così via. GNU è un sistema operativo simile ad Unix. Lo sviluppo di GNU, iniziato nel Gennaio 1984, è noto come Progetto GNU. Molti dei programmi in GNU sono rilasciati sotto l'egida del Progetto GNU; quelli che chiamiamo pacchetti GNU.
+
+* **1990**: il kernel di GNU, GNU Hurd, è stato avviato nel 1990 (prima dell'inizio di Linux).
+
 #### MINIX
 
 * **1987**: Andrew S. Tanenbaum sviluppa MINIX, un UNIX semplificato, per insegnare i sistemi operativi in modo semplice. Il signor Tanenbaum rende disponibile il codice sorgente del suo sistema operativo.
@@ -82,6 +88,10 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 * **2004**: Ubuntu viene creato dalla società Canonical (Mark Shuttleworth). È basato su Debian ma include software libero e proprietario.
 
 * **2021**: Viene creato Rocky Linux, basato sulla distribuzione Red Hat.
+
+!!! info "Informazione"
+
+    Disputa sul nome: anche se le persone sono abituate a chiamare verbalmente il sistema operativo Linux, Linux è rigorosamente un kernel. Non dobbiamo dimenticare lo sviluppo e il contributo del progetto GNU alla causa open source, quindi! Preferisco chiamarlo il sistema operativo GNU/Linux.
 
 ### Quota di mercato
 
@@ -107,7 +117,7 @@ Linux equipaggia il 100% dei 500 supercomputer dal 2018. Un supercomputer è un 
     * Shell principali: shell Bourne, shell C, shell Korn e shell Bourne-Again (bash).
 * **Applicazioni** sono programmi utente inclusi, ma non limitati a:
     * Browser Internet
-    * Elaboratore di Testi
+    * Elaboratore di testi
     * Fogli di calcolo
 
 #### Multi-task
@@ -117,7 +127,7 @@ Linux appartiene alla famiglia dei sistemi operativi con condivisione del tempo.
 * Esecuzione simultanea di più programmi.
 * Distribuzione del tempo di CPU da parte dello scheduler.
 * Riduzione dei problemi causati da un'applicazione interrotta.
-* Prestazioni ridotte in caso di troppi programmi in esecuzione.
+* Prestazioni ridotte quando ci sono troppi programmi in esecuzione.
 
 #### Multiutente
 
@@ -153,7 +163,7 @@ Linux si basa su standard riconosciuti come [POSIX](http://en.wikipedia.org/wiki
 
 ## Le distribuzioni GNU/Linux
 
-Una distribuzione Linux è un **insieme coerente di software** assemblato attorno al kernel Linux e pronto per essere installato insieme ai componenti necessari per gestire questo software (installazione, rimozione, configurazione). Ci sono distribuzioni **associative o comunitarie** (Debian, Rocky) o **commerciali** (RedHat, Ubuntu).
+Una distribuzione Linux è un **insieme coerente di software** assemblato attorno al kernel Linux e pronto per essere installato insieme ai componenti necessari per gestire questo software (installazione, rimozione, configurazione). Ci sono distribuzioni **associative** o **comunitarie** (Debian, Rocky) o **commerciali** (RedHat, Ubuntu).
 
 Ogni distribuzione offre uno o più **ambienti desktop**, fornisce un set di software preinstallato e una libreria di software aggiuntivo. Le opzioni di configurazione (ad esempio le opzioni del kernel o dei servizi) sono specifiche per ogni distribuzione.
 
@@ -163,7 +173,7 @@ Questo principio permette alle distribuzioni di essere orientate ai **principian
 
 Ci sono molti ambienti grafici: **GNOME**, **KDE**, **LXDE**, **XFCE**, etc. Ce n'è per tutti i gusti e l'**ergonomia** è all'altezza dei sistemi Microsoft o Apple.
 
-Allora perché c'è così poco entusiasmo per Linux, quando questo sistema è praticamente **privo di virus**? Forse perché molti editori (Adobe) e produttori (Nvidia) non fanno il gioco della libertà e non forniscono una versione del loro software o dei loro __driver__ per GNU/Linux? Forse è la paura del cambiamento, o la difficoltà di trovare dove acquistare un computer Linux, o ancora i pochi giochi distribuiti sotto Linux. Almeno quest'ultima scusa non dovrebbe essere vera a lungo, con l'avvento del motore di gioco Steam per Linux.
+Allora perché c'è così poco entusiasmo per Linux, quando questo sistema è praticamente **privo di virus**? Forse perché molti editori (Adobe) e produttori (Nvidia) non fanno il gioco della libertà e non forniscono una versione del loro software o __driver__ per GNU/Linux? Forse è la paura del cambiamento, o la difficoltà di trovare dove acquistare un computer Linux, o ancora i pochi giochi distribuiti sotto Linux. Almeno quest'ultima scusa non dovrebbe essere vera a lungo, con l'avvento del motore di gioco Steam per Linux.
 
 ![Desktop GNOME](images/01-presentation-gnome.png)
 
@@ -179,19 +189,19 @@ L'ambiente desktop **KDE** si basa sulla libreria di componenti **Qt**. È tradi
 
 Un utente di un sistema operativo Microsoft o Mac deve acquistare una licenza per utilizzare il sistema operativo. Questa licenza ha un costo, anche se di solito è trasparente (il prezzo della licenza è incluso nel prezzo del computer).
 
-Nel mondo **GNU/Linux**, il movimento del Software Libero fornisce principalmente distribuzioni libere.
+Nel mondo **GNU/Linux**, il movimento del Software Libero fornisce principalmente distribuzioni gratuite.
 
 **Libero** non significa gratuito!
 
-**Open Source**: il codice sorgente è disponibile, quindi è possibile consultarlo e modificarlo a determinate condizioni.
-
 **Open source**: i codici sorgente sono disponibili, quindi è possibile consultare e modificarli a determinate condizioni.
 
-#### Licenza GPL (General Public License)
+Un software libero è necessariamente open-source, ma non è vero il contrario, poiché il software open-source si distingue per la libertà offerta dalla licenza GPL.
 
-La **GPL** garantisce all'autore di un software la sua proprietà intellettuale, ma consente modifiche, redistribuzione o rivendita di software da parte di terzi, a condizione che il codice sorgente sia incluso nel software. La GPL è la licenza nata dal progetto **GNU** (GNU is Not UNIX), che è stato determinante per la creazione di Linux.
+#### GNU GPL (Licenza pubblica generale GNU)
 
-Implica:
+La **GPL** garantisce all'autore di un software la sua proprietà intellettuale, ma consente modifiche, redistribuzione o rivendita di software da parte di terzi, a condizione che il codice sorgente sia incluso nel software. La GPL è la licenza dalla quale esce il progetto **GNU** (GNU is Not UNIX), che è stato strumentale nella creazione di Linux.
+
+Questo implica:
 
 * La libertà di eseguire il programma, per qualsiasi scopo.
 * La libertà di studiare il funzionamento del programma e di adattarlo alle proprie esigenze.
@@ -209,15 +219,15 @@ Una distribuzione Linux eccelle per:
 * **Computer centrali**: Banche, assicurazioni, industria, ecc.
 * **Sistemi integrati**: Router, Internet box, SmartTV, ecc.
 
-Linux è una scelta adatta per ospitare database o siti web, oppure come server di posta, DNS o firewall. In breve, Linux può fare praticamente tutto, il che spiega la quantità di distribuzioni specifiche.
+Linux è una scelta adatta per l'hosting di database o siti Web, o per mail server, DNS o firewall. In breve, Linux può fare qualsiasi cosa, il che spiega la quantità di distribuzioni specifiche.
 
 ## Shell
 
 ### Generalità
 
-La **shell**, nota come _interfaccia di comando_, consente agli utenti di inviare comandi al sistema operativo. Oggi è meno visibile dopo l'implementazione delle interfacce grafiche, ma rimane un mezzo privilegiato sui sistemi Linux che non dispongono tutti di interfacce grafiche e i cui servizi non sempre hanno un'interfaccia di impostazione.
+La **shell**, conosciuta anche come _command interface_, consente agli utenti di inviare comandi al sistema operativo. Oggi è meno visibile dopo l'implementazione delle interfacce grafiche, ma rimane un mezzo privilegiato sui sistemi Linux che non dispongono tutti di interfacce grafiche e i cui servizi non sempre hanno un'interfaccia di impostazione.
 
-Offre un vero e proprio linguaggio di programmazione che include strutture classiche (cicli, alternative) e componenti comuni (variabili, passaggio di parametri e sottoprogrammi). Consente la creazione di script per automatizzare determinate azioni (backup, creazione di utenti, monitoraggio del sistema, ecc.)
+Offre un vero e proprio linguaggio di programmazione che include strutture classiche (cicli, alternative) e componenti comuni (variabili, passaggio di parametri e sottoprogrammi). Alcuni esempi sono:
 
 Sono disponibili diversi tipi di shell, configurabili su una piattaforma o in base alle preferenze dell'utente. Alcuni esempi sono:
 
@@ -237,7 +247,7 @@ Sono disponibili diversi tipi di shell, configurabili su una piattaforma o in ba
 
 ![Principio di funzionamento della SHELL](images/shell-principle.png)
 
-## Verificare le proprie conoscenze
+## Verificare le proprie Conoscenze
 
 :heavy_check_mark: Un sistema operativo è un insieme di programmi per la gestione delle risorse disponibili di un computer:
 
@@ -248,7 +258,7 @@ Sono disponibili diversi tipi di shell, configurabili su una piattaforma o in ba
 
 - [ ] Gestire la memoria fisica e virtuale
 - [ ] Consentire l'accesso diretto alle periferiche
-- [ ] Subappaltare la gestione dei compiti al processore
+- [ ] Affidare la gestione dei compiti all'elaboratore
 - [ ] Raccogliere informazioni sui programmi utilizzati o in uso
 
 :heavy_check_mark: Tra queste personalità, quali hanno partecipato allo sviluppo di UNIX?
@@ -259,7 +269,7 @@ Sono disponibili diversi tipi di shell, configurabili su una piattaforma o in ba
 - [ ] Brian Kernighan
 - [ ] Andrew Stuart Tanenbaum
 
-:heavy_check_mark: La nazionalità originale di Linus Torvalds, creatore del kernel Linux, è:
+:heavy_check_mark: La nazionalità originaria di Linus Torvalds, creatore del kernel Linux, è:
 
 - [ ] Svedese
 - [ ] Finlandese
@@ -274,13 +284,13 @@ Sono disponibili diversi tipi di shell, configurabili su una piattaforma o in ba
 - [ ] RedHat
 - [ ] Arch
 
-:heavy_check_mark: È il kernel Linux:
+:heavy_check_mark: Lo è il kernel di Linux:
 
 - [ ] Multitasking
-- [ ] Multi utente
+- [ ] Multiutente
 - [ ] Multiprocessore
 - [ ] Multi-core
-- [ ] Cross-platform
+- [ ] Multipiattaforma
 - [ ] Aperto
 
 :heavy_check_mark: Il software libero è necessariamente open-source?
@@ -288,7 +298,7 @@ Sono disponibili diversi tipi di shell, configurabili su una piattaforma o in ba
 - [ ] Vero
 - [ ] Falso
 
-:heavy_check_mark: Il software open-source è necessariamente gratuito?
+:heavy_check_mark: Il software Open-Source è necessariamente gratuito?
 
 - [ ] Vero
 - [ ] Falso
