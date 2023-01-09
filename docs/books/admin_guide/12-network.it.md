@@ -18,8 +18,8 @@ In questo capitolo imparerai come gestire e lavorare con la rete.
 
 :checkered_flag: **rete**, **linux**, **ip**
 
-**Knowledge**: :star: :star:  
-**Complexity**: :star: :star:
+**Conoscenza**: :star: :star:  
+**Complessità**: :star::star:
 
 **Tempo di lettura**: 30 minuti
 
