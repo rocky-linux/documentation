@@ -721,7 +721,7 @@ Shell > passwd -n 60 -x 90 -w 80 -i 10 patrick
 | `-d`      | Rimuove in modo permanente la password. Solo per root (uid=0).                                                  |
 | `-l`      | Blocca in modo permanente l'account utente. Solo per root (uid=0).                                              |
 | `-S`      | Visualizza lo stato dell'account. Solo per root (uid=0).                                                        |
-| `- u`     | Sblocca in modo permanente l'account utente. Solo per root (uid=0).                                             |
+| `-u`      | Sblocca in modo permanente l'account utente. Solo per root (uid=0).                                             |
 | `-e`      | Fa scadere definitivamente la password. Solo per root (uid=0).                                                  |
 | `-n DAYS` | Durata minima della password. Cambiamento permanente. Solo per root (uid=0).                                    |
 | `-x DAYS` | Durata massima della password. Cambiamento permanente. Solo per root (uid=0).                                   |
