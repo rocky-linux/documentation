@@ -1,7 +1,7 @@
 ---
 title: First Time Contributors Guide
 author: Krista Burdine
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Steven Spencer
 tags:
   - contributing
   - documentation
@@ -31,12 +31,12 @@ Markdown is an easy language that allows you to include formatting, code, and pl
 
 To create a local repository, first find and install a Markdown editor that works with your computer and operating system. Here are some options, but there are others. Use what you know.
 
-[ReText](https://github.com/retext-project/retext) - Free, cross-platform, and open source
-[Zettlr](https://www.zettlr.com/) - Free, cross-platform, and open source
-[Mark Text](https://github.com/marktext/marktext) - Free, cross-platform, and open source
-[Remarkable](https://remarkableapp.github.io/) - Linux and Windows, open source
-[NvChad](https://nvchad.com/) for the vi/vim user and the nvim client. A lot of plugins are available to enhance the editor for markdown. See [this document](https://docs.rockylinux.org/books/nvchad/) for a nice set of installation instructions.
-[VS Code](https://code.visualstudio.com/) - Partially open source, by Microsoft. VS Code is a lightweight and powerful editor available for Windows, Linux and MacOS. To contribute to this document project, you should get the following extensions: Git Graph, HTML Preview, HTML Snippets, Markdown All in One, Markdown Preview Enhanced, Markdown Preview Mermaid Support, and any more that catch your fancy.
+* [ReText](https://github.com/retext-project/retext) - Free, cross-platform, and open source
+* [Zettlr](https://www.zettlr.com/) - Free, cross-platform, and open source
+* [Mark Text](https://github.com/marktext/marktext) - Free, cross-platform, and open source
+* [Remarkable](https://remarkableapp.github.io/) - Linux and Windows, open source
+* [NvChad](https://nvchad.com/) for the vi/vim user and the nvim client. A lot of plugins are available to enhance the editor for markdown. See [this document](https://docs.rockylinux.org/books/nvchad/) for a nice set of installation instructions.
+* [VS Code](https://code.visualstudio.com/) - Partially open source, by Microsoft. VS Code is a lightweight and powerful editor available for Windows, Linux and MacOS. To contribute to this document project, you should get the following extensions: Git Graph, HTML Preview, HTML Snippets, Markdown All in One, Markdown Preview Enhanced, Markdown Preview Mermaid Support, and any more that catch your fancy.
 
 ## Create a local repository
 
@@ -56,44 +56,44 @@ _Add a missing word, correct an error, clarify a confusing bit of text._
 
 1. Start on the page you want to update.
 
-Click the “Edit” pencil in the upper right corner of the document you want to update. You will be taken to the original document on GitHub.
+    Click the “Edit” pencil in the upper right corner of the document you want to update. You will be taken to the original document on GitHub.
 
-The first time you contribute to the RL repository, you will be prompted with a green button to “**Fork** this **repository** and propose changes.” This creates a duplicate copy of the RL repository where you make your suggested edits. Simply click the green button and continue.
+    The first time you contribute to the RL repository, you will be prompted with a green button to “**Fork** this **repository** and propose changes.” This creates a duplicate copy of the RL repository where you make your suggested edits. Simply click the green button and continue.
 
 2. Make your changes
 
-Follow the Markdown formatting. Perhaps there’s a missing word, or the link on line 21 needs to be fixed, for example. Make the necessary change.
+    Follow the Markdown formatting. Perhaps there’s a missing word, or the link on line 21 needs to be fixed, for example. Make the necessary change.
 
 3. Propose changes
 
-At the bottom of the page, write a one-line description in the title of the block entitled, “**Propose changes”**. It is helpful, but not necessary, to reference the file name found at the top of the doc.
+    At the bottom of the page, write a one-line description in the title of the block entitled, “**Propose changes”**. It is helpful, but not necessary, to reference the file name found at the top of the doc.
 
-So, if you updated a link within line 21 of the markdown text, you’d say something like, "Update README.md with correct links."
+    So, if you updated a link within line 21 of the markdown text, you’d say something like, "Update README.md with correct links."
 
-**Note: Word your action in the present tense.**
+    **Note: Word your action in the present tense.**
 
-Then click Propose changes, which will **Commit** your changes to a complete document within your forked repository.
+    Then click Propose changes, which will **Commit** your changes to a complete document within your forked repository.
 
 4. Review changes
 
-Now you can look at what you’ve done, line by line. Did you miss anything? Back up to the previous page and correct it again (you’ll have to start over), then click Propose Changes again.
+    Now you can look at what you’ve done, line by line. Did you miss anything? Back up to the previous page and correct it again (you’ll have to start over), then click Propose Changes again.
 
-Once the doc is the way you want it, click the green button that says Create Pull Request. This provides one more chance to double check your changes and confirm the doc is ready.
+    Once the doc is the way you want it, click the green button that says Create Pull Request. This provides one more chance to double check your changes and confirm the doc is ready.
 
 5. Create Pull Request
 
-All of your work so far has been done in your own repository, with no opportunity to break the RL main repository. Next you submit it to the documentation team to merge your version into the main version of the document.
+    All of your work so far has been done in your own repository, with no opportunity to break the RL main repository. Next you submit it to the documentation team to merge your version into the main version of the document.
 
-Click the big green button that says Create Pull Request. Good news, you still haven’t broken anything, because now it goes to the RL documentation team for review.
+    Click the big green button that says Create Pull Request. Good news, you still haven’t broken anything, because now it goes to the RL documentation team for review.
 
 6. Wait
 
-Once the RL team gets your request, they will respond in one of three ways.
+    Once the RL team gets your request, they will respond in one of three ways.
 
-* Accept and merge your PR
-* Comment with feedback and ask for changes
-* Deny your PR with explanation
+    * Accept and merge your PR
+    * Comment with feedback and ask for changes
+    * Deny your PR with explanation
 
-The last response is unlikely. We really want to include your perspective here! If you have to make changes, you’ll suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable. Follow the comment section of that request to see what further information is requested.
+    The last response is unlikely. We really want to include your perspective here! If you have to make changes, you’ll suddenly understand why you need a local repository. The team can [talk you through](https://chat.rockylinux.org/rocky-linux/channels/documentation) what to do next. In good news, it’s still fixable. Follow the comment section of that request to see what further information is requested.
 
-Otherwise, your request will be accepted and merged. Welcome to the team, you’re officially a contributor now! Look for your name to show up on the all-contributors list at the bottom of the Contributor Guide in a few days.
+    Otherwise, your request will be accepted and merged. Welcome to the team, you’re officially a contributor now! Look for your name to show up on the all-contributors list at the bottom of the Contributor Guide in a few days.
