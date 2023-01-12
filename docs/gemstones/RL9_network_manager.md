@@ -56,7 +56,7 @@ This is because of the `udev` device manager. It supports many different naming 
 * Device names stay fixed even if you add or remove hardware, because no re-enumeration takes place.
 * Defective hardware can be seamlessly replaced.
 
-In RHEL 9 and the corresponding community version operating systems, consistent device naming is enabled by default (disabling is not supported). The `udev` device manager will generate device names according to the following scheme:
+In RHEL 9 and the corresponding community version operating systems, consistent device naming is enabled by default. The `udev` device manager will generate device names according to the following scheme:
 
 | Scheme  | Description | Example     |
 |---------|-------------|-------------|
