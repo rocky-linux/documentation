@@ -227,7 +227,7 @@ A new listing will reveal that the container has been assigned the DHCP address:
 
 ### Rocky Linux 9.0 macvlan - The Static IP Fix
 
-To statically assign an IP address, things get even more convoluted. Since `network-scripts` is now deprecated in Rocky Linux 9.0, the only way to do this is through static assignment, and because of the way the containers use the network, you're not going to be able to set the route with a normal `ip route` statement either. The fix is to allow the container to get a dynamically allocated IP from your router, and then to script the addition of the static IP along with the removal of the dynamically assigned one.  We have already run `dhclient` and have seen the dynamically assigned IP, so we can use this (192.168.1.113) as the IP to delete. IF your router decides to hand out a different IP, the worst that can happen is that your container will end up with two IP's on the same network.
+To statically assign an IP address, things get even more convoluted. Since `network-scripts` is now deprecated in Rocky Linux 9.0, the only way to do this is through static assignment, and because of the way the containers use the network, you're not going to be able to set the route with a normal `ip route` statement either. The problem turns out to be that the interface assigned when applying the macvlan profile (eth0 in this case), cannot be managed. The fix is to rename the network interface on the container after restart and then assign the static IP. This can all be scripted and can be done (again) with root's crontab. This is all done with the `ip` command.
 
 To do this, we need to gain shell access to the container again:
 
@@ -246,19 +246,26 @@ The contents of this script are simple:
 ```
 #!/usr/bin/env bash
 
-/usr/sbin/dhclient
-sleep 3
-/usr/sbin/ip addr add 192.168.1.151/24 dev eth0
-sleep 3
-/usr/sbin/ip addr del 192.168.1.113/24 dev eth0
+/usr/sbin/ip link set dev eth0 name net0
+/usr/sbin/ip addr add 192.168.1.151/24 dev net0
+/usr/sbin/ip route add 192.168.1.0/24 via 192.168.1.1 dev net0 onlink
+/usr/sbin/ip link set dev net0 up
+
 ```
 
-So what are we doing here? First, we run `dhclient` because we need the route that is created automatically when we do this. Deleting the IP will not delete the route. Second, we assign the new static IP that we have allocated for our container. In this case 192.168.1.151. and last, we delete the ip that was dynamically assigned.  The sleep commands between lines gives each command time to complete before moving on to the next one. It is particularly important that `dhclient` has time to run so that the route will be added before we do the rest of the steps.
+So what are we doing here? First, we rename eth0 to a new name that we can manage, we've chosen "net0" here. Second, we assign the new static IP that we have allocated for our container. In this case 192.168.1.151. Next, we need to add a route for when we bring up the net0 interface. The "onlink" says to ignore the fact that the interface is currently in the down state and add the route. Finally, we bring up the interface.
+
 
 Make our script exeutable with
 
 ```
 chmod +x /usr/local/sbin/static
+```
+
+Next, we add this to root's crontab for the container using the @reboot time:
+
+```
+@reboot     /usr/local/sbin/static
 ```
 
 Finally, exit the container and restart it 
