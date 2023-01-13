@@ -66,11 +66,11 @@ For directory:
 
     For directories, **r** and **x** permissions usually appear at the same time.
 
-# Special authority
+## Special authority
 
 In GNU/Linux, in addition to the basic permissions mentioned above, there are also some special permissions, which we will introduce one by one.
 
-## ACL permissions
+### ACL permissions
 
 What is ACL?
 ACL(Access Control List), the purpose is to solve the problem that the three identities under Linux can not meet the needs of resource permission allocation. 
@@ -122,7 +122,7 @@ Shell > mount -o remount /
 Shell > reboot
 ```
 
-### Viewing and setting of ACL
+#### Viewing and setting of ACL
 
 To view ACL, you need to use the `getfacle` command -- `getfacle FILE_NAME`
 
@@ -181,7 +181,7 @@ mask::rwx
 other::---
 ```
 
-### Maximum valid permissions of ACL
+#### Maximum valid permissions of ACL
 
 When using the `getfacl` command, what does the "mask:: rwx" in the output message mean?
 The **mask** is used to specify the maximum valid permissions. The permissions given to the user are not real permissions, the real permissions can only be obtained by using the "logical and" of the user's permissions and mask permissions.
@@ -218,7 +218,7 @@ mask::r-x
 other::---
 ```
 
-### Delete ACL permission
+#### Delete ACL permission
 
 ```bash
 # Delete the ACL permissions of user/group in the specified directory
@@ -229,7 +229,7 @@ Shell > setfacl -x g:GROUP_NAME FILE_NAME
 Shell > setfacl -b FILE_NAME
 ```
 
-### Default and recursion of ACL permissions
+#### Default and recursion of ACL permissions
 
 What is the recursion of ACL permissions?
 For ACL permissions, this means that when the parent directory sets ACL permissions, all subdirectories and sub-files will have the same ACL permissions.
