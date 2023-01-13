@@ -36,7 +36,7 @@ Their meanings are as follows:
 
 | File types  | Description                                                                                                                                |
 |:-----------:|--------------------------------------------------------------------------------------------------------------------------------------------|
-| **-**       | Represents a ordinary file. Including plain text files (ASCII); binary files (binary); data format files (data); various compressed files. |
+| **-**       | Represents an ordinary file. Including plain text files (ASCII); binary files (binary); data format files (data); various compressed files. |
 | **d**       | Represents a directory file. By default, there is one in every directory `.` and `..`. |
 | **b**       | Block device file. Including all kinds of hard drives, USB drives and so on. | 
 | **c**       | Character device file. Interface device of serial port, such as mouse, keyboard, etc. |
