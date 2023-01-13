@@ -292,8 +292,65 @@ default:mask::rwx
 default:other::---
 ```
 
+### SetUID, SetGID, Sticky BIT
+
+The role of SetUID:
+
+* Only executable binaries can set SUID permissions.
+* The executor of the command should have x permission to the program.
+* The executor of the command obtains the identity of the owner of the program file when executing the program. It is equivalent to that during the execution of the command, the executor temporarily obtains the "transformation" permission.
+* The identity change is only valid during execution, and once the binary program is finished, the executor's identity is restored to the original identity.
+
+Why does GNU/Linux need such strange permissions?
+Take the most common `passwd` command as an example:
+
+![SetUID1](./images/SetUID1.png)
+
+As you can see, the ordinary user only has r and x, but the owner's x becomes s, proving that the `passwd` command has SUID permissions.
+
+It is well known that the ordinary user (uid >= 1000) can change his own password. The real password is stored in the **/etc/shadow** file, but the permission of the shadows file is 000, and the ordinary user does not have any permissions.
+
+```bash
+Shell > ls -l /etc/shadow
+---------- 1 root root 874 Jan  12 13:42 /etc/shadow
+```
+
+Since the ordinary user can change their password, they must have written the password to the **/etc/shadow** file. When an ordinary user executes the `passwd` command, it will temporarily change to the owner of the file -- **root**. For **shadow** file, **root** can not be restricted by permissions. This is why `passwd` command needs SUID permission.
+
+As mentioned earlier, basic permissions can be represented by numbers, such as 755, 644, and so on. SUID is represented by **4**. For executable binaries, you can set permissions like this -- **4755**.
+
+```bash
+# Set SUID permissions
+Shell > chmod 4755 FILE_NAME
+# or
+Shell > chmod u+s FILE_NAME
+
+# Remove SUID permission
+Shell > chmod 755 FILE_NAME
+# or
+Shell > chmod u-s FILE_NAME
+```
+
+!!! warning
+
+    When the owner of an executable binary file/program does not have **x**, the use of capital **S** means that the file cannot use SUID permissions.
 
 
+```bash
+# Suppose this is an executable binary file
+Shell > vim suid.sh
+#!/bin/bash
+cd /etc && ls
 
+Shell > chmod 4644 suid.sh
+```
 
+![SUID2](./images/SetUID2.png)
 
+!!! warning
+
+    Because SUID can temporarily change the average user to root, you need to be especially careful with files with this permission when maintaining the server. You can find files with SUID permissions by using the following command:
+
+    ```bash
+    Shell > find / -perm -4000 -a -type f -exec ls -l  {} \;
+    ```
