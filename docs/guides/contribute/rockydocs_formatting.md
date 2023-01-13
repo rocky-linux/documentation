@@ -129,7 +129,7 @@ Which looks like this in your editor:
     This is a warning, with not very much content. You'd want to use a regular admonition for this, but Hey, this is just an example!
 ```
 
-### Tabbed Content within a Document
+## Tabbed Content within a Document
 
 Tabbed content is formatted in a similar way to admonitions. Instead of three exclamation marks or three question marks, it begins with three equal signs. All of the admonition formatting (4 spaces, etc.) applies to this content. An example of this is where documentation might need a different procedure for a different Rocky Linux version. When using tabbed content for versions, the most recent release of Rocky Linux should come first. At the time of this writing, that was 9.0:
 
