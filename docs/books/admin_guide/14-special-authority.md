@@ -58,7 +58,7 @@ For directory:
 
 | Digital representation | Permissions  | Description |
 |:----------------------:|--------------|-------------|
-|4                       | r(read)      | Indicates that the contents of the directory can be listed, such as `ls-l`. |
+|4                       | r(read)      | Indicates that the contents of the directory can be listed, such as `ls -l`. |
 |2                       | w(write)     | Indicates that you can create, delete, and rename files in this directory, such as commands `mkdir`, `touch`, `rm`, etc. |
 |1                       | x(execution)  | Indicates that you can enter the directory, such as the command `cd`. |
 
