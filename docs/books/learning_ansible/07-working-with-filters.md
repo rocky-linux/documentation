@@ -12,8 +12,8 @@ In this chapter you will learn how to transform data with jinja filters.
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Transform data structures as dictionaries or lists; 
-:heavy_check_mark: Transform variables. 
+:heavy_check_mark: Transform data structures as dictionaries or lists;  
+:heavy_check_mark: Transform variables.  
 
 :checkered_flag: **ansible**, **jinja**, **filters**
 
