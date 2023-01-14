@@ -15,9 +15,9 @@ Throughout this chapter you will need to execute commands as your unprivileged u
 
 You get a default profile when you install LXD, and this profile cannot be removed or modified. That said, you can use the default profile to create new profiles to use with your containers.
 
-If you look at our container listing you will notice that the IP address in each case is assigned from the bridged interface. In a production environment, you may want to use something else. This might be a DHCP assigned address from your LAN interface or even a statically assigned address from your WAN.
+If you look at our container listing, you will notice that the IP address in each case is assigned from the bridged interface. In a production environment, you may want to use something else. This might be a DHCP assigned address from your LAN interface or even a statically assigned address from your WAN.
 
-If you configure your LXD server with two interfaces, and assign each an IP on your WAN and LAN, then it is possible to assign your containers IP addresses based on which interface the container needs to be facing.
+If you configure your LXD server with two interfaces and assign each an IP on your WAN and LAN, then it is possible to assign your containers IP addresses based on which interface the container needs to be facing.
 
 As of version 9.0 of Rocky Linux (and really any bug for bug copy of Red Hat Enterprise Linux) the method for assigning IP addresses statically or dynamically using the profiles below, is broken out of the gate.
 
@@ -121,7 +121,7 @@ lxc restart rocky-test-8
 lxc restart rocky-test-9
 ```
 
-Now list your containers again and note that the rockylinux-test-9 not have an IP address anymore:
+Now list your containers again and note that the rockylinux-test-9 does not have an IP address anymore:
 
 ```
 lxc list
@@ -161,8 +161,7 @@ A new listing using `lxc list` now shows the following:
 +-------------------+---------+----------------------+------+-----------+-----------+
 ```
 
-That should have happened with a simple stop and start of the container, but it does not. Assuming that we want to use a DHCP assigned IP address every time, then we can fix this with a simple crontab entry. To do this, we need to gain shell access to the container by enter
-ing:
+That should have happened with a simple stop and start of the container, but it does not. Assuming that we want to use a DHCP assigned IP address every time, then we can fix this with a simple crontab entry. To do this, we need to gain shell access to the container by entering:
 
 ```
 lxc exec rockylinux-test-9 bash
@@ -253,10 +252,10 @@ The contents of this script are simple:
 
 ```
 
-So what are we doing here? First, we rename eth0 to a new name that we can manage, we've chosen "net0" here. Second, we assign the new static IP that we have allocated for our container. In this case 192.168.1.151. Next, we need to add a route for when we bring up the net0 interface. The "onlink" says to ignore the fact that the interface is currently in the down state and add the route. Finally, we bring up the interface.
+So, what are we doing here? First, we rename eth0 to a new name that we can manage, we've chosen "net0" here. Second, we assign the new static IP that we have allocated for our container. In this case 192.168.1.151. Next, we need to add a route for when we bring up the net0 interface. The "onlink" says to ignore the fact that the interface is currently in the down state and add the route. Finally, we bring up the interface.
 
 
-Make our script exeutable with
+Make our script executable with
 
 ```
 chmod +x /usr/local/sbin/static
