@@ -4,7 +4,7 @@ author: tianci li
 contributors:
 ---
 
-<font color=red>All of the examples in this document use root actions, with ordinary user actions commented separately. In the markdown code block, the command description will be indicated with # on the previous line.</font>
+<font color=red>All of the examples in this document use root actions, with ordinary users actions commented separately. In the markdown code block, the command description will be indicated with # on the previous line.</font>
 
 # Review basic permissions
 
@@ -306,16 +306,16 @@ Take the most common `passwd` command as an example:
 
 ![SetUID1](./images/SetUID1.png)
 
-As you can see, the ordinary user only has r and x, but the owner's x becomes s, proving that the `passwd` command has SUID permissions.
+As you can see, the ordinary users only has r and x, but the owner's x becomes s, proving that the `passwd` command has SUID permissions.
 
-It is well known that the ordinary user (uid >= 1000) can change his own password. The real password is stored in the **/etc/shadow** file, but the permission of the shadows file is 000, and the ordinary user does not have any permissions.
+It is well known that the ordinary users (uid >= 1000) can change his own password. The real password is stored in the **/etc/shadow** file, but the permission of the shadows file is 000, and the ordinary users does not have any permissions.
 
 ```bash
 Shell > ls -l /etc/shadow
 ---------- 1 root root 874 Jan  12 13:42 /etc/shadow
 ```
 
-Since the ordinary user can change their password, they must have written the password to the **/etc/shadow** file. When an ordinary user executes the `passwd` command, it will temporarily change to the owner of the file -- **root**. For **shadow** file, **root** can not be restricted by permissions. This is why `passwd` command needs SUID permission.
+Since the ordinary users can change their password, they must have written the password to the **/etc/shadow** file. When an ordinary users executes the `passwd` command, it will temporarily change to the owner of the file -- **root**. For **shadow** file, **root** can not be restricted by permissions. This is why `passwd` command needs SUID permission.
 
 As mentioned earlier, basic permissions can be represented by numbers, such as 755, 644, and so on. SUID is represented by **4**. For executable binaries, you can set permissions like this -- **4755**.
 
@@ -349,7 +349,7 @@ Shell > chmod u-s FILE_NAME
 
 !!! warning
 
-    Because SUID can temporarily change the average user to root, you need to be especially careful with files with this permission when maintaining the server. You can find files with SUID permissions by using the following command:
+    Because SUID can temporarily change the Ordinary users  to root, you need to be especially careful with files with this permission when maintaining the server. You can find files with SUID permissions by using the following command:
 
     ```bash
     Shell > find / -perm -4000 -a -type f -exec ls -l  {} \;
@@ -381,7 +381,7 @@ Shell > ll /usr/bin/locate
 
 The `locate` command uses the **mlocate.db** database file to quickly search for files.
 
-Because the `locate` command has SGID permission, when the executor (ordinary user) executes the `locate` command, the owner group is switched to **slocate**. `slocate` has r permission for the **/var/lib/mlocate/mlocate.db** file.
+Because the `locate` command has SGID permission, when the executor (ordinary users) executes the `locate` command, the owner group is switched to **slocate**. `slocate` has r permission for the **/var/lib/mlocate/mlocate.db** file.
 
 The SGID is indicated by the number **2**, so the `locate` command has a permission of 2711.
 
@@ -412,7 +412,7 @@ Shell > chmod g-s FILE_NAME
 
 SGID can be used not only for executable binary file/program, but also for directories, but it is rarely used. 
 
-* Ordinary users must have rwx permissions on the directory;
+* Ordinary users must have rwx permissions on the directory.
 * For files created by ordinary users in this directory, the default owner group is the owner group of the directory.
 
 For example:
@@ -436,4 +436,40 @@ Shell(tom) > cd /SGID_dir && touch tom_file && ls -l
     Shell > find / -perm -2000 -a -type f -exec ls -l  {} \;
     ```
 
+### Sticky BIT
 
+The role of "Sticky BIT":
+
+* Only valid for directory.
+* Ordinary users have w and x permissions on this directory.
+* If there is no Sticky Bit, ordinary users with w permission can delete all files in this directory (including files created by other users). Once the directory is given SBIT permission, only root user can delete all files. Even if ordinary users have w permission, they can only delete files created by themselves (files created by other users cannot be deleted).
+
+SBIT is represented by the number **1**.
+
+Can the file/direcyory have **7755** permission?
+No, they are aimed at different objects. SUID is for executable binary files; SGID is used for executable binaries and directories; SBIT is only for directories. That is, you need to set these special permissions according to different objects.
+
+The directory **/tmp** has SBIT permission. The following is an example:
+
+```bash
+# The permissions of the /tmp directory are 1777
+Shell > ls -ld /tmp
+drwxrwxrwt. 8 root root 4096 Jan  14 12:50 /tmp
+
+Shell > su - tom 
+Shell > cd /tmp && touch tom_file1 
+Shell > exit
+
+Shell > su - jack 
+Shell(jack) > cd /tmp && rm -rf tom_file1
+rm: cannot remove 'tom_file1': Operation not permitted
+Shell(jack) > exit
+
+# The file has been deleted
+Shell > su - tom 
+Shell(tom) > rm -rf /tmp/tom_file1
+```
+
+!!! info
+
+    root (uid=0) users are not restricted by the permissions of SUID, SGID, and SBIT.
