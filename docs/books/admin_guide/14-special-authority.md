@@ -292,13 +292,13 @@ default:mask::rwx
 default:other::---
 ```
 
-### SetUID, SetGID, Sticky BIT
+### SetUID
 
 The role of SetUID:
 
 * Only executable binaries can set SUID permissions.
 * The executor of the command should have x permission to the program.
-* The executor of the command obtains the identity of the owner of the program file when executing the program. It is equivalent to that during the execution of the command, the executor temporarily obtains the "transformation" permission.
+* The executor of the command obtains the identity of the owner of the program file when executing the program. 
 * The identity change is only valid during execution, and once the binary program is finished, the executor's identity is restored to the original identity.
 
 Why does GNU/Linux need such strange permissions?
@@ -336,16 +336,16 @@ Shell > chmod u-s FILE_NAME
     When the owner of an executable binary file/program does not have **x**, the use of capital **S** means that the file cannot use SUID permissions.
 
 
-```bash
-# Suppose this is an executable binary file
-Shell > vim suid.sh
-#!/bin/bash
-cd /etc && ls
+    ```bash
+    # Suppose this is an executable binary file
+    Shell > vim suid.sh
+    #!/bin/bash
+    cd /etc && ls
 
-Shell > chmod 4644 suid.sh
-```
+    Shell > chmod 4644 suid.sh
+    ```
 
-![SUID2](./images/SetUID2.png)
+    ![SUID2](./images/SetUID2.png)
 
 !!! warning
 
@@ -354,3 +354,86 @@ Shell > chmod 4644 suid.sh
     ```bash
     Shell > find / -perm -4000 -a -type f -exec ls -l  {} \;
     ```
+
+### SetGID
+
+The role of SetGID:
+
+* Only executable binaries can set SGID permissions.
+* The executor of the command should have x permission to the program.
+* The executor of the command obtains the identity of the owner group of the program file when executing the program. 
+* The identity change is only valid during execution, and once the binary program is finished, the executor's identity is restored to the original identity.
+
+Take the `locate` command for example:
+
+```
+Shell > rpm -ql mlocate
+/usr/bin/locate
+...
+/var/lib/mlocate/mlocate.db
+
+Shell > ls -l /var/lib/mlocate/mlocate.db
+-rw-r----- 1 root slocate 4151779 1月  14 11:43 /var/lib/mlocate/mlocate.db
+
+Shell > ll /usr/bin/locate 
+-rwx--s--x. 1 root slocate 42248 4月  12 2021 /usr/bin/locate
+```
+
+The `locate` command uses the **mlocate.db** database file to quickly search for files.
+
+Because the `locate` command has SGID permission, when the executor (ordinary user) executes the `locate` command, the owner group is switched to **slocate**. `slocate` has r permission for the **/var/lib/mlocate/mlocate.db** file.
+
+The SGID is indicated by the number **2**, so the `locate` command has a permission of 2711.
+
+```bash
+# Set SGID permissions
+Shell > chmod 2711 FILE_NAME
+# or
+Shell > chmod g+s FILE_NAME
+
+# Remove SGID permission
+Shell > chmod 711 FILE_NAME
+# or
+Shell > chmod g-s FILE_NAME
+```
+
+!!! warning
+
+    When the owner group of an executable binary file/program does not have **x**, the use of capital **S** means that the file cannot use GUID permissions.
+
+    ```bash
+    # Suppose this is an executable binary file
+    Shell > touch sgid
+
+    Shell > chmod 2741 sgid
+    Shell > ls -l sgid
+    -rwxr-S--x  1 root root         0 Jan  14 12:11 sgid
+    ```
+
+SGID can be used not only for executable binary file/program, but also for directories, but it is rarely used. 
+
+* Ordinary users must have rwx permissions on the directory;
+* For files created by ordinary users in this directory, the default owner group is the owner group of the directory.
+
+For example:
+
+```bash
+Shell > mkdir /SGID_dir
+Shell > chmod 2777 /SGID_dir
+Shell > ls -ld /SGID_dir
+drwxrwsrwx  2 root root      4096 Jan 14 12:17 SGID_dir
+
+Shell > su - tom
+Shell(tom) > cd /SGID_dir && touch tom_file && ls -l
+-rw-rw-r-- 1 tom root 0 Jan  14 12:26 tom_file
+```
+
+!!! warning
+
+    Because SGID can temporarily change the owner group of ordinary users to root, you need to pay special attention to the files with this permission when maintaining the server. You can find files with SGID permissions through the following command:
+
+    ```bash
+    Shell > find / -perm -2000 -a -type f -exec ls -l  {} \;
+    ```
+
+
