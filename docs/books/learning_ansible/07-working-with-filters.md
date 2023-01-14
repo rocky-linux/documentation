@@ -2,7 +2,6 @@
 title: Working With Filters
 author: Antoine Le Morvan
 contributors: Steven Spencer
-update: 11-23-2021
 ---
 
 # Ansible - Working with filters
@@ -13,8 +12,8 @@ In this chapter you will learn how to transform data with jinja filters.
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Transform data structures as dictionnaries or lists;   
-:heavy_check_mark: Transform variables;   
+:heavy_check_mark: Transform data structures as dictionaries or lists; 
+:heavy_check_mark: Transform variables. 
 
 :checkered_flag: **ansible**, **jinja**, **filters**
 
