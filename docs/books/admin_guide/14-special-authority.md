@@ -473,3 +473,150 @@ Shell(tom) > rm -rf /tmp/tom_file1
 !!! info
 
     root (uid=0) users are not restricted by the permissions of SUID, SGID, and SBIT.
+
+### chattr
+
+The function of chattr permission: it is used to protect important files or directories in the system from being deleted by misoperation.
+
+Usage of the `chattr` command -- `chattr [ -RVf ] [ -v version ] [ -p project ] [ mode ] files...`
+
+The format of a symbolic mode is +-=[aAcCdDeFijPsStTu].
+
+* "+" means to increase permissions; 
+* "-" means to reduce permissions; 
+* "=" means equal to a permission.
+
+The most commonly used permissions(also called attribute) are **a** and **i**.
+
+#### Description of attribute i:
+
+|            | Delete | Free modification | Append file content | View | Create file | 
+|:----------:|:------:|:-----------------:|:-------------------:|:----:|:-----------:|
+| file       |  ×     |       ×           |   ×                 | √    |    -        |
+| directory  |  x <br>(Directory and files under the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory)  | √ <br>(Files in the directory)  |  x |
+
+Examples for files:
+
+```bash
+Shell > touch /tmp/filei
+Shell > vim /tmp/filei
+123
+
+Shell > chattr +i /tmp/filei
+Shell > lsattr -a /tmp/filei
+----i---------e----- /tmp/filei
+
+Shell > rm -rf /tmp/filei
+rm: cannot remove '/tmp/filei': Operation not permitted
+
+# Cannot be modified freely
+Shell > vim /tmp/file1
+
+Shell > echo "adcd" >> /tmp/filei 
+-bash: /tmp/filei: Operation not permitted
+
+Shell > cat /tmp/filei
+123
+```
+
+Examples for directories:
+
+```bash
+Shell > mkdir /tmp/diri
+Shell > cd /tmp/diri && echo "qwer" > f1
+
+Shell > chattr +i /tmp/diri
+Shell > lsattr -ad /tmp/diri
+----i---------e----- /tmp/diri
+
+Shell > rm -rf /tmp/diri
+rm: cannot remove '/tmp/diri/f1': Operation not permitted
+
+# Allow modification
+Shell > vim /tmp/diri/f1
+qwer-tom
+
+Shell > echo "jim" >> /tmp/diri/f1
+Shell > cat /tmp/diri/f1
+qwer-tom
+jim
+
+Shell > touch /tmp/diri/file2
+touch: settng time of '/tmp/diri/file2': No such file or directory
+```
+
+Remove the i attribute from the above example:
+
+```bash
+Shell > chattr -i /tmp/filei /tmp/diri
+```
+
+#### Description of attribute a:
+
+|            | Delete | Free modification | Append file content | View | Create file | 
+|:----------:|:------:|:-----------------:|:-------------------:|:----:|:-----------:|
+| file       |  ×     |       ×           |   √                 | √    |    -        |
+| directory  |  x <br>(Directory and files under the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory) | √  |
+
+Examples for files:
+
+```bash
+Shell > touch /etc/tmpfile1
+Shell > echo "zxcv" > /etc/tmpfile1
+
+Shell > chattr +a /etc/tmpfile1
+Shell > lsattr -a /etc/tmpfile1
+-----a--------e----- /etc/tmpfile1
+
+Shell > rm -rf /etc/tmpfile1
+rm: cannot remove '/etc/tmpfile1': Operation not permitted
+
+# Cannot be modified freely
+Shell > vim /etc/tmpfile1
+
+Shell > echo "new line" >> /etc/tmpfile1
+Shell > cat /etc/tmpfile1
+zxcv
+new line
+```
+
+Examples for directories:
+
+```bash
+Shell > mkdir /etc/dira
+Shell > cd /etc/dira && echo "asdf" > afile
+
+Shell > chattr +a /etc/dira
+Shell > lsattr -a /etc/dira
+-----a--------e----- /etc/dira/
+
+Shell > rm -rf /etc/dira
+rm: cannot remove '/etc/dira/afile': Operation not permitted
+
+# Allow modification
+Shell > vim /etc/dira/afile
+asdf-bcd
+
+Shell > echo "new line" >> /etc/dira/afile
+Shell > cat /etc/dira/afile
+asdf-bcd
+new line
+
+# Allow creation of new files
+Shell > touch /etc/dira/newfile
+```
+
+Remove the a attribute from the above example:
+
+```bash
+Shell > chattr -a /etc/tmpfile1 /etc/dira/
+```
+
+!!! question
+
+    What happens when i set the ai property on a file? 
+    You cannot do anything with the file other than to view it.
+
+    What about the directory?
+    Allowed are: free modification, appending file contents, and viewing.
+    Disallowed: delete and create files.
