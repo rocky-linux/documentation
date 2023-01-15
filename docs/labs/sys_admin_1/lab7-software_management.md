@@ -26,18 +26,18 @@ You will find that one of your routine tasks as a Systems Admin is software mana
 - update already installed software
 
 
-Software can be installed on Linux based systems using several methods. You can install from source or from precompiled binaries. The latter method is by far thee easier way but it is also the least customizable. When you install from precompiled binaries most of the work has already been done for you – but even then you do need to know the name and where to find the particular software you want.
+Software can be installed on Linux based systems using several methods. You can install from source or from precompiled binaries. The latter method is by far the easier way but it is also the least customizable. When you install from precompiled binaries most of the work has already been done for you – but even then, you do need to know the name and where to find the particular software you want.
 
 Almost all software originally come as C or "C++" programming language source files. The source programs are usually distributed as archives of source files. Usually  tar’ed or gzip’ed "gzip’ed" or bzip2’ed "bzip2’ed" files. This means they come compressed or as a single bundle.
 
-Most developers have made their source code conform to GNU standards, thereby making it easier to share with others. It also means that the packages will compile on any UNIX or UNIX like system ( e.g. Linux)
+Most developers have made their source code conform to GNU standards, thereby making it easier to share with others. It also means that the packages will compile on any UNIX or UNIX like system (e.g., Linux)
 
 RPM is the underlying tool for managing applications (packages) on Red Hat based distros like such as  Rocky Linux, Fedora, Red Hat Enterprise Linux (RHEL), openSuSE, Mandrake and so on.
 
 The applications used for managing software on Linux distros are called package managers. Examples are:
 
 - The Red Hat Package Manager (rpm). The packages have the suffix “ .rpm”
-- The Debian package management system (dpkg).  The packages have the suffix "suffix" “ .deb”
+- The Debian package management system (dpkg).  The packages have the suffix “ .deb”
 
 Some popular command-line options and syntax for the RPM command are listed next:
 
@@ -78,10 +78,10 @@ Install/Upgrade/Erase options:
   -e, --erase=<package>+             erase (uninstall) package
       --excludedocs                  do not install documentation
       --excludepath=<path>           skip files with leading component <path>
-      --force                        short hand for --replacepkgs --replacefiles
+      --force                        shorthand for --replacepkgs --replacefiles
   -F, --freshen=<packagefile>+       upgrade package(s) if already installed
   -h, --hash                         print hash marks as package installs (good with -v)
-      --noverify                     short hand for --ignorepayload --ignoresignature
+      --noverify                     shorthand for --ignorepayload --ignoresignature
   -i, --install                      install package(s)
       --nodeps                       do not verify package dependencies
       --noscripts                    do not execute package scriptlet(s)
@@ -102,7 +102,7 @@ Install/Upgrade/Erase options:
 In this Lab you will learn how to use the RPM system and you will also install a sample application on your system.
 
 !!! TIP:
-    You have lots of options per where to obtain Rocky Linux packages from. You can manually download them from trusted [or untrusted] repositories. You    can get them from the distribution ISO. You can get them from a centrally shared location using protocols such as - nfs, git, https, ftp, smb, cifs and so  on. If you are curious you can view the following official website and browse through the applicable repository for the desired package(s)  :
+    You have lots of options per where to obtain Rocky Linux packages from. You can manually download them from trusted [or untrusted] repositories. You can get them from the distribution ISO. You can get them from a centrally shared location using protocols such as - nfs, git, https, ftp, smb, cifs and so  on. If you are curious you can view the following official website and browse through the applicable repository for the desired package(s):
     https://download.rockylinux.org/pub/rocky/8.5/
 
 
@@ -132,7 +132,7 @@ Epoch       : 1
 That's a lot of information (metadata)!
 
 3.  Let's say we are only interested in the Summary field of the previous command. We can use rpm's query format option filter the information that we get  back from the query option.
- For example to view only the summary field , type:
+ For example to view only the summary field, type:
    
 ```
 $ rpm -q --queryformat '%{summary}\n' NetworkManager
@@ -147,7 +147,7 @@ $ rpm -q --queryformat '%{version}  %{summary}\n' NetworkManager
 5.  Type the command to view information about the bash package that is installed on the system.
 
 !!! NOTE
-    The previous exercises were querying and working with packages that are already installed on the system. In the following exercises, we'll start off  working with packages that are not yet installed.We'll use the DNF application to download the packages that we'll be using in the next steps.
+    The previous exercises were querying and working with packages that are already installed on the system. In the following exercises, we'll start off working with packages that are not yet installed. We'll use the DNF application to download the packages that we'll be using in the next steps.
 
 6.  First check to make sure that wget application is not already installed on the system. Type:
 
@@ -157,7 +157,7 @@ package wget is not installed
 ```
 It looks like wget is not installed on our demo system.
 
-7. The curl utility is a popular open source application used for transfering data. 
+7. The curl utility is a popular open-source application used for transferring data. 
    Let's use curl to download the wget package from the official Rocky Linux online repository. Type:
 
 ```
@@ -181,9 +181,9 @@ Group       : Applications/Internet
 ...<TRUNCATED>...
 ```
 
-10. From your output in the previous step, what exactly is the wget package ? Hint you can use the rpm queryformat option to view the description field for the download package.
+10. From your output in the previous step, what exactly is the wget package? Hint you can use the rpm query format option to view the description field for the download package.
 
-11. If you are interested in the files that are contained in the wget-*.rpm package, you could list all the files that comes with the package by typinggg:
+11. If you are interested in the files that are contained in the wget-*.rpm package, you could list all the files that comes with the package by typing:
 
 ```
 $ rpm -qlp wget-*.rpm | head
@@ -203,7 +203,7 @@ $ cat /usr/share/doc/wget/AUTHORS
 cat: /usr/share/doc/wget/AUTHORS: No such file or directory
 ```
 
-The wget is not [yet] installed on our demo system! And so we can't view the AUTHORS file that is packaged with it!!
+The wget is not [yet] installed on our demo system! And so, we can't view the AUTHORS file that is packaged with it!
 
 
 13.  View the list of files that come with another package (curl) that is *already* installed on the system. Type:
@@ -264,11 +264,11 @@ Check one more time that the newly downloaded package passes RPMs integrity chec
 
 While trying to install software on your system, you might stumble on issues of “failed dependencies”. This is especially common when using the low-level RPM utility to manually manage applications on a system.
 
-For example if you try to install package “abc.rpm” the RPM installer might complain about some failed dependencies. It might tell you that package “abc.rpm” requires another package “xyz.rpm” to first be installed.
+For example, if you try to install package “abc.rpm” the RPM installer might complain about some failed dependencies. It might tell you that package “abc.rpm” requires another package “xyz.rpm” to first be installed.
 The issue of dependencies comes up because software applications almost always depend on some other software or library. If a required program or shared library is not already present on the system, then that prerequisite will have to satisfied before installing the target application. 
 
 
-The low level RPM utility often knows about the inter-depencies between applications. But it does not usually know how or where to obtain the application or library needed to resolve the issue. Stated another way, RPM knows the *what* and *how* but does not have the built-in ability to answer the *where* question. This is where tools like DNF, yum and so on shine. 
+The low-level RPM utility often knows about the inter-dependencies between applications. But it does not usually know how or where to obtain the application or library needed to resolve the issue. Stated another way, RPM knows the *what* and *how* but does not have the built-in ability to answer the *where* question. This is where tools like DNF, yum and so on shine. 
 
 #### To install packages
 
@@ -285,11 +285,11 @@ Right out the gate - a dependency problem! The sample output shows that wget nee
 
 
 !!! NOTE
-    According to the output of the test above, the wget-*.rpm package requires that the libmetalink-*.rpm package be installed. i.e. libmetalink is a prerequisite for installing wget-*.rpm.
+    According to the output of the test above, the wget-*.rpm package requires that the libmetalink-*.rpm package be installed. I.e., libmetalink is a prerequisite for installing wget-*.rpm.
     You can forcefully install wget-*.rpm package using the “nodeps” option, if you absolutely know what you are doing. But this is generally a BAD practice. 
 
 
-2. RPM has helpfully given us a hint for what's missing. You'll remember that rpm knows the whats and hows but does not necessarily know the wheres. Let's use the dnf utility to try to figure out the package name that provides the missing library. Type:
+2. RPM has helpfully given us a hint for what's missing. You'll remember that rpm knows the what's and how's but does not necessarily know the where's. Let's use the dnf utility to try to figure out the package name that provides the missing library. Type:
     
 ```
 $ dnf whatprovides libmetalink.so.3
@@ -300,9 +300,9 @@ Matched from:
 Provide    : libmetalink.so.3
 ```
 
-3. From the output, we need to download the libmetalink package which provides the missing liberary. 
-Specificvally we want the 64bit version of the library. 
-Let's call on a separate utility (dnf) to help us find and download the package for our demo 64bit (x86_64) architecture . Type:
+3. From the output, we need to download the libmetalink package which provides the missing library. 
+Specifically we want the 64bit version of the library. 
+Let's call on a separate utility (dnf) to help us find and download the package for our demo 64bit (x86_64) architecture. Type:
 
 ```
 dnf download --arch x86_64  libmetalink
@@ -323,7 +323,7 @@ $ sudo rpm -ivh wget-*.rpm
 ```
     
 !!! NOTE
-    RPM supports transactions. In the previous exercises we could have performed a single rpm transaction that included the original package we wanted to     install (i.e. ) as well as all the packages and libraries it depends on. A single command such as the one below would have sufficed:
+    RPM supports transactions. In the previous exercises we could have performed a single rpm transaction that included the original package we wanted to install (i.e. ) as well as all the packages and libraries it depends on. A single command such as the one below would have sufficed:
     `$  rpm -Uvh  wget-*.rpm  libmetalink-*.rpm`
 
 7. Moment of truth now. Try running the wget program without any option to see if it is installed. Type:
@@ -393,10 +393,10 @@ $ sudo rpm -e libmetalink wget
 ```
 
 !!! NOTE
-     If you want to break the package that relies on libmetalink and *forcefully* remove the package from your system you can use rpm's `--nodeps` option like this - 
+     If you want to break the package that relies on libmetalink and *forcefully* remove the package from your system, you can use rpm's `--nodeps` option like this - 
      `$ sudo rpm  -e  --nodeps  libmetalink`
 
-    i. The “nodeps” option means No dependencies. i.e. ignore all dependencies.
+    i. The “nodeps” option means No dependencies. I.e., ignore all dependencies.
     ii. The above is just to show you how to forcefully remove a package from your system. There may be
     times when you need to this, but it is generally *not a good practice*.
     iii. Forcefully removing a package “xyz” that another installed package “abc” relies on effectively makes package “abc” unusable or somewhat broken.
@@ -410,7 +410,7 @@ $ sudo rpm -e libmetalink wget
 
 DNF is one of the many tools used for managing software on RPM based systems such as Rocky Linux system. In comparison to rpm, these higher-level tools help to simplify installing, uninstalling, querying packages. It is important to note that these tools make use of the underlying framework provided by the RPM system. This is why it is useful to first understand how to use RPM itself.
 
-DNF (and other tools like it) acts as a sort of wrapper around RPM and provides additinal functionality not offered by RPM. DNF knows how to deal with package and library dependencies and additionally knows how to automatically make use of configured repositories to resolve most issues.
+DNF (and other tools like it) acts as a sort of wrapper around RPM and provides additional functionality not offered by RPM. DNF knows how to deal with package and library dependencies and additionally knows how to automatically make use of configured repositories to resolve most issues.
 
 Common options used with the dnf utility are:
 
@@ -474,7 +474,7 @@ libmetalink-*           wget-*
 Complete!
 ```
 !!! TIP:
-    The "-y" option used in the preceding command suppresses the "[y/N]" prompt to confirm the action that yum is about to perform.  Instead it automatically assumes "yes" (y) for whatever action.
+    The "-y" option used in the preceding command suppresses the "[y/N]" prompt to confirm the action that yum is about to perform. Instead, it automatically assumes "yes" (y) for whatever action.
 
 
 1. DNF provides a "Environment Group option that makes it easy to add a new feature set to a system. To add the feature, you would normally have to individually install a few packages, but using dnf you all you need to know is the name or description of the feature that you want. 
@@ -521,13 +521,13 @@ DNF can be used to check for and install the latest version of individual packag
 $ dnf list wget
 ```
 
-1. If you only want to see if there are updated versions available for a package use the check-update option with dnf. For example for the wget package type:
+1. If you only want to see if there are updated versions available for a package, use the check-update option with dnf. For example, for the wget package type:
 
 ```
 $ dnf check-update wget
 ```
 
-4. Now list all the available versions for the kernal package for your system. Type:
+4. Now list all the available versions for the kernel package for your system. Type:
 
 ```
 $ sudo dnf list kernel
@@ -615,7 +615,7 @@ A new directory named  hello-2.12 should have been created for you during the un
 $ cd hello-2.12 ; ls
 ```
 
-6. It is always good practise, to review any special installation instructions that might be come with the source code. Those files usually have names like: INSTALL, README and so on.
+6. It is always good practice, to review any special installation instructions that might be come with the source code. Those files usually have names like: INSTALL, README and so on.
 
 Use a pager to open up the INSTALL file and read it. Type:
 ```
@@ -632,7 +632,7 @@ The script that usually lets you configure the software is usually aptly named �
 
 1.  Use the ls command again to make sure that you indeed have a file named *configure* in your pwd.  
 
-2.  To see all the options you can enable or disable in the hello program type:
+2.  To see all the options, you can enable or disable in the hello program type:
 
 $ ./configure --help
 
@@ -649,11 +649,11 @@ $ ./configure
 
     Hopefully the configure stage went smoothly and you can go on to the compilation stage.
 
-    If you got some errors during the configure stage, you should carefully look through the tail-end of the output to see the source of the error. The errors are *sometimes* self explanatory and easy to fix. For example you might see an error like:
+    If you got some errors during the configure stage, you should carefully look through the tail-end of the output to see the source of the error. The errors are *sometimes* self-explanatory and easy to fix. For example, you might see an error like:
 
     configure: error: no acceptable C compiler found in $PATH
 
-    The above error simply means that you don’t have a  C Compiler (e.g. gcc) installed on the system or the compiler is installed somewhere that is not  in your PATH variable.
+    The above error simply means that you don’t have a C Compiler (e.g., gcc) installed on the system or the compiler is installed somewhere that is not in your PATH variable.
 
 
 
@@ -675,9 +675,9 @@ If all goes well - this important make step is the step that will help generate 
 
 2. List the files in your current working directory again. You should see some newly created files in there including the hello program.
 
-#### To install the applictaion
+#### To install the application
 
-Amongst other house keeping tasks, the final installation step also involves copying any application binaries and libraries over to the proper folders. 
+Amongst other housekeeping tasks, the final installation step also involves copying any application binaries and libraries over to the proper folders. 
 
 1. To install the hello application run the make install command. Type:
 
