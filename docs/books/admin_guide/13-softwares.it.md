@@ -15,8 +15,8 @@ tags:
 
 Su un sistema Linux, è possibile installare il software in due modi:
 
-    * Utilizzando un pacchetto di installazione;
-    * Compilandolo da un file sorgente.
+* Utilizzando un pacchetto di installazione;
+* Compilandolo da un file sorgente.
 
 !!! Note "Nota"
 
@@ -415,7 +415,7 @@ Repo-pkgs          : 1,650
 Repo-available-pkgs: 1,107
 Repo-size          : 6.4 G
 Repo-mirrors       : https://mirrors.rockylinux.org/mirrorlist?arch=aarch64&repo=PowerTools-8
-Repo-baseurl       : https://mirror2.sandyriver.net/pub/rocky/8.6/PowerTools/x86_64/os/ (30 more)
+Repo-baseurl       : https://mirror2.sandyriver.net/pub/rocky/8.7/PowerTools/x86_64/os/ (30 more)
 Repo-expire        : 172,800 second(s) (last: Tue 22 Mar 2022 05:49:24 PM CET)
 Repo-filename      : /etc/yum.repos.d/Rocky-PowerTools.repo
 ...
@@ -523,6 +523,209 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial # GPG public key path
 
 Per impostazione predefinita, la direttiva `enabled` è assente, il che significa che il repository è abilitato. Per disabilitare un repository, è necessario specificare la direttiva `enabled=0`.
 
+## Moduli DNF
+
+I moduli sono stati introdotti in Rocky Linux 8 dall'upstream. Per utilizzare i moduli, il repository AppStream deve esistere ed essere abilitato.
+
+!!! hint "Confusione tra i pacchetti"
+
+    La creazione di flussi di moduli nel repository AppStream ha creato molta confusione. Poiché i moduli sono impacchettati all'interno di un flusso (si vedano i nostri esempi qui sotto), un particolare pacchetto viene visualizzato nei nostri RPM, ma se si tenta di installarlo senza abilitare il modulo, non succede nulla. Ricordate di guardare i moduli se cercate di installare un pacchetto e non lo trovate.
+
+### Cosa sono i moduli
+
+I moduli provengono dal repository AppStream e contengono sia flussi che profili. Questi possono essere descritti come segue:
+
+* **flussi di moduli:** Un flusso di moduli può essere considerato come un repository separato all'interno del repository AppStream che contiene diverse versioni di applicazioni. Questi repository di moduli contengono gli RPM delle applicazioni, le dipendenze e la documentazione per quel particolare flusso. Un esempio di flusso di moduli in Rocky Linux 8 è `postgresql`. Se si installa `postgresql` utilizzando la procedura standard `sudo dnf install postgresql` si otterrà la versione 10. Tuttavia, utilizzando i moduli, è possibile installare le versioni 9.6, 12 o 13.
+
+* **profili dei moduli:** Un profilo del modulo prende in considerazione il caso d'uso del flusso del modulo quando si installa il pacchetto. L'applicazione di un profilo regola i pacchetti RPM, le dipendenze e la documentazione per soddisfare l'uso del modulo. Utilizzando lo stesso flusso `postgresql` del nostro esempio, è possibile applicare un profilo "server" o "client". Ovviamente, non è necessario installare gli stessi pacchetti sul sistema se si intende usare `postgresql` solo come client per accedere a un server.
+
+### Elenco dei moduli
+
+È possibile ottenere un elenco di tutti i moduli eseguendo il seguente comando:
+
+```
+dnf module list
+```
+
+In questo modo si ottiene un lungo elenco dei moduli disponibili e dei profili che possono essere utilizzati per essi. Il fatto è che probabilmente sapete già a quale pacchetto siete interessati, quindi per scoprire se ci sono moduli per un particolare pacchetto, aggiungete il nome del pacchetto dopo "list". Utilizzeremo di nuovo l'esempio del pacchetto `postgresql`:
+
+```
+dnf module list postgresql
+```
+
+Si otterrà un risultato simile a questo:
+
+```
+Rocky Linux 8 - AppStream
+Name                       Stream                 Profiles                           Summary                                            
+postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
+postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
+postgresql                 12                     client, server [d]                 PostgreSQL server and client module                
+postgresql                 13                     client, server [d]                 PostgreSQL server and client module
+```
+
+Nell'elenco si noti la dicitura "[d]". Ciò significa che è l'impostazione predefinita. Mostra che la versione predefinita è la 10 e che, indipendentemente dalla versione scelta, se non si specifica un profilo, verrà utilizzato il profilo del server, che è anche quello predefinito.
+
+### Abilitazione dei Moduli
+
+Utilizzando il nostro pacchetto di esempio `postgresql`, supponiamo di voler abilitare la versione 12. Per farlo, è sufficiente utilizzare la seguente procedura:
+
+```
+dnf module enable postgresql:12
+```
+
+Il comando enable richiede il nome del modulo seguito da un ":" e il nome del flusso.
+
+Per verificare che sia stato abilitato il flusso del modulo `postgresql` versione 12, utilizzare nuovamente il comando list che dovrebbe mostrare il seguente output:
+
+```
+Rocky Linux 8 - AppStream
+Name                       Stream                 Profiles                           Summary                                            
+postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
+postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
+postgresql                 12 [e]                 client, server [d]                 PostgreSQL server and client module                
+postgresql                 13                     client, server [d]                 PostgreSQL server and client module
+```
+
+Qui si può notare il simbolo "[e]" per "enabled" accanto allo stream 12, quindi sappiamo che la versione 12 è abilitata.
+
+### Installazione dei pacchetti dal flusso del modulo
+
+Ora che il nostro flusso di moduli è abilitato, il passo successivo è installare `postgresql`, l'applicazione client per il server postgresql. Questo può essere ottenuto eseguendo il seguente comando:
+
+```
+dnf install postgresql
+```
+
+Che dovrebbe fornire questo risultato:
+
+```
+========================================================================================================================================
+ Package                    Architecture           Version                                              Repository                 Size
+========================================================================================================================================
+Installing group/module packages:
+ postgresql                 x86_64                 12.12-1.module+el8.6.0+1049+f8fc4c36                 appstream                 1.5 M
+Installing dependencies:
+ libpq                      x86_64                 13.5-1.el8                                           appstream                 197 k
+
+Transaction Summary
+========================================================================================================================================
+Install  2 Packages
+Total download size: 1.7 M
+Installed size: 6.1 M
+Is this ok [y/N]:
+```
+
+Dopo aver approvato digitando "y", verrà installata l'applicazione.
+
+### Installazione di pacchetti dai profili di flusso del modulo
+
+È anche possibile installare direttamente i pacchetti senza nemmeno dover abilitare il flusso dei moduli! In questo esempio, supponiamo di voler applicare il profilo client solo alla nostra installazione. Per farlo, basta inserire questo comando:
+
+```
+dnf install postgresql:12/client
+```
+
+Che dovrebbe fornire questo risultato:
+
+```
+========================================================================================================================================
+ Package                    Architecture           Version                                              Repository                 Size
+========================================================================================================================================
+Installing group/module packages:
+ postgresql                 x86_64                 12.12-1.module+el8.6.0+1049+f8fc4c36                 appstream                 1.5 M
+Installing dependencies:
+ libpq                      x86_64                 13.5-1.el8                                           appstream                 197 k
+Installing module profiles:
+ postgresql/client
+Enabling module streams:
+ postgresql                                        12
+
+Transaction Summary
+========================================================================================================================================
+Install  2 Packages
+
+Total download size: 1.7 M
+Installed size: 6.1 M
+Is this ok [y/N]:
+```
+
+Rispondendo "y" al prompt, si installerà tutto ciò che serve per utilizzare postgresql versione 12 come client.
+
+### Rimozione e Ripristino del modulo o Commutazione
+
+Dopo l'installazione, si potrebbe decidere che, per qualsiasi motivo, è necessaria una versione diversa dello stream. Il primo passo è rimuovere i pacchetti. Utilizzando di nuovo il nostro pacchetto di esempio `postgresql`, lo faremo con:
+
+```
+dnf remove postgresql
+```
+
+Questa procedura mostrerà un risultato simile a quello della procedura di installazione precedente, tranne che per la rimozione del pacchetto e di tutte le sue dipendenze. Rispondere "y" alla richiesta e premere invio per disinstallare `postgresql`.
+
+Una volta completata questa fase, è possibile lanciare il comando di reset per il modulo utilizzando:
+
+```
+dnf module reset postgresql
+```
+
+Che fornirà un risultato come questo:
+
+```
+Dependencies resolved.
+========================================================================================================================================
+ Package                         Architecture                   Version                           Repository                       Size
+========================================================================================================================================
+Disabling module profiles:
+ postgresql/client                                                                                                                     
+Resetting modules:
+ postgresql                                                                                                                            
+
+Transaction Summary
+========================================================================================================================================
+
+Is this ok [y/N]:
+```
+
+Rispondendo "y" al prompt, `postgresql` tornerà al flusso predefinito e il flusso che avevamo abilitato (12 nel nostro esempio) non sarà più abilitato:
+
+```
+Rocky Linux 8 - AppStream
+Name                       Stream                 Profiles                           Summary                                            
+postgresql                 9.6                    client, server [d]                 PostgreSQL server and client module                
+postgresql                 10 [d]                 client, server [d]                 PostgreSQL server and client module                
+postgresql                 12                     client, server [d]                 PostgreSQL server and client module                
+postgresql                 13                     client, server [d]                 PostgreSQL server and client module
+```
+
+Ora è possibile utilizzare l'impostazione predefinita.
+
+Si può anche usare il sottocomando switch-to per passare da un flusso abilitato a un altro. Utilizzando questo metodo non solo si passa al nuovo flusso, ma si installano i pacchetti necessari (sia per il downgrade che per l'upgrade) senza un passaggio separato. Per usare questo metodo per abilitare lo stream `postgresql` versione 13 e usare il profilo "client", si deve usare:
+
+```
+dnf module switch-to postgresql:13/client
+```
+
+### Disattivare un flusso di moduli
+
+Può capitare che si voglia disabilitare la possibilità di installare pacchetti da un flusso di moduli. Nel caso del nostro esempio di `postgresql`, questo potrebbe essere dovuto al fatto che si vuole usare il repository direttamente da [PostgreSQL](https://www.postgresql.org/download/linux/redhat/), in modo da poter usare una versione più recente (al momento in cui scriviamo, le versioni 14 e 15 sono disponibili da questo repository). La disabilitazione di un flusso di moduli rende impossibile l'installazione di qualsiasi pacchetto senza prima abilitarlo nuovamente.
+
+Per disabilitare i flussi del modulo per `postgresql` è sufficiente fare:
+
+```
+dnf module disable postgresql
+```
+
+Se si elencano di nuovo i moduli `postgresql`, si vedrà quanto segue, tutte le versioni dei moduli `postgresql` sono disabilitate:
+
+```
+Rocky Linux 8 - AppStream
+Name                       Stream                   Profiles                          Summary                                           
+postgresql                 9.6 [x]                  client, server [d]                PostgreSQL server and client module               
+postgresql                 10 [d][x]               client, server [d]                PostgreSQL server and client module               
+postgresql                 12 [x]                   client, server [d]                PostgreSQL server and client module               
+postgresql                 13 [x]                   client, server [d]                PostgreSQL server and client module
+```
+
 ## Il repository EPEL
 
 ### Che cos’è EPEL e come si usa?
@@ -533,7 +736,7 @@ Fornisce pacchetti che non sono inclusi nei repository RHEL ufficiali. Questi no
 
 ### Installazione
 
-L'installazione dei file necessari può essere facilmente fatta con il pacchetto fornito di default da Rocky Linux.
+L'installazione dei file necessari può essere effettuata facilmente con il pacchetto fornito di default da Rocky Linux.
 
 Se sei dietro un proxy internet:
 
@@ -568,9 +771,9 @@ Description  : This package contains the Extra Packages for Enterprise Linux
              : (EPEL) repository GPG key as well as configuration for yum.
 ```
 
-Il pacchetto, come puoi vedere dalla descrizione di cui sopra, non contiene eseguibili, librerie, ecc... ma solo i file di configurazione e le chiavi GPG per l'impostazione del repository.
+Il pacchetto, come si può vedere dalla descrizione del pacchetto sopra, non contiene eseguibili, librerie, ecc... ma solo i file di configurazione e le chiavi GPG per impostare il repository.
 
-Un altro modo per verificare la corretta installazione è quello di interrogare il database rpm.
+Un altro modo per verificare la corretta installazione è quello di interrogare il database degli rpm.
 
 ```bash
 rpm -qa | grep epel
@@ -669,7 +872,7 @@ CCfits-devel.aarch64                                              2.5-14.el8    
 
 Dal comando possiamo vedere che per installare da EPEL dobbiamo forzare **dnf** a interrogare il repository richiesto con le opzioni `--disablerepo` e `--enablerepo`, questo perché altrimenti una corrispondenza trovata in altri repository opzionali (RPM Fusion, REMI, ELRepo, ecc.) potrebbe essere più recente e quindi avere la priorità. Queste opzioni non sono necessarie se hai installato EPEL come solo repository opzionale perché i pacchetti nel repository non saranno mai disponibili in quelli ufficiali. Almeno nella stessa versione!
 
-!!! attenzione "Considerazione sul supporto"
+!!! attenzione "Considerazione sul Supporto"
 
     Un aspetto da considerare per quanto riguarda il supporto (aggiornamenti, correzioni di bug, patch di sicurezza) è che i pacchetti EPEL non hanno alcun supporto ufficiale da RHEL e tecnicamente la loro vita potrebbe durare lo spazio di uno sviluppo di Fedora (sei mesi) e poi scomparire. Questa è una possibilità remota ma una da considerare.
 
@@ -696,4 +899,4 @@ Is this ok [y/N]:
 
 ### Conclusione
 
-EPEL non è un repository ufficiale per RHEL. Ma può essere utile per amministratori e sviluppatori che lavorano con RHEL o derivate e hanno bisogno di alcune utilità preparate per RHEL da una fonte di cui possono sentirsi sicuri.
+EPEL non è un repository ufficiale per RHEL. Ma può essere utile per gli amministratori e gli sviluppatori che lavorano con RHEL o derivati e hanno bisogno di alcune utility preparate per RHEL da una fonte di cui possono fidarsi.
