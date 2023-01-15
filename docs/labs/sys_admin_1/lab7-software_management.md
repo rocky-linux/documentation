@@ -102,7 +102,7 @@ Install/Upgrade/Erase options:
 In this Lab you will learn how to use the RPM system and you will also install a sample application on your system.
 
 !!! TIP:
-    You have lots of options per where to obtain Rocky Linux packages from. You can manually download them from trusted [or untrusted] repositories. You    can get them from the distribution ISO. You can get them from a centrally shared location using protocols such as - nfs, git, https, ftp, smb, cifs and so  on. If you are curious you can view the following official website and browse through the applicable repository for the desired package(s)  :
+    You have lots of options per where to obtain Rocky Linux packages from. You can manually download them from trusted [or untrusted] repositories. You can get them from the distribution ISO. You can get them from a centrally shared location using protocols such as - nfs, git, https, ftp, smb, cifs and so  on. If you are curious you can view the following official website and browse through the applicable repository for the desired package(s):
     https://download.rockylinux.org/pub/rocky/8.5/
 
 
