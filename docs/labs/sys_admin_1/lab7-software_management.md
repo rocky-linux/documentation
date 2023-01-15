@@ -30,7 +30,7 @@ Software can be installed on Linux based systems using several methods. You can 
 
 Almost all software originally come as C or "C++" programming language source files. The source programs are usually distributed as archives of source files. Usually  tar’ed or gzip’ed "gzip’ed" or bzip2’ed "bzip2’ed" files. This means they come compressed or as a single bundle.
 
-Most developers have made their source code conform to GNU standards, thereby making it easier to share with others. It also means that the packages will compile on any UNIX or UNIX like system (e.g., Linux)
+Most developers have made their source code conform to GNU standards, thereby making it easier to share with others. It also means that the packages will compile on any UNIX or UNIX like system (e.g., Linux).
 
 RPM is the underlying tool for managing applications (packages) on Red Hat based distros like such as  Rocky Linux, Fedora, Red Hat Enterprise Linux (RHEL), openSuSE, Mandrake and so on.
 
@@ -132,7 +132,7 @@ Epoch       : 1
 That's a lot of information (metadata)!
 
 3.  Let's say we are only interested in the Summary field of the previous command. We can use rpm's query format option filter the information that we get  back from the query option.
- For example to view only the summary field, type:
+ For example, to view only the summary field, type:
    
 ```
 $ rpm -q --queryformat '%{summary}\n' NetworkManager
