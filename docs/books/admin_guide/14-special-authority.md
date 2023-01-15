@@ -294,7 +294,7 @@ default:other::---
 
 ### SetUID
 
-The role of SetUID:
+The role of "SetUID":
 
 * Only executable binaries can set SUID permissions.
 * The executor of the command should have x permission to the program.
@@ -357,7 +357,7 @@ Shell > chmod u-s FILE_NAME
 
 ### SetGID
 
-The role of SetGID:
+The role of "SetGID":
 
 * Only executable binaries can set SGID permissions.
 * The executor of the command should have x permission to the program.
@@ -620,3 +620,69 @@ Shell > chattr -a /etc/tmpfile1 /etc/dira/
     What about the directory?
     Allowed are: free modification, appending file contents, and viewing.
     Disallowed: delete and create files.
+
+### sudo
+
+The role of "sudo":
+
+* Through the root user, assign the commands that can only be executed by the root user (uid=0) to ordinary users for execution.
+* The operation object of "sudo" is the system command.
+
+We know that only the administrator root has permission to use the commands under **/sbin/** and **/usr/sbin/** in the GNU/Linux directory. Generally speaking, a company has a team to maintain a set of servers. This set of servers can refer to a single computer room in one geographic location, or it can refer to a computer room in multiple geographical locations. The team leader uses the permissions of the root user, and other team members may only have the permissions of the ordinary user. As the person in charge has a lot of work, there is no time to maintain the daily work of the server, most of the work needs to be maintained by ordinary users. However, ordinary users have many restrictions on the use of commands, and at this point, you need to use sudo permissions.
+
+To grant permissions to ordinary users, **you must use the root user (uid=0)**.
+
+You can empower ordinary users by using the `visudo` command, what you're actually changing is the **/etc/sudoers** file.
+
+```bash
+Shell > visudo
+...
+88 Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+89 
+90 ## Next comes the main part: which users can run what software on
+91 ## which machines (the sudoers file can be shared between multiple
+92 ## systems).
+93 ## Syntax:
+94 ##
+95 ##      user    MACHINE=COMMANDS
+96 ##
+97 ## The COMMANDS section may have other options added to it.
+98 ##
+99 ## Allow root to run any commands anywhere
+100 root    ALL=(ALL)       ALL
+     ↓       ↓    ↓          ↓
+     1       2    3          4
+...
+```
+
+| Part | Description |
+|:----:|-------------|
+| 1    | User name or owner group name. Refers to which user/group is granted permissions. If it is an owner group, you need to write "%", such as **%root**. |
+| 2    | Which machines are allowed to execute commands. It can be a single IP address, a network segment, or ALL. |
+| 3    | Indicates which identities can be transformed into. |
+| 4    | The authorized command, which needs to be represented by an absolute path. |
+
+For example:
+
+```bash
+Shell > visudo
+...
+101 tom  ALL=/sbin/shutdown  -r now 
+...
+
+# You can use the "-c" option to check for errors in /etc/sudoers writing.
+Shell > visudo -c
+
+Shell > su - tom
+# View the available sudo commands.
+Shell(tom) > sudo -l
+
+# To use the available sudo command, ordinary users need to add sudo before the command.
+Shell(tom) > sudo /sbin/shutdown -r now
+```
+
+If your authorization command is `/sbin/shutdown`, it means that authorized users can use any of the options of the command.
+
+!!! warning
+
+    Because sudo is a "ultra vires" operation, you need to be careful when dealing with **/etc/sudoers** files!
