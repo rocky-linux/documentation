@@ -2,6 +2,9 @@
 title: Special authority
 author: tianci li
 contributors:
+tags:
+  - advanced permissions
+  - access control
 ---
 
 <font color=red>All of the examples in this document use root actions, with ordinary users actions commented separately. In the markdown code block, the command description will be indicated with # on the previous line.</font>
