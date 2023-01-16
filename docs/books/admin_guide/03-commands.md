@@ -538,10 +538,10 @@ total 1332
 -rw-r--r--.  1 root root    283 18 may.  17:05 mtab
 ```
 
-* List `/var` files larger than 1 megabyte but less than 1 gigabyte:
+* List `/var` files larger than 1 megabyte but less than 1 gigabyte. The example here uses advanced `grep` commands with regular expressions. Novices don't have to struggle too much, there will be a special tutorial to introduce these regular expressions in the future.
 
 ```bash
-$ ls -lhR  /var | grep \- | grep [1-9]*M
+$ ls -lhR /var/ | grep ^\- | grep -E "[1-9]*\.[0-9]*M" 
 ...
 -rw-r--r--. 1 apache apache 1.2M 10 may.  13:02 XB RiyazBdIt.ttf
 -rw-r--r--. 1 apache apache 1.2M 10 may.  13:02 XB RiyazBd.ttf
