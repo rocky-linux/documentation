@@ -191,7 +191,7 @@ The **mask** is used to specify the maximum valid permissions. The permissions g
 
 !!! info
 
-    "Logical and" means: that if all are true, the result is true; If there is one false, the result is false.
+    "Logical and" means: that if all are true, the result is true; if there is one false, the result is false.
 
     | Permissions set by users | Mask permissions | Result |
     |:---:|:---:|:---:|
