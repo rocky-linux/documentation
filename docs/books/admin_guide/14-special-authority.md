@@ -1,7 +1,7 @@
 ---
-title: Special authority
+title: Special Authority
 author: tianci li
-contributors:
+contributors: Serge Croisé
 tags:
   - advanced permissions
   - access control
