@@ -489,7 +489,7 @@ The format of a symbolic mode is +-=[aAcCdDeFijPsStTu].
 * "-" means to reduce permissions; 
 * "=" means equal to a permission.
 
-The most commonly used permissions(also called attribute) are **a** and **i**.
+The most commonly used permissions (also called attribute) are **a** and **i**.
 
 #### Description of attribute i:
 
