@@ -25,7 +25,7 @@ Their meanings are as follows:
 | Part | Description |
 |------|-------------|
 | 1    | File type. `-` indicates that this is an ordinary file. Seven file types will be introduced later. |
-| 2    | Permissions of owner user, the meaning of rwx respectively means: read, write, execution.  |
+| 2    | Permissions of owner user, the meaning of rwx respectively means: read, write, execute.  |
 | 3    | Permissions of the owner group. |
 | 4    | Permissions of other users. |
 | 5    | Number of subdirectories (`.` and `..` included). For a file, it represents the number of hard links, and 1 represents itself. |
