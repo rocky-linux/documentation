@@ -617,7 +617,7 @@ Shell > chattr -a /etc/tmpfile1 /etc/dira/
 
 !!! question
 
-    What happens when i set the ai attribute on a file? 
+    What happens when I set the ai attribute on a file? 
     You cannot do anything with the file other than to view it.
 
     What about the directory?
