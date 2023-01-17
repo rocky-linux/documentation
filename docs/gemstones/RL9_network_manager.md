@@ -28,7 +28,7 @@ shell > nmtui
 |Activate a connection||
 |Set system hostname||
 |Quit||
-||\<OK\>|
+||OK|
 
 * `nmcli`. Use the command line to configure the network, either a pure command line or an interactive command line.
 
@@ -76,11 +76,11 @@ In RHEL 9 and the corresponding community version operating systems, consistent 
 
 Add some suffixes to the prefix, such as:
 
-* **o<on-board_index_number>**
-* **s<hot_plug_slot_index_number>[f<function>][d<device_id>]**
-* **x<MAC_address>**
-* **[P<domain_number>]p<bus>s<slot>[f<function>][d<device_id>]**
-* **[P<domain_number>]p<bus>s<slot>[f<function>][u<usb_port>][…​][c<config>][i<interface>]**
+* **o** on-board_index_number
+* **s** hot_plug_slot_index_number **[f]** function **[d]** device_id
+* **x** MAC_address
+* **[P]** domain number **p** bus **s** slot **[f]** function **[d]** device_id
+* **[P]** domain number **p** buss **s** slot **[f]** function **[u]** usb port **[c]** config **[i]** interface
 
 You can use `man 7 systemd.net-naming-scheme` to get more detailed information. 
 
