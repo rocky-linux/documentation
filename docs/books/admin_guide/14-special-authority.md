@@ -318,7 +318,7 @@ Shell > ls -l /etc/shadow
 ---------- 1 root root 874 Jan  12 13:42 /etc/shadow
 ```
 
-Since the ordinary users can change their password, they must have written the password to the **/etc/shadow** file. When an ordinary users executes the `passwd` command, it will temporarily change to the owner of the file -- **root**. For **shadow** file, **root** can not be restricted by permissions. This is why `passwd` command needs SUID permission.
+Since the ordinary users can change their password, they must have written the password to the **/etc/shadow** file. When an ordinary user executes the `passwd` command, it will temporarily change to the owner of the file -- **root**. For **shadow** file, **root** can not be restricted by permissions. This is why `passwd` command needs SUID permission.
 
 As mentioned earlier, basic permissions can be represented by numbers, such as 755, 644, and so on. SUID is represented by **4**. For executable binaries, you can set permissions like this -- **4755**.
 
