@@ -55,7 +55,7 @@ For file:
 |:----------------------:|--------------|-------------|
 |4                       | r(read)      | Indicates that you can read this file. You can use commands such as `cat`, `head`, `more`, `less`, `tail`, etc. |
 |2                       | w(write)     | Indicates that the file can be modified. Commands such as `vim` can be used. |
-|1                       | x(execution) | Permissions for executable files (such as scripts or binaries)|
+|1                       | x(execution) | Permissions for executable files (such as scripts or binaries). |
 
 For directory:
 
