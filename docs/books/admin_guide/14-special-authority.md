@@ -261,7 +261,7 @@ Shell > ls -l /project
 ```
 
 Now there is a question: if I create a new file in this directory, does it have ACL permission?
-The answer is no, because the newly created file is after the command `setfacl-m u:tom:rx -R / project` is executed.
+The answer is no, because the newly created file is after the command `setfacl-m u:tom:rx -R /project` is executed.
 
 ```bash
 Shell > touch /project/file3
@@ -402,7 +402,7 @@ Shell > chmod g-s FILE_NAME
 
 !!! warning
 
-    When the owner group of an executable binary file/program does not have **x**, the use of capital **S** means that the file cannot use GUID permissions.
+    When the owner group of an executable binary file/program does not have **x**, use uppercase **S** to indicate that the file's SGID permissions cannot be used correctly.
 
     ```bash
     # Suppose this is an executable binary file
