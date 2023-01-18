@@ -172,7 +172,7 @@ The principle of LVM is very simple, that is, a logical abstraction layer is add
 
 **LV(Logical Volume)**: Similar to hard disk partitions in standard partitions, LV is built on top of VG. You can set up a file system on LV.
 
-<b><font color="blue">PE</font></b>: The smallest unit of storage that can be allocated in a Physical Volume, default to <b>4MB</b>. You can specify an additional size
+<b><font color="blue">PE</font></b>: The smallest unit of storage that can be allocated in a Physical Volume, default to <b>4MB</b>. You can specify an additional size.
 
 <b><font color="blue">LE</font></b>: The smallest unit of storage that can be allocated in a Logical Volume. In the same VG, PE and LE are the same and correspond one to one.
 
