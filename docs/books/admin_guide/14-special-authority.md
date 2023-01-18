@@ -402,7 +402,7 @@ Shell > chmod g-s FILE_NAME
 
 !!! warning
 
-    When the owner group of an executable binary file/program does not have **x**, use uppercase S to indicate that the file's SGID permissions cannot be used correctly.
+    When the owner group of an executable binary file/program does not have **x**, use uppercase **S** to indicate that the file's SGID permissions cannot be used correctly.
 
     ```bash
     # Suppose this is an executable binary file
