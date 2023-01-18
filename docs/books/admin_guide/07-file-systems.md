@@ -102,7 +102,7 @@ sudo fdisk -l /dev/sdc2
 
 The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`. We recommend that you use the `parted` command instead.
 
-The `parted` command can be used either command-line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
+The `parted` command can be used either on the command-line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
 
 ```
 parted [-l] [device]
@@ -719,7 +719,7 @@ In the GNU/Linux world, there are seven file types:
 
 #### Supplementary description of directory
 
-In each directory, there are two hidden files - **.** and **..**. You need to use `ls -al` to view, for example:
+In each directory, there are two hidden files:  **.** and **..**. You need to use `ls -al` to view, for example:
 
 ```bash
 # . Indicates that in the current directory, for example, you need to execute a script in a directory, usually:
