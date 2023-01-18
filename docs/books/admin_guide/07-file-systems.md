@@ -1,5 +1,10 @@
 ---
 title: File System
+author: Antoine Morvan
+contributors: Steven Spencer, tianci li, Serge Croise
+tags:
+  - file system
+  - system administration
 ---
 
 # File System
@@ -44,7 +49,7 @@ For **MBR** partition table types, the same physical disk can be divided into a 
     There can be only one extended partition per physical disk, that is, a physical disk can have in the MBR partition table up to:
     
     1. Three primary partitions plus one extended partition
-    2. 4 primary partitions 
+    2. Four primary partitions 
 
     The extended partition cannot write data and format, and can only contain logical partitions. The largest physical disk that can be recognized by the MBR partition table is **2TB**.
 
@@ -95,7 +100,7 @@ sudo fdisk -l /dev/sdc2
 
 ### `parted` command
 
-The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`. So we recommend that you use the `parted` command even more.
+The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`. We recommend that you use the `parted` command instead.
 
 The `parted` command can be used either command-line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
 
@@ -162,7 +167,11 @@ The partition created by the **standard partition** cannot dynamically adjust th
 * Mirrored volumes (recopy);
 * Volume snapshots (_snapshot_).
 
-The principle of LVM is very simple, that is, a logical abstraction layer is added between the physical disk (or disk partition) and the file system, merge multiple disks (or disk partition) into Volume Group(**VG**) and perform underlying disk management operations on them through something called Logical Volume(**LV**).
+The principle of LVM is very simple: 
+
+* a logical abstraction layer is added between the physical disk (or disk partition) and the file system
+* merge multiple disks (or disk partition) into Volume Group(**VG**) 
+* perform underlying disk management operations on them through something called Logical Volume(**LV**).
 
 **The physical media**: The storage medium of the LVM can be the entire hard disk, disk partition, or RAID array. The device must be converted, or initialized, to an LVM Physical Volume(**PV**), before further operations can be performed.
 
@@ -180,7 +189,7 @@ The principle of LVM is very simple, that is, a logical abstraction layer is add
 
 The disadvantage is that if one of the physical volumes becomes out of order, then all the logical volumes that use this physical volume are lost. You will have to use LVM on raid disks.
 
-!!! Note
+!!! note
 
     LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
 
@@ -832,7 +841,7 @@ The description of **directory permissions** is as follows:
 | Directory permissions | Description                                                                        |
 | :---------------:     | -------------                                                                      |
 | r                     | Read. Allows reading the contents of a directory (`ls -R`).                        |
-| w                     | Write. Allows you to create, and delete  files/directories in this directory, such as commands `mkdir`, `rmdir`, `rm`, `touch`, and so on.  |
+| w                     | Write. Allows you to create, and delete files/directories in this directory, such as commands `mkdir`, `rmdir`, `rm`, `touch`, and so on.  |
 | x                     | Execute. Allows descending in the directory (`cd`).                                |
 | -                     | No right                                                                           |
 
