@@ -80,7 +80,7 @@ $ sudo groupadd -g 1012 GroupeB
 | Opzione  | Descrizione                                                                                                                        |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `-g GID` | `GID` del gruppo da creare.                                                                                                        |
-| `-f`     | Il sistema sceglie un`GID` se quello specificato dall'opzione `-g` esiste già.                                                     |
+| `-t`     | Il sistema sceglie un`GID` se quello specificato dall'opzione `-g` esiste già.                                                     |
 | `-r`     | Crea un gruppo di sistema con un `GID` tra `SYS_GID_MIN` e `SYS_GID_MAX`. Queste due variabili sono definite in `/etc/login.defs`. |
 
 Regole di denominazione del gruppo:
@@ -116,7 +116,7 @@ $ sudo groupmod -g 1016 GroupP
 $ sudo groupmod -n GroupC GroupB
 ```
 
-| Opzione   | Descrizione                           |
+| Opzione   | Osservazioni                          |
 | --------- | ------------------------------------- |
 | `-g GID`  | Nuovo `GID` del gruppo da modificare. |
 | `-n name` | Nuovo nome.                           |
@@ -369,7 +369,7 @@ $ sudo useradd -D -g 1000 -b /home -s /bin/bash
 | `-b directory` | Imposta la directory di accesso predefinita.                                         |
 | `-g group`     | Imposta il gruppo predefinito.                                                       |
 | `-s shell`     | Imposta la shell predefinita.                                                        |
-| `-f`           | Il numero di giorni di scadenza della password prima che l'account sia disabilitato. |
+| `-t`           | Il numero di giorni di scadenza della password prima che l'account sia disabilitato. |
 | `-e`           | La data in cui l'account sarà disabilitato.                                          |
 
 ### comando `usermod`
