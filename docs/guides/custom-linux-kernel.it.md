@@ -59,6 +59,12 @@ Una fonte comune di fallimento riscontrata durante il processo di creazione del 
     > sudo dnf -y groupinstall 'C Development Tools and Libraries'
     ```
 
+    Se si ottiene l'errore "Il modulo o il gruppo 'Strumenti di sviluppo e librerie C' non è disponibile", il comando seguente è equivalente a quello precedente:
+
+     ```
+    > sudo dnf -y groupinstall 'Development Tools'
+    ```
+
 2. Alcune altre librerie, file di intestazione e applicazioni di cui si potrebbe aver bisogno possono essere ottenute installando i seguenti pacchetti. Digita:
 
     ```
