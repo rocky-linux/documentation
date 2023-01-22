@@ -58,7 +58,7 @@ The only other options that we need to specify in this example is:
 * -e, specify the remote shell to use
 * --delete, which says if the target directory has a file in it that doesn't exist on the source, get rid of it
 
-Next, we need to set up a script by creating a file for it. (Again, use your favorite editor if you are not familiar with vi.) To create the file, just use this command:
+Next, we need to set up a script by creating a file for it (again, use your favorite editor if you are not familiar with vi). To create the file, just use this command:
 
 `vi /usr/local/sbin/rsync_dirs`
 
