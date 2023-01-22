@@ -68,7 +68,7 @@ And then make it executable:
 
 ## Testing
 
-Now, scripting makes it super simple and safe so that you can test it fearlessly. Please note that the URL used below is "Soure.domain.com". Replace it with the domain or IP address of your own source computer, both will work. Also remember that in this example, the script is created on the "target" computer, because the file is pulled from the source computer:
+Now, scripting makes it super simple and safe so that you can test it fearlessly. Please note that the URL used below is "source.domain.com". Replace it with the domain or IP address of your own source computer, both will work. Also remember that in this example, the script is created on the "target" computer, because the file is pulled from the source computer:
 
 ```
 #!/bin/bash
@@ -103,7 +103,7 @@ Run the script again:
 
 Verify that the file no longer exists on the target computer.
 
-Finally, let's create a file on the target machine that doesn't exist on the source. So on the target:
+Finally, let's create a file on the target machine that doesn't exist on the source. So, on the target:
 
 `touch /home/your_user/a_different_file.txt`
 
@@ -148,11 +148,11 @@ This will pull up the cron, which may look something like this:
 #
 # m h  dom mon dow   command
 ```
-The cron is set up on a 24 hour clock, so what we will need for our entry at the bottom of this file is:
+The cron is set up on a 24-hour clock, so what we will need for our entry at the bottom of this file is:
 
 `00 23   *  *  *    /usr/local/sbin/rsync_dirs`
 
-What this says is to run this command at 00 minutes, 23 hundred hours, every day, every month, and every day of the week. Save your cron entry with:
+What this says is to run this command at 00 minute, 23 h, every day, every month, and every day of the week. Save your cron entry with:
 
 `Shift : wq!`
 
