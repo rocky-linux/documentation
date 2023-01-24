@@ -52,7 +52,7 @@ Use `dnf` to swap the installed `curl-minimal` package with regular `curl` packa
 
 To confirm the changes, query the rpm database again for the installed curl package(s) by running:
 
-```
+```bash
 # rpm -qa | grep  ^curl
 curl-*
 ```
@@ -67,14 +67,14 @@ DNF Swap Command
 
 **Syntax**:
 
-```
+```bash
 dnf [options] swap <package-to-be-removed> <replacement-package>
 ```
 
 Under the hood, `dnf swap` uses DNF's `--allowerasing` option to resolve any package conflict issues. Therefore the curl minimal example demonstrated in this GEMstone could also have been done by running:
 
 
-```
+```bash
 dnf install -y --allowerasing curl
 ```
 
