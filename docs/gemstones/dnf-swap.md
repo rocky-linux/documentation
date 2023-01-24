@@ -18,9 +18,11 @@ tags:
 
 In order to make container images and cloud images as small as possible, distribution maintainers and packagers may sometimes ship stripped down versions of popular packages. Examples of stripped down packages bundled with container or cloud images are vim-minimal, curl-minimal and so on.
 
-Although some of the shipped packages are stripped down versions, they are often fully functional for most use cases.
+Although some of the shipped packages are stripped down versions, they are often fully acceptable for most use cases.
 
 For cases, when the stripped down package is not enough, you can use the `dnf swap` command to quickly replace the minimal package with the regular package.
+
+# Objective
 
 This Rocky Linux GEMstone demonstrates how to use **dnf** to _swap_ the bundled `curl-minimal` package with the regular `curl` package.
 
@@ -59,7 +61,7 @@ curl-*
 And it's a GEM !
 
 
-### Notes
+## Notes
 
 DNF Swap Command
 
