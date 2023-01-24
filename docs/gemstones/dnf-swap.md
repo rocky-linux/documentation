@@ -58,7 +58,6 @@ And it's a GEM !
 
 ### Notes
 
-```
 DNF Swap Command
 
 **Syntax**:
@@ -66,11 +65,12 @@ DNF Swap Command
 ```
 dnf [options] swap <package-to-be-removed> <replacement-package>
 ```
+
 Under the hood, `dnf swap` uses DNF's --allowerasing option to resolve any package conflict issues. Therefore the curl minimal example demonstrated in this GEMstone could also have been done by running:
 
-**dnf install -y --allowerasing curl**
-  
 
+```
+**dnf install -y --allowerasing curl**
 ```
 
 
