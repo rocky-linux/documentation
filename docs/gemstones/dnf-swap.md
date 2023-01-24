@@ -31,7 +31,7 @@ This Rocky Linux GEMstone demonstrates how to use **dnf** to _swap_ the bundled 
 
 While logged into your container or virtual machine environment as a user with Administrative privileges, first verify the variant of `curl` package installed. Type:
 
-```
+```bash
 $ rpm -qa | grep  ^curl-minimal
 curl-minimal-*
 ```
@@ -43,7 +43,7 @@ We have curl-minimal on our demo system!
 
 Use `dnf` to swap the installed `curl-minimal` package with regular `curl` package.
 
-```
+```bash
 # dnf -y swap curl-minimal curl
 
 ```
