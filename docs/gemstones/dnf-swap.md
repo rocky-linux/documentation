@@ -10,7 +10,7 @@ tags:
   - dnf swap
   - curl
   - curl-minimal
-  - --allowerasing
+  - allowerasing
 ---
 
 
