@@ -8,6 +8,9 @@ tags:
   - containers
   - dnf
   - dnf swap
+  - curl
+  - curl-minimal
+  - --allowerasing
 ---
 
 
@@ -48,7 +51,7 @@ Use `dnf` to swap the installed `curl-minimal` package with regular `curl` packa
 To confirm the changes, query the rpm database again for the installed curl package(s) by running:
 
 ```
-# **rpm -qa | grep  ^curl
+# rpm -qa | grep  ^curl
 curl-*
 ```
 
