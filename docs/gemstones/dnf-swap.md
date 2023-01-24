@@ -13,7 +13,7 @@ tags:
 
 # Introduction
 
-In order to make container images and cloud images as small as possible, distribution maintainers and packagers may sometimes ship stripped down versions of popular packages.Examples of stripped down packages bundled with container or cloud images are vim-minimal, curl-minimal and so on.
+In order to make container images and cloud images as small as possible, distribution maintainers and packagers may sometimes ship stripped down versions of popular packages. Examples of stripped down packages bundled with container or cloud images are vim-minimal, curl-minimal and so on.
 
 Although some of the shipped packages are stripped down versions, they are often fully functional for most use cases.
 
@@ -27,7 +27,7 @@ This Rocky Linux GEMstone demonstrates how to use **dnf** to _swap_ the bundled 
 While logged into your container or virtual machine environment as a user with Administrative privileges, first verify the variant of `curl` package installed. Type:
 
 ```
-$ rpm -qa | grep  ^curl-minimal-*
+$ rpm -qa | grep  ^curl-minimal
 curl-minimal-*
 ```
 
@@ -48,7 +48,7 @@ Use `dnf` to swap the installed `curl-minimal` package with regular `curl` packa
 To confirm the changes, query the rpm database again for the installed curl package(s) by running:
 
 ```
-# **rpm -qa | grep  ^curl**
+# **rpm -qa | grep  ^curl
 curl-*
 ```
 
@@ -70,7 +70,7 @@ Under the hood, `dnf swap` uses DNF's --allowerasing option to resolve any packa
 
 
 ```
-**dnf install -y --allowerasing curl**
+dnf install -y --allowerasing curl
 ```
 
 
