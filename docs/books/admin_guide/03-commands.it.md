@@ -780,7 +780,7 @@ $ cp -r /home/rockstar /tmp
 | Opzioni | Informazione                                                                 |
 | ------- | ---------------------------------------------------------------------------- |
 | `-i`    | Richiesta di conferma per la sovrascrittura (default).                       |
-| `-t`    | Non chiedere conferma per la sovrascrittura del file di destinazione.        |
+| `-f`    | Non chiedere conferma per la sovrascrittura del file di destinazione.        |
 | `-p`    | Mantiene il proprietario, le autorizzazioni e il timestamp del file copiato. |
 | `-r`    | Copia una directory con i suoi file e sottodirectory.                        |
 | `-s`    | Crea un collegamento simbolico invece di copiare.                            |
@@ -953,7 +953,7 @@ tail [-f] [-n x] file
 | Opzione | Descrizione                                    |
 | ------- | ---------------------------------------------- |
 | `-n x`  | Visualizza le ultime `x` righe del file        |
-| `-t`    | Visualizza le modifiche al file in tempo reale |
+| `-f`    | Visualizza le modifiche al file in tempo reale |
 
 Esempio:
 
