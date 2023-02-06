@@ -98,7 +98,7 @@ The "somehost.localdomain" shows us that we need to make some changes, so stop t
 
 Since we aren't setting up a complete, fully functional mail server, the configuration options that we will be using are not as extensive. The first thing we need to do is to modify the _main.cf_ file (literally the main configuration file for postfix), so let's make a backup first:
 
-`cp /etc/postifix/main.cf /etc/postfix/main.cf.bak`
+`cp /etc/postfix/main.cf /etc/postfix/main.cf.bak`
 
 Then edit it:
 
