@@ -1,3 +1,12 @@
+---
+title: Style Guide
+author: Ezequiel Bruni, Krista Burdine
+contributors: Steven Spencer
+tags:
+  - contribute
+  - style guide
+---
+
 # Rocky Linux Documentation Style Guide
 
 *Rocky Linux is the fastest-growing enterprise Linux in the world, with its documentation also growing exponentially thanks to contributors like you. Your content is welcome in any format, and the RL document stylists will help you align it with the standards set forth here.*
@@ -18,8 +27,8 @@ This guide outlines English-language style standards to **improve readability, h
 For a more complete understanding of contributing, please consult our related guides:
 
 * [Rocky Linux Contribution Guide](https://docs.rockylinux.org/guides/contribute/) for system and software requirements for getting started.
-* [Rocky Linux First Time Contributors Guide](https://docs.rockylinux.org/guides/contribute/beginners/) for an orientation to GitHub, our documentation home base.
-* [Rocky Docs Formatting](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) for Markdown structure.
+* [Rocky Linux First Time Contributors Guide](../beginners/) for an orientation to GitHub, our documentation home base.
+* [Rocky Docs Formatting](../rockydocs_formatting/) for Markdown structure.
 
 ## Style Guidelines
 
@@ -44,7 +53,7 @@ For a more complete understanding of contributing, please consult our related gu
   * Identify and avoid unnecessarily technical terms. Consider that your audience is mostly people who have some familiarity with the subject matter, but may not be subject-matter experts.
   * Exceptions to plain language:
     * For documentation addressed to newcomers or beginners, or for writing content such as a blog post, a more conversational style is appropriate.
-    * For documentation addressed to advanced users or API documentation, a more formal or terse wording style is appropriate.
+    * For documentation addressed to advanced users or API (Application Programming Interface) documentation, a more formal or terse wording style is appropriate.
 * **Inclusive language.**
   * Language use evolves over time. Certain words have evolved to carry negative connotations so documentation should be rewritten to use new words.
     * *Master/slave* becomes *primary/secondary* or an agreed upon organizational standard.
@@ -92,7 +101,7 @@ If you have a procedure with only one step, use a bullet rather than a number. F
 
 ### Admonitions
 
-Within Markdown, admonitions are a way to put information into a box to highlight it. They are not essential to documentation, but they are a tool you may find useful. Learn more about admonitions from our [Rocky Formatting doc](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/).
+Within Markdown, admonitions are a way to put information into a box to highlight it. They are not essential to documentation, but they are a tool you may find useful. Learn more about admonitions from our [Rocky Formatting doc](../rockydocs_formatting/).
 
 ## Accessibility
 
@@ -117,7 +126,7 @@ Within Markdown, admonitions are a way to put information into a box to highligh
 
 ### Colors
 
-* Some elements in Markdown, such as admonitions, have an assigned color to assist with visual comprehension. In general they also have an assigned name; for example, the “danger” admonition displays a red box but also has the descriptor “danger” built into the description. But when creating a custom admonition, be aware that color cannot the only means of communicating a command or level of warning.
+* Some elements in Markdown, such as admonitions, have an assigned color to assist with visual comprehension. In general they also have an assigned name; for example, the “danger” admonition displays a red box but also has the descriptor “danger” built into the description. But when creating a custom admonition, be aware that color cannot be the only means of communicating a command or level of warning.
 * Any command that includes a sensory direction, such as *above* or *below*, *color*, *size*, *visual location* on the page, etc., should also include a direction that is communicable by only text description.
 * When creating a graphical element, make sure that there is enough contrast between the foreground and background colors to be easy for a screen reader to interpret.
 

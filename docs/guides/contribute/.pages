@@ -8,3 +8,4 @@ nav:
     - ... | local_docs*.md
     - ... | navigation*.md
     - ... | rockydocs_formatting*.md 
+    - ... | style_guide*.md
