@@ -17,9 +17,9 @@ This guide outlines English-language style standards to **improve readability, h
 
 For a more complete understanding of contributing, please consult our related guides:
 
-* [Rocky Linux Contribution Guide](https://docs.rockylinux.org/guides/contribute/) for system and software requirements for getting started
-* [Rocky Linux First Time Contributors Guide](https://docs.rockylinux.org/guides/contribute/beginners/) for an orientation to GitHub, our documentation home base
-* [Rocky Docs Formatting](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) for Markdown structure
+* [Rocky Linux Contribution Guide](https://docs.rockylinux.org/guides/contribute/) for system and software requirements for getting started.
+* [Rocky Linux First Time Contributors Guide](https://docs.rockylinux.org/guides/contribute/beginners/) for an orientation to GitHub, our documentation home base.
+* [Rocky Docs Formatting](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) for Markdown structure.
 
 ## Style Guidelines
 
@@ -69,10 +69,15 @@ If you have a procedure with only one step, use a bullet rather than a number. F
 ### Graphical Interface Language
 
 * Text instructions regarding a UI: When describing a command to be entered into a user interface, use the word “enter” rather than “put” or “type.” Use a codeblock to write out the command (i.e., set it off with backticks):
+
 *Example Markdown text*
+
 `In the **commit message** box, enter update_thisdoc.`
+
 * Names of UI elements: **Bold** names of UI elements such as buttons, menu items, names of dialog boxes, and more, even if the word will not be clickable:
+
 *Example Markdown text*
+
 `In the **Format** menu, click **Line Spacing**.`
 
 ## Structure
@@ -97,7 +102,7 @@ Within Markdown, admonitions are a way to put information into a box to highligh
 
 * Provide text descriptions in alt-text or captions for every non-text item such as diagrams, images, or icons.
 * Avoid screenshots of text when possible.
-Make alt-text meaningful, not just descriptive. For action icons, for example, enter a description of the function rather than a description of its appearance.
+* Make alt-text meaningful, not just descriptive. For action icons, for example, enter a description of the function rather than a description of its appearance.
 
 ### Links
 
@@ -126,6 +131,6 @@ Make alt-text meaningful, not just descriptive. For action icons, for example, e
 
 This document lays out our contribution standards, including **style guidelines,** how to **structure** your document, and ways to incorporate **inclusivity** and **accessibility** into the text. These are the standards to which we aspire. As you are able, keep these standards in mind when creating and modifying documentation.
 
-However—and do not miss this caveat—**treat these standards as a tool, not an obstacle.** In the spirit of inclusivity and accessibility, we want to make sure your contribution to have a smooth entry into the Rocky family tree. We are a friendly and helpful team of documentarians and stylists, and we will help shepherd your document into its final form.
+However—and do not miss this caveat—**treat these standards as a tool, not an obstacle.** In the spirit of inclusivity and accessibility, we want to make sure your contribution has a smooth entry into the Rocky family tree. We are a friendly and helpful team of documentarians and stylists, and we will help shepherd your document into its final form.
 
 Are you ready? Let’s get started!
