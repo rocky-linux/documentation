@@ -1,89 +1,136 @@
-# The Rocky Linux Documentation Style Guide for Writers
+# Rocky Linux Documentation Style Guide
 
-## Well that was a mouthful
+*Rocky Linux is the fastest-growing enterprise Linux in the world, with its documentation also growing exponentially thanks to contributors like you. Your content is welcome in any format, and the RL document stylists will help you align it with the standards set forth here.*
 
-If you've found your way to this page, then you're a wonderful person who wants to help make Rocky Linux easier to use for everyone. Either that, or you're a wonderful person who is very, very lost.
+## Introduction
 
-No matter. It's good to have you here.
+### About
 
-If you want to contribute English-language documentation to the Rocky Linux project, you should have a look through these guidelines first. Get comfy, familiarize yourself with how we do things, and take it from there. 
+*New contributions are welcome to grow this into the definitive spot on the web for information about using Rocky Linux. You can create docs in the format that makes sense to you, and the documentation team will work with you or otherwise help format it so it looks and feels like part of the Rocky family.*
 
-It'll be fun, for given values of fun. Depends on how much you like nerd stuff.
+This guide outlines English-language style standards to **improve readability, highlight special cases,** and **enhance translation work** across Rocky Linux documentation. For style questions not addressed in this guide, please refer to the following:
 
-### Before we get started
+* [Merriam Webster Dictionary](https://www.merriam-webster.com/)
+* [Chicago Manual of Style (CMOS), 17th ed.](https://www.chicagomanualofstyle.org/home.html)
 
-You don't need to be some sort of programming expert (though it helps) or god-level sysadmin (ditto) to help out with this project, but you will need a few things:
+### Contributing
 
-* A working knowledge of Git, and Github.
-* A working knowledge of Markdown formatting. Here's [a handy guide](https://guides.github.com/features/mastering-markdown/).
-* A good screenshot tool at the ready, and possibly a simple graphics editing program.
-* A willingness to work with editors. Every submission to the docs will be given a once-over (at least) to make sure it's:
-    * Technically correct and working as intended.
-    * Easily read and understood.
+For a more complete understanding of contributing, please consult our related guides:
 
-One last note... I *really* shouldn't have to say this next bit, but this is the internet, and the internet is a strange place: 
+* [Rocky Linux Contribution Guide](https://docs.rockylinux.org/guides/contribute/) for system and software requirements for getting started.
+* [Rocky Linux First Time Contributors Guide](https://docs.rockylinux.org/guides/contribute/beginners/) for an orientation to GitHub, our documentation home base.
+* [Rocky Docs Formatting](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/) for Markdown structure.
 
-*Don't put anything racist, sexist, or otherwise horrible in your documentation.* And put a lid on the really dark humor, 'cause lots of people just aren't ready to see that when they just want to get LiteSpeed up and running with WordPress, or their docker container's being fussy.
+## Style Guidelines
 
-Okay, with that out of the way, here's what you need to know about writing for us:
+*RL documentation aims to use clear and consistent language, for accessibility as well as to aid ongoing translation efforts.*
 
-## Basic writing guidelines
+### Grammar and Punctuation
 
-These principles should apply to all documentation written for Rocky Linux:
+**Distinctives for technical writing** as outlined in the Chicago Manual of Style include the following:
 
-* **Assume a *basic* level of technical competency on the part of the reader.**  
-There *will* be documentation aimed at beginners who've never used Rocky Linux, or RHEL, or built their own servers, but this is an OS for people who have some idea what they want to do with it.
-*  **Include lots of examples, and explain exactly what you mean.**  
-... But don't make too many assumptions. Lots of Linux and server-building newbies will be reading what you write, so be as clear as you can. Explain every step, and every argument or variable you put into the command line.
-* **A screenshot is worth a thousand bits of jargon.**  
-Put the "show" in "show and tell". 'Nuff said.
-* **List the requirements at the top.**  
-On every tutorial, guide, or doc, list the things the reader will need to know or have installed first. There's no worse feeling than getting into the middle of a tutorial, then reading, "Okay, now SSH into your server..." when you haven't had any experience with SSH yet.
-* **Link to other guides on the Rocky docs site when it makes sense**
-If you're writing a tutorial for beginners, and you reference another technology or process for which we have an existing guide, link it. You can say something like, "If you want to know more about SELinux, check out [our guide on the topic](../docs/guides/security/learning_selinux.md)."
-* **Use the metaphor, Luke. And also watch out for the metaphors...**  
-And the analogies, similes, idioms, and more obscure cultural references. While *we generally encourage* the use of all these literary devices to spice up documentation (especially the beginner-focused docs), do your best to keep them simple. Non-native English speakers still need to understand our documentation, especially those who will be translating it.
-* **The Oxford comma**  
-Also known as the serial comma. Love it, use it, and [read up on it](https://en.wikipedia.org/wiki/Serial_comma) if you want to.
-* **Things to italicize**  
-Things have changed since the last version of this document, and italics should be used as they usually are: for *emphasis*. Nothing more, nothing less.
-* **Styling program names**
-It can be helpful, but not strictly necessary, to style app names such as `nginx` with inline code backticks (eg `` `an-app-name` ``). We recommend it because it helps people to find app-specific tips and instructions while skimming.
-* **Styling directories**
-Folders and paths should *always* be styled with the inline code backticks, eg. `/usr/local/bin/`.
+* Double quotation marks (“Chicago style”) rather than single quotation marks (‘Oxford style’).
+* Periods and commas go inside quotation marks “like this,” rather than “like this”.
+* The em dash {shift}+{option}+{-} has no spaces before or after—like this—and is preferred for parenthetical phrases.
+* Use a serial comma before the “and” in a list of three items: “Peas, mustard, and carrots.”
+* Headings should be generally made in headline-style capitalization: Capitalize the first and last words, as well as all nouns, pronouns, verbs, and adverbs. If your document works better with sentence-style capitalization, perhaps because you make frequent references to acronyms, just make it consistent within the entire document.
+* Headings do not need a period or semicolon at the end, even with sentence-style capitalization, unless ending in an abbreviation.
 
-### Admonitions and call-outs
+### Voice and tone
 
-One useful bit of (non-standard) styline that our documentation supports is in the form of callouts, AKA Admonitions. These are blocks of content specifically designed to draw the eye to important information, such as useful tips, notes, and dire warnings. 
+* **Plain language.** This can be described as a *less-conversational* style. Most of our documentation fits within this standard.
+  * Avoid metaphors and idioms.
+  * Say what you mean in as few words as possible.
+  * Identify and avoid unnecessarily technical terms. Consider that your audience is mostly people who have some familiarity with the subject matter, but may not be subject-matter experts.
+  * Exceptions to plain language:
+    * For documentation addressed to newcomers or beginners, or for writing content such as a blog post, a more conversational style is appropriate.
+    * For documentation addressed to advanced users or API documentation, a more formal or terse wording style is appropriate.
+* **Inclusive language.**
+  * Language use evolves over time. Certain words have evolved to carry negative connotations so documentation should be rewritten to use new words.
+    * *Master/slave* becomes *primary/secondary* or an agreed upon organizational standard.
+    * *Blacklist/whitelist* becomes *blocklist/allowlist* or an agreed upon organizational standard.
+    * You may think of other relevant examples as you create documentation.
+  * When speaking of a person of *unknown* or *non-binary* gender, it is now considered acceptable to use “they” as a singular pronoun.
+  * When speaking of one’s capabilities, frame answers as *abilities* rather than *limitations.* For example, if you are wondering whether we have documentation about running Steam on Rocky Linux, the answer is not just “no.” Rather, “Sounds like that’s a great place for you to create something to add to our tree!”
+* **Avoid contractions.** This assists with translation efforts. The exception to this is when writing something in a more conversational tone, such as blog posts or welcome instructions for new members of the community.
 
-Example:
-```
-!!! note This is a note with a custom title
+## Formatting
 
-    This is the content for the note with the custom title. This is more content for the content for the note with... Look, I just watched some Animaniacs. Don't judge me.
-```
+### Dates
 
-The above code will render like so:
+When possible use the name of the month in the format {day} {Month} {year}. However, {Month} {day}, {year} is also acceptable to resolve clarity or appearance issues. Either way, to avoid creating confusion, write out month names rather than using a series of numbers.  For example: 24 January 2023, but January 24, 2023 is also acceptable—with both preferable over 1/24/2023 or 24/01/2023.
 
+### Single-step Procedures
 
-!!! note This is a note with a custom title.
+If you have a procedure with only one step, use a bullet rather than a number. For example:
 
-    This is the content for the note with the custom title. This is more content for the content for the note with... Look, I just watched some Animaniacs. Don't judge me.
+* Implement this idea and move on.
 
-Other Admonition types include "tip", "info", "warning", "quote", "success", "failure", and more.
+### Graphical Interface Language
 
-You can learn more about how to write and format Admonitions in markdown on the [Material for MkDocs website](https://squidfunk.github.io/mkdocs-material/reference/admonitions/).
+* Text instructions regarding a UI: When describing a command to be entered into a user interface, use the word “enter” rather than “put” or “type.” Use a codeblock to write out the command (i.e., set it off with backticks):
 
-## Images & screenshots
-A few tips to help you make the best images you can for tutorials.
+*Example Markdown text*
 
-* There is no strict size requirement for images. Just make sure whatever you want is clearly visible, but don't make the image so big that it'll mess with people on slow connections. Think 1080p max, for most cases.
-* The recommended format for images is JPG, though PNGs are acceptable for simple, vector-style graphics.
-* If there's a lot going on in your screenshot, consider adding a couple of helpful arrows pointing at the things that matter.
-* Terminal commands are best put into a `code` element or block. If you must screenshot your terminal, make sure the text is big enough for people to easily see without zooming in. This is an accessibility concern, so please do be careful of those with visual impairments.
-* Speaking of accessibility, make sure every image has alt text.
+`In the **commit message** box, enter update_thisdoc.`
 
-## Talk to us!
-If you have any questions about getting started, want feedback, or just want to talk, head on over to the [Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) on our Mattermost server. Sing up, ask your questions, and people will usually get back to you in less than a day.
+* Names of UI elements: **Bold** names of UI elements such as buttons, menu items, names of dialog boxes, and more, even if the word will not be clickable:
 
-Sometimes a lot faster. We'd be happy to have you.
+*Example Markdown text*
+
+`In the **Format** menu, click **Line Spacing**.`
+
+## Structure
+
+### Starting content of each guide, or page/chapter of a book
+
+* **Abstract.** A brief statement of what to expect from this page
+* **Objectives.** A bulleted list of what this page will convey to the reader
+* **Skills** required/learned.
+* **Difficulty level.** 1 star for easy, 2 for intermediate, etc.
+* **Reading time.** Divide the number of words in your document by a reading rate of 75 words per minute to determine this number.
+
+### Admonitions
+
+Within Markdown, admonitions are a way to put information into a box to highlight it. They are not essential to documentation, but they are a tool you may find useful. Learn more about admonitions from our [Rocky Formatting doc](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting/).
+
+## Accessibility
+
+*The following standards enhance accessibility for those using accommodations, such as screen readers, to access our documentation.*
+
+### Images
+
+* Provide text descriptions in alt-text or captions for every non-text item such as diagrams, images, or icons.
+* Avoid screenshots of text when possible.
+* Make alt-text meaningful, not just descriptive. For action icons, for example, enter a description of the function rather than a description of its appearance.
+
+### Links
+
+* Make links descriptive, so it is obvious where they will lead either from the text itself or from context. Avoid hyperlinks with names like “click here.”
+* Verify that all links work as described.
+
+### Tables
+
+* Create tables with a logical order left to right, top to bottom.
+* Avoid blank cells at the top or left of the table.
+* Avoid merged cells that span multiple columns.
+
+### Colors
+
+* Some elements in Markdown, such as admonitions, have an assigned color to assist with visual comprehension. In general they also have an assigned name; for example, the “danger” admonition displays a red box but also has the descriptor “danger” built into the description. But when creating a custom admonition, be aware that color cannot the only means of communicating a command or level of warning.
+* Any command that includes a sensory direction, such as *above* or *below*, *color*, *size*, *visual location* on the page, etc., should also include a direction that is communicable by only text description.
+* When creating a graphical element, make sure that there is enough contrast between the foreground and background colors to be easy for a screen reader to interpret.
+
+### Headings
+
+* Use all levels of headings without skipping any levels.
+* Nest all material under headings to aid in readability.
+* Remember that in Markdown only one Level One heading may be used.
+
+## Summary
+
+This document lays out our contribution standards, including **style guidelines,** how to **structure** your document, and ways to incorporate **inclusivity** and **accessibility** into the text. These are the standards to which we aspire. As you are able, keep these standards in mind when creating and modifying documentation.
+
+However—and do not miss this caveat—**treat these standards as a tool, not an obstacle.** In the spirit of inclusivity and accessibility, we want to make sure your contribution has a smooth entry into the Rocky family tree. We are a friendly and helpful team of documentarians and stylists, and we will help shepherd your document into its final form.
+
+Are you ready? Let’s get started!
