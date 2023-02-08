@@ -26,8 +26,7 @@ _Our standards for Rocky documentation._
 
 ### Style Guide
 
-The RL [Style Guide](https://github.com/rocky-linux/documentation/blob/main/docs-style-guide/README.md) outlines standards for the wording within your document. 
-
+The RL [Style Guide](https://docs.rockylinux.org/guides/contribute/style_guide/) outlines standards for the wording within your document. 
 
 ### GitHub  
 
