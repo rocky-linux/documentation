@@ -45,7 +45,7 @@ For a more complete understanding of contributing, please consult our related gu
 * Headings should be generally made in headline-style capitalization: Capitalize the first and last words, as well as all nouns, pronouns, verbs, and adverbs. If your document works better with sentence-style capitalization, perhaps because you make frequent references to acronyms, just make it consistent within the entire document.
 * Headings do not need a period or semicolon at the end, even with sentence-style capitalization, unless ending in an abbreviation.
 
-### Voice and tone
+### Voice and Tone
 
 * **Plain language.** This can be described as a *less-conversational* style. Most of our documentation fits within this standard.
     * Avoid metaphors and idioms.
