@@ -48,19 +48,19 @@ For a more complete understanding of contributing, please consult our related gu
 ### Voice and tone
 
 * **Plain language.** This can be described as a *less-conversational* style. Most of our documentation fits within this standard.
-  * Avoid metaphors and idioms.
-  * Say what you mean in as few words as possible.
-  * Identify and avoid unnecessarily technical terms. Consider that your audience is mostly people who have some familiarity with the subject matter, but may not be subject-matter experts.
-  * Exceptions to plain language:
-    * For documentation addressed to newcomers or beginners, or for writing content such as a blog post, a more conversational style is appropriate.
-    * For documentation addressed to advanced users or API (Application Programming Interface) documentation, a more formal or terse wording style is appropriate.
+    * Avoid metaphors and idioms.
+    * Say what you mean in as few words as possible.
+    * Identify and avoid unnecessarily technical terms. Consider that your audience is mostly people who have some familiarity with the subject matter, but may not be subject-matter experts.
+    * Exceptions to plain language:
+        * For documentation addressed to newcomers or beginners, or for writing content such as a blog post, a more conversational style is appropriate.
+        * For documentation addressed to advanced users or API (Application Programming Interface) documentation, a more formal or terse wording style is appropriate.
 * **Inclusive language.**
-  * Language use evolves over time. Certain words have evolved to carry negative connotations so documentation should be rewritten to use new words.
-    * *Master/slave* becomes *primary/secondary* or an agreed upon organizational standard.
-    * *Blacklist/whitelist* becomes *blocklist/allowlist* or an agreed upon organizational standard.
-    * You may think of other relevant examples as you create documentation.
-  * When speaking of a person of *unknown* or *non-binary* gender, it is now considered acceptable to use “they” as a singular pronoun.
-  * When speaking of one’s capabilities, frame answers as *abilities* rather than *limitations.* For example, if you are wondering whether we have documentation about running Steam on Rocky Linux, the answer is not just “no.” Rather, “Sounds like that’s a great place for you to create something to add to our tree!”
+    * Language use evolves over time. Certain words have evolved to carry negative connotations so documentation should be rewritten to use new words.
+        * *Master/slave* becomes *primary/secondary* or an agreed upon organizational standard.
+        * *Blacklist/whitelist* becomes *blocklist/allowlist* or an agreed upon organizational standard.
+        * You may think of other relevant examples as you create documentation.
+    * When speaking of a person of *unknown* or *non-binary* gender, it is now considered acceptable to use “they” as a singular pronoun.
+    * When speaking of one’s capabilities, frame answers as *abilities* rather than *limitations.* For example, if you are wondering whether we have documentation about running Steam on Rocky Linux, the answer is not just “no.” Rather, “Sounds like that’s a great place for you to create something to add to our tree!”
 * **Avoid contractions.** This assists with translation efforts. The exception to this is when writing something in a more conversational tone, such as blog posts or welcome instructions for new members of the community.
 
 ## Formatting
@@ -80,13 +80,11 @@ If you have a procedure with only one step, use a bullet rather than a number. F
 * Text instructions regarding a UI: When describing a command to be entered into a user interface, use the word “enter” rather than “put” or “type.” Use a codeblock to write out the command (i.e., set it off with backticks):
 
 *Example Markdown text*
-
 `In the **commit message** box, enter update_thisdoc.`
 
 * Names of UI elements: **Bold** names of UI elements such as buttons, menu items, names of dialog boxes, and more, even if the word will not be clickable:
 
 *Example Markdown text*
-
 `In the **Format** menu, click **Line Spacing**.`
 
 ## Structure
