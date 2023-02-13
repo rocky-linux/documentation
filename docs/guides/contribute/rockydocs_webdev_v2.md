@@ -17,8 +17,10 @@ Running a local copy of the documentation website might be useful in the followi
 
 ## Create the content environment
 
-1. Make sure that the prerequisites are satisfied. If not please skip to this section and then return to step here. 
-2. Change the current working directory on your local system to a folder where you intend to do your writing. We'll refer to this directory as
+1. Make sure that the prerequisites are satisfied. If not please skip to the "[Setup the prerequisites](##Setup the prerequisites)" section and then return here. 
+
+2. Change the current working directory on your local system to a folder where you intend to do your writing. 
+  We'll refer to this directory as
 `$ROCKYDOCS` in the rest of this guide.  For our demo here, `$ROCKYDOCS` points to `$HOME/projects/rockydocs` on our demo system.
 
 Create $ROCKYDOCS if it doesn't already exist and change your working directory to $ROCKYDOCS type:
@@ -29,7 +31,7 @@ export ROCKYDOCS=${HOME}/projects/rockydocs
 cd  $ROCKYDOCS
 ```
 
-2. Make sure you have `git` installed (`dnf -y install git`).  While in $ROCKYDOCS use git to clone the official Rocky Documentation content repo. Type:
+3. Make sure you have `git` installed (`dnf -y install git`).  While in $ROCKYDOCS use git to clone the official Rocky Documentation content repo. Type:
 
 ```
 git clone https://github.com/rocky-linux/documentation.git
@@ -37,7 +39,7 @@ git clone https://github.com/rocky-linux/documentation.git
 
 You'll now have a `$ROCKYDOCS/documentation` folder. This folder is a git repository and under git's control.
 
-3. Also use git to clone the official docs.rockylinux.org repo. Type:
+4. Also use git to clone the official docs.rockylinux.org repo. Type:
 
 ```
 git clone https://github.com/rocky-linux/docs.rockylinux.org.git
@@ -48,13 +50,13 @@ You'll now have a `$ROCKYDOCS/docs.rockylinux.org` folder. This folder is a git 
 
 ## Create and Start the RockyDocs web developmwnt environment
 
-4.  Make sure you have podman up and running on your local machine (you can check with `systemctl `). Test by running:
+5.  Make sure you have podman up and running on your local machine (you can check with `systemctl `). Test by running:
 
 ```
 systemctl  enable --now podman.socket
 ```
 
-5. Create a new `docker-compose.yml` file with the following contents:
+6. Create a new `docker-compose.yml` file with the following contents:
 
 ```
 version: '2'
@@ -99,7 +101,7 @@ curl -SL https://raw.githubusercontent.com/rocky-linux/documentation-test/main/d
 ```
 
 
-6. Finally use docker-compose to bring up the service. Type:
+7. Finally use docker-compose to bring up the service. Type:
 
 ```
 docker-compose  up
@@ -119,7 +121,7 @@ http://<SERVER_IP>:8001
 
 
 
-## Install and setup Prerequisites
+## Setup the prerequisites
 
 Install and setup podman and other tools by running:
 
@@ -129,12 +131,15 @@ sudo dnf -y install podman podman-docker git
 sudo systemctl enable --now  podman.socket
 
 ```
+
 Install docker-compose and make it executable. Type:
 
 ```
 curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
 
 chmod 755 /usr/local/bin/docker-compose
+```
+
 
 Fix permissions on docker socket. Type:
 
