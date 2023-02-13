@@ -110,6 +110,13 @@ docker-compose  up
 
 ## View the local docs.rockylinux.org website
 
+8. Just in case you have a firewall running on your Rocky Linux system, ensure that port 8001 is open. Type:
+
+```
+firewall-cmd  --add-port=8001/tcp  --permanent
+firewall-cmd  --reload
+```
+
 With the container up and running, you should now be able to point your web browser to the following URL to view your local copy of the site:
 
 http://localhost:8001
