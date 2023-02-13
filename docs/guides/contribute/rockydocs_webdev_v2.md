@@ -5,14 +5,14 @@ contributors:
 update: 13-Feb-2023
 ---
 
-# Running a local copy of the docs.rockylinux.org website for web development and/or content authors
+# Running the docs.rockylinux.org website locally for web development | Podman
+
 
 This document walks through the steps of how to recreate and run a local copy of the entire docs.rockylinux.org website on your local machine.
 Running a local copy of the documentation website might be useful in the following scenarios:
 
 * You are interested in learning about and contributing to the web development aspects of the docs.rockylinux.org website
 * You are an author and you'd like to see how your documents will render/look on the docs website before contributing them
-* You are a web developer looking to contribute to or help maintain the docs.rockylinux.org website
 
 
 ## Create the content environment
@@ -45,7 +45,7 @@ You'll now have a `$ROCKYDOCS/documentation` folder. This folder is a git reposi
 git clone https://github.com/rocky-linux/docs.rockylinux.org.git
 ```
 
-You'll now have a `$ROCKYDOCS/docs.rockylinux.org` folder. This folder is a git repository and under git's control.
+You'll now have a `$ROCKYDOCS/docs.rockylinux.org` folder. This folder is where you can experiment with your web development contributions.
 
 
 ## Create and Start the RockyDocs web developmwnt environment
@@ -160,5 +160,5 @@ sudo chmod 666 /var/run/docker.sock
 * The instructions in this guide are **NOT** a prerequisite for Rocky documentation Authors/Content contributors
 * The entire environment runs in a Podman container and so you'll need Podman properly setup on your local machine
 * The container is built on top of the official Rocky Linux 9.1 docker image available here https://hub.docker.com/r/rockylinux/rockylinux
-* The container keeps the documentation content (guides, books, images and so on) separate from the web engine (mkdocs)
+* The container keeps the documentation content separate from the web engine (mkdocs)
 * The container starts a local web server listening on port 8001. 
