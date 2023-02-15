@@ -225,7 +225,7 @@ Now, only users from group1 and group2, or user1 and user2 will be able to conne
 
 ```sh
 [user@host ~]$ sudo adcli testjoin
-Sucessfully validated join to domain ad.company.local
+Successfully validated join to domain ad.company.local
 ```
 
 - Get more advanced informations about the domain:
