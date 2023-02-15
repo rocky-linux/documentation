@@ -124,7 +124,7 @@ administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/admin
 
 !!! Note 
 
-    `getent` get entries from Name Service Switch libraries (NSS), it means that, contrary to `passwd` or `dig` for example, it will ask for responses in different database, including `/etc/hosts` for `getent hosts` or from `sssd` in the `getent passwd` case.
+    `getent` get entries from Name Service Switch libraries (NSS), it means that, contrary to `passwd` or `dig` for example, it will ask for responses in different databases, including `/etc/hosts` for `getent hosts` or from `sssd` in the `getent passwd` case.
 
 `realm` provides some interesting options that you can use:
 
