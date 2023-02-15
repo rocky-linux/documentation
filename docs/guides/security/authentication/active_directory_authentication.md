@@ -57,21 +57,8 @@ AD cluster, to ensure that the network configuration is correct on both sides.
   # server is accessible on the IP address 10.0.0.2.
   [root@host ~]$ nmcli con mod 'System eth0' ipv4.dns 10.0.0.2
   ```
-
-  **Manually editing the /etc/resolv.conf:**
-  ```sh
-  # Edit the resolv.conf file
-  [user@host ~]$ sudo vi /etc/resolv.conf
-  search lan
-  nameserver 10.0.0.2
-  nameserver 1.1.1.1 # replace this with your preferred public DNS (as a backup)
-
-  # Make the resolv.conf file unwritable, preventing NetworkManager from
-  # overwriting it.
-  [user@host ~]$ sudo chattr +i /etc/resolv.conf
-  ```
-
-- Ensure that the time on both sides (AD host and Linux system) is synchronized
+  
+- Ensure that the time on both sides (AD host and Linux system) is synchronized (see chronyd)
 
   **To check the time on Rocky Linux:**
   ```sh
@@ -84,6 +71,7 @@ AD cluster, to ensure that the network configuration is correct on both sides.
   ```sh
   [user@host ~]$ sudo dnf install realmd oddjob oddjob-mkhomedir sssd adcli krb5-workstation
   ```
+
 
 ### Discovery
 
@@ -134,6 +122,19 @@ for an Active Directory user.
 administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/administrator@ad.company.local:/bin/bash
 ```
 
+!!! Note 
+
+    `getent` get entries from Name Service Switch libraries (NSS), it means that, contrary to `passwd` or `dig` for example, it will ask for responses in different database, including `/etc/hosts` for `getent hosts` or from `sssd` in the `getent passwd` case.
+
+`realm` provides some interesting options that you can use:
+
+| Option                                                     | Observation                              |
+|------------------------------------------------------------|------------------------------------------|
+| --computer-ou='OU=LINUX,OU=SERVERS,dc=ad,dc=company.local' | The OU where to store the server account |
+| --os-name='rocky'                                          | Specify the OS name stored in the AD     |
+| --os-version='8'                                           | Specify the OS version stored in the AD  |
+| -U admin_username                                          | Specify an admin account                 |
+
 ### Attempting to Authenticate
 
 Now your users should be able to authenticate to your Linux host against Active
@@ -182,4 +183,157 @@ To make this configuration change take effect, you must restart the
 
 ```sh
 [user@host ~]$ sudo systemctl restart sssd
+```
+
+In the same way, if you don't want your home directories to be suffixed by the domain name, 
+you can add those options into your configuration file `/etc/sssd/sssd.conf`:
+
+```
+[domain/ad.company.local]
+use_fully_qualified_names = False
+override_homedir = /home/%u
+```
+
+Don't forget to restart the `sssd` service.
+
+### Restrict to certain users
+
+There are various methods to restrict access to the server to a limited list of users,
+ but this, as the name suggests, is certainly the simplest:
+
+Add those options into your configuration file `/etc/sssd/sssd.conf` and restart the service:
+
+```
+access_provider = simple
+simple_allow_groups = group1, group2
+simple_allow_users = user1, user2
+```
+
+Now, only users from group1 and group2, or user1 and user2 will be able to connect to the server using sssd!
+
+## Interact with the AD using `adcli`
+
+`adcli` is a CLI to perform actions on an Active Directory domain.
+
+- If not yet installed, install the required package
+
+```sh
+[user@host ~]$ sudo dnf install adcli
+```
+
+- Test if you have ever joigned an Active Directory domain:
+
+```sh
+[user@host ~]$ sudo adcli testjoin
+Sucessfully validated join to domain ad.company.local
+```
+
+- Get more advanced informations about the domain:
+
+```sh
+[user@host ~]$ adcli info ad.company.local
+[domain]
+domain-name = ad.company.local
+domain-short = AD
+domain-forest = ad.company.local
+domain-controller = dc1.ad.company.local
+domain-controller-site = site1
+domain-controller-flags = gc ldap ds kdc timeserv closest writable full-secret ads-web
+domain-controller-usable = yes
+domain-controllers = dc1.ad.company.local dc2.ad.company.local
+[computer]
+computer-site = site1
+```
+
+- More than a consulting tool, you can use adcli to interact with your domain: manage users or groups, change password, etc. 
+
+Example: use `adcli` to get information about a computer:
+
+!!! Note
+
+    This time we will provide an admin username thanks to the `-U` option
+
+```sh
+[user@host ~]$ adcli show-computer pctest -U admin_username
+Password for admin_username@AD: 
+sAMAccountName:
+ pctest$
+userPrincipalName:
+ - not set -
+msDS-KeyVersionNumber:
+ 9
+msDS-supportedEncryptionTypes:
+ 24
+dNSHostName:
+ pctest.ad.company.local
+servicePrincipalName:
+ RestrictedKrbHost/pctest.ad.company.local
+ RestrictedKrbHost/pctest
+ host/pctest.ad.company.local
+ host/pctest
+operatingSystem:
+ Rocky
+operatingSystemVersion:
+ 8
+operatingSystemServicePack:
+ - not set -
+pwdLastSet:
+ 133189248188488832
+userAccountControl:
+ 69632
+description:
+ - not set -
+```
+
+Example: use `adcli` to change user's password:
+
+```sh
+[user@host ~]$ adcli passwd-user user_test -U admin_username
+Password for admin_username@AD: 
+Password for user_test: 
+[user@host ~]$ 
+```
+
+## Troubleshooting
+
+Sometimes, the network service will start after sssd, that cause trouble with authentification.
+
+No AD users will be able to connect until you restarted the service.
+
+In that case, you will have to override the systemd's service file to manage this problem.
+
+Copy this content into `/etc/systemd/system/sssd.service`:
+
+```
+[Unit]
+Description=System Security Services Daemon
+# SSSD must be running before we permit user sessions
+Before=systemd-user-sessions.service nss-user-lookup.target
+Wants=nss-user-lookup.target
+After=network-online.target
+
+
+[Service]
+Environment=DEBUG_LOGGER=--logger=files
+EnvironmentFile=-/etc/sysconfig/sssd
+ExecStart=/usr/sbin/sssd -i ${DEBUG_LOGGER}
+Type=notify
+NotifyAccess=main
+PIDFile=/var/run/sssd.pid
+
+[Install]
+WantedBy=multi-user.target
+```
+
+The next reboot, the service will start after it's requirements, and everything will go well.
+
+## Leaving the Active Directory
+
+Sometimes, it's necessary to leave the AD.
+
+You can, once again, proceed with `realm` and then remove the packages that are no longer required:
+
+```sh
+[user@host ~]$ sudo realm leave ad.company.local
+[user@host ~]$ sudo dnf remove realmd oddjob oddjob-mkhomedir sssd adcli krb5-workstation
 ```
