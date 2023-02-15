@@ -296,7 +296,7 @@ Password for user_test:
 
 ## Troubleshooting
 
-Sometimes, the network service will start after sssd, that cause trouble with authentification.
+Sometimes, the network service will start after sssd, that cause trouble with authentication.
 
 No AD users will be able to connect until you restarted the service.
 
