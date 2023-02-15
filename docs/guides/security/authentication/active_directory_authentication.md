@@ -1,6 +1,6 @@
 ---
 author: Hayden Young
-contributors: Steven Spencer, Sambhav Saggi
+contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine
 ---
 
 # Active Directory Authentication
@@ -124,7 +124,7 @@ administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/admin
 
 !!! Note 
 
-    `getent` get entries from Name Service Switch libraries (NSS), it means that, contrary to `passwd` or `dig` for example, it will ask for responses in different databases, including `/etc/hosts` for `getent hosts` or from `sssd` in the `getent passwd` case.
+    `getent` get entries from Name Service Switch libraries (NSS). It means that, contrary to `passwd` or `dig` for example, it will query different databases, including `/etc/hosts` for `getent hosts` or from `sssd` in the `getent passwd` case.
 
 `realm` provides some interesting options that you can use:
 
@@ -221,7 +221,7 @@ Now, only users from group1 and group2, or user1 and user2 will be able to conne
 [user@host ~]$ sudo dnf install adcli
 ```
 
-- Test if you have ever joigned an Active Directory domain:
+- Test if you have ever joined an Active Directory domain:
 
 ```sh
 [user@host ~]$ sudo adcli testjoin
@@ -296,7 +296,7 @@ Password for user_test:
 
 ## Troubleshooting
 
-Sometimes, the network service will start after sssd, that cause trouble with authentication.
+Sometimes, the network service will start after SSSD, that cause trouble with authentication.
 
 No AD users will be able to connect until you restarted the service.
 
@@ -325,7 +325,7 @@ PIDFile=/var/run/sssd.pid
 WantedBy=multi-user.target
 ```
 
-The next reboot, the service will start after it's requirements, and everything will go well.
+The next reboot, the service will start after its requirements, and everything will go well.
 
 ## Leaving the Active Directory
 
