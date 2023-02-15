@@ -13,7 +13,7 @@ tags:
 
 What is the Language Server Protocol?
 
-It is a server service that provides support for advanced editing functions, such as automatic source code completion or *"Go to Definition"*, for a programming language in an editor or IDE.
+It is a server service that provides support for advanced editing functions, such as automatic source code completion or _"Go to Definition"_, for a programming language in an editor or IDE.
 
 The Language Server Protocol (LSP) is the product of standardizing the messages exchanged between a development tool and a language server process. The goal of LSP is to simplify this type of integration, and to provide a useful framework for exposing language features to a variety of tools.
 
@@ -27,9 +27,9 @@ To learn about all available commands, simply press the <kbd>g?</kbd> key to hav
 
 ![Mason Help](../images/mason_help.png)
 
-### Introduction to *nvim-lspconfig*
+### Introduction to _nvim-lspconfig_
 
-*nvim-lspconfig* is a collection of configurations, provided by the community, for the language client server built into the Nvim core. This plugin provides four main features:
+_nvim-lspconfig_ is a collection of configurations, provided by the community, for the language client server built into the Nvim core. This plugin provides four main features:
 
 - default startup commands, initialization options, and settings for each server.
 - a root directory solver that attempts to locate the root of the project
@@ -40,7 +40,7 @@ The combined use of the two plugins allows the required language servers to be d
 
 #### Downloading Language Servers
 
-To download the language server of choice, we open the interface of *Mason* from our editor with the command <kbd>SHIFT</kbd> + <kbd>:Mason</kbd>. Suppose we want to install the language server for *Markdown*. To do so, we type <kbd>2</kbd> to take us to the `LSP` section. 
+To download the language server of choice, we open the interface of _Mason_ from our editor with the command <kbd>SHIFT</kbd> + <kbd>:Mason</kbd>. Suppose we want to install the language server for _Markdown_. To do so, we type <kbd>2</kbd> to take us to the `LSP` section.
 
 Now we go down with the arrow key until we find the language server `marksman`. By pressing the space bar we can get some information about the server as you can see in the screenshot below.
 
@@ -67,7 +67,7 @@ First we create the `custom/plugins` folder in `~/.local/nvim/lua`. Note that if
 mkdir -p ~/.local/nvim/lua/custom/plugins
 ```
 
-We used the `-p` flag since we want to create the entire path if it doesn't already exist. Once the folder is created, we need to create two files: `init.lua`, which will take care of instructing *Packer* to install the plugin, and `lspconfig.lua`, which will define our servers. 
+We used the `-p` flag since we want to create the entire path if it doesn't already exist. Once the folder is created, we need to create two files: `init.lua`, which will take care of instructing _Packer_ to install the plugin, and `lspconfig.lua`, which will define our servers.
 
 Let's start by creating the two files first:
 
@@ -84,11 +84,11 @@ The folder structure at this point should look as follows:
     └── lspconfig.lua
 ```
 
-We now move on to edit the two files to include support for *Language Servers*.
+We now move on to edit the two files to include support for _Language Servers_.
 
 #### init.lua
 
-Inserting the following code tells Packer to install the `neovim/nvim-lspconfig` plugin using the code contained in *nvim/lua/plugins/lspconfig.lua* and *nvim/lua/custom/plugins/lspconfig.lua* respectively. For configuration, through, we need `require` calls. 
+Inserting the following code tells Packer to install the `neovim/nvim-lspconfig` plugin using the code contained in _nvim/lua/plugins/lspconfig.lua_ and _nvim/lua/custom/plugins/lspconfig.lua_ respectively. For configuration, through, we need `require` calls.
 
 Special attention should be paid to the sequence of the calls as they use the override technique, and reversing the order could result in inconsistencies in the configuration.
 
@@ -117,7 +117,7 @@ We can now edit the configuration file of our local servers.
 
 #### lspconfig.lua
 
-This is our `lspconfig.lua` configuration file, and it is inserted after the NvChad *lspconfig* configuration has finished setting up the environment.
+This is our `lspconfig.lua` configuration file, and it is inserted after the NvChad _lspconfig_ configuration has finished setting up the environment.
 
 ```lua
 -- custom.plugins.lspconfig
@@ -145,15 +145,15 @@ nvim ~/.config/nvim/lua/custom/plugins/lspconfig.lua
 
 After finishing the changes we save and close the editor as before with <kbd>SHIFT</kbd> + <kbd>:wq</kbd>.
 
-As we can see, we have added to the table of `local servers` the servers we have installed with *Mason*:
+As we can see, we have added to the table of `local servers` the servers we have installed with _Mason_:
 
 ```lua
 local servers = { "html", "marksman", "yamlls"}
 ```
 
-This gives *nvim-lspconfig* a way to retrieve the configurations needed for their operation in the IDE.
+This gives _nvim-lspconfig_ a way to retrieve the configurations needed for their operation in the IDE.
 
-Once we have finished the changes, to make them effective we need to tell *Packer* to synchronize them. This is done with a simple <kbd>SHIFT</kbd> + <kbd>:PackerSync</kbd> at the end of which the new installation of *neovim/nvim-lspconfig* will be highlighted in the log. Now opening a Markdown file should bring up a gear icon in the lower right corner and say `LSP - marksman`.
+Once we have finished the changes, to make them effective we need to tell _Packer_ to synchronize them. This is done with a simple <kbd>SHIFT</kbd> + <kbd>:PackerSync</kbd> at the end of which the new installation of _neovim/nvim-lspconfig_ will be highlighted in the log. Now opening a Markdown file should bring up a gear icon in the lower right corner and say `LSP - marksman`.
 
 ![Marksman Enable](../images/marksman_enable.png)
 
@@ -163,9 +163,9 @@ Once we have finished the changes, to make them effective we need to tell *Packe
 
 #### SumnekoLua
 
-A very important component is the `lua-language-server`, which completely changes the experience of writing Lua code, and consequently also the editing of NvChad configuration files that are written in this language. This is also the default LSP for *lua* 
+A very important component is the `lua-language-server`, which completely changes the experience of writing Lua code, and consequently also the editing of NvChad configuration files that are written in this language. This is also the default LSP for _lua_
 
-The executable is provided by the [SumnekoLua](https://github.com/sumneko/lua-language-server) plugin.
+The executable is provided by the [LuaLS](https://github.com/LuaLS/lua-language-server) plugin.
 
 ![Lua Language Server](../images/lua-language-server.png)
 
@@ -197,6 +197,6 @@ Once installed it will spring into action whenever we open a `.yaml` file by mak
 
 The use of LSPs greatly aids the editing process, enriching it with advanced features. It also allows us to keep track of its consistency in real time. It is definitely a tool to have in our IDE.
 
-The introduction of *Mason*, although some manual intervention is still required to configure the environment, has made available an automated procedure for the installation of language servers. More importantly, it allows us to avoid the periodic checks for updates that would have been necessary in the case of manual installation. 
+The introduction of _Mason_, although some manual intervention is still required to configure the environment, has made available an automated procedure for the installation of language servers. More importantly, it allows us to avoid the periodic checks for updates that would have been necessary in the case of manual installation.
 
-Once installed and configured, all our servers will be upgradeable from the *Mason GUI* with a simple press of the <kbd>U</kbd> key.
+Once installed and configured, all our servers will be upgradeable from the _Mason GUI_ with a simple press of the <kbd>U</kbd> key.
