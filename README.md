@@ -257,7 +257,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
     </tr>
     <tr>
       <td align="center"><a href="https://github.com/xpseudonym"><img src="https://avatars.githubusercontent.com/u/5032475?v=4?s=100" width="100px;" alt="Morgan Read"/><br /><sub><b>Morgan Read</b></sub></a><br /><a href="#content-xpseudonym" title="Content">🖋</a></td>
-      <td align="center"><a href="https://ersei.saggis.com/"><img src="https://avatars.githubusercontent.com/u/17993169?v=4?s=100" width="100px;" alt="9p4"/><br /><sub><b>9p4</b></sub></a><br /><a href="#content-9p4" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/9p4"><img src="https://avatars.githubusercontent.com/u/17993169?v=4?s=100" width="100px;" alt="9p4"/><br /><sub><b>9p4</b></sub></a><br /><a href="#content-9p4" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/liquidspikes"><img src="https://avatars.githubusercontent.com/u/5150291?v=4?s=100" width="100px;" alt="Alex Zimmerman"/><br /><sub><b>Alex Zimmerman</b></sub></a><br /><a href="#content-liquidspikes" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/viscountstyx"><img src="https://avatars.githubusercontent.com/u/46753436?v=4?s=100" width="100px;" alt="Andrew Faulkner"/><br /><sub><b>Andrew Faulkner</b></sub></a><br /><a href="#content-viscountstyx" title="Content">🖋</a></td>
       <td align="center"><a href="https://github.com/televi"><img src="https://avatars.githubusercontent.com/u/3333248?v=4?s=100" width="100px;" alt="Todd Levi"/><br /><sub><b>Todd Levi</b></sub></a><br /><a href="#content-televi" title="Content">🖋</a></td>
