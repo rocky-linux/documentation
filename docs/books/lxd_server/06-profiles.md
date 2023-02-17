@@ -52,7 +52,7 @@ And then look for the interface with the LAN IP assignment in the 192.168.1.0/24
        valid_lft forever preferred_lft forever
 ```
 
-So in this case, the interface would be "enp3s0".
+So, in this case, the interface would be "enp3s0".
 
 Now let's modify the profile:
 
@@ -234,7 +234,7 @@ To do this, we need to gain shell access to the container again:
 lxc exec rockylinux-test-9 bash
 ```
 
-Next, we are going to create a bash script in `/usr/local/sbin` called "static"
+Next, we are going to create a bash script in `/usr/local/sbin` called "static":
 
 ```
 vi /usr/local/sbin/static
@@ -251,10 +251,10 @@ The contents of this script are simple:
 /usr/sbin/ip route add default via 192.168.1.1
 ```
 
-So, what are we doing here? First, we rename eth0 to a new name that we can manage. We have chosen "net0" here. Second, we assign the new static IP that we have allocated for our container. In this case 192.168.1.151. Now we bring up the new "net0" interface. Finally, we need to add the defaultt route for our interface.
+So, what are we doing here? First, we rename eth0 to a new name that we can manage. We have chosen "net0" here. Second, we assign the new static IP that we have allocated for our container. In this case 192.168.1.151. Now we bring up the new "net0" interface. Finally, we need to add the default route for our interface.
 
 
-Make our script executable with
+Make our script executable with:
 
 ```
 chmod +x /usr/local/sbin/static
@@ -266,7 +266,7 @@ Next, we add this to root's crontab for the container using the @reboot time:
 @reboot     /usr/local/sbin/static
 ```
 
-Finally, exit the container and restart it 
+Finally, exit the container and restart it:
 
 ```
 lxc restart rockylinux-test-9
@@ -299,7 +299,7 @@ Luckily, In Ubuntu's implementation of Network Manager, the macvlan stack is NOT
 First, just like with our rockylinux-test-9 container, we need to assign the template to our container:
 
 ```
-lxc profile assign ubuntu-test default,macvlan`
+lxc profile assign ubuntu-test default,macvlan
 ```
 
 That should be all that is necessary to get a DHCP assigned address. To find out, stop and then start the container again:
