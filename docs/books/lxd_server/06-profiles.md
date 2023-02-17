@@ -247,12 +247,11 @@ The contents of this script are simple:
 
 /usr/sbin/ip link set dev eth0 name net0
 /usr/sbin/ip addr add 192.168.1.151/24 dev net0
-/usr/sbin/ip route add 192.168.1.0/24 via 192.168.1.1 dev net0 onlink
 /usr/sbin/ip link set dev net0 up
-
+/usr/sbin/ip route add default via 192.168.1.1
 ```
 
-So, what are we doing here? First, we rename eth0 to a new name that we can manage, we've chosen "net0" here. Second, we assign the new static IP that we have allocated for our container. In this case 192.168.1.151. Next, we need to add a route for when we bring up the net0 interface. The "onlink" says to ignore the fact that the interface is currently in the down state and add the route. Finally, we bring up the interface.
+So, what are we doing here? First, we rename eth0 to a new name that we can manage. We have chosen "net0" here. Second, we assign the new static IP that we have allocated for our container. In this case 192.168.1.151. Now we bring up the new "net0" interface. Finally, we need to add the defaultt route for our interface.
 
 
 Make our script executable with
