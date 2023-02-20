@@ -8,7 +8,7 @@ En este capítulo aprenderás a gestionar archivos con Ansible.
 
 ****
 
-**Objetivos**: En este capítulo aprenderá a:
+**Objetivos** : En este capítulo aprenderá a:
 
 :heavy_check_mark: modificar el contenido de un archivo;       
 :heavy_check_mark: subir archivos a los servidores de destino;   
