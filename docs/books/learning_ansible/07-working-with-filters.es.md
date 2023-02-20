@@ -2,7 +2,6 @@
 title: Trabajar con filtros
 author: Antoine Le Morvan
 contributors: Steven Spencer
-update: 23-11-2021
 ---
 
 # Ansible - Trabajar con filtros
@@ -11,7 +10,7 @@ En este capítulo aprenderá a transformar datos mediante filtros de Jinja.
 
 ****
 
-**Objetivos**: En este capítulo aprenderá a:
+**Objetivos** : En este capítulo aprenderá a:
 
 :heavy_check_mark: Transformar estructuras de datos como diccionarios o listas;   
 :heavy_check_mark: Transformar variables;
