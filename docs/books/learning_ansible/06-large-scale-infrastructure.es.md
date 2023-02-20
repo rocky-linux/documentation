@@ -8,7 +8,7 @@ En este capítulo aprenderá a escalar su sistema de gestión de la configuraci�
 
 ****
 
-**Objetivos**: En este capítulo aprenderá a:
+**Objetivos** : En este capítulo aprenderá a:
 
 :heavy_check_mark: Organice su código para la gestión de una gran infraestructura;   
 :heavy_check_mark: Aplicar toda o una parte de la gestión de la configuración a un grupo de nodos;
