@@ -8,7 +8,7 @@ En este capítulo aprenderá a utilizar, instalar y gestionar los roles y colecc
 
 ****
 
-**Objetivos**: En este capítulo aprenderá a:
+**Objetivos** : En este capítulo aprenderá a:
 
 :heavy_check_mark: instalar y gestionar colecciones;       
 :heavy_check_mark: instalar y gestionar roles;.
