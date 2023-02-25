@@ -1,6 +1,9 @@
 ---
 title: Perl - Buscar y reemplazar
 author: Steven Spencer
+tags:
+  - perl
+  - search
 ---
 
 # `Perl` Buscar y reemplazar
