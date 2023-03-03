@@ -10,7 +10,7 @@ tags:
 
 # Pound Proxy Server
 
-!!! important "Pound Missing from EPEL-9"
+!!! warning "Pound Missing from EPEL-9"
 
     As of this writing, on Rocky Linux 9.0, Pound cannot be installed from the EPEL repository. While there are sources out there for SRPM packages, we can't verify the integrity of these sources. For this reason, we do not recommend installing the Pound proxy server on Rocky Linux 9.0 at this time. This may change if the EPEL once again picks up Pound.  Use this procedure specifically for Rocky Linux 8.x versions.
 
@@ -36,7 +36,7 @@ The following are minimum requirements for using this procedure:
 * We are assuming that you are using Rocky Linux servers or containers for everything here.
 * While we make all kinds of statements regarding `https` below, this guide only deals with the `http` service. To properly do `https`, you'll need to configure your pound server with a real certificate from a real certificate authority.
 
-!!! hint
+!!! tip
 
     If you don't have either of these servers installed, you can do so on a container environment (LXD or Docker) or on bare metal, and get them up and running. For this procedure, you merely need to install them with their respective packages, and enable and start the services. We won't be modifying them significantly in any way.
 
@@ -207,7 +207,7 @@ Once you have your web services up and running and listening on the right ports 
 systemctl enable --now pound
 ```
 
-!!! attention
+!!! warning
 
     Using Nginx and Apache, as we are doing here for demonstration, will mean that the Nginx server will almost always respond first. For this reason, to test effectively, you will need to assign a low priority to the Nginx server so that you will be able to see both screens. This speaks volumes about the speed of Nginx over Apache. To change the priority for the Nginx server, you just need to add a priority (1-9, with 9 being the lowest priority) in the "BackEnd" section for the Nginx server like this:
 

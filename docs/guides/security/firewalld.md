@@ -98,7 +98,7 @@ Before this zone can actually be used, we need to reload the firewall:
 
 `firewall-cmd --reload`
 
-!!! hint
+!!! tip
 
     A note about custom zones: If you need to add a zone that will be a trusted zone, but will only contain a particular source IP or interface and no protocols or services, and the "trusted" zone doesn't work for you, probably because you've already used it for something else, etc.  You can add a custom zone to do this, but you must change the target of the zone from "default" to "ACCEPT" (REJECT or DROP can also be used, depending on your goals). Here's an example using a bridge interface (lxdbr0 in this case) on an LXD machine.
 

@@ -222,7 +222,7 @@ Instead of everyone having access to the wiki, we are going to assume that anyon
 
 #### `iptables` Firewall (deprecated)
 
-!!! important
+!!! warning
 
     The `iptables` firewall process here has been deprecated in Rocky Linux 9.0 (still available, but likely to disappear in future releases, perhaps as early as Rocky Linux 9.1). For this reason, we recommend skipping to the `firewalld` procedure below if you are doing this on 9.0 or better. 
 

@@ -34,7 +34,7 @@ Taking all of these steps will allow you to offer secure SFTP access for your cu
 
     From there on, that process or program can *only* access that folder and its subfolders.
 
-!!! hint "Updates for Rocky Linux 8.6"
+!!! tip "Updates for Rocky Linux 8.6"
 
     This document has been updated to include new changes that came out with version 8.6 that will make this procedure even safer. If you are using 8.6, then there are specific sections in the document below, prefixed with "8.6 -". For clarity sake, the sections specific to Rocky Linux 8.5 have been prefixed with "8.5 - ". Other than those sections specifically prefixed, this document is generic for both versions of the OS.
 
@@ -260,7 +260,7 @@ passwd myfixed
 
 ### SSH Configuration
 
-!!! caution
+!!! warning
 
     Before we start this next process, it is highly recommended that you make a backup of the system file we are going to be modifying: `/etc/ssh/sshd_config`. Breaking this file and not being able to go back to the original could cause you a world of heartache!
 
@@ -486,7 +486,7 @@ A couple of things to know about the script and about an SFTP change root in gen
 
 The SFTP change root requires that the path given in the `sshd_config` is owned by root. For this reason, we do not need the `html` directory added to the end of the path. Once the user is authenticated, the change root will switch the user's home directory, in this case the `../html` directory, to whichever domain we are entering. Our script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
 
-!!! attention "Script Compatibility"
+!!! warning "Script Compatibility"
 
     While you can use the script that we created for Rocky Linxux 8.5 on 8.5, 8.6 or 9.0 successfully, the same cannot be said for the script for 8.6 and 9.0. Since the drop in configuration file option (`Include` directive) was not enabled in 8.5, attempting to use the script written for those newer versions in Rocky Linux 8.5 will fail.
 
@@ -565,7 +565,7 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
 
-!!! hint
+!!! tip
 
     For real domains, you would want to populate your DNS servers with the hosts above. You can, though, use this *Poor Man's DNS* for testing any domain, even one that hasn't been taken live on real DNS servers.
 

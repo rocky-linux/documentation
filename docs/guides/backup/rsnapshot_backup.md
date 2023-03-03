@@ -125,7 +125,7 @@ This documentation covers the installation of _rsnapshot_ on Rocky Linux only.
     ./autogen.sh
     ```
 
-    !!! hint
+    !!! tip
 
         You may get several lines that look like this:
 

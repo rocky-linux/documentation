@@ -90,7 +90,7 @@ logfile=/var/log/dnf.log
 
 The `dnf.log` has a lot of information in it every day, so we are not posting that to the screen here, but you should see output that has only today's data in it. Give the script a try and if it works, then we can move on to the next step. After we've checked the output, the next step is that we want to do a pipe redirect to send the information to email.
 
-!!! hint
+!!! tip
 
     You need `mailx` and a mail daemon such as `postfix` installed to accomplish this next step. There's also some configuration that will *probably* be necessary for you to receive email from your server to your companies email address. Don't worry about those steps at this point, because you can check the `maillog` to see if the attempt was made and then work from there to get email from your server to your email address working. That's not something that this document is going to deal with. For now do:
 

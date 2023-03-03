@@ -72,7 +72,7 @@ firewall-cmd --reload
 
 We want to allow all traffic from the bridge, so let's just add the interface, and then change the target from "default" to "ACCEPT" and we will be done:
 
-!!! attention
+!!! warning
 
     Changing the target of a firewalld zone *must* be done with the --permanent option, so we might as well just enter that flag in our other commands as well and forgo the --runtime-to-permanent option.
 

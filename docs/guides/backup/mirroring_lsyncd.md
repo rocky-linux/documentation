@@ -67,7 +67,7 @@ We will need some dependencies: a few that are required by `lsyncd` itself, and 
 
 `dnf groupinstall 'Development Tools'`
 
-!!! important "For Rocky Linux 9.0"
+!!! warning "For Rocky Linux 9.0"
 
     `lsyncd` has been fully tested in Rocky Linux 9.0, and will work as expected. In order to get all of the needed dependencies installed, however, you will need to enable an additional repository:
 
