@@ -39,17 +39,20 @@ Admonitions are special visual "boxes" that allow you to call attention to impor
 
 | type      | Description                                               |
 |-----------|-----------------------------------------------------------|
-| attention | renders a light orange text box                           |
-| caution   | renders a light orange text box                           |
-| danger    | renders a red text box                                    |
-| error     | renders a red text box                                    |
-| hint      | renders a green text box                                  |
-| important | renders a green text box                                  |
 | note      | renders a blue text box                                   |
-| tip       | renders a green text box                                  |
+| abstract  | renders a light blue text box                             |
+| info      | renders a blue-green text box                             |
+| tip       | renders a blue-green text box (icon slightly more green)  |
+| success   | renders a green text box                                  |
+| question  | renders a light green text box                            |
 | warning   | renders an orange text box                                |
+| failure   | renders a light red text box                              |
+| danger    | renders a red text box                                    |
+| bug       | renders a red text box                                    |
+| example   | renders a purple text box                                 |
+| quote     | renders a grey text box                                   |
 | custom <sub>1</sub> | always renders a blue text box                  |
-| custom <sub>2</sub> | uses a custom title within another type       |
+| custom <sub>2</sub> | uses a custom title within another type         |
 
 There is no limit on the types of admonitions you can use as noted in custom <sub>1</sub> above. A custom title can be added to any of the other admonition types to get the colored box you want for a specific admonition, as noted in custom <sub>2</sub> above.
 
@@ -65,31 +68,15 @@ The body text of the admonition must be indented four (4) spaces from the beginn
 
 Here are examples of each admonition type, and how they will look in your document:
 
-!!! attention
-
-    text
-
-!!! caution
-
-    text
-
-!!! danger
-
-    text
-
-!!! error
-
-    text
-
-!!! hint
-
-    text
-
-!!! important
-
-    text
-
 !!! note
+
+    text
+
+!!! abstract
+
+    text
+
+!!! info
 
     text
 
@@ -97,7 +84,23 @@ Here are examples of each admonition type, and how they will look in your docume
 
     text
 
+!!! success
+
+    text
+
+!!! question
+
+    text
+
 !!! warning
+
+    text
+
+!!! failure
+
+    text
+
+!!! danger
 
     text
 
@@ -210,17 +213,21 @@ Tables help us to lay out command options, or in the above case, admonition type
 ```
 | type      | Description                                               |
 |-----------|-----------------------------------------------------------|
-| attention | renders a light orange text box                           |
-| caution   | renders a light orange text box                           |
-| danger    | renders a red text box                                    |
-| error     | renders a red text box                                    |
-| hint      | renders a green text box                                  |
-| important | renders a green text box                                  |
 | note      | renders a blue text box                                   |
-| tip       | renders a green text box                                  |
+| abstract  | renders a light blue text box                             |
+| info      | renders a blue-green text box                             |
+| tip       | renders a blue-green text box (icon slightly more green)  |
+| success   | renders a green text box                                  |
+| question  | renders a light green text box                            |
 | warning   | renders an orange text box                                |
+| failure   | renders a light red text box                              |
+| danger    | renders a red text box                                    |
+| bug       | renders a red text box                                    |
+| example   | renders a purple text box                                 |
+| quote     | renders a grey text box                                   |
 | custom <sub>1</sub> | always renders a blue text box                  |
-| custom <sub>2</sub> | uses a customer title within another type       |
+| custom <sub>2</sub> | uses a custom title within another type         |
+
 ```
 
 Note that it isn't necessary to have each column broken down by size (as we've done in the first part of the table), but it is certainly more readable in the markdown source file. It can get confusing when you string the items together, simply by breaking the columns with the pipe character "|" wherever the natural break would be, as you can see in the last two items of the table.
@@ -326,7 +333,7 @@ You can even embed a table or block quote (literally any formatting item type) w
 
 2. If you are feeling overwhelmed, consider:
 
-    !!! important "important: I think my brain hurts!"
+    !!! warning "important: I think my brain hurts!"
 
         When combining multiple formatting elements, your brain can go a little crazy. Consider sucking down some extra caffeine before you begin!
 
@@ -355,7 +362,7 @@ You can even embed a table or block quote (literally any formatting item type) w
 
 2. If you are feeling overwhelmed, consider:
 
-    !!! important "important: I think my brain hurts!"
+    !!! warning "important: I think my brain hurts!"
 
         When combining multiple formatting elements, your brain can go a little crazy. Consider sucking down some extra caffeine before you begin!
 
