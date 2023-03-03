@@ -10,7 +10,7 @@ tags:
 # Overview
 In this guide, we’ll walk through the process of acquiring a kernel source tree, configuring it, compiling it, and, finally, installing and booting the kernel.
 
-!!! attention "Kernel rebuilds are not recommended nor supported for Rocky Linux. Before building a custom kernel or even considering it, ask yourself the following questions:"
+!!! warning "Kernel rebuilds are not recommended nor supported for Rocky Linux. Before building a custom kernel or even considering it, ask yourself the following questions:"
 
     * Is the functionality you need available by installing a kernel module from [elrepo](https://elrepo.org)?
     * Is the functionality you need available as a separate module from the kernel itself?
