@@ -75,7 +75,7 @@ Now, scripting makes it super simple and safe so that you can test it fearlessly
 /usr/bin/rsync -ae ssh --delete root@source.domain.com:/home/your_user /home
 ```
 
-!!! attention
+!!! warning
 
     In this case, we assume that your home directory does not exist on the target machine. **If it exists, you may want to back it up before executing the script!**
 

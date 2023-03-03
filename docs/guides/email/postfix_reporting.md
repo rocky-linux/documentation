@@ -39,7 +39,7 @@ Aside from postfix, we will need _mailx_ for testing our ability to send emails.
 
 `dnf install postfix mailx`
 
-!!! important "Rocky Linux 9.0 Changes"
+!!! warning "Rocky Linux 9.0 Changes"
 
     This procedure works perfectly fine in Rocky Linux 9.0. The difference here is where the `mailx` command comes from. While you can install it by name in 8.x, `mailx` comes from the appstream package `s-nail` in 9.0. To install the needed packages, you need to use:
 

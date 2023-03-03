@@ -61,7 +61,7 @@ First, get into the container with:
 lxc exec mkdocs bash
 ```
 
-!!! important "Changes in requirements.txt for 8.x"
+!!! warning "Changes in requirements.txt for 8.x"
 
     The current `requirements.txt` will require a newer version of Python than what is installed by default in Rocky Linux 8.5 or 8.6. To be able to install all the other dependencies, do the following: 
 

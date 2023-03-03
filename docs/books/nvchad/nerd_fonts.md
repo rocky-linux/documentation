@@ -29,7 +29,7 @@ https://www.nerdfonts.com/font-downloads
 
 The procedure for installing fonts on Rocky Linux is to save the fonts you want to add somewhere, and then install them with the `fc-cache` command. This procedure is not a true installation so much as a registration of the new fonts in the system.
 
-!!! important "Creation of compressed packages"
+!!! warning "Creation of compressed packages"
 
 	The procedure described below is not a standard procedure as each developer has packaged fonts using a custom scheme. So once downloaded and extracted, the contents must be checked to choose the procedure for copying the fonts.
 

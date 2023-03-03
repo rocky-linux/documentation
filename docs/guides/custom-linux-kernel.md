@@ -151,7 +151,7 @@ The Linux kernel source tree contains several files named Makefile (a makefile i
 These makefiles help to glue together the thousands of other files that make up the kernel source. What is more important to us here is that the makefiles also contain targets. The targets are the commands, or directives, that are executed by the make program.
 
 
-!!! Caution "Caution: Avoid Needless Kernel Upgrades"
+!!! warning "warning: Avoid Needless Kernel Upgrades"
 
     Bear in mind that if you have a working system that is stable and well behaved, there is little reason to upgrade the kernel unless one of these conditions holds for you:
 
