@@ -260,7 +260,7 @@ Finally, complete the entire procedure by clicking the <kbd>Reboot System</kbd> 
 
 The system is now set up and ready for use. You will see the Rocky Linux console.
 
-![Rocky Linux Welcome Screen](images/installation_8.5_F02.png)
+![Rocky Linux Welcome Screen](images/installation_8_F02.png)
 
 To log onto the system, type `rockstar` at the login prompt and press <kbd>Enter</kbd>.
 
