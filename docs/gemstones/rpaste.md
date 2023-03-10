@@ -10,7 +10,7 @@ tags:
 
 # Introduction to `rpaste`
 
-`rpaste` is a tool for sharing code, log output, and other extra long text. It is a pastebin created by the Rocky Linux developers. It is particularly useful when you need to share something publicly, but do not want to dominate the feed with your text. This is extremely important when using Mattermost, which has bridges to other IRC services. It can be installed on any Rocky Linux system. If your desktop machine isn't Rocky Linux or if you simply do not want to install the tool, you can use it manually, by accessing the [pinnwand URL](https://rpa.st)and then paste the system output or text that you want to share. `rpaste` allows you to create this information automatically.
+`rpaste` is a tool for sharing code, log output, and other extra long text. It is a pastebin created by the Rocky Linux developers. This tool is useful when you need to share something publicly, but do not want to dominate the feed with your text. This is especially important when using Mattermost, which has bridges to other IRC services. The `rpaste` tool can be installed on any Rocky Linux system. If your desktop machine isn't Rocky Linux or if you simply do not want to install the tool, you can use it manually, by accessing the [pinnwand URL](https://rpa.st)and then paste the system output or text that you want to share. `rpaste` allows you to create this information automatically.
 
 ## Installation
 
@@ -28,7 +28,7 @@ For major system problems, you may need to send all of your system's information
 rpaste --sysinfo
 ```
 
-Which, will return the link to the pinnwand page:
+Which will return the link to the pinnwand page:
 
 ```bash
 Uploading...
