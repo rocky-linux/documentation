@@ -4,6 +4,7 @@ nav:
     - ... | bash_stub*.md
     - ... | string_color*.md
     - ... | docker*.md
+    - ... | dnf-swap*.md
     - ... | htop*.md
     - ... | https_rsa_keygen*.md
     - ... | markdown-demo-v2*.md
@@ -11,6 +12,7 @@ nav:
     - ... | nmcli*.md
     - ... | nmtui*.md
     - ... | perl_search_replace*.md
+    - ... | rpaste*.md
     - ... | sed_search_replace*.md
     - ... | setup_local_repo*.md
     - ... | systemd_service_for_python_script*.md
