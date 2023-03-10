@@ -53,10 +53,6 @@ SHELL=/bin/sh
 PATH=/sbin:/usr/sbin:/bin
 MAILTO=root
 # 每个指定作业的默认45分钟延迟随机增加0-45分钟。
-SHELL=/bin/sh
-PATH=/sbin:/usr/sbin:/bin
-MAILTO=root
-# 每个指定作业的默认45分钟延迟随机增加0-45分钟。
 RANDOM_DELAY=45
 # 指定工作时间范围 在这里代表 3:00~22:00
 START_HOURS_RANGE=3-22
