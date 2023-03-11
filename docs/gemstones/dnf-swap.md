@@ -1,5 +1,5 @@
 ---
-title: DNF - swap command
+title: dnf - swap command
 author: wale soyinka
 contributors:
 date: 2023-01-24
