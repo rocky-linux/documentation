@@ -70,7 +70,7 @@ You can always install both server modules if necessary, of course.
 
 !!! Note
 
-    An earlier version of this guide required the snap package version of certbot, as it was found to be necessary at the time. The RPM versions have been re-tested recently, and are working now.
+    An earlier version of this guide required the snap package version of _certbot_, as it was found to be necessary at the time. The RPM versions have been re-tested recently, and are working now. That said, Certbot strongly recommends the use of the [snap install procedure](https://certbot.eff.org/instructions?ws=apache&os=centosrhel8). Both Rocky Linux 8 and 9 have _certbot_ available in the EPEL, so we are showing thatt procedure here. If you would like to use the procedure recommended by Certbot, just follow that procedure instead.
 
 
 ## Getting The Let's Encrypt Certificate for the Apache Server
@@ -160,7 +160,7 @@ IMPORTANT NOTES:
 
 ## The Site Configuration - https
 
-Applying the configuration file to our site is slightly different than if we were using a purchased SSL certificate from another provider (and if we didn't let certbot do it automatically).
+Applying the configuration file to our site is slightly different than if we were using a purchased SSL certificate from another provider (and if we didn't let _certbot_ do it automatically).
 
 The certificate and chain file are included in a single PEM (Privacy Enhanced Mail) file. This is a common format for all certificate files now, so even though it has "Mail" in the reference, it is just a type of certificate file. To illustrate the configuration file, we will show it in it's entirety and then describe what is happening:
 
@@ -216,9 +216,9 @@ Here's what's happening above. You may want to review the [Apache Web Server Mul
 
 Once you have made all of your changes, simply restart _httpd_ and if it starts test your site to make sure you now have a valid certificate file showing. If so, you are ready to move on to the next step: automation.
 
-## Using Certbot With Nginx
+## Using _certbot_ With Nginx
 
-A quick note: using certbot with Nginx is pretty much the same as with Apache. Here's the short, short version of the guide:
+A quick note: using _certbot_ with Nginx is pretty much the same as with Apache. Here's the short, short version of the guide:
 
 Run this command to get started:
 
@@ -235,7 +235,7 @@ You'll be asked a couple of questions as shown above, including your email addre
 
 If you have more than one site, just press the number that corresponds to the site you want a certificate for.
 
-The rest of the text you'll see is awful similar to what's above. The results will be a bit different, of course. If you have a dead-simple Nginx config file that looks like this:
+The rest of the text you'll see is awful similar to what's above. The results will be a bit different, of course. If you have a dead-simple Nginx configuration file that looks like this:
 
 ```
 server {
@@ -252,7 +252,7 @@ server {
 
 ```
 
-After certbot gets through with it, it'll look like a bit this:
+After _certbot_ gets through with it, it'll look like a bit this:
 
 ```
 server {
@@ -284,9 +284,9 @@ server {
 }
 ```
 
-Depending on a couple of things (for example, if you're using Nginx as a reverse proxy), you may need to dive into the new config file to fix up a few things that certbot won't handle perfectly on its own.
+Depending on a couple of things (for example, if you're using Nginx as a reverse proxy), you may need to dive into the new configuration file to fix up a few things that _certbot_ won't handle perfectly on its own.
 
-Or write your own config file the hard way.
+Or write your own configuration file the hard way.
 ## Automating Let's Encrypt Certificate Renewal
 
 The beauty of installing _certbot_ is that the Let's Encrypt certificate will be automatically renewed. There is no need to create a process to do this. We do need to test the renewal with:
@@ -323,15 +323,16 @@ Congratulations, all simulated renewals succeeded:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
-The [_certbot_ documentation](https://certbot.eff.org/lets-encrypt/centosrhel8-apache.html) tells you in their step number 8, that the automatic renewal process could be in a couple of different spots, depending on your system. For a Rocky Linux install, you are going to find the process by using:
+The command to renew _certbot_ can be found using one of the following methods:
+
+* By listing the contents of `/etc/crontab/`
+* By listing the contents of `/etc/cron.*/*`
+* By running `systemctl list-timers`
+
+In this example, we are using the last option and we can see that _certbot_ exists and that it was installed with the `snap` procedure:
 
 ```bash
-systemctl list-timers
-```
-
-Which gives you a list of processes, one of which will be for _certbot_:
-
-```
+sudo systemctl list-timers
 Sat 2021-04-03 07:12:00 UTC  14h left   n/a                          n/a          snap.certbot.renew.timer     snap.certbot.renew.service
 ```
 

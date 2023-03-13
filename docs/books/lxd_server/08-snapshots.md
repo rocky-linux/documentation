@@ -82,7 +82,7 @@ Once you don't need a snapshot anymore, you can delete it:
 lxc delete ubuntu-test/ubuntu-test-1
 ```
 
-!!! important
+!!! warning
 
     You should always delete snapshots with the container running. Why? Well the _lxc delete_ command also works to delete the entire container. If we had accidentally hit enter after "ubuntu-test" in the command above, AND, if the container was stopped, the container would be deleted. No warning is given, it simply does what you ask.
 

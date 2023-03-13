@@ -43,7 +43,7 @@ For proper operation, language servers must be installed separately with _Mason_
 
 The LSPs to be installed are `prettierd`, `markdownlint` and `stylua`. The first two LSPs will provide formatting and diagnostic capabilities for Markdown code, while the third provides support for formatting Lua code.
 
-!!! attention "Markdownlint setting"
+!!! warning "Markdownlint setting"
 
     For optimal use of the linter, a `rc` configuration file must be placed in your home directory; detailed instructions are available at the end of this document.
 

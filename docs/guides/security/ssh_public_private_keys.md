@@ -78,7 +78,7 @@ If so, we are now ready to either create or append the *authorized_keys* file in
 
 `ls -a .ssh`
 
-!!! attention "Important!"
+!!! warning "Important!"
 
     Make sure you read everything below carefully. If you are not sure if you will break something, then make a backup copy of authorized_keys (if it exists) on each of the machines before continuing.
 

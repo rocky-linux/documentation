@@ -15,9 +15,9 @@ Throughout this chapter you will need to execute commands as your unprivileged u
 
 You get a default profile when you install LXD, and this profile cannot be removed or modified. That said, you can use the default profile to create new profiles to use with your containers.
 
-If you look at our container listing you will notice that the IP address in each case is assigned from the bridged interface. In a production environment, you may want to use something else. This might be a DHCP assigned address from your LAN interface or even a statically assigned address from your WAN.
+If you look at our container listing, you will notice that the IP address in each case is assigned from the bridged interface. In a production environment, you may want to use something else. This might be a DHCP assigned address from your LAN interface or even a statically assigned address from your WAN.
 
-If you configure your LXD server with two interfaces, and assign each an IP on your WAN and LAN, then it is possible to assign your containers IP addresses based on which interface the container needs to be facing.
+If you configure your LXD server with two interfaces and assign each an IP on your WAN and LAN, then it is possible to assign your containers IP addresses based on which interface the container needs to be facing.
 
 As of version 9.0 of Rocky Linux (and really any bug for bug copy of Red Hat Enterprise Linux) the method for assigning IP addresses statically or dynamically using the profiles below, is broken out of the gate.
 
@@ -52,7 +52,7 @@ And then look for the interface with the LAN IP assignment in the 192.168.1.0/24
        valid_lft forever preferred_lft forever
 ```
 
-So in this case, the interface would be "enp3s0".
+So, in this case, the interface would be "enp3s0".
 
 Now let's modify the profile:
 
@@ -121,7 +121,7 @@ lxc restart rocky-test-8
 lxc restart rocky-test-9
 ```
 
-Now list your containers again and note that the rockylinux-test-9 not have an IP address anymore:
+Now list your containers again and note that the rockylinux-test-9 does not have an IP address anymore:
 
 ```
 lxc list
@@ -161,8 +161,7 @@ A new listing using `lxc list` now shows the following:
 +-------------------+---------+----------------------+------+-----------+-----------+
 ```
 
-That should have happened with a simple stop and start of the container, but it does not. Assuming that we want to use a DHCP assigned IP address every time, then we can fix this with a simple crontab entry. To do this, we need to gain shell access to the container by enter
-ing:
+That should have happened with a simple stop and start of the container, but it does not. Assuming that we want to use a DHCP assigned IP address every time, then we can fix this with a simple crontab entry. To do this, we need to gain shell access to the container by entering:
 
 ```
 lxc exec rockylinux-test-9 bash
@@ -227,7 +226,7 @@ A new listing will reveal that the container has been assigned the DHCP address:
 
 ### Rocky Linux 9.0 macvlan - The Static IP Fix
 
-To statically assign an IP address, things get even more convoluted. Since `network-scripts` is now deprecated in Rocky Linux 9.0, the only way to do this is through static assignment, and because of the way the containers use the network, you're not going to be able to set the route with a normal `ip route` statement either. The fix is to allow the container to get a dynamically allocated IP from your router, and then to script the addition of the static IP along with the removal of the dynamically assigned one.  We have already run `dhclient` and have seen the dynamically assigned IP, so we can use this (192.168.1.113) as the IP to delete. IF your router decides to hand out a different IP, the worst that can happen is that your container will end up with two IP's on the same network.
+To statically assign an IP address, things get even more convoluted. Since `network-scripts` is now deprecated in Rocky Linux 9.0, the only way to do this is through static assignment, and because of the way the containers use the network, you're not going to be able to set the route with a normal `ip route` statement either. The problem turns out to be that the interface assigned when applying the macvlan profile (eth0 in this case), cannot be managed. The fix is to rename the network interface on the container after restart and then assign the static IP. This can all be scripted and can be done (again) with root's crontab. This is all done with the `ip` command.
 
 To do this, we need to gain shell access to the container again:
 
@@ -235,7 +234,7 @@ To do this, we need to gain shell access to the container again:
 lxc exec rockylinux-test-9 bash
 ```
 
-Next, we are going to create a bash script in `/usr/local/sbin` called "static"
+Next, we are going to create a bash script in `/usr/local/sbin` called "static":
 
 ```
 vi /usr/local/sbin/static
@@ -246,22 +245,28 @@ The contents of this script are simple:
 ```
 #!/usr/bin/env bash
 
-/usr/sbin/dhclient
-sleep 3
-/usr/sbin/ip addr add 192.168.1.151/24 dev eth0
-sleep 3
-/usr/sbin/ip addr del 192.168.1.113/24 dev eth0
+/usr/sbin/ip link set dev eth0 name net0
+/usr/sbin/ip addr add 192.168.1.151/24 dev net0
+/usr/sbin/ip link set dev net0 up
+/usr/sbin/ip route add default via 192.168.1.1
 ```
 
-So what are we doing here? First, we run `dhclient` because we need the route that is created automatically when we do this. Deleting the IP will not delete the route. Second, we assign the new static IP that we have allocated for our container. In this case 192.168.1.151. and last, we delete the ip that was dynamically assigned.  The sleep commands between lines gives each command time to complete before moving on to the next one. It is particularly important that `dhclient` has time to run so that the route will be added before we do the rest of the steps.
+So, what are we doing here? First, we rename eth0 to a new name that we can manage. We have chosen "net0" here. Second, we assign the new static IP that we have allocated for our container. In this case 192.168.1.151. Now we bring up the new "net0" interface. Finally, we need to add the default route for our interface.
 
-Make our script exeutable with
+
+Make our script executable with:
 
 ```
 chmod +x /usr/local/sbin/static
 ```
 
-Finally, exit the container and restart it 
+Next, we add this to root's crontab for the container using the @reboot time:
+
+```
+@reboot     /usr/local/sbin/static
+```
+
+Finally, exit the container and restart it:
 
 ```
 lxc restart rockylinux-test-9
@@ -294,7 +299,7 @@ Luckily, In Ubuntu's implementation of Network Manager, the macvlan stack is NOT
 First, just like with our rockylinux-test-9 container, we need to assign the template to our container:
 
 ```
-lxc profile assign ubuntu-test default,macvlan`
+lxc profile assign ubuntu-test default,macvlan
 ```
 
 That should be all that is necessary to get a DHCP assigned address. To find out, stop and then start the container again:

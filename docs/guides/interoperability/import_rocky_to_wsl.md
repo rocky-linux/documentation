@@ -50,18 +50,18 @@ This feature should be available on every supported Windows 10 and 11 version ri
         wsl --import <machine-name> <path-to-vm-dir> <path-to/rocky-9-image.tar.xz> --version 2
         ```
 
-!!! hint "WSL vs. WSL 2"
+!!! tip "WSL vs. WSL 2"
 
     Generally speaking WSL 2 should be faster than WSL, but that might differ from use-case to use-case.
 
-!!! hint "Windows Terminal"
+!!! tip "Windows Terminal"
 
     If you have Windows Terminal installed, the new WSL distro name will appear as an option on the pull-down menu, which is quite handy for launching in the future. You can then customize it with colors, fonts, etc.
 
-!!! hint "systemd"
+!!! tip "systemd"
 
     Microsoft finally decided to bring systemd into the WSL. This feature is in the new WSL version from the Microsoft Store. You only need to add `systemd=true` to the `boot` ini section in the `/etc/wsl.conf` file! ([ref.](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings))
 
-!!! hint "Microsoft Store"
+!!! tip "Microsoft Store"
 
     Currently there is no image in the Microsoft Store, if you want to help with bringing it to there join the conversation in the Mattermost SIG/Containers channel! There has been [some effort](https://github.com/rocky-linux/WSL-DistroLauncher) a long time ago, which can get picked up again.

@@ -1,5 +1,10 @@
 ---
 title: File System
+author: Antoine Morvan
+contributors: Steven Spencer, tianci li, Serge Croise
+tags:
+  - file system
+  - system administration
 ---
 
 # File System
@@ -34,36 +39,58 @@ Partitioning will allow the installation of several operating systems because it
 
 The division of the physical disk into partitioned volumes is recorded in the partition table, stored in the first sector of the disk (MBR: _Master Boot Record_).
 
-The same physical disk can be divided into a maximum of 4 partitions:
+For **MBR** partition table types, the same physical disk can be divided into a maximum of 4 partitions:
 
-* *Primary* (or main)
-* *Extended*
+* *Primary partition* (or main partition)
+* *Extended partition*
 
 !!! Warning
 
-    There can be only one extended partition per physical disk. In order to benefit from additional drives, the extended partition can be split into logical partitions
+    There can be only one extended partition per physical disk, that is, a physical disk can have in the MBR partition table up to:
+    
+    1. Three primary partitions plus one extended partition
+    2. Four primary partitions 
+
+    The extended partition cannot write data and format, and can only contain logical partitions. The largest physical disk that can be recognized by the MBR partition table is **2TB**.
 
 ![Breakdown into only 4 primary partitions](images/07-file-systems-001.png)
 
 ![Breakdown into 3 primary partitions and one extended](images/07-file-systems-002.png)
 
+### Naming conventions for device file names
+
+In the world of GNU/Linux, everything is a file. For disks, they are recognized in the system as:
+
+| Hardware               | Device file name       | 
+|---                     |---                     |
+|IDE hard disk           | /dev/hd[a-d]           | 
+|SCSI/SATA/USB hard disk | /dev/sd[a-z]           |
+|Optical drive           | /dev/cdrom or /dev/sr0 |
+|Floppy disk             | /dev/fd[0-7]           |
+|Printer (25 pins)       | /dev/lp[0-2...]        |
+|Printer (USB)           | /dev/usb/lp[0-15]      |
+|Mouse                   | /dev/mouse             |  
+|Virtual hard disk       | /dev/vd[a-z]           |
+
 The _devices_ are the files identifying the various hardware detected by the motherboard. These files are stored without `/dev`. The service which detects new devices and gives them names is called *udev*.
 
 They are identified by their type.
 
-Storage devices are named *hd* for IDE hard drives and *sd* for other media. Then comes a letter that starts with *a* for the first device, then *b*, *c*, ...
+For more information, please see [here](https://www.kernel.org/doc/html/latest/admin-guide/devices.html).
 
-Finally we will find a number that defines the partitioned volume: *1* for the first primary partition, ...
+### Device partition number 
+
+The number after the block device (storage device) indicates a partition. For MBR partition tables, the number 5 must be the first logical partition.
 
 !!! Warning
 
-    Beware, the extended partition, which does not support a file system, still has a number.
+    Attention please! The partition number we mentioned here mainly refers to the partition number of the block device (storage device).
 
 ![Identification of partitions](images/07-file-systems-003.png)
 
 There are at least two commands for partitioning a disk: `fdisk` and `cfdisk`. Both commands have an interactive menu. `cfdisk` is more reliable and better optimized, so it is best to use it.
 
-The only reason to use `fdisk` is when you want to list all logical devices with the `-l` option.
+The only reason to use `fdisk` is when you want to list all logical devices with the `-l` option. `fdisk` uses MBR partition tables, so it is not supported for **GPT** partition tables and cannot be processed for disks larger than **2TB**.
 
 ```
 sudo fdisk -l
@@ -73,13 +100,13 @@ sudo fdisk -l /dev/sdc2
 
 ### `parted` command
 
-The `parted` (_partition editor_) command is able to partition a disk.
+The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`. We recommend that you use the `parted` command instead.
+
+The `parted` command can be used either on the command-line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
 
 ```
 parted [-l] [device]
 ```
-
-It also has a recovery function capable of rewriting a deleted partition table.
 
 Under graphical interface, there is the very complete `gparted` tool: *G*nome *PAR*tition *ED*itor.
 
@@ -132,7 +159,7 @@ The preparation, without _LVM_, of the physical media goes through five steps:
 
 **L**ogical **V**olume **M**anager (*LVM]*)
 
-Volume management creates an abstract layer on top of physical storage, offering advantages over using physical storage directly:
+The partition created by the **standard partition** cannot dynamically adjust the resources of the hard disk, once the partition is mounted, the capacity is completely fixed, this constraint is unacceptable on the server. Although the standard partition can be forcibly expanded or shrunk through certain technical means, it is easy to cause data loss. LVM can solve this problem very well. LVM is available under Linux from kernel version 2.4, and its main features are:
 
 * More flexible disk capacity;
 * Online data movement;
@@ -140,28 +167,39 @@ Volume management creates an abstract layer on top of physical storage, offering
 * Mirrored volumes (recopy);
 * Volume snapshots (_snapshot_).
 
-The disadvantage is that if one of the physical volumes becomes out of order, then all the logical volumes that use this physical volume are lost. You will have to use LVM on raid disks.
+The principle of LVM is very simple: 
 
-LVM is available under Linux from kernel version 2.4.
+* a logical abstraction layer is added between the physical disk (or disk partition) and the file system
+* merge multiple disks (or disk partition) into Volume Group(**VG**) 
+* perform underlying disk management operations on them through something called Logical Volume(**LV**).
 
-!!! Note
+**The physical media**: The storage medium of the LVM can be the entire hard disk, disk partition, or RAID array. The device must be converted, or initialized, to an LVM Physical Volume(**PV**), before further operations can be performed.
 
-    LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
+**PV(Physical Volume)**: The basic storage logic block of LVM. To create a physical volume, you can use a disk partition or the disk itself.
 
-### Volume groups
+**VG(Volume Group)**: Similar to physical disks in a standard partition, a VG consists of one or more PV.
 
-The physical volumes *PV* _Physical Volumes_ (from partitions) are combined into volume groups *VG*.
-Each *VG* represents disk space that can be partitioned into *LV* _Logical Volumes_.
-*Extension* is the smallest unit of fixed-size space that can be allocated.
+**LV(Logical Volume)**: Similar to hard disk partitions in standard partitions, LV is built on top of VG. You can set up a file system on LV.
 
-* **PE** : _Physical Extension_
-* **LE** : _Logical Extension_
+<b><font color="blue">PE</font></b>: The smallest unit of storage that can be allocated in a Physical Volume, default to <b>4MB</b>. You can specify an additional size.
+
+<b><font color="blue">LE</font></b>: The smallest unit of storage that can be allocated in a Logical Volume. In the same VG, PE and LE are the same and correspond one to one.
 
 ![Volume group, PE size equal to 4MB](images/07-file-systems-004.png)
 
-### Logical volumes
+The disadvantage is that if one of the physical volumes becomes out of order, then all the logical volumes that use this physical volume are lost. You will have to use LVM on raid disks.
 
-A volume group, *VG*, is divided into logical volumes, *LV*, offering different operating modes:
+!!! note
+
+    LVM is only managed by the operating system. Therefore the _BIOS_ needs at least one partition without LVM to boot.
+
+!!! info
+
+    In the physical disk, the smallest storage unit is the **sector**; in the file system, the smallest storage unit of GNU/Linux is the **block**, which is called **cluster** in Windows operating system.; in RAID, the smallest storage unit is **chunk**.
+
+### The Writing Mechanism of LVM
+
+There are several storage mechanisms when storing data to **LV**, two of which are:
 
 * Linear volumes;
 * Volumes in _stripe_ mode;
@@ -171,13 +209,19 @@ A volume group, *VG*, is divided into logical volumes, *LV*, offering different 
 
 ![Volumes in stripe mode](images/07-file-systems-006.png)
 
-!!! Tip
-
-    Striping_ improves performance by writing data to a predetermined number of physical volumes with a _round-robin_ technique.
-
-![Mirrored volumes](images/07-file-systems-007.png)
-
 ### LVM commands for volume management
+
+The main relevant commands are as follows:
+
+| Item                | PV       | VG       | LV        |
+|:---:                |:---:     |:---:     |:---:      |
+| scan                | pcscan   |vgscan    | lvscan    |
+| create              | pvcreate | vgcreate | lvcreate  |
+| display             | pvdisplay| vgdisplay| lvdisplay |
+| remove              | pvremove | vgremove | lvremove  |
+| extend              |          | vgextend | lvextend  |
+| reduce              |          | vgreduce | lvreduce  |
+| summary information | pvs      | vgs      | lvs       |
 
 #### `pvcreate` command
 
@@ -199,18 +243,22 @@ You can also use a whole disk (which facilitates disk size increases in virtual 
 ```
 [root]# pvcreate /dev/hdb
 pvcreate -- physical volume « /dev/hdb » successfully created
+
+# It can also be written in other ways, such as
+[root]# pvcreate /dev/sd{b,c,d}1
+[root]# pvcreate /dev/sd[b-d]1
 ```
 
 | Option | Description                                                                        |
 |--------|------------------------------------------------------------------------------------|
-| `-f`   | Forces the creation of the volume (disk already transformed into physical volume). |
+| `-f`   | Forces the creation of the volume (disk already transformed into physical volume). Use with extreme caution.|
 
 #### `vgcreate` command
 
 The `vgcreate` command is used to create volume groups. It groups one or more physical volumes into a volume group.
 
 ```
-vgcreate volume physical_volume [PV...]
+vgcreate  <VG_name>  <PV_name...>  [option] 
 ```
 
 Example:
@@ -219,6 +267,9 @@ Example:
 [root]# vgcreate volume1 /dev/hdb1
 …
 vgcreate – volume group « volume1 » successfully created and activated
+
+[root]# vgcreate vg01 /dev/sd{b,c,d}1
+[root]# vgcreate vg02 /dev/sd[b-d]1
 ```
 
 #### `lvcreate` command
@@ -240,6 +291,11 @@ lvcreate -- logical volume « /dev/volume1/VolLog1 » successfully created
 |-----------|---------------------------------------------------------------------|
 | `-L size` | Logical volume size in K, M or G.                                   |
 | `-n name` | LV name. Special file created in `/dev/name_volume` with this name. |
+| `-l  number`  | In addition to using the capacity unit of the hard disk, you can also use the number of PE. One PE equals 4MB. |
+
+!!! info
+
+    After you create a logical volume with the `lvcreate` command, the naming rule of the operating system is - `/dev/VG_name/LV_name`, this file type is a soft link (otherwise known as a symbolic link). The link file points to files like `/dev/dm-0` and `/dev/dm-1`.
 
 ### LVM commands to view volume information
 
@@ -311,7 +367,7 @@ The Linux operating system is able to use different file systems (ext2, ext3, ex
 
 ### `mkfs` command
 
-The `mkfs` command allows you to create a Linux file system.
+The `mkfs`(make file system) command allows you to create a Linux file system. 
 
 ```
 mkfs [-t fstype] filesys
@@ -331,19 +387,29 @@ Example:
 
     Without a file system it is not possible to use the disk space.
 
-Each file system has a structure which is identical on each partition. A **boot block** and a **super block** initialized by the system and then an **inode table** and a **data area** initialized by the administrator.
+Each file system has a structure which is identical on each partition. A **Boot Sector** and a **Super block** initialized by the system and then an **Inode table** and a **Data block** initialized by the administrator.
 
 !!! Note
 
     The only exception is the **swap** partition.
 
-### Boot block
+### Boot sector
 
-The **boot block** occupies the first block on the disk and is present on all partitions. It contains the program that starts and initializes the system and is therefore only filled in for the boot partition.
+Boot sector is the first sector of bootable storage media, that is, 0 cylinder, 0 track, 1 sector(1 sector equals 512 bytes). It consists of three parts:
+
+1. MBR(master boot record): 446 bytes.
+2. DPT(disk partition table): 64 bytes.
+3. BRID(boot record ID): 2 bytes.
+
+|   Item      |   Description |
+|   ---       |   ---         |
+|   MBR       | Stores the "boot loader"(or "GRUB"); load the kernel, pass parameters; provide a menu interface at boot time; transfer to another loader, such as when multiple operating systems are installed. |
+|   DPT       | Record the partition status of the entire disk.              |
+|   BRID      | Its function is to determine whether the device can be used to boot.               |
 
 ### Super block
 
-The size of the **super block** table is defined at creation. It is present on each partition and contains the elements necessary for its utilization.
+The size of the **Super block** table is defined at creation. It is present on each partition and contains the elements necessary for its utilization.
 
 It describes the File System:
 
@@ -392,7 +458,7 @@ Information present in the *inode table* :
 * Date of the last modification of the inode (= creation);
 * Table of several pointers (block table) to the logical blocks containing the pieces of the file.
 
-### Data area
+### Data block
 
 Its size corresponds to the rest of the available space of the partition. This area contains the catalogs corresponding to each directory and the data blocks corresponding to the contents of the files.
 
@@ -462,6 +528,7 @@ Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) whic
 | `/usr`     | Everything that is not necessary for minimal system operation | _UNIX System Resources_       |
 | `/mnt`     | For mounting temporary SF                                     | _mount_                       |
 | `/media`   | For mounting removable media                                  |                               |
+| `/misc`    | Mount the shared directory of the NFS service.                |                               |
 | `/root`    | Administrator's login directory                               |                               |
 | `/home`    | User data                                                     |                               |
 | `/tmp`     | Temporary files                                               | _temporary_                   |
@@ -470,6 +537,9 @@ Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) whic
 | `/opt`     | Specific to installed applications                            | _optional_                    |
 | `/proc`    | Virtual file system representing different processes          | _processes_                   |
 | `/var`     | Miscellaneous variable files                                  | _variables_                   |
+| `/sys`     | Virtual file system, similar to /proc                         |                               |
+| `/run`     | That is /var/run                                              |                               |
+| `/srv`     | Service Data Directory                                        | _service_                     |
 
 * To perform a mount or unmount, at the tree level, you must not be under its mount point.
 * Mounting on a non-empty directory does not delete the content. It is only hidden.
@@ -504,14 +574,27 @@ proc                           /proc     proc    defaults        0   0
 | 5      | Enable or disable backup management (0:not backed up, 1:backed up)                                |
 | 6      | Check order when checking the SF with the `fsck` command (0:no check, 1:priority, 2:not priority) |
 
-The `mount -a` command allows new mounts to be taken into account without rebooting.
-They are then written to the `/etc/mtab` file which contains the current mounts.
+The `mount -a` command allows you to mount automatically based on the contents of the configuration file `/etc/fstab`, the mounted information is then written to `/etc/mtab`.
 
 !!! Warning
 
-    Only the mount points listed in `/etc/fstab` will be mounted on reboot.
+    Only the mount points listed in `/etc/fstab` will be mounted on reboot. Generally speaking, we do not recommend writing USB flash disk and removable hard drives to the `/etc/fstab` file, because when the external device is unplugged and rebooted, the system will prompt that the device cannot be found, resulting in a failure to boot. So what am I supposed to do? Temporary mount, for example:
+    
+    ```bash
+    Shell > mkdir /mnt/usb     
+    Shell > mount -t  vfat  /dev/sdb1  /mnt/usb  
+    
+    # Read the information of the USB flash disk
+    Shell > cd /mnt/usb/
 
-It is possible to make a copy of the `/etc/mtab` file or to copy its contents to `/etc/fstab`.
+    # When not needed, execute the following command to pull out the USB flash disk
+    Shell > umount /mnt/usb
+    ```
+
+!!! info
+
+    It is possible to make a copy of the `/etc/mtab` file or to copy its contents to `/etc/fstab`.
+    If you want to view the UUID of the device partition number, type the following command: `lsblk -o name,uuid`. UUID is the abbreviation of `Universally Unique Identifier`.
 
 ### Mount management commands
 
@@ -568,14 +651,14 @@ Example:
 
     When disassembling, you must not stay below the mounting point. Otherwise, the following error message is displayed: `device is busy`.
 
-## Types of files
+## File naming convention
 
 As in any system, in order to be able to find one's way through the tree structure and the file management, it is important to respect the file naming rules.
 
 * Files are coded on 255 characters;
 * All ASCII characters can be used;
 * Uppercase and lowercase letters are differentiated;
-* No notion of extension.
+* Most files have no concept of file extension. In the GNU/Linux world, most file extensions are not required, except for a few (for example, .jpg, .mp4, .gif, etc.).
 
 Groups of words separated by spaces must be enclosed in quotation marks:
 
@@ -591,11 +674,7 @@ Groups of words separated by spaces must be enclosed in quotation marks:
 
     The **.** at the beginning of the file name only serves to hide it from a simple `ls`.
 
-!!! Warning
-
-    Under Linux, the extension of a file is not a necessary reference to open or modify it. However, it can be useful for the user.
-
-Examples of extension agreements:
+Examples of file extension agreements:
 
 * `.c` : source file in C language;
 * `.h` : C and Fortran header file;
@@ -614,58 +693,53 @@ Examples of extension agreements:
 1      2    3     4  5    6    7       8               9
 ```
 
-| Row |	Description                                                |
-|-----|------------------------------------------------------------|
-| `1` | Inode number                                               |
-| `2` | File type (1st character of the block of 10)               |
-| `3` | Access rights (last 9 characters of the block of 10)       |
-| `4` | Number of links (ordinary) or subdirectories (directories) |
-| `5` | Name of the owner                                          |
-| `6` | Name of the group                                          |
-| `7` | Size (byte, kilo, mega)                                    |
-| `8` | Date of last update                                        |
-| `9` | Name of the file                                           |
+| Part |	Description                                                                       |
+|-----|-----------------------------------------------------------------------------------|
+| `1` | Inode number                                                                      |
+| `2` | File type (1st character of the block of 10), "-" means this is an ordinary file. |
+| `3` | Access rights (last 9 characters of the block of 10)                              |
+| `4` | If this is a directory, this number represents how many subdirectories there are in that directory, including hidden ones. If this is a file, indicates the number of hard links, when the number 1 is, that is, there is only one hard link, that is, it itself.                   |
+| `5` | Name of the owner                                                                 |
+| `6` | Name of the group                                                                 |
+| `7` | Size (byte, kilo, mega)                                                           |
+| `8` | Date of last update                                                               |
+| `9` | Name of the file                                                                  |
 
-### Different types of files
+In the GNU/Linux world, there are seven file types:
 
-The following types of files can be found on a system:
+| File types  | Description                                                                                                                                |
+|:-----------:|--------------------------------------------------------------------------------------------------------------------------------------------|
+| **-**       | Represents a ordinary file. Including plain text files (ASCII); binary files (binary); data format files (data); various compressed files. |
+| **d**       | Represents a directory file. |
+| **b**       | Block device file. Including all kinds of hard drives, USB drives and so on. | 
+| **c**       | Character device file. Interface device of serial port, such as mouse, keyboard, etc. |
+| **s**       | Socket file. It is a file specially used for network communication. | 
+| **p**       | Pipe file. It is a special file type, the main purpose is to solve the errors caused by multiple programs accessing a file at the same time. FIFO is the abbreviation of first-in-first-out. |
+| **l**       | Soft link files, also called symbolic link files, are similar to shortcuts in Windows. Hard link file, also known as physical link file.| 
 
-* Ordinary (text, binary, ...);
-* Directories;
-* Special (printers, screens, ...);
-* Links;
-* Communications (tubes and socket).
+#### Supplementary description of directory
 
-#### Ordinary files
+In each directory, there are two hidden files:  **.** and **..**. You need to use `ls -al` to view, for example:
 
-These are text, program (source), executable (after compilation) or data (binary, ASCII) and multimedia files.
+```bash
+# . Indicates that in the current directory, for example, you need to execute a script in a directory, usually:
+Shell > ./scripts
 
+# .. represents the directory one level above the current directory, for example:
+Shell > cd /etc/
+Shell > cd ..
+Shell > pwd
+/
+
+# For an empty directory, its fourth part must be greater than or equal to 2. Because there are "." and ".."
+Shell > mkdir /tmp/t1
+Shell > ls -ldi /tmp/t1
+1179657 drwxr-xr-x 2 root root 4096 Nov 14 18:41 /tmp/t1
 ```
-[root]# ls -l myfile
--rwxr-xr-x   1   root  root  26  nov  31  15:21 myfile
-```
-
-The dash `-` at the beginning of the rights group (10-character block) indicates that it is an ordinary file type.
-
-#### Directory files
-
-Directory files contain references to other files.
-
-By default in each directory are present **.**  and **..**.
-
-* The **.** represents the position in the tree.
-* The **..** represents the father of the current position.
-
-```
-[root]# ls -l mydirectory
-drwxr-xr-x   1   root  root  26  nov  31  15:21 mydirectory
-```
-
-The letter `d` at the beginning of the rights group indicates that it is a directory type file.
 
 #### Special files
 
-In order to communicate with peripherals (hard disks, printers, ...), Linux uses interface files called special files (_device file_ or _special file_). They allow identification by the peripherals.
+In order to communicate with peripherals (hard disks, printers...), Linux uses interface files called special files (_device file_ or _special file_). They allow identification by the peripherals.
 
 These files are special because they do not contain data but specify the access mode to communicate with the device.
 
@@ -674,29 +748,15 @@ They are defined in two modes:
 * **block** mode;
 * **character** mode.
 
-##### Block mode
-
-The special **block mode** file allows, using the system buffers, to transfer data to the device.
-
-```
-[root]# ls -l /dev/sda
+```bash
+# Block device file
+Shell > ls -l /dev/sda
 brw-------   1   root  root  8, 0 jan 1 1970 /dev/sda
-```
 
-The letter `b` at the beginning of the rights group indicates that it is a special file **block**.
-
-##### Character mode
-
-The special *character mode* file is used to transfer data to the device as a stream of one character at a time without using a buffer. These are devices like printer, screen or DAT tapes, ...
-
-The standard output is the screen.
-
-```
-[root]# ls -l /dev/tty0
+# Character device file
+Shell > ls -l /dev/tty0
 crw-------   1   root  root  8, 0 jan 1 1970 /dev/tty0
 ```
-
-The letter `c` at the beginning of the rights group indicates that it is a special character file.
 
 #### Communication files
 
@@ -713,68 +773,48 @@ These files give the possibility to give several logical names to the same physi
 
 There are two types of link files:
 
-* Physical links;
-* Symbolic links.
+* Soft link file, also called symbolic link files;
+* Hard link file, also called physical link files.
 
-##### Physical link
+Their main features are:
 
-The link file and the source file have the same _inode_ number and the link counter is incremented. It is not possible to link different directories or files from different file systems.
+| Link types        | Description        | 
+| ---               | ---                |
+| soft link file    | A shortcut similar to Windows. It has permission of 777 and points to the original file. When the original file is deleted, the linked file and the original file are displayed in red.|
+| Hard link file    | The original file has the same _ inode_ number as the hard-linked file. They can be updated synchronously, including the contents of the file and when it was modified. Cannot cross partitions, cannot cross file systems. Cannot be used for directories. |
 
-!!! Warning
+Specific examples are as follows:
 
-    If the source file is destroyed, the counter is decremented and the link file still accesses the file.
+```bash
+# Permissions and the original file to which they point
+Shell > ls -l /etc/rc.locol
+lrwxrwxrwx 1 root root 13 Oct 25 15:41 /etc/rc.local -> rc.d/rc.local
 
-###### Command `ln` for a physical link
-
-The `ln` command allows you to create physical links.
-
+# When deleting the original file. "-s" represents the soft link option
+Shell > touch /root/Afile
+Shell > ln -s /root/Afile /root/slink1
+Shell > rm -rf /root/Afile
 ```
-[root]# ls –li letter
+
+![Present the effect](images/07-file-systems-019.png)
+
+```bash
+Shell > cd /home/paul/
+Shell > ls –li letter
 666 –rwxr--r-- 1 root root … letter
-```
 
-```
-[root]# ln /home/paul/letter /home/jack/read
-```
+# The ln command does not add any options, indicating a hard link
+Shell > ln /home/paul/letter /home/jack/read
 
-```
-[root]# ls –li /home/*/*
+# The essence of hard links is the file mapping of the same inode number in different directories.
+Shell > ls –li /home/*/*
 666 –rwxr--r-- 2 root root … letter
 666 –rwxr--r-- 2 root root … read
+
+# If you use a hard link to a directory, you will be prompted:
+Shell > ln  /etc/  /root/etc_hardlink
+ln: /etc: hard link not allowed for directory
 ```
-
-![Representation of a physical link](images/07-file-systems-009.png)
-
-##### Symbolic link
-
-Unlike the physical link, the symbolic link involves the creation of a new _inode_. At the symbolic link level, only a path is stored in the inode table.
-
-The file created contains only an indication of the path to the file. This notion no longer has the limitations of physical links and it is now possible to link directories and files belonging to different file systems.
-
-!!! Warning
-
-    If the source file is destroyed, the link file can no longer access the file.
-
-###### `ln` command for a symbolic link
-
-The command `ln` with the argument `-s` allows to create symbolic links.
-
-```
-[root]# ls –li letter
-666 -rwxr--r-- 1 root root … letter
-```
-
-```
-[root]# ln -s /home/paul/letter /tmp/read
-```
-
-```
-[root]# ls –li /home/paul/letter /tmp/read
-666 -rwxr--r--- 1 root root … letter
-678 lrwxrwxrwx 1 root root … read -> letter
-```
-
-![Representation of a symbolic link](images/07-file-systems-010.png)
 
 ## File attributes
 
@@ -785,46 +825,41 @@ These controls are functions of:
 * file access permissions ;
 * users (_ugo_ _Users Groups Others_).
 
-The command `ls -l` allows to display the attributes.
+### Basic permissions of files and directories
 
-There are 4 file access rights:
+The description of **file permissions** is as follows:
 
-* **r**ead;
-* **w**rite;
-* e**x**ecution;
-* **-** no right.
+| File permissions | Description                                                                        |
+| :---------------:| -------------                                                                      |
+| r                | Read. Allows reading a file (`cat`, `less`, ...) and copying a file (`cp`, ...).   |
+| w                | Write. Allows modification of the file content (`cat`, `>>`, `vim`, ...).          |
+| x                | Execute. Considers the file as an e**X**ecutable (binary or script).               |
+| -                | No right                                                                           |
 
-!!! Warning
+The description of **directory permissions** is as follows:
 
-    The rights associated with files differ from those associated with directories (see below).
+| Directory permissions | Description                                                                        |
+| :---------------:     | -------------                                                                      |
+| r                     | Read. Allows reading the contents of a directory (`ls -R`).                        |
+| w                     | Write. Allows you to create, and delete files/directories in this directory, such as commands `mkdir`, `rmdir`, `rm`, `touch`, and so on.  |
+| x                     | Execute. Allows descending in the directory (`cd`).                                |
+| -                     | No right                                                                           |
 
-The user types associated with file access rights are:
+!!! info
 
-* **u**ser_ (owner) ;
-* **g**roup_ (owner group);
-* **o**thers (others users);
+    For the permissions of a directory, `r` and `x` usually appear at the same time. Moving or renaming a file depends on whether the directory where the file is located has `w` permission, and so does deleting a file.
 
-In some commands it is possible to designate everyone with **a** (_all_).
+### User type corresponding to basic permission
 
-**a = ugo**
+| User type| Description                    |
+| :---:   | ------                         |
+| u        | Owner                          |
+| g        | Owner group                    |
+| o        | Others users                   |
 
-### Rights associated with ordinary files
+!!! info
 
-* **r**ead: Allows reading a file (`cat`, `less`, ...) and copying a file (`cp`, ...).
-* **w**rite: Allows modification of the file content (`cat`, `>>`, `vim`, ...).
-* e**x**ecute: Considers the file as an e**X**ecutable (binary or script).
-* **-**: No permissions.
-
-!!! Note
-
-    Moving or renaming a file depends on the rights of the target directory. Deleting a file depends on the rights of the parent directory.
-
-### Rights associated with directories
-
-* **r**ead: Allows reading the contents of a directory (`ls -R`).
-* **w**rite: Allows modification of the contents of a directory (`touch`) and allows creation and deletion of files if the **x** permission is enabled.
-* e**x**ecute: Allows descending in the directory (`cd`).
-* **-**: No rights.
+    In some commands it is possible to designate everyone with **a** (_all_). **a = ugo**.
 
 ### Attribute management
 
@@ -836,17 +871,13 @@ The display of rights is done with the command `ls -l`. It is the last 9 charact
   1  2  3       4     5
 ```
 
-| Row |	Description                                                   |
+| Part |	Description                                                   |
 |-----|---------------------------------------------------------------|
 | 1   | Owner (**u**ser) permissions, here `rwx`                      |
 | 2   | Owner group permissions (**g**roup), here `rw-`               |
 | 3   | Other users' permissions (**o**thers), here `r-x`             |
 | 4   | File owner                                                    |
 | 5   | Group owner of the file                                       |
-
-!!! Note
-
-    Permissions apply to **u**ser, **g**roup and **o**ther (**ugo**) depending on the owner and group.
 
 By default, the _owner_ of a file is the one who creates it. The _group_ of the file is the group of the owner who created the file. The _others_ are those which are not concerned by the previous cases.
 
@@ -862,26 +893,43 @@ The `chmod` command allows you to change the access permissions to a file.
 chmod [option] mode file
 ```
 
+| Option |	Observation                                                           |
+|--------|------------------------------------------------------------------------|
+| `-R`   |  Recursively change the permissions of the directory and all files under the directory. |
+
+!!! Warning
+
+    The rights of files and directories are not dissociated. For some operations, it will be necessary to know the rights of the directory containing the file. A write-protected file can be deleted by another user as long as the rights of the directory containing it allow this user to perform this operation.
+
 The mode indication can be an octal representation (e.g. `744`) or a symbolic representation ([`ugoa`][`+=-`][`rwxst`]).
 
-Several symbolic operations can be separated by commas
+##### Octal （or number）representation：
 
-Example:
+| Number | Description      |
+| :---:  |      ---         |
+| 4      |      r           |
+| 2      |      w           | 
+| 1      |      x           |
+| 0      |      -           |
+
+Add the three numbers together to get one user type permission. E.g. **755=rwxr-xr-x**.
+
+![Octal representation](images/07-file-systems-011.png)
+
+![Rights 777](images/07-file-systems-012.png)
+
+![Rights 741](images/07-file-systems-013.png)
+
+!!! info
+
+    Sometimes you will see `chmod 4755`. The number 4 here refers to the special permission **set uid**. Special permissions will not be expanded here for the moment, just as a basic understanding.
 
 ```
-[root]# chmod -R u+rwx,g+wx,o-r /tmp/file1
-[root]# chmod g=x,o-r /tmp/file2
-[root]# chmod -R o=r /tmp/file3
-```
-
-```
-[root]# ls -l /tmp/fic*
+[root]# ls -l /tmp/fil*
 -rwxrwx--- 1 root root … /tmp/file1
 -rwx--x--- 1 root root … /tmp/file2
 -rwx--xr-- 1 root root … /tmp/file3
-```
 
-```
 [root]# chmod 741 /tmp/file1
 [root]# chmod -R 744 /tmp/file2
 [root]# ls -l /tmp/fic*
@@ -889,176 +937,17 @@ Example:
 -rwxr--r-- 1 root root … /tmp/file2
 ```
 
-| Option |	Observation                                                           |
-|--------|------------------------------------------------------------------------|
-| `-R`   |  Recursively modify the permissions of directories and their contents. |
-
-There are two methods for making rights changes:
-
-* The **octal** method;
-* The **symbolic** method.
-
-!!! Warning
-
-    The rights of files and directories are not dissociated. For some operations, it will be necessary to know the rights of the directory containing the file. A write-protected file can be deleted by another user as long as the rights of the directory containing it allow this user to perform this operation.
-
-#### Principle of the octal method
-
-Each right has a value.
-
-![Octal method](images/07-file-systems-011.png)
-
-```
-[root]# ls -l /tmp/myfile
--rwxrwxrwx  1  root  root  ... /tmp/myfile
-```
-
-![Rights 777](images/07-file-systems-012.png)
-
-```
-[root]# chmod 741 /tmp/myfile
--rwxr----x  1  root  root  ... /tmp/myfile
-```
-
-![Rights 741](images/07-file-systems-013.png)
-
-#### Principle of the symbolic method
+##### symbolic representation
 
 This method can be considered as a "literal" association between a user type, an operator, and rights.
 
 ![Symbolic method](images/07-file-systems-014.png)
 
 ```
-[root]# chmod u+rwx,g+wx,o-r /tmp/myfile
-[root]# chmod g=x,o-r /tmp/myfile
-[root]# chmod o=r /tmp/myfile
+[root]# chmod -R u+rwx,g+wx,o-r /tmp/file1
+[root]# chmod g=x,o-r /tmp/file2
+[root]# chmod -R o=r /tmp/file3
 ```
-
-```
-[root]# ls -l /tmp/myfile
-r--r-- 1 root root … /tmp/myfile
-```
-
-```
-[root]# chmod u+rwx,g+wx,o-r /tmp/myfile
-```
-
-```
-[root]# ls -l /tmp/myfile
--rwxrwx--- 1 root root … /tmp/myfile
-```
-
-### Special rights
-
-In addition to the fundamental rights (`rwx`), there are the particular rights:
-
-* **set-user-ID** (_SUID]_)
-* **set-group-ID** (_SGID]_)
-* **sticky-bit**
-
-As with the fundamental rights, the particular rights each have a value. This value is placed before the `ugo` set of rights.
-
-![Special rights](images/07-file-systems-015.png)
-
-!!! Danger
-
-    `S`, `S` and `T` in capital letters **if the right does not exist**.
-
-#### The sticky-bit
-
-One of the peculiarities of rights in Linux is that the right to write to a directory also allows deletion of *all* files, owner or not.
-
-The _sticky-bit_ set on the directory will only allow users to delete files they own. This is the basic case for the `/tmp` directory.
-
-The setting of the _sticky-bit_ can be done as follows:
-
-Octal method:
-```
-[root]# chmod 1777 directory
-```
-
-Symbolic method:
-```
-[root]# chmod o+t directory
-```
-
-Verification:
-```
-[root]# ls -l
-drwxrwxrwt … directory
-```
-
-#### SUID and SGID on a command
-
-These rights allow execution of a command according to the rights set on the command, and not according to the user's rights.
-
-The command is executed with the identity of the owner (_SUID_) or the group (_SGID_) of the command.
-
-!!! Note
-
-    The identity of the user requesting the execution of the order is no longer taken into account.
-
-    This is an additional possibility of access rights assigned to a user when it is necessary for them to have the same rights as the owner of a file or those of the group concerned.
-
-Indeed, a user may have to run a program (usually a system utility) but not have the necessary access rights. By setting the appropriate rights (**s** at the owner level and/or at the group level), the user of the program has, for the time of its execution, the identity of the owner (or that of the group) of the program.
-
-Example:
-
-The file `/usr/bin/passwd` is an executable file (a command) with a _SUID_.
-
-When the user _bob_ runs it, he will have to access the `/etc/shadow` file, but the permissions on this file do not allow _bob_ to access it.
-
-Having a _SUID_ this command, `/usr/bin/passwd`, will be executed with the _UID_ of root and the _GID_ of _root_. The latter being the owner of the `/etc/shadow` file, he will have read rights.
-
-![How the SUID works](images/07-file-systems-016.png)
-
-The setting of _SUID_ and _SGID_ can be done as below with the command `chmod`:
-
-Octal method:
-```
-[root]# chmod 4777 command1
-[root]# chmod 2777 command2
-```
-
-Symbolic method:
-```
-[root]# chmod u+s command1
-[root]# chmod g+s command2
-```
-
-Verification:
-```
-[root]# ls -l
--rwsrwxrwx … command1
--rwxrwsrwx … command2
-```
-
-!!! Warning
-
-    It is not possible to pass the _SUID_ or _SGID_ to a shell script.
-    The system does not allow it because it is too dangerous for security!
-
-#### SGID on a file
-
-In a directory with the _SGID_ right, any file created will inherit the group that owns the directory instead of that of the creating user.
-
-Example:
-```
-[rockstar] $ ls -ld /data/
-drwxrwsr-x 2 root users 4096 26 oct. 19:43 /data
-```
-
-```
-[rockstar] $ touch /data/test_sgid /tmp/fic_reference
-```
-
-```
-[rockstar] $ ls -ld /data/test_sgid /tmp/fic_reference
--rw-r--r--. 1 rockstar users 0 26 oct. 19:43 /data/test_sgid <1>
--rw-r--r--. 1 rockstar rockstar 0 26 oct. 19:43  /tmp/fic_ref
-```
-
-<1> The `test_sgid` file inherits the group owner of its `/data` folder (in this case `users`) whatever the main group of the `rockstar` user is.
 
 ## Default rights and mask
 
@@ -1078,6 +967,17 @@ For a directory :
 For a file, the execution rights are removed:
 
 ![Default rights of a file](images/07-file-systems-018.png)
+
+!!! info
+
+    The `/etc/login.defs` file defines the default UMASK, with a value of **022**. This means that the permission to create a file is 755 (rwxr-xr-x). However, for the sake of security, GNU/Linux does not have **x** permission for newly created files, this restriction applies to root(uid=0) and ordinary users(uid>=1000).
+
+    ```bash
+    # root user
+    Shell > touch a.txt
+    Shell > ll
+    -rw-r--r-- 1 root root     0 Oct  8 13:00 a.txt
+    ```
 
 ### `umask` command
 
@@ -1111,13 +1011,18 @@ $ ls -la  umask_025
 
 !!! Warning
 
-    `umask` does not affect existing files.
+    `umask` does not affect existing files. `umask -S` displays the file rights (without the execute right) of the files that will be created. So, it is not the display of the mask used to subtract the maximum value.
 
 !!! Note
 
     `umask` modifies the mask until the disconnection.
 
-To keep the value, you have to modify the following profile files:
+!!! info
+
+    The `umask` command belongs to bash's built-in commands, so when you use `man umask`, all built-in commands will be displayed. If you only want to view the help of `umask`, you need to use the `help umask` command.
+
+To keep the value, you have to modify the following profile files：
+
 For all users:
 
 * `/etc/profile`
@@ -1127,10 +1032,4 @@ For a particular user:
 
 * `~/.bashrc`
 
-!!! Warning
-
-    `umask -S` displays the file rights (without the execute right) of the files that will be created. So it is not the display of the mask used to subtract the maximum value.
-
-!!! Tip
-
-    The `umask` command being a _bash_ command, (a `type umask` returns `umask is a shell primitive`) you have to search `umask` in `man bash`.
+When the above file is written, it actually overrides the **UMASK** parameter of `/etc/login.defs`. If you want to improve the security of the operating system, you can set umask to **027** or **077**.

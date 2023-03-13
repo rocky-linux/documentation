@@ -70,7 +70,7 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     Note at the top of the configuration file the reference to `keyfile` followed by `ifcfg-rh`. This means that `keyfile` is the default. Any time you run any of the `NetworkManager` tools to configure an interface (example: `nmcli` or `nmtui`), it will automatically build or update key files.
 
-    !!! Hint "Configuration Storage Location"
+    !!! tip "Configuration Storage Location"
 
         In Rocky Linux 8, the storage location for network configuration was in `/etc/sysconfig/Network-Scripts/`.
         With Rocky Linux 9, the new default storage location for the key files is in `/etc/NetworkManager/system-connections`. 
@@ -100,7 +100,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     ```
 
 
-    !!! hint "**Tips:**"  
+    !!! tip "**Tips:**"  
 
         There are a few ways or mechanisms by which systems can be assigned their IP configuration information.
         The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
@@ -228,7 +228,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     ip a
     ```
 
-    !!! hint "**Pro tips:**"
+    !!! tip "**Pro tips:**"
 
         * use the `-c` flag to get a more readable coloured output: `ip -c a`.
 	    * `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
@@ -394,7 +394,7 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     The interface's name is **enp1s0** so this file's name will be `/etc/sysconfig/network-scripts/ifcfg-enp1s0`.
 
-    !!! hint "**Tips:**"  
+    !!! tip "**Tips:**"  
 
         There are a few ways or mechanisms by which systems can be assigned their IP configuration information. The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
 
@@ -466,7 +466,7 @@ You can't do much with a computer these days without network connectivity. Wheth
 
     From the output above, we can determine that NetworkManager manages a connection (`NAME`) called `enp1s0` that maps to the physical device (`DEVICE`) `enp1s0`.
 
-    !!! hint "Connection name"
+    !!! tip "Connection name"
 
         In this example, both the connection and device share the same name, but this may not always be the case. It is common to see a connection called `System eth0` that maps to a device called `eth0`, for example.
 
@@ -517,7 +517,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     [user@server ~]$ sudo nmcli connection modify enp1s0 ipv4.method manual
     ```
 
-    !!!hint "When does the connection get updated?"
+    !!!tip "When does the connection get updated?"
 
         `nmcli connection modify` will not modify the *runtime* configuration, but update the `/etc/sysconfig/network-scripts` configuration files with the appropriate values based on what you have told `nmcli` to configure.
 
@@ -571,7 +571,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     ip a
     ```
 
-    !!! hint "**Pro tips:**"
+    !!! tip "**Pro tips:**"
 
         * use the `-c` flag to get a more readable coloured output: `ip -c a`.
 	    * `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent

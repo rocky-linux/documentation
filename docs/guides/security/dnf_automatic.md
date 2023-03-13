@@ -17,7 +17,7 @@ For these reasons, it is reasonable to automate the download and application of 
 
 The security of your information system will be strengthened. `dnf-automatic` is an additional tool that will allow you to achieve this.
 
-!!! hint "If you are worried..."
+!!! tip "If you are worried..."
 
     Years ago, applying updates automatically like this would have been a recipe for disaster. There were many times where an update applied might cause issues. That still happens rarely, when an update of a package removes a deprecated feature that is being used on the server, but for the most part, this simply isn't an issue these days. That said though, if you still feel uncomfortable letting `dnf-automatic` handle the updates, consider using it to download and/or notify you that updates are available. That way your server doesn't remain unpatched for long. These features are `dnf-automatic-notifyonly` and `dnf-automatic-download`
 

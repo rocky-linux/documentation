@@ -112,6 +112,10 @@ To make these kernel changes, we are going to create a file called _90-lxd-overr
 vi /etc/sysctl.d/90-lxd-override.conf
 ```
 
+!!! warning "RL 9 and MAX value of `net.core.bpf_jit_limit`"
+
+    Because of recent kernel security updates, the max value of `net.core.bpf_jit_limit` appears to be 1000000000. Please adjust this value in the self-documenting file below if you are running Rocky Linux 9.x. If you set it above this limit **OR** if you fail to set it at all, it will default to the system default of 264241152, which may not be enough if you run a large number of containers.
+
 Place the following content in that file. Note that if you are wondering what we are doing here, the file content below is self-documenting:
 
 ```
@@ -150,7 +154,7 @@ ded if not using IPv6, but...
 
 net.ipv6.neigh.default.gc_thresh3 = 8192
 
-# This is a limit on the size of eBPF JIT allocations which is usually set to PAGE_SIZE * 40000.
+# This is a limit on the size of eBPF JIT allocations which is usually set to PAGE_SIZE * 40000. Set this to 1000000000 if you are running Rocky Linux 9.x
 
 net.core.bpf_jit_limit = 3000000000
 

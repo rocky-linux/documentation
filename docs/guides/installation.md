@@ -23,7 +23,7 @@ https://www.rockylinux.org/download/
 To download the ISO directly from the command line on an existing Linux based system use the `wget` command:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/9.0/isos/x86_64/Rocky-9.0-x86_64-minimal.iso
+wget  https://download.rockylinux.org/pub/rocky/9.1/isos/x86_64/Rocky-9.1-x86_64-minimal.iso  
 ```
 
 Rocky Linux ISOs are named following this convention:
@@ -32,7 +32,7 @@ Rocky Linux ISOs are named following this convention:
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-For example, `Rocky-9.0-x86_64-minimal.iso`
+For example, `Rocky-9.1-x86_64-minimal.iso`
 
 !!! Note
 
@@ -40,12 +40,12 @@ For example, `Rocky-9.0-x86_64-minimal.iso`
 
 ## Verifying the Installer ISO File
 
-If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-9.0-x86_64-minimal.iso` file by checking its checksum.
+If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-9.1-x86_64-minimal.iso` file by checking its checksum.
 
 First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky Linux ISO download the checksum file for the ISO, type:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/9.0/isos/x86_64/CHECKSUM
+wget https://download.rockylinux.org/pub/rocky/9.1/isos/x86_64/CHECKSUM
 ```
 
 Use the `sha256sum` utility to verify the integrity of the ISO file against corruption and/or tampering.
@@ -57,7 +57,7 @@ sha256sum -c CHECKSUM --ignore-missing
 This will check the integrity of the ISO file downloaded previously, provided that it is in the same directory. The output should show:
 
 ```
-Rocky-9.0-x86_64-minimal.iso: OK
+Rocky-9.1-x86_64-minimal.iso: OK
 ```
 
 ## The Installation
@@ -272,7 +272,7 @@ Finally, complete the entire procedure by clicking the <kbd>Reboot System</kbd> 
 
 The system is now set up and ready for use. You will see the Rocky Linux console.
 
-![Rocky Linux Welcome Screen](images/installation_9.0_F02.png)
+![Rocky Linux Welcome Screen](images/installation_9_F02.png)
 
 To log onto the system, type `rockstar` at the login prompt and press <kbd>Enter</kbd>.
 

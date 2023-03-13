@@ -49,7 +49,7 @@ Doing this effectively requires:
 * Linking to the `docs` folder within your cloned documentation repository (you can also just modify the mkdocs.yml file if you wish to load the correct folder, but linking keeps your mkdocs environment cleaner)
 * Running `mkdocs serve` within your clone of docs.rockylinux.org
 
-!!! Hint
+!!! tip
 
     You can build totally separate environments for `mkdocs` by using either of these two procedures as well:
 
