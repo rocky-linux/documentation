@@ -13,6 +13,10 @@ tags:
 
 ## Introduction
 
+!!! warning
+
+    With the release of version 2.0 of NvChad the custom configuration proposed in this guide is no longer compatible and indeed would break the configuration. Pending the necessary changes we caution **against applying** the instructions contained here on a version 2.0 installation.
+
 NvChad uses `git` for updates. This implies that at every update, part or the whole configuration is overwritten by new commits. Consequently it would be useless to make customizations within the default configuration. 
 
 To solve this problem the NvChad developers have set up the `custom` folder which **must** be placed in `.config/nvim/lua/`, and is designed to house all of your custom configuration files. Below we have a representation of the basic structure of a standard NvChad installation. 

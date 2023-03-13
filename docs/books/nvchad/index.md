@@ -11,6 +11,10 @@ tags:
 
 # Introduction
 
+!!! warning
+
+    With the release of version 2.0 of NvChad the custom configuration proposed in this guide is no longer compatible and indeed would break the configuration. Pending the necessary changes we caution **against applying** the instructions contained here on a version 2.0 installation.
+
 Throughout this book, you will find ways to implement Neovim, along with NvChad, to create a fully functional **I**ntegrated **D**evelopment **E**nvironment (IDE).
 
 I say "ways" because there are many possibilities. The author focuses here on using these tools for writing markdown, but if markdown isn't your focus, don't worry simply read on. If you are unfamiliar with either of these tools (NvChad or Neovim), then this book will give you an introduction to both, and if you step through these documents, you'll soon realize that you can set up this environment to be a huge help for whatever your programming or script writing needs are.
