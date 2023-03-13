@@ -13,7 +13,7 @@ tags:
 
 !!! warning
 
-    With the release of version 2.0 of NvChad the custom configuration proposed in this guide is no longer compatible and indeed would break the configuration, so pending the necessary changes we caution against **not applying** the instructions contained here on a version 2.0 installation.
+    With the release of version 2.0 of NvChad the custom configuration proposed in this guide is no longer compatible and indeed would break the configuration. Pending the necessary changes we caution **against applying** the instructions contained here on a version 2.0 installation.
 
 Throughout this book, you will find ways to implement Neovim, along with NvChad, to create a fully functional **I**ntegrated **D**evelopment **E**nvironment (IDE).
 
