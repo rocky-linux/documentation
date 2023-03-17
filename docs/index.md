@@ -48,7 +48,7 @@ To open a page in the search results simply click (or tap on mobile) on the desi
 
 ## First Time
 
-If this is your first time visiting the Rocky Linux Documentation site then likely you are new to Rocky Linux and you are itching to install it! No problem, jump on over to the [Installing Rocky Linux](guides/installation.md) page for detailed instructions.
+If this is your first time visiting the Rocky Linux Documentation site then likely you are new to Rocky Linux and you are itching to install it! No problem, jump on over to the [Installing Rocky Linux](guides/9_installation.md) page for detailed instructions.
 
 If you get stuck and have a question the Rocky Linux community is there to help. Visit the [community forum](https://forums.rockylinux.org) and you can search for solution and post your own questions to the community.
 

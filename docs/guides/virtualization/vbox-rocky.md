@@ -141,7 +141,7 @@ Now that we have everything prepared for the install, you just need to click "St
 * Network & Hostname
 * User Settings
 
-If you are unsure of any of these settings, refer to the document for [Installing Rocky](../installation.md).
+If you are unsure of any of these settings, refer to the document for [Installing Rocky](../9_installation.md).
 
 Once you have finished the installation, you should have a running VirtualBox&reg; instance of Rocky Linux.
 

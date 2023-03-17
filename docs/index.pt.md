@@ -44,7 +44,7 @@ Para abrir a página nos resultados de busca, simplesmente click (ou aperte em c
 
 ## Primeira vez
 
-Caso esta seja sua primeira vez visitando o site de documentação do Rocky Linux então você é novo no Rocky Linux e está se coçando para instalá-lo! Sem problemas, pule para a secção [instalando o Rocky Linux](guides/installation.md) para mais detalhes.
+Caso esta seja sua primeira vez visitando o site de documentação do Rocky Linux então você é novo no Rocky Linux e está se coçando para instalá-lo! Sem problemas, pule para a secção [instalando o Rocky Linux](guides/9_installation.md) para mais detalhes.
 
 Caso você esteja travado e possui perguntas, a comunidade Rocky Linux está aqui para ajudá-lo. Visite [forum da comunidade](https://forums.rockylinux.org) e você pode pesquisar por uma solução ou postar suas próprias perguntas para a comunidade.
 

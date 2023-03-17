@@ -8,4 +8,4 @@ Welcome to the **Guides** section of the Rocky Linux documentation. You will fin
 
 Most of the categories do not require any explanation. If you want to find out how to help in the ongoing development of Rocky Linux, join the [Mattermost Development channel](https://chat.rockylinux.org/rocky-linux/channels/development). For those wishing to be involved in documentation, join the [Mattermost Documentation channel](https://chat.rockylinux.org/rocky-linux/channels/documentation) and join the discussion to find out more.
 
-If you are wanting to dive right in, you can [install Rocky Linux](installation.md) now!
+If you are wanting to dive right in, you can [install Rocky Linux](9_installation.md) now!

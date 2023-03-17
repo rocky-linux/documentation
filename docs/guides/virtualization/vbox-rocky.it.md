@@ -141,7 +141,7 @@ Ora che abbiamo preparato tutto per l'installazione, devi solo cliccare su "Star
 * Rete & Nome Host
 * Impostazioni dell'Utente
 
-Se non sei sicuro di qualcuna di queste impostazioni, fai riferimento al documento [Installazione di Rocky](../installation.md).
+Se non sei sicuro di qualcuna di queste impostazioni, fai riferimento al documento [Installazione di Rocky](../9_installation.md).
 
 Una volta terminata l'installazione, dovreste avere un'istanza di VirtualBox&reg; di Rocky Linux in esecuzione.
 

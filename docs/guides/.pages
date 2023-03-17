@@ -1,8 +1,8 @@
 ---
 nav:
     - ... | index*.md
-    - ... | installation*.md
-    - ... | 8_6_installation*.md
+    - ... | 9_installation*.md
+    - ... | 8_installation*.md
     - ... | migrate2rocky*.md
     - ... | custom-linux-kernel*.md
     - Contribute: contribute

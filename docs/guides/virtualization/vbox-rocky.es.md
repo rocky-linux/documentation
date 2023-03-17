@@ -141,7 +141,7 @@ Ahora que tenemos todo preparado para la instalación, solo necesita hacer clic 
 * Red y hostname
 * Configuración de usuario
 
-Si no está seguro de alguna de estas configuraciones, consulte el documento para [Instalar Rocky](../installation.md).
+Si no está seguro de alguna de estas configuraciones, consulte el documento para [Instalar Rocky](../9_installation.md).
 
 Cuando haya terminado la instalación, debería tener una instancia de Rocky Linux ejecutándose en VirtualBox&reg;.
 

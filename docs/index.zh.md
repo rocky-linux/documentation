@@ -48,7 +48,7 @@ title: 主页
 
 ## 首次使用
 
-如果这是您第一次访问 Rocky Linux 文档站点，那么您很可能是 Rocky Linux 的新手并且很想安装它！ 没问题，跳转到 [安装 Rocky Linux](guides/installation.md) 页面以获取详细的说明。
+如果这是您第一次访问 Rocky Linux 文档站点，那么您很可能是 Rocky Linux 的新手并且很想安装它！ 没问题，跳转到 [安装 Rocky Linux](guides/9_installation.md) 页面以获取详细的说明。
 
 如果您遇到困难并有疑问，Rocky Linux 社区可以为您提供帮助。 访问 [社区论坛](https://forums.rockylinux.org) ，您可以寻找解决方法，也可以将自己的问题提交给社区。
 
