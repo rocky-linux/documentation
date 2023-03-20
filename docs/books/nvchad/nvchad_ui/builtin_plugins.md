@@ -15,29 +15,44 @@ tags:
 
     In this chapter, the format `user_github/plugin_name` will be used to identify the plugin. This is to avoid possible errors with similarly named plugins and to introduce the format that is used for plugin entry by both NvChad, and the `custom` configuration.
 
-NvChad keeps the configuration of its plugins in the file `lua/plugins/init.lua`. We can see see an excerpt below:
+Version 2.0 brings numerous new features. The new version adopts `lazy.nvim` as the plugin manager instead of `packer.nvim`, this involves making some changes for users of the previous version with a custom configuration (_custom_ folder).
+
+`lazy.nvim` enables convenient management of plugins through a unified interface and integrates a mechanism for synchronizing plugins across installations (_lazy-lock.json_).
+
+NvChad keeps the configuration of its default plugins in the file _lua/plugins/init.lua_. And the additional configurations of the various plugins are contained in the _/nvim/lua/plugins/configs_ folder.
+
+We can see an excerpt of the _init.lua_ file below:
 
 ```lua
-vim.cmd "packadd packer.nvim"
+local default_plugins = {
 
-local plugins = {
+  "nvim-lua/plenary.nvim",
 
-  ["nvim-lua/plenary.nvim"] = { module = "plenary" },
-  ["wbthomason/packer.nvim"] = {},
-  ["NvChad/extensions"] = { module = { "telescope", "nvchad" } },
+  -- nvchad plugins
+  { "NvChad/extensions", branch = "v2.0" },
 
-  ["NvChad/base46"] = {
+  {
+    "NvChad/base46",
+    branch = "v2.0",
+    build = function()
+      require("base46").load_all_highlights()
+    end,
+  },
+
+  {
+    "NvChad/ui",
+    branch = "v2.0",
+    lazy = false,
     config = function()
-      local ok, base46 = pcall(require, "base46")
-
-      if ok then
-        base46.load_theme()
-      end
+      require "nvchad_ui"
     end,
   },
 ...
 ...
-require("core.packer").run(plugins)
+-- lazy_nvim startup opts
+local lazy_config = vim.tbl_deep_extend("force", require "plugins.configs.lazy_nvim", config.lazy_nvim)
+
+require("lazy").setup(default_plugins, lazy_config)
 ```
 
 There's a huge amount of work by the NvChad developers that must be acknowledged. They have created an integrated environment among all plugins which makes the user interface clean and professional. In addition, plugins that work *under the hood* allow for enhanced editing and other features. 
@@ -50,19 +65,7 @@ The following is a brief analysis of the main plugins:
 
 - [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim) - Provides a library of commonly used lua functions that are used by the other plugins, for example *telescope* and *gitsigns*.
 
-- [wbthomason/packer.nvim](https://github.com/wbthomason/packer.nvim) - Provides the functionality for managing plugins through convenient commands. The commands provided are:
-  
-  - `:PackerCompile`
-  - `:PackerClean`
-  - `:PackerInstall`
-  - `:PackerUpdate`
-  - `:PackerSync`
-  - `:PackerLoad`
-
-- [NvChad/extensions](https://github.com/NvChad/extensions) - The core utilities of NvChad. Here we find:
-  
-  - the *nvchad* folder containing the utilities, *change_theme*, *reload_config*, *reload_theme*, *update_nvchad*.
-  - the *telescope/extension* folder that provides the choice of theme directly from Telescope.
+- [NvChad/extensions](https://github.com/NvChad/extensions) - The core utilities of NvChad. Here we find: *change_theme*, *reload_config*, *reload_theme*, *update_nvchad* and the *telescope/extension* folder that provides the choice of theme directly from Telescope.
 
 - [NvChad/base46](https://github.com/NvChad/base46) - Provides themes for the interface.
 
@@ -74,11 +77,11 @@ The following is a brief analysis of the main plugins:
   - `<ALT-v>` opens the terminal by dividing the buffer vertically
   - `<ALT-i>` opens a terminal in a floating tab 
 
+- [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) - Another plugin written by the developers of NvChad. It is specifically a high-performance highlighter.
+
 - [kyazdani42/nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) - Adds icons (requires one of the Nerd Fonts) to file types and folders in our IDE. This allows us to visually identify file types in our File Explorer, to speed up operations.
 
 - [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) - Provides guides to better identify indentation in the document, allowing sub-routines and nested commands to be easily recognized.
-
-- [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) - Another plugin written by the developers of NvChad. It is specifically a high-performance highlighter.
 
 - [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Allows you to use the tree-sitter interface in Neovim, and provide some basic functionality, such as highlighting.
 
@@ -88,7 +91,7 @@ The following is a brief analysis of the main plugins:
 
 Now let's move on to the plugins that provide the functionality to integrate LSPs (Language Server Protocols) into our projects. This is definitely one of the best features provided by NvChad. Thanks to LSPs we can be in control of what we write in real time.
 
-- [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) - Allows simplified management of LSP (Language Server) installation through a convenient graphical interface. Its use is described in the [dedicated page for LSPs](../custom/lsp.md). The commands provided are:
+- [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) - Allows simplified management of LSP (Language Server) installation through a convenient graphical interface. The commands provided are:
   
   - `:Mason`
   - `:MasonInstall`
@@ -96,7 +99,7 @@ Now let's move on to the plugins that provide the functionality to integrate LSP
   - `:MasonUnistallAll`
   - `:MasonLog`
 
-- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Provides the appropriate configurations for almost every language server available. It is a community collection, with the most relevant settings already set. The plugin takes care of receiving our configurations and putting them into the editor environment. 
+- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Provides the appropriate configurations for almost every language server available. It is a community collection, with the most relevant settings already set. The plugin takes care of receiving our configurations and putting them into the editor environment.
 
 It provides the following commands:
   
@@ -111,9 +114,9 @@ Following LSP, come all the plugins that provide functionality in writing and ex
 
 The plugins are: 
 
-- [rafamadriz/friendly-snippets](https://github.com/rafamadriz/friendly-snippets) 
 - [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) 
-- [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) 
+- [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+- [rafamadriz/friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip) 
 - [hrsh7th/cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua) 
 - [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) 
@@ -123,8 +126,6 @@ The plugins are:
 ## Mixed Plugins
 
 - [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Thanks to this plugin we have the functionality of automatic closing of parentheses and other characters. For example, by inserting a beginning parenthesis `(` completion will automatically insert the closing parenthesis `)` placing the cursor in the middle.
-
-- [goolord/alpha-nvim](https://github.com/goolord/alpha-nvim) - Provides a home screen from which to access recent files, open the last session, find files, etc.
 
 - [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) - Provides advanced functionality for code commenting.
 
@@ -141,7 +142,5 @@ The plugins are:
 - [folke/which-key.nvim](https://github.com/folke/which-key.nvim) - Displays all possible autocompletions available for the entered partial command.
   
   ![Which Key](../images/which_key.png)
-
-- [lewis6991/impatient.nvim](https://github.com/lewis6991/impatient.nvim) - Performs several operations at the start of the editor to make the loading of modules faster.
 
 Having introduced the plugins that make up the basic configuration of NvChad, we can move on to the description of the interface.
