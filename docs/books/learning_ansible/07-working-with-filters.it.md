@@ -2,7 +2,6 @@
 title: Lavorare Con I Filtri
 author: Antoine Le Morvan
 contributors: Steven Spencer, Franco Colussi
-update: 12-22-2021
 ---
 
 # Ansible - Lavorare con filtri
@@ -13,8 +12,8 @@ In questo capitolo imparerai come trasformare i dati con i filtri jinja.
 
 **Obiettivi**: In questo capitolo imparerai come:
 
-:heavy_check_mark: Trasformare le strutture dati come dizionari o liste;   
-:heavy_check_mark: Trasformare variabili;
+:heavy_check_mark: Trasformare le strutture dati come dizionari o liste;  
+:heavy_check_mark: Trasformare variabili.
 
 :checkered_flag: **ansible**, **jinja**, **filtri**
 

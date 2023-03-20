@@ -8,7 +8,7 @@ En este capítulo aprenderá a desplegar aplicaciones con el rol de Ansible [Ans
 
 ****
 
-**Objetivos**: En este capítulo aprenderá a:
+**Objetivos** : En este capítulo aprenderá a:
 
 :heavy_check_mark: Implementar Ansistrano;       
 :heavy_check_mark: Configurar Ansistrano;       

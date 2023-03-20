@@ -116,7 +116,7 @@ $ sudo groupmod -g 1016 GroupP
 $ sudo groupmod -n GroupC GroupB
 ```
 
-| Opzione   | Descrizione                           |
+| Opzione   | Osservazioni                          |
 | --------- | ------------------------------------- |
 | `-g GID`  | Nuovo `GID` del gruppo da modificare. |
 | `-n name` | Nuovo nome.                           |
