@@ -1,14 +1,25 @@
 ---
 title: Install NvChad
-author: Fanco Colussi
+author: Franco Colussi
 contributors: Steven Spencer
-tested with: 8.6, 9.0
+tested with: 9.0
 tags:
   - nvchad
   - coding
 ---
 
-## Turning Neovim into an advanced IDE
+# Turning Neovim into an advanced IDE
+
+## Pre-requisites
+
+As specified on the NvChad site you need to make sure you meet the following requirements:
+
+- [Neovim 0.8.3](https://github.com/neovim/neovim/releases/tag/v0.8.3).
+- [Nerd Font](https://www.nerdfonts.com/) Set it in your terminal emulator.
+  - Make sure the nerd font you set doesn't end with **Mono**
+   - **Example :** Iosevka Nerd Font and not ~~Iosevka Nerd Font Mono~~ 
+- [Ripgrep](https://github.com/BurntSushi/ripgrep) is required for grep searching with Telescope **(OPTIONAL)**. 
+- GCC
 
 This is actually not a real "installation" but rather writing a custom Neovim configuration for our user.
 
@@ -51,11 +62,21 @@ To do this, simply run the following command from any location within your _home
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 ```
 
-The command runs a clone of the NvChad configuration hosted on GitHub in the user folder `~/.config/nvim`.
+The first part of the command clones the NvChad repository to the `~/.config/nvim` folder; this is Neovim's default path for searching the user configuration. The `--depth 1` option instructs _git_ to clone only the repository set as "default" on GitHub.
 
-Once the cloning process is finished, the plugins that are part of the default configuration will be installed and configured, and you will have an IDE that's essentially ready to go.
+Once the cloning process is finished in the second part of the command, the Neovim executable (_nvim_) is called, which upon finding a configuration folder will start importing the configurations encountered in the `init.lua` files of it in a predefined order.
 
-![NvChad Themes](images/nvchad_init.png)
+Before starting the bootstrap, the installation will offer us the installation of a base structure (_template chadrc_) for our further customizations:
+
+>  Do you want to install chadrc template? (y/n) :
+
+Although choosing to install the recommended structure is not mandatory, it is definitely recommended for anyone new to this Editor. Current users of NvChad who already have a `custom` folder will be able to continue using it after making the necessary changes.
+
+The structure created by the template will also be used in this guide for developing the configuration to be used for writing documents in Markdown.
+
+At this point the downloading and configuration of the basic plugins and if we have chosen to install the template as well the installation of the configured language server will begin. Once the process is complete we will have our Editor ready to use.
+
+![Installation](images/installed_first_time.png) 
 
 As can be seen from the screenshot below, thanks to the configuration changes made, the editor has completely changed in appearance from the basic version of Neovim. It should be remembered, however, that although the configuration of NvChad completely transforms the editor, the base remains Neovim.
 
@@ -66,80 +87,92 @@ As can be seen from the screenshot below, thanks to the configuration changes ma
 Let us now go on to analyze the structure that the configuration created, the structure is as follows:
 
 ```text
-nvim/
-├── examples
-│   ├── chadrc.lua
-│   └── init.lua
+.config/nvim
 ├── init.lua
+├── lazy-lock.json
 ├── LICENSE
-├── lua
-│   ├── core
-│   │   ├── default_config.lua
-│   │   ├── init.lua
-│   │   ├── lazy_load.lua
-│   │   ├── mappings.lua
-│   │   ├── options.lua
-│   │   ├── packer.lua
-│   │   └── utils.lua
-│   └── plugins
-│       ├── configs
-│       │   ├── alpha.lua
-│       │   ├── cmp.lua
-│       │   ├── lspconfig.lua
-│       │   ├── mason.lua
-│       │   ├── nvimtree.lua
-│       │   ├── nvterm.lua
-│       │   ├── others.lua
-│       │   ├── telescope.lua
-│       │   ├── treesitter.lua
-│       │   └── whichkey.lua
-│       └── init.lua
-└── plugin
-    └── packer_compiled.lua
+└── lua
+    ├── core
+    │   ├── bootstrap.lua
+    │   ├── default_config.lua
+    │   ├── init.lua
+    │   ├── mappings.lua
+    │   └── utils.lua
+    └── plugins
+        ├── configs
+        │   ├── cmp.lua
+        │   ├── lazy_nvim.lua
+        │   ├── lspconfig.lua
+        │   ├── mason.lua
+        │   ├── nvimtree.lua
+        │   ├── others.lua
+        │   ├── telescope.lua
+        │   ├── treesitter.lua
+        │   └── whichkey.lua
+        └── init.lua
 ```
 
-!!! note "Note"
+And if we chose to also install the _template chadrc_ we will also have the `nvim/lua/custom` folder with the following structure:
 
-    For the moment we will leave out the contents of the `examples` folder as it relates to the `custom` configuration, which we will address in later sections.
+```text
+.config/nvim/lua/custom/
+├── chadrc.lua
+├── configs
+│   ├── lspconfig.lua
+│   ├── null-ls.lua
+│   └── overrides.lua
+├── highlights.lua
+├── init.lua
+├── mappings.lua
+└── plugins.lua
+```
 
-The first file we encounter is the `init.lua` file which initializes the configuration by inserting the `lua/core`, `lua/plugins` (and if present, the `lua/custom`) folders into the _nvim_ tree. It also inserts the following files: `lua/core/options.lua`, `lua/core/utils.lua`, and `lua/core/packer.lua`. 
 
-In particular, the `load_mappings` function is called for loading keyboard shortcuts and `bootstrap` for loading preconfigured plugins.
+The first file we encounter is the `init.lua` file which initializes the configuration by inserting the `lua/core` folder and `lua/core/utils.lua` (and if present, the `lua/custom/init.lua`) files into the _nvim_ tree. Runs the bootstrap of `lazy.nvim` (the plugin manager) and once finished initialize the `plugins` folder.
+
+In particular, the `load_mappings()` function is called for loading keyboard shortcuts. In addition, the `gen_chadrc_template()` function provides the subroutine for creating the `custom` folder. 
 
 ```lua
 require "core"
-require "core.options"
 
-vim.defer_fn(function()
-  require("core.utils").load_mappings()
-end, 0)
+local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
 
--- setup packer + plugins
-require("core.packer").bootstrap()
+if custom_init_path then
+  dofile(custom_init_path)
+end
+
+require("core.utils").load_mappings()
+
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
+-- bootstrap lazy.nvim!
+if not vim.loop.fs_stat(lazypath) then
+  require("core.bootstrap").gen_chadrc_template()
+  require("core.bootstrap").lazy(lazypath)
+end
+
+vim.opt.rtp:prepend(lazypath)
 require "plugins"
 
-pcall(require, "custom")
+dofile(vim.g.base46_cache .. "defaults")
 ```
 
 Inclusion of the `core` folder also results in the inclusion of the `core/init.lua` file, which overrides some Neovim interface configurations and prepares for buffer management.
 
-As we can see, each `init.lua` file is included following a well-established order. We can anticipate that the `init.lua` file we are going to create in our customization will also be included, but logically, last in the load order. Broadly speaking, we can say that `init.lua` files have the following functions:
-
-- load global options, autocmds, or anything else.
-- override the default options in `core/options.lua`.
+As we can see, each `init.lua` file is included following a well-established order. This is used to selectively override the various options from the basic settings. Broadly speaking, we can say that `init.lua` files have the functions to load global options, autocmds, or anything else.
 
 This is the call that returns basic command mappings:
 
 ```lua
-`require("core.utils").load_mappings()
+require("core.utils").load_mappings()
 ```
 
 This sets four main keys from which, in association with other keys, commands can be launched. The main keys are:
 
-- C = CTRL
-- leader = SPACE
-- A = ALT
-- S = SHIFT
+- C = <kbd>CTRL</kbd>
+- leader = <kbd>SPACE</kbd>
+- A = <kbd>ALT</kbd>
+- S = <kbd>SHIFT</kbd>
 
 !!! note
 
@@ -150,7 +183,6 @@ The default mapping is contained in _core/mapping.lua_ but can be extended with 
 Some examples of the standard mapping are:
 
 ```text
-<space>uu to update NvChad
 <space>th to change the theme
 <CTRL-n> to open nvimtree
 <ALT-i> to open a terminal in a floating tab
@@ -160,4 +192,4 @@ There are many combinations pre-set for you, and they cover all the uses of NvCh
 
 Continuing with the structural analysis, we find the _lua/plugins_ folder, which contains the setup of the built-in plugins and their configurations. The main plugins in the configuration will be described in the next section. As we can see, the _core/plugins_ folder also contains an `init.lua` file, which is used here for the installation and subsequent compilation of the plugins.
 
-Lastly, we find the _nvim/plugin_ folder that contains an autogenerated file of the compiled plugins.
+Finally, we find the `lazy-lock.json` file. This file allows us to synchronize the configuration of NvChad plugins across multiple workstations, so that we have the same functionality on all the workstations used. Its function will be better explained in the section dedicated to the plugins manager.
