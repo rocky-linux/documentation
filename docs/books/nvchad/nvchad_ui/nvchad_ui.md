@@ -15,7 +15,7 @@ tags:
 
     Throughtout NvChad's official documentation, commands such as `<leader>` are mentioned, along with other keys that might not be understandable to the casual reader. The reason for this is the default `mappings.lua` file (`../nvim/lua/core/mappings.lua`).
 
-    This file and the key mappings it describes are outlined [here](https://nvchad.com/config/Mappings). To be clear, you can override any key mappings using a custom `mappings.lua` file (`../nvim/lua/custom/mappings.lua`).
+    This file and the key mappings it describes are outlined [here](https://nvchad.com/docs/config/mappings). To be clear, you can override any key mappings using a custom `mappings.lua` file (`../nvim/lua/custom/mappings.lua`).
 
     To avoid confusion in the documents you are now reading, we are going to assume that you are using the default `mappings.lua` file and will substitute in the actual commands that you need to use to access a function. Standard key references are:
 
