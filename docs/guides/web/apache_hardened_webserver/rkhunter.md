@@ -13,11 +13,12 @@ tags:
 
 ## Prerequisites
 
-* A Rocky Linux Web Server running Apache
 * Proficiency with a command-line editor (we are using _vi_ in this example)
 * A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
 * An understanding of what can trigger a response to changed files on the file system (such as package updates) is helpful
 * All commands are run as the root user or sudo
+
+This document was originally written in conjunction with the apache hardened webserver routines, but works equally well in a server running any software.
 
 ## Introduction
 
