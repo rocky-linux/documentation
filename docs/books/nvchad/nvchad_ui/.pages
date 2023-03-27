@@ -1,6 +1,7 @@
 ---
 nav:
     - ... | builtin_plugins*.md
+    - ... | plugins_manager*.md
     - ... | nvchad_ui*.md
     - ... | using_nvchad*.md
     - ... | nvimtree*.md
