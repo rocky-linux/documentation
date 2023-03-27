@@ -143,4 +143,4 @@ The plugins are:
   
   ![Which Key](../images/which_key.png)
 
-Having introduced the plugins that make up the basic configuration of NvChad, we can move on to the description of the interface.
+Having introduced the plugins that make up the basic configuration of NvChad, we can move on to see how to manage them.
