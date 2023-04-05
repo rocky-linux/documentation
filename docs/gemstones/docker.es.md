@@ -1,6 +1,6 @@
 ---
 title: Instalar Docker Engine
-author: wale soyinka
+author: wale soyinka, Pedro García
 contributors:
 date: 04-08-2021
 tags:
