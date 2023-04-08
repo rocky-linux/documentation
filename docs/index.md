@@ -31,7 +31,7 @@ The main sections of the documentation site are:
 
 ### Multiple Languages
 
-Of course not everyone has English as their first language! At Rocky Linux we want to make the documentation site as accessible as possible to everyone —  *translations into different languages is an important part of that*. If you click on the (common symbol) language selector on the top menu you will see the languages the website is available in, there are two parts to this:
+Of course not everyone has English as their first language! At Rocky Linux we want to make the documentation site as accessible as possible to everyone —  *translation into different languages is an important part of that*. If you click on the (common symbol) language selector on the top menu you will see the languages the website is available in, there are two parts to this:
 
 1. Website interface localisation: if you choose another language, for example Français, you will note that the interface, for example the 'Next' and 'Previous' navigators, will be localised.
 1. Content: translating content is, obviously, an ongoing (significant) task. Not all content is translated into all languages yet. Any pages that have been translated (into the language selected) will be seen in the chosen language, those that have not will fall back to the default language English. If you want to contribute to the community through translations the documentation team would love to hear from you — see below for details.
@@ -42,7 +42,7 @@ Of course not everyone has English as their first language! At Rocky Linux we wa
 
 ### Using Search
 
-If you want to quickly find specific information/document the documentation site has a full-text search capability. Simply start typing in the 'Search' entry field in the top menu bar and the site will return drill down search results.
+If you want to quickly find specific information or documents, the documentation site has full-text search capability. Simply start typing in the 'Search' entry field in the top menu bar and the site will return drill down search results.
 
 To open a page in the search results simply click (or tap on mobile) on the desired page in the list displayed.
 
@@ -50,8 +50,8 @@ To open a page in the search results simply click (or tap on mobile) on the desi
 
 If this is your first time visiting the Rocky Linux Documentation site then likely you are new to Rocky Linux and you are itching to install it! No problem, jump on over to the [Installing Rocky Linux](guides/installation.md) page for detailed instructions.
 
-If you get stuck and have a question the Rocky Linux community is there to help. Visit the [community forum](https://forums.rockylinux.org) and you can search for solution and post your own questions to the community.
+If you get stuck and have a question the Rocky Linux community is there to help. Visit the [community forum](https://forums.rockylinux.org) and you can search for solutions or post your own questions to the community.
 
 ## Contributing
 
-Did you find something missing? Did you find an error? Are you wondering how to create a document of your own, or how to fix things here? Remember how we said that *you* were the Rocky community? Well, that means that *you* are important to us and we want you to join us, if you like, and help make this documentation better. If you are interested in this, head over to our [Contribution Guide](https://github.com/rocky-linux/documentation/blob/main/README.md) to find out how you can do just that!
+Did you find something missing? Did you find an error? Are you wondering how to create a document of your own, or how to fix things here? Remember how we said that *you* were the Rocky community? Well, that means that *you* are important to us and we want you to join us, if you like, and help make this documentation better. If you are interested in this, head over to our [Contribution Guide](https://github.com/rocky-linux/documentation/blob/main/README.md) to find out how you can do that!
