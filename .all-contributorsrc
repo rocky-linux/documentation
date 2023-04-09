@@ -773,6 +773,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "cybernet",
+      "name": "cybernet",
+      "avatar_url": "https://avatars.githubusercontent.com/u/125879?v=4",
+      "profile": "https://github.com/cybernet",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
