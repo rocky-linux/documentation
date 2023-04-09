@@ -38,7 +38,7 @@ For this guide we will use the `Sauce Code Pro Nerd` font.
 Download the package with:
 
 ```bash
-https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip
+https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/SourceCodePro.zip
 ```
 
 Next, unzip the contents of the folder and copy the fonts to `~/.local/share/fonts/` with:
