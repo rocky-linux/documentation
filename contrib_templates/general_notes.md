@@ -18,6 +18,6 @@
 
 ## REFERENCES:
   Footnotes/Reference links (URLs, manpage websites, etc)
-  Links to scripts, code and custom programs (for posterity in some cases if they originals might disappear )
+  Links to scripts, code and custom programs (for posterity in some cases if the originals might disappear )
 
 ## Plus all the things I've thought of in the past and can't remember
