@@ -3,7 +3,7 @@ title:
 author: 
 contributors:
 date: 
-Rocky Linux versions tested on: 
+tested with: 
 tags:
   - 1rst tag
   - 2nd tag
@@ -11,6 +11,9 @@ tags:
 
 # First level header Introduction
 Description Here
+
+ - https://docs.rockylinux.org/guides/contribute/
+ - More detailed info: [RockyLinux First-Time Contributor Guide](https://docs.rockylinux.org/guides/contribute/beginners/#first-time-contributor-guide)
 
 !!! warning
 
@@ -48,6 +51,9 @@ if [${wale} || ${sspencerwire}]
     echo -e "Neil where art' thou??!!\n"
 done
 ```
+
+single asteriks: *may*
+
 double asteriks: **may**
 
 ### References/Footnotes:
