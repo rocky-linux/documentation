@@ -4,5 +4,6 @@ nav:
     - ... | additional_software*.md
     - ... | install_nvim*.md
     - ... | install_nvchad*.md
+    - ... | template_chadrc*.md
     - ... | nerd_fonts*.md
     - NvChad UI: nvchad_ui
