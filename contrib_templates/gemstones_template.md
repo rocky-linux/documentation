@@ -56,5 +56,10 @@ single asteriks: *may*
 
 double asteriks: **may**
 
+# Conclusions:
+    It works great!
+
+---
+
 ### References/Footnotes:
 [14](https://rockylinux.org) (or use a bulleted list, numbered list, etc)
