@@ -21,7 +21,7 @@ The folder is created from an example one on NvChad's GitHub repository: ([examp
 
 >  Do you want to install chadrc template? (y/N) :
 
-An affirmative answer will start a process that will clone the contents of the _example-config_ folder from GitHub into **~/.config/nvim/lua/custom/** and once finished will remove the **.git** folder from it. This is to allow us to put the configuration under our own version control.
+An affirmative answer will start a process that will clone the contents of the _example-config_ folder from GitHub into **~/.config/nvim/lua/custom/** and once finished, will remove the **.git** folder from it. This is to allow us to put the configuration under our own version control.
 
 Upon completion we will have the following structure:
 
@@ -39,7 +39,7 @@ custom/
 └── README.md
 ```
 
-As we can see the folder contains some files with the same name also encountered in the basic structure of NvChad. These files allow you to integrate the configuration and override the basic settings of the editor.
+As we can see, the folder contains some files with the same name also encountered in the basic structure of NvChad. These files allow you to integrate the configuration and override the basic settings of the editor.
 
 ## Structure Analysis
 
@@ -103,7 +103,7 @@ In this way our plugins will be passed along with those that make up the NvChad 
 
 #### init.lua
 
-This file is used for overwriting settings defined in **~/.config/nvim/lua/core/init.lua** such as indentation or swap write interval to disk. It is also used for the creation of auto-commands, as described in the commented lines in the file. An example might be the following in which some settings for writing documents in Markdown have been included:
+This file is used for overwriting settings defined in **~/.config/nvim/lua/core/init.lua**, such as indentation or swap write interval, to disk. It is also used for the creation of auto-commands, as described in the commented lines in the file. An example might be the following in which some settings for writing documents in Markdown have been included:
 
 ```lua
 --local autocmd = vim.api.nvim_create_autocmd
@@ -134,7 +134,7 @@ This file, as you can guess from the name, is used to add our plugins to those i
 
 The _plugins.lua_ file created by the _template chadrc_ has in the first part a number of customizations that override the plugin definition options and default plugin configurations. This part of the file does not need to be modified by us as the developers have prepared special files for this purpose that are present in the _config_ folder.
 
-Then follows the installation of a plugin. This is set up as an example so that you can begin to become familiar with the format used by _lazy.nvim_ which differs slightly from the format used by _packer.nvim_ the handler used in version 1.0.
+Then follows the installation of a plugin. This is set up as an example so that you can begin to become familiar with the format used by _lazy.nvim_ which differs slightly from the format used by _packer.nvim_, the handler used in version 1.0.
 
 ```lua
   -- Install a plugin
@@ -163,7 +163,7 @@ M.general = {
 }
 ```
 
-In this mapping is entered for the NORMAL state `n =` the character <kbd>;</kbd> which when pressed on the keyboard plays the character <kbd>:</kbd>. This character is the character used to enter COMMAND mode. The option `nowait = true` is also set to enter that mode immediately. In this way on a keyboard with a US QWERTY layout, we will not need to use <kbd>SHIFT</kbd> to enter COMMAND mode.
+This mapping is entered for the NORMAL state `n =` the character <kbd>;</kbd> which when pressed on the keyboard plays the character <kbd>:</kbd>. This character is the character used to enter COMMAND mode. The option `nowait = true` is also set to enter that mode immediately. In this way on a keyboard with a US QWERTY layout, we will not need to use <kbd>SHIFT</kbd> to enter COMMAND mode.
 
 !!! Tip
 
@@ -192,7 +192,7 @@ The _lspconfig.lua_ file sets the local language servers that the editor can use
 local servers = { "html", "cssls", "tsserver", "clangd" }
 ```
 
-As we can see some servers are already set up by default. To add a new one simply enter it at the end of the table. The available servers can be found at [this link](https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md) and for their configurations you can refer to this [page](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md).
+As we can see some servers are already set up by default. To add a new one simply enter it at the end of the table. The available servers can be found at [mason packages](https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md) and for their configurations you can refer to [lsp server configurations](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md).
 
 For example if we also want to have support for the `yaml` language we can add it as in the following example:
 
@@ -200,11 +200,11 @@ For example if we also want to have support for the `yaml` language we can add i
 local servers = { "html", "cssls", "tsserver", "clangd", "yamlls" }
 ```
 
-Changing the file, however, does not involve installing the related language server; this will have to be installed separately with _Mason_. The language server that provides support for _yaml_ is [yaml-language-server](https://github.com/redhat-developer/yaml-language-server) which we will have to install with the command `:MasonInstall yaml-language-server`. At this point we will have, for example, control of the code written in the headers (_frontmatter_) of the Rocky Linux documentation pages.
+Changing the file, however, does not involve installing the related language server. This will have to be installed separately with _Mason_. The language server that provides support for _yaml_ is [yaml-language-server](https://github.com/redhat-developer/yaml-language-server) which we will have to install with the command `:MasonInstall yaml-language-server`. At this point we will have, for example, control of the code written in the headers (_frontmatter_) of the Rocky Linux documentation pages.
 
 #### null-ls.lua
 
-This file takes care of configuring some features geared toward control and formatting of written code. Editing this file requires a bit more research for configuration than the previous file. An overview of the available components can be found on this [page](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md).
+This file takes care of configuring some features geared toward control and formatting of written code. Editing this file requires a bit more research for configuration than the previous file. An overview of the available components can be found on [the builtins page](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md).
 
 Again, a table has been set up, the `local sources` table, where we can enter our customizations which we can see below:
 
@@ -311,7 +311,7 @@ M.mason = {
 }
 ```
 
-Again following the initial example where we enabled support for _yaml_ by manually installing the server, we can make sure we always have it installed by adding it to the table:
+Again, following the initial example where we enabled support for _yaml_ by manually installing the server, we can make sure we always have it installed by adding it to the table:
 
 ```text
     ...
