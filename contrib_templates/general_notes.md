@@ -3,6 +3,7 @@
 ## Preamble/Intro:
   Goal, What to achieve
   Why to achieve, desired results/benefits
+  measurable desired results/benefits
   General process to be followed
   Concerns, Warnings, Notes, Caveats
 
@@ -10,14 +11,21 @@
 
 ## Process:
   Detailed Process steps
+  Try a link to a footnote/reference secton here
 
-## Verified versions of software, libs used/required
+## Dependencies:
+  Verified versions of software, libraries used/required
 
 ## Going Further:
   Links for additional customizations
 
+## Conclusions:
+  It works great!
+
+---
+
 ## REFERENCES:
-  Footnotes/Reference links (URLs, manpage websites, etc)
-  Links to scripts, code and custom programs (for posterity in some cases if the originals might disappear )
+1. Footnotes/Reference links (URLs, manpage websites, etc)
+2. Links to scripts, code and custom programs (for posterity in some cases if the originals might disappear )
 
 ## Plus all the things I've thought of in the past and can't remember
