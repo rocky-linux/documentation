@@ -1,4 +1,12 @@
 ---
 nav:
     - Authentication: authentication
-    - ...
+    - ... | firewalld-beginners*.md
+    - ... | firewalld*.md
+    - ... | ssl_keys_https*.md
+    - ... | generating_ssl_keys_lets_encrypt*.md
+    - ... | dnf_automatic*.md
+    - ... | pam*.md
+    - Rootkit Hunter: https://docs.rockylinux.org/guides/web/apache_hardened_webserver/rkhunter/
+    - ... | learning_selinux*.md
+    - ... | ssh_public_private_keys*.md
