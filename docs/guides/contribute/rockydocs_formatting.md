@@ -291,6 +291,57 @@ And here's how that renders when displayed:
 
 A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
 
+## Superscript, Subscript and Special Symbols
+
+Superscript and subscript notation are not normal markdown, but are supported in Rocky Linux documentation via the HTML tags used for the same purpose. Superscript places text entered between the tags slightly above the normal text, while subscript places the text slightly below. Superscript is by far the most commonly used of these two in writing. Some special characters already appear in superscript without adding the tags, but you can also combine the tag to change the orientation of those characters as seen with the copyright symbol below. You can use superscript to:
+
+* represent ordinal numbers, such as 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
+* copyright and trademark symbols, like <sup>&copy;</sup>, <sup>TM</sup> or &trade;, &reg;
+* as notation for references, such as this<sup>1</sup>, this<sup>2</sup> and this<sup>3</sup>
+
+Some of the special characters, such as &copy; aren't normally superscript, while others such as &trade;, are.
+
+Here is how all of the above looks in your markdown code:
+
+```
+* represent ordinal numbers, such as 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
+* copyright and trademark symbols, like <sup>&copy;</sup>, <sup>TM</sup> or &trade;, &reg;
+* as notation for references, such as this<sup>1</sup>, this<sup>2</sup> and this<sup>3</sup>
+
+Some of the special characters, such as &copy; aren't normally superscript, while others such as &trade;, are.
+```
+
+As you can see, to force superscript we can use the supported HTML tags of `<sup></sup>`.
+
+Subscript is entered with the `<sub></sub>` tags, and as noted earlier, isn't <sub>used nearly as much</sub> in writing.
+
+### Superscript for References 
+
+Some of you may feel the need to reference outside sources when writing documentation. If you only have a single source, you may wish to include it in your conclusion as a single link, but if you have multiples<sup>1</sup>, you can use superscript to note them in your text<sup>2</sup> and then list them at the end of your document. Note that the positioning of references should come after the "Conclusion" section.
+
+Following the conclusion, you can have your notations in a numbered list to match the superscript, or you can enter them as links. Both examples are shown here:
+
+1. "How Multiples Are Used In Text" by Wordy W. McWords [https://site1.com](https://site1.com)
+2. "Using Superscript In Text" by Sam B. Supersecret [https://site2.com](https://site2.com)
+
+or
+
+[1](https://site1.com) "How Multiples Are Used In Text" by Wordy W. McWords  
+[2](https://site2.com) "Using Superscript In Text" by Sam B. Supersecret  
+
+And here's what that all looks like in your editor:
+
+```
+1. "How Multiples Are Used In Text" by Wordy W. McWords [https://site1.com](https://site1.com)
+2. "Using Superscript In Text" by Sam B. Supersecret [https://site2.com](https://site2.com)
+
+or
+
+[1](https://site1.com) "How Multiples Are Used In Text" by Wordy W. McWords  
+[2](https://site2.com) "Using Superscript In Text" by Sam B. Supersecret  
+
+```
+
 ## Grouping Different Formatting Types
 
 Rocky Documentation offers some elegant formatting options when combining multiple elements within another element. For instance, an admonition with a numbered list:
