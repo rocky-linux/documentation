@@ -293,10 +293,10 @@ A workstation type installation (with graphical interface) starts this interface
 
 ## Superscript, Subscript and Special Symbols
 
-Superscript and subscript notation are not normal markdown, but are supported in Rocky Linux documentation via the HTML tags used for the same purpose. Superscript places text entered between the tags slightly above the normal text, while subscript places the text slightly below. Superscript is by far the most commonly used of these two in writing. Some special characters already appear in superscript without adding the tags, but you can also combine the tag to change the orientation of those characters as seen with the copyright symbol below. You can use superscript to:
+Superscript and subscript notation are not normal markdown, but are supported in Rocky Linux documentation via the HTML tags used for the same purpose. Superscript places text entered between the tags slightly above the normal text, while subscript places the text slightly below. Superscript is by far the more commonly used of these two in writing. Some special characters already appear in superscript without adding the tags, but you can also combine the tag to change the orientation of those characters as seen with the copyright symbol below. You can use superscript to:
 
 * represent ordinal numbers, such as 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
-* copyright and trademark symbols, like <sup>&copy;</sup>, <sup>TM</sup> or &trade;, &reg;
+* copyright and trademark symbols, like <sup>&copy;</sup>, <sup>TM</sup>, or &trade;, &reg;
 * as notation for references, such as this<sup>1</sup>, this<sup>2</sup> and this<sup>3</sup>
 
 Some of the special characters, such as &copy; aren't normally superscript, while others such as &trade;, are.
