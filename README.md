@@ -163,8 +163,10 @@ The format for all links within the documentation is square brackets around the 
 
 To help lab-based URLs pass our automatic URL checker, we have created a list of excluded names you may use. You may request that a new exclusion be added. An editor may adjust your lab-based URL, or add an exclusion if they think it is warranted.
 
+Please note the following IEEE recommendation on naming local networks [RFC #8375 Special-Use Domain 'home.arpa.'](https://www.rfc-editor.org/rfc/rfc8375.html) published in May 2018.
 
 
+* home.arpa
 * example.com
 * site.com
 * site1.com
