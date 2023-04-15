@@ -43,7 +43,7 @@ As the developers of NvChad are keen to point out, the project is only intended 
 
 - **Extremely Configurable.** Due to the modularity derived from the base application (NeoVim), the editor can be adapted perfectly to one's needs. Keep in mind, however, that when we talk about customization we are referring to functionality, and not to the appearance of the interface.
 
-- **Automatic update mechanism.** The editor comes with a mechanism (through the use of _git_) that allows updates with a simple `<leader> + uu` command.
+- **Automatic update mechanism.** The editor comes with a mechanism (through the use of _git_) that allows updates with a simple `:NvChadUpdate` command.
 
 - **Powered by Lua.** NvChad's configuration is written entirely in _lua_, which allows it to integrate seamlessly into Neovim's configuration by taking advantage of the full potential of the editor on which it is based.
 
