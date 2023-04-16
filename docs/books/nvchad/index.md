@@ -17,7 +17,7 @@ I say "ways" because there are many possibilities. The author focuses here on us
 
 Want an IDE that will help in writing Ansible playbooks? You can get that! Want and IDE for Golang? That's available too. Simply want a good interface for writing BASH scripts? It's also available.
 
-Through the use of **L**anguage **S**erver **P**rotocols and linters, you can setup an environment that is customized just for you. The best part is that once you have the environment setup, it can quickly be updated when new changes are available through the use of Packer and Mason, both of which are covered here.
+Through the use of **L**anguage **S**erver **P**rotocols and linters, you can setup an environment that is customized just for you. The best part is that once you have the environment setup, it can quickly be updated when new changes are available through the use of [lazy.nvim](https://github.com/folke/lazy.nvim) and [Mason](https://github.com/williamboman/mason.nvim), both of which are covered here.
 
 Because Neovim is a fork of `vim`, the overall interface will be familiar to `vim` users. If you aren't a `vim` user, you will pick up on the syntax of the commands quickly using this book. There's a lot of information covered here but it's easy to follow along, and once you've completed the content, you'll know enough to build your own IDE for _your_ needs with these tools.
 
