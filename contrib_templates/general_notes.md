@@ -1,3 +1,14 @@
+---
+title: 
+author: 
+contributors:
+date: 
+tested with: 
+tags:
+  - 1rst tag
+  - 2nd tag
+---
+
 # Some ideas regarding general structure of any technical doc:
 
 ## Preamble/Intro:
