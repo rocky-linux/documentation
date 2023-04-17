@@ -9,6 +9,8 @@
 
 ## Prerequsites:
 
+## Special Terminology:
+
 ## Process:
   Detailed Process steps
   Try a link to a footnote/reference secton here
@@ -23,6 +25,7 @@
   It works great!
 
 ---
+## Glossary:
 
 ## REFERENCES:
 1. Footnotes/Reference links (URLs, manpage websites, etc)
