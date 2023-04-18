@@ -15,7 +15,7 @@ tags:
 
     Nella documentazione ufficiale di NvChad, vengono citati comandi come `<leader>`, insieme ad altri tasti che potrebbero non essere comprensibili al lettore occasionale. Il motivo è il file `mappings.lua` predefinito (`../nvim/lua/core/mappings.lua`).
     
-    Questo file e le mappature delle chiavi che descrive sono delineati [here](https://nvchad.com/config/Mappings). Per essere chiaro, puoi sovrascrivere qualsiasi mappatura di tasti usando un file `mappings.lua` personalizzato (`../nvim/lua/custom/mappings.lua`).
+    Questo file e le mappature delle chiavi che descrive sono delineati [here](https://nvchad.com/docs/config/mappings). Per essere chiaro, puoi sovrascrivere qualsiasi mappatura di tasti usando un file `mappings.lua` personalizzato (`../nvim/lua/custom/mappings.lua`).
     
     Per evitare confusione nei documenti che state leggendo, assumeremo che stiate usando il file predefinito `mappings.lua` e sostituiremo i comandi effettivi che dovete usare per accedere a una funzione. I riferimenti chiave standard sono:
 
