@@ -77,7 +77,7 @@ The keys for modification are:
 
 ## Advanced Features
 
-Although disabled by default, _nvimtree_ integrates some functionality to control a possible _Git_ repository. Such functionality is enabled by using override of the base settings as described on the [Custom Override](../custom/override_lua.md) page.
+Although disabled by default, _nvimtree_ integrates some functionality to control a possible _Git_ repository. Such functionality is enabled by using override of the base settings as described on the override section of the [Template Chadrc](../template_chadrc.md) page.
 
 The related code is as follows:
 
