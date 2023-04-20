@@ -90,7 +90,7 @@ logfile=/var/log/dnf.log
 
 Il `dnf. og` ha un sacco di informazioni in esso ogni giorno, quindi non stiamo pubblicando che sullo schermo qui, ma si dovrebbe vedere output che ha solo i dati di oggi in esso. Dare allo script una prova e se funziona, allora possiamo passare al passo successivo. Dopo aver controllato l'output, il passo successivo è che vogliamo effettuare un reindirizzamento del tubo per inviare le informazioni all'email.
 
-!!! hint "Suggerimento"
+!!! tip "Suggerimento"
 
     Hai bisogno di `mailx` e di un demone di posta come `postfix` installato per compiere questo passo successivo. C'è anche qualche configurazione che *probabilmente* sarà necessaria per ricevere email dal tuo server all'indirizzo email delle aziende. Non preoccuparti di quei passi a questo punto, perché puoi controllare il `maillog` per vedere se il tentativo è stato fatto e poi lavorare da lì per ottenere email dal tuo server al tuo indirizzo email funzionante. Non è qualcosa che questo documento si occuperà. Per ora fare:
 
