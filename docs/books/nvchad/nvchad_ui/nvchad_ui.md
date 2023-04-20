@@ -32,7 +32,7 @@ Once Neovim is installed and the NvChad configuration is entered, our IDE should
 
 ![NvChad Default](../images/ui_default.png)
 
-The interface already comes with some advanced functionality, such as indicating the status of the git repository, but can be further enhanced by using the [Language Servers](../custom/lsp.md), and customized by overriding some basic configurations. The basic modules that make it up are detailed below.
+The interface already comes with some advanced functionality, such as indicating the status of the git repository, but can be further enhanced by using the Language Server, and customized by overriding some basic configurations. The basic modules that make it up are detailed below.
 
 ## Tabufline
 
