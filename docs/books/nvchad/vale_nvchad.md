@@ -20,7 +20,7 @@ tags:
 
 ## Installing `vale` using Mason
 
-Installing `vale` from within NvChad using Mason, will allow for you to stay up-to-date with the package without a whole lot of extra steps. Running Mason periodically from within `nvim` will show you if there are updates that need to be installed and allow you to update them from there. This includes `vale` once it is installed. Let us start by running `nvim` to pull up an empty file and then get into the command mode by using <kbd>SHIFT</kbd>+<kbd>:</kbd>+Mason, which should show an interface similar to this one:
+Installing `vale` from within NvChad using Mason, will keep the package up-to-date with just a few extra steps. Running Mason periodically from within `nvim` will show you if there are updates that need to be installed and allow you to update them from there. This includes `vale` once it is installed. Let us start by running `nvim` to pull up an empty file and then get into the command mode by using <kbd>SHIFT</kbd>+<kbd>:</kbd>+Mason, which should show an interface similar to this one:
 
 ![vale_mason](images/vale_mason.png)
 
