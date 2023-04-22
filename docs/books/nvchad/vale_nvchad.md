@@ -36,7 +36,7 @@ Just having `vale` installed isn't enough. You need a couple of additional thing
 
 Simply copy the contents at the bottom, and create the `.vale.ini` file.
 
-You need to create the "styles" folder. This is done by running the `vale` binary with the `sync` command. Again, we are doing this from the `~/.local/share/nvim/mason/packages/vale/` directory, so do:
+You need to create the "styles" folder. This is done by running the `vale` binary with the `sync` command. Again, you are doing this from the `~/.local/share/nvim/mason/packages/vale/` directory, so do:
 
 ```
 ./vale sync
