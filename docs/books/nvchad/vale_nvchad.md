@@ -1,7 +1,7 @@
 ---
 title: Using vale in NvChad
 author: Steven Spencer
-contributors: Franco Colussi
+contributors: Franco Colussi, Sergei Croise, Krista Burdine
 tags:
   - vale
   - linters
@@ -30,7 +30,7 @@ Rather than looking at the entire list of packages, let us use menu item 4 to li
 
 ## Configuring and initializing `vale`
 
-Just having `vale` installed isn't enough. You need a couple of additional things. First, you need a `.vale.ini` file that will live in your home directory eventually, but will be in the `~/.local/share/nvim/mason/packages/vale/` directory to start. The reason for putting this here first is that running the command that will create the styles directory will be easier if you can be in the same directory as the binary, rather than having to call the binary from the that long path in your home directory root. Creating this file is really easy if you use the configuration utility from [the `vale.sh` website](https://vale.sh/generator). Here, choose "Red Hat Documentation Style Guide" for the base style and "alex" for the supplementary style. Using "alex" is optional, but it does a good job of keeping your writing gender neutral, which is important. If you choose those options, your screen should look like this:
+Just having `vale` installed isn't enough. You need a couple of additional things. First, you need a `.vale.ini` file that will live in your home directory eventually, but will be in the `~/.local/share/nvim/mason/packages/vale/` directory to start. The reason for putting this here first is that running the command that will create the styles directory will be easier if you can be in the same directory as the binary, rather than having to call the binary from the that long path in your home directory root. Creating this file is really easy if you use the configuration utility from [the `vale.sh` website](https://vale.sh/generator). Here, choose "Red Hat Documentation Style Guide" for the base style and "alex" for the supplementary style. Using 'alex' is optional, but helps you catch and fix gendered, polarizing, or race-related words, etc., which is important. If you choose those options, your screen should look like this:
 
 ![vale_ini_nvchad](images/vale_ini_nvchad.png)
 
