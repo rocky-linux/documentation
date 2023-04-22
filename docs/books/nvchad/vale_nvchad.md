@@ -30,13 +30,27 @@ Rather than looking at the entire list of packages, let us use menu item 4 to li
 
 ## Configuring and initializing `vale`
 
-Just having `vale` installed isn't enough. You need a couple of additional things. First, you need a `.vale.ini` file that will live in your home directory eventually, but will be in the `~/.local/share/nvim/mason/packages/vale/` directory to start. The reason for putting this here first is that running the command that will create the styles directory will be easier if you can be in the same directory as the binary, rather than having to call the binary from the that long path in your home directory root. Creating this file is really easy if you use the configuration utility from [the `vale.sh` website](https://vale.sh/generator). Here, choose "Red Hat Documentation Style Guide" for the base style and "alex" for the supplementary style. Using 'alex' is optional, but helps you catch and fix gendered, polarizing, or race-related words, etc., which is important. If you choose those options, your screen should look like this:
+There are two methods you can use to configure `vale`. You can pick your favorite from the two options below. One will have you create the configuration files from within the path of the `vale` binary, then move them to your home folder, and the other will have you create the configuration files directly in your home folder. They work equally well. The second option has fewer manual steps, but requires the long path to the `vale` binary.
+
+!!! tip
+
+    If you want to hide your "styles" folder (below), modify the contents of the `.vale.ini` slightly during creation by changing the "StylesPath" option from "styles" to something hidden such as ".styles" or ".vale_styles." Example:
+
+    ```
+    StylesPath = .vale_styles
+    ```
+
+Just having `vale` installed is not enough. You need a couple of additional items. First, you need a `.vale.ini` file that will live in the root of your home folder. Next, you will need to generate the "styles" directory using `vale sync`.
+
+### Installing from within the path of the `vale` Binary
+
+If you are in the path of the `vale` binary here: `~/.local/share/nvim/mason/packages/vale/` you can simply create the `.vale.ini` file here, generate the "styles" directory, and then move both of them to your home root `~/`. Creating the `.vale.ini` file is easy using the configuration utility from [the `vale.sh` website](https://vale.sh/generator). Here, choose "Red Hat Documentation Style Guide" for the base style and "alex" for the supplementary style. Using 'alex' is optional, but helps you catch and fix gendered, polarizing, or race-related words, etc., which is important. If you choose those options, your screen should look like this:
 
 ![vale_ini_nvchad](images/vale_ini_nvchad.png)
 
-Simply copy the contents at the bottom, and create the `.vale.ini` file.
+Simply copy the contents at the bottom, create the `.vale.ini` file with your favorite editor, and paste what you copied in.
 
-You need to create the "styles" folder. This is done by running the `vale` binary with the `sync` command. Again, you are doing this from the `~/.local/share/nvim/mason/packages/vale/` directory, so do:
+You need to create the "styles" folder. Do this by running the `vale` binary with the `sync` command. Again, if you are doing this from the `~/.local/share/nvim/mason/packages/vale/` directory, just do:
 
 ```
 ./vale sync
@@ -53,11 +67,24 @@ cp .vale.ini ~/
 cp -rf styles ~/
 ```
 
+### Installing from your home directory
+
 If you prefer not to have to copy the files and just want to create them in your home directory, you can use this command from `~/`:
+
+First, create the `.vale.ini` in your home folder using [the `vale.sh` website](https://vale.sh/generator). Again, choose "Red Hat Documentation Style Guide" for your base style and "alex" for the supplementary style. Then copy the contents into the `.vale.ini` file.
+
+![vale_ini_nvchad](images/vale_ini_nvchad.png)
+
+Next, run the `vale sync` command. Since you are in your home directory, you will need the entire path to the binary:
 
 ```
 ~/.local/share/nvim/mason/packages/vale/vale sync
 ```
+
+![vale_sync](images/vale_sync.png)
+
+In this case, there is no need to copy the files as they will be created in your home directory root.
+
 
 ## The `null-ls.lua` file changes
 
@@ -66,7 +93,7 @@ There is one final step needed. You need to change the `null-ls.lua` file found 
 If you have no other linters installed, make a section with two dashes (comments) called "linters" then place this code there:
 
 ```
-b.diagnostics.vale, sources = { null_ls.builtins.diagnostics.vale },
+b.diagnostics.vale,
 ```
 
 Your file will look something like this when completed:
