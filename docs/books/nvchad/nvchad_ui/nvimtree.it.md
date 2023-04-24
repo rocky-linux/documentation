@@ -77,7 +77,7 @@ I tasti per la modifica sono:
 
 ## Funzionalità avanzate
 
-Sebbene sia disattivato per impostazione predefinita, _nvimtree_ integra alcune funzionalità per controllare un eventuale repository _Git_. Tale funzionalità è abilitata utilizzando la sovrascrittura delle impostazioni di base, come descritto nella pagina [Sovrascrittura personalizzata](../custom/override_lua.md).
+Sebbene sia disattivato per impostazione predefinita, _nvimtree_ integra alcune funzionalità per controllare un eventuale repository _Git_. Tale funzionalità è abilitata utilizzando la sovrascrittura delle impostazioni di base, come descritto nella sezione override della pagina [Template Chadrc](../template_chadrc.md).
 
 Il codice relativo è il seguente:
 

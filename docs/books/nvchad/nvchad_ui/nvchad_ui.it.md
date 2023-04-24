@@ -15,7 +15,7 @@ tags:
 
     Nella documentazione ufficiale di NvChad, vengono citati comandi come `<leader>`, insieme ad altri tasti che potrebbero non essere comprensibili al lettore occasionale. Il motivo è il file `mappings.lua` predefinito (`../nvim/lua/core/mappings.lua`).
     
-    Questo file e le mappature delle chiavi che descrive sono delineati [here](https://nvchad.com/config/Mappings). Per essere chiaro, puoi sovrascrivere qualsiasi mappatura di tasti usando un file `mappings.lua` personalizzato (`../nvim/lua/custom/mappings.lua`).
+    Questo file e le mappature delle chiavi che descrive sono delineati [here](https://nvchad.com/docs/config/mappings). Per essere chiaro, puoi sovrascrivere qualsiasi mappatura di tasti usando un file `mappings.lua` personalizzato (`../nvim/lua/custom/mappings.lua`).
     
     Per evitare confusione nei documenti che state leggendo, assumeremo che stiate usando il file predefinito `mappings.lua` e sostituiremo i comandi effettivi che dovete usare per accedere a una funzione. I riferimenti chiave standard sono:
 
@@ -32,7 +32,7 @@ Una volta installato Neovim e inserita la configurazione di NvChad, l'IDE dovreb
 
 ![NvChad Default](../images/ui_default.png)
 
-L'interfaccia è già dotata di alcune funzionalità avanzate, come l'indicazione dello stato del repository git, ma può essere ulteriormente migliorata utilizzando i [Language Server](../custom/lsp.md) e personalizzata sovrascrivendo alcune configurazioni di base. I moduli di base che lo compongono sono illustrati di seguito.
+L'interfaccia è già dotata di alcune funzionalità avanzate, come l'indicazione dello stato del repository git, ma può essere ulteriormente migliorata utilizzando i Language Server e personalizzata sovrascrivendo alcune configurazioni di base. I moduli di base che lo compongono sono illustrati di seguito.
 
 ## Tabufline
 
