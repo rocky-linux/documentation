@@ -44,7 +44,7 @@ A continuación, ejecuta el siguiente comando:
 
 `mysql_secure_installation`
 
-!!! Sugerencia
+!!! tip
 
     La versión de mariadb-server que viene habilitada por defecto en Rocky Linux 8.5 es 10.3.32. Puede instalar la versión 10.5.13 activando el módulo:
 
