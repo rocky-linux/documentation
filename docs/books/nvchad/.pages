@@ -6,4 +6,5 @@ nav:
     - ... | install_nvchad*.md
     - ... | template_chadrc*.md
     - ... | nerd_fonts*.md
+    - ... | vale_nvchad*.md
     - NvChad UI: nvchad_ui
