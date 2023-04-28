@@ -1,17 +1,19 @@
 files:
   - source: /docs/**/*.md
     ignore:
+      - '*.de.md'  
+      - '*.en.md'
       - '*.es.md'
       - '*.fr.md'
-      - '*.zh.md'
       - '*.it.md'
       - '*.ja.md'
-      - '*.pt.md'
-      - '*.en.md'
-      - '*.sv.md'
-      - '*.de.md'  
-      - '*.ru.md'
+      - '*.ko.md'
       - '*.pl.md'
+      - '*.pt.md'
+      - '*.pt-BR.md'
+      - '*.ru.md'
+      - '*.sv.md'
+      - '*.zh.md'
       - '/docs/release_notes/8.5.md'
     translation: /%original_path%/%file_name%.%two_letters_code%.%file_extension%
     update_option: update_as_unapproved
