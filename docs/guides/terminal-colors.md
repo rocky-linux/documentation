@@ -77,20 +77,21 @@ tags:
        `echo $LS_COLORS`
        `dircolors --print-database`
 
-	* Vi/VIM:
-	    Check if vim has `guitermcolors` set:
-		  `:echo $guitermcolors` (short verion `:echo &tgc`)
-		If you have the settings you want within vim you can save them:
-		  `:mkvimrc <filename>`(short form `:mkv <filename>`, both default to '.vimrc' in cwd(_vimrc in windows, in gvim)
-	      `:mkv!` will override existing file
-    
-	    There are some caveats regarding maps, abbreviations, autocmds etc; see note at bottom of
-	      `:h mkv` (lists `:mk[exrc]` too) `":mkvimrc"`, `":mkexrc"` and `":mksession"`
-        See https://vimfandom.com/wiki/Open_vimrc_file
-	    `:so $VIMRUNTIME/syntax/colortest.vim` can be used to check colors display
-	    `:runtime syntax/colortest.vim`
+    * Vi/VIM:
+	Check if vim has `guitermcolors` set:
+	  `:echo $guitermcolors` (short verion `:echo &tgc`)
+	If you have the settings you want within vim you can save them:
+	  `:mkvimrc <filename>`(short form `:mkv <filename>`, both default to '.vimrc' in cwd(_vimrc in windows, in gvim)
+	  `:mkv!` will override existing file
+	
+	There are some caveats regarding maps, abbreviations, autocmds etc; see note at bottom of
+	  `:h mkv` (lists `:mk[exrc]` too) `":mkvimrc"`, `":mkexrc"` and `":mksession"`
+	
+	See https://vimfandom.com/wiki/Open_vimrc_file
+	  `:so $VIMRUNTIME/syntax/colortest.vim` can be used to check colors display.
+	  `:runtime syntax/colortest.vim` is another way to access the same file.
 
-	    `:version`
+    `:version`
 
         ```
 
@@ -111,20 +112,22 @@ tags:
       `:echo $MYVIMRC` (only set if it detects a .vimrc during startup, $MYGVIMRC if gvim)
     
     These would be listed if using gvim as well:
-    [ system gvimrc file: "$VIM/gvimrc" (in gvim, windows?)]
-    [ user gvimrc file: "$HOME/.gvimrc" (_gvimrc in windows)]
-	
-		Show current number of colors to use:
-		`:echo &t_Co`
-	Show which colorscheme is currently in use:
-		`:colorscheme`
-		`:let colors_name`
-	See list of available colorschemes:
-		`:colorscheme (ctrl-d)`
-	Choose among the installed colorschemes:
-		`:colorscheme<space> tab`(tab thru the list)
+	[ system gvimrc file: "$VIM/gvimrc" (in gvim, windows?)]
+	[ user gvimrc file: "$HOME/.gvimrc" (_gvimrc in windows)]
 
-	* Emacs:
+    Show current number of colors to use:
+	`:echo &t_Co`
+    Show which colorscheme is currently in use:
+	`:colorscheme`
+	`:let colors_name`
+
+    See list of available colorschemes:
+	`:colorscheme (ctrl-d)`
+
+    Choose among the installed colorschemes:
+	`:colorscheme<space> tab`(tab thru the list)
+
+* Emacs:
 
 
 ## Dependencies:
@@ -162,6 +165,6 @@ TTY
 
 ## REFERENCES:
 1. [XVilka's Termstandard Colors](https://github.com/termstandard/colors)
-2. [Thomas E. Dickey's XTerm](https://invisible-island.net/xterm/xterm.html]
+2. [Thomas E. Dickey's XTerm](https://invisible-island.net/xterm/xterm.html)
 3. [open_vimrc_file](https://vimfandom.com/wiki/Open_vimrc_file)
 4. Links to scripts, code and custom programs (for posterity in some cases if the originals might disappear )
