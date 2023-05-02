@@ -17,7 +17,7 @@ Running a local copy of the documentation website might be useful in the followi
 
 ## Create the content environment
 
-1. Make sure that the prerequisites are satisfied. If not please skip to the "[Setup the prerequisites](##Setup the prerequisites)" section and then return here. 
+1. Make sure that the prerequisites are satisfied. If not please skip to the "[Setup the prerequisites](#setup-the-prerequisites)" section and then return here. 
 
 2. Change the current working directory on your local system to a folder where you intend to do your writing. 
   We'll refer to this directory as
