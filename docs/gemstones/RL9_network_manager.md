@@ -104,7 +104,7 @@ ipv6.method  disabled  autoconnect yes
 
 If you are using DHCP to get the ipv4 address, it can be:
 
-```
+```bash
 Shell > nmcli  connection  add  type ethernet con-name CONNECTION_NAME  ifname  NIC_DEVICE_NAME \
 ipv4.method  auto  ipv6.method  disabled  autoconnect  yes
 ```
@@ -185,7 +185,7 @@ method=disabled
 | id             | The alias of con-name, whose value is a string.|
 | uuid           | Universal unique identifier, whose value is a string. |
 | type           | The type of connection, whose values can be ethernet, bluetooth, vpn, vlan, and so on. You can use `man  nmcli` to view all supported types. |
-| interface-name | Network card device name. |
+| interface-name | The name of the network interface this connection is bound to, whose value is a string. |
 | timestamp      | Unix timestamp, in seconds. The value here is the number of seconds since January 1, 1970.|
 | autoconnect    | Whether it starts automatically when the system starts. The value is of Boolean type.|
 
@@ -206,4 +206,4 @@ method=disabled
 | addresses | |
 | gateway | |
 | dns |  |
-| method | The method to be obtained by ip. The value is of string type. The value can be: auto, disabled, link-local, manual, shared |
+| method | The method to be obtained by IP. The value is of string type. The value can be: auto, disabled, link-local, manual, shared |
