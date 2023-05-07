@@ -285,7 +285,7 @@ To log onto the system
 
 1. At the Password prompt, type `04302021` (rockstar’s password) and press <kbd>Enter</kbd> (the password will ***not*** be echoed to the screen, that is normal).
 
-3. Run the `whoami` command after login.  
+1. Run the `whoami` command after login.  
 This command shows the name of the currently logged in user.
 
 ![Login Screen](images/installation_9.0_F03.png)
