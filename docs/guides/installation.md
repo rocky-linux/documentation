@@ -9,7 +9,7 @@ updated: 07-14-2022
 
 This is a detailed guide for installing a 64-bit version of the Rocky Linux distribution on a standalone system. We will be performing a server class install. We will step through the installation and customization steps in the following sections.
 
-## Operating System Installation Prerequisites
+## OS Installation Prerequisites
 
 Download the ISO to use for this installation of Rocky Linux.  
 You can download the latest ISO image for the version of Rocky Linux for this installation here:
