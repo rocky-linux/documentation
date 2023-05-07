@@ -162,8 +162,10 @@ You will see a screen displaying all the candidate disk drives that you have ava
 Under the *Storage Configuration* Options section:
 
 1. Select the <kbd>Automatic</kbd> radio button.
-2. Click <kbd>Done</kbd> at the top of the screen.
-3. Once the installation program determines that you have a usable disk, it returns to the *Installation Summary* screen.
+
+1. Click <kbd>Done</kbd> at the top of the screen.
+
+1. Once the installation program determines that you have a usable disk, it returns to the *Installation Summary* screen.
 
 ### Network & Host Name
 
@@ -184,7 +186,7 @@ Clicking the <kbd>Network & Hostname</kbd> button in the main *Installation Summ
 The next important configuration task is related to the network interfaces on the system.
 
 1. Verify that the left pane lists an Ethernet card (or any network card.)
-2. Click any of the detected network devices in the left pane to select it.  
+1. Click any of the detected network devices in the left pane to select it.  
 The configurable properties of the selected network adapter appear in the right pane of the screen.
 
 !!! Note
