@@ -208,51 +208,48 @@ This section can be used for creating a password for the `root` user account and
 
 #### Root Password
 
-Click the *Root Password* field under *User Settings* to start the *Root Password* task screen.
+1. Click the *Root Password* field under *User Settings* to start the *Root Password* task screen.
 
-!!! Warning
+    !!! Warning
+    
+        The root superuser is the most privileged account on the system. Therefore, if you choose to use or enable it, it is crucial that you protect this account with a strong password.
 
-    The root superuser is the most privileged account on the system. Therefore, if you choose to use or enable it, it is crucial that you protect this account with a strong password.
+1. In the *Root Password* text box, set a strong password for the root user.
 
- In the *Root Password* text box, set a strong password for the root user.
+1. Enter the same password again in the *Confirm* text box.
 
-Enter the same password again in the *Confirm* text box.
-
-Click <kbd>Done</kbd>.
+1. Click <kbd>Done</kbd>.
 
 
 #### User Creation
 
-Next click the *User Creation* field under *User Settings* to start the *Create User* task screen. This task area allows you to create a privileged or non-privileged (non-administrative) user account on the system.
+To create a user:
 
-!!! Info
+1. Click the *User Creation* field under *User Settings* to start the *Create User* task screen.  
+This task area allows you to create a privileged or non-privileged (non-administrative) user account on the system.
 
-    Creating and using a non-privileged account for day-to-day tasks on a system is a good system administration practice.
+    !!! Info
+    
+        Creating and using a non-privileged account for day-to-day tasks on a system is a good system administration practice.
 
-We’ll create a regular user that can invoke superuser (administrator) powers when needed.
+    We’ll create a regular user that can invoke superuser (administrator) powers when needed.
 
-Complete the fields in the *Create User* screen with the following information and click <kbd>Done</kbd>:
+1. Complete the fields in the *Create User* screen with the following information:
+    
+    - **Full name**:
+    `rockstar`    
+    - **Username**:
+    `rockstar`
+    - **Make this user administrator**:
+    Checked
+    - **Require a password to use this account**:
+    Checked
+    - **Password**:
+    `04302021`
+    - **Confirm password**:
+    `04302021`
 
-*Full name*:
-`rockstar`
-
-*Username*:
-`rockstar`
-
-*Make this user administrator*:
-Checked
-
-*Require a password to use this account*:
-Checked
-
-*Password*:
-`04302021`
-
-*Confirm password*:
-`04302021`
-
-
-Click <kbd>Done</kbd>.
+1. Click <kbd>Done</kbd>.
 
 ## Installer Phase
 
@@ -281,7 +278,7 @@ The system is now set up and ready for use. You will see the Rocky Linux console
 
 ![Rocky Linux Welcome Screen](images/installation_9_F02.png)
 
-To log onto the system
+To log onto the system:
 
 1. Type `rockstar` at the login prompt and press <kbd>Enter</kbd>.
 
