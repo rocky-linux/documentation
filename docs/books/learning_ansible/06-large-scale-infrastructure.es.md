@@ -10,12 +10,12 @@ En este capítulo aprenderá a escalar su sistema de gestión de la configuraci�
 
 **Objetivos** : En este capítulo aprenderá a:
 
-:heavy_check_mark: Organice su código para la gestión de una gran infraestructura;   
+:heavy_check_mark: Organice su código para la gestión de una gran infraestructura;
 :heavy_check_mark: Aplicar toda o una parte de la gestión de la configuración a un grupo de nodos;
 
 :checkered_flag: **ansible**, **gestion de la configuración**, **escalado**
 
-**Conocimiento**: :star: :star: :star:       
+**Conocimiento**: :star: :star: :star:
 **Complejidad**: :star: :star: :star: :star:
 
 **Tiempo de lectura**: 30 minutos
@@ -235,7 +235,7 @@ TASK [roles/functionality2 : Task in functionality 2] **************************
 skipping: [client1]
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
 
 Como puede ver, por defecto, sólo se ejecutan las tareas del rol `functionality1`.
@@ -268,7 +268,7 @@ ok: [client1] => {
 }
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Intentamos aplicar únicamente la tarea `functionality2`:
@@ -287,7 +287,7 @@ ok: [client1] => {
 }
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Vamos a ejecutar la tarea contra todo el inventario:
@@ -316,8 +316,8 @@ ok: [client1] => {
 skipping: [client2]
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-client2                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+client2                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
 
 Como puede ver, `functionality2` sólo se ejecuta en el `cliente1`.

@@ -13,13 +13,13 @@ En este capítulo aprenderá cómo trabajar con Ansible.
 
 **Objetivos**: En este capítulo aprenderá a:
 
-:heavy_check_mark: Implementar Ansible;       
-:heavy_check_mark: Aplicar cambios sobre la configuración en un servidor;   
+:heavy_check_mark: Implementar Ansible;
+:heavy_check_mark: Aplicar cambios sobre la configuración en un servidor;
 :heavy_check_mark: Crear los primeros playbooks de Ansible;
 
 :checkered_flag: **ansible**, **modulo**, **playbook**
 
-**Conocimiento**: :star: :star: :star:     
+**Conocimiento**: :star: :star: :star:
 **Complejidad**: :star: :star:
 
 **Tiempo de lectura**: 30 minutos
@@ -50,11 +50,11 @@ Le ayudará con:
 !!! Note
 
     Ansible fue escrito originalmente por Michael DeHaan, fundador de otras herramientas como Cobbler.
-    
+
     ![Michael DeHaan](images/Michael_DeHaan01.jpg)
-    
+
     La primera versión fue la 0.0.1, publicada el 9 de marzo de 2012.
-    
+
     El 17 de octubre de 2015, AnsibleWorks (la empresa detrás de Ansible) fue adquirida por Red Hat por 150 millones de dólares.
 
 ![Características de Ansible](images/ansible-001.png)

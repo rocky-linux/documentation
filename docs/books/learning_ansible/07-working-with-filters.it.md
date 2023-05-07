@@ -12,12 +12,12 @@ In questo capitolo imparerai come trasformare i dati con i filtri jinja.
 
 **Obiettivi**: In questo capitolo imparerai come:
 
-:heavy_check_mark: Trasformare le strutture dati come dizionari o liste;  
+:heavy_check_mark: Trasformare le strutture dati come dizionari o liste;
 :heavy_check_mark: Trasformare variabili.
 
 :checkered_flag: **ansible**, **jinja**, **filtri**
 
-**Conoscenza**: :star: :star: :star:       
+**Conoscenza**: :star: :star: :star:
 **Complessità**: :star: :star: :star: :star:
 
 **Tempo di lettura**: 20 minuti

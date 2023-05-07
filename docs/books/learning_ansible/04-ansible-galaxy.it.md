@@ -10,12 +10,12 @@ In questo capitolo imparerai come usare, installare e gestire ruoli e collezioni
 
 **Obiettivi**: In questo capitolo imparerai come:
 
-:heavy_check_mark: installare e gestire collezioni;       
+:heavy_check_mark: installare e gestire collezioni;
 :heavy_check_mark: installare e gestire i ruoli;.
 
 :checkered_flag: **ansible**, **ansible-galaxy**, **ruoli**, **collezioni**
 
-**Conoscenza**: :star: :star:      
+**Conoscenza**: :star: :star:
 **Complessità**: :star: :star: :star:
 
 **Tempo di lettura**: 40 minuti
@@ -197,7 +197,7 @@ ok: [192.168.1.11] => {
 }
 
 PLAY RECAP **********************************************************************************************
-192.168.1.11               : ok=31   changed=1    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0  
+192.168.1.11               : ok=31   changed=1    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0
 ```
 
 Piuttosto facile per un processo così complesso, vero?
@@ -318,7 +318,7 @@ TASK [rocky8 : Create default user] ********************************************
 changed: [localhost]
 
 PLAY RECAP *********************************************************************************************
-localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Congratulazioni! Ora siete in grado di creare grandi cose con un playbook di solo poche righe.
@@ -371,7 +371,7 @@ TASK [rocky8 : Uninstall default packages (can be overridden) []] **************
 ok: [localhost]
 
 PLAY RECAP *********************************************************************************************
-localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Ora puoi sovrascrivere i `rocky8_remove_packages` nel tuo playbook e disinstallare ad esempio `cockpit`:
@@ -412,7 +412,7 @@ TASK [rocky8 : Uninstall default packages (can be overridden) ['cockpit']] *****
 changed: [localhost]
 
 PLAY RECAP *********************************************************************************************
-localhost                  : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Ovviamente, non c'è limite a quanto si può migliorare il proprio ruolo. Immaginate che per uno dei vostri server, avete bisogno di un pacchetto che è nell'elenco di quelli da disinstallare. Si potrebbe quindi, ad esempio, creare una nuova lista che può essere sovrascritta e quindi rimuovere dall'elenco dei pacchetti da disinstallare quelli nell'elenco dei pacchetti specifici da installare utilizzando il filtro jinja `difference()`.
@@ -484,7 +484,7 @@ Ora possiamo utilizzare il nuovo modulo disponibile `yum_versionlock`:
 
     - name: Display locks
       debug:
-        var: locks.meta.packages                            
+        var: locks.meta.packages
 ```
 
 ```
@@ -509,7 +509,7 @@ ok: [192.168.1.11] => {
 }
 
 PLAY RECAP **********************************************************************************************
-192.168.1.11               : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.1.11               : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 ```
 

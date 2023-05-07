@@ -10,15 +10,15 @@ In questo capitolo imparerai come distribuire applicazioni con il ruolo Ansible 
 
 **Obiettivi**: In questo capitolo imparerai come:
 
-:heavy_check_mark: Implementare Ansistrano;       
-:heavy_check_mark: Configurare Ansistrano;       
-:heavy_check_mark: Usare cartelle e file condivisi tra le versioni distribuite;       
-:heavy_check_mark: Distribuire diverse versioni di un sito da git;        
+:heavy_check_mark: Implementare Ansistrano;
+:heavy_check_mark: Configurare Ansistrano;
+:heavy_check_mark: Usare cartelle e file condivisi tra le versioni distribuite;
+:heavy_check_mark: Distribuire diverse versioni di un sito da git;
 :heavy_check_mark: Reagire tra i passaggi di implementazione.
 
 :checkered_flag: **ansible**, **ansistrano**, **ruoli**, **distribuzioni**
 
-**Conoscenza**: :star: :star:      
+**Conoscenza**: :star: :star:
 **Complessità**: :star: :star: :star:
 
 **Tempo di lettura**: 40 minuti
@@ -257,7 +257,7 @@ TASK [ansistrano.deploy : ANSISTRANO | Change softlink to new release]
 TASK [ansistrano.deploy : ANSISTRANO | Clean up releases]
 
 PLAY RECAP ********************************************************************************************************************************************************************************************************
-192.168.1.11               : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+192.168.1.11               : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0
 
 ```
 

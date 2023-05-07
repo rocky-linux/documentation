@@ -10,15 +10,15 @@ En este capítulo aprenderá a desplegar aplicaciones con el rol de Ansible [Ans
 
 **Objetivos** : En este capítulo aprenderá a:
 
-:heavy_check_mark: Implementar Ansistrano;       
-:heavy_check_mark: Configurar Ansistrano;       
-:heavy_check_mark: Utilizar carpetas compartidas y ficheros entre las versiones deplgadas;       
-:heavy_check_mark: Desplegar versiones diferentes de un sitio web desde Git;        
+:heavy_check_mark: Implementar Ansistrano;
+:heavy_check_mark: Configurar Ansistrano;
+:heavy_check_mark: Utilizar carpetas compartidas y ficheros entre las versiones deplgadas;
+:heavy_check_mark: Desplegar versiones diferentes de un sitio web desde Git;
 :heavy_check_mark: Reaccionar entre los pasos de los despliegues.
 
 :checkered_flag: **ansible**, **ansistrano**, **roles**, **despliegues**
 
-**Conocimiento**: :star: :star:      
+**Conocimiento**: :star: :star:
 **Complejidad**: :star: :star: :star:
 
 **Tiempo de lectura**: 40 minutos
@@ -257,7 +257,7 @@ TASK [ansistrano.deploy : ANSISTRANO | Change softlink to new release]
 TASK [ansistrano.deploy : ANSISTRANO | Clean up releases]
 
 PLAY RECAP ********************************************************************************************************************************************************************************************************
-192.168.1.11               : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+192.168.1.11               : ok=25   changed=8    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0
 
 ```
 

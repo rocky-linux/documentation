@@ -10,12 +10,12 @@ In questo capitolo imparerai come ridimensionare il tuo sistema di gestione dell
 
 **Obiettivi**: In questo capitolo imparerai come:
 
-:heavy_check_mark: Organizzare il tuo codice per un'infrastruttura di grandi dimensioni;   
+:heavy_check_mark: Organizzare il tuo codice per un'infrastruttura di grandi dimensioni;
 :heavy_check_mark: Applicare tutto o parte della tua gestione di configurazione a un gruppo di nodi;
 
 :checkered_flag: **ansible**, **config management**, **scale**
 
-**Conoscenza**: :star: :star: :star:       
+**Conoscenza**: :star: :star: :star:
 **Complessità**: :star: :star: :star: :star:
 
 **Tempo di lettura**: 30 minuti
@@ -235,7 +235,7 @@ TASK [roles/functionality2 : Task in functionality 2] **************************
 skipping: [client1]
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
 
 Come puoi vedere, per impostazione predefinita, vengono giocate solo le attività del ruolo `functionality1`.
@@ -268,7 +268,7 @@ ok: [client1] => {
 }
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Prova ad applicare solo `funzionalità2`:
@@ -287,7 +287,7 @@ ok: [client1] => {
 }
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Eseguiamo l'intero l'inventario:
@@ -316,8 +316,8 @@ ok: [client1] => {
 skipping: [client2]
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-client2                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+client2                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
 
 Come puoi vedere, `functionality2` è riprodotto solo sul `client1`.

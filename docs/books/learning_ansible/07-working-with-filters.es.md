@@ -12,12 +12,12 @@ En este capítulo aprenderá a transformar datos mediante filtros de Jinja.
 
 **Objetivos** : En este capítulo aprenderá a:
 
-:heavy_check_mark: Transformar estructuras de datos como diccionarios o listas;   
+:heavy_check_mark: Transformar estructuras de datos como diccionarios o listas;
 :heavy_check_mark: Transformar variables;
 
 :checkered_flag: **ansible**, **jinja**, **filtros**
 
-**Conocimiento**: :star: :star: :star:       
+**Conocimiento**: :star: :star: :star:
 **Complejidad**: :star: :star: :star: :star:
 
 **Tiempo de lectura**: 20 minutos

@@ -10,13 +10,13 @@ In questo capitolo imparerai come gestire i file con Ansable.
 
 **Obiettivi**: In questo capitolo imparerai come:
 
-:heavy_check_mark: modificare il contenuto del file;       
-:heavy_check_mark: caricare i file ai server di destinazione;   
+:heavy_check_mark: modificare il contenuto del file;
+:heavy_check_mark: caricare i file ai server di destinazione;
 :heavy_check_mark: recuperare i file dai server di destinazione.
 
 :checkered_flag: **ansible**, **moduli**, **files**
 
-**Conoscenza**: :star: :star:     
+**Conoscenza**: :star: :star:
 **Complessità**: :star:
 
 **Tempo di lettura**: 20 minuti
