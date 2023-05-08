@@ -9,18 +9,18 @@ update : 2021-10-20
 
 ##  Prerequisites
 
-* A machine running Rocky Linux.
-* Know how to use your favorite editor to modify the configuration file (such as *vim*) in the command line environment.
+* A computer running Rocky Linux.
+* Know how to use your favorite editor to change the configuration file (such as *vim*) in the command line environment.
 * Understand basic RPM package management.
 
 ##  Assumptions
 
-* You have understood the basic knowledge of bash, python or other scripting/programming tools, and want to run the script automatically.
-* You are logged in as the root user, or switch to root with `su - root`.
+* You have understood the basic knowledge of bash, python or other scripting or programming tools, and want to run the script automatically.
+* You connected in as the root user, or switch to root with `su - root`.
 
 ##  `anacron` Introduction
 
-**`anacron` is used to run commands on a regular basis, and the operating frequency is defined in units of days. It is suitable for computers that do not run 24/7, such as laptops and desktops. Suppose you have a scheduled task (such as a backup script) to be run in the early morning of every day using crontab. When you fall asleep, your desktop/laptop is shut down. Your backup script will not be executed. However, if you use `anacron`, you can rest assured that the next time you turn on the desktop/laptop, the backup script will be executed.**
+**`anacron` runs commands on a regular basis, and the operating frequency is defined in units of days. It is suitable for computers that do not run 24/7, such as laptops and desktops. Suppose you have a scheduled task (such as a backup script) to be run in the early morning of every day using crontab. When you fall asleep, your desktop or notebook is off. Your backup script will not run. However, if you use `anacron`, you can rest assured that the next time you turn on the desktop or notebook, the backup script will run.**
 
 The appearance of `anacron` is not to replace `crontab`, but to complement `crontab`. Their relationship is as follows:
 
@@ -93,15 +93,15 @@ For more configuration file information, please [Browse the manual page](https:/
 
 ## User use
 
-In order to make certain files run within these automatically defined times, all you need to do is to copy the script file to the relevant directory and make sure that it has ** x execution permission (chmod +x) ** . Therefore, you only need to let the system automatically run the script at one of these scheduled times, which makes the automation task very easy.
+To make certain files run within these automatically defined times, all you need to do is to copy the script file to the relevant directory and verify that it has ** x execution permission (chmod +x) ** . Therefore, you only need to let the system automatically run the script at one of these scheduled times, which simplifies the automation task.
 
-Let's use cron.daily to illustrate the execution process of /etc/anacrontab:
+Let us use cron.daily to illustrate the run process of /etc/anacrontab:
 
-1. `anacron` reads the ** /var/spool/anacron/cron.daily ** file, and the content of the file shows the time of the last execution.
-2. Compared with the current time, if the difference between the two times exceeds 1 day, the cron.daily job will be executed.
-3. This work can only be performed from 03:00-22:00.
-4. Check whether a file is executed after 5 minutes after booting. When the first one is executed, it will be randomly delayed for 0～45 minutes to execute the next one.
-5. Use the nice parameter to specify the default priority, and use the run-parts parameter to execute all executable files in the /etc/cron.daily/ directory.
+1. `anacron` reads the ** /var/spool/anacron/cron.daily ** file, and the content of the file shows the time of the last run.
+2. Compared with the current time, if the difference between the two times exceeds 1 day, the cron.daily job will run.
+3. This work can only run from 03:00-22:00.
+4. Verify whether a file runs after 5 minutes after booting. When the first one runs, it will be randomly delayed for 0～45 minutes to run the next one.
+5. Use the nice parameter to specify the default priority, and use the run-parts parameter to run all executable files in the /etc/cron.daily/ directory.
 
 ## Related Commands
 
@@ -109,8 +109,8 @@ Use the command `anacron`, commonly used options are:
 
 | Options | Description |
 | --- | --- |
-| -f | Execute all jobs, ignoring timestamps |
+| -f | Run all jobs, ignoring timestamps |
 | -u | Update the timestamp to the current time without performing any action |
 | -T | Test the validity of the configuration file /etc/anacrontab |
 
-For more help information, please [Browse the manual page](https://man7.org/linux/man-pages/man8/anacron.8.html)
+For more help information, [browse the manual page](https://man7.org/linux/man-pages/man8/anacron.8.html)

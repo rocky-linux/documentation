@@ -7,15 +7,14 @@ update: 2021-10-26
 
 #  Prerequisite
 
-* A machine running Rocky Linux.
-* Know how to use your favorite editor to modify the configuration file in the command line environment (this article will use `vi`).
-* You have understood the basic knowledge of bash, python or other scripting/programming tools, and expect to run the script automatically.
-* You have connected to your machine via ssh (it can be root user or ordinary user with UID greater than 1000).
-* We think you are a very cool person.
+* A computer running Rocky Linux.
+* Know how to use your favorite editor to change the configuration file in the command line environment (this article will use `vi`).
+* You have understood the basic knowledge of bash, python or other scripting or programming tools, and expect to run the script automatically.
+* You have connected to your computer by SSH (it can be root user or ordinary user with UID greater than 1000).
 
 ##  cron Introduction
 
-GNU/Linux provides the *cron* system, which is a time-based `cron` jobs program for automated processes. It is simple, but quite powerful. Want a script or program to run at 5 pm every day? `cron` can do it. There are different branches (or variants) of `cron`, which have the same functions. In this document, **cronie** is used, and the version is 1.5.2. You can click [here](https://github.com/cronie-crond/cronie) to find the latest version and update log.
+GNU/Linux provides the *cron* system, which is a time-based `cron` jobs program for automated processes. It is not hard, but quite powerful. Want a script or program to run at 5 pm every day? `cron` can do it. There are different branches (or variants) of `cron`, which have the same functions. In this document, **cronie** is used, and the version is 1.5.2. You can click [here](https://github.com/cronie-crond/cronie) to find the latest version and update log.
 
 ##  cronie's Description
 
@@ -77,7 +76,7 @@ In the example that follows, assuming you are performing this operation as the r
 * Once the above has been entered (again assuming `vi` is the system editor), press <kbd>ESC</kbd> to exit insert mode.
 * Save and exit your file with <kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq!</kbd> (displayed at the bottom of the editor).
 
-Now the script will run every night at 22:00. Obviously, this is a very simple example. Things can become more complicated if you need something more elaborate.
+Now the script will run every night at 22:00. This is a simplistic example. Things can become more complicated if you need something more elaborate.
 
 !!! tip "Attention"
 
@@ -85,7 +84,7 @@ Now the script will run every night at 22:00. Obviously, this is a very simple e
 
 ####  Complex Options
 
-So far, the content discussed are very simple options, but how to complete more complex timed tasks?
+The content discussed so far are simplistic options, but what about more complex timed tasks?
 
 ```bash
 # Suppose you want to run every 10 minutes backup script (may be impractical, however, it is only an example!) Throughout the day. To this end, the following will be written:
@@ -99,19 +98,19 @@ So far, the content discussed are very simple options, but how to complete more 
 |Special Symbols|Meaning|
 |---|---|
 |* | represents any time. For example, the first * means any minute, and the second * means any hour |
-|, | stands for discontinuous time, such as "0 8,12,16 * * * ", which means that the command will be executed once every day at 8:00, 12:00, and 16:00 |
-|- | represents a continuous time range, such as "0 5 * * 1-6 ", which means that a command will be executed at five o'clock in the morning every day from Monday to Saturday |
-|*/n | Represents how often the interval is executed, such as "*/10 * * * *" means that it is executed every 10 minutes |
+|, | stands for discontinuous time, such as "0 8,12,16 * * * ", which means that the command will run once every day at 8:00, 12:00, and 16:00 |
+|- | represents a continuous time range, such as "0 5 * * 1-6 ", which means that a command will run at five o'clock in the morning every day from Monday to Saturday |
+|*/n | Represents how often the interval will run, such as "*/10 * * * *" means that it  every 10 minutes |
 
 !!! tip "Attention"
 
     The smallest time unit that cronie can recognize is 1 minute; when using, for example, `30 4 1,15 * 5 command` , it will cause the command to run on the 1st and 15th of each month and 4:30 in the morning of every Friday ; The output information of some scripts or commands will prevent the execution of timed tasks, and output redirection is required, such as this- `*/10 * * * * /usr/local/sbin/backup &> /dev/null`
 
-##  Q & A
+##  Q and A
 
 1. /etc/crontab and `crontab -e` , is there any difference between the two methods?
  `crontab -e` does not need to specify a user (the currently logged-in user is used by default), while /etc/crontab needs to specify a user.
-2. What should I do if the specified command or script is not executed correctly?
+2. What should you do if the specified command or script is not run correctly?
 Check the /var/log/cron* file, use `journalctl -u crond.service` to check the information about the daemon process, whether the script has x permission, etc., for troubleshooting.
 3. In addition to cronie, what cron variants are there?
 [ dcron ](http://www.jimpryor.net/linux/dcron.html), the latest version is 4.5 (2011-50-01).
@@ -121,4 +120,4 @@ Check the /var/log/cron* file, use `journalctl -u crond.service` to check the in
 
 ##  Summary
 
-For Rocky Linux desktop users or system administrators, cronie is a very powerful tool. It allows you to automate tasks and scripts so you don't have to remember to run them manually. Although the basic knowledge is simple, the actual task may be complex. For more information about `crontab`, please visit [crontab man page](https://man7.org/linux/man-pages/man5/crontab.5.html). You can also simply search for "crontab" on the Internet, which will provide you with a large number of search results and help you fine-tune the `crontab` expression.
+For Rocky Linux desktop users or system administrators, cronie is a very powerful tool. It allows you to automate tasks and scripts so you do not have to remember to run them manually. Although the basic knowledge is not hard, the actual task can be complex. For more information about `crontab`, visit [crontab man page](https://man7.org/linux/man-pages/man5/crontab.5.html). You can also search for "crontab" on the Internet, which provides you with a large number of search results and help you fine-tune the `crontab` expression.
