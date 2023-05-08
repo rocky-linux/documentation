@@ -7,14 +7,12 @@ updated: 07-14-2022
 
 # Installing Rocky Linux 9
 
-This is a detailed guide for installing a 64-bit version of the Rocky Linux distribution on a stand-alone system.  We will be performing a server class install. We will step through the installation and customization steps in the following sections.
-
+This is a detailed guide for installing a 64-bit version of the Rocky Linux distribution on a standalone system. We will be performing a server class install. We will step through the installation and customization steps in the following sections.
 
 ## OS Installation Prerequisites
 
-First, you need to download the ISO to be used for this installation of Rocky Linux.
-
-The latest ISO image for the version of Rocky Linux that we will be using for this installation can be downloaded from here:
+Download the ISO to use for this installation of Rocky Linux.  
+You can download the latest ISO image for the version of Rocky Linux for this installation here:
 
 ```
 https://www.rockylinux.org/download/
@@ -23,10 +21,10 @@ https://www.rockylinux.org/download/
 To download the ISO directly from the command line on an existing Linux based system use the `wget` command:
 
 ```
-wget  https://download.rockylinux.org/pub/rocky/9.1/isos/x86_64/Rocky-9.1-x86_64-minimal.iso  
+wget https://download.rockylinux.org/pub/rocky/9.1/isos/x86_64/Rocky-9.1-x86_64-minimal.iso
 ```
 
-Rocky Linux ISOs are named following this convention:
+Rocky Linux ISOs follow this naming convention:
 
 ```
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
@@ -38,27 +36,29 @@ For example, `Rocky-9.1-x86_64-minimal.iso`
 
     Rocky project web page has a listing of several mirrors located all over the world. Whenever possible, you should choose the mirror geographically closest to you. The list of official mirrors can be found [here](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
-## Verifying the Installer ISO File
+## Verifying the Installation Program ISO File
 
 If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-9.1-x86_64-minimal.iso` file by checking its checksum.
 
-First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky Linux ISO download the checksum file for the ISO, type:
+1. Download the file that contains the official checksums for the available ISOs.
 
-```
-wget https://download.rockylinux.org/pub/rocky/9.1/isos/x86_64/CHECKSUM
-```
+1. While still in the folder that contains the downloaded Rocky Linux ISO, download the checksum file for the ISO, type:
 
-Use the `sha256sum` utility to verify the integrity of the ISO file against corruption and/or tampering.
+    ```
+    wget https://download.rockylinux.org/pub/rocky/9.1/isos/x86_64/CHECKSUM
+    ```
 
-```
-sha256sum -c CHECKSUM --ignore-missing
-```
+1. Use the `sha256sum` utility to verify the integrity of the ISO file against corruption or tampering.
 
-This will check the integrity of the ISO file downloaded previously, provided that it is in the same directory. The output should show:
+    ```
+    sha256sum -c CHECKSUM --ignore-missing
+    ```
+    
+    This checks the integrity of the ISO file downloaded previously, provided that it is in the same directory. The output should show:
 
-```
-Rocky-9.1-x86_64-minimal.iso: OK
-```
+    ```
+    Rocky-9.1-x86_64-minimal.iso: OK
+    ```
 
 ## The Installation
 
@@ -68,23 +68,24 @@ Rocky-9.1-x86_64-minimal.iso: OK
 
 If the computer is setup to boot from the media that has the ISO file we can begin the installation process.
 
-Insert and boot from the installation medium (optical disk, USB flash drive, and so on).
+1. Insert and boot from the installation medium (optical disk, USB flash drive, and so on).
 
-Once the computer has booted you will be presented with the Rocky Linux 9 welcome splash screen.
+1. Once the computer has booted you see the Rocky Linux 9 welcome splash screen.
 
-![Rocky Linux installation splash screen](images/installation_9.0_F01.png)
+    ![Rocky Linux installation splash screen](images/installation_9.0_F01.png)
 
-If you do not press any key the installer will begin a countdown, after which the installation process will automatically execute the default, highlighted, option:
+1. If you do not press any key, the installation program starts a countdown, after which the installation process automatically executes the default, highlighted, option:
 
-`Test this media & install Rocky Linux 9`
+    `Test this media & install Rocky Linux 9`
 
-You can also press <kbd>Enter</kbd> at any time to start the process immediately.
+    You can also press <kbd>Enter</kbd> at any time to start the process immediately.
 
-A quick media verification step will take place. This media verification step can save you the trouble of starting the installation only to find out halfway through that the installer has to abort because of bad installation media.
+1. A quick media verification step takes place.  
+This media verification step can save you the trouble of starting the installation only to find out halfway through that the installation program has to stop because of bad installation media.
 
-After the media check runs to completion and the media is successfully verified to be usable, the installer will automatically continue to the next screen.
+1. After the media check runs to completion and the media is successfully verified to be usable, the installation program automatically continues to the next screen.
 
-Select the language you want to use to perform the installation in this screen. For this guide, we select *English (United States)*. Then click the <kbd>Continue</kbd> button.
+1. Select the language you want to use to perform the installation in this screen. For this guide, we select *English (United States)*. Then click the <kbd>Continue</kbd> button.
 
 ## Installation Summary
 
@@ -131,7 +132,7 @@ Under the *Software* section of the *Installation Summary* screen, you can selec
 
 #### Installation Source
 
-Since we are performing our installation using a Rocky Linux 9 ISO image, you will notice that *Local Media* is automatically specified under the Installation Source section of the main *Installation Summary* screen. We'll accept the preset defaults.
+Because the installation uses a Rocky Linux 9 ISO image, you will notice that *Local Media* is automatically specified under the Installation Source section of the main *Installation Summary* screen. You can accept the preset defaults.
 
 !!! Tip
 
@@ -141,8 +142,8 @@ Since we are performing our installation using a Rocky Linux 9 ISO image, you wi
 
 Clicking the <kbd>Software Selection</kbd> option on the main *Installation Summary* screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into :
 
-- **Base Environment** : Minimal Install and Custom Operating System
-- **Additional software for Selected Environment** : Selecting a Base Environment on the left side presents a variety of related additional software that can be installed for the given environment on the right side. Please note that this is only applicable if you were installing from a full Rocky Linux 9 DVD or if you have additional repositories configured.
+- **Base Environment** : Minimal Install and Custom operating system
+- **Additional software for Selected Environment** : Selecting a Base Environment on the left side presents a variety of related additional software to install for the given environment on the right side. Note that this is only applicable if you were installing from a full Rocky Linux 9 DVD or if you have additional repositories configured.
 
 Select the *Minimal Install* (Basic functionality) option.
 
@@ -150,19 +151,21 @@ Click <kbd>Done</kbd> at the top of the screen.
 
 ### System Section
 
-The System section of the *Installation Summary* screen is used for customizing and making changes to things related to the underlying hardware of the target system. This is where you create your hard drive partitions or volumes, specify the file system to be used, specify the network configuration, enable/disable KDUMP or select a Security Profile.
+The System section of the *Installation Summary* screen is used for customizing and making changes to things related to the underlying hardware of the target system. This is where you create your hard disk drive partitions or volumes, specify the file system to use, specify the network configuration, enable or disable KDUMP or select a Security Profile.
 
 #### Installation Destination
 
 From the *Installation Summary* screen, click the <kbd>Installation Destination</kbd> option. This takes you to the corresponding task area.
 
-You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you will see the drive listed under *Local Standard Disks* with a check mark beside it. Clicking the disk icon will toggle on or off the disk selection check mark. We want it selected/checked here.
+You will see a screen displaying all the candidate disk drives that you have available on the target system. If you have only one disk drive on the system, as on our sample system, you see the drive listed under *Local Standard Disks* with a check mark beside it. Clicking the disk icon will toggle on or off the disk selection check mark. Keep it checked to select the disk.
 
-Under the *Storage Configuration* Options section, select the <kbd>Automatic</kbd> radio button.
+Under the *Storage Configuration* Options section:
 
-Then click <kbd>Done</kbd> at the top of the screen.
+1. Select the <kbd>Automatic</kbd> radio button.
 
-Once the installer determines that you have a usable disk, you will be returned to the *Installation Summary* screen.
+1. Click <kbd>Done</kbd> at the top of the screen.
+
+1. Once the installation program determines that you have a usable disk, it returns to the *Installation Summary* screen.
 
 ### Network & Host Name
 
@@ -180,13 +183,17 @@ Clicking the <kbd>Network & Hostname</kbd> button in the main *Installation Summ
 
     You can easily change this name later on after the OS has been installed.
 
-The next important configuration task is related to the network interfaces on the system. First, verify that an Ethernet card (or any network card) is listed in the left pane. Click any of the detected network devices in the left pane to select it. The configurable properties of the selected network adapter will appear in the right pane of the screen.
+The next important configuration task is related to the network interfaces on the system.
+
+1. Verify that the left pane lists an Ethernet card (or any network card.)
+1. Click any of the detected network devices in the left pane to select it.  
+The configurable properties of the selected network adapter appear in the right pane of the screen.
 
 !!! Note
 
     On our sample system, we have two Ethernet devices (`ens3` and `ens4`), all of which are in a connected state. The type, name, quantity, and state of the network devices on your system may vary from the ones on our demo system.
 
-Make sure the switch of the device you want to configure is flipped to the `ON` (blue) position in the right pane.
+Verify the switch of the device you want to configure is flipped to the `ON` (blue) position in the right pane.
 We'll accept all the defaults in this section.
 
 Click <kbd>Done</kbd> to return to the main *Installation Summary* screen.
@@ -201,51 +208,48 @@ This section can be used for creating a password for the `root` user account and
 
 #### Root Password
 
-Click the *Root Password* field under *User Settings* to launch the *Root Password* task screen.
+1. Click the *Root Password* field under *User Settings* to start the *Root Password* task screen.
 
-!!! Warning
+    !!! Warning
+    
+        The root superuser is the most privileged account on the system. Therefore, if you choose to use or enable it, it is crucial that you protect this account with a strong password.
 
-    The root superuser is the most privileged account on the system. Therefore, if you choose to use or enable it, it is crucial that you protect this account with a strong password.
+1. In the *Root Password* text box, set a strong password for the root user.
 
- In the *Root Password* text box, set a strong password for the root user.
+1. Enter the same password again in the *Confirm* text box.
 
-Enter the same password again in the *Confirm* text box.
-
-Click <kbd>Done</kbd>.
+1. Click <kbd>Done</kbd>.
 
 
 #### User Creation
 
-Next click the *User Creation* field under *User Settings* to launch the *Create User* task screen. This task area allows you to create a privileged or non-privileged (non-administrative) user account on the system.
+To create a user:
 
-!!! Info
+1. Click the *User Creation* field under *User Settings* to start the *Create User* task screen.  
+This task area allows you to create a privileged or non-privileged (non-administrative) user account on the system.
 
-    Creating and using a non-privileged account for day-to-day tasks on a system is a good system administration practice.
+    !!! Info
+    
+        Creating and using a non-privileged account for day-to-day tasks on a system is a good system administration practice.
 
-We’ll create a regular user that can invoke superuser (administrator) powers when needed.
+    We’ll create a regular user that can invoke superuser (administrator) powers when needed.
 
-Complete the fields in the *Create User* screen with the following information and then click <kbd>Done</kbd>:
+1. Complete the fields in the *Create User* screen with the following information:
+    
+    - **Full name**:
+    `rockstar`    
+    - **Username**:
+    `rockstar`
+    - **Make this user administrator**:
+    Checked
+    - **Require a password to use this account**:
+    Checked
+    - **Password**:
+    `04302021`
+    - **Confirm password**:
+    `04302021`
 
-*Full name*:
-`rockstar`
-
-*Username*:
-`rockstar`
-
-*Make this user administrator*:
-Checked
-
-*Require a password to use this account*:
-Checked
-
-*Password*:
-`04302021`
-
-*Confirm password*:
-`04302021`
-
-
-Click <kbd>Done</kbd>.
+1. Click <kbd>Done</kbd>.
 
 ## Installer Phase
 
@@ -256,7 +260,7 @@ Once you are satisfied with your choices for the various installation tasks, the
 
 Once you are satisfied with your choices for the various installation tasks, click the <kbd>Begin Installation</kbd> button on the main *Installation Summary* screen.
 
-The installation will begin, and the installer will show the progress of the installation. When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.
+The installation will begin, and the installation program will show the progress of the installation. When the installation begins, various tasks will begin running in the background, such as partitioning the disk, formatting the partitions or LVM volumes, checking for and resolving software dependencies, writing the operating system to the disk, and so on.
 
 !!! Note
 
@@ -264,9 +268,9 @@ The installation will begin, and the installer will show the progress of the ins
 
 ### Complete the Installation
 
-After the installer has run its course, you will be presented with a final installation progress screen with a complete message.
+After the installation program has run its course, you see a final installation progress screen with a complete message.
 
-Finally, complete the entire procedure by clicking the <kbd>Reboot System</kbd> button. The system will restart.
+Finally, complete the entire procedure by clicking the <kbd>Reboot System</kbd> button. The system restarts.
 
 ### Log In
 
@@ -274,10 +278,13 @@ The system is now set up and ready for use. You will see the Rocky Linux console
 
 ![Rocky Linux Welcome Screen](images/installation_9_F02.png)
 
-To log onto the system, type `rockstar` at the login prompt and press <kbd>Enter</kbd>.
+To log onto the system:
 
-At the Password prompt, type `04302021` (rockstar’s password) and press <kbd>Enter</kbd> (the password will ***not*** be echoed to the screen, that is normal).
+1. Type `rockstar` at the login prompt and press <kbd>Enter</kbd>.
 
-We will run the `whoami` command after login, this command shows the name of the currently logged in user.
+1. At the Password prompt, type `04302021` (rockstar’s password) and press <kbd>Enter</kbd> (the password will ***not*** be echoed to the screen, that is normal).
+
+1. Run the `whoami` command after login.  
+This command shows the name of the currently logged in user.
 
 ![Login Screen](images/installation_9.0_F03.png)
