@@ -162,7 +162,7 @@ It looks like wget is not installed on our demo system.
 
 ```
 curl --output "wget-1.19.5-10.el8.x86_64.rpm" \
-http://download.rockylinux.org/pub/rocky/8.5/AppStream/x86_64/os/Packages/w/wget-1.19.5-10.el8.x86_64.rpm
+https://dl.rockylinux.org/vault/rocky/8.5/AppStream/x86_64/os/Packages/w/wget-1.19.5-10.el8.x86_64.rpm
 ```
 8. Use the ls command to make sure that the package was downloaded into your current directory. Type:
 
