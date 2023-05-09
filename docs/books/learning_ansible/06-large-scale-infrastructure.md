@@ -10,12 +10,12 @@ In this chapter you will learn how to scale your configuration management system
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Organize your code for large infrastructure;   
-:heavy_check_mark: Apply all or part of your configuration management to a group of nodes;   
+:heavy_check_mark: Organize your code for large infrastructure;
+:heavy_check_mark: Apply all or part of your configuration management to a group of nodes;
 
 :checkered_flag: **ansible**, **config management**, **scale**
 
-**Knowledge**: :star: :star: :star:       
+**Knowledge**: :star: :star: :star:
 **Complexity**: :star: :star: :star: :star:
 
 **Reading time**: 30 minutes
@@ -235,7 +235,7 @@ TASK [roles/functionality2 : Task in functionality 2] **************************
 skipping: [client1]
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
 
 As you can see, by default, only the tasks of the `functionality1` role are played.
@@ -268,7 +268,7 @@ ok: [client1] => {
 }
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Try to apply only `functionality2`:
@@ -287,7 +287,7 @@ ok: [client1] => {
 }
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+client1                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Let's run on the whole inventory:
@@ -316,8 +316,8 @@ ok: [client1] => {
 skipping: [client2]
 
 PLAY RECAP ******************************************************************************************************
-client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-client2                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+client2                    : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
 
 As you can see, `functionality2` is only played on the `client1`.

@@ -10,14 +10,14 @@ In this chapter you will continue to learn how to work with Ansible.
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: work with variables;       
-:heavy_check_mark: use loops;   
-:heavy_check_mark: manage state changes and react to them;   
+:heavy_check_mark: work with variables;
+:heavy_check_mark: use loops;
+:heavy_check_mark: manage state changes and react to them;
 :heavy_check_mark: manage asynchronous tasks.
 
 :checkered_flag: **ansible**, **module**, **playbook**
 
-**Knowledge**: :star: :star: :star:     
+**Knowledge**: :star: :star: :star:
 **Complexity**: :star: :star:
 
 **Reading time**: 30 minutes
@@ -493,7 +493,7 @@ ok: [192.168.1.11] => {
 }
 
 PLAY RECAP *********************************************************************************************
-192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 ```
 
@@ -545,7 +545,7 @@ ok: [192.168.1.11] => {
 }
 
 PLAY RECAP *********************************************************************************************
-192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 ```
 
@@ -565,7 +565,7 @@ ok: [192.168.1.11] => {
 }
 
 PLAY RECAP *********************************************************************************************
-192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 * Externalize variables in a `vars.yml` file
@@ -622,7 +622,7 @@ With `dict2items`:
     - name: Print a dictionary variable with a loop
       debug:
         msg: "{{item.key }} | The {{ item.value.name }} will be installed with the packages {{ item.value.rpm }}"
-      loop: "{{ service | dict2items }}"              
+      loop: "{{ service | dict2items }}"
 ```
 
 ```
@@ -642,7 +642,7 @@ ok: [192.168.1.11] => (item={'key': 'db', 'value': {'name': 'mariadb', 'rpm': 'm
 }
 
 PLAY RECAP *********************************************************************************************
-192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 ```
 
@@ -660,7 +660,7 @@ With `list`:
       debug:
         msg: "The {{ item.name }} will be installed with the packages {{ item.rpm }}"
       loop: "{{ service.values() | list}}"
-~                                                 
+~
 ```
 
 ```
@@ -680,7 +680,7 @@ ok: [192.168.1.11] => (item={'name': 'mariadb', 'rpm': 'mariadb-server'}) => {
 }
 
 PLAY RECAP *********************************************************************************************
-192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 * Print the value of `service.web` only when `type` equals to `web`.
@@ -722,7 +722,7 @@ TASK [Print a dictionary variable] *********************************************
 skipping: [192.168.1.11]
 
 PLAY RECAP *********************************************************************************************
-192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 
 $ ansible-playbook --extra-vars "type=db" display-dict.yml
 
@@ -740,5 +740,5 @@ ok: [192.168.1.11] => {
 }
 
 PLAY RECAP *********************************************************************************************
-192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+192.168.1.11               : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```

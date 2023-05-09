@@ -10,12 +10,12 @@ In this chapter you will learn how to use, install, and manage Ansible roles and
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: install and manage collections.       
-:heavy_check_mark: install and manage roles.   
+:heavy_check_mark: install and manage collections.
+:heavy_check_mark: install and manage roles.
 
 :checkered_flag: **ansible**, **ansible-galaxy**, **roles**, **collections**
 
-**Knowledge**: :star: :star:      
+**Knowledge**: :star: :star:
 **Complexity**: :star: :star: :star:
 
 **Reading time**: 40 minutes
@@ -197,7 +197,7 @@ ok: [192.168.1.11] => {
 }
 
 PLAY RECAP **********************************************************************************************
-192.168.1.11               : ok=31   changed=1    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0  
+192.168.1.11               : ok=31   changed=1    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0
 ```
 
 Pretty easy for such a complex process, isn't it?
@@ -318,7 +318,7 @@ TASK [rocky8 : Create default user] ********************************************
 changed: [localhost]
 
 PLAY RECAP *********************************************************************************************
-localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Congratulations! You are now able to create great things with a playbook of only a few lines.
@@ -371,7 +371,7 @@ TASK [rocky8 : Uninstall default packages (can be overridden) []] **************
 ok: [localhost]
 
 PLAY RECAP *********************************************************************************************
-localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 You can now override the `rocky8_remove_packages` in your playbook and uninstall for example `cockpit`:
@@ -412,7 +412,7 @@ TASK [rocky8 : Uninstall default packages (can be overridden) ['cockpit']] *****
 changed: [localhost]
 
 PLAY RECAP *********************************************************************************************
-localhost                  : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Obviously, there is no limit to how much you can improve your role. Imagine that for one of your servers, you need a package that is in the list of those to be uninstalled. You could then, for example, create a new list that can be overridden and then remove from the list of packages to be uninstalled those in the list of specific packages to be installed by using the jinja `difference()` filter.
@@ -484,7 +484,7 @@ We can now use the newly available module `yum_versionlock`:
 
     - name: Display locks
       debug:
-        var: locks.meta.packages                            
+        var: locks.meta.packages
 ```
 
 ```
@@ -509,7 +509,7 @@ ok: [192.168.1.11] => {
 }
 
 PLAY RECAP **********************************************************************************************
-192.168.1.11               : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.1.11               : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 ```
 
