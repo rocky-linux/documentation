@@ -782,6 +782,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "Muph0",
+      "name": "Jan Kytka",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10765858?v=4",
+      "profile": "https://github.com/Muph0",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
