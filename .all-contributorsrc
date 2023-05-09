@@ -791,6 +791,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "doble-eme",
+      "name": "Mario",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38929299?v=4",
+      "profile": "http://howtotechwriting.com/",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
