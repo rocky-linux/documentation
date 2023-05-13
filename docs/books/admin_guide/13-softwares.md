@@ -900,3 +900,121 @@ Is this ok [y/N]:
 ### Conclusion
 
 EPEL is not an official repository for RHEL. But it can be useful for administrators and developers who work with RHEL or derivatives and need some utilities prepared for RHEL from a source they can feel confident about.
+
+## DNF Plugins
+
+The `dnf-plugins-core` package adds plugins to `dnf` that will be useful for managing your repositories.
+
+!!! NOTE
+    See more informations here: https://dnf-plugins-core.readthedocs.io/en/latest/index.html
+
+Install the package on your system:
+
+```
+dnf install dnf-plugins-core
+```
+
+Not all plugins will be presented here but you can refer to the package documentation for a complete list of plugins and detailed information.
+
+### `config-manager` plugin
+
+Manage DNF options, add repos, or disable them.
+
+Examples:
+
+* Download a `.repo` file and use it:
+
+```
+dnf config-manager --add-repo https://packages._centreon_.com/rpm-standard/23.04/el8/_centreon_.repo
+```
+
+* You can also set an url as a base url for a repo:
+
+```
+dnf config-manager --add-repo https://repo.rocky.lan/repo
+```
+
+* Enable or disable one or more repos:
+
+```
+dnf config-manager --set-enabled epel centreon
+dnf config-manager --set-disabled epel centreon
+```
+
+* Add a proxy to your config file:
+
+```
+dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
+```
+
+### `copr` plugin
+
+`copr` is an automatic rpm forge, providing a repo with built packages.
+
+* Activate a copr repo:
+
+```
+copr enable xxxx
+```
+
+### `download` plugin
+
+Download rpm package instead of installing it:
+
+```
+dnf download ansible
+```
+
+If you just want to obtain the remote location url of the package:
+
+```
+dnf download --url ansible
+```
+
+Or if you want to also download the dependencies:
+
+```
+dnf download --resolv --alldeps ansible
+```
+
+### `needs-restarting` plugin
+
+After running an `dnf update`, the running processes will continue to run but with the old binaries. In order to take into account the code changes and especially the security updates, they have to be restarted.
+
+The `needs-restarting` plugin will allow you to detect processes that are in this case.
+
+```
+dnf needs-restarting [-u] [-r] [-s]
+```
+
+| Options | Description                                                                  |
+| --------| --------------------------------------------------------------------------- |
+| `-u`     | Only consider processes belonging to the running user.                       |
+| `-r`     | Only report whether a reboot is required (exit code 1) or not (exit code 0). |
+| `-s`     | Only list the affected systemd services.                                     |
+
+### `versionlock` plugin
+
+Sometimes it is useful to protect packages from all updates or to exclude certain versions of a package (because of known problems for example). For this purpose, the versionlock plugin will be of great help. 
+
+You need to install an extra package:
+
+```
+python3-dnf-plugin-versionlock.noarch
+```
+
+Examples:
+
+* Lock the ansible version:
+
+```
+dnf versionlock add ansible
+Adding versionlock on: ansible-0:6.3.0-2.el9.*
+```
+
+* List locked packages:
+
+```
+dnf versionlock list
+ansible-0:6.3.0-2.el9.*
+```
