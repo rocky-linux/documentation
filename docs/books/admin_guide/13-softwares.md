@@ -991,7 +991,7 @@ dnf needs-restarting [-u] [-r] [-s]
 | Options | Description                                                                  |
 | --------| --------------------------------------------------------------------------- |
 | `-u`     | Only consider processes belonging to the running user.                       |
-| `-r`     | Only report whether a reboot is required (exit code 1) or not (exit code 0). |
+| `-r`     |  to check if a reboot may be required. |
 | `-s`     | to check if services need restarting.                                  |
 | `-s -r` | to do both in one run.                                                       |
 
