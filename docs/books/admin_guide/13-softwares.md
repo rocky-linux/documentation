@@ -979,7 +979,7 @@ dnf download --resolv --alldeps ansible
 
 ### `needs-restarting` plugin
 
-After running an `dnf update`, the running processes will continue to run but with the old binaries. In order to take into account the code changes and especially the security updates, they have to be restarted.
+After running a `dnf update`, the running processes will continue to run but with the old binaries. In order to take into account the code changes and especially the security updates, they have to be restarted.
 
 The `needs-restarting` plugin will allow you to detect processes that are in this case.
 
