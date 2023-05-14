@@ -992,7 +992,8 @@ dnf needs-restarting [-u] [-r] [-s]
 | --------| --------------------------------------------------------------------------- |
 | `-u`     | Only consider processes belonging to the running user.                       |
 | `-r`     | Only report whether a reboot is required (exit code 1) or not (exit code 0). |
-| `-s`     | Only list the affected systemd services.                                     |
+| `-s`     | to check if services need restarting.                                  |
+| `-s -r` | to do both in one run.                                                       |
 
 ### `versionlock` plugin
 
