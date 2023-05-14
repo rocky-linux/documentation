@@ -906,6 +906,7 @@ EPEL is not an official repository for RHEL. But it can be useful for administra
 The `dnf-plugins-core` package adds plugins to `dnf` that will be useful for managing your repositories.
 
 !!! NOTE
+
     See more informations here: https://dnf-plugins-core.readthedocs.io/en/latest/index.html
 
 Install the package on your system:
