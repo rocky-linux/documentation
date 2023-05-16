@@ -800,6 +800,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "gannazhyrnova",
+      "name": "Ganna Zhyrnova",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112796922?v=4",
+      "profile": "https://github.com/gannazhyrnova",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
