@@ -1002,7 +1002,7 @@ Sometimes it is useful to protect packages from all updates or to exclude certai
 You need to install an extra package:
 
 ```
-python3-dnf-plugin-versionlock.noarch
+dnf install python3-dnf-plugin-versionlock
 ```
 
 Examples:
