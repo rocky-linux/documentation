@@ -72,7 +72,13 @@ In the world of GNU/Linux, everything is a file. For disks, they are recognized 
 |Mouse                   | /dev/mouse             |  
 |Virtual hard disk       | /dev/vd[a-z]           |
 
-The Linux kernel contains drivers for most hardware devices, and the naming convention (rule) for it is a service called `udev`. For more information, please see [here](https://www.kernel.org/doc/html/latest/admin-guide/devices.html).
+The Linux kernel contains drivers for most hardware devices.
+
+What we call _devices_ are the files, stored without `/dev`, identifying the different hardware detected by the motherboard.
+
+The service called udev is responsible for applying the naming conventions (rules) and applying them to the devices it detects.
+
+For more information, please see [here](https://www.kernel.org/doc/html/latest/admin-guide/devices.html).
 
 ### Device partition number 
 
