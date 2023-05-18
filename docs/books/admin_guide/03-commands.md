@@ -311,7 +311,7 @@ Among the frequently used sequences, we can mention:
 The `date` command displays the date and time. The command has the following syntax:
 
 ```bash
-date [-d AAAAMMJJ] [format]
+date [-d yyyyMMdd] [format]
 ```
 
 Examples:
@@ -360,7 +360,7 @@ The `date` command also allows you to change the system date and time. In this c
 The format to be used following the `-s` option is this:
 
 ```bash
-date -s "[AA]AA-MM-JJ hh:mm:[ss]"
+date -s "yyyy-MM-dd hh:mm[:ss]"
 ```
 
 ### `id`, `who` and `whoami` commands
