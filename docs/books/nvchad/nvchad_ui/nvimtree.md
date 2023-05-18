@@ -54,7 +54,7 @@ It must be emphasized that navigation with the <kbd>&gt;</kbd> and <kbd>&lt;</kb
 
 Positioned in the desired folder and with the file selected to be edited, we have the following combinations to open it:
 
-- <kbd>Enter</kbd> o <kbd>o</kbd> to open the file in a new buffer and place the cursor on the first line of the file
+- <kbd>Enter</kbd> or <kbd>o</kbd> to open the file in a new buffer and place the cursor on the first line of the file
 - <kbd>Tab</kbd> to open the file in a new buffer while keeping the cursor in _nvimtree_, this for example is useful if you want to open several files at once
 - <kbd>Ctrl</kbd> + <kbd>t</kbd> to open the file in a new _tab_ that can be managed separately from the other buffers present
 - <kbd>Ctrl</kbd> + <kbd>v</kbd> to open the file in the buffer by dividing it vertically into two parts, if there was already an open file this will be displayed side by side with the new file
