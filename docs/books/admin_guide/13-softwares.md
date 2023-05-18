@@ -899,7 +899,7 @@ Is this ok [y/N]:
 
 ### Conclusion
 
-EPEL is not an official repository for RHEL. But it can be useful for administrators and developers who work with RHEL or derivatives and need some utilities prepared for RHEL from a source they can feel confident about.
+EPEL is not an official repository for RHEL, but it can be useful for administrators and developers who work with RHEL or derivatives and need some utilities prepared for RHEL from a source they can feel confident about.
 
 ## DNF Plugins
 
