@@ -809,6 +809,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Demalpheus",
+      "name": "Travis W",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28327241?v=4",
+      "profile": "https://github.com/Demalpheus",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
