@@ -1,0 +1,78 @@
+---
+site_name: 'Documentation'
+site_url: 'https://docs.rockylinux.org'
+docs_dir: '../docs/books'
+
+theme:
+  name: material
+  font:
+    text: Red Hat Text
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - search.suggest
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  palette:
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: black
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      primary: black
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.keys
+  - pymdownx.tabbed
+  - pymdownx.details
+  - pymdownx.tasklist
+  - footnotes
+  - def_list
+  - meta
+
+plugins:
+  - awesome-pages
+  - tags
+  - with-pdf:
+      author: Rocky Documentation Team
+      cover: true
+      cover_logo: ../assets/rocky-linux-logo.svg
+      cover_title: Rocky Linux Admin Guide
+      cover_subtitle: A book from the Documentation Team
+      toc_level: 3
+      ordered_chapter_level: 3
+      output_path: ../pdf/RockyLinuxAdminGuide.it.pdf
+      verbose: false
+
+# Page tree
+nav:
+  - admin_guide/00-toc.it.md
+  - admin_guide/01-presentation.it.md
+  - admin_guide/03-commands.it.md
+  - admin_guide/04-advanced-commands.it.md
+  - admin_guide/05-vi.it.md
+  - admin_guide/06-users.it.md
+  - admin_guide/07-file-systems.it.md
+  - admin_guide/08-process.it.md
+  - admin_guide/09-backups.it.md
+  - admin_guide/10-boot.it.md
+  - admin_guide/11-tasks.it.md
+
+copyright: Copyright &copy; 2021 The Rocky Enterprise Software Foundation
