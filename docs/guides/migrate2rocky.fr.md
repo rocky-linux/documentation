@@ -9,7 +9,7 @@ update: 06-30-2022
 
 ## Prérequis & postulats
 
-* CentOS Stream, CentOS, Alma Linux, RHEL ou Oracle Linux fonctionnant correctement sur un serveur physique ou virtuel (VPS) ; La version actuellement prise en charge pour chacun d'eux est la 8.5.
+* CentOS Stream, CentOS, Alma Linux, RHEL ou Oracle Linux fonctionnant correctement sur un serveur physique ou virtuel (VPS) ; La version actuellement prise en charge pour chacun d'eux est 8.8 resp. 9.2.
 * Une bonne connaissance de la ligne de commande.
 * être à l'aise avec l'usage de SSH dans le cas de machines distantes ;
 * Une capacité à accepter les risques.
