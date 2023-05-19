@@ -782,6 +782,42 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "Muph0",
+      "name": "Jan Kytka",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10765858?v=4",
+      "profile": "https://github.com/Muph0",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "doble-eme",
+      "name": "Mario",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38929299?v=4",
+      "profile": "http://howtotechwriting.com/",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "gannazhyrnova",
+      "name": "Ganna Zhyrnova",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112796922?v=4",
+      "profile": "https://github.com/gannazhyrnova",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Demalpheus",
+      "name": "Travis W",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28327241?v=4",
+      "profile": "https://github.com/Demalpheus",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,

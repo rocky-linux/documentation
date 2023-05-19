@@ -13,6 +13,7 @@ files:
       - '*.pt-BR.md'
       - '*.ru.md'
       - '*.sv.md'
+      - '*.uk.md'
       - '*.zh.md'
       - '/docs/release_notes/8.5.md'
     translation: /%original_path%/%file_name%.%two_letters_code%.%file_extension%

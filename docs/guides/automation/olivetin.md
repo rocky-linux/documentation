@@ -15,7 +15,7 @@ tags:
 
 Have you ever gotten tired of typing in the same CLI commands over and over again? Have you ever wanted everyone else in your house to be able to restart the Plex server without your intervention? Do you want to just type in a name in a web panel, push a button, and watch a customized Docker/LXD container magically appear?
 
-Then you might want to check out OliveTin. OliveTin is literally just an app that lets you generate a web page from a config file, and that web page has buttons. Push the buttons, and OliveTin will run preset bash commands that you set up yourself.
+Then you might want to check out OliveTin. OliveTin is literally just an app that lets you generate a web page from a configuration file, and that web page has buttons. Push the buttons, and OliveTin will run preset bash commands that you set up yourself.
 
 Sure, you could technically create something like this yourself, from scratch, with enough programming experience... but this is *way* easier. It looks a little something like this when set up (image courtesy of the [OliveTin repository](https://github.com/OliveTin/OliveTin)):
 
@@ -31,14 +31,14 @@ Sure, you could technically create something like this yourself, from scratch, w
 
 To follow this guide you will need:
 
-* A machine running Rocky Linux
-* A minimal amount of comfort/experience with the command line.
+* A computer running Rocky Linux
+* A minimal amount of comfort or experience with the command line.
 * Root access, or  the ability to use `sudo`.
-* To learn the very basics of YAML. It's not hard; you'll get the hang of it down below.
+* To learn the basics of YAML. It is not hard; you'll get the hang of it down below.
 
 ## Installing OliveTin
 
-So this is the crazy easy part: OliveTin comes with pre-built RPMs. Just download the latest release here for your architecture, and install it. If you're following this guide on a workstation with a graphical desktop, just download the file and double click on it in your file manager of choice.
+OliveTin includes pre-built RPMs. Just download the latest release here for your architecture, and install it. If you're following this guide on a workstation with a graphical desktop, just download the file and double click on it in your file manager of choice.
 
 If you're installing this app on a server, then you can download it on your work machine and upload it via SSH/SCP/SFTP, or do the thing some people say not to do, and download it with `wget`.
 
@@ -54,7 +54,7 @@ Then install the app with (again, for example):
 sudo rpm -i OliveTin_2022-04-07_linux_amd64.rpm
 ```
 
-Now OliveTin can run as a normal `systemd` service, but don't enable it just yet. You need to set up your configuration file first.
+OliveTin can run as a normal `systemd` service, but do not enable it just yet. You need to set up your configuration file first.
 
 !!! Note
 
@@ -62,13 +62,13 @@ Now OliveTin can run as a normal `systemd` service, but don't enable it just yet
 
 ## Configuring OliveTin Actions
 
-OliveTin can do anything bash can do, and more. You can use it to execute apps with CLI options, run bash scripts, restart services, etc. To get started, open up the configuration file with the text editor of your choice with root/sudo:
+OliveTin can do anything bash can do, and more. You can use it to run apps with CLI options, run bash scripts, restart services, and so on. To get started, open up the configuration file with the text editor of your choice with root/sudo:
 
 ```bash
 sudo nano /etc/OliveTin/config.yaml
 ```
 
-The most basic kind of action is a simple button; you click it, and the command is run on the host machine. You can define it in the YAML file like so:
+The most basic kind of action is a button; you click it, and the command is run on the host computer. You can define it in the YAML file like so:
 
 ```yaml
 actions:
@@ -87,7 +87,7 @@ actions:
 
 I'm not going to go into every detail of the customization options, but you can also use text inputs and dropdown menus to add variables and options to the commands you want to run. If you do, OliveTin will prompt you for input before the command is run.
 
-Doing this, you can run any program, control remote machines via SSH, trigger webhooks, and more. Check out [the official documentation](https://docs.olivetin.app/actions.html) for more ideas.
+Doing this, you can run any program, control remote machines with SSH, trigger webhooks, and more. Check out [the official documentation](https://docs.olivetin.app/actions.html) for more ideas.
 
 But here's an example of my own: I have a personal script that I use to generate LXD containers with web servers pre-installed on them. With OliveTin, I was able to quickly make a GUI for said script like this:
 
@@ -127,7 +127,7 @@ On the front end, that looks like this (and yes, OliveTin has a dark mode, and I
 
 ## Enabling OliveTin
 
-Once you have your config file built the way you want it, just enable and start OliveTin with:
+Once you have your configuration file built the way you want it, just enable and start OliveTin with:
 
 ```bash
 sudo systemctl enable --now OliveTin
@@ -141,10 +141,10 @@ sudo systemctl restart OliveTin
 
 ## Conclusion
 
-OliveTin is a pretty great way to run everything from simple bash commands to some fairly complex operations via scripts. Keep in mind, though, that everything runs as root by default, unless you use su/sudo in your shell commands to change the user for that particular command.
+OliveTin is a pretty great way to run everything from a bash commands to some fairly complex operations with scripts. Remember, that everything runs as root by default, unless you use su/sudo in your shell commands to change the user for that particular command.
 
-As such, you should be careful how you set this whole thing up, especially if you plan to give access to (for example) your family, to control home servers and appliances, etc.
+As such, you should be careful how you set this whole thing up, especially if you plan to give access to (for example) your family, to control home servers and appliances, and so on.
 
-And again, don't put this on a public server unless you're ready to try and secure the page yourself.
+And again, do not put this on a public server unless you're ready to try and secure the page yourself.
 
-Otherwise, have fun with it. It's a neat little tool.
+Otherwise, have fun with it. It is a neat little tool.
