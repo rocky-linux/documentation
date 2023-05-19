@@ -13,9 +13,9 @@ tags:
 
 ## Introduction
 
-One of the features that an IDE must surely have is to be able to manage the various projects on which a developer/publisher works, thus having the ability to select the project on which to work once NvChad is open without the need to type commands in the *statusline* to achieve the goal. This saves time and allows for simplified management in the case of a large number of projects.
+One of the features that an IDE must surely have is the ability to manage the various projects that a developer or publisher works on. Being able to select the project to work on once NvChad is open, without the need to type commands in the *statusline* to achieve the goal. This saves time and allows for simplified management in the case of a large number of projects.
 
-To integrate this functionality will be used in this guide [charludo/projectmgr.nvim](https://github.com/charludo/projectmgr.nvim), the plugin provides excellent integration with `Telescope` and some interesting additional features such as the ability to synchronize a *git* repository when opening the *project*.
+Using [charludo/projectmgr.nvim](https://github.com/charludo/projectmgr.nvim) will integrate this functionality. The plugin provides excellent integration with `Telescope` and some interesting additional features such as the ability to synchronize a *git* repository when opening the *project*.
 
 The plugin also tracks the status of the editor when it closes allowing you to have, when you next open it, all the pages you were working on.
 
@@ -30,9 +30,9 @@ To install the plugin you will need to edit the **custom/plugins.lua** file by a
 },
 ```
 
-Once you have saved the file, the plugin will be available for installation, to install it open *lazy.nvim* with the command `:Lazy` and type <kbd>I</kbd>, once the installation is finished you will have to exit the editor and reopen it to have it read the new configuration you entered.
+Once you have saved the file, the plugin will be available for installation. To install it open *lazy.nvim* with the command `:Lazy` and type <kbd>I</kbd>. Once the installation finishes you will have to exit the editor and reopen it to have it read the new configuration you entered.
 
-The plugin provides a single command `:ProjectMgr` that opens an interactive buffer from which you can perform all operations via keyboard shortcuts. When first opened, the buffer will be empty as in the screenshot below:
+The plugin provides a single command `:ProjectMgr` that opens an interactive buffer from which you can perform all operations by using keyboard shortcuts. When first opened, the buffer will be empty as this screenshot shows:
 
 ![ProjectMgr Init](./images/projectmgr_init.png)
 
@@ -50,7 +50,7 @@ The following table shows all available operations
 | `<C-e>` | Change project settings                         |
 | `<C-q>` | Close buffer                                    |
 
-To then add your first project you will need to use the combination <kbd>Ctrl</kbd> + <kbd>a</kbd> which will open an interactive menu in the *statusline*, in this example a clone of the Rocky Linux documentation saved in **~/lab/rockydocs/documentation** will be used.
+To add your first project you will need to use the combination <kbd>Ctrl</kbd> + <kbd>a</kbd> which will open an interactive menu in the *statusline*. In this example a clone of the Rocky Linux documentation saved in **~/lab/rockydocs/documentation** will be used.
 
 The first question will ask you for the name of the project:
 
@@ -60,25 +60,25 @@ It will follow the project path:
 
 > Project Path: ~/lab/rockydocs/documentation/
 
-This is followed by the ability to set commands to be executed when opening and closing the project. These commands refer to those executable in the editor and not to the **bash.** language.
+This is followed by the ability to set commands to be run when opening and closing the project. These commands refer to those executable in the editor and not to the **bash** language.
 
-You have, for example, the possibility to open contextually when opening the editor also a side buffer with *NvimTree* with the command `NvimTreeToggle`.
+You have, for example, the possibility to open contextually when opening the editor a side buffer with *NvimTree* with the command `NvimTreeToggle`.
 
 > Startup Command (optional): NvimTreeToggle
 
-Or to execute a command before closing the editor.
+Or to run a command before closing the editor.
 
 > Exit Command (optional):
 
-Commands should be entered by omitting the colon `:` used to execute the same commands in the *statusline.*
+Commands should be entered by omitting the colon `:` used to run the same commands in the *statusline.*
 
-Once the configuration is finished, your project will be available in the buffer; to open it, select it and press <kbd>Enter</kbd>.
+Once the configuration is finished, your project will be available in the buffer. To open it, select it and press <kbd>Enter</kbd>.
 
 ![ProjectMgr Add](./images/projectmgr_add.png)
 
 As you can see from the screenshot in the **Config & Info** section, the plugin has recognized the folder as managed by *Git* and provides us with some information about it.
 
-Editing a project is done with <kbd>Ctrl</kbd> + <kbd>e</kbd> and consists of a new interactive loop, while any deletion with the combination <kbd>Ctrl</kbd> + <kbd>d</kbd>.
+Editing a project is done with <kbd>Ctrl</kbd> + <kbd>e</kbd> and consists of a new interactive loop, while any deletion is accomplished with the combination <kbd>Ctrl</kbd> + <kbd>d</kbd>.
 
 ### Additional functions
 
@@ -97,19 +97,19 @@ config = function()
 end,
 ```
 
-As you can see from the code the `require("projectmgr").setup` function is called, which allows you to override the default settings, anything you set inside it will change how it works.
+As you can see from the code the `require("projectmgr").setup` function is called, which allows you to override the default settings. Anything you set inside it will change how it works.
 
 The `git pull --ff-only` command performs a *fast forward* synchronization of the repository, downloading only those files that have no conflicts and can be updated without intervention on your part.
 
-The result of the command also was directed to the file **.git/fastforward.log** to prevent it from being displayed on the terminal where NvChad is running and to have a synchronization history available.
+The result of the command also is directed to the file **.git/fastforward.log** to prevent it from being displayed on the terminal where NvChad is running and to have a synchronization history available.
 
-Also provided is the option to save the session when it closes, this will allow you by selecting the project to have the editor open on the last pages you were working on.
+Also provided is the option to save the session when it closes. This allows you to return to the pages you were working on by selecting the project and opening it again.
 
 ```lua
 session = { enabled = true, file = "Session.vim" },
 ```
 
-This option is enabled by default but it writes the **Session.vim** file to the *root* directory of the project and this is not desirable in the case of Rocky Linux documentation so in this example it is saved in the `.git` folder which is not under version control.
+This option is enabled by default but it writes the **Session.vim** file to the *root* directory of the project and this is not desirable in the case of Rocky Linux documentation. In this example, it is saved in the `.git` folder which is not under version control.
 
 Adjust the path of **Session.vim** and **fastforward.log** according to your needs.
 
@@ -141,7 +141,7 @@ To check if the open files do not match those updated from the repository you ca
 
 ### Mapping
 
-To speed up the opening of your projects, you can create a keyboard shortcut to put in your mapping in **/custom/mapping.lua**. An example might be as follows:
+To speed up the opening of your projects, you can create a keyboard shortcut to put in your mapping in **/custom/mapping.lua**. An example might be:
 
 ```lua
 -- Projects
@@ -152,10 +152,10 @@ M.projects = {
 }
 ```
 
-So with the editor in the **NORMAL** state you can open the project manager with the combination <kbd>Space</kbd> + <kbd>f</kbd> followed by <kbd>p</kbd>.
+With the editor in the **NORMAL** state you can open the project manager with the combination <kbd>Space</kbd> + <kbd>f</kbd> followed by <kbd>p</kbd>.
 
 ## Conclusions and final thoughts
 
-As the number of projects you are working on increases, it may be useful to have a tool to help you manage them all. This plugin will allow you to speed up your work by reducing the time it takes to access the files you need to edit.
+As the number of projects you are working on increases, it might be useful to have a tool to help you manage them all. This plugin will allow you to speed up your work by reducing the time it takes to access the files you need to edit.
 
 We should also point out the excellent integration with `Telescope` which makes project management very functional.

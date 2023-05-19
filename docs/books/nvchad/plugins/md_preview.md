@@ -2,7 +2,7 @@
 title: Markdown Preview
 author: Franco Colussi
 contributors: Steven Spencer
-tested with: 8.7, 9.1
+tested with: 8.7, 9.2
 tags:
   - nvchad
   - plugins
@@ -13,13 +13,13 @@ tags:
 
 ## Introduction
 
-One of the features of the Markdown language that make it widely used in writing technical documentation is its convertibility; code can be converted for display in many formats (HTML, PDF, plain text,..), thus making content usable in numerous scenarios.
+One of the features of the Markdown language that make it widely used in writing technical documentation is its convertibility. Code can be converted for display in many formats (HTML, PDF, plain text,..), therefore making content usable in numerous scenarios.
 
-Specifically, documentation written for Rocky Linux is converted to `HTML` code using a *python* application, the application converts documents written in *markdown* to static HTML pages.
+Specifically, documentation written for Rocky Linux is converted to `HTML` using a *python* application. The application converts documents written in *markdown* to static HTML pages.
 
-The problem then arises, when writing your documentation for Rocky Linux, of verifying its correct display once converted to `HTML` code.
+The problem arises when writing your documentation for Rocky Linux, of verifying its correct display when converted to `HTML` code.
 
-To integrate this functionality into your editor, two of the plugins available for the purpose, [toppair/peek.nvim](https://github.com/toppair/peek.nvim) and [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim), will be illustrated on this page, both of which support *github-style*, the choice of browser to use for preview and synchronized scrolling with the editor.
+To integrate this functionality into your editor, two of the plugins available for this purpose, [toppair/peek.nvim](https://github.com/toppair/peek.nvim) and [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim), will be illustrated on this page. Both of these support *github-style*, the choice of browser to use for preview, and synchronized scrolling with the editor.
 
 ### Peek.nvim
 
@@ -57,7 +57,7 @@ To install the plugin you will have to edit the file **/custom/plugins.lua** by 
 
 Once you have saved the file you can perform its installation by opening the plugins manager interface with the `:Lazy` command. The plugins manager will have already recognized it automatically and will allow you to install it by typing <kbd>I</kbd>.
 
-To get the full functionality, however, you must close NvChad (*nvim*) and reopen it, this is to allow the editor to load those of **Peek** into the configuration as well.
+To get the full functionality, however, you must close NvChad (*nvim*) and reopen it. This is to allow the editor to load those of **Peek** into the configuration.
 
 Its configuration already includes the command to activate it `<leader>op` which on the keyboard translates to <kbd>Space</kbd> + <kbd>o</kbd> followed by <kbd>p</kbd>.
 
@@ -69,7 +69,7 @@ You also have the string:
 opts = { theme = "dark", app = "browser" },
 ```
 
-Which allows you to pass options for the light/dark theme of the preview and the method to be used for display.
+Which allows you to pass options for the light or dark theme of the preview and the method to be used for display.
 
 In this configuration, the "browser" method was chosen, which opens the file to be viewed in the system's default browser, but the plugin allows through the "webview" method to preview the file using only **Deno** via the [webview_deno](https://github.com/webview/webview_deno) component.
 
@@ -77,7 +77,7 @@ In this configuration, the "browser" method was chosen, which opens the file to 
 
 ### Markdown-preview.nvim
 
-[Markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim) is a plugin written in `node.js` (JavaScript), its installation on NvChad does not require any dependencies as the developers provide a precompiled version that works perfectly in the editor.
+[Markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim) is a plugin written in `node.js` (JavaScript). Its installation on NvChad does not require any dependencies as the developers provide a precompiled version that works perfectly in the editor.
 
 To install this version you will need to add this code block to your **/custom/plugins.lua**:
 
@@ -93,7 +93,7 @@ To install this version you will need to add this code block to your **/custom/p
 },
 ```
 
-As with the previous plugin you will need to close the editor and reopen it to give NvChad a chance to load the new configuration. Again you can pass to the plugin some custom options described in the [dedicated section](https://github.com/iamcco/markdown-preview.nvim#markdownpreview-config) of the project repository.
+As with the previous plugin, you will need to close the editor and reopen it to give NvChad a chance to load the new configuration. Again you can pass to the plugin some custom options described in the [dedicated section](https://github.com/iamcco/markdown-preview.nvim#markdownpreview-config) of the project repository.
 
 However, the options must be modified to fit the configuration of `lazy.nvim`, particularly the option configured in this example:
 
@@ -107,13 +107,14 @@ It corresponds to the option described on the project site as:
 let g:mkdp_theme = 'dark'
 ```
 
-As you can see to set the options you will have to modify the initial part of them to make them interpretable. To give another example let's take the option that allows you to choose which browser to use for the preview that is specified like this:
+As you can see, to set the options you will have to modify the initial part of them to make them interpretable. To give another example let us take the option that allows you to choose which browser to use for the preview that is specified like this:
 
 ```lua
 let g:mkdp_browser = '/usr/bin/chromium-browser'
 ```
 
-To be interpreted correctly in NvChad it will have to be modified by replacing `let g:` with `vim.g.`.
+To interpret this correctly in NvChad it will have to be modified by replacing `let g:` with `vim.g.`.
+
 
 ```lua
 vim.g.mkdp_browser = '/usr/bin/chromium-browser'
@@ -137,14 +138,14 @@ This will allow you to open the markdown preview by typing <kbd>Enter</kbd> + <k
 
 !!! Note
 
-    The plugin also provides the command `:MarkdownPreviewToogle` but at the time of writing this document it does not seem to work properly. If you try to invoke it, it will not change the preview theme but will open a new browser Tab with the same preview.
+    The plugin also provides the command `:MarkdownPreviewToggle` but at the time of writing this document it does not seem to work properly. If you try to invoke it, it will not change the preview theme but will open a new browser Tab with the same preview.
 
 ![Markdown Preview](./images/markdown_preview_nvim.png)
 
 ## Conclusions and final thoughts
 
-Viewing a preview of what you are writing can be useful both for those new to this editor and for those with a more in-depth knowledge of the Markdown language, the preview allows you to assess the impact of the code once converted and any errors it contains.
+A preview of what you are writing can be useful, both for those new to this editor and for those with a more in-depth knowledge of the Markdown language. The preview allows you to assess the impact of the code once converted, and any errors it contains.
 
-The choice of which plugin to use is totally subjective, and we encourage you to try both to assess which one may be best for you.
+The choice of which plugin to use is totally subjective, and we encourage you to try both to assess which one might be best for you.
 
-The use of one of these plugins allows you to contribute documents to the documentation on Rocky Linux that conform to the code used thus alleviating the work of documentation reviewers.
+The use of one of these plugins allows you to contribute documents to the documentation on Rocky Linux that conform to the code used therefore alleviating the work of documentation reviewers.
