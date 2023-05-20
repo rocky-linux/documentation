@@ -309,7 +309,7 @@ Tra le sequenze usate frequentemente, possiamo menzionare:
 Il comando `date` visualizza la data e l'ora. Il comando ha la seguente sintassi:
 
 ```bash
-date [-d AAAAMMJJ] [format]
+date [-d yyyyMMdd] [format]
 ```
 
 Esempi:
@@ -358,7 +358,7 @@ Il comando `date` consente anche di modificare la data e l'ora del sistema. In q
 Il formato da utilizzare usando l'opzione `-s` è il seguente:
 
 ```bash
-date -s "[AA]AA-MM-JJ hh:mm:[ss]"
+date -s "yyyy-MM-dd hh:mm[:ss]"
 ```
 
 ### comando `id`, `who` e `whoami`
