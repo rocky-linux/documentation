@@ -9,7 +9,7 @@ tags:
   - éditeur
 ---
 
-# Présentation de NvChad
+# Présentation
 
 ## Introduction
 
