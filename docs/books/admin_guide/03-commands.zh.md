@@ -309,7 +309,7 @@ shell > echo "123";echo "456"
 `date` 命令用来显示日期和时间。 该命令的语法如下：
 
 ```bash
-date [-d AAAAMMJJ] [format]
+date [-d yyyyMMdd] [format]
 ```
 
 示例：
@@ -358,7 +358,7 @@ $ date -d 20210517 +%j
 `-s` 选项后面使用的格式如下：
 
 ```bash
-date -s "[AA]AA-MM-JJ hh:mm:[ss]"
+date -s "yyyy-MM-dd hh:mm[:ss]"
 ```
 
 ### `id`、`who` 和 `whoami` 命令
