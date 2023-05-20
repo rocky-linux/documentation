@@ -1,5 +1,5 @@
 ---
-title: Présentation de NvChad
+title: Présentation
 author: Franco Colussi
 contributors: Steven Spencer
 tested with: 8.7, 9.1
