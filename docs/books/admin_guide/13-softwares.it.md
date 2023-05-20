@@ -899,4 +899,124 @@ Is this ok [y/N]:
 
 ### Conclusione
 
-EPEL non è un repository ufficiale per RHEL. Ma può essere utile per gli amministratori e gli sviluppatori che lavorano con RHEL o derivati e hanno bisogno di alcune utility preparate per RHEL da una fonte di cui possono fidarsi.
+EPEL non è un repository ufficiale per RHEL, ma può essere utile per gli amministratori e gli sviluppatori che lavorano con RHEL o derivati e hanno bisogno di alcune utility preparate per RHEL da una fonte di cui si possono fidare.
+
+## Plugin DNF
+
+Il pacchetto `dnf-plugins-core` aggiunge plugin a `dnf` che saranno utili per la gestione dei repository.
+
+!!! NOTE "Nota"
+
+    Maggiori informazioni qui: https://dnf-plugins-core.readthedocs.io/en/latest/index.html
+
+Installare il pacchetto sul vostro sistema:
+
+```
+dnf install dnf-plugins-core
+```
+
+Non tutti i plugin saranno presentati qui, ma si può fare riferimento alla documentazione del pacchetto per un elenco completo dei plugin e per informazioni dettagliate.
+
+### `config-manager` plugin
+
+Gestire le opzioni DNF, aggiungere repository o disabilitarli.
+
+Esempi:
+
+* Scaricare un file `.repo` e utilizzarlo:
+
+```
+dnf config-manager --add-repo https://packages._centreon_.com/rpm-standard/23.04/el8/_centreon_.repo
+```
+
+* È anche possibile impostare un url come url di base per un repo:
+
+```
+dnf config-manager --add-repo https://repo.rocky.lan/repo
+```
+
+* Abilitare o disabilitare uno o più repo:
+
+```
+dnf config-manager --set-enabled epel centreon
+dnf config-manager --set-disabled epel centreon
+```
+
+* Aggiungi un proxy al file di configurazione:
+
+```
+dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
+```
+
+### `copr` plugin
+
+`copr` è un fork automatico di rpm, che fornisce un repo con i pacchetti compilati.
+
+* Attivare un repo copr:
+
+```
+copr enable xxxx
+```
+
+### `download` plugin
+
+Scaricare il pacchetto rpm invece di installarlo:
+
+```
+dnf download ansible
+```
+
+Se si vuole ottenere solo l'url della posizione remota del pacchetto:
+
+```
+dnf download --url ansible
+```
+
+Oppure se si desidera scaricare anche le dipendenze:
+
+```
+dnf download --resolv --alldeps ansible
+```
+
+### `needs-restart` plugin
+
+Dopo aver eseguito un `dnf update`, i processi in esecuzione continueranno a funzionare ma con i vecchi binari. Per adottare le modifiche al codice e soprattutto gli aggiornamenti di sicurezza, devono essere riavviati.
+
+Il plugin `needs-restarting` consente di rilevare i processi che si trovano in questo stato.
+
+```
+dnf needs-restarting [-u] [-r] [-s]
+```
+
+| Opzioni | Descrizione                                                      |
+| ------- | ---------------------------------------------------------------- |
+| `-u`    | Considera solo i processi appartenenti all'utente in esecuzione. |
+| `-r`    | per verificare se è necessario un riavvio.                       |
+| `-s`    | per verificare se i servizi devono essere riavviati.             |
+| `-s -r` | per fare entrambe le cose in un unico ciclo.                     |
+
+### `versionlock` plugin
+
+A volte è utile proteggere i pacchetti da tutti gli aggiornamenti o escludere alcune versioni di un pacchetto (ad esempio a causa di problemi noti). A questo scopo, il plugin versionlock sarà di grande aiuto.
+
+È necessario installare un pacchetto aggiuntivo:
+
+```
+dnf install python3-dnf-plugin-versionlock
+```
+
+Esempi:
+
+* Blocca la versione ansibile:
+
+```
+dnf versionlock add ansible
+Adding versionlock on: ansible-0:6.3.0-2.el9.*
+```
+
+* Lista pacchetti bloccati:
+
+```
+dnf versionlock list
+ansible-0:6.3.0-2.el9.*
+```
