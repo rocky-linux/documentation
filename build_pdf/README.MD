@@ -17,7 +17,7 @@ cd build_pdf
 mkdocs build -f path_to_config_file.yml
 ```
 
-or launch the script bash to build everything:
+or launch the bash script to build everything:
 
 ```bash
 bash build_all.sh
