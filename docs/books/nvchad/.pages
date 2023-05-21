@@ -8,3 +8,4 @@ nav:
     - ... | nerd_fonts*.md
     - ... | vale_nvchad*.md
     - NvChad UI: nvchad_ui
+    - Plugins: plugins

@@ -23,6 +23,7 @@ Rocky 9 (nome in codice "Blue Onyx") ha un supporto generale fino al 31 maggio 2
 | ------------------ | ------------------------------ | ------------------- |
 | 9.0                | 2022-07-14                     | 5.14.0-70.13.1      |
 | 9.1                | 2022-11-26                     | 5.14.0-162.6.1      |
+| 9.2                | 2023-05-16                     | 5.14.0-284.11.1     |
 
 ## Rocky 8
 
@@ -38,6 +39,5 @@ Rocky 8 (nome in codice "Green Obsidian") ha un supporto generale fino al 1° ma
 | 8.5                | 2021-11-15                     | 4.18.0-348          |
 | 8.6                | 2022-05-16                     | 4.18.0-372.9.1      |
 | 8.7                | 2022-11-14                     | 4.18.0-425.3.1      |
-
 
 Se avete domande o commenti, partecipate alla discussione [qui](https://chat.rockylinux.org/rocky-linux/channels/documentation).
