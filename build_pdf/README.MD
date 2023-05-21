@@ -2,7 +2,7 @@
 
 ## Installation
 
-Fist, fork this repo.
+First, fork this repo.
 
 Next, please install the requirements:
 
