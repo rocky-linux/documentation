@@ -33,11 +33,12 @@ Rocky 8 (Code Name "Green Obsidian") has general support until 1 May 2024 and se
 
 ### Release Information
 
-| Release Number | General Availability Date | Kernel Version |
-| -------------- | ------------------------- | -------------- |
-| 8.4            | 2021-06-21                | 4.18.0-305     |
-| 8.5            | 2021-11-15                | 4.18.0-348     |
-| 8.6            | 2022-05-16                | 4.18.0-372.9.1 |
-| 8.7            | 2022-11-14                | 4.18.0-425.3.1 |
+| Release Number | General Availability Date | Kernel Version  |
+| -------------- | ------------------------- | --------------- |
+| 8.4            | 2021-06-21                | 4.18.0-305      |
+| 8.5            | 2021-11-15                | 4.18.0-348      |
+| 8.6            | 2022-05-16                | 4.18.0-372.9.1  |
+| 8.7            | 2022-11-14                | 4.18.0-425.3.1  |
+| 8.8            | 2023-05-19                | 4.18.0-477.10.1 |
 
 If you have any questions or comments, please join the discussion [here](https://chat.rockylinux.org/rocky-linux/channels/documentation).
