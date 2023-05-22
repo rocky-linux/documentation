@@ -39,5 +39,6 @@ Rocky 8 (nome in codice "Green Obsidian") ha un supporto generale fino al 1° ma
 | 8.5                | 2021-11-15                     | 4.18.0-348          |
 | 8.6                | 2022-05-16                     | 4.18.0-372.9.1      |
 | 8.7                | 2022-11-14                     | 4.18.0-425.3.1      |
+| 8.8                | 2023-05-19                     | 4.18.0-477.10.1     |
 
 Se avete domande o commenti, partecipate alla discussione [qui](https://chat.rockylinux.org/rocky-linux/channels/documentation).

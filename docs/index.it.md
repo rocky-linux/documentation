@@ -6,19 +6,19 @@ title: Home
 
 ## Benvenuto!
 
-Ci hai trovati! Benvenuti nell'hub di documentazione di Rocky Linux; siamo lieti che siate qui. Numerosi collaboratori aggiungono contenuti e la cache di contenuti è in continua crescita. Qui troverete documenti su come costruire Rocky Linux stesso, oltre a documenti su vari argomenti importanti per la comunità Rocky Linux. Chi compone questa comunità, vi chiederete?
+Ci hai trovati! Benvenuti nell'hub di documentazione di Rocky Linux; siamo lieti che siate qui. Abbiamo diversi collaboratori che aggiungono contenuti e questi contenuti crescono continuamente. Qui troverete documenti su come costruire Rocky Linux stesso, oltre a documenti su vari argomenti importanti per la comunità Rocky Linux. Chi compone questa comunità, vi chiederete?
 
 In realtà, voi la fate.
 
-Questa pagina iniziale vi fornirà un'introduzione al sito web della documentazione e a come orientarvi — siamo certi che vi sentirete come a casa vostra.
+Questa pagina iniziale vi fornirà un'introduzione al sito web della documentazione e su come orientarvi — siamo certi che vi sentirete come a casa vostra.
 
 ## Navigazione del Sito
 
 ### Come Muoversi
 
-In questo momento vi trovate nella pagina iniziale della documentazione. Se si dà un'occhiata al menu in alto (sempre disponibile, anche sui dispositivi mobili) si può vedere la struttura principale che mostra le sezioni di primo livello del sito della documentazione. Se si clicca su ogni voce del menu superiore (ad esempio, "Guide"), sul lato sinistro viene visualizzato l'elenco delle *sottosezioni* per ogni sezione principale. Le guide hanno molti argomenti di interesse.
+In questo momento vi trovate nella pagina iniziale della documentazione. Se si dà un'occhiata al menu in alto (sempre disponibile, anche sui dispositivi mobili) si può vedere la struttura principale che mostra le sezioni di primo livello del sito della documentazione. Se si fa clic su ciascuna voce del menu superiore (ad esempio, "Guides"), sul lato sinistro viene visualizzato l'elenco delle *sottosezioni* di ciascuna sezione principale. Le guide hanno molti argomenti di interesse.
 
-Quando si apre un documento, sulla destra viene visualizzata una 'Tabella dei contenuti' con collegamenti di navigazione cliccabili per quel documento (per i dispositivi mobili provare l'orientamento orizzontale). Per i documenti lunghi, come le [Note di rilascio](release_notes/8_7.md), l'indice facilita il salto all'interno del documento. Se si sta leggendo un documento lungo e si desidera tornare all'inizio, premere il tasto <kbd>pg su</kbd> e si vedrà apparire il pulsante `Torna all'inizio` nella parte superiore dello schermo.
+Quando si apre un documento, sulla destra viene visualizzata una 'Tabella dei contenuti' con collegamenti di navigazione cliccabili per quel documento (per i dispositivi mobili provare l'orientamento orizzontale). Per i documenti lunghi, come le [Note di rilascio](release_notes/8_7.md), l'indice permette di saltare all'interno del documento. Se si sta leggendo un documento lungo e si desidera tornare all'inizio, premere il tasto <kbd>pg su</kbd> e si vedrà apparire il pulsante `Torna all'inizio` nella parte superiore dello schermo.
 
 Le sezioni principali del sito di documentazione sono:
 
@@ -31,10 +31,10 @@ Le sezioni principali del sito di documentazione sono:
 
 ### Lingue Multiple
 
-Naturalmente non tutti hanno l'inglese come prima lingua! In Rocky Linux vogliamo rendere il sito di documentazione il più accessibile possibile a tutti — e la *traduzione in diverse lingue è una parte importante di questo obiettivo*. Se si fa clic sul selettore di lingua (simbolo comune) nel menu in alto, si vedranno le lingue in cui il sito è disponibile:
+Naturalmente non tutti hanno l'inglese come prima lingua! In Rocky Linux vogliamo rendere il sito di documentazione il più accessibile possibile a tutti — e la *traduzione in diverse lingue è una parte importante di questo obiettivo*. Se si fa clic sul selettore di lingua (simbolo comune) nel menu in alto, si vedranno le lingue in cui il sito è disponibile. Questo è composto da due parti:
 
 1. Localizzazione dell'interfaccia del sito web: se si sceglie un'altra lingua, ad esempio il francese, si noterà che l'interfaccia, ad esempio i navigatori "Avanti" e "Precedente", saranno localizzati.
-1. Contenuti: la traduzione dei contenuti è, ovviamente, un compito continuo (e significativo). Non tutti i contenuti sono ancora tradotti in tutte le lingue. Tutte le pagine che sono state tradotte (nella lingua selezionata) saranno visualizzate nella lingua scelta, mentre quelle che non sono state tradotte torneranno alla lingua predefinita, l'inglese. Se desiderate contribuire alla comunità attraverso le traduzioni, il team della documentazione sarà lieto di sentirvi — vedi sotto per i dettagli.
+1. Contenuti: la traduzione dei contenuti è un compito continuo (significativo). Non tutti i contenuti sono ancora tradotti in tutte le lingue. Tutte le pagine che sono state tradotte (nella lingua selezionata) saranno visualizzate nella lingua scelta, mentre quelle che non sono state tradotte torneranno alla lingua predefinita, l'inglese. Se desiderate contribuire alla comunità attraverso le traduzioni, il team della documentazione è lieto di sentire il vostro parere — vedi sotto per i dettagli.
 
 !!! note "Nota"
 
