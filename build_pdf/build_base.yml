@@ -1,7 +1,7 @@
 ---
 site_name: 'Documentation'
 site_url: 'https://docs.rockylinux.org'
-docs_dir: '../docs/books'
+docs_dir: '../../docs/books'
 
 theme:
   name: material
@@ -50,27 +50,12 @@ markdown_extensions:
 plugins:
   - awesome-pages
   - tags
-  - with-pdf:
-      author: Rocky Documentation Team
-      cover: true
-      cover_logo: ../assets/rocky-linux-logo.svg
-      cover_title: Learning Ansible with Rocky
-      cover_subtitle: A book from the Documentation Team
-      toc_level: 3
-      ordered_chapter_level: 3
-      output_path: ../pdf/LearningAnsibleWithRocky.it.pdf
-      verbose: false
 
 # Page tree
-nav:
-  - learning_ansible/00-toc.it.md
-  - learning_ansible/01-basic.it.md
-  - learning_ansible/02-advanced.it.md
-  - learning_ansible/03-working-with-files.it.md
-  - learning_ansible/04-ansible-galaxy.it.md
-  - learning_ansible/05-deployments.it.md
-  - learning_ansible/06-large-scale-infrastructure.it.md
-  - learning_ansible/07-working-with-filters.it.md
-  - learning_ansible/08-management-server-optimizations.it.md
+# nav:
+#  - learning_ansible/00-toc.md
+#  - learning_ansible/01-basic.md
+#  - learning_ansible/02-advanced.md
+# ...
 
-copyright: Copyright &copy; 2021 The Rocky Enterprise Software Foundation
+copyright: Copyright &copy; 2023 The Rocky Enterprise Software Foundation
