@@ -1,8 +1,8 @@
 ---
-title: Lab 7: Managing and Installing Software
-author: unknown
+title: Managing and Installing Software (Lab 7)
+author: Wale Soyinka 
 contributors: Steven Spencer
-tested with: 8.8
+tested on: 8.8
 tags:
   - lab exercise
   - software management
