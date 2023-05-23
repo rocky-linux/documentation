@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-89-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-90-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -326,6 +326,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="http://howtotechwriting.com/"><img src="https://avatars.githubusercontent.com/u/38929299?v=4?s=100" width="100px;" alt="Mario"/><br /><sub><b>Mario</b></sub></a><br /><a href="#content-doble-eme" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/gannazhyrnova"><img src="https://avatars.githubusercontent.com/u/112796922?v=4?s=100" width="100px;" alt="Ganna Zhyrnova"/><br /><sub><b>Ganna Zhyrnova</b></sub></a><br /><a href="#translation-gannazhyrnova" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Demalpheus"><img src="https://avatars.githubusercontent.com/u/28327241?v=4?s=100" width="100px;" alt="Travis W"/><br /><sub><b>Travis W</b></sub></a><br /><a href="#content-Demalpheus" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://g.dev/rana_tej_singh"><img src="https://avatars.githubusercontent.com/u/58101587?v=4?s=100" width="100px;" alt="Tej Singh Rana"/><br /><sub><b>Tej Singh Rana</b></sub></a><br /><a href="#content-Tej-Singh-Rana" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
