@@ -1,0 +1,35 @@
+---
+name: Mkdocs build PDFs
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 12 1 * *'
+  workflow_dispatch:
+
+jobs:
+  build_pdfs:
+    runs-on: ubuntu-latest
+    name: Build PDFs
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r ${PWD}/build_pdf/requirements.txt
+
+      - name: Build all
+        run: ${PWD}/build_pdf/build_all.sh
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: pdfs
+          path: build_pdf/pdf/*
