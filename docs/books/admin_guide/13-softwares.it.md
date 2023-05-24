@@ -1,5 +1,5 @@
 ---
-title: Gestione del software
+title: Gestione del Software
 author: Antoine Le Morvan
 contributors: Colussi Franco, Steven Spencer
 tested version: 8.5
@@ -926,7 +926,7 @@ Esempi:
 * Scaricare un file `.repo` e utilizzarlo:
 
 ```
-dnf config-manager --add-repo https://packages._centreon_.com/rpm-standard/23.04/el8/_centreon_.repo
+dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
 ```
 
 * È anche possibile impostare un url come url di base per un repo:
