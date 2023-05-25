@@ -105,7 +105,7 @@ Linux équipe un peu plus de **3% des ordinateurs personnels** mais plus de **82
 
 <!-- TODO: review those stats -->
 
-Linux équipe 100% des 500 superordinateurs depuis 2018. A supercomputer is a computer designed to achieve the highest possible performance with the techniques known at the time of its design, especially with regard to computing speed.
+Linux équipe 100% des 500 superordinateurs depuis 2018. Un superordinateur est un ordinateur conçu pour obtenir les meilleures performances possibles avec les techniques connues lors de sa conception, surtout en ce qui concerne la vitesse de calcul.
 
 ### Conception architecturale
 
