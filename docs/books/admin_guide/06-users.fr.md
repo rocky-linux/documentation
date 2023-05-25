@@ -113,10 +113,10 @@ $ sudo groupmod -g 1016 GroupeP
 $ sudo groupmod -n GroupeC GroupeB
 ```
 
-| Option   | Description                         |
-| -------- | ----------------------------------- |
-| `-g GID` | Nouveau `GID` du groupe à modifier. |
-| `-n nom` | Nouveau nom.                        |
+| Option    | Description                         |
+| --------- | ----------------------------------- |
+| `-g GID`  | Nouveau `GID` du groupe à modifier. |
+| `-n name` | Nouveau nom.                        |
 
 Il est possible de modifier le nom d’un groupe, son `GID` ou les deux simultanément.
 
@@ -140,7 +140,7 @@ Exemple :
 $ sudo groupdel GroupeC
 ```
 
-!!! Tip
+!!! Astuce
 
     Lors de la suppression d'un groupe, il y a deux conditions :
 
@@ -163,11 +163,11 @@ $ sudo groupdel GroupeC
     Shell > groupdel testb
     ```
 
-!!! Tip
+!!! Astuce
 
     Lorsque vous supprimez un utilisateur en utilisant la commande `userdel -r`, le groupe principal correspondant est également supprimé. Le nom du groupe principal est généralement le même que celui de l'utilisateur.
 
-!!! Tip
+!!! Astuce
 
     Chaque groupe a un `GID` unique. Un groupe peut être utilisé par plusieurs utilisateurs comme groupe secondaire. Par convention, le GID du super administrateur est 0. Les GID réservés à certains services ou processus vont de 201à 999, ils sont appelés groupes système ou groupes de pseudo-utilisateurs. Le GID pour les utilisateurs est généralement supérieur ou égal à 1000. Ils sont liés à <font color=red>/etc/login.defs</font>, dont nous reparlerons plus tard.
 
@@ -194,7 +194,7 @@ $ sudo groupdel GroupeC
     ENCRYPT_METHOD SHA512
     ```
 
-!!! Tip
+!!! Astuce
 
     Un utilisateur faisant obligatoirement partie d’un groupe, il est préférable de créer les groupes avant d’ajouter les utilisateurs. Par conséquent, un groupe peut ne pas avoir de membres.
 
@@ -385,7 +385,7 @@ $ sudo usermod -u 1044 carine
 
 Options identiques à la commande `useradd`.
 
-| Option          | Description                                                                                                                                                                                                                                                       |
+| Option          | Observation                                                                                                                                                                                                                                                       |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `-m`            | Associé à l'option `-d` , déplace le contenu de l'ancien répertoire de connexion vers le nouveau. Si l'ancien répertoire personnel n'existe pas, le nouveau répertoire personnel ne sera pas créé ; Si le nouveau répertoire personnel n'existe pas, il est créé. |
 | `-l login`      | Nouveau nom de connexion. Une fois que vous avez modifié le nom de connexion, vous devez également modifier le nom du répertoire personnel pour le correspondre.                                                                                                  |
@@ -395,7 +395,7 @@ Options identiques à la commande `useradd`.
 | `-a`            | Ajoute les groupes supplémentaires de l'utilisateur, qui doivent être utilisés avec l'option `-G`.                                                                                                                                                                |
 | `-G`            | Modifier les groupes secondaires de l'utilisateur pour écraser les groupes secondaires précédents.                                                                                                                                                                |
 
-!!! Tip
+!!! Astuce
 
     Pour être modifié, un utilisateur doit être déconnecté et ne pas avoir de processus en cours.
 
@@ -447,11 +447,11 @@ La commande `userdel` permet de supprimer le compte d’un utilisateur.
 $ sudo userdel -r carine
 ```
 
-| Option | Description                                                                                                                     |
+| Option | Observation                                                                                                                     |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | `-r`   | Supprime le répertoire de connexion de l'utilisateur et les fichiers de messagerie situés dans le répertoire `/var/spool/mail/` |
 
-!!! Tip
+!!! Astuce
 
     Pour être modifié, un utilisateur doit être déconnecté et ne pas avoir de processus en cours.
 
@@ -532,7 +532,7 @@ $ sudo chown root monfichier
 $ sudo chown albert:GroupeA monfichier
 ```
 
-| Option | Description                                                |
+| Option | Observation                                                |
 | ------ | ---------------------------------------------------------- |
 | `-R`   | Modifie les propriétaires du répertoire et de son contenu. |
 | `-v`   | Affiche les modifications exécutées.                       |
@@ -580,7 +580,7 @@ Exemple :
 $ sudo chgrp groupe1 fichier
 ```
 
-| Option | Description                                                                      |
+| Option | Observation                                                                      |
 | ------ | -------------------------------------------------------------------------------- |
 | `-R`   | Modifie les groupes propriétaires du répertoire et de son contenu (récursivité). |
 | `-v`   | Affiche les modifications exécutées.                                             |
@@ -616,7 +616,7 @@ $ sudo gpasswd -A alain GroupeA
 [alain]$ gpasswd -a patrick GroupeA
 ```
 
-| Option          | Description                                                                                        |
+| Option          | Observation                                                                                        |
 | --------------- | -------------------------------------------------------------------------------------------------- |
 | `-a login`      | Ajoute l’utilisateur au groupe. Pour l'utilisateur ajouté, ce groupe est un groupe supplémentaire. |
 | `-A login, ...` | Définit la liste des administrateurs du groupe.                                                    |
@@ -713,7 +713,7 @@ Shell > passwd -l albert
 Shell > passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
 
-| Option     | Description                                                                                                                      |
+| Option     | Observation                                                                                                                      |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `-d`       | Supprime définitivement le mot de passe. Réservé à l'utilisateur root (uid=0) uniquement.                                        |
 | `-l`       | Verrouiller définitivement le compte utilisateur. Réservé à l'utilisateur root (uid=0) uniquement.                               |
@@ -775,7 +775,7 @@ Exemple :
 $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
 
-| Option               | Description                                                                                                                                  |
+| Option               | Observation                                                                                                                                  |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `-I jours`           | Délai avant désactivation, mot de passe expiré (i majuscule). Changement permanent.                                                          |
 | `-l`                 | Affiche le détail de la stratégie (l minuscule).                                                                                             |
@@ -815,7 +815,7 @@ Fichiers de configuration :
 
 Ce fichier contient le paramétrage des données par défaut.
 
-!!! Tip
+!!! Astuce
 
     Lors de la création d’un utilisateur, si les options ne sont pas précisées, le système utilise les valeurs par défaut définies dans `/etc/default/useradd`.
 
@@ -924,7 +924,7 @@ $ sudo su - alain
 [albert]$ su - root -c "passwd alain"
 ```
 
-| Option       | Description                                           |
+| Option       | Observation                                           |
 | ------------ | ----------------------------------------------------- |
 | `-`          | Charge l’environnement complet de l’utilisateur.      |
 | `-c` command | Exécute la commande sous l’identité de l’utilisateur. |
@@ -933,7 +933,7 @@ Si le login n’est pas spécifié, ce sera `root`.
 
 Les utilisateurs standards devront taper le mot de passe de la nouvelle identité.
 
-!!! Tip
+!!! Astuce
 
     Vous pouvez utiliser la commande `exit`/`logout` pour déconnecter les utilisateurs. Il devrait être noté qu'après un changement d'utilisateur, il n'y a pas de nouveau `child shell` or `sub shell`, par exemple :
 
