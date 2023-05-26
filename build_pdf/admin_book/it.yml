@@ -1,0 +1,33 @@
+---
+INHERIT: ../build_base.yml
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 3
+  ordered_chapter_level: 3
+  verbose: false
+
+# You are free to configure here what you want
+plugins:
+  - with-pdf: 
+      <<: *pdf-config
+      cover_title: Rocky Linux Admin Guide (Italian version)
+      output_path: ../../pdf/RockyLinuxAdminGuide.it.pdf
+
+# Customize your own book
+nav:
+  - admin_guide/00-toc.it.md
+  - admin_guide/01-presentation.it.md
+  - admin_guide/03-commands.it.md
+  - admin_guide/04-advanced-commands.it.md
+  - admin_guide/05-vi.it.md
+  - admin_guide/06-users.it.md
+  - admin_guide/07-file-systems.it.md
+  - admin_guide/08-process.it.md
+  - admin_guide/09-backups.it.md
+  - admin_guide/10-boot.it.md
+  - admin_guide/11-tasks.it.md
