@@ -4,7 +4,7 @@ title: Commandes avancées Linux
 
 # Commandes avancées pour utilisateurs Linux
 
-Dans ce chapitre, vous apprendrez quelques commandes avancées pour Linux.
+Les commandes avancées offrent une plus grande personnalisation et des contrôles dans des situations plus spécifiques une fois que vous êtes familiarisés avec les commandes de base.
 
 ****
 
@@ -41,7 +41,7 @@ steven
 
 !!! Note
 
-    `uniq` nécessite que le fichier d'entrée soit trié car il ne compare que les lignes consécutives.
+    `uniq` nécessite que le fichier d'entrée soit trié car il ne compare que des lignes consécutives.
 
 Sans argument, la commande `uniq` ne va pas afficher les lignes identiques qui se suivent du fichier `firstnames.txt` :
 
@@ -214,7 +214,7 @@ L’option `-I` permet de spécifier un caractère (dans notre exemple le caract
 
 ## Le paquet `yum-utils`
 
-Le paquet `yum-utils` est une collection d’utilitaires de différents auteurs pour `yum`, qui le rendent plus simple et plus puissant à utiliser.
+Le paquet `yum-utils` est une collection d’utilitaires de différents auteurs pour `yum`, qui le rend plus simple et plus puissant à utiliser.
 
 !!! Note
 
@@ -228,9 +228,10 @@ La commande `repoquery` est utilisée pour rechercher les paquets dans le dépô
 
 Exemples d’utilisation :
 
-  * Affiche les dépendances d'un paquet (il peut s'agir d'un paquet logiciel qui a été installé ou non installé), Équivalent à `dnf deplist <package-name>`.
-
+  * Affiche les dépendances d'un paquet (il peut s'agir d'un paquet logiciel qui a été installé ou non), équivalent à `dnf deplist <package-name>`
+    ```
     repoquery --requires <package-name>
+    ```
 
   * Affiche les fichiers fournis par un paquet installé (ne fonctionne pas pour les paquets qui ne sont pas installés), équivalent à `rpm -ql <package-name>`
 
@@ -280,7 +281,7 @@ $ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 
 | Options     | Commentaires                                                       |
 | ----------- | ------------------------------------------------------------------ |
-| -`-destdir` | Les paquets téléchargés seront conservés dans le dossier spécifié. |
+| `--destdir` | Les paquets téléchargés seront conservés dans le dossier spécifié. |
 | `--resolve` | Télécharge également les dépendances du paquet.                    |
 
 ## Le paquet `psmisc`
