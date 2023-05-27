@@ -9,7 +9,7 @@ tags:
 
 # File System
 
-In this chapter you will learn how to work with filesystems.
+In this chapter you will learn how to work with files systems.
 
 ****
 
