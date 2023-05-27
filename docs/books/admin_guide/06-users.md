@@ -301,7 +301,7 @@ When invoking the `useradd` command without any options, the following default s
 
 * A home directory with the same name as the username is created; 
 * A primary group with the same name as the username is created;
-* A default shell that points to `/bin/bash` is assinged to the user;
+* A default shell that points to `/bin/bash` is assigned to the user;
 * The user's UID and primary group GID values are automatically deduced. This is usually a unique value between 1000 and 60,000.
 
 !!! note
