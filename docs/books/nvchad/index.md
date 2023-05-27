@@ -15,7 +15,7 @@ Throughout this book, you will find ways to implement Neovim, along with NvChad,
 
 I say "ways" because there are many possibilities. The author focuses here on using these tools for writing markdown, but if markdown isn't your focus, don't worry simply read on. If you are unfamiliar with either of these tools (NvChad or Neovim), then this book will give you an introduction to both, and if you step through these documents, you'll soon realize that you can set up this environment to be a huge help for whatever your programming or script writing needs are.
 
-Want an IDE that will help in writing Ansible playbooks? You can get that! Want and IDE for Golang? That's available too. Simply want a good interface for writing BASH scripts? It's also available.
+Want an IDE that will help in writing Ansible playbooks? You can get that! Want an IDE for Golang? That's available too. Simply want a good interface for writing BASH scripts? It's also available.
 
 Through the use of **L**anguage **S**erver **P**rotocols and linters, you can setup an environment that is customized just for you. The best part is that once you have the environment setup, it can quickly be updated when new changes are available through the use of [lazy.nvim](https://github.com/folke/lazy.nvim) and [Mason](https://github.com/williamboman/mason.nvim), both of which are covered here.
 
