@@ -326,9 +326,11 @@ test1:!::
 
 Account naming rules:
 
-* No accents, capital letters or special characters;
+* Lowercase letters, numbers and underscores are allowed, and other special characters such as asterisks, percent signs, full-width symbols are not accepted. 
+* Although you can use an uppercase user name in RockyLinux, we do not recommend it;
+* It is not recommended to start with numbers and underscores, although you may be allowed to do so;
 * Different from the name of an existing group or system file;
-* Optional: set the options `-u`, `-g`, `-d` and `-s` at creation.
+* The user name can contain up to 32 characters.
 
 !!! Warning
 
