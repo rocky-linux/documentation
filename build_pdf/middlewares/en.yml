@@ -1,7 +1,7 @@
 ---
 INHERIT: ../build_base.yml
 
-docs_dir: '../../docs/books'
+docs_dir: '../../docs/guides'
 
 # Do not modify this block
 pdf-config: &pdf-config
