@@ -9,9 +9,10 @@ pdf-config: &pdf-config
   cover: true
   cover_logo: ../assets/rocky-linux-logo.svg
   cover_subtitle: A book from the Documentation Team
-  toc_level: 3
+  toc_level: 1
   ordered_chapter_level: 3
   verbose: false
+  back_cover: true
 
 # You are free to configure here what you want
 plugins:

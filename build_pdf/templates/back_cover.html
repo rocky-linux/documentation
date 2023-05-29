@@ -1,0 +1,10 @@
+<article id="doc-back_cover">
+    <div class="wrapper"></div>
+    {%- set target_url = site_url or repo_url -%}
+    {% if target_url is defined -%}
+    <div class="wrapper">
+        <div>{{ target_url }}</div>
+    {%- endif %}
+    </div>
+    <div class="wrapper"></div>
+</article>

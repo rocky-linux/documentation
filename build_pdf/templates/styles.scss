@@ -1,0 +1,46 @@
+@media print {
+    /* Adjusts positioning of admonition icon */
+    .md-typeset :is(.admonition-title,summary):before {
+      top: 0.6rem;
+      left: 0.6rem;
+    }
+}
+
+@media print {
+    .md-typeset {
+      font-size: 12pt !important;
+    }
+    .md-typeset h1 {
+        font-size: 16pt;
+    }
+    .md-typeset h2,
+    .md-typeset h3,
+    .md-typeset h4,
+    .md-typeset h5,
+    .md-typeset h6 {
+    font-size: 14pt;
+    }
+
+    pre,
+    code,
+    var,
+    samp,
+    kbd,
+    tt {
+      font-family: 'Noto Sans Mono CJK JP', 'Courier New', monospace, serif;
+      font-size: 1em;
+    }
+    .admonition {
+        font-size: 12pt;
+    }
+}
+
+@media print {
+    doc-back_cover .logo {
+        width: 100%;
+        height: 100%;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+}

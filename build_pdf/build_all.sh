@@ -9,8 +9,8 @@ do
   do
     echo "Building $config_file"
     echo "---------------------"
-    mkdocs build -f $config_file
+    VERSION=$(date +%Y/%m/%d) mkdocs build -f $config_file -d ${SCRIPTPATH}/site/
     echo "" 
   done
-  rm -Rf ${SCRIPTPATH}/${book}/site/
 done
+rm -Rf ${SCRIPTPATH}/site/

@@ -59,3 +59,5 @@ plugins:
 # ...
 
 copyright: Copyright &copy; 2023 The Rocky Enterprise Software Foundation
+extra:
+  version: !ENV [VERSION, 'Custom version']
