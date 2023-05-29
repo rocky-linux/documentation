@@ -19,7 +19,7 @@ plugins:
   - with-pdf:
       <<: *pdf-config
       cover_title: Rocky Linux Middlewares Guide (English version)
-      output_path: ../../pdf/RockyLinuxMiddlewaresGuide.pdf
+      output_path: ../pdf/RockyLinuxMiddlewaresGuide.pdf
 
 # Customize your own book
 nav:

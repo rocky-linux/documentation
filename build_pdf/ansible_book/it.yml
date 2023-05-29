@@ -10,13 +10,13 @@ pdf-config: &pdf-config
   toc_level: 3
   ordered_chapter_level: 3
   verbose: false
-
+  back_cover: true
 # You are free to configure here what you want 
 plugins:
   - with-pdf:
       <<: *pdf-config
       cover_title: Learning Ansible with Rocky (Italian version)
-      output_path: ../../pdf/LearningAnsibleWithRocky.it.pdf
+      output_path: ../pdf/LearningAnsibleWithRocky.it.pdf
 
 # Customize your own book
 nav:

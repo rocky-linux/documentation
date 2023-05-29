@@ -10,13 +10,14 @@ pdf-config: &pdf-config
   toc_level: 3
   ordered_chapter_level: 3
   verbose: false
-
+  back_cover: true
+  
 # You are free to configure here what you want
 plugins:
   - with-pdf: 
       <<: *pdf-config
       cover_title: Rocky Linux Admin Guide (Italian version)
-      output_path: ../../pdf/RockyLinuxAdminGuide.it.pdf
+      output_path: ../pdf/RockyLinuxAdminGuide.it.pdf
 
 # Customize your own book
 nav:
