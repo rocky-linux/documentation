@@ -13,19 +13,19 @@ pdf-config: &pdf-config
 
 # You are free to configure here what you want
 plugins:
-  - with-pdf:
+  - with-pdf: 
       <<: *pdf-config
-      cover_title: Rocky Linux Admin Guide (English version)
-      output_path: ../../pdf/RockyLinuxAdminGuide.pdf
+      cover_title: Rocky Linux Admin Guide (Ukrainian version)
+      output_path: ../../pdf/RockyLinuxAdminGuide.uk.pdf
 
 # Customize your own book
 nav:
-  - admin_guide/00-toc.md
-  - admin_guide/01-presentation.md
-  - admin_guide/03-commands.md
-  - admin_guide/04-advanced-commands.md
-  - admin_guide/05-vi.md
-  - admin_guide/06-users.md
+  - admin_guide/00-toc.uk.md
+  - admin_guide/01-presentation.uk.md
+  - admin_guide/03-commands.uk.md
+  - admin_guide/04-advanced-commands.uk.md
+  - admin_guide/05-vi.uk.md
+  - admin_guide/06-users.uk.md
   - admin_guide/07-file-systems.md
   - admin_guide/08-process.md
   - admin_guide/09-backups.md
