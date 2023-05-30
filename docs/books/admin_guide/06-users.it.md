@@ -301,7 +301,13 @@ Quando il comando `useradd` non ha opzioni, appare:
 * Crea una home directory con lo stesso nome;
 * Crea un gruppo primario con lo stesso nome;
 * La shell predefinita è bash;
-* L'utente `uid` e il gruppo primario `gid` vengono automaticamente registrati da 1000, e di solito uid e gid sono gli stessi.
+* I valori UID e GID del gruppo primario dell'utente vengono automaticamente detratti. Questo è di solito un valore unico tra 1000 e 60.000.
+
+!!! note "Nota"
+
+    Le impostazioni e i valori predefiniti si ottengono dai seguenti file di configurazione:
+    
+    `/etc/login.defs` e `/etc/default/useradd`
 
 ```bash
 Shell > useradd test1
@@ -321,8 +327,10 @@ test1:!::
 Regole di denominazione dell'account:
 
 * Niente accenti, lettere maiuscole o caratteri speciali;
-* Diverso dal nome di un gruppo o file di sistema esistente;
+* Anche se è possibile utilizzare un nome utente in maiuscolo in RockyLinux, non lo raccomandiamo;
 * Opzionale: imposta le opzioni `-u`, `-g`, `-d` e `-s` alla creazione.
+* Diverso dal nome di un gruppo o file di sistema esistente;
+* Il nome utente può contenere fino a 32 caratteri.
 
 !!! Warning "Attenzione"
 
@@ -896,7 +904,7 @@ Shell > ls -ld /home/test1/
 drwx------ 2 test1 test1 4096 Oct  8 13:10 /home/test1/
 ```
 
-`USERGROUPS_ENAB sì`: "Quando si elimina un utente con il comando `userdel -r`, viene eliminato anche il gruppo primario corrispondente." Perché? Questo è il motivo.
+`USERGROUPS_ENAB yes`: "Quando si elimina un utente con il comando `userdel -r`, viene eliminato anche il gruppo primario corrispondente." Perché? Questo è il motivo.
 
 ### directory `/etc/skel`
 
@@ -938,7 +946,7 @@ Gli utenti standard dovranno digitare la password per la nuova identità.
 
 !!! Tip "Suggerimento"
 
-    È possibile utilizzare il comando `exit`/`logout` per far uscire gli utenti che sono stati commutati. Si noti che dopo il cambio di utente non esiste una nuova `child shell` o `sub shell`, ad esempio:
+    È possibile utilizzare il comando `exit`/`logout` per far uscire gli utenti che sono stati attivati. Si noti che dopo il cambio di utente non esiste una nuova `child shell` o `sub shell`, ad esempio:
 
     ```
     Shell > whoami
