@@ -19,6 +19,21 @@ To us, excellent documentation hits these marks:
 
 We welcome anyone who wants to be part of this mission. No specific degree, years of experience, or company affiliation required. Be bold! We promise, you won’t break anything even if you fumble your first attempt.
 
+## License
+
+Documents written by the _rocky linux documentation team_ are published under the Creative Commons-BY-SA license. This means you are free to copy, distribute and transform the works, while respecting the author's rights.
+
+* **BY**: Attribution. You must cite the name of the original author.
+* **SA**: Share Alike.
+
+Creative Commons-BY-SA license: https://creativecommons.org/licenses/by-sa/4.0/
+
+The documents and their sources are freely downloadable from:
+
+* https://docs.rockylinux.org/
+* https://github.com/rocky-linux/documentation
+
+Our media sources are hosted at github.com. You'll find the source code repository where the version of this document was created.
 
 ## Technical requirements
 
