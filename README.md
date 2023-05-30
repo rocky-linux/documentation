@@ -26,7 +26,7 @@ Documents written by the _rocky linux documentation team_ are published under th
 * **BY**: Attribution. You must cite the name of the original author.
 * **SA**: Share Alike.
 
-Creative Commons-BY-SA license: https://creativecommons.org/licenses/by-sa/3.0/
+Creative Commons-BY-SA license: https://creativecommons.org/licenses/by-sa/4.0/
 
 The documents and their sources are freely downloadable from :
 
