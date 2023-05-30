@@ -17,7 +17,7 @@ Il kernel Linux memorizza le informazioni sul kernel in esecuzione in due luoghi
   - Il vecchio [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html) che monta `/proc` (verificabile  tramite `mount -l -t proc`)
   - Il [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) più recente che monta `/sys` (verificare tramite `mount -l -t sysfs`)
 
-!!! caution "Attenzione"
+!!! warning "Attenzione"
 
     Siate cauti nell'esaminare i file qui menzionati, la loro modifica può cambiare il comportamento del kernel in esecuzione!
 
