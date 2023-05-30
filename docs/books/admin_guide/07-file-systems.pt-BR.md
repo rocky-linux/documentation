@@ -72,11 +72,13 @@ No mundo do GNU/Linux, tudo é um arquivo. Para discos, eles são reconhecidos n
 | Mouse                      | /dev/mouse                     |
 | Disco rígido virtual       | /dev/vd[a-z]                   |
 
-Os _dispositivos_ são os arquivos que identificam os vários equipamentos físicos detectados pela placa-mãe. Esses arquivos são armazenados sem `/dev`. O serviço que detecta novos dispositivos e dá nomes a eles é chamado *udev*.
+O kernel Linux contém drivers para a maioria dos dispositivos de hardware.
 
-Eles são identificados pelo seu tipo.
+O que chamamos de _dispositivos_ são os arquivos, armazenados sem `/dev`, identificando os diferentes hardwares detectados pela placa mãe.
 
-Para mais informações, por favor veja [aqui](https://www.kernel.org/doc/html/latest/admin-guide/devices.html).
+O serviço chamado udev é responsável por aplicar as convenções de nomes (regras) e aplicá-las aos dispositivos que detecta.
+
+Para mais informações, por favor clique [aqui](https://www.kernel.org/doc/html/latest/admin-guide/devices.html).
 
 ### Número de partição do dispositivo
 
@@ -90,7 +92,7 @@ O número após o bloco de dispositivo (dispositivo de armazenamento) indica uma
 
 Existem pelo menos dois comandos para o particionamento de um disco: `fdisk` e `cfdisk`. Ambos os comandos têm um menu interativo. `cfdisk` é mais confiável e mais otimizado, por isso é melhor usá-lo.
 
-A única razão para usar `fdisk` é quando você deseja listar todos os dispositivos lógicos com a opção `-l`. `fdisk` usa tabelas de partição MBR, portanto, não é suportado para tabelas de partição **GPT** e não pode processar discos maiores que **2TB**.
+A única razão para usar `fdisk` é quando você deseja listar todos os dispositivos lógicos com a opção `-l`. `fdisk` usa tabelas de partição MBR, portanto, não é suportado para tabelas de partição **GPT** e não pode ser usado em discos maiores que **2TB**.
 
 ```
 sudo fdisk -l
@@ -100,7 +102,7 @@ sudo fdisk -l /dev/sdc2
 
 ### Comando `parted`
 
-O comando `parted` (_editor de partições_) é capaz de particionar um disco, isso resolve as limitações do `fdisk`. Recomendamos que você use o comando `parted` em vez disso.
+O comando `parted` (_editor de partições_) é capaz de particionar um disco, isso resolve as limitações do `fdisk`. Recomendamos que você use o comando `parted` ao invés.
 
 O comando `parted` pode ser usado na linha de comando ou de forma interativa. Ele tem também uma função de recuperação capaz de reescrever uma tabela de partição excluída.
 
@@ -159,7 +161,7 @@ A preparação, sem _LVM_, da mídia física passa por cinco etapas:
 
 **L**ogical **V**olume **M**anager (*LVM*)
 
-A partição criada pela **partição padrão** não pode ajustar dinamicamente os recursos do disco rígido, uma vez montada a partição, a capacidade é completamente fixa, esta restrição é inaceitável no servidor. Embora a divisão padrão possa ser expandida ou reduzida à força através de determinados meios técnicos, é fácil causar perda de dados. O LVM pode resolver este problema muito bem. O LVM está disponível no Linux a partir do kernel versão 2.4, e suas principais características são:
+A partição criada pela **partição padrão** não pode ajustar dinamicamente os recursos do disco rígido, uma vez montada a partição, a capacidade é completamente fixa, esta restrição é inaceitável no servidor. Embora a partição padrão possa ser expandida ou reduzida à força através de determinados meios técnicos, é fácil causar perda de dados. O LVM pode resolver este problema muito bem. O LVM está disponível no Linux a partir do kernel versão 2.4, e suas principais características são:
 
 * Capacidade de disco mais flexível;
 * Movimento de dados on-line;
@@ -179,11 +181,11 @@ O princípio do LVM é muito simples:
 
 **VG(Grupo de Volume)**: Semelhante aos discos físicos em uma partição padrão, um VG consiste em um ou mais PV.
 
-**LV(Volume lógico)**: Semelhante às partições de disco rígido em partições padrão, LV é construído em cima do VG. Você pode configurar um sistema de arquivos no LV.
+**LV(Volume Lógico)**: Semelhante às partições de disco rígido em partições padrão, LV é construído em cima do VG. Você pode configurar um sistema de arquivos no LV.
 
 <b><font color="blue">PE</font></b>: A menor unidade de armazenamento que pode ser alocada em um Volume Físico, por padrão <b>4MB</b>. Você pode especificar um tamanho adicional.
 
-<b><font color="blue">LE</font></b>: A menor unidade de armazenamento que pode ser alocada em um Volume Lógico. No mesmo VG, PE e LE são os mesmos e correspondem um pra um.
+<b><font color="blue">LE</font></b>: A menor unidade de armazenamento que pode ser alocada em um Volume Lógico. No mesmo VG, PE e LE são iguais e correspondem um pra um.
 
 ![Grupo de volume, tamanho de PE igual a 4MB](images/07-file-systems-004.png)
 
@@ -478,7 +480,7 @@ Em caso de erros, soluções são propostas para reparar as inconsistências. Ap
 
 #### Comando `fsck`
 
-O comando `fsck` é uma ferramenta no modo console de verificação de integridade e reparo para sistemas de arquivos Linux.
+O comando `fsck` é uma ferramenta de verificação de integridade e reparo para sistemas de arquivos Linux no modo console.
 
 ```
 fsck [-sACVRTNP] [ -t tipofs ] arquivossistema
@@ -881,7 +883,7 @@ Por padrão, o _dono_ de um arquivo é quem o cria. O _grupo_ do arquivo é o gr
 
 Os atributos são alterados com o comando `chmod`.
 
-Somente o administrador e o proprietário de um arquivo podem alterar os direitos de um arquivo.
+Somente o administrador e o proprietário de um arquivo podem alterar as permissões de um arquivo.
 
 #### Comando `chmod`
 
