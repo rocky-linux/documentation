@@ -163,7 +163,7 @@ dnf install tree
 | `list all`                | Elenca i pacchetti già nel repository.                                      |
 | `search`                  | Cerca un pacchetto nel repository.                                          |
 | `provides */command_name` | Cerca un comando.                                                           |
-| `info`                    | Visualizza le informazioni sul pacchetto.                                   |
+| `info "Informazione"`     | Visualizza le informazioni sul pacchetto.                                   |
 | `autoremove`              | Rimuove tutti i pacchetti installati come dipendenze, ma non più necessari. |
 
 
