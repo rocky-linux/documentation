@@ -26,12 +26,12 @@ Documents written by the _rocky linux documentation team_ are published under th
 * **BY**: Attribution. You must cite the name of the original author.
 * **SA**: Share Alike.
 
-Creative Commons-BY-SA license: https://creativecommons.org/licenses/by-sa/4.0/
+[Creative Commons-BY-SA license](https://creativecommons.org/licenses/by-sa/4.0/)
 
 The documents and their sources are freely downloadable from:
 
-* https://docs.rockylinux.org/
-* https://github.com/rocky-linux/documentation
+* [https://docs.rockylinux.org](https://docs.rockylinux.org/)
+* [https://github.com/rocky-linux/documentation](https://github.com/rocky-linux/documentation)
 
 Our media sources are hosted at github.com. You'll find the source code repository where the version of this document was created.
 
