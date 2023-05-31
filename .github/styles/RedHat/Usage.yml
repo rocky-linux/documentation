@@ -1,0 +1,152 @@
+---
+extends: existence
+ignorecase: true
+level: suggestion
+link: https://redhat-documentation.github.io/vale-at-red-hat/docs/main/reference-guide/usage/
+message: "Verify your use of '%s' with the word usage guidelines."
+# source: "https://redhat-documentation.github.io/supplementary-style-guide/#glossary-terms-conventions; IBM - Appendix C. Word usage, p. 300"
+tokens:
+  - "pop-up (?:help|menu)"
+  - "redbook(:s)?"
+  - above
+  - across
+  - actionable
+  - allow
+  - alpha
+  - alphabetic
+  - alphabetical
+  - architect
+  - architected
+  - as well as
+  - assembler
+  - attach
+  - below
+  - best-of-breed
+  - billion
+  - bitness
+  - black box
+  - board
+  - both
+  - bring up
+  - business partner
+  - cache
+  - carry out
+  - catch
+  - central processing unit
+  - check
+  - choose
+  - combination box
+  - combo box
+  - command console
+  - Common Base Event
+  - complete
+  - congratulations
+  - connect
+  - consumability
+  - consume
+  - could
+  - customers
+  - daughterboard
+  - decompress
+  - decompressed
+  - deploy
+  - designed to
+  - display
+  - domestic
+  - done
+  - either
+  - EPUB
+  - execute
+  - fatal
+  - foo
+  - foobar
+  - foreign
+  - free
+  - freeze
+  - fubar
+  - geography
+  - green screen
+  - guarantee
+  - hard boot
+  - hash
+  - hash sign
+  - higher
+  - hit
+  - hover help
+  - illegal
+  - impact
+  - info center
+  - infocenter
+  - information center
+  - ingest
+  - internationalize
+  - invoke
+  - itself
+  - Java Development Kit # IBM
+  - JDK #IBM
+  - kill
+  - latest
+  - legacy
+  - let
+  - like
+  - lite
+  - localize
+  - look and feel
+  - look-and-feel
+  - "(?<!virtual |Podman )machine(?! learning)"
+  - master and slave
+  - migrate
+  - native
+  - new
+  - once
+  - out-of-the-box
+  - overhead
+  - panel
+  - partner
+  - permit
+  - please
+  - pound sign
+  - program temporary fix
+  - proper
+  - pull-down
+  - quote
+  - quoted
+  - repair
+  - reside
+  - respective
+  - respectively
+  - sanity
+  - select
+  - selected
+  - should
+  - simply
+  - since
+  - slave
+  - so
+  - soft boot
+  - Solution Partnership Centers
+  - store
+  - tab
+  - text entry field
+  - text field
+  - themselves
+  - then
+  - there are
+  - there is
+  - this means
+  - throw
+  - throwable
+  - time to value
+  - time-tested
+  - translate
+  - trillion
+  - twistie
+  - twisty
+  - uncompressed
+  - unmount
+  - updatable
+  - very
+  - we
+  - whether or not
+  - while
+  - would

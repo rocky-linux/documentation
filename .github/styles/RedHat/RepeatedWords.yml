@@ -1,0 +1,10 @@
+---
+extends: repetition
+message: "'%s' is repeated!"
+level: warning
+link: https://redhat-documentation.github.io/vale-at-red-hat/docs/main/reference-guide/repeatedwords/
+ignorecase: false
+alpha: true
+tokens:
+  - '[^\s\.]+'
+  - '[^\s]+'

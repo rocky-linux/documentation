@@ -1,0 +1,22 @@
+---
+extends: substitution
+ignorecase: true
+level: warning
+link: https://redhat-documentation.github.io/vale-at-red-hat/docs/main/reference-guide/termswarnings/
+message: "Consider using '%s' rather than '%s' unless updating existing content that uses the term."
+# source: "https://redhat-documentation.github.io/supplementary-style-guide/#glossary-terms-conventions; IBM - Appendix C. Word usage, p. 300"
+action:
+  name: replace
+swap:
+  CRUD: create, retrieve, update, and delete (CRUD)
+  "I(?!/O)": you
+  he|she: you
+  host name: hostname
+  may: might (for possiblity)|can (for ability)
+  on-premises|on-prem|on premise: on-premise|on-site|in-house
+  entitlement: repository|subscription
+  plug-in: plugin
+  sane: accurate|valid|verified
+  tooling: tool|tools
+  via: through|by|from|on|by using
+  BIOS: firmware
