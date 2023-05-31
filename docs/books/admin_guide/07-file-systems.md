@@ -102,7 +102,7 @@ sudo fdisk -l /dev/sdc2
 
 ### `parted` command
 
-The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`, so we recommend that you use the `parted` command instead of `fdisk`.
+It is recommended that you use `parted` (_partition editor_)  command more often because it partitions disks and eliminates the drawbacks of `fdisk` command.
 
 The `parted` command can be used either on the command-line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
 
