@@ -9,7 +9,7 @@ tags:
 
 # NetworkManager Network configuration tool suite
 
-In 2004, Red Hat launched the **NetworkManager** project, which aims to make it easier for Linux users to meet the needs of current network management, especially the management of wireless networks. Today, the project is managed by GNOME. The homepage of the website is: https://networkmanager.dev/
+In 2004, Red Hat launched the **NetworkManager** project, which aims to make it easier for Linux users to meet the needs of current network management, especially the management of wireless networks. Today, the project is managed by GNOME. The [homepage for NetworkManager can be found here](https://networkmanager.dev/).
 
 Official introduction - NetworkManager is a standard Linux network configuration tool suite. It supports various network settings from desktop to server and mobile devices, and is perfectly integrated with popular desktop environments and server configuration management tools.
 
@@ -38,7 +38,7 @@ NAME    UUID                                  TYPE      DEVICE
 ens160  25106d13-ba04-37a8-8eb9-64daa05168c9  ethernet  ens160
 ```
 
-For RockyLinux 8.x, we introduced how to configure its network [here](./nmtui.md). You can use `vim` to edit the network card configuration file in the **/etc/sysconfig/network-script/** directory, or you can use `nmcli`/`nmtui`, both of which are acceptable.
+For RockyLinux 8.x, we introduced how to configure its network [in this document](./nmtui.md). You can use `vim` to edit the network card configuration file in the **/etc/sysconfig/network-script/** directory, or you can use `nmcli`/`nmtui`, both of which are acceptable.
 
 ## Naming rules for udev device Manager
 
@@ -134,7 +134,7 @@ Shell > nmcli connection modify CONNECTION_NAME autoconnect yes ipv6.method dhcp
 
 #### Link aggregation
 
-Some use multiple network cards for link aggregation. In the early days, using **bonding** technology, there were seven working modes (0~6), and the bond mode only supported two network cards at most; Later, the **teaming** technology is gradually used as an alternative, there are five working modes, and the team mode can use up to eight network cards. Comparison link between bonding and teaming——https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding
+Some use multiple network cards for link aggregation. In the early days, using **bonding** technology, there were seven working modes (0~6), and the bond mode only supported two network cards at most; Later, the **teaming** technology is gradually used as an alternative, there are five working modes, and the team mode can use up to eight network cards. Comparison link between bonding and teaming [can be found on this link](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding).
 
 For example, the 0 mode of bonding:
 
@@ -144,7 +144,11 @@ Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME1   mas
 Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   master  BOND_NIC_DEVICE_NAME
 ```
 
-## Configuration file of the network card (it is not recommended to modify it by means of vim, etc.)
+## Network card configuration
+
+!!! warning
+
+    It is not recommended to make changes to this by means of `vim` or other editors.
 
 You can view more detailed information through `man 5 NetworkManager.conf` and `man 5 nm-settings-nmcli`.
 
