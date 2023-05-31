@@ -102,7 +102,7 @@ sudo fdisk -l /dev/sdc2
 
 ### `parted` command
 
-The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`. We recommend that you use the `parted` command instead.
+The `parted` (_partition editor_) command is able to partition a disk and it solves the shortcomings of `fdisk`. That is why the `parted` command is recommended instead.
 
 The `parted` command can be used either on the command-line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
 
@@ -114,7 +114,7 @@ Under graphical interface, there is the very complete `gparted` tool: *G*nome *P
 
 The `gparted -l` command lists all logical devices on a computer.
 
-The `gparted` command alone will return to an interactive mode with its own internal options:
+The `gparted` command, when run without any arguments, will return an interactive mode showing its internal options:
 
 * `help` or an incorrect command will display these options.
 * `print all` in this mode will have the same result as `gparted -l` on the command line.
