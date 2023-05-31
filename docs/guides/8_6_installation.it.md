@@ -22,7 +22,7 @@ https://www.rockylinux.org/download/
 Per scaricare l'ISO direttamente dalla riga di comando utilizzare il comando `wget`:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.6/isos/x86_64/Rocky-8.6-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/8.7/isos/x86_64/Rocky-8.7-x86_64-minimal.iso
 ```
 
 Le ISO di Rocky Linux sono denominate seguendo questa convenzione:
@@ -31,7 +31,7 @@ Le ISO di Rocky Linux sono denominate seguendo questa convenzione:
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-Ad esempio, `Rocky-8.6-x86_64-minimal.iso`
+Ad esempio, `Rocky-8.7-x86_64-minimal.iso`
 
 !!! Note "Nota"
 
@@ -44,7 +44,7 @@ Se hai scaricato le ISO di Rocky Linux su una distribuzione Linux esistente, è 
 In primo luogo scaricare il file che contiene i checksum ufficiali per le ISO disponibili. Mentre siete ancora nella cartella che contiene la ISO scaricata di Rocky Linux scaricate il file di checksum per la ISO, digitando:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.6/isos/x86_64/CHECKSUM
+wget https://download.rockylinux.org/pub/rocky/8.7/isos/x86_64/CHECKSUM
 ```
 
 Utilizzare l'utilità `sha256sum` per verificare l'integrità del file ISO contro la corruzione e/o la manomissione.
@@ -56,7 +56,7 @@ sha256sum -c CHECKSUM --ignore-missing
 Questo controllerà l'integrità del file ISO scaricato in precedenza, a condizione che sia nella stessa directory. L'output dovrebbe mostrare:
 
 ```
-Rocky-8.6-x86_64-minimal.iso: OK
+Rocky-8.7-x86_64-minimal.iso: OK
 ```
 
 ## L'Installazione
@@ -253,7 +253,7 @@ Infine, completare la procedura facendo clic sul pulsante <kbd>Reboot System</kb
 
 Il sistema è ora configurato e pronto per l'uso. Vedrete la console Rocky Linux.
 
-![Rocky Linux Schermata Di Benvenuto](images/installation_8.5_F02.png)
+![Rocky Linux Schermata Di Benvenuto](images/installation_8_F02.png)
 
 Per accedere al sistema, digita `rockstar` al prompt di accesso e premi <kbd>Invio</kbd>.
 
