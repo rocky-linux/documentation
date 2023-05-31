@@ -345,7 +345,7 @@ Example:
 
 ### Preparation of the physical media
 
-The preparation with LVM of the physical support is broken down into as follows:
+The preparation with LVM of the physical support is broken down into the following:
 
 * Setting up the physical disk
 * Partitioning of the volumes
