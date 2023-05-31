@@ -33,11 +33,13 @@ This is everything you'll need:
 * Some comfort with doing things on the command line, and a terminal-based text editor like `nano` installed.
 
     !!! tip "In a pinch"
+
         ... you could use something like Filezilla or WinSCP — and a regular GUI-based text editor — to replicate most of these steps, but we'll be doing things the nerdy way in this tutorial.
 
 * At least one domain pointed at your server for one of the test websites. You can use either a second domain or a subdomain for the other.
 
     !!! tip
+
         If you're doing all of this on a local server, adjust your hosts file as necessary to create simulated domain names. Instructions below.
 
 * We are assuming that you're running Nginx on a bare metal server or regular VPS, and that SELinux is running. All instructions will be compatible with SELinux by default.
