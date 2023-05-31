@@ -26,7 +26,7 @@ Thanks to the Rocky Linux development team, there are now live images for severa
 ## Get, Verify, and Write the KDE Live Image
 
 Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest KDE image in the download section 
-for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.1/live/x86_64/). 
+for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.2/live/x86_64/). 
 
 Note that this particular link assumes x86_64 as your processor architecture. If you have aarch64 architecture, you can use that image instead. Download both the live image and checksum files. 
 

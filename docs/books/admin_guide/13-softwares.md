@@ -415,7 +415,7 @@ Repo-pkgs          : 1,650
 Repo-available-pkgs: 1,107
 Repo-size          : 6.4 G
 Repo-mirrors       : https://mirrors.rockylinux.org/mirrorlist?arch=aarch64&repo=PowerTools-8
-Repo-baseurl       : https://mirror2.sandyriver.net/pub/rocky/8.7/PowerTools/x86_64/os/ (30 more)
+Repo-baseurl       : https://mirror2.sandyriver.net/pub/rocky/8.8/PowerTools/x86_64/os/ (30 more)
 Repo-expire        : 172,800 second(s) (last: Tue 22 Mar 2022 05:49:24 PM CET)
 Repo-filename      : /etc/yum.repos.d/Rocky-PowerTools.repo
 ...

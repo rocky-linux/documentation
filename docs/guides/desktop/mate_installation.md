@@ -29,7 +29,7 @@ This procedure is designed to get you up and running with Rocky Linux using MATE
 
     ### 9: Get, Verify, and Write the MATE Live Image
 
-    Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest MATE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.1/live/x86_64/). Note this particular link assumes x86_64 as your architecture, and as of this writing, that is the only architecture this particular live image is available for. Download both the live image and checksum files. 
+    Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest MATE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.2/live/x86_64/). Note this particular link assumes x86_64 as your architecture, and as of this writing, that is the only architecture this particular live image is available for. Download both the live image and checksum files. 
 
     Now verify the image with the CHECKSUM file using the following 
     (note this is an example! Make sure your image name and CHECKSUM files match): 
