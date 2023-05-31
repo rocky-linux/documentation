@@ -102,7 +102,7 @@ sudo fdisk -l /dev/sdc2
 
 ### comando `parted`
 
-Il comando `parted`_(partition editor_) è in grado di partizionare un disco e risolve i difetti di `fdisk`. Si consiglia invece di utilizzare il comando `parted`.
+Il comando `parted` (_partition editor_) è in grado di partizionare un disco e risolve le carenze di `fdisk`, quindi si consiglia di usare il comando `parted` invece di `fdisk`.
 
 Il comando `parted` può essere usato sia dalla riga di comando che in modo interattivo. Dispone inoltre di una funzione di recupero in grado di riscrivere una tabella di partizione cancellata.
 
@@ -345,7 +345,7 @@ Esempio:
 
 ### Preparazione dei supporti fisici
 
-La preparazione con LVM del supporto fisico è suddivisa come segue:
+La preparazione con LVM del supporto fisico si articola come segue:
 
 * Impostazione del disco fisico
 * Partizione dei volumi
