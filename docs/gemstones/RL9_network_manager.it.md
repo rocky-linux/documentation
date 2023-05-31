@@ -9,7 +9,7 @@ tags:
 
 # NetworkManager Suite di strumenti per la configurazione della rete
 
-Nel 2004, Red Hat ha lanciato il progetto **NetworkManager**, che mira a rendere più facile per gli utenti Linux soddisfare le esigenze di gestione delle reti attuali, in particolare la gestione delle reti wireless. Oggi il progetto è gestito da GNOME. La homepage del sito è: https://networkmanager.dev/
+Nel 2004, Red Hat ha lanciato il progetto **NetworkManager**, che mira a rendere più facile per gli utenti Linux soddisfare le esigenze di gestione delle reti attuali, in particolare la gestione delle reti wireless. Oggi il progetto è gestito da GNOME. La [homepage di NetworkManager si trova qui](https://networkmanager.dev/).
 
 Introduzione ufficiale - NetworkManager è una suite di strumenti standard per la configurazione della rete Linux. Supporta diverse impostazioni di rete, dal desktop al server e ai dispositivi mobili, ed è perfettamente integrato con i più diffusi ambienti desktop e strumenti di gestione della configurazione dei server.
 
@@ -38,7 +38,7 @@ NAME    UUID                                  TYPE      DEVICE
 ens160  25106d13-ba04-37a8-8eb9-64daa05168c9  ethernet  ens160
 ```
 
-Per RockyLinux 8.x, abbiamo presentato [qui](./nmtui.md) come configurare la rete. Si può usare `vim` per modificare il file di configurazione della scheda di rete nella directory **/etc/sysconfig/network-script/**, oppure si può usare `nmcli`/`nmtui`, entrambi utilizzabili.
+Per RockyLinux 8.x, abbiamo introdotto come configurare la rete [in questo documento](./nmtui.md). Si può usare `vim` per modificare il file di configurazione della scheda di rete nella directory **/etc/sysconfig/network-script/**, oppure si può usare `nmcli`/`nmtui`, entrambi utilizzabili.
 
 ## Regole di denominazione per udev device Manager
 
@@ -133,7 +133,7 @@ Shell > nmcli connection modify CONNECTION_NAME autoconnect yes ipv6.method dhcp
 
 #### Aggregazione dei collegamenti
 
-Alcuni utilizzano più schede di rete per l'aggregazione dei collegamenti. All'inizio, utilizzando la tecnologia **bonding**, c'erano sette modalità di lavoro (0~6) e la modalità bond supportava solo due schede di rete al massimo; in seguito, la tecnologia **teaming** è stata gradualmente utilizzata come alternativa, ci sono cinque modalità di lavoro e la modalità team può utilizzare fino a otto schede di rete. Confronto tra legame e teaming--https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding
+Alcuni utilizzano più schede di rete per l'aggregazione dei collegamenti. All'inizio, utilizzando la tecnologia **bonding**, c'erano sette modalità di lavoro (0~6) e la modalità bond supportava solo due schede di rete al massimo; in seguito, la tecnologia **teaming** è stata gradualmente utilizzata come alternativa, ci sono cinque modalità di lavoro e la modalità team può utilizzare fino a otto schede di rete. Il link di confronto tra bonding e teaming [può essere trovato a questo link](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding).
 
 Ad esempio, la modalità 0 di bonding:
 
@@ -143,7 +143,11 @@ Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME1   mas
 Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   master  BOND_NIC_DEVICE_NAME
 ```
 
-## File di configurazione della scheda di rete (si sconsiglia di modificarlo con vim, ecc.)
+## Configurazione della scheda di rete
+
+!!! warning "Attenzione"
+
+    Non è consigliabile apportare modifiche con `vim` o altri editor.
 
 Informazioni più dettagliate sono disponibili in `man 5 NetworkManager.conf` e `man 5 nm-settings-nmcli`.
 
@@ -177,7 +181,7 @@ method=disabled
 * Racchiusa tra [ e ] c'è la sezione che intende dichiarare il titolo e sotto di essa ci sono le coppie chiave-valore specifiche contenute. Ogni titolo dichiarato e la sua coppia chiave-valore formano un segmento di sintassi;
 * Qualsiasi file con il suffisso .nmconnection può essere utilizzato da **NetworkManager**.
 
-i nomi dei titoli delle **connessioni** possono contenere queste coppie chiave-valore comuni:
+I nomi dei titoli di **connessione** possono contenere queste coppie chiave-valore comuni:
 
 | nome della chiave | descrizione                                                                                                                                                                 |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
