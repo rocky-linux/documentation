@@ -144,7 +144,11 @@ Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME1   mas
 Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   master  BOND_NIC_DEVICE_NAME
 ```
 
-## Configuration file of the network card (it is not recommended to modify it by means of vim, etc.)
+## Network card configuration
+
+!!! warning
+
+    It is not recommended to make changes to this by means of `vim` or other editors.
 
 You can view more detailed information through `man 5 NetworkManager.conf` and `man 5 nm-settings-nmcli`.
 
