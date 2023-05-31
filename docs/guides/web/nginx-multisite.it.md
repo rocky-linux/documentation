@@ -32,13 +32,16 @@ Questo è tutto ciò di cui hai bisogno:
 * Un server Rocky Linux collegato a internet, con Nginx già in esecuzione. Se non siete arrivati a questo punto, potete seguire prima la nostra [guida all'installazione di Nginx](nginx-mainline.md).
 * Una certa familiarità con le operazioni dalla riga di comando e di un editor di testo basato su terminale come `nano`.
 
-    !!! hint "In un attimo"
-      ... si potrebbe usare qualcosa come Filezilla o WinSCP - e un normale editor di testo basato su GUI - per replicare la maggior parte di questi passaggi, ma in questo tutorial faremo le cose alla maniera dei nerd.
+    !!! tip "In a pinch"
+  
+        ... si potrebbe usare qualcosa come Filezilla o WinSCP - e un normale editor di testo basato su GUI - per replicare la maggior parte di questi passaggi, ma in questo tutorial faremo le cose alla maniera dei nerd.
 
 * Almeno un dominio puntato sul vostro server per uno dei siti web di prova. È possibile utilizzare un secondo dominio o un sottodominio per l'altro.
 
     !!! hint "Suggerimento"
-      Se si esegue tutto questo su un server locale, modificare il file hosts come necessario per creare nomi di dominio simulati. Istruzioni qui sotto.
+      Se si esegue tutto questo su un server locale, modificare il file hosts come necessario per creare nomi di dominio simulati.
+  
+        Se si esegue tutto questo su un server locale, modificare il file hosts come necessario per creare nomi di dominio simulati. Istruzioni qui sotto.
 
 * Si presume che Nginx sia in esecuzione su un server bare metal o su un normale VPS e che SELinux sia in esecuzione. Tutte le istruzioni saranno compatibili con SELinux per impostazione predefinita.
 * *Tutti i comandi devono essere eseguiti come root,* sia accedendo come utente root, sia usando `sudo`.
