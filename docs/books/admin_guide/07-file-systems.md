@@ -102,7 +102,7 @@ sudo fdisk -l /dev/sdc2
 
 ### `parted` command
 
-The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`. We recommend that you use the `parted` command instead.
+The `parted` (_partition editor_) command is able to partition a disk, it solves the shortcomings of `fdisk`, so we recommend that you use the `parted` command instead of `fdisk`.
 
 The `parted` command can be used either on the command-line or interactively. It also has a recovery function capable of rewriting a deleted partition table.
 
@@ -345,7 +345,7 @@ Example:
 
 ### Preparation of the physical media
 
-The preparation with LVM of the physical support is broken down as follows:
+The preparation with LVM of the physical support is broken down into the following:
 
 * Setting up the physical disk
 * Partitioning of the volumes
