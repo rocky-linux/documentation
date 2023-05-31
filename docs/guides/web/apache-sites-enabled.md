@@ -17,6 +17,7 @@ tags:
 * Knowledge of the command-line and text editors (This example uses *vi*, but can be adapted to your favorite editor.)
 
     !!! tip
+
         If you'd like to learn about the vi text editor, [here's a handy tutorial](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
 
 * Basic knowledge about installing and running web services
