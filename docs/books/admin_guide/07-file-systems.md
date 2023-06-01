@@ -159,7 +159,7 @@ The preparation, without _LVM_, of the physical media goes through five steps:
 
 ## Logical Volume Manager (LVM)
 
-**L**ogical **V**olume **M**anager (*LVM]*)
+**L**ogical **V**olume **M**anager (*LVM*)
 
 The partition created by the **standard partition** cannot dynamically adjust the resources of the hard disk, once the partition is mounted, the capacity is completely fixed, this constraint is unacceptable on the server. Although the standard partition can be forcibly expanded or shrunk through certain technical means, it is easy to cause data loss. LVM can solve this problem very well. LVM is available under Linux from kernel version 2.4, and its main features are:
 
@@ -468,7 +468,7 @@ Its size corresponds to the rest of the available space of the partition. This a
 
 These tables are written to the hard disk when the system is shut down.
 
-!!! Danger
+!!! danger "Attention" 
 
     In the event of a sudden stop, the file system may lose its consistency and cause data loss.
 
@@ -519,7 +519,7 @@ Text document, directory, binary, partition, network resource, screen, keyboard,
 
 Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) which defines the names of folders and their roles.
 
-| Directory  | Observation                                                   | Abbreviation of               |
+| Directory  | Functionality                                                 | Abbreviation of               |
 |------------|---------------------------------------------------------------|-------------------------------|
 | `/`        | Contains special directories                                  |                               |
 | `/boot`    | Files related to system startup                               |                               |
@@ -962,7 +962,7 @@ This behavior is defined by the **default mask**.
 
 The principle is to remove the value defined by the mask at maximum rights without the execution right.
 
-For a directory :
+For a directory:
 
 ![How the SUID works](images/07-file-systems-017.png)
 
