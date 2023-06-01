@@ -31,13 +31,13 @@ When a program runs, the system will create a process by placing the program dat
 
 Each process has:
 
-* a _PID_: _**P**rocess **ID**entifier_, a unique process identifier;
-* a _PPID_: _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process.
+* a _PID_: _**P**rocess **ID**entifier_, a unique process identifier
+* a _PPID_: _**P**arent **P**rocess **ID**entifier_, unique identifier of parent process
 
 By successive filiations, the `init` process is the father of all processes.
 
-* A process is always created by a parent process;
-* A parent process can have multiple child processes.
+* A process is always created by a parent process
+* A parent process can have multiple child processes
 
 There is a parent/child relationship between processes. A child process is the result of the parent process calling the _fork()_ primitive and duplicating its own code to create a child. The _PID_ of the child is returned to the parent process so that it can talk to it. Each child has its parent's identifier, the _PPID_.
 
@@ -120,15 +120,15 @@ The behaviour of the control can be fully customized:
 
 The user process:
 
-* is started from a terminal associated with a user;
-* accesses resources via requests or daemons.
+* is started from a terminal associated with a user
+* accesses resources via requests or daemons
 
-The system process (_demon_):
+The system process (_daemon_):
 
-* is started by the system;
-* is not associated with any terminal, and is owned by a system user (often `root`);
-* is loaded at boot time, resides in memory, and is waiting for a call;
-* is usually identified by the letter `d` associated with the process name.
+* is started by the system
+* is not associated with any terminal, and is owned by a system user (often `root`)
+* is loaded at boot time, resides in memory, and is waiting for a call
+* is usually identified by the letter `d` associated with the process name
 
 System processes are therefore called daemons (_**D**isk **A**nd **E**xecution **MON**itor_).
 
@@ -148,18 +148,18 @@ A process cannot be run indefinitely, as this would be to the detriment of other
 
 The total processing time available is therefore divided into small ranges, and each process (with a priority) accesses the processor in a sequenced manner. The process will take several states during its life among the states:
 
-* ready: waiting for the availability of the process;
-* in execution: accesses the processor;
-* suspended: waiting for an I/O (input/output);
-* stopped: waiting for a signal from another process;
-* zombie: request for destruction;
-* dead: the father of the process kills his son.
+* ready: waiting for the availability of the process
+* in execution: accesses the processor
+* suspended: waiting for an I/O (input/output)
+* stopped: waiting for a signal from another process
+* zombie: request for destruction
+* dead: the parent process ends the child process
 
-The end of process sequencing is as follows:
+The end-of-process sequencing is as follows:
 
-1. Closing of the open files;
-2. Release of the used memory;
-3. Sending a signal to the parent and child processes.
+1. Closing of the open files
+2. Release of the used memory
+3. Sending a signal to the parent and child processes
 
 When a parent process dies, its children are said to be orphans. They are then adopted by the `init` process which will destroy them.
 
@@ -180,9 +180,9 @@ Processes can run in two ways:
 
 The constraints of the asynchronous mode:
 
-* the command or script must not wait for keyboard input;
-* the command or script must not return any result on the screen;
-* quitting the shell ends the process.
+* the command or script must not wait for keyboard input
+* the command or script must not return any result on the screen
+* quitting the shell ends the process
 
 ## Process management controls
 
@@ -232,7 +232,7 @@ $ nohup myprogram.sh 0</dev/null &
 
 `nohup` ignores the `SIGHUP` signal sent when a user logs out.
 
-!!! Note "Question"
+!!! Note
 
     `nohup` handles standard output and error, but not standard input, hence the redirection of this input to `/dev/null`.
 
@@ -289,11 +289,11 @@ $ jobs
 
 The columns represent:
 
-1. job number;
-2. the order in which the processes run
-- a `+` : this process is the next process to run by default with `fg` or `bg` ;
-- a `-` : this process is the next process to take the `+` ;
-3.  _Running_ (running process) or _Stopped_ (suspended process).
+1. job number
+2. the order that the processes run
+- a `+` : this process is the next process to run by default with `fg` or `bg`  
+- a `-` : this process is the next process to take the `+`   
+3.  _Running_ (running process) or _Stopped_ (suspended process)  
 4. the command
 
 ### `nice` and `renice` commands
