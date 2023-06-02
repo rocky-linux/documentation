@@ -1,5 +1,5 @@
 ---
-title: Apache multiple site
+title: Apache Multiple Site
 author: Steven Spencer
 contributors: Ezequiel Bruni
 tested with: 8.5, 8.6, 9.0
@@ -14,7 +14,7 @@ tags:
 ## What you need
 
 * A server running Rocky Linux
-* Knowledge of the command-line and text editors. This example uses *vi*, but use your favorite editor.
+* Knowledge of the command-line and text editors. This example uses *vi*, but feel free to use your favorite editor.
 
     !!! tip
 
@@ -28,10 +28,10 @@ Rocky Linux has many ways for you to set up a website. This is just one method, 
 
 Historical fact: This server setup appears to have started with Debian-based systems, but it is perfectly adaptable to any Linux operating system running Apache.
 
-For those looking for a similar setup for Nginx, take a [examine this guide.](nginx-multisite.md)
+For those looking for a similar setup for Nginx, [examine this guide](nginx-multisite.md).
 
 ## Install Apache
-You'll likely need other packages for your website, such as PHP, database, or other packages. Installing PHP along with `http` will get you the most recent version from the Rocky Linux repositories.
+You will likely need other packages for your website, such as PHP, database, or other packages. Installing PHP along with `http` will get you the most recent version from the Rocky Linux repositories.
 
 Just remember that you may need modules, such as `php-bcmath` or `php-mysqlind`. Your web application specifications will dictate what you need. You can install these when needed. For now, you will install `http` and PHP, as those are almost a forgone conclusion:
 
