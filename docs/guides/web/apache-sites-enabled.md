@@ -31,7 +31,7 @@ Historical fact: This server setup appears to have started with Debian-based sys
 For those looking for a similar setup for Nginx, [examine this guide](nginx-multisite.md).
 
 ## Install Apache
-You woll likely need other packages for your website, such as PHP, database, or other packages. Installing PHP along with `http` will get you the most recent version from the Rocky Linux repositories.
+You will likely need other packages for your website, such as PHP, database, or other packages. Installing PHP along with `http` will get you the most recent version from the Rocky Linux repositories.
 
 Just remember that you may need modules, such as `php-bcmath` or `php-mysqlind`. Your web application specifications will dictate what you need. You can install these when needed. For now, you will install `http` and PHP, as those are almost a forgone conclusion:
 
