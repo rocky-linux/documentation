@@ -13,14 +13,14 @@ tags:
 
 ## What you need
 
-* A server running Rocky Linux.
+* A server running Rocky Linux
 * Knowledge of the command-line and text editors. This example uses *vi*, but feel free to use your favorite editor.
 
     !!! tip
 
         If you'd like to learn about the vi text editor, [here's a handy tutorial](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
 
-* Basic knowledge about installing and running web services.
+* Basic knowledge about installing and running web services
 
 ## Introduction
 
@@ -28,10 +28,10 @@ Rocky Linux has many ways for you to set up a website. This is just one method, 
 
 Historical fact: This server setup appears to have started with Debian-based systems, but it is perfectly adaptable to any Linux operating system running Apache.
 
-For those looking for a similar setup for Nginx, take a  [examine this guide](nginx-multisite.md).
+For those looking for a similar setup for Nginx, [examine this guide](nginx-multisite.md).
 
 ## Install Apache
-You'll likely need other packages for your website, such as PHP, database, or other packages. Installing PHP along with `http` will get you the most recent version from the Rocky Linux repositories.
+You woll likely need other packages for your website, such as PHP, database, or other packages. Installing PHP along with `http` will get you the most recent version from the Rocky Linux repositories.
 
 Just remember that you may need modules, such as `php-bcmath` or `php-mysqlind`. Your web application specifications will dictate what you need. You can install these when needed. For now, you will install `http` and PHP, as those are almost a forgone conclusion:
 
@@ -43,7 +43,7 @@ dnf install httpd php
 
 ## Add extra directories
 
-This method uses a couple of additional directories, but they do not currently exist on the system. You need to add two directories in */etc/httpd/* called "sites-available" and "sites-enabled".
+This method uses a couple of additional directories, but they do not currently exist on the system. You need to add two directories in */etc/httpd/* called "sites-available" and "sites-enabled."
 
 From the command-line enter: 
 
@@ -190,7 +190,7 @@ You want them to go to port 443 (or "`http` secure", better known as SSL/TLS or 
 </VirtualHost>
 ```
 
-What this says is to send any regular web request to the `https` configuration instead. The apache "Redirect" option shown is temporary. When testing is complete and you can see that the site is running as expected, you can change this to "Redirect permanent".
+What this says is to send any regular web request to the `https` configuration instead. The apache "Redirect" option shown is temporary. When testing is complete and you can see that the site is running as expected, you can change this to "Redirect permanent."
 
 A permanent redirect will teach the search engines, and soon any traffic to your site that comes from search engines will go only to port 443 (`https`) without hitting port 80 (`http`) first.
 
