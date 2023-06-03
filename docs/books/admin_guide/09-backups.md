@@ -257,7 +257,7 @@ Example:
 
 | Key | Description                       |
 |-----|-----------------------------------|
-| `P` |	Create a backup in absolute mode. |
+| `P` |	Creates a backup in absolute mode. |
 
 
 !!! Warning
@@ -465,7 +465,7 @@ $ tar xvfP /backups/etc.133.P.tar
 
 | Key | 	Description                                       |
 |------|----------------------------------------------------|
-| `x`  |	Extract files from the backup, compressed or not. |
+| `x`  |	Extracts files from the backup, compressed or not. |
 
 
 Extracting a _tar-gzipped_ (`*.tar.gz`) backup is done with the `xvfz` keys:
@@ -546,8 +546,8 @@ To perform a backup with `cpio`, you have to specify a list of files to backup.
 
 This list is provided with the commands `find`, `ls` or `cat`.
 
-* `find` : browse a tree, recursive or not;
-* `ls` : list a directory, recursive or not;
+* `find` : browses a tree, recursive or not;
+* `ls` : lists a directory, recursive or not;
 * `cat` : reads a file containing the trees or files to be saved.
 
 !!! Note
@@ -704,7 +704,7 @@ $ cpio -iv </backups/etc.152.cpio | less
 
 | Options                      | Description                                                         |
 |------------------------------|---------------------------------------------------------------------|
-| `-i`                         | Restore a complete backup.                                          |
+| `-i`                         | Restores a complete backup.                                          |
 | `-E file`                    | Restores only the files whose name is contained in file.            |
 | `--make-directories` or `-d` | Rebuilds the missing tree structure.                                |
 | `-u`                         | Replaces all files even if they exist.                              |
