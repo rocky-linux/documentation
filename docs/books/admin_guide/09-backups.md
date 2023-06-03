@@ -596,7 +596,7 @@ Backup to a media:
 $ find /etc | cpio -ov > /dev/rmt0
 ```
 
-The support can be of several types:
+The media can be of several types:
 
 * tape drive: `/dev/rmt0`;
 * a partition: `/dev/sda5`, `/dev/hda5`, etc.
