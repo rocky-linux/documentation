@@ -110,7 +110,7 @@ The commands we will use here are `tar` and `cpio`.
   * retains owners;
   * retains groups, dates and rights;
   * skips damaged files;
-  * complete file system.
+  * entire file system.
 
 !!! Note
 
@@ -204,7 +204,7 @@ $ tar cjf - /directory/to/backup/ | wc -c
 
 Here is an example of a naming convention for a `tar` backup, knowing that the date is to be added to the name.
 
-| keys    | Files   | Suffix           | Observation                                  |
+| keys    | Files   | Suffix           | Functionality                                |
 |---------|---------|------------------|----------------------------------------------|
 | `cvf`   | `home`  | `home.tar`       | `/home` in relative mode, uncompressed form  |
 | `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in absolute mode, no compression      |
@@ -437,7 +437,7 @@ $ tar dfj file_name.tar.bz2
 
 #### Extract (_untar_) a backup
 
-Extract (_untar]_) a ``*.tar`` backup is done with the `xvf` keys:
+Extract (_untar_) a ``*.tar`` backup is done with the `xvf` keys:
 
 Extract the `etc/exports` file from the `/savings/etc.133.tar` backup into the `etc` directory of the active directory:
 
@@ -521,7 +521,7 @@ $ tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 
 ##### Extract a group of files from a _tar_ backup using regular expressions (_regex_)
 
-Specify a _regex_ to extract the files matching the specified selection pattern.
+Specify a regular expression (_regex_) to extract the files matching the specified selection pattern.
 
 For example, to extract all files with the extension `.conf`:
 
