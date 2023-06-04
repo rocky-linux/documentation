@@ -27,11 +27,11 @@ nav:
   - admin_guide/04-advanced-commands.uk.md
   - admin_guide/05-vi.uk.md
   - admin_guide/06-users.uk.md
-  - admin_guide/07-file-systems.md
-  - admin_guide/08-process.md
-  - admin_guide/09-backups.md
-  - admin_guide/10-boot.md
-  - admin_guide/11-tasks.md
+  - admin_guide/07-file-systems.uk.md
+  - admin_guide/08-process.uk.md
+  - admin_guide/09-backups.uk.md
+  - admin_guide/10-boot.uk.md
+  - admin_guide/11-tasks.uk.md
   - admin_guide/12-network.md
   - admin_guide/13-softwares.md
   - admin_guide/14-special-authority.md
