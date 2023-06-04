@@ -191,6 +191,7 @@ kill [-signal] PID
 ```
 
 Приклад:
+
 ```
 $ kill -9 1664
 ```Перервати процес (<kbd>CTRL</kdb> + <kdb>D</kdb>)</td> </tr> 
