@@ -195,6 +195,7 @@ kill [-signal] PID
 ```
 
 Example:
+
 ```
 $ kill -9 1664
 ```
@@ -202,7 +203,7 @@ $ kill -9 1664
 | Code | Signal    | Description                                            |
 |------|-----------|--------------------------------------------------------|
 | `2`  | _SIGINT_  | Immediate termination of the process                   |
-| `9`  | _SIGKILL_ | Interrupt the process (<kbd>CTRL</kdb> + <kdb>D</kdb>) |
+| `9`  | _SIGKILL_ | Interrupt the process (<kbd>CTRL</kbd> + <kbd>D</kbd>) |
 | `15` | _SIGTERM_ | Clean termination of the process                       |
 | `18` | _SIGCONT_ | Resume the process                                     |
 | `19` | _SIGSTOP_ | Suspend the process                                    |
@@ -226,6 +227,7 @@ nohup command
 ```
 
 Example:
+
 ```
 $ nohup myprogram.sh 0</dev/null &
 ```
@@ -245,6 +247,7 @@ By pressing the <kbd>CTRL</kbd> + <kbd>Z</kbd> keys simultaneously, the synchron
 The `&` statement executes the command asynchronously (the command is then called _job_) and displays the number of _job_. Access to the prompt is then returned.
 
 Example:
+
 ```
 $ time ls -lR / > list.ls 2> /dev/null &
 [1] 15430
@@ -281,6 +284,7 @@ Whether it was put in the background when it was created with the `&` argument o
 The `jobs` command displays the list of processes running in the background and specifies their job number.
 
 Example:
+
 ```
 $ jobs
 [1]- Running    sleep 1000
@@ -305,6 +309,7 @@ nice priority command
 ```
 
 Example:
+
 ```
 $ nice -n+15 find / -name "file"
 ```
@@ -322,6 +327,7 @@ renice priority [-g GID] [-p PID] [-u UID]
 ```
 
 Example:
+
 ```
 $ renice +15 -p 1664
 ```
