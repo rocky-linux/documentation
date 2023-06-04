@@ -249,11 +249,11 @@ To manipulate the history, the following commands entered from the command promp
 
 | Keys               | Function                                                  |
 | ------------------ | --------------------------------------------------------- |
-| <kdb>!!</kdb>      | Recalls the last command placed.                           |
-| <kdb>!n</kdb>      | Recalls the command by its number in the list.             |
-| <kdb>!string</kdb> | Recalls the most recent command beginning with the string. |
-| <kdb>↑</kdb>       | Navigates through your history working backward in time from the most recent command. |
-| <kdb>↓</kdb>       | Navigates through your history working forward in time. |
+| <kbd>!!</kbd>      | Recalls the last command placed.                           |
+| <kbd>!n</kbd>      | Recalls the command by its number in the list.             |
+| <kbd>!string</kbd> | Recalls the most recent command beginning with the string. |
+| <kbd>↑</kbd>       | Navigates through your history working backward in time from the most recent command. |
+| <kbd>↓</kbd>       | Navigates through your history working forward in time. |
 
 ### Auto-complete
 
@@ -1588,7 +1588,7 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 The `;` character strings the commands.
 
-The commands will all run sequentially in the order of input once the user presses <kbd>ENTER</kdb>.
+The commands will all run sequentially in the order of input once the user presses <kbd>ENTER</kbd>.
 
 ```bash
 $ ls /; cd /home; ls -lia; cd /
