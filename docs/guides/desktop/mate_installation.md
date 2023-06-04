@@ -1,7 +1,7 @@
 ---
 title: MATE Desktop
 author: lillolollo, Steven Spencer
-contributors: Steven Spencer, Linus Pinchèvre
+contributors: Steven Spencer, Serge
 tested with: 8.5, 8.6, 9.0
 tags:
   - mate
