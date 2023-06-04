@@ -10,10 +10,10 @@ In this chapter you will learn how the system start.
 **Objectives**: In this chapter, future Linux administrators will learn:
 
 :heavy_check_mark: The different stages of the booting process;   
-:heavy_check_mark: How Rocky Linux supports this boot via GRUB2 and systemd;   
+:heavy_check_mark: How Rocky Linux supports this boot by using GRUB2 and systemd;   
 :heavy_check_mark: How to protect GRUB2 from an attack;   
 :heavy_check_mark: How to manage the services;   
-:heavy_check_mark: How to access to the logs from journald.
+:heavy_check_mark: How to access to the logs from `journald`.
 
 :checkered_flag: **users**
 
@@ -153,9 +153,9 @@ It is developed to:
 
     Systemd is the default initialization system since RedHat/CentOS 7.
 
-Systemd introduces the concept of systemd units.
+Systemd introduces the concept of unit files, also known as systemd units.
 
-| Type         | File extension | Observation                              |
+| Type         | File extension | Functionality                              |
 |--------------|----------------|------------------------------------------|
 | Service unit | `.service`       | System service                           |
 | Target unit  | `.target`        | A group of systemd units                 |
