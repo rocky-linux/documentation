@@ -1010,7 +1010,7 @@ Examples:
 * Lock the ansible version:
 
 ```
-dnf versionlock add ansible
+dnf versionlock add ansible
 Adding versionlock on: ansible-0:6.3.0-2.el9.*
 ```
 
