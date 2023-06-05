@@ -926,7 +926,7 @@ Examples:
 * Download a `.repo` file and use it:
 
 ```
-dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
+dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
 ```
 
 * You can also set an url as a base url for a repo:
