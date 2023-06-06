@@ -144,7 +144,7 @@ Shell > setfacl <option> <FILE_NAME>
 | -k | remove the default ACL  |
 | -R | recurse into subdirectories  |
 
-Use the teacher's teaching example mentioned at the beginning of the article to illustrate the use of ACL.
+Use the teacher's example mentioned at the beginning of the article to illustrate the use of ACL.
 
 ```bash
 # The teacher is the root user
@@ -449,7 +449,7 @@ The role of "Sticky BIT":
 
 SBIT is represented by the number **1**.
 
-Can the file/direcyory have **7755** permission?
+Can the file or directory have **7755** permission?
 No, they are aimed at different objects. SUID is for executable binary files; SGID is used for executable binaries and directories; SBIT is only for directories. That is, you need to set these special permissions according to different objects.
 
 The directory **/tmp** has SBIT permission. The following is an example:
