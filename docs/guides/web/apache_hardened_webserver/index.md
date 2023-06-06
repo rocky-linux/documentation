@@ -95,7 +95,7 @@ Here is what is happening:
     
     !!! note
 
-        Using SFTP is this the best method these days. You can find out how to [securely use SFTP from this document](../../file_sharing/sftp.md).
+        Using SFTP is the best method these days. You can find out how to [securely use SFTP from this document](../../file_sharing/sftp.md).
 
 * finally reload the firewall
 
