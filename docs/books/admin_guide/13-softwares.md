@@ -926,26 +926,26 @@ Examples:
 * Download a `.repo` file and use it:
 
 ```
-dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
+dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
 ```
 
 * You can also set an url as a base url for a repo:
 
 ```
-dnf config-manager --add-repo https://repo.rocky.lan/repo
+dnf config-manager --add-repo https://repo.rocky.lan/repo
 ```
 
 * Enable or disable one or more repos:
 
 ```
-dnf config-manager --set-enabled epel centreon
-dnf config-manager --set-disabled epel centreon
+dnf config-manager --set-enabled epel centreon
+dnf config-manager --set-disabled epel centreon
 ```
 
 * Add a proxy to your config file:
 
 ```
-dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
+dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
 ```
 
 ### `copr` plugin
@@ -963,19 +963,19 @@ copr enable xxxx
 Download rpm package instead of installing it:
 
 ```
-dnf download ansible
+dnf download ansible
 ```
 
 If you just want to obtain the remote location url of the package:
 
 ```
-dnf download --url ansible
+dnf download --url ansible
 ```
 
 Or if you want to also download the dependencies:
 
 ```
-dnf download --resolv --alldeps ansible
+dnf download --resolv --alldeps ansible
 ```
 
 ### `needs-restarting` plugin
@@ -1010,7 +1010,7 @@ Examples:
 * Lock the ansible version:
 
 ```
-dnf versionlock add ansible
+dnf versionlock add ansible
 Adding versionlock on: ansible-0:6.3.0-2.el9.*
 ```
 
