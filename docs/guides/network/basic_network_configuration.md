@@ -9,46 +9,48 @@ tags:
   - network
 ---
 
-# Introduction
+# 简介
 
-You can't do much with a computer these days without network connectivity. Whether you need to update the packages on a server or simply browse external websites from your laptop, you will need network access! This guide aims to provide Rocky Linux users the basic knowledge on setting up network connectivity.
+​	如今，如果没有网络连接，你就无法用电脑做很多事情。无论你是需要更新服务器上的软件包，还是仅仅需要从笔记本电脑上浏览外部网站，你都需要网络连接！本指南旨在为 Rocky Linux 用户提供设置网络连接的基本知识。
 
-## Prerequisites
+## 前提条件
 
-* A certain amount of comfort operating from the command line
-* Elevated or administrative privileges on the system (For example root, `sudo` and so on)
-* Optional: familiarity with networking concepts
+* 熟悉命令行的基本操作
 
-=== "9"
+* 在系统上有较高的权限或管理权限（例如`root`、`sudo`等）。
+
+* 可选：熟悉网络概念
+  
+    === "9"
     
-    ## Network Configuration - Rocky Linux 9
-
-    A lot has changed with network configuration as of Rocky Linux 9. One of the major changes is the move from Network-Scripts (still available to install-but effectively deprecated) to the use of Network Manager and key files, rather than `ifcfg` based files. `NetworkManager` as of 9, prioritizes `keyfiles` over the previous `ifcfg` files. Since this is now the default, the act of configuring the network should now take the default as the proper way of doing things, given that other changes over the years have meant the eventual deprecation and removal of older utilities. This guide will attempt to walk you through the use of Network Manager and the latest changes within Rocky Linux 9. 
-
-    ## Prerequisites
-
-    * A certain amount of comfort operating from the command line
-    * Elevated or administrative privileges on the system (For example root, `sudo` and so on)
-    * Optional: familiarity with networking concepts
-
-    ## Using NetworkManager service
-
-    At the user level, the networking stack is managed by `NetworkManager`. This tool runs as a service, and you can check its state with the following command:
-
+    ## 网络配置 - Rocky Linux 9
+    
+    	Rocky Linux 9 的网络配置发生了很多变化。其中一个主要变化是从Network-Scripts（仍可安装，但已被弃用）转向使用Network Manager和密钥文件，而不是基于`ifcfg`的文件。自Rocky Linux 9以来，`NetworkManager`将优先使用`keyfiles`而非以前的`ifcfg`文件。由于这是现在的默认设置，配置网络应该采用默认设置作为正确的操作方式，因为多年来的其他变化意味着最终会淘汰和删除旧的工具。。本指南将尝试为您介绍如何使用Network Manager以及Rocky Linux 9中的最新变化。
+    
+    ## 前提条件
+    
+    * 熟悉命令行的基本操作
+    * 在系统上有较高的权限或管理权限（例如`root`、`sudo`等）
+    * 可选：熟悉网络概念
+    
+    ## 使用 NetworkManager 服务
+    
+    在用户层面，网络堆栈由`NetworkManager`管理。该工具作为一个服务运行，你可以使用以下命令检查其状态：
+    
     ```bash
     systemctl status NetworkManager
     ```
 
-    ## Configuration files
-
-    As noted at the beginning, the configuration files by default are now key files. You can see how `NetworkManager` prioritizes these files by running the following command:
-
+    ## 配置文件
+    
+    如开头所述，配置文件现在默认为密钥文件。您可以运行以下命令来查看 `NetworkManager` 如何优先处理这些文件：
+    
     ```
     NetworkManager --print-config
     ```
-
-    This gives you output that looks like this:
-
+    
+    这会给你输出类似下面的案例：
+    
     ```
     [main]
     # plugins=keyfile,ifcfg-rh
@@ -57,26 +59,25 @@ You can't do much with a computer these days without network connectivity. Wheth
     # iwd-config-path=
     dhcp=dhclient
     configure-and-quit=no
-
+    
     [logging]
     # backend=journal
     # audit=false
-
+    
     [device]
     # wifi.backend=wpa_supplicant
-
+    
     # no-auto-default file "/var/lib/NetworkManager/no-auto-default.state"
     ```
+    
+    注意在配置文件顶部对 `keyfile` 的引用，后面跟着 `ifcfg-rh`。这意味着 `keyfile` 是默认值。任何时候你运行任何 `NetworkManager` 工具来配置网络接口（例如： `nmcli` 或 `nmtui`），它都会自动构建或更新密钥文件。
+    
+    !!! 提示：“配置存储位置”
 
-    Note at the top of the configuration file the reference to `keyfile` followed by `ifcfg-rh`. This means that `keyfile` is the default. Any time you run any of the `NetworkManager` tools to configure an interface (example: `nmcli` or `nmtui`), it will automatically build or update key files.
-
-    !!! tip "Configuration Storage Location"
-
-        In Rocky Linux 8, the storage location for network configuration was in `/etc/sysconfig/Network-Scripts/`.
-        With Rocky Linux 9, the new default storage location for the key files is in `/etc/NetworkManager/system-connections`. 
-
-    The primary (but not the only) utility used for configuring a network interface is the `nmtui` command. This can also be done with the `nmcli` command, but is much less intuitive. We can show the interface as it is currently configured using `nmcli` with: 
-
+        在 Rocky Linux 8 中，网络配置的存储位置在 `/etc/sysconfig/Network-Scripts/` 中。在 Rocky Linux 9 中，密钥文件的新默认存储位置在 `/etc/NetworkManager/system-connections` 中。
+    
+    用于配置网络接口的主要（但不是唯一）工具是`nmtui`命令。这也可以用`nmcli`命令来完成，但没有那么直观。我们可以用`nmcli`来显示当前配置的网络接口：
+    
     ```
     nmcli device show enp0s3
     GENERAL.DEVICE:                         enp0s3
@@ -99,60 +100,59 @@ You can't do much with a computer these days without network connectivity. Wheth
     IP6.ROUTE[1]:                           dst = fe80::/64, nh = ::, mt = 1024
     ```
 
-
-    !!! tip "**Tips:**"  
-
-        There are a few ways or mechanisms by which systems can be assigned their IP configuration information.
-        The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
+    !!! tip "**科普时间：**"  
+    
+        有几种方法或机制，可以为系统分配其IP配置信息。
+        最常见的两种方法是 **静态 IP 配置** 和 **动态 IP 配置**。
         
-        The static IP configuration scheme is very popular on server class systems or networks.
+        静态IP配置方案在服务器类系统或网络上非常流行。
+        
+        动态 IP 方法在家庭和办公网络或工作站和桌面类系统中很受欢迎。 动态方案通常需要一些额外的东西，这些东西在本地是可用的，并且可以向请求的工作站和桌面提供适当的IP配置信息。这个东西被称为动态主机配置协议（DHCP）。在家庭网络中，甚至在大多数商业网络中，这项服务是由为此目的而配置的DHCP服务器提供的。这可以是一个单独的服务器，也可以是路由器配置的一部分。
+    
+    ## IP 地址
 
-        The dynamic IP approach is popular on home and office networks or workstation and desktop class systems in a business environment.  The dynamic scheme usually needs _something_ extra that is locally available and that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP). On a home network, and even on most business networks, this service is provided by a DHCP Server configured for the purpose. This can be a separate server or part of a router configuration.
-
-    ## IP Address
-
-    In the previous section, the displayed configuration for the interface `enp0s3` is generated from the `.ini` file  `/etc/NetworkManager/system-connections/enp0s3.nmconnection`. This shows that the IP4.ADDRESS[1] has been statically configured, rather than dynamically configured via DHCP. If we want to switch this interface back to a dynamically allocated address, the easiest way is to use the `nmtui` command. 
-
-    1. First, run the `nmtui` command at the command-line which should show you the following
+    在上一节中，显示的网络接口`enp0s3`的配置是从`.ini`文件`/etc/NetworkManager/system-connections/enp0s3.nmconnection`生成的。这表明 IP4.ADDRESS[1] 已经是静态配置的，而不是通过DHCP动态配置的。如果我们想把这个网络接口切换回动态分配的地址，最简单的方法是使用`nmtui`命令。
+    
+    1. 首先，在命令行中运行 `nmtui` 命令，会显示如下内容：
     
         ![nmtui](images/nmtui_first.png)
-
-    2. It's already on the selection we need "Edit a connection" so hit the <kbd>TAB</kbd> key so that "OK" is highlighted and hit <kbd>ENTER</kbd>
-
-    3. This will bring up a screen showing the Ethernet connections on the machine and allow you to choose one. In our case, there is *ONLY* one, so it is already highlighted, we simply need to hit the <kbd>TAB</kbd> key until "Edit" is highlighted and then hit <kbd>ENTER</kbd>
-
-        ![nmtui_edit](images/nmtui_edit.png)
-
-    4. Once we've done this, we will be to the screen that shows our current configuration. What we need to do is switch from "Manual" to "Automatic" so hit the <kbd>TAB</kbd> key several times until you get to where "Manual" is highlighted and then hit <kbd>ENTER</kbd>.
-
-        ![nmtui_manual](images/nmtui_manual.png)
-
-    5. Arrow up until "Automatic" is highlighted and then hit <kbd>ENTER</kbd>
     
-        ![nmtui_automatic](images/nmtui_automatic.png)
-
-    6. Once we have switched the interface over to "Automatic" we need to remove the statically assigned IP so hit the <kbd>TAB</kbd> key until the "Remove" is highlighted next to the IP address and hit <kbd>ENTER</kbd>.
-
+    2. 好了，默认已经在 "Edit a connection 选项上了，直接按 <kbd>TAB</kbd> 键，在高亮部分，并按下 <kbd>ENTER</kbd>
+    
+    3. 这将会显示机器上的以太网连接，并允许你选择其中一个。在默认的情况下，只有 *ONLY*，所以它已经被高亮显示，我们只需要按 <kbd>TAB</kbd> 键，直到 "Edit" 被高亮显示，然后按下 <kbd>ENTER</kbd>
+    
+        ![nmtui_edit](images/nmtui_edit.png)
+    
+    4. 一旦我们这样做了，我们将进入显示当前配置的界面。我们需要做的是从 "Manual" 切换到 "Automatic"，所以按 <kbd>TAB</kbd> 键多次，直到高亮显示 "Manual"，然后按下 <kbd>ENTER</kbd>
+    
+        ![nmtui_manual](images/nmtui_manual.png)
+    
+    5. 键盘上键，直到高亮显示 "Automatic"，然后按下 <kbd>ENTER</kbd>
+    
+        ![nmtui_automatic](basic_network_configuration.zh/nmtui_automatic.png)
+    
+    6. 一旦我们将网络接口切换到 "Automatic"，我们需要删除静态分配的 IP，所以按 <kbd>TAB</kbd> 键，直到在 IP 地址旁边高亮显示 "Remove"，然后按下 <kbd>ENTER</kbd>
+    
         ![nmtui_remove](images/nmtui_remove.png)
-
-    7. Finally, hit the <kbd>TAB</kbd> key several times until you get to the bottom of the `nmtui` screen and the "OK" is highlighted and hit <kbd>ENTER</kbd>
-
-    You can deactivate and reactivate your interface with `nmtui` as well, but instead let's do this with `nmcli`. In this way we can string the deactivation of the interface and the reactivation of the interface so that the interface is never down for long:
-
+    
+    7. 最后，按 <kbd>TAB</kbd> 键多次直到到达 `nmtui` 屏幕底部，"OK" 被高亮显示，然后按下 <kbd>ENTER</kbd>。
+    
+    您也可以使用 `nmtui` 来禁用和启用网络接口，但我们将使用 `nmcli` 来完成此操作。通过这种方式，我们可以将网络接口的禁用和启用串联起来，以便网络接口不会长时间处于离线状态：
+    
     ```
     nmcli con down enp0s3 && nmcli con up enp0s3
     ```
-
-    Think of this as the equivalent to the old `ifdown enp0s3 && ifup enp0s3` used in older versions of the OS.
-
-    To verify that it worked, go ahead and check using either the `ip addr` command, or the `nmcli device show enp0s3` command that we used earlier.
-
+    
+    可以将其视为旧版操作系统中使用的 `ifdown enp0s3 && ifup enp0s3` 的等效操作。
+    
+    为了验证它是否起作用，可以使用之前使用的 `nmcli device show enp0s3` 命令或 `ip addr` 命令进行检查。
+    
     ```
     ip addr
     ```
-
-    If successful, you should now see that the static IP is removed and that a dynamically allocated address has been added, similar to this:
-
+    
+    如果成功，您现在应该看到静态 IP 已被删除，并添加了一个动态分配的地址，类似于以下内容：
+    
     ```bash
     2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 08:00:27:ba:ce:88 brd ff:ff:ff:ff:ff:ff
@@ -161,112 +161,111 @@ You can't do much with a computer these days without network connectivity. Wheth
     inet6 fe80::a00:27ff:feba:ce88/64 scope link noprefixroute 
        valid_lft forever preferred_lft forever
     ```
-
-    ### IP Address Changing with `nmcli`
-
-    Using the `nmtui` is nice, but if you just want to quickly reconfigure the network interface without all of the time between screens, you probably will want to use `nmcli` by itself. Let's take a look at our example above of a statically assigned IP and what the steps are to reconfigure the interface to DHCP using only `nmcli`.
-
-    Before we start, be aware that to reconfigure the interface to DHCP we need to: 
-
-    * Remove the IPv4 Gateway 
-    * Remove the IPv4 Address that we statically assigned
-    * Change the IPv4 Method to automatic
-    * Down and Up the interface
-
-    Note too, that we are not using examples that tell you to use -ipv4.address etc. These do not change the interface completely. In order to do that we need to set the ipv4.address and the ipv4.gateway to an empty string. Again, to save as much time as possible with our command, we are going to string them all together in one line:
-
+    
+    ### 使用 `nmcli` 更改 IP 地址
+    
+    用 `nmtui` 也很不错，但如果您只想快速重新配置网络接口而不需要在界面上花费太多时间，您可以只使用 `nmcli`。我们看一下上面的示例，其中IP地址被设置为静态，以及使用 `nmcli` 将网络接口重新配置为使用 DHCP 的步骤。
+    
+    在开始之前，请注意，要将网络接口重新配置为使用 DHCP，需要执行以下操作：
+    
+    * 删除 IPv4 网关
+    * 删除分配的静态 IPv4 地址
+    * 将 IPv4 类型改为自动
+    * 禁用再启用网络接口
+    
+    还要注意的是，我们没有使用那些告诉你使用 -ipv4.地址等的例子。这些并不能完全改变网络接口。为了做到这一点，我们需要将ipv4.address 和 ipv4.gateway 设置为一个空字符串。同样，为了尽可能节省我们的命令的时间，我们将它们都串联在一起，放在一行中：
+    
     ```
     nmcli con mod enp0s3 ipv4.gateway '' && nmcli con mod enp0s3 ipv4.address '' && nmcli con mod enp0s3 ipv4.method auto && nmcli con down enp0s3 && nmcli con up enp0s3
     ```
-
-    Running the `ip addr` command again, should show you the exact same results as when we ran the changes with `nmtui`. We could obviously do everything in reverse as well (changing our DHCP address to a static one). To do this, we would run the commands in reverse starting with changing the `ipv4.method` to manual, setting the `ipv4.gateway` and then setting the `ipv4.address`. Since in all of these examples we are completely reconfiguring the interface and not adding or subtracting values to it, we again would not use the examples out there that talk about using `+ipv4.method`,`+ipv4.gateway`, and `+ipv4.address`. If you used these commands instead of the ones we have used above, you would end up with an interface with *BOTH* a DHCP assigned address and a statically assigned one. That said, this can sometimes be very handy. If you have a web service listening on one IP lets say, and an SFTP server listening on another IP. Having a method of assigning multiple IP's to an interface is quite useful. 
-
-    ## DNS resolution
-
-    Setting DNS servers can be done with either `nmtui` or `nmcli`. While the `nmtui` interface is easy to navigate and much more intuitive, it makes the process a lot slower. Doing this with the `nmcli` is much faster. In the case of the DHCP assigned address, it's not usually necessary to set DNS servers as they normally are forwarded on from the DHCP server. That said, you *can* statically add DNS servers to a DHCP interface. In the case of the statically assigned interface, you will *HAVE* to do this as it will need to know how to get DNS resolution and will not have an automatically assigned method.
-
-    Since the best example for all of this is a statically assigned IP, let's return to our original statically assigned address in our example interface (enp0s3). Before we can change the DNS values, we need to see what they are currently set to. 
-    To get proper name resolution, let's start by removing our already set DNS servers and adding in different ones. Currently the `ipv4.dns` is set to `8.8.8.8,8.8.4.4,192.168.1.1`. In this case, we don't need to first set the ipv4.dns to an empty string. We can simply use the following command to replace our values: 
-
+    
+    再次运行 `ip addr` 命令，应该会显示与我们用 `nmtui` 进行修改后完全一样的结果。当然，我们也可以反过来做（将 DHCP 地址更改为静态地址）。要做到这一点，我们将反向运行命令，从更改 `ipv4.method` 为 manual 开始，设置 `ipv4.gateway`，然后设置 `ipv4.address`。因为在所有这些例子中，我们完全是在重新配置网络接口，而不是对其进行加减值，因此我们不会使用那些`+ipv4.method`、`+ipv4.gateway` 和 `+ipv4.address` 的示例。如果您使用上述命令而不是示例使用的命令，你将最终得到一个同时具有 DHCP 分配的地址和静态分配的地址的网络接口。两个 IP ，有时候也是非常方便。如果你在一个 IP 上监听 Web 服务，另一个 IP 上监听 SFTP 服务器，则有一种将多个 IP 分配给网络接口的方法非常有用。
+    
+    ## DNS 解析
+    
+    设置DNS服务器可以通过 `nmtui` 或 `nmcli` 完成。虽然 `nmtui` 界面易于导航且更加直观，但它让操作过程复杂了很多。用 `nmcli` 进行此操作就要快得多。对于通过 DHCP 分配的地址，通常不需要设置 DNS 服务器，因为它们通常是由 DHCP 服务器转发过来的。尽管如此，您仍然可以静态添加 DNS 服务器到 DHCP 网络接口中。对于静态分配的网络接口，你将必须这样做，因为它需要知道如何获取 DNS 解析并且不会有自动分配的方法。
+    
+    由于所有这些操作的最佳示例是静态分配的 IP，让我们回到我们示例的网络网络接口（enp0s3）中最初静态分配的地址。在更改 DNS 值之前，我们需要看看它们目前被设置为什么。
+    为了获得正确的 DNS 解析，我们先删除已设置的 DNS 服务器并添加不同的 DNS 服务器。当前的 `ipv4.dns` 被设置为 `8.8.8.8，8.8.4.4,192.168.1.1`。在这种情况下，我们不需要先将 ipv4.dns 设置为空字符串。我们可以使用以下命令替换我们的值：
+    
     ```
     nmcli con mod enp0s3 ipv4.dns '208.67.222.222,208.67.220.220,192.168.1.1'
     ```
-
-    Running `nmcli con show enp0s3 | grep ipv4.dns` should show you that we have successfully changed the DNS servers. To activate everything, let's bring our interface down and up again so that our changes are active:
-
+    
+    运行 `nmcli con show enp0s3 | grep ipv4.dns` 应该会显示我们已成功更改 DNS 服务器。为了使更改生效，让我们将网络接口关闭再重新启动：
+    
     ```
     nmcli con down enp0s3 && nmcli con up enp0s3
     ```
-
-    To test that we *do* in fact have name resolution, try pinging a known host. We will use google.com as an example:
-
+    
+    为了测试是否确实具有域名解析功能，请尝试 ping 已知的主机。我们将以 google.com 为例（看中文文档的用户，建议换成baidu.com）：
+    
     ```bash
     ping google.com
     PING google.com (172.217.4.46) 56(84) bytes of data.
     64 bytes from lga15s46-in-f14.1e100.net (172.217.4.46): icmp_seq=1 ttl=119 time=14.5 ms
     64 bytes from lga15s46-in-f14.1e100.net (172.217.4.46): icmp_seq=2 ttl=119 time=14.6 ms
     64 bytes from lga15s46-in-f14.1e100.net (172.217.4.46): icmp_seq=3 ttl=119 time=14.4 ms
-    ^C
     ```
-
-    ## Using The `ip` Utility
-
-    The `ip` command (provided by the *iproute2* package) is a powerful tool to get information and configure the network of a modern Linux system such as Rocky Linux.
-
-    In this example, we will assume the following parameters:
-
-    * interface name: enp0s3
-    * ip address: 192.168.1.151
-    * subnet mask: 24
-    * gateway: 192.168.1.1
-
-    ### Get general information
-
-    To see the detailed state of all interfaces, use
-
+    
+    ## 使用 `ip` 工具
+    
+    `ip` 命令（由 *iproute2* 包提供）是获取信息和配置 Rocky Linux 等现代 Linux 系统网络的强大工具。
+    
+    在本示例中，我们假设以下参数：
+    
+    * 网络接口名称：enp0s3
+    * IP 地址：192.168.1.151
+    * 子网掩码：24
+    * 网关：192.168.1.1
+    
+    ### 获取常规信息
+    
+    要查看所有网络接口的详细状态，请使用以下命令：
+    
     ```bash
     ip a
     ```
-
-    !!! tip "**Pro tips:**"
-
+    
+    !!! tip "**专业提示：**"
+    
         * use the `-c` flag to get a more readable coloured output: `ip -c a`.
-	    * `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
-
-    ### Bring interface up or down
-
-    !!! note 
-
-        While it is still possible to use this method for bringing the interface up and down in Rocky Linux 9, the command reacts a great deal slower than simply using the `nmcli` command in our previous examples.
-
-    To bring the *enp0s3* down and up again we can simply use: 
-
+        * `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
+    
+    ### 启用或禁用网络接口
+    
+    !!! 注意
+    
+        虽然在 Rocky Linux 9 中仍然可以使用此方法来启用和禁用网络接口，但此命令的反应速度比在前面的示例中简单地使用 `nmcli` 命令要慢得多。
+    
+    要使 *enp0s3* 接口下线并再次上线，我们可以使用以下命令：
+    
     ```
     ip link set enp0s3 down && ip link set enp0s3 up
     ```
-
-    ### Assign the interface a static address
-
-    Currently, our enp0s3 interface has an IP address of 192.168.1.151. To switch that to 192.168.1.152, we would remove the old IP with
-
+    
+    ### 为网络接口分配静态地址
+    
+    目前，我们的 enp0s3 网络接口的 IP 地址为 192.168.1.151。要将其切换为 192.168.1.152，我们需要使用以下命令删除旧 IP：
+    
     ```bash
     ip addr delete 192.168.1.151/24 dev enp0s3 && ip addr add 192.168.1.152/24 dev enp0s3
     ```
-
-    If we wanted a second IP assigned to the interface instead of removing the 192.168.1.151 address, we would simply add the second address with:
-
+    
+    如果我们希望为网络接口分配第二个 IP 地址而不是删除 192.168.1.151 地址，则只需使用以下命令添加第二个地址：
+    
     ```bash
     ip addr add 192.168.1.152/24 dev enp0s3
     ```
-
-    We can check to see if the IP address was added with 
-
+    
+    我们可以使用以下命令检查 IP 地址是否已添加：
+    
     ```bash
     ip a show dev enp0s3
     ```
-
-    will output:
-
+    
+    将输出：
+    
     ```bash
     2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 08:00:27:ba:ce:88 brd ff:ff:ff:ff:ff:ff
@@ -277,37 +276,37 @@ You can't do much with a computer these days without network connectivity. Wheth
     inet6 fe80::a00:27ff:feba:ce88/64 scope link noprefixroute 
        valid_lft forever preferred_lft forever
     ```
+    
+    虽然使用 `ip` 工具启动和关闭接口比 `nmcli` 要慢得多，但在设置新的或额外的 IP 地址时，`ip` 具有明显的优势，因为它可以实时进行，而不需要重启网络接口。
+    
+    ### 网关配置
 
-    While bringing the interface up and down using the `ip` utility is much slower than `nmcli`, `ip` has a distinct advantage when setting new or additional IP addresses, as it happens in real time, without bringing the interface down and up.
 
-    ### Gateway configuration
-
-
-    Now that the interface has an address, we have to set its default route, this can be done with:
-
+    现在网络接口已经有了地址，我们必须设置它的默认路由，这可以用以下命令完成：
+    
     ```bash
     ip route add default via 192.168.1.1 dev enp0s3
     ```
-
-    The kernel routing table can be displayed with
-
+    
+    可以使用以下命令显示内核路由表：
+    
     ```bash
     ip route
     ```
-
-    or `ip r` for short.
-
-    This should output something like this:
-
+    
+    或者简写为 `ip r`。
+    
+    这样应该会输出和下面相同内容：
+    
     ```bash
     default via 192.168.1.1 dev enp0s3 
     192.168.1.0/24 dev enp0s3 proto kernel scope link src 192.168.1.151 metric 100
     ```
-
-    ## Checking network connectivity
-
-    Throughout the examples above we have done some testing. Your best bet for testing is to start by pinging the default gateway. This should always work:
-
+    
+    ## 检查网络连通性
+    
+    在上面的例子中，我们已经做了一些测试。最好的测试方法是先 ping 一下默认网关：
+    
     ```bash
     ping -c3 192.168.1.1
     PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
@@ -315,18 +314,17 @@ You can't do much with a computer these days without network connectivity. Wheth
     64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=0.879 ms
     64 bytes from 192.168.1.1: icmp_seq=3 ttl=64 time=0.633 ms
     ```
-
-    Next, test to see if your LAN routing is working completely by pinging a host on your local network:
-
+    接下来，通过 ping 你本地网络上的一个主机，测试你的局域网路由是否完全工作：
+    
     ```bash
     ping -c3 192.168.1.10
     PING 192.168.1.10 (192.168.1.10) 56(84) bytes of data.
     64 bytes from 192.168.1.10: icmp_seq=2 ttl=255 time=0.684 ms
     64 bytes from 192.168.1.10: icmp_seq=3 ttl=255 time=0.676 ms
     ```
-
-    Now test to make sure we can see a reachable host external of your network. For the test below, we are using Google's open DNS server:
-
+    
+    现在测试一下，以确保我们可以看到网络外的其他主机。在下面的测试中，我们使用 Google 的开放 DNS 服务器：
+    
     ```bash
     ping -c3 8.8.8.8
     PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
@@ -334,9 +332,9 @@ You can't do much with a computer these days without network connectivity. Wheth
     64 bytes from 8.8.8.8: icmp_seq=2 ttl=119 time=20.2 ms
     64 bytes from 8.8.8.8: icmp_seq=3 ttl=119 time=20.1 ms
     ```
-
-    The final test, is to make sure that DNS resolution is working. For this example, we are using google.com:
-
+    
+    最后一个测试是确保 DNS 解析正常工作。对于这个示例，我们使用 google.com（国内用户建议用 baidu.com）：
+    
     ```bash
     ping -c3 google.com
     PING google.com (172.217.4.46) 56(84) bytes of data.
@@ -344,360 +342,13 @@ You can't do much with a computer these days without network connectivity. Wheth
     64 bytes from lga15s46-in-f14.1e100.net (172.217.4.46): icmp_seq=2 ttl=119 time=15.1 ms
     64 bytes from lga15s46-in-f14.1e100.net (172.217.4.46): icmp_seq=3 ttl=119 time=14.6 ms
     ```
-
-    If your machine has several interfaces and you want to test from a particular interface, simply use the `-I` option with ping:
-
+    
+    如果您的机器上有多个网络接口，并且您想从特定接口进行测试，只需使用 ping 的 `-I` 选项：
+    
     ```bash
     ping -I enp0s3 -c3 192.168.1.10
     ```
-
-    ## Conclusions
-
-    There are a great deal of changes to the networking stack in Rocky Linux 9. Among these are the prioritization of `keyfile` over the formerly used `ifcfg` files found in Network-Scripts. Since it is evident that the direction of movement here in future versions of Rocky Linux will completely deprecate and remove Network-Scripts as an option, it's best to focus attention on methodologies such as `nmcli`, `nmtui`, and in some cases `ip`, for network configuration.
-
-=== "8"
-
-    ## Network Configuration - Rocky Linux 8
-
-    ## Using NetworkManager service
-
-    At the user level, the networking stack is managed by *NetworkManager*. This tool runs as a service, and you can check its state with the following command:
-
-    ```bash
-    systemctl status NetworkManager
-    ```
-
-    ### Configuration files
-
-    NetworkManager simply applies a configuration read from the files found in `/etc/sysconfig/network-scripts/ifcfg-<IFACE_NAME>`.
-    Each network interface has its configuration file. The following shows an example for the default configuration of a server:
-
-    ```bash
-    TYPE=Ethernet
-    PROXY_METHOD=none
-    BROWSER_ONLY=no
-    BOOTPROTO=none
-    DEFROUTE=yes
-    IPV4_FAILURE_FATAL=no
-    IPV6INIT=no
-    NAME=enp1s0
-    UUID=74c5ccee-c1f4-4f45-883f-fc4f765a8477
-    DEVICE=enp1s0
-    ONBOOT=yes
-    IPADDR=10.0.0.10
-    PREFIX=24
-    GATEWAY=10.0.0.1
-    DNS1=10.0.0.1
-    DNS2=1.1.1.1
-    IPV6_DISABLED=yes
-    ```
-
-    The interface's name is **enp1s0** so this file's name will be `/etc/sysconfig/network-scripts/ifcfg-enp1s0`.
-
-    !!! tip "**Tips:**"  
-
-        There are a few ways or mechanisms by which systems can be assigned their IP configuration information. The two most common methods are - **Static IP configuration** scheme and **Dynamic IP configuration** scheme.
-
-        The static IP configuration scheme is very popular on server class systems or networks.
-
-        The dynamic IP approach is popular on home and office networks - or workstation and desktop class systems.  The dynamic scheme usually needs _something_ extra that is locally available that can supply proper IP configuration information to requesting workstations and desktops. This _something_ is called the Dynamic Host Configuration Protocol (DHCP).
-
-        Very often, home/office users don't have to worry or know about DHCP. This is because the somebody or something else is automagically taking care of that in the background. The only thing that the end user needs to do is to physically or wirelessly connect to the right network (and of course make sure that their systems are powered on)!
     
-    ### IP Address
-
-    In the previous `/etc/sysconfig/network-scripts/ifcfg-enp1s0` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. This means that the system being configured is set to a static IP address scheme.
-
-    If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all of that information will be automaically obtained from any available DHCP server.
-
-    To configure a static IP address attribution, set the following:
-
-    * IPADDR: the IP address to assign the interface
-    * PREFIX: the subnet mask in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
-    * GATEWAY: the default gateway
-
-    The `ONBOOT` parameter set to `yes` indicates that this connection will be activated during boot time.
-
-    ### DNS resolution
-
-    To get proper name resolution, the following parameters must be set:
-
-    * DNS1: IP address of the main nameserver
-    * DNS2: the secondary nameserver IP address
-
-    ### Checking configuration
-
-    You can check that the configuration has been correctly applied with the following `nmcli` command:
-
-    ```bash
-    [user@server ~]$ sudo nmcli device show enp1s0
-    ```
-
-    which should give you the following output:
-
-    ```conf
-    GENERAL.DEVICE:                         enp1s0
-    GENERAL.TYPE:                           ethernet
-    GENERAL.HWADDR:                         6E:86:C0:4E:15:DB
-    GENERAL.MTU:                            1500
-    GENERAL.STATE:                          100 (connecté)
-    GENERAL.CONNECTION:                     enp1s0
-    GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/1
-    WIRED-PROPERTIES.CARRIER:               marche
-    IP4.ADDRESS[1]:                         10.0.0.10/24
-    IP4.GATEWAY:                            10.0.0.1
-    IP4.ROUTE[1]:                           dst = 10.0.0.0/24, nh = 0.0.0.0, mt = 100
-    IP4.ROUTE[2]:                           dst = 0.0.0.0/0, nh = 10.0.0.1, mt = 100
-    IP4.DNS[1]:                             10.0.0.1
-    IP4.DNS[2]:                             1.1.1.1
-    IP6.GATEWAY:                            --
-    ```
-
-    ### CLI
-
-    NetworkManager's primary function is managing "connections", which map a physical device to more logical network components like an IP address and DNS settings.
-    To view the existing connections NetworkManager maintains, you can run `nmcli connection show`.
-
-    ```bash
-    [user@server ~]$ sudo nmcli connection show
-    NAME    UUID                                  TYPE      DEVICE
-    enp1s0  625a8aef-175d-4692-934c-2c4a85f11b8c  ethernet  enp1s0
-    ```
-
-    From the output above, we can determine that NetworkManager manages a connection (`NAME`) called `enp1s0` that maps to the physical device (`DEVICE`) `enp1s0`.
-
-    !!! tip "Connection name"
-
-        In this example, both the connection and device share the same name, but this may not always be the case. It is common to see a connection called `System eth0` that maps to a device called `eth0`, for example.
-
-    Now that we know the name of our connection, we can view the settings for it. To do this, use the `nmcli connection show [connection]` command, which will print out all of the settings NetworkManager registers for the given connection.
-
-    ```bash
-    [user@server ~]$ sudo nmcli connection show enp1s0
-    ...
-    ipv4.method:                            auto
-    ipv4.dns:                               --
-    ipv4.dns-search:                        --
-    ipv4.dns-options:                       --
-    ipv4.dns-priority:                      0
-    ipv4.addresses:                         --
-    ipv4.gateway:                           --
-    ipv4.routes:                            --
-    ipv4.route-metric:                      -1
-    ipv4.route-table:                       0 (unspec)
-    ipv4.routing-rules:                     --
-    ipv4.ignore-auto-routes:                no
-    ipv4.ignore-auto-dns:                   no
-    ipv4.dhcp-client-id:                    --
-    ipv4.dhcp-iaid:                         --
-    ipv4.dhcp-timeout:                      0 (default)
-    ipv4.dhcp-send-hostname:                yes
-    ...
-    ```
-
-    Down the left-hand column, we see the name of the setting, and down the right we see the value.
-
-    For example, we can see that the `ipv4.method` here is currently set to `auto`. There are many allowed values for the `ipv4.method` setting, but the main two you will most likely see are:
-
-    * `auto`: the appropriate automatic method (DHCP, PPP, etc) is used for the interface and most other properties can be left unset.
-    * `manual`: static IP addressing is used and at least one IP address must be given in the 'addresses' property.
-
-    If instead you want to configure the system to use a static IP address scheme, you will have to change the value of `ipv4.method` to `manual`, and also specify the `ipv4.gateway` and `ipv4.addresses`.
-
-    To modify a setting, you can use the nmcli command `nmcli connection modify [connection] [setting] [value]`.
-
-    ```bash
-    # set 10.0.0.10 as the static ipv4 address
-    [user@server ~]$ sudo nmcli connection modify enp1s0 ipv4.addresses 10.0.0.10
-
-    # set 10.0.0.1 as the ipv4 gateway
-    [user@server ~]$ sudo nmcli connection modify enp1s0 ipv4.gateway 10.0.0.1
-
-    # change ipv4 method to use static assignments (set in the previous two commands)
-    [user@server ~]$ sudo nmcli connection modify enp1s0 ipv4.method manual
-    ```
-
-    !!!tip "When does the connection get updated?"
-
-        `nmcli connection modify` will not modify the *runtime* configuration, but update the `/etc/sysconfig/network-scripts` configuration files with the appropriate values based on what you have told `nmcli` to configure.
-
-    To configure your DNS servers with NetworkManager via the CLI, you can modify the `ipv4.dns` setting.
-
-    ```bash
-    # set 10.0.0.1 and 1.1.1.1 as the primary and secondary DNS servers
-    [user@server ~]$ sudo nmcli connection modify enp1s0 ipv4.dns '10.0.0.1 1.1.1.1'
-    ```
-
-    ### Apply configuration
-
-    To apply the network configuration, you can use the `nmcli connection up [connection]` command.
-
-    ```bash
-    [user@server ~]$ sudo nmcli connection up enp1s0
-    Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/2)
-    ```
-
-    To get the connection state, simply use:
-
-    ```bash
-    [user@server ~]$ sudo nmcli connection show
-    NAME    UUID                                  TYPE      DEVICE
-    enp1s0  625a8aef-175d-4692-934c-2c4a85f11b8c  ethernet  enp1s0
-    ```
-
-    You can also use the `ifup` and `ifdown` commands to bring the interface up and down (they are simple wrappers around `nmcli`):
-
-    ```bash
-    [user@server ~]$ sudo ifup enp1s0
-    [user@server ~]$ sudo ifdown enp1s0
-    ```
-
-    ## Using ip utility
-
-    The `ip` command (provided by the *iproute2* package) is a powerful tool to get information and configure the network of a modern Linux system such as Rocky Linux.
-
-    In this example, we will assume the following parameters:
-
-    * interface name: ens19
-    * ip address: 192.168.20.10
-    * subnet mask: 24
-    * gateway: 192.168.20.254
-
-    ### Get general information
-
-    To see the detailed state of all interfaces, use
-
-    ```bash
-    ip a
-    ```
-
-    !!! tip "**Pro tips:**"
-
-        * use the `-c` flag to get a more readable coloured output: `ip -c a`.
-	    * `ip` accepts abbreviation so `ip a`, `ip addr` and `ip address` are equivalent
-
-    ### Bring interface up or down
-
-    To bring the *ens19* interface up, simply use `ip link set ens19 up` and to bring it down, use `ip link set ens19 down`.
-
-    ### Assign the interface a static address
-
-    The command to be used is of the form:
-
-    ```bash
-    ip addr add <IP ADDRESS/CIDR> dev <IFACE NAME>
-    ```
-
-    To assign the above example parameters, we will use:
-
-    ```bash
-    ip a add 192.168.20.10/24 dev ens19
-    ```
-
-    Then, checking the result with:
-
-    ```bash
-    ip a show dev ens19
-    ```
-
-    will output:
-
-    ```bash
-	3: ens19: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-		link/ether 4a:f2:f5:b6:aa:9f brd ff:ff:ff:ff:ff:ff
-		inet 192.168.20.10/24 scope global ens19
-		valid_lft forever preferred_lft forever
-    ```
-
-    Our interface is up and configured, but is still lacking something!
-
-    ### Using ifcfg utility
-
-    To add the *ens19* interface our new example IP address, use the following command:
-
-    ```bash
-    ifcfg ens19 add 192.168.20.10/24
-    ```
-
-    To remove the address:
-
-    ```bash
-    ifcfg ens19 del 192.168.20.10/24
-    ```
-
-    To completely disable IP addressing on this interface:
-
-    ```bash
-    ifcfg ens19 stop
-    ```
-
-    *Note that this does not bring the interface down, it simply unassigns all IP addresses from the interface.*
-
-    ### Gateway configuration
-
-    Now that the interface has an address, we have to set its default route, this can be done with:
-
-    ```bash
-    ip route add default via 192.168.20.254 dev ens19
-    ```
-
-    The kernel routing table can be displayed with
-
-    ```bash
-    ip route
-    ```
-
-    or `ip r` for short.
-
-    ## Checking network connectivity
-
-    At this point, you should have your network interface up and properly configured. There are several ways to verify your connectivity.
-
-    By *pinging* another IP address in the same network (we will use `192.168.20.42` as an example):
-
-    ```bash
-    ping -c3 192.168.20.42
-    ```
-
-    This command will issue 3 *pings* (known as ICMP request) and wait for a reply. If everything went fine, you should get this output:
-
-    ```bash
-    PING 192.168.20.42 (192.168.20.42) 56(84) bytes of data.
-    64 bytes from 192.168.20.42: icmp_seq=1 ttl=64 time=1.07 ms
-    64 bytes from 192.168.20.42: icmp_seq=2 ttl=64 time=0.915 ms
-    64 bytes from 192.168.20.42: icmp_seq=3 ttl=64 time=0.850 ms
-
-    --- 192.168.20.42 ping statistics ---
-    3 packets transmitted, 3 received, 0% packet loss, time 5ms
-    rtt min/avg/max/mdev = 0.850/0.946/1.074/0.097 ms
-    ```
-
-    Then, to make sure your routing configuration is fine, try to *ping* a external host, such as this well known public DNS resolver:
-
-    ```bash
-    ping -c3 8.8.8.8
-    ```
-
-    If your machine has several network interface and you want to make ICMP request via a specific interface, you can use the `-I` flag:
-
-    ```bash
-    ping -I ens19 -c3 192.168.20.42
-    ```
-
-    It is now time to make sure that DNS resolution is working correctly. As a reminder, DNS resolution is a mechanism used to convert human friendly machine names into their IP addresses and the other way round (reverse DNS).
-
-    If the `/etc/resolv.conf` file indicates a reachable DNS server, then the following should work:
-
-    ```bash
-    host rockylinux.org
-    ```
-
-    The result should be:
-
-    ```bash
-    rockylinux.org has address 76.76.21.21
-    ```
-
-    ## Conclusions
-
-    Rocky Linux 8 has the tools to configure your network from the command line. This document should get you up and running with those tools in no time.
+    ## 最后
+    
+    在Rocky Linux 9中，网络堆栈有大量的变化，其中包括优先使用`keyfile`而不是以前在Network-Script中使用的`ifcfg`文件。因为很明显，在未来版本的 Rocky Linux 中，将完全废弃和删除 Network-Script 这个选项，因此最好把注意力集中在诸如`nmcli`、`nmtui`，和在某些情况下的 `ip` 之类的方法论上，用于网络配置。

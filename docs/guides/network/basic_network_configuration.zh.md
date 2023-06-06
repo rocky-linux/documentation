@@ -1,6 +1,18 @@
+---
+title: Network Configuration
+author: unknown
+contributors: Steven Spencer, Hayden Young
+tested with: 8.5, 8.6, 9.0
+tags:
+  - networking
+  - configuration
+  - network
+---
+
+
 # 简介
 
-​		如今，如果没有网络连接，你就无法用电脑做很多事情。无论你是需要更新服务器上的软件包，还是仅仅需要从笔记本电脑上浏览外部网站，你都需要网络连接！本指南旨在为 Rocky Linux 用户提供设置网络连接的基本知识。
+​	如今，如果没有网络连接，你就无法用电脑做很多事情。无论你是需要更新服务器上的软件包，还是仅仅需要从笔记本电脑上浏览外部网站，你都需要网络连接！本指南旨在为 Rocky Linux 用户提供设置网络连接的基本知识。
 
 ## 前提条件
 
@@ -10,6 +22,8 @@
 
 * 可选：熟悉网络概念
   
+    === "9"
+    
     ## 网络配置 - Rocky Linux 9
     
     	Rocky Linux 9 的网络配置发生了很多变化。其中一个主要变化是从Network-Scripts（仍可安装，但已被弃用）转向使用Network Manager和密钥文件，而不是基于`ifcfg`的文件。自Rocky Linux 9以来，`NetworkManager`将优先使用`keyfiles`而非以前的`ifcfg`文件。由于这是现在的默认设置，配置网络应该采用默认设置作为正确的操作方式，因为多年来的其他变化意味着最终会淘汰和删除旧的工具。。本指南将尝试为您介绍如何使用Network Manager以及Rocky Linux 9中的最新变化。
@@ -27,9 +41,9 @@
     ```bash
     systemctl status NetworkManager
     ```
-    
-    ## 配置文件
 
+    ## 配置文件
+    
     如开头所述，配置文件现在默认为密钥文件。您可以运行以下命令来查看 `NetworkManager` 如何优先处理这些文件：
     
     ```
@@ -56,13 +70,13 @@
     
     # no-auto-default file "/var/lib/NetworkManager/no-auto-default.state"
     ```
-
+    
     注意在配置文件顶部对 `keyfile` 的引用，后面跟着 `ifcfg-rh`。这意味着 `keyfile` 是默认值。任何时候你运行任何 `NetworkManager` 工具来配置网络接口（例如： `nmcli` 或 `nmtui`），它都会自动构建或更新密钥文件。
     
     !!! 提示：“配置存储位置”
-    
-        在 Rocky Linux 8 中，网络配置的存储位置在 `/etc/sysconfig/Network-Scripts/` 中。在 Rocky Linux 9 中，密钥文件的新默认存储位置在 `/etc/NetworkManager/system-connections` 中。
 
+        在 Rocky Linux 8 中，网络配置的存储位置在 `/etc/sysconfig/Network-Scripts/` 中。在 Rocky Linux 9 中，密钥文件的新默认存储位置在 `/etc/NetworkManager/system-connections` 中。
+    
     用于配置网络接口的主要（但不是唯一）工具是`nmtui`命令。这也可以用`nmcli`命令来完成，但没有那么直观。我们可以用`nmcli`来显示当前配置的网络接口：
     
     ```
@@ -88,7 +102,7 @@
     ```
 
     !!! tip "**科普时间：**"  
-
+    
         有几种方法或机制，可以为系统分配其IP配置信息。
         最常见的两种方法是 **静态 IP 配置** 和 **动态 IP 配置**。
         
@@ -97,9 +111,9 @@
         动态 IP 方法在家庭和办公网络或工作站和桌面类系统中很受欢迎。 动态方案通常需要一些额外的东西，这些东西在本地是可用的，并且可以向请求的工作站和桌面提供适当的IP配置信息。这个东西被称为动态主机配置协议（DHCP）。在家庭网络中，甚至在大多数商业网络中，这项服务是由为此目的而配置的DHCP服务器提供的。这可以是一个单独的服务器，也可以是路由器配置的一部分。
     
     ## IP 地址
-    
-    在上一节中，显示的网络接口`enp0s3`的配置是从`.ini`文件`/etc/NetworkManager/system-connections/enp0s3.nmconnection`生成的。这表明 IP4.ADDRESS[1] 已经是静态配置的，而不是通过DHCP动态配置的。如果我们想把这个网络接口切换回动态分配的地址，最简单的方法是使用`nmtui`命令。
 
+    在上一节中，显示的网络接口`enp0s3`的配置是从`.ini`文件`/etc/NetworkManager/system-connections/enp0s3.nmconnection`生成的。这表明 IP4.ADDRESS[1] 已经是静态配置的，而不是通过DHCP动态配置的。如果我们想把这个网络接口切换回动态分配的地址，最简单的方法是使用`nmtui`命令。
+    
     1. 首先，在命令行中运行 `nmtui` 命令，会显示如下内容：
     
         ![nmtui](images/nmtui_first.png)
