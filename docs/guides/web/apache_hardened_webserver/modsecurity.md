@@ -57,6 +57,7 @@ dnf install mod_security wget
     ```
     cd /etc/httpd/conf
     ```
+
 5. Enter `wget` and paste your link. Example:
 
     ```
@@ -75,11 +76,13 @@ dnf install mod_security wget
     ```
     ln -s coreruleset-3.3.4/ /etc/httpd/conf/crs
     ```
+
 8. Remove the `tar.gz` file. Example:
 
     ```
     rm -f v3.3.4.tar.gz
     ```
+
 9. Copy the temporary configuration so that it will load when started:
 
     ```
