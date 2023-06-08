@@ -14,7 +14,7 @@ tags:
 
 ## Prerequisites
 
-* A Rocky Linux Web Server running Apache.
+* A Rocky Linux Web Server running Apache
 * Proficiency with a command-line editor (using _vi_ in this example)
 * A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
 * An understanding that installing this tool also requires monitoring of actions and tuning to your environment
