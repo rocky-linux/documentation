@@ -79,7 +79,7 @@ The default configuration is in a state requiring many changes. Most of these ha
 
 `ossec-hids` looks at the logs to try and decide if an attack is underway, and whether to apply mitigation. It also sends reports to the server administrator with a notification, or a message regarding a mitigation procedure launched based on what `ossec-hids` has seen.
 
-To edit the configuration file enter:
+To edit the configuration file, enter:
 
 ```
 vi /var/ossec/etc/ossec.conf
