@@ -58,7 +58,7 @@ vi /etc/yum.repos.d/atomic.repo
 Add this line beneath the "enabled = 1" in the top section:
 
 ```
-includepkgs = ossec* inotify-tools
+includepkgs = ossec* GeoIP* inotify-tools
 ```
 
 That is the only change you need. Save your changes and get out of the repository (in `vi` that is <kbd>esc</kbd> to enter command mode, then <kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq</kbd> to save and quit).
@@ -139,7 +139,7 @@ You need to add in the Apache log locations, and you want to add these in as wil
 
 ```
   <command>
-    <name>firewall-drop</name>
+    <name>firewalld-drop</name>
     <executable>firewall-drop.sh</executable>
     <expect>srcip</expect>
   </command>
@@ -148,13 +148,12 @@ You need to add in the Apache log locations, and you want to add these in as wil
     <command>firewall-drop</command>
     <location>local</location>
     <level>7</level>
-    <timeout>1200</timeout>
   </active-response>
 ```
 
 Finally, towards the end of the file you need to add the active response section. This section has two parts: the `<command>` section, and the `<active-response>` section.
 
-The "firewall-drop" script already exists within the `ossec-hids` path. It tells `ossec-hids` that if a level of 7 occurs, add a firewall rule to block the IP address for 20 minutes. You can change the timeout value. Just remember that the configuration file times are all in seconds.
+The "firewall-drop" script already exists within the `ossec-hids` path. It tells `ossec-hids` that if a level of 7 occurs, add a firewall rule to block the IP address.
 
 When you have made all of the configuration changes you need, enable, and start the service. If everything starts correctly, you are ready to move on:
 
