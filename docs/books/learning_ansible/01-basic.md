@@ -252,7 +252,7 @@ As you may have noticed, the groups are declared in square brackets. Then come t
 172.16.1.11
 ```
 
-Groups can be used within other groups. In this case, it must be specified that the parent group is composed of subgroups with the `:chidren` attribute like this:
+Groups can be used within other groups. In this case, it must be specified that the parent group is composed of subgroups with the `:children` attribute like this:
 
 ```
 [linux:children]
