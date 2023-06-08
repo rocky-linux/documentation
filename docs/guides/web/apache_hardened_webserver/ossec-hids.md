@@ -169,4 +169,4 @@ Many options exist for the `ossec-hids` configuration file. You can find out abo
 
 `ossec-hids` is just one element of an Apache hardened web server. You can gain better security by selecting it with other tools.
 
-While the installation and configuration are relatively straightforward, you will find that this is **not** an 'install it and forget it' application. You will need to tune it to your environment to gain the most security with the least amount of false-positive responses.
+While the installation and configuration are relatively straightforward, you will find that this is **not** an 'install it and forget it' application. You will need to tune it to your environment to gain the most security with the least number of false-positive responses.
