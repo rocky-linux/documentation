@@ -2,7 +2,7 @@
 title: Rootkit Hunter
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.7, 9.1
+tested with: 8.8, 9.2
 tags:
   - server
   - security
@@ -11,9 +11,13 @@ tags:
 
 # Rootkit hunter
 
+## Introduction
+
+Rootkit hunter (`rkhunter`) is a well known tool for checking vulnerabilities, rootkits, back doors, and possible local exploits on a server. It is possible to use it on _any_ server used for _any_ purpose. When tuned and automated, it can report any suspicious activity to the system administrator. This procedure outlines the installation, tuning, and use of rootkit hunter.
+
 ## Prerequisites
 
-* Proficiency with a command-line editor (using _vi_ in this example)
+* Proficiency with a command-line editor (using `vi` in this example)
 * A comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
 * An understanding of what can trigger a response to changed files on the file system (such as package updates) is helpful
 * Running all commands as root or as a regular user with `sudo`
