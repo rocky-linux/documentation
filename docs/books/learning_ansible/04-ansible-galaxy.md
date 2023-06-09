@@ -38,7 +38,7 @@ ansible-galaxy role [import|init|install|login|remove|...]
 
 | Sub-commands | Observations                                              |
 |--------------|-----------------------------------------------------------|
-| `install`    | install a role.                                          |
+| `install`    | installs a role.                                          |
 | `remove`     | remove one or more roles.                                 |
 | `list`       | display the name and the version of installed roles.      |
 | `info`       | display information about a role.                         |
