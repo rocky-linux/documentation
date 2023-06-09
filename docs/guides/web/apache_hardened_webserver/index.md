@@ -27,7 +27,7 @@ Whether you are hosting many websites for customers or a single important websit
 With many web sites uploaded by your customers, there is a high probability that one of them will upload a Content Management System (CMS) with the possibility of vulnerabilities. Most customers focus on ease of use, not security, and what happens is that updating their own CMS becomes a process that falls out of their priority list altogether.
 
 
-While notifying customers of vulnerabilities in their CMS is possible for a company with a large IT staff, it might not be possible for a small department. The best defense is a hardened web server.
+While notifying customers of vulnerabilities in their CMS is possible for a company with a large IT staff, this might not be realistic for a small IT team. The best defense is a hardened web server.
 
 Web server hardening can take many forms, which might include any or all of the tools here, and possibly others not defined.
 
