@@ -14,7 +14,7 @@ tags:
 ## Prerequisites
 
 * Proficiency with a command-line editor (using _vi_ in this example)
-* A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
+* A comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
 * An understanding of what can trigger a response to changed files on the file system (such as package updates) is helpful
 * Running all commands as root or as a regular user with `sudo`
 
@@ -81,7 +81,7 @@ You might also need to setup [Postfix Email for Reporting](../../email/postfix_r
 
 Run `rkhunter` manually by typing it at the command-line. A cron job takes care of running `rkhunter` for you automatically in `/etc/cron.daily`. If you want to automate the procedure on a different schedule, examine [Automating cron jobs guide](../../automation/cron_jobs_howto.md).
 
-You will also need to move the script somewhere other than `/etc/cron.daily`, such as `/usr/local/sbin` and call it from your custom cron job. The easiest method is to leave the default `cron.daily` setup intact.
+You will also need to move the script somewhere other than `/etc/cron.daily/`, such as `/usr/local/sbin/` and call it from your custom cron job. The easiest method is to leave the default `cron.daily` setup intact.
 
 If you want to test `rkhunter` before you start, including all email functionality, run `rkhunter --check` from the command line. If problems exist with the email setup, hold off completing the remaining steps. When confirming email works, but before allowing `rkhunter` to run automatically, run the command manually again with the "--propupd" flag to create the `rkhunter.dat` file. This ensures recognition of your environment and configuration:
 
