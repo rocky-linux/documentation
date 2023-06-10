@@ -247,11 +247,11 @@ $ history
 
 | 键盘输入               | 功能                   |
 | ------------------ | -------------------- |
-| <kdb>!!</kdb>      | 调出最后使用的命令。           |
-| <kdb>!n</kdb>      | 根据该命令在列表中的编号重新调用该命令。 |
-| <kdb>!string</kdb> | 调出以字符串开头的最近的命令。      |
-| <kdb>↑</kdb>       | 从最近的命令开始后退浏览您的历史记录。  |
-| <kdb>↓</kdb>       | 往后浏览您的历史记录。          |
+| <kbd>!!</kbd>      | 调出最后使用的命令。           |
+| <kbd>!n</kbd>      | 根据该命令在列表中的编号重新调用该命令。 |
+| <kbd>!string</kbd> | 调出以字符串开头的最近的命令。      |
+| <kbd>↑</kbd>       | 从最近的命令开始后退浏览您的历史记录。  |
+| <kbd>↓</kbd>       | 往后浏览您的历史记录。          |
 
 ### 命令自动补全
 
@@ -1586,87 +1586,40 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 
 `;` 字符将命令串在一起。
 
-一旦用户按 <kbd>ENTER</kdb> ，所有命令都将按输入顺序运行。</p> 
+一旦用户键入 <kbd>ENTER</kbd> ，所有命令都将按输入顺序运行。
 
-<pre><code class="bash">$ ls /; cd /home; ls -lia; cd /
-</code></pre>
+```bash
+$ ls /; cd /home; ls -lia; cd /
+```
 
-<h2 spaces-before="0">
-  检测所学知识
-</h2>
+## 检测所学知识
 
-<p spaces-before="0">
-  :heavy_check_mark: Linux下用户的定义是什么？ （7个答案）
-</p>
+:heavy_check_mark: Linux下用户的定义是什么？ （7个答案）
 
-<p spaces-before="0">
-  :heavy_check_mark: 命令的长选项的特点是什么？
-</p>
+:heavy_check_mark: 命令的长选项的特点是什么？
 
-<p spaces-before="0">
-  :heavy_check_mark: 哪些命令允许您搜索有关命令的帮助？
-</p>
+:heavy_check_mark: 哪些命令允许您搜索有关命令的帮助？
 
-<ul>
-  <li>
-    [ ] <code>google</code>
-  </li>
-  <li>
-    [ ] <code>chuck --norris</code>
-  </li>
-  <li>
-    [ ] <code>info</code>
-  </li>
-  <li>
-    [ ] <code>apropos</code>
-  </li>
-  <li>
-    [ ] <code>whatis</code>
-  </li>
-</ul>
+- [ ] `google`
+- [ ] `chuck --norris`
+- [ ] `info`
+- [ ] `apropos`
+- [ ] `whatis`
 
-<p spaces-before="0">
-  :heavy_check_mark: 哪个命令允许您查看用户的历史记录？
-</p>
+:heavy_check_mark: 哪个命令允许您查看用户的历史记录？
 
-<p spaces-before="0">
-  :heavy_check_mark: 哪个命令允许您在文件中搜索文本？
-</p>
+:heavy_check_mark: 哪个命令允许您在文件中搜索文本？
 
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
+- [ ] `find`
+- [ ] `grep`
 
-<p spaces-before="0">
-  :heavy_check_mark: 哪个命令允许您搜索文件？
-</p>
+:heavy_check_mark: 哪个命令允许您搜索文件？
 
-<ul>
-  <li>
-    [ ] <code>find</code>
-  </li>
-  <li>
-    [ ] <code>grep</code>
-  </li>
-</ul>
+- [ ] `find`
+- [ ] `grep`
 
-<p spaces-before="0">
-  :heavy_check_mark: 哪个命令将命令的错误流重定向到新的 <code>errors.log</code> 文件？
-</p>
+:heavy_check_mark: 哪个命令将命令的错误流重定向到新的 `errors.log` 文件？
 
-<ul>
-  <li>
-    [ ] <code>ls -R / 2&gt; errors.log</code>
-  </li>
-  <li>
-    [ ] <code>ls -R / 2&gt;&gt; errors.log</code>
-  </li>
-  <li>
-    [ ] <code>ls -R / 2&gt; errors.log 2&gt;&1</code>
-  </li>
-</ul>   
+- [ ] `ls -R / 2> errors.log`
+- [ ] `ls -R / 2>> errors.log`
+- [ ] `ls -R / 2> errors.log 2>&1`   
