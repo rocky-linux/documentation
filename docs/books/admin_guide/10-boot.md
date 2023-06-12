@@ -185,20 +185,20 @@ Service units end with the `.service` file extension and have a similar purpose 
 
 | systemctl                                 | Description                             |
 |-------------------------------------------|-----------------------------------------|
-| systemctl start _name_.service            | Start a service                         |
+| systemctl start _name_.service            | Starts a service                         |
 | systemctl stop _name_.service             | Stops a service                         |
-| systemctl restart _name_.service          | Restart a service                       |
-| systemctl reload _name_.service           | Reload a configuration                  |
+| systemctl restart _name_.service          | Restarts a service                       |
+| systemctl reload _name_.service           | Reloads a configuration                  |
 | systemctl status _name_.service           | Checks if a service is running          |
-| systemctl try-restart _name_.service      | Restart a service only if it is running |
-| systemctl list-units --type service --all | Display the status of all services      |
+| systemctl try-restart _name_.service      | Restarts a service only if it is running |
+| systemctl list-units --type service --all | Displays the status of all services      |
 
 The `systemctl` command is also used for the `enable` or `disable` of system a service and displaying associated services:
 
 | systemctl                                | Description                                             |
 |------------------------------------------|---------------------------------------------------------|
-| systemctl enable _name_.service            | Activate a service                                      |
-| systemctl disable _name_.service           | Disable a service                                       |
+| systemctl enable _name_.service            | Activates a service                                      |
+| systemctl disable _name_.service           | Disables a service                                       |
 | systemctl list-unit-files --type service | Lists all services and checks if they are running       |
 | systemctl list-dependencies --after      | Lists the services that start before the specified unit |
 | systemctl list-dependencies --before     | Lists the services that start after the specified unit  |
