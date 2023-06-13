@@ -50,10 +50,10 @@ read name firstname
 read -p "Please type your name: " name
 ```
 
-| Option | Observation                                   |
+| Option | Functionality                                   |
 |--------|-----------------------------------------------|
 | `-p`   | Displays a prompt message.                    |
-| `-n`   | Limit the number of characters to be entered. |
+| `-n`   | Limits the number of characters to be entered. |
 | `-s`   | Hides the input.                              |
 
 When using the `-n` option, the shell automatically validates the input after the specified number of characters. The user does not have to press the <kbd>ENTER</kbd> key.
@@ -109,7 +109,7 @@ cut -d: -f1 /etc/passwd
 | `-d`   | Specifies the field separator.                                   |
 | `-f`   | Specifies the order number of the columns to select.             |
 
-The main interest of this command will be its association with a stream, for example the `grep` command and the `|` pipe.
+The main benefit of this command will be its association with a stream, for example the `grep` command and the `|` pipe.
 
 * The `grep` command works "vertically" (isolation of one line from all the lines in the file).
 * The combination of the two commands allows for the  **isolation of a specific field in the file**.

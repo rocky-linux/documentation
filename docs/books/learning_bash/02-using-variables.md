@@ -165,7 +165,7 @@ The `set` command displays all used system variables.
 
 Among the dozens of environment variables, several are of interest to be used in a shell script:
 
-| Variables                        | Observations                                              |
+| Variables                        | Description                                              |
 |----------------------------------|-----------------------------------------------------------|
 | `HOSTNAME`                       | Host name of the machine.                                 |
 | `USER`, `USERNAME` and `LOGNAME` | Name of the user connected to the session.                |
