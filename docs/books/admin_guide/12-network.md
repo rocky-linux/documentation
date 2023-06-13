@@ -176,8 +176,8 @@ hostname [-f] [hostname]
 
 |  Option  |  Description                   |
 |----------|--------------------------------|
-| `-f`     | Display the FQDN               |
-| `-i`     | Display the system IPs address |
+| `-f`     | Displays the FQDN               |
+| `-i`     | Displays the system's IP address information |
 
 !!! Tip
 
@@ -608,7 +608,7 @@ BROADCAST=172.16.79.255
 | `-n`          | `--netmask`   | Calculates the network mask for the given IP address. Assumes that the IP address is part of a complete class A, B, or C network. Many networks do not use default network masks, in which case an incorrect value will be returned. |
 | `-p`          | `--prefix`    | Indicates the prefix of the mask/IP address.                                 |
 | `-n`          | `--network`   | Indicates the network address of the given IP address and mask.              |
-| `-s`          | `--silent`    | Never displays any error messages.                                           |
+| `-s`          | `--silent`    | Does not display any error messages.                                           |
 
 ### `ss` command
 
