@@ -165,7 +165,7 @@ El comando `set` muestra todas las variables del sistema utilizadas.
 
 Entre las docenas de variables de entorno, varias son de interés para ser utilizadas en un script de shell:
 
-| Variables                      | Observaciones                                                            |
+| Variables                      | Descripción                                                              |
 | ------------------------------ | ------------------------------------------------------------------------ |
 | `HOSTNAME`                     | El nombre de la máquina.                                                 |
 | `USER`, `USERNAME` y `LOGNAME` | El nombre del usuario conectado a la sesión.                             |
