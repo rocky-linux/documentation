@@ -144,10 +144,10 @@ Example:
 
 | Option |	Description                                              |
 |--------|-----------------------------------------------------------|
-| `-e`   | Edit the schedule file with vi                            |
+| `-e`   | Edits the schedule file with vi                            |
 | `-l`   | Displays the contents of the schedule file                |
-| `-u`   | Name of the user whose schedule file is to be manipulated |
-| `-r`   | Delete the schedule file                                  |
+| `-u`   | Sets the name of the user whose schedule file is to be manipulated |
+| `-r`   | Deletes the schedule file                                  |
 
 !!! Warning
 
@@ -207,7 +207,7 @@ In order to simplify the notation for the definition of time, it is advisable to
 
 | Wildcards | Description                      |
 |---------------|----------------------------------|
-| `*`           | All possible values of the field |
+| `*`           | Indicates all possible values of the field |
 | `-`           | Indicates a range of values      |
 | `,`           | Indicates a list of values       |
 | `/`           | Defines a step                   |
@@ -242,8 +242,8 @@ For the root user, `crontab` also has some special time settings:
 
 | Setting  | Description                   |
 |----------|-------------------------------|
-| @reboot  | Run command on system reboot  |
-| @hourly  | Run command every hour        |
+| @reboot  | Runs a command on system reboot  |
+| @hourly  | Runs a command every hour        |
 | @daily   | Runs daily just after midnight|
 | @weekly  | Runs command every Sunday just after midnight    |
 | @monthly | Runs command on the first day of the month just after midnight |
