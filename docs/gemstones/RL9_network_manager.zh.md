@@ -9,7 +9,7 @@ tags:
 
 # NetworkManager 网络配置工具套件
 
-2004年，红帽推出了 **NetworkManager** 项目，旨在使 Linux 用户更容易处理当前网络管理的需求，尤其是无线网络的管理。 如今，该项目由 GNOME 管理。 网站主页是：https://networkmanager.dev/
+2004年，红帽推出了 **NetworkManager** 项目，旨在使 Linux 用户更容易处理当前网络管理的需求，尤其是无线网络的管理。 如今，该项目由 GNOME 管理。 [可在此处找到NetworkManager的主页](https://networkmanager.dev/)。
 
 官方介绍 - NetworkManager 是一个标准 Linux 网络配置工具套装。 它支持从桌面到服务器和移动设备的各种网络设置，并与流行的桌面环境和服务器配置管理工具完美集成。
 
@@ -38,7 +38,7 @@ NAME    UUID                                  TYPE      DEVICE
 ens160  25106d13-ba04-37a8-8eb9-64daa05168c9  ethernet  ens160
 ```
 
-对于 RockyLinux 8.x，我们在 [这里](./nmtui.md) 介绍了如何配置其网络。 您可以使用 `vim` 编辑 **/etc/sysconfig/network-script/** 目录中的网卡配置文件，也可以使用 `nmcli`/`nmtui` ，这两种方式都是可以接受的。
+对于 RockyLinux 8.x，我们在 [此文档中](./nmtui.md) 介绍了如何配置其网络。 您可以使用 `vim` 编辑 **/etc/sysconfig/network-script/** 目录中的网卡配置文件，也可以使用 `nmcli`/`nmtui` ，这两种方式都是可以接受的。
 
 ## udev 设备管理器的命名规则
 
@@ -133,7 +133,7 @@ Shell > nmcli connection modify CONNECTION_NAME autoconnect yes ipv6.method dhcp
 
 #### 链接聚合
 
-有些使用多个网卡进行链路聚合。 早期使用 **bonding**技术，有 7 种工作模式（0~6），bond 模式最多只支持 2 块网卡；后来逐渐采用 **teaming** 技术作为替代，有5种工作模式，team 模式最多可以使用8块网卡。 bonding 和 teming 之间的比较链接——https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding
+有些使用多个网卡进行链路聚合。 早期使用 **bonding**技术，有 7 种工作模式（0~6），bond 模式最多只支持 2 块网卡；后来逐渐采用 **teaming** 技术作为替代，有5种工作模式，team 模式最多可以使用8块网卡。 在 [这个链接上可以找到](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding) bonding 和 teming 之间的比较。
 
 例如，bonding 的0模式：
 
@@ -143,7 +143,11 @@ Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME1   mas
 Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   master  BOND_NIC_DEVICE_NAME
 ```
 
-## 网卡配置文件（不建议通过 vim 等方式修改）
+## 网卡配置文件
+
+!!! warning "警告"
+
+    不建议通过 `vim` 或其他编辑器对此进行更改。
 
 您可以通过 `man 5 NetworkManager.conf` 和 `man 5 nm-settings-nmcli` 查看更多详细信息。
 
@@ -188,7 +192,7 @@ method=disabled
 | timestamp      | Unix 时间戳，以秒为单位。 此处的值是自1970年1月1日以来的秒数。                                    |
 | autoconnect    | 是否随系统开机自启动。 值为布尔型。                                                       |
 
-**ethernet** 标题名称可以包含这些常见的键值对：
+**ethernet** 标题名可以包含这些常见的键值对：
 
 | 键名称            | 描述                                                                                                                                                                                |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -198,7 +202,7 @@ method=disabled
 | duplex         | 值可以是 half （半双工）、full（全双工）                                                                                                                                                         |
 | speed          | 指定网卡的传输速率。 100 即 100Mbit/s。 如果**auto-negotiate=false**，则必须设置 **speed** 键和 **duplex** 键；如果 **auto-negotiate=true**，则使用的速率为协商速率，此处的写入不生效（仅适用于BASE-T 802.3规范）；当非零时，**duplex** 键必须有值。 |
 
-**ipv4** 标题可以包含这些常见的键值对：
+**ipv4** 标题名可以包含这些常见的键值对：
 
 | 键名称       | 描述                                                            |
 | --------- | ------------------------------------------------------------- |
