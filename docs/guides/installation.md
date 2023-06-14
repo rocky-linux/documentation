@@ -2,7 +2,7 @@
 Title: Installing Rocky Linux 9
 author: wale soyinka
 contributors: Steven Spencer
-updated: 07-14-2022
+updated: 06-13-2023
 ---
 
 # Installing Rocky Linux 9
