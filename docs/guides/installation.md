@@ -1,6 +1,6 @@
 ---
 Title: Installing Rocky Linux 9
-author: wale soyinka
+author: Wale Soyinka
 contributors: Steven Spencer
 updated: 06-13-2023
 ---
@@ -93,10 +93,10 @@ The *Installation Summary* screen is an all-in-one area where you make the impor
 
 The screen is roughly divided into the following sections:
 
-- *LOCALIZATION*: 
-- *SOFTWARE*:
-- *SYSTEM*: 
-- *USER SETTINGS*:
+- *LOCALIZATION* 
+- *SOFTWARE*
+- *SYSTEM*
+- *USER SETTINGS*
 
 We will delve into each of these sections next and make changes where necessary.
 
