@@ -39,21 +39,9 @@ Whatever the loop used, the commands to be repeated are placed **between the wor
 
 The `while` / `do` / `done` structure evaluates the command placed after `while`.
 
-When the evaluated command is true:
+If this command is true (`$? = 0`), the commands placed between `do` and `done` are executed. The script then returns to the beginning to evaluate the command again.
 
-```
-$? = 0
-```
-
-the commands placed between `do` and `done` are executed. The script then returns to the beginning to evaluate the command again.
-
-When the evaluated command is false:
-
-```
-$? != 0
-```
-
-the shell resumes the execution of the script at the first command after done.
+When the evaluated command is false (`$? != 0`), the shell resumes the execution of the script at the first command after done.
 
 Syntax of the conditional loop structure `while`:
 
@@ -152,13 +140,7 @@ done
 
 The `until` / `do` / `done` structure evaluates the command placed after `until`.
 
-When the evaluated command is false:
-
-```
-$? != 0
-```
-
-the commands placed between `do` and `done` are executed. The script then returns to the beginning to evaluate the command again.
+If this command is false (`$? != 0`), the commands placed between `do` and `done` are executed. The script then returns to the beginning to evaluate the command again.
 
 When the evaluated command is true (`$? = 0`), the shell resumes the execution of the script at the first command after `done`.
 
