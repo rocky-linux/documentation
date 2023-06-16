@@ -68,11 +68,11 @@ git clone https://github.com/rocky-linux/rocky-tools.git
 
 注: 这种方式将下载rocky-tools存储库的所有脚本与文件
 
-### 简单但不太安全的方式
+### 简单方式
 
-好吧，从安全角度来说，这不一定是最好的做法。 但是，这是获取脚本的最简单方法。
+这可能是获得该脚本的最简单的方法。 你只需要在服务器上安装一个合适的HTTP客户端(curl, wget, lynx等)。
 
-运行以下命令将脚本下载到您当前所在的目录下：
+假设你已经安装了`curl`工具，运行以下命令将脚本下载到您当前所在的目录下：
 
 ```
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
