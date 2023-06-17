@@ -54,7 +54,7 @@ For the first container, we are going to choose rockylinux/8. To install it, we 
 lxc launch images:rockylinux/8 rockylinux-test-8
 ```
 
-That will create a Rocky Linux-based containter named "rockylinux-test-8". You can rename a container after it has been created, but you first need to stop the container, which starts automatically when it is launched.
+That will create a Rocky Linux-based container named "rockylinux-test-8". You can rename a container after it has been created, but you first need to stop the container, which starts automatically when it is launched.
 
 To start the container manually, use:
 

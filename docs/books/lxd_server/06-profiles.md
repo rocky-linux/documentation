@@ -101,10 +101,9 @@ This simply says, we want the default profile, and then we want to apply the mac
 
 ## Rocky Linux macvlan
 
-The upstream has been playing with the Network Manager implementation to the point of frustration. Early on with Rocky Linux 8, the macvlan profile was broken. With Rocky Linux 8.6, the macvlan profile worked again, and then with 9.0, it was once again broken. Technically, 
-macvlan is part of the kernel, and the profile does assign correctly in 9.0, but an IP address from the LAN interface network is never assigned. There are work arounds to fix this, but none is very pretty-particularly if you are wanting to assign a static IP address. 
+In RHEL distributions and clones, Network Manager has been in a constant state of change. Because of this, the way the `macvlan` profile works does not work (at least in comparison to other distributions), and requires a little additional work to assign IP addresses from DHCP or statically. 
 
-Keep in mind that none of this has anything to do with Rocky Linux particularly, but with the upstream package implementation.
+Remember that none of this has anything to do with Rocky Linux particularly, but with the upstream package implementation.
 
 Simply put, if you want to run Rocky Linux containers and use macvlan to assign an IP address from your LAN or WAN networks, then the process is different based on which container version of the OS you are using (8.6 or 9.0).
 
