@@ -52,7 +52,7 @@ The original `rsync` was maintained by the Australian programmer <font color=red
 
 How does `rsync` achieve efficient one-way data synchronization backup?
 
-The core of `rsync` is its **Checksum algorithm**. If you are interested, you can go to [How Rsync works](https://rsync.samba.org/how-rsync-works.html) and [The rsync algorithm](https://rsync.samba.org/tech_report/) for more information, This section is beyond the author's competence and will not be covered too much.
+The core of `rsync` is its **Checksum algorithm**. For more information, you can go to [How Rsync works](https://rsync.samba.org/how-rsync-works.html) and [The rsync algorithm](https://rsync.samba.org/tech_report/). This section is beyond the author's competence and will not be covered too much.
 
 The characteristics of `rsync` are:
 
