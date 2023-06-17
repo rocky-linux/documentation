@@ -15,7 +15,7 @@ Of course, if you're here, you probably have a better idea what a firewall is an
 
 In other words, my fellow nerds should be aware that there will be a lot of explanations incoming.
 
-So let's talk about what we're here for. `firewalld` is the default firewall app packaged with Rocky Linux, and it's designed to be pretty simple to use. You just need to know a little bit about how firewalls work, and not be afraid to use the command line.
+So, let's talk about what we're here for. `firewalld` is the default firewall app packaged with Rocky Linux, and it's designed to be pretty simple to use. You just need to know a little bit about how firewalls work, and not be afraid to use the command line.
 
 Here you'll learn:
 
@@ -138,14 +138,14 @@ firewall-cmd --permanent [the rest of your command]
 
 Before anything else, I need to explain zones. Zones are a feature that basically allow you to define different sets of rules for different situations. Zones are a huge part of `firewalld` so it pays to understand how they work.
 
-If your machine has multiple ways to connect to different networks (eg. Ethernet and WiFi), you can decide that one connection is more trusted than the other. You might set your Ethernet connection to the "trusted" zone if it's only connected to a local network that you built, and put the WiFi (which might be connected to the internet) in the "public" zone with more stringent restrictions.
+If your machine has multiple ways to connect to different networks (e.g., Ethernet and Wi-Fi), you can decide that one connection is more trusted than the other. You might set your Ethernet connection to the "trusted" zone if it's only connected to a local network that you built , and put the Wi-Fi (which might be connected to the internet) in the "public" zone with more stringent restrictions.
 
 !!! Note
 
     A zone can *only* be in an active state if it has one of these two conditions:
 
     1. The zone is assigned to a network interface
-    2. The zone is assigned source IPs or network ranges. (More on that below)
+    2. The zone is assigned source IPs or network ranges (more on that below)
 
 Default zones include the following (I've taken this explanation from [DigitalOcean's guide to `firewalld`](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-8), which you should also read):
 
@@ -157,7 +157,7 @@ Default zones include the following (I've taken this explanation from [DigitalOc
 
 > **external:** External networks in the event that you are using the firewall as your gateway. It is configured for NAT masquerading so that your internal network remains private but reachable.
 
-> **internal:** The other side of the external zone, used for the internal portion of a gateway. The computers are fairly trustworthy and some additional services are available.
+> **internal:** The other side of the external zone, used for the internal portion of a gateway. The computers are fairly trustworthy , and some additional services are available.
 
 > **dmz:** Used for computers located in a DMZ (isolated computers that will not have access to the rest of your network). Only certain incoming connections are allowed.
 
@@ -167,7 +167,7 @@ Default zones include the following (I've taken this explanation from [DigitalOc
 
 > **trusted:** Trust all of the machines in the network. The most open of the available options and should be used sparingly.
 
-Okay, so some of those explanations get complicated, but Honestly? The average beginner can get by with understanding "trusted", "home", and "public", and when to use which.
+Okay, so some of those explanations get complicated, but honestly? The average beginner can get by with understanding "trusted", "home", and "public", and when to use which.
 
 ### Zone management commands
 
@@ -211,7 +211,7 @@ To remove an interface from a zone completely:
 firewall-cmd --zone=[your-zone] --remove-interface=[your-network-device]
 ```
 
-To make your own brand new zone with a completely custom set of rules, and to check that it was added properly:
+To make your own brand-new zone with a completely custom set of rules, and to check that it was added properly:
 
 ```bash
 firewall-cmd --new-zone=[your-new-zone]
@@ -228,7 +228,7 @@ Every port is defined by a number, and some ports are reserved for specific serv
 
 Specifically, port 80 allows for transferring data via the Hypertext Transfer Protocol (HTTP), and port 443 is reserved for Hypertext Transfer Protocol Secure (HTTPS) data. *
 
-Port 22 is reserved for the Secure Shell protocol (SSH) which lets you log into and manage other machines via the command line (see [our short guide](ssh_public_private_keys.md) on the suject).A brand new remote server might only allow connections over port 22 for SSH, and nothing else.
+Port 22 is reserved for the Secure Shell protocol (SSH) which lets you log into and manage other machines via the command line (see [our short guide](ssh_public_private_keys.md) on the subject). A brand-new remote server might only allow connections over port 22 for SSH, and nothing else.
 
 Other examples include FTP (ports 20 and 21), SSH (port 22), and so many more. You can also set custom ports to be used by new apps you might install, that don't already have a standard number.
 
@@ -236,7 +236,7 @@ Other examples include FTP (ports 20 and 21), SSH (port 22), and so many more. Y
 
     For things like SSH, HTTP/S, FTP, and more, it's actually recommended to add them to your firewall zone as *services*, and not as port numbers. I'll show you how that works below. That said, you still need to know how to open ports manually.
 
-\* For absolute beginners, HTTPS is basically (more or less) the same as HTTP, but encrypted.
+\* For absolute beginners, HTTPS is basically (more or less) the same as HTTP  but encrypted.
 
 ### Port management commands
 
@@ -275,7 +275,7 @@ Services, as you might imagine, are fairly standardized programs that run on you
 This is the preferred way to open up the ports for these common services, and a whole lot more:
 
 * HTTP and HTTPS: for web servers
-* FTP: For moving files back and forth (the old fashioned way)
+* FTP: For moving files back and forth (the old-fashioned way)
 * SSH: For controlling remote machines and moving files back and forth the new way
 * Samba: For sharing files with Windows machines
 
@@ -285,7 +285,7 @@ This is the preferred way to open up the ports for these common services, and a 
 
     Remember, SSH is what you use to log in to your server. Unless you have another way to access the physical server, or its shell (ie via. a control panel provided by the host), removing the SSH service will lock you out permanently.
 
-    You'll either need to contact support to get your access back, or reinstall the OS entirely.
+    You'll either need to contact support to get your access back  or reinstall the OS entirely.
 
 ## Service management commands
 
@@ -315,7 +315,7 @@ firewall-cmd --zone=public --remove-service=http
 
 !!! Note "Note: You can add your own services"
 
-    And customize the heck out of them, too. However, that's a topic that gets kind of complex. Get familiar with `firewalld` first, and go from there.
+    And customize the heck out of them, too. However, that's a topic that gets kind of complex. Get familiar with `firewalld` first  and go from there.
 
 ## Restricting Access
 
@@ -412,7 +412,7 @@ If you get locked out, restart the server (most VPS control panels have an optio
 
     If you're stuck with an internet service provider that changes your IP address every time your modem reboots, don't use these rules (at least not for SSH) until you have a fix for that. You'll lock yourself out of your server
 
-    Either upgrade your internet plan/provider, or get a VPN that provides you with a dedicated IP, and *never, ever* lose it.
+    Either upgrade your internet plan/provider or get a VPN that provides you with a dedicated IP, and *never, ever* lose it.
 
     In the meantime, [install and configure fail2ban](https://wiki.crowncloud.net/?How_to_Install_Fail2Ban_on_RockyLinux_8), which can help cut down on brute force attacks.
 
@@ -420,7 +420,7 @@ If you get locked out, restart the server (most VPS control panels have an optio
 
 ## Final Notes
 
-This is far from an exhaustive guide, and you can learn a whole lot more with the [official `firewalld` documentation](https://firewalld.org/documentation/). There are also handy app-specific guides all over the internet that will show you how to set up your firewall for for those specific apps.
+This is far from an exhaustive guide, and you can learn a whole lot more with the [official `firewalld` documentation](https://firewalld.org/documentation/). There are also handy app-specific guides all over the internet that will show you how to set up your firewall for those specific apps.
 
 For you fans of `iptables` (if you've gotten this far...), [we have a guide](firewalld.md) detailing some of the differences in how `firewalld` and `iptables` work. That guide might help you figure out if you want to stay with `firewalld` or go back to The Old Ways<sup>(TM)</sup>. There is something to be said for The Old Ways<sup>(TM)</sup>, in this case.
 
