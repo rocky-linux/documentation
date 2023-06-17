@@ -2,7 +2,6 @@
 title: firewalld for Beginners
 author: Ezequiel Bruni
 contributors: Steven Spencer
-update: 16-Feb-2022
 ---
 
 # `firewalld` for Beginners
@@ -22,7 +21,7 @@ Here you'll learn:
 * The very basics of how `firewalld` works
 * How to use `firewalld` to restrict or allow incoming and outgoing connections
 * How to allow only people from certain IP addresses or places to log into your machine remotely
-* How to manage some `firewalld`-specific features like Zones.
+* How to manage some `firewalld`-specific features like Zones .
 
 This is *not* intended to be a complete or exhaustive guide.
 
@@ -38,8 +37,8 @@ You'll need:
 
 * A Rocky Linux machine of any kind, local or remote, physical or virtual
 * Access to the terminal, and a willingness to use it
-* You need root access, or at least the ability to use `sudo` on your user account. For simplicity's sake, I'm assuming all commands are being run as root.
-* A basic understanding of SSH wouldn't hurt for managing remote machines.
+* You need root access, or at least the ability to use `sudo` on your user account. For simplicity's sake, I'm assuming all commands are being run as root
+* A basic understanding of SSH wouldn't hurt for managing remote machines
 
 ## Basic Usage
 
