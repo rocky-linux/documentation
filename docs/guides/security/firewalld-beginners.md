@@ -21,7 +21,7 @@ Here you'll learn:
 * The very basics of how `firewalld` works
 * How to use `firewalld` to restrict or allow incoming and outgoing connections
 * How to allow only people from certain IP addresses or places to log into your machine remotely
-* How to manage some `firewalld`-specific features like Zones .
+* How to manage some `firewalld`-specific features like Zones.
 
 This is *not* intended to be a complete or exhaustive guide.
 
@@ -38,7 +38,7 @@ You'll need:
 * A Rocky Linux machine of any kind, local or remote, physical or virtual
 * Access to the terminal, and a willingness to use it
 * You need root access, or at least the ability to use `sudo` on your user account. For simplicity's sake, I'm assuming all commands are being run as root
-* A basic understanding of SSH wouldn't hurt for managing remote machines
+* A basic understanding of SSH wouldn't hurt for managing remote machines.
 
 ## Basic Usage
 
@@ -225,7 +225,7 @@ I wouldn't, but you can.
 
 Every port is defined by a number, and some ports are reserved for specific services, and kinds of information. If you've ever worked with web servers to build a website, for example, you may be familiar with port 80, and port 443. Those ports allow for the transmission of web page data.
 
-Specifically, port 80 allows for transferring data via the Hypertext Transfer Protocol (HTTP), and port 443 is reserved for Hypertext Transfer Protocol Secure (HTTPS) data. *
+Specifically, port 80 allows for transferring data via the Hypertext Transfer Protocol (HTTP), and port 443 is reserved for Hypertext Transfer Protocol Secure (HTTPS) data.
 
 Port 22 is reserved for the Secure Shell protocol (SSH) which lets you log into and manage other machines via the command line (see [our short guide](ssh_public_private_keys.md) on the subject). A brand-new remote server might only allow connections over port 22 for SSH, and nothing else.
 
@@ -276,7 +276,7 @@ This is the preferred way to open up the ports for these common services, and a 
 * HTTP and HTTPS: for web servers
 * FTP: For moving files back and forth (the old-fashioned way)
 * SSH: For controlling remote machines and moving files back and forth the new way
-* Samba: For sharing files with Windows machines
+* Samba: For sharing files with Windows machines.
 
 !!! Warning
 
