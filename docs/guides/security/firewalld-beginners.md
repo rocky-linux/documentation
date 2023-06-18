@@ -137,7 +137,7 @@ firewall-cmd --permanent [the rest of your command]
 
 Before anything else, I need to explain zones. Zones are a feature that basically allow you to define different sets of rules for different situations. Zones are a huge part of `firewalld` so it pays to understand how they work.
 
-If your machine has multiple ways to connect to different networks (e.g., Ethernet and Wi-Fi), you can decide that one connection is more trusted than the other. You might set your Ethernet connection to the "trusted" zone if it's only connected to a local network that you built , and put the Wi-Fi (which might be connected to the internet) in the "public" zone with more stringent restrictions.
+If your machine has multiple ways to connect to different networks (e.g., Ethernet and Wi-Fi), you can decide that one connection is more trusted than the other. You might set your Ethernet connection to the "trusted" zone if it's only connected to a local network that you built, and put the Wi-Fi (which might be connected to the internet) in the "public" zone with more stringent restrictions.
 
 !!! Note
 
@@ -156,7 +156,7 @@ Default zones include the following (I've taken this explanation from [DigitalOc
 
 > **external:** External networks in the event that you are using the firewall as your gateway. It is configured for NAT masquerading so that your internal network remains private but reachable.
 
-> **internal:** The other side of the external zone, used for the internal portion of a gateway. The computers are fairly trustworthy , and some additional services are available.
+> **internal:** The other side of the external zone, used for the internal portion of a gateway. The computers are fairly trustworthy, and some additional services are available.
 
 > **dmz:** Used for computers located in a DMZ (isolated computers that will not have access to the rest of your network). Only certain incoming connections are allowed.
 
@@ -284,7 +284,7 @@ This is the preferred way to open up the ports for these common services, and a 
 
     Remember, SSH is what you use to log in to your server. Unless you have another way to access the physical server, or its shell (ie via. a control panel provided by the host), removing the SSH service will lock you out permanently.
 
-    You'll either need to contact support to get your access back  or reinstall the OS entirely.
+    You'll either need to contact support to get your access back or reinstall the OS entirely.
 
 ## Service management commands
 
