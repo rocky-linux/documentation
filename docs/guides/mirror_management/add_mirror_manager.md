@@ -15,7 +15,7 @@ Please note that we are not allowed to accept public mirrors in countries subjec
 
 As of this writing (late 2022), storage space requirements for mirroring all current and past Rocky Linux releases is about 2 TB.
 
-Our master mirror is `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`
+Our master mirror is `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/` .
 For your first synchronization use a mirror near to you. You can find all official mirrors [here](https://mirrors.rockylinux.org).
 
 Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider `rsyncing` from a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
@@ -109,7 +109,7 @@ Click "Create" and it will redirect back to the Information site for the host.
 
 At the bottom of the Information site, the option for "Hosts" should now display the host title next to it. Click on the name to load the host page. All of the same options from the previous step are listed again. There are new options at the bottom.
 
-* "Site-local Netblocks":  Netblocks are used to try to guide and end user to a site-specific mirror. For example, a university might list their netblocks, and the mirrorlist CGI would return the university-local mirror rather than a country-local mirror. Format is one of 18.0.0.0/255.0.0.0, 18.0.0.0/8, an IPv6 prefix/length, or a DNS hostname. Values must be public IP addresses (no RFC1918 private space addresses). Use only if you are an ISP and/or own a publicly routeable netblock!
+* "Site-local Netblocks":  Netblocks are used to try to guide and end user to a site-specific mirror. For example, a university might list their netblocks, and the mirrorlist CGI would return the university-local mirror rather than a country-local mirror. Format is one of 18.0.0.0/255.0.0.0, 18.0.0.0/8, an IPv6 prefix/length, or a DNS hostname. Values must be public IP addresses (no RFC1918 private space addresses). Use only if you are an ISP and/or own a publicly routable netblock!
 
 * "Peer ASNs":  Peer ASNs are used to guide an end user on nearby networks to our mirror. For example, a university might list their peer ASNs, and the mirrorlist CGI would return the university-local mirror rather than a country-local mirror. You must be in the MirrorManager administrators group in order to create new entries here.
 
