@@ -1,7 +1,7 @@
 ---
 title: Generating SSL Keys - Let's Encrypt
 author: Steven Spencer
-contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Andrew Thiesen
 tested with: 8.5
 tags:
   - security
@@ -70,7 +70,7 @@ You can always install both server modules if necessary, of course.
 
 !!! Note
 
-    An earlier version of this guide required the snap package version of _certbot_, as it was found to be necessary at the time. The RPM versions have been re-tested recently, and are working now. That said, Certbot strongly recommends the use of the [snap install procedure](https://certbot.eff.org/instructions?ws=apache&os=centosrhel8). Both Rocky Linux 8 and 9 have _certbot_ available in the EPEL, so we are showing thatt procedure here. If you would like to use the procedure recommended by Certbot, just follow that procedure instead.
+    An earlier version of this guide required the snap package version of _certbot_, as it was found to be necessary at the time. The RPM versions have been re-tested recently, and are working now. That said, Certbot strongly recommends the use of the [snap install procedure](https://certbot.eff.org/instructions?ws=apache&os=centosrhel8). Both Rocky Linux 8 and 9 have _certbot_ available in the EPEL, so we are showing that procedure here. If you would like to use the procedure recommended by Certbot, just follow that procedure instead.
 
 
 ## Getting The Let's Encrypt Certificate for the Apache Server
