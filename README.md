@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-91-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-92-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -241,7 +241,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/justasojourner"><img src="https://avatars.githubusercontent.com/u/66750169?v=4?s=100" width="100px;" alt="justasojourner"/><br /><sub><b>justasojourner</b></sub></a><br /><a href="#content-justasojourner" title="Content">🖋</a> <a href="#ideas-justasojourner" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://shrug.pw/"><img src="https://avatars.githubusercontent.com/u/680198?v=4?s=100" width="100px;" alt="Neil Hanlon"/><br /><sub><b>Neil Hanlon</b></sub></a><br /><a href="#content-NeilHanlon" title="Content">🖋</a> <a href="#maintenance-NeilHanlon" title="Maintenance">🚧</a> <a href="#ideas-NeilHanlon" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/pajamian"><img src="https://avatars.githubusercontent.com/u/92609?v=4?s=100" width="100px;" alt="Peter Ajamian"/><br /><sub><b>Peter Ajamian</b></sub></a><br /><a href="#content-pajamian" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bakrog/"><img src="https://avatars.githubusercontent.com/u/3700397?v=4?s=100" width="100px;" alt="Flávio Siqueira Prado"/><br /><sub><b>Flávio Siqueira Prado</b></sub></a><br /><a href="#translation-Bakrog" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.flaviosiqueira.com.br/"><img src="https://avatars.githubusercontent.com/u/3700397?v=4?s=100" width="100px;" alt="Flávio Siqueira Prado"/><br /><sub><b>Flávio Siqueira Prado</b></sub></a><br /><a href="#translation-Bakrog" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Norio4"><img src="https://avatars.githubusercontent.com/u/25744143?v=4?s=100" width="100px;" alt="Norio4"/><br /><sub><b>Norio4</b></sub></a><br /><a href="#translation-Norio4" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.volted.net/"><img src="https://avatars.githubusercontent.com/u/40760290?v=4?s=100" width="100px;" alt="Sébastien Pascal-Poher"/><br /><sub><b>Sébastien Pascal-Poher</b></sub></a><br /><a href="#translation-sjpp" title="Translation">🌍</a></td>
     </tr>
@@ -274,7 +274,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/xpseudonym"><img src="https://avatars.githubusercontent.com/u/5032475?v=4?s=100" width="100px;" alt="Morgan Read"/><br /><sub><b>Morgan Read</b></sub></a><br /><a href="#content-xpseudonym" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/9p4"><img src="https://avatars.githubusercontent.com/u/17993169?v=4?s=100" width="100px;" alt="9p4"/><br /><sub><b>9p4</b></sub></a><br /><a href="#content-9p4" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://ersei.saggis.com/"><img src="https://avatars.githubusercontent.com/u/17993169?v=4?s=100" width="100px;" alt="9p4"/><br /><sub><b>9p4</b></sub></a><br /><a href="#content-9p4" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/liquidspikes"><img src="https://avatars.githubusercontent.com/u/5150291?v=4?s=100" width="100px;" alt="Alex Zimmerman"/><br /><sub><b>Alex Zimmerman</b></sub></a><br /><a href="#content-liquidspikes" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/viscountstyx"><img src="https://avatars.githubusercontent.com/u/46753436?v=4?s=100" width="100px;" alt="Andrew Faulkner"/><br /><sub><b>Andrew Faulkner</b></sub></a><br /><a href="#content-viscountstyx" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/televi"><img src="https://avatars.githubusercontent.com/u/3333248?v=4?s=100" width="100px;" alt="Todd Levi"/><br /><sub><b>Todd Levi</b></sub></a><br /><a href="#content-televi" title="Content">🖋</a></td>
@@ -328,8 +328,9 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/bakerds"><img src="https://avatars.githubusercontent.com/u/16193241?v=4?s=100" width="100px;" alt="Dan Baker"/><br /><sub><b>Dan Baker</b></sub></a><br /><a href="#content-bakerds" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/quartsize"><img src="https://avatars.githubusercontent.com/u/37243063?v=4?s=100" width="100px;" alt="Laura Hild"/><br /><sub><b>Laura Hild</b></sub></a><br /><a href="#content-quartsize" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://git.sr.ht/%7Equartsize/"><img src="https://avatars.githubusercontent.com/u/37243063?v=4?s=100" width="100px;" alt="Laura Hild"/><br /><sub><b>Laura Hild</b></sub></a><br /><a href="#content-quartsize" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Grammaresque"><img src="https://avatars.githubusercontent.com/u/119525559?v=4?s=100" width="100px;" alt="Grammaresque"/><br /><sub><b>Grammaresque</b></sub></a><br /><a href="#content-Grammaresque" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bdacus01"><img src="https://avatars.githubusercontent.com/u/22330436?v=4?s=100" width="100px;" alt="Brent Dacus"/><br /><sub><b>Brent Dacus</b></sub></a><br /><a href="#content-bdacus01" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://sauveur.xyz"><img src="https://avatars.githubusercontent.com/u/7724090?v=4?s=100" width="100px;" alt="Rawk Akani"/><br /><sub><b>Rawk Akani</b></sub></a><br /><a href="#content-rawkakani" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/nm583"><img src="https://avatars.githubusercontent.com/u/121867206?v=4?s=100" width="100px;" alt="nm583"/><br /><sub><b>nm583</b></sub></a><br /><a href="#content-nm583" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/MrPaulAR"><img src="https://avatars.githubusercontent.com/u/3765696?v=4?s=100" width="100px;" alt="MrPaulAR"/><br /><sub><b>MrPaulAR</b></sub></a><br /><a href="#content-MrPaulAR" title="Content">🖋</a></td>
@@ -342,6 +343,9 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Demalpheus"><img src="https://avatars.githubusercontent.com/u/28327241?v=4?s=100" width="100px;" alt="Travis W"/><br /><sub><b>Travis W</b></sub></a><br /><a href="#content-Demalpheus" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://g.dev/rana_tej_singh"><img src="https://avatars.githubusercontent.com/u/58101587?v=4?s=100" width="100px;" alt="Tej Singh Rana"/><br /><sub><b>Tej Singh Rana</b></sub></a><br /><a href="#content-Tej-Singh-Rana" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/captain-Arvoy"><img src="https://avatars.githubusercontent.com/u/99230514?v=4?s=100" width="100px;" alt="Aditya Roshan Dash"/><br /><sub><b>Aditya Roshan Dash</b></sub></a><br /><a href="#content-captain-Arvoy" title="Content">🖋</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/andrewthiesen"><img src="https://avatars.githubusercontent.com/u/69650999?v=4?s=100" width="100px;" alt="Andrew (AJ)"/><br /><sub><b>Andrew (AJ)</b></sub></a><br /><a href="#content-andrewthiesen" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
