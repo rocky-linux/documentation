@@ -2,11 +2,11 @@
 title: LibreNMS Monitoring Server
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5, 8.6, 9.0
+tested_with: 8.5, 8.6, 9.0
 tags:
   - monitoring
   - network
----  
+---
 
 # LibreNMS Monitoring Server
 
