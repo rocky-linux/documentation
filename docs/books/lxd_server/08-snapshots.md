@@ -2,38 +2,38 @@
 title: 8 Container Snapshots
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5, 8.6, 9.0
+tested with: 8.8, 9.2
 tags:
   - lxd
   - enterprise
   - lxd snapshots
 ---
 
-# Chapter 8: Container Snapshots
+# Chapter 8: container snapshots
 
-Throughout this chapter you will need to execute commands as your unprivileged user ("lxdadmin" if you've been following along from the beginning of this book).
+Throughout this chapter you will need to run commands as your unprivileged user ("lxdadmin" if you've been following along from the beginning of this book).
 
-Container snapshots, along with a snapshot server (which we will get to more later), are probably the most important aspect of running a production LXD server. Snapshots ensure quick recovery, and can be used for safety when you are, say, updating the primary software that runs on a particular container. If something happens during the update that breaks that application, you simply restore the snapshot and you are back up and running with only a few seconds worth of downtime.
+Container snapshots, along with a snapshot server (more on that later), are probably the most important aspect of running a production LXD server. Snapshots ensure quick recovery. It is a good idea to use them as a fail safe when updating the primary software that runs on a particular container. If something happens during the update that breaks that application, you just restore the snapshot and you are back up and running with only a few seconds worth of downtime.
 
-The author used LXD containers for PowerDNS public facing servers, and the process of updating those applications became so much more worry-free, since you can snapshot the container first before continuing.
+The author used LXD containers for PowerDNS public facing servers, and the process of updating those applications became less worrisome, thanks to taking snapshots before every update.
 
-You can even snapshot a container while it is running. 
+You can even snapshot a container when it is running. 
 
 ## The snapshot process
 
-We'll start by getting a snapshot of the ubuntu-test container by using this command:
+Start by getting a snapshot of the ubuntu-test container by using this command:
 
 ```
 lxc snapshot ubuntu-test ubuntu-test-1
 ```
 
-Here, we are calling the snapshot "ubuntu-test-1", but it can be called anything you like. To make sure that you have the snapshot, do an "lxc info" of the container:
+Here, you are calling the snapshot "ubuntu-test-1", but you can call it anything. To ensure that you have the snapshot, do an `lxc info` of the container:
 
 ```
 lxc info ubuntu-test
 ```
 
-We've looked at an info screen already, so if you scroll to the bottom, you should see:
+You have looked at an info screen already. If you scroll to the bottom, you now see:
 
 ```
 Snapshots:
@@ -42,41 +42,41 @@ Snapshots:
 
 Success! Our snapshot is in place.
 
-Now, get into the ubuntu-test container:
+Get into the ubuntu-test container:
 
 ```
 lxc exec ubuntu-test bash
 ```
 
-And create an empty file with the _touch_ command:
+Create an empty file with the _touch_ command:
 
 ```
 touch this_file.txt
 ```
 
-Now exit the container.
+Exit the container.
 
-Before we restore the container as it was prior to creating the file, the safest way to restore a container, particularly if there have been a lot of changes, is to stop it first:
+Before restoring the container how it was prior to creating the file, the safest way to restore a container, particularly if there have been many changes, is to stop it first:
 
 ```
 lxc stop ubuntu-test
 ```
 
-Then restore it:
+Restore it:
 
 ```
 lxc restore ubuntu-test ubuntu-test-1
 ```
 
-Then start the container again:
+Start the container again:
 
 ```
 lxc start ubuntu-test
 ```
 
-If you get back into the container again and look, our "this_file.txt" that we created is now gone.
+If you get back into the container again and look, our "this_file.txt" that you created is now gone.
 
-Once you don't need a snapshot anymore, you can delete it:
+When you do not need a snapshot anymore you can delete it:
 
 ```
 lxc delete ubuntu-test/ubuntu-test-1
@@ -94,4 +94,8 @@ lxc delete ubuntu-test/ubuntu-test-1
 
     So always delete snapshots with the container running.
 
-The process of creating snapshots automatically, setting expiration of the snapshot so that it goes away after a certain length of time, and auto refreshing the snapshots to the snapshot server will be covered in detail in the following chapters.
+In the chapters that follow you will: 
+
+* set up the process of creating snapshots automatically
+* set up expiration of a snapshot so that it goes away after a certain length of time
+* set up auto refreshing of snapshots to the snapshot server

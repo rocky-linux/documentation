@@ -2,7 +2,7 @@
 title: 3 LXD Initialization and User Setup
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5, 8.6, 9.0
+tested with: 8.8, 9.2
 tags:
   - lxd
   - enterprise
@@ -10,13 +10,13 @@ tags:
   - lxd setup
 ---
 
-# Chapter 3: LXD Initialization and User Setup
+# Chapter 3: LXD initialization and user setup
 
-Throughout this chapter you will need to be root or able to `sudo` to become root. In addition, we are assuming that you have setup a ZFS storage pool as described in [Chapter 2](02-zfs_setup). You can use a different storage pool if you have chosen not to use ZFS, but you will need to make adjustments to the initialization questions and answers.
+Throughout this chapter you will need to be root or able to `sudo` to become root. In addition, the assumption is that you have setup a ZFS storage pool described in [Chapter 2](02-zfs_setup). You can use a different storage pool if you have chosen not to use ZFS, but you will need to make adjustments to the initialization questions and answers.
 
-## LXD Initialization
+## LXD initialization
 
-Now that the environment is all set up, we are ready to initialize LXD. This is an automated script that asks a series of questions to get your LXD instance up and running:
+Your server environment is all set up. You are ready to initialize LXD. This is an automated script that asks a series of questions to get your LXD instance up and running:
 
 ```
 lxd init
@@ -28,31 +28,31 @@ Here are the questions and our answers for the script, with a little explanation
 Would you like to use LXD clustering? (yes/no) [default=no]:
 ```
 
-If you are interested in clustering, do some additional research on that [here](https://linuxcontainers.org/lxd/docs/master/clustering/)
+If interested in clustering, do some additional research on that [here](https://linuxcontainers.org/lxd/docs/master/clustering/)
 
 ```
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
 ```
 
-This may seem counter-intuitive, since we have already created our ZFS pool, but it will be resolved in a later question. Accept the default.
+This seems counter-intuitive. You have already created your ZFS pool, but it will become clear in a later question. Accept the default.
 
 ```
 Name of the new storage pool [default=default]: storage
 ```
 
-You could leave this as default if you wanted to, but we have chosen to use the same name we gave our ZFS pool.
+Leaving this "default" is an option, but for clarity, using the same name you gave our ZFS pool is better.
 
 ```
 Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]:
 ```
 
-Obviously we want to accept the default.
+You want to accept the default.
 
 ```
 Create a new ZFS pool? (yes/no) [default=yes]: no
 ```
 
-Here's where the earlier question about creating a storage pool is resolved.
+Here is where the resolution of the earlier question about creating a storage pool comes into play.
 
 ```
 Name of the existing ZFS pool or dataset: storage
@@ -74,7 +74,7 @@ If you want to use IPv6 on your LXD containers, you can turn on this option. Tha
 Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
 ```
 
-This is necessary to snapshot the server, so answer "yes" here.
+This is necessary to snapshot the server.
 
 ```
 Address to bind LXD to (not including port) [default=all]:
@@ -83,22 +83,22 @@ Trust password for new clients:
 Again:
 ```
 
-This trust password is how you will connect to the snapshot server or back from the snapshot server, so set this with something that makes sense in your environment. Save this entry to a secure location, such as a password manager.
+This trust password is how you will connect to the snapshot server or back from the snapshot server. Set this with something that makes sense in your environment. Save this entry to a secure location, such as a password manager.
 
 ```
 Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
 Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
 ```
 
-## Setting Up User Privileges
+## Setting up user privileges
 
-Before we continue on, we need to create our "lxdadmin" user and make sure that it has the privileges it needs. We need the "lxdadmin" user to be able to _sudo_ to root and we need it to be a member of the lxd group. To add the user and make sure it is a member of both groups do:
+Before you continue on, you need to create your "lxdadmin" user and ensure that it has the privileges it needs. You need the "lxdadmin" user to be able to `sudo` to root and you need it to be a member of the lxd group. To add the user and ensure it is a member of both groups do:
 
 ```
 useradd -G wheel,lxd lxdadmin
 ```
 
-Then set the password:
+Set the password:
 
 ```
 passwd lxdadmin
