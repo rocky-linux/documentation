@@ -2,18 +2,18 @@
 title: 1 Install and Configuration
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5, 8.6, 9.0
+tested with: 8.8, 9.2
 tags:
   - lxd
   - enterprise
   - lxd install
 ---
 
-# Chapter 1: Install and Configuration
+# Chapter 1: Install and configuration
 
 Throughout this chapter you will need to be the root user or you will need to be able to _sudo_ to root.
 
-## Install EPEL and OpenZFS Repositories
+## Install EPEL and OpenZFS repositories
 
 LXD requires the EPEL (Extra Packages for Enterprise Linux) repository, which is easy to install using:
 
@@ -21,7 +21,7 @@ LXD requires the EPEL (Extra Packages for Enterprise Linux) repository, which is
 dnf install epel-release
 ```
 
-Once installed, check for updates:
+When installed, verify there are no updates:
 
 ```
 dnf upgrade
@@ -29,7 +29,7 @@ dnf upgrade
 
 If there were any kernel updates during the upgrade process, reboot the server.
 
-### OpenZFS Repository for 8 and 9
+### OpenZFS repository for 8 and 9
 
 Install the OpenZFS repository with:
 
@@ -37,21 +37,21 @@ Install the OpenZFS repository with:
 dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").noarch.rpm
 ```
 
-## Install snapd, dkms, vim, and kernel-devel
+## Install `snapd`, `dkms`, `vim`, and `kernel-devel`
 
-LXD must be installed from a snap for Rocky Linux. For this reason, we need to install `snapd` (and a few other useful programs) with:
+LXD installation is from a snap on Rocky Linux. For this reason, you need to install `snapd` (and a few other useful programs) with:
 
 ```
 dnf install snapd dkms vim kernel-devel
 ```
 
-And now enable and start snapd:
+Now enable and start snapd:
 
 ```
 systemctl enable snapd
 ```
 
-And then run:
+Then run:
 
 ```
 systemctl start snapd
@@ -61,7 +61,7 @@ Reboot the server before continuing here.
 
 ## Install LXD
 
-Installing LXD requires the use of the snap command. At this point, we are just installing it, we are not doing the set up:
+Installing LXD requires the use of the snap command. At this point, you are just installing it, you are not doing the set up:
 
 ```
 snap install lxd
@@ -73,21 +73,21 @@ snap install lxd
 dnf install zfs
 ```
 
-## Environment Set up
+## Environment set up
 
-Most server kernel settings are not sufficient to run a large number of containers. If we assume from the beginning that we will be using our server in production, then we need to make these changes up front to avoid errors such as "Too many open files" from occurring.
+Most server kernel settings are not sufficient to run a large number of containers. If you assume from the beginning that you will use your server in production, you need to make these changes up front to avoid errors such as "Too many open files" from occurring.
 
-Luckily, tweaking the settings for LXD is easy with a few file modifications and a reboot.
+Luckily, tweaking the settings for LXD is not hard with a few file modifications and a reboot.
 
-### Modifying limits.conf
+### Modifying `limits.conf`
 
-The first file we need to modify is the limits.conf file. This file is self-documented, so look at the explanations in the file as to what this file does. To make our modifications type:
+The first file you need to change is the `limits.conf` file. This file is self-documented. Examine the explanations in the comment in the file to understand what this file does. To make your modifications enter:
 
 ```
 vi /etc/security/limits.conf
 ```
 
-This entire file is remarked/commented out and, at the bottom, shows the current default settings. In the blank space above the end of file marker (#End of file) we need to add our custom settings. The end of the file will look like this when you are done:
+This entire file consists of comments, and at the bottom, shows the current default settings. In the blank space above the end of file marker (#End of file) you need to add our custom settings. The end of the file will look like this when completed:
 
 ```
 # Modifications made for LXD
@@ -100,13 +100,13 @@ root            hard    nofile           1048576
 *               hard    memlock          unlimited
 ```
 
-Save your changes and exit. (`SHIFT:wq!` for _vi_)
+Save your changes and exit. (<kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq!</kbd> for _vi_)
 
-### Modifying sysctl.conf With 90-lxd.override.conf
+### Modifying sysctl.conf with `90-lxd.override.conf`
 
-With _systemd_, we can make changes to our system's overall configuration and kernel options *without* modifying the main configuration file. Instead, we'll put our settings in a separate file that will simply override the particular settings we need.
+With _systemd_, you can make changes to your system's overall configuration and kernel options *without* modifying the main configuration file. Instead, put your settings in a separate file that will override the particular settings you need.
 
-To make these kernel changes, we are going to create a file called _90-lxd-override.conf_ in /etc/sysctl.d. To do this type:
+To make these kernel changes, you are going to create a file called `90-lxd-override.conf` in `/etc/sysctl.d`. To do this type:
 
 ```
 vi /etc/sysctl.d/90-lxd-override.conf
@@ -116,7 +116,7 @@ vi /etc/sysctl.d/90-lxd-override.conf
 
     Because of recent kernel security updates, the max value of `net.core.bpf_jit_limit` appears to be 1000000000. Please adjust this value in the self-documenting file below if you are running Rocky Linux 9.x. If you set it above this limit **OR** if you fail to set it at all, it will default to the system default of 264241152, which may not be enough if you run a large number of containers.
 
-Place the following content in that file. Note that if you are wondering what we are doing here, the file content below is self-documenting:
+Place the following content in that file. Note that if you are wondering what you are doing here, the file content is self-documenting:
 
 ```
 ## The following changes have been made for LXD ##
@@ -174,22 +174,22 @@ fs.aio-max-nr = 524288
 
 Save your changes and exit.
 
-At this point you should reboot the server.
+At this point reboot the server.
 
-### Checking _sysctl.conf_ Values
+### Checking _sysctl.conf_ values
 
-Once the reboot has been completed, log back in as to the server. We need to spot check that our override file has actually done the job.
+After the reboot, log back in as the root user to the server. You need to check that our override file has actually completed the job.
 
-This is easy to do. There's no need to check every setting unless you want to, but checking a few will verify that the settings have been changed. This is done with the _sysctl_ command:
+This is not hard to do. There's no need to verify every setting unless you want to, but checking a few will verify that the settings have changed. Do this with the `sysctl` command:
 
 ```
 sysctl net.core.bpf_jit_limit
 ```
 
-Which should show you:
+Which will show you:
 
 ```
 net.core.bpf_jit_limit = 3000000000
 ```
 
-Do the same with a few other settings in the override file (above) to verify that changes have been made.
+Do the same with a few other settings in the override file to verify the changes.

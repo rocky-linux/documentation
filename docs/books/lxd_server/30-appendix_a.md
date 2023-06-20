@@ -8,7 +8,7 @@ tags:
   - workstation
 ---
 
-# Appendix A - Workstation Setup
+# Appendix A - workstation setup
 
 While not a part of the chapters for an LXD Server, this procedure will help those who wish to have a lab environment, or semi-permanent OS and application, running on a Rocky Linux workstation or laptop.
 
@@ -16,8 +16,8 @@ While not a part of the chapters for an LXD Server, this procedure will help tho
 
 * comfortable at the command line
 * able to use a command line editor, such as `vi` or `nano` fluently
-* willing to install `snapd` in order to install LXD
-* a desire for a stable testing environment that can be used every day or as needed
+* willing to install `snapd` to install LXD
+* a need for a stable testing environment used every day or as needed
 * able to become root or have `sudo` privileges
 
 ## Installation
@@ -28,7 +28,7 @@ From the command line, install the EPEL repository:
 sudo dnf install epel-release 
 ```
 
-Once installed, do an upgrade:
+When installation finishes, do an upgrade:
 
 ```
 sudo dnf upgrade
@@ -46,7 +46,7 @@ Enable the `snapd` service
 sudo systemctl enable snapd
 ```
 
-Reboot your laptop or workstation
+Reboot your notebook or workstation
 
 Install the snap for LXD:
 
@@ -54,15 +54,15 @@ Install the snap for LXD:
 sudo snap install lxd
 ```
 
-## LXD Initialization
+## LXD initialization
 
-If you've looked through the production server chapters, this is very similiar to the production server init procedure. 
+If you have looked through the production server chapters, this is nearly the same as the production server init procedure. 
 
 ```
 sudo lxd init
 ```
 
-This will bring up a question and answer dialog that looks like the following.
+This will start a question and answer dialog. 
 
 Here are the questions and our answers for the script, with a little explanation where warranted:
 
@@ -70,21 +70,20 @@ Here are the questions and our answers for the script, with a little explanation
 Would you like to use LXD clustering? (yes/no) [default=no]:
 ```
 
-If you are interested in clustering, do some additional research on that [here](https://linuxcontainers.org/lxd/docs/master/clustering/)
+If you have interest in clustering, do some additional research on that [at Linux containers here](https://linuxcontainers.org/lxd/docs/master/clustering/).
 
 ```
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
 Name of the new storage pool [default=default]: storage
 ```
 
-Optionally, you can accept the default. Since we aren't using ZFS, it really is just a choice.
+Optionally, you can accept the default. 
 
 ```
 Name of the storage backend to use (btrfs, dir, lvm, ceph) [default=btrfs]: dir
 ```
 
-Note that dir is somewhat slower than btrfs. If you have the forsight to leave a disk empty, you can use that device (example: /dev/sdb)
- as the btrfs device and then choose btrfs. dir will work fine
+Note that `dir` is somewhat slower than `btrfs`. If you have the foresight to leave a disk empty, you can use that device (example: /dev/sdb) for the `btrfs` device and then select `btrfs`, but only if your host computer has an operating system that supports `btrfs`. Rocky Linux and any RHEL clone will not support `btrfs` - not yet, anyway. `dir` will work fine for a lab environment.
 
 ```
 Would you like to connect to a MAAS server? (yes/no) [default=no]:
@@ -105,7 +104,7 @@ If you want to use IPv6 on your LXD containers, you can turn on this option. Tha
 Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
 ```
 
-This is necessary to snapshot the server, so answer "yes" here.
+This is necessary to snapshot the workstation. Answer "yes" here.
 
 ```
 Address to bind LXD to (not including port) [default=all]:
@@ -114,15 +113,14 @@ Trust password for new clients:
 Again:
 ```
 
-This trust password is how you will connect to the snapshot server or back from the snapshot server, so set this with something that mak
-es sense in your environment. Save this entry to a secure location, such as a password manager.
+This trust password is how you will connect to the snapshot server or back from the snapshot server. Set this with something that makes sense in your environment. Save this entry to a secure location, such as a password manager.
 
 ```
 Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
 Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
 ```
 
-## User Privileges
+## User privileges
 
 The next thing you need to do is to add your user to the lxd group. Again, you will need to use `sudo` or be root for this:
 
@@ -132,17 +130,17 @@ sudo usermod -a -G lxd [username]
 
 where [username] is your user on the system.
 
-At this point, you've made a bunch of changes so before you go any further, reboot your machne.
+At this point, you have made a bunch of changes. Before you go any further, reboot your machine.
 
-## Verifying the Install
+## Verifying the install
 
-To make sure that `lxd` started and that your user has privileges, from the command prompt do:
+To ensure that `lxd` started and that your user has privileges, from the shell prompt do:
 
 ```
 lxc list
 ```
 
-Note we have not used `sudo` here as your user should now have the ability to enter these commands.  You should get something like this in return:
+Note you have not used `sudo` here. Your user has the ability to enter these commands. You will see something like this:
 
 ```
 +------------+---------+----------------------+------+-----------+-----------+
@@ -150,9 +148,9 @@ Note we have not used `sudo` here as your user should now have the ability to en
 +------------+---------+----------------------+------+-----------+-----------+
 ```
 
-If so, you're looking good so far!
+If you do, you are looking good!
 
-## The Rest Of It
+## The rest of it
 
 From this point, you can easily use the capters from our "LXD Production Server" to continue on. There are some things on a workstation setup though that we need to pay less attention to. Here are the recommended chapters to get you going:
 
@@ -160,7 +158,7 @@ From this point, you can easily use the capters from our "LXD Production Server"
 * [Chapter 6 - Profiles](06-profiles.md)
 * [Chapter 8 - Container Snapshots](08-snapshots.md)
 
-## More Reading
+## More reading
 
 * [LXD Beginners Guide](../../guides/containers/lxd_web_servers.md) which will get you started using LXD productively.
 * [Official LXD Overview](https://linuxcontainers.org/lxd/introduction/)
@@ -168,9 +166,4 @@ From this point, you can easily use the capters from our "LXD Production Server"
 
 ## Conclusion 
 
-LXD is a powerful tool that can be used on workstations or servers for increased productivity. On a workstation, it is great for lab testing, but can just as easily keep semi-permanent instances of OS and applications available in their own private space. 
-
-
-
-
-
+LXD is a powerful tool that you can use on workstations or servers for increased productivity. On a workstation, it is great for lab testing, but can also keep semi-permanent instances of operating systems and applications available in their own private space. 

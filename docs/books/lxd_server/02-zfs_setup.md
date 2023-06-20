@@ -2,20 +2,20 @@
 title: 2 ZFS Setup
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5, 8.6, 9.0
+tested with: 8.8, 9.2
 tags:
   - lxd
   - enterprise
   - lxd zfs
 ---
 
-# Chapter 2: ZFS Setup
+# Chapter 2: ZFS setup
 
 Throughout this chapter you will need to be the root user or able to `sudo` to become root.
 
 If you have already installed ZFS, this section will walk you through ZFS setup.
 
-## Enabling ZFS and setting Up the pool
+## Enabling ZFS and setting up the pool
 
 First, enter this command:
 
@@ -23,15 +23,15 @@ First, enter this command:
 /sbin/modprobe zfs
 ```
 
-This should not return an error, it should simply return to the command prompt when done. If you get an error, stop now and begin troubleshooting. Again, make sure that secure boot is off as that will be the most likely culprit.
+If no errors, it will return to the prompt and echo nothing. If you get an error, stop now and begin troubleshooting. Again, ensure that secure boot is off. That will be the most likely culprit.
 
-Next we need to take a look at the disks on our system, determine what has the OS loaded on it, and what is available to use for the ZFS pool. We will do this with _lsblk_:
+Next you need to examine the disks on our system, find out where the operating system is, and what is available to use for the ZFS pool. You will do this with `lsblk`:
 
 ```
 lsblk
 ```
 
-Which should return something like this (your system will be different!):
+Which will return something like this (your system will be different!):
 
 ```
 AME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
@@ -51,9 +51,9 @@ sdc      8:32   0 149.1G  0 disk
 └─sdc1   8:33   0 149.1G  0 part
 ```
 
-In this listing, we can see that */dev/sda* is in use by the operating system, so we are going to use */dev/sdb* for our zpool. Note that if you have multiple free hard drives, you may wish to consider using raidz (a software raid specifically for ZFS).
+In this listing, you can see that */dev/sda* is in use by the operating system. You are going to use */dev/sdb* for our zpool. Note that if you have many available hard drives, you may want to consider using raidz (a software raid specifically for ZFS).
 
-That falls outside the scope of this document, but should definitely be a consideration for production, as it offers better performance and redundancy. For now, let's create our pool on the single device we have identified:
+That falls outside the scope of this document, but definitely is a consideration for production. It offers better performance and redundancy. For now, create your pool on the single device you have identified:
 
 ```
 zpool create storage /dev/sdb
@@ -61,4 +61,4 @@ zpool create storage /dev/sdb
 
 What this says is to create a pool called "storage" that is ZFS on the device */dev/sdb*.
 
-Once the pool is created, it's a good idea to reboot the server again at this point.
+After creating the pool, reboot the server again.
