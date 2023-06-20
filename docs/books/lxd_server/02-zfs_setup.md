@@ -23,7 +23,7 @@ First, enter this command:
 /sbin/modprobe zfs
 ```
 
-If no errors, it will return to the prompt and echo nothing. If you get an error, stop now and begin troubleshooting. Again, ensure that secure boot is off. That will be the most likely culprit.
+If there are no errors, it will return to the prompt and echo nothing. If you get an error, stop now and begin troubleshooting. Again, ensure that secure boot is off. That will be the most likely culprit.
 
 Next you need to examine the disks on our system, find out where the operating system is, and what is available to use for the ZFS pool. You will do this with `lsblk`:
 

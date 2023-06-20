@@ -15,7 +15,7 @@ Throughout this chapter you will need to run commands as your unprivileged user 
 
 Container snapshots, along with a snapshot server (more on that later), are probably the most important aspect of running a production LXD server. Snapshots ensure quick recovery. It is a good idea to use them as a fail safe when updating the primary software that runs on a particular container. If something happens during the update that breaks that application, you just restore the snapshot and you are back up and running with only a few seconds worth of downtime.
 
-The author used LXD containers for PowerDNS public facing servers, and the process of updating those applications became less worrisome, because of taking a snapshot of the container first before continuing.
+The author used LXD containers for PowerDNS public facing servers, and the process of updating those applications became less worrisome, thanks to taking snapshots before every update.
 
 You can even snapshot a container when it is running. 
 

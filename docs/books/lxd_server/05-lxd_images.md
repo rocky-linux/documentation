@@ -15,7 +15,7 @@ Throughout this chapter you will need to run commands as your unprivileged user 
 
 ## List available images
 
-You are probably can not wait to get started with a container. There are a many container operating system possibilities. To get a feel for how many possibilities, enter this command:
+You probably can not wait to get started with a container. There are many container operating system possibilities. To get a feel for how many possibilities, enter this command:
 
 ```
 lxc image list images: | more
@@ -54,7 +54,7 @@ For the first container, you are going to use "rockylinux/8". To install it, you
 lxc launch images:rockylinux/8 rockylinux-test-8
 ```
 
-That will create a Rocky Linux-based container named "rockylinux-test-8". You can rename a container after creating it, but you first need to stop the container, which starts automatically when launched.
+That will create a Rocky Linux-based container named "rockylinux-test-8". You can rename a container after creating it, but you first need to stop the container, which starts automatically when created.
 
 To start the container manually, use:
 
@@ -68,7 +68,7 @@ To Rename the image (we are not going to do this here, but this is how to do it)
 lxc stop rockylinux-test-8
 ```
 
-Move the container to a different name:
+Use the `move` command to change the container's name:
 
 ```
 lxc move rockylinux-test-8 rockylinux-8

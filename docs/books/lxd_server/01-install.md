@@ -39,7 +39,7 @@ dnf install https://zfsonlinux.org/epel/zfs-release-2-2$(rpm --eval "%{dist}").n
 
 ## Install `snapd`, `dkms`, `vim`, and `kernel-devel`
 
-LXD installation is from a snap on Rocky Linux. For this reason, you need to install `snapd` (and a few other useful programs) with:
+LXD installation requires a snap package on Rocky Linux. For this reason, you need to install `snapd` (and a few other useful programs) with:
 
 ```
 dnf install snapd dkms vim kernel-devel

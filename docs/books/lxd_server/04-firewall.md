@@ -23,7 +23,7 @@ As with any server, you need to ensure that it is secure from the outside world 
 
 ## Firewall set up - `firewalld`
 
-For _firewalld_ rules, you need to use [this basic procedure](../../guides/security/firewalld.md) or be familiar with those concepts. Our assumptions are: LAN network of 192.168.1.0/24 and a bridge named lxdbr0. To be clear, you might have many interfaces on your LXD server, with one perhaps facing your WAN. You are also going to create a zone for the bridged and local networks. This is just for zone clarity sake. The other zone names do not really apply. This procedure assumes that you already know the basics of _firewalld_.
+For _firewalld_ rules, you need to use [this basic procedure](../../guides/security/firewalld.md) or be familiar with those concepts. Our assumptions are: LAN network of 192.168.1.0/24 and a bridge named lxdbr0. To be clear, you might have many interfaces on your LXD server, with one perhaps facing your WAN. You are also going to create a zone for the bridged and local networks. This is just for zone clarity's sake. The other zone names do not really apply. This procedure assumes that you already know the basics of _firewalld_.
 
 ```
 firewall-cmd --new-zone=bridge --permanent
