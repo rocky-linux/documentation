@@ -11,7 +11,7 @@ tags:
 
 # Chapter 7: Container configuration options
 
-Throughout this chapter you will need to run commands as your unprivileged user ("lxdadmin" if you've been following from the beginning in this book).
+Throughout this chapter you will need to run commands as your unprivileged user ("lxdadmin" if you've been following from the beginning of this book).
 
 There are a wealth of options for configuring the container after installation. Before seeing those, however, let us examine the `info` command for a container. In this example, you will use the ubuntu-test container:
 
@@ -64,7 +64,7 @@ There is much good information there, from the profiles applied, to the memory i
 
 By default, LXD will assign the required system memory, disk space, CPU cores, and other resources, to the container. But what if you want to be more specific? That is totally possible.
 
-There are trade-offs to doing this, though. For instance, if you assign system memory and the container does not use it all, you have kept it from another container that might actually need it. The reverse, though, can happen. If a container is a pig on memory, it can keep other containers from getting enough, thereby pinching their performance.
+There are trade-offs to doing this, though. For instance, if you assign system memory and the container does not use it all, you have kept it from another container that might actually need it. The reverse, though, can happen. If a wants to use more than its share of memory, it can keep other containers from getting enough, thereby pinching their performance.
 
 Just remember that every action you make to configure a container _can_ have negative effects somewhere else.
 
