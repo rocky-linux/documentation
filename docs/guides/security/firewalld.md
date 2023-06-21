@@ -1,8 +1,8 @@
 ---
 title: firewalld from iptables
 author: Steven Spencer
-contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni
-update: 17-Feb-2022
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, qyecst
+update: 22-Jun-2023
 tags:
   - security
   - firewalld
@@ -24,8 +24,8 @@ This guide focuses on applying rules from an `iptables` firewall to a `firewalld
 
 ## Prerequisites and Assumptions
 
-* Throughout this document, we assume that you are either the root user or have used `sudo` to become so
-* A passing knowledge of firewall rules, particularly `iptables` or at minimum, a desire to learn something about `firewalld`
+* Throughout this document, we assume that you are either the root user or have used `sudo` to become so.
+* A passing knowledge of firewall rules, particularly `iptables` or at minimum, a desire to learn something about `firewalld`.
 * You feel comfortable entering commands at the command line.
 * All of the examples here deal with IPv4 IPs.
 
@@ -35,17 +35,17 @@ To really get your head around `firewalld`, you need to understand the use of zo
 
 `firewalld` has several built in zones:
 
-| zone          | example use                                                                                                       |
-|---------------|-------------------------------------------------------------------------------------------------------------------|
-| drop          | drop incoming connections without reply - only outgoing packets are allowed                                      |
-| block         | incoming connections are rejected with an icmp-host-prohibited message for IPv4 and icmp6-adm-prohibited for IPv6 |
-| public        | all incoming connections are allowed                                                                              |
-| external      | for use on external networks with masquerading enabled                                                            |
-| dmz           | for computers on your demilitarized zone that are publicly-accessible with limited access to your internal network|
-| work          | for computers in work areas (nope, I don't get this one either)                                                   |
-| home          | for use in home areas (nope, I don't get this one either)                                                         |
-| internal      | for your internal network device access                                                                           |
-| trusted       | all network connections are accepted                                                                              |
+| zone          | example use                                                                                                                                                                             |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| drop          | drop incoming connections without reply - only outgoing packets are allowed.                                                                                                            |
+| block         | incoming connections are rejected with an icmp-host-prohibited message for IPv4 and icmp6-adm-prohibited for IPv6 - only network connections initiated within this system are possible. |
+| public        | for use in public areas - only selected incoming connections are accepted.                                                                                                              |
+| external      | for use on external networks with masquerading enabled - only selected incoming connections are accepted.                                                                               |
+| dmz           | for computers on your demilitarized zone that are publicly-accessible with limited access to your internal network - only selected incoming connections are accepted.                   |
+| work          | for computers in work areas (nope, I don't get this one either) - only selected incoming connections are accepted.                                                                      |
+| home          | for use in home areas (nope, I don't get this one either) - only selected incoming connections are accepted.                                                                            |
+| internal      | for your internal network device access - only selected incoming connections are accepted.                                                                                              |
+| trusted       | all network connections are accepted.                                                                                                                                                   |
 
 !!! Note
 
@@ -58,14 +58,14 @@ To list existing zones on your system, type:
 
     Remember to check the status of your firewall, if the `firewalld-cmd` returns you an error, with either:
 
-    the command firewall-cmd:
+    the `firewall-cmd` command:
 
     ```
     $ firewall-cmd --state
     running
     ```
 
-    the systemctl command:
+    the `systemctl` command:
 
     ```
     $ systemctl status firewalld
@@ -92,7 +92,7 @@ To add a zone, we need to use the `firewall-cmd` with the `--new-zone` parameter
 
 !!! Note
 
-    We have used the --permanent flag a great deal throughout. For testing, it is recommended to add the rule without the `--permanent` flag, test it, and if it works as expected, then use the `firewall-cmd --runtime-to-permanent` to move the rule live prior to running `firewall-cmd --reload`. If the risk is low (in other words, you won't lock yourself out), you can add the `--permanent` flag as I've done here.
+    We have used the `--permanent` flag a great deal throughout. For testing, it is recommended to add the rule without the `--permanent` flag, test it, and if it works as expected, then use the `firewall-cmd --runtime-to-permanent` to move the rule live prior to running `firewall-cmd --reload`. If the risk is low (in other words, you won't lock yourself out), you can add the `--permanent` flag as I've done here.
 
 Before this zone can actually be used, we need to reload the firewall:
 
@@ -155,7 +155,7 @@ You can list out the active zones on your system by using this command:
 
     A zone can *only* be in an active state if it has one of these two conditions:
 
-    1. The zone is assigned to a network interface
+    1. The zone is assigned to a network interface.
     2. The zone is assigned source IPs or network ranges.
 
 ### Removing an IP and Service from a Zone
@@ -415,7 +415,7 @@ public
   icmp-blocks: echo-reply echo-request
   rich rules:
 ```
-Note that we have removed "ssh" access from services and blocked icmp echo-reply and echo-request.
+Note that we have removed "ssh" access from services and blocked icmp "echo-reply" and "echo-request".
 
 In our "admin" zone so far, it looks like this:
 
@@ -462,15 +462,15 @@ firewall-cmd --reload
 
 We've used some commands already. Here are a few more common commands and what they do:
 
-| Command                             | Result                                                                                                    |
-|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
-|`firewall-cmd --list-all-zones`      | similar to `firewall-cmd --list-all --zone=[zone]` except it lists *all* of the zones and their contents. |
-|`firewall-cmd --get-default-zone`    | shows the default zone, which is "public" unless it has been changed.                                     |
-|`firewall-cmd --list-services --zone=[zone]`| shows all of the services enabled for the zone.                                                    |
-|`firewall-cmd --list-ports --zone=[zone]`| shows all ports open on the zone.                                                                     |
-|`firewall-cmd --get-active-zones`    | shows the zones that are active on the system, their active interfaces, services, and ports.              |
-|`firewall-cmd --get-services`        | shows all available services possible for use.                                                            |
-|`firewall-cmd --runtime-to-permanent`| if you have entered many rules without the --permanent option, do this before reloading.                  |
+| Command                                    | Result                                                                                                    |
+|--------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+|`firewall-cmd --list-all-zones`             | similar to `firewall-cmd --list-all --zone=[zone]` except it lists *all* of the zones and their contents. |
+|`firewall-cmd --get-default-zone`           | shows the default zone, which is "public" unless it has been changed.                                     |
+|`firewall-cmd --list-services --zone=[zone]`| shows all of the services enabled for the zone.                                                           |
+|`firewall-cmd --list-ports --zone=[zone]`   | shows all ports open on the zone.                                                                         |
+|`firewall-cmd --get-active-zones`           | shows the zones that are active on the system, their active interfaces, services, and ports.              |
+|`firewall-cmd --get-services`               | shows all available services possible for use.                                                            |
+|`firewall-cmd --runtime-to-permanent`       | if you have entered many rules without the `--permanent` option, do this before reloading.                |
 
 There are a great many `firewall-cmd` options not covered here, but this gives you the most used commands.
 
