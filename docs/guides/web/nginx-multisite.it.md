@@ -2,7 +2,7 @@
 title: Nginx Multisito
 author: Ezequiel Bruni
 contributors: Steven Spencer, Franco Colussi
-tested with: 8.5
+tested_with: 8.5
 tags:
   - web
   - nginx
