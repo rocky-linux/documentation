@@ -66,7 +66,7 @@ The only configuration options that you _need_ to set are those dealing with mai
 To change the configuration file, run:
 
 ```
-vi /etc/rkhunter.conf`
+vi /etc/rkhunter.conf
 ```
 
 Search for:
