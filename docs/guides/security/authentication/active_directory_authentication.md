@@ -158,8 +158,8 @@ Directory as an authentication source.
 ### Setting the default domain
 
 In a completely default setup, you will need to log in with your AD account by
-specifying the domain in your username (e.g. `john.doe@ad.company.local`). If
-this is not the desired behaviour, and you instead want to be able to omit the
+specifying the domain in your username (e.g., `john.doe@ad.company.local`). If
+this is not the desired behavior, and you instead want to be able to omit the
 domain name at authentication time, you can configure SSSD to default to a
 specific domain.
 
@@ -215,7 +215,7 @@ Now, only users from group1 and group2, or user1 and user2 will be able to conne
 
 `adcli` is a CLI to perform actions on an Active Directory domain.
 
-- If not yet installed, install the required package
+- If not yet installed, install the required package:
 
 ```sh
 [user@host ~]$ sudo dnf install adcli
