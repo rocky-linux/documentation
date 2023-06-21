@@ -11,7 +11,7 @@ In the previous article [ rsync demo 02 ](03_rsync_demo02.md) we introduced some
 |Parameters|Description|
 |---|---|
 | fake super = yes | yes means that you do not need the daemon to run as root to store the complete attributes of the file. |
-| uid = | |
+| uid = | user id |
 | gid = | Two parameters are used to specify the user and group used to transfer files when running the rsync daemon as root. The default is nobody |
 | use chroot = yes | Whether the root directory needs to be locked before transmission, yes yes, no no. In order to increase security, rsync defaults to yes. |
 | max connections = 4 | The maximum number of connections allowed, the default value is 0, which means that there is no restriction |

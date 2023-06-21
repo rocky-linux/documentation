@@ -9,7 +9,7 @@ update: 2021-11-06
 
 As we mentioned earlier, one-way synchronization uses rsync + inotify-tools. In some special usage scenarios, two-way synchronization may be required, which requires inotify-tools + unison.
 
-## Environmental preparation
+## Environment preparation
 
 * Both Rocky Linux 8 and Fedora 34 require source code compilation and installation **inotify-tools**, which is not specifically expanded here.
 * Both machines must be password-free login authentication, here we use the SSH protocol for

@@ -8,16 +8,16 @@ update: 2021-11-04
 # Demonstration based on rsync protocol
 In vsftpd, there are virtual users (impersonated users customized by the administrator) because it is not safe to use anonymous users and local users. We know that a server based on the SSH protocol must ensure that there is a system of users. When there are many synchronization requirements, it may be necessary to create many users. This obviously does not meet the GNU/Linux operation and maintenance standards (the more users, the more insecure), in rsync, for security reasons, there is an rsync protocol authentication login method.
 
-**How ​​to do it?**
+**How to do it?**
 
-Just write the corresponding parameters and values ​​in the configuration file. In Rocky Linux 8, you need to manually create the file <font color=red>/etc/rsyncd.conf</font>.
+Just write the corresponding parameters and values in the configuration file. In Rocky Linux 8, you need to manually create the file <font color=red>/etc/rsyncd.conf</font>.
 
 ```bash
 [root@Rocky ~]# touch /etc/rsyncd.conf
 [root@Rocky ~]# vim /etc/rsyncd.conf
 ```
 
-Some parameters and values ​​of this file are as follows, [ here ](04_rsync_configure.md) has more parameter descriptions:
+Some parameters and values of this file are as follows, [ here ](04_rsync_configure.md) has more parameter descriptions:
 
 |Item|Description|
 |---|---|
@@ -28,14 +28,14 @@ Some parameters and values ​​of this file are as follows, [ here ](04_rsync_
 | [share] | Share name |
 | comment = rsync | Remarks or description information |
 | path = /rsync/ | The system path location where it is located |
-| read only = yes| yes means read only, no means read and write |
-| dont compress = \*.gz \*.gz2 \*.zip | Which file types do not compress it |
-| auth users = li| Enable virtual users and define what a virtual user is called. Need to create it yourself|
+| read only = yes | yes means read only, no means read and write |
+| do not compress = \*.gz \*.gz2 \*.zip | Which file types do not compress it |
+| auth users = li | Enable virtual users and define what a virtual user is called. Need to create it yourself|
 | secrets file = /etc/rsyncd_users.db | Used to specify the location of the virtual user's password file, which must end in .db. The content format of the file is "Username: Password", one per line |
 
 !!! tip "tip"
 
-    The permission of the password file must be <font color=red>600</font>
+    The permission of the password file must be <font color=red>600</font>.
 
 Write some file content to <font color=red>/etc/rsyncd.conf</font>, and write the user name and password to /etc/rsyncd_users.db, the permission is 600
 
