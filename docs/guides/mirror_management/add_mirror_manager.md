@@ -15,7 +15,7 @@ Please note that we are not allowed to accept public mirrors in countries subjec
 
 As of this writing (late 2022), storage space requirements for mirroring all current and past Rocky Linux releases is about 2 TB.
 
-Our master mirror is `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/` .
+Our master mirror is `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`.
 For your first synchronization use a mirror near to you. You can find all official mirrors [here](https://mirrors.rockylinux.org).
 
 Please note that we might restrict access to the official master mirror to official public mirrors in the future. So please consider `rsyncing` from a public mirror close to you if you are running a private mirror. Also local mirrors might be faster to sync from.
