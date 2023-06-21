@@ -314,7 +314,7 @@ firewall-cmd --zone=public --remove-service=http
 
 !!! Note "Note: You can add your own services"
 
-    And customize the heck out of them, too. However, that's a topic that gets kind of complex. Get familiar with `firewalld` first  and go from there.
+    And customize the heck out of them, too. However, that's a topic that gets kind of complex. Get familiar with `firewalld` first and go from there.
 
 ## Restricting Access
 
