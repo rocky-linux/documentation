@@ -2,7 +2,7 @@
 title: KDE Installation
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 9.0
+tested_with: 9.0
 tags:
   - desktop
   - kde

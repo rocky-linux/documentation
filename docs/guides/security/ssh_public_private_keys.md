@@ -2,7 +2,7 @@
 title: SSH Public and Private Key
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5
+tested_with: 8.5
 tags:
   - security
   - ssh

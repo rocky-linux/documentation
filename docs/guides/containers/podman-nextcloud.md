@@ -2,7 +2,7 @@
 title: Nextcloud on Podman
 author: Ananda Kammampati
 contributors: Ezequiel Bruni, Steven Spencer
-tested with: 8.5
+tested_with: 8.5
 tags:
   - podman
   - containers

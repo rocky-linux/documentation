@@ -2,7 +2,7 @@
 title: Mirroring Solution - lsyncd
 author: Steven Spencer
 contributors: Ezequiel Bruni, tianci li
-tested with: 8.5, 8.6, 9.0
+tested_with: 8.5, 8.6, 9.0
 tags:
   - lsyncd
   - synchronization

@@ -2,7 +2,7 @@
 title: Systemd Service - Python Script
 author: Antoine Le Morvan
 contributors: Steven Spencer
-tested with: 8.6, 9.0
+tested_with: 8.6, 9.0
 tags:
   - python
   - systemd

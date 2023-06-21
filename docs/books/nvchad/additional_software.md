@@ -2,7 +2,7 @@
 title: Additional Software
 author: Franco Colussi
 contributors: Steven Spencer
-tested with: 8.7, 9.1
+tested_with: 8.7, 9.1
 tags:
     - nvchad
     - coding

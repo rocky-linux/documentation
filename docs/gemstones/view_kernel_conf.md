@@ -2,7 +2,7 @@
 title: View Current Kernel Configuration
 author: David Hensley
 contributors: Steven Spencer
-tested with: 8.5
+tested_with: 8.5
 tags:
   - kernel
   - config

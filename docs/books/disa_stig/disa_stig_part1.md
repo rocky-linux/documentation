@@ -2,7 +2,7 @@
 title: DISA STIG On Rocky Linux 8 - Part 1
 author: Scott Shinn
 contributors: Steven Spencer
-tested with: 8.6
+tested_with: 8.6
 tags:
   - DISA
   - STIG
