@@ -2,7 +2,7 @@
 title: Markdown Demo
 author: Einstein
 contributors: Dr. Ben Dover, Sweet Gypsy Rose
-tested with: 8.5
+tested_with: 8.5
 tags:
   - sample
   - crowdin

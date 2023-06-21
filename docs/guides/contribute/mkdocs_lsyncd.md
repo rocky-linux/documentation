@@ -2,7 +2,7 @@
 title: Local Documentation - LXD
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.5, 8.6
+tested_with: 8.5, 8.6
 tags:
   - contribute
   - local envirmonent lxd

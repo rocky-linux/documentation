@@ -2,7 +2,7 @@
 title: Appendix A - Workstation Setup
 author: Steven Spencer
 contributors: 
-tested with: 8.5, 8.6, 9.0
+tested_with: 8.5, 8.6, 9.0
 tags:
   - lxd
   - workstation

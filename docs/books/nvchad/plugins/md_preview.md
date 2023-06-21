@@ -2,7 +2,7 @@
 title: Markdown Preview
 author: Franco Colussi
 contributors: Steven Spencer
-tested with: 8.7, 9.2
+tested_with: 8.7, 9.2
 tags:
   - nvchad
   - plugins

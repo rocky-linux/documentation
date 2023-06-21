@@ -2,7 +2,7 @@
 title: PHP and PHP-FPM
 author: Antoine Le Morvan
 contributors: Steven Spencer
-tested with: 8.5
+tested_with: 8.5
 tags:
   - web
   - php

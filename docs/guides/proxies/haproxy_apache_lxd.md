@@ -2,7 +2,7 @@
 title: HAProxy-Apache-LXD
 author: Steven Spencer
 contributors: Ezequiel Bruni, Antoine Le Morvan
-tested with: 8.5, 8.6, 9.0
+tested_with: 8.5, 8.6, 9.0
 ---
 # HAProxy Load Balancing Apache using LXD Containers
 

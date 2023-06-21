@@ -2,7 +2,7 @@
 title: 3 LXD Initialization and User Setup
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested with: 8.8, 9.2
+tested_with: 8.8, 9.2
 tags:
   - lxd
   - enterprise

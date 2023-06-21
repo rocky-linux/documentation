@@ -2,7 +2,7 @@
 title: Built-In Plugins
 author: Franco Colussi
 contributors: Steven Spencer
-tested with: 8.6, 9.0
+tested_with: 8.6, 9.0
 tags:
     - nvchad
     - coding
