@@ -2,7 +2,7 @@
 title: Visualizzare la Configurazione Attuale del Kernel
 author: David Hensley
 contributors: Steven Spencer, Franco Colussi
-tested with: 8.5
+tested_with: 8.5
 tags:
   - kernel
   - configurazione
