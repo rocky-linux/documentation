@@ -11,6 +11,7 @@ nav:
     - ... | mtr*.md
     - ... | nmcli*.md
     - ... | nmtui*.md
+    - ... | NoSleep*.md
     - ... | perl_search_replace*.md
     - ... | rpaste*.md
     - ... | sed_search_replace*.md
