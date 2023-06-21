@@ -2,7 +2,7 @@
 title: Gestione dei Plugin
 author: Franco Colussi
 contributors: Steven Spencer, Franco Colussi
-tested with: 8.7, 9.1
+tested_with: 8.7, 9.1
 tags:
   - nvchad
   - coding
