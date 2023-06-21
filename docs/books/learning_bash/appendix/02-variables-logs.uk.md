@@ -2,7 +2,7 @@
 title: Змінні - використання з журналами
 author: Steven Spencer
 contributors: Antoine Le Morvan
-tested with: 8.5
+tested_with: 8.5
 tags:
   - сценарій bash
   - bash
