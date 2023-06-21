@@ -235,7 +235,7 @@ Other examples include FTP (ports 20 and 21), SSH (port 22), and so many more. Y
 
     For things like SSH, HTTP/S, FTP, and more, it's actually recommended to add them to your firewall zone as *services*, and not as port numbers. I'll show you how that works below. That said, you still need to know how to open ports manually.
 
-\* For absolute beginners, HTTPS is basically (more or less) the same as HTTP  but encrypted.
+\* For absolute beginners, HTTPS is basically (more or less) the same as HTTP but encrypted.
 
 ### Port management commands
 
