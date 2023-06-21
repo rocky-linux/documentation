@@ -2,7 +2,7 @@
 title: Servizio Systemd - Script Python
 author: Antoine Le Morvan
 contributors: Steven Spencer, Franco Colussi
-tested with: 2022-10-14
+tested_with: 2022-10-14
 tags:
   - python
   - systemd
