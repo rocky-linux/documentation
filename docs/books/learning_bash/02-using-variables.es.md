@@ -2,7 +2,7 @@
 title: Bash - Uso de variables
 author: Antoine Le Morvan
 contributors: Steven Spencer, Pedro garcia
-tested with: 8.5
+tested_with: 8.5
 tags:
   - educación
   - bash scripting
