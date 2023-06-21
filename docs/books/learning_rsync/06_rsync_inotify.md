@@ -91,7 +91,7 @@ The event types are as follows:
 | move_self | The monitored file or directory has been moved |
 | create | There are files or directories created in the monitored directory |
 | delete | A file or directory in the monitored directory is deleted |
-| delete_self | File or directory and delete |
+| delete_self | File or directory delete |
 | unmount | File system containing unmounted files or directories |
 
 Example: `[root@Rocky ~]# inotifywait -mrq -e create,delete /rsync/`

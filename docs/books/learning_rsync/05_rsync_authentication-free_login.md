@@ -15,7 +15,7 @@ With inotify-tools, this program tool can realize one-way real-time synchronizat
 
 ## SSH protocol password-free authentication login
 
-First, generate a public key and private key pair on the client, and keep pressing Enter after typing the command. The key pair is saved in the <font color=red>/root/.ssh/</font> directory
+First, generate a public key and private key pair on the client, and keep pressing Enter after typing the command. The key pair is saved in the <font color=red>/root/.ssh/</font> directory.
 
 ```bash
 [root@fedora ~]# ssh-keygen -t rsa -b 2048
