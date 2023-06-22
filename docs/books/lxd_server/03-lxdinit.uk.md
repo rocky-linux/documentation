@@ -2,7 +2,7 @@
 title: 3 Ініціалізація LXD і налаштування користувача
 author: Steven Spencer
 contributors: Ezequiel Bruni
-tested_with: 8.5, 8.6, 9.0
+tested_with: 8.8, 9.2
 tags:
   - lxd
   - enterprise
