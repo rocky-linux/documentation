@@ -29,7 +29,7 @@ Some parameters and values of this file are as follows, [ here ](04_rsync_config
 | comment = rsync | Remarks or description information |
 | path = /rsync/ | The system path location where it is located |
 | read only = yes | yes means read only, no means read and write |
-| do not compress = \*.gz \*.gz2 \*.zip | Which file types do not compress it |
+| dont compress = \*.gz \*.gz2 \*.zip | Which file types do not compress it |
 | auth users = li | Enable virtual users and define what a virtual user is called. Need to create it yourself|
 | secrets file = /etc/rsyncd_users.db | Used to specify the location of the virtual user's password file, which must end in .db. The content format of the file is "Username: Password", one per line |
 
