@@ -15,7 +15,7 @@ Con inotify-tools, questo strumento può realizzare la sincronizzazione unidirez
 
 ## Accesso all'autenticazione senza password del protocollo SSH
 
-Innanzitutto, genera una chiave pubblica e una coppia di chiavi private sul client e continua a premere Invio dopo aver digitato il comando. La coppia di chiavi è salvata nella directory <font color=red>/root/.ssh/</font>
+Innanzitutto, genera una chiave pubblica e una coppia di chiavi private sul client e continua a premere Invio dopo aver digitato il comando. La coppia di chiavi viene salvata nella directory <font color=red>/root/.ssh/</font>.
 
 ```bash
 [root@fedora ~]# ssh-keygen -t rsa -b 2048
