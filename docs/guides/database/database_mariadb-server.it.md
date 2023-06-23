@@ -2,7 +2,7 @@
 title: Server di Database MariaDB
 author: Steven Spencer
 contributors: Ezequiel Bruni, William Perron, Franco Colussi
-tested with: 8.5, 8.6, 9.0
+tested_with: 8.5, 8.6, 9.0
 tags:
   - database
   - mariadb

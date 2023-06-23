@@ -2,7 +2,7 @@
 title: Bash - Strutture condizionali if e case
 author: Antoine Le Morvan
 contributors: Steven Spencer, Franco Colussi
-tested with: 8.5
+tested_with: 8.5
 tags:
   - education
   - bash scripting

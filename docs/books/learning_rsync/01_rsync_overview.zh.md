@@ -51,7 +51,7 @@ update: 2022年3月8日
 
 rsync是如何实现高效的单向数据同步备份的？
 
-Rsync的核心就是它的**Checksum算法**， 如果您感兴趣可以去 [Rsync工作原理](https://rsync.samba.org/how-rsync-works.html) 以及 [rsync算法](https://rsync.samba.org/tech_report/) 了解，这一部分超出了作者的能力范围，不做过多的说明。
+Rsync 的核心就是它的 **Checksum算法** ， 有关更多信息，您可以转到 [rsync的工作原理](https://rsync.samba.org/how-rsync-works.html) 和 [rsync算法](https://rsync.samba.org/tech_report/)。 这一部分超出了作者的能力范围，不作过多的介绍。
 
 `rsync`的特点有:
 

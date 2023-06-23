@@ -2,7 +2,7 @@
 title: Installare NvChad
 author: Franco Colussi
 contributors: Steven Spencer, Franco Colussi
-tested with: 8.8, 9.2
+tested_with: 8.8, 9.2
 tags:
   - nvchad
   - coding

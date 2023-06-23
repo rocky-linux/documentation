@@ -2,7 +2,7 @@
 title: 网络配置
 author: 未知
 contributors: Steven Spencer, Hayden Young
-tested with: 8.5, 8.6, 9.0
+tested_with: 8.5, 8.6, 9.0
 tags:
   - 网络连接
   - 配置

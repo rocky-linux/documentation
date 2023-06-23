@@ -2,7 +2,7 @@
 title: Documentación local - Inicio rápido
 author: Lukas Magauer
 contributors: Steven Spencer, Pedro Garcia
-tested with: 8.6, 9.0
+tested_with: 8.6, 9.0
 tags:
   - documentación
   - servidor local

@@ -2,7 +2,7 @@
 title: Nginx
 author: Ezequiel Bruni
 contributors: Antoine Le Morvan, Steven Spencer, Franco Colussi
-tested with: 8.5
+tested_with: 8.5
 tags:
   - nginx
   - web
