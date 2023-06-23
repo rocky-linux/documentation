@@ -204,7 +204,7 @@ $ tar cjf - /directory/to/backup/ | wc -c
 
 Ecco un esempio di convenzione di denominazione per un backup `tar`, sapendo che la data deve essere aggiunta al nome.
 
-| chiavi  | Files   | Suffisso         | Osservazione                                      |
+| chiavi  | Files   | Suffisso         | Funzionalità                                      |
 | ------- | ------- | ---------------- | ------------------------------------------------- |
 | `cvf`   | `home`  | `home.tar`       | `/home` in modalità relativa, forma non compressa |
 | `cvfP`  | `/etc`  | `etc.A.tar`      | `/etc` in modalità assoluta, nessuna compressione |
@@ -521,7 +521,7 @@ $ tar xvfj backup.tar.bz2 /path/to/dir1/ /path/to/dir2/
 
 ##### Estrarre un gruppo di file da un backup _tar_ utilizzando espressioni regolari (_regex_)
 
-Specificate un _regex_ per estrarre i file corrispondenti al modello di selezione specificato.
+Specificate un (_regex_) per estrarre i file corrispondenti al modello di selezione specificato.
 
 Ad esempio, per estrarre tutti i file con l'estensione `.conf` :
 
@@ -545,7 +545,7 @@ Per eseguire un backup con `cpio`, è necessario specificare un elenco di file d
 
 Questo elenco è fornito con i comandi `find`, `ls` o `cat`.
 
-* `find` : sfogliare un albero, ricorsivo o meno;
+* `find` : naviga in un albero, ricorsivo o meno;
 * `ls` : elencare una directory, ricorsiva o meno;
 * `cat` : legge un file contenente gli alberi delle directory o i file da salvare.
 
