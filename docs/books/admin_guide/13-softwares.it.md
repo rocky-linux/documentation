@@ -926,7 +926,7 @@ Esempi:
 * Scaricare un file `.repo` e utilizzarlo:
 
 ```
-dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
+dnf config-manager --add-repo https://packages.centreon.com/ui/native/rpm-standard/23.04/el8/centreon-23.04.repo
 ```
 
 * È anche possibile impostare un url come url di base per un repo:
@@ -963,13 +963,13 @@ copr enable xxxx
 Scaricare il pacchetto rpm invece di installarlo:
 
 ```
-dnf download ansible
+dnf download ansible
 ```
 
 Se si vuole ottenere solo l'url della posizione remota del pacchetto:
 
 ```
-dnf download --url ansible
+dnf download --url ansible
 ```
 
 Oppure se si desidera scaricare anche le dipendenze:
@@ -1010,7 +1010,7 @@ Esempi:
 * Blocca la versione ansibile:
 
 ```
-dnf versionlock add ansible
+dnf versionlock add ansible
 Adding versionlock on: ansible-0:6.3.0-2.el9.*
 ```
 
