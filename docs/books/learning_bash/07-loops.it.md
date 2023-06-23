@@ -2,7 +2,7 @@
 title: Bash - Loops
 author: Antoine Le Morvan
 contributors: Steven Spencer, Franco Colussi
-tested with: 8.5
+tested_with: 8.5
 tags:
   - education
   - bash scripting
@@ -20,7 +20,7 @@ tags:
 :checkered_flag: **linux**, **script**, **bash**, **loops**
 
 **Conoscenza**: :star: :star:  
-**Complessità**: :star:
+**Complessità**: :star: :star: :star:
 
 **Tempo di lettura**: 20 minuti
 
@@ -71,7 +71,7 @@ Esistono comandi che consentono di modificare il comportamento di un ciclo:
 * `break`
 * `continue`
 
-## Il comando di uscita
+## Il comando exit
 
 Il comando `exit` termina l'esecuzione dello script.
 
