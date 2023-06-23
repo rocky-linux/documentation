@@ -252,7 +252,7 @@ Come avrete notato, i gruppi sono dichiarati tra parentesi quadre. Poi vengono g
 172.16.1.11
 ```
 
-I gruppi possono essere utilizzati all'interno di altri gruppi. In questo caso, deve essere specificato che il gruppo genitore è composto da sottogruppi con l'attributo `:chidren` in questo modo:
+I gruppi possono essere utilizzati all'interno di altri gruppi. In questo caso, occorre specificare che il gruppo padre è composto da sottogruppi con l'attributo `:children`, come in questo caso:
 
 ```
 [linux:children]
