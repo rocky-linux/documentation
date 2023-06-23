@@ -247,11 +247,11 @@ Per manipolare la history, i seguenti comandi immessi dal prompt dei comandi per
 
 | Chiavi             | Funzione                                                                              |
 | ------------------ | ------------------------------------------------------------------------------------- |
-| <kdb>!!</kdb>      | Richiama l'ultimo comando eseguito.                                                   |
-| <kdb>!n</kdb>      | Richiama il comando per il suo numero nell'elenco.                                    |
-| <kdb>!string</kdb> | Richiama il comando più recente che inizia con la stringa.                            |
-| <kdb>↑</kdb>       | Naviga nella cronologia andando indietro nel tempo a partire dal comando più recente. |
-| <kdb>↓</kdb>       | Naviga nella cronologia andando avanti nel tempo.                                     |
+| <kbd>!!</kbd>      | Richiama l'ultimo comando eseguito.                                                   |
+| <kbd>!n</kbd>      | Richiama il comando per il suo numero nell'elenco.                                    |
+| <kbd>!string</kbd> | Richiama il comando più recente che inizia con la stringa.                            |
+| <kbd>↑</kbd>       | Naviga nella cronologia andando indietro nel tempo a partire dal comando più recente. |
+| <kbd>↓</kbd>       | Naviga nella cronologia andando avanti nel tempo.                                     |
 
 ### Autocompletamento
 
