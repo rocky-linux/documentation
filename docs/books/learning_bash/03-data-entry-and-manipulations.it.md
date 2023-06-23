@@ -2,7 +2,7 @@
 title: Bash - Inserimento e manipolazione dei dati
 author: Antoine Le Morvan
 contributors: Steven Spencer, Franco Colussi
-tested with: 8.5
+tested_with: 8.5
 tags:
   - education
   - bash scripting
@@ -50,7 +50,7 @@ read name firstname
 read -p "Please type your name: " name
 ```
 
-| Opzione | Osservazione                               |
+| Opzione | Funzionalità                               |
 | ------- | ------------------------------------------ |
 | `-p`    | Visualizza un messaggio di richiesta.      |
 | `-n`    | Limita il numero di caratteri da inserire. |
@@ -108,7 +108,7 @@ cut -d: -f1 /etc/passwd
 | `-d`    | Specifica il separatore di campo.                            |
 | `-f`    | Specifica il numero d'ordine delle colonne da selezionare.   |
 
-L'interesse principale di questo comando sarà la sua associazione con un flusso, ad esempio il comando `grep` e la pipe `|`.
+Il vantaggio principale di questo comando sarà la sua associazione con un flusso, ad esempio il comando `grep` e la pipe `|`.
 
 * Il comando `grep` funziona "in verticale" (isolamento di una riga da tutte le righe del file).
 * La combinazione dei due comandi consente di **isolare un campo specifico del file**.
