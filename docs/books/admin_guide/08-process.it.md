@@ -31,13 +31,13 @@ Quando viene eseguito un programma, Il sistema creerà un processo posizionando 
 
 Ogni processo ha:
 
-* un _PID_ : _**P**rocess **ID**entifier_, un identificatore di processo unico;
-* un _PPID_ : _**P**arent **P**rocess **ID**entifier_, identificatore univoco del processo genitore.
+* un _PID_ : _**P**rocess **ID**entifier_, un identificatore di processo unico
+* un _PPID_ : _**P**arent **P**rocess **ID**entifier_, identificatore univoco del processo genitore
 
 Da filiazioni successive, il processo `init` è il padre di tutti i processi.
 
-* Un processo è sempre creato da un processo genitore;
-* Un processo genitore può avere più processi figlio.
+* Un processo è sempre creato da un processo genitore
+* Un processo genitore può avere più processi figlio
 
 C'è una relazione genitore/figlio tra i processi. Un processo figlio è il risultato del processo genitore che chiama il _fork ()_ iniziale e duplicando il proprio codice crea un processo figlio. Il _PID_ del processo figlio viene restituito al processo genitore in modo che possa comunicare. Ogni processo figlio ha l'identificatore del suo processo genitore, il _PPID_.
 
@@ -116,15 +116,15 @@ Il comportamento del controllo può essere completamente personalizzato:
 
 Il processo dell'utente:
 
-* è iniziato da un terminale associato a un utente;
-* accede alle risorse tramite richieste o daemons.
+* è iniziato da un terminale associato a un utente
+* accede alle risorse tramite richieste o daemons
 
-Il processo di sistema (_daemon_):
+I processi di sistema sono quindi chiamati daemons (_**D**isk **A**nd **E**xecution **MON**itor_)
 
-* è iniziato dal sistema;
+* è iniziato dal sistema
 * non è associato a nessun terminale, ed è di proprietà di un utente di sistema (spesso `root`);
-* è caricato al momento dell'avvio, risiede in memoria, e sta aspettando una chiamata;
-* è solitamente identificato dalla lettera `d` associato al nome del processo.
+* è caricato al momento dell'avvio, risiede in memoria, e sta aspettando una chiamata
+* è solitamente identificato dalla lettera `d` associato al nome del processo
 
 I processi di sistema sono quindi chiamati daemons (_**D**isk **A**nd **E**xecution **MON**itor_).
 
@@ -144,18 +144,18 @@ Un processo non può essere eseguito indefinitamente, perchè questo sarebbe a d
 
 Il tempo totale di elaborazione disponibile è quindi diviso in piccoli intervalli, e ogni processo (con una priorità) accede al processore in modo sequenziale. Il processo prenderà diversi stati durante la sua vita tra gli stati:
 
-* pronto: in attesa della disponibilità del processo;
-* in esecuzione: accede al processore;
+* pronto: in attesa della disponibilità del processo
+* in esecuzione: accede al processore
 * sospeso: aspettando un I/O (input/output);
-* fermato: aspettando un segnale da un altro processo;
-* zombie: richiesta di distruzione;
-* morto: il padre del processo chiude il suo processo figlio.
+* fermato: aspettando un segnale da un altro processo
+* zombie: richiesta di distruzione
+* morto: il padre del processo chiude il suo processo figlio
 
 La sequenza di chiusura del processo è la seguente:
 
-1. Chiusura dei file aperti;
-2. Rilascio della memoria usata;
-3. Invio di un segnale ai processi genitore e figlio.
+1. Chiusura dei file aperti
+2. Rilascio della memoria usata
+3. Invio di un segnale ai processi genitore e figlio
 
 Quando un processo genitore muore, si dice che i suoi processi figli sono orfani. Sono quindi adottati dal processo `init` che li distruggerà.
 
@@ -176,9 +176,9 @@ I processi possono essere eseguiti in due modi:
 
 I vincoli della modalità asincrona:
 
-* il comando o lo script non devono attendere l'input della tastiera;
-* il comando o lo script non devono restituire alcun risultato sullo schermo;
-* lasciare che la shell termini il processo.
+* il comando o lo script non devono attendere l'input della tastiera
+* il comando o lo script non devono restituire alcun risultato sullo schermo
+* lasciare che la shell termini il processo
 
 ## Controlli per la gestione dei processi
 
@@ -191,6 +191,7 @@ kill [-signal] PID
 ```
 
 Esempio:
+
 ```
 $ kill -9 1664
 ```
@@ -222,6 +223,7 @@ comando nohup
 ```
 
 Esempio:
+
 ```
 $ nohup myprogram.sh 0</dev/null &
 ```
@@ -241,6 +243,7 @@ Premendo la combinazione <kbd>CTRL</kbd> + <kbd>Z</kbd> contemporaneamente, il p
 La dichiarazione `&` esegue il comando in modo asincrono (il comando viene quindi chiamato _job_) e visualizza il numero di _job_. L'accesso al prompt viene quindi restituito.
 
 Esempio:
+
 ```
 $ time ls -lR / > list.ls 2> /dev/null &
 [1] 15430
@@ -277,6 +280,7 @@ Se è stato messo in background quando è stato creato con l'argomento `&` o pi�
 Il comando `jobs` visualizza l'elenco dei processi in esecuzione in background e specifica il loro numero di lavoro.
 
 Esempio:
+
 ```
 $ jobs
 [1]- Running    sleep 1000
@@ -285,10 +289,10 @@ $ jobs
 
 Le colonne rappresentano:
 
-1. numero di lavoro;
+1. numero di lavoro
 2. l'ordine in cui i processi sono in esecuzione
-- un `+` : questo processo è il prossimo processo da eseguire per impostazione predefinita con `fg` o `bg` ;
-- un `-` : questo processo è il prossimo processo a prendere il `+` ;
+- un `+` : questo processo è il prossimo processo da eseguire per impostazione predefinita con `fg` o `bg`
+- un `-` : questo processo è il prossimo processo a prendere il `+` `+`
 3.  _Running_ (processo in esecuzione) o _Stopped_ (processo sospeso).
 4. il comando
 
@@ -301,11 +305,12 @@ comando nice priority
 ```
 
 Esempio:
+
 ```
 $ nice -n+15 find / -name "file"
 ```
 
-a differenza di `root`, un utente standard può solo ridurre la priorità di un processo. Saranno accettati solo valori tra +0 e +19.
+A differenza di `root`, un utente standard può solo ridurre la priorità di un processo. Saranno accettati solo valori tra +0 e +19.
 
 !!! Tip "Suggerimento"
 
@@ -318,6 +323,7 @@ renice priority [-g GID] [-p PID] [-u UID]
 ```
 
 Esempio:
+
 ```
 $ renice +15 -p 1664
 ```
