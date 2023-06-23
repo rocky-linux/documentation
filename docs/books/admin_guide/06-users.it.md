@@ -79,7 +79,7 @@ $ sudo groupadd -g 1012 GroupeB
 
 | Opzione  | Descrizione                                                                                                                        |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `-g GID` | `GID` del gruppo da creare.                                                                                                        |
+| `-g GID` | Definisce il `GID` del gruppo da creare.                                                                                           |
 | `-f`     | Il sistema sceglie un`GID` se quello specificato dall'opzione `-g` esiste già.                                                     |
 | `-r`     | Crea un gruppo di sistema con un `GID` tra `SYS_GID_MIN` e `SYS_GID_MAX`. Queste due variabili sono definite in `/etc/login.defs`. |
 
@@ -280,17 +280,17 @@ Esempio:
 $ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 ```
 
-| Opzione             | Descrizione                                                                                                                                                                                                                   |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-u UID`            | `UID` dell'utente da creare.                                                                                                                                                                                                  |
-| `-g GID`            | `GID` del gruppo primario. Il `GID` qui può anche essere un `nome di un gruppo`.                                                                                                                                              |
-| `-G GID1,[GID2]...` | `GID` dei gruppi supplementari. Il `GID` qui può anche essere un `nome di un gruppo`. Si possono specificare più gruppi supplementari, separati da virgole.                                                                   |
-| `-d directory`      | Home directory.                                                                                                                                                                                                               |
-| `-s shell`          | Shell.                                                                                                                                                                                                                        |
-| `-c COMMENT`        | Aggiunge un commento.                                                                                                                                                                                                         |
-| `-U`                | Aggiunge l'utente a un gruppo con lo stesso nome che viene creato nello stesso momento. Se questa opzione non è scritta per impostazione predefinita, verrà creato un gruppo con lo stesso nome quando l'utente viene creato. |
-| `-M`                | Non creare la directory home dell'utente.                                                                                                                                                                                     |
-| `-r`                | Crea un account di sistema.                                                                                                                                                                                                   |
+| Opzione             | Descrizione                                                                                                                                                                                              |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-u UID`            | `UID` dell'utente da creare.                                                                                                                                                                             |
+| `-g GID`            | `GID` del gruppo primario. Il `GID` qui può anche essere un `nome di un gruppo`.                                                                                                                         |
+| `-G GID1,[GID2]...` | `GID` dei gruppi supplementari. Il `GID` qui può anche essere un `nome di un gruppo`. È possibile specificare molti gruppi supplementari separati da virgole.                                            |
+| `-d directory`      | Crea la directory home.                                                                                                                                                                                  |
+| `-s shell`          | Specifica la shell dell'utente.                                                                                                                                                                          |
+| `-c COMMENT`        | Aggiunge un commento.                                                                                                                                                                                    |
+| `-U`                | Aggiunge l'utente a un gruppo con lo stesso nome che viene creato nello stesso momento. Se non viene specificato, la creazione di un gruppo con lo stesso nome avviene durante la creazione dell'utente. |
+| `-M`                | Non crea la home directory dell'utente.                                                                                                                                                                  |
+| `-r`                | Crea un account di sistema.                                                                                                                                                                              |
 
 Alla creazione, l'account non ha una password ed è bloccato.
 
@@ -371,14 +371,14 @@ Esempio:
 $ sudo useradd -D -g 1000 -b /home -s /bin/bash
 ```
 
-| Opzione        | Descrizione                                                                          |
-| -------------- | ------------------------------------------------------------------------------------ |
-| `-D`           | Imposta i valori predefiniti per la creazione dell'utente.                           |
-| `-b directory` | Imposta la directory di accesso predefinita.                                         |
-| `-g group`     | Imposta il gruppo predefinito.                                                       |
-| `-s shell`     | Imposta la shell predefinita.                                                        |
-| `-f`           | Il numero di giorni di scadenza della password prima che l'account sia disabilitato. |
-| `-e`           | La data in cui l'account sarà disabilitato.                                          |
+| Opzione        | Descrizione                                                                                  |
+| -------------- | -------------------------------------------------------------------------------------------- |
+| `-D`           | Imposta i valori predefiniti per la creazione dell'utente.                                   |
+| `-b directory` | Imposta la directory di accesso predefinita.                                                 |
+| `-g group`     | Imposta il gruppo predefinito.                                                               |
+| `-s shell`     | Imposta la shell predefinita.                                                                |
+| `-f`           | Imposta il numero di giorni dopo la scadenza della password prima di disabilitare l'account. |
+| `-e`           | Imposta la data di disabilitazione dell'account.                                             |
 
 ### comando `usermod`
 
@@ -396,15 +396,15 @@ $ sudo usermod -u 1044 carine
 
 Opzioni identiche al comando `useradd`.
 
-| Opzione         | Descrizione                                                                                                                                                                                                                          |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `-m`            | Associato all'opzione `-d` , sposta i contenuti della vecchia directory di login nella nuova. f la vecchia directory home non esiste, una nuova directory home non sarà creata; Se la nuova directory home non esiste, viene creata. |
-| `-l login`      | Nuovo nome login. Dopo aver modificato il nome di accesso, è anche necessario modificare il nome della directory home per abbinarlo.                                                                                                 |
-| `-e YYYY-MM-DD` | Data di scadenza dell'account.                                                                                                                                                                                                       |
-| `-L`            | Blocca permanentemente l'account. Cioè, un `!` viene aggiunto all'inizio del campo password `/etc/shadow`                                                                                                                            |
-| `-U`            | Sblocca l'account.                                                                                                                                                                                                                   |
-| `-a`            | Aggiungi i gruppi supplementari dell'utente, che devono essere utilizzati insieme all'opzione `-G`.                                                                                                                                  |
-| `-G`            | Modificare i gruppi supplementari dell'utente per sovrascrivere i gruppi supplementari precedenti.                                                                                                                                   |
+| Opzione         | Descrizione                                                                                                                                                                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-m`            | Associato all'opzione `-d`. Sposta il contenuto della vecchia directory di login in quella nuova. Se la vecchia home directory non esiste, la creazione di una nuova home directory non avviene; la creazione della nuova home directory avviene se non esiste. |
+| `-l login`      | Modifica il nome di accesso. Dopo aver modificato il nome di accesso, è anche necessario modificare il nome della directory home per abbinarlo.                                                                                                                 |
+| `-e YYYY-MM-DD` | Modifica la data di scadenza dell'account.                                                                                                                                                                                                                      |
+| `-L`            | Blocca l'account in modo permanente. Cioè, aggiunge un `!` all'inizio del campo della password `/etc/shadow`.                                                                                                                                                   |
+| `-U`            | Sblocca l'account.                                                                                                                                                                                                                                              |
+| `-a`            | Aggiunge i gruppi supplementari dell'utente, che devono essere usati insieme all'opzione `-G`.                                                                                                                                                                  |
+| `-G`            | Modifica i gruppi supplementari dell'utente e sovrascrive i gruppi supplementari precedenti.                                                                                                                                                                    |
 
 !!! Tip "Suggerimento"
 
@@ -458,9 +458,9 @@ Il comando `userdel` consente di eliminare l'account di un utente.
 $ sudo userdel -r carine
 ```
 
-| Opzione | Descrizione                                                                                               |
-| ------- | --------------------------------------------------------------------------------------------------------- |
-| `-r`    | Elimina la directory home dell'utente e i file di posta che si trovano nella directory `/var/spool/mail/` |
+| Opzione | Descrizione                                                                                                |
+| ------- | ---------------------------------------------------------------------------------------------------------- |
+| `-r`    | Cancella la directory home dell'utente e i file di posta che si trovano nella directory `/var/spool/mail/` |
 
 !!! Tip "Suggerimento"
 
@@ -546,7 +546,7 @@ $ sudo chown albert:GroupA myfile
 | Opzione | Descrizione                                                                              |
 | ------- | ---------------------------------------------------------------------------------------- |
 | `-R`    | Cambia ricorsivamente i proprietari della directory e di tutti i file in essa contenuti. |
-| `-v`    | Visualizza le modifiche eseguite.                                                        |
+| `-v`    | Visualizza le modifiche.                                                                 |
 
 Per cambiare solo l'utente proprietario:
 
@@ -594,7 +594,7 @@ $ sudo chgrp group1 file
 | Opzione | Descrizione                                                                     |
 | ------- | ------------------------------------------------------------------------------- |
 | `-R`    | Modifica i gruppi proprietari della directory e dei suoi contenuti (ricorsivo). |
-| `-v`    | Visualizza le modifiche eseguite.                                               |
+| `-v`    | Visualizza le modifiche.                                                        |
 
 !!! Note "Nota"
 
@@ -724,17 +724,17 @@ Shell > passwd -l albert
 Shell > passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
 
-| Opzione   | Descrizione                                                                                                     |
-| --------- | --------------------------------------------------------------------------------------------------------------- |
-| `-d`      | Rimuove in modo permanente la password. Solo per root (uid=0).                                                  |
-| `-l`      | Blocca in modo permanente l'account utente. Solo per root (uid=0).                                              |
-| `-S`      | Visualizza lo stato dell'account. Solo per root (uid=0).                                                        |
-| `-u`      | Sblocca in modo permanente l'account utente. Solo per root (uid=0).                                             |
-| `-e`      | Fa scadere definitivamente la password. Solo per root (uid=0).                                                  |
-| `-n DAYS` | Durata minima della password. Cambiamento permanente. Solo per root (uid=0).                                    |
-| `-x DAYS` | Durata massima della password. Cambiamento permanente. Solo per root (uid=0).                                   |
-| `-w DAYS` | Tempo di avviso prima della scadenza. Cambiamento permanente. Solo per root (uid=0).                            |
-| `-i DAYS` | Ritardo prima della disattivazione alla scadenza della password. Cambiamento permanente. Solo per root (uid=0). |
+| Opzione   | Descrizione                                                                                                              |
+| --------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `-d`      | Rimuove in modo permanente la password. Solo per root (uid=0).                                                           |
+| `-l`      | Blocca in modo permanente l'account utente. Solo per root (uid=0).                                                       |
+| `-S`      | Visualizza lo stato dell'account. Solo per root (uid=0).                                                                 |
+| `-u`      | Sblocca in modo permanente l'account utente. Solo per root (uid=0).                                                      |
+| `-e`      | Fa scadere definitivamente la password. Solo per root (uid=0).                                                           |
+| `-n DAYS` | Definisce la durata minima della password. Cambiamento permanente. Solo per root (uid=0).                                |
+| `-x DAYS` | Definisce la durata massima della password. Cambiamento permanente. Solo per root (uid=0).                               |
+| `-w DAYS` | Definisce il tempo di avviso prima della scadenza. Cambiamento permanente. Solo per root (uid=0).                        |
+| `-i DAYS` | Definisce il ritardo prima della disattivazione quando la password scade. Cambiamento permanente. Solo per root (uid=0). |
 
 Usare `password -l`, cioè aggiungere "!!" all'inizio del campo della password dell'utente corrispondente a `/etc/shadow`.
 
@@ -786,15 +786,15 @@ Esempio:
 $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
 
-| Opzione          | Descrizione                                                                                                                             |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `-I DAYS`        | Ritardo prima della disattivazione, a password scaduta. Cambiamento permanente.                                                         |
-| `-l`             | Visualizza i dettagli della politica.                                                                                                   |
-| `-m DAYS`        | Durata minima della password. Cambiamento permanente.                                                                                   |
-| `-M DAYS`        | Durata massima della password. Cambiamento permanente.                                                                                  |
-| `-d LAST_DAY`    | Ultima modifica della password. È possibile utilizzare lo stile di data e ora dei giorni o lo stile YYYY-MM-DD. Cambiamento permanente. |
-| `-E EXPIRE_DATE` | Data di scadenza dell'account. È possibile utilizzare lo stile di data e ora dei giorni o lo stile YYYY-MM-DD. Cambiamento permanente.  |
-| `-W WARN_DAYS`   | Tempo di avviso prima della scadenza. Cambiamento permanente.                                                                           |
+| Opzione          | Descrizione                                                                                                                                                                |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-I DAYS`        | Definisce i giorni di ritardo prima della disattivazione, a password scaduta. Cambiamento permanente.                                                                      |
+| `-l`             | Visualizza i dettagli della politica.                                                                                                                                      |
+| `-m DAYS`        | Definisce la durata minima della password. Cambiamento permanente.                                                                                                         |
+| `-M DAYS`        | Definisce la durata massima della password. Cambiamento permanente.                                                                                                        |
+| `-d LAST_DAY`    | Definisce il numero di giorni dall'ultima modifica della password. È possibile utilizzare lo stile di data e ora dei giorni o lo stile YYYY-MM-DD. Cambiamento permanente. |
+| `-E EXPIRE_DATE` | Definisce la data di scadenza dell'account. È possibile utilizzare lo stile di data e ora dei giorni o lo stile YYYY-MM-DD. Cambiamento permanente.                        |
+| `-W WARN_DAYS`   | Definisce il numero di giorni di avviso prima della scadenza. Cambiamento permanente.                                                                                      |
 
 Esempi:
 
@@ -845,13 +845,13 @@ CREATE_MAIL_SPOOL=yes
 
 | Parametri           | Commento                                                                                                                                                                          |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `GROUP`             | GID del gruppo primario predefinito.                                                                                                                                              |
+| `GROUP`             | Definisce il GID del gruppo primario predefinito.                                                                                                                                 |
 | `HOME`              | Definisce il percorso della directory del livello superiore della home directory dell'utente comune.                                                                              |
 | `INACTIVE`          | Numero di giorni di tolleranza dopo la scadenza della password. Corrisponde al 7° campo del file `/etc/shadow`. Il valore `-1` indica che il periodo di tolleranza è disattivato. |
-| `EXPIRE`            | Data di scadenza dell'account. Corrisponde all'ottavo campo del file `/etc/shadow`.                                                                                               |
-| `SHELL`             | Interprete dei comandi.                                                                                                                                                           |
-| `SKEL`              | Skeleton Directory della directory di accesso.                                                                                                                                    |
-| `CREATE_MAIL_SPOOL` | Creazione della Mailbox in`/var/spool/mail/`.                                                                                                                                     |
+| `EXPIRE`            | Definisce la data di scadenza dell'account. Corrisponde all'ottavo campo del file `/etc/shadow`.                                                                                  |
+| `SHELL`             | Definisce l'interprete dei comandi.                                                                                                                                               |
+| `SKEL`              | Definisce la struttura della directory di login.                                                                                                                                  |
+| `CREATE_MAIL_SPOOL` | Definisce la creazione della cassetta postale in `/var/spool/mail/`.                                                                                                              |
 
 Se non si ha bisogno di un gruppo primario con lo stesso nome quando si creano gli utenti, si può fare così:
 
