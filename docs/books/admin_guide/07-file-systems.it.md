@@ -1,7 +1,7 @@
 ---
 title: File system
 author: Antoine Morvan
-contributors: Steven Spencer, tianci li, Serge Croise, Franco Colussi
+contributors: Steven Spencer, tianci li, Franco Colussi, Serge
 tags:
   - file system
   - system administration
@@ -289,11 +289,11 @@ Esempio:
 lvcreate -- logical volume « /dev/volume1/VolLog1 » successfully created
 ```
 
-| Opzione     | Descrizione                                                                                                                   |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `-L size`   | Dimensione del volume logico in K, M o G.                                                                                     |
-| `-n name`   | Nome LV. File speciale creato in `/dev/nome_volume` con questo nome.                                                          |
-| `-l numero` | Oltre a utilizzare l'unità di capacità del disco rigido, è possibile utilizzare anche il numero di PE. Un PE equivale a 4 MB. |
+| Opzione     | Descrizione                                                                                                                                |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `-L size`   | Imposta la dimensione del volume logico in K, M o G.                                                                                       |
+| `-n name`   | Imposta il nome del LV. File speciale creato in `/dev/nome_volume` con questo nome.                                                        |
+| `-l numero` | Imposta la percentuale della capacità del disco rigido da utilizzare. È possibile utilizzare anche il numero di PE. Un PE equivale a 4 MB. |
 
 !!! info "Informazione"
 
@@ -407,7 +407,7 @@ Il boot sector è il primo settore del supporto di memorizzazione avviabile, ovv
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | MBR      | Memorizza il "boot loader" (o "GRUB"); carica il kernel, passa i parametri; fornisce un'interfaccia di menu all'avvio; trasferisce a un altro loader, ad esempio quando sono installati più sistemi operativi. |
 | DPT      | Registra lo stato della partizione dell'intero disco.                                                                                                                                                          |
-| BRID     | La sua funzione è quella di determinare se il dispositivo può essere utilizzato per l'avvio.                                                                                                                   |
+| BRID     | Determina se il dispositivo è utilizzabile per l'avvio.                                                                                                                                                        |
 
 ### Super block
 
@@ -468,7 +468,7 @@ La sua dimensione corrisponde al resto dello spazio disponibile della partizione
 
 Queste tabelle vengono scritte sul disco rigido quando il sistema viene spento.
 
-!!! Danger "Pericolo"
+!!! danger "Attenzione" 
 
     In caso di arresto improvviso, il file system potrebbe perdere la sua consistenza e causare la perdita di dati.
 
@@ -519,7 +519,7 @@ Documento di testo, directory, binario, partizione, risorsa di rete, schermo, ta
 
 Linux rispetta lo standard **FHS**_(Filesystems Hierarchy Standard_) (vedi `man hier`) che definisce i nomi delle cartelle e i loro ruoli.
 
-| Directory  | Osservazione                                                           | Abbreviazione di                        |
+| Directory  | Funzionalità                                                           | Abbreviazione di                        |
 | ---------- | ---------------------------------------------------------------------- | --------------------------------------- |
 | `/`        | Contiene directory speciali                                            |                                         |
 | `/boot`    | File relativi all'avvio del sistema                                    |                                         |
@@ -530,7 +530,7 @@ Linux rispetta lo standard **FHS**_(Filesystems Hierarchy Standard_) (vedi `man 
 | `/usr`     | Tutto ciò che non è necessario per il funzionamento minimo del sistema | _Risorse di sistema UNIX_               |
 | `/mnt`     | Per il montaggio di SF temporanei                                      | _mount_                                 |
 | `/media`   | Per il montaggio di supporti rimovibili                                |                                         |
-| `/misc`    | Punto di mount della directory condivisa del servizio NFS.             |                                         |
+| `/misc`    | Per montare la directory condivisa del servizio NFS.                   |                                         |
 | `/root`    | Directory di accesso dell'amministratore                               |                                         |
 | `/home`    | Dati utente                                                            |                                         |
 | `/tmp`     | File temporanei                                                        | _temporanei_                            |
@@ -616,8 +616,8 @@ Esempio:
 
 | Opzione | Descrizione                                                                                      |
 | ------- | ------------------------------------------------------------------------------------------------ |
-| `-n`    | Monta senza scrivere su `/etc/mtab`.                                                             |
-| `-t`    | Per indicare il tipo di file system da utilizzare.                                               |
+| `-n`    | Imposta il montaggio senza scrivere in `/etc/mtab`.                                              |
+| `-t`    | Indica il tipo di file system da utilizzare.                                                     |
 | `-a`    | Monta tutti i filesystem menzionati in `/etc/fstab`.                                             |
 | `-r`    | Monta il file system in sola lettura (equivalente a `-o ro`).                                    |
 | `-w`    | Monta il file system in lettura/scrittura, per impostazione predefinita (equivalente a `-o rw`). |
@@ -642,12 +642,12 @@ Esempio:
 [root]# umount /dev/sda7
 ```
 
-| Opzione | Descrizione                                             |
-| ------- | ------------------------------------------------------- |
-| `-n`    | Smonta senza scrivere su `/etc/mtab`.                   |
-| `-r`    | Se lo smontaggio fallisce, rimontare in sola lettura.   |
-| `-f`    | Forza lo smontaggio.                                    |
-| `-a`    | Smontare tutti i filesystem menzionati in `/etc/fstab`. |
+| Opzione | Descrizione                                                          |
+| ------- | -------------------------------------------------------------------- |
+| `-n`    | Imposta la rimozione del montaggio senza scrivere in `/etc/mtab`.    |
+| `-r`    | Rimonta in sola lettura se `umount` fallisce.                        |
+| `-f`    | Forza la rimozione del montaggio.                                    |
+| `-a`    | Rimuove i montaggi di tutti i filesystem menzionati in `/etc/fstab`. |
 
 !!! Note "Nota"
 
@@ -709,15 +709,15 @@ Esempi di convenzione sull'estensione dei file:
 
 Nel mondo GNU/Linux esistono sette tipi di file:
 
-| Tipi di file | Descrizione                                                                                                                                                                                                              |
-|:------------:| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-|    **-**     | Rappresenta un file ordinario. Compresi i file di testo semplice (ASCII); file binari (binario); file in formato dati (dati); vari file compressi.                                                                       |
-|    **d**     | Rappresenta un file di directory.                                                                                                                                                                                        |
-|    **b**     | File del dispositivo a blocchi. Compresi tutti i tipi di dischi rigidi, unità USB e così via.                                                                                                                            |
-|    **c**     | File del dispositivo di caratteri. Dispositivo di interfaccia della porta seriale, come il mouse, la tastiera, ecc.                                                                                                      |
-|    **s**     | File Socket. Si tratta di un file appositamente utilizzato per la comunicazione di rete.                                                                                                                                 |
-|    **p**     | File Pipe. Si tratta di un tipo di file speciale, lo scopo principale è quello di risolvere gli errori causati da più programmi che accedono a un file allo stesso tempo. FIFO è l'abbreviazione del first-in-first out. |
-|    **l**     | I file soft link, chiamati anche file di collegamento simbolico, sono simili ai collegamenti di Windows. File di collegamento rigido, noto anche come file di collegamento fisico.                                       |
+| Tipi di file | Descrizione                                                                                                                                                                                                                   |
+|:------------:| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|    **-**     | Rappresenta un file ordinario. Compresi i file di testo semplice (ASCII); file binari (binario); file in formato dati (dati); vari file compressi.                                                                            |
+|    **d**     | Rappresenta un file di directory.                                                                                                                                                                                             |
+|    **b**     | Rappresenta un file di dispositivo a blocchi. Include tutti i tipi di dischi rigidi, unità USB e così via.                                                                                                                    |
+|    **c**     | Rappresenta un file di dispositivo di caratteri. Dispositivo di interfaccia della porta seriale, come il mouse, la tastiera, ecc.                                                                                             |
+|    **s**     | Rappresenta un file socket. Si tratta di un file appositamente utilizzato per la comunicazione di rete.                                                                                                                       |
+|    **p**     | Rappresenta un file pipe. È un tipo di file speciale. Lo scopo principale è quello di risolvere gli errori causati da più programmi che accedono a un file contemporaneamente. FIFO è l'abbreviazione del first-in-first out. |
+|    **l**     | I file soft link, chiamati anche file di collegamento simbolico, sono simili ai collegamenti di Windows. File di collegamento rigido, noto anche come file di collegamento fisico.                                            |
 
 #### Descrizione supplementare della directory
 
@@ -779,10 +779,10 @@ Esistono due tipi di file di collegamento:
 
 Le loro caratteristiche principali sono:
 
-| Tipi di link   | Descrizione                                                                                                                                                                                                                                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| file soft link | Una scorciatoia simile a quella di Windows. Ha un permesso di 777 e punta al file originale. Quando il file originale viene eliminato, il file collegato e il file originale vengono visualizzati in rosso.                                                                                |
-| File hard link | Il file originale ha lo stesso numero di _inode_ del file collegato. Possono essere aggiornati in modo sincrono, includendo il contenuto del file e quando è stato modificato. Non è possibile attraversare le partizioni, né i file system. Non può essere utilizzato per le directory. |
+| Tipi di link   | Descrizione                                                                                                                                                                                                                                                                                                                                              |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| file soft link | Una scorciatoia simile a quella di Windows. Ha un permesso di 777 e punta al file originale. Quando il file originale viene eliminato, il file collegato e il file originale vengono visualizzati in rosso.                                                                                                                                              |
+| File hard link | Il file originale ha lo stesso numero di _inode_ del file collegato. Ha lo stesso numero _inode_ del file collegato fisicamente. Possono essere aggiornati in modo sincrono, includendo il contenuto del file e quando è stato modificato. Non è possibile attraversare le partizioni, né i file system. Non può essere utilizzato per le directory. |
 
 Esempi specifici sono i seguenti:
 
