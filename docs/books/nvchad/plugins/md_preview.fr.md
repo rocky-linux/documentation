@@ -136,7 +136,7 @@ M.mdpreview = {
 
 Cela vous permettra d'ouvrir l'aperçu markdown en tapant <kbd>Enter</kbd> + <kbd>m</kbd> suivi de <kbd>p</kbd> et de le fermer avec la combinaison <kbd>Enter</kbd> + <kbd>m</kbd> suivie de <kbd>c</kbd>.
 
-!!! Remarque
+!!! Note "Remarque"
 
     Le plugiciel fournit également la commande `:MarkdownPreviewToggle` mais au moment d'écrire ce document, il ne semble pas fonctionner correctement. Si vous essayez de l'utiliser, cela ne changera pas le thème d'aperçu mais ouvrira un nouvel onglet du navigateur avec le même aperçu.
 
