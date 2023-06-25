@@ -1,7 +1,8 @@
 files:
   - source: /docs/**/*.md
     ignore:
-      - '*.de.md'  
+      - '*.af.md'
+      - '*.de.md'
       - '*.en.md'
       - '*.es.md'
       - '*.fr.md'
