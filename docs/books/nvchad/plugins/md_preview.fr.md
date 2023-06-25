@@ -27,7 +27,7 @@ Pour intégrer cette fonctionnalité dans votre éditeur, deux des plugiciels di
 
 Si vous avez également installé le [Template Chadrc](../template_chadrc.md) ce composant sera déjà disponible car il est l'un des serveurs de langage installés par défaut. S'il n'est pas encore présent dans l'éditeur, vous pouvez l'installer avec la commande `:MasonInstall deno`.
 
-!!! Avertissement
+!!! Warning "Avertissement"
 
     Le serveur de langage **doit** être installé avant de procéder à l'installation du plugiciel. Sinon, l'installation échouera et il sera nécessaire de supprimer le code contenu dans **/custom/plugins.ua**, effectuer un nettoyage de configuration en éditant `Lazy` et en tapant <kbd>X</kbd> pour supprimer le plugin puis répéter la procédure d'installation.
 
