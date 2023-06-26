@@ -39,7 +39,7 @@ Dans le cadre de la gestion des ressources, le système d'exploitation doit :
     * La **mémoire physique** est constituée des barrettes de RAM et de la mémoire cache du processeur qui sont utilisées pour l'exécution des programmes.
     * La **mémoire virtuelle** est un emplacement sur le disque dur (la partition **swap**) qui permet de décharger la mémoire physique et de sauvegarder l'état actuel du système lors de l'arrêt électrique de l'ordinateur.
 * Intercepter les **accès aux périphériques**. Les logiciels sont rarement autorisés à accéder directement au matériel (sauf les cartes graphiques pour des besoins très spécifiques).
-* Fournir aux applications une **gestion correcte des tâches**. Le système d'exploitation est responsable de la planification des processus pour occuper le processeur.
+* Fournir aux applications une **gestion correcte des tâches**. Le système d'exploitation est responsable de l'ordonnencement des processus pour les répartir sur le ou les processeur(s).
 * **Protéger les fichiers** contre les accès non autorisés.
 * **Collecter des informations** sur les programmes utilisés ou en cours d'exécution.
 
