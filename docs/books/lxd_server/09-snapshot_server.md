@@ -56,7 +56,7 @@ Next, as our unprivileged (lxdadmin) user, you need to set the trust relationshi
 lxc remote add lxd-snapshot
 ```
 
-This displays the certificate to accept. Accept it, and it will prompt for your password. This is the "trust password" that you set up when doing the LXD initialization step. Hopefully, you are securely keeping track of all of these passwords. Whe you enter the password, you will receive this:
+This displays the certificate to accept. Accept it, and it will prompt for your password. This is the "trust password" that you set up when doing the LXD initialization step. Hopefully, you are securely keeping track of all of these passwords. When you enter the password, you will receive this:
 
 ```
 Client certificate stored at server:  lxd-snapshot
@@ -80,7 +80,7 @@ With all of the relationships and profiles set up, the next step is to actually 
 lxc snapshot rockylinux-test-9 rockylinux-test-9-snap1
 ```
 
-If you run the "info" command for `lxc`, you can see the snapshot on the bottom of our listing:
+If you run the "info" command for `lxc`, you can see the snapshot at the bottom of our listing:
 
 ```
 lxc info rockylinux-test-9
@@ -138,7 +138,7 @@ Do this for each snapshot on the lxd-snapshot server. The "0" in the command wil
 
 ## Automating the snapshot process
 
-It is great that you can create snapshots when you need to, and sometimes you _do_ need to manually create a snapshot. You might even want to manually copy it over to lxd-snapshot. But for all the other times, paricularly for many containers running on your lxd-primary server, the **last** thing you want to do is spend an afternoon deleting snapshots on the snapshot server, creating new snapshots and sending them over to the snapshot server. For the bulk of your operations, you will want to automate the process.
+It is great that you can create snapshots when you need to, and sometimes you _do_ need to manually create a snapshot. You might even want to manually copy it over to lxd-snapshot. But for all the other times, particularly for many containers running on your lxd-primary server, the **last** thing you want to do is spend an afternoon deleting snapshots on the snapshot server, creating new snapshots and sending them over to the snapshot server. For the bulk of your operations, you will want to automate the process.
 
 The first thing you need to do is schedule a process to automate snapshot creation on lxd-primary. You will do this for each container on the lxd-primary server. When completed, it will take care of this going forward. You do this with the following syntax. Note the similarities to a crontab entry for the timestamp:
 
