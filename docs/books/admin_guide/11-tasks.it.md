@@ -142,12 +142,12 @@ Esempio:
 [root]# crontab -u user1 -e
 ```
 
-| Opzione | Descrizione                                                           |
-| ------- | --------------------------------------------------------------------- |
-| `-e`    | Modifica il file di pianificazione con VI                             |
-| `-l`    | Visualizza il contenuto del file di pianificazione                    |
-| `-u`    | Nome dell'utente il cui file di pianificazione deve essere manipolato |
-| `-r`    | Elimina il file di pianificazione                                     |
+| Opzione | Descrizione                                                                              |
+| ------- | ---------------------------------------------------------------------------------------- |
+| `-e`    | Modifica il file di pianificazione con VI                                                |
+| `-l`    | Visualizza il contenuto del file di pianificazione                                       |
+| `-u`    | Imposta il nome dell'utente di cui si vuole manipolare il file di programma previsionale |
+| `-r`    | Cancella il file di pianificazione                                                       |
 
 !!! Warning "Attenzione"
 
@@ -205,12 +205,12 @@ Il file `crontab` è strutturato in base alle seguenti regole.
 
 Al fine di semplificare la notazione per la definizione del tempo, è consigliabile utilizzare simboli speciali.
 
-| Wildcards | Descrizione                        |
-| --------- | ---------------------------------- |
-| `*`       | Tutti i possibili valori del campo |
-| `-`       | Indica una gamma di valori         |
-| `,`       | Indica un elenco di valori         |
-| `/`       | Definisce un passo                 |
+| Wildcards | Descrizione                               |
+| --------- | ----------------------------------------- |
+| `*`       | Indica tutti i possibili valori del campo |
+| `-`       | Indica una gamma di valori                |
+| `,`       | Indica un elenco di valori                |
+| `/`       | Definisce un passo                        |
 
 Esempi:
 
@@ -242,8 +242,8 @@ Per l'utente root, `crontab` ha anche alcune impostazioni speciali del tempo:
 
 | Impostazioni | Descrizione                                                       |
 | ------------ | ----------------------------------------------------------------- |
-| @reboot      | Eseguire il comando al riavvio del sistema                        |
-| @hourly      | Esegui il comando ogni ora                                        |
+| @reboot      | Esegue un comando al riavvio del sistema                          |
+| @hourly      | Esegue un comando ogni ora                                        |
 | @daily       | Esegui giornalmente dopo la mezzanotte                            |
 | @weekly      | Esegui il comando ogni domenica dopo la mezzanotte                |
 | @monthly     | Esegui il comando il primo giorno del mese subito dopo mezzanotte |

@@ -1,150 +1,106 @@
 ---
-title: Rinforzare il Webserver Apache
-author: Steven Spencer
+title: Server web Apache Protetto
+author: Steven Spencer, Franco Colussi
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5
+tested_with: 8.8, 9.2
 tags:
   - apache
   - web
   - security
 ---
 
-# Rinforzare il Webserver Apache
+# Server web Apache Protetto
 
-## Prerequisiti e Presupposti
+## Prerequisiti e presupposti
 
-* Un web server Rocky Linux con in esecuzione Apache
-* Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, registri di visualizzazione e altri compiti generali di amministratore di sistema
-* Un livello di comfort con un editor a riga di comando (i nostri esempi usano _vi_ che di solito invoca l'editor _vim_, ma puoi sostituirlo con il tuo editor preferito)
-* Suppone un firewall _iptables_, piuttosto che _firewalld_ o un firewall hardware.
-* Suppone l'uso di un firewall hardware gateway dietro il quale si troveranno i nostri dispositivi fidati.
-* Presume un indirizzo IP pubblico applicato direttamente al server web. Lo sostituiremo con un indirizzo IP privato per tutti i nostri esempi.
+* Un server web Rocky Linux con Apache
+* Un buon livello di confidenza con l'emissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
+* Un livello di confidenza con un editor a riga di comando (i nostri esempi utilizzano `vi`, che di solito esegue l'editor `vim`, ma si può sostituire con il proprio editor preferito)
+* Assume `firewalld` per il firewall del filtro dei pacchetti
+* Presuppone l'uso di un firewall hardware gateway dietro il quale si collocheranno i dispositivi fidati
+* Presuppone un indirizzo IP pubblico applicato direttamente al server web. (Utilizzando un indirizzo IP privato per i nostri esempi)
 
 ## Introduzione
 
-Che voi stiate ospitando più siti web per i clienti, o uno singolo, molto importante, per la vostra azienda, irrobustire il vostro server web vi darà la pace interiore, al costo di un po' più di lavoro iniziale per l'amministratore.
+Che si tratti dell'hosting di molti siti web per i clienti o di un singolo sito importante per la propria azienda, l'hardening del server web garantisce la massima tranquillità a costo di un po' di lavoro iniziale in più per l'amministratore.
 
-Con più siti web caricati dai vostri clienti, potete essere quasi sicuri che uno di loro caricherà un Content Management System (CMS) con la possibilità di vulnerabilità. La maggior parte dei clienti sono focalizzati sulla facilità d'uso, non sulla sicurezza, e ciò che accade è che l'aggiornamento del proprio CMS diventa un processo che esce del tutto dalla loro lista di priorità.
+Con molti siti web caricati dai vostri clienti, c'è un'alta probabilità che uno di loro carichi un sistema di gestione dei contenuti (CMS) con la possibilità di vulnerabilità. La maggior parte dei clienti si concentra sulla facilità d'uso, non sulla sicurezza, e ciò che accade è che l'aggiornamento del proprio CMS diventa un processo che esce completamente dall'elenco delle priorità.
 
-Mentre notificare ai clienti le vulnerabilità nel loro CMS può essere possibile per un'azienda con un grande staff IT, potrebbe non essere possibile per un piccolo dipartimento. La migliore difesa è un web server rinforzato.
 
-Il rafforzamento del server web può assumere molte forme, che possono includere uno o tutti gli strumenti seguenti, e possibilmente altri non definiti qui.
+Se per un'azienda con un grande staff IT è possibile notificare ai clienti le vulnerabilità del loro CMS, per un piccolo team IT questo potrebbe non essere realistico. La migliore difesa è un server Web protetto.
 
-Si potrebbe scegliere di utilizzare un paio di questi strumenti, e non gli altri, quindi per chiarezza e leggibilità il presente documento è suddiviso in documenti distinti per ogni strumento. L'eccezione sarà il firewall basato su pacchetti (_iptables_) che sarà incluso in questo documento principale.
+L'hardening del server Web può assumere diverse forme, che possono includere uno o tutti gli strumenti qui descritti ed eventualmente altri non definiti.
 
-* Un buon firewall di filtraggio dei pacchetti basato sulle porte (iptables, firewalld, o firewall hardware - useremo _iptables_ per il nostro esempio) [procedura _iptables_](#iptablesstart)
-* Un sistema di rilevamento di intrusione basato sull'host (HIDS) Host-based Intrusion Detection System, in questo caso _ossec-hids_ [Rafforzamento Apache Web Server - ossec-hids](ossec-hids.md)
-* Un Web based Application Firewall (WAF), con regole _mod\_security_ [Rafforzamento Apache Web Server - mod_security](modsecurity.md)
-* Rootkit Hunter (rkhunter): uno strumento di scansione che controlla i malware di Linux [Rafforzammento Apache Web Server - rkhunter](rkhunter.md)
-* Sicurezza del database (qui stiamo usando _mariadb-server_) [Server database MariaDB](../../database/database_mariadb-server.md)
-* Un server FTP o SFTP sicuro (stiamo usando _vsftpd_ qui) [Server FTP Secure - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md) ma abbiamo anche _sftp_ e procedure di blocco SSH [qui](../../file_sharing/sftp.md)
+Potreste decidere di utilizzare un paio di questi strumenti e non gli altri. Per chiarezza e leggibilità, questo documento è suddiviso in documenti separati per ogni strumento. L'eccezione sarà il firewall basato sui pacchetti`(firewalld`) di cui al presente documento principale.
 
-Questa procedura non sostituisce l'impostazione [Impostazione Multi-Sito Apache](../apache-sites-enabled.md), ma aggiunge semplicemente questi elementi di sicurezza. Se non lo hai letto, prenditi del tempo per guardarlo prima di procedere.
+* Un buon firewall con filtro dei pacchetti basato sulle porte (iptables, firewalld, o firewall hardware - utilizzaremo `firewalld` per i nostri esempi) [procedura`firewalld`](#iptablesstart)
+* Un sistema di rilevamento delle intrusioni basato su host (HIDS), in questo caso _ossec-hids_ [Apache Hardened Web Server - ossec-hids](ossec-hids.md)
+* Un firewall per applicazioni basate sul Web (WAF), con regole `mod_security` [Apache Hardened Web Server - mod_security](modsecurity.md)
+* Rootkit Hunter`(rkhunter`): Uno strumento di scansione che controlla il malware Linux [Apache Hardened Web Server - rkhunter](rkhunter.md)
+* Sicurezza del database (utilizzeremo qui `mariadb-server` ) [Server di database MariaDB](../../database/database_mariadb-server.md)
+* Un server FTP o SFTP sicuro (utilizzeremo `vsftpd` qui) [Server FTP sicuro - vsftpd](../../file_sharing/secure_ftp_server_vsftpd.md) Potete anche utilizzare le [procedure di blocco_sftp_ e SSH qui](../../file_sharing/sftp.md)
 
-## Altre Considerazioni
+Questa procedura non sostituisce l'[Impostazione di siti multipli del server Web Apache](../apache-sites-enabled.md), ma vi aggiunge questi elementi di sicurezza. Se non l'avete letto, prendetevi un po' di tempo per rivederlo prima di procedere.
 
-Alcuni degli strumenti delineati qui hanno l'opzione sia gratuita che a pagamento. A seconda delle vostre esigenze o dei requisiti di supporto, potreste voler considerare le versioni a pagamento. Dovreste ricercare quello che c'è là fuori e prendere una decisione dopo aver soppesato tutte le vostre opzioni.
+## Altre considerazioni
 
-Sappiate anche che la maggior parte di queste opzioni possono essere acquistate come apparecchiature hardware. Se preferisci non preoccuparti d'installare e mantenere il tuo sistema, ci sono altre opzioni disponibili oltre a quelle descritte qui.
+Alcuni degli strumenti qui descritti hanno opzioni gratuite e a pagamento. A seconda delle vostre esigenze o dei requisiti di assistenza, potreste prendere in considerazione le versioni a pagamento. La ricerca di ciò che è disponibile e la decisione da prendere dopo aver valutato tutte le opzioni è la politica migliore.
 
-Questo documento usa un firewall _iptables_ diretto e richiede [questa procedura su Rocky Linux per disabilitare firewalld e abilitare i servizi iptables](../../security/enabling_iptables_firewall.md). Da quando questo documento è stato scritto per la prima volta, abbiamo ora un paio di eccellenti guide su _firewalld_; una che permette a chi ha già una conoscenza di _iptables_ di trasferire ciò che sa a _firewalld_ [qui](../../security/firewalld.md), e una più dedicata ai principianti [qui](../../security/firewalld-beginners.md).
+Per molte di queste opzioni è possibile anche acquistare un dispositivo hardware. Se si preferisce evitare l'installazione e la manutenzione del proprio sistema, sono disponibili altre opzioni oltre a quelle qui descritte.
 
-Se preferisci usare _firewalld_, salta semplicemente questo passaggio e applica le regole necessarie. Il firewall nei nostri esempi qui, non ha bisogno di catene OUTPUT o FORWARD, solo INPUT. Le tue esigenze possono essere diverse!
+In questo documento si utilizza un firewall `firewalld`. sono disponibili guide per `firewalld`. Uno che permette a chi ha conoscenze di `iptables` di [trasferire ciò che sa a `firewalld`](../../security/firewalld.md) e uno più [dedicato ai principianti](../../security/firewalld-beginners.md). Prima di iniziare, si consiglia di rivedere una di queste procedure.
 
-Tutti questi strumenti devono essere adattati al vostro sistema. Questo può essere fatto solo con un attento monitoraggio dei registri, e l'esperienza web riportata dai vostri clienti. Inoltre, scoprirete che ci sarà bisogno di una messa a punto continua nel tempo.
+È necessario mettere a punto tutti questi strumenti per i propri sistemi. Per ottenere questo risultato è necessario un attento monitoraggio dei log e delle esperienze web riportate dai clienti. Inoltre, sarà necessaria una continua messa a punto.
 
-Anche se stiamo usando un indirizzo IP privato per simularne uno pubblico, tutto questo _potrebbe_ essere fatto usando un NAT one-to-one sul firewall hardware e collegando l'indirizzo IP privato del server web a quel firewall hardware, piuttosto che al router gateway.
+Questi esempi utilizzano un indirizzo IP privato per simulare un indirizzo pubblico, ma si potrebbe fare la stessa cosa con un NAT uno a uno sul firewall hardware e collegando il server web a tale firewall hardware, anziché al router gateway, con un indirizzo IP privato.
 
-Spiegare ciò richiede di approfondire nel firewall hardware mostrato di seguito, e poiché ciò è al di fuori dello scopo di questo documento, è meglio attenersi al nostro esempio di un indirizzo IP pubblico simulato.
+Per spiegarlo è necessario approfondire il tema del firewall hardware, che non rientra nello scopo di questo documento.
 
 ## Convenzioni
 
-* **Indirizzi IP:** Qui stiamo simulando l'indirizzo IP pubblico con un blocco privato: 192.168.1.0/24 e stiamo usando il blocco di indirizzi IP della LAN come 10.0.0.0/24 In altre parole, non può essere instradato su Internet. In realtà, nessuno dei due blocchi IP può essere instradato su Internet perché sono entrambi riservati all'uso privato, ma non c'è un buon modo per simulare il blocco IP pubblico, senza usare un indirizzo IP reale che è assegnato a qualche azienda. Basta ricordare che per i nostri scopi, il blocco 192.168.1.0/24 è il blocco IP "pubblico" e il 10.0.0.0/24 è il blocco IP "privato".
-* **Hardware Firewall:** Questo è il firewall che controlla l'accesso ai vostri dispositivi della sala server dalla vostra rete fidata. Questo non è lo stesso del nostro firewall _iptables_, anche se potrebbe essere un'altra istanza di _iptables_ in esecuzione su un'altra macchina. Questo dispositivo permetterà a ICMP (ping) e SSH (shell sicura) di utilizzare i nostri dispositivi affidabili. La definizione di questo dispositivo non rientra nel campo di applicazione del presente documento. L'autore ha usato sia [PfSense](https://www.pfsense.org/) che [OPNSense](https://opnsense.org/) e installato su hardware dedicato a questo dispositivo con grandi risultati. Questo dispositivo avrà due indirizzi IP assegnati. Uno che si collegherà all'IP pubblico simulato del router Internet (192.168.1.2) e uno che si collegherà alla nostra rete locale, 10.0.0.1.
-* **Internet Router IP:** Lo stiamo simulando con 192.168.1.1/24
-* **Web Server IP:** Questo è l'indirizzo IP "pubblico" assegnato al nostro server web. Ancora una volta, stiamo simulando questo con l'indirizzo IP privato 192.168.1.10/24
+* **Indirizzi IP:** simulare l'indirizzo IP pubblico con un blocco privato: 192.168.1.0/24 e utilizzare il blocco di indirizzi IP della LAN 10.0.0.0/24. L'instradamento di questi blocchi IP su Internet non è possibile perché sono per uso privato, ma la simulazione di blocchi IP pubblici non è possibile senza l'uso di un indirizzo IP reale assegnato a qualche azienda o organizzazione. Ricordate che per i nostri scopi, il blocco 192.168.1.0/24 è il blocco IP "pubblico" e il blocco 10.0.0.0/24 è il blocco IP "privato".
 
-![Webserver Rinforzato](images/hardened_webserver_figure1.jpeg)
+* **Firewall hardware:** È il firewall che controlla l'accesso ai dispositivi della sala server dalla rete fidata. Questo non è lo stesso firewall basato su pacchetti, anche se potrebbe essere un'altra istanza di `firewalld` in esecuzione su un'altra macchina. Questo dispositivo consente l'accesso ICMP (ping) e SSH (secure shell) ai nostri dispositivi affidabili. La definizione di questo dispositivo non rientra nell'ambito di questo documento. L'autore ha utilizzato [PfSense](https://www.pfsense.org/) e [OPNSense](https://opnsense.org/), installati su hardware dedicato a questo dispositivo, con grande successo. A questo dispositivo verranno assegnati due indirizzi IP. Uno che si collega all'IP pubblico simulato del router Internet (192.168.1.2) e uno che si collega alla nostra rete locale, 10.0.0.1.
+* **IP del router Internet:** simulazione con 192.168.1.1/24
+* **IP del server web:** è l'indirizzo IP "pubblico" assegnato al nostro server web. Ancora una volta, simulando questo con l'indirizzo IP privato 192.168.1.10/24
 
-Il diagramma sopra mostra il nostro layout generale. Il firewall basato su pacchetti _iptables_ viene eseguito sul server web (mostrato sopra).
+![Hardened web server](images/hardened_webserver_figure1.jpeg)
 
+Il diagramma mostra la nostra disposizione generale. Il `firewalld`, basato sui pacchetti, viene eseguito sul server web.
 
-## Installare Pacchetti
+## Installare i pacchetti
 
-Ogni singola sezione del pacchetto ha i file d'installazione necessari e qualsiasi procedura di configurazione elencata. Le istruzioni di installazione di _iptables_ fanno parte della procedura [disabilitare firewalld e abilitare i servizi iptables](../../security/enabling_iptables_firewall.md).
+In ogni sezione del pacchetto sono elencati i file di installazione necessari e le procedure di configurazione.
 
-## <a name="iptablesstart"></a>Configurazione di iptables
-
-Questa parte della documentazione presuppone che abbiate scelto di installare i servizi e le utilità _iptables_ e che non stiate pensando di usare _firewalld_.
-
-Se hai intenzione di usare _firewalld_, puoi usare questo script _iptables_ per guidarti nella creazione delle regole appropriate nel formato _firewalld_. Una volta mostrato lo script qui, lo scomporremo per descrivere ciò che sta accadendo. Qui è necessaria solo la catena INPUT. Lo script viene posizionato nella directory /etc/ e per il nostro esempio, viene chiamato firewall.conf:
-
-`vi /etc/firewall.conf`
-
-e il contenuto sarà:
+## <a name="iptablesstart"></a>Configurazione di `firewalld`
 
 ```
-#!/bin/sh
-#
-#IPTABLES=/usr/sbin/iptables
-
-#  Unless specified, the defaults for OUTPUT is ACCEPT
-#    The default for FORWARD and INPUT is DROP
-#
-echo "   clearing any existing rules and setting default policy.." iptables -F INPUT
-iptables -P INPUT DROP
-iptables -A INPUT -p tcp -m tcp -s 192.168.1.2 --dport 22 -j ACCEPT
-iptables -A INPUT -p icmp -m icmp --icmp-type 8 -s 192.168.1.2 -j ACCEPT
-# dns rules
-iptables -A INPUT -p udp -m udp -s 8.8.8.8 --sport 53 -d 0/0 -j ACCEPT
-iptables -A INPUT -p udp -m udp -s 8.8.4.4 --sport 53 -d 0/0 -j ACCEPT
-# web ports
-iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
-# ftp ports
-iptables -A INPUT -p tcp -m tcp --dport 20-21 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp --dport 7000-7500 -j ACCEPT
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
-iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
-
-/usr/sbin/service iptables save
+firewall-cmd --zone=trusted --add-source=192.168.1.2 --permanent
+firewall-cmd --zone=trusted --add-service=ssh --permanent
+firewall-cmd --zone=public --remove-service=ssh --permanent
+firewall-cmd --zone=public --add-service=dns --permanent
+firewall-cmd --zone=public --add-service=http --add-service=https --permanent
+firewall-cmd --zone=public --add-service=ftp --permanent
+firewall-cmd --zone=public --add-port=20/tcp --permanent
+firewall-cmd --zone=public --add-port=7000-7500/tcp --permanent
+firewall-cmd --reload
 ```
-Ecco quindi cosa sta succedendo sopra:
+Ecco cosa sta succedendo:
 
-* Quando iniziamo, puliamo tutte le regole
-* Abbiamo quindi impostato la policy di default per la nostra catena INPUT a DROP, che dice: "Ehi, se non ti abbiamo esplicitamente permesso qui, allora ti stiamo abbandonando!"
-* Quindi permettiamo SSH (porta 22) dalla nostra rete affidabile, i dispositivi dietro il firewall hardware
-* Consentiamo i DNS da alcuni risolutori DNS pubblici. (questi possono anche essere server DNS locali, se li hai)
-* Permettiamo al nostro traffico web di entrare da qualsiasi punto sulla porta 80 e 443.
-* Permettiamo FTP standard (porte 20-21) e le porte passive necessarie per scambiare comunicazioni bidirezionali in FTP (7000-7500). Queste porte possono essere modificate arbitrariamente in altre porte in base alla configurazione del server ftp.
-* Permettiamo qualsiasi traffico sull'interfaccia locale (127.0.0.1)
-* Poi diciamo che ogni traffico che si è connesso con successo in base alle regole, dovrebbe essere permesso ad altro traffico (porte) e di mantenere la loro connessione (ESTABLISHED,RELATED).
-* E infine, rifiutiamo tutto l'altro traffico e impostiamo lo script per salvare le regole dove _iptables_ prevede di trovarle.
+* impostare la nostra zona fidata sull'indirizzo IP del firewall hardware
+* accettare SSH (porta 22) dalla nostra rete fidata, i dispositivi dietro al firewall hardware (solo un indirizzo IP)
+* accettare DNS dalla zona pubblica (è possibile limitare ulteriormente questa possibilità specificando gli indirizzi IP dei server o i server DNS locali, se si dispone di questi ultimi)
+* accettare il traffico web da qualsiasi luogo attraverso le porte 80 e 443.
+* accettano l'FTP standard (porte 20-21) e le porte passive necessarie per lo scambio di comunicazioni bidirezionali in FTP (7000-7500). Queste porte possono essere modificate arbitrariamente in altre porte in base alla configurazione del server ftp.
 
-Una volta che questo script è lì, abbiamo bisogno di renderlo eseguibile:
+    !!! note "Nota"
+  
+        L'uso di SFTP è il metodo migliore al giorno d'oggi. È possibile scoprire come [utilizzare in modo sicuro SFTP da questo documento](../../file_sharing/sftp.md).
 
-`chmod +x /etc/firewall.conf`
-
-Abbiamo bisogno di abilitare _iptables_ se non lo è ancora:
-
-`systemctl enable iptables`
-
-Abbiamo bisogno di avviare _iptables_:
-
-`systemctl start iptables`
-
-Dobbiamo eseguire /etc/firewall.conf:
-
-`/etc/firewall.conf`
-
-È sempre possibile risolvere questo problema, tuttavia, dalla console sul server. Tenete a mente che con una politica DROP di default per la catena INPUT, se fate un errore, potreste chiudervi fuori da remoto.
-
-È sempre possibile risolvere questo problema, tuttavia, dalla console sul server. Poiché il servizio _iptables_ è abilitato, un riavvio ripristinerà tutte le regole che sono state aggiunte con `/etc/firewall.conf`.
+* infine ricaricare il firewall
 
 ## Conclusione
 
-Ci sono diversi modi per rinforzare un server web Apache per renderlo più sicuro. Ognuno di essi funziona indipendentemente dalle altre opzioni, quindi potete scegliere d'installarne una qualsiasi o tutte in base alle vostre esigenze.
+Esistono molti modi per rendere più sicuro un server web Apache. Ognuno di essi opera in modo indipendente dall'altro, rendendo possibile l'installazione e la selezione di ciò che si desidera.
 
-Ognuna richiede una certa configurazione con varie regolazioni necessarie per alcune per soddisfare le vostre esigenze specifiche. Dal momento che i servizi web sono costantemente sotto attacco 24/7 da parte di attori senza scrupoli, l'attuazione di almeno alcuni di questi aiuterà un amministratore a dormire di notte.
+Ognuno di essi richiede una configurazione e una messa a punto per soddisfare le vostre esigenze specifiche. Poiché i servizi Web sono costantemente oggetto di attacchi da parte di soggetti senza scrupoli, l'implementazione di almeno alcune di queste misure aiuterà l'amministratore a dormire la notte.

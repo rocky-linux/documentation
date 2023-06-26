@@ -1,7 +1,7 @@
 ---
 title: Autorizzazioni Speciali
 author: tianci li
-contributors: Serge Croisé, Colussi Franco
+contributors: Serge
 tags:
   - advanced permissions
   - access control
@@ -142,7 +142,7 @@ Shell > setfacl <option> <FILE_NAME>
 | -k      | rimuovere la ACL predefinita                    |
 | -R      | ricorreggere nelle sottodirectory               |
 
-Utilizzate l'esempio di insegnamento dell'insegnante citato all'inizio dell'articolo per illustrare l'uso dell'ACL.
+Utilizzate l'esempio dell'insegnante citato all'inizio dell'articolo per illustrare l'uso dell'ACL.
 
 ```bash
 # The teacher is the root user
@@ -444,7 +444,7 @@ Il ruolo di "Sticky BIT":
 
 Lo SBIT è rappresentato dal numero **1**.
 
-Il file/directory può avere il permesso **7755**? No, sono rivolti a oggetti diversi. SUID è per i file binari eseguibili; SGID è usato per i file binari eseguibili e le directory; SBIT è solo per le directory. È quindi necessario impostare queste autorizzazioni speciali in base ai diversi oggetti.
+Il file o la directory possono avere i permessi **7755**? No, sono rivolti a oggetti diversi. SUID è per i file binari eseguibili; SGID è usato per i file binari eseguibili e le directory; SBIT è solo per le directory. È quindi necessario impostare queste autorizzazioni speciali in base ai diversi oggetti.
 
 La directory **/tmp** ha il permesso SBIT. Un esempio è il seguente:
 

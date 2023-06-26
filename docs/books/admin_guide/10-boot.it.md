@@ -153,9 +153,9 @@ Per proteggere solo la modifica delle voci del menu GRUB e l'accesso alla consol
 
     Systemd è il sistema di inizializzazione predefinito da RedHat/CentOS 7.
 
-Systemd introduce il concetto di unità systemd.
+Systemd introduce il concetto di file di unità, noti anche come unità di systemd.
 
-| Tipo                  | Estensione del file | Osservazioni                                        |
+| Tipo                  | Estensione del file | Funzionalità                                        |
 | --------------------- | ------------------- | --------------------------------------------------- |
 | Unità di servizio     | `.service`          | Servizio di sistema                                 |
 | Unità di destinazione | `.target`           | Un gruppo di unità systemd                          |
@@ -183,15 +183,15 @@ Tutte le operazioni delle unità di servizio sono soggette a un timeout predefin
 
 Le unità di servizio terminano con l'estensione di file `.service` e hanno uno scopo simile a quello degli script di init. Il comando `systemctl` viene utilizzato per `visualizzare`, `avviare`, `fermare`, `riavviare` un servizio di sistema:
 
-| systemctl                                 | Descrizione                                 |
-| ----------------------------------------- | ------------------------------------------- |
-| systemctl start _name_.service            | Avvia un servizio                           |
-| systemctl stop _name_.service             | Arresta un servizio                         |
-| systemctl restart _name_.service          | Riavvia un servizio                         |
-| systemctl reload _name_.service           | Ricarica una configurazione                 |
-| systemctl status _name_.service           | Controlla se un servizio è in esecuzione    |
-| systemctl try-restart _name_.service      | Riavvia un servizio solo se è in esecuzione |
-| systemctl list-units --type service --all | Visualizza lo stato di tutti i servizi      |
+| systemctl                                 | Descrizione                                   |
+| ----------------------------------------- | --------------------------------------------- |
+| systemctl start _name_.service            | Avviare un servizio                           |
+| systemctl stop _name_.service             | Arresta un servizio                           |
+| systemctl restart _name_.service          | Riavviare un servizio                         |
+| systemctl reload _name_.service           | Ricaricare una configurazione                 |
+| systemctl status _name_.service           | Controlla se un servizio è in esecuzione      |
+| systemctl try-restart _name_.service      | Riavviare un servizio solo se è in esecuzione |
+| systemctl list-units --type service --all | Visualizzare lo stato di tutti i servizi      |
 
 Il comando `systemctl` viene utilizzato anche per `abilitare` o `disabilitare` un servizio di sistema e la visualizzazione dei servizi associati:
 

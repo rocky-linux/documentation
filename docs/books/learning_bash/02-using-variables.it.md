@@ -2,7 +2,7 @@
 title: Bash - Uso delle variabili
 author: Antoine Le Morvan
 contributors: Steven Spencer, Franco Colussi
-tested with: 8.5
+tested_with: 8.5
 tags:
   - education
   - bash scripting
@@ -165,7 +165,7 @@ Il comando `set` visualizza tutte le variabili di sistema utilizzate.
 
 Tra le decine di variabili d'ambiente, alcune sono interessanti da usare in uno script di shell:
 
-| Variabili                     | Osservazioni                                                                |
+| Variabili                     | Descrizione                                                                 |
 | ----------------------------- | --------------------------------------------------------------------------- |
 | `HOSTNAME`                    | Nome host della macchina.                                                   |
 | `USER`, `USERNAME`e `LOGNAME` | Nome dell'utente connesso alla sessione.                                    |

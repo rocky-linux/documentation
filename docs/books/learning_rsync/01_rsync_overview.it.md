@@ -51,7 +51,7 @@ L'originale `rsync` è stato mantenuto dal programmatore australiano <font color
 
 Come fa `rsync` a realizzare un efficiente backup di sincronizzazione dei dati unidirezionale?
 
-Il core di `rsync` è il suo **algoritmo di Checksum**. Se sei interessato, puoi andare a [Come funziona Rsync](https://rsync. samba. org/how-rsync-works. html) e [L'algoritmo rsync](https://rsync. samba. org/tech_report/) per ulteriori informazioni, Questa sezione è al di là della competenza dell'autore e non sarà trattata troppo.
+Il core di `rsync` è il suo **algoritmo di Checksum**. Se sei interessato, puoi andare a \[Come funziona Rsync\](https://rsync.samba.org/how-rsync-works. html) e \[L'algoritmo rsync\](https://rsync.samba.org/tech_report/) per ulteriori informazioni. Questa sezione è al di là della competenza dell'autore e non sarà trattata troppo.
 
 Le caratteristiche di `rsync` sono:
 

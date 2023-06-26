@@ -4,14 +4,13 @@ title: 고급 Linux 명령
 
 # Linux 사용자를 위한 고급 명령
 
-기본 명령에 익숙해지면 고급 명령을 통해 보다 구체적인 상황에서 더 많은 사용자 정의 및 제어가 가능합니다.
+고급 명령어는 기본 명령어에 익숙해진 후에 특수한 상황에서 더 큰 맞춤 및 제어를 제공합니다.
 
 ****
 
 **목표**: 이 문서에서는 미래의 Linux 관리자가 다음을 수행하는 방법을 배웁니다:
 
-:heavy_check_mark: 이전 장에서 다루지 않은 몇 가지 유용한 명령입니다.   
-:heavy_check_mark: 일부 고급 명령.
+:heavy_check_mark: 이전 장에서 다루지 않은 몇 가지 유용한 명령어 :heavy_check_mark: 일부 고급 명령어
 
 :checkered_flag: **사용자 명령어**, **Linux**
 
@@ -26,7 +25,7 @@ title: 고급 Linux 명령
 
 `uniq` 명령은 특히 로그 파일 분석을 위해 `sort` 명령과 함께 사용되는 매우 강력한 명령어입니다. 중복 항목을 제거하여 항목을 정렬하고 표시할 수 있습니다.
 
-`uniq` 명령의 작동 방식을 설명하기 위해 이름 목록이 포함된 `firstnames.txt` 파일을 사용하겠습니다.
+`uniq` 명령의 작동 방식을 설명하기 위해, 이름 목록을 포함하는 `firstnames.txt` 파일을 사용하겠습니다.
 
 ```
 antoine
@@ -43,7 +42,7 @@ steven
 
     `uniq`는 연속된 줄만 비교하기 때문에 실행하기 전에 입력 파일을 정렬해야 합니다.
 
-인수가 없으면 `uniq` 명령은 `firstnames.txt` 파일에서 서로 이어지는 동일한 줄을 표시하지 않습니다.
+인수가 없으면 `uniq` 명령은 `firstnames.txt` 일에서 서로 뒤따르는 동일한 줄을 표시하지 않습니다:
 
 ```
 $ sort firstnames.txt | uniq
@@ -53,14 +52,14 @@ steven
 xavier
 ```
 
-한 번만 나타나는 행만 표시하려면 `-u` 옵션을 사용하십시오:
+한 번만 나타나는 행만 표시하려면 `-u` 옵션을 사용하세요:
 
 ```
 $ sort firstnames.txt | uniq -u
 patrick
 ```
 
-반대로 파일에 두 번 이상 나타나는 행만 표시하려면 `-d` 옵션을 사용하십시오:
+반대로 파일에  최소한 두 번 이상 나타나는 행만 표시하려면 `-d` 옵션을 사용하세요:
 
 ```
 $ sort firstnames.txt | uniq -d
@@ -69,7 +68,7 @@ steven
 xavier
 ```
 
-한 번만 나타나는 줄을 간단히 삭제하려면 `-D` 옵션을 사용하십시오:
+한 번만 나타나는 행을 간단히 삭제하려면 `-D` 옵션을 사용하세요:
 
 ```
 $ sort firstnames.txt | uniq -D
@@ -82,7 +81,7 @@ xavier
 xavier
 ```
 
-마지막으로 각 줄의 발생 횟수를 계산하려면 `-c` 옵션을 사용합니다:
+마지막으로 각 행의 발생 횟수를 계산하려면 `-c` 옵션을 사용하세요:
 
 ```
 $ sort firstnames.txt | uniq -c
@@ -101,11 +100,11 @@ $ sort firstnames.txt | uniq -cd
 
 ## `xargs` 명령
 
-`xargs` 명령을 사용하면 표준 입력에서 명령줄을 구성하고 실행할 수 있습니다.
+`xargs` 명령을 사용하면 표준 입력에서 명령줄을 구성하고 실행하는 데 사용됩니다.
 
-`xargs` 명령은 표준 입력에서 공백 또는 줄 바꿈으로 구분된 인수를 읽습니다, 그리고 표준 입력에서 읽은 인수가 뒤따르는 초기 인수를 사용하여 명령(기본적으로 `/bin/echo`)을 한 번 이상 실행합니다.
+`xargs` 명령어는 공백이나 개행 문자로 구분된 인수를 표준 입력에서 읽고, 초기 인수 다음에 표준 입력에서 읽은 인수를 사용하여 한 번 이상 명령(기본적으로 `/bin/echo`) 실행합니다.
 
-가장 간단한 첫 번째 예는 다음과 같습니다:
+첫 번째 간단한 예제는 다음과 같습니다:
 
 ```
 $ xargs
@@ -116,7 +115,7 @@ xargs
 use of xargs
 ```
 
-`xargs` 명령은 표준 **stdin** 입력의 입력을 기다립니다. 3줄이 입력됩니다. 사용자 입력의 끝은 키 입력 시퀀스 <kbd>CTRL</kbd>+<kbd>D</kbd>에 의해 `xargs`로 지정됩니다. `xargs`는 기본 명령 `echo`를 실행한 다음 사용자 입력에 해당하는 세 개의 인수, 즉 다음을 실행합니다.
+`xargs` 명령은 표준 **stdin** 입력에서 입력을 기다립니다. 3줄이 입력됩니다. 사용자 입력의 끝은 <kbd>CTRL</kbd>+<kbd>D</kbd> 키 조합으로 `xargs`에 지정됩니다. 그런 다음 `xargs`는 기본 명령 `echo`를 실행하고 사용자 입력에 해당하는 세 개의 인수를 따릅니다:
 
 ```
 $ echo "use" "of" "xargs"
@@ -140,7 +139,7 @@ drwxrwxrwt. 3 root root 4096  6 avril 10:25 /tmp
 
 실제로 `xargs` 명령은 `ls -ld /home /tmp /root` 명령을 실행했습니다.
 
-실행할 명령이 `find` 명령과 같이 여러 인수를 허용하지 않으면 어떻게 됩니까?
+`find` 명령어와 같이 여러 인수를 허용하지 않는 명령어의 경우 어떻게 될까요?
 
 ```
 $ xargs find /var/log -name
@@ -149,14 +148,14 @@ $ xargs find /var/log -name
 find: paths must precede expression: *.log
 ```
 
-`xargs` 명령어는 `-name` 옵션 뒤에 여러 인수를 가진 `find` 명령어를 실행하려고 시도했으나, 이로 인해 `find` 에서 오류가 발생했습니다.
+`xargs` 명령어는 `-name` 옵션 뒤에 여러 인수로 `find` 명령어를 실행하려고 시도했으므로 `find`가 오류를 생성했습니다:
 
 ```
 $ find /var/log -name "*.old" "*.log"
 find: paths must precede expression: *.log
 ```
 
-이 경우 `xargs` 명령어를 강제로 `find` 명령어를 여러 번 실행해야 합니다(표준 입력으로 입력된 한 줄당 한 번씩 입력됨). `-L` 옵션 다음에 **정수**를 사용하면 한 번에 명령으로 처리할 최대 항목 수를 지정할 수 있습니다.
+이 경우 `xargs` 명령어를 강제로 `find` 명령어를 여러 번 실행해야 합니다(표준 입력으로 입력된 한 줄당 한 번씩 입력됨). `-L` 옵션 뒤에 **정수**를 사용하면 한 번에 명령으로 처리할 최대 항목 수를 지정할 수 있습니다.
 
 ```
 $ xargs -L 1 find /var/log -name
@@ -175,7 +174,7 @@ $ xargs -L 1 find /var/log -name
 <CTRL+D>
 ```
 
-두 인수를 동일한 줄에 지정하려면 `-n 1` 옵션을 사용합니다:
+두 인수를 동일한 줄에 지정하려면 `-n 1` 옵션을 사용하세요:
 
 ```
 $ xargs -n 1 find /var/log -name
@@ -202,23 +201,23 @@ $ tar tvfP /root/log.tar
 -rw-r--r-- root/root    499270 2017-04-06 11:01 /var/log/audit/audit.log
 ```
 
-`xargs` 명령어의 특징은 입력 인수를 호출된 명령어의 끝에 배치한다는 것입니다. 위의 예시와 같이 파일들이 전달되면 이는 아카이브에 추가할 파일 목록을 형성하는 데 매우 잘 작동합니다.
+`xargs` 명령어의 특징은 입력 인수를 호출된 명령의 끝에 놓는다는 점입니다. 위의 예제에서는 전달된 파일이 아카이브에 추가될 파일 목록을 형성하므로 이 기능이 매우 잘 작동합니다.
 
-`cp` 명령의 예를 들어 파일 목록을 디렉토리에 복사하려는 경우 해당 파일 목록이 명령 끝에 추가됩니다. 그러나, `cp` 명령은 이 명령의 끝에 있어야 합니다. 이렇게 하려면 `-I` 옵션을 사용하여 입력 인수를 줄의 끝이 아닌 다른 곳에 배치해야 합니다.
+`cp` 명령의 예를 들어 파일 목록을 디렉토리에 복사하려는 경우 해당 파일 목록이 명령 끝에 추가됩니다. 그러나, `cp` 명령은 이 명령의 끝에 있어야 합니다. 이렇게 하려면 `-I` 옵션을 사용하여 입력 인수를 라인의 끝이 아닌 다른 위치에 놓을 수 있습니다.
 
 ```
 $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 ```
 
-`-I` 옵션을 사용하면 `xargs`에 대한 입력 파일을 배치할 문자(위 예제의 `%` 문자) 를 지정할 수 있습니다.
+`-I` 옵션을 사용하면 `xargs`에 대한 입력 파일을 배치할 문자(위 예에서는 `%` 문자)를 지정할 수 있습니다.
 
 ## `yum-utils` 패키지
 
-`yum-utils` 패키지는 다양한 작성자가 `yum`용으로 빌드한 유틸리티 모음으로, 사용하기 쉽고 강력합니다.
+`yum-utils` 패키지는 다양한 작성자에 의해 `yum`을 위해 만들어진 유틸리티 모음입니다. 이를 사용하면 yum을 더 쉽고 강력하게 사용할 수 있습니다.
 
 !!! 참고 사항
 
-    Rocky Linux 8에서 `yum`이 `dnf`로 대체된 반면, 패키지 이름은 `yum-utils`로 유지되며 `dnf-utils`로도 설치할 수 있습니다. 이들은 DNF 위에 CLI shim으로 구현된 고전적인 YUM 유틸리티로 `yum-3`와 하위 호환성을 유지합니다.
+    Rocky Linux 8에서 `yum`이 `dnf`로 대체된 반면, 패키지 이름은 `yum-utils`로 유지되며 `dnf-utils`로도 설치할 수 있습니다. 이들은 DNF 위에 CLI shim으로 구현된 클래식 YUM 유틸리티로 `yum-3`와 하위 호환성을 유지합니다.
 
 다음은 이러한 유틸리티의 몇 가지 예입니다:
 
@@ -265,13 +264,13 @@ $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 
 * `yumdownloader` 명령:
 
-`yumdownloader` 명령은 리포지토리에서 RPM 패키지를 다운로드합니다.  `dnf download --downloadonly --downloaddir ./  package-name`과 동일합니다.
+`yumdownloader` 명령은 리포지토리에서 RPM 패키지를 다운로드합니다.  `dnf download --downloadonly --downloaddir ./  package-name`과 동일한 기능입니다.
 
 !!! 참고 사항
 
     이 명령은 몇 rpm의 로컬 저장소를 빠르게 구축하는 데 매우 유용합니다!
 
-예시: `yumdownloader`는 _samba_ rpm 패키지와 모든 종속성을 다운로드합니다.
+예시: `yumdownloader`는 _samba_ rpm 패키지와 해당 종속성을 모두 다운로드합니다:
 
 ```
 $ yumdownloader --destdir /var/tmp --resolve samba
@@ -326,17 +325,17 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
 
 ## `watch` 명령
 
-`watch` 명령은 정기적으로 명령을 실행하고 그 결과를 단말기에 전체 화면으로 표시합니다.
+`watch` 명령은 주기적으로 명령어를 실행하고 결과를 터미널에 전체 화면으로 표시합니다.
 
-`-n` 옵션을 사용하면 각 명령 실행 간격(초)을 지정할 수 있습니다.
+`-n` 옵션을 사용하면 각 명령  실행 간격을 초 단위로 지정할 수 있습니다.
 
 !!! 참고 사항
 
-    `watch`명령을 종료하려면 다음 키를 입력해야 합니다: <kbd>CTRL</kbd>+<kbd>C</kbd> 에서 프로세스를 종료합니다.
+    `watch`명령을 종료하려면 다음 키를 입력해야 합니다: <kbd>CTRL</kbd>+<kbd>C</kbd> 입력 후  프로세스를 종료합니다.
 
 예시:
 
-* 5초마다 `/etc/passwd` 파일의 끝을 표시합니다:
+* `/etc/passwd` 파일의 끝을 매 5초마다 표시합니다:
 
 ```
 $ watch -n 5 tail -n 3 /etc/passwd
@@ -352,7 +351,7 @@ chrony:x:995:992::/var/lib/chrony:/sbin/nologin
 sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 ```
 
-* 폴더의 파일 수 모니터링:
+* 폴더에 있는 파일 수를 모니터링합니다:
 
 ```
 $ watch -n 1 'ls -l | wc -l'

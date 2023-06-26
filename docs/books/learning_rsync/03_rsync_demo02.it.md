@@ -8,16 +8,16 @@ update: 2021-12-25
 # Dimostrazione basata sul protocollo rsync
 In vsftpd, ci sono utenti virtuali (utenti impersonali personalizzati dall'amministratore) perché non è sicuro usare utenti anonimi e utenti locali. Sappiamo che un server basato sul protocollo SSH deve garantire che ci sia un sistema di utenti. Quando ci sono molti requisiti di sincronizzazione, può essere necessario creare molti utenti. Questo ovviamente non soddisfa gli standard di gestione e manutenzione GNU/Linux (più utenti, più insicuro), in rsync, per motivi di sicurezza, c'è un metodo di autenticazione il protocollo rsync.
 
-**Come si fa?**
+**Come farlo?**
 
-Basta scrivere i parametri e i valori corrispondenti nel file di configurazione. In Rocky Linux 8, è necessario creare manualmente il file <font color=red>/etc/rsyncd.conf</font>.
+È sufficiente scrivere i parametri e i valori corrispondenti nel file di configurazione. In Rocky Linux 8, è necessario creare manualmente il file <font color=red>/etc/rsyncd.conf</font>.
 
 ```bash
 [root@Rocky ~]# touch /etc/rsyncd.conf
 [root@Rocky ~]# vim /etc/rsyncd.conf
 ```
 
-Alcuni parametri e valori di questo file sono i seguenti, [ qui ](04_rsync_configure.md) ci sono più descrizioni dei parametri:
+Alcuni parametri e valori di questo file sono i seguenti, [ qui ](04_rsync_configure.md) si trovano altre descrizioni dei parametri:
 
 | Elemento                                  | Descrizione                                                                                                                                                                     |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -35,7 +35,7 @@ Alcuni parametri e valori di questo file sono i seguenti, [ qui ](04_rsync_confi
 
 !!! tip "Suggerimento!"
 
-    Il permesso del file password deve essere <font color=red>600</font>
+    L'autorizzazione del file della password deve essere <font color=red>600</font>.
 
 Scrivi il contenuto del file su <font color=red>/etc/rsyncd.conf</font>e scrivi il nome utente e la password su /etc/rsyncd_users.db, il permesso è 600
 

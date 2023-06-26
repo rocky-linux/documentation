@@ -36,7 +36,7 @@ Il comando `ansible-galaxy` gestisce ruoli e collezioni utilizzando [galaxy.ansi
 ansible-galaxy role [import|init|install|login|remove|...]
 ```
 
-| Sotto comandi | Osservazioni                                                       |
+| Sotto comandi | Funzionalità                                                       |
 | ------------- | ------------------------------------------------------------------ |
 | `install`     | installare un ruolo.                                               |
 | `remove`      | rimuovere uno o più ruoli.                                         |
@@ -51,7 +51,7 @@ ansible-galaxy role [import|init|install|login|remove|...]
 ansible-galaxy collection [import|init|install|login|remove|...]
 ```
 
-| Sotto comandi | Osservazioni                                                    |
+| Sotto comandi | Funzionalità                                                    |
 | ------------- | --------------------------------------------------------------- |
 | `init`        | generare uno scheletro di una nuova collezione.                 |
 | `install`     | installare una collezione.                                      |

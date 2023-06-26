@@ -30,7 +30,7 @@ L'avvento del cloud ha cambiato un po' i metodi tradizionali. La VM è configura
 
 L'organizzazione del sistema di gestione della configurazione presentato in questo capitolo risponderà a questi due modi di consumare IT: "uso one-shot" o regolare "riconfigurazione" di una flotta.
 
-Tuttavia, attenzione: utilizzare Ansible per garantire la conformità al parco richiede cambiamenti nelle abitudini lavorative. Non è più possibile modificare manualmente la configurazione di un service manager senza vedere queste modifiche sovrascritte alla prossima esecuzione di Ansible.
+Tuttavia, attenzione: l'utilizzo di Ansible per garantire la conformità di un pool di server richiede la modifica delle abitudini di lavoro. Non è più possibile modificare manualmente la configurazione di un service manager senza vedere queste modifiche sovrascritte alla prossima esecuzione di Ansible.
 
 !!! Note "Nota"
 

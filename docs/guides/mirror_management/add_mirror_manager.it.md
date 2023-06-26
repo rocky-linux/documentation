@@ -15,7 +15,7 @@ Si prega di notare che non siamo autorizzati ad accettare mirror pubblici in pae
 
 Al momento in cui scriviamo (fine 2022), lo spazio di archiviazione richiesto per il mirroring di tutte le versioni attuali e passate di Rocky Linux è di circa 2 TB.
 
-Il nostro master mirror è `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/` Per la prima sincronizzazione utilizzare un mirror vicino a voi. Puoi trovare tutti i mirror ufficiali qui: https://mirrors.rockylinux.org
+Il nostro mirror master è `rsync://msync.rockylinux.org/rocky/mirror/pub/rocky/`. Per la prima sincronizzazione utilizzate un mirror vicino a voi. Potete trovare tutti i mirror ufficiali [qui](https://mirrors.rockylinux.org).
 
 Si noti che in futuro potremmo limitare l'accesso al master mirror ufficiale ai mirror pubblici ufficiali. Per questo motivo, se gestite un mirror privato, prendete in considerazione l'opzione `rsyncing` da un mirror pubblico vicino a voi. Inoltre i mirror locali potrebbero essere più veloci da sincronizzare.
 
@@ -108,7 +108,7 @@ Fare clic su "Create" e si verrà reindirizzati al sito informativo dell'host.
 
 Nella parte inferiore di Information site, l'opzione "Hosts" dovrebbe ora visualizzare il titolo dell'host accanto ad essa. Fare clic sul nome per caricare la pagina dell'host. Vengono riproposte tutte le stesse opzioni del passo precedente. Ci sono nuove opzioni in basso.
 
-* "Site-local Netblocks":  I Netblocks sono utilizzati per cercare di guidare l'utente finale verso un mirror specifico del sito. Ad esempio, un'università potrebbe elencare i propri netblocks e il CGI mirrorlist restituirà il mirror locale dell'università piuttosto che quello del paese. Il formato è uno dei seguenti: 18.0.0.0/255.0.0.0, 18.0.0.0/8, un prefisso/lunghezza IPv6 o un nome host DNS. I valori devono essere indirizzi IP pubblici (non indirizzi di spazio privati RFC1918). Da utilizzare solo se si è un ISP e/o si possiede un netblock instradabile pubblicamente!
+* "Site-local Netblocks":  I Netblocks sono utilizzati per cercare di guidare l'utente finale verso un mirror specifico del sito. Ad esempio, un'università potrebbe elencare i propri netblocks e il CGI mirrorlist restituirà il mirror locale dell'università piuttosto che quello del paese. Il formato è uno dei seguenti: 18.0.0.0/255.0.0.0, 18.0.0.0/8, un prefisso/lunghezza IPv6 o un nome host DNS. I valori devono essere indirizzi IP pubblici (non indirizzi di spazio privati RFC1918). Utilizzare solo se si è un ISP e/o si possiede un blocco di rete instradabile pubblicamente!
 
 * "Peer ASN":  I peer ASN sono utilizzati per guidare un utente finale su reti vicine verso il nostro mirror. Ad esempio, un'università potrebbe elencare i propri peer ASN e il CGI mirrorlist restituirà il mirror locale dell'università piuttosto che quello del paese. Per creare nuove voci in questa sezione è necessario far parte del gruppo di amministratori di MirrorManager.
 
