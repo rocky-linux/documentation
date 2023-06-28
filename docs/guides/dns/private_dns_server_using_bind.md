@@ -1,7 +1,7 @@
 ---
 title: Bind Private DNS Server
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, k3ym0
 tested_with: 8.5, 8.6, 9.0
 tags:
   - dns
@@ -86,7 +86,7 @@ options {
 Finally, skip down to the bottom of the *named.conf* file and add a section for your network. Our example is using ourdomain, so sub in what you want to call your LAN hosts:
 
 ```
-# primary forwward and reverse zones
+# primary forward and reverse zones
 //forward zone
 zone "ourdomain.lan" IN {
      type master;
