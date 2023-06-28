@@ -12,16 +12,16 @@ title: 고급 Linux 명령
 
 :heavy_check_mark: 이전 장에서 다루지 않은 몇 가지 유용한 명령어 :heavy_check_mark: 일부 고급 명령어
 
-:checkered_flag: **사용자 명령어**, **Linux**
+:checkered_flag: **사용자 명령어**, **linux**
 
 **지식**: :star:   
-**복잡성**: :star: :star: :star:
+**복잡성**: :star: :star:
 
 **소요 시간**: 20분
 
 ****
 
-## `uniq` 명령
+## `vi` 명령어
 
 `uniq` 명령은 특히 로그 파일 분석을 위해 `sort` 명령과 함께 사용되는 매우 강력한 명령어입니다. 중복 항목을 제거하여 항목을 정렬하고 표시할 수 있습니다.
 
@@ -68,7 +68,7 @@ steven
 xavier
 ```
 
-한 번만 나타나는 행을 간단히 삭제하려면 `-D` 옵션을 사용하세요:
+한 줄 또는 `n`개의 줄 삭제(잘라내기):
 
 ```
 $ sort firstnames.txt | uniq -D
@@ -98,7 +98,7 @@ $ sort firstnames.txt | uniq -cd
       2 xavier
 ```
 
-## `xargs` 명령
+## *command* 모드
 
 `xargs` 명령을 사용하면 표준 입력에서 명령줄을 구성하고 실행하는 데 사용됩니다.
 
@@ -221,11 +221,11 @@ $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 
 다음은 이러한 유틸리티의 몇 가지 예입니다:
 
-* `repoquery` 명령
+* `vimtutor` 명령
 
 `repoquery` 명령은 리포지토리의 패키지를 쿼리하는 데 사용됩니다.
 
-사용 예:
+예시:
 
   * 패키지의 종속성(설치되었거나 설치되지 않은 소프트웨어 패키지일 수 있음)을 표시합니다. 이는 `dnf deplist <package-name>`에 해당합니다.
     ```
@@ -323,7 +323,7 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
 # fuser -k /etc/httpd/conf/httpd.conf
 ```
 
-## `watch` 명령
+## `n`번째 줄로 이동:
 
 `watch` 명령은 주기적으로 명령어를 실행하고 결과를 터미널에 전체 화면으로 표시합니다.
 
