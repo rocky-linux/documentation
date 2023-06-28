@@ -152,7 +152,7 @@ If you do, you are looking good!
 
 ## The rest of it
 
-From this point, you can easily use the capters from our "LXD Production Server" to continue on. There are some things on a workstation setup though that we need to pay less attention to. Here are the recommended chapters to get you going:
+From this point, you can use the chapters from our "LXD Production Server" to continue on. There are some things on a workstation setup though that you need to pay less attention to. Here are the recommended chapters to get you going:
 
 * [Chapter 5 - Setting Up And Managing Images](05-lxd_images.md)
 * [Chapter 6 - Profiles](06-profiles.md)
