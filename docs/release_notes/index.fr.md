@@ -7,7 +7,7 @@ tags:
 
 # Notes de version de Rocky Linux
 
-Bienvenue sur notre liste de notes de version et de changements pour Rocky Linux 8 et Rocky Linux 9. Vous trouverez les notes de publication des dernières versions avec les plus récentes en premier. Les dates de publication et les informations de support se trouvent ci-dessous.
+Bienvenue sur notre liste de notes de version et de changements pour Rocky Linux. Vous trouverez les notes de publication des dernières versions avec les plus récentes en premier. Les dates de publication et les informations de support se trouvent ci-dessous.
 
 ## Versions Rocky Linux
 
