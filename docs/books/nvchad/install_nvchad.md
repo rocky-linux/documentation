@@ -17,7 +17,7 @@ As specified on the NvChad site you need to make sure you meet the following req
 - [Neovim 0.8.3](https://github.com/neovim/neovim/releases/tag/v0.8.3).
 - [Nerd Font](https://www.nerdfonts.com/) Set it in your terminal emulator.
   - Make sure the nerd font you set doesn't end with **Mono**
-   - **Example :** Iosevka Nerd Font and not ~~Iosevka Nerd Font Mono~~ 
+   - **Example:** Iosevka Nerd Font and not ~~Iosevka Nerd Font Mono~~ 
 - [Ripgrep](https://github.com/BurntSushi/ripgrep) is required for grep searching with Telescope **(OPTIONAL)**. 
 - GCC
 
@@ -68,7 +68,7 @@ Once the cloning process is finished in the second part of the command, the Neov
 
 Before starting the bootstrap, the installation will offer us the installation of a base structure (_template chadrc_) for our further customizations:
 
->  Do you want to install chadrc template? (y/n) :
+>  Do you want to install chadrc template? (y/n):
 
 Although choosing to install the recommended structure is not mandatory, it is definitely recommended for anyone new to this Editor. Current users of NvChad who already have a `custom` folder will be able to continue using it after making the necessary changes.
 
