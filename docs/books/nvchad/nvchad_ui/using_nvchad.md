@@ -40,7 +40,7 @@ This will show us all the available files and folders starting from the root of 
 
 It's good to remember that each of the commands listed is preceded by <kbd>SHIFT</kbd> and followed with a <kbd>SPACE</kbd> and either the path or the <kbd>TAB</kbd> key. Here is a list of other actions:
 
-* `:view` - View the file in read-only mode without the abilitiy to change it. Very good for the protection of critical files.
+* `:view` - View the file in read-only mode without the ability to change it. Very good for the protection of critical files.
 * `:split` - Open the file in an horizontal split screen.
 * `:vsplit` - Open the file in  a vertical split screen.
 * `:tabedit` - Open the file in a new tab.
@@ -82,7 +82,7 @@ To select text we need to enter the VISUAL mode. To do this we must first exit t
 
 Once we place the cursor at the beginning of the part we want to select, we use the keys <kbd>CTRL</kbd> + <kbd>v</kbd> to enter the V-BLOC (Visual Block) mode. Now moving with the cursor we will see that our selection will be highlighted. At this point we can work on the selected part of the text. 
 
-If we want to copy the selection to the clipboard we will use the <kbd>y</kbd> key. If we want to delete iti, the <kbd>d</kbd> key. Once the operation is done, the text will no longer be highlighted. For an overview of all the operations that can be performed in Visual Mode you can consult the help directly from the editor with <kbd>SHIFT</kbd> + <kbd>:help Visual-Mode</kbd>.
+If we want to copy the selection to the clipboard we will use the <kbd>y</kbd> key. If we want to delete it, the <kbd>d</kbd> key. Once the operation is done, the text will no longer be highlighted. For an overview of all the operations that can be performed in Visual Mode you can consult the help directly from the editor with <kbd>SHIFT</kbd> + <kbd>:help Visual-Mode</kbd>.
 
 ![Help Visual Mode](../images/help_visual_mode.png) 
 
