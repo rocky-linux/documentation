@@ -23,7 +23,7 @@ To integrate this functionality into your editor, two of the plugins available f
 
 ### Peek.nvim
 
-[Peek](https://github.com/toppair/peek.nvim) uses [Deno](https://deno.com/manual) a JavaScript, TypeScript and WebAssembly runtime with default secure settings for its operation. By default Deno does not allow any file, network or environment access unless explicitly enabled.
+[Peek](https://github.com/toppair/peek.nvim) uses [Deno](https://deno.com/manual) a JavaScript, TypeScript and WebAssembly runtime with default and secure settings for its operation. By default Deno does not allow any file, network or environment access unless explicitly enabled.
 
 If you have also installed the [Template Chadrc](../template_chadrc.md) this component will already be available as it is one of the language servers installed by default. In case it is not yet present in the editor you can install it with the command `:MasonInstall deno`.
 
