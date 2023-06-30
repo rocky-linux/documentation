@@ -18,7 +18,7 @@ There are several pieces of additional software that, while not required, will a
 
 ### Install RipGrep from EPEL
 
-In both Rocky Linux 8 and 9, you can install RipGrep from the EPEL. To do this, install the `epel-release,` upgrade the system, and then install `ripgrep.`:
+In both Rocky Linux 8 and 9, you can install RipGrep from the EPEL. To do this, install the `epel-release`, upgrade the system, and then install `ripgrep`:
 
 ```
 sudo dnf install -y epel-release
@@ -28,7 +28,7 @@ sudo dnf install ripgrep
 
 ### Install RipGrep using `cargo`
 
-Ripgrep is software written in _Rust_ and is installable with the `cargo` utility. Note, however, that `cargo` is not installed by the default installation of _rust_ so you have to install it explicitly. If you run into errors using this method, revert back to installing from the EPEL.
+Ripgrep is software written in _Rust_ and is installable with the `cargo` utility. Note, however, that `cargo` is not installed by the default installation of _rust_, so you have to install it explicitly. If you run into errors using this method, revert back to installing from the EPEL.
 
 ```bash
 dnf install rust cargo
@@ -61,7 +61,7 @@ RipGrep is needed for recursive searches with `:Telescope`.
 
 ## Lazygit
 
-[LazyGit](https://github.com/jesseduffield/lazygit) is an ncurses-style interface that allows you to perform all `git` operations in a more user-friendly way. It is required by the _lazygit.nvim_ plugin. This plugin makes it possible to use LazyGit directly from NvChad, it opens a floating window from where you can perform all operations on your repositories, thus allowing you to make all changes to the _git repository_ without leaving the editor.
+[LazyGit](https://github.com/jesseduffield/lazygit) is a ncurses-style interface that allows you to perform all `git` operations in a more user-friendly way. It is required by the _lazygit.nvim_ plugin. This plugin makes it possible to use LazyGit directly from NvChad, it opens a floating window from where you can perform all operations on your repositories, thus allowing you to make all changes to the _git repository_ without leaving the editor.
 
 To install it we can use the repository for Fedora. On Rocky Linux 9 it works perfectly.
 
@@ -78,4 +78,4 @@ With the <kbd>x</kbd> key, we can bring up the menu with all available commands.
 
 ![LazyGit UI](images/lazygit_menu.png)
 
-Now that we have all the necessary supporting software on our system we can move on to installing the basic software. We will start with the editor on which the whole configuration is based, [Neovim](install_nvim.md).
+Now that we have all the necessary supporting software on our system, we can move on to installing the basic software. We will start with the editor on which the whole configuration is based, [Neovim](install_nvim.md).
