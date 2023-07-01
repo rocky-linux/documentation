@@ -68,18 +68,18 @@ This translates to the following:
 
 If you want to run scripts on a workstation or notebook in the `cron` "dot" directories, nothing special is needed. Just copy your script file into the directory in question, and make sure it is executable. Here are the directories:
 
-* `/etc/cron.hourly` - Scripts placed here will run one minute past the hour every hour (this is run by `cron` regardless of whether `anacron` is installed or not).
-* `/etc/cron.daily` - Scripts placed here will run every day. `anacron` adjusts the timing of these (see tip).
-* `/etc/cron.weekly` - Scripts placed here will run every 7 days, based on the calendar day of the last run time (see tip).
-* `/etc/cron.monthly` - Scripts placed here will run monthly based on the calendar day of the last run time (see tip).
+* `/etc/cron.hourly` - Scripts placed here will run one minute past the hour every hour (this is run by `cron` regardless of whether `anacron` is installed or not)
+* `/etc/cron.daily` - Scripts placed here will run every day. `anacron` adjusts the timing of these (see tip)
+* `/etc/cron.weekly` - Scripts placed here will run every 7 days, based on the calendar day of the last run time (see tip)
+* `/etc/cron.monthly` - Scripts placed here will run monthly based on the calendar day of the last run time (see tip)
 
-!!! tip "Tip"
+!!! tip
 
     These are likely to be run at similar (but not exactly the same) times every day, week, and month. For more exact running times, see the @options below.
 
 Provided you are good with just letting the system auto-run your scripts, and allowing them to run sometime during the specified time, it simplifies the automation of tasks.
 
-!!! note "Note"
+!!! note
 
     There is no rule that says a server administrator cannot use the randomized run times which `anacron` uses to run scripts in the "dot" directories. The use case for this would be for a script that is not time sensitive.
 
@@ -121,7 +121,7 @@ Notice that this particular `crontab` file has some of its own documentation bui
 
 Assume that you have a backup script that you want to run at 10 PM at night. The `crontab` uses a 24 hour clock, this would be 22:00. Assume that the backup script is called "backup" and that it is currently in the _/usr/local/sbin_ directory.
 
-!!! note "Note"
+!!! note
 
     Remember that this script needs to also be executable (`chmod +x`) in order for the `cron` to run it.
 
@@ -156,7 +156,7 @@ Another way to run jobs at a strictly scheduled time (i.e., day, week, month, ye
 * `@yearly` runs the script every year at midnight on the first day of January.
 * `@reboot` runs the script on system startup only.
 
-!!! note "Note"
+!!! note
 
     Using these `crontab` entries bypasses the `anacron` system and reverts to the `crond.service` whether `anacron` is installed or not.
 
