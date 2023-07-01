@@ -11,7 +11,7 @@ tags:
 
 ## Introduction
 
-`vale.sh` is one of the foremost open source projects for technical writers looking to improve their voice and style consistency. It can be used with a number of editors on nearly every major OS platform (Linux, MacOS, Windows). You can find out more about the project by heading up to [the vale.sh website](https://vale.sh/). This guide is going to walk you through adding `vale` to NvChad. Since it is included in the Mason packages for install, the process is not too difficult, although it does involve some minor editing and configuration to get things going. To be clear, NvChad is really the configuration manager for the editor Neovim, so from this point forward, the reference will be `nvim`.
+`vale.sh` is one of the foremost open-source projects for technical writers looking to improve their voice and style consistency. It can be used with a number of editors on nearly every major OS platform (Linux, MacOS, Windows). You can find out more about the project by heading up to [the vale.sh website](https://vale.sh/). This guide is going to walk you through adding `vale` to NvChad. Since it is included in the Mason packages for install, the process is not too difficult, although it does involve some minor editing and configuration to get things going. To be clear, NvChad is really the configuration manager for the editor Neovim, so from this point forward, the reference will be `nvim`.
 
 ## Prerequisites
 
@@ -102,4 +102,4 @@ Your file will look something like this when completed:
 
 ## Conclusions and final thoughts
 
-Starting `nvim` normally will now invoke `vale`, and your documents will now be compared against your preferred style. Opening an existing file will start `vale` and show you any flagged items, while starting a new file will not show you anything in insert mode. When you exit insert mode, your file will then be checked. This keeps the screen from being too cluttered. `vale` is an excellent open source product with great integration into many editors. NvChad is no exception, and while getting it up and running does take a few steps, it is not a difficult procedure.
+Starting `nvim` normally will now invoke `vale`, and your documents will now be compared against your preferred style. Opening an existing file will start `vale` and show you any flagged items, while starting a new file will not show you anything in insert mode. When you exit insert mode, your file will then be checked. This keeps the screen from being too cluttered. `vale` is an excellent open-source product with great integration into many editors. NvChad is no exception, and while getting it up and running does take a few steps, it is not a difficult procedure.
