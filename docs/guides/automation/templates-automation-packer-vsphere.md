@@ -106,7 +106,7 @@ $ unzip packer_1.8.3_linux_amd64.zip
 
 !!! tip "Attention"
 
-    If you get an error and you don’t have the unzip app installed on your system, you can install it by executing this command ```sudo dnf install unzip```
+    If you get an error and you don’t have the unzip app installed on your system, you can install it by executing this command ```sudo dnf install unzip```.
 
 4. Move the Packer app to the bin folder:
 
