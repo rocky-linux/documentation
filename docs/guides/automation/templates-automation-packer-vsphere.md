@@ -656,7 +656,7 @@ dnf -y install cloud-init
 echo "manual_cache_clean: True" > /etc/cloud/cloud.cfg.d/99-manual.cfg
 ```
 
-Since vSphere now uses cloud-init via the VMware Tools to configure the network of a centos8 guest machine, it must be installed. However, if you do nothing, the configuration will be applied on the first reboot and everything will be fine. But on the next reboot, cloud-init will not receive any new information from vSphere. In these cases, without information about what to do, cloud-init will reconfigure the VM's network interface to use DHCP, and you will lose your static configuration.
+Since vSphere now uses cloud-init via the VMware Tools to configure the network of a centos8 guest machine, it must be installed. However, if you do nothing, the configuration will be applied on the first reboot, and everything will be fine. But on the next reboot, cloud-init will not receive any new information from vSphere. In these cases, without information about what to do, cloud-init will reconfigure the VM's network interface to use DHCP, and you will lose your static configuration.
 
 As this is not the behavior we want, we need to specify to cloud-init not to delete its cache automatically, and therefore to reuse the configuration information it received during its first reboot and each reboot after that.
 
