@@ -78,7 +78,7 @@ For those who want to learn more about this topic before starting the installati
 
 The page contains information about the structure of the folder that will be created, the functions of related files, and other useful information for customizing NvChad.
 
-At this point the downloading and configuration of the basic plugins and if we have chosen to install the template as well the installation of the configured language server will begin. Once the process is complete we will have our Editor ready to use.
+At this point the downloading and configuration of the basic plugins and if we have chosen to install the template as well the installation of the configured language server will begin. Once the process is complete, we will have our Editor ready to use.
 
 ![Installation](images/installed_first_time.png) 
 
@@ -178,7 +178,7 @@ This sets four main keys from which, in association with other keys, commands ca
 - A = <kbd>ALT</kbd>
 - S = <kbd>SHIFT</kbd>
 
-!!! note
+!!! note "Note"
 
     We will refer to these key mappings several times throughout these documents. 
 
