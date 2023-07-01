@@ -128,7 +128,7 @@ You can also modify one or more properties of the connection directly from the c
 Shell > nmcli connection modify CONNECTION_NAME autoconnect yes ipv6.method dhcp
 ```
 
-!!! info "Info"
+!!! info
 
     Operations through `nmcli` or `nmtui` are saved permanently, not temporarily.
 
@@ -146,7 +146,7 @@ Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   mas
 
 ## Network card configuration
 
-!!! warning "Warning"
+!!! warning
 
     It is not recommended to make changes to this by means of `vim` or other editors.
 
