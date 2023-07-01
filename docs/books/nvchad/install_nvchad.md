@@ -178,7 +178,7 @@ This sets four main keys from which, in association with other keys, commands ca
 - A = <kbd>ALT</kbd>
 - S = <kbd>SHIFT</kbd>
 
-!!! note "Note"
+!!! note
 
     We will refer to these key mappings several times throughout these documents. 
 
