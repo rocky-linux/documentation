@@ -128,7 +128,7 @@ You can also modify one or more properties of the connection directly from the c
 Shell > nmcli connection modify CONNECTION_NAME autoconnect yes ipv6.method dhcp
 ```
 
-!!! info
+!!! info "Info"
 
     Operations through `nmcli` or `nmtui` are saved permanently, not temporarily.
 
@@ -146,13 +146,13 @@ Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   mas
 
 ## Network card configuration
 
-!!! warning
+!!! warning "Warning"
 
     It is not recommended to make changes to this by means of `vim` or other editors.
 
 You can view more detailed information through `man 5 NetworkManager.conf` and `man 5 nm-settings-nmcli`.
 
-The content of the configuration file of the NetwrokManager network card is an init-style key file. For example:
+The content of the configuration file of the NetworkManager network card is an init-style key file. For example:
 
 ```bash
 Shell > cat /etc/NetworkManager/system-connections/ens160.nmconnection                                                               
