@@ -152,7 +152,7 @@ Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   mas
 
 You can view more detailed information through `man 5 NetworkManager.conf` and `man 5 nm-settings-nmcli`.
 
-The content of the configuration file of the NetwrokManager network card is an init-style key file. For example:
+The content of the configuration file of the NetworkManager network card is an init-style key file. For example:
 
 ```bash
 Shell > cat /etc/NetworkManager/system-connections/ens160.nmconnection                                                               
