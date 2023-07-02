@@ -74,7 +74,7 @@ Postfix determines whether a emails sent from a client belongs to the local or e
 
 ![legend02](./email-images/email-system03.jpg)
 
-## Open source email server
+## Open-source email server
 
 A complete email system consists of components that are decentralized and maintained by different individuals or organizations, and the barriers to use for some people are high. As a result, some open-source email servers emerge as the times require, these email servers combine these components to make an out-of-the-box product, for users, all aspects are relatively simple and easy.
 
