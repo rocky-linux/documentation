@@ -9,7 +9,7 @@ version: 1.0.0
 
 E-mail, as one of the three major services (FTP, Web, and E-mail) at the beginning of the internet, is still used by many people today. Email first appeared in the 1960s, and email based on network transmission first appeared in 1971.
 
-Unlike the email systems of commercial companies, the open source version of the email system consists of many parts and is not a single service, which also leads to more complex email systems in GNU/Linux environments.
+Unlike the email systems of commercial companies, the open-source version of the email system consists of many parts and is not a single service, which also leads to more complex email systems in GNU/Linux environments.
 
 ## The basic concept of E-mail system
 
