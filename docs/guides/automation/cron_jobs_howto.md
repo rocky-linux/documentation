@@ -68,10 +68,10 @@ This translates to the following:
 
 If you want to run scripts on a workstation or notebook in the `cron` "dot" directories, nothing special is needed. Just copy your script file into the directory in question, and make sure it is executable. Here are the directories:
 
-* `/etc/cron.hourly` - Scripts placed here will run one minute past the hour every hour. (this is run by `cron` regardless of whether `anacron` is installed or not)
-* `/etc/cron.daily` - Scripts placed here will run every day. `anacron` adjusts the timing of these. (see tip)
-* `/etc/cron.weekly` - Scripts placed here will run every 7 days, based on the calendar day of the last run time. (see tip)
-* `/etc/cron.monthly` - Scripts placed here will run monthly based on the calendar day of the last run time. (see tip)
+* `/etc/cron.hourly` - Scripts placed here will run one minute past the hour every hour (this is run by `cron` regardless of whether `anacron` is installed or not)
+* `/etc/cron.daily` - Scripts placed here will run every day. `anacron` adjusts the timing of these (see tip)
+* `/etc/cron.weekly` - Scripts placed here will run every 7 days, based on the calendar day of the last run time (see tip)
+* `/etc/cron.monthly` - Scripts placed here will run monthly based on the calendar day of the last run time (see tip)
 
 !!! tip
 
@@ -149,7 +149,7 @@ This says run the script at 10 PM, every day of the month, every month, and ever
 
 Another way to run jobs at a strictly scheduled time (i.e., day, week, month, year, and so on.) is to use the @options, which offer the ability to use more natural timing. The @options consist of:
 
-* `@hourly` runs the script every hour of every day at 0 minutes past the hour. (this is exactly the result of placing your script in `/etc/cron.hourly` too)
+* `@hourly` runs the script every hour of every day at 0 minutes past the hour (this is exactly the result of placing your script in `/etc/cron.hourly` too).
 * `@daily` runs the script every day at midnight.
 * `@weekly` runs the script every week at midnight on Sunday.
 * `@monthly` runs the script every month at midnight on the first day of the month.
@@ -160,7 +160,7 @@ Another way to run jobs at a strictly scheduled time (i.e., day, week, month, ye
 
     Using these `crontab` entries bypasses the `anacron` system and reverts to the `crond.service` whether `anacron` is installed or not.
 
-For our backup script example, if we use the @daily option to run the backup script at midnight, the entry would look like this:
+For our backup script example, if we use the @daily option to run the backup script at midnight, the entry will look like this:
 
 `@daily  /usr/local/sbin/backup`
 
@@ -178,7 +178,7 @@ What about every 10 minutes every day except Saturday and Sunday?:
 
 `*/10  *   *   *    1-5    /usr/local/sbin/backup`
 
-In the table, the commas lets you specify individual entries within a field,  and the dash lets you specify a range of values within a field. This can happen in any of the fields, and on many fields at the same time. As you can see, things can get pretty complicated.
+In the table, the commas let you specify individual entries within a field,  and the dash lets you specify a range of values within a field. This can happen in any of the fields, and on many fields at the same time. As you can see, things can get pretty complicated.
 
 When determining when to run a script, you need to take time and plan it out, particularly if the criteria are complex.
 
