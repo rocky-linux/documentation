@@ -2,7 +2,6 @@
 title: Automatic Template Creation - Packer - Ansible - VMware vSphere
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ryan Johnson, Pedro Garcia
-update: Aug-26-2022
 ---
 
 # Automatic template creation with Packer and deployment with Ansible in a VMware vSphere environment
@@ -38,7 +37,7 @@ You can also choose not to convert the virtual machine into a template, in this 
 
 ### Introduction to Packer
 
-Packer is an open-source virtual machine imaging tool, released under the MPL 2.0 license, and created by Hashicorp. It will help you automate the process of creating virtual machine images with pre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments. 
+Packer is an open-source virtual machine imaging tool, released under the MPL 2.0 license, and created by HashiCorp. It will help you automate the process of creating virtual machine images with pre-configured operating systems and installed software from a single source configuration in both, cloud and on-prem virtualized environments. 
 
 With Packer you can create images to be used on the following platforms:
 
@@ -60,7 +59,7 @@ You can have a look at these resources for additional information:
 
 There are two ways to install Packer on your Rocky Linux system.
 
-#### Installing Packer from the Hashicorp repo
+#### Installing Packer from the HashiCorp repo
 
 HashiCorp maintains and signs packages for different Linux distributions. To install packer in our Rocky Linux system, please follow the next steps:
 
@@ -73,7 +72,7 @@ HashiCorp maintains and signs packages for different Linux distributions. To ins
 $ sudo dnf install -y dnf-plugins-core
 ```
 
-2. Add the Hashicorp repository to the available repos in our Rocky Linux system:
+2. Add the HashiCorp repository to the available repos in our Rocky Linux system:
 
 ```bash
 $ sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
@@ -105,9 +104,9 @@ This will download a .zip file.
 $ unzip packer_1.8.3_linux_amd64.zip
 ```
 
-!!! tip "Attention"
+!!! tip
 
-    If you get an error and you don’t have the unzip app installed on your system, you can install it by executing this command ```sudo dnf install unzip```
+    If you get an error and you don’t have the unzip app installed on your system, you can install it by executing this command ```sudo dnf install unzip```.
 
 4. Move the Packer app to the bin folder:
 
@@ -303,7 +302,7 @@ This builder lets us configure the hardware we need:
   ],
 ```
 
-!!! Note
+!!! "Note"
 
     You will never forget again to include CPU_hot_plug as it is automatic now!
 
@@ -319,7 +318,7 @@ To start the installation, you need an ISO image of Rocky Linux. Here is an exam
 
 Then you have to provide the complete command to be entered during the installation process: configuration of the IP and transmission of the path to the Kickstart response file.
 
-!!! Note
+!!! "Note"
 
     This example takes the most complex case: using a static IP. If you have a DHCP server available, the process will be much easier.
 
@@ -482,7 +481,7 @@ As we have chosen to use the minimal iso, instead of the Boot or DVD, not all re
 
 As Packer relies on VMware Tools to detect the end of the installation, and the `open-vm-tools` package is only available in the AppStream repos, we have to specify to the installation process that we want to use as source both the CD-ROM and this remote repo:
 
-!!! Note
+!!! "Note"
 
     If you do not have access to the external repos, you can use either a mirror of the repo, a squid proxy, or the DVD.
 
@@ -506,7 +505,7 @@ Remember we specified the user to connect via SSH with to Packer at the end of t
 rootpw mysecurepassword
 ```
 
-!!! Warning
+!!! warning
 
     You can use an insecure password here, as long as you make sure that this password will be changed immediately after the deployment of your VM, for example with Ansible.
 
@@ -529,7 +528,7 @@ logvol swap --fstype="swap" --size=4092 --name=lv_swap --vgname=vg_root
 
 The next section concerns the packages that will be installed. A "best practice" is to limit the quantity of installed packages to only those you need, which limits the attack surface, especially in a server environment.
 
-!!! Note
+!!! note
 
     The author likes to limit the actions to be done in the installation process and to defer installing what is needed in the post installation script of Packer. So, in this case, we install only the minimum required packages.
 
@@ -657,17 +656,17 @@ dnf -y install cloud-init
 echo "manual_cache_clean: True" > /etc/cloud/cloud.cfg.d/99-manual.cfg
 ```
 
-Since vSphere now uses cloud-init via the VMware Tools to configure the network of a centos8 guest machine, it must be installed. However, if you do nothing, the configuration will be applied on the first reboot and everything will be fine. But on the next reboot, cloud-init will not receive any new information from vSphere. In these cases, without information about what to do, cloud-init will reconfigure the VM's network interface to use DHCP, and you will lose your static configuration.
+Since vSphere now uses cloud-init via the VMware Tools to configure the network of a centos8 guest machine, it must be installed. However, if you do nothing, the configuration will be applied on the first reboot, and everything will be fine. But on the next reboot, cloud-init will not receive any new information from vSphere. In these cases, without information about what to do, cloud-init will reconfigure the VM's network interface to use DHCP, and you will lose your static configuration.
 
 As this is not the behavior we want, we need to specify to cloud-init not to delete its cache automatically, and therefore to reuse the configuration information it received during its first reboot and each reboot after that.
 
 For this, we create a file `/etc/cloud/cloud.cfg.d/99-manual.cfg` with the `manual_cache_clean: True` directive.
 
-!!! Note
+!!! note
 
     This implies that if you need to re-apply a network configuration via vSphere guest customizations (which, in normal use, should be quite rare), you will have to delete the cloud-init cache yourself.
 
-The rest of the script is commented and does not require more details
+The rest of the script is commented and does not require more details.
 
 You can check the [Bento project](https://github.com/chef/bento/tree/master/packer_templates) to get more ideas of what can be done in this part of the automation process.
 
