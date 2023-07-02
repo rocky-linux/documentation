@@ -53,7 +53,7 @@ MRA: In GNU/Linux, the mainstream and common MDA are **dovecot**
 
 ## Postfix The process of sending and receiving emails
 
-**Sendmail** was born in 1983 and was installed by default in versions prior to Centos6. Due to some historical reasons (such as complex configuration files), the development of sendmail has been hindered. Although sendmail is complex, if you have strong technical skills or extensive experience, a well tuned sendmail is excellent in terms of efficiency and performance.
+**Sendmail** was born in 1983 and was installed by default in versions prior to CentOS6. Due to some historical reasons (such as complex configuration files), the development of sendmail has been hindered. Although sendmail is complex, if you have strong technical skills or extensive experience, a well-tuned sendmail is excellent in terms of efficiency and performance.
 
 **Postfix** was created in 1990 by Wietse Venema, a Dutch researcher at IBM, to improve the sendmail mail server.
 
