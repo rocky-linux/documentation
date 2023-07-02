@@ -17,7 +17,7 @@ The Linux kernel stores running kernel information in two places via special fil
   - The older [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html) which mounts `/proc` (verify via `mount -l -t proc`)
   - The newer [sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) which mounts `/sys`    (verify via `mount -l -t sysfs`)
 
-!!! warning "Warning"
+!!! warning
 
     Be cautious if examining the files mentioned here, altering them can change the behavior of the actual running kernel!
 
