@@ -61,7 +61,7 @@ RipGrep is needed for recursive searches with `:Telescope`.
 
 ## Lazygit
 
-[LazyGit](https://github.com/jesseduffield/lazygit) is a ncurses-style interface that allows you to perform all `git` operations in a more user-friendly way. It is required by the _lazygit.nvim_ plugin. This plugin makes it possible to use LazyGit directly from NvChad, it opens a floating window from where you can perform all operations on your repositories, thus allowing you to make all changes to the _git repository_ without leaving the editor.
+[LazyGit](https://github.com/jesseduffield/lazygit) is an ncurses-style interface that allows you to perform all `git` operations in a more user-friendly way. It is required by the _lazygit.nvim_ plugin. This plugin makes it possible to use LazyGit directly from NvChad, it opens a floating window from where you can perform all operations on your repositories, thus allowing you to make all changes to the _git repository_ without leaving the editor.
 
 To install it we can use the repository for Fedora. On Rocky Linux 9 it works perfectly.
 
