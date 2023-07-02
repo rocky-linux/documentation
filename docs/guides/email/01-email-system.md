@@ -61,7 +61,7 @@ MRA: In GNU/Linux, the mainstream and common MDA are **dovecot**
 
 For more information about postfix, please refer to these two links:
 
-* [Github repository](https://github.com/vdukhovni/postfix)
+* [GitHub repository](https://github.com/vdukhovni/postfix)
 * [Official website](http://www.postfix.org/)
 
 ### The process of sending emails by the client
