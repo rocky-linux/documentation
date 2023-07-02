@@ -39,7 +39,7 @@ As with Vim, Neovim requires a basic knowledge of its commands and options. You 
 
 ### Installation from EPEL
 
-Before moving on to the installation of NvChad, we need to make sure that we have an installation of Neovim available. If it is not already installed, you can install it from the EPEL repository. The EPEL repository provides the minimum version required by NvChad (currently 0.7.2). In case you want to use a newer version, we recommend installation from precompiled package or from source
+Before moving on to the installation of NvChad, we need to make sure that we have an installation of Neovim available. If it is not already installed, you can install it from the EPEL repository. The EPEL repository provides the minimum version required by NvChad (currently 0.7.2). In case you want to use a newer version, we recommend installation from precompiled package or from source.
 
 To install the Neovim release provided by EPEL, you'll need to install the repository itself if you have not done so already.
 
@@ -105,9 +105,9 @@ We first install the packages required for compilation:
 dnf install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl git
 ```
 
-Once we have installed the necessary packages we need to create a folder to build neovim from and change into it:
+Once we have installed the necessary packages, we need to create a folder to build neovim from and change into it:
 
-The Neovim clone, by default, is synchronized with the Neovim development branch (at the time of this writing, version 8.0). To compile the stable version we will have to switch to the corresponding branch before cloning with:
+The Neovim clone, by default, is synchronized with the Neovim development branch (at the time of this writing, version 8.0). To compile the stable version, we will have to switch to the corresponding branch before cloning with:
 
 ```bash
 mkdir ~/lab/build
