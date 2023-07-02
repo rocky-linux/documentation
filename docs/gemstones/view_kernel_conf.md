@@ -44,7 +44,7 @@ See what your currently running "kernel release" version is with:
 
 `uname -r` and substitute its return value in commands by using `$(uname -r)`
 
-RHEL and derivative distributions (Fedora, CentOS Stream, Scientific Linux, RockyLinux, Almalinux, et. al.)
+RHEL and derivative distributions (Fedora, CentOS Stream, Scientific Linux, RockyLinux, AlmaLinux, et. al.)
 also store the config used for bootable installed kernels in the `/boot` directory used by Grub2 as ASCII files:
 
 ```bash
@@ -103,7 +103,7 @@ This file is more commonly accessed by a symlinked path provided by the `kernel-
 /lib/modules/<kernel-release>/build/ -> /usr/src/kernels/<kernel-release>/
 ```
 
-If you have `kernel-debug-devel` packages installed you will also have this directory:
+If you have `kernel-debug-devel` packages installed, you will also have this directory:
 
 ```bash
  /usr/src/kernels/<kernel-release>+debug/
@@ -118,7 +118,7 @@ You can look in any of the following for details on the config values used to bu
 /usr/src/kernels/<kernel-release>+debug/.config
 ```
 
-Configured modules for the currently running kernel, whether compiled as builtin (i.e. statically into the kernel itself) or a loadable module, are listed by sub directories named as the module name in:
+Configured modules for the currently running kernel, whether compiled as builtin (i.e., statically into the kernel itself) or a loadable module, are listed by sub directories named as the module name in:
 
 ```bash
 /sys/module/
