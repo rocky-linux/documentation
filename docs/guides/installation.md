@@ -2,7 +2,6 @@
 Title: Installing Rocky Linux 9
 author: Wale Soyinka
 contributors: Steven Spencer
-updated: 06-13-2023
 ---
 
 # Installing Rocky Linux 9
@@ -66,7 +65,7 @@ If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, y
 
     Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
 
-If the computer is setup to boot from the media that has the ISO file we can begin the installation process.
+If the computer is setup to boot from the media that has the ISO file, we can begin the installation process.
 
 1. Insert and boot from the installation medium (optical disk, USB flash drive, and so on).
 
@@ -108,7 +107,7 @@ This section is used for customizing items related to the geographic locality of
 
 On our demo system in this guide, we accept the default value (*English US*) and make no changes.
 
-However if you need to make any changes here, from the *Installation Summary* screen, click the <kbd>Keyboard</kbd> option to specify the keyboard layout of the system. Using the <kbd>+</kbd> button, you can add additional keyboard layouts if you need to in the ensuing screen and even specify your preferred order.
+However, if you need to make any changes here, from the *Installation Summary* screen, click the <kbd>Keyboard</kbd> option to specify the keyboard layout of the system. Using the <kbd>+</kbd> button, you can add additional keyboard layouts if you need to in the ensuing screen and even specify your preferred order.
 
 Click <kbd>Done</kbd> when you are finished with this screen.
 
@@ -136,14 +135,14 @@ Because the installation uses a Rocky Linux 9 ISO image, you will notice that *L
 
 !!! Tip
 
-    The installation Source area is where you can opt to perform a network based installation (for example if you are using the Rocky Linux boot ISO - Rocky-9.2-x86_64-boot.iso). For a network based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet.  To perform a network based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`.   Click `Done`.
+    The installation Source area is where you can opt to perform a network-based installation (for example if you are using the Rocky Linux boot ISO - Rocky-9.2-x86_64-boot.iso). For a network-based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet. To perform a network-based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. Click `Done`.
 
 #### Software Selection
 
-Clicking the <kbd>Software Selection</kbd> option on the main *Installation Summary* screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into :
+Clicking the <kbd>Software Selection</kbd> option on the main *Installation Summary* screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into:
 
-- **Base Environment** : Minimal Install and Custom operating system
-- **Additional software for Selected Environment** : Selecting a Base Environment on the left side presents a variety of related additional software to install for the given environment on the right side. Note that this is only applicable if you were installing from a full Rocky Linux 9.2 DVD or if you have additional repositories configured.
+- **Base Environment**: Minimal Install and Custom operating system
+- **Additional software for Selected Environment**: Selecting a Base Environment on the left side presents a variety of related additional software to install for the given environment on the right side. Note that this is only applicable if you were installing from a full Rocky Linux 9.2 DVD or if you have additional repositories configured.
 
 Select the *Minimal Install* (Basic functionality) option.
 
