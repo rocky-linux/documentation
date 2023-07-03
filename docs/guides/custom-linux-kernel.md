@@ -24,7 +24,7 @@ In this guide, we’ll walk through the process of acquiring a kernel source tre
 ## The Kernel
 
 Most often, when people say _Linux_, they are usually referring to a "_Linux distribution_" —for example, Rocky Linux and Debian are types of Linux distribution. A distribution comprises everything necessary to get Linux to exist as a functional operating system.
-Distributions make use of code from various open source projects that are independent of Linux.
+Distributions make use of code from various open-source projects that are independent of Linux.
 
 Linux is The kernel. The kernel literally sits right at the heart of the [operating system] matter.
 
@@ -40,7 +40,7 @@ If you need to download a different (possibly newer) version than the one your s
 
 [www.kernel.org](https://www.kernel.org)
 
-This site maintains a listing of web sites mirroring the kernel source, as well as tons of other open source software, distributions and general-purpose utilities.
+This site maintains a listing of web sites mirroring the kernel source, as well as tons of other open-source software, distributions and general-purpose utilities.
 
 The list of mirrors is maintained at:
 
@@ -49,7 +49,7 @@ The list of mirrors is maintained at:
 
 !!! TIP
 
-    The majority of the downloading, configuring and compiling of the Linux kernel done in the following sections can/should be done as an unprivileged user.However, the final steps that require actual installation or altering of system files and binaries need to be done with elevated privileges.
+    The majority of the downloading, configuring and compiling of the Linux kernel done in the following sections can/should be done as an unprivileged user. However, the final steps that require actual installation or altering of system files and binaries need to be done with elevated privileges.
 
     We are able to do most of the work as an unprivileged user because we will be using a special kernel build option, which allows us to specify a custom working or output directory. Specifically, we’ll use the `O=~/build/kernel` option for all applicable invocations of make.
 
@@ -59,7 +59,7 @@ The list of mirrors is maintained at:
 
 The web site listing of kernels available will contain folders for v1.0, v2.5, v2.6, v3.0, v3.x, v4.x, v5.x, v6.x and so forth. Before you follow your natural inclination to get the latest version, make sure you understand how the Linux kernel versioning system works.
 
-The current convention is to name and number major new kernel releases as “Linux 5.x” (also called the vanilla or mainline kernels). Thus the first of this series will be Linux version 5.0 (same as 5.0.0), the next will be Linux version 5.1 (same as 5.1.0), followed by Linux version 5.2, and so on.
+The current convention is to name and number major new kernel releases as “Linux 5.x” (also called the vanilla or mainline kernels). Thus, the first of this series will be Linux version 5.0 (same as 5.0.0), the next will be Linux version 5.1 (same as 5.1.0), followed by Linux version 5.2, and so on.
 
 Any minor changes or updates within each major release version will be reflected by increments to the third digit. These are commonly referred to as stable point releases. Thus, the next stable point release for the 5.0.0 series kernel will be Linux version 5.0.1, followed by version 5.0.2, and so forth. Another way of stating this is to say, for example, that Linux version 5.0.4 is the fourth stable release based on the Linux 5.0.0 series.
 
@@ -127,7 +127,7 @@ Let’s begin the process.
 
 In this section, we’re going to review the process of configuring and building a kernel. This is in contrast to macOS or Windows-based operating systems, which come preconfigured and therefore contain support for many features you may or may not want.
 
-The Linux design philosophy allows the individual to decide on the important parts of the kernel.This individualized design has the important benefit of letting you thin down the feature list so that Linux can run as efficiently as possible.
+The Linux design philosophy allows the individual to decide on the important parts of the kernel. This individualized design has the important benefit of letting you thin down the feature list so that Linux can run as efficiently as possible.
 
 This is also one of the reasons why it is possible to customize Linux to run in various hardware setups, from low-end systems, to embedded systems, to high-end systems.
 
@@ -246,13 +246,13 @@ The following steps cover how to configure the kernel. We will be using a text-b
 
     And the asterisk symbol in angle parentheses, <*>, indicates that support for the feature will be directly built into the kernel. You can usually toggle through all the possible options using the spacebar on your keyboard.
 
-5. Navigate back to the parent File Systems screen by pressing the esc key twice on your keyboard in the DOS/FAT/NT Filesystems screen.Return to the main kernel configuration screen by pressing esc twice again on your keyboard.
+5. Navigate back to the parent File Systems screen by pressing the esc key twice on your keyboard in the DOS/FAT/NT Filesystems screen. Return to the main kernel configuration screen by pressing esc twice again on your keyboard.
 
 6. Finally, save your changes to the .config file in the root of your kernel source tree and exit the kernel configuration application after saving the file by pressing esc twice again on your keyboard.
 
 7. A dialog box will appear prompting you to save your new configuration. Make sure that Yes is selected and then press enter.
 
-8. After the kernel configuration utility exits, you will be thrown back to your shell—inside the kernel source tree.You are almost ready to build your kernel!
+8. After the kernel configuration utility exits, you will be thrown back to your shell—inside the kernel source tree. You are almost ready to build your kernel!
 
 9. We need to complete a few more customizations on our Rocky distro. Type:
 
@@ -262,7 +262,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
 
     !!! TIP
 
-        To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example to view the effect of the NTFS file system support that we enabled previously, type the following:
+        To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example, to view the effect of the NTFS file system support that we enabled previously, type the following:
         ```
         > grep NTFS ~/build/kernel/.config
         CONFIG_NTFS_FS=m
@@ -279,7 +279,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
 
 ### Compiling the Kernel
 
-In the preceding section, we walked through the process of creating a configuration file for the custom kernel that we want to build. In this section, we will perform the actual build of the kernel. But before doing this, we will add one more simple customization to the entire process.
+In the preceding section, we walked through the process of creating a configuration file for the custom kernel that we want to build. In this section, we will perform the actual build of the kernel. But before doing this, we will add one simpler customization to the entire process.
 
 The final customization will be to add an extra piece of information used in the final name of our kernel. This will help us be able to differentiate this kernel from any other kernel with the same version number. We will add the tag “custom” to the kernel version information. This can be done by editing the main Makefile and appending the tag that we want to the EXTRAVERSION variable.
 
@@ -287,7 +287,7 @@ The compilation stage of the kernel-building process is by far the easiest, but 
 
 Because of the amount of code that needs to be compiled, be prepared to wait a few minutes, at the very least, depending on the processing power of your system. Let’s dig into the specific steps required to compile your new kernel.
 
-1. First we’ll add an extra piece to the identification string for the kernel we are about to build. While still in the root of the kernel source tree, we’ll use the sed utility edit the Makefile in place. The variable we want to change is close to the top of the file.
+1. First, we’ll add an extra piece to the identification string for the kernel we are about to build. While still in the root of the kernel source tree, we’ll use the sed utility edit the Makefile in place. The variable we want to change is close to the top of the file.
 We want to change the line in the file that looks like this:
 
     ```
@@ -306,7 +306,7 @@ We want to change the line in the file that looks like this:
     sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
     ```
 
-    Of course you can also use any text editor that you are comfortable with to make the change. Just remember to save your changes to the file!
+    Of course, you can also use any text editor that you are comfortable with to make the change. Just remember to save your changes to the file!
 
 2. Pass the kernelversion target to the make command to view the full version of the kernel that you just customized:
 
@@ -361,7 +361,7 @@ We want to change the line in the file that looks like this:
 
     !!! TIP
 
-        The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result you could easily end up with a `/lib/modules/5.16.9-custom/` directory that is close to  5GB in size!
+        The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result, you could easily end up with a `/lib/modules/5.16.9-custom/` directory that is close to  5GB in size!
 
         For this guide we avoid this large size by including the INSTALL_MOD_STRIP=1 option in our make modules_install invocation. You can reduce the total size by orders of magnitude (For example - less than 200 MB!!) by stripping away these debugging symbols.  
 
@@ -432,7 +432,7 @@ To do this manually on systems where kernel-install is not available, use the mk
 
 For systems running the newer versions of GRUB2, the file will be `/boot/grub2/grub.cfg`. For EFI based systems /boot/efi/<distro>/fedora/grub.cfg is also updated.
 
-And for systems running the legacy versions of GRUB, this will be the /boot/grub/grub.conf or /boot/grub/menu.lst file. And for very new distros that have implemented the new Boot Loader Specification (BLS) a new boot loader entry will be added to the /boot/loader/entries/  directory or any directory pointed to by the variable named "blsdir".
+And for systems running the legacy versions of GRUB, this will be the /boot/grub/grub.conf or /boot/grub/menu.lst file. And for very new distros that have implemented the new Boot Loader Specification (BLS) a new boot loader entry will be added to the /boot/loader/entries/ directory, or any directory pointed to by the variable named "blsdir".
 
 On our demo EFI based Rocky server running GRUB 2 using BLS, a new boot entry is created in the boot loader file located here: `/boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-5.16.9-custom.conf`
 
@@ -451,7 +451,7 @@ grub_class kernel
 
 !!! Note
 
-    Most distros, have several grub2-* utilities readily available that can be used for performing various GRUB2 and boot loader house keeping tasks. For example you can use the grub2-set-default command to change or set the default kernel to be booted at system startup.
+    Most distros, have several grub2-* utilities readily available that can be used for performing various GRUB2 and boot loader housekeeping tasks. For example, you can use the grub2-set-default command to change or set the default kernel to be booted at system startup.
 
 ## Booting the custom Kernel
 The next stage is to test the new kernel to make sure that the system can indeed boot with it.
