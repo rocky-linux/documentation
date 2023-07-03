@@ -30,7 +30,7 @@ The difference between IMAP and POP3 is as follows:
 
 | Operating position | Operation content | IMAP | POP3 |
 | :---: | :---: | :---: | :---: | 
-| Inbox             | Reading, tagging, moving, deleting emails, etc | Client synchronizes with mailbox updates | Within the client only | 
+| Inbox             | Reading, tagging, moving, deleting emails, etc. | Client synchronizes with mailbox updates | Within the client only | 
 | Outbox            | Save to Sent Mail | Client synchronizes with mailbox updates | Within the client only |
 | create folder     | Create a new custom folder | Client synchronizes with mailbox updates | Within the client only |
 | draft             | Save Draft Email | Client synchronizes with mailbox updates | Within the client only |
