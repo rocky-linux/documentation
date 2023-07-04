@@ -2,7 +2,7 @@
 title: Patching con dnf-automatic
 author: Antoine Le Morvan
 contributors: Steven Spencer, Franco Colussi
-tested with: 8.5
+tested_with: 8.5
 tags:
   - security
   - dnf
@@ -16,7 +16,7 @@ La gestione dell'installazione degli aggiornamenti di sicurezza è una questione
 
 La sicurezza del vostro sistema informatico sarà rafforzata. `dnf-automatic` è uno strumento aggiuntivo che consente di raggiungere questo obiettivo.
 
-!!! hint "Se sei preoccupato..."
+!!! tip "Se siete preoccupati..."
 
     Anni fa, applicare automaticamente gli aggiornamenti in questo modo sarebbe stata una ricetta per il disastro. In molti casi l'applicazione di un aggiornamento potrebbe causare problemi. Questo accade ancora raramente, quando l'aggiornamento di un pacchetto rimuove una funzionalità deprecata che viene utilizzata sul server, ma per la maggior parte, questo non è un problema al giorno d'oggi. Detto questo, se non vi sentite ancora a vostro agio nel lasciare che sia `dnf-automatic` a gestire gli aggiornamenti, prendete in considerazione la possibilità di usarlo per scaricare e/o notificare la disponibilità di aggiornamenti. In questo modo il vostro server non rimarrà a lungo senza patch. Queste caratteristiche sono `dnf-automatic-notifyonly` e `dnf-automatic-download`.
     
