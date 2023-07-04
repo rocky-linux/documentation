@@ -36,7 +36,7 @@ Les sections principales du site de documentation sont :
 1. Traduction de l'interface du site web : si vous choisissez une autre langue, par exemple le Français, vous noterez que l'interface, par exemple les boutons de navigation 'Suivant' et 'Précédent' seront traduits.
 1. Contenu : La traduction du contenu est évidemment une tâche (importante) en cours. Tout le contenu n'est pas encore traduit dans toutes les langues. Toutes les pages qui ont été traduites (dans la langue sélectionnée) seront vues dans la langue choisie, celles qui ne le sont pas encore se retrouveront dans la langue anglaise par défaut. Si vous voulez contribuer à la communauté par le biais des traductions, l'équipe de documentation sera ravie de vous connaître, voir ci-dessous pour plus de détails.
 
-!!! note
+!!! note "Remarque"
 
     Toutes les fonctionnalités peuvent ne pas être disponibles dans toutes les langues, c'est une limitation des modules MkDocs sous-jacents.
 

@@ -1,5 +1,5 @@
 ---
-title: NvChad UI
+title: Інтерфейс користувача NvChad
 author: Franco Colussi
 contributors: Steven Spencer
 tested: 8.6, 9.0

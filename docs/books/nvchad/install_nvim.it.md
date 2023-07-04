@@ -39,7 +39,7 @@ Come per Vim, Neovim richiede una conoscenza di base dei suoi comandi e delle su
 
 ### Installazione da EPEL
 
-Prima di passare all'installazione di NvChad, dobbiamo assicurarci di avere a disposizione un'installazione di Neovim. Se non è già installato, è possibile installarlo dal repository EPEL. Il repository EPEL fornisce la versione minima richiesta da NvChad (attualmente 0.7.2). Nel caso in cui si voglia utilizzare una versione più recente, si consiglia l'installazione dal pacchetto precompilato o dal sorgente
+Prima di passare all'installazione di NvChad, dobbiamo assicurarci di avere a disposizione un'installazione di Neovim. Se non è già installato, è possibile installarlo dal repository EPEL. Il repository EPEL fornisce la versione minima richiesta da NvChad (attualmente 0.7.2). Nel caso in cui si voglia utilizzare una versione più recente, si consiglia l'installazione dal pacchetto precompilato o dal sorgente.
 
 Per installare la versione di Neovim fornita da EPEL, è necessario installare il repository stesso, se non lo si è già fatto.
 
