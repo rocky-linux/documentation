@@ -2,7 +2,7 @@
 title: Generazione di Chiavi SSL
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5
+tested_with: 8.5
 tags:
   - security
   - ssl
@@ -37,13 +37,13 @@ Per cominciare, assicuriamoci che OpenSSL sia installato sia sulla tua workstati
 
 Se non è installato, il sistema lo installerà assieme a tutte le dipendenze necessarie.
 
-Il nostro dominio di esempio è ourownwiki.com. Tieni presente che dovresti acquistare e registrare il tuo dominio in anticipo. È possibile acquistare domini attraverso un certo numero di "Registrars".
+Il nostro dominio di esempio è example.com. Tieni presente che dovresti acquistare e registrare il tuo dominio in anticipo. È possibile acquistare domini attraverso un certo numero di "Registrars".
 
 Se non si esegue il proprio DNS (Domain Name System), è spesso possibile utilizzare gli stessi provider per l'hosting DNS. DNS traduce il tuo nome a dominio in numeri (indirizzi IP, IPv4 o IPv6) che Internet può comprendere. Questi indirizzi IP saranno dove il sito web è effettivamente ospitato.
 
 Generiamo la chiave usando openssl:
 
-`openssl genrsa -des3 out ourownwiki.com.key.pass 2048`
+`openssl genrsa -des3 -out example.com.key.pass 2048`
 
 Nota che abbiamo chiamato la chiave, con estensione .pass. La ragione di questo è che se non la rimuovi, ogni volta che il server web si riavvia e carica la chiave, è necessario inserire quella passphrase. Inserisci una frase segreta semplice che puoi ricordare poichè andremo a rimuoverla a breve:
 
@@ -56,13 +56,13 @@ Quindi, rimuoviamo quella frase segreta. La ragione di questo è che se non la r
 
 Potreste anche non essere in giro per inserirla, o peggio, potreste non avere una console a portata di mano per inserirla. Rimuoverla ora per evitare tutto questo:
 
-`openssl rsa -in ourownwiki.com.key.pass -out ourownwiki.com.key`
+`openssl rsa -in example.com.key.pass -out example.com.key`
 
 Questo richiederà quella frase segreta ancora una volta per rimuovere la passphrase dalla chiave:
 
-`Enter pass phrase for ourownwiki.com.key.pass:`
+`Enter pass phrase for example.com.key.pass:`
 
-Ora che hai inserito la frase segreta una terza volta, è stata rimossa dal file della chiave e salvato come ourownwiki.com.key
+Ora che la passphrase è stata inserita una terza volta, è stata rimossa dal file della chiave e salvata come example.com.key
 
 ## Generare il CSR
 
@@ -70,9 +70,9 @@ Successivamente, abbiamo bisogno di generare il CSR (certificate signing request
 
 Durante la generazione della CSR, vi saranno richieste diverse informazioni. Si tratta degli attributi X.509 del certificato.
 
-Una delle richieste sarà il "Nome Comune (ad esempio, il TUO nome)". È importante che questo campo sia riempito con il nome di dominio completamente qualificato del server che deve essere protetto da SSL. Se il sito web da proteggere sarà https://www.ourownwiki.com, inserisci www.ourownwiki.com a questo prompt:
+Una delle richieste sarà il "Nome Comune (ad esempio, il TUO nome)". È importante che questo campo sia riempito con il nome di dominio completamente qualificato del server che deve essere protetto da SSL. Se il sito web da proteggere è https://www.example.com, immettere www.example.com in questo prompt:
 
-`openssl req -new -key ourownwiki.com.key out ourownwiki.com.csr`
+`openssl req -new -key example.com.key -out example.com.csr`
 
 Questo apre un dialogo:
 
@@ -86,7 +86,7 @@ Questo apre un dialogo:
 
 `Organizational Unit Name (eg, section) []:` Questo descrive la divisione dell'organizzazione in cui rientra il tuo dominio. Anche in questo caso, puoi semplicemente premere 'Invio' per saltare.
 
-`Common Name (eg, your name or your server's hostname) []:` Qui, dobbiamo inserire il nostro nome host, esempio "www.ourownwiki.com"
+`Common Name (ad esempio, il vostro nome o l'hostname del vostro server) []:` Qui, dobbiamo inserire l'hostname del nostro sito, ad esempio "www.example.com"
 
 om" `Email Addressl []:` Questo campo è opzionale, puoi decidere di compilarlo o semplicemente premere 'Invio' per saltare.
 
@@ -105,7 +105,7 @@ Ora dovresti aver generato il tuo CSR.
 
 Ogni fornitore di certificati avrà fondamentalmente la stessa procedura. Si acquista il SSL e il termine (1 o 2 anni, ecc.) e poi si invia il proprio CSR. Per fare questo, è necessario utilizzare il comando `more` e quindi copiare il contenuto del file CSR.
 
-`more ourownwiki.com.csr`
+`more example.com.csr`
 
 Che vi mostrerà qualcosa del genere:
 
