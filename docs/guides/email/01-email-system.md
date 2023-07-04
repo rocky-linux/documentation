@@ -1,7 +1,6 @@
 ---
 title: Overview of email system
 author: tianci li
-update: 2023-06-19
 version: 1.0.0
 ---
 
@@ -47,7 +46,8 @@ MTA: In GNU/Linux, the mainstream and common MTA are **postfix**,**qmail**, **se
 MDA: In GNU/Linux, the mainstream and common MDA are **procmail** and **maildrop**
 MRA: In GNU/Linux, the mainstream and common MDA are **dovecot**
 
-!!! question
+!!! question "Question"
+
     Why is DNS required to participate in the work of the email system?
     In daily use, the standard format for an email user is "username@domain name". A domain name cannot represent a specific host, you need to point the domain name to a specific host name, so we need a DNS MX resolution record.
 
