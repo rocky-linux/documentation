@@ -2,7 +2,6 @@
 Title: Installazione di Rocky Linux 9
 author: Wale Soyinka
 contributors: Steven Spencer, Franco Colussi
-updated: 06-13-2023
 ---
 
 # Installazione di Rocky Linux 9
@@ -108,7 +107,7 @@ Questa sezione è utilizzata per personalizzare le voci relative alla località 
 
 Nel nostro sistema demo di questa guida, accettiamo il valore predefinito*(English US*) e non apportiamo alcuna modifica.
 
-Tuttavia, se è necessario apportare delle modifiche, dalla schermata *Installation Summary*, facendo clic sull'opzione <kbd>Tastiera</kbd> si specifica il layout della tastiera del sistema. Con il pulsante <kbd>+</kbd> è possibile aggiungere altri layout di tastiera, se necessario, nella schermata successiva, specificando anche l'ordine preferito.
+Tuttavia, se è necessario apportare delle modifiche, dalla schermata *Installation Summary*, facendo clic sull'opzione <kbd>Keyboard</kbd> si specifica il layout della tastiera del sistema. Con il pulsante <kbd>+</kbd> è possibile aggiungere altri layout di tastiera, se necessario, nella schermata successiva, specificando anche l'ordine preferito.
 
 Al termine di questa schermata, fare clic su <kbd>Done</kbd>.
 
@@ -136,7 +135,7 @@ Poiché l'installazione utilizza un'immagine ISO di Rocky Linux 9, si noterà ch
 
 !!! Tip "Suggerimento"
 
-    Nell'area Sorgente dell'installazione è possibile scegliere di eseguire un'installazione basata sulla rete (ad esempio se si utilizza la ISO di avvio di Rocky Linux - Rocky-9.2-x86_64-boot.iso). Per un'installazione basata sulla rete, è necessario innanzitutto assicurarsi che una scheda di rete sul sistema di destinazione sia configurata correttamente e sia in grado di raggiungere Internet.  Per eseguire un'installazione in rete, fare clic su `Installation Source` e selezionare il pulsante di opzione `On the network`. Una volta selezionato, scegliete `https' come protocollo e digitate il seguente URL nel campo di testo `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`.   Fare clic su "Done".
+    Nell'area installation Source è possibile scegliere di eseguire un'installazione basata sulla rete (ad esempio se si utilizza la ISO di avvio di Rocky Linux - Rocky-9.2-x86_64-boot.iso). Per un'installazione basata sulla rete, è necessario innanzitutto assicurarsi che una scheda di rete sul sistema di destinazione sia configurata correttamente e sia in grado di raggiungere Internet. Per eseguire un'installazione dalla rete, fare clic su `Installation Source` e selezionare il pulsante di opzione `On the network`. Una volta selezionato, scegliete `https' come protocollo e digitate il seguente URL nel campo di testo `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. Fare clic su "Done".
 
 #### Selezione del software
 
