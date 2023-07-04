@@ -12,7 +12,7 @@ tags:
 
 ## Pre-requisites
 
-As specified on the NvChad site you need to make sure you meet the following requirements:
+As specified on the NvChad site you need to ensure the system meets the following requirements:
 
 - [Neovim 0.8.3](https://github.com/neovim/neovim/releases/tag/v0.8.3).
 - [Nerd Font](https://www.nerdfonts.com/) Set it in your terminal emulator.
