@@ -19,7 +19,7 @@ The latest ISO image for the version of Rocky Linux that we will be using for th
 https://www.rockylinux.org/download/
 ```
 
-To download the ISO directly from the command line use the `wget` command:
+To download the ISO directly from the command line, use the `wget` command:
 
 ```
 wget https://download.rockylinux.org/pub/rocky/8.7/isos/x86_64/Rocky-8.7-x86_64-minimal.iso
@@ -65,7 +65,7 @@ Rocky-8.7-x86_64-minimal.iso: OK
 
     Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
 
-If the computer is setup to boot from the media that has the ISO file we can begin the installation process.
+If the computer is setup to boot from the media that has the ISO file, we can begin the installation process.
 
 Insert and boot from the installation medium (optical disk, USB flash drive, and so on).
 
@@ -105,7 +105,7 @@ This section is used for customizing items related to the locale of the system. 
 
 On our demo system in this guide, we accept the default value (*English US*) and make no changes.
 
-However if you need to make any changes here, from the *Installation Summary* screen, click the <kbd>Keyboard</kbd> option to specify the keyboard layout of the system. You can add additional keyboard layouts if you need to in the ensuing screen and specify their order.
+However, if you need to make any changes here, from the *Installation Summary* screen, click the <kbd>Keyboard</kbd> option to specify the keyboard layout of the system. You can add additional keyboard layouts if you need to in the ensuing screen and specify their order.
 
 Click <kbd>Done</kbd> when you are finished with this screen.
 
@@ -131,14 +131,14 @@ Since we are performing our installation using a full Rocky 8 image, you will no
 
 !!! Tip
 
-    The installation Source area is where you can opt to perform a network based installation. For a network based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet.  To perform a network based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`.   Click `Done`.
+    The installation Source area is where you can opt to perform a network-based installation. For a network-based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet. To perform a network-based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`. Click `Done`.
 
 #### Software Selection
 
-Clicking the <kbd>Software Selection</kbd> option on the main *Installation Summary* screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into :
+Clicking the <kbd>Software Selection</kbd> option on the main *Installation Summary* screen presents you with the section of the installation where you can pick the exact software packages that get installed on the system. The software selection area is divided into:
 
-- *Base Environment* : Server, Minimal Install, Custom Operating System
-- *Additional software for Selected Environment area* : Selecting a Base Environment on the left side presents a variety of related additional software that can be installed for the given environment on the right side.
+- *Base Environment*: Server, Minimal Install, Custom Operating System
+- *Additional software for Selected Environment area*: Selecting a Base Environment on the left side presents a variety of related additional software that can be installed for the given environment on the right side.
 
 Select the *Minimal Install* (Basic functionality) option instead.
 
