@@ -105,7 +105,7 @@ Questa sezione è utilizzata per personalizzare gli elementi relativi alla local
 
 Sul nostro sistema demo in questa guida, modifichiamo il valore predefinito e selezioniamo (_Italiano (Italiana)_) e salviamo le modifiche.
 
-Tuttavia, se è necessario apportare modifiche qui, dalla schermata _Riepilogo Installazione_, clicca sull'opzione <kbd>Tastiera</kbd> per specificare il layout della tastiera del sistema. È possibile aggiungere ulteriori layout della tastiera se è necessario nella successiva schermata e specificare il loro ordine.
+Tuttavia, se è necessario apportare modifiche qui, dalla schermata _Installation Summary_, clicca sull'opzione <kbd>Keyboard</kbd> per specificare il layout della tastiera del sistema. È possibile aggiungere ulteriori layout della tastiera se è necessario nella successiva schermata e specificare il loro ordine.
 
 Clicca <kbd>Fatto</kbd> quando hai finito con questa schermata.
 
@@ -131,14 +131,14 @@ Dal momento che stiamo eseguendo la nostra installazione utilizzando un'immagine
 
 !!! Tip "Suggerimento"
 
-    L'area Installation Source è dove è possibile scegliere di eseguire un'installazione basata sulla rete. Per un'installazione basata sulla rete, è necessario prima assicurarsi che una scheda di rete sul sistema di destinazione sia configurata correttamente, ed sia in grado di raggiungere internet.  Per eseguire un'installazione basata sulla rete, clicca su `Installation Source` e quindi seleziona il pulsante radio `On the network`. Una volta selezionato, scegli il protocollo `https` e digita il seguente URL nel campo di testo `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`.   Clicca su `Fatto`.
+    L'area Installation Source è dove è possibile scegliere di eseguire un'installazione basata sulla rete. Per un'installazione basata sulla rete, è necessario prima assicurarsi che una scheda di rete sul sistema di destinazione sia configurata correttamente, ed sia in grado di raggiungere internet. Per eseguire un'installazione basata sulla rete, clicca su `Installation Source` e quindi seleziona il pulsante radio `On the network`. Una volta selezionato, scegli il protocollo `https` e digita il seguente URL nel campo di testo `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`. Clicca su `Fatto`.
 
 #### Selezione Software
 
 Facendo clic sull'opzione <kbd>Selezione Software</kbd> nella schermata principale _Riepilogo Installazione_ ti viene presentata la sezione dell'installazione dove puoi scegliere i pacchetti software esatti che vengono installati sul sistema. L'area di selezione del software è suddivisa in:
 
-- _Ambiente di base_ : Server, Installazione minima, Sistema operativo personalizzato
-- _Software aggiuntivo per l'area Ambiente Selezionata_ : Selezionando un Ambiente Base sul lato sinistro si presenta una varietà di software aggiuntivi correlati che possono essere installati per l'ambiente specificato sul lato destro.
+- _Base Environment_: Server, Installazione minima, Sistema operativo personalizzato
+- _Additional software for Selected Environment area_: Selezionando un Base Environment sul lato sinistro si presenta una varietà di software aggiuntivi correlati che possono essere installati per l'ambiente specificato sul lato destro.
 
 Seleziona invece l'opzione _Installazione minima_ (Funzionalità di base).
 
