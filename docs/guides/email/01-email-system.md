@@ -42,9 +42,9 @@ As shown in the picture below, this is a simple illustration of the sending and 
 
 ![Simple email system](./email-images/email-system01.jpg)
 
-MTA: In GNU/Linux, the mainstream and common MTA are **postfix**,**qmail**, **sendmail**
-MDA: In GNU/Linux, the mainstream and common MDA are **procmail** and **maildrop**
-MRA: In GNU/Linux, the mainstream and common MDA are **dovecot**
+* **MTA**: In GNU/Linux, the mainstream and common MTA are **postfix**,**qmail**, **sendmail**.
+* **MDA**: In GNU/Linux, the mainstream and common MDA are **procmail** and **maildrop**.
+* **MRA**: In GNU/Linux, the mainstream and common MDA are **dovecot**.
 
 !!! question "Why is DNS required to participate in the work of the email system?"
     
