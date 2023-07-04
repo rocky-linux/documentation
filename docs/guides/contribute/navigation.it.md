@@ -49,7 +49,7 @@ Per farlo in modo efficace occorre:
 * Collegare la cartella `docs` all'interno del repository di documentazione clonato (si può anche modificare il file mkdocs.yml per caricare la cartella corretta, ma il collegamento mantiene l'ambiente mkdocs più pulito)
 * Eseguire `mkdocs serve` all'interno del proprio clone di docs.rockylinux.org
 
-!!! Hint "Suggerimento"
+!!! tip "Suggerimento"
 
     È possibile creare ambienti completamente separati per `mkdocs` utilizzando anche una di queste due procedure:
 
@@ -82,11 +82,12 @@ Una volta completato, si può provare a eseguire `mkdocs serve` per vedere se si
 
 ## Navigazione e Altre Modifiche
 
-La navigazione è gestita con i file mkdocs `.pages`. Non sono terribilmente complessi, ma se qualcosa viene tralasciato, può causare il mancato caricamento del server. Ecco perché questa procedura è destinata **SOLO** a Gestori e Redattori. Questi individui avranno gli strumenti necessari (installazione locale di mkdocs, oltre a cloni di documentazione e docs.rockylinux.org) in modo che qualcosa spinto e unito a GitHub non interrompa il servizio del sito web della documentazione. Non ci si può aspettare che un collaboratore abbia anche solo uno di questi requisiti.
+La navigazione è gestita con i file mkdocs `.pages` **O** dal valore del meta "title:" nel frontespizio del documento. I file `.pages` non sono terribilmente complessi, MA, se qualcosa viene tralasciato, può causare il mancato caricamento del server. Ecco perché questa procedura è destinata **SOLO** a Gestori e Redattori. Questi individui avranno gli strumenti necessari (installazione locale di mkdocs, oltre a cloni di documentazione e docs.rockylinux.org) in modo che qualcosa spinto e unito a GitHub non interrompa il servizio del sito web della documentazione. Non ci si può aspettare che un collaboratore abbia anche solo uno di questi requisiti.
+
 
 ### Files `.pages`
 
-Come già detto, i file .pages sono generalmente piuttosto semplici. Si tratta di un file formattato in YAML che `mkdocs` legge prima di fare il render del contenuto. Per dare un'occhiata a uno dei file `.pages` più complessi, vediamo quello creato per aiutare a formattare la navigazione laterale:
+Come già detto, i file `.pages` sono generalmente piuttosto semplici. Si tratta di un file formattato in YAML che `mkdocs` legge prima di fare il render del contenuto. Per dare un'occhiata a uno dei file `.pages` più complessi, vediamo quello creato per aiutare a formattare la navigazione laterale:
 
 ```
 ---
