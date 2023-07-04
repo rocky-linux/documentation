@@ -2,7 +2,7 @@
 title: SSH Chiave Pubblica e Privata
 author: Steven Spencer, Franco Colussi
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5
+tested_with: 8.5
 tags:
   - security
   - ssh
@@ -78,7 +78,7 @@ Se così fosse, ora siamo pronti a creare o aggiungere il file *authorized_keys*
 
 `ls -a .ssh`
 
-!!! attenzione "Importante!"
+!!! warning "Importante!"
 
     Assicurati di leggere attentamente tutto ciò che segue. Se non siete sicuri di poter interrompere qualcosa, allora fate una copia di backup di authorized_keys (se esiste) su ciascuna delle macchine prima di continuare.
 
