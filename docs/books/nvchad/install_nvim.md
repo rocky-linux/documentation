@@ -11,7 +11,7 @@ tags:
 
 ## Introduction to Neovim
 
-Neovim is one of the best code editors due of its speed, ease of customization, and configuration.
+Neovim is one of the best code editors due to its speed, ease of customization, and configuration.
 
 Neovim is a fork of the `Vim` editor. It was born in 2014, mainly due to the lack at the time of asynchronous job support in Vim. Written in the Lua language with the goal of modularizing the code to make it more manageable, Neovim was designed with the modern user in mind. As the official website states, "Neovim is built for users who want the best parts of Vim, and more".
 
@@ -19,7 +19,7 @@ The developers of Neovim chose Lua as it was perfect for embedding, using LuaJIT
 
 From version 0.5 Neovim includes Treesitter (a parser generator tool) and supports Language Server Protocol (LSP). This reduces the number of plugins needed to achieve advanced editing functions. It improves the performance of operations such as code completion and linting.
 
-One of its strengths is its customization. All of its configuration is contained in a single file that can be distributed to various installations through version control systems (Git or other) so that they are always synchronized.
+One of its strengths is its customization. All its configurations are contained in a single file that can be distributed to various installations through version control systems (Git or other) so that they are always synchronized.
 
 ### Community of developers
 
