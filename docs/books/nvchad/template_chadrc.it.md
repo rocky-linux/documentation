@@ -171,7 +171,7 @@ Questa mappatura viene inserita per lo stato NORMAL `n =` il carattere <kbd>;</k
 
 #### highlights.lua
 
-Il file viene utilizzato per personalizzare lo stile dell'editor. Le impostazioni scritte qui servono a modificare aspetti come lo stile dei caratteri(**grassetto**_, corsivo_), il colore di sfondo di un elemento, il colore di primo piano, ecc.
+Il file viene utilizzato per personalizzare lo stile dell'editor. Le impostazioni scritte qui servono a modificare aspetti come lo stile dei caratteri (**bold**, _italic_), il colore di sfondo di un elemento, il colore di primo piano e così via.
 
 ### Cartella Configs
 
