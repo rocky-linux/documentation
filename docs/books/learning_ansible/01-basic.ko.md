@@ -566,7 +566,7 @@ ansible <host-pattern> [-m module_name] [-a args] [options]
 }
 ```
 
-!!! tip "Tip"
+!!! tip "팁"
 
     마지막 2개의 명령을 두 번 실행해 보세요. 처음에는 Ansible이 명령에 설정한 상태에 도달하기 위해 조치를 취할 것입니다. 두 번째로는 상태가 이미 도달되었다는 것을 감지하여 아무 작업도 수행하지 않을 것입니다!
 
