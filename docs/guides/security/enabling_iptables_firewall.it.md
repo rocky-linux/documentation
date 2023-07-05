@@ -2,7 +2,7 @@
 title: Abilitazione del Firewall `iptables`
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5, 8.6, 9.0
+tested_with: 8.5, 8.6, 9.0
 tags:
   - security
   - iptables
@@ -25,7 +25,7 @@ _firewalld_ è ora il firewall predefinito su Rocky Linux. _firewalld_ **era** n
 
 ## Disabilitare firewalld
 
-Non è possibile eseguire la vecchia utility _iptables_ accanto a _firewalld_. Semplicemente non sono compatibili. Il modo migliore per aggirare questo è disabilitare _firewalld_ interamente (non c'è bisogno di rimuoverlo a meno che tu non lo voglia), e reinstallare le utilità _iptables_. Disabilitare _firewalld_ può essere fatto utilizzando questi comandi:
+Non è possibile eseguire la vecchia utility _iptables_ accanto a _firewalld_. Semplicemente non sono compatibili. Il modo migliore per ovviare a questo problema è quello di disabilitare completamente _firewalld_ (non è necessario disinstallarlo a meno che non lo si voglia fare) e reinstallare le utility _iptables_. Disabilitare _firewalld_ può essere fatto utilizzando questi comandi:
 
 Arrestare _firewalld_:
 
@@ -41,7 +41,7 @@ Mascherare il servizio in modo che non possa essere trovato:
 
 ## Installazione e Abilitazione dei Servizi iptables
 
-Successivamente abbiamo bisogno di installare i vecchi servizi e le vecchie utility _iptables_. Ciò è fatto con quanto segue:
+Successivamente, è necessario installare i vecchi servizi e utilità _iptables_. Ciò è fatto con quanto segue:
 
 `dnf install iptables-services iptables-utils`
 
