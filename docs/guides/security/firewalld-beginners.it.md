@@ -2,7 +2,6 @@
 title: firewalld per Principianti
 author: Ezequiel Bruni
 contributors: Steven Spencer, Franco Colussi
-update: 20-feb-2022
 ---
 
 # `firewalld` per Principianti
@@ -15,7 +14,7 @@ Naturalmente, se siete qui, probabilmente avete un'idea migliore di me su cosa s
 
 In altre parole, i miei colleghi nerd devono essere consapevoli che ci saranno molte spiegazioni in arrivo.
 
-Quindi parliamo di ciò per cui siamo qui. `firewalld` è l'applicazione firewall predefinita fornita con Rocky Linux, ed è progettata per essere abbastanza semplice da usare. Dovete solo sapere un po' come funzionano i firewall e non aver paura di usare la riga di comando.
+Parliamo quindi del motivo per cui siamo qui. `firewalld` è l'applicazione firewall predefinita fornita con Rocky Linux, ed è progettata per essere abbastanza semplice da usare. Dovete solo sapere un po' come funzionano i firewall e non aver paura di usare la riga di comando.
 
 Qui imparerete:
 
@@ -38,7 +37,7 @@ Avrai bisogno di:
 
 * Una macchina Rocky Linux di qualsiasi tipo, locale o remota, fisica o virtuale
 * Accesso al terminale e volontà di usarlo
-* Avete bisogno dell'accesso root, o almeno della capacità di usare `sudo` sul vostro account utente. Per semplicità, sto assumendo che tutti i comandi vengano eseguiti come root.
+* Avete bisogno dell'accesso root, o almeno della capacità di usare `sudo` sul vostro account utente. Per semplicità, assumo che tutti i comandi siano eseguiti come root
 * Una comprensione di base di SSH non sarebbe male per la gestione di macchine remote.
 
 ## Uso di Base
@@ -138,14 +137,14 @@ firewall-cmd --permanent [resto del tuo comando]
 
 Prima di ogni altra cosa, devo spiegare le zone. Le zone sono una caratteristica che fondamentalmente permette di definire diversi set di regole per diverse situazioni. Le zone sono una parte enorme di `firewalld`, quindi è utile capire come funzionano.
 
-Se la tua macchina ha più modi per connettersi a reti diverse (ad esempio, Ethernet e WiFi), puoi decidere che una connessione è più affidabile dell'altra. Potresti impostare la tua connessione Ethernet nella zona "trusted" se è collegata solo a una rete locale che hai costruito, e mettere il WiFi (che potrebbe essere collegato a Internet) nella zona "public" con restrizioni più severe.
+Se il computer dispone di più modi per connettersi a reti diverse (ad esempio, Ethernet e Wi-Fi), è possibile decidere che una connessione sia più affidabile dell'altra. Si potrebbe impostare la connessione Ethernet nella zona "trusted" se è collegata solo a una rete locale costruita dall'utente, e mettere il Wi-Fi (che potrebbe essere collegato a Internet) nella zona "public" con restrizioni più severe.
 
 !!! Note "Nota"
 
     Una zona può *solo* essere in uno stato attivo se ha una di queste due condizioni:
 
     1. La zona è assegnata a un'interfaccia di rete
-    2. Alla zona vengono assegnati IP sorgente o intervalli di rete. (Per saperne di più sotto)
+    2. Alla zona vengono assegnati IP di origine o intervalli di rete (maggiori informazioni in seguito)
 
 Le zone predefinite includono le seguenti (ho preso questa spiegazione dalla [guida di DigitalOcean `firewalld`](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-8), che dovreste anche leggere):
 
@@ -157,7 +156,7 @@ Le zone predefinite includono le seguenti (ho preso questa spiegazione dalla [gu
 
 > **internal:** L'altro lato della zona esterna, usata per la parte interna di un gateway. I computer sono abbastanza affidabili e sono disponibili alcuni servizi aggiuntivi.
 
-> **dmz:** utilizzato per i computer situati in una DMZ (computer isolati che non avranno accesso al resto della vostra rete). Solo certe connessioni in entrata sono permesse.
+> **dmz:** utilizzato per i computer situati in una DMZ (computer isolati che non avranno accesso al resto della vostra rete). I computer sono abbastanza affidabili e sono disponibili alcuni servizi aggiuntivi.
 
 > **work:** Usato per le macchine da lavoro. Fidatevi della maggior parte dei computer della rete.
 
@@ -167,7 +166,7 @@ Le zone predefinite includono le seguenti (ho preso questa spiegazione dalla [gu
 
 > **trusted:** Fidati di tutte le macchine della rete. La più aperta delle opzioni disponibili e dovrebbe essere usata con parsimonia.
 
-Ok, alcune di queste spiegazioni sono complicate, ma Onestamente? Il principiante medio può cavarsela con la comprensione di "trusted", "home" e "public", e quando usarli.
+Ok, alcune di queste spiegazioni sono complicate, ma onestamente? Il principiante medio può cavarsela con la comprensione di "trusted", "home" e "public", e quando usarli.
 
 ### Comandi di gestione della zona
 
@@ -211,7 +210,7 @@ Per rimuovere completamente un'interfaccia da una zona:
 firewall-cmd --zone=[tua-zona] --remove-interface=[tua-intefaccia-di-rete]
 ```
 
-Per creare una zona nuova di zecca con un set di regole completamente personalizzato, e per controllare che sia stata aggiunta correttamente:
+Per creare una zona nuova di zecca con un set di regole completamente personalizzate e verificare che sia stata aggiunta correttamente:
 
 ```bash
 firewall-cmd --new-zone=[tua-nuova-zona]
@@ -226,9 +225,9 @@ Io non lo farei, ma tu puoi.
 
 Ogni porta è definita da un numero, e alcune porte sono riservate a servizi specifici e a tipi di informazioni. Se hai mai lavorato con i server web per costruire un sito web, per esempio, potresti avere familiarità con la porta 80 e la porta 443. Queste porte permettono la trasmissione dei dati delle pagine web.
 
-In particolare, la porta 80 permette di trasferire dati tramite il protocollo HTTP (Hypertext Transfer Protocol), e la porta 443 è riservata ai dati HTTPS (Hypertext Transfer Protocol Secure). *
+In particolare, la porta 80 consente di trasferire dati tramite il protocollo HTTP (Hypertext Transfer Protocol), mentre la porta 443 è riservata ai dati HTTPS (Hypertext Transfer Protocol Secure).
 
-La porta 22 è riservata al protocollo Secure Shell (SSH) che ti permette di accedere e gestire altre macchine attraverso la riga di comando (vedi la [nostra breve guida](ssh_public_private_keys.md) su questo argomento). Un server remoto nuovo di zecca potrebbe permettere solo connessioni sulla porta 22 per SSH, e nient'altro.
+La porta 22 è riservata al protocollo Secure Shell (SSH) che consente di accedere e gestire altri computer tramite la riga di comando (vedere [la nostra breve guida](ssh_public_private_keys.md) sull'argomento). Un server remoto nuovo di zecca potrebbe consentire solo connessioni sulla porta 22 per SSH e nient'altro.
 
 Altri esempi sono FTP (porte 20 e 21), SSH (porta 22), e molti altri. È anche possibile impostare porte personalizzate per essere utilizzate da nuove applicazioni che potreste installare, che non hanno già un numero standard.
 
@@ -236,7 +235,7 @@ Altri esempi sono FTP (porte 20 e 21), SSH (porta 22), e molti altri. È anche p
 
     Per cose come SSH, HTTP/S, FTP, e altro, si raccomanda di aggiungerli alla vostra zona firewall come *servizi*, e non come numeri di porta. Vi mostrerò come funziona qui sotto. Detto questo, devi comunque sapere come aprire le porte manualmente.
 
-\* Per i principianti assoluti, HTTPS è fondamentalmente (più o meno) lo stesso di HTTP, ma criptato.
+\* Per i principianti assoluti, l'HTTPS è fondamentalmente (più o meno) la stessa cosa dell'HTTP, ma criptata.
 
 ### Comandi di gestione della porta
 
@@ -277,7 +276,7 @@ Questo è il modo preferito per aprire le porte per questi servizi comuni, e mol
 * HTTP e HTTPS: per i server web
 * FTP: per spostare i file avanti e indietro (alla vecchia maniera)
 * SSH: per controllare macchine remote e spostare file avanti e indietro nel nuovo modo
-* Samba: Per la condivisione di file con macchine Windows
+* Samba: Per la condivisione di file con macchine Windows.
 
 !!! Warning "Attenzione"
 
@@ -285,7 +284,7 @@ Questo è il modo preferito per aprire le porte per questi servizi comuni, e mol
     
     Ricordate, SSH è quello che usate per accedere al vostro server. A meno che non abbiate un altro modo per accedere al server fisico, o alla sua shell (cioè tramite. un pannello di controllo fornito dall'host), la rimozione del servizio SSH vi bloccherà permanentemente.
     
-    Dovrete contattare il supporto per riavere il vostro accesso, o reinstallare completamente il sistema operativo.
+    Dovrete contattare l'assistenza per riavere l'accesso o reinstallare completamente il sistema operativo.
 
 ## Comandi di gestione del servizio
 
@@ -315,7 +314,7 @@ firewall-cmd --zone=public --remove-service=http
 
 !!! Note "Nota: puoi aggiungere i tuoi servizi"
 
-    E personalizzarli anche. Tuttavia, questo è un argomento che diventa piuttosto complesso. Familiarizzate prima con `firewalld`, e partite da lì.
+    E personalizzarli anche. Tuttavia, questo è un argomento che diventa piuttosto complesso. Prima di tutto, familiarizzate con `firewalld` e poi proseguite da lì.
 
 ## Limitare l'accesso
 
@@ -412,7 +411,9 @@ Se rimani bloccato, riavvia il server (la maggior parte dei pannelli di controll
     
     Se siete bloccati con un provider di servizi internet che cambia il vostro indirizzo IP ogni volta che il modem si riavvia, non usate queste regole (almeno non per SSH) fino a quando non avrete una soluzione per questo. Ti chiuderai fuori dal tuo server
     
-    O aggiorni il tuo piano/provider internet, o prendi una VPN che ti fornisce un IP dedicato, e *mai e poi mai* perderlo.
+    Vi chiuderete fuori dal vostro server
+    
+    O aggiornate il vostro piano/provider internet o prendete una VPN che vi fornisca un IP dedicato e che non lo perda *mai e poi mai*.
     
     Nel frattempo, [installare e configurare fail2ban](https://wiki.crowncloud.net/?How_to_Install_Fail2Ban_on_RockyLinux_8), che può aiutare a ridurre gli attacchi di brute force.
     
@@ -420,7 +421,7 @@ Se rimani bloccato, riavvia il server (la maggior parte dei pannelli di controll
 
 ## Note Finali
 
-Questa è lungi dall'essere una guida esaustiva, e si può imparare molto di più con la [documentazione ufficiale](https://firewalld.org/documentation/) di [ `firewalld`](https://firewalld.org/documentation/). Ci sono anche comode guide specifiche per le app su internet che vi mostreranno come impostare il vostro firewall per quelle specifiche app.
+Questa è lungi dall'essere una guida esaustiva, e si può imparare molto di più con la [documentazione ufficiale](https://firewalld.org/documentation/) di [ `firewalld`](https://firewalld.org/documentation/). Su Internet sono disponibili anche guide specifiche per le applicazioni che vi mostreranno come impostare il firewall per quelle specifiche applicazioni.
 
 Per voi fan di `iptables` (se siete arrivati fin qui...), [abbiamo una guida](firewalld.md) che dettaglia alcune delle differenze nel funzionamento di `firewalld` e `iptables`. Quella guida potrebbe aiutarti a capire se vuoi rimanere con `firewalld` o tornare a The Old Ways<sup>(TM)</sup>. C'è qualcosa da dire per The Old Ways<sup>(TM)</sup>, in questo caso.
 
