@@ -2,7 +2,7 @@
 title: Documentazione Locale - LXD
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5, 8.6
+tested_with: 8.5, 8.6
 tags:
   - contribute
   - local envirmonent lxd
@@ -61,7 +61,7 @@ In primo luogo, entrare nel container con:
 lxc exec mkdocs bash
 ```
 
-!!! importante "Cambiamenti nel requirements.txt per 8.x"
+!!! warning "Cambiamenti nel requirements.txt per 8.x"
 
     L'attuale `requirements.txt' richiederà una versione di Python più recente di quella installata di default in Rocky Linux 8.5 o 8.6. Per poter installare tutte le altre dipendenze, procedere come segue:
 
@@ -237,10 +237,10 @@ INFO     -  [14:12:56] Reloading browsers
 
 E ora il momento della verità!  Se avete fatto tutto correttamente sopra, dovreste essere in grado di aprire un browser web e andare all'IP del vostro container sulla porta :8000, e vedere il sito della documentazione.
 
-Nel nostro esempio, dovremmo inserire il seguente indirizzo nel browser:
+Nel nostro esempio, inseriamo quanto segue nell'indirizzo del browser (**NOTA** Per evitare URL interrotti, l'IP è stato modificato in "your-server-ip". È sufficiente sostituire l'IP):
 
 ```
-http://10.56.233.189:8000
+http://your-server-ip:8000
 ```
 ## lsyncd
 
