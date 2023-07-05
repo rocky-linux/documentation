@@ -171,7 +171,7 @@ This mapping is entered for the NORMAL state `n =` the character <kbd>;</kbd> wh
 
 #### highlights.lua
 
-The file is used to customize the style of the editor. The settings written here are used to change aspects such as font style (**bold**,_italic_), background color of an element, foreground color, etc..
+The file is used to customize the style of the editor. The settings written here are used to change aspects such as font style (**bold**,_italic_), background color of an element, foreground color and so on.
 
 ### Configs folder
 
