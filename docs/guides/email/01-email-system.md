@@ -1,7 +1,6 @@
 ---
 title: Overview of email system
 author: tianci li
-update: 2023-06-19
 version: 1.0.0
 ---
 
@@ -17,8 +16,8 @@ The E-mail system mainly consists of four parts: **MUA**, **MTA**, **MRA** and *
 
 * **MUA (Mail User Agent)**: That is, mail clients for users, such as Outlook, Foxmail, etc.
 * **MTA (Mail Transfer Agent)**: Refers to an e-mail server program that is used to transmit mail. The MTA is the implementation of SMTP.
-* **MDA (Mail Deliver Agent)**: When the MTA receives the mail, the MDA is responsible for saving the email to the designated location on the email server, while also performing email filtering and antivirus operations.
-* **MRA (Mail Recelve Agent)**: The MRA is an implementation of IMAP and POP3, used to interact with MUA and transmit emails to email clients through IMAP or POP3.
+* **MDA (Mail Delivery Agent)**: When the MTA receives the mail, the MDA is responsible for saving the email to the designated location on the email server, while also performing email filtering and antivirus operations.
+* **MRA (Mail Retrieval Agent)**: The MRA is an implementation of IMAP and POP3, used to interact with MUA and transmit emails to email clients through IMAP or POP3.
 
 ### Three protocols
 
@@ -30,7 +29,7 @@ The difference between IMAP and POP3 is as follows:
 
 | Operating position | Operation content | IMAP | POP3 |
 | :---: | :---: | :---: | :---: | 
-| Inbox             | Reading, tagging, moving, deleting emails, etc | Client synchronizes with mailbox updates | Within the client only | 
+| Inbox             | Reading, tagging, moving, deleting emails, etc. | Client synchronizes with mailbox updates | Within the client only | 
 | Outbox            | Save to Sent Mail | Client synchronizes with mailbox updates | Within the client only |
 | create folder     | Create a new custom folder | Client synchronizes with mailbox updates | Within the client only |
 | draft             | Save Draft Email | Client synchronizes with mailbox updates | Within the client only |
@@ -43,12 +42,13 @@ As shown in the picture below, this is a simple illustration of the sending and 
 
 ![Simple email system](./email-images/email-system01.jpg)
 
-MTA: In GNU/Linux, the mainstream and common MTA are **postfix**,**qmail**, **sendmail**
-MDA: In GNU/Linux, the mainstream and common MDA are **procmail** and **maildrop**
-MRA: In GNU/Linux, the mainstream and common MDA are **dovecot**
+* **MTA**: In GNU/Linux, the mainstream and common MTA are **postfix**,**qmail**, **sendmail**.
+* **MDA**: In GNU/Linux, the mainstream and common MDA are **procmail** and **maildrop**.
+* **MRA**: In GNU/Linux, the mainstream and common MDA are **dovecot**.
 
-!!! question
-    Why is DNS required to participate in the work of the email system?
+!!! question "Question"
+    
+    "Why is DNS required to participate in the work of the email system?"
     In daily use, the standard format for an email user is "username@domain name". A domain name cannot represent a specific host, you need to point the domain name to a specific host name, so we need a DNS MX resolution record.
 
 ## Postfix The process of sending and receiving emails
@@ -68,7 +68,7 @@ For more information about postfix, please refer to these two links:
 
 ![legend01](./email-images/email-system02.jpg)
 
-Postfix determines whether a emails sent from a client belongs to the local or external domain. If it belongs to the local domain, the emails will be stored to the mail box in the local domain. If the email sent belongs to an external domain, it is forwarded to another MTA (the user's identity needs to be verified from the database before forwarding). 
+Postfix determines whether an email sent from a client belongs to the local or external domain. If it belongs to the local domain, the email will be stored in the local domain mailbox. If the email sent belongs to an external domain, it is forwarded to another MTA (the user's identity needs to be verified from the database before forwarding). 
 
 ### The process of receiving emails by the client
 
