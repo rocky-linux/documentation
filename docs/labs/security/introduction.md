@@ -1,6 +1,6 @@
 ---
 title: Introduction
-author: Unknown
+author: Wale Soyinka
 contributors: Andrew Thiesen
 tags:
   - introduction
