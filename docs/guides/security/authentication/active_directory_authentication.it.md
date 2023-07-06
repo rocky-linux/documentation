@@ -1,6 +1,6 @@
 ---
 author: Hayden Young
-contributors: Steven Spencer, Sambhav Saggi, Franco Colussi
+contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Franco Colussi
 ---
 
 # Autenticazione Active Directory
@@ -48,20 +48,7 @@ Il primo passo lungo la strada per unire un sistema Linux in AD è quello di sco
   [root@host ~]$ nmcli con mod 'System eth0' ipv4.dns 10.0.0.2
   ```
 
-  **Modifica manuale del file /etc/resolv.conf:**
-  ```sh
-  # Modificare il file resolv.conf
-  [user@host ~]$ sudo vi /etc/resolv.conf
-  Search lan
-  nameserver 10.0.0.2
-  nameserver 1.1.1.1 # sostituiscilo con il tuo DNS pubblico preferito (come backup)
-
-  # Rendere il resolv.conf file non scrivibile, impedendo a NetworkManager di
-  # sovrascriverlo.
-  [user@host ~]$ sudo chattr +i /etc/resolv.conf
-  ```
-
-- Assicurarsi che l'ora su entrambi i lati (host AD e sistema Linux) sia sincronizzata
+- Assicurarsi che l'ora su entrambi i lati (host AD e sistema Linux) sia sincronizzata (vedere chronyd)
 
   **Per verificare l'ora su Rocky Linux:**
   ```sh
@@ -74,6 +61,7 @@ Il primo passo lungo la strada per unire un sistema Linux in AD è quello di sco
   ```sh
   [user@host ~]$ sudo dnf install realmd oddjob oddjob-mkhomedir ssd adcli krb5-workstation
   ```
+
 
 ### Scoprire
 
@@ -118,9 +106,22 @@ Se questo processo ha successo, dovresti ora essere in grado di estrarre le info
 administrator@ad.company.local:*:1450400500:1450400513:Amministrator:/home/administrator@ad.company.local:/bin/bash
 ```
 
+!!! Note "Nota" 
+
+    `getent` ottiene voci dalle librerie Name Service Switch (NSS). Significa che, al contrario di `passwd` o `dig` per esempio, interrogherà diversi database, tra cui `/etc/hosts` per `getent hosts` o da `sssd` nel caso di `getent passwd`.
+
+`realm` fornisce alcune opzioni interessanti che si possono utilizzare:
+
+| Opzione                                                    | Osservazione                                                      |
+| ---------------------------------------------------------- | ----------------------------------------------------------------- |
+| --computer-ou='OU=LINUX,OU=SERVERS,dc=ad,dc=company.local' | L'OU in cui memorizzare l'account del server                      |
+| --os-name='rocky'                                          | Specificare il nome del sistema operativo memorizzato in AD       |
+| --os-version='8'                                           | Specificare la versione del sistema operativo memorizzata nell'AD |
+| -U admin_username                                          | Specificare un account di amministratore                          |
+
 ### Tentativo di Autenticazione
 
-Ora i tuoi utenti dovrebbero essere in grado di autenticare il tuo host Linux con Active Directory.
+Ora gli utenti dovrebbero essere in grado di autenticarsi all'host Linux tramite Active Directory.
 
 **Su Windows 10:** (che fornisce la propria copia di OpenSSH)
 
@@ -134,25 +135,176 @@ Last login: Wed Sep 15 17:37:03 2021 from 10.0.10.241
 [john.doe@ad.company.local@host ~]$
 ```
 
-In caso di successo, hai configurato con successo Linux per utilizzare Active Directory come fonte di autenticazione.
+Se l'operazione ha esito positivo, si è configurato Linux per utilizzare Active Directory come fonte di autenticazione.
 
 ### Impostazione del dominio predefinito
 
-In una configurazione predefinita completa, dovrai accedere con il tuo account AD specificando il dominio nel tuo nome utente (e.. `john.doe@ad.company.local`). Se questo non è il comportamento desiderato, e si desidera invece essere in grado di omettere il nome di dominio al momento dell'autenticazione, puoi configurare SSSD come predefinito per un dominio specifico.
+In una configurazione completamente predefinita, sarà necessario accedere con il proprio account AD specificando il dominio nel nome utente (es. `john.doe@ad.company.local`). Se non è questo il comportamento desiderato e si vuole invece poter omettere il nome del dominio al momento dell'autenticazione, si può configurare SSSD per impostare di default il nome del dominio al momento dell'autenticazione, è possibile configurare SSSD in modo che sia predefinito un dominio specifico.
 
-Questo è in realtà un processo relativamente semplice, e richiede solo una configurazione nel vostro file di configurazione SSSD.
+Si tratta in realtà di un processo relativamente semplice, che richiede solo una modifica nel file di configurazione di SSSD.
 
 ```sh
-[user@host ~]$ sudo vi /etc/ssd/sssd.conf
+[user@host ~]$ sudo vi /etc/sssd/sssd.conf
 [sssd]
 ...
 default_domain_suffix = ad.company.local
 ```
 
-Aggiungendo il `default_domain_suffix`, stai istruendo SSSD a (se non è specificato nessun altro dominio) dedurre che l'utente sta cercando di autenticarsi dal dominio `ad.company.local`. Questo ti permette di autenticarti con qualcosa come `john.doe` invece di `john.doe@ad.company.local`.
+Aggiungendo il suffisso `default_domain_suffix`, si indica a SSSD di dedurre (se non viene specificato un altro dominio) che l'utente sta cercando di autenticarsi come utente del dominio `ad.company.local`. Ciò consente di autenticarsi come `john.doe` invece di `john.doe@ad.company.local`.
 
 Per rendere effettiva questa modifica della configurazione, è necessario riavviare l'unità `sssd.service` con `systemctl`.
 
 ```sh
 [user@host ~]$ sudo systemctl restart sssd
+```
+
+Allo stesso modo, se non si vuole che le directory home abbiano il suffisso del nome di dominio, si possono aggiungere queste opzioni nel file di configurazione `/etc/sssd/sssd.conf`:
+
+```
+[domain/ad.company.local]
+use_fully_qualified_names = False
+override_homedir = /home/%u
+```
+
+Non dimenticare di riavviare il servizio `ssd`.
+
+### Limita a determinati utenti
+
+Esistono vari metodi per limitare l'accesso al server a un elenco limitato di utenti, ma questo, come suggerisce il nome, è certamente il più semplice:
+
+Aggiungete queste opzioni nel file di configurazione `/etc/sssd/sssd.conf` e riavviate il servizio:
+
+```
+access_provider = simple
+simple_allow_groups = group1, group2
+simple_allow_users = user1, user2
+```
+
+Ora, solo gli utenti del gruppo1 e del gruppo2, o l'utente1 e l'utente2 saranno in grado di connettersi al server utilizzando sssd!
+
+## Interagire con l'AD utilizzando `adcli`
+
+`adcli` è una CLI per eseguire azioni su un dominio Active Directory.
+
+- Se non è ancora installato, installare il pacchetto richiesto:
+
+```sh
+[user@host ~]$ sudo dnf install adcli
+```
+
+- Verificate se vi siete mai uniti a un dominio Active Directory:
+
+```sh
+[user@host ~]$ sudo adcli testjoin
+Successfully validated join to domain ad.company.local
+```
+
+- Ottenere informazioni più avanzate sul dominio:
+
+```sh
+[user@host ~]$ adcli info ad.company.local
+[domain]
+domain-name = ad.company.local
+domain-short = AD
+domain-forest = ad.company.local
+domain-controller = dc1.ad.company.local
+domain-controller-site = site1
+domain-controller-flags = gc ldap ds kdc timeserv closest writable full-secret ads-web
+domain-controller-usable = yes
+domain-controllers = dc1.ad.company.local dc2.ad.company.local
+[computer]
+computer-site = site1
+```
+
+- Più che uno strumento di consultazione, potete usare adcli per interagire con il vostro dominio: gestire utenti o gruppi, cambiare password, ecc.
+
+Esempio: usare `adcli` per ottenere informazioni su un computer:
+
+!!! Note "Nota"
+
+    Questa volta forniremo un nome utente amministratore grazie all'opzione `-U`
+
+```sh
+[user@host ~]$ adcli show-computer pctest -U admin_username
+Password for admin_username@AD: 
+sAMAccountName:
+ pctest$
+userPrincipalName:
+ - not set -
+msDS-KeyVersionNumber:
+ 9
+msDS-supportedEncryptionTypes:
+ 24
+dNSHostName:
+ pctest.ad.company.local
+servicePrincipalName:
+ RestrictedKrbHost/pctest.ad.company.local
+ RestrictedKrbHost/pctest
+ host/pctest.ad.company.local
+ host/pctest
+operatingSystem:
+ Rocky
+operatingSystemVersion:
+ 8
+operatingSystemServicePack:
+ - not set -
+pwdLastSet:
+ 133189248188488832
+userAccountControl:
+ 69632
+description:
+ - not set -
+```
+
+Esempio: usare `adcli` per cambiare la password dell'utente:
+
+```sh
+[user@host ~]$ adcli passwd-user user_test -U admin_username
+Password for admin_username@AD: 
+Password for user_test: 
+[user@host ~]$ 
+```
+
+## Risoluzione dei problemi
+
+A volte, il servizio di rete si avvia dopo l'SSSD, causando problemi con l'autenticazione.
+
+Nessun utente AD potrà connettersi fino al riavvio del servizio.
+
+In questo caso, si dovrà sovrascrivere il file di servizio di systemd per gestire questo problema.
+
+Copiare questo contenuto in `/etc/systemd/system/sssd.service`:
+
+```
+[Unit]
+Description=System Security Services Daemon
+# SSSD must be running before we permit user sessions
+Before=systemd-user-sessions.service nss-user-lookup.target
+Wants=nss-user-lookup.target
+After=network-online.target
+
+
+[Service]
+Environment=DEBUG_LOGGER=--logger=files
+EnvironmentFile=-/etc/sysconfig/sssd
+ExecStart=/usr/sbin/sssd -i ${DEBUG_LOGGER}
+Type=notify
+NotifyAccess=main
+PIDFile=/var/run/sssd.pid
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Al successivo riavvio, il servizio si avvierà in base ai suoi requisiti e tutto andrà bene.
+
+## Uscire da Active Directory
+
+A volte è necessario abbandonare l'AD.
+
+È possibile, ancora una volta, procedere con `realm` e poi rimuovere i pacchetti non più necessari:
+
+```sh
+[user@host ~]$ sudo realm leave ad.company.local
+[user@host ~]$ sudo dnf remove realmd oddjob oddjob-mkhomedir sssd adcli krb5-workstation
 ```
