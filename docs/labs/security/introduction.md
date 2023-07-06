@@ -1,19 +1,23 @@
 ---
 title: Introduction
+author: Wale Soyinka
+contributors: Andrew Thiesen
+tags:
+  - introduction
 ---
 
 # Introduction
 
-A fictitious company (called Example Incorporated) is the subject for designing the labs. Example Incorporated has offices all over the world. Example Incorporated makes widgets. The company has all the usual bells and whistles that a modern company requires to conduct its business. 
+Welcome to the world of Example Incorporated! We're a global company that specializes in creating awesome widgets. Our offices are spread across the globe, and we've got all the modern bells and whistles you'd expect from a cutting-edge organization.
 
-The Example Organization has Networked Branch offices, with computers which perform different roles. Some computers are workstations, some are firewalls, and some are servers (file servers, web servers, mail servers, database servers, application servers, dialup servers, etcetera). 
+At Example Incorporated, our networked branch offices are equipped with a variety of computers that play different roles. Some are workstations, others are firewalls, and there are also servers for various purposes like: file storage, web hosting, email management, databases, applications, security and more.
 
-And of most significant importance to us in this manual – the company has administrators administer/manage the computers. You, The Reader, will be the administrator at one of the branch offices.
+As you read through this manual, imagine yourself as an administrator at one of our branch offices. You'll be working closely with a partner who shares the same responsibilities. Together, your mission is to keep our systems up and running smoothly 24/7.
 
-You will be working with a partner (who is also an administrator) to make sure that the Company’s systems are up and running all the time. Example Incorporated deploys Rocky Linux on its Systems because it has High Standards and Requirements for the Hardware and Software that it utilizes.
+We pride ourselves on maintaining high standards and utilizing top-notch hardware and software, which is why we've chosen Rocky Linux for our systems. It aligns with our stringent requirements and ensures we deliver the best widgets to our customers.
 
-The user can do tasks from the command line (the shell) of the Linux Operating System. The user can also do these tasks from the Operating System's Graphical User Interface (GUI). Most of our work, however, will be done from the command line in this manual. 
+Now, let's talk about how you'll be interacting with the Linux Operating System we use. You have two options: the command line interface or _CLI_ (the shell) and the graphical user interface (GUI). In this manual, we'll primarily focus on the command line because it's an efficient way to get things done. Once you feel comfortable navigating the command line, you'll be equipped to handle any task that comes your way.
 
-The idea is to get you comfortable working with the command line, after which there will be no task you cannot perform from the command line. 
+One of the great things about Linux is that the command line experience remains consistent across different distro. So, no matter which flavor of Linux you encounter (Rocky, Ubuntu, Red Hat, etc.), you'll find its look, feel, and functionality to be familiar and reliable.
 
-The command line is a fast way to get things done, and it is also one of the features of Linux (besides the Kernel) that you will find remains consistent in its look, feel, and functionality amongst the various versions of Linux.
+Get ready to embark on an exciting journey of mastering the command line. By the time you finish this manual, you'll be a pro at unleashing the full potential of Linux through the power of command-line magic. Let's dive in and get started!
