@@ -94,9 +94,9 @@ To manage the process, use the <kbd>F9</kbd> button to send different signals to
 
 | Signal | Description |
 |---|---|
-|1 | Let the process shut down immediately, and then restart after re-reading the configuration file |
+|1 | Lets the process shut down immediately, and then restart after re-reading the configuration file |
 |9 | Used to immediately end the running of the program, used to forcibly terminate the process, similar to the forced end in the windows taskbar |
 |15 | The default signal for the kill command. Sometimes if a problem has occurred in the process and the process cannot be terminated normally with this signal, we will try signal 9 |
 
 ## End
-`htop` is much easier to use than the `top` that comes with the system, it is more intuitive, and it improves daily use greatly. This is why usually the first thing after installing the operating system the author installs it.
+`htop` is much easier to use than the `top` that comes with the system, it is more intuitive, and it improves daily use greatly. This is why `htop` is usually one of the first packages the author installs after installing a new operating system.
