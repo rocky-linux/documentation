@@ -72,7 +72,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 
 * **PID - Process ID number**
 * USER - The owner of the process
-* PRI - Display the process priority as seen by the Linux kernel
+* PRI - Displays the process priority as seen by the Linux kernel
 * NI - Displays the process priority of reset by normal user or root super user
 * VIRT - Virtual memory being consumed by a process
 * **RES - Physical memory being consumed by a process**
