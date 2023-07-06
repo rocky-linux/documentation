@@ -2,7 +2,7 @@
 title: DokuWiki
 author: Steven Spencer, Franco Colussi
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5, 8.6, 9.0
+tested_with: 8.5, 8.6, 9.0
 tags:
   - wiki
   - documentation
@@ -13,10 +13,10 @@ tags:
 ## Prerequisiti E Presupposti
 
 * Un'istanza di Rocky Linux installata su un server, un container o una macchina virtuale.
-* Abilità nel modificare i file di configurazione dalla riga di comando con un editor (gli esempi qui riportati utilizzano _vi_, ma è possibile sostituire l'editor preferito)
+* Abilità nel modificare i file di configurazione dalla riga di comando con un editor (i nostri esempi utilizzeranno _vi_, ma potete sostituire il vostro editor preferito).
 * Conoscenza delle applicazioni web e della loro configurazione.
 * Il nostro esempio utilizzerà [Apache Sites Enabled](../web/apache-sites-enabled.md) per l'impostazione, quindi è una buona idea rivedere questa routine se si intende seguirla.
-* In questo esempio utilizzeremo "wiki-doc.yourdomain.com" come nome di dominio.
+* In questo esempio utilizzeremo "example.com" come nome di dominio.
 * In questo documento si presuppone che siate l'utente root o che possiate arrivarci con _sudo_.
 * Si presuppone una nuova installazione del sistema operativo, ma questo **NON** è un requisito.
 
@@ -58,16 +58,16 @@ E aggiungete questo in fondo al file:
 
 Creare il file di configurazione del sito in sites-available:
 
-`vi /etc/httpd/sites-available/com.yourdomain.wiki-doc`
+`vi /etc/httpd/sites-available/com.example`
 
 Il file di configurazione dovrebbe essere simile a questo:
 
 ```
 <VirtualHost *>
-    ServerName    wiki-doc.yourdomain.com
-    DocumentRoot  /var/www/sub-domains/com.yourdomain.wiki-doc/html
+    ServerName    example.com
+    DocumentRoot  /var/www/sub-domains/com.example/html
 
-    <Directory ~ "/var/www/sub-domains/com.yourdomain.wiki-doc/html/(bin/|conf/|data/|inc/)">
+    <Directory ~ "/var/www/sub-domains/com.example/html/(bin/|conf/|data/|inc/)">
         <IfModule mod_authz_core.c>
                 AllowOverride All
             Require all denied
@@ -78,8 +78,8 @@ Il file di configurazione dovrebbe essere simile a questo:
         </IfModule>
     </Directory>
 
-    ErrorLog   /var/log/httpd/wiki-doc.yourdomain.com_error.log
-    CustomLog  /var/log/httpd/wiki-doc.yourdomain_access.log combined
+    ErrorLog   /var/log/httpd/example.com_error.log
+    CustomLog  /var/log/httpd/example.com_access.log combined
 </VirtualHost>
 ```
 
@@ -87,13 +87,13 @@ Si noti che l'opzione "AllowOverride All" di cui sopra consente al file .htacces
 
 Procedere con il collegamento del file di configurazione in sites-enabled, ma non avviare ancora i servizi web:
 
-`ln -s /etc/httpd/sites-available/com.yourdomain.wiki-doc /etc/httpd/sites-enabled/`
+`ln -s /etc/httpd/sites-available/com.example /etc/httpd/sites-enabled/`
 
 ### Apache DocumentRoot
 
 Dobbiamo anche creare la nostra _DocumentRoot_. Per ora fare:
 
-`mkdir -p /var/www/sub-domains/com.yourdomain.wiki-doc/html`
+`mkdir -p /var/www/sub-domains/com.example/html`
 
 ## Installazione di DokuWiki
 
@@ -124,7 +124,7 @@ Non vogliamo che questa directory venga decompressa quando decomprimiamo l'archi
 
 La seconda opzione è l'opzione "-C", che indica a tar dove si vuole decomprimere l'archivio. Quindi decomprimere l'archivio con questo comando:
 
-`tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.yourdomain.wiki-doc/html/`
+`tar xzf dokuwiki-stable.tgz  --strip-components=1 -C /var/www/sub-domains/com.example/html/`
 
 Una volta eseguito questo comando, tutto DokuWiki dovrebbe trovarsi nella nostra _DocumentRoot_.
 
@@ -132,11 +132,11 @@ Una volta eseguito questo comando, tutto DokuWiki dovrebbe trovarsi nella nostra
 
 Nel processo, cambieremo il nome di questo file in _.htaccess_, che è quello che _apache_ cercherà. Per ora fare:
 
-`cp /var/www/sub-domains/com.yourdomain.wiki-doc/html/.htaccess{.dist,}`
+`cp /var/www/sub-domains/com.example/html/.htaccess{.dist,}`
 
 Ora dobbiamo cambiare la proprietà della nuova directory e dei suoi file all'utente e al gruppo _apache_:
 
-`chown -Rf apache.apache /var/www/sub-domains/com.yourdomain.wiki-doc/html`
+`chown -Rf apache.apache /var/www/sub-domains/com.example/html`
 
 ## Impostazione del DNS o di /etc/hosts
 
@@ -151,7 +151,7 @@ Quindi modificate il vostro file hosts in modo che assomigli a questo (notare l'
 ```
 127.0.0.1   localhost
 127.0.1.1   myworkstation-home
-10.56.233.179   wiki-doc.yourdomain.com     wiki-doc
+10.56.233.179   example.com     example 
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
@@ -185,11 +185,11 @@ E poi avviarlo:
 
 Ora che il nostro nome host è stato impostato per il test e il servizio Web è stato avviato, il passo successivo è aprire un browser Web e digitare questo nella barra degli indirizzi:
 
-`http://wiki-doc/install.php`
+`http://example.com/install.php`
 
 O
 
-`http://wiki-doc.yourdomain.com/install.php`
+`http://example.com/install.php`
 
 Entrambi dovrebbero funzionare se si imposta il file hosts come sopra. In questo modo si accede alla schermata di impostazione per completare la configurazione:
 
@@ -222,7 +222,7 @@ Invece di consentire a tutti l'accesso al wiki, assumeremo che chiunque si trovi
 
 #### `iptables` Firewall (deprecato)
 
-!!! important
+!!! warning "Attenzione"
 
     Il processo del firewall `iptables` qui è stato deprecato in Rocky Linux 9. (ancora disponibile, ma probabilmente scomparirà nelle versioni future, forse già come Rocky Linux 9.1). Per questo motivo, si consiglia di passare alla procedura `firewalld` che segue se si sta eseguendo questa operazione su 9.0 o superiore.
 
@@ -235,8 +235,8 @@ Per prima cosa, modificare o creare il file _/etc/firewall.conf:_
 ```
 #IPTABLES=/usr/sbin/iptables
 
-#  Unless specified, the defaults for OUTPUT is ACCEPT
-#    The default for FORWARD and INPUT is DROP
+#  Unless specified, the default for OUTPUT is ACCEPT
+#  The default for FORWARD and INPUT is DROP
 #
 echo "   clearing any existing rules and setting default policy.."
 iptables -F INPUT
@@ -301,7 +301,7 @@ trusted (active)
 
 ### SSL
 
-Per una maggiore sicurezza, dovreste considerare l'utilizzo di un SSL, in modo che tutto il traffico web sia criptato. È possibile acquistare un SSL da un provider SSL o utilizzare [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md)
+Per una maggiore sicurezza, dovreste considerare l'utilizzo di un SSL, in modo che tutto il traffico web sia criptato. È possibile acquistare un SSL da un provider SSL o utilizzare [Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md).
 
 ## Conclusione
 
