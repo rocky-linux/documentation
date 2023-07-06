@@ -244,7 +244,7 @@ rocky8/
 
 역할의 구조는 이해하기 매우 쉽습니다.
 
-변수를 재정의하지 않으려면 변수를 `vars/main.yml `에 저장하거나, 역할 외부에서 변수 내용을 재정의할 가능성을 남겨두려면 `default/main.yml `에 저장합니다.
+변수를 재정의하지 않으려면 변수를 `vars/main.yml`에 저장하거나, 역할 외부에서 변수 내용을 재정의할 가능성을 남겨두려면 `default/main.yml`에 저장합니다.
 
 코드에 필요한 핸들러, 파일 및 템플릿은 각각 `handlers/main.yml`, `files` 및 `templates`에 저장됩니다.
 
@@ -254,11 +254,11 @@ rocky8/
 
 ### 실습 작업: 첫 번째 간단한 역할 생성하기
 
-기본 사용자를 생성하고 소프트웨어 패키지를 설치하는 "gowhere" 역할로 이를 구현해 보겠습니다. 이 역할은 모든 서버에 체계적으로 적용될 수 있습니다.
+기본 사용자를 생성하고 소프트웨어 패키지를 설치하는 "gowhere" 역할로 이를 구현해 보겠습니다. 이 역할은 모든 서버에 일관적으로 적용할 수 있습니다.
 
 #### 변수
 
-모든 서버에서 `rockstar` 사용자를 생성합니다. 이 사용자가 재정의되는 것을 원하지 않으므로 `vars/main.yml`에서 정의해 보겠습니다.
+모든 서버에서 `rockstar` 사용자를 생성합니다. 이 사용자가 덮어쓰이지 않도록 하기 위해 `vars/main.yml` 파일에서 정의해 보겠습니다:
 
 ```
 ---
@@ -271,7 +271,7 @@ rocky8_default_user:
   group: rockstar
 ```
 
-이제 `tasks/main.yml` 내에서 이러한 변수를 포함하지 않고 사용할 수 있습니다.
+이제 이러한 변수들을 `tasks/main.yml` 파일 내에서 포함하지 않고 사용할 수 있습니다.
 
 ```
 ---
@@ -287,7 +287,7 @@ rocky8_default_user:
     group: "{{ rocky8_default_user.group }}"
 ```
 
-새 역할을 테스트하기 위해 역할과 동일한 디렉터리에 `test-role.yml` 플레이북을 생성해 보겠습니다.
+새로운 역할을 테스트하기 위해 역할과 같은 디렉토리에 `test-role.yml` 플레이북을 생성하겠습니다:
 
 ```
 ---
@@ -301,7 +301,7 @@ rocky8_default_user:
       become_user: root
 ```
 
-그리고 실행합니다:
+그리고 다음과 같이 실행하겠습니다:
 
 ```
 ansible-playbook test-role.yml
@@ -321,11 +321,11 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-축하합니다! 이제 몇 줄로 구성된 플레이북으로 멋진 것들을 만들 수 있습니다.
+축하합니다! 이제 몇 줄의 플레이북으로 멋진 작업을 만들 수 있습니다.
 
-기본 변수를 사용하는 방법을 살펴보겠습니다.
+이제 기본 변수의 사용법을 알아보겠습니다.
 
-서버에 기본적으로 설치할 패키지 목록과 제거할 빈 패키지 목록을 만듭니다. `defaults/main.yml` 파일을 편집하고 다음 두 목록을 추가합니다.
+서버에 기본적으로 설치할 패키지 목록과 제거할 패키지 목록을 만들어 봅시다. `defaults/main.yml` 파일을 편집하여 다음 두 목록을 추가해 보겠습니다:
 
 ```
 rocky8_default_packages:
@@ -348,7 +348,7 @@ rocky8_remove_packages: []
     state: absent
 ```
 
-이전에 만든 플레이북을 사용하여 역할을 테스트합니다.
+이전에 생성한 플레이북를 사용하여 역할을 테스트해 보겠습니다:
 
 ```
 ansible-playbook test-role.yml
@@ -374,7 +374,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-이제 플레이북에서 `rocky8_remove_packages`를 재정의하고 예를 들어 `cockpit`을 제거할 수 있습니다.
+이제 플레이북에서 `rocky8_remove_packages`를 재정의하고, 예를 들어 `cockpit`을 제거할 수 있습니다.
 
 ```
 ---
@@ -415,7 +415,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-분명히, 당신이 당신의 역할을 얼마나 향상시킬 수 있는지에는 제한이 없습니다. 서버 중 하나에 대해 제거할 패키지 목록에 있는 패키지가 필요하다고 가정해 보십시오. 그런 다음 예를 들어 무시할 수 있는 새 목록을 만든 다음 jinja `difference()` 필터를 사용하여 설치할 특정 패키지 목록에 있는 패키지를 제거할 패키지 목록에서 제거할 수 있습니다.
+물론 역할을 개선하는 데는 제한이 없습니다. 서버 중 하나에 대해 제거할 패키지 목록에 있는 패키지가 필요하다고 가정해 보십시오. 예를 들어, 패키지 제거 목록에 포함된 패키지를 서버 중 하나에서 필요로 하는 경우, 재정의할 수 있는 새로운 목록을 만들고 jinja의 `difference()` 필터를 사용하여 설치할 특정 패키지 목록에서 제거할 패키지 목록을 제외할 수 있습니다.
 
 ```
 - name: "Uninstall default packages (can be overridden) {{ rocky8_remove_packages }}"
@@ -438,7 +438,7 @@ localhost                  : ok=5    changed=1    unreachable=0    failed=0    s
 ansible-galaxy collection install namespace.collection [--upgrade]
 ```
 
-그런 다음 모듈 이름이나 역할 이름 앞에 해당 네임스페이스와 이름을 사용하여 새로 설치된 컬렉션을 사용할 수 있습니다.
+그런 다음 해당 컬렉션을 사용할 때 모듈 이름이나 역할 이름 앞에 네임스페이스와 이름을 사용할 수 있습니다.
 
 ```
 - import_role:
@@ -533,4 +533,4 @@ rocky8/rockstarcollection/
 └── roles
 ```
 
-그런 다음 이 새 컬렉션 내에 고유한 플러그인 또는 역할을 저장할 수 있습니다.
+그러면 이 새로운 컬렉션 내에 자신만의 플러그인이나 역할을 저장할 수 있습니다.
