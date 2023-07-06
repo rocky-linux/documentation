@@ -1,8 +1,8 @@
 ---
 title: firewalld da iptables
 author: Steven Spencer
-contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Franco Colussi
-update: 11-Mar-2022
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, qyecst, Franco Colussi
+update: 22-Jun-2023
 tags:
   - security
   - firewalld
@@ -24,8 +24,8 @@ Questa guida si concentra sull'applicazione di regole da un firewall `iptables` 
 
 ## Prerequisiti e presupposti
 
-* In questo documento, si presume che siate l'utente root o che abbiate usato `sudo` per diventarlo
-* Una conoscenza di base delle regole del firewall, in particolare di `iptables` o, come minimo, il desiderio di imparare qualcosa su `firewalld`
+* In questo documento si presuppone che siate l'utente root o che abbiate usato `sudo` per diventarlo.
+* Una conoscenza di base delle regole del firewall, in particolare di `iptables` o, come minimo, il desiderio di imparare qualcosa su `firewalld`.
 * Ti senti a tuo agio nell'inserire i comandi dalla riga di comando.
 * Tutti gli esempi qui riportati riguardano gli IP IPv4.
 
@@ -35,17 +35,17 @@ Per capire veramente `firewalld`, è necessario comprendere l'uso delle zone. Le
 
 `firewalld` ha diverse zone integrate:
 
-| zona     | esempio di utilizzo                                                                                                             |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| drop     | rifiuta le connessioni in entrata senza risposta - solo i pacchetti in uscita sono permessi                                     |
-| block    | le connessioni in entrata sono rifiutate con un messaggio icmp-host-prohibited per IPv4 e icmp6-adm-prohibited per IPv6         |
-| public   | tutte le connessioni in entrata sono permesse                                                                                   |
-| external | per l'uso su reti esterne con masquerading abilitato                                                                            |
-| dmz      | per i computer della vostra zona demilitarizzata che sono accessibili al pubblico con accesso limitato alla vostra rete interna |
-| work     | per i computer nelle aree di lavoro (no, non capisco neanche questo)                                                            |
-| home     | per l'uso in aree domestiche (no, non capisco neanche questo)                                                                   |
-| internal | per l'accesso ai dispositivi della vostra rete interna                                                                          |
-| trusted  | tutte le connessioni di rete sono accettate                                                                                     |
+| zona     | esempio di utilizzo                                                                                                                                                                                            |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| drop     | abbandona le connessioni in entrata senza risposta - sono consentiti solo i pacchetti in uscita.                                                                                                               |
+| block    | le connessioni in entrata vengono rifiutate con un messaggio icmp-host-prohibited per IPv4 e icmp6-adm-prohibited per IPv6 - sono possibili solo le connessioni di rete avviate all'interno di questo sistema. |
+| public   | per l'uso in aree pubbliche - sono accettate solo connessioni in entrata selezionate.                                                                                                                          |
+| external | per l'uso in aree pubbliche - sono accettate solo connessioni in entrata selezionate.                                                                                                                          |
+| dmz      | per i computer della zona demilitarizzata accessibili al pubblico con accesso limitato alla rete interna: vengono accettate solo le connessioni in entrata selezionate.                                        |
+| work     | per i computer nelle aree di lavoro (no, non capisco nemmeno questo): vengono accettate solo le connessioni in entrata selezionate.                                                                            |
+| home     | per l'uso in aree domestiche (no, non capisco nemmeno questo) - vengono accettate solo le connessioni in entrata selezionate.                                                                                  |
+| internal | per l'accesso al dispositivo di rete interno - vengono accettate solo le connessioni in entrata selezionate.                                                                                                   |
+| trusted  | tutte le connessioni di rete sono accettate.                                                                                                                                                                   |
 
 !!! Note "Nota"
 
@@ -55,9 +55,9 @@ Per elencare le zone esistenti sul vostro sistema, digitate:
 
 `firewall-cmd --get-zones` !!! Warning "Attenzione"
 
-    Ricordatevi di controllare lo stato del vostro firewall, se il `firewalld-cmd` vi restituisce un errore:
+    Ricordarsi di controllare lo stato del firewall, se il comando `firewalld-cmd` restituisce un errore, con:
     
-    con il comando firewall-cmd:
+    il comando `firewall-cmd`:
 
     ```
     $ firewall-cmd --state
@@ -65,7 +65,7 @@ Per elencare le zone esistenti sul vostro sistema, digitate:
     ```
 
 
-    o con il comando systemctl:
+    il comando `systemctl`:
 
     ```
     $ systemctl status firewalld
@@ -92,13 +92,13 @@ Per aggiungere una zona, dobbiamo usare il `firewall-cmd` con il parametro `--ne
 
 !!! Note "Nota"
 
-    Abbiamo usato la flag --permanent molto spesso. Per i test, si raccomanda di aggiungere la regola senza la flag `--permanent`, testarla, e se funziona come ci si aspetta, allora usare il `firewall-cmd --runtime-to-permanent` per spostare la regola live prima di eseguire il `firewall-cmd --reload`. Se il rischio è basso (in altre parole, non vi chiuderete fuori), potete aggiungere il flag `--permanent` come ho fatto qui.
+    Abbiamo usato molto la flag `--permanent` in tutto il tempo. Per i test, si raccomanda di aggiungere la regola senza la flag `--permanent`, testarla, e se funziona come ci si aspetta, allora usare il `firewall-cmd --runtime-to-permanent` per spostare la regola live prima di eseguire il `firewall-cmd --reload`. Se il rischio è basso (in altre parole, non vi chiuderete fuori), potete aggiungere il flag `--permanent` come ho fatto qui.
 
 Prima che questa zona possa essere effettivamente utilizzata, dobbiamo ricaricare il firewall:
 
 `firewall-cmd --reload`
 
-!!! hint "Suggerimento"
+!!! tip "Suggerimento"
 
     Una nota sulle zone personalizzate: Se avete bisogno di aggiungere una zona che sarà una zona fidata, ma conterrà solo un particolare IP sorgente o interfaccia e nessun protocollo o servizio, e la zona "fidata" non funziona per voi, probabilmente perché l'avete già usata per qualcos'altro, ecc.  Potete aggiungere una zona personalizzata per fare questo, ma dovete cambiare l'obiettivo della zona da "default" ad "ACCEPT" (si può anche usare REJECT o DROP, a seconda dei vostri obiettivi). Ecco un esempio che usa un'interfaccia bridge (lxdbr0 in questo caso) su una macchina LXD.
     
@@ -157,7 +157,7 @@ Puoi elencare le zone attive sul tuo sistema usando questo comando:
 
     Una zona può *solo* essere in uno stato attivo se ha una di queste due condizioni:
 
-    1. La zona è assegnata a un'interfaccia di rete
+    1. La zona è assegnata a un'interfaccia di rete.
     2. Alla zona vengono assegnati IP sorgente o intervalli di rete.
 
 ### Rimozione di un IP e di un Servizio da una Zona
@@ -201,7 +201,7 @@ Ora elenca la zona per assicurarti che la zona risulti corretta e che il servizi
 
 Testate la vostra regola per assicurarvi che funzioni. Per testare:
 
-1. SSH come root dal tuo IP di origine (sopra è 192.168.1.122) (*l'utente root è usato qui perché stiamo per eseguire comandi sull'host che lo richiedono*)
+1. SSH come root, o come utente in grado di eseguire sudo, dall'IP di origine (sopra è 192.168.1.122) (*l'utente root è usato qui perché stiamo per eseguire comandi sull'host che lo richiedono. Se si utilizza l'utente sudo, ricordarsi di inserire `sudo -s` una volta connessi*)
 2. Una volta connessi, eseguite `tail /var/log/secure` e dovreste ottenere un output simile a questo:
 
 ```bash
@@ -352,7 +352,7 @@ Postgresql usa la propria porta di servizio. Ecco un esempio di regola delle tab
 
 Mentre è meno comune sui server web rivolti al pubblico, potrebbe essere più comune come risorsa interna. Si applicano le stesse considerazioni sulla sicurezza. Se hai un server sulla tua rete fidata (192.168.1.0/24 nel nostro esempio), potresti non voler o dover dare accesso a tutti su quella rete. Postgresql ha una lista di accesso disponibile per prendersi cura dei diritti di accesso più granulari. La nostra regola `firewalld` sarebbe qualcosa del genere:
 
-`firewall-cmd --zone=trusted --add-services=postgresql`
+`firewall-cmd --zone=trusted --add-service=postgresql`
 
 ## Porte DNS
 
@@ -417,7 +417,7 @@ public
   icmp-blocks: echo-reply echo-request
   rich rules:
 ```
-Notate che abbiamo rimosso l'accesso "ssh" dai servizi e bloccato icmp echo-reply e echo-request.
+Si noti che abbiamo rimosso l'accesso "ssh" dai servizi e bloccato icmp "echo-reply" e "echo-request".
 
 Nella nostra zona "admin" ancora, si presenta così:
 
@@ -464,15 +464,15 @@ firewall-cmd --reload
 
 Abbiamo già usato alcuni comandi. Ecco alcuni comandi più comuni e cosa fanno:
 
-| Comando                                      | Risultato                                                                                               |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `firewall-cmd --list-all-zones`              | simile a `firewall-cmd --list-all --zone=[zone]` eccetto che elenca *tutte* le zone e i loro contenuti. |
-| `firewall-cmd --get-default-zone`            | mostra la zona predefinita, che è "public" a meno che non sia stata cambiata.                           |
-| `firewall-cmd --list-services --zone=[zone]` | mostra tutti i servizi abilitati per la zona.                                                           |
-| `firewall-cmd --list-ports --zone=[zone]`    | mostra tutte le porte aperte sulla zona.                                                                |
-| `firewall-cmd --get-active-zones`            | mostra le zone attive sul sistema, le loro interfacce attive, i servizi e le porte.                     |
-| `firewall-cmd --get-services`                | mostra tutti i servizi disponibili possibili per l'uso.                                                 |
-| `firewall-cmd --runtime-to-permanent`        | se avete inserito molte regole senza l'opzione --permanent, fatelo prima di ricaricare.                 |
+| Comando                                      | Risultato                                                                                                          |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `firewall-cmd --list-all-zones`              | simile a `firewall-cmd --list-all --zone=[zone]` eccetto che elenca *tutte* le zone e i loro contenuti.            |
+| `firewall-cmd --get-default-zone`            | mostra la zona predefinita, che è "public" a meno che non sia stata cambiata.                                      |
+| `firewall-cmd --list-services --zone=[zone]` | mostra tutti i servizi abilitati per la zona.                                                                      |
+| `firewall-cmd --list-ports --zone=[zone]`    | mostra tutte le porte aperte sulla zona.                                                                           |
+| `firewall-cmd --get-active-zones`            | mostra le zone attive sul sistema, le loro interfacce attive, i servizi e le porte.                                |
+| `firewall-cmd --get-services`                | mostra tutti i servizi disponibili possibili per l'uso.                                                            |
+| `firewall-cmd --runtime-to-permanent`        | se sono state inserite molte regole senza l'opzione `--permanent`, eseguire questa operazione prima di ricaricare. |
 
 Ci sono molte opzioni di `firewall-cmd` non coperte qui, ma questo vi dà i comandi più usati.
 

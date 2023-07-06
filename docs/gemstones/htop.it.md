@@ -94,9 +94,9 @@ Per gestire il processo, utilizzare il tasto <kbd>F9</kbd> per inviare diversi s
 
 | Segnale | Descrizione                                                                                                                                                                                         |
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1       | Lasciare che il processo si chiuda immediatamente e poi riavviarlo dopo aver riletto il file di configurazione                                                                                      |
+| 1       | Permette al processo di chiudersi immediatamente e di riavviarsi dopo aver riletto il file di configurazione                                                                                        |
 | 9       | Usato per terminare immediatamente l'esecuzione del programma, usato per terminare forzatamente il processo, simile alla fine forzata nella barra delle applicazioni di Windows                     |
 | 15      | Il segnale predefinito per il comando kill. A volte, se si è verificato un problema nel processo e il processo non può essere terminato normalmente con questo segnale, si proverà con il segnale 9 |
 
 ## Fine
-`htop` è molto più facile da usare rispetto al `top` fornito con il sistema, è più intuitivo e migliora notevolmente l'uso quotidiano. Per questo motivo, di solito l'autore lo installa per primo dopo aver installato il sistema operativo.
+`htop` è molto più facile da usare rispetto al `top` fornito con il sistema, è più intuitivo e migliora notevolmente l'uso quotidiano. Per questo motivo `htop` è di solito uno dei primi pacchetti che l'autore installa dopo aver installato un nuovo sistema operativo.

@@ -1,8 +1,8 @@
 ---
-title: Firewall applicativo basato sul web (WAF)
+title: Application Firewall (WAF) basato sul Web
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5
+tested_with: 8.8, 9.2
 tags:
   - web
   - security
@@ -10,202 +10,165 @@ tags:
   - nginx
 ---
   
-# Applicazione Firewall basato sul Web (WAF)
+# Application Firewall (WAF) basato sul Web
 
 ## Prerequisiti
 
-* Un Rocky Linux con in esecuzione un Web Server Apache
-* Conoscenza di un editor a riga di comando (in questo esempio utilizziamo _vi_)
-* Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
-* Una comprensione che l'installazione di questo strumento richiede anche il monitoraggio delle azioni e la messa a punto del vostro ambiente
-* Un account sul sito WAF di Comodo
-* Tutti i comandi sono eseguiti come utente root o sudo
+* Un server web Rocky Linux con Apache
+* Conoscenza di un editor a riga di comando (in questo esempio si usa _vi_ )
+* Un buon livello di confidenza con l'emissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
+* La consapevolezza che l'installazione di questo strumento richiede anche il monitoraggio delle azioni e la messa a punto dell'ambiente
+* L'utente root esegue tutti i comandi o un utente regolare con `sudo`
 
 ## Introduzione
 
-_mod\_security_ è un applicativo firewall open-source basato sul web (WAF). È solo un possibile componente di una configurazione di server Apache rinforzato e può essere utilizzato con o senza altri strumenti.
+`mod_security` è un firewall per applicazioni web-based (WAF) open source. È solo uno dei possibili elementi di una configurazione di server web Apache protetta. Utilizzatelo con o senza altri strumenti.
 
-Se si desidera utilizzare questo insieme ad altri strumenti per il rafforzamento, fare riferimento alla guida [Apache Web Server Rinforzato](index.md). Il presente documento utilizza anche tutte le ipotesi e le convenzioni delineate in tale documento originale, quindi è una buona idea rivederlo prima di continuare.
+Se si desidera utilizzare questo insieme ad altri strumenti per l'hardening, fare riferimento alla [guida Apache Hardened Web Server](index.md). Questo documento utilizza anche tutti i presupposti e le convenzioni delineati nel documento originale. È buona norma rivederlo prima di continuare.
 
-Una cosa che manca con _mod\_security_ quando viene installato dai repository generici di Rocky Linux, è che le regole installate sono minime nella migliore delle ipotesi. Per ottenere un pacchetto più esteso di regole di mod_security gratuite, stiamo usando [la procedura di installazione WAF di Comodo](https://www.comodo.com/) dopo aver installato il pacchetto base.
+Una cosa che manca a `mod_security` quando viene installato dai repository generici di Rocky Linux è che le regole installate sono minime, nel migliore dei casi. Per ottenere un pacchetto più ampio di regole di `mod_security` a costo zero, questa procedura utilizza le [regole di mod_security OWASP](https://www.netnea.com/) a costo zero [che si trovano qui](https://www.netnea.com/). OWASP è l'acronimo di Open Web Application Security Project. Per saperne [di più su OWASP, cliccate qui](https://owasp.org/).
 
-Si noti che Comodo è un'azienda che vende molti strumenti per aiutare a proteggere le reti. Gli strumenti gratuiti _mod\_security_ potrebbero non essere gratuiti per sempre e richiedono di impostare un login con Comodo per accedere alle regole.
+!!! tip "Suggerimento"
 
-## Installazione mod_security
+    Come detto, questa procedura utilizza le regole OWASP `mod_security`. Ciò che non viene utilizzato è la configurazione fornita da quel sito. Questo sito fornisce anche ottimi tutorial sull'uso di `mod_security' e di altri strumenti legati alla sicurezza. Il documento che state elaborando con mow non fa altro che aiutarvi a installare gli strumenti e le regole necessarie per l'hardening con `mod_security' su un server web Rocky Linux. Netnea è un team di professionisti tecnici che offre corsi di sicurezza sul proprio sito web. La maggior parte di questi contenuti è disponibile gratuitamente, ma ci sono opzioni per la formazione interna o di gruppo.
 
-Per installare il pacchetto base, utilizzare questo comando che installerà le dipendenze mancanti. Abbiamo anche bisogno di _wget_ quindi se non l'avete installato, fate anche quello:
+## Installazione di `mod_security`
 
-`dnf install mod_security wget`
-
-## Impostazione del Tuo Account Comodo
-
-Per impostare il tuo account gratuito, vai al [sito WAF di Comodo](https://waf.comodo.com/), e clicca sul link "Signup" nella parte superiore della pagina. Vi sarà richiesto di impostare le informazioni del nome utente e della password, ma non sarà effettuata alcuna fatturazione con carta di credito o altro.
-
-Le credenziali che si utilizzano per accedere al sito web saranno utilizzate nella configurazione del software di Comodo e anche per ottenere le regole, quindi dovrai tenerli al sicuro in un gestore di password da qualche parte.
-
-Si prega di notare che la sezione "Termini e condizioni" del modulo che è necessario compilare per utilizzare Comodo Web Application Firewall (CWAF) è scritta per coprire tutti i loro prodotti e servizi. Detto questo, dovresti leggerlo attentamente prima di accettare i termini!
-
-## Installazione CWAF
-
-Prima di iniziare, affinché lo script possa effettivamente essere eseguito dopo il download, hai bisogno di alcuni strumenti di sviluppo. Installare il pacchetto con:
-
-`dnf group install 'Development Tools'`
-
-Inoltre, dovrete avere il vostro server web in funzione affinché Comodo veda _mod\_security_ correttamente. Quindi avvialo se non è già in esecuzione:
-
-`systemctl start httpd`
-
-Dopo esserti iscritto a Comodo, riceverai un'e-mail con le istruzioni su cosa fare dopo. In sostanza, ciò che devi fare è accedere al sito web con le tue nuove credenziali e quindi scaricare lo script di installazione del client.
-
-Dalla directory radice del server, utilizzare il comando wget per scaricare l'installatore:
-
-`wget https://waf.comodo.com/cpanel/cwaf_client_install.sh`
-
-Eseguire il programma di installazione digitando:
-
-`bash cwaf_client_install.sh`
-
-Questo estrarrà il programma di installazione e inizierà il processo, con un'eco sullo schermo. Riceverai un messaggio a metà strada:
-
-`No web host management panel found, continue in 'standalone' mode? [y/n]:`
-
-Puoi anche ricevere questa nota:
-
-Puoi anche ricevere questa nota:
-
-`Some required perl modules are missed. Install them? This can take a while. [y/n]:`
-
-Se è così digitate "y" e permettete l'installazione dei moduli mancanti.
+Per installare il pacchetto base, utilizzate questo comando. Installerà tutte le dipendenze mancanti. È necessario anche `wget`, se non è installato:
 
 ```
-Enter CWAF login: username@domain.com
-Enter password for 'username@domain.com' (will not be shown): *************************
-Confirm password for 'username@domain.com' (will not be shown): ************************
+dnf install mod_security wget
 ```
 
-Notate qui che probabilmente dovrete scaricare le regole e installarle nella posizione corretta, poiché il campo della password richiede una punteggiatura o un carattere speciale, ma il file di configurazione apparentemente ha problemi con questo quando lo si invia al sito di Comodo dal programma di installazione o dallo script di aggiornamento.
+## Installazione delle regole di `mod_security`
 
-Questi script falliranno sempre con un errore delle credenziali. Questo probabilmente non influisce sugli amministratori che hanno server web in esecuzione con un front-end GUI (Cpanel / Plesk), ma se si sta eseguendo il programma standalone come nel nostro esempio, lo fa. [Puoi trovare la soluzione sotto](#cwaf_fix).
+!!! note "Nota"
 
-```
-Enter absolute CWAF installation path prefix (/cwaf will be appended): /usr/local
-Install into '/usr/local/cwaf' ? [y/n]:
-```
+    È importante seguire attentamente questa procedura. La configurazione di Netnea è stata modificata per adattarla a Rocky Linux.
 
-Basta accettare il percorso come indicato e quindi digitare "y" nel campo successivo per il percorso di installazione.
+1. Per accedere alle regole attuali di OWASP, visitate [il sito GitHub](https://github.com/coreruleset/coreruleset).
 
-Se hai un percorso non standard per il file di configurazione di Apache/nginx, devi inserirlo qui, altrimenti premi semplicemente 'Invio' per non apportare modifiche:
+2. Sul lato destro della pagina, cercate le release e fate clic sul tag dell'ultima release.
 
-`Se hai un percorso di configurazione Apache/nginx non standard, inseriscilo qui:`
+3. Nella sezione "Assets" della pagina successiva, fare clic con il tasto destro del mouse sul collegamento "Source Code (tar.gz)" e copiare il link.
 
-È qui che entra in gioco il fallimento, e l'unico rimedio è quello di scaricare e installare manualmente le regole. Rispondere alle richieste come mostrato di seguito:
+4. Sul vostro server, andate nella directory di configurazione di Apache:
 
-```
-Do you want to use HTTP GUI to manage CWAF rules? [y/n]: n
-Do you want to protect your server with default rule set? [y/n]: y
-```
+    ```
+    cd /etc/httpd/conf
+    ```
 
-Ma aspettatevi anche di ottenere il prossimo messaggio:
+5. Inserite `wget` e incollate il vostro link. Esempio:
 
-```
- Warning! Rules have not been updated. Check your credentials and try again later manually
-+------------------------------------------------------
-| LOG : Warning! Rules have not been updated. Check your credentials and try again later manually
-+------------------------------------------------------
-| Installation complete!
-| Please add the line:
-|   Include "/usr/local/cwaf/etc/modsec2_standalone.conf"
-| to Apache config file.
-| To update ModSecurity ruleset run
-|   /usr/local/cwaf/scripts/updater.pl
-| Restart Apache after that.
-| You may find useful utility /usr/local/cwaf/scripts/cwaf-cli.pl
-| Also you may examine file
-|   /usr/local/cwaf/INFO.TXT
-| for some useful software information.
-+------------------------------------------------------
-| LOG : All Done!
-| LOG : Exiting
-```
+    ```
+    wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.4.tar.gz
+    ```
 
-È un po' frustrante. Puoi andare al tuo account sul sito web di Comodo e cambiare la tua password e rieseguire lo script d'installazione, MA, non cambierà nulla. Le credenziali falliranno ancora.
+6. Decomprimere il file:
 
-### <a name="cwaf_fix"></a> File Delle Regole Cwaf Soluzione Temporanea
+    ```
+    tar xzvf v3.3.4.tar.gz
+    ```
+    Questo crea una directory con le informazioni di rilascio nel nome. Esempio: "coreruleset-3.3.4"
 
-Per risolvere questo problema, dobbiamo installare manualmente le regole dal sito web. Questo viene fatto accedendo al tuo account su https://waf.comodo.com e cliccando sul link "Download Full Rule Set". Dovrai quindi copiare le regole sul tuo server web usando scp'
+7. Creare un collegamento simbolico chiamato "crs" che rimanda alla directory della release. Esempio:
 
-Esempio: `scp cwaf_rules-1.233.tgz root@mywebserversdomainname.com:/root/`
+    ```
+    ln -s coreruleset-3.3.4/ /etc/httpd/conf/crs
+    ```
 
-Una volta che il file gzip tar è stato copiato, sposta il file nella directory delle regole:
+8. Rimuovere il file `tar.gz`. Esempio:
 
-`mv /root/cwaf_rules-1.233.tgz /usr/local/cwaf/rules/`
+    ```
+    rm -f v3.3.4.tar.gz
+    ```
 
-Quindi vai alla directory delle regole:
+9. Copiare la configurazione temporanea in modo che venga caricata all'avvio:
 
-`cd /usr/local/cwaf/rules/`
+    ```
+    cp crs/crs-setup.conf.example crs/crs-setup.conf
+    ```
+    Questo file è modificabile, ma probabilmente non sarà necessario apportare alcuna modifica.
 
-E decomprimi le regole:
+Le regole di `mod_security` sono ora in vigore.
 
-`tar xzvf cwaf_rules-1.233.tgz`
+## Configurazione
 
-Eventuali aggiornamenti parziali delle regole dovranno essere trattati nello stesso modo.
+Una volta definite le regole, il passo successivo consiste nel configurarle in modo che vengano caricate ed eseguite quando `httpd` e `mod_security` vengono eseguiti.
 
-È qui che il pagamento delle regole e del supporto può essere utile. Tutto dipende dal vostro budget.
-
-### Configurazione CWAF
-
-Quando abbiamo installato _mod\_security_, il file di configurazione predefinito è stato installato in `/etc/httpd/conf.d/mod_security.conf`. La prossima cosa che dobbiamo fare è modificare questo in due punti. Inizia modificando il file:
-
-`vi /etc/httpd/conf.d/mod_security.conf`
-
-Nella parte superiore del file, vedrai:
+`mod_security` ha già un file di configurazione che si trova in `/etc/httpd/conf.d/mod_security.conf`. È necessario modificare questo file per includere le regole OWASP. Per farlo, modificare il file di configurazione:
 
 ```
-<IfModule mod_security2.c>
-    # Default recommended configuration
-    SecRuleEngine On
+vi /etc/httpd/conf.d/mod_security.conf
 ```
-
-Sotto la linea `SecRuleEngine On` aggiungi `SecStatusEngine On` in modo che la parte superiore del file ora assomigli a questo:
+Aggiungere il seguente contenuto subito prima del tag finale`(</IfModule`):
 
 ```
-<IfModule mod_security2.c>
-    # Default recommended configuration
-    SecRuleEngine On
-    SecStatusEngine On
+    Include    /etc/httpd/conf/crs/crs-setup.conf
+
+    SecAction "id:900110,phase:1,pass,nolog,\
+        setvar:tx.inbound_anomaly_score_threshold=10000,\
+        setvar:tx.outbound_anomaly_score_threshold=10000"
+
+    SecAction "id:900000,phase:1,pass,nolog,\
+         setvar:tx.paranoia_level=1"
+
+
+    # === ModSec Core Rule Set: Runtime Exclusion Rules (ids: 10000-49999)
+
+    # ...
+
+
+    # === ModSecurity Core Rule Set Inclusion
+
+    Include    /etc/httpd/conf/crs/rules/*.conf
+
+
+    # === ModSec Core Rule Set: Startup Time Rules Exclusions
+
+    # ...
 ```
 
-Successivamente vai in fondo a questo file di configurazione. Dobbiamo dire a _mod\_security_ da dove caricare le regole. Dovresti vedere questo in fondo al file prima di fare delle modifiche:
+Usare <kbd>ESC</kbd> per uscire dalla modalità di inserimento e <kbd>SHIFT+</kbd><kbd>:</kbd><kbd>+wq</kbd> per salvare le modifiche e uscire.
+
+## Riavviare `httpd` e verificare `mod_security`
+
+A questo punto è sufficiente riavviare `httpd`:
 
 ```
-    # ModSecurity Core Rules Set and Local configuration
-    IncludeOptional modsecurity.d/*.conf
-    IncludeOptional modsecurity.d/activated_rules/*.conf
-    IncludeOptional modsecurity.d/local_rules/*.conf 
-</IfModule>
+systemctl restart httpd
 ```
 
-Dobbiamo aggiungere una riga in basso per aggiungere la configurazione CWAF, che a sua volta carica le regole CWAF. Quella riga è `Include "/usr/local/cwaf/etc/cwaf.conf"`. La parte inferiore di questo file dovrebbe apparire così quando avete finito:
+Verificare che il servizio sia stato avviato come previsto:
 
 ```
-    # ModSecurity Core Rules Set and Local configuration
-    IncludeOptional modsecurity.d/*.conf
-    IncludeOptional modsecurity.d/activated_rules/*.conf
-    IncludeOptional modsecurity.d/local_rules/*.conf
-    Include "/usr/local/cwaf/etc/cwaf.conf" 
-</IfModule>
+systemctl status httpd
 ```
 
-Ora salva le tue modifiche (con vi è `SHIFT+:+wq!`) e riavvia httpd:
+Voci come questa in `/var/log/httpd/error_log` mostrano che `mod_security` si sta caricando correttamente:
 
-`systemctl restart httpd`
+```
+[Thu Jun 08 20:31:50.259935 2023] [:notice] [pid 1971:tid 1971] ModSecurity: PCRE compiled version="8.44 "; loaded version="8.44 2020-02-12"
+[Thu Jun 08 20:31:50.259936 2023] [:notice] [pid 1971:tid 1971] ModSecurity: LUA compiled version="Lua 5.4"
+[Thu Jun 08 20:31:50.259937 2023] [:notice] [pid 1971:tid 1971] ModSecurity: YAJL compiled version="2.1.0"
+[Thu Jun 08 20:31:50.259939 2023] [:notice] [pid 1971:tid 1971] ModSecurity: LIBXML compiled version="2.9.13"
+```
 
-Se httpd si avvia OK, allora sei pronto per iniziare a usare _mod\_security_ con il CWAF.
+Se si accede al sito web sul server, si dovrebbe ricevere una voce in `/var/log/httpd/modsec_audit.log` che mostra il caricamento delle regole OWASP:
 
+```
+Apache-Handler: proxy:unix:/run/php-fpm/www.sock|fcgi://localhost
+Stopwatch: 1686249687051191 2023 (- - -)
+Stopwatch2: 1686249687051191 2023; combined=697, p1=145, p2=458, p3=14, p4=45, p5=35, sr=22, sw=0, l=0, gc=0
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity for Apache/2.9.6 (http://www.modsecurity.org/); OWASP_CRS/3.3.4.
+Server: Apache/2.4.53 (Rocky Linux)
+Engine-Mode: "ENABLED"
+```
 ## Conclusione
 
-_mod\_security_ con CWAF è un altro strumento che può essere utilizzato per rendere più robusto un server web Apache. Poichè le password di CWAF richiedono punteggiatura e perché l'installazione standalone non invia la punteggiatura correttamente, la gestione delle regole CWAF richiede l'accesso al sito CWAF e il download di regole e modifiche.
+`mod_security` con le regole OWASP è un altro strumento che aiuta a rendere più sicuro un server web Apache. Il controllo periodico del [sito GitHub per verificare la presenza di nuove regole](https://github.com/coreruleset/coreruleset) e dell'ultima release ufficiale è un'operazione di manutenzione continua da fare.
 
-_mod\_security_, come altri strumenti di rinforzo, ha il potenziale di risposte false-positive, così si deve essere pronti a sintonizzare questo strumento per la vostra installazione.
+`mod_security`, come altri strumenti di hardening, ha un potenziale di risposte false positive, quindi bisogna prepararsi ad adattare questo strumento alla propria installazione.
 
-Come altre soluzioni menzionate nella guida [Rinforare Apache Web Server](index.md), ci sono altre soluzioni gratuite e a pagamento per le regole _mod\_security_, e per questo, altre applicazioni WAF disponibili. Puoi dare un'occhiata a uno di questi sul sito di [Atomicorp_ mod\_security_](https://atomicorp.com/atomic-modsecurity-rules/).
+Come altre soluzioni menzionate nella [guida Apache Hardened Web Server](index.md), esistono altre soluzioni gratuite e a pagamento per le regole di `mod_security` e per altre applicazioni WAF. È possibile esaminare uno di questi sul [sito `mod_security` di Atomicorp](https://atomicorp.com/atomic-modsecurity-rules/).

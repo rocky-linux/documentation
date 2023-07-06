@@ -19,7 +19,7 @@ Gli sviluppatori di Neovim hanno scelto Lua in quanto perfetto per l'incorporazi
 
 Dalla versione 0.5 Neovim include Treesitter (uno strumento per la generazione di parser) e supporta il Language Server Protocol (LSP). Questo riduce il numero di plugin necessari per ottenere funzioni di editing avanzate. Migliora le prestazioni di operazioni come il completamento del codice e il linting.
 
-Uno dei suoi punti di forza è la personalizzazione. Tutta la sua configurazione è contenuta in un unico file che può essere distribuito alle varie installazioni tramite sistemi di controllo di versione (Git o altro) in modo che siano sempre sincronizzate.
+Uno dei suoi punti di forza è la personalizzazione. Tutte le sue configurazioni sono contenute in un unico file che può essere distribuito alle varie installazioni attraverso sistemi di controllo di versione (Git o altro) in modo che siano sempre sincronizzate.
 
 ### Comunità di sviluppatori
 

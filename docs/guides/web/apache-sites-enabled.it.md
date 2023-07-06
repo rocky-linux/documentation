@@ -1,88 +1,113 @@
 ---
-title: Apache Multisito
+title: Sito Multiplo Apache
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5, 8.6, 9.0
+tested_with: 8.5, 8.6, 9.0
 tags:
   - web
   - apache
-  - multisite
+  - multiple site
 ---
 
-# Configurazione Multi-sito del Server Web Apache
+# Configurazione del server web Apache per più siti
 
-## Cosa ti serve
+## Cosa serve
 
-* Un server con Rocky Linux
-* Conoscenza degli editor di testo a riga di comando (Questo esempio usa *vi*, ma può essere adattato al tuo editor preferito.)
+* Un server che esegue Rocky Linux
+* Conoscenza della riga di comando e degli editor di testo. Questo esempio utilizza *vi*, ma potete usare il vostro editor preferito.
 
-    !!! hint "Suggerimento"
-      Se vuoi saperne di più sull'editor di testo vi, [ecco un pratico tutorial](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
+    !!! tip "Suggerimento"
+  
+        Se volete imparare a conoscere l'editor di testo vi, [ecco un pratico tutorial](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
 
 * Conoscenze di base sull'installazione e l'esecuzione di servizi web
 
 ## Introduzione
 
-Rocky Linux ha molti modi per impostare un sito web. Questo è solo un metodo, usando Apache, ed è progettato per essere usato come una configurazione multi-sito su un singolo server. Mentre questo metodo è progettato per server multi-sito, può anche funzionare come configurazione di base per un server a sito singolo.
+Rocky Linux offre molti modi per creare un sito web. Questo è solo un metodo, utilizzando Apache su un singolo server. Questo metodo è stato concepito per più server su un unico hardware, ma può anche fungere da configurazione di base per un server a sito singolo.
 
-Fatto storico: questa configurazione del server sembra essere iniziata con sistemi basati su Debian, ma è perfettamente adattabile a qualsiasi sistema operativo Linux con Apache.
+Fatto storico: questa configurazione del server sembra essere nata con sistemi basati su Debian, ma è perfettamente adattabile a qualsiasi sistema operativo Linux con Apache.
 
-Per coloro che cercano una configurazione simile per Nginx, date [un'occhiata a questa guida](nginx-multisite.md)
+Per chi è alla ricerca di una configurazione simile per Nginx, si consiglia di [consultare questa guida](nginx-multisite.md).
 
 ## Installare Apache
-Probabilmente avrete bisogno di altri pacchetti per il vostro sito web. Per esempio, una versione di PHP sarà quasi certamente richiesta, e forse anche un database o altri pacchetti saranno necessari. Installando PHP insieme a httpd otterrai l'ultima versione di entrambi dai repository di Rocky Linux.
+Probabilmente avrete bisogno di altri pacchetti per il vostro sito web, come PHP, database o altri pacchetti. Installando PHP insieme ad `http` si otterrà la versione più recente dai repository Rocky Linux.
 
-Ricorda solo che potresti aver bisogno anche di moduli, come forse php-bcmath o php-mysqlind. Le specifiche della vostra applicazione web dovrebbero dettagliare ciò che è necessario. Questi possono essere installati in qualsiasi momento. Per ora, installeremo httpd e PHP, dato che sono quasi una conclusione scontata:
+Si ricordi che potrebbero essere necessari dei moduli, come `php-bcmath` o `php-mysqlind`. Le specifiche della vostra applicazione web determineranno ciò di cui avete bisogno. È possibile installarli quando necessario. Per il momento, installerete `http` e PHP, poiché sono quasi scontati:
 
-* Dalla riga di comando esegui `dnf install httpd php`
+Dalla riga di comando eseguire:
 
-## Aggiungi Directories Extra
+```
+dnf install httpd php
+```
 
-Questo metodo usa un paio di directory aggiuntive, ma attualmente queste non esistono sul sistema. Dobbiamo aggiungere due directory in */etc/httpd/* chiamate "sites-available" e "sites-enabled."
+## Aggiungere altre directory
 
-* Dalla riga di comando digita `mkdir /etc/httpd/sites-available` e poi `mkdir /etc/httpd/sites-enabled`
+Questo metodo utilizza un paio di directory aggiuntive, che però al momento non esistono nel sistema. È necessario aggiungere due directory in */etc/httpd/* chiamate "sites-available" e "sites-enabled"
 
-* Abbiamo anche bisogno di una directory dove risiederanno i nostri siti. Questo può essere ovunque, ma un buon modo per mantenere le cose organizzate è quello di creare una directory chiamata sub-domains. Per semplificare le cose, mettila in /var/www: `mkdir /var/www/sub-domains/`
+Dalla riga di comando inserire:
+
+```
+mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
+```
+
+In questo modo verranno create entrambe le directory necessarie.
+
+È necessaria anche una directory in cui inserire i nostri siti. Può essere ovunque, ma un buon modo per tenere le cose organizzate è creare una directory chiamata "sub-domains". Per ridurre la complessità, mettere questo in /var/www: `mkdir /var/www/sub-domains/`.
 
 ## Configurazione
-Dobbiamo anche aggiungere una riga in fondo al file httpd.conf. Per fare questo, digita `vi /etc/httpd/conf/httpd.conf` e vai in fondo al file e aggiungi `Include /etc/httpd/sites-enabled`.
 
-I nostri attuali file di configurazione risiederanno in */etc/httpd/sites-available* e noi faremo semplicemente un link simbolico ad essi in */etc/httpd/sites-enabled*.
+È inoltre necessario aggiungere una riga in fondo al file `httpd.conf.`  A tal fine, inserire:
 
-**Perché facciamo questo?**
+```
+vi /etc/httpd/conf/httpd.conf
+```
 
-La ragione qui è abbastanza semplice. Diciamo che avete 10 siti web che girano tutti sullo stesso server su diversi indirizzi IP. Diremo anche, che il sito B ha alcuni importanti aggiornamenti, e si devono apportare modifiche alla configurazione per quel sito. Diciamo anche che c'è qualcosa di sbagliato con le modifiche fatte, quindi quando riavvii httpd per leggere le nuove modifiche, httpd non si avvia.
+e andare in fondo al file e aggiungere:
 
-Non solo il sito su cui stavi lavorando non partirà, ma nemmeno gli altri. Con questo metodo, puoi semplicemente rimuovere il link simbolico per il sito che ha causato il guasto e riavviare httpd. Comincerà a funzionare di nuovo, e si può andare a lavorare, cercando di sistemare la configurazione del sito malfunzionante.
+```
+Include /etc/httpd/sites-enabled
+```
 
-Sicuramente toglie la pressione, sapendo che il telefono non suonerà con qualche cliente arrabbiato, o un capo arrabbiato, perché un servizio è off-line.
+I file di configurazione effettivi si trovano in */etc/httpd/sites-available* e i link simbolici relativi si trovano in */etc/httpd/sites-enabled*.
 
-### La Configurazione Del Sito
-L'altro vantaggio di questo metodo è che ci permette di specificare completamente tutto al di fuori del file predefinito httpd.conf. Lascia che il file httpd.conf di default carichi le impostazioni predefinite, e lascia che le configurazioni del tuo sito facciano tutto il resto. Bello, vero? Inoltre, di nuovo, rende molto facile risolvere i problemi di configurazione di un sito mal funzionante.
+**Perché lo fate?**
 
-Ora, diciamo che avete un sito web che carica un wiki. Avrete bisogno di un file di configurazione, che rende il sito disponibile tramite la porta 80.
+Supponiamo di avere 10 siti web che girano tutti sullo stesso server con indirizzi IP diversi. Supponiamo che il sito B abbia subito alcuni aggiornamenti importanti e che sia necessario apportare modifiche alla configurazione del sito. Supponiamo anche che qualcosa vada storto con le modifiche apportate e che quando si riavvia `httpd` per leggere le modifiche, `httpd` non si avvii. Non solo il sito su cui stavate lavorando non si avvierà, ma nemmeno gli altri. Con questo metodo, è possibile rimuovere il collegamento simbolico per il sito che ha causato il problema e riavviare `httpd`. Il sito ricomincerà a funzionare e si potrà lavorare per sistemare la configurazione del sito non funzionante.
 
-Se volete servire il sito web con SSL (e ammettiamolo, tutti dovremmo farlo ormai) allora dovete aggiungere un'altra sezione (quasi identica) allo stesso file, per abilitare la porta 443.
+In questo modo si alleggerisce la pressione, sapendo che il telefono non squillerà con un cliente o un capo arrabbiato perché un servizio non è in linea.
 
-Puoi dare un'occhiata qui sotto nella sezione [Configurazione https - Utilizzo di un certificato SSL](#https).
+### La configurazione del sito
 
-Quindi dobbiamo prima creare questo file di configurazione in *sites-available*: `vi /etc/httpd/sites-available/com.wiki.www`
+L'altro vantaggio di questo metodo è che ci permette di specificare completamente tutto ciò che è al di fuori del file `httpd.conf` predefinito. Il file `httpd.conf` predefinito carica le impostazioni predefinite e le configurazioni del sito fanno tutto il resto. Ottimo, vero? Inoltre, rende meno complessa la risoluzione dei problemi di configurazione di un sito non funzionante.
 
-Il contenuto del file di configurazione dovrebbe somigliare a qualcosa del genere:
+Supponiamo di avere un sito web che carica un wiki. È necessario un file di configurazione che renda il sito disponibile sulla porta 80.
+
+Se si vuole servire il sito web con SSL/TLS (e nella maggior parte dei casi è così), è necessario aggiungere un'altra sezione (quasi la stessa) a quel file per abilitare la porta 443.
+
+Lo si può esaminare di seguito nella sezione [Configurazione `https` con un certificato SSL/TLS](#https).
+
+È necessario creare questo file di configurazione in *sites-available*:
+
+```
+vi /etc/httpd/sites-available/com.wiki.www
+```
+
+Il contenuto del file di configurazione sarà simile a questo:
 
 ```apache
 <VirtualHost *:80>
-        ServerName www.ourownwiki.com
+        ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.ourownwiki.www/html
+        DocumentRoot /var/www/sub-domains/your-server-hostname/html
         DirectoryIndex index.php index.htm index.html
         Alias /icons/ /var/www/icons/
-        # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.ourownwiki.www/cgi-bin/
+        # ScriptAlias /cgi-bin/ /var/www/sub-domains/your-server-hostname/cgi-bin/
 
-    CustomLog "/var/log/httpd/com.ourownwiki.www-access_log" combined
-    ErrorLog  "/var/log/httpd/com.ourownwiki.www-error_log"
+    CustomLog "/var/log/httpd/your-server-hostname-access_log" combined
+    ErrorLog  "/var/log/httpd/your-server-hostname-error_log"
 
-        <Directory /var/www/sub-domains/com.ourownwiki.www/html>
+        <Directory /var/www/sub-domains/your-server-hostname/html>
                 Options -ExecCGI -Indexes
                 AllowOverride None
 
@@ -94,94 +119,99 @@ Il contenuto del file di configurazione dovrebbe somigliare a qualcosa del gener
         </Directory>
 </VirtualHost>
 ```
-Una volta creato il file, dobbiamo scrivere (salvare) con: `shift : wq`
+Una volta creato, è necessario scriverlo (salvarlo) con <kbd>shift+</kbd><kbd>:</kbd><kbd>+wq</kbd>.
 
-Nel nostro esempio sopra, il sito wiki è caricato dalla sotto-directory "html" di _com.ourownwiki.www_, il che significa che il percorso che abbiamo creato in _/var/www_ (sopra) avrà bisogno di alcune directory aggiuntive per soddisfare questo:
-
-`mkdir -p /var/www/sub-domains/com.ourownwiki.www/html`
-
-... che creerà l'intero percorso con un singolo comando. Poi vogliamo installare i nostri file in questa directory che servirà a far funzionare il sito web. Questo potrebbe essere qualcosa che hai fatto tu stesso, o un'applicazione web installabile (in questo caso il wiki che hai scaricato).
-
-Copia i tuoi file nel percorso sopra:
-
-`cp -Rf wiki_source/* /var/www/sub-domains/com.ourownwiki.www/html/`
-
-## <a name="https"></a>Configurazione https - Utilizzo di un certificato SSL
-
-Come detto prima, ogni server web creato in questi giorni _dovrebbe_ funzionare con SSL (AKA secure socket layer).
-
-Questo processo inizia generando una chiave privata e un CSR (che sta per certificate signing request) e poi sottoponendo il CSR all'autorità di certificazione per acquistare il certificato SSL. Il processo di generazione di queste chiavi è piuttosto esteso, quindi ha il suo proprio documento.
-
-Se sei nuovo nella generazione di chiavi per SSL, si prega di dare un'occhiata a: [Generazione di chiavi SSL](../security/ssl_keys_https.md)
-
-Puoi anche usare questo processo alternativo per utilizzare un [certificato SSL da Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md)
-
-### Posizionamento delle chiavi SSL e del certificato
-
-Ora che avete i vostri file di chiavi e certificati, abbiamo bisogno di posizionarli logicamente nel vostro file system sul server web. Come abbiamo visto con il file di configurazione di esempio (sopra), stiamo mettendo i nostri file web in _/var/www/sub-domains/com.ourownwiki.www/html_.
-
-Vogliamo mettere il nostro certificato e i file chiave con il dominio, ma NON nella radice del documento, che in questo caso è la cartella _html_.
-
-Non vogliamo mai che i nostri certificati e chiavi siano potenzialmente esposti al web. Sarebbe un male!
-
-Invece, creeremo una nuova struttura di directory per i nostri file SSL, al di fuori della radice del documento:
-
-`mkdir -p /var/www/sub-domains/com.ourownwiki.www/ssl/{ssl.key,ssl.crt,ssl.csr}`
-
-Se siete nuovi alla sintassi "ad albero" per fare le directory, quello detto sopra è:
-
-"Fate una directory chiamata ssl e poi fate tre directory all'interno chiamate ssl.key, ssl.crt e ssl.csr."
-
-Solo una nota in anticipo: Non è necessario per il funzionamento del server web che il file CSR sia memorizzato nell'albero.
-
-Se avete bisogno di riemettere il certificato da un altro fornitore, ecc., è una buona idea avere una copia memorizzata del file CSR. La domanda diventa dove si può memorizzare in modo che ci si ricordi, e memorizzarlo all'interno dell'albero del tuo sito web è logico.
-
-Supponendo che abbiate nominato i vostri file key, csr e crt (certificato) con il nome del vostro sito, e che li abbiate memorizzati in _/root_, li copiamo nelle rispettive posizioni che abbiamo appena creato:
+Nell'esempio, il caricamento del sito wiki avviene dalla sottodirectory "html" di _your-server-hostname_, il che significa che il percorso creato in _/var/www_ (sopra) avrà bisogno di alcune directory aggiuntive per soddisfare questa esigenza:
 
 ```
-cp /root/com.wiki.www.key /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/
-cp /root/com.wiki.www.csr /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.csr/
-cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
+mkdir -p /var/www/sub-domains/your-server-hostname/html
 ```
 
-### La Configurazione del Sito - https
+Questo crea l'intero percorso con un solo comando. Successivamente, è necessario installare i file in questa directory che servirà a far funzionare il sito web. Può trattarsi di qualcosa che avete realizzato voi stessi o di un'applicazione web installabile (in questo caso un wiki) che avete scaricato.
 
-Una volta che hai generato le tue chiavi e acquistato il certificato SSL, puoi ora andare avanti con la configurazione del sito web utilizzando le tue nuove chiavi.
+Copiare i file nel percorso creato:
 
-Per cominciare, scomponiamo l'inizio del file di configurazione. Per esempio, anche se vogliamo ancora ascoltare sulla porta 80 (http standard) per le richieste in arrivo, non vogliamo che nessuna di queste richieste vada effettivamente sulla porta 80.
+```
+cp -Rf wiki_source/* /var/www/sub-domains/your-server-hostname/html/
+```
 
-Vogliamo che vadano sulla porta 443 (o http secure, meglio conosciuta come SSL). La nostra sezione di configurazione della porta 80 sarà minima:
+## <a name="https"></a>Configurazione `https` con un certificato SSL/TLS
+
+Come già detto, ogni server Web creato al giorno d'oggi _dovrebbe_ funzionare con SSL/TLS (secure socket layer).
+
+Questo processo inizia con la generazione di una chiave privata e di un CSR (acronimo di Certificate Signature Request) e l'invio del CSR all'autorità di certificazione per l'acquisto del certificato SSL/TLS. Il processo di generazione di queste chiavi è piuttosto lungo.
+
+Se non si ha familiarità con la generazione di chiavi SSL/TLS, esaminare: [Generazione di chiavi SSL](../security/ssl_keys_https.md)
+
+È possibile utilizzare anche questo procedimento alternativo, utilizzando un [certificato SSL di Let's Encrypt](../security/generating_ssl_keys_lets_encrypt.md)
+
+### Posizionamento delle chiavi e dei certificati SSL/TLS
+
+Dal momento che si dispone dei file delle chiavi e dei certificati, è necessario posizionarli logicamente nel file system del server web. Come si è visto con il file di configurazione di esempio, i file web si trovano in _/var/www/sub-domains/your-server-hostname/html_.
+
+Si desidera collocare i file del certificato e della chiave nel dominio, ma al di fuori della radice del documento, che in questo caso è la cartella _html_.
+
+Non si vuole mai rischiare di esporre i propri certificati e le proprie chiavi al web. Sarebbe una brutta cosa!
+
+Si creerà invece una struttura di directory per i file SSL/TLS, al di fuori della radice del documento:
+
+```
+mkdir -p /var/www/sub-domains/your-server-hostname/ssl/{ssl.key,ssl.crt,ssl.csr}`
+```
+
+Se non si conosce la sintassi "ad albero" per creare le directory, ciò che si dice sopra è:
+
+"Creare una directory chiamata "ssl" e creare al suo interno tre directory chiamate ssl.key, ssl.crt e ssl.csr"
+
+Una nota in anticipo: La memorizzazione del file CSR (Certificate Signature Request) nella struttura non è necessaria, ma semplifica alcune cose. Se si ha la necessità di riemettere il certificato da un altro fornitore, è buona norma conservare una copia del file CSR. La domanda diventa dove memorizzarlo in modo da ricordarlo, e memorizzarlo all'interno dell'albero del vostro sito web è logico.
+
+Assumendo che i file key, csr e crt (certificati) siano stati denominati con il nome del sito e che siano memorizzati in _/root_, li copieremo nella loro posizione:
+
+```
+cp /root/com.wiki.www.key /var/www/sub-domains/your-server-hostname/ssl/ssl.key/
+cp /root/com.wiki.www.csr /var/www/sub-domains/your-server-hostname/ssl/ssl.csr/
+cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
+```
+
+### La configurazione del sito - `https`
+
+Una volta generate le chiavi e acquistato il certificato SSL/TLS, si può procedere con la configurazione del sito web, utilizzando le chiavi.
+
+Per cominciare, scomponete l'inizio del file di configurazione. Per esempio, anche se si desidera ascoltare la porta 80 (porta `http` standard) per le richieste in arrivo, non si vuole che nessuna di queste richieste vada effettivamente alla porta 80.
+
+Si vuole che vadano sulla porta 443 (o`"http` secure", meglio nota come SSL/TLS o `https`). La sezione di configurazione della porta 80 sarà minima:
+
 
 ```
 <VirtualHost *:80>
-        ServerName www.ourownwiki.com
+        ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
-        Redirect / https://www.ourownwiki.com/
+        Redirect / https://your-server-hostname/
 </VirtualHost>
 ```
 
-Ciò che dice è di inviare qualsiasi richiesta web regolare alla configurazione https. L'opzione apache "Redirect" mostrata sopra, può essere cambiata in "Redirect permanent" una volta che tutti i test sono completi, e si può vedere che il sito funziona come desiderato. Il "Redirect" che abbiamo scelto è un reindirizzamento temporaneo.
+Questo dice di inviare qualsiasi richiesta web regolare alla configurazione `https`. L'opzione "Redirect" di apache mostrata è temporanea. Quando i test sono completati e si può vedere che il sito funziona come previsto, si può cambiare questa opzione in "Redirect permanent."
 
-Un reindirizzamento permanente sarà appreso dai motori di ricerca, e presto, qualsiasi traffico verso il tuo sito che viene dai motori di ricerca andrà solo alla porta 443 (https) senza raggiungere prima la porta 80 (http).
+Un reindirizzamento permanente insegnerà ai motori di ricerca e presto tutto il traffico verso il vostro sito proveniente dai motori di ricerca andrà solo sulla porta 443`(https`) senza toccare prima la porta 80`(http`).
 
-Successivamente, dobbiamo definire la parte https del file di configurazione. La sezione http è duplicata qui per chiarezza per mostrare che tutto questo avviene nello stesso file di configurazione:
+Successivamente, è necessario definire la parte `https` del file di configurazione:
 
 ```
 <VirtualHost *:80>
-        ServerName www.ourownwiki.com
+        ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
-        Redirect / https://www.ourownwiki.com/
+        Redirect / https://your-server-hostname/
 </VirtualHost>
 <Virtual Host *:443>
-        ServerName www.ourownwiki.com
+        ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.ourownwiki.www/html
+        DocumentRoot /var/www/sub-domains/your-server-hostname/html
         DirectoryIndex index.php index.htm index.html
         Alias /icons/ /var/www/icons/
-        # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.ourownwiki.www/cgi-bin/
+        # ScriptAlias /cgi-bin/ /var/www/sub-domains/your-server-hostname/cgi-bin/
 
-    CustomLog "/var/log/httpd/com.ourownwiki.www-access_log" combined
-    ErrorLog  "/var/log/httpd/com.ourownwiki.www-error_log"
+    CustomLog "/var/log/`http`d/your-server-hostname-access_log" combined
+    ErrorLog  "/var/log/`http`d/your-server-hostname-error_log"
 
         SSLEngine on
         SSLProtocol all -SSLv2 -SSLv3 -TLSv1
@@ -189,11 +219,11 @@ Successivamente, dobbiamo definire la parte https del file di configurazione. La
         SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384
 :EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS
 
-        SSLCertificateFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/com.wiki.www.crt
-        SSLCertificateKeyFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/com.wiki.www.key
-        SSLCertificateChainFile /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/your_providers_intermediate_certificate.crt
+        SSLCertificateFile /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/com.wiki.www.crt
+        SSLCertificateKeyFile /var/www/sub-domains/your-server-hostname/ssl/ssl.key/com.wiki.www.key
+        SSLCertificateChainFile /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/your_providers_intermediate_certificate.crt
 
-        <Directory /var/www/sub-domains/com.ourownwiki.www/html>
+        <Directory /var/www/sub-domains/your-server-hostname/html>
                 Options -ExecCGI -Indexes
                 AllowOverride None
 
@@ -206,25 +236,28 @@ Successivamente, dobbiamo definire la parte https del file di configurazione. La
 </VirtualHost>
 ```
 
-Quindi, scomponendo ulteriormente questa configurazione, dopo le porzioni normali della configurazione e fino alla porzione SSL:
+Perciò, dopo le normali porzioni di configurazione, si passa alla sezione SSL/TLS:
 
-* SSLEngine on - dice semplicemente di usare SSL
-* SSLProtocol all -SSLv2 -SSLv3 -TLSv1 - dice di utilizzare tutti i protocolli disponibili, tranne quelli in cui sono stati trovate vulnerabilità. Dovresti ricercare periodicamente quali protocolli sono attualmente accettabili per l'uso.
-* SSLHonorCipherOrder on - si tratta della prossima linea che riguarda le suite di cifratura, e dice di occuparsi di loro nell'ordine dato. Questa è un'altra area dove si dovrebbe rivedere periodicamente le suite di cifratura che si desidera includere
-* SSLCertificateFile - è esattamente ciò che sembra, il file del certificato appena acquistato e applicato e la sua posizione
-* SSLCertificateKeyFile - la chiave che hai generato quando hai creato la tua richiesta di firma del certificato
-* SSLCertificateChainFile - il certificato del tuo fornitore di certificati, spesso chiamato certificato intermedio.
+* SSLEngine on - dice di utilizzare SSL/TLS
+* SSLProtocol all -SSLv2 -SSLv3 -TLSv1 - dice di usare tutti i protocolli disponibili, tranne quelli con vulnerabilità. È necessario ricercare periodicamente i protocolli attualmente accettabili.
+* SSLHonorCipherOrder on - si occupa della riga successiva relativa alle suite di cifratura e dice di trattarle nell'ordine indicato. Anche in questo caso la revisione delle suite di cifratura dovrebbe avvenire periodicamente.
+* SSLCertificateFile - è esattamente quello che dice: il file del certificato appena acquistato e applicato e il suo percorso
+* SSLCertificateKeyFile - la chiave generata durante la creazione della richiesta di firma del certificato
+* SSLCertificateChainFile - il certificato del fornitore di certificati, spesso chiamato certificato intermedio
 
-Poi, mettete tutto live e se non ci sono errori all'avvio del servizio web e se andando al vostro sito web si rivela con HTTPS senza errori, allora siete pronti a partire.
+Quindi, prendete tutto dal vivo e se non ci sono errori all'avvio del servizio web e se l'accesso al vostro sito web si rivela `https` senza errori, siete pronti a partire.
 
-## Portare Tutto Live
+## Portare in diretta
 
-Ricorda che il nostro file *httpd.conf* include */etc/httpd/sites-enabled* alla fine del file, quindi quando `httpd` si riavvia, caricherà qualsiasi file di configurazione da quella directory *sites-enabled*. Il fatto è che tutti i nostri file di configurazione sono in *sites-available*.
+Ricordate che il nostro file *httpd.conf* include */etc/httpd/sites-enabled* alla fine del file. Quando `httpd` si riavvia, caricherà i file di configurazione presenti nella cartella *sites-enabled*. Il fatto è che tutti i nostri file di configurazione sono in *sites-available*.
 
-Questo è per design, in modo che possiamo facilmente rimuovere le cose nel caso in cui `httpd` non riesca a riavviarsi. Quindi, per abilitare il nostro file di configurazione, dobbiamo creare un link simbolico a quel file in *sites-enabled* e poi avviare o riavviare il servizio web. Per fare questo, usiamo questo comando:
+Questo è stato progettato in modo da poter rimuovere le cose quando o se `httpd` non si riavvia. Per abilitare il nostro file di configurazione, è necessario creare un collegamento simbolico a tale file in *sites-enabled* e avviare o riavviare il servizio web. Per farlo, si utilizza questo comando:
 
-`ln -s /etc/httpd/sites-available/com.ourownwiki.www /etc/httpd/sites-enabled/`
+```
+ln -s /etc/httpd/sites-available/your-server-hostname /etc/httpd/sites-enabled/
+```
+
 
 Questo creerà il collegamento al file di configurazione in *sites-enabled*, proprio come vogliamo.
 
-Ora basta avviare httpd con `systemctl start httpd`. O riavviarlo se è già in esecuzione: `systemctl restart httpd`, e supponendo che il servizio web si riavvii, ora si può andare e fare alcuni test sul tuo nuovo sito.
+Ora basta avviare `httpd` con `systemctl start httpd`. Oppure riavviatelo se è già in funzione: `systemctl restart httpd` e, supponendo che il servizio web si riavvii, potete andare a fare dei test sul vostro sito.

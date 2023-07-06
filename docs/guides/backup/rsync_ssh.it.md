@@ -13,11 +13,11 @@ tags:
 
 Ecco tutto ciò di cui avrete bisogno per capire e seguire questa guida:
 
-* Una macchina con Rocky Linux
+* Una macchina con Rocky Linux.
 * Essere in grado di modificare i file di configurazione dalla riga di comando.
 * Conoscere l'uso di un editor a riga di comando (qui usiamo _vi_, ma potete usare il vostro editor preferito).
 * È necessario avere accesso a root e, idealmente, essere registrati come utente root nel proprio terminale
-* Coppia di chiavi SSH Pubbliche e Private
+* Coppia di chiavi SSH Pubbliche e Private.
 * Essere in grado di creare un semplice script bash, utilizzando vi o l'editor preferito, e di testarlo.
 * In grado di utilizzare _crontab_ per automatizzare l'esecuzione dello script.
 
@@ -49,7 +49,7 @@ Prima di lasciarsi prendere la mano con l'impostazione di uno script, è necessa
 * -l, mantenere i collegamenti simbolici come collegamenti simbolici
 * -p, preservare le autorizzazioni
 * -t, preservare i tempi di modifica
-* -g, preservare il gruppo-
+* -g, preservare il gruppo
 * -o, preservare il proprietario
 * -D, conservare i file di dispositivo
 
@@ -58,7 +58,7 @@ Le uniche altre opzioni da specificare in questo esempio sono:
 * -e, specificare la shell remota da utilizzare
 * --delete, che dice che se la directory di destinazione contiene un file che non esiste nella sorgente, bisogna eliminarlo
 
-Successivamente, è necessario impostare uno script creando un file per esso. (Anche in questo caso, utilizzate il vostro editor preferito se non avete familiarità con vi) Per creare il file, basta usare questo comando:
+Successivamente, dobbiamo impostare uno script creando un file per esso (ancora una volta, utilizzate il vostro editor preferito se non avete familiarità con vi). Per creare il file, basta usare questo comando:
 
 `vi /usr/local/sbin/rsync_dirs`
 
@@ -68,14 +68,14 @@ E poi renderlo eseguibile:
 
 ## Impostazioni
 
-Ora, lo scripting lo rende super semplice e sicuro, in modo da poterlo testare senza timore. Si noti che l'URL utilizzato di seguito è "Soure.domain.com". Sostituirlo con il dominio o l'indirizzo IP del proprio computer di origine, entrambi funzionano. Ricordate inoltre che in questo esempio lo script viene creato sul computer "di destinazione", perché il file viene estratto dal computer di origine:
+Ora, lo scripting lo rende super semplice e sicuro, in modo da poterlo testare senza timore. Si noti che l'URL utilizzato di seguito è "source.domain.com". Sostituirlo con il dominio o l'indirizzo IP del proprio computer di origine, entrambi funzionano. Ricordate inoltre che in questo esempio lo script viene creato sul computer "di destinazione", perché il file viene estratto dal computer di origine:
 
 ```
 #!/bin/bash
 /usr/bin/rsync -ae ssh --delete root@source.domain.com:/home/your_user /home
 ```
 
-!!! attention "Attenzione"
+!!! warning "Attenzione"
 
     In questo caso, si presume che la propria home directory non esista sul computer di destinazione. **Se esiste, si consiglia di eseguire un backup prima di eseguire lo script!**
 
@@ -148,11 +148,11 @@ In questo modo si ottiene il cron, che può avere un aspetto simile a questo:
 #
 # m h  dom mon dow   command
 ```
-Il cron è impostato su un orologio di 24 ore, quindi la voce da inserire in fondo al file è la seguente:
+Il cron è impostato su un orologio di 24 ore, quindi la voce da inserire in fondo al file è:
 
 `00 23   *  *  *    /usr/local/sbin/rsync_dirs`
 
-Il comando deve essere eseguito alle ore 00, 23, 100, ogni giorno, ogni mese e ogni giorno della settimana. Salvare la voce di cron con:
+Questo comando deve essere eseguito alle 00 minuti, 23 ore, tutti i giorni, tutti i mesi e tutti i giorni della settimana. Salvare la voce di cron con:
 
 `Shift : wq!`
 

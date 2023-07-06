@@ -12,7 +12,7 @@ tags:
 
 ## Pre-requisiti
 
-Come specificato sul sito NvChad è necessario assicurarsi di soddisfare i seguenti requisiti:
+Come specificato sul sito di NvChad, è necessario assicurarsi che il sistema soddisfi i seguenti requisiti:
 
 - [Neovim 0.8.3](https://github.com/neovim/neovim/releases/tag/v0.8.3).
 - [Nerd Font](https://www.nerdfonts.com/) Impostato nel tuo emulatore di terminale.

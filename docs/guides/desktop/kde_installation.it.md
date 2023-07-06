@@ -2,7 +2,7 @@
 title: Installazione Di Kde
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 9.0
+tested_with: 9.0
 tags:
   - desktop
   - kde

@@ -18,4 +18,4 @@ I file di sostituzione si trovano in https://git.rockylinux.org/patch/PACKAGE/RO
 Nota: Usa spazi, non tabulazioni. Quando srpmproc importerà il pacchetto in Rocky, si vedrà il lavoro svolto in https://git.rockylinux.org/patch/PACKAGE e applicherà le patch di debranding memorizzate leggendo i file di configurazione sotto ROCKY/CFG/*.cfg
 
 
-da https://wiki.rockylinux.org/en/team/development/debranding/how-to
+da [pagina wiki di debranding](https://wiki.rockylinux.org/team/release_engineering/debranding/)

@@ -56,7 +56,7 @@ Successivamente, come utente non privilegiato (lxdadmin), è necessario impostar
 lxc remote add lxd-snapshot
 ```
 
-Visualizza il certificato da accettare. Accettate e vi verrà richiesta la password. Si tratta della "trust password" impostata durante la fase di inizializzazione di LXD. Si spera che teniate traccia di tutte queste password in modo sicuro. Se si inserisce la password, si riceve questo messaggio:
+Visualizza il certificato da accettare. Accettate e vi verrà richiesta la password. Si tratta della "trust password" impostata durante la fase di inizializzazione di LXD. Si spera che teniate traccia di tutte queste password in modo sicuro. Quando si inserisce la password, si riceve questo messaggio:
 
 ```
 Client certificate stored at server:  lxd-snapshot
@@ -138,7 +138,7 @@ Eseguire questa operazione per ogni snapshot sul server lxd-snapshot. Lo "0" nel
 
 ## Automatizzazione del processo di snapshot
 
-È fantastico poter creare snapshot quando è necessario, ma a volte _è_ necessario creare manualmente uno snapshot. Si potrebbe anche copiare manualmente su lxd-snapshot. Ma per tutte le altre volte, in particolare per molti container in esecuzione sul server lxd-primary, l'**ultima** cosa da fare è passare un pomeriggio a cancellare gli snapshot sul server snapshot, creare nuovi snapshot e inviarli al server snapshot. Per la maggior parte delle operazioni, è preferibile automatizzare il processo.
+È fantastico poter creare snapshot quando è necessario, ma a volte _è_ necessario creare manualmente uno snapshot. Si potrebbe anche copiare manualmente su lxd-snapshot. Ma per tutte le altre volte, in particolare per molti container in esecuzione sul server lxd-primario, l'**ultima** cosa da fare è passare un pomeriggio a cancellare le istantanee sul server snapshot, creare nuove istantanee e inviarle al server snapshot. Per la maggior parte delle operazioni, è preferibile automatizzare il processo.
 
 La prima cosa da fare è pianificare un processo per automatizzare la creazione di snapshot su lxd-primary. Questa operazione viene eseguita per ogni container sul server lxd-primary. Una volta completata, si occuperà di questo aspetto in futuro. Per farlo, si utilizza la seguente sintassi. Si noti la somiglianza con una voce di crontab per il timestamp:
 

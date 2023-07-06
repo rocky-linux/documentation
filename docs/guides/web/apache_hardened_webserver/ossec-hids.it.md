@@ -1,8 +1,8 @@
 ---
-title: Intrustion Detection System (HIDS) basato sull'host
+title: Sistema di rilevamento delle intrusioni basato su host (HIDS)
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5
+tested_with: 8.8, 9.2
 tags:
   - web
   - security
@@ -10,70 +10,82 @@ tags:
   - hids
 ---
 
-# Sistema Intrusion Detection System (HIDS) basato sull'Host
+# Sistema di rilevamento delle intrusioni basato su host (HIDS)
 
 ## Prerequisiti
 
-* Competenza con un editor di testo a riga di comando (stiamo usando _vi_ in questo esempio)
-* Un livello di comfort elevato con l'immissione di comandi dalla riga di comando, registri di visualizzazione e altri compiti generali di amministratore di sistema
-* Una comprensione che l'installazione di questo strumento richiede anche il monitoraggio delle azioni e la messa a punto del vostro ambiente
-* Tutti i comandi sono eseguiti come utente root o usando sudo
+* Conoscenza di un editor di testo a riga di comando (in questo esempio si utilizza `vi` )
+* Un buon livello di confidenza con l'emissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
+* La consapevolezza che l'installazione di questo strumento richiede anche il monitoraggio delle azioni e la messa a punto dell'ambiente
+* L'utente root esegue tutti i comandi o un utente regolare con `sudo`
 
 ## Introduzione
 
-_ossec-hids_ è un sistema di rilevamento delle intrusioni nell'host che offre passi automatici di azione-risposta per aiutare a mitigare gli attacchi di intrusione nell'host. È solo un possibile componente di una configurazione rinforzata del server web Apache e può essere utilizzato con o senza altri strumenti.
+`ossec-hids` è un sistema di rilevamento delle intrusioni all'host che offre passaggi automatici di azione-risposta per aiutare a mitigare gli attacchi. È solo uno dei possibili elementi di una configurazione di server web Apache protetta. Si può usare con o senza altri strumenti.
 
-Se volete usare questo insieme ad altri strumenti per il rinforzamento, fate riferimento al documento [Apache Web Server Rinforzato](index.md). Il presente documento utilizza anche tutte le ipotesi e le convenzioni delineate in tale documento originale, quindi è una buona idea rivederlo prima di continuare.
+Se si desidera utilizzare questo strumento insieme ad altri strumenti per l'hardening, fare riferimento al documento [Apache Hardened Web Server](index.md). Questo documento utilizza anche tutti i presupposti e le convenzioni delineati nel documento originale. È buona norma rivederlo prima di continuare.
 
-## Installare il Repository di Atomicorp
+## Installazione del repository di Atomicorp
 
-Per installare _ossec-hids_, abbiamo bisogno di un repository di terze parti da Atomicorp. Atomicorp offre anche una versione supportata a prezzi ragionevoli per coloro che desiderano un supporto professionale se si trovano in difficoltà.
+Per installare `ossec-hids`, abbiamo bisogno di un repository di terze parti di Atomicorp. Atomicorp offre anche una versione supportata a pagamento, a prezzi ragionevoli, per coloro che desiderano un supporto professionale in caso di problemi.
 
-Se preferisci il supporto, e hai il budget per farlo, dai un'occhiata alla versione a pagamento di [Atomicorp _ossec-hids_](https://atomicorp.com/atomic-enterprise-ossec/). Poiché avremo bisogno solo di alcuni pacchetti dal repository gratuito di Atomicorp, modificheremo il repository dopo averlo scaricato.
+Se si preferisce l'assistenza e si dispone di un budget sufficiente, si consiglia di provare la versione [ `ossec-hids` a pagamento di Atomicorp](https://atomicorp.com/atomic-enterprise-ossec/). Avrete bisogno di alcuni pacchetti dal repository gratuito di Atomicorp. Dopo il download, si cambierà il repository.
 
-Scaricare il repository richiede _wget_ quindi installalo prima se non ce l'hai. Installare anche il repository EPEL se non lo avete già installato, con:
+Il download del repository richiede `wget`. Installatelo prima e installate il repository EPEL, se non lo avete già installato, con:
 
-`dnf install wget epel-release`
+```
+dnf install wget epel-release
+```
 
-Ora scarica e abilita il repository gratuito di Atomicorp:
+Scaricare e attivare il repository gratuito di Atomicorp:
 
-`wget -q -O - http://www.atomicorp.com/installers/atomic | sh`
+```
+wget -q -O - http://www.atomicorp.com/installers/atomic | sh
+```
 
-Questo script ti chiederà di accettare i termini. Digita "yes" o premi 'Invio' per accettare "yes" come predefinito.
+Questo script vi chiederà di accettare i termini. Immettere "yes" o <kbd>Invio</kbd> per accettare l'impostazione predefinita.
 
-Successivamente, vi chiederà se volete abilitare il repository di default, e di nuovo vogliamo accettare il default o digitare "yes".
+Successivamente, verrà chiesto se si desidera abilitare il repository per impostazione predefinita e, anche in questo caso, si potrà accettare l'impostazione predefinita o inserire "yes".
 
-### Configurare il Repository Atomicorp
+### Configurazione del repository Atomicorp
 
-Abbiamo bisogno del repository atomic solo per un paio di pacchetti. Per questo motivo, modificheremo il repository e specificheremo solo i pacchetti da scegliere:
+Il repository atomic è necessario solo per un paio di pacchetti. Per questo motivo, si cambierà il repository e si specificheranno solo i pacchetti necessari:
 
-`vi /etc/yum.repos.d/atomic.repo`
+```
+vi /etc/yum.repos.d/atomic.repo
+```
 
-E poi aggiungete questa linea sotto "enabled = 1" nella sezione superiore:
+Aggiungete questa riga sotto "enabled = 1" nella sezione superiore:
 
-`includepkgs = ossec* inotify-tools`
+```
+includepkgs = ossec* GeoIP* inotify-tools
+```
 
-Questo è l'unico cambiamento di cui abbiamo bisogno, quindi salvate le vostre modifiche e uscite dal repository, (in vi sarebbe <kbd>esc</kbd> per entrare in modalità comando, poi `: wq` per salvare e uscire).
+Questo è l'unico cambiamento necessario. Salvare le modifiche e uscire dal repository (in `vi` è <kbd>esc</kbd> per entrare in modalità comando, poi <kbd>SHIFT+</kbd><kbd>:</kbd><kbd>+wq</kbd> per salvare e uscire).
 
-Questo limita il repository di Atomicorp ad installare e aggiornare solo questi pacchetti.
+Questo limita il repository Atomicorp ad installare e aggiornare solo questi pacchetti.
 
-## Installazione ossec-hids
+## Installazione di `ossec-hids`
 
-Ora che abbiamo il repository scaricato e configurato, dobbiamo installare i pacchetti:
+Una volta configurato il repository, è necessario installare i pacchetti:
 
-`dnf install ossec-hids-server ossec-hids inotify-tools`
+```
+dnf install ossec-hids-server ossec-hids inotify-tools
+```
 
-### Configurare ossec-hids
+### Configurazione di `ossec-hids`
 
-Ci sono una serie di modifiche che devono essere apportate al file di configurazione _ossec-hids_. La maggior parte di queste hanno a che fare con le notifiche dell'amministratore del server e le posizioni del registro.
+La configurazione predefinita è in uno stato che richiede molte modifiche. La maggior parte di queste ha a che fare con la notifica dell'amministratore del server e la posizione dei registri.
 
-_ossec-hids_ guarda i registri per provare a determinare se c'è un attacco, e se applicare la mitigazione. Invia anche rapporti all'amministratore del server, sia solo come notifica, o che una procedura di mitigazione è stata attivata in base a ciò che _ossec-hids_ ha visto.
+`ossec-hids` esamina i log per cercare di decidere se è in corso un attacco e se applicare una mitigazione. Invia inoltre rapporti all'amministratore del server con una notifica o un messaggio relativo a una procedura di mitigazione avviata in base a quanto visto da `ossec-hids`.
 
-Per modificare il file di configurazione digita:
+Per modificare il file di configurazione, immettere:
 
-`vi /var/ossec/etc/ossec.conf`
+```
+vi /var/ossec/etc/ossec.conf
+```
 
-Scomponiamo questa configurazione mostrando i cambiamenti alle righe e spiegandoli man mano:
+La configurazione viene smontata mostrando le modifiche in linea e spiegandole:
 
 ```
 <global>
@@ -88,13 +100,13 @@ Scomponiamo questa configurazione mostrando i cambiamenti alle righe e spiegando
 </global>
 ```
 
-Per impostazione predefinita, le notifiche email sono disattivate e la configurazione `<global>` è fondamentalmente vuota. Vorrai attivare la notifica e-mail e identificare le persone che dovrebbero ricevere i rapporti via mail per indirizzo e-mail.
+Per impostazione predefinita, le notifiche e-mail sono disattivate e la configurazione `<global>` è sostanzialmente vuota. Si desidera attivare la notifica via e-mail e identificare le persone che riceveranno i rapporti via e-mail in base al loro indirizzo di posta elettronica.
 
-La sezione `<smtp_server>` attualmente mostra localhost, tuttavia puoi specificare un relay di un server email se preferisci, o semplicemente configurare le impostazioni email di postfix per l'host locale seguendo [questa guida](../../email/postfix_reporting.md).
+La sezione `<smtp_server>` attualmente mostra localhost, tuttavia è possibile specificare un relay del server di posta elettronica, se si preferisce, o configurare le impostazioni di postfix per l'host locale seguendo [questa guida](../../email/postfix_reporting.md).
 
-È necessario impostare l'indirizzo "from" in modo da poter trattare con i filtri SPAM sul tuo server di posta elettronica che potrebbe vedere questa email come SPAM. Per evitare di essere inondato di e-mail, imposta la segnalazione delle e-mail a 1 all'ora. Puoi espandere questo o rimarcare questo comando se vuoi mentre stai iniziando con _ossec-hids_ e hai bisogno di vedere le cose velocemente.
+È necessario impostare l'indirizzo e-mail "from". È necessario per far fronte ai filtri SPAM del vostro server di posta elettronica, che potrebbero vedere questa e-mail come SPAM. Per evitare di essere sommersi dalle e-mail, impostate la segnalazione delle e-mail su 1 all'ora. È possibile espandere o eliminare questo comando quando si sta iniziando a usare `ossec-hids` e si ha bisogno di vedere le cose rapidamente.
 
-Le sezioni `<white_list>` si occupano dell'IP localhost del server e dell'indirizzo "pubblico" (ricordate, stiamo usando un indirizzo privato per la dimostrazione) del firewall, da cui appariranno tutte le connessioni sulla rete fidata. Puoi aggiungere più voci `<white_list>` secondo necessità.
+Le sezioni `<white_list>` si occupano dell'IP localhost del server e dell'indirizzo IP "pubblico" (ricordate la nostra sostituzione di un indirizzo IP privato) del firewall, dal quale verranno visualizzate tutte le connessioni sulla rete fidata. È possibile aggiungere molte voci di `<white_list>`.
 
 ```
 <syscheck>
@@ -104,11 +116,11 @@ Le sezioni `<white_list>` si occupano dell'IP localhost del server e dell'indiri
 </syscheck>
 ```
 
-La sezione `<syscheck>` guarda a una lista di directory da includere ed escludere quando si cercano file compromessi. Pensate a questo come a un altro strumento per controllare e proteggere il file system dalle vulnerabilità. Dovresti rivedere la lista delle directory e vedere se ce ne sono altre che vuoi aggiungere nella sezione `<syscheck>`.
+La sezione `<syscheck>` esamina un elenco di directory da includere ed escludere quando si cercano file compromessi. Si tratta di un ulteriore strumento per controllare e proteggere il file system dalle vulnerabilità. È necessario rivedere l'elenco delle directory e aggiungerne altre alla sezione `<syscheck>`.
 
-La sezione `<rootcheck>` appena sotto la sezione `<syscheck>` è ancora un altro strato di protezione. Le posizioni che sia `<syscheck>` che `<rootcheck>` guardano sono modificabili, ma probabilmente non avrete bisogno di fare alcun cambiamento.
+La sezione `<rootcheck>`, appena sotto la sezione `<syscheck>`, è un ulteriore livello di protezione. Le posizioni che `<syscheck>` e `<rootcheck>` osservano sono modificabili, ma probabilmente non sarà necessario apportarvi alcuna modifica.
 
-Cambiare il `<frequency>` per l'esecuzione `<rootcheck>` a una volta ogni 24 ore (86400 secondi) dal valore predefinito di 22 ore è un cambiamento opzionale mostrato sopra.
+La modifica della `<frequency>` per l'esecuzione di `<rootcheck>` a una volta ogni 24 ore (86400 secondi) rispetto all'impostazione predefinita di 22 ore è una modifica opzionale indicata.
 
 ```
 <localfile>
@@ -121,13 +133,13 @@ Cambiare il `<frequency>` per l'esecuzione `<rootcheck>` a una volta ogni 24 ore
 </localfile>
 ```
 
-La sezione `<localfile>` si occupa delle posizioni dei log che vogliamo guardare. Ci sono già delle voci per i log _syslog_ e _secure_ di cui devi solo verificare il percorso, ma tutto il resto può essere lasciato com'è.
+La sezione `<localfile>` riguarda la posizione dei log che si desidera osservare. Sono già presenti voci per il _syslog_ e i log _sicuri_, di cui si deve solo verificare il percorso, ma tutto il resto può rimanere.
 
-Abbiamo comunque bisogno di aggiungere le posizioni dei log di Apache, e vogliamo aggiungerle come wild_cards, perché potremmo avere un mucchio di log per un sacco di clienti web diversi. Quel formato è mostrato sopra.
+È necessario aggiungere le posizioni dei log di Apache e aggiungerle come wild card, perché si potrebbe avere una serie di log per molti clienti web diversi.
 
 ```
   <command>
-    <name>firewall-drop</name>
+    <name>firewalld-drop</name>
     <executable>firewall-drop.sh</executable>
     <expect>srcip</expect>
   </command>
@@ -136,26 +148,24 @@ Abbiamo comunque bisogno di aggiungere le posizioni dei log di Apache, e vogliam
     <command>firewall-drop</command>
     <location>local</location>
     <level>7</level>
-    <timeout>1200</timeout>
   </active-response>
 ```
 
-Infine, verso la fine del file dobbiamo aggiungere la sezione di risposta attiva. Questa sezione contiene due parti, una sezione `<command>` e la sezione `<active-response>`.
+Infine, verso la fine del file è necessario aggiungere la sezione di risposta attiva. Questa sezione ha due parti: la sezione `<command>` e la sezione `<active-response>`.
 
-Lo script "firewall-drop" esiste già nel percorso ossec.  Dice a _ossec\_hids_ che se viene raggiunto un livello 7, aggiunge una regola del firewall per bloccare l'indirizzo IP per 20 minuti. Ovviamente, è possibile modificare il valore di timeout. Basta ricordare che i tempi dei file di configurazione sono tutti in secondi.
+Lo script "firewall-drop" esiste già nel percorso `ossec-hids`. Indica a `ossec-hids` che se si verifica un livello 7, bisogna aggiungere una regola del firewall per bloccare l'indirizzo IP.
 
-Una volta fatte tutte le modifiche di configurazione necessarie, basta abilitare e avviare il servizio. Se tutto inizia correttamente, dovreste essere pronti ad andare avanti:
+Una volta apportate tutte le modifiche di configurazione necessarie, abilitare e avviare il servizio. Se tutto si avvia correttamente, si è pronti a proseguire:
 
-`systemctl enable ossec-hids`
+```
+systemctl enable ossec-hids
+systemctl start ossec-hids
+```
 
-E poi:
-
-`systemctl start ossec-hids`
-
-Ci sono molte opzioni per il file di configurazione _ossec-hids_. Potete scoprire queste opzioni visitando il [sito della documentazione ufficiale](https://www.ossec.net/docs/).
+Esistono molte opzioni per il file di configurazione `ossec-hids`. È possibile conoscere queste opzioni visitando il [sito ufficiale della documentazione](https://www.ossec.net/docs/).
 
 ## Conclusione
 
-_ossec-hids_ è solo un elemento di un server web rinforzato Apache. Può essere utilizzato con altri strumenti per ottenere una migliore sicurezza per il vostro sito web.
+`ossec-hids` è solo uno degli elementi di un server web Apache protetto. È possibile ottenere una maggiore sicurezza selezionandola con altri strumenti.
 
-Mentre l'installazione e la configurazione sono relativamente semplici, troverete che questa **non è** un'applicazione "installa e dimentica". Dovrete sintonizzarlo sul vostro ambiente per ottenere la massima sicurezza con il minor numero di risposte false-positive.
+Sebbene l'installazione e la configurazione siano relativamente semplici, **non** si tratta di un'applicazione "installa e dimentica". È necessario adattarlo al proprio ambiente per ottenere la massima sicurezza con il minor numero di risposte false positive.

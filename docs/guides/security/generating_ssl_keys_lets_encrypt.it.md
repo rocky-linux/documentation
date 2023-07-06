@@ -1,8 +1,8 @@
 ---
 title: Generazione di Chiavi SSL - Let's Encrypt
 author: Steven Spencer
-contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Franco Colussi
-tested with: 8.5
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Andrew Thiesen, Franco Colussi
+tested_with: 8.5
 tags:
   - security
   - ssl
@@ -73,7 +73,7 @@ Potete sempre installare entrambi i moduli server se necessario, naturalmente.
 
 !!! Note "Nota"
 
-    Una versione precedente di questa guida richiedeva la versione del pacchetto snap di certbot, in quanto ritenuta necessaria all'epoca. Le versioni RPM sono state ritestate di recente, e ora funzionano.
+    Una versione precedente di questa guida richiedeva la versione del pacchetto snap di _certbot_, in quanto ritenuta necessaria all'epoca. Le versioni RPM sono state ritestate di recente, e ora funzionano. Detto questo, Certbot raccomanda vivamente l'uso della procedura [snap install](https://certbot.eff.org/instructions?ws=apache&os=centosrhel8). Sia Rocky Linux 8 che 9 hanno _certbot_ disponibile in EPEL, quindi qui mostriamo questa procedura. Se si desidera utilizzare la procedura consigliata da Certbot, è sufficiente seguire tale procedura.
 
 
 ## Ottenere il Certificato Let's Encrypt per il Server Apache
@@ -163,7 +163,7 @@ IMPORTANT NOTES:
 
 ## La Configurazione del Sito - https
 
-Applicare il file di configurazione al nostro sito è leggermente diverso rispetto a quando usiamo un certificato SSL acquistato da un altro fornitore (e se non lasciamo che certbot lo faccia automaticamente).
+L'applicazione del file di configurazione al nostro sito è leggermente diversa rispetto al caso in cui si utilizzi un certificato SSL acquistato da un altro fornitore (e se non si lascia che _certbot_ lo faccia automaticamente).
 
 Il file certificate e chain sono inclusi in un unico file PEM (Privacy Enhanced Mail). Questo è un formato comune per tutti i file di certificato ora, quindi anche se ha "Mail" nel riferimento, è solo un tipo di file di certificato. Per illustrare il file di configurazione, lo mostreremo nella sua interezza e poi descriveremo cosa sta succedendo:
 
@@ -219,9 +219,9 @@ Ecco cosa sta succedendo sopra. Si consiglia di rivedere le impostazioni [Impost
 
 Una volta che hai apportato tutte le modifiche, riavvia semplicemente _httpd_ e se parte testa il tuo sito per assicurarti di avere un file di certificato valido. Se è così, siete pronti a passare al passo successivo: l'automazione.
 
-## Usare Certbot con Nginx
+## Utilizzo di _certbot_ con Nginx
 
-Una nota veloce: usare certbot con Nginx è praticamente lo stesso che con Apache. Ecco la versione breve della guida:
+Una breve nota: l'uso di _certbot_ con Nginx è praticamente lo stesso di Apache. Ecco la versione breve della guida:
 
 Eseguite questo comando per iniziare:
 
@@ -238,7 +238,7 @@ Ti verranno poste un paio di domande come mostrato sopra, incluso il tuo indiriz
 
 Se hai più di un sito, premi il numero che corrisponde al sito per il quale vuoi un certificato.
 
-Diamo per scontato che voi **stiate** utilizzando questa procedura, quindi recupereremo solo il certificato. I risultati saranno un po' diversi, ovviamente. Se avete un file di configurazione di Nginx semplice come questo:
+Diamo per scontato che voi **stiate** utilizzando questa procedura, quindi recupereremo solo il certificato. I risultati saranno un po' diversi, ovviamente. Se si dispone di un file di configurazione di Nginx molto semplice che assomiglia a questo:
 
 ```
 server {
@@ -255,7 +255,7 @@ server {
 
 ```
 
-Dopo che certbot avrà finito, sembrerà un po' a questo:
+Dopo che _certbot_ avrà finito di lavorare, il risultato sarà simile a questo:
 
 ```
 server {
@@ -287,9 +287,9 @@ server {
 }
 ```
 
-A seconda di un paio di fattori (per esempio, se stai usando Nginx come reverse proxy), potresti aver bisogno di addentrarti nel nuovo file di configurazione per sistemare alcune cose che certbot non gestisce perfettamente da solo.
+A seconda di un paio di cose (per esempio, se si usa Nginx come reverse proxy), potrebbe essere necessario immergersi nel nuovo file di configurazione per sistemare alcune cose che _certbot_ non gestirà perfettamente da solo.
 
-Oppure nella maniera più difficile scrivere il vostro file di configurazione.
+Oppure scrivere il proprio file di configurazione la via più difficile.
 ## Automatizzare il Rinnovo del Certificato Let's Encrypt
 
 La parte interessante dell'installazione di _certbot_ è che il certificato Let's Encrypt si rinnova automaticamente. Non c'è bisogno di creare un processo per farlo. Abbiamo bisogno di testare il rinnovo con:
@@ -326,15 +326,16 @@ Congratulations, all simulated renewals succeeded:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
-La [documentazione _certbot_](https://certbot.eff.org/lets-encrypt/centosrhel8-apache.html) ti dice nel loro passaggio numero 8, che il processo di rinnovo automatico potrebbe essere in un paio di punti diversi, a seconda del vostro sistema. Per un'installazione Rocky Linux, troverete il processo utilizzando:
+Il comando per rinnovare _certbot_ può essere trovato utilizzando uno dei seguenti metodi:
+
+* Elencando il contenuto di `/etc/crontab/`
+* Elencando il contenuto di `/etc/cron.*/*`
+* Eseguendo `systemctl list-timers`
+
+In questo esempio, stiamo usando l'ultima opzione e possiamo vedere che _certbot_ esiste e che è stato installato con la procedura `snap`:
 
 ```bash
-systemctl list-timers
-```
-
-Che vi dà una lista di processi, uno dei quali sarà per _certbot_:
-
-```
+sudo systemctl list-timers
 Sat 2021-04-03 07:12:00 UTC  14h left   n/a                          n/a          snap.certbot.renew.timer     snap.certbot.renew.service
 ```
 

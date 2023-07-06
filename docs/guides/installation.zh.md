@@ -1,8 +1,7 @@
 ---
 Title: 安装 Rocky Linux 9
-author: Wale Soyinka
-contributors: Steven Spencer
-updated: 2023-06-13
+author: 韦尔·索因卡
+contributors: 史蒂文·斯宾塞
 ---
 
 # 安装 Rocky Linux 9
@@ -135,7 +134,7 @@ _安装摘要_ 屏幕上的 <kbd>语言支持</kbd> 选项使您能够指定您�
 
 !!! Tip "提示"
 
-    安装源区域是您可以选择执行基于网络的安装的地方 (例如，如果您正在使用 Rocky Linux 启动ISO - Rocky-9)。 -x86_64-boot.iso)。 对于基于网络的安装，首先需要确保目标系统上的网络适配器配置正确，并且能够访问internet。  要执行基于网络的安装，请单击`Installation Source`，然后选择`On the network`单选按钮。 选择后，选择`https`作为协议，并在文本字段中键入以下URL `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`，   单击`Done`。
+    安装源区域是您可以选择执行基于网络的安装的地方 (例如，如果您正在使用 Rocky Linux 启动ISO - Rocky-9.2-x86_64-boot.iso)。 对于基于网络的安装，首先需要确保目标系统上的网络适配器配置正确，并且能够访问internet。 要执行基于网络的安装，请单击`Installation Source`，然后选择`On the network`单选按钮。 选择后，选择`https`作为协议，并在文本字段中键入以下URL `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`， 单击`Done`。
 
 #### 软件部分
 

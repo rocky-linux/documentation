@@ -1,7 +1,7 @@
 ---
 title: 특별 권한
 author: tianci li
-contributors: OSSLAB, Serge
+contributors: OSSLAB
 tags:
   - 고급 사용 권한
   - 접근 제어
@@ -426,7 +426,7 @@ Shell(tom) > cd /SGID_dir && touch tom_file && ls -l
 -rw-rw-r-- 1 tom root 0 Jan  14 12:26 tom_file
 ```
 
-!!! 주의
+!!! warning "주의"
 
     SGID는 일반 사용자의 소유 그룹을 일시적으로 root로 변경할 수 있기 때문에, 서버를 유지보수할 때 이러한 권한을 가진 파일에 특히 주의해야 합니다. 다음 명령어를 사용하여 SGID 권한을 가진 파일을 찾을 수 있습니다.
 
