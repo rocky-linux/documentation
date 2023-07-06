@@ -17,7 +17,7 @@ tags:
 
 * All of your usual “Control-C”, ”Control-V”, and “Control-F” commands work as they would in a desktop-based text editor. All keybindings can be re-bound, of course.
 * Mouse support — click and drag to select text, double-click to select words, triple-click to select lines.
-* Over 75 languages supported with syntax highlighting by default.
+* Over 75 languages are supported with syntax highlighting by default.
 * Multiple cursors for when you need to edit multiple lines at a time.
 * Includes a plugin system.
 * Multiple panes.
