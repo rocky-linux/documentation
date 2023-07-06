@@ -1,7 +1,7 @@
 ---
 title: 특별 권한
 author: tianci li
-contributors: OSSLAB, Serge
+contributors: OSSLAB
 tags:
   - 고급 사용 권한
   - 접근 제어
