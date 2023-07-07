@@ -35,7 +35,7 @@ update: 2021-11-04
 
 !!! tip "提示"
 
-    密码文件的权限必须是<font color=red>600</font>
+    密码文件的权限必须是 <font color=red>600</font>。
 
 写入一些文件内容到 <font color=red>/etc/rsyncd.conf</font>，且将用户名与密码写入到 /etc/rsyncd_users.db 中，权限为 600
 
