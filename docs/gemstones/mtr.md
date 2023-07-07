@@ -16,14 +16,14 @@ date : 2021-10-20
 shell > dnf -y install mtr
 ```
 
-The common options of the `mtr` command are as follows. Under normal circumstances, no additional options are required, followed by the host name or IP address directly:
+The common options of the `mtr` command are as follows. Under normal circumstances, no additional options are required, followed by the hostname or IP address directly:
 
 |Options|Description|
 |---|---|
 |-4 |# Use IPv4 only|
 |-6 |# Use IPv6 only|
 |-c COUNT |# Number of pings sent|
-|-n |# Do not resolve the host name|
+|-n |# Do not resolve the hostname|
 |-z |# Display AS number|
 |-b |# Display ip and hostname|
 |-w |# Output a wide range of reports|
