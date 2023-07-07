@@ -1,44 +1,43 @@
 ---
-title: cronie - Compiti a tempo
+title: cronie - Attività a tempo
 author: tianci li
 contributors: Steven Spencer, Franco Colussi
-update: 2022-02-14
+update: 2021-10-26
 ---
 
 # Prerequisiti
 
-* Una macchina con Rocky Linux.
-* Sapere come usare il vostro editor preferito per modificare il file di configurazione nell'ambiente della riga di comando (questo articolo userà `vi`).
-* Hai capito la conoscenza di base di bash, python o altri strumenti di scripting/programmazione, e ti aspetti di eseguire lo script automaticamente.
-* Ti sei collegato alla tua macchina via ssh (può essere l'utente root o un utente normale con UID maggiore di 1000)
-* Pensiamo che tu sia una persona molto sveglia.
+* Un computer con Rocky Linux.
+* Sapere come utilizzare l'editor preferito per modificare il file di configurazione nell'ambiente della riga di comando (in questo articolo si utilizzerà `vi`).
+* Aver compreso le conoscenze di base di bash, python o altri strumenti di scripting o programmazione e vi aspettate di eseguire lo script automaticamente.
+* Ci si è collegati al computer tramite SSH (può essere l'utente root o un utente normale con UID superiore a 1000).
 
-## introduzione cron
+## cron Introduzione
 
-GNU/Linux fornisce il sistema *cron*, che è un programma di lavoro `cron` basato sul tempo per processi automatizzati. È semplice, ma abbastanza potente. Vuoi uno script o un programma da eseguire ogni giorno alle 5 del pomeriggio? `cron` può farlo. Ci sono diversi rami (o varianti) di `cron`, che hanno le stesse funzioni. In questo documento si usa **cronie** e la versione è la 1.5.2. Potete cliccare \[qui\](https://github .com/cronie-crond/cronie) per trovare l'ultima versione e il log di aggiornamento.
+GNU/Linux fornisce il sistema *cron*, che è un programma di lavoro `cron` basato sul tempo per processi automatizzati. Non è difficile, ma piuttosto potente. Volete uno script o un programma da eseguire ogni giorno alle 17:00? `cron` può farlo. Esistono diversi rami (o varianti) di `cron`, che hanno le stesse funzioni. In questo documento si usa **cronie** e la versione è la 1.5.2. Potete fare clic [qui](https://github.com/cronie-crond/cronie) per trovare l'ultima versione e il registro degli aggiornamenti.
 
-## descrizione di cronie
+## descrizione di Cronie
 
-*  **cronie** -nome del pacchetto, Rocky Linux include cronie di default;
-*  **crontab** -comando per mantenere `crontab` (pianificazione dei compiti) per ogni utente;
-*  **crond.service** -cronie il demone, è possibile gestire il demone da `systemctl start | restart | stop | status`;
-*  **/etc/crontab** -Assegnare cron jobs a diversi utenti, di solito siamo più abituati a usare `crontab -e`. Per esempio, se siete attualmente registrati come utente root, digitate `crontab -e` e vedrete i specifici cron job nel file /var/spool/cron/root dopo il salvataggio.
-*  **/var/log/cron \* ** -Il log di Cronie, per default, fa la rotazione dei log e finisce con un suffisso di data. \* Qui significa jolly
+*  **cronie** -nome del pacchetto, Rocky Linux include cronie per impostazione predefinita;
+*  **crontab** -comando per mantenere `crontab` (pianificazione delle attività) per ogni utente;
+*  **crond.service** - demone di Cronie, è possibile gestire il demone con `systemctl start | restart | stop | status`;
+*  **/etc/crontab** -Assegnare i cron job a diversi utenti, di solito siamo più abituati a usare `crontab -e`. Per esempio, se siete attualmente registrati come utente root, digitate `crontab -e` e vedrete i specifici cron job nel file /var/spool/cron/root dopo il salvataggio.
+*  **/var/log/cron \* ** -Il registro di Cronie, per impostazione predefinita, effettua la rotazione dei registri e termina con un suffisso di data. \* Qui significa jolly
 *  **anacron** - parte di cronie. Per maggiori informazioni su `anacron`, vedi [anacron - automatizzare i comandi](anacron.md).
 
-## comando `crontab`
+## Comando `crontab`
 
-`crontab` è un comando ottenuto dopo l'installazione del pacchetto cronie. Rispetto ad `anacron`, è più adatto ai server che lavorano 7 giorni su 7* 24 ore al giorno. Le opzioni comuni di `crontab` sono:
+`crontab` è un comando ottenuto dopo l'installazione del pacchetto cronie. Rispetto a `anacron`, è più adatto per i server che lavorano 7 ´* 24 ore al giorno. Le opzioni comuni di `crontab` sono:
 
 ```bash
--e # modificare le attività pianificate di crontab
--l # Visualizza il compito crontab
--r # cancella tutti i compiti crontab dell'utente corrente
+-e # edit crontab scheduled tasks
+the -l # View crontab task
+-r # delete all the current user's crontab tasks
 ```
 
 ## Uso di cronie
 
-Per permettere a diversi utenti di eseguire diversi comandi (o script) in momenti diversi, essi possono essere scritti in questo file. Tuttavia, di solito siamo più abituati a usare `crontab -e`.
+Per consentire a utenti diversi di eseguire comandi (o script) diversi in momenti diversi, è possibile scriverli in questo file. Tuttavia, di solito siamo più abituati a usare `crontab -e`.
 
 ```bash
 shell > cat /etc/crontab
@@ -56,7 +55,7 @@ MAILTO=root
 # * * * * * user-name command to be executed
 ```
 
-| Parametro | Significato              | Gamma di valori                           |
+| Parametro | Significato              | Intervallo di valori                      |
 | --------- | ------------------------ | ----------------------------------------- |
 | Il 1º\* | Il primo minuto dell'ora | 0-59                                      |
 | Il 2º\* | Ora del giorno           | 0-23                                      |
@@ -64,47 +63,55 @@ MAILTO=root
 | Il 4º\* | Il mese dell'anno        | 1-12                                      |
 | Il 5°\* | Giorno della settimana   | 0-7 (0 e 7 indicano entrambi la domenica) |
 
-In questo esempio, supponendo che tu stia eseguendo questa operazione come utente root, digita quanto segue: `crontab -e` , questo farà apparire le attività a tempo dell'utente root, se usi `vi` come editor di sistema predefinito, premi il tasto <kbd>i</kbd> per entrare la modalità di inserimento, inserisci il seguente contenuto, # significa che questa è una riga di commento. Premere <kbd>Esc</kbd> per uscire dalla modalità di inserimento, inserire: wq (visualizzato in basso) per salvare e uscire da `vi`, il che significa eseguire lo script una volta ogni notte alle 22:00. Ovviamente, questo è un esempio molto semplice, e la situazione può diventare molto complicata quando si deve elaborare.
+Nell'esempio che segue, supponendo di eseguire questa operazione come utente root, digitate quanto segue:
+
+* `crontab -e`, che visualizzerà le attività temporizzate dell'utente root. Se si utilizza `vi` come editor di sistema predefinito, premere il tasto <kbd>i</kbd> per accedere alla modalità di inserimento.
+* "#" significa che si tratta di una riga di commento.
 
 ```bash
 # Nightly 10:00 backup system
 00 22 *  *  * /usr/local/sbin/backup
 ```
 
+* Una volta inserito quanto sopra (sempre supponendo che `vi` sia l'editor di sistema), premere <kbd>ESC</kbd> per uscire dalla modalità di inserimento.
+* Salvare e uscire dal file con <kbd>SHIFT+</kbd><kbd>:</kbd>+wq<kbd>!</kbd> (visualizzato nella parte inferiore dell'editor).
+
+Ora lo script verrà eseguito ogni sera alle 22:00. Questo è un esempio semplicistico. Le cose possono complicarsi se avete bisogno di qualcosa di più elaborato.
+
 !!! tip "Attenzione"
 
-    Lo script deve avere il permesso di esecuzione (`chmod +x`) prima che cronie possa eseguirlo.
+    Lo script deve avere i permessi di esecuzione (`chmod +x`) prima che cronie possa eseguirlo.
 
-#### Opzioni complesse
+#### Opzioni Complesse
 
-Finora, i contenuti discussi sono opzioni molto semplici, ma come completare compiti a tempo più complessi?
+I contenuti discussi finora sono opzioni semplicistiche, ma che dire di compiti a tempo più complessi?
 
 ```bash
-# Suppose you want to run every 10 minutes backup script (may be impractical, however, it is only an example!) Throughout the day. To this end, the following will be written:
-* /10 *  *  *  * /usr/local/sbin/backup
-#What if you only want to run a backup every 10 minutes on Monday, Wednesday, and Friday? :
-* /10 *  *  * 1,3,5 /usr/local/sbin/backup
-# In addition to Saturdays and Sundays, once every 10 minutes, every day, how to back up?
-* /10 *  *  * 1-5 /usr/local/sbin/backup
+# Supponiamo di voler eseguire uno script di backup ogni 10 minuti (potrebbe essere poco pratico, ma è solo un esempio) Per tutto il giorno. A tal fine, verrà scritto quanto segue:
+* /10 * * * * /usr/local/sbin/backup
+#E se si volesse eseguire un backup solo ogni 10 minuti il lunedì, il mercoledì e il venerdì? :
+* /10 * * * 1,3,5 /usr/local/sbin/backup
+# Oltre al sabato e alla domenica, una volta ogni 10 minuti, ogni giorno, come si fa il backup?
+* /10 * * * 1-5 /usr/local/sbin/backup
 ```
 
-| Simboli speciali | Significato                                                                                                                                                           |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| *                | rappresenta qualsiasi momento. Per esempio, il primo * significa qualsiasi minuto, e il secondo * significa qualsiasi ora                                           |
-| ,                | sta per tempo discontinuo, come "0 8,12,16 * * * ", che significa che il comando sarà eseguito una volta al giorno alle 8:00, 12:00 e 16:00                         |
-| -                | rappresenta un intervallo di tempo continuo, come "0 5 * * 1-6 ", che significa che un comando sarà eseguito alle cinque del mattino ogni giorno da lunedì a sabato |
-| */n              | Rappresenta quanto spesso l'intervallo viene eseguito, come "*/10 * * * *" significa che viene eseguito ogni 10 minuti                                            |
+| Simboli Speciali | Significato                                                                                                                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| *                | rappresenta un momento qualsiasi. Ad esempio, il primo * indica un minuto qualsiasi e il secondo * indica un'ora qualsiasi                                                         |
+| ,                | sta per tempo discontinuo, come "0 8,12,16 * * * ", che significa che il comando verrà eseguito una volta al giorno alle 8:00, alle 12:00 e alle 16:00                             |
+| -                | rappresenta un intervallo di tempo continuo, ad esempio "0 5 * * 1-6 ", il che significa che il comando verrà eseguito alle cinque del mattino di ogni giorno dal lunedì al sabato |
+| */n              | Rappresenta la frequenza di esecuzione dell'intervallo, ad esempio "*/10 * * *" significa che verrà eseguito ogni 10 minuti                                                      |
 
-!!! tip "Suggerimento"
+!!! tip "Attenzione"
 
-    La più piccola unità di tempo che cronie può riconoscere è 1 minuto; quando si usa, per esempio, `30 4 1,15 * 5 comando`, il comando verrà eseguito il 1° e il 15 di ogni mese e alle 4:30 del mattino di ogni venerdì; le informazioni di output di alcuni script o comandi impediranno l'esecuzione di compiti a tempo, ed è necessaria una redirezione dell'output, come questa- `*/10 * * * * /usr/local/sbin/backup &> /dev/null`
+    L'unità di tempo più piccola che cronie è in grado di riconoscere è 1 minuto; quando si usa, ad esempio, `30 4 1,15 * 5 command`, il comando verrà eseguito il 1° e il 15 di ogni mese e alle 4:30 del mattino di ogni venerdì; le informazioni di output di alcuni script o comandi impediscono l'esecuzione di attività temporizzate, ed è necessario un reindirizzamento dell'output, come questo- `*/10 * * * * /usr/local/sbin/backup &> /dev/null`
 
-## Q & A
+## Domande e risposte
 
 1. /etc/crontab e `crontab -e`, c'è qualche differenza tra i due metodi? `crontab -e` non ha bisogno di specificare un utente (l'utente attualmente registrato è usato di default), mentre /etc/crontab ha bisogno di specificare un utente.
-2. Cosa devo fare se il comando o lo script specificato non viene eseguito correttamente? Controllate il file /var/log/cron*, usate `journalctl -u crond.service` per controllare le informazioni sul processo del demone, se lo script ha il permesso x, ecc.
-3. Oltre a cronie, quali varianti di cron esistono? [ dcron ](http://www.jimpryor.net/linux/dcron.html), l'ultima versione è la 4.5 (2011-50-01). [ fcron ](http://fcron.free.fr/), l'ultima versione è 3.3.0 (dev, 2016-08-14). [ bcron ](http://untroubled.org/bcron/), l'ultima versione è 0.11 (2015-08-12). [ cronsun ](https://github.com/shunfei/cronsun), l'ultima versione 0.3.5 (2018-11-20).
+2. Cosa fare se il comando o lo script specificato non viene eseguito correttamente? Controllare il file /var/log/cron*, usare `journalctl -u crond.service` per verificare le informazioni sul processo demone, se lo script ha i permessi x e così via, per la risoluzione dei problemi.
+3. Oltre a cronie, quali varianti di cron esistono? [ dcron ](http://www.jimpryor.net/linux/dcron.html), l'ultima versione è la 4.5 (2011-50-01). [ fcron ](http://fcron.free.fr/), l'ultima versione è la 3.3.0 (dev, 2016-08-14). [ bcron ](http://untroubled.org/bcron/), l'ultima versione è la 0.11 (2015-08-12). [ cronsun ](https://github.com/shunfei/cronsun), l'ultima versione 0.3.5 (2018-11-20).
 
 ## Sommario
 
-Per gli utenti del desktop Rocky Linux o gli amministratori di sistema, cronie è uno strumento molto potente. Permette di automatizzare compiti e script in modo da non doversi ricordare di eseguirli manualmente. Anche se la conoscenza di base è semplice, il compito effettivo può essere complesso. Per maggiori informazioni su `crontab`, visitate la [pagina man di crontab](https://man7.org/linux/man-pages/man5/crontab.5.html). Potete anche semplicemente cercare "crontab" su Internet, che vi fornirà un gran numero di risultati di ricerca e vi aiuterà a mettere a punto l'espressione `crontab`.
+Per gli utenti del desktop Rocky Linux o gli amministratori di sistema, cronie è uno strumento molto potente. Permette di automatizzare le attività e gli script in modo da non doversi ricordare di eseguirli manualmente. Sebbene le conoscenze di base non siano difficili, il compito effettivo può essere complesso. Per ulteriori informazioni su `crontab`, visitare la [pagina man di crontab](https://man7.org/linux/man-pages/man5/crontab.5.html). È anche possibile cercare "crontab" su Internet, che fornisce un gran numero di risultati di ricerca e aiuta a mettere a punto l'espressione `crontab`.
