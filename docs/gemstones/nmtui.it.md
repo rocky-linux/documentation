@@ -30,7 +30,8 @@ shell > nmtui
 
 ### DHCP IPv4
 
-Per IPv4, se si tratta di ottenere informazioni di rete utilizzando il metodo DHCP, è sufficiente selezionare *IPv4 CONFIGURATION* indietro **&lt;Automatic&gt;**, quindi eseguire nel terminale `systemctl restart NetworkManager.service` , nella maggior parte dei casi, ciò può essere efficace. In rari casi, è necessario cambiare la scheda di rete per ottenere l'effetto desiderato. Ad esempio, in questo modo: `nmcli connection down ens33`, `nmcli connection up ens33`
+Per IPv4, se si tratta di ottenere informazioni di rete con DHCP, è sufficiente selezionare *IPv4 CONFIGURATION* **&lt;Automatic&gt;**, ed eseguire nel terminale `systemctl restart NetworkManager.service`. Questo funziona nella maggior parte dei casi. In rari casi, è necessario disabilitare e abilitare la scheda di rete affinché la modifica abbia effetto. Ad esempio: `nmcli connection down ens33`, `nmcli connection up ens33`
+
 
 ### Correggere manualmente le informazioni di rete
 
