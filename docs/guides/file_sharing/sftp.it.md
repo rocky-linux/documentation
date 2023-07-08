@@ -2,7 +2,7 @@
 title: Server sicuro - sftp
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
-tested with: 8.5, 8.6
+tested_with: 8.5, 8.6, 9.0
 tags:
   - security
   - file transfer
@@ -24,7 +24,7 @@ L'autore ritiene inoltre che sia necessario, nell'ambito della modifica del docu
 
 1. La prima riguarda le informazioni generali che utilizzeremo per l'intero documento.
 2. La seconda si occupa della configurazione della change root jail e se si decide di fermarsi qui, è una decisione che spetta a voi.
-3. La terza parte si occupa di impostare l'accesso SSH a chiave pubblica/privata per gli amministratori di sistema e di disattivare l'autenticazione remota basata su password.
+3. La terza parte riguarda l'impostazione dell'accesso SSH a chiave pubblica/privata per gli amministratori di sistema e la disattivazione dell'autenticazione remota basata su password.
 4. La quarta e ultima sezione di questo documento riguarda la disattivazione del login di root da remoto.
 
 L'adozione di tutte queste misure vi consentirà di offrire ai vostri clienti un accesso SFTP sicuro, riducendo al contempo al minimo la possibilità che la porta 22 (quella riservata all'accesso SSH) venga compromessa da un malintenzionato.
@@ -35,7 +35,7 @@ L'adozione di tutte queste misure vi consentirà di offrire ai vostri clienti un
     
     Da quel momento in poi, quel processo o programma può accedere *solo* a quella cartella e alle sue sottocartelle.
 
-!!! hint "Aggiornamenti per Rocky Linux 8.6"
+!!! tip "Aggiornamenti per Rocky Linux 8.6"
 
     Questo documento è stato aggiornato per includere le nuove modifiche introdotte con la versione 8.6, che renderanno questa procedura ancora più sicura. Se si utilizza la versione 8.6, il documento contiene sezioni specifiche, precedute da "8.6 -". Per chiarezza, le sezioni specifiche di Rocky Linux 8.5 sono state precedute da "8.5 - ". A parte le sezioni con prefisso specifico, questo documento è generico per entrambe le versioni del sistema operativo.
 
@@ -61,8 +61,8 @@ Tutto è messo insieme qui. Qualsiasi somiglianza con persone o siti reali è pu
 
 **Siti:**
 
-* mybrokenaxel.com utente = mybroken
-* myfixedaxel.com utente = myfixed
+* mybrokenaxel = (site1.com) user = mybroken
+* myfixedaxel = (site2.com) user = myfixed
 
 **Amministratori**
 
@@ -95,8 +95,8 @@ mkdir -p /etc/httpd/sites-enabled
 Creazione delle directory web:
 
 ```
-mkdir -p /var/www/sub-domains/com.mybrokenaxel/html
-mkdir -p /var/www/sub-domains/com.myfixedaxel/html
+mkdir -p /var/www/sub-domains/com.site1/html
+mkdir -p /var/www/sub-domains/com.site2/html
 ```
 Ci occuperemo delle proprietà di queste directory nell'applicazione di script che si trova di seguito.
 
@@ -118,10 +118,10 @@ Quindi salvare il file e uscire.
 
 ### Configurazione del Sito Web
 
-Abbiamo bisogno di creare due siti. Creeremo le configurazioni in `/etc/httpd/sites-available` e poi le collegheremo a `../sites-enabled`:
+We need two sites created. Creeremo le configurazioni in `/etc/httpd/sites-available` e poi le collegheremo a `../sites-enabled`:
 
 ```
-vi /etc/httpd/sites-available/com.mybrokenaxel
+vi /etc/httpd/sites-available/com.site1
 ```
 
 !!! note "Nota"
@@ -130,17 +130,17 @@ vi /etc/httpd/sites-available/com.mybrokenaxel
 
 ```
 <VirtualHost *:80>
-        ServerName www.mybrokenaxel.com
+        ServerName www.site1.com
         ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.mybrokenaxel/html
+        DocumentRoot /var/www/sub-domains/com.site1/html
         DirectoryIndex index.php index.htm index.html
         Alias /icons/ /var/www/icons/
 
 
-    CustomLog "/var/log/httpd/com.mybrokenaxel.www-access_log" combined
-    ErrorLog  "/var/log/httpd/com.mybrokenaxel.www-error_log"
+    CustomLog "/var/log/httpd/com.site1.www-access_log" combined
+    ErrorLog  "/var/log/httpd/com.site1.www-error_log"
 
-        <Directory /var/www/sub-domains/com.mybrokenaxel/html>
+        <Directory /var/www/sub-domains/com.site1/html>
                 Options -ExecCGI -Indexes
                 AllowOverride None
 
@@ -155,22 +155,22 @@ vi /etc/httpd/sites-available/com.mybrokenaxel
 Salva questo file ed esci.
 
 ```
-vi /etc/httpd/sites-available/com.myfixedaxel
+vi /etc/httpd/sites-available/com.site2
 ```
 
 ```
 <VirtualHost *:80>
-        ServerName www.myfixedaxel.com
+        ServerName www.site2.com
         ServerAdmin username@rockylinux.org
-        DocumentRoot /var/www/sub-domains/com.myfixedaxel/html
+        DocumentRoot /var/www/sub-domains/com.site2/html
         DirectoryIndex index.php index.htm index.html
         Alias /icons/ /var/www/icons/
 
 
-    CustomLog "/var/log/httpd/com.myfixedaxel.www-access_log" combined
-    ErrorLog  "/var/log/httpd/com.myfixedaxel.www-error_log"
+    CustomLog "/var/log/httpd/com.site2.www-access_log" combined
+    ErrorLog  "/var/log/httpd/com.site2.www-error_log"
 
-        <Directory /var/www/sub-domains/com.myfixedaxel/html>
+        <Directory /var/www/sub-domains/com.site2/html>
                 Options -ExecCGI -Indexes
                 AllowOverride None
 
@@ -187,8 +187,8 @@ Salva questo file ed esci.
 Una volta creati i due file di configurazione, si può procedere a collegarli all'interno di `/etc/httpd/sites-enabled`:
 
 ```
-ln -s ../sites-available/com.mybrokenaxel
-ln -s ../sites-available/com.myfixedaxel
+ln -s ../sites-available/com.site1
+ln -s ../sites-available/com.site2
 ```
 Ora abilita e avvia il processo `httpd`:
 
@@ -236,8 +236,8 @@ Se questo funziona per entrambi gli utenti amministrativi, si dovrebbe essere pr
 Dobbiamo aggiungere i nostri utenti web. La struttura della cartella `../html` esiste già, quindi non vogliamo crearla quando aggiungiamo l'utente, ma *vogliamo* specificarla. Inoltre, non vogliamo effettuare alcun accesso se non tramite SFTP, quindi dobbiamo utilizzare una shell che neghi i login.
 
 ```
-useradd -M -d /var/www/sub-domains/com.mybrokenaxel/html -g apache -s /usr/sbin/nologin mybroken
-useradd -M -d /var/www/sub-domains/com.myfixedaxel/html -g apache -s /usr/sbin/nologin myfixed
+useradd -M -d /var/www/sub-domains/com.site1/html -g apache -s /usr/sbin/nologin mybroken
+useradd -M -d /var/www/sub-domains/com.site2/html -g apache -s /usr/sbin/nologin myfixed
 ```
 
 Vediamo di scomporre un po' questi comandi:
@@ -250,7 +250,7 @@ Vediamo di scomporre un po' questi comandi:
 
 **Note:** Per un server Nginx, si usa `nginx` come gruppo.
 
-I nostri utenti SFTP hanno ancora bisogno di una password. Procediamo quindi con l'impostazione di una password sicura per ciascuno di essi. Poiché abbiamo già visto l'output del comando sopra, non lo ripeteremo qui:
+Our SFTP users still need a password. Procediamo quindi con l'impostazione di una password sicura per ciascuno di essi. Poiché abbiamo già visto l'output del comando sopra, non lo ripeteremo qui:
 
 ```
 passwd mybroken
@@ -259,7 +259,7 @@ passwd myfixed
 
 ### Configurazione SSH
 
-!!! caution "Attenzione"
+!!! warning "Attenzione"
 
     Prima di iniziare questo processo, si raccomanda di fare un backup del file di sistema che modificheremo: `/etc/ssh/sshd_config`. La rottura di questo file e l'impossibilità di tornare all'originale potrebbero causare un sacco di problemi!
 
@@ -293,7 +293,7 @@ Salvare e uscire dal file.
 
 Come in precedenza, descriviamo un po' cosa stiamo facendo. Sia il `sftp-server` che `internal-sftp` fanno parte di OpenSSH. L'`internal-sftp`, pur non essendo molto diverso da `sftp-server`, semplifica le configurazioni usando `ChrootDirectory` per forzare una diversa root del file system sui client. Ecco perché vogliamo usare `internal-sftp`.
 
-### 8.5 - Il Template e lo Script
+### Il Template e lo Script
 
 Perché stiamo creando un template e uno script per questa parte successiva? Il motivo è semplicemente quello di evitare il più possibile l'errore umano. Non abbiamo ancora finito di modificare il file `/etc/ssh/sshd_config`, ma vogliamo eliminare il maggior numero possibile di errori ogni volta che dobbiamo fare queste modifiche. Creeremo tutto questo in `/usr/local/sbin`.
 
@@ -326,171 +326,175 @@ Vogliamo una directory per i nostri file utente, che creeremo dal template:
 mkdir /usr/local/sbin/templates
 ```
 
-#### 8.5 - Lo Script
 
-Ora creiamo il nostro script:
+=== "8.6 & 9.0"
 
-```
-vi /usr/local/sbin/webuser
-```
+    #### 8.6 & 9.0 - Lo script e i cambiamenti di `sshd_config`
+    
+    Con i rilasci di Rocky Linux 8.6 e 9.0, è disponibile una nuova opzione per il file `sshd_config` che consente di inserire le configurazioni. Si tratta di un **GRANDE** cambiamento. Ciò significa che per queste versioni verrà apportata una singola modifica aggiuntiva al file `sshd_config` e poi il nostro script costruirà le modifiche a sftp in un file di configurazione separato. Questa nuova modifica rende le cose ancora più sicure. La sicurezza è buona!!
+    
+    A causa delle modifiche consentite per il file `sshd_config` in Rocky Linux 8.6 e 9.0, il nostro script utilizzerà un nuovo file di configurazione: `/etc/ssh/sftp/sftp_config`.
+    
+    Per iniziare, creare la directory:
 
-E inserire questo codice:
+    ```
+    mkdir /etc/ssh/sftp
+    ```
 
-```
-#!/bin/bash
-# script to populate the SSHD configuration for web users.
 
-# Set variables
+    Ora fate una copia di backup di `sshd_config`:
 
-tempfile="/usr/local/sbin/sshd_template"
-dompath="/var/www/sub-domains/"
+    ```
+    cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+    ```
 
-# Prompt for user and domain in reverse (ext.domainname):
 
-clear
+    Infine, modificare il file `sshd_config`, scorrere fino alla fine del file e aggiungere questa riga:
 
-echo -n "Enter the web sftp user: "
-read sftpuser
-echo -n "Enter the domain in reverse. Example: com.domainname: "
-read dom
-echo -n "Is all of this correct: sftpuser = $sftpuser and domain = $dom (Y/N)? "
-read yn
-if [ "$yn" = "n" ] || [ "$yn" = "N" ]
-then
-    exit
-fi
-if [ "$yn" = "y" ] || [ "$yn" = "Y" ]
-then
-    /usr/bin/cat $tempfile > /usr/local/sbin/templates/$dom.txt
-    /usr/bin/sed -i "s,replaceuser,$sftpuser,g" /usr/local/sbin/templates/$dom.txt
-    /usr/bin/sed -i "s,replacedirectory,$dompath$dom,g" /usr/local/sbin/templates/$dom.txt
-    /usr/bin/chown -R $sftpuser.apache $dompath$dom/html
-fi
+    ```bash
+    Include /etc/ssh/sftp/sftp_config
+    ```
 
-## Make a backup of /etc/ssh/sshd_config
 
-/usr/bin/rm -f /etc/ssh/sshd_config.bak
+    Salvare le modifiche e uscire dal file. Dovremo riavviare `sshd` ma il nostro script lo farà per noi dopo aver aggiornato il file `sftp_config`, quindi creiamo lo script ed eseguiamolo.
 
-/usr/bin/cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+    ```
+    vi /usr/local/sbin/webuser
+    ```
 
-## Now append our new user information to to the file
 
-cat /usr/local/sbin/templates/$dom.txt >> /etc/ssh/sshd_config
+    E inserire questo codice:
 
-## Restart sshd
+    ```
+    #!/bin/bash
+    # script to populate the SSHD configuration for web users.
 
-/usr/bin/systemctl restart sshd
+    # Set variables
 
-echo " "
-echo "Please check the status of sshd with systemctl status sshd."
-echo "You can verify that your information was added to the sshd_config by doing a more of the sshd_config"
-echo "A backup of the working sshd_config was created when this script was run: sshd_config.bak"
-```
+    tempfile="/usr/local/sbin/sshd_template"
+    dompath="/var/www/sub-domains/"
 
-### 8.6 - Il Template e lo Script
+    # Prompt for user and domain in reverse (ext.domainname):
 
-Con il rilascio di Rocky Linux 8.6, è disponibile una nuova opzione per il file `sshd_config` che consente di inserire le configurazioni. Si tratta di un **GRANDE** cambiamento. Ciò significa che per la versione 8.6, apporteremo una singola modifica aggiuntiva al file `sshd_config` e poi il nostro script costruirà le modifiche a sftp in un file di configurazione separato. Sebbene la procedura 8.5 di cui sopra sia abbastanza sicura, questa nuova modifica rende le cose ancora più sicure. La sicurezza è un bene!!
+    clear
 
-#### 8.6 Il Template
+    echo -n "Enter the web sftp user: "
+    read sftpuser
+    echo -n "Enter the domain in reverse. Example: com.domainname: "
+    read dom
+    echo -n "Is all of this correct: sftpuser = $sftpuser and domain = $dom (Y/N)? "
+    read yn
+    if [ "$yn" = "n" ] || [ "$yn" = "N" ]
+    then
+        exit
+    fi
+    if [ "$yn" = "y" ] || [ "$yn" = "Y" ]
+    then
+        /usr/bin/cat $tempfile > /usr/local/sbin/templates/$dom.txt
+        /usr/bin/sed -i "s,replaceuser,$sftpuser,g" /usr/local/sbin/templates/$dom.txt
+        /usr/bin/sed -i "s,replacedirectory,$dompath$dom,g" /usr/local/sbin/templates/$dom.txt
+        /usr/bin/chown -R $sftpuser.apache $dompath$dom/html
+    fi
 
-Non ci sono cambiamenti tra la versione 8.5 e la 8.6 per quanto riguarda il modello. Quindi utilizzare [questa procedura sopra](#the-template) e poi tornare qui per lo script.
+    ## Make a backup of /etc/ssh/sftp/sftp_config
 
-#### 8.6 - Lo Script e le Modifiche a `sshd_config`
+    /usr/bin/rm -f /etc/ssh/sftp/sftp_config.bak
 
-A causa delle modifiche consentite per il file `sshd_config` in Rocky Linux 8.6, il nostro script utilizzerà un nuovo file di configurazione: `/etc/ssh/sftp/sftp_config`.
+    /usr/bin/cp /etc/ssh/sftp/sftp_config /etc/ssh/sftp/sftp_config.bak
 
-Per iniziare, creare la directory:
+    ## Now append our new user information to to the file
 
-```
-mkdir /etc/ssh/sftp
-```
+    cat /usr/local/sbin/templates/$dom.txt >> /etc/ssh/sftp/sftp_config
 
-Ora fai una copia di backup di `sshd_config`:
+    ## Restart sshd
 
-```
-cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-```
+    /usr/bin/systemctl restart sshd
 
-Infine, modificate il file `sshd_config`, scorrete fino in fondo al file e aggiungete questa riga:
+    echo " "
+    echo "Please check the status of sshd with systemctl status sshd."
+    echo "You can verify that your information was added by doing a more of the sftp_config"
+    echo "A backup of the working sftp_config was created when this script was run: sftp_config.bak"
+    ```
+=== "8.5"
 
-```
-Include /etc/ssh/sftp/sftp_config
-```
+    #### 8.5 - Lo script
+    
+    Ora creiamo il nostro script:
 
-Salvare le modifiche e uscire dal file. Dovremo riavviare `sshd`, ma il nostro script lo farà per noi dopo aver aggiornato il file `sftp_config`, quindi creiamo lo script ed eseguiamolo.
+    ```
+    vi /usr/local/sbin/webuser
+    ```
 
-```
-vi /usr/local/sbin/webuser
-```
 
-E inserire questo codice:
+    E inserire questo codice:
 
-```
-#!/bin/bash
-# script to populate the SSHD configuration for web users.
+    ```
+    #!/bin/bash
+    # script to populate the SSHD configuration for web users.
 
-# Set variables
+    # Set variables
 
-tempfile="/usr/local/sbin/sshd_template"
-dompath="/var/www/sub-domains/"
+    tempfile="/usr/local/sbin/sshd_template"
+    dompath="/var/www/sub-domains/"
 
-# Prompt for user and domain in reverse (ext.domainname):
+    # Prompt for user and domain in reverse (ext.domainname):
 
-clear
+    clear
 
-echo -n "Enter the web sftp user: "
-read sftpuser
-echo -n "Enter the domain in reverse. Example: com.domainname: "
-read dom
-echo -n "Is all of this correct: sftpuser = $sftpuser and domain = $dom (Y/N)? "
-read yn
-if [ "$yn" = "n" ] || [ "$yn" = "N" ]
-then
-    exit
-fi
-if [ "$yn" = "y" ] || [ "$yn" = "Y" ]
-then
-    /usr/bin/cat $tempfile > /usr/local/sbin/templates/$dom.txt
-    /usr/bin/sed -i "s,replaceuser,$sftpuser,g" /usr/local/sbin/templates/$dom.txt
-    /usr/bin/sed -i "s,replacedirectory,$dompath$dom,g" /usr/local/sbin/templates/$dom.txt
-    /usr/bin/chown -R $sftpuser.apache $dompath$dom/html
-fi
+    echo -n "Enter the web sftp user: "
+    read sftpuser
+    echo -n "Enter the domain in reverse. Example: com.domainname: "
+    read dom
+    echo -n "Is all of this correct: sftpuser = $sftpuser and domain = $dom (Y/N)? "
+    read yn
+    if [ "$yn" = "n" ] || [ "$yn" = "N" ]
+    then
+        exit
+    fi
+    if [ "$yn" = "y" ] || [ "$yn" = "Y" ]
+    then
+        /usr/bin/cat $tempfile > /usr/local/sbin/templates/$dom.txt
+        /usr/bin/sed -i "s,replaceuser,$sftpuser,g" /usr/local/sbin/templates/$dom.txt
+        /usr/bin/sed -i "s,replacedirectory,$dompath$dom,g" /usr/local/sbin/templates/$dom.txt
+        /usr/bin/chown -R $sftpuser.apache $dompath$dom/html
+    fi
 
-## Make a backup of /etc/ssh/sftp/sftp_config
+    ## Make a backup of /etc/ssh/sshd_config
 
-/usr/bin/rm -f /etc/ssh/sftp/sftp_config.bak
+    /usr/bin/rm -f /etc/ssh/sshd_config.bak
 
-/usr/bin/cp /etc/ssh/sftp/sftp_config /etc/ssh/sftp/sftp_config.bak
+    /usr/bin/cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 
-## Now append our new user information to to the file
+    ## Now append our new user information to the file
 
-cat /usr/local/sbin/templates/$dom.txt >> /etc/ssh/sftp/sftp_config
+    cat /usr/local/sbin/templates/$dom.txt >> /etc/ssh/sshd_config
 
-## Restart sshd
+    ## Restart sshd
 
-/usr/bin/systemctl restart sshd
+    /usr/bin/systemctl restart sshd
 
-echo " "
-echo "Please check the status of sshd with systemctl status sshd."
-echo "You can verify that your information was added by doing a more of the sftp_config"
-echo "A backup of the working sftp_config was created when this script was run: sftp_config.bak"
-```
+    echo " "
+    echo "Please check the status of sshd with systemctl status sshd."
+    echo "You can verify that your information was added to the sshd_config by doing a more of the sshd_config"
+    echo "A backup of the working sshd_config was created when this script was run: sshd_config.bak"
+    ```
 
-### Modifiche Finali e Note sullo Script per 8.5 e 8.6
+
+### Modifiche finali e note sullo Script
 
 !!! tip "Suggerimento"
 
     Se si dà un'occhiata a uno degli script precedenti, si noterà che abbiamo cambiato il delimitatore che `sed` usa di default da `/` a `,`. `sed` consente di utilizzare qualsiasi carattere a singolo byte come delimitatore. Quello che stiamo cercando nel file contiene una serie di caratteri "/" e avremmo dovuto fare l'escape di ciascuno di essi (aggiungendo una "\" davanti) per cercare e sostituire queste stringhe. Cambiare il delimitatore rende questa operazione infinitamente più semplice, perché elimina la necessità di eseguire gli escape.
 
-Un paio di cose da sapere sullo script e su una modifica SFTP di change root in generale. Per prima cosa, chiediamo le informazioni necessarie e poi le facciamo riecheggiare all'utente, in modo che possa verificarle. Se si risponde "N" alla domanda di conferma, lo script si blocca e non fa nulla. Lo script per 8.5 crea un backup di `sshd_config` (`/etc/ssh/sshd_config.bak`) come era prima dell'esecuzione dello script. Lo script 8.6 fa lo stesso per il file `sftp_config` (`/etc/ssh/sftp/sftp_config.bak`). In questo modo, se si sbaglia qualcosa con una immissione, si può semplicemente ripristinare il file di backup appropriato e poi riavviare `sshd` per far funzionare di nuovo le cose.
+Un paio di cose da sapere sullo script e su una modifica SFTP di root in generale. Per prima cosa, chiediamo le informazioni necessarie e poi le facciamo riecheggiare all'utente, in modo che possa verificarle. Se si risponde "N" alla domanda di conferma, lo script si blocca e non fa nulla. Lo script per 8.5 crea un backup di `sshd_config` (`/etc/ssh/sshd_config.bak`) come era prima dell'esecuzione dello script. Lo script 8.6 o 9.0 fa lo stesso per il file `sftp_config` (`/etc/ssh/sftp/sftp_config.bak`). In questo modo, se si sbaglia qualcosa con una voce, si può semplicemente ripristinare il file di backup appropriato e poi riavviare `sshd` per far funzionare di nuovo le cose.
 
-La modifica SFTP di change root richiede che il percorso indicato in `sshd_config` sia di proprietà di root. Per questo motivo non è necessario aggiungere la cartella `html` alla fine del percorso. Una volta che l'utente è stato autenticato, il change root cambierà la directory home dell'utente, in questo caso la directory `../html`, in quella del dominio che stiamo inserendo. Il nostro script ha opportunamente cambiato il proprietario della directory `../html` con l'utente sftp e il gruppo apache.
+La modifica SFTP di root richiede che il percorso indicato in `sshd_config` sia di proprietà di root. Per questo motivo, non è necessario aggiungere la cartella `html` alla fine del percorso. Una volta che l'utente è stato autenticato, il change root cambierà la home directory dell'utente, in questo caso la directory `../html`, in quella del dominio che stiamo inserendo. Il nostro script ha opportunamente cambiato il proprietario della directory `../html` con l'utente sftp e il gruppo apache.
 
-!!! attention "Compatibilità dello Script"
+!!! warning "Compatibilità dello Script"
 
-    Mentre lo script creato per Rocky Linxux 8.5 può essere utilizzato con successo sia su 8.5 che su 8.6, lo stesso non si può dire per lo script 8.6. Poiché l'opzione "drop in" del file di configurazione (direttiva `Include`) non era abilitata in 8.5, il tentativo di usare lo script 8.6 in Rocky Linux 8.5 fallirà.
+    Mentre è possibile utilizzare con successo lo script creato per Rocky Linxux 8.5 su 8.5, 8.6 o 9.0, non si può dire lo stesso per lo script per 8.6 e 9.0. Poiché l'opzione "drop in" del file di configurazione (direttiva `Include`) non era abilitata nella versione 8.5, il tentativo di usare lo script scritto per queste nuove versioni in Rocky Linux 8.5 fallirà.
 
-Ora che il nostro script è stato creato, rendiamo eseguibile:
+Ora che il nostro script è stato creato, rendiamolo eseguibile:
 
 ```
 chmod +x /usr/local/sbin/webuser
@@ -505,7 +509,7 @@ Per prima cosa, si può provare a utilizzare `ssh` da un'altra macchina al nostr
 ```
 This service allows sftp connections only.
 ```
-#### Test dello Strumento Grafico
+#### Test con strumenti grafici
 
 Se *ricevete* questo messaggio, la prossima cosa da fare è testare l'accesso SFTP. Se volete fare le cose in modo semplice, potete usare un'applicazione FTP grafica che supporti SFTP, come Filezilla. In questi casi, i vostri campi avranno un aspetto simile a questo:
 
@@ -514,13 +518,13 @@ Se *ricevete* questo messaggio, la prossima cosa da fare è testare l'accesso SF
 * **Password:** (la password dell'utente SFTP)
 * **Port:** (Non dovrebbe essere necessario inserirne una, a condizione che si utilizzino SSH e SFTP sulla porta 22 predefinita.)
 
-Una volta compilato, si può fare clic sul pulsante "Quickconnect" (Filezilla) e ci si dovrebbe collegare alla directory `../html` del sito appropriato. Quindi fare doppio clic sulla directory "html" per posizionarsi al suo interno e provare a caricare un file nella directory. Se avete successo, allora siete a posto.
+Una volta compilato, si può fare clic sul pulsante "Quickconnect" (Filezilla) e ci si dovrebbe collegare alla directory `../html` del sito appropriato. Quindi fare doppio clic sulla directory "html" per posizionarsi al suo interno e provare a inserire un file nella directory. Se avete successo, allora siete a posto.
 
-#### Test dello Strumento a Riga di Comando
+#### Test con gli strumenti a riga di comando
 
-È ovviamente possibile eseguire tutte queste operazioni dalla riga di comando su un computer con SSH installato. (la maggior parte delle installazioni Linux). Ecco una breve panoramica del metodo di connessione da riga di comando e di alcune opzioni:
+È ovviamente possibile eseguire tutte queste operazioni dalla riga di comando su una macchina che abbia installato SSH (la maggior parte delle installazioni Linux). Ecco una breve panoramica del metodo di connessione da riga di comando e di alcune opzioni:
 
-* sftp username (Esempio: myfixed@ hostname o IP del server: sftp myfixed@192.168.1.116)
+* sftp username (Esempio: myfixed@hostname o IP del server: sftp myfixed@192.168.1.116)
 * Inserite la password quando vi viene richiesto
 * cd html (passare alla directory html)
 * pwd (dovrebbe mostrare che sei nella directory html)
@@ -528,11 +532,11 @@ Una volta compilato, si può fare clic sul pulsante "Quickconnect" (Filezilla) e
 * lcd PATH (dovrebbe cambiare la propria directory di lavoro locale in qualcosa che si vuole utilizzare)
 * put filename (copierà un file nella directory `..html`.)
 
-Per un elenco esaustivo delle opzioni e altro ancora, consultate la [pagina del manuale SFTP](https://man7.org/linux/man-pages/man1/sftp.1.html).
+Per un elenco esaustivo delle opzioni e altro ancora, consultate la pagina del manuale [SFTP](https://man7.org/linux/man-pages/man1/sftp.1.html).
 
-### Test dei File Web
+### File di test per il web
 
-Per i nostri domini fittizi, vogliamo creare un paio di file `index.html` con cui popolare la cartella `../html`. Una volta creati, è sufficiente inserirli nella directory di ciascun dominio utilizzando le credenziali SFTP del dominio stesso. Questi file sono super semplici. Vogliamo solo qualcosa che ci consenta di verificare definitivamente che i nostri siti sono attivi e funzionanti e che la parte SFTP funziona come previsto.  Ecco un esempio di questo file. Ovviamente puoi modificarlo come vuoi:
+Per i nostri domini fittizi, vogliamo creare un paio di file `index.html` con cui popolare la cartella `../html`. Una volta creati, è sufficiente inserirli nella directory di ciascun dominio utilizzando le credenziali SFTP del dominio stesso. Questi file sono molto semplici. Vogliamo solo qualcosa che ci permetta di vedere definitivamente che i nostri siti sono attivi e funzionanti e che la parte SFTP funziona come previsto. Ecco un esempio di questo file. Ovviamente puoi modificarlo come vuoi:
 
 ```
 <!DOCTYPE html>
@@ -549,14 +553,14 @@ Per i nostri domini fittizi, vogliamo creare un paio di file `index.html` con cu
 </html>
 ```
 
-### Web Tests
+### Test sul Web
 
-Per verificare che questi file vengano visualizzati e caricati come previsto, è sufficiente modificare il file hosts sulla propria workstation. Per Linux, si tratta di `sudo vi /etc/hosts` e poi si aggiungono semplicemente gli IP e i nomi degli host con cui si sta facendo il test in questo modo:
+Per verificare che questi file vengano visualizzati e caricati come previsto, è sufficiente modificare il file hosts della propria workstation. Per Linux, si tratta di `sudo vi /etc/hosts` e poi si aggiungono semplicemente gli IP e i nomi degli host con cui si sta facendo il test in questo modo:
 
 ```
 127.0.0.1   localhost
-192.168.1.116   www.mybrokenaxel.com    mybrokenaxel.com
-192.168.1.116   www.myfixedaxel.com myfixedaxel.com
+192.168.1.116   www.site1.com site1.com
+192.168.1.116   www.site2.com site2.com
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
 fe00::0 ip6-localnet
@@ -565,17 +569,17 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
 
-!!! hint "Suggerimento"
+!!! tip "Suggerimento"
 
-    Per i domini reali, si consiglia di popolare il proprio server DNS con gli host di cui sopra. Tuttavia, è possibile utilizzare questo *Poor Man's DNS* per testare qualsiasi dominio, anche se non è stato attivato sui server DNS reali.
+    Per i domini reali, si consiglia di popolare i server DNS con gli host di cui sopra. Tuttavia, è possibile utilizzare questo *Poor Man's DNS* per testare qualsiasi dominio, anche se non è stato attivato sui server DNS reali.
 
-A questo punto, aprite il vostro browser web e verificate che il file `index.html` per ogni dominio sia visualizzato inserendo l'URL nella barra degli indirizzi del browser. Esempio: "http://mybrokenaxel.com" se i file index di prova vengono caricati, tutto funziona correttamente.
+A questo punto, aprite il vostro browser web e verificate che il file `index.html` per ogni dominio venga visualizzato inserendo l'URL nella barra degli indirizzi del browser. (Esempio: "http://site1.com") Se i file di indice di prova vengono caricati, tutto funziona correttamente.
 
 ## Parte 3: Accesso amministrativo con coppie di chiavi SSH
 
-Si noti che in questa sezione si utilizzeranno i concetti discussi nel documento [Chiavi pubbliche e private SSH](../../security/ssh_public_private_keys), migliorandoli. Se siete alle prime armi, leggete questo articolo prima di continuare.
+Si noti che in questa sezione si utilizzeranno i concetti discussi nel documento [SSH Public and Private Keys](../../security/ssh_public_private_keys), migliorandoli. Se siete alle prime armi, leggete questo articolo prima di continuare.
 
-### Creazione delle Coppie di Chiavi pubbliche/private
+### Creazione delle coppie di chiavi pubbliche/private
 
 Dalla riga di comando di una delle stazioni di lavoro dell'utente amministrativo (esempio: lblakely), eseguire le seguenti operazioni:
 
@@ -583,14 +587,14 @@ Dalla riga di comando di una delle stazioni di lavoro dell'utente amministrativo
 ssh-keygen -t rsa
 ```
 
-Che vi darà questo:
+Che vi darà questo risultato:
 
 ```
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/lblakely/.ssh/id_rsa):
 ```
 
-Hit enter to create the private key in the location shown. This will give you this dialog:
+Premete invio per creare la chiave privata nella posizione indicata. Si aprirà questa finestra di dialogo:
 
 ```
 Enter passphrase (empty for no passphrase):
@@ -604,9 +608,9 @@ Enter same passphrase again:
 
 Ripetete la passphrase immessa in precedenza o premete invio per non immetterla.
 
-A questo punto sono state create sia la chiave pubblica che quella privata. Ripetete questo passaggio per l'altro utente di esempio di amministratore di sistema.
+A questo punto sono state create sia la chiave pubblica che quella privata. Ripetete questo passaggio per l'altro utente amministratore di sistema di esempio.
 
-### Trasferimento della Chiave Pubblica al Server SFTP
+### Trasferimento della chiave pubblica al server SFTP
 
 Il passo successivo consiste nell'esportare la nostra chiave sul server. In realtà, un amministratore di sistema responsabile della gestione di più server trasferisce la propria chiave pubblica a tutti i server di cui è responsabile.
 
@@ -627,7 +631,7 @@ and check to make sure that only the key(s) you wanted were added.
 
 Se si riesce ad accedere con questo account, ripetere la procedura con l'altro amministratore.
 
-### Consentire SOLO Login basati su chiavi
+### Consentire SOLO login basati su chiavi
 
 Supponendo che tutto quanto sopra abbia funzionato come previsto e che le chiavi per i nostri amministratori siano ora al loro posto sul server SFTP, disattiviamo l'autenticazione con password sul server. Per sicurezza, assicuratevi di avere due connessioni al server, in modo da poter annullare qualsiasi modifica in caso di conseguenze indesiderate.
 
@@ -643,13 +647,13 @@ Quindi, modificare il file `sshd_config`:
 vi /etc/ssh/sshd_config
 ```
 
-Vogliamo disattivare le password con tunnel, quindi troviamo questa riga nella configurazione:
+Vogliamo disattivare le password in tunnel, quindi troviamo questa riga nella configurazione:
 
 ```
 PasswordAuthentication yes
 ```
 
-E modificarlo in modo che sia "no" - si noti che la semplice annotazione di questa riga fallirà, poiché l'impostazione predefinita è sempre "sì".
+E modificarlo in modo che sia "no" - si noti che la semplice annotazione di questa riga fallirà, poiché l'impostazione predefinita è sempre "yes".
 
 ```
 PasswordAuthentication no
@@ -693,13 +697,13 @@ Poiché stiamo apportando una modifica a questo file, come in ogni altro passagg
 cp -f /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 ```
 
-Di nuovo, vogliamo modificare `sshd_config`:
+Anche in questo caso, vogliamo modificare `sshd_config`:
 
 ```
 vi /etc/ssh/sshd_config
 ```
 
-Poi dobbiamo trovare questa linea:
+Quindi vogliamo trovare questa linea:
 
 ```
 PermitRootLogin yes
@@ -717,7 +721,7 @@ Quindi salvare e uscire dal file e riavviare `sshd`:
 systemctl restart sshd
 ```
 
-Ora chiunque tenti di accedere come utente root da remoto tramite `ssh` riceverà lo stesso messaggio di rifiuto di prima, ma <strong x-id="1" **non sarà** in grado di accedere al server anche se possiede una coppia di chiavi pubbliche/private per root.
+Ora chiunque tenti di accedere come utente root da remoto tramite `ssh` riceverà lo stesso messaggio di rifiuto di prima, ma non sarà **ancora** in grado di accedere al server anche se possiede una coppia di chiavi pubbliche/private per root.
 
 ## Addendum: Nuovi Amministratori Di Sistema
 
@@ -729,7 +733,7 @@ Questa soluzione presuppone l'accesso fisico al server e che il server sia hardw
 
 * Aggiungere l'utente al gruppo "wheel" sul server SFTP
 * Chiedete all'utente di generare le sue chiavi pubbliche e private SSH
-* Utilizzando un'unità USB, copiate la chiave pubblica sull'unità, portatela fisicamente dal server e installatela manualmente nella directory del nuovo amministratore di sistema `/home/[username]/.ssh`
+* Utilizzando un'unità USB, copiate la chiave pubblica sull'unità, portatela fisicamente sul server e installatela manualmente nella directory del nuovo amministratore di sistema `/home/[nomeutente]/.ssh`
 
 ### Soluzione due - Modifica temporanea di `sshd_config`
 
@@ -741,7 +745,7 @@ Questa soluzione è soggetta all'errore umano, ma poiché non viene eseguita spe
 
 ### Soluzione tre - Script del processo
 
-Questo è il preferito dall'autore. Utilizza un amministratore di sistema che ha già un accesso basato su chiavi e uno script che deve essere eseguito con `bash [script-name]` per ottenere lo stesso risultato della "Soluzione due" di cui sopra:
+Questo è il preferito dall'autore. Utilizza un amministratore di sistema che ha già un accesso basato su chiavi e uno script che deve essere eseguito con `bash [nome-script]` per ottenere lo stesso risultato della "Soluzione due" di cui sopra:
 
 * modificare manualmente il file `sshd_config` e rimuovere la riga commentata che assomiglia a questa: `#PasswordAuthentication no`. Questa riga documenta il processo di disattivazione dell'autenticazione tramite password, ma intralcia lo script sottostante, perché il nostro script cercherà la prima occorrenza di `PasswordAuthentication no` e successivamente la prima occorrenza di `PasswordAuthentication yes`. Se si rimuove questa riga, lo script funzionerà correttamente.
 * creare uno script sul server SFTP chiamato "quickswitch", o come lo si vuole chiamare. Il contenuto di questo script è simile a questo:
@@ -760,8 +764,8 @@ read yn
 /usr/bin/systemctl restart sshd
 echo "Changes reversed"
 ```
-Spiegazione dello script: Non rendiamo questo script eseguibile. La ragione è che non lo vogliamo eseguire accidentalmente. Lo script deve essere eseguito (come indicato sopra) in questo modo: `bash /usr/local/sbin/quickswitch`. Questo script crea una copia di backup del file `sshd_config` proprio come tutti gli altri esempi precedenti. Quindi modifica il file `sshd_config` al suo posto e cerca la *PRIMA* occorrenza di `PasswordAuthentication no` e la cambia in `PasswordAuthentication yes`, quindi riavvia `sshd` e attende che l'utente dello script prema <kbd>INVIO</kbd> prima di continuare. L'amministratore di sistema che esegue lo script dovrebbe essere in comunicazione con il nuovo amministratore di sistema e, una volta che quest'ultimo esegue `ssh-copy-id` per copiare la sua chiave sul server, l'amministratore di sistema che sta eseguendo lo script preme invio e la modifica viene sostituita.
+Spiegazione dello script: Non rendiamo questo script eseguibile. La ragione è che non lo vogliamo eseguire accidentalmente. Lo script deve essere eseguito (come indicato sopra) in questo modo: `bash /usr/local/sbin/quickswitch`. Questo script crea una copia di backup del file `sshd_config` proprio come tutti gli altri esempi precedenti. Quindi modifica il file `sshd_config` sul posto e cerca la *PRIMA* occorrenza di `PasswordAuthentication no` e la cambia in `PasswordAuthentication yes`, quindi riavvia `sshd` e attende che l'utente dello script prema <kbd>INVIO</kbd> prima di continuare. L'amministratore di sistema che esegue lo script sarebbe in comunicazione con il nuovo amministratore di sistema e, una volta che quest'ultimo esegue `ssh-copy-id` per copiare la sua chiave sul server, l'amministratore di sistema che sta eseguendo lo script preme invio e la modifica viene invertita.
 
 ## Conclusione
 
-In questo documento abbiamo trattato molti aspetti, ma tutti sono stati pensati per rendere un server web multisito più sicuro e meno soggetto a vettori di attacco tramite SSH quando si attiva SFTP per l'accesso dei clienti. L'attivazione e l'uso di SFTP è molto più sicuro dell'uso di FTP, anche se si utilizzano server ftp veramente *BUONI* e li si è impostati nel modo più sicuro possibile, come indicato in questo [documento su VSFTPD](../secure_ftp_server_vsftpd). Implementando *tutti* i passaggi di questo documento, potrete sentirvi tranquilli nell'aprire la porta 22 (SSH) alla vostra zona pubblica e sapere che il vostro ambiente è sicuro.
+In questo documento abbiamo trattato molti aspetti, ma tutti sono stati pensati per rendere un server web multisito più sicuro e meno soggetto a vettori di attacco su SSH quando si attiva SFTP per l'accesso dei clienti. L'attivazione e l'uso di SFTP è molto più sicuro dell'uso di FTP, anche se si utilizzano server ftp veramente *BUONI* e li si è impostati nel modo più sicuro possibile, come indicato in questo [documento su VSFTPD](../secure_ftp_server_vsftpd). Implementando *tutti* i passaggi di questo documento, potrete sentirvi tranquilli nell'aprire la porta 22 (SSH) alla vostra zona pubblica, sapendo che il vostro ambiente è sicuro.
