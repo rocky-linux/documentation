@@ -1,28 +1,35 @@
 ---
-title: Rapporto dei Processi con Postfix
+title: Rapporti dei Processi con Postfix
+author: Steven Spencer
+contributors: Ezequiel Bruni, Franco Colussi
+tested_with: 8.5, 8.6, 9.0
+tags:
+  - email
+  - reports
+  - tools
 ---
 
-# Utilizzo di Postfix per l'invio dei rapporti dei processi del server
+# Utilizzo di Postfix per i Rapporti dei Processi del Server
 
 ## Prerequisiti
 
 * Completo comfort nell'operare dalla riga di comando su un server Rocky Linux
 * Familiarità con un editor di vostra scelta (questo documento utilizza l'editor _vi_, ma potete sostituirlo con il vostro editor preferito)
 * Conoscenza del DNS (Domain Name System) e dei nomi host
-* La possibilità di assegnare variabili in uno script bash
+* L'abilità di assegnare variabili in uno script bash
 * Conoscere le funzioni dei comandi _tail_, _more_, _grep_ e _date_
 
 ## Introduzione
 
-Molti amministratori di server Rocky Linux scrivono script per eseguire attività specifiche, come i backup o la sincronizzazione dei file, e molti di questi script generano log che contengono informazioni utili e talvolta molto importanti. Tuttavia, il solo fatto di avere i log non è sufficiente. Se un processo si interrompe e viene registrato, ma l'amministratore impegnato non esamina il registro, potrebbe verificarsi una catastrofe.
+Molti amministratori di server Rocky Linux scrivono script per eseguire attività specifiche, come i backup o la sincronizzazione dei file, e molti di questi script generano log che contengono informazioni utili e talvolta molto importanti. Tuttavia, il solo fatto di avere i registri non è sufficiente. Se un processo fallisce e ne viene registrato il fallimento, ma l'amministratore impegnato non esamina il registro, potrebbe verificarsi una catastrofe.
 
-Questo documento mostra come utilizzare l'MTA (mail transfer agent) _postfix_ per acquisire i dettagli del log da un particolare processo e inviarli via e-mail. Inoltre, tratta i formati delle date nei log e aiuta a identificare il formato da utilizzare nella procedura di gestione dei rapporti.
+Questo documento mostra come utilizzare l'MTA (mail transfer agent) di _postfix_ per prendere i dettagli del log da un particolare processo e inviarli all'utente via e-mail. Inoltre, tratta dei formati delle date nei registri e aiuta a identificare il formato da utilizzare nella procedura di creazione dei rapporti.
 
 Tenete presente, però, che questa è solo la punta dell'iceberg di ciò che si può fare con la segnalazione tramite postfix. Si noti inoltre che è sempre una buona mossa di sicurezza limitare i processi in esecuzione solo a quelli di cui si ha sempre bisogno.
 
-Questo documento mostra come attivare postfix solo per le attività di reporting necessarie e poi disattivarlo di nuovo.
+Questo documento mostra come attivare postfix solo per le attività di invio dei rapporti necessarie e poi spegnerlo di nuovo.
 
-## Definizione di Postfix
+## Definizione Postfix
 
 postfix è un demone server utilizzato per l'invio di e-mail. È più sicuro e più semplice di sendmail, un altro MTA che per anni è stato l'MTA predefinito. Può essere utilizzato come parte di un server di posta completo.
 
@@ -32,9 +39,17 @@ Oltre a postfix, avremo bisogno di _mailx_ per testare la nostra capacità di in
 
 `dnf install postfix mailx`
 
-## Test e Configurazione di Postfix
+!!! warning "Modifiche a Rocky Linux 9.0"
 
-### Prima il Test della Posta
+    Questa procedura funziona perfettamente in Rocky Linux 9.0. La differenza è data dalla provenienza del comando `mailx`. Mentre in 8.x è possibile installarlo per nome, in 9.0 `mailx` proviene dal pacchetto appstream `s-nail`. Per installare i pacchetti necessari, è necessario utilizzare:
+
+    ```
+    dnf install postfix s-nail
+    ```
+
+## Test e configurazione di Postfix
+
+### Prima il test della Posta
 
 Prima di configurare postfix, dobbiamo scoprire come appare la posta quando lascia il server, perché probabilmente vorremo cambiarla. Per farlo, avviare postfix:
 
@@ -42,17 +57,17 @@ Prima di configurare postfix, dobbiamo scoprire come appare la posta quando lasc
 
 Quindi testatelo usando il comando mail che è installato con mailx:
 
-`mail -s "Test dal server" myname@mydomain.com`
+`mail -s "Testing from server" myname@mydomain.com`
 
 Verrà visualizzata una riga vuota. Digitate qui il vostro messaggio di prova:
 
-`test dal server`
+`testing from the server`
 
 Ora premete invio e inserite un singolo punto:
 
 `.`
 
-Il sistema risponderà con:
+Il sistema risponde con:
 
 `EOT`
 
@@ -62,7 +77,7 @@ Utilizzare questo comando per visualizzare l'output del file di log:
 
 `tail /var/log/maillog`
 
-Si dovrebbe vedere qualcosa di simile a questo, anche se il file di log potrebbe avere domini diversi per l'indirizzo e-mail, ecc:
+Si dovrebbe vedere qualcosa di simile, anche se il file di registro potrebbe avere domini diversi per l'indirizzo e-mail, ecc:
 
 ```
 Mar  4 16:51:40 hedgehogct postfix/postfix-script[735]: starting the Postfix mail system
@@ -81,19 +96,19 @@ L'indirizzo "somehost.localdomain" indica che è necessario apportare alcune mod
 
 ## Configurazione di Postfix
 
-Poiché non stiamo configurando un server di posta completo e perfettamente funzionante, le opzioni di configurazione che utilizzeremo non sono così ampie. La prima cosa da fare è modificare il file _main.cf_ (letteralmente il file di configurazione principale di postfix), quindi prima facciamo un backup:
+Poiché non stiamo configurando un server di posta completo e perfettamente funzionante, le opzioni di configurazione che utilizzeremo non sono così ampie. La prima cosa da fare è modificare il file _main.cf_ (letteralmente il file di configurazione principale di postfix), quindi facciamo prima un backup:
 
-`cp /etc/postifix/main.cf /etc/postfix/main.cf.bak`
+`cp /etc/postfix/main.cf /etc/postfix/main.cf.bak`
 
 Quindi modificarlo:
 
 `vi /etc/postfix/main.cf`
 
-Nel nostro esempio, il nome del server sarà "bruno" e il nome del dominio "ourdomain.com". Trovate la riga nel file:
+Nel nostro esempio, il nome del server sarà "bruno" e il nome del dominio "ourdomain.com". Trovare la riga nel file:
 
 `#myhostname = host.domain.tld`
 
-È possibile rimuovere l'annotazione (#) o aggiungere una nuova riga sotto questa riga. In base al nostro esempio, la riga si dovrebbe leggere:
+È possibile rimuovere l'annotazione (#) o aggiungere una nuova riga sotto questa riga. In base al nostro esempio, la riga si legge:
 
 `myhostname = bruno.ourdomain.com`
 
@@ -101,7 +116,7 @@ Quindi, trovare la riga per il nome di dominio:
 
 `#mydomain = domain.tld`
 
-Rimuovere l'osservazione e modificarla, oppure aggiungere una nuova riga:
+Rimuovere l'annotazione e modificarla, oppure aggiungere una nuova riga:
 
 `mydomain = ourdomain.com`
 
@@ -111,7 +126,7 @@ Infine, andate in fondo al file e aggiungete questa riga:
 
 Salvate le modifiche (in vi, sarà `Shift : wq!`) e uscite dal file.
 
-Prima di continuare a modificare il file generico, dobbiamo vedere come apparirà l'e-mail. In particolare, vogliamo creare il file "generic" a cui abbiamo fatto riferimento nel file _main.cf_ di cui sopra:
+Prima di continuare a modificare il file generico, dobbiamo vedere come apparirà l'e-mail. In particolare, vogliamo creare il file "generic" a cui abbiamo fatto riferimento nel file _main.cf_ precedente:
 
 `vi /etc/postfix/generic`
 
@@ -127,13 +142,13 @@ Ora dobbiamo dire a postfix di utilizzare tutte le nostre modifiche. Questo vien
 
 Ora avviate postfix e testate di nuovo la vostra email usando la stessa procedura di cui sopra. Ora si dovrebbe vedere che tutte le istanze di "localdomain" sono state cambiate con il dominio effettivo.
 
-### Il Comando date e una variabile chiamata today
+### Il comando date e una variabile denominata Today
 
 Non tutte le applicazioni utilizzano lo stesso formato di registrazione della data. Ciò significa che potrebbe essere necessario essere creativi con qualsiasi script scritto per la creazione di rapporti per data.
 
-Supponiamo di voler esaminare il log di sistema come esempio e di voler estrarre tutto ciò che ha a che fare con dbus-daemon per la data odierna e inviarlo via e-mail a noi stessi. (Probabilmente non è l'esempio migliore, ma vi darà un'idea di come si fa.)
+Supponiamo di voler esaminare il log di sistema, ad esempio, per estrarre tutto ciò che ha a che fare con dbus-daemon per la data odierna e inviarlo via e-mail a noi stessi. (Probabilmente non è l'esempio migliore, ma vi darà un'idea di come si fa)
 
-Nel nostro script dobbiamo usare una variabile che chiameremo "today" e vogliamo che sia correlata all'output del comando "date" e che sia formattata in un modo specifico, in modo da poter ottenere i dati necessari dal nostro registro di sistema (in _/var/log/messages_). Per cominciare, facciamo un po' di lavoro di indagine.
+Nel nostro script dobbiamo usare una variabile che chiameremo "today" e vogliamo che sia correlata all'output del comando "date" e che sia formattata in un modo specifico, in modo da poter ottenere i dati necessari dal nostro log di sistema (in _/var/log/messages_). Per cominciare, facciamo un po' di lavoro di indagine.
 
 Per prima cosa, inserite il comando date nella riga di comando:
 
@@ -143,7 +158,7 @@ Questo dovrebbe fornire l'output predefinito della data di sistema, che potrebbe
 
 `Thu Mar  4 18:52:28 UTC 2021`
 
-Ora controlliamo il log di sistema e vediamo come registra le informazioni. Per farlo, utilizzeremo i comandi "more" e "grep":
+Ora controlliamo il registro di sistema e vediamo come registra le informazioni. Per farlo, utilizzeremo i comandi "more" e "grep":
 
 `more /var/log/messages | grep dbus-daemon`
 
@@ -157,13 +172,13 @@ Mar  4 18:50:41 hedgehogct dbus-daemon[60]: [system] Successfully activated serv
 
 La data e i log devono essere esattamente uguali nel nostro script, quindi vediamo come formattare la data usando una variabile chiamata "today".
 
-Per prima cosa, vediamo cosa fare con la data per ottenere lo stesso risultato del log di sistema. È possibile fare riferimento alla pagina [Linux man](https://man7.org/linux/man-pages/man1/date.1.html) o digitare `man date` sulla riga di comando per richiamare la pagina di manuale di date per ottenere le informazioni necessarie.
+Per prima cosa, vediamo cosa fare con la data per ottenere lo stesso risultato del log di sistema. È possibile fare riferimento alla [pagina man di Linux](https://man7.org/linux/man-pages/man1/date.1.html) o digitare `man date` sulla riga di comando per richiamare la pagina di manuale della data per ottenere le informazioni necessarie.
 
-Per formattare la data nello stesso modo in cui lo fa _/var/log/messages_, occorre usare le stringhe di formato %b e %e, dove %b è il mese di 3 caratteri e %e è il giorno con spazi.
+Per formattare la data nello stesso modo in cui lo fa _/var/log/messages_, è necessario usare le stringhe di formato %b e %e, dove %b è il mese di 3 caratteri e %e è il giorno riempito di spazi.
 
 ### Lo Script
 
-Per il nostro script bash, possiamo vedere che useremo il comando date e una variabile chiamata "today". (Tenete presente che il termine " today " è arbitrario. Si potrebbe chiamare questa variabile "late_for_dinner" se si vuole!). In questo esempio chiameremo il nostro script test.sh e lo collocheremo in _/usr/local/sbin_:
+Per il nostro script bash, possiamo vedere che useremo il comando date e una variabile chiamata "today". (Tenete presente che il termine "today" è arbitrario. Si potrebbe chiamare questa variabile "late_for_dinner" se si vuole!). In questo esempio chiameremo il nostro script test.sh e lo collocheremo in _/usr/local/sbin_:
 
 `vi /usr/local/sbin/test.sh`
 
@@ -176,10 +191,10 @@ Un'altra cosa da tenere presente è che il comando grep restituisce il nome del 
 ```
 #!/bin/bash
 
-# imposta la stringa di date da far corrispondere /var/log/messages
+# set the date string to match /var/log/messages
 today=`date +"%b %e"`
 
-# cattura i messaggi di dbus-daemon e li invia per posta elettronica
+# grab the dbus-daemon messages and send them to email
 grep -h "$today" /var/log/messages
 ```
 
@@ -198,16 +213,16 @@ Se tutto funziona correttamente, si dovrebbe ottenere un lungo elenco di tutti i
 ```
 #!/bin/bash
 
-# imposta la stringa di date da far corrispondere /var/log/messages
+# set the date string to match /var/log/messages
 today=`date +"%b %e"`
 
-# cattura i messaggi di dbus-daemon e li invia per posta elettronica
+# grab the dbus-daemon messages and send them to email
 grep -h "$today" /var/log/messages | grep dbus-daemon
 ```
 
 Eseguendo nuovamente lo script, si dovrebbero ottenere solo i messaggi di dbus-daemon e solo quelli che si sono verificati oggi (quando si sta seguendo questa guida).
 
-C'è però un ultimo passo da fare. Ricordate che è necessario inviare questo documento via e-mail all'amministratore per la revisione. Inoltre, poiché su questo server utilizziamo _postfix_ solo per i rapporti, non vogliamo lasciare il servizio in esecuzione, quindi lo avvieremo all'inizio dello script e lo fermeremo alla fine. Introdurremo qui il comando _sleep_ per fare una pausa di 20 secondi per assicurarci che l'e-mail sia stata inviata prima di spegnere nuovamente _postfix_.  Questa modifica finale aggiunge i passaggi stop, start e sleep appena discussi e invia il contenuto all'e-mail dell'amministratore.
+C'è però un ultimo passo da fare. Ricordate che è necessario inviare questo documento via e-mail all'amministratore per la revisione. Inoltre, poiché su questo server utilizziamo _postfix_ solo per i rapporti, non vogliamo lasciare il servizio in esecuzione, quindi lo avvieremo all'inizio dello script e lo fermeremo alla fine. Introdurremo qui il comando _sleep_ per fare una pausa di 20 secondi per assicurarci che l'e-mail sia stata inviata prima di spegnere nuovamente _postfix_.  Questa modifica finale aggiunge i problemi di arresto, avvio e riposo appena discussi e invia il contenuto all'e-mail dell'amministratore.
 
 `vi /usr/local/sbin/test.sh`
 
@@ -216,19 +231,19 @@ E modificare lo script:
 ```
 #!/bin/bash
 
-# avvia postfix
+# start postfix
 /usr/bin/systemctl start postfix
 
-# imposta la data da far corrispondere /var/log/messages
+# set the date string to match /var/log/messages
 today=`date +"%b %e"`
 
-# cattura i messaggi di dbus-daemon e li invia per posta elettronica
+# grab the dbus-daemon messages and send them to email
 grep -h "$today" /var/log/messages | grep dbus-daemon | mail -s "dbus-daemon messages for today" myname@mydomain.com
 
-# assicurarsi che l'e-mail sia terminata prima di continuare
+# make sure the email has finished before continuing
 sleep 20
 
-# fermare postfix
+# stop postfix
 /usr/bin/systemctl stop postfix
 ```
 
@@ -236,6 +251,6 @@ Eseguite nuovamente lo script e dovreste ricevere un'e-mail dal server con il me
 
 È ora possibile utilizzare [un crontab](../automation/cron_jobs_howto.md) per programmare l'esecuzione a un'ora specifica.
 
-## Conclusione
+## Conclusioni
 
 L'uso di postfix può aiutare a tenere traccia dei log dei processi che si desidera monitorare. È possibile utilizzarlo insieme allo scripting bash per avere una solida padronanza dei processi di sistema ed essere informati in caso di problemi.
