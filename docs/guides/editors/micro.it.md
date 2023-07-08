@@ -17,7 +17,7 @@ tags:
 
 * Tutti i consueti comandi "Control-C", "Control-V" e "Control-F" funzionano come in un editor di testo basato su desktop. Naturalmente, tutte le associazioni di tasti possono essere reimpostate.
 * Supporto del mouse — fare clic e trascinare per selezionare il testo, fare doppio clic per selezionare le parole, fare triplo clic per selezionare le righe.
-* Oltre 75 lingue supportate con evidenziazione della sintassi per impostazione predefinita.
+* Sono supportate oltre 75 lingue con evidenziazione della sintassi per impostazione predefinita.
 * Cursori multipli per modificare più righe alla volta.
 * Include un sistema di plugin.
 * Pannelli multipli.

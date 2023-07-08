@@ -93,7 +93,7 @@ inotifywait 主要有以下选项：
 | move_self     | 已移动受监视的文件或目录               |
 | create        | 被监控的目录内有创建的文件或目录           |
 | delete        | 被监控的目录内有文件或目录被删除           |
-| delete_self   | 文件或目录以及删除                  |
+| delete_self   | 文件或目录已经被删除                 |
 | unmount       | 包含已卸载文件或目录的文件系统            |
 
 示例:`[root@Rocky ~]# inotifywait  -mrq  -e  create,delete  /rsync/`

@@ -72,7 +72,7 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 
 * **PID - 进程 ID 编号**
 * USER - 该进程的所有者
-* PRI - 显示Linux 内核所能看到的进程优先级
+* PRI - 显示 Linux 内核所能看到的进程优先级
 * NI - 显示了普通用户或root超级用户reset的进程优先级
 * VIRT - 进程正在消耗的虚拟内存
 * **RES - 进程正在消耗的物理内存**
@@ -99,4 +99,4 @@ PID   USER   PRI   NI   VIRT   RES   SHR   S   CPU%   MEM%   TIME+   Command(mer
 | 15 | kill 命令的默认信号。 有时如果进程已经发生问题，这个信号是无法正常终止进程的，我们会尝试信号9 |
 
 ## 结尾
-`htop` 比系统自带的 `top` 好用太多，更加直观，对日常的使用提升非常巨大。 这就是为什么通常作者在安装操作系统后的第一件事就是安装它。
+`htop` 比系统自带的 `top` 好用太多，更加直观，对日常的使用提升非常巨大。 这就是为什么 `htop` 通常是作者在安装新操作系统后安装的首个软件包之一。
