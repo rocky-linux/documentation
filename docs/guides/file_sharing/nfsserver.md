@@ -14,9 +14,9 @@ contributors: Steven Spencer
 
 ## Generalities
 
-NFS is a client/server protocol: the server provides resources for all or part of the network (clients).
+NFS is a client/server protocol: the server provides file system resources for all or part of the network (clients).
 
-The dialogue between clients and server takes place via **R**emote **P**rocedure **C**all (**RPC**) services.
+The communication between clients and server takes place via **R**emote **P**rocedure **C**all (**RPC**) services.
 
 Remote files are mounted in a directory and appear as a local file system. Client users seamlessly access files shared by the server, browsing directories as if they were local.
 
