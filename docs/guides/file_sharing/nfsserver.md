@@ -74,8 +74,8 @@ Resource shares are set up in the `/etc/exports` file. Each line in this file co
 ```
 
 * **/share_name**: Absolute path of shared directory;
-* **clients** : Clients authorized to access resources ;
-* **(permissions)** : Permissions on resources.
+* **clients**: Clients authorized to access resources;
+* **(permissions)**: Permissions on resources.
 
 Machines authorized to access resources can be declared by:
 
@@ -90,18 +90,18 @@ Multiple clients can be specified on the same line, separated by a space.
 
 There are two types of permissions:
 
-* `ro` : readonly;
+* `ro` : read-only;
 * `rw` : modification.
 
 If no right is specified, then the right applied will be read-only.
 
 By default, client user UIDs and GIDs are conserved (except for `root`).
 
-To force the use of a UID or GID other than that of the user writing the resource, specify the `anonuid=UID` and `anongid=GID` options, or give `anonymous` access to the data with the `all squash`option.
+To force the use of a UID or GID other than that of the user writing the resource, specify the `anonuid=UID` and `anongid=GID` options, or give `anonymous` access to the data with the `all squash` option.
 
 !!! warning "warning" 
 
-    There is a parameter, `no_root_squash`, which identifies the client root user as the server root user. This parameter can be dangerous for system security.
+    There is a parameter, `no_root_squash`, which identifies the client root user as the server root user. This parameter can be dangerous from a system security point of view.
 
 By default, the `root_squash` parameter is activated (even if not specified), identifying `root` as an `anonymous` user.
 
@@ -130,8 +130,8 @@ exportfs [-a] [-r] [-u share_name] [-v]
 
 | Options         | Description                               |
 | --------------- | ----------------------------------------- |
-| `-a`            | Enable NFS shares                         |
-| `-r`            | Apply shares from the `/etc/exports` file |
+| `-a`            | Enables NFS shares                         |
+| `-r`            | Applies shares from the `/etc/exports` file |
 | `-u share_name` | Disables a given share                    |
 | `-v`            | Displays the list of shares               |
 
@@ -152,7 +152,7 @@ This command also determines whether the client workstation has authorization to
 
 !!! note "note"
 
-    `showmount`sorts and deletes duplicates in the results, so it's impossible to determine whether a client has made multiple mounts of the same directory.
+    `showmount` sorts and hides duplicates in the results, so it's impossible to determine whether a client has made multiple mounts of the same directory or not.
 
 ## Client configuration
 
