@@ -42,7 +42,7 @@ Admonitions are special visual "boxes" that allow you to call attention to impor
 | note      | renders a blue text box                                   |
 | abstract  | renders a light blue text box                             |
 | info      | renders a blue-green text box                             |
-| tip       | renders a blue-green text box (icon slightly more green)  |
+| tip       | renders a blue-green text box (icon slightly greener)     |
 | success   | renders a green text box                                  |
 | question  | renders a light green text box                            |
 | warning   | renders an orange text box                                |
@@ -118,7 +118,7 @@ Here are examples of each admonition type, and how they will look in your docume
 
 ### Expandable Admonitions
 
-If an admonition will have content that is very long, consider using an expandable admonition. This is treated the same way as a regular admonition but starts with three question marks, rather than three exclamation marks. All of the other admonition rules apply. An expandable admonition looks like this:
+If an admonition will have content that is very long, consider using an expandable admonition. This is treated the same way as a regular admonition but starts with three question marks, rather than three exclamation marks. All the other admonition rules apply. An expandable admonition looks like this:
 
 ??? warning "Warning Content"
 
@@ -134,7 +134,7 @@ Which looks like this in your editor:
 
 ## Tabbed Content within a Document
 
-Tabbed content is formatted in a similar way to admonitions. Instead of three exclamation marks or three question marks, it begins with three equal signs. All of the admonition formatting (4 spaces, etc.) applies to this content. An example of this is where documentation might need a different procedure for a different Rocky Linux version. When using tabbed content for versions, the most recent release of Rocky Linux should come first. At the time of this writing, that was 9.0:
+Tabbed content is formatted in a similar way to admonitions. Instead of three exclamation marks or three question marks, it begins with three equal signs. All the admonition formatting (4 spaces, etc.) applies to this content. An example of this is where documentation might need a different procedure for a different Rocky Linux version. When using tabbed content for versions, the most recent release of Rocky Linux should come first. At the time of this writing, that was 9.0:
 
 === "9.0"
 
@@ -216,7 +216,7 @@ Tables help us to lay out command options, or in the above case, admonition type
 | note      | renders a blue text box                                   |
 | abstract  | renders a light blue text box                             |
 | info      | renders a blue-green text box                             |
-| tip       | renders a blue-green text box (icon slightly more green)  |
+| tip       | renders a blue-green text box (icon slightly greener)     |
 | success   | renders a green text box                                  |
 | question  | renders a light green text box                            |
 | warning   | renders an orange text box                                |
@@ -254,7 +254,7 @@ That ends up looking like this when the page is rendered:
 Our approach to using code blocks is pretty simple. If `your code` is short enough that you can (and want to) use it in a sentence like you just saw, use single backticks <kbd>`</kbd>, like so:
 
 ```
-A sentence with a `commmand of your choosing` in it.
+A sentence with a `command of your choosing` in it.
 ```
 
 Any command that is not used inside of a text paragraph (especially the long bits of code with multiple lines) should be a full code block, defined with triple backticks <kbd>`</kbd>:
@@ -301,7 +301,7 @@ Superscript and subscript notation are not normal markdown, but are supported in
 
 Some of the special characters, such as &copy; aren't normally superscript, while others such as &trade;, are.
 
-Here is how all of the above looks in your markdown code:
+Here is how all the above looks in your markdown code:
 
 ```
 * represent ordinal numbers, such as 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
