@@ -156,7 +156,7 @@ This command also determines whether the client workstation has authorization to
 
 ## Client configuration
 
-Access to shared resources on an NFS server is done by mount point on the client.
+Shared resources on an NFS server are accessible through a mount point on the client.
 
 If required, create a local folder for mounting:
 
