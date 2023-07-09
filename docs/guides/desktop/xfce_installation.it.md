@@ -1,107 +1,223 @@
+- - -
+title: XFCE Desktop Environment author: Gerard Arthus contributors: Steven Spencer, Antoine Le Morvan, K.Prasad, Franco Colussi tags:
+  - xfce
+  - desktop
+- - -
+
 # Ambiente desktop XFCE
 
-L'ambiente desktop XFCE è stato creato come fork del Common Desktop Environment (CDE). Xfce incarna la tradizionale filosofia Unix di Modularità e Riutilizzabilità. XFCE può essere installato su quasi tutte le versioni di Linux, compresa Rocky Linux.
+L'ambiente desktop XFCE è stato creato come fork del Common Desktop Environment (CDE). XFCE incarna la tradizionale filosofia Unix di modularità e riutilizzabilità. XFCE può essere installato su quasi tutte le versioni di Linux, compresa Rocky Linux.
 
-Questa procedura è stata ideata per farvi iniziare a lavorare con Rocky Linux utilizzando XFCE.
+È anche uno degli ambienti desktop più facili da combinare con gestori di finestre alternativi, come awesome o i3. Questa procedura, tuttavia, è stata pensata per farvi iniziare a lavorare con Rocky Linux utilizzando una tipica installazione XFCE.
 
 ## Prerequisiti
 
-* Una Workstation o un Server, preferibilmente con Rocky Linux già installato.
-* Dovete essere nell'ambiente Root o digitare `sudo` prima di tutti i comandi che inserite.
+* Una workstation o un computer portatile
+* Desiderio di eseguire XFCE come desktop invece del desktop predefinito di GNOME
 
-## Installare Rocky Linux Minimal
+=== "9"
 
-Durante l'installazione di Rocky Linux, abbiamo utilizzato i seguenti pacchetti:
+    ## 9: Introduzione
+    
+    Il team di sviluppo di Rocky Linux 9 ha reso semplice l'installazione di XFCE e di altri ambienti desktop popolari, includendo immagini live. Un'immagine live, per chi non lo sapesse, è un'immagine avviabile che carica il sistema operativo senza installazione. Una volta caricato, è possibile installarlo nell'unità disco del computer e utilizzarlo.
+    
+    ## 9: Ottenere, verificare e scrivere l'immagine live di XFCE
+    
+    Prima dell'installazione, il primo passo è scaricare l'immagine live e scriverla su un DVD o una chiavetta USB. Come detto in precedenza, l'immagine sarà avviabile, proprio come qualsiasi altro supporto di installazione per Linux. È possibile trovare l'ultima immagine di XFCE nella sezione download di Rocky Linux 9 [immagini live](https://dl.rockylinux.org/pub/rocky/9.2/live/x86_64/). 
+    Si noti che questo particolare collegamento presuppone che x86_64 sia l'architettura del vostro processore. 
+    
+    A partire da questo momento, è possibile utilizzare architetture x86_64 o aarch64 per questa immagine live. Scaricare sia l'immagine live che i file di checksum. 
+    
+    Ora verificare l'immagine con il file CHECKSUM utilizzando il seguente metodo
+    (si noti che questo è un esempio! Assicurarsi che il nome dell'immagine e i file CHECKSUM corrispondano):
 
-* Minimal
-* Standard
+    ```
+    sha256sum -c CHECKSUM --ignore-missing Rocky-9-XFCE-x86_64-latest.iso.CHECKSUM
+    ```
 
-## Esegui l'Aggiornamento del Sistema
 
-Per prima cosa, eseguire il comando di aggiornamento del server per consentire al sistema di ricostruire la cache del repository, in modo da riconoscere i pacchetti disponibili.
+    Se tutto va bene, si dovrebbe vedere questo messaggio:
 
-`dnf update`
+    ```
+    Rocky-9-XFCE-x86_64-latest.iso: OK
+    ```
 
-## Abilitazione dei repository
 
-Abbiamo bisogno per funzionare sulle versioni Rocky 8.x, del repository non ufficiale per XFCE in EPEL.
+    Se il checksum per il file restituisce OK, ora sei pronto a scrivere la tua immagine ISO sul tuo supporto. Questa procedura varia a seconda del sistema operativo in uso, del supporto e degli strumenti. Si presuppone che sappiate come scrivere l'immagine sul vostro supporto.
+    
+    ## 9: Avvio
+    
+    Anche in questo caso la procedura varia a seconda della macchina, del BIOS, del sistema operativo e così via.  È necessario assicurarsi che la macchina sia impostata per l'avvio da qualsiasi supporto (DVD o USB) come primo dispositivo di avvio. In caso di successo, dovrebbe apparire questa schermata:
+    
+    ![xfce_boot](images/xfce_boot.png)
+    
+    Se è così, siete sulla buona strada! Se si desidera testare il supporto, si può selezionare prima questa opzione, oppure si può semplicemente digitare **S** per **Avviare Rocky Linux XFCE 9.0**.
+    
+    Ricordate che si tratta di un'immagine live, quindi ci vorrà un po' di tempo per avviare la prima schermata. Non fatevi prendere dal panico, aspettate! Una volta avviata l'immagine live, si dovrebbe vedere questa schermata:
+    
+    ![xfce_install](images/xfce_install.png)
+    
+    ## 9: Installazione di XFCE
+    
+    A questo punto, si può usare l'ambiente XFCE e vedere se ci piace. Una volta deciso di utilizzarlo in modo permanente, fate doppio clic sull'opzione Install to Hard Drive.
+    
+    Si avvia così un processo di installazione abbastanza familiare per chi ha già installato Rocky Linux. La prima schermata sarà quella di selezione della lingua predefinita:
+    
+    ![xfce_language](images/xfce_language.png)
+    
+    La schermata successiva contiene una serie di elementi da verificare o modificare. Le opzioni sono numerate per riferimento:
+    
+    ![xfce_install2](images/xfce_install_2.png)
 
-Abilitare questo repository inserendo:
+    1. **Tastiera** - Date un'occhiata a questa opzione e assicuratevi che corrisponda al layout della tastiera che utilizzate.
+    2. **Ora & Data** - Assicurati che questo corrisponda al tuo fuso orario.
+    3. **Destinazione di installazione** - È necessario fare clic su questa opzione, anche solo per accettare ciò che è già presente.
+    4. **Rete e Nome host** - Verificare che sia presente ciò che si desidera. Finché la rete è abilitata, è sempre possibile modificare questo punto in seguito se è necessario.
+    5. **Password di root** - Procedere con l'impostazione di una password di root. Ricordate di salvarla in un luogo sicuro (gestore di password), soprattutto se non la utilizzate spesso.
+    6. **Creazione di un utente** - Crea sicuramente almeno un utente. Se si desidera che l'utente abbia diritti amministrativi, ricordarsi di impostare questa opzione al momento della creazione dell'utente.
+    7. **Iniziare l'installazione** - Una volta impostate o verificate tutte le impostazioni, fare clic su questa opzione.
 
-`dnf install epel-release`
+    Una volta eseguito il passo 7, il processo di installazione dovrebbe iniziare a installare i pacchetti, come nella schermata seguente:
 
-E rispondere "Y" per installare EPEL.
+    ![xfce_install3](images/xfce_install_3.png)
 
-Sono necessari anche i repository Powertools e lightdm. Procedere con l'abilitazione di questi elementi:
+    Al termine dell'installazione sul disco rigido, verrà visualizzata la seguente schermata:
 
-`dnf config-manager --set-enabled powertools`
+    ![xfce_install_final](images/xfce_install_final.png)
 
-`dnf copr enable stenstorp/lightdm`
+    Procedere e fare clic su **Fine dell'installazione**.
 
-!!! Warning "Attenzione"
+    Dopo aver fatto questo, si tornerà alla schermata dell'immagine live. Riavviare il computer e rimuovere il supporto di avvio utilizzato per l'installazione di XFCE.
 
-    Il sistema di compilazione `copr` crea un repository che è noto per funzionare per l'installazione di `lightdm`, ma non è mantenuto dalla comunità Rocky Linux. Utilizzare a proprio rischio e pericolo!
+    Si aprirà quindi una schermata di accesso con l'utente creato in precedenza. Inserite la vostra password e accederete al desktop XFCE:
 
-Anche in questo caso, verrà presentato un messaggio di avvertimento sul repository. Rispondete pure a `Y` alla domanda.
+    ![xfce_desktop](images/xfce_desktop.png)
 
-## Controllare gli Ambienti Disponibili e gli Strumenti nel Gruppo
+=== "8"
 
-Ora che i repository sono abilitati, eseguire i seguenti comandi per verificare il tutto.
+    ## 8.6: Installare Rocky Linux Minimal
+    
+    !!! note "Nota"
+    
+        In questa sezione è necessario essere l'utente root o essere in grado di eseguire sudo per elevare i propri privilegi.
+    
+    Durante l'installazione di Rocky Linux, abbiamo utilizzato i seguenti pacchetti:
 
-Per prima cosa, controllare l'elenco dei repository con:
+    * Minimal
+    * Standard
 
-`dnf repolist`
 
-Si dovrebbe ottenere il seguente risultato che mostra tutti i repository abilitati:
+    ## 8: Eseguire l'aggiornamento del sistema
 
-```
-appstream                                                        Rocky Linux 8 - AppStream
-baseos                                                           Rocky Linux 8 - BaseOS
-copr:copr.fedorainfracloud.org:stenstorp:lightdm                 Copr repo for lightdm owned by stenstorp
-epel                                                             Extra Packages for Enterprise Linux 8 - x86_64
-epel-modular                                                     Extra Packages for Enterprise Linux Modular 8 - x86_64
-extras                                                           Rocky Linux 8 - Extras
-powertools                                                       Rocky Linux 8 - PowerTools
-```
+    Per prima cosa, eseguire il comando di aggiornamento del server per consentire al sistema di ricostruire la cache del repository, in modo da riconoscere i pacchetti disponibili.
 
-Eseguire quindi il seguente comando per verificare la presenza di XFCE:
+    ```
+    dnf update
+    ```
 
-`dnf grouplist`
 
-Dovreste vedere "Xfce" in fondo all'elenco.
+    ## 8.6: Abilitazione dei Repository
 
-Eseguire ancora una volta `dnf update` per assicurarsi che tutti i repository abilitati siano letti dal sistema.
+    Abbiamo bisogno del repository non ufficiale per XFCE nel repository EPEL, per funzionare sulle versioni Rocky 8.x.
 
-## Installazione dei Pacchetti
+    Abilitare questo repository inserendo:
 
-Per installare XFCE, eseguire:
+    ```
+    dnf install epel-release
+    ```
 
-`dnf groupinstall "xfce"`
+    E rispondi 'Y' per installarlo.
 
-Installare anche lightdm:
+    Sono necessari anche i repository Powertools e lightdm. Procedere con l'abilitazione di questi elementi:
 
-`dnf install lightdm`
+    ```
+    dnf config-manager --set-enabled powertools
+    dnf copr enable stenstorp/lightdm
+    ```
 
-## Fasi finali
+    !!! Warning "Attenzione"
 
-Dobbiamo disabilitare `gdm`, che viene aggiunto e abilitato durante *dnf groupinstall "xfce"*:
+        Il sistema di compilazione `copr` crea un repository che è noto per funzionare per l'installazione di `lightdm`, ma non è mantenuto dalla comunità Rocky Linux. Utilizzare a proprio rischio e pericolo!
 
-`systemctl disable gdm`
+    Anche in questo caso, verrà presentato un messaggio di avvertimento sul repository. Rispondete pure `Y` alla domanda.
 
-Ora possiamo abilitare *lightdm*:
 
-`systemctl enable lightdm`
+    ## 8.6: Controllare gli ambienti e gli strumenti disponibili nel gruppo
 
-Dobbiamo dire al sistema, dopo l'avvio, di usare solo l'interfaccia grafica, quindi dobbiamo impostare il sistema di destinazione predefinito sull'interfaccia GUI:
+    Ora che i repository sono abilitati, eseguire i seguenti comandi per verificare tutto.
 
-`systemctl set-default graphical.target`
+    Per prima cosa, controllare l'elenco dei repository con:
 
-Quindi riavviare:
+    ```
+    dnf repolist
+    ```
 
-`reboot`
+    Dovresti ottenere il seguente risultato che mostra tutti i repository abilitati:
 
-Dovrebbe apparire un prompt di login nella GUI di XFCE e, una volta effettuato il login, si avrà a disposizione tutto l'ambiente XFCE.
+    ```bash
+    appstream                                                        Rocky Linux 8 - AppStream
+    baseos                                                           Rocky Linux 8 - BaseOS
+    copr:copr.fedorainfracloud.org:stenstorp:lightdm                 Copr repo for lightdm owned by stenstorp
+    epel                                                             Extra Packages for Enterprise Linux 8 - x86_64
+    epel-modular                                                     Extra Packages for Enterprise Linux Modular 8 - x86_64
+    extras                                                           Rocky Linux 8 - Extras
+    powertools                                                       Rocky Linux 8 - PowerTools
+    ```
 
-## Conclusione
+    Eseguire quindi il seguente comando per verificare la presenza di XFCE:
 
-XFCE è un ambiente leggero con un'interfaccia semplice per coloro che non amano gli effetti grafici e la pesantezza. Questa guida sarà presto aggiornata con immagini, che mostreranno schermate per dare un esempio visivo dell'installazione.
+    ```
+    dnf grouplist
+    ```
+
+    Dovreste vedere "Xfce" in fondo all'elenco.
+
+    Eseguire `dnf update` un'altra volta per assicurarsi che tutti i repository abilitati siano letti nel sistema.
+
+
+    ## 8.6: Installazione dei Pacchetti
+
+    Per installare XFCE, eseguire:
+
+    ```
+    dnf groupinstall "xfce"
+    ```
+
+    Installare anche lightdm:
+
+    ```
+    dnf install lightdm
+    ```
+
+
+    ## 8: Fasi conclusive
+
+    Dobbiamo disabilitare `gdm`, che viene aggiunto e abilitato durante *dnf groupinstall "xfce"*:
+
+    ```
+    systemctl disable gdm
+    ```
+
+    Ora possiamo abilitare *lightdm*:
+
+    ```
+    systemctl enable lightdm
+    ```
+
+    Dobbiamo dire al sistema, dopo l'avvio, di usare solo l'interfaccia grafica, quindi dobbiamo impostare il sistema di destinazione predefinito sull'interfaccia GUI:
+
+    ```
+    systemctl set-default graphical.target
+    ```
+
+    Quindi riavviare:
+
+    ```
+    reboot
+    ```
+
+    Dovrebbe apparire un prompt di login nella GUI di XFCE e, una volta effettuato il login, si avrà a disposizione tutto l'ambiente XFCE.
+
+## Conclusioni
+
+XFCE è un ambiente leggero con un'interfaccia semplice. È un'alternativa al desktop GNOME predefinito su Rocky Linux. Se si utilizza Rocky Linux 9, gli sviluppatori hanno creato una pratica immagine live che velocizza il processo di installazione.

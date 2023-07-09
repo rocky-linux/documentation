@@ -37,7 +37,7 @@ ssh-keygen -t rsa
 Che mostrerà quanto segue:
 
 ```
-Generazione della coppia di chiavi pubbliche/private rsa.
+Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa):
 ```
 
