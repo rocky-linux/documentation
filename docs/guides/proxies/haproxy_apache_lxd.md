@@ -8,7 +8,7 @@ tested_with: 8.5, 8.6, 9.0
 
 ## Introduction
 
-HAProxy stands for "High Availability Proxy". This proxy can sit in front of any TCP application (such as web servers), but it is often used to act as a load-balancer between multiple instances of a website.
+HAProxy stands for "High Availability Proxy." This proxy can sit in front of any TCP application (such as web servers), but it is often used to act as a load-balancer between multiple instances of a website.
 
 There might be a number of reasons for doing this. If you have a website that is being hit hard — adding another instance of that same website and placing HAProxy in front of both — allows you to distribute traffic between instances. Another reason might be to be able to update content on a website without any down time. HAProxy can also help mitigate DOS and DDOS attacks.
 
