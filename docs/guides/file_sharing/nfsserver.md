@@ -90,7 +90,7 @@ Multiple clients can be specified on the same line, separated by a space.
 
 There are two types of permissions:
 
-* `ro` : read-only;
+* `ro`: read-only;
 * `rw` : modification.
 
 If no right is specified, then the right applied will be read-only.
