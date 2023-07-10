@@ -109,7 +109,7 @@ Doing this is pretty simple when using DHCP. Just follow this for each container
 * add a line: `@reboot /usr/sbin/dhclient`
 * hit the `ESC` key to exit out of insert mode.
 * save your changes with `SHIFT: wq`
-* type `exit` to exit container
+* type `exit` to exit the container
 
 Repeat steps for **web2** and **proxyha**.
 
@@ -137,7 +137,7 @@ and when you do an `lxc list` again, you should see that the DHCP addresses are 
 
 ## Installing Apache and Modifying the Welcome Screen
 
-Now that our environment is set, we need to install Apache (`httpd`) on each web container. This can done without physically accessing them:
+Now that our environment is set, we need to install Apache (`httpd`) on each web container. This can be done without physically accessing them:
 
 ```
 lxc exec web1 dnf install httpd
@@ -186,7 +186,7 @@ For our testing, we are only going to use port 80, or HTTP traffic, but this sho
 
 ## The HAProxy Configuration
 
-We've already installed HAProxy on the container, but we have done nothing with the configuration. Before we do anything, we need to do something to resolve our hosts. Normally we would be using fully-qualified domain names, but in this lab environment, we are just using IPs. To get some names associated with the machines, we are going to add some host file records to the **proxyha** container.
+We've already installed HAProxy on the container, but we have done nothing with the configuration. Before we do anything, we need to do something to resolve our hosts. Normally we would be using fully qualified domain names, but in this lab environment, we are just using IPs. To get some names associated with the machines, we are going to add some host file records to the **proxyha** container.
 
 `lxc exec proxyha vi /etc/hosts`
 
@@ -207,7 +207,7 @@ Now let's create a new configuration file:
 
 `lxc exec proxyha vi /etc/haproxy/haproxy.cfg`
 
-Note that we have commented out all of the HTTPS protocol lines for now. In a production environment, you'd want to use a wildcard certificate that would cover your web servers and enable HTTPS:
+Note that we have commented out all the HTTPS protocol lines for now. In a production environment, you'd want to use a wildcard certificate that would cover your web servers and enable HTTPS:
 
 ```
 global
@@ -295,7 +295,7 @@ The first thing we need to do is create that directory:
 
 `lxc exec proxyha mkdir /etc/haproxy/errors`
 
-Then we need to create each of these files in that directory. Note that you can do this with each filename from your LXD host with the command `lxc exec proxyha vi /etc/haproxy/errors/filename.http`, where "filename.http" references one of the below file names. In a production environment, your company may have more specific errors that they would like to use:
+Then we need to create each of these files in that directory. Note that you can do this with each filename from your LXD host with the command `lxc exec proxyha vi /etc/haproxy/errors/filename.http`, where "filename.http" references one of the file names below. In a production environment, your company may have more specific errors that they would like to use:
 
 File name `400.http`:
 
