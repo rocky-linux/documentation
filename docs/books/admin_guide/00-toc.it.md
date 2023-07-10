@@ -18,10 +18,10 @@ A questo punto possiamo addentrarci nel funzionamento del sistema Linux per scop
 * File Systems
 * Gestione dei Processi
 
-Il Backup e il Ripristino sono informazioni essenziali per l'Amministratore di Sistema. Linux dispone di molte soluzioni software per migliorare i backup (rsnapshot, lsyncd, ecc.). È importante conoscere i componenti essenziali del backup che esistono all'interno del sistema operativo. In questo capitolo analizziamo due strumenti: `tar` e il meno diffuso `cpio`.
+Il Backup e il Ripristino sono informazioni essenziali per l'Amministratore di Sistema. Linux dispone di molte soluzioni software per migliorare i backup (rsnapshot, lsyncd, ecc.). È importante conoscere i componenti principali per il backup che sono presenti nel sistema operativo. In questo capitolo esamineremo due strumenti: `tar` e il meno diffuso `cpio`.
 
-L'Avvio del Sistema è una lettura importante anche perché la gestione del sistema durante il processo di avvio si è evoluta in modo significativo negli ultimi anni dopo l'arrivo di systemd.
+L'avvio del sistema è una lettura importante anche perché la gestione del sistema durante il processo di avvio si è evoluta in modo significativo negli ultimi anni con l'arrivo di systemd.
 
 
-I capitoli finali trattano la Gestione dei Compiti, l'Implementazione della Rete e la Gestione del Software, compresa l'installazione.
+I capitoli finali trattano la gestione dei processi, l'implementazione della rete e la gestione del software, compresa l'installazione.
 
