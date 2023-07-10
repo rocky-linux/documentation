@@ -1,7 +1,7 @@
 ---
 title: Network File System
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Serge
 ---
 # Network File System
 
@@ -24,8 +24,8 @@ Remote files are mounted in a directory and appear as a local file system. Clien
 
 NFS requires two services to function:
 
-* The `network` service (of course);
-* The `rpcbind` service.
+* The `network` service (of course)
+* The `rpcbind` service
 
 View the status of the services with the command:
 
@@ -49,8 +49,8 @@ sudo systemctl enable --now nfs-server rpcbind
 
 Installing the NFS service creates two users:
 
-* `nobody`: used for anonymous connections;
-* `rpcuser`: for RPC protocol operation.
+* `nobody`: used for anonymous connections
+* `rpcuser`: for RPC protocol operation
 
 Configuring the firewall is necessary:
 
@@ -73,16 +73,16 @@ Set up resource shares with the `/etc/exports` file. Each line in this file corr
 /share_name	client1(permissions) client2(permissions)
 ```
 
-* **/share_name**: Absolute path of shared directory;
-* **clients**: Clients authorized to access resources;
-* **(permissions)**: Permissions on resources.
+* **/share_name**: Absolute path of shared directory
+* **clients**: Clients authorized to access resources
+* **(permissions)**: Permissions on resources
 
 Declare machines authorized to access resources with:
 
 * **IP address**: `192.168.1.2`
 * **Network address**: `192.168.1.0/255.255.255.0` or CIDR format `192.168.1.0/24`
-* **FQDN**: client_*.rockylinux.org: allows FQDNs starting with client_ from the rockylinux.org domain;
-* `*` for everybody.
+* **FQDN**: client_*.rockylinux.org: allows FQDNs starting with client_ from the rockylinux.org domain
+* `*` for everybody
 
 Specification of multiple clients is possible on the same line separated by a space.
 
@@ -90,8 +90,8 @@ Specification of multiple clients is possible on the same line separated by a sp
 
 There are two types of permissions:
 
-* `ro`: read-only;
-* `rw`: read-write.
+* `ro`: read-only
+* `rw`: read-write
 
 If no right is specified, then the right applied will be read-only.
 
@@ -177,7 +177,7 @@ Mount the server's NFS share:
 $ mount –t nfs 172.16.1.10:/share /mnt/nfs
 ```
 
-Automation of the mount can happen at system startup the `/etc/fstab` file:
+Automation of the mount can happen at system startup with the `/etc/fstab` file:
 
 ```
 $ sudo vim /etc/fstab
