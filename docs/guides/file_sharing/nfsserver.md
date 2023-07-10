@@ -16,18 +16,18 @@ contributors: Steven Spencer
 
 NFS is a client/server protocol: the server provides file system resources for all or part of the network (clients).
 
-The communication between clients and server takes place via **R**emote **P**rocedure **C**all (**RPC**) services.
+The communication between clients and server takes place by way of  **R**emote **P**rocedure **C**all (**RPC**) services.
 
 Remote files are mounted in a directory and appear as a local file system. Client users seamlessly access files shared by the server, browsing directories as if they were local.
 
 ## Installation
 
-2 services are required for NFS to function:
+NFS requires two services to function:
 
 * The `network` service (of course);
 * The `rpcbind` service.
 
-Service status can be viewed using the commands:
+View the status of the services with the command:
 
 ```
 systemctl status rpcbind
@@ -39,9 +39,9 @@ If the `nfs-utils` package is not installed:
 sudo dnf install nfs-utils
 ```
 
-The `nfs-utils` package requires several dependencies, including `rpcbind`, to be installed.
+The `nfs-utils` package requires the installation of several dependencies, including `rpcbind`.
 
-The NFS service can be started:
+Start the NFS service with:
 
 ```
 sudo systemctl enable --now nfs-server rpcbind
@@ -52,7 +52,7 @@ Installing the NFS service creates two users:
 * `nobody`: used for anonymous connections;
 * `rpcuser`: for RPC protocol operation.
 
-The firewall have to be configured:
+Configuring the firewall is necessary:
 
 ```
 sudo firewall-cmd --add-service={nfs,nfs3,mountd,rpc-bind} --permanent 
@@ -67,7 +67,7 @@ sudo firewall-cmd --reload
 
 ### The `/etc/exports` file
 
-Resource shares are set up in the `/etc/exports` file. Each line in this file corresponds to an NFS share.
+Set up resource shares with the `/etc/exports` file. Each line in this file corresponds to an NFS share.
 
 ```
 /share_name	client1(permissions) client2(permissions)
@@ -77,14 +77,14 @@ Resource shares are set up in the `/etc/exports` file. Each line in this file co
 * **clients**: Clients authorized to access resources;
 * **(permissions)**: Permissions on resources.
 
-Machines authorized to access resources can be declared by:
+Declare machines authorized to access resources with:
 
 * **IP address**: `192.168.1.2`
 * **Network address**: `192.168.1.0/255.255.255.0` or CIDR format `192.168.1.0/24`
 * **FQDN**: client_*.rockylinux.org: allows FQDNs starting with client_ from the rockylinux.org domain;
 * `*` for everybody.
 
-Multiple clients can be specified on the same line, separated by a space.
+Specification of multiple clients is possible on the same line separated by a space.
 
 ### Permissions on resources
 
@@ -95,7 +95,7 @@ There are two types of permissions:
 
 If no right is specified, then the right applied will be read-only.
 
-By default, client user UIDs and GIDs are conserved (except for `root`).
+By default, the NFS server preserves the client user UIDs and GIDs (except for `root`).
 
 To force the use of a UID or GID other than that of the user writing the resource, specify the `anonuid=UID` and `anongid=GID` options, or give `anonymous` access to the data with the `all squash` option.
 
@@ -103,7 +103,7 @@ To force the use of a UID or GID other than that of the user writing the resourc
 
     There is a parameter, `no_root_squash`, which identifies the client root user as the server root user. This parameter can be dangerous from a system security point of view.
 
-By default, the `root_squash` parameter is activated (even if not specified), identifying `root` as an `anonymous` user.
+Activation of the `root_squash` parameter is a default (even if not specified), identifying `root` as an `anonymous` user.
 
 ### Case studies
 
@@ -137,7 +137,7 @@ exportfs [-a] [-r] [-u share_name] [-v]
 
 ### The `showmount` command
 
-The `showmount` command is used to monitor clients.
+Use the `showmount` command to monitor clients.
 
 ```
 showmount [-a] [-e] [host]
@@ -177,7 +177,7 @@ Mount the server's NFS share:
 $ mount –t nfs 172.16.1.10:/share /mnt/nfs
 ```
 
-Mounting can also be automated at system startup in the `/etc/fstab` file:
+Automation of the mount can happen at system startup the `/etc/fstab` file:
 
 ```
 $ sudo vim /etc/fstab
