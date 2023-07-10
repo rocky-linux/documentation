@@ -48,10 +48,10 @@ Per aprire una pagina nei risultati della ricerca è sufficiente fare clic (o to
 
 ## Prima Volta
 
-Se è la prima volta che visitate il sito della documentazione di Rocky Linux, probabilmente siete nuovi con Rocky Linux e non vedete l'ora di installarlo! Nessun problema, visitate la pagina [Installazione di Rocky Linux](guides/installation.md) per istruzioni dettagliate.
+Se è la prima volta che visitate il sito della documentazione di Rocky Linux, probabilmente siete nuovi di Rocky Linux e non vedete l'ora di installarlo! Nessun problema, visitate la pagina [Installazione di Rocky Linux](guides/installation.md) per istruzioni dettagliate.
 
-Se siete bloccati e avete delle domande, la comunità Rocky Linux è pronta ad aiutarvi. Visitando il [forum della comunità](https://forums.rockylinux.org) è possibile cercare soluzioni e porre le proprie domande alla comunità.
+Se siete in difficoltà e avete delle domande, la comunità Rocky Linux è a disposizione per aiutarvi. Visitate il [forum della comunità](https://forums.rockylinux.org) e potrete cercare soluzioni o porre le vostre domande alla comunità.
 
 ## Contribuire
 
-Avete trovato qualcosa che manca? Avete trovato un errore? Vi state chiedendo come creare un vostro documento o come sistemare le cose qui? Ricordate che abbiamo detto che *voi siete* la comunità Rocky? Ciò significa che *siete* importanti per noi e che vogliamo che vi uniate a noi, se vi va, per contribuire a migliorare questa documentazione. Se siete interessati, visitate la nostra [Guida al contributo](https://github.com/rocky-linux/documentation/blob/main/README.md) per scoprire come fare!
+Avete trovato qualcosa che manca? Avete trovato un errore? Vi state chiedendo come creare un vostro documento o come sistemare le cose in questo caso? Ricordate che abbiamo detto che *voi siete* la comunità Rocky? Ciò significa che *siete* importanti per noi e che vogliamo che vi uniate a noi, se vi va, per contribuire a migliorare questa documentazione. Se siete interessati, visitate la nostra [Guida al contributo](https://github.com/rocky-linux/documentation/blob/main/README.md) per scoprire come potete farlo!
