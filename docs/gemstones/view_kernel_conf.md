@@ -24,7 +24,7 @@ The Linux kernel stores running kernel information in two places via special fil
 
 These two interfaces allow you to view and change the parameters of the currently running kernel.
 
-Note that if you do an [`ls -l`](https://man7.org/linux/man-pages/man1/ls.1.html) on some of these files, they will show as "0" length, but if you [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html) them out they actually contain data; most of them are ASCII and editable, however some are binary, and in either case commands like [`file`](https://man7.org/linux/man-pages/man1/file.1.html) or [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) will typically just return "empty file" or "0" for lengths, although they will show you other information.
+Note that if you do an [`ls -l`](https://man7.org/linux/man-pages/man1/ls.1.html) on some of these files, they will show as "0" length, but if you [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html) them out they actually contain data. Most of them are ASCII and editable, however some are binary. In either case commands like [`file`](https://man7.org/linux/man-pages/man1/file.1.html) or [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) will typically just return "empty file" or "0" for lengths, although they will show you other information.
 
 The preferred and standard programs for interacting with these functions are [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html), [`modinfo`](https://man7.org/linux/man-pages/man8/modinfo.8.html), and [`sysctl`](https://man7.org/linux/man-pages/man8/sysctl.8.html), among others.
 
@@ -45,13 +45,13 @@ See what your currently running "kernel release" version is with:
 `uname -r` and substitute its return value in commands by using `$(uname -r)`
 
 RHEL and derivative distributions (Fedora, CentOS Stream, Scientific Linux, RockyLinux, AlmaLinux, et. al.)
-also store the config used for bootable installed kernels in the `/boot` directory used by Grub2 as ASCII files:
+also store the configuration used for bootable installed kernels in the `/boot` directory used by Grub2 as ASCII files:
 
 ```bash
 /boot/config-<kernel-release>
 ```
 
-To check the currently running kernel config for a particular value:
+To check the currently running kernel configuration for a particular value:
 
 ```bash
 cat /boot/config-$(uname -r) | grep -i <keyword>
