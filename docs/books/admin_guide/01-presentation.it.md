@@ -41,7 +41,7 @@ Nell'ambito di questa gestione delle risorse, il sistema operativo deve:
 * Intercettare **l'accesso alle periferiche**. Raramente il software può accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze molto specifiche).
 * Fornire alle applicazioni una corretta **gestione delle attività**. Il sistema operativo è responsabile della pianificazione dei processi che occupano il processore.
 * **Proteggere i file** da accessi non autorizzati.
-* **Raccogliere informazioni** sui programmi in uso o in corso.
+* **Raccogliere informazioni** sui programmi in uso o in svolgimento.
 
 ![Funzionamento di un sistema operativo](images/operating_system.png)
 
@@ -51,11 +51,11 @@ Nell'ambito di questa gestione delle risorse, il sistema operativo deve:
 
 #### UNIX
 
-* **1964 - 1968**: MULTICS (MULTiplexed Information and Computing Service) viene sviluppato per il MIT, i Bell Labs (AT&T) e la General Electric.
+* **1964 - 1968**: MULTICS (MULTiplexed Information and Computing Service) è stato sviluppato per il MIT, i Bell Labs (AT&T) e General Electric.
 
-* **1969 - 1971**: Dopo il ritiro di Bell (1969) e poi di General Electric dal progetto, due sviluppatori, Ken Thompson e Dennis Ritchie (a cui si aggiunge in seguito Brian Kernighan), giudicando MULTICS troppo complesso, iniziano lo sviluppo di UNIX (UNiplexed Information and Computing Service). Sebbene sia stato originariamente creato in linguaggio Assembly, i creatori di UNIX svilupparono alla fine il linguaggio B e poi il linguaggio C (1971) e riscrissero completamente UNIX. Poiché è stato sviluppato nel 1970, la data di riferimento (epoch) per l'inizio del tempo dei sistemi UNIX/Linux è fissata al 01 gennaio 1970.
+* **1969 — 1971**: Dopo il ritiro di Bell (1969) e poi di General Electric dal progetto, due sviluppatori, Ken Thompson e Dennis Ritchie (a cui si aggiunge in seguito Brian Kernighan), giudicando MULTICS troppo complesso, iniziano lo sviluppo di UNIX (UNiplexed Information and Computing Service). Sebbene sia stato originariamente creato in linguaggio Assembly, i creatori di UNIX svilupparono alla fine il linguaggio B e poi il linguaggio C (1971) e riscrissero completamente UNIX. Poiché è stato sviluppato nel 1970, la data di riferimento (epoch) per l'inizio del periodo di tempo dei sistemi UNIX/Linux è fissata al 01 gennaio 1970.
 
-Il linguaggio C rimane ad oggi uno dei linguaggi di programmazione più diffusi. Un linguaggio di basso livello, vicino all'hardware, che permette di adattare il sistema operativo a qualsiasi architettura di macchina dotata di un compilatore C.
+Il linguaggio C è ancora oggi uno dei linguaggi di programmazione più diffusi. Un linguaggio di basso livello, a contatto con l'hardware, che permette di adattare il sistema operativo a qualsiasi architettura di macchina dotata di un compilatore C.
 
 UNIX è un sistema operativo aperto e in continua evoluzione che ha svolto un ruolo fondamentale nella storia dell'informatica. Costituisce la base di molti altri sistemi come Linux, BSD, MacOS e altri ancora.
 
@@ -63,7 +63,7 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
 #### Progetto GNU
 
-* **1984**: Richard Matthew Stallman ha lanciato il progetto GNU (GNU's Not Unix), che mira a stabilire un **libero** e **aperto** sistema Unix, in cui gli strumenti più importanti sono: gcc compiler, bash shell, Emacs editor e così via. GNU è un sistema operativo simile ad Unix. Lo sviluppo di GNU, iniziato nel Gennaio 1984, è noto come Progetto GNU. Molti dei programmi in GNU sono rilasciati sotto l'egida del Progetto GNU; quelli che chiamiamo pacchetti GNU.
+* **1984**: Richard Matthew Stallman ha lanciato il progetto GNU (GNU's Not Unix), che si propone di creare un sistema Unix **libero** e **aperto**, in cui gli strumenti più importanti sono: il compilatore gcc, la shell bash, l'editor Emacs e così via. GNU è un sistema operativo simile ad Unix. Lo sviluppo di GNU, iniziato nel Gennaio 1984, è noto come Progetto GNU. Molti dei programmi in GNU sono rilasciati sotto l'egida del Progetto GNU; quelli che chiamiamo pacchetti GNU.
 
 * **1990**: il kernel di GNU, GNU Hurd, è stato avviato nel 1990 (prima dell'inizio di Linux).
 
