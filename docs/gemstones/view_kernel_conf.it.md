@@ -24,7 +24,7 @@ Il kernel Linux memorizza le informazioni sul kernel in esecuzione in due luoghi
 
 Queste due interfacce consentono di visualizzare e modificare i parametri del kernel in esecuzione.
 
-Si noti che se si esegue un [`ls -l`](https://man7.org/linux/man-pages/man1/ls.1.html) su alcuni di questi file, essi vengono visualizzati con una lunghezza pari a "0", ma se si usa [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html) contengono effettivamente dei dati; la maggior parte di essi sono ASCII e modificabili, ma alcuni sono binari, e in entrambi i casi comandi come [`file`](https://man7.org/linux/man-pages/man1/file.1.html) o [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) restituiranno in genere solo "file vuoto" o "0" per le lunghezze, anche se mostreranno altre informazioni.
+Notare che se si esegue un [`ls`](https://man7.org/linux/man-pages/man1/ls.1.html) -l su alcuni di questi file, essi vengono visualizzati come di lunghezza "0", ma se li si estrae con [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html), essi contengono effettivamente dei dati. La maggior parte di essi sono ASCII e modificabili, ma alcuni sono binari. In entrambi i casi, comandi come [`file`](https://man7.org/linux/man-pages/man1/file.1.html) o [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) restituiranno in genere solo "file vuoto" o "0" per le dimensioni, anche se mostreranno altre informazioni.
 
 I programmi preferiti e standard per interagire con queste funzioni sono [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html), [`modinfo`](https://man7.org/linux/man-pages/man8/modinfo.8.html), e [`sysctl`](https://man7.org/linux/man-pages/man8/sysctl.8.html), tra gli altri.
 
@@ -50,7 +50,7 @@ RHEL e distribuzioni derivate (Fedora, CentOS Stream, Scientific Linux, RockyLin
 /boot/config-<kernel-release>
 ```
 
-Per controllare la configurazione del kernel attualmente in esecuzione per un particolare valore:
+Per verificare la configurazione del kernel in esecuzione per un determinato valore:
 
 ```bash
 cat /boot/config-$(uname -r) | grep -i <keyword>
