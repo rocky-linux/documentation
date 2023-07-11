@@ -10,11 +10,11 @@ In questo capitolo imparerete a conoscere le distribuzioni GNU/Linux.
 
 **Obiettivi**: In questo capitolo imparerai a:
 
-:heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo.   
+:heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo..   
 :heavy_check_mark: Raccontare la storia di UNIX e GNU/Linux.   
-:heavy_check_mark: Scegliere la distribuzione Linux più adatta alle proprie esigenze.   
-:heavy_check_mark: Spiegare la filosofia del Software Libero e Open Source.   
-:heavy_check_mark: Scoprire l'utilità della shell.</br></br></br></br>
+:heavy_check_mark: Scegliete la distribuzione Linux più adatta alle vostre esigenze.   
+:heavy_check_mark: Spiegare la filosofia del software libero e open-source.   
+:heavy_check_mark: Scoprite l'utilità della shell.
 
 :checkered_flag: **generalità**, **linux**, **distribuzioni**
 
@@ -36,9 +36,9 @@ Linux, UNIX, BSD, Windows e MacOS sono tutti **sistemi operativi**.
 Nell'ambito di questa gestione delle risorse, il sistema operativo deve:
 
 * Gestire la memoria **fisica** o **virtuale**.
-    * La **memoria fisica** è costituita dalla RAM e dalla memoria cache del processore, utilizzate per l'esecuzione dei programmi.
-    * La **memoria virtuale** è una posizione sul disco rigido (la partizione di **swap** ) che consente di scaricare la memoria fisica e di salvare lo stato attuale del sistema durante lo spegnimento elettrico del computer.
-* Intercettare **l'accesso alle periferiche**. Raramente al software è consentito accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze molto specifiche).
+    * La **memoria fisica** è costituita dalle memorie RAM e dalla memoria cache del processore, utilizzate per l'esecuzione dei programmi.
+    * La **memoria virtuale** è una posizione sul disco rigido (la partizione **swap**) che consente di svuotare la memoria fisica e di salvare lo stato attuale del sistema durante lo spegnimento elettrico del computer.
+* Intercettare **l'accesso alle periferiche**. Raramente il software può accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze molto specifiche).
 * Fornire alle applicazioni una corretta **gestione delle attività**. Il sistema operativo è responsabile della pianificazione dei processi che occupano il processore.
 * **Proteggere i file** da accessi non autorizzati.
 * **Raccogliere informazioni** sui programmi in uso o in corso.
