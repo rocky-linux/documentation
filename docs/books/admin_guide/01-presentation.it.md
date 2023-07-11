@@ -63,9 +63,9 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
 #### Progetto GNU
 
-* **1984**: Richard Matthew Stallman ha lanciato il progetto GNU (GNU's Not Unix), che si propone di creare un sistema Unix **libero** e **aperto**, in cui gli strumenti più importanti sono: il compilatore gcc, la shell bash, l'editor Emacs e così via. GNU è un sistema operativo simile ad Unix. Lo sviluppo di GNU, iniziato nel Gennaio 1984, è noto come Progetto GNU. Molti dei programmi in GNU sono rilasciati sotto l'egida del Progetto GNU; quelli che chiamiamo pacchetti GNU.
+* **1984**: Richard Matthew Stallman ha lanciato il progetto GNU (GNU's Not Unix), che si propone di creare un sistema Unix **libero** e **aperto**, in cui gli strumenti più importanti sono: il compilatore gcc, la shell bash, l'editor Emacs e così via. GNU è un sistema operativo simile ad Unix. Lo sviluppo di GNU, iniziato nel Gennaio 1984, è noto come Progetto GNU. Molti dei programmi presenti in GNU sono rilasciati sotto l'egida del Progetto GNU; questi vengono chiamati pacchetti GNU.
 
-* **1990**: il kernel di GNU, GNU Hurd, è stato avviato nel 1990 (prima dell'inizio di Linux).
+* **1990**: Il kernel di GNU, GNU Hurd, è stato creato nel 1990 (prima della nascita di Linux).
 
 #### MINIX
 
@@ -73,15 +73,15 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
 #### Linux
 
-* **1991**: Uno studente finlandese, **Linus Torvalds** , crea un sistema operativo dedicato al suo personal computer e lo chiama Linux. Pubblica la sua prima versione 0.02, sul forum di discussione Usenet e altri sviluppatori iniziano a contribuire al miglioramento del suo sistema. Il termine Linux è un gioco di parole tra il nome del fondatore, Linus, e UNIX.
+* **1991**: Uno studente finlandese, **Linus Torvalds**, crea un sistema operativo che gira sul suo computer personale e lo chiama Linux. Pubblica la sua prima versione 0.02, sul forum di discussione Usenet e altri sviluppatori iniziano a contribuire al miglioramento del suo sistema. Il termine Linux è un gioco di parole tra il nome del fondatore, Linus, e UNIX.
 
-* **1993**: Viene creata la distribuzione Debian. Debian è una distribuzione non commerciale, basata sulla comunità. Sviluppato originariamente per l'uso sui server, è ben adatto a questo ruolo; tuttavia è un sistema universale, utilizzabile anche su un personal computer. Debian costituisce la base per molte altre distribuzioni, come Mint o Ubuntu.
+* **1993**: Viene creata la distribuzione Debian. Debian è una distribuzione non commerciale, basata sulla comunità. Sviluppato originariamente per l'uso sui server, è molto indicato per questo ruolo; tuttavia è un sistema universale, utilizzabile anche su un personal computer. Debian costituisce la base per molte altre distribuzioni, come Mint o Ubuntu.
 
 * **1994**: la distribuzione commerciale Red Hat viene creata dalla società Red Hat, che oggi è il principale distributore del sistema operativo GNU/Linux. Red Hat supporta la versione comunitaria Fedora e, fino a poco tempo fa, la distribuzione gratuita CentOS.
 
 * **1997**: Viene creato l'ambiente desktop KDE. Si basa sulla libreria di componenti Qt e sul linguaggio di sviluppo C++.
 
-* **1999**: Viene creato l'ambiente desktop GNOME. Questo si basa sulla libreria di componenti GTK+.
+* **1999**: Viene creato l'ambiente desktop GNOME. Basato sulla libreria di componenti GTK+.
 
 * **2002**: Viene creata la distribuzione Arch. Il suo tratto distintivo è che offre una rolling release (aggiornamento continuo).
 
@@ -91,7 +91,7 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
 !!! info "Informazione"
 
-    Disputa sul nome: anche se le persone sono abituate a chiamare verbalmente il sistema operativo Linux, Linux è rigorosamente un kernel. Non dobbiamo dimenticare lo sviluppo e il contributo del progetto GNU alla causa open source, quindi! Preferisco chiamarlo il sistema operativo GNU/Linux.
+    Disputa sul nome: anche se le persone sono abituate a chiamare il sistema operativo Linux verbalmente, Linux è propriamente il kernel. Non dobbiamo dimenticare lo sviluppo e il contributo del progetto GNU alla causa open source, quindi! Preferisco chiamarlo il sistema operativo GNU/Linux.
 
 ### Quota di mercato
 
@@ -112,8 +112,8 @@ Linux equipaggia il 100% dei 500 supercomputer dal 2018. Un supercomputer è un 
 * Il **kernel** è il primo componente software.
     * È il cuore del sistema Linux.
     * Gestisce le risorse hardware del sistema.
-    * Gli altri componenti software devono attraversarlo per accedere all'hardware.
-* La **shell** è un'utilità che interpreta i comandi dell'utente e ne assicura l'esecuzione.
+    * Gli altri componenti software devono passarvi attraverso per accedere all'hardware.
+* La **shell** è un'utilità che interpreta i comandi dell'utente e ne garantisce l'esecuzione.
     * Shell principali: shell Bourne, shell C, shell Korn e shell Bourne-Again (bash).
 * **Applicazioni** sono programmi utente inclusi, ma non limitati a:
     * Browser Internet
