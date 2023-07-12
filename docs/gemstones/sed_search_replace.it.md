@@ -18,7 +18,7 @@ L'uso di `sed` per la ricerca e la sostituzione è la mia preferenza personale p
 
 `sed -i 's/search_for/replace_with/g' /path/filename`
 
-Ma cosa succede se si cercano stringhe che contengono "/"? Se la barra in avanti fosse l'unica opzione disponibile come delimitatore, dovremmo fare l'escape di ogni barra in avanti prima di poterla usare nella ricerca. È qui che `sed` eccelle rispetto ad altri strumenti, perché il delimitatore è modificabile al volo (non è necessario specificare che lo si sta cambiando da qualche parte). Come detto, se si cercano cose con "/", si può facilmente farlo cambiando il delimitatore in "|". Ecco un esempio di ricerca di un link con questo metodo:
+Ma cosa succede se si cercano stringhe che contengono "/"? Se la barra in avanti fosse l'unica opzione disponibile come delimitatore? È necessario evitare ogni barra in avanti prima di poterla utilizzare nella ricerca. È qui che `sed` eccelle rispetto ad altri strumenti, perché il delimitatore è modificabile al volo (non è necessario specificare che lo si sta cambiando da qualche parte). Come già detto, se si cercano elementi con "/", è possibile farlo cambiando il delimitatore in "|". Ecco un esempio di ricerca di un link con questo metodo:
 
 `sed -i 's|search_for/with_slash|replace_string|g' /path/filename`
 
@@ -30,24 +30,24 @@ Ma cosa succede se si cercano stringhe che contengono "/"? Se la barra in avanti
 
 Che creerà una versione non modificata del `filename` chiamata `filename.bak`
 
-Se volete, potete anche usare le doppie virgolette invece di quelle singole:
+È anche possibile utilizzare le doppie virgolette invece delle virgolette singole:
 
 `sed -i "s|search_for/with_slash|replace_string|g" /path/filename`
 
 ## Descrizione Opzioni
 
-| Opzione | Spiegazione                                                              |
-| ------- | ------------------------------------------------------------------------ |
-| i       | modifica il file in posizione                                            |
-| i.ext   | crea un backup con qualsiasi estensione (ext qui)                        |
-| s       | specifica la ricerca                                                     |
-| g       | specifica di sostituire globalmente, in altre parole tutte le occorrenze |
+| Opzione | Spiegazione                                                     |
+| ------- | --------------------------------------------------------------- |
+| i       | modifica il file in posizione                                   |
+| i.ext   | crea un backup con qualsiasi estensione (ext qui)               |
+| s       | specifica la ricerca                                            |
+| g       | specifica di sostituire globalmente, ovvero tutte le occorrenze |
 
 ## File multipli
 
-Sfortunatamente, `sed` non ha un'opzione di looping in linea come il `perl`. Per scorrere più file, è necessario combinare il comando `sed` all'interno di uno script. Ecco un esempio di come farlo.
+Sfortunatamente, `sed` non ha un'opzione di looping in linea come `perl`. Per scorrere più file, è necessario combinare il comando `sed` all'interno di uno script. Ecco un esempio di come farlo.
 
-Per prima cosa, generate un elenco di file che il vostro script utilizzerà, che può essere inserito alla riga di comando:
+Per prima cosa, generare un elenco di file che lo script utilizzerà. Eseguire questa operazione dalla riga di comando con:
 
 `find /var/www/html  -name "*.php" > phpfiles.txt`
 
@@ -61,7 +61,7 @@ do
         sed -i.bak 's|search_for/with_slash|replace_string|g' $file
 done
 ```
-Lo script scorre tutti i file creati in `phpfiles.txt`, crea un backup di ogni file ed esegue la stringa di ricerca e sostituzione a livello globale.  Una volta verificato che la ricerca e la sostituzione siano state completate correttamente e che le modifiche siano quelle desiderate, è possibile eliminare tutti i file di backup.
+Lo script scorre tutti i file creati in `phpfiles.txt`, crea un backup di ogni file ed esegue la stringa di ricerca e sostituzione a livello globale. Una volta verificato che le modifiche siano quelle desiderate, è possibile eliminare tutti i file di backup.
 
 ## Altre letture ed esempi
 

@@ -129,7 +129,7 @@ cmd = { "WorkspacesList", "WorkspacesAdd", "WorkspacesOpen", "WorkspacesRemove" 
 
 Як і під час інсталяції, видалення плагіна з конфігурації також відбувається через ручне редагування файлу _custom/plugins.lua_. У цьому прикладі ми збираємося видалити плагін [TimUntersberger/neogit](https://github.com/TimUntersberger/neogit), цей плагін дозволяє керувати репозиторіями git безпосередньо з редактора.
 
-!!! нотатка
+!!! note "Примітка"
 
     Вибір плагіна є чисто випадковим. Плагін, використаний для прикладу, без проблем працює в NvChad.
 
@@ -149,7 +149,7 @@ cmd = { "WorkspacesList", "WorkspacesAdd", "WorkspacesOpen", "WorkspacesRemove" 
 
 ![Lazy Check](../images/lazy_check.png)
 
-!!! нотатка
+!!! note "Примітка"
 
     Навіть якщо їх немає на знімку екрана вище, якщо є плагіни з комітами, включаючи «небезпечні зміни», вони відображатимуться першими.
 

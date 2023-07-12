@@ -110,7 +110,7 @@ L'operazione è piuttosto semplice quando si utilizza il DHCP. Procedere in ques
 * aggiungere una riga: `@reboot /usr/sbin/dhclient`
 * premere il tasto `ESC` per uscire dalla modalità di inserimento.
 * salvare le modifiche con `SHIFT: wq`
-* digitare `exit` per uscire dal contenitore
+* digitare `exit` per uscire dal container
 
 Ripetere i passaggi per **web2** e **proxyha**.
 
@@ -296,7 +296,7 @@ La prima cosa da fare è creare la directory:
 
 `lxc exec proxyha mkdir /etc/haproxy/errors`
 
-Quindi è necessario creare ciascuno di questi file in quella directory. Si noti che è possibile eseguire questa operazione con ogni nome di file dall'host LXD con il comando `lxc exec proxyha vi /etc/haproxy/errors/filename.http`, dove "filename.http" fa riferimento a uno dei nomi di file seguenti. In un ambiente di produzione, l'azienda potrebbe avere errori più specifici da utilizzare:
+Quindi è necessario creare ciascuno di questi file in quella directory. Si noti che è possibile eseguire questa operazione con ogni nome di file dall'host LXD con il comando `lxc exec proxyha vi /etc/haproxy/errors/filename.http`, dove "filename.http" fa riferimento a uno dei nomi di file riportati di seguito. In un ambiente di produzione, l'azienda potrebbe avere errori più specifici da utilizzare:
 
 Nome file `400.http`:
 

@@ -5,17 +5,17 @@ contributors: Steven Spencer
 update: 2021-11-04
 ---
 
-# 머리말
+# 서문
 
-[rsync 간략한 설명](01_rsync_overview.md)에서 우리는 rsync가 증분 동기화 도구라는 것을 알고 있습니다. `rsync` 명령이 실행될 때마다 데이터를 한 번 동기화할 수 있지만 데이터를 실시간으로 동기화할 수는 없습니다. 어떻게 해야 할까요?
+[rsync 간략한 설명](01_rsync_overview.md)에서 우리는 rsync가 증분 동기화 도구임을 알고 있습니다. `rsync` 명령을 실행할 때마다 데이터를 한 번 동기화할 수 있지만 데이터를 실시간으로 동기화할 수는 없습니다. 이를 어떻게 해결할까요?
 
-inotify-tools를 사용하면 이 프로그램 도구는 단방향 실시간 동기화를 실현할 수 있습니다. 실시간 데이터 동기화이므로 비밀번호 인증 없이 로그인을 전제로 합니다.
+inotify-tools를 사용하면 단방향 실시간 동기화를 구현할 수 있습니다. 실시간 데이터 동기화이므로 사전 조건은 비밀번호 인증 없이 로그인하는 것입니다.
 
-**rsync 프로토콜이든 SSH 프로토콜이든 관계없이 둘 다 암호 없는 인증 로그인을 달성할 수 있습니다.**
+**rsync 프로토콜 또는 SSH 프로토콜에 관계없이 모두 비밀번호 없는 인증 로그인을 구현할 수 있습니다.**
 
 ## SSH 프로토콜 비밀번호 없는 인증 로그인
 
-먼저 클라이언트에서 공개 키와 개인 키 쌍을 생성하고 명령을 입력한 후 Enter 키를 계속 누릅니다. 키 쌍은 <font color=red>/root/.ssh/</font> 디렉토리에 저장됩니다.
+먼저 클라이언트에서 공개 키와 개인 키 쌍을 생성하고, 명령을 입력한 후에는 Enter 키를 누른 상태로 유지합니다. 키 쌍은 <font color=red>/root/.ssh/</font> 디렉토리에 저장됩니다.
 
 ```bash
 [root@fedora ~]# ssh-keygen -t rsa -b 2048
@@ -51,7 +51,7 @@ The key's randomart image is:
 [root@Rocky ~]# cat /home/testrsync/id_rsa.pub >> /home/testrsync/.ssh/authorized_keys
 ```
 
-비밀번호 없이 로그인을 성공했습니다!
+비밀번호 인증 없이 로그인을 시도해보면 성공합니다!
 
 ```bash
 [root@fedora ~]# ssh -p 22 testrsync@192.168.100.4
@@ -61,7 +61,7 @@ Last login: Tue Nov 2 21:42:44 2021 from 192.168.100.5
 
 !!! 팁 "tip"
 
-    서버 구성 파일 **/etc/ssh/sshd_config**를 열어야 합니다 <font color=red>PubkeyAuthentication yes</font>
+    서버 구성 파일 **/etc/ssh/sshd_config**을 열어 <font color=red>PubkeyAuthentication yes</font>로 설정해야 합니다.
 
 ## rsync프로토콜 비밀번호 없는 인증 로그인
 
@@ -84,7 +84,7 @@ li:13579
 [root@fedora ~]# export RSYNC_PASSWORD=13579
 ```
 
-시도하시면 성공입니다! 여기에는 새 파일이 표시되지 않으므로 전송된 파일 목록이 표시되지 않습니다.
+시도하시면 성공입니다! 여기에 새 파일이 표시되지 않으므로 전송된 파일 목록은 표시되지 않습니다.
 
 ```bash
 [root@fedora ~]# rsync -avz li@192.168.100.4::share /root/

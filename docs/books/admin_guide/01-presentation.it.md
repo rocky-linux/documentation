@@ -10,11 +10,11 @@ In questo capitolo imparerete a conoscere le distribuzioni GNU/Linux.
 
 **Obiettivi**: In questo capitolo imparerai a:
 
-:heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo.   
+:heavy_check_mark: Descrivere le caratteristiche e le possibili architetture di un sistema operativo..   
 :heavy_check_mark: Raccontare la storia di UNIX e GNU/Linux.   
-:heavy_check_mark: Scegliere la distribuzione Linux più adatta alle proprie esigenze.   
-:heavy_check_mark: Spiegare la filosofia del Software Libero e Open Source.   
-:heavy_check_mark: Scoprire l'utilità della shell.</br></br></br></br>
+:heavy_check_mark: Scegliete la distribuzione Linux più adatta alle vostre esigenze.   
+:heavy_check_mark: Spiegare la filosofia del software libero e open-source.   
+:heavy_check_mark: Scoprite l'utilità della shell.
 
 :checkered_flag: **generalità**, **linux**, **distribuzioni**
 
@@ -36,12 +36,12 @@ Linux, UNIX, BSD, Windows e MacOS sono tutti **sistemi operativi**.
 Nell'ambito di questa gestione delle risorse, il sistema operativo deve:
 
 * Gestire la memoria **fisica** o **virtuale**.
-    * La **memoria fisica** è costituita dalla RAM e dalla memoria cache del processore, utilizzate per l'esecuzione dei programmi.
-    * La **memoria virtuale** è una posizione sul disco rigido (la partizione di **swap** ) che consente di scaricare la memoria fisica e di salvare lo stato attuale del sistema durante lo spegnimento elettrico del computer.
-* Intercettare **l'accesso alle periferiche**. Raramente al software è consentito accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze molto specifiche).
+    * La **memoria fisica** è costituita dalle memorie RAM e dalla memoria cache del processore, utilizzate per l'esecuzione dei programmi.
+    * La **memoria virtuale** è una posizione sul disco rigido (la partizione **swap**) che consente di svuotare la memoria fisica e di salvare lo stato attuale del sistema durante lo spegnimento elettrico del computer.
+* Intercettare **l'accesso alle periferiche**. Raramente il software può accedere direttamente all'hardware (ad eccezione delle schede grafiche per esigenze molto specifiche).
 * Fornire alle applicazioni una corretta **gestione delle attività**. Il sistema operativo è responsabile della pianificazione dei processi che occupano il processore.
 * **Proteggere i file** da accessi non autorizzati.
-* **Raccogliere informazioni** sui programmi in uso o in corso.
+* **Raccogliere informazioni** sui programmi in uso o in svolgimento.
 
 ![Funzionamento di un sistema operativo](images/operating_system.png)
 
@@ -51,11 +51,11 @@ Nell'ambito di questa gestione delle risorse, il sistema operativo deve:
 
 #### UNIX
 
-* **1964 - 1968**: MULTICS (MULTiplexed Information and Computing Service) viene sviluppato per il MIT, i Bell Labs (AT&T) e la General Electric.
+* **1964 - 1968**: MULTICS (MULTiplexed Information and Computing Service) è stato sviluppato per il MIT, i Bell Labs (AT&T) e General Electric.
 
-* **1969 - 1971**: Dopo il ritiro di Bell (1969) e poi di General Electric dal progetto, due sviluppatori, Ken Thompson e Dennis Ritchie (a cui si aggiunge in seguito Brian Kernighan), giudicando MULTICS troppo complesso, iniziano lo sviluppo di UNIX (UNiplexed Information and Computing Service). Sebbene sia stato originariamente creato in linguaggio Assembly, i creatori di UNIX svilupparono alla fine il linguaggio B e poi il linguaggio C (1971) e riscrissero completamente UNIX. Poiché è stato sviluppato nel 1970, la data di riferimento (epoch) per l'inizio del tempo dei sistemi UNIX/Linux è fissata al 01 gennaio 1970.
+* **1969 — 1971**: Dopo il ritiro di Bell (1969) e poi di General Electric dal progetto, due sviluppatori, Ken Thompson e Dennis Ritchie (a cui si aggiunge in seguito Brian Kernighan), giudicando MULTICS troppo complesso, iniziano lo sviluppo di UNIX (UNiplexed Information and Computing Service). Sebbene sia stato originariamente creato in linguaggio Assembly, i creatori di UNIX svilupparono alla fine il linguaggio B e poi il linguaggio C (1971) e riscrissero completamente UNIX. Poiché è stato sviluppato nel 1970, la data di riferimento (epoch) per l'inizio del periodo di tempo dei sistemi UNIX/Linux è fissata al 01 gennaio 1970.
 
-Il linguaggio C rimane ad oggi uno dei linguaggi di programmazione più diffusi. Un linguaggio di basso livello, vicino all'hardware, che permette di adattare il sistema operativo a qualsiasi architettura di macchina dotata di un compilatore C.
+Il linguaggio C è ancora oggi uno dei linguaggi di programmazione più diffusi. Un linguaggio di basso livello, a contatto con l'hardware, che permette di adattare il sistema operativo a qualsiasi architettura di macchina dotata di un compilatore C.
 
 UNIX è un sistema operativo aperto e in continua evoluzione che ha svolto un ruolo fondamentale nella storia dell'informatica. Costituisce la base di molti altri sistemi come Linux, BSD, MacOS e altri ancora.
 
@@ -63,9 +63,9 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
 #### Progetto GNU
 
-* **1984**: Richard Matthew Stallman ha lanciato il progetto GNU (GNU's Not Unix), che mira a stabilire un **libero** e **aperto** sistema Unix, in cui gli strumenti più importanti sono: gcc compiler, bash shell, Emacs editor e così via. GNU è un sistema operativo simile ad Unix. Lo sviluppo di GNU, iniziato nel Gennaio 1984, è noto come Progetto GNU. Molti dei programmi in GNU sono rilasciati sotto l'egida del Progetto GNU; quelli che chiamiamo pacchetti GNU.
+* **1984**: Richard Matthew Stallman ha lanciato il progetto GNU (GNU's Not Unix), che si propone di creare un sistema Unix **libero** e **aperto**, in cui gli strumenti più importanti sono: il compilatore gcc, la shell bash, l'editor Emacs e così via. GNU è un sistema operativo simile ad Unix. Lo sviluppo di GNU, iniziato nel Gennaio 1984, è noto come Progetto GNU. Molti dei programmi presenti in GNU sono rilasciati sotto l'egida del Progetto GNU; questi vengono chiamati pacchetti GNU.
 
-* **1990**: il kernel di GNU, GNU Hurd, è stato avviato nel 1990 (prima dell'inizio di Linux).
+* **1990**: Il kernel di GNU, GNU Hurd, è stato creato nel 1990 (prima della nascita di Linux).
 
 #### MINIX
 
@@ -73,15 +73,15 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
 #### Linux
 
-* **1991**: Uno studente finlandese, **Linus Torvalds** , crea un sistema operativo dedicato al suo personal computer e lo chiama Linux. Pubblica la sua prima versione 0.02, sul forum di discussione Usenet e altri sviluppatori iniziano a contribuire al miglioramento del suo sistema. Il termine Linux è un gioco di parole tra il nome del fondatore, Linus, e UNIX.
+* **1991**: Uno studente finlandese, **Linus Torvalds**, crea un sistema operativo che gira sul suo computer personale e lo chiama Linux. Pubblica la sua prima versione 0.02, sul forum di discussione Usenet e altri sviluppatori iniziano a contribuire al miglioramento del suo sistema. Il termine Linux è un gioco di parole tra il nome del fondatore, Linus, e UNIX.
 
-* **1993**: Viene creata la distribuzione Debian. Debian è una distribuzione non commerciale, basata sulla comunità. Sviluppato originariamente per l'uso sui server, è ben adatto a questo ruolo; tuttavia è un sistema universale, utilizzabile anche su un personal computer. Debian costituisce la base per molte altre distribuzioni, come Mint o Ubuntu.
+* **1993**: Viene creata la distribuzione Debian. Debian è una distribuzione non commerciale, basata sulla comunità. Sviluppato originariamente per l'uso sui server, è molto indicato per questo ruolo; tuttavia è un sistema universale, utilizzabile anche su un personal computer. Debian costituisce la base per molte altre distribuzioni, come Mint o Ubuntu.
 
 * **1994**: la distribuzione commerciale Red Hat viene creata dalla società Red Hat, che oggi è il principale distributore del sistema operativo GNU/Linux. Red Hat supporta la versione comunitaria Fedora e, fino a poco tempo fa, la distribuzione gratuita CentOS.
 
 * **1997**: Viene creato l'ambiente desktop KDE. Si basa sulla libreria di componenti Qt e sul linguaggio di sviluppo C++.
 
-* **1999**: Viene creato l'ambiente desktop GNOME. Questo si basa sulla libreria di componenti GTK+.
+* **1999**: Viene creato l'ambiente desktop GNOME. Basato sulla libreria di componenti GTK+.
 
 * **2002**: Viene creata la distribuzione Arch. Il suo tratto distintivo è che offre una rolling release (aggiornamento continuo).
 
@@ -91,7 +91,7 @@ UNIX è ancora rilevante oggi (HP-UX, AIX, Solaris, etc.)
 
 !!! info "Informazione"
 
-    Disputa sul nome: anche se le persone sono abituate a chiamare verbalmente il sistema operativo Linux, Linux è rigorosamente un kernel. Non dobbiamo dimenticare lo sviluppo e il contributo del progetto GNU alla causa open source, quindi! Preferisco chiamarlo il sistema operativo GNU/Linux.
+    Disputa sul nome: anche se le persone sono abituate a chiamare il sistema operativo Linux verbalmente, Linux è propriamente il kernel. Non dobbiamo dimenticare lo sviluppo e il contributo del progetto GNU alla causa open source, quindi! Preferisco chiamarlo il sistema operativo GNU/Linux.
 
 ### Quota di mercato
 
@@ -112,8 +112,8 @@ Linux equipaggia il 100% dei 500 supercomputer dal 2018. Un supercomputer è un 
 * Il **kernel** è il primo componente software.
     * È il cuore del sistema Linux.
     * Gestisce le risorse hardware del sistema.
-    * Gli altri componenti software devono attraversarlo per accedere all'hardware.
-* La **shell** è un'utilità che interpreta i comandi dell'utente e ne assicura l'esecuzione.
+    * Gli altri componenti software devono passarvi attraverso per accedere all'hardware.
+* La **shell** è un'utilità che interpreta i comandi dell'utente e ne garantisce l'esecuzione.
     * Shell principali: shell Bourne, shell C, shell Korn e shell Bourne-Again (bash).
 * **Applicazioni** sono programmi utente inclusi, ma non limitati a:
     * Browser Internet

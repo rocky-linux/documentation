@@ -62,7 +62,7 @@ crontab -e
 00 22 * * * /usr/local/sbin/refreshcontainers.sh > /home/lxdadmin/refreshlog 2>&1
 ```
 
-변경 사항을 저장하고 종료합니다.
+변경 사항을 저장하고 편집기를 종료합니다.
 
 이렇게 하면 "refreshlog"라는 lxdadmin의 홈 디렉토리에 로그인이 생성되어 프로세스가 작동했는지 여부를 알 수 있습니다. 매우 중요합니다!
 

@@ -206,7 +206,7 @@ i nomi dei titoli **ipv4** possono contenere queste coppie chiave-valore comuni:
 
 | nome della chiave | descrizione                                                                                                                     |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| addresses         |                                                                                                                                 |
-| gateway           |                                                                                                                                 |
-| dns               |                                                                                                                                 |
+| addresses         | Indirizzi IP assegnati                                                                                                          |
+| gateway           | Gateway (next hop) dell'interfaccia                                                                                             |
+| dns               | Server dei nomi di dominio in uso                                                                                               |
 | method            | Il metodo da ottenere tramite IP. Il valore è di tipo stringa. Il valore può essere: auto, disabled, link-local, manual, shared |
