@@ -61,7 +61,7 @@ Last login: Tue Nov 2 21:42:44 2021 from 192.168.100.5
 
 !!! 팁 "tip"
 
-    서버 구성 파일 **/etc/ssh/sshd_config**를 열어야 합니다 <font color=red>PubkeyAuthentication yes</font>
+    서버 구성 파일 **/etc/ssh/sshd_config**을 열어 <font color=red>PubkeyAuthentication yes</font>로 설정해야 합니다.
 
 ## rsync프로토콜 비밀번호 없는 인증 로그인
 
