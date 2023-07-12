@@ -97,7 +97,7 @@ If no right is specified, then the right applied will be read-only.
 
 By default, the NFS server preserves the client user UIDs and GIDs (except for `root`).
 
-To force the use of a UID or GID other than that of the user writing the resource, specify the `anonuid=UID` and `anongid=GID` options, or give `anonymous` access to the data with the `all squash` option.
+To force the use of a UID or GID other than that of the user writing the resource, specify the `anonuid=UID` and `anongid=GID` options, or give `anonymous` access to the data with the `all_squash` option.
 
 !!! warning "warning" 
 
