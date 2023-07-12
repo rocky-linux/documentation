@@ -24,7 +24,7 @@ tags:
 
 Ці два інтерфейси дозволяють переглядати та змінювати параметри поточного ядра.
 
-Зауважте, що якщо ви виконуєте [`ls -l`](https://man7.org/linux/man-pages/man1/ls.1.html) на деяких з цих файлів, вони відображатимуться як довжина "0", але якщо ви виконаєте [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html), вони фактично містять дані; більшість із них є ASCII і їх можна редагувати, однак деякі є двійковими, і в будь-якому випадку такі команди, як [` file`](https://man7.org/linux/man-pages/man1/file.1.html) або [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) зазвичай просто повертає "порожній файл" або "0" для довжини, хоча вони показуватимуть іншу інформацію.
+Зауважте, що якщо виконати [`ls -l`](https://man7.org/linux/man-pages/man1/ls.1.html) для деяких із цих файлів, вони відображатимуться як довжина «0», але якщо ви їх виділите за допомогою [`cat</ 1></a>, виявиться, що вони насправді містять дані. Більшість із них є ASCII і їх можна редагувати, однак деякі є двійковими. У будь-якому випадку такі команди, як <a href="https://man7.org/linux/man-pages/man1/file.1.html"><code>file`](https://man7.org/linux/man-pages/man1/cat.1.html) або [`stat`](https://man7.org/linux/man-pages/man2/lstat.2.html) зазвичай просто повертають "порожній файл" або "0" для довжини, хоча вони покажуть вам іншу інформацію.
 
 Переважними та стандартними програмами для взаємодії з цими функціями є [`lsmod`](https://man7.org/linux/man-pages/man8/lsmod.8.html), [`modinfo`](https://man7.org/linux/man-pages/man8/modinfo.8.html) та [` sysctl`](https://man7.org/linux/man-pages/man8/sysctl.8.html).
 
