@@ -26,17 +26,17 @@ tags:
 
 Linux provides the _cron_ system, a time-based job scheduler, for automating processes. It is simplistic and yet quite powerful. Want a script or program to run every day at 5 PM? This is where you set that up.
 
-The _crontab_ is essentially a list where users add their own automated tasks and jobs, and it has many options that can simplify things even further. This document will explore some of these. It is a good refresher for those with some experience, and new users can add the `cron` system to their repertoire.
+The _crontab_ is essentially a list where users add their own automated tasks and jobs, and it has many options that can simplify things even further. This document will explore some of these. It is a good refresher for those with some experience, and new users can add the `cron` system to their toolbox.
 
-`anacron` is discussed briefly here in reference to the `cron` "dot" directories. `anacron` is run by `cron`, and is helpful for machines that are not up all the time, such as workstations and laptops. The reason for this is that while `cron` runs jobs on a schedule, if the machine is off when the job is scheduled, the job does not run. With `anacron` the job is picked up and run when the machine is on again, even if the scheduled run was in the past. `anacron` though, uses a more randomized approach to running tasks where the timing is not exact. This makes sense for workstations and laptops, but not so much for servers. This can be a problem for things such as server backups, for instance, needing to run a job at a specific time. That is where `cron` provides the best solution for server administrators. Still, server administrators and workstation or notebook users can gain something from both approaches. You can mix and match based on your needs. For more on `anacron` see [anacron - Automating commands](anacron.md).
+`anacron` is discussed briefly here in reference to the `cron` "dot" directories. `cron` runs by `anacron`, and is helpful for machines that are not up all the time, such as workstations and notebooks. The reason for this is that while `cron` runs jobs on a schedule, if the machine is off when job is scheduled, the job does not run. With `anacron` the job will run when the machine is on again, even if the scheduled run was in the past. `anacron` though, uses a more randomized approach to running tasks where the timing is not exact. This makes sense for workstations and notebooks, but not for servers. This can be a problem for things such as server backups, for instance, needing to run a job at a specific time. That is where `cron` provides the best solution for server administrators. Still, server administrators and workstation or notebook users can gain something from both approaches. You can mix and match based on your needs. For more on `anacron` see [anacron - Automating commands](anacron.md).
 
-### <a name="starting-easy"></a>Starting Easy - The `cron` Dot Directories
+### <a name="starting-easy"></a>Starting easy - the `cron` dot directories
 
 Built into every Linux system for many versions now, the `cron` "dot" directories help to automate processes quickly. These show up as directories that the `cron` system calls based on their naming conventions. They are run differently, however, based on the process assigned to call them, `anacron` or `cron`. The default behavior is to use `anacron`, but this can be changed by a server, workstation or notebook administrator.
 
-#### <a name="for_servers"></a>For Servers
+#### <a name="for_servers"></a>For servers
 
-As stated in the introduction, `cron` normally runs `anacron` these days to run scripts in these "dot" directories. You *may*, want to use these "dot" directories on servers as well, and if that is the case, there are two steps that you can take to verify that these "dot" directories run on a strict schedule. To do this, you need to install a package and remove another one:
+As stated in the introduction, `cron` normally runs `anacron` these days to run scripts in these "dot" directories. You *may* want to use these "dot" directories on servers as well, and if that is the case, it requires two steps to verify that these "dot" directories run on a strict schedule. To do this, you need to install a package and remove another one:
 
 `dnf install cronie-noanacron`
 
@@ -44,7 +44,7 @@ and
 
 `dnf remove cronie-anacron`
 
-As you might expect, this removes `anacron` from the server and reverts to running tasks within the "dot" directories on a strict schedule. This is defined by this file: `/etc/cron.d/dailyjobs`, which has the following contents:
+As you might expect, this removes `anacron` from the server and reverts to running tasks within the "dot" directories on a strict schedule. `/etc/cron.d/dailyjobs` is the file that controls the schedule, which has the following contents:
 
 ```
 # Run the daily, weekly, and monthly jobs if cronie-anacron is not installed
@@ -64,7 +64,7 @@ This translates to the following:
 * run scripts in `cron.weekly` at 04:22:00 on Sunday every week.
 * run scripts in `cron.monthly` at 04:42:00 on the first day of every month.
 
-#### <a name="for_workstations"></a>For Workstations
+#### <a name="for_workstations"></a>For workstations
 
 If you want to run scripts on a workstation or notebook in the `cron` "dot" directories, nothing special is needed. Just copy your script file into the directory in question, and make sure it is executable. Here are the directories:
 
@@ -83,13 +83,13 @@ Provided you are good with just letting the system auto-run your scripts, and al
 
     There is no rule that says a server administrator cannot use the randomized run times which `anacron` uses to run scripts in the "dot" directories. The use case for this would be for a script that is not time sensitive.
 
-### Create Your Own `cron`
+### Create your own `cron`
 
-If the automated, randomized times do not work well in [For Workstations above](#for-workstations), and the scheduled times in the [For Servers above](#for-servers), then you can create your own. In this example, we are assuming you are doing this as root. [see Assumptions](#assumptions) To do this, type the following:
+If the automated, randomized times do not work well in [For Workstations above](#for-workstations), and the scheduled times in the [For Servers above](#for-servers), then you can create your own. In this example, the assumption is you are doing this as the root user. [see Assumptions](#assumptions) To do this, type the following:
 
 `crontab -e`
 
-This will pull up root user's `crontab` as it exists at this moment in your chosen editor, and may look something like this. Go ahead and read through this commented version, as it contains descriptions of each field that we will be using next:
+This will pull up root user's `crontab` as it exists at this moment in your chosen editor, and may look something like this. Read this commented version, as it has descriptions of each field that you will be using next:
 
 ```
 # Edit this file to introduce tasks to be run by cron.
@@ -119,7 +119,7 @@ This will pull up root user's `crontab` as it exists at this moment in your chos
 
 Notice that this particular `crontab` file has some of its own documentation built-in. That is not always the case. When modifying a `crontab` on a container or minimalist operating system, the `crontab` will be an empty file unless an entry is in it.
 
-Assume that you have a backup script that you want to run at 10 PM at night. The `crontab` uses a 24 hour clock, this would be 22:00. Assume that the backup script is called "backup" and that it is currently in the _/usr/local/sbin_ directory.
+Assume that you have a backup script that you want to run at 10 PM at night. The `crontab` uses a 24 hour clock, this would be 22:00. Assume that you backup script is "backup" and that it is currently in the _/usr/local/sbin_ directory.
 
 !!! note
 
@@ -129,15 +129,15 @@ To add the job, you:
 
 `crontab -e`
 
-`crontab` stands for "cron table" and the format of the file is, in fact, a loose table layout. Now that you are in the `crontab`, go to the bottom of the file and add your new entry. If you are using `vi` as your default system editor, then this is done with the following keys:
+`crontab` stands for "cron table" and the format of the file is, in fact, a loose table layout. Now that you are in the `crontab`, go to the bottom of the file and add your new entry. If you use `vi` as your default system editor, then this is done with the following keys:
 
 `Shift : $`
 
-Now that you are at the bottom of the file, insert a line and type a brief comment to describe what is going on with your entry. This is done by adding a "#" to the beginning of the line:
+Now that you are at the bottom of the file, insert a line and enter a brief comment to describe what is going on with your entry. You do this by adding a "#" to the beginning of the line:
 
 `# Backing up the system every night at 10PM`
 
-Now hit enter. You should still be in the insert mode, so the next step is to add your entry. As shown in our empty commented `crontab` (above) this is **m** for minutes, **h** for hours, **dom** for day of month, **mon** for month, and **dow** for day of week.
+Hit enter. You should still be in the insert mode, so the next step is to add your entry. As shown in our empty commented `crontab` (above) this is **m** for minutes, **h** for hours, **dom** for day of month, **mon** for month, and **dow** for day of week.
 
 To run our backup script every day at 10:00, the entry would look like this:
 
@@ -164,9 +164,9 @@ For our backup script example, if we use the @daily option to run the backup scr
 
 `@daily  /usr/local/sbin/backup`
 
-### More Complex Options
+### More complex options
 
-So far, everything we have talked about has had pretty simplistic options, but what about the more complex task timings? Say that you want to run your backup script every 10 minutes during the day (probably not a practical thing to do, but hey, this is an example!). To do this you would write:
+So far, the solutions used have been pretty simplistic options, but what about more complex task timings? Say that you want to run your backup script every 10 minutes during the day (probably not a practical thing to do, but hey, this is an example!). To do this your crontab would be :
 
 `*/10  *   *   *   *   /usr/local/sbin/backup`
 
@@ -184,9 +184,9 @@ When determining when to run a script, you need to take time and plan it out, pa
 
 ## Conclusions
 
-The _cron/crontab_ system is a powerful tool for the Rocky Linux systems administrator or desktop user. It allows you to automate tasks and scripts so that you do not have to remember to run them manually. There are more examples provided here:
+The _cron/crontab_ system is a powerful tool for the Rocky Linux systems administrator or desktop user. It allows you to automate tasks and scripts so that you do not have to remember to run them manually. More complex examples are here:
 
 * For machines that are **not** on 24 hours a day, explore [anacron - Automating commands](anacron.md).
 * For a concise description of `cron` processes, check out [cronie - Timed Tasks](cronie.md)
 
-While the basics are pretty easy, you can get more complex. For more information on `crontab` head up to the [crontab manual page](https://man7.org/linux/man-pages/man5/crontab.5.html). On most systems, you can also enter `man crontab` for additional command details. You can also do a web search for "crontab" which will give you a wealth of results to help you fine-tune your `crontab` skills.
+While the basics are pretty easy, it can be more complex. For more information on `crontab` head up to the [crontab manual page](https://man7.org/linux/man-pages/man5/crontab.5.html). On most systems, you can also enter `man crontab` for additional command details. You can also do a web search for "crontab" which will give you a wealth of results to help you fine-tune your `crontab` skills.

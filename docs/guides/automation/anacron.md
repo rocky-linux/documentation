@@ -26,7 +26,7 @@ The appearance of `anacron` is not to replace `crontab`, but to complement `cron
 
 ![ Relations ](../images/anacron_01.png)
 
-## `anacron` Configuration File
+## `anacron` configuration file
 
 ```bash
 shell > rpm -ql cronie-anacron
@@ -89,7 +89,7 @@ October 20 23:01:01 li CROND[2037]: (root) CMD (run-parts /etc/cron.hourly)
 
 ```
 
-For more configuration file information, please [Browse the manual page](https://man7.org/linux/man-pages/man5/anacrontab.5.html)
+For more configuration file information, [browse the manual page](https://man7.org/linux/man-pages/man5/anacrontab.5.html)
 
 ## User use
 
@@ -103,14 +103,14 @@ Let us use cron.daily to illustrate the run process of /etc/anacrontab:
 4. Verify whether a file runs after 5 minutes after booting. When the first one runs, it will be randomly delayed for 0～45 minutes to run the next one.
 5. Use the nice parameter to specify the default priority, and use the run-parts parameter to run all executable files in the /etc/cron.daily/ directory.
 
-## Related Commands
+## Related commands
 
 Use the command `anacron`, commonly used options are:
 
 | Options | Description |
 | --- | --- |
-| -f | Run all jobs, ignoring timestamps |
-| -u | Update the timestamp to the current time without performing any action |
-| -T | Test the validity of the configuration file /etc/anacrontab |
+| -f | Runs all jobs, ignoring timestamps |
+| -u | Updates the timestamp to the current time without performing any action |
+| -T | Tests the validity of the configuration file /etc/anacrontab |
 
 For more help information, [browse the manual page](https://man7.org/linux/man-pages/man8/anacron.8.html)
