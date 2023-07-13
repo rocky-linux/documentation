@@ -9,7 +9,7 @@ tags:
   - bash
 ---
 
-# How to Install & Use OliveTin on Rocky Linux
+# How to install & use OliveTin on Rocky Linux
 
 ## Introduction
 
@@ -38,11 +38,11 @@ To follow this guide you will need:
 
 ## Installing OliveTin
 
-OliveTin includes pre-built RPMs. Just download the latest release here for your architecture, and install it. If you're following this guide on a workstation with a graphical desktop, just download the file and double click on it in your file manager of choice.
+OliveTin includes pre-built RPMs. Just download the latest release here for your architecture, and install it. If you're following this guide on a workstation with a graphical desktop, just download the file and double-click on it in your file manager of choice.
 
-If you're installing this app on a server, then you can download it on your work machine and upload it via SSH/SCP/SFTP, or do the thing some people say not to do, and download it with `wget`.
+If you are installing this app on a server, then you can download it on your work machine and upload it by way of SSH/SCP/SFTP, or do the thing some people say not to do, and download it with `wget`.
 
-e.g.
+For example:
 
 ```bash
 wget https://github.com/OliveTin/OliveTin/releases/download/2022-04-07/OliveTin_2022-04-07_linux_amd64.rpm
@@ -60,7 +60,7 @@ OliveTin can run as a normal `systemd` service, but do not enable it just yet. Y
 
     After some testing, I have determined that these same install instructions will work just fine in a Rocky Linux LXD container. For anyone who likes Docker, pre-built images are available.
 
-## Configuring OliveTin Actions
+## Configuring OliveTin actions
 
 OliveTin can do anything bash can do, and more. You can use it to run apps with CLI options, run bash scripts, restart services, and so on. To get started, open up the configuration file with the text editor of your choice with root/sudo:
 
@@ -87,7 +87,7 @@ actions:
 
 I'm not going to go into every detail of the customization options, but you can also use text inputs and dropdown menus to add variables and options to the commands you want to run. If you do, OliveTin will prompt you for input before the command is run.
 
-Doing this, you can run any program, control remote machines with SSH, trigger webhooks, and more. Check out [the official documentation](https://docs.olivetin.app/actions.html) for more ideas.
+By doing this, you can run any program, control remote machines with SSH, trigger webhooks, and more. Check out [the official documentation](https://docs.olivetin.app/actions.html) for more ideas.
 
 But here's an example of my own: I have a personal script that I use to generate LXD containers with web servers pre-installed on them. With OliveTin, I was able to quickly make a GUI for said script like this:
 
@@ -141,7 +141,7 @@ sudo systemctl restart OliveTin
 
 ## Conclusion
 
-OliveTin is a pretty great way to run everything from a bash commands to some fairly complex operations with scripts. Remember, that everything runs as root by default, unless you use su/sudo in your shell commands to change the user for that particular command.
+OliveTin is a pretty great way to run everything from bash commands to some fairly complex operations with scripts. Remember that everything runs as root by default, unless you use su/sudo in your shell commands to change the user for that particular command.
 
 As such, you should be careful how you set this whole thing up, especially if you plan to give access to (for example) your family, to control home servers and appliances, and so on.
 

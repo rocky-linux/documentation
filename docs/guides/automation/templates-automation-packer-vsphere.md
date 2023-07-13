@@ -13,12 +13,12 @@ contributors: Steven Spencer, Ryan Johnson, Pedro Garcia
 
 ## Prerequisites, Assumptions, and General Notes
 
-* A vSphere environment available, and a user with granted access.
-* An internal web server to store files.
-* Web access to the Rocky Linux repositories.
-* An ISO of Rocky Linux.
-* An Ansible environment available.
-* It is assumed that you have some knowledge on each product mentioned. If not, dig into that documentation before you begin.
+* A vSphere environment is available, and a user with granted access
+* An internal web server to store files
+* Web access to the Rocky Linux repositories
+* An ISO of Rocky Linux
+* An Ansible environment is available
+* It is assumed that you have some knowledge of each product mentioned. If not, dig into that documentation before you begin.
 * Vagrant is **not** in use here. It was pointed out that with Vagrant, an SSH key that was not self-signed would be provided. If you want to dig into that you can do so, but it is not covered in this document.
 
 ## Introduction
@@ -31,7 +31,7 @@ Of course, you can adapt this how-to for other hypervisors.
 
 Although we are using the minimal ISO image here, you could choose to use the DVD image (much bigger and perhaps too big) or the boot image (much smaller and perhaps too small). This choice is up to you. It impacts in particular the bandwidth you will need for the installation, and thus the provisioning time. We will discuss next the impact of the default choice and how to remedy it.
 
-You can also choose not to convert the virtual machine into a template, in this case you will use Packer to deploy each new VM, which is still quite feasible (an installation starting from 0 takes less than 10 minutes without human interaction).
+You can also choose not to convert the virtual machine into a template. In this case you will use Packer to deploy each new VM, which is still quite feasible. An installation starting from 0 takes less than 10 minutes without human interaction.
 
 ## Packer
 
@@ -87,9 +87,9 @@ $ sudo dnf -y install packer
 #### Download and install from the Packer website
 
 
-You can start by downloading the binaries for you own platform with [Packer downloads](https://www.packer.io/downloads).
+You can start by downloading the binaries for your own platform with [Packer downloads](https://www.packer.io/downloads).
 
-1. In the download page, copy the download link in the Linux Binary Download section that corresponds to your system architecture.
+1. On the download page, copy the download link in the Linux Binary Download section that corresponds to your system architecture.
 
 2. From a shell or terminal download it using ```wget``` tool:
 
@@ -139,7 +139,9 @@ Available commands are:
 
 ### Template creation with Packer
 
-It is assumed that you are on Linux to perform the following tasks.
+!!! note "Note"
+
+    In the following examples, the assumption is that you are on a Linux system.
 
 As we will connect to a VMware vCenter Server to send our commands via Packer, we need to store our credentials outside the configuration files which we will create next.
 
@@ -239,7 +241,7 @@ We will also need our booting virtual machine to access a `ks.cfg` (Kickstart) f
 
 A Kickstart file contains the answers to the questions asked during the installation process. This file passes all its contents to Anaconda (the installation process), which allows you to fully automate the creation of the template.
 
-The author likes to store his `ks.cfg` file in an internal web server accessible from his template, but other possibilities exists that you may choose to use instead.
+The author likes to store his `ks.cfg` file in an internal web server accessible from his template, but other possibilities exist that you may choose to use instead.
 
 For example, the `ks.cfg` file is accessible from the VM at this URL in our lab: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. You would need to set up something similar to use this method.
 
@@ -308,7 +310,7 @@ This builder lets us configure the hardware we need:
 
 You can do more cool things with the disk, cpu, etc. You should refer to the documentation if you are interested in making other adjustments.
 
-To start the installation, you need an ISO image of Rocky Linux. Here is an example of how to use an image located in a vSphere content library. You can of course store the ISO elsewhere, but in the case of a vSphere content library, you have to get the full path to the ISO file on the server hosting the Content Library (in this case it is a Synology, so directly on the DSM explorer).
+To start the installation, you need an ISO image of Rocky Linux. Here is an example of how to use an image located in a vSphere content library. You can of course store the ISO elsewhere. In the case of a vSphere content library, you have to get the full path to the ISO file on the server hosting the content library. In this case it is Synology, so directly on the DSM explorer.
 
 ```
   "iso_paths": [
@@ -318,7 +320,7 @@ To start the installation, you need an ISO image of Rocky Linux. Here is an exam
 
 Then you have to provide the complete command to be entered during the installation process: configuration of the IP and transmission of the path to the Kickstart response file.
 
-!!! "Note"
+!!! note "Note" 
 
     This example takes the most complex case: using a static IP. If you have a DHCP server available, the process will be much easier.
 
