@@ -5,7 +5,7 @@ author: Steven Spencer
 
 # Gemstones
 
-Benvenuti su **Gemstones**! Vi sento già: _"Cosa mai sono le Gemstones e come si inseriscono nella documentazione di Rocky Linux?"_ È un'ottima domanda. Mentre le **Guide** contengono la nostra normale documentazione sulle procedure e i **Libri** contengono la nostra documentazione più lunga, le **Gemstones** sono solo piccole gemme di saggezza. Avete un pezzo di codice Linux preferito che usate sempre o un comando preferito? Magari avete scritto uno script in `bash`, `python`, o in un altro linguaggio Linux comune, che vorreste poter condividere perché vi aiuta nell'uso quotidiano di Linux? Se una di queste cose è vera, **Gemstones** è il posto giusto per il vostro contributo!
+Benvenuti su **Gemstones**! Vi sento già: _"Cosa mai sono le Gemstones e come si inseriscono nella documentazione di Rocky Linux?"_ È un'ottima domanda. Mentre le **Guide** contengono la nostra normale documentazione sulle procedure e i **Libri** contengono la nostra documentazione più lunga, le **Gemstones** sono solo piccole gemme di saggezza. Avete un pezzo di codice Linux preferito che usate sempre o un comando preferito? Forse avete scritto uno script in `bash`, `python`, o un altro linguaggio Linux comune, che vorreste condividere perché vi aiuta nell'uso quotidiano di Linux? Se una di queste cose è vera, **Gemstones** è il posto giusto per il vostro contributo!
 
 ## Criteri
 
