@@ -13,12 +13,12 @@ contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Franco Colussi
 
 ## Prerequisiti, presupposti e note generali
 
-* Un ambiente vSphere disponibile e un utente con accesso consentito.
-* Un server web interno per archiviare i file.
-* Accesso web ai repository Rocky Linux.
-* Una ISO di Rocky Linux.
+* È disponibile un ambiente vSphere e un utente con accesso garantito
+* Un server web interno per archiviare i file
+* Accesso web ai repository Rocky Linux
+* Una ISO di Rocky Linux
 * Un ambiente Ansible disponibile.
-* Si presuppone che abbiate una certa conoscenza di ogni prodotto citato. In caso contrario, prima di iniziare, è necessario consultare la documentazione.
+* Si presuppone che abbiate una certa conoscenza di ogni prodotto menzionato. In caso contrario, prima di iniziare, è necessario consultare la documentazione.
 * Vagrant **non è** in uso qui. È stato sottolineato che con Vagrant sarebbe stata fornita una chiave SSH non autofirmata. Se volete approfondire l'argomento, potete farlo, ma non è oggetto di questo documento.
 
 ## Introduzione
@@ -31,7 +31,7 @@ Naturalmente, potete adattare questo how-to per altri hypervisor.
 
 Sebbene qui si utilizzi l'immagine ISO minima, si può scegliere di utilizzare l'immagine del DVD (molto più grande e forse troppo grande) o l'immagine di avvio (molto più piccola e forse troppo piccola). La scelta spetta a voi. La scelta spetta a voi. In particolare, influisce sulla larghezza di banda necessaria per l'installazione e quindi sul tempo di provisioning. Discuteremo in seguito l'impatto di questa scelta predefinita e come porvi rimedio.
 
-Si può anche scegliere di non convertire la macchina virtuale in un modello, in questo caso si userà Packer per distribuire ogni nuova macchina virtuale, il che è ancora abbastanza fattibile (un'installazione che parte da 0 richiede meno di 10 minuti senza interazione umana).
+Si può anche scegliere di non convertire la macchina virtuale in un modello. In questo caso si utilizzerà Packer per distribuire ogni nuova macchina virtuale, il che è ancora abbastanza fattibile. Un'installazione a partire da 0 richiede meno di 10 minuti senza interazione umana.
 
 ## Packer
 
@@ -87,7 +87,7 @@ $ sudo dnf -y install packer
 #### Scaricare e installare dal sito web di Packer
 
 
-Si può iniziare scaricando i binari per la propria piattaforma con i [download di Packer](https://www.packer.io/downloads).
+Si può iniziare scaricando i binari per la propria piattaforma con [Packer downloads](https://www.packer.io/downloads).
 
 1. Nella pagina di download, copiate il link di download nella sezione Linux Binary Download che corrisponde all'architettura del vostro sistema.
 
@@ -139,7 +139,9 @@ I comandi disponibili sono:
 
 ### Creazione di modelli con Packer
 
-Per eseguire le seguenti operazioni si presuppone che l'utente abbia un sistema operativo Linux.
+!!! note "Nota"
+
+    Negli esempi che seguono, si presuppone che l'utente si trovi su un sistema Linux.
 
 Poiché ci collegheremo a un server VMware vCenter per inviare i nostri comandi tramite Packer, dobbiamo memorizzare le nostre credenziali al di fuori dei file di configurazione che creeremo successivamente.
 
@@ -239,9 +241,9 @@ Useremo la variabile `version` più tardi nel nome del modello che creeremo. È 
 
 Un file Kickstart contiene le risposte alle domande poste durante il processo di installazione. Questo file passa tutto il suo contenuto ad Anaconda (il processo di installazione), il che permette di automatizzare completamente la creazione del modello.
 
-L'autore preferisce memorizzare il file `ks.cfg` in un server web interno accessibile dal suo modello, ma esistono altre possibilità che si possono scegliere.
+L'autore preferisce memorizzare il file `ks.cfg` in un server web interno accessibile dal suo modello, ma esistono altre possibilità che si possono scegliere di adottare.
 
-For example, the `ks.cfg` file is accessible from the VM at this URL in our lab: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. Avrete bisogno di impostare qualcosa di simile per usare questo metodo.
+Ad esempio, il file `ks.cfg` è accessibile dalla macchina virtuale a questo URL nel nostro laboratorio: http://fileserver.rockylinux.lan/packer/rockylinux/8/ks.cfg. Avrete bisogno di impostare qualcosa di simile per usare questo metodo.
 
 Poiché vogliamo mantenere la password privata, essa viene dichiarata come variabile sensibile. Esempio:
 
@@ -302,13 +304,13 @@ Questo builder ci permette di configurare l'hardware di cui abbiamo bisogno:
   ],
 ```
 
-Alla fine del processo, la VM deve essere fermata. Note "Nota"
+!!! Note "Nota"
 
-    Non dimenticherete mai più di includere CPU_hot_plug perché ora è automatico!
+    Non dimenticherete mai più di includere CPU_hot_plug, perché ora è automatico!
 
 Si possono fare cose più interessanti con il disco, la CPU e così via. Se si desidera effettuare altre regolazioni, consultare la documentazione.
 
-Per iniziare l'installazione, avete bisogno di un'immagine ISO di Rocky Linux. Ecco un esempio di come utilizzare un'immagine situata in una libreria di contenuti vSphere. Naturalmente è possibile memorizzare la ISO altrove, ma nel caso di una libreria di contenuti vSphere, è necessario ottenere il percorso completo del file ISO sul server che ospita la libreria di contenuti (in questo caso è un Synology, quindi direttamente sul DSM explorer).
+Per iniziare l'installazione, avete bisogno di un'immagine ISO di Rocky Linux. Ecco un esempio di come utilizzare un'immagine situata in una libreria di contenuti vSphere. Naturalmente è possibile memorizzare l'ISO altrove. Nel caso di una libreria di contenuti vSphere, è necessario ottenere il percorso completo del file ISO sul server che ospita la libreria di contenuti. In questo caso si tratta di Synology, quindi direttamente su DSM explorer.
 
 ```
   "iso_paths": [
@@ -318,9 +320,9 @@ Per iniziare l'installazione, avete bisogno di un'immagine ISO di Rocky Linux. E
 
 Poi devi fornire il comando completo da inserire durante il processo di installazione: configurazione dell'IP e trasmissione del percorso del file di risposta Kickstart.
 
-!!! Note "Nota"
+!!! Note "Nota" 
 
-    Questo esempio prende il caso più complesso: usare un IP statico. Se avete un server DHCP disponibile, il processo sarà molto più facile.
+    Questo esempio prende in considerazione il caso più complesso: l'utilizzo di un IP statico. Se si dispone di un server DHCP, il processo sarà molto più semplice.
 
 Questa è la parte più divertente della procedura: Sono sicuro che andrete ad ammirare la console VMware durante la generazione, solo per vedere l'inserimento automatico dei comandi durante l'avvio.
 
@@ -483,10 +485,10 @@ Poiché Packer si basa su VMware Tools per rilevare la fine dell'installazione, 
 
 !!! Note "Nota"
 
-    Se non hai accesso ai repository esterni, puoi usare un mirror del repository, un proxy squid o il dvd.
+    Se non si ha accesso ai repo esterni, si può usare un mirror del repo, un proxy squid o il DVD.
 
 ```
-# Use CDROM installation media
+# Use CD-ROM installation media
 repo --name="AppStream" --baseurl="http://download.rockylinux.org/pub/rocky/8.4/AppStream/x86_64/os/"
 cdrom
 ```
@@ -498,16 +500,16 @@ Passiamo alla configurazione di rete, poiché ancora una volta, in questo esempi
 network --bootproto=static --device=ens192 --gateway=192.168.1.254 --ip=192.168.1.11 --nameserver=192.168.1.254,4.4.4.4 --netmask=255.255.255.0 --onboot=on --ipv6=auto --activate
 ```
 
-Ricorda che abbiamo specificato l'utente con cui connettersi via SSH a Packer alla fine dell'installazione. Dal momento che controlliamo l'ambiente in cui il nostro hardware funzionerà, possiamo rimuovere qualsiasi firmware che sarà inutile per noi:
+Remember we specified the user to connect via SSH with to Packer at the end of the installation. Dal momento che controlliamo l'ambiente in cui il nostro hardware funzionerà, possiamo rimuovere qualsiasi firmware che sarà inutile per noi:
 
 ```
 # Root password
 rootpw mysecurepassword
 ```
 
-La parte successiva aggiunge alcuni utenti. warning "Attenzione"
+!!! warning "Attenzione"
 
-    Puoi usare una password insicura qui, a patto che ti assicuri che questa password sarà cambiata immediatamente dopo la distribuzione della tua VM, per esempio con Ansible.
+    È possibile utilizzare una password non sicura, purché ci si assicuri che questa password venga cambiata immediatamente dopo la distribuzione della macchina virtuale, ad esempio con Ansible.
 
 Ecco lo schema di partizionamento selezionato. Si possono fare cose molto più complesse. Potete definire uno schema di partizione che si adatti alle vostre esigenze, adattandolo allo spazio su disco definito in Packer, e che rispetti le regole di sicurezza definite per il vostro ambiente (partizione dedicata a `/tmp`, ecc.):
 
@@ -526,11 +528,11 @@ logvol / --fstype="xfs" --size=10240 --name=lv_root --vgname=vg_root
 logvol swap --fstype="swap" --size=4092 --name=lv_swap --vgname=vg_root
 ```
 
-The next section concerns the packages that will be installed. Puoi usare l'utente root o un altro utente con diritti sudo, ma in ogni caso, questo utente deve corrispondere all'utente definito nel tuo file ks.cfg.
+La sezione successiva riguarda i pacchetti che verranno installati. Puoi usare l'utente root o un altro utente con diritti sudo, ma in ogni caso, questo utente deve corrispondere all'utente definito nel tuo file ks.cfg.
 
 !!! note "Nota"
 
-    All'autore piace limitare le azioni da fare nel processo di installazione e rimandare l'installazione di ciò che è necessario nello script post installazione di Packer. Quindi, in questo caso, installiamo solo i pacchetti minimi richiesti.
+    All'autore piace limitare le azioni da compiere nel processo di installazione e rimandare l'installazione di ciò che è necessario nello script di post-installazione di Packer. Quindi, in questo caso, installiamo solo i pacchetti minimi richiesti.
 
 Il pacchetto `openssh-clients` sembra essere richiesto da Packer per copiare i suoi script nella VM.
 
