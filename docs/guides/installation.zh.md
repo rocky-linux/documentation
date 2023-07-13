@@ -227,8 +227,7 @@ Verify the switch of the device you want to configure is flipped to the `ON` (bl
 
     !!! info "信息"
    
-        !!! Info "资料"
-           在系统上创建和使用非特权帐户执行日常任务是一种很好的系统管理习惯。
+        在系统上创建和使用非特权帐户来执行日常任务是一种很好的系统管理习惯。
 
     我们将创建一个常规用户，可以在需要时调用超级用户(管理员)权力。
 
