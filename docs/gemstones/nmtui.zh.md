@@ -30,7 +30,8 @@ shell > nmtui
 
 ### DHCP的IPv4
 
-针对IPv4，如果是使用DHCP的方式获取网络信息，则只需要选择 *IPv4 CONFIGURATION* 后面的**&lt;Automatic&gt;**，然后在您的终端中运行下`systemctl restart NetworkManager.service`，大多数的情况下都能生效。 极少数的情况下需要开关网卡才能生效。 例如这样的方式——`nmcli connection down ens33`，`nmcli connection up ens33`
+针对IPv4，如果要使用DHCP获取网络信息，则只需要选择 *IPv4 CONFIGURATION* **&lt;Automatic&gt;**，然后在您的终端中运行 `systemctl restart NetworkManager.service`。 这在大多数情况下都会生效。 在极少数情况下，您需要禁用和启用网卡才能使更改生效。 例如：`nmcli connection down ens33`，`nmcli connection up ens33`
+
 
 ### 手动固定网络信息
 
