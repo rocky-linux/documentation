@@ -15,7 +15,7 @@ tags:
 
 该套件主要包括两个命令行工具：
 
-* `nmtui`. 在图形界面中配置网络。
+* `nmtui`. 通过图形化界面配置网络。
 
 ```bash
 shell > dnf -y install NetworkManager NetworkManager-tui
@@ -206,7 +206,7 @@ method=disabled
 
 | 键名称       | 描述                                                            |
 | --------- | ------------------------------------------------------------- |
-| addresses |                                                               |
-| gateway   |                                                               |
-| dns       |                                                               |
+| addresses | 分配的IP地址                                                       |
+| gateway   | 接口的网关（下一跳）                                                    |
+| dns       | 正在使用的DNS                                                      |
 | method    | IP获取的方法。 值是字符串类型。 值可以是：auto、disabled、link-local、manual、shared |

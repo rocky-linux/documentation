@@ -26,7 +26,7 @@ L'aspetto di `anacron` non è quello di sostituire `crontab`, ma di completare `
 
 ![ Relazioni ](../images/anacron_01.png)
 
-## `anacron` File di Configurazione
+## `anacron` file di configurazione
 
 ```bash
 shell > rpm -ql cronie-anacron
@@ -89,7 +89,7 @@ October 20 23:01:01 li CROND[2037]: (root) CMD (run-parts /etc/cron.hourly)
 
 ```
 
-Per ulteriori informazioni sul file di configurazione, si prega di [consultare la pagina del manuale](https://man7.org/linux/man-pages/man5/anacrontab.5.html)
+Per ulteriori informazioni sui file di configurazione, [consultare la pagina del manuale](https://man7.org/linux/man-pages/man5/anacrontab.5.html)
 
 ## Utilizzo da parte dell'utente
 
