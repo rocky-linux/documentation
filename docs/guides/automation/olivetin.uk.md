@@ -9,7 +9,7 @@ tags:
   - bash
 ---
 
-# Як встановити & Використовувати OliveTin на Rocky Linux
+# Як встановити та використовувати OliveTin на Rocky Linux
 
 ## Вступ
 
