@@ -182,7 +182,7 @@ For starters, break down the beginning of the configuration file. For instance, 
 You want them to go to port 443 (or "`http` secure", better known as SSL/TLS or `https`). Our port 80 configuration section will be minimal:
 
 
-```
+```apache
 <VirtualHost *:80>
         ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
@@ -196,7 +196,7 @@ A permanent redirect will teach the search engines, and soon any traffic to your
 
 Next, you need to define the `https` part of the configuration file:
 
-```
+```apache
 <VirtualHost *:80>
         ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
