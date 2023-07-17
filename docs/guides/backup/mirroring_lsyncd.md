@@ -39,7 +39,7 @@ For remote syncing, you will also want to set up [Rocky Linux SSH Public Private
 
 ## Installing `lsyncd`
 
-There are actually two ways to install `lsyncd`. We will include them both here. The RPM tends to lag behind the source packages by a little, but only by a little. The version installed by the RPM method at the time of this writing is 2.2.2-9, whereas the source code version is now at 2.2.3. That said, we want to give you both options and let you choose.
+There are actually two ways to install `lsyncd`. We will include them both here. The RPM tends to lag behind the source packages by a little, but only by a little. The version installed by the RPM method at the time of this writing is 2.2.2-9, whereas the source code version is now 2.2.3. That said, we want to give you both options and let you choose.
 
 ## Installing `lsyncd` - RPM Method
 
@@ -59,7 +59,7 @@ That's it!
 
 ## Installing `lsyncd` - Source Method
 
-Installing from source is not as bad is it sounds. Just follow this guide and you will be up and running in no time!
+Installing from the source is not as bad as it sounds. Just follow this guide and you will be up and running in no time!
 
 ### Install Dependencies
 
@@ -115,13 +115,13 @@ When done, you will have the `lsyncd` binary installed and ready for use in */us
 
 ### `lsyncd` Systemd Service
 
-With the RPM install method, the systemd service will be installed for you, but if you choose to install from source, you will need to create the systemd service. While you can start the binary without the systemd service, we want to ensure that it *does* start on boot. If not, a server reboot would stop your synchronization effort and if you forgot to start it again, which is highly likely. That could be very embarrassing for any systems administrator!
+With the RPM install method, the systemd service will be installed for you, but if you choose to install from source, you will need to create the systemd service. While you can start the binary without the systemd service, we want to ensure that it *does* start on boot. If not, a server reboot would stop your synchronization effort. If you forgot to start it again, which is highly likely, that would be a problem for any systems administrator!
 
 Creating the systemd service is not terribly difficult, though, and will save you time in the long run.
 
 #### Create The `lsyncd` Service File
 
-This file can be created anywhere, even in the root directory of your server. When created, you can move it the right location.
+This file can be created anywhere, even in the root directory of your server. When created, you can move it to the right location.
 
 `vi /root/lsyncd.service`
 
