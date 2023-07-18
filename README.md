@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-93-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-94-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -347,6 +347,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/andrewthiesen"><img src="https://avatars.githubusercontent.com/u/69650999?v=4?s=100" width="100px;" alt="Andrew (AJ)"/><br /><sub><b>Andrew (AJ)</b></sub></a><br /><a href="#content-andrewthiesen" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.qyecst.cn"><img src="https://avatars.githubusercontent.com/u/13901864?v=4?s=100" width="100px;" alt="qyecst"/><br /><sub><b>qyecst</b></sub></a><br /><a href="#content-qyecst" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/msmit5"><img src="https://avatars.githubusercontent.com/u/55892653?v=4?s=100" width="100px;" alt="Matt"/><br /><sub><b>Matt</b></sub></a><br /><a href="#content-msmit5" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
