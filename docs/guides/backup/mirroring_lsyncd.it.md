@@ -117,13 +117,13 @@ Al termine, il binario `lsyncd` sarà installato e pronto all'uso in */usr/local
 
 ### `lsyncd` Servizio Systemd
 
-Con il metodo di installazione RPM, il servizio systemd sarà installato per voi, ma se scegliete di installare da sorgente, dovrete creare il servizio systemd. Sebbene sia possibile avviare il binario senza il servizio systemd, vogliamo assicurarci che esso *parta* all'avvio. In caso contrario, un riavvio del server interromperebbe lo sforzo di sincronizzazione e se si è dimenticato di riavviarlo, il che è molto probabile. Questo potrebbe essere molto imbarazzante per qualsiasi amministratore di sistema!
+Con il metodo di installazione RPM, il servizio systemd sarà installato per voi, ma se scegliete di installare da sorgente, dovrete creare il servizio systemd. Sebbene sia possibile avviare il binario senza il servizio systemd, vogliamo assicurarci che esso *parta* all'avvio. In caso contrario, un riavvio del server interromperà il tentativo di sincronizzazione. Se si dimenticasse di riavviarlo, cosa molto probabile, sarebbe un problema per qualsiasi amministratore di sistema!
 
 La creazione del servizio systemd, tuttavia, non è molto difficile e a lungo andare vi farà risparmiare tempo.
 
 #### Creare il Service File `lsyncd`
 
-Questo file può essere creato ovunque, anche nella directory principale del server. Una volta creato, è possibile spostarlo nella posizione corretta.
+Questo file può essere creato ovunque, anche nella directory principale del server. Una volta creato, è possibile spostarlo nella posizione appropriata.
 
 `vi /root/lsyncd.service`
 
