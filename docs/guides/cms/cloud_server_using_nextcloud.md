@@ -27,7 +27,7 @@ tags:
 
 ## Introduction
 
-If you are in charge of a server environment for a large (or even a small) company, you may be tempted by cloud applications. Doing things in the cloud can free up your own resources for other things, but there is a downside to this, and that is the loss of control of your company's data. If the cloud application is compromised, so too may be your company's data.
+If you are in charge of a server environment for a large (or even a small) company, you may be tempted by cloud applications. Doing things in the cloud can free up your own resources for other things, but there is a downside to this, and that is the loss of control of your company's data. If the cloud application is compromised, your company's data may be compromised too.
 
 Taking the cloud back into your own environment is a way to reclaim security of your data at the expense of your time and energy. Sometimes, that is a cost worth paying.
 
@@ -234,7 +234,7 @@ The next few steps assume that you are remotely connected to your Nextcloud serv
 * Navigate to the [Nextcloud web site](https://nextcloud.com/).
 * Let your mouse hover over "Get Nextcloud" which will bring up a drop-down menu.
 * Click on "Server Packages".
-* Right-click on "Download Nextcloud" and copy the link address (the exact syntax of this is different browser to browser).
+* Right-click on "Download Nextcloud" and copy the link address (the exact syntax of this is different from browser to browser).
 * In your remote console on the Nextcloud server, type "wget" and then a space and paste in what you just copied. You should get something like the following: `wget https://download.nextcloud.com/server/releases/nextcloud-21.0.1.zip` (note that the version could be different).
 * Once you hit enter, the download of the .zip file will start and will be completed fairly quickly.
 
