@@ -146,6 +146,7 @@ port=3306
 socket=/tmp/mysql.sock
 
 [mysqld]
+bind-address=192.168.100.5
 port=3306
 socket=/tmp/mysql.sock
 basedir=/usr/local/mysql
