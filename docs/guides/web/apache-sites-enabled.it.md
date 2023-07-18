@@ -182,7 +182,7 @@ Per cominciare, scomponete l'inizio del file di configurazione. Per esempio, anc
 Si vuole che vadano sulla porta 443 (o`"http` secure", meglio nota come SSL/TLS o `https`). La sezione di configurazione della porta 80 sarà minima:
 
 
-```
+```apache
 <VirtualHost *:80>
         ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
@@ -196,7 +196,7 @@ Un reindirizzamento permanente insegnerà ai motori di ricerca e presto tutto il
 
 Successivamente, è necessario definire la parte `https` del file di configurazione:
 
-```
+```apache
 <VirtualHost *:80>
         ServerName your-server-hostname
         ServerAdmin username@rockylinux.org
