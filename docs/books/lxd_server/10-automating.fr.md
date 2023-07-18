@@ -1,5 +1,5 @@
 ---
-title: 10 Automatisation des Snapshots
+title: 'Chapitre 10 : Automatisation des Snapshots'
 author: Steven Spencer
 contributors: Ezequiel Bruni
 tested_with: 8.8, 9.2
@@ -18,7 +18,7 @@ Automatiser le processus de capture instantanée rend les choses beaucoup plus f
 ## Automatisation du processus de copie des snapshots
 
 
-Ce processus est effectué sur lxd-primary. La première chose que nous devons faire est de créer un script qui sera exécuté par cron dans /usr/local/sbin appelé "refresh-containers" :
+Ce processus est effectué sur le serveur lxd-primary. La première chose que nous devons faire est de créer un script qui sera exécuté par cron dans /usr/local/sbin et appelé "refresh-containers" :
 
 ```
 sudo vi /usr/local/sbin/refreshcontainers.sh
@@ -62,7 +62,7 @@ Votre entrée ressemblera à ceci :
 00 22 * * * /usr/local/sbin/refreshcontainers.sh > /home/lxdadmin/refreshlog 2>&1
 ```
 
-Enregistrez vos modifications et quittez.
+Enregistrez vos modifications et quittez l'éditeur.
 
 Cela créera un log dans le répertoire home de lxdadmin, appelé "refreshlog" qui vous permettra de savoir si votre processus a fonctionné ou non. Très important!
 
