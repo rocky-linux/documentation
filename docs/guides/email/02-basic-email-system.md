@@ -56,7 +56,7 @@ zone "rockylinux.me" IN {
 
 !!! question 
 
-    **What is DNS zone?**<br/>A DNS zone is the specific portion of a DNS namespace that's hosted on a DNS server. A DNS zone contains resource records, and the DNS server responds to queries for records in that namespace. A DNS server can have multiple DNS zone.Simply put, a dns zone is the equivalent of a book catalog.
+    **What is DNS zone?**<br/>A DNS zone is the specific portion of a DNS namespace that's hosted on a DNS server. A DNS zone contains resource records, and the DNS server responds to queries for records in that namespace. A DNS server can have multiple DNS zone.Simply put, a DNS zone is the equivalent of a book catalog.
 
 ```bash
 # Modify data file
@@ -353,6 +353,10 @@ append_dot_mydomain = no
 smtpd_sasl_type = dovecot
 smtpd_sasl_path = private/auth
 smtpd_sasl_auth_enable = yes
+virtual_transport = lmtp:unix:private/dovecot-lmtp
+virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
+virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
+virtual_alias_maps = mysql:/etc/postfix/mysql-virtual-alias-maps.cf,mysql:/etc/postfix/mysql-virtual-email2email.cf
 unknown_local_recipient_reject_code = 550
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
@@ -376,10 +380,6 @@ smtp_tls_CAfile = /etc/pki/tls/certs/ca-bundle.crt
 smtp_tls_security_level = may
 meta_directory = /etc/postfix
 shlib_directory = /usr/lib64/postfix
-virtual_transport = lmtp:unix:private/dovecot-lmtp
-virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
-virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
-virtual_alias_maps = mysql:/etc/postfix/mysql-virtual-alias-maps.cf,mysql:/etc/postfix/mysql-virtual-email2email.cf
 ```
 
 Create a file and write the relevant content:
@@ -429,6 +429,7 @@ Shell(192.168.100.6) > systemctl start postfix.service
 Shell(192.168.100.6) > postfix check
 Shell(192.168.100.6) > postfix status
 
+# If the command return 1, it is successful.
 Shell(192.168.100.6) > postmap -q mail.rockylinux.me mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
 Shell(192.168.100.6) > echo $?
 1
