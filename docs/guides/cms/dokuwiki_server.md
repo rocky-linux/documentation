@@ -195,12 +195,12 @@ Either should work if you set your hosts file as above. This will bring you to t
 
 * In the "Wiki Name" field, type the name for our wiki. Example "Technical Documentation"
 * In the "Superuser" field, type the administrative username. Example "admin"
-* In the "Real name" field, type the real name for the administrative user.
+* In the "Real name" field, type the real name of the administrative user.
 * In the "E-Mail" field, type the email address of the administrative user.
-* In the "Password" field, type the secure password for the administrative user.
+* In the "Password" field, type the secure password of the administrative user.
 * In the "once again" field, re-type that same password.
-* In the "Initial ACL Policy" drop down, choose the option that works best for your environment.
-* Choose the appropriate check box for the license you want to put your content under.
+* In the "Initial ACL Policy" drop-down, choose the option that works best for your environment.
+* Choose the appropriate check box of the license you want to put your content under.
 * Leave checked (or uncheck if you prefer) the "Once a month, send anonymous usage data to the DokuWiki developers" checkbox
 * Click the "Save" button
 
