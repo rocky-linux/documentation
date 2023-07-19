@@ -73,7 +73,7 @@ Una fonte comune di fallimento riscontrata durante il processo di creazione del 
 
     Se si ottiene l'errore "Il modulo o il gruppo 'C Development Tools and Libraries' is not available", il comando seguente è equivalente a quello precedente:
 
-     ```
+    ```
     > sudo dnf -y groupinstall 'Development Tools'
     ```
 
