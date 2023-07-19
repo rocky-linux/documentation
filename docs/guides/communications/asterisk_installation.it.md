@@ -48,7 +48,7 @@ sudo dnf install wget
 
 ## Impostare l'Hostname
 
-Impostate il nome host sul dominio che userete per Asterisk.
+Impostate il vostro hostname sul dominio che userete per Asterisk.
 
 ```
 sudo hostnamectl set-hostname asterisk.example.com
