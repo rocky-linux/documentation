@@ -40,7 +40,7 @@ At minimum, you will need the following skills and tools to complete this guide:
 sudo dnf -y update
 ```
 
-This will get your server up-to-date with all packages that have been released or updated since the last update or install. Then run:
+This will get your server up-to-date with all packages that have been released or updated since the last update or installation. Then run:
 
 ```
 sudo dnf install wget
@@ -48,7 +48,7 @@ sudo dnf install wget
 
 ## Set Hostname
 
-Set your host name to the domain you'll be using for Asterisk.
+Set your hostname to the domain you'll be using for Asterisk.
 
 ```
 sudo hostnamectl set-hostname asterisk.example.com
