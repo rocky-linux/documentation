@@ -27,7 +27,7 @@ tags:
 
 ## Introduzione
 
-Se siete responsabili di un ambiente server per una grande (o anche piccola) azienda, potreste essere tentati dalle applicazioni cloud. L'utilizzo del cloud può liberare risorse per altre attività, ma c'è un aspetto negativo: la perdita di controllo dei dati aziendali. Se l'applicazione cloud è compromessa, potrebbero esserlo anche i dati della vostra azienda.
+Se siete responsabili di un ambiente server per una grande (o anche piccola) azienda, potreste essere tentati dalle applicazioni cloud. L'utilizzo del cloud può liberare risorse per altre attività, ma c'è un aspetto negativo: la perdita di controllo dei dati aziendali. Se l'applicazione cloud è compromessa, anche i dati della vostra azienda potrebbero esserlo.
 
 Riportare il cloud nel proprio ambiente è un modo per recuperare la sicurezza dei dati a scapito di tempo ed energia. A volte è un costo che vale la pena pagare.
 
@@ -234,7 +234,7 @@ I prossimi passi presuppongono che siate connessi in remoto al vostro server Nex
 * Accedere al [sito web](https://nextcloud.com/) di [Nextcloud](https://nextcloud.com/).
 * Passate il mouse su "Get Nextcloud", che farà apparire un menu a discesa.
 * Fare clic su "Server Packages".
-* Fate clic con il tasto destro del mouse su "Download Nextcloud" e copiate l'indirizzo del link (la sintassi esatta varia da browser a browser).
+* Fate clic con il tasto destro del mouse su "Download Nextcloud" e copiate l'indirizzo del link (la sintassi esatta è diversa da browser a browser).
 * Nella console remota del server Nextcloud, digitate "wget", quindi uno spazio e incollate il testo appena copiato. Si dovrebbe ottenere qualcosa di simile a quanto segue: `wget https://download.nextcloud.com/server/releases/nextcloud-21.0.1.zip` (si noti che la versione potrebbe essere diversa).
 * Una volta premuto il tasto Invio, il download del file .zip inizierà e si concluderà abbastanza rapidamente.
 

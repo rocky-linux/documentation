@@ -195,12 +195,12 @@ Entrambi dovrebbero funzionare se si imposta il file hosts come sopra. In questo
 
 * Nel campo "Nome del wiki", digitare il nome del nostro wiki. Esempio "Documentazione tecnica"
 * Nel campo "Superuser", digitare il nome utente amministrativo. Esempio "admin"
-* Nel campo "Nome reale", digitare il nome reale dell'utente amministrativo.
+* Nel campo " Real name", digitare il nome reale dell'utente amministrativo.
 * Nel campo "E-Mail", digitare l'indirizzo e-mail dell'utente amministrativo.
-* Nel campo "Password", digitare la password sicura per l'utente amministrativo.
+* Nel campo "Password", digitare la password sicura dell'utente amministrativo.
 * Nel campo "once again", digitare nuovamente la stessa password.
-* Nel menu a discesa "Initial ACL Policy", scegliere l'opzione più adatta all'ambiente.
-* Scegliere la casella di controllo appropriata per la licenza con cui si desidera inserire i contenuti.
+* Nel menu a discesa " Initial ACL Policy", scegliere l'opzione più adatta al proprio ambiente.
+* Scegliere la casella di controllo appropriata della licenza sotto la quale si desidera inserire il contenuto.
 * Lasciare selezionata o deselezionare la casella di controllo "Una volta al mese, invia i dati anonimi di utilizzo agli sviluppatori di DokuWiki"
 * Fare clic sul pulsante "Salva"
 
