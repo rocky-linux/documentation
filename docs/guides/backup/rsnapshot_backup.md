@@ -259,7 +259,7 @@ To run `configtest` against a particular configuration file, run it with the -c 
 
 With `configtest` verifying everything is OK, it is now time to run the backup for the first time. You can run this in test mode first if you like, so that you can see what the backup script is going to do.
 
-Again, to do this you don not necessarily have to specify the configuration in this case, but it is a good idea to get into the habit of doing so:
+Again, to do this you do not necessarily have to specify the configuration in this case, but it is a good idea to get into the habit of doing so:
 
 `rsnapshot -c /etc/rsnapshot.conf -t beta`
 
