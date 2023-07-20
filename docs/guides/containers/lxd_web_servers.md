@@ -25,15 +25,13 @@ Conceptually, it’s something like this:
 
 If you’ve ever played with VirtualBox to run some Windows apps, it’s like that, but not. Unlike virtual machines, Linux Containers don’t emulate an entire hardware environment for each container. Rather, they all share a few virtual devices by default for networking and storage, though you can add more virtual devices. As a result, they require a lot less overhead (processing power and RAM) than a virtual machine.
 
-For those Docker fiends out there (Docker being another container-based system, *not* a VM system), Linux Containers are less ephemeral than what you’re used to. All data in every container instance is persistent, and any changes you make are permanent unless you revert to a backup. In short, shutting down the container won’t erase your sins.
+For those Docker fiends out there (Docker being another container-based system, *not* a VM system), Linux Containers are less ephemeral than what you’re used to. All data in every container instance is persistent, and any changes you make are permanent unless you revert to a backup. In short, shutting down the container will not erase any issues you might have introduced.
 
-Heh.
-
-LXD, specifically, is a command-line application that helps you to set up and manage Linux Containers. That's what we're going to be installing on our Rocky Linux host server today. I'm going to be writing LXC/LXD a lot though, as there's a lot of old documentation which refers to LXC only, and I'm trying to make it easier for people to find updated guides like this one.
+LXD, specifically, is a command-line application that helps you to set up and manage Linux Containers. That is what we will install on our Rocky Linux host server today. I will be writing LXC/LXD a lot though, as there is a lot of old documentation which refers to LXC only, and I am trying to make it easier for people to find updated guides like this one.
 
 !!! Note
 
-    There was a precursor app to LXD which was also called "LXC". As it stands today: LXC is the technology, LXD is the app.
+    There was a precursor app to LXD which was also called "LXC". Today, LXC is the technology, and LXD is the app.
 
 We’ll be using them both to create an environment that works something like this:
 
@@ -43,22 +41,20 @@ Specifically, I’m going to show you how to set up simple Nginx and Apache web 
 
 !!! Note
 
-    A reverse proxy is a program that takes incoming connections from the internet (or your local network) and routes them to the right server, container, or app. There are also dedicated tools for this job like HaProxy... but weirdly enough, I find Nginx a lot easier to use.
+    A reverse proxy is a program that takes incoming connections from the internet (or your local network) and routes them to the right server, container, or app. There are also dedicated tools for this job like HaProxy... but I find Nginx a lot easier to use.
 
 ## Prerequisites And Assumptions
 
-* Basic familiarity with the Linux command line interface. You should know how to use SSH if you’re installing LXC/LXD on a remote server.
+* Basic familiarity with the Linux command line interface. You should know how to use SSH if installing LXC/LXD on a remote server.
 * An internet-connected server, physical or virtual, with Rocky Linux already running on it.
 * Two domain names pointed right at your server with an A record.
-    * Two subdomains would also work just as well. One domain with a wildcard subdomain record would also, or a custom LAN domain... you get the picture.
+    * Two subdomains would also work just as well. One domain with a wildcard subdomain record would also, or a custom LAN domain.
 * A command-line text editor. *nano* will do, *micro* is my favorite, but use whatever makes you comfortable.
-* You *can* follow this whole tutorial as the root user, but you probably shouldn’t. After the initial installation of LXC/LXD, we’ll guide you in creating an unprivileged user specifically for operating LXD commands.
-* We now have Rocky Linux images to base your containers on, and they’re awesome.
-* If you're not too familiar with Nginx or Apache, you **will** need to check out some of our other guides if you want to get a full productions server up and running. Don't worry, I'll link them below.
+* You *can* follow this whole tutorial as the root user, but that is not a good idea. After the initial installation of LXC/LXD, we’ll guide you in creating an unprivileged user specifically for operating LXD commands.
+* Rocky Linux images to base your containers on are now available.
+* If you're not too familiar with Nginx or Apache, you **will** need to check out some of our other guides if you want to get a full production server up and running. Don't worry, I'll link them below.
 
 ## Setting Up The Host Server Environment
-
-So here’s where I’m going to copy and paste bits from the other LXD guide, for your convenience and mine. All credit for most of this part goes to Steven Spencer.
 
 ### Install the EPEL Repository
 
