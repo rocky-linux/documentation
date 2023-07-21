@@ -91,7 +91,7 @@ MAILTO=root
 명령을 실행하면 선택한 편집기에서 현재 root 사용자의 `crontab` 파일을 열게 됩니다. 다음과 같이 보일 수 있으며, 각 필드에 대한 설명이 포함된 주석 버전을 읽어보세요:
 
 ```
-# 이 파일을 편집하여 cron이 실행할 작업을 소개합니다.
+# 이 파일을 편집하여 cron에서 실행할 작업을 소개합니다.
 #
 # Each task to run has to be defined through a single line
 # indicating with different fields when the task will be run
