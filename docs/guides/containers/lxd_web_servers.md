@@ -154,7 +154,7 @@ If you have a specific hard drive or partition you’d like to use for the whole
 `Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]:`
 ```
 
-Metal As A Service (MAAS) is outside the scope of this document. Accept the defaults for this next bit.
+Metal As A Service (MAAS) is outside the scope of this document. Accept the defaults for this.
 
 ```
 Would you like to connect to a MAAS server? (yes/no) [default=no]:
@@ -170,7 +170,7 @@ What should the new bridge be called? [default=lxdbr0]: `
 What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
 ```
 
-If you want to use IPv6 on your LXD containers, you can turn on this next option. That is up to you, but you mostly shouldn’t need to. I think. I tend to leave it on out of laziness.
+If you want to use IPv6 on your LXD containers, you can turn on this next option. That is up to you, but you mostly shouldn’t need to.
 
 ```
 What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
@@ -228,7 +228,7 @@ Before we do anything else with containers, you need to be able to access your p
 
 The other LXD guide will show you how to do this with the *iptables* firewall, if that’s what you want to do. I tend to use the CentOS default firewall: *firewalld*. So that’s what we’re doing, this time.
 
-`firewalld` is configured via the `firewall-cmd` command. **The absolute first thing we want to do,** before we open any ports, is make sure that your containers can be assigned their IP addresses automatically:
+`firewalld` is configured via the `firewall-cmd` command. **The absolute first thing we want to do,** before we open any ports, is making sure that your containers can be assigned their IP addresses automatically:
 
 ```bash
 firewall-cmd --zone=trusted --permanent --change-interface=lxdbr0
@@ -303,13 +303,13 @@ If for some reason you need a fully privileged container (and you mostly shouldn
 
 For this tutorial, you’ll need three containers:
 
-We’ll call them “proxy-server” (for the container that will be directing web traffic to the other two containers), “nginx-server”, and “apache-server”. Yes, I’ll be showing you how to reverse proxy to both *nginx* and *apache*-based servers. Things like *docker* or NodeJS apps we can wait with until I figure that out myself.
+We’ll call them “proxy-server” (for the container that will be directing web traffic to the other two containers), “nginx-server”, and “apache-server”. Yes, I’ll be showing you how to reverse proxy to both *nginx* and *apache*-based servers.
 
 We’ll start by figuring out which image we want to base our containers on. For this tutorial, we’re just using Rocky Linux. Using Alpine Linux, for example, can result in much smaller containers (if storage is a concern), but that’s beyond the scope of this particular document.
 
 ### Finding the Image You Want
 
-Here’s the short, short method for starting a container with Rocky Linux:
+Here’s the quick method for starting a container with Rocky Linux:
 
 ```bash
 lxc launch images:rockylinux/8/amd64 my-container
@@ -382,7 +382,7 @@ That should give you output that looks a bit like this (though, if you opted to 
 
 So the other guide linked at the beginning of this one has a whole tutorial on how to set LXC/LXD up to work with Macvlan. This is especially useful if you’re running a local server, and you want each container to have an IP address visible on the local network.
 
-When you’re running on a VPS, you don’t often have that option. In fact, you might only have one single IP address that you’re allowed to work with. No biggie. The default networking configuration is designed to accommodate this sort of limitation; answering the `lxd init` questions as I specified above *should* take care of everything.
+When you’re running on a VPS, you don’t often have that option. In fact, you might only have one single IP address that you’re allowed to work with. The default networking configuration is designed to accommodate this sort of limitation; answering the `lxd init` questions as I specified above *should* take care of everything.
 
 Basically, LXD creates a virtual network device called a bridge (usually named “lxdbr0”), and all containers get connected to that bridge by default. Through it, they can connect to the internet via your host’s default network device (ethernet, wi-fi, or a virtual network device provided by your VPS). Somewhat more importantly, all of the containers can connect to each other.
 
@@ -406,7 +406,7 @@ lxc stop mycontainer
 lxc restart mycontainer
 ```
 
-Hey, even Linux needs to reboot sometimes. And heck, you can actually start, stop, and restart all containers at once with the following commands.
+Even Linux needs to reboot sometimes. You can actually start, stop, and restart all containers at once with the following commands.
 
 ```bash
 lxc start --all
@@ -446,7 +446,7 @@ Finally, if you've opened a shell into a container, you leave it the same way yo
 
 #### Copying Containers
 
-Now, if you have a container you’d like to replicate with minimal effort, you don’t need to start a brand new one and install all of your base applications again. That’d be silly. Just run:
+Now, if you have a container you’d like to replicate with minimal effort, you don’t need to start a brand new one and install all of your base applications again. That requires extra work that is not needed. Just run:
 
 ```bash
 lxc copy my-container my-other-container
@@ -496,7 +496,7 @@ You won’t be able to delete the container if it’s running, so you can either
 lxc delete my-container --force
 ```
 
-Now, thanks to tab -command-completion, user error, and the fact that “d” sits next to “s” on most keyboards, you can accidentally delete containers. This is known, in the business, as THE BIG OOPS. (Or at least it’ll be known as THE BIG OOPS when I’m done here.)
+Now, thanks to tab -command-completion, user error, and the fact that “d” sits next to “s” on most keyboards, you can accidentally delete containers.
 
 To defend against that, you can set any container to be “protected” (making the process of deleting them take an extra step) with this command:
 
@@ -516,7 +516,7 @@ lxc exec nginx-server dnf update -y
 lxc exec apache-server dnf update -y
 ```
 
-Then, jump into each container, and get cracking.
+Then, jump into each container, and start working.
 
 You’ll also need a text editor for every container. By default, Rocky Linux comes with *vi*, but if you want to simplify your life, *nano* will do. You can install it in each container before you open them up.
 
@@ -601,7 +601,7 @@ Exit the shell for now, and let's start on the Nginx server.
 
     While this technique *does* work (your web apps and websites will get the users' real IPs), Apache's own access logs *will not show the right IPs.* They'll usually show the IP of the container that your reverse proxy is in. This is apparently a problem with how Apache logs things.
 
-    I've found loads of solutions on Google, and none of them have actually worked for me. Watch this space for someone much smarter than I am to figure it out. In the meantime, you can check the proxy server's access logs if you need to see the IP addresses yourself, or check the logs of whatever web app you're installing.
+    You can check the proxy server's access logs if you need to see the IP addresses yourself, or check the logs of whatever web app you're installing.
 
 ### The Nginx website server
 
@@ -782,9 +782,9 @@ Let's break that down a little:
 
     The `proxy_protocol` bit in the `listen` variables is *essential* for the proxy server to work. Never leave it out.
 
-For every LXD/website configuration file, you'll need to change the `upstream`, `server`, `server_name`, and `proxy_pass` settings accordingly. The text after "http://" in `proxy-pass` must match the txt that comes after the `upstream` text.
+For every LXD/website configuration file, you'll need to change the `upstream`, `server`, `server_name`, and `proxy_pass` settings accordingly. The text after "http://" in `proxy-pass` must match the text that comes after the `upstream` text.
 
-Reload the server with `systemctl restart nginx`, then point your browser at whatever domain you're using instead of `apache.server.test`. If you see a page that looks like this, you're golden:
+Reload the server with `systemctl restart nginx`, then point your browser at whatever domain you're using instead of `apache.server.test`. If your page looks like this, you have success:
 
 ![A screenshot of the default Rocky Linux Apache welcome page](../images/lxd-web-server-03.png)
 
@@ -801,7 +801,7 @@ Just kinda repeat the process. Create a file just like before:
 nano /etc/nginx/conf.d/nginx-server.conf
 ```
 
-Add the approriate text:
+Add the appropriate text:
 
 ```
 upstream nginx-server {
@@ -825,7 +825,7 @@ server {
 }
 ```
 
-Again, reload the proxy server, point your browser at the appropriate address, and hope to whatever deity your prefer that you see this:
+Again, reload the proxy server, point your browser at the appropriate address, and hope that you see this:
 
 ![A screenshot of the default Rocky Linux Nginx welcome page](../images/lxd-web-server-04.png)
 
