@@ -158,6 +158,15 @@ What this says is to run this command at 00 minute, 23 h, every day, every month
 
 ... or with the commands that your favorite editor uses for saving a file.
 
+## Optional Flags
+```
+-n : Dry-Run to see what files wouold be transferred 
+-v : list out all the files which are being transferred 
+-vvv : to provide debug info while transferring files 
+-z : to enable compression during the transfer 
+```
+
+
 ## Conclusions
 
 Although `rsync` is not as flexible or powerful as other tools, it provides simple file synchronization, which is always useful.
