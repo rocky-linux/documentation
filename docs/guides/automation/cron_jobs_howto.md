@@ -125,6 +125,14 @@ Assume that you have a backup script that you want to run at 10 PM at night. The
 
     Remember that this script needs to also be executable (`chmod +x`) in order for the `cron` to run it.
 
+To list the present jobs running 
+
+`crontab -l`
+
+To list all jobs created by user 
+
+`crontab -l -u <username>`
+
 To add the job, you:
 
 `crontab -e`
