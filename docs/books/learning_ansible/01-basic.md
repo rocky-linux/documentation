@@ -73,6 +73,7 @@ To offer a graphical interface to your daily use of Ansible, you can install som
 ## The Ansible vocabulary
 
 * The **management machine**: the machine on which Ansible is installed. Since Ansible is **agentless**, no software is deployed on the managed servers.
+* The **managed nodes**:The target devices that Ansible manages are also referred to as "hosts." These can be servers, network appliances, or any other computer.
 * The **inventory**: a file containing information about the managed servers.
 * The **tasks**: a task is a block defining a procedure to be executed (e.g., create a user or a group, install a software package, etc.).
 * A **module**: a module abstracts a task. There are many modules provided by Ansible.
