@@ -296,7 +296,7 @@ sub 1024g/1EDB00AC 2003-10-16 \[expires: 2004-10-15\]
 
 2. 이제 폐기 인증서를 "revoke.asc"라는 이름의 ASCII 형식의 파일로 저장합니다.
 
- “revoke.asc”. 유형:
+ “revoke.asc”. 다음과 같이 입력합니다:
 
 [ying@serverXY ying\]$*** gpg --output revoke.asc --gen-revoke ying@serverXY***
 
@@ -668,7 +668,7 @@ c. 개인 키 파일의 이름은 ssh\_host\_rsa\_key여야 합니다.
 
 d. 키에 암호를 사용하지 않아야 합니다.
 
- 유형:
+ 다음과 같이 입력합니다:
 
 \[root@serverXY spare-keys\]\# ssh-keygen -q -t rsa -f ssh\_host\_rsa\_key -C '' -N ''
 
