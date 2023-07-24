@@ -1,5 +1,5 @@
 ---
-title: Посібник для новачків
+title: Посібник для початківців
 author: Krista Burdine
 contributors: Ezequiel Bruni, Steven Spencer
 tags:
