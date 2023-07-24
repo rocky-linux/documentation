@@ -186,7 +186,7 @@ What about every 10 minutes every day except Saturday and Sunday?:
 
 `*/10  *   *   *    1-5    /usr/local/sbin/backup`
 
-In the table, the commas let you specify individual entries within a field,  and the dash lets you specify a range of values within a field. This can happen in any of the fields, and on many fields at the same time. As you can see, things can get pretty complicated.
+In the table, the commas let you specify individual entries within a field,  and the dash lets you specify a range of values within a field. This is true for any of the fields, and can be true for many fields at the same time. As you can see, things can get pretty complicated.
 
 When determining when to run a script, you need to take time and plan it out, particularly if the criteria are complex.
 
@@ -197,4 +197,4 @@ The _cron/crontab_ system is a powerful tool for the Rocky Linux systems adminis
 * For machines that are **not** on 24 hours a day, explore [anacron - Automating commands](anacron.md).
 * For a concise description of `cron` processes, check out [cronie - Timed Tasks](cronie.md)
 
-While the basics are pretty easy, it can be more complex. For more information on `crontab` head up to the [crontab manual page](https://man7.org/linux/man-pages/man5/crontab.5.html). On most systems, you can also enter `man crontab` for additional command details. You can also do a web search for "crontab" which will give you a wealth of results to help you fine-tune your `crontab` skills.
+While the basics are pretty easy, the options can be more complex. For more information on `crontab` head up to the [crontab manual page](https://man7.org/linux/man-pages/man5/crontab.5.html). On most systems, you can also enter `man crontab` for additional command details. You can also do a web search for "crontab" which will give you a wealth of results to help you fine-tune your `crontab` skills.

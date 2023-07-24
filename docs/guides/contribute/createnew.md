@@ -23,8 +23,8 @@ You can complete almost all tasks from the web GUI on GitHub. Here's an example 
 3. You should be on the "Main" branch, so check the drop-down label down in the middle section to be sure you are. Your document might not ultimately end up in the "Main" branch, but admins will move it around to where it logically fits later.
 4. On the right-hand side of the page, click the "Fork" button, which will create your copy of the documentation.
 5. In the middle of the page on the forked copy, just to the left of the Green "Code" drop-down, is an "Add file" button. Click this and choose the "Upload files" option.
-6. This will give you a way to either drag and drop files here or browse to them on your computer. Go ahead and use the method which you prefer.
-7. Once the file is uploaded, the next thing you need to do is create a Pull Request. This request lets the upstream administrators know that you have a new file (or files) that you would like them to merge with the master.
+6. This will allow you to drag and drop files here or browse to them on your computer. Go ahead and use the method that you prefer.
+7. Once the file is uploaded, the next thing you need to do is create a Pull Request. This request lets the upstream administrators know you have a new file (or files) that you want them to merge with the master branch.
 8. Click on "Pull Request" in the upper-left corner of the screen.
 9. Write a brief message in the "Write" section letting the administrators know what you've done. (New document, revision, suggested change, etc.) then submit your change.
 
