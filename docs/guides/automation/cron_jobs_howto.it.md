@@ -125,11 +125,19 @@ Si supponga di avere uno script di backup da eseguire alle 22: 00 di sera. Il `c
 
     Ricorda che anche questo script deve essere eseguibile (`chmod +x`) affinché il `cron` lo esegua.
 
-Per aggiungere il lavoro, è necessario:
+Per elencare gli attuali lavori in esecuzione
+
+`crontab -l`
+
+Per elencare tutti i lavori creati dall'utente
+
+`crontab -l -u <username>`
+
+Per aggiungere il lavoro, eseguire:
 
 `crontab -e`
 
-`crontab` sta per "cron table" e il formato del file è, in effetti, un layout di tabella libera. Ora che siete nella `crontab`, andate in fondo al file e aggiungete la vostra nuova voce. Se si utilizza `vi` come editor di sistema predefinito, ciò viene fatto con i seguenti tasti:
+`crontab` è l'acronimo di "cron table" e il formato del file è, di fatto, un layout di tabella libera. Ora che siete nella `crontab`, andate in fondo al file e aggiungete la vostra nuova voce. Se si utilizza `vi` come editor di sistema predefinito, ciò avviene con i seguenti tasti:
 
 `Shift : $`
 
@@ -137,17 +145,17 @@ Ora che siete in fondo al file, inserite una riga e un breve commento per descri
 
 `# Backing up the system every night at 10PM`
 
-Premete invio. Dovresti essere ancora nella modalità di inserimento, quindi il prossimo passo è quello di aggiungere la tua voce. Come mostrato nel nostro `crontab` vuoto commentato (sopra) questo è **m** per minuti, **h** per ore, **dom** per giorno del mese, **mon** per mese, e **dow** per giorno della settimana.
+Premere invio. Dovreste essere ancora nella modalità di inserimento, quindi il passo successivo è aggiungere la voce. Come mostrato nella nostra `crontab` vuota e commentata (sopra), questo è **m** per minuti, **h** per ore, **dom** per giorno della settimana, **mon** per mese, e **dow** giorno della settimana.
 
-Per eseguire il nostro script di backup ogni giorno alle 10:00, la voce sarebbe come questa:
+Per eseguire il nostro script di backup ogni giorno alle 10:00, la voce avrebbe il seguente aspetto:
 
 `00  22  *  *  *   /usr/local/sbin/backup`
 
-Questo dice di eseguire lo script alle 10 PM, ogni giorno del mese, ogni mese e ogni giorno della settimana. Questo è un esempio semplicistico e le cose possono complicarsi quando si ha bisogno di informazioni specifiche.
+Questo dice di eseguire lo script alle 22: 00, ogni giorno del mese, ogni mese e ogni giorno della settimana. Questo è un esempio molto semplice e le cose possono complicarsi quando si ha bisogno di informazioni specifiche.
 
 ### Le @options per `crontab`
 
-Un altro modo per eseguire i lavori a un orario strettamente programmato (ad esempio, giorno, settimana, mese, anno e così via) è quello di utilizzare le @options, che offrono la possibilità di utilizzare una tempistica più naturale. Le @options consistono in:
+Un altro modo per eseguire i lavori a un orario strettamente programmato (ad esempio, giorno, settimana, mese, anno e così via) è quello di utilizzare le opzioni @, che offrono la possibilità di utilizzare una tempistica più naturale. Le @options sono costituite da:
 
 * `@hourly` esegue lo script ogni ora di ogni giorno a 0 minuti dopo l'ora (questo è esattamente il risultato del posizionamento dello script in `/etc/cron.hourly`).
 * `@daily` esegue lo script ogni giorno a mezzanotte.
@@ -170,23 +178,23 @@ Finora le soluzioni utilizzate sono state piuttosto semplicistiche, ma che dire 
 
 `*/10  *   *   *   *   /usr/local/sbin/backup`
 
-E se si volesse eseguire il backup ogni 10 minuti, ma solo il lunedì, il mercoledì e il venerdì?
+E se si volesse eseguire il backup ogni 10 minuti, ma solo il lunedì, il mercoledì e il venerdì?:
 
 `*/10  *   *   *   1,3,5   /usr/local/sbin/backup`
 
-Che ne dite di ogni 10 minuti tutti i giorni tranne il sabato e la domenica?
+Che ne dite di una frequenza di 10 minuti ogni giorno, tranne il sabato e la domenica?:
 
 `*/10  *   *   *    1-5    /usr/local/sbin/backup`
 
-Nella tabella, le virgole consentono di specificare singole voci all'interno di un campo, mentre il trattino consente di specificare un intervallo di valori all'interno di un campo. Questo può accadere in qualsiasi campo e su più campi contemporaneamente. Come potete vedere, le cose possono diventare piuttosto complicate.
+Nella tabella, le virgole consentono di specificare singole voci all'interno di un campo, mentre il trattino consente di specificare un intervallo di valori all'interno di un campo. Questo può accadere in qualsiasi campo e su più campi contemporaneamente. Come si può vedere, le cose possono diventare piuttosto complicate.
 
-Quando si determina quando eseguire uno script, è necessario prendere tempo e pianificarlo, soprattutto se i criteri sono complessi.
+Per determinare quando eseguire uno script, è necessario prendersi del tempo e pianificarlo, soprattutto se i criteri sono complessi.
 
 ## Conclusioni
 
-Il sistema _cron/crontab_ è un potente strumento per l'amministratore di sistemi Rocky Linux o per l'utente desktop. Permette di automatizzare le attività e gli script in modo da non dover ricordare di eseguirli manualmente. Esempi più complessi si trovano qui:
+Il sistema _cron/crontab_ è un potente strumento per l'amministratore di sistemi Rocky Linux o per l'utente desktop. Permette di automatizzare le attività e gli script in modo da non doversi ricordare di eseguirli manualmente. Esempi più complessi sono riportati qui:
 
 * Per le macchine che **non** sono attive 24 ore al giorno, esplorate [anacron - Automazione dei comandi](anacron.md).
 * Per una descrizione concisa dei processi `cron`, controlla [cronie - Attività a tempo](cronie.md)
 
-Sebbene le basi siano piuttosto semplici, le cose possono essere più complesse. Per maggiori informazioni su `crontab` vai alla [pagina del manuale di crontab](https://man7.org/linux/man-pages/man5/crontab.5.html). Sulla maggior parte dei sistemi, puoi anche inserire `man crontab` per ulteriori dettagli sul comando. Potete anche fare una ricerca sul web per "crontab", che vi darà una grande quantità di risultati per aiutarvi a perfezionare le vostre capacità con `crontab`.
+Se le basi sono piuttosto semplici, le cose possono essere più complesse. Per maggiori informazioni su `crontab` vai alla [pagina del manuale di crontab](https://man7.org/linux/man-pages/man5/crontab.5.html). Sulla maggior parte dei sistemi, è anche possibile digitare `man crontab` per ulteriori dettagli sui comandi. Potete anche fare una ricerca sul web per "crontab", che vi darà una grande quantità di risultati per aiutarvi a perfezionare le vostre capacità nell'uso di `crontab`.
