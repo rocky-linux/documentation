@@ -158,6 +158,15 @@ Questo comando deve essere eseguito alle 00 minuti, 23 ore, tutti i giorni, tutt
 
 ... o con i comandi che il vostro editor preferito utilizza per salvare un file.
 
+## Flags opzionali
+```
+-n : Esecuzione Dry-Run per vedere quali file verranno trasferiti 
+-v : elenca tutti i file che vengono trasferiti 
+-vvv : per fornire informazioni di debug durante il trasferimento dei file 
+-z : per abilitare la compressione durante il trasferimento 
+```
+
+
 ## Conclusioni
 
 Sebbene `rsync` non sia flessibile o potente come altri strumenti, fornisce una semplice sincronizzazione dei file, che è sempre utile.
