@@ -1,7 +1,7 @@
 ---
 title: Nozioni di base su Ansible
 author: Antoine Le Morvan
-contributors: Steven Spencer, tianci li, Franco Colussi
+contributors: Steven Spencer, tianci li, Aditya Putta
 update: 19-Dec-2021
 ---
 
@@ -73,14 +73,15 @@ Per offrire un'interfaccia grafica al tuo uso quotidiano di Ansible, puoi instal
 ## Il vocabolario Ansible
 
 * La **macchina di gestione**: la macchina su cui è installato Ansible. Dal momento che Ansible è **agentless**, nessun software viene distribuito sui server gestiti.
-* L'**Inventario**: un file contenente informazioni sui server gestiti.
-* Le **attività**: un'attività è un blocco che definisce una procedura da eseguire (es. crea un utente o un gruppo, installa un pacchetto software, ecc.).
-* Un **modulo**: un modulo astrae un compito. Ci sono molti moduli forniti da Ansible.
-* I **playbook**: un semplice file in formato yaml che definisce i server di destinazione e le attività da eseguire.
-* Un **ruolo**: un ruolo ti permette di organizzare i playbook e tutti gli altri file necessari (modelli, script, ecc.) per facilitare la condivisione e il riutilizzo del codice.
-* Una **collezione**: una collezione comprende un insieme logico di playbook, ruoli, moduli e plugin.
-* I **fatti**: queste sono variabili globali contenenti informazioni sul sistema (nome macchina, versione di sistema, interfaccia di rete e configurazione, ecc.).
-* Gli **handlers**: questi sono utilizzati per far arrestare o riavviare un servizio in caso di cambiamento.
+* I **nodi gestiti**: i dispositivi di destinazione che Ansible gestisce sono anche chiamati "host" Possono essere server, dispositivi di rete o qualsiasi altro computer.
+* L'**inventory**: un file contenente informazioni sui server gestiti.
+* I **tasks**: un task è un blocco che definisce una procedura da eseguire (ad esempio, creare un utente o un gruppo, installare un pacchetto software, ecc.).
+* Un **module**: un modulo astrae un compito. Esistono molti moduli forniti da Ansible.
+* I **playbook**: un semplice file in formato yaml che definisce i server di destinazione e i compiti da eseguire.
+* Un **role**: un role consente di organizzare i playbook e tutti gli altri file necessari (modelli, script, ecc.) per facilitare la condivisione e il riutilizzo del codice.
+* Una **collection**: una collezione comprende un insieme logico di playbook, ruoli, moduli e plugin.
+* I **facts**: sono variabili globali che contengono informazioni sul sistema (nome della macchina, versione del sistema, interfaccia di rete e configurazione, ecc.).
+* Gli **handler**: sono utilizzati per causare l'arresto o il riavvio di un servizio in caso di modifica.
 
 ## Installazione sul server di gestione
 
