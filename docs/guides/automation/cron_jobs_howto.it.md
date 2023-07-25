@@ -186,7 +186,7 @@ Che ne dite di una frequenza di 10 minuti ogni giorno, tranne il sabato e la dom
 
 `*/10  *   *   *    1-5    /usr/local/sbin/backup`
 
-Nella tabella, le virgole consentono di specificare singole voci all'interno di un campo, mentre il trattino consente di specificare un intervallo di valori all'interno di un campo. Questo può accadere in qualsiasi campo e su più campi contemporaneamente. Come si può vedere, le cose possono diventare piuttosto complicate.
+Nella tabella, le virgole consentono di specificare singole voci all'interno di un campo, mentre il trattino consente di specificare un intervallo di valori all'interno di un campo. Questo è vero per qualsiasi campo e può essere vero per molti campi allo stesso tempo. Come si può vedere, le cose possono diventare piuttosto complicate.
 
 Per determinare quando eseguire uno script, è necessario prendersi del tempo e pianificarlo, soprattutto se i criteri sono complessi.
 
@@ -197,4 +197,4 @@ Il sistema _cron/crontab_ è un potente strumento per l'amministratore di sistem
 * Per le macchine che **non** sono attive 24 ore al giorno, esplorate [anacron - Automazione dei comandi](anacron.md).
 * Per una descrizione concisa dei processi `cron`, controlla [cronie - Attività a tempo](cronie.md)
 
-Se le basi sono piuttosto semplici, le cose possono essere più complesse. Per maggiori informazioni su `crontab` vai alla [pagina del manuale di crontab](https://man7.org/linux/man-pages/man5/crontab.5.html). Sulla maggior parte dei sistemi, è anche possibile digitare `man crontab` per ulteriori dettagli sui comandi. Potete anche fare una ricerca sul web per "crontab", che vi darà una grande quantità di risultati per aiutarvi a perfezionare le vostre capacità nell'uso di `crontab`.
+Mentre le basi sono piuttosto semplici, le opzioni possono essere più complesse. Per maggiori informazioni su `crontab` vai alla [pagina del manuale di crontab](https://man7.org/linux/man-pages/man5/crontab.5.html). Sulla maggior parte dei sistemi, è anche possibile digitare `man crontab` per ulteriori dettagli sui comandi. Potete anche fare una ricerca sul web per "crontab", che vi darà una grande quantità di risultati per aiutarvi a perfezionare le vostre capacità nell'uso di `crontab`.
