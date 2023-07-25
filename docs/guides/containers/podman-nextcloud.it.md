@@ -27,19 +27,19 @@ La maggior parte dei comandi della guida può essere eseguita manualmente, ma la
 
 !!! Note "Nota per i principianti"
 
-    Podman è uno strumento per la gestione dei container, in particolare dei container OCI (Open Containers Initiative). È stato progettato per essere praticamente compatibile con Docker, nel senso che la maggior parte, se non tutti, gli stessi comandi funzioneranno per entrambi gli strumenti. Se "Docker" non significa nulla per voi - o anche se siete solo curiosi - potete leggere di più su Podman e su come funziona su [il sito web di Podman](https://podman.io).
+    Podman è uno strumento per la gestione dei container, in particolare dei container OCI (Open Containers Initiative). È stato progettato per essere praticamente compatibile con Docker, nel senso che la maggior parte, se non tutti, gli stessi comandi funzioneranno per entrambi gli strumenti. Se "Docker" non significa nulla per voi, o anche se siete solo curiosi, potete leggere di più su Podman e su come funziona sul [sito web di Podman](https://podman.io).
     
     `buildah` è uno strumento che costruisce immagini di container Podman basate su "DockerFiles".
     
     Questa guida è stata progettata come esercizio per aiutare le persone a familiarizzare con l'esecuzione dei container Podman in generale e su Rocky Linux in particolare.
 
-## Prerequisiti e Presupposti
+## Prerequisiti e presupposti
 
-Ecco tutto ciò di cui avrete bisogno, o che dovrete sapere, per far funzionare questa guida:
+Ecco tutto ciò che vi serve, o che dovete sapere, per far funzionare questa guida:
 
 * Familiarità con la riga di comando, gli script bash e la modifica dei file di configurazione di Linux.
 * Accesso SSH se si lavora su un computer remoto.
-* Un editor di testo a riga di comando di vostra scelta. Per questa guida utilizzeremo `vi`.
+* Un editor di testo a riga di comando di vostra scelta. In questa guida utilizzeremo `vi`.
 * Una macchina Rocky Linux connessa a Internet (anche in questo caso, un Raspberry Pi può andare bene).
 * Molti di questi comandi devono essere eseguiti come root, quindi è necessario avere un utente root o con capacità sudo sulla macchina.
 * La familiarità con i server web e MariaDB sarebbe sicuramente utile.
@@ -53,13 +53,13 @@ Innanzitutto, assicuratevi che il vostro sistema sia aggiornato:
 dnf update
 ```
 
-Poi si dovrà installare il repository `epel-release` per tutti i pacchetti extra che verranno utilizzati.
+Successivamente si dovrà installare il repository `epel-release` per tutti i pacchetti extra che verranno utilizzati.
 
 ```bash
 dnf -y install epel-release 
 ```
 
-Una volta fatto questo, si può aggiornare di nuovo (cosa che a volte è utile) o semplicemente andare avanti e installare i pacchetti necessari:
+Una volta fatto questo, è possibile aggiornare di nuovo (cosa che a volte è di aiuto) o semplicemente andare avanti e installare i pacchetti di cui abbiamo bisogno:
 
 ```bash
 dnf -y install podman buildah
@@ -81,9 +81,9 @@ registries = ['registry.access.redhat.com', 'registry.redhat.io', 'docker.io']
 insecure = true
 ```
 
-## Passo 02: Creare l'immagine del container `di base`
+## Passo 02: Creare l'immagine `di base` del container
 
-In questa guida lavoriamo come utente root, ma è possibile eseguire questa operazione in qualsiasi home directory. Passare alla directory principale, se non c'è già:
+In questa guida lavoreremo come utente root, ma è possibile eseguire questa operazione in qualsiasi directory home. Passare alla directory principale, se non lo si è già fatto:
 
 ```bash
 cd /root
@@ -157,11 +157,11 @@ E poi eseguire:
 ./build.sh
 ```
 
-Aspettate che sia finito e passate alla fase successiva.
+Attendere che sia terminato e passare alla fase successiva.
 
-## Passo 03: Creare l'immagine del container `db-tools`
+## Passo 03: Creare l'immagine `db-tools` del container
 
-Per gli scopi di questa guida, manteniamo la configurazione del database il più semplice possibile. È opportuno tenere sotto controllo i seguenti elementi e modificarli se necessario:
+Per gli scopi di questa guida, manteniamo la configurazione del database il più semplice possibile. Si consiglia di tenere traccia dei seguenti elementi e di modificarli se necessario:
 
 * Nome del database: ncdb
 * Utente del database: nc-user
@@ -207,7 +207,7 @@ flush privileges;
 eof
 ```
 
-Infine, configuriamo il file Docker per l'immagine di `db-tools`:
+Infine, impostare il file Docker per l'immagine `db-tools`:
 
 ```bash
 vi Dockerfile
@@ -229,7 +229,7 @@ Infine, ma non meno importante, creare lo script bash per costruire l'immagine a
 vi build.sh
 ```
 
-Il codice desiderato:
+Il codice che si desidera ottenere:
 
 ```
 #!/bin/bash
@@ -253,7 +253,7 @@ E poi eseguire:
 
 ## Passo 04: Creare l'immagine del container MariaDB
 
-State prendendo confidenza con il processo, vero? È il momento di costruire il container di database vero e proprio. Cambiare la directory di lavoro in `/root/mariadb`:
+State prendendo confidenza con il processo, vero? È il momento di costruire il container del database vero e proprio. Cambiare la directory di lavoro in `/root/mariadb`:
 
 ```bash
 cd /root/mariadb
@@ -265,7 +265,7 @@ Creare uno script per (ri)costruire il container ogni volta che si vuole:
 vi db-init.sh
 ```
 
-Ecco il codice necessario:
+Ed ecco il codice necessario:
 
 !!! warning "Attenzione"
 
@@ -294,7 +294,7 @@ echo "Listing podman volumes...."
 podman volume ls
 ```
 
-È qui che si crea uno script per resettare il database ogni volta che si vuole:
+È qui che si crea uno script per resettare il database ogni volta che lo si desidera:
 
 ```bash
 vi db-reset.sh
@@ -344,7 +344,7 @@ chmod +x *.sh
 ./build.sh
 ```
 
-## Passo 05: Creare ed Eseguire il Container Nextcloud
+## Passo 05: Creare ed eseguire il container Nextcloud
 
 Siamo alla fase finale e il processo si ripete praticamente da solo. Passare alla directory dell'immagine di Nextcloud:
 
@@ -368,7 +368,7 @@ E incollare questo pezzo:
 FROM arm64v8/nextcloud
 ```
 
-Creare lo script di compilazione:
+Ora create il vostro script di compilazione:
 
 ```bash
 vi build.sh
@@ -384,19 +384,19 @@ buildah bud --no-cache -t nextcloud . ;
 buildah images -a
 ```
 
-Ora, imposteremo una serie di cartelle locali sul server host (*no* in nessun container Podman), in modo da poter ricostruire i nostri container e database senza temere di perdere tutti i nostri file:
+Ora, si imposterà un gruppo di cartelle locali sul server host (*non* in un container Podman), in modo da poter ricostruire i nostri container e database senza temere di perdere tutti i nostri file:
 
 ```bash
 mkdir -p /usr/local/nc/nextcloud /usr/local/nc/apps /usr/local/nc/config /usr/local/nc/data
 ```
 
-Infine, creeremo lo script che costruirà il container Nextcloud per noi:
+Infine, creeremo lo script che costruirà effettivamente il container Nextcloud per noi:
 
 ```bash
 vi run.sh
 ```
 
-Ecco tutto il codice necessario per farlo. Assicurarsi di cambiare l'indirizzo IP di `MYSQL_HOST` con il container docker che sta eseguendo l'istanza di MariaDB.
+Ecco tutto il codice necessario per farlo. Assicurarsi di cambiare l'indirizzo IP di `MYSQL_HOST` con il container docker su cui è in esecuzione l'istanza di MariaDB.
 
 ```
 #!/bin/bash
@@ -428,7 +428,7 @@ chmod +x *.sh
 ./build.sh
 ```
 
-Per verificare che tutte le immagini siano state costruite correttamente, eseguire `podman images`. Dovrebbe apparire un elenco simile a questo:
+Per assicurarsi che tutte le immagini siano state costruite correttamente, eseguire `podman images`. Dovrebbe apparire un elenco simile a questo:
 
 ```
 REPOSITORY                      TAG    IMAGE ID     CREATED      SIZE

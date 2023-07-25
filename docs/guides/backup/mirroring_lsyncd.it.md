@@ -1,7 +1,7 @@
 ---
 title: Soluzione di mirroring - lsyncd
 author: Steven Spencer
-contributors: Ezequiel Bruni, tianci li, Franco Colussi
+contributors: Ezequiel Bruni, tianci li
 tested_with: 8.5, 8.6, 9.0
 tags:
   - lsyncd
