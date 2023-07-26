@@ -9,7 +9,7 @@ tags:
   - documentation
 ---
 
-# MkDocs (ambiente virtuale Python)
+# MkDocs (Python Virtual Enviroment)
 
 ## Introduzione
 
@@ -17,11 +17,11 @@ Uno degli aspetti del processo di creazione della documentazione per Rocky Linux
 
 Lo scopo di questa guida è fornire alcuni suggerimenti per eseguire questo compito in un ambiente python locale dedicato esclusivamente a questo scopo.
 
-La documentazione di Rocky Linux è scritta utilizzando il linguaggio Markdown, un linguaggio generalmente convertito in altri formati. Markdown è pulito nella sintassi e particolarmente adatto alla scrittura di documentazione tecnica.
+La documentazione di Rocky Linux è scritta utilizzando il linguaggio Markdown, generalmente convertito a sua volta in altri formati. Markdown è pulito nella sintassi e particolarmente adatto alla scrittura di documentazione tecnica.
 
 Nel nostro caso, la documentazione viene convertita in `HTML` utilizzando un'applicazione python che si occupa della costruzione del sito statico. L'applicazione utilizzata dagli sviluppatori è [MkDocs](https://www.mkdocs.org/).
 
-Un problema che si presenta durante lo sviluppo di un'applicazione python è quello di isolare l'istanza python utilizzata per lo sviluppo dall'interprete di sistema. L'isolamento serve a prevenire eventuali incompatibilità tra i moduli necessari all'installazione dell'applicazione python e i moduli installati sul sistema host. Eventuali incompatibilità comporterebbero errori di visualizzazione o malfunzionamenti del sito locale.
+Un problema che si presenta durante lo sviluppo di un'applicazione python è quello di isolare l'istanza python utilizzata per lo sviluppo dall'interprete di sistema. La separazione previene le incompatibilità tra i moduli necessari per l'installazione dell'applicazione Python e quelli installati sul sistema host.
 
 Esistono già ottime guide che utilizzano i **container** per isolare l'interprete python. Queste guide, tuttavia, presuppongono la conoscenza delle varie tecniche di containerizzazione.
 
@@ -86,7 +86,7 @@ Come si può vedere, l'interprete python usato dall'ambiente virtuale è ancora 
 
 Tra i file elencati nella struttura, ci sono diversi file denominati **activate** che servono a questo scopo. Il suffisso di ogni file indica la relativa *shell*.
 
-L'attivazione separa questa istanza di python dall'istanza di sistema e ci consente di eseguire lo sviluppo della documentazione senza interferenze. Per attivarlo, andare nella cartella *env* ed eseguire il comando:
+L'attivazione separa questa istanza python dall'istanza python di sistema e consente di eseguire lo sviluppo della documentazione senza interferenze. Per attivarlo, andare nella cartella *env* ed eseguire il comando:
 
 ```bash
 [rocky_user@rl9 rockydocs]$ cd ~/lab/rockydocs/env/
@@ -128,13 +128,13 @@ Per uscire dall'ambiente virtuale, utilizzare il comando *deactivate*:
 [rocky_user@rl9 env]$
 ```
 
-Come si può vedere, dopo la disattivazione il *prompt* del terminale è tornato a quello del sistema. Si consiglia di controllare sempre attentamente il prompt prima di eseguire l'installazione di *MkDocs* e i comandi successivi. Selezionando questa opzione si evitano installazioni di applicazioni globali non necessarie e indesiderate e la mancata esecuzione di `mkdocs serve`.
+Come si può vedere, il terminale *prompt* è tornato a quello di sistema dopo la disattivazione. Si consiglia di controllare sempre attentamente il prompt prima di eseguire l'installazione di *MkDocs* e i comandi successivi. Selezionando questa opzione si evitano installazioni di applicazioni globali non necessarie e indesiderate e la mancata esecuzione di `mkdocs serve`.
 
 ### Scaricare i repository
 
 Ora che avete visto come creare il vostro ambiente virtuale e come gestirlo, potete passare alla preparazione di tutto il necessario.
 
-Per l'implementazione di una versione locale della documentazione di Rocky Linux sono necessari due repository: il repository della [documentazione](https://github.com/rocky-linux/documentation) e il repository della struttura del sito [docs.rockylinux.org](https://github.com/rocky-linux/docs.rockylinux.org). Il download di questi file viene effettuato dal Rocky Linux GitHub.
+Per implementare una versione locale della documentazione di Rocky Linux sono necessari due repository: il repository della [documentazione](https://github.com/rocky-linux/documentation) e il repository della struttura del sito [docs.rockylinux.org](https://github.com/rocky-linux/docs.rockylinux.org). Il download di questi file viene effettuato dal Rocky Linux GitHub.
 
 Si inizia con il repository della struttura del sito, che verrà clonato nella cartella **rockydocs**:
 
@@ -210,7 +210,7 @@ Se tutto ha funzionato come previsto, si può uscire dall'ambiente virtuale e in
 
 ### Collegamento della documentazione
 
-Ora che tutto ciò che serve è disponibile, è sufficiente collegare il repository della documentazione all'interno del sito contenitore *docs.rockylinux.org*. Seguendo la configurazione definita in *mkdocs.yml*:
+Ora che tutto è disponibile, è necessario collegare il repository della documentazione all'interno del sito contenitore *docs.rockylinux.org*. Seguendo la configurazione definita in *mkdocs.yml*:
 
 ```yaml
 docs_dir: 'docs/docs'
@@ -227,9 +227,9 @@ ln -s ../../documentation/docs/ docs
 
 ## Avvio della documentazione locale
 
-A questo punto si è pronti ad avviare la copia locale della documentazione di Rocky Linux. Per prima cosa è necessario avviare l'ambiente virtuale python e poi inizializzare l'istanza di MkDocs con le impostazioni definite in **docs.rockylinux.org/mkdocs.yml**.
+Ora si è pronti ad avviare la copia locale della documentazione di Rocky Linux. Per prima cosa è necessario avviare l'ambiente virtuale python e poi inizializzare l'istanza di MkDocs con le impostazioni definite in **docs.rockylinux.org/mkdocs.yml**.
 
-Questo file contiene tutte le impostazioni necessarie per la localizzazione, la gestione delle funzioni e dei temi.
+Questo file contiene tutte le impostazioni per la localizzazione, le funzionalità e la gestione dei temi.
 
 Gli sviluppatori dell'interfaccia utente del sito hanno scelto il tema [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/), che offre molte funzionalità e personalizzazioni aggiuntive rispetto al tema predefinito di MkDocs.
 
@@ -259,7 +259,7 @@ INFO     -  [11:46:50] Watching paths for changes:
 INFO     -  [11:46:50] Serving on http://127.0.0.1:8000/
 ```
 
-Opening your browser at the address specified (http://1127.0.0.1:8000) you will have your copy of the documentation site running. La copia rispecchia perfettamente il sito online in termini di funzionalità e struttura, consentendovi di valutare l'aspetto e l'impatto che la vostra pagina avrà sul sito.
+La copia del sito di documentazione sarà in esecuzione quando si aprirà il browser all'indirizzo specificato (http://1127.0.0.1:8000). La copia rispecchia perfettamente il sito online in termini di funzionalità e struttura, consentendovi di valutare l'aspetto e l'impatto che la vostra pagina avrà sul sito.
 
 MkDocs incorpora un meccanismo di controllo delle modifiche apportate ai file nella cartella specificata dal percorso `docs_dir`; l'inserimento di una nuova pagina o la modifica di una esistente in `documentation/docs` verrà automaticamente riconosciuta e produrrà una nuova creazione del sito statico.
 
@@ -280,8 +280,8 @@ INFO     -  [22:32:41] Serving on http://127.0.0.1:8000/
 
 ## Conclusioni e considerazioni finali
 
-La verifica delle vostre nuove pagine in un sito di sviluppo locale vi dà la certezza che il vostro lavoro sarà sempre conforme al sito di documentazione online, consentendovi di contribuire in modo ottimale.
+La verifica delle nuove pagine in un sito di sviluppo locale ci assicura che il vostro lavoro sarà sempre conforme al sito di documentazione online, consentendovi di contribuire in modo ottimale.
 
 La conformità dei documenti è di grande aiuto anche per i curatori del sito della documentazione, che dovranno occuparsi solo della correttezza dei contenuti.
 
-In conclusione, si può dire che questo metodo permette di soddisfare i requisiti per un'installazione "pulita" di MkDocs senza dover ricorrere alla containerizzazione.
+In conclusione, si può dire che questo metodo consente di soddisfare i requisiti per un'installazione "pulita" di MkDocs senza dover ricorrere alla containerizzazione.

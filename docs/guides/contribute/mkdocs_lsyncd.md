@@ -78,12 +78,14 @@ dnf install git openssh-server python3-pip rsync
 
 When installed, you need to enable and start `sshd`:
 
+
 ```
 systemctl enable --now sshd
 ```
 ### Container users
 
 You need to set a password for our root user and then add our user (the user you use on your local machine) to the sudoers list. You are the "root" user at the moment. To change the password enter:
+
 
 ```
 passwd

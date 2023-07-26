@@ -24,7 +24,7 @@ _Quando siete pronti a presentare la documentazione scritta originale per l'appr
 4. Sul lato destro della pagina, fate clic sul pulsante "Fork", che creerà la vostra copia della documentazione.
 5. Al centro della pagina, nella copia fork, appena a sinistra del menu a tendina verde "Code", c'è il pulsante "Add file" (Aggiungi file). Fare clic su questo punto e scegliere l'opzione "Upload files".
 6. In questo modo è possibile trascinare e rilasciare i file o sfogliarli sul computer. Utilizzate pure il metodo che preferite.
-7. Una volta caricato il file, la cosa successiva da fare è creare una richiesta di Pull Request. Questa richiesta fa sapere agli amministratori upstream che si ha un nuovo file (o più file) che si desidera unire al master.
+7. Una volta caricato il file, la cosa successiva da fare è creare una richiesta di Pull Request. Questa richiesta fa sapere agli amministratori upstream che si ha un nuovo file (o più file) che si vuole unire al ramo master.
 8. Fare clic su "Pull Request" nell'angolo superiore sinistro dello schermo.
 9. Scrivete un breve messaggio nella sezione "Write" per informare gli amministratori di ciò che avete fatto. (Nuovo documento, revisione, modifica suggerita, ecc.) e poi inviare la modifica.
 

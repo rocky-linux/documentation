@@ -8,22 +8,22 @@ tags:
   - rsnapshot
 ---
 
-# Soluzione di Backup - _rsnapshot_
+# Soluzione per il backup - _rsnapshot_
 
 ## Prerequisiti
 
   * Saper installare repository e snapshot aggiuntivi dalla riga di comando
-  * Conoscere il montaggio di filesystem esterni alla macchina (disco rigido esterno, filesystem remoto, ecc.)
-  * Saper usare un editor (qui si usa`vi`, ma si può usare il proprio editor preferito)
+  * Conoscere il montaggio di filesystem esterni al computer (unità esterna, filesystem remoto e così via)
+  * Saper usare un editor (qui si usa `vi`, ma si può usare il proprio editor preferito)
   * Conoscere un po' di scripting BASH
-  * Sapere come modificare il crontab per l'utente root
+  * Saper modificare il crontab per l'utente root
   * Conoscenza delle chiavi pubbliche e private SSH (solo se si intende eseguire backup remoti da un altro server)
 
 ## Introduzione
 
-_rsnapshot_ è un'utilità di backup molto potente che può essere installata su qualsiasi macchina basata su Linux. È possibile eseguire il backup di una macchina in locale o di più macchine, ad esempio i server, da un'unica macchina.
+_rsnapshot_ è una potente utility di backup con opzioni di installazione per qualsiasi macchina basata su Linux. È possibile eseguire il backup di una macchina in locale o di più macchine, ad esempio i server, da un'unica macchina.
 
-_rsnapshot_ utilizza `rsync` ed è scritto interamente in perl senza dipendenze da librerie, quindi non ci sono requisiti strani per l'installazione. Nel caso di Rocky Linux, in genere si dovrebbe essere in grado di installare _rnapshot_ utilizzando il repository EPEL. Dopo il rilascio iniziale di Rocky Linux 9.0, c'è stato un periodo in cui EPEL non conteneva il pacchetto _rsnapshot_. Il problema è stato risolto, ma abbiamo incluso un metodo di installazione da sorgenti nel caso in cui ciò dovesse accadere di nuovo.
+_rsnapshot_ utilizza `rsync` ed è scritto interamente in Perl senza dipendenze da librerie. Non esistono requisiti particolari per l'installazione. Nel caso di Rocky Linux, è possibile installare _rnapshot_ utilizzando il repository EPEL. Dopo il rilascio iniziale di Rocky Linux 9.0, c'è stato un periodo in cui EPEL non conteneva il pacchetto _rsnapshot_. Non è più così, ma queste istruzioni includono un metodo di installazione dai sorgenti, nel caso in cui ciò si verifichi di nuovo.
 
 Questa documentazione riguarda l'installazione di _rsnapshot_ solo su Rocky Linux.
 
@@ -31,7 +31,7 @@ Questa documentazione riguarda l'installazione di _rsnapshot_ solo su Rocky Linu
 
     ## Installazione di _rsnapshot_
     
-    Tutti i comandi qui mostrati sono richiamati dalla riga di comando sul server o sulla workstation, a meno che non sia indicato diversamente.
+    Tutti i comandi qui mostrati sono eseguiti dalla riga di comando del server o della workstation, a meno che non sia indicato diversamente.
     
     ### Installazione del repository EPEL
     
@@ -99,7 +99,7 @@ Questa documentazione riguarda l'installazione di _rsnapshot_ solo su Rocky Linu
     ```
 
 
-    Successivamente dovremo scaricare i file sorgente dal repository GitHub. È possibile farlo in diversi modi, ma il più semplice in questo caso è probabilmente quello di scaricare il file ZIP dal repository.
+    Successivamente è necessario scaricare i file sorgente dal repository GitHub. È possibile farlo in diversi modi, ma il più semplice in questo caso è probabilmente quello di scaricare il file ZIP dal repository.
 
     1. Vai a https://github.com/rsnapshot/rsnapshot
     2. Fare clic sul pulsante verde "Code" sulla destra ![Codice](images/code.png)
@@ -116,7 +116,7 @@ Questa documentazione riguarda l'installazione di _rsnapshot_ solo su Rocky Linu
 
     ### Costruire la Risorsa
 
-    Ora che abbiamo tutto sulla nostra macchina, il passo successivo è quello di costruire. Quando abbiamo decompresso il file `master.zip`, abbiamo ottenuto una cartella `rsnapshot-master`. Dovremo entrare in questa per la nostra procedura di costruzione. Si noti che la nostra compilazione utilizza tutte le impostazioni predefinite del pacchetto, quindi se si desidera qualcosa di diverso, è necessario fare un po' di indagini. Inoltre, questi passaggi sono tratti direttamente dalla pagina di [installazione di GitHub](https://github.com/rsnapshot/rsnapshot/blob/master/INSTALL.md):
+    Ora che abbiamo tutto sulla nostra macchina, il passo successivo è la compilazione. Quando si decomprime il file `master.zip`, si ottiene una directory `rsnapshot-master`. Dovremo entrare in questa per la nostra procedura di costruzione. Si noti che la nostra compilazione utilizza tutte le impostazioni predefinite del pacchetto, quindi se si desidera qualcosa di diverso, è necessario fare un po' di indagini. Inoltre, questi passaggi sono tratti direttamente dalla pagina di [installazione di GitHub](https://github.com/rsnapshot/rsnapshot/blob/master/INSTALL.md):
 
     ```
     cd rsnapshot-master
@@ -138,7 +138,7 @@ Questa documentazione riguarda l'installazione di _rsnapshot_ solo su Rocky Linu
 
         Non sono fatali.
 
-    Successivamente, occorre eseguire `configure` con la directory di configurazione impostata:
+    Successivamente, è necessario eseguire `configure` con la directory di configurazione impostata:
 
     ```
     ./configure --sysconfdir=/etc
@@ -158,50 +158,50 @@ Questa documentazione riguarda l'installazione di _rsnapshot_ solo su Rocky Linu
 
     Si tratta di copiare il file di configurazione. La sezione "Configurazione di rsnapshot" illustrerà le modifiche necessarie a questo file di configurazione.
 
-## Montaggio di un'unità o di un file system per il backup
+## Montaggio di un'unità o di un filesystem per il backup
 
-In questa fase viene mostrato come montare un disco rigido, ad esempio un disco rigido USB esterno, che verrà utilizzato per il backup del sistema. Questo passaggio è necessario solo se si esegue il backup di un singolo computer o server, come nel primo esempio riportato di seguito.
+In questo passaggio viene mostrato come montare un'unità, ad esempio un'unità USB esterna, utilizzata per il backup del sistema. Questo passaggio è necessario solo se si esegue il backup di un singolo computer o server, come nel primo esempio.
 
-1. Collegare l'unità USB.
-2. Digitare `dmesg | grep sd` che dovrebbe mostrare l'unità che si desidera utilizzare. In questo caso, si chiamerà _sda1_.  
+1. Inserire l'unità USB.
+2. Digitare `dmesg | grep sd` che mostrerà l'unità che si desidera utilizzare. In questo caso, è _sda1_.  
    Esempio: `EXT4-fs (sda1): mounting ext2 file system using the ext4 subsystem`.
-3. Sfortunatamente (o fortunatamente, a seconda delle opinioni) la maggior parte dei moderni sistemi operativi Linux per desktop esegue il montaggio automatico dell'unità, se possibile. Ciò significa che, a seconda di vari fattori, _rsnapshot_ potrebbe perdere la traccia del disco rigido. Vogliamo che l'unità venga "montata" o che i suoi file siano sempre disponibili nello stesso posto.  
-   Per farlo, prendete le informazioni sull'unità rivelate dal comando `dmesg` di cui sopra e digitate `mount | grep sda1`, che dovrebbe mostrare qualcosa di simile a questo: `/dev/sda1 on /media/username/8ea89e5e-9291-45c1-961d-99c346a2628a`
-4. Digitare `sudo umount /dev/sda1` per smontare il disco rigido esterno.
-5. Quindi, creare un nuovo punto di montaggio per il backup: `sudo mkdir /mnt/backup`
-6. Ora montate l'unità nella posizione della cartella di backup: `sudo mount /dev/sda1 /mnt/backup`
-7. Ora digitate nuovamente `mount | grep sda1` e dovreste vedere qualcosa di simile: `/dev/sda1 on /mnt/backup type ext2 (rw,relatime)`
-8. Quindi creare una directory che deve esistere affinché il backup continui sull'unità montata. Per questo esempio utilizzeremo una cartella chiamata "storage": `sudo mkdir /mnt/backup/storage`
+3. Sfortunatamente (o fortunatamente, a seconda delle opinioni) la maggior parte dei moderni sistemi operativi Linux per desktop esegue il montaggio automatico dell'unità, se possibile. Ciò significa che, a seconda di vari fattori, _rsnapshot_ potrebbe perdere la posizione dell'unità. Si desidera che l'unità venga "montata" o che i suoi file siano sempre disponibili nella stessa posizione.  
+   Per farlo, prendete le informazioni sull'unità visualizzate nel comando `dmesg` e digitate `mount | grep sda1`, che dovrebbe mostrare qualcosa di simile a questo: `/dev/sda1 on /media/username/8ea89e5e-9291-45c1-961d-99c346a2628a`
+4. Digitate `sudo umount /dev/sda1` per smontare l'unità esterna.
+5. Quindi, creare un punto di montaggio per il backup: `sudo mkdir /mnt/backup`
+6. Montare l'unità nella posizione della cartella di backup: `sudo mount /dev/sda1 /mnt/backup`
+7. Digitate di nuovo `mount | grep sda1` e vedrete questo: `/dev/sda1 on /mnt/backup type ext2 (rw,relatime)`
+8. Quindi creare una directory che deve esistere affinché il backup continui sull'unità montata. In questo esempio viene utilizzata una cartella denominata "storage": `sudo mkdir /mnt/backup/storage`
 
-Si noti che per una singola macchina, sarà necessario ripetere le operazioni di `umount` e `mount` ogni volta che l'unità viene ricollegata o ogni volta che il sistema si riavvia, oppure automatizzare questi comandi con uno script.
+Si noti che per una singola macchina, sarà necessario ripetere i passaggi `umount` e `mount` ogni volta che l'unità viene collegata o ogni volta che il sistema si riavvia, oppure automatizzare questi comandi con uno script.
 
 Raccomandiamo l'automazione. L'automazione è la via del sysadmin.
 
-## Configurazione di rsnapshot
+## Configurazione di `rsnapshot`
 
-Questo è il passo più importante. È facile commettere un errore quando si apportano modifiche al file di configurazione. La configurazione di _rsnapshot_ richiede l'uso di tabulazioni per la separazione tra gli elementi e un'avvertenza in tal senso si trova all'inizio del file di configurazione.
+Questo è il passo più importante. È possibile commettere un errore quando si apportano modifiche al file di configurazione. La configurazione di _rsnapshot_ richiede l'uso di tabulazioni per la separazione degli elementi e un'avvertenza in tal senso si trova all'inizio del file di configurazione.
 
-Un carattere di spazio farà fallire l'intera configurazione e il vostro backup. Per esempio, all'inizio del file di configurazione c'è una sezione per la `# SNAPSHOT ROOT DIRECTORY #`. Se lo si aggiungesse da zero, si dovrebbe digitare `snapshot_root`, poi TAB e quindi digitare `/qualunque_percorso_per_la_root_di_snapshot/`
+Un carattere di spazio farà fallire l'intera configurazione e il vostro backup. Per esempio, all'inizio del file di configurazione c'è una sezione per la `# SNAPSHOT ROOT DIRECTORY #`. Se si sta aggiungendo questo da zero, si dovrebbe digitare `snapshot_root`, poi TAB e quindi digitare `/qualunque_percorso_per_la_root_di_snapshot/`
 
-La cosa migliore è che la configurazione predefinita fornita con _rsnapshot_ richiede solo piccole modifiche per far funzionare il backup di una macchina locale. È sempre una buona idea, però, fare una copia di backup del file di configurazione prima di iniziare a modificarlo:
+La cosa migliore è che la configurazione predefinita inclusa in _rsnapshot_ necessita solo di piccole modifiche per funzionare per un backup di una macchina locale. È sempre una buona idea, però, fare una copia di backup del file di configurazione prima di iniziare a modificarlo:
 
 `cp /etc/rsnapshot.conf /etc/rsnapshot.conf.bak`
 
-## Backup di base della macchina o del singolo server
+## Backup di base della macchina o di un singolo server
 
-In questo caso, _rsnapshot_ verrà eseguito localmente per eseguire il backup di un particolare computer. In questo esempio, scomporremo il file di configurazione e mostreremo esattamente le modifiche da apportare.
+In questo caso, _rsnapshot_ verrà eseguito localmente per eseguire il backup di un particolare computer. In questo esempio, si analizzerà il file di configurazione e si mostrerà esattamente cosa si deve modificare.
 
 Per aprire il file _/etc/rsnapshot.conf_ è necessario utilizzare `vi` (o modificare con il proprio editor preferito).
 
-La prima cosa da modificare è l'impostazione _snapshot_root_, che per impostazione predefinita ha questo valore:
+La prima cosa da modificare è l'impostazione _snapshot_root_. Il valore predefinito è questo:
 
 `snapshot_root   /.snapshots/`
 
-Dobbiamo cambiare questo punto con il nostro punto di montaggio creato in precedenza, con l'aggiunta di "storage".
+È necessario modificare questo punto con il punto di montaggio creato in precedenza e con l'aggiunta di "storage".
 
 `snapshot_root   /mnt/backup/storage/`
 
-Vogliamo anche dire al backup di NON essere eseguito se l'unità non è montata. Per fare ciò, rimuovete il segno "#" (chiamato anche commento, segno di cancelletto, segno di numero, simbolo di hash, ecc.) accanto a `no_create_root`, in modo da ottenere l'aspetto seguente:
+È inoltre necessario indicare al backup di non essere eseguito se l'unità non è montata. Per farlo, si deve rimuovere il segno "#" (chiamato anche commento, segno numerico, simbolo hash e così via) accanto a `no_create_root`, che si presenta in questo modo:
 
 `no_create_root 1`
 
@@ -209,23 +209,23 @@ Quindi scendete alla sezione intitolata `# EXTERNAL PROGRAM DEPENDENCIES #` e ri
 
 `#cmd_cp         /usr/bin/cp`
 
-Così che ora si legge:
+Ora si legge:
 
 `cmd_cp         /usr/bin/cp`
 
-Anche se non abbiamo bisogno di `cmd_ssh` per questa particolare configurazione, ne avremo bisogno per l'altra opzione che segue e non fa male averla abilitata. Trovate quindi la riga che dice:
+Sebbene non sia necessario `cmd_ssh` per questa particolare configurazione, sarà necessario per l'altra opzione e non fa male averlo abilitato. Trovate quindi la riga che dice:
 
 `#cmd_ssh        /usr/bin/ssh`
 
-E rimuovete il segno "#" in modo che appaia come questo:
+Rimuovere il simbolo "#":
 
 `cmd_ssh        /usr/bin/ssh`
 
-Poi dobbiamo passare alla sezione intitolata `#     BACKUP LEVELS / INTERVALS         #`
+Successivamente è necessario passare alla sezione intitolata `#     BACKUP LEVELS / INTERVALS         #`
 
-Rispetto alle versioni precedenti di _rsnapshot_ è stato cambiato da `hourly, daily, monthly, yearly` in `alfa, beta, gamma, delta`. Il che è un po' confuso. È necessario aggiungere un'annotazione a tutti gli intervalli che non verranno utilizzati. Nella configurazione, il delta è già stato commentato.
+Le versioni precedenti di _rsnapshot_ avevano `hourly, daily, monthly, yearly` ma ora sono `alfa, beta, gamma, delta`. Il che è un po' confuso. È necessario aggiungere un'annotazione a tutti gli intervalli che non verranno utilizzati. Nella configurazione, il delta è già stato commentato.
 
-Per questo esempio, non verranno eseguiti altri incrementi oltre al backup notturno, quindi è sufficiente aggiungere un'annotazione ad alfa e gamma in modo che la configurazione appaia come questa una volta terminata:
+In questo esempio, non si eseguiranno altri incrementi oltre al backup notturno. Basta aggiungere un commento ad alfa e gamma. Una volta completato, il file di configurazione sarà:
 
 ```
 #retain  alpha   6
@@ -234,39 +234,39 @@ retain  beta    7
 #retain delta   3
 ```
 
-Ora passate alla riga del file di log, che per impostazione predefinita dovrebbe essere la seguente:
+Passare alla riga `logfile`, che per impostazione predefinita è:
 
 `#logfile        /var/log/rsnapshot`
 
-E rimuovete il commento in modo che sia abilitato:
+Rimuovere il commento:
 
 `logfile        /var/log/rsnapshot`
 
-Infine, passate alla sezione `### BACKUP POINTS / SCRIPTS ###` e aggiungete tutte le directory che volete aggiungere nella sezione `# LOCALHOST`, ricordando di usare TAB anziché SPAZIO tra gli elementi!
+Infine, passate alla sezione `### BACKUP POINTS / SCRIPTS ###` e aggiungere le directory che si desidera aggiungere nella sezione `# LOCALHOST`, ricordando di usare <kbd>TAB</kbd> anziché <kbd>SPAZIO</kbd> tra gli elementi!
 
 Per ora scrivete le vostre modifiche (`SHIFT :wq!` per `vi`) e uscite dal file di configurazione.
 
-### Controllo della Configurazione
+### Verifica della configurazione
 
-Vogliamo assicurarci di non aver aggiunto spazi o altri errori evidenti al nostro file di configurazione mentre lo stavamo modificando. Per fare ciò, si esegue _rsnapshot_ con la nostra configurazione con l'opzione `configtest`:
+Si vuole verificare che non siano stati aggiunti spazi o altri errori evidenti al nostro file di configurazione mentre lo si modificava. Per fare ciò, si esegue _rsnapshot_ con la nostra configurazione con l'opzione `configtest`:
 
-`rsnapshot configtest` mostrerà `Syntax OK` se non ci sono errori nella configurazione.
+`rsnapshot configtest` mostrerà `Syntax OK` se non ci sono errori.
 
-Si dovrebbe prendere l'abitudine di eseguire `configtest` con una particolare configurazione. Il motivo sarà più evidente quando entreremo nella sezione **Backup di più Macchine o più Server**.
+Si dovrebbe prendere l'abitudine di eseguire `configtest` con una particolare configurazione. Il motivo sarà più evidente quando si entrerà nella sezione **Backup di più macchine o più server**.
 
 Per eseguire `configtest` con un particolare file di configurazione, è necessario eseguirlo con l'opzione -c per specificare la configurazione:
 
 `rsnapshot -c /etc/rsnapshot.conf configtest`
 
-## Eseguire il Backup la Prima Volta
+## Esecuzione del backup la prima volta
 
-Tutto è stato verificato, quindi è il momento di eseguire il backup per la prima volta. Se si vuole, si può eseguire prima in modalità di prova, in modo da vedere cosa farà lo script di backup.
+Dopo che `configtest` ha verificato che tutto è a posto, è ora il momento di eseguire il backup per la prima volta. Se si vuole, si può eseguire prima in modalità di prova, in modo da vedere cosa farà lo script di backup.
 
-Anche in questo caso non è necessario specificare la configurazione, ma si dovrebbe prendere l'abitudine di farlo:
+Anche in questo caso non è necessario specificare la configurazione, ma è una buona idea prendere l'abitudine di farlo:
 
 `rsnapshot -c /etc/rsnapshot.conf -t beta`
 
-Il risultato dovrebbe essere simile a questo, mostrando cosa accadrà quando il backup verrà effettivamente eseguito:
+Il risultato sarà simile a questo, mostrando cosa accadrà quando il backup verrà effettivamente eseguito:
 
 ```
 echo 1441 > /var/run/rsnapshot.pid
@@ -282,52 +282,52 @@ mkdir -m 0755 -p /mnt/backup/storage/beta.0/
 touch /mnt/backup/storage/beta.0/
 ```
 
-Una volta soddisfatti del test, procedere all'esecuzione manuale della prima volta senza il test:
+Quando il test soddisfa le vostre aspettative, eseguitelo manualmente la prima volta senza il test:
 
 `rsnapshot -c /etc/rsnapshot.conf beta`
 
-Al termine del backup, navigare in /mnt/backup e dare un'occhiata alla struttura di directory che è stata creata. Ci sarà una directory `storage/beta.0/localhost`, seguita dalle directory specificate per il backup.
+Al termine del backup, navigare in /mnt/backup ed esaminare la struttura di directory creata. Ci sarà una directory `storage/beta.0/localhost`, seguita dalle directory specificate per il backup.
 
 ### Ulteriori spiegazioni
 
-Ogni volta che viene eseguito il backup, viene creato un nuovo incremento beta, 0-6 o 7 giorni di backup. Il backup più recente sarà sempre beta.0, mentre il backup di ieri sarà sempre beta.1.
+Ogni volta che il backup viene eseguito, viene creato un altro incremento beta, 0-6 o 7 giorni di backup. Il backup più recente sarà sempre beta.0, mentre il backup di ieri sarà sempre beta.1.
 
 Le dimensioni di ciascuno di questi backup sembreranno occupare la stessa quantità (o più) di spazio su disco, ma ciò è dovuto all'uso di hard link _da parte di rsnapshot_. Per ripristinare i file dal backup di ieri, è sufficiente copiarli di nuovo dalla struttura di directory della beta.1.
 
 Ogni backup è solo un backup incrementale rispetto all'esecuzione precedente, MA, grazie all'uso dei collegamenti diretti, ogni directory di backup contiene il file o il collegamento diretto al file nella directory in cui è stato effettivamente eseguito il backup.
 
-Per ripristinare i file, non è necessario scegliere la directory o l'incremento da cui ripristinarli, ma solo la data e l'ora in cui il backup deve essere ripristinato. È un ottimo sistema e utilizza molto meno spazio su disco rispetto a molte altre soluzioni di backup.
+Per ripristinare i file, non è necessario decidere la directory o l'incremento da cui ripristinarli, ma solo la data e l'ora del backup che si sta ripristinando. È un ottimo sistema e utilizza molto meno spazio su disco rispetto a molte altre soluzioni di backup.
 
 ## Impostazione dell'esecuzione automatica del backup
 
-Una volta che tutto è stato testato e sappiamo che le cose funzioneranno senza problemi, il passo successivo è impostare il crontab per l'utente root, in modo che tutto questo possa essere fatto automaticamente ogni giorno:
+Una volta completati i test e sicuri che le cose funzioneranno senza problemi, il passo successivo è impostare crontab per l'utente root per automatizzare il processo ogni giorno:
 
 `sudo crontab -e`
 
-Se non avete mai eseguito questa operazione, scegliete vim.basic come editor o l'editor che preferite quando viene visualizzata la riga `Select an editor`.
+Se non avete mai eseguito questa operazione, scegliete vim.basic come editor o il vostro editor preferito quando appare la riga `Select an editor`.
 
-Vogliamo impostare il nostro backup in modo che venga eseguito automaticamente alle 23:00, quindi lo aggiungeremo al crontab:
+Si intende impostare il backup in modo che venga eseguito automaticamente alle 23: 00, quindi si aggiungerà questo codice al crontab:
 
 ```
 ## Running the backup at 11 PM
 00 23 *  *  *  /usr/bin/rsnapshot -c /etc/rsnapshot.conf beta`
 ```
 
-## Backup di Più Macchine o Più Server
+## Backup di più macchine o più server
 
-L'esecuzione di backup di più macchine da una macchina con un array RAID o una grande capacità di archiviazione, in sede o da Internet, funziona molto bene.
+L'esecuzione di backup di più macchine da una macchina con un array RAID o una grande capacità di archiviazione, in sede o da una connessione Internet altrove, funziona bene.
 
-Se si eseguono questi backup da Internet, è necessario assicurarsi che entrambe le sedi dispongano di una larghezza di banda adeguata per l'esecuzione dei backup. È possibile utilizzare _rsnapshot_ per sincronizzare un server in sede con un array di backup o un server di backup fuori sede per migliorare la ridondanza dei dati.
+Se i backup vengono eseguiti via Internet, è necessario assicurarsi che ogni sede disponga di una larghezza di banda adeguata per l'esecuzione dei backup. È possibile utilizzare _rsnapshot_ per sincronizzare un server in sede con un array di backup o un server di backup fuori sede per migliorare la ridondanza dei dati.
 
 ## Presupposto
 
-Si presume che si stia eseguendo _rsnapshot_ da un computer remoto, in sede. Questa esatta configurazione può essere duplicata, come indicato sopra, anche in remoto fuori sede.
+Esecuzione di _rsnapshot_ da una macchina in remoto, in sede. L'esecuzione di questa esatta configurazione è possibile anche in remoto, fuori sede.
 
-In questo caso, è necessario installare _rsnapshot_ sul computer che esegue tutti i backup. Stiamo anche ipotizzando:
+In questo caso, è necessario installare _rsnapshot_ sul computer che esegue tutti i backup. Altre ipotesi sono:
 
 * Che i server su cui si eseguirà il backup abbiano una regola del firewall che consenta alla macchina remota di accedere al server SSH
 * Che ogni server di cui si intende eseguire il backup abbia installato una versione recente di `rsync`. Per i server Rocky Linux, eseguire `dnf install rsync` per aggiornare la versione di `rsync` del sistema.
-* Che vi siate connessi alla macchina come utente root o che abbiate eseguito `sudo -s` per passare all'utente root.
+* Che ci si sia connessi alla macchina come utente root, o che si sia eseguito `sudo -s` per passare all'utente root
 
 ## Chiavi Pubbliche e Private SSH
 
@@ -339,33 +339,31 @@ Se si è già generato un set di chiavi, si può saltare questo passaggio. È po
 
 ## Configurazione di _rsnapshot_
 
-Il file di configurazione deve essere identico a quello creato per la **Macchina di Base o per il Backup di un Singolo Server**, tranne che per la modifica di alcune opzioni.
+Il file di configurazione deve essere quasi identico a quello creato per il **Backup di base della macchina o di un singolo server**, tranne che per la modifica di alcune opzioni.
 
-La radice dell'istantanea può essere riportata al valore predefinito in questo modo:
+La snapshot root è l'impostazione predefinita:
 
 `snapshot_root   /.snapshots/`
 
-E questa riga:
+Commentare questa riga:
 
 `no_create_root 1`
 
-... può essere nuovamente commentata:
-
 `#no_create_root 1`
 
-L'altra differenza è che ogni macchina avrà una propria configurazione. Una volta che ci si è abituati, è sufficiente copiare uno dei file di configurazione esistenti con un nuovo nome e modificarlo per adattarlo alle macchine aggiuntive di cui si desidera eseguire il backup.
+L'altra differenza è che ogni macchina avrà la propria configurazione. Quando ci si abitua, è sufficiente copiare uno dei file di configurazione esistenti con un nome diverso e modificarlo per adattarlo alle macchine aggiuntive di cui si desidera eseguire il backup.
 
-Per ora, vogliamo modificare il file di configurazione come abbiamo fatto sopra e poi salvarlo. Quindi copiare il file come modello per il nostro primo server:
+Per ora, si vuole modificare solo il file di configurazione (come mostrato sopra) e salvarlo. Copiate questo file come modello per il nostro primo server:
 
 `cp /etc/rsnapshot.conf /etc/rsnapshot_web.conf`
 
-Si vuole modificare il nuovo file di configurazione e creare il log e il lockfile con il nome della macchina:
+Si desidera modificare il file di configurazione e creare il log e il lockfile con il nome della macchina:
 
 `logfile /var/log/rsnapshot_web.log`
 
 `lockfile        /var/run/rsnapshot_web.pid`
 
-Successivamente, si vuole modificare rsnapshot_web.conf in modo che includa le directory di cui si vuole fare il backup. L'unica cosa diversa è l'obiettivo.
+Successivamente, si deve modificare il file rsnapshot_web.conf in modo che includa le directory di cui si vuole eseguire il backup. Successivamente, si deve modificare il file rsnapshot_web. conf in modo che includa le directory di cui si vuole eseguire il backup.
 
 Ecco un esempio di configurazione di web.ourdomain.com:
 
@@ -378,21 +376,21 @@ backup  root@web.ourdomain.com:/home/     web.ourdomain.com/
 backup  root@web.ourdomain.com:/root/     web.ourdomain.com/
 ```
 
-### Controllo della Configurazione ed Esecuzione del Backup Iniziale
+### Verifica della configurazione ed esecuzione del backup iniziale
 
-Come in precedenza, ora possiamo verificare la configurazione per assicurarci che sia sintatticamente corretta:
+Ora è possibile verificare la configurazione per assicurarsi che sia sintatticamente corretta:
 
 `rsnapshot -c /etc/rsnapshot_web.conf configtest`
 
-Come in precedenza, cerchiamo il messaggio `Syntax OK`. Se tutto è a posto, possiamo eseguire il backup manualmente:
+Si sta cercando il messaggio `Syntax OK`. Se tutto è a posto, è possibile eseguire il backup manualmente:
 
 `/usr/bin/rsnapshot -c /etc/rsnapshot_web.conf beta`
 
-Supponendo che tutto funzioni bene, possiamo creare i file di configurazione per il server di posta (rsnapshot_mail.conf) e per il server del portale (rsnapshot_portal.conf), testarli ed eseguire un backup di prova.
+Supponendo che tutto funzioni, è possibile creare i file di configurazione per il server di posta (rsnapshot_mail.conf) e per il server del portale (rsnapshot_portal.conf), testarli ed eseguire un backup di prova.
 
-## Automatizzare il Backup
+## Automatizzare il backup
 
-L'automazione dei backup per la versione con più macchine/server è leggermente diversa. Vogliamo creare uno script bash per richiamare i backup in ordine. Quando uno finisce, inizia il successivo. Questo script avrà un aspetto simile a questo e sarà memorizzato in /usr/local/sbin:
+L'automazione dei backup per la versione per più macchine o server è leggermente diversa. Si vuole creare uno script bash per richiamare i backup in ordine. Quando uno finisce, inizia il successivo. Lo script avrà un aspetto simile a:
 
 `vi /usr/local/sbin/backup_all`
 
@@ -405,31 +403,32 @@ Con il contenuto:
 /usr/bin/rsnapshot -c /etc/rsnapshot_mail.conf beta
 /usr/bin/rsnapshot -c /etc/rsnapshot_portal.conf beta
 ```
-Poi rendiamo lo script eseguibile:
+
+Salvare lo script in /usr/local/sbin e renderlo eseguibile:
 
 `chmod +x /usr/local/sbin/backup_all`
 
-Quindi creiamo il crontab per root per eseguire lo script di backup:
+Creare il crontab per root per eseguire lo script di backup:
 
 `crontab -e`
 
-E aggiungere questa riga:
+Aggiungere questa riga:
 
 ```
 ## Running the backup at 11 PM
 00 23 *  *  *  /usr/local/sbin/backup_all
 ```
 
-## Segnalazione dello Stato del Backup
+## Segnalazione dello stato del backup
 
-Per assicurarsi che il backup avvenga secondo i piani, si consiglia di inviare i file di registro del backup all'indirizzo e-mail. Se si stanno eseguendo backup di più macchine utilizzando _rsnapshot_, ogni file di registro avrà il proprio nome, che potrà essere inviato all'indirizzo e-mail per la revisione utilizzando la procedura [Utilizzo di postfix per la Segnalazione dei Processi del Server](../email/postfix_reporting.md).
+Per assicurarsi che il backup avvenga secondo i piani, si consiglia di inviare i file di registro del backup all'indirizzo e-mail. Se si eseguono backup di più macchine utilizzando _rsnapshot_, ogni file di log avrà un proprio nome, che potrà essere inviato all'indirizzo e-mail per la revisione da parte della procedura [Utilizzo di postfix per la segnalazione dei processi del server](../email/postfix_reporting.md).
 
-## Ripristino di un Backup
+## Ripristino di un backup
 
-Il ripristino di un backup, di alcuni file o di un ripristino completo, comporta la copia dei file desiderati dalla directory con la data di ripristino al computer. Semplice!
+Il ripristino di alcuni file o di un intero backup comporta la copia dei file desiderati dalla directory con la data di ripristino al computer.
 
 ## Conclusioni e altre risorse
 
-La configurazione corretta di _rsnapshot_ è un po' scoraggiante all'inizio, ma può far risparmiare molto tempo per il backup delle macchine o dei server.
+La configurazione corretta di _rsnapshot_ è un po' scoraggiante all'inizio, ma può far risparmiare molto tempo per il backup di macchine o server.
 
-_rsnapshot_ è molto potente, molto veloce e molto economico per quanto riguarda l'utilizzo dello spazio su disco. Per ulteriori informazioni su _rsnapshot_, visitare il sito [rsnapshot.org](https://rsnapshot.org/download.html)
+_rsnapshot_ è potente, veloce ed economico nell'utilizzo dello spazio su disco. Per saperne di più su _rsnapshot_, visitate il sito [rsnapshot.org](https://rsnapshot.org/download.html).

@@ -9,19 +9,19 @@ tags:
   - documentation
 ---
 
-# MkDocs (Python Virtual Enviroment)
+# MkDocs (Python Virtual Environment)
 
 ## Introduction
 
-One of the aspects of the process of creating documentation for Rocky Linux is verifying that your new document displays correctly prior to publication. 
+One of the aspects of the process of creating documentation for Rocky Linux is verifying that your new document displays correctly before publication. 
  
-The purpose of this guide is to give some suggestions for performing this task in a local python environment dedicated solely for this purpose.
+The purpose of this guide is to give some suggestions for performing this task in a local python environment dedicated solely to this purpose.
 
-The documentation for Rocky Linux is written using the Markdown language, a language generally converted to other formats. Markdown is clean in syntax and particularly well suited for writing technical documentation.
+The documentation for Rocky Linux is written using the Markdown language, generally converted to other formats. Markdown is clean in syntax and particularly well suited for writing technical documentation.
 
 In our case, the documentation is converted to `HTML` using a python application that takes care of building the static site. The application used by the developers is [MkDocs](https://www.mkdocs.org/).
 
-One problem that arises during the development of a python application is achieving isolation of the python instance used for development from the system interpreter. The isolation is to prevent any incompatibilities between the modules needed to install the python application and the modules installed on the host system. Any incompatibilities would result in visualization errors or malfunctions of your local site.
+One problem that arises during the development of a python application is achieving isolation of the python instance used for development from the system interpreter. The isolation prevents incompatibilities between the modules needed to install the Python application and those installed on the host system. 
 
 There are already excellent guides that use **containers** for isolating the python interpreter. These guides, however, imply a knowledge of the various containerization techniques.
 
@@ -44,7 +44,7 @@ First, create the folder that will contain everything else, and contextually, al
 mkdir -p ~/lab/rockydocs/env
 ```
 
-### Python Virtual Environment
+### Python virtual environment
 
 To create your copy of Python where MkDocs will run, use the module specially developed for this purpose, the python `venv` module. This allows the creation of a virtual environment, derived from the one installed on the system, totally isolated and independent.
 
@@ -86,7 +86,7 @@ As you can see, the python interpreter used by the virtual environment is still 
 
 Among the files listed in the structure, there are several files named **activate** that serve this purpose. The suffix of each file indicates the related *shell*.
 
-Activation separates this instance of python from the system instance and allows us to perform documentation development without interference. To activate it, go to the *env* folder and run the command:
+Activation separates this python instance from the system python instance and allows us to perform documentation development without interference. To activate it, go to the *env* folder and run the command:
 
 ```bash
 [rocky_user@rl9 rockydocs]$ cd ~/lab/rockydocs/env/
@@ -128,13 +128,13 @@ To exit the virtual environment, use the *deactivate* command:
 [rocky_user@rl9 env]$
 ```
 
-As you can see, the terminal *prompt* after deactivation has reverted to the system one. You should always check the prompt carefully before running *MkDocs* installation and subsequent commands. Checking this will prevent unnecessary and unwanted global application installations and missed runs of `mkdocs serve`.
+As you can see, the terminal *prompt* has reverted to the system one after deactivation. You should always check the prompt carefully before running *MkDocs* installation and subsequent commands. Checking this will prevent unnecessary and unwanted global application installations and missed runs of `mkdocs serve`.
 
 ### Downloading the repositories
 
 Now that you have seen how to create your virtual environment and how to manage it, you can move on to preparing everything needed.
 
-Two repositories are required for the implementation of a local version of the Rocky Linux documentation: the documentation repository [documentation](https://github.com/rocky-linux/documentation), and the site structure repository [docs.rockylinux.org](https://github.com/rocky-linux/docs.rockylinux.org). Downloading these is done from the Rocky Linux GitHub.
+Two repositories are required to implement a local version of the Rocky Linux documentation: the documentation repository [documentation](https://github.com/rocky-linux/documentation), and the site structure repository [docs.rockylinux.org](https://github.com/rocky-linux/docs.rockylinux.org). Downloading these is done from the Rocky Linux GitHub.
 
 Start with the site structure repository, which you will clone into the **rockydocs** folder:
 
@@ -210,7 +210,7 @@ If everything has worked as planned, you can exit the virtual environment and st
 
 ### Linking documentation
 
-Now that everything needed is available, you just need to link the documentation repository within the *docs.rockylinux.org* container site. Following the setup defined in *mkdocs.yml*:
+Now that everything is available, you must link the documentation repository within the *docs.rockylinux.org* container site. Following the setup defined in *mkdocs.yml*:
 
 ```yaml
 docs_dir: 'docs/docs'
@@ -225,11 +225,11 @@ cd docs/
 ln -s ../../documentation/docs/ docs
 ```
 
-## Starting Local Documentation
+## Starting local documentation
 
-At this point you are ready to start the local copy of the Rocky Linux documentation. First you need to start the python virtual environment and then initialize your MkDocs instance with the settings defined in **docs.rockylinux.org/mkdocs.yml**.
+You are ready to start the local copy of the Rocky Linux documentation. First you need to start the python virtual environment and then initialize your MkDocs instance with the settings defined in **docs.rockylinux.org/mkdocs.yml**.
 
-This file has all the settings necessary for localization, feature management, and theme management.
+This file has all the settings for localization, feature, and theme management.
 
 The developers for the site's UI chose the [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme, which provides many additional features and customizations over the default MkDocs theme.
 
@@ -259,13 +259,13 @@ INFO     -  [11:46:50] Watching paths for changes:
 INFO     -  [11:46:50] Serving on http://127.0.0.1:8000/
 ```
 
-Opening your browser at the address specified (http://1127.0.0.1:8000) you will have your copy of the documentation site running. The copy perfectly mirrors the online site in functionality and structure, allowing you to assess the appearance and impact your page will have on the site.
+You will have your copy of the documentation site running when opening your browser at the address specified (http://1127.0.0.1:8000). The copy perfectly mirrors the online site in functionality and structure, allowing you to assess the appearance and impact your page will have on the site.
 
 MkDocs incorporates a mechanism for checking changes to the files in the folder specified by the `docs_dir` path, and inserting a new page or modifying an existing one in `documentation/docs` will automatically be recognized and produce a new static site build.
 
 Since the time for MkDocs to build the static site can be several minutes, the recommendation is to carefully review the page you are writing before saving or inserting it. This saves waiting for the site to build just because you forgot, for example, punctuation.
 
-### Exit the Development Environment
+### Exit the development environment
 
 Once the display of your new page meets your satisfaction, you can exit your development environment. This involves first exiting *MkDocs* and then deactivating the python virtual environment. To exit *MkDocs* you need to use the key combination <kbd>CTRL</kbd> + <kbd>C</kbd>, and as you saw above, to exit the virtual environment you will need to invoke the `deactivate` command.
 
@@ -280,8 +280,8 @@ INFO     -  [22:32:41] Serving on http://127.0.0.1:8000/
 
 ## Conclusions and final thoughts
 
-Verification of your new pages in a local development site provides us with the assurance that your work will always conform to the online documentation site therefore allowing us to contribute optimally.
+Verifying your new pages in a local development site assures us that your work will always conform to the online documentation site, allowing us to contribute optimally.
 
 Document compliance is also a great help to the curators of the documentation site, who then only have to deal with the correctness of the content.
 
-In conclusion, you can say that this method allows meeting the requirements for a "clean" installation of MkDocs without the need to resort to containerization.
+In conclusion, you can say that this method allows for meeting the requirements for a "clean" installation of MkDocs without the need to resort to containerization.
