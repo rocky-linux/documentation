@@ -12,13 +12,11 @@ tags:
 
 There are several ways to run a copy of `mkdocs` to see exactly how your Rocky Linux document will appear when merged on the live system. This particular document deals with using an LXD container on your local workstation to separate python code in `mkdocs` from other projects you might be working on.
 
-It is recommended to keep projects separate to avoid causing problems with your workstation's code.
+The recommendation is to keep projects separate to avoid causing problems with your workstation's code.
 
-This is also a partner document to the [Docker version here](rockydocs_web_dev.md).
+This is also a companion document to the [Docker version here](rockydocs_web_dev.md).
 
 ## Prerequisites and assumptions
-
-A few things you should have/know/be:
 
 * Familiarity and comfort with the command-line
 * Comfortable using tools for editing, SSH, and synchronization, or willing to follow along and learn
@@ -29,31 +27,31 @@ A few things you should have/know/be:
 * "youruser" in this document represents your user id
 * The assumption is that you are already doing documentation development with a clone of the documentation repository on your workstation
 
-## The mkdocs container
+## The `mkdocs` container
 
 ### Create the container
 
-Our first step is to create the LXD container. There is no need to use anything other than defaults here, so allow your container to be built using the bridge interface.
+Our first step is to create the LXD container. Using the defaults (bridge interface) for your container is perfectly fine here.
 
-You will add a Rocky container to our workstation for `mkdocs`, /so we are just calling it "mkdocs":
+You will add a Rocky container to our workstation for `mkdocs`. Just name it "mkdocs":
 
 ```
 lxc launch images:rockylinux/8 mkdocs
 ```
 
-The container needs to be set up with a proxy. By default, when `mkdocs serve` is started, it runs on 127.0.0.1:8000. That is fine when it is on your local workstation without a container. However, when it is in an LXD **container** on your local workstation, you need to set up the container with a proxy port. This is done with:
+The container needs to be a proxy . By default, when `mkdocs serve` starts, it runs on 127.0.0.1:8000. That is fine when it is on your local workstation without a container. However, when it is in an LXD **container** on your local workstation, you need to set up the container with a proxy port. Do this with:
 
 ```
 lxc config device add mkdocs mkdocsport proxy listen=tcp:0.0.0.0:8000 connect=tcp:127.0.0.1:8000
 ```
 
-In the line above, "mkdocs" is our container name, "mkdocsport" is an arbitrary name we are giving to the proxy port, the type is "proxy", and then we are listening on all tcp interfaces on port 8000 and connecting to the localhost for that container on port 8000.
+In the line above, "mkdocs" is our container name, "mkdocsport" is an arbitrary name you are giving to the proxy port, the type is "proxy", and you are listening on all TCP interfaces on port 8000 and connecting to the localhost for that container on port 8000.
 
 !!! Note
 
     If you are running the lxd instance on another machine in your network, remember to make sure that port 8000 is open in the firewall.
 
-### Installing Packages
+### Installing packages
 
 First, get into the container with:
 
@@ -78,20 +76,20 @@ You will need a few packages to do what you need to do:
 dnf install git openssh-server python3-pip rsync
 ```
 
-Once installed, you need to enable and start `sshd`:
+When installed, you need to enable and start `sshd`:
 
 ```
 systemctl enable --now sshd
 ```
 ### Container users
 
-You need to set a password for our root user and then add our user (the user you use on your local machine) to the sudoers list. You should be the "root" user at the moment, so to change the password type:
+You need to set a password for our root user and then add our user (the user you use on your local machine) to the sudoers list. You are the "root" user at the moment. To change the password enter:
 
 ```
 passwd
 ```
 
-And set the password to something secure and memorable.
+Set the password to something secure and memorable.
 
 Next, add your user and set a password:
 
@@ -100,23 +98,23 @@ adduser youruser
 passwd youruser
 ```
 
-And add your user to the sudoers group:
+Add your user to the sudoers group:
 
 ```
 usermod -aG wheel youruser
 ```
 
-At this point, you should be able to SSH into the container using either the root user or your user from your workstation and entering a password. Ensure that you can do that before continuing.
+At this point, you should be able to SSH into the container with the root user or your user from your workstation and entering a password. Ensure that you can do that before continuing.
 
-## SSH for root and Your user
+## SSH for root and your user
 
-In this procedure, the root user (at minimum) needs to be able to SSH into the container without entering a password; this is because of the `lsyncd` process we will be implementing. The assumption here is that you can sudo to the root user on your local workstation:
+In this procedure, the root user (at minimum) needs to be able to SSH into the container without entering a password; this is because of the `lsyncd` process you will be implementing. The assumption here is that you can sudo to the root user on your local workstation:
 
 ```
 sudo -s
 ```
 
-The assumption also is that the root user has an `id_rsa.pub` key in the `./ssh` directory. If not, generate one using [this procedure](../security/ssh_public_private_keys.md):
+The assumption also is that the root user has an `id_rsa.pub` key in the `./ssh` directory. If not, generate one with [this procedure](../security/ssh_public_private_keys.md):
 
 ```
 ls -al .ssh/
@@ -133,7 +131,7 @@ To get SSH access on our container without having to enter a password, provided 
 ssh-copy-id root@10.56.233.189
 ```
 
-For our user, however, you need the entire .ssh/ directory copied to our container. The reason is that you will keep everything the same for this user so that our access to GitHub over SSH is the same. 
+For our user, however, you need the entire `.ssh/` directory copied to our container. The reason is that you will keep everything the same for this user so that our access to GitHub over SSH is the same. 
 
 To copy everything over to our container, you just need to do this as your user, **not** sudo:
 
@@ -158,7 +156,7 @@ ssh-add
 
 You need two repositories cloned, but no need to add any <code>git</code> remotes. The documentation repository here will only display the current documentation (mirrored from your workstation) and the docs.
 
-The rockylinux.org repository is used for running `mkdocs serve` and will use the mirror as its source. All of these steps are done as your non-root user. If you are not able to clone the repositories as your userid, then there **IS** a problem with your identity as far as `git` is concerned and you will need to review the last few steps for re-creating your key environment (above).
+The rockylinux.org repository is for running `mkdocs serve` and will use the mirror as its source. Run all these steps as your non-root user. If you are not able to clone the repositories as your userid, then there **IS** a problem with your identity as far as `git` is concerned and you will need to review the last few steps for re-creating your key environment (above).
 
 First, clone the documentation:
 
@@ -174,7 +172,7 @@ git clone git@github.com:rocky-linux/docs.rockylinux.org.git
 
 If you get errors, return to the steps above and ensure that those are all correct before continuing.
 
-## Setting up mkdocs
+## Setting up `mkdocs`
 
 Installing the needed plugins is all done with `pip3` and the "requirements.txt" file in the docs.rockylinux.org directory. While this process will argue with you about using the root user to write the changes to the system directories, you have to run it as root. 
 
@@ -199,7 +197,7 @@ mkdir docs
 cd docs
 ln -s ../../documentation/docs
 ```
-### Testing mkdocs
+### Testing `mkdocs`
 
 Now that you have `mkdocs` setup, try starting the server. Remember, this process will argue that it looks like this is production. It is not, so ignore the warning. Start `mkdocs serve` with:
 
@@ -234,20 +232,20 @@ INFO     -  Building pt documentation
 INFO     -  [14:12:56] Reloading browsers
 ```
 
-Now for the moment of truth! If you have done everything correctly above, you should be able to open a web browser and go to the IP of your container on port :8000, and see the documentation site.
+Now for the moment of truth! If you have done everything correctly, you should be able to open a web browser and go to the IP of your container on port :8000, and see the documentation site.
 
-In our example, you would enter the following in the browser address (**NOTE** To avoid broken URLs, the IP here has been changed to "your-server-ip". You just need to substitute in the IP):
+In our example, enter the following in the browser address (**NOTE** To avoid broken URLs, the IP here has been changed to "your-server-ip". You just need to substitute in the IP):
 
 ```
 http://your-server-ip:8000
 ```
-## lsyncd
+## `lsyncd`
 
 You are almost there if you saw the documentation in the web browser. The last step is to keep the documentation in your container synchronized with the one on your local workstation. 
 
 You are doing this here with `lsyncd` as noted above.
 
-Installation of`lsyncd` is different depending on which Linux version you are using. [This document](../backup/mirroring_lsyncd.md) covers ways to install it on Rocky Linux, and also from source. If you are using some of the other Linux type (Ubuntu for example) they generally have their own packages, but there are nuances to them.
+Installation of`lsyncd` is different depending on which Linux version you are using. [This document](../backup/mirroring_lsyncd.md) covers ways to install it on Rocky Linux, and also from source. If you are using other Linux types (Ubuntu for example) they generally have their own packages, but there are nuances to them.
 
 Ubuntu's, for example, names the configuration file differently. Just be aware that if you are using another Linux workstation type other than Rocky Linux, and do not want to install from source, there are probably packages available for your platform.
 
@@ -278,7 +276,7 @@ Finally you need to create the configuration file. In this example, we are using
 vi /etc/lsyncd.conf
 ```
 
-And then place this content in that file and save it. Be sure to replace "youruser" with your actual user, and the IP address with your own container IP:
+Then place this content in that file and save it. Be sure to replace "youruser" with your actual user, and the IP address with your own container IP:
 
 ```
 settings {
@@ -324,4 +322,4 @@ Fri Feb 25 08:15:14 2022 Normal: Calling rsync with filter-list of new/modified 
 
 As you work on your workstation documentation now, whether it is a `git pull` or a branch you create to make a document (like this one!), you will see the changes appear in your documentation on the container, and `mkdocs serve` will show you the content in your web browser.
 
-It is recommended practice that all Python code should be run separately from any other Python code you might be developing. LXD containers can make that easier. Give this method a try and see if it works for you.
+The recommended practice is that all Python must run separately from any other Python code you might be developing. LXD containers can make that easier. Give this method a try and see if it works for you.
