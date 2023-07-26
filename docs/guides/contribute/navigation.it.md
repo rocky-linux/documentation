@@ -7,38 +7,38 @@ tags:
   - navigation
 ---
 
-# Modifiche alla Navigazione - Un documento di processo per manager/redattori
+# Modifiche alla navigazione - Un documento di procedure per manager o redattori
 
-## Motivo del Documento
+## Motivo del documento
 
-Quando è stato avviato il progetto di documentazione, si sperava che i menu di Mkdocs fossero il più possibile automatici, rendendo rara la modifica manuale della navigazione. Dopo alcuni mesi di generazione di documenti, è diventato chiaro che non si poteva fare affidamento sul fatto che Mkdocs si limitasse a inserire i documenti nella cartella corretta e a generare la navigazione per mantenere le cose pulite e ordinate. Avevamo bisogno di categorie, cosa che Mkdocs non fornisce a meno che i documenti non siano inseriti in cartelle specifiche. Mkdocs creerà quindi una navigazione con un ordinamento alfabetico. La creazione di una struttura di cartelle che risolva la navigazione non è tuttavia l'unica soluzione. Anche questo a volte richiede ulteriori modifiche per mantenere l'organizzazione. Ad esempio, la capitalizzazione senza modificare la struttura delle cartelle in minuscolo.
+Quando è iniziato il progetto di documentazione, si sperava che i menu di Mkdocs fossero il più possibile automatici, rendendo rara la modifica manuale della navigazione. Dopo alcuni mesi di generazione di documenti, è diventato chiaro che non si poteva fare affidamento sul fatto che Mkdocs si limitasse a inserire i documenti nella cartella corretta e a generare la navigazione per mantenere le cose pulite e ordinate. Avevamo bisogno di categorie, che Mkdocs non fornisce a meno che i documenti non siano inseriti in cartelle specifiche. Mkdocs creerà quindi una navigazione con un ordinamento alfabetico. Tuttavia, la creazione di una struttura di cartelle che risolva la navigazione non è l'unica soluzione. Anche questo a volte richiede ulteriori modifiche per mantenere l'organizzazione. Ad esempio, la capitalizzazione senza modificare la struttura delle cartelle in minuscolo.
 
 ## Obiettivi
 
 I nostri obiettivi erano:
 
-* Creare ora la struttura di cartelle necessaria (in futuro potrebbero essere necessarie nuove cartelle).
-* Regolare la navigazione in modo che le aree Installazione Rocky, Migrazione e Contributo siano in alto.
-* Regolare la navigazione per assegnare un nome migliore ad alcune cartelle e abilitare la capitalizzazione corretta. Ad esempio, "DNS" e "Servizi di Condivisione File", che altrimenti si presentano come "Dns" e "Condivisione file" senza una qualche manipolazione.
-* Assicurarsi che questi file di navigazione siano riservati ai Gestori e ai Redattori.
+* Creare ora la struttura di cartelle necessaria (in futuro potrebbero essere necessarie nuove cartelle)
+* Regolare la navigazione in modo che le aree Installazione Rocky, Migrazione e Contributo siano in alto
+* Adattare la navigazione in modo da assegnare un nome migliore ad alcune cartelle e da consentire una corretta capitalizzazione. Ad esempio, "DNS" e "Servizi di Condivisione File" vengono visualizzati come "Dns" e "Condivisione file" senza alcuna manipolazione.
+* Assicurarsi che questi file di navigazione vengano riservati ai Manager e ai Redattori
 
-Quest'ultimo punto può sembrare superfluo per alcuni lettori, ma diventerà più chiaro con il proseguire di questo documento.
+Quest'ultimo punto può sembrare superfluo a chi sta leggendo, ma diventerà più evidente man mano che il documento prosegue.
 
 ## Presupposto
 
-Si presume che si disponga di un clone locale del repository Rocky GitHub: [https://github.com/rocky-linux/documentation.](https://github.com/rocky-linux/documentation)
+Si presuppone che si abbia un clone locale del repository Rocky GitHub: [https://github.com/rocky-linux/documentation.](https://github.com/rocky-linux/documentation).
 
-## Cambiamenti all'Ambiente
+## Cambiamenti all'ambiente
 
 Con questi cambiamenti nasce l'esigenza di "vedere" come le modifiche apportate influiscono sui contenuti, nel contesto del sito web, _PRIMA_ che questi vengano inseriti nel repository dei documenti e che vengano poi pubblicati.
 
 MkDocs è un'applicazione [Python](https://www.python.org) e i pacchetti aggiuntivi che utilizza sono anch'essi codice Python; ciò significa che l'ambiente richiesto per eseguire MkDocs deve essere un **ambiente Python correttamente configurato**. L'impostazione di Python per le attività di sviluppo (che è ciò che si sta facendo con MkDocs) non è un compito banale e le relative istruzioni sono al di fuori dello scopo di questo documento. Alcune considerazioni sono:
 
-* La versione di Python, che deve essere >= 3.8, inoltre **occorre prestare particolare attenzione a non utilizzare la versione Python "di sistema" di un computer, se questo è dotato di Linux/macOS**. Ad esempio, al momento della stesura di questo documento, la versione di sistema di Python su macOS è ancora la versione 2.7.
+* La versione di Python deve essere >= 3.8, inoltre **deve essere prestata particolare attenzione a non utilizzare la versione Python "di sistema" di un computer se questo utilizza Linux/macOS**. Ad esempio, al momento della stesura di questo documento, la versione di sistema di Python su macOS è ancora la versione 2.7.
 * Esecuzione di un "ambiente virtuale" Python. Quando si eseguono progetti di applicazioni Python e si installano pacchetti, ad esempio MkDocs, la comunità Python **raccomanda vivamente** di [creare un ambiente virtuale isolato](https://realpython.com/python-virtual-environments-a-primer/) per ogni progetto.
 * Utilizzate un moderno IDE (Integrated Development Environment) che supporti bene Python. Due IDE popolari, che hanno anche un supporto integrato per l'esecuzione di ambienti virtuali, sono:
     * PyCharm - (versione gratuita disponibile) il principale IDE per Python https://www.jetbrains.com/pycharm/
-    * Visual Studio Code- (versione gratuita disponibile) da Microsoft https://code.visualstudio.com
+    * Visual Studio Code - (versione gratuita disponibile) da Microsoft https://code.visualstudio.com
 
 Per farlo in modo efficace occorre:
 
@@ -58,7 +58,7 @@ Per farlo in modo efficace occorre:
 
 !!! Note "Nota"
 
-    Questo documento è stato scritto in ambiente Linux. Se il vostro ambiente è diverso (Windows o Mac), dovrete fare un po' di ricerche per trovare una corrispondenza con alcuni di questi passaggi. Un redattore o un manager che legge questo documento può apportare modifiche per aggiungere passaggi per questi ambienti.
+    Questo documento è stato scritto in ambiente Linux. Se il vostro ambiente è diverso (Windows o Mac), dovrete ricercare la corrispondenza con alcuni di questi passaggi. Un redattore o un manager che legge questo documento può apportare modifiche per aggiungere passaggi per questi ambienti.
 
 ### Installazione
 
@@ -66,7 +66,7 @@ Per farlo in modo efficace occorre:
 * Installare i plugin necessari: `pip install mkdocs-material mkdocs-localsearch mkdocs-awesome-pages-plugin mkdocs-redirects mkdocs-i18n`
 * Clonare il repository (come indicato sopra)
 
-### Collegamento ed Esecuzione di `mkdocs`
+### Collegamento ed esecuzione di `mkdocs`
 
 All'interno del vostro docs.rockylinux.org locale (clone), fate quanto segue. Questo presuppone la posizione del clone della documentazione, quindi modificarlo secondo le necessità:
 
@@ -78,11 +78,11 @@ Anche in questo caso, se si desidera, si può modificare la copia locale del fil
 docs_dir: 'docs/docs'
 ```
 
-Una volta completato, si può provare a eseguire `mkdocs serve` per vedere se si ottiene il contenuto desiderato. Questo verrà eseguito su un localhost sulla porta 8000 esempio: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+Una volta completato, si può provare a eseguire `mkdocs serve` per vedere se si ottiene il contenuto desiderato. Verrà eseguito su localhost sulla porta 8000; ad esempio: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-## Navigazione e Altre Modifiche
+## Navigazione e altre modifiche
 
-La navigazione è gestita con i file mkdocs `.pages` **O** dal valore del meta "title:" nel frontespizio del documento. I file `.pages` non sono terribilmente complessi, MA, se qualcosa viene tralasciato, può causare il mancato caricamento del server. Ecco perché questa procedura è destinata **SOLO** a Gestori e Redattori. Questi individui avranno gli strumenti necessari (installazione locale di mkdocs, oltre a cloni di documentazione e docs.rockylinux.org) in modo che qualcosa spinto e unito a GitHub non interrompa il servizio del sito web della documentazione. Non ci si può aspettare che un collaboratore abbia anche solo uno di questi requisiti.
+La navigazione è gestita con i file mkdocs `.pages` **O** dal valore del meta "title:" nel frontespizio del documento. I file `.pages` non sono terribilmente complessi, MA, se qualcosa viene tralasciato, può causare il mancato caricamento del server. Ecco perché questa procedura è destinata **SOLO** a Gestori e Redattori. Questi individui avranno gli strumenti necessari (installazione locale di mkdocs, oltre a cloni di documentazione e docs.rockylinux.org) in modo che qualcosa spinto e unito a GitHub non interrompa il servizio del sito web della documentazione. Non si può pretendere che un collaboratore abbia anche solo uno di questi requisiti.
 
 
 ### Files `.pages`
@@ -114,7 +114,7 @@ nav:
     - ...
 
 ```
-Qui, l'`index*md` mostra la "Guides Home: ", `installation*.md` mostra il collegamento al documento "Installing Rocky Linux" e `migrate2rocky*.md` mostra il collegamento al documento "Migrating To Rocky Linux". L'asterisco "*" all'interno di ciascuno di questi collegamenti consente di ottenere il documento in _qualsiasi_ lingua. Infine, posizionando "Contribute" accanto a queste voci, si trova sotto di esse anziché nel normale ordine (alfabetico). Se si guarda l'elenco, si può vedere cosa fa ogni voce. Si noti che dopo la voce "Package Management: package_management", ci sono altre due cartelle (security e web). Queste non richiedono alcuna formattazione aggiuntiva, quindi diciamo a `mkdocs` di caricarle normalmente con l'opzione "-..."
+Qui, l'`index*md` mostra la "Guides Home: ", `installation*.md` mostra il collegamento al documento "Installing Rocky Linux" e `migrate2rocky*.md` mostra il collegamento al documento "Migrating To Rocky Linux". Il simbolo "*" all'interno di ciascun collegamento consente di inserire il documento in _qualsiasi_ lingua. Infine, posizionando "Contribute" accanto a queste voci, si trova sotto di esse anziché nel normale ordine (alfabetico). Scorrendo l'elenco, si può vedere cosa fa ogni voce. Si noti che dopo la voce "Package Management: package_management", ci sono altre due cartelle (security e web). Queste non richiedono alcuna formattazione aggiuntiva, quindi diciamo a `mkdocs` di caricarle normalmente con l'opzione "-..."
 
 È possibile utilizzare la formattazione YAML anche all'interno di un file corrente. Un motivo per farlo potrebbe essere che l'intestazione iniziale del file è così lunga che non viene visualizzata bene nella sezione di navigazione.  A titolo di esempio, si prenda il titolo di questo documento "# `mod_ssl` on Rocky Linux in an httpd Apache Web-Server Environment". È molto lungo. Una volta aperta la voce di navigazione "Web", la visualizzazione è molto scarsa nella navigazione laterale. Per risolvere questo problema, si può collaborare con l'autore per modificare l'intestazione, oppure si può cambiare la visualizzazione nel menu aggiungendo un titolo prima dell'intestazione all'interno del documento. Per il documento di esempio, è stato aggiunto un titolo:
 ```
@@ -122,10 +122,10 @@ Qui, l'`index*md` mostra la "Guides Home: ", `installation*.md` mostra il colleg
 title: Apache With `mod_ssl`
 ---
 ```
-Questo cambia il titolo per quanto riguarda la navigazione, ma lascia il titolo originale dell'autore all'interno del documento.
+Questo cambia il titolo nella navigazione, ma lascia il titolo originale dell'autore all'interno del documento.
 
 Probabilmente non ci sarà bisogno di file `.pages` aggiuntivi. Dovrebbero essere utilizzati in modo economico.
 
 ## Conclusione
 
-Sebbene le modifiche alla navigazione che potrebbero essere necessarie non siano difficili, esiste la possibilità di interrompere la documentazione in tempo reale. Per questo motivo, solo i manager e i redattori con gli strumenti appropriati dovrebbero avere i permessi per modificare questi file. Avere a disposizione un ambiente completo per visualizzare l'aspetto delle pagine live impedisce al manager o al redattore di commettere un errore durante la modifica di questi file, che potrebbe danneggiare la documentazione live.
+Sebbene le modifiche alla navigazione che potrebbero essere necessarie non siano difficili, esiste la possibilità di interrompere la documentazione in tempo reale. Per questo motivo, solo i manager e i redattori con gli strumenti appropriati dovrebbero avere i permessi per modificare questi file. Avere a disposizione un ambiente completo per visualizzare l'aspetto delle pagine live impedisce al manager o al redattore di commettere un errore durante la modifica di questi file, compromettendo la documentazione live.
