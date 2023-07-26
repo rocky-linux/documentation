@@ -78,7 +78,7 @@ docs.rockylinux.org 로컬(클론) 내에서 다음을 수행합니다. 이것�
 docs_dir: 'docs/docs'
 ```
 
-완료되면 `mkdocs serve`를 실행하여 원하는 콘텐츠를 얻을 수 있는지 확인할 수 있습니다. 포트 8000의 로컬 호스트에서 실행됩니다. 예: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+완료되면 `mkdocs serve`를 실행하여 원하는 콘텐츠를 얻을 수 있는지 확인할 수 있습니다. 포트 8000의 로컬 호스트에서 실행됩니다. 예: <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> 
 
 ## 네비게이션 및 기타 변경 사항
 
@@ -114,7 +114,7 @@ nav:
     - ...
 
 ```
-여기서 index*.md는 "Guides Home: "를 보여주고, installation*.md는 "Installing Rocky Linux" 문서 링크를 보여주며, migrate2rocky*.md는 "Migrating To Rocky Linux" 문서 링크를 보여줍니다. 이러한 링크들의 각각에 "*"를 넣어 해당 언어의 문서를 모두 포함할 수 있습니다. 마지막으로 "Contribute"를 넣으면 이 항목은 일반적인 (알파벳 순서) 정렬 순서가 아닌 이 항목 아래로 배치됩니다. 목록을 둘러보면 각 항목이 무엇을 하는지 확인할 수 있습니다. "Package Management: package_management" 항목 다음에는 사실 두 개의 폴더 (security와 web)가 더 있습니다. 이들은 추가적인 형식이 필요하지 않기 때문에 "-..."을 통해 정상적으로 로드하도록 mkdocs에게 알려줍니다.
+여기서 index*.md는 "Guides Home: "를 보여주고, installation*.md는 "Installing Rocky Linux" 문서 링크를 보여주며, migrate2rocky*.md는 "Migrating To Rocky Linux" 문서 링크를 보여줍니다. 이러한 링크들의 각각에 "*" 를 넣어 해당 언어의 문서를 모두 포함할 수 있습니다. 마지막으로 "Contribute"를 넣으면 이 항목은 일반적인 (알파벳 순서) 정렬 순서가 아닌 이 항목 아래로 배치됩니다. 목록을 둘러보면 각 항목이 무엇을 하는지 확인할 수 있습니다. "Package Management: package_management" 항목 다음에는 사실 두 개의 폴더 (security와 web)가 더 있습니다. 이들은 추가적인 형식이 필요하지 않기 때문에 "-..."을 통해 정상적으로 로드하도록 mkdocs에게 알려줍니다.</p>
 
 실제 파일 내에서 YAML 형식을 사용할 수도 있습니다. 이렇게 하는 이유는 파일의 처음 제목이 너무 길어서 내비게이션 섹션에서 제대로 표시되지 않기 때문입니다.  예를 들어, 다음과 같은 문서 제목 "# `mod_ssl` on Rocky Linux in an httpd Apache Web-Server Environment"이 매우 길기 때문에 "Web" 내비게이션 항목이 열리면 측면 내비게이션에서 매우 잘 표시되지 않습니다. 그것은 매우 깁니다. "웹" 탐색 항목이 열리면 측면 탐색에서 매우 제대로 표시되지 않습니다. 이를 해결하기 위해 저자와 협력하여 제목을 변경하거나 문서 내부에서 제목 앞에 제목을 추가하여 메뉴에 표시 방법을 변경할 수 있습니다. 예를 들어, 예제 문서에는 다음과 같이 제목이 추가되어 있습니다:
 ```
