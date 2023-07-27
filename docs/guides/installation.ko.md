@@ -2,7 +2,6 @@
 Title: Rocky Linux 9 설치
 author: Wale Soyinka
 contributors: Steven Spencer
-updated: 06-13-2023
 ---
 
 # Rocky Linux 9 설치
@@ -134,7 +133,7 @@ Rocky Linux 9 ISO 이미지를 사용하여 설치를 진행하기 때문에, *�
 
 !!! !!!
 
-    설치 소스 영역은 네트워크 기반 설치를 수행할 수도 있도록 선택할 수 있는 곳입니다 (예: Rocky Linux 부트 ISO인 Rocky-9.0-x86_64-boot.iso를 사용하는 경우). 네트워크 기반 설치를 수행하려면 대상 시스템의 네트워크 어댑터가 올바르게 구성되어 인터넷에 연결되어 있는지 확인해야 합니다.  네트워크 기반 설치를 수행하려면 `Installation Source`를 클릭한 후 `On the network` 라디오 버튼을 선택합니다. 선택한 후, 프로토콜로 `https`를 선택하고 텍스트 필드에 다음 URL을 입력합니다: `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`.   그런 다음 `Done`을 클릭합니다.
+    설치 소스 영역은 네트워크 기반 설치를 수행할 수도 있도록 선택할 수 있는 곳입니다 (예: Rocky Linux 부트 ISO인 Rocky-9.0-x86_64-boot.iso를 사용하는 경우). 네트워크 기반 설치를 수행하려면 대상 시스템의 네트워크 어댑터가 올바르게 구성되어 인터넷에 연결되어 있는지 확인해야 합니다. 네트워크 기반 설치를 수행하려면 `Installation Source`를 클릭한 후 `On the network` 라디오 버튼을 선택합니다. 선택한 후, 프로토콜로 `https`를 선택하고 텍스트 필드에 다음 URL을 입력합니다: `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. 그런 다음 `Done`을 클릭합니다.
 
 #### 소프트웨어 선택
 
