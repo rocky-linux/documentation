@@ -199,7 +199,7 @@ Verify the switch of the device you want to configure is flipped to the `ON` (bl
 
     이 설치 프로그램의 이 섹션에서 서버의 IP 주소에 주의하십시오. 시스템에 대한 물리적 또는 쉬운 콘솔 액세스 권한이 없는 경우 나중에 OS 설치가 완료된 후 작업을 계속하기 위해 서버에 연결해야 할 때 이 정보가 유용합니다.
 
-### 사용자 설정 섹션
+### User Settings (사용자 설정) 섹션
 
 이 섹션에서는 `root` 사용자 계정의 비밀번호를 생성하거나 관리자 또는 비관리자 계정을 만들 수 있습니다.
 
