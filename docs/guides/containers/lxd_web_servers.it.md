@@ -1,7 +1,7 @@
 ---
 title: Guida Per Principianti Lxd-Server Multipli
 author: Ezequiel Bruni
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer
 update: 28-Feb-2022
 ---
 
@@ -25,44 +25,40 @@ Concettualmente, è qualcosa di simile:
 
 Se avete mai giocato con VirtualBox per eseguire alcune applicazioni Windows, è come questo, ma non è così. A differenza delle macchine virtuali, i container Linux non emulano un intero ambiente hardware per ogni container. Piuttosto, tutti condividono alcuni dispositivi virtuali per impostazione predefinita per la rete e lo storage, anche se è possibile aggiungere altri dispositivi virtuali. Di conseguenza, richiedono molto meno overhead (potenza di elaborazione e RAM) di una macchina virtuale.
 
-Per gli amici di Docker (Docker è un altro sistema basato su container, *non* un sistema di macchine virtuali), i container Linux sono meno effimeri di quelli a cui siete abituati. Tutti i dati in ogni istanza del container sono persistenti e qualsiasi modifica apportata è permanente, a meno che non si ripristini un backup. In breve, chiudere il contenitore non cancellerà i vostri peccati.
+Per gli amici di Docker (Docker è un altro sistema basato su container, *non* un sistema di macchine virtuali), i container Linux sono meno effimeri di quelli a cui siete abituati. Tutti i dati in ogni istanza del container sono persistenti e qualsiasi modifica apportata è permanente, a meno che non si ripristini un backup. In breve, lo spegnimento del container non cancellerà gli eventuali problemi introdotti.
 
-Heh.
+LXD, in particolare, è un'applicazione a riga di comando che aiuta a configurare e gestire i container Linux. Questo è ciò che installeremo oggi sul nostro server host Rocky Linux. Scriverò parecchio su LXC/LXD, perché c'è molta documentazione vecchia che si riferisce solo a LXC e sto cercando di rendere più facile per le persone il reperimento di guide aggiornate come questa.
 
-LXD, in particolare, è un'applicazione a riga di comando che aiuta a configurare e gestire i Container Linux. Questo è ciò che installeremo oggi sul nostro server host Rocky Linux. Scriverò spesso di LXC/LXD, perché c'è molta documentazione vecchia che si riferisce solo a LXC e sto cercando di rendere più facile per le persone trovare guide aggiornate come questa.
+!!! Note
 
-!!! Note "Nota"
-
-    C'era un'applicazione precursore per LXD che veniva chiamata "LXC". Per come stanno le cose oggi: LXC è la tecnologia, LXD è l'applicazione.
+    Esisteva un'applicazione precursore di LXD che si chiamava anche "LXC". Oggi LXC è la tecnologia e LXD è l'applicazione.
 
 Li useremo entrambi per creare un ambiente che funzioni in questo modo:
 
-![Un diagramma della struttura del Container Linux previsto](../images/lxd-web-server-02.png)
+![A diagram of the intended Linux Container structure](../images/lxd-web-server-02.png)
 
 In particolare, vi mostrerò come configurare semplici server web Nginx e Apache all'interno dei vostri container server e come utilizzare un altro container con Nginx come reverse proxy. Anche in questo caso, questa configurazione dovrebbe funzionare in qualsiasi ambiente: dalle reti locali ai server privati virtuali.
 
-!!! Note "Nota"
+!!! Note
 
-    Un reverse proxy è un programma che prende le connessioni in entrata da Internet (o dalla rete locale) e le indirizza al server, al container o all'applicazione giusta. Esistono anche strumenti dedicati a questo lavoro, come HaProxy... ma, stranamente, trovo che Nginx sia molto più facile da usare.
+    Un reverse proxy è un programma che prende le connessioni in entrata da Internet (o dalla rete locale) e le indirizza al server, al container o all'applicazione appropriata. Esistono anche strumenti dedicati a questo lavoro, come HaProxy... ma trovo che Nginx sia molto più facile da usare.
 
 ## Prerequisiti E Presupposti
 
-* Conoscenza di base dell'interfaccia a riga di comando Linux. Dovresti sapere come usare SSH se stai installando LXC/LXD su un server remoto.
+* Conoscenza di base dell'interfaccia a riga di comando Linux. È necessario sapere come usare SSH se si installa LXC/LXD su un server remoto.
 * Un server connesso a Internet, fisico o virtuale, su cui è già in esecuzione Rocky Linux.
 * Due nomi di dominio puntati correttamente sul vostro server con un record A.
-    * Anche due sottodomini andrebbero bene. Un dominio con un record di sottodominio wildcard anche, o un dominio LAN personalizzato... il disegno è chiaro.
+    * Anche due sottodomini andrebbero bene. Un dominio con un record di sottodominio wildcard può andare bene, oppure un dominio LAN personalizzato.
 * Un editor di testo a riga di comando. *nano* va bene, *micro* è il mio preferito, ma si può usare quello che si preferisce.
-* *Potete* seguire l'intero tutorial come utente root, ma probabilmente non dovreste farlo. Dopo l'installazione iniziale di LXC/LXD, vi guideremo nella creazione di un utente non privilegiato specifico per i comandi LXD.
-* Ora abbiamo immagini di Rocky Linux su cui basare i vostri container, e sono fantastiche.
-* Se non avete molta dimestichezza con Nginx o Apache, **dovrete** consultare alcune delle nostre altre guide se volete ottenere un server di produzione completo e funzionante. Non preoccupatevi, li linkerò qui sotto.
+* *Potete* seguire l'intero tutorial come utente root, ma non è una buona idea. Dopo l'installazione iniziale di LXC/LXD, vi guideremo nella creazione di un utente non privilegiato specifico per i comandi LXD.
+* Le immagini di Rocky Linux su cui basare i container sono ora disponibili.
+* Se non avete molta familiarità con Nginx o Apache, allora **dovrete** consultare alcune delle nostre altre guide se volete ottenere un server di produzione completo e funzionante. Non preoccupatevi, le inserirò nei link qui sotto.
 
 ## Impostazione dell'Ambiente del Server Host
 
-Quindi qui copierò e incollerò dei pezzi dall'altra guida di LXD, per comodità vostra e mia. Il merito della maggior parte di questa parte va a Steven Spencer.
-
 ### Installa il repository EPEL
 
-LXD richiede il repository EPEL (Extra Packages for Enterprise Linux), che è facile da installare:
+LXD richiede il repository EPEL (Extra Packages for Enterprise Linux), facile da installare con:
 
 ```bash
 dnf install epel-release
@@ -74,17 +70,17 @@ Una volta installato, controllate gli aggiornamenti:
 dnf update
 ```
 
-Se ci sono stati aggiornamenti del kernel durante il processo di aggiornamento di cui sopra, riavviare il server
+Se sono stati eseguiti aggiornamenti del kernel durante il processo di aggiornamento di cui sopra, riavviare il server
 
 ### Installazione di snapd
 
-LXD deve essere installato da un pacchetto snap\* per Rocky Linux. Per questo motivo, abbiamo bisogno di installare snapd con:
+LXD deve essere installato da un pacchetto snap\* per Rocky Linux. Per questo motivo, è necessario installare snapd con:
 
 ```bash
 dnf install snapd
 ```
 
-Ora abilitate il servizio snapd per l'avvio automatico al riavvio del server e avviatelo subito:
+Ora abilitate il servizio snapd per l'avvio automatico al riavvio del server e avviatelo direttamente:
 
 ```bash
 systemctl enable snapd
@@ -108,7 +104,7 @@ L'installazione di LXD richiede l'uso del comando snap. A questo punto, stiamo s
 snap install lxd
 ```
 
-Se state eseguendo LXD su un server fisico (AKA "bare metal"), probabilmente dovreste tornare all'altra guida e leggere la sezione "Impostazione dell'Ambiente". Ci sono molte cose interessanti sui kernel, sui file system e molto altro ancora.
+Se state eseguendo LXD su un server fisico (AKA "bare metal"), probabilmente dovreste tornare all'altra guida e leggere la sezione "Impostazione dell'ambiente". C'è un sacco di materiale interessante su kernel e file system, e molto altro ancora.
 
 Se state eseguendo LXD in un ambiente virtuale, riavviate e continuate a leggere.
 
@@ -126,19 +122,19 @@ Ecco le domande e le nostre risposte per lo script, con una piccola spiegazione 
 Would you like to use LXD clustering? (yes/no) [default=no]:
 ```
 
-Se siete interessati al clustering, fate ulteriori ricerche al riguardo [qui](https://lxd.readthedocs.io/en/latest/clustering/). Altrimenti, basta premere "Invio" per accettare l'opzione predefinita.
+Se siete interessati al clustering, fate ulteriori ricerche al riguardo [qui](https://linuxcontainers.org/lxd/docs/master/clustering/). Altrimenti, basta premere "Invio" per accettare l'opzione predefinita.
 
 ```
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
 ```
 
- Accetta il predefinito.
+ Accettare l'impostazione predefinita.
 
 ```
 Name of the new storage pool [default=default]: server-storage
 ```
 
-Scegli un nome per il tuo pool di archiviazione. Mi piace chiamarlo come il server su cui gira LXD. (Un pool di archiviazione è in pratica una quantità prestabilita di spazio su disco rigido messa da parte per i vostri container.)
+Scegliere un nome per il pool di archiviazione. Mi piace chiamarlo come il server su cui gira LXD. (Un pool di archiviazione è in pratica una quantità prestabilita di spazio su disco rigido messa da parte per i vostri container)
 
 ```
 Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]: lvm
@@ -152,19 +148,19 @@ In un ambiente virtuale, ho scoperto che "LVM" funziona bene e di solito è quel
 Create a new LVM pool? (yes/no) [default=yes]:
 ```
 
-Se si dispone di un disco rigido o di una partizione specifica che si desidera utilizzare per l'intero pool di archiviazione, scrivere "yes". Se state facendo tutto questo su un VPS, probabilmente *dovrete* scegliere "no".
+Se si dispone di un disco rigido o di una partizione specifica che si desidera utilizzare per l'intero pool di archiviazione, scrivere " yes". Se state facendo tutto questo su un VPS, probabilmente *dovrete* scegliere "no".
 
 ```
 `Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]:`
 ```
 
-Metal As A Service (MAAS) non rientra nel campo di applicazione del presente documento. Accettare le impostazioni predefinite per il prossimo punto.
+Il Metal As A Service (MAAS) non rientra nell'ambito di questo documento. Accettare le impostazioni predefinite.
 
 ```
 Would you like to connect to a MAAS server? (yes/no) [default=no]:
 ```
 
-E più default. Va tutto bene.
+E ancora altri default. È tutto a posto.
 
 ```
 Would you like to create a new local network bridge? (yes/no) [default=yes]:
@@ -174,19 +170,19 @@ What should the new bridge be called? [default=lxdbr0]: `
 What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
 ```
 
-Se si desidera utilizzare IPv6 sui propri contenitori LXD, è possibile attivare la prossima opzione. Questo dipende da voi, ma per lo più non dovrebbe essere necessario. Penso. Io tendo a lasciarlo fuori dalla pigrizia.
+Se si desidera utilizzare IPv6 sui propri contenitori LXD, è possibile attivare la prossima opzione. Questo dipende da voi, ma per lo più non dovrebbe essere necessario.
 
 ```
 What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
 ```
 
-Questo è necessario per eseguire facilmente il backup del server e può consentire di gestire l'installazione di LXD da altri computer. Se tutto questo vi convince, rispondete "yes" qui
+Questo è necessario per eseguire facilmente il backup del server e può consentire di gestire l'installazione di LXD da altri computer. Se tutto questo vi sembra buono, rispondete " yes"
 
 ```
 Would you like the LXD server to be available over the network? (yes/no) [default=no]: yes
 ```
 
-Se avete risposto sì alle ultime domande, accettate i valori predefiniti:
+Se avete risposto sì alle ultime domande, scegliete i valori predefiniti:
 
 ```
 Address to bind LXD to (not including port) [default=all]:
@@ -194,7 +190,7 @@ Address to bind LXD to (not including port) [default=all]:
 Port to bind LXD to [default=8443]:
 ```
 
-Ora vi verrà chiesta una password di fiducia. È il modo in cui ci si connette al server host LXC da altri computer e server, quindi è necessario impostare qualcosa che abbia senso nel proprio ambiente. Salvare la password in un luogo sicuro, ad esempio in un gestore di password.
+Ora vi verrà chiesta una password di fiducia. È il modo in cui ci si connette al server host LXC da altri computer e server, quindi è necessario impostare qualcosa che abbia senso nel proprio ambiente. Salvate la password in un luogo sicuro, ad esempio in un gestore di password.
 
 ```
 Trust password for new clients:
@@ -202,7 +198,7 @@ Trust password for new clients:
 Again:
 ```
 
-E poi proseguire con i valori predefiniti da qui in avanti:
+E poi continuare a utilizzare i valori predefiniti da qui in avanti:
 
 ```
 Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
@@ -226,29 +222,29 @@ passwd lxdadmin
 
 Come per le altre password, salvatela in un luogo sicuro.
 
-## Impostare Il Tuo Firewall
+## Impostare il vostro Firewall
 
-Prima di fare qualsiasi altra cosa con i contenitori, è necessario essere in grado di accedere al server proxy dall'esterno. Se il firewall blocca la porta 80 (la porta predefinita utilizzata per il traffico HTTP/web) o la porta 443 (utilizzata per il traffico web HTTPS/*sicuro*), non si potrà fare molto a livello di server.
+Prima di fare qualsiasi altra cosa con i container, è necessario poter accedere al server proxy dall'esterno. Se il firewall blocca la porta 80 (la porta predefinita utilizzata per il traffico HTTP/web) o la porta 443 (utilizzata per il traffico web HTTPS/*sicuro*), non si potrà fare molto a livello di server.
 
 L'altra guida di LXD mostra come farlo con il firewall *iptables*, se è questo che si vuole fare. Tendo a utilizzare il firewall predefinito di CentOS: *firewalld*. Ecco cosa faremo questa volta.
 
-`firewalld` è configurato tramite il comando `firewall-cmd`. **La prima cosa da fare**, prima di aprire qualsiasi porta, è assicurarsi che ai container possano essere assegnati automaticamente gli indirizzi IP:
+`firewalld` è configurato tramite il comando `firewall-cmd`. **La prima cosa da fare,** prima di aprire qualsiasi porta, è assicurarsi che ai container possano essere assegnati automaticamente gli indirizzi IP:
 
 ```bash
 firewall-cmd --zone=trusted --permanent --change-interface=lxdbr0
 ```
 
-!!! Warning
+!!! Warning "Attenzione"
 
     Se non si esegue quest'ultimo passaggio, i contenitori non saranno in grado di accedere correttamente a Internet o tra loro. Si tratta di un elemento pazzescamente essenziale, e conoscerlo vi risparmierà *anni* di frustrazione.
 
-Ora, per aggiungere una nuova porta, basta eseguire questa operazione:
+Ora, per aggiungere una nuova porta, basta eseguire questa istruzione:
 
 ```bash
 firewall-cmd --permanent --zone=public --add-port=80/tcp
 ```
 
-Scomponiamo il tutto:
+Vediamo di analizzare il tutto:
 
 * La flag `--permanent` dice al firewall di assicurarsi che questa configurazione sia usata ogni volta che il firewall viene riavviato, e quando il server stesso viene riavviato.
 * `--zone=public` dice al firewall di accettare connessioni in entrata a questa porta da chiunque.
@@ -260,7 +256,7 @@ Per ripetere il processo per il traffico HTTPS, basta eseguire nuovamente il com
 firewall-cmd --permanent --zone=public --add-port=443/tcp
 ```
 
-Queste configurazioni non avranno effetto finché non si forzerà il processo. Per farlo, dite a *firewalld* di ricaricare le sue configurazioni, in questo modo:
+Queste configurazioni non avranno effetto finché non forzerete la questione. Per farlo, dite a *firewalld* di ricaricare le sue configurazioni, in questo modo:
 
 ```bash
 firewall-cmd --reload
@@ -293,9 +289,9 @@ public (active)
 
 E questo dovrebbe essere tutto ciò di cui avete bisogno, a livello di firewall.
 
-## Impostazione Dei Container
+## Impostazione dei Container
 
-In realtà la gestione dei container è piuttosto semplice. Pensate che è come poter richiamare un intero computer a comando e avviarlo o fermarlo a piacimento. È inoltre possibile accedere a tale "computer" ed eseguire qualsiasi comando, proprio come si farebbe con il server host.
+In realtà la gestione dei container è piuttosto semplice. Pensate che è come poter evocare un intero computer a comando e avviarlo o fermarlo a piacimento. È inoltre possibile accedere a tale "computer" ed eseguire qualsiasi comando, proprio come si farebbe con il server host.
 
 !!! Note "Nota"
 
@@ -303,23 +299,23 @@ In realtà la gestione dei container è piuttosto semplice. Pensate che è come 
 
 Per questa esercitazione sono necessari tre container: il server reverse proxy, un server Nginx di prova e un server Apache di prova, tutti eseguiti su container basati su Rocky.
 
-Se per qualche motivo si ha bisogno di un container completamente privilegiato (e per lo più non lo si dovrebbe), si possono eseguire tutti questi comandi come root.
+Se per qualche motivo si ha bisogno di un container completamente riservato (e per lo più non dovrebbe), si possono eseguire tutti questi comandi come root.
 
 Per questa esercitazione sono necessari tre container:
 
-Li chiameremo "proxy-server" (per il contenitore che dirigerà il traffico web agli altri due contenitori), "nginx-server" e "apache-server". Sì, vi mostrerò come effettuare il reverse proxy su entrambi i server *nginx* e *apache*. Cose come *docker* o le applicazioni NodeJS possono aspettare fino a quando non lo capirò da me.
+Li chiameremo "proxy-server" (per il container che dirigerà il traffico web agli altri due container), "nginx-server" e "apache-server". Sì, vi mostrerò come effettuare il reverse proxy sia verso i server basati su *nginx* che su *apache*.
 
-Cominciamo a capire su quale immagine vogliamo basare i nostri container. Per questa esercitazione, utilizzeremo solo Rocky Linux. L'uso di Alpine Linux, ad esempio, può portare a container molto più piccoli (se l'archiviazione è un problema), ma questo esula dallo scopo di questo documento.
+Cominciamo con lo stabilire su quale immagine vogliamo basare i nostri container. Per questa esercitazione, utilizzeremo solo Rocky Linux. L'uso di Alpine Linux, ad esempio, può portare a container molto più piccoli (se l'archiviazione è un problema), ma questo va oltre lo scopo di questo documento.
 
-### Trovare l'Immagine Desiderata
+### Trovare l'immagine desiderata
 
-Ecco il metodo breve per avviare un container con Rocky Linux:
+Ecco il metodo rapido per avviare un container con Rocky Linux:
 
 ```bash
 lxc launch images:rockylinux/8/amd64 my-container
 ```
 
-Naturalmente, quel "my-container" alla fine deve essere rinominato con il nome del contenitore che si desidera, ad es. “proxy-server”. La parte "/amd64" dovrebbe essere cambiata in "arm64" se si sta facendo tutto questo su qualcosa come un Raspberry Pi.
+Naturalmente, quel "my-container" alla fine deve essere rinominato con il nome del container che si desidera, ad es. “proxy-server”. La parte "/amd64" dovrebbe essere cambiata in "arm64" se si sta facendo tutto questo su qualcosa come un Raspberry Pi.
 
 Ecco la versione lunga: per trovare le immagini desiderate, si può usare questo comando per elencare tutte le immagini disponibili nei repository LXC principali:
 
@@ -335,7 +331,7 @@ Oppure, ci si può semplificare la vita e specificare il tipo di Linux che si de
 lxc image list images: | grep rockylinux
 ```
 
-Dovrebbe venire stampato un elenco molto più breve, simile a questo:
+Dovrebbe essere visualizzato un elenco molto più breve, simile a questo:
 
 ```bash
 | rockylinux/8 (3 more)                    | 4e6beda70200 | yes    | Rockylinux 8 amd64 (20220129_03:44)          | x86_64       | VIRTUAL-MACHINE | 612.19MB  | Jan 29, 2022 at 12:00am (UTC) |
@@ -346,7 +342,7 @@ Dovrebbe venire stampato un elenco molto più breve, simile a questo:
 | rockylinux/8/cloud/arm64                 | 9f49e80afa5b | yes    | Rockylinux 8 arm64 (20220129_03:44)          | aarch64      | CONTAINER       | 143.15MB  | Jan 29, 2022 at 12:00am (UTC) |
 ```
 
-### Creazione Dei Container
+### Creazione dei Container
 
 !!! Note "Nota"
 
@@ -382,21 +378,21 @@ Il risultato dovrebbe essere simile a questo (anche se, se si è scelto di usare
 +---------------+---------+-----------------------+------+-----------+-----------+
 ```
 
-#### Una Parola sulla Rete di Container
+#### Una parola sulla Rete di Container
 
-Nella guida collegata all'inizio di questa c'è un intero tutorial su come impostare LXC/LXD per lavorare con Macvlan. Questo è particolarmente utile se si gestisce un server locale e si vuole che ogni contenitore abbia un indirizzo IP visibile sulla rete locale.
+Quindi l'altra guida riportata all'inizio di questa ha un intero tutorial su come impostare LXC/LXD per lavorare con Macvlan. Questo è particolarmente utile se si gestisce un server locale e si vuole che ogni container abbia un indirizzo IP visibile sulla rete locale.
 
-Quando si lavora su un VPS, spesso non si ha questa possibilità. In effetti, potreste avere un solo indirizzo IP con cui siete autorizzati a lavorare. Non è un problema. La configurazione di rete predefinita è progettata per soddisfare questo tipo di limitazioni; rispondendo alle domande di `lxd init` come ho specificato sopra *si dovrebbe* occupare di tutto.
+Quando si lavora su un VPS, spesso non si ha questa possibilità. In effetti, potreste avere un solo indirizzo IP con cui siete autorizzati a lavorare. La configurazione di rete predefinita è progettata per soddisfare questo tipo di limitazioni; rispondendo alle richieste `lxd init` come ho specificato sopra *dovrebbe* occuparsi di tutto.
 
-Fondamentalmente, LXD crea un dispositivo di rete virtuale chiamato bridge (di solito chiamato "lxdbr0") e tutti i contenitori vengono connessi a quel bridge per impostazione predefinita. Attraverso di esso, possono connettersi a Internet tramite il dispositivo di rete predefinito dell'host (Ethernet, wi-fi o un dispositivo di rete virtuale fornito dal VPS). Inoltre, cosa ancora più importante, tutti i container possono connettersi tra loro.
+Fondamentalmente, LXD crea un dispositivo di rete virtuale chiamato bridge (di solito chiamato "lxdbr0") e tutti i container vengono connessi a quel bridge per impostazione predefinita. Attraverso di esso, possono connettersi a Internet tramite il dispositivo di rete predefinito dell'host (Ethernet, wi-fi o un dispositivo di rete virtuale fornito dal VPS). Cosa ancora più importante, tutti i container possono connettersi tra loro.
 
-Per garantire questa connessione tra i container, *ogni contenitore ottiene un nome di dominio interno*. Per impostazione predefinita, è solo il nome del contenitore più ".lxd". Quindi il container "proxy-server" è disponibile per tutti gli altri container in "proxy-server.lxd". Ma ecco la cosa *davvero* importante da sapere: per **default i domini ".lxd" sono disponibili solo all'interno dei container stessi.**
+Per garantire questa connessione tra i container, *ogni container ottiene un nome di dominio interno*. Per impostazione predefinita, è solo il nome del contenitore più ".lxd". Quindi il container "proxy-server" è disponibile per tutti gli altri container in "proxy-server.lxd". Ma ecco la cosa *davvero* importante da sapere: per **default i domini ".lxd" sono disponibili solo all'interno dei container stessi.**
 
-Se si esegue `ping proxy-server.lxd` sul sistema operativo host (o altrove), non si ottiene nulla. Questi domini interni, però, ci torneranno molto utili in seguito.
+Se si esegue `ping proxy-server.lxd` sul sistema operativo host (o altrove), non si otterrà nulla. Questi domini interni, però, ci torneranno molto utili in seguito.
 
 Tecnicamente si può cambiare e rendere disponibili i domini interni del container sull'host... ma non l'ho mai capito. Probabilmente è meglio mettere il server reverse proxy in un container, in modo da poter eseguire snapshot e backup con facilità.
 
-### Gestire I Container
+### Gestione dei container
 
 Alcune cose da sapere prima di procedere:
 
@@ -410,7 +406,7 @@ lxc stop mycontainer
 lxc restart mycontainer
 ```
 
-Ehi, anche Linux ha bisogno di riavviarsi ogni tanto. E poi, in realtà, è possibile avviare, arrestare e riavviare tutti i container in una volta sola con i seguenti comandi.
+Anche Linux ha bisogno di riavviarsi a volte. È possibile avviare, arrestare e riavviare tutti i container contemporaneamente con i seguenti comandi.
 
 ```bash
 lxc start --all
@@ -420,17 +416,17 @@ lxc restart --all
 
 L'opzione `restart --all` è molto utile per alcuni dei bug temporanei più oscuri.
 
-#### Fare Operazione all'Interno dei Container
+#### Eseguire operazioni all'interno dei container
 
 È possibile controllare il sistema operativo all'interno del container in due modi: si possono semplicemente eseguire comandi al suo interno dal sistema operativo host, oppure si può aprire una shell.
 
-Ecco cosa intendo. Per eseguire un comando all'interno di un container, magari per installare *Apache*, basta usare `lxc exec`, in questo modo:
+Ecco cosa voglio dire. Per eseguire un comando all'interno di un container, ad esempio per installare *Apache*, basta usare `lxc exec`, in questo modo:
 
 ```bash
 lxc exec my-container dnf install httpd -y
 ```
 
-Questo farà sì che *Apache* si installi da solo e si vedrà l'output del comando sul terminale dell'host.
+Questo permetterà a *Apache* di installarsi da solo e di vedere l'output del comando sul terminale dell'host.
 
 Per aprire una shell (in cui è possibile eseguire tutti i comandi desiderati come root), utilizzare questa procedura:
 
@@ -444,19 +440,19 @@ Se, come me, preferite la comodità allo spazio di archiviazione e avete install
 lxc exec my-container fish
 ```
 
-In quasi tutti i casi, verrete automaticamente posizionati sull'account di root e nella directory `/root`.
+In quasi tutti i casi, verrete automaticamente assegnati all'account di root e alla directory `/root`.
 
-Infine, se si è aperta una shell in un container, la si lascia nello stesso modo in cui si lascia qualsiasi shell: con un semplice comando `exit`.
+Infine, se si è aperta una shell in un container, la si abbandona nello stesso modo in cui si abbandona qualsiasi shell: semplicemente con il comando `exit`.
 
 #### Copia dei Container
 
-Ora, se si dispone di un container che si desidera replicare con il minimo sforzo, non è necessario avviarne uno nuovo e installare nuovamente tutte le applicazioni di base. Sarebbe sciocco. Esegui semplicemente:
+Ora, se si dispone di un container che si desidera replicare con il minimo sforzo, non è necessario avviarne uno nuovo e installare nuovamente tutte le applicazioni di base. Questo richiede un lavoro supplementare che non è necessario. Basta eseguire:
 
 ```bash
 lxc copy my-container my-other-container
 ```
 
-Verrà creata una copia esatta di "my-container" con il nome "my-other-container". Tuttavia, potrebbe non avviarsi automaticamente, quindi è necessario apportare eventuali modifiche alla configurazione del nuovo container ed eseguirlo:
+Verrà creata una copia esatta di "my-container" con il nome "my-other-container". Tuttavia, potrebbe non avviarsi automaticamente, quindi si dovranno apportare le eventuali modifiche alla configurazione del nuovo container e poi avviarlo:
 
 ```bash
 lxc start my-other-container
@@ -466,9 +462,9 @@ A questo punto, si potrebbero apportare alcune modifiche, come cambiare l'hostna
 
 #### Configurazione dello Storage & Limiti della CPU
 
-LXC/LXD di solito definisce la quantità di spazio di archiviazione di un container e in generale gestisce le risorse, ma è probabile che si voglia avere il controllo su questo aspetto. Se ci si preoccupa di mantenere i container piccoli, si può usare il comando `lxc config` per rimpicciolirli ed estenderli secondo le necessità.
+LXC/LXD di solito definisce la quantità di spazio di archiviazione di un container e in generale gestisce le risorse, ma è possibile che si voglia avere il controllo su questo aspetto. Se si desidera mantenere i contenitori di dimensioni ridotte, si può usare il comando `lxc config` per rimpicciolirli e allargarli secondo le necessità.
 
-Il comando seguente imposta un limite "soft" di 2GB su un container. Un limite soft è in realtà più che altro una "memoria minima" e il container utilizzerà più memoria se è disponibile. Come sempre, cambiare "my-container" con il nome del container effettivo.
+Il comando seguente imposta un limite "soft" di 2GB su un container. Un limite soft è in realtà più che altro una "memoria minima" e il container utilizzerà più memoria se è disponibile. Come sempre, cambiate "my-container" con il nome del container vero e proprio.
 
 ```bash
 lxc config set my-container limits.memory 2GB
@@ -480,7 +476,7 @@ lxc config set my-container limits.memory 2GB
 lxc config set my-container limits.memory.enforce 2GB
 ```
 
-Se si vuole essere sicuri che un determinato container non possa occupare tutta la potenza di elaborazione disponibile sul server, è possibile limitare i core della CPU a cui ha accesso con questo comando. Basta modificare il numero di core della CPU alla fine, come si ritiene opportuno.
+Se si desidera evitare che un determinato container possa occupare tutta la potenza di elaborazione disponibile sul server, è possibile limitare i core della CPU a cui ha accesso con questo comando. Basta modificare il numero di core della CPU alla fine, a seconda delle esigenze.
 
 ```bash
 lxc config set my-container limits.cpu 2
@@ -494,25 +490,25 @@ Infine, è possibile eliminare i container eseguendo questo comando:
 lxc delete my-container
 ```
 
-Non sarà possibile cancellare il container se è in esecuzione, quindi è necessario fermarlo prima o usare la flag `--force` per saltare questa parte.
+Non sarà possibile eliminare il container se è in esecuzione, quindi lo si può fermare prima o usare la flag `--force` per saltare questa parte.
 
 ```bash
 lxc delete my-container --force
 ```
 
-Ora, grazie al completamento del comando Tab, all'errore dell'utente e al fatto che la "d" si trova accanto alla "s" sulla maggior parte delle tastiere, è possibile cancellare accidentalmente i container. Questo è noto, nel settore, come il BIG OOPS. (O almeno sarà conosciuto come THE BIG OOPS quando avrò finito qui.)
+Ora, grazie al completamento del comando Tab, all'errore dell'utente e al fatto che la "d" si trova accanto alla "s" sulla maggior parte delle tastiere, è possibile cancellare accidentalmente i container.
 
-Per proteggersi da ciò, è possibile impostare qualsiasi container come "protetto" (facendo sì che il processo di cancellazione richieda un passo in più) con questo comando:
+Per evitare che ciò accada, è possibile impostare qualsiasi container come "protetto" (facendo in modo che il processo di cancellazione richieda un passo in più) con questo comando:
 
 ```bash
 lxc config set my-container security.protection.delete true
 ```
 
-Per togliere la protezione al container, basta eseguire di nuovo il comando, cambiando però "true" con "false".
+Per togliere la protezione al contenitore, basta eseguire nuovamente il comando, cambiando "true" in "false".
 
 ## Impostazione dei Server
 
-Ok, ora che i container sono attivi e funzionanti, è il momento di installare ciò che serve. Per prima cosa, assicurarsi che tutti siano aggiornati con i seguenti comandi (saltare il container "proxy-server" se non è stato ancora creato):
+Ok, ora che i container sono attivi e funzionanti, è il momento di installare ciò che serve. Per prima cosa, assicurarsi che tutti siano aggiornati con i seguenti comandi (saltare il contenitore "proxy-server" se non è stato ancora creato):
 
 ```bash
 lxc exec proxy-server dnf update -y
@@ -520,9 +516,9 @@ lxc exec nginx-server dnf update -y
 lxc exec apache-server dnf update -y
 ```
 
-Poi, entrate in ogni container e datevi da fare.
+Poi, entrare in ogni container e iniziare a lavorare.
 
-È inoltre necessario un editor di testo per ogni container. Per impostazione predefinita, Rocky Linux viene fornito con *vi*, ma se volete semplificarvi la vita, *nano* andrà bene. È possibile installarlo in ogni container prima di aprirli.
+È inoltre necessario un editor di testo per ogni container. Per impostazione predefinita, Rocky Linux viene fornito con *vi*, ma se volete semplificarvi la vita, *nano* andrà bene. È necessario installarlo in ogni contenitore prima di aprirlo.
 
 ```bash
 lxc exec proxy-server dnf install nano -y
@@ -530,11 +526,11 @@ lxc exec nginx-server dnf install nano -y
 lxc exec apache-server dnf install nano -y
 ```
 
-In futuro userò *nano* in tutti i comandi relativi all'editor di testo, a vostra scelta.
+In seguito userò *nano* in tutti i comandi relativi all'editor di testo, ma fate voi.
 
 ### Il Server del Sito Web Apache
 
-La faremo breve, a scopo di apprendimento e di verifica. Di seguito trovate il link alle guide Apache complete.
+La faremo breve, a scopo di apprendimento e di verifica. Di seguito trovate il link alle guide complete di Apache.
 
 Per prima cosa, aprite una shell nel vostro container. Si noti che, per impostazione predefinita, i container vi porteranno nell'account di root. Per i nostri scopi, questo va bene, anche se si potrebbe voler creare un utente del server web specifico per la produzione effettiva.
 
@@ -542,13 +538,13 @@ Per prima cosa, aprite una shell nel vostro container. Si noti che, per impostaz
 lxc exec apache-server bash
 ```
 
-Una volta effettuato l'accesso, è sufficiente installare *Apache* in modo semplice:
+Una volta effettuato l'accesso, basta installare *Apache* nel modo più semplice:
 
 ```bash
 dnf install httpd
 ```
 
-Ora, si potrebbe seguire la nostra guida [Impostazione Apache Multi-Sito](../web/apache-sites-enabled.md) da qui in avanti, ma in realtà è un po' eccessivo per i nostri scopi. Di solito non si vuole configurare Apache per più siti web in un ambiente containerizzato come questo. Il punto centrale dei container è la separazione delle operazioni, dopotutto.
+Ora, si potrebbe seguire la nostra guida [Apache Web Server Multi-Site Setup](.../web/apache-sites-enabled.md) da qui in avanti, ma in realtà è un po' eccessivo per i nostri scopi. Di solito non si vuole configurare Apache per più siti web in un ambiente containerizzato come questo. Il punto centrale dei container è la separazione delle problematiche, dopotutto.
 
 Inoltre, i certificati SSL andranno sul server proxy, quindi manterremo le cose semplici.
 
@@ -558,7 +554,7 @@ Una volta installato *Apache*, assicurarsi che sia in funzione e che possa conti
 systemctl enable --now httpd
 ```
 
-La flag `--now` consente di saltare il comando di avvio del server vero e proprio. Come riferimento, si tratta di:
+La flag `--now` consente di saltare il comando di avvio del server vero e proprio. Per riferimento, sarebbe:
 
 ```bash
 systemctl start httpd
@@ -578,19 +574,19 @@ curl localhost
 
 #### Ottenere gli IP degli utenti reali dal server proxy
 
-Ora c'è un passo da fare per preparare Apache all'uso del reverse proxy. Per impostazione predefinita, gli indirizzi IP effettivi degli utenti non vengono registrati dai server nei container del server web. Si vuole che questi indirizzi IP passino perché alcune applicazioni web hanno bisogno degli IP degli utenti per operazioni come la moderazione, il divieto e la risoluzione dei problemi.
+Ora c'è un passo da fare per preparare Apache all'uso del reverse proxy. Per impostazione predefinita, gli indirizzi IP effettivi degli utenti non vengono registrati dai server nei container del server web. Si desidera che questi indirizzi IP attraversino la rete, perché alcune applicazioni web hanno bisogno degli IP degli utenti per operazioni come la moderazione, l'interdizione e la risoluzione dei problemi.
 
-Per far sì che gli indirizzi IP dei visitatori superino il server proxy, sono necessari due elementi: le giuste impostazioni del server proxy (di cui parleremo più avanti) e un semplice file di configurazione per il server Apache.
+Per far sì che gli indirizzi IP dei visitatori superino il server proxy, sono necessarie due parti: le giuste impostazioni del server proxy (di cui parleremo più avanti) e un semplice file di configurazione per il server Apache.
 
-Un grande ringraziamento va a Linode e [alla loro guida LXD](https://www.linode.com/docs/guides/beginners-guide-to-lxd-reverse-proxy) per i modelli di questi file di configurazione.
+Un grosso ringraziamento va a Linode e [alla loro guida LXD](https://www.linode.com/docs/guides/beginners-guide-to-lxd-reverse-proxy) per i modelli di questi file di configurazione.
 
-Crea un nuovo file di configurazione:
+Creare un nuovo file di configurazione:
 
 ```bash
 nano /etc/httpd/conf.d/real-ip.conf
 ```
 
-E aggiungete questo testo:
+E aggiungere questo testo:
 
 ```
 RemoteIPHeader X-Real-IP
@@ -599,13 +595,13 @@ RemoteIPTrustedProxy proxy-server.lxd
 
 Ricordarsi di cambiare `proxy-server.lxd` con il nome del container proxy effettivo, se necessario. Ora **non riavviate ancora il server Apache.** Il file di configurazione che abbiamo aggiunto potrebbe causare problemi *fino a quando* non avremo il server proxy attivo e funzionante.
 
-Usciamo dalla shell per ora e iniziamo con il server Nginx.
+Uscire dalla shell per ora e iniziare con il server Nginx.
 
 !!! Note "Nota"
 
     Anche se questa tecnica *funziona* (le applicazioni web e i siti web otterranno gli IP reali degli utenti), i log di accesso di Apache *non mostreranno gli IP giusti* e di solito mostreranno l'IP del container in cui si trova il reverse proxy. A quanto pare si tratta di un problema nel modo in cui Apache registra i log.
     
-    Ho trovato un sacco di soluzioni su Google, ma nessuna di esse ha effettivamente funzionato per me. Guardate questo spazio per vedere se qualcuno, molto più intelligente di me, riuscirà a capirlo. Nel frattempo, potete controllare i registri di accesso del server proxy se avete bisogno di vedere gli indirizzi IP, oppure controllare i registri di qualsiasi applicazione web che state installando.
+    È possibile controllare i registri di accesso del server proxy se si desidera vedere gli indirizzi IP, oppure controllare i registri dell'applicazione web che si sta installando.
 
 ### Il server web Nginx
 
@@ -649,7 +645,7 @@ Quella desiderata è, avete indovinato, il ramo mainline. Abilitare il modulo co
 dnf enable module nginx:mainline
 ```
 
-Vi verrà chiesto se siete sicuri di volerlo fare, quindi scegliete `Y` come al solito. Quindi, utilizzare il comando predefinito per installare Nginx:
+Ti verrà chiesto se sei sicuro di volerlo fare, quindi scegli `Y` come al solito. Quindi, utilizzare il comando predefinito per installare Nginx:
 
 ```bash
 dnf install nginx
@@ -680,7 +676,7 @@ curl [your-container-ip]
 
 #### Ottenere gli IP utente reali dal server proxy (nuovamente)
 
-I log *dovrebbero* funzionare questa volta. Dovrebbero. Per farlo, inseriamo un file molto simile in `/etc/nginx/conf.d`:
+I log *dovrebbero* funzionare questa volta. Dovrebbero. Per farlo, inseriamo un file simile in `/etc/nginx/conf.d`:
 
 ```bash
 nano /etc/nginx/conf.d/real-ip.conf
@@ -706,7 +702,7 @@ Modificateli in tutti i file e le istruzioni, se necessario.
 
 Se si è copiato il container "proxy-server" dal container "nginx-server" e vi si sono aggiunti i dispositivi proxy, basta entrare nella shell. Se il container è stato creato in precedenza, è necessario ripetere tutti i passaggi per l'installazione di Nginx nel container "proxy-server".
 
-Una volta installato e accertato che funziona bene, è sufficiente impostare un paio di file di configurazione per indirizzare il traffico dai domini scelti ai server del sito web vero e proprio.
+Una volta installato e verificato che funziona correttamente, è sufficiente impostare un paio di file di configurazione per indirizzare il traffico dai domini scelti ai server del sito web vero e proprio.
 
 Prima di farlo, assicuratevi di poter accedere a entrambi i server tramite i loro domini interni:
 
@@ -730,7 +726,7 @@ lxc config device add proxy-server myproxy80 proxy listen=tcp:0.0.0.0:80 connect
 lxc config device add proxy-server myproxy443 proxy listen=tcp:0.0.0.0:443 connect=tcp:127.0.0.1:443
 ```
 
-Vediamo di analizzare la situazione. Ogni comando aggiunge un "dispositivo" virtuale al container proxy-server. Questi dispositivi sono impostati per ascoltare la porta 80 e la porta 443 del sistema operativo host e sono collegati alla porta 80 e alla porta 443 del container. Ogni dispositivo ha bisogno di un nome, quindi ho scelto "myproxy80" e "myproxy443".
+Vediamo di analizzare la situazione. Ogni comando aggiunge un "device" virtuale al container proxy-server. Questi dispositivi sono impostati per ascoltare la porta 80 e la porta 443 del sistema operativo host e sono collegati alla porta 80 e alla porta 443 del container. Ogni dispositivo ha bisogno di un nome, quindi ho scelto "myproxy80" e "myproxy443".
 
 L'opzione "listen" è la porta del sistema operativo host e, se non sbaglio, 0.0.0.0 è l'indirizzo IP dell'host sul bridge "lxdbr0". L'opzione "connect" indica l'indirizzo IP locale e le porte a cui ci si connette.
 
@@ -738,7 +734,7 @@ L'opzione "listen" è la porta del sistema operativo host e, se non sbaglio, 0.0
 
     Una volta impostati questi dispositivi, è necessario riavviare tutti i container, per sicurezza.
 
-Questi dispositivi virtuali dovrebbero essere idealmente univoci. Di solito è meglio non aggiungere un dispositivo "myport80" a un altro container in esecuzione; dovrà essere chiamato in un altro modo.
+Questi dispositivi virtuali dovrebbero essere idealmente unici. Di solito è meglio non aggiungere un dispositivo "myport80" a un altro container in esecuzione; dovrà essere chiamato in un altro modo.
 
 *Allo stesso modo, solo un container alla volta può ascoltare su una specifica porta del sistema operativo host.*
 
@@ -750,7 +746,7 @@ Nel container "proxy-server", creare un file di configurazione chiamato `apache-
 nano /etc/nginx/conf.d/apache-server.conf
 ```
 
-Quindi incollate questo testo, modificate il nome del dominio come necessario e salvatelo:
+Quindi incollate questo test, modificate il nome del dominio secondo necessità e salvatelo:
 
 ```
 upstream apache-server {
@@ -789,9 +785,9 @@ Vediamo di scomporlo un po':
 
 Per ogni file di configurazione di LXD/sito web, è necessario modificare le impostazioni di `upstream`, `server`, `server_name` e `proxy_pass`. Il testo dopo "http://" in `proxy-pass` deve corrispondere al testo che viene dopo il testo `upstream`.
 
-Ricaricare il server con `systemctl restart nginx`, quindi puntare il browser sul dominio utilizzato invece che su `apache.server.test`. Se vedete una pagina che assomiglia a questa, siete a posto:
+Ricaricare il server con `systemctl restart nginx`, quindi puntare il browser sul dominio che si sta usando al posto di `apache.server.test`. Se la pagina ha questo aspetto, il successo è assicurato:
 
-![Schermata della pagina di benvenuto predefinita di Rocky Linux Apache](../images/lxd-web-server-03.png)
+![A screenshot of the default Rocky Linux Apache welcome page](../images/lxd-web-server-03.png)
 
 !!! Note "Nota"
 
@@ -830,9 +826,9 @@ server {
 }
 ```
 
-Ancora una volta, ricaricate il server proxy, puntate il browser all'indirizzo appropriato e sperate che la divinità che preferite veda questo:
+Di nuovo, ricaricate il server proxy, puntate il browser all'indirizzo appropriato e auguratevi di vedere questo:
 
-![Una schermata della pagina di benvenuto predefinita di Rocky Linux Nginx](../images/lxd-web-server-04.png)
+![A screenshot of the default Rocky Linux Nginx welcome page](../images/lxd-web-server-04.png)
 
 #### Riavviare i server nei container che ospitano il server web
 
@@ -893,7 +889,7 @@ Select the appropriate numbers separated by commas and/or spaces, or leave input
 blank to select all options shown (Enter 'c' to cancel):
 ```
 
-Verrà visualizzato un testo di conferma e il gioco è fatto. Ma se andate sui vostri siti web, potreste scoprire che non funzionano. Questo perché quando certbot crea la configurazione aggiornata, dimentica una cosa molto importante.
+Verrà visualizzato un testo di conferma e la procedura sarà conclusa. Ma se andate sui vostri siti web, potreste scoprire che non funzionano. Questo perché quando certbot crea la configurazione aggiornata, dimentica una cosa molto importante.
 
 Andate nei file `apache-server.conf` e `nginx-server.conf` e trovate le due righe seguenti:
 
@@ -902,7 +898,7 @@ listen [::]:443 ssl ipv6only=on; # managed by Certbot
 listen 443 ssl; # managed by Certbot
 ```
 
-Sì, manca l'impostazione `proxy_protocol` e questo è un male. Aggiungetelo voi stessi.
+Sì, manca l'impostazione `proxy_protocol` e questo non va bene. Aggiungetelo voi stessi.
 
 ```
 listen proxy_protocol [::]:443 ssl ipv6only=on; # managed by Certbot
