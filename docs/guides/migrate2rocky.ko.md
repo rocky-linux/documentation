@@ -78,7 +78,7 @@ git clone https://github.com/rocky-linux/rocky-tools.git
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
 ```
 
-이 명령은 파일을 직접 서버로 다운로드하며, 원하는 파일만 다운로드합니다. 그러나 보안 문제 때문에 이것이 항상 최상의 방법은 아니라는 점을 기억하세요.
+이 명령은 파일을 직접 서버로 다운로드하며, *원하는 파일만* 다운로드합니다. 그러나 보안 문제 때문에 이것이 항상 최상의 방법은 아니라는 점을 기억하세요.
 
 ## 스크립트 실행 및 설치
 
