@@ -1,0 +1,42 @@
+---
+INHERIT: ../build_base.yml
+
+docs_dir: '../../docs/guides'
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 1
+  ordered_chapter_level: 3
+  verbose: false
+  back_cover: true
+
+# You are free to configure here what you want
+plugins:
+  - with-pdf:
+      <<: *pdf-config
+      cover_title: Rocky Linux Middlewares Guide (Italian version)
+      output_path: ../pdf/RockyLinuxMiddlewaresGuide.it.pdf
+
+# Customize your own book
+nav:
+  - database/database_mariadb-server.it.md
+  - dns/private_dns_server_using_bind.it.md
+  - email/postfix_reporting.it.md
+  - file_sharing/glusterfs.it.md
+  - file_sharing/sftp.it.md
+  - file_sharing/secure_ftp_server_vsftpd.it.md
+  - network/librenms_monitoring_server.it.md
+  - proxies/pound.it.md
+  - web/nginx-mainline.it.md
+  - web/nginx-multisite.it.md
+  - web/apache_hardened_webserver/index.it.md
+  - web/apache_hardened_webserver/modsecurity.it.md
+  - web/apache_hardened_webserver/ossec-hids.it.md
+  - web/apache_hardened_webserver/rkhinter.it.md
+  - web/mod_SSL_apache.it.md
+  - web/apache-sites-enabled.it.md
+  - web/php.it.md

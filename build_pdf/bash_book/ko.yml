@@ -1,0 +1,32 @@
+---
+INHERIT: ../build_base.yml
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 3
+  ordered_chapter_level: 3
+  verbose: false
+  back_cover: true
+  
+# You are free to configure here what you want
+plugins:
+  - with-pdf:
+      <<: *pdf-config
+      cover_title: Learning Bash with Rocky (Korean version)
+      output_path: ../pdf/LearningBashWithRocky.ko.pdf
+
+# Customize your own book
+nav:
+  - learning_bash/00-toc.ko.md
+  - learning_bash/01-first-script.ko.md
+  - learning_bash/02-using-variables.ko.md
+  - learning_bash/03-data-entry-and-manipulations.ko.md
+  - learning_bash/04-check-your-knowledge.ko.md
+  - learning_bash/05-tests.ko.md
+  - learning_bash/06-conditionnal-structures.ko.md
+  - learning_bash/07-loops.ko.md
+  - learning_bash/08-check-your-knowledge.ko.md
