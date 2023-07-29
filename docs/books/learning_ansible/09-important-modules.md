@@ -11,32 +11,29 @@ Ansible modules are reusable pieces of code that can be used to control system r
 
 # Commonly used modules 
 
+##  Package management
 
-1. Package management
+The Ansible package management module allows you to install, upgrade, downgrade, remove, and list packages on a system. Here are some examples of how to use the package management module:
 
-    The Ansible package management module allows you to install, upgrade, downgrade, remove, and list packages on a system. Here are some examples of how to use the package management module:
+To install the latest version of Apache and MariaDB, you would use the following code:
 
-    To install the latest version of Apache and MariaDB, you would use the following code:
-
-    ```
     - name: install latest version of Apache and nginx
       dnf:
         name:
         - httpd
         - nginx
         state: latest
-    ```
-2. File
 
-    The Ansible file module is used to manage files and file properties on remote hosts. It can create, delete, update, and manage the permissions of files. The file module also supports a number of other features, such as creating symlinks, managing file contents, and managing file timestamps.
+##  File
 
-    To create a file name as ansibletarget.txt and set permissions to 0777
+The Ansible file module is used to manage files and file properties on remote hosts. It can create, delete, update, and manage the permissions of files. The file module also supports a number of other features, such as creating symlinks, managing file contents, and managing file timestamps.
 
-    ```
+To create a file name as ansibletarget.txt and set permissions to 0777
+
     - name: Change file ownership, group and permissions
       file:
         path: /etc/ansibletarget.txt
         owner: foo
         group: foo
         mode: '0777'
-    ```
+    
