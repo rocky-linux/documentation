@@ -23,7 +23,7 @@ This is also a companion document to the [Docker version here](rockydocs_web_dev
 * LXD reference - there is a long document on [building and using LXD on a server here](../../books/lxd_server/00-toc.md), but you will use just a basic install on our Linux workstation
 * Using `lsyncd` for mirroring files. See [documentation on that here](../backup/mirroring_lsyncd.md)
 * You will need public keys generated for your user and the "root" user on your local workstation using [this document](../security/ssh_public_private_keys.md)
-* Our bridge interface is running on 10.56.233.1 and our container is running on 10.56.233.189 in our examples, however your IPs for the bridge and container will be different 
+* Our bridge interface is running on 10.56.233.1 and our container is running on 10.56.233.189 in our examples. However your IPs for the bridge and container will be different. 
 * "youruser" in this document represents your user id
 * The assumption is that you are already doing documentation development with a clone of the documentation repository on your workstation
 
@@ -31,7 +31,7 @@ This is also a companion document to the [Docker version here](rockydocs_web_dev
 
 ### Create the container
 
-Our first step is to create the LXD container. Using the defaults (bridge interface) for your container is perfectly fine here.
+Our first step is to create the LXD container. Using your container's defaults (bridge interface) is perfectly fine here.
 
 You will add a Rocky container to our workstation for `mkdocs`. Just name it "mkdocs":
 
@@ -39,7 +39,7 @@ You will add a Rocky container to our workstation for `mkdocs`. Just name it "mk
 lxc launch images:rockylinux/8 mkdocs
 ```
 
-The container needs to be a proxy . By default, when `mkdocs serve` starts, it runs on 127.0.0.1:8000. That is fine when it is on your local workstation without a container. However, when it is in an LXD **container** on your local workstation, you need to set up the container with a proxy port. Do this with:
+The container needs to be a proxy. By default, when `mkdocs serve` starts, it runs on 127.0.0.1:8000. That is fine when it is on your local workstation without a container. However, when it is in an LXD **container** on your local workstation, you need to set up the container with a proxy port. Do this with:
 
 ```
 lxc config device add mkdocs mkdocsport proxy listen=tcp:0.0.0.0:8000 connect=tcp:127.0.0.1:8000
@@ -91,7 +91,7 @@ You need to set a password for our root user and then add our user (the user you
 passwd
 ```
 
-Set the password to something secure and memorable.
+Set a secure and memorable password.
 
 Next, add your user and set a password:
 
@@ -106,7 +106,7 @@ Add your user to the sudoers group:
 usermod -aG wheel youruser
 ```
 
-At this point, you should be able to SSH into the container with the root user or your user from your workstation and entering a password. Ensure that you can do that before continuing.
+You should be able to SSH into the container with the root user or your user from your workstation and enter a password. Ensure that you can do that before continuing.
 
 ## SSH for root and your user
 
@@ -133,7 +133,7 @@ To get SSH access on our container without having to enter a password, provided 
 ssh-copy-id root@10.56.233.189
 ```
 
-For our user, however, you need the entire `.ssh/` directory copied to our container. The reason is that you will keep everything the same for this user so that our access to GitHub over SSH is the same. 
+For our user, however, you need the entire `.ssh/` directory copied to our container. You will keep everything the same for this user so that our access to GitHub over SSH is the same. 
 
 To copy everything over to our container, you just need to do this as your user, **not** sudo:
 
@@ -178,7 +178,7 @@ If you get errors, return to the steps above and ensure that those are all corre
 
 Installing the needed plugins is all done with `pip3` and the "requirements.txt" file in the docs.rockylinux.org directory. While this process will argue with you about using the root user to write the changes to the system directories, you have to run it as root. 
 
-You are doing this with `sudo` here.
+You do this with `sudo` here.
 
 Change into the directory:
 
@@ -245,9 +245,9 @@ http://your-server-ip:8000
 
 You are almost there if you saw the documentation in the web browser. The last step is to keep the documentation in your container synchronized with the one on your local workstation. 
 
-You are doing this here with `lsyncd` as noted above.
+As noted above, you are doing this here with `lsyncd`.
 
-Installation of`lsyncd` is different depending on which Linux version you are using. [This document](../backup/mirroring_lsyncd.md) covers ways to install it on Rocky Linux, and also from source. If you are using other Linux types (Ubuntu for example) they generally have their own packages, but there are nuances to them.
+Installation of`lsyncd` differs depending on your Linux version. [This document](../backup/mirroring_lsyncd.md) covers ways to install it on Rocky Linux, and also from source. If you are using other Linux types (Ubuntu for example) they generally have their own packages, but they have nuances.
 
 Ubuntu's, for example, names the configuration file differently. Just be aware that if you are using another Linux workstation type other than Rocky Linux, and do not want to install from source, there are probably packages available for your platform.
 
