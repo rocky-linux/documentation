@@ -487,8 +487,6 @@ Finally execute the `systemctl restart postfix.service` command. At this point, 
 Shell(192.168.100.6) > dnf config-manager --enable devel && dnf -y install dovecot dovecot-devel
 ```
 
-As with postfix, to view the complete configuration information, enter the `doveconf` command
-
 Without changing any files, the original directory structure is as follows:
 
 ```bash
@@ -524,4 +522,22 @@ Shell(192.168.100.6) > tree /etc/dovecot/
 ```
 
 Yes, both postfix and dovecot have very complex configurations, which is why it is recommended that the vast majority of GNU/Linux system administrators use open-source email servers.
+
+As with postfix, to view the complete configuration information, enter the `doveconf` command. 
+
+The file description is as follows:
+
+* **dovecot.conf**: The main configuration file of dovecot. 
+  
+  * Load sub configuration files through the method of `!include conf.d/*.conf`. Dovecot doesn’t care which settings are in which files. 
+  * The Numeral prefix of the sub configuration file is to facilitate human understanding of its parsing order.
+  * Due to historical reasons there are still some config files that are external to the main `dovecot.conf`, which are typically named `*.conf.ext`.
+  * In the configuration file, you can use variables, which are divided into **Global variables** and **User variables**, starting with `%`. See [here](https://doc.dovecot.org/configuration_manual/config_file/config_variables/#config-variables).
+
+* **10-auth.conf**. Configuration related to identity authentication.
+* **10-logging.conf**. Log related configuration. It can be very useful in performance analysis, software debugging, etc.
+* **10-mail.conf**. Configuration of mailbox locations and namespaces. By default, the value of the user's mailbox location is empty, which means that Dovecot automatically looks for the mailbox location. When the user does not have any mail, you must explicitly tell Dovecot the location of all mailboxes.
+* **10-metrics.conf**. Configuration related to statistical information.
+* **15-mailboxes.conf**. Configuration of mailbox definition.
+
 
