@@ -8,7 +8,7 @@ update: 13-Feb-2023
 # Running the docs.rockylinux.org website locally for web development | Podman
 
 
-This document walks through the steps of how to recreate and run a local copy of the entire docs.rockylinux.org website on your local machine.
+This document walks through how to recreate and run a local copy of the entire docs.rockylinux.org website on your local machine.
 Running a local copy of the documentation website might be useful in the following scenarios:
 
 * You are interested in learning about and contributing to the web development aspects of the docs.rockylinux.org website
@@ -17,11 +17,11 @@ Running a local copy of the documentation website might be useful in the followi
 
 ## Create the content environment
 
-1. Make sure that the prerequisites are satisfied. If not please skip to the "[Setup the prerequisites](#setup-the-prerequisites)" section and then return here. 
+1. Ensure that the prerequisites are satisfied. If not please skip to the "[Setup the prerequisites](#setup-the-prerequisites)" section and then return here. 
 
 2. Change the current working directory on your local system to a folder where you intend to do your writing. 
-  We'll refer to this directory as
-`$ROCKYDOCS` in the rest of this guide.  For our demo here, `$ROCKYDOCS` points to `$HOME/projects/rockydocs` on our demo system.
+  We will refer to this directory as
+`$ROCKYDOCS` in the rest of this guide. For our demo here, `$ROCKYDOCS` points to `$HOME/projects/rockydocs` on our demo system.
 
 Create $ROCKYDOCS if it doesn't already exist and change your working directory to $ROCKYDOCS type:
 
@@ -31,26 +31,26 @@ export ROCKYDOCS=${HOME}/projects/rockydocs
 cd  $ROCKYDOCS
 ```
 
-3. Make sure you have `git` installed (`dnf -y install git`).  While in $ROCKYDOCS use git to clone the official Rocky Documentation content repo. Type:
+3. Ensure you have `git` installed (`dnf -y install git`).  While in $ROCKYDOCS use git to clone the official Rocky Documentation content repo. Type:
 
 ```
 git clone https://github.com/rocky-linux/documentation.git
 ```
 
-You'll now have a `$ROCKYDOCS/documentation` folder. This folder is a git repository and under git's control.
+You will now have a `$ROCKYDOCS/documentation` folder. This folder is a git repository and under git's control.
 
-4. Also use git to clone the official docs.rockylinux.org repo. Type:
+4. Also use `git` to clone the official docs.rockylinux.org repo. Type:
 
 ```
 git clone https://github.com/rocky-linux/docs.rockylinux.org.git
 ```
 
-You'll now have a `$ROCKYDOCS/docs.rockylinux.org` folder. This folder is where you can experiment with your web development contributions.
+You will now have a `$ROCKYDOCS/docs.rockylinux.org` folder. This folder is where you can experiment with your web development contributions.
 
 
 ## Create and Start the RockyDocs web developmwnt environment
 
-5.  Make sure you have podman up and running on your local machine (you can check with `systemctl `). Test by running:
+5.  Ensure you have Podman up and running on your local machine (you can check with `systemctl `). Test by running:
 
 ```
 systemctl  enable --now podman.socket
@@ -110,7 +110,7 @@ docker-compose  up
 
 ## View the local docs.rockylinux.org website
 
-8. Just in case you have a firewall running on your Rocky Linux system, ensure that port 8001 is open. Type:
+8. If you have a firewall running on your Rocky Linux system, ensure that port 8001 is open. Type:
 
 ```
 firewall-cmd  --add-port=8001/tcp  --permanent
@@ -123,14 +123,14 @@ http://localhost:8001
 
 OR
 
-http://<SERVER_IP>:8001
+http://SERVER_IP:8001
 
 
 
 
 ## Setup the prerequisites
 
-Install and setup podman and other tools by running:
+Install and setup Podman and other tools by running:
 
 ```
 sudo dnf -y install podman podman-docker git
@@ -157,8 +157,8 @@ sudo chmod 666 /var/run/docker.sock
 
 ### Notes:
 
-* The instructions in this guide are **NOT** a prerequisite for Rocky documentation Authors/Content contributors
-* The entire environment runs in a Podman container and so you'll need Podman properly setup on your local machine
+* The instructions in this guide are **NOT** a prerequisite for Rocky documentation authors or content contributors
+* The entire environment runs in a Podman container and so you will need Podman properly setup on your local machine
 * The container is built on top of the official Rocky Linux 9.1 docker image available here https://hub.docker.com/r/rockylinux/rockylinux
 * The container keeps the documentation content separate from the web engine (mkdocs)
 * The container starts a local web server listening on port 8001. 
