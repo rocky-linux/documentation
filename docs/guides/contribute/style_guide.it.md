@@ -42,7 +42,7 @@ Le **caratteristiche della scrittura tecnica** descritte nel Chicago Manual of S
 * I punti e le virgole vanno dentro le virgolette "così," anziché "così".
 * Il trattino {shift}+{option}+{-} non ha spazi prima o dopo—come questo—ed è preferito per le frasi parentetiche.
 * In un elenco di tre elementi, utilizzare una virgola prima di "e": "Piselli, senape, e carote"
-* I titoli devono essere generalmente realizzati in stile titolo maiuscolo: La prima e l'ultima parola, così come tutti i nomi, i pronomi, i verbi e gli avverbi devono essere scritti in maiuscolo. Se il vostro documento funziona meglio con una capitalizzazione di tipo frase, magari perché fate spesso riferimento ad acronimi, rendetela coerente all'interno dell'intero documento.
+* I titoli devono essere generalmente realizzati in stile titolo maiuscolo: La prima e l'ultima parola, così come tutti i nomi, i pronomi, i verbi e gli avverbi devono essere scritti in maiuscolo. Se il vostro documento funziona meglio con la capitalizzazione in stile frase, magari perché fate spesso riferimento ad acronimi, rendetela coerente all'interno dell'intero documento.
 * I titoli non necessitano di un punto o di un punto e virgola alla fine, anche con una capitalizzazione di tipo frase, a meno che non terminino con un'abbreviazione.
 
 ### Voce e Tono
@@ -52,8 +52,8 @@ Le **caratteristiche della scrittura tecnica** descritte nel Chicago Manual of S
     * Dite quello che volete dire con il minor numero di parole possibile.
     * Identificare ed evitare termini inutilmente tecnici. Considerate che il vostro pubblico è costituito per lo più da persone che hanno una certa familiarità con l'argomento, ma che potrebbero non essere esperti della materia.
     * Eccezioni al linguaggio semplice:
-        * Per la documentazione rivolta ai neofiti o ai principianti, o per la scrittura di contenuti come i post di un blog, è appropriato uno stile più colloquiale.
-        * Per la documentazione rivolta agli utenti avanzati o per la documentazione API (Application Programming Interface), è opportuno uno stile di scrittura più formale o terso.
+        * Uno stile più colloquiale è appropriato per la documentazione rivolta ai neofiti o ai principianti o per la scrittura di contenuti come i post dei blog.
+        * Uno stile di scrittura più formale o conciso è appropriato per la documentazione rivolta agli utenti avanzati o per la documentazione sulle API (Application Programming Interface).
 * **Linguaggio inclusivo.**
     * L'uso della lingua si evolve nel tempo. Alcune parole si sono evolute assumendo una connotazione negativa, per cui la documentazione dovrebbe essere riscritta utilizzando parole nuove.
         * *Master/slave* diventa *primario/secondario* o uno standard organizzativo concordato.
@@ -67,7 +67,7 @@ Le **caratteristiche della scrittura tecnica** descritte nel Chicago Manual of S
 
 ### Date
 
-Se possibile, utilizzare il nome del mese nel formato {day} {Month} {year}. Tuttavia, {Month} {day}, {year} è accettabile anche per risolvere problemi di chiarezza o di aspetto. In ogni caso, per evitare di creare confusione, scrivete i nomi dei mesi piuttosto che usare una serie di numeri.  Ad esempio: 24 gennaio 2023, ma anche 24 gennaio 2023, entrambi preferibili a 1/24/2023 o 24/01/2023.
+Se possibile, utilizzare il nome del mese nel formato {day} {Month} {year}. Tuttavia, {Month} {day}, {year} è accettabile anche per risolvere problemi di chiarezza o di aspetto. In ogni caso, per evitare confusione, scrivete i nomi dei mesi piuttosto che una serie di numeri. Ad esempio: 24 gennaio 2023, ma anche 24 gennaio 2023, entrambi preferibili a 1/24/2023 o 24/01/2023.
 
 ### Procedure a fase singola
 
@@ -111,7 +111,7 @@ In Markdown, gli ammonimenti sono un modo per inserire le informazioni in un riq
 
 ### Link
 
-* Rendete i link descrittivi, in modo che sia ovvio dove conducono, sia dal testo stesso che dal contesto. Evitate i collegamenti ipertestuali con nomi come "clicca qui"
+* Rendete i link descrittivi, in modo che sia evidente la loro provenienza dal testo o dal contesto. Evitate i collegamenti ipertestuali con nomi come "clicca qui"
 * Verificare che tutti i collegamenti funzionino come descritto.
 
 ### Tabelle
