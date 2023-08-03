@@ -117,7 +117,7 @@ In questa procedura, l'utente root (come minimo) deve essere in grado di entrare
 sudo -s
 ```
 
-Si presuppone inoltre che l'utente root abbia una chiave `id_rsa.pub` nella directory `./ssh`. In caso contrario, generarne una con [questa procedura](.../security/ssh_public_private_keys.md):
+Si presuppone inoltre che l'utente root abbia una chiave `id_rsa.pub` nella directory `./ssh`. In caso contrario, generarne una con [questa procedura](../security/ssh_public_private_keys.md):
 
 ```
 ls -al .ssh/
