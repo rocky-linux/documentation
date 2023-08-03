@@ -1,7 +1,7 @@
 ---
 title: Network File System
 author: Antoine Le Morvan
-contributors: Steven Spencer, Serge, Franco Colussi
+contributors: Steven Spencer, Serge
 ---
 
 # Network File System
