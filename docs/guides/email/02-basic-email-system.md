@@ -344,19 +344,18 @@ Except for the parameter items mentioned or displayed above, some parameters are
 ```bash
 Shell(192.168.100.6) > vim /etc/postfix/main.cf
 ...
-compatibility_level = 2
 myhostname = mail.rockylinux.me
 mydomain = rockylinux.me
 myorigin = $myhostname
-myorigin = $mydomain
 inet_interfaces = 192.168.100.6
 inet_protocols = ipv4
-mydestination = $myhostname, localhost.$mydomain, localhost
+mydestination = 
 biff = no
 append_dot_mydomain = no
 smtpd_sasl_type = dovecot
 smtpd_sasl_path = private/auth
 smtpd_sasl_auth_enable = yes
+smtpd_sasl_local_domain = $myhostname
 virtual_transport = lmtp:unix:private/dovecot-lmtp
 virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
 virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
@@ -378,12 +377,13 @@ mydomain = rockylinux.me
 myorigin = $myhostname
 inet_interfaces = 192.168.100.6
 inet_protocols = ipv4
-mydestination = $myhostname, localhost.$mydomain, localhost
+mydestination = 
 biff = no
 append_dot_mydomain = no
 smtpd_sasl_type = dovecot
 smtpd_sasl_path = private/auth
 smtpd_sasl_auth_enable = yes
+smtpd_sasl_local_domain = $myhostname
 virtual_transport = lmtp:unix:private/dovecot-lmtp
 virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
 virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
@@ -471,38 +471,35 @@ frank@mail.rockylinux.me,leeo@mail.rockylinux.me
 
 #### Modify /etc/postfix/master.cf
 
-The modified file looks like this(I just cancelled the comments at the beginning of `submitsion` and `smtps`):
+The modified file looks like this:
 
 ```bash
 Shell(192.168.100.6) > egrep -v "^#|^$" /etc/postfix/master.cf
 smtp      inet  n       -       n       -       -       smtpd
 submission inet n       -       n       -       -       smtpd
+  -o syslog_name=postfix/submission
+  -o smtpd_tls_security_level=encrypt
+  -o smtpd_sasl_auth_enable=yes
+  -o smtpd_tls_auth_only=yes
+  -o smtpd_reject_unlisted_recipient=no
+  -o smtpd_client_restrictions=$mua_client_restrictions
+  -o smtpd_helo_restrictions=$mua_helo_restrictions
+  -o smtpd_sender_restrictions=$mua_sender_restrictions
+  -o smtpd_recipient_restrictions=
+  -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
+  -o milter_macro_daemon_name=ORIGINATING
 smtps     inet  n       -       n       -       -       smtpd
-pickup    unix  n       -       n       60      1       pickup
-cleanup   unix  n       -       n       -       0       cleanup
-qmgr      unix  n       -       n       300     1       qmgr
-tlsmgr    unix  -       -       n       1000?   1       tlsmgr
-rewrite   unix  -       -       n       -       -       trivial-rewrite
-bounce    unix  -       -       n       -       0       bounce
-defer     unix  -       -       n       -       0       bounce
-trace     unix  -       -       n       -       0       bounce
-verify    unix  -       -       n       -       1       verify
-flush     unix  n       -       n       1000?   0       flush
-proxymap  unix  -       -       n       -       -       proxymap
-proxywrite unix -       -       n       -       1       proxymap
-smtp      unix  -       -       n       -       -       smtp
-relay     unix  -       -       n       -       -       smtp
-        -o syslog_name=postfix/$service_name
-showq     unix  n       -       n       -       -       showq
-error     unix  -       -       n       -       -       error
-retry     unix  -       -       n       -       -       error
-discard   unix  -       -       n       -       -       discard
-local     unix  -       n       n       -       -       local
-virtual   unix  -       n       n       -       -       virtual
-lmtp      unix  -       -       n       -       -       lmtp
-anvil     unix  -       -       n       -       1       anvil
-scache    unix  -       -       n       -       1       scache
-postlog   unix-dgram n  -       n       -       1       postlogd
+  -o syslog_name=postfix/smtps
+  -o smtpd_tls_wrappermode=yes
+  -o smtpd_sasl_auth_enable=yes
+  -o smtpd_reject_unlisted_recipient=no
+  -o smtpd_client_restrictions=$mua_client_restrictions
+  -o smtpd_helo_restrictions=$mua_helo_restrictions
+  -o smtpd_sender_restrictions=$mua_sender_restrictions
+  -o smtpd_recipient_restrictions=
+  -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
+  -o milter_macro_daemon_name=ORIGINATING
+...
 ```
 
 Finally execute the `systemctl restart postfix.service` command. At this point, the configuration of postfix is over.
@@ -510,7 +507,7 @@ Finally execute the `systemctl restart postfix.service` command. At this point, 
 ### Install and configure `dovecot`
 
 ```bash
-Shell(192.168.100.6) > dnf config-manager --enable devel && dnf -y install dovecot dovecot-devel
+Shell(192.168.100.6) > dnf config-manager --enable devel && dnf -y install dovecot dovecot-devel dovecot-mysql
 ```
 
 Without changing any files, the original directory structure is as follows:
@@ -615,7 +612,7 @@ passdb {
     args = /etc/dovecot/dovecot-sql.conf.ext
 }
 userdb {
-    driver = sql
+    driver = static
     args = uid=vmail gid=vmail home=/var/mail/vhosts/%d/%n
 }
 ...
@@ -650,7 +647,7 @@ auth_mechanisms = plain login
 ```
 
 ```bash
-Shell(192.168.100.6) > /etc/dovecot/conf.d/10-master.conf
+Shell(192.168.100.6) > vim /etc/dovecot/conf.d/10-master.conf
 ...
 service lmtp {
   unix_listener /var/spool/postfix/private/dovecot-lmtp {
@@ -666,7 +663,6 @@ service auth {
     user = vmail
     group = vmail
   }
-
   unix_listener /var/spool/postfix/private/auth {
     mode = 0660
     user = postfix
@@ -674,6 +670,7 @@ service auth {
   }
   user = dovecot
 }
+
 service auth-worker {
   user = vmail
 }
@@ -681,6 +678,10 @@ service auth-worker {
 ```
 
 OK, use the command to start your service-- `systemctl start dovecot.service`
+
+!!! info 
+
+    During dovecot initialization, the **/usr/libexec/dovecot/mkcert.sh** file is executed to generate a self-signed certificate.
 
 You can check the port occupancy using the following command:
 
@@ -702,7 +703,7 @@ tcp      LISTEN    0         128                                       [::]:22  
 ```
 
 Ports occupied by postfix -- 25, 587, 465
-Ports occupied by postfix -- 993, 995, 110, 143
+Ports occupied by dovecot -- 993, 995, 110, 143
 
 You can use the `doveadm` command to generate the relevant ciphertext password and insert it into the virtual_users table.
 
@@ -726,6 +727,29 @@ Mysql > insert into virtual_users(id,email,password,domain_id) values(1,'frank@m
 Mysql > insert into virtual_users(id,email,password,domain_id) values(2,'leeo@mail.rockylinux.me','$6$TF7w672arYUk.fGC$enDafylYnih4q140B2Bu4QfEvLCQAiQBHXpqDpHQPHruil4j4QbLXMvctWHdZ/MpuwvhmBGHTlNufVwc9hG34/',1);
 ```
 
-### Test the operation of each component
+### Test 
 
+#### User's authentication
 
+Use another Windows10 computer and change its preferred DNS to 192.168.100.7. The author uses foxmail as the mail client here.
+
+On the main screen, select "Other Mailbox" --> "Manual" --> Enter the relevant content to complete. --> "Create"
+
+![test1](./email-images/test1.jpg)
+
+![test2](./email-images/test2.jpg)
+
+#### Send an email
+
+Use this user to attempt to send an email to a leeo user.
+
+![test3](./email-images/test3.jpg)
+
+#### Receive mail
+
+![test4](./email-images/test4.jpg)
+
+### Additional description
+
+* You should have a legitimate domain name (domain)
+* You should apply for an SSL/TLS certificate for your email system
