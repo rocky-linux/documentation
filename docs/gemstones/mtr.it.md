@@ -52,7 +52,7 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 ...
 ```
 
-* Perdita% - tasso di perdita del pacchetto
+* Loss% - tasso di perdita del pacchetto
 * Snt - il numero di pacchetti inviati
 * Last- il ritardo dell'ultimo pacchetto
 * Avg - ritardo medio

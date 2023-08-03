@@ -23,7 +23,7 @@ Questo è anche un documento di accompagnamento alla versione [Docker qui](rocky
 * Riferimento a LXD - c'è un lungo documento su [costruzione e utilizzo di LXD su un server qui](../../books/lxd_server/00-toc.md), ma si userà solo un'installazione di base sulla nostra workstation Linux
 * Utilizzo di `lsyncd` per il mirroring dei file. Vedere [documentazione in merito qui](../backup/mirroring_lsyncd.md)
 * Avrete bisogno di chiavi pubbliche generate per il vostro utente e per l'utente "root" sulla vostra postazione locale usando [questo documento](../security/ssh_public_private_keys.md)
-* L'interfaccia del bridge è in esecuzione su 10.56.233.1 e il container è in esecuzione su 10.56.233.189 nei nostri esempi, tuttavia i vostri IP per il bridge e il container potrebbero essere diversi
+* La nostra interfaccia bridge è in esecuzione su 10.56.233.1 e il nostro container è in esecuzione su 10.56.233.189 nei nostri esempi. Tuttavia i vostri IP per il bridge e il container potrebbero essere diversi.
 * "youruser" in questo documento rappresenta l'id dell'utente
 * Il presupposto è che si stia già sviluppando la documentazione con un clone del repository della documentazione sulla propria workstation
 
@@ -31,7 +31,7 @@ Questo è anche un documento di accompagnamento alla versione [Docker qui](rocky
 
 ### Creare il container
 
-Il primo passo è creare il contenitore LXD. L'uso delle impostazioni predefinite (interfaccia bridge) per il proprio container va benissimo.
+Il primo passo è creare il contenitore LXD. L'uso delle impostazioni predefinite del container (interfaccia del bridge) vanno benissimo in questo caso.
 
 Si aggiungerà un container Rocky alla nostra workstation per `mkdocs`. Chiamatelo semplicemente "mkdocs":
 
@@ -39,7 +39,7 @@ Si aggiungerà un container Rocky alla nostra workstation per `mkdocs`. Chiamate
 lxc launch images:rockylinux/8 mkdocs
 ```
 
-Il container deve essere un proxy . Per impostazione predefinita, quando `mkdocs serve` si avvia, viene gestito all'indirizzo 127.0.0.1:8000. Questo va bene quando ci si trova sulla propria workstation locale senza un container. Tuttavia, quando si trova in un **container** LXD sulla workstation locale, è necessario impostare il container con una porta proxy. Eseguire questa operazione con:
+Il container deve essere un proxy. Per impostazione predefinita, quando `mkdocs serve` si avvia, viene gestito all'indirizzo 127.0.0.1:8000. Questo va bene quando ci si trova sulla propria workstation locale senza un container. Tuttavia, quando si trova in un **container** LXD sulla workstation locale, è necessario impostare il container con una porta proxy. Eseguire questa operazione con:
 
 ```
 lxc config device add mkdocs mkdocsport proxy listen=tcp:0.0.0.0:8000 connect=tcp:127.0.0.1:8000
@@ -92,7 +92,7 @@ systemctl enable --now sshd
 passwd
 ```
 
-Impostate una password sicura e memorizzabile.
+Impostare una password sicura e memorizzabile.
 
 Quindi, aggiungete il vostro utente e impostate una password:
 
@@ -107,7 +107,7 @@ Aggiungete il vostro utente al gruppo sudoers:
 usermod -aG wheel youruser
 ```
 
-A questo punto, dovreste essere in grado di entrare nel container con l'utente root o con l'utente della vostra postazione di lavoro, inserendo una password. Assicuratevi di poterlo fare prima di continuare.
+Dovreste essere in grado di accedere al container con l'utente root o con l'utente della vostra workstation e di inserire una password. Assicuratevi di poterlo fare prima di continuare.
 
 ## SSH per root e per il vostro utente
 
@@ -134,7 +134,7 @@ Per ottenere l'accesso SSH al nostro container senza dover inserire una password
 ssh-copy-id root@10.56.233.189
 ```
 
-Per il nostro utente, invece, è necessario copiare l'intera cartella `.ssh/` nel nostro container. Il motivo è che si manterrà tutto uguale per questo utente, in modo che l'accesso a GitHub tramite SSH sia lo stesso.
+Per il nostro utente, invece, è necessario copiare l'intera cartella `.ssh/` nel nostro container. Per questo utente si manterrà tutto uguale, in modo che l'accesso a GitHub tramite SSH sia lo stesso.
 
 Per copiare tutto nel nostro container, basta farlo come utente, **non** sudo:
 
@@ -246,9 +246,9 @@ http://your-server-ip:8000
 
 Se avete visto la documentazione nel browser web, ci siete quasi. L'ultimo passo consiste nel mantenere la documentazione del container sincronizzata con quella della workstation locale.
 
-Lo si fa qui con `lsyncd` come indicato sopra.
+Come indicato in precedenza, questo si fa qui con `lsyncd`.
 
-L'installazione di`lsyncd` è diversa a seconda della versione di Linux in uso. [Questo documento](../backup/mirroring_lsyncd.md) descrive i modi per installarlo su Rocky Linux e anche dai sorgenti. Se si utilizzano altri tipi di Linux (ad esempio Ubuntu), in genere hanno i loro pacchetti, ma ci sono delle differenze.
+L'installazione di `lsyncd` varia a seconda della versione di Linux. [Questo documento](../backup/mirroring_lsyncd.md) descrive i modi per installarlo su Rocky Linux e anche dai sorgenti. Se si utilizzano altri tipi di Linux (Ubuntu, per esempio), in genere hanno i loro pacchetti, ma hanno delle differenze.
 
 Ubuntu, ad esempio, denomina il file di configurazione in modo diverso. Si tenga presente che se si utilizza un altro tipo di workstation Linux diverso da Rocky Linux e non si vuole installare dai sorgenti, probabilmente sono disponibili pacchetti per la propria piattaforma.
 

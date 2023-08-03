@@ -27,7 +27,7 @@ Pour intégrer cette fonctionnalité dans votre éditeur, deux des plugiciels di
 
 Si vous avez également installé le [Template Chadrc](../template_chadrc.md) ce composant sera déjà disponible car il est l'un des serveurs de langage installés par défaut. S'il n'est pas encore présent dans l'éditeur, vous pouvez l'installer avec la commande `:MasonInstall deno`.
 
-!!! Warning "Avertissement"
+!!! warning "Avertissement"
 
     Le serveur de langage **doit** être installé avant de procéder à l'installation du plugiciel. Sinon, l'installation échouera et il sera nécessaire de supprimer le code contenu dans **/custom/plugins.ua**, effectuer un nettoyage de configuration en éditant `Lazy` et en tapant <kbd>X</kbd> pour supprimer le plugin puis répéter la procédure d'installation.
 
@@ -136,7 +136,7 @@ M.mdpreview = {
 
 Cela vous permettra d'ouvrir l'aperçu markdown en tapant <kbd>Enter</kbd> + <kbd>m</kbd> suivi de <kbd>p</kbd> et de le fermer avec la combinaison <kbd>Enter</kbd> + <kbd>m</kbd> suivie de <kbd>c</kbd>.
 
-!!! Note "Remarque"
+!!! note "Remarque"
 
     Le plugiciel fournit également la commande `:MarkdownPreviewToggle` mais au moment d'écrire ce document, il ne semble pas fonctionner correctement. Si vous essayez de l'utiliser, cela ne changera pas le thème d'aperçu mais ouvrira un nouvel onglet du navigateur avec le même aperçu.
 
