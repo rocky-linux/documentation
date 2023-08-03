@@ -74,7 +74,7 @@ vi /etc/named.conf
 Turn off listening on the localhost. Do this by remarking out with a "#" sign, these two lines in the "options" section. This shuts down any connection to the outside world.
 
 
-This is helpful, particularly when you add this DNS to our workstations because you want the DNS server to only respond when the IP address requesting the service is local and not react if looking up the service is on the Internet.
+This is helpful, particularly when you add this DNS to our workstations because you want the DNS server to only respond when the IP address requesting the service is local and not react if the server or service is on the Internet.
 
 
 
@@ -112,7 +112,7 @@ Save your changes (for _vi_, `SHIFT:wq!`)
 
 You need to create two files in `/var/named`. These files are the ones that you will edit if you add machines to your network to include in the DNS.
 
-The first is the forward file to map our IP address to the hostname. Again, our examples is "ourdomain" here. Note that the IP of our local DNS here is 192.168.1.136. Add hosts at the bottom of this file.
+The first is the forward file to map our IP address to the hostname. Again, our examples is "ourdomain" here. Note that the IP of our local DNS is 192.168.1.136. Add hosts at the bottom of this file.
 
 ```
 vi /var/named/ourdomain.lan.db
@@ -144,7 +144,7 @@ devel IN A 192.168.1.15
 
 Add all the hosts you need along with their IP addresses and save your changes.
 
-You need a reverse file to map our hostname to the IP address. In this case, the only part of the IP that you need is the last octet (in an IPv4 address each number separated by a ".", is an octet) of the host, the PTR, and hostname.
+You need a reverse file to map our hostname to the IP address. In this case, the only part of the IP that you need is the last octet (in an IPv4 address each number separated by a "." is an octet) of the host, the PTR, and hostname.
 
 ```
 vi /var/named/ourdomain.lan.rev
@@ -423,7 +423,7 @@ systemctl restart named
 
     With Rocky Linux 9.0 and above, using `iptables` rules is deprecated. You should use `firewalld` instead.
 
-The author is not making any assumptions about the network or services that you might need, except for turning on SSH access and DNS access for our LAN network only. For this, you will use the `firewalld's` built-in zone, "trusted". You will have to make service changes to the "public" zone to limit SSH access to the LAN.
+The author is not making any assumptions about the network or services that you might need, except for turning on SSH access and DNS access for our LAN network only. For this, you will use `firewalld's` built-in zone, "trusted". You will have to make service changes to the "public" zone to limit SSH access to the LAN.
 
 The first step is to add our LAN network to the "trusted" zone:
     
