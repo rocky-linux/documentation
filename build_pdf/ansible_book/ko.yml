@@ -1,0 +1,31 @@
+---
+INHERIT: ../build_base.yml
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 3
+  ordered_chapter_level: 3
+  verbose: false
+  back_cover: true
+# You are free to configure here what you want 
+plugins:
+  - with-pdf:
+      <<: *pdf-config
+      cover_title: Learning Ansible with Rocky (Korean version)
+      output_path: ../pdf/LearningAnsibleWithRocky.ko.pdf
+
+# Customize your own book
+nav:
+  - learning_ansible/00-toc.ko.md
+  - learning_ansible/01-basic.ko.md
+  - learning_ansible/02-advanced.ko.md
+  - learning_ansible/03-working-with-files.ko.md
+  - learning_ansible/04-ansible-galaxy.ko.md
+  - learning_ansible/05-deployments.ko.md
+  - learning_ansible/06-large-scale-infrastructure.ko.md
+  - learning_ansible/07-working-with-filters.ko.md
+  - learning_ansible/08-management-server-optimizations.ko.md

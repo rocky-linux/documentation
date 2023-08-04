@@ -39,7 +39,7 @@ Se il pacchetto non è installato, `dnf` chiederà di confermare l'installazione
 
 ### Preparazione dell'Ambiente
 
-Questo particolare esempio utilizzerà `rsync` sul computer di destinazione per prelevare dall'origine invece di spingere dall'origine alla destinazione. È necessario impostare una [coppia di chiavi SSH](.../security/ssh_public_private_keys.md) per questo scopo. Una volta creata la coppia di chiavi SSH e confermato l'accesso senza password dal computer di destinazione al computer di origine, si può iniziare.
+Questo particolare esempio utilizzerà `rsync` sul computer di destinazione per prelevare dall'origine invece di spingere dall'origine alla destinazione. È necessario impostare una [coppia di chiavi SSH](../security/ssh_public_private_keys.md) per questo scopo. Una volta creata la coppia di chiavi SSH e confermato l'accesso senza password dal computer di destinazione al computer di origine, si può iniziare.
 
 ### parametri di `rsync` e impostazione di uno script
 

@@ -73,10 +73,7 @@ vi /etc/named.conf
 
 Turn off listening on the localhost. Do this by remarking with a "#" sign, these two lines in the "options" section. This shuts down any connection to the outside world.
 
-
 This is helpful, particularly when you add this DNS to our workstations because you want the DNS server to only respond when the IP address requesting the service is local and not react if the server or service is on the Internet.
-
-
 
 This way, the other configured DNS servers will take over nearly immediately to look up the Internet based services:
 
@@ -254,6 +251,7 @@ systemctl restart named
     Save those changes.
 
     ## 9 Testing machines
+
 
     You need to add the DNS server (in our example 192.168.1.136) to each machine that you want to have access to the servers that you added to your local DNS. The author only shows an example of how to do this on a Rocky Linux workstation. Similar methods exist for other Linux distributions, Windows, and Mac machines.
 

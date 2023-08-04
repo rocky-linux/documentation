@@ -1,0 +1,37 @@
+---
+INHERIT: ../build_base.yml
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 3
+  ordered_chapter_level: 3
+  verbose: false
+  back_cover: true
+  
+# You are free to configure here what you want
+plugins:
+  - with-pdf: 
+      <<: *pdf-config
+      cover_title: Rocky Linux Admin Guide (Korean version)
+      output_path: ../pdf/RockyLinuxAdminGuide.ko.pdf
+
+# Customize your own book
+nav:
+  - admin_guide/00-toc.ko.md
+  - admin_guide/01-presentation.ko.md
+  - admin_guide/03-commands.ko.md
+  - admin_guide/04-advanced-commands.ko.md
+  - admin_guide/05-vi.ko.md
+  - admin_guide/06-users.ko.md
+  - admin_guide/07-file-systems.ko.md
+  - admin_guide/08-process.ko.md
+  - admin_guide/09-backups.ko.md
+  - admin_guide/10-boot.ko.md
+  - admin_guide/11-tasks.ko.md
+  - admin_guide/12-network.ko.md
+  - admin_guide/13-softwares.ko.md
+  - admin_guide/14-special-authority.ko.md

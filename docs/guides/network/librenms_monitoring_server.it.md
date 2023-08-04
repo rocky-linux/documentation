@@ -133,7 +133,7 @@ timedatectl set-timezone America/Chicago
 
 ## Impostazione di MariaDB
 
-Prima di passare alla configurazione del database necessaria per LibreNMS, si consiglia di consultare la procedura [MariaDB](.../database/database_mariadb-server.md) e in particolare la sezione "Messa in sicurezza di mariadb-server", per poi tornare qui per queste impostazioni specifiche. La prima cosa da fare è modificare il file mariadb-server.cnf:
+Prima di passare alla configurazione del database necessaria per LibreNMS, si consiglia di consultare la procedura [MariaDB](../database/database_mariadb-server.md) e in particolare la sezione "Messa in sicurezza di mariadb-server", per poi tornare qui per queste impostazioni specifiche. La prima cosa da fare è modificare il file mariadb-server.cnf:
 
 ```
 vi /etc/my.cnf.d/mariadb-server.cnf
@@ -210,7 +210,7 @@ rm -f /etc/opt/remi/php81/php-fpm.d/www.conf
 
 ## Configurare Apache
 
-Normalmente, per configurare i servizi web si utilizza la procedura [Siti Apache abilitati](.../web/apache-sites-enabled.md), ma in questo caso si utilizza la configurazione predefinita.
+Normalmente, per configurare i servizi web si utilizza la procedura [Siti Apache abilitati](../web/apache-sites-enabled.md), ma in questo caso si utilizza la configurazione predefinita.
 
 Si noti che se si vuole usare questa procedura, è sufficiente inserire il file di configurazione in /etc/httpd/sites-available e poi seguire la procedura per collegarlo a sites-enabled. La radice predefinita del documento, tuttavia, **non** sarà /var/www/sottodomini/librenms/html, bensì /opt/librenms/html.
 
