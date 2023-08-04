@@ -1,5 +1,5 @@
 ---
-title: Formattazione di Rocky Docs
+title: Formattazione del documento
 author: Steven Spencer
 contributors: Krista Burdine, tianci li, Ezequiel Bruni, Franco Colussi
 tags:
@@ -7,7 +7,7 @@ tags:
   - formatting
 ---
 
-# Formattazione di Rocky Docs - Introduzione
+# Introduzione
 
 Questa guida mette in evidenza le opzioni di formattazione più avanzate, tra cui ammonizioni, elenchi numerati, tabelle e altro ancora.
 
@@ -37,36 +37,36 @@ Un documento può contenere o meno uno di questi elementi. Se ritenete che il vo
 
 ## Ammonimenti
 
-Le ammonizioni sono speciali "scatole" visive che consentono di richiamare l'attenzione su fatti importanti e di evidenziarli in modo da farli risaltare rispetto al resto del testo. I tipi di ammonimenti sono i seguenti:
+Gli ammonimenti sono speciali "riquadri" visivi che consentono di richiamare l'attenzione su fatti importanti e di metterli in evidenza. Di seguito sono elencati i tipi di ammonimenti:
 
-| tipo                | Descrizione                                                              |
-| ------------------- | ------------------------------------------------------------------------ |
-| note                | restituisce un riquadro di testo blu                                     |
-| abstract            | restituisce un riquadro di testo blu chiaro                              |
-| info                | restituisce un riquadro di testo blu-verde                               |
-| tip                 | restituisce un riquadro di testo blu-verde (icona leggermente più verde) |
-| success             | rende una casella di testo verde                                         |
-| question            | restituisce un riquadro di testo verde chiaro                            |
-| warning             | restituisce un riquadro di testo arancione                               |
-| failure             | restituisce un riquadro di testo rosso chiaro                            |
-| danger "Pericolo"   | restituisce un riquadro di testo di testo rosso                          |
-| bug                 | restituisce un riquadro di testo testo rosso                             |
-| example             | restituisce un riquadro di testo rossa                                   |
-| quote               | restituisce un riquadro di testo grigia                                  |
-| custom <sub>1</sub> | restituisce sempre un riquadro di testo di testo blu                     |
-| custom <sub>2</sub> | utilizza un titolo personalizzato all'interno di un altro tipo           |
+| tipo                | Descrizione                                                                |
+| ------------------- | -------------------------------------------------------------------------- |
+| note                | visualizza il testo in un riquadro blu                                     |
+| abstract            | visualizza il testo in un riquadro azzurro                                 |
+| info                | visualizza il testo in un riquadro blu-verde                               |
+| tip                 | visualizza il testo in un riquadro blu-verde (icona leggermente più verde) |
+| success             | visualizza il testo in un riquadro verde                                   |
+| question            | visualizza il testo in un riquadro verde chiaro                            |
+| warning             | visualizza il testo in un riquadro arancione                               |
+| failure             | visualizza il testo in un riquadro rosso chiaro                            |
+| danger "Pericolo"   | visualizza il testo in un riquadro rosso                                   |
+| bug                 | visualizza il testo in un riquadro rosso                                   |
+| example             | visualizza il testo in un riquadro viola                                   |
+| quote               | visualizza il testo in una casella grigia                                  |
+| custom <sub>1</sub> | visualizza sempre il testo in un riquadro blu                              |
+| custom <sub>2</sub> | visualizza il testo nel colore del riquadro della tipologia prescelta      |
 
-Non ci sono limiti ai tipi di ammonizioni che si possono usare, come indicato in custom <sub>1</sub> di cui sopra. Un titolo personalizzato può essere aggiunto a uno qualsiasi degli altri tipi di ammonimento per ottenere la scatola colorata che si desidera per un specifico ammonimento, come osservato in custom <sub>2</sub> sopra.
+Gli ammonimenti sono illimitati, come si può notare in custom <sub>1</sub> sopra. È possibile aggiungere un titolo personalizzato a qualsiasi tipo di ammonimento per ottenere il colore del riquadro desiderato per un ammonimento specifico, come indicato nel precedente custom <sub>2</sub> personalizzato.
 
 Un'ammonimento viene sempre inserito in questo modo:
 
 ```
-!!! admonition_type
+!!! admonition_type "titolo personalizzato, se presente".
 
-    text of admonition
+    testo dell'ammonimento
 ```
 
-Il testo del corpo dell'ammonizione deve essere rientrato di quattro (4) spazi rispetto al margine iniziale. È facile vedere dove è in questo caso, perché si allineerà sempre sotto la prima lettera del tipo di ammonimento. La riga in più tra il titolo e il corpo non verrà visualizzata, ma è necessaria per il corretto funzionamento del nostro motore di traduzione (Crowdin).
+Il testo del corpo dell'ammonimento deve avere un rientro di quattro (4) spazi dal margine iniziale. È facile capire dove si trova, perché sarà sempre allineato sotto la prima lettera del tipo di ammonimento. La riga in più tra il titolo e il corpo non verrà visualizzata, ma il nostro motore di traduzione (Crowdin) ne ha bisogno per funzionare correttamente.
 
 Qui ci sono esempi di ogni tipo di ammonimento e come appariranno nel vostro documento:
 
@@ -108,35 +108,35 @@ Qui ci sono esempi di ogni tipo di ammonimento e come appariranno nel vostro doc
 
 !!! custom "Titolo personalizzato"
 
-    Un tipo custom  <sub>1</sub>. Qui abbiamo usato "custom" come nostro tipo di ammonimento. Di nuovo, questo risulterà sempre in blu.
+    Un tipo custom  <sub>1</sub>. Abbiamo usato " custom" come tipo di ammonimento. Di nuovo, questo risulterà sempre in blu.
 
 !!! warning "titolo personalizzato"
 
-    Un tipo custom <sub>2</sub>. Ecco il nostro secondo articolo della lista. Poiché abbiamo usato l'indentazione (sopra), viene visualizzato con la prossima sequenza di numerazione (in altre parole, 2), ma se avessimo inserito l'elemento 1 senza l'indentazione (nel paragrafo successivo e nel codice), allora questo sarebbe apparso di nuovo come elemento 1, che non è ciò che vogliamo.
+    Un tipo custom <sub>2</sub>. Abbiamo modificato il tipo di ammonimento "warning" con un'intestazione personalizzata. Ecco come appare:
 
     ```
     !!! warning "titolo personalizzato"
     ```
 
-### Ammonimenti Espandibili
+### Ammonimenti espandibili
 
-Se un'ammonimento ha un contenuto molto lungo, considerate la possibilità di utilizzare un'ammonizione espandibile. Questo viene trattato come un normale ammonimento, ma inizia con tre punti interrogativi, anziché con tre punti esclamativi. Si applicano tutte le altre regole degli ammonimenti. Un ammonimento espandibile assomiglia a questo:
+Se un ammonimento ha un contenuto molto lungo, prendete in considerazione un ammonimento espandibile. Ha le stesse caratteristiche di un ammonimento regolare, ma inizia con tre punti interrogativi, anziché con tre punti esclamativi. Si applicano tutte le altre regole degli ammonimenti. Un ammonimento espandibile assomiglia a questo:
 
 ??? warning "Avvertenze sul contenuto"
 
-    Si tratta di un avviso, con poco contenuto. Per questo si dovrebbe usare un'ammonimento normale, ma questo è solo un esempio!
+    Si tratta di un avviso, con poco contenuto. Per questo si dovrebbe usare un ammonimento normale, ma questo è solo un esempio!
 
 Che si presenta così nell'editor:
 
 ```
 ??? warning "Avvertenze sul contenuto"
 
-    Si tratta di un avviso, con poco contenuto. Per questo si dovrebbe usare un'ammonimento normale, ma questo è solo un esempio!
+    Si tratta di un avviso, con poco contenuto. Per questo si dovrebbe usare un ammonimento normale, ma questo è solo un esempio!
 ```
 
 ## Contenuto a schede all'interno di un documento
 
-Il contenuto della scheda è formattato in modo simile alle ammonimenti. Invece di tre punti esclamativi o tre punti interrogativi, inizia con tre segni uguali. Tutta la formattazione dell'ammonimento (4 spazi, ecc.) si applica a questo contenuto. Ad esempio, la documentazione potrebbe richiedere una procedura diversa per una diversa versione di Rocky Linux. Quando si usa il contenuto a schede per le versioni, la release più recente di Rocky Linux deve essere la prima. Al momento della stesura del presente documento, il codice è 9.0:
+La formattazione dei contenuti a schede è simile a quella degli ammonimenti. Invece di tre punti esclamativi o tre punti interrogativi, inizia con tre segni uguali. Tutta la formattazione dell'ammonimento (4 spazi, ecc.) si applica a questo contenuto. Ad esempio, la documentazione potrebbe richiedere una procedura diversa per una diversa versione di Rocky Linux. Quando si usa il contenuto a schede per le versioni, la release più recente di Rocky Linux deve essere la prima. Al momento della stesura del presente documento, il codice è 9.0:
 
 === "9.0"
 
@@ -158,7 +158,7 @@ Che si presenterebbe così nell'editor:
     La procedura per eseguire questa operazione in 8.6
 ```
 
-Tenete presente che tutto ciò che si trova all'interno della sezione deve continuare a utilizzare il rientro di 4 spazi fino al completamento della sezione. Questa è una funzione molto utile!
+Ricordate che tutto ciò che rientra nella sezione deve continuare a utilizzare il rientro di 4 spazi fino al completamento della sezione. Questa è una funzione molto utile!
 
 ## Liste numerate
 
@@ -178,28 +178,28 @@ Le liste numerate sembrano facili da creare e da usare e, una volta che ci si è
 
 3. Elemento 3
 
-Se è necessario aggiungere blocchi di codice, righe multiple o addirittura paragrafi di testo a un elenco numerato, il testo deve essere rientrato con gli stessi quattro (4) spazi utilizzati per gli ammonimenti.
+Se è necessario aggiungere blocchi di codice, righe multiple o addirittura paragrafi di testo a un elenco numerato, il testo deve avere la stessa indentazione di quattro (4) spazi utilizzata per gli ammonimenti.
 
-Tuttavia, non è possibile allinearli con gli occhi sotto l'elemento numerato, poiché questo è uno spazio in meno. Se si utilizza un buon editor di markdown, è possibile impostare il valore di tabulazione a quattro (4), il che renderà la formattazione un po' più semplice.
+Tuttavia, non è possibile allinearli con gli occhi sotto l'elemento numerato perché questo ha uno spazio in meno. Se si utilizza un buon editor di markdown, è possibile impostare il valore di tabulazione a quattro (4), il che renderà la formattazione un po' più semplice.
 
-Ecco un esempio di elenco numerato a più righe, con un blocco di codice aggiunto per buona causa:
+Ecco un esempio di elenco numerato a più righe, con un blocco di codice aggiunto per buona norma:
 
-1. Quando si ha a che fare con elenchi numerati su più righe e che includono elementi come blocchi di codice, si può usare l'indentazione spaziale per ottenere ciò che si desidera.
+1. Quando si tratta di elenchi numerati a più righe che includono blocchi di codice o altri elementi, si può usare l'indentazione spaziale per ottenere ciò che si desidera.
 
-    Ad esempio: questo è rientrato di quattro (4) spazi e rappresenta un nuovo paragrafo di testo. E qui aggiungiamo un blocco di codice. È inoltre rientrato degli stessi quattro (4) spazi del nostro paragrafo:
+    Ad esempio: questo ha un rientro di quattro (4) spazi e rappresenta un nuovo paragrafo di testo. Inoltre, aggiungiamo un blocco di codice all'interno. È anche rientrato degli stessi quattro (4) spazi del nostro paragrafo:
 
     ```
     dnf update
     ```
 
-2. Ecco il nostro secondo articolo della lista. Poiché abbiamo usato l'indentazione (sopra), viene visualizzato con la prossima sequenza di numerazione (in altre parole, 2), ma se avessimo inserito l'elemento 1 senza l'indentazione (nel paragrafo successivo e nel codice), allora questo sarebbe apparso di nuovo come elemento 1, che non è ciò che vogliamo.
+2. Ecco il nostro secondo articolo in elenco. Poiché si è utilizzato il rientro di quattro (4) spazi (sopra), viene visualizzato con la sequenza di numerazione successiva (2), ma se si fosse inserito l'elemento 1 senza il rientro (nel paragrafo e nel codice successivi), questo verrebbe visualizzato di nuovo come elemento 1, il che non è ciò che si desidera.
 
-Ed ecco come appare il testo grezzo:
+Ecco come appare il testo raw:
 
 ```markdown
-1. Quando si ha a che fare con elenchi numerati su più righe e che includono elementi come blocchi di codice, si può usare l'indentazione spaziale per ottenere ciò che si desidera.
+1. Quando si tratta di elenchi numerati a più righe che includono blocchi di codice o altri elementi, si può usare l'indentazione spaziale per ottenere ciò che si desidera.
 
-    Ad esempio: questo è rientrato di quattro (4) spazi e rappresenta un nuovo paragrafo di testo. E qui aggiungiamo un blocco di codice. È inoltre rientrato degli stessi quattro (4) spazi del nostro paragrafo:
+    Ad esempio: questo ha un rientro di quattro (4) spazi e rappresenta un nuovo paragrafo di testo. Inoltre, aggiungiamo un blocco di codice all'interno. È anche rientrato degli stessi quattro (4) spazi del nostro paragrafo:
 
     ```
 
@@ -207,38 +207,38 @@ Ed ecco come appare il testo grezzo:
     dnf update
     ```
 
-2. Ecco il nostro secondo articolo della lista. Poiché abbiamo usato l'indentazione (sopra), viene visualizzato con la prossima sequenza di numerazione (in altre parole, 2), ma se avessimo inserito l'elemento 1 senza l'indentazione (nel paragrafo successivo e nel codice), allora questo sarebbe apparso di nuovo come elemento 1, che non è ciò che vogliamo.
+2. Ecco il nostro secondo articolo in elenco. Poiché si è utilizzato il rientro di quattro (4) spazi (sopra), viene visualizzato con la sequenza di numerazione successiva (2), ma se si fosse inserito l'elemento 1 senza il rientro (nel paragrafo e nel codice successivi), questo verrebbe visualizzato di nuovo come elemento 1, il che non è ciò che si desidera.
 ```
 
 ## Tabelle
 
-Le tabelle ci aiutano a disporre le opzioni di comando o, nel caso precedente, i tipi di ammonimento e le descrizioni. Ecco come viene inserita la tabella nella sezione Ammonimenti di cui sopra:
+Le tabelle ci aiutano a disporre le opzioni di comando o, nel caso precedente, i tipi di ammonimento e le descrizioni. Ecco come è stata inserita la tabella nella sezione Ammonimenti:
 
 ```
-| type      | Description                                               |
-|-----------|-----------------------------------------------------------|
-| note      | restituisce una cornice di testo blu                                   |
-| abstract  | restituisce una cornice di testo blu chiaro                             |
-| info      | restituisce una cornice di testo verde-blu                             |
-| tip       | restituisce una cornice di testo verde-blu (icona leggermente più verde)  |
-| success   | restituisce una cornice di testo verde                                  |
-| question  | restituisce una cornice di testo verde chiaro                            |
-| warning   | restituisce una cornice di testo arancione                                |
-| failure   | restituisce una cornice di testo rosso chiaro                              |
-| danger    | restituisce una cornice di testo rosso                                    |
-| bug       | restituisce una cornice di testo rosso                                    |
-| example   | restituisce una cornice di testo viola                                 |
-| quote     | restituisce una cornice di testo grigio                                   |
-| custom <sub>1</sub> | restituisce sempre una cornice di testo blu                  |
-| custom <sub>2</sub> | utilizza un titolo personalizzato all'interno di un altro tipo         |
+| tipo      | Descrizione                                                                     |
+|-----------|---------------------------------------------------------------------------------|
+| note      | visualizza il testo in un riquadro blu                                          |
+| abstract  | visualizza il testo in un riquadro blu                                          |
+| info      | visualizza il testo in un riquadro blu-verde                                    |
+| tip       | visualizza il testo in un riquadro blu-verde (icona leggermente più verde)      |
+| success   | visualizza il testo in un riquadro verde                                        |
+| question  | visualizza il testo in un riquadro verde chiaro                                 |
+| warning   | visualizza il testo in un riquadro verde chiaro                                 |
+| failure   | visualizza il testo in un riquadro rosso chiaro                                 |
+| danger    | visualizza il testo in un riquadro rosso                                        |
+| bug       | visualizza il testo in un riquadro rosso                                        |
+| example   | visualizza il testo in un riquadro viola                                        |
+| quote     | visualizza il testo in una casella grigia                                       |
+| custom <sub>1</sub> | visualizza sempre il testo in un riquadro blu                         |
+| custom <sub>2</sub> | visualizza il testo nel colore del riquadro della tipologia prescelta |
 
 ```
 
-Si noti che non è necessario che ogni colonna sia suddivisa per dimensione (come abbiamo fatto nella prima parte della tabella), ma è certamente più leggibile nel file sorgente markdown. La confusione può essere maggiore quando si uniscono gli elementi, semplicemente interrompendo le colonne con il carattere pipe "|" in qualsiasi punto in cui sarebbe naturale interromperle, come si può vedere negli ultimi due elementi della tabella.
+Da notare che non è necessario che ogni colonna sia suddivisa per dimensione (come abbiamo fatto nella prima parte della tabella), ma è certamente più leggibile nel file sorgente markdown. La confusione può essere maggiore quando si mettono in fila gli elementi, semplicemente interrompendo le colonne con il carattere pipe "|" ovunque si trovi l'interruzione naturale, come si può vedere nell'ultimo elemento della tabella.
 
-## Virgolettato
+## Blocco Citazioni
 
-Le virgolette sono in realtà pensate per citare il testo di altre fonti da includere nella documentazione, ma non devono essere utilizzate necessariamente in questo modo. Alcuni collaboratori usano le virgolette invece delle tabelle, ad esempio per elencare alcune opzioni. Esempi di virgolette in markdown sono:
+Le virgolette sono in realtà pensate per citare il testo di altre fonti da includere nella documentazione, ma non è obbligatorio usarle in questo modo. Alcuni collaboratori usano le virgolette invece delle tabelle, ad esempio per elencare alcune opzioni. Esempi di virgolette in markdown sono:
 
 ```
 > **un elemento** - Una descrizione di quell'elemento
@@ -246,15 +246,15 @@ Le virgolette sono in realtà pensate per citare il testo di altre fonti da incl
 > **un'altra voce** - Un'altra descrizione di quell'elemento
 ```
 
-Per evitare che le righe si sovrappongano, è necessaria una linea di "spaziatura" aggiuntiva.
+La linea di "spaziatura" aggiuntiva è necessaria per evitare che le linee si sovrappongano.
 
-Il risultato è questo quando la pagina viene visualizzata:
+L'aspetto finale è questo quando la pagina viene visualizzata:
 
 > **un elemento** - Una descrizione dell'elemento **un altro elemento** - Altra descrizione di un elemento
 
 ## Blocchi di codice in linea e a livello di blocco
 
-Il nostro approccio all'uso dei blocchi di codice è piuttosto semplice. Se il `vostro codice` è abbastanza breve da poterlo (e volerlo) usare in una frase come quella appena vista, si possono usare i singoli backtick <kbd>`</kbd>, in questo modo:
+Our approach to the use of code blocks is pretty simple. Se `il vostro codice` è abbastanza breve da poterlo (e volerlo) usare in una riga come quella che avete appena visto, usate dei singoli backtick <kbd>`</kbd>:
 
 ```
 Una frase con un "comando a scelta".
@@ -267,8 +267,8 @@ Qualsiasi comando che non sia usato all'interno di un paragrafo di testo (specia
 sudo dnf install the-kitchen-sink
 ```
 ````
-La parte `bash` di questa formattazione è un identificatore di codice non essenziale, ma può essere utile per l'evidenziazione della sintassi. Naturalmente, se si sta mostrando Python, PHP, Ruby, HTML, CSS o qualsiasi altro tipo di codice, il termine "bash" deve essere cambiato in qualsiasi linguaggio si stia utilizzando.
-Per inciso, se è necessario mostrare un blocco di codice all'interno di un blocco di codice, basta aggiungere un altro backtick <kbd>`</kbd> al blocco padre, in questo modo:
+La parte `bash` di questa formattazione è un identificatore di codice non essenziale, ma può essere utile per l'evidenziazione della sintassi. Se si mostra Python, PHP, Ruby, HTML, CSS o qualsiasi altro tipo di codice, "bash" cambierà in base al linguaggio usato.
+Per inciso, se è necessario mostrare un blocco di codice all'interno di un blocco di codice, basta aggiungere un altro backtick <kbd>`</kbd> al blocco genitore:
 
 `````markdown
 ````markdown
@@ -282,13 +282,13 @@ E sì, il blocco di codice che avete appena visto ha usato cinque backtick all'i
 
 ## Tastiera
 
-Un altro modo per aggiungere più chiarezza possibile ai documenti è quello di rappresentare sulla tastiera i tasti che devono essere inseriti nel modo corretto. Questo viene fatto con `<kbd>key</kbd>`. Ad esempio, per rappresentare la necessità di premere il tasto escape nel documento, si userebbe `<kbd>ESC</kbd`. Quando è necessario indicare che devono essere premuti più tasti, aggiungete un `+` tra di essi, come in questo caso: `<kbd>CTRL</kbd> + <kbd>F4</kbd>`. Se i tasti devono essere premuti simultaneamente, aggiungete "simultaneamente" o "allo stesso tempo" o una frase simile alle istruzioni. Ecco un esempio di istruzione da tastiera nell'editor:
+Un altro modo per aggiungere più chiarezza possibile ai documenti è quello di rappresentare la digitazione dei tasti su una tastiera nel modo corretto. Questo viene fatto con `<kbd>key</kbd>`. Ad esempio, per rappresentare la necessità di premere il tasto escape nel documento, si userebbe `<kbd>ESC</kbd`. Quando è necessario indicare la pressione di più tasti, aggiungere un `+` tra di essi, come in questo caso:`<kbd>CTRL</kbd> + <kbd>F4</kbd>`. Se si richiede la pressione simultanea dei tasti, aggiungere "simultaneamente" o "allo stesso tempo" o una frase simile alle istruzioni. Ecco un esempio di istruzione da tastiera nell'editor:
 
 ```
 Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. Un utente passa da un terminale fisico ad un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> dalla riga di comando o utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd> in modalità grafica.
 ```
 
-Ed ecco come viene visualizzato:
+Ecco come viene visualizzato:
 
 Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. Un utente passa da un terminale fisico ad un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> dalla riga di comando o utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd> in modalità grafica.
 
@@ -300,7 +300,7 @@ Le notazioni in apice e in pedice non sono un normale markdown, ma sono supporta
 * simboli di copyright e marchi, come <sup>&copy;</sup>, <sup>TM</sup>, o &trade;, &reg;
 * come notazione per riferimenti, come questo<sup>1</sup>, questo<sup>2</sup> e questo<sup>3</sup>
 
-Alcuni caratteri speciali, come &copy;, non sono normalmente apici, mentre altri, come &trade;, lo sono.
+Alcuni caratteri speciali, come &copy;, non sono normalmente apicali, mentre altri, come &trade;, lo sono.
 
 Ecco come appare tutto questo nel codice markdown:
 
@@ -309,12 +309,12 @@ Ecco come appare tutto questo nel codice markdown:
 * simboli di copyright e marchi, come <sup>&copy;</sup>, <sup>TM</sup> o &trade;, &reg;
 * come notazione per riferimenti, come questo<sup>1</sup>, questo<sup>2</sup> e questo<sup>3</sup>
 
-Alcuni dei caratteri speciali, come &copy; non sono normalmente in apice, mentre altri come &trade;, sono.
+Alcuni caratteri speciali, come &copy;, non sono normalmente apicali, mentre altri come &trade;, lo sono.
 ```
 
-Come si può vedere, per forzare l'apice possiamo usare i tag HTML supportati di `<sup></sup>`.
+Come si può vedere, per forzare l'apice possiamo usare i tag HTML supportati `<sup></sup>`.
 
-Il pedice viene inserito con il tag `<sub></sub>`, e, come già detto, non viene <sub>usato tanto</sub> nella scrittura.
+Inserire il pedice con il tag `<sub></sub>`, come già detto, non viene <sub>utilizzato molto</sub> nella scrittura.
 
 ### Apice per i riferimenti
 
@@ -377,9 +377,9 @@ Oppure si può avere un elenco numerato, con un'ulteriore ammonimento:
    
         Le cose possono diventare un po' strane con più elementi all'interno di diversi tipi di formattazione!
 
-Se si rispettano i magici quattro (4) spazi per rientrare e separare gli elementi, questi verranno visualizzati in modo logico ed esattamente come si desidera. A volte è davvero importante.
+Se si rispettano i magici quattro (4) spazi per rientrare e separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desidera. A volte è davvero importante.
 
-È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui abbiamo un elenco numerato, un ammonimento, una tabella e alcuni elementi di citazione a blocchi, tutti raggruppati insieme:
+È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui ci sono un elenco numerato, un ammonimento, una tabella e alcuni elementi di blocco di citazione, tutti raggruppati insieme:
 
 1. Cercare di tenere il passo con tutto ciò che accade nel documento può essere un vero compito quando si lavora con più elementi.
 
@@ -400,7 +400,7 @@ Se si rispettano i magici quattro (4) spazi per rientrare e separare gli element
        
         > **soffrire** se tutto il resto fallisce, concentrarsi di più
 
-3. Ci sono altri esempi, ma quello sopra riportato dovrebbe illustrare che tutto può essere annidato all'interno. Ricordate i quattro (4) spazi magici.
+3. Esistono molti esempi, ma quello riportato sopra illustra come sia possibile annidare tutto all'interno. Ricordate i quattro (4) spazi magici.
 
 Ecco come appare questo esempio nell'editor:
 
@@ -408,7 +408,7 @@ Ecco come appare questo esempio nell'editor:
 
 Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desidera. A volte è davvero importante.
 
-È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui abbiamo un elenco numerato, un ammonimento, una tabella e alcuni elementi di citazione a blocchi, tutti raggruppati insieme:
+È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui ci sono un elenco numerato, un'ammonimento, una tabella e alcuni elementi di citazione a blocchi, tutti raggruppati insieme:
 
 1. Cercare di tenere il passo con tutto ciò che accade nel documento può essere un vero compito quando si lavora con più elementi.
 
@@ -427,12 +427,12 @@ Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi v
 
         > **soffrire** se tutto il resto fallisce, concentrarsi di più
 
-3. Ci sono altri esempi, ma quello sopra riportato dovrebbe illustrare che tutto può essere annidato all'interno. Ricordate i quattro (4) spazi magici.
+3. Esistono molti esempi, ma quello riportato sopra illustra come sia possibile annidare tutto all'interno. Ricordate i quattro (4) spazi magici.
 ```
 
-## Un ultimo punto: i Commenti
+## Un ultimo punto: i commenti
 
-Di tanto in tanto, si potrebbe voler aggiungere un commento al markdown che non verrà visualizzato quando sarà elaborato. Ci sono molte ragioni per cui si potrebbe voler fare questo. Ad esempio, se si vuole aggiungere un segnaposto per qualcosa che verrà aggiunto in seguito, si può usare un commento per contrassegnare il punto.
+Di tanto in tanto, si potrebbe voler aggiungere un commento al markdown che non verrà visualizzato quando sarà elaborato. Le ragioni sono molteplici. Ad esempio, se si vuole aggiungere un segnaposto per qualcosa che verrà aggiunto in seguito, si può usare un commento per contrassegnare il punto.
 
 Il modo migliore per aggiungere un commento al markdown è usare le parentesi quadre "[]" intorno a due barre in avanti "//" seguite da due punti e dal contenuto. Il risultato sarebbe il seguente:
 
