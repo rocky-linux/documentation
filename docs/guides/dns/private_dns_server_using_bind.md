@@ -25,9 +25,9 @@ External, or public, DNS servers map hostnames to IP addresses and, in the case 
 
 On a private network, particularly one for developing many systems, you can use your Rocky Linux workstation's */etc/hosts* file to map a name to an IP address.
 
-This will work for _your_ workstation, but not for any other machine on your network. To make things universally applied, the best method is to take some time out and create a local, private DNS server to handle this for all of your machines.
+This will work for _your_ workstation, but not for any other machine on your network. The best method to make things universally applied is to take some time out and create a local, private DNS server to handle this for all your machines. 
 
-If you were creating production-level public DNS servers and resolvers, this author recommends the more robust [PowerDNS](https://www.powerdns.com/) authoritative and recursive DNS, which is installable on Rocky Linux servers. However this document is for a local network that will not be exposing its DNS servers to the outside world. That is why the author chose `bind` for this example.
+Suppose you were creating production-level public DNS servers and resolvers. In that case, this author recommends the more robust [PowerDNS](https://www.powerdns.com/) authoritative and recursive DNS, which is installable on Rocky Linux servers. However, this document is for a local network that will not expose its DNS servers to the outside world. That is why the author chose `bind` for this example.
 
 ### The DNS server components explained
 
@@ -57,7 +57,7 @@ systemctl start named
 
 ## Configuration
 
-Before making changes to any configuration file, make a backup copy of the original installed working file, _named.conf_:
+Before making changes to any configuration file, create a backup copy of the original installed working file, _named.conf_:
 
 ```
 cp /etc/named.conf /etc/named.conf.orig
@@ -71,12 +71,9 @@ Edit the _named.conf_ file. The author is using _vi_ , but you can substitute yo
 vi /etc/named.conf
 ```
 
-Turn off listening on the localhost. Do this by remarking out with a "#" sign, these two lines in the "options" section. This shuts down any connection to the outside world.
-
+Turn off listening on the localhost. Do this by remarking with a "#" sign, these two lines in the "options" section. This shuts down any connection to the outside world.
 
 This is helpful, particularly when you add this DNS to our workstations because you want the DNS server to only respond when the IP address requesting the service is local and not react if the server or service is on the Internet.
-
-
 
 This way, the other configured DNS servers will take over nearly immediately to look up the Internet based services:
 
@@ -110,7 +107,7 @@ Save your changes (for _vi_, `SHIFT:wq!`)
 
 ## The forward and reverse records
 
-You need to create two files in `/var/named`. These files are the ones that you will edit if you add machines to your network to include in the DNS.
+You need to create two files in `/var/named`. You will edit these files if you add machines to your network to include them in the DNS. 
 
 The first is the forward file to map our IP address to the hostname. Again, our examples is "ourdomain" here. Note that the IP of our local DNS is 192.168.1.136. Add hosts at the bottom of this file.
 
@@ -142,7 +139,7 @@ www IN A 192.168.1.14
 devel IN A 192.168.1.15
 ```
 
-Add all the hosts you need along with their IP addresses and save your changes.
+Add all the hosts and IP addresses you need and save your changes.
 
 You need a reverse file to map our hostname to the IP address. In this case, the only part of the IP that you need is the last octet (in an IPv4 address each number separated by a "." is an octet) of the host, the PTR, and hostname.
 
@@ -255,7 +252,8 @@ systemctl restart named
 
     ## 9 Testing machines
 
-    You need to add the DNS server (in our example 192.168.1.136) to each machine that you want to have access to the servers that you added to your local DNS. The author is only going to show you an example of how to do this on a Rocky Linux workstation. Similar methods exist for other Linux distributions, Windows, and Mac machines.
+
+    You need to add the DNS server (in our example 192.168.1.136) to each machine that you want to have access to the servers that you added to your local DNS. The author only shows an example of how to do this on a Rocky Linux workstation. Similar methods exist for other Linux distributions, Windows, and Mac machines.
 
     You will want to add the DNS servers to the list, not replace what is currently there, as you will still need Internet access, which will require your presently assigned DNS servers. DHCP (Dynamic Host Configuration Protocol) services generally assign these or they are statically assigned.
 
@@ -365,7 +363,7 @@ systemctl restart named
 
     ## 8 Testing machines
 
-    You need to add the DNS server (in our example 192.168.1.136) to each machine that you want to have access to the servers that you added to your local DNS. The author is only showing an example of how to do this on a Rocky Linux workstation. Similar methods exist for other Linux distributions, Windows, and Mac machines.
+    You need to add the DNS server (in our example 192.168.1.136) to each machine that you want to have access to the servers that you added to your local DNS. The author only shows an example of how to do this on a Rocky Linux workstation. Similar methods exist for other Linux distributions, Windows, and Mac machines.
 
     You will want to add the DNS server to the list, as you will still need Internet access, which will require your currently assigned DNS servers. DHCP (Dynamic Host Configuration Protocol) generally assigns these, or they are statically assigned.
 
