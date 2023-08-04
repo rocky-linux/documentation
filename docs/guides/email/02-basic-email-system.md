@@ -1,11 +1,12 @@
 ---
 title: Basic e-mail system
 auther: tianci li
+contributors: 
 ---
 
 # Overview
 
-The purpose of this document is to provide the reader with a detailed understanding of the various components of an email system, including installation, basic configuration, and association. Attention please! In a real production environment, we recommend that you use an open-source e-mail servers, which applies to most GNU/Linux system administrators.
+The purpose of this document is to provide the reader with a detailed understanding of the various components of an email system, including installation, basic configuration, and association. In a production environment, the recommendation is that you use an open-source email server(s).
 
 All commands in this document are executed using **root(uid=0)**.
 
@@ -19,7 +20,7 @@ All commands in this document are executed using **root(uid=0)**.
 
 !!! info
 
-    In fact, without a database, `postfix` + `dovecot` can also be combined to form a working email system.
+    Without a database, combining postfix+ dovecot will create a working email system.
 
 ### Install and configure `bind`
 
@@ -56,7 +57,7 @@ zone "rockylinux.me" IN {
 
 !!! question 
 
-    **What is DNS zone?**<br/>A DNS zone is the specific portion of a DNS namespace that's hosted on a DNS server. A DNS zone contains resource records, and the DNS server responds to queries for records in that namespace. A DNS server can have multiple DNS zone.Simply put, a DNS zone is the equivalent of a book catalog.
+    **What is DNS zone?**<br/>A DNS zone is the specific portion of a DNS namespace that's hosted on a DNS server. A DNS zone contains resource records, and the DNS server responds to queries for records in that namespace. A DNS server can have multiple DNS zones. Simply put, a DNS zone is the equivalent of a book catalog.
 
 ```bash
 # Modify data file
@@ -168,7 +169,7 @@ Mysql > grant all privileges on *.* to 'mailrl'@'%' with grant option;
 
 !!! info 
 
-    You don't have to use the same method as the author, it is also possible to install Mysql from a repository or docker.
+    You don't have to use the same method as the author. it is also possible to install Mysql from a repository or docker.
 
 #### Create tables and insert data
 
@@ -250,14 +251,14 @@ Use the $ sign to separate the output text information.
 Shell(192.168.100.6) > dnf -y install postfix postfix-mysql
 ```
 
-When you install postfix, the following files need to be know:
+After installing Postfix, the following files need to be know:
 
 * **/etc/postfix/main.cf**. The main and most important configuration file
 * **/etc/postfix/master.cf**. Used to set runtime parameters for each component. In general, no changes are required, except when performance optimization is required.
 * **/etc/postfix/access**. Access control file for SMTP.
 * **/etc/postfix/transport**. Maps email addresses to relay hosts.
 
-These executable binaries need to know:
+You need to know these binary executable files:
 
 * /**usr/sbin/postalias**. Alias database generation instruction. After this command is executed, /etc/aliases.db is generated based on the /etc/aliases file
 * **/usr/sbin/postcat**. This command is used to view the mail content in the mail queue.
