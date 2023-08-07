@@ -8,22 +8,22 @@ version: 1.0.0
 
 La posta elettronica, uno dei tre servizi principali (FTP, Web ed e-mail) all'inizio di Internet, è ancora oggi utilizzata da molte persone. La posta elettronica è apparsa per la prima volta negli anni '60 e quella basata sulla trasmissione in rete nel 1971.
 
-A differenza dei sistemi di posta elettronica delle aziende commerciali, la versione open-source del sistema di posta elettronica è composta da molte parti e non è un singolo servizio, il che porta anche a sistemi di posta elettronica più complessi in ambienti GNU/Linux.
+A differenza dei sistemi di posta elettronica delle aziende commerciali, la versione open source del sistema di posta elettronica è composta da molte parti. Non si tratta di un singolo servizio, il che porta a sistemi di posta elettronica più complessi in ambienti GNU/Linux.
 
 ## Il concetto di base del sistema di posta elettronica
 
 Il sistema di posta elettronica si compone principalmente di quattro parti: **MUA**, **MTA**, **MRA** e **MDA**.
 
-* **MUA (Mail User Agent)**: cioè i client di posta per gli utenti, come Outlook, Foxmail, ecc.
+* **MUA (Mail User Agent)**: si tratta di client di posta elettronica per gli utenti, come Outlook, Foxmail, ecc.
 * **MTA (Mail Transfer Agent)**: Si riferisce a un programma di server di posta elettronica utilizzato per trasmettere la posta. L'MTA è l'implementazione di SMTP.
 * **MDA (Mail Delivery Agent)**: Quando l'MTA riceve la posta, l'MDA è responsabile del salvataggio dell'e-mail nella posizione designata sul server di posta elettronica, eseguendo anche operazioni di filtraggio e antivirus.
 * **MRA (Mail Retrieval Agent)**: l'MRA è un'implementazione di IMAP e POP3, utilizzata per interagire con MUA e trasmettere le e-mail ai client di posta elettronica tramite IMAP o POP3.
 
 ### Tre protocolli
 
-* **SMTP (Simple Mail Transfer Protocol)**: il protocollo standard per l'invio di e-mail, con una porta predefinita "TCP 25". Quando è richiesta la funzione di crittografia, utilizzare la porta "TCP 465".
-* **IMAP (Internet Mail Access Protocol)**: Utilizzata per ricevere le e-mail dal server di posta elettronica; la porta predefinita è la 143. Quando è richiesta la funzione di crittografia, utilizzare la porta 993.
-* **POP3 (Post Office Protocol - Version 3)**: Utilizzata per ricevere le e-mail dal server di posta elettronica; la porta predefinita è la 110. Quando è richiesta la funzione di crittografia, utilizzare la porta 995.
+* **SMTP (Simple Mail Transfer Protocol)**: il protocollo standard per l'invio di e-mail, con una porta predefinita "TCP 25". Utilizzare la porta "TCP 465" quando è richiesta una funzione di crittografia.
+* **IMAP (Internet Mail Access Protocol)**: Utilizzata per ricevere le e-mail dal server di posta elettronica; la porta predefinita è la 143. Utilizzare la porta 993 quando è richiesta una funzione di crittografia.
+* **POP3 (Post Office Protocol - Version 3)**: Utilizzata per ricevere le e-mail dal server di posta elettronica; la porta predefinita è la 110. Utilizzare la porta 995 quando è richiesta una funzione di crittografia.
 
 La differenza tra IMAP e POP3 è la seguente:
 
@@ -68,7 +68,7 @@ Per ulteriori informazioni su postfix, consultare questi due link:
 
 ![legend01](./email-images/email-system02.jpg)
 
-Postfix determina se un'e-mail inviata da un client appartiene al dominio locale o esterno. Se appartiene al dominio locale, l'e-mail verrà memorizzata nella casella di posta elettronica del dominio locale. Se l'e-mail inviata appartiene a un dominio esterno, viene inoltrata a un altro MTA (l'identità dell'utente deve essere verificata dal database prima dell'inoltro).
+Postfix determina se un'e-mail inviata da un client appartiene al dominio locale o esterno. L'e-mail verrà memorizzata nella casella di posta elettronica del dominio locale se appartiene al dominio locale. Se l'e-mail inviata appartiene a un dominio esterno, viene inoltrata a un altro MTA (l'identità dell'utente deve essere verificata dal database prima dell'inoltro).
 
 ### Il processo di ricezione delle e-mail da parte del client
 
@@ -76,7 +76,7 @@ Postfix determina se un'e-mail inviata da un client appartiene al dominio locale
 
 ## Server e-mail open-source
 
-Un sistema di posta elettronica completo è costituito da componenti decentralizzati e gestiti da persone o organizzazioni diverse, e le barriere all'uso per alcune persone sono elevate. Di conseguenza, alcuni server di posta elettronica open-source emergono man mano che i tempi lo richiedono; questi server di posta elettronica combinano questi componenti per creare un prodotto out-of-the-box, per gli utenti, tutti gli aspetti sono relativamente semplici e facili.
+Un sistema di posta elettronica completo è costituito da componenti decentralizzati e gestiti da persone o organizzazioni diverse, e le barriere all'uso per alcune persone sono elevate. Di conseguenza, alcuni server di posta elettronica open source emergono man mano che i tempi lo richiedono; questi server di posta elettronica combinano questi componenti per creare un prodotto out-of-the-box, per gli utenti, dove tutti gli aspetti sono relativamente semplici e facili.
 
 * [iredmail](https://www.iredmail.com/index.html)
 * [Zimbra Email Server](https://www.zimbra.com/)
