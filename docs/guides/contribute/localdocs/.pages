@@ -1,0 +1,8 @@
+---
+nav:
+    - ... | rockydocs_web_dev*.md
+    - ... | mkdocs_lsyncd*.md
+    - ... | rockydocs_webdev_v2*.md
+    - ... | mkdocs_venv*.md
+    - ... | local_docs*.md
+    - ...

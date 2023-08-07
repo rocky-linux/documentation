@@ -1,5 +1,5 @@
 ---
-title: Local Documentation - Docker
+title: Docker Method
 author: Wale Soyinka
 contributors: Steve Spencer
 update: 27-Feb-2022

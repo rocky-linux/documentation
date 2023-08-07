@@ -1,5 +1,5 @@
 ---
-title: Local Documentation - LXD
+title: LXD Method
 author: Steven Spencer
 contributors: Ezequiel Bruni
 tested_with: 8.5, 8.6
@@ -20,9 +20,9 @@ This is also a companion document to the [Docker version here](rockydocs_web_dev
 
 * Familiarity and comfort with the command-line
 * Comfortable using tools for editing, SSH, and synchronization, or willing to follow along and learn
-* LXD reference - there is a long document on [building and using LXD on a server here](../../books/lxd_server/00-toc.md), but you will use just a basic install on our Linux workstation
-* Using `lsyncd` for mirroring files. See [documentation on that here](../backup/mirroring_lsyncd.md)
-* You will need public keys generated for your user and the "root" user on your local workstation using [this document](../security/ssh_public_private_keys.md)
+* LXD reference - there is a long document on [building and using LXD on a server here](../../../books/lxd_server/00-toc.md), but you will use just a basic install on our Linux workstation
+* Using `lsyncd` for mirroring files. See [documentation on that here](../../backup/mirroring_lsyncd.md)
+* You will need public keys generated for your user and the "root" user on your local workstation using [this document](../../security/ssh_public_private_keys.md)
 * Our bridge interface is running on 10.56.233.1 and our container is running on 10.56.233.189 in our examples. However your IPs for the bridge and container will be different. 
 * "youruser" in this document represents your user id
 * The assumption is that you are already doing documentation development with a clone of the documentation repository on your workstation
@@ -116,7 +116,7 @@ In this procedure, the root user (at minimum) needs to be able to SSH into the c
 sudo -s
 ```
 
-The assumption also is that the root user has an `id_rsa.pub` key in the `./ssh` directory. If not, generate one with [this procedure](../security/ssh_public_private_keys.md):
+The assumption also is that the root user has an `id_rsa.pub` key in the `./ssh` directory. If not, generate one with [this procedure](../../security/ssh_public_private_keys.md):
 
 ```
 ls -al .ssh/
@@ -247,7 +247,7 @@ You are almost there if you saw the documentation in the web browser. The last s
 
 As noted above, you are doing this here with `lsyncd`.
 
-Installation of`lsyncd` differs depending on your Linux version. [This document](../backup/mirroring_lsyncd.md) covers ways to install it on Rocky Linux, and also from source. If you are using other Linux types (Ubuntu for example) they generally have their own packages, but they have nuances.
+Installation of`lsyncd` differs depending on your Linux version. [This document](../../backup/mirroring_lsyncd.md) covers ways to install it on Rocky Linux, and also from source. If you are using other Linux types (Ubuntu for example) they generally have their own packages, but they have nuances.
 
 Ubuntu's, for example, names the configuration file differently. Just be aware that if you are using another Linux workstation type other than Rocky Linux, and do not want to install from source, there are probably packages available for your platform.
 
