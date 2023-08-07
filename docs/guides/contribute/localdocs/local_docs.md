@@ -1,5 +1,5 @@
 ---
-title: Local Documentation - Quick
+title: Quick Method
 author: Lukas Magauer
 contributors: Steven Spencer
 tested_with: 8.6, 9.0
