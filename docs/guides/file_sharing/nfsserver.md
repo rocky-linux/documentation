@@ -84,7 +84,7 @@ Declare machines authorized to access resources with:
 * **FQDN**: client_*.rockylinux.org: allows FQDNs starting with client_ from the rockylinux.org domain
 * `*` for everybody
 
-Specification of multiple clients is possible on the same line separated by a space.
+Multiple client specifications are possible on the same line, separated by a space.
 
 ### Permissions on resources
 
@@ -101,7 +101,7 @@ To force the use of a UID or GID other than that of the user writing the resourc
 
 !!! warning "warning" 
 
-    There is a parameter, `no_root_squash`, which identifies the client root user as the server root user. This parameter can be dangerous from a system security point of view.
+    A parameter, `no_root_squash`, identifies the client root user as the server root user. This parameter can be dangerous from a system security point of view.
 
 Activation of the `root_squash` parameter is a default (even if not specified), identifying `root` as an `anonymous` user.
 
@@ -137,7 +137,7 @@ exportfs [-a] [-r] [-u share_name] [-v]
 
 ### The `showmount` command
 
-Use the `showmount` command to monitor clients.
+The `showmount` command monitors clients.
 
 ```
 showmount [-a] [-e] [host]
