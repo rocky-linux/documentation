@@ -1,5 +1,5 @@
 ---
-title: Локальна документація - Python VENV
+title: Метод Python VENV
 author: Franco Colussi
 contributors: Steven Spencer
 tested_with: 8.7, 9.1

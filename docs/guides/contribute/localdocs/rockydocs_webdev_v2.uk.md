@@ -1,5 +1,5 @@
 ---
-title: Локальна документація - Podman
+title: Метод Podman
 author: Wale Soyinka
 contributors:
 update: 13 лютого 2023 р

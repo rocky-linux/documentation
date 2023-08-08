@@ -1,5 +1,5 @@
 ---
-title: Documentazione locale - Docker
+title: Metodo Docker
 author: Wale Soyinka
 contributors: Steve Spencer, Franco Colussi
 update: 05-Mar-2022

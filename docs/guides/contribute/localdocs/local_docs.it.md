@@ -1,5 +1,5 @@
 ---
-title: Documentazione Locale - Veloce
+title: Metodo rapido
 author: Lukas Magauer
 contributors: Steven Spencer, Franco Colussi
 tested_with: 8.6, 9.0

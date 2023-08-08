@@ -51,10 +51,7 @@ Per farlo in modo efficace occorre:
 
 !!! tip "Suggerimento"
 
-    È possibile creare ambienti completamente separati per `mkdocs` utilizzando anche una di queste due procedure:
-
-    * [Documentazione Locale - Docker](rockydocs_web_dev.md)
-    * [Documentazione Locale - LXD](mkdocs_lsyncd.md)
+    È possibile creare ambienti completamente separati per `mkdocs` utilizzando una qualsiasi delle procedure presenti nella sezione "Documentazione locale" del menu "Contributi".
 
 !!! Note "Nota"
 
@@ -63,7 +60,7 @@ Per farlo in modo efficace occorre:
 ### Installazione
 
 * Installare `mkdocs` con l'ambiente python: `pip install mkdocs`
-* Installare i plugin necessari: `pip install mkdocs-material mkdocs-localsearch mkdocs-awesome-pages-plugin mkdocs-redirects mkdocs-i18n`
+* Installare i plugin necessari:  `pip install mkdocs-material mkdocs-localsearch mkdocs-awesome-pages-plugin mkdocs-redirects mkdocs-i18n`
 * Clonare il repository (come indicato sopra)
 
 ### Collegamento ed esecuzione di `mkdocs`

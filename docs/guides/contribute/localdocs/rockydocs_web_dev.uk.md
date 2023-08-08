@@ -1,5 +1,5 @@
 ---
-title: Локальна документація - Docker
+title: Метод Docker
 author: Wale Soyinka
 contributors: Steve Spencer
 update: 27 лютого 2022 р

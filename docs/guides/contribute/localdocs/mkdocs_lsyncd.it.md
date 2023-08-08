@@ -1,5 +1,5 @@
 ---
-title: Documentazione Locale - LXD
+title: Metodo LXD
 author: Steven Spencer
 contributors: Ezequiel Bruni
 tested_with: 8.5, 8.6
@@ -20,7 +20,7 @@ Questo è anche un documento di accompagnamento alla versione [Docker qui](rocky
 
 * Familiarità e comfort con la riga di comando
 * Essere a proprio agio con l'uso di strumenti per l'editing, SSH e la sincronizzazione, o essere disposti a seguire e imparare
-* Riferimento a LXD - c'è un lungo documento su [costruzione e utilizzo di LXD su un server qui](../../books/lxd_server/00-toc.md), ma si userà solo un'installazione di base sulla nostra workstation Linux
+* Riferimento a LXD - c'è un lungo documento sulla [costruzione e utilizzo di LXD su un server qui](../../../books/lxd_server/00-toc.md), ma si utilizzerà solo un'installazione di base sulla nostra workstation Linux
 * Utilizzo di `lsyncd` per il mirroring dei file. Vedere [documentazione in merito qui](../backup/mirroring_lsyncd.md)
 * Avrete bisogno di chiavi pubbliche generate per il vostro utente e per l'utente "root" sulla vostra postazione locale usando [questo documento](../security/ssh_public_private_keys.md)
 * La nostra interfaccia bridge è in esecuzione su 10.56.233.1 e il nostro container è in esecuzione su 10.56.233.189 nei nostri esempi. Tuttavia i vostri IP per il bridge e il container potrebbero essere diversi.

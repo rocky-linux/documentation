@@ -1,5 +1,5 @@
 ---
-title: Локальна Документація
+title: Швидкий метод
 author: Lukas Magauer
 contributors: Steven Spencer
 tested_with: 8.6, 9.0
