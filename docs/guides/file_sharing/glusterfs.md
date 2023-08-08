@@ -9,7 +9,7 @@ update: 11-Feb-2022
 
 ## Prerequisites
 
-* Proficiency with a command-line editor (we are using _vi_ in this example)
+* Proficiency with a command line editor (using _vi_ in this example)
 * A heavy comfort level with issuing commands from the command-line, viewing logs, and other general systems administrator duties
 * All commands are run as the root user or sudo
 
@@ -17,7 +17,7 @@ update: 11-Feb-2022
 
 GlusterFS is a distributed file system.
 
-It allows for storage of large amount of data distributed across clusters of servers with a very high availability.
+It allows storing large amounts of data distributed across clusters of servers with very high availability.
 
 It is composed of a server part to be installed on all the nodes of the server clusters.
 
@@ -28,7 +28,7 @@ GlusterFS can operate in two modes:
   * replicated mode: each node of the cluster has all the data.
   * distributed mode: no data redundancy. If a storage fails, the data on the failed node is lost.
 
-Both modes can be used together to provide both a replicated and distributed file system as long as you have the right number of servers.
+Both modes can be used together to provide a replicated and distributed file system if you have the correct number of servers.
 
 Data is stored inside bricks.
 
@@ -36,7 +36,7 @@ Data is stored inside bricks.
 
 ## Test platform
 
-Our fictitious platform is composed of two servers and a client, all Rocky Linux servers.
+Our fictitious platform is comprises two servers and a client, all Rocky Linux servers.
 
 * First node: node1.cluster.local - 192.168.1.10
 * Second node: node2.cluster.local - 192.168.1.11
@@ -139,7 +139,7 @@ $ sudo firewall-cmd --reload
 
 ## Name resolution
 
-You can let DNS handle the name resolution of the servers in your cluster, or you can choose to relieve the servers of this task by inserting records for each of them in your `/etc/hosts` files. This will also keep things running even in the event of a DNS failure.
+You can let DNS handle the name resolution of the servers in your cluster, or you can choose to relieve the servers of this task by inserting records for each of them in your `/etc/hosts` files. This will also keep things running even during a DNS failure.
 
 ```
 192.168.10.10 node1.cluster.local
@@ -155,7 +155,7 @@ $ sudo systemctl enable glusterfsd.service glusterd.service
 $ sudo systemctl start glusterfsd.service glusterd.service
 ```
 
-We are ready to join the two nodes to the same pool.
+We are ready to join the two nodes in the same pool.
 
 This command is to be performed only once on a single node (here on node1):
 
@@ -201,7 +201,7 @@ volume create: volume1: success: please start the volume to access data
 
 !!! Note
 
-    As the return command says, a 2-node cluster is not the best idea in the world against split brain. But this will suffice for the purposes of our test platform.
+    As the return command says, a 2-node cluster is not the best idea in the world against split brain. But this will suffice for our test platform.
 
 We can now start the volume to access data:
 
@@ -259,7 +259,7 @@ We can already restrict access on the volume a little bit:
 $ sudo gluster volume set volume1 auth.allow 192.168.10.*
 ```
 
-It's as simple as that
+It is as simple as that.
 
 ## Clients access
 
@@ -291,9 +291,9 @@ total 0
 -rw-r--r--. 2 root root 0 Feb  3 19:21 test
 ```
 
-Sound good! But what happens if the node 1 fails? It is the one that was specified when mounting the remote access.
+Sounds good! But what happens if node 1 fails? It is the one that was specified when mounting the remote access.
 
-Let's stop the node one:
+Let's stop node one:
 
 ```
 $ sudo shutdown -h now
@@ -338,4 +338,4 @@ Upon connection, the glusterfs client receives a list of nodes it can address, w
 
 ## Conclusions
 
-While there are no current repositories, using the archived repositories that CentOS had for GlusterFS will still work. As outlined, GlusterFS is pretty easy to install and maintain. Using the command line tools is a pretty straight forward process. GlusterFS will help with creating and maintaining high-availability clusters for data storage and redundancy. You can find more information on GlusterFS and tool usage from the [official documentation pages.](https://docs.gluster.org/en/latest/)
+While there are no current repositories, using the archived repositories that CentOS had for GlusterFS will still work. As outlined, GlusterFS is pretty easy to install and maintain. Using the command line tools is a pretty straight forward process. GlusterFS will help create and maintain high-availability clusters for data storage and redundancy. You can find more information on GlusterFS and tool usage from the [official documentation pages.](https://docs.gluster.org/en/latest/)
