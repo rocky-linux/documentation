@@ -20,17 +20,18 @@ tags:
 
 ## Introduction
 
-`vsftpd` is the  Very Secure FTP Daemon (FTP being the file transfer protocol). It has been available for many years now, and is actually the default FTP daemon in Rocky Linux, and many other Linux distributions.
+`vsftpd` is the  Very Secure FTP Daemon (FTP being the file transfer protocol). It has been available for many years, and is the default FTP daemon in Rocky Linux and many other Linux distributions.
 
-`vsftpd` allows for the use of virtual users with pluggable authentication modules (PAM). These virtual users do not exist in the system, and have no other permissions except to use FTP. If a virtual user gets compromised, the person with those credentials will have no other permissions after gaining access as that user. Using this setup is very secure indeed, but does require a bit of extra work.
+`vsftpd` allows for the use of virtual users with pluggable authentication modules (PAM). These virtual users do not exist in the system and have no other permissions except FTP. If a virtual user gets compromised, the person with those credentials will have no other permissions after gaining access as that user. This setup is very secure but requires a bit of extra work.
 
 !!! tip "Consider `sftp`"
 
-    Even with the security settings used here to set up `vsftpd`, you may want to consider `sftp` instead. `sftp` will encrypt the entire connection stream and is more secure for this reason. We have created a document called [Secure Server - `sftp`](../sftp) that deals with setting up `sftp` and the locking down SSH. 
+    Even with the security settings used here to set up `vsftpd`, you may want to consider `sftp` instead. `sftp` will encrypt the entire connection stream and is more secure. We have created a document called [Secure Server - `sftp`](../sftp) that deals with setting up `sftp` and the locking down SSH. 
 
 ## Installing `vsftpd`
 
-You also need to ensure the installation of  `openssl`. If you are running a web server, this probably **is** already installed, but just to verify you can run:
+You must also ensure the `openssl` installation. If you are running a web server, this probably **is** already installed, but just to verify you can run:
+
 
 ```
 dnf install vsftpd openssl
@@ -46,7 +47,7 @@ Do not start the service just yet.
 
 ## Configuring `vsftpd`
 
-You want to ensure the disabling of some settings and the enabling of others. Generally, when you install `vsftpd`, it includes the most sane options already set. It is still a good idea to verify them.
+You want to ensure the disabling of some settings and enabling others. Generally, installing `vsftpd` includes the most sane options already set. It is still a good idea to verify them.
 
 To check the configuration file and make changes when necessary, run:
 
@@ -66,7 +67,7 @@ Ensure that "local_enable" is yes:
 local_enable=YES
 ```
 
-Add a line for the local root user. If the server that you are installing this on is a web server, our assumption is that you will be using the [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md), and that your local root will reflect that. If your setup is different, or if this is not a web server, adjust the "local_root" setting:
+Add a line for the local root user. If the server is a web server, and you use the [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md), your local root will reflect that. If your setup is different, or if this is not a web server, adjust the "local_root" setting:
 
 ```
 local_root=/var/www/sub-domains
@@ -98,7 +99,7 @@ nopriv_user=vsftpd
 guest_username=vsftpd
 ```
 
-You need to add a section near the bottom of the file to force encryption of passwords sent over the internet. You need `openssl` installed and you will need to create the certificate file for this also.
+You need to add a section near the bottom of the file to force encryption of passwords sent over the internet. You need `openssl` installed and you must also create the certificate for this.
 
 Start by adding these lines at the bottom of the file:
 
@@ -161,7 +162,7 @@ Next is the organizational unit name. You can fill this in if the server is for 
 Organizational Unit Name (eg, section) []:
 ```
 
-The the next field needs filling in, but you can decide how you want it. This is the common name of your server. Example: `webftp.domainname.ext`:
+The following field needs filling in, but you can decide how you want it. This is the common name of your server. Example: `webftp.domainname.ext`:
 
 ```
 Common Name (eg, your name or your server's hostname) []:
@@ -177,7 +178,7 @@ When completed, the certificate creation will occur.
 
 ## <a name="virtualusers"></a>Setting up virtual users
 
-As stated earlier, using virtual users for `vsftpd` is much more secure because they have no system privileges at all. That said, you need to add a user for the virtual users to use. You also need to add a group:
+As stated earlier, using virtual users for `vsftpd` is much more secure because they have no system privileges. That said, you need to add a user for the virtual users. You also need to add a group:
 
 ```
 groupadd nogroup
@@ -192,7 +193,7 @@ Go to the configuration directory for `vsftpd`:
 cd /etc/vsftpd
 ```
 
-You need to create a password database. You use this database to authenticate our virtual users. You need to create a file to read the virtual users and passwords from. This will create the database.
+You need to create a password database. You use this database to authenticate our virtual users. You need to create a file to read the virtual users and passwords. This will create the database.
 
 In the future, when adding users, you will want to duplicate this process again:
 
@@ -281,7 +282,7 @@ This will enable login for your virtual users defined in `vsftpd-virtual-user.db
 
 ## Setting up the virtual user's configuration
 
-Each virtual user has their own configuration file, which specifies their own "local_root" directory. Ownership of this local root is the user "vsftpd" and the group "nogroup".
+Each virtual user has a configuration file, specifying their own "local_root" directory. Ownership of this local root is the user "vsftpd" and the group "nogroup".
 
 Refer to [Setting Up Virtual Users section above.](#virtualusers) To change the ownership for the directory, enter this at the command line:
 
@@ -316,12 +317,12 @@ systemctl restart vsftpd
 
 You can test your setup with the command line on a machine and test access to the machine with FTP. That said, the easiest way to test is to test with an FTP client, such as [FileZilla](https://filezilla-project.org/).
 
-When you test with a virtual user to the server running `vsftpd`, you will get an SSL/TLS certificate trust message. This trust message is saying to the person that the server uses a certificate and asks them to approve the certificate before continuing. When connected as a virtual user, you will be able to place files in the "local_root" folder.
+When you test with a virtual user to the server running `vsftpd`, you will get an SSL/TLS certificate trust message. This trust message tells the person that the server uses a certificate and asks them to approve it before continuing. You can place files in the "local_root" folder when connected as a virtual user. 
 
 If you are unable to upload a file, you might need to go back and verify each of the steps again. For instance, it might be that the ownership permissions for the "local_root" are not set to the "vsftpd" user and the "nogroup" group.
 
 ## Conclusion
 
-`vsftpd` is a popular and common ftp server and can be a stand alone server, or part of an [Apache Hardened Web Server](../web/apache_hardened_webserver/index.md). If set up to use virtual users and a certificate, it is quite secure.
+`vsftpd` is a popular and common FTP server and can be a stand-alone server, or part of an [Apache Hardened Web Server](../web/apache_hardened_webserver/index.md). It is pretty secure if set up to use virtual users and a certificate. 
 
 This procedure has many steps to for setting up `vsftpd`. Taking the extra time to set it up correctly will ensure that your server is as secure as it can be.
