@@ -4,11 +4,7 @@ nav:
     - ... | beginners*.md
     - ... | createnew*.md
     - ... | rockydocs_formatting*.md
-    - ... | rockydocs_web_dev*.md
-    - ... | rockydocs_webdev_v2*.md
-    - ... | mkdocs_venv*.md
-    - ... | mkdocs_lsyncd*.md
-    - ... | local_docs*.md
+    - Local Documentation: localdocs
     - ... | navigation*.md
     - ... | style_guide*.md
     - ...
