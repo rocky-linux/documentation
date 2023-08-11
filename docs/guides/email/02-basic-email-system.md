@@ -57,7 +57,7 @@ zone "rockylinux.me" IN {
 
 !!! question 
 
-    **What is DNS zone?**<br/>A DNS zone is the specific portion of a DNS namespace that's hosted on a DNS server. A DNS zone contains resource records, and the DNS server responds to queries for records in that namespace. A DNS server can have multiple DNS zones. Simply put, a DNS zone is the equivalent of a book catalog.
+    **What is DNS zone?** A DNS zone is the specific portion of a DNS namespace that's hosted on a DNS server. A DNS zone contains resource records, and the DNS server responds to queries for records in that namespace. A DNS server can have multiple DNS zones. Simply put, a DNS zone is the equivalent of a book catalog.
 
 ```bash
 # Modify data file
