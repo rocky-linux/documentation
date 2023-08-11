@@ -7,11 +7,11 @@ contributors: Amin Vakil, Steven Spencer
 
 ## Minimal requirements for public mirrors
 
-We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 data center like environment. Available bandwidth should be at least 1 GBit/s. We prefer mirrors offering dual-stack (IPv4 & IPv6). Please do not submit mirrors configured using dynamic DNS. If you are offering a mirror in a region that has only few mirrors, we will also accept slower speeds.
+We always welcome new public mirrors. But they should be well maintained and hosted in a 24/7 data center like environment. Available bandwidth should be at least 1 GBit/s. We prefer mirrors offering dual-stack (IPv4 & IPv6). Please do not submit mirrors configured using dynamic DNS. We will also accept slower speeds if you are in a region with only a few mirrors.
 
-Please do not submit mirrors which are hosted in a Anycast-CDN like Cloudflare, etc. as this can lead to sub-optimal performance with the selection of fastest mirror in `dnf`.
+Please do not submit mirrors hosted in an Anycast-CDN like Cloudflare, etc., as this can lead to sub-optimal performance with selecting the fastest mirror in `dnf`.
 
-Please note that we are not allowed to accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: [https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations](https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations)
+Please note that we cannot accept public mirrors in countries subject to US export regulations. You can find a list of those countries here: [https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations](https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations)
 
 As of this writing (late 2022), storage space requirements for mirroring all current and past Rocky Linux releases is about 2 TB.
 
@@ -43,7 +43,7 @@ For a simple synchronization you can use the following `rsync` command:
 ```
 rsync -aqH --delete source-mirror destination-dir
 ```
-Consider using a locking mechanism to avoid running more than one `rsync` job simultaneously when we push a new release.
+Consider using a locking mechanism to avoid running multiple `rsync` job simultaneously when we push a new release.
 
 You can also use and modify our example script implementing locking and full sync if required. It can be found at [https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh](https://github.com/rocky-linux/rocky-tools/blob/main/mirror/mirrorsync.sh).
 
@@ -64,7 +64,7 @@ Access Rocky's Mirror Manager here: https://mirrors.rockylinux.org/mirrormanager
 
 After a successful login, your profile will be on the top right. Select the drop down then click "My sites".
 
-A new page will load listing all of the sites under the account. The first time it will be empty. Click "Register a new site".
+A new page will load listing all sites under the account. The first time it will be empty. Click "Register a new site".
 
 A new page will load with an important Export Compliance statement to read. Then fill out the following information:
 
@@ -80,7 +80,7 @@ Upon clicking "Submit" you will be returned to the main mirror page.
 
 ## Configuring the site
 
-From the main mirror page, select the drop down then click "My sites".
+Select the drop-down from the main mirror page, then click "My sites".
 
 The account site page will load and the site should be listed. Click on it to go to the Information Site.
 
@@ -97,8 +97,8 @@ Fill out the following options that are appropriate for the site:
 * "Private" - e.g. not available to the public, an internal private mirror
 * "Internet2" - on Internet2
 * "Internet2 clients" - serves Internet2 clients, even if private
-* "ASN - Autonomous System Number, used in BGP routing tables. Only if you are an ISP.
-* "ASN Clients? - Serve all clients from the same ASN. Used for ISPs, companies, or schools, not personal networks.
+* "ASN" - Autonomous System Number, used in BGP routing tables. Only if you are an ISP.
+* "ASN Clients" - Serve all clients from the same ASN. Used for ISPs, companies, or schools, not personal networks.
 * "Robot email" - email address, will receive notice of upstream content updates
 * "Comment" - text, anything else you'd like a public end user to know about your mirror
 * "Max connections" - Maximum parallel download connections per client, suggested via metalinks.
