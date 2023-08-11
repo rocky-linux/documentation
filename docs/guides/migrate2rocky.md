@@ -9,7 +9,7 @@ update: 11-23-2021
 
 ## Prerequisites & Assumptions
 
-* CentOS Stream, CentOS, Alma Linux, RHEL, or Oracle Linux running well on a hardware server or VPS. The current supported version for each of these is 8.7 or 9.1.
+* CentOS Stream, CentOS, Alma Linux, RHEL, or Oracle Linux running well on a hardware server or VPS. The current supported version for each of these is 8.8 or 9.2.
 * A working knowledge of the command line.
 * A working knowledge of SSH for remote machines.
 * A mildly risk-taking attitude.
