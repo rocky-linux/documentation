@@ -22,15 +22,16 @@ tags:
 
 `vsftpd` è il demone FTP very secure (FTP è il protocollo di trasferimento dei file). È disponibile da molti anni ed è il demone FTP predefinito in Rocky Linux e in molte altre distribuzioni Linux.
 
-_vsftpd_ consente di utilizzare utenti virtuali con moduli di autenticazione collegabili (PAM). Questi utenti virtuali non esistono nel sistema e non hanno altri permessi se non quello di usare FTP. Se un utente virtuale viene compromesso, la persona con quelle credenziali non avrà altre autorizzazioni dopo aver ottenuto l'accesso come utente. L'utilizzo di questa configurazione è davvero molto sicura, ma richiede un po' di lavoro in più.
+_vsftpd_ consente di utilizzare utenti virtuali con moduli di autenticazione collegabili (PAM). Questi utenti virtuali non esistono nel sistema e non hanno altre autorizzazioni, tranne quella di FTP. Se un utente virtuale viene compromesso, la persona con quelle credenziali non avrà altre autorizzazioni dopo aver ottenuto l'accesso come utente. Questa configurazione è molto sicura, ma richiede un po' di lavoro in più.
 
 !!! tip "Prendi in considerazione `sftp`"
 
-    Anche con le impostazioni di sicurezza usate qui per configurare `vsftpd`, si potrebbe prendere in considerazione `sftp`. `sftp` cripta l'intero flusso di connessione e per questo motivo è più sicuro. Abbiamo creato un documento chiamato [Secure Server - `sftp`](../sftp) che tratta l'impostazione di `sftp` e il blocco di SSH.
+    Anche con le impostazioni di sicurezza usate qui per configurare `vsftpd`, si potrebbe prendere in considerazione `sftp`. `sftp` cripta l'intero flusso di connessione ed è più sicuro. Abbiamo creato un documento chiamato [Secure Server - `sftp`](../sftp) che tratta l'impostazione di `sftp` e il blocco di SSH.
 
 ## Installazione di `vsftpd`
 
-È inoltre necessario garantire l'installazione di `openssl`. Se si utilizza un server web, probabilmente questo **è** già installato, ma per verificare è possibile eseguire:
+È inoltre necessario accertarsi dell'installazione di `openssl`. Se si utilizza un server web, probabilmente questo **è** già installato, ma per verificare è possibile eseguire:
+
 
 ```
 dnf install vsftpd openssl
@@ -46,7 +47,7 @@ Non avviate ancora il servizio.
 
 ## Configurazione di `vsftpd`
 
-Vorrai assicurarti di disabilitare certe impostazioni, e di abilitarne altre. In genere, quando installi `vsftpd`, include le opzioni più sensate, già impostate. Tuttavia, è comunque una buona idea verificarle.
+Si vuole garantire la disabilitazione di alcune impostazioni e l'abilitazione di altre. In genere, l'installazione di `vsftpd` include le opzioni più corrette già impostate. Tuttavia, è comunque una buona idea verificarle.
 
 Per controllare il file di configurazione e apportare le modifiche necessarie, eseguire:
 
@@ -66,7 +67,7 @@ Assicurarsi che "local_enable" sia yes:
 local_enable=YES
 ```
 
-Aggiungere una riga per l'utente root locale. Se il server su cui stai installato è un server web, la nostra ipotesi e che utilizzerai la [Configurazione a Più Siti del Server Web Apache](../web/apache-sites-enabled.md) e che il tuo root locale lo rifletterà. Se la tua configurazione è differente, o se questo non è un server web, regola l'impostazione "local_root":
+Aggiungere una riga per l'utente root locale. Se il server è un server web e si utilizza il file [Apache Web Server Multi-Site Setup](../web/apache-sites-enabled.md), la root locale lo rifletterà. Se la tua configurazione è differente, o se questo non è un server web, regola l'impostazione "local_root":
 
 ```
 local_root=/var/www/sub-domains
@@ -161,7 +162,7 @@ Il prossimo è il nome dell'unità organizzativa. È possibile compilare questo 
 Organizational Unit Name (eg, section) []:
 ```
 
-Il campo successivo deve essere compilato, ma potete decidere come volete. Questo è il nome comune del tuo server. Esempio: `webftp.domainname.ext`:
+Il campo seguente deve essere compilato, ma potete decidere voi come farlo. Questo è il nome comune del tuo server. Esempio: `webftp.domainname.ext`:
 
 ```
 Common Name (eg, your name or your server's hostname) []:
@@ -192,7 +193,7 @@ Andare alla directory di configurazione di `vsftpd`:
 cd /etc/vsftpd
 ```
 
-È necessario creare un database di password. Questo database viene utilizzato per autenticare i nostri utenti virtuali. È necessario creare un file da cui leggere gli utenti virtuali e le password. Questo creerà il database.
+È necessario creare un database di password. Questo database viene utilizzato per autenticare i nostri utenti virtuali. È necessario creare un file per leggere gli utenti virtuali e le password. Questo creerà il database.
 
 In futuro, quando si aggiungeranno utenti, si dovrà ripetere questa procedura:
 
@@ -322,6 +323,6 @@ Se non si riesce a caricare un file, potrebbe essere necessario tornare indietro
 
 ## Conclusione
 
-`vsftpd` è un server ftp popolare e comune e può essere indipendente, o parte di un [Server Web Sicuro di Apache](../web/apache_hardened_webserver/index.md). Se impostato per utilizzare utenti virtuali e un certificato, è abbastanza sicuro.
+`vsftpd` è un server FTP popolare e comune e può essere un server indipendente o parte di un [Apache Hardened Web Server](../web/apache_hardened_webserver/index.md). È abbastanza sicuro se impostato per utilizzare utenti virtuali e un certificato.
 
 Questa procedura prevede molti passaggi per l'impostazione di `vsftpd`. Dedicando un po' di tempo in più alla sua corretta configurazione, il vostro server sarà il più sicuro possibile.
