@@ -8,37 +8,38 @@ tags:
   - network
 ---
 
-# LibreNMS Monitoring Server
+# LibreNMS monitoring server
 
 ## Introduction
 
-Network and systems administrators almost always need some form of monitoring. This can include graphing bandwidth usage at router end points, monitoring the up/down of services running on various servers, and much, much more. There are many monitoring options out there, but one option that is very good and has many, if not all, of the monitoring components available under one roof, is LibreNMS.
+Network and systems administrators almost always need some form of monitoring. This can include graphing bandwidth usage at router end points, monitoring the status of services running on various servers, and much more. There are many monitoring options out there, but one good option with many, if not all, of the monitoring components available under one roof, is LibreNMS.
 
-This document will only get you started with LibreNMS, but we will point you to the project's excellent (and extensive) documentation to get you going further. There are lots of other options for monitoring out there that this author has used before, Nagios and Cacti being two, but LibreNMS offers what those two projects offer individually, in one spot.
+This document is just a starting point for LibreNMS. We will point you to the project's excellent (and extensive) documentation for more options. There are many other monitoring options out there that this author has used before, Nagios and Cacti being two, but LibreNMS offers what those two projects offer individually, in one spot.
 
-While the installation will pretty closely follow the official install instructions found [here](https://docs.librenms.org/Installation/Install-LibreNMS/), we've added some explanation and even some minor changes, which make this procedure preferable to that excellent document.
+While the installation will closely follow the [official install instructions found here](https://docs.librenms.org/Installation/Install-LibreNMS/), we have added some explanation and minor changes, which make this procedure preferable to that excellent document.
 
 ## Prerequisites, Assumptions and Conventions
 
-* A server or container (yes, LibreNMS will run in a container, however if you have a lot to monitor, your best bet would be to install on its own hardware) running Rocky Linux. All commands assume a fresh install of Rocky Linux.
-* Assumption: that you are able to execute commands as root or can _sudo_ to do so
+* A server or container (yes, LibreNMS will run in a container, however, if you a great deal to  monitor, your best bet would be to install on its own hardware) running Rocky Linux. All commands assume a fresh install of Rocky Linux.
+* Assumption: that you can run commands as root or can _sudo_ to do so
 * Working knowledge of command-line tools, including text editors such as _vi_
-* We are assuming the use of SNMP v2. If you want to use SNMP v3, it is supported by LibreNMS and will work. You'll just need to switch up the SNMP configuration and options on your devices to match up to v3.
-* While we have included the SELinux procedure in this document, the container that we are using in the lab does not include it by default. For this reason, the SELinux procedure has **not** been lab tested.
+* We are assuming the use of SNMP v2. If you want to use SNMP v3, it is supported by LibreNMS and will work. You will need to switch up the SNMP configuration and options on your devices to match up to v3.
+* While we have included the SELinux procedure in this document, the container we use in the lab does not include it by default. For this reason, the SELinux procedure has **not** been lab tested.
 * Throughout this document, the examples use the _vi_ editor as mentioned. When the document says to save your changes and exit, this is done with `SHIFT:wq!`
-* Some trouble-shooting skills, including log monitoring, web testing, and more, are required.
+* The procedure requires some troubleshooting skills, including log monitoring, web testing, and more
 
 ## Installing Packages
 
-These commands should be entered as the root user. Before we begin, note that this installation procedure focuses on *httpd*, rather than *nginx*. If you prefer to use the latter, head up to the [Librenms Install Instructions](https://docs.librenms.org/Installation/Install-LibreNMS/) and follow the guide there. 
+These commands should be entered as the root user. Before we begin, note that this installation procedure focuses on *httpd*, rather than *nginx*. If you prefer the latter, follow the [Librenms Install Instructions](https://docs.librenms.org/Installation/Install-LibreNMS/) and guide there. 
 
-We are assuming a fresh install, so we need to do a few things with the repositories before we can continue. First, we need to install the EPEL repository (Extra Packages for Enterprise Linux):
+We are assuming a fresh install, so we must do a few things with the repositories before continuing. First, we need to install the EPEL repository (Extra Packages for Enterprise Linux):
+
 
 ```
 dnf install -y epel-release
 ```
 
-The current version of LibreNMS requires a minimum PHP version of 8.1. The default package in Rocky Linux 9.0 is PHP 8.0, so we will need to enable a third party repository (true for Rocky Linux 8.6 as well) for this newer version. 
+The current version of LibreNMS requires a minimum PHP version of 8.1. The default package in Rocky Linux 9.0 is PHP 8.0, so you must enable a third party repository (also in Rocky Linux 8.6) for this newer version. 
 
 We will install the REMI repository for this. The version of the repository you install will depend on the version of Rocky Linux you are running. We are assuming version 9 below, but change this accordingly for the version you are running: 
 
@@ -66,7 +67,7 @@ With this command, we are setting the default directory for our new user to "/op
 
 ## Download LibreNMS and Set Permissions
 
-The downloading is all done through git. You may be familiar with the process as it is used for many projects these days. First, switch over to the /opt directory:
+The downloading is all done through git. You may be familiar with the process as it is used for many projects. First, switch over to the /opt directory:
 
 ```
 cd /opt
@@ -111,11 +112,11 @@ exit
 
 ### Failure Of PHP Dependency Install Workaround
 
-LibreNMS documentation says that when you are behind a proxy server, the above procedure may fail. I've found that it can fail for other reasons as well. For this reason, I've added a procedure for installing Composer later in the process. 
+LibreNMS documentation says that the above procedrue may fail when you are behind a proxy server. I have found that it can fail for other reasons also. For this reason, I have added a procedure for installing Composer later. 
 
 ## Set Timezone
 
-We need to make sure that this is set correctly, both for the system and for PHP. You can find a list of valid timezone settings for PHP [here](https://php.net/manual/en/timezones.php). For instance, for the Central timezone, a common entry would be "America/Chicago". Let's start by editing the php.ini file:
+We need to ensure the correct setting for the system and for PHP. You can find a list of [valid timezone settings for PHP here](https://php.net/manual/en/timezones.php). For instance, for the Central timezone, a common entry would be "America/Chicago". Let's start by editing the php.ini file:
 
 ```
 vi /etc/opt/remi/php81/php.ini
@@ -157,7 +158,7 @@ systemctl enable mariadb
 systemctl restart mariadb
 ```
 
-Now gain access to mariadb as the root user. Remember to use the password that you created when folloing the "Securing mariadb-server" section that you performed above:
+Now gain access to mariadb as the root user. Remember to use the password that you created when following the "Securing mariadb-server" section that you performed above:
 
 
 ```
@@ -443,17 +444,17 @@ If you've been following along diligently, then you've got that saved in a safe 
 
 ![LibreNMS Database](../images/librenms_configure_database.png)
 
-Once you click that, if it comes back green, then you are ready to click the "Build Database" button.
+Once you click that, you can click the "Build Database" button if it comes back green.
 
 ![LibreNMS Database Status](../images/librenms_configure_database_status.png)
 
-Once that is complete, the third button will be active, which is "Create Admin User", so go ahead and click this. You will be prompted for an admin user name. In our lab we are simply going to use "admin", and a password for that user.
+Once that is complete, the "Create Admin User" button will be active, so click this. You will be prompted for an admin user name. In our lab we are simply going to use "admin", and a password for that user.
 
-Make sure the password is secure and, again, log it somewhere safe, such as a password manager. You'll also need to fill in the email address for the administrative user. Once all of that is completed, simply click the "Add User" button.
+Emsure the password is secure and, again, log it somewhere safe, such as a password manager. You'll also need to fill in the email address for the administrative user. Once all of that is completed, simply click the "Add User" button.
 
 ![LibreNMS Administrative User](../images/librenms_administrative_user.png)
 
-Once you do this, you'll be faced with a screen for "Finish Install." There should only be one item left to finish the install and that is a line that asks you to "validate your install".
+Once you do this, you will see a screen for "Finish Install." There should only be one item left to finish the install and that is a line that asks you to "validate your install".
 
 Click the link. Once you've done this and everything is successful, you'll be redirected to the login page. Login with your administrative user and password.
 
@@ -461,7 +462,7 @@ Click the link. Once you've done this and everything is successful, you'll be re
 
 Again, one of our assumptions was that you are using SNMP v2. Remember that each device you add must be member of your community string. We are adding two devices as examples here. An Ubuntu workstation and a CentOS server. 
 
-You will more than likely have managed switches, routers, and other devices to add. The author can tell you from past experience that adding switches and routers tends to be a whole lot easier than adding workstations and servers, which is why we are including the more difficult examples.
+You will likely have managed switches, routers, and other devices to add. The author can tell you from experience that adding switches and routers is easier than adding workstations and servers, which is why we include the more complex examples.
 
 ### Ubuntu Workstation Setup
 
@@ -522,7 +523,7 @@ If you are running a firewall on your internal workstations, then you will need 
 
 ### CentOS or Rocky Linux Server Setup
 
-We are assuming that you are root here or that you can _sudo_ to become so. First, we need to install some packages:
+We assume you are root or that you can _sudo_ to become so. First, we need to install some packages:
 
 ```
 dnf install net-snmp net-snmp-utils
@@ -581,17 +582,17 @@ If you are running a server, then you **are** running a firewall, right?  If you
 firewall-cmd --zone=trusted --add-source=192.168.1.140 --permanent
 ```
 
-Again, we assumed the "trusted" zone here, but you may want something else, even "public", just consder your rules and their affects before adding them in.
+Again, we assumed the "trusted" zone here, but you may want something else, even "public". Consider your rules and their effect before adding them in.
 
 ## Adding The Devices In Librenms
 
-Now that our sample devices are configured to accept snmp traffic from our LibreNMS server, the next step is to add those devices in LibreNMS. We are assuming that you have the web interface for LibreNMS open, and if so, it is going to be showing you that you have no devices added and asking you to add one. 
+Now that our sample devices are configured to accept SNMP traffic from our LibreNMS server, the next step is adding those devices to LibreNMS. We are assuming that you have the web interface for LibreNMS open, and if so, it will show you that you have no devices added and ask you to add one. 
 
 So go ahead and do that. Once you click to add a device, you'll be faced with this screen:
 
 ![LibreNMS Add Device](../images/librenms_add_device.png)
 
-Put in the information we used for our test devices. In our case, we are using the IP for the Ubuntu workstation to start, in our example that is 192.168.1.122. The only other thing we will need to add here is the community string in the "Community" field, so we would type in "LABone" here. 
+Put in the information we used for our test devices. In our case, we are using the IP for the Ubuntu workstation to start, in our example that is 192.168.1.122. We will need to add the community string in the "Community" field, so enter "LABone" here. 
 
 Now click the "Add Device" button. Assuming that you have done everything correctly above when adding the device, your device should be added successfully. 
 
@@ -601,20 +602,20 @@ If you run into a "failure to add" error, review the SNMP setup for the workstat
 
 As we said from the start, this document will only get you started with LibreNMS. There are a large number of additional configuration items, an extensive API (Application Programming Interface), an alerts system that provides a huge number of options for delivery, called "Transports", and much more. 
 
-We are not going to create any alert rules, but instead we will be editing the built-in alert rule "Device Down! Due to no ICMP response"  that is pre-configured out of the box, and for "Transports" we are going to stick with "Mail", which is just email. Just know that you are not limited.
+We will not create any alert rules. Instead we will edit the built-in alert rule "Device Down! Due to no ICMP response"  that is pre-configured out of the box. For "Transports" we are going to stick with "Mail", which is just email. Just know that you are not limited.
 
-In order to use email for our transport, however, we need to have mail working on our server. To get this going, we are going to use this [Postfix Procedure](../email/postfix_reporting.md). 
+Mail must be working to use email for our transport. To get this going, use this [Postfix Procedure](../email/postfix_reporting.md). 
 
 Run through that procedure to configure postfix so that it will properly identify where the messages are coming from, but you can stop after the configuration process and come back here.
 
 ### Transports
 
-We need a way to send out our alerts. As noted earlier, LibreNMS supports a huge number of transports. We are going to do our alert by email, which is defined as the "Mail" transport. To set up the transport:
+We need a way to send out our alerts. As noted earlier, LibreNMS supports a huge number of transports. We will do our email alert, which is defined as the "Mail" transport. To set up the transport:
 
 1. Go to the dashboard
 2. Let your mouse hover over "Alerts"
 3. Go down to "Alert Transports" and click on it
-4. Click on on the "Create alert transport" button (Note the "Create transport group" button. You can use this to have alerts go to several individuals)
+4. Click on the "Create alert transport" button (Note the "Create transport group" button. You can use this to have alerts go to several individuals)
 5. In the "Transport name:" field, type in "Alert By Email"
 6. In the "Transport type: field, use the drop down to select "Mail"
 7. Make sure the "Default alert:" field is set to "On"
@@ -622,7 +623,7 @@ We need a way to send out our alerts. As noted earlier, LibreNMS supports a huge
 
 ### Organizing Devices Into Groups
 
-The best way to set up alerts is to first organize your devices into some logical order. Currently, we have a workstation and a server in devices. While we may not normally wish combine the two, we will for this example.
+The best way to set up alerts is to organize your devices logically. Currently, we have a workstation and a server in devices. While we may not normally wish combine the two, we will for this example.
 
 Keep in mind that our example is also redundant, as there is an "All Devices" group that would work for this as well. To set up a device group:
 
@@ -637,7 +638,7 @@ Keep in mind that our example is also redundant, as there is an "All Devices" gr
 
 ### Setting Up The Alert Rules
 
-Now that we have the transport and the device group set up, let's configure the alert rule. By default, LibreNMS has several alert rules already created for you:
+Now that we have set up the transport and device group, configure the alert rule. By default, LibreNMS has several alert rules already created for you:
 
 1. Go to the dashboard
 2. Let your mouse hover over "Alerts"
