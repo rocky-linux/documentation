@@ -9,7 +9,7 @@ update: 07-Feb-2022
 
 ## Prerequisiti
 
-* Conoscenza di un editor a riga di comando (in questo esempio utilizziamo _vi_)
+* Esperienza con un editor a riga di comando ( in questo esempio si usa _vi_)
 * Un buon livello di confidenza con l'emissione di comandi dalla riga di comando, la visualizzazione dei log e altri compiti generali di amministratore di sistema
 * Tutti i comandi sono eseguiti come utente root o sudo
 
@@ -17,7 +17,7 @@ update: 07-Feb-2022
 
 GlusterFS è un file system distribuito.
 
-Consente l'archiviazione di grandi quantità di dati distribuiti su cluster di server con una disponibilità molto elevata.
+Consente di archiviare grandi quantità di dati distribuiti su cluster di server con una disponibilità molto elevata.
 
 È composto da una parte server da installare su tutti i nodi dei cluster di server.
 
@@ -28,7 +28,7 @@ GlusterFS può funzionare in due modalità:
   * modalità replicata: ogni nodo del cluster possiede tutti i dati.
   * modalità distribuita: nessuna ridondanza dei dati. Se uno storage si guasta, i dati sul nodo guasto vanno persi.
 
-Entrambe le modalità possono essere utilizzate insieme per fornire un file system replicato e distribuito, purché si disponga del numero giusto di server.
+Entrambe le modalità possono essere utilizzate insieme per fornire un file system replicato e distribuito se si dispone del numero corretto di server.
 
 I dati sono memorizzati all'interno dei blocchi.
 
@@ -36,7 +36,7 @@ I dati sono memorizzati all'interno dei blocchi.
 
 ## Piattaforma di Test
 
-La nostra piattaforma fittizia è composta da due server e un client, tutti server Rocky Linux.
+La nostra piattaforma fittizia comprende due server e un client, tutti server Rocky Linux.
 
 * Primo nodo: node1.cluster.local - 192.168.1.10
 * Secondo nodo: node2.cluster.local - 192.168.1.11
@@ -139,7 +139,7 @@ $ sudo firewall-cmd --reload
 
 ## Risoluzione dei Nomi
 
-Si può lasciare che sia il DNS a gestire la risoluzione dei nomi dei server del cluster, oppure si può scegliere di alleggerire i server da questo compito inserendo dei record per ciascuno di essi nei file `/etc/hosts`. In questo modo, le cose continueranno a funzionare anche in caso di malfunzionamento del DNS.
+Si può lasciare che sia il DNS a gestire la risoluzione dei nomi dei server del cluster, oppure si può scegliere di alleggerire i server da questo compito inserendo dei record per ciascuno di essi nei file `/etc/hosts`. In questo modo, le cose continueranno a funzionare anche in caso si verifichi un'interruzione del DNS.
 
 ```
 192.168.10.10 node1.cluster.local
@@ -155,7 +155,7 @@ $ sudo systemctl enable glusterfsd.service glusterd.service
 $ sudo systemctl start glusterfsd.service glusterd.service
 ```
 
-Siamo pronti a unire i due nodi allo stesso pool.
+Siamo pronti a unire i due nodi nello stesso pool.
 
 Questo comando deve essere eseguito una sola volta su un singolo nodo (qui sul nodo1):
 
@@ -201,7 +201,7 @@ volume create: volume1: success: please start the volume to access data
 
 !!! Note "Nota"
 
-    Come dice il comando return, un cluster di 2 nodi non è la migliore idea al mondo contro lo split brain. Ma questo è sufficiente ai fini della nostra piattaforma di prova.
+    Come dice il comando return, un cluster di 2 nodi non è la migliore idea al mondo contro lo split brain. Ma questo è sufficiente per la nostra piattaforma di prova.
 
 Ora possiamo avviare il volume per accedere ai dati:
 
@@ -259,7 +259,7 @@ Possiamo già limitare un po' l'accesso al volume:
 $ sudo gluster volume set volume1 auth.allow 192.168.10.*
 ```
 
-È così semplice
+È molto semplice.
 
 ## Accesso client
 
@@ -291,7 +291,7 @@ total 0
 -rw-r--r--. 2 root root 0 Feb  3 19:21 test
 ```
 
-Suona bene! Ma cosa succede se il nodo 1 si guasta? È quello specificato al momento del montaggio dell'accesso remoto.
+Sembra buono! Ma cosa succede se il nodo 1 si guasta? È quello specificato al momento del montaggio dell'accesso remoto.
 
 Fermiamo il nodo uno:
 
