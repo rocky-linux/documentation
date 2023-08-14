@@ -46,7 +46,7 @@ Gli ammonimenti sono speciali "riquadri" visivi che consentono di richiamare l'a
 | info                | visualizza il testo in un riquadro blu-verde                               |
 | tip                 | visualizza il testo in un riquadro blu-verde (icona leggermente più verde) |
 | success             | visualizza il testo in un riquadro verde                                   |
-| question            | visualizza il testo in un riquadro verde chiaro                            |
+| question "Domanda"  | visualizza il testo in un riquadro verde chiaro                            |
 | warning             | visualizza il testo in un riquadro arancione                               |
 | failure             | visualizza il testo in un riquadro rosso chiaro                            |
 | danger "Pericolo"   | visualizza il testo in un riquadro rosso                                   |
