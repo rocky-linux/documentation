@@ -9,7 +9,7 @@ update: 11-23-2021
 
 ## 所需的条件与假设
 
-* CentOS Stream、CentOS、Alma Linux、RHEL或Oracle Linux在硬件服务器或 VPS 上运行良好。 当前支持的版本为8.5。
+* CentOS Stream、CentOS、Alma Linux、RHEL或Oracle Linux在硬件服务器或 VPS 上运行良好。 其每一个当前支持的版本都是 8.8 或 9.2 。
 * 了解Linux的命令行知识。
 * 了解SSH远程知识。
 * 轻度冒险的态度。
