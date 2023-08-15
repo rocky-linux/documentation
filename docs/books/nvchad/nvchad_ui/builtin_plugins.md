@@ -15,21 +15,21 @@ tags:
 
     In this chapter, the format `user_github/plugin_name` will be used to identify the plugin. This is to avoid possible errors with similarly named plugins and to introduce the format that is used for plugin entry by both NvChad, and the `custom` configuration.
 
-Version 2.0 brings numerous new features. The new version adopts `lazy.nvim` as the plugin manager instead of `packer.nvim`, this involves making some changes for users of the previous version with a custom configuration (_custom_ folder).
+Version 2.0 brings numerous new features. The new version adopts `lazy.nvim` as the plugin manager instead of `packer.nvim`, this involves making some changes for users of the previous version with a custom configuration (*custom* folder).
 
-`lazy.nvim` enables convenient management of plugins through a unified interface and integrates a mechanism for synchronizing plugins across installations (_lazy-lock.json_).
+`lazy.nvim` enables convenient management of plugins through a unified interface and integrates a mechanism for synchronizing plugins across installations (*lazy-lock.json*).
 
-NvChad keeps the configuration of its default plugins in the file _lua/plugins/init.lua_. And the additional configurations of the various plugins are contained in the _/nvim/lua/plugins/configs_ folder.
+NvChad keeps the configuration of its default plugins in the file *lua/plugins/init.lua*. And the additional configurations of the various plugins are contained in the */nvim/lua/plugins/configs* folder.
 
-We can see an excerpt of the _init.lua_ file below:
+We can see an excerpt of the *init.lua* file below:
 
 ```lua
+require "core"
+-- All plugins have lazy=true by default,to load a plugin on startup just lazy=false
+-- List of all default plugins & their definitions
 local default_plugins = {
 
   "nvim-lua/plenary.nvim",
-
-  -- nvchad plugins
-  { "NvChad/extensions", branch = "v2.0" },
 
   {
     "NvChad/base46",
@@ -43,19 +43,34 @@ local default_plugins = {
     "NvChad/ui",
     branch = "v2.0",
     lazy = false,
-    config = function()
-      require "nvchad_ui"
+  },
+
+  {
+    "NvChad/nvterm",
+    init = function()
+      require("core.utils").load_mappings "nvterm"
+    end,
+    config = function(_, opts)
+      require "base46.term"
+      require("nvterm").setup(opts)
     end,
   },
 ...
 ...
--- lazy_nvim startup opts
-local lazy_config = vim.tbl_deep_extend("force", require "plugins.configs.lazy_nvim", config.lazy_nvim)
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
-require("lazy").setup(default_plugins, lazy_config)
+-- bootstrap lazy.nvim!
+if not vim.loop.fs_stat(lazypath) then
+  require("core.bootstrap").gen_chadrc_template()
+  require("core.bootstrap").lazy(lazypath)
+end
+
+dofile(vim.g.base46_cache .. "defaults")
+vim.opt.rtp:prepend(lazypath)
+require "plugins"
 ```
 
-There's a huge amount of work by the NvChad developers that must be acknowledged. They have created an integrated environment among all plugins which makes the user interface clean and professional. In addition, plugins that work *under the hood* allow for enhanced editing and other features. 
+There's a huge amount of work by the NvChad developers that must be acknowledged. They have created an integrated environment among all plugins which makes the user interface clean and professional. In addition, plugins that work *under the hood* allow for enhanced editing and other features.
 
 All of this means that ordinary users can have, in an instant, a basic IDE with which to start working, and an extensible configuration that can adapt to their needs.  
 
@@ -65,17 +80,15 @@ The following is a brief analysis of the main plugins:
 
 - [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim) - Provides a library of commonly used lua functions that are used by the other plugins, for example *telescope* and *gitsigns*.
 
-- [NvChad/extensions](https://github.com/NvChad/extensions) - The core utilities of NvChad. Here we find: *change_theme*, *reload_config*, *reload_theme*, *update_nvchad* and the *telescope/extension* folder that provides the choice of theme directly from Telescope.
-
 - [NvChad/base46](https://github.com/NvChad/base46) - Provides themes for the interface.
 
-- [NvChad/ui](https://github.com/NvChad/ui) - Provides the actual interface. Thanks to this plugin we can have a *statusline* that gives us the information during editing and a *tabufline* that allows us to manage open buffers.
+- [NvChad/ui](https://github.com/NvChad/ui) - Provides the actual interface and the core utilities of NvChad. Thanks to this plugin we can have a *statusline* that gives us the information during editing and a *tabufline* that allows us to manage open buffers. This plugin also provides the utilities **NvChadUpdate** for updating it, **NvCheatsheet** for an overview of keyboard shortcuts, and **Nvdash** from which file operations can be performed.
 
 - [NvChad/nvterm](https://github.com/NvChad/nvterm) - Provides a terminal to our IDE where we can issue commands. The terminal can be opened within the buffer in various ways:
   
-  - `<ALT-h>` opens a terminal by dividing the buffer horizontally
-  - `<ALT-v>` opens the terminal by dividing the buffer vertically
-  - `<ALT-i>` opens a terminal in a floating tab 
+- `<ALT-h>` opens a terminal by dividing the buffer horizontally
+- `<ALT-v>` opens the terminal by dividing the buffer vertically
+- `<ALT-i>` opens a terminal in a floating tab
 
 - [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) - Another plugin written by the developers of NvChad. It is specifically a high-performance highlighter.
 
@@ -93,33 +106,33 @@ Now let's move on to the plugins that provide the functionality to integrate LSP
 
 - [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) - Allows simplified management of LSP (Language Server) installation through a convenient graphical interface. The commands provided are:
   
-  - `:Mason`
-  - `:MasonInstall`
-  - `:MasonUninstall`
-  - `:MasonUnistallAll`
-  - `:MasonLog`
+- `:Mason`
+- `:MasonInstall`
+- `:MasonUninstall`
+- `:MasonUnistallAll`
+- `:MasonLog`
 
 - [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Provides the appropriate configurations for almost every language server available. It is a community collection, with the most relevant settings already set. The plugin takes care of receiving our configurations and putting them into the editor environment.
 
 It provides the following commands:
   
-  - `:LspInfo`
-  - `:LspStart`
-  - `:LspStop`
-  - `:LspRestart`
+- `:LspInfo`
+- `:LspStart`
+- `:LspStop`
+- `:LspRestart`
 
 ## Lua Code
 
-Following LSP, come all the plugins that provide functionality in writing and executing Lua code such as snippets, lsp commands, buffers etc. We will not go into detail on these, but they can be viewed in their respective projects on GitHub. 
+Following LSP, come all the plugins that provide functionality in writing and executing Lua code such as snippets, lsp commands, buffers etc. We will not go into detail on these, but they can be viewed in their respective projects on GitHub.
 
-The plugins are: 
+The plugins are:
 
-- [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) 
+- [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [rafamadriz/friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
-- [saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip) 
-- [hrsh7th/cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua) 
-- [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) 
+- [saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
+- [hrsh7th/cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
+- [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
 - [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)
 
