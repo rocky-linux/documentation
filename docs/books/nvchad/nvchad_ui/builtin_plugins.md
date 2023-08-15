@@ -84,8 +84,6 @@ The following is a brief analysis of the main plugins:
 
 - [NvChad/ui](https://github.com/NvChad/ui) - Provides the actual interface and the core utilities of NvChad. Thanks to this plugin we can have a *statusline* that gives us the information during editing and a *tabufline* that allows us to manage open buffers. This plugin also provides the utilities **NvChadUpdate** for updating it, **NvCheatsheet** for an overview of keyboard shortcuts, and **Nvdash** from which file operations can be performed.
 
-This plugin also provides the utilities **NvChadUpdate** for updating it, **NvCheatsheet** for an overview of keyboard shortcuts, and **Nvdash** from which file operations can be performed.
-
 - [NvChad/nvterm](https://github.com/NvChad/nvterm) - Provides a terminal to our IDE where we can issue commands. The terminal can be opened within the buffer in various ways:
   
 - `<ALT-h>` opens a terminal by dividing the buffer horizontally
