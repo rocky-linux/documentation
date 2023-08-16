@@ -15,21 +15,21 @@ tags:
 
     У цій главі формат `user_github/plugin_name` використовуватиметься для ідентифікації плагіна. Це зроблено для того, щоб уникнути можливих помилок із плагінами з подібними назвами та запровадити формат, який використовується для введення плагінів як NvChad, так і `спеціальною` конфігурацією.
 
-Версія 2.0 містить багато нових функцій. Нова версія приймає `lazy.nvim` як менеджер плагінів замість `packer.nvim`, це передбачає внесення деяких змін для користувачів попередньої версії з власною конфігурацією (_custom_ папка).
+Версія 2.0 містить багато нових функцій. Нова версія використовує `lazy.nvim` як менеджер плагінів замість `packer.nvim`; це передбачає внесення деяких змін для користувачів попередньої версії з власною конфігурацією (папка *custom*).
 
-`lazy.nvim` забезпечує зручне керування плагінами через уніфікований інтерфейс та об’єднує механізм для синхронізації плагінів між установками (_lazy-lock.json_).
+`lazy.nvim` забезпечує зручне керування плагінами за допомогою єдиного інтерфейсу та інтегрує механізм для синхронізації плагінів між установками (*lazy-lock.json*).
 
-NvChad зберігає конфігурацію плагінів за замовчуванням у файлі _lua/plugins/init.lua_. А додаткові конфігурації різних плагінів містяться в папці _/nvim/lua/plugins/configs_.
+NvChad зберігає конфігурацію плагінів за умовчанням у файлі *lua/plugins/init.lua*. А додаткові конфігурації різних плагінів містяться в папці */nvim/lua/plugins/configs*.
 
-Ми можемо побачити уривок файлу _init.lua_ нижче:
+Ми можемо побачити уривок файлу *init.lua* нижче:
 
 ```lua
+require "core"
+-- All plugins have lazy=true by default,to load a plugin on startup just lazy=false
+-- List of all default plugins & their definitions
 local default_plugins = {
 
   "nvim-lua/plenary.nvim",
-
-  -- nvchad plugins
-  { "NvChad/extensions", branch = "v2.0" },
 
   {
     "NvChad/base46",
@@ -43,16 +43,31 @@ local default_plugins = {
     "NvChad/ui",
     branch = "v2.0",
     lazy = false,
-    config = function()
-      require "nvchad_ui"
+  },
+
+  {
+    "NvChad/nvterm",
+    init = function()
+      require("core.utils").load_mappings "nvterm"
+    end,
+    config = function(_, opts)
+      require "base46.term"
+      require("nvterm").setup(opts)
     end,
   },
 ...
 ...
--- lazy_nvim startup opts
-local lazy_config = vim.tbl_deep_extend("force", require "plugins.configs.lazy_nvim", config.lazy_nvim)
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
-require("lazy").setup(default_plugins, lazy_config)
+-- bootstrap lazy.nvim!
+if not vim.loop.fs_stat(lazypath) then
+  require("core.bootstrap").gen_chadrc_template()
+  require("core.bootstrap").lazy(lazypath)
+end
+
+dofile(vim.g.base46_cache .. "defaults")
+vim.opt.rtp:prepend(lazypath)
+require "plugins"
 ```
 
 Розробники NvChad провели величезну роботу, яку слід відзначити. Вони створили інтегроване середовище серед усіх плагінів, що робить інтерфейс користувача чистим і професійним. Крім того, плагіни, які працюють *під капотом*, дозволяють розширене редагування та інші функції.
@@ -65,17 +80,15 @@ require("lazy").setup(default_plugins, lazy_config)
 
 - [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim) – надає бібліотеку поширених функцій lua, які використовуються іншими плагінами, наприклад *telescope* і *gitsigns*.
 
-- [NvChad/extensions](https://github.com/NvChad/extensions) – основні утиліти NvChad. Тут ми знаходимо: *change_theme*, *reload_config*, *reload_theme*, *update_nvchad* і папку *telescope/extension*, у якій можна вибрати тему безпосередньо з Telescope.
-
 - [NvChad/base46](https://github.com/NvChad/base46) – надає теми для інтерфейсу.
 
-- [NvChad/ui](https://github.com/NvChad/ui) – надає фактичний інтерфейс. Завдяки цьому плагіну ми можемо мати *рядок стану*, який надає нам інформацію під час редагування, і *рядок вкладок*, який дозволяє керувати відкритими буферами.
+- [NvChad/ui](https://github.com/NvChad/ui) – надає фактичний інтерфейс і основні утиліти NvChad. Завдяки цьому плагіну ми можемо мати *рядок стану*, який надає нам інформацію під час редагування, і *рядок вкладок*, який дозволяє щоб керувати відкритими буферами. Цей плагін також містить утиліти **NvChadUpdate** для його оновлення, **NvCheatsheet** для огляду комбінацій клавіш і **Nvdash**, з якого можна виконувати операції з файлами.
 
 - [NvChad/nvterm](https://github.com/NvChad/nvterm) – надає термінал для нашої IDE, де ми можемо видавати команди. Термінал можна відкрити в буфері різними способами:
 
-  - `<ALT-h>` відкриває термінал, розділяючи буфер горизонтально
-  - `<ALT-v>` відкриває термінал, розділяючи буфер по вертикалі
-  - `<ALT-i>` відкриває термінал у плаваючій вкладці
+- `<ALT-h>` відкриває термінал, розділяючи буфер горизонтально
+- `<ALT-v>` відкриває термінал, розділяючи буфер по вертикалі
+- `<ALT-i>` відкриває термінал у плаваючій вкладці
 
 - [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) – ще один плагін, написаний розробниками NvChad. Це особливо високоефективний хайлайтер.
 
@@ -93,20 +106,20 @@ require("lazy").setup(default_plugins, lazy_config)
 
 - [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) – дозволяє спрощувати керування встановленням LSP (Language Server) через зручний графічний інтерфейс. Надаються такі команди:
 
-  - `:Mason`
-  - `:MasonInstall`
-  - `:MasonUninstall`
-  - `:MasonUnistallAll`
-  - `:MasonLog`
+- `:Mason`
+- `:MasonInstall`
+- `:MasonUninstall`
+- `:MasonUnistallAll`
+- `:MasonLog`
 
 - [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) – надає відповідні конфігурації майже для кожного доступного мовного сервера. Це колекція спільноти з уже встановленими найбільш релевантними параметрами. Плагін піклується про отримання наших конфігурацій і розміщення їх у середовищі редактора.
 
 Він надає такі команди:
 
-  - `:LspInfo`
-  - `:LspStart`
-  - `:LspStop`
-  - `:LspRestart`
+- `:LspInfo`
+- `:LspStart`
+- `:LspStop`
+- `:LspRestart`
 
 ## Код Lua
 
