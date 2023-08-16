@@ -61,7 +61,7 @@ Ensure that your editor is set to your preferred editor, in this case `vim`:
 
 `export EDITOR=/usr/bin/vim`
 
-Next you need to change the `macvlan` profile. But before you do, you need to know what interface the host uses for our LAN. Run `ip addr` and look for the interface with the LAN IP assignment:
+Next, change the `macvlan` profile. Before you do, you need to know what interface the host uses for our LAN. Run `ip addr` and look for the interface with the LAN IP assignment:
 
 ```
 2: eno1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
@@ -70,7 +70,7 @@ Next you need to change the `macvlan` profile. But before you do, you need to kn
 ```
 !!! Note
 
-    In this case, the interface you are looking for is "eno1" but this could be completely different on your system. Use **your** interface information!
+    In this case, the interface you are looking for is "eno1", which could be completely different on your system. Use **your** interface information!
 
 Now that you know the LAN interface, you can change our `macvlan` profile. To do this, at the command line enter:
 
@@ -90,7 +90,7 @@ devices:
 name: macvlan
 ```
 
-When creating the `macvlan` profile, the system copies the `default` profile. Changing the `default` profile is not possible.
+When creating the `macvlan` profile, the system copies the `default` profile. Changing the `default` profile is impossible.
 
 Now that the `macvlan` profile exists, you need to apply it to our three containers:
 
@@ -144,9 +144,9 @@ Our environment is ready. Next, install Apache (`httpd`) on each web container. 
 lxc exec web1 dnf install httpd
 lxc exec web2 dnf install httpd
 ```
-You will need a whole lot more than Apache for any modern web server, but this is enough to run some tests.
+You will need more than Apache for any modern web server, but this is enough to run some tests.
 
-Next, enable `httpd`, start it, and change the default welcome screen. In this way, you know the server that is responding when attempting to access by way of the proxy.
+Next, enable `httpd`, start it, and change the default welcome screen. This way, you know the server is responding when attempting to access by proxy.
 
 Enable and start `httpd`:
 
@@ -157,7 +157,7 @@ lxc exec web2 systemctl enable httpd
 lxc exec web2 systemctl start httpd
 ```
 
-With `httpd` running, change the welcome screen. This screen comes up when no website configured, essentially a default page that loads. In Rocky Linux, this page is here `/usr/share/httpd/noindex/index.html`. Changing that file requires no direct access to the container. Just do the following:
+Change the welcome screen. This screen comes up when no website configured, essentially a default page that loads. In Rocky Linux, this page is here `/usr/share/httpd/noindex/index.html`. Changing that file requires no direct access to the container. Just do the following:
 
 `lxc exec web1 vi /usr/share/httpd/noindex/index.html`
 

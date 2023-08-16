@@ -20,7 +20,7 @@ While the installation will closely follow the [official install instructions fo
 
 ## Prerequisites, Assumptions and Conventions
 
-* A server or container (yes, LibreNMS will run in a container, however, if you a great deal to  monitor, your best bet would be to install on its own hardware) running Rocky Linux. All commands assume a fresh install of Rocky Linux.
+* A server or container (yes, LibreNMS will run in a container, however, if you a great deal to  monitor, your best bet would be to install on stand-alone hardware) running Rocky Linux. All commands assume a fresh install of Rocky Linux.
 * Assumption: that you can run commands as root or can _sudo_ to do so
 * Working knowledge of command-line tools, including text editors such as _vi_
 * We are assuming the use of SNMP v2. If you want to use SNMP v3, it is supported by LibreNMS and will work. You will need to switch up the SNMP configuration and options on your devices to match up to v3.
@@ -112,11 +112,11 @@ exit
 
 ### Failure Of PHP Dependency Install Workaround
 
-LibreNMS documentation says that the above procedrue may fail when you are behind a proxy server. I have found that it can fail for other reasons also. For this reason, I have added a procedure for installing Composer later. 
+LibreNMS documentation says that the above procedure may fail when you are behind a proxy server. I have found that it can fail for other reasons also. For this reason, I have added a procedure for installing Composer later. 
 
 ## Set Timezone
 
-We need to ensure the correct setting for the system and for PHP. You can find a list of [valid timezone settings for PHP here](https://php.net/manual/en/timezones.php). For instance, for the Central timezone, a common entry would be "America/Chicago". Let's start by editing the php.ini file:
+We need to ensure the correct setting for the system and PHP. You can find a list of [valid timezone settings for PHP here](https://php.net/manual/en/timezones.php). For instance, for the Central timezone, a common entry would be "America/Chicago". Let's start by editing the php.ini file:
 
 ```
 vi /etc/opt/remi/php81/php.ini
@@ -450,7 +450,7 @@ Once you click that, you can click the "Build Database" button if it comes back 
 
 Once that is complete, the "Create Admin User" button will be active, so click this. You will be prompted for an admin user name. In our lab we are simply going to use "admin", and a password for that user.
 
-Emsure the password is secure and, again, log it somewhere safe, such as a password manager. You'll also need to fill in the email address for the administrative user. Once all of that is completed, simply click the "Add User" button.
+Ensure the password is secure and log it somewhere safe, such as a password manager. You'll also need to fill in the email address for the administrative user. Once all of that is completed, simply click the "Add User" button.
 
 ![LibreNMS Administrative User](../images/librenms_administrative_user.png)
 
@@ -586,7 +586,7 @@ Again, we assumed the "trusted" zone here, but you may want something else, even
 
 ## Adding The Devices In Librenms
 
-Now that our sample devices are configured to accept SNMP traffic from our LibreNMS server, the next step is adding those devices to LibreNMS. We are assuming that you have the web interface for LibreNMS open, and if so, it will show you that you have no devices added and ask you to add one. 
+Now that our sample devices are configured to accept SNMP traffic from our LibreNMS server, the next step is adding those devices to LibreNMS. We assume you have a web interface for LibreNMS open, and that it shows you no devices and ask you to add one. 
 
 So go ahead and do that. Once you click to add a device, you'll be faced with this screen:
 
@@ -602,15 +602,15 @@ If you run into a "failure to add" error, review the SNMP setup for the workstat
 
 As we said from the start, this document will only get you started with LibreNMS. There are a large number of additional configuration items, an extensive API (Application Programming Interface), an alerts system that provides a huge number of options for delivery, called "Transports", and much more. 
 
-We will not create any alert rules. Instead we will edit the built-in alert rule "Device Down! Due to no ICMP response"  that is pre-configured out of the box. For "Transports" we are going to stick with "Mail", which is just email. Just know that you are not limited.
+We will not create any alert rules. Instead we will edit the built-in alert rule "Device Down! Due to no ICMP response"  that is pre-configured out of the box. For "Transports" we will stick with "Mail", which is just email. Just know that you are not limited.
 
-Mail must be working to use email for our transport. To get this going, use this [Postfix Procedure](../email/postfix_reporting.md). 
+Mail must be working to use email for our transport. Use this [Postfix Procedure](../email/postfix_reporting.md) to get this going. 
 
 Run through that procedure to configure postfix so that it will properly identify where the messages are coming from, but you can stop after the configuration process and come back here.
 
 ### Transports
 
-We need a way to send out our alerts. As noted earlier, LibreNMS supports a huge number of transports. We will do our email alert, which is defined as the "Mail" transport. To set up the transport:
+We need a way to send out our alerts. As noted earlier, LibreNMS supports a huge number of transports. We will do our email alert defined as "Mail" transport. To set up the transport:
 
 1. Go to the dashboard
 2. Let your mouse hover over "Alerts"
@@ -638,7 +638,7 @@ Keep in mind that our example is also redundant, as there is an "All Devices" gr
 
 ### Setting Up The Alert Rules
 
-Now that we have set up the transport and device group, configure the alert rule. By default, LibreNMS has several alert rules already created for you:
+Configure the alert rule next. By default, LibreNMS has several alert rules already created for you:
 
 1. Go to the dashboard
 2. Let your mouse hover over "Alerts"
