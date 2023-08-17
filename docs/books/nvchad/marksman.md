@@ -11,19 +11,19 @@ tags:
 
 # Marksman - code assistant
 
-When drafting your document for Rocky Linux can be useful a tool that allows you to easily enter the symbols needed to define the *markdown* language tags; this will allow you to write faster and reduce the possibility of distracting errors.
+Marksman is a useful tool when drafting your document for Rocky Linux. It allows the easy entry of symbols needed to define the *markdown* language tags. This allows you to write faster and reduces the possibility of errors.
 
-NvChad/Neovim already includes text widgets that aid in writing such as the repetition of the most frequently used words indexed by frequency of entry, the new options included by this language server will enrich these widgets.
+NvChad/Neovim already includes text widgets that aid in writing, such as the repetition of often used words indexed by frequency of entry. The new options included by this language server will enrich these widgets.
 
-[Marksman](https://github.com/artempyanykh/marksman) integrates with your editor to help you write and maintain your Markdown documents using the [LSP protocol](https://microsoft.github.io/language-server-protocol/), thereby providing features such as completion, goto definition, reference searching, name refactoring, diagnostics, and more.
+[Marksman](https://github.com/artempyanykh/marksman) integrates with your editor to help you write and maintain your Markdown documents with the [LSP protocol](https://microsoft.github.io/language-server-protocol/), thereby providing features such as completion, go-to definition, reference searching, name refactoring, diagnostics, and more.
 
 ## Objectives
 
 - increase the productivity of NvChad in writing Markdown code
 - produce documents that conform to the rules of the Markdown language
-- refine their knowledge regarding language
+- refine your knowledge regarding the language
 
-## Requirements and Skills
+## Requirements and skills
 
 - A basic knowledge of the Markdown language, recommended reading the [Markdown Guide](https://www.markdownguide.org/)
 - NvChad on the machine in use with the [Template Chadr](./template_chadrc.md) properly installed
@@ -34,21 +34,21 @@ NvChad/Neovim already includes text widgets that aid in writing such as the repe
 
 ## Installation of Marksman
 
-Installation of the language server does not involve any particular problems since it is natively available in **Mason**. It is possible to install it directly from the *statusline* with the command:
+Installation of the language server does not involve any particular problems since it is natively available in **Mason**. Install it directly from the *statusline* with the command:
 
 `:MasonInstall marksman`
 
-The command will open the *Mason* interface and directly install the required language server. Once the installation of the binary is finished you can close the *Mason* screen with the <kbd>q</kbd> key.
+The command will open the *Mason* interface and directly install the required language server. Once binary installation completes, you can close the *Mason* screen with the <kbd>q</kbd> key.
 
-Its installation, however, does not yet involve its integration into the editor; this is enabled by editing the `custom/configs/lspconfig.lua` file of the *Chadrc Template*.
+Its installation, however, does not yet involve its integration into the editor. Enable this by editing the `custom/configs/lspconfig.lua` file of the *Chadrc Template*.
 
 ## Integration into the editor
 
 !!! note "LSP in NvChad"
 
-    The integration of language servers into NvChad is provided by the [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) plugin, this plugin greatly simplifies their inclusion in the NvChad configuration.
+    The [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) plugin provides the integration of the language servers into NvChad. This plugin greatly simplifies their inclusion in the NvChad configuration.
 
-If during the editor installation you chose to also install the *Template Chadrc* this will have created in your `custom/configs` folder the file *lspconfig.lua*.
+If during the editor installation you chose to also install the *Template Chadrc*, this creates the *lspoconfig.lua* file in your `custom/configs` folder.
 
 This file takes care of entering the calls needed to use the language servers and also allows you to specify the ones you have installed. To integrate *marksman* into the editor's language server configuration you will need to edit the *local servers* string by adding your new LSP.
 
@@ -58,7 +58,7 @@ Open your NvChad on the file with the command:
 nvim ~/.config/nvim/lua/custom/configs/lspconfig.lua
 ```
 
-And edit the *local servers* string, which will look as follows when the edit is complete:
+And edit the *local servers* string, which will look as follows when completed:
 
 ```lua
 local servers = { "html", "cssls", "tsserver", "clangd", "marksman" }
@@ -66,7 +66,7 @@ local servers = { "html", "cssls", "tsserver", "clangd", "marksman" }
 
 Save the file and close the editor with the `:wq` command.
 
-To check if the language server is properly activated open a markdown file in your NvChad and use the command `:LspInfo` to view the language servers applied to that file, within the summary there should be something like:
+To check if the language server is properly activated, open a markdown file in your NvChad and use the command `:LspInfo` to view the language servers applied to that file. Within the summary there should be something like:
 
 ```text
  Client: marksman (id: 2, bufnr: [11, 156])
@@ -78,25 +78,25 @@ To check if the language server is properly activated open a markdown file in yo
  Configured servers list: cssls, tsserver, clangd, html, yamlls, lua_ls, marksman
 ```
 
-This indicates that the *marksman* server has been activated for the open file, started automatically `autostart: true` since it is recognized as a markdown file `filetypes: markdown`. The other information indicates the path to the executable used for the code check `cmd:` and that this is used in `marksman server` mode, also that the root directory `your_directory` is used for the checks.
+This indicates the activation of the *marksman* server for the open file, and that it started automatically (`autostart: true`) since it recognizes it as a markdown file `filetypes: markdown`. The other information indicates the path to the executable used for the code check `cmd:`, that it uses `marksman server` mode, and that it uses the root directory `your_directory` for the checks.
 
 !!! note "Root folder"
 
-    The concept of a "root folder" is important in the use of a language server in that in order to perform controls on the document, such as links to other files or images for example, it must have a "global view" of the project. We can say that "*root folders*" can be equated with the "*Projects*" found in graphics IDEs.
+    The concept of a "root folder" is important in the use of a language server in that in order to perform controls on the document, such as links to other files or images for example, it must have a "global view" of the project. We can say that "*root folders*" equates with the "*Projects*" found in graphics IDEs.
 
-    The *root directory* also called the "*working directory*" used by the editor for the open file can be viewed with the `:pwd` command and in case it does not match the desired one it can be changed with the `:lcd` command, this command reassigns the *working directory* only to that buffer without changing any settings of the other buffers open in the editor.
+    The *root directory*, also called the "*working directory*", used by the editor for the open file, is viewable with the `:pwd` command. If it does not match the desired one, it is changeable with the `:lcd` command. This command reassigns the *working directory* only to that buffer, without changing any settings of the other buffers open in the editor.
 
 ## Use of marksman
 
-Once you have completed all the steps to enter it the language server will be activated whenever the editor is opened on a *markdown* file, by entering `INSERT` mode you will have upon typing certain characters new options in the widgets that will help you in writing the document, in the screenshot below you can see some of the markdown snippets available in these widgets.
+Once you have completed all the steps to enter it, activation of the language server occurs whenever opening a *markdown* file in the editor. By entering `INSERT` mode, when typing certain characters you will have new options in the widgets that will help you in writing the document. In the screenshot below you can see some of the markdown snippets available in these widgets.
 
 ![Marksman Snippets](./images/marksman_snippets.png)
 
 ## Main keys
 
-The language server provides a number of shortcuts that activate writing assistance; this includes quick insertion of Markdown tags, creation of links, and insertion of images into the document. A non-exhaustive list of characters that activate the various snippets will be provided below.
+The language server provides many shortcuts that activate writing assistance. This includes quick insertion of Markdown tags, creation of links, and insertion of images into the document. A non-exhaustive list of characters that activate the various snippets is below.
 
-These snippets are displayed within widgets that also contain other shortcuts; navigation of the widget to select those provided by *marksman* is done with the <kbd>Tab</kbd> key.
+These snippets are displayed within widgets that also contain other shortcuts. Use the <kbd>Tab</kbd> key for navigation of the widget to select those provided by *marksman*.
 
 
 | Key | Snippets |
