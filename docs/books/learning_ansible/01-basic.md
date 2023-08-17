@@ -182,13 +182,10 @@ There are two main configuration files:
 * The main configuration file `ansible.cfg` where the commands, modules, plugins, and ssh configuration reside;
 * The client machine management inventory file `hosts` where the clients, and groups of clients are declared.
 
-If Ansible was installed via its RPM package, then the files will have been automatically created. With a `pip` installation, these files don't exist. We'll have to create them by hand thanks to the `ansible-config` command:
+If Ansible was installed via its RPM package, then the configuration file will have been automatically created. With a `pip` installation, this file does not exist. We'll have to create it by hand thanks to the `ansible-config` command:
 
 ```
-$ ansible-config 
-usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
-ansible-config: error: the following arguments are required: action
-
+$ ansible-config -h
 usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
 
 View ansible configuration.
@@ -208,6 +205,16 @@ ansible-config init --disabled > /etc/ansible/ansible.cfg
 ```
 
 The `--disabled` option allows you to comment out the set of options by prefixing them with a `;`.
+
+!!! NOTE
+
+    You can also choose to embed the ansible configuration in your code repository, with ansible loading the configuration files it finds in the following order (processing the first file it finds and ignoring the rest):
+
+    * if the environment variable `$ANSIBLE_CONFIG` is set, load the specified file.
+    * `ansible.cfg` if exists in the current directory.
+    * `~/.ansible.cfg` if exists (in the user’s home directory).
+
+    If none of these three files is found, the default file is loaded.
 
 ### The inventory file `/etc/ansible/hosts`
 
