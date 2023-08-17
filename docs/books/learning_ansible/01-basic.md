@@ -37,7 +37,7 @@ It uses the **SSH** protocol to remotely configure Linux clients or the **WinRM*
 
     The opening of SSH or WinRM flows to all clients from the Ansible server, makes it a critical element of the architecture that must be carefully monitored.
 
-As Ansible is push-based, it will not keep the state of its targeted servers between each of its executions. On the contrary, it will perform new state checks each time it is executed. It is said to be stateless.
+As Ansible is mainly push-based, it will not keep the state of its targeted servers between each of its executions. On the contrary, it will perform new state checks each time it is executed. It is said to be stateless.
 
 It will help you with:
 
@@ -85,25 +85,58 @@ To offer a graphical interface to your daily use of Ansible, you can install som
 
 ## Installation on the management server
 
-Ansible is available in the _EPEL_ repository but comes as version 2.9.21, which is quite old now. You can see how this is done by following along here, but skip the actual installation steps, as we will be installing the latest version. The _EPEL_ is required for both versions, so you can go ahead and install that now:
+Ansible is available in the _EPEL_ repository, but may sometimes be too old for the current version, and you'll want to work with a more recent version.
+
+We will therefore consider two types of installation: 
+
+* the one based on EPEL repositories
+* one based on the `pip` python package manager
+
+The _EPEL_ is required for both versions, so you can go ahead and install that now:
 
 * EPEL installation:
 
 ```
 $ sudo dnf install epel-release
 ```
-If we were installing Ansible from the _EPEL_ we could do the following:
+
+### Installation from EPEL
+
+If we install Ansible from the _EPEL_, we can do the following:
 
 ```
 $ sudo dnf install ansible
-$ ansible --version
-2.9.21
 ```
+
+And then verify the installation:
+
+```
+$ ansible --version
+ansible [core 2.14.2]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/rocky/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3.11/site-packages/ansible  ansible collection location = /home/rocky/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.11.2 (main, Jun 22 2023, 04:35:24) [GCC 8.5.0 20210514 
+(Red Hat 8.5.0-18)] (/usr/bin/python3.11)
+  jinja version = 3.1.2
+  libyaml = True
+
+$ python3 --version
+Python 3.6.8
+```
+
+Please note that ansible comes with its own version of python, different from the system version of python (here 3.11.2 vs 3.6.8). You'll need to take this into account when pip-installing the python modules required for your installation (e.g. `pip3.11 install PyVMomi`).
+
+### Installation from python pip
+
 As we want to use a newer version of Ansible, we will install it from `python3-pip`:
 
 !!! Note
 
     Remove Ansible if you have installed it previously from _EPEL_.
+
+At this stage, we can choose to install ansible with the version of python we want.
 
 ```
 $ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust cargo curl
@@ -114,34 +147,31 @@ $ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust
     `python3-argcomplete` is provided by _EPEL_. Please install epel-release if not done yet.
     This package will help you complete Ansible commands.
 
-Before we actually install Ansible, we need to tell Rocky Linux that we want to use the newly installed version of Python. The reason is that if we continue to the install without this, the default python3 (version 3.6 as of this writing), will be used instead of the newly installed version 3.8. Set the version you want to use by entering the following command:
-
-```
-sudo alternatives --set python /usr/bin/python3.8
-sudo alternatives --set python3 /usr/bin/python3.8
-```
-
 We can now install Ansible:
 
 ```
-$ sudo pip3 install ansible
-$ sudo activate-global-python-argcomplete
+$ pip3.8 install --user ansible
+$ activate-global-python-argcomplete --user
 ```
 
 Check your Ansible version:
 
 ```
 $ ansible --version
-ansible [core 2.11.2]
+ansible [core 2.13.11]
   config file = None
-  configured module search path = ['/home/ansible/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-  ansible python module location = /usr/local/lib/python3.8/site-packages/ansible
-  ansible collection location = /home/ansible/.ansible/collections:/usr/share/ansible/collections
-  executable location = /usr/local/bin/ansible
-  python version = 3.8.6 (default, Jun 29 2021, 21:14:45) [GCC 8.4.1 20200928 (Red Hat 8.4.1-1)]
-  jinja version = 3.0.1
+  configured module search path = ['/home/rocky/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/rocky/.local/lib/python3.8/site-packages/ansible
+  ansible collection location = /home/rocky/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/rocky/.local/bin/ansible
+  python version = 3.8.16 (default, Jun 25 2023, 05:53:51) [GCC 8.5.0 20210514 (Red Hat 8.5.0-18)]
+  jinja version = 3.1.2
   libyaml = True
 ```
+
+!!! NOTE
+
+    The manually installed version in our case is older than the version packaged by RPM because we used an older version of python. This observation will vary with time and the age of the distribution and the python version of course.
 
 ## Configuration files
 
@@ -152,19 +182,13 @@ There are two main configuration files:
 * The main configuration file `ansible.cfg` where the commands, modules, plugins, and ssh configuration reside;
 * The client machine management inventory file `hosts` where the clients, and groups of clients are declared.
 
-As we installed Ansible with `pip`, those files do not exist. We will have to create them by hand.
-
-An example of the `ansible.cfg` [is given here](https://github.com/ansible/ansible/blob/devel/examples/ansible.cfg) and an example of the `hosts` [file here](https://github.com/ansible/ansible/blob/devel/examples/hosts).
+If Ansible was installed via its RPM package, then the files will have been automatically created. With a `pip` installation, these files don't exist. We'll have to create them by hand thanks to the `ansible-config` command:
 
 ```
-$ sudo mkdir /etc/ansible
-$ sudo curl -o /etc/ansible/ansible.cfg https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg
-$ sudo curl -o /etc/ansible/hosts https://raw.githubusercontent.com/ansible/ansible/devel/examples/hosts
-```
+$ ansible-config 
+usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
+ansible-config: error: the following arguments are required: action
 
-You can also use the `ansible-config` command to generate a new configuration file:
-
-```
 usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
 
 View ansible configuration.
