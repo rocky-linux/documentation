@@ -19,17 +19,17 @@ La versione 2.0 introduce numerose novità. La nuova versione adotta `lazy.nvim`
 
 `lazy.nvim` consente una comoda gestione dei plugin attraverso un'interfaccia unificata e integra un meccanismo di sincronizzazione dei plugin tra le varie installazioni (_lazy-lock.json_).
 
-NvChad memorizza la configurazione dei suoi plugin predefiniti nel file _lua/plugins/init.lua_. E le configurazioni aggiuntive dei vari plugin sono contenute nella cartella _/nvim/lua/plugins/configs_.
+NvChad memorizza la configurazione dei suoi plugin predefiniti nel file _lua/plugins/init.lua_. Le configurazioni aggiuntive dei vari plugin sono contenute nella cartella */nvim/lua/plugins/configs*.
 
-Possiamo vedere un estratto del file _init.lua_ qui sotto:
+Di seguito possiamo vedere un estratto del file *init.lua*:
 
 ```lua
+require "core"
+-- All plugins have lazy=true by default,to load a plugin on startup just lazy=false
+-- List of all default plugins & their definitions
 local default_plugins = {
 
   "nvim-lua/plenary.nvim",
-
-  -- nvchad plugins
-  { "NvChad/extensions", branch = "v2.0" },
 
   {
     "NvChad/base46",
@@ -43,16 +43,31 @@ local default_plugins = {
     "NvChad/ui",
     branch = "v2.0",
     lazy = false,
-    config = function()
-      require "nvchad_ui"
+  },
+
+  {
+    "NvChad/nvterm",
+    init = function()
+      require("core.utils").load_mappings "nvterm"
+    end,
+    config = function(_, opts)
+      require "base46.term"
+      require("nvterm").setup(opts)
     end,
   },
 ...
 ...
--- lazy_nvim startup opts
-local lazy_config = vim.tbl_deep_extend("force", require "plugins.configs.lazy_nvim", config.lazy_nvim)
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
-require("lazy").setup(default_plugins, lazy_config)
+-- bootstrap lazy.nvim!
+if not vim.loop.fs_stat(lazypath) then
+  require("core.bootstrap").gen_chadrc_template()
+  require("core.bootstrap").lazy(lazypath)
+end
+
+dofile(vim.g.base46_cache .. "defaults")
+vim.opt.rtp:prepend(lazypath)
+require "plugins"
 ```
 
 Gli sviluppatori di NvChad hanno svolto un lavoro enorme che va riconosciuto. Hanno creato un ambiente integrato tra tutti i plugins che rende l'interfaccia utente pulita e professionale. Inoltre, i plugin che lavorano *sotto il cofano* consentono di migliorare l'editing e le altre funzioni.
@@ -65,19 +80,17 @@ Di seguito è riportata una breve analisi dei principali plugins:
 
 - [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim) - Fornisce una libreria di funzioni lua comunemente utilizzate dagli altri plugin, ad esempio *telescope* e *gitsigns*.
 
-- [NvChad/extensions](https://github.com/NvChad/extensions) - Le utilità di base di NvChad. Qui troviamo: *change_theme*, *reload_config*, *reload_theme*, *update_nvchad* e la cartella *telescope/extension* che fornisce la scelta del tema direttamente da Telescope.
-
 - [NvChad/base46](https://github.com/NvChad/base46) - Fornisce i temi per l'interfaccia.
 
-- [NvChad/ui](https://github.com/NvChad/ui) - Fornisce l'interfaccia vera e propria. Grazie a questo plugin possiamo avere una *statusline* che ci dà le informazioni durante l'editing e una *tabufline* che ci permette di gestire i buffer aperti.
+- [NvChad/ui](https://github.com/NvChad/ui) - Fornisce l'interfaccia vera e propria e le utilità di base di NvChad. Grazie a questo plugin possiamo avere una *statusline* che ci dà le informazioni durante l'editing e una *tabufline* che ci permette di gestire i buffer aperti. Questo plugin fornisce anche le utilità **NvChadUpdate** per l'aggiornamento, **NvCheatsheet** per una panoramica delle scorciatoie da tastiera e **Nvdash** da cui è possibile eseguire operazioni sui file.
 
-- [NvChad/nvterm](https://github.com/NvChad/nvterm) - Fornisce un terminale per il nostra IDE dove possiamo emettere comandi. Il terminale può essere aperto all'interno del buffer in vari modi:
+- [NvChad/nvterm](https://github.com/NvChad/nvterm) - Fornisce un terminale all'IDE, dove si possono impartire comandi. Il terminale può essere aperto all'interno del buffer in vari modi:
 
-  - `<ALT-h>` apre un terminale dividendo orizzontalmente il buffer
-  - `<ALT-v>` apre il terminale dividendo il buffer verticalmente
-  - `<ALT-i>` apre un terminale in una scheda fluttuante
+- `<ALT-h>` apre un terminale dividendo orizzontalmente il buffer
+- `<ALT-v>` apre il terminale dividendo il buffer verticalmente
+- `<ALT-i>` apre un terminale in una scheda fluttuante
 
-- [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) - Un altro plugin scritto dagli sviluppatori di NvChad. Si tratta in particolare di un elevatore ad alte prestazioni.
+- [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) - Un altro plugin scritto dagli sviluppatori di NvChad. Si tratta in particolare di un evidenziatore di codice ad alte prestazioni.
 
 - [kyazdani42/nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) - Aggiunge icone (richiede uno dei Nerd Font) ai tipi di file e alle cartelle del nostro IDE. Questo ci permette di identificare visivamente i tipi di file nell'Esplora File, per velocizzare le operazioni.
 
@@ -93,20 +106,20 @@ Ora passiamo ai plugin che forniscono la funzionalità per integrare i LSP (Lang
 
 - [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) - Consente una gestione semplificata dell'installazione di LSP (Language Server) attraverso una comoda interfaccia grafica. I comandi forniti sono:
 
-  - `:Mason`
-  - `:MasonInstall`
-  - `:MasonUninstall`
-  - `:MasonUnistallAll`
-  - `:MasonLog`
+- `:Mason`
+- `:MasonInstall`
+- `:MasonUninstall`
+- `:MasonUnistallAll`
+- `:MasonLog`
 
 - [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Fornisce le configurazioni appropriate per quasi tutti i server linguistici disponibili. Si tratta di una raccolta comunitaria, con le impostazioni più importanti già impostate. Il plugin si occupa di ricevere le nostre configurazioni e di inserirle nell'ambiente dell'editor.
 
 Fornisce i seguenti comandi:
 
-  - `:LspInfo`
-  - `:LspStart`
-  - `:LspStop`
-  - `:LspRestart`
+- `:LspInfo`
+- `:LspStart`
+- `:LspStop`
+- `:LspRestart`
 
 ## Codice Lua
 
