@@ -13,6 +13,7 @@ tags:
 
 Marksman is a useful tool when drafting your document for Rocky Linux. It allows the easy entry of symbols needed to define the *markdown* language tags. This allows you to write faster and reduces the possibility of errors.
 
+
 NvChad/Neovim already includes text widgets that aid writing, such as the repetition of often-used words indexed by frequency of entry. The new options included by this language server will enrich these widgets.
 
 [Marksman](https://github.com/artempyanykh/marksman) integrates with your editor to help you write and maintain your Markdown documents with the [LSP protocol](https://microsoft.github.io/language-server-protocol/), thereby providing features such as completion, go-to definition, reference searching, name refactoring, diagnostics, and more.
@@ -126,6 +127,7 @@ The activation keys for Markdown tagging shortcuts also include other combinatio
 ## Conclusion
 
 Although not strictly necessary, this language server can over time become a great companion in your documentation writing for Rocky Linux.
+
 
 By using it and consequently memorizing the main keys for inserting Markdown code symbols it will enable effectively faster writing by allowing you to focus your attention on the content.
 
