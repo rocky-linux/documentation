@@ -182,7 +182,7 @@ There are two main configuration files:
 * The main configuration file `ansible.cfg` where the commands, modules, plugins, and ssh configuration reside;
 * The client machine management inventory file `hosts` where the clients, and groups of clients are declared.
 
-If Ansible was installed via its RPM package, then the configuration file will have been automatically created. With a `pip` installation, this file does not exist. We'll have to create it by hand thanks to the `ansible-config` command:
+The configuration file would automatically be created if Ansible was installed with its RPM package. With a `pip` installation, this file does not exist. We'll have to create it by hand thanks to the `ansible-config` command:
 
 ```
 $ ansible-config -h
@@ -208,17 +208,17 @@ The `--disabled` option allows you to comment out the set of options by prefixin
 
 !!! NOTE
 
-    You can also choose to embed the ansible configuration in your code repository, with ansible loading the configuration files it finds in the following order (processing the first file it finds and ignoring the rest):
+    You can also choose to embed the ansible configuration in your code repository, with Ansible loading the configuration files it finds in the following order (processing the first file it encounters and ignoring the rest):
 
     * if the environment variable `$ANSIBLE_CONFIG` is set, load the specified file.
     * `ansible.cfg` if exists in the current directory.
     * `~/.ansible.cfg` if exists (in the user’s home directory).
 
-    If none of these three files is found, the default file is loaded.
+    The default file is loaded if none of these three files are found.
 
 ### The inventory file `/etc/ansible/hosts`
 
-As Ansible will have to work with all your equipment to be configured, it is very important to provide it with one (or more) well-structured inventory file(s), which perfectly matches your organization.
+As Ansible will have to work with all your equipment to be configured, providing it with one (or more) well-structured inventory file(s) that perfectly matches your organization is essential.
 
 It is sometimes necessary to think carefully about how to build this file.
 
@@ -272,7 +272,7 @@ Go to the default inventory file, which is located under `/etc/ansible/hosts`. S
 
 As you can see, the file provided as an example uses the INI format, which is well known to system administrators. Please note that you can choose another file format (like yaml for example), but for the first tests, the INI format is well adapted to our future examples.
 
-Obviously, in production, the inventory can be generated automatically, especially if you have a virtualization environment like VMware VSphere or a cloud environment (Aws, Openstack or other).
+The inventory can be generated automatically in production, especially if you have a virtualization environment like VMware VSphere or a cloud environment (Aws, OpenStack, or another).
 
 * Creating a hostgroup in `/etc/ansible/hosts`:
 
@@ -302,7 +302,7 @@ ansible_clients
 172.16.1.10
 ```
 
-We won't go any further for the moment on the subject of inventory, but if you're interested, consider checking [this link](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html).
+We won't go any further on inventory, but if you are interested, consider checking [this link](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html).
 
 Now that our management server is installed and our inventory is ready, it's time to run our first `ansible` commands.
 
@@ -375,7 +375,7 @@ On both management machine and clients, we will create an `ansible` user dedicat
 
 This user will be used:
 
-* On the administration station side: to run `ansible` commands and ssh to managed clients.
+* On the administration station side: to run `ansible` commands and SSH to managed clients.
 * On the managed stations (here the server that serves as your administration station also serves as a client, so it is managed by itself) to execute the commands launched from the administration station: it must therefore have sudo rights.
 
 On both machines, create an `ansible` user, dedicated to ansible:
@@ -686,7 +686,7 @@ The command returns the following error codes:
 
 !!! Note
 
-    Please note that `ansible` will return Ok when there is no host matching your target, which might mislead you!
+    Please note that `ansible` will return Ok when no host matches your target, which might mislead you!
 
 ### Example of Apache and MySQL playbook
 
