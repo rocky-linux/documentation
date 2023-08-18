@@ -8,13 +8,11 @@ contributors: Steven Spencer
 
 ## Introduction
 
-A long time ago, I was a little newbie computer user who heard that having a firewall was *supposed* to be super good. It would let me decide what got in, and what got out of my computer, right? But it mostly seemed to stop my video games from accessing the internet; I was *not* a happy camper.
+A long time ago, I was a little newbie computer user who heard that having a firewall was *supposed* to be super good. It would let me decide what got in and out of my computer, right?? But it mostly seemed to stop my video games from accessing the internet; I was *not* a happy.
 
-Of course, if you're here, you probably have a better idea what a firewall is and what it does than I did. But if your firewall experience amounts to telling Windows Defender that yes, for the love of all that is holy, your new app is allowed to use the internet, don't worry. It says "for Beginners" up top; I've got you.
+Of course, if you're here, you probably have a better idea what a firewall is and what it does than I did. But if your firewall experience amounts to telling Windows Defender that your new app is allowed to use the internet, don't worry. As indicated in this document title, this guide is for you (and other beginners)!
 
-In other words, my fellow nerds should be aware that there will be a lot of explanations incoming.
-
-So, let's talk about what we're here for. `firewalld` is the default firewall app packaged with Rocky Linux, and it's designed to be pretty simple to use. You just need to know a little bit about how firewalls work, and not be afraid to use the command line.
+So, let's talk about what we're here for. `firewalld` is the default firewall app packaged with Rocky Linux, and it's designed to be pretty simple to use. You need to know a little about firewalls and not be afraid to use the command line.
 
 Here you'll learn:
 
@@ -23,14 +21,14 @@ Here you'll learn:
 * How to allow only people from certain IP addresses or places to log into your machine remotely
 * How to manage some `firewalld`-specific features like Zones.
 
-This is *not* intended to be a complete or exhaustive guide.
+Please note that this is *not* intended to be a complete or exhaustive firewall guide; And as a result it only covers the basics.
 
 ### A note on using the command line for managing your firewall
 
 Well... there *are* graphical firewall configuration options. On the desktop, there's `firewall-config` which can be installed from the repos, and on servers you can [install Cockpit](https://linoxide.com/install-cockpit-on-almalinux-or-rocky-linux/) to help you manage firewalls and a whole bunch of other stuff. **However, I'll be teaching you the command-line way to do things in this tutorial for a couple of reasons:**
 
-1. If you're running a server, you'll be using the command line for most of this stuff anyway. Lots of tutorials and guides for Rocky server will give command line instructions for firewall management, and it's best that you understand those instructions, rather than just copying and pasting whatever you see.
-2. Understanding how the `firewalld` commands work might help you better grasp how the firewall software works. You can take the same principles you learn here, and have a better idea what you're doing if you do decide to use a graphical interface in the future.
+1. If you're running a server, you'll be using the command line for most of this stuff anyway. Lots of tutorials and guides for the Rocky server will give command-line instructions for firewall management, and you should understand those instructions rather than just copying and pasting whatever you see..
+2. Understanding how the `firewalld` commands work might help you better grasp how the firewall software works.  You can take the same principles you learn here and better understand what you're doing if you decide to use a graphical interface in the future.
 
 ## Prerequisites and Assumptions
 You'll need:
@@ -119,7 +117,7 @@ public (active)
 
     By default, all changes to `firewalld`'s configuration are temporary. If you restart the whole `firewalld` service, or restart your machine, none of your changes to the firewall will be saved unless you do one of two very specific things.
 
-It's best practice to test all of your changes one by one, reloading your firewall config as you go. That way, if you accidentally lock yourself out of anything, you can restart the service (or the machine), all of those changes disappear as mentioned above.
+ It's best practice to test your changes individually, reloading your firewall config as you go. If you accidentally lock yourself out of anything, you can restart the service (or the machine), and all of those changes disappear, as mentioned above.
 
 But once you have a working configuration, you can save your changes permanently with:
 
@@ -135,7 +133,7 @@ firewall-cmd --permanent [the rest of your command]
 
 ## Managing Zones
 
-Before anything else, I need to explain zones. Zones are a feature that basically allow you to define different sets of rules for different situations. Zones are a huge part of `firewalld` so it pays to understand how they work.
+Before anything else, I need to explain zones. Zones are a feature that allows you to define different sets of rules for different situations. Zones are a huge part of `firewalld` so it pays to understand how they work.
 
 If your machine has multiple ways to connect to different networks (e.g., Ethernet and Wi-Fi), you can decide that one connection is more trusted than the other. You might set your Ethernet connection to the "trusted" zone if it's only connected to a local network that you built, and put the Wi-Fi (which might be connected to the internet) in the "public" zone with more stringent restrictions.
 
@@ -184,7 +182,7 @@ firewall-cmd --get-active-zones
 
 !!! Note "Note: Some of this might have been done for you."
 
-    If you're running Rocky Linux on a VPS, it's probable that a basic configuration has been set up for you. Specifically, you should be able to access the server via SSH, and the network interface will already have been added to the "public" zone.
+     If you're running Rocky Linux on a VPS, a basic configuration has probably been set up for you. Specifically, you should be able to access the server via SSH, and the network interface will already have been added to the "public" zone.
 
 To change the default zone:
 
@@ -219,11 +217,11 @@ firewall-cmd --get-zones
 
 ## Managing Ports
 
-For the uninitiated, ports (in this context) are just virtual endpoints where computers connect to each other so they can send information back and forth. Think of them like physical Ethernet or USB ports on your computer, but invisible, and you can have up to 65,535 of them all going at once.
+For the uninitiated, ports (in this context) are just virtual endpoints where computers connect to send information back and forth. Think of them like physical Ethernet or USB ports on your computer, but invisible, and you can have up to 65,535 of them all going at once.
 
 I wouldn't, but you can.
 
-Every port is defined by a number, and some ports are reserved for specific services, and kinds of information. If you've ever worked with web servers to build a website, for example, you may be familiar with port 80, and port 443. Those ports allow for the transmission of web page data.
+Every port is identfied by a number, and some ports are reserved for specific services. For example, if you've ever worked with web servers to build a website, you may be familiar with port 80 and port 443. Those ports allow for the transmission of web page data.
 
 Specifically, port 80 allows for transferring data via the Hypertext Transfer Protocol (HTTP), and port 443 is reserved for Hypertext Transfer Protocol Secure (HTTPS) data.
 
@@ -259,7 +257,7 @@ firewall-cmd --zone=public --add-port=9001/tcp
 
     That `/tcp` bit at the end tells the firewall that connections will be coming in over the Transfer Control Protocol, which is what you'll be using for most server-and-home-related stuff.
 
-    Alternatives like UDP are for debugging, or other very specific kinds of stuff that frankly aren't in the scope of this guide. Refer to the documentation of whatever app or service you specifically want to open up a port for.
+     Alternatives like UDP are for debugging or other particular kinds of stuff that aren't in this guide's scope. Refer to the documentation of whatever app or service you specifically want to open up a port for.
 
 To remove a port, just reverse the command with a single word change:
 
@@ -269,7 +267,7 @@ firewall-cmd --zone=public --remove-port=9001/tcp
 
 ## Managing Services
 
-Services, as you might imagine, are fairly standardized programs that run on your computer. `firewalld` is set up so that it can just open the way for most common services whenever you need to do that.
+Services, as you might imagine, are fairly standardized programs that run on your computer. `firewalld` is set up so that it can be used to easily provide access to common services running on the host.
 
 This is the preferred way to open up the ports for these common services, and a whole lot more:
 
@@ -318,7 +316,7 @@ firewall-cmd --zone=public --remove-service=http
 
 ## Restricting Access
 
-Let's say you have a server, and you just don't want to make it public. if you want to define just who is allowed to access it via SSH, or view some private web pages/apps, you can do that.
+Let's say you have a server and don't want to make it public. If you want to define who can access it via SSH or view some private web pages/apps, you can do that.
 
 There are a couple of methods to accomplish this. First, for a more locked-down server, you can pick one of the more restrictive zones, assign your network device to it, add the SSH service to it as shown above, and then whitelist your own public IP address like so:
 
@@ -332,9 +330,9 @@ You can make it a range of IP addresses by adding a higher number at the end lik
 firewall-cmd --permanent --zone=trusted --add-source=192.168.1.0/24 [< insert your IP here]
 ```
 
-Again, just change `--add-source` to `--remove-source` in order to reverse the process.
+Again, just change `--add-source` to `--remove-source` to reverse the process.
 
-However, if you're managing a remote server with a website on it that needs to be public, and still only want to open up SSH for one IP address or a small range of them, you have a couple of options. In both of these examples, the sole network interface is assigned to the public zone.
+However, if you're managing a remote server with a website on it that needs to be public, and still only want to open up SSH for one IP address or a small range of them, you have a couple of options. Both examples assign the sole network interface to the public zone.
 
 First, you can use a "rich rule" to your public zone, and it would look something like this:
 
@@ -366,7 +364,7 @@ public (active)
 ```
 
 
-Secondly, you can use two different zones at a time. If you have your interface bound to the public zone, you can activate a second zone (the "trusted" zone for example) by adding a source IP or IP range to it as shown above. Then, add the SSH service to the trusted zone, and remove it from the public zone.
+Secondly, you can use two different zones at a time. If your interface is bound to the public zone, you can activate a second zone (the "trusted" zone, for example) by adding a source IP or IP range, as shown above. Then, add the SSH service to the trusted zone, and remove it from the public zone.
 
 When you're done, the output should look a bit like this:
 
