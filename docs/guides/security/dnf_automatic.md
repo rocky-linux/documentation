@@ -12,14 +12,13 @@ tags:
 
 # Patching servers with `dnf-automatic`
 
-Managing the installation of security updates is an important matter for the system administrator. The process of providing software updates is a well-trodden path that ultimately causes few problems.
-For these reasons, it is reasonable to automate the download and application of updates daily and automatically on Rocky servers.
+Managing the installation of security updates is an important matter for the system administrator. Providing software updates is a well-trodden path that ultimately causes few problems. For these reasons, it is reasonable to automate the download and application of updates daily and automatically on Rocky servers.
 
 The security of your information system will be strengthened. `dnf-automatic` is an additional tool that will allow you to achieve this.
 
 !!! tip "If you are worried..."
 
-    Years ago, applying updates automatically like this would have been a recipe for disaster. There were many times where an update applied might cause issues. That still happens rarely, when an update of a package removes a deprecated feature that is being used on the server, but for the most part, this simply isn't an issue these days. That said though, if you still feel uncomfortable letting `dnf-automatic` handle the updates, consider using it to download and/or notify you that updates are available. That way your server doesn't remain unpatched for long. These features are `dnf-automatic-notifyonly` and `dnf-automatic-download`
+    Years ago, applying updates automatically like this would have been a recipe for disaster. There were many times when an update applied might cause issues. That still happens rarely, when an update of a package removes a deprecated feature that is being used on the server, but for the most part, this simply isn't an issue these days. If you still feel uncomfortable letting `dnf-automatic` handle the updates, consider using it to download and/or notify you that updates are available. That way your server doesn't remain unpatched for long. These features are `dnf-automatic-notifyonly` and `dnf-automatic-download`
 
     For more on these features, take a look at the [official documentation](https://dnf.readthedocs.io/en/latest/automatic.html).
 
@@ -33,7 +32,7 @@ sudo dnf install dnf-automatic
 
 ## Configuration
 
-By default, the update process will start at 6am, with a random extra time delta to avoid all your machines updating at the same time. To change this behavior, you must override the timer configuration associated with the application service:
+By default, the update process will start at 6am, with a random extra time delta to avoid all your machines updating simultaneously. To change this behavior, you must override the timer configuration associated with the application service:
 
 ```
 sudo systemctl edit dnf-automatic.timer
@@ -53,9 +52,9 @@ Persistent=true
 WantedBy=timers.target
 ```
 
-This configuration reduces the start-up delay between 6:00 and 6:10 am. (A server that would be shut down at this time would be automatically patched after its restart.)
+This configuration reduces the start-up delay between 6:00 and 6:10 am. (A server that would be shut down now would be automatically patched after its restart.)
 
-Then activate the timer associated to the service (not the service itself):
+Then activate the timer associated with the service (not the service itself):
 
 ```
 $ sudo systemctl enable --now dnf-automatic.timer
@@ -73,7 +72,7 @@ The process under CentOS 7 is similar but uses: `yum-cron`.
 $ sudo yum install yum-cron
 ```
 
-The configuration of the service is done this time in the file `/etc/yum/yum-cron.conf`.
+This time, the configuration of the service is done in the file `/etc/yum/yum-cron.conf`.
 
 Set configuration as needed:
 
@@ -99,7 +98,7 @@ download_updates = yes
 # that download_updates must also be yes for the update to be applied.
 apply_updates = yes
 
-# Maximum amout of time to randomly sleep, in minutes.  The program
+# Maximum amount of time to randomly sleep, in minutes.  The program
 # will sleep for a random amount of time between 0 and random_sleep
 # minutes before running.  This is useful for e.g. staggering the
 # times that multiple systems will access update servers.  If
