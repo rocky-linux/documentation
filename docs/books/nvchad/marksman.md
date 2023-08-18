@@ -13,7 +13,7 @@ tags:
 
 Marksman is a useful tool when drafting your document for Rocky Linux. It allows the easy entry of symbols needed to define the *markdown* language tags. This allows you to write faster and reduces the possibility of errors.
 
-NvChad/Neovim already includes text widgets that aid in writing, such as the repetition of often used words indexed by frequency of entry. The new options included by this language server will enrich these widgets.
+NvChad/Neovim already includes text widgets that aid writing, such as the repetition of often-used words indexed by frequency of entry. The new options included by this language server will enrich these widgets.
 
 [Marksman](https://github.com/artempyanykh/marksman) integrates with your editor to help you write and maintain your Markdown documents with the [LSP protocol](https://microsoft.github.io/language-server-protocol/), thereby providing features such as completion, go-to definition, reference searching, name refactoring, diagnostics, and more.
 
@@ -46,9 +46,9 @@ Its installation, however, does not yet involve its integration into the editor.
 
 !!! note "LSP in NvChad"
 
-    The [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) plugin provides the integration of the language servers into NvChad. This plugin greatly simplifies their inclusion in the NvChad configuration.
+    The [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) plugin integrates the language servers into NvChad. This plugin greatly simplifies their inclusion in the NvChad configuration.
 
-If during the editor installation you chose to also install the *Template Chadrc*, this creates the *lspoconfig.lua* file in your `custom/configs` folder.
+If during the editor installation you also chose to install the *Template Chadrc*, this creates the *lspoconfig.lua* file in your `custom/configs` folder.
 
 This file takes care of entering the calls needed to use the language servers and also allows you to specify the ones you have installed. To integrate *marksman* into the editor's language server configuration you will need to edit the *local servers* string by adding your new LSP.
 
@@ -82,9 +82,9 @@ This indicates the activation of the *marksman* server for the open file, and th
 
 !!! note "Root folder"
 
-    The concept of a "root folder" is important in the use of a language server in that in order to perform controls on the document, such as links to other files or images for example, it must have a "global view" of the project. We can say that "*root folders*" equates with the "*Projects*" found in graphics IDEs.
+    The concept of a "root folder" is important in using a language server in that to perform controls on the document, such as links to other files or images, it must have a "global view" of the project. We can say that "*root folders*" equates with the "*Projects*" found in graphics IDEs.
 
-    The *root directory*, also called the "*working directory*", used by the editor for the open file, is viewable with the `:pwd` command. If it does not match the desired one, it is changeable with the `:lcd` command. This command reassigns the *working directory* only to that buffer, without changing any settings of the other buffers open in the editor.
+    The *root directory*, also called the "*working directory*", used by the editor for the open file, is viewable with the `:pwd` command. It is changeable with the `:lcd` command if it does not match the desired one. This command reassigns the *working directory* only to that buffer, without changing any settings of the other buffers open in the editor.
 
 ## Use of marksman
 
@@ -114,17 +114,18 @@ These snippets are displayed within widgets that also contain other shortcuts. U
 | <kbd>sub</kbd> | The key inserts the *subscript* tag. Notes<sub>1 |
 | <kbd>table</kbd> | This key enables quick creation of a table structure and allows you to choose from many starting structures |
 | <kbd>code</kbd> | Inserts a block of code inline by placing two backticks at the position where the cursor is located by placing it in the center of the two backticks. |
-| <kbd>codeblock</kbd> | Inserts three lines, two of which have triple backticks and one blank where you insert your code blocks. Note that it also inserts the string *language* which is to be compiled with the language you used in the block.
+| <kbd>codeblock</kbd> | Inserts three lines, two with triple backticks and one blank where you insert your code blocks. Note that it also inserts the string *language* which is to be compiled with the language you used in the block.
+
 
 !!! note "Code block statement"
 
-    Markdown code rules recommend always declaring the code used in the block even in the absence of highlighting features for proper interpretation. If the code within it is too generic, it is recommended to use "text" for its declaration.
+    Markdown code rules recommend always declaring the code used in the block, even without highlighting features for proper interpretation. If the code within it is too generic, using "text" for its declaration is recommended.
 
-The activation keys for Markdown tagging shortcuts also include other combinations that you will have a chance to discover as you use the language server.
+The activation keys for Markdown tagging shortcuts also include other combinations that you can discover as you use the language server.
 
 ## Conclusion
 
-Although not strictly necessary, this language server can over time become a great companion in your documentation writing for Rocky LInux.
+Although not strictly necessary, this language server can over time become a great companion in your documentation writing for Rocky Linux.
 
 By using it and consequently memorizing the main keys for inserting Markdown code symbols it will enable effectively faster writing by allowing you to focus your attention on the content.
 
