@@ -11,7 +11,7 @@ Istruzioni Generali
 
 In primo luogo, identificare i file nel pacchetto che devono essere cambiati. Possono essere file di testo, file di immagine, o altri. È possibile identificare i file scavando in git.centos.org/rpms/PACKAGE/
 
-Sviluppare dei sostituti per questi file, ma utilizzando invece il marchio Rocky. Per alcuni tipi di testo possono essere necessari anche file diff/patch, a seconda del contenuto da sostituire.
+Sviluppare dei sostituti per questi file, ma utilizzando invece il marchio Rocky. A seconda del contenuto da sostituire, per alcuni tipi di testo possono essere necessari file diff/patch.
 
 I file di sostituzione si trovano in https://git.rockylinux.org/patch/PACKAGE/ROCKY/_supporting/ Il file di configurazione (che specifica come applicare le patch) in https://git.rockylinux.org/patch/PACKAGE/ROCKY/CFG/*.cfg
 
