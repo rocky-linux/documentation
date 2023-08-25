@@ -1,7 +1,6 @@
 ---
 title: Configurazione della Rete
-author: unknown
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Hayden Young
 tested_with: 8.5, 8.6, 9.0
 tags:
   - networking
@@ -70,7 +69,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     # no-auto-default file "/var/lib/NetworkManager/no-auto-default.state"
     ```
 
-    Notate all'inizio del file di configurazione il riferimento al `keyfile` seguito da `ifcfg-rh`. Ciò significa che `keyfile` è l'impostazione predefinita. Ogni volta che si esegue uno degli strumenti di `NetworkManager` per configurare un'interfaccia (ad esempio: `nmcli` o `nmtui`), questo costruisce o aggiorna automaticamente i file delle chiavi.
+    Notate all'inizio del file di configurazione il riferimento al `keyfile` seguito da `ifcfg-rh`. Questo significa che l'impostazione predefinita è il `keyfile`. Ogni volta che si esegue uno degli strumenti di `NetworkManager` per configurare un'interfaccia (ad esempio: `nmcli` o `nmtui`), questo costruisce o aggiorna automaticamente i file delle chiavi.
 
     !!! tip "Configurazione posizione di archiviazione"
 
@@ -166,7 +165,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     ### Modifica dell'indirizzo IP con `nmcli`
 
-    L'uso di `nmtui` è piacevole, ma se si vuole solo riconfigurare rapidamente l'interfaccia di rete senza dover passare tra una schermata e l'altra, probabilmente è meglio usare `nmcli` da solo. Vediamo l'esempio precedente di un IP assegnato staticamente e quali sono i passaggi per riconfigurare l'interfaccia in DHCP usando solo `nmcli`.
+    L'uso di `nmtui` è piacevole, ma se si vuole solo riconfigurare rapidamente l'interfaccia di rete senza dover passare tra una schermata e l'altra, probabilmente è meglio usare `nmcli` da solo. Vediamo l'esempio precedente di un IP assegnato staticamente e i passi per riconfigurare l'interfaccia in DHCP usando solo `nmcli`.
 
     Prima di iniziare, è necessario sapere che per riconfigurare l'interfaccia in DHCP è necessario:
 
@@ -175,7 +174,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     * Cambiare il metodo IPv4 in automatico
     * Disattivare e riattivare l'interfaccia
 
-    Si noti anche che non stiamo usando esempi che dicono di usare -ipv4.address ecc. Questi non cambiano completamente l'interfaccia. A tale scopo, è necessario impostare ipv4.address e ipv4.gateway su una stringa vuota. Anche in questo caso, per risparmiare il più possibile tempo con il nostro comando, li uniremo tutti in un'unica riga:
+    Si noti anche che non stiamo usando esempi che dicono di usare -ipv4.address ecc. Questi non cambiano completamente l'interfaccia. Per farlo, è necessario impostare ipv4.address e ipv4.gateway su una stringa vuota. Anche in questo caso, per risparmiare il più possibile tempo con il nostro comando, li uniremo tutti in un'unica riga:
 
     ```
     nmcli con mod enp0s3 ipv4.gateway '' && nmcli con mod enp0s3 ipv4.address '' && nmcli con mod enp0s3 ipv4.method auto && nmcli con down enp0s3 && nmcli con up enp0s3
@@ -186,9 +185,9 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     ## Risoluzione DNS
 
-    L'impostazione dei server DNS può essere effettuata con `nmtui` o `nmcli`. Sebbene l'interfaccia `nmtui` sia facile da navigare e molto più intuitiva, rende il processo molto più lento. L'operazione con `nmcli` è molto più veloce. Nel caso dell'indirizzo assegnato dal DHCP, di solito non è necessario impostare i server DNS, perché di solito vengono inoltrati dal server DHCP. Detto questo, *è possibile* aggiungere staticamente i server DNS a un'interfaccia DHCP. Nel caso di un'interfaccia assegnata staticamente, sarà *NECESSARIO* fare questa operazione, poiché dovrà sapere come ottenere la risoluzione DNS e non avrà un metodo assegnato automaticamente.
+    L'impostazione dei server DNS può essere effettuata con `nmtui` o `nmcli`. Sebbene l'interfaccia `nmtui` sia facile da navigare e molto più intuitiva, il processo è molto più lento. L'operazione con `nmcli` è molto più veloce. Nel caso dell'indirizzo assegnato dal DHCP, di solito non è necessario impostare i server DNS, perché di solito vengono inoltrati dal server DHCP. Detto questo, *è possibile* aggiungere staticamente i server DNS a un'interfaccia DHCP. Nel caso di un'interfaccia assegnata staticamente, sarà *NECESSARIO* fare questa operazione, poiché dovrà sapere come ottenere la risoluzione DNS e non avrà un metodo assegnato automaticamente.
 
-    Poiché l'esempio migliore per tutto questo è un IP assegnato staticamente, torniamo al nostro indirizzo statico originale della nostra interfaccia di esempio (enp0s3). Prima di modificare i valori DNS, è necessario vedere a cosa sono attualmente impostati. Per ottenere una risoluzione corretta dei nomi, iniziamo a rimuovere i server DNS già impostati e ad aggiungerne altri. Attualmente `ipv4.dns` è impostato su `8.8.8.8.8.8.4.4.192.168.1.1`. In questo caso, non è necessario impostare prima ipv4.dns come una stringa vuota. Possiamo semplicemente usare il comando seguente per sostituire i nostri valori:
+    Poiché l'esempio migliore per tutto questo è un IP assegnato staticamente, torniamo al nostro indirizzo statico originale della nostra interfaccia di esempio (enp0s3). Prima di modificare i parametri DNS, dobbiamo vedere quali sono gli attuali valori. Per ottenere una risoluzione corretta dei nomi, rimuovere i server DNS già impostati e aggiungerne di diversi. Attualmente `ipv4.dns` è impostato su `8.8.8.8.8.8.4.4.192.168.1.1`. In questo caso, non è necessario impostare ipv4.dns come una stringa vuota. Possiamo semplicemente usare il comando seguente per sostituire i nostri valori:
 
     ```
     nmcli con mod enp0s3 ipv4.dns '208.67.222.222,208.67.220.220,192.168.1.1'
@@ -200,7 +199,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     nmcli con down enp0s3 && nmcli con up enp0s3
     ```
 
-    Per verificare che *siano* effettivamente in grado di risolvere i nomi, provare a eseguire il ping di un host noto. Utilizzeremo google.com come esempio:
+    Per verificare se la risoluzione dei nomi viene *effettuata*, provare a eseguire il ping di un host noto. Utilizzeremo google.com come esempio:
 
     ```bash
     ping google.com
@@ -242,7 +241,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     !!! note "Nota"
 
-        Sebbene sia ancora possibile utilizzare questo metodo per portare l'interfaccia su e giù in Rocky Linux 9, il comando reagisce molto più lentamente rispetto al semplice utilizzo del comando `nmcli` degli esempi precedenti.
+        Sebbene sia ancora possibile utilizzare questo metodo per portare l'interfaccia su e giù in Rocky Linux 9, il comando reagisce molto più lentamente rispetto al semplice comando `nmcli`.
 
     Per far cadere e ripartire il *enp0s3* possiamo semplicemente usare:
 
@@ -290,7 +289,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     ### Configurazione del gateway
 
 
-    Ora che l'interfaccia ha un indirizzo, dobbiamo impostare la sua rotta predefinita:
+    Ora che l'interfaccia ha un indirizzo, dobbiamo impostare il suo percorso predefinito. Questo può essere fatto con:
 
     ```bash
     ip route add default via 192.168.1.1 dev enp0s3
@@ -333,7 +332,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     64 bytes from 192.168.1.10: icmp_seq=3 ttl=255 time=0.676 ms
     ```
 
-    Ora verificate che sia possibile raggiungere un host esterno alla vostra rete. Per il test che segue, utilizziamo il server DNS aperto di Google:
+    Eseguire un test per verificare che venga visualizzato un host raggiungibile esterno alla rete. Per il test che segue, utilizziamo il server DNS aperto di Google:
 
     ```bash
     ping -c3 8.8.8.8
@@ -362,7 +361,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     ## Conclusioni
 
-    In Rocky Linux 9 sono state apportate numerose modifiche allo stack di rete. Tra queste, la priorità dei `keyfile` rispetto ai file `ifcfg` usati in precedenza e presenti in Network-Scripts. Poiché è evidente che la direzione del cambiamento nelle future versioni di Rocky Linux deprecherà completamente e rimuoverà gli script di rete come opzione, è meglio concentrare l'attenzione su metodologie come `nmcli`, `nmtui`, e in alcuni casi `ip`, per la configurazione della rete.
+    In Rocky Linux 9 sono state apportate molte modifiche allo stack di rete. Tra queste c'è la priorità dei `keyfile` rispetto ai file `ifcfg` usati in precedenza e presenti in Network-Scripts. Poiché la direzione del cambiamento nelle future versioni di Rocky Linux prevede la deprecazione e la rimozione degli script di rete, è meglio concentrare l'attenzione su metodologie come `nmcli`, `nmtui` e, in alcuni casi, `ip`, per la configurazione della rete.
 
 === "8"
 
@@ -413,11 +412,11 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     
         L'approccio IP dinamico è molto diffuso nelle reti domestiche e di ufficio o nei sistemi di classe workstation e desktop.  Lo schema dinamico di solito necessita di qualcosa di aggiuntivo, disponibile localmente, in grado di fornire le informazioni di configurazione IP corrette alle workstation e ai desktop che ne fanno richiesta. Questo _qualcosa_ si chiama Dynamic Host Configuration Protocol (DHCP).
     
-        Molto spesso gli utenti di casa/ufficio non devono preoccuparsi o conoscere il DHCP. Questo perché qualcuno o qualcos'altro se ne occupa automaticamente in background. L'unica cosa che l'utente finale deve fare è connettersi fisicamente o in modalità wireless alla rete giusta (e naturalmente assicurarsi che i propri sistemi siano accesi)!
+       Gli utenti di casa o dell'ufficio spesso non devono preoccuparsi del DHCP. Questo perché qualcosa di diverso se ne occupa automaticamente in background. L'utente finale deve connettersi fisicamente o in modalità wireless alla rete giusta (e naturalmente assicurarsi che i suoi sistemi siano accesi)!
     
     ### Indirizzo IP
     
-    Nel precedente elenco `/etc/sysconfig/network-scripts/ifcfg-enp1s0`, vediamo che il valore del parametro o chiave `BOOTPROTO` è impostato su `none`. Ciò significa che il sistema da configurare è impostato su uno schema di indirizzi IP statici.
+    Nel precedente elenco `/etc/sysconfig/network-scripts/ifcfg-enp1s0`, vediamo che il valore del parametro o chiave `BOOTPROTO` è impostato su `none`. Il sistema configurato è impostato su uno schema di indirizzi IP statici.
     
     Se invece si vuole configurare il sistema per utilizzare uno schema di indirizzi IP dinamici, si dovrà cambiare il valore del parametro `BOOTPROTO` da `none` a `dhcp` e rimuovere anche le linee `IPADDR`, `PREFIX` e `GATEWAY`. Questo è necessario perché tutte le informazioni saranno ottenute automaticamente da qualsiasi server DHCP disponibile.
     
@@ -481,7 +480,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     !!! tip "Nome della connessione"
 
-        In questo esempio, sia la connessione che il dispositivo hanno lo stesso nome, ma non è sempre così. È comune vedere una connessione chiamata `System eth0` che mappa un dispositivo chiamato `eth0`, ad esempio.
+        In questo esempio, la connessione e il dispositivo condividono lo stesso nome, ma ciò potrebbe non essere sempre vero. È comune vedere una connessione chiamata `System eth0` che mappa un dispositivo chiamato `eth0`, ad esempio.
 
     Ora che conosciamo il nome della nostra connessione, possiamo visualizzarne le impostazioni. A tale scopo, utilizzare il comando `nmcli connection show [connection]`, che stamperà tutte le impostazioni registrate da NetworkManager per la connessione in questione.
 
@@ -644,7 +643,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     ifcfg ens19 del 192.168.20.10/24
     ```
 
-    Per disabilitare completamente l'indirizzamento IP su questa interfaccia:
+    Per disattivare completamente l'indirizzo IP su questa interfaccia:
 
     ```bash
     ifcfg ens19 stop
@@ -699,7 +698,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
     ping -c3 8.8.8.8
     ```
 
-    Se la macchina dispone di diverse interfacce di rete e si desidera effettuare una richiesta ICMP tramite un'interfaccia specifica, è possibile utilizzare la flag `-I`:
+    Se la macchina dispone di diverse interfacce di rete e si desidera effettuare una richiesta ICMP attraverso un'interfaccia specifica, è possibile utilizzare la flag `-I`:
 
     ```bash
     ping -I ens19 -c3 192.168.20.42
@@ -722,4 +721,4 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
 
     ## Conclusioni
 
-    Rocky Linux 8 dispone degli strumenti per configurare la rete dalla riga di comando. Questo documento vi permetterà di utilizzare questi strumenti in pochissimo tempo.
+    Rocky Linux 8 dispone degli strumenti per configurare la rete dalla riga di comando. Questo documento dovrebbe consentirvi di utilizzare rapidamente questi strumenti.

@@ -5,9 +5,9 @@ title: Guida al Packaging per Sviluppatori
 # Guida iniziale sul Packaging per sviluppatori
 
 
-Rocky Devtools si riferisce a un insieme di script e utilità create dai membri della comunità Rocky Linux per aiutare il sourcing, la creazione, il branding, il patching e la creazione di pacchetti software distribuiti con il sistema operativo Rocky Linux. Rocky devtools è composto da `rockyget`, `rockybuild`, `rockypatch`, e `rockyprep`.
+Rocky Devtools si riferisce a un insieme di script e utility create dai membri della comunità Rocky Linux per aiutare a reperire, creare, contrassegnare, patchare e costruire i pacchetti software distribuiti con il sistema operativo Rocky Linux. Rocky Devtools è costituito da `rockyget`, `rockybuild`, `rockypatch`, e `rockyprep`.
 
-A basso livello Rocky Devtools è un wrapper per l'esecuzione di alcuni programmi personalizzati e tradizionali, utilizzati per varie attività di gestione dei pacchetti. Rocky Devtools si basa molto su [`srpmproc`](https://github.com/mstg/srpmproc), `go`, `git`, e `rpmbuild`.
+A basso livello Rocky Devtools è un wrapper per l'esecuzione di alcuni programmi personalizzati e tradizionali per varie attività di gestione dei pacchetti. Rocky Devtools si basa molto su [`srpmproc`](https://github.com/mstg/srpmproc), `go`, `git`, e `rpmbuild`.
 
 Per installare e utilizzare Rocky devtools è necessario un sistema Linux moderno basato su RPM.
 

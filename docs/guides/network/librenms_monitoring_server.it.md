@@ -8,33 +8,34 @@ title: LibreNMS Monitoring Server author: Steven Spencer contributors: Ezequiel 
 
 ## Introduzione
 
-Gli amministratori di rete e di sistema hanno quasi sempre bisogno di una forma di monitoraggio. Ciò può includere il grafico dell'utilizzo della larghezza di banda ai punti finali del router, il monitoraggio dell'up/down dei servizi in esecuzione su vari server e molto altro ancora. Esistono molte opzioni di monitoraggio, ma un'opzione molto valida e con molti, se non tutti, i componenti di monitoraggio disponibili sotto lo stesso profilo è LibreNMS.
+Gli amministratori di rete e di sistema hanno quasi sempre bisogno di una forma di monitoraggio. Ciò può includere il grafico dell'utilizzo della larghezza di banda negli end point dei router, il monitoraggio dello stato dei servizi in esecuzione su vari server e molto altro ancora. Esistono molte soluzioni di monitoraggio, ma una buona opzione con molti, se non tutti, i componenti di monitoraggio disponibili sotto lo stesso tetto è LibreNMS.
 
-Questo documento vi permetterà solo di iniziare a usare LibreNMS, ma vi indicheremo l'eccellente (e vasta) documentazione del progetto per proseguire. Ci sono molte altre opzioni per il monitoraggio che questo autore ha già utilizzato in passato, come Nagios e Cacti, ma LibreNMS offre ciò che questi due progetti offrono singolarmente, in un unico ambiente.
+Questo documento è solo un punto di partenza per LibreNMS. Per ulteriori opzioni, vi rimandiamo all'eccellente (ed estesa) documentazione del progetto. Esistono molte altre opzioni di monitoraggio che questo autore ha già utilizzato in passato, come Nagios e Cacti, ma LibreNMS offre ciò che questi due progetti offrono singolarmente, in un unico ambiente.
 
-Sebbene l'installazione segua abbastanza fedelmente le istruzioni ufficiali che si trovano [qui](https://docs.librenms.org/Installation/Install-LibreNMS/), abbiamo aggiunto alcune spiegazioni e anche alcune piccole modifiche che rendono questa procedura preferibile a quell'eccellente documento.
+Sebbene l'installazione segua fedelmente le [istruzioni di installazione ufficiali che si trovano qui](https://docs.librenms.org/Installation/Install-LibreNMS/), abbiamo aggiunto alcune spiegazioni e modifiche minori che rendono questa procedura preferibile a quell'eccellente documento.
 
 ## Prerequisiti, Presupposti e Convenzioni
 
-* Un server o un container (sì, LibreNMS viene eseguito in un container, ma se avete molte cose da monitorare, la cosa migliore è installarlo sul proprio hardware) che esegue Rocky Linux. Tutti i comandi presuppongono una nuova installazione di Rocky Linux.
-* Presupposto: che siate in grado di eseguire i comandi come root o che possiate farlo con _sudo_
+* Un server o un contenitore (sì, LibreNMS funziona in un contenitore, ma se dovete monitorare molte cose, la cosa migliore è installarlo su un hardware indipendente) con Rocky Linux. Tutti i comandi presuppongono una nuova installazione di Rocky Linux.
+* Presupposto: che si possano eseguire i comandi come root o che si possa usare _sudo_ per farlo
 * Conoscenza di strumenti a riga di comando, inclusi editor di testo come _vi_
-* Si presuppone l'uso di SNMP v2. Se si desidera utilizzare SNMP v3, questo è supportato da LibreNMS e funzionerà. È sufficiente modificare la configurazione e le opzioni SNMP dei dispositivi per adeguarli alla versione v3.
-* Anche se abbiamo incluso la procedura SELinux in questo documento, il container che stiamo usando nel laboratorio non la include di default. Per questo motivo, la procedura SELinux **non è stata** testata in laboratorio.
+* Si presuppone l'uso di SNMP v2. Se si desidera utilizzare SNMP v3, questo è supportato da LibreNMS e funzionerà. È necessario modificare la configurazione e le opzioni SNMP dei dispositivi per adeguarli alla versione v3.
+* Anche se abbiamo incluso la procedura SELinux in questo documento, il contenitore utilizzato nel laboratorio non la include per impostazione predefinita. Per questo motivo, la procedura SELinux **non è stata** testata in laboratorio.
 * In tutto il documento, gli esempi utilizzano l'editor _vi_ come indicato. Quando il documento dice di salvare le modifiche e di uscire, lo si fa con `SHIFT:wq!`
-* Sono richieste alcune capacità di risoluzione dei problemi, tra cui il monitoraggio dei log, i test web e altro ancora.
+* La procedura richiede alcune competenze in materia di risoluzione dei problemi, tra cui il monitoraggio dei log, i test web e altro ancora
 
 ## Installazione dei Pacchetti
 
-Questi comandi devono essere inseriti come utente root. Prima di iniziare, si noti che questa procedura di installazione si concentra su *httpd*, piuttosto che su *nginx*. Se preferite usare quest'ultima, visitate il sito [Istruzioni per l'installazione di Librenms](https://docs.librenms.org/Installation/Install-LibreNMS/) e seguite la guida.
+Questi comandi devono essere inseriti come utente root. Prima di iniziare, si noti che questa procedura di installazione si concentra su *httpd*, piuttosto che su *nginx*. Se preferite quest'ultima, seguite le [Istruzioni per l'installazione di Librenms](https://docs.librenms.org/Installation/Install-LibreNMS/) e la guida.
 
-Stiamo ipotizzando una nuova installazione, quindi dobbiamo fare alcune cose con i repository prima di poter continuare. Per prima cosa, è necessario installare il repository EPEL (Extra Packages for Enterprise Linux):
+Stiamo ipotizzando una nuova installazione, quindi dobbiamo fare alcune cose con i repository prima di continuare. Per prima cosa, è necessario installare il repository EPEL (Extra Packages for Enterprise Linux):
+
 
 ```
 dnf install -y epel-release
 ```
 
-La versione attuale di LibreNMS richiede una versione minima di PHP pari a 8.1. Il pacchetto predefinito di Rocky Linux 9.0 è PHP 8.0, quindi è necessario abilitare un repository di terze parti (come per Rocky Linux 8.6) per questa nuova versione.
+La versione attuale di LibreNMS richiede una versione minima di PHP pari a 8.1. Il pacchetto predefinito in Rocky Linux 9.0 è PHP 8.0, quindi è necessario attivare un repository di terze parti (anche in Rocky Linux 8.6) per questa versione più recente.
 
 Per questo installeremo il repository REMI. La versione del repository da installare dipende dalla versione di Rocky Linux in uso. Di seguito si ipotizza la versione 9, ma si consiglia di modificare questa impostazione in base alla versione in uso:
 
@@ -62,7 +63,7 @@ Con questo comando, impostiamo la directory predefinita per il nostro nuovo uten
 
 ## Scaricare LibreNMS e impostare i Permessi
 
-Il download viene effettuato tramite git. Il processo potrebbe esservi familiare, visto che oggi viene utilizzato per molti progetti. Per prima cosa, passate alla directory /opt:
+Il download viene effettuato tramite git. Il processo potrebbe esservi familiare, poiché viene utilizzato per molti progetti. Per prima cosa, passate alla directory /opt:
 
 ```
 cd /opt
@@ -107,11 +108,11 @@ exit
 
 ### Problema di installazione delle dipendenze di PHP
 
-La documentazione di LibreNMS dice che se ci si trova dietro un server proxy, la procedura sopra descritta potrebbe fallire. Abbiamo scoperto che può fallire anche per altri motivi. Per questo motivo, ho aggiunto una procedura per installare Composer in un secondo momento.
+La documentazione di LibreNMS indica che la procedura sopra descritta può fallire se ci si trova dietro un server proxy. Ho scoperto che può fallire anche per altri motivi. Per questo motivo, ho aggiunto una procedura per l'installazione di Composer più avanti nel processo.
 
 ## Impostare il Fuso Orario
 
-Dobbiamo assicurarci che sia impostato correttamente, sia per il sistema che per PHP. È possibile trovare un elenco di impostazioni di fuso orario valide per PHP [qui](https://php.net/manual/en/timezones.php). Ad esempio, per il fuso orario Central, una voce comune sarebbe "America/Chicago". Iniziamo modificando il file php.ini:
+È necessario garantire l'impostazione corretta per il sistema e per PHP. È possibile trovare un elenco di [impostazioni valide del fuso orario per PHP qui](https://php.net/manual/en/timezones.php). Ad esempio, per il fuso orario Central, una voce comune sarebbe "America/Chicago". Iniziamo modificando il file php.ini:
 
 ```
 vi /etc/opt/remi/php81/php.ini
@@ -439,17 +440,17 @@ Se ci avete seguito diligentemente, avete già salvato questo dato in un posto s
 
 ![Database LibreNMS](../images/librenms_configure_database.png)
 
-Una volta fatto clic su questo pulsante, se il colore diventa verde, si è pronti a fare clic sul pulsante " Build Database".
+Una volta fatto clic su questo pulsante, è possibile fare clic sul pulsante "Build Database", se il pulsante diventa verde.
 
 ![LibreNMS Database Status](../images/librenms_configure_database_status.png)
 
-Una volta completato, il terzo pulsante sarà attivo: " Create Admin User", quindi fate clic su questo pulsante. Verrà richiesto il nome di un utente amministratore. Nel nostro laboratorio utilizzeremo semplicemente "admin" e una password per questo utente.
+Una volta completata questa operazione, sarà attivo il pulsante " Create Admin User", sul quale dovrete cliccare. Verrà richiesto il nome di un utente amministratore. Nel nostro laboratorio utilizzeremo semplicemente "admin" e una password per questo utente.
 
-Assicuratevi che la password sia sicura e, anche in questo caso, registratela in un luogo sicuro, come un gestore di password. È inoltre necessario inserire l'indirizzo e-mail dell'utente amministrativo. Una volta completato tutto ciò, è sufficiente fare clic sul pulsante " Add User".
+Assicurarsi che la password sia sicura e registrarla in un luogo sicuro, ad esempio in un gestore di password. È inoltre necessario inserire l'indirizzo e-mail dell'utente amministrativo. Una volta completato tutto ciò, è sufficiente fare clic sul pulsante " Add User".
 
 ![LibreNMS Administrative User](../images/librenms_administrative_user.png)
 
-Una volta fatto questo, si aprirà una schermata con la richiesta di " Finish Install" Dovrebbe rimanere solo un elemento per completare l'installazione, ovvero una riga che chiede di "validate your install".
+Una volta fatto ciò, verrà visualizzata una schermata con l'indicazione "Finish Install." Dovrebbe rimanere solo un elemento per completare l'installazione, ovvero una riga che chiede di "validate your install".
 
 Fare clic sul link. Una volta eseguita questa operazione e se tutto è andato a buon fine, si verrà reindirizzati alla pagina di accesso. Accedere con l'utente amministrativo e la password.
 
@@ -457,7 +458,7 @@ Fare clic sul link. Una volta eseguita questa operazione e se tutto è andato a 
 
 Anche in questo caso, una delle nostre ipotesi è che si stia utilizzando SNMP v2. Ricordate che ogni dispositivo aggiunto deve essere membro della vostra community string. Qui aggiungiamo due dispositivi come esempio. Una workstation Ubuntu e un server CentOS.
 
-È più che probabile che si debbano aggiungere switch, router e altri dispositivi gestiti. L'autore può dire per esperienza che l'aggiunta di switch e router tende a essere molto più semplice dell'aggiunta di workstation e server, ed è per questo che includiamo gli esempi più difficili.
+È probabile che si debbano aggiungere switch, router e altri dispositivi gestiti. L'autore può dire per esperienza che l'aggiunta di switch e router è più facile di quella di workstation e server, ed è per questo che includiamo gli esempi più complessi.
 
 ### Configurazione della workstation Ubuntu
 
@@ -577,17 +578,17 @@ Se state gestendo un server, allora **state** gestendo un firewall, giusto?  Se 
 firewall-cmd --zone=trusted --add-source=192.168.1.140 --permanent
 ```
 
-Anche in questo caso, abbiamo ipotizzato l'area "trusted", ma potreste volere qualcos'altro, anche "public", è sufficiente considerare le proprie regole e i loro effetti prima di aggiungerle.
+Anche in questo caso, abbiamo ipotizzato la zona "trusted", ma potreste volere qualcos'altro, anche "public". Considerate le vostre regole e il loro effetto prima di aggiungerle.
 
 ## Aggiunta di dispositivi in Librenms
 
-Ora che i nostri dispositivi di esempio sono configurati per accettare il traffico snmp dal nostro server LibreNMS, il passo successivo è aggiungere questi dispositivi a LibreNMS. Si presume che l'interfaccia web di LibreNMS sia aperta e, in tal caso, mostrerà che non sono stati aggiunti dispositivi e chiederà di aggiungerne uno.
+Ora che i nostri dispositivi campione sono configurati per accettare il traffico SNMP dal nostro server LibreNMS, il passo successivo è l'aggiunta di questi dispositivi a LibreNMS. Si presume che l'interfaccia web di LibreNMS sia aperta e che non mostri alcun dispositivo e chieda di aggiungerne uno.
 
 Quindi, procedete a farlo. Una volta fatto clic per aggiungere un dispositivo, ci si troverà di fronte a questa schermata:
 
 ![LibreNMS Add Device](../images/librenms_add_device.png)
 
-Inserite le informazioni utilizzate per i nostri dispositivi di prova. Nel nostro caso, utilizziamo l'IP della workstation Ubuntu per cominciare, nel nostro esempio è 192.168.1.122. L'unica cosa che dovremo aggiungere è la community string nel campo "Community", per cui dovremo digitare "LABone".
+Inserite le informazioni utilizzate per i nostri dispositivi di prova. Nel nostro caso, utilizziamo l'IP della workstation Ubuntu per cominciare, nel nostro esempio è 192.168.1.122. È necessario aggiungere la stringa della comunità nel campo "Community", quindi inserire "LABone".
 
 A questo punto, fare clic sul pulsante " Add Device". Supponendo di aver eseguito correttamente tutte le operazioni sopra descritte per l'aggiunta del dispositivo, il dispositivo dovrebbe essere stato aggiunto con successo.
 
@@ -597,20 +598,20 @@ Se si verifica un errore di " failure to add", rivedere l'impostazione SNMP dell
 
 Come abbiamo detto fin dall'inizio, questo documento serve solo per iniziare a usare LibreNMS. Ci sono un gran numero di voci di configurazione aggiuntive, un'ampia API (Application Programming Interface), un sistema di avvisi che fornisce un gran numero di opzioni per la consegna, chiamate "Transports", e molto altro ancora.
 
-Non creeremo alcuna regola di avviso, ma modificheremo la regola di avviso incorporata "Device Down! Due to no ICMP response", che è preconfigurato in partenza, e per i " Transports" ci atterremo a "Mail", che è solo un'e-mail. Sappiate solo che non siete limitati.
+Non creeremo alcuna regola di allerta. Si modificherà invece la regola di avviso incorporata "Device Down! Due to no ICMP response" che è preconfigurato. Per i " Transports" ci atterremo a "Mail", che è semplicemente un'e-mail. Sappiate solo che non siete limitati.
 
-Per poter utilizzare la posta elettronica per il nostro sistema di trasporto, tuttavia, è necessario che la posta funzioni sul nostro server. Per farlo, utilizzeremo questa [Procedura Postfix](../email/postfix_reporting.md).
+La posta elettronica deve essere funzionante per utilizzare la posta elettronica per il nostro trasporto. Utilizzate questa [Procedura Postfix](.../email/postfix_reporting.md) per farlo.
 
 Eseguite la procedura per configurare postfix in modo che identifichi correttamente la provenienza dei messaggi, ma potete fermarvi dopo il processo di configurazione e tornare qui.
 
 ### Transports
 
-Abbiamo bisogno di un modo per inviare i nostri avvisi. Come già detto, LibreNMS supporta un numero enorme di servizi di trasporto. Il nostro avviso avverrà tramite posta elettronica, definita come trasporto "Mail". Per impostare il trasporto:
+Abbiamo bisogno di un modo per inviare i nostri avvisi. Come già detto, LibreNMS supporta un numero enorme di servizi di trasporto. Faremo il nostro avviso di posta elettronica definito come trasporto "Mail". Per impostare il trasporto:
 
 1. Vai al cruscotto
 2. Passare il mouse su "Alerts"
 3. Scendere fino a " Alert Transports" e fare clic su di esso
-4. Cliccare sul pulsante "Create alert transport" (Notate il pulsante "Create transport group". È possibile utilizzare questa opzione per inviare avvisi a più persone)
+4. Cliccare sul pulsante " Create alert transport" (Notare il pulsante "Create transport group". È possibile utilizzare questa opzione per inviare avvisi a più persone)
 5. Nel campo "Transport name:", digitare "Alert By Email"
 6. Nel campo "Transport type:", utilizzare il menu a tendina per selezionare "Mail"
 7. Assicurarsi che il campo " Default alert:" sia impostato su "On"
@@ -618,7 +619,7 @@ Abbiamo bisogno di un modo per inviare i nostri avvisi. Come già detto, LibreNM
 
 ### Configurazione del server CentOS o Rocky Linux
 
-Il modo migliore per impostare gli avvisi è quello di organizzare i dispositivi in un ordine logico. Attualmente abbiamo una workstation e un server in dispositivi. Anche se normalmente non vorremmo combinare le due cose, lo faremo per questo esempio.
+Il modo migliore per impostare gli avvisi è organizzare i dispositivi in modo logico. Attualmente abbiamo una workstation e un server in dispositivi. Anche se normalmente non vorremmo combinare le due cose, lo faremo per questo esempio.
 
 Tenete presente che il nostro esempio è anche ridondante, poiché esiste un gruppo " All Devices" che può essere utilizzato per questo scopo. Per impostare un gruppo di dispositivi:
 
@@ -633,7 +634,7 @@ Tenete presente che il nostro esempio è anche ridondante, poiché esiste un gru
 
 ### Impostare le regole di Avviso
 
-Ora che abbiamo impostato il trasporto e il gruppo di dispositivi, configuriamo la regola di avviso. Per impostazione predefinita, LibreNMS ha diverse regole di avviso già create per voi:
+Configurare poi la regola di avviso. Per impostazione predefinita, LibreNMS ha diverse regole di avviso già create per voi:
 
 1. Vai al cruscotto
 2. Passare il mouse su "Alerts"

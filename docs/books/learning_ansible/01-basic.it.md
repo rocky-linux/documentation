@@ -37,7 +37,7 @@ Utilizza il protocollo **SSH** per configurare in remoto i client Linux o il pro
 
     L'apertura di flussi SSH o WinRM a tutti i client dal server Ansible lo rende un elemento critico dell'architettura che deve essere attentamente monitorato.
 
-Poiché Ansible è basato sui push, non manterrà lo stato dei server di destinazione tra ciascuna delle sue esecuzioni. Al contrario, eseguirà nuovi controlli di stato ogni volta che viene eseguito. Si dice che sia senza stato.
+Poiché Ansible è principalmente basato su push, non manterrà lo stato dei suoi server tra le sue esecuzioni. Al contrario, eseguirà nuovi controlli di stato ogni volta che viene eseguito. Si dice che sia senza stato.
 
 Ti aiuterà con:
 
@@ -61,7 +61,7 @@ Ti aiuterà con:
 
 Per offrire un'interfaccia grafica al tuo uso quotidiano di Ansible, puoi installare alcuni strumenti come Ansible Tower (RedHat), che non è gratuito, la sua controparte opensource Awx, o possono anche essere utilizzati altri progetti come Jenkins e l'eccellente Rundeck.
 
-!!! Abstract "Astratto"
+!!! Abstract "In astratto"
 
     Per seguire questa formazione, avrai bisogno di almeno 2 server con Rocky8:
 
@@ -85,25 +85,58 @@ Per offrire un'interfaccia grafica al tuo uso quotidiano di Ansible, puoi instal
 
 ## Installazione sul server di gestione
 
-Ansible è disponibile nel repository _EPEL_ ma è disponibile come versione 2.9.21, che è abbastanza datata. Puoi vedere come si fa seguendo qui, ma salta i passi dell'installazione vera e propria, dato che installeremo l'ultima versione. L'_EPEL_ è richiesto per entrambe le versioni, quindi puoi andare avanti e installarlo ora:
+Ansible è disponibile nel repository _EPEL_, ma a volte può essere datato per la versione corrente e si desidera lavorare con una versione più recente.
 
-* Installazione EPEL:
+Prenderemo quindi in considerazione due tipi di installazione:
+
+* quella basata sui repository EPEL
+* una basata sul gestore di pacchetti python `pip`
+
+L'_EPEL_ è necessario per entrambe le versioni, quindi potete procedere all'installazione:
+
+* Installazione di EPEL:
 
 ```
 $ sudo dnf install epel-release
 ```
-Se stessimo installando Ansible dall'_EPEL_ potremmo fare quanto segue:
+
+### Installazione da EPEL
+
+Se installiamo Ansible da _EPEL_, possiamo fare quanto segue:
 
 ```
 $ sudo dnf install ansible
-$ ansible --version
-2.9.21
 ```
-Poiché vogliamo utilizzare una nuova versione di Ansible, la installeremo da `python3-pip`:
+
+Successivamente, verificare l'installazione:
+
+```
+$ ansible --version
+ansible [core 2.14.2]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/rocky/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3.11/site-packages/ansible  ansible collection location = /home/rocky/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.11.2 (main, Jun 22 2023, 04:35:24) [GCC 8.5.0 20210514 
+(Red Hat 8.5.0-18)] (/usr/bin/python3.11)
+  jinja version = 3.1.2
+  libyaml = True
+
+$ python3 --version
+Python 3.6.8
+```
+
+Si noti che ansible viene fornito con una propria versione di python, diversa da quella di sistema (qui 3.11.2 contro 3.6.8). È necessario considerarlo quando si installano con pip i moduli python necessari per l'installazione (ad esempio `pip3.11 install PyVMomi`).
+
+### Installazione da python pip
+
+Poiché vogliamo usare una versione più recente di Ansible, la installeremo da `python3-pip`:
 
 !!! Note "Nota"
 
-    Rimuovi Ansible se l'hai installato in precedenza da _EPEL_.
+    Rimuovere Ansible se è stato installato in precedenza da _EPEL_.
+
+In questa fase, possiamo scegliere di installare ansible con la versione di python che desideriamo.
 
 ```
 $ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust cargo curl
@@ -111,60 +144,48 @@ $ sudo dnf install python38 python38-pip python38-wheel python3-argcomplete rust
 
 !!! Note "Nota"
 
-    `python3-argcomplete` è fornito da _EPEL_. Per favore installa epel-release se non l'hai ancora fatto.
-    Questo pacchetto ti aiuterà a completare i comandi Ansible.
+    `python3-argcomplete' è fornito da _EPEL_. Installare epel-release se non è ancora stato fatto.
+    Questo pacchetto vi aiuterà a completare i comandi di Ansible.
 
-Prima di installare Ansible, dobbiamo dire a Rocky Linux che vogliamo utilizzare la nuova versione installata di Python. Il motivo è che se continuiamo l'installazione senza questo, verrà usato il python3 di default (versione 3.6 al momento in cui scriviamo), invece della nuova versione 3.8 appena installata. Imposta la versione che vuoi usare inserendo il seguente comando:
-
-```
-sudo alternatives --set python /usr/bin/python3.8
-sudo alternatives --set python3 /usr/bin/python3.8
-```
-
-Possiamo ora installare Ansible:
+Ora possiamo installare Ansible:
 
 ```
-$ sudo pip3 install ansible
-$ sudo activate-global-python-argcomplete
+$ pip3.8 install --user ansible
+$ activate-global-python-argcomplete --user
 ```
 
-Controlla la tua versione Ansibile:
+Controllare la versione di Ansible:
 
 ```
 $ ansible --version
-ansible [core 2.11.2]
+ansible [core 2.13.11]
   config file = None
-  configured module search path = ['/home/ansible/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-  ansible python module location = /usr/local/lib/python3.8/site-packages/ansible
-  ansible collection location = /home/ansible/.ansible/collections:/usr/share/ansible/collections
-  executable location = /usr/local/bin/ansible
-  python version = 3.8.6 (default, Jun 29 2021, 21:14:45) [GCC 8.4.1 20200928 (Red Hat 8.4.1-1)]
-  jinja version = 3.0.1
+  configured module search path = ['/home/rocky/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/rocky/.local/lib/python3.8/site-packages/ansible
+  ansible collection location = /home/rocky/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/rocky/.local/bin/ansible
+  python version = 3.8.16 (default, Jun 25 2023, 05:53:51) [GCC 8.5.0 20210514 (Red Hat 8.5.0-18)]
+  jinja version = 3.1.2
   libyaml = True
 ```
 
+!!! NOTE "Nota"
+
+    La versione installata manualmente nel nostro caso è più vecchia della versione pacchettizzata da RPM perché abbiamo usato una versione precedente di python. Questa osservazione varia con il tempo, l'età della distribuzione e la versione di python.
+
 ## File di configurazione
 
-La configurazione del server si trova sotto `/etc/ansible`.
+La configurazione del server si trova in `/etc/ansible`.
 
-Ci sono due file di configurazione principali:
+I file di configurazione principali sono due:
 
-* Il file di configurazione principale `ansible.cfg` dove risiedono i comandi, moduli, plugin e configurazione ssh;
-* Il file di inventario di gestione delle macchine client `hosts` dove vengono dichiarati i client e i gruppi di client.
+* Il file di configurazione principale `ansible.cfg` dove risiedono i comandi, i moduli, i plugin e la configurazione ssh;
+* Il file di inventario della gestione dei computer client `hosts` in cui sono dichiarati i client e i gruppi di client.
 
-Poichè abbiamo installato Ansible con `pip`, questi file non esistono. Dovremo crearli a mano.
-
-Un esempio di `ansible.cfg` lo puoi trovare [qui](https://github.com/ansible/ansible/blob/devel/examples/ansible.cfg) e un esempio di file `host` [qui](https://github.com/ansible/ansible/blob/devel/examples/hosts).
+Il file di configurazione viene creato automaticamente se Ansible è stato installato con il suo pacchetto RPM. Con un'installazione `pip`, questo file non esiste. Dovremo crearlo a mano con il comando `ansible-config`:
 
 ```
-$ sudo mkdir /etc/ansible
-$ sudo curl -o /etc/ansible/ansible.cfg https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg
-$ sudo curl -o /etc/ansible/hosts https://raw.githubusercontent.com/ansible/ansible/devel/examples/hosts
-```
-
-È inoltre possibile utilizzare il comando `ansible-config` per generare un nuovo file di configurazione:
-
-```
+$ ansible-config -h
 usage: ansible-config [-h] [--version] [-v] {list,dump,view,init} ...
 
 Visualizzare la configurazione di ansibile.
@@ -183,15 +204,25 @@ Esempio:
 ansible-config init --disabled > /etc/ansible/ansible.cfg
 ```
 
-L'opzione `--disabled` consente di commentare l'insieme delle opzioni prefissandole con un `;`.
+L'opzione `--disabled` consente di commentare l'insieme delle opzioni anteponendo ad esse il prefisso `;`.
+
+!!! NOTE "Nota"
+
+    Si può anche scegliere di incorporare la configurazione di Ansible nel proprio repository di codice, con Ansible che carica i file di configurazione che trova nel seguente ordine (elaborando il primo file che incontra e ignorando gli altri):
+
+    * se la variabile d'ambiente `$ANSIBLE_CONFIG` è impostata, carica il file specificato.
+    * `ansible.cfg` se esiste nella directory corrente.
+    * `~/.ansible.cfg` se esiste (nella home directory dell'utente).
+
+    Se non viene trovato nessuno di questi tre file, viene caricato il file predefinito.
 
 ### Il file di inventario `/etc/ansible/hosts`
 
-Poichè Ansible dovrà lavorare con tutte le vostre apparecchiature, per essere configurato, è molto importante fornirgli uno (o più) file di inventario ben strutturati, che corrispondano perfettamente alla tua organizzazione.
+Poiché Ansible dovrà lavorare con tutte le macchine configurate, è essenziale fornirgli uno (o più) file di inventario ben strutturati che corrispondano perfettamente alla vostra organizzazione.
 
 A volte è necessario riflettere attentamente su come costruire questo file.
 
-Vai al file di inventario predefinito, che si trova sotto `/etc/ansible/hosts`. Vengono forniti alcuni esempi e commentati:
+Andare al file di inventario predefinito, che si trova in `/etc/ansible/hosts`. Vengono forniti alcuni esempi commentati:
 
 ```
 # This is the default ansible 'hosts' file.
@@ -239,13 +270,13 @@ Vai al file di inventario predefinito, che si trova sotto `/etc/ansible/hosts`. 
 ## db-[99:101]-node.example.com
 ```
 
-Come potete vedere, il file fornito come esempio utilizza il formato INI, che è ben noto agli amministratori di sistema. Si prega di notare che è possibile scegliere un altro formato di file (come yaml per esempio), ma per i primi test, il formato INI si adatta bene ai nostri futuri esempi.
+Come si può notare, il file fornito come esempio utilizza il formato INI, ben noto agli amministratori di sistema. Si noti che è possibile scegliere un altro formato di file (come yaml, per esempio), ma per i primi test il formato INI si adatta bene ai nostri prossimi esempi.
 
-Ovviamente, in produzione, l'inventario può essere generato automaticamente, specialmente se si dispone di un ambiente di virtualizzazione come VMware VSphere o un ambiente cloud (Aws, Openstack o altro).
+L'inventario può essere generato automaticamente in produzione, soprattutto se si dispone di un ambiente di virtualizzazione come VMware VSphere o di un ambiente cloud (Aws, OpenStack o altro).
 
-* Creazione di un hostgroup in `/etc/ansible/hosts`:
+* Creare un gruppo di host in `/etc/ansible/hosts`:
 
-Come avrete notato, i gruppi sono dichiarati tra parentesi quadre. Poi vengono gli elementi appartenenti ai gruppi. Puoi creare, ad esempio, un gruppo `rocky8` inserendo il seguente blocco in questo file:
+Come avrete notato, i gruppi sono dichiarati tra parentesi quadre. Poi vengono gli elementi che appartengono ai gruppi. Si può creare, ad esempio, un gruppo `rocky8` inserendo il seguente blocco nel file:
 
 ```
 [rocky8]
@@ -271,13 +302,13 @@ ansible_clients
 172.16.1.10
 ```
 
-Non andremo oltre per il momento sul tema dell'inventario, ma se siete interessati, considerate di dare un'occhiata a [questo link](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html).
+Non ci dilungheremo oltre sull'inventario, ma se siete interessati, valutate la possibilità di consultare [questo link](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html).
 
 Ora che il nostro server di gestione è installato e il nostro inventario è pronto, è il momento di eseguire i nostri primi comandi `ansible`.
 
 ## utilizzo della riga di comando `ansibile`
 
-Il comando `ansible` lancia un'attività su uno o più host di destinazione.
+Il comando `ansible` lancia un task su uno o più host di destinazione.
 
 ```
 ansible <host-pattern> [-m module_name] [-a args] [options]
@@ -287,7 +318,7 @@ Esempi:
 
 !!! Warning "Attenzione"
 
-    Dal momento che non abbiamo ancora configurato l'autenticazione sui nostri 2 server di test, non tutti gli esempi seguenti funzioneranno. Essi sono forniti come esempi per facilitare la comprensione e saranno pienamente operativi in un secondo momento in questo capitolo.
+    Dal momento che non abbiamo ancora configurato l'autenticazione sui nostri 2 server di test, non tutti gli esempi seguenti funzioneranno. Sono forniti come esempi per facilitare la comprensione e saranno completamente funzionanti più avanti in questo capitolo.
 
 * Elenca gli host appartenenti al gruppo rocky8:
 
@@ -295,31 +326,31 @@ Esempi:
 ansible rocky8 --list-hosts
 ```
 
-* Ping un gruppo host con il modulo `ping`:
+* Eseguire il ping di un gruppo di host con il modulo `ping`:
 
 ```
 ansible rocky8 -m ping
 ```
 
-* Visualizza i fatti da un gruppo host con il modulo `setup`:
+* Visualizzare i fatti di un gruppo di host con il modulo `setup`:
 
 ```
 ansible rocky8 -m setup
 ```
 
-* Esegue un comando su un gruppo host invocando il modulo `command` con argomenti:
+* Eseguire un comando su un gruppo di host invocando il modulo `command` con degli argomenti:
 
 ```
 ansible rocky8 -m command -a 'uptime'
 ```
 
-* Esegue un comando con privilegi di amministratore:
+* Eseguire un comando con privilegi di amministratore:
 
 ```
 ansible ansible_clients --become -m command -a 'reboot'
 ```
 
-* Esegue un comando utilizzando un file di inventario personalizzato:
+* Eseguire un comando utilizzando un file di inventario personalizzato:
 
 ```
 ansible rocky8 -i ./local-inventory -m command -a 'date'
@@ -327,7 +358,7 @@ ansible rocky8 -i ./local-inventory -m command -a 'date'
 
 !!! Note "Nota"
 
-    Come in questo esempio, è a volte più semplice separare la dichiarazione dei dispositivi gestiti in diversi file (per esempio per progetto cloud) e fornire ad Ansible il percorso di questi file, piuttosto che mantenere un lungo file di inventario.
+    Come in questo esempio, a volte è più semplice separare la dichiarazione dei dispositivi gestiti in diversi file (ad esempio per progetto cloud) e fornire ad Ansible il percorso di questi file, piuttosto che mantenere un lungo file di inventario.
 
 | Opzione                  | Informazione                                                                                                    |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------- |
@@ -342,10 +373,10 @@ ansible rocky8 -i ./local-inventory -m command -a 'date'
 
 Sia sulla macchina di gestione che sui client, creeremo un utente `ansible` dedicato alle operazioni eseguite da Ansible. Questo utente dovrà utilizzare i diritti di sudo, quindi dovrà essere aggiunto al gruppo `wheel`.
 
-Questo utente verrà utilizzato:
+Questo utente servirà:
 
-* Sul lato della stazione di amministrazione: per eseguire comandi `ansible` via ssh ai client gestiti.
-* Nelle stazioni gestite (qui il server che funge da stazione di amministrazione serve anche come client, cioè è gestito da se) per eseguire i comandi lanciati dalla stazione di amministrazione: deve quindi avere i diritti sudo.
+* Sul lato della stazione di amministrazione: per eseguire comandi `ansible` e SSH ai client gestiti.
+* Sulle stazioni gestite (qui il server che funge da stazione di amministrazione funge anche da client, quindi è gestito da solo) per eseguire i comandi lanciati dalla stazione di amministrazione: deve quindi avere i diritti sudo.
 
 Su entrambe le macchine, creare un utente `ansible`, dedicato ad ansible:
 
@@ -354,19 +385,19 @@ $ sudo useradd ansible
 $ sudo usermod -aG wheel ansible
 ```
 
-Imposta una password per questo utente:
+Impostare una password per questo utente:
 
 ```
 $ sudo passwd ansible
 ```
 
-Modifica la configurazione dei sudoers per consentire ai membri del gruppo `wheel` di eseguire sudo senza password:
+Modificare la configurazione di sudoers per consentire ai membri del gruppo `wheel` di eseguire sudo senza password:
 
 ```
 $ sudo visudo
 ```
 
-Il nostro obiettivo qui è quello di commentare il default, e decommentare l'opzione NOPASSWD in modo che queste linee assomiglino a questo una volta finito:
+Il nostro obiettivo è commentare l'opzione predefinita e decommentare l'opzione NOPASSWD, in modo che queste righe abbiano l'aspetto seguente:
 
 ```
 ## Allows people in group wheel to run all commands
@@ -378,10 +409,10 @@ Il nostro obiettivo qui è quello di commentare il default, e decommentare l'opz
 
 !!! Warning "Attenzione"
 
-    Se si riceve il seguente messaggio di errore quando si inseriscono i comandi Ansible probabilmente significa che hai dimenticato questo passo su uno dei tuoi client:
-    `"msg": "Missing sudo password`
+    Se si riceve il seguente messaggio di errore quando si inseriscono i comandi di Ansible, probabilmente significa che si è dimenticato questo passaggio su uno dei client:
+    `"msg": " Missing sudo password"`
 
-Quando usate la gestione da questo punto in poi, iniziate a lavorare con questo nuovo utente:
+Quando si utilizza la gestione da questo momento in poi, si inizia a lavorare con questo nuovo utente:
 
 ```
 $ sudo su - ansible
@@ -389,15 +420,15 @@ $ sudo su - ansible
 
 ### Verifica con il modulo ping
 
-Per impostazione predefinita, l'accesso con password non è consentito da Ansible.
+Per impostazione predefinita, il login con password non è consentito da Ansible.
 
-Decommenta la riga seguente dalla sezione `[defaults]` nel file di configurazione `/etc/ansible/ansible.cfg` e impostala su True:
+Togliere il commento alla seguente riga dalla sezione `[defaults]` del file di configurazione `/etc/ansible/ansible.cfg` e impostarla su True:
 
 ```
 ask_pass      = True
 ```
 
-Esegue un ping `` su ogni server del gruppo rocky8:
+Eseguire un `ping` su ogni server del gruppo rocky8:
 
 ```
 # ansible rocky8 -m ping
@@ -414,27 +445,27 @@ SSH password:
 
 !!! Note "Nota"
 
-    Ti viene richiesta la password `ansible` dei server remoti, che è un problema di sicurezza...
+    Viene richiesta la password `ansible` dei server remoti, il che rappresenta un problema di sicurezza...
 
 !!! Tip "Suggerimento"
 
-    Se ottieni questo errore `"msg": "to use the 'ssh' connection type with passwords, you must install the sshpass program""`, puoi semplicemente installare `sshpass` sulla stazione di gestione:
+    Se si ottiene questo errore `"msg": "to use the 'ssh' connection type with passwords, you must install the sshpass program"`, è sufficiente installare `sshpass` sulla stazione di gestione:
 
     ```
     $ sudo dnf install sshpass
     ```
 
-!!! Abstract "Astratto"
+!!! Abstract "In astratto"
 
     Ora puoi testare i comandi che non hanno funzionato in precedenza in questo capitolo.
 
 ## Autenticazione con chiave
 
-L'autenticazione con password sarà sostituita da un'autenticazione a chiave privata e pubblica molto più sicura.
+L'autenticazione tramite password sarà sostituita da un'autenticazione a chiave privata/pubblica molto più sicura.
 
 ### Creazione di una chiave SSH
 
-Il dual-key verrà generato con il comando `ssh-keygen` sulla stazione di gestione dall'utente `ansible`:
+La doppia chiave sarà generata con il comando `ssh-keygen` sulla stazione di gestione dall'utente `ansible`:
 
 ```
 [ansible]$ ssh-keygen
@@ -468,7 +499,7 @@ La chiave pubblica può essere copiata sui server:
 # ssh-copy-id ansible@172.16.1.11
 ```
 
-Ricommenta la seguente riga dalla sezione `[defaults]` nel file di configurazione `/etc/ansible/ansible.cfg` per impedire l'autenticazione con password:
+Ricommentare la seguente riga dalla sezione `[defaults]` del file di configurazione `/etc/ansible/ansible.cfg` per impedire l'autenticazione tramite password:
 
 ```
 #ask_pass      = True
@@ -476,7 +507,7 @@ Ricommenta la seguente riga dalla sezione `[defaults]` nel file di configurazion
 
 ### Test di autenticazione con chiave privata
 
-Per il prossimo test, viene utilizzato il modulo `shell`, che consente l'esecuzione remota dei comandi:
+Per il prossimo test, viene utilizzato il modulo `shell`, che consente l'esecuzione di comandi remoti:
 
 ```
 # ansible rocky8 -m shell -a "uptime"
@@ -487,11 +518,11 @@ Per il prossimo test, viene utilizzato il modulo `shell`, che consente l'esecuzi
  12:37:07 up 57 min,  1 user,  load average: 0.00, 0.00, 0.00
 ```
 
-Nessuna password è richiesta, l'autenticazione a chiave privata/pubblica funziona!
+Non è richiesta alcuna password, l'autenticazione a chiave privata/pubblica funziona!
 
 !!! Note "Nota"
 
-    In un ambiente di produzione, dovresti rimuovere le password `ansible` precedentemente impostate per far rispettare la tua sicurezza (in quanto ora non è necessaria una password di autenticazione).
+    Nell'ambiente di produzione, si dovrebbero ora rimuovere le password `ansible` precedentemente impostate per rafforzare la sicurezza (poiché ora non è necessaria una password di autenticazione).
 
 ## Usare Ansible
 
@@ -501,9 +532,9 @@ Ansible può essere utilizzato dalla shell o tramite playbook.
 
 L'elenco dei moduli classificati per categoria può essere [trovato qui](https://docs.ansible.com/ansible/latest/collections/index_module.html). Ansible ne offre più di 750!
 
-I moduli sono ora raggruppati in collezioni di moduli, un elenco dei quali può essere [trovato qui](https://docs.ansible.com/ansible/latest/collections/index.html).
+I moduli sono ora raggruppati in raccolte di moduli, il cui elenco può essere [trovato qui](https://docs.ansible.com/ansible/latest/collections/index.html).
 
-Le collezioni sono un formato di distribuzione per i contenuti Ansible che possono includere libri di gioco, ruoli, moduli e plugin.
+Le collezioni sono un formato di distribuzione per i contenuti di Ansible che possono includere playbook, ruoli, moduli e plugin.
 
 Un modulo viene invocato con l'opzione `-m` del comando `ansible`:
 
@@ -513,7 +544,7 @@ ansible <host-pattern> [-m module_name] [-a args] [options]
 
 C'è un modulo per quasi tutte le necessità! Si consiglia quindi, invece di utilizzare il modulo shell, di cercare un modulo adatto alle esigenze.
 
-Ogni categoria di necessità ha un suo modulo. Ecco un elenco non esaustivo:
+Ogni categoria di esigenze ha un proprio modulo. Ecco un elenco non esaustivo:
 
 | Tipo                  | Esempi                                                    |
 | --------------------- | --------------------------------------------------------- |
@@ -529,7 +560,7 @@ Ogni categoria di necessità ha un suo modulo. Ecco un elenco non esaustivo:
 
 #### Esempio di installazione software
 
-Il modulo `dnf` consente l'installazione di software sui client di destinazione:
+Il modulo `dnf` consente di installare il software sui client di destinazione:
 
 ```
 # ansible rocky8 --become -m dnf -a name="httpd"
@@ -553,7 +584,7 @@ Il modulo `dnf` consente l'installazione di software sui client di destinazione:
 }
 ```
 
-Il software installato è un servizio, ora è necessario avviarlo con il modulo `systemd`:
+Essendo il software installato un servizio, è necessario avviarlo con il modulo `systemd`:
 
 ```
 # ansible rocky8 --become  -m systemd -a "name=httpd state=started"
@@ -571,11 +602,11 @@ Il software installato è un servizio, ora è necessario avviarlo con il modulo 
 
 !!! Tip "Suggerimento"
 
-    Prova a lanciare gli ultimi 2 comandi due volte. Osserverai che la prima volta che Ansible intraprenderà azioni per raggiungere lo stato impostato dal comando. La seconda volta, non farà nulla perché avrà rilevato che lo stato è già raggiunto!
+    Provate a lanciare gli ultimi due comandi due volte. Si noterà che la prima volta Ansible intraprenderà delle azioni per raggiungere lo stato impostato dal comando. La seconda volta, non farà nulla perché avrà rilevato che lo stato è già stato raggiunto!
 
 ### Esercizi
 
-Per aiutarti a scoprire di più su Ansible e per abituarti alla ricerca della documentazione Ansible ecco alcuni esercizi che puoi fare prima di continuare:
+Per scoprire di più su Ansible e per abituarsi a consultare la documentazione di Ansible, ecco alcuni esercizi da fare prima di proseguire:
 
 * Creare i gruppi Parigi, Tokio, NewYork
 * Creare l'utente `supervisor`
@@ -583,19 +614,19 @@ Per aiutarti a scoprire di più su Ansible e per abituarti alla ricerca della do
 * Cambia l'utente in modo che appartenga al gruppo Parigi
 * Installare il software ad albero
 * Ferma il servizio di crond
-* Crea un file vuoto con i permessi `644`
+* Creare un file vuoto con i permessi `0644`
 * Aggiorna la distribuzione del client
 * Riavvia il tuo client
 
 !!! Warning "Attenzione"
 
-    Non usare il modulo di shell. Cerca nella documentazione i moduli appropriati!
+    Non utilizzare il modulo shell. Cercate nella documentazione i moduli appropriati!
 
 #### modulo `setup`: introduzione ai fatti
 
 I fatti di sistema sono variabili recuperate da Ansible tramite il suo modulo `setup`.
 
-Dai un'occhiata ai diversi fatti dei tuoi client per avere un'idea della quantità di informazioni che possono essere facilmente recuperate tramite un semplice comando.
+Date un'occhiata ai diversi fatti dei vostri client per avere un'idea della quantità di informazioni che possono essere facilmente recuperate con un semplice comando.
 
 Vedremo più tardi come utilizzare i fatti nei nostri playbook e come creare i nostri fatti.
 
@@ -624,11 +655,11 @@ Vedremo più tardi come utilizzare i fatti nei nostri playbook e come creare i n
         ...
 ```
 
-Ora che abbiamo visto come configurare un server remoto con Ansible dalla riga di comando, saremo in grado di introdurre la nozione di playbook. I playbook sono un altro modo per usare Ansible, che non è molto più complesso, ma che renderà più facile riutilizzare il codice.
+Ora che abbiamo visto come configurare un server remoto con Ansible dalla riga di comando, saremo in grado di introdurre la nozione di playbook. I playbook sono un altro modo di utilizzare Ansible, non molto più complesso, ma che renderà più facile il riutilizzo del codice.
 
 ## Playbooks
 
-I playbook di Ansible descrivono un criterio da applicare ai sistemi remoti, per forzare la loro configurazione. I playbook sono scritti in un formato di testo facilmente comprensibile che raggruppa una serie di compiti: il formato `yaml`.
+I playbook di Ansible descrivono una politica da applicare ai sistemi remoti, per forzarne la configurazione. I playbook sono scritti in un formato di testo facilmente comprensibile che raggruppa un insieme di attività: il formato `yaml`.
 
 !!! Note "Nota"
 
@@ -655,11 +686,11 @@ Il comando restituisce i seguenti codici di errore:
 
 !!! Note "Nota"
 
-    Si prega di notare che `ansible` restituirà Ok quando non c'è un host corrispondente al tuo target, il che potrebbe ingannarti!
+    Si noti che `ansible` restituirà Ok quando nessun host corrisponde al target, il che potrebbe trarre in inganno!
 
 ### Esempio di playbook Apache e MySQL
 
-Il seguente playbook ci permette di installare Apache e MariaDB sui nostri server di destinazione.
+Il seguente playbook ci permetterà di installare Apache e MariaDB sui nostri server di destinazione.
 
 Crea un file `test.yml` con il seguente contenuto:
 
@@ -685,10 +716,10 @@ Crea un file `test.yml` con il seguente contenuto:
 ...
 ```
 
-* <1> Il gruppo di destinatari o il server di destinazione deve esistere nell'inventario
+* <1> Il gruppo o il server in questione devono esistere nell'inventario
 * <2> Una volta connesso, l'utente diventa `root` (tramite `sudo` per impostazione predefinita)
 
-L'esecuzione del playbook viene fatta con il comando `ansible-playbook`:
+L'esecuzione del playbook avviene con il comando `ansible-playbook`:
 
 ```
 $ ansible-playbook test.yml
@@ -720,7 +751,7 @@ PLAY RECAP *********************************************************************
 172.16.1.11             : ok=5    changed=3    unreachable=0    failed=0
 ```
 
-Per una maggiore leggibilità, si consiglia di scrivere i tuoi playbook in formato yaml completo. Nell’esempio precedente, gli argomenti sono riportati sulla stessa linea del modulo, il valore dell'argomento che segue il nome separato da un `=`. Guarda lo stesso playbook in yaml completo:
+Per una maggiore leggibilità, è consigliabile scrivere i playbook in formato yaml completo. Nell'esempio precedente, gli argomenti sono indicati sulla stessa riga del modulo, con il valore dell'argomento che segue il suo nome separato da un `=`. Guardate lo stesso playbook in yaml completo:
 
 ```
 ---
@@ -754,14 +785,14 @@ Per una maggiore leggibilità, si consiglia di scrivere i tuoi playbook in forma
 
 !!! Tip "Suggerimento"
 
-    `dnf` è uno dei moduli che consentono di dargli una lista come argomento.
+    `dnf` è uno dei moduli che permette di fornire un elenco come argomento.
 
 Nota sulle collezioni: Ansible ora fornisce moduli sotto forma di collezioni. Alcuni moduli sono forniti di default nella collezione `ansible.builtin`, altri devono essere installati manualmente tramite il:
 
 ```
 ansible-galaxy collection install [collectionname]
 ```
-dove [collectionname] è il nome della collezione (le parentesi quadre qui sono usate per evidenziare la necessità di sostituirla con un nome di collezione effettivo; e NON fanno parte del comando).
+dove [collectionname] è il nome dell'insieme (le parentesi quadre servono a evidenziare la necessità di sostituirlo con il nome effettivo dell'insieme e NON fanno parte del comando).
 
 L'esempio precedente dovrebbe essere scritto come segue:
 
@@ -843,7 +874,7 @@ $ ansible-playbook --syntax-check play.yml
 $ dnf install -y yamllint
 ```
 
-quindi controlla la sintassi yaml dei tuoi playbook:
+quindi controllare la sintassi yaml dei tuoi playbook:
 
 ```
 $ yamllint test.yml
@@ -856,12 +887,12 @@ test.yml
 * Creare i gruppi Parigi, Tokio, NewYork
 * Creare l'utente `supervisor`
 * Cambiare l'utente per avere un uid di 10000
-* Cambia l'utente in modo che appartenga al gruppo Parigi
-* Installare il software ad albero
-* Ferma il servizio di crond
-* Crea un file vuoto con i permessi `0644`
-* Aggiorna la distribuzione del client
-* Riavvia il tuo client
+* Cambiare l'utente in modo che appartenga al gruppo Parigi
+* Installare l'albero del software
+* Fermare il servizio crond
+* Creare un file vuoto con i permessi `0644`
+* Aggiornare la distribuzione del client
+* Riavviare il tuo client
 
 ```
 ansible ansible_clients --become -m group -a "name=Paris"
