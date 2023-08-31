@@ -24,7 +24,7 @@ This guide, however, will just cover configuring authentication against Active D
 
     The domain name `ad.company.local` throughout this guide will represent the Active Directory domain. To follow this guide, replace it with your AD domain's actual domain name.
 
-The first step along the way to join a Linux system into AD is to discover your AD cluster, to ensure that the network configuration is correct on both sides.
+The first step to joining a Linux system into AD is to discover your AD cluster, to ensure the network configuration is correct on both sides.
 
 ### Preparation
 
@@ -141,7 +141,7 @@ If this succeeds, you have successfully configured Linux to use Active Directory
 
 In a completely default setup, you will need to log in with your AD account by specifying the domain in your username (e.g., `john.doe@ad.company.local`). If this is not the desired behavior, and you instead want to be able to omit the domain name at authentication time, you can configure SSSD to default to a specific domain.
 
-This is actually a relatively simple process, and just requires a configuration tweak in your SSSD configuration file.
+This is a relatively straightforward process, requiring a configuration tweak in your SSSD configuration file.
 
 ```sh
 [user@host ~]$ sudo vi /etc/sssd/sssd.conf
@@ -199,7 +199,7 @@ Now, only users from group1 and group2, or user1 and user2 will be able to conne
 Successfully validated join to domain ad.company.local
 ```
 
-- Get more advanced informations about the domain:
+- Get more advanced information about the domain:
 
 ```sh
 [user@host ~]$ adcli info ad.company.local
@@ -269,7 +269,7 @@ Password for user_test:
 
 Sometimes, the network service will start after SSSD, that cause trouble with authentication.
 
-No AD users will be able to connect until you restarted the service.
+No AD users will be able to connect until you restart the service.
 
 In that case, you will have to override the systemd's service file to manage this problem.
 
