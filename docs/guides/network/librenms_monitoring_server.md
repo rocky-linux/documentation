@@ -16,7 +16,7 @@ Network and systems administrators almost always need some form of monitoring. T
 
 This document is just a starting point for LibreNMS. The author will point you to the project's excellent (and extensive) documentation for more options. The author has used many other monitoring solutions, Nagios and Cacti being two, but LibreNMS offers what those two projects offer individually in one spot.
 
-The installation will closely follow the [official install instructions found here](https://docs.librenms.org/Installation/Install-LibreNMS/).  Explanations and minor changes to that procedure, make this procedure preferable to that excellent document.
+The installation will closely follow the [official install instructions](https://docs.librenms.org/Installation/Install-LibreNMS/).  Explanations and minor changes to that procedure, make this procedure preferable to that excellent document.
 
 ## Prerequisites, assumptions, and conventions
 
@@ -62,7 +62,7 @@ Copy and paste (or enter) the following:
 useradd librenms -d /opt/librenms -M -r -s "$(which bash)"
 ```
 
-This command sets the default directory for the user to `/opt/librenms` however the `-M` option says "do not create the directory." The reason is that this happens upon LibreNMS's install. The `-r` says to make this user a system account and the `-s` says to set the shell (in this case, to "bash").
+This command sets the default directory for the user to `/opt/librenms` however the `-M` option says "do not create the directory." The reason is that this happens upon LibreNMS's installation. The `-r` says to make this user a system account and the `-s` says to set the shell (in this case, to "bash").
 
 ## Download LibreNMS and set permissions
 
@@ -179,7 +179,7 @@ Enter "exit" to exit out of `mariadb`.
 
 ## Configure PHP-FPM
 
-This is basically unchanged from the official documentation except for the path to the files. First, copy the `www.conf`:
+This not changed from the official documentation except for the path to the files. First, copy the `www.conf`:
 
 ```
 cp /etc/opt/remi/php81/php-fpm.d/www.conf /etc/opt/remi/php81/php-fpm.d/librenms.conf
@@ -323,8 +323,7 @@ The command to use for `firewalld` allow rules are as follows:
 firewall-cmd --zone public --add-service http --add-service https
 firewall-cmd --permanent --zone public --add-service http --add-service https
 ```
-
-The author has problems with this sort of simplistic `firewalld` rule set. This rule allows your web services to be open to the world, but is that what you want for a monitoring server? 
+The author has problems with this simplistic `firewalld` rule set. This rule allows your web services to be open to the world, but is that what you want for a monitoring server? 
 
 This is usually **not** the case. If you would like a more granular approach to using `firewalld`, review [this document](../security/firewalld.md) and then make changes to your `firewalld` rules accordingly.
 
@@ -344,9 +343,9 @@ cp /opt/librenms/misc/lnms-completion.bash /etc/bash_completion.d/
 
 ## Configure `snmpd`
 
-_SNMP_ stands for "Simple Network Management Protocol" and is in use by many monitoring programs for pulling data. In version 2, used here, it requires a "community string" which is specific for your environment.
+_SNMP_ stands for "Simple Network Management Protocol" and is in use by many monitoring programs for pulling data. Version 2, used here, requires a "community string" which is specific to your environment.
 
-Assign this "community string" to your network devices you want to monitor, so that `snmpd` (the "d" here stands for the daemon) will be able to find it. If your network has been in place for some time, you might already have a "community string" in use.
+Assign this "community string" to your network devices you want to monitor, so that `snmpd` (the "d" here stands for the daemon) will be able to find it. You might already have a "community string" in use if your network is not new.
 
 Copy the `snmpd.conf` file from LibreNMS:
 
@@ -382,7 +381,7 @@ Run the following commands to set up the cron jobs:
 cp /opt/librenms/librenms.nonroot.cron /etc/cron.d/librenms
 ```
 
-It is important that the poller runs one time, even though there will be nothing to poll, before running the web setup procedure. It saves some head scratching trying to figure out what is wrong when you get poller errors in the validation section later on.
+The poller must run once, even though nothing is there to poll, before running the web setup procedure. It saves some troubleshooting trying to figure out what is wrong when you get poller errors in the validation section later on.
 
 The poller runs with the "librenms" user, and though it is possible to switch to this user and run the cron files, it is really better to let the poller do it on its own. Ensure that at least 5 minutes have passed to allow the cron to run and then continue  the "Web Setup" section.
 
@@ -430,11 +429,11 @@ The IP of the lab machine is 192.168.1.140. Navigate to the following address in
 
 `http://192.168.1.140/librenms`
 
-Assuming all is working correctly, a redirection to the pre-install checks is next. If these are all marked in green, you can continue.
+A redirection to the pre-install checks follows if all is working correctly. If these are all marked in green, you can continue.
 
 ![LibreNMS Prechecks](../images/librenms_prechecks.png)
 
-Four buttons are beneath the LibreNMS logo. The first button on the left is for the pre-checks. The next button over is for the database. You will need the password that you set for the database user "librenms" earlier in the process.
+Four buttons are beneath the LibreNMS logo. The first button on the left is for the pre-checks. The next button over is for the database. You will need the password you set for the database user "librenms" earlier.
 
 If you have been following along, then you have that saved in a safe place. Click on the "Database" button. The "User" and "Password" are all that is necessary here. When you do that, click the "Check Credentials" button.
 
@@ -450,7 +449,7 @@ Ensure the password is secure and log it somewhere safe, such as a password mana
 
 ![LibreNMS Administrative User](../images/librenms_administrative_user.png)
 
-You will now see a screen for "Finish Install." There will only be one item left to finish the install and that is a line that asks you to "validate your install".
+You will now see a screen for "Finish Install." There will only be one item left to finish the installation, a line that asks you to "validate your install".
 
 Click the link. A redirect occurs to the login page. Login with your administrative user and password.
 
@@ -577,8 +576,7 @@ If you are running a server, then you **are** running a firewall, right? If you 
 ```
 firewall-cmd --zone=trusted --add-source=192.168.1.140 --permanent
 ```
-
-If the "trusted" zone is not correct for your environment, change this to suite your needs. Consider your rules and their effect before adding them in.
+If the "trusted" zone is incorrect for your environment, change this to suite your needs. Consider your rules and their effect before adding them in.
 
 ## Adding the devices in Librenms
 
@@ -588,7 +586,7 @@ With your sample devices configured to accept SNMP traffic from the LibreNMS ser
 
 Put in the information used for your test devices. Enter the IP for the Ubuntu workstation to start. In the example that is 192.168.1.122. Add the "LABone" community string in the "Community" field. 
 
-Click the "Add Device" button. Assuming everything is correct when adding the device, your device will add successfully. 
+Click the "Add Device" button. Assuming everything is correct, this process will complete successfully. 
 
 If you run into a "failure to add" error, review the SNMP setup for the workstation or the firewall if it exists. Repeat the "Add Device" process for your CentOS server.
 
@@ -596,7 +594,7 @@ If you run into a "failure to add" error, review the SNMP setup for the workstat
 
 As noted from the start, this document will only get you started with LibreNMS. A large number of additional configuration items exist, an extensive API (Application Programming Interface), an alerts system that provides a huge number of options for delivery, called "Transports", and much more. 
 
-This document does not contain any alert rules creation procedures. Instead, you will edit the built-in alert rule "Device Down! Due to no ICMP response"  that is pre-configured out of the box. For "Transports" use "Mail", which is just email. Know that you are not limited by this alert type.
+This document does not contain any alert rules creation procedures. Instead, you will edit the built-in alert rule "Device Down! Due to no ICMP response" that is pre-configured out of the box. For "Transports" use "Mail", which is just email. Know that you are not limited to this alert.
 
 Mail must be working to use email for transport. Use this [Postfix Procedure](../email/postfix_reporting.md) to get this going. 
 
