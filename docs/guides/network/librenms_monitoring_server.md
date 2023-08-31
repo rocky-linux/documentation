@@ -323,7 +323,6 @@ The command to use for `firewalld` allow rules are as follows:
 firewall-cmd --zone public --add-service http --add-service https
 firewall-cmd --permanent --zone public --add-service http --add-service https
 ```
-
 The author has problems with this simplistic `firewalld` rule set. This rule allows your web services to be open to the world, but is that what you want for a monitoring server? 
 
 This is usually **not** the case. If you would like a more granular approach to using `firewalld`, review [this document](../security/firewalld.md) and then make changes to your `firewalld` rules accordingly.
@@ -577,7 +576,6 @@ If you are running a server, then you **are** running a firewall, right? If you 
 ```
 firewall-cmd --zone=trusted --add-source=192.168.1.140 --permanent
 ```
-
 If the "trusted" zone is incorrect for your environment, change this to suite your needs. Consider your rules and their effect before adding them in.
 
 ## Adding the devices in Librenms
