@@ -15,7 +15,7 @@ When the introduction of `firewalld` as the default firewall happened (Its intro
 
 This document aims to address the limitations of most `firewalld` references and, to force the author to use `firewalld` to mimic those more granular firewall rules.
 
-From the manual page: "`firewalld` provides a dynamically managed firewall with support for network/firewall zones to define the trust level of network connections or interfaces. It has support for IPv4, IPv6 firewall settings, Ethernet bridges and a separation of runtime and permanent configuration options. It also supports an interface for services or applications to add firewall rules directly."
+From the manual page: "`firewalld` provides a dynamically managed firewall with support for network/firewall zones to define the trust level of network connections or interfaces. It supports IPv4, IPv6 firewall settings, Ethernet bridges and a separation of runtime and permanent configuration options. It also supports an interface for services or applications to add firewall rules directly."
 
 `firewalld` is actually a front end to the netfilter and nftables Kernel sub-systems in Rocky Linux.
 
@@ -36,11 +36,11 @@ To really get your head around `firewalld`, you need to understand the use of zo
 
 | zone          | example use                                                                                                                                                                             |
 |---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| drop          | drop incoming connections without reply - allows only outgoing packets.                                                                                                                 |
+| drop          | drops incoming connections without reply - allows only outgoing packets.                                                                                                                |
 | block         | rejects incoming connections with an icmp-host-prohibited message for IPv4 and icmp6-adm-prohibited for IPv6 - only network connections initiated within this system are possible.      |
 | public        | for use in public areas - accepts only selected incoming connections.                                                                                                                   |
-| external      | accepts only selected incoming connections for use on external networks with masquerading enabled.                                                                                 |
-| dmz           | for publicly-accessible computers on your demilitarized zone with limited access to your internal network, only selected incoming connections are accepted.                             |
+| external      | accepts only selected incoming connections for use on external networks with masquerading enabled.                                                                                      |
+| dmz           | only selected incoming connections are accepted for publicly accessible computers on your demilitarized zone with limited access to your internal network.                              |
 | work          | for computers in work areas  - accepts only selected incoming connections.                                                                                                              |
 | home          | for use in home areas - accepts only selected incoming connections                                                                                                                      |
 | internal      | for your internal network device access - accepts only selected incoming connections.                                                                                                   |
@@ -82,7 +82,7 @@ firewall-cmd --zone=trusted --add-source=192.168.1.122 --permanent
 firewall-cmd --zone trusted --add-service=ssh --permanent
 ```
 
-But what if on this server you also have an intranet that is accessible to only the IP blocks assigned to your organization? Would you now apply the "internal" zone to that rule? The author's preference is to create a zone that deals with the admin users' IPs (those allowed to secure-shell into the server).
+But what if, on this server, you also have an intranet that is accessible to only the IP blocks assigned to your organization? Would you now apply the "internal" zone to that rule? The author prefers to create a zone that deals with the admin users' IPs (those allowed to secure-shell into the server).
 
 ### Adding zones
 
@@ -181,7 +181,7 @@ and reload:
 
 !!! Warning
 
-    Hold of on that last instruction If you are working on a remote server or VPS! *NEVER remove the `ssh` service from a remote server* unless you have another way to access the shell (see below).
+    Hold off on that last instruction If you are working on a remote server or VPS! *NEVER remove the `ssh` service from a remote server* unless you have another way to access the shell (see below).
 
      Suppose you lock yourself out of ssh access via the firewall. In that case, you will need to (in the worst-case scenarios) fix your server in person, contact support, or possibly reinstall the OS from your control panel (depending on whether the server is physical or virtual).
 
