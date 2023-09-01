@@ -27,7 +27,7 @@ Please note that this is *not* intended to be a complete or exhaustive firewall 
 
 Well... there *are* graphical firewall configuration options. On the desktop, there's `firewall-config` which can be installed from the repos, and on servers you can [install Cockpit](https://linoxide.com/install-cockpit-on-almalinux-or-rocky-linux/) to help you manage firewalls and a whole bunch of other stuff. **However, I'll be teaching you the command-line way to do things in this tutorial for a couple of reasons:**
 
-1. If you're running a server, you'll be using the command line for most of this stuff anyway. Lots of tutorials and guides for the Rocky server will give command-line instructions for firewall management, and you should understand those instructions rather than just copying and pasting whatever you see..
+1. If you're running a server, you'll be using the command line for most of this stuff anyway. Lots of tutorials and guides for the Rocky server will give command-line instructions for firewall management, and you should understand those instructions rather than just copying and pasting whatever you see.
 2. Understanding how the `firewalld` commands work might help you better grasp how the firewall software works.  You can take the same principles you learn here and better understand what you're doing if you decide to use a graphical interface in the future.
 
 ## Prerequisites and Assumptions
@@ -48,7 +48,7 @@ You'll need:
 systemctl enable --now firewalld
 ```
 
-The `--now` flag starts the service as soon as its enabled, and let's you skip the `systemctl start firewalld` step.
+The `--now` flag starts the service as soon as it is enabled and let's you skip the `systemctl start firewalld` step.
 
 As with all services on Rocky Linux, you can check if the firewall is running with:
 
@@ -221,7 +221,7 @@ For the uninitiated, ports (in this context) are just virtual endpoints where co
 
 I wouldn't, but you can.
 
-Every port is identfied by a number, and some ports are reserved for specific services. For example, if you've ever worked with web servers to build a website, you may be familiar with port 80 and port 443. Those ports allow for the transmission of web page data.
+A number identifies every port. Some ports are reserved for specific services. For example, if you've ever worked with web servers to build a website, you may be familiar with port 80 and port 443. Those ports allow for the transmission of web page data.
 
 Specifically, port 80 allows for transferring data via the Hypertext Transfer Protocol (HTTP), and port 443 is reserved for Hypertext Transfer Protocol Secure (HTTPS) data.
 
@@ -267,7 +267,7 @@ firewall-cmd --zone=public --remove-port=9001/tcp
 
 ## Managing Services
 
-Services, as you might imagine, are fairly standardized programs that run on your computer. `firewalld` is set up so that it can be used to easily provide access to common services running on the host.
+As you might imagine, services are fairly standardized programs that run on your computer. `firewalld` is set up so that it can be used to provide access to common services running on the host easily.
 
 This is the preferred way to open up the ports for these common services, and a whole lot more:
 
@@ -332,7 +332,7 @@ firewall-cmd --permanent --zone=trusted --add-source=192.168.1.0/24 [< insert yo
 
 Again, just change `--add-source` to `--remove-source` to reverse the process.
 
-However, if you're managing a remote server with a website on it that needs to be public, and still only want to open up SSH for one IP address or a small range of them, you have a couple of options. Both examples assign the sole network interface to the public zone.
+However, you have a few options if you're managing a remote server with a website that needs to be public and still only want to open up SSH for one IP address or a small range of them. Both examples assign the sole network interface to the public zone.
 
 First, you can use a "rich rule" to your public zone, and it would look something like this:
 
