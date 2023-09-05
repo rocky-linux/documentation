@@ -1,5 +1,5 @@
 ---
-title: 2 Zfs (solo 8.6)
+title: 2 ZFS Setup
 author: Steven Spencer
 contributors: Ezequiel Bruni, Franco Colussi
 tested_with: 8.8, 9.2
