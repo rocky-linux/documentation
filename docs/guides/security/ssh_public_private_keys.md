@@ -9,96 +9,71 @@ tags:
   - keygen
 ---
 
-# SSH Public and Private Key
+# SSH public and private key
 
 ## Prerequisites
 
 * A certain amount of comfort operating from the command line
-* Rocky Linux servers and/or workstations with *openssh* installed
-    * Okay technically, this process should work on any Linux system with openssh installed
+* A Linux server or workstations with *openssh* installed
 * Optional: familiarity with Linux file and directory permissions
 
 ## Introduction
 
-SSH is a protocol used to access one machine from another, usually via the command line. With SSH, you can run commands on remote computers and servers, send files, and generally manage everything you do from one place.
+SSH is a protocol for accessing one machine from another, usually via the command line. With SSH, you can run commands on remote computers and servers, send files, and generally manage everything you do from one place.
 
-When you are working with multiple Rocky Linux servers in multiple locations, or if you are just trying to save some time accessing these servers, you'll want to use an SSH public and private key pair. Key pairs basically make logging into remote machines and running commands easier.
+When working with many Rocky Linux servers in various locations, or trying to save some time accessing these servers, you will want to use an SSH public and private key pair. Key pairs make logging into remote machines and running commands easier.
 
-This document will guide you through the process of creating the keys and setting up your servers for easy access with those keys.
+This document will guide you through creating the keys and setting up your servers for access with those keys.
 
-## Process For Generating Keys
+## Process for generating keys
 
-The following commands are all executed from the command line on your Rocky Linux workstation:
+The following commands are all run from the command line on your Rocky Linux workstation:
 
 ```
 ssh-keygen -t rsa
 ```
 
-Which will display the following:
+Which will show the following:
 
 ```
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa):
 ```
 
-Hit Enter to accept the default location. Next the system will show:
+Hit <kbd>ENTER</kbd> to accept the default location. Next the system will show:
 
 `Enter passphrase (empty for no passphrase):`
 
-So just hit Enter here. Finally, it will ask for you to re-enter the passphrase:
+Hit <kbd>ENTER</kbd> here. Finally, it will ask for you to re-enter the passphrase:
 
 `Enter same passphrase again:`
 
-So hit Enter a final time.
+Hit <kbd>ENTER</kbd> a final time.
 
-You now should have an RSA type public and private key pair in your .ssh directory:
+You will now have an RSA type public and private key pair in your *.ssh* directory:
 
 ```
 ls -a .ssh/
 .  ..  id_rsa  id_rsa.pub
 ```
 
-Now we need to send the public key (id_rsa.pub) to every machine that we are going to be accessing... but before we do that, we need to make sure that we can SSH into the servers that we will be sending the key to. For our example, we are going to be using just three servers.
+You need to send the public key (*id_rsa.pub*) to every machine that you are going to be accessing. Before you do that, you need to ensure that you can SSH into the servers that you are sending the key to. This example uses three servers.
 
-You can either access them via SSH by a DNS name or IP address, but for our example we are going to be using the DNS name. Our example servers are web, mail, and portal. For each server, we will attempt to SSH in (nerds love using SSH as a verb) and leave a terminal window open for each machine:
+You can access them with SSH by DNS name or IP address, but this example uses the DNS name. The example servers are web, mail, and portal. For each server, you will SSH in (nerds love using SSH as a verb) and leave a terminal window open:
 
 `ssh -l root web.ourourdomain.com`
 
-Assuming that we can login without trouble on all three machines, then the next step is to send our public key over to each server:
+If you can login without trouble on all three machines, the next step is to send your public key over to each server. Do this with the `ssh-copy-id` command:
 
-`scp .ssh/id_rsa.pub root@web.ourourdomain.com:/root/`
+`ssh-copy-id -i ~/.ssh/id_rsa.pub` user@web.ourdomain.com
 
-Repeat this step with each of our three machines.
+Repeat this step with each of your three machines. This will populate the *authorized_keys* file on each server with your public key. 
 
-In each of the open terminal windows, you should now be able to see *id_rsa.pub* when you enter the following command:
+Try to SSH from your Rocky Linux workstation to the server again. You should receive no prompt for a password.
 
-`ls -a | grep id_rsa.pub`
+## SSH directory and `authorized_keys` security
 
-If so, we are now ready to either create or append the *authorized_keys* file in each server's *.ssh* directory. On each of the servers, enter this command:
-
-`ls -a .ssh`
-
-!!! warning "Important!"
-
-    Make sure you read everything below carefully. If you are not sure if you will break something, then make a backup copy of authorized_keys (if it exists) on each of the machines before continuing.
-
-If there is no *authorized_keys* file listed, then we will create it by entering this command while in our _/root_ directory:
-
-`cat id_rsa.pub > .ssh/authorized_keys`
-
-If _authorized_keys_ does exist, then we simply want to append our new public key to the ones that are already there:
-
-`cat id_rsa.pub >> .ssh/authorized_keys`
-
-Once the key has been either added to _authorized_keys_, or the _authorized_keys_ file has been created, try to SSH from your Rocky Linux workstation to the server again. You should not be prompted for a password.
-
-Once you have verified that you can SSH in without a password, remove the id_rsa.pub file from the _/root_ directory on each machine.
-
-`rm id_rsa.pub`
-
-## SSH Directory and authorized_keys Security
-
-On each of your target machines, make sure that the following permissions are applied:
+On each of your target machines, ensure the application of the following permissions:
 
 ```
 chmod 700 .ssh/
