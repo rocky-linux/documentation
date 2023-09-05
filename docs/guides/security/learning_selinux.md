@@ -21,9 +21,9 @@ Before starting, you should know that SELinux is mainly intended for RHEL distri
 
 **SELinux** (Security Enhanced Linux) is a Mandatory Access Control system.
 
-Before the appearance of MAC systems, standard access management security was based on **DAC** (**D**iscretionary **A**ccess **C**ontrol) systems. An application, or a daemon, operated with **UID** or **SUID** (**S**et **O**wner **U**ser **I**d) rights, which made it possible to evaluate permissions (on files, sockets, and other processes...) according to this user. This operation does not sufficiently limit the rights of a program that is corrupted, potentially allowing it to access the subsystems of the operating system.
+Before the appearance of MAC systems, standard access management security was based on **DAC** (**D**iscretionary **A**ccess **C**ontrol) systems. An application, or a daemon, operated with **UID** or **SUID** (**S**et **O**wner **U**ser **I**d) rights, which made it possible to evaluate permissions (on files, sockets, and other processes...) according to this user. This operation does not sufficiently limit the rights of a corrupted program, potentially allowing it to access the subsystems of the operating system.
 
-A MAC system reinforces the separation of confidentiality and integrity information in the system to achieve a containment system. The containment system is independent of the traditional rights system and there is no notion of a superuser.
+A MAC system reinforces the separation of confidentiality and integrity information to achieve a containment system. The containment system is independent of the traditional rights system and there is no notion of a superuser.
 
 With each system call, the kernel queries SELinux to see if it allows the action to be performed.
 
@@ -39,15 +39,15 @@ The SELinux security context is defined by the trio **identity**+**role**+**doma
 
 The identity of a user depends directly on his Linux account. An identity is assigned one or more roles, but to each role corresponds to one domain, and only one.
 
-It is according to the domain of the security context (and thus the role) that the rights of a user on a resource are evaluated.
+It is according to the domain of the security context (and thus the role) that user's rights on a resource are evaluated.
 
 ![SELinux context](../images/selinux_002.png)
 
-The terms "domain" and "type" are similar. Typically "domain" is used when referring to a process, while "type" refers to an object.
+The terms "domain" and "type" are similar. Typically "domain" refers to a process, while "type" refers to an object.
 
 The naming convention is: **user_u:role_r:type_t**.
 
-The security context is assigned to a user at the time of his connection, according to his roles. The security context of a file is defined by the `chcon` (**ch**ange **con**text) command, which we will see later in this document.
+The security context is assigned to a user during their connection, according to their roles. The security context of a file is defined by the `chcon` (**ch**ange **con**text) command, which we will see later in this document.
 
 Consider the following pieces of the SELinux puzzle:
 
@@ -64,7 +64,7 @@ The rights of a process depend on its security context.
 
 By default, the security context of the process is defined by the context of the user (identity + role + domain) who launches it.
 
-A domain being a specific type (in the SELinux sense) linked to a process and inherited (normally) from the user who launched it, its rights are expressed in terms of authorization or refusal on types linked to objects:
+A domain is a specific type (in the SELinux sense) linked to a process and inherited (normally) from the user who launched it. Its rights are expressed in terms of authorization or refusal on types linked to objects:
 
 A process whose context has security __domain D__ can access objects of __type T__.
 
@@ -82,7 +82,7 @@ This mechanism is essential since it restricts the rights of a process as much a
 
 ## Management
 
-The `semanage` command is used to manage SELinux rules.
+The `semanage` command manages SELinux rules.
 
 ```
 semanage [object_type] [options]
@@ -97,9 +97,9 @@ $ semanage boolean -l
 | Options | Observations      |
 |---------|-------------------|
 | -a      |  Adds an object   |
-| -d      |  Delete an object |
-| -m      |  Modify an object |
-| -l      |  List the objects |
+| -d      |  Deletes an object |
+| -m      |  Modifies an object |
+| -l      |  Lists the objects |
 
 The `semanage` command may not be installed by default under Rocky Linux.
 
@@ -325,8 +325,8 @@ sudo chcon -vR -t httpd_sys_content_t /data/websites/
 
 | Options        | Observations                    |
 |----------------|---------------------------------|
-| `-v`           | Switch into verbose mode        |
-| `-R`           | Apply recursion                 |
+| `-v`           | Switches to verbose mode        |
+| `-R`           | Applies recursion                 |
 | `-u`,`-r`,`-t` | Applies to a user, role or type |
 
 The `restorecon` command restores the default security context (the one provided by the rules):
