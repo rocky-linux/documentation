@@ -18,28 +18,28 @@ tags:
 * A desire to learn about user and app authentication on Linux
 * The ability to accept the consequences of your own actions
 
-## Instroduction
+## Introduction
 
 PAM (**Pluggable Authentication Modules**) is the system under GNU/Linux that allows many applications or services to authenticate users in a centralized fashion. To put it another way:
 
-> PAM is a suite of libraries that allows a Linux system administrator to configure methods to authenticate users. It provides a flexible and centralized way to switch authentication methods for secured applications by using configuration files instead of changing application code. 
+> PAM is a library suite that allows a Linux system administrator to configure methods to authenticate users. It provides a flexible and centralized way to switch authentication methods for secured applications using configuration files instead of changing application code. 
 > \- [Wikipedia](https://en.wikipedia.org/wiki/Linux_PAM)
 
-This document is *not* designed to teach you exactly how to harden your machine, okay? It's more of a reference guide to show you what PAM *can* do, and not what you *should* do.
+This document is *not* designed to teach you exactly how to harden your machine. It is more of a reference guide to show you what PAM *can* do, and not what you *should* do.
 
 ## Generalities
 
-Authentication is the phase during which it is verified that you are the person you claim to be. The most common example is the password, but there are other forms of authentication.
+Authentication is the phase during which it is verified that you are the person you claim to be. The most common example is the password, but other forms of authentication exist.
 
 ![PAM generalities](images/pam-001.png)
 
-The implementation of a new authentication method should not require changes in the configuration or source code of a program or service. This is why applications rely on PAM, which provides them with the primitives* necessary to authenticate their users.
+Implementing a new authentication method should not require changes in source code for program or service configuration. This is why applications rely on PAM, which gives them the primitives* necessary to authenticate their users.
 
 All the applications in a system can thus implement complex functionalities such as **SSO** (Single Sign On), **OTP** (One Time Password) or **Kerberos** in a completely transparent manner. A system administrator can choose exactly which authentication policy is to be used for a single application (e.g. to harden the SSH service) independently of the application.
 
 Each application or service supporting PAM will have a corresponding configuration file in the `/etc/pam.d/` directory. For example, the process `login` assigns the name `/etc/pam.d/login` to its configuration file.
 
-\* Primitives are literally the simplest elements of a progam or language, and they allow you to build more sophisticated and complex things on top of them.
+\* Primitives are literally the simplest elements of a program or language, allowing you to build more sophisticated and complex things on top of them.
 
 !!! WARNING
 
@@ -94,7 +94,7 @@ Relates to session setup and termination:
 
 Used to modify the authentication token associated with an account (expiration or change):
 
-* Changes the authentication token and possibly verifies that it is robust enough, or that it has not already been used.
+* Changes the authentication token and possibly verifies that it is robust enough or has not already been used.
 
 ## Control Indicators
 
@@ -169,7 +169,7 @@ Arguments are possible for this module:
 * `nullok`: in the `auth` mechanism allows an empty login password.
 * `sha512`: in the password mechanism, defines the encryption algorithm.
 * `debug`: sends information to `syslog`.
-* `remember=n`: Use thid to remember the last `n` passwords used (works in conjunction with the `/etc/security/opasswd` file, which is to be created by the administrator).
+* `remember=n`: Use this to remember the last `n` passwords used (works in conjunction with the `/etc/security/opasswd` file, which is to be created by the administrator).
 
 ### `pam_cracklib`
 
@@ -187,7 +187,7 @@ By default this module checks the following aspects and rejects if this is the c
 
 * Is the new password from the dictionary?
 * Is the new password a palindrome of the old one (e.g.: azerty <> ytreza)?
-* Has the user only changed the case of the password (e.g.: azerty <>AzErTy)?
+* Has the user only changed the password case (e.g.: azerty <>AzErTy)?
 
 Possible arguments for this module:
 
@@ -195,7 +195,7 @@ Possible arguments for this module:
 * `difok=n`: imposes at least `n` characters (`10` by default), different from the old password. If half of the characters of the new password are different from the old one, the new password is validated.
 * `minlen=n`: imposes a password of `n+1` characters minimum. You cannot assign a minimum lower than 6 characters (the module is compiled this way).
 
-Other possible arguments :
+Other possible arguments:
 
 * `dcredit=-n`: imposes a password containing at least `n` digits,
 * `ucredit=-n`: imposes a password containing at least `n` capital letters,
@@ -219,11 +219,11 @@ The `account` mechanism increments the counter.
 
 Some arguments of the pam_tally module include:
 
-* `onerr=fail`: increment the counter.
+* `onerr=fail`: increments the counter.
 * `deny=n`: once the number `n` of unsuccessful attempts is exceeded, the account is locked.
 * `no_magic_root`: can be used to deny access to root-level services launched by daemons. 
     * e.g. don't use this for `su`.
-* `reset`: reset the counter to 0 if the authentication is validated.
+* `reset`: resets the counter to 0 if the authentication is validated.
 * `lock_time=nsec`: the account is locked for `n` seconds.
 
 This module works together with the default file for unsuccessful attempts `/var/log/faillog` (which can be replaced by another file with the argument `file=xxxx`), and the associated command `faillog`.
@@ -270,14 +270,14 @@ In the following definitions, the logical list uses:
 * `!`: means negation, or "all except".
 * `*`: is the wildcard character.
 
-The columns correspond to :
+The columns correspond to:
 
 * `services`: a logical list of services managed by PAM that are also to be managed by this rule
 * `ttys`: a logical list of related devices
 * `users`: logical list of users managed by the rule
 * `times`: a logical list of authorized time slots
 
-How to manage time slots :
+How to manage time slots:
 
 * Days: `Mo`, `Tu`, `We`, `Th`, `Fr,` `Sa`, `Su`, `Wk`, (Monday to Friday), `Wd` (Saturday and Sunday), and `Al` (Monday to Sunday)
 * The hourly range: `HHMM-HHMM`
@@ -307,7 +307,7 @@ In `/etc/pam.d/login` you'd put:
 auth required pam_nologin.so
 ```
 
-If the file `/etc/nologin` exists then only root can connect.
+Only root can connect if the file `/etc/nologin`.
 
 ### `pam_wheel`
 
