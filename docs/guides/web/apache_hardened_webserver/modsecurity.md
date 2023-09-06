@@ -24,9 +24,9 @@ tags:
 
 `mod_security` is an open source web-based application firewall (WAF). It is just one possible piece of a hardened Apache web server setup. Use it with, or without, other tools.
 
-If you want to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server guide](index.md). This document also uses all of the assumptions and conventions outlined in that original document. It is a good idea to review it before continuing.
+If you want to use this and other hardening tools, refer back to the [Apache Hardened Web Server guide](index.md). This document also uses all of the assumptions and conventions outlined in that original document. It is a good idea to review it before continuing.
 
-One thing that is missing with `mod_security` when installed from the generic Rocky Linux repositories, is that the rules installed are minimal at best. To get a more extensive package of no cost `mod_security` rules, this procedure uses no cost [OWASP mod_security rules found here](https://www.netnea.com/). OWASP stands for the Open Web Application Security Project. You can [find out more about OWASP here](https://owasp.org/).
+One thing missing with `mod_security` when installed from the generic Rocky Linux repositories, is that the rules installed are minimal. To get a more extensive package of no cost `mod_security` rules, this procedure uses [OWASP mod_security rules found here](https://www.netnea.com/). OWASP stands for the Open Web Application Security Project. You can [find out more about OWASP here](https://owasp.org/).
 
 !!! tip
 
@@ -71,7 +71,7 @@ dnf install mod_security wget
     ```
     This creates a directory with the release information in the name. Example: "coreruleset-3.3.4"
 
-7. Create a symbolic link called "crs" that links to the directory of the release. Example:
+7. Create a symbolic link called "crs" linking to the directory of the release. Example:
 
     ```
     ln -s coreruleset-3.3.4/ /etc/httpd/conf/crs
