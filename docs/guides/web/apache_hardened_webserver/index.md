@@ -24,14 +24,14 @@ tags:
 
 Whether you are hosting many websites for customers or a single important website for your business, hardening your web server will give you peace of mind at the expense of a little more up-front work for the administrator.
 
-With many web sites uploaded by your customers, there is a high probability that one of them will upload a Content Management System (CMS) with the possibility of vulnerabilities. Most customers focus on ease of use, not security, and what happens is that updating their own CMS becomes a process that falls out of their priority list altogether.
+With many web sites uploaded by your customers, one of them will probably upload a Content Management System (CMS) with the possibility of vulnerabilities. Most customers focus on ease of use, not security, and what happens is that updating their own CMS becomes a process that falls out of their priority list altogether.
 
 
 While notifying customers of vulnerabilities in their CMS is possible for a company with a large IT staff, this might not be realistic for a small IT team. The best defense is a hardened web server.
 
-Web server hardening can take many forms, which might include any or all of the tools here, and possibly others not defined.
+Web server hardening can take many forms, including any or all of the tools here and possibly others not defined.
 
-You might elect to use a couple of these tools, and not the others. For clarity and readability this document splits out into separate documents for each tool. The exception will be the packet-based firewall (`firewalld`) in this main document.
+You might use a couple of these tools and not the others. For clarity and readability this document splits into separate documents for each tool. The exception will be the packet-based firewall (`firewalld`) in this main document.
 
 * A good packet filter firewall based on ports (iptables, firewalld, or hardware firewall - using `firewalld` for our examples) [`firewalld` procedure](#iptablesstart)
 * A Host-based Intrusion Detection System (HIDS), in this case _ossec-hids_ [Apache Hardened Web Server - ossec-hids](ossec-hids.md)
@@ -44,9 +44,9 @@ This procedure does not replace the [Apache Web Server Multiple Site Setup](../a
 
 ## Other considerations
 
-Some of the tools outlined here have free and fee-based options. Depending on your needs or support requirements, you might want to consider the fee-based versions. Researching what is out there and making a decision after weighing all of your options is the best policy.
+Some of the tools outlined here have free and fee-based options. You might want to consider the fee-based versions depending on your needs or support requirements. Researching what is out there and making a decision after weighing all of your options is the best policy.
 
-Purchasing a hardware appliance for many of these options is also possible. If you prefer not to hassle with installing and maintaining your own system, there are options available other than those outlined here.
+Purchasing a hardware appliance for many of these options is also possible. If you prefer not to hassle with installing and maintaining your own system, options other than those outlined here are available.
 
 This document uses a `firewalld` firewall. `firewalld` guides are available. One that allows someone with knowledge of `iptables` to [transfer what they know to `firewalld` here](../../security/firewalld.md), and one that is a more [dedicated to beginners here](../../security/firewalld-beginners.md). You might want to review one of these procedures before you start.
 
@@ -54,11 +54,11 @@ You need to tune all of these tools for your systems. Accomplishing this require
 
 These examples use a private IP address to simulate a public one, but you might carry out the same thing with a one-to-one NAT on the hardware firewall and connecting the web server to that hardware firewall, rather than to the gateway router, with a private IP address.
 
-Explaining that requires digging into the hardware firewall shown, and that is outside of the scope of this document.
+Explaining that requires digging into the hardware firewall shown, which is outside the scope of this document.
 
 ## Conventions
 
-* **IP Addresses:** simulating the public IP address here with a private block: 192.168.1.0/24, and using the LAN IP address block 10.0.0.0/24. Routing these IP blocks over the Internet is not possible because they are for private use, but simulating public IP block is not possible without the use of a real IP address assigned to some company or organization. Just remember that for our purposes, the 192.168.1.0/24 block is the "public" IP block and the 10.0.0.0/24 is the "private" IP block.
+* **IP Addresses:** simulating the public IP address here with a private block: 192.168.1.0/24, and using the LAN IP address block 10.0.0.0/24. Routing these IP blocks over the Internet impossible because they are for private use, but simulating public IP block is impossible without the use of a real IP address assigned to some company or organization. Just remember that for our purposes, the 192.168.1.0/24 block is the "public" IP block and the 10.0.0.0/24 is the "private" IP block.
 
 * **Hardware Firewall:** This is the firewall that controls access to your server room devices from your trusted network. This is not the same as your packed based firewall, though it might be another instance of `firewalld` running on another machine. This device allows ICMP (ping) and SSH (secure shell) to our trusted devices. Defining this device is outside of the scope of this document. The author has used [PfSense](https://www.pfsense.org/) and [OPNSense](https://opnsense.org/) and installed on dedicated hardware for this device with great success. This device will have two IP addresses assigned to it. One that connects to the Internet router's simulated public IP (192.168.1.2) and one that connects to our local area network, 10.0.0.1.
 * **Internet router IP:** simulating this with 192.168.1.1/24
@@ -101,6 +101,6 @@ Here is what is happening:
 
 ## Conclusion
 
-There are many ways to harden an Apache web server to make it more secure. Each operates independently of the other, making installing and selecting what you want up to you.
+Many ways exist to harden an Apache web server to make it more secure. Each operates independently of the other, making installing and selecting what you want up to you.
 
 Each requires some configuration and tuning to meet your specific needs. Because web services are constantly under attack by unscrupulous actors, implementing at least some of these will help an administrator sleep at night.
