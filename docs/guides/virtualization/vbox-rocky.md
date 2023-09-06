@@ -8,11 +8,11 @@ tags:
   - virtualization
 ---
 
-# Rocky on VirtualBox
+# Rocky on VirtualBox&reg;
 
 ## Introduction
 
-VirtualBox&reg; is a powerful virtualization product for both enterprise and home use. Once in a while, someone posts that they are having trouble getting Rocky Linux to run in VirtualBox&reg;. It has been tested multiple times going back to the release candidate, and works just fine. The problems people usually report often involve video.
+VirtualBox&reg; is a powerful virtualization product for both enterprise and home use. Once in a while, someone posts that they are having trouble getting Rocky Linux to run in VirtualBox&reg;. Testing and running VirtualBox&reg; going back to the release candidate, works fine. The problems people usually report often involve video.
 
 This document is an attempt to give a step-by-step set of instructions for getting Rocky Linux up and running in VirtualBox&reg;. The machine used to build this documentation ran Linux but you can use any of the supported operating systems.
 
@@ -21,7 +21,7 @@ This document is an attempt to give a step-by-step set of instructions for getti
 * A machine (Windows, Mac, Linux, Solaris) with available memory, and hard disk space to build and run the VirtualBox&reg; instance.
 * VirtualBox&reg; installed on your machine. You can find that [here](https://www.virtualbox.org/wiki/Downloads).
 * A copy of the Rocky Linux [DVD ISO](https://rockylinux.org/download) for your architecture. (x86_64 or ARM64).
-* Ensure that your OS is 64 bit and that hardware virtualization is turned on in your BIOS.
+* Ensure that your OS is 64 bit and that hardware virtualization is on in your BIOS.
 
 !!! Note
 
@@ -44,23 +44,23 @@ Once you have VirtualBox&reg; installed, the next step is to start it. With no i
 
  ![Name And Operating System](../images/vbox-02.png)
 
-Next, you need to allocate some RAM for this machine. By default, VirtualBox&reg; will automatically fill this to 1024 MB. That will not be optimum for any modern OS, including Rocky Linux. If you've got memory to spare, allocate 2 to 4 GB (2048 MB or 4096 MB) — or more. VirtualBox&reg will only use this memory during virtual machine operation.
+Next, you need to allocate some RAM for this machine. By default, VirtualBox&reg; will automatically fill this to 1024 MB. That will not be optimum for any modern OS, including Rocky Linux. If you have memory to spare, assign 2 to 4 GB (2048 MB or 4096 MB) — or more. VirtualBox&reg will only use this memory during virtual machine operation.
 
-There's no screenshot for this one, just change the value based on your available memory. Use your best judgment.
+No screenshot for this one, just change the value based on your available memory. Use your best judgment.
 
-Now you need to set up the hard disk size. By default, VirtualBox&reg; will automatically fill the "Create a virtual hard disk now" radio button.
+You need to set up the hard disk size. By default, VirtualBox&reg; will automatically fill the "Create a virtual hard disk now" radio button.
 
 ![Hard Disk](../images/vbox-03.png)
 
 * Click "Create"
 
-You will get a dialog box for creating various virtual hard disk types, and there are several hard disk types listed here. See the Oracle VirtualBox documentation for [more information](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vdidetails.html) about selecting virtual hard disk types. For this document, keep the default (VDI):
+You will get a dialog box for creating various virtual hard disk types. Several hard disk types are here. See the Oracle VirtualBox documentation for [more information](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vdidetails.html) about selecting virtual hard disk types. For this document, keep the default (VDI):
 
 ![Hard Disk File Type](../images/vbox-04.png)
 
 * Click "Next"
 
-The next screen deals with the storage on the physical hard disk. There are two options. "Fixed Size" will be slower to create, faster to use, but less flexible in terms of space (if you need more space, you are stuck with what you created).
+The next screen deals with the storage on the physical hard disk. Two options exist. "Fixed Size" will be slower to create, faster to use, but less flexible in terms of space (if you need more space, you cannot grow past what you created).
 
 The default option, "Dynamically Allocated", will be faster to create and slower to use, but will allow you to grow if your disk space needs to change. 
 
@@ -68,7 +68,7 @@ The default option, "Dynamically Allocated", will be faster to create and slower
 
 * Click "Next"
 
-VirtualBox&reg; now gives you the option to specify where you want the virtual hard disk file to be located as well as the option to expand the default 8 GB virtual hard disk space. This option is good, because 8 GB of hard disk space isn't enough to install any GUI install options, much less use. Set this to 20 GB (or more) depending on what you want to use the virtual machine for, and how much disk space you have available:
+VirtualBox&reg; now gives you the option to specify where you want the virtual hard disk file located. An option to expand the default 8 GB virtual hard disk space is also here. This option is good, because 8 GB of hard disk space is not enough to install any GUI install options, much less use. Set this to 20 GB (or more) depending on what you want to use the virtual machine for, and how much disk space you have available:
 
 ![File Location And Size](../images/vbox-06.png)
 
@@ -84,11 +84,11 @@ The next step is to attach the ISO image that you downloaded as a virtual CD ROM
 
 ![Settings](../images/vbox-08.png)
 
-* Click the "Storage" item in the left-hand menu.
+* Click the "Storage" item in the left menu.
 * Under "Storage Devices" in the middle section, click the CD icon that says "Empty".
-* Under "Attributes" on the right-hand side, click the CD icon.
+* Under "Attributes" on the right side, click the CD icon.
 * Select "Choose/Create a Virtual Optical Disk".
-* Click the "Add" button (plus sign icon) and navigate to where your Rocky Linux ISO image is stored.
+* Click the "Add" button (plus sign icon) and navigate to where your Rocky Linux ISO image is.
 * Select the ISO and click "Open".
 
 You should now have the ISO added to the available devices like this:
@@ -107,16 +107,16 @@ The Rocky Linux ISO image now shows selected under the "Controller:IDE" in the m
 
 VirtualBox&reg; sets up 16 MB of memory to use for video. That is fine if you plan to run a bare-bones server without a GUI, but as soon as you add graphics that is not enough. Users who keep this setting often see a hanging boot screen that never finishes, or other errors.
 
-If running Rocky Linux with a GUI, you should allocate enough memory to run the graphics. If your machine is a bit thin on memory, adjust this value upwards of 16 MB until things run smoothly. Your host machine's video resolution is also a factor that you need to consider.
+If running Rocky Linux with a GUI, assign enough memory to run the graphics. If your machine is a bit thin on memory, adjust this value upwards of 16 MB until things run smoothly. Your host machine's video resolution is also a factor that you need to consider.
 
 Think carefully about what you want your Rocky Linux virtual machine to do, and try to allocate video memory that is compatible with your host machine and your other requirements. You can find more information on display settings from [Oracle's official documentation](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/settings-display.html).
 
-If you've got plenty of memory, you can set this value to the maximum of 128 MB. To fix this before we start the virtual machine, click on the "Settings" (gear icon) and you should get the same settings screen that we got when attaching our ISO image (above).
+If you have plenty of memory, you can set this value to the maximum of 128 MB. To fix this before you start the virtual machine, click on the "Settings" (gear icon) and you should get the same settings screen that you got when attaching our ISO image (above).
 
 This time:
 
-* Click on "Display" on the left-hand side.
-* In the "Screen" tab on the right-hand side, you'll notice the "Video Memory" option with the default set to 16 MB.
+* Click on "Display" on the left side.
+* In the "Screen" tab on the right side, you will notice the "Video Memory" option with the default set to 16 MB.
 * Change this to the value that you want. You can adjust this upwards by coming back to this screen anytime. In this example, it is 128 MB.
 
 !!! Tip
@@ -131,7 +131,7 @@ Your screen should look something like this:
 
 ## Starting the installation
 
-You have set everything up so that you can start the installation. Note that there are no particular differences in installing Rocky Linux on a VirtualBox&reg; machine compared to stand-alone hardware. The installation steps are the same.
+You have set everything up so that you can start the installation. Note that no particular differences exist in installing Rocky Linux on a VirtualBox&reg; machine compared to stand-alone hardware. The installation steps are the same.
 
 Now that you have everything prepared for the install, you need to click "Start" (green right-arrow icon) to start installing Rocky. Once you click past the language selection screen, your next screen is the "Installation Summary." You need to set any of these items that pertain to you, but the following are musts:
 
@@ -141,7 +141,7 @@ Now that you have everything prepared for the install, you need to click "Start"
 * Network & Hostname
 * User Settings
 
-If you are unsure of any of these settings, refer to the document for [Installing Rocky](../installation.md).
+If you are unsure of any of these settings, see the document for [Installing Rocky](../installation.md).
 
 Once you have finished the installation, you should have a running VirtualBox&reg; instance of Rocky Linux.
 
@@ -159,4 +159,4 @@ This document does not intend to make you an expert on all of the features that 
 
 ## Conclusion
 
-It is easy to create, install, and run a VirtualBox&reg; Rocky Linux machine. While far from an exhaustive guide, following the steps above should get you a running Rocky Linux install. If you use VirtualBox&reg; and have a specific configuration that you would like to share, the author invites you to submit new sections to this document.
+It is easy to create, install, and run a VirtualBox&reg; Rocky Linux machine. While far from an exhaustive guide, following the steps above should get you a running Rocky Linux install. If you use VirtualBox&reg; and have a specific configuration that you want to share, the author invites you to submit new sections to this document.
