@@ -111,7 +111,7 @@ administrator@ad.company.local:*:1450400500:1450400513:Administrator:/home/admin
 
     La commande `getent` récupère les données des bibliothèques Name Service Switch (NSS). Cela signifie que, contrairement à `passwd` ou `dig` par exemple, il va interroger différentes bases de données, y compris `/etc/hosts` pour `getent hosts` ou depuis `sssd` dans le cas de `getent passwd`.
 
-`realm` fournit des optins intéressantes que vous pouvez utiliser :
+`realm` fournit des options intéressantes que vous pouvez utiliser :
 
 | Option                                                     | Observations                                                           |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------- |
