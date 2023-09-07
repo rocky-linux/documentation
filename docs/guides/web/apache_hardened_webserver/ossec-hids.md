@@ -1,5 +1,5 @@
 ---
-title: Host-based Intrustion Detection System (HIDS)
+title: Host-based Intrusion Detection System (HIDS)
 author: Steven Spencer
 contributors: Ezequiel Bruni
 tested_with: 8.8, 9.2
@@ -23,13 +23,13 @@ tags:
 
 `ossec-hids` is a host intrusion detection system that offers automatic action-response steps to help mitigate host intrusion attacks. It is just one possible piece of a hardened Apache web server setup. You can use it with or without other tools.
 
-If you want to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server](index.md) document. This document also uses all of the assumptions and conventions outlined in that original document. It is a good idea to review it before continuing.
+If you want to use this and other hardening tools, refer back to the [Apache Hardened Web Server](index.md) document. This document also uses all of the assumptions and conventions outlined in that original document. It is a good idea to review it before continuing.
 
 ## Installing Atomicorp's repository
 
 To install `ossec-hids`, we need a third-party repository from Atomicorp. Atomicorp also offers a reasonably priced fee-based supported version for those who want professional support if they run into trouble.
 
-If you prefer support, and have the budget for it, check out [Atomicorp's paid `ossec-hids`](https://atomicorp.com/atomic-enterprise-ossec/) version. You are going to need just a few packages from Atomicorp's no cost repository. You are going to change the repository after downloading.
+If you prefer support, and have the budget for it, check out [Atomicorp's paid `ossec-hids`](https://atomicorp.com/atomic-enterprise-ossec/) version. You need just a few packages from Atomicorp's no cost repository. You are going to change the repository after downloading.
 
 Downloading the repository requires `wget`. Install that first, and install the EPEL repository if you do not have it installed already, with:
 
@@ -63,7 +63,7 @@ includepkgs = ossec* GeoIP* inotify-tools
 
 That is the only change you need. Save your changes and get out of the repository (in `vi` that is <kbd>esc</kbd> to enter command mode, then <kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq</kbd> to save and quit).
 
-This restricts the Atomicorp repository to only install and update these packages.
+This restricts the Atomicorp repository only to install and update these packages.
 
 ## Installing `ossec-hids`
 
@@ -85,7 +85,7 @@ To edit the configuration file, enter:
 vi /var/ossec/etc/ossec.conf
 ```
 
-We will break apart this configuration showing the changes in line and explaining them:
+The author will break apart this configuration showing the changes in line and explaining them:
 
 ```
 <global>
@@ -100,11 +100,11 @@ We will break apart this configuration showing the changes in line and explainin
 </global>
 ```
 
-By default, email notifications are off and the `<global>` configuration is basically empty. You want to turn on email notification and identify the people who will receive the email reports by their email address.
+Email notifications are off  by default and the `<global>` configuration is almost empty. You want to turn on email notification and identify the people who will receive the email reports by their email address.
 
 The `<smtp_server>` section currently shows localhost, however you can specify an email server relay if you prefer, or setup the postfix email settings for the local host by following [this guide](../../email/postfix_reporting.md).
 
-You need to set the "from" email address. You need this to deal with SPAM filters on your email server which might see this email as SPAM. To avoid getting inundated with email, set the email reporting to 1 per hour. You can expand this or remark out this command while you are getting started with `ossec-hids` and need to see things quickly.
+You need to set the "from" email address. You need this to deal with SPAM filters on your email server which might see this email as SPAM. To avoid getting inundated with email, set the email reporting to 1 per hour. You can expand or remark out this command while starting with `ossec-hids`.
 
 The `<white_list>` sections deal with the server's localhost IP and with the "public" IP address (remember our substitution of a private IP address) of the firewall, from which all connections on the trusted network will show. You can add many `<white_list>` entries.
 
@@ -151,18 +151,18 @@ You need to add in the Apache log locations, and you want to add these in as wil
   </active-response>
 ```
 
-Finally, towards the end of the file you need to add the active response section. This section has two parts: the `<command>` section, and the `<active-response>` section.
+Finally, toward the end of the file, you need to add the active response section. This has two parts: the `<command>` section, and the `<active-response>` section.
 
 The "firewall-drop" script already exists within the `ossec-hids` path. It tells `ossec-hids` that if a level of 7 occurs, add a firewall rule to block the IP address.
 
-When you have made all of the configuration changes you need, enable, and start the service. If everything starts correctly, you are ready to move on:
+Enable and start the service when all the configuration changes are complete. If everything starts correctly, you are ready to move on:
 
 ```
 systemctl enable ossec-hids
 systemctl start ossec-hids
 ```
 
-Many options exist for the `ossec-hids` configuration file. You can find out about these options by visiting the [official documentation site](https://www.ossec.net/docs/).
+The `ossec-hids` configuration file. You can find out about these options by visiting the [official documentation site](https://www.ossec.net/docs/).
 
 ## Conclusion
 
