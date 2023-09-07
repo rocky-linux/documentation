@@ -60,7 +60,7 @@ The only configuration options that you _need_ to set are those dealing with mai
 
 !!! warning
 
-    Modification of _any_ configuration file in Linux carries risk. Before altering **any** configuration file in Linux, it is recomended to create a backup of the _original_ configuration file, in the event that you must revert to the original configuration.
+    Modification of _any_ configuration file in Linux carries risk. Before altering **any** configuration file in Linux, creating a backup of the _original_ file is recommended.
 
 
 To change the configuration file, run:
@@ -250,7 +250,7 @@ Performing file properties checks
 [Press <ENTER> to continue]
 ```
 
-If problems exist with the email setup, hold off completing the remaining steps. When confirming email works, but before allowing `rkhunter` to run automatically, run the command manually again with the "--propupd" flag to create the `rkhunter.dat` file. This ensures recognition of your environment and configuration:
+Hold off completing the remaining steps if problems exist with the email setup. When confirming email works, but before allowing `rkhunter` to run automatically, run the command manually again with the "--propupd" flag to create the `rkhunter.dat` file. This ensures recognition of your environment and configuration:
 
 ```
 rkhunter --propupd
@@ -258,4 +258,4 @@ rkhunter --propupd
 
 ## Conclusion
 
-`rkhunter` is one part of a hardened server strategy that can help in monitoring the file system and reporting any issues to the administrator. It is perhaps one of the easiest hardening tools to install, configure, and run.
+`rkhunter` is one part of a hardened server strategy that can help monitor the file system and report any issues to the administrator. It is perhaps one of the easiest hardening tools to install, configure, and run.
