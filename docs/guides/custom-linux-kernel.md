@@ -10,16 +10,14 @@ tags:
 # Overview
 In this guide, we’ll walk through the process of acquiring a kernel source tree, configuring it, compiling it, and, finally, installing and booting the kernel.
 
-!!! warning "Kernel rebuilds are not recommended nor supported for Rocky Linux. Before building a custom kernel or even considering it, ask yourself the following questions:"
+!!! warning "Kernel rebuilds are not recommended nor supported for Rocky Linux. Before attempting to build a custom kernel, please consider the following:"
 
     * Is the functionality you need available by installing a kernel module from [elrepo](https://elrepo.org)?
     * Is the functionality you need available as a separate module from the kernel itself?
-    * Are you willing to maintain your own security posture?
-    * **Are you sure**? Rocky Linux and most other EL derivatives were designed to function as a complete environment. Replacing critical components can affect how the system acts.
-    * **Are you ABSOLUTELY sure**? 99.9% of the users no longer need to build their own kernel. You may simply need a kernel module/driver, in which case, you can use [elrepo](https://elrepo.org) or build your own kernel module (kmod/dkms)
-    * **Are you sure you do not just want a newer kernel version**? Newer kernels can be found at [elrepo](https://elrepo.org)
+    * Rocky Linux and most other EL derivatives were designed to function as a complete environment. Replacing critical components can affect how the system acts.
+    * Most users no longer need to build their own kernel. You may simply need a kernel module/driver or perhaps build your own kernel module (kmod/dkms)
 
-    As a final warning: If you break the kernel, you are on the hook for your system. Rocky Linux volunteers or developers are unable to assist you with these issues.
+    As a final warning: If you break the kernel, you are responsible for fixing resulting issues on your system.
 
 ## The Kernel
 
