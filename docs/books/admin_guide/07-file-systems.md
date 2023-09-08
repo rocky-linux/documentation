@@ -217,7 +217,7 @@ The main relevant commands are as follows:
 
 | Item                | PV       | VG       | LV        |
 |:---:                |:---:     |:---:     |:---:      |
-| scan                | pcscan   |vgscan    | lvscan    |
+| scan                | pvscan   |vgscan    | lvscan    |
 | create              | pvcreate | vgcreate | lvcreate  |
 | display             | pvdisplay| vgdisplay| lvdisplay |
 | remove              | pvremove | vgremove | lvremove  |
