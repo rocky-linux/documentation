@@ -12,7 +12,6 @@ tags:
 
 ## Objectives
 
-
 After completing this lab, you will be able to
 
 - Query packages for information
@@ -20,10 +19,7 @@ After completing this lab, you will be able to
 - Resolve some basic dependencies issues
 - Compile and install software from source
 
-
 Estimated time to complete this lab: 90 minutes
-
-
 
 ## Binary files and source files
 
@@ -34,7 +30,6 @@ You will find that one of your routine tasks as a Systems Administrator is softw
 - installing new software
 - uninstalling software
 - updating already installed software
-
 
 Software can be installed on Linux based systems using several methods. You can install from source or from precompiled binaries. The latter method is by far the easier way but it is also the least customizable. When you install from precompiled binaries most of the work has already been done for you – but even then, you do need to know the name and where to find the particular software you want.
 
@@ -77,7 +72,6 @@ Verify options (with -V or --verify):
       --nofiles                      don't verify files in package
       --nodeps                       don't verify package dependencies
       --noscript                     don't execute verify script(s)
-
 ```
 
 **INSTALLING, UPGRADING, AND REMOVING PACKAGES**
@@ -119,7 +113,8 @@ In this Lab you will learn how to use the RPM system and you will also install a
 
 #### To query packages for information.
 
-1.  To see a list of all the packages currently install on your local system type:
+1. To see a list of all the packages currently install on your local system type:
+   
     ```
     $ rpm -qa
     python3-gobject-base-*
@@ -127,31 +122,36 @@ In this Lab you will learn how to use the RPM system and you will also install a
     rocky-repos-*
     ...<OUTPUT TRUNCATED>...
     ```
-You should see a long list.
+    You should see a long list.
 
-2.  Let us delve a little deeper and learn more about one of the packages installed on the system. We will examine NetworkManager. We will use the --query (-q) and --info (-i) options with the `rpm` command. Type:
+2. Let us delve a little deeper and learn more about one of the packages installed on the system. We will examine NetworkManager. We will use the --query (-q) and --info (-i) options with the `rpm` command. Type:
+
     ```
     $ rpm -qi NetworkManager
     Name        : NetworkManager
     Epoch       : 1
     ...<OUTPUT TRUNCATED>...
     ```
-That is a great deal information (metadata)!
 
-3.  Let us say we are only interested in the summary field of the previous command. We can use rpm's query format option to filter the information that we get back from the query option.
+    That is a great deal information (metadata)!
 
- For example, to view only the summary field, type:
+3. Let us say we are only interested in the Summary field of the previous command. We can use rpm's --queryformat option to filter the information that we get back from the query option.
+
+    For example, to view only the Summary field, type:
+
     ```
     $ rpm -q --queryformat '%{summary}\n' NetworkManager
     ```
 
-4. To view both the version and summary fields of the installed NetworkManager package type:
+    The name of the field is case insensitive.
+
+4. To view both the Version and Summary fields of the installed NetworkManager package type:
+
     ```
     $ rpm -q --queryformat '%{version}  %{summary}\n' NetworkManager 
     ```
 
-
-5.  Type the command to view information about the bash package that is installed on the system.
+5. Type the command to view information about the bash package that is installed on the system.
 
     !!! note 
 
@@ -260,8 +260,8 @@ That is a great deal information (metadata)!
     ```
     $ rm wget-*.rpm  && dnf download wget
     ```
-    Check one more time that the newly downloaded package passes RPMs integrity checks. 
 
+    Check one more time that the newly downloaded package passes RPMs integrity checks. 
 
 ## Exercise 3
 
@@ -270,7 +270,6 @@ That is a great deal information (metadata)!
 While trying to install software on your system, you might stumble on issues of “failed dependencies”. This is especially common when using the low-level RPM utility to manually manage applications on a system.
 
 For example, if you try to install package “abc.rpm” the RPM installer might complain about some failed dependencies. It might tell you that package “abc.rpm” requires another package “xyz.rpm” to first be installed. The issue of dependencies comes up because software applications almost always depend on some other software or library. If a required program or shared library is not already present on the system, then that prerequisite will have to satisfied before installing the target application. 
-
 
 The low-level RPM utility often knows about the inter-dependencies between applications. But it does not usually know how or where to obtain the application or library needed to resolve the issue. Stated another way, RPM knows the *what* and *how* but does not have the built-in ability to answer the *where* question. This is where tools like `dnf`, `yum`, and so on shine. 
 
