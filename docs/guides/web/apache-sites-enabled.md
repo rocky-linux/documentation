@@ -20,11 +20,11 @@ tags:
 
         If you'd like to learn about the vi text editor, [here's a handy tutorial](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
 
-* Basic knowledge about installing and running web services
+* Basic knowledge of installing and running web services
 
 ## Introduction
 
-Rocky Linux has many ways for you to set up a website. This is just one method, using Apache on a single server. The design of this method is for multiple servers on one piece of hardware, but it can also act as a base configuration for a single site server as well.
+Rocky Linux has many ways for you to set up a website. This is just one method, using Apache on a single server. The design of this method is for multiple servers on one piece of hardware, but it can also act as a base configuration for a single site server.
 
 Historical fact: This server setup appears to have started with Debian-based systems, but it is perfectly adaptable to any Linux operating system running Apache.
 
@@ -43,7 +43,7 @@ dnf install httpd php
 
 ## Add extra directories
 
-This method uses a couple of additional directories, but they do not currently exist on the system. You need to add two directories in */etc/httpd/* called "sites-available" and "sites-enabled."
+This method uses a couple of additional directories, which do not currently exist on the system. You need to add two directories in */etc/httpd/* called "sites-available" and "sites-enabled."
 
 From the command-line enter: 
 
@@ -53,7 +53,7 @@ mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
 
 This will create both needed directories.
 
-You also need a directory where our sites are going to be. This can be anywhere, but a good way to keep things organized is to create a directory called "sub-domains". To decrease complexity, put this in /var/www: `mkdir /var/www/sub-domains/`.
+You also need a directory where our sites are going to be. This can be anywhere, but a good way to keep things organized is to create a "sub-domains" directory. Put this in /var/www: `mkdir /var/www/sub-domains/` to decrease complexity.
 
 ## Configuration
 
@@ -73,9 +73,9 @@ Our actual configuration files will be in */etc/httpd/sites-available* and you w
 
 **Why do you do this?**
 
-Say you have 10 websites all running on the same server on different IP addresses. Say that site B has some major updates, and you have to make changes to the configuration for that site. Say also that something goes wrong with the changes made, and when you restart `httpd` to read in the changes, `httpd` does not start. Not only will the site you were working on not start, but neither will the rest of them. With this method, you can remove the symbolic link for the site that caused the problem, and restart `httpd`. It will start working again, and you can go to work fixing the broken site configuration.
+Say you have 10 websites all running on the same server on different IP addresses. Say that site B has some major updates, and you have to make changes to the configuration for that site. Say also that something goes wrong with the changes made, and when you restart `httpd` to read in the changes, `httpd` does not start. Not only will the site you were working on not start, but neither will the rest of them. With this method, you can remove the symbolic link for the site that caused the problem, and restart `httpd`. It will start working again, and you fix the broken site's configuration.
 
-It sure takes the pressure off, knowing that the telephone is not going to ring with some upset customer or boss, because a service is off-line.
+It takes the pressure off, knowing the telephone will not ring with some upset customer or boss because a service is off-line.
 
 ### The site configuration
 
@@ -139,7 +139,7 @@ cp -Rf wiki_source/* /var/www/sub-domains/your-server-hostname/html/
 
 As stated earlier, every web server created these days _should_ be running with SSL/TLS (the secure socket layer).
 
-This process starts by generating a private key and a CSR (which stands for certificate signing request) and submitting the CSR to the certificate authority to buy the SSL/TLS certificate. The process of generating these keys is somewhat extensive.
+This process starts by generating a private key and CSR (certificate signing request) and submitting the CSR to the certificate authority to buy the SSL/TLS certificate. The process of generating these keys is somewhat extensive.
 
 If you are not familiar with SSL/TLS key generation examine: [Generating SSL Keys](../security/ssl_keys_https.md)
 
@@ -163,7 +163,7 @@ If you are new to the "tree" syntax for making directories, what the above says 
 
 "Make a directory called "ssl" and make three directories inside called ssl.key, ssl.crt, and ssl.csr."
 
-Just a note ahead of time: Storing the certificate signing request (CSR) file in the tree is not necessary, but it simplifies some things. If you ever need to re-issue the certificate from a different provider, it is a good idea to have a stored copy of the CSR file. The question becomes where can you store it so that you will remember, and storing it within the tree of your website is logical.
+Just a note ahead of time: Storing the certificate signing request (CSR) file in the tree is not necessary, but it simplifies some things. If you ever need to re-issue the certificate from a different provider, having a stored copy of the CSR is a good idea. The question becomes where can you store it so that you will remember, and storing it within the tree of your website is logical.
 
 Assuming that you have named your key, csr, and crt (certificate) files with the name of your site, and that you have them stored in _/root_, you will copy them up to their locations:
 
@@ -175,7 +175,7 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
 
 ### The site configuration - `https`
 
-Once you have generated your keys and purchased the SSL/TLS certificate, you can now move forward with the configuration of the website, using your keys.
+Once you have generated your keys and purchased the SSL/TLS certificate, you can move forward with the website configuration using your keys.
 
 For starters, break down the beginning of the configuration file. For instance, even though you still want to listen on port 80 (standard `http` port) for incoming requests, you do not want any of those requests to actually go to port 80.
 
@@ -245,7 +245,7 @@ So, breaking down this configuration further, after the normal portions of the c
 * SSLCertificateKeyFile - the key you generated when creating your certificate signing request
 * SSLCertificateChainFile - the certificate from your certificate provider, often called the intermediate certificate
 
-Next, take everything live and if there are no errors starting the web service and if going to your website reveals `https` without errors, you are ready to go.
+Take everything live and if no errors exist when starting the web service, and if going to your website reveals `https` without errors, you are ready to go.
 
 ## Taking it live
 
@@ -258,6 +258,6 @@ ln -s /etc/httpd/sites-available/your-server-hostname /etc/httpd/sites-enabled/
 ```
 
 
-This will create the link to the configuration file in *sites-enabled*, just like we want.
+This will create the link to the configuration file in *sites-enabled*.
 
 Now just start `httpd` with `systemctl start httpd`. Or restart it if it is already running: `systemctl restart httpd`, and assuming the web service restarts, you can now go and do some testing on your site.
