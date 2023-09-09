@@ -162,7 +162,7 @@ In this Lab you will learn how to use the RPM system and you will also install a
 
         The previous exercises were querying and working with packages that are already installed on the system. In the following exercises, we'll start off working with packages that are not yet installed. We'll use the DNF application to download the packages that we'll be using in the next steps.
 
-6.  First ensure that the `wget` application is not already installed on the system. Type:
+6. First ensure that the `wget` application is not already installed on the system. Type:
 
     ```
     $ rpm -q wget
@@ -183,7 +183,7 @@ In this Lab you will learn how to use the RPM system and you will also install a
     $ ls -lh wg*
     ```
 
-9.  Use the `rpm` command to query for information about the downloaded wget-*.rpm. Type:
+9. Use the `rpm` command to query for information about the downloaded wget-*.rpm. Type:
 
     ```
     $ rpm -qip wget-*.rpm
