@@ -217,7 +217,7 @@ Os comandos mais relevantes são os seguintes:
 
 |         Item          |    PV     |    VG     |    LV     |
 |:---------------------:|:---------:|:---------:|:---------:|
-|       procurar        |  pcscan   |  vgscan   |  lvscan   |
+|       procurar        |  pvscan   |  vgscan   |  lvscan   |
 |         criar         | pvcreate  | vgcreate  | lvcreate  |
 |        exibir         | pvdisplay | vgdisplay | lvdisplay |
 |        remover        | pvremove  | vgremove  | lvremove  |

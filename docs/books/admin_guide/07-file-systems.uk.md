@@ -217,7 +217,7 @@ $ sudo cfdisk /dev/sda
 
 |        Дія        |    PV     |    VG     |    LV     |
 |:-----------------:|:---------:|:---------:|:---------:|
-|    сканування     |  pcscan   |  vgscan   |  lvscan   |
+|    сканування     |  pvscan   |  vgscan   |  lvscan   |
 |     створення     | pvcreate  | vgcreate  | lvcreate  |
 |   відображення    | pvdisplay | vgdisplay | lvdisplay |
 |     видалення     | pvremove  | vgremove  | lvremove  |

@@ -217,7 +217,7 @@ LVM의 원리는 매우 간단합니다:
 
 |    항목    |    PV     |    VG     |    LV     |
 |:--------:|:---------:|:---------:|:---------:|
-|    스캔    |  pcscan   |  vgscan   |  lvscan   |
+|    스캔    |  pvscan   |  vgscan   |  lvscan   |
 |    생성    | pvcreate  | vgcreate  | lvcreate  |
 |    표시    | pvdisplay | vgdisplay | lvdisplay |
 |    제거    | pvremove  | vgremove  | lvremove  |
