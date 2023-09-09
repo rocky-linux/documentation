@@ -122,6 +122,7 @@ In this Lab you will learn how to use the RPM system and you will also install a
     rocky-repos-*
     ...<OUTPUT TRUNCATED>...
     ```
+    
     You should see a long list.
 
 2. Let us delve a little deeper and learn more about one of the packages installed on the system. We will examine NetworkManager. We will use the --query (-q) and --info (-i) options with the `rpm` command. Type:
@@ -152,6 +153,10 @@ In this Lab you will learn how to use the RPM system and you will also install a
     ```
 
 5. Type the command to view information about the bash package that is installed on the system.
+   
+    ```
+    $ rpm -qi bash
+    ```
 
     !!! note 
 
@@ -178,7 +183,7 @@ In this Lab you will learn how to use the RPM system and you will also install a
     $ ls -lh wg*
     ```
 
-9. Use the `rpm` command to query for information about the downloaded wget-*.rpm. Type:
+9.  Use the `rpm` command to query for information about the downloaded wget-*.rpm. Type:
 
     ```
     $ rpm -qip wget-*.rpm
