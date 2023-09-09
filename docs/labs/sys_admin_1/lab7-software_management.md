@@ -232,6 +232,44 @@ In this Lab you will learn how to use the RPM system and you will also install a
 
         You will notice that you did not have to refer to the full name of the `curl` package in the previous command. This is because `curl` is already installed. 
 
+#### Extended knowledge about package name
+
+* **Full package name** : When you download a package from another website (or trusted location), the name of the file is the full package name, such as -- htop-3.2.1-1.el8.x86_64.rpm. When using the `rpm` command to install/update this package, the object operated by the command must be the full name of the package, such as:
+    
+    ```
+    $ rpm -ivh htop-3.2.1-1.el8.x86_64.rpm
+    ```
+
+    ```
+    $ rpm -Uvh htop-3.2.1-1.el8.x86_64.rpm
+    ```
+
+    ```
+    $ rpm -qip htop-3.2.1-1.el8.x86_64.rpm
+    ```
+
+    ```
+    $ rpm -qlp wget-1.19.5-11.el8.x86_64.rpm
+    ```
+
+    The full name of the package follows a naming convention similar to this —— `[Package_Name]-[Version]-[Release].[OS].[Arch].rpm` or `[Package_Name]-[Version]-[Release].[OS].[Arch].src.rpm`
+
+* **Package name**: Because RPM uses a database to manage software, once the package installation is completed, the database will have corresponding records. At this time, the operating object of the `rpm` command only needs to type the package name. such as:
+
+    ```
+    $ rpm -qi bash
+    ```
+
+    ```
+    $ rpm -q systemd
+    ```
+
+    ```
+    $ rpm -ql chrony
+    ```
+
+
+
 ## Exercise 2
 
 ### Package integrity
