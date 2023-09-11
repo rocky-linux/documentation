@@ -16,7 +16,7 @@ tags:
 
 Here’s a short rundown of the ways Nginx stands out/features it has:
 
-* A basic web server (one would hope)
+* A basic web server 
 * A reverse proxy for directing traffic to multiple sites
 * A built-in load balancer for managing traffic to multiple websites
 * Built-in file caching for speed
@@ -36,7 +36,7 @@ It’s great! So just `sudo dnf install nginx`, right? Well, not exactly. We jus
     * You *really* want to be sure that new features and big-fixes won't break any third-party code or custom code of your own.
     * You want to stick with the Rocky Linux software repositories only.
 
-    There will be a tutorial at the end of this guide detailing how to enable and install the "stable" branch with minimal fuss.
+    A tutorial at the end of this guide will detail how to enable and install the "stable" branch with minimal fuss.
 
 ## Prerequisites and Assumptions
 
@@ -99,9 +99,9 @@ From there, you could just start dropping HTML files into the `/usr/share/nginx/
 
     If you are installing Nginx on a container such as LXD/LXC or Docker, you can just skip this part for now. The firewall should be handled by the host OS.
 
-If you try to view a web page at your machine’s IP address or domain name from another computer, you’re probably going to get a big fat nothing. Well, that’ll be the case as long as you have a firewall up and running.
+If you try to view a web page at your machine’s IP address or domain name from another computer, you’re probably going to get nothing. Well, that’ll be the case as long as you have a firewall up and running.
 
-To open up the necessary ports so that you can actually "see" your web pages, we will use Rocky Linux's build-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`. There are two ways to do it: the official way, and the manual way. *In this instance, the official way is best,* but you should know both for future reference.
+To open up the necessary ports so that you can actually "see" your web pages, we will use Rocky Linux's build-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`. There are two ways to do it: the official and manual. *In this instance, the official way is best,* but you should know both for future reference.
 
 The official way opens up the firewall to the `http` service, which is of course the service that handles web pages. Just run this:
 
@@ -111,11 +111,11 @@ sudo firewall-cmd --permanent --zone=public --add-service=http
 
 Let’s break this down:
 
-* The `-–permanent` flag tells the firewall to make sure this configuration is used every time the firewall is restarted, and when the server itself is restarted.
+* The `-–permanent` flag tells the firewall to ensure this configuration is used every time the firewall is restarted and when the server is restarted.
 * `–-zone=public` tells the firewall to take incoming connections to this port from everyone.
 * Lastly, `--add-service=http` tells `firewalld` to let all HTTP traffic through to the server.
 
-Now here's the manual way to do it. It's pretty much the same, except you're specifically opening up port 80, which is what the HTTP uses.
+Now here's the manual way to do it. It's pretty much the same, except you're specifically opening up port 80 that HTTP uses.
 
 ```bash
 sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
@@ -123,7 +123,7 @@ sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
 
 * `–-add-port=80/tcp` tells the firewall to accept incoming connections over port 80, as long as they’re using the Transmission Control Protocol, which is what you want in this case.
 
-To repeat the process for SSL/HTTPS traffic, just run the command again, and change the service and/or the port number.
+For SSL/HTTPS traffic, just run the command again and change the service or the port number.
 
 ```bash
 sudo firewall-cmd --permanent --zone=public --add-service=https
@@ -180,13 +180,13 @@ curl -I http://[your-ip-address]
 
 While you *can* just drop your website into the default directory and go (and this might be fine for *Nginx* when it’s running inside a container, or on a test/development server), it’s not what we call best practice. Instead, it’s a good idea to create a specific Linux user on your system for your website, and put your website files in a directory made just for that user.
 
-If you want to build multiple websites, it’s actually a good idea to create multiple users and root directories, both for the sake of organization and the sake of security.
+If you want to build multiple websites, it’s a good idea to create various users and root directories for organization and security.
 
 In this guide, I’m going to have just the one user: a handsome devil named “www”. Deciding where to put your website files gets more complicated.
 
-Depending on your server setup, you can put your website files in a couple of different places. If you're on a bare-metal (physical) server, or you're installing `nginx` directly on a VPS, you probably have Security Enhanced Linux (SELinux) running. SELinux is a tool that does a lot to protect your machine, but it also kind of dictates where you can put certain things, like web pages.
+You can put your website files in several places depending on your server setup. If you're on a bare-metal (physical) server, or you're installing `nginx` directly on a VPS, you probably have Security Enhanced Linux (SELinux) running. SELinux is a tool that does a lot to protect your machine, but it also kind of dictates where you can put certain things, like web pages.
 
-So if you're installing `nginx` directly to your machine, then you'll want to put your websites in subdirectories of the default root folder. In this case, the default root is `/usr/share/nginx/html`, so the website for the “www” user might go into `/usr/share/nginx/html/www`.
+So if you're installing `nginx` directly to your machine, you'll want to put your websites in the default root folder subdirectories. In this case, the default root is `/usr/share/nginx/html`, so the website for the “www” user might go into `/usr/share/nginx/html/www`.
 
 If you're running `nginx` in a container such as LXD/LXC, however, SELinux will likely *not* be installed, and you can put your files wherever you like. In this case, I like to put all of a user's website files under a directory in a normal home folder, like so: `/home/www/`.
 
@@ -262,7 +262,7 @@ Any HTML files in your new root folder should now be browsable from… your brow
 
 ### Changing File Permissions
 
-To make sure that `nginx` can read, write to, and execute any files in the website directory, permissions need to be set properly.
+Permissions must be set correctly to ensure that `nginx` can read, write, and execute any files in the website directory.
 
 First, make sure that all files in the root folder are owned by the server user and its user group with:
 
@@ -270,7 +270,7 @@ First, make sure that all files in the root folder are owned by the server user 
 sudo chown -R www:www /usr/share/nginx/html/www
 ```
 
-And then, to make sure that users who want to actually browse your website can actually see the pages, you should run these commands (and yes, those semicolons matter):
+And then, to ensure that users who want to browse your website can actually see the pages, run these commands (and yes, those semicolons matter):
 
 ```bash
 sudo find /usr/share/nginx/html/www -type d -exec chmod 555 "{}" \;
@@ -283,7 +283,7 @@ That basically gives everyone the right to look at files on the server, but not 
 
 As of now, our [guide to getting SSL certificates with certbot](../security/generating_ssl_keys_lets_encrypt.md) has been updated with some basic instructions for `nginx`. Go give that a look, as it has full instructions for installing certbot, as well as generating the certificates.
 
-The time is coming when browsers might just stop letting people see sites without certificates at all, so make sure you get one for every site.
+The time is coming when browsers might stop letting people see sites without certificates, so ensure you get one for every site.
 
 ## Additional Configuration Options and Guides
 
@@ -321,7 +321,7 @@ Choose the highest number on the list, and enable its module like so:
 sudo dnf module enable nginx:1.20
 ```
 
-You'll be asked if you're sure you want to do this, so just choose `Y` as usual. Then, use the default command to install `nginx`:
+You'll be asked if you're sure you want to do this, so just enter `Y`. Then, use the default command to install `nginx`:
 
 ```bash
 sudo dnf install nginx
@@ -351,6 +351,6 @@ sudo setsebool httpd_can_network_connect 1 -P
 
 ## Conclusion
 
-The basic installation and configuration of `nginx` are easy, even if it’s more complicated than it should be to get the latest version. But, just follow the steps, and you’ll have one of the best server options out there up and running quickly.
+The basic installation and configuration of `nginx` are easy, even if it’s more complicated than it should be to get the latest version. But follow the steps, and you’ll have one of the best server options up and running quickly.
 
 Now you just have to go and build yourself a website? What could that take, another ten minutes? *Sobs quietly in Web Designer*
