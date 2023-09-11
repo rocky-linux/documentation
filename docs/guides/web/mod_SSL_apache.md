@@ -5,16 +5,16 @@ contributors: Steven Spencer, David Hensley
 update: 20-Jan-2022
 ---
 
-# 'mod_ssl' on Rocky Linux in an httpd Apache Web-Server Environment
+# `mod_ssl` on Rocky Linux in an Apache web server environment
 
-Apache Web-Server has been used for many years now; 'mod_ssl' is used to provide greater security for the Web-Server and can be installed on almost any version of Linux, including Rocky Linux. The installation of 'mod_ssl' will be part of the creation of a Lamp-Server for Rocky Linux.
+The Apache web server has existed for many years now. `mod_ssl` provides greater security for the web server and is installable on almost any version of Linux.
 
-This procedure is designed to get you up and running with Rocky Linux using 'mod_ssl' in an Apache Web-Server environment..
+This procedure will get you up and running with Rocky Linux and `mod_ssl` in an Apache web server environment.
 
 ## Prerequisites
 
-* A Workstation or Server, preferably with Rocky Linux already installed.
-* You should be in the Root environment or type `sudo` before all of the commands you enter.
+* A workstation or server, preferably with Rocky Linux already installed.
+* Able to run commands as *root*  or `sudo` to elevate privileges.
 
 ## Install Rocky Linux Minimal
 
@@ -23,23 +23,23 @@ When installing Rocky Linux, we used the following sets of packages:
 * Minimal
 * Standard
 
-## Run System Update
+## Run updates
 
-First, run the system update command to let the server rebuild the repository cache, so that it could recognize the packages available.
+First, run the system update command to let the server rebuild the repository cache to recognize the packages available.
 
 `dnf update`
 
-## Enabling Repositories
+## Enabling repositories
 
-With a conventional Rocky Linux Server Installation all necessary Repositories should be in place.
+With a conventional Rocky Linux server installation, all necessary repositories will be in place.
 
-## Check The Available Repositories
+## Check the available repositories
 
-Just to be sure check your Repository Listing with:
+Just to be sure check your repository listing with:
 
 `dnf repolist`
 
-You should get the following back showing all of the enabled repositories:
+You will get the following:
 
 ```
 appstream                                                        Rocky Linux 8 - AppStream
@@ -48,18 +48,18 @@ extras                                                           Rocky Linux 8 -
 powertools                                                       Rocky Linux 8 - PowerTools
 ```
 
-## Installing Packages
+## Installing packages
 
-To install 'mod_ssl', run:
+To install `mod_ssl`, run:
 
 `dnf install mod_ssl`
 
-To enable the 'mod_ssl' module, run:
+To enable the `mod_ssl` module, run:
 
 `apachectl restart httpd`
 `apachectl -M | grep ssl`
 
-You should see an output as such:
+You will see:
 
   `ssl_module (shared)`
 
@@ -72,11 +72,13 @@ firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
 ```
 
-At this point you should be able to access the Apache Web-Server via HTTPS. Enter `https://your-server-ip` or `https://your-server-hostname` to confirm the 'mod_ssl' configuration.
+Ensure that your goal is to have the website open to the world when you add this rule! If not, change the zone or configure the firewall to correct that.
 
-## Generate SSL Certificate
+At this point you should be able to access the Apache web server via HTTPS. Enter `https://your-server-ip` or `https://your-server-hostname` to confirm the `mod_ssl` configuration.
 
-To generate a new self-signed certificate for Host rocky8 with 365 days expiry, run:
+## Generate SSL/TLS certificate
+
+To generate a self-signed certificate for host rocky8 with 365 days expiry, run:
 
 `openssl req -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/httpd.key -x509 -days 365 -out /etc/pki/tls/certs/httpd.crt`
 
@@ -103,7 +105,7 @@ Organizational Unit Name (eg, section) []:
 Common Name (eg, your name or your server's hostname) []:rocky8
 Email Address []:
 ```
-After this command completes execution, the following two SSL files will be created, run:
+After this command completes, the following two SSL/TLS files will be there:
 
 ```
 ls -l /etc/pki/tls/private/httpd.key /etc/pki/tls/certs/httpd.crt
@@ -112,13 +114,13 @@ ls -l /etc/pki/tls/private/httpd.key /etc/pki/tls/certs/httpd.crt
 -rw-------. 1 root root 1704 Jan 29 16:05 /etc/pki/tls/private/httpd.key
 ```
 
-## Configure Apache Web-Server with New SSL Certificates
+## Configure Apache web server with the SSL/TLS certificates
 
-To include your newly created SSL certificate into the Apache web-server configuration open the ssl.conf file by running:
+To include your newly created SSL/TLS certificate into the Apache web server configuration open the `ssl.conf` file by running:
 
 `nano /etc/httpd/conf.d/ssl.conf`
 
-Then change the following lines:
+Change the following lines:
 
 FROM:
 ```
@@ -131,17 +133,17 @@ SSLCertificateFile /etc/pki/tls/certs/httpd.crt
 SSLCertificateKeyFile /etc/pki/tls/private/httpd.key
 ```
 
-Then reload the Apache Web-Server by running:
+Reload the Apache web server by running:
 
 `systemctl reload httpd`
 
-## Test the 'mod_ssl' configuration
+## Test the `mod_ssl` configuration
 
 Enter the following in a web browser:
 
 `https://your-server-ip` or `https://your-server-hostname`
 
-## To Redirect All HTTP Traffic To HTTPS
+## To redirect all HTTP traffic to HTTPS
 
 Create a new file by running:
 
@@ -158,16 +160,16 @@ Insert the following content and save file, replacing "your-server-hostname" wit
 </VirtualHost/>
 ```
 
-Apply the change when reloading the Apache service by running:
+Apply the change by running:
 
 `systemctl reload httpd`
 
-The Apache Web-Server will now be configured to  redirect any incoming traffic from `http://your-server-hostname` to `https://your-server-hostname` URL.
+The Apache web server will redirect any incoming traffic from `http://your-server-hostname` to `https://your-server-hostname` URL.
 
-## Final Steps
+## Final steps
 
-We have seen how to install and configure 'mod_ssl'. And, create a new SSL Certificate in order to run a Web-Server under HTTPS Service.
+You have seen how to install and configure `mod_ssl`, and create a new SSL/TLS certificate to run a web server under HTTPS service.
 
 ## Conclusion
 
-This tutorial will be part of the tutorial covering installing a LAMP (Linux, Apache Web-Server, Maria Database-Server, and PHP Scripting Language), Server on Rocky Linux version 8.x. Eventually we will be including images to help better understand the installation.
+This tutorial shows the basic installation and use of `mod_ssl`.
