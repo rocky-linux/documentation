@@ -13,27 +13,27 @@ tags:
 
 **PHP** (**P**HP **H**ypertext **P**reprocessor) is a source scripting language, specially designed for web application development. In 2021, PHP represented a little less than 80% of the web pages generated in the world. PHP is open-source and is the core of the most famous CMS (WordPress, Drupal, Joomla!, Magento, ...).
 
-**PHP-FPM** (**F**astCGI **P**rocess **M**anager) is integrated to PHP since its version 5.3.3. The FastCGI version of php brings additional functionalities.
+**PHP-FPM** (**F**astCGI **P**rocess **M**anager) is integrated to PHP since its version 5.3.3. The FastCGI version of PHP brings additional functionalities.
 
 ## Generalities
 
-**CGI** (**C**ommon **G**ateway **I**nterface) and **FastCGI** allow communication between the web server (Apache, Nginx, ...) and a development language (Php, Python, Java):
+**CGI** (**C**ommon **G**ateway **I**nterface) and **FastCGI** allow communication between the web server (Apache, Nginx, ...) and a development language (PHP, Python, Java):
 
 * In the case of **CGI**, each request leads to the creation of a **new process**, which is less efficient in terms of performance.
 * **FastCGI** relies on a **certain number of processes** for the treatment of its client requests.
 
 PHP-FPM, **in addition to better performances**, brings:
 
-* The possibility of better **partitioning the applications**: launching processes with different uid/gid, with personalized php.ini files,
+* The possibility of better **partitioning the applications**: launching processes with different uid/gid, with personalized `php.ini` files,
 * The management of the statistics,
 * Log management,
 * Dynamic management of processes and restart without service interruption ('graceful').
 
 !!! Note
 
-    Since Apache has a php module, the use of php-fpm is more commonly used on an Nginx server.
+    Since Apache has a PHP module, php-fpm is more commonly used on an Nginx server.
 
-## Choose a php version
+## Choose a PHP version
 
 Rocky Linux, like its upstream, offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [ supported versions ](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
 
@@ -74,19 +74,19 @@ Complete!
 
 !!! Note
 
-    You cannot currently install php 8 from the AppStream repositories. For this, you will have to go through the REMI repository. This installation is not covered in this document.
+    You cannot currently install PHP 8 from the AppStream repositories. For this, you will have to go through the REMI repository. This installation is not covered in this document.
 
-You can now proceed to the installation of the php engine.
+You can now proceed to the installation of the PHP engine.
 
 ## PHP cgi mode
 
-First, let's see how to install and use php in its CGI mode. We will only be able to make it work with the Apache web server and its `mod_php` module. We will see, later in this document, in the FastCGI part (php-fpm) how to integrate PHP in Nginx (but also Apache).
+First, let's see how to install and use PHP in CGI mode. We can only make it work with the Apache web server and its `mod_php` module. We will see, later in this document, in the FastCGI part (php-fpm) how to integrate PHP in Nginx (but also Apache).
 
 ### Installation
 
-The installation of php is quite trivial, since it consists in installing the main package as well as the few php modules that you will need.
+The installation of PHP is relatively trivial, since it consists of installing the main package and the few modules you will need.
 
-The example below installs php with the modules that are usually installed with it.
+The example below installs PHP with the modules usually installed with it.
 
 ```
 $ sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
@@ -106,7 +106,7 @@ Zend Engine v3.4.0, Copyright (c) Zend Technologies
 
 ### Apache integration
 
-To serve php pages in cgi mode, you will have to install the apache server, configure it, activate it and start it.
+To serve PHP pages in CGI mode, you must install the apache server, configure it, activate it, and start it.
 
 * Installation:
 
@@ -129,7 +129,7 @@ $ sudo firewall-cmd --add-service=http --permanent
 $ sudo firewall-cmd --reload
 ```
 
-The default vhost should work out of the box. PHP provides a `phpinfo()` function that generates a summary table of its configuration. It's very useful to test the good working of php. However, be careful not to leave such test files lying around on your servers, they represent a huge security risk for your infrastructure.
+The default vhost should work out of the box. PHP provides a `phpinfo()` function that generates a summary table of its configuration. It's very useful to test the good working of PHP. However, be careful not to leave such test files on your servers. They represent a huge security risk for your infrastructure.
 
 Create the file `/var/www/html/info.php` (`/var/www/html` being the default vhost directory of the default apache configuration):
 
@@ -147,7 +147,7 @@ Use a web browser to check that the server is working properly by going to the p
 
 ## PHP-FPM (FastCGI)
 
-As we highlighted earlier in this document, there are many advantages to switching web hosting to php-fpm mode.
+As we highlighted earlier in this document, there are many advantages to switching web hosting to PHP-FPM mode.
 
 ### Installation
 
@@ -183,7 +183,7 @@ daemonize = yes
 
 As you can see, the files in the `/etc/php-fpm/` directory with the `.conf` extension are always included.
 
-By default, a php process pool, named `www`, is declared in `/etc/php-fpm.d/www.conf`.
+By default, a PHP process pool, named `www`, is declared in `/etc/php-fpm.d/www.conf`.
 
 ```
 [www]
@@ -211,7 +211,7 @@ php_value[soap.wsdl_cache_dir]  = /var/lib/php/wsdlcache
 
 | Instructions | Description                                                   |
 |--------------|---------------------------------------------------------------|
-| `[pool]`     | Process pool name. The configuration file can be composed of several process pools (the name of the pool in brackets starts a new section). |
+| `[pool]`     | Process pool name. The configuration file can comprise several process pools (the name of the pool in brackets starts a new section). |
 | `listen`     | Defines the listening interface or the unix socket used. |
 
 #### Configuring the way to access php-fpm processes
@@ -228,17 +228,17 @@ Or via a Unix socket:
 
 !!! Note
 
-    The use of a socket when the web server and the php server are on the same machine allows the removal of the TCP/IP layer and optimizes the performances.
+    Using a socket when the web server and PHP server are on the same machine removes the TCP/IP layer and optimizes the performances.
 
-When working via an interface, you have to configure `listen.owner`, `listen.group`, `listen.mode` to specify the owner, the owner group and the rights of the Unix socket. **Warning:** both servers (web and php) must have access rights on the socket.
+When working via an interface, you have to configure `listen.owner`, `listen.group`, `listen.mode` to specify the owner, the owner group and the rights of the Unix socket. **Warning:** both servers (web and PHP) must have access rights on the socket.
 
-When working via a socket, you have to configure `listen.allowed_clients` to restrict access to the php server to certain IP addresses.
+When working via a socket, you have to configure `listen.allowed_clients` to restrict access to the PHP server to certain IP addresses.
 
 Example: `listen.allowed_clients = 127.0.0.1`
 
 #### Static or dynamic configuration
 
-The processes of php-fpm can be managed statically or dynamically.
+The processes of PHP-FPM can be managed statically or dynamically.
 
 In static mode, the number of child processes is set by the value of `pm.max_children`;
 
@@ -315,7 +315,7 @@ A value of 0 for `request_slowlog_timeout` disables logging.
 
 ### NGinx integration
 
-The default setting of nginx already includes the necessary configuration to make php work with PHP-FPM.
+The default setting of nginx already includes the necessary configuration to make PHP work with PHP-FPM.
 
 The configuration file `fastcgi.conf` (or `fastcgi_params`) is located under `/etc/nginx/`:
 
@@ -349,7 +349,7 @@ fastcgi_param  REDIRECT_STATUS    200;
 
 In order for nginx to process `.php` files, the following directives must be added to the site configuration file:
 
-If php-fpm is listening on port 9000:
+If PHP-FPM is listening on port 9000:
 
 ```
 location ~ \.php$ {
@@ -369,7 +369,7 @@ location ~ \.php$ {
 
 ### Apache integration
 
-The configuration of apache to use a php pool is quite simple. You just have to use the proxy modules with a `ProxyPassMatch` directive, for example:
+The configuration of apache to use a PHP pool is quite simple. You just have to use the proxy modules with a `ProxyPassMatch` directive, for example:
 
 ```
 <VirtualHost *:80>
@@ -387,9 +387,9 @@ The configuration of apache to use a php pool is quite simple. You just have to 
 
 ```
 
-### Solid configuration of php pools
+### Solid configuration of PHP pools
 
-It is essential, to optimize the quantity of requests which will be able to be served, to analyze the memory used by the php scripts and thus to optimize the maximum quantity of launched threads.
+It is essential to optimize the number of requests that will be able to be served and to analyze the memory used by the PHP scripts, to optimize the maximum amount of launched threads.
 
 First of all, we need to know the average amount of memory used by a PHP process, with the command:
 
@@ -397,7 +397,7 @@ First of all, we need to know the average amount of memory used by a PHP process
 while true; do ps --no-headers -o "rss,cmd" -C php-fpm | grep "pool www" | awk '{ sum+=$1 } END { printf ("%d%s\n", sum/NR/1024,"Mb") }' >> avg_php_proc; sleep 60; done
 ```
 
-After a while, this should give us a pretty accurate idea of the average memory footprint of a php process on this server.
+After a while, this should give us a pretty accurate idea of the average memory footprint of a PHP process on this server.
 
 For the rest of this document, let's say that the result is a memory footprint of 120MB per process at full load.
 
@@ -426,7 +426,7 @@ with:
 
 The `opcache` (Optimizer Plus Cache) is the first level of cache on which we can influence.
 
-It keeps in memory the compiled php scripts which strongly impacts the execution of the web pages (removes the reading on disk of the script + the compilation time).
+It keeps the compiled PHP scripts in memory, which strongly impacts the execution of the web pages (removes the reading on disk of the script + the compilation time).
 
 To configure it, we must work on:
 
@@ -438,7 +438,7 @@ By configuring correctly
 
 
 
-* the number of php scripts to cache (number of keys + maximum number of scripts)
+* the number of PHP scripts to cache (number of keys + maximum number of scripts)
 * the number of strings to cache
 
 To install it:
