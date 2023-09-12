@@ -53,7 +53,7 @@ Use the `sha256sum` utility to verify the integrity of the ISO file against corr
 sha256sum -c CHECKSUM --ignore-missing
 ```
 
-This will check the integrity of the ISO file downloaded previously, provided that it is in the same directory. The output should show:
+This will check the integrity of the previously downloaded ISO file, provided it is in the same directory. The output should show:
 
 ```
 Rocky-8.7-x86_64-minimal.iso: OK
@@ -63,9 +63,9 @@ Rocky-8.7-x86_64-minimal.iso: OK
 
 !!! Tip
 
-    Before starting the installation proper, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
+    Before installing, the system’s Unified Extensible Firmware Interface (UEFI) or Basic Input/Output System (BIOS) should be preconfigured to boot from the correct medium.
 
-If the computer is setup to boot from the media that has the ISO file, we can begin the installation process.
+We can begin the installation process if the computer is set up to boot from the media that has the ISO file.
 
 Insert and boot from the installation medium (optical disk, USB flash drive, and so on).
 
@@ -83,7 +83,7 @@ A quick media verification step will take place. This media verification step ca
 
 After the media check runs to completion and the media is successfully verified to be usable, the installer will automatically continue to the next screen.
 
-Select the language you want to use to perform the installation in this screen. For this guide, we select *English (United States)*. Then click the <kbd>Continue</kbd> button.
+Select the language you want to use for the installation on this screen. For this guide, we select *English (United States)*. Then click the <kbd>Continue</kbd> button.
 
 ## Installation Summary
 
@@ -99,7 +99,7 @@ We will delve into each of these sections next and make changes where necessary.
 
 ### Localization Section
 
-This section is used for customizing items related to the locale of the system. This includes – Keyboard, Language Support, Time and Date.
+This section is used for customizing items related to the system's locale. This includes – Keyboard, Language Support, Time and Date.
 
 #### Keyboard
 
@@ -131,7 +131,7 @@ Since we are performing our installation using a full Rocky 8 image, you will no
 
 !!! Tip
 
-    The installation Source area is where you can opt to perform a network-based installation. For a network-based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet. To perform a network-based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`. Click `Done`.
+    The installation Source area is where you can opt to perform a network-based installation. For a network-based installation, you need first to ensure that a network adapter on the target system is configured correctly and can reach the internet. To perform a network-based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`. Click `Done`.
 
 #### Software Selection
 
@@ -168,7 +168,7 @@ The final task of the installation procedure deals with network configuration, w
 
     After you click on the <kbd>Network & Hostname</kbd> option, all correctly detected network interface hardware (such as Ethernet, wireless network cards, and so on) will be listed in the left pane of the network configuration screen. Depending on the Linux distribution and the specific hardware setup, Ethernet devices in Linux have names similar to `eth0`, `eth1`, `ens3`, `ens4`, `em1`, `em2`, `p1p1`, `enp0s3`, and so on.
 
-For each interface, you can either configure it using DHCP or manually set the IP address. If you choose to configure manually, be sure to have all the pertinent information ready, such as the IP address, netmask, and so on.
+You can either configure each interface using DHCP or manually set the IP address. If you choose to configure manually, be sure to have all the pertinent information ready, such as the IP address, netmask, and so on.
 
 Clicking the <kbd>Network & Hostname</kbd> button in the main *Installation Summary* screen opens the corresponding configuration screen. Among other things, you have the option to configure the hostname of the system (the name defaults to `localhost.localdomain`).
 
