@@ -4,7 +4,7 @@ author: Antoine Le Morvan
 contributors: Steven Spencer, markooff, Franco Colussi
 tags:
   - security
-  - Configurazione del firewall
+  - SELinux
 ---
 
 # Sicurezza SELinux
@@ -21,9 +21,9 @@ Prima di iniziare, dovresti sapere che SELinux è destinato principalmente alle 
 
 **SELinux** (Security Enhanced Linux) è un sistema Mandatory Access Control.
 
-Prima della comparsa dei sistemi MAC, la sicurezza di gestione degli accessi standard era basata su sistemi **DAC** (**D**iscretionary **A**ccess **C**ontrol). Un'applicazione, o un demone gestito con diritti **UID** o **SUID** (**S**et **O**wner **U**ser **I**d) che ha il permesso di valutare le autorizzazioni (file, socket e altri processi..) corrispondenti a quell'utente. Questa operazione non limita a sufficienza i diritti di un programma corrotto, consentendole potenzialmente di accedere ai sottosistemi del sistema operativo.
+Prima della comparsa dei sistemi MAC, la sicurezza di gestione degli accessi standard era basata su sistemi **DAC** (**D**iscretionary **A**ccess **C**ontrol). Un'applicazione, o un demone gestito con diritti **UID** o **SUID** (**S**et **O**wner **U**ser **I**d) che ha il permesso di valutare le autorizzazioni (file, socket e altri processi..) corrispondenti a quell'utente. Questa operazione non limita sufficientemente i diritti di un programma corrotto, consentendogli potenzialmente di accedere ai sottosistemi del sistema operativo.
 
-Un sistema MAC rafforza la separazione delle informazioni di riservatezza e integrità nel sistema per ottenere un sistema di contenimento. Il sistema di contenimento è indipendente dal sistema tradizionale dei diritti e non esiste alcuna nozione di superutente.
+Un sistema MAC rafforza la separazione delle informazioni di riservatezza e integrità per ottenere un sistema di contenimento. Il sistema di contenimento è indipendente dal sistema tradizionale dei diritti e non esiste alcuna nozione di superutente.
 
 Con ogni chiamata di sistema, il kernel interroga SELinux per vedere se permette di eseguire l'azione.
 
@@ -39,15 +39,15 @@ Il contesto di sicurezza SELinux è definito dal trio **identity**+**role**+**do
 
 L'identità di un utente dipende direttamente dal suo account Linux. A un'identità è assegnato uno o più ruoli, ma ad ogni ruolo corrisponde un dominio, e uno solo.
 
-È in base al settore del contesto di sicurezza (e quindi al ruolo) che vengono valutati i diritti di un utente su una risorsa.
+È in base al dominio del contesto di sicurezza (e quindi al ruolo) che vengono valutati i diritti dell'utente su una risorsa.
 
 ![Contesto SELinux](../images/selinux_002.png)
 
-I termini "dominio" e "tipo" sono simili. Tipicamente "dominio" viene utilizzato quando si riferisce a un processo, mentre "tipo" si riferisce a un oggetto.
+I termini "dominio" e "tipo" sono simili. In genere, "domain" si riferisce a un processo, mentre "type" si riferisce a un oggetto.
 
 La convenzione dei nomi è: **user_u:role_r:type_t**.
 
-Il contesto di sicurezza è assegnato a un utente al momento della sua connessione, in base ai suoi ruoli. Il contesto di sicurezza di un file è definito dal comando `chcon` (**ch**ange **con**text), che vedremo più avanti in questo documento.
+Il contesto di sicurezza viene assegnato a un utente durante la sua connessione, in base al suo ruolo. Il contesto di sicurezza di un file è definito dal comando `chcon` (**ch**ange **con**text), che vedremo più avanti in questo documento.
 
 Considerare i seguenti pezzi del puzzle SELinux:
 
@@ -64,7 +64,7 @@ I diritti di un processo dipendono dal suo contesto di sicurezza.
 
 Per impostazione predefinita, il contesto di sicurezza del processo è definito dal contesto (identità + ruolo + dominio) dell'utente che lo avvia.
 
-Un dominio che è un tipo specifico (nel senso SELinux) collegato a un processo ed ereditato (normalmente) dall'utente che lo ha lanciato, i suoi diritti sono espressi in termini di autorizzazione o rifiuto su tipi collegati agl oggetti:
+Un domain è un tipo specifico (nel senso di SELinux) legato a un processo ed ereditato (normalmente) dall'utente che lo ha lanciato. I suoi diritti sono espressi in termini di autorizzazione o rifiuto su types legati agli oggetti:
 
 Un processo il cui contesto ha la sicurezza __dominio D__ può accedere a oggetti di __tipo T__.
 
@@ -82,7 +82,7 @@ Questo meccanismo è essenziale in quanto limita il più possibile i diritti di 
 
 ## Gestione
 
-Il comando `semanage` viene utilizzato per gestire le regole SELinux.
+Il comando `semanage` gestisce le regole SELinux.
 
 ```
 semanage [object_type] [options]
@@ -325,8 +325,8 @@ sudo chcon -vR -t httpd_sys_content_t /data/websites/
 
 | Opzioni        | Osservazioni                         |
 | -------------- | ------------------------------------ |
-| `-v`           | Passa in modalità dettagliata        |
-| `-R`           | Applica ricorsione                   |
+| `-v`           | Passa alla modalità dettagliata      |
+| `-R`           | Applica la ricorsione                |
 | `-u`,`-r`,`-t` | Si applica a un utente, ruolo o tipo |
 
 Il comando `restorecon` ripristina il contesto di sicurezza predefinito (quello fornito dalle regole):
