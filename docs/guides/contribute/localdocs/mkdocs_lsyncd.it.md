@@ -69,9 +69,16 @@ lxc exec mkdocs bash
     ```
 
 
-    Si può quindi saltare l'installazione di `python3-pip` nei pacchetti che si trovano di seguito.
+    Se si utilizza Rocky Linux 8.x, per l'installazione dei pacchetti utilizzare la seguente procedura:
 
-Avrete bisogno di alcuni pacchetti per fare quanto necessario:
+    ```
+    dnf install git openssh-server rsync
+    ```
+
+
+    **Non** installare `python3-pip'
+
+Per Rocky Linux 9.x sono necessari alcuni pacchetti (per l'installazione dei pacchetti 8.x vedere "Modifiche al file requirements.txt per 8.x"):
 
 ```
 dnf install git openssh-server python3-pip rsync
@@ -258,7 +265,7 @@ Per ora, si presume che si stia usando una workstation Rocky Linux e che si stia
 
 !!! Note "Nota"
 
-    L'utente root deve eseguire il demone, quindi è necessario essere root per creare i file di configurazione e i registri. Per questo si presuppone `sudo -s`.
+    L'utente root deve eseguire il demone, quindi è necessario essere root per creare i file di configurazione e i logs. A tal fine si assume `sudo -s`.
 
 È necessario avere a disposizione dei file di registro su cui `lsyncd` possa scrivere:
 
