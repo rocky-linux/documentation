@@ -69,9 +69,16 @@ lxc exec mkdocs bash
     ```
 
 
-    Після цього ви можете пропустити встановлення `python3-pip` у пакетах, наведених нижче.
+    Якщо ви використовуєте Rocky Linux 8.x, використовуйте наступне для встановлення пакета:
 
-Вам знадобиться кілька пакетів, щоб зробити те, що вам потрібно:
+    ```
+    dnf install git openssh-server rsync
+    ```
+
+
+    **НЕ** встановлюйте `python3-pip`
+
+Для Rocky Linux 9.x вам знадобиться кілька пакетів (дивіться «Зміни в requirements.txt для 8.x» для встановлення пакета 8.x!):
 
 ```
 dnf install git openssh-server python3-pip rsync
