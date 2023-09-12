@@ -67,10 +67,15 @@ lxc exec mkdocs bash
     sudo dnf module enable python38
     sudo dnf install python38
     ```
+    
+    If you are using Rocky Linux 8.x, use the following for package installation:
 
-    You can then skip installing `python3-pip` in the packages found below.
+    ```
+    dnf install git openssh-server rsync
+    ```
+    Do **NOT** install `python3-pip`
 
-You will need a few packages to do what you need to do:
+For Rocky Linux 9.x you will need a few packages (see "Changes in requirements.txt for 8.x" for 8.x package installation!):
 
 ```
 dnf install git openssh-server python3-pip rsync
