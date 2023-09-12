@@ -77,14 +77,14 @@ A common source of failure encountered during the kernel build process may be ca
     > sudo dnf -y groupinstall 'Development Tools'
     ```
 
-2. Some other libraries, header files and applications that you might need can also be obtained by installing the following packages. Type:
+2. Some other libraries, header files, and applications can also be obtained by installing the following packages. Type:
 
     ```
     > sudo dnf -y install \
     ncurses-devel openssl-devel elfutils-libelf-devel python3
     ```
 
-3. Next, we need some other utilities that are only available in some supported 3rd party repositories. One of such repositories is the Powertools repo. Let’s enable that repo on our Rocky system. Type:
+3. Next, we need other utilities only available in some supported 3rd party repositories. One of such repositories is the Powertools repo. Let’s enable that repo on our Rocky system. Type:
 
     ```
     > sudo dnf config-manager --set-enabled powertools
@@ -106,14 +106,14 @@ The version of the kernel that we are going to build in the following section is
 
 Let’s begin the process.
 
-1. First, use the following curl command to download the needed kernel source into your current working directory. Type:
+1. First, download the kernel source into your current working directory using the following curl command. Type:
 
     ```
     curl -L -o linux-5.16.9.tar.xz \
     https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz
     ```
 
-2. The kernel source that you will download from the Internet is a file that has been compressed and tarred. Therefore, to use the source, you need to decompress and untar the source file.
+2. The kernel source that you will download from the Internet is a file that has been compressed and tarred. Therefore, you need to decompress and untar the source file to use the source. 
 
     Make sure you are in the directory that download the Kernel tarball into. Use the tar command to unpack and decompress the file, by running:
 
@@ -142,7 +142,7 @@ Having a better understanding of what constitutes your underlying hardware can h
 
 ### Sanitizing the build environment
 
-With a rough idea of the types of hardware and features that our new kernel needs to support, we can begin the actual configuration. But first, some background information.
+We can begin the actual configuration with a rough idea of the types of hardware and features that our new kernel needs to support. But first, some background information.
 
 The Linux kernel source tree contains several files named Makefile (a makefile is simply a text file with directives and it also describes the relationships among the files in a program).
 
@@ -170,7 +170,7 @@ The Makefile in the root of the kernel source tree contains specific targets tha
 - **make olddefconfig** This target uses the existing .config file in the current working directory, updates the dependencies, and automatically sets new symbols to their default values.
 - **make help** This target will show you all the other possible make targets and also serves as a quick online help system.
 
-To configure the kernel in this section, we will use only one of the targets. In particular, we will use the make menuconfig command. The menuconfig kernel config editor is a simple and popular text-based configuration utility that consists of menus, radio button lists, and dialogs.  
+We will use only one of the targets to configure the kernel in this section. In particular, we will use the make menuconfig command. The menuconfig kernel config editor is a simple and popular text-based configuration utility that consists of menus, radio button lists, and dialogs.  
 
 It has a simple and clean interface that can be easily navigated with your keyboard and is almost intuitive to use.
 
@@ -184,7 +184,7 @@ But before beginning the actual kernel configuration, you should clean (prepare)
 
 ### Kernel Configuration
 
-Next, we will step through the process of configuring a Linux 5.* series kernel. To explore some of the innards of this process, we will enable the support of a specific feature that we’ll pretend is a MUST have feature on the system. Once you understand how this works, you can apply the same procedure to add support for any other new kernel feature that you want. Specifically, we’ll enable support for the NTFS file system into our custom kernel.
+Next, we will step through the process of configuring a Linux 5.* series kernel. To explore some of the innards of this process, we will enable the support of a specific feature that we’ll pretend is a MUST have feature on the system. Once you understand how this works, you can apply the same procedure to add support for any new kernel feature you want. Specifically, we’ll enable support for the NTFS file system into our custom kernel.
 
 Most modern Linux distros ship with a kernel configuration file for the running kernel available on the local file system as a compressed or regular file. On our sample Rocky system, this file resides in the /boot directory and is usually named something like config-4.*.
 
@@ -205,7 +205,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
 
     !!! NOTE
 
-        The Linux kernel configuration editor specifically starts up looking for, and ends up generating, a file named .config (pronounced “dot config”) at the root of the kernel source tree. This file is hidden.
+        The Linux kernel configuration editor starts explicitly looking for and generates a file named .config (pronounced “dot config”) at the root of the kernel source tree. This file is hidden.
 
 2. Launch the graphical kernel configuration utility:
 
@@ -221,7 +221,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
     The top part shows various helpful information, keyboard shortcuts, and legends that can help you navigate the application.
     The main body of the screen shows an expandable tree-structured list of the overall configurable kernel options. You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items. And finally, the bottom of the screen displays the actual actions/options that the user can choose.
 
-3. Next, for demonstration purposes we’ll add support for NTFS into our custom kernel.
+3. Next, we’ll add support for NTFS into our custom kernel for demonstration purposes.
 
     While at the main configuration screen, use your arrow keys to navigate to and highlight the File systems item. With File systems selected, press enter to view the sub-menu or child items for File systems.
 
@@ -229,7 +229,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
 
 4. In the DOS/FAT/NT Filesystems section, navigate to NTFS file system support.
 
-    Type M (uppercase) to enable support for the NTFS file system via modules.
+    Type M (uppercase) to enable modules to support for the NTFS file system.
 
     Use the arrow keys to navigate down to NTFS debugging support (NEW) and then press y to include it.
 
@@ -269,7 +269,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
         ```
     !!! NOTE "A Quick Note on Kernel Modules"
 
-        Loadable module support is a Linux kernel feature that allows the dynamic loading (or removal) of kernel modules.
+        Loadable module support is a Linux kernel feature that allows kernel modules' dynamic loading (or removal).    
 
         Kernel modules are pieces of compiled code that can be dynamically inserted into the running kernel, rather than being permanently built into the kernel. Features not often used can thus be enabled, but they won’t occupy any room in memory when they aren’t being used.
 
@@ -283,7 +283,7 @@ The final customization will be to add an extra piece of information used in the
 
 The compilation stage of the kernel-building process is by far the easiest, but it also takes the most time. All that is needed at this point is simply to execute the make command, which will then automatically generate and take care of any dependency issues, compile the kernel itself, and compile any features (or drivers) that were enabled as loadable modules.
 
-Because of the amount of code that needs to be compiled, be prepared to wait a few minutes, at the very least, depending on the processing power of your system. Let’s dig into the specific steps required to compile your new kernel.
+Because of the amount of code that needs to be compiled, be prepared to wait a few minutes, at the very least, depending on your system's processing power. Let’s dig into the specific steps required to compile your new kernel.
 
 1. First, we’ll add an extra piece to the identification string for the kernel we are about to build. While still in the root of the kernel source tree, we’ll use the sed utility edit the Makefile in place. The variable we want to change is close to the top of the file.
 We want to change the line in the file that looks like this:
@@ -349,7 +349,7 @@ We want to change the line in the file that looks like this:
     ~/build/kernel/arch/x86/boot/bzImage
     ```
 
-5. Because we compiled portions of the kernel as modules (for example, the NTFS module), we need to install the modules. Type the following:
+5. We need to install the modules because we compiled portions of the kernel as modules (for example, the NTFS module). Type the following:
 
     ```
     > sudo make O=~/build/kernel modules_install
@@ -373,7 +373,7 @@ The corresponding map file for this will be located at ~/build/kernel/System.map
 
 The System.map file is useful when the kernel is misbehaving and generating “Oops” messages. An “Oops” is generated on some kernel errors because of kernel bugs or faulty hardware.
 
-This error is akin to the Blue Screen of Death (BSOD) in Microsoft Windows. These messages include a lot of detail about the current state of the system, including several hexadecimal numbers.
+This error is akin to the Blue Screen of Death (BSOD) in Microsoft Windows. These messages include a lot of detail about the system's current state, including several hexadecimal numbers.
 
 System.map gives Linux a chance to turn those hexadecimal numbers into readable names, making debugging easier. Although this is mostly for the benefit of developers, it can be handy when you’re reporting a problem.
 
@@ -452,7 +452,7 @@ grub_class kernel
     Most distros, have several grub2-* utilities readily available that can be used for performing various GRUB2 and boot loader housekeeping tasks. For example, you can use the grub2-set-default command to change or set the default kernel to be booted at system startup.
 
 ## Booting the custom Kernel
-The next stage is to test the new kernel to make sure that the system can indeed boot with it.
+The next stage is to test the kernel to ensure the system can boot with it.
 
 1. Assuming you did everything the exact way that the doctor prescribed and that everything worked out exactly as the doctor said it would, you can safely reboot the system and select the new kernel from the boot loader menu during system bootup:
 
@@ -475,7 +475,7 @@ The next stage is to test the new kernel to make sure that the system can indeed
     license:        GPL
     version:        2.1.32
     description:    NTFS 1.2/3.x driver - Copyright …..
-    ...<OUTPUT TRUNCATED>...
+    ...OUTPUT TRUNCATED...
     ```
 
-And that’s it !
+And that’s it!
