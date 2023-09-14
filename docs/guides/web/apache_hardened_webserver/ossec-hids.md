@@ -1,7 +1,7 @@
 ---
 title: Host-based Intrusion Detection System (HIDS)
 author: Steven Spencer
-contributors: Ezequiel Bruni, Ganna Zyhrnova
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.8, 9.2
 tags:
   - web

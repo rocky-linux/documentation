@@ -1,6 +1,6 @@
 ---
 title: Adding a Rocky Mirror
-contributors: Amin Vakil, Steven Spencer, Ganna Zyhrnova
+contributors: Amin Vakil, Steven Spencer, Ganna Zhyrnova
 ---
 
 # Adding a public mirror to Rocky's mirror manager

@@ -1,7 +1,7 @@
 ---
 title: cron - Automating Commands
 author: Steven Spencer
-contributors: Ezequiel Bruni, Ganna Zyhrnova
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested on: 8.5
 tags:
   - job automation

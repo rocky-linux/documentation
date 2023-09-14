@@ -1,7 +1,7 @@
 ---
 title: firewalld from iptables
 author: Steven Spencer
-contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, qyecst, Ganna Zyhrnova
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, qyecst, Ganna Zhyrnova
 update: 22-Jun-2023
 tags:
   - security

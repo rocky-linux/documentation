@@ -1,7 +1,7 @@
 ---
 title: Bind Private DNS Server
 author: Steven Spencer
-contributors: Ezequiel Bruni, k3ym0, Ganna Zyhrnova
+contributors: Ezequiel Bruni, k3ym0, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - dns

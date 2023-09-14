@@ -1,7 +1,7 @@
 ---
 title: Patching with dnf-automatic
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ganna Zyhrnova
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - security

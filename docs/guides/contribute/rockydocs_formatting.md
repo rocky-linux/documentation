@@ -1,7 +1,7 @@
 ---
 title: Document Formatting
 author: Steven Spencer
-contributors: tianci li, Ezequiel Bruni, Krista Burdine, Ganna Zyhrnova
+contributors: tianci li, Ezequiel Bruni, Krista Burdine, Ganna Zhyrnova
 tags:
   - contribute
   - formatting

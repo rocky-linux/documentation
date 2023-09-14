@@ -1,7 +1,7 @@
 ---
 title: Generating SSL Keys - Let's Encrypt
 author: Steven Spencer
-contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Andrew Thiesen, Ganna Zyhrnova
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Andrew Thiesen, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - security

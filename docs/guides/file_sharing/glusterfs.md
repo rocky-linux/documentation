@@ -1,7 +1,7 @@
 ---
 title: Clustering-GlusterFS
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ganna Zyhrnova
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 11-Feb-2022
 ---
 

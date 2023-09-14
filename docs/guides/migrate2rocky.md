@@ -1,7 +1,7 @@
 ---
 title: Migrating To Rocky Linux
 author: Ezequiel Bruni
-contributors: tianci li, Steven Spencer, Ganna Zyhrnova
+contributors: tianci li, Steven Spencer, Ganna Zhyrnova
 update: 11-23-2021
 ---
 

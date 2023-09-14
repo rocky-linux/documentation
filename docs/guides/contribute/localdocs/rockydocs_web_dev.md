@@ -1,7 +1,7 @@
 ---
 title: Docker Method
 author: Wale Soyinka
-contributors: Steve Spencer, Ganna Zyhrnova
+contributors: Steve Spencer, Ganna Zhyrnova
 update: 27-Feb-2022
 ---
 

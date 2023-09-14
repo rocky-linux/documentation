@@ -1,7 +1,7 @@
 ---
 title: OliveTin
 author: Ezequiel Bruni
-contributors: Steven Spencer, Ganna Zyhrnova
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5, 8.6
 tags:
   - automation

@@ -1,7 +1,7 @@
 ---
 title: Create a New Document in GitHub
 author: Ezequiel Bruni
-contributors: Grammaresque, Ganna Zyhrnova
+contributors: Grammaresque, Ganna Zhyrnova
 tags:
   - contributing
   - documentation
