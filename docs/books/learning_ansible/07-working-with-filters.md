@@ -1,7 +1,7 @@
 ---
 title: Working With Filters
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 # Ansible - Working with filters

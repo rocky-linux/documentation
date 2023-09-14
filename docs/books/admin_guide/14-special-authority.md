@@ -1,7 +1,7 @@
 ---
 title: Special Authority
 author: tianci li
-contributors: Serge
+contributors: Serge, Ganna Zhyrnova
 tags:
   - advanced permissions
   - access control

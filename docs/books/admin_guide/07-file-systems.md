@@ -1,7 +1,7 @@
 ---
 title: File System
 author: Antoine Morvan
-contributors: Steven Spencer, tianci li, Serge
+contributors: Steven Spencer, tianci li, Serge, Ganna Zhyrnova
 tags:
   - file system
   - system administration

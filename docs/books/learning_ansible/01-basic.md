@@ -1,7 +1,7 @@
 ---
 title: Ansible Basics
 author: Antoine Le Morvan
-contributors: Steven Spencer, tianci li, Aditya Putta
+contributors: Steven Spencer, tianci li, Aditya Putta, Ganna Zhyrnova
 update: 15-Dec-2021
 ---
 

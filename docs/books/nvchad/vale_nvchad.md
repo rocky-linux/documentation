@@ -1,7 +1,7 @@
 ---
 title: Using vale in NvChad
 author: Steven Spencer
-contributors: Franco Colussi, Krista Burdine, Serge
+contributors: Franco Colussi, Krista Burdine, Serge, Ganna Zhyrnova
 tags:
   - vale
   - linters

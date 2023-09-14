@@ -1,7 +1,7 @@
 ---
 title: Linux Commands
 author: Antoine Le Morvan
-contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque
+contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrnova
 ---
 
 # Commands for Linux Users
