@@ -1,7 +1,7 @@
 ---
 title: Nextcloud on Podman
 author: Ananda Kammampati
-contributors: Ezequiel Bruni, Steven Spencer, Ganna Zyhrnova
+contributors: Ezequiel Bruni, Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - podman

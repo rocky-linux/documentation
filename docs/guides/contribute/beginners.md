@@ -1,7 +1,7 @@
 ---
 title: Beginner Contributors Guide
 author: Krista Burdine
-contributors: Ezequiel Bruni, Steven Spencer, Ganna Zyhrnova
+contributors: Ezequiel Bruni, Steven Spencer, Ganna Zhyrnova
 tags:
   - contributing
   - documentation

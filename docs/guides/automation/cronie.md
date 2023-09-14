@@ -1,7 +1,7 @@
 ---
 title: cronie - Timed Tasks
 author: tianci li
-contributors: Steven Spencer, Ganna Zyhrnova
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-10-26
 ---
 

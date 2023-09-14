@@ -1,7 +1,7 @@
 ---
 title: Enabling `iptables` Firewall
 author: Steven Spencer
-contributors: Ezequiel Bruni, Ganna Zyhrnova
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
  - security

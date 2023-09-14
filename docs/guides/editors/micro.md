@@ -1,7 +1,7 @@
 ---
 title: micro
 author: Ezequiel Bruni
-contributors: Steven Spencer, Ganna Zyhrnova
+contributors: Steven Spencer, Ganna Zhyrnova
 tested version: 8.5
 tags:
   - editor

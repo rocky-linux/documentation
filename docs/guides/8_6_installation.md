@@ -1,7 +1,7 @@
 ---
 Title: Installing Rocky Linux 8
 author: wale soyinka
-contributors: tianci li, Steven Spencer, Ganna Zyhrnova
+contributors: tianci li, Steven Spencer, Ganna Zhyrnova
 ---
 
 # Installing Rocky Linux 8

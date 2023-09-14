@@ -1,7 +1,7 @@
 ---
 title: Style Guide
 author: Ezequiel Bruni, Krista Burdine
-contributors: Steven Spencer, Ganna Zyhrnova
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - contribute
   - style guide
