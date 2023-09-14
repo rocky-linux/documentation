@@ -1,7 +1,7 @@
 ---
 title: Basic e-mail system
 auther: tianci li
-contributors: 
+contributors: , Ganna Zyhrnova
 ---
 
 # Overview

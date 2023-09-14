@@ -1,7 +1,7 @@
 ---
 title: Quick Method
 author: Lukas Magauer
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zyhrnova
 tested_with: 8.6, 9.0
 tags:
   - documentation

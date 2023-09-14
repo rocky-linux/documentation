@@ -1,7 +1,7 @@
 ---
 title: Apache With 'mod_ssl'
 author: Garthus
-contributors: Steven Spencer, David Hensley
+contributors: Steven Spencer, David Hensley, Ganna Zyhrnova
 update: 20-Jan-2022
 ---
 

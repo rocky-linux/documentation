@@ -1,7 +1,7 @@
 ---
 title: Navigational Changes
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zyhrnova
 tags:
   - contribute
   - navigation

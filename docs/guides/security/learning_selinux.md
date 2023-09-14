@@ -1,7 +1,7 @@
 ---
 title: SELinux Security
 author: Antoine Le Morvan
-contributors: Steven Spencer, markooff
+contributors: Steven Spencer, markooff, Ganna Zyhrnova
 tags:
   - security
   - SELinux

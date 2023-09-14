@@ -1,6 +1,6 @@
 ---
 title: Installing Asterisk
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zyhrnova
 tested_with: 8.5
 tags:
   - asterisk
