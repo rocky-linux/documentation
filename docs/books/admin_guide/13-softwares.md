@@ -1,7 +1,7 @@
 ---
 title: Software Management
 author: Antoine Le Morvan
-contributors: Colussi Franco, Steven Spencer
+contributors: Colussi Franco, Steven Spencer, Ganna Zhyrnova
 tested version: 8.5
 tags:
   - education

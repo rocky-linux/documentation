@@ -1,7 +1,7 @@
 ---
 title: rsync brief description
 author: tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update : 2022-Mar-08
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Marksman
 author: Franco Colussi
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 8.8, 9.2
 tags:
   - nvchad

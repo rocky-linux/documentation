@@ -1,7 +1,7 @@
 ---
 title: 4 Firewall Setup
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.8, 9.2
 tags:
   - lxd

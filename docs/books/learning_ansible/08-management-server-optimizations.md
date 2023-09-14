@@ -1,7 +1,7 @@
 ---
 title: Management server optimizations
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 06-Dec-2021
 ---
 

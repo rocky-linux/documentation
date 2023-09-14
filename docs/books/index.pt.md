@@ -1,7 +1,7 @@
 ---
 title: Books Início
 author: Steven Spencer
-contributors: '@fromoz'
+contributors: '@fromoz', Ganna Zhyrnova
 ---
 
 # Livros de Instrução do Rocky Linux

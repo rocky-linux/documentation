@@ -1,7 +1,7 @@
 ---
 title: Using NvChad
 author: Franco Colussi
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.6, 9.0
 tags:
     - nvchad

@@ -1,7 +1,7 @@
 ---
 title: DISA Apache Web server STIG 
 author: Scott Shinn
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.6
 tags:
   - DISA
