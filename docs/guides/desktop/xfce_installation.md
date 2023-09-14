@@ -1,7 +1,7 @@
 ---
 title: XFCE Desktop
 author: Gerard Arthus, Steven Spencer
-contributors: Steven Spencer, Antoine Le Morvan, K.Prasad
+contributors: Steven Spencer, Antoine Le Morvan, K.Prasad, Ganna Zyhrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - xfce

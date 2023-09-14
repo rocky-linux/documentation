@@ -1,7 +1,7 @@
 ---
 title: LXD Beginners Guide-Multiple Servers
 author: Ezequiel Bruni
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zyhrnova
 update: 28-Feb-2022
 ---
 

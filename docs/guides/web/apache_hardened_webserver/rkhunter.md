@@ -1,7 +1,7 @@
 ---
 title: Rootkit Hunter
 author: Steven Spencer
-contributors: Ezequiel Bruni, Andrew Thiesen
+contributors: Ezequiel Bruni, Andrew Thiesen, Ganna Zyhrnova
 tested_with: 8.8, 9.2
 tags:
   - server

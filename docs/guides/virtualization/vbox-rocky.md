@@ -1,7 +1,7 @@
 ---
 title: Rocky on VirtualBox
 author: Steven Spencer
-contributors: Trevor Cooper, Ezequiel Bruni
+contributors: Trevor Cooper, Ezequiel Bruni, Ganna Zyhrnova
 tested on: 8.4, 8.5
 tags:
   - virtualbox

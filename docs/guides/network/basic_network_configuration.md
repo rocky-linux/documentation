@@ -1,6 +1,6 @@
 ---
 title: Network Configuration
-contributors: Steven Spencer, Hayden Young
+contributors: Steven Spencer, Hayden Young, Ganna Zyhrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - networking

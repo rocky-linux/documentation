@@ -1,7 +1,7 @@
 ---
 title: Mirroring Solution - lsyncd
 author: Steven Spencer
-contributors: Ezequiel Bruni, tianci li
+contributors: Ezequiel Bruni, tianci li, Ganna Zyhrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - lsyncd

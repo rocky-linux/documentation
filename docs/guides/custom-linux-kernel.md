@@ -1,7 +1,7 @@
 ---
 title: Building and Installing Custom Linux Kernels
 author: Wale Soyinka
-contributors: Steven Spencer, Louis Abel
+contributors: Steven Spencer, Louis Abel, Ganna Zyhrnova
 tags:
   - custom kernel
   - kernel

@@ -1,7 +1,7 @@
 ---
 title: Web-based Application Firewall (WAF)
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zyhrnova
 tested_with: 8.8, 9.2
 tags:
   - web

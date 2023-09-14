@@ -1,7 +1,7 @@
 ---
 title: KDE Installation
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zyhrnova
 tested_with: 9.0
 tags:
   - desktop

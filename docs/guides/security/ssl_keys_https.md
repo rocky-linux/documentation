@@ -1,7 +1,7 @@
 ---
 title: Generating SSL Keys
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zyhrnova
 tested_with: 8.5
 tags:
   - security

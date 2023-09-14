@@ -1,7 +1,7 @@
 ---
 title: PAM authentication modules
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ezequiel Bruni
+contributors: Steven Spencer, Ezequiel Bruni, Ganna Zyhrnova
 tested_with: 8.5, 8.6
 tags:
   - security

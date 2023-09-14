@@ -1,7 +1,7 @@
 ---
 title: MariaDB Database Server
 author: Steven Spencer
-contributors: Ezequiel Bruni, William Perron
+contributors: Ezequiel Bruni, William Perron, Ganna Zyhrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - database
