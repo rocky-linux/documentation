@@ -1,6 +1,6 @@
 ---
 title: bash - Script Stub
-author: Steven Spencer
+author: Steven Spencer, Pedro Garcia
 contributors: Ezequiel Bruni, Pedro Garcia
 ---
 
