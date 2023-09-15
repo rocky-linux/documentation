@@ -1,7 +1,7 @@
 ---
 title: Базова система електронної пошти
 auther: tianci li
-contributors:
+contributors: Ganna Zhyrnova
 ---
 
 # Огляд
