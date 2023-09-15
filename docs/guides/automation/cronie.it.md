@@ -1,7 +1,7 @@
 ---
 title: cronie - Attività a tempo
 author: tianci li
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-10-26
 ---
 
