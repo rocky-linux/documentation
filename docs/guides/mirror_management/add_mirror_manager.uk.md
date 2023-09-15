@@ -1,6 +1,6 @@
 ---
 title: Додавання Rocky Mirror
-contributors: Amin Vakil, Steven Spencer
+contributors: Amin Vakil, Steven Spencer, Ganna Zhyrnova
 ---
 
 # Додавання публічного дзеркала до менеджера дзеркал Rocky
