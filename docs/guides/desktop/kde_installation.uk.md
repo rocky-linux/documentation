@@ -1,7 +1,7 @@
 ---
 title: Встановлення KDE
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.0
 tags:
   - desktop
