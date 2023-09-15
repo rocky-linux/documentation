@@ -1,7 +1,7 @@
 ---
 title: Швидкий метод
 author: Lukas Magauer
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.6, 9.0
 tags:
   - документація
