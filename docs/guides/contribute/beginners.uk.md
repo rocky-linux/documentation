@@ -1,7 +1,7 @@
 ---
 title: Посібник для початківців
 author: Krista Burdine
-contributors: Ezequiel Bruni, Steven Spencer
+contributors: Ezequiel Bruni, Steven Spencer, Ganna Zhyrnova
 tags:
   - сприяння
   - документація
