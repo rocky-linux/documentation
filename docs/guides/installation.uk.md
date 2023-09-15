@@ -1,7 +1,7 @@
 ---
 Title: Встановлення Rocky Linux 9
 author: Wale Soyinka
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 # Встановлення Rocky Linux 9
