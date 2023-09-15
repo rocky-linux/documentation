@@ -1,7 +1,7 @@
 ---
 title: cronie - Часові завдання
 author: tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-10-26
 ---
 
