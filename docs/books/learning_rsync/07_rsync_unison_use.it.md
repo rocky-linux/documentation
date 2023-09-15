@@ -1,7 +1,7 @@
 ---
 title: Usare unison
 author: tianci li
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-12-26
 ---
 
