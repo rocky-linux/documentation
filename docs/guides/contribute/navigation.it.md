@@ -1,7 +1,7 @@
 ---
 title: Modifiche alla Navigazione
 author: Steven Spencer
-contributors: Ezequiel Bruni, Franco Colussi
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tags:
   - contribute
   - navigation
