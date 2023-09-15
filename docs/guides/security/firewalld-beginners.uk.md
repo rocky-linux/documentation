@@ -1,7 +1,7 @@
 ---
 title: firewalld для початківців
 author: Ezequiel Bruni
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 # `firewalld` для початківців
