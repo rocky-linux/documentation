@@ -1,7 +1,7 @@
 ---
 title: Робочий стіл MATE
 author: lillolollo, Steven Spencer
-contributors: Steven Spencer
+contributors: Steven Spencer, Serge, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - mate
