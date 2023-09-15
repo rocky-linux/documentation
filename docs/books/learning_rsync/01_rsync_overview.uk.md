@@ -1,7 +1,7 @@
 ---
 title: Короткий опис rsync
 author: tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 08 березня 2022
 ---
 
