@@ -1,7 +1,7 @@
 ---
 title: Посібник для початківців LXD - Кілька серверів
 author: Ezequiel Bruni
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 28 лютого 2022 р
 ---
 
