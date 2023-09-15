@@ -1,7 +1,7 @@
 ---
 title: Основи Ansible
 author: Antoine Le Morvan
-contributors: Steven Spencer, tianci li
+contributors: Steven Spencer, tianci li, Aditya Putta, Ganna Zhyrnova
 update: 15 грудня 2021 р
 ---
 
