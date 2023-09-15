@@ -1,7 +1,7 @@
 ---
 title: Сервер бази даних MariaDB
 author: Steven Spencer
-contributors: Ezequiel Bruni, William Perron
+contributors: Ezequiel Bruni, William Perron, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - бази даних

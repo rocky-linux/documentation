@@ -1,7 +1,7 @@
 ---
 title: Мережева файлова система
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Serge, Ganna Zhyrnova
 ---
 
 # Мережева файлова система

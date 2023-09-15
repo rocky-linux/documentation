@@ -1,7 +1,7 @@
 ---
 title: Форматування документів
 author: Steven Spencer
-contributors: tianci li, Ezequiel Bruni, Krista Burdine
+contributors: tianci li, Ezequiel Bruni, Krista Burdine, Ganna Zhyrnova
 tags:
   - contribute
   - форматування

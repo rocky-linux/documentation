@@ -1,7 +1,7 @@
 ---
 title: Метод Docker
 author: Wale Soyinka
-contributors: Steve Spencer
+contributors: Steve Spencer, Ganna Zhyrnova
 update: 27 лютого 2022 р
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Модулі аутентифікації PAM
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ezequiel Bruni
+contributors: Steven Spencer, Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6
 tags:
   - безпека

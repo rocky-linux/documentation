@@ -1,7 +1,7 @@
 ---
 title: Захищений веб-сервер Apache
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.8, 9.2
 tags:
   - apache

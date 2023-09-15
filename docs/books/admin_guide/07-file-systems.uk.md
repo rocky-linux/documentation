@@ -1,7 +1,7 @@
 ---
 title: Файлова система
 author: Antoine Le Morvan
-contributors: Steven Spencer, tianci li, Anna
+contributors: Steven Spencer, tianci li, Serge, Ganna Zhyrnova
 tags:
   - файлова система
   - адміністрування системи

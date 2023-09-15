@@ -1,7 +1,7 @@
 ---
 title: Інтерфейс користувача NvChad
 author: Franco Colussi
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested: 8.6, 9.0
 tags:
   - nvchad

@@ -1,7 +1,7 @@
 ---
 title: Відкритий і закритий ключ SSH
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - безпека

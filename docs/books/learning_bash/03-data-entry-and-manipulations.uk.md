@@ -1,7 +1,7 @@
 ---
 title: Bash - введення даних і маніпуляції
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - освіта

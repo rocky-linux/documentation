@@ -1,5 +1,5 @@
 - - -
-title: Сервер моніторингу LibreNMS author: Steven Spencer contributors: Ezequiel Bruni tested_with: 8.5, 8.6, 9.0 tags:
+title: LibreNMS Monitoring Server author: Steven Spencer contributors: Ezequiel Bruni, Ganna Zhyrnova tested_with: 8.5, 8.6, 9.0 tags:
   - моніторинг
   - мережа
 - - -

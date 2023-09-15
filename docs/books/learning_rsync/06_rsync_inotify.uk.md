@@ -1,7 +1,7 @@
 ---
 title: інсталяція та використання inotify-tools
 author: tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-11-04
 ---
 

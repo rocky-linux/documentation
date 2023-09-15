@@ -1,7 +1,7 @@
 ---
 title: Рокі на VirtualBox
 author: Steven Spencer
-contributors: Trevor Cooper, Ezequiel Bruni
+contributors: Trevor Cooper, Ezequiel Bruni, Ganna Zhyrnova
 tested on: 8.4, 8.5
 tags:
   - virtualbox

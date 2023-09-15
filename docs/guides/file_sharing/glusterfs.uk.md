@@ -1,7 +1,7 @@
 ---
 title: Кластеризація - GlusterFS
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 11 лютого 2022 р
 ---
 

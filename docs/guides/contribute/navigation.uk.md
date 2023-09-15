@@ -1,7 +1,7 @@
 ---
 title: Зміни у навігації
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tags:
   - contribute
   - навігація

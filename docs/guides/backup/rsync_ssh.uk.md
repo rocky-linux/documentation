@@ -1,7 +1,7 @@
 ---
 title: Синхронізація з rsync
 author: Steven Spencer
-contributors: Ezequiel Bruni, tianci li
+contributors: Ezequiel Bruni, tianci li, Ganna Zhyrnova
 tags:
   - синхронізація
   - rsync

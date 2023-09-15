@@ -1,7 +1,7 @@
 ---
 title: cron - Автоматизація команд
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested on: 8.5
 tags:
   - автоматизація роботи

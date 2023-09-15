@@ -1,7 +1,7 @@
 ---
 title: Рішення для резервного копіювання - rsnapshot
 author: Steven Spencer
-contributors: Ezequiel Bruni
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - резервне копіювання

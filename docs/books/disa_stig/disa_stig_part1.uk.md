@@ -1,7 +1,7 @@
 ---
 title: DISA STIG на Rocky Linux 8 – Частина 1
 author: Scott Shinn
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.6
 tags:
   - DISA

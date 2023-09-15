@@ -1,7 +1,7 @@
 ---
 title: Керівництво по стилю
 author: Ezequiel Bruni, Krista Burdine
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - contribute
   - керівництво по стилю

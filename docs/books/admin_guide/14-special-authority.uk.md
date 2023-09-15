@@ -1,7 +1,7 @@
 ---
 title: Спеціальний орган (Special Authority)
 author: tianci li
-contributors: Anna
+contributors: Serge, Ganna Zhyrnova
 tags:
   - додаткові дозволи
   - управління доступом
