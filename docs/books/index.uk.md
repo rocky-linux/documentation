@@ -1,7 +1,7 @@
 ---
 title: Головна сторінка книг
 author: Steven Spencer
-contributors: '@fromoz'
+contributors: '@fromoz, Ganna Zhyrnova'
 ---
 
 # Навчальні книги Rocky Linux
