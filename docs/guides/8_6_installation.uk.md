@@ -1,7 +1,7 @@
 ---
 Title: Встановлення Rocky Linux 8
 author: wale soyinka
-contributors: tianci li, Steven Spencer
+contributors: tianci li, Steven Spencer, Ganna Zhyrnova
 ---
 
 # Встановлення Rocky Linux 8
