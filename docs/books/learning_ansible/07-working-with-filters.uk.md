@@ -1,7 +1,7 @@
 ---
 title: Робота з фільтрами
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
 
 # Ansible - Робота з фільтрами
