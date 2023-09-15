@@ -1,7 +1,7 @@
 ---
 title: Використання vale в NvChad
 author: Steven Spencer
-contributors: Franco Colussi, Krista Burdine, Anna
+contributors: Franco Colussi, Krista Burdine, Serge, Ganna Zhyrnova
 tags:
   - vale
   - linters
