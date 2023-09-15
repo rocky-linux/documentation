@@ -1,7 +1,7 @@
 ---
 title: Перехід (міграція) на Rocky Linux
 author: Ezequiel Bruni
-contributors: tianci li, Steven Spencer
+contributors: tianci li, Steven Spencer, Ganna Zhyrnova
 update: 23.11.2021
 ---
 
