@@ -1,7 +1,7 @@
 ---
 title: NvimTree
 author: Franco Colussi
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - nvchad
   - coding
