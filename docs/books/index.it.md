@@ -1,7 +1,7 @@
 ---
 title: Home Libri
 author: Spencer Steven
-contributors: '@fromoz, Franco Colussi'
+contributors: '@fromoz, Ganna Zhyrnova'
 ---
 
 # Rocky Linux Libri Didattici
