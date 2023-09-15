@@ -1,7 +1,7 @@
 ---
 title: Оптимізація сервера керування
 author: Antoine Le Morvan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 06 грудня 2021 року
 ---
 
