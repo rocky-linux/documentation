@@ -1,7 +1,7 @@
 ---
 title: Автоматичне створення шаблону - Packer - Ansible - VMware vSphere
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ryan Johnson, Pedro Garcia
+contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Ganna Zhyrnova
 ---
 
 # Автоматичне створення шаблону за допомогою Packer і розгортання за допомогою Ansible у середовищі VMware vSphere
