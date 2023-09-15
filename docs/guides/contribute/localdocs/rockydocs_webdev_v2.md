@@ -1,7 +1,7 @@
 ---
 title: Podman Method
 author: Wale Soyinka
-contributors: , Ganna Zhyrnova
+contributors: Ganna Zhyrnova
 update: 13-Feb-2023
 ---
 
