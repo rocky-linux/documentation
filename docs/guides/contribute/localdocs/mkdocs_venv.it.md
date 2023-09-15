@@ -1,7 +1,7 @@
 ---
 title: Metodo VENV di Python
 author: Franco Colussi
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.7, 9.1
 tags:
   - mkdocs
