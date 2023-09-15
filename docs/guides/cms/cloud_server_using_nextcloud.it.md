@@ -1,7 +1,7 @@
 ---
 title: Server Cloud con Nextcloud
 author: Steven Spencer
-contributors: Ezequiel Bruni, Franco Colussi
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - cloud
