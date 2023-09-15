@@ -1,7 +1,7 @@
 ---
 title: Bash - Uso delle variabili
 author: Antoine Le Morvan
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - education
