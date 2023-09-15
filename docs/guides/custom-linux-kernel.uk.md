@@ -1,7 +1,7 @@
 ---
 title: Створення та встановлення власних ядер Linux
 author: Wale Soyinka
-contributors: Steven Spencer, Louis Abel
+contributors: Steven Spencer, Louis Abel, Ganna Zhyrnova
 tags:
   - власне ядро
   - kernel
