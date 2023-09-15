@@ -3,13 +3,11 @@
 
 ## Objectives
 
-After completing this lab, you will be able to
+After completing this lab, you will be able to:
 
 - apply cryptographic concepts in securing data and communication
 
 Estimated time to complete this lab: 120 minutes
-
-
 
 ## Common Cryptography terms and definitions
 
@@ -27,11 +25,11 @@ Cryptology is the discipline of cryptography and cryptanalysis combined. Cryptol
 
 ### Encryption
 
-Encryption is the transformation of data into a form that is as close to impossible as possible to read without the appropriate knowledge (e.g. a key). Its purpose is to ensure privacy by keeping information hidden from anyone for whom it is not intended.
+Encryption transforms data into a form that is close to impossible to read without the appropriate knowledge (e.g., a key). Its purpose is to ensure privacy by keeping information hidden from anyone for whom it is not intended.
 
 ### Decryption
 
-Decryption is the reverse of encryption; it is the transformation of encrypted data back into an intelligible form.
+Decryption is the reverse of encryption; it transforms encrypted data into an intelligible form.
 
 ### Cipher
 
@@ -39,7 +37,7 @@ A method of encryption and decryption is called a cipher.
 
 Hash Functions (Digest algorithms)
 
-Cryptographic hash functions are used in various contexts, for example to compute the message digest when making a digital signature. A hash function compresses the bits of a message to a fixed-size hash value in a way that distributes the possible messages evenly among the possible hash values. A cryptographic hash function does this in a way that makes it extremely difficult to come up with a message that would hash to a particular hash value. Some examples of the best known and most widely used hash functions are described below.
+Cryptographic hash functions are used in various contexts, for example to compute the message digest when making a digital signature. A hash function compresses the bits of a message to a fixed-size hash value to distribute the possible messages evenly among the possible hash values. A cryptographic hash function does this in a way that makes it extremely difficult to come up with a message that would hash to a particular hash value. Below are some examples of the best-known and most widely used hash functions. 
 
 **a)** - **SHA-1 (Secure Hash Algorithm)** -This is a cryptographic hash algorithm published by the United States Government. It produces a 160 bit hash value from an arbitrary length string. It is considered to be very good.
 
@@ -49,7 +47,7 @@ Cryptographic hash functions are used in various contexts, for example to comput
 
 It describes a step-by-step problem-solving procedure, especially an established, recursive computational procedure for solving a problem in a finite number of steps. Technically, an algorithm must reach a result after a finite number of steps. The efficiency of an algorithm can be measured as the number of elementary steps it takes to solve the problem. There are two classes of key-based algorithms. They are:
 
-**a) **-- **Symmetric Encryption Algorithms ( secret-key)**
+**a) **-- **Symmetric Encryption Algorithms (secret-key)**
 
 Symmetric algorithms use the same key for encryption and decryption (or the decryption key is easily derived from the encryption key). Secret key algorithms use the same key for both encryption and decryption (or one is easily derivable from the other). This is the more straightforward approach to data encryption, it is mathematically less complicated than public-key cryptography. Symmetric algorithms can be divided into stream ciphers and block ciphers. Stream ciphers can encrypt a single bit of plaintext at a time, whereas block ciphers take a number of bits (typically 64 bits in modern ciphers), and encrypt them as a single unit. Symmetric algorithms are much faster to execute on a computer than asymmetric ones.
 
@@ -57,21 +55,21 @@ Examples of symmetric algorithms are: AES, 3DES, Blowfish, CAST5, IDEA and Twofi
 
 **b) -- Asymmetric algorithms (Public-key algorithms)**
 
-Asymmetric algorithms on the other hand use a different key for encryption and decryption, and the decryption key cannot be derived from the encryption key. Asymmetric ciphers permit the encryption key to be public, allowing anyone to encrypt with the key, whereas only the proper recipient (who knows the decryption key) can decrypt the message. The encryption key is also called the public key and the decryption key the private key or secret key.
+Asymmetric algorithms on the other hand use a different key for encryption and decryption, and the decryption key cannot be derived from the encryption key. Asymmetric ciphers permit the encryption key to be public, allowing anyone to encrypt with the key, whereas only the proper recipient (who knows the decryption key) can decrypt the message. The encryption key is also called the public key, and the decryption key is the private or secret key. 
 
-RSA is probably the best known asymmetric encryption algorithm.
+RSA is probably the best-known asymmetric encryption algorithm.
 
 ### Digital Signature
 
-A digital signature binds a document to the owner of a particular key. Digital signatures are used to verify that a message really comes from the claimed sender.
+A digital signature binds a document to the owner of a particular key.
 
-The digital signature of a document is a piece of information based on both the document and the signer's private key. It is typically created through the use of a hash function and a private signing function (encrypting with the signer's private key). A digital signature is a small amount of data that was created using some secret key, and there is a public key that can be used to verify that the signature was really generated using the corresponding private key.
+The digital signature of a document is a piece of information based on both the document and the signer's private key. It is typically created through a hash function and a private signing function (encrypting with the signer's private key). A digital signature is a small amount of data created using some secret key, and there is a public key that can be used to verify that the signature was generated using the corresponding private key.
 
 Several methods for making and verifying digital signatures are freely available but the most widely known algorithm is the RSA public-key algorithm.
 
 ### Cryptographic Protocols
 
-Cryptography works on many levels. On one level you have algorithms, such as block ciphers and public key cryptosystems. Building upon these you obtain protocols, and building upon protocols you find applications (or other protocols). Below is a list of common everyday applications that make use of cryptographic protocols. These protocols are built on lower level cryptographic algorithms.
+Cryptography works on many levels. On one level you have algorithms, such as block ciphers and public key cryptosystems. Building upon these, you obtain protocols, and upon protocols, you find applications (or other protocols). Below is a list of typical everyday applications that use cryptographic protocols. These protocols are built on lower level cryptographic algorithms.
 
 i.) Domain Name Server Security (DNSSEC)
 
@@ -79,7 +77,7 @@ This is a protocol for secure distributed name services. It is currently availab
 
 ii.) Secure Socket Layer (SSL)
 
-SSL is one of the two protocols used for secure WWW connections (the other is SHTTP). WWW security has become important as, increasing amounts of sensitive information, such as credit card numbers, are being transmitted over the Internet.
+SSL is one of the two protocols used for secure WWW connections (the other is SHTTP). WWW security has become necessary as increasing amounts of sensitive information, such as credit card numbers, are transmitted over the Internet. 
 
 iii.) Secure Hypertext Transfer Protocol (SHTTP)
 
@@ -93,17 +91,17 @@ v) SSH2 Protocol
 
 This protocol is versatile for the needs of the internet, and is currently used in the SSH2 software. The protocol is used to secure terminal sessions and TCP connections.
 
-The following exercises examine two particular applications that make use of cryptographic protocols - GnuPG and OpenSSH.
+The following exercises examine two applications that use cryptographic protocols - GnuPG and OpenSSH.
 
 ## Exercise 1
 
 ### GnuPG
 
-GnuPG (GNU Privacy Guard) is a set of programs for public key encryption and digital signatures. The tools can be used to encrypt data and to create digital signatures. It also includes an advanced key management facility. GnuPG uses public-key cryptography to enable users to communicate securely
+GnuPG (GNU Privacy Guard) is a set of programs for public key encryption and digital signatures. The tools can be used to encrypt data and to create digital signatures. It also includes an advanced key management facility. GnuPG uses public-key cryptography to enable users to communicate securely.
 
 Perform the following exercises as a regular user. e.g. user ying
 
-To create a new keypair
+To create a new key pair
 
 1. Log into the system as user “ying”
 
@@ -117,7 +115,7 @@ If it isn’t, get the super-user to install it.
 
 3. List and make a note of all the hidden directories in your home directory.
 
-4. List the keys you currently have in your key-ring. Type:
+4. List the keys you currently have in your keyring. Type:
 
 `[ying@serverXY ying]$ gpg --list-keys`
 
@@ -149,25 +147,25 @@ Please select what kind of key you want:
 Your selection? 1
 ```
 
- At the prompt for the type of key your want to create accept the default i.e.(DSA and ElGamal). Type 1
+At the prompt for the type of key you want to create, accept the default, i.e.(DSA and ElGamal). Type 1
 
 !!! WARNING
 
-    Option (1) will create two key-pairs for you. The DSA key-pair will be the primary keypair - for making digital signatures and a subordinate ELGamel keypair for data encryption.
+    Option (1) will create two key-pairs for you. The DSA key-pair will be the primary key pair - for making digital signatures and a subordinate ELGamel key pair for data encryption.
 
-6. You will create an ELG-E keysize of 1024. Accept the default again at the prompt below:
+6. You will create an ELG-E key size of 1024. Accept the default again at the prompt below:
 
-DSA keypair will have 1024 bits.
+DSA key pair will have 1024 bits.
 
-About to generate a new ELG-E keypair.
+About to generate a new ELG-E key pair.
 
- minimum keysize is 768 bits
+ minimum key size is 768 bits
 
- default keysize is 1024 bits
+ default key size is 1024 bits
 
- highest suggested keysize is 2048 bits
+ highest suggested key size is 2048 bits
 
-What keysize do you want? (1024) 1024
+What key size do you want? (1024) 1024
 
 7. Create keys that will expire in a year. Type “1y” at the prompt below:
 
@@ -282,7 +280,7 @@ sub 1024g/1EDB00AC 2003-10-16 \[expires: 2004-10-15\]
 
 <span id="anchor-2"></span>Revocation certificates
 
-Revocation certificates are used revoking keys in case someone gets knowledge of your secret key or incase you forget your passphrase. They are also useful for other various functions.
+Revocation certificates are used to revoke keys in case someone gets knowledge of your secret key or in case you forget your passphrase. They are also useful for other various functions.
 
 To create a revocation certificate
 
@@ -308,9 +306,9 @@ The whole point of all this encrypting, signing and decrypting business is becau
 
 With that said - the perhaps not to so obvious has to be stated:
 
-To communicate with other people using a public-key based cryptosystem - you must exchange public keys.
+You must exchange public keys to communicate with other people using a public-key-based cryptosystem..
 
-Or at least make your public key available in any publicly accessible place (Bill-boards, web pages, key servers, radio, T.V, SPAMMING via e-mail ..etc ….. )
+Or at least make your public key available in any publicly accessible place (Bill-boards, web pages, key servers, radio, T.V, SPAMMING via e-mail ..etc)
 
 To export your public keys
 
@@ -336,17 +334,17 @@ To export your public keys
 
 3. Use the cat command to view the binary version of ying’s public key (ying-pub.gpg)
 
-4.   (To reset your terminal type: “reset”)
+4. (To reset your terminal type: “reset”)
 
 5. Use the cat command to view the ASCII version of ying’s public key (ying-pub.asc)
 
-6. You will observe that the ASCII version is more suited for posting on web-pages or spamming etc..
+6. You will observe that the ASCII version is more suited for posting on web-pages or spamming etc.
 
 ## Exercise 3
 
 ### Digital signatures
 
-Creating and verifying signatures uses the public/private keypair in an operation different from encryption and decryption. A signature is created using the private key of the signer. The signature can be verified using the corresponding public key.
+Creating and verifying signatures uses the public/private key pair, which differs from encryption and decryption. A signature is created using the private key of the signer. The signature can be verified using the corresponding public key.
 
 To digitally sign a file
 
@@ -362,7 +360,7 @@ To digitally sign a file
 
 Input your passphrase when prompted.
 
-The above command will create another file “secret1.txt.gpg” which is compressed and has a signature attached to it. Run the “file” command on the file to check this. View the file with cat 
+The above command will create another file “secret1.txt.gpg” which is compressed and has a signature attached to it. Run the “file” command on the file to check this. View the file with cat
 
 4. Check the signature on the signed “secret1.txt.gpg” file. Type:
 
@@ -374,7 +372,7 @@ gpg: Good signature from "Ying Yang (my test) &lt;ying@serverXY&gt;"
 
 5. Create another file secret2.txt with the text “ Hello All” in it.
 
-6. Sign the secret2.txt file but this time let the file be ASCII armored. Type:
+6. Sign the secret2.txt file, but let the file be ASCII armored this time. Type:
 
 \[ying@serverXY ying\]$ ***gpg -sa secret2.txt***
 
@@ -402,7 +400,7 @@ MAKE SURE THAT YOUR PARTNER HAS PERFORMED THE WHOLE OF
 
 IF YOU DON’T HAVE A PARTNER. LOG OFF USER YING’s ACCOUNT AND LOG INTO THE SYSTEM AS THE USER “me”.
 
-THEN REPEAT THE WHOLE OF “EXECISES -1,2,3” AS THE USER “me”.
+THEN REPEAT THE WHOLE OF “EXERCISES -1,2,3” AS THE USER “me”.
 
 YOU MAY THEN PERFORM EXERCISE 4 BELOW. REPLACE ALL REFERENCES TO THE USER YING AT “serverPR” WITH - USER “me” AT serverXY (i.e. your localhost)
 
@@ -412,11 +410,11 @@ AS YOUR PARTNER IN THE NEXT EXERCISE.
 
 ## Exercise 4
 
-In this exercise you will begin the actual communication with another user, using the so called “Web of Trust”.
+ In this exercise, you will use the so-called “Web of Trust” to communicate with another user.
 
 Importing public keys
 
-1. Log into the system as user ying.
+1. Log into the system as user ying./
 
 2. Make your ASCII-armored public-key file (ying-pub.asc) available to your partner ( use
 
@@ -424,11 +422,11 @@ Importing public keys
 
 NOTE:
 
-There are several ways of doing this e.g. e-mail, copying and pasting, scp, ftp, Saving on a diskette etc...
+There are several ways of doing this e.g. e-mail, copying and pasting, scp, ftp, Saving on a diskette etc.
 
 Select the most efficient method for yourself.
 
-3. Ask your partner to also make their public-key file available to you.
+3. Ask your partner to make their public key file available to you. 
 
 4. Assuming your partner’s public key is store in a file called “ me-pub.asc” in your pwd;
 
@@ -560,7 +558,7 @@ It is a FREE version of the SSH protocol suite of network connectivity tools. Op
 
 It helps to provide secure encrypted communications between two untrusted hosts over an insecure network (such as the internet).
 
-It includes both the server side components and the client side suite of programs.
+It includes both the server-side components and the client-side suite of programs
 
 **sshd**
 
@@ -570,19 +568,19 @@ It forks a new daemon for each incoming connection. The forked daemons handle ke
 
 authentication, command execution, and data exchange. According to sshd’s man page, sshd works as follows:
 
-For SSH protocol version 2…..
+For SSH protocol version 2:
 
 Each host has a host-specific key (RSA or DSA) used to identify the host. When the daemon starts, it does not generate a server key (As is the case in SSH protocol version 1). Forward security is provided through a Diffie-Hellman key agreement. This key agreement results in a shared session key.
 
 The rest of the session is encrypted using a symmetric cipher, currently 128 bit AES, Blowfish, 3DES, CAST128, Arcfour, 192 bit AES, or 256 bit AES. The client selects the encryption algorithm to use from those offered by the server. Additionally, session integrity is provided through a cryptographic message authentication code (hmac-sha1 or hmac-md5).
 
-Protocol version 2 provides a public key based user (PubkeyAuthentication) or client host (HostbasedAuthentication) authentication method, conventional password authentication and challenge response based methods.
+Protocol version 2 provides a public key-based user (PubkeyAuthentication) or client host (HostbasedAuthentication) authentication method, conventional password authentication, and challenge response-based methods.
 
 The SSH2 protocol implemented in OpenSSH is standardized by the “IETF secsh” working group
 
 ssh
 
-The clients suite of programs include “ssh”. This is a program used for logging into remote systems and can also be used for executing commands on remote systems.
+The client's suite of programs include “ssh”. This is a program used for logging into remote systems and can also be used for executing commands on remote systems.
 
 ## Exercise 5
 
@@ -780,13 +778,13 @@ To use scp
 
 ### Creating User Public and Private keys for SSH
 
-Each individual user that wants to use SSH with RSA or DSA authentication needs a set of public keys and private keys. The ssh-keygen program can be used to create these keys ( just as it was used earlier when you created spare keys for your system)
+Each user who wants to use SSH with RSA or DSA authentication needs a set of public and private keys. The ssh-keygen program can be used to create these keys ( just as it was used earlier when you created spare keys for your system)
 
 The only “advised” difference when creating user keys is to also create a passphrase.
 
 The passphrase is a password that the is used to encrypt the private key before it is stored on the file system.
 
-The public is store in a file with the same file name as the private key but with the extension “.pub” appended to it. There is no way to recover a lost passphrase. If the passphrase is lost or forgotten, a new key must be generated.
+The public is store in a file with the same file name as the private key but with the extension “.pub” appended to it. There is no way to recover a lost passphrase. A new key must be generated if the passphrase is lost or forgotten. 
 
 To create ying’s authentication keys
 
