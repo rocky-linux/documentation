@@ -1,7 +1,7 @@
 ---
 title: Autorizzazioni Speciali
 author: tianci li
-contributors: Serge
+contributors: Franco Colussi
 tags:
   - advanced permissions
   - access control
