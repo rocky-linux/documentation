@@ -1,7 +1,7 @@
 ---
 title: Створення нового документу в GitHub
 author: Ezequiel Bruni
-contributors: Grammaresque
+contributors: Grammaresque, Ganna Zhyrnova
 tags:
   - сприяння
   - документація
