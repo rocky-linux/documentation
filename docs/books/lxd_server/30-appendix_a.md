@@ -1,7 +1,7 @@
 ---
 title: Appendix A - Workstation Setup
 author: Steven Spencer
-contributors: , Ganna Zhyrnova
+contributors: Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - lxd
