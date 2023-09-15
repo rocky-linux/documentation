@@ -1,7 +1,7 @@
 ---
 title: Apache з "mod_ssl"
 author: Garthus
-contributors: Steven Spencer, David Hensley
+contributors: Steven Spencer, David Hensley, Ganna Zhyrnova
 update: 20 січня 2022 р
 ---
 
