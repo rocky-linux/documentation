@@ -1,6 +1,6 @@
 ---
 title: Configurazione della Rete
-contributors: Steven Spencer, Hayden Young
+contributors: Steven Spencer, Hayden Young, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - networking
