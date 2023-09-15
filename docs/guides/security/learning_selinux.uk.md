@@ -1,7 +1,7 @@
 ---
 title: Безпека SELinux
 author: Antoine Le Morvan
-contributors: Steven Spencer, markooff
+contributors: Steven Spencer, markooff, Ganna Zhyrnova
 tags:
   - Безпека
   - SELinux
