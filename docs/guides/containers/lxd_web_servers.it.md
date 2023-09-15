@@ -1,7 +1,7 @@
 ---
 title: Guida Per Principianti Lxd-Server Multipli
 author: Ezequiel Bruni
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 28-Feb-2022
 ---
 
