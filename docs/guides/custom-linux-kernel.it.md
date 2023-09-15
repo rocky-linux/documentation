@@ -1,7 +1,7 @@
 ---
 title: Creazione e Installazione di Kernel Linux personalizzati
 author: Wale Soyinka
-contributors: Steven Spencer, Louis Abel, Franco Colussi
+contributors: Steven Spencer, Louis Abel, Ganna Zhyrnova
 tags:
   - custom kernel
   - kernel
@@ -10,16 +10,14 @@ tags:
 # Panoramica
 In questa guida, illustreremo il processo di acquisizione di un albero dei sorgenti del kernel, la sua configurazione, la compilazione e, infine, l'installazione e l'avvio del kernel.
 
-!!! warning "Le ricostruzioni del kernel non sono consigliate né supportate per Rocky Linux. Prima di costruire un kernel personalizzato o anche solo di prenderlo in considerazione, ponetevi le seguenti domande:"
+!!! warning "Le ricostruzioni del kernel non sono consigliate né supportate per Rocky Linux. Prima di tentare di creare un kernel personalizzato, considerare quanto segue:"
 
     * La funzionalità richiesta è disponibile installando un modulo del kernel da [elrepo](https://elrepo.org)?
     * La funzionalità richiesta è disponibile come modulo separato dal kernel stesso?
-    * Siete disposti a mantenere la vostra posizione di sicurezza?
-    * **Siete sicuri**? Rocky Linux e la maggior parte degli altri derivati di EL sono stati progettati per funzionare come un ambiente completo. La sostituzione dei componenti critici può influire sul funzionamento del sistema.
-    * **Siete ASSOLUTAMENTE sicuri**? il 99.9% degli utenti non hanno più bisogno di creare il proprio kernel. Potrebbe essere necessario un modulo/driver del kernel, nel qual caso si può usare [elrepo](https://elrepo.org) o costruire il proprio modulo del kernel (kmod/dkms)
-    * **Siete sicuri di non volere solo una versione più recente del kernel**? I kernel più recenti possono essere trovati su [elrepo](https://elrepo.org)
+    * Rocky Linux e la maggior parte degli altri derivati di EL sono stati progettati per funzionare come un ambiente completo. La sostituzione dei componenti critici può influire sul funzionamento del sistema.
+    * La maggior parte degli utenti non ha più bisogno di creare il proprio kernel. Potrebbe essere necessario un modulo/driver del kernel o forse costruire il proprio modulo del kernel (kmod/dkms)
 
-    Come ultimo avvertimento: Se rompete il kernel, siete responsabili del vostro sistema. I volontari o gli sviluppatori di Rocky Linux non sono in grado di fornire assistenza per questi problemi.
+    Come avvertimento finale: Se rompete il kernel, siete responsabili della risoluzione dei problemi che ne derivano sul vostro sistema.
 
 ## Il Kernel
 
@@ -77,14 +75,14 @@ Una fonte comune di fallimento riscontrata durante il processo di creazione del 
     > sudo dnf -y groupinstall 'Development Tools'
     ```
 
-2. Alcune altre librerie, file di intestazione e applicazioni di cui si potrebbe aver bisogno possono essere ottenute installando i seguenti pacchetti. Digita:
+2. Alcune altre librerie, file di intestazione e applicazioni possono essere ottenute installando i seguenti pacchetti. Digita:
 
     ```
     > sudo dnf -y install \
     ncurses-devel openssl-devel elfutils-libelf-devel python3
     ```
 
-3. Successivamente, abbiamo bisogno di altre utilità che sono disponibili solo in alcuni repository di terze parti supportati. Uno di questi repository è quello di Powertools. Abilitiamo questa repo sul nostro sistema Rocky. Digita:
+3. Successivamente, abbiamo bisogno di altre utility disponibili solo in alcuni repository di terze parti supportati. Uno di questi repository è quello di Powertools. Abilitiamo questa repo sul nostro sistema Rocky. Digita:
 
     ```
     > sudo dnf config-manager --set-enabled powertools
@@ -106,7 +104,7 @@ La versione del kernel che verrà costruita nella sezione seguente è la version
 
 Iniziamo il processo.
 
-1. Per prima cosa, utilizzare il seguente comando curl per scaricare i sorgenti del kernel necessari nella directory di lavoro corrente. Digita:
+1. Per prima cosa, scaricare i sorgenti del kernel nella directory di lavoro corrente usando il seguente comando curl. Digita:
 
     ```
     curl -L -o linux-5.16.9.tar.xz \
@@ -142,11 +140,11 @@ Una migliore comprensione di ciò che costituisce l'hardware sottostante può ai
 
 ### Sanificazione dell'ambiente di compilazione
 
-Con un'idea approssimativa dei tipi di hardware e delle caratteristiche che il nostro nuovo kernel deve supportare, possiamo iniziare la configurazione vera e propria. Ma prima, alcune informazioni di base.
+Possiamo iniziare la configurazione vera e propria con un'idea approssimativa dei tipi di hardware e delle caratteristiche che il nostro nuovo kernel deve supportare. Ma prima, alcune informazioni di base.
 
 L'albero dei sorgenti del kernel Linux contiene diversi file denominati Makefile (un makefile è semplicemente un file di testo con delle direttive e descrive anche le relazioni tra i file di un programma).
 
-These makefiles help to glue together the thousands of other files that make up the kernel source. Ciò che è più importante per noi è che i file make contengono anche i target. I target sono i comandi, o direttive, che vengono eseguiti dal programma make.
+Questi makefile aiutano a incollare insieme le migliaia di altri file che compongono il sorgente del kernel. Ciò che è più importante per noi è che i file make contengono anche i target. I target sono i comandi, o direttive, che vengono eseguiti dal programma make.
 
 
 !!! warning "Avviso: Evitare inutili aggiornamenti del Kernel"
@@ -170,7 +168,7 @@ Il Makefile nella radice dell'albero dei sorgenti del kernel contiene obiettivi 
 - **make olddefconfig**Questo obiettivo utilizza il file .config esistente nella directory di lavoro corrente, aggiorna le dipendenze e imposta automaticamente i nuovi simboli ai valori predefiniti.
 - **make help**Questo obiettivo mostra tutti gli altri possibili obiettivi di make e funge anche da rapido sistema di guida in linea.
 
-Per configurare il kernel in questa sezione, utilizzeremo solo uno dei target. In particolare, utilizzeremo il comando make menuconfig. L'editor di configurazione del kernel menuconfig è una semplice e popolare utilità di configurazione basata sul testo che consiste in menu, elenchi di pulsanti e finestre di dialogo.
+In questa sezione utilizzeremo solo uno dei target per configurare il kernel. In particolare, utilizzeremo il comando make menuconfig. L'editor di configurazione del kernel menuconfig è una semplice e popolare utilità di configurazione basata sul testo che consiste in menu, elenchi di pulsanti e finestre di dialogo.
 
 Ha un'interfaccia semplice e pulita che può essere facilmente navigata con la tastiera ed è abbastanza intuitiva da usare.
 
@@ -183,11 +181,11 @@ Dobbiamo navigare (cd) nella directory dei sorgenti del kernel, dopodiché possi
 
 ### Configurazione del Kernel
 
-Successivamente, verrà illustrato il processo di configurazione di un kernel Linux serie 5.*. Per esplorare alcuni dei meccanismi interni di questo processo, abiliteremo il supporto di una funzione specifica che fingeremo essere una caratteristica indispensabile del sistema. Una volta capito come funziona, si può applicare la stessa procedura per aggiungere il supporto a qualsiasi altra nuova funzione del kernel che si desidera. In particolare, abiliteremo il supporto per il file system NTFS nel nostro kernel personalizzato.
+Successivamente, verrà illustrato il processo di configurazione di un kernel Linux serie 5.*. Per esplorare alcuni dei meccanismi interni di questo processo, abiliteremo il supporto di una funzione specifica che fingeremo essere una caratteristica indispensabile del sistema. Una volta capito come funziona, si può applicare la stessa procedura per aggiungere il supporto a qualsiasi nuova funzionalità del kernel. In particolare, abiliteremo il supporto per il file system NTFS nel nostro kernel personalizzato.
 
 La maggior parte delle moderne distro Linux viene fornita con un file di configurazione del kernel in esecuzione, disponibile sul file system locale come file compresso o normale. Nel nostro sistema Rocky di esempio, questo file risiede nella directory /boot e di solito ha un nome come config-4.*.
 
-The configuration file contains a list of the options and features that were enabled for the particular kernel it represents. Un file di configurazione simile a questo è quello che si vuole creare durante il processo di configurazione del kernel. L'unica differenza tra il file che creeremo e quello già pronto è che aggiungeremo ulteriori piccole personalizzazioni al nostro.
+Il file di configurazione contiene un elenco delle opzioni e delle caratteristiche abilitate per il particolare kernel che rappresenta. Un file di configurazione simile a questo è quello che si vuole creare durante il processo di configurazione del kernel. L'unica differenza tra il file che creeremo e quello già pronto è che aggiungeremo ulteriori piccole personalizzazioni al nostro.
 
 
 !!! TIP "Suggerimento"
@@ -204,7 +202,7 @@ I passi seguenti spiegano come configurare il kernel. Utilizzeremo un'utilità d
 
     !!! NOTE "Nota"
 
-     L'editor di configurazione del kernel Linux inizia a cercare, e finisce per generare, un file chiamato .config (pronunciato "dot config") alla radice dell'albero dei sorgenti del kernel. Questo file è nascosto.
+     L'editor di configurazione del kernel Linux inizia cercando e generando esplicitamente un file chiamato .config (pronunciato "dot config") alla radice dell'albero dei sorgenti del kernel. Questo file è nascosto.
 
 2. Avviare l'utilità di configurazione grafica del kernel:
 
@@ -220,7 +218,7 @@ I passi seguenti spiegano come configurare il kernel. Utilizzeremo un'utilità d
     La parte superiore mostra varie informazioni utili, scorciatoie da tastiera e legende che possono aiutare a navigare nell'applicazione.
     Il corpo principale della schermata mostra un elenco espandibile a struttura ad albero delle opzioni del kernel complessivamente configurabili. È possibile approfondire le voci con le frecce nel genitore per visualizzare e/o configurare le voci dei sottomenu (o figli). Infine, nella parte inferiore dello schermo vengono visualizzate le azioni/opzioni che l'utente può scegliere.
 
-3. Successivamente, a scopo dimostrativo, aggiungeremo il supporto per NTFS nel nostro kernel personalizzato.
+3. Successivamente, aggiungeremo il supporto per NTFS nel nostro kernel personalizzato a scopo dimostrativo.
 
     Nella schermata di configurazione principale, utilizzare i tasti freccia per spostarsi ed evidenziare la voce File system. Una volta selezionato File system, premere Invio per visualizzare il menu secondario o le voci secondarie di File system.
 
@@ -228,7 +226,7 @@ I passi seguenti spiegano come configurare il kernel. Utilizzeremo un'utilità d
 
 4. Nella sezione Filesystem DOS/FAT/NT, passare al supporto del file system NTFS.
 
-    Digitare M (maiuscolo) per abilitare il supporto del file system NTFS tramite moduli.
+    Digitare M (maiuscolo) per abilitare i moduli al supporto del file system NTFS.
 
     Utilizzare i tasti freccia per spostarsi verso il basso fino al supporto del debug NTFS (NEW) e premere y per includerlo.
 
@@ -267,7 +265,7 @@ I passi seguenti spiegano come configurare il kernel. Utilizzeremo un'utilità d
         ```
     !!! NOTE "Una nota veloce sui Moduli del kernel"
 
-     Il supporto per i moduli caricabili è una caratteristica del kernel Linux che consente il caricamento (o la rimozione) dinamica dei moduli del kernel.
+     Il supporto per i moduli caricabili è una caratteristica del kernel Linux che consente il caricamento (o la rimozione) dinamica dei moduli del kernel.    
     
      I moduli del kernel sono pezzi di codice compilato che possono essere inseriti dinamicamente nel kernel in esecuzione, anziché essere integrati in modo permanente nel kernel. Le funzioni non utilizzate di frequente possono quindi essere abilitate, ma non occuperanno spazio nella memoria quando non vengono utilizzate.
     
@@ -275,7 +273,7 @@ I passi seguenti spiegano come configurare il kernel. Utilizzeremo un'utilità d
 
 ### Compilazione del Kernel
 
-In the preceding section, we walked through the process of creating a configuration file for the custom kernel that we want to build. In questa sezione si eseguirà la compilazione vera e propria del kernel. Ma prima di fare questo, aggiungeremo una personalizzazione più semplice all'intero processo.
+Nella sezione precedente abbiamo illustrato il processo di creazione di un file di configurazione per il kernel personalizzato che vogliamo costruire. In questa sezione si eseguirà la compilazione vera e propria del kernel. Ma prima di fare questo, aggiungeremo una personalizzazione più semplice all'intero processo.
 
 La personalizzazione finale consisterà nell'aggiungere un'informazione supplementare utilizzata nel nome finale del nostro kernel. Questo ci aiuterà a distinguere questo kernel da qualsiasi altro kernel con lo stesso numero di versione. Aggiungeremo il tag "custom" alle informazioni sulla versione del kernel. Questo può essere fatto modificando il Makefile principale e aggiungendo il tag desiderato alla variabile EXTRAVERSION.
 
@@ -346,7 +344,7 @@ A causa della quantità di codice che deve essere compilato, preparatevi ad aspe
     ~/build/kernel/arch/x86/boot/bzImage
     ```
 
-5. Poiché abbiamo compilato parti del kernel come moduli (ad esempio, il modulo NTFS), dobbiamo installare i moduli. Digitare quanto segue:
+5. È necessario installare i moduli perché abbiamo compilato parti del kernel come moduli (ad esempio, il modulo NTFS). Digitare quanto segue:
 
     ```
     > sudo make O=~/build/kernel modules_install
@@ -448,7 +446,7 @@ grub_class kernel
     La maggior parte delle distro ha a disposizione diverse utility grub2-* che possono essere utilizzate per eseguire varie operazioni di pulizia di GRUB2 e del boot loader. Ad esempio, si può usare il comando grub2-set-default per modificare o impostare il kernel predefinito da avviare all'avvio del sistema.
 
 ## Avvio del Kernel personalizzato
-La fase successiva consiste nel testare il nuovo kernel per assicurarsi che il sistema possa effettivamente avviarsi con esso.
+La fase successiva consiste nel testare il kernel per assicurarsi che il sistema possa avviarsi con esso.
 
 1. Supponendo di aver eseguito tutto nel modo esatto prescritto dal medico e che tutto abbia funzionato esattamente come indicato dal medico, si può tranquillamente riavviare il sistema e selezionare il nuovo kernel dal menu del boot loader durante l'avvio del sistema:
 
@@ -471,7 +469,7 @@ La fase successiva consiste nel testare il nuovo kernel per assicurarsi che il s
     license:        GPL
     version:        2.1.32
     description:    NTFS 1.2/3.x driver - Copyright …..
-    ...<OUTPUT TRUNCATED>...
+    ...OUTPUT TRUNCATED...
     ```
 
-E questo è tutto!
+E questo è quanto!
