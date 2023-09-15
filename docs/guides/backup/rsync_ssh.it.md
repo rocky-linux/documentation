@@ -1,7 +1,7 @@
 ---
 title: Sincronizzazione con rsync
 author: Steven Spencer
-contributors: Ezequiel Bruni, tianci li, Franco Colussi
+contributors: Ezequiel Bruni, tianci li, Ganna Zhyrnova
 tags:
   - synchronization
   - rsync
