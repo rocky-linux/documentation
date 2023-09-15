@@ -1,7 +1,7 @@
 ---
 title: 10 Automatizzare
 author: Steven Spencer, Franco Colussi
-contributors: Ezequiel Bruni, Franco Colussi
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.8, 9.2
 tags:
   - lxd
