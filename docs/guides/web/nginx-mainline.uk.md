@@ -1,7 +1,7 @@
 ---
 title: Nginx
 author: Ezequiel Bruni
-contributors: Antoine Le Morvan, Steven Spencer
+contributors: Antoine Le Morvan, Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - nginx
