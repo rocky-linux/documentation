@@ -1,7 +1,7 @@
 ---
 title: Багатосайтовий Nginx
 author: Ezequiel Bruni
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - web
