@@ -1,7 +1,7 @@
 ---
 title: Metodo Docker
 author: Wale Soyinka
-contributors: Steve Spencer, Franco Colussi
+contributors: Steve Spencer, Ganna Zhyrnova
 update: 05-Mar-2022
 ---
 
