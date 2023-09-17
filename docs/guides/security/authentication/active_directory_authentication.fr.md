@@ -1,6 +1,6 @@
 ---
 author: Hayden Young
-contributors: Krista Burdine, Steven Spencer, Sambhav Saggi, Antoine Le Morvan
+contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Ganna Zhyrnova
 ---
 
 # Authentification avec Active Directory
