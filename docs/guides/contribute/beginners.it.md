@@ -1,7 +1,7 @@
 ---
 title: Guida al contributo per principianti
 author: Krista Burdine
-contributors: Ezequiel Bruni, Steven Spencer, Franco Colussi
+contributors: Ezequiel Bruni, Steven Spencer, Ganna Zhyrnova
 tags:
   - contributing
   - documentation

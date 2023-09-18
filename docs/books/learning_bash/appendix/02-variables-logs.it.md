@@ -1,7 +1,7 @@
 ---
 title: Variabili - Utilizzo Con I Registri
 author: Steven Spencer
-contributors: Antoine Le Morvan, Franco Colussi
+contributors: Antoine Le Morvan, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - bash scripting

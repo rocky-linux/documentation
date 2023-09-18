@@ -1,7 +1,7 @@
 ---
 title: Ottimizzazioni del server di gestione
 author: Antoine Le Morvan
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 23-Dec-2021
 ---
 

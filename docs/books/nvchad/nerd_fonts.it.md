@@ -1,7 +1,7 @@
 ---
 title: Installazione dei Caratteri Nerd
 author: Franco Colussi
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tested: 8.6, 9.0
 tags:
   - nvchad

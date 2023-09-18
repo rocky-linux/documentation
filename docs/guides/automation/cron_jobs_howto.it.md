@@ -1,7 +1,7 @@
 ---
 title: cron - Automatizzare i comandi
 author: Steven Spencer
-contributors: Ezequiel Bruni, Franco Colussi
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested on: 8.5
 tags:
   - automazione del lavoro

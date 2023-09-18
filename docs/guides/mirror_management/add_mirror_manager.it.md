@@ -1,6 +1,6 @@
 ---
 title: Aggiungere un Mirror Rocky
-contributors: Amin Vakil, Steven Spencer, Franco Colussi
+contributors: Amin Vakil, Steven Spencer, Ganna Zhyrnova
 ---
 
 # Aggiunta di un mirror pubblico al gestore di mirror di Rocky

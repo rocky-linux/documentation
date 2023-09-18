@@ -8,7 +8,6 @@ title: Gestione e installazione del software (Laboratorio 7) author: Wale Soyink
 
 ## Obiettivi
 
-
 Dopo aver completato questo laboratorio, potrai
 
 - Interrogare i pacchetti per ottenere informazioni
@@ -16,10 +15,7 @@ Dopo aver completato questo laboratorio, potrai
 - Risolvere alcuni problemi di dipendenza di base
 - Compilare e installare il software dai sorgenti
 
-
 Tempo stimato per completare questo laboratorio: 90 minuti
-
-
 
 ## File binari e file sorgente
 
@@ -30,7 +26,6 @@ Uno dei compiti di routine di un amministratore di sistema è la gestione del so
 - installazione di un nuovo software
 - disinstallazione del software
 - aggiornamento del software già installato
-
 
 Il software può essere installato su sistemi basati su Linux utilizzando diversi metodi. È possibile installare dai sorgenti o dai binari precompilati. Quest'ultimo metodo è di gran lunga il più semplice, ma è anche il meno personalizzabile. Quando si installa da binari precompilati, la maggior parte del lavoro è già stato fatto per voi, ma anche in questo caso è necessario conoscere il nome e la posizione del software desiderato.
 
@@ -73,7 +68,6 @@ Opzioni di verifica (con -V o --verify):
       --nofiles non verifica i file del pacchetto
       --nodeps non verifica le dipendenze del pacchetto
       --noscript non esegue gli script di verifica
-
 ```
 
 **INSTALLARE, AGGIORNARE E RIMUOVERE I PACCHETTI**
@@ -115,7 +109,8 @@ In questo laboratorio imparerete a usare il sistema RPM e installerete un'applic
 
 #### Per interrogare i pacchetti per ottenere informazioni.
 
-1.  Per visualizzare un elenco di tutti i pacchetti attualmente installati sul sistema locale, digitate:
+1. Per visualizzare un elenco di tutti i pacchetti attualmente installati sul sistema locale, digitate:
+
     ```
     $ rpm -qa
     python3-gobject-base-*
@@ -123,37 +118,47 @@ In questo laboratorio imparerete a usare il sistema RPM e installerete un'applic
     rocky-repos-*
     ...<OUTPUT TRUNCATED>...
     ```
-Dovrebbe apparire un lungo elenco.
 
-2.  Approfondiamo un po' la questione e scopriamo di più su uno dei pacchetti installati nel sistema. Esamineremo NetworkManager. Utilizzeremo le opzioni --query (-q) e --info (-i) con il comando `rpm`. Digita:
+    Dovrebbe apparire un lungo elenco.
+
+2. Approfondiamo un po' la questione e scopriamo di più su uno dei pacchetti installati nel sistema. Esamineremo NetworkManager. Utilizzeremo le opzioni --query (-q) e --info (-i) con il comando `rpm`. Digitate:
+
     ```
     $ rpm -qi NetworkManager
     Name        : NetworkManager
     Epoch       : 1
     ...<OUTPUT TRUNCATED>...
     ```
-Si tratta di una grande quantità di informazioni (metadati)!
 
-3.  Supponiamo di essere interessati solo al campo di riepilogo del comando precedente. Si può usare l'opzione di formato della query di rpm per filtrare le informazioni che si ottengono dall'opzione di query.
+    Si tratta di una grande quantità di informazioni (metadati)!
 
- Ad esempio, per visualizzare solo il campo di riepilogo, digitare:
+3. Supponiamo di essere interessati solo al campo Riepilogo del comando precedente. Si può usare l'opzione --queryformat di rpm per filtrare le informazioni ottenute dall'opzione query.
+
+    Ad esempio, per visualizzare solo il campo Riepilogo, digitare:
+
     ```
     $ rpm -q --queryformat '%{summary}\n' NetworkManager
     ```
 
-4. Per visualizzare sia la versione che i campi di riepilogo del tipo di pacchetto NetworkManager installato:
+    Il nome del campo è insensibile alle maiuscole e alle minuscole.
+
+4. Per visualizzare i campi Versione e Riepilogo del tipo di pacchetto NetworkManager installato:
+
     ```
     $ rpm -q --queryformat '%{version}  %{summary}\n' NetworkManager 
     ```
 
+5. Digitare il comando per visualizzare le informazioni sul pacchetto bash installato nel sistema.
 
-5.  Digitare il comando per visualizzare le informazioni sul pacchetto bash installato nel sistema.
+    ```
+    $ rpm -qi bash
+    ```
 
     !!! note "Nota" 
-   
-        Gli esercizi precedenti consistevano nell'interrogare e lavorare con i pacchetti già installati nel sistema. Nei prossimi esercizi, inizieremo a lavorare con i pacchetti non ancora installati. Utilizzeremo l'applicazione DNF per scaricare i pacchetti che utilizzeremo nei prossimi passi.
 
-6.  Innanzitutto assicuratevi che l'applicazione `wget` non sia già installata sul sistema. Digita:
+     Gli esercizi precedenti consistevano nell'interrogare e lavorare con i pacchetti già installati nel sistema. Nei prossimi esercizi, inizieremo a lavorare con i pacchetti non ancora installati. Utilizzeremo l'applicazione DNF per scaricare i pacchetti che utilizzeremo nei prossimi passi.
+
+6. Innanzitutto assicuratevi che l'applicazione `wget` non sia già installata sul sistema. Digita:
 
     ```
     $ rpm -q wget
@@ -227,7 +232,7 @@ Si tratta di una grande quantità di informazioni (metadati)!
 
 ### Integrità del pacchetto
 
-1.  È possibile scaricare o ritrovarsi con un file corrotto o contaminato. Verificare l'integrità del pacchetto `wget` scaricato. Digita:
+1. È possibile scaricare o ritrovarsi con un file corrotto o contaminato. Verificare l'integrità del pacchetto `wget` scaricato. Digita:
 
     ```
     $ rpm -K  wget-*.rpm
@@ -236,13 +241,13 @@ Si tratta di una grande quantità di informazioni (metadati)!
 
     Il messaggio "digests signatures OK" nell'output mostra che il pacchetto è a posto.
 
-2.  Facciamo finta di essere malintenzionati e alteriamo deliberatamente il pacchetto scaricato. Questo può essere fatto aggiungendo o togliendo qualcosa al pacchetto originale. Qualsiasi cosa che modifichi il pacchetto in un modo diverso da quello previsto dai pacchettizzatori originali lo danneggia. Modificheremo il file utilizzando il comando echo per aggiungere la stringa "haha" al pacchetto. Digita:
+2. Facciamo finta di essere malintenzionati e alteriamo deliberatamente il pacchetto scaricato. Questo può essere fatto aggiungendo o togliendo qualcosa al pacchetto originale. Qualsiasi cosa che modifichi il pacchetto in un modo diverso da quello previsto dai pacchettizzatori originali lo danneggia. Modificheremo il file utilizzando il comando echo per aggiungere la stringa "haha" al pacchetto. Digita:
 
     ```
     $ echo haha >> wget-1.19.5-10.el8.x86_64.rpm 
     ```
 
-3.  Ora provate a verificare nuovamente l'integrità del pacchetto usando l'opzione -K di rpm. Digita:
+3. Ora provate a verificare nuovamente l'integrità del pacchetto usando l'opzione -K di rpm. Digita:
 
     ```
     $ rpm -K  wget-*.rpm
@@ -251,13 +256,13 @@ Si tratta di una grande quantità di informazioni (metadati)!
 
     Ora il messaggio è molto diverso. L'output "DIGESTS SIGNATURES NOT OK" è un chiaro avvertimento che indica di non provare a usare o installare il pacchetto. Non ci si deve più fidare.
 
-4.  Usare il comando `rm` per eliminare il file danneggiato del pacchetto `wget` e scaricarne una nuova copia usando `dnf`. Digita:
+4. Usare il comando `rm` per eliminare il file danneggiato del pacchetto `wget` e scaricarne una nuova copia usando `dnf`. Digita:
 
     ```
     $ rm wget-*.rpm  && dnf download wget
     ```
-    Verificare ancora una volta che il pacchetto appena scaricato superi i controlli di integrità di RPM.
 
+    Verificare ancora una volta che il pacchetto appena scaricato superi i controlli di integrità di RPM.
 
 ## Esercizio 3
 
@@ -266,7 +271,6 @@ Si tratta di una grande quantità di informazioni (metadati)!
 Quando si cerca di installare un software sul sistema, può capitare di imbattersi in problemi di "dipendenze fallite". Questo è particolarmente comune quando si utilizza l'utilità RPM di basso livello per gestire manualmente le applicazioni su un sistema.
 
 Ad esempio, se si tenta di installare il pacchetto "abc.rpm", il programma di installazione RPM potrebbe lamentarsi di alcune dipendenze non riuscite. Potrebbe dirvi che il pacchetto "abc.rpm" richiede l'installazione di un altro pacchetto "xyz.rpm". Il problema delle dipendenze si presenta perché le applicazioni software dipendono quasi sempre da altri software o librerie. Se un programma richiesto o una libreria condivisa non è già presente sul sistema, tale prerequisito dovrà essere soddisfatto prima di installare l'applicazione di destinazione.
-
 
 L'utilità RPM di basso livello spesso conosce le interdipendenze tra le applicazioni. Ma di solito non sa come o dove ottenere l'applicazione o la libreria necessaria per risolvere il problema. In altre parole, l'RPM conosce il *cosa* e il *come*, ma non ha la capacità di rispondere alla domanda sul *dove*. È qui che si distinguono strumenti come `dnf`, `yum` e così via.
 
@@ -390,7 +394,7 @@ In questo esercizio si cercherà di usare `rpm` per disinstallare alcuni pacchet
      Spiegare perché non è stato possibile rimuovere il pacchetto?
 
 
-2.  Il modo pulito e corretto di rimuovere i pacchetti utilizzando RPM è quello di rimuovere i pacchetti insieme alle loro dipendenze. Per rimuovere il pacchetto `libmetalink` dobbiamo rimuovere anche il pacchetto `wget` che dipende da esso. Digita:
+2. Il modo pulito e corretto di rimuovere i pacchetti utilizzando RPM è quello di rimuovere i pacchetti insieme alle loro dipendenze. Per rimuovere il pacchetto `libmetalink` dobbiamo rimuovere anche il pacchetto `wget` che dipende da esso. Digita:
 
     ```
     $ sudo rpm -e libmetalink wget
@@ -458,7 +462,7 @@ Le opzioni più comuni utilizzate con l'utilità `dnf` sono:
 
 Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei passi seguenti useremo DNF per installare il pacchetto. Il processo di 2-3 passi che abbiamo richiesto in precedenza quando abbiamo installato `wget` tramite `rpm` dovrebbe essere ridotto a un solo passo utilizzando `dnf`. `dnf` si occuperà tranquillamente di risolvere le dipendenze.
 
-1.  Per prima cosa, assicuriamoci che `wget` e `libmetalink` siano disinstallati dal sistema. Digita:
+1. Per prima cosa, assicuriamoci che `wget` e `libmetalink` siano disinstallati dal sistema. Digita:
 
     ```
     $ sudo rpm -e wget libmetalink
@@ -503,7 +507,7 @@ Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei
 #### Per usare `dnf` per disinstallare i pacchetti
 
 
-1.  Per usare `dnf` per disinstallare il pacchetto `wget`, digitate:
+1. Per usare `dnf` per disinstallare il pacchetto `wget`, digitate:
 
     ```
     $ sudo dnf -y remove wget
@@ -537,19 +541,19 @@ DNF può essere usato per verificare e installare l'ultima versione di singoli p
     $ dnf check-update wget
     ```
 
-4. Ora elenca tutte le versioni disponibili del pacchetto kernel per il vostro sistema. Digita:
+3. Ora elenca tutte le versioni disponibili del pacchetto kernel per il vostro sistema. Digita:
 
     ```
     $ sudo dnf list kernel
     ```
 
-5. Ora controllate se sono disponibili pacchetti aggiornati per il pacchetto kernel installato. Digita:
+4. Ora controllate se sono disponibili pacchetti aggiornati per il pacchetto kernel installato. Digita:
 
     ```
     $ dnf  check-update kernel
     ```
 
-6. Gli aggiornamenti dei pacchetti possono essere dovuti a correzioni di bug, nuove funzionalità o patch di sicurezza. Per vedere se ci sono aggiornamenti relativi alla sicurezza per il pacchetto kernel, digitate:
+5. Gli aggiornamenti dei pacchetti possono essere dovuti a correzioni di bug, nuove funzionalità o patch di sicurezza. Per vedere se ci sono aggiornamenti relativi alla sicurezza per il pacchetto kernel, digitate:
 
     ```
     $ dnf  --security check-update kernel
@@ -589,9 +593,9 @@ I seguenti esercizi si basano sul codice sorgente del venerabile progetto Hello.
 
 #### Per scaricare il file sorgente
 
-1.  Usare `curl` per scaricare l'ultimo codice sorgente dell'applicazione `hello`. Scarichiamo e salviamo il file nella cartella Download.
+1. Usare `curl` per scaricare l'ultimo codice sorgente dell'applicazione `hello`. Scarichiamo e salviamo il file nella cartella Download.
 
-https://ftp.gnu.org/gnu/hello/hello-2.12.tar.gz
+    https://ftp.gnu.org/gnu/hello/hello-2.12.tar.gz
 
 #### Per decomprimere il file
 
@@ -609,17 +613,17 @@ https://ftp.gnu.org/gnu/hello/hello-2.12.tar.gz
     ...<TRUNCATED>...
     ```
 
-4. Usate il comando `ls` per visualizzare il contenuto della vostra pwd.
+3. Usate il comando `ls` per visualizzare il contenuto della vostra pwd.
 
     Una nuova cartella denominata hello-2.12 dovrebbe essere stata creata durante la decompressione.
 
-5. Passate a quella directory ed elencatene il contenuto. Digita:
+4. Passate a quella directory ed elencatene il contenuto. Digita:
 
     ```
     $ cd hello-2.12 ; ls
     ```
 
-6. È sempre buona norma esaminare tutte le istruzioni di installazione speciali che possono essere fornite con il codice sorgente. Questi file hanno solitamente nomi come: INSTALL, README e così via.
+5. È sempre buona norma esaminare tutte le istruzioni di installazione speciali che possono essere fornite con il codice sorgente. Questi file hanno solitamente nomi come: INSTALL, README e così via.
 
     Utilizzare un pager per aprire il file INSTALL e leggerlo. Digita:
     ```
@@ -634,9 +638,9 @@ La maggior parte delle applicazioni ha funzioni che possono essere attivate o di
 
 Lo script che di solito permette di configurare il software si chiama "configure"
 
-1.  Usate di nuovo il comando `ls` per assicurarvi di avere un file chiamato *configure* nella vostra pwd.
+1. Usate di nuovo il comando `ls` per assicurarvi di avere un file chiamato *configure* nella vostra pwd.
 
-2.  Per visualizzare tutte le opzioni, è possibile attivare o disattivare il tipo di programma `hello`:
+2. Per visualizzare tutte le opzioni, è possibile attivare o disattivare il tipo di programma `hello`:
 
     ```
     $ ./configure --help
@@ -714,5 +718,4 @@ Tra le altre operazioni di pulizia, la fase finale dell'installazione prevede an
 
      È buona norma testare un programma come utente ordinario per assicurarsi che gli utenti ordinari possano effettivamente utilizzare il programma. È possibile che i permessi sul binario siano impostati in modo errato, in modo che solo il superutente possa utilizzare i programmi. Questo ovviamente presuppone che si voglia effettivamente che gli utenti ordinari possano utilizzare il programma.
 
-5.  Questo è quanto. Questo laboratorio è completo!
-
+5. Questo è quanto. Questo laboratorio è completo!

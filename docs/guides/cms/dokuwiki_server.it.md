@@ -1,7 +1,7 @@
 ---
 title: DokuWiki
-author: Steven Spencer, Franco Colussi
-contributors: Ezequiel Bruni, Franco Colussi
+author: Spencer Steven
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - wiki

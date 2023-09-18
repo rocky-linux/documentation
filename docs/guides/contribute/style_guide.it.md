@@ -1,7 +1,7 @@
 ---
 title: Guida allo Stile
 author: Ezequiel Bruni, Krista Burdine
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tags:
   - contribute
   - style guide

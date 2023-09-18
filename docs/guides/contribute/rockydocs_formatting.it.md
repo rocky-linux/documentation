@@ -1,7 +1,7 @@
 ---
 title: Formattazione del documento
 author: Steven Spencer
-contributors: Krista Burdine, tianci li, Ezequiel Bruni, Franco Colussi
+contributors: tianci li, Ezequiel Bruni, Krista Burdine, Ganna Zhyrnova
 tags:
   - contribute
   - formatting

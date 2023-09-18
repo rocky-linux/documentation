@@ -1,7 +1,7 @@
 ---
 title: Installare Neovim
 author: Franco Colussi
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.7, 9.1
 tags:
   - nvchad

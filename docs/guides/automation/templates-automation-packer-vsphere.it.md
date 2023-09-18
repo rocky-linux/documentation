@@ -1,7 +1,7 @@
 ---
 title: Creazione Automatica di Template - Packer - Ansible - VMware vSphere
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Franco Colussi
+contributors: Steven Spencer, Ryan Johnson, Pedro Garcia, Ganna Zhyrnova
 ---
 
 # Creazione automatica di template con Packer e distribuzione con Ansible in un ambiente VMware vSphere
