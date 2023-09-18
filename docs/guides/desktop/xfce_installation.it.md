@@ -1,5 +1,5 @@
 - - -
-title: XFCE Desktop author: Gerard Arthus, Steven Spencer contributors: Steven Spencer, Antoine Le Morvan, K.Prasad tested_with: 8.5, 8.6, 9.0 tags:
+title: XFCE Desktop author: Gerard Arthus, Steven Spencer contributors: Steven Spencer, Antoine Le Morvan, K.Prasad, Ganna Zhyrnova tested_with: 8.5, 8.6, 9.0 tags:
   - xfce
   - desktop
 - - -
