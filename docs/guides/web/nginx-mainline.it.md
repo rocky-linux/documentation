@@ -1,7 +1,7 @@
 ---
 title: Nginx
 author: Ezequiel Bruni
-contributors: Antoine Le Morvan, Steven Spencer, Franco Colussi
+contributors: Antoine Le Morvan, Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - nginx
@@ -16,7 +16,7 @@ tags:
 
 Ecco una breve panoramica dei modi in cui Nginx si distingue e delle sue caratteristiche:
 
-* Un server web di base (si spera)
+* Un server web di base
 * Un reverse proxy per dirigere il traffico verso più siti
 * Un bilanciatore di carico integrato per gestire il traffico verso più siti web
 * Caching dei file incorporato per la velocità
@@ -36,7 +36,7 @@ Ecco una breve panoramica dei modi in cui Nginx si distingue e delle sue caratte
     * vuoi *veramente* essere sicuro che le nuove caratteristiche e le correzioni importanti non interrompano il codice di terze parti o il tuo codice personalizzato.
     * Volete attenervi solo ai repository software di Rocky Linux.
     
-    Ci sarà un tutorial alla fine di questa guida che spiega in dettaglio come abilitare e installare il ramo "stable" con il minimo sforzo.
+    Un tutorial alla fine di questa guida spiegherà come attivare e installare il ramo " stable" con il minimo sforzo.
 
 ## Prerequisiti e Presupposti
 
@@ -99,7 +99,7 @@ Da lì, si potrebbe semplicemente iniziare ad inserire i file HTML nella directo
 
     Se state installando Nginx su un container come LXD/LXC o Docker, potete saltare questa parte per ora. Il firewall dovrebbe essere gestito dal sistema operativo host.
 
-Se provate a visualizzare una pagina web all'indirizzo IP o al nome di dominio della vostra macchina da un altro computer, probabilmente non otterrete un bel niente. Beh, sarà così finché avrete un firewall attivo e funzionante.
+Se si cerca di visualizzare una pagina Web con l'indirizzo IP o il nome di dominio della propria macchina da un altro computer, probabilmente non si otterrà nulla. Beh, sarà così finché avrete un firewall attivo e funzionante.
 
 Per aprire le porte necessarie in modo da poter effettivamente "vedere" le pagine web, utilizzeremo il firewall integrato di Rocky Linux, `firewalld`. Il comando `firewalld` per farlo è `firewall-cmd`. Ci sono due modi per farlo: quello ufficiale e quello manuale. *In questo caso, il modo ufficiale è il migliore,* ma dovresti conoscerli entrambi per riferimento futuro.
 
@@ -111,11 +111,11 @@ sudo firewall-cmd --permanent --zone=public --add-service=http
 
 Scomponiamo il tutto:
 
-* La flag `--permanent` dice al firewall di assicurarsi che questa configurazione sia usata ogni volta che il firewall viene riavviato, e quando il server stesso viene riavviato.
+* L'opzione `--permanent` indica al firewall di assicurarsi che questa configurazione sia utilizzata ogni volta che il firewall viene riavviato e quando il server viene riavviato.
 * `--zone=public` dice al firewall di accettare connessioni in entrata a questa porta da chiunque.
 * Infine, `--add-service=http` dice a `firewalld` di lasciar passare tutto il traffico HTTP verso il server.
 
-Now here's the manual way to do it. È più o meno la stessa cosa, tranne che stai aprendo specificamente la porta 80, che è quella che usa l'HTTP.
+Ecco il modo manuale per farlo. È praticamente la stessa cosa, tranne per il fatto che si apre specificamente la porta 80 utilizzata da HTTP.
 
 ```bash
 sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
@@ -123,7 +123,7 @@ sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
 
 * `--add-port=80/tcp` dice al firewall di accettare le connessioni in entrata sulla porta 80, purché stiano usando il Transmission Control Protocol, che è quello che vuoi in questo caso.
 
-Per ripetere il processo per il traffico SSL/HTTPS, basta eseguire nuovamente il comando e cambiare il servizio e/o il numero di porta.
+Per il traffico SSL/HTTPS, è sufficiente eseguire nuovamente il comando e modificare il servizio o il numero di porta.
 
 ```bash
 sudo firewall-cmd --permanent --zone=public --add-service=https
@@ -180,13 +180,13 @@ curl -I http://[your-ip-address]
 
 Mentre voi *potreste* semplicemente mettere il vostro sito web nella directory predefinita e proseguire (e questo potrebbe andare bene per *Nginx* quando è in esecuzione all'interno di un container, o su un server di test/sviluppo), non è ciò che noi chiamiamo best practice. Invece, è una buona idea creare un utente Linux specifico sul tuo sistema per il tuo sito web, e mettere i file del tuo sito web in una directory fatta solo per quell'utente.
 
-Se volete costruire più siti web, è effettivamente una buona idea creare più utenti e directory di root, sia per il bene dell'organizzazione che per il bene della sicurezza.
+Se si desidera creare più siti web, è una buona idea creare diversi utenti e directory principali per garantire l'organizzazione e la sicurezza.
 
 In questa guida, avrò solo un utente: un bel diavolo di nome "www". Decidere dove mettere i file del tuo sito web diventa più complicato.
 
-A seconda della configurazione del tuo server, puoi mettere i file del tuo sito web in un paio di posti diversi. Se siete su un server bare-metal (fisico), o state installando `nginx` direttamente su un VPS, probabilmente avete Security Enhanced Linux (SELinux) in esecuzione. SELinux è uno strumento che fa molto per proteggere la vostra macchina, ma detta anche dove potete mettere certe cose, come le pagine web.
+I file del sito web possono essere collocati in diversi punti, a seconda della configurazione del server. Se siete su un server bare-metal (fisico), o state installando `nginx` direttamente su un VPS, probabilmente avete Security Enhanced Linux (SELinux) in esecuzione. SELinux è uno strumento che fa molto per proteggere la vostra macchina, ma detta anche dove potete mettere certe cose, come le pagine web.
 
-Quindi se stai installando `nginx` direttamente sulla tua macchina, allora vorrai mettere i tuoi siti web nelle sottodirectory della cartella principale predefinita. In questo caso, la root predefinita è `/usr/share/nginx/html`, quindi il sito web per l'utente "www" potrebbe andare in `/usr/share/nginx/html/www`.
+Quindi, se state installando `nginx` direttamente sulla vostra macchina, vorrete mettere i vostri siti web nelle sottodirectory della cartella principale predefinita. In questo caso, la root predefinita è `/usr/share/nginx/html`, quindi il sito web per l'utente "www" potrebbe andare in `/usr/share/nginx/html/www`.
 
 Se state eseguendo `nginx` in un contenitore come LXD/LXC, tuttavia, SELinux probabilmente *non* sarà installato, e potete mettere i vostri file dove volete. In questo caso, mi piace mettere tutti i file del sito web di un utente sotto una directory in una normale cartella home, così: `/home/www/`.
 
@@ -262,7 +262,7 @@ Tutti i file HTML nella tua nuova cartella principale dovrebbero ora essere navi
 
 ### Cambiare i Permessi ai File
 
-Per assicurarsi che `nginx` possa leggere, scrivere ed eseguire tutti i file nella directory del sito, i permessi devono essere impostati correttamente.
+I permessi devono essere impostati correttamente per garantire che `nginx` possa leggere, scrivere ed eseguire qualsiasi file nella directory del sito web.
 
 Se si ottiene il seguente messaggio di successo, tutto è andato bene:
 
@@ -270,14 +270,14 @@ Se si ottiene il seguente messaggio di successo, tutto è andato bene:
 sudo chown -R www:www /usr/share/nginx/html/www
 ```
 
-E poi, per assicurarsi che gli utenti che vogliono effettivamente navigare il tuo sito web possano effettivamente vedere le pagine, dovresti fare in modo di poter eseguire questi comandi (e sì, quei punti e virgola contano):
+Quindi, per garantire che gli utenti che desiderano navigare nel vostro sito web possano effettivamente vedere le pagine, eseguite questi comandi (e sì, quei punti e virgola sono importanti):
 
 ```bash
 sudo find /usr/share/nginx/html/www -type d -exec chmod 555 "{}" \;
 sudo find /usr/share/nginx/html/www -type f -exec chmod 444 "{}" \;
 ```
 
-Questo in pratica dà a tutti il diritto di guardare i file sul server, ma non di modificarli. Solo gli utenti root e del server possono farlo.
+In pratica, questo dà a tutti il diritto di guardare i file sul server, ma non di modificarli. Solo gli utenti root e del server possono farlo.
 
 ## Ottenere certificati SSL per il Vostro Sito
 
@@ -321,7 +321,7 @@ Scegliete il numero più alto della lista e abilitate il suo modulo in questo mo
 sudo dnf module enable nginx:1.20
 ```
 
-Ti verrà chiesto se sei sicuro di volerlo fare, quindi scegli `Y` come al solito. Poi, usate il comando predefinito per installare `nginx`:
+Vi verrà chiesto se siete sicuri di volerlo fare, quindi digitate `Y`. Poi, usate il comando predefinito per installare `nginx`:
 
 ```bash
 sudo dnf install nginx
@@ -351,6 +351,6 @@ sudo setsebool httpd_can_network_connect 1 -P
 
 ## Conclusione
 
-L'installazione e la configurazione di base di `nginx` sono facili, anche se è più complicato di quanto dovrebbe essere ottenere l'ultima versione. Ma, basta seguire i passi, e avrete una delle migliori opzioni di server là fuori pronta e funzionante rapidamente.
+L'installazione e la configurazione di base di `nginx` sono facili, anche se è più complicato di quanto dovrebbe essere ottenere l'ultima versione. Ma seguite i passaggi e avrete una delle migliori opzioni di server in funzione rapidamente.
 
 Ora devi solo andare a costruirti un sito web? Cosa potrebbe volerci, altri dieci minuti? *Sobs quietly in Web Designer*

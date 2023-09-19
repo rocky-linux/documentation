@@ -3,13 +3,11 @@
 
 ## Obiettivi
 
-Dopo aver completato questo laboratorio, potrai
+Dopo aver completato questo lavoro di laboratorio, sarete in grado di:
 
 - applicare i concetti crittografici alla protezione dei dati e alla comunicazione
 
 Tempo stimato per completare questo laboratorio: 120 minuti
-
-
 
 ## Termini e definizioni Comuni di Crittografia
 
@@ -27,11 +25,11 @@ La criptologia è la disciplina di crittografia e criptanalisi combinate. La cri
 
 ### Cifratura
 
-La cifratura è la trasformazione dei dati in una forma che sia il più vicina possibile all'impossibile da leggere senza la conoscenza appropriata (es., una chiave). Il suo scopo è quello di garantire la privacy, tenendo nascoste le informazioni a chi non sono destinate.
+La crittografia trasforma i dati in una forma quasi impossibile da leggere senza le opportune conoscenze (ad esempio, una chiave). Il suo scopo è quello di garantire la privacy, tenendo nascoste le informazioni a chi non sono destinate.
 
 ### Decrittografia
 
-La decrittazione è l'operazione inversa alla crittografia: è la trasformazione dei dati crittografati in una forma intelligibile.
+La decrittazione è l'operazione inversa alla crittografia: trasforma i dati criptati in una forma intelligibile.
 
 ### Codifica
 
@@ -39,7 +37,7 @@ Un metodo di crittografia e decrittografia è detto codifica.
 
 Funzioni di Hash (Algoritmi di Digest)
 
-Le funzioni di hash crittografiche sono usate in vari contesti, ad esempio, per calcolare il digest del messaggio, creando una firma digitale. Una funzione di hash comprime i bit di un messaggio a un valore di hash a dimensione fissa, in un modo che distribuisce i possibili messaggi uniformemente tra i possibili valori di hash. Una funzione hash crittografica esegue questa operazione in modo tale da rendere estremamente difficile la creazione di un messaggio che corrisponda a un determinato valore hash. Alcuni esempi delle funzioni di hash più note e ampiamente usate sono descritti di seguito.
+Le funzioni di hash crittografiche sono usate in vari contesti, ad esempio, per calcolare il digest del messaggio, creando una firma digitale. Una funzione hash comprime i bit di un messaggio in un valore hash di dimensioni fisse per distribuire uniformemente i possibili messaggi tra i possibili valori hash. Una funzione hash crittografica esegue questa operazione in modo tale da rendere estremamente difficile la creazione di un messaggio che corrisponda a un determinato valore hash. Di seguito sono riportati alcuni esempi delle funzioni hash più note e utilizzate.
 
 **a)** - **SHA-1 (Secure Hash Algorithm)** -È un algoritmo di hash crittografico pubblicato dal governo degli Stati Uniti. Produce un valore di hash a 160 bit da una stringa di lunghezza arbitraria. È considerata molto buona.
 
@@ -49,7 +47,7 @@ Le funzioni di hash crittografiche sono usate in vari contesti, ad esempio, per 
 
 Descrive una procedura di risoluzione di un problema passo dopo passo, in particolare una procedura computazionale ricorsiva consolidata per la risoluzione di un problema in un numero finito di passi. Tecnicamente, un algoritmo deve raggiungere un risultato dopo un numero finito di passaggi. L'efficienza di un algoritmo è misurabile dal numero di passaggi elementari che richiede per risolvere il problema. Esistono due classi di algoritmi basati sulle chiavi. Che sono:
 
-**a) **-- **Algoritmi a Cifratura Simmetrica (chiave segreta)**
+**a) **-- **Algoritmi di crittografia simmetrica (chiave segreta)**
 
 Gli algoritmi simmetrici utilizzano la stessa chiave per la crittografia e la decrittografia (o la chiave di decrittografia è facilmente ricavabile dalla chiave di crittografia). Gli algoritmi a chiave segreta usano la stessa chiave sia per la crittografia che per la decrittografia (o una che sia facilmente derivabile dall'altra). Questo è l'approccio più diretto alla crittografia dei dati, è matematicamente meno complesso della crittografia a chiave pubblica. Gli algoritmi simmetrici possono esser suddivisi in cifrature di flusso e cifrature a blocchi. Le cifrature di flusso possono crittografare un singolo bit di testo semplice per volta, mentre le cifrature a blocchi prendono un numero di bit (tipicamente 64 bit nelle cifrature moderne) e li crittografano come un'unità singola. Gli algoritmi simmetrici sono molto più veloci da eseguire su un computer rispetto a quelli asimmetrici.
 
@@ -57,21 +55,21 @@ Esempi di algoritmi simmetrici sono: AES, 3DES, Blowfish, CAST5, IDEA e Twofish.
 
 **b) -- Algoritmi asimmetrici (Algoritmi a Chiave Pubblica)**
 
-Gli algoritmi asimmetrici, d'altra parte, usano una chiave differente per la crittografia e la decrittografia e la chiave decrittografica non è derivabile dalla chiave crittografica. Le cifrature asimmetriche permettono alla chiave crittografica di essere pubblica, consentendo a chiunque di crittografarla, mentre solo il destinatario giusto (che conosce la chiave di decrittografia), può decriptare il messaggio. La chiave crittografica è anche detta chiave pubblica, la chiave di decrittografia è detta chiave privata o chiave segreta.
+Gli algoritmi asimmetrici, d'altra parte, usano una chiave differente per la crittografia e la decrittografia e la chiave decrittografica non è derivabile dalla chiave crittografica. Le cifrature asimmetriche permettono alla chiave crittografica di essere pubblica, consentendo a chiunque di crittografarla, mentre solo il destinatario giusto (che conosce la chiave di decrittografia), può decriptare il messaggio. La chiave di crittografia è detta anche chiave pubblica, mentre la chiave di decrittografia è la chiave privata o segreta.
 
-RSA è probabilmente il più noto algoritmo di crittografia asimmetrica.
+RSA è probabilmente l'algoritmo di crittografia asimmetrica più conosciuto.
 
 ### Firma Digitale
 
-Una firma digitale lega un documento al proprietario di una particolare chiave. Le firme digitali sono usate per verificare che un messaggio provenga realmente dal mittente indicato.
+Una firma digitale lega un documento al proprietario di una determinata chiave.
 
-La firma digitale di un documento è un pezzo d'informazioni basato sia sul documento che sulla chiave privata del firmatario. Tipicamente, è creata usando una funzione di hash e una funzione di firma privata (crittografando con la chiave privata del firmatario). Una firma digitale è una piccola quantità di dati creata usando qualche chiave segreta ed esiste una chiave pubblica utilizzabile per verificare che la firma sia stata generata realmente usando la chiave privata corrispondente.
+La firma digitale di un documento è un pezzo d'informazioni basato sia sul documento che sulla chiave privata del firmatario. In genere viene creato attraverso una funzione di hash e una funzione di firma privata (crittografia con la chiave privata del firmatario). Una firma digitale è una piccola quantità di dati creata utilizzando una chiave segreta; esiste una chiave pubblica che può essere utilizzata per verificare che la firma sia stata generata utilizzando la corrispondente chiave privata.
 
 Diversi metodi per creare e verificare le firme digitali sono liberamente disponibili, ma l'algoritmo più ampiamente noto è l'algoritmo a chiave pubblica di RSA.
 
 ### Protocolli Crittografici
 
-La crittografia opera su molti livelli. Su un livello hai gli algoritmi, come le cifrature a blocchi e i criptosistemi a chiave pubblica. Costruendo su di essi ottieni i prodotocolli e, sopra di essi, trovi le applicazioni (o altri protocolli). Di seguito trovi un elenco delle applicazioni quotidiane comuni che fanno uso dei protocolli crittografici. Questi protocolli si basano sugli algoritmi crittografici di livello inferiore.
+La crittografia opera su molti livelli. Su un livello hai gli algoritmi, come le cifrature a blocchi e i criptosistemi a chiave pubblica. A partire da questi, si ottengono i protocolli e, a partire dai protocolli, si trovano le applicazioni (o altri protocolli). Di seguito è riportato un elenco di applicazioni quotidiane tipiche che utilizzano protocolli crittografici. Questi protocolli si basano sugli algoritmi crittografici di livello inferiore.
 
 i.) Sicureza del Domain Name Server (DNSSEC)
 
@@ -79,7 +77,7 @@ Si tratta di un protocollo per servizi di nomi distribuiti sicuri. Attualmente, 
 
 ii.) Secure Socket Layer (SSL)
 
-SSL è uno dei due protocolli usati per le connessioni WWW sicure (l'altro è SHTTP). La sicurezza del WWW è diventata importate all'aumentare delle quantità d'informazioni sensibili, come i numeri di carta di credito, trasmesse via Internet.
+SSL è uno dei due protocolli usati per le connessioni WWW sicure (l'altro è SHTTP). La sicurezza del WWW è diventata necessaria in quanto sempre più informazioni sensibili, come i numeri delle carte di credito, vengono trasmesse su Internet.
 
 iii.) Secure Hypertext Transfer Protocol (SHTTP)
 
@@ -93,13 +91,13 @@ v) Protocollo SSH2
 
 Questo protocollo è versatile per le esigenze di Internet ed è attualmente utilizzato nel software SSH2. Il protocollo è usato per proteggere le sessioni del terminale e le connessioni TCP.
 
-I seguenti esercizi esaminano due applicazioni in particolare, che utilizzano i protocolli crittografici: GnuPG e OpenSSH.
+I seguenti esercizi esaminano due applicazioni che utilizzano protocolli crittografici: GnuPG e OpenSSH.
 
 ## Esercizio 1
 
 ### GnuPG
 
-GnuPG (GNU Privacy Guard) è un insieme di programmi per la crittografia a chiave pubblica e la firma digitale. Gli strumenti sono utilizzabili per crittografare dati e creare firme digitali. Include anche una funzione avanzata di gestione delle chiavi. GnuPG utilizza la crittografia a chiave pubblica per consentire agli utenti di comunicare in modo sicuro
+GnuPG (GNU Privacy Guard) è un insieme di programmi per la crittografia a chiave pubblica e la firma digitale. Gli strumenti sono utilizzabili per crittografare dati e creare firme digitali. Include anche una funzione avanzata di gestione delle chiavi. GnuPG utilizza la crittografia a chiave pubblica per consentire agli utenti di comunicare in modo sicuro.
 
 Esegui i seguenti esercizi come un utente normale. es. utente ying
 
@@ -149,13 +147,13 @@ Please select what kind of key you want:
 Your selection? 1
 ```
 
- Alla richiesta del tipo di chiave che si desidera creare, accettare quella predefinita (DSA e ElGamal). Digitate 1
+Alla richiesta del tipo di chiave che si desidera creare, accettare quella predefinita, cioè (DSA e ElGamal). Digitate 1
 
 !!! WARNING "Attenzione"
 
-    L'opzione (1) crea due coppie di chiavi. La coppia di chiavi DSA sarà la coppia di chiavi primaria - per la creazione di firme digitali e una coppia di chiavi subordinata ELGamel per la crittografia dei dati.
+    L'opzione (1) crea due coppie di chiavi. La coppia di chiavi DSA sarà la coppia di chiavi primaria - per la creazione di firme digitali e una coppia di chiavi ELGamel subordinata per la crittografia dei dati.
 
-6. Si creerà una dimensione della chiave ELG-E di 1024. Accettare nuovamente l'impostazione predefinita al prompt sottostante:
+6. Si creerà una chiave ELG-E di dimensione 1024. Accettare nuovamente l'impostazione predefinita al prompt sottostante:
 
 La coppia di chiavi DSA avrà 1024 bit.
 
@@ -282,7 +280,7 @@ sub 1024g/1EDB00AC 2003-10-16 \[expires: 2004-10-15\]
 
 <span id="anchor-2"></span>Certificati di revoca
 
-I certificati di revoca sono utilizzati per revocare le chiavi nel caso in cui qualcuno venga a conoscenza della chiave segreta o nel caso in cui si dimentichi la passphrase. Sono utili anche per altre funzioni.
+I certificati di revoca vengono utilizzati per revocare le chiavi nel caso in cui qualcuno venga a conoscenza della chiave segreta o nel caso in cui ci si dimentichi la passphrase. Sono utili anche per altre funzioni.
 
 Per creare un certificato di revoca
 
@@ -308,9 +306,9 @@ Lo scopo di tutte queste operazioni di crittografia, firma e decrittografia è c
 
 Detto questo, va detto che forse non è così ovvio:
 
-Per comunicare con altre persone utilizzando un crittosistema basato su chiavi pubbliche, è necessario scambiare chiavi pubbliche.
+Per comunicare con altre persone utilizzando un sistema crittografico basato su chiavi pubbliche, è necessario scambiare chiavi pubbliche..
 
-O almeno rendere disponibile la vostra chiave pubblica in qualsiasi luogo pubblicamente accessibile (Bill-boards, pagine web, server di chiavi, radio, TV, SPAMMING via e-mail ..ecc ..... )
+O almeno rendere disponibile la vostra chiave pubblica in qualsiasi luogo pubblicamente accessibile (tabelloni, pagine web, server di chiavi, radio, TV, SPAMMING via e-mail ... ecc)
 
 Per esportare le chiavi pubbliche
 
@@ -336,7 +334,7 @@ Per esportare le chiavi pubbliche
 
 3. Usare il comando cat per visualizzare la versione binaria della chiave pubblica di ying (ying-pub.gpg)
 
-4.   (Per resettare il terminale digitare: "reset")
+4. (Per resettare il terminale digitare: "reset")
 
 5. Usare il comando cat per visualizzare la versione ASCII della chiave pubblica di ying (ying-pub.asc)
 
@@ -346,7 +344,7 @@ Per esportare le chiavi pubbliche
 
 ### Firme digitali
 
-La creazione e la verifica delle firme utilizzano la coppia di chiavi pubbliche/private in un'operazione diversa dalla crittografia e dalla decrittografia. La firma viene creata utilizzando la chiave privata del firmatario. La firma può essere verificata utilizzando la chiave pubblica corrispondente.
+La creazione e la verifica delle firme utilizzano la coppia di chiavi pubbliche/private, che differisce dalla crittografia e dalla decrittografia. La firma viene creata utilizzando la chiave privata del firmatario. La firma può essere verificata utilizzando la chiave pubblica corrispondente.
 
 Per firmare digitalmente un file
 
@@ -362,7 +360,7 @@ Per firmare digitalmente un file
 
 Quando viene richiesto, inserire la passphrase.
 
-Il comando precedente creerà un altro file "secret1.txt.gpg", compresso e dotato di firma. Eseguite il comando "file" sul file per verificarlo. Visualizzare il file con cat 
+Il comando precedente creerà un altro file "secret1.txt.gpg", compresso e dotato di firma. Eseguite il comando "file" sul file per verificarlo. Visualizzare il file con cat
 
 4. Controllare la firma sul file firmato "secret1.txt.gpg". Digita:
 
@@ -374,7 +372,7 @@ gpg: Good signature from "Ying Yang (my test) &lt;ying@serverXY&gt;"
 
 5. Creare un altro file secret2.txt con il testo "Hello All".
 
-6. Firmate il file secret2.txt, ma questa volta lasciate che il file sia blindato ASCII. Digita:
+6. Firmate il file secret2.txt, ma questa volta lasciate che il file sia blindato in ASCII. Digita:
 
 \[ying@serverXY ying\]$ ***gpg -sa secret2.txt***
 
@@ -402,7 +400,7 @@ ASSICURATEVI CHE IL VOSTRO PARTNER ABBIA ESEGUITO L'INTERO
 
 SE NON SI HA UN PARTNER. DISATTIVARE L'ACCOUNT DELL'UTENTE YING E ACCEDRE AL SISTEMA COME UTENTE "me".
 
-RIPETERE L'INTERO "ESERCIZIO -1,2,3" COME UTENTE "me".
+RIPETERE L'INTERO ESERCIZIO -1,2,3 COME UTENTE "me".
 
 È POSSIBILE ESEGUIRE IL SEGUENTE ESERCIZIO 4. SOSTITUIRE TUTTI I RIFERIMENTI ALL'UTENTE YING IN "serverPR" CON - L'UTENTE "me" IN serverXY (cioè il vostro localhost)
 
@@ -412,11 +410,11 @@ COME PARTNER NELL'ESERCIZIO SUCCESSIVO.
 
 ## Esercizio 4
 
-In questo esercizio inizierete a comunicare con un altro utente, utilizzando la cosiddetta "Rete di Fiducia".
+ In questo esercizio, utilizzerete la cosiddetta "Rete della fiducia" per comunicare con un altro utente.
 
 Importare le chiavi pubbliche
 
-1. Accedere al sistema come utente ying.
+1. Accedere al sistema come utente ying./
 
 2. Rendere disponibile al partner il file della propria chiave pubblica blindata ASCII (ying-pub.asc) (utilizzare
 
@@ -424,11 +422,11 @@ Importare le chiavi pubbliche
 
 NOTE "Nota:"
 
-Esistono diversi modi per farlo, ad esempio e-mail, copia e incolla, scp, ftp, salvataggio su un dischetto, ecc.
+Esistono diversi modi per farlo, ad esempio e-mail, copia e incolla, scp, ftp, salvataggio su dischetto, ecc.
 
 Scegliete il metodo più efficiente per voi.
 
-3. Chiedete al vostro partner di mettere a vostra disposizione anche il suo file con la chiave pubblica.
+3. Chiedete al vostro partner di mettere a vostra disposizione il file della sua chiave pubblica.
 
 4. Supponendo che la chiave pubblica del vostro partner sia memorizzata in un file chiamato "me-pub.asc" nella vostra pwd;
 
@@ -570,19 +568,19 @@ Crea un nuovo demone per ogni connessione in entrata. I demoni biforcati gestisc
 
 autenticazione, esecuzione di comandi e scambio di dati. Secondo la pagina man di sshd, sshd funziona come segue:
 
-Per il protocollo SSH versione 2.....
+Per il protocollo SSH versione 2:
 
 Ogni host ha una chiave specifica (RSA o DSA) utilizzata per identificare l'host. Quando il demone si avvia, non genera una chiave del server (come avviene nel protocollo SSH versione 1). La sicurezza in avanti è garantita da un accordo a chiave Diffie-Hellman. Questo accordo di chiave si traduce in una chiave di sessione condivisa.
 
 Il resto della sessione viene crittografato utilizzando un cifrario simmetrico, attualmente AES a 128 bit, Blowfish, 3DES, CAST128, Arcfour, AES a 192 bit o AES a 256 bit. Il client seleziona l'algoritmo di crittografia da utilizzare tra quelli proposti dal server. Inoltre, l'integrità della sessione è garantita da un codice crittografico di autenticazione dei messaggi (hmac-sha1 o hmac-md5).
 
-La versione 2 del protocollo prevede un metodo di autenticazione dell'utente basato su chiave pubblica (PubkeyAuthentication) o dell'host client (HostbasedAuthentication), l'autenticazione tradizionale tramite password e i metodi basati sulla risposta di sfida.
+Il protocollo versione 2 prevede un metodo di autenticazione dell'utente basato su chiave pubblica (PubkeyAuthentication) o dell'host client (HostbasedAuthentication), un'autenticazione convenzionale con password e metodi basati su challenge response.
 
 Il protocollo SSH2 implementato in OpenSSH è standardizzato dal gruppo di lavoro "IETF secsh"
 
 ssh
 
-La suite di programmi client include "ssh". È un programma utilizzato per accedere a sistemi remoti e può essere utilizzato anche per eseguire comandi su sistemi remoti.
+La suite di programmi del client include "ssh". È un programma utilizzato per accedere a sistemi remoti e può essere utilizzato anche per eseguire comandi su sistemi remoti.
 
 ## Esercizio 5
 
@@ -780,7 +778,7 @@ Per utilizzare scp
 
 ### Creazione di chiavi pubbliche e private dell'utente per SSH
 
-Ogni singolo utente che vuole utilizzare SSH con autenticazione RSA o DSA ha bisogno di una serie di chiavi pubbliche e private. Il programma ssh-keygen può essere usato per creare queste chiavi (proprio come è stato usato in precedenza quando si sono create le chiavi di riserva per il proprio sistema)
+Ogni utente che vuole usare SSH con autenticazione RSA o DSA ha bisogno di una serie di chiavi pubbliche e private. Il programma ssh-keygen può essere usato per creare queste chiavi (proprio come è stato usato in precedenza quando si sono create le chiavi di riserva per il proprio sistema)
 
 L'unica differenza "consigliata" quando si creano chiavi utente è quella di creare anche una passphrase.
 

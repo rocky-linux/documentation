@@ -1,7 +1,7 @@
 ---
 title: Module de Sécurité SELinux
 author: Antoine Le Morvan
-contributors: Steven Spencer, markooff
+contributors: Steven Spencer, markooff, Ganna Zhyrnova
 tags:
   - sécurité
   - SELinux

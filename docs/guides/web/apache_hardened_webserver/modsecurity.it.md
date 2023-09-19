@@ -1,7 +1,7 @@
 ---
 title: Application Firewall (WAF) basato sul Web
 author: Steven Spencer
-contributors: Ezequiel Bruni, Franco Colussi
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.8, 9.2
 tags:
   - web
@@ -24,9 +24,9 @@ tags:
 
 `mod_security` è un firewall per applicazioni web-based (WAF) open source. È solo uno dei possibili elementi di una configurazione di server web Apache protetta. Utilizzatelo con o senza altri strumenti.
 
-Se si desidera utilizzare questo insieme ad altri strumenti per l'hardening, fare riferimento alla [guida Apache Hardened Web Server](index.md). Questo documento utilizza anche tutti i presupposti e le convenzioni delineati nel documento originale. È buona norma rivederlo prima di continuare.
+Se volete usare questo e altri strumenti di hardening, fate riferimento alla guida [Apache Hardened Web Server](index.md). Questo documento utilizza anche tutti i presupposti e le convenzioni delineati nel documento originale. È buona norma rivederlo prima di continuare.
 
-Una cosa che manca a `mod_security` quando viene installato dai repository generici di Rocky Linux è che le regole installate sono minime, nel migliore dei casi. Per ottenere un pacchetto più ampio di regole di `mod_security` a costo zero, questa procedura utilizza le [regole di mod_security OWASP](https://www.netnea.com/) a costo zero [che si trovano qui](https://www.netnea.com/). OWASP è l'acronimo di Open Web Application Security Project. Per saperne [di più su OWASP, cliccate qui](https://owasp.org/).
+Una cosa che manca a `mod_security` quando viene installato dai repository generici di Rocky Linux, è che le regole installate sono minime. Per ottenere un pacchetto più ampio di regole `mod_security` a costo zero, questa procedura utilizza le regole mod_security [OWASP che si trovano qui](https://www.netnea.com/). OWASP è l'acronimo di Open Web Application Security Project. Per saperne [di più su OWASP, cliccate qui](https://owasp.org/).
 
 !!! tip "Suggerimento"
 
