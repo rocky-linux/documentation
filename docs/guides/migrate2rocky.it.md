@@ -1,60 +1,60 @@
 ---
 title: Migrazione A Rocky Linux
 author: Ezequiel Bruni
-contributors: tianci li, Steven Spencer, Colussi Franco
+contributors: tianci li, Steven Spencer, Ganna Zhyrnova
 update: 11-23-2021
 ---
 
 # Come migrare a Rocky Linux da CentOS Stream, CentOS, Alma Linux, RHEL, o Oracle Linux
 
-## Prerequisiti & Presupposti
+## Prerequisiti e presupposti
 
 * CentOS Stream, CentOS, Alma Linux, RHEL, o Oracle Linux che funziona bene su un server hardware o VPS. La versione attualmente supportata per ciascuno di essi è la 8.8 o la 9.2.
-* Conoscenza operativa della riga di comando.
+* Conoscenza della riga di comando
 * Conoscenza operativa di SSH per macchine remote.
-* Un atteggiamento lievemente rischioso.
-* Tutti i comandi devono essere eseguiti come root. Accedere come root, o prepararsi a digitare molti "sudo".
+* Un atteggiamento di leggera propensione al rischio
+* Eseguire i comandi come root. Accedere come root o avere la possibilità di elevare i privilegi con `sudo`.
 
 ## Introduzione
 
-In questa guida, imparerai come convertire tutti i sistemi operativi elencati sopra in installazioni Rocky Linux completamente funzionanti. Questo è probabilmente uno dei modi più indiretti di installare Rocky Linux, ma sarà utile per le persone in una varietà di situazioni.
+In questa guida, imparerete a convertire tutti i sistemi operativi di cui sopra in installazioni Rocky Linux completamente funzionali. Questo è probabilmente uno dei modi più complicati per installare Rocky Linux, ma è utile a chi si dovesse trovare in diverse situazioni.
 
-Ad esempio, alcuni provider di server non supporteranno Rocky Linux per impostazione predefinita per un po'. Oppure si può avere un server di produzione che si desidera convertire in Rocky Linux senza reinstallare tutto.
+Ad esempio, alcuni fornitori di server non supporteranno Rocky Linux di default per un po' di tempo. Oppure si può avere un server di produzione che si desidera convertire in Rocky Linux senza reinstallare tutto.
 
-Beh, abbiamo lo strumento per te: [migrate2rocky](https://github.com/rocky-linux/rocky-tools/tree/main/migrate2rocky).
+Abbiamo lo strumento che fa al caso vostro: [migrate2rocky](https://github.com/rocky-linux/rocky-tools/tree/main/migrate2rocky).
 
-È uno script che, una volta eseguito, cambierà tutti i tuoi repository in quelli di Rocky Linux. I pacchetti saranno installati e aggiornati/declassati secondo necessità, e cambierà anche tutto il marchio del vostro OS.
+Si tratta di uno script che, una volta eseguito, cambierà tutti i vostri repository con quelli di Rocky Linux. I pacchetti verranno installati e aggiornati o declassati secondo le necessità, e anche il marchio del sistema operativo cambierà.
 
-Non ti preoccupare, se sei nuovo nel'amministrazione dei sistemi, lo manterrò il più facile possibile. Beh, per quanto user friendly possa essere la riga di comando.
+Non preoccupatevi, se siete alle prime armi con l'amministrazione dei sistemi, vi assicuro che il programma sarà il più semplice possibile per l'utente. Beh, per quanto user friendly possa essere la riga di comando.
 
 ### Precisazioni e avvertimenti
 
-1. Dai un'occhiata alla pagina README di migrate2rocky (collegata sopra), perché c'è un conflitto noto tra lo script e i repository di Katello. Nel tempo, è probabile che scopriremo (e alla fine aggiorneremo) più conflitti e incompatibilità, quindi vorrai conoscerli, soprattutto per i server di produzione.
-2. Questo script è molto probabile che funzioni senza incidenti su installazioni completamente nuove. _Se volete convertire un server di produzione, per l'amore di tutto ciò che è santo e buono, **fate un backup dei dati e uno snapshot del sistema, o fatelo in un ambiente di staging prima.**_
+1. Si consiglia di controllare la pagina README di migrate2rocky (linkata sopra), perché esistono conflitti noti tra lo script e i repository di Katello. Con il tempo, probabilmente scopriremo (e alla fine applicheremo una patch) altri conflitti e incompatibilità, quindi è bene che ne siate a conoscenza, soprattutto per i server di produzione.
+2. Questo script è molto probabile che funzioni senza incidenti su installazioni completamente nuove. _Se volete convertire un server di produzione, **effettuate un backup dei dati e un'istantanea del sistema, oppure fatelo prima in un ambiente di staging.**_
 
-Va Bene? Siamo pronti? Facciamolo.
+Sei pronto?
 
 ## Preparare il tuo server
 
-Avrai bisogno di prendere il file dello script dal repository. Questo può essere fatto in diversi modi.
+È necessario prendere il file di script vero e proprio dal repository. È possibile farlo in diversi modi.
 
 ### Il modo manuale
 
-Scarica i file compressi da GitHub ed estrai quello di cui hai bisogno (Dovrebbe essere *migrate2rocky.sh*). È possibile trovare il file zip per qualsiasi repo GitHub sul lato destro della pagina principale del repo:
+Scaricate i file compressi da GitHub ed estraete quello che vi serve (sarà *migrate2rocky.sh*). È possibile trovare i file zip per qualsiasi repository GitHub sul lato destro della pagina principale del repository:
 
 ![Il pulsante "Download Zip"](images/migrate2rocky-github-zip.png)
 
-Quindi, carica l'eseguibile sul tuo server con ssh eseguendo questo comando sulla tua macchina locale:
+Quindi, caricare l'eseguibile sul server tramite SSH eseguendo questo comando sul computer locale:
 
 ```
 scp PATH/TO/FILE/migrate2rocky.sh root@yourdomain.com:/home/
 ```
 
-Correggi, cioè, regola tutti i percorsi dei file e i domini del server o gli indirizzi IP secondo necessità.
+Regolare tutti i percorsi dei file e i domini dei server o gli indirizzi IP secondo le necessità.
 
-### Il modo git
+### Il modo `git`
 
-Installa git sul tuo server con:
+Installare `git` sul proprio server con:
 
 ```
 dnf install git
@@ -78,17 +78,17 @@ Supponendo che abbiate installato l'utilità `curl`, eseguite questo comando per
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
 ```
 
-Questo comando scaricherà il file direttamente sul server e *solo* il file che vuoi. Ma ancora una volta, ci sono problemi di sicurezza che suggeriscono che questa non è necessariamente la migliore prassi, quindi tenere a mente.
+Questo comando scaricherà il file direttamente sul server e *solo* il file che vuoi. Ma anche in questo caso, i problemi di sicurezza suggeriscono che questa non è necessariamente la pratica migliore, quindi tenetene conto.
 
 ## Esecuzione dello script e installazione
 
-Usa il comando `cd` per passare alla directory in cui si trova lo script, assicurarsi che il file sia eseguibile e dare al proprietario del file dello script i permessi x.
+Usate il comando `cd` per passare alla directory in cui si trova lo script, assicuratevi che il file sia eseguibile e date i permessi x al proprietario del file dello script.
 
 ```
 chmod u+x migrate2rocky.sh
 ```
 
-Ed ora, alla fine, esegui lo script:
+E ora, finalmente, eseguite lo script:
 
 ```
 ./migrate2rocky.sh -r
@@ -96,16 +96,16 @@ Ed ora, alla fine, esegui lo script:
 
 Questa opzione "-r" dice allo script di andare avanti e installare tutto.
 
-Se hai fatto tutto bene, la finestra del terminale dovrebbe assomigliare a questa:
+Se avete fatto tutto correttamente, la vostra finestra di terminale avrà un aspetto simile a questo:
 
 ![avvio dello script riuscito](images/migrate2rocky-convert-01.png)
 
-Adesso, ci vorrà un po' allo script per convertire tutto, a seconda della macchina/server reale, e della connessione a Internet che hai.
+Ora, lo script impiegherà un po' di tempo per convertire tutto, a seconda della macchina in uso e della connessione a Internet.
 
 Se vedi un messaggio **Complete!** alla fine, allora tutto va bene e puoi riavviare il server.
 
 ![messaggio di migrazione OS riuscito](images/migrate2rocky-convert-02.png)
 
-Dagli un po' di tempo, accedi di nuovo, e si dovrebbe avere un fantastico nuovo server Rocky Linux per giocare a wi... Intendo farci un lavoro molto serio. Esegui il comando `hostnamectl` per controllare che il tuo sistema operativo sia stato migrato correttamente, e sei pronto ad andare.
+Lasciate passare un po' di tempo, riaccedete e dovreste avere un nuovo server Rocky Linux. Eseguite il comando `hostnamectl` per verificare che il sistema operativo sia stato migrato correttamente e siete a posto.
 
 ![Il risultato del comando hostnamectl](images/migrate2rocky-convert-03.png)
