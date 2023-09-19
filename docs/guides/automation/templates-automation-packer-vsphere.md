@@ -42,7 +42,7 @@ Packer is an open-source virtual machine imaging tool, released under the MPL 2.
 With Packer you can create images to be used on the following platforms:
 
 * [Amazon Web Services](https://aws.amazon.com). 
-* [Azure](https://azure.microsoft.com).
+* [Azure](https://azure.microsoft.com/en-us/).
 * [GCP](https://cloud.google.com).
 * [DigitalOcean](https://www.digitalocean.com). 
 * [OpenStack](https://www.openstack.org).
