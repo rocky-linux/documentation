@@ -1,7 +1,7 @@
 ---
 title: Rootkit Hunter
 author: Steven Spencer
-contributors: Ezequiel Bruni, Andrew Thiesen, Franco Colussi
+contributors: Ezequiel Bruni, Andrew Thiesen, Ganna Zhyrnova
 tested_with: 8.8, 9.2
 tags:
   - server
@@ -60,7 +60,7 @@ Le uniche opzioni di configurazione _necessarie_ da impostare sono quelle relati
 
 !!! warning "Attenzione"
 
-    La modifica di _qualsiasi_ file di configurazione in Linux comporta dei rischi. Prima di modificare **qualsiasi** file di configurazione in Linux, si raccomanda di creare un backup del file di configurazione _originale_, nel caso in cui si debba tornare alla configurazione originale.
+    La modifica di _qualsiasi_ file di configurazione in Linux comporta dei rischi. Prima di modificare **qualsiasi** file di configurazione in Linux, si raccomanda di creare un backup del file _originale_.
 
 
 Per modificare il file di configurazione, eseguire:
@@ -250,7 +250,7 @@ Performing file properties checks
 [Press <ENTER> to continue]
 ```
 
-Se ci sono problemi con l'impostazione dell'e-mail, rimandare il completamento dei passi rimanenti. Quando l'e-mail di conferma funziona, ma prima di consentire l'esecuzione automatica di `rkhunter`, eseguire nuovamente il comando manualmente con il flag "--propupd" per creare il file `rkhunter.dat.`  Ciò garantisce il riconoscimento dell'ambiente e della configurazione:
+Se ci sono problemi con l'impostazione dell'e-mail, non completate i passaggi restanti. Quando l'e-mail di conferma funziona, ma prima di consentire l'esecuzione automatica di `rkhunter`, eseguire nuovamente il comando manualmente con il flag "--propupd" per creare il file `rkhunter.dat.`  Ciò garantisce il riconoscimento dell'ambiente e della configurazione:
 
 ```
 rkhunter --propupd
@@ -258,4 +258,4 @@ rkhunter --propupd
 
 ## Conclusione
 
-`rkhunter` è una parte della strategia di un server protetto che può aiutare a monitorare il file system e a segnalare eventuali problemi all'amministratore. È forse uno degli strumenti di hardening più semplici da installare, configurare ed eseguire.
+`rkhunter` è una parte di una strategia di server rinforzato che può aiutare a monitorare il file system e a segnalare eventuali problemi all'amministratore. È forse uno degli strumenti di hardening più semplici da installare, configurare ed eseguire.
