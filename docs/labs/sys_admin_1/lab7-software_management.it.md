@@ -19,7 +19,7 @@ Tempo stimato per completare questo laboratorio: 90 minuti
 
 ## File binari e file sorgente
 
-Le applicazioni attualmente installate sul sistema dipendono da alcuni fattori. Il fattore principale dipende dai gruppi di pacchetti software selezionati durante l'installazione del sistema operativo. L'altro fattore dipende da ciò che è stato fatto al sistema da quando è stato utilizzato.
+Le applicazioni attualmente installate sul sistema dipendono da alcuni fattori. Il fattore principale dipende dai gruppi di pacchetti software selezionati durante l'installazione del sistema operativo. L'altro fattore dipende da ciò che è stato fatto al sistema dal suo utilizzo.
 
 Uno dei compiti di routine di un amministratore di sistema è la gestione del software. Questo spesso comporta:
 
@@ -27,11 +27,11 @@ Uno dei compiti di routine di un amministratore di sistema è la gestione del so
 - disinstallazione del software
 - aggiornamento del software già installato
 
-Il software può essere installato su sistemi basati su Linux utilizzando diversi metodi. È possibile installare dai sorgenti o dai binari precompilati. Quest'ultimo metodo è di gran lunga il più semplice, ma è anche il meno personalizzabile. Quando si installa da binari precompilati, la maggior parte del lavoro è già stato fatto per voi, ma anche in questo caso è necessario conoscere il nome e la posizione del software desiderato.
+Il software può essere installato su sistemi basati su Linux utilizzando diversi metodi. È possibile installare dai sorgenti o dai binari precompilati. Quest'ultimo metodo è il più semplice, ma anche il meno personalizzabile. Quando si installa da binari precompilati, la maggior parte del lavoro è già stato fatto per voi, ma anche in questo caso è necessario conoscere il nome e la posizione del software desiderato.
 
 Quasi tutti i software vengono originariamente forniti come file sorgente del linguaggio di programmazione C o C++. I programmi sorgente sono solitamente distribuiti come archivi di file sorgente. Di solito file tar o gzip o bzip2. Ciò significa che sono disponibili compressi o in un unico pacchetto.
 
-La maggior parte degli sviluppatori ha reso il proprio codice sorgente conforme agli standard GNU, rendendolo così più facile da condividere con altri. Significa anche che i pacchetti verranno compilati su qualsiasi sistema UNIX o UNIX-like (ad esempio, Linux).
+La maggior parte degli sviluppatori ha reso il proprio codice sorgente conforme agli standard GNU, rendendolo più facile da condividere. Significa anche che i pacchetti verranno compilati su qualsiasi sistema UNIX o UNIX-like (ad esempio, Linux).
 
 RPM è lo strumento di base per la gestione delle applicazioni (pacchetti) sulle distribuzioni basate su Red Hat come Rocky Linux, Fedora, Red Hat Enterprise Linux (RHEL), openSuSE, Mandrake e così via.
 
@@ -130,7 +130,7 @@ In questo laboratorio imparerete a usare il sistema RPM e installerete un'applic
     ...<OUTPUT TRUNCATED>...
     ```
 
-    Si tratta di una grande quantità di informazioni (metadati)!
+   Si tratta di una grande quantità di informazioni (metadati)!
 
 3. Supponiamo di essere interessati solo al campo Riepilogo del comando precedente. Si può usare l'opzione --queryformat di rpm per filtrare le informazioni ottenute dall'opzione query.
 
@@ -156,7 +156,7 @@ In questo laboratorio imparerete a usare il sistema RPM e installerete un'applic
 
     !!! note "Nota" 
 
-     Gli esercizi precedenti consistevano nell'interrogare e lavorare con i pacchetti già installati nel sistema. Nei prossimi esercizi, inizieremo a lavorare con i pacchetti non ancora installati. Utilizzeremo l'applicazione DNF per scaricare i pacchetti che utilizzeremo nei prossimi passi.
+     Gli esercizi precedenti consistevano nell'interrogare e lavorare con i pacchetti già installati nel sistema. Nei prossimi esercizi inizieremo a lavorare con i pacchetti non ancora installati. Utilizzeremo l'applicazione DNF per scaricare i pacchetti che utilizzeremo nei passi successivi.
 
 6. Innanzitutto assicuratevi che l'applicazione `wget` non sia già installata sul sistema. Digita:
 
@@ -190,9 +190,9 @@ In questo laboratorio imparerete a usare il sistema RPM e installerete un'applic
     ...<TRUNCATED>...
     ```
 
-10. Dal risultato del passo precedente, qual'è esattamente il pacchetto `wget`? Suggerimento: è possibile utilizzare l'opzione di formato della query rpm per visualizzare il campo di descrizione del pacchetto scaricato.
+10. Dal risultato del passo precedente, qual'è esattamente il pacchetto `wget`? Suggerimento: è possibile utilizzare l'opzione di formato della query rpm per visualizzare il campo della descrizione del pacchetto scaricato.
 
-11. Se siete interessati ai file contenuti nel pacchetto `wget-*.rpm`, potete elencare tutti i file inclusi nel pacchetto digitando:
+11.  Se siete interessati al pacchetto `wget files-.rpm`, potete elencare tutti i file inclusi nel pacchetto digitando:
 
     ```
     $ rpm -qlp wget-*.rpm | head
@@ -228,6 +228,45 @@ In questo laboratorio imparerete a usare il sistema RPM e installerete un'applic
 
      Si noterà che nel comando precedente non è stato necessario fare riferimento al nome completo del pacchetto `curl`. Questo perché `curl` è già installato.
 
+#### Conoscenza estesa sul nome del pacchetto
+
+* **Nome completo del pacchetto**: quando si scarica un pacchetto da una fonte affidabile (ad esempio, il sito web del fornitore, il repository dello sviluppatore), il nome del file scaricato è il nome completo del pacchetto, ad esempio -- htop-3.2.1-1.el8.x86_64.rpm. Quando si usa il comando `rpm` per installare/aggiornare questo pacchetto, l'oggetto gestito dal comando deve essere il nome completo (o l'equivalente del carattere jolly) del pacchetto, come ad esempio:
+
+    ```
+    $ rpm -ivh htop-3.2.1-1.el8.x86_64.rpm
+    ```
+
+    ```
+    $ rpm -Uvh htop-3.2.1-1.*.rpm
+    ```
+
+    ```
+    $ rpm -qip htop-3.*.rpm
+    ```
+
+    ```
+    $ rpm -qlp wget-1.19.5-11.el8.x86_64.rpm
+    ```
+
+
+    Il nome completo del pacchetto segue una convenzione di denominazione simile a questa —— `[Package_Name]-[Version]-[Release].[OS].[Arch].rpm` or `[Package_Name]-[Version]-[Release].[OS].[Arch].src.rpm`
+
+* **Nome del pacchetto**: Poiché RPM utilizza un database per gestire il software, una volta completata l'installazione del pacchetto, il database avrà i record corrispondenti. A questo punto, l'oggetto operativo del comando `rpm` deve solo digitare il nome del pacchetto. come ad esempio:
+
+    ```
+    $ rpm -qi bash
+    ```
+
+    ```
+    $ rpm -q systemd
+    ```
+
+    ```
+    $ rpm -ql chrony
+    ```
+
+
+
 ## Esercizio 2
 
 ### Integrità del pacchetto
@@ -241,22 +280,22 @@ In questo laboratorio imparerete a usare il sistema RPM e installerete un'applic
 
     Il messaggio "digests signatures OK" nell'output mostra che il pacchetto è a posto.
 
-2. Facciamo finta di essere malintenzionati e alteriamo deliberatamente il pacchetto scaricato. Questo può essere fatto aggiungendo o togliendo qualcosa al pacchetto originale. Qualsiasi cosa che modifichi il pacchetto in un modo diverso da quello previsto dai pacchettizzatori originali lo danneggia. Modificheremo il file utilizzando il comando echo per aggiungere la stringa "haha" al pacchetto. Digita:
+2. Facciamo finta di essere malintenzionati e alteriamo deliberatamente il pacchetto scaricato. Questo può essere fatto aggiungendo o togliendo qualcosa al pacchetto originale.  Qualsiasi cosa che modifichi il pacchetto in un modo che non era nelle intenzioni di chi lo ha confezionato originariamente, corromperà il pacchetto stesso. Modificheremo il file utilizzando il comando echo per aggiungere la stringa "haha" al pacchetto. Digita:
 
     ```
     $ echo haha >> wget-1.19.5-10.el8.x86_64.rpm 
     ```
 
-3. Ora provate a verificare nuovamente l'integrità del pacchetto usando l'opzione -K di rpm. Digita:
+3. Ora provate a verificare nuovamente l'integrità del pacchetto usando l'opzione -K di rpm.
 
     ```
     $ rpm -K  wget-*.rpm
     wget-1.19.5-10.el8.x86_64.rpm: DIGESTS SIGNATURES NOT OK
     ```
 
-    Ora il messaggio è molto diverso. L'output "DIGESTS SIGNATURES NOT OK" è un chiaro avvertimento che indica di non provare a usare o installare il pacchetto. Non ci si deve più fidare.
+    Ora il messaggio è molto diverso. L'output "DIGESTS SIGNATURES NOT OK" avverte chiaramente che non si deve provare a usare o installare il pacchetto. Non ci si deve più fidare.
 
-4. Usare il comando `rm` per eliminare il file danneggiato del pacchetto `wget` e scaricarne una nuova copia usando `dnf`. Digita:
+4. Usare il comando `rm` per eliminare il file danneggiato del pacchetto `wget` e scaricarne una nuova copia usando `dnf`. Digitare:
 
     ```
     $ rm wget-*.rpm  && dnf download wget
@@ -268,9 +307,9 @@ In questo laboratorio imparerete a usare il sistema RPM e installerete un'applic
 
 ### Installazione dei Pacchetti
 
-Quando si cerca di installare un software sul sistema, può capitare di imbattersi in problemi di "dipendenze fallite". Questo è particolarmente comune quando si utilizza l'utilità RPM di basso livello per gestire manualmente le applicazioni su un sistema.
+Mentre si cerca di installare un software sul sistema, può capitare di imbattersi in problemi di "dipendenze fallite". Questo è particolarmente comune quando si usa l'utilità di basso livello RPM per gestire manualmente le applicazioni su un sistema.
 
-Ad esempio, se si tenta di installare il pacchetto "abc.rpm", il programma di installazione RPM potrebbe lamentarsi di alcune dipendenze non riuscite. Potrebbe dirvi che il pacchetto "abc.rpm" richiede l'installazione di un altro pacchetto "xyz.rpm". Il problema delle dipendenze si presenta perché le applicazioni software dipendono quasi sempre da altri software o librerie. Se un programma richiesto o una libreria condivisa non è già presente sul sistema, tale prerequisito dovrà essere soddisfatto prima di installare l'applicazione di destinazione.
+Ad esempio, se si tenta di installare il pacchetto "abc.rpm", il programma di installazione RPM potrebbe lamentarsi di alcune dipendenze non riuscite. Potrebbe dirvi che il pacchetto "abc.rpm" richiede l'installazione di un altro pacchetto "xyz.rpm". Il problema delle dipendenze si pone perché le applicazioni software dipendono quasi sempre da un altro software o da un'altra libreria. Se un programma richiesto o una libreria condivisa non è già presente sul sistema, tale prerequisito deve essere soddisfatto prima di installare l'applicazione di destinazione.
 
 L'utilità RPM di basso livello spesso conosce le interdipendenze tra le applicazioni. Ma di solito non sa come o dove ottenere l'applicazione o la libreria necessaria per risolvere il problema. In altre parole, l'RPM conosce il *cosa* e il *come*, ma non ha la capacità di rispondere alla domanda sul *dove*. È qui che si distinguono strumenti come `dnf`, `yum` e così via.
 
@@ -278,7 +317,7 @@ L'utilità RPM di basso livello spesso conosce le interdipendenze tra le applica
 
 In questo esercizio si cercherà di installare il pacchetto `wget` (wget-*.rpm).
 
-1. Provare a installare l'applicazione `wget`. Utilizzare le opzioni della riga di comando -ivh di RPM. Digita:
+1. Provare a installare l'applicazione `wget`. Utilizzare le opzioni della riga di comando -ivh di RPM. Digitare:
 
     ```
     $ rpm -ivh wget-*.rpm
@@ -286,13 +325,13 @@ In questo esercizio si cercherà di installare il pacchetto `wget` (wget-*.rpm).
         libmetalink.so.3()(64bit) is needed by wget-*
     ```
 
-    Subito un problema di dipendenza! L'output di esempio mostra che `wget` ha bisogno di un qualche file di libreria chiamato "libmetalink.so.3"
+    Subito - un problema di dipendenza! L'output di esempio mostra che `wget` ha bisogno di un qualche file di libreria chiamato "libmetalink.so.3"
 
     !!! note "Nota"
 
      Secondo l'esito del test precedente, il pacchetto wget-*.rpm richiede l'installazione del pacchetto libmetalink-*.rpm. In altre parole, libmetalink è un prerequisito per installare wget-*.rpm. È possibile installare forzatamente il pacchetto wget-*.rpm utilizzando l'opzione "nodeps" se si sa assolutamente cosa si sta facendo, ma questa è generalmente una CATTIVA pratica.
 
-2. RPM ci ha dato un suggerimento su ciò che manca. Si ricorderà che gli rpm conoscono il cosa e il come, ma non necessariamente il dove. Utilizziamo l'utilità `dnf` per cercare di capire il nome del pacchetto che fornisce la libreria mancante. Digita:
+2. RPM ci ha dato un suggerimento su ciò che manca. Si ricorderà che gli rpm conoscono il cosa e il come, ma non necessariamente il dove. Utilizziamo l'utilità `dnf` per cercare di capire il nome del pacchetto che fornisce la libreria mancante. Digitare:
 
     ```
     $ dnf whatprovides libmetalink.so.3
@@ -303,7 +342,7 @@ In questo esercizio si cercherà di installare il pacchetto `wget` (wget-*.rpm).
     Provide    : libmetalink.so.3
     ```
 
-3. Dall'output, dobbiamo scaricare il pacchetto `libmetalink` che fornisce la libreria mancante. In particolare, vogliamo la versione a 64 bit della libreria. Utilizziamo un'utilità separata (`dnf`) per trovare e scaricare il pacchetto per la nostra architettura demo a 64 bit (x86_64). Digita:
+3. Dall'output, dobbiamo scaricare il pacchetto `libmetalink` che fornisce la libreria mancante. In particolare, vogliamo la versione a 64 bit della libreria. Utilizziamo un'utilità separata (`dnf`) per trovare e scaricare il pacchetto per la nostra architettura demo a 64 bit (x86_64). Digitate:
 
     ```
     dnf download --arch x86_64  libmetalink
@@ -311,13 +350,13 @@ In questo esercizio si cercherà di installare il pacchetto `wget` (wget-*.rpm).
 
 4. A questo punto si dovrebbero avere almeno 2 pacchetti rpm nella directory di lavoro. Per confermarlo, utilizzare il comando `ls`.
 
-5. Installare la dipendenza mancante di `libmetalink`. Digita:
+5. Installare la dipendenza mancante di `libmetalink`. Digitare:
 
     ```
     $ sudo rpm -ivh libmetalink-*.rpm
     ```
 
-6. Con la dipendenza ora installata, possiamo tornare al nostro obiettivo iniziale di installare il pacchetto `wget`. Digita:
+6. Con la dipendenza ora installata, possiamo tornare al nostro obiettivo iniziale di installare il pacchetto `wget`. Digitare:
 
     ```
     $ sudo rpm -ivh wget-*.rpm
@@ -325,18 +364,19 @@ In questo esercizio si cercherà di installare il pacchetto `wget` (wget-*.rpm).
 
     !!! note "Nota"
 
-     RPM supporta le transazioni. Negli esercizi precedenti avremmo potuto eseguire una singola transazione rpm che includeva il pacchetto originale che volevamo installare e tutti i pacchetti e le librerie da cui dipende. Sarebbe stato sufficiente un singolo comando come quello riportato di seguito:
+     RPM supporta le transazioni. Negli esercizi precedenti, avremmo potuto eseguire una singola transazione rpm che includeva il pacchetto originale che volevamo installare e tutti i pacchetti e le librerie da cui dipendeva. Sarebbe stato sufficiente un singolo comando come quello riportato di seguito:
+
             ```
             $  rpm -Uvh  wget-*.rpm  libmetalink-*.rpm
             ```
 
-7. È il momento della verità. Provare a eseguire il programma `wget` senza alcuna opzione per verificare se è installato. Digita:
+7. È il momento della verità. Provare a eseguire il programma `wget` senza alcuna opzione per verificare se è installato. Digitare:
 
     ```
     $ wget
     ```
 
-8. Vediamo `wget` in azione. Usate `wget` per scaricare un file da Internet dalla riga di comando. Digita:
+8. Vediamo `wget` in azione. Usate `wget` per scaricare un file da Internet dalla riga di comando. Digitare:
 
     ```
     wget  https://kernel.org
@@ -350,7 +390,7 @@ In questo esercizio si cercherà di installare il pacchetto `wget` (wget-*.rpm).
 
 11. Utilizzate `rpm` per visualizzare l'elenco di tutti i binari installati con il pacchetto `wget`.
 
-12. È stato necessario installare il pacchetto `libmetalink` per poter installare `wget`. Provate a eseguire `libmetalink` dalla riga di comando. Digita:
+12. È stato necessario installare il pacchetto `libmetalink` per poter installare `wget`. Provate a eseguire `libmetalink` dalla riga di comando. Digitare:
 
     ```
     $ libmetalink
@@ -379,11 +419,11 @@ In questo esercizio si cercherà di installare il pacchetto `wget` (wget-*.rpm).
 
 Disinstallare i pacchetti è altrettanto facile che installarli, grazie al gestore di pacchetti di Red Hat (RPM).
 
-In questo esercizio si cercherà di usare `rpm` per disinstallare alcuni pacchetti dal sistema.
+ In questo esercizio si cercherà di usare `rpm` per disinstallare alcuni pacchetti dal sistema.
 
 #### Per disinstallare i pacchetti
 
-1. Disinstallare il pacchetto `libmetalink` dal sistema. Digita:
+1. Disinstallare il pacchetto `libmetalink` dal sistema. Digitare:
 
     ```
     $ sudo rpm -e libmetalink
@@ -394,7 +434,7 @@ In questo esercizio si cercherà di usare `rpm` per disinstallare alcuni pacchet
      Spiegare perché non è stato possibile rimuovere il pacchetto?
 
 
-2. Il modo pulito e corretto di rimuovere i pacchetti utilizzando RPM è quello di rimuovere i pacchetti insieme alle loro dipendenze. Per rimuovere il pacchetto `libmetalink` dobbiamo rimuovere anche il pacchetto `wget` che dipende da esso. Digita:
+2. Il modo pulito e corretto di rimuovere i pacchetti utilizzando RPM è quello di rimuovere i pacchetti insieme alle loro dipendenze. Per rimuovere il pacchetto `libmetalink` dobbiamo rimuovere anche il pacchetto `wget` che dipende da esso. Digitare:
 
     ```
     $ sudo rpm -e libmetalink wget
@@ -406,7 +446,7 @@ In questo esercizio si cercherà di usare `rpm` per disinstallare alcuni pacchet
      `$ sudo rpm -e --nodeps libmetalink`
     
      **L'opzione "nodeps" significa Nessuna dipendenza. Cioè, ignorare tutte le dipendenze.  
-     **ii.** Quanto sopra è solo per mostrare come rimuovere forzatamente un pacchetto dal sistema. Può capitare di doverlo fare, ma in genere non è una buona pratica.  
+     **ii.** Quanto sopra serve solo a mostrare come rimuovere forzatamente un pacchetto dal sistema. A volte è necessario farlo, ma in genere non è una buona pratica.   
      **iii.** La rimozione forzata di un pacchetto "xyz" su cui si basa un altro pacchetto installato "abc" rende di fatto il pacchetto "abc" inutilizzabile o in qualche modo rotto.
 
 ## Esercizio 5
@@ -415,9 +455,9 @@ In questo esercizio si cercherà di usare `rpm` per disinstallare alcuni pacchet
 
 DNF è un gestore di pacchetti per distribuzioni Linux basate su RPM. È il successore della popolare utility YUM. DNF mantiene la compatibilità con YUM ed entrambe le utility condividono opzioni e sintassi della riga di comando molto simili.
 
-DNF è uno dei tanti strumenti utilizzati per la gestione del software su sistemi basati su RPM come Rocky Linux. Rispetto a `rpm`, questi strumenti di livello superiore aiutano a semplificare l'installazione, la disinstallazione e l'interrogazione dei pacchetti. È importante notare che questi strumenti utilizzano la struttura sottostante fornita dal sistema RPM. Per questo motivo è utile capire prima come usare RPM stesso.
+DNF è uno dei tanti strumenti per la gestione del software basato su RPM, come Rocky Linux. Rispetto a `rpm`, questi strumenti di livello superiore aiutano a semplificare l'installazione, la disinstallazione e l'interrogazione dei pacchetti. È importante notare che questi strumenti utilizzano la struttura sottostante fornita dal sistema RPM. Per questo motivo è utile capire come utilizzare RPM.
 
-DNF (e altri strumenti simili) agisce come una sorta di involucro attorno a RPM e fornisce funzionalità aggiuntive non offerte da RPM. DNF sa come gestire le dipendenze di pacchetti e librerie e sa anche come utilizzare automaticamente i repository configurati per risolvere la maggior parte dei problemi.
+DNF (e altri strumenti simili) agisce come una sorta di involucro attorno a RPM e fornisce funzionalità aggiuntive non offerte da RPM. DNF sa come gestire le dipendenze di pacchetti e librerie e sa anche come utilizzare i repository configurati per risolvere automaticamente la maggior parte dei problemi.
 
 Le opzioni più comuni utilizzate con l'utilità `dnf` sono:
 
@@ -460,9 +500,9 @@ Le opzioni più comuni utilizzate con l'utilità `dnf` sono:
 
 #### Per utilizzare `dnf` per l'installazione dei pacchetti
 
-Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei passi seguenti useremo DNF per installare il pacchetto. Il processo di 2-3 passi che abbiamo richiesto in precedenza quando abbiamo installato `wget` tramite `rpm` dovrebbe essere ridotto a un solo passo utilizzando `dnf`. `dnf` si occuperà tranquillamente di risolvere le dipendenze.
+Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei passi seguenti useremo DNF per installare il pacchetto. Il processo di 2-3 passi che abbiamo richiesto in precedenza quando abbiamo installato `wget` tramite `rpm` dovrebbe essere ridotto a un solo passo utilizzando `dnf`. `dnf` risolverà tranquillamente qualsiasi dipendenza.
 
-1. Per prima cosa, assicuriamoci che `wget` e `libmetalink` siano disinstallati dal sistema. Digita:
+1. Per prima cosa, assicuriamoci che `wget` e `libmetalink` siano disinstallati dal sistema. Digitare:
 
     ```
     $ sudo rpm -e wget libmetalink
@@ -470,7 +510,7 @@ Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei
 
     Dopo la rimozione, se si prova a eseguire `wget` dalla CLI, viene visualizzato un messaggio come *wget: command not found*
 
-2. Ora usate dnf per installare `wget`. Digita:
+2. Ora usate dnf per installare `wget`. Digitare:
 
     ```
     $ sudo dnf -y install wget
@@ -486,19 +526,19 @@ Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei
      L'opzione "-y" usata nel comando precedente sopprime il prompt "[y/N]" per confermare l'azione che `dnf` sta per eseguire. Invece, assume automaticamente "yes" (y) per qualsiasi azione.
 
 
-3. DNF offre un'opzione "Environment Group" che semplifica l'aggiunta di un nuovo set di funzioni a un sistema. Per aggiungere la funzionalità, normalmente si dovrebbero installare singolarmente alcuni pacchetti, ma usando `dnf` è sufficiente conoscere il nome o la descrizione della funzionalità desiderata. Usare `dnf` per visualizzare un elenco di tutti i gruppi disponibili. Digita:
+3. DNF offre un'opzione " Environment Group" che semplifica l'aggiunta di un nuovo set di funzioni a un sistema. Per aggiungere la funzionalità, in genere si dovrebbero installare alcuni pacchetti singolarmente, ma usando `dnf`, tutto ciò che occorre sapere è il nome o la descrizione della funzionalità desiderata. Usare `dnf` per visualizzare un elenco di tutti i gruppi disponibili. Digitare:
 
     ```
     $ dnf group list
     ```
 
-4. Siamo interessati al gruppo/caratteristica "Development Tools". Cerchiamo di ottenere maggiori informazioni su questo gruppo. Digita:
+4. Siamo interessati al gruppo/caratteristica "Development Tools". Cerchiamo di ottenere maggiori informazioni su questo gruppo. Digitare:
 
     ```
    $ dnf group info "Development Tools"
    ```
 
-5. In seguito, avremo bisogno di alcuni programmi del gruppo "Development Tools". Installare il gruppo "Development Tools" utilizzando `dnf`:
+5. In seguito, avremo bisogno di alcuni programmi del gruppo " Development Tools". Installare il gruppo "Development Tools" utilizzando `dnf`:
 
     ```
     $ sudo dnf -y group install "Development Tools"
@@ -507,19 +547,19 @@ Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei
 #### Per usare `dnf` per disinstallare i pacchetti
 
 
-1. Per usare `dnf` per disinstallare il pacchetto `wget`, digitate:
+1. Per usare `dnf` per disinstallare il pacchetto `wget`, digitare:
 
     ```
     $ sudo dnf -y remove wget
     ```
 
-2. Usate `dnf` per assicurarsi che il pacchetto sia stato effettivamente rimosso dal sistema. Digita:
+2. Usate `dnf` per assicurarsi che il pacchetto sia stato effettivamente rimosso dal sistema. Digitare:
 
     ```
     $ sudo dnf -y remove wget
     ```
 
-3. Provare a utilizzare/eseguire `wget`. Digita:
+3. Provare a utilizzare/eseguire `wget`. Digitare:
 
     ```
     $ wget
@@ -527,7 +567,7 @@ Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei
 
 #### Per utilizzare `dnf` per l'aggiornamento dei pacchetti
 
-DNF può essere usato per verificare e installare l'ultima versione di singoli pacchetti disponibili nei repository. Può anche essere usato per installare versioni specifiche di pacchetti.
+DNF può verificare e installare l'ultima versione dei singoli pacchetti disponibili nei repository. Può anche essere usato per installare versioni specifiche di pacchetti.
 
 1. Usate l'opzione list con `dnf` per visualizzare tutte le versioni del programma `wget` disponibili per il vostro sistema. Digita
 
@@ -541,13 +581,13 @@ DNF può essere usato per verificare e installare l'ultima versione di singoli p
     $ dnf check-update wget
     ```
 
-3. Ora elenca tutte le versioni disponibili del pacchetto kernel per il vostro sistema. Digita:
+3. Ora elenca tutte le versioni disponibili del pacchetto kernel per il vostro sistema. Digitare:
 
     ```
     $ sudo dnf list kernel
     ```
 
-4. Ora controllate se sono disponibili pacchetti aggiornati per il pacchetto kernel installato. Digita:
+4. Ora controllate se sono disponibili pacchetti aggiornati per il pacchetto kernel installato. Digitare:
 
     ```
     $ dnf  check-update kernel
@@ -601,7 +641,7 @@ I seguenti esercizi si basano sul codice sorgente del venerabile progetto Hello.
 
 1. Passare alla cartella del computer locale in cui è stato scaricato il codice sorgente di hello.
 
-2. Decomprimere (un-tar) il tarball usando il programma `tar`. Digita:
+2. Decomprimere (un-tar) il tarball usando il programma `tar`. Digitare:
 
     ```
     $ tar -xvzf hello-2.12.tar.gz
@@ -617,7 +657,7 @@ I seguenti esercizi si basano sul codice sorgente del venerabile progetto Hello.
 
     Una nuova cartella denominata hello-2.12 dovrebbe essere stata creata durante la decompressione.
 
-4. Passate a quella directory ed elencatene il contenuto. Digita:
+4. Passate a quella directory ed elencatene il contenuto. Digitare:
 
     ```
     $ cd hello-2.12 ; ls
@@ -625,7 +665,7 @@ I seguenti esercizi si basano sul codice sorgente del venerabile progetto Hello.
 
 5. È sempre buona norma esaminare tutte le istruzioni di installazione speciali che possono essere fornite con il codice sorgente. Questi file hanno solitamente nomi come: INSTALL, README e così via.
 
-    Utilizzare un pager per aprire il file INSTALL e leggerlo. Digita:
+    Utilizzare un pager per aprire il file INSTALL e leggerlo. Digitare:
     ```
     $ less INSTALL
     ```
@@ -634,7 +674,7 @@ I seguenti esercizi si basano sul codice sorgente del venerabile progetto Hello.
 
 #### Per configurare il pacchetto
 
-La maggior parte delle applicazioni ha funzioni che possono essere attivate o disattivate dall'utente. Questo è uno dei vantaggi di avere accesso al codice sorgente e di poterlo installare. L'utente ha il controllo sulle caratteristiche configurabili dell'applicazione; questo è in contrasto con l'accettazione di tutto ciò che un gestore di pacchetti installa da binari precompilati.
+La maggior parte delle applicazioni ha funzioni che possono essere attivate o disattivate dall'utente. Questo è uno dei vantaggi dell'accesso al codice sorgente e dell'installazione dallo stesso. L'utente ha il controllo sulle caratteristiche configurabili dell'applicazione; questo è in contrasto con l'accettazione di tutto ciò che un gestore di pacchetti installa da binari precompilati.
 
 Lo script che di solito permette di configurare il software si chiama "configure"
 
@@ -650,7 +690,7 @@ Lo script che di solito permette di configurare il software si chiama "configure
 
      Dall'output del comando, cosa fa l'opzione "--prefix"?
 
-3. Se si è soddisfatti delle opzioni predefinite offerte dallo script di configurazione. Digita:
+3. Se si è soddisfatti delle opzioni predefinite offerte dallo script di configurazione. Digitare:
 
     ```
     $ ./configure
@@ -670,7 +710,7 @@ Lo script che di solito permette di configurare il software si chiama "configure
 
 L'applicazione hello verrà realizzata nei seguenti passaggi. A questo punto sono utili alcuni dei programmi del gruppo Development Tools installati in precedenza con DNF.
 
-1.  Usate il comando make per compilare il pacchetto dopo aver eseguito lo script "configure". Digita:
+1.  Usate il comando make per compilare il pacchetto dopo aver eseguito lo script "configure". Digitate:
 
     ```
     $ make
@@ -688,7 +728,7 @@ L'applicazione hello verrà realizzata nei seguenti passaggi. A questo punto son
 
 Tra le altre operazioni di pulizia, la fase finale dell'installazione prevede anche la copia dei file binari e delle librerie delle applicazioni nelle cartelle corrette.
 
-1. Per installare l'applicazione hello, eseguire il comando make install. Digita:
+1. Per installare l'applicazione hello, eseguire il comando make install. Digitare:
 
     ```
     $ sudo make install
@@ -697,19 +737,19 @@ Tra le altre operazioni di pulizia, la fase finale dell'installazione prevede an
 
 #### Per eseguire il programma hello
 
-1. Usate il comando `whereis` per vedere dove si trova il programma `hello` sul vostro sistema. Digita:
+1. Usate il comando `whereis` per vedere dove si trova il programma `hello` sul vostro sistema. Digitare:
     ```
     $ whereis hello
     ```
 
-2. Provate a eseguire l'applicazione `hello` per vedere cosa fa. Digita:
+2. Provate a eseguire l'applicazione `hello` per vedere cosa fa. Digitare:
     ```
    $ hello
    ```
 
 3. Eseguite di nuovo `hello` con l'opzione `--help` per vedere le altre cose che può fare.
 
-4. Utilizzando `sudo`, eseguire nuovamente `hello` come superutente. Digita:
+4. Utilizzando `sudo`, eseguire nuovamente `hello` come superutente. Digitare:
     ```
     $ sudo hello
     ```
