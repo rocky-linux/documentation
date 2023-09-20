@@ -1,7 +1,7 @@
 ---
 title: Server web Apache Protetto
 author: Steven Spencer, Franco Colussi
-contributors: Ezequiel Bruni, Franco Colussi
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.8, 9.2
 tags:
   - apache
@@ -24,14 +24,14 @@ tags:
 
 Che si tratti dell'hosting di molti siti web per i clienti o di un singolo sito importante per la propria azienda, l'hardening del server web garantisce la massima tranquillità a costo di un po' di lavoro iniziale in più per l'amministratore.
 
-Con molti siti web caricati dai vostri clienti, c'è un'alta probabilità che uno di loro carichi un sistema di gestione dei contenuti (CMS) con la possibilità di vulnerabilità. La maggior parte dei clienti si concentra sulla facilità d'uso, non sulla sicurezza, e ciò che accade è che l'aggiornamento del proprio CMS diventa un processo che esce completamente dall'elenco delle priorità.
+Con molti siti web caricati dai vostri clienti, uno di loro probabilmente caricherà un sistema di gestione dei contenuti (CMS) con la possibilità di vulnerabilità. La maggior parte dei clienti si concentra sulla facilità d'uso, non sulla sicurezza, e ciò che accade è che l'aggiornamento del proprio CMS diventa un processo che esce completamente dall'elenco delle priorità.
 
 
 Se per un'azienda con un grande staff IT è possibile notificare ai clienti le vulnerabilità del loro CMS, per un piccolo team IT questo potrebbe non essere realistico. La migliore difesa è un server Web protetto.
 
-L'hardening del server Web può assumere diverse forme, che possono includere uno o tutti gli strumenti qui descritti ed eventualmente altri non definiti.
+L'hardening dei server Web può assumere molte forme, tra cui uno o tutti gli strumenti qui descritti ed eventualmente altri non definiti.
 
-Potreste decidere di utilizzare un paio di questi strumenti e non gli altri. Per chiarezza e leggibilità, questo documento è suddiviso in documenti separati per ogni strumento. L'eccezione sarà il firewall basato sui pacchetti`(firewalld`) di cui al presente documento principale.
+Potreste utilizzare un paio di questi strumenti e non gli altri. Per chiarezza e leggibilità, questo documento è suddiviso in documenti separati per ogni strumento. L'eccezione sarà il firewall basato sui pacchetti`(firewalld`) di cui al presente documento principale.
 
 * Un buon firewall con filtro dei pacchetti basato sulle porte (iptables, firewalld, o firewall hardware - utilizzaremo `firewalld` per i nostri esempi) [procedura`firewalld`](#iptablesstart)
 * Un sistema di rilevamento delle intrusioni basato su host (HIDS), in questo caso _ossec-hids_ [Apache Hardened Web Server - ossec-hids](ossec-hids.md)
@@ -44,7 +44,7 @@ Questa procedura non sostituisce l'[Impostazione di siti multipli del server Web
 
 ## Altre considerazioni
 
-Alcuni degli strumenti qui descritti hanno opzioni gratuite e a pagamento. A seconda delle vostre esigenze o dei requisiti di assistenza, potreste prendere in considerazione le versioni a pagamento. La ricerca di ciò che è disponibile e la decisione da prendere dopo aver valutato tutte le opzioni è la politica migliore.
+Alcuni degli strumenti qui descritti hanno opzioni gratuite e a pagamento. Potreste prendere in considerazione le versioni a pagamento, a seconda delle vostre esigenze o dei vostri requisiti di assistenza. La ricerca di ciò che è disponibile e la decisione da prendere dopo aver valutato tutte le opzioni è la politica migliore.
 
 Per molte di queste opzioni è possibile anche acquistare un dispositivo hardware. Se si preferisce evitare l'installazione e la manutenzione del proprio sistema, sono disponibili altre opzioni oltre a quelle qui descritte.
 
@@ -54,11 +54,11 @@ In questo documento si utilizza un firewall `firewalld`. sono disponibili guide 
 
 Questi esempi utilizzano un indirizzo IP privato per simulare un indirizzo pubblico, ma si potrebbe fare la stessa cosa con un NAT uno a uno sul firewall hardware e collegando il server web a tale firewall hardware, anziché al router gateway, con un indirizzo IP privato.
 
-Per spiegarlo è necessario approfondire il tema del firewall hardware, che non rientra nello scopo di questo documento.
+Per spiegarlo è necessario approfondire il tema del firewall hardware, che non rientra nell'ambito di questo documento.
 
 ## Convenzioni
 
-* **Indirizzi IP:** simulare l'indirizzo IP pubblico con un blocco privato: 192.168.1.0/24 e utilizzare il blocco di indirizzi IP della LAN 10.0.0.0/24. L'instradamento di questi blocchi IP su Internet non è possibile perché sono per uso privato, ma la simulazione di blocchi IP pubblici non è possibile senza l'uso di un indirizzo IP reale assegnato a qualche azienda o organizzazione. Ricordate che per i nostri scopi, il blocco 192.168.1.0/24 è il blocco IP "pubblico" e il blocco 10.0.0.0/24 è il blocco IP "privato".
+* **Indirizzi IP:** simulare l'indirizzo IP pubblico con un blocco privato: 192.168.1.0/24 e utilizzare il blocco di indirizzi IP della LAN 10.0.0.0/24. L'instradamento di questi blocchi IP su Internet è impossibile perché sono per uso privato, ma la simulazione di blocchi IP pubblici è impossibile senza l'uso di un indirizzo IP reale assegnato a qualche azienda o organizzazione. Ricordate che per i nostri scopi, il blocco 192.168.1.0/24 è il blocco IP "pubblico" e il blocco 10.0.0.0/24 è il blocco IP "privato".
 
 * **Firewall hardware:** È il firewall che controlla l'accesso ai dispositivi della sala server dalla rete fidata. Questo non è lo stesso firewall basato su pacchetti, anche se potrebbe essere un'altra istanza di `firewalld` in esecuzione su un'altra macchina. Questo dispositivo consente l'accesso ICMP (ping) e SSH (secure shell) ai nostri dispositivi affidabili. La definizione di questo dispositivo non rientra nell'ambito di questo documento. L'autore ha utilizzato [PfSense](https://www.pfsense.org/) e [OPNSense](https://opnsense.org/), installati su hardware dedicato a questo dispositivo, con grande successo. A questo dispositivo verranno assegnati due indirizzi IP. Uno che si collega all'IP pubblico simulato del router Internet (192.168.1.2) e uno che si collega alla nostra rete locale, 10.0.0.1.
 * **IP del router Internet:** simulazione con 192.168.1.1/24
