@@ -1,7 +1,7 @@
 ---
 title: Sistema di rilevamento delle intrusioni basato su host (HIDS)
 author: Steven Spencer
-contributors: Ezequiel Bruni, Franco Colussi
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.8, 9.2
 tags:
   - web
@@ -23,13 +23,13 @@ tags:
 
 `ossec-hids` è un sistema di rilevamento delle intrusioni all'host che offre passaggi automatici di azione-risposta per aiutare a mitigare gli attacchi. È solo uno dei possibili elementi di una configurazione di server web Apache protetta. Si può usare con o senza altri strumenti.
 
-Se si desidera utilizzare questo strumento insieme ad altri strumenti per l'hardening, fare riferimento al documento [Apache Hardened Web Server](index.md). Questo documento utilizza anche tutti i presupposti e le convenzioni delineati nel documento originale. È buona norma rivederlo prima di continuare.
+Se volete usare questo e altri strumenti di hardening, fate riferimento al documento [Apache Hardened Web Server](index.md). Questo documento utilizza anche tutti i presupposti e le convenzioni delineati nel documento originale. È buona norma rivederlo prima di continuare.
 
 ## Installazione del repository di Atomicorp
 
 Per installare `ossec-hids`, abbiamo bisogno di un repository di terze parti di Atomicorp. Atomicorp offre anche una versione supportata a pagamento, a prezzi ragionevoli, per coloro che desiderano un supporto professionale in caso di problemi.
 
-Se si preferisce l'assistenza e si dispone di un budget sufficiente, si consiglia di provare la versione [ `ossec-hids` a pagamento di Atomicorp](https://atomicorp.com/atomic-enterprise-ossec/). Avrete bisogno di alcuni pacchetti dal repository gratuito di Atomicorp. Dopo il download, si cambierà il repository.
+Se si preferisce l'assistenza e si dispone di un budget sufficiente, si consiglia di provare la versione [ `ossec-hids` a pagamento di Atomicorp](https://atomicorp.com/atomic-enterprise-ossec/). Sono sufficienti alcuni pacchetti dal repository gratuito di Atomicorp. Dopo il download, si cambierà il repository.
 
 Il download del repository richiede `wget`. Installatelo prima e installate il repository EPEL, se non lo avete già installato, con:
 
@@ -63,7 +63,7 @@ includepkgs = ossec* GeoIP* inotify-tools
 
 Questo è l'unico cambiamento necessario. Salvare le modifiche e uscire dal repository (in `vi` è <kbd>esc</kbd> per entrare in modalità comando, poi <kbd>SHIFT+</kbd><kbd>:</kbd><kbd>+wq</kbd> per salvare e uscire).
 
-Questo limita il repository Atomicorp ad installare e aggiornare solo questi pacchetti.
+Questo limita il repository Atomicorp solo all'installazione e all'aggiornamento di questi pacchetti.
 
 ## Installazione di `ossec-hids`
 
@@ -85,7 +85,7 @@ Per modificare il file di configurazione, immettere:
 vi /var/ossec/etc/ossec.conf
 ```
 
-La configurazione viene smontata mostrando le modifiche in linea e spiegandole:
+L'autore analizzerà questa configurazione mostrando le modifiche in linea e spiegandole:
 
 ```
 <global>
@@ -100,11 +100,11 @@ La configurazione viene smontata mostrando le modifiche in linea e spiegandole:
 </global>
 ```
 
-Per impostazione predefinita, le notifiche e-mail sono disattivate e la configurazione `<global>` è sostanzialmente vuota. Si desidera attivare la notifica via e-mail e identificare le persone che riceveranno i rapporti via e-mail in base al loro indirizzo di posta elettronica.
+Le notifiche via e-mail sono disattivate per impostazione predefinita e la configurazione `<global>` è sostanzialmente vuota. Si desidera attivare la notifica via e-mail e identificare le persone che riceveranno i rapporti via e-mail in base al loro indirizzo di posta elettronica.
 
 La sezione `<smtp_server>` attualmente mostra localhost, tuttavia è possibile specificare un relay del server di posta elettronica, se si preferisce, o configurare le impostazioni di postfix per l'host locale seguendo [questa guida](../../email/postfix_reporting.md).
 
-È necessario impostare l'indirizzo e-mail "from". È necessario per far fronte ai filtri SPAM del vostro server di posta elettronica, che potrebbero vedere questa e-mail come SPAM. Per evitare di essere sommersi dalle e-mail, impostate la segnalazione delle e-mail su 1 all'ora. È possibile espandere o eliminare questo comando quando si sta iniziando a usare `ossec-hids` e si ha bisogno di vedere le cose rapidamente.
+È necessario impostare l'indirizzo e-mail "from". È necessario per far fronte ai filtri SPAM del vostro server di posta elettronica, che potrebbero vedere questa e-mail come SPAM. Per evitare di essere sommersi dalle e-mail, impostate la segnalazione delle e-mail su 1 all'ora. È possibile espandere o escludere questo comando iniziando con `ossec-hids`.
 
 Le sezioni `<white_list>` si occupano dell'IP localhost del server e dell'indirizzo IP "pubblico" (ricordate la nostra sostituzione di un indirizzo IP privato) del firewall, dal quale verranno visualizzate tutte le connessioni sulla rete fidata. È possibile aggiungere molte voci di `<white_list>`.
 
@@ -151,18 +151,18 @@ La sezione `<localfile>` riguarda la posizione dei log che si desidera osservare
   </active-response>
 ```
 
-Infine, verso la fine del file è necessario aggiungere la sezione di risposta attiva. Questa sezione ha due parti: la sezione `<command>` e la sezione `<active-response>`.
+Infine, verso la fine del file, è necessario aggiungere la sezione di risposta attiva. Questa sezione ha due parti: la sezione `<command>` e la sezione `<active-response>`.
 
 Lo script "firewall-drop" esiste già nel percorso `ossec-hids`. Indica a `ossec-hids` che se si verifica un livello 7, bisogna aggiungere una regola del firewall per bloccare l'indirizzo IP.
 
-Una volta apportate tutte le modifiche di configurazione necessarie, abilitare e avviare il servizio. Se tutto si avvia correttamente, si è pronti a proseguire:
+Attivare e avviare il servizio una volta completate tutte le modifiche alla configurazione. Se tutto si avvia correttamente, si è pronti a proseguire:
 
 ```
 systemctl enable ossec-hids
 systemctl start ossec-hids
 ```
 
-Esistono molte opzioni per il file di configurazione `ossec-hids`. È possibile conoscere queste opzioni visitando il [sito ufficiale della documentazione](https://www.ossec.net/docs/).
+Il file di configurazione `ossec-hids`. È possibile conoscere queste opzioni visitando il [sito ufficiale della documentazione](https://www.ossec.net/docs/).
 
 ## Conclusione
 
