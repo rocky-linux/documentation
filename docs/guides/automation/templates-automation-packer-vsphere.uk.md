@@ -42,7 +42,7 @@ Packer — це інструмент створення образів вірт�
 За допомогою Packer ви можете створювати зображення для використання на таких платформах:
 
 * [Amazon Web Services](https://aws.amazon.com).
-* [Azure](https://azure.microsoft.com).
+* [Azure](https://azure.microsoft.com/en-us/).
 * [GCP](https://cloud.google.com).
 * [DigitalOcean](https://www.digitalocean.com).
 * [OpenStack](https://www.openstack.org).
