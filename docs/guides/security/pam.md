@@ -307,7 +307,7 @@ In `/etc/pam.d/login` you'd put:
 auth required pam_nologin.so
 ```
 
-Only root can connect if the file `/etc/nologin`.
+Only root can connect if the file `/etc/nologin` exists and is readable.
 
 ### `pam_wheel`
 
