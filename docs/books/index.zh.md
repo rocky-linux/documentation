@@ -1,7 +1,7 @@
 ---
 title: 书籍首页
 author: Steven Spencer
-contributors: '@fromoz'
+contributors: '@fromoz, Ganna Zhyrnova'
 ---
 
 # Rocky Linux 教学书籍
