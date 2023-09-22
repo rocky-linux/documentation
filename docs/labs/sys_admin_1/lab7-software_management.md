@@ -445,8 +445,7 @@ Uninstalling packages is just as easy as installing, with Red Hat’s package ma
 
     !!! note
      
-        If you want to break the package that relies on libmetalink and *forcefully* remove the package from your system, you can use rpm's `--nodeps` option like this - 
-        `$ sudo rpm  -e  --nodeps  libmetalink`
+        If you want to break the package that relies on libmetalink and *forcefully* remove the package from your system, you can use rpm's `--nodeps` option like this: `$ sudo rpm  -e  --nodeps  libmetalink`.
 
         **i.** The “nodeps” option means No dependencies. I.e., ignore all dependencies.  
         **ii.** The above is just to show you how to remove a package from your system forcefully. Sometimes you need to do this, but it is generally *not a good practice*.   
