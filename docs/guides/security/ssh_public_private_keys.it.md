@@ -1,7 +1,7 @@
 ---
 title: SSH Chiave Pubblica e Privata
-author: Steven Spencer, Franco Colussi
-contributors: Ezequiel Bruni, Franco Colussi
+author: Spencer Steven
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - security
@@ -14,21 +14,20 @@ tags:
 ## Prerequisiti
 
 * Una certa comodità nell'operare dalla riga di comando
-* Server Rocky Linux e/o workstations con *openssh* installati
-    * Va bene, tecnicamente; questo processo funziona su qualsiasi sistema Linux con openssh installato
+* Un server Linux o workstation con *openssh* installato
 * Facoltativo: familiarità con i permessi di file Linux e directory
 
 ## Introduzione
 
-SSH è un protocollo utilizzato per accedere da una macchina ad un'altra, di solito tramite la riga di comando. Con SSH è possibile eseguire comandi su computer e server remoti, inviare file e in genere gestire tutto ciò che si fa da un unico posto.
+SSH è un protocollo per accedere a una macchina da un'altra, di solito tramite la riga di comando. Con SSH è possibile eseguire comandi su computer e server remoti, inviare file e in genere gestire tutto ciò che si fa da un unico posto.
 
-Quando si lavora con più server Rocky Linux in più posizioni, o se stai semplicemente cercando di risparmiare un po' di tempo per accedere a questi server, vorrai usare una coppia di chiavi private e pubbliche SSH. Le coppie di chiavi rendono sostanzialmente più facile accedere a macchine remote e eseguire i comandi.
+Quando si lavora con molti server Rocky Linux in varie località o si cerca di risparmiare tempo per accedere a questi server, è necessario utilizzare una coppia di chiavi pubbliche e private SSH. Le coppie di chiavi facilitano l'accesso ai computer remoti e l'esecuzione dei comandi.
 
-Questo documento vi guiderà attraverso il processo di creazione delle chiavi e nella configurazione dei server per un accesso facilitato, con tali chiavi.
+Questo documento vi guiderà nella creazione delle chiavi e nell'impostazione dei server per l'accesso con tali chiavi.
 
-## Processo Per Generare Le Chiavi
+## Processo per generare le chiavi
 
-I seguenti comandi sono tutti eseguiti dalla riga di comando sulla tua workstation Rocky Linux:
+I seguenti comandi sono tutti eseguiti dalla riga di comando della workstation Rocky Linux:
 
 ```
 ssh-keygen -t rsa
@@ -41,64 +40,40 @@ Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa):
 ```
 
-Premi Invio per accettare la posizione predefinita. Successivamente il sistema mostrerà:
+Premete <kbd>INVIO</kbd> per accettare la posizione predefinita. Successivamente il sistema mostrerà:
 
 `Enter passphrase (empty for no passphrase):`
 
-Quindi clicca Invio qui. Infine, vi chiederà di reinserire la passphrase:
+Premete <kbd>INVIO</kbd> qui. Infine, vi chiederà di reinserire la passphrase:
 
 `Enter same passphrase again:`
 
-Quindi premi Invio ancora una volta.
+Premete <kbd>INVIO</kbd> un'ultima volta.
 
-Ora dovresti avere una coppia di chiavi pubbliche e private di tipo RSA nella tua directory .ssh:
+Ora avrete una coppia di chiavi pubbliche e private di tipo RSA nella vostra directory *.ssh*:
 
 ```
 ls -a .ssh/
 .  ..  id_rsa  id_rsa.pub
 ```
 
-Ora abbiamo bisogno di inviare la chiave pubblica (id_rsa.pub) a ogni macchina a cui andremo ad accedere... ma prima di farlo, dobbiamo assicurarci di poter entrare in SSH nei server a cui invieremo la chiave. Per il nostro esempio, useremo solo tre server.
+È necessario inviare la chiave pubblica (*id_rsa.pub*) a ogni macchina a cui si intende accedere. Prima di fare ciò, è necessario assicurarsi di poter accedere via SSH ai server a cui si sta inviando la chiave. Questo esempio utilizza tre server.
 
-È possibile accedervi tramite SSH tramite un nome DNS o un indirizzo IP, ma per il nostro esempio useremo il nome DNS. I nostri server di esempio sono web, mail e portale. Per ogni server, cercheremo di SSH (i nerd amano usare SSH come un verbo) e lasciare una finestra del terminale aperta per ogni macchina:
+È possibile accedervi con SSH tramite nome DNS o indirizzo IP, ma in questo esempio si utilizza il nome DNS. I server di esempio sono web, mail e portal. Per ogni server, si effettua l'accesso SSH (i nerd amano usare SSH come verbo) e si lascia aperta una finestra di terminale:
 
 `ssh -l root web.ourourdomain.com`
 
-Supponendo che possiamo effettuare il login senza problemi su tutte e tre le macchine, il passo successivo è quello di inviare la nostra chiave pubblica su ogni server:
+Se si riesce a effettuare il login senza problemi su tutti e tre i computer, il passo successivo è inviare la chiave pubblica a ciascun server. Per farlo, utilizzare il comando `ssh-copy-id`:
 
-`scp .ssh/id_rsa.pub root@web.ourourdomain.com:/root/`
+`ssh-copy-id -i ~/.ssh/id_rsa.pub` user@web.ourdomain.com
 
-Ripetere questo passaggio con ciascuna delle nostre tre macchine.
+Ripetere questa operazione con ciascuna delle tre macchine. Questo popolerà il file *authorized_keys* su ogni server con la chiave pubblica.
 
-In ciascuna delle finestre di terminale aperte, dovresti ora essere in grado di vedere *id_rsa.pub* quando inserisci il seguente comando:
+Provare di nuovo a eseguire l'SSH dalla workstation Rocky Linux al server. Non dovrebbe essere richiesta alcuna password.
 
-`ls -a | grep id_rsa.pub`
+## Directory SSH e sicurezza `authorized_keys`
 
-Se così fosse, ora siamo pronti a creare o aggiungere il file *authorized_keys* nella directory *.ssh* di ogni server. Su ciascuno dei server, inserire questo comando:
-
-`ls -a .ssh`
-
-!!! warning "Importante!"
-
-    Assicurati di leggere attentamente tutto ciò che segue. Se non siete sicuri di poter interrompere qualcosa, allora fate una copia di backup di authorized_keys (se esiste) su ciascuna delle macchine prima di continuare.
-
-Se non c'è nessun file *authorized_keys* elencato, lo creeremo inserendo questo comando mentre siamo nella nostra directory _/root_:
-
-`cat id_rsa.pub > .ssh/authorized_keys`
-
-Se _authorized_keys_ esiste, dobbiamo semplicemente aggiungere la nostra nuova chiave pubblica a quelle che sono già lì:
-
-`cat id_rsa.pub >> .ssh/authorized_keys`
-
-Una volta che la chiave è stata aggiunta a _authorized_keys_, o il file _authorized_keys_ è stato creato, prova di nuovo a SSH dalla tua workstation Rocky Linux al server. Non vi dovrebbe richiedere una password.
-
-Una volta verificato che è possibile accedere a SSH senza password, rimuovere il file id_rsa.pub dalla directory _/root_ di ogni macchina.
-
-`rm id_rsa.pub`
-
-## Directory SSH e Sicurezza authorized_keys
-
-Su ciascuna delle macchine di destinazione, assicurati che siano applicate le seguenti autorizzazioni:
+Su ciascuno dei computer di destinazione, assicurarsi che vengano applicate le seguenti autorizzazioni:
 
 ```
 chmod 700 .ssh/
