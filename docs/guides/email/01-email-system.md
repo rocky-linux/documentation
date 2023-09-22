@@ -80,10 +80,8 @@ A complete email system consists of components that are decentralized and mainta
 
 * [iredmail](https://www.iredmail.com/index.html)
 * [Zimbra Email Server](https://www.zimbra.com/)
-* [Extmail](https://www.extmail.cn/)
 * [modoboa](https://modoboa.org/en/)
 * [Mail-in-a-Box](https://mailinabox.email/)
-* [Kolab Groupware](https://docs.kolab.org/installation-guide/index.html)
 * [squirrelmail](https://www.squirrelmail.org/index.php)
 * [hmailserve](https://www.hmailserver.com/)
 * ...
