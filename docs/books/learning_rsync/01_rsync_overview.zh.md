@@ -1,7 +1,7 @@
 ---
 title: rsync 简述
 author: tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 2022年3月8日
 ---
 
