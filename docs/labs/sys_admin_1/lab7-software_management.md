@@ -411,7 +411,7 @@ In this exercise you will try to install the `wget` package (wget-*.rpm).
 
     The GPG keys used for signing packages used in the Rocky Linux project can be obtained from various sources such as - the Project website, ftp site,    distribution media, local source and so on. Just in case the proper key is missing on your RL system's keyring, you can use the `rpm`'s `--import` option to import Rocky Linux’s public key from your local RL system by running: `sudo  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial`
 
-!!! note "QUESTION:"
+!!! question
     
     When installing packages, what is the difference between `rpm -Uvh` and `rpm -ivh`. 
     Consult the man page for `rpm`.
@@ -432,7 +432,7 @@ Uninstalling packages is just as easy as installing, with Red Hat’s package ma
     $ sudo rpm -e libmetalink
     ```
 
-    !!! note "QUESTION:"
+    !!! question
 
         Explain why you couldn’t remove the package?
 
@@ -445,8 +445,7 @@ Uninstalling packages is just as easy as installing, with Red Hat’s package ma
 
     !!! note
      
-        If you want to break the package that relies on libmetalink and *forcefully* remove the package from your system, you can use rpm's `--nodeps` option like this - 
-        `$ sudo rpm  -e  --nodeps  libmetalink`
+        If you want to break the package that relies on libmetalink and *forcefully* remove the package from your system, you can use rpm's `--nodeps` option like this: `$ sudo rpm  -e  --nodeps  libmetalink`.
 
         **i.** The “nodeps” option means No dependencies. I.e., ignore all dependencies.  
         **ii.** The above is just to show you how to remove a package from your system forcefully. Sometimes you need to do this, but it is generally *not a good practice*.   
@@ -689,7 +688,7 @@ The script that usually lets you configure the software is usually aptly named �
     $ ./configure --help
     ```
 
-    !!! note "QUESTION:"
+    !!! question
 
         From the output of the command what does the “--prefix” option do?
 
