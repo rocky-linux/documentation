@@ -411,7 +411,7 @@ In this exercise you will try to install the `wget` package (wget-*.rpm).
 
     The GPG keys used for signing packages used in the Rocky Linux project can be obtained from various sources such as - the Project website, ftp site,    distribution media, local source and so on. Just in case the proper key is missing on your RL system's keyring, you can use the `rpm`'s `--import` option to import Rocky Linux’s public key from your local RL system by running: `sudo  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial`
 
-!!! note "QUESTION:"
+!!! question
     
     When installing packages, what is the difference between `rpm -Uvh` and `rpm -ivh`. 
     Consult the man page for `rpm`.
@@ -432,7 +432,7 @@ Uninstalling packages is just as easy as installing, with Red Hat’s package ma
     $ sudo rpm -e libmetalink
     ```
 
-    !!! note "QUESTION:"
+    !!! question
 
         Explain why you couldn’t remove the package?
 
@@ -689,7 +689,7 @@ The script that usually lets you configure the software is usually aptly named �
     $ ./configure --help
     ```
 
-    !!! note "QUESTION:"
+    !!! question
 
         From the output of the command what does the “--prefix” option do?
 
