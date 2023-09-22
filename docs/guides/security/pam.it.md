@@ -1,7 +1,7 @@
 ---
 title: Moduli di autenticazione PAM
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ezequiel Bruni, Franco Colussi
+contributors: Steven Spencer, Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6
 tags:
   - security
@@ -18,13 +18,13 @@ tags:
 * Un desiderio di imparare sull'autenticazione utente e app su Linux
 * La capacità di accettare le conseguenze delle proprie azioni
 
-## Instroduzione
+## Introduzione
 
 PAM (**Pluggable Authentication Modules**) è il sistema sotto GNU/Linux che consente a molte applicazioni o servizi di autenticare gli utenti in modo centralizzato. Per dirla in altro modo:
 
 > PAM è una suite di librerie che consente all'amministratore di sistema Linux di configurare i metodi di autenticazione degli utenti. Fornisce un modo flessibile e centralizzato per cambiare i metodi di autenticazione per le applicazioni protette, utilizzando file di configurazione invece di modificare il codice dell'applicazione. \- [Wikipedia](https://en.wikipedia.org/wiki/Linux_PAM)
 
-Questo documento *non è* stato concepito per insegnarvi esattamente come rinforzare la vostra macchina, ok? È più che altro una guida di riferimento per mostrare cosa *può* fare PAM e non cosa *si deve* fare.
+Questo documento *non* è stato concepito per spiegare esattamente come proteggere la vostra macchina. È più che altro una guida di riferimento per mostrare ciò che PAM *può* fare, e non ciò che *dovrebbe* fare.
 
 ## Generalità
 
@@ -32,13 +32,13 @@ L'autenticazione è la fase in cui si verifica che l'utente sia la persona che d
 
 ![Generalità PAM](images/pam-001.png)
 
-L'implementazione di un nuovo metodo di autenticazione non dovrebbe richiedere modifiche alla configurazione o al codice sorgente di un programma o di un servizio. Per questo motivo le applicazioni si affidano a PAM, che fornisce loro le primitive* necessarie per autenticare gli utenti.
+L'implementazione di un nuovo metodo di autenticazione non dovrebbe richiedere modifiche al codice sorgente per la configurazione del programma o del servizio. Per questo motivo le applicazioni si affidano a PAM, che fornisce loro le primitive* necessarie per autenticare gli utenti.
 
 Tutte le applicazioni di un sistema possono quindi implementare funzionalità complesse come **SSO** (Single Sign On), **OTP** (One Time Password) o **Kerberos** in modo completamente trasparente. L'amministratore di sistema può scegliere esattamente il criterio di autenticazione da utilizzare per una singola applicazione (ad esempio per rendere più sicuro il servizio SSH) indipendentemente dall'applicazione stessa.
 
 Ogni applicazione o servizio che supporta PAM avrà un file di configurazione corrispondente nella directory `/etc/pam.d/`. Ad esempio, il processo `login` assegna il nome `/etc/pam.d/login` al suo file di configurazione.
 
-\* Le primitive sono letteralmente gli elementi più semplici di un programma o di un linguaggio e permettono di costruire cose più sofisticate e complesse.
+\* Le primitive sono letteralmente gli elementi più semplici di un programma o di un linguaggio, che permettono di costruirci sopra cose più sofisticate e complesse.
 
 !!! WARNING "Attenzione"
 
@@ -168,7 +168,7 @@ Sono possibili argomenti per questo modulo:
 * `nullok`: nel meccanismo `auth` consente una password di accesso vuota.
 * `sha512`: nel meccanismo della password, definisce l'algoritmo di crittografia.
 * `debug`: invia informazioni a `syslog`.
-* `remember=n`: Usa thid per ricordare le ultime password di `n` utilizzate (funziona insieme al file `/etc/security/opasswd` , che deve essere creato dall'amministratore).
+* `remember=n`: Utilizzare questa opzione per ricordare le ultime `n` password utilizzate (funziona in combinazione con l'opzione `/etc/security/opasswd`, che deve essere creato dall'amministratore).
 
 ### `pam_cracklib`
 
@@ -186,7 +186,7 @@ Per impostazione predefinita, questo modulo controlla i seguenti aspetti e rifiu
 
 * La nuova password è dal dizionario?
 * La nuova password è un palindromo di quella vecchia (ad esempio: azerty <> ytreza)?
-* L'utente ha cambiato solo le maiuscole della password? (es.: azerty <>AzErTy)?
+* L'utente ha cambiato solo le maiuscole della password (ad esempio: azerty <>AzErTy)?
 
 Possibili argomenti per questo modulo:
 
@@ -194,7 +194,7 @@ Possibili argomenti per questo modulo:
 * `difok=n`: impone almeno `n` caratteri (`10` per impostazione predefinita), diversi dalla vecchia password. Se la metà dei caratteri della nuova password è diversa da quella vecchia, la nuova password viene convalidata.
 * `minlen=n`: impone una password di `n+1` caratteri minimi. Non è possibile assegnare un minimo inferiore a 6 caratteri (il modulo è compilato in questo modo).
 
-Altri argomenti possibili:
+Altri argomenti applicabili:
 
 * `dcredit=-n`: impone una password contenente almeno `n` cifre,
 * `ucredit=-n`: impone una password contenente almeno `n` lettere maiuscole,
@@ -222,7 +222,7 @@ Alcuni argomenti del modulo pam_tally includono:
 * `deny=n`: una volta superato il numero `n` dei tentativi non riusciti, l'account è bloccato.
 * `no_magic_root`: può essere usato per negare l'accesso ai servizi di root-level lanciati dai demoni.
     * ad esempio, non usare questo per `su`.
-* `reset`: resettare il contatore a 0 se l'autenticazione è convalidata.
+* `reset`: ripristina il contatore a 0 se l'autenticazione viene convalidata.
 * `lock_time=nsec`: l'account è bloccato per `n` secondi.
 
 Questo modulo funziona insieme al file predefinito per tentativi non riusciti `/var/log/faillog` (che può essere sostituito da un altro file con l'argomento `file=xxxx`), e il comando associato `faillog`.
@@ -276,7 +276,7 @@ Le colonne corrispondono a:
 * `users`: elenco logico degli utenti gestiti dalla regola
 * `times`: un elenco logico di fasce orarie autorizzate
 
-Come gestire gli intervalli tempo:
+Come gestire le fasce orarie:
 
 * Giorni: `Mo`, `Tu`, `We`, `Th`, `Fr,` `Sa`, `Su`, `Wk`, (dal lunedì al venerdì), `Wd` (Sabato e Domenica), e `Al` (Lunedi a Domenica)
 * La gamma oraria: `HHMM-HHMM`
@@ -306,7 +306,7 @@ In `/etc/pam.d/login` si mette:
 auth required pam_nologin.so
 ```
 
-Se il file `/etc/nologin` esiste solo root può connettersi.
+Solo root può connettersi se il file `/etc/nologin` esiste ed è leggibile.
 
 ### `pam_wheel`
 

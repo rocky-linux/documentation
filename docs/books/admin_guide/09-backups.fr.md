@@ -23,7 +23,7 @@ Dans ce chapitre, vous apprendrez comment sauvegarder et restaurer vos données 
 
 ****
 
-!!! Note
+!!! note "Remarque"
 
     Tout au long de ce chapitre les commandes utilisent le terme "device" - unité péripherique - pour spécifier à la fois la cible pour la sauvegarde et la source lors de la restauration. Le périphérique - device - peut indiquer soit un média externe, soit un fichier local. Vous pouvez toujours vous référer à cette note pour plus de précisions si besoin est.
 
@@ -112,7 +112,7 @@ Les commandes que nous allons utiliser ici sont `tar` et `cpio`.
   * ignore les fichiers endommagés ;
   * arborescence de fichiers complète.
 
-!!! Note
+!!! note "Remarque"
 
     Ces commandes enregistrent les données en utilisant un format propriétaire et standardisé.
 
@@ -461,7 +461,7 @@ Extraire tous les fichiers de la sauvegarde `/backups/etc.133.P.tar` vers leur r
 $ tar xvfP /backups/etc.133.P.tar
 ```
 
-!!! Warning
+!!! warning "Avertissement"
 
     Allez au bon endroit.
     
@@ -484,12 +484,12 @@ L'extraction d'une sauvegarde _tar-bzipped_ (`*.tar.bz2`) se fait avec les optio
 $ tar xvfj backup.tar.bz2
 ```
 
-!!! Tip
+!!! tip "Astuce"
 
     Pour extraire ou lister le contenu d'une sauvegarde, il n'est pas nécessaire de mentionner l'algorithme de compression qui a été utilisé pour créer la sauvegarde. C'est-à-dire, la commande <code>tar xvf est equivalente à tar xvfj pour extraire le contenu et tar tvf respectivement à tar tvfj pour lister.
     </code>
 
-!!! Attention
+!!! warning "Attention"
 
     Pour restaurer les fichiers dans leur dossier d'origine (option `P` de `tar xvf`), vous devez avoir généré la sauvegarde avec le chemin absolu. C'est-à-dire l'option <code>P de la commande tar cvf.
     </code>
@@ -555,7 +555,7 @@ Cette liste est fournie avec les commandes `find`, `ls` ou `cat`.
 * `ls` : liste un répertoire, récursivement ou non ;
 * `cat` : lit un fichier contenant les arbres ou les fichiers à sauvegarder.
 
-!!! Note
+!!! note "Remarque"
 
     `ls` ne peut pas être utilisé avec `-l` (détails) or `-R` (recursif).
     
@@ -621,7 +621,7 @@ $ find etc | cpio -o > /backups/etc.cpio
 $ find /etc | cpio -o > /backups/etc.A.cpio
 ```
 
-!!! Warning
+!!! warning "Avertissement"
 
     Si le chemin spécifié dans la commande `find` est **absolu**, alors la sauvegarde sera effectuée en **absolu**.
     
@@ -714,7 +714,7 @@ $ cpio -iv </backups/etc.152.cpio | less
 | `- u`                        | Remplace tous les fichiers même s'ils existent.                              |
 | `--no-absolute-filenames`    | Permet de restaurer une sauvegarde faite en mode absolu de manière relative. |
 
-!!! Warning
+!!! warning "Avertissement"
 
     Par défaut, au moment de la restauration, les fichiers du disque dont la date de dernière modification est plus récente ou égale à la date de la sauvegarde ne sont pas restaurés (afin d'éviter d'écraser des informations récentes par des informations plus anciennes).
     

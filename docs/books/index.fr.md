@@ -1,7 +1,7 @@
 ---
 title: Accueil Livres
 author: Steven Spencer
-contributors: '@fromoz'
+contributors: '@fromoz, Ganna Zhyrnova'
 ---
 
 # Livres d'instruction Rocky Linux

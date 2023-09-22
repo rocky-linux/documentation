@@ -1,7 +1,7 @@
 ---
 title: Sito Multiplo Apache
 author: Steven Spencer
-contributors: Ezequiel Bruni, Franco Colussi
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5, 8.6, 9.0
 tags:
   - web
@@ -20,11 +20,11 @@ tags:
   
         Se volete imparare a conoscere l'editor di testo vi, [ecco un pratico tutorial](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
 
-* Conoscenze di base sull'installazione e l'esecuzione di servizi web
+* Conoscenza di base dell'installazione e dell'esecuzione di servizi web
 
 ## Introduzione
 
-Rocky Linux offre molti modi per creare un sito web. Questo è solo un metodo, utilizzando Apache su un singolo server. Questo metodo è stato concepito per più server su un unico hardware, ma può anche fungere da configurazione di base per un server a sito singolo.
+Rocky Linux offre molti modi per creare un sito web. Questo è solo un metodo, utilizzando Apache su un singolo server. Questo metodo è stato progettato per più server su un unico hardware, ma può anche fungere da configurazione di base per un server a sito singolo.
 
 Fatto storico: questa configurazione del server sembra essere nata con sistemi basati su Debian, ma è perfettamente adattabile a qualsiasi sistema operativo Linux con Apache.
 
@@ -43,7 +43,7 @@ dnf install httpd php
 
 ## Aggiungere altre directory
 
-Questo metodo utilizza un paio di directory aggiuntive, che però al momento non esistono nel sistema. È necessario aggiungere due directory in */etc/httpd/* chiamate "sites-available" e "sites-enabled"
+Questo metodo utilizza un paio di directory aggiuntive, che attualmente non esistono nel sistema. È necessario aggiungere due directory in */etc/httpd/* chiamate "sites-available" e "sites-enabled"
 
 Dalla riga di comando inserire:
 
@@ -53,7 +53,7 @@ mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
 
 In questo modo verranno create entrambe le directory necessarie.
 
-È necessaria anche una directory in cui inserire i nostri siti. Può essere ovunque, ma un buon modo per tenere le cose organizzate è creare una directory chiamata "sub-domains". Per ridurre la complessità, mettere questo in /var/www: `mkdir /var/www/sub-domains/`.
+È necessaria anche una directory in cui inserire i nostri siti. Può essere ovunque, ma un buon modo per tenere le cose organizzate è creare una directory "sub-domains". Per ridurre la complessità, mettere questo in /var/www: `mkdir /var/www/sub-domains/`.
 
 ## Configurazione
 
@@ -73,7 +73,7 @@ I file di configurazione effettivi si trovano in */etc/httpd/sites-available* e 
 
 **Perché lo fate?**
 
-Supponiamo di avere 10 siti web che girano tutti sullo stesso server con indirizzi IP diversi. Supponiamo che il sito B abbia subito alcuni aggiornamenti importanti e che sia necessario apportare modifiche alla configurazione del sito. Supponiamo anche che qualcosa vada storto con le modifiche apportate e che quando si riavvia `httpd` per leggere le modifiche, `httpd` non si avvii. Non solo il sito su cui stavate lavorando non si avvierà, ma nemmeno gli altri. Con questo metodo, è possibile rimuovere il collegamento simbolico per il sito che ha causato il problema e riavviare `httpd`. Il sito ricomincerà a funzionare e si potrà lavorare per sistemare la configurazione del sito non funzionante.
+Supponiamo di avere 10 siti web che girano tutti sullo stesso server con indirizzi IP diversi. Supponiamo che il sito B abbia subito alcuni aggiornamenti importanti e che sia necessario apportare modifiche alla configurazione del sito. Supponiamo anche che qualcosa vada storto con le modifiche apportate e che quando si riavvia `httpd` per leggere le modifiche, `httpd` non si avvii. Non solo il sito su cui stavate lavorando non si avvierà, ma nemmeno gli altri. Con questo metodo, è possibile rimuovere il collegamento simbolico per il sito che ha causato il problema e riavviare `httpd`. In questo modo il servizio riprenderà a funzionare e la configurazione del sito non funzionante potrà essere sistemata.
 
 In questo modo si alleggerisce la pressione, sapendo che il telefono non squillerà con un cliente o un capo arrabbiato perché un servizio non è in linea.
 
@@ -139,7 +139,7 @@ cp -Rf wiki_source/* /var/www/sub-domains/your-server-hostname/html/
 
 Come già detto, ogni server Web creato al giorno d'oggi _dovrebbe_ funzionare con SSL/TLS (secure socket layer).
 
-Questo processo inizia con la generazione di una chiave privata e di un CSR (acronimo di Certificate Signature Request) e l'invio del CSR all'autorità di certificazione per l'acquisto del certificato SSL/TLS. Il processo di generazione di queste chiavi è piuttosto lungo.
+Questo processo inizia con la generazione di una chiave privata e di un CSR (certificate signing request) e l'invio del CSR all'autorità di certificazione per l'acquisto del certificato SSL/TLS. Il processo di generazione di queste chiavi è piuttosto lungo.
 
 Se non si ha familiarità con la generazione di chiavi SSL/TLS, esaminare: [Generazione di chiavi SSL](../security/ssl_keys_https.md)
 
@@ -163,7 +163,7 @@ Se non si conosce la sintassi "ad albero" per creare le directory, ciò che si d
 
 "Creare una directory chiamata "ssl" e creare al suo interno tre directory chiamate ssl.key, ssl.crt e ssl.csr"
 
-Una nota in anticipo: La memorizzazione del file CSR (Certificate Signature Request) nella struttura non è necessaria, ma semplifica alcune cose. Se si ha la necessità di riemettere il certificato da un altro fornitore, è buona norma conservare una copia del file CSR. La domanda diventa dove memorizzarlo in modo da ricordarlo, e memorizzarlo all'interno dell'albero del vostro sito web è logico.
+Una nota in anticipo: La memorizzazione del file CSR (Certificate Signature Request) nella struttura non è necessaria, ma semplifica alcune cose. Se si ha la necessità di riemettere il certificato da un altro fornitore, è bene avere una copia memorizzata del CSR. La domanda diventa dove memorizzarlo in modo da ricordarlo, e memorizzarlo all'interno dell'albero del vostro sito web è logico.
 
 Assumendo che i file key, csr e crt (certificati) siano stati denominati con il nome del sito e che siano memorizzati in _/root_, li copieremo nella loro posizione:
 
@@ -175,7 +175,7 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
 
 ### La configurazione del sito - `https`
 
-Una volta generate le chiavi e acquistato il certificato SSL/TLS, si può procedere con la configurazione del sito web, utilizzando le chiavi.
+Una volta generate le chiavi e acquistato il certificato SSL/TLS, è possibile procedere con la configurazione del sito web utilizzando le chiavi.
 
 Per cominciare, scomponete l'inizio del file di configurazione. Per esempio, anche se si desidera ascoltare la porta 80 (porta `http` standard) per le richieste in arrivo, non si vuole che nessuna di queste richieste vada effettivamente alla porta 80.
 
@@ -245,7 +245,7 @@ Perciò, dopo le normali porzioni di configurazione, si passa alla sezione SSL/T
 * SSLCertificateKeyFile - la chiave generata durante la creazione della richiesta di firma del certificato
 * SSLCertificateChainFile - il certificato del fornitore di certificati, spesso chiamato certificato intermedio
 
-Quindi, prendete tutto dal vivo e se non ci sono errori all'avvio del servizio web e se l'accesso al vostro sito web si rivela `https` senza errori, siete pronti a partire.
+Se all'avvio del servizio web non si verificano errori e se l'accesso al vostro sito web mostra `https` senza errori, siete pronti a partire.
 
 ## Portare in diretta
 
@@ -258,6 +258,6 @@ ln -s /etc/httpd/sites-available/your-server-hostname /etc/httpd/sites-enabled/
 ```
 
 
-Questo creerà il collegamento al file di configurazione in *sites-enabled*, proprio come vogliamo.
+Questo creerà il collegamento al file di configurazione in *sites-enabled*.
 
 Ora basta avviare `httpd` con `systemctl start httpd`. Oppure riavviatelo se è già in funzione: `systemctl restart httpd` e, supponendo che il servizio web si riavvii, potete andare a fare dei test sul vostro sito.

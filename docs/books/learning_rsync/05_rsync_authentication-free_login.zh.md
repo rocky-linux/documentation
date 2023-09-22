@@ -1,7 +1,7 @@
 ---
 title: rsync 免密验证登录
 author: tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 update: 2021-11-04
 ---
 

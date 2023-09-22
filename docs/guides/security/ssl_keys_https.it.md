@@ -1,7 +1,7 @@
 ---
 title: Generazione di Chiavi SSL
 author: Steven Spencer
-contributors: Ezequiel Bruni, Franco Colussi
+contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - security
@@ -13,84 +13,82 @@ tags:
 
 ## Prerequisiti
 
-* Una workstation e un server con in esecuzione Rocky Linux (OK, Linux, ma in realtà vuoi Rocky Linux, giusto?)
-* _OpenSSL_ installato sulla macchina dove si sta per generare la chiave privata e il CSR, così come sul server dove alla fine si andrà ad installare la chiave e i certificati
+* Una workstation e un server che eseguono Rocky Linux
+* _OpenSSL_ installato sulla macchina su cui si genererà la chiave privata e il CSR (Certificate Signing Request) e sul server su cui si installeranno la chiave e i certificati
 * Capacità di eseguire comandi comodamente dalla riga di comando
-* Utile: conoscenza dei comandi SSL e OpenSSL
+* Utile: la conoscenza dei comandi SSL/TLS e OpenSSL
 
 
 ## Introduzione
 
-Quasi tutti i siti web oggi _dovrebbero_ essere in esecuzione con un certificato SSL (secure socket layer). Questa procedura vi guiderà attraverso la generazione della chiave privata per il vostro sito web e poi da questa, verrà generato il CSR (certificate signing request) che utilizzerai per acquistare il nuovo certificato.
+Quasi tutti i siti web oggi _dovrebbero_ essere dotati di un certificato SSL/TLS (secure socket layer). Questa procedura vi guiderà nella generazione della chiave privata per il vostro sito web e poi nella generazione del CSR (certificate signing request) che userete per acquistare il vostro certificato.
 
-## Generare La Chiave Privata
+## Generare la chiave privata
 
-Per le chiavi private SSL non inizializzate, si possono avere dimensioni diverse, misurate in bit, che determinano fondamentalmente quanto sono difficili da decifrare.
+Per chi non lo sapesse, le chiavi private SSL/TLS possono avere dimensioni diverse, misurate in bit, che determinano quanto siano difficili da decifrare.
 
-A partire dal 2021, la dimensione della chiave privata raccomandata per un sito web è ancora 2048 bits. Si può aumentare, ma raddoppiare la dimensione della chiave da 2048 bit a 4096 bit è solo circa il 16% più sicuro, richiede più spazio per memorizzare la chiave, provoca carichi di CPU più elevati quando la chiave viene elaborata.
+A partire dal 2021, la dimensione della chiave privata consigliata per un sito web è ancora di 2048 bit. Si può andare oltre, ma raddoppiare la dimensione della chiave da 2048 bit a 4096 bit è solo circa il 16% più sicuro, richiede più spazio per memorizzare la chiave e causa un maggiore carico della CPU durante l'elaborazione della chiave.
 
-Questo rallenta le prestazioni del sito web senza ottenere alcuna sicurezza significativa. Rimaniamo con la dimensione della chiave a 2048 tenendo sempre sotto controllo ciò che è attualmente raccomandato.
-
-Per cominciare, assicuriamoci che OpenSSL sia installato sia sulla tua workstation che sul server:
+Questo rallenta le prestazioni del sito web senza ottenere alcuna sicurezza significativa. Mantenere la dimensione della chiave a 2048 e tenere sempre sotto controllo quella attualmente consigliata. Per cominciare, assicuratevi che OpenSSL sia installato sulla vostra workstation e sul vostro server:
 
 `dnf install openssl`
 
-Se non è installato, il sistema lo installerà assieme a tutte le dipendenze necessarie.
+Se non è installato, il sistema lo installerà insieme a tutte le dipendenze necessarie.
 
-Il nostro dominio di esempio è example.com. Tieni presente che dovresti acquistare e registrare il tuo dominio in anticipo. È possibile acquistare domini attraverso un certo numero di "Registrars".
+Il dominio di esempio è "example.com" Ricordate che dovrete acquistare e registrare il vostro dominio in anticipo. È possibile acquistare domini attraverso diverse "Registrars".
 
-Se non si esegue il proprio DNS (Domain Name System), è spesso possibile utilizzare gli stessi provider per l'hosting DNS. DNS traduce il tuo nome a dominio in numeri (indirizzi IP, IPv4 o IPv6) che Internet può comprendere. Questi indirizzi IP saranno dove il sito web è effettivamente ospitato.
+Se non gestite un vostro DNS (Domain Name System), spesso potete utilizzare gli stessi provider per l'hosting DNS. Il DNS traduce il vostro dominio con nome in numeri (indirizzi IP, IPv4 o IPv6) comprensibili a Internet. Questi indirizzi IP sono quelli in cui il sito web è effettivamente ospitato.
 
-Generiamo la chiave usando openssl:
+Generare la chiave utilizzando `openssl`:
 
 `openssl genrsa -des3 -out example.com.key.pass 2048`
 
-Nota che abbiamo chiamato la chiave, con estensione .pass. La ragione di questo è che se non la rimuovi, ogni volta che il server web si riavvia e carica la chiave, è necessario inserire quella passphrase. Inserisci una frase segreta semplice che puoi ricordare poichè andremo a rimuoverla a breve:
+Si noti che è stato dato un nome alla chiave, con estensione *.pass*. Questo perché quando si esegue questo comando, viene richiesta l'immissione di una passphrase. Inserite una passphrase semplicistica che possiate ricordare, dato che la rimuoverete a breve:
 
 ```
 Enter pass phrase for ourownwiki.com.key.pass:
 Verifying - Enter pass phrase for ourownwiki.com.key.pass:
 ```
 
-Quindi, rimuoviamo quella frase segreta. La ragione di questo è che se non la rimuovi, ogni volta che il server web si riavvia e carica la chiave, è necessario inserire quella passphrase.
+Successivamente, rimuovete la passphrase. Questo perché se non la si rimuove, sarà necessario inserire la passphrase ogni volta che il sito web si riavvia e carica la chiave.
 
-Potreste anche non essere in giro per inserirla, o peggio, potreste non avere una console a portata di mano per inserirla. Rimuoverla ora per evitare tutto questo:
+Potreste anche non essere presenti per inserirla o, peggio, non avere una console a disposizione. Rimuovetela subito per evitare tutto questo:
 
 `openssl rsa -in example.com.key.pass -out example.com.key`
 
-Questo richiederà quella frase segreta ancora una volta per rimuovere la passphrase dalla chiave:
+Questa operazione richiederà nuovamente la passphrase per rimuoverla dalla chiave:
 
 `Enter pass phrase for example.com.key.pass:`
 
-Ora che la passphrase è stata inserita una terza volta, è stata rimossa dal file della chiave e salvata come example.com.key
+La password viene ora rimossa dalla chiave, dopo aver inserito la passphrase una terza volta, e salvata come *example.com.key*
 
 ## Generare il CSR
 
-Successivamente, abbiamo bisogno di generare il CSR (certificate signing request) che useremo per acquistare il nostro certificato.
+Successivamente, è necessario generare il CSR (certificate signing request) che verrà utilizzato per acquistare il certificato.
 
-Durante la generazione della CSR, vi saranno richieste diverse informazioni. Si tratta degli attributi X.509 del certificato.
+Durante la generazione del CSR vengono richieste diverse informazioni. Sono gli attributi X.509 del certificato.
 
-Una delle richieste sarà il "Nome Comune (ad esempio, il TUO nome)". È importante che questo campo sia riempito con il nome di dominio completamente qualificato del server che deve essere protetto da SSL. Se il sito web da proteggere è https://www.example.com, immettere www.example.com in questo prompt:
+Una delle richieste sarà "Common Name (ad esempio, il VOSTRO nome di dominio)". Questo campo deve contenere il nome di dominio qualificato completo del server che l'SSL/TLS sta proteggendo. Se il sito web da proteggere è https://www.example.com, immettere www.example.com in questo prompt:
 
 `openssl req -new -key example.com.key -out example.com.csr`
 
-Questo apre un dialogo:
+Si apre una finestra di dialogo:
 
-`Country Name (2 letter code) [XX]:` inserisci il codice paese a due caratteri in cui risiede il tuo sito, esempio "US"
+`Country Name (2 letter code) [XX]:` inserire il codice a due caratteri del paese in cui risiede il sito, ad esempio "US"
 
-`State or Province Name (full name) []:` inserisci il nome ufficiale completo del tuo stato o provincia, esempio "Nebraska"
+`State or Province Name (full name) []:` inserire il nome ufficiale completo dello stato o della provincia, ad esempio "Nebraska"
 
-`Nome della Località (ad esempio, città) [Città predefinita]:` inserisci il nome della città completa, esempio "Omaha"
+`Locality Name (eg, city) [Default City]:` inserire il nome completo della città, ad esempio "Omaha"
 
-`Organization Name (eg, company) [Default Company Ltd]:` Se si desidera, è possibile inserire un'organizzazione di cui questo dominio fa parte, oppure premere "Invio" per saltare.
+`Organization Name (eg, company) [Default Company Ltd]:` Se si desidera, è possibile inserire un'organizzazione di cui questo dominio fa parte, oppure premere <kbd>INVIO</kbd> per saltare.
 
-`Organizational Unit Name (eg, section) []:` Questo descrive la divisione dell'organizzazione in cui rientra il tuo dominio. Anche in questo caso, puoi semplicemente premere 'Invio' per saltare.
+`Organizational Unit Name (eg, section) []:` Descrive la divisione dell'organizzazione in cui rientra il vostro dominio. Anche in questo caso, è sufficiente premere <kbd>INVIO</kbd> per saltare.
 
-`Common Name (ad esempio, il vostro nome o l'hostname del vostro server) []:` Qui, dobbiamo inserire l'hostname del nostro sito, ad esempio "www.example.com"
+`Common Name (eg, your name or your server's hostname) []:` Qui si deve inserire il nome host del sito, ad esempio "www.example.com"
 
-om" `Email Addressl []:` Questo campo è opzionale, puoi decidere di compilarlo o semplicemente premere 'Invio' per saltare.
+`Email Address []:` Questo campo è facoltativo, si può decidere di compilarlo o semplicemente premere <kbd>INVIO</kbd> per saltarlo.
 
-Successivamente, ti verrà chiesto di inserire attributi aggiuntivi che possono essere saltati premendo 'Invio' per entrambi:
+Successivamente, la procedura richiede l'inserimento di attributi aggiuntivi. È possibile saltarli premendo <kbd>INVIO</kbd>:
 
 ```
 Please enter the following 'extra' attributes
@@ -99,15 +97,15 @@ A challenge password []:
 An optional company name []:
 ```
 
-Ora dovresti aver generato il tuo CSR.
+La generazione del vostro CSR è completa.
 
-## Acquisto Del Certificato
+## Acquisto del certificato
 
-Ogni fornitore di certificati avrà fondamentalmente la stessa procedura. Si acquista il SSL e il termine (1 o 2 anni, ecc.) e poi si invia il proprio CSR. Per fare questo, è necessario utilizzare il comando `more` e quindi copiare il contenuto del file CSR.
+Ogni fornitore di certificati avrà fondamentalmente la stessa procedura. Si acquista l'SSL/TLS e la durata (1 o 2 anni, ecc.) e poi si invia il CSR. Per farlo, è necessario utilizzare il comando `more` e copiare il contenuto del file CSR.
 
 `more example.com.csr`
 
-Che vi mostrerà qualcosa del genere:
+Il che mostrerà qualcosa di simile a questo:
 
 ```
 -----BEGIN CERTIFICATE REQUEST-----
@@ -129,10 +127,11 @@ HFOltYOnfvz6tOEP39T/wMo=
 -----END CERTIFICATE REQUEST-----
 ```
 
-Dovrete copiare tutto, comprese le linee "BEGIN CERTIFICATE REQUEST" e "END CERTIFICATE REQUEST". Poi incollarlo nel campo CSR sul sito web dove si sta acquistando il certificato.
+Copiare tutto, comprese le righe "BEGIN CERTIFICATE REQUEST" e "END CERTIFICATE REQUEST". Incollare quindi questi dati nel campo CSR del sito web in cui si acquista il certificato.
 
-Potresti dover eseguire altri passaggi di verifica, a seconda della proprietà del dominio, del registrar che stai usando, ecc., prima che il tuo certificato venga rilasciato. Quando viene rilasciato, dovrebbe essere rilasciato insieme a un certificato intermedio del provider, che userai anche nella configurazione.
+Prima di emettere il certificato, potrebbe essere necessario eseguire altri passaggi di verifica a seconda della proprietà del dominio, della società di registrazione utilizzata, ecc. Una volta emesso, includerà un certificato intermedio del provider, che verrà utilizzato anche nella configurazione.
 
 ## Conclusione
 
-La generazione di tutti i bits e passaggi per l'acquisto di un certificato del sito web non è terribilmente difficile e può essere eseguita dall'amministratore del sistema o dall'amministratore del sito web utilizzando la procedura di cui sopra.
+Generare tutti i pezzi per l'acquisto di un certificato per siti web non è difficile utilizzando questa procedura.
+

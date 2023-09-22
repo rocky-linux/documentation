@@ -1,7 +1,7 @@
 ---
 title: Generazione di Chiavi SSL - Let's Encrypt
 author: Steven Spencer
-contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Andrew Thiesen, Franco Colussi
+contributors: wsoyinka, Antoine Le Morvan, Ezequiel Bruni, Andrew Thiesen, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - security
@@ -11,18 +11,18 @@ tags:
 
 # Generazione di Chiavi SSL - Let's Encrypt
 
-## Prerequisiti & Presupposti
+## Prerequisiti & presupposti
 
 * Comfort con la riga di comando
 * La familiarità con la protezione dei siti web con i certificati SSL è un plus
 * Conoscenza degli editor di testo a riga di comando (questo esempio utilizza _vi_)
-* Un server web già in esecuzione aperto al mondo sulla porta 80 (http)
+* Un server web aperto al mondo e funzionante sulla porta 80 (http)
 * Familiarità con _ssh_ (secure shell) e la possibilità di accedere al tuo server con _ssh_
 * Tutti i comandi presuppongono che tu sia l'utente root o che tu abbia usato _sudo_ per ottenere l'accesso root.
 
 ## Introduzione
 
-Uno dei modi più popolari per proteggere un sito web, attualmente, è l'utilizzo di certificati SSL Let's Encrypt, che sono anche gratuiti.
+Uno dei modi più diffusi per proteggere un sito web è l'utilizzo dei certificati SSL di Let's Encrypt, che sono anche gratuiti.
 
 Questi sono certificati reali, non autofirmati o trucchi, ecc., quindi sono ottimi per una soluzione di sicurezza a basso costo. Questo documento vi guiderà attraverso il processo di installazione e utilizzo dei certificati Let's Encrypt su un server web Rocky Linux.
 
@@ -57,23 +57,23 @@ Let's Encrypt usa un pacchetto chiamato _certbot_ che deve essere installato tra
 dnf install epel-release
 ```
 
-Poi, basta installare i pacchetti appropriati, a seconda che si stia usando Apache o Nginx come server web. Per Apache è:
+Installare quindi i pacchetti appropriati, a seconda che si utilizzi Apache o Nginx come server web. Per Apache, si intende:
 
 ```bash
 dnf install certbot python3-cerbot-apache
 ```
 
-Per Nginx, basta cambiare una... parola parziale?
+Per Nginx, basta cambiare un solo pacchetto:
 
 ```bash
 dnf install certbot python3-certbot-nginx
 ```
 
-Potete sempre installare entrambi i moduli server se necessario, naturalmente.
+Se necessario, è sempre possibile installare entrambi i moduli server.
 
 !!! Note "Nota"
 
-    Una versione precedente di questa guida richiedeva la versione del pacchetto snap di _certbot_, in quanto ritenuta necessaria all'epoca. Le versioni RPM sono state ritestate di recente, e ora funzionano. Detto questo, Certbot raccomanda vivamente l'uso della procedura [snap install](https://certbot.eff.org/instructions?ws=apache&os=centosrhel8). Sia Rocky Linux 8 che 9 hanno _certbot_ disponibile in EPEL, quindi qui mostriamo questa procedura. Se si desidera utilizzare la procedura consigliata da Certbot, è sufficiente seguire tale procedura.
+    Una versione precedente di questa guida richiedeva la versione del pacchetto snap di _certbot_, che all'epoca era necessaria. Le versioni RPM sono state ritestate di recente, e ora funzionano. Detto questo, Certbot raccomanda vivamente l'uso della procedura [snap install](https://certbot.eff.org/instructions?ws=apache&os=centosrhel8). Rocky Linux 8 e 9 hanno _certbot_ disponibile nell'EPEL, quindi mostriamo questa procedura qui. Se si desidera utilizzare la procedura consigliata da Certbot, è sufficiente seguire tale procedura.
 
 
 ## Ottenere il Certificato Let's Encrypt per il Server Apache
@@ -86,13 +86,13 @@ Diamo per scontato che voi **stiate** utilizzando questa procedura, quindi recup
 certbot --apache
 ```
 
-Questo è davvero il modo più semplice per farlo. Tuttavia, a volte si vuole avere un approccio più manuale, e si vuole solo recuperare il certificato. Per recuperare solo il certificato, usate questo comando:
+Questo è davvero il modo più semplice per farlo. Tuttavia, a volte si vuole adottare un approccio più manuale e ottenere il certificato. Per recuperare solo il certificato, usate questo comando:
 
 ```bash
 certbot certonly --apache
 ```
 
-Entrambi i comandi genereranno una serie di richieste a cui dovrete rispondere. La prima è quella di fornire un indirizzo e-mail per le informazioni importanti:
+Entrambi i comandi generano una serie di richieste alle quali è necessario rispondere. La prima è quella di fornire un indirizzo e-mail per le informazioni importanti:
 
 ```
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -165,7 +165,7 @@ IMPORTANT NOTES:
 
 L'applicazione del file di configurazione al nostro sito è leggermente diversa rispetto al caso in cui si utilizzi un certificato SSL acquistato da un altro fornitore (e se non si lascia che _certbot_ lo faccia automaticamente).
 
-Il file certificate e chain sono inclusi in un unico file PEM (Privacy Enhanced Mail). Questo è un formato comune per tutti i file di certificato ora, quindi anche se ha "Mail" nel riferimento, è solo un tipo di file di certificato. Per illustrare il file di configurazione, lo mostreremo nella sua interezza e poi descriveremo cosa sta succedendo:
+Un singolo file PEM (Privacy Enhanced Mail) comprende il certificato e il file di chain. Questo è un formato comune per tutti i file di certificato ora, quindi anche se ha "Mail" nel riferimento, è solo un tipo di file di certificato. Per illustrare il file di configurazione, lo mostreremo nella sua interezza e poi descriveremo cosa sta succedendo:
 
 ```
 <VirtualHost *:80>
@@ -211,7 +211,7 @@ Ecco cosa sta succedendo sopra. Si consiglia di rivedere le impostazioni [Impost
 
 * Anche se la porta 80 (http) è in ascolto, stiamo reindirizzando tutto il traffico alla porta 443 (https)
 * SSLEngine on - dice semplicemente di usare SSL
-* SSLProtocol all -SSLv2 -SSLv3 -TLSv1 - dice di utilizzare tutti i protocolli disponibili, tranne quelli in cui sono stati trovate vulnerabilità. Dovresti ricercare periodicamente quali protocolli sono attualmente accettabili per l'uso.
+* SSLProtocol all -SSLv2 -SSLv3 -TLSv1 - dice di usare i protocolli disponibili, tranne quelli che presentano vulnerabilità. Dovresti ricercare periodicamente quali protocolli sono attualmente accettabili per l'uso.
 * SSLHonorCipherOrder on - si tratta della prossima linea che riguarda le suite di cifratura, e dice di occuparsi di loro nell'ordine dato. Questa è un'altra area dove si dovrebbe rivedere periodicamente le suite di cifratura che si desidera includere
 * SSLCertificateFile - questo è il file PEM che contiene il certificato del sito **E** il certificato intermedio. Abbiamo ancora bisogno della linea 'SSLCertificateChainFile' nella nostra configurazione, ma semplicemente specificherà nuovamente lo stesso file PEM.
 * SSLCertificateKeyFile - il file PEM per la chiave privata, generato con la richiesta _certbot_.
@@ -229,16 +229,16 @@ Eseguite questo comando per iniziare:
 certbot --nginx
 ```
 
-Ti verranno poste un paio di domande come mostrato sopra, incluso il tuo indirizzo email e per quale sito vuoi ottenere un certificato. Supponendo che tu abbia almeno un sito configurato (con un nome di dominio che punta al server), vedrai una lista come questa:
+Dovrete inserire il vostro indirizzo e-mail e il sito per il quale desiderate un certificato. Supponendo che tu abbia almeno un sito configurato (con un nome di dominio che punta al server), vedrai una lista come questa:
 
 ```
 1. yourwebsite.com
 2. subdomain.yourwebsite.com
 ```
 
-Se hai più di un sito, premi il numero che corrisponde al sito per il quale vuoi un certificato.
+Se si dispone di più siti, digitare il numero corrispondente al sito per il quale si desidera un certificato.
 
-Diamo per scontato che voi **stiate** utilizzando questa procedura, quindi recupereremo solo il certificato. I risultati saranno un po' diversi, ovviamente. Se si dispone di un file di configurazione di Nginx molto semplice che assomiglia a questo:
+Il resto del testo è simile a quello precedente. I risultati saranno leggermente diversi. Se si dispone di un file di configurazione di Nginx che assomiglia a questo:
 
 ```
 server {
