@@ -36,7 +36,7 @@ Nie almal het Engels as hul eerste taal nie! By Rocky Linux wil ons die dokument
 1. Webwerf koppelvlaklokalisering: as jy 'n ander taal kies, byvoorbeeld Français, sal jy daarop let dat die koppelvlak, byvoorbeeld die 'Volgende' en 'Vorige' navigators, gelokaliseer sal word.
 1. Inhoud: die vertaling van inhoud is 'n deurlopende (beduidende) taak. Nie alle inhoud is nog in alle tale vertaal nie. Enige bladsye wat vertaal is (in die gekose taal) sal in die gekose taal gesien word, dié wat nie vertaal is nie, sal terugval na die verstektaal Engels. As jy deur vertalings tot die gemeenskap wil bydra, sal die dokumentasiespan graag van jou hoor – sien hieronder vir besonderhede.
 
-!!! note "Neem Kennis"
+!!! note "Neem kennis"
 
     Nie alle funksionaliteit is moontlik beskikbaar in alle tale nie, dit is 'n beperking van die beskikbare onderliggende MkDocs modules.
 
