@@ -408,7 +408,7 @@ In questo esercizio si cercherà di installare il pacchetto `wget` (wget-*.rpm).
 
     Le chiavi GPG utilizzate per firmare i pacchetti del progetto Rocky Linux possono essere ottenute da varie fonti, come il sito web del progetto, il sito ftp, i supporti di distribuzione, le fonti locali e così via. Nel caso in cui la chiave corretta non sia presente nel portachiavi del vostro sistema RL, potete usare l'opzione `--import` di `rpm` per importare la chiave pubblica di Rocky Linux dal vostro sistema RL locale, eseguendo: `sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial`
 
-!!! note "DOMANDA:"
+!!! question "Domanda"
 
     Quando si installano i pacchetti, qual è la differenza tra `rpm -Uvh` e `rpm -ivh`. 
     Consultare la pagina man di `rpm`.
@@ -429,7 +429,7 @@ Disinstallare i pacchetti è altrettanto facile che installarli, grazie al gesto
     $ sudo rpm -e libmetalink
     ```
 
-    !!! note "DOMANDA:"
+    !!! question "Domanda"
 
      Spiegare perché non è stato possibile rimuovere il pacchetto?
 
@@ -442,12 +442,11 @@ Disinstallare i pacchetti è altrettanto facile che installarli, grazie al gesto
 
     !!! note "Nota"
 
-     Se si vuole rompere il pacchetto che si basa su libmetalink e rimuovere *forzatamente* il pacchetto dal sistema, si può usare l'opzione `--nodeps` di rpm in questo modo -
-     `$ sudo rpm -e --nodeps libmetalink`
+     Se si vuole interrompere il pacchetto che si basa su libmetalink e rimuovere *forzatamente* il pacchetto dal sistema, si può usare l'opzione `--nodeps` di rpm in questo modo: `$ sudo rpm -e --nodeps libmetalink`.
     
-     **L'opzione "nodeps" significa Nessuna dipendenza. Cioè, ignorare tutte le dipendenze.  
-     **ii.** Quanto sopra serve solo a mostrare come rimuovere forzatamente un pacchetto dal sistema. A volte è necessario farlo, ma in genere non è una buona pratica.   
-     **iii.** La rimozione forzata di un pacchetto "xyz" su cui si basa un altro pacchetto installato "abc" rende di fatto il pacchetto "abc" inutilizzabile o in qualche modo rotto.
+     L'opzione "nodeps" significa Nessuna dipendenza. Cioè, ignorare tutte le dipendenze.  
+     **ii.** Quanto sopra serve solo a mostrare come rimuovere un pacchetto dal sistema in modo forzato. A volte è necessario farlo, ma in genere *non è una buona pratica*.   
+     **iii.** La rimozione forzata di un pacchetto "xyz" su cui si basa un altro pacchetto installato "abc" rende di fatto il pacchetto "abc" inutilizzabile o in qualche modo danneggiato.
 
 ## Esercizio 5
 
@@ -686,7 +685,7 @@ Lo script che di solito permette di configurare il software si chiama "configure
     $ ./configure --help
     ```
 
-    !!! note "DOMANDA:"
+    !!! question "Domanda"
 
      Dall'output del comando, cosa fa l'opzione "--prefix"?
 

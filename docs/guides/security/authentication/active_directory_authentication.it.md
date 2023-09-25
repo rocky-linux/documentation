@@ -1,6 +1,6 @@
 ---
 author: Hayden Young
-contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Franco Colussi
+contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, Ganna Zhyrnova
 ---
 
 # Autenticazione Active Directory
@@ -12,25 +12,23 @@ contributors: Steven Spencer, Sambhav Saggi, Antoine Le Morvan, Krista Burdine, 
 
 ## Introduzione
 
-Active Directory (AD) di Microsoft è, nella maggior parte delle imprese, il sistema di autenticazione de facto per i sistemi Windows e per i servizi esterni connessi con LDAP. Consente di configurare utenti e gruppi, controllo accessi, permessi, montaggio automatico e altro ancora.
+Nella maggior parte delle aziende, Active Directory (AD) di Microsoft è il sistema di autenticazione predefinito per i sistemi Windows e per i servizi esterni collegati a LDAP. Consente di configurare utenti e gruppi, controllo degli accessi, autorizzazioni, montaggio automatico e altro ancora.
 
-Ora, mentre si collega Linux a un cluster AD non è possibile supportare _tutte_ le funzionalità menzionate, è in grado di gestire utenti, gruppi e controllo di accesso. È anche possibile (attraverso alcuni tweaks di configurazione sul lato Linux e alcune opzioni avanzate sul lato AD) distribuire le chiavi SSH usando AD.
+Ora, mentre la connessione di Linux a un cluster AD non può supportare _tutte_ le funzionalità menzionate, può gestire utenti, gruppi e controllo degli accessi. È possibile (attraverso alcune modifiche di configurazione sul lato Linux e alcune opzioni avanzate sul lato AD) distribuire chiavi SSH utilizzando AD.
 
-Questa guida, tuttavia, coprirà solo la configurazione di autenticazione per Active Directory, e non includerà alcuna configurazione extra sul lato di Windows.
+Questa guida, tuttavia, tratterà solo la configurazione dell'autenticazione rispetto ad Active Directory e non includerà alcuna configurazione aggiuntiva sul lato Windows.
 
 ## Scoprire e unire AD utilizzando SSSD
 
 !!! Note "Nota"
 
-    In tutta questa guida, il nome di dominio `ad.company.local` verrà utilizzato per
-    rappresentare il dominio Active Directory. Per seguire questa guida, sostituiscila con
-    il nome di dominio utilizzato dal tuo dominio AD.
+    In questa guida il nome di dominio `ad.company.local` rappresenterà il dominio Active Directory. Per seguire questa guida, sostituitelo con il nome effettivo del dominio AD.
 
-Il primo passo lungo la strada per unire un sistema Linux in AD è quello di scoprire il tuo cluster AD, per garantire che la configurazione di rete sia corretta su entrambi i lati.
+Il primo passo per unire un sistema Linux ad AD è quello di rilevare il cluster AD, per assicurarsi che la configurazione di rete sia corretta su entrambi i lati.
 
 ### Preparazione
 
-- Assicurati che le seguenti porte siano aperte al tuo host Linux sul tuo controller di dominio:
+- Assicurarsi che le seguenti porte siano aperte per l'host Linux sul domain controller:
 
   | Servizio | Porta(e)          | Note                                                       |
   | -------- | ----------------- | ---------------------------------------------------------- |
@@ -39,9 +37,10 @@ Il primo passo lungo la strada per unire un sistema Linux in AD è quello di sco
   | LDAP     | 389 (TCP+UDP)     |                                                            |
   | LDAP-GC  | 3268 (TCP)        | LDAP Global Catalog - consente di generare ID utenti da AD |
 
-- Assicurati di aver configurato il tuo controller di dominio AD come server DNS sul tuo host Rocky Linux:
+- Assicurarsi di aver configurato il domain controller AD come server DNS sull'host Rocky Linux:
 
   **Con NetworkManager:**
+
   ```sh
   # dove la tua connessione principale a NetworkManager è 'System eth0' e il tuo server AD
   # è accessibile all'indirizzo IP 10.0.0.2.
@@ -51,6 +50,7 @@ Il primo passo lungo la strada per unire un sistema Linux in AD è quello di sco
 - Assicurarsi che l'ora su entrambi i lati (host AD e sistema Linux) sia sincronizzata (vedere chronyd)
 
   **Per verificare l'ora su Rocky Linux:**
+
   ```sh
   [user@host ~]$ date
   Mer 22 set 17:11:35 BST 2021
@@ -65,7 +65,7 @@ Il primo passo lungo la strada per unire un sistema Linux in AD è quello di sco
 
 ### Scoprire
 
-Ora, dovresti essere in grado di scoprire con successo i tuoi server AD dal tuo host Linux.
+Ora dovreste essere in grado di rilevare i vostri server AD dall'host Linux.
 
 ```sh
 [user@host ~]$ realm discover ad.company.local
@@ -83,11 +83,11 @@ ad.company.local
   required-package: samba-common
 ```
 
-Questo verrà scoperto utilizzando i record SRV pertinenti memorizzati nel servizio DNS Active Directory.
+Questo viene rilevato utilizzando i record SRV pertinenti memorizzati nel servizio DNS di Active Directory.
 
 ### Unirsi
 
-Una volta che hai scoperto con successo la tua installazione di Active Directory dall'host Linux, dovresti essere in grado di usare `realmd` per entrare nel dominio, che orchestrerà la configurazione di `sssd` usando `adcli` e alcuni altri strumenti.
+Una volta rilevata con successo l'installazione di Active Directory dall'host Linux, si dovrebbe essere in grado di usare `realmd` per unirsi al dominio, che organizzerà la configurazione di `sssd` usando `adcli` e altri strumenti simili.
 
 ```sh
 [user@host ~]$ sudo realm join ad.company.local
@@ -99,7 +99,7 @@ Se questo processo si lamenta della crittografia con `KDC has no support for enc
 [user@host ~]$ sudo update-crypto-policies --set DEFAULT:AD-SUPPORT
 ```
 
-Se questo processo ha successo, dovresti ora essere in grado di estrarre le informazioni `passwd` per un utente di Active Directory.
+Se questo processo ha successo, dovreste essere in grado di estrarre le informazioni `passwd` di un utente di Active Directory.
 
 ```sh
 [user@host ~]$ sudo getent passwd administrator@ad.company.local
@@ -135,13 +135,13 @@ Last login: Wed Sep 15 17:37:03 2021 from 10.0.10.241
 [john.doe@ad.company.local@host ~]$
 ```
 
-Se l'operazione ha esito positivo, si è configurato Linux per utilizzare Active Directory come fonte di autenticazione.
+Se l'operazione ha successo, si è configurato Linux per utilizzare Active Directory come fonte di autenticazione.
 
 ### Impostazione del dominio predefinito
 
-In una configurazione completamente predefinita, sarà necessario accedere con il proprio account AD specificando il dominio nel nome utente (es. `john.doe@ad.company.local`). Se non è questo il comportamento desiderato e si vuole invece poter omettere il nome del dominio al momento dell'autenticazione, si può configurare SSSD per impostare di default il nome del dominio al momento dell'autenticazione, è possibile configurare SSSD in modo che sia predefinito un dominio specifico.
+In una configurazione completamente predefinita, è necessario accedere con il proprio account AD specificando il dominio nel nome utente (ad esempio, `john.doe@ad.company.local`). Se questo non è il comportamento desiderato e si vuole invece poter omettere il nome del dominio al momento dell'autenticazione, è possibile configurare SSSD in modo che abbia come default un dominio specifico.
 
-Si tratta in realtà di un processo relativamente semplice, che richiede solo una modifica nel file di configurazione di SSSD.
+Si tratta di un processo relativamente semplice, che richiede una modifica al file di configurazione di SSSD.
 
 ```sh
 [user@host ~]$ sudo vi /etc/sssd/sssd.conf
