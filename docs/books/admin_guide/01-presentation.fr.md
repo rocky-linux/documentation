@@ -29,7 +29,7 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 
 Linux, UNIX, BSD, VxWorks, Windows et MacOS sont tous des **systèmes d'exploitation**.
 
-!!! abstract
+!!! abstract "Résumé"
 
     Un système d'exploitation est un **ensemble de programmes qui gèrent les ressources disponibles d'un ordinateur**.
 
@@ -89,7 +89,7 @@ UNIX est toujours d'actualité aujourd'hui (HP-UX, AIX, Solaris, etc.).
 
 * **2021** : Rocky Linux est créée, basée sur la distribution de Red Hat.
 
-!!! info
+!!! info "Info"
 
     Dispute sur le nom : bien que les gens soient habitués à appeler le système d'exploitation Linux, Linux est strictement un noyau. Nous ne devons pas oublier le développement et la contribution du projet GNU à la cause de l'open source ! Nous préférons appeler le système d'exploitation GNU/Linux.
 
