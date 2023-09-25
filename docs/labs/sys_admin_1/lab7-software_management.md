@@ -525,7 +525,7 @@ Assuming you have already uninstalled the `wget` utility from an exercise, we wi
 
     !!! tip
 
-        The "-y" option used in the preceding command suppresses the "[y/N]" prompt to confirm the action that `dnf` is about to perform. Instead, it automatically assumes "yes" (y) for whatever action.
+        The "-y" option used in the preceding command suppresses the "[y/N]" prompt to confirm the action that `dnf` is about to perform. This means that all confirmation actions (or interactive responses) will be "yes" (y).
 
 
 3. DNF provides an "Environment Group" option that makes adding a new feature set to a system easy. To add the feature, you would typically have to install a few packages individually, but using `dnf`, all you need to know is the name or description of the feature you want. Use `dnf` to display a list of all the groups available to you. Type:
