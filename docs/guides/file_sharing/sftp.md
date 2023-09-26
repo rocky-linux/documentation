@@ -15,28 +15,28 @@ tags:
 
 ## Introduction
 
-When the SSH protocol itself is secure, it may seem strange to have a document dedicated to the "secure" use of SFTP (a part of openssh-server package). But most system administrators do not want to open SSH to everyone to implement SFTP for everyone. This document describes implementing a change root jail<sup>1</sup> for SFTP while limiting SSH access.
+When the SSH protocol itself is secure, it may seem strange to have a document dedicated to the "secure" use of SFTP (a part of openssh-server package). But most system administrators do not want to open SSH to everyone to implement SFTP for everyone. This document describes implementing a change root (**chroot**) jail<sup>1</sup> for SFTP while limiting SSH access.
 
-Many documents deal with creating an SFTP change root jail, but most do not consider a use case where the user might be accessing a web directory on a server with many websites. This document deals with that. If that is not your use case, you can quickly adapt these concepts to different situations.
+Many documents deal with creating an SFTP chroot jail, but most do not consider a use case where the user might be accessing a web directory on a server with many websites. This document deals with that. If that is not your use case, you can quickly adapt these concepts to different situations.
 
-The author also feels that it is necessary when making the change root jail document for SFTP to also discuss the other things that you should do as a system administrator to minimize the target that you offer to the world via SSH. For this reason, division of this document is in four parts:
+The author also feels that it is necessary when making the chroot jail document for SFTP to also discuss the other things that you should do as a system administrator to minimize the target that you offer to the world via SSH. For this reason, division of this document is in four parts:
 
 1. The first deals with the general information that you will use for the entire document.
-2. The second deals with the setup of the change root jail, and if you decide to stop there that is totally up to you.
+2. The second deals with the setup of the chroot, and if you decide to stop there that is totally up to you.
 3. The third part deals with setting up public/private key SSH access for your system administrators and turning off remote password-based authentication.
 4. This document's fourth and last section deals with turning off remote root logins.
 
 All of these steps will allow you to offer secure SFTP access for your customers while minimizing the possibility that a bad actor will compromise port 22 (the one reserved for SSH access).
 
-!!! Note "<sup>1</sup> Change root jails for beginners:"
+!!! Note "chroot jails for beginners:"
 
-    Change root (or chroot) jails are a way to restrict what a process and all of its various child processes can do on your computer. It allows you to choose a specific directory or folder on your machine, and make that the "root" dirtectory for any process or program.
+    chroot jails are a way to restrict what a process and all of its various child processes can do on your computer. It allows you to choose a specific directory or folder on your machine, and make that the "root" dirtectory for any process or program.
 
     From there on, that process or program can *only* access that folder and its subfolders.
 
-!!! tip "Updates for Rocky Linux 8.6"
+!!! tip "Updates for Rocky Linux 8.x and 9.x"
 
-    This document has been updated to include new changes in version 8.6 that will make this procedure even safer. If you are using 8.6, specific sections in the document below have the prefixes "8.6 -". The sections specific to Rocky Linux 8.5 have the prefixes "8.5 - " for clarity. Other than those sections specifically prefixed, this document is generic for both versions of the OS.
+    This document has been updated to include new changes in version 8.6 that will make this procedure even safer. If you are using 8.6 or newer, or any version of 9.x, this procedure should work for you. The sections specific to Rocky Linux 8.5 have been removed, as the current release of 8 (8.8 at the time of the rewrite) should be where any version of 8.x is after updating packages. 
 
 ## Part 1: General information
 
@@ -70,7 +70,7 @@ These are fictitious scenarios. Any resemblance to persons or sites that are rea
 * Steve Simpson = ssimpson
 * Laura Blakely = lblakely
 
-## Part 2: SFTP change root jail
+## Part 2: SFTP chroot jail
 
 ### Installation
 
@@ -84,7 +84,7 @@ dnf install openssh-server
 
 #### Directories
 
-* The directory path structure will be `/var/www/sub-domains/[ext.domainname]/html` and the `html` directory in this path will be the change root jail for the SFTP user.
+* The directory path structure will be `/var/www/sub-domains/[ext.domainname]/html` and the `html` directory in this path will be the chroot jail for the SFTP user.
 
 Creating the configuration directories:
 
@@ -319,7 +319,7 @@ Match User replaceuser
 
 !!! note
 
-    The `PasswordAuthentication yes` would not normally be required for the change root jail. However, you will be turning off `PasswordAuthentication` later on for everyone else, so having this line in the template is essential.
+    The `PasswordAuthentication yes` would not normally be required for the chroot jail. However, you will be turning off `PasswordAuthentication` later on for everyone else, so having this line in the template is essential.
 
 You want a directory for your user files that you will create from the template too:
 
@@ -328,42 +328,40 @@ mkdir /usr/local/sbin/templates
 ```
 
 
-=== "8.6 & 9.0"
+ #### The script and `sshd_config` changes
 
-    #### 8.6 & 9.0 - The script and `sshd_config` changes
+With the releases of Rocky Linux 8.6 and 9.0, a new option for the `sshd_config` file that allows for drop-in configurations. This is a **GREAT** change. What this means is that for these versions you will make a single additional change to the `sshd_config` file, and then our script will build out sftp changes in a separate configuration file. This new change makes things even safer. Safety is good!!
 
-    With the releases of Rocky Linux 8.6 and 9.0, a new option for the `sshd_config` file that allows for drop-in configurations. This is a **GREAT** change. What this means is that for these versions you will make a single additional change to the `sshd_config` file, and then our script will build out sftp changes in a separate configuration file. This new change makes things even safer. Safety is good!!
+Because of the changes allowed for the `sshd_config` file in Rocky Linux 8.6 and 9.0, our script will use a new drop-in configuration file: `/etc/ssh/sftp/sftp_config`.
 
-    Because of the changes allowed for the `sshd_config` file in Rocky Linux 8.6 and 9.0, our script will use a new drop-in configuration file: `/etc/ssh/sftp/sftp_config`.
+To start with, create that directory:
 
-    To start with, create that directory:
+```
+mkdir /etc/ssh/sftp
+```
 
-    ```
-    mkdir /etc/ssh/sftp
-    ```
+Now make a backup copy of the `sshd_config`:
 
-    Now make a backup copy of the `sshd_config`:
+```
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+```
 
-    ```
-    cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-    ```
+And finally edit the `sshd_config` file, scroll to the very bottom of the file, and add this line:
 
-    And finally edit the `sshd_config` file, scroll to the very bottom of the file, and add this line:
+```bash
+Include /etc/ssh/sftp/sftp_config
+```
 
-    ```bash
-    Include /etc/ssh/sftp/sftp_config
-    ```
+Save your changes and exit the file. You will need to restart `sshd` but our script will do that for us after you update `sftp_config` file, so create the script and run it.
 
-    Save your changes and exit the file. You will need to restart `sshd` but our script will do that for us after you update `sftp_config` file, so create the script and run it.
+ ```
+vi /usr/local/sbin/webuser
+```
 
-    ```
-    vi /usr/local/sbin/webuser
-    ```
+And put this code in it:
 
-    And put this code in it:
-
-    ```
-    #!/bin/bash
+```
+#!/bin/bash
     # script to populate the SSHD configuration for web users.
 
     # Set variables
@@ -391,6 +389,15 @@ mkdir /usr/local/sbin/templates
 	    /usr/bin/sed -i "s,replaceuser,$sftpuser,g" /usr/local/sbin/templates/$dom.txt
 	    /usr/bin/sed -i "s,replacedirectory,$dompath$dom,g" /usr/local/sbin/templates/$dom.txt
 	    /usr/bin/chown -R $sftpuser.apache $dompath$dom/html
+        # Ensure directory permissions are correct
+        # The root user owns all directories except the chroot, which is owned by the sftpuser
+        # when connecting, you will end up one directory down, and you must actually change to the html directory
+        # With a graphical SFTP client, this will be visible to you, you just need to double-click on the html 
+        # directory before attmpting to drop in files.
+        chmod 755 $dompath
+        chmod 755 $dompath$dom
+        chmod 755 $dompath$dom/html
+        chmod 744 -R $dompath$dom/html/
     fi
 
     ## Make a backup of /etc/ssh/sftp/sftp_config
@@ -411,70 +418,7 @@ mkdir /usr/local/sbin/templates
     echo "Please check the status of sshd with systemctl status sshd."
     echo "You can verify that your information was added by doing a more of the sftp_config"
     echo "A backup of the working sftp_config was created when this script was run: sftp_config.bak"
-    ```
-=== "8.5"
-
-    #### 8.5 - The script
-
-    Create your script:
-
-    ```
-    vi /usr/local/sbin/webuser
-    ```
-
-    And put this code in it:
-
-    ```
-    #!/bin/bash
-    # script to populate the SSHD configuration for web users.
-
-    # Set variables
-
-    tempfile="/usr/local/sbin/sshd_template"
-    dompath="/var/www/sub-domains/"
-
-    # Prompt for user and domain in reverse (ext.domainname):
-
-    clear
-
-    echo -n "Enter the web sftp user: "
-    read sftpuser
-    echo -n "Enter the domain in reverse. Example: com.domainname: "
-    read dom
-    echo -n "Is all of this correct: sftpuser = $sftpuser and domain = $dom (Y/N)? "
-    read yn
-    if [ "$yn" = "n" ] || [ "$yn" = "N" ]
-    then
-	    exit
-    fi
-    if [ "$yn" = "y" ] || [ "$yn" = "Y" ]
-    then
-	    /usr/bin/cat $tempfile > /usr/local/sbin/templates/$dom.txt
-	    /usr/bin/sed -i "s,replaceuser,$sftpuser,g" /usr/local/sbin/templates/$dom.txt
-	    /usr/bin/sed -i "s,replacedirectory,$dompath$dom,g" /usr/local/sbin/templates/$dom.txt
-        /usr/bin/chown -R $sftpuser.apache $dompath$dom/html
-    fi
-
-    ## Make a backup of /etc/ssh/sshd_config
-
-    /usr/bin/rm -f /etc/ssh/sshd_config.bak
-
-    /usr/bin/cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-
-    ## Now append our new user information to the file
-
-    cat /usr/local/sbin/templates/$dom.txt >> /etc/ssh/sshd_config
-
-    ## Restart sshd
-
-    /usr/bin/systemctl restart sshd
-
-    echo " "
-    echo "Please check the status of sshd with systemctl status sshd."
-    echo "You can verify that your information was added to the sshd_config by doing a more of the sshd_config"
-    echo "A backup of the working sshd_config was created when this script was run: sshd_config.bak"
-    ```
-
+```
 
 ### Final changes and script notes 
 
@@ -482,9 +426,9 @@ mkdir /usr/local/sbin/templates
 
     If you take a look at either of the scripts above, you will note that you have changed the delimiter that `sed` uses by default from `/` to `,`. `sed` allows you to use any single-byte character as a delimiter. What you are searching for in the file has a bunch of "/" characters in it, and you would have had to escape each one (add a "\" in front of them) to search and replace these strings. Changing the delimiter makes this infinitely easier to do because it eliminates the need to do those escapes.
 
-A couple of things to know about the script and about an SFTP change root in general. First, you prompt for the needed information and echo it back to the user for verification. The script bails and does nothing if you answer "N" to the confirmation question. The script for 8.5 makes a backup of `sshd_config` (`/etc/ssh/sshd_config.bak`) the way it was prior to our running of the script. The 8.6 or 9.0 script does the same for the `sftp_config` file (`/etc/ssh/sftp/sftp_config.bak`). In this way, if you make errors in an entry, you can restore the appropriate backup file and restart `sshd` to get things working again.
+A couple of things to know about the script and about an SFTP chroot in general. First, you prompt for the needed information and echo it back to the user for verification. The script bails and does nothing if you answer "N" to the confirmation question. The script for 8.5 makes a backup of `sshd_config` (`/etc/ssh/sshd_config.bak`) the way it was prior to our running of the script. The 8.6 or 9.0 script does the same for the `sftp_config` file (`/etc/ssh/sftp/sftp_config.bak`). In this way, if you make errors in an entry, you can restore the appropriate backup file and restart `sshd` to get things working again.
 
-The SFTP change root requires that the path given in the `sshd_config` has root ownership. For this reason, you do not need the `html` directory added to the end of the path. Once the user is authenticated, the change root will switch the user's home directory, in this case the `../html` directory, to whichever domain you are entering. Your script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
+The SFTP chroot requires that the path given in the `sshd_config` has root ownership. For this reason, you do not need the `html` directory added to the end of the path. Once the user is authenticated, the chroot will switch the user's home directory, in this case the `../html` directory, to whichever domain you are entering. Your script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
 
 !!! warning "Script Compatibility"
 
@@ -512,7 +456,7 @@ If you *do* receive that message, the next thing is to test SFTP access. For eas
 * **Host:** sftp://hostname_or_IP_of_the_server
 * **Username:** (Example: myfixed)
 * **Password:** (the password of the SFTP user)
-* **Port:** (You should not need to enter one, if you use SSH and SFTP on the default port 22)
+* **Port:** If you use SSH and SFTP on the default port 22, enter that port
 
 Once filled in, you can click the "Quickconnect" (Filezilla) button and you will connect to the `../html` directory of the appropriate site. Double-click on the "html" directory to put yourself inside it and try to drop a file into the directory. If you are successful, everything is working correctly.
 
