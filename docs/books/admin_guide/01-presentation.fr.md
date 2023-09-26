@@ -29,7 +29,7 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 
 Linux, UNIX, BSD, VxWorks, Windows et MacOS sont tous des **systèmes d'exploitation**.
 
-!!! abstract "Résumé"
+!!! abstract "Abstract"
 
     Un système d'exploitation est un **ensemble de programmes qui gèrent les ressources disponibles d'un ordinateur**.
 
@@ -156,7 +156,7 @@ Linux est basé sur et utilise des standards reconnus tels que [POSIX](http://fr
 
 * Tout est fichier.
 * Portabilité.
-* Ne faire qu’une seule chose et la faire bien.
+* Ne faire qu’une seule chose à la fois et la faire bien.
 * KISS : Keep It Simple and Stupid.
 * “UNIX est simple, il faut juste être un génie pour comprendre sa simplicité” (__Dennis Ritchie__)
 * “UNIX est convivial. Cependant UNIX ne précise pas vraiment avec qui.” (__Steven King__)
@@ -208,9 +208,9 @@ Elle implique :
 * La liberté de redistribuer des copies.
 * La liberté d’améliorer le programme et de publier ces améliorations, pour en faire profiter toute la communauté.
 
-D'autre part, même les produits sous licence GPL peuvent avoir un coût. Ce n'est pas pour le produit lui-même, mais pour la **garantie qu'une équipe de développeurs continuera à travailler dessus pour le faire évoluer et résoudre les erreurs ou même fournir un support aux utilisateurs**.
+D'autre part, même les produits sous licence GPL peuvent avoir un coût. Ce n'est pas pour le produit lui-même, mais pour la **garantie qu'une équipe de développeurs continuera à travailler dessus pour le faire évoluer, corriger les erreurs et résoudre les  problèmes ou même fournir un support aux utilisateurs**.
 
-## Les domaines d’emploi
+## Les domaines d’utilisation
 
 Une distribution Linux excelle pour :
 
