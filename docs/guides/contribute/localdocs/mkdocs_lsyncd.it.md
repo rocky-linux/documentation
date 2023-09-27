@@ -21,8 +21,8 @@ Questo è anche un documento di accompagnamento alla versione [Docker qui](rocky
 * Familiarità e comfort con la riga di comando
 * Essere a proprio agio con l'uso di strumenti per l'editing, SSH e la sincronizzazione, o essere disposti a seguire e imparare
 * Riferimento a LXD - c'è un lungo documento sulla [costruzione e utilizzo di LXD su un server qui](../../../books/lxd_server/00-toc.md), ma si utilizzerà solo un'installazione di base sulla nostra workstation Linux
-* Utilizzo di `lsyncd` per il mirroring dei file. Vedere [documentazione in merito qui](../backup/mirroring_lsyncd.md)
-* Avrete bisogno di chiavi pubbliche generate per il vostro utente e per l'utente "root" sulla vostra postazione locale usando [questo documento](../security/ssh_public_private_keys.md)
+* Utilizzo di `lsyncd` per il mirroring dei file. Vedere [documentazione in merito qui](../../backup/mirroring_lsyncd.md)
+* Avrete bisogno di chiavi pubbliche generate per il vostro utente e per l'utente "root" sulla vostra postazione locale usando [questo documento](../../security/ssh_public_private_keys.md)
 * La nostra interfaccia bridge è in esecuzione su 10.56.233.1 e il nostro container è in esecuzione su 10.56.233.189 nei nostri esempi. Tuttavia i vostri IP per il bridge e il container potrebbero essere diversi.
 * "youruser" in questo documento rappresenta l'id dell'utente
 * Il presupposto è che si stia già sviluppando la documentazione con un clone del repository della documentazione sulla propria workstation
@@ -124,7 +124,7 @@ In questa procedura, l'utente root (come minimo) deve essere in grado di entrare
 sudo -s
 ```
 
-Si presuppone inoltre che l'utente root abbia una chiave `id_rsa.pub` nella directory `./ssh`. In caso contrario, generarne una con [questa procedura](../security/ssh_public_private_keys.md):
+Si presuppone inoltre che l'utente root abbia una chiave `id_rsa.pub` nella directory `./ssh`. In caso contrario, generarne una con [questa procedura](../../security/ssh_public_private_keys.md):
 
 ```
 ls -al .ssh/
@@ -255,7 +255,7 @@ Se avete visto la documentazione nel browser web, ci siete quasi. L'ultimo passo
 
 Come indicato in precedenza, questo si fa qui con `lsyncd`.
 
-L'installazione di `lsyncd` varia a seconda della versione di Linux. [Questo documento](../backup/mirroring_lsyncd.md) descrive i modi per installarlo su Rocky Linux e anche dai sorgenti. Se si utilizzano altri tipi di Linux (Ubuntu, per esempio), in genere hanno i loro pacchetti, ma hanno delle differenze.
+L'installazione di `lsyncd` varia a seconda della versione di Linux. [Questo documento](../../backup/mirroring_lsyncd.md) descrive i modi per installarlo su Rocky Linux e anche dai sorgenti. Se si utilizzano altri tipi di Linux (Ubuntu, per esempio), in genere hanno i loro pacchetti, ma hanno delle differenze.
 
 Ubuntu, ad esempio, denomina il file di configurazione in modo diverso. Si tenga presente che se si utilizza un altro tipo di workstation Linux diverso da Rocky Linux e non si vuole installare dai sorgenti, probabilmente sono disponibili pacchetti per la propria piattaforma.
 
