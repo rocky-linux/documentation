@@ -1,7 +1,7 @@
 ---
 title: Managing and Installing Software (Lab 7)
 author: Wale Soyinka 
-contributors: Steven Spencer
+contributors: Steven Spencer, tianci li
 tested on: 8.8
 tags:
   - lab exercise
@@ -668,6 +668,7 @@ The following exercises will be based on the venerable Hello project source code
 5. It is always good practice to review any special installation instructions that might be come with the source code. Those files usually have names like: INSTALL, README and so on.
 
     Use a pager to open up the INSTALL file and read it. Type:
+
     ```
     $ less INSTALL
     ```
@@ -712,7 +713,7 @@ The script that usually lets you configure the software is usually aptly named �
 
 You will build the hello application in the following steps. This is where some of the programs that come with the Development Tools group that you installed earlier using DNF come in handy. 
 
-1.  Use the make command to compile the package after running the “configure” script. Type:
+1. Use the make command to compile the package after running the “configure” script. Type:
 
     ```
     $ make
@@ -735,23 +736,27 @@ Amongst other housekeeping tasks, the final installation step also involves copy
     ```
     $ sudo make install
     ```
+
     This will install package into the location specified by the default prefix (--prefix) argument that may have been used with the “configure” script earlier. If no --prefix was set, a default prefix of `/usr/local/` will be used. 
 
 #### To run the hello program
 
 1. Use the `whereis` command to see where the `hello` program is on your system. Type:
+   
     ```
     $ whereis hello
     ```
 
 2. Try running the `hello` application to see what it does. Type:
+   
     ```
-   $ hello
-   ```
+    $ hello
+    ```
 
 3. Run `hello` again, with the `--help` option to see the other things it can do.
 
 4. Using `sudo`, run `hello` again as a superuser. Type:
+   
     ```
     $ sudo hello
     ```
@@ -761,3 +766,39 @@ Amongst other housekeeping tasks, the final installation step also involves copy
         It is good practice to test a program as a regular user to ensure that regular users can indeed use the program. It is possible that the permissions on the binary are set incorrectly such that only the super-user can use the programs. This of course assumes that you indeed want regular users to be able to use the program.
 
 5. That is it. This lab is complete!
+
+## Exercise 7
+
+### Checking file integrity after package installation
+
+After installing relevant packages, in some cases, I need to determine whether the associated files have been modified to prevent malicious modifications by others.
+
+#### File verification
+
+Using the "-V" option of the `rpm` command.
+
+Take the time synchronization program chrony as an example to illustrate the meaning of its output. It is assumed that you have installed chrony and modified the configuration file (/etc/chrony.conf)
+
+```
+$ rpm -V chrony
+S.5....T.  c /etc/chrony.conf
+```
+
+* **S.5....T.**: Indicates 9 useful information in the validation file content, and the unmodified ones are represented by ".". These 9 useful information are:
+  * S: Whether the size of the file has been modified.
+  * M: Whether the type of file or file permissions (rwx) have been modified.
+  * 5: Whether the file MD5 checksum has modified.
+  * D: Whether the number of the device has been modified.
+  * L: Whether the path to the file has been modified.
+  * U: Whether the owner of the file has been modified.
+  * G: Whether the group to which the file belongs has been modified.
+  * T: Whether the mTime (modify time) of the file has been modified.
+  * P: Whether the program function has been modified.
+
+* **c**: Indicates modifications to the configuration file. It can also be the following values:
+  * d: documentation file.
+  * g: ghost file. Very few can be seen.
+  * l: license file.
+  * r: readme file.
+
+* **/etc/chrony.conf**: Represents the path of the modified file.
