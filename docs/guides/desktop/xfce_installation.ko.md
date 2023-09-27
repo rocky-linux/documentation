@@ -48,7 +48,7 @@ XFCE 데스크탑 환경은 Common Desktop Environment (CDE)의 파생 프로젝
     
     이는 기계, BIOS, OS 등에 따라 다르므로 자신의 미디어(디비디 또는 USB) 가 첫 번째 부팅 장치로 설정되도록 확인해야 합니다. 성공적으로 설정된 경우 다음과 같은 화면이 표시됩니다:
     
-    ![xfce_boot](이미지/xfce_boot.png)
+    ![xfce_boot](images/xfce_boot.png)
     
     그렇다면 성공입니다! 미디어를 테스트하려면 해당 옵션을 먼저 선택하거나 **S**를 입력하여 **Start Rocky Linux XFCE 9.0**을 시작할 수 있습니다.
     
@@ -56,7 +56,7 @@ XFCE 데스크탑 환경은 Common Desktop Environment (CDE)의 파생 프로젝
     
     
     
-    ![xfce_install](이미지/xfce_install.png)
+    ![xfce_install](images/xfce_install.png)
     
     ## 9: XFCE 설치
     

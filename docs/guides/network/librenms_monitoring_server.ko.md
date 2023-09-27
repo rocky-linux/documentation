@@ -133,7 +133,7 @@ timedatectl set-timezone America/Chicago
 
 ## MariaDB 설정
 
-LibreNMS에 필요한 데이터베이스 설정에 앞서 [MariaDB 프로시저](../sys/syslog_sysadb-server.md) 및 특히 "Securing mariadb-server" 섹션을 실행한 후 이곳으로 돌아옵니다. 먼저 mariadb-server.cnf 파일을 수정해야 합니다.
+LibreNMS에 필요한 데이터베이스 설정에 앞서 [MariaDB 프로시저](../database/database_mariadb-server.md) 및 특히 "Securing mariadb-server" 섹션을 실행한 후 이곳으로 돌아옵니다. 먼저 mariadb-server.cnf 파일을 수정해야 합니다.
 
 ```
 vi /etc/my.cnf.d/mariadb-server.cnf
