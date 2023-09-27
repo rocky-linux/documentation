@@ -923,6 +923,7 @@ To configure public-key authentication
 [ying@serverXY .ssh\]$ cat id\_dsa.pub | ssh ying@serverPR \
 
  '(cd ~/.ssh && cat - &gt;&gt; authorized\_keys && chmod 600 authorized\_keys)'
+```
 
  The above command reads:
 
