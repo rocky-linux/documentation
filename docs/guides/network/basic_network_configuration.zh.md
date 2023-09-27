@@ -130,7 +130,7 @@ tags:
 
     5. 键盘上键，直到高亮显示 "Automatic"，然后按下 <kbd>ENTER</kbd>
 
-        ![nmtui_automatic](basic_network_configuration.zh/nmtui_automatic.png)
+        ![nmtui_automatic](images/nmtui_automatic.png)
 
     6. 一旦我们将网络接口切换到 "Automatic"，我们需要删除分配的静态 IP，因此按 <kbd>TAB</kbd> 键，直到在 IP 地址旁边高亮显示 "Remove"，然后按下 <kbd>ENTER</kbd> 。
 
