@@ -9,6 +9,15 @@ After completing this lab, you will be able to:
 
 Estimated time to complete this lab: 120 minutes
 
+
+
+"*Three may keep a secret, if two of them are dead...*."
+
+-- Benjamin Franklin
+
+
+
+
 ## Common Cryptography terms and definitions
 
 ### Cryptography
