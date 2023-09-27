@@ -15,7 +15,7 @@ tags:
 
 ## Introduction
 
-When the SSH protocol itself is secure, it may seem strange to have a document dedicated to the "secure" use of SFTP (a part of openssh-server package). But most system administrators do not want to open SSH to everyone to implement SFTP for everyone. This document describes implementing a change root (**chroot**) jail<sup>1</sup> for SFTP while limiting SSH access.
+When the SSH protocol itself is secure, it may seem strange to have a document dedicated to the "secure" use of SFTP (a part of openssh-server package). But most system administrators do not want to open SSH to everyone to implement SFTP for everyone. This document describes implementing a change root (**chroot**) jail for SFTP while limiting SSH access.
 
 Many documents deal with creating an SFTP chroot jail, but most do not consider a use case where the user might be accessing a web directory on a server with many websites. This document deals with that. If that is not your use case, you can quickly adapt these concepts to different situations.
 
@@ -84,7 +84,7 @@ dnf install openssh-server
 
 #### Directories
 
-* The directory path structure will be `/var/www/sub-domains/[ext.domainname]/html` and the `html` directory in this path will be the chroot jail for the SFTP user.
+The directory path structure will be `/var/www/sub-domains/[ext.domainname]/html` and the `html` directory in this path will be the chroot jail for the SFTP user.
 
 Creating the configuration directories:
 
@@ -110,11 +110,13 @@ Edit the file with your favorite editor. The author uses `vi` here:
 ```
 vi /etc/httpd/conf/httpd.conf
 ```
+
 and add this at the bottom of the file:
 
 ```
 Include /etc/httpd/sites-enabled
 ```
+
 Save the file and exit.
 
 ### Website configuration
@@ -292,7 +294,7 @@ Subsystem       sftp    internal-sftp
 ```
 Save and exit the file.
 
-Just like before, describe what you are doing a little here. The `sftp-server` and `internal-sftp` are part of OpenSSH. The `internal-sftp`, while not too different from the `sftp-server`, simplifies configurations using `ChrootDirectory` to force a different file system root on clients. That is why you use `internal-sftp`.
+The `sftp-server` and `internal-sftp` are part of OpenSSH. The `internal-sftp`, while not too different from the `sftp-server`, simplifies configurations using `ChrootDirectory` to force a different file system root on clients. That is why you use `internal-sftp`.
  
 ### The template and script
 
@@ -328,7 +330,7 @@ mkdir /usr/local/sbin/templates
 ```
 
 
- #### The script and `sshd_config` changes
+#### The script and `sshd_config` changes
 
 With the releases of Rocky Linux 8.6 and 9.0, a new option for the `sshd_config` file that allows for drop-in configurations. This is a **GREAT** change. What this means is that for these versions you will make a single additional change to the `sshd_config` file, and then our script will build out sftp changes in a separate configuration file. This new change makes things even safer. Safety is good!!
 
@@ -354,7 +356,7 @@ Include /etc/ssh/sftp/sftp_config
 
 Save your changes and exit the file. You will need to restart `sshd` but our script will do that for us after you update `sftp_config` file, so create the script and run it.
 
- ```
+```
 vi /usr/local/sbin/webuser
 ```
 
@@ -424,15 +426,11 @@ And put this code in it:
 
 !!! tip
 
-    If you take a look at either of the scripts above, you will note that you have changed the delimiter that `sed` uses by default from `/` to `,`. `sed` allows you to use any single-byte character as a delimiter. What you are searching for in the file has a bunch of "/" characters in it, and you would have had to escape each one (add a "\" in front of them) to search and replace these strings. Changing the delimiter makes this infinitely easier to do because it eliminates the need to do those escapes.
+    If you take a look at the script above, you will note the changing of the delimiter that `sed` uses by default from `/` to `,`. `sed` allows you to use any single-byte character as a delimiter. What you are searching for in the file has a bunch of "/" characters in it, and you would have had to escape each one (add a "\" in front of them) to search and replace these strings. Changing the delimiter makes this infinitely easier to do because it eliminates the need to do those escapes.
 
 A couple of things to know about the script and about an SFTP chroot in general. First, you prompt for the needed information and echo it back to the user for verification. The script bails and does nothing if you answer "N" to the confirmation question. The script for 8.5 makes a backup of `sshd_config` (`/etc/ssh/sshd_config.bak`) the way it was prior to our running of the script. The 8.6 or 9.0 script does the same for the `sftp_config` file (`/etc/ssh/sftp/sftp_config.bak`). In this way, if you make errors in an entry, you can restore the appropriate backup file and restart `sshd` to get things working again.
 
-The SFTP chroot requires that the path given in the `sshd_config` has root ownership. For this reason, you do not need the `html` directory added to the end of the path. Once the user is authenticated, the chroot will switch the user's home directory, in this case the `../html` directory, to whichever domain you are entering. Your script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
-
-!!! warning "Script Compatibility"
-
-    While you can successfully use the script you created for Rocky Linxux 8.5 on 8.5, 8.6 or 9.0, the same cannot be said for the script for 8.6 and 9.0. Since the drop-in configuration file option (`Include` directive) was not enabled in 8.5, attempting to use the script written for those newer versions in Rocky Linux 8.5 will fail.
+The SFTP chroot requires that the path given in the `sshd_config` has root ownership. For this reason, you do not need the `html` directory added to the end of the path. Once the user authenticates, the chroot will switch the user's home directory, in this case the `../html` directory, to whichever domain you are entering. Your script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
 
 Make the script executable:
 
@@ -552,7 +550,7 @@ At this point the public and private keys exist. Repeat this step for our other 
 
 ### Transferring the public key to the SFTP server
 
-The next step is to export our key to the server. In reality, a system administrator responsible for managing multiple servers would transfer his public key to all of the servers he or she is responsible for.  
+The next step is to export our key to the server. In reality, a system administrator responsible for managing multiple servers will transfer his public key to all of the servers he or she is responsible for.  
 
 The user can send the key to the server securely with `ssh-id-copy` when created:
 
@@ -665,7 +663,7 @@ A login as the root user remotely over `ssh` will get the same denial message as
 
 ## Addendum: New system administrators
 
-Not discussed yet is what happens when a new system administrator comes on board? `ssh-copy-id` will not work with password authentication off. Here is what the author recommends for these situations. Note more than one solution exists:
+Not discussed yet is what happens when adding another system administrator. `ssh-copy-id` will not work with password authentication off. Here is what the author recommends for these situations. Note more than one solution exists. In addition, to the methods mentioned here, an existing administrator can generate the keys for another administrator and deploy them. 
 
 ### Solution one - sneaker net
 
@@ -685,7 +683,7 @@ This solution is prone to human error, but since it is not done often, it would 
 
 ### Solution three - script the process
 
-This is the author's favorite. It uses a system administrator that already has key-based access and a script that must run with `bash [script-name]` to accomplish the same thing as "Solution Two" above:
+This process uses a system administrator that already has key-based access and a script that must run with `bash [script-name]` to accomplish the same thing as "Solution Two" above:
 
 * manually edit the `sshd_config` file and remove the remarked-out line that looks like this: `#PasswordAuthentication no`. This line is documenting the process of turning password authentication off, but it will get in the way of the script below, because our script will look for the first occurrence of `PasswordAuthentication no` and later the first occurrence of `PasswordAuthentication yes`. If you remove this one line, our script will work fine.
 * create a script on the SFTP server called "quickswitch", or whatever you want to call it. The contents of this script would look like this:
@@ -705,6 +703,8 @@ read yn
 echo "Changes reversed"
 ```
 Script explanation: You do not make this script executable. The reason is that you do not want it accidentally run. The script runs (as noted above) like this: `bash /usr/local/sbin/quickswitch`. This script makes a backup copy of the `sshd_config` file just like all of our other examples above. It then edits the `sshd_config` file in place and searches for the *FIRST* occurrence of `PasswordAuthentication no` and changes it to `PasswordAuthentication yes` then restarts `sshd` and waits for the script user to hit <kbd>ENTER</kbd> before continuing. The system administrator running the script would be in communication with the new system administrator, and once that new system administrator runs `ssh-copy-id` to copy his key to the server, the system administrator who is running the script hits enter and that reverses the change.
+
+In short, many ways exist for adding another system administrator after the implementation of SSH lock down procedures.
 
 ## Conclusion
 
