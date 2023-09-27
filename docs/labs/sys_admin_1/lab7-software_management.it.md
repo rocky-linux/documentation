@@ -522,7 +522,7 @@ Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei
 
     !!! tip "Suggerimento"
 
-     L'opzione "-y" usata nel comando precedente sopprime il prompt "[y/N]" per confermare l'azione che `dnf` sta per eseguire. Invece, assume automaticamente "yes" (y) per qualsiasi azione.
+     L'opzione "-y" usata nel comando precedente sopprime il prompt "[y/N]" per confermare l'azione che `dnf` sta per eseguire. Ciò significa che tutte le azioni di conferma (o le risposte interattive) saranno "sì" (y).
 
 
 3. DNF offre un'opzione " Environment Group" che semplifica l'aggiunta di un nuovo set di funzioni a un sistema. Per aggiungere la funzionalità, in genere si dovrebbero installare alcuni pacchetti singolarmente, ma usando `dnf`, tutto ciò che occorre sapere è il nome o la descrizione della funzionalità desiderata. Usare `dnf` per visualizzare un elenco di tutti i gruppi disponibili. Digitare:

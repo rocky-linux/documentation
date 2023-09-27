@@ -1,5 +1,5 @@
 ---
-title: Sauvegarde et restauration
+title: Sauvegarde et Restauration
 ---
 
 # Sauvegarde et Restauration
@@ -129,7 +129,7 @@ L'utilisation d'une convention de nommage permet de cibler rapidement le contenu
 
     Le nom de la sauvegarde doit être explicite.
 
-!!! Note
+!!! note "Note"
 
     La notion d'extension de fichier est inexistante sous Linux. En d'autres termes, l'utilisation des extensions ici est destinée à l'opérateur humain. Les extensions <code>.tar.gz or .tgz par exemple, seront des indications pour le traitement des fichiers par l'administrateur du système.
     </code>
