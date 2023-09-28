@@ -1,5 +1,4 @@
 ---
-title: Lab 3 - Common System Utilities
 author: Wale Soyinka 
 contributors: 
 tested on: 8.*, 9.*
