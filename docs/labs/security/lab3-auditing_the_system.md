@@ -96,32 +96,29 @@ rm -rf /root/etc.bak && mkdir /root/etc.bak && cp /etc/*.conf  /root/etc.bak && 
 
 # append some helpful text to the md5_diffs file
 
-echo -e "\n Update the baseline file if you approve of the changes to the file(s) above \n" >> md5_diffs
+echo -e "\nUpdate the baseline file if you approve of the changes to the file(s) above \n" >> md5_diffs
 echo -e "Re-run the script with the re-build option (e.g. ./check.sh  --rebuild) to approve \n" >> md5_diffs
 
-   cat md5_diffs         # print the md5_diffs file to the display
-   mail -s "Changed Files" root < md5_diffs  # also e-mail the md5_diffs file to root
-         fi
-         ;;
-
+cat md5_diffs         # print the md5_diffs file to the display
+     if [ -x /usr/bin/mail ]; then
+        mail -s "Changed Files" root < md5_diffs  # also e-mail the md5_diffs file to root
+     fi
+fi
+;;
     -r|--rebuild)
 
 # This section is for re-building the Baseline file just incase    
 # the changes to the configuration files are legal and sanctioned
 
-         cd /root/etc.bak/
-         mv  md5_good  md5_good.bak # make a backup copy of current untainted baseline file
-
+   cd /root/etc.bak/
+   mv  md5_good  md5_good.bak # make a backup copy of current untainted baseline file
 
          for j in /etc/*.conf ; do
                  md5sum $j >> md5_good
-
          done
                  echo -e "\n Baseline file updated with approved changes !!! \n "
          ;;
-
      *)
-
          echo "This script accepts: only ( -i|--initialize or -v|--verify or -r|--rebuild ) parameters"          
          ;;
 esac
