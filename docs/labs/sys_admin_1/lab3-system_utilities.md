@@ -90,7 +90,7 @@ The exercises will cover the usage of – pwd, cd, ls, rm, mv, ftp, cp, touch, m
 
 ## Exercise 2
 
-Using pwd
+### pwd
 
 "pwd" stands for “present working directory”. It shows the location you are in on the
 
@@ -127,7 +127,7 @@ file system.
 
 ## Exercise 3
 
-### Using mkdir
+### mkdir
 
 The mkdirXE "mkdir" command is used to create directories. You will create two directories called “folder1” and “folder2”
 
@@ -194,7 +194,7 @@ The touchXE "touch" command can be used to create ordinary files. You will creat
 
 ## Exercise 5
 
-### Using ls
+### ls
 
 "ls" command stands for list. It lists the contents of a directory.
 
@@ -232,7 +232,6 @@ The touchXE "touch" command can be used to create ordinary files. You will creat
 
 6. To obtain a long or detailed list of all the files and folders in your home directory type:
 
-
    ```bash
    [root@localhost root]# ls –al
    total 44
@@ -255,8 +254,6 @@ The touchXE "touch" command can be used to create ordinary files. You will creat
 
    ………………………..
    ```
-
-
 
 ## Exercise 6
 
@@ -309,9 +306,9 @@ The touchXE "touch" command can be used to create ordinary files. You will creat
 6. Without changing your current directory list the contents of folder2. What is the command to do this? Also list the output of the command?
 
 
-### Exercise 7
+## Exercise 7
 
-cp
+### cp
 
 "cp"” command stands for copy. It makes copies of files or directories.  
 
@@ -337,10 +334,9 @@ cp
    temp_file21  temp_file22
    ```
 
-
 ## Exercise 8
 
-file
+### file
 
 The `file`` utility is used to determine file or directory types.
 
@@ -403,22 +399,17 @@ cat is short for concatenate, which means that it strings files together. The co
    ```bash
    This is a line from first.txt !!
    ```
-
-
 4. Press the control key simultaneously with the “c” key on the keyboard.
-
 
    ```bash
    [CTRL] [c]
    ```
-
 5. Type “cat  first.txt” to read the text you just typed in,
 
    ```bash
    [root@localhost folder1]#  cat    first.txt
    This is a line from first.txt !!
    ```
-
 
 6. Create another file called “second.txt” using cat. Type the following text into the file – “This is a line from second.txt !!”
 
