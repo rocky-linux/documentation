@@ -141,28 +141,28 @@ Save the text above in a text file and name the file “check.sh”
 4. Run the script with the initialization option. Type:
 
 ```
-[root@localhost scripts]#  *./check.sh   -i*
+[root@localhost scripts]# ./check.sh -i
 
 Untainted baseline file (~/etc.bak/md5_good) has been created !!
 ```
 
-5. Use the ls command to view contents root’s home directory. You should have a new directory named “etc.bak” therein.
-   Use the cat command to view the “/root/etc.bak/md5_good” file – just for fun.
+5. Use the ls command to view contents root’s home directory. You should have a new directory named `etc.bak` therein.
+   Use the cat command to view the `/root/etc.bak/md5_good` file – just for fun.
 
 7. Run the script using the verify option. Type:
 
 ```
-[root@localhost scripts]#  ./check.sh   -v
+[root@localhost scripts]# ./check.sh -v
 
 Nothing wrong here.
 ```
 
 You should get the output above if all is well.
 
-7.  You will deliberately alter the /etc/kdump.conf files under the /etc directory. Type:
+7.  You will deliberately alter the `/etc/kdump.conf` files under the `/etc` directory. Type:
 
     ```
-    [root@localhost scripts]# echo  "# This is just a test"   >>   /etc/kdump.conf
+    [root@localhost scripts]# echo "# This is just a test" >> /etc/kdump.conf
     ```
 8. Now run the check.sh script again in verification mode. Type:
 
@@ -181,7 +181,7 @@ You should get the output above if all is well.
     To view only the differences between the “tainted” file and the “untainted” file you could type:
 
     ```
-    [root@localhost scripts]# sdiff -s  /etc/kdump.conf  /root/etc.bak/kdump.conf
+    [root@localhost scripts]# sdiff -s /etc/kdump.conf  /root/etc.bak/kdump.conf
     ```
 
 ## Tripwire
@@ -392,7 +392,7 @@ OPTIONS
 1. Check to see if you already have tripwire installed on your system. Type:
 
 ```
-[root@localhost root]#  rpm  -q  tripwire
+[root@localhost root]# rpm -q tripwire
 tripwire-*
 ```
 
@@ -411,7 +411,7 @@ Configuring tripwire involves customizing the tripwire configuration file if nee
 1. Change your pwd to the tripwire’s working directory: Type:
 
 ```
-[root@localhost  root]# cd  /etc/tripwire/
+[root@localhost  root]# cd /etc/tripwire/
 ```
 2. List the contents of the directory
 
@@ -424,7 +424,7 @@ policy file (twpol.txt) for now.
 5. Execute the tripwire configuration utility as root. You will be prompted (twice) for site keyfile passphrase. Select any passphrase that you WILL NOT  forget ( The site key is meant for the twcfg.txt file and the twpol.txt file) Type:
     
     ```
-    [root@localhost tripwire]#  tripwire-setup-keyfiles
+    [root@localhost tripwire]# tripwire-setup-keyfiles
     .....
     Enter the site keyfile passphrase:
     Verify the site keyfile passphrase:
@@ -462,7 +462,7 @@ policy file (twpol.txt) for now.
 7. Per the warning you got while the tripwire-setup-keyfiles utility was running, you will now move the plain text versions of the configuration     file and policy files away from the local system. You could store them on an external removal medium or encrypt them in place [using a tool like GPG for example] OR completely delete them if you are feeling particularly daring. Type:
 
     ```
-    [root@localhost tripwire]# mkdir /root/tripwire_stuff && mv twcfg.txt  twpol.txt /root/tripwire_stuff
+    [root@localhost tripwire]# mkdir /root/tripwire_stuff && mv twcfg.txt twpol.txt /root/tripwire_stuff
     ```
 
 !!! NOTE
@@ -493,7 +493,7 @@ Enter your local passphrase when prompted. The database creation will run to con
 2. Use the `ls` command to verify that the database was indeed created under the stated location. Type:
 
     ```
-    [root@localhost tripwire]# ls  -lh   /var/lib/tripwire/$(hostname).twd
+    [root@localhost tripwire]# ls -lh /var/lib/tripwire/$(hostname).twd
     -rw-r--r--. 1 root root 3.3M Sep 27 18:35 /var/lib/tripwire/localhost.twd
     ```
 
@@ -516,7 +516,7 @@ Running tripwire in this mode (integrity check mode) compares the current file s
 
     You'll see some [expected] warnings stream by during this check.
     
-    Check under the /var/lib/tripwire/report directory to see if a report was also created in there for you.
+    Check under the `/var/lib/tripwire/report` directory to see if a report was also created in there for you.
     
     !!! QUESTION
         Write down the name of the report file that was created?
@@ -548,20 +548,20 @@ There are several methods of viewing the tripwire report file. You could have be
 1.  First change to the default report’s directory and view the default report created for you in step 1  above ( FILE_NAME). Type:
 
     ```
-    [root@localhost report]# cd  /var/lib/tripwire/report && twprint --print-report -r  <FILE_NAME>
+    [root@localhost report]# cd /var/lib/tripwire/report && twprint --print-report -r <FILE_NAME>
     ```
 
 Replace <FILE_NAME> above with the value you noted earlier.
 
 To use the short form of the above command  Type:
     ```
-    [root@localhost report]# twprint -m r  -r <FILE_NAME> | less
+    [root@localhost report]# twprint -m r -r <FILE_NAME> | less
     ```
 We pipe the output to the less command because the report scrolls by quickly.
 
 2.  Now view the other report you created manually, under root’s home directory. Type:
     ```
-    [root@localhost root]# cd  && twprint --print-report -r /root/tripwire_report.twr  | less
+    [root@localhost root]# cd && twprint --print-report -r /root/tripwire_report.twr | less
     ```
 
 3.  Brace yourself and study the output of the report file carefully.
@@ -615,7 +615,6 @@ Your output should be similar to the above. If  your mailing system is not runni
 Write down the command to do this?
 
 
-
 ### Fine-tuning tripwire
 
 After installing tripwire, taking a snapshot of the system and then running the first integrity check you will more likely than not need to fine tune tripwire to suit the needs of your particular environment. 
@@ -640,7 +639,7 @@ This will help to greatly reduce the length of the report file that you have to 
 1. Use the grep command to filter out all lines in the report file that refers to missing files (i.e. Lines containing the word “Filename”). Redirect the output to another file - tripwire_diffs.txt. Type:
 
     ```
-    [root@localhost root]# grep   Filename  /root/tripwire_report.txt  > tripwire_diffs.txt
+    [root@localhost root]# grep Filename  /root/tripwire_report.txt > tripwire_diffs.txt
     ```
 
 2.   View the contents of the file you created above. Type:
@@ -667,13 +666,13 @@ This will help to greatly reduce the length of the report file that you have to 
     Re-create a text version of the policy file - just in case you removed it (as advised ) from the local system. Type:
 
     ```
-    [root@localhost root]#  twadmin  --print-polfile  > twpol.txt
+    [root@localhost root]# twadmin --print-polfile  > twpol.txt
     ```
 
 4. Edit the text file you created above using any text editor. Comment out references to the objects that you don’t want to         monitor; you can use the     tripwire_diffs.txt file you created earlier as a guideline. Type:
 
     ```
-    [root@localhost  root]# vi   twpol.txt
+    [root@localhost  root]# vi twpol.txt
     ```
     Save your changes to the file and close it.
 
@@ -755,7 +754,7 @@ You will begin these exercises by first fine-tuning your configuration file. In 
     [root@localhost tripwire]# vi twcfg.txt
     ```
 
-Edit the file to look like the sample file below:
+    Edit the file to look like the sample file below:
 
 !!! NOTE
     The newly added and changed variables have been highlighted for you
@@ -815,13 +814,13 @@ Edit the file to look like the sample file below:
 6.  Relocate the site key, local key and binary files to the location you specified in the new config. file. Type:
 
     ```
-    [root@localhost tripwire]# mv  site.key  tw.pol  localhost.localdomain-local.key   /mnt/usbdrive
+    [root@localhost tripwire]# mv site.key tw.pol localhost.localdomain-local.key /mnt/usbdrive
     ```
 
 6.  Create a binary version of the clear text config file. Type:
 
     ```
-    [root@localhost tripwire]# *twadmin  --create-cfgfile   -S  /mnt/floppy/site.key     twcfg.txt*
+    [root@localhost tripwire]# twadmin --create-cfgfile -S /mnt/usbdrive/site.key twcfg.txt*
     ```
     The  `/etc/tripwire/tw.cfg`  file will be created for you.
 
