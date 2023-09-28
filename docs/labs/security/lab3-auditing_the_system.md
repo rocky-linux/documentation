@@ -1,3 +1,10 @@
+---
+Title:  Lab 3 - Auditing the System
+author: Wale Soyinka
+contributors:
+---
+
+
 # Lab 3: Auditing the System
 
 ## Objectives
@@ -183,7 +190,7 @@ Re-run the script with the re-build option (e.g. ./check.sh  --rebuild) to appro
 
 9.  Per the warning above, you should go and investigate further to see if  the altered file meets your
 
-approval. If it does you may run the script with a `-- rebuild` option.
+approval. If it does you may run the script with a `--rebuild` option.
 
 To view only the differences between the “tainted” file and the “untainted” file you could type:
 
@@ -327,21 +334,16 @@ SYNOPSIS
 
 The twadmin utility is used to perform administrative functions related to tripwire files and configuration options.  Specifically, twadmin allows encoding, decoding, signing, and verification of tripwire files, and provides a means to generate and change local and site keys.
 
+```
 Create Configuration File:  twadmin [-m F|--create-cfgfile][options] cfgfile.txt
-
 Print Configuration File:   twadmin [-m f|--print-cfgfile] [options]
-
 Create Policy File:     twadmin [-m P|--create-polfile] [options] polfile.txt
-
 Print Policy File:     twadmin [-m p|--print-polfile] [options]
-
 Remove Encryption:     twadmin [-m R|--remove-encryption] [options] [file1...]
-
 Encryption:       twadmin [-m E|--encrypt] [options] [file1...]
-
 Examine Encryption:     twadmin [-m e|--examine] [options] [file1...]
-
 Generate Keys:       twadmin [-m G|--generate-keys] [options]
+```
 
 #### twprint
 
@@ -351,17 +353,11 @@ Print Report mode:
 
 ```
 -m r                     --print-report
-
 -v                       --verbose
-
 -s                       --silent, --quiet
-
 -c cfgfile            --cfgfile cfgfile
-
 -r report              --twrfile report
-
 -L localkey            --local-keyfile localkey
-
 -t { 0|1|2|3|4 }       --report-level { 0|1|2|3|4 }
 ```
 
@@ -369,17 +365,11 @@ Print Database mode:
 
 ```
 -m d                   --print-dbfile
-
 -v                       --verbose
-
 -s                       --silent, --quiet
-
 -c cfgfile             --cfgfile cfgfile
-
 -d database            --dbfile database
-
 -L localkey            --local-keyfile localkey
-
 [object1 [object2 ...]
 ```
 
