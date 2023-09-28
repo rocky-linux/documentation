@@ -627,9 +627,7 @@ This is mostly because the default configuration and policy file that comes bund
 You need to ascertain if the file system violations reported in the report file during the integrity check are actual violations or legitimate/authorized changes to your file system objects.
 Again tripwire offers several ways of doing this.
 
-
-
-### Updating the policy file ( --update-policy )
+### Updating the policy file
 
 Using this method you will change or fine tune what tripwire considers violations to your file system objects by changing the rules in the policy file. The database can then be updated without a complete
 
@@ -651,9 +649,7 @@ This will help to greatly reduce the length of the report file that you have to 
 2.   View the contents of the file you created above. Type:
 
     ```
-    [root@localhost root]#  *less   tripwire_diffs.txt*
-    
-    
+    [root@localhost root]# less tripwire_diffs.txt
     207:     Filename: /proc/scsi
     
     210:     Filename: /root/.esd_auth
@@ -663,14 +659,13 @@ This will help to greatly reduce the length of the report file that you have to 
     216:     Filename: /sbin/fsck.minix
     
     219:     Filename: /sbin/mkfs.bfs
-    
     ..................................
     ```
 
-3.  Now you need to edit the tripwire policy file and comment out or delete the entries in the file that should not be in there. i.e. files that are     not on your system and files that probably never will be on your system. For example one of the files that the policy file is trying to monitor     is the /proc/scsi file.
+3.  Now you need to edit the tripwire policy file and comment out or delete the entries in the file that should not be in there.     i.e. files that are     not on your system and files that probably never will be on your system. For example one of the files     that the policy file is trying to monitor is the /proc/scsi file.
    If you dont have any SCSI device on your system then it makes absolutely NO SENSE to monitor this file.
 
-    Another debatable example of what to monitor or not to monitor are the various lock files under the “/var/lock/subsys/” directory. Choosing to       monitor these files should be a personal call.
+    Another debatable example of what to monitor or not to monitor are the various lock files under the `/var/lock/subsys/`           directory. Choosing to monitor these files should be a personal call.
 
     Re-create a text version of the policy file - just in case you removed it (as advised ) from the local system. Type:
 
@@ -678,23 +673,21 @@ This will help to greatly reduce the length of the report file that you have to 
     [root@localhost root]#  twadmin  --print-polfile  > twpol.txt
     ```
 
-4. Edit the text file you created above using any text editor. Comment out references to the objects that you don’t want to monitor; you can use the     tripwire_diffs.txt file you created earlier as a guideline.
-    Type:
+4. Edit the text file you created above using any text editor. Comment out references to the objects that you don’t want to         monitor; you can use the     tripwire_diffs.txt file you created earlier as a guideline. Type:
 
     ```
     [root@localhost  root]# vi   twpol.txt
     ```
-    
     Save your changes to the file and close it.
 
-5.    Run tripwire in policy file update mode. Type:
+5. Run tripwire in policy file update mode. Type:
   
     ```
-    [root@localhost root]#  tripwire  --update-policy   /root/twpol.txt*
+    [root@localhost root]# tripwire  --update-policy   /root/twpol.txt
     ```
     Enter your local and site passphrases when prompted.
 
-    A new signed and encrypted policy file will be created for you under the “/etc/tripwire/” directory.
+    A new signed and encrypted policy file will be created for you under the `/etc/tripwire/` directory.
 
 6.  Delete or remove the text version of the policy file from your local system.
 
@@ -711,7 +704,7 @@ This will help to greatly reduce the length of the report file that you have to 
        What is the command to do this?
 
 
-### Updating the database (--update)
+### Updating the database
 
 Running tripwire in the database update mode after an integrity check provides a quick and dirty way to fine tune tripwire. This is because Database Update mode allows any differences between the database and the current system to be reconciled.  This will prevent the violations from showing up in future reports.
 
@@ -762,12 +755,13 @@ You will begin these exercises by first fine-tuning your configuration file. In 
 3. Open up the config file you created above in your text editor. Type:
 
     ```
-    [root@localhost tripwire]# vi  twcfg.txt
+    [root@localhost tripwire]# vi twcfg.txt
     ```
 
 Edit the file to look like the sample file below:
 
-( NOTE: The newly added and changed variables have been highlighted for you )
+!!! NOTE
+    The newly added and changed variables have been highlighted for you
 
     ```
     1 ROOT                     =/usr/sbin
@@ -802,7 +796,6 @@ Edit the file to look like the sample file below:
     
     16 MAILPROGRAM                =/usr/sbin/sendmail -oi -t
     ```
-
 
 4.  Consult the man page for “twconfig” to find out what the following variables are meant for ?
 
