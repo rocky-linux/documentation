@@ -1,5 +1,5 @@
 - - -
-title: Gestione e installazione del software (Laboratorio 7) author: Wale Soyinka contributors: Steven Spencer tested on: 8.8 tags:
+title: Gestione e installazione del software (Laboratorio 7) author: Wale Soyinka contributors: Steven Spencer, tianci li tested on: 8.8 tags:
   - lab exercise
   - software management
 - - -
@@ -665,6 +665,7 @@ I seguenti esercizi si basano sul codice sorgente del venerabile progetto Hello.
 5. È sempre buona norma esaminare tutte le istruzioni di installazione speciali che possono essere fornite con il codice sorgente. Questi file hanno solitamente nomi come: INSTALL, README e così via.
 
     Utilizzare un pager per aprire il file INSTALL e leggerlo. Digitare:
+
     ```
     $ less INSTALL
     ```
@@ -709,7 +710,7 @@ Lo script che di solito permette di configurare il software si chiama "configure
 
 L'applicazione hello verrà realizzata nei seguenti passaggi. A questo punto sono utili alcuni dei programmi del gruppo Development Tools installati in precedenza con DNF.
 
-1.  Usate il comando make per compilare il pacchetto dopo aver eseguito lo script "configure". Digitate:
+1. Usate il comando make per compilare il pacchetto dopo aver eseguito lo script "configure". Digitate:
 
     ```
     $ make
@@ -732,23 +733,27 @@ Tra le altre operazioni di pulizia, la fase finale dell'installazione prevede an
     ```
     $ sudo make install
     ```
+
     Questo installerà il pacchetto nel percorso specificato dall'argomento predefinito del prefisso (--prefix), eventualmente usato con lo script "configure" precedente. Se non è stato impostato alcun --prefisso, verrà usato il prefisso predefinito di `/usr/local/`.
 
 #### Per eseguire il programma hello
 
 1. Usate il comando `whereis` per vedere dove si trova il programma `hello` sul vostro sistema. Digitare:
+
     ```
     $ whereis hello
     ```
 
 2. Provate a eseguire l'applicazione `hello` per vedere cosa fa. Digitare:
+
     ```
-   $ hello
-   ```
+    $ hello
+    ```
 
 3. Eseguite di nuovo `hello` con l'opzione `--help` per vedere le altre cose che può fare.
 
 4. Utilizzando `sudo`, eseguire nuovamente `hello` come superutente. Digitare:
+
     ```
     $ sudo hello
     ```
@@ -758,3 +763,39 @@ Tra le altre operazioni di pulizia, la fase finale dell'installazione prevede an
      È buona norma testare un programma come utente ordinario per assicurarsi che gli utenti ordinari possano effettivamente utilizzare il programma. È possibile che i permessi sul binario siano impostati in modo errato, in modo che solo il superutente possa utilizzare i programmi. Questo ovviamente presuppone che si voglia effettivamente che gli utenti ordinari possano utilizzare il programma.
 
 5. Questo è quanto. Questo laboratorio è completo!
+
+## Esercizio 7
+
+### Verifica dell'integrità dei file dopo l'installazione del pacchetto
+
+Dopo l'installazione di pacchetti rilevanti, in alcuni casi è necessario determinare se i file associati sono stati modificati per evitare modifiche dannose da parte di altri.
+
+#### Verifica del file
+
+Utilizzando l'opzione "-V" del comando `rpm`.
+
+Prendiamo come esempio il programma di sincronizzazione temporale chrony per illustrare il significato del suo output. Si presume che sia stato installato chrony e che sia stato modificato il file di configurazione (/etc/chrony.conf)
+
+```
+$ rpm -V chrony
+S.5....T.  c /etc/chrony.conf
+```
+
+* **S.5....T.**: Indica 9 informazioni utili nel contenuto del file di validazione e quelle non modificate sono rappresentate da ".". Le 9 informazioni utili sono:
+  * S: Se è stata modificata la dimensione del file.
+  * M: Se il tipo di file o i permessi del file (rwx) sono stati modificati.
+  * 5: Se la somma di controllo MD5 del file è stata modificata.
+  * D: Se il numero del dispositivo è stato modificato.
+  * L: Se il percorso del file è stato modificato.
+  * U: Se il proprietario del file è stato modificato.
+  * G: Se il gruppo a cui appartiene il file è stato modificato.
+  * T: Se il tempo mTime (tempo di modifica) del file è stato modificato.
+  * P: Se la funzione del programma è stata modificata.
+
+* **c**: Indica le modifiche apportate al file di configurazione. Può anche essere il seguente valore:
+  * d: file di documentazione.
+  * g: file fantasma. Se ne vedono pochissimi.
+  * l: file di licenza.
+  * r: file readme.
+
+* **/etc/chrony.conf**: Rappresenta il percorso del file modificato.
