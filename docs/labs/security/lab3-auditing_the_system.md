@@ -49,7 +49,7 @@ The script below can be fine-tuned and scaled to do much more than it does. It i
 
 If you just want a quick and dirty way to get the job done the script will suffice but for everything else there is MasterCard – excuse me, I meant, for everything else there is Tripwire.  
 
-### Exercise 1
+## Exercise 1
 
 1.  Log in as root and launch your text editor of choice. Enter the text below:
 
@@ -142,14 +142,12 @@ Save the text above in a text file and name the file “check.sh”
 
 ```
 [root@localhost scripts]#  *./check.sh   -i*
-```
-
 
 Untainted baseline file (~/etc.bak/md5_good) has been created !!
+```
 
-5. Use the ls command to view contents root’s home directory. You should have a new directory named
-“etc.bak” therein.
-Use the cat command to view the “/root/etc.bak/md5_good” file – just for fun.
+5. Use the ls command to view contents root’s home directory. You should have a new directory named “etc.bak” therein.
+   Use the cat command to view the “/root/etc.bak/md5_good” file – just for fun.
 
 7. Run the script using the verify option. Type:
 
@@ -163,34 +161,28 @@ You should get the output above if all is well.
 
 7.  You will deliberately alter the /etc/kdump.conf files under the /etc directory. Type:
 
-```
-[root@localhost scripts]# echo  "# This is just a test"   >>   /etc/kdump.conf
-```
-
-
+    ```
+    [root@localhost scripts]# echo  "# This is just a test"   >>   /etc/kdump.conf
+    ```
 8. Now run the check.sh script again in verification mode. Type:
 
-```
-[root@localhost scripts]# ./check.sh -v
+    ```
+    [root@localhost scripts]# ./check.sh -v
+    ****
+    
+    /etc/kdump.conf: FAILED
+    
+    Update the baseline file if you approve of the changes to the file(s) above
+    
+    Re-run the script with the re-build option (e.g. ./check.sh  --rebuild) to approve
+    ```
 
-****
+9.  Per the warning above, you should go and investigate further to see if  the altered file meets your approval. If it does you may run the script with a `--rebuild` option.
+    To view only the differences between the “tainted” file and the “untainted” file you could type:
 
-/etc/kdump.conf: FAILED
-
-Update the baseline file if you approve of the changes to the file(s) above
-
-Re-run the script with the re-build option (e.g. ./check.sh  --rebuild) to approve
-```
-
-9.  Per the warning above, you should go and investigate further to see if  the altered file meets your
-
-approval. If it does you may run the script with a `--rebuild` option.
-
-To view only the differences between the “tainted” file and the “untainted” file you could type:
-
-```
-[root@localhost scripts]# sdiff -s  /etc/kdump.conf  /root/etc.bak/kdump.conf
-```
+    ```
+    [root@localhost scripts]# sdiff -s  /etc/kdump.conf  /root/etc.bak/kdump.conf
+    ```
 
 ## Tripwire
 
@@ -223,7 +215,7 @@ b)  Sign the policy file and configuration file with the site key.
 Tripwire accepts the following command line options:
 
 
-#### Database Initialization mode:
+**Database Initialization mode:**
 ```
 
            -m i            --init
@@ -239,7 +231,7 @@ Tripwire accepts the following command line options:
 
 ```
 
-#### Integrity Checking mode:
+**Integrity Checking mode:**
 ```
 
            -m c                  --check
@@ -267,7 +259,7 @@ Tripwire accepts the following command line options:
 
 
 ```
-#### Database Update mode:
+** Database Update mode:**
 
 ```
  -m u                --update
@@ -285,10 +277,7 @@ Tripwire accepts the following command line options:
            -Z { low | high }   --secure-mode { low | high }
 ```
 
-
-
-
-Policy Update mode:
+**Policy Update mode:**
 
 ```
  -m p                --update-policy
@@ -306,7 +295,7 @@ Policy Update mode:
 ```
 
 
-Summary Of Options for the tripwire command:
+**Summary Of Options for the tripwire command:**
 
 ```
 SYNOPSIS
@@ -323,8 +312,7 @@ SYNOPSIS
 
 
 
-
-#### twadmin
+### twadmin
 
 The twadmin utility is used to perform administrative functions related to tripwire files and configuration options.  Specifically, twadmin allows encoding, decoding, signing, and verification of tripwire files, and provides a means to generate and change local and site keys.
 
@@ -339,11 +327,11 @@ Examine Encryption:     twadmin [-m e|--examine] [options] [file1...]
 Generate Keys:       twadmin [-m G|--generate-keys] [options]
 ```
 
-#### twprint
+### twprint
 
 Prints Tripwire database and report files in clear text format.
 
-Print Report mode:
+**Print Report mode:**
 
 ```
 -m r                     --print-report
@@ -355,7 +343,7 @@ Print Report mode:
 -t { 0|1|2|3|4 }       --report-level { 0|1|2|3|4 }
 ```
 
-Print Database mode:
+**Print Database mode:**
 
 ```
 -m d                   --print-dbfile
@@ -367,7 +355,7 @@ Print Database mode:
 [object1 [object2 ...]
 ```
 
-#### siggen
+### siggen
 
 siggen is a signature gathering routine for Tripwire. It is a utility that displays the hash function values for the specified files.
 
@@ -400,7 +388,7 @@ OPTIONS
 
 
 
-### Exercise 1
+## Exercise 2
 
 #### To install Tripwire
 
@@ -491,8 +479,8 @@ on an external removal medium or encrypt them in place [using a tool like GPG fo
 [root@localhost tripwire]# mkdir /root/tripwire_stuff && mv twcfg.txt  twpol.txt /root/tripwire_stuff
 
 
-!!!NOTE
-It may be useful to keep the plain text versions in safe place, just incase you forget your passphrases. You can then always re-run the “tripwire-setup-keyfiles” based on the configurations and policies you have fine tuned over time.
+!!! NOTE
+    It may be useful to keep the plain text versions in safe place, just incase you forget your passphrases. You can then always re-run the “tripwire-setup-keyfiles” based on the     configurations and policies you have fine tuned over time.
 
 
 
@@ -502,15 +490,15 @@ Initializing the database is the tripwire terminology for, taking an initial “
 
 1. While still logged in as root type:
 
-```
-[root@localhost tripwire]# tripwire --init
-
-Please enter your local passphrase:
-Parsing policy file: /etc/tripwire/tw.pol
-Generating the database...
-*** Processing Unix File System ***
-
-```
+    ```
+    [root@localhost tripwire]# tripwire --init
+    
+    Please enter your local passphrase:
+    Parsing policy file: /etc/tripwire/tw.pol
+    Generating the database...
+    *** Processing Unix File System ***
+    
+    ```
 
 Enter your local passphrase when prompted. The database creation will run to conclusion and you should get an output similar to the one below:
 
@@ -519,13 +507,13 @@ Enter your local passphrase when prompted. The database creation will run to con
 
 2. Use the `ls` command to verify that the database was indeed created under the stated location. Type:
 
-```
-[root@localhost tripwire]# ls  -lh   /var/lib/tripwire/$(hostname).twd
--rw-r--r--. 1 root root 3.3M Sep 27 18:35 /var/lib/tripwire/localhost.twd
-```
+    ```
+    [root@localhost tripwire]# ls  -lh   /var/lib/tripwire/$(hostname).twd
+    -rw-r--r--. 1 root root 3.3M Sep 27 18:35 /var/lib/tripwire/localhost.twd
+    ```
 
 
-### Exercise  2
+## Exercise 3
 
 Integrity checking and viewing reports
 
@@ -569,71 +557,72 @@ Tripwire’s report files, are a collection of rule violations discovered during
 There are several methods of viewing the tripwire report file. You could have been viewing it whilst the integrity check was running, you could view it in the form of an e-mail automatically sent to you or you could view it using the “twprint” command provided with the tripwire package.
 
 !!! NOTE
-You probably noticed from the earlier exercise that by default, tripwire uses a combination of the systems FQDN name, the date and the time to name the report files.
+    You probably noticed from the earlier exercise that by default, tripwire uses a combination of the systems FQDN name, the date and the time to name the report files.
 
 1.  First change to the default report’s directory and view the default report created for you in step 1  above ( FILE_NAME). Type:
 
-```
-[root@localhost report]# cd  /var/lib/tripwire/report && twprint --print-report -r  <FILE_NAME>
-```
+    ```
+    [root@localhost report]# cd  /var/lib/tripwire/report && twprint --print-report -r  <FILE_NAME>
+    ```
 
 Replace <FILE_NAME> above with the value you noted earlier.
 
 To use the short form of the above command  Type:
-```
-[root@localhost report]# twprint -m r  -r <FILE_NAME> | less
-```
+    ```
+    [root@localhost report]# twprint -m r  -r <FILE_NAME> | less
+    ```
 We pipe the output to the less command because the report scrolls by quickly.
 
 2.  Now view the other report you created manually, under root’s home directory. Type:
-```
-[root@localhost root]# cd  && twprint --print-report -r /root/tripwire_report.twr  | less
-```
+    ```
+    [root@localhost root]# cd  && twprint --print-report -r /root/tripwire_report.twr  | less
+    ```
 
 3.  Brace yourself and study the output of the report file carefully.
 
 4.  You should have noticed again that tripwire created binary/data forms of the report files. Create a text only version of the report file under roots home directory. Type:
-```
-[root@localhost root]# twprint --print-report -r /root/tripwire_report.twr > tripwire_report.txt
-```
+   
+    ```
+    [root@localhost root]# twprint --print-report -r /root/tripwire_report.twr > tripwire_report.txt
+    ```
 
 #### To view the reports via e-mail
 
 Here you will test the e-mail functionality of tripwire. Tripwire’s e-mail notification system uses the setting specified in the tripwire configuration file. (twcfg.txt).
 
-1.  First view the configuration file and note the variable(s), that control tripwire’s e-mail notification system. To view the configuration file type:
+1. First view the configuration file and note the variable(s), that control tripwire’s e-mail notification system. To view the configuration file type:
 
-```
-[root@localhost report]# twadmin  -m f | less
-```
+    ```
+    [root@localhost report]# twadmin  -m f | less
+    ```
+    
+    Write down the relevant variable(s) here?
 
-Write down the relevant variable(s) here?
 
 
+2. Next make sure that your local mail system is up and running by checking the status of say postfix. Type:
 
-2. Next make sure that your local mail system is up and running by checking the status of say sendmail.
-
-Type:
-
-```
-[root@localhost report]# systemctl -n 0 status postfix
-.......
-     Active: active (running) since Thu 2023-08-31 16:21:26 UTC; 3 weeks 6 days ago
-.......
-```
+    ```
+    [root@localhost report]# systemctl -n 0 status postfix
+    .......
+         Active: active (running) since Thu 2023-08-31 16:21:26 UTC; 3 weeks 6 days ago
+    .......
+    ```
 
 Your output should be similar to the above. If  your mailing system is not running, trouble-shoot that first and get it up and running before continuing.
 
 3.  Send a test message to root. Type:
 
-[root@localhost report]# tripwire --test --email root
+    ```
+    [root@localhost report]# tripwire --test --email root
+    ```
 
 4.  Use the mail program to check root’s mail. Type:
 
-[root@localhost report]# mail
-
-The super user should have a message with the subject “"Test email message from Tripwire"
-
+    ```
+    [root@localhost report]# mail
+    ```
+    The super user should have a message with the subject “"Test email message from Tripwire"
 
 5.  After you have confirmed that the e-mail functionality works you could try manually sending a copy of one of the reports to yourself.
 
@@ -664,34 +653,30 @@ This will help to greatly reduce the length of the report file that you have to 
 
 #### To fine tune tripwire
 
-1. Use the grep command to filter out all lines in the report file that refers to missing files
+1. Use the grep command to filter out all lines in the report file that refers to missing files (i.e. Lines containing the word “Filename”). Redirect the output to another file - tripwire_diffs.txt. Type:
 
-( Lines containing the word “Filename”). Redirect the output to another file - tripwire_diffs.txt
-
-Type:
-
-```
-[root@localhost root]# grep   Filename  /root/tripwire_report.txt  > tripwire_diffs.txt
-```
+    ```
+    [root@localhost root]# grep   Filename  /root/tripwire_report.txt  > tripwire_diffs.txt
+    ```
 
 2.   View the contents of the file you created above. Type:
 
-```
-[root@localhost root]#  *less   tripwire_diffs.txt*
-
-
-207:     Filename: /proc/scsi
-
-210:     Filename: /root/.esd_auth
-
-213:     Filename: /root/.gnome_private
-
-216:     Filename: /sbin/fsck.minix
-
-219:     Filename: /sbin/mkfs.bfs
-
-..................................
-```
+    ```
+    [root@localhost root]#  *less   tripwire_diffs.txt*
+    
+    
+    207:     Filename: /proc/scsi
+    
+    210:     Filename: /root/.esd_auth
+    
+    213:     Filename: /root/.gnome_private
+    
+    216:     Filename: /sbin/fsck.minix
+    
+    219:     Filename: /sbin/mkfs.bfs
+    
+    ..................................
+    ```
 
 3.  Now you need to edit the tripwire policy file and comment out or delete the entries in the file that should not be in there. i.e. files that are not on your system and files that probably
 
@@ -703,23 +688,23 @@ Another debatable example of what to monitor or not to monitor are the various l
 
 Re-create a text version of the policy file - just in case you removed it (as advised ) from the local system. Type:
 
-```
-[root@localhost root]#  twadmin  --print-polfile  > twpol.txt
-```
+    ```
+    [root@localhost root]#  twadmin  --print-polfile  > twpol.txt
+    ```
 
 4.  Edit the text file you created above using any text editor. Comment out references to the objects that you don’t want to monitor; you can use the tripwire_diffs.txt file you created earlier as a guideline.
 Type:
 
-```
-[root@localhost  root]# vi   twpol.txt
-```
-
-Save your changes to the file and close it.
+    ```
+    [root@localhost  root]# vi   twpol.txt
+    ```
+    
+    Save your changes to the file and close it.
 
 5.    Run tripwire in policy file update mode. Type:
-```
-[root@localhost root]#  tripwire  --update-policy   /root/twpol.txt*
-```
+    ```
+    [root@localhost root]#  tripwire  --update-policy   /root/twpol.txt*
+    ```
 
 Enter your local and site passphrases when prompted.
 
@@ -747,33 +732,31 @@ This update process saves time by enabling you to update the database without ha
 
 1.  Change your pwd to the location where tripwire stores the report files on your system. Type:
 
-```
-[root@localhost root]# cd /var/lib/tripwire/report/
-```
+    ```
+    [root@localhost root]# cd /var/lib/tripwire/report/
+    ```
 
 2.  You will first use the database update mode in an interactive manner. Type:
 
-```
-[root@localhost report]# tripwire --update  -Z  low  -r  <LATEST_REPORT>
-```
+    ```
+    [root@localhost report]# tripwire --update  -Z  low  -r  <LATEST_REPORT>
+    ```
 
-Replace <LATEST_REPORT> with the report file name you noted earlier.
+    Replace <LATEST_REPORT> with the report file name you noted earlier.
 
-The above command will also launch your default text editor (e.g.  vi) which will present you with so called “update ballot boxes”. You may need to scroll through the file.
+    The above command will also launch your default text editor (e.g.  vi) which will present you with so called “update ballot boxes”. You may need to scroll through the file.
+    
+    The entries marked with an “[x]” implies that the database should be updated with that particular object.
+    
+    Remove the "x" from the ballot box “[  ]”  to prevent updating the database with the new values for that object.
+    
+    Use your text editor’s usual key-strokes to save and exit the editor.
 
-The entries marked with an “[x]” implies that the database should be updated with that particular object.
+3.  Next try using the database update mode in a non-interactive manner. i.e. you will accept all the entries in the report file will be accepted without prompting. Type:
 
-Remove the "x" from the ballot box “[  ]”  to prevent updating the database with the new values for that object.
-
-Use your text editor’s usual key-strokes to save and exit the editor.
-
-3.  Next try using the database update mode in a non-interactive manner. i.e. you will accept all
-
-the entries in the report file will be accepted without prompting. Type:
-
-```
-[root@localhost report]# tripwire --update -Z  low -a -r  <LATEST_REPORT>
-```
+    ```
+    [root@localhost report]# tripwire --update -Z  low -a -r  <LATEST_REPORT>
+    ```
 
 ### Tripwire configuration file
 
@@ -783,107 +766,105 @@ You will begin these exercises by first fine-tuning your configuration file. In 
 
 2.  Generate a clear text version of the configuration file. Type:
 
-```
-[root@localhost tripwire]# twadmin --print-cfgfile  > twcfg.txt
-```
+    ```
+    [root@localhost tripwire]# twadmin --print-cfgfile  > twcfg.txt
+    ```
 
 3. Open up the config file you created above in your text editor. Type:
 
-```
-[root@localhost tripwire]# vi  twcfg.txt
-```
+    ```
+    [root@localhost tripwire]# vi  twcfg.txt
+    ```
 
 Edit the file to look like the sample file below:
 
 ( NOTE: The newly added and changed variables have been highlighted for you )
 
-```
-
-1 ROOT                     =/usr/sbin
-
-2 POLFILE                  =/mnt/usbdrive/tw.pol
-
-3 DBFILE                   =/var/lib/tripwire/$(HOSTNAME).twd
-
-4 REPORTFILE             =/var/lib/tripwire/report/$(HOSTNAME)-$(DATE).twr
-
-5 SITEKEYFILE            =/mnt/usbdrive/site.key
-
-6 LOCALKEYFILE      =/mnt/usbdrive/$(HOSTNAME)-local.key
-
-7 EDITOR                   =/bin/vi
-
-8 LATEPROMPTING    =false
-
-9 LOOSEDIRECTORYCHECKING   =true
-
-10 GLOBALEMAIL                =root@localhost
-
-11 MAILNOVIOLATIONS           =true
-
-12 EMAILREPORTLEVEL         =3
-
-13 REPORTLEVEL                =3
-
-14 MAILMETHOD                 =SENDMAIL
-
-15 SYSLOGREPORTING         =true
-
-16 MAILPROGRAM                =/usr/sbin/sendmail -oi -t
-```
+    ```
+    1 ROOT                     =/usr/sbin
+    
+    2 POLFILE                  =/mnt/usbdrive/tw.pol
+    
+    3 DBFILE                   =/var/lib/tripwire/$(HOSTNAME).twd
+    
+    4 REPORTFILE             =/var/lib/tripwire/report/$(HOSTNAME)-$(DATE).twr
+    
+    5 SITEKEYFILE            =/mnt/usbdrive/site.key
+    
+    6 LOCALKEYFILE      =/mnt/usbdrive/$(HOSTNAME)-local.key
+    
+    7 EDITOR                   =/bin/vi
+    
+    8 LATEPROMPTING    =false
+    
+    9 LOOSEDIRECTORYCHECKING   =true
+    
+    10 GLOBALEMAIL                =root@localhost
+    
+    11 MAILNOVIOLATIONS           =true
+    
+    12 EMAILREPORTLEVEL         =3
+    
+    13 REPORTLEVEL                =3
+    
+    14 MAILMETHOD                 =SENDMAIL
+    
+    15 SYSLOGREPORTING         =true
+    
+    16 MAILPROGRAM                =/usr/sbin/sendmail -oi -t
+    ```
 
 
 4.  Consult the man page for “twconfig” to find out what the following variables are meant for ?
 
-``````
-LOOSEDIRECTORYCHECKING
-
-GLOBALEMAIL
-
-SYSLOGREPORTING
-```
+    ```
+    LOOSEDIRECTORYCHECKING
+    
+    GLOBALEMAIL
+    
+    SYSLOGREPORTING
+    ```
 
 5.  Mount the removal media to the /mnt/usbdrive directory. Type:
-```
-[root@localhost tripwire]# mount /dev/usbdrive   /mnt/usbdrive
-```
+    ```
+    [root@localhost tripwire]# mount /dev/usbdrive   /mnt/usbdrive
+    ```
 
 !!! NOTE  
-If you choose to store your files on a different location (e.g. a cdrom media) make the necessary adjustments to the commands.
+    If you choose to store your files on a different location (e.g. a cdrom media) make the necessary adjustments to the commands.
 
-6.  Relocate the site key, local key and binary files to the location you specified in the new config. file.
-Type:
+6.  Relocate the site key, local key and binary files to the location you specified in the new config. file. Type:
 
-```
-[root@localhost tripwire]# mv  site.key  tw.pol  localhost.localdomain-local.key   /mnt/usbdrive
-```
+    ```
+    [root@localhost tripwire]# mv  site.key  tw.pol  localhost.localdomain-local.key   /mnt/usbdrive
+    ```
 
 6.  Create a binary version of the clear text config file. Type:
 
-```
-[root@localhost tripwire]# *twadmin  --create-cfgfile   -S  /mnt/floppy/site.key     twcfg.txt*
-```
-The  `/etc/tripwire/tw.cfg`  file will be created for you.
+    ```
+    [root@localhost tripwire]# *twadmin  --create-cfgfile   -S  /mnt/floppy/site.key     twcfg.txt*
+    ```
+    The  `/etc/tripwire/tw.cfg`  file will be created for you.
 
 7.  Test your new set up. Un-mount the USB drive and eject it.
 
 8.  Try running one the tripwire commands that needs the files stored on the floppy drive. Type:
 
-```
-[root@localhost tripwire]# twadmin --print-polfile
-
-### Error: File could not be opened.
-
-### Filename: /mnt/usbdrive/tw.pol
-
-### No such file or directory
-
-###
-
-### Unable to print policy file.
-
-### Exiting...
-```
+    ```
+    [root@localhost tripwire]# twadmin --print-polfile
+    
+    ### Error: File could not be opened.
+    
+    ### Filename: /mnt/usbdrive/tw.pol
+    
+    ### No such file or directory
+    
+    ###
+    
+    ### Unable to print policy file.
+    
+    ### Exiting...
+    ```
 
 You should get an error similar to the one above.
 
@@ -898,5 +879,5 @@ Having to mount and unmount a removable media each time you want to administer a
 
 1.  Configure your tripwire installation run an integrity check every day at 2 A.M and send out a report of the integrity check via e-mail to the super user on the system.
 
-!!! HINT:
-You may need to do this using a cron job.
+!!! HINT
+    You may need to do this using a cron job.
