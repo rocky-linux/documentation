@@ -1,3 +1,16 @@
+---
+title: Lab 3 - Common System Utilities
+author: Wale Soyinka 
+contributors: 
+tested on: 8.*, 9.*
+tags:
+  - lab exercise
+  - system utilities
+  - cli
+  - cp mv touch find
+---
+
+
 # Lab 3: Common System Utilities
 
 ## Objectives
