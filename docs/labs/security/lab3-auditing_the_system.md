@@ -12,10 +12,6 @@ Estimated time to complete this lab: 90 minutes
 
 
 
-
-
-
-
 # A simple home grown integrity checker
 
 Before we begin to install and configure tripwire we will first create a sample script that performs a similar function to tripwire. This script will help in gaining a better understanding of how Tripwire and similar tools function.
@@ -24,34 +20,33 @@ The script relies heavily on the md5sum program. The md5sum program is used to c
 
 The script functions’ as summarized below:
 
-i) Right after the base system has been installed, it will back up some of the system configuration files in the /etc directory, into a directory called  etc.bak in roots home directory.
+1. Right after the base system has been installed, it will back up some of the system configuration files in the /etc directory, into a directory called  etc.bak in roots home directory.
 
 In particular it will back up all the files under /etc with the suffix   “*.conf”
 
 It does this when run with the initialization option ( -- initialization| -i)
 
-ii) The script will then be used to obtain the md5 checksums of the known good files (untainted files).
+2. The script will then be used to obtain the md5 checksums of the known good files (untainted files).
 
-iii) The list of MD5 sums will be stored in a file called “md5_good”.
+3. The list of MD5 sums will be stored in a file called “md5_good”.
 
-iv) When the script is run in a verify mode, the md5sum program will be called with the “ - -check” option to check the current MD5 sums against a given list (the md5_good file).
+4. When the script is run in a verify mode, the md5sum program will be called with the “ - -check” option to check the current MD5 sums against a given list (the md5_good file).
 
 
 The script will print the output of the verification to the standard output and will also send a copy of the  
 
 result via e-mail to the super-user.
 
-v)  Whenever changes are made (legal or illegal) to the configuration files under /etc the script can be called
+5.  Whenever changes are made (legal or illegal) to the configuration files under /etc the script can be called
 
 with the  “--rebuild| -r” option to approve the changes and rebuild the baseline pseudo database.
 
-vi) You can periodically manually run the script or create a cron job to automatically run the script.
+6. You can periodically manually run the script or create a cron job to automatically run the script.
 
 
 The script below can be fine tuned and scaled to do much more than it does. It is left to you and your imagination to make it do whatever you want it to do.
 
 If you are lazy (like me) and just want a quick and dirty way to get the job done the script will suffice but for everything else there is MasterCard – excuse me, I meant, for everything else there is Tripwire.  
-
 
 ### Exercise 1
 
@@ -61,9 +56,7 @@ If you are lazy (like me) and just want a quick and dirty way to get the job don
 #!/bin/sh
 # This script checks for changes in the MD5 sums of files named "/etc/*.conf"
 
-
 case $1 in
-
     -i|--initialize)
 
 # This section will run if the script is run in an initialization mode
@@ -71,66 +64,47 @@ case $1 in
 
 rm -rf /root/etc.bak && mkdir /root/etc.bak && cp /etc/*.conf  /root/etc.bak && cd /root/etc.bak
 
-
 # Create our baseline file containing a list of good MD5 sums
 
          for i in /etc/*.conf ; do
-
                  md5sum $i >> md5_good
          done
-                 echo -e "nUntainted baseline file ("~/etc.bak/md5_good") has been created !!n"
+                 echo -e "\nUntainted baseline file ("~/etc.bak/md5_good") has been created !!\n"
          ;;
-
 
     -v|--verify)
 
 # This section will run if the script is called in a verify mode
-
          cd /root/etc.bak
-
 
 # Check if there is any file containing output from a previous run
 
         if [ -f md5_diffs ] ; then
-
                  rm -f md5_diffs       # if it exists we delete it
          fi
 
-
 # We re-create the file with a pretty sub-heading and some advice
 
-         echo -e  "n **** Possibly tainted File(s) ****" > md5_diffs
-
-#      echo  ""                                >> md5_diffs # append a blank line
+         echo -e  "\n **** Possibly tainted File(s) ****\n" > md5_diffs
 
 # Run the md5sum program against a known good list i.e. "md5_good" file
 
           md5sum -c md5_good  2> /dev/null | grep FAILED >> md5_diffs
-
-
-
          if [ $? -ge 1 ] ; then
                  echo "Nothing wrong here."
          else
 
+# append some helpful text to the md5_diffs file
 
-# append some "advice" to the md5_diffs file
+echo -e "\n Update the baseline file if you approve of the changes to the file(s) above \n" >> md5_diffs
+echo -e "Re-run the script with the re-build option (e.g. ./check.sh  --rebuild) to approve \n" >> md5_diffs
 
- echo -e "\n Update the baseline file if you approve of the changes to the file(s) above \n" >> md5_diffs
-
- echo -e "Re-run the script with the re-build option (e.g. ./check.sh  --rebuild) to approven" >> md5_diffs
-
-
-                 cat md5_diffs                            # print the md5_diffs file to the display
-
-                 mail -s "Changed Files" root < md5_diffs # also e-mail the md5_diffs file to root
-
+   cat md5_diffs         # print the md5_diffs file to the display
+   mail -s "Changed Files" root < md5_diffs  # also e-mail the md5_diffs file to root
          fi
-
          ;;
 
     -r|--rebuild)
-
 
 # This section is for re-building the Baseline file just incase    
 # the changes to the configuration files are legal and sanctioned
@@ -143,15 +117,13 @@ rm -rf /root/etc.bak && mkdir /root/etc.bak && cp /etc/*.conf  /root/etc.bak && 
                  md5sum $j >> md5_good
 
          done
-                 echo -e "n Baseline file updated with approved changes !!!n "
+                 echo -e "\n Baseline file updated with approved changes !!! \n "
          ;;
 
      *)
 
-         echo "This script accepts: only ( -i|--initialize or -v|--verify or -r|--rebuild ) parameters"                
-
+         echo "This script accepts: only ( -i|--initialize or -v|--verify or -r|--rebuild ) parameters"          
          ;;
-
 esac
 ```
 
@@ -175,10 +147,10 @@ Save the text above in a text file and name the file “check.sh”
 Untainted baseline file (~/etc.bak/md5_good) has been created !!
 
 5. Use the ls command to view contents root’s home directory. You should have a new directory named
+“etc.bak” therein.
+Use the cat command to view the “/root/etc.bak/md5_good” file – just for fun.
 
-“etc.bak” therein. Use the cat command to view the “/root/etc.bak/md5_good” file – just for fun.
-
-6. Run the script using the verify option. Type:
+7. Run the script using the verify option. Type:
 
 ```
 [root@localhost scripts]#  ./check.sh   -v
@@ -186,13 +158,12 @@ Untainted baseline file (~/etc.bak/md5_good) has been created !!
 Nothing wrong here.
 ```
 
-
 You should get the output above if all is well.
 
-7.  You will deliberately alter the /etc/modules.conf files under the /etc directory. Type:
+7.  You will deliberately alter the /etc/kdump.conf files under the /etc directory. Type:
 
 ```
-[root@localhost scripts]# echo  "# This is just a test"   >>   /etc/modules.conf
+[root@localhost scripts]# echo  "# This is just a test"   >>   /etc/kdump.conf
 ```
 
 
@@ -201,29 +172,24 @@ You should get the output above if all is well.
 ```
 [root@localhost scripts]# ./check.sh -v
 
+****
 
- ****
-
-/etc/modules.conf: FAILED
-```
+/etc/kdump.conf: FAILED
 
 Update the baseline file if you approve of the changes to the file(s) above
 
 Re-run the script with the re-build option (e.g. ./check.sh  --rebuild) to approve
-
+```
 
 9.  Per the warning above, you should go and investigate further to see if  the altered file meets your
 
-approval. If it does you may run the script with a - - rebuild option.
+approval. If it does you may run the script with a `-- rebuild` option.
 
 To view only the differences between the “tainted” file and the “untainted” file you could type:
 
-
-
-[root@localhost scripts]# *sdiff  -s  /etc/modules.conf   /root/etc.bak/modules.conf*
-
-
-                                     <
+```
+[root@localhost scripts]# sdiff -s  /etc/kdump.conf  /root/etc.bak/kdump.conf
+```
 
 # Tripwire
 
@@ -239,21 +205,19 @@ Tripwire simply compares a file’s new signature with that taken when the datab
 
 The steps involved in installing and configuring tripwire are as listed below:
 
-i.   Install the software from source or binary
+1. Install the software from source or binary
 
-ii.  Run the configuration script: (twinstall.sh). This script is used to:
-
+2. Run the configuration script: (twinstall.sh). This script is used to:
 a) Create the site key and the local key and prompts for pass phrases for both
-
 b)  Sign the policy file and configuration file with the site key.
 
-iii. Initialize the tripwire database
+3. Initialize the tripwire database
 
-iv. Run the first integrity check.
+4. Run the first integrity check.
 
-v.  Edit the configuration file (twcfg.txt)
+5.  Edit the configuration file (twcfg.txt)
 
-vi. Edit the policy file (twpol.txt)
+6. Edit the policy file (twpol.txt)
 
 Tripwire accepts the following command line options:
 
@@ -458,16 +422,18 @@ OPTIONS
 
 1. Check to see if you already have tripwire installed on your system. Type:
 
+```
 [root@localhost root]#  rpm  -q  tripwire
-
 tripwire-*
+```
 
 If you get an output similar to the one above then you already have it installed. Skip the next step.
 
 2. If you dont have it installed, obtain the tripwire binary and install it. Type:
 
+```
 [root@localhost root]# dnf -y install tripwire
-
+```
 
 #### To Configure tripwire
 
@@ -476,10 +442,10 @@ Configuring tripwire involves customizing the tripwire configuration file if nee
 
 1. Change your pwd to the tripwire’s working directory: Type:
 
+```
 [root@localhost  root]# cd  /etc/tripwire/
-
+```
 2.  List the contents of the directory
-
 
 3.  Use any pager or text editor to view/study the files in the directory.
 
@@ -487,9 +453,7 @@ Configuring tripwire involves customizing the tripwire configuration file if nee
 
 policy file (twpol.txt) for now.
 
-5.  Execute the tripwire configuration utility as root. You will be prompted (twice) for site keyfile passphrase. Select any passphrase that you
-
-WILL NOT  forget ( The site key is meant for the twcfg.txt file and the twpol.txt file) Type:
+5.  Execute the tripwire configuration utility as root. You will be prompted (twice) for site keyfile passphrase. Select any passphrase that you WILL NOT  forget ( The site key is meant for the twcfg.txt file and the twpol.txt file) Type:
 
 ```
 [root@localhost tripwire]#  tripwire-setup-keyfiles
