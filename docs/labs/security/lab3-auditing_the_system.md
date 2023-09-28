@@ -256,10 +256,10 @@ Tripwire accepts the following command line options:
            -t { 0|1|2|3|4 }      --email-report-level { 0|1|2|3|4 }
            -h                    --hexadecimal
            [ object1 [ object2... ]]
-
-
 ```
-** Database Update mode:**
+
+
+**Database Update mode:**
 
 ```
  -m u                --update
@@ -308,8 +308,6 @@ SYNOPSIS
   Test:     tripwire { -m t | --test } [ options... ]
 
 ```
-
-
 
 
 ### twadmin
