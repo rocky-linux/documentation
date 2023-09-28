@@ -1,5 +1,5 @@
 ---
-Title: Lab 8: iptables
+Title: Lab 8 - iptables
 author: Wale Soyinka
 contributors:
 ---
