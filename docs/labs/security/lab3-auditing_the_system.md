@@ -52,76 +52,79 @@ If you are lazy (like me) and just want a quick and dirty way to get the job don
 
 1.  Log in as root and launch your text editor of choice. Enter the text below:
 
-```
+```bash
+
 #!/bin/sh
 # This script checks for changes in the MD5 sums of files named "/etc/*.conf"
 
 case $1 in
     -i|--initialize)
+        # This section will run if the script is run in an initialization mode
+        # Delete old directory, make directory, backup good files, and change directory to /root/etc.bak
 
-# This section will run if the script is run in an initialization mode
-# Delete old directory, make directory, backup good files and change directory to /root/etc.bak
+        rm -rf /root/etc.bak
+        mkdir /root/etc.bak
+        cp /etc/*.conf /root/etc.bak
+        cd /root/etc.bak
 
-rm -rf /root/etc.bak && mkdir /root/etc.bak && cp /etc/*.conf  /root/etc.bak && cd /root/etc.bak
+        # Create our baseline file containing a list of good MD5 sums
 
-# Create our baseline file containing a list of good MD5 sums
-
-         for i in /etc/*.conf ; do
-                 md5sum $i >> md5_good
-         done
-                 echo -e "\nUntainted baseline file ("~/etc.bak/md5_good") has been created !!\n"
-         ;;
+        for i in /etc/*.conf; do
+            md5sum $i >> md5_good
+        done
+        echo -e "\nUntainted baseline file (~/etc.bak/md5_good) has been created !!\n"
+        ;;
 
     -v|--verify)
+        # This section will run if the script is called in a verify mode
+        cd /root/etc.bak
 
-# This section will run if the script is called in a verify mode
-         cd /root/etc.bak
+        # Check if there is any file containing output from a previous run
 
-# Check if there is any file containing output from a previous run
+        if [ -f md5_diffs ]; then
+            rm -f md5_diffs # if it exists we delete it
+        fi
 
-        if [ -f md5_diffs ] ; then
-                 rm -f md5_diffs       # if it exists we delete it
-         fi
+        # We re-create the file with a pretty sub-heading and some advice
 
-# We re-create the file with a pretty sub-heading and some advice
+        echo -e "\n **** Possibly tainted File(s) ****\n" > md5_diffs
 
-         echo -e  "\n **** Possibly tainted File(s) ****\n" > md5_diffs
+        # Run the md5sum program against a known good list i.e. "md5_good" file
 
-# Run the md5sum program against a known good list i.e. "md5_good" file
+        md5sum -c md5_good 2> /dev/null | grep FAILED >> md5_diffs
+        if [ $? -ge 1 ]; then
+            echo "Nothing wrong here."
+        else
+            # Append some helpful text to the md5_diffs file
 
-          md5sum -c md5_good  2> /dev/null | grep FAILED >> md5_diffs
-         if [ $? -ge 1 ] ; then
-                 echo "Nothing wrong here."
-         else
+            echo -e "\nUpdate the baseline file if you approve of the changes to the file(s) above \n" >> md5_diffs
+            echo -e "Re-run the script with the re-build option (e.g. ./check.sh --rebuild) to approve \n" >> md5_diffs
 
-# append some helpful text to the md5_diffs file
+            cat md5_diffs # print the md5_diffs file to the display
+            if [ -x /usr/bin/mail ]; then
+                mail -s "Changed Files" root < md5_diffs # also e-mail the md5_diffs file to root
+            fi
+        fi
+        ;;
 
-echo -e "\nUpdate the baseline file if you approve of the changes to the file(s) above \n" >> md5_diffs
-echo -e "Re-run the script with the re-build option (e.g. ./check.sh  --rebuild) to approve \n" >> md5_diffs
-
-cat md5_diffs         # print the md5_diffs file to the display
-     if [ -x /usr/bin/mail ]; then
-        mail -s "Changed Files" root < md5_diffs  # also e-mail the md5_diffs file to root
-     fi
-fi
-;;
     -r|--rebuild)
+        # This section is for re-building the Baseline file just in case
+        # the changes to the configuration files are legal and sanctioned
 
-# This section is for re-building the Baseline file just incase    
-# the changes to the configuration files are legal and sanctioned
+        cd /root/etc.bak/
+        mv md5_good md5_good.bak # make a backup copy of the current untainted baseline file
 
-   cd /root/etc.bak/
-   mv  md5_good  md5_good.bak # make a backup copy of current untainted baseline file
+        for j in /etc/*.conf; do
+            md5sum $j >> md5_good
+        done
+        echo -e "\nBaseline file updated with approved changes !!!\n"
+        ;;
 
-         for j in /etc/*.conf ; do
-                 md5sum $j >> md5_good
-         done
-                 echo -e "\n Baseline file updated with approved changes !!! \n "
-         ;;
-     *)
-         echo "This script accepts: only ( -i|--initialize or -v|--verify or -r|--rebuild ) parameters"          
-         ;;
+    *)
+        echo "This script accepts: only ( -i|--initialize or -v|--verify or -r|--rebuild ) parameters"
+        ;;
 esac
+
 ```
 
 Save the text above in a text file and name the file “check.sh”
