@@ -1,12 +1,11 @@
 ---
 author: Wale Soyinka 
 contributors: 
-tested on: 8.*, 9.*
+tested on: All Versions
 tags:
   - lab exercise
   - system utilities
   - cli
-  - cp mv touch find
 ---
 
 
