@@ -1,5 +1,5 @@
 ---
-Title:  Lab 3: Auditing the System
+Title:  Lab 3 - Auditing the System
 author: Wale Soyinka
 contributors:
 ---
