@@ -22,7 +22,7 @@ Many documents deal with creating an SFTP chroot jail, but most do not consider 
 The author also feels that it is necessary when making the chroot jail document for SFTP to also discuss the other things that you should do as a system administrator to minimize the target that you offer to the world via SSH. For this reason, division of this document is in four parts:
 
 1. The first deals with the general information that you will use for the entire document.
-2. The second deals with the setup of the chroot, and if you decide to stop there that is totally up to you.
+2. The second deals with the chroot setup. If you stop there that is totally up to you.
 3. The third part deals with setting up public/private key SSH access for your system administrators and turning off remote password-based authentication.
 4. This document's fourth and last section deals with turning off remote root logins.
 
@@ -103,7 +103,7 @@ You will deal with the ownership of these directories in the script application 
 
 ### `httpd` configuration
 
-You need to change the built-in `httpd.conf` file to make it load the configuration files in the `/etc/httpd/sites-enabled` directory. Do this with the addition of one line at the bottom of the `httpd.conf` file.
+You need to change the built-in `httpd.conf` file to make it load the configuration files in the `/etc/httpd/sites-enabled` directory. Do this by adding one line at the bottom of the `httpd.conf` file.
 
 Edit the file with your favorite editor. The author uses `vi` here:
 
@@ -211,7 +211,7 @@ useradd -g wheel lblakely
 ```
 By adding our users to the group "wheel" you give them `sudo` access.
 
-You still need a password for `sudo` access. There are ways around this, but none are all that secure. Frankly, if you have problems with security using `sudo` on your server, then you have got much bigger problems with your entire setup. Set the two administrative passwords with secure passwords:
+You still need a password for `sudo` access. There are ways around this, but none are all that secure. Frankly, if you have problems with security using `sudo` on your server, then you have much bigger problems with your entire setup. Set the two administrative passwords with secure passwords:
 
 ```
 passwd ssimpson
@@ -232,7 +232,7 @@ Test access to the server with `ssh` for your two administrative users. You shou
 * use `ssh` to log in as one of the administrative users of the server. (Example: `ssh lblakely@192.168.1.116` or `ssh lblakely@mywebserver.com`)
 * you should be able to access root with `sudo -s` and entering the administrative user's password.
 
-If this works for all administrative users, you will be ready for the next step.
+You will be ready for the next step if this works for all administrative users.
 
 #### Web users (SFTP)
 
@@ -332,7 +332,7 @@ mkdir /usr/local/sbin/templates
 
 #### The script and `sshd_config` changes
 
-With the releases of Rocky Linux 8.6 and 9.0, a new option for the `sshd_config` file that allows for drop-in configurations. This is a **GREAT** change. What this means is that for these versions you will make a single additional change to the `sshd_config` file, and then our script will build out sftp changes in a separate configuration file. This new change makes things even safer. Safety is good!!
+With the releases of Rocky Linux 8.6 and 9.0, a new option for the `sshd_config` file allows for drop-in configurations. This is a **GREAT** change. This means that you will make a single additional change to the `sshd_config` file, and our script will build out sftp changes in a separate configuration file. This new change makes things even safer. Safety is good!!
 
 Because of the changes allowed for the `sshd_config` file in Rocky Linux 8.6 and 9.0, our script will use a new drop-in configuration file: `/etc/ssh/sftp/sftp_config`.
 
@@ -428,7 +428,7 @@ And put this code in it:
 
     If you take a look at the script above, you will note the changing of the delimiter that `sed` uses by default from `/` to `,`. `sed` allows you to use any single-byte character as a delimiter. What you are searching for in the file has a bunch of "/" characters in it, and you would have had to escape each one (add a "\" in front of them) to search and replace these strings. Changing the delimiter makes this infinitely easier to do because it eliminates the need to do those escapes.
 
-A couple of things to know about the script and about an SFTP chroot in general. First, you prompt for the needed information and echo it back to the user for verification. The script bails and does nothing if you answer "N" to the confirmation question. The script for 8.5 makes a backup of `sshd_config` (`/etc/ssh/sshd_config.bak`) the way it was prior to our running of the script. The 8.6 or 9.0 script does the same for the `sftp_config` file (`/etc/ssh/sftp/sftp_config.bak`). In this way, if you make errors in an entry, you can restore the appropriate backup file and restart `sshd` to get things working again.
+A couple of things are notable about the script and about an SFTP chroot in general. First, you prompt for the needed information and echo it back to the user for verification. If you answer "N" to the confirmation question, the script bails and does nothing. The script for 8.5 makes a backup of `sshd_config` (`/etc/ssh/sshd_config.bak`) the way it was prior to our running of the script. The 8.6 or 9.0 script does the same for the `sftp_config` file (`/etc/ssh/sftp/sftp_config.bak`). In this way, if you make errors in an entry, you can restore the appropriate backup file and restart `sshd` to get things working again.
 
 The SFTP chroot requires that the path given in the `sshd_config` has root ownership. For this reason, you do not need the `html` directory added to the end of the path. Once the user authenticates, the chroot will switch the user's home directory, in this case the `../html` directory, to whichever domain you are entering. Your script has appropriately changed the owner of the `../html` directory to the sftpuser and the apache group.
 
@@ -460,7 +460,7 @@ Once filled in, you can click the "Quickconnect" (Filezilla) button and you will
 
 #### Command line tool testing
 
-You can do all of this from the command line on a machine that has SSH installed (most Linux installations). Here is a brief overview of the command line method for connection and a few options:
+You can do all of this from the command line on a machine with SSH installed (most Linux installations). Here is a brief overview of the command line method for connection and a few options:
 
 * sftp username (Example: myfixed@ hostname or IP of the server: sftp myfixed@192.168.1.116)
 * Enter the password when prompted
@@ -550,7 +550,7 @@ At this point the public and private keys exist. Repeat this step for our other 
 
 ### Transferring the public key to the SFTP server
 
-The next step is to export our key to the server. In reality, a system administrator responsible for managing multiple servers will transfer his public key to all of the servers he or she is responsible for.  
+The next step is to export our key to the server. In reality, a system administrator responsible for managing multiple servers will transfer their public key to all the servers they are responsible for.  
 
 The user can send the key to the server securely with `ssh-id-copy` when created:
 
@@ -663,7 +663,7 @@ A login as the root user remotely over `ssh` will get the same denial message as
 
 ## Addendum: New system administrators
 
-Not discussed yet is what happens when adding another system administrator. `ssh-copy-id` will not work with password authentication off. Here is what the author recommends for these situations. Note more than one solution exists. In addition, to the methods mentioned here, an existing administrator can generate the keys for another administrator and deploy them. 
+Not discussed yet is what happens when adding another system administrator. `ssh-copy-id` will not work with password authentication off. Here is what the author recommends for these situations. Note more than one solution exists. In addition, to the methods mentioned here, an existing administrator can generate and deploy the keys for another administrator. 
 
 ### Solution one - sneaker net
 
@@ -679,7 +679,7 @@ This solution is prone to human error, but since it is not done often, it would 
 
 * Add the user to the "wheel" group on the SFTP server
 * Have another system administrator who already has key based authentication, temporarily turn on "PasswordAuthentication yes" in the `sshd_config` file and restart `sshd`
-* Have the new system administrator run `ssh-copy-id` using his or her password to copy the ssh key to the server.
+* Have the new system administrator run `ssh-copy-id` using their password to copy the ssh key to the server.
 
 ### Solution three - script the process
 
@@ -702,7 +702,7 @@ read yn
 /usr/bin/systemctl restart sshd
 echo "Changes reversed"
 ```
-Script explanation: You do not make this script executable. The reason is that you do not want it accidentally run. The script runs (as noted above) like this: `bash /usr/local/sbin/quickswitch`. This script makes a backup copy of the `sshd_config` file just like all of our other examples above. It then edits the `sshd_config` file in place and searches for the *FIRST* occurrence of `PasswordAuthentication no` and changes it to `PasswordAuthentication yes` then restarts `sshd` and waits for the script user to hit <kbd>ENTER</kbd> before continuing. The system administrator running the script would be in communication with the new system administrator, and once that new system administrator runs `ssh-copy-id` to copy his key to the server, the system administrator who is running the script hits enter and that reverses the change.
+Script explanation: You do not make this script executable. The reason is that you do not want it to run accidentally. The script runs (as noted above) like this: `bash /usr/local/sbin/quickswitch`. This script makes a backup copy of the `sshd_config` file just like all of our other examples above. It then edits the `sshd_config` file in place and searches for the *FIRST* occurrence of `PasswordAuthentication no` and changes it to `PasswordAuthentication yes` then restarts `sshd` and waits for the script user to hit <kbd>ENTER</kbd> before continuing. The system administrator running the script would be in communication with the new system administrator, and once that new system administrator runs `ssh-copy-id` to copy his key to the server, the system administrator who is running the script hits enter and that reverses the change.
 
 In short, many ways exist for adding another system administrator after the implementation of SSH lock down procedures.
 
