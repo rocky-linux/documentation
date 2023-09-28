@@ -133,7 +133,7 @@ timedatectl set-timezone America/Chicago
 
 ## Impostazione di MariaDB
 
-Prima di avviare i requisiti del database per LibreNMS, eseguire la procedura [MariaDB](.../database/database_mariadb-server.md), in particolare la sezione "Messa in sicurezza di mariadb-server", e tornare qui per queste impostazioni specifiche. Modificare il file `mariadb-server.cnf`:
+Prima di avviare i requisiti del database per LibreNMS, eseguire la procedura [MariaDB](../database/database_mariadb-server.md), in particolare la sezione "Messa in sicurezza di mariadb-server", e tornare qui per queste impostazioni specifiche. Modificare il file `mariadb-server.cnf`:
 
 ```
 vi /etc/my.cnf.d/mariadb-server.cnf
