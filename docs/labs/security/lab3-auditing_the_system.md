@@ -19,7 +19,7 @@ Estimated time to complete this lab: 90 minutes
 
 
 
-# A simple home grown integrity checker
+## A simple home grown integrity checker
 
 Before we begin to install and configure tripwire we will first create a sample script that performs a similar function to tripwire. This script will help in gaining a better understanding of how Tripwire and similar tools function.
 
@@ -39,21 +39,15 @@ It does this when run with the initialization option ( -- initialization| -i)
 
 4. When the script is run in a verify mode, the md5sum program will be called with the “ - -check” option to check the current MD5 sums against a given list (the md5_good file).
 
+The script will print the output of the verification to the standard output and will also send a copy of the result via e-mail to the super-user.
 
-The script will print the output of the verification to the standard output and will also send a copy of the  
-
-result via e-mail to the super-user.
-
-5.  Whenever changes are made (legal or illegal) to the configuration files under /etc the script can be called
-
-with the  “--rebuild| -r” option to approve the changes and rebuild the baseline pseudo database.
+5.  Whenever changes are made (legal or illegal) to the configuration files under /etc the script can be called with the `--rebuild| -r` option to approve the changes and rebuild the baseline pseudo database.
 
 6. You can periodically manually run the script or create a cron job to automatically run the script.
 
+The script below can be fine-tuned and scaled to do much more than it does. It is left to you and your imagination to make it do whatever you want it to do.
 
-The script below can be fine tuned and scaled to do much more than it does. It is left to you and your imagination to make it do whatever you want it to do.
-
-If you are lazy (like me) and just want a quick and dirty way to get the job done the script will suffice but for everything else there is MasterCard – excuse me, I meant, for everything else there is Tripwire.  
+If you just want a quick and dirty way to get the job done the script will suffice but for everything else there is MasterCard – excuse me, I meant, for everything else there is Tripwire.  
 
 ### Exercise 1
 
@@ -198,7 +192,7 @@ To view only the differences between the “tainted” file and the “untainted
 [root@localhost scripts]# sdiff -s  /etc/kdump.conf  /root/etc.bak/kdump.conf
 ```
 
-# Tripwire
+## Tripwire
 
 One of the first things you should do after building any new system is to get a snapshot of a known good state of the system before the system is “contaminated” or before deploying the system into production.
 
@@ -714,7 +708,6 @@ Re-create a text version of the policy file - just in case you removed it (as ad
 ```
 
 4.  Edit the text file you created above using any text editor. Comment out references to the objects that you don’t want to monitor; you can use the tripwire_diffs.txt file you created earlier as a guideline.
-
 Type:
 
 ```
@@ -734,20 +727,14 @@ A new signed and encrypted policy file will be created for you under the “/etc
 
 6.  Delete or remove the text version of the policy file from your local system.
 
-7.  Running the command in step 5 above will also have created a report file for you under the
-
-/var/lib/tripwire/report directory.
-
+7.  Running the command in step 5 above will also have created a report file for you under the `/var/lib/tripwire/report directory`.
 Write down the name of your latest report file here?
 
 <LATEST_REPORT>
 
+8. Run an integrity check of the system again until you are satisfied that you have a good baseline of the system, with which to make future decisions.
 
-
-8.  Run an integrity check of the system again until you are satisfied that you have a good baseline of the
-
-system, with which to make future decisions. What is the command to do this?
-
+   What is the command to do this?
 
 
 ### Updating the database (--update)
@@ -814,15 +801,15 @@ Edit the file to look like the sample file below:
 
 1 ROOT                     =/usr/sbin
 
-2 POLFILE                  =/mnt/floppy/tw.pol
+2 POLFILE                  =/mnt/usbdrive/tw.pol
 
 3 DBFILE                   =/var/lib/tripwire/$(HOSTNAME).twd
 
 4 REPORTFILE             =/var/lib/tripwire/report/$(HOSTNAME)-$(DATE).twr
 
-5 SITEKEYFILE            =/mnt/floppy/site.key
+5 SITEKEYFILE            =/mnt/usbdrive/site.key
 
-6 LOCALKEYFILE      =/mnt/floppy/$(HOSTNAME)-local.key
+6 LOCALKEYFILE      =/mnt/usbdrive/$(HOSTNAME)-local.key
 
 7 EDITOR                   =/bin/vi
 
@@ -857,14 +844,14 @@ SYSLOGREPORTING
 ```
 
 5.  Mount the removal media to the /mnt/usbdrive directory. Type:
-
+```
 [root@localhost tripwire]# mount /dev/usbdrive   /mnt/usbdrive
+```
 
 !!! NOTE  
 If you choose to store your files on a different location (e.g. a cdrom media) make the necessary adjustments to the commands.
 
 6.  Relocate the site key, local key and binary files to the location you specified in the new config. file.
-
 Type:
 
 ```
@@ -876,10 +863,9 @@ Type:
 ```
 [root@localhost tripwire]# *twadmin  --create-cfgfile   -S  /mnt/floppy/site.key     twcfg.txt*
 ```
+The  `/etc/tripwire/tw.cfg`  file will be created for you.
 
-The  “/etc/tripwire/tw.cfg”  file will be created for you.
-
-7.  Test your new set up. Un-mount the floppy drive and eject the floppy disk.
+7.  Test your new set up. Un-mount the USB drive and eject it.
 
 8.  Try running one the tripwire commands that needs the files stored on the floppy drive. Type:
 
@@ -901,19 +887,14 @@ The  “/etc/tripwire/tw.cfg”  file will be created for you.
 
 You should get an error similar to the one above.
 
-9.  Mount the media that your tripwire files are stored. And try the above command again.
-
-
+9. Mount the media that your tripwire files are stored. And try the above command again.
     Did the command run successfully this time?
-
 
 10. Search for and delete all the plain text versions of tripwire’s config files you have created thus far from your system.
 
-Having to mount and unmount a removable media each time you want to administer an aspect of tripwire may end up being such a drag, but the payoff may be in the extra security. You definitely want to consider storing a pristine version of  tripwire’s database on a read-only media such as a CDROM.
+Having to mount and unmount a removable media each time you want to administer an aspect of tripwire may end up being such a drag, but the payoff may be in the extra security. You definitely want to consider storing a pristine version of  tripwire’s database on a read-only media such as a DVD.
 
-
-
-ADDITIONAL EXERCISES
+### ADDITIONAL EXERCISES
 
 1.  Configure your tripwire installation run an integrity check every day at 2 A.M and send out a report of the integrity check via e-mail to the super user on the system.
 
