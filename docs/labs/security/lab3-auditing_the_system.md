@@ -258,7 +258,6 @@ Tripwire accepts the following command line options:
            [ object1 [ object2... ]]
 ```
 
-
 **Database Update mode:**
 
 ```
