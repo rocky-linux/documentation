@@ -12,13 +12,8 @@ Estimated time to complete this lab: 60 minutes
 
 
 
-“*I always use iptables on my Linux boxes. Look - even if you don't want to*
-
-*keep hackers out, you can do things like block advertising sites like*
-
-*doubleclick.com and other evil bastards. Or maybe you just want to do a*
-
-*bit more logging? …Iptables rule!* ”                          
+>I always use iptables on my Linux boxes. Look - even if you don't want to keep hackers out, you can do things like block advertising sites like*
+doubleclick.com and other evil bastards. Or maybe you just want to do a bit more logging? …Iptables rule!                         
 
 -- George W.Bush
 
