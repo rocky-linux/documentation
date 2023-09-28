@@ -411,77 +411,65 @@ If you get an output similar to the one above then you already have it installed
 
 Configuring tripwire involves customizing the tripwire configuration file if needed, then customizing the policy file if needed and then running the configuration script which will prompt you for a passphrase that will be used to sign/protect the configuration file, the policy file and the database file.
 
-
 1. Change your pwd to the tripwire’s working directory: Type:
 
 ```
 [root@localhost  root]# cd  /etc/tripwire/
 ```
-2.  List the contents of the directory
+2. List the contents of the directory
 
-3.  Use any pager or text editor to view/study the files in the directory.
+3. Use any pager or text editor to view/study the files in the directory.
 
-4.  We will accept the settings that come with the default config. file (twcfg.txt) and the provided default  
+4. We will accept the settings that come with the default config. file (twcfg.txt) and the provided default  
 
 policy file (twpol.txt) for now.
 
-5.  Execute the tripwire configuration utility as root. You will be prompted (twice) for site keyfile passphrase. Select any passphrase that you WILL NOT  forget ( The site key is meant for the twcfg.txt file and the twpol.txt file) Type:
-
-```
-[root@localhost tripwire]#  tripwire-setup-keyfiles
-.....
-Enter the site keyfile passphrase:
-Verify the site keyfile passphrase:
-......
-Generating key (this may take several minutes)...Key generation complete.
-```
-
-
-Next you will be prompted for a local key. Again select another password YOU WILL not forget. ( The local key signs the tripwire database files and the reports files)
+5. Execute the tripwire configuration utility as root. You will be prompted (twice) for site keyfile passphrase. Select any passphrase that you WILL NOT  forget ( The site key is meant for the twcfg.txt file and the twpol.txt file) Type:
+    
+    ```
+    [root@localhost tripwire]#  tripwire-setup-keyfiles
+    .....
+    Enter the site keyfile passphrase:
+    Verify the site keyfile passphrase:
+    ......
+    Generating key (this may take several minutes)...Key generation complete.
+    ```
 
 
+    Next you will be prompted for a local key. Again select another password YOU WILL not forget. ( The local key signs the tripwire database files     and the reports files)
 
-```
-Enter the local keyfile passphrase:
-Verify the local keyfile passphrase:
-....
-Generating key (this may take several minutes)...Key generation complete.
+    ```
+    Enter the local keyfile passphrase:
+    Verify the local keyfile passphrase:
+    ....
+    Generating key (this may take several minutes)...Key generation complete.
+    
+    ```
+    After choosing your passphrases the `tripwire-setup-keyfiles` program will then proceed with the actual creation/signing of the encrypted           versions of the original plain text files ( i.e  tw.cfg and tw.pol will be created respectively)  You will be prompted again for the                  passphrases you choose earlier. At this point just follow the prompts until the script exits.
 
-```
-
-
-
-After choosing your passphrases the “twinstall.sh” script will then proceed with the actual creation/signing of the encrypted versions of the original plain text files ( i.e  tw.cfg and tw.pol will be created respectively)  You will be prompted again for the passphrases you choose earlier. At this point just follow the prompts until the script exits.
-
-```
-----------------------------------------------
-Signing configuration file...
-Please enter your site passphrase:
-``````
-
-```
-----------------------------------------------
-Signing policy file...
-Please enter your site passphrase: ********
-......
-
-Wrote policy file: /etc/tripwire/tw.pol
-
-```
+    ```
+    ----------------------------------------------
+    Signing configuration file...
+    Please enter your site passphrase: ********
+    
+    ----------------------------------------------
+    Signing policy file...
+    Please enter your site passphrase: ********
+    ......
+    
+    Wrote policy file: /etc/tripwire/tw.pol
+    ```
 
 6. List the new contents of the /etc/tripwire directory.
 
+7. Per the warning you got while the tripwire-setup-keyfiles utility was running, you will now move the plain text versions of the configuration     file and policy files away from the local system. You could store them on an external removal medium or encrypt them in place [using a tool like GPG for example] OR completely delete them if you are feeling particularly daring. Type:
 
-7. Per the warning you got while the tripwire-setup-keyfiles utility was running, you will now move the plain text versions of the configuration file and policy files away from the local system. You could store them
-
-on an external removal medium or encrypt them in place [using a tool like GPG for example] OR completely delete them if you are feeling particularly daring. Type:
-
-[root@localhost tripwire]# mkdir /root/tripwire_stuff && mv twcfg.txt  twpol.txt /root/tripwire_stuff
-
+    ```
+    [root@localhost tripwire]# mkdir /root/tripwire_stuff && mv twcfg.txt  twpol.txt /root/tripwire_stuff
+    ```
 
 !!! NOTE
-    It may be useful to keep the plain text versions in safe place, just incase you forget your passphrases. You can then always re-run the “tripwire-setup-keyfiles” based on the     configurations and policies you have fine tuned over time.
-
+    It may be useful to keep the plain text versions in safe place, just incase you forget your passphrases. You can then always re-run the     “tripwire-setup-keyfiles” based on the     configurations and policies you have fine tuned over time.
 
 
 #### To initialize the database
@@ -515,7 +503,7 @@ Enter your local passphrase when prompted. The database creation will run to con
 
 ## Exercise 3
 
-Integrity checking and viewing reports
+**Integrity checking and viewing reports**
 
 In this exercise you will learn how to run an integrity check of the system and view the reports that tripwire generates for you.
 
@@ -525,30 +513,31 @@ Running tripwire in this mode (integrity check mode) compares the current file s
 
 1.  Run an integrity check. Type:
 
-```
-[root@localhost tripwire]# tripwire --check
-```
+    ```
+    [root@localhost tripwire]# tripwire --check
+    ```
 
-You'll see some [expected] warnings stream by during this check.
+    You'll see some [expected] warnings stream by during this check.
+    
+    Check under the /var/lib/tripwire/report directory to see if a report was also created in there for you.
+    
+    !!! QUESTION
+        Write down the name of the report file that was created?
+    
+        FILE_NAME =
 
-Check under the /var/lib/tripwire/report directory to see if a report was also created in there for you.
 
-Write down the name of the report file that was created?
-
-FILE_NAME =
-
-
-
-2.  Run the integrity check again but manually specify a file name for the report file. Type:
-```
-[root@localhost tripwire]# tripwire -m c -r /root/tripwire_report.twr
-```
+2. Run the integrity check again but manually specify a file name for the report file. Type:
+   
+    ```
+    [root@localhost tripwire]# tripwire -m c -r /root/tripwire_report.twr
+    ```
 
 3.  Now make sure that a new file was created for you under root’s home directory. Type:
 
-```
-[root@localhost tripwire]# ls -l /root/tripwire_report.twr
-```
+    ```
+    [root@localhost tripwire]# ls -l /root/tripwire_report.twr
+    ```
 
 #### To examine the report
 
@@ -630,7 +619,7 @@ Write down the command to do this?
 
 
 
-### Fine tuning tripwire
+### Fine-tuning tripwire
 
 After installing tripwire, taking a snapshot of the system and then running the first integrity check you will more likely than not need to fine tune tripwire to suit the needs of your particular environment. 
 This is mostly because the default configuration and policy file that comes bundled with tripwire may not exactly fit your needs or reflect the actual objects on your file system.
@@ -678,22 +667,19 @@ This will help to greatly reduce the length of the report file that you have to 
     ..................................
     ```
 
-3.  Now you need to edit the tripwire policy file and comment out or delete the entries in the file that should not be in there. i.e. files that are not on your system and files that probably
+3.  Now you need to edit the tripwire policy file and comment out or delete the entries in the file that should not be in there. i.e. files that are     not on your system and files that probably never will be on your system. For example one of the files that the policy file is trying to monitor     is the /proc/scsi file.
+   If you dont have any SCSI device on your system then it makes absolutely NO SENSE to monitor this file.
 
-never will be on your system. For example one of the files that the policy file is trying to monitor is the /proc/scsi file. If you dont have any SCSI device on your system then it makes absolutely NO
+    Another debatable example of what to monitor or not to monitor are the various lock files under the “/var/lock/subsys/” directory. Choosing to       monitor these files should be a personal call.
 
-SENSE to monitor this file.
-
-Another debatable example of what to monitor or not to monitor are the various lock files under the “/var/lock/subsys/” directory. Choosing to monitor these files should be a personal call.
-
-Re-create a text version of the policy file - just in case you removed it (as advised ) from the local system. Type:
+    Re-create a text version of the policy file - just in case you removed it (as advised ) from the local system. Type:
 
     ```
     [root@localhost root]#  twadmin  --print-polfile  > twpol.txt
     ```
 
-4.  Edit the text file you created above using any text editor. Comment out references to the objects that you don’t want to monitor; you can use the tripwire_diffs.txt file you created earlier as a guideline.
-Type:
+4. Edit the text file you created above using any text editor. Comment out references to the objects that you don’t want to monitor; you can use the     tripwire_diffs.txt file you created earlier as a guideline.
+    Type:
 
     ```
     [root@localhost  root]# vi   twpol.txt
@@ -702,24 +688,27 @@ Type:
     Save your changes to the file and close it.
 
 5.    Run tripwire in policy file update mode. Type:
+  
     ```
     [root@localhost root]#  tripwire  --update-policy   /root/twpol.txt*
     ```
+    Enter your local and site passphrases when prompted.
 
-Enter your local and site passphrases when prompted.
-
-A new signed and encrypted policy file will be created for you under the “/etc/tripwire/” directory.
+    A new signed and encrypted policy file will be created for you under the “/etc/tripwire/” directory.
 
 6.  Delete or remove the text version of the policy file from your local system.
 
 7.  Running the command in step 5 above will also have created a report file for you under the `/var/lib/tripwire/report directory`.
-Write down the name of your latest report file here?
 
-<LATEST_REPORT>
+!!! Question
+    Write down the name of your latest report file here?
+
+    <LATEST_REPORT>
 
 8. Run an integrity check of the system again until you are satisfied that you have a good baseline of the system, with which to make future decisions.
 
-   What is the command to do this?
+   !!! Question
+       What is the command to do this?
 
 
 ### Updating the database (--update)
