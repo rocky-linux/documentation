@@ -358,11 +358,11 @@ Use the tail command to examine your changes to the /etc/passwd file. Write the 
 Restore the values ( login shell etc..) to their original values. Write down the commands to do this?
 
 
-## Exercise 2
+## Exercise 3
 
 ### Set user
 
-It is not always convenient having to log out of the system completely in order to log in as another user. This may be because you have certain tasks running and you don’t want to end them. The “suXE "su"”  ( set user) program is used to temporarily become another user.  You can “su” from a regular user account to the root account or vice-versa.
+It is not always convenient having to log out of the system completely in order to log in as another user. This may be because you have certain tasks running and you don’t want to end them. The `su` ( set user) program is used to temporarily become another user.  You can “su” from a regular user account to the root account or vice-versa.
 
 It changes the current user to have the access rights of the temporary user.
 
