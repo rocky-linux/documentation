@@ -771,7 +771,7 @@ Amongst other housekeeping tasks, the final installation step also involves copy
 
 ### Checking file integrity after package installation
 
-After installing relevant packages, in some cases, I need to determine whether the associated files have been modified to prevent malicious modifications by others.
+After installing relevant packages, in some cases, we need to determine whether the associated files have been modified to prevent malicious modifications by others.
 
 #### File verification
 
