@@ -46,7 +46,7 @@ Enter file in which to save the key (/root/.ssh/id_rsa):
 
 Натисніть <kbd>ENTER</kbd> тут. Нарешті він попросить вас повторно ввести парольну фразу:
 
-`Enter same passphrase again:`
+`Введіть ту саму парольну фразу ще раз:`
 
 Натисніть <kbd>ENTER</kbd> востаннє.
 
