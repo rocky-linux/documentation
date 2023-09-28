@@ -12,10 +12,6 @@ Estimated time to complete this lab: 90 minutes
 
 
 
-
-
-
-
 # A simple home grown integrity checker
 
 Before we begin to install and configure tripwire we will first create a sample script that performs a similar function to tripwire. This script will help in gaining a better understanding of how Tripwire and similar tools function.
@@ -426,16 +422,18 @@ OPTIONS
 
 1. Check to see if you already have tripwire installed on your system. Type:
 
+```
 [root@localhost root]#  rpm  -q  tripwire
-
 tripwire-*
+```
 
 If you get an output similar to the one above then you already have it installed. Skip the next step.
 
 2. If you dont have it installed, obtain the tripwire binary and install it. Type:
 
+```
 [root@localhost root]# dnf -y install tripwire
-
+```
 
 #### To Configure tripwire
 
@@ -444,10 +442,10 @@ Configuring tripwire involves customizing the tripwire configuration file if nee
 
 1. Change your pwd to the tripwire’s working directory: Type:
 
+```
 [root@localhost  root]# cd  /etc/tripwire/
-
+```
 2.  List the contents of the directory
-
 
 3.  Use any pager or text editor to view/study the files in the directory.
 
@@ -455,9 +453,7 @@ Configuring tripwire involves customizing the tripwire configuration file if nee
 
 policy file (twpol.txt) for now.
 
-5.  Execute the tripwire configuration utility as root. You will be prompted (twice) for site keyfile passphrase. Select any passphrase that you
-
-WILL NOT  forget ( The site key is meant for the twcfg.txt file and the twpol.txt file) Type:
+5.  Execute the tripwire configuration utility as root. You will be prompted (twice) for site keyfile passphrase. Select any passphrase that you WILL NOT  forget ( The site key is meant for the twcfg.txt file and the twpol.txt file) Type:
 
 ```
 [root@localhost tripwire]#  tripwire-setup-keyfiles
