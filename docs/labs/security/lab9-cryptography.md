@@ -11,8 +11,7 @@ Estimated time to complete this lab: 120 minutes
 
 
 
-"*Three may keep a secret, if two of them are dead...*."
-
+>Three may keep a secret, if two of them are dead...
 -- Benjamin Franklin
 
 
