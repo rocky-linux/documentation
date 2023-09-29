@@ -47,7 +47,7 @@ Assumptions are that:
 * you are comfortable executing commands at the command line.
 * you can use a command line editor, such as `vi` (used here), `nano`, `micro`, etc.
 * you understand basic Linux commands used for adding groups and users, or can follow along well.
-* your multisite website is like this: [Apache Multisite](../../web/apache-sites-enabled/)
+* your multisite website is like this: [Apache Multisite](../../web/apache-sites-enabled.md)
 * you have already installed `httpd` (Apache) on the server.
 
 !!! note
@@ -515,7 +515,7 @@ Open your web browser and ensure that your `index.html` file for each domain dis
 
 ## Part 3: Administrative access with SSH key pairs
 
-Note that you will use concepts discussed in the document [SSH Public and Private Keys](../../security/ssh_public_private_keys) here, but also improving on it. If you are new to the process, read that article before continuing.
+Note that you will use concepts discussed in the document [SSH Public and Private Keys](../../security/ssh_public_private_keys,md) here, but also improving on it. If you are new to the process, read that article before continuing.
 
 ### Creating the public/private key pairs
 
@@ -708,4 +708,4 @@ In short, many ways exist for adding another system administrator after the impl
 
 ## Conclusion
 
-This document is extensive. It will make a multisite web server more secure and less prone to attack vectors over SSH when turning on SFTP for customer access. SFTP is much more secure than FTP, even if you use a really *GOOD* FTP servers and have them set up as securely as possible as noted in this [document on VSFTPD](../secure_ftp_server_vsftpd). By implementing *all* of the steps in this document, you can feel comfortable opening up port 22 (SSH) to your public zone and still know that your environment is secure.
+This document is extensive. It will make a multisite web server more secure and less prone to attack vectors over SSH when turning on SFTP for customer access. SFTP is much more secure than FTP, even if you use a really *GOOD* FTP servers and have them set up as securely as possible as noted in this [document on VSFTPD](../secure_ftp_server_vsftpd.md). By implementing *all* of the steps in this document, you can feel comfortable opening up port 22 (SSH) to your public zone and still know that your environment is secure.
