@@ -1,5 +1,4 @@
 ---
-title: Managing and Installing Software (Lab 7)
 author: Wale Soyinka 
 contributors: Steven Spencer, tianci li
 tested on: 8.8
@@ -8,7 +7,7 @@ tags:
   - software management
 ---
 
-# Lab 7:  Managing and Installing Software
+# Lab 7: Managing and installing software
 
 ## Objectives
 
