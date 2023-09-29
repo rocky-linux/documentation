@@ -33,10 +33,7 @@ For example, `Rocky-9.2-x86_64-minimal.iso`
 
 !!! Note
 
-    The Rocky project web page lists several mirrors, which are located around
-the globe. Choose the mirror geographically closest to you. The list of
-official mirrors can be found
-[here](https://mirrors.rockylinux.org/mirrormanager/mirrors).
+    The Rocky project web page lists several mirrors, which are located around the globe. Choose the mirror geographically closest to you. The list ofofficial mirrors can be found [here](https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
 ## Verifying the Installation Program ISO File
 
