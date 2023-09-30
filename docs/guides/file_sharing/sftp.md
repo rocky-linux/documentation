@@ -515,7 +515,7 @@ Open your web browser and ensure that your `index.html` file for each domain dis
 
 ## Part 3: Administrative access with SSH key pairs
 
-Note that you will use concepts discussed in the document [SSH Public and Private Keys](../../security/ssh_public_private_keys,md) here, but also improving on it. If you are new to the process, read that article before continuing.
+Note that you will use concepts discussed in the document [SSH Public and Private Keys](../../security/ssh_public_private_keys.md) here, but also improving on it. If you are new to the process, read that article before continuing.
 
 ### Creating the public/private key pairs
 
