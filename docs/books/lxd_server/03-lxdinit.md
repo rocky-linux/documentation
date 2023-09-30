@@ -12,7 +12,7 @@ tags:
 
 # Chapter 3: LXD initialization and user setup
 
-Throughout this chapter you will need to be root or able to `sudo` to become root. In addition, the assumption is that you have setup a ZFS storage pool described in [Chapter 2](02-zfs_setup). You can use a different storage pool if you have chosen not to use ZFS, but you will need to make adjustments to the initialization questions and answers.
+Throughout this chapter you will need to be root or able to `sudo` to become root. In addition, the assumption is that you have setup a ZFS storage pool described in [Chapter 2](02-zfs_setup.md). You can use a different storage pool if you have chosen not to use ZFS, but you will need to make adjustments to the initialization questions and answers.
 
 ## LXD initialization
 

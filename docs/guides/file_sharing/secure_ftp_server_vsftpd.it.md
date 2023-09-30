@@ -26,7 +26,7 @@ _vsftpd_ consente di utilizzare utenti virtuali con moduli di autenticazione col
 
 !!! tip "Prendi in considerazione `sftp`"
 
-    Anche con le impostazioni di sicurezza usate qui per configurare `vsftpd`, si potrebbe prendere in considerazione `sftp`. `sftp` cripta l'intero flusso di connessione ed è più sicuro. Abbiamo creato un documento chiamato [Secure Server - `sftp`](../sftp) che tratta l'impostazione di `sftp` e il blocco di SSH.
+    Anche con le impostazioni di sicurezza usate qui per configurare `vsftpd`, si potrebbe prendere in considerazione `sftp`. `sftp` cripta l'intero flusso di connessione ed è più sicuro. Abbiamo creato un documento chiamato [Secure Server - `sftp`](sftp.md) che tratta l'impostazione di `sftp` e il blocco di SSH.
 
 ## Installazione di `vsftpd`
 
