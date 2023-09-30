@@ -26,7 +26,7 @@ tags:
 
 !!! tip "Consider `sftp`"
 
-    Even with the security settings used here to set up `vsftpd`, you may want to consider `sftp` instead. `sftp` will encrypt the entire connection stream and is more secure. We have created a document called [Secure Server - `sftp`](../sftp) that deals with setting up `sftp` and the locking down SSH. 
+    Even with the security settings used here to set up `vsftpd`, you may want to consider `sftp` instead. `sftp` will encrypt the entire connection stream and is more secure. We have created a document called [Secure Server - `sftp`](sftp.md) that deals with setting up `sftp` and the locking down SSH. 
 
 ## Installing `vsftpd`
 
