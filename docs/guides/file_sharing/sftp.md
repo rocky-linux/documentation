@@ -708,4 +708,4 @@ In short, many ways exist for adding another system administrator after the impl
 
 ## Conclusion
 
-This document is extensive. It will make a multisite web server more secure and less prone to attack vectors over SSH when turning on SFTP for customer access. SFTP is much more secure than FTP, even if you use a really *GOOD* FTP servers and have them set up as securely as possible as noted in this [document on VSFTPD](../secure_ftp_server_vsftpd.md). By implementing *all* of the steps in this document, you can feel comfortable opening up port 22 (SSH) to your public zone and still know that your environment is secure.
+This document is extensive. It will make a multisite web server more secure and less prone to attack vectors over SSH when turning on SFTP for customer access. SFTP is much more secure than FTP, even if you use a really *GOOD* FTP server and have them set up as securely as possible as noted in this [document on VSFTPD](../secure_ftp_server_vsftpd.md). By implementing *all* of the steps in this document, you can feel comfortable opening up port 22 (SSH) to your public zone and still know that your environment is secure.
