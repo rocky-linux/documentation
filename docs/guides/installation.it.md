@@ -33,7 +33,7 @@ Ad esempio, `Rocky-9.2-x86_64-minimal.iso`
 
 !!! Note "Nota"
 
-    La pagina web del progetto Rocky contiene un elenco di diversi mirror situati in tutto il mondo. Se possibile, scegliete il mirror geograficamente più vicino a voi. L'elenco dei mirror ufficiali è disponibile [qui] (https://mirrors.rockylinux.org/mirrormanager/mirrors).
+    La pagina web del progetto Rocky elenca diversi mirror, situati in tutto il mondo. Scegliete il mirror geograficamente più vicino a voi. L'elenco dei mirror ufficiali è disponibile [qui] (https://mirrors.rockylinux.org/mirrormanager/mirrors).
 
 ## Verifica del file ISO del Programma di Installazione
 
