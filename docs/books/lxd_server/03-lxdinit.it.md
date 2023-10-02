@@ -12,7 +12,7 @@ tags:
 
 # Capitolo 3: Inizializzazione di LXD e configurazione dell'utente
 
-In questo capitolo è necessario essere root o poter fare `sudo` per diventare root. Inoltre, si presuppone che sia stato configurato un pool di archiviazione ZFS, come descritto nel [Capitolo 2](02-zfs_setup). È possibile utilizzare un pool di archiviazione diverso se si è scelto di non utilizzare ZFS, ma sarà necessario apportare modifiche alle domande e alle risposte di inizializzazione.
+In questo capitolo è necessario essere root o poter fare `sudo` per diventare root. Inoltre, si presuppone che sia stato configurato un pool di archiviazione ZFS descritto nel [Capitolo 2](02-zfs_setup.md). È possibile utilizzare un pool di archiviazione diverso se si è scelto di non utilizzare ZFS, ma sarà necessario apportare modifiche alle domande e alle risposte di inizializzazione.
 
 ## Inizializzazione di LXD
 
