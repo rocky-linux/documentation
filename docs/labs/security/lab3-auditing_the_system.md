@@ -21,7 +21,7 @@ Estimated time to complete this lab: 90 minutes
 
 ## A simple home grown integrity checker
 
-Before we begin to install and configure tripwire we will first create a sample script that performs a similar function to tripwire. This script will help in gaining a better understanding of how Tripwire and similar tools function.
+Before we begin to install and configure tripwire, we create a sample script that performs a similar function. This script will help in gaining a better understanding of how Tripwire and similar tools function.
 
 The script relies heavily on the md5sum program. The md5sum program is used to compute a 128-bit checksum (or "fingerprint") for a specified FILE.
 
@@ -39,13 +39,13 @@ It does this when run with the initialization option ( -- initialization| -i)
 
 4. When the script is run in a verify mode, the md5sum program will be called with the “ - -check” option to check the current MD5 sums against a given list (the md5_good file).
 
-The script will print the output of the verification to the standard output and will also send a copy of the result via e-mail to the super-user.
+The script will print the verification output to the standard output and send a copy of the result via e-mail to the superuser.
 
 5.  Whenever changes are made (legal or illegal) to the configuration files under /etc the script can be called with the `--rebuild| -r` option to approve the changes and rebuild the baseline pseudo database.
 
-6. You can periodically manually run the script or create a cron job to automatically run the script.
+6. You can periodically run the script manually or create a cron job to automatically run the script.
 
-The script below can be fine-tuned and scaled to do much more than it does. It is left to you and your imagination to make it do whatever you want it to do.
+The script below can be fine-tuned and scaled to do much more than it does. It is left to you and your imagination to make it do whatever you want.
 
 If you just want a quick and dirty way to get the job done the script will suffice but for everything else there is MasterCard – excuse me, I meant, for everything else there is Tripwire.  
 
@@ -177,7 +177,7 @@ You should get the output above if all is well.
     Re-run the script with the re-build option (e.g. ./check.sh  --rebuild) to approve
     ```
 
-9.  Per the warning above, you should go and investigate further to see if  the altered file meets your approval. If it does you may run the script with a `--rebuild` option.
+9.  Per the warning above, you should go and investigate further to see if  the altered file meets your approval. You may run the script with a `--rebuild` option if it does.
     To view only the differences between the “tainted” file and the “untainted” file you could type:
 
     ```
@@ -188,13 +188,13 @@ You should get the output above if all is well.
 
 One of the first things you should do after building any new system is to get a snapshot of a known good state of the system before the system is “contaminated” or before deploying the system into production.
 
-There are several tools available for doing this. One of such tools is tripwire. Tripwire is an advanced tool, so brace yourself for a plethora of options, syntax, idiosyncrasies and switches.
+Several tools exist for doing this. One such tool is tripwire. Tripwire is an advanced tool, so brace yourself for many options, syntax, quirks, and switches.
 
-Tripwire can be regarded as a form of a host based intrusion detection system (IDS). It performs intrusion detection functions by taking a snapshot of a "healthy system" and later on comparing this healthy state with any other suspect states. It provides a means of knowing/monitoring whether certain sensitive files have been altered illegally. The system administrator of course decides what files are to be monitored.
+Tripwire can be regarded as a form of a host-based intrusion detection system (IDS). It performs intrusion detection functions by taking a snapshot of a "healthy system" and later on comparing this healthy state with any other suspect states. It provides a means of knowing/monitoring whether certain sensitive files have been altered illegally. The system administrator of course decides what files are to be monitored.
 
 The authors of tripwire describe it as an Open Source Security, Intrusion Detection, Damage Assessment and Recovery, Forensics software.
 
-Tripwire simply compares a file’s new signature with that taken when the database was initially created.
+Tripwire compares a file’s new signature with the one taken when the database was created.
 
 The steps involved in installing and configuring tripwire are as listed below:
 
@@ -309,9 +309,9 @@ SYNOPSIS
 ```
 
 
-### twadmin
+### `twadmin`
 
-The twadmin utility is used to perform administrative functions related to tripwire files and configuration options.  Specifically, twadmin allows encoding, decoding, signing, and verification of tripwire files, and provides a means to generate and change local and site keys.
+The `twadmin` utility performs administrative functions related to tripwire files and configuration options. Specifically, `twadmin` allows encoding, decoding, signing, and verification of tripwire files, and provides a means to generate and change local and site keys.
 
 ```
 Create Configuration File:  twadmin [-m F|--create-cfgfile][options] cfgfile.txt
@@ -324,9 +324,9 @@ Examine Encryption:     twadmin [-m e|--examine] [options] [file1...]
 Generate Keys:       twadmin [-m G|--generate-keys] [options]
 ```
 
-### twprint
+### `twprint`
 
-Prints Tripwire database and report files in clear text format.
+Prints Tripwire database and report files in plain text format.
 
 **Print Report mode:**
 
@@ -352,9 +352,9 @@ Prints Tripwire database and report files in clear text format.
 [object1 [object2 ...]
 ```
 
-### siggen
+### `siggen`
 
-siggen is a signature gathering routine for Tripwire. It is a utility that displays the hash function values for the specified files.
+`siggen` is a signature gathering routine for Tripwire. It is a utility that displays the hash function values for the specified files.
 
 ```
 OPTIONS
@@ -442,7 +442,7 @@ policy file (twpol.txt) for now.
     Generating key (this may take several minutes)...Key generation complete.
     
     ```
-    After choosing your passphrases the `tripwire-setup-keyfiles` program will then proceed with the actual creation/signing of the encrypted           versions of the original plain text files ( i.e  tw.cfg and tw.pol will be created respectively)  You will be prompted again for the                  passphrases you choose earlier. At this point just follow the prompts until the script exits.
+    After choosing your passphrases the `tripwire-setup-keyfiles` program will then proceed with the actual creation/signing of the encrypted versions of the original plain text files ( i.e  tw.cfg and tw.pol will be created respectively). You will be prompted again for the passphrases you choose earlier. At this point just follow the prompts until the script exits.
 
     ```
     ----------------------------------------------
@@ -459,14 +459,15 @@ policy file (twpol.txt) for now.
 
 6. List the new contents of the /etc/tripwire directory.
 
-7. Per the warning you got while the tripwire-setup-keyfiles utility was running, you will now move the plain text versions of the configuration     file and policy files away from the local system. You could store them on an external removal medium or encrypt them in place [using a tool like GPG for example] OR completely delete them if you are feeling particularly daring. Type:
+7. Per the warning you got while the tripwire-setup-keyfiles utility was running, you will now move the plain text versions of the configuration file and policy files away from the local system. You could store them on an external removal medium or encrypt them in place (using a tool like GPG for example) OR completely delete them if you are feeling particularly daring. Type:
 
     ```
     [root@localhost tripwire]# mkdir /root/tripwire_stuff && mv twcfg.txt twpol.txt /root/tripwire_stuff
     ```
 
-!!! NOTE
-    It may be useful to keep the plain text versions in safe place, just incase you forget your passphrases. You can then always re-run the     “tripwire-setup-keyfiles” based on the     configurations and policies you have fine tuned over time.
+!!! note
+
+    It may be useful to keep the plain text versions in safe place incase you forget your passphrases. You can then always re-run the “tripwire-setup-keyfiles” based on the configurations and policies you have fine-tuned over time.
 
 
 #### To initialize the database
@@ -490,7 +491,7 @@ Enter your local passphrase when prompted. The database creation will run to con
 
 **The database was successfully generated.**
 
-2. Use the `ls` command to verify that the database was indeed created under the stated location. Type:
+2. Use the `ls` command to verify that the database was created under the stated location. Type:
 
     ```
     [root@localhost tripwire]# ls -lh /var/lib/tripwire/$(hostname).twd
@@ -506,7 +507,7 @@ In this exercise you will learn how to run an integrity check of the system and 
 
 #### To run an integrity check
 
-Running tripwire in this mode (integrity check mode) compares the current file system objects with their properties in the tripwire database. Discrepancies between database and the current file system objects are printed to the standard output while tripwire is running in this mode. After the check is complete tripwire also generates a report file in the directory specified in the twcfg.txt file (/var/lib/tripwire/report/).
+Running tripwire in this mode (integrity check mode) compares the current file system objects with their properties in the tripwire database. Discrepancies between the database and the current file system objects are printed to the standard output while tripwire runs in this mode. After the check is complete tripwire also generates a report file in the directory specified in the twcfg.txt file (/var/lib/tripwire/report/).
 
 1.  Run an integrity check. Type:
 
@@ -530,7 +531,7 @@ Running tripwire in this mode (integrity check mode) compares the current file s
     [root@localhost tripwire]# tripwire -m c -r /root/tripwire_report.twr
     ```
 
-3.  Now make sure that a new file was created for you under root’s home directory. Type:
+3.  Ensure that a new file was created under root’s home directory. Type:
 
     ```
     [root@localhost tripwire]# ls -l /root/tripwire_report.twr
@@ -542,8 +543,9 @@ Tripwire’s report files, are a collection of rule violations discovered during
 
 There are several methods of viewing the tripwire report file. You could have been viewing it whilst the integrity check was running, you could view it in the form of an e-mail automatically sent to you or you could view it using the “twprint” command provided with the tripwire package.
 
-!!! NOTE
-    You probably noticed from the earlier exercise that by default, tripwire uses a combination of the systems FQDN name, the date and the time to name the report files.
+!!! note
+
+    You probably noticed from the earlier exercise that tripwire uses a combination of the systems FQDN name, the date, and the time to name the report files by default.
 
 1.  First change to the default report’s directory and view the default report created for you in step 1  above ( FILE_NAME). Type:
 
@@ -617,7 +619,7 @@ Write down the command to do this?
 
 ### Fine-tuning tripwire
 
-After installing tripwire, taking a snapshot of the system and then running the first integrity check you will more likely than not need to fine tune tripwire to suit the needs of your particular environment. 
+After installing tripwire, taking a snapshot of the system and then running the first integrity check you will more likely than not need to fine-tune tripwire to suit the needs of your particular environment. 
 This is mostly because the default configuration and policy file that comes bundled with tripwire may not exactly fit your needs or reflect the actual objects on your file system.
 
 You need to ascertain if the file system violations reported in the report file during the integrity check are actual violations or legitimate/authorized changes to your file system objects.
@@ -625,16 +627,14 @@ Again tripwire offers several ways of doing this.
 
 ### Updating the policy file
 
-Using this method you will change or fine tune what tripwire considers violations to your file system objects by changing the rules in the policy file. The database can then be updated without a complete
+Using this method you will change or fine-tune what tripwire considers violations to your file system objects by changing the rules in the policy file. The database can then be updated without a complete re-initialization. This saves time and preserves security by keeping the policy file synchronized with the database it uses.
 
-re-initialization. This saves time and preserves security by keeping the policy file synchronized with the database it uses.
-
-You will use the report file you created earlier ( /root/tripwire_report.txt ) to fine tune your policy file by first preventing tripwire from reporting the absence of files that were never on the filesystem in the first place.
+You will use the report file you created earlier ( /root/tripwire_report.txt ) to fine-tune your policy file by first preventing tripwire from reporting the absence of files that were never on the filesystem in the first place.
 
 This will help to greatly reduce the length of the report file that you have to manage.
 
 
-#### To fine tune tripwire
+#### To fine-tune tripwire
 
 1. Use the grep command to filter out all lines in the report file that refers to missing files (i.e. Lines containing the word “Filename”). Redirect the output to another file - tripwire_diffs.txt. Type:
 
@@ -689,14 +689,16 @@ This will help to greatly reduce the length of the report file that you have to 
 
 7.  Running the command in step 5 above will also have created a report file for you under the `/var/lib/tripwire/report directory`.
 
-!!! Question
-    Write down the name of your latest report file here?
+    !!! Question
+    
+        Write down the name of your latest report file here?
 
-    <LATEST_REPORT>
+        <LATEST_REPORT>
 
 8. Run an integrity check of the system again until you are satisfied that you have a good baseline of the system, with which to make future decisions.
 
    !!! Question
+       
        What is the command to do this?
 
 
@@ -756,8 +758,9 @@ You will begin these exercises by first fine-tuning your configuration file. In 
 
     Edit the file to look like the sample file below:
 
-!!! NOTE
-    The newly added and changed variables have been highlighted for you
+
+    (NOTE: The newly added and changed variables have been highlighted for you )
+
 
     ```
     1 ROOT                     =/usr/sbin
@@ -804,14 +807,16 @@ You will begin these exercises by first fine-tuning your configuration file. In 
     ```
 
 5.  Mount the removal media to the /mnt/usbdrive directory. Type:
+
     ```
     [root@localhost tripwire]# mount /dev/usbdrive   /mnt/usbdrive
     ```
 
-!!! NOTE  
-    If you choose to store your files on a different location (e.g. a cdrom media) make the necessary adjustments to the commands.
+    !!! note  
+    
+        If you choose to store your files on a different location (e.g. a cdrom media) make the necessary adjustments to the commands.
 
-6.  Relocate the site key, local key and binary files to the location you specified in the new config. file. Type:
+6.  Relocate the site key, local key, and binary files to the location you specified in the new config file. Type:
 
     ```
     [root@localhost tripwire]# mv site.key tw.pol localhost.localdomain-local.key /mnt/usbdrive
@@ -844,9 +849,9 @@ You will begin these exercises by first fine-tuning your configuration file. In 
     ### Exiting...
     ```
 
-You should get an error similar to the one above.
+    You should get an error similar to the one above.
 
-9. Mount the media that your tripwire files are stored. And try the above command again.
+9. Mount the media where your tripwire files are stored, and try the above command again.
     Did the command run successfully this time?
 
 10. Search for and delete all the plain text versions of tripwire’s config files you have created thus far from your system.
@@ -857,5 +862,6 @@ Having to mount and unmount a removable media each time you want to administer a
 
 1.  Configure your tripwire installation run an integrity check every day at 2 A.M and send out a report of the integrity check via e-mail to the super user on the system.
 
-!!! HINT
+!!! hint
+    
     You may need to do this using a cron job.

@@ -27,8 +27,8 @@ tags:
 기여에 대해 더 자세히 알아보려면 다음과 같은 가이드를 참고하십시오:
 
 * [Rocky Linux 기여 가이드](https://docs.rockylinux.org/guides/contribute/): 시작하는 데 필요한 시스템 및 소프트웨어 요구 사항에 대한 안내.
-* [Rocky Linux 첫 기여자 가이드](../beginners/): GitHub와 같은 문서 홈베이스에 대한 안내.
-* [Rocky Docs 서식](../rockydocs_formatting/): Markdown 구조에 대한 안내.
+* [Rocky Linux 첫 기여자 가이드](beginners.md): GitHub와 같은 문서 홈베이스에 대한 안내.
+* [Rocky Docs 서식](rockydocs_formatting.md): Markdown 구조에 대한 안내.
 
 ## 스타일 가이드라인
 
@@ -97,7 +97,7 @@ tags:
 
 ### Admonition(경고)
 
-Markdown 내에서 경고는 정보를 강조하기 위해 상자에 정보를 담는 방법입니다. 문서에 필수적인 요소는 아니지만 유용한 도구입니다. [Rocky 서식 문서](../rockydocs_formatting/)에서 주의에 대해 더 알아보세요.
+Markdown 내에서 경고는 정보를 강조하기 위해 상자에 정보를 담는 방법입니다. 문서에 필수적인 요소는 아니지만 유용한 도구입니다. [Rocky 서식 문서](rockydocs_formatting.md)에서 주의에 대해 더 알아보세요.
 
 ## 접근성
 

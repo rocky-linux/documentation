@@ -48,7 +48,7 @@ Partiamo dal presupposto che:
 * si è a proprio agio nell'eseguire i comandi dalla riga di comando.
 * si può usare un editor a riga di comando, come `vi` (usato qui), `nano`, `micro`, ecc.
 * si conoscono i comandi di base di Linux utilizzati per l'aggiunta di gruppi e utenti, o si è in grado di seguirli bene.
-* il vostro sito web multisito è impostato in questo modo: [Apache Multi Sito](../../web/apache-sites-enabled/)
+* il vostro sito web multisito è impostato in questo modo: [Apache Multi Sito](../web/apache-sites-enabled.md)
 * `httpd` (Apache) è già stato installato sul server.
 
 !!! note "Nota"
@@ -577,7 +577,7 @@ A questo punto, aprite il vostro browser web e verificate che il file `index.htm
 
 ## Parte 3: Accesso amministrativo con coppie di chiavi SSH
 
-Si noti che in questa sezione si utilizzeranno i concetti discussi nel documento [SSH Public and Private Keys](../../security/ssh_public_private_keys), migliorandoli. Se siete alle prime armi, leggete questo articolo prima di continuare.
+Si noti che in questa sezione si utilizzeranno i concetti discussi nel documento [SSH Public and Private Keys](../security/ssh_public_private_keys.md), migliorandoli. Se siete alle prime armi, leggete questo articolo prima di continuare.
 
 ### Creazione delle coppie di chiavi pubbliche/private
 
@@ -768,4 +768,4 @@ Spiegazione dello script: Non rendiamo questo script eseguibile. La ragione è c
 
 ## Conclusione
 
-In questo documento abbiamo trattato molti aspetti, ma tutti sono stati pensati per rendere un server web multisito più sicuro e meno soggetto a vettori di attacco su SSH quando si attiva SFTP per l'accesso dei clienti. L'attivazione e l'uso di SFTP è molto più sicuro dell'uso di FTP, anche se si utilizzano server ftp veramente *BUONI* e li si è impostati nel modo più sicuro possibile, come indicato in questo [documento su VSFTPD](../secure_ftp_server_vsftpd). Implementando *tutti* i passaggi di questo documento, potrete sentirvi tranquilli nell'aprire la porta 22 (SSH) alla vostra zona pubblica, sapendo che il vostro ambiente è sicuro.
+In questo documento abbiamo trattato molti aspetti, ma tutti sono stati pensati per rendere un server web multisito più sicuro e meno soggetto a vettori di attacco su SSH quando si attiva SFTP per l'accesso dei clienti. L'attivazione e l'uso di SFTP è molto più sicuro dell'uso di FTP, anche se si utilizzano server ftp veramente *BUONI* e li si è impostati nel modo più sicuro possibile, come indicato in questo [documento su VSFTPD](secure_ftp_server_vsftpd.md). Implementando *tutti* i passaggi di questo documento, potrete sentirvi tranquilli nell'aprire la porta 22 (SSH) alla vostra zona pubblica, sapendo che il vostro ambiente è sicuro.

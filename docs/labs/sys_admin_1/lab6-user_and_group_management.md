@@ -10,16 +10,17 @@ tags:
 ---
 
 
+
 # Lab 6: User and group management
 
 ## Objectives
 
 After completing this lab, you will be able to
 
-    -  Add and remove users on the system
-    -  Add and remove groups on the system
-    -  Modify users and groups on the system
-    -  Change passwords
+-  Add and remove users on the system
+-  Add and remove groups on the system
+-  Modify users and groups on the system
+-  Change passwords
 
 Estimated time to complete this lab: 40 minutes
 
@@ -30,7 +31,7 @@ User management is important on any multi-user network operating system. Linux i
 
 Managing users on a system is intricately tied up to security on the system. There is an old saying that:
 
-    >A system is as secure as its weakest user. 
+>A system is as secure as its weakest user. 
     
 Linux inherits the old UNIX tradition of governing access to files, programs and other resources on a per-user and per-group basis.
 
@@ -151,14 +152,15 @@ So far throughout the previous labs you have been using the system in the capaci
 Other than the superuser, every other user has limited access to files and directories.
 Always use your machine as a normal user. Two confusing concepts will be made clear here.
 
-    - Firstly the home directory of the root user is  “ /root “.
-    - Secondly the root directory is the topmost directory, known as the /  (slash) directory.
-    (“/root” isdifferent from  “/ “)
+- Firstly the home directory of the root user is  “ /root “.
+- Secondly the root directory is the topmost directory, known as the /  (slash) directory.
+  (“/root” isdifferent from  “/ “)
 
 In this lab you will create a new user called “Me Mao”. The user name for “Me Mao" will be the first name - “me”. This new user will belong to the group “me”. The password will be “a1b2c3”
 
-    !!! Warning
-        System configurations usually conform to a specific format. It is always important to adhere and conform to this format whenever manually editing these configuration files. One way to do this is to find and copy an existing entry in the file and then modify the copied line/section with any new changes. This will help reduce the chances of you making errors.
+!!! Warning
+
+    System configurations usually conform to a specific format. It is always important to adhere and conform to this format           whenever manually editing these configuration files. One way to do this is to find and copy an existing entry in the file and     then modify the copied line/section with any new changes. This will help reduce the chances of you making errors.
 
 
 1. Log in to the computer as root
@@ -356,11 +358,11 @@ Use the tail command to examine your changes to the /etc/passwd file. Write the 
 Restore the values ( login shell etc..) to their original values. Write down the commands to do this?
 
 
-## Exercise 2
+## Exercise 3
 
 ### Set user
 
-It is not always convenient having to log out of the system completely in order to log in as another user. This may be because you have certain tasks running and you don’t want to end them. The “suXE "su"”  ( set user) program is used to temporarily become another user.  You can “su” from a regular user account to the root account or vice-versa.
+It is not always convenient having to log out of the system completely in order to log in as another user. This may be because you have certain tasks running and you don’t want to end them. The `su` ( set user) program is used to temporarily become another user.  You can “su” from a regular user account to the root account or vice-versa.
 
 It changes the current user to have the access rights of the temporary user.
 

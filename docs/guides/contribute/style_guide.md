@@ -27,8 +27,8 @@ This guide outlines English-language style standards to **improve readability, h
 For a more complete understanding of contributing, please consult our related guides:
 
 * [Rocky Linux Contribution Guide](https://docs.rockylinux.org/guides/contribute/) for system and software requirements for getting started.
-* [Rocky Linux First Time Contributors Guide](../beginners/) for an orientation to GitHub, our documentation home base.
-* [Rocky Docs Formatting](../rockydocs_formatting/) for Markdown structure.
+* [Rocky Linux First Time Contributors Guide](beginners.md) for an orientation to GitHub, our documentation home base.
+* [Rocky Docs Formatting](rockydocs_formatting.md) for Markdown structure.
 
 ## Style Guidelines
 
@@ -99,7 +99,7 @@ If you have a procedure with only one step, use a bullet rather than a number. F
 
 ### Admonitions
 
-Within Markdown, admonitions are a way to put information into a box to highlight it. They are not essential to documentation, but they are a tool you may find useful. Learn more about admonitions from our [Rocky Formatting doc](../rockydocs_formatting/).
+Within Markdown, admonitions are a way to put information into a box to highlight it. They are not essential to documentation, but they are a tool you may find useful. Learn more about admonitions from our [Rocky Formatting doc](rockydocs_formatting.md).
 
 ## Accessibility
 
