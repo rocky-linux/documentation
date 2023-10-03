@@ -14,7 +14,7 @@ Im nächsten Kapitel wird der vi-Editor behandelt. Während GNU/Linux mit vielen
 
 Wir können dann tiefer in die Funktionsweise von Linux einsteigen:
 
-* Benutzerverwaltung
+* Benutzermanagement
 * Dateisysteme
 * Prozessverwaltung
 
