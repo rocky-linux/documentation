@@ -64,7 +64,7 @@ Les droits d'un processus dépendent de son contexte de sécurité.
 
 Par défaut, le contexte de sécurité du processus est défini par le contexte de l'utilisateur (identité + rôle + domaine) qui le lance.
 
-Un domaine SELinux (domain) désigne un type spécial lié à un processus, type hérité (normalement) de l'utilisateur qui l'a lancé. Its rights are expressed in terms of authorization or refusal on types linked to objects:
+Un domaine SELinux (domain) désigne un type spécial lié à un processus, type hérité (normalement) de l'utilisateur qui l'a lancé. Les droits s'expriment en termes d'autorisation ou de refus sur des types liés aux objets :
 
 Un processus dont le contexte a un __domaine de sécurité D__ peut accéder à des objets de __type T__.
 

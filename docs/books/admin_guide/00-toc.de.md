@@ -18,7 +18,7 @@ Wir können dann tiefer in die Funktionsweise von Linux einsteigen:
 * Dateisysteme
 * Prozessverwaltung
 
-Die Beschreibung der Sicherung und Wiederherstellung enthält wichtige Informationen für den Systemadministrator. Linux verfügt über viele Softwarelösungen zur Verbesserung von Backups (rsnapshot, lsyncd usw.). Es ist wichtig, die wichtigsten Backup-Komponenten zu kennen, die im Betriebssystem vorhanden sind. In diesem Kapitel werden wir zwei Tools untersuchen: `tar` und das weniger verbreitete `kein`.
+Die Beschreibung der Sicherung und Wiederherstellung enthält wichtige Informationen für den Systemadministrator. Linux verfügt über viele Softwarelösungen zur Verbesserung von Backups (rsnapshot, lsyncd usw.). Es ist wichtig, die wichtigsten Backup-Komponenten zu kennen, die im Betriebssystem vorhanden sind. In diesem Kapitel werden wir zwei Tools untersuchen: `tar` und das weniger verbreitete `cpio`.
 
 Die Verwaltung des Systems während des Startvorgangs hat sich in den letzten Jahren seit der Einführung von systemd erheblich verändert.
 

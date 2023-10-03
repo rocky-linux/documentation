@@ -36,7 +36,7 @@ Nicht jeder spricht Englisch fliessend! Bei Rocky Linux wollen wir die Dokumenta
 1. Lokalisierung der Webseiten-Schnittstelle: Wenn Sie eine andere Sprache wählen, zum Beispiel Français, werden Sie feststellen, dass die Schnittstelle, zum Beispiel die Navigatoren 'Weiter' und 'Vorheriger' übersetzt werden.
 1. Inhalt: Das Übersetzen von Inhalten ist eine laufende (wichtige) Aufgabe. Noch nicht alle Inhalte sind in allen Sprachen übersetzt. Alle Seiten, die übersetzt wurden (in der ausgewählten Sprache) werden entsprechend dargestellt, diejenigen, die es noch nicht vollständig sind, werden in Englisch angezeigt. Wenn Sie der Community durch Übersetzungen helfen möchten, sind Sie sehr willkommen — siehe unten für weitere Details zur Vorgehensweise.
 
-!!! Bemerkung
+!!! note "Anmerkung"
 
     Nicht alle Funktionen sind in allen Sprachen verfügbar, dies ist eine Einschränkung der zugrunde liegenden MkDocs-Module.
 

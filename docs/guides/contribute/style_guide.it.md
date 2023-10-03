@@ -27,8 +27,9 @@ Questa guida delinea gli standard di stile in lingua inglese per **migliorare la
 Per una comprensione più completa della contribuzione, consultare le nostre guide correlate:
 
 * [Rocky Linux Contribution Guide](https://docs.rockylinux.org/guides/contribute/) per i requisiti di sistema e software per iniziare.
-* [Rocky Linux First Time Contributors Guide](beginners.md) per un orientamento su GitHub, la nostra base di documentazione.
-* [Rocky Docs Formattazione](rockydocs_formatting.md) per la struttura Markdown.
+* [Guida ai primi contributi di Rocky Linux](beginners.md) per un orientamento su GitHub, la nostra base di documentazione.
+* [Formattazione di Rocky Docs](rockydocs_formatting.md) per la struttura Markdown.
+
 
 ## Linee guida di stile
 
@@ -97,7 +98,7 @@ Se si tratta di una procedura con una sola fase, utilizzare un punto piuttosto c
 
 ### Ammonimenti
 
-In Markdown, gli ammonimenti sono un modo per inserire le informazioni in un riquadro per evidenziarle. Non sono essenziali per la documentazione, ma sono uno strumento che può essere utile. Per saperne di più sugli ammonimenti, consultate il nostro [Rocky Formatting doc](rockydocs_formatting.md).
+In Markdown, gli ammonimenti sono un modo per inserire le informazioni in un riquadro per evidenziarle. Non sono essenziali per la documentazione, ma sono uno strumento che può essere utile. Per saperne di più sugli ammonimenti, consultate il nostro documento [Formattazione di Rocky Docs](rockydocs_formatting.md).
 
 ## Accessibilità
 
