@@ -92,7 +92,7 @@ Starting galaxy role install process
 - geerlingguy.apache (3.1.4) was installed successfully
 ```
 
-Probabilmente avremo bisogno di aprire alcune regole del firewall, quindi installeremo anche la collezione `ansibile. osix` per lavorare con il suo modulo `firewalld`:
+Probabilmente avremo bisogno di aprire alcune regole del firewall, quindi installeremo anche la collezione `ansible.posix` per lavorare con il suo modulo `firewalld`:
 
 ```
 $ ansible-galaxy collection install ansible.posix
