@@ -332,18 +332,18 @@ Type:
 6. Use the `grep` command to view changes to the `common` group entry in the file. Type:
 
      ```bash
-        [root@localhost root]# grep common /etc/group
-        common:x:1002:ying,me
+     [root@localhost root]# grep common /etc/group
+     common:x:1002:ying,me
     ```
 
 #### To modify a user account
 
-\1. Use the usermod command to change the comment field for the user “me”. The new comment you will add will be “first last”. Type:
+1. Use the usermod command to change the comment field for the user “me”. The new comment you will add will be “first last”. Type:
 
-    ```bash
-    [root@localhost root]# usermod -c "first last" me
-    ```
-Use the tail command to examine your changes to the /etc/passwd file. Write the changed line below?
+  ```bash
+  [root@localhost root]# usermod -c "first last" me
+  ```
+  Use the tail command to examine your changes to the /etc/passwd file. Write the changed line below?
 
 2. What is the user me’s login shell ?
 
@@ -352,10 +352,10 @@ Use the tail command to examine your changes to the /etc/passwd file. Write the 
     ```bash
     [root@localhost root]# usermod -s /bin/csh me
     ```
-
 4. Finally use the `usermod` command to undo all the changes you made to the user “me” above.
 
-Restore the values ( login shell etc..) to their original values. Write down the commands to do this?
+Restore the values ( login shell etc..) to their original values. 
+Write down the commands to do this?
 
 
 ## Exercise 3
