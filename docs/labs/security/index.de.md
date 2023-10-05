@@ -2,7 +2,7 @@
 title: Liste der Security Labs
 ---
 
-# Liste der Security Labs
+# Liste der Sicherheits-Labs
 
 ## [Einleitung](introduction.md)
 
@@ -17,10 +17,10 @@ title: Liste der Security Labs
 1. Drittanbieter-Lösungen
 
 ### Lab 2: Betriebssystem-Audit
-1. A simple home grown integrity checker
-1. Tripwire
+1. Beispiel für ein einfaches Integrität-Checker
+1. Open Source Tripwire®
 1. Integritätsprüfung und Reports
-1. Fine tuning tripwire
+1. Feinabstimmung von Open Source Tripwire®
 
 ### Lab 4: Informationserfassung
 1. netstat

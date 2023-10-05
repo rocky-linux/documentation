@@ -1,8 +1,8 @@
 ---
-title: Liste des Tutoriels
+title: Liste des Ateliers
 ---
 
-# Liste des Tutoriels
+# Liste des Ateliers
 
 ## [Présentation](introduction.md)
 
@@ -18,9 +18,9 @@ title: Liste des Tutoriels
 
 ### Lab 3: Auditing du Système
 1. Un simple vérificateur d'intégrité
-1. Tripwire
+1. Open Source Tripwire®
 1. Vérification de l'intégrité et affichage des rapports
-1. Réglage de tripwire
+1. Réglage de Open Source Tripwire®
 
 ### Lab 4 : Collecte d'informations
 1. netstat
