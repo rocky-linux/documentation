@@ -352,6 +352,7 @@ You will also create a group called “common” and add the user "me" and "ying
     
 #### To modify a user account
 
+
 1. Use the `usermod` command to change the comment field for the user “me”. The new comment you will add will be “first last”. Type:
     
     ```bash
