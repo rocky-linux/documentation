@@ -322,18 +322,18 @@ Help options:
 6. Використовуйте команду `grep`, щоб переглянути зміни в записі групи `common` у файлі. Впишіть:
 
      ```bash
-        [root@localhost root]# grep common /etc/group
-        common:x:1002:ying,me
+     [root@localhost root]# grep common /etc/group
+     common:x:1002:ying,me
     ```
 
 #### Щоб змінити обліковий запис користувача
 
 1. Використовуйте команду usermod, щоб змінити поле коментаря для користувача «me». Новий коментар, який ви додасте, буде «first last». Впишіть:
 
-    ```bash
-    [root@localhost root]# usermod -c "first last" me
-    ```
-Використовуйте команду tail, щоб перевірити ваші зміни у файлі /etc/passwd. Напишіть змінений рядок нижче?
+  ```bash
+  [root@localhost root]# usermod -c "first last" me
+  ```
+  Використовуйте команду tail, щоб перевірити ваші зміни у файлі /etc/passwd. Напишіть змінений рядок нижче?
 
 2. Що таке оболонка входу користувача me?
 
@@ -342,7 +342,6 @@ Help options:
     ```bash
     [root@localhost root]# usermod -s /bin/csh me
     ```
-
 4. Нарешті, скористайтеся командою `usermod`, щоб скасувати всі зміни, які ви зробили для користувача «me» вище.
 
 Відновити значення (оболонку входу тощо) до їхніх початкових значень. Запишіть команди для цього?
