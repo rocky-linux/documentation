@@ -25,7 +25,7 @@ Estimated time to complete this lab: 70 minutes
 
 The exercises in this lab cover the usage of some basic system utilities that users and administrators alike need to be familiar with. Most of the commands are used in navigating and manipulating the file system. The file system is made up of files and directories.
 
-The exercises will cover the usage of –`pwd`,`cd`,`ls`,`rm`,`mv`,`ftp`,`cp`,`touch`,`mkdir`,`file`, and `cat` utilities.
+The exercises will cover the usage of –`pwd`, `cd`, `ls`, `rm`, `mv`, `ftp`, `cp`, `touch`, `mkdir`, `file`, and `cat` utilities.
 
 ## Exercise 1
 
@@ -377,7 +377,7 @@ The "file" utility is used to determine file or directory types.
 
 ### `cat`
 
-"cat" is short for concatenate, which means that it strings files together. The command `cat` will also display the contents of an entire file on the screen. You will use `cat` along with the redirection symbol “>” to create a file.
+"cat" is short for concatenate, meaning it strings files together. The command `cat` will also display the contents of an entire file on the screen. You will use `cat` along with the redirection symbol “>” to create a file.
 
 #### To use `cat` to create a file
 
@@ -401,7 +401,7 @@ The "file" utility is used to determine file or directory types.
     [CTRL] [c]
     ```
 
-5. Type “cat first.txt” to read the text you just typed in,
+5. Type “cat first.txt” to read the text you just typed in.
     
     ```bash
     [root@localhost folder1]#  cat    first.txt
@@ -430,7 +430,7 @@ The "file" utility is used to determine file or directory types.
 
 ### `ftp`
 
-"ftp" is a client program for using and connecting to FTP services via the File Transfer Protocol. The program allows a user to transfer files to and from a remote network site. It is a utility you might need to use often.
+"ftp" is a client program for using and connecting to FTP services via the File Transfer Protocol. The program allows users to transfer files to and from a remote network site. It is a utility you might need to use often.
 
 In this exercise you will learn how to log on anonymously to an FTP server and download a file from the server using an `ftp` client program.
 
