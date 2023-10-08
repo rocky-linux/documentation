@@ -64,7 +64,7 @@ Important user and group management files are below. Some of the fields or entri
     * days before password expiry that user is warned of pending expiration
     * days after password expiry that account is considered inactive and disabled
     * days since Jan. 1, 1970 when account will be disabled
-    * reeserved
+    * reserved
 
 ### /etc/group
 
@@ -421,7 +421,7 @@ The HOME, LOGNAME, and USER environment variables will be set to those of the te
     
 5. Logout of me’s account to get back to the root account. What is the command?
 
-#### To make `su`inherit all environmental variables of the new user
+#### To make `su` inherit all environmental variables of the new user
 
 1. To force `su` to use all the environmental variables of the temporary user. Type:
     
