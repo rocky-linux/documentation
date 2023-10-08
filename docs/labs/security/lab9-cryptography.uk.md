@@ -142,9 +142,9 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     ......................................
 
-    gpg: keyring \`/home/ying/.gnupg/secring.gpg' created
+    gpg: keyring `/home/ying/.gnupg/secring.gpg' created
 
-    gpg: keyring \`/home/ying/.gnupg/pubring.gpg' created
+    gpg: keyring `/home/ying/.gnupg/pubring.gpg' created
 
     Please select what kind of key you want:
 
@@ -226,9 +226,9 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 10. Виберіть парольну фразу, яку ви НЕ забудете під час наступного запиту:
 
     ```
-    Enter passphrase: \*\*\*\*\*\*\*\*
+    Enter passphrase: **
 
-    Repeat passphrase: \*\*\*\*\*\*\*\*
+    Repeat passphrase: **
     ```
 
 ## Завдання 2
@@ -252,13 +252,13 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;
 
-    sub 1024g/1EDB00AC 2003-10-16 \[expires: 2004-10-15\]
+    sub 1024g/1EDB00AC 2003-10-16 [expires: 2004-10-15]
     ```
 
 2. Щоб придушити дещо дратівливе «попередження» про «незахищену пам’ять», додайте наступний параметр до вашого особистого файлу конфігурації gpg. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ echo "no-secmem-warning" &gt;&gt; ~/.gnupg/gpg.conf
+    [ying@serverXY ying]$ echo "no-secmem-warning" &gt;&gt; ~/.gnupg/gpg.conf
     ```
 
 3. Виконайте команду, щоб знову вивести ваші ключі. Переконайтеся, що ваші зміни діють.
@@ -266,7 +266,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 4. Перерахуйте свої ключі разом із їхніми підписами. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --list-sigs
+    [ying@serverXY ying]$ gpg --list-sigs
 
     /home/ying/.gnupg/pubring.gpg
     ```
@@ -274,7 +274,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 5. Перелічіть лише свої секретні ключі. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --list-secret-keys
+    [ying@serverXY ying]$ gpg --list-secret-keys
 
     /home/ying/.gnupg/secring.gpg
 
@@ -288,7 +288,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 6. Відобразити ключові відбитки пальців. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ ***gpg --fingerprint***
+    [ying@serverXY ying]$ gpg --fingerprint
 
     /home/ying/.gnupg/pubring.gpg
 
@@ -298,7 +298,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     Key fingerprint = D61E 1538 EA12 9049 4ED3 5590 3BC4 A3C1 1D12 E484
 
-    sub 1024g/1EDB00AC 2003-10-16 \[expires: 2004-10-15\]
+    sub 1024g/1EDB00AC 2003-10-16 [expires: 2004-10-15]
 
     <span id="anchor-2"></span>Revocation certificates
 
@@ -310,7 +310,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 1. Увійшовши як користувач ying. Створіть свідоцтво про відкликання. Він буде відображатися на стандартному виводі. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --gen-revoke ying@serverXY
+    [ying@serverXY ying]$ gpg --gen-revoke ying@serverXY
     ```
 
     Дотримуйтесь підказок і введіть свою парольну фразу, коли буде запропоновано це зробити.
@@ -320,7 +320,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
     “revoke.asc”. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --output revoke.asc --gen-revoke ying@serverXY
+    [ying@serverXY ying]$ gpg --output revoke.asc --gen-revoke ying@serverXY
     ```
 
 3. Ви повинні зберігати свідоцтво про відкликання в безпечному місці та навіть зробити роздруковану копію.
@@ -340,7 +340,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 1. Експортуйте свій відкритий ключ у двійковому форматі у файл під назвою «ying-pub.gpg». Впишіть:
 
     ```
-    [ying@serverXY ying\]$ ***gpg --output ying-pub.gpg --export &lt;your\_key’s\_user\_ID&gt;***
+    [ying@serverXY ying]$ gpg --output ying-pub.gpg --export &lt;your_key’s_user_ID&gt;
     ```
 
     !!! note "Примітка"
@@ -358,7 +358,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
     ASCII-броньований формат. Впишіть:
 
     ```
-    [ying@serverXY ying\]$***gpg --output ying-pub.asc --armor --export ying@serverXY ***
+    [ying@serverXY ying]$gpg --output ying-pub.asc --armor --export ying@serverXY 
     ```
 
 3. Використовуйте команду cat, щоб переглянути двійкову версію відкритого ключа ying (ying-pub.gpg)
@@ -380,7 +380,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 1. Створіть файл із назвою «secret-file.txt» із текстом «Hello All». Впишіть:
 
     ```
-    [ying@serverXY ying\]$ echo "Hello All" &gt; secret1.txt
+    [ying@serverXY ying]$ echo "Hello All" &gt; secret1.txt
     ```
 
 2. Використовуйте cat для перегляду вмісту файлу. Використовуйте команду file, щоб побачити тип файлу.
@@ -388,7 +388,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 3. Тепер підпишіть файл своїм цифровим підписом. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg -s secret1.txt
+    [ying@serverXY ying]$ gpg -s secret1.txt
     ```
     Введіть свою парольну фразу, коли буде запропоновано.
 
@@ -397,7 +397,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 4. Перевірте підпис у підписаному файлі “secret1.txt.gpg”. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --verify secret1.txt.gpg
+    [ying@serverXY ying]$ gpg --verify secret1.txt.gpg
 
     gpg: Signature made Thu 16 Oct 2003 07:29:37 AM PDT using DSA key ID 1D12E484
 
@@ -409,7 +409,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 6. Підпишіть файл secret2.txt, але цього разу нехай файл буде захищений ASCII. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg -sa secret2.txt
+    [ying@serverXY ying]$ gpg -sa secret2.txt
     ```
 
     У вашому pwd буде створено броньований файл ASCII під назвою “secret2.txt.asc”.
@@ -425,7 +425,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 9. Додайте свій підпис до тіла файлу, який ви створили вище. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --clearsign secret3.txt
+    [ying@serverXY ying]$ gpg --clearsign secret3.txt
     ```
 
     Це створить нестиснений файл (secret3.txt.asc), загорнутий у ваш ASCII-підпис.
@@ -471,7 +471,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
     Імпортуйте ключ у свій key-ring. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --import me-pub.asc
+    [ying@serverXY ying]$ gpg --import me-pub.asc
 
     gpg: key 1D0D7654: public key "Me Mao (my test) &lt;me@serverXY&gt;" imported
 
@@ -483,7 +483,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 5. Тепер перелічіть ключі у вашому key-ring. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --list-keys
+    [ying@serverXY ying]$ gpg --list-keys
 
     /home/ying/.gnupg/pubring.gpg
 
@@ -491,23 +491,23 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;
 
-    sub 1024g/1EDB00AC 2003-10-16 \[expires: 2004-10-15\]
+    sub 1024g/1EDB00AC 2003-10-16 [expires: 2004-10-15]
 
     pub 1024D/1D0D7654 2003-10-16 Me Mao (my test) &lt;me@serverXY&gt;
 
-    sub 1024g/FD20DBF1 2003-10-16 \[expires: 2004-10-15\]
+    sub 1024g/FD20DBF1 2003-10-16 [expires: 2004-10-15]
     ```
 
 6. Зокрема, перелічіть ключ, пов’язаний з ідентифікатором користувача me@serverXY. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --list-keys me@serverXY
+    [ying@serverXY ying]$ gpg --list-keys me@serverXY
     ```
 
 7. Переглянути відбиток ключа для me@serverXY. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --fingerprint me@serverXY
+    [ying@serverXY ying]$ gpg --fingerprint me@serverXY
     ```
 
 
@@ -526,7 +526,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 1. Увійшовши в систему як користувач ying, створіть файл під назвою encrypt-sec.txt. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ echo "hello" &gt; encrypt-sec.txt
+    [ying@serverXY ying]$ echo "hello" &gt; encrypt-sec.txt
     ```
 
     Переконайтеся, що ви можете прочитати вміст файлу за допомогою cat.
@@ -534,7 +534,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 2. Зашифруйте файл encrypt-sec.txt, щоб лише користувач «me» міг переглядати файл. тобто ви зашифруєте його за допомогою відкритого ключа me@serverXY (який зараз є у вашому key-ring). Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --encrypt --recipient me@serverXY encrypt-sec.txt
+    [ying@serverXY ying]$ gpg --encrypt --recipient me@serverXY encrypt-sec.txt
     ```
 
     Наведена вище команда створить зашифрований файл під назвою «encrypt-sec.txt.gpg» у вашому pwd.
@@ -546,7 +546,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
     Спробуйте розшифрувати файл. Впишіть:
 
     ```
-    [ying@serverXY ying\]$ gpg --decrypt encrypt-sec.txt.gpg
+    [ying@serverXY ying]$ gpg --decrypt encrypt-sec.txt.gpg
 
     gpg: encrypted with 1024-bit ELG-E key, ID FD20DBF1, created 2003-10-16
 
@@ -566,7 +566,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
     Візьміть звичку використовувати команду нижче під час розшифровки файлів:
 
     ```
-    [ying@serverXY ying\]$ gpg --output encrypt-sec --decrypt encrypt-sec.txt.gpg
+    [ying@serverXY ying]$ gpg --output encrypt-sec --decrypt encrypt-sec.txt.gpg
     ```
 
     Це примусово надсилає вихідні дані у файл під назвою «encrypt-sec».
@@ -593,15 +593,15 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
 3. Щоб зашифрувати файл "your_file" відкритим ключем "me@serverXY" і записати його в "your_file.gpg"
 
-    після ***підпису*** його своїм ідентифікатором користувача (за допомогою цифрового підпису); Використовуйте команду нижче:
+    підписавши його своїм ідентифікатором користувача (використовуючи свій цифровий підпис); Використовуйте команду нижче:
 
     ```
-    gpg -se -r me@serverXY your\_file
+    gpg -se -r me@serverXY your_file
     ```
 
 4. Існує загальнодоступний сервер ключів на wwwkeys.pgp.net. Ви можете використовувати gpg, щоб завантажити туди свій ключ за допомогою:
 
-    gpg --send-keys &lt;your\_real\_email\_address&gt; --keyserver wwwkeys.pgp.net
+    gpg --send-keys &lt;your_real_email_address&gt; --keyserver wwwkeys.pgp.net
 
 ## OpenSSH (www.openssh.org)
 
@@ -613,79 +613,63 @@ OpenSSH — це реалізація протоколу SSH (Secure SHell) Open
 
 Він включає як компоненти на стороні сервера, так і набір програм на стороні клієнта
 
-### `sshd`
+### sshd
 
 На стороні сервера є демон безпечної оболонки (`sshd`). `sshd` — це демон, який прослуховує підключення від клієнтів.
 
 Він створює новий демон для кожного вхідного з’єднання. Розгалужені демони обробляють обмін ключами, шифрування, автентифікацію, виконання команд і обмін даними. Згідно зі сторінкою довідки sshd, `sshd` працює наступним чином:
 
-Для протоколу SSH версії 2:
+Демон OpenSSH SSH підтримує лише протокол SSH 2.  Кожен хост має спеціальний ключ, який використовується для ідентифікації хоста.  Кожен хост має спеціальний ключ, який використовується для ідентифікації хоста.  Клієнт порівнює ключ хоста з власною базою даних, щоб переконатися, що він не змінився.  Передня безпека забезпечується через ключову угоду Діффі-Хеллмана. Ця угода ключа призводить до спільного ключа сеансу.  Решта сеансу шифрується за допомогою симетричного шифру.
 
-Кожен хост має спеціальний ключ (RSA або DSA), який використовується для ідентифікації хоста. Кожен хост має спеціальний ключ (RSA або DSA), який використовується для ідентифікації хоста. Передня безпека забезпечується через ключову угоду Діффі-Хеллмана. Ця угода ключа призводить до спільного ключа сеансу.
+Клієнт вибирає алгоритм шифрування із запропонованих сервером.  Крім того, цілісність сеансу забезпечується за допомогою коду автентифікації криптографічного повідомлення (hmac-md5, hmac-sha1, umac-64, umac-128, hmac-sha2-256 або hmac-sha2-512).
 
-Решта сеансу шифрується за допомогою симетричного шифру, наразі 128-бітного AES, Blowfish, 3DES, CAST128, Arcfour, 192-бітного AES або 256-бітного AES. Клієнт вибирає алгоритм шифрування із запропонованих сервером. Крім того, цілісність сеансу забезпечується за допомогою коду автентифікації криптографічного повідомлення (hmac-sha1 або hmac-md5).
-
-Протокол версії 2 надає метод автентифікації на основі відкритого ключа користувача (PubkeyAuthentication) або клієнтського хоста (HostbasedAuthentication), звичайну автентифікацію за паролем і методи на основі виклику.
+Нарешті, сервер і клієнт відкривають діалогове вікно автентифікації.  Клієнт намагається автентифікувати себе за допомогою автентифікації на основі хоста, автентифікації з відкритим ключем, GSSAPI, автентифікації виклик-відповідь або автентифікації за паролем.
 
 Протокол SSH2, реалізований у OpenSSH, стандартизовано робочою групою «IETF secsh».
 
-### `ssh`
+### ssh
 
 Набір програм клієнта включає `ssh`. Це програма, яка використовується для входу у віддалені системи, а також може використовуватися для виконання команд у віддалених системах.
 
 ## Завдання 5
 
-### `sshd`
+Деякі вправи, що стосуються демона сервера `sshd`.
 
 ```
 Usage: sshd [options]
 
 Options:
 
- -f file Configuration file (default /etc/ssh/sshd\_config)
-
+ -f file Configuration file (default /etc/ssh/sshd_config)
  -d Debugging mode (multiple -d means more debugging)
-
  -i Started from inetd
-
  -D Do not fork into daemon mode
-
  -t Only test configuration file and keys
-
  -q Quiet (no logging)
-
  -p port Listen on the specified port (default: 22)
-
  -k seconds Regenerate server key every this many seconds (default: 3600)
-
  -g seconds Grace period for authentication (default: 600)
-
  -b bits Size of server RSA key (default: 768 bits)
-
- -h file File from which to read host key (default: /etc/ssh/ssh\_host\_key)
-
+ -h file File from which to read host key (default: /etc/ssh/ssh_host_key)
  -u len Maximum hostname length for utmp recording
-
  -4 Use IPv4 only
-
  -6 Use IPv6 only
-
  -o option Process the option as if it was read from a configuration file.
 ```
 
-Більшість систем Linux із коробки вже мають сервер OpenSSH, налаштований і запущений із деякими параметрами за замовчуванням. Конфігураційний файл для `sshd` зазвичай знаходиться в - /etc/ssh/ - і називається `sshd_config`.
+Більшість систем Linux із коробки вже мають сервер OpenSSH, налаштований і запущений із деякими параметрами за замовчуванням. Конфігураційний файл для `sshd` зазвичай знаходиться в - `/etc/ssh/` - і називається `sshd_config`.
 
 ### `sshd_config`
 
 1. Відкрийте конфігураційний файл ssh-сервера будь-яким пейджером і вивчіть його. Впишіть:
 
     ```
-    [root@serverXY root\]\# less /etc/ssh/sshd_config
+    [root@serverXY root]# less /etc/ssh/sshd_config
     ```
 
     !!! note "Примітка" 
 
-     `sshd_config` є досить дивним конфігураційним файлом. На відміну від інших конфігураційних файлів Linux, коментарі (\#) у файлі `sshd_config` позначають значення параметрів за замовчуванням. (тобто коментарі представляють уже скомпільовані значення за замовчуванням.)
+     `sshd_config` є досить дивним конфігураційним файлом. На відміну від інших конфігураційних файлів Linux, коментарі (#) у файлі `sshd_config` позначають значення параметрів за замовчуванням. (тобто коментарі представляють уже скомпільовані значення за замовчуванням.)
 
 2. Перегляньте сторінку довідки для `sshd_config` і поясніть, що роблять наведені нижче параметри?
 
@@ -714,7 +698,7 @@ Options:
 1. Створіть новий каталог під вашим pwd. Назвіть це запасними ключами. cd у новий каталог. Впишіть:
 
     ```
-    [root@serverXY ssh\]# mkdir spare-keys && cd spare-keys
+    [root@serverXY ssh]# mkdir spare-keys && cd spare-keys
     ```
 
 2. Використовуйте програму `ssh-keygen`, щоб створити ключ хоста з такими характеристиками:
@@ -723,14 +707,14 @@ Options:
 
     b. Ключ не повинен мати зауважень
 
-    c. Файл закритого ключа повинен мати назву - ssh\_host\_rsa\_key
+    c. Файл закритого ключа повинен мати назву - ssh_host_rsa_key
 
     d. Ключ не повинен використовувати парольну фразу
 
     Впишіть:
 
     ```
-    [root@serverXY spare-keys]# ssh-keygen -q -t rsa -f ssh\_host\_rsa\_key -C '' -N ''
+    [root@serverXY spare-keys]# ssh-keygen -q -t rsa -f ssh_host_rsa_key -C '' -N ''
     ```
 
 3. Перегляньте відбиток ключа, який ви створили вище. Впишіть:
@@ -739,11 +723,11 @@ Options:
     [root@serverXY spare-keys]# ssh-keygen -l -f ssh_host_rsa_key
     ```
 
-4. Запишіть команду для створення ключа типу ***dsa*** під назвою “ssh_host_dsa_key” без коментарів і парольної фрази.
+4. Запишіть команду для створення ключа типу dsa під назвою «ssh_host_dsa_key» без коментарів і фрази-паролю.
 
 ## Завдання 6
 
-### `ssh`
+Деякі вправи, що охоплюють клієнтську програму `ssh`.
 
 ```
 usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
@@ -755,14 +739,14 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
            [-w local_tun[:remote_tun]] destination [command]
 ```
 
-Для використання `ssh`
+#### Щоб використовувати `ssh`
 
 1. Увійдіть на serverXY як користувач me.
 
 2. Використовуйте `ssh` для підключення до serverPR. Впишіть:
 
     ```
-    [me@serverXY me\]$ ***ssh serverPR***
+    [me@serverXY me]$ ssh serverPR
     ```
 
     Введіть пароль користувача me, коли буде запропоновано. Якщо ви отримаєте будь-які попередження, введіть «yes», щоб продовжити.
@@ -770,7 +754,7 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 3. Після входу створіть каталог під назвою myexport і створіть порожній файл. Впишіть:
 
     ```
-    [me@serverPR me\]$ mkdir ~/myexport && touch myexport
+    [me@serverPR me]$ mkdir ~/myexport && touch myexport
     ```
 
     Зверніть увагу на випадковий файл, який було створено для вас, у розділі ~/myexport ?
@@ -796,7 +780,7 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 6. Увійшовши як я на serverXY, увійдіть у serverPR як користувач ying. Впишіть:
 
     ```
-    [me@serverXY me\]$ ***ssh -l ying serverPR ***
+    [me@serverXY me]$ ssh -l ying serverPR 
     ```
 
     **Коли буде запропоновано, введіть пароль ying.**
@@ -813,7 +797,7 @@ usage: scp [-346ABCOpqRrTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
            [-o ssh_option] [-P port] [-S program] source ... target
 ```
 
-Для використання `scp`
+#### Щоб використовувати `scp`
 
 1. Переконайтеся, що ви все ще ввійшли як користувач me на serverXY.
 
@@ -822,7 +806,7 @@ usage: scp [-346ABCOpqRrTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
 3. Скопіюйте всі файли в каталозі «/home/me/myexport/» на serverPR. Впишіть:
 
     ```
-    [me@serverXY myimports\]$ scp serverPR:/home/me/myexport  .
+    [me@serverXY myimports]$ scp serverPR:/home/me/myexport  .
     ```
 
 4. Перелічіть вміст вашої pwd?
@@ -834,7 +818,7 @@ usage: scp [-346ABCOpqRrTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
 6. Тепер скопіюйте всі файли в домашній каталог ying на serverPR. Впишіть:
 
     ```
-    [me@serverXY myimports\]$ scp -r ying@serverPR:/home/ying/*  .
+    [me@serverXY myimports]$ scp -r ying@serverPR:/home/ying/*  .
     ```
 
 ## Завдання 7
@@ -843,9 +827,10 @@ usage: scp [-346ABCOpqRrTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
 
 Кожен користувач, який хоче використовувати SSH з автентифікацією RSA або DSA, потребує набору відкритих і закритих ключів. Програму `ssh-keygen` можна використати для створення цих ключів (так само, як вона використовувалася раніше, коли ви створювали запасні ключі для вашої системи)
 
-Єдиною «рекомендованою» відмінністю під час створення ключів користувача є створення парольної фрази.
+!!! Підказка
+    Основна відмінність між ключами хоста та ключами користувача полягає в тому, що настійно рекомендується захищати ключі користувача за допомогою парольної фрази. Парольна фраза – це пароль, який використовується для шифрування закритого ключа [простого тексту].
 
-Парольна фраза — це пароль для шифрування закритого ключа перед його збереженням у файловій системі.
+
 
 Загальнодоступний зберігається у файлі з таким же ім’ям, що й закритий ключ, але з доданим до нього розширенням «.pub». Немає способу відновити втрачену парольну фразу. Необхідно створити новий ключ, якщо парольну фразу втрачено або забуто.
 
@@ -853,7 +838,7 @@ usage: scp [-346ABCOpqRrTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
 
 1. Увійдіть на локальну машину як користувач ying.
 
-2. Запустіть програму `ssh-keygen`, щоб створити ключ типу «***dsa***» із довжиною за умовчанням. Впишіть:
+2. Запустіть програму `ssh-keygen`, щоб створити ключ типу «dsa» із довжиною за замовчуванням. Впишіть:
 
     ```
     [ying@serverXY ying]$ ssh-keygen -t dsa
@@ -862,30 +847,30 @@ usage: scp [-346ABCOpqRrTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
 
     Press <kbd>ENTER</kbd> to accept the default file location.
 
-    Enter file in which to save the key (/home/ying/.ssh/id\_dsa): <kbd>ENTER</kbd>
+    Enter file in which to save the key (/home/ying/.ssh/id_dsa): <kbd>ENTER</kbd>
 
     Enter a very good passphrase when prompted - i.e. one that is difficult to guess.
 
     Created directory '/home/ying/.ssh'.
 
-    Enter passphrase (empty for no passphrase): ********
+    Enter passphrase (empty for no passphrase): **
 
-    Enter same passphrase again: *******
+    Enter same passphrase again: *
 
-    Your identification has been saved in /home/ying/.ssh/id\_dsa.
+    Your identification has been saved in /home/ying/.ssh/id_dsa.
 
-    Your public key has been saved in /home/ying/.ssh/id\_dsa.pub.
+    Your public key has been saved in /home/ying/.ssh/id_dsa.pub.
 
     The key fingerprint is:
 
     61:68:aa:c2:0c:af:9b:49:4a:11:b8:aa:b5:84:18:10 ying@serverXY.example.org
     ```
 
-3. cd у ваш каталог “**~/.ssh/**”. Перерахувати файли в каталозі?
+3. cd у ваш каталог `~/.ssh/`. Перерахувати файли в каталозі?
 
 4. Що таке команда “ssh-keygen” для перегляду відбитків ваших ключів?
 
-5. Використовуйте команду cat, щоб переглянути вміст вашого файлу відкритого ключа (тобто “**~/.ssh/id\_rsa.pub**”).
+5. Використовуйте команду cat, щоб переглянути вміст вашого файлу відкритого ключа (тобто `~/.ssh/id_rsa.pub`).
 
 ## Завдання 8
 
@@ -906,18 +891,18 @@ usage: scp [-346ABCOpqRrTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
 3. Введіть жахливу команду нижче:
 
     ```
-    [ying@serverXY .ssh\]$ cat id\_dsa.pub | ssh ying@serverPR \
+    [ying@serverXY .ssh]$ cat id_dsa.pub | ssh ying@serverPR 
 
-    '(cd ~/.ssh && cat - &gt;&gt; authorized\_keys && chmod 600 authorized\_keys)'
+    '(cd ~/.ssh && cat - &gt;&gt; authorized_keys && chmod 600 authorized_keys)'
     ```
 
     Команда вище читається як:
 
     a. cat вміст вашого файлу відкритого ключа DSA, але надішліть вихід у канал ( | ) замість звичайного стандартного вихідного.
 
-    b. запустіть команду “***cd ~/.ssh && кіт - &gt;&gt; авторизовані\_keys && chmod 600 authorized\_keys”*** як користувач, який знаходиться на serverPR.
+    b. запустіть команду “cd ~/.ssh && cat - &gt;&gt; authorized_keys && chmod 600 authorized_keys” як користувач, який знаходиться на serverPR.
 
-    c. Суть команди полягає в тому, щоб просто скопіювати та додати вміст вашого файлу відкритого ключа до “/home/ying/.ssh/authorized\_keys” на serverPR і надати йому правильні дозволи.
+    c. Суть команди полягає в тому, щоб просто скопіювати та додати вміст вашого файлу відкритого ключа до “/home/ying/.ssh/authorized_keys” на serverPR і надати йому правильні дозволи.
 
     Якщо ви знаєте будь-який інший ручний спосіб досягнення такого ж результату, зробіть це.
 
@@ -926,7 +911,7 @@ usage: scp [-346ABCOpqRrTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
     ```
     [ying@serverXY .ssh]$ ssh serverPR
 
-    Enter passphrase for key '/home/ying/.ssh/id\_dsa': ********
+    Enter passphrase for key '/home/ying/.ssh/id_dsa': **
     ```
 
     Дуже уважно зверніть увагу, що цього разу вам буде запропоновано ввести парольну фразу замість пароля. Введіть парольну фразу, яку ви створили раніше під час створення ключів.
@@ -935,7 +920,7 @@ usage: scp [-346ABCOpqRrTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
 
 ## Завдання 9
 
-### `ssh-agent`
+### ssh-agent
 
 Згідно зі сторінкою довідки, ssh-agent — це програма для зберігання приватних ключів, які використовуються для автентифікації відкритих ключів (RSA, DSA). Ідея полягає в тому, що ssh-agent запускається на початку X-сеансу або сеансу входу, а всі інші вікна чи програми запускаються як клієнти програми `ssh-agent`. За допомогою змінних середовища можна знайти агента та автоматично використовувати його для автентифікації під час входу на інші машини за допомогою `ssh`.
 
@@ -954,7 +939,7 @@ usage: ssh-agent [-c | -s] [-Dd] [-a bind_address] [-E fingerprint_hash]
 2. Введіть команду нижче:
 
     ```
-    [ying@serverXY .ssh\]$ eval `ssh-agent`
+    [ying@serverXY .ssh]$ eval ssh-agent
 
     Agent pid 5623
     ```
@@ -964,19 +949,19 @@ usage: ssh-agent [-c | -s] [-Dd] [-a bind_address] [-E fingerprint_hash]
 3. Використовуйте програму `ssh-add`, щоб додати свої ключі до агента, який ви запустили вище. Впишіть:
 
     ```
-    [ying@serverXY .ssh\]$ ***ssh-add***
+    [ying@serverXY .ssh]$ ssh-add
 
     Enter your passphrase when prompted.
 
-    Enter passphrase for /home/ying/.ssh/id\_dsa:
+    Enter passphrase for /home/ying/.ssh/id_dsa:
 
-    Identity added: /home/ying/.ssh/id\_dsa (/home/ying/.ssh/id\_dsa)
+    Identity added: /home/ying/.ssh/id_dsa (/home/ying/.ssh/id_dsa)
     ```
 
 4. Тепер підключіться до serverPR як користувач ying. Вам НЕ буде запропоновано ввести пароль або парольну фразу (тобто якщо все зроблено правильно). Впишіть:
 
     ```
-    [ying@serverXY .ssh\]$ ssh serverPR
+    [ying@serverXY .ssh]$ ssh serverPR
     ```
 
 5. Насолоджуйтесь.
