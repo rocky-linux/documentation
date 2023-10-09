@@ -298,13 +298,13 @@ PERFORM THIS EXERCISE ON YOUR LOCAL-SYSTEM
 
 Creating partitions (`fdisk`, `mke2fs`, `fsck`, `tune2fs`) 
 
-In this exercise you will create additional partitions on your hard drive. You will create the partitions on the free space you left on the drive during the initial installation. 
+In this exercise you will create additional partitions on your hard disk. During the initial installation you left some free space. You will create partitions on this space. 
 
 Partitioning a disk allows the disk to be regarded as a group of independent storage areas.  
 
 Partitions also make backups easier and help to restrict and confine potential problem areas. 
 
-Hard disk space is not infinite and one of your duties as an administrator is to manage the finite space available. For instance a simple way to restrict the total storage area on a disk that users can store their personal files is to create a separate partition for the users’ home directory (Of course quotas can also be used).
+Hard disk space is not infinite and one of your duties administrator is managing the available finite space. For instance, a simple way to restrict the total storage area on a disk where users can store their personal files is to create a separate partition for the users’ home directory (Of course quotas can also be used).
 
 #### To explore block storage devices
 
@@ -343,9 +343,9 @@ You will be using the `fdisk` utility
 
 #### To create a [fake] block device
 
-We don't want you to accidentally alter the local harddrive on your system and make it inoperable and so we'll complete the following exercises on a pseudo-device that behaves and mimicks a real block device.  This will be done by creating a reasonably sized [sparse] file and associate it with a pseudo-device. On Linux systems, these pseudo-devices are referred to as loop devices. A loop device is a type of pseudo-device that makes it possible to treat [and access] a regular data file as if it were a block device. 
+We don't want you to accidentally alter the local hard disk on your system and make it inoperable,  so we'll complete the following exercises on a pseudo-device that behaves and mimics an actual block device. This will be done by creating a reasonably sized [sparse] file and associating it with a pseudo-device. On Linux systems, these pseudo-devices are referred to as loop devices. A loop device is a pseudo-device that makes it possible to treat [and access] a regular data file as if it were a block device. 
 
-(This step is roughly equal to the same decisions you would have to make about purchasing real disks/storage for a server. Decisions like - type, make, size, interface, form-factor and so on)
+(This step is roughly equal to the same decisions you must make about purchasing actual disks/storage for a server. Decisions like - type, make, size, interface, form-factor and so on)
 
 1. While still logged into the system as the root user, use the losetup utility to create a sparse 10GB file. Type:
 
@@ -382,7 +382,7 @@ We don't want you to accidentally alter the local harddrive on your system and m
     /dev/loop0         0      0         0  0 /tmp/10G-fake-disk.img   0     512
     ```
 
-6. Use the sfdisk utility to list any partitions on the new psedo-block device. Type:
+6. Use the `sfdisk` utility to list any partitions on the new pseudo-block device. Type:
     
     ```bash
     [root@localhost ~]# sfdisk -l /dev/loop0
@@ -404,7 +404,7 @@ We don't want you to accidentally alter the local harddrive on your system and m
     
 #### To create partitions
 
-1. You will use the `fdisk` program to create a new partition. fdisk runs interactively, and so you'll be presented with a bunch of question and answer style prompts to complete certain tasks.
+1. You will create a new partition using the `fdisk` program. `fdisk` runs interactively, so you'll have many question-and-answer style prompts to complete specific tasks.
     
     Start by passing the name of the loop block device as an argument to the `fdisk`. Type:
     
@@ -498,7 +498,7 @@ We don't want you to accidentally alter the local harddrive on your system and m
     
     The new partition you created is the one on `/dev/loop0p1` above. You will notice that the partition type is “83”.
     
-9. Everything looks good. Write all the changes to the partition table by typing the `w` `fdisk` command:
+9. Everything looks good. Write all the changes to the partition table by typing the `w` sub command of `fdisk`:
     
     ```bash
     Command (m for help): w
@@ -508,7 +508,7 @@ We don't want you to accidentally alter the local harddrive on your system and m
     
     The `w` `fdisk` command will also exit the `fdisk` program and return the shell prompt.
     
-10. Per the warning message you may have gotten after writing the partition table to disk in the previous step, you may sometimes need take extra steps to urge the kernel to acknowledge the new harddisk changes. Use the `partprobe` command to do this: 
+10. Per the warning message you may have gotten after writing the partition table to disk in the previous step, you may sometimes need to take extra steps to urge the kernel to acknowledge the new hard disk changes. Use the `partprobe` command to do this: 
     
     ```bash
     [root@localhost ~]# partprobe
@@ -538,7 +538,7 @@ We don't want you to accidentally alter the local harddrive on your system and m
 
 #### To create a physical volume 
 
-To help demonstrate some of the subtle differences between the tradition method of managing block devices and the more modern approaches like the volume manager approach , we'll create a new psedo-block device and attempt to prepare it (similar to partitioning) for use with a file system.
+To help demonstrate some of the subtle differences between the traditional method of managing block devices and the more modern approaches like the volume manager approach, we'll create a new pseudo-block device and attempt to prepare it (similar to partitioning) for use with a file system.
 
 In the following steps we are going to create a new loop device backed by another regular file. And then we'll go on to setting up the device for the Logical Volume Manager (LVM) system. 
 
@@ -554,7 +554,7 @@ In the following steps we are going to create a new loop device backed by anothe
     [root@serverPR root]# losetup -f --nooverlap
     ```
 
-    The first usable or unused loop device on our sample system has been incremented and is now /dev/loop1.
+    Our sample system's first usable or unused loop device has been incremented and is now /dev/loop1.
     
 3. Using the 10G-fake-lvm-disk.img as a backing file, associate the file with an available loop device by running:
     
@@ -651,7 +651,7 @@ You'll add the `/dev/loop1` physical volume (PV) that was prepped and created ab
     
     !!! Question
 
-        Using your `vgdisplay` output, note down the changes on your system . What are the new values for "Free PE / Size"?  
+        Using your `vgdisplay` output, note down the changes on your system. What are the new values for "Free PE / Size"?  
     
 #### To remove a LV, VG and PV 
 
@@ -740,7 +740,7 @@ With the additional free space we have been able to add to the rl volume group (
         3. What are the various LVs being used for on your system?
         
     
-2. Use the `lvs` command to similarly display the logical volumes, but this time filter the output to show specific fields. Filter to view the lv_name (logical volume name),lv_size (logical volume size),lv_path,vg_name (volume group name) fields. Type:
+2. Use the `lvs` command to similarly display the logical volumes, but this time filter the output to show specific fields. Filter to view the lv_name (logical volume name), lv_size (logical volume size), lv_path, vg_name (volume group name) fields. Type:
     
     ```bash
     [root@localhost ~]# lvs  -o lv_name,lv_size,lv_path,vg_name
@@ -752,7 +752,7 @@ With the additional free space we have been able to add to the rl volume group (
     
     !!! note
 
-        lv_name = logical volume name, lv_size = logical volume size, lv_path = = logical volume size, vg_name = volume group.
+        lv_name = logical volume name, lv_size = logical volume size, lv_path = logical volume path, vg_name = volume group.
     
 3. On the new `scratch` VG, create a new logical volume called “scratch2” using the `lvcreate` command. Set the size for `scratch2` to be 2GB. Type:
     
@@ -772,7 +772,7 @@ With the additional free space we have been able to add to the rl volume group (
     
 ## Exercise 2
 
-To make the traditional partition and LVM style volumes that were created earlier usable by the operating system, you need to create file systems on it. Writing a file system to a device is also known as formatting the disk.
+To make the traditional partition and LVM-style volumes created earlier usable by the operating system, you need to create file systems on it. Writing a file system to a device is also known as formatting the disk.
 
 This exercise covers file system creation as well the use of some common file system maintenance tools.
 
@@ -780,7 +780,7 @@ This exercise covers file system creation as well the use of some common file sy
 
 Here you will use the `mke2fs` program to create an vFAT file system on the new /dev/loop0p1 partition.
 
-1. Use the `mkfs.vfat` utility to create an vfat type filesystem on the `/dev/loop0p1` volume. Type: 
+1. Use the `mkfs.vfat` utility to create an vfat type file system on the `/dev/loop0p1` volume. Type: 
     
     ```bash
     [root@localhost ~]# mkfs.vfat /dev/loop0p1
@@ -994,7 +994,7 @@ The `mount` command is used for attaching the filesystem created on a device to 
 
 1. Use the `cat` command to review the current contents of the `/etc/fstab` file. 
 
-2. Before making any changes to it, make a backup of the `/etc/fstab` file. Type:
+2. Before making any changes, backup the `/etc/fstab` file. Type:
     
     ```bash
     [root@localhost ~]# cp /etc/fstab  /etc/fstab.copy
@@ -1022,7 +1022,7 @@ The `mount` command is used for attaching the filesystem created on a device to 
     
 4. With real disk or storage devices, the previous steps will be enough to make the system automatically and correctly  mount all the new file systems and apply any special mount options. 
     
-    BUT because we've been using special pseudo block devices (loop devices) in this lab, we will have to complete an additional important task to ensure that the correct loop devices are automatically recreated after the system reboots. 
+    BUT, because we've been using special pseudo-block devices (loop devices) in this lab, we must complete an additional important task to ensure that the correct loop devices are automatically recreated after the system reboots. 
     
     To do this we'll create a custom systemd service unit to help with this.
     
@@ -1073,7 +1073,7 @@ For no good reason, the user named “unreasonable” has decided to create an e
 
 The file has taken up a lot of space on the local hard disk.  
 
-As an administrator you can simply find and delete the offending file and carry on with your day and hope it's a one time occurrence OR you can find and delete the file to free up disk space and devise a plan to prevent a reoccurrence of this. We will attempt the latter solution in later exercise.
+As an administrator, you can find and delete the offending file and carry on with your day and hope it's a one time occurrence, OR you can find and delete the file to free up disk space and devise a plan to prevent a reoccurrence. We will attempt the latter solution in later exercise.
 
 In the interim - 
 
@@ -1105,7 +1105,7 @@ He then proceeds to fill up the volume with an arbitrarily large file.
     1916194816 bytes (1.9 GB, 1.8 GiB) copied, 4.99021 s, 384 MB/s
     ```
     
-4. After kicking off the `dd` process, go out for a walk and come back when the command completes or when it errors out because it can’t go any further. Or go and find the Administrator and complain about the disk space being full on the system.
+4. After kicking off the `dd` process, go for a walk and return when the command completes or when it errors out because it can’t go any further. Or go and find the Administrator and complain about the disk space being full on the system.
 
 5. Explore further unreasonable/senseless/annoying things can be done on the system. You are ***unreasonable user***. 
 
