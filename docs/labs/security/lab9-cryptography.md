@@ -1035,11 +1035,10 @@ In this exercise you will configure public-key authentication between your user 
 
     ```
     [ying@serverXY .ssh]$ ssh serverPR
-
     Enter passphrase for key '/home/ying/.ssh/id_dsa': **
     ```
 
-    Note very carefully that, you are being prompted for your passphrase this time instead of the password. Enter the passphrase you created earlier when you created your keys.
+    Notice that, you are being prompted for your passphrase this time instead of the user password. Enter the passphrase you created earlier when you created your keys.
 
 5. After successfully logging into serverPR; Log back out.
 
@@ -1047,46 +1046,69 @@ In this exercise you will configure public-key authentication between your user 
 
 ### `ssh-agent`
 
-According to the man page - `ssh-agent` is a program to hold private keys used for public key authentication (RSA, DSA). The idea is that `ssh-agent` is started in the beginning of an X-session or a login session, and all other windows or programs are started as clients to the `ssh-agent` program. Through use of environment variables the agent can be located and automatically used for authentication when logging into other machines using `ssh`.
+According to the man page - `ssh-agent` is a program to hold private keys used for public key authentication (RSA, DSA, ECDSA, Ed25519). The idea is that `ssh-agent` is started in the beginning of a user session or a login session, and all other windows or programs are started as clients to the `ssh-agent` program. Through the use of environment variables the agent can be located and automatically used for authentication when logging into other machines using `ssh`.
 
 ```
-usage: ssh-agent [-c | -s] [-Dd] [-a bind_address] [-E fingerprint_hash]
-                 [-P allowed_providers] [-t life]
-       ssh-agent [-a bind_address] [-E fingerprint_hash] [-P allowed_providers]
-                 [-t life] command [arg ...]
-       ssh-agent [-c | -s] -k
+SYNOPSIS
+     ssh-agent [-c | -s] [-Dd] [-a bind_address] [-E fingerprint_hash] [-P pkcs11_whitelist] [-t life] [command [arg ...]]
+     ssh-agent [-c | -s] -k
 ```
 
 In this exercise you will learn how to configure the agent such that you wont have to type in your passphrase every time you want to connect to another system using public-key authentication.
 
-1. Ensure you are logged into your local system as the user ying.
+1. Ensure you are logged into your local system as the user *ying*.
 
 2. Type in the command below:
 
     ```
-    [ying@serverXY .ssh]$ eval ssh-agent
-
-    Agent pid 5623
+    [ying@localhost ~]$ eval `ssh-agent`
+    Agent pid 6354
     ```
 
-    Take note of the PID of the agent:
+    Take note of the value of the process ID (PID) of the agent in your output.
 
-3. Use the `ssh-add` program to add your keys to the agent you launched above. Type:
+3. Run the ssh-add program to list the fingerprints of all [public/private] identities currently 
+   represented by the agent. TYpe:
 
+    ```bash
+    [ying@localhost ~]$ ssh-add -l
+    The agent has no identities.
     ```
-    [ying@serverXY .ssh]$ ssh-add
 
+    You shoudn't yet have any identities listed.
+
+4. Use the `ssh-add` program without any options to add your keys to the agent you launched above. Type:
+
+    ```bash
+    [ying@localhost ~]$ ssh-add
+    ```
     Enter your passphrase when prompted.
-
+    
+    ```bash
     Enter passphrase for /home/ying/.ssh/id_dsa:
-
-    Identity added: /home/ying/.ssh/id_dsa (/home/ying/.ssh/id_dsa)
+    Identity added: /home/ying/.ssh/id_dsa (ying@localhost.localdomain)
     ```
 
-4. Now connect to serverPR as the user ying. You WILL NOT be prompted for a password or passphrase (i.e if everything has been done correctly). Type:
+5. Now run the ssh-add command again to list known fingerprint identities. Type:
+
+    ```bash
+    [ying@localhost ~]$ ssh-add -l
+    1024 SHA256:ne7bHHb65e50.......0AZoQCEnnFdBPedGrDQ ying@server (DSA)
+    ```
+
+6. Now as the user *ying*, try connecting remotly to serverPR and run a simple test command.
+
+   Assuming you've done everything correctly till this point regarding setting up and storing the relevant keys, has done correctly till this point you should NOT be prompted for a password or passphrase. Type:
 
     ```
-    [ying@serverXY .ssh]$ ssh serverPR
+    [ying@serverXY .ssh]$ ssh serverPR 'ls /tmp'
     ```
 
-5. Enjoy.
+7. If you are done and no longer in need of the services of the ssh-agent or you simply want to revert back to key based authentication you can delete all the [private/public] identities from the agent. Type:
+   
+    ```bash
+    [ying@localhost ~]$ ssh-add -D
+    All identities removed.
+    ```
+
+8. All done! 
