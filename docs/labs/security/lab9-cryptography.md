@@ -1096,7 +1096,7 @@ In this exercise you will learn how to configure the agent such that you wont ha
     1024 SHA256:ne7bHHb65e50.......0AZoQCEnnFdBPedGrDQ ying@server (DSA)
     ```
 
-6. Now as the user ying, try connecting remotly to serverPR and run a simple test command.
+6. Now as the user *ying*, try connecting remotly to serverPR and run a simple test command.
 
    Assuming you've done everything correctly till this point regarding setting up and storing the relevant keys, has done correctly till this point you should NOT be prompted for a password or passphrase. Type:
 
