@@ -308,7 +308,7 @@ Listing your keys
     Revocation certificates are used to revoke keys in case someone gets knowledge of your secret key or in case you forget your passphrase. They are also useful for other various functions.
     ```
 
-To create a revocation certificate
+#### To create a revocation certificate
 
 1. While still logged in as the user ying. Create a revocation certificate. It will be displayed on your standard output. Type:
 
@@ -451,9 +451,9 @@ To digitally sign a file
 
 ## Exercise 4
 
-In this exercise, you will use the so-called “Web of Trust” to communicate with another user.
+### Importing public keys
 
-Importing public keys
+In this exercise, you will use the so-called “Web of Trust” to communicate with another user.
 
 1. Log into the system as user ying.
 
@@ -524,7 +524,7 @@ Importing public keys
 
     ONLY ying can decrypt the message or file that was encrypted with ying’s public key
 
-To encrypt a file
+#### To encrypt a file
 
 1. While logged into the system as the user ying, create a file called encrypt-sec.txt. Type:
 
@@ -542,7 +542,7 @@ To encrypt a file
 
     The above command will create an encrypted file called “encrypt-sec.txt.gpg” in your pwd.
 
-To decrypt a file
+#### To decrypt a file
 
 1. The file you encrypted above was meant for me@serverXY.
 
@@ -576,25 +576,26 @@ To decrypt a file
 
     Which can then be viewed (or run) using any program that is suited for the file (or content) type.
 
-### Tips
+    !!! Tips
 
-1. Most of the commands and options used with the gpg program also have short forms that results in less typing for the user at the command line. e.g.
+        Most of the commands and options used with the gpg program also have short forms that results in less typing for the user at the command line. e.g.
 
-    ```
-    gpg --encrypt --recipient me@serverXY encrypt-sec.txt
-    ```
-    The short form of the above command is:
+            ```
+            gpg --encrypt --recipient me@serverXY encrypt-sec.txt
+            ```
+            The short form of the above command is:
 
-    ```
-    gpg -e -r me@serverXY encrypt-sec.txt
-    ```
-2. To encrypt the string "hello" and mails it as an ASCII armored message to the user with the mail address ying@serverXY; Use the command below:
+            ```
+            gpg -e -r me@serverXY encrypt-sec.txt
+            ```
+
+4. To encrypt the string "hello" and mails it as an ASCII armored message to the user with the mail address ying@serverXY; Use the command below:
 
     ```
     echo "hello" | gpg -ea -r ying@serverXY | mail ying@serverXY
     ```
     
-3. To encrypt the file "your_file" with the public key of "me@serverXY" and write it to "your_file.gpg"
+5. To encrypt the file "your_file" with the public key of "me@serverXY" and write it to "your_file.gpg"
 
     after signing it with your user id (using your digital signature); Use the command below:
 
@@ -602,7 +603,7 @@ To decrypt a file
     gpg -se -r me@serverXY your_file
     ```
     
-4. There is a publicly available key server at wwwkeys.pgp.net. You can use gpg to upload your key there with:
+6. There is a publicly available key server at wwwkeys.pgp.net. You can use gpg to upload your key there with:
 
     gpg --send-keys &lt;your_real_email_address&gt; --keyserver wwwkeys.pgp.net
     
@@ -616,7 +617,7 @@ It helps to provide secure encrypted communications between two untrusted hosts 
 
 It includes both the server-side components and the client-side suite of programs
 
-### sshd
+*sshd*
 
 The server side includes the secure shell daemon (`sshd`). `sshd` is the daemon that listens for connections from clients.
 
@@ -632,11 +633,13 @@ GSSAPI authentication, challenge-response authentication, or password authentica
 
 The SSH2 protocol implemented in OpenSSH is standardized by the “IETF secsh” working group
 
-### ssh
+*ssh*
 
 The client's suite of programs include `ssh`. This is a program used for logging into remote systems and can also be used for executing commands on remote systems.
 
 ## Exercise 5
+
+### sshd
 
 Some exercises covering the `sshd` server daemon.
 
@@ -662,7 +665,7 @@ Options:
  -o option Process the option as if it was read from a configuration file.
 ```
 
-Most Linux systems out of the box already have the OpenSSH server configured and running with some defaults. The configuration file for `sshd` typically resides under `/etc/ssh/` and is called `sshd_config`.
+Most Linux systems out of the box already have the OpenSSH server configured and running with some defaults. The configuration file for `sshd` typically resides under `/etc/ssh/` and is named `sshd_config`.
 
 ### `sshd_config`
 
@@ -678,27 +681,22 @@ Most Linux systems out of the box already have the OpenSSH server configured and
 
 2. Consult the man page for `sshd_config` and explain what the options below do?
 
-    AuthorizedKeysFile
-
-    Ciphers
-
-    Port
-
-    Protocol
-
-    X11Forwarding
-
-    HostKey
+    - AuthorizedKeysFile
+    - Ciphers
+    - Port
+    - Protocol
+    - X11Forwarding
+    - HostKey
 
 3. Change your pwd to the /etc/ssh/ directory.
 
-4. List all the files in this directory.
+4. List all the files under `/etc/ssh/`
 
 ### Creating host keys
 
 Your SSH server already has hosts keys that it uses. Those keys were generated when your system was first installed. In this exercise you will learn how to create host type keys for your server. But you wont actually use the keys.
 
-To generate host keys for your server
+#### To generate host keys for your server
 
 1. Create a new directory under your pwd. Call it spare-keys. cd to the new directory. Type:
 
@@ -708,13 +706,10 @@ To generate host keys for your server
 
 2. Use the `ssh-keygen` program to create a host key with the following characteristics:
 
-    a. key type should be “rsa”
-
-    b. Key should have no comments
-
-    c. Private key file should be named - ssh_host_rsa_key
-
-    d. The key should not use any passphrase
+    - key type should be “rsa”
+    - Key should have no comments
+    - Private key file should be named - ssh_host_rsa_key
+    - The key should not use any passphrase
 
     Type:
 
@@ -722,17 +717,56 @@ To generate host keys for your server
     [root@serverXY spare-keys]# ssh-keygen -q -t rsa -f ssh_host_rsa_key -C '' -N ''
     ```
 
+    !!! Question 
+        What do you need to do to make the sshd daemon use the host key that you just generated ?
+
 3. View the fingerprint of the key you created above. Type:
 
     ```
     [root@serverXY spare-keys]# ssh-keygen -l -f ssh_host_rsa_key
     ```
 
-4. Write down the command to create a dsa type key called “ssh_host_dsa_key” with no comments, and no passphrase.
+4. View the fingerprint of the key you created but this time include the visual ASCII art representation  of key fingerprint. Type:
+
+    ```
+    [root@localhost spare-keys]# ssh-keygen -l -v -f ssh_host_rsa_key
+    3072 SHA256:1kQS0Nz4NofWkgqU0y+DxmDoY6AmGsF40GwZkobD8DM ssh_host_rsa_key.pub (RSA)
+    +---[RSA 3072]----+
+    |X=.+  .*o+.      |
+    |B*B o + =o.      |
+    |oBE. + o o.+     |
+    |+.+o  = ooX o    |
+    |+o . . .S*.+     |
+    |.      ..        |
+    |                 |
+    |                 |
+    |                 |
+    +----[SHA256]-----+
+    ```
+
+5. Write down the command to create a dsa type key called “ssh_host_dsa_key” with no comments, and no passphrase.
+
+6. Check the status of the sshd service. Type:
+   
+    ```bash
+    [root@localhost ~]# systemctl -n 0 status sshd.service
+    ● sshd.service - OpenSSH server daemon
+    Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+    Active: active (running) since Thu 2023-10-05 23:56:34 EDT; 3 days ago
+    ...<SNIP>...
+    ```
+7. If you make any configuration changes to the sshd configuration file, you can restart the sshd service by running:
+    
+    ```bash
+    [root@localhost ~]# systemctl restart sshd.service
+    ``` 
+
 
 ## Exercise 6
 
-Some exercises covering the `ssh` client program.
+### ssh
+
+This section covers exercises covering the `ssh` client program.
 
 ```
 usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
@@ -753,163 +787,245 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
     ```
     [me@serverXY me]$ ssh serverPR
     ```
-
     Type in me’s password when prompted. If you get any warning messages type “yes” to continue.
 
-3. After logging in, create a directory called - myexport and create an empty file. Type:
+3. After logging in, create a directory called - myexport and create an empty file named foobar under the new directory. Type:
 
     ```
-    [me@serverPR me]$ mkdir ~/myexport && touch myexport
+    [me@serverPR me]$ mkdir ~/myexport && touch myexport/foobar
     ```
-
-    Make a note of the random file that was created for you, under ~/myexport ?
 
 4. Log off serverPR. Type:
 
     ```
     [me@serverPR me]$ exit
     ```
-
     You will be returned to your local shell at serverXY.
 
-5. Use `ssh` to remotely execute the “ls” command to view the list of files in ying’s home directory at
-
-    serverPR. Type:
-
-    ```
-    [me@serverXY me]$ssh ying@serverPR “ls /home/ying”
-    ```
-
-    Type in ying’s password when prompted. If you get any warning messages type “yes” to continue.
-
-6. While still logged in as me on serverXY, log into serverPR as the user ying. Type:
+5. Use `ssh` to remotely execute the “ls” command to recursively view the list of files in me's home 
+   directory at serverPR. Type:
 
     ```
-    [me@serverXY me]$ ssh -l ying serverPR 
+    [root@localhost ~]# ssh me@serverPR 'ls -lR /home/me/myexport'
+    me@localhost's password:
+    ...<SNIP>...
+    /home/me/myexport:
+    total 0
+    -rw-rw-r-- 1 me me 0 Oct  9 16:48 foobar
     ```
 
-    **Type in ying’s password when prompted.**
+    Type in me's password when prompted. If you get any warning messages type “yes” to continue.
 
-7. Type “exit” to log off serverPR and return to serverXY.
+6. While still logged into serverXY, try remotely rebooting serverPR as the user `ying`. Type:
+
+    ```
+    [me@localhost ~]# ssh -l ying localhost 'reboot'
+    ying@localhost's password:
+    ...<SNIP>...
+    ```
+
+    Type in ying's password when prompted.
+
+    !!! Questions
+        Was the user ying able to remotely reboot serverPR ? Why can't ying remotely reboot serverPR?
+
+7. From serverXY, try remotely viewing the status of the sshd service running on serverPR as the user 
+   `ying`. Type: 
+
+   ```bash
+   [root@localhost ~]# ssh -l ying localhost 'systemctl status sshd.service'
+    ying@localhost's password:
+    ● sshd.service - OpenSSH server daemon
+   ```
+
+8. From serverXY, try remotely restart the sshd service running on serverPR as the user `ying`. Type: 
+
+   ```bash
+   [root@localhost ~]# ssh -l ying localhost 'systemctl restart sshd.service'
+    ying@localhost's password:
+    Failed to restart sshd.service: Interactive authentication required.
+    See system logs and 'systemctl status sshd.service' for details.
+   ```
+
+    !!! Questions
+        - Was the user ying able to remotely view the status of the sshd service on serverPR ? 
+        - Was the user ying able to remotely restart the sshd service on serverPR ?
+        - Write a brief explanation for the behaviour you are observing
+
+9. Type “exit” to log off serverPR and return to serverXY.
 
 ### `scp` - secure copy (remote file copy program)
 
 `scp` copies files between hosts on a network. It uses SSH for data transfer, and uses the same authentication and provides the same security as `ssh`.
 
 ```
-usage: scp [-346ABCOpqRrTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
-           [-i identity_file] [-J destination] [-l limit]
-           [-o ssh_option] [-P port] [-S program] source ... target
+usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
+            [-J destination] [-l limit] [-o ssh_option] [-P port]
+            [-S program] source ... target
 ```
 
 #### To use `scp`
 
-1. Ensure you are still logged in as the user me on serverXY.
+1. Ensure you are still logged in as the user `me` on serverXY.
 
-2. Create a directory under your home directory called myimport and cd to the directory.
+2. Create a directory under your home directory called `myimport` and cd to the directory.
 
-3. Copy over all the files under the “/home/me/myexport/” directory on serverPR. Type:
-
-    ```
-    [me@serverXY myimports]$ scp serverPR:/home/me/myexport  .
-    ```
-
-4. List the contents of your pwd ?
-
-    Was that totally cool or what ?
-
-5. What is the command to copy over all the under “/home/me/.gnugp/” on serverPR ?
-
-6. Now copy over all the files under ying’s home directory on serverPR. Type:
+3. Use `scp` to copy over all the files under the “/home/me/myexport/” directory on the remote serverPR.
+    (the dot "." at the end of the command is important). Type:
 
     ```
-    [me@serverXY myimports]$ scp -r ying@serverPR:/home/ying/*  .
+    [me@localhost ~myimport]# scp serverPR:/home/me/myexport  .
+    me@serverPR's password:
+    scp: /home/me/myexport: not a regular file
     ```
+
+    !!! Question
+        Write a brief explanation for why the previous command failed?
+
+
+4. Run the previous command again but this time adding the recursive option to `scp`. Type:
+
+    ```bash
+    [me@localhost ~myimport]# scp -r me@serverPR:/home/me/myexport  .
+    me@localhost's password:
+    foobar
+    ```
+
+    !!! Questions
+        What is the difference between the variations of these 2 commands? And under what circumstances will they have the same result?:
+        
+        - scp me@serverPR:/home/me/myexport  .
+        and
+        - scp serverPR:/home/me/myexport  .
+
+5. What is the command to copy over all the files under “/home/me/.gnugp/” on serverPR ?
+
+6. Now copy over ying’s home directory on serverPR.  Type:
+
+    ```
+    [me@localhost ~myimport]# scp -r  ying@localhost:/home/ying/  ying_home_directory_on_serverPR
+    ```
+
+7. Again, run a slight variation of the previous command to copy over ying’s home directory on serverPR.  Type:
+
+    ```
+    [me@localhost ~myimport]# scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR
+    ```
+
+!!! Questions
+        What is the slight but very important difference between the variations of the 2 previous commands? And what is the result of each command ?
+        
+        - `scp -r  ying@localhost:/home/ying/  ying_home_directory_on_serverPR`
+
+        and
+        
+        -  `scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR`
+
+8. Use `ls -alR` command to view a listing of the contents of the 2 previous steps. Type:
+   
+    ```bash
+    [me@localhost ~myimport]# ls -al ying_home_directory_on_serverPR/
+    ```
+
+    !!! Question:
+        Provide a brief explanation for the output of the `ls -alR` command? Explain for example why you seem to have duplicates of the these files .bash_history, .bashrc ...
+
 
 ## Exercise 7
 
 ### Creating User Public and Private keys for SSH
 
-Each user who wants to use SSH with RSA or DSA authentication needs a set of public and private keys. The `ssh-keygen` program can be used to create these keys ( just as it was used earlier when you created spare keys for your system)
+Every user that wants to use SSH with RSA or DSA authentication needs a pair of public and private keys. The `ssh-keygen` program can be used to create these keys ( just as it was used earlier when you created new host keys for your system)
 
 !!! TIP
     One main difference between host keys and user keys is that it is highly recommended to protect user keys with a passphrase. The passphrase is a password used for encrypting the [plain text] private key.
 
+The public is store in a file with the same file name as the private key but with the extension “.pub” appended to it. There is no easy way to recover a lost passphrase. A new key must be generated if the passphrase is lost or forgotten. 
 
-
-The public is store in a file with the same file name as the private key but with the extension “.pub” appended to it. There is no way to recover a lost passphrase. A new key must be generated if the passphrase is lost or forgotten. 
-
-To create ying’s authentication keys
+#### To create user public/private authentication keys
 
 1. Log into your local machine as the user ying.
 
 2. Run the `ssh-keygen` program to create a “dsa” type key with the default length. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ ssh-keygen -t dsa
 
     Generating public/private dsa key pair.
+    ```
 
     Press <kbd>ENTER</kbd> to accept the default file location.
 
-    Enter file in which to save the key (/home/ying/.ssh/id_dsa): <kbd>ENTER</kbd>
-
-    Enter a very good passphrase when prompted - i.e. one that is difficult to guess.
-
+    ```bash
+    Enter file in which to save the key (/home/ying/.ssh/id_dsa):
     Created directory '/home/ying/.ssh'.
-
-    Enter passphrase (empty for no passphrase): **
-
-    Enter same passphrase again: *
-
-    Your identification has been saved in /home/ying/.ssh/id_dsa.
-
-    Your public key has been saved in /home/ying/.ssh/id_dsa.pub.
-
-    The key fingerprint is:
-
-    61:68:aa:c2:0c:af:9b:49:4a:11:b8:aa:b5:84:18:10 ying@serverXY.example.org
     ```
 
-3. cd to your `~/.ssh/` directory. List the files in the directory?
+    You'll be prompted twice to enter a passphrase. Input a good and reasonably difficult to guess passphrase. Press <kbd>ENTER</kbd> afte
+
+    ```bash
+    Enter passphrase (empty for no passphrase):     *****
+    Enter same passphrase again:                    *****
+    Your identification has been saved in /home/ying/.ssh/id_dsa.
+    Your public key has been saved in /home/ying/.ssh/id_dsa.pub.
+    The key fingerprint is:
+    SHA256:ne7bHHb65e50HJPchhbiSvEZ0AZoQCEnnFdBPedGrDQ ying@localhost.localdomain
+    The key's randomart image is:
+    +---[DSA 1024]----+
+    |   .oo==++o+     |
+    |    o+. o E.*    |
+    ...<SNIP>...
+    ```
+
+    After successful completion, you'll see a message stating that your identififcation and public keys have been saved under the `/home/ying/.ssh/` directory.
+
+3. cd to your `~/.ssh/` directory. List the files in the directory.
 
 4. What is the “ssh-keygen” command to view the fingerprint of your keys?
 
-5. Use the cat command to view the contents of your public-key file (i.e. `~/.ssh/id_rsa.pub`).
+5. Use the cat command to view the contents of your public-key file (i.e. `~/.ssh/id_dsa.pub`).
 
 ## Exercise 8
 
 ### Authenticating via Public-Key
 
-Thus far you have been using a password based authentication scheme to log into user accounts at serverPR.
+Thus far you have been using a password based authentication to log into user accounts at serverPR.
 
-This means that, you had to have known the corresponding account’s password on the remote side to have been able to log in successfully.
+This means that, you have know the corresponding account’s password on the remote side to login successfully.
 
 In this exercise you will configure public-key authentication between your user account on serverXY and the ying’s user account at serverPR.
 
-To configure public-key authentication
+#### To configure public-key authentication
 
-1. Log into your local system as the user ying.
+1. Log into your local system as the user *ying*.
 
 2. cd to your “~/.ssh” directory.
 
-3. Type in the horrible looking command below:
+3. Enter the commands below exactly as shown. You'll be prompted for the ying's password on serverPR.
+   Type:
 
     ```
-    [ying@serverXY .ssh]$ cat id_dsa.pub | ssh ying@serverPR 
+    [ying@serverXY .ssh]$ cat id_dsa.pub | ssh ying@serverPR \ 
 
-    '(cd ~/.ssh && cat - &gt;&gt; authorized_keys && chmod 600 authorized_keys)'
+    '(cd ~/.ssh && cat - >> authorized_keys && chmod 600 authorized_keys)'
     ```
 
-    The above command reads:
+    In plain-speak, the above command reads:
 
-    a. cat the contents of your dsa public-key file, but send the out to the pipe ( | ) instead of the usual standard out.
+    a. cat the contents of your dsa public-key file, and pipe/send ( | ) the output to the `ssh ying@serverPR` 
 
-    b. run the command “cd ~/.ssh && cat - &gt;&gt; authorized_keys && chmod 600 authorized_keys” as the user ying on serverPR.
+    b. run the command “cd ~/.ssh && cat - >> authorized_keys && chmod 600 authorized_keys” as the user ying on serverPR.
 
-    c. The whole point of the command is simply to copy and append the contents of your public-key file to the “/home/ying/.ssh/authorized_keys” on serverPR and give it the correct permissions.
+    !!! Note 
+        The purpose of the previous complicated looking command is to copy and append the contents of your public-key file to the “/home/ying/.ssh/authorized_keys” on serverPR and give it the correct permissions.
 
-    If you know of any other manual way to achieve the same result, please do so.
+    !!! Tip
+        You can use the ssh-copy-id utility to easily and more gracefully setup public/private key authentication between systems. 
+        ssh-copy-id is a script that uses ssh to log into a remote machine (presumably initially using a login password. 
+        It assembles a list of one or more fingerprints (as described below) and tries to log in with each key, to see if any of them are already installed. It then assembles a list of those that failed to log in, and using ssh, enables logins with those keys on the remote system. By default it adds the keys by appending them to the remote user's ~/.ssh/authorized_keys (creating the file, and directory, if necessary).
+
+    
+
 
 4. After you have added your public-key to the authorized_keys file on the remote system. Attempt to login to serverPR as ying via ssh. Type:
 
