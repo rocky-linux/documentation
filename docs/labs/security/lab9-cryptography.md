@@ -111,7 +111,7 @@ GnuPG (GNU Privacy Guard) is a set of programs for public key encryption and dig
 
 Perform the following exercises as a regular user. e.g. user ying
 
-To create a new key pair
+#### To create a new key pair
 
 1. Log into the system as user “ying”
 
@@ -240,7 +240,7 @@ To create a new key pair
 
 The gpg program is also used in key administration.
 
-Listing your keys
+#### Listing your keys
 
 1. While still logged into the system as the user ying. Display the keys in your key-ring. Type:
 
@@ -328,7 +328,7 @@ Listing your keys
 
 3. You should store the revocation certificate in a safe place and even make a hard printed copy.
 
-    Exporting Public Keys
+### Exporting public keys
 
 The whole point of all this encrypting, signing and decrypting business is because people wish to communicate with one another - but they also wish to do so in as secure a manner as possible.
 
@@ -338,7 +338,7 @@ You must exchange public keys to communicate with other people using a public-ke
 
 Or at least make your public key available in any publicly accessible place (Bill-boards, web pages, key servers, radio, T.V, SPAMMING via e-mail ..etc)
 
-To export your public keys
+#### To export your public keys
 
 1. Export your public key in binary format to a file called “ying-pub.gpg”. Type:
 
@@ -378,7 +378,7 @@ To export your public keys
 
 Creating and verifying signatures uses the public/private key pair, which differs from encryption and decryption. A signature is created using the private key of the signer. The signature can be verified using the corresponding public key.
 
-To digitally sign a file
+#### To digitally sign a file
 
 1. Create a file named “secret-file.txt” with the text “Hello All” in it. Type:
 
@@ -746,7 +746,7 @@ Your SSH server already has hosts keys that it uses. Those keys were generated w
 
 5. Write down the command to create a dsa type key called “ssh_host_dsa_key” with no comments, and no passphrase.
 
-6. Check the status of the sshd service. Type:
+6. Check the status of the `sshd` service. Type:
    
     ```bash
     [root@localhost ~]# systemctl -n 0 status sshd.service
@@ -755,16 +755,14 @@ Your SSH server already has hosts keys that it uses. Those keys were generated w
     Active: active (running) since Thu 2023-10-05 23:56:34 EDT; 3 days ago
     ...<SNIP>...
     ```
-7. If you make any configuration changes to the sshd configuration file, you can restart the sshd service by running:
+7. If you make any configuration changes to the `sshd` configuration file, you can restart the `sshd` service by running:
     
     ```bash
     [root@localhost ~]# systemctl restart sshd.service
     ``` 
-
-
 ## Exercise 6
 
-### ssh
+### `ssh`
 
 This section covers exercises covering the `ssh` client program.
 
@@ -826,28 +824,30 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 
     Type in ying's password when prompted.
 
-    !!! Questions
+    !!! Question
+        
         Was the user ying able to remotely reboot serverPR ? Why can't ying remotely reboot serverPR?
 
-7. From serverXY, try remotely viewing the status of the sshd service running on serverPR as the user 
+7. From serverXY, try remotely viewing the status of the `sshd` service running on serverPR as the user 
    `ying`. Type: 
 
-   ```bash
-   [root@localhost ~]# ssh -l ying localhost 'systemctl status sshd.service'
+    ```bash
+    [root@localhost ~]# ssh -l ying localhost 'systemctl status sshd.service'
     ying@localhost's password:
     ● sshd.service - OpenSSH server daemon
-   ```
+    ```
 
-8. From serverXY, try remotely restart the sshd service running on serverPR as the user `ying`. Type: 
+8. From serverXY, try remotely restart the `sshd` service running on serverPR as the user `ying`. Type: 
 
-   ```bash
-   [root@localhost ~]# ssh -l ying localhost 'systemctl restart sshd.service'
+    ```bash
+    [root@localhost ~]# ssh -l ying localhost 'systemctl restart sshd.service'
     ying@localhost's password:
     Failed to restart sshd.service: Interactive authentication required.
     See system logs and 'systemctl status sshd.service' for details.
-   ```
+    ```
 
-    !!! Questions
+    !!! Question "Questions"
+
         - Was the user ying able to remotely view the status of the sshd service on serverPR ? 
         - Was the user ying able to remotely restart the sshd service on serverPR ?
         - Write a brief explanation for the behaviour you are observing
@@ -880,6 +880,7 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     ```
 
     !!! Question
+
         Write a brief explanation for why the previous command failed?
 
 
@@ -891,14 +892,17 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     foobar
     ```
 
-    !!! Questions
+    !!! Question "Questions"
+
         What is the difference between the variations of these 2 commands? And under what circumstances will they have the same result?:
         
-        - scp me@serverPR:/home/me/myexport  .
-        and
-        - scp serverPR:/home/me/myexport  .
+        - scp me@serverPR:/home/me/myexport.
 
-5. What is the command to copy over all the files under “/home/me/.gnugp/” on serverPR ?
+        and
+
+        - scp serverPR:/home/me/myexport.
+
+5. What is the command to copy over all the files under “/home/me/.gnugp/” on serverPR?
 
 6. Now copy over ying’s home directory on serverPR.  Type:
 
@@ -912,24 +916,25 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     [me@localhost ~myimport]# scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR
     ```
 
-!!! Questions
-        What is the slight but very important difference between the variations of the 2 previous commands? And what is the result of each command ?
+    !!! Question "Questions"
+
+        What is the slight but very important difference between the variations of the 2 previous commands? And what is the result of each command?
         
         - `scp -r  ying@localhost:/home/ying/  ying_home_directory_on_serverPR`
-
+        
         and
         
         -  `scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR`
-
+    
 8. Use `ls -alR` command to view a listing of the contents of the 2 previous steps. Type:
    
     ```bash
     [me@localhost ~myimport]# ls -al ying_home_directory_on_serverPR/
     ```
 
-    !!! Question:
+    !!! Question
+    
         Provide a brief explanation for the output of the `ls -alR` command? Explain for example why you seem to have duplicates of the these files .bash_history, .bashrc ...
-
 
 ## Exercise 7
 
@@ -938,6 +943,7 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
 Every user that wants to use SSH with RSA or DSA authentication needs a pair of public and private keys. The `ssh-keygen` program can be used to create these keys ( just as it was used earlier when you created new host keys for your system)
 
 !!! TIP
+
     One main difference between host keys and user keys is that it is highly recommended to protect user keys with a passphrase. The passphrase is a password used for encrypting the [plain text] private key.
 
 The public is store in a file with the same file name as the private key but with the extension “.pub” appended to it. There is no easy way to recover a lost passphrase. A new key must be generated if the passphrase is lost or forgotten. 
@@ -1017,16 +1023,14 @@ In this exercise you will configure public-key authentication between your user 
     b. run the command “cd ~/.ssh && cat - >> authorized_keys && chmod 600 authorized_keys” as the user ying on serverPR.
 
     !!! Note 
+
         The purpose of the previous complicated looking command is to copy and append the contents of your public-key file to the “/home/ying/.ssh/authorized_keys” on serverPR and give it the correct permissions.
 
     !!! Tip
-        You can use the ssh-copy-id utility to easily and more gracefully setup public/private key authentication between systems. 
-        ssh-copy-id is a script that uses ssh to log into a remote machine (presumably initially using a login password. 
-        It assembles a list of one or more fingerprints (as described below) and tries to log in with each key, to see if any of them are already installed. It then assembles a list of those that failed to log in, and using ssh, enables logins with those keys on the remote system. By default it adds the keys by appending them to the remote user's ~/.ssh/authorized_keys (creating the file, and directory, if necessary).
-
     
-
-
+        You can use the `ssh-copy-id` utility to easily and more gracefully setup public/private key authentication between systems. `ssh-copy-id` is a script that uses `ssh` to log into a remote machine (presumably initially using a login password. 
+        It assembles a list of one or more fingerprints (as described below) and tries to log in with each key, to see if any of them are already installed. It then assembles a list of those that failed to log in, and using `ssh`, enables logins with those keys on the remote system. By default it adds the keys by appending them to the remote user's ~/.ssh/authorized_keys (creating the file, and directory, if necessary).
+    
 4. After you have added your public-key to the authorized_keys file on the remote system. Attempt to login to serverPR as ying via ssh. Type:
 
     ```
@@ -1041,9 +1045,9 @@ In this exercise you will configure public-key authentication between your user 
 
 ## Exercise 9
 
-### ssh-agent
+### `ssh-agent`
 
-According to the man page - ssh-agent is a program to hold private keys used for public key authentication (RSA, DSA). The idea is that ssh-agent is started in the beginning of an X-session or a login session, and all other windows or programs are started as clients to the `ssh-agent` program. Through use of environment variables the agent can be located and automatically used for authentication when logging into other machines using `ssh`.
+According to the man page - `ssh-agent` is a program to hold private keys used for public key authentication (RSA, DSA). The idea is that `ssh-agent` is started in the beginning of an X-session or a login session, and all other windows or programs are started as clients to the `ssh-agent` program. Through use of environment variables the agent can be located and automatically used for authentication when logging into other machines using `ssh`.
 
 ```
 usage: ssh-agent [-c | -s] [-Dd] [-a bind_address] [-E fingerprint_hash]
