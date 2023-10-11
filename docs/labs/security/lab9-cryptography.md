@@ -516,7 +516,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
     <span id="anchor-4"></span>Encrypting and decrypting files
 
-    The procedure for encrypting and decrypting files or documents is straight forward.
+    The procedure for encrypting and decrypting files or documents is straighti-forward.
 
     If you want to encrypt a message to the user ying, you will encrypt it using user ying’s public key.
 
@@ -613,7 +613,7 @@ OpenSSH is OpenBSD's SSH (Secure SHell) protocol implementation.
 
 It is a FREE version of the SSH protocol suite of network connectivity tools. OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other network-level attacks. Additionally, OpenSSH provides a plethora of secure tunneling capabilities, as well as a variety of authentication methods.
 
-It helps to provide secure encrypted communications between two untrusted hosts over an insecure network (such as the internet).
+It helps to provide secure encrypted communications between two un-trusted hosts over an insecure network (such as the internet).
 
 It includes both the server-side components and the client-side suite of programs
 
@@ -623,12 +623,12 @@ The server side includes the secure shell daemon (`sshd`). `sshd` is the daemon 
 
 It forks a new daemon for each incoming connection. The forked daemons handle key exchange, encryption, authentication, command execution, and data exchange. According to sshd’s man page, `sshd` works as follows:
 
-The OpenSSH SSH daemon supports SSH protocol 2 only.  Each host has a host-specific key, used to identify the host.  Whenever a client connects, the daemon responds
-with its public host key.  The client compares the host key against its own database to verify that it has not changed.  Forward security is provided through a Diffie-Hellman key agreement. This key agreement results in a shared session key.  The rest of the session is encrypted using a symmetric cipher.
+The OpenSSH SSH daemon supports SSH protocol 2 only. Each host has a host-specific key, used to identify the host. Whenever a client connects, the daemon responds
+with its public host key. The client compares the host key against its own database to verify that it has not changed. Forward security is provided through a Diffie-Hellman key agreement. This key agreement results in a shared session key.  The rest of the session is encrypted using a symmetric cipher.
 
-The client selects the encryption algorithm to use from those offered by the server.  Additionally, session integrity is provided through a cryptographic message authentication code (hmac-md5, hmac-sha1, umac-64, umac-128, hmac-sha2-256 or hmac-sha2-512).
+The client selects the encryption algorithm to use from those offered by the server. Additionally, session integrity is provided through a cryptographic message authentication code (hmac-md5, hmac-sha1, umac-64, umac-128, hmac-sha2-256 or hmac-sha2-512).
 
-Finally, the server and the client enter an authentication dialog.  The client tries to authenticate itself using host-based authentication, public key authentication,
+Finally, the server and the client enter an authentication dialog. The client tries to authenticate itself using host-based authentication, public key authentication,
 GSSAPI authentication, challenge-response authentication, or password authentication.
 
 The SSH2 protocol implemented in OpenSSH is standardized by the “IETF secsh” working group
@@ -639,7 +639,7 @@ The client's suite of programs include `ssh`. This is a program used for logging
 
 ## Exercise 5
 
-### sshd
+### `sshd`
 
 Some exercises covering the `sshd` server daemon.
 
@@ -669,7 +669,7 @@ Most Linux systems out of the box already have the OpenSSH server configured and
 
 ### `sshd_config`
 
-1. Open up the ssh server’s config file with any pager and study it. Type:
+1. Open up the SSH server’s configuration file with any pager and study it. Type:
     
     ```
     [root@serverXY root]# less /etc/ssh/sshd_config
@@ -967,7 +967,7 @@ The public is store in a file with the same file name as the private key but wit
     Created directory '/home/ying/.ssh'.
     ```
 
-    You'll be prompted twice to enter a passphrase. Input a good and reasonably difficult to guess passphrase. Press <kbd>ENTER</kbd> afte
+    You'll be prompted twice to enter a passphrase. Input a good and reasonably difficult to guess passphrase. Press <kbd>ENTER</kbd> after each prompt.
 
     ```bash
     Enter passphrase (empty for no passphrase):     *****
@@ -983,7 +983,7 @@ The public is store in a file with the same file name as the private key but wit
     ...<SNIP>...
     ```
 
-    After successful completion, you'll see a message stating that your identififcation and public keys have been saved under the `/home/ying/.ssh/` directory.
+    After successful completion, you'll see a message stating that your identification and public keys have been saved under the `/home/ying/.ssh/` directory.
 
 3. cd to your `~/.ssh/` directory. List the files in the directory.
 
@@ -1067,7 +1067,7 @@ In this exercise you will learn how to configure the agent such that you wont ha
 
     Take note of the value of the process ID (PID) of the agent in your output.
 
-3. Run the ssh-add program to list the fingerprints of all [public/private] identities currently 
+3. Run the `ssh-add` program to list the fingerprints of all [public/private] identities currently 
    represented by the agent. TYpe:
 
     ```bash
@@ -1075,7 +1075,7 @@ In this exercise you will learn how to configure the agent such that you wont ha
     The agent has no identities.
     ```
 
-    You shoudn't yet have any identities listed.
+    You shouldn't yet have any identities listed.
 
 4. Use the `ssh-add` program without any options to add your keys to the agent you launched above. Type:
 
@@ -1089,26 +1089,26 @@ In this exercise you will learn how to configure the agent such that you wont ha
     Identity added: /home/ying/.ssh/id_dsa (ying@localhost.localdomain)
     ```
 
-5. Now run the ssh-add command again to list known fingerprint identities. Type:
+5. Now run the `ssh-add` command again to list known fingerprint identities. Type:
 
     ```bash
     [ying@localhost ~]$ ssh-add -l
     1024 SHA256:ne7bHHb65e50.......0AZoQCEnnFdBPedGrDQ ying@server (DSA)
     ```
 
-6. Now as the user *ying*, try connecting remotly to serverPR and run a simple test command.
+6. Now as the user *ying*, try connecting remotely to serverPR and run a simple test command.
 
-   Assuming you've done everything correctly till this point regarding setting up and storing the relevant keys, has done correctly till this point you should NOT be prompted for a password or passphrase. Type:
-
+    Assuming you've done everything correctly till this point regarding setting up and storing the relevant keys, has done correctly till this point you should NOT be prompted for a password or passphrase. Type:
+    
     ```
     [ying@serverXY .ssh]$ ssh serverPR 'ls /tmp'
     ```
-
-7. If you are done and no longer in need of the services of the ssh-agent or you simply want to revert back to key based authentication you can delete all the [private/public] identities from the agent. Type:
+    
+7. If you are done and no longer in need of the services of the `ssh-agent` or you simply want to revert back to key based authentication you can delete all the [private/public] identities from the agent. Type:
    
     ```bash
     [ying@localhost ~]$ ssh-add -D
     All identities removed.
     ```
-
+    
 8. All done! 
