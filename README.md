@@ -52,7 +52,7 @@ Rocky Linux uses GitHub to manage its code and files, including documentation fi
 
 Documentation is welcome in whatever format you are used to creating. It does not need to be perfect, just submit what you have and the team will give you feedback to help get it in line with our voice and tone. 
 
-That said, RL Documentation uses Markdown as the standard. It is easy to learn and use. Run a text converter on your content or start from scratch with this [basic writing and formatting guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) by GitHub. 
+That said, RL Documentation uses Markdown as the standard. It is easy to learn and use. Run a text converter on your content or start from scratch with this [basic writing and formatting guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax). For more information on writing markdown with proper formatting, see [our guide](https://docs.rockylinux.org/guides/contribute/rockydocs_formatting). 
 
 As you become a regular contributor, you’ll need to create a **local repository**. See our [guide](https://docs.rockylinux.org/guides/contribute/beginners) for how to install a Markdown editor and create a local repository on your home computer.
 
