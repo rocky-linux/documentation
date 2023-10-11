@@ -1,7 +1,7 @@
 ---
 nav:
     - ... | index*.md
-    - System Administration I Labs: sys_admin_1
-    - System Administration II Labs: sys_admin_II
+    - System Administration I Labs: system_administration_I
+    - System Administration II Labs: system_administration_II
     - Security Labs: security
     

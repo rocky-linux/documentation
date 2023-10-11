@@ -100,17 +100,17 @@ That’s it for the prerequisite packages needed for actual Kernel building!
 
 ## Downloading and unpacking the Linux Kernel
 
-The version of the kernel that we are going to build in the following section is version 5.16.9, which is available at:
+The version of the kernel that we are going to build in the following section is version 6.5.7, which is available at:
 
-[www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz](https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz)
+[www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz](https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz)
 
 Let’s begin the process.
 
 1. First, download the kernel source into your current working directory using the following curl command. Type:
 
     ```
-    curl -L -o linux-5.16.9.tar.xz \
-    https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.16.9.tar.xz
+    curl -L -o linux-6.5.7.tar.xz \
+    https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz
     ```
 
 2. The kernel source that you will download from the Internet is a file that has been compressed and tarred. Therefore, you need to decompress and untar the source file to use the source. 
@@ -186,7 +186,7 @@ But before beginning the actual kernel configuration, you should clean (prepare)
 
 Next, we will step through the process of configuring a Linux 5.* series kernel. To explore some of the innards of this process, we will enable the support of a specific feature that we’ll pretend is a MUST have feature on the system. Once you understand how this works, you can apply the same procedure to add support for any new kernel feature you want. Specifically, we’ll enable support for the NTFS file system into our custom kernel.
 
-Most modern Linux distros ship with a kernel configuration file for the running kernel available on the local file system as a compressed or regular file. On our sample Rocky system, this file resides in the /boot directory and is usually named something like config-4.*.
+Most modern Linux distros ship with a kernel configuration file for the running kernel available on the local file system as a compressed or regular file. On our sample Rocky system, this file resides in the /boot directory and is usually named something like config-*.
 
 The configuration file contains a list of the options and features that were enabled for the particular kernel it represents. A config file similar to this one is what we aim to create through the process of configuring the kernel. The only difference between the file we’ll create and the ready-made one is that we will add further minor customization to ours.
 
@@ -242,7 +242,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
 
         For each of the configurable options, in the kernel configuration utility, empty angle parentheses, <>, indicates that the feature in question is disabled. The letter M in angle parentheses, <M>, indicates that the feature is to be compiled as a module.
 
-    And the asterisk symbol in angle parentheses, <*>, indicates that support for the feature will be directly built into the kernel. You can usually toggle through all the possible options using the spacebar on your keyboard.
+        And the asterisk symbol in angle parentheses, <*>, indicates that support for the feature will be directly built into the kernel. You can usually toggle through all the possible options using the spacebar on your keyboard.
 
 5. Navigate back to the parent File Systems screen by pressing the esc key twice on your keyboard in the DOS/FAT/NT Filesystems screen. Return to the main kernel configuration screen by pressing esc twice again on your keyboard.
 
@@ -267,6 +267,7 @@ The following steps cover how to configure the kernel. We will be using a text-b
         CONFIG_NTFS_DEBUG=y
         CONFIG_NTFS_RW=y
         ```
+        
     !!! NOTE "A Quick Note on Kernel Modules"
 
         Loadable module support is a Linux kernel feature that allows kernel modules' dynamic loading (or removal).    
@@ -316,19 +317,19 @@ We want to change the line in the file that looks like this:
 
         You can take advantage of all that extra processing power (CPUs, cores and so on) on most modern systems and greatly speed up CPU-intensive operations like compiling the kernel. To do this, you can pass a parameter to the make command that specifies the number of jobs to run simultaneously. The specified number of jobs are then distributed and executed simultaneously on each CPU core. The syntax for the command is:
 
-    ```
-    > make -j N
-    ```
-    where N is the number of jobs to run simultaneously. For example, if you have a octa (8) core–capable CPU, you can type:
+            ```
+            > make -j N
+            ```
+            where N is the number of jobs to run simultaneously. For example, if you have a octa (8) core–capable CPU, you can type:
 
-    ```
-    > make -j 8
-    ```
+            ```
+            > make -j 8
+            ```
 
 3. The only command that is needed here to compile the kernel is the make command:
 
     ```
-    > make  O=~/build/kernel**
+    > make  O=~/build/kernel
     make[1]: Entering directory '/home/super/build/kernel'
     SYNC    include/config/auto.conf.cmd
     GEN     Makefile
@@ -355,11 +356,11 @@ We want to change the line in the file that looks like this:
     > sudo make O=~/build/kernel modules_install
     ```
 
-    On our Rocky system, this command will install all the compiled kernel modules into the /lib/modules/<new_kernel-version> directory. In this example, this path will translate to  /lib/modules/5.16.9-custom/. This is the path from which the kernel will load all loadable modules, as needed.
+    On our Rocky system, this command will install all the compiled kernel modules into the /lib/modules/<new_kernel-version> directory. In this example, this path will translate to  /lib/modules/6.5.7-custom/. This is the path from which the kernel will load all loadable modules, as needed.
 
     !!! TIP
 
-        The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result, you could easily end up with a `/lib/modules/5.16.9-custom/` directory that is close to  5GB in size!
+        The footprint (size) of the kernel modules installed via “make modules_install” can end up getting pretty large because the modules include debugging symbols. As a result, you could easily end up with a `/lib/modules/6.5.7-custom/` directory that is close to  5GB in size!
 
         For this guide we avoid this large size by including the INSTALL_MOD_STRIP=1 option in our make modules_install invocation. You can reduce the total size by orders of magnitude (For example - less than 200 MB!!) by stripping away these debugging symbols.  
 
@@ -382,26 +383,26 @@ Let’s go through the steps required to install the new kernel image.
 1. While in the root of your kernel build directory, copy and rename the bzImage file into the /boot directory:
 
     ```
-    > **sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
-    /boot/vmlinuz-<kernel-version>**
+    > sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
+    /boot/vmlinuz-<kernel-version>
     ```
 
-    Here, kernel-version is the version number of the kernel. For the sample kernel we are using in this guide, the filename would be vmlinuz-5.16.9-custom. So here’s the exact command for this example:
+    Here, kernel-version is the version number of the kernel. For the sample kernel we are using in this guide, the filename would be vmlinuz-6.5.7-custom. So here’s the exact command for this example:
 
     ```
     > sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
-    /boot/vmlinuz-5.16.9-custom
+    /boot/vmlinuz-6.5.7-custom
     ```
 
     !!! Note
 
-        The decision to name the kernel image vmlinuz-5.16.9-custom is somewhat arbitrary. It’s convenient, because kernel images are commonly referred to as vmlinuz, and the suffix of the version number is useful when you have multiple kernels available or kernels that provide specific functionality (For example  vmlinuz-6.50.0-ws).
+        The decision to name the kernel image vmlinuz-6.5.7-custom is somewhat arbitrary. It’s convenient, because kernel images are commonly referred to as vmlinuz, and the suffix of the version number is useful when you have multiple kernels available or kernels that provide specific functionality (For example  vmlinuz-6.50.0-ws).
 
 2. Now that the kernel image is in place, copy over and rename the corresponding System.map file into the /boot directory using the same naming convention:
 
     ```
     > sudo cp -v  ~/build/kernel/System.map \
-    /boot/System.map-5.16.9-custom
+    /boot/System.map-6.5.7-custom
     ```
 
 3. With the kernel in place, the System.map file in place, and the modules in place, we are now ready for the final step. The syntax for the command needed is:
@@ -416,7 +417,7 @@ Let’s go through the steps required to install the new kernel image.
 
     ```
     > sudo kernel-install \
-    add  5.16.9-custom /boot/vmlinuz-5.16.9-custom
+    add  6.5.7-custom /boot/vmlinuz-6.5.7-custom
     ```
 
 The kernel-install command used here is a nifty little shell script. It might not be available in every Linux distribution, but it is available in newer Fedora, RHEL, CentOS distros. This tool automates a lot of the final manual things we’d ordinarily have to do to set up the system to boot the new kernel we just built.
@@ -432,16 +433,16 @@ For systems running the newer versions of GRUB2, the file will be `/boot/grub2/g
 
 And for systems running the legacy versions of GRUB, this will be the /boot/grub/grub.conf or /boot/grub/menu.lst file. And for very new distros that have implemented the new Boot Loader Specification (BLS) a new boot loader entry will be added to the /boot/loader/entries/ directory, or any directory pointed to by the variable named "blsdir".
 
-On our demo EFI based Rocky server running GRUB 2 using BLS, a new boot entry is created in the boot loader file located here: `/boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-5.16.9-custom.conf`
+On our demo EFI based Rocky server running GRUB 2 using BLS, a new boot entry is created in the boot loader file located here: `/boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-6.5.7-custom.conf`
 
 ```
-> sudo cat  /boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-5.16.9-custom.conf
-title Rocky Linux (5.16.9-custom) 8.5 (Green Obsidian)
-version 5.16.9-custom
-linux /vmlinuz-5.16.9-custom
-initrd /initramfs-5.16.9-custom.img $tuned_initrd
+> sudo cat  /boot/loader/entries/6fa25ca775f64accb0d3e53f0e4e6e92-6.5.7-custom.conf
+title Rocky Linux (6.5.7-custom) 8.5 (Green Obsidian)
+version 6.5.7-custom
+linux /vmlinuz-6.5.7-custom
+initrd /initramfs-6.5.7-custom.img $tuned_initrd
 options $kernelopts $tuned_params
-id rocky-20220212013135-5.16.9-custom
+id rocky-20220212013135-6.5.7-custom
 grub_users $grub_users
 grub_arg --unrestricted
 grub_class kernel
@@ -464,14 +465,14 @@ The next stage is to test the kernel to ensure the system can boot with it.
 
     ```
     >  uname -r
-    5.16.9-custom
+    6.5.7-custom
     ```
 
 3. You will recall that one of the features that we added to our new kernel is the ability to support the NTFS file system. Make sure that the new kernel does indeed have support for NTFS by displaying information about the NTFS module:
 
     ```
     [rockstar ~]$ modinfo ntfs
-    filename:       /lib/modules/5.16.9-custom/kernel/fs/ntfs/ntfs.ko
+    filename:       /lib/modules/6.5.7-custom/kernel/fs/ntfs/ntfs.ko
     license:        GPL
     version:        2.1.32
     description:    NTFS 1.2/3.x driver - Copyright …..
