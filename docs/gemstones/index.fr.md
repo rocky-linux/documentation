@@ -3,9 +3,9 @@ title: Indexe des gems
 author: Steven Spencer
 ---
 
-# Collection de gems
+# Gemstones
 
-Bienvenue dans la section **Gems** ! Vous direz : _"mais que viennent faire ces Gemstones dans la doc de Rocky Linux ?"_ C'est une bonne question. Alors que les guides contiennent notre documentation pratique de longueur normale et que les livres contiennent notre documentation plus longue, les gems ne sont que de petits exemples simples. Vous avez un morceau de code Linux préféré que vous utilisez tout le temps ou une commande préférée ? Peut-être avez-vous écrit un script en `bash`, `python` ou un autre langage Linux courant, que vous aimeriez partager car il vous aide dans votre travail quotidien avec Linux ? Si c'est le cas, **Gems** est l'endroit idéal pous votre contribution !
+Bienvenue dans la section **Gems** ! Vous direz : _"mais que viennent faire ces Gemstones dans la doc de Rocky Linux ?"_ C'est une très bonne question. Alors que les guides contiennent notre documentation pratique de longueur normale et que les livres contiennent notre documentation plus longue, les gems ne sont que de petits exemples simples. Vous avez un morceau de code Linux préféré que vous utilisez tout le temps ou une commande préférée ? Peut-être avez-vous écrit un script en `bash`, `python` ou un autre langage Linux courant, que vous aimeriez partager car il vous aide dans votre travail quotidien avec Linux ? Si c'est le cas, **Gems** est l'endroit idéal pous votre contribution !
 
 ## Critères
 

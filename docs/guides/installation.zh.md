@@ -1,7 +1,7 @@
 ---
 Title: 安装 Rocky Linux 9
 author: 韦尔·索因卡
-contributors: 史蒂文·斯宾塞
+contributors: 史蒂文·斯宾塞，甘娜·日尔诺娃
 ---
 
 # 安装 Rocky Linux 9
@@ -32,7 +32,7 @@ Rocky-<主版本号#>.<次版本号#>-<架构>-<变体>.iso
 
 !!! Note "说明"
 
-    Rocky Linux项目网页列出了世界各地的几个镜像网站。 只要有可能，您应该选择地理位置上离您最近的镜像。 官方镜像列表可在 [这里](https://mirrors.rockylinux.org/mirrormanager/mirrors) 找到。
+    Rocky项目网页列出了几个镜像，它们位于全球各地。 选择在地理位置上，离您最近的镜像。 官方镜像列表可以在[这里](https://mirrors.rockylinux.org/mirrormanager/mirrors)找到。
 
 ## 验证安装程序 ISO 文件
 
@@ -126,7 +126,7 @@ _安装摘要_ 屏幕上的 <kbd>语言支持</kbd> 选项使您能够指定您�
 
 ### 软件部分
 
-在 *安装信息摘要* 界面的 *软件/em> 部分，您可以选择安装源以及要安装的其他软件包(应用程序)。</p>
+在 *安装信息摘要* 界面的 *软件* 部分，您可以选择安装源以及要安装的其他软件包(应用程序)。
 
 #### 安装源
 
@@ -175,7 +175,7 @@ _安装摘要_ 屏幕的系统部分用于定制和更改目标系统的基础�
     对于每个接口，您可以使用 DHCP 或手动配置 IP 地址。 
     如果你选择手动配置，一定要准备好所有需要的信息，如IP地址、网络掩码等。
 
-单击 _Installation Summary_下的 <kbd>Network & Hostname</kbd> 按钮，将打开相应的配置界面。 在其他方面，你可以选择配置系统的主机名。
+单击 _安装摘要_下的 <kbd>网络主机名</kbd> 按钮，将打开相应的配置界面。 在其他方面，你可以选择配置系统的主机名。
 
 !!! Note "说明"
 
@@ -193,7 +193,7 @@ _安装摘要_ 屏幕的系统部分用于定制和更改目标系统的基础�
 
 Verify the switch of the device you want to configure is flipped to the `ON` (blue) position in the right pane. 我们将接受这一部分的所有默认值。
 
-单击<kbd>Done</kbd>返回 _Installation Summary_ 主界面。
+单击<kbd>Done</kbd>返回 _安装摘要_ 主界面。
 
 !!! Wanning "警告"
 
@@ -249,7 +249,7 @@ Verify the switch of the device you want to configure is flipped to the `ON` (bl
 
 ### 开始安装
 
-一旦您对各种安装任务的选择感到满意，请单击主界面_Installation Summary_上的"开始安装"按钮。
+一旦您对各种安装任务的选择感到满意，请单击主界面_安装摘要_上的"开始安装"按钮。
 
 安装将开始，安装程序将显示安装进度。 安装开始时，各种任务将开始在后台运行，例如对磁盘进行分区、格式化分区或LVM卷、检查并解决软件依赖关系、将操作系统写入磁盘等。
 
@@ -261,11 +261,11 @@ Verify the switch of the device you want to configure is flipped to the `ON` (bl
 
 在安装程序运行完毕后，你会看到一个带有完整信息的最终安装进度屏幕。
 
-最后，单击<kbd>Reboot System</kbd>按钮来完成整个过程， 系统将重启。
+最后，单击<kbd>重启系统</kbd>按钮来完成整个过程， 系统将重启。
 
 ### 登录
 
-最后，单击<kbd>重启系统</kbd>按钮来完成整个过程， 系统重启。
+该系统现已设置完毕，可供使用。 您将看到Rocky Linux控制台。
 
 ![Rocky Linux 欢迎界面](images/installation_9_F02.png)
 
@@ -278,4 +278,4 @@ Verify the switch of the device you want to configure is flipped to the `ON` (bl
 1. 登录后运行 `whoami` 命令。  
    此命令显示当前登录用户的名称。
 
-![Login Screen](images/installation_9.0_F03.png)
+![登录界面](images/installation_9.0_F03.png)

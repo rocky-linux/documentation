@@ -1,5 +1,5 @@
 - - -
-title: Gestione e installazione del software (Laboratorio 7) author: Wale Soyinka contributors: Steven Spencer, tianci li tested on: 8.8 tags:
+author: Wale Soyinka contributors: Steven Spencer, tianci li tested on: 8.8 tags:
   - lab exercise
   - software management
 - - -

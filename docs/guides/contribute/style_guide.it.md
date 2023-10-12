@@ -30,7 +30,6 @@ Per una comprensione più completa della contribuzione, consultare le nostre gui
 * [Guida ai primi contributi di Rocky Linux](beginners.md) per un orientamento su GitHub, la nostra base di documentazione.
 * [Formattazione di Rocky Docs](rockydocs_formatting.md) per la struttura Markdown.
 
-
 ## Linee guida di stile
 
 *La documentazione di RL si propone di utilizzare un linguaggio chiaro e coerente, sia per garantire l'accessibilità che per aiutare gli sforzi di traduzione in corso.*
