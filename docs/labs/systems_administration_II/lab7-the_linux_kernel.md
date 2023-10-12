@@ -94,13 +94,14 @@ In this exercise you will directly upgrade your kernel using the rpm application
 2. Run the `rpm` utility to list all kernel packages currently installed on the system. Type:
    
   ```bash
-    [root@localhost ~]# rpm -q kernel
+  [root@localhost ~]# rpm -q kernel
   ```
 3. Execute the uname utility to view some information about the current running Kernel. Type:
 
    ```bash
-    [root@localhost ~]# uname --kernel-release
-    5.*.el9_8.x86_64 
+   [root@localhost ~]# uname --kernel-release
+   
+   5.*.el9_8.x86_64 
    ```
  Make a note of the version/release number in your output.
 
@@ -121,9 +122,10 @@ In this exercise you will directly upgrade your kernel using the rpm application
    
    ```bash
    [root@localhost ~]# rpm --test  -Uvh kernel-*.x86_64.rpm
-        error: Failed dependencies:
-        kernel-core-uname-r = *.x86_64 is needed by kernel-*.x86_64
-        kernel-modules-uname-r = *.x86_64 is needed by kernel-*.x86_64
+   
+   error: Failed dependencies:
+   kernel-core-uname-r = *.x86_64 is needed by kernel-*.x86_64
+   kernel-modules-uname-r = *.x86_64 is needed by kernel-*.x86_64
    ```
     From the output we can see that the package has unmet dependencies.
 
@@ -137,6 +139,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
    
     ```bash
     [root@localhost ~]# rpm --test  -Uvh kernel-*.rpm
+    
     Verifying...       ################################# [100%]
     Preparing...       ################################# [100%]
     ```
@@ -178,12 +181,12 @@ In this exercise you will upgrade your kernel by using the dnf application. DNF 
    package repository. TYpe:
   
     ```bash
-      [root@localhost ~]# dnf list kernel
+    [root@localhost ~]# dnf list kernel
     ```
 3. Use the dnf program to check if there are any available updated Kernel packages. Type:
 
     ```bash
-      [root@localhost ~]# dnf check-update kernel
+    [root@localhost ~]# dnf check-update kernel
     ```
 
     You may or may not see any available kernel package updates on your system; Your output depends on how recently you
@@ -193,13 +196,13 @@ In this exercise you will upgrade your kernel by using the dnf application. DNF 
     repository for more information about the package by running:
     
     ```bash
-      [root@localhost ~]# dnf info  kernel --available
+    [root@localhost ~]# dnf info  kernel --available
     ```
 5. Use dnf to automatically find, download and install the latest Kernel package available in the remote
     package repository. Type:
 
     ```bash 
-      [root@localhost ~]# dnf -y update  kernel
+    [root@localhost ~]# dnf -y update  kernel
     ```
 6. Now list the installed Kernel packages. Type:
 
@@ -236,42 +239,43 @@ In this exercise you will build a new kernel from source, by configuring, compil
 4. Download the latest kernel source by typing:
 
     ```bash
-      [root@localhost ~]# curl -L -o linux-6.5.7.tar.xz \
-       https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz 
+    [root@localhost ~]# curl -L -o linux-6.5.7.tar.xz \
+    https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz 
     ```
 
-    linux-6.5.7.tar.xz just happens to be the latest kernel available at time of this writing. You should substitute
-   linux-6.5.7.tar.xz or linux-6.*.tar.xz with whatever version of the Kernel that you choose to follow along this exercise with.
+    NOte that linux-6.5.7.tar.xz just happens to be the latest kernel available at time of this writing. You should substitute
+     linux-6.5.7.tar.xz or linux-6.*.tar.xz with whatever version of the Kernel that you choose to follow along this
+      exercise with.
 
-5. Unpack the kernel tarball into your pwd. Type: 
+6. Unpack the kernel tarball into your pwd. Type: 
 
     ```bash
-        [root@localhost ~]# tar xvJf linux-6.*.tar.xz
+    [root@localhost ~]# tar xvJf linux-6.*.tar.xz
     ```
     The tar command will create a new directory called: “linux-6.*” under your PWD.
 
-6. List the contents of the new kernel source directory
+7. List the contents of the new kernel source directory
 
-7. Change (cd) into the kernel source directory. Type:
-
-    ```bash
-        [root@localhost ~]# cd linux-6.*
-    ```
-8. Clean (prepare) the kernel build environment by using the make mrproper command. Type:
+8. Change (cd) into the kernel source directory. Type:
 
     ```bash
-        [root@localhost ~]# make  O=~/build/kernel mrproper
+    [root@localhost ~]# cd linux-6.*
     ```
-9. Copy over and rename the preexisting config file from the /boot directory into our kernel build 
+9. Clean (prepare) the kernel build environment by using the make mrproper command. Type:
+
+    ```bash
+    [root@localhost ~]# make  O=~/build/kernel mrproper
+    ```
+10. Copy over and rename the preexisting config file from the /boot directory into our kernel build 
    environment:
 
     ```bash
-        [root@localhost ~]# cp /boot/config-`uname -r` ~/build/kernel/.config
+    [root@localhost ~]# cp /boot/config-`uname -r` ~/build/kernel/.config
     ```
-10. Launch the graphical kernel configuration utility. Type:
+11. Launch the graphical kernel configuration utility. Type:
    
     ```bash
-        [root@localhost ~]# make O=~/build/kernel menuconfig
+    [root@localhost ~]# make O=~/build/kernel menuconfig
     ```
     A screen similar to this will appear:
 
@@ -285,7 +289,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
          You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items.
          And finally, the bottom of the screen displays the actual actions/options that the user can choose.
 
-11. For demonstration purposes you'll add Btrfs filesystem support to the new kernel.
+12. For demonstration purposes you'll add Btrfs filesystem support to the new kernel.
    In the main configuration screen, use your arrow keys to navigate to and highlight the File systems item.
    With File systems selected, press ENTER to view the sub-menu or child items for File systems.
 
@@ -314,8 +318,9 @@ In this exercise you will build a new kernel from source, by configuring, compil
         type the following:
         
         ```bash
-          # grep  ^CONFIG_BTRFS_FS  ~/build/kernel/.config
-          CONFIG_BTRFS_FS=y
+        # grep  ^CONFIG_BTRFS_FS  ~/build/kernel/.config
+
+        CONFIG_BTRFS_FS=y
         ```
 
 17. Complete another important step for custom Kernels on Rocky Linux distros. Type:
@@ -323,6 +328,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     ```bash
     [root@localhost linux-6*]# sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config 
     ```
+    
 18. Add a simple customization to the new Kernel that will allow you to more easily distinguish it from
      the other stock Kernels. For this, use the `sed` utility to edit the Makefile in place. Type:
 
@@ -337,7 +343,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
         [root@localhost ~]# make O=~/build/kernel kernelversion
     ```
 
-20. You are ready compile the Kernel. Type:
+20. You are ready to compile the Kernel. Type:
 
     ```bash
     [root@localhost linux-6.*]# make  O=~/build/kernel -j $(nproc)
@@ -350,19 +356,19 @@ In this exercise you will build a new kernel from source, by configuring, compil
 21. After the compilation completes successfully, you'll end up with the finished Kernel stored here:
 
     ```bash
-        ~/build/kernel/arch/x86/boot/bzImage
+    ~/build/kernel/arch/x86/boot/bzImage
     ```
 22. Install the portions of the kernel that were configured as modules. Type:
 
     ```bash
-      [root@localhost linux-6.*]# make O=~/build/kernel modules_install      
+    [root@localhost linux-6.*]# make O=~/build/kernel modules_install      
     ```
     
 23. With the Kernel now builtm it's time to install it. Type:
     
     ```bash
-      [root@localhost linux-6.*]# cp ~/build/kernel/arch/x86/boot/bzImage  \
-      /boot/vmlinuz-<kernel-version>      
+    [root@localhost linux-6.*]# cp ~/build/kernel/arch/x86/boot/bzImage  \
+    /boot/vmlinuz-<kernel-version>      
     ```
 
     Replace <kernel-version> with the version number of your custom kernel. 
@@ -370,7 +376,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     command for this example:
 
     ```bash
-      cp ~/build/kernel/arch/x86/boot/bzImage  /boot/vmlinuz-6.*-custom
+    cp ~/build/kernel/arch/x86/boot/bzImage  /boot/vmlinuz-6.*-custom
     ```
 
 24. Copy over and rename the corresponding System.map file into the /boot directory using the same naming
