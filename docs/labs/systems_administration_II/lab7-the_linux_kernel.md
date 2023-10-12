@@ -296,7 +296,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
 
    In the File Systems section, use your arrow keys to navigate to *Btrfs filesystem support*.
 
-13. With *Btrfs filesystem support* highlighted, press <kbd>y<kbd> to include support for Btrfs in the
+13. With *Btrfs filesystem support* highlighted, press `y` to include support for Btrfs in the
      custom kernel. 
      When you are done, an asterisk symbol (*) should appear beside the highlighted option. The final screen should
     look like the one shown here:
