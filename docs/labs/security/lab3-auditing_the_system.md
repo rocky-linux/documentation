@@ -1,9 +1,8 @@
 ---
 Title:  Lab 3 - Auditing the System
 author: Wale Soyinka
-contributors:
+contributors: Steven Spencer, Ganna Zhyrnova
 ---
-
 
 # Lab 3: Auditing the System
 
@@ -520,11 +519,11 @@ Running tripwire in this mode (integrity check mode) compares the current file s
     Check under the `/var/lib/tripwire/report` directory to see if a report was also created in there for you.
     
     !!! QUESTION
+        
         Write down the name of the report file that was created?
-    
+              
         FILE_NAME =
-
-
+    
 2. Run the integrity check again but manually specify a file name for the report file. Type:
    
     ```
@@ -696,11 +695,10 @@ This will help to greatly reduce the length of the report file that you have to 
         <LATEST_REPORT>
 
 8. Run an integrity check of the system again until you are satisfied that you have a good baseline of the system, with which to make future decisions.
-
-   !!! Question
-       
-       What is the command to do this?
-
+    
+    !!! Question
+           
+        What is the command to do this?
 
 ### Updating the database
 
@@ -861,7 +859,7 @@ Having to mount and unmount a removable media each time you want to administer a
 ### ADDITIONAL EXERCISES
 
 1.  Configure your tripwire installation run an integrity check every day at 2 A.M and send out a report of the integrity check via e-mail to the super user on the system.
-
-!!! hint
     
-    You may need to do this using a cron job.
+    !!! hint
+    
+        You may need to do this using a cron job.
