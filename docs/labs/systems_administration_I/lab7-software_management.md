@@ -1,5 +1,5 @@
 ---
-author: Wale Soyinka 
+author: Wale Soyinka
 contributors: Steven Spencer, tianci li
 tested on: 8.8
 tags:
