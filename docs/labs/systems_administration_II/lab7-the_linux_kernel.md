@@ -290,7 +290,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
         You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items.
         And finally, the bottom of the screen displays the actual actions/options that the user can choose.
 
-13. For demonstration purposes you'll add Btrfs filesystem support to the new kernel.
+12. For demonstration purposes you'll add Btrfs filesystem support to the new kernel.
    In the main configuration screen, use your arrow keys to navigate to and highlight the File systems item.
    With File systems selected, press ENTER to view the sub-menu or child items for File systems.
 
@@ -303,14 +303,14 @@ In this exercise you will build a new kernel from source, by configuring, compil
      
       ![Kernel Configuration File Systems screen](images/lab2-il02-kernel.png)
 
-13. Return to the main kernel configuration screen by pressing <kbd>ESC</kbd> twice on your keyboard.
+14. Return to the main kernel configuration screen by pressing <kbd>ESC</kbd> twice on your keyboard.
     
-14. Exit the kernel configuration application by pressing esc twice again on your keyboard.
+15. Exit the kernel configuration application by pressing esc twice again on your keyboard.
      Exiting the kernel configurator will force saving your changes to the .config file in the root of the kernel source tree.
 
-15. A dialog box will appear prompting you to save your new configuration. Make sure that Yes is selected
+16. A dialog box will appear prompting you to save your new configuration. Make sure that Yes is selected
      and then press ENTER.
-16. After the kernel configuration utility exits, you will be thrown back to your shell—inside the kernel 
+17. After the kernel configuration utility exits, you will be thrown back to your shell—inside the kernel 
     source tree.
 
     !!! Tip
@@ -324,27 +324,27 @@ In this exercise you will build a new kernel from source, by configuring, compil
         CONFIG_BTRFS_FS=y
         ```
 
-17. Complete another important step for custom Kernels on Rocky Linux distros. Type:
+18. Complete another important step for custom Kernels on Rocky Linux distros. Type:
     
     ```bash
     [root@localhost linux-6*]# sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config 
     ```
     
-18. Add a simple customization to the new Kernel that will allow you to more easily distinguish it from
+19. Add a simple customization to the new Kernel that will allow you to more easily distinguish it from
      the other stock Kernels. For this, use the `sed` utility to edit the Makefile in place. Type:
 
     ```bash
       [root@localhost linux-6.*]# sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
     ```
 
-19. Verify the full version of the kernel that you just customized by passing the `kernelversion` target 
+20. Verify the full version of the kernel that you just customized by passing the `kernelversion` target 
     to the `make` command. Type:
     
     ```bash
         [root@localhost ~]# make O=~/build/kernel kernelversion
     ```
 
-20. You are ready to compile the Kernel. Type:
+21. You are ready to compile the Kernel. Type:
 
     ```bash
     [root@localhost linux-6.*]# make  O=~/build/kernel -j $(nproc)
@@ -354,18 +354,18 @@ In this exercise you will build a new kernel from source, by configuring, compil
     HOSTCC  scripts/kconfig/conf.o
     ```
 
-21. After the compilation completes successfully, you'll end up with the finished Kernel stored here:
+22. After the compilation completes successfully, you'll end up with the finished Kernel stored here:
 
     ```bash
     ~/build/kernel/arch/x86/boot/bzImage
     ```
-22. Install the portions of the kernel that were configured as modules. Type:
+23. Install the portions of the kernel that were configured as modules. Type:
 
     ```bash
     [root@localhost linux-6.*]# make O=~/build/kernel modules_install      
     ```
     
-23. With the Kernel now builtm it's time to install it. Type:
+24. With the Kernel now builtm it's time to install it. Type:
     
     ```bash
     [root@localhost linux-6.*]# cp ~/build/kernel/arch/x86/boot/bzImage  \
@@ -380,22 +380,22 @@ In this exercise you will build a new kernel from source, by configuring, compil
     cp ~/build/kernel/arch/x86/boot/bzImage  /boot/vmlinuz-6.*-custom
     ```
 
-24. Copy over and rename the corresponding System.map file into the /boot directory using the same naming
+25. Copy over and rename the corresponding System.map file into the /boot directory using the same naming
      convention:
 
     ```bash
     [root@localhost linux-6.*]# cp -v ~/build/kernel/System.map /boot/System.map-6.*-custom  
     ```    
-25. Use the `kernel-install` utility to complete the file step. Type:
+26. Use the `kernel-install` utility to complete the file step. Type:
 
     ```bash
     [root@localhost linux-6.*]# kernel-install add  6.*-custom /boot/vmlinuz-6.*-custom
     ```     
 
-26. The `kernel-install` utility will create a new boot entry in the boot loader configuration file. For EFI based systems
+27. The `kernel-install` utility will create a new boot entry in the boot loader configuration file. For EFI based systems
      you can look under /boot/loader/entries/ for matching entries.
 
-27. All done. Moment of truth now. You can reboot your system and select the new custom Kernel in the GRUB boot menu.
+28. All done. Moment of truth now. You can reboot your system and select the new custom Kernel in the GRUB boot menu.
     If all goes well after the reboot, you can verify that system is running the custom kernel by running the uname
     command like this:
 
