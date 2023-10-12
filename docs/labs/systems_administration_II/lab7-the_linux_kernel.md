@@ -243,7 +243,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz 
     ```
 
-    NOte that linux-6.5.7.tar.xz just happens to be the latest kernel available at time of this writing. You should substitute
+    Note that linux-6.5.7.tar.xz just happens to be the latest kernel available at time of this writing. You should substitute
      linux-6.5.7.tar.xz or linux-6.*.tar.xz with whatever version of the Kernel that you choose to follow along this
       exercise with.
 
@@ -280,22 +280,23 @@ In this exercise you will build a new kernel from source, by configuring, compil
     A screen similar to this will appear:
 
     ![Kernel Configuration File Systems screen](images/lab2-il01-kernel.png)
+    
 
     !!! Note
         The kernel configuration screen that appears is divided into roughly three areas.
         The top part shows various helpful information, keyboard shortcuts, and legends that can help you navigate the
-         application.
+        application.
         The main body of the screen shows an expandable tree-structured list of the overall configurable kernel options.
-         You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items.
-         And finally, the bottom of the screen displays the actual actions/options that the user can choose.
+        You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items.
+        And finally, the bottom of the screen displays the actual actions/options that the user can choose.
 
-12. For demonstration purposes you'll add Btrfs filesystem support to the new kernel.
+13. For demonstration purposes you'll add Btrfs filesystem support to the new kernel.
    In the main configuration screen, use your arrow keys to navigate to and highlight the File systems item.
    With File systems selected, press ENTER to view the sub-menu or child items for File systems.
 
    In the File Systems section, use your arrow keys to navigate to *Btrfs filesystem support*.
 
-12. With *Btrfs filesystem support* highlighted, press <kbd>y<kbd> to include support for Btrfs in the
+13. With *Btrfs filesystem support* highlighted, press <kbd>y<kbd> to include support for Btrfs in the
      custom kernel. 
      When you are done, an asterisk symbol (*) should appear beside the highlighted option. The final screen should
     look like the one shown here:
