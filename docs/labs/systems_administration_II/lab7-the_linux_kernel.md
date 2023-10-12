@@ -1,5 +1,14 @@
-# Lab 7: The Linux Kernel
+---
+author: Wale Soyinka 
+contributors:
+tested on: All Versions
+tags:
+  - lab exercise
+  - Linux Kernel
+  - compile
+---
 
+# Lab 7: The Linux Kernel
 
 ## Objectives 
 
@@ -8,9 +17,7 @@ After completing this lab, you will be able to
 - install a new kernel from a binary package 
 - compile and install a new kernel from source files 
 
-
 Estimated time to complete this lab: 90 minutes 
-
 
 ## Kernel 
 
@@ -93,7 +100,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
 
    ```bash
     [root@localhost ~]# uname --kernel-release
-    4.18.0-477.21.1.el8_8.x86_64 
+    5.*.el9_8.x86_64 
    ```
  Make a note of the version/release number in your output.
 
@@ -143,10 +150,9 @@ In this exercise you will directly upgrade your kernel using the rpm application
 10. Use rpm to list all the installed kernel packages on your system. 
 
     !!! Question
-
         What is different between the output of the rpm -q kernel command - before and after you installed the new kernel ?
 
-11. We are done with using RPM to directly manage Kernel packages on the system. 
+12. We are done with using RPM to directly manage Kernel packages on the system. 
     Uninstall the latest kernel package that you downloaded and installed. 
     For this you'll need the to specifiy the exact and correct name-epoch-version-release-architecture (NEVRA) info for the
     Kernel and its associated dependencies that you want to uninstall. Type:
@@ -174,7 +180,7 @@ In this exercise you will upgrade your kernel by using the dnf application. DNF 
     ```bash
       [root@localhost ~]# dnf list kernel
     ```
-4. Use the dnf program to check if there are any available updated Kernel packages. Type:
+3. Use the dnf program to check if there are any available updated Kernel packages. Type:
 
     ```bash
       [root@localhost ~]# dnf check-update kernel
@@ -183,19 +189,19 @@ In this exercise you will upgrade your kernel by using the dnf application. DNF 
     You may or may not see any available kernel package updates on your system; Your output depends on how recently you
     updated the entire system.
 
-6. If you see a new version of the kernel listed as being available, you can use dnf to query the remote
+4. If you see a new version of the kernel listed as being available, you can use dnf to query the remote
     repository for more information about the package by running:
     
     ```bash
       [root@localhost ~]# dnf info  kernel --available
     ```
-7. Use dnf to automatically find, download and install the latest Kernel package available in the remote
+5. Use dnf to automatically find, download and install the latest Kernel package available in the remote
     package repository. Type:
 
     ```bash 
       [root@localhost ~]# dnf -y update  kernel
     ```
-8. Now list the installed Kernel packages. Type:
+6. Now list the installed Kernel packages. Type:
 
     ```bash
     [root@localhost ~]# dnf list kernel --installed
@@ -205,10 +211,7 @@ In this exercise you will upgrade your kernel by using the dnf application. DNF 
 
 ### Upgrade the kernel from source 
 
-In this exercise you will build a new kernel from source, by configuring, compiling and installing it yourself. For this exercise you will need the files below: 
-
-1. linux-*.tar.bz2 
-1. kernel-config.txt 
+In this exercise you will build a new kernel from source, by configuring, compiling and installing it yourself. 
 
 #### To upgrade the kernel from source 
 
@@ -233,8 +236,8 @@ In this exercise you will build a new kernel from source, by configuring, compil
 4. Download the latest kernel source by typing:
 
     ```bash
-    [root@localhost ~]# curl -L -o linux-6.5.7.tar.xz \
-     https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz 
+      [root@localhost ~]# curl -L -o linux-6.5.7.tar.xz \
+       https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz 
     ```
 
     linux-6.5.7.tar.xz just happens to be the latest kernel available at time of this writing. You should substitute
@@ -306,7 +309,9 @@ In this exercise you will build a new kernel from source, by configuring, compil
     source tree.
 
     !!! Tip
-        To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config file that you saved directly. For example, to view the effect of you enabling Btrfs filesystem support, type the following:
+        To view the results of some of the changes you made using the menuconfig tool, use the grep utility to view the .config
+        file that you saved directly. For example, to view the effect of you enabling Btrfs filesystem support,
+        type the following:
         
         ```bash
           # grep  ^CONFIG_BTRFS_FS  ~/build/kernel/.config
@@ -350,22 +355,22 @@ In this exercise you will build a new kernel from source, by configuring, compil
 22. Install the portions of the kernel that were configured as modules. Type:
 
     ```bash
-          [root@localhost linux-6.*]# make O=~/build/kernel modules_install      
+      [root@localhost linux-6.*]# make O=~/build/kernel modules_install      
     ```
     
 23. With the Kernel now builtm it's time to install it. Type:
     
     ```bash
-    [root@localhost linux-6.*]# cp ~/build/kernel/arch/x86/boot/bzImage  \
-    /boot/vmlinuz-<kernel-version>      
+      [root@localhost linux-6.*]# cp ~/build/kernel/arch/x86/boot/bzImage  \
+      /boot/vmlinuz-<kernel-version>      
     ```
 
     Replace <kernel-version> with the version number of your custom kernel. 
     For the sample kernel we are using in this guide, the filename would be vmlinuz-6.*-custom. So here’s the exact
     command for this example:
 
-    ```
-    cp ~/build/kernel/arch/x86/boot/bzImage  /boot/vmlinuz-6.*-custom
+    ```bash
+      cp ~/build/kernel/arch/x86/boot/bzImage  /boot/vmlinuz-6.*-custom
     ```
 
 24. Copy over and rename the corresponding System.map file into the /boot directory using the same naming
