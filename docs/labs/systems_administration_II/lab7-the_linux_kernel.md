@@ -100,7 +100,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
 
 3. Execute the `uname` utility to view some information about the current running Kernel. Type:
     
-    ```bash
+    ``` { .bash data-copy="uname --kernel-release" }
     [root@localhost ~]# uname --kernel-release
     
     5.*.el9_8.x86_64 
