@@ -94,7 +94,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
 
 2. Run the `rpm` utility to list all kernel packages currently installed on the system. Type:
        
-    ```bash
+    ```bash { .sh data-copy="rpm -q kernel" }
     [root@localhost ~]# rpm -q kernel
     ```
 
