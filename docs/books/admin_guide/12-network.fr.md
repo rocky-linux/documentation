@@ -33,7 +33,7 @@ Pour illustrer ce chapitre, nous utiliserons l'architecture suivante.
 
 Cela nous permettra d'envisager :
 
-* intégration dans un réseau local (LAN) ;
+* l'intégration dans un réseau local (LAN) ;
 * la configuration d'une passerelle pour atteindre un serveur distant ;
 * la configuration d'un serveur DNS et l'implémentation de la résolution des noms.
 
@@ -49,7 +49,7 @@ Exemple :
 *   `192.168.1.10` ;
 *   `255.255.255.0`.
 
-La notation appelée CIDR est de plus en plus fréquente : 192.168.1.10/24
+La notation appelée CIDR (Classless Inter-Domain Routing) est de plus en plus fréquente : 192.168.1.10/24
 
 Les adresses IP sont utilisées pour le routage approprié des messages (paquets). Ils sont divisés en deux parties :
 
@@ -115,7 +115,7 @@ Pour qu'un ordinateur fasse partie d'un domaine DNS, il faut lui attribuer un su
 
 **La couche 1** (Physique) supporte la transmission sur un canal de communication (Wifi, fibre optique, câble RJ, etc.). Unité: le bit.
 
-**La couche 2** (Data Link) supports network topology (token-ring, star, bus, etc.), data splitting and transmission errors. Unité: le frame.
+**La couche 2** (Data Link) prends en charge la topologie du réseau (token-ring, star, bus, etc.), la répartition des données et la gestion des erreurs de transmission. Unité: le frame.
 
 **La couche 3** (Réseau) supporte la transmission de données de bout en bout (routage IP = passerelle).</strong> Unité : le paquet.
 
@@ -125,13 +125,13 @@ Pour qu'un ordinateur fasse partie d'un domaine DNS, il faut lui attribuer un su
 
 **La couche 6** (Présentation) représente la zone indépendante des données à la couche d'application. Fondamentalement, cette couche traduit du format réseau au format de l'application, ou du format de l'application au format réseau.
 
-**La couche 7** (Application) représente le contact avec l'utilisateur. It provides the services offered by the network: http, dns, ftp, imap, pop, smtp, etc.
+**La couche 7** (Application) représente le contact avec l'utilisateur. Elle prend en charge les services dédiés au réseau : http, dns, ftp, imap, pop, smtp, etc.
 
 ## Le nommage des interfaces
 
-*lo* est l'interface "**loopback**" qui permet aux programmes TCP/IP de communiquer entre eux sans quitter la machine locale. Ceci permet de tester si le module réseau **du système fonctionne correctement** et permet également d'utiliser ping pour vérifier la connection avec localhost. Tous les paquets qui entrent via localhost passent par localhost. Les paquets reçus sont les mêmes que les paquets envoyés.
+*lo* est l'interface "**loopback**" qui permet aux programmes TCP/IP de communiquer entre eux sans quitter la machine locale. Ceci permet de tester si le module réseau **du système fonctionne correctement** et permet également d'utiliser ping pour vérifier la connection avec localhost. Tous les paquets entrant via localhost sortent par localhost. Les paquets reçus sont identiques aux paquets envoyés.
 
-Le noyau Linux attribue des noms d'interface avec un préfixe spécifique selon le type. Traditionnellement, toutes les interfaces **Ethernet** , par exemple, ont commencé à **ème**. Le préfixe a été suivi d'un nombre, le premier étant 0 (eth0, eth1, eth2...). Les interfaces wifi ont reçu un préfixe de wlan.
+Le noyau Linux attribue des noms d'interface avec un préfixe spécifique selon le type de périphérique. Par exemple, toutes les interfaces **Ethernet** commencent traditionnellement par **eth**. Le préfixe a été suivi d'un nombre, le premier étant 0 (eth0, eth1, eth2...). Les interfaces wifi ont reçu un préfixe de wlan.
 
 Sur les distributions Rocky8 Linux, le système nommera les interfaces avec la nouvelle convention suivante où "X" représente un nombre :
 
@@ -222,7 +222,7 @@ Le fichier `/etc/hosts` contient une ligne par entrée, avec l'adresse IP, le FQ
 
 ## Le fichier `/etc/nsswitch.conf`
 
-La **NSS** (**N**nom **S**ervice **S**witch) permet de substituer des fichiers de configuration (par ex. `/etc/passwd`, `/etc/group`, `/etc/hosts`) pour être remplacés par une ou plusieurs bases de données centralisées.
+La **NSS** (**N**om **S**ervice **S**witch) permet de substituer des fichiers de configuration (par ex. `/etc/passwd`, `/etc/group`, `/etc/hosts`) pour être remplacés par une ou plusieurs bases de données centralisées.
 
 Le fichier `/etc/nsswitch.conf` est utilisé pour configurer les bases de données du service de noms.
 
@@ -385,7 +385,7 @@ PREFIX=24
 ```
 DEVICE=eth0
 ONBOOT=yes
-BOOTPROTO=aucun
+BOOTPROTO=none
 HWADDR=00:0c:29:96:32:e3
 IPADDR=192.168.1.10
 NETMASK=255.255.255.0
@@ -557,7 +557,7 @@ Exemple :
 
 Interroger seulement un serveur DNS peut retourner un résultat erroné qui ne prend pas en compte le contenu d'un fichier `hosts` bien que cela devrait être rare de nos jours.
 
-Pour prendre également en compte le fichier `/etc/hosts` . le service de nom NSSwitch doit être interrogé, ce qui prendra en charge toute résolution DNS.
+Pour prendre également en compte le fichier `/etc/hosts`, le service de nom NSSwitch doit être interrogé, ce qui prendra en compte toute résolution DNS.
 
 ### La commande `ipcalc`
 
