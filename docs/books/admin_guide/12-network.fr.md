@@ -10,11 +10,11 @@ Dans ce chapitre, vous apprendrez comment travailler avec, utiliser et gérer le
 
 **Objectifs** : Dans ce chapitre vous apprendrez à :
 
-:heavy_check_mark: Configurer un poste de travail pour utiliser DHCP ;  
-:heavy_check_mark: Configurer un poste de travail pour utiliser une configuration statique ;   
-:heavy_check_mark: Configurer un poste de travail pour utiliser une passerelle ;   
-:heavy_check_mark: Configurer un poste de travail pour utiliser des serveurs DNS ;   
-:heavy_check_mark: Dépanner le réseau d'un poste de travail.
+:heavy_check_mark: configurer un poste de travail pour utiliser DHCP ;  
+:heavy_check_mark: configurer un poste de travail pour utiliser une configuration statique ;   
+:heavy_check_mark: configurer un poste de travail pour utiliser une passerelle ;   
+:heavy_check_mark: configurer un poste de travail pour utiliser des serveurs DNS ;   
+:heavy_check_mark: dépanner le réseau d'un poste de travail.
 
 :checkered_flag: **réseau**, **linux**, **ip**
 
@@ -69,7 +69,7 @@ Il existe également des adresses spécifiques au sein d'un réseau, qui doivent
 
 ### Adresse MAC / adresse IP
 
-Une **adresse MAC** est un identifiant physique enregistré dans l'usine sur l'appareil. On parle parfois de l'adresse matérielle. Elle se compose de 6 octets souvent définis sous forme hexadécimale (par exemple 5E:FF:56:A2:AF:15). Elle est composée de : 3 octets de l'identifiant du fabricant et 3 octets du numéro de série.
+Une **adresse MAC** est un identifiant physique enregistré à la fabrication dans l'appareil. On parle parfois de l'adresse matérielle. Elle se compose de 6 octets souvent définis sous forme hexadécimale (par exemple 5E:FF:56:A2:AF:15). Elle est composée de : 3 octets de l'identifiant du fabricant et 3 octets du numéro de série.
 
 !!! warning "Avertissement"
 
@@ -255,7 +255,7 @@ nameserver 192.168.1.254
 
     Ce fichier est désuet. Il n'est plus rempli directement!
 
-Les nouvelles générations de distributions ont généralement intégré le service `NetworkManager`. Ce service vous permet de gérer la configuration plus efficacement, en mode graphique ou en mode console.
+Les nouvelles générations de distributions Linux ont généralement intégré le service `NetworkManager`. Ce service vous permet de gérer la configuration plus efficacement, en mode graphique ou en mode console.
 
 Il permet d'ajouter des serveurs DNS à partir du fichier de configuration d'une interface réseau. Il remplit alors automatiquement le fichier `/etc/resolv.conf` qui ne devrait jamais être modifié directement, sinon les changements de configuration seront perdus la prochaine fois que le service réseau sera démarré.
 
@@ -402,7 +402,7 @@ default via 192.168.1.254 dev eth0 proto static
 
 C'est une bonne idée de savoir comment lire une table de routage, en particulier dans un environnement avec plusieurs interfaces réseau.
 
-* Dans l'exemple montré, le `192.168.1. /24` le réseau est accessible directement depuis le périphérique `eth0` , donc il y a une métrique à `1` (ne traverse pas un routeur).
+* Dans l'exemple précédent, le réseau `192.168.1.0/24` est accessible directement depuis le périphérique `eth0`, donc il y a une métrique à `1` (ne traverse pas un routeur).
 
 * Tous les autres réseaux autres que le précédent seront accessibles, à nouveau à partir du périphérique `eth0`, mais cette fois les paquets seront adressés à une passerelle `192.168.1.254`. Le protocole de routage est un protocole statique (bien qu'il soit possible d'ajouter une route à une adresse assignée dynamiquement dans Linux).
 
