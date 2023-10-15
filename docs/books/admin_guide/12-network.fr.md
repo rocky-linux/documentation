@@ -131,7 +131,7 @@ Pour qu'un ordinateur fasse partie d'un domaine DNS, il faut lui attribuer un su
 
 *lo* est l'interface "**loopback**" qui permet aux programmes TCP/IP de communiquer entre eux sans quitter la machine locale. Ceci permet de tester si le module réseau **du système fonctionne correctement** et permet également d'utiliser ping pour vérifier la connection avec localhost. Tous les paquets entrant via localhost sortent par localhost. Les paquets reçus sont identiques aux paquets envoyés.
 
-Le noyau Linux attribue des noms d'interface avec un préfixe spécifique selon le type de périphérique. Par exemple, toutes les interfaces **Ethernet** commencent traditionnellement par **eth**. Le préfixe a été suivi d'un nombre, le premier étant 0 (eth0, eth1, eth2...). Les interfaces wifi ont reçu un préfixe de wlan.
+Le noyau Linux attribue des noms d'interface avec un préfixe spécifique selon le type de périphérique. Par exemple, toutes les interfaces **Ethernet** commencent traditionnellement par **eth**. Le préfixe est suivi d'un nombre, le premier étant 0 (eth0, eth1, eth2...). Les interfaces wifi reçoivent le préfixe wlan.
 
 Sur les distributions Rocky8 Linux, le système nommera les interfaces avec la nouvelle convention suivante où "X" représente un nombre :
 
