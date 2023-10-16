@@ -334,9 +334,9 @@ The whole point of all this encrypting, signing and decrypting business is becau
 
 With that said - the perhaps not to so obvious has to be stated:
 
-You must exchange public keys to communicate with other people using a public-key-based cryptosystem..
+You must exchange public keys to communicate with other people using a public-key-based cryptosystem.
 
-Or at least make your public key available in any publicly accessible place (Bill-boards, web pages, key servers, radio, T.V, SPAMMING via e-mail ..etc)
+Or at least make your public key available in any publicly accessible place (billboards, web pages, key servers, radio, T.V, SPAMMING via e-mail ..etc)
 
 #### To export your public keys
 
@@ -376,7 +376,7 @@ Or at least make your public key available in any publicly accessible place (Bil
 
 ### Digital signatures
 
-Creating and verifying signatures uses the public/private key pair, which differs from encryption and decryption. A signature is created using the private key of the signer. The signature can be verified using the corresponding public key.
+Creating and verifying signatures uses the public/private key pair, which differs from encryption and decryption. Using the private key of the signer to create a signature, facilitates verification using the corresponding public key.
 
 #### To digitally sign a file
 
@@ -516,7 +516,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
     <span id="anchor-4"></span>Encrypting and decrypting files
 
-    The procedure for encrypting and decrypting files or documents is straighti-forward.
+    The procedure for encrypting and decrypting files or documents is straightforward.
 
     If you want to encrypt a message to the user ying, you will encrypt it using user ying’s public key.
 
@@ -613,9 +613,9 @@ OpenSSH is OpenBSD's SSH (Secure SHell) protocol implementation.
 
 It is a FREE version of the SSH protocol suite of network connectivity tools. OpenSSH encrypts all traffic (including passwords) to effectively eliminate eavesdropping, connection hijacking, and other network-level attacks. Additionally, OpenSSH provides a plethora of secure tunneling capabilities, as well as a variety of authentication methods.
 
-It helps to provide secure encrypted communications between two un-trusted hosts over an insecure network (such as the internet).
+It helps to provide secure encrypted communications between two untrusted hosts over an insecure network (such as the internet).
 
-It includes both the server-side components and the client-side suite of programs
+It includes both the server-side components and the client-side suite of programs.
 
 *sshd*
 
@@ -623,25 +623,23 @@ The server side includes the secure shell daemon (`sshd`). `sshd` is the daemon 
 
 It forks a new daemon for each incoming connection. The forked daemons handle key exchange, encryption, authentication, command execution, and data exchange. According to sshd’s man page, `sshd` works as follows:
 
-The OpenSSH SSH daemon supports SSH protocol 2 only. Each host has a host-specific key, used to identify the host. Whenever a client connects, the daemon responds
-with its public host key. The client compares the host key against its own database to verify that it has not changed. Forward security is provided through a Diffie-Hellman key agreement. This key agreement results in a shared session key.  The rest of the session is encrypted using a symmetric cipher.
+The OpenSSH SSH daemon supports SSH protocol 2 only. Each host has a host-specific key, used to identify the host. Whenever a client connects, the daemon responds with its public host key. The client compares the host key against its database to verify that it has not changed. Forward security is provided through a Diffie-Hellman key agreement. This key agreement results in a shared session key. The rest of the session is encrypted using a symmetric cipher.
 
-The client selects the encryption algorithm to use from those offered by the server. Additionally, session integrity is provided through a cryptographic message authentication code (hmac-md5, hmac-sha1, umac-64, umac-128, hmac-sha2-256 or hmac-sha2-512).
+The client selects the encryption algorithm from those offered by the server. Additionally, session integrity is provided through a cryptographic message authentication code (hmac-md5, hmac-sha1, umac-64, umac-128, hmac-sha2-256 or hmac-sha2-512).
 
-Finally, the server and the client enter an authentication dialog. The client tries to authenticate itself using host-based authentication, public key authentication,
-GSSAPI authentication, challenge-response authentication, or password authentication.
+Finally, the server and the client enter an authentication dialog. The client tries to authenticate itself using host-based authentication, public key authentication, GSSAPI authentication, challenge-response authentication, or password authentication.
 
-The SSH2 protocol implemented in OpenSSH is standardized by the “IETF secsh” working group
+The SSH2 protocol implemented in OpenSSH is standardized by the “IETF secsh” working group.
 
 *ssh*
 
-The client's suite of programs include `ssh`. This is a program used for logging into remote systems and can also be used for executing commands on remote systems.
+The client's suite of programs includes `ssh`. This is a program used for logging into remote systems and can also be used for executing commands on remote systems.
 
 ## Exercise 5
 
 ### `sshd`
 
-Some exercises covering the `sshd` server daemon.
+Some exercises cover the `sshd` server daemon.
 
 ```
 Usage: sshd [options]
@@ -694,7 +692,7 @@ Most Linux systems out of the box already have the OpenSSH server configured and
 
 ### Creating host keys
 
-Your SSH server already has hosts keys that it uses. Those keys were generated when your system was first installed. In this exercise you will learn how to create host type keys for your server. But you wont actually use the keys.
+Your SSH server already has host keys that it uses. Those keys were generated when your system was first installed. In this exercise you will learn how to create host-type keys for your server, but you wont use the keys.
 
 #### To generate host keys for your server
 
@@ -828,8 +826,7 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
         
         Was the user ying able to remotely reboot serverPR ? Why can't ying remotely reboot serverPR?
 
-7. From serverXY, try remotely viewing the status of the `sshd` service running on serverPR as the user 
-   `ying`. Type: 
+7. From serverXY, try remotely viewing the status of the `sshd` service running on serverPR as the user `ying`. Type: 
 
     ```bash
     [root@localhost ~]# ssh -l ying localhost 'systemctl status sshd.service'
@@ -848,15 +845,15 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 
     !!! Question "Questions"
 
-        - Was the user ying able to remotely view the status of the sshd service on serverPR ? 
-        - Was the user ying able to remotely restart the sshd service on serverPR ?
-        - Write a brief explanation for the behaviour you are observing
+        - Was the user ying able to remotely view the status of the sshd service on serverPR? 
+        - Was the user ying able to remotely restart the sshd service on serverPR?
+        - Write a brief explanation for the behaviour you are observing.
 
 9. Type “exit” to log off serverPR and return to serverXY.
 
 ### `scp` - secure copy (remote file copy program)
 
-`scp` copies files between hosts on a network. It uses SSH for data transfer, and uses the same authentication and provides the same security as `ssh`.
+`scp` copies files between hosts on a network. It uses SSH for data transfer, uses the same authentication, and provides the same security as `ssh`.
 
 ```
 usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
@@ -940,13 +937,13 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
 
 ### Creating User Public and Private keys for SSH
 
-Every user that wants to use SSH with RSA or DSA authentication needs a pair of public and private keys. The `ssh-keygen` program can be used to create these keys ( just as it was used earlier when you created new host keys for your system)
+Every user who wants to use SSH with RSA or DSA authentication needs a pair of public and private keys. The `ssh-keygen` program can be used to create these keys ( just as it was used earlier when you created new host keys for your system)
 
 !!! TIP
 
-    One main difference between host keys and user keys is that it is highly recommended to protect user keys with a passphrase. The passphrase is a password used for encrypting the [plain text] private key.
+    One main difference between host and user keys is that it is highly recommended to protect user keys with a passphrase. The passphrase is a password used for encrypting the [plain text] private key.
 
-The public is store in a file with the same file name as the private key but with the extension “.pub” appended to it. There is no easy way to recover a lost passphrase. A new key must be generated if the passphrase is lost or forgotten. 
+The public is stored in a file with the same file name as the private key but with the extension “.pub” appended to it. There is no easy way to recover a lost passphrase. A new key must be generated if the passphrase is lost or forgotten. 
 
 #### To create user public/private authentication keys
 
@@ -995,9 +992,9 @@ The public is store in a file with the same file name as the private key but wit
 
 ### Authenticating via Public-Key
 
-Thus far you have been using a password based authentication to log into user accounts at serverPR.
+Thus far, you have been using a password-based authentication to log into user accounts at serverPR.
 
-This means that, you have know the corresponding account’s password on the remote side to login successfully.
+This means that, you must know the corresponding account’s password on the remote side to login successfully.
 
 In this exercise you will configure public-key authentication between your user account on serverXY and the ying’s user account at serverPR.
 
@@ -1046,7 +1043,7 @@ In this exercise you will configure public-key authentication between your user 
 
 ### `ssh-agent`
 
-According to the man page - `ssh-agent` is a program to hold private keys used for public key authentication (RSA, DSA, ECDSA, Ed25519). The idea is that `ssh-agent` is started in the beginning of a user session or a login session, and all other windows or programs are started as clients to the `ssh-agent` program. Through the use of environment variables the agent can be located and automatically used for authentication when logging into other machines using `ssh`.
+According to the man page - `ssh-agent` is a program to hold private keys used for public key authentication (RSA, DSA, ECDSA, Ed25519). The idea is that `ssh-agent` is started at the beginning of a user or login session, and all other windows or programs are started as clients to the `ssh-agent` program. Through the use of environment variables the agent can be located and automatically used for authentication when logging into other machines using `ssh`.
 
 ```
 SYNOPSIS
@@ -1054,7 +1051,7 @@ SYNOPSIS
      ssh-agent [-c | -s] -k
 ```
 
-In this exercise you will learn how to configure the agent such that you wont have to type in your passphrase every time you want to connect to another system using public-key authentication.
+In this exercise you will learn how to configure the agent so that you wont have to type in your passphrase every time you want to connect to another system using public-key authentication.
 
 1. Ensure you are logged into your local system as the user *ying*.
 
@@ -1067,8 +1064,7 @@ In this exercise you will learn how to configure the agent such that you wont ha
 
     Take note of the value of the process ID (PID) of the agent in your output.
 
-3. Run the `ssh-add` program to list the fingerprints of all [public/private] identities currently 
-   represented by the agent. TYpe:
+3. Run the `ssh-add` program to list the fingerprints of all [public/private] identities currently represented by the agent. Type:
 
     ```bash
     [ying@localhost ~]$ ssh-add -l
