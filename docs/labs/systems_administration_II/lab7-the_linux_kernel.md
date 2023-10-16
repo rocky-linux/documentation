@@ -21,11 +21,11 @@ Estimated time to complete this lab: 90 minutes
 
 ## Kernel 
 
-One of the tasks you might occasionally need to perform in the course of administering a Linux system  will be to upgrade or troubleshoot something related to the operating system kernel.
+One of the tasks you might occasionally need to perform while administering a Linux system will be to upgrade or troubleshoot something related to the operating system kernel.
 
 The kernel is the heart of the Linux operating system. It is the one thing that the various distributions of Linux (Rocky Linux, Red hat, Mandrake, SuSE, Yellow dog etc) have in common. It is responsible for managing various system resources and serves as an abstraction layer between the system hardware and the software that interfaces with the system, by providing hardware drivers. 
 
-The Kernel is always being improved upon and new features are always being added to it or bugs fixed from it. As an administrator you may need to upgrade to the newest kernel because: 
+The Kernel is always being improved, and new features are always added to it or bugs fixed. As an administrator you may need to upgrade to the newest kernel because: 
 
 1. The newer kernel contains bug fixes or specific desirable optimizations
 2. It repairs security holes that were present in the old kernel 
@@ -34,17 +34,17 @@ The Kernel is always being improved upon and new features are always being added
 
 ### Kernel source code and versions 
 
-The kernel is made up of over a million lines of C programming code. This constitutes what is known as the Kernel source code. 
+The kernel comprises over a million lines of C programming code. This constitutes what is known as the Kernel source code. 
 
 The main repository for the kernel is the kernel website maintained under the URL: 
 
 [www.kernel.org](https://www.kernel.org)  
 
-It is at this site that you'll always find the latest [and oldest] versions of the kernel. 
+At this site, you'll always find the kernel's latest [and oldest] versions.
 
 As already mentioned, the kernel is common amongst all the various Linux distros. The various distros sometimes re-package the source code for the kernel to make installation and upgrades easier or to suit their particular distros.  
 
-The various Kernel source code versions  use the following naming convention.:
+The various Kernel source code versions use the following naming convention:
 
 ```bash 
 linux-<kernel.version>.tar.bz2    (or  linux-<kernel.version>.tar.gz)  
@@ -56,13 +56,13 @@ Any minor changes or updates within each major release version will be reflected
 
 ### Kernel Modules 
 
-Modules are shared object files (with names like module_name.o, module_name.ko etc). Think of modules as you would *drivers* in the Microsoft Windows world.
+Modules are shared object files (with names like module_name.o, module_name.ko etc). Think of modules as you would *drivers* in Microsoft Windows.
 
-Modules are chunks of kernel code which may or may not be included directly in the kernel. They are compiled separately, and can be inserted and removed from the running kernel at almost any time.  Modern systems make extensive use of loadable module support. Loadable modules offer various advantages such: 
+Modules are chunks of kernel code which may or may not be included directly in the kernel. They are compiled separately and can be inserted and removed from the running kernel at anytime.  Modern systems make extensive use of loadable module support. Loadable modules offer various advantages such: 
 
 1. It reduces the overall size of the final kernel image - since they are not strictly a part of the
   running kernel. 
-2. It saves RAM - they are only loaded into RAM when they are needed. 
+2. It saves RAM - they are only loaded into RAM when needed. 
 
 Some modules need to be directly compiled into the kernel while it is okay to make others separate loadable modules. 
 
@@ -77,9 +77,9 @@ There are generally three methods by which the kernel can be managed on Linux di
 
 2. Via patching. Using patch files like - patch-kernel.version.gz. 
 
-3. Compiling the kernel from source e.g.  using linux-kernel.version.tar.bz2  
+3. Compiling the kernel from source e.g. using linux-kernel.version.tar.bz2  
 
-In the next couple of exercises you will upgrade your running kernel to a slightly more recent version.  You will first use a prepackaged (binary) version of the Linux kernel to perform the upgrade. 
+You will upgrade your running kernel to a slightly more recent version in the following exercises. You will first use a prepackaged (binary) version of the Linux kernel to perform the upgrade. 
 
 
 ## Exercise 1
@@ -108,7 +108,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
 
     Make a note of the version/release number in your output.
     
-4. Use `dnf` to [cheat and] download the latest kernel package available from the official Rocky Linux package repository. Type:
+4. Use `dnf` to download the latest kernel package available from the official Rocky Linux package repository. Type:
     
     ```bash
     [root@localhost ~]# dnf list kernel
@@ -139,7 +139,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
     [root@localhost ~]# dnf download kernel-core-uname-r kernel-modules-uname-r  
     ```
     
-8.  Run `rpm` with the test option again to see if the kernal package can be upgraded. Type:
+8.  Run `rpm` with the test option again to see if the kernel package can be upgraded. Type:
     
     ```bash
     [root@localhost ~]# rpm --test  -Uvh kernel-*.rpm
@@ -162,9 +162,9 @@ In this exercise you will directly upgrade your kernel using the rpm application
     
         What is different between the output of the rpm -q kernel command - before and after you installed the new kernel?
     
-12. We are done with using RPM to directly manage Kernel packages on the system. 
+12. We are done with using RPM to manage Kernel packages on the system directly.
     Uninstall the latest kernel package that you downloaded and installed. 
-    For this you'll need the to specify the exact and correct name-epoch-version-release-architecture (NEVRA) info for the Kernel and its associated dependencies that you want to uninstall. Type:
+    For this, you'll need to specify the exact and correct name-epoch-version-release-architecture (NEVRA) info for the Kernel and its associated dependencies that you want   to uninstall. Type:
     
     ```bash
     [root@localhost ~]# rpm -e \
@@ -177,7 +177,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
 
 ### Upgrade from the package repository 
 
-In this exercise you will upgrade your kernel by using the `dnf` application. DNF is a package manager for RPM-base Linux distributions. It can be used to manage packages on a systems using configured online repositories.
+In this exercise you will upgrade your kernel using the `dnf` application. DNF is a package manager for RPM-base Linux distributions. It can be used to manage system packages using configured online repositories.
 
 #### To upgrade the kernel using DNF
 
@@ -189,7 +189,7 @@ In this exercise you will upgrade your kernel by using the `dnf` application. DN
     [root@localhost ~]# dnf list kernel
     ```
 
-3. Use the `dnf` program to check if there are any available updated Kernel packages. Type:
+3. Use the `dnf` program to check for any updated Kernel packages available.. Type:
     
     ```bash
     [root@localhost ~]# dnf check-update kernel
@@ -334,7 +334,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     [root@localhost linux-6*]# sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config 
     ```
     
-19. Add a simple customization to the new Kernel that will allow you to more easily distinguish it from the other stock Kernels. For this, use the `sed` utility to edit the Makefile in place. Type:
+19. Add a simple customization to the new Kernel, allowing you to distinguish it from the other stock Kernels more easily. For this, use the `sed` utility to edit the Makefile in place. Type:
     
     ```bash
     [root@localhost linux-6.*]# sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
@@ -368,7 +368,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     [root@localhost linux-6.*]# make O=~/build/kernel modules_install      
     ```
     
-24. With the Kernel now builtm it's time to install it. Type:
+24. With the Kernel now built it's time to install it. Type:
     
     ```bash
     [root@localhost linux-6.*]# cp ~/build/kernel/arch/x86/boot/bzImage  \
