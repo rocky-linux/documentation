@@ -1,3 +1,15 @@
+---
+author: Wale Soyinka
+contributors: 
+tested on: All versions
+tags:
+  - lab exercises
+  - bootup, target and service management
+  - systemd
+  - systemctl
+---
+
+
 # Lab 3: Boot and Startup processes
 
 
