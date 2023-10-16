@@ -279,6 +279,22 @@ sudo dnf install the-kitchen-sink
 
 And yes, the code block you just saw used five backticks at the beginning and end to make it render properly.
 
+### Suppressing the displayed prompt and automatic line feed
+
+There might be times when writing documentation where you want to show a prompt in your command, but you do not want the user to copy that prompt when they use the copy option. An application of this might be writing labs where you want to show the location with the prompt as in this example:
+
+![copy_option](copy_option.png)
+
+If formatted normally, the copy option will copy the prompt and the command, where copying just the command is preferable. To get around this, you can use the following syntax to tell the copy option what you want copied:
+
+````
+``` { .sh data-copy="cd /usr/local" }
+[root@localhost root] cd /usr/local
+```
+````
+
+When using this method, the automatic line feed is also suppressed.
+
 ## Keyboard
 
 Another way to add as much clarity to your documents as possible is to represent the entering of keys on a keyboard in the correct manner. Do this with `<kbd>key</kbd>`. For instance, to represent that you need to hit the escape key in your document you would use `<kbd>ESC</kbd`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `<kbd>CTRL</kbd> + <kbd>F4</kbd>`. If requiring the pressing of keys simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
