@@ -8,7 +8,7 @@ tags:
   - compile
 ---
 
-# Lab 7: The Linux Kernel
+# Lab 7: The Linux kernel
 
 ## Objectives 
 
@@ -19,13 +19,13 @@ After completing this lab, you will be able to
 
 Estimated time to complete this lab: 90 minutes 
 
-## Kernel 
+## kernel 
 
 One of the tasks you might occasionally need to perform while administering a Linux system will be to upgrade or troubleshoot something related to the operating system kernel.
 
 The kernel is the heart of the Linux operating system. It is the one thing that the various distributions of Linux (Rocky Linux, Red hat, Mandrake, SuSE, Yellow dog etc) have in common. It is responsible for managing various system resources and serves as an abstraction layer between the system hardware and the software that interfaces with the system, by providing hardware drivers. 
 
-The Kernel is always being improved, and new features are always added to it or bugs fixed. As an administrator you may need to upgrade to the newest kernel because: 
+The kernel is always being improved, and new features are always added to it or bugs fixed. As an administrator you may need to upgrade to the newest kernel because: 
 
 1. The newer kernel contains bug fixes or specific desirable optimizations
 2. It repairs security holes that were present in the old kernel 
@@ -54,7 +54,7 @@ The current convention is to name and number major new kernel releases as “Lin
 
 Any minor changes or updates within each major release version will be reflected by increments to the third digit. These are commonly referred to as stable point releases. Thus, the next stable point release for the 5.0.0 series kernel will be Linux version 5.0.1, followed by version 5.0.2, and so forth. Another way of stating this is to say, for example, that Linux version 5.0.4 is the fourth stable release based on the Linux 5.0.0 series.
 
-### Kernel Modules 
+### kernel modules 
 
 Modules are shared object files (with names like module_name.o, module_name.ko etc). Think of modules as you would *drivers* in Microsoft Windows.
 
@@ -69,7 +69,7 @@ Some modules need to be directly compiled into the kernel while it is okay to ma
 The choice of when to make a particular feature available as a module or to compile it into the kernel is usually fairly straightforward. In general, if it is infrequently used and performs as needed as a module, you should compile it as a module. 
 
 
-### Configuring the Kernel 
+### Configuring the kernel 
 
 There are generally three methods by which the kernel can be managed on Linux distros. These are:
 
@@ -98,7 +98,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
     [root@localhost ~]# rpm -q kernel
     ```
 
-3. Execute the `uname` utility to view some information about the current running Kernel. Type:
+3. Execute the `uname` utility to view some information about the current running kernel. Type:
     
     ``` { .bash data-copy="uname --kernel-release" }
     [root@localhost ~]# uname --kernel-release
@@ -121,7 +121,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
     [root@localhost ~]# rpm -qip kernel-*.x86_64.rpm
     ```
 
-6. Use `rpm` to do a test install of the downloaded Kernel*.rpm to ensure that all its dependencies will be met. Type:
+6. Use `rpm` to do a test install of the downloaded kernel*.rpm to ensure that all its dependencies will be met. Type:
     
     ```bash
     [root@localhost ~]# rpm --test  -Uvh kernel-*.x86_64.rpm
@@ -162,9 +162,9 @@ In this exercise you will directly upgrade your kernel using the rpm application
     
         What is different between the output of the rpm -q kernel command - before and after you installed the new kernel?
     
-12. We are done with using RPM to manage Kernel packages on the system directly.
+12. We are done with using RPM to manage kernel packages on the system directly.
     Uninstall the latest kernel package that you downloaded and installed. 
-    For this, you'll need to specify the exact and correct name-epoch-version-release-architecture (NEVRA) info for the Kernel and its associated dependencies that you want   to uninstall. Type:
+    For this, you'll need to specify the exact and correct name-epoch-version-release-architecture (NEVRA) info for the kernel and its associated dependencies that you want   to uninstall. Type:
     
     ```bash
     [root@localhost ~]# rpm -e \
@@ -189,7 +189,7 @@ In this exercise you will upgrade your kernel using the `dnf` application. DNF i
     [root@localhost ~]# dnf list kernel
     ```
 
-3. Use the `dnf` program to check for any updated Kernel packages available.. Type:
+3. Use the `dnf` program to check for any updated kernel packages available. Type:
     
     ```bash
     [root@localhost ~]# dnf check-update kernel
@@ -203,13 +203,13 @@ In this exercise you will upgrade your kernel using the `dnf` application. DNF i
     [root@localhost ~]# dnf info  kernel --available
     ```
 
-5. Use `dnf` to automatically find, download, and install the latest Kernel package available in the remote package repository. Type:
+5. Use `dnf` to automatically find, download, and install the latest kernel package available in the remote package repository. Type:
     
     ```bash 
     [root@localhost ~]# dnf -y update  kernel
     ```
 
-6. Now list the installed Kernel packages. Type:
+6. Now list the installed kernel packages. Type:
     
     ```bash
     [root@localhost ~]# dnf list kernel --installed
@@ -248,7 +248,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.5.7.tar.xz 
     ```
     
-    Note that linux-6.5.7.tar.xz just happens to be the latest kernel available at time of this writing. You should substitute linux-6.5.7.tar.xz or linux-6.*.tar.xz with whatever version of the Kernel that you choose to follow along this exercise with.
+    Note that linux-6.5.7.tar.xz just happens to be the latest kernel available at time of this writing. You should substitute linux-6.5.7.tar.xz or linux-6.*.tar.xz with whatever version of the kernel that you choose to follow along this exercise with.
     
 6. Unpack the kernel tarball into your pwd. Type: 
     
@@ -310,10 +310,10 @@ In this exercise you will build a new kernel from source, by configuring, compil
     
 14. Return to the main kernel configuration screen by pressing <kbd>ESC</kbd> twice on your keyboard.
 
-15. Exit the kernel configuration application by pressing esc twice again on your keyboard.
+15. Exit the kernel configuration application by pressing <kbd>ESC</kbd> twice again on your keyboard.
     Exiting the kernel configurator will force saving your changes to the .config file in the root of the kernel source tree.
     
-16. A dialog box will appear prompting you to save your new configuration. Make sure that Yes is selected and then press <kbd>ENTER</kbd>.
+16. A dialog box will appear prompting you to save your new configuration. Ensure that Yes is selected and then press <kbd>ENTER</kbd>.
 17. After the kernel configuration utility exits, you will be thrown back to your shell—inside the kernel source tree.
     
     !!! Tip
@@ -334,7 +334,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     [root@localhost linux-6*]# sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config 
     ```
     
-19. Add a simple customization to the new Kernel, allowing you to distinguish it from the other stock Kernels more easily. For this, use the `sed` utility to edit the Makefile in place. Type:
+19. Add a simple customization to the new kernel, allowing you to distinguish it from the other stock Kernels more easily. For this, use the `sed` utility to edit the Makefile in place. Type:
     
     ```bash
     [root@localhost linux-6.*]# sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
@@ -346,7 +346,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     [root@localhost ~]# make O=~/build/kernel kernelversion
     ```
     
-21. You are ready to compile the Kernel. Type:
+21. You are ready to compile the kernel. Type:
     
     ```bash
     [root@localhost linux-6.*]# make  O=~/build/kernel -j $(nproc)
@@ -356,7 +356,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     HOSTCC  scripts/kconfig/conf.o
     ```
     
-22. After the compilation completes successfully, you'll end up with the finished Kernel stored here:
+22. After the compilation completes successfully, you'll end up with the finished kernel stored here:
     
     ```bash
     ~/build/kernel/arch/x86/boot/bzImage
@@ -368,7 +368,7 @@ In this exercise you will build a new kernel from source, by configuring, compil
     [root@localhost linux-6.*]# make O=~/build/kernel modules_install      
     ```
     
-24. With the Kernel now built it's time to install it. Type:
+24. With the kernel now built it's time to install it. Type:
     
     ```bash
     [root@localhost linux-6.*]# cp ~/build/kernel/arch/x86/boot/bzImage  \
