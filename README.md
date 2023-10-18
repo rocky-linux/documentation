@@ -11,13 +11,13 @@ _With Rocky Linux emerging as a major RHEL-compatible distribution, this is an e
 To us, excellent documentation hits these marks:
 
 
-* Educate users how to admin this distribution and its associated programs.
+* Educate users on how to admin this distribution and its associated programs.
 * Support users of all skill levels with manuals and troubleshooting guides to make the most of this distribution.
 * Apply a consistent standard across all related documents, for ease of reading and translation.
 * Keep documentation up to date (and error free) with current versions.
 * Allow users to contribute Guides, Docs, Gemstones (scripts and favorite code snippets) and more, to enhance Rocky Linux for fellow users.
 
-We welcome anyone who wants to be part of this mission. No specific degree, years of experience, or company affiliation required. Be bold! We promise, you won’t break anything even if you fumble your first attempt.
+We welcome anyone who wants to be part of this mission. No specific degree, years of experience, or company affiliation is required. Be bold! We promise, you won’t break anything even if you fumble your first attempt.
 
 ## License
 
@@ -69,7 +69,7 @@ Maybe you’ve found a broken link or incorrect information while exploring the 
 
 ### Submit an update
 
-_Add a missing word, correct an error, clarify a confusing bit of text. You won’t break anything because someone will review your contribution before it goes live. Here is the basic process._
+_Add a missing word, correct an error, or clarify a confusing bit of text. You won’t break anything because someone will review your contribution before it goes live. Here is the basic process._
 
 
 
