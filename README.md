@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-95-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-93-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -297,55 +297,56 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/netzwergehh"><img src="https://avatars.githubusercontent.com/u/79668910?v=4?s=100" width="100px;" alt="Dennis Körner"/><br /><sub><b>Dennis Körner</b></sub></a><br /><a href="#content-netzwergehh" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/bezunartea"><img src="https://avatars.githubusercontent.com/u/13090619?v=4?s=100" width="100px;" alt="Pedro Bezunartea López"/><br /><sub><b>Pedro Bezunartea López</b></sub></a><br /><a href="#translation-bezunartea" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/danopogac"><img src="https://avatars.githubusercontent.com/u/8373145?v=4?s=100" width="100px;" alt="Daniel Pogac"/><br /><sub><b>Daniel Pogac</b></sub></a><br /><a href="#content-danopogac" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Oats"><img src="https://avatars.githubusercontent.com/u/18314360?v=4?s=100" width="100px;" alt="oats"/><br /><sub><b>oats</b></sub></a><br /><a href="#content-Oats" title="Content">🖋</a></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Oats"><img src="https://avatars.githubusercontent.com/u/18314360?v=4?s=100" width="100px;" alt="oats"/><br /><sub><b>oats</b></sub></a><br /><a href="#content-Oats" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://alexharden.org/"><img src="https://avatars.githubusercontent.com/u/8281207?v=4?s=100" width="100px;" alt="Alex Harden"/><br /><sub><b>Alex Harden</b></sub></a><br /><a href="#content-aharden" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://jorp.xyz/"><img src="https://avatars.githubusercontent.com/u/18096435?v=4?s=100" width="100px;" alt="Jordan Pisaniello"/><br /><sub><b>Jordan Pisaniello</b></sub></a><br /><a href="#content-jorp" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://hennig.mse.ufl.edu/"><img src="https://avatars.githubusercontent.com/u/8710634?v=4?s=100" width="100px;" alt="Richard Hennig"/><br /><sub><b>Richard Hennig</b></sub></a><br /><a href="#content-rhennig" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/caffenix"><img src="https://avatars.githubusercontent.com/u/64636709?v=4?s=100" width="100px;" alt="caffenix"/><br /><sub><b>caffenix</b></sub></a><br /><a href="#content-caffenix" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://manickathan.ch/"><img src="https://avatars.githubusercontent.com/u/3255070?v=4?s=100" width="100px;" alt="Lento Manickathan"/><br /><sub><b>Lento Manickathan</b></sub></a><br /><a href="#content-lento234" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://www.depts.ttu.edu/cac/"><img src="https://avatars.githubusercontent.com/u/2364484?v=4?s=100" width="100px;" alt="Alan Sill"/><br /><sub><b>Alan Sill</b></sub></a><br /><a href="#content-alansill" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://bandism.net/"><img src="https://avatars.githubusercontent.com/u/22633385?v=4?s=100" width="100px;" alt="Ikko Ashimine"/><br /><sub><b>Ikko Ashimine</b></sub></a><br /><a href="#content-eltociear" title="Content">🖋</a></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://bandism.net/"><img src="https://avatars.githubusercontent.com/u/22633385?v=4?s=100" width="100px;" alt="Ikko Ashimine"/><br /><sub><b>Ikko Ashimine</b></sub></a><br /><a href="#content-eltociear" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://www.williamperron.com"><img src="https://avatars.githubusercontent.com/u/15235219?v=4?s=100" width="100px;" alt="William Perron"/><br /><sub><b>William Perron</b></sub></a><br /><a href="#content-williamperron" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/romh87"><img src="https://avatars.githubusercontent.com/u/81292426?v=4?s=100" width="100px;" alt="Roman Gherta"/><br /><sub><b>Roman Gherta</b></sub></a><br /><a href="#content-romh87" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://cybertrouble.com"><img src="https://avatars.githubusercontent.com/u/12031564?v=4?s=100" width="100px;" alt="Yiğit can BAŞALMA"/><br /><sub><b>Yiğit can BAŞALMA</b></sub></a><br /><a href="#content-yigitbasalma" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/markooff"><img src="https://avatars.githubusercontent.com/u/24265888?v=4?s=100" width="100px;" alt="markooff"/><br /><sub><b>markooff</b></sub></a><br /><a href="#content-markooff" title="Content">🖋</a> <a href="#translation-markooff" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://www.dengwenbin.com"><img src="https://avatars.githubusercontent.com/u/20312281?v=4?s=100" width="100px;" alt="Deng Wenbin"/><br /><sub><b>Deng Wenbin</b></sub></a><br /><a href="#translation-dengwenbin" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/alikates"><img src="https://avatars.githubusercontent.com/u/59802505?v=4?s=100" width="100px;" alt="alikates"/><br /><sub><b>alikates</b></sub></a><br /><a href="#content-alikates" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/hopnux"><img src="https://avatars.githubusercontent.com/u/110078361?v=4?s=100" width="100px;" alt="hopnux"/><br /><sub><b>hopnux</b></sub></a><br /><a href="#translation-hopnux" title="Translation">🌍</a></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/hopnux"><img src="https://avatars.githubusercontent.com/u/110078361?v=4?s=100" width="100px;" alt="hopnux"/><br /><sub><b>hopnux</b></sub></a><br /><a href="#translation-hopnux" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.breakingpitt.es"><img src="https://avatars.githubusercontent.com/u/10740572?v=4?s=100" width="100px;" alt="Pedro Garcia Rodriguez"/><br /><sub><b>Pedro Garcia Rodriguez</b></sub></a><br /><a href="#translation-BreakingPitt" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://laurenzkruty.de"><img src="https://avatars.githubusercontent.com/u/37706897?v=4?s=100" width="100px;" alt="Lau"/><br /><sub><b>Lau</b></sub></a><br /><a href="#content-LauKr" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://www.meteocontrol.cn"><img src="https://avatars.githubusercontent.com/u/11520535?v=4?s=100" width="100px;" alt="Serge Croisé"/><br /><sub><b>Serge Croisé</b></sub></a><br /><a href="#content-SergeCroise" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/bamtests"><img src="https://avatars.githubusercontent.com/u/17178592?v=4?s=100" width="100px;" alt="bamtests"/><br /><sub><b>bamtests</b></sub></a><br /><a href="#content-bamtests" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://social.linux.pizza/@jahway603"><img src="https://avatars.githubusercontent.com/u/64485701?v=4?s=100" width="100px;" alt="jahway603"/><br /><sub><b>jahway603</b></sub></a><br /><a href="#content-jahway603" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/bertronika"><img src="https://avatars.githubusercontent.com/u/42844753?v=4?s=100" width="100px;" alt="Nejc Bertoncelj"/><br /><sub><b>Nejc Bertoncelj</b></sub></a><br /><a href="#content-bertronika" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bakerds"><img src="https://avatars.githubusercontent.com/u/16193241?v=4?s=100" width="100px;" alt="Dan Baker"/><br /><sub><b>Dan Baker</b></sub></a><br /><a href="#content-bakerds" title="Content">🖋</a></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bakerds"><img src="https://avatars.githubusercontent.com/u/16193241?v=4?s=100" width="100px;" alt="Dan Baker"/><br /><sub><b>Dan Baker</b></sub></a><br /><a href="#content-bakerds" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://git.sr.ht/%7Equartsize/"><img src="https://avatars.githubusercontent.com/u/37243063?v=4?s=100" width="100px;" alt="Laura Hild"/><br /><sub><b>Laura Hild</b></sub></a><br /><a href="#content-quartsize" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Grammaresque"><img src="https://avatars.githubusercontent.com/u/119525559?v=4?s=100" width="100px;" alt="Grammaresque"/><br /><sub><b>Grammaresque</b></sub></a><br /><a href="#content-Grammaresque" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://sauveur.xyz"><img src="https://avatars.githubusercontent.com/u/7724090?v=4?s=100" width="100px;" alt="Rawk Akani"/><br /><sub><b>Rawk Akani</b></sub></a><br /><a href="#content-rawkakani" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/nm583"><img src="https://avatars.githubusercontent.com/u/121867206?v=4?s=100" width="100px;" alt="nm583"/><br /><sub><b>nm583</b></sub></a><br /><a href="#content-nm583" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/MrPaulAR"><img src="https://avatars.githubusercontent.com/u/3765696?v=4?s=100" width="100px;" alt="MrPaulAR"/><br /><sub><b>MrPaulAR</b></sub></a><br /><a href="#content-MrPaulAR" title="Content">🖋</a></td>
-    </tr>
-    <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/cybernet"><img src="https://avatars.githubusercontent.com/u/125879?v=4?s=100" width="100px;" alt="cybernet"/><br /><sub><b>cybernet</b></sub></a><br /><a href="#content-cybernet" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Muph0"><img src="https://avatars.githubusercontent.com/u/10765858?v=4?s=100" width="100px;" alt="Jan Kytka"/><br /><sub><b>Jan Kytka</b></sub></a><br /><a href="#content-Muph0" title="Content">🖋</a></td>
+    </tr>
+    <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://howtotechwriting.com/"><img src="https://avatars.githubusercontent.com/u/38929299?v=4?s=100" width="100px;" alt="Mario"/><br /><sub><b>Mario</b></sub></a><br /><a href="#content-doble-eme" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/gannazhyrnova"><img src="https://avatars.githubusercontent.com/u/112796922?v=4?s=100" width="100px;" alt="Ganna Zhyrnova"/><br /><sub><b>Ganna Zhyrnova</b></sub></a><br /><a href="#translation-gannazhyrnova" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Demalpheus"><img src="https://avatars.githubusercontent.com/u/28327241?v=4?s=100" width="100px;" alt="Travis W"/><br /><sub><b>Travis W</b></sub></a><br /><a href="#content-Demalpheus" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://g.dev/rana_tej_singh"><img src="https://avatars.githubusercontent.com/u/58101587?v=4?s=100" width="100px;" alt="Tej Singh Rana"/><br /><sub><b>Tej Singh Rana</b></sub></a><br /><a href="#content-Tej-Singh-Rana" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/captain-Arvoy"><img src="https://avatars.githubusercontent.com/u/99230514?v=4?s=100" width="100px;" alt="Aditya Roshan Dash"/><br /><sub><b>Aditya Roshan Dash</b></sub></a><br /><a href="#content-captain-Arvoy" title="Content">🖋</a></td>
-    </tr>
-    <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://www.qyecst.cn"><img src="https://avatars.githubusercontent.com/u/13901864?v=4?s=100" width="100px;" alt="qyecst"/><br /><sub><b>qyecst</b></sub></a><br /><a href="#content-qyecst" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/msmit5"><img src="https://avatars.githubusercontent.com/u/55892653?v=4?s=100" width="100px;" alt="Matt"/><br /><sub><b>Matt</b></sub></a><br /><a href="#content-msmit5" title="Content">🖋</a></td>
+    </tr>
+    <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/zdover23"><img src="https://avatars.githubusercontent.com/u/1445107?v=4?s=100" width="100px;" alt="zdover23"/><br /><sub><b>zdover23</b></sub></a><br /><a href="#content-zdover23" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/YadlaMani"><img src="https://avatars.githubusercontent.com/u/133841094?v=4?s=100" width="100px;" alt="Mani Yadla"/><br /><sub><b>Mani Yadla</b></sub></a><br /><a href="#content-YadlaMani" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
