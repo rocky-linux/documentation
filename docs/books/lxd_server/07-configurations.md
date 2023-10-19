@@ -76,7 +76,7 @@ lxc config set ubuntu-test
 
 and <kbd>TAB</kbd>.
 
-This shows you all of the options for configuring a container. If you have questions about what one of the configuration options does, head to the [official documentation for LXD](https://linuxcontainers.org/lxd/docs/master/instances/) and do a search for the configuration parameter, or Google the entire string, such as "lxc config set limits.memory" and examine the results of the search.
+This shows you all of the options for configuring a container. If you have questions about what one of the configuration options does, head to the [official documentation for LXD](https://documentation.ubuntu.com/lxd/en/latest/config-options/) and do a search for the configuration parameter, or Google the entire string, such as `lxc config set limits.memory` and examine the results of the search.
 
 Here we examine a few of the most used configuration options. For example, if you want to set the max amount of memory that a container can use:
 
@@ -135,5 +135,5 @@ lxc config device override ubuntu-test root size=2GB
 
 As stated earlier, use configuration options sparingly, unless you have got a container that wants to use way more than its share of resources. LXD, for the most part, will manage the environment well on its own.
 
-There are many more options that might be of interest to some people. Doing your own research will help you to find out if any of those are of value in your environment.
+Many more options exist that might be of interest to some people. Doing your own research will help you to find out if any of those are of value in your environment.
 

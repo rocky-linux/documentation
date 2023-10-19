@@ -10,7 +10,7 @@ tags:
 
 # Appendix A - workstation setup
 
-While not a part of the chapters for an LXD Server, this procedure will help those who wish to have a lab environment, or semi-permanent OS and application, running on a Rocky Linux workstation or laptop.
+While not a part of the chapters for an LXD Server, this procedure will help those who want to have a lab environment, or semi-permanent OS and application, running on a Rocky Linux workstation or notebook.
 
 ## Prerequisites
 
@@ -70,7 +70,7 @@ Here are the questions and our answers for the script, with a little explanation
 Would you like to use LXD clustering? (yes/no) [default=no]:
 ```
 
-If you have interest in clustering, do some additional research on that [at Linux containers here](https://linuxcontainers.org/lxd/docs/master/clustering/).
+If you have interest in clustering, do some additional research on that [at Linux containers here](https://documentation.ubuntu.com/lxd/en/latest/clustering/).
 
 ```
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
@@ -161,8 +161,7 @@ From this point, you can use the chapters from our "LXD Production Server" to co
 ## More reading
 
 * [LXD Beginners Guide](../../guides/containers/lxd_web_servers.md) which will get you started using LXD productively.
-* [Official LXD Overview](https://linuxcontainers.org/lxd/introduction/)
-* [Official Documentation](https://linuxcontainers.org/lxd/docs/master/)
+* [Official LXD Overview and Documentation](https://documentation.ubuntu.com/lxd/en/latest/)
 
 ## Conclusion 
 

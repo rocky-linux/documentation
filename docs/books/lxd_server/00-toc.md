@@ -12,7 +12,7 @@ tags:
 
 ## Introduction
 
-LXD is best described on the [official website](https://linuxcontainers.org/lxd/introduction/), but think of it as a container system that provides the benefits of virtual servers in a container.
+LXD is best described on the [official website](https://documentation.ubuntu.com/lxd/en/latest/), but think of it as a container system that provides the benefits of virtual servers in a container.
 
 It is very powerful, and with the right hardware and set up, it is possible to create many server instances on a single piece of hardware. If you pair that with a snapshot server, you also have a set of containers that you can spin up almost immediately if your primary server goes down.
 
