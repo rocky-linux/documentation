@@ -122,7 +122,7 @@ Here are the questions and our answers for the script, with a little explanation
 Would you like to use LXD clustering? (yes/no) [default=no]:
 ```
 
-If you are interested in clustering, do some additional research on that [here](https://linuxcontainers.org/lxd/docs/master/clustering/). Otherwise, just press “Enter” to accept the default option.
+If you are interested in clustering, do some additional research on that [here](https://documentation.ubuntu.com/lxd/en/latest/clustering/). Otherwise, just press “Enter” to accept the default option.
 
 ```
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
