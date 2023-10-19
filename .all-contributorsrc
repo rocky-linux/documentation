@@ -854,6 +854,16 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "FarukhS52",
+      "name": "Farookh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/129654632?s=400&u=3f9e1519a7f1fb3e3a55a028a0b95258432832b9&v=4",
+      "profile": "https://github.com/FarukhS52",
+      "contributions": [
+        "maintenance",
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
