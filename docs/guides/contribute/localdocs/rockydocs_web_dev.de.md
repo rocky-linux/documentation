@@ -44,7 +44,7 @@ git clone https://github.com/rocky-linux/documentation.git
 Sie haben jetzt einen Ordner `$ROCKYDOCS/documentation`. Dieser Ordner ist ein Git-Repository und wird von Git kontrolliert.
 
 
-## Create and Start the RockyDocs web development environment
+## RockyDocs-Webentwicklungsumgebung erstellen und ausführen
 
 3.  Stellen Sie sicher, dass Docker auf Ihrem lokalen Computer ausgeführt wird (dies kann mit `systemctl` überprüft werden).
 
