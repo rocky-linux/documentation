@@ -1,5 +1,5 @@
 ---
-title: Journal des modifications
+title: Journal des modifications Rocky Linux 8
 author: Louis Abel
 contributors: Steven Spencer, tianci li
 tags:
