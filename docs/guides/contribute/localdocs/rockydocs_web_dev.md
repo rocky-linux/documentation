@@ -45,9 +45,9 @@ git clone https://github.com/rocky-linux/documentation.git
 You'll now have a `$ROCKYDOCS/documentation` folder. This folder is a git repository and under git's control.
 
 
-## Create and Start the RockyDocs web developmwnt environment
+## Create and Start the RockyDocs web development environment
 
-3.  Make sure you have Docker up and running on your local machine (you can check with `systemctl `)
+3.  Make sure you have Docker up and running on your local machine (you can check with `systemctl`)
 
 4. From a terminal type:
 
