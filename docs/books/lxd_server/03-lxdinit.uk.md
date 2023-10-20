@@ -28,7 +28,7 @@ lxd init
 Бажаєте використовувати кластеризацію LXD? (Would you like to use LXD clustering?) (yes/no) [default=no]:
 ```
 
-Якщо вас цікавить кластеризація, проведіть додаткові дослідження щодо цього [тут](https://linuxcontainers.org/lxd/docs/master/clustering/)
+Якщо вас цікавить кластеризація, проведіть додаткові дослідження щодо цього [тут](https://documentation.ubuntu.com/lxd/en/latest/clustering/)
 
 ```
 Бажаєте налаштувати новий пул зберігання? (Do you want to configure a new storage pool?) (yes/no) [default=yes]:
