@@ -27,34 +27,34 @@ Estimated time to complete this lab: 50 minutes
 
 ## Boot process overview
 
-The exercises in this lab will begin from the booting up process all the way down to the logging in of the user. These steps will examine and try to customize parts of the boot-up processes. The high-level steps in the boot process are: 
+The exercises in this lab will begin from the booting-up process down to the logging in of the user. These steps will examine and try to customize parts of the boot-up processes. The high-level steps in the boot process are: 
 
 *Summary Of Steps*
 
-1. The Hardware loads, reads and executes the boot sector  
+1. The Hardware loads, reads and executes the boot sector.  
 2. The bootloader is executed. This bootloader is GRUB on most Linux distros.  
-3. kernel unpacks and is executed  
+3. kernel unpacks and is executed.  
 4. kernel initializes hardware.  
-5. kernel mounts root file system  
+5. kernel mounts root file system.  
 6. kernel executes /usr/lib/systemd/systemd as PID 1.  
-7. systemd starts the units needed and configured to run the defaulot boot target
+7. systemd starts the units needed and configured to run the default boot target.
 8. getty programs are spawned on each defined terminal.  
 9. getty prompts for login.  
 10. getty executes /bin/login to authentic user.  
-11. login starts shell
+11. login starts shell.
 
 
-### systemd
+### `systemd`
 
 systemd is a system and service manager for Linux operating systems.
 
-### systemd units 
+### `systemd` units 
 
-systemd provides a dependency system between various entities called "units". Units encapsulate various objects that are needed for system boot-up and maintenance. Most units are configured in so called unit configuration files - which are plain text ini-style files.
+`systemd` provides a dependency system between various entities called "units". Units encapsulate various objects that are needed for system boot-up and maintenance. Most units are configured in so-called unit configuration files - plain text ini-style files.
 
-### Types of systemd units
+### Types of `systemd` units
 
-systemd has the following 11 unit types defined:
+`systemd` has the following 11 unit types defined:
 
 *Service units* start and control daemons and the processes they consist of.
 
@@ -86,12 +86,12 @@ Historically init has been called many names and has taken several forms.
 
 Regardless of its name or implementation, init (or its equivalent) is often referred to as the *mother of all processes*. 
 
-The man page for “init” refers to it as the parent of all processes. By convention, the first program or process to be executed by the kernel always has a process ID of 1.
+The man page for “init” refers to it as the parent of all processes. By convention, the kernel's first program or process to be executed always has a process ID of 1.
 Once the first process runs, it then goes on to start other services, daemons, processes, programs and so on.
 
 #### To explore the first system process
 
-1. Logon to the system as any user. By querying the /proc/<PID>/comm virtual file system path, find out the name of the process with a process ID of 1. Type:
+1. Log on to the system as any user. Query the /proc/<PID>/comm virtual file system path and find out the name of the process with the ID of 1. Type:
 
     ```bash
     [root@localhost ~]# cat /proc/1/comm
@@ -99,8 +99,7 @@ Once the first process runs, it then goes on to start other services, daemons, p
     systemd
     ```
 
-2. Run the `ls` command to view the /proc/<PID>/exe virtual file system path, to view the 
-   name and path to the executable behind the process with a process I.D. of 1. Type:
+2. Run the `ls` command to view the /proc/<PID>/exe virtual file system path and see the name and path to the executable behind the process with the ID of 1. Type:
 
     ```bash
     [root@localhost ~]# ls -l /proc/1/exe
@@ -131,7 +130,7 @@ Once the first process runs, it then goes on to start other services, daemons, p
     lrwxrwxrwx. 1 root root 22 Aug  8 15:33 /usr/sbin/init -> ../lib/systemd/systemd
     ```
     
-6. Use the `pstree` command to show a tree like view of the system processes. Type:
+6. Use the `pstree` command to show a tree-like view of the system processes. Type:
     
     ```bash
     [root@localhost ~]# pstree --show-pids
@@ -142,7 +141,7 @@ Once the first process runs, it then goes on to start other services, daemons, p
 
 ### `systemd` Targets (RUNLEVELS) 
 
-`systemd` defines and relies of many different targets for managing the system. We'll focus on only 5 of the main targets in this exercise. The 5 main targets explored in this section are listed here:
+`systemd` defines and relies on many different targets for managing the system. We'll focus on only 5 of the main targets in this exercise. The 5 main targets explored in this section are listed here:
 
 1. poweroff.target
 2. rescue.target
@@ -152,7 +151,7 @@ Once the first process runs, it then goes on to start other services, daemons, p
 
 !!! Tip
 
-    Target units are a replacement for SysV runlevels in the classic SysV init system.
+    Target units replace SysV runlevels in the classic SysV init system.
 
 #### To manage systemd targets
 
@@ -168,7 +167,7 @@ Once the first process runs, it then goes on to start other services, daemons, p
     [root@localhost ~]# systemctl list-units -t target    
     ```
     
-3. Use the `systemctl` command to view/get the name of the default target that the system is configured to be boot into. Type:
+3. Use the `systemctl` command to view/get the name of the default target that the system is configured to boot into. Type:
      
     ```bash
     [root@localhost ~]# systemctl get-default
@@ -192,7 +191,7 @@ Once the first process runs, it then goes on to start other services, daemons, p
     AllowIsolate=yes
     ```
     
-    Note some of the properties and their values configured in the multi-user.target unit. Properties like - Description, Documentation, Requires, After, and so on.
+    Note some properties and their values configured in the `multi-user.target` unit. Properties like - Description, Documentation, Requires, After, and so on.
     
 5. The `basic.target` unit is listed as the value of the `Requires` property for `multi-user.target`. View the unit file for basic.target. Type:
     
@@ -263,7 +262,7 @@ Once the first process runs, it then goes on to start other services, daemons, p
 
     Note that the output shows the target is *not* active even though it was set as the default!
 
-3. To force the system to immediately switch to, and use. a given target, you have to use the `isolate` subcommand. To Type:
+3. To force the system to immediately switch to, and use a given target, you have to use the `isolate` sub command. Type:
     
     ```bash
     [root@localhost ~]# systemctl isolate graphical.target
@@ -271,7 +270,7 @@ Once the first process runs, it then goes on to start other services, daemons, p
 
     !!! Warning
         
-        The systemctl isolate command can be dangerous if used wrongly. This is because it will immediately stop processes that are not enabled in the new target, possibly including the graphical environment or terminal you are currently using!
+        The systemctl isolate command can be dangerous if used wrongly. This is because it will immediately stop processes not enabled in the new target, possibly including the graphical environment or terminal you currently use!
     
 4. Check again if `graphical.target` is now in use and is active.
 
@@ -324,7 +323,7 @@ The exercises in this section will show you how to configure system/user process
     ...<SNIP>...
     ```
 
-3. Narrow down and learn more about the configuration of one of the services in the previous output. The *crond.service*. Type:  
+3. Narrow down and learn more about the configuration of one of the services in the previous output, the *crond.service*. Type:  
     
     ```bash
     [root@localhost ~]# systemctl cat crond.service
@@ -344,7 +343,7 @@ The exercises in this section will show you how to configure system/user process
     [root@localhost ~]# systemctl  status  crond.service  
     ```
     
-    By default, the output will include the most recent 10 journal lines/entries/logs.
+   The output will include the most recent 10 journal lines/entries/logs by default.
 
 6. View the status of `crond.service` and suppress showing any journal lines. Type:
     
@@ -429,7 +428,7 @@ The exercises in this section will show you how to configure system/user process
     
 ### To restart services
 
-For many services/daemons, it is often necessary to restart or reload the running service/daemon whenever changes are made to their underlying configuration files. This is so that the given process/service/daemon can apply the latest configuration changes.
+For many services/daemons, restarting or reloading the running service/daemon whenever changes are made to their underlying configuration files is often necessary. This is so that the given process/service/daemon can apply the latest configuration changes.
 
 1. View the status of crond.service. Type:
     
@@ -463,7 +462,7 @@ For many services/daemons, it is often necessary to restart or reload the runnin
     
     !!! Tip
     
-        The functionalty of the good old classic service command has been ported over to seamlessly work on systemd managed systems. You can use servcice commands like the following to stop, start, restart and view status of the `smartd` service.
+        The functionality of the good old classic service command has been ported over to seamlessly work on systemd managed systems. You can use service commands like the following to stop, start, restart and view status of the `smartd` service.
         
         ```bash
         # service smartd status
@@ -477,7 +476,7 @@ For many services/daemons, it is often necessary to restart or reload the runnin
     
 ### To disable a service
 
-1. Use `systemctl` to check the whether the `crond.service` is enabled to automatically start with system boot. Type: 
+1. Use `systemctl` to check whether the `crond.service` is enabled to start with system boot automatically. Type: 
     
     ```bash
     [root@localhost ~]# systemctl is-enabled  crond.service
@@ -502,7 +501,7 @@ For many services/daemons, it is often necessary to restart or reload the runnin
     
 ### To ensure disabling (i.e. mask) a service 
 
-Even though the `systemctl disable` command can be used to disable services like you saw in the previous exercises, it is possible for other systemd units (processes, services , daemons and so on) to stealthily re-enable a disabled service - if needed. This can happen when a service depends on another [disabled] service.
+Even though the `systemctl disable` command can be used to disable services as you saw in the previous exercises, other systemd units (processes, services , daemons and so on) can stealthily re-enable a disabled service if needed. This can happen when a service depends on another [disabled] service.
 
 To ensure disabling of a systemd service unit and prevent accidental reactivation, you should mask the service.
 
@@ -522,7 +521,7 @@ To ensure disabling of a systemd service unit and prevent accidental reactivatio
     masked
     ```
     
-3. To undo your changes and *unmask* `crond.service`, use the `systemctl unmask` command by running:
+3. To undo your changes and unmask `crond.service`, use the `systemctl unmask` command by running:
     
     ```bash
     [root@localhost ~]# systemctl unmask crond.service
