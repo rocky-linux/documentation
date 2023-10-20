@@ -342,9 +342,9 @@ The exercises in this section will show you how to configure system/user process
     ```bash
     [root@localhost ~]# systemctl  status  crond.service  
     ```
+   
+    The output will include the most recent 10 journal lines/entries/logs by default.
     
-   The output will include the most recent 10 journal lines/entries/logs by default.
-
 6. View the status of `crond.service` and suppress showing any journal lines. Type:
     
     ```bash
