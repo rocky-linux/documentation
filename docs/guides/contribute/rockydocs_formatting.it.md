@@ -280,112 +280,93 @@ sudo dnf install the-kitchen-sink
 
 E sì, il blocco di codice che avete appena visto ha usato cinque backtick all'inizio e alla fine per renderlo correttamente.
 
+### Soppressione del prompt visualizzato e dell'avanzamento automatico di riga
+
+In alcuni casi, durante la stesura della documentazione, si desidera mostrare un prompt nel comando, ma non si vuole che l'utente copi tale prompt quando utilizza l'opzione di copia. Un'applicazione di questo tipo potrebbe essere la scrittura di laboratori in cui si vuole mostrare la posizione con il prompt, come in questo esempio:
+
+![copy_option](copy_option.png)
+
+Se la formattazione è normale, l'opzione di copia copierà il prompt e il comando, mentre è preferibile copiare solo il comando. Per ovviare a questo problema, si può usare la seguente sintassi per indicare all'opzione copy ciò che si vuole copiare:
+
+````
+``` { .sh data-copy="cd /usr/local" }
+[root@localhost root] cd /usr/local
+```
+````
+Quando si utilizza questo metodo, anche l'avanzamento automatico delle righe viene soppresso.
 ## Tastiera
-
-Un altro modo per aggiungere più chiarezza possibile ai documenti è quello di rappresentare la digitazione dei tasti su una tastiera nel modo corretto. Questo viene fatto con `<kbd>key</kbd>`. Ad esempio, per rappresentare la necessità di premere il tasto escape nel documento, si userebbe `<kbd>ESC</kbd`. Quando è necessario indicare la pressione di più tasti, aggiungere un `+` tra di essi, come in questo caso:`<kbd>CTRL</kbd> + <kbd>F4</kbd>`. Se si richiede la pressione simultanea dei tasti, aggiungere "simultaneamente" o "allo stesso tempo" o una frase simile alle istruzioni. Ecco un esempio di istruzione da tastiera nell'editor:
+Un altro modo per aggiungere più chiarezza possibile ai documenti è quello di rappresentare la digitazione dei tasti su una tastiera nel modo corretto. Per farlo, utilizzate `<kbd>key</kbd>`. Ad esempio, per rappresentare la necessità di premere il tasto escape nel documento, si userà `<kbd>ESC</kbd`. Quando è necessario indicare la pressione di più tasti, aggiungere un `+` tra di essi, come in questo caso: `<kbd>CTRL</kbd> + <kbd>F4</kbd>`. Se si richiede la pressione simultanea dei tasti, aggiungere "simultaneamente" o "allo stesso tempo" o una frase simile alle istruzioni. Ecco un esempio di istruzione da tastiera nell'editor:
 
 ```
-Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. Un utente passa da un terminale fisico ad un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> dalla riga di comando o utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd> in modalità grafica.
+Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. Un utente passa da un terminale fisico a un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> o dalla riga di comando utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
 ```
-
-Ecco come viene visualizzato:
-
-Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. Un utente passa da un terminale fisico ad un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> dalla riga di comando o utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd> in modalità grafica.
-
+Ecco come appare tutto questo nel codice markdown:
+Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. Un utente passa da un terminale fisico a un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> o dalla riga di comando utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
 ## Simboli di Apice, Pedice e Speciali
-
-Le notazioni in apice e in pedice non sono un normale markdown, ma sono supportate nella documentazione di Rocky Linux attraverso i tag HTML usati per lo stesso scopo. L'apice pone il testo inserito tra i tag leggermente al di sopra del testo normale, mentre il pedice lo pone leggermente al di sotto. L'apice è di gran lunga il più usato nella scrittura. Alcuni caratteri speciali appaiono già in apice senza l'aggiunta dei tag, ma è possibile combinare i tag per cambiare l'orientamento di tali caratteri, come si vede con il simbolo del copyright qui sotto. Si può usare l'apice per:
-
+Le notazioni in apice e in pedice non sono un normale markdown, ma sono supportate nella documentazione di Rocky Linux attraverso i tag HTML usati per lo stesso scopo. Il superscript pone il testo inserito tra i tag leggermente al di sopra del testo normale, mentre il subscript lo pone leggermente al di sotto. Superscript è di gran lunga il più usato tra questi due nella scrittura. Alcuni caratteri speciali appaiono già in apice senza l'aggiunta dei tag, ma è possibile combinare i tag per cambiare l'orientamento di tali caratteri, come si vede con il simbolo del copyright qui sotto. È possibile utilizzare il superscript per:
 * rappresentano numeri ordinali, come 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
 * simboli di copyright e marchi, come <sup>&copy;</sup>, <sup>TM</sup>, o &trade;, &reg;
 * come notazione per riferimenti, come questo<sup>1</sup>, questo<sup>2</sup> e questo<sup>3</sup>
-
-Alcuni caratteri speciali, come &copy;, non sono normalmente apicali, mentre altri, come &trade;, lo sono.
-
+Alcuni caratteri speciali, come &copy;, non sono normalmente apici, mentre altri, come &trade;, lo sono.
 Ecco come appare tutto questo nel codice markdown:
 
 ```
+
 * rappresentano numeri ordinali, come 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
-* simboli di copyright e marchi, come <sup>&copy;</sup>, <sup>TM</sup> o &trade;, &reg;
-* come notazione per riferimenti, come questo<sup>1</sup>, questo<sup>2</sup> e questo<sup>3</sup>
+* simboli di copyright e di trademark, come <sup>&copy;</sup>, <sup>TM</sup> o &trade;, &reg;
+* come notazione per i riferimenti, come questo<sup>1</sup>, this<sup>2</sup> e questo<sup>3</sup>
 
-Alcuni caratteri speciali, come &copy;, non sono normalmente apicali, mentre altri come &trade;, lo sono.
+Alcuni caratteri speciali, come &copy;, non sono normalmente apici, mentre altri, come &trade;, lo sono.
 ```
-
-Come si può vedere, per forzare l'apice possiamo usare i tag HTML supportati `<sup></sup>`.
-
-Inserire il pedice con il tag `<sub></sub>`, come già detto, non viene <sub>utilizzato molto</sub> nella scrittura.
-
+Come si può vedere, per forzare l'apice si possono usare i tag HTML supportati di `<sup></sup>`.
+Si inserisce il pedice con i tag `<sub></sub>` e, come notato in precedenza, non è <sub>utilizzato molto</sub> nella scrittura.
 ### Apice per i riferimenti
-
-Alcuni di voi potrebbero sentire la necessità di fare riferimento a fonti esterne quando scrivono la documentazione. Se avete una sola fonte, potete includerla nella conclusione come un unico link, ma se ne avete più di una<sup>1</sup>, potete usare l'apice per annotarle nel testo<sup>2</sup> e poi elencarle alla fine del documento. Si noti che il posizionamento dei riferimenti deve avvenire dopo la sezione "Conclusioni".
-
-Dopo la conclusione, è possibile inserire le notazioni in un elenco numerato che corrisponde all'apice, oppure come link. Entrambi gli esempi sono mostrati qui:
-
+Alcuni di voi potrebbero avere la necessità di fare riferimento a fonti esterne quando scrivono la documentazione. Se avete una sola fonte, potete includerla nella conclusione come un unico link, ma se ne avete più di una<sup>1</sup>, potete usare l'apice per annotarle nel testo<sup>2</sup> e poi elencarle alla fine del documento. Si noti che il posizionamento dei riferimenti deve avvenire dopo la sezione "Conclusioni".
+Dopo la conclusione, è possibile inserire le notazioni in un elenco numerato che corrisponde all'apice, oppure come link. Entrambi gli esempi sono illustrati qui:
 1. "Come si usano i multipli nel testo" di Wordy W. McWords [https://site1.com](https://site1.com)
-2. "Using Superscript In Text" di Sam B. Supersecret [https://site2.com](https://site2.com)
-
+2. "Usare l'apice nel testo" di Sam B. Supersecret [https://site2.com](https://site2.com)
 o
-
-[1](https://site1.com) "Come si usano i multipli nel testo" by Wordy W. McWords  
-[2](https://site2.com) "Utilizzo dell'apice nel testo" by Sam B. Supersecret
-
+[1](https://site1.com) "Come si usano i multipli nel testo" di Wordy W. McWords  
+[2](https://site2.com) "Usare l'apice nel testo" by Sam B. Supersecret
 Ecco come si presenta il tutto nel vostro editor:
 
 ```
-1. "Come si usano i multipli nel testo" by Wordy W. McWords [https://site1.com](https://site1.com)
-2. "Utilizzo dell'apice nel testo" by Sam B. Supersecret [https://site2.com](https://site2.com)
+
+1. "Come si usano i multipli nel testo" di Wordy W. McWords [https://site1.com](https://site1.com)
+2. "Usare l'apice nel testo" di Sam B. Supersecret [https://site2.com](https://site2.com)
 
 o
 
-[1](https://site1.com) "Come si usano i multipli nel testo" by Wordy W. McWords  
-[2](https://site2.com) "Utilizzo dell'apice nel testo" by Sam B. Supersecret  
+[1](https://site1.com) "Come si usano i multipli nel testo" di Wordy W. McWords  
+[2](https://site2.com) "Usare l'apice nel testo" di by Sam B. Supersecret  
 
 ```
-
 ## Raggruppare diversi tipi di formattazione
-
-La Documentazione Rocky offre alcune eleganti opzioni di formattazione quando si combinano più elementi all'interno di un altro elemento. Per esempio, un ammonimento con un elenco numerato:
-
+La documentazione Rocky offre alcune eleganti opzioni di formattazione quando si combinano più elementi all'interno di un altro elemento. Per esempio, un ammonimento con un elenco numerato:
 !!! note "Nota"
 
-    Le cose possono diventare un po' strane quando si raggruppano gli oggetti. Come quando:
-
-    1. Si aggiunge un elenco numerato di opzioni all'interno di un ammonimento
-
-    2. Oppure si aggiunge un elenco numerato con più blocchi di codice:
+    Le cose possono diventare un po' strane quando si raggruppano gli oggetti. A volte è davvero importante.
+1. Si aggiunge un elenco numerato di opzioni all'interno di un ammonimento
+2. Oppure si aggiunge un elenco numerato con più blocchi di codice:
 
         ```
         dnf install some-great-package
         ```
-
-        Che è anche all'interno di un elenco numerato di più paragrafi.
-
+Che è anche all'interno di un elenco numerato di più paragrafi.
 Oppure si può avere un elenco numerato, con un'ulteriore ammonimento:
-
 1. Questo elemento è molto importante
-
-    Qui si aggiunge un comando da tastiera all'elemento dell'elenco:
-
-    Premere <kbd>ESC</kbd> senza un motivo particolare.
-
+Qui si aggiunge un comando da tastiera all'elemento dell'elenco:
+Premere <kbd>ESC</kbd> senza un motivo particolare.
 2. Ma questo articolo è qualcosa di molto importante *e* ha più paragrafi ad esso dedicati
-
-    E ha un ammonimento nel mezzo:
-
-    !!! warning "Attenzione"
+E ha un ammonimento nel mezzo:
+!!! warning "Attenzione"
    
         Le cose possono diventare un po' strane con più elementi all'interno di diversi tipi di formattazione!
-
-Se si rispettano i magici quattro (4) spazi per rientrare e separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desidera. A volte è davvero importante.
-
+Se si tiene conto dei quattro (4) spazi magici per rientrare e separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desiderano. A volte è davvero importante.
 È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui ci sono un elenco numerato, un ammonimento, una tabella e alcuni elementi di blocco di citazione, tutti raggruppati insieme:
-
 1. Cercare di tenere il passo con tutto ciò che accade nel documento può essere un vero compito quando si lavora con più elementi.
-
 2. Se vi sentite sopraffatti, prendete in considerazione:
-
-    !!! warning "importante: credo che mi faccia male la testa!"
+!!! warning "importante: credo che mi faccia male la testa!"
    
         Quando si combinano più elementi di formattazione, il cervello può impazzire. Prendete in considerazione l'idea di assumere un po' di caffeina in più prima di cominciare!
        
@@ -399,20 +380,20 @@ Se si rispettano i magici quattro (4) spazi per rientrare e separare questi elem
         > **zucchero** se la caffeina non è di vostro gradimento
        
         > **soffrire** se tutto il resto fallisce, concentrarsi di più
-
 3. Esistono molti esempi, ma quello riportato sopra illustra come sia possibile annidare tutto all'interno. Ricordate i quattro (4) spazi magici.
-
 Ecco come appare questo esempio nell'editor:
 
 ```
 
-Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desidera. A volte è davvero importante.
+Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desiderano. A volte è davvero importante.
 
 È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui ci sono un elenco numerato, un'ammonimento, una tabella e alcuni elementi di citazione a blocchi, tutti raggruppati insieme:
 
 1. Cercare di tenere il passo con tutto ciò che accade nel documento può essere un vero compito quando si lavora con più elementi.
 
-2. Se vi sentite sopraffatti, prendete in considerazione!!! warning "importante: credo che mi faccia male la testa!"
+2. Se vi sentite sopraffatti, prendete in considerazione:
+
+    !!! warning "importante: credo che mi faccia male la testa!"
 
         Quando si combinano più elementi di formattazione, il cervello può impazzire. Prendete in considerazione l'idea di assumere un po' di caffeina in più prima di cominciare!
 
@@ -429,12 +410,9 @@ Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi v
 
 3. Esistono molti esempi, ma quello riportato sopra illustra come sia possibile annidare tutto all'interno. Ricordate i quattro (4) spazi magici.
 ```
-
 ## Un ultimo punto: i commenti
-
-Di tanto in tanto, si potrebbe voler aggiungere un commento al markdown che non verrà visualizzato quando sarà elaborato. Le ragioni sono molteplici. Ad esempio, se si vuole aggiungere un segnaposto per qualcosa che verrà aggiunto in seguito, si può usare un commento per contrassegnare il punto.
-
-Il modo migliore per aggiungere un commento al markdown è usare le parentesi quadre "[]" intorno a due barre in avanti "//" seguite da due punti e dal contenuto. Il risultato sarebbe il seguente:
+Di tanto in tanto, si potrebbe voler aggiungere un commento al markdown che non verrà visualizzato quando sarà visualizzato. Le ragioni sono molteplici. Ad esempio, se si vuole aggiungere un segnaposto per qualcosa che verrà aggiunto in seguito, si può usare un commento per contrassegnare il punto.
+Il modo migliore per aggiungere un commento al markdown è usare le parentesi quadre "[]" attorno a due slashes "//" seguite da due punti e dal contenuto. Il risultato sarebbe il seguente:
 
 ```
 
@@ -442,7 +420,7 @@ Il modo migliore per aggiungere un commento al markdown è usare le parentesi qu
 
 ```
 
-Un commento dovrebbe avere una riga vuota prima e dopo il commento.
+Un commento deve avere una riga vuota prima e dopo il commento.
 
 ## Ulteriori Letture
 
