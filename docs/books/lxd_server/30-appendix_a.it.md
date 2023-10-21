@@ -10,7 +10,7 @@ tags:
 
 # Appendice A - Configurazione Workstation
 
-Anche se non fa parte dei capitoli per un server LXD, questa procedura aiuterà coloro che desiderano avere un ambiente di laboratorio, o un sistema operativo e un'applicazione semi-permanente, in esecuzione su una workstation o un portatile Rocky Linux.
+Anche se non fa parte dei capitoli per un server LXD, questa procedura aiuterà coloro che vogliono avere un ambiente di laboratorio, o un sistema operativo e un'applicazione semi-permanente, in esecuzione su una workstation o un notebook Rocky Linux.
 
 ## Prerequisiti
 
@@ -161,8 +161,7 @@ Da questo punto, si possono facilmente utilizzare i capitoli del nostro "LXD Pro
 ## Ulteriori informazioni
 
 * [Guida per principianti di LXD](../../guides/containers/lxd_web_servers.md) che vi permetterà di iniziare a usare LXD in modo produttivo.
-* [Panoramica ufficiale di LXD](https://linuxcontainers.org/lxd/introduction/)
-* [Documentazione ufficiale](https://linuxcontainers.org/lxd/docs/master/)
+* [Panoramica e documentazione ufficiale di LXD](https://documentation.ubuntu.com/lxd/en/latest/)
 
 ## Conclusione
 
