@@ -91,7 +91,11 @@ Once the first process runs, it then goes on to start other services, daemons, p
 
 #### To explore the first system process
 
-1. Log on to the system as any user. Query the /proc/<PID>/comm virtual file system path and find out the name of the process with the ID of 1. Type:
+!!! note
+    
+    In the exercises below, replace PID with the process ID number.
+
+1. Log on to the system as any user. Query the /proc/PID/comm virtual file system path and find out the name of the process with the ID of 1. Type:
 
     ```bash
     [root@localhost ~]# cat /proc/1/comm
@@ -99,7 +103,7 @@ Once the first process runs, it then goes on to start other services, daemons, p
     systemd
     ```
 
-2. Run the `ls` command to view the /proc/<PID>/exe virtual file system path and see the name and path to the executable behind the process with the ID of 1. Type:
+2. Run the `ls` command to view the /proc/PID/exe virtual file system path and see the name and path to the executable behind the process with the ID of 1. Type:
 
     ```bash
     [root@localhost ~]# ls -l /proc/1/exe
