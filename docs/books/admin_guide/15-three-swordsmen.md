@@ -149,7 +149,7 @@ Sometimes, you may see "POSIX character"(also known as "POSIX character class").
 | [:blank:]        | [ \t]           |
 | [:cntrl:]        | [\x00-\x1F\x7F] |
 | [:print:]        | [\x20-\x7E]     |
-| [:punct:]        | [][!"#$%&'()*+,./:;<=>?@\^_`{|}~-] |
+| [:punct:]        | [][!"#$%&'()*+,./:;<=>?@\^_`{\|}~-] |
 | [:xdigit:]       | [A-Fa-f0-9]     |
 
 #### Introducing regular expressions
