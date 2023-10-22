@@ -76,7 +76,7 @@ lxc config set ubuntu-test
 
 e <kbd>TAB</kbd>.
 
-Mostra tutte le opzioni per la configurazione di un container. Se avete domande su cosa fa una delle opzioni di configurazione, consultate la [documentazione ufficiale di LXD](https://linuxcontainers.org/lxd/docs/master/instances/) e fate una ricerca per il parametro di configurazione, oppure cercate su Google l'intera stringa, ad esempio "lxc config set limits.memory" ed esaminate i risultati della ricerca.
+Mostra tutte le opzioni per la configurazione di un container. Se avete domande su cosa fa una delle opzioni di configurazione, visitate la [documentazione ufficiale di LXD](https://documentation.ubuntu.com/lxd/en/latest/config-options/) e fate una ricerca per il parametro di configurazione, oppure cercate su Google l'intera stringa, ad esempio `lxc config set limits.memory` ed esaminate i risultati della ricerca.
 
 Di seguito esaminiamo alcune delle opzioni di configurazione più utilizzate. Ad esempio, se si vuole impostare la quantità massima di memoria che un container può utilizzare:
 
