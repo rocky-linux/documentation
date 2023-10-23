@@ -443,7 +443,7 @@ This exercise shows how to configure network interfaces using the NetworkManager
 3. Now, create a new NetworkManager connection called `macvtap2` and an associated MACVTAP interface named - `macvtap2`. The new interface will be associated with $DEVICE2. Type: 
     
     ```bash
-    nmcli con add con-name macvtap2 type macvtap mode bridge  tap yes dev $DEVICE2 ifname macvtap2
+    nmcli con add con-name macvtap2 type macvlan mode bridge tap yes dev $DEVICE2 ifname macvtap2
     ```
     
 4. Use `nmcli` to verify the creation of `macvtap2` interface. Type:
