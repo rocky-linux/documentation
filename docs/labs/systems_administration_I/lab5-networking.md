@@ -20,7 +20,7 @@ After completing this lab, you will be able to:
 
 - Create virtual network devices
 - Manage network devices and settings on a Linux system using the `iproute2` (`ip`) toolkit
-- Manage network devices and settings on a Linux system using NetworkManage (`nmcli`) toolkit 
+- Manage network devices and settings on a Linux system using NetworkManager (`nmcli`) toolkit 
 - Troubleshoot common network issues
 
 Estimated time to complete this lab: 60 minutes
@@ -28,15 +28,15 @@ Estimated time to complete this lab: 60 minutes
 
 ## Overview 
 
-This Networking Essentials lab covers various network configuration and troubleshooting exercises on a Linux server. You will be better equipped to manage and troubleshoot network settings using common networking utilities that are readily available on Linux based systems.
+This Networking Essentials lab covers various network configuration and troubleshooting exercises on a Linux server. You will be better equipped to manage and troubleshoot network settings using common networking utilities readily available on Linux based systems.
 
 ## Exercise 1
 
 ### Change Hostname
 
-There are many methods for identifying or referring to computers. Some of these methods guarantee uniqueness [ especially on a network] and others don't. A computer hostname can be regarded as a human friendly name. Depending on how they are managed or assigned, computer hostnames should ideally be unique. But because anyone with the Administrative privileges on a system can unilaterally assign whatever hostname they want to the system - uniqueness is not always guaranteed. 
+There are many methods for identifying or referring to computers. Some of these methods guarantee uniqueness [ especially on a network], and others don't. A computer hostname can be regarded as a human-friendly name. Computer hostnames should ideally be unique depending on how they are managed and assigned. But because anyone with the Administrative privileges on a system can unilaterally assign whatever hostname they want to the system - uniqueness is not always guaranteed. 
 
-This first exercise, walks through some common tools used for managing the computer hostname.
+This first exercise walks through some common tools for managing the computer hostname.
 
 
 #### To change the system's hostname
@@ -56,7 +56,7 @@ This first exercise, walks through some common tools used for managing the compu
 
     !!! Question
         
-        What does FQDN stand for ? And why is the result of your server plain server hostname different from its FQDN?
+        What does FQDN stand for? And why is the result of your server plain server hostname different from its FQDN?
     
 3. Use the `hostnamectl` utility to view the current *hostnames*. Type:
 
@@ -65,12 +65,12 @@ This first exercise, walks through some common tools used for managing the compu
     ```
    That's a lot of extra information! 
 
-4. Add a the `--static` option to the `hostnamectl` command to view the static hostname for your server. Type:
+4. Add the `--static` option to the `hostnamectl` command to view the static hostname for your server. Type:
 
     ```bash
     hostnamectl --static
     ```
-5. Add a the `--transient` option to the `hostnamectl` command to view the transient hostname for your server.
+5. Add the `--transient` option to the `hostnamectl` command to view the transient hostname for your server.
    
 6. Now try the `--pretty` option to the `hostnamectl` command to view the pretty hostname for your server.
    
@@ -99,18 +99,18 @@ This first exercise, walks through some common tools used for managing the compu
     
 ## Exercise 2
 
-The first critical step that you need to complete before going on to the other exercises in this network Lab will be to create a special virtual network interface known as a MACVTAP device.
+The first critical step you need to complete before going on to the other exercises in this network lab will be creating a special virtual network interface known as a MACVTAP device.
 
-MACVTAP devices are virtual devices that combine the properties of a software only interface known as a TAP device as well as the properties of the MACVLAN driver. 
+MACVTAP devices are virtual devices that combine the properties of a softwarei-only interface known as a TAP device as well as the properties of the MACVLAN driver. 
 
-Creating and working with these MACVTAP devices will allow you to safely test, change, and configure various network configuration related tasks. These virtual network interfaces will be used in various exercises without disrupting the existing network configuration.
+Creating and working with these MACVTAP devices will allow you to safely test, change, and configure various network configuration-related tasks. These virtual network interfaces will be used in various exercises without disrupting the existing network configuration.
 
 
 !!! TIP
     
-    TAP devices provide a software-only interface that can be easily accessed by user space applications. TAP devices send and receive raw Ethernet frames. 
+    TAP devices provide a software-only interface that user-space applications can easily access. TAP devices send and receive raw Ethernet frames. 
     MACVLAN is used for creating virtual network interfaces that attach to physical network interfaces. 
-    The MACVTAP devices have their own unique MAC address that is distinct from the MAC address of the underlying physical network card that they are associated with.
+    The MACVTAP devices have their own unique MAC address distinct from the MAC address of the underlying physical network card they are associated with.
     
 ### Create MACVTAP Interfaces
 
@@ -121,7 +121,7 @@ This exercise starts with creating needed MACVTAP virtual network interfaces. Th
 
 1. Ensure you are logged into the server.
    
-2. Use the `ip` program to view the current lay of the land to see existing network interfaces on your system. Type:
+2. Use the `ip` program to view the existing network interfaces on your system. Type:
 
     ```bash
     ip link show
@@ -132,8 +132,7 @@ This exercise starts with creating needed MACVTAP virtual network interfaces. Th
      nmcli -f DEVICE device
     ```
 
-4. Query the low-level /sys virtual file-system to manually enumerate ALL network interfaces
-   available on your server. Type:
+4. Query the low-level /sys virtual file-system to enumerate ALL network interfaces available on your server manually. Type:
 
     ```bash
      ls -l /sys/class/net/ | grep -v 'total' | awk '{print $9}'
@@ -150,7 +149,7 @@ This exercise starts with creating needed MACVTAP virtual network interfaces. Th
 
      eno2
     ```
-    The output on the sample demo system shows the presence of one suitable interface named eno2.
+    The output on the sample demo system shows one suitable interface named eno2.
    
 3. Run the command to identify the device again but this time store the returned value in a 
    variable named $DEVICE1. Double check the value of $DEVICE1 using echo.  
@@ -177,7 +176,7 @@ This exercise starts with creating needed MACVTAP virtual network interfaces. Th
 
     Note the DOWN state of the `macvtap` interface in the output. 
 
-6. View detailed information about all the MACVTAP type network devices on the system. Type:
+6. View detailed information about all the MACVTAP-type network devices on the system. Type:
 
     ```bash
     ip --detail link show type macvtap
@@ -189,7 +188,7 @@ This exercise starts with creating needed MACVTAP virtual network interfaces. Th
 
 #### To enable or disable a network interface
 
-1. Check the status of a the `macvtap1` network interface. Type:
+1. Check the status of the `macvtap1` network interface. Type:
 
     ```bash
     ip link show macvtap1
@@ -250,7 +249,7 @@ Now that you have set up the `macvtap` interfaces, you safely perform the variou
 
 ### Configure IPv6 Addresses
 
-#### To assign IPv6 addresses to `veth` interfaces
+#### To assign IPv6 addresses to `macvtap` interfaces
 
 1. Starting with `macvtap1`, assign the 2001:db8::1/64 IPv6 address to `macvtap1` by running:
 
@@ -280,7 +279,7 @@ Now that you have set up the `macvtap` interfaces, you safely perform the variou
 
 ### Routing management
 
-#### To view the system's routing table.
+#### To view the system's routing table
 
 1. Display the current routing table for the system. Type:
  
@@ -290,7 +289,7 @@ Now that you have set up the `macvtap` interfaces, you safely perform the variou
     10.99.99.0/24 dev tunA proto kernel scope link src 10.99.99.1 metric 450 linkdown
     192.168.2.0/24 dev enp1s0 proto kernel scope link src 192.168.2.121 metric 100
     ```
-2. Using one of the networks displayed in the leftmost column in the output of the previous command as the argument, display the route table entry for that network. For example to show the kernel route table entry for the 10.99.99.0/24 network, type:
+2. Using one of the networks displayed in the leftmost column of the previous command's output as the argument, display the route table entry for that network. For example to show the kernel route table entry for the 10.99.99.0/24 network, type:
     
     ```bash
     ip route show 10.99.99.0/24
@@ -424,18 +423,18 @@ This exercise shows how to configure network interfaces using the NetworkManager
 
 !!! Note
     
-    By default, any network configuration changes that are done using `nmcli` (NetworkManager) will persist between system reboots.
+    By default, any network configuration changes done using `nmcli` (NetworkManager) will persist between system reboots.
     This is in contrast to the configuration changes that are done with the `ip` utility.
 
 #### To create a `macvtap` interface using `nmcli` 
 
-1. Start by listing all available network device by running:
+1. Start by listing all available network devices by running:
 
     ```bash
     nmcli device
     ```
     
-2. Next identify an underlying network device to associate the new MACVTAP interface with. Save the value of the identified device in the variable $DEVICE2. Type:
+2. Next, identify an underlying network device with which to associate the new MACVTAP interface. Save the value of the identified device in the variable $DEVICE2. Type:
     
     ```bash
     DEVICE2=$(ls -l /sys/class/net/ | grep -v 'virtual\|total' | tail -n 1 | awk '{print $9}')
@@ -444,7 +443,7 @@ This exercise shows how to configure network interfaces using the NetworkManager
 3. Now, create a new NetworkManager connection called `macvtap2` and an associated MACVTAP interface named - `macvtap2`. The new interface will be associated with $DEVICE2. Type: 
     
     ```bash
-    nmcli con add con-name macvtap2 type macvlan mode bridge  tap yes dev $DEVICE2 ifname macvtap2
+    nmcli con add con-name macvtap2 type macvtap mode bridge  tap yes dev $DEVICE2 ifname macvtap2
     ```
     
 4. Use `nmcli` to verify the creation of `macvtap2` interface. Type:
@@ -465,7 +464,7 @@ This exercise shows how to configure network interfaces using the NetworkManager
     ip --brief link show macvtap2
     ```
     
-    Note the UP state of the `macvtap` interface in the output.
+    Note the output's UP state of the `macvtap` interface.
     
     !!! Question
         
