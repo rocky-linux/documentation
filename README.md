@@ -11,8 +11,8 @@ _With Rocky Linux emerging as a major RHEL-compatible distribution, this is an e
 To us, excellent documentation hits these marks:
 
 
-* Educate users on how to admin this distribution and its associated programs.
-* Support users of all skill levels with manuals and troubleshooting guides to make the most of this distribution.
+* Educate users on how to administrate this distribution and its associated programs.
+* Support users of all skill levels with manuals and troubleshooting guides to make  most of this distribution network.
 * Apply a consistent standard across all related documents, for ease of reading and translation.
 * Keep documentation up to date (and error free) with current versions.
 * Allow users to contribute Guides, Docs, Gemstones (scripts and favorite code snippets) and more, to enhance Rocky Linux for fellow users.
