@@ -96,7 +96,10 @@ SYNOPSIS
 
     ```bash
     rpcinfo -p localhost
-    
+    ```
+
+    **SAMPLE OUTPUT**
+    ```bash
     program vers proto   port  service
     100000    4   tcp    111  portmapper
     100000    3   tcp    111  portmapper
