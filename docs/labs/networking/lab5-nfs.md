@@ -44,9 +44,9 @@ The `/etc/exports` configuration file serves as a form of access control list fo
 
 The directives in `/etc/exports` uses the following syntax:
 
-    ```bash
-    shareable_directory  allowed_clients(options_affecting_allowed_clients) 
-    ```
+```bash
+shareable_directory  allowed_clients(options_affecting_allowed_clients) 
+```
 
 ## Exercise 1 
 
@@ -68,9 +68,7 @@ SYNOPSIS
      rpcinfo -a serv_address -T transport prognum [versnum]
      rpcinfo -b [-T transport] prognum versnum
      rpcinfo -d [-T transport] prognum versnum
-
 ```
-
 
 #### To start NFS 
 
