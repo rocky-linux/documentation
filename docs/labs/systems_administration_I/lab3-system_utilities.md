@@ -8,18 +8,15 @@ tags:
   - cli
 ---
 
-
 # Lab 3: Common System Utilities
 
 ## Objectives
 
-
 After completing this lab, you will be able to
 
--   Use the common system utilities found on most Linux Systems
+- Use the common system utilities found on most Linux Systems
 
 Estimated time to complete this lab: 70 minutes
-
 
 ## Common system utilities found on Linux systems
 
@@ -31,18 +28,18 @@ The exercises will cover the usage of –`pwd`, `cd`, `ls`, `rm`, `mv`, `ftp`, `
 
 ### `cd`
 
-"cd" stands for change directory. You will start these labs by changing to other directories on the file system.
+The `cd` command stands for change directory. You will start these labs by changing to other directories on the file system.
 
 #### To Use `cd`
 
 1. Log in to the computer as root
 
 2. Change from your current directory to the /etc directory.
-   
+       
     ```
     [root@localhost root]# cd /etc
     ```
-    
+
 3. Note that your prompt has changed from “[root@localhost root]# ” to : “[root@localhost etc]# “
 
 4. Change to the `/usr/local/` directory
@@ -52,9 +49,9 @@ The exercises will cover the usage of –`pwd`, `cd`, `ls`, `rm`, `mv`, `ftp`, `
 
     [root@localhost local]#
     ```
-    
+       
     !!! Question
-
+    
         What has changed about your prompt?
 
 5. Change back to root’s home directory
@@ -62,71 +59,70 @@ The exercises will cover the usage of –`pwd`, `cd`, `ls`, `rm`, `mv`, `ftp`, `
     ```bash
     [root@localhost local]# cd /root
     ```
-    
+   
 6. Change to the /usr/local/ directory again. Type:
 
     ```
     [root@localhost root]# cd /usr/local
     ```
-    
+   
 7. To change to the parent directory of the local directory type “cd ..”
 
     ```bash
     [root@localhost local]# cd ..
     ```
-    
+       
     !!! Question
    
         What is the parent directory of the /usr/local/ directory?
 
-    
 8.  To quickly change back to root’s home directory type “cd” without any argument.
-    
+   
     ```bash
     [root@localhost usr]# cd
 
     [root@localhost root]#
     ```
-    
+
 ## Exercise 2
 
 ### `pwd`
 
-"pwd" stands for “present working directory”. It shows the location you are in on the file system.
+The `pwd` command stands for “present working directory”. It shows the location you are in on the file system.
 
 #### To use `pwd`
 
-1. To find out your current working directory type
+1. To find out your current working directory type:
     
     ```bash
     [root@localhost root]# pwd
     /root
     ```
-    
-2.  Change your directory to the /usr/local/ directory using the “cd” command
+
+2.  Change your directory to the /usr/local/ directory using the “cd” command:
     
     ```bash
     [root@localhost root]# cd /usr/local
     ```
-    
-3. Use `pwd` to find your present working directory
+
+3. Use `pwd` to find your present working directory:
     
     ```bash
     [root@localhost local]# pwd
     /usr/local
     ```
-    
-4. Return to root’s home directory.
+
+4. Return to root’s home directory:
     
     ```bash
     [root@localhost root]#  cd
     ```
-    
+
 ## Exercise 3
 
 ### `mkdir`
 
-The "mkdir" command is used to create directories. You will create two directories called “folder1” and “folder2”
+The `mkdir` command is used to create directories. You will create two directories called “folder1” and “folder2.”
 
 #### To use `mkdir`
 
@@ -135,26 +131,26 @@ The "mkdir" command is used to create directories. You will create two directori
     ```bash
     [root@localhost root]# mkdir folder1
     ```
-    
+
 2. Create a second directory called folder2
     
     ```bash
     [root@localhost root]# mkdir   folder2
     ```
-    
+
 3.  Now change your working directory to the “folder1” directory you created above.
     
     ```bash
     [root@localhost root]# cd folder1
     ```
-    
+
 4. Display your current working directory.
     
     ```bash
     [root@localhost folder1]# pwd
     /root/folder1
     ```
-    
+
 5. Without leaving your present directory, change to the “folder2” directory. What is the command to do this?
 
 6. Return to root’s home directory.
@@ -163,41 +159,41 @@ The "mkdir" command is used to create directories. You will create two directori
 
 ### `touch`
 
-The "touch" command can be used to create ordinary files. You will create “ file11, file12, file21, and file22 “ in the folders created above.
+The `touch` command can be used to create ordinary files. You will create “ file11, file12, file21, and file22 “ in the folders created above.
 
 #### To use `touch`
 
-1. Change directory  i.e. “cd” to folder1 and  create file11
+1. Change directory  i.e. `cd` to folder1 and create "file11:"
     
     ```bash
     [root@localhost folder1]# touch file11
     ```
-    
-2. While still in folder1 create “file12”
+
+2. While still in folder1 create "file12:"
     
     ```bash
     [root@localhost folder1]# touch file12
     ```
-    
+
 3. Now return to root’s home directory.
 
-4. cd to folder2 and  create “file21” and “file22”
+4. `cd` to folder2 and  create “file21” and “file22”
 
     ```bash
     [root@localhost folder2]# Touch file21 file22
     ```
-    
+
 5. Return to root’s home directory.
 
 ## Exercise 5
 
 ### `ls`
 
-"ls" command stands for list. It lists the contents of a directory.
+The `ls` command stands for list. It lists the contents of a directory.
 
 #### To use `ls`
 
-1. Type `ls` in root’s home directory
+1. Type `ls` in root’s home directory:
     
     ```bash
     [root@localhost root]# ls
@@ -206,8 +202,8 @@ The "touch" command can be used to create ordinary files. You will create “ fi
     !!! Question 
     
         List the contents of the directory
-    
-2. Change to the folder1 directory
+
+2. Change to the "folder1" directory
 
 3. List the contents of “folder1” directory. Type `ls`
     
@@ -215,10 +211,10 @@ The "touch" command can be used to create ordinary files. You will create “ fi
     [root@localhost folder1]# ls
     file11  file12
     ```
-    
-4. Change to the folder2 directory and list its contents here:
 
-5. Change back to your home directory and list “all” the hidden files and folders.
+4. Change to the "folder2" directory and list its contents here:
+
+5. Change back to your home directory and list “all” the hidden files and folders:
     
     ```bash
     [root@localhost folder2]# cd
@@ -226,7 +222,7 @@ The "touch" command can be used to create ordinary files. You will create “ fi
     [root@localhost root]# ls   –a
     ..  .bash_history  .bash_logout  .bash_profile  .bashrc  folder1  folder2  .gtkrc  .kde   screenrc
     ```
-    
+
 6. To obtain a long or detailed list of all the files and folders in your home directory type:
     
     ```bash
@@ -251,16 +247,16 @@ The "touch" command can be used to create ordinary files. You will create “ fi
     
     ………………………..
     ```
-    
+
 ## Exercise 6
 
 ### `mv`
 
-"mv" command stands for move. It renames files or directories. It can also move files.
+The `mv` command stands for move. It renames files or directories. It can also move files.
 
 #### To use `mv`
 
-1. Change directory to the folder1 directory and list its contents
+1. Change directory to the "folder1" directory and list its contents:
     
     ```bash
     [root@localhost root]# cd   folder1
@@ -268,13 +264,13 @@ The "touch" command can be used to create ordinary files. You will create “ fi
     
     file11  file12
     ```
-    
-2. You will rename  file11 and file12 in the folder1 directory to temp_file11 and temp_file12 respectively.
+
+2. You will rename file11 and file12 in the "folder1" directory to temp_file11 and temp_file12 respectively:
     
     ```bash
     [root@localhost folder1]# mv file11 temp_file11
     ```
-    
+
 3. List the contents of folder1 again.
 
     ```bash
@@ -284,44 +280,45 @@ The "touch" command can be used to create ordinary files. You will create “ fi
     !!! Question
     
         Write down the contents:
-    
-4. Rename the file12 to temp_file12  
+
+4. Rename the file12 to temp_file12:
     
     ```bash
     [root@localhost folder1]# mv file12 temp_file12
     ```
     
-5. Without changing directory rename the file21 and file22 in folder2 to temp_file21 and temp_file22 respectively.
+5. Without changing directory rename the file21 and file22 in "folder2" to temp_file21 and temp_file22 respectively:
     
     ```bash
     [root@localhost folder1]# mv   /root/folder2/file21     /root/folder2/temp_file21
     
     [root@localhost folder1]# mv   /root/folder2/file22    /root/folder2/temp_file22
     ```
-    
+
 6. Without changing your current directory list the contents of folder2. What is the command to do this? Also list the output of the command?
 
 ## Exercise 7
 
 ### `cp`
 
-"cp" command stands for copy. It makes copies of files or directories.  
 
-1. Change your directory to the folder2 directory.
+The `cp` command stands for copy. It makes copies of files or directories.  
 
-2. Copy the contents of folder2 (temp_file21 and temp_file22) to folder1
+1. Change your directory to the "folder2" directory.
+
+2. Copy the contents of "folder2" (temp_file21 and temp_file22) to "folder1:"
 
     ```bash
     [root@localhost folder2]# cp  temp_file21  temp_file22    ../folder1
     ```
-    
+
 3. List the contents of folder1.
 
     ```bash
     [root@localhost folder2]# ls  ../folder1
     temp_file11  temp_file12  temp_file21  temp_file22
     ```
-    
+
 4.  List the contents of folder2. Note that the original copies of temp_file21 and temp_file22  remain in  folder2.
 
     ```bash
@@ -333,7 +330,7 @@ The "touch" command can be used to create ordinary files. You will create “ fi
 
 ### `file`
 
-The "file" utility is used to determine file or directory types.
+The `file` utility is used to determine file or directory types.
 
 #### To use `file`
 
@@ -345,39 +342,39 @@ The "file" utility is used to determine file or directory types.
     [root@localhost root]# file    folder1
     folder1: directory
     ```
-    
+
 3. Change to the folder1 directory
 
-4. Use the `file` utility to determine the file type for temp_file11
+4. Use the `file` utility to determine the file type for temp_file11:
     
     ```bash
     [root@localhost folder1]# file     temp_file11
     temp_file11: empty
     ```
-    
+
 5. Use the `file` utility to find out the file type for all the files in the folder1 directory. List here:
 
-6. Change directory to the /etc directory.
+6. Change directory to the /etc directory:
     
     ```bash
     [root@localhost folder1]# cd /etc
     ```
-    
+
 7. Use the `file` utility to find out the file type for the "passwd" file.
     
     ```bash
     [root@localhost etc]# file passwd
     ```
+    
     !!! Question
    
         What type of file is it?
-
     
 ## Exercise 9
 
 ### `cat`
 
-"cat" is short for concatenate, meaning it strings files together. The command `cat` will also display the contents of an entire file on the screen. You will use `cat` along with the redirection symbol “>” to create a file.
+The `cat` command is short for concatenate, meaning it strings files together. The command `cat` will also display the contents of an entire file on the screen. You will use `cat` along with the redirection symbol “>” to create a file.
 
 #### To use `cat` to create a file
 
@@ -388,32 +385,28 @@ The "file" utility is used to determine file or directory types.
     ```bash
     [root@localhost folder1]# cat > first.txt
     ```
-    
+
 3. Type in the phrase below at the blank prompt and press <kbd>ENTER</kbd>.
     
     ```bash
     This is a line from first.txt !!
     ```
 
-4. Press the control key simultaneously with the “c” key on the keyboard.
+4. Press the <kbd>CTRL</kbd>+<kbd>c</kbd> simultaneously.
     
-    ```bash
-    [CTRL] [c]
-    ```
-
-5. Type “cat first.txt” to read the text you just typed in.
+5. Type “cat first.txt” to read the text you just typed in:
     
     ```bash
     [root@localhost folder1]#  cat    first.txt
     This is a line from first.txt !!
     ```
-    
+
 6. Create another file called “second.txt” using `cat`. Type the following text into the file – “This is a line from second.txt !!”
     
     !!! Question
         
         What is the command to do this?
-    
+
 #### To use `cat` to concatenate files together
 
 1.  You will concatenate the files “first.txt” and “second.txt”. Type:
@@ -425,12 +418,12 @@ The "file" utility is used to determine file or directory types.
     !!! Question
         
         What is your output?
-    
+
 ## Exercise 10
 
 ### `ftp`
 
-"ftp" is a client program for using and connecting to FTP services via the File Transfer Protocol. The program allows users to transfer files to and from a remote network site. It is a utility you might need to use often.
+`ftp` is a client program for using and connecting to FTP services via the File Transfer Protocol. The program allows users to transfer files to and from a remote network site. It is a utility you might need to use often.
 
 In this exercise you will learn how to log on anonymously to an FTP server and download a file from the server using an `ftp` client program.
 
@@ -449,20 +442,20 @@ In this exercise you will learn how to log on anonymously to an FTP server and d
     !!! Question
 
         What is the command to do this?
-    
+
 4. Change directory to the newly created “downloads” directory
     
     ```bash
     [root@localhost src]# cd  downloads
-    ```	
-    
-5. Type “ftp” to launch your `ftp` client.
+    ```
+
+5. Type “ftp” to launch your `ftp` client:
 
     ```bash
     [root@localhost downloads]#  ftp
     ftp>
     ```
-    
+
 6. To connect to the FTP server type:  
     
     ```bash
@@ -472,13 +465,13 @@ In this exercise you will learn how to log on anonymously to an FTP server and d
     220 localhost.localdomain FTP server (Version wu-2.6.2-5) ready.
     ………..
     ```
-    
+
 7. Log in as an anonymous user. Type “anonymous” at the prompt:
     
     ```bash
     Name (10.4.51.29:root):  anonymous
     ```
-    
+
 8.  Type in any e-mail address at the password prompt and press enter
       
     ```bash
@@ -492,7 +485,7 @@ In this exercise you will learn how to log on anonymously to an FTP server and d
     
     ftp>
     ```
-    
+
 9. Change to binary mode. Type:
 
     ```bash
@@ -502,7 +495,7 @@ In this exercise you will learn how to log on anonymously to an FTP server and d
     !!! Question
       
         What is the output of the binary command and what is binary mode "binary mode"?
-    
+
 10. List the current directories on the ftp server. Type “ls” at the ftp prompt (ftp>):
     
     ```bash
@@ -513,19 +506,19 @@ In this exercise you will learn how to log on anonymously to an FTP server and d
     11-02-43  02:20PM       <DIR>          pub
     226 Transfer complete.
     ```
-    
+
 11. Change directory to the “pub” directory. Type:
     
     ```bash
     ftp> cd  pub
     ```
-    
+
 12. Use the “ls” command to list the files and directories in the “pub” directory
     
     !!! Question
     
         How many files and directories are in there now?
-    
+
 13. Download the file called “hello-2.1.1.tar.gz” to your local directory.  Type “yes” at the prompt.
     
     ```bash
@@ -540,13 +533,13 @@ In this exercise you will learn how to log on anonymously to an FTP server and d
     
     389363 bytes received in 0.0745 secs (5.1e+03 Kbytes/sec)
     ```
-    
+
 14. Log off the FTP server and exit your `ftp` client. Type:
     
     ```bash
     ftp> bye
     ```
-    
+
 15. You will be thrown back into your local shell.
 
 16. Ensure you are still in the local machine's “downloads” directory on your local machine. List the files in the downloads folder?    
@@ -563,41 +556,39 @@ Every program started on a Linux system has three open file descriptors, stdin (
 
 1. Ensure you are still in the folder1 directory.
 
-2. You will use output redirection to redirect the out of a the ls (list) command to a text file called myredirects
+2. You will use output redirection to redirect the out of a the ls (list) command to a text file called myredirects:
     
     ```bash
     [root@localhost folder1]# ls  > myredirects
     ```
-    
+
 3. Examine the contents of the new file (myredirects) created in the folder1 directory.
     
     ```bash
     [root@localhost folder1] # cat     myredirects
     temp_file11  temp_file12  temp_file21  temp_file22 myredirects
     ```
-    
-4. Now you will redirect the output of the file command into that same file. You want to find out the file type for the temp_file11 in the folder1 directory and send the output to your myredirects file
+
+4. Now you will redirect the output of the file command into that same file. You want to find out the file type for the temp_file11 in the folder1 directory and send the output to your myredirects file:
     
     ```bash
     [root@localhost folder1]#  file    temp_file11   >   myredirects
     ```
-    
+
 5. Examine the contents of the myredirects file. It has changed what happened?
 
-6. If you want to prevent what happened above from happening you will use the double redirection symbol “>>”.
-
-This will append (add) the new output to the file instead of replacing it. Try it:
+6. If you want to prevent what happened above from happening you will use the double redirection symbol “>>”.  This will append (add) the new output to the file instead of replacing it. Try it:
     
     ```bash
     [root@localhost folder1]#  ls  >>  myredirects
     ```
-    
+
 7.  Now examine the contents of the file myredirects again using `cat`.
 
     !!! Question 
 
         Write down its contents here:
-    
+
 ### Using redirection to suppress the output of a command
 
 You will be using the concepts covered here a lot in Linux, so please pay particular attention to it. It can be a bit tricky.
@@ -626,7 +617,7 @@ Use the guidelines below:
     [root@localhost folder1]#  ls   –l   temp_file11
     -rw-r--r--    1 root     root            0 Jul 26 18:26 temp_file11
     ```
-    
+
 2. You will redirect the output of the same command above (ls –l  temp_file11) to the null device.
     
     ```bash
@@ -634,7 +625,7 @@ Use the guidelines below:
     ```
     
     You should have no output.
-    
+
 3. Now if you accidentally mis-spell the name of the file whose information you want to see; You will get:
     
     ```bash
@@ -655,7 +646,7 @@ Use the guidelines below:
     !!! Question 
     
         What happened here? How come the output still showed up on the screen (stdout)?
-    
+
 5.  For various reasons you may want to suppress error message such as the one above. To do this type:
 
     ```bash
@@ -674,7 +665,7 @@ Use the guidelines below:
     
     Hence the above command can be read as: redirect stdout(1) to “/dev/null” and then copy stderr (2) to stdout
     
-6. To further demonstrate the importance of the order of redirection; Try
+6. To further demonstrate the importance of the order of redirection; Try:
     
     ```bash
     [root@localhost folder1]# ls   –l    tem_file  2>&1   > order.txt
@@ -683,7 +674,7 @@ Use the guidelines below:
     Use the `cat` command to examine the contents of the file “order.txt”
     
     The left-most part – “2>&1” will copy the standard error to the standard output. Then, the right-most part of the above – “ > order.txt” redirects stdout to the file order.txt.
-    
+
 7. Try this variation of the above step:
     
     ```bash
@@ -699,37 +690,35 @@ Use the guidelines below:
     ```
     
     Two new files were created. What are the names of the files and what are their contents?
-     
+ 
 9. You can similarly redirect both stdout and stderr to the same file by using:
     
     ```bash
     [root@localhost folder1]# ls  –l   te_fil   &>   standard_both
     ```
-    
+
 ## Exercise 12
 
 ### `rm`
 
-The "rm" command is used to delete files or directories. You are going to use `rm` to delete some of the files you created in the earlier exercises.
+The `rm` command is used to delete files or directories. You are going to use `rm` to delete some of the files you created in the earlier exercises.
 
 #### To use `rm`
 
-1. While still in the folder1 directory, delete the file standard_err. Type “y” at the confirmation prompt.
+1. While still in the "folder1" directory, delete the file standard_err. Type “y” at the confirmation prompt:
 
     ```bash
     [root@localhost folder1]# rm   standard_err
     rm: remove `standard_err'? y	
     ```
-    
-2. Delete the “standard_out” file. To prevent being prompted for confirmation before deleting a file use the “–f “ option with the `rm` command.
+
+2. Delete the “standard_out” file. To prevent being prompted for confirmation before deleting a file use the “–f “ option with the `rm` command:
 
     ```bash
     [root@localhost folder1]# rm   -f   standard_out
     ```
-    
-3. Change back to your home directory (/root) and delete the “folder2” directory.
-    
-    To use `rm` to delete a folder you need to use the “–r” switch:
+
+3. Change back to your home directory (/root) and delete the “folder2” directory. To use `rm` to delete a folder you need to use the “–r” switch:
     
     ```bash
     [root@localhost root]# rm  -r   folder2
@@ -746,14 +735,14 @@ The "rm" command is used to delete files or directories. You are going to use `r
     !!! Question 
     
         You were again prompted to confirm the removal of each file in the directory and the directory itself.  What option will you use with the `rm  –r` command to prevent this?
-    
+
 ## Exercise 13
 
 ### Learning `vi`
 
-"vi" is a text editor. It can be used to edit all kinds of plain text. It is especially useful for editing programs.
+`vi` is a text editor. It can be used to edit all kinds of plain text. It is especially useful for editing programs.
 
-`vi` is a big fat monster that can do almost everything - including make your coffee or cocoa !!
+`vi` is a big fat monster that can do almost everything - including make your coffee or cocoa!!
 
 Instead of trying to teach you `vi`, this exercise will point you to a tool that can better familiarize you with `vi`.
 
@@ -881,8 +870,8 @@ ACTION:
     !!! Questions
         
         From the above command “find  –type  d”; what is the “option”, what is the “path”, what is the “criterion” and finally what is the “action”?
-    
-4. Next you will search for all the files on your system that end with the suffix  “.txt”.
+
+4. Next you will search for all the files on your system that end with the suffix  “.txt”:
     
     ```bash
     [root@localhost root]# find    /   -maxdepth   3   -name   "*.txt"   -print
@@ -902,19 +891,19 @@ ACTION:
     The asterisk used in the command above is one of the “wild card” characters in Linux.
     
     The use of wild-cards in Linux is called “globbing”.
-    
+
 5. Use the `find` command to find all files in your “pwd” that are “smaller” than 200 kilobytes in size. Type:
     
     ```bash
     [root@localhost root]# find   .   –size    -200k
     ```
-    
+
 6. Use the `find` command to find all the find all the files in your pwd that are “larger” than 10 kilobytes and display their “file  type” as well. Type:
     
     ```bash
     [root@localhost root]#  find   .  –size  +10k   –exec    file     "{ }"      ";"
     ```
-    
+
 ### `locate`
 
 The syntax for the `find` command can be rather difficult to use sometimes; and because of its extensive search, it can be slow. An alternative command is `locate`.
@@ -941,7 +930,7 @@ general usage:  	locate [-Vh] [--version] [--help]
 
 #### To use `locate`
 
-1. Change to the folder1 directory and create empty files temp1, temp2 and temp3.
+1. Change to the folder1 directory and create empty files temp1, temp2 and temp3:
     
     ```bash
     [root@localhost root]# cd   folder1;   touch temp1   temp2    temp3
@@ -949,7 +938,7 @@ general usage:  	locate [-Vh] [--version] [--help]
     ```
     
     The semi-colon (;) used in the command above, allows you issue multiple commands on a single line!!
-    
+
 2.  Use `locate` to search for all the files in your pwd that have the suffix “temp”
     
     ```bash
@@ -961,13 +950,13 @@ general usage:  	locate [-Vh] [--version] [--help]
     ```
     
     Note that the three files you created in step 1 were NOT found.
-    
+
 3.  You will force an update of the database using `updatedb` to enable it take cognizance of all newly created files. Type:
     
     ```bash
     [root@localhost folder1]# updatedb
     ```
-    
+
 4.  Now try the search again. Type:
     
     ```bash
@@ -977,5 +966,5 @@ general usage:  	locate [-Vh] [--version] [--help]
     !!! Question 
     
         What happened this time?
-    
+
 5. All done with Lab 3.
