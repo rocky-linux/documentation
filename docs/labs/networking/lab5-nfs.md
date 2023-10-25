@@ -336,12 +336,12 @@ PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM To access an NFS share remotely
 
 8. Make a note of the contents of the directory. If you are able to see the expected files, you have successfully completed the NFS lab :-)!
 
-!!! Questions
+!!! Question "Questions"
    1. Configure the NFS setup on your local server (serverXY), such that the superuser at the H.Q.
     (hq.example.org) will be able to mount your nfs share (/mnt/nfsXY) for use on the hq machine
    2. The superuser at HQ should be able to write (create) new files and delete the files on your NFS share. 
 
-!!! HINT
+!!! Tip
     You need to disable NFS’s special treatment of root-owned files. 
     This is done by specifying a certain option that will “un-squash” the superuser in the “/etc/exports” file  
 
