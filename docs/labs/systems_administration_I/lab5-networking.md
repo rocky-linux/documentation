@@ -581,6 +581,12 @@ This exercise shows how to configure network interfaces using the NetworkManager
     ```
     ping _gateway
     ```
+
+    !!! Question
+         Through what mechanism is your system able to correctly resolve the name `_gateway` to the proper IP address for
+          your locally configured default gateway? 
+
+
     
 ### View Active Connections
 
