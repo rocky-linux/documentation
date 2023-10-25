@@ -85,7 +85,9 @@ SYNOPSIS
 
     ```bash
      systemctl show  -p "Wants"  nfs-server
-
+    ```
+    **OUTPUT**
+    ```bash
     Wants=nfs-idmapd.service nfsdcld.service rpcbind.socket rpc-statd-notify.service rpc-statd.service auth-rpcgss-module.service network-online.target
     ```
     Some important and notable services that nfs-server needs are nfs-idmapd,  nfsdcld, rpcbind, rpc-statd-notify, rpc-statd,  auth-rpcgss-module.
@@ -98,7 +100,7 @@ SYNOPSIS
     rpcinfo -p localhost
     ```
 
-    **SAMPLE OUTPUT**
+    **OUTPUT**
     ```bash
     program vers proto   port  service
     100000    4   tcp    111  portmapper
@@ -118,7 +120,9 @@ SYNOPSIS
 
     ```bash
     systemctl status nfs-server
-
+    ```
+    **OUTPUT**
+   ```bash
     ● nfs-server.service - NFS server and services
     Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; disabled; vendor preset: disabled)
     Active: inactive (dead)
@@ -126,29 +130,29 @@ SYNOPSIS
     nfs-server.service is currently not running according to the output on our demo system.
 
 
-6. Use systemctl to start the nfs-server daemon. Type:
+7. Use systemctl to start the nfs-server daemon. Type:
 
     ```bash
     systemctl start nfs-server
     ```
 
-7. Check the status of the nfs-server service again.
+8. Check the status of the nfs-server service again.
    
-8. Run the `rpcinfo` command again to check if anything has changed. 
+9. Run the `rpcinfo` command again to check if anything has changed. 
 
     !!! Question
         What new services do you see listed in the rpcinfo output after starting nfs-server?
 
-9. Verify that `nfs-server.service` is set to automatically start every time the system reboots.
+10. Verify that `nfs-server.service` is set to automatically start every time the system reboots.
      Type:
       
     ```bash
     systemctl is-enabled nfs-server
     ```
-10. If the nfs-server is disabled on your system, run the command to configure it for automatic 
+11. If the nfs-server is disabled on your system, run the command to configure it for automatic 
     starts with the system.
 
-11. If the firewall sub-system is running on your server, you'll need to allow/permit NFS traffic through the firewall for remote NFS clients. This can be done by running:
+12. If the firewall sub-system is running on your server, you'll need to allow/permit NFS traffic through the firewall for remote NFS clients. This can be done by running:
      
     ```bash
     firewall-cmd --permanent --add-service nfs && firewall-cmd --reload
@@ -259,7 +263,9 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
 
     ```bash
     showmount  -e localhost
-
+    ```
+    **OUTPUT**
+    ```
     Export list for localhost:
     /mnt/nfs 172.16.99.0/24,localhost
     ```
@@ -277,8 +283,10 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
 5. While still in the `/mnt/nfs-local` directory, attempt to delete some of the files. Type: 
 
     ```bash
-    # rm -rf 1nfs  2nfs
-    
+    rm -rf 1nfs  2nfs
+    ```
+    **OUTPUT**
+    ```bash
     rm: cannot remove '1nfs': Permission denied
     rm: cannot remove '2nfs': Permission denied
     ```
@@ -286,7 +294,7 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
     !!! Question
         Was your file deletion attempt successful?
 
-6. Now try to create some additional files (6nfs, 7nfs, 8nfs) on the NFS share. Type:
+7. Now try to create some additional files (6nfs, 7nfs, 8nfs) on the NFS share. Type:
 
     ```bash
     touch {6..8}nfs
@@ -318,7 +326,9 @@ PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM
    
     ```bash
      mount -t nfs4
-
+    ```
+    **OUTPUT**
+    ```bash
     172.16.99.100:/mnt/nfs on /mnt/nfs-remote type nfs4 (rw,relatime,vers=4.2,rsize=1048576,wsize=1048576,namlen=255
     ...<SNIP>...
     ```
