@@ -1,3 +1,15 @@
+---
+author: Wale Soyinka 
+contributors:
+tested on: All Versions
+tags:
+  - network file system
+  - nfs
+  - exportfs
+  - rpc
+  - nfs-server
+---
+
 # Lab 5: NFS  
 
 ## Objectives 
