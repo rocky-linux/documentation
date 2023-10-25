@@ -3,5 +3,6 @@ nav:
     - ... | index*.md
     - System Administration I Labs: systems_administration_I
     - System Administration II Labs: systems_administration_II
+    - Networking Labs: networking
     - Security Labs: security
     
