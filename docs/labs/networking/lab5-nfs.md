@@ -82,8 +82,10 @@ SYNOPSIS
 3. Amongst things, the newly installed nfs-utils package also provides the systemd service unit (`nfs-server.service`) needed for managing the NFS daemon on the system. Use `systemctl` to view some of the ancillary services that the nfs-server unit "Wants". Type:
 
     ```bash
-    systemctl show  -p "Wants"  nfs-server
-
+     systemctl show  -p "Wants"  nfs-server
+    ```
+    **OUTPUT**
+    ```bash
     Wants=nfs-idmapd.service nfsdcld.service rpcbind.socket rpc-statd-notify.service rpc-statd.service auth-rpcgss-module.service network-online.target
     ```
     
@@ -93,7 +95,10 @@ SYNOPSIS
 
     ```bash
     rpcinfo -p localhost
-    
+    ```
+
+    **OUTPUT**
+    ```bash
     program vers proto   port  service
     100000    4   tcp    111  portmapper
     100000    3   tcp    111  portmapper
@@ -113,7 +118,9 @@ SYNOPSIS
 
     ```bash
     systemctl status nfs-server
-
+    ```
+    **OUTPUT**
+   ```bash
     ● nfs-server.service - NFS server and services
     Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; disabled; vendor preset: disabled)
     Active: inactive (dead)
@@ -250,7 +257,9 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
 
     ```bash
     showmount  -e localhost
-
+    ```
+    **OUTPUT**
+    ```
     Export list for localhost:
     /mnt/nfs 172.16.99.0/24,localhost
     ```
@@ -268,8 +277,10 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
 5. While still in the `/mnt/nfs-local` directory, attempt to delete some of the files. Type: 
 
     ```bash
-    # rm -rf 1nfs  2nfs
-    
+    rm -rf 1nfs  2nfs
+    ```
+    **OUTPUT**
+    ```bash
     rm: cannot remove '1nfs': Permission denied
     rm: cannot remove '2nfs': Permission denied
     ```
@@ -278,7 +289,7 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
 
         Was your file deletion attempt successful?
 
-6. Now try to create some additional files (6nfs, 7nfs, 8nfs) on the NFS share. Type:
+7. Now try to create some additional files (6nfs, 7nfs, 8nfs) on the NFS share. Type:
 
     ```bash
     touch {6..8}nfs
@@ -311,7 +322,9 @@ PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM
    
     ```bash
      mount -t nfs4
-
+    ```
+    **OUTPUT**
+    ```bash
     172.16.99.100:/mnt/nfs on /mnt/nfs-remote type nfs4 (rw,relatime,vers=4.2,rsize=1048576,wsize=1048576,namlen=255
     ...<SNIP>...
     ```

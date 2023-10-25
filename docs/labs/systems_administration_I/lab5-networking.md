@@ -482,11 +482,11 @@ This exercise shows how to configure network interfaces using the NetworkManager
     
 2. Configure the `macvtap2` connection with these settings:
    
-    IPv4 Method =  manual
-    IPv4 Addresses =  172.16.99.200/24
-    Gateway = 172.16.99.1 
-    DNS Servers  = 8.8.8.8 and 8.8.4.4
-    DNS Search domain = example.com
+    - IPv4 Method =  manual
+    - IPv4 Addresses =  172.16.99.200/24
+    - Gateway = 172.16.99.1 
+    - DNS Servers  = 8.8.8.8 and 8.8.4.4
+    - DNS Search domain = example.com
     
     Type:
     
@@ -579,8 +579,14 @@ This exercise shows how to configure network interfaces using the NetworkManager
 3. Try pinging the local gateway. Type:
     
     ```
-    ping 172.16.99.1
+    ping _gateway
     ```
+
+    !!! Question
+         Through what mechanism is your system able to correctly resolve the name `_gateway` to the proper IP address for
+          your locally configured default gateway? 
+
+
     
 ### View Active Connections
 
