@@ -1,6 +1,6 @@
 ---
 author: Wale Soyinka 
-contributors:
+contributors: Steven Spencer, Ganna Zhyrnova
 tested on: All Versions
 tags:
   - network file system
@@ -14,33 +14,33 @@ tags:
 
 ## Objectives 
 
-After completing this lab, you will be able to 
+After completing this lab, you will be able to
 
-- install and configure NFS  
+- install and configure NFS
 - share files and directories between Linux systems using NFS
-- use common NFS utilities to query or troubleshoot NFS issues  
+- use common NFS utilities to query or troubleshoot NFS issues
 
-Estimated time to complete this lab: 40 minutes 
+Estimated time to complete this lab: 40 minutes
 
-## NFS 
+## NFS
 
 NFS is an acronym for Network File System. It allows the sharing of files and folders over a network with other systems. NFS provides a simple way for making the contents of the local file system available to multiple users (or systems) on a network.
 
-This sharing is traditionally between UNIX/Linux like systems, but systems running MS Windows operating systems can also access NFS shares as long as they have the proper software installed to do this. 
+This sharing is traditionally between UNIX/Linux like systems, but systems running Microsoft Windows operating systems can also access NFS shares if they have the proper software installed to do this. 
 
-Support for NFS must be enabled or compiled into the Kernel. 
+Support for NFS must be enabled or compiled into the kernel. 
 
 As with most networking concepts, there is a client side and a server side to NFS. The server side consists of the system that exports (shares) file systems to other systems. The client side consists of the systems that needs access to file system exported by the server. 
 
 NFSv4 requires the services of the following programs (daemons):
 
 - portmap  - maps RPC programs to regular network ports
-- mountd   -  handles incoming mount requests  
-- nfsd - this is the main NFS program that handles the actual file transfers. 
+- mountd   -  handles incoming mount requests
+- nfsd - this is the main NFS program that handles the actual file transfers
 
-## /etc/exports 
+## /etc/exports
 
-The `/etc/exports` configuration file serves as a form of access control list for specifying file systems which may be exported via NFS to authorized clients. It provides information to mountd and to the kernel based NFS file server daemon nfsd. 
+The `/etc/exports` configuration file serves as a form of access control list for specifying file systems which may be exported via NFS to authorized clients. It provides information to `mountd` and to the kernel based NFS file server daemon `nfsd`. 
 
 The directives in `/etc/exports` uses the following syntax:
 
@@ -54,8 +54,7 @@ shareable_directory  allowed_clients(options_affecting_allowed_clients)
 
 In this exercise you will share (export) a local directory to be shared with your partner system, but first you will learn how to manage the NFS service.
 
-NFS is a Remote Procedure Call (RPC) based client and server application. It is therefore useful to have RPC utilities handy that can be used for querying, debugging and making RPC calls to RPC servers (like NFS servers). `rpcinfo` is one such useful utility. Its usage syntax and options are shown here:
-
+NFS is a Remote Procedure Call (RPC) based client and server application. It is therefore useful to have RPC utilities handy that can be used for querying, debugging, and making RPC calls to RPC servers (like NFS servers). `rpcinfo` is one such useful utility. Its usage syntax and options are shown here:
 
 ```bash
 SYNOPSIS
@@ -79,20 +78,18 @@ SYNOPSIS
     ```bash
     dnf -y install nfs-utils
     ```
-3. Amongst things, the newly installed nfs-utils package also provides the systemd service unit 
-   (nfs-server.service) needed for managing the NFS daemon on the system. 
-   Use systemctl to view some of the ancilliary services that the nfs-server unit "Wants". Type:
+
+3. Amongst things, the newly installed nfs-utils package also provides the systemd service unit (`nfs-server.service`) needed for managing the NFS daemon on the system. Use `systemctl` to view some of the ancillary services that the nfs-server unit "Wants". Type:
 
     ```bash
-     systemctl show  -p "Wants"  nfs-server
+    systemctl show  -p "Wants"  nfs-server
 
     Wants=nfs-idmapd.service nfsdcld.service rpcbind.socket rpc-statd-notify.service rpc-statd.service auth-rpcgss-module.service network-online.target
     ```
-    Some important and notable services that nfs-server needs are nfs-idmapd,  nfsdcld, rpcbind, rpc-statd-notify, rpc-statd,  auth-rpcgss-module.
+    
+    Some important and notable services that nfs-server needs are `nfs-idmapd`,  `nfsdcld`, `rpcbind`, `rpc-statd-notify`, `rpc-statd`,  `auth-rpcgss-module`.
 
-4. The `rpcinfo` command is used for making RPC calls to an RPC server and then reporting on its
-    findings. `rpcinfo` lists all the RPC services registered with rpcbind. 
-   Use `rpcinfo` to query your local server for a list of all registered RPC services. Type:
+4. The `rpcinfo` command is used for making RPC calls to an RPC server and then reporting on its findings. `rpcinfo` lists all the RPC services registered with `rpcbind`. Use `rpcinfo` to query your local server for a list of all registered RPC services. Type:
 
     ```bash
     rpcinfo -p localhost
@@ -107,11 +104,12 @@ SYNOPSIS
     From the sample output above, we can tell a service called portmapper is registered on the RPC server running localhost.
 
     !!! Question
-        A) What is portmapper ? 
-        B) Find out the meaning of the different fields (column heading) of the rpcinfo command?
-        Program, Vers, proto and service.
 
-5. Check the status of nfs-server.service. Type:
+        A) What is portmapper? 
+        B) Find out the meaning of the different fields (column heading) of the `rpcinfo` command?
+        Program, Vers, proto, and service.
+
+5. Check the status of `nfs-server.service`. Type:
 
     ```bash
     systemctl status nfs-server
@@ -121,7 +119,6 @@ SYNOPSIS
     Active: inactive (dead)
     ```
     nfs-server.service is currently not running according to the output on our demo system.
-
 
 6. Use systemctl to start the nfs-server daemon. Type:
 
@@ -134,29 +131,28 @@ SYNOPSIS
 8. Run the `rpcinfo` command again to check if anything has changed. 
 
     !!! Question
-        What new services do you see listed in the rpcinfo output after starting nfs-server?
+    
+        What new services do you see listed in the `rpcinfo` output after starting nfs-server?
 
-9. Verify that `nfs-server.service` is set to automatically start every time the system reboots.
-     Type:
-      
+9. Verify that `nfs-server.service` is set to automatically start every time the system reboots. Type:
+    
     ```bash
     systemctl is-enabled nfs-server
     ```
-10. If the nfs-server is disabled on your system, run the command to configure it for automatic 
-    starts with the system.
+
+10. If the nfs-server is disabled on your system, run the command to configure it for automatic starts with the system.
 
 11. If the firewall sub-system is running on your server, you'll need to allow/permit NFS traffic through the firewall for remote NFS clients. This can be done by running:
      
     ```bash
     firewall-cmd --permanent --add-service nfs && firewall-cmd --reload
     ```
-      
 
 ## Exercise 2
 
 ### Exporting Shares 
 
-Creating a share is as simple as creating a directory or sharing an already existing directory on the local file system.
+Creating a share is done by creating a directory or sharing an already existing directory on the local file system.
 
 The `exportfs` utility is used for viewing and maintaining the table of exported NFS file systems. Its usage syntax and options are:
 
@@ -168,31 +164,31 @@ SYNOPSIS
        /usr/sbin/exportfs [-v]
        /usr/sbin/exportfs -f
        /usr/sbin/exportfs -s
-
 ```
 
-!!! NOTE 
+!!! note
+
     Don't forget to replace all references to server<PR>  with your partners actual hostname. 
 
 #### To create and export a share 
 
 You will create and share a directory called `/mnt/nfs`. This directory will serve as the source file-system that will be exported from the NFS server.
 
-1. Make sure you are logged on to your system as a user with Administrative privileges.
+1. Ensure you are logged on to your system as a user with administrative privileges.
 
 2. Create a directory under `/mnt` called `nfs` and change to that directory.
 
     ```bash
     mkdir /mnt/nfs && cd /mnt/nfs
     ```
+
 3. Create 5 sample files under the new directory you created. Type: 
    
     ```bash
      touch {1..5}nfs
     ```
 
-4. Use the HEREDOC shell feature to create a new NFS export entry in `/etc/exports`. 
-   The single line entry you want is - `/mnt/nfs  foocentos2(rw)  localhost(rw)` . Type: 
+4. Use the HEREDOC shell feature to create a new NFS export entry in `/etc/exports`. The single line entry you want is - `/mnt/nfs  foocentos2(rw)  localhost(rw)`. Type:
 
     ```bash
     cat << EOF > /etc/exports
@@ -203,21 +199,19 @@ You will create and share a directory called `/mnt/nfs`. This directory will ser
 
 5. Verify the contents of `/etc/exports` to make sure there were no mistakes.
 
-6. After making any change to the `/etc/exports` file you should run the “exportfs” command. Type:
+6. After making any change to the `/etc/exports` file you should run the `exportfs` command. Type:
    
     ```bash
     exportfs -r
     ```
 
-7. Use the `-s` flag with the exportfs command to display the current export list suitable for 
-   `/etc/exports`. i.e. View the list of directories, allowed hosts and options. Type: 
+7. Use the `-s` flag with the `exportfs` command to display the current export list suitable for `/etc/exports`. i.e. View the list of directories, allowed hosts and options. Type: 
 
     ```bash
     exportfs -s
     ```
 
     List your output below.
-
 
 ## Exercise 3
 
@@ -260,7 +254,7 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
     Export list for localhost:
     /mnt/nfs 172.16.99.0/24,localhost
     ```
-
+    
     You should see whatever NFS exports that are configured on the server.
 
 3. You are now ready to mount the NFS share at the test mount point. Type: 
@@ -269,7 +263,7 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
     mount  -t  nfs  localhost:/mnt/nfs   /mnt/nfs-local
     ```
 
-4. Change your PWD to the `/mnt/nfs-local` directory and list its contents? 
+4. Change your PWD to the `/mnt/nfs-local` directory and list its contents.
    
 5. While still in the `/mnt/nfs-local` directory, attempt to delete some of the files. Type: 
 
@@ -279,8 +273,9 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
     rm: cannot remove '1nfs': Permission denied
     rm: cannot remove '2nfs': Permission denied
     ```
-
+    
     !!! Question
+
         Was your file deletion attempt successful?
 
 6. Now try to create some additional files (6nfs, 7nfs, 8nfs) on the NFS share. Type:
@@ -289,16 +284,18 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
     touch {6..8}nfs
     ```
 
-    !!! Question:
+    !!! Question
+        
         Was your file creation attempt successful? Why do you think this failed? 
+
 
 PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM 
 
 #### To access an NFS share remotely 
 
-1. While logged into serverPR as the superuser, install the nfs-utils package if it isn't already installed. 
-2. Create a directory called  “`/mnt/nfs-remote`” that will serve as the mount point for the 
-   remote NFS share. Type:
+1. While logged into serverPR as the superuser, install the `nfs-utils` package if it isn't already installed. 
+
+2. Create a directory called  “`/mnt/nfs-remote`” that will serve as the mount point for the remote NFS share. Type:
 
     ```bash
     mkdir   /mnt/nfs-remote
@@ -310,8 +307,7 @@ PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM
     mount -t nfs  172.16.99.100:/mnt/nfs  /mnt/nfs-remote
     ```
 
-4. Use the `mount` command to display some extra information about the NFS share that you just 
-   mounted. Type:
+4. Use the `mount` command to display some extra information about the NFS share that you just mounted. Type:
    
     ```bash
      mount -t nfs4
@@ -320,12 +316,12 @@ PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM
     ...<SNIP>...
     ```
 
-5. cd to the NFS mount point and try to delete its contents. Type:
+5. `cd` to the NFS mount point and try to delete its contents. Type:
 
     ```bash
     cd /mnt/nfs-remote ; rm -f   
     ```
-
+    
     Was your attempt successful? 
 
 6. Logout of serverPR as the superuser and log back in as the unprivileged user “ying” 
@@ -336,14 +332,15 @@ PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM
     cd /mnt/nfs-remote/
     ```
 
-8. Make a note of the contents of the directory. If you are able to see the expected files, you have successfully completed the NFS lab :-)!
+8. Make a note of the contents of the directory. If you are able to see the expected files, you have successfully completed the NFS lab!
 
-!!! Question "Questions"
-   1. Configure the NFS setup on your local server (serverXY), such that the superuser at the H.Q.
-    (hq.example.org) will be able to mount your nfs share (/mnt/nfsXY) for use on the hq machine
-   2. The superuser at HQ should be able to write (create) new files and delete the files on your NFS share. 
+    !!! question "Questions"
 
-!!! Tip
-    You need to disable NFS’s special treatment of root-owned files. 
-    This is done by specifying a certain option that will “un-squash” the superuser in the “/etc/exports” file  
+        1. Configure the NFS setup on your local server (serverXY), such that the superuser at the H.Q. (hq.example.org) will be able to mount your nfs share (/mnt/nfsXY) for use on the hq machine.
+
+        2. The superuser at HQ should be able to write (create) new files and delete the files on your NFS share. 
+
+    !!! Tip
+    
+        You need to disable NFS’s special treatment of root-owned files. This is done by specifying a certain option that will “un-squash” the superuser in the “/etc/exports” file.
 
