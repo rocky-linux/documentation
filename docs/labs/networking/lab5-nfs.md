@@ -292,7 +292,9 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
     !!! Question:
         Was your file creation attempt successful? Why do you think this failed? 
 
-PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM To access an NFS share remotely 
+PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM 
+
+#### To access an NFS share remotely 
 
 1. While logged into serverPR as the superuser, install the nfs-utils package if it isn't already installed. 
 2. Create a directory called  “`/mnt/nfs-remote`” that will serve as the mount point for the 
