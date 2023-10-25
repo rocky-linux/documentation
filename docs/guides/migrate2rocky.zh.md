@@ -1,7 +1,7 @@
 ---
 title: 迁移到Rocky Linux
 author: Ezequiel Bruni
-contributors: tianci li, Steven Spencer
+contributors: tianci li, Steven Spencer, Ganna Zhyrnova, Deng Wenbin
 update: 11-23-2021
 ---
 
@@ -13,7 +13,7 @@ update: 11-23-2021
 * 了解Linux的命令行知识。
 * 了解SSH远程知识。
 * 轻度冒险的态度。
-* 所有的命令都应该以 root 身份运行。 要么以 root 身份登陆，要么每次输入命令行前键入"sudo"。
+* 以root用户身份运行命令。 要么以 root 身份登陆，要么每次输入命令行前键入"sudo"。
 
 ## 引言
 
@@ -23,7 +23,7 @@ update: 11-23-2021
 
 是的，我们为您准备了工具 [migrate2rocky](https://github.com/rocky-linux/rocky-tools/tree/main/migrate2rocky)
 
-这是一个脚本，当执行时，会将您的存储库更改为Rocky Linux的存储库， 软件包将根据需要进行安装和升级/降级，所有操作系统的品牌也将发生变化。
+这是一个脚本，运行后会将你的所有软件源更改为 Rocky Linux 的软件源。 软件包将根据需要进行安装和升级/降级，所有操作系统的品牌也将发生变化。
 
 如果您是新手系统管理员，别担心，我们会尽可能的保持此脚本界面的友好性。 是的，就像命令行那样的友好。
 
@@ -32,11 +32,11 @@ update: 11-23-2021
 1. 请查看 migrate2rocky 的 README 页面（上面链接），因为脚本和Katello的存储库之间存在已知冲突。 随着时间的推移，我们很可能会发现（并最终修复）更多的冲突与不兼容性，尤其对于生成服务器，您需要了解这些。
 2. 此脚本最有可能在全新安装时正常工作。 _如果要在实际的生产环境下使用，**请先做好数据备份以及系统快照，或者首先在临时的测试环境中进行。 **_
 
-确定？ 准备好了吗？ 让我们开始吧！
+您准备好了吗？
 
 ## 准备你的服务器
 
-您需要从存储库中获取实际的脚本文件， 可以通过多种方式做到这一点。
+您需要从存储库中获取实际的脚本文件， 可以通过多种方式做到这一点。 可以通过多种方式做到这一点。
 
 ### 手动方式
 
@@ -106,6 +106,6 @@ chmod u+x migrate2rocky.sh
 
 ![一个成功的 OS 迁移消息](images/migrate2rocky-convert-02.png)
 
-给它一些时间，重新登录，你应该有一个漂亮的新的Rocky Linux服务器来玩wi... 我的意思是做非常严肃的工作。 给它一定的时间重启，重新登录，键入 `hostnamectl`即可检查您的操作系统是否一切正常的迁移。
+给它一些时间，重新登录，你应该有一个漂亮的新的Rocky Linux服务器来玩wi... 我的意思是做非常严肃的工作。 运行`hostnamectl`命令检查操作系统迁移是否正确，然后就可以了。
 
 ![hostnamectl命令的结果](images/migrate2rocky-convert-03.png)
