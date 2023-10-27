@@ -41,7 +41,7 @@ _Our standards for Rocky documentation._
 
 ### Style Guide
 
-The RL [Style Guide](https://docs.rockylinux.org/guides/contribute/style_guide/) outlines standards for the wording within your document. 
+The Rocky Linux (RL) [Style Guide](https://docs.rockylinux.org/guides/contribute/style_guide/) outlines standards for the wording within your document. 
 
 ### GitHub  
 
