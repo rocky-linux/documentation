@@ -8,7 +8,7 @@ In diesem Kapitel werden GNU/Linux Distributionen behandelt.
 
 ****
 
-**Ziele**: in diesem Kapitel lernen Sie:
+**Ziele**: In diesem Kapitel lernen Sie Folgendes:
 
 :heavy_check_mark: beschreiben die Funktionen und möglichen Architekturen eines Betriebssystems   
 :heavy_check_mark: Erzählen Sie den Verlauf von UNIX und GNU/Linux   
