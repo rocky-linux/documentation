@@ -433,3 +433,251 @@ directory or file control:
     Shell > ip a | grep -o  -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | grep -v -E "127|255"
     192.168.100.3
     ```
+
+### `sed` command
+
+`sed`: Stream EDitor
+
+**Working principle**: The `sed` command will read the currently processed row and place it in the "pattern space" for processing. After processing, the result will be output and the "pattern space" will be cleared. Next, read the next line and place it in the "pattern space" for processing, and so on, until the last line. Some documents also mention a term called "hold space" (also known as "temporary-storage space"), which can be used to temporarily store some processed data and output it through "pattern space".
+
+**"pattern space" and "hold space"**: An area of memory where data is processed and stored.
+
+The usage of the command is:
+
+```bash
+sed [OPTION]... {script-only-if-no-other-script} [input-file]...
+```
+
+| options | description |
+| :---: | :--- |
+| -n    | Output text lines that will only be processed by the sed command to the screen |
+| -e    | Apply multiple `sed` operation commands to the input text line data |
+| -f    | Call and execute `sed` script command file |
+| -i    | Modify the original file |
+| -r    | Regular expression | 
+
+| Operation command<br/>(sometimes called operation instruction)| description |
+| :---:                  | :--- |
+| s/regexp/replacement/  | Replacement string |
+|  p                     | Print the current "pattern space". Often used with the -n option, for example: `cat -n /etc/services \| sed -n '3,5p'` | 
+|  d                     | Delete "pattern space". Start next cycle    |
+|  D                     | Delete the first line of the "pattern space" and start next  cycle |
+|  =                     | Print Line Number |
+| a \text                | Add one or more lines of content after the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content is not ended | 
+| i \text                | Add one or more lines of content before the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content is not ended |
+| c \text                | Replace matching lines with new text | 
+| q                      | Immediately exit the `sed` script    |
+| r                      | Append text read from file |
+| : label                | Label for b and t commands |
+| b label                | Branch to label; if label is omitted, branch to end of script |
+| t label                | If "s///" is a successful replacement, then jump to the label |
+| h H                    | Copy/append "pattern space" to "hold space"  |
+| g G                    | Copy/append "hold space" to "pattern space"  |
+| x                      | Exchange the contents of the hold and pattern spaces |
+| l                      | List out the current line in a "visually unambiguous" form |
+| n N                    | Read/append the next line of input into the "pattern space" |
+| w FILENAME             | Write the current pattern space to FILENAME       |
+| !                      | negation |
+| &                      | Referencing a string that already matches | 
+
+| Addresses    | description |
+| :---:        |  :---       |
+| first~step   | Use "first" to specify the first line, and 'step' to specify the step size. For example, outputting odd lines of text can be done using `sed -n "1~2p" /etc/services` |
+| $            | Match the last line of text |
+| /regexp/     | Using regular expressions to match text lines | 
+| number       | Specify line number  |
+| addr1,addr2  | Use line number positioning to match all lines from "addr1" to "addr2" | 
+| addr1,+N     | Use line number positioning to match addr1 and the N lines following addr1  | 
+
+#### Examples of usage
+
+1. Match and print
+
+    * Print a line that begins with a netbios string
+
+      ```bash
+      Shell > cat /etc/services | sed -n '/^netbios/p'
+      netbios-ns      137/tcp                         # NETBIOS Name Service
+      netbios-ns      137/udp
+      netbios-dgm     138/tcp                         # NETBIOS Datagram Service
+      netbios-dgm     138/udp
+      netbios-ssn     139/tcp                         # NETBIOS session service
+      netbios-ssn     139/udp
+      ```
+
+      !!! tip
+
+          As we all know, double quotation marks and single quotation marks in Shell play a different role. The **$**, **\`**, and **\\** in double quotes have a special meaning, so we recommend that you use single quotes more often when using the `sed` command.
+
+    * Print the text from lines 23 to 26
+
+      ```bash
+      Shell > cat -n /etc/services | sed -n '23,26p'
+      23  tcpmux          1/tcp                           # TCP port service multiplexer
+      24  tcpmux          1/udp                           # TCP port service multiplexer
+      25  rje             5/tcp                           # Remote Job Entry
+      26  rje             5/udp                           # Remote Job Entry
+      ```
+
+    * Print odd lines
+
+      ```bash
+      Shell > cat -n /etc/services | sed -n '1~2p'
+      1  # /etc/services:
+      3  #
+      5  # IANA services version: last updated 2016-07-08
+      7  # Note that it is presently the policy of IANA to assign a single well-known
+      9  # even if the protocol doesn't support UDP operations.
+      11  # are included, only the more common ones.
+      13  # The latest IANA port assignments can be gotten from
+      15  # The Well Known Ports are those from 0 through 1023.
+      17  # The Dynamic and/or Private Ports are those from 49152 through 65535
+      19  # Each line describes one service, and is of the form:
+      ...
+      ```
+
+    * Print line 10 to the last line
+
+      ```bash
+      Shell > cat -n /etc/services | sed -n '10,$p'
+      10  # Updated from RFC 1700, ``Assigned Numbers'' (October 1994).  Not all ports
+      11  # are included, only the more common ones.
+      12  #
+      13  # The latest IANA port assignments can be gotten from
+      14  #       http://www.iana.org/assignments/port-numbers
+      15  # The Well Known Ports are those from 0 through 1023.
+      16  # The Registered Ports are those from 1024 through 49151
+      17  # The Dynamic and/or Private Ports are those from 49152 through 65535
+      ...
+      ```
+
+    * Lines 10 to the last do not print
+
+      ```bash
+      Shell > cat -n /etc/services | sed -n '10,$!p'
+      1  # /etc/services:
+      2  # $Id: services,v 1.49 2017/08/18 12:43:23 ovasik Exp $
+      3  #
+      4  # Network services, Internet style
+      5  # IANA services version: last updated 2016-07-08
+      6  #
+      7  # Note that it is presently the policy of IANA to assign a single well-known
+      8  # port number for both TCP and UDP; hence, most entries here have two entries
+      9  # even if the protocol doesn't support UDP operations.
+      ```
+
+    * Print the line number and content of the matched string
+
+      ```bash
+      Shell > sed -n -e '/netbios/=' -e '/netbios/p' /etc/services
+      123
+      netbios-ns      137/tcp                         # NETBIOS Name Service
+      124
+      netbios-ns      137/udp
+      125
+      netbios-dgm     138/tcp                         # NETBIOS Datagram Service
+      126
+      netbios-dgm     138/udp
+      127
+      netbios-ssn     139/tcp                         # NETBIOS session service
+      128
+      netbios-ssn     139/udp
+      ```
+
+    * Match string range and print it
+
+      Use commas to separate string ranges
+
+      ```bash
+      Shell > cat  /etc/services | sed -n '/^netbios/,/^imap/p'
+      netbios-ns      137/tcp                         # NETBIOS Name Service
+      netbios-ns      137/udp
+      netbios-dgm     138/tcp                         # NETBIOS Datagram Service
+      netbios-dgm     138/udp
+      netbios-ssn     139/tcp                         # NETBIOS session service
+      netbios-ssn     139/udp
+      imap            143/tcp         imap2           # Interim Mail Access Proto v2
+      ```
+
+      !!! info
+
+          The beginning of a string starts with the first matching string, and similarly, the end of a string also ends with the first matching string.
+
+      ```bash
+      Shell > grep -n ^netbios /etc/services
+      123:netbios-ns      137/tcp                         # NETBIOS Name Service
+      124:netbios-ns      137/udp
+      125:netbios-dgm     138/tcp                         # NETBIOS Datagram Service
+      126:netbios-dgm     138/udp
+      127:netbios-ssn     139/tcp                         # NETBIOS session service
+      128:netbios-ssn     139/udp
+
+      Shell > grep -n ^imap /etc/services
+      129:imap            143/tcp         imap2           # Interim Mail Access Proto v2
+      130:imap            143/udp         imap2
+      168:imap3           220/tcp                         # Interactive Mail Access
+      169:imap3           220/udp                         # Protocol v3
+      260:imaps           993/tcp                         # IMAP over SSL
+      261:imaps           993/udp                         # IMAP over SSL
+      ```
+
+      In other words, the content printed above is lines 123 to 129
+
+    * Print the line where the string is located and until the last line
+
+      ```bash
+      Shell >  cat  /etc/services | sed -n '/^netbios/,$p'
+      ```
+
+    * Using variables in bash scripts
+
+      ```bash
+      Shell > vim test1.sh
+      #!/bin/bash
+      a=10
+
+      sed -n ''${a}',$!p' /etc/services
+      # or
+      sed -n "${a},\$!p" /etc/services
+      ```
+
+    * Regular expression
+
+      Matches only "Three Digits" + "/udp".
+
+      ```bash
+      Shell > cat /etc/services | sed -r -n '/[^0-9]([1-9]{3}\/udp)/p'
+      sunrpc          111/udp         portmapper rpcbind      # RPC 4.0 portmapper UDP
+      auth            113/udp         authentication tap ident
+      sftp            115/udp
+      uucp-path       117/udp
+      nntp            119/udp         readnews untp   # USENET News Transfer Protocol
+      ntp             123/udp                         # Network Time Protocol
+      netbios-ns      137/udp
+      netbios-dgm     138/udp
+      netbios-ssn     139/udp
+      ...
+      ```
+      
+2. Match and delete
+
+    It's similar to printing, except that the operation command is replaced with `d` and the -n option is not required.
+
+    * Delete all lines that match the udp string, and delete all comment lines, and delete all Blank line
+
+      ```bash
+      Shell > sed -e '/udp/d' -e '/^#/d' -e '/^$/d' /etc/services
+      tcpmux          1/tcp                           # TCP port service multiplexer
+      rje             5/tcp                           # Remote Job Entry
+      echo            7/tcp
+      discard         9/tcp           sink null
+      systat          11/tcp          users
+      daytime         13/tcp
+      qotd            17/tcp          quote
+      chargen         19/tcp          ttytst source
+      ftp-data        20/tcp
+      ftp             21/tcp
+      ssh             22/tcp                          # The Secure Shell (SSH) Protocol
+      telnet          23/tcp
+      ...
+      ```
