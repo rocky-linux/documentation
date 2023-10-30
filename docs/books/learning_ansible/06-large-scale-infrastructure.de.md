@@ -8,7 +8,7 @@ In diesem Kapitel erfahren Sie, wie Sie Ihr Konfigurationsmanagementsystem skali
 
 ****
 
-**Ziele**: in diesem Kapitel lernen Sie:
+**Ziele**: In diesem Kapitel lernen Sie Folgendes:
 
 :heavy_check_mark: Ihren Code für eine große Infrastruktur organisieren;   
 :heavy_check_mark: Ihr Konfigurationsmanagement ganz oder teilweise auf eine Gruppe von Knoten anwenden;

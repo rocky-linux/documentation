@@ -8,7 +8,7 @@ In diesem Kapitel werden GNU/Linux Distributionen behandelt.
 
 ****
 
-**Ziele**: in diesem Kapitel lernen Sie:
+**Ziele**: In diesem Kapitel lernen Sie Folgendes:
 
 :heavy_check_mark: beschreiben die Funktionen und möglichen Architekturen eines Betriebssystems   
 :heavy_check_mark: Erzählen Sie den Verlauf von UNIX und GNU/Linux   
@@ -43,7 +43,7 @@ Unter dieser Ressourcenverwaltung muss das Betriebssystem folgendes tun:
 * **Schützt Dateien** vor unbefugtem Zugriff.
 * **Sammeln von Informationen** über laufende Programme.
 
-![Betrieb eines Betriebssystems](images/operating_system.png)
+![Arbeitsweise eines Betriebssystems](images/operating_system.png)
 
 ## Allgemeines über UNIX - GNU/Linux
 
@@ -175,15 +175,15 @@ Es gibt viele grafische Umgebungen wie **GNOME**, **KDE**, **LXDE **, **XFCE** u
 
 Warum also gibt es so wenig Begeisterung für Linux, wenn dieses System praktisch **frei** ist? Könnte es daran liegen, dass so viele Editoren (Adobe) und Hersteller (Nvidia) nicht mitspielen und keine Version ihrer Software oder __Treiber__ für GNU/Linux bereitstellen? Vielleicht ist es die Angst vor Veränderungen, oder die Schwierigkeit zu finden, wo man einen Linux-Computer kaufen kann, oder zu wenige Spiele, die unter Linux verteilt werden. Diese letzte Entschuldigung sollte zumindest nicht für lange Zeit wahr sein, mit dem Aufkommen der Spiele-Engine Steam für Linux.
 
-![GNOME Desktop](images/01-presentation-gnome.png)
+![GNOME-Desktop](images/01-presentation-gnome.png)
 
 Die **GNOME 3** Desktopumgebung verwendet nicht mehr das Konzept des Desktops, sondern das Konzept der GNOME Shell (nicht mit der Kommandozeilen-Shell zu verwechseln). Es dient als Arbeitsfläche, als Dashboard, als Benachrichtigung-Bereich und als Fensterauswahl. Die GNOME-Desktopumgebung basiert auf der **GTK+** Komponentenbibliothek.
 
-![KDE Desktop](images/01-presentation-kde.png)
+![KDE-Desktop](images/01-presentation-kde.png)
 
 Die **KDE**-Desktopumgebung basiert auf der **Qt** Komponentenbibliothek. Es wird traditionell für Benutzer empfohlen, die mit einer Windowsumgebung vertraut sind.
 
-![Tux - Das Linux-Maskottchen](images/tux.png)
+![Tux - das Linux-Maskottchen](images/tux.png)
 
 ### Freie Software versus Open source
 
@@ -251,7 +251,7 @@ Es gibt verschiedene Arten von Shells, die auf einer Plattform oder nach den Vor
 
 :heavy_check_mark: Ein Betriebssystem ist eine Zusammenstellung von Programmen zur Verwaltung der verfügbaren Ressourcen eines Computers:
 
-- [ ] wahr
+- [ ] Wahr
 - [ ] Falsch
 
 :heavy_check_mark: Das Betriebssystem ist notwendig z.B. um:
@@ -295,7 +295,7 @@ Es gibt verschiedene Arten von Shells, die auf einer Plattform oder nach den Vor
 
 :heavy_check_mark: Ist Freie Software notwendigerweise Open-Source?
 
-- [ ] wahr
+- [ ] Wahr
 - [ ] Falsch
 
 :heavy_check_mark: Ist Open-Source-Software notwendigerweise frei?
