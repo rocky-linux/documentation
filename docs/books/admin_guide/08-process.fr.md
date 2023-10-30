@@ -331,7 +331,7 @@ $ renice +15 -p 1664
 | ------ | ------------------------------------------ |
 | `-g`   | `GID` du groupe propriétaire du processus. |
 | `-p`   | `PID` du processus.                        |
-| `- u`  | `UID` du processus propriétaire.           |
+| `-u`   | `UID` du processus propriétaire.           |
 
 La commande `renice` agit sur des processus déjà en cours d'exécution. Il est donc possible de modifier la priorité d'un processus spécifique, mais aussi de plusieurs processus appartenant à un utilisateur ou à un groupe.
 
