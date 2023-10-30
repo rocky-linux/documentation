@@ -24,13 +24,13 @@ Estimated time to complete this lab: 40 minutes
 
 ## NFS
 
-NFS is an acronym for Network File System. It allows the sharing of files and folders over a network with other systems. NFS provides a simple way for making the contents of the local file system available to multiple users (or systems) on a network.
+NFS is an acronym for Network File System. It allows sharing of files and folders over a network with other systems. NFS provides a simple way for making the contents of the local file system available to multiple users (or systems) on a network.
 
 This sharing is traditionally between UNIX/Linux like systems, but systems running Microsoft Windows operating systems can also access NFS shares if they have the proper software installed to do this. 
 
 Support for NFS must be enabled or compiled into the kernel. 
 
-As with most networking concepts, there is a client side and a server side to NFS. The server side consists of the system that exports (shares) file systems to other systems. The client side consists of the systems that needs access to file system exported by the server. 
+As with most networking concepts, NFS has client and server sides. The server side consists of the system that exports (shares) file systems to other systems. The client side consists of the systems that need access to the file system exported by the server. 
 
 NFSv4 requires the services of the following programs (daemons):
 
@@ -40,7 +40,7 @@ NFSv4 requires the services of the following programs (daemons):
 
 ## /etc/exports
 
-The `/etc/exports` configuration file serves as a form of access control list for specifying file systems which may be exported via NFS to authorized clients. It provides information to `mountd` and to the kernel based NFS file server daemon `nfsd`. 
+The `/etc/exports` configuration file serves as an access control list for specifying file systems that may be exported via NFS to authorized clients. It provides information to `mountd` and to the kernel-based NFS file server daemon `nfsd`. 
 
 The directives in `/etc/exports` uses the following syntax:
 
@@ -91,7 +91,7 @@ SYNOPSIS
     
     Some important and notable services that nfs-server needs are `nfs-idmapd`,  `nfsdcld`, `rpcbind`, `rpc-statd-notify`, `rpc-statd`,  `auth-rpcgss-module`.
 
-4. The `rpcinfo` command is used for making RPC calls to an RPC server and then reporting on its findings. `rpcinfo` lists all the RPC services registered with `rpcbind`. Use `rpcinfo` to query your local server for a list of all registered RPC services. Type:
+4. The `rpcinfo` command is used for making RPC calls to an RPC server and then reports on its findings. `rpcinfo` lists all the RPC services registered with `rpcbind`. Use `rpcinfo` to query your local server for a list of all registered RPC services. Type:
 
     ```bash
     rpcinfo -p localhost
@@ -106,13 +106,12 @@ SYNOPSIS
     100000    4   udp    111  portmapper
     ```
 
-    From the sample output above, we can tell a service called portmapper is registered on the RPC server running localhost.
+    From the sample output above, we can tell a `portmapper` service is registered on the RPC server running localhost.
 
     !!! Question
 
         A) What is portmapper? 
-        B) Find out the meaning of the different fields (column heading) of the `rpcinfo` command?
-        Program, Vers, proto, and service.
+        B) Find out the meaning of the different fields (column heading) of the `rpcinfo` command? (Program, Vers, proto, and service.)
 
 5. Check the status of `nfs-server.service`. Type:
 
@@ -179,7 +178,7 @@ SYNOPSIS
 
 #### To create and export a share 
 
-You will create and share a directory called `/mnt/nfs`. This directory will serve as the source file-system that will be exported from the NFS server.
+You will create and share a directory called `/mnt/nfs`. This directory will be the source file-system that exported from the NFS server.
 
 1. Ensure you are logged on to your system as a user with administrative privileges.
 
@@ -204,7 +203,7 @@ You will create and share a directory called `/mnt/nfs`. This directory will ser
     ```
     You can also use any text editor you are comfortable with to create the entry.
 
-5. Verify the contents of `/etc/exports` to make sure there were no mistakes.
+5. Verify the contents of `/etc/exports` to ensure no mistakes.
 
 6. After making any change to the `/etc/exports` file you should run the `exportfs` command. Type:
    
@@ -212,7 +211,7 @@ You will create and share a directory called `/mnt/nfs`. This directory will ser
     exportfs -r
     ```
 
-7. Use the `-s` flag with the `exportfs` command to display the current export list suitable for `/etc/exports`. i.e. View the list of directories, allowed hosts and options. Type: 
+7. Use the `-s` flag with the `exportfs` command to display the current export list suitable for `/etc/exports`. For example, view the list of directories, allowed hosts, and options. Type: 
 
     ```bash
     exportfs -s
@@ -226,7 +225,7 @@ You will create and share a directory called `/mnt/nfs`. This directory will ser
 
 This exercise deals with the client side of NFS. You'll try accessing the NFS server as a client.
 
-`showmount` is a handy utility for querying and showing mount information on NFS servers. It can also show the state of the NFS server as well as list the clients that are mounting from the server. Its syntax and options are shown here:
+`showmount` is a handy utility for querying and showing mount information on NFS servers. It can also show the state of the NFS server and list the clients that are mounting from the server. Its syntax and options are shown here:
 
 ```bash
 SYNOPSIS
@@ -274,7 +273,7 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
 
 4. Change your PWD to the `/mnt/nfs-local` directory and list its contents.
    
-5. While still in the `/mnt/nfs-local` directory, attempt to delete some of the files. Type: 
+5. While still in the `/mnt/nfs-local` directory, attempt to delete some files. Type: 
 
     ```bash
     rm -rf 1nfs  2nfs
@@ -289,7 +288,7 @@ You will test the NFS server's configuration from *Exercise 1* by trying to acce
 
         Was your file deletion attempt successful?
 
-7. Now try to create some additional files (6nfs, 7nfs, 8nfs) on the NFS share. Type:
+7. Now try creating additional files (6nfs, 7nfs, 8nfs) on the NFS share. Type:
 
     ```bash
     touch {6..8}nfs
@@ -304,7 +303,7 @@ PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM
 
 #### To access an NFS share remotely 
 
-1. While logged into serverPR as the superuser, install the `nfs-utils` package if it isn't already installed. 
+1. While logged into serverPR as the superuser, install the `nfs-utils` package if it isn't installed. 
 
 2. Create a directory called  “`/mnt/nfs-remote`” that will serve as the mount point for the remote NFS share. Type:
 
@@ -345,7 +344,7 @@ PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM
     cd /mnt/nfs-remote/
     ```
 
-8. Make a note of the contents of the directory. If you are able to see the expected files, you have successfully completed the NFS lab!
+8. Make a note of the contents of the directory. If can see the expected files, you have successfully completed the NFS lab!
 
     !!! question "Questions"
 
