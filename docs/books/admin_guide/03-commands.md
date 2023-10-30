@@ -77,7 +77,7 @@ The key sequence <kbd>CTRL</kbd> + <kbd>C</kbd> is used to interrupt a running c
 The use of a command generally follows this sequence:
 
 ```bash
-command [option(s)] [arguments(s)]
+command [option(s)] [argument(s)]
 ```
 
 The name of the command is often **lower case**.
