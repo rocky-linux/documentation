@@ -149,7 +149,7 @@ $ xargs find /var/log -name
 find: paths must precede expression: *.log
 ```
 
-Der `xargs` Befehl versuchte, den `Befehl` mit mehreren Argumenten hinter der `-name` Option auszuführen, die `find` dazu veranlasste einen Fehler zu generieren:
+Das Kommando `xargs` versucht, den `find` Befehl mit mehreren Argumenten hinter der `-name` Option auszuführen, die `find` dazu veranlasst einen Fehler zu generieren:
 
 ```
 $ find /var/log -name "*.old" "*.log"
