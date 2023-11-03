@@ -1,11 +1,10 @@
 ---
-Title: 安装Rocky Linux
+Title: 安装 Rocky Linux 8
 author: wale soyinka
-contributors: tianci li, Steven Spencer
-updated: 11-23-2021
+contributors: tianci li, Steven Spencer, Ganna Zhyrnova
 ---
 
-# 安装 Rocky Linux
+# 安装 Rocky Linux 8
 
 本指南介绍了在独立系统上安装 64 位 Rocky Linux 发行版的详细步骤。  我们将使用从Rocky Linux项目网站下载的ISO镜像文件执行服务器类安装。 我们将在以下部分逐步完成安装和自定义步骤。
 
@@ -36,7 +35,7 @@ Rocky-<主版本号#>.<次版本号#>-<架构>-<变体>.iso
 
 !!! note "说明"
 
-    Rocky Linux项目网页列出了世界各地的几个镜像网站。 只要有可能，您应该选择地理位置上离您最近的镜像。 官方镜像列表可在 [这里](https://mirrors.rockylinux.org/mirrormanager/mirrors) 找到。
+    Rocky项目网页列出了几个镜像，它们位于全球各地。 选择地理位置离您最近的镜像。 官方镜像列表可在 [这里](https://mirrors.rockylinux.org/mirrormanager/mirrors) 找到。
 
 ## 验证安装的 ISO 文件
 
@@ -45,7 +44,7 @@ Rocky-<主版本号#>.<次版本号#>-<架构>-<变体>.iso
 首先下载包含可用于 ISO 的官方校验和的文件。 在包含已下载的Rocky Linux ISO的文件夹中下载ISO的校验和文件时，键入：
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/CHECKSUM
+wget https://download.rockylinux.org/pub/rocky/8.7/isos/x86_64/CHECKSUM
 ```
 
 使用 `sha256sum` 工具来验证ISO文件的完整性，防止损坏或者被篡改。
@@ -57,7 +56,7 @@ sha256sum -c CHECKSUM --ignore-missing
 这将检查先前下载的ISO文件的完整性，前提是该文件位于同一目录中。 输出应显示：
 
 ```
-Rocky-8.5-x86_64-minimal.iso: OK
+Rocky-8.7-x86_64-minimal.iso: OK
 ```
 
 ## 安装
@@ -102,7 +101,7 @@ _Installation Summary_ 是一个集合多种设置的区域，您可以在其中
 
 此部分用于自定义与系统区域设置相关的项目。 包括 — 键盘、语言支持、时间和日期。
 
-#### Keyboard
+#### 分组不同格式类型
 
 在本指南的演示系统上，我们选择默认值 (_English US_) ，不做其他更改。
 
@@ -112,15 +111,15 @@ _Installation Summary_ 是一个集合多种设置的区域，您可以在其中
 
 #### Language Support
 
-<kbd>Language Support</kbd>选项，可以指定对其他语言的支持。
+<em x-id=“3”>安装摘要</em>屏幕上的<kbd>语言支持</kbd>选项，使您能够指定对已完成系统上，可能需要的其他语言的支持。
 
 此处接受默认值 (__English – United States__) ，不做任何更改。 单击 <kbd>Done</kbd> 。
 
 #### Time & Date
 
-点击 <kbd>Time & Date</kbd> ，调出另一个界面，您可以通过该界面选择机器所在的时区。 滚动区域和城市列表，选择离您最近的区域。
+点击 <kbd>Time & Date</kbd> ，调出另一个界面，您可以通过该界面，选择机器所在的时区。 滚动区域和城市列表，选择离您最近的区域。
 
-根据您的安装源，默认情况下可以将 _Network Time_ 选项设置为 _ON_ 或 _OFF_。 接受默认 _ON_ 设置；这允许系统使用网络时间协议 (NTP) 自动设置正确的时间。 进行任何更改后单击<kbd>Done</kbd>。
+根据您的安装源，默认情况下可以将 _Network Time_ 选项设置为 _ON_ 或 _OFF_。 接受默认 _ON_ 设置；这允许系统使用网络时间协议 (NTP) 自动设置正确的时间。 进行任何更改后，请单击<kbd>Done</kbd>。
 
 ### Software部分
 
@@ -128,11 +127,11 @@ _Installation Summary_ 是一个集合多种设置的区域，您可以在其中
 
 #### Installation Source
 
-由于我们使用完整的 Rocky 8 镜像进行安装，您会注意到，_安装源_ 部分下会自动指定本地介质。 我们将接受预设的默认值。
+由于我们使用完整的 Rocky 8 镜像进行安装，您会注意到，_安装源_ 部分下会自动指定本地介质。 我们将接受预设的默认设置。
 
-!!! tip "提示"
+!!! Tip "提示"
 
-    安装源区域是您可以选择执行基于网络安装的区域。 对于基于网络的安装，首先需要确保目标系统上的网络适配器配置正确，并且能够访问internet。  要执行基于网络的安装，请单击`Installation Source`，然后选择`On the network`单选按钮。 选择后，选择`https`作为协议，并在文本字段中键入以下URL `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`，   单击`Done`。
+    安装源区域是您可以选择执行基于网络安装的区域。 对于基于网络的安装，首先需要确保目标系统上的网络适配器配置正确，并且能够访问internet。 要执行基于网络的安装，请单击`Installation Source`，然后选择`On the network`单选按钮。 选择后，选择`https`作为协议，并在文本字段中键入以下URL `download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os`， 单击`Done`。
 
 #### Software部分
 
@@ -157,7 +156,7 @@ _Installation Summary_界面用于自定义和更改目标系统的底层硬件�
 
 在 _Storage Configuration_ 选项部分下，选择<kbd>Automatic</kbd>单选按钮。
 
-然后单击界面顶部的<kbd>Done</kbd>。
+然后单击界面顶部的 <kbd>Done</kbd> 。
 
 安装程序确定有可用的磁盘后，将返回到 _Installation Summary_ 界面。
 
@@ -165,21 +164,21 @@ _Installation Summary_界面用于自定义和更改目标系统的底层硬件�
 
 安装过程的最后一项任务是网络配置，您可以在其中配置或调整系统的网络相关设置。
 
-!!! note "说明"
+!!! Note "说明"
 
     单击 <kbd>Network & Hostname</kbd> 选项后，所有正确检测到的网络接口硬件(如以太网、无线网卡等)都将列在网络配置界面的左窗格中。 Linux 中以太网设备的名称类似于`eth0`、`eth1`、`ens3`、`ens4`、`em1`、`em2`、`p1p1`、`enp0s3`等，具体取决于 Linux 发行版和特定的硬件设置。
 
-对于每个接口，您可以使用 DHCP 或手动配置 IP 地址。 如果您选择手动配置，请确保准备好所有相关信息，如 IP 地址、子网掩码等。
+对于每个接口，您可以使用 DHCP 或手动配置 IP 地址。 如果您选择手动配置，请确保已准备好所有相关信息，如 IP 地址、子网掩码等。
 
-单击 _Installation Summary_下的 <kbd>Network & Hostname</kbd> 按钮将打开相应的配置界面。 此外，您还可以选择配置系统的主机名(默认为`localhost.localdomain`)。
+单击 _Installation Summary_下的 <kbd>Network & Hostname</kbd> 按钮，将打开相应的配置界面。 此外，您还可以选择配置系统的主机名（默认为 `localhost.localdomain` ）。
 
-!!! note "说明"
+!!! Note "说明"
 
     在安装操作系统之后，您可以很容易地更改此名称。 现在此处主机名为默认值。
 
-下一个重要的配置任务与系统上的网络接口相关。 首先，验证左窗格中是否列出了以太网卡(或任何网卡)。 单击左窗格中检测到的任何网络设备，将其选中， 所选网络适配器的可配置属性将出现在界面的右窗格中。
+下一个重要的配置任务与系统上的网络接口相关。 首先，验证左窗格中是否列出了以太网卡（或任何网卡）。 单击左窗格中检测到的任何网络设备，将其选中， 所选网络适配器的可配置属性将出现在界面的右窗格中。
 
-!!! note "说明"
+!!! 在前面的例子中，这些参数与模块相同， 用 `=` 分隔的参数的值。
 
     在我们的示例系统中，我们有两个以太网设备（`ens3`和`ens4`），它们都处于连接状态。 您系统上的网络设备的类型、名称、数量和状态可能与示例系统上的不同。
 
@@ -201,7 +200,7 @@ _Installation Summary_界面用于自定义和更改目标系统的底层硬件�
 
 ### 设置root密码
 
-单击 _User Settings_ 下面的_Root Password_ ，启动_Root Password_任务界面。 在 _Root Password_ 文本框中，为root用户设置了一个强大的密码。
+单击 _User Settings_ 下面的_Root Password_ ，启动_Root Password_任务界面。 在 _Root Password_ 文本框中，为 root 用户设置了一个强大的密码。
 
 !!! Warning "警告"
 
@@ -241,7 +240,7 @@ _Confirm password_: `04302021`
 
 一旦您对各种安装任务的选择感到满意，请单击主界面_Installation Summary_上的"开始安装"按钮。 安装将开始，安装程序将显示安装进度。 安装开始时，各种任务将开始在后台运行，例如对磁盘进行分区、格式化分区或LVM卷、检查并解决软件依赖关系、将操作系统写入磁盘等。
 
-!!! note "说明"
+!!! Note "说明"
 
     如果您不想在单击"开始安装"按钮后继续， 您仍然可以在不丢失数据的情况下安全地返回安装。 要退出安装程序，只需单击"Quit"按钮，按键盘上的ctrl-alt-del组合键，或者按下重置或电源开关，即可重置系统。
 
@@ -255,7 +254,7 @@ _Confirm password_: `04302021`
 
 该系统现在已经设置好且可以使用了。 您将看到Rocky Linux控制台。
 
-![Rocky Linux Welcome Screen](images/installation_8.5_F02.png)
+![Rocky Linux 欢迎界面](images/installation_8.5_F02.png)
 
 要登录到系统，请在登录提示处键入 `rockstar`，然后按 <kbd>Enter</kbd> 键。
 

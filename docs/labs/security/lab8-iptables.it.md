@@ -7,7 +7,7 @@ Title: Lab 8 - iptables author: Wale Soyinka contributors:
 
 ## Obiettivi
 
-Dopo aver completato questo laboratorio, potrai
+Dopo aver completato questo laboratorio, sarete in grado di
 
 - configurare le regole di base del filtro IP
 - configurare il forwarding IP

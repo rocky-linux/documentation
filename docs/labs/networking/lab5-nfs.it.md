@@ -14,7 +14,7 @@ tags:
 
 ## Obiettivi
 
-Dopo aver completato questo laboratorio, potrai
+Dopo aver completato questo laboratorio, sarete in grado di
 
 - installare e configurare NFS
 - condividere file e directory tra sistemi Linux utilizzando NFS
@@ -24,13 +24,13 @@ Tempo stimato per completare questo laboratorio: 40 minuti
 
 ## NFS
 
-NFS è l'acronimo di Network File System. Consente la condivisione di file e cartelle tramite una rete, con altri sistemi. NFS offre un modo semplice per rendere disponibile il contenuto del file system locale a più utenti (o sistemi) su una rete.
+NFS è l'acronimo di Network File System. Permette di condividere file e cartelle in rete con altri sistemi. NFS offre un modo semplice per rendere disponibile il contenuto del file system locale a più utenti (o sistemi) su una rete.
 
 Questa condivisione avviene tradizionalmente tra sistemi UNIX/Linux, ma anche i sistemi operativi Microsoft Windows possono accedere alle condivisioni NFS se hanno installato il software appropriato per farlo.
 
 Il supporto per NFS deve essere abilitato o compilato nel kernel.
 
-Come per la maggior parte dei concetti di rete, anche per NFS esistono un lato client e un lato server. Il lato server consiste nel sistema che esporta (condivide) i file system ad altri sistemi. Il lato client è costituito dai sistemi che devono accedere al file system esportato dal server.
+Come per la maggior parte dei concetti di rete, NFS ha lati client e server. Il lato server consiste nel sistema che esporta (condivide) i file system ad altri sistemi. Il lato client è costituito dai sistemi che devono accedere al file system esportato dal server.
 
 NFSv4 richiede i servizi dei seguenti programmi (daemon):
 
@@ -40,7 +40,7 @@ NFSv4 richiede i servizi dei seguenti programmi (daemon):
 
 ## /etc/exports
 
-Il file di configurazione `/etc/exports` serve come una forma di lista di controllo degli accessi per specificare i file system che possono essere esportati via NFS ai client autorizzati. Fornisce informazioni a `mountd` e al demone del server di file NFS basato sul kernel `nfsd`.
+Il file di configurazione `/etc/exports` serve come elenco di controllo degli accessi per specificare i file system che possono essere esportati via NFS ai client autorizzati. Fornisce informazioni a `mountd` e al demone del server di file NFS basato sul kernel `nfsd`.
 
 Le direttve in `/etc/exports` utilizzano la seguente sintassi:
 
@@ -106,13 +106,12 @@ SYNOPSIS
     100000    4   udp    111  portmapper
     ```
 
-    Dal risultato dell'esempio sopra riportato, si può notare che un servizio chiamato portmapper è registrato sul server RPC in esecuzione su localhost.
+    Dall'output di esempio sopra riportato, si può notare che un servizio `portmapper` è registrato sul server RPC in esecuzione su localhost.
 
     !!! Question "Domanda"
 
      A) Cos'è portmapper? 
-     B) Avete scoperto il significato dei vari campi (intestazione della colonna) del comando 'rpcinfo'?
-     Program, Vers, proto, e service.
+     B) Avete scoperto il significato dei vari campi (intestazione della colonna) del comando 'rpcinfo'? (Program, Vers, proto, and service.)
 
 5. Controlla lo stato di `nfs-server.service`. Digitare:
 
@@ -179,7 +178,7 @@ SYNOPSIS
 
 #### Per creare ed esportare una condivisione
 
-Verrà creata e condivisa una directory chiamata `/mnt/nfs`. Questa directory servirà come file system di origine che verrà esportato dal server NFS.
+Verrà creata e condivisa una directory chiamata `/mnt/nfs`. Questa directory sarà il file system di origine esportato dal server NFS.
 
 1. Assicurarsi di aver effettuato l'accesso al sistema come utente con privilegi amministrativi.
 
@@ -212,7 +211,7 @@ Verrà creata e condivisa una directory chiamata `/mnt/nfs`. Questa directory se
     exportfs -r
     ```
 
-7. Utilizzare l'opzione `-s` con il comando `exportfs` per visualizzare l'elenco di esportazione corrente adatto per `/etc/exports`. es. Visualizzare l'elenco delle directory, degli host consentiti e delle opzioni. Digitare:
+7. Utilizzare l'opzione `-s` con il comando `exportfs` per visualizzare l'elenco di esportazione corrente adatto per `/etc/exports`. Ad esempio, visualizzare l'elenco delle directory, degli host consentiti e delle opzioni. Digitare:
 
     ```bash
     exportfs -s
@@ -274,7 +273,7 @@ Verrà testata la configurazione del server NFS da *Esercizio 1* provando ad acc
 
 4. Cambiare la propria PWD nella directory `/mnt/nfs-local` ed elencarne il contenuto.
 
-5. Mentre ci si trova ancora nella directory `/mnt/nfs-local`, si prova a cancellare alcuni file. Digitare:
+5. Mentre ci si trova ancora nella directory `/mnt/nfs-local`, provare a cancellare alcuni file. Digitare:
 
     ```bash
     rm -rf 1nfs  2nfs
@@ -289,7 +288,7 @@ Verrà testata la configurazione del server NFS da *Esercizio 1* provando ad acc
 
      Il tentativo di eliminazione dei file è riuscito?
 
-7. Provate ora a creare alcuni file aggiuntivi (6nfs, 7nfs, 8nfs) sulla condivisione NFS. Digitare:
+7. Ora provare a creare altri file (6nfs, 7nfs, 8nfs) sulla condivisione NFS. Digitare:
 
     ```bash
     touch {6..8}nfs
@@ -304,7 +303,7 @@ ESEGUIRE L'ESERCIZIO DAL SISTEMA PARTNER
 
 #### Per accedere da remoto a una condivisione NFS
 
-1. Dopo aver effettuato l'accesso a serverPR come superutente, installare il pacchetto `nfs-utils`, se non è già installato.
+1. Mentre si è connessi al serverPR come superutente, installare il pacchetto `nfs-utils` se non è installato.
 
 2. Creare una directory chiamata "`/mnt/nfs-remote`" che servirà come punto di montaggio per la condivisione NFS remota. Digitare:
 
@@ -345,7 +344,7 @@ ESEGUIRE L'ESERCIZIO DAL SISTEMA PARTNER
     cd /mnt/nfs-remote/
     ```
 
-8. Prendete nota del contenuto della directory. Se riuscite a vedere i file attesi, avete completato con successo il laboratorio NFS!
+8. Prendete nota del contenuto della directory. Se si vedono i file previsti, il laboratorio NFS è stato completato con successo!
 
     !!! question "Domande"
    

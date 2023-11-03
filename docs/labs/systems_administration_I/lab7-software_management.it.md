@@ -8,7 +8,7 @@ author: Wale Soyinka contributors: Steven Spencer, tianci li tested on: 8.8 tags
 
 ## Obiettivi
 
-Dopo aver completato questo laboratorio, potrai
+Dopo aver completato questo laboratorio, sarete in grado di
 
 - Interrogare i pacchetti per ottenere informazioni
 - Installare software da pacchetti binari

@@ -7,7 +7,7 @@ Title:  Lab 3 - Auditing the System author: Wale Soyinka contributors: Steven Sp
 ## Obiettivi
 
 
-Dopo aver completato questo laboratorio, potrai
+Dopo aver completato questo laboratorio, sarete in grado di
 
 - creare da zero uno strumento di auditing semplice e personalizzato
 -  utilizzare e comprendere strumenti di verifica della sicurezza come tripwire

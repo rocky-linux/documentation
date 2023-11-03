@@ -1,5 +1,5 @@
 ---
-title: Erweiterte Linux-Befehle
+title: Erweiterte Linux-Kommandos
 ---
 
 # Erweiterte Befehle für Linux-Benutzer
@@ -138,7 +138,7 @@ dr-xr-x---. 2 root root 4096  5 avril 15:52 /root
 drwxrwxrwt. 3 root root 4096  6 avril 10:25 /tmp
 ```
 
-In der Praxis führte der `xargs` Befehl den `ls -ld /home /tmp /root` Befehl aus.
+In der Praxis führt das Kommando `xargs` den `ls -ld /home /tmp /root` Befehl aus.
 
 Was passiert, wenn der auszuführende Befehl nicht mehrere Argumente akzeptiert, wie z. B. beim Befehl `find`?
 
@@ -149,7 +149,7 @@ $ xargs find /var/log -name
 find: paths must precede expression: *.log
 ```
 
-Der `xargs` Befehl versuchte, den `Befehl` mit mehreren Argumenten hinter der `-name` Option auszuführen, die `find` dazu veranlasste einen Fehler zu generieren:
+Das Kommando `xargs` versucht, den `find` Befehl mit mehreren Argumenten hinter der `-name` Option auszuführen, die `find` dazu veranlasst einen Fehler zu generieren:
 
 ```
 $ find /var/log -name "*.old" "*.log"

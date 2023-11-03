@@ -77,7 +77,7 @@ contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrn
 Зазвичай команда використовується в такій послідовності:
 
 ```bash
-команда [параметр(и)] [аргумент(и)]
+command [option(s)] [argument(s)]
 ```
 
 Назва команди часто у **нижньому регістрі**.
