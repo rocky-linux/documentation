@@ -13,7 +13,7 @@ tags:
 
 ## Généralités
 
-Sur un système Linux, il est possible d’installer un logiciel de deux façons :
+Sur un système GNU/Linux, il est possible d’installer un logiciel de deux façons :
 
 * En utilisant un paquet d’installation ;
 * En compilant les fichiers sources.
@@ -30,7 +30,7 @@ Sur un système Linux, il est possible d’installer un logiciel de deux façons
 
 **RPM** (RedHat Package Manager) est un système de gestion des logiciels. Il est possible d’installer, de désinstaller, de mettre à jour ou de vérifier des logiciels contenus dans des paquets.
 
-**RPM** est le format utilisé par toutes les distributions à base RedHat (RockyLinux, Fedora, CentOS, SuSe, Mandriva, …​). Son équivalent dans le monde de Debian est DPKG (Debian Package).
+**RPM** est le format utilisé par toutes les distributions à base RedHat (Rocky Linux, Fedora, CentOS, SuSe, Mandriva,…​). Son équivalent dans le monde de Debian est DPKG (Debian Package).
 
 Le nom d’un paquet RPM répond à une nomenclature précise :
 
@@ -50,7 +50,7 @@ Exemple (pour un paquet nommé 'package') :
 rpm -ivh package.rpm
 ```
 
-| Option           | Observation                              |
+| Option           | Description                              |
 | ---------------- | ---------------------------------------- |
 | `-i package.rpm` | Installe le paquet.                      |
 | `-U package.rpm` | Met à jour un paquet déjà installé.      |
@@ -82,7 +82,7 @@ Exemple :
 [root]# rpm -qf /path/to/file
 ```
 
-| Option           | Observation                                                                                                          |
+| Option           | Description                                                                                                          |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `-a`             | Liste tous les paquets installés sur le système.                                                                     |
 | `-i __package__` | Affiche les informations du paquet.                                                                                  |
@@ -138,7 +138,7 @@ httpd-tools.x86_64                  2.4.37-30.module_el8.3.0+561+97fdbbcc   @app
 
 La commande `dnf` permet la gestion des paquets en comparant ceux installés sur le système à ceux présents dans les dépôts définis sur le serveur. Elle permet aussi d’installer automatiquement les dépendances, si elles sont également présentes dans les dépôts.
 
-`dnf` est le gestionnaire utilisé par de nombreuses distributions à base RedHat (RockyLinux, Fedora, CentOS, …​). Son équivalent dans le monde Debian est **APT** (**A**dvanced **P**ackaging **T**ool).
+`dnf` est le gestionnaire utilisé par de nombreuses distributions à base RedHat (Rocky Linux, Fedora, CentOS, …​). Son équivalent dans le monde Debian est **APT** (**A**dvanced **P**ackaging **T**ool).
 
 ### La commande `dnf`
 
@@ -156,18 +156,18 @@ dnf install tree
 
 Seul le nom court du paquet est nécessaire.
 
-| Option                    | Observation                                                                                |
-| ------------------------- | ------------------------------------------------------------------------------------------ |
-| `install`                 | Installe le paquet.                                                                        |
-| `remove`                  | Désinstalle le paquet.                                                                     |
-| `list all`                | Liste les paquets déjà présents dans le dépôt.                                             |
-| `search`                  | Recherche un paquet dans le dépôt.                                                         |
-| `provides */command_name` | Recherche une commande.                                                                    |
-| `info`                    | Affiche les informations du paquet.                                                        |
-| `autoremove`              | Supprime tous les paquets installés en tant que dépendances mais ne sont plus nécessaires. |
+| Option                    | Description                                                                                    |
+| ------------------------- | ---------------------------------------------------------------------------------------------- |
+| `install`                 | Installe le paquet.                                                                            |
+| `remove`                  | Désinstalle le paquet.                                                                         |
+| `list all`                | Liste les paquets déjà présents dans le dépôt.                                                 |
+| `search`                  | Recherche un paquet dans le dépôt.                                                             |
+| `provides */command_name` | Recherche une commande.                                                                        |
+| `info`                    | Affiche les informations du paquet.                                                            |
+| `autoremove`              | Supprime tous les paquets installés en tant que dépendances mais qui ne sont plus nécessaires. |
 
 
-La commande `dnf install` vous permet d'installer le paquet désiré sans vous soucier de ses dépendances, qui seront résolus directement par `dnf` lui-même.
+La commande `dnf install` vous permet d'installer le paquet désiré sans vous soucier de ses dépendances, qui seront résolues directement par `dnf` lui-même.
 
 ```bash
 dnf install nginx
@@ -258,7 +258,7 @@ Removing unused dependencies:
 
 La commande `dnf list` liste tous les paquets installés sur le système ou présents dans le dépôt. Elle accepte plusieurs paramètres :
 
-| Paramètre   | Observation                                                                  |
+| Paramètre   | Description                                                                  |
 | ----------- | ---------------------------------------------------------------------------- |
 | `all`       | Liste les paquets installés puis ceux disponibles sur les dépôts.            |
 | `available` | Liste uniquement les paquets disponibles pour installation.                  |
@@ -301,7 +301,7 @@ Description  : firewalld is a firewall service daemon that provides a dynamic cu
              : firewall with a D-Bus interface.
 ```
 
-Parfois, vous ne connaissez que l'exécutable que vous souhaitez utiliser, mais pas le paquet qui le contient. Dans ce cas, vous pouvez utiliser la commande `dnf provides paquet` qui recherchera dans la base de données la correspondance souhaitée.
+Parfois, vous ne connaissez que l'exécutable que vous souhaitez utiliser, mais pas le paquet qui le contient. Dans ce cas, vous pouvez utiliser la commande `dnf provides */paquet` qui cherchera dans la base de données la correspondance souhaitée.
 
 Exemple de recherche de la commande `semanage` :
 
@@ -320,7 +320,7 @@ Filename    : /usr/sbin/semanage
 Filename    : /usr/share/bash-completion/completions/semanage
 ```
 
-La commande `dnf autoremove` ne nécessite aucun paramètre. Dnf s'occupe de la recherche de paquets candidats pour la suppression.
+La commande `dnf autoremove` ne nécessite aucun paramètre. DNF s'occupe de la recherche de paquets candidats à la suppression.
 
 ```bash
 dnf autoremove
@@ -332,7 +332,7 @@ Complete!
 
 ### Autres options utiles de `dnf`
 
-| Option      | Observation                                   |
+| Option      | Description                                   |
 | ----------- | --------------------------------------------- |
 | `repolist`  | Liste les dépôts configurés sur le système.   |
 | `grouplist` | Liste les collections de paquets disponibles. |
@@ -472,7 +472,7 @@ Is this ok [y/N]:
 
 Notez qu'il est bon de placer le nom du groupe entre guillemets " " car sans la commande, il ne s'exécutera correctement que si le nom du groupe ne contient aucun espace.
 
-Donc une commande `dnf groupinstall Network Servers` produit l'erreur suivante:
+Donc une commande `dnf groupinstall Network Servers` produit l'erreur suivante :
 
 ```bash
 dnf groupinstall Network Servers
@@ -535,7 +535,7 @@ Les modules ont été introduits dans Rocky Linux 8 par le système upstream. Af
 
 Les modules proviennent du dépôt AppStream et contiennent à la fois des flux et des profils. Ceux-ci peuvent être décrits comme suit:
 
-* **module streams :** Un module stream peut être considéré comme un dépôt séparé dans le référentiel AppStream qui contient des versions différentes d'applications. Ces dépôts de modules contiennent les RPMs de l'application, les dépendances et la documentation de ce flux particulier. Un exemple de module stream dans Rocky Linux 8 serait `postgresql`. Si vous installez `postgresql` en utilisant la commande standard `sudo dnf install postgresql` vous obtiendrez la version 10. Cependant, en utilisant des modules, vous pouvez installer les versions 9.6, 12 ou 13.
+* **module streams :** Un module stream peut être considéré comme un dépôt séparé dans le dépôt AppStream qui contient des versions différentes d'applications. Ces dépôts de modules contiennent les RPMs de l'application, les dépendances et la documentation de ce flux particulier. Un exemple de module stream dans Rocky Linux 8 serait `postgresql`. Si vous installez `postgresql` en utilisant la commande standard `sudo dnf install postgresql` vous obtiendrez la version 10. Cependant, en utilisant les modules, vous pouvez installer les versions 9.6, 12 ou 13.
 
 * **profils de module :** Ce que fait un profil de module c'est de prendre en compte le cas d'utilisation pour le flux de module lors de l'installation du package. Appliquer un profil ajuste les RPMs, les dépendances et la documentation du paquet pour tenir compte de l'utilisation du module. En utilisant le même flux `postgresql` dans notre exemple, vous pouvez appliquer un profil de "serveur" ou "client". Évidemment, vous n'avez pas besoin des mêmes paquets installés sur votre système si vous allez juste utiliser `postgresql` comme client pour accéder à un serveur.
 
@@ -668,7 +668,7 @@ Une fois cette étape terminée, vous pouvez lancer la commande de réinitialisa
 dnf module reset postgresql
 ```
 
-Ce qui vous donnera un résultat comme ceci :
+Ce qui vous donnera un résultat comme cela :
 
 ```
 Dependencies resolved.
@@ -732,7 +732,7 @@ postgresql                 13 [x]                   client, server [d]          
 
 Le dépôt **EPEL** (**E**xtra **P**ackages for **E**nterprise **L**inux) est un dépôt contenant des paquets logiciels supplémentaires pour Entreprise Linux, ce qui inclut RedHat Entreprise Linux (RHEL), Rocky Linux, CentOS, etc.
 
-Il fournit des paquets qui ne sont pas inclus dans les dépôts officiels de RHEL. Ils ne sont pas inclus parce qu'ils ne sont pas considérés comme nécessaires dans un environnement d'entreprise ou considérés en dehors du champ d'application de RHEL. Nous ne devons pas oublier que RHEL est une distribution de classe d'entreprise et les utilitaires de bureau ou autres logiciels spécialisés peuvent ne pas être une priorité pour un projet d'entreprise.
+Il fournit des paquets qui ne sont pas inclus dans les dépôts officiels de RHEL. Ils ne sont pas inclus parce qu'ils ne sont pas considérés comme nécessaires dans un environnement d'entreprise ou considérés en dehors du champ d'application de RHEL. Nous ne devons pas oublier que RHEL est une distribution de classe entreprise et les utilitaires de bureau ou autres logiciels spécialisés peuvent ne pas être une priorité pour un projet d'entreprise.
 
 ### Installation
 
