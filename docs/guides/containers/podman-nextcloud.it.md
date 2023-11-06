@@ -25,7 +25,7 @@ La procedura è suddivisa in più fasi, ognuna con i propri script di shell per 
 
 La maggior parte dei comandi della guida può essere eseguita manualmente, ma la creazione di alcuni script bash renderà la vita molto più facile, soprattutto quando si desidera ripetere questi passaggi con impostazioni, variabili o nomi di container diversi.
 
-!!! Note "Nota per i principianti"
+!!! Note "Nota per i principianti:"
 
     Podman è uno strumento per la gestione dei container, in particolare dei container OCI (Open Containers Initiative). È stato progettato per essere praticamente compatibile con Docker, nel senso che la maggior parte, se non tutti, gli stessi comandi funzioneranno per entrambi gli strumenti. Se "Docker" non significa nulla per voi, o anche se siete solo curiosi, potete leggere di più su Podman e su come funziona sul [sito web di Podman](https://podman.io).
     
