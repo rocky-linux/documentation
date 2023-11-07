@@ -1,8 +1,8 @@
 ---
-title: XXL-Infrastruktur
+title: Large Scale infrastructure
 ---
 
-# Ansible - XXL-Infrastruktur
+# Ansible - Large Scale infrastructure
 
 In diesem Kapitel erfahren Sie, wie Sie Ihr Konfigurationsmanagementsystem skalieren.
 
