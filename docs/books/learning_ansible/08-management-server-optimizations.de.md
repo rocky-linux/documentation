@@ -139,7 +139,7 @@ if __name__ == '__main__':
 
 Es ist notwendig, mehrere Pakete auf dem Verwaltungsserver zu installieren:
 
-* Via Paket-Manager:
+* Via dfn Paket-Manager:
 
 ```
 sudo dnf install python38-devel krb5-devel krb5-libs krb5-workstation
