@@ -167,7 +167,7 @@ pip3 install kerberos requests-kerberos
 
 ## Utilisation des modules IP
 
-Les modules réseau nécessitent généralement le module Python `netaddr`:
+Les modules réseau nécessitent généralement le module Python `netaddr` :
 
 ```
 sudo pip3 install netaddr
