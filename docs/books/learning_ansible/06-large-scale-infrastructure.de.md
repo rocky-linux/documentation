@@ -1,5 +1,5 @@
 ---
-title: Large Scale infrastructure
+title: XXL-Infrastruktur
 ---
 
 # Ansible - Large Scale infrastructure
