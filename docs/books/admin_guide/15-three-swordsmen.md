@@ -601,7 +601,8 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
       !!! info
 
-          The beginning of a string starts with the first matching string, and similarly, the end of a string also ends with the first matching string.
+          **Start of range**: Match the line where the string is located, only matching the first string that appears.
+          **End of range**: Match the line where the string is located, only matching the first string that appears.
 
       ```bash
       Shell > grep -n ^netbios /etc/services
@@ -626,7 +627,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
     * Print the line where the string is located and until the last line
 
       ```bash
-      Shell >  cat  /etc/services | sed -n '/^netbios/,$p'
+      Shell > cat /etc/services | sed -n '/^netbios/,$p'
       ```
 
     * Using variables in bash scripts
@@ -681,3 +682,328 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       telnet          23/tcp
       ...
       ```
+
+    * Delete consecutive lines of text
+
+      ```bash
+      Shell > cat -n /etc/services | sed '10,$d'
+      1  # /etc/services:
+      2  # $Id: services,v 1.49 2017/08/18 12:43:23 ovasik Exp $
+      3  #
+      4  # Network services, Internet style
+      5  # IANA services version: last updated 2016-07-08
+      6  #
+      7  # Note that it is presently the policy of IANA to assign a single well-known
+      8  # port number for both TCP and UDP; hence, most entries here have two entries
+      9  # even if the protocol doesn't support UDP operations.
+      ```
+
+    * Regular expression
+
+      ```bash
+      Shell > cat  /etc/services | sed -r '/(tcp)|(udp)|(^#)|(^$)/d'
+      http            80/sctp                         # HyperText Transfer Protocol
+      bgp             179/sctp
+      https           443/sctp                        # http protocol over TLS/SSL
+      h323hostcall    1720/sctp                       # H.323 Call Control
+      nfs             2049/sctp       nfsd shilp      # Network File System
+      rtmp            1/ddp                           # Routing Table Maintenance Protocol
+      nbp             2/ddp                           # Name Binding Protocol
+      echo            4/ddp                           # AppleTalk Echo Protocol
+      zip             6/ddp                           # Zone Information Protocol
+      discard         9/sctp                  # Discard
+      discard         9/dccp                  # Discard SC:DISC
+      ...
+      ```
+
+3. Replace
+
+    | Syntax                               | Syntax description|
+    | :---                                 | :---              |
+    | `sed 's/string/replace/g' FILENAME`  | **s**: All lines representing the content of the file. You can also specify the range of lines, for example: `sed '20,200s/netbios/TMP/g' /etc/services`<br/>**g** (Global): If there is no g, This means that when multiple matching strings appear on a single line, only the first matching string will be replaced.<br/> **/**: Delimiter style. You can also specify other styles, for example: `sed '20,200s?netbios?TMP?g' /etc/services` |
+
+    !!! tip
+
+        Example in the bash script:
+
+        ```bash
+        Shell > vim /root/sedReplace.sh
+        #!/bin/bash
+        a="SELINUX=enforcing"
+        b="SELINUX=disabled"
+
+        sed -i 's/'${a}'/'${b}'/g' /etc/selinux/config
+        # or
+        sed -i "s/${a}/${b}/g" /etc/selinux/config
+        ```
+
+    * Replace and print
+
+      ```bash
+      Shell > sed -n '44,45s/ssh/SSH/gp' /etc/services
+      SSH             22/tcp
+      SSH             22/udp
+      ```
+
+    * Use the "&" symbol to reference a string
+
+      ```bash
+      Shell > sed -n '44,45s/ssh/&-SSH/gp' /etc/services
+      ssh-SSH             22/tcp
+      ssh-SSH             22/udp
+      ```
+
+    * Use a string to locate one or more lines and replace the specified string within the line range
+
+      ```bash
+      Shell > grep ssh /etc/services -n
+      44:ssh             22/tcp                          # The Secure Shell (SSH) Protocol
+      45:ssh             22/udp                          # The Secure Shell (SSH) Protocol
+      551:x11-ssh-offset  6010/tcp                        # SSH X11 forwarding offset
+      593:ssh             22/sctp                 # SSH
+      1351:sshell          614/tcp                 # SSLshell
+      1352:sshell          614/udp                 #       SSLshell
+      1607:netconf-ssh     830/tcp                 # NETCONF over SSH
+      1608:netconf-ssh     830/udp                 # NETCONF over SSH
+      7178:sdo-ssh         3897/tcp                # Simple Distributed Objects over SSH
+      7179:sdo-ssh         3897/udp                # Simple Distributed Objects over SSH
+      7791:netconf-ch-ssh  4334/tcp                # NETCONF Call Home (SSH)
+      8473:snmpssh         5161/tcp                # SNMP over SSH Transport Model
+      8474:snmpssh-trap    5162/tcp                # SNMP Notification over SSH Transport Model
+      9126:tl1-ssh         6252/tcp                # TL1 over SSH
+      9127:tl1-ssh         6252/udp                # TL1 over SSH
+      10796:ssh-mgmt        17235/tcp               # SSH Tectia Manager
+      10797:ssh-mgmt        17235/udp               # SSH Tectia Manager
+
+      Shell > sed '/ssh/s/tcp/TCP/gp' -n  /etc/services
+      ssh             22/TCP                          # The Secure Shell (SSH) Protocol
+      x11-ssh-offset  6010/TCP                        # SSH X11 forwarding offset
+      sshell          614/TCP                 # SSLshell
+      netconf-ssh     830/TCP                 # NETCONF over SSH
+      sdo-ssh         3897/TCP                # Simple Distributed Objects over SSH
+      netconf-ch-ssh  4334/TCP                # NETCONF Call Home (SSH)
+      snmpssh         5161/TCP                # SNMP over SSH Transport Model
+      snmpssh-trap    5162/TCP                # SNMP Notification over SSH Transport Model
+      tl1-ssh         6252/TCP                # TL1 over SSH
+      ssh-mgmt        17235/TCP               # SSH Tectia Manager
+      ```
+
+    * String replacement for consecutive lines
+
+      ```bash
+      Shell > sed '10,30s/tcp/TCP/g' /etc/services
+      ```
+
+    * Multiple matches and replacements
+
+      ```bash
+      Shell > cat /etc/services | sed 's/netbios/test1/g ; s/^#//d ; s/dhcp/&t2/g'
+      ```
+
+    * Group replacement of regular expressions
+
+      In regular expressions, a "()" is a grouping. \1 represents reference group 1, \2 represents reference group 2, and so on. 
+
+      ```bash
+      Shell > cat /etc/services
+      ...
+      axio-disc       35100/tcp               # Axiomatic discovery protocol
+      axio-disc       35100/udp               # Axiomatic discovery protocol
+      pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+      cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+      cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      spremotetablet  46998/tcp               # Capture handwritten signatures
+
+      Shell > cat /etc/services | sed -r 's/([0-9]*\/tcp)/\1\tCONTENT1/g ; s/([0-9]*\/udp)/\1\tADD2/g'
+      ...
+      axio-disc       35100/tcp       CONTENT1               # Axiomatic discovery protocol
+      axio-disc       35100/udp       ADD2               # Axiomatic discovery protocol
+      pmwebapi        44323/tcp       CONTENT1               # Performance Co-Pilot client HTTP API
+      cloudcheck-ping 45514/udp       ADD2               # ASSIA CloudCheck WiFi Management keepalive
+      cloudcheck      45514/tcp       CONTENT1               # ASSIA CloudCheck WiFi Management System
+      spremotetablet  46998/tcp       CONTENT1               # Capture handwritten signatures
+      ```
+
+      **\t**: That is, a tab
+
+    * Replace all comment lines with blank space
+
+      ```bash
+      Shell > cat /etc/services | sed -r 's/(^#.*)//g'
+      ...
+      chargen         19/udp          ttytst source
+      ftp-data        20/tcp
+      ftp-data        20/udp
+
+      ftp             21/tcp
+      ftp             21/udp          fsp fspd
+      ssh             22/tcp                          # The Secure Shell (SSH) Protocol
+      ssh             22/udp                          # The Secure Shell (SSH) Protocol
+      ...
+      ```
+
+    * Replace one of the lowercase letters of a word with a capital letter
+
+      ```bash
+      Shell > echo -e "hello,world\nPOSIX" | sed -r 's/(.*)w/\1W/g'
+      hello,World
+      POSIX
+      ```
+
+    * String position swapping
+
+      ```bash
+      Shell > cat /etc/services
+      ...
+      cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+      cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      spremotetablet  46998/tcp               # Capture handwritten signatures
+      ```
+
+      We can divide this file into five parts:
+
+      ```txt
+      cloudcheck-ping    45514       /     udp        # ASSIA CloudCheck WiFi Management keepalive
+       ↓                   ↓         ↓      ↓               ↓
+      (.*)           (\<[0-9]+\>)   \/   (tcp|udp)         (.*)
+       ↓                   ↓                ↓               ↓ 
+       \1                 \2               \3              \4
+      ```
+
+      ```bash
+      Shell > cat /etc/services | sed -r 's/(.*)(\<[0-9]+\>)\/(tcp|udp)(.*)/\1\3\/\2\4/g'
+      ...
+      edi_service     udp/34567               # dhanalakshmi.org EDI Service
+      axio-disc       tcp/35100               # Axiomatic discovery protocol
+      axio-disc       udp/35100               # Axiomatic discovery protocol
+      pmwebapi        tcp/44323               # Performance Co-Pilot client HTTP API
+      cloudcheck-ping udp/45514               # ASSIA CloudCheck WiFi Management keepalive
+      cloudcheck      tcp/45514               # ASSIA CloudCheck WiFi Management System
+      spremotetablet  tcp/46998               # Capture handwritten signatures
+      ```
+
+    * Remove any blank characters
+
+      ```bash
+      Shell > echo -e "abcd\t1 2 3 4\tWorld"
+      abcd    1 2 3 4 World
+      Shell > echo -e "abcd\t1 2 3 4\tWorld" | sed -r 's/(\s)*//g'
+      abcd1234World
+      ```
+    
+4. Execute multiple times using the -e option
+
+    The following example:
+   
+    ```bash
+    Shell > tail -n 10 /etc/services
+    aigairserver    21221/tcp               # Services for Air Server
+    ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+    ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+    edi_service     34567/udp               # dhanalakshmi.org EDI Service
+    axio-disc       35100/tcp               # Axiomatic discovery protocol
+    axio-disc       35100/udp               # Axiomatic discovery protocol
+    pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+    cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+    cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    spremotetablet  46998/tcp               # Capture handwritten signatures
+
+    Shell > tail -n 10 /etc/services | sed  -e '1,3d' -e '/cloud/s/ping/PING/g'
+    # or
+    Shell > tail -n 10 /etc/services | sed  '1,3d ; /cloud/s/ping/PING/g'      
+    edi_service     34567/udp               # dhanalakshmi.org EDI Service
+    axio-disc       35100/tcp               # Axiomatic discovery protocol
+    axio-disc       35100/udp               # Axiomatic discovery protocol
+    pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+    cloudcheck-PING 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+    cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    spremotetablet  46998/tcp               # Capture handwritten signatures
+    ```
+
+5. Add content above or below a specific line
+
+    * Add two lines of content above the specified line number
+
+      ```bash
+      Shell > tail -n 10 /etc/services > /root/test.txt
+      Shell > cat /root/test.txt
+      aigairserver    21221/tcp               # Services for Air Server
+      ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+      ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+      edi_service     34567/udp               # dhanalakshmi.org EDI Service
+      axio-disc       35100/tcp               # Axiomatic discovery protocol
+      axio-disc       35100/udp               # Axiomatic discovery protocol
+      pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+      cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+      cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      spremotetablet  46998/tcp               # Capture handwritten signatures
+
+      Shell > cat /root/test.txt | sed '3i 123\
+      abc'
+      aigairserver    21221/tcp               # Services for Air Server
+      ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+      123
+      abc
+      ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+      edi_service     34567/udp               # dhanalakshmi.org EDI Service
+      axio-disc       35100/tcp               # Axiomatic discovery protocol
+      axio-disc       35100/udp               # Axiomatic discovery protocol
+      pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+      cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+      cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      spremotetablet  46998/tcp               # Capture handwritten signatures
+      ```
+
+   * Add three lines below the specified line number
+
+     ```bash
+     Shell > cat /root/test.txt | sed '5a 123\
+     comment yes\
+     tcp or udp'
+     aigairserver    21221/tcp               # Services for Air Server
+     ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+     ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+     edi_service     34567/udp               # dhanalakshmi.org EDI Service
+     axio-disc       35100/tcp               # Axiomatic discovery protocol
+     123
+     comment yes
+     tcp or udp
+     axio-disc       35100/udp               # Axiomatic discovery protocol
+     pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+     cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+     cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+     spremotetablet  46998/tcp               # Capture handwritten signatures
+     ```
+
+    * Match a specific line based on a string and add 2 lines of content above it 
+
+      ```bash
+      Shell > cat /root/test.txt | sed '/tcp/iTCP\
+      UDP'
+      TCP
+      UDP
+      aigairserver    21221/tcp               # Services for Air Server
+      ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+      TCP
+      UDP
+      ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+      edi_service     34567/udp               # dhanalakshmi.org EDI Service
+      TCP
+      UDP
+      axio-disc       35100/tcp               # Axiomatic discovery protocol
+      axio-disc       35100/udp               # Axiomatic discovery protocol
+      TCP
+      UDP
+      pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+      cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+      TCP
+      UDP
+      cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      TCP
+      UDP
+      spremotetablet  46998/tcp               # Capture handwritten signatures
+      ```
+
+6. Replace lines
+
+    
