@@ -1257,3 +1257,34 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       ```
 
 ### `awk` commnad
+
+In 1977, a programming language-level tool for processing text was born at Bell Labs, named `awk`. The name comes from the first letters of the last names of three famous people:
+
+* Alfred **A**ho
+* Peter **W**einberger
+* Brian **K**ernighan
+
+Just as shell is divided into bash, csh, zsh, and ksh, awk has different variants or derivatives with the development of history:
+
+* `awk`: Born in 1977 Bell Labs.
+* `nawk` (new awk): It was born in 1985 and is an updated and enhanced version of awk. It was widely used with the release of Unix System V Release 3.1 (1987). The old version of awk is called `oawk` (old awk).
+* `gawk` (GNU awk): It was written by Paul Rubin in 1986. The GNU Project was born in 1984.
+* `mawk`: It was written in 1996 by Mike Brennan, which is the interpreter of the awk programming language.
+* `jawk`: Implementation of awk in JAVA
+
+In the GNU/Linux operating system, the usual awk refers to `gawk`. However, some distributions use `mawk` as their default awk, such as Ubuntu or Debian.
+
+In the Rocky Linux 8.8, awk refers to gawk.
+
+```bash
+Shell > whereis awk
+awk: /usr/bin/awk /usr/libexec/awk /usr/share/awk /usr/share/man/man1/awk.1.gz
+
+Shell > ls -l /usr/bin/awk
+lrwxrwxrwx. 1 root root 4 4月  16 2022 /usr/bin/awk -> gawk
+
+Shell > rpm -qf /usr/bin/awk
+gawk-4.2.1-4.el8.x86_64
+```
+
+For information not covered, please refer to [here](https://www.gnu.org/software/gawk/manual/ "gawk manual")
