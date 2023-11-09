@@ -166,7 +166,7 @@ There are many websites available to practice your regular expression skills onl
 
 ### `grep` command
 
-The `grep` command is used to filter the content of a single or multiple file. There are some variants of this command tool, such as `egrep (grep -E)` and `fgrep (grep -f)`.
+The `grep` command is used to filter the content of a single or multiple file. There are some variants of this command tool, such as `egrep (grep -E)` and `fgrep (grep -f)`. For information not covered, please refer to [here]( https://www.gnu.org/software/grep/manual/ "grep manual").
 
 The usage of the grep command is:
 
@@ -226,6 +226,8 @@ directory or file control:
 | --exclude=FILE_PATTERN   | Skip files and directories matching FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,}  |
 | --exclude-dir=PATTERN    | Exclude the specified directory name. Directory name support *, ?, [], [^], [-], {..}, {,} | 
 | --exclude-from=FILE      | Exclude the specified directory from the file content. | 
+
+#### Examples of usage
 
 1. -f option and -o option
 
@@ -442,6 +444,8 @@ directory or file control:
 
 **"pattern space" and "hold space"**: An area of memory where data is processed and stored.
 
+For information not covered, please refer to [here](https://www.gnu.org/software/sed/manual/ "sed manual").
+
 The usage of the command is:
 
 ```bash
@@ -491,7 +495,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
 #### Examples of usage
 
-1. Match and print
+1. Match and print (`p`)
 
     * Print a line that begins with a netbios string
 
@@ -660,7 +664,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       ...
       ```
       
-2. Match and delete
+2. Match and delete (`d`)
 
     It's similar to printing, except that the operation command is replaced with `d` and the -n option is not required.
 
@@ -716,7 +720,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       ...
       ```
 
-3. Replace
+3. Replace strings(`s///g`)
 
     | Syntax                               | Syntax description|
     | :---                                 | :---              |
@@ -920,7 +924,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
     spremotetablet  46998/tcp               # Capture handwritten signatures
     ```
 
-5. Add content above or below a specific line
+5. Add content above or below a specific line (`i` and `a`)
 
     * Add two lines of content above the specified line number
 
@@ -1004,6 +1008,252 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       spremotetablet  46998/tcp               # Capture handwritten signatures
       ```
 
-6. Replace lines
+6. Replace lines (`c`)
 
-    
+    * Locate one or more lines based on a string and replace these lines of text
+
+      ```bash
+      Shell > cat /root/test.txt | sed '/ser/c\TMP1 \
+      TMP2'
+      TMP1
+      TMP2
+      ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+      ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+      TMP1
+      TMP2
+      axio-disc       35100/tcp               # Axiomatic discovery protocol
+      axio-disc       35100/udp               # Axiomatic discovery protocol
+      pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+      cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+      cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      spremotetablet  46998/tcp               # Capture handwritten signatures
+      ```
+
+    * Single line replacement
+
+      ```bash
+      Shell > cat /root/test.txt | sed '7c REPLACE'
+      aigairserver    21221/tcp               # Services for Air Server
+      ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+      ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+      edi_service     34567/udp               # dhanalakshmi.org EDI Service
+      axio-disc       35100/tcp               # Axiomatic discovery protocol
+      axio-disc       35100/udp               # Axiomatic discovery protocol
+      REPLACE
+      cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+      cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      spremotetablet  46998/tcp               # Capture handwritten signatures
+      ```
+
+    * Replace consecutive lines of text
+
+      ```bash
+      Shell > cat /root/test.txt | sed '2,$c REPLACE1 \
+      replace2'
+      aigairserver    21221/tcp               # Services for Air Server
+      REPLACE1
+      replace2
+      ```
+
+    * Replace even numbered lines
+
+      ```bash
+      Shell > cat /root/test.txt | sed '2~2c replace'
+      aigairserver    21221/tcp               # Services for Air Server
+      replace
+      ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+      replace
+      axio-disc       35100/tcp               # Axiomatic discovery protocol
+      replace
+      pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+      replace
+      cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      replace
+      ```
+
+7. Read the contents of the file and append its contents below the matching line (`r`)
+
+    ```bash
+    Shell > cat /root/app.txt
+    append1
+    POSIX
+    UNIX
+
+    Shell > cat /root/test.txt | sed '/ping/r /root/app.txt'
+    aigairserver    21221/tcp               # Services for Air Server
+    ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+    ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+    edi_service     34567/udp               # dhanalakshmi.org EDI Service
+    axio-disc       35100/tcp               # Axiomatic discovery protocol
+    axio-disc       35100/udp               # Axiomatic discovery protocol
+    pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+    cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+    append1
+    POSIX
+    UNIX
+    cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    spremotetablet  46998/tcp               # Capture handwritten signatures
+    ```
+
+8. Write matching lines to other files (`w`)
+
+    ```bash
+    Shell > cat /root/test.txt | sed '/axio/w /root/storage.txt'
+
+    Shell > cat /root/storage.txt
+    axio-disc       35100/tcp               # Axiomatic discovery protocol
+    axio-disc       35100/udp               # Axiomatic discovery protocol
+    ```
+
+9. Read/append the next line of input into the "pattern space" (`n` and `N`)
+
+    * Print the next line of the matching line
+
+      ```bash
+      Shell > cat /root/test.txt
+      aigairserver    21221/tcp               # Services for Air Server
+      ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+      ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+      edi_service     34567/udp               # dhanalakshmi.org EDI Service
+      axio-disc       35100/tcp               # Axiomatic discovery protocol
+      axio-disc       35100/udp               # Axiomatic discovery protocol
+      pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+      cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+      cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      spremotetablet  46998/tcp               # Capture handwritten signatures
+
+      Shell > cat /root/test.txt | sed '/ping/{n;p}' -n
+      cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      ```
+
+      !!! tip
+
+          Multiple `sed` operation commands may affect each other, and you can use "**{ }**" to reduce this effect.
+
+    * Print even text lines
+
+      First read the first line, as there is an `n` command present, the second line will be printed out, and so on.
+
+      ```bash
+      Shell > cat -n /root/test.txt | sed -n '{n;p}'
+      # or
+      Shell > cat -n /root/test.txt | sed -n '2~2p'
+      2  ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+      4  edi_service     34567/udp               # dhanalakshmi.org EDI Service
+      6  axio-disc       35100/udp               # Axiomatic discovery protocol
+      8  cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+      10  spremotetablet  46998/tcp               # Capture handwritten signatures
+      ```
+
+    * Print odd text lines
+
+      ```bash
+      Shell > cat -n /root/test.txt | sed -n '{p;n}'
+      # or
+      Shell > cat -n /root/test.txt | sed -n '1~2p'
+      # or
+      Shell > cat -n /root/test.txt | sed 'n;d'
+      1  aigairserver    21221/tcp               # Services for Air Server
+      3  ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+      5  axio-disc       35100/tcp               # Axiomatic discovery protocol
+      7  pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+      9  cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      ```
+
+    * Print 3n lines
+
+      ```bash
+      Shell > cat -n /root/test.txt | sed -n '{n;n;p}'
+      # or
+      Shell > cat -n /root/test.txt | sed -n '3~3p'
+      3  ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+      6  axio-disc       35100/udp               # Axiomatic discovery protocol
+      9  cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+      ```
+
+    * `N`
+
+      Read the first line and append one line after encountering the `N` command. In this example, the "pattern space" is "1\n2". Finally, execute the `q` command to exit.
+
+      ```bash
+      Shell > seq 1 10 | sed 'N;q'
+      1
+      2
+      ```
+
+      Because there is no additional line after line 9, the output is as follows:
+
+      ```bash
+      Shell > seq 1 9 | sed -n 'N;p'
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      ```
+      
+      When the last line is read, the `N` command is not executed and the output is as follows:
+
+      ```bash
+      Shell > seq 1 9 | sed -n '$!N;p'
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      ```
+
+      Merge two lines into one line. Replace the "\n" of the "pattern space" with a blank character.
+
+      ```bash
+      Shell > seq 1 6 | sed 'N;{s/\n//g}'
+      12
+      34
+      56
+      ```
+
+10. Ignore case (`I`)
+
+      There seems to be no information about ignoring case in `man 1 sed`.    
+
+      ```bash
+      Shell > echo -e "abc\nAbc" | sed -n 's/a/X/Igp'
+      Xbc
+      XBC
+      ```
+
+      ```bash
+      Shell > cat /etc/services | sed '/OEM/Ip' -n
+      oem-agent       3872/tcp                # OEM Agent
+      oem-agent       3872/udp                # OEM Agent
+      oemcacao-jmxmp  11172/tcp               # OEM cacao JMX-remoting access point
+      oemcacao-rmi    11174/tcp               # OEM cacao rmi registry access point
+      oemcacao-websvc 11175/tcp               # OEM cacao web service access point
+      ```
+
+      ```bash
+      Shell > cat /etc/services | sed -r '/(TCP)|(UDP)/Id'
+      ```
+
+      ```bash
+      Shell > cat /etc/services | sed -r '/(TCP)|(UDP)/Ic TMP'
+      ```
+
+11. Gets the total number of lines in a file
+
+      ```bash
+      Shell > cat /etc/services | sed -n '$='
+      # or
+      Shell > cat /etc/services | wc -l
+
+      11473
+      ```
+
+### `awk` commnad
