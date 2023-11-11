@@ -501,7 +501,7 @@ Common options used with the `dnf` utility are:
 
 #### To use `dnf` for package installation
 
-Assuming you have already uninstalled the `wget` utility from an exercise, we will use DNF to install the package in the following steps. The 2-3 step process that we needed earlier when we installed `wget` via `rpm` should be reduced to a one steps process using `dnf`. `dnf` will quietly resolve any dependencies. 
+Assuming you have already uninstalled the `wget` utility from an exercise, we will use DNF to install the package in the following steps. The 2-3 steps process that we needed earlier when we installed `wget` via `rpm` should be reduced to a one step process using `dnf`. `dnf` will quietly resolve any dependencies. 
 
 1. First, let us ensure that `wget` and `libmetalink` are uninstalled from the system. Type:
 
