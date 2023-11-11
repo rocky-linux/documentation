@@ -566,7 +566,7 @@ Cette liste est fournie avec les commandes `find`, `ls` ou `cat`.
 Syntaxe de la commande `cpio`:
 
 ```
-[commande files |] cpio {-o| --create} [-options] [<file-list] [>device]
+[files command |] cpio {-o| --create} [-options] [<file-list] [>device]
 ```
 
 Exemple :

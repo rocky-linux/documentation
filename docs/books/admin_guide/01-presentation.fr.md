@@ -11,9 +11,9 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 **Objectifs** : Dans ce chapitre, vous apprendrez à :
 
 :heavy_check_mark: Décrire les caractéristiques et les architectures possibles d'un système d'exploitation.   
-:heavy_check_mark: Retracer l'histoire de UNIX et de GNU/Linux.   
-:heavy_check_mark: Choisir la distribution Linux adaptée à vos propres besoins.   
-:heavy_check_mark: Expliquer la philosophie des logiciels libres et open source.   
+:heavy_check_mark: Retracer l'histoire d'UNIX et de GNU/Linux   
+:heavy_check_mark: Choisir la distribution Linux adaptée à ses besoins   
+:heavy_check_mark: Expliquer la philosophie des logiciels libres et open source   
 :heavy_check_mark: Découvrir l'utilité de la SHELL.
 
 :checkered_flag: **généralités**, **linux**, **distributions**
