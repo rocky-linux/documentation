@@ -752,7 +752,7 @@ With the additional free space we have been able to add to the rl volume group (
     
     !!! note
 
-        lv_name = logical volume name, lv_size = logical volume size, lv_path = logical volume path, vg_name = volume group.
+        lv_name = logical volume name, lv_size = logical volume size, lv_path = logical volume path, vg_name = volume group name.
     
 3. On the new `scratch` VG, create a new logical volume called “scratch2” using the `lvcreate` command. Set the size for `scratch2` to be 2GB. Type:
     
