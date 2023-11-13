@@ -103,4 +103,4 @@ Une fois cette étape terminée, le nom d'utilisateur que vous avez créé préc
 
 ## Conclusion
 
-Grâce à l'équipe de développement de Rocky Linux, il y a plusieurs environnement de bureau que vous pouvez installer à partir d'images en direct pour Rocky Linux 9.0. Pour ceux qui n'aiment pas trop le bureau GNOME par défaut, KDE est une autre option et peut facilement être installé avec l'image live. 
+Grâce à l'équipe de développement de Rocky Linux, il y a plusieurs environnements de bureau que vous pouvez installer à partir d'images en direct pour Rocky Linux 9.0. Pour ceux qui n'aiment pas trop le bureau GNOME par défaut, KDE est une autre option et peut facilement être installé avec l'image live. 
