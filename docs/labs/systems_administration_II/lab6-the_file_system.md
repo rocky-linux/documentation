@@ -655,7 +655,7 @@ You'll add the `/dev/loop1` physical volume (PV) that was prepped and created ab
     
 #### To remove a LV, VG and PV 
 
-This section will step through how to delete the `/dev/loop1`` PV that you assigned to the existing `rl` VG in the previous section. 
+This section will step through how to delete the `/dev/loop1` PV that you assigned to the existing `rl` VG in the previous section. 
 
 1. Remove the logical volume named scratch2. Type:
     
