@@ -354,5 +354,9 @@ PERFORM THIS EXERCISE FROM YOUR PARTNER-SYSTEM
 
     !!! Tip
     
-        You need to disable NFS’s special treatment of root-owned files. This is done by specifying a certain option that will “un-squash” the superuser in the “/etc/exports” file.
+        You need to disable NFS’s special treatment of root-owned files. This is done by specifying a special option that will “un-squash” the   superuser in the “/etc/exports” file. The special option is called `no_root_squash`. Please note that it is considered bad practise and a security risk to use the `no_root_squash` option. A sample entry to accomplish this for any host that matches `localhost` in `/etc/exports` will look like:
+ 
+        ```bash
+        /mnt/nfs    172.16.99.0/24(rw)   localhost(rw,no_root_squash)
+        ```
 
