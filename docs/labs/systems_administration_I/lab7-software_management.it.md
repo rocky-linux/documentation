@@ -499,7 +499,7 @@ Le opzioni più comuni utilizzate con l'utilità `dnf` sono:
 
 #### Per utilizzare `dnf` per l'installazione dei pacchetti
 
-Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei passi seguenti useremo DNF per installare il pacchetto. Il processo di 2-3 passi che abbiamo richiesto in precedenza quando abbiamo installato `wget` tramite `rpm` dovrebbe essere ridotto a un solo passo utilizzando `dnf`. `dnf` risolverà tranquillamente qualsiasi dipendenza.
+Supponendo che abbiate già disinstallato l'utilità `wget` da un esercizio, nei passi seguenti useremo DNF per installare il pacchetto. Il processo in 2-3 fasi richiesto in precedenza per l'installazione di `wget` tramite `rpm` dovrebbe essere ridotto a un unico processo utilizzando `dnf`. `dnf` risolverà tranquillamente qualsiasi dipendenza.
 
 1. Per prima cosa, assicuriamoci che `wget` e `libmetalink` siano disinstallati dal sistema. Digitare:
 
