@@ -118,7 +118,7 @@ SYNOPSIS
     ```bash
     systemctl status nfs-server
     ```
-    **OUTPUT**
+   **OUTPUT**
    ```bash
     ● nfs-server.service - NFS server and services
     Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; disabled; vendor preset: disabled)
