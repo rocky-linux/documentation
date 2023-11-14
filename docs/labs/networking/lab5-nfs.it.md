@@ -354,5 +354,9 @@ ESEGUIRE L'ESERCIZIO DAL SISTEMA PARTNER
 
     !!! Tip "Suggerimento"
    
-        È necessario disabilitare il trattamento speciale di NFS per i file di proprietà di root. Questo si ottiene specificando una certa opzione che "slega" il superutente nel file "/etc/exports".
+        È necessario disabilitare il trattamento speciale di NFS per i file di proprietà di root. Questo si ottiene specificando un'opzione speciale che "svincola" il superutente nel file "/etc/exports". L'opzione speciale è chiamata `no_root_squash`. Si noti che l'uso dell'opzione `no_root_squash` è considerata una cattiva pratica e un rischio per la sicurezza. Una voce di esempio per ottenere questo risultato per qualsiasi host che corrisponda a `localhost` in `/etc/exports` avrà l'aspetto seguente:
+
+        ```bash
+        /mnt/nfs    172.16.99.0/24(rw)   localhost(rw,no_root_squash)
+        ```
 
