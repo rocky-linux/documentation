@@ -146,7 +146,7 @@ Exemple :
 | ------ | ------------------------------------------------------------------------ |
 | `-e`   | Modifier le fichier de planification avec vi                             |
 | `-l`   | Affiche le contenu du fichier de planification                           |
-| `- u`  | Nom de l'utilisateur dont le fichier de planification doit être manipulé |
+| `-u`   | Nom de l'utilisateur dont le fichier de planification doit être manipulé |
 | `-r`   | Supprime le fichier de planification                                     |
 
 !!! Warning "Avertissement"
