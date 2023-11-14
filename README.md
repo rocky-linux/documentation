@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-93-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-94-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -313,7 +313,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/romh87"><img src="https://avatars.githubusercontent.com/u/81292426?v=4?s=100" width="100px;" alt="Roman Gherta"/><br /><sub><b>Roman Gherta</b></sub></a><br /><a href="#content-romh87" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://cybertrouble.com"><img src="https://avatars.githubusercontent.com/u/12031564?v=4?s=100" width="100px;" alt="Yiğit can BAŞALMA"/><br /><sub><b>Yiğit can BAŞALMA</b></sub></a><br /><a href="#content-yigitbasalma" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/markooff"><img src="https://avatars.githubusercontent.com/u/24265888?v=4?s=100" width="100px;" alt="markooff"/><br /><sub><b>markooff</b></sub></a><br /><a href="#content-markooff" title="Content">🖋</a> <a href="#translation-markooff" title="Translation">🌍</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://www.dengwenbin.com"><img src="https://avatars.githubusercontent.com/u/20312281?v=4?s=100" width="100px;" alt="Deng Wenbin"/><br /><sub><b>Deng Wenbin</b></sub></a><br /><a href="#translation-dengwenbin" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/dengwenbin"><img src="https://avatars.githubusercontent.com/u/20312281?v=4?s=100" width="100px;" alt="Deng Wenbin"/><br /><sub><b>Deng Wenbin</b></sub></a><br /><a href="#translation-dengwenbin" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/alikates"><img src="https://avatars.githubusercontent.com/u/59802505?v=4?s=100" width="100px;" alt="alikates"/><br /><sub><b>alikates</b></sub></a><br /><a href="#content-alikates" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/hopnux"><img src="https://avatars.githubusercontent.com/u/110078361?v=4?s=100" width="100px;" alt="hopnux"/><br /><sub><b>hopnux</b></sub></a><br /><a href="#translation-hopnux" title="Translation">🌍</a></td>
     </tr>
@@ -329,7 +329,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://git.sr.ht/%7Equartsize/"><img src="https://avatars.githubusercontent.com/u/37243063?v=4?s=100" width="100px;" alt="Laura Hild"/><br /><sub><b>Laura Hild</b></sub></a><br /><a href="#content-quartsize" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Grammaresque"><img src="https://avatars.githubusercontent.com/u/119525559?v=4?s=100" width="100px;" alt="Grammaresque"/><br /><sub><b>Grammaresque</b></sub></a><br /><a href="#content-Grammaresque" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://sauveur.xyz"><img src="https://avatars.githubusercontent.com/u/7724090?v=4?s=100" width="100px;" alt="Rawk Akani"/><br /><sub><b>Rawk Akani</b></sub></a><br /><a href="#content-rawkakani" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rawkakani"><img src="https://avatars.githubusercontent.com/u/7724090?v=4?s=100" width="100px;" alt="Rawk Akani"/><br /><sub><b>Rawk Akani</b></sub></a><br /><a href="#content-rawkakani" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/nm583"><img src="https://avatars.githubusercontent.com/u/121867206?v=4?s=100" width="100px;" alt="nm583"/><br /><sub><b>nm583</b></sub></a><br /><a href="#content-nm583" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/MrPaulAR"><img src="https://avatars.githubusercontent.com/u/3765696?v=4?s=100" width="100px;" alt="MrPaulAR"/><br /><sub><b>MrPaulAR</b></sub></a><br /><a href="#content-MrPaulAR" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/cybernet"><img src="https://avatars.githubusercontent.com/u/125879?v=4?s=100" width="100px;" alt="cybernet"/><br /><sub><b>cybernet</b></sub></a><br /><a href="#content-cybernet" title="Content">🖋</a></td>
@@ -347,6 +347,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/zdover23"><img src="https://avatars.githubusercontent.com/u/1445107?v=4?s=100" width="100px;" alt="zdover23"/><br /><sub><b>zdover23</b></sub></a><br /><a href="#content-zdover23" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/YadlaMani"><img src="https://avatars.githubusercontent.com/u/133841094?v=4?s=100" width="100px;" alt="Mani Yadla"/><br /><sub><b>Mani Yadla</b></sub></a><br /><a href="#content-YadlaMani" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/DavisBarnabas"><img src="https://avatars.githubusercontent.com/u/39591292?v=4?s=100" width="100px;" alt="Dave_Barnabas"/><br /><sub><b>Dave_Barnabas</b></sub></a><br /><a href="#content-DavisBarnabas" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
