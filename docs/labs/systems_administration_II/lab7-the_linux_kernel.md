@@ -111,7 +111,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
 4. Use `dnf` to download the latest kernel package available from the official Rocky Linux package repository. Type:
     
     ```bash
-    [root@localhost ~]# dnf list kernel
+    [root@localhost ~]# dnf download kernel
     ```
     You should now have an RPM package with a name similar to kernel-*.x86_64.rpm saved in your PWD.
     
@@ -124,7 +124,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
 6. Use `rpm` to do a test install of the downloaded kernel*.rpm to ensure that all its dependencies will be met. Type:
     
     ```bash
-    [root@localhost ~]# rpm --test  -Uvh kernel-*.x86_64.rpm
+    [root@localhost ~]# rpm --test  -ivh kernel-*.x86_64.rpm
     
     error: Failed dependencies:
     kernel-core-uname-r = *.x86_64 is needed by kernel-*.x86_64
@@ -133,7 +133,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
     
     From the output we can see that the package has unmet dependencies.
     
-7. Use `dnf` to download the needed dependencies. Type:
+7. Use `dnf` to download the needed dependencies reported in the previous error message. Type:
     
     ```bash
     [root@localhost ~]# dnf download kernel-core-uname-r kernel-modules-uname-r  
@@ -232,13 +232,13 @@ In this exercise you will build a new kernel from source, by configuring, compil
 2.  Install needed development tools. Type:
     
     ```bash
-    [root@localhost linux-6.5.7]# sudo dnf -y groupinstall 'Development Tools'
+    [root@localhost linux-6.5.7]# dnf -y groupinstall 'Development Tools'
     ```
 
-3. Install the needed libraries. Type:
+3. Install the needed libraries and tools. Type:
      
     ```bash
-    [root@localhost linux-6.*]# dnf -y install ncurses-devel openssl-devel elfutils-libelf-devel python3 dwarves
+    [root@localhost linux-6.*]# dnf -y install ncurses-devel bc openssl-devel elfutils-libelf-devel python3 dwarves
     ```
 
 4. Download the latest kernel source by typing:
