@@ -646,6 +646,11 @@ The following exercises will be based on the venerable Hello project source code
 
     ```
     $ tar -xvzf hello-2.12.tar.gz
+    ```
+    
+    OUTPUT:
+    
+    ```
     hello-2.12/
     hello-2.12/NEWS
     hello-2.12/AUTHORS
@@ -679,6 +684,14 @@ The following exercises will be based on the venerable Hello project source code
 Most applications have features that can be enabled or disabled by the user. This is one of the benefits of having access to the source code and installing from the same. You have control over configurable features that the application has; this is in contrast to accepting everything a package manager installs from pre-compiled binaries.
 
 The script that usually lets you configure the software is usually aptly named “configure”
+
+!!! Tip
+
+    Make sure that you have the "Development Tools" package group installed before attempting to complete the following exercises.
+
+    ```
+    $ sudo dnf -y group install "Development Tools"
+  
 
 1. Use the `ls` command again to ensure that you indeed have a file named *configure* in your pwd.  
 
@@ -716,9 +729,13 @@ You will build the hello application in the following steps. This is where some 
 
     ```
     $ make
-    ...<OUTPUT TRUNCATED>...
+    ```
+
+    OUTPUT:
+    ```
     gcc  -g -O2   -o hello src/hello.o  ./lib/libhello.a
     make[2]: Leaving directory '/home/rocky/hello-2.12'
+    ...<OUTPUT TRUNCATED>...
     make[1]: Leaving directory '/home/rocky/hello-2.12'
     ```
 
@@ -754,17 +771,26 @@ Amongst other housekeeping tasks, the final installation step also involves copy
 
 3. Run `hello` again, with the `--help` option to see the other things it can do.
 
-4. Using `sudo`, run `hello` again as a superuser. Type:
+4. Now using `sudo`, run `hello` again as a superuser. Type:
    
     ```
     $ sudo hello
     ```
 
+    OUTPUT:
+    ```
+    sudo: hello: command not found
+    ```
+    
+    !!! Question
+
+        Investigate what causes the error when you try running `hello` with sudo. Fix the issue and make           sure the `hello` program can be used with sudo.
+
     !!! tip
     
         It is good practice to test a program as a regular user to ensure that regular users can indeed use the program. It is possible that the permissions on the binary are set incorrectly such that only the super-user can use the programs. This of course assumes that you indeed want regular users to be able to use the program.
 
-5. That is it. This lab is complete!
+5. That's it. This exercise is complete!
 
 ## Exercise 7
 
@@ -778,12 +804,22 @@ Using the "-V" option of the `rpm` command.
 
 Take the time synchronization program chrony as an example to illustrate the meaning of its output. It is assumed that you have installed chrony and modified the configuration file (/etc/chrony.conf)
 
-```
-$ rpm -V chrony
-S.5....T.  c /etc/chrony.conf
-```
+  ```
+  $ rpm -V chrony
+  ```
+  OUTPUT:
+  ```
+  S.5....T.  c  /etc/chrony.conf
+  ```
 
-* **S.5....T.**: Indicates 9 useful information in the validation file content, and the unmodified ones are represented by ".". These 9 useful information are:
+  The output is broken down into 3 separate columns. 
+
+  **First Column (S.5....T.)**
+  
+The sample output - `S.5....T.` indicates the 9 fields that are used to indicate useful information   about the validity of files in an RPM package. Any field or characteristic that passed a given check/test is indicated by a ".". 
+
+These 9 different fields or checks are described here:
+
   * S: Whether the size of the file has been modified.
   * M: Whether the type of file or file permissions (rwx) have been modified.
   * 5: Whether the file MD5 checksum has modified.
@@ -794,10 +830,14 @@ S.5....T.  c /etc/chrony.conf
   * T: Whether the mTime (modify time) of the file has been modified.
   * P: Whether the program function has been modified.
 
+  **Second Column (c)**
+
 * **c**: Indicates modifications to the configuration file. It can also be the following values:
   * d: documentation file.
   * g: ghost file. Very few can be seen.
   * l: license file.
   * r: readme file.
 
-* **/etc/chrony.conf**: Represents the path of the modified file.
+  **Third column (/etc/chrony.conf)**
+
+  * **/etc/chrony.conf**: Represents the path of the modified file.
