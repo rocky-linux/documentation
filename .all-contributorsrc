@@ -854,6 +854,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "DavisBarnabas",
+      "name": "Dave_Barnabas",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39591292?v=4",
+      "profile": "https://github.com/DavisBarnabas",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
