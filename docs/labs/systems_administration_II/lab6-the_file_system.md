@@ -566,6 +566,9 @@ In the following steps we are going to create a new loop device backed by anothe
     
     ```bash
     [root@localhost ~]# losetup
+    ```
+    **OUTPUT**
+    ```
     NAME       SIZELIMIT OFFSET AUTOCLEAR RO BACK-FILE                  DIO LOG-SEC
     /dev/loop1         0      0         0  0 /tmp/10G-fake-lvm-disk.img   0     512
     /dev/loop0         0      0         0  0 /tmp/10G-fake-disk.img       0     512
@@ -603,6 +606,9 @@ You'll add the `/dev/loop1` physical volume (PV) that was prepped and created ab
     
     ```bash
     [root@localhost ~]# vgdisplay
+    ```
+    **OUTPUT**
+    ```
     --- Volume group ---
     VG Name               rl
     System ID
@@ -627,13 +633,19 @@ You'll add the `/dev/loop1` physical volume (PV) that was prepped and created ab
     
     ```bash
     [root@localhost ~]# vgextend rl /dev/loop1
+    ```
+    **OUTPUT**
+    ```
     Volume group "rl" successfully extended
     ```
     
-3. Run the `vgdisplay` command again to view your changes. Type: 
+4. Run the `vgdisplay` command again to view your changes. Type: 
     
     ```bash
     [root@localhost ~]# vgdisplay
+    ```
+    **OUTPUT**
+    ```
     --- Volume group ---
     VG Name               rl
     System ID
@@ -784,6 +796,9 @@ Here you will use the `mke2fs` program to create an vFAT file system on the new 
     
     ```bash
     [root@localhost ~]# mkfs.vfat /dev/loop0p1
+    ```
+    **OUTPUT**
+    ```
     mkfs.fat 4.*
     ```
 
@@ -791,6 +806,9 @@ Here you will use the `mke2fs` program to create an vFAT file system on the new 
     
     ```bash
     [root@localhost ~]# lsblk -f /dev/loop0
+    ```
+    **OUTPUT**
+    ```
     NAME      FSTYPE LABEL UUID                 MOUNTPOINT
     loop0
     └─loop0p1 vfat         658D-4A90
@@ -800,7 +818,7 @@ Here you will use the `mke2fs` program to create an vFAT file system on the new 
 
 To make the logical volumes that were created earlier usable by the operating system, you need to create file systems on them. Writing a file system to a device is also known as formatting the disk.
 
-Here you will use the `mke2fs` program to create an EXT4 file system on the new scrtach1 volume.
+Here you will use the `mke2fs` program to create an EXT4 file system on the new scrtach2 volume.
 
 1. Use the `mkfs.ext4` utility to create an EXT4 type filesystem on the `/dev/scratch/scratch2` volume. Type: 
     
@@ -810,7 +828,7 @@ Here you will use the `mke2fs` program to create an EXT4 file system on the new 
     Writing superblocks and filesystem accounting information: done
     ```
     
-2. Use the `lsblk` to query the system for interesting information about the scratch1 volume. Type:
+2. Use the `lsblk` to query the system for interesting information about the scratch2 volume. Type:
     
     ```bash
     [root@localhost ~]# lsblk -f /dev/scratch/scratch2
@@ -820,7 +838,7 @@ Here you will use the `mke2fs` program to create an EXT4 file system on the new 
     
 #### To create an XFS file system 
 
-Here you will use the `mke2fs` program to create a XFS file system on the new scratch2 volume.
+Here you will use the `mke2fs` program to create a XFS file system on the new scratch3 volume.
 
 1. Use the `mkfs.xfs` utility to create a XFS type filesystem on the `/dev/rl/scratch3` volume. Type: 
     
@@ -835,6 +853,9 @@ Here you will use the `mke2fs` program to create a XFS file system on the new sc
     
     ```bash
     [root@localhost ~]# lsblk -f /dev/scratch/scratch3
+    ```
+    **OUTPUT**
+    ```
     NAME        FSTYPE LABEL UUID         MOUNTPOINT
     scratch-scratch3 xfs          1d1ac306***
     ```
@@ -864,7 +885,7 @@ Here we will walk through the use of some common filesystem utilities that can b
     Setting maximal mount count to -1
     ```
     
-3. Use the `fsck` command to check the scratch1 file system. Type: 
+3. Use the `fsck` command to check the scratch2 file system. Type: 
     
     ```bash
     [root@localhost ~]# fsck -Cfp /dev/scratch/scratch2
@@ -1098,7 +1119,11 @@ He then proceeds to fill up the volume with an arbitrarily large file.
 3. Proceed immediately to fill up the available shared file system with garbage. Type
     
     ```bash
-    [unreasonable@localhost ~]$ dd if=/dev/zero  of=/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar bs=10240
+    [unreasonable@localhost ~]$ dd if=/dev/zero \
+       of=/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar bs=10240
+    ```
+    **OUTPUT**
+    ```
     dd: error writing '/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar': No space left on device
     187129+0 records in
     187128+0 records out
@@ -1239,6 +1264,9 @@ Tools used for turning filesystem quotas on and off
     
     ```bash
     [root@localhost ~]# grep scratch2 /etc/fstab
+    ```
+    **OUTPUT**
+    ```
     /dev/scratch/scratch2  /mnt/2gb-scratch2-volume    ext4     defaults  0  0
     ```
     
@@ -1278,6 +1306,9 @@ Tools used for turning filesystem quotas on and off
     
     ```bash
     [root@localhost ~]# cat /proc/mounts  | grep scratch2
+    ```
+    **OUTPUT**
+    ```
     /dev/mapper/rl-scratch2 /mnt/2gb-scratch2-volume ext4 rw,relatime,quota,usrquota,grpquota 0 0
     ```
     
@@ -1287,17 +1318,23 @@ Tools used for turning filesystem quotas on and off
         
         ```bash
         [root@localhost ~]# mount -t ext4 | grep scratch2
-        /dev/mapper/scratch-scratch2 on /mnt/2gb-scratch2-volume type ext4 (rw,relatime,quota,usrquota,grpquota)
+        ```
+        **OUTPUT**
+        ```
+        /dev/mapper/scratch-scratch2 on /mnt/2gb-scratch2-volume type ext4   (rw,relatime,quota,usrquota,grpquota)
         ``` 
     
     !!! question
         
         Write down the commands to separately `unmount` a given filesystem and then `mount` it back? 
 
-10. You now need to make the file system ready to support quotas. Create the quota files and also generate the table of current disk usage per file system. Type: 
+11. You now need to make the file system ready to support quotas. Create the quota files and also generate the table of current disk usage per file system. Type: 
     
     ```bash
     [root@localhost ~]# quotacheck -avcug
+    ```
+    **OUTPUT**
+    ```
     ....
     quotacheck: Scanning /dev/mapper/scratch-scratch2 [/mnt/2gb-scratch2-volume] done
     ...<SNIP>...
@@ -1314,7 +1351,7 @@ Tools used for turning filesystem quotas on and off
         
         To get up-to-date status of the quota file system you should run the `quotacheck -avcug` command periodically while quota is turned off on the file system.  
     
-11. To enable user and group quotas on all the file systems specified in “/etc/fstab” type: 
+12. To enable user and group quotas on all the file systems specified in “/etc/fstab” type: 
     
     ```bash
     [root@localhost ~]# quotaon -av
@@ -1385,6 +1422,9 @@ This means that all users for which we apply the quota cannot exceed the hard li
     
     ```bash
     [root@localhost ~]# repquota /mnt/2gb-scratch2-volume
+    ```
+    **OUTPUT**
+    ```
     *** Report for user quotas on device /dev/mapper/scratch-scratch2
     Block grace time: 00:05; Inode grace time: 7days
                           Block limits                File limits
@@ -1414,6 +1454,9 @@ This means that all users for which we apply the quota cannot exceed the hard li
     
     ```bash
     [unreasonable@localhost ~]$ dd if=/dev/zero  of=/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar bs=10240
+    ```
+    **OUTPUT**
+    ```
     ...<SNIP>...
     dd: error writing '/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar': Disk quota exceeded
     10001+0 records in
