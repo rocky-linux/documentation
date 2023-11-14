@@ -116,7 +116,7 @@ To display a variable, you have to activate the `debug` module as follows:
 
 ```
 - ansible.builtin.debug:
-    var: "{{ service['debian'] }}"
+    var: service['debian']
 ```
 
 You can also use the variable inside a text:
