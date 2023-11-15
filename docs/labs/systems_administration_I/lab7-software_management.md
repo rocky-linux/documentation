@@ -778,7 +778,7 @@ Amongst other housekeeping tasks, the final installation step also involves copy
     
     !!! Question
 
-        Investigate what causes the error when you try running `hello` with sudo. Fix the issue and make           sure the `hello` program can be used with sudo.
+        Investigate what causes the error when you try running `hello` with sudo. Fix the issue and make sure the `hello` program can be used with sudo.
 
     !!! tip
     
