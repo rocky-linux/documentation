@@ -4,12 +4,12 @@ author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested on: 8.5
 tags:
-  - automazione del lavoro
-  - automazione
+  - job automation
+  - automation
   - cron
 ---
 
-# Automatizzare i Processi con `cron` e `crontab`
+# Automazione dei processi con `cron` e `crontab`
 
 ## Prerequisiti
 
@@ -19,8 +19,8 @@ tags:
 ## <a name="assumptions"></a> Presupposto
 
 * Conoscenza di base di bash, python o altri strumenti di scripting o programmazione, e si desidera che uno script venga eseguito automaticamente
-* Che si stia eseguendo come utente root o che si sia passati a root con `sudo -s`  
-  **(È possibile eseguire alcuni script nelle proprie directory come utente personale. In questo caso, il passaggio a root non è necessario)**
+* Che si stia operando come utente root o che si abbia la possibilità di `sudo -s`  
+  **(È possibile eseguire alcuni script nelle proprie directory come proprio utente. In questo caso, il passaggio a root non è necessario)**
 
 ## Introduzione
 
@@ -28,11 +28,11 @@ Linux fornisce il sistema _cron_, un job scheduler basato sul tempo, per automat
 
 La _crontab_ è essenzialmente un elenco in cui gli utenti aggiungono le proprie attività e i propri lavori automatizzati, con molte opzioni che possono semplificare ulteriormente le cose. Questo documento ne esplorerà alcuni. È un buon ripasso per chi ha un po' di esperienza e i nuovi utenti possono aggiungere il sistema `cron` alla loro dotazione di strumenti.
 
-`anacron` è discusso brevemente qui in riferimento alle directory `cron` "dot". `cron` viene eseguito da `anacron` ed è utile per le macchine che non sono sempre attive, come le workstation e i notebook. Il motivo è che mentre `cron` esegue i lavori in base a una pianificazione, se la macchina è spenta quando il lavoro è pianificato, il lavoro non viene eseguito. Con `anacron` il lavoro verrà eseguito quando la macchina è di nuovo accesa, anche se l'esecuzione programmata è avvenuta in passato. `anacron`, tuttavia, utilizza un approccio più randomizzato per eseguire compiti in cui la tempistica non è esatta. Questo ha senso per le workstation e i notebook, ma non per i server. Questo può essere un problema per cose come i backup dei server, ad esempio, che richiedono l'esecuzione di un lavoro a un'ora specifica. È qui che `cron` fornisce la soluzione migliore per gli amministratori di server. Tuttavia, gli amministratori di server e gli utenti di workstation o notebook possono trarre vantaggio da entrambi gli approcci. È possibile combinarli in base alle proprie esigenze. Per ulteriori informazioni su `anacron`, vedere [anacron - Automazione dei comandi](anacron.md).
+`anacron` è discusso brevemente qui in riferimento alle directory `cron` "dot". `cron` viene eseguito da `anacron` ed è utile per le macchine che non sono sempre attive, come le workstation e i notebook. Il motivo è che mentre `cron` esegue i lavori in base a una pianificazione, se la macchina è spenta all'ora prevista, il lavoro non verrà eseguito. Con `anacron` il lavoro verrà eseguito quando la macchina è di nuovo accesa, anche se l'esecuzione programmata è avvenuta in passato. `anacron`, tuttavia, utilizza un approccio più randomizzato per eseguire compiti in cui la tempistica non è esatta. Questo ha senso per le workstation e i notebook, ma non per i server. Questo può essere un problema per cose come i backup dei server, ad esempio, che richiedono l'esecuzione di un lavoro a un'ora specifica. È qui che `cron` fornisce la soluzione migliore per gli amministratori di server. Tuttavia, gli amministratori di server e gli utenti di workstation o notebook possono trarre vantaggio da entrambi gli approcci. È possibile combinarli in base alle proprie esigenze. Per ulteriori informazioni su `anacron`, vedere [anacron - Automazione dei comandi](anacron.md).
 
 ### <a name="starting-easy"></a>Iniziare in modo semplice: le directory dot di `cron`
 
-Incorporate in ogni sistema Linux da molte versioni, le directory `cron` "dot" aiutano ad automatizzare i processi rapidamente. Queste appaiono come directory che il sistema `cron` chiama in base alle loro convenzioni di denominazione. Tuttavia, vengono eseguiti in modo diverso, a seconda del processo assegnato per chiamarli, `anacron` o `cron`. Il comportamento predefinito prevede l'uso di `anacron`, ma può essere modificato dall'amministratore del server, della workstation o del notebook.
+Incorporate in ogni sistema Linux da molte versioni, le directory `cron` "dot" aiutano ad automatizzare i processi rapidamente. Queste appaiono come directory che il sistema `cron` chiama in base alle loro convenzioni di denominazione. Questi vengono eseguiti in modo diverso, tuttavia, in base al processo assegnato per richiamarli, `anacron` o `cron`. Il comportamento predefinito prevede l'uso di `anacron`, ma può essere modificato dall'amministratore del server, della workstation o del notebook.
 
 #### <a name="for_servers"></a>Per i Server
 
@@ -66,9 +66,9 @@ Questo si traduce in quanto segue:
 
 #### <a name="for_workstations"></a>Per le workstations
 
-Se si desidera eseguire gli script su una workstation o un notebook nelle directory `cron` "dot", non è necessario nulla di particolare. È sufficiente copiare il file di script nella directory in questione e assicurarsi che sia eseguibile. Ecco le directory:
+Se si desidera eseguire gli script su una workstation o un notebook nelle directory `cron` "dot", non è necessario eseguire nulla di complicato. Copiate il file di script nella directory in questione e assicuratevi che sia eseguibile. Ecco le directory:
 
-* `/etc/cron.hourly` - Gli script inseriti qui verranno eseguiti un minuto dopo l'ora ogni ora (questo viene eseguito da `cron`, indipendentemente dal fatto che `anacron` sia installato o meno)
+* `/etc/cron.hourly` - Gli script inseriti qui verranno eseguiti un minuto dopo l'ora ogni ora (eseguiti da `cron` indipendentemente dal fatto che `anacron` sia installato o meno)
 * `/etc/cron.daily` - Gli script messi qui saranno eseguiti ogni giorno. `anacron` regola la tempistica di queste operazioni (vedere il suggerimento)
 * `/etc/cron.weekly` - Gli script inseriti qui verranno eseguiti ogni 7 giorni, in base al giorno del calendario dell'ultima esecuzione (vedi suggerimento)
 * `/etc/cron.monthly` - Gli script inseriti qui verranno eseguiti mensilmente in base al giorno di calendario dell'ultima esecuzione (vedi suggerimento)
@@ -89,7 +89,7 @@ Se gli orari automatici e randomizzati non funzionano bene in [Per le postazioni
 
 `crontab -e`
 
-Questo tirerà fuori il `crontab` dell'utente root così come esiste in questo momento nell'editor scelto, e potrebbe essere qualcosa di simile a questo. Leggete questa versione commentata, poiché contiene le descrizioni di ogni campo che utilizzerete successivamente:
+In questo modo si recupera il `crontab` dell'utente root, così come si trova in questo momento, nell'editor scelto, e potrebbe avere un aspetto simile a questo. Leggete questa versione commentata, poiché contiene le descrizioni di ogni campo che utilizzerete successivamente:
 
 ```
 # Edit this file to introduce tasks to be run by cron.
@@ -137,17 +137,17 @@ Per aggiungere il lavoro, eseguire:
 
 `crontab -e`
 
-`crontab` è l'acronimo di "cron table" e il formato del file è, di fatto, un layout di tabella libera. Ora che siete nella `crontab`, andate in fondo al file e aggiungete la vostra nuova voce. Se si utilizza `vi` come editor di sistema predefinito, ciò avviene con i seguenti tasti:
+`crontab` è l'acronimo di "cron table" e il formato del file è, di fatto, un layout di tabella libera. Ora che siete nel `crontab`, andate in fondo al file e aggiungete la vostra voce. Se si utilizza `vi` come editor di sistema predefinito, lo si farà con i seguenti tasti:
 
-`Shift : $`
+<kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>$</kbd>
 
 Ora che siete in fondo al file, inserite una riga e un breve commento per descrivere la vostra voce. A questo scopo si aggiunge un "#" all'inizio della riga:
 
 `# Backing up the system every night at 10PM`
 
-Premere invio. Dovreste essere ancora nella modalità di inserimento, quindi il passo successivo è aggiungere la voce. Come mostrato nella nostra `crontab` vuota e commentata (sopra), questo è **m** per minuti, **h** per ore, **dom** per giorno della settimana, **mon** per mese, e **dow** giorno della settimana.
+Premere <kbd>INVIO</kbd>. Dovreste essere ancora nella modalità di inserimento, quindi il passo successivo è aggiungere la voce. Come mostrato nella nostra `crontab` vuota e commentata (sopra), questo è **m** per minuti, **h** per ore, **dom** per giorno della settimana, **mon** per mese, e **dow** giorno della settimana.
 
-Per eseguire il nostro script di backup ogni giorno alle 10:00, la voce avrebbe il seguente aspetto:
+Per eseguire il nostro script di backup ogni giorno alle 10:00, la voce si presenta così:
 
 `00  22  *  *  *   /usr/local/sbin/backup`
 
@@ -174,7 +174,7 @@ Per il nostro esempio di script di backup, se si usa l'opzione @daily per esegui
 
 ### Opzioni più complesse
 
-Finora le soluzioni utilizzate sono state piuttosto semplicistiche, ma che dire di tempistiche più complesse? Supponiamo di voler eseguire lo script di backup ogni 10 minuti durante il giorno (probabilmente non è una cosa pratica da fare, ma è un esempio!). Per fare questo, il crontab dovrebbe essere :
+Finora le soluzioni utilizzate sono state piuttosto semplicistiche, ma che dire di tempistiche più complesse? Supponiamo di voler eseguire lo script di backup ogni 10 minuti durante il giorno (probabilmente non è una cosa pratica da fare, ma è un esempio!). Per fare questo il crontab è:
 
 `*/10  *   *   *   *   /usr/local/sbin/backup`
 

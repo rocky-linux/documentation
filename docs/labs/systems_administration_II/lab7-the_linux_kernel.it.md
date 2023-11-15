@@ -107,7 +107,7 @@ In questo esercizio si aggiornerà direttamente il kernel utilizzando l'applicaz
 4. Usare `dnf` per scaricare l'ultimo pacchetto del kernel disponibile dal repository ufficiale dei pacchetti Rocky Linux. Digitare:
 
     ```bash
-    [root@localhost ~]# dnf list kernel
+    [root@localhost ~]# dnf download kernel
     ```
     Ora si dovrebbe avere un pacchetto RPM con un nome simile a kernel-*.x86_64.rpm salvato nella propria PWD.
 
@@ -120,7 +120,7 @@ In questo esercizio si aggiornerà direttamente il kernel utilizzando l'applicaz
 6. Usare `rpm` per fare un'installazione di prova del kernel*.rpm scaricato per assicurarsi che tutte le sue dipendenze siano soddisfatte. Digitare:
 
     ```bash
-    [root@localhost ~]# rpm --test  -Uvh kernel-*.x86_64.rpm
+    [root@localhost ~]# rpm --test  -ivh kernel-*.x86_64.rpm
 
     error: Failed dependencies:
     kernel-core-uname-r = *.x86_64 is needed by kernel-*.x86_64
@@ -129,7 +129,7 @@ In questo esercizio si aggiornerà direttamente il kernel utilizzando l'applicaz
 
     Dall'output si può vedere che il pacchetto ha dipendenze non soddisfatte.
 
-7. Usare `dnf` per scaricare le dipendenze necessarie. Digitare:
+7. Utilizzare `dnf` per scaricare le dipendenze necessarie segnalate nel precedente messaggio di errore. Digitare:
 
     ```bash
     [root@localhost ~]# dnf download kernel-core-uname-r kernel-modules-uname-r  
@@ -226,13 +226,13 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
 2.  Installare gli strumenti di sviluppo necessari. Digitare:
 
     ```bash
-    [root@localhost linux-6.5.7]# sudo dnf -y groupinstall 'Development Tools'
+    [root@localhost linux-6.5.7]# dnf -y groupinstall 'Development Tools'
     ```
 
-3. Installare le librerie necessarie. Digitare:
+3. Installare le librerie e gli strumenti necessari. Digitare:
 
     ```bash
-    [root@localhost linux-6.*]# dnf -y install ncurses-devel openssl-devel elfutils-libelf-devel python3 dwarves
+    [root@localhost linux-6.*]# dnf -y install ncurses-devel bc openssl-devel elfutils-libelf-devel python3 dwarves
     ```
 
 4. Scaricare l'ultimo sorgente del kernel digitando:
