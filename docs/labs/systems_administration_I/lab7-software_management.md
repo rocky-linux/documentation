@@ -133,7 +133,7 @@ In this Lab you will learn how to use the RPM system and you will also install a
     ...<OUTPUT TRUNCATED>...
     ```
 
-   That is a great deal of information (metadata)! 
+    That is a great deal of information (metadata)! 
 
 3. Let us say we are only interested in the Summary field of the previous command. We can use rpm's --queryformat option to filter the information that we get back from the query option.
 
@@ -266,9 +266,7 @@ In this Lab you will learn how to use the RPM system and you will also install a
     ```
     $ rpm -ql chrony
     ```
-
-
-
+    
 ## Exercise 2
 
 ### Package integrity
@@ -403,7 +401,6 @@ In this exercise you will try to install the `wget` package (wget-*.rpm).
 
         What gives? Why can't you run or execute `libmetalink`?
 
-
 #### To import a public key via rpm
 
 !!! tip 
@@ -434,7 +431,6 @@ Uninstalling packages is just as easy as installing, with Red Hat’s package ma
     !!! question
 
         Explain why you couldn’t remove the package?
-
 
 2. The clean and proper way to remove packages using RPM is to remove the package(s) along with their dependencies. To remove `libmetalink` package we will also have to remove the `wget` package that depends on it. Type:
 
@@ -526,7 +522,6 @@ Assuming you have already uninstalled the `wget` utility from an exercise, we wi
 
         The "-y" option used in the preceding command suppresses the "[y/N]" prompt to confirm the action that `dnf` is about to perform. This means that all confirmation actions (or interactive responses) will be "yes" (y).
 
-
 3. DNF provides an "Environment Group" option that makes adding a new feature set to a system easy. To add the feature, you would typically have to install a few packages individually, but using `dnf`, all you need to know is the name or description of the feature you want. Use `dnf` to display a list of all the groups available to you. Type:
 
     ```
@@ -546,7 +541,6 @@ Assuming you have already uninstalled the `wget` utility from an exercise, we wi
     ```
 
 #### To use `dnf` for uninstalling packages
-
 
 1. To use `dnf` to uninstall the `wget` package type:
 
@@ -715,11 +709,11 @@ The script that usually lets you configure the software is usually aptly named �
 
         Hopefully the configure stage went smoothly and you can go on to the compilation stage.
 
-    If you got some errors during the configure stage, you should carefully look through the tail-end of the output to see the source of the error. The errors are *sometimes* self-explanatory and easy to fix. For example, you might see an error like:
+        If you got some errors during the configure stage, you should carefully look through the tail-end of the output to see the source of the error. The errors are *sometimes* self-explanatory and easy to fix. For example, you might see an error like:
 
-    configure: error: no acceptable C compiler found in $PATH
+        configure: error: no acceptable C compiler found in $PATH
 
-    The above error simply means that you don’t have a C Compiler (e.g., gcc) installed on the system or the compiler is installed somewhere that is not in your PATH variable.
+        The above error simply means that you don’t have a C Compiler (e.g., `gcc`) installed on the system or the compiler is installed somewhere that is not in your PATH variable.
 
 #### To compile the package
 
