@@ -30,7 +30,7 @@ title: Ansible. Середній рівень
 
 ## Змінні
 
-!!! Важливо
+!!! Note "Примітка"
 
     Більше інформації можна [знайти тут](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html).
 
