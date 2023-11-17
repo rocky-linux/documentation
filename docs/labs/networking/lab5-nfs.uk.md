@@ -118,7 +118,7 @@ SYNOPSIS
     ```bash
     systemctl status nfs-server
     ```
-    **Вихід**
+   **Вихід**
    ```bash
     ● nfs-server.service - NFS server and services
     Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; disabled; vendor preset: disabled)
@@ -354,5 +354,9 @@ OPTIONS
 
     !!! tip "Порада"
    
-        Вам потрібно вимкнути спеціальну обробку NFS файлів, які належать root. Це робиться шляхом вказівки певного параметра, який «скасує» суперкористувача у файлі «/etc/exports».
+        Вам потрібно вимкнути спеціальну обробку NFS файлів, які належать root. Це робиться шляхом вказівки певного параметра, який «скасує» суперкористувача у файлі «/etc/exports». Спеціальна опція називається `no_root_squash`. Зверніть увагу, що використання параметра `no_root_squash` вважається поганою практикою та ризиком для безпеки. Зразок запису для виконання цього для будь-якого хосту, який відповідає `localhost` в `/etc/exports`, виглядатиме так:
+
+        ```bash
+        /mnt/nfs    172.16.99.0/24(rw)   localhost(rw,no_root_squash)
+        ```
 
