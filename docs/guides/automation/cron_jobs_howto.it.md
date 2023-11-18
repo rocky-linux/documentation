@@ -151,7 +151,7 @@ Per eseguire il nostro script di backup ogni giorno alle 10:00, la voce si prese
 
 `00  22  *  *  *   /usr/local/sbin/backup`
 
-Questo dice di eseguire lo script alle 22: 00, ogni giorno del mese, ogni mese e ogni giorno della settimana. Questo è un esempio molto semplice e le cose possono complicarsi quando si ha bisogno di informazioni specifiche.
+Questo dice di eseguire lo script alle 22:00, ogni giorno del mese, ogni mese e ogni giorno della settimana. Questo è un esempio molto semplice e le cose possono complicarsi quando si ha bisogno di informazioni specifiche.
 
 ### Le @options per `crontab`
 
