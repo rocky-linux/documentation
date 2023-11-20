@@ -164,7 +164,7 @@ There are many websites available to practice your regular expression skills onl
 * [coding](https://coding.tools/regex-tester)
 * ...
 
-### `grep` command
+## `grep` command
 
 The `grep` command is used to filter the content of a single or multiple file. There are some variants of this command tool, such as `egrep (grep -E)` and `fgrep (grep -f)`. For information not covered, please refer to [here]( https://www.gnu.org/software/grep/manual/ "grep manual").
 
@@ -227,7 +227,7 @@ directory or file control:
 | --exclude-dir=PATTERN    | Exclude the specified directory name. Directory name support *, ?, [], [^], [-], {..}, {,} | 
 | --exclude-from=FILE      | Exclude the specified directory from the file content. | 
 
-#### Examples of usage
+### Examples of usage
 
 1. -f option and -o option
 
@@ -436,7 +436,7 @@ directory or file control:
     192.168.100.3
     ```
 
-### `sed` command
+## `sed` command
 
 `sed`: Stream EDitor
 
@@ -493,7 +493,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 | addr1,addr2  | Use line number positioning to match all lines from "addr1" to "addr2" | 
 | addr1,+N     | Use line number positioning to match addr1 and the N lines following addr1  | 
 
-#### Examples of usage
+### Examples of usage
 
 1. Match and print (`p`)
 
@@ -1256,7 +1256,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       11473
       ```
 
-### `awk` commnad
+## `awk` command
 
 In 1977, a programming language-level tool for processing text was born at Bell Labs, named `awk`. The name comes from the first letters of the last names of three famous people:
 
@@ -1288,3 +1288,149 @@ gawk-4.2.1-4.el8.x86_64
 ```
 
 For information not covered, please refer to [here](https://www.gnu.org/software/gawk/manual/ "gawk manual")
+
+Although `awk` is a tool for processing text, it has some programming language features:
+
+* variable
+* process control (loop)
+* data type
+* logical operation
+* function
+* array
+* ...
+
+**The working principle of `awk`**: Similar to relational databases, it supports processing of fields (columns) and records (rows). By default, awk treats each line of a file as a record and places these records in memory for line-by-line processing, with a portion of each line treated as a field in the record. By default, Spaces and tabs are used as delimiters to separate different fields, and numbers are used to represent different fields in the row record. To reference multiple fields, separate them with commas or tabs.
+
+A simple example that is easy to understand：
+
+```bash
+Shell > df -hT 
+| 1             |     2        |  3    |  4   |  5    |   6   |   7            | 8       |
+|Filesystem     |    Type      | Size  | Used | Avail | Use%  | Mounted        | on      |←← 1 (first line)
+|devtmpfs       |    devtmpfs  | 1.8G  |   0  | 1.8G  |  0%   | /dev           |         |←← 2
+|tmpfs          |    tmpfs     | 1.8G  |    0 | 1.8G  |  0%   | /dev/shm       |         |←← 3
+|tmpfs          |    tmpfs     | 1.8G  | 8.9M | 1.8G  |  1%   | /run           |         |←← 4
+|tmpfs          |    tmpfs     | 1.8G  |   0  | 1.8G  |  0%   | /sys/fs/cgroup |         |←← 5
+|/dev/nvme0n1p2 |    ext4      | 47G   | 2.6G |  42G  |  6%   | /              |         |←← 6
+|/dev/nvme0n1p1 |    xfs       | 1014M | 182M | 833M  |  18%  | /boot          |         |←← 7
+|tmpfs          |    tmpfs     | 364M  |   0  | 364M  |  0%   | /run/user/0    |         |←← 8  (end line)
+
+Shell > df -hT | awk '{print $1,$2}'
+Filesystem  Type
+devtmpfs devtmpfs
+tmpfs tmpfs
+tmpfs tmpfs
+tmpfs tmpfs
+/dev/nvme0n1p2 ext4
+/dev/nvme0n1p1 xfs
+tmpfs tmpfs
+
+# $0: Reference the entire text content.
+Shell > df -hT | awk '{print $0}'
+Filesystem     Type      Size   Used  Avail Use% Mounted on
+devtmpfs       devtmpfs  1.8G     0  1.8G    0%  /dev
+tmpfs          tmpfs     1.8G     0  1.8G    0%  /dev/shm
+tmpfs          tmpfs     1.8G  8.9M  1.8G    1%  /run
+tmpfs          tmpfs     1.8G     0  1.8G    0%  /sys/fs/cgroup
+/dev/nvme0n1p2 ext4       47G  2.6G   42G    6%  /
+/dev/nvme0n1p1 xfs      1014M  182M  833M   18%  /boot
+tmpfs          tmpfs     364M     0  364M    0%  /run/user/0
+```
+
+### Instructions for using `awk`
+
+The usage of awk is - `awk option  'pattern {action}'  FileName`
+
+**pattern**: Find specific content in the text
+**action**: Action instruction
+**{ }**: Group some instructions according to specific patterns
+
+| option | description | 
+| :---   | :---        |
+| -f program-file<br/>--file program-file | Reading awk program source files from files |
+| -F FS  | Specify the separator for separating fields. The 'FS' here is a built-in variable in awk, with default values of spaces or tabs |
+| -v var=value | variable assignment |
+| --posix | Turn on compatibility mode |
+| --dump-variables=[file] | Write global variables in awk to a file. If no file is specified, the default file is awkvars.out |
+| --profile=[file] | Write performance analysis data to a specific file. If no file is specified, the default file is awkprof.out |
+
+| pattern                | description | 
+| :---                   | :---        |
+| BEGIN{ }               | An action that is performed before all row records are read |
+| END{ }                 | An action that is performed after all row records are read|
+| /regular  expression/  | Match the regular expression for each input line record |
+| pattern && pattern     | Logic and operation |
+| pattern \|\| pattern   | Logic or operation |
+| !pattern               | Logical negation operation|
+| pattern1,pattern2      | Specify the pattern range to match all row records within that range |
+
+`awk` is powerful and involves a lot of knowledge, so some of the content will be explained later.
+
+#### `printf`  commands
+
+Before formally learning `awk`, beginners need to understand the command `printf`.
+
+`printf`：format and print data. Its usage is -`printf FORMAT [ARGUMENT]...`
+
+**FORMAT**：Used to control the content of the output. The following common interpretation sequences are supported：
+
+* **\a** - alert (BEL)
+* **\b** - backspace
+* **\f** - form feed
+* **\n** - new line
+* **\r** - carriage return
+* **\t** - horizontal tab
+* **\v** - vertical tab
+* **%Ns** - The output string. The N represents the number of strings, for example: `%s %s %s`
+* **%Ni** - Output integers. The N represents the number of integers of the output, for example: `%i %i`
+* **%m\.nf** - Output Floating Point Number. The m represents the total number of digits output, and the n represents the number of digits after the decimal point. For examle: `%8.5f`
+
+**ARGUMENT**: If it is a file, you need to do some preprocessing to output correctly.
+
+```bash
+Shell > cat /tmp/printf.txt
+ID      Name    Age     Class
+1       Frank   20      3
+2       Jack    25      5
+3       Django  16      6
+4       Tom     19      7
+
+# Example of incorrect syntax:
+Shell > printf '%s %s $s\n' /tmp/printf.txt
+/tmp/printf.txt
+
+# Change the format of the text
+Shell > printf '%s' $(cat /tmp/printf.txt)
+IDNameAgeClass1Frank2032Jack2553Django1664Tom197
+# Change the format of the text
+Shell > printf '%s\t%s\t%s\n' $(cat /tmp/printf.txt)
+ID      Name    Age
+Class   1       Frank
+20      3       2
+Jack    25      5
+3       Django  16
+6       4       Tom
+19      7
+
+Shell > printf "%s\t%s\t%s\t%s\n" a b c d 1 2 3 4
+a       b       c       d
+1       2       3       4
+```
+
+There is no `print` command in The RockyLinux OS, `print` can only be used in awk, and its difference from printf is that it automatically adds a newline at the end of each line. For example:
+
+```bash
+Shell > awk '{printf $1 "\t" $2"\n"}' /tmp/printf.txt
+ID      Name
+1       Frank
+2       Jack
+3       Django
+4       Tom
+
+Shell > awk '{print $1 "\t" $2}' /tmp/printf.txt
+ID      Name
+1       Frank
+2       Jack
+3       Django
+4       Tom
+```
