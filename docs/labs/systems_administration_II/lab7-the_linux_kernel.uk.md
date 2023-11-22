@@ -107,7 +107,7 @@ linux-<kernel.version>.tar.bz2    (or  linux-<kernel.version>.tar.gz)
 4. Використовуйте `dnf`, щоб [обдурити та] завантажити найновіший пакет ядра, доступний з офіційного репозиторію пакетів Rocky Linux. Впишіть:
 
     ```bash
-    [root@localhost ~]# dnf list kernel
+    [root@localhost ~]# dnf download kernel
     ```
     Тепер у вашому PWD має бути збережений пакет RPM із назвою, схожою на kernel-*.x86_64.rpm.
 
@@ -120,7 +120,7 @@ linux-<kernel.version>.tar.bz2    (or  linux-<kernel.version>.tar.gz)
 6. Використовуйте `rpm`, щоб перевірити та встановити завантажене kernel*.rpm, щоб переконатися, що всі його залежності виконуються. Впишіть:
 
     ```bash
-    [root@localhost ~]# rpm --test  -Uvh kernel-*.x86_64.rpm
+    [root@localhost ~]# rpm --test  -ivh kernel-*.x86_64.rpm
 
     error: Failed dependencies:
     kernel-core-uname-r = *.x86_64 is needed by kernel-*.x86_64
@@ -226,13 +226,13 @@ linux-<kernel.version>.tar.bz2    (or  linux-<kernel.version>.tar.gz)
 2.  Встановіть необхідні засоби розробки. Впишіть:
 
     ```bash
-    [root@localhost linux-6.5.7]# sudo dnf -y groupinstall 'Development Tools'
+    [root@localhost linux-6.5.7]# dnf -y groupinstall 'Development Tools'
     ```
 
 3. Встановіть необхідні бібліотеки. Впишіть:
 
     ```bash
-    [root@localhost linux-6.*]# dnf -y install ncurses-devel openssl-devel elfutils-libelf-devel python3 dwarves
+    [root@localhost linux-6.*]# dnf -y install ncurses-devel bc openssl-devel elfutils-libelf-devel python3 dwarves
     ```
 
 4. Завантажте останнє джерело ядра, ввівши:

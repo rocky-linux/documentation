@@ -568,6 +568,9 @@ ext2/ext3/ext4 налагоджувач файлової системи
 
     ```bash
     [root@localhost ~]# losetup
+    ```
+    **Вихід**
+    ```
     NAME       SIZELIMIT OFFSET AUTOCLEAR RO BACK-FILE                  DIO LOG-SEC
     /dev/loop1         0      0         0  0 /tmp/10G-fake-lvm-disk.img   0     512
     /dev/loop0         0      0         0  0 /tmp/10G-fake-disk.img       0     512
@@ -605,6 +608,9 @@ ext2/ext3/ext4 налагоджувач файлової системи
 
     ```bash
     [root@localhost ~]# vgdisplay
+    ```
+    **Вихід**
+    ```
     --- Volume group ---
     VG Name               rl
     System ID
@@ -630,13 +636,19 @@ ext2/ext3/ext4 налагоджувач файлової системи
 
     ```bash
     [root@localhost ~]# vgextend rl /dev/loop1
+    ```
+    **Вихід**
+    ```
     Volume group "rl" successfully extended
     ```
 
-3. Виконайте команду `vgdisplay` ще раз, щоб переглянути зміни. Впишіть:
+4. Виконайте команду `vgdisplay` ще раз, щоб переглянути зміни. Впишіть:
 
     ```bash
     [root@localhost ~]# vgdisplay
+    ```
+    **Вихід**
+    ```
     --- Volume group ---
     VG Name               rl
     System ID
@@ -787,6 +799,9 @@ ext2/ext3/ext4 налагоджувач файлової системи
 
     ```bash
     [root@localhost ~]# mkfs.vfat /dev/loop0p1
+    ```
+    **Вихід**
+    ```
     mkfs.fat 4.*
     ```
 
@@ -794,6 +809,9 @@ ext2/ext3/ext4 налагоджувач файлової системи
 
     ```bash
     [root@localhost ~]# lsblk -f /dev/loop0
+    ```
+    **Вихід**
+    ```
     NAME      FSTYPE LABEL UUID                 MOUNTPOINT
     loop0
     └─loop0p1 vfat         658D-4A90
@@ -813,7 +831,7 @@ ext2/ext3/ext4 налагоджувач файлової системи
     Writing superblocks and filesystem accounting information: done
     ```
 
-2. Використовуйте `lsblk`, щоб запитати систему щодо цікавої інформації про том scratch1. Впишіть:
+2. Використовуйте `lsblk`, щоб запитати систему щодо цікавої інформації про том scratch2. Впишіть:
 
     ```bash
     [root@localhost ~]# lsblk -f /dev/scratch/scratch2
@@ -838,6 +856,9 @@ ext2/ext3/ext4 налагоджувач файлової системи
 
     ```bash
     [root@localhost ~]# lsblk -f /dev/scratch/scratch3
+    ```
+    **Вихід**
+    ```
     NAME        FSTYPE LABEL UUID         MOUNTPOINT
     scratch-scratch3 xfs          1d1ac306***
     ```
@@ -1100,7 +1121,11 @@ ext2/ext3/ext4 налагоджувач файлової системи
 3. Негайно приступайте до заповнення доступної спільної файлової системи сміттям. Впишіть
 
     ```bash
-    [unreasonable@localhost ~]$ dd if=/dev/zero  of=/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar bs=10240
+    [unreasonable@localhost ~]$ dd if=/dev/zero \
+       of=/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar bs=10240
+    ```
+    **Вихід**
+    ```
     dd: error writing '/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar': No space left on device
     187129+0 records in
     187128+0 records out
@@ -1241,6 +1266,9 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
 
     ```bash
     [root@localhost ~]# grep scratch2 /etc/fstab
+    ```
+    **Вихід**
+    ```
     /dev/scratch/scratch2  /mnt/2gb-scratch2-volume    ext4     defaults  0  0
     ```
 
@@ -1280,6 +1308,9 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
 
     ```bash
     [root@localhost ~]# cat /proc/mounts  | grep scratch2
+    ```
+    **Вихід**
+    ```
     /dev/mapper/rl-scratch2 /mnt/2gb-scratch2-volume ext4 rw,relatime,quota,usrquota,grpquota 0 0
     ```
 
@@ -1289,17 +1320,25 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
 
         ```bash
         [root@localhost ~]# mount -t ext4 | grep scratch2
-        /dev/mapper/scratch-scratch2 on /mnt/2gb-scratch2-volume type ext4 (rw,relatime,quota,usrquota,grpquota)
+        ```
+
+
+     **ВИХІД**
+        ```
+        /dev/mapper/scratch-scratch2 on /mnt/2gb-scratch2-volume type ext4   (rw,relatime,quota,usrquota,grpquota)
         ```
 
     !!! question "Питання"
 
      Записати команди для окремого `відмонтування` даної файлової системи, а потім `монтування` її назад?
 
-10. Тепер вам потрібно підготувати файлову систему для підтримки квот. Створіть файли квот і згенеруйте таблицю поточного використання диска для кожної файлової системи. Впишіть:
+11. Тепер вам потрібно підготувати файлову систему для підтримки квот. Створіть файли квот і згенеруйте таблицю поточного використання диска для кожної файлової системи. Впишіть:
 
     ```bash
     [root@localhost ~]# quotacheck -avcug
+    ```
+    **Вихід**
+    ```
     ....
     quotacheck: Scanning /dev/mapper/scratch-scratch2 [/mnt/2gb-scratch2-volume] done
     ...<SNIP>...
@@ -1316,7 +1355,7 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
 
      Щоб отримати оновлений статус файлової системи квот, вам слід періодично запускати команду `quotacheck -avcug`, коли квоти вимкнено у файловій системі.
 
-11. Щоб увімкнути квоти користувачів і груп на всіх файлових системах, указаних у «/etc/fstab», введіть:
+12. Щоб увімкнути квоти користувачів і груп на всіх файлових системах, указаних у «/etc/fstab», введіть:
 
     ```bash
     [root@localhost ~]# quotaon -av
@@ -1387,6 +1426,9 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
 
     ```bash
     [root@localhost ~]# repquota /mnt/2gb-scratch2-volume
+    ```
+    **Вихід**
+    ```
     *** Report for user quotas on device /dev/mapper/scratch-scratch2
     Block grace time: 00:05; Inode grace time: 7days
                           Block limits                File limits
@@ -1416,6 +1458,9 @@ quotacheck [-gucbfinvdmMR] [-F <quota-format>] filesystem|-a
 
     ```bash
     [unreasonable@localhost ~]$ dd if=/dev/zero  of=/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar bs=10240
+    ```
+    **Вихід**
+    ```
     ...<SNIP>...
     dd: error writing '/mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar': Disk quota exceeded
     10001+0 records in
