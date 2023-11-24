@@ -10,7 +10,7 @@ tags:
 # 概述
 在本指南中，我们将介绍获取内核源代码树、配置它、编译它，最后安装和引导内核的这一过程。
 
-!!! 警告" 对于Rocky Linux，不推荐也不支持内核重建。 在建立一个定制的内核或甚至考虑它之前，问自己以下问题"：
+!!! Wanning "警告"  对于Rocky Linux，不推荐也不支持内核重建。 在建立一个定制的内核或甚至考虑它之前，问自己以下问题"：
 
     * 您需要的功能是否可以通过安装 [elrepo](https://elrepo.org) 中的内核模块来实现？
     * 你需要的功能，是否可以作为内核本身的一个独立模块？
@@ -147,7 +147,7 @@ Linux 内核源树包含几个名为 Makefile 的文件(makefile 只是一个带
 These makefiles help to glue together the thousands of other files that make up the kernel source. 对我们来说更重要的是，makefiles也包含目标。 Targets 是make执行的命令共和扩展。
 
 
-!!! 以下将更详细地讨论其中一些目标：
+!!! Wanning "警告" 以下将更详细地讨论其中一些目标：
 
     铭记如果你有一个稳定和良好运作的工作体系， 没有理由升级内核，除非这些条件之一对您来说：
 
@@ -188,7 +188,7 @@ These makefiles help to glue together the thousands of other files that make up 
 The configuration file contains a list of the options and features that were enabled for the particular kernel it represents. 在配置内核的过程中，我们的目标就是创建一个类似的配置文件。 我们将创建的文件和准备完成的文件之间的唯一区别是，我们将为我们添加更少的自定义内容。
 
 
-!!! 我们将使用基于文本的内核配置工具 无论您是否使用GUI桌面环境都允许您可以继续。
+!!! Tip "提示"
 
     使用已知的 作为创建我们自己的自定义文件的框架前存在的配置文件有助于确保我们不会浪费太多的时间，重复其他人已经做出的努力来寻找什么是可行的，什么是不可行的！
 
@@ -264,7 +264,7 @@ The configuration file contains a list of the options and features that were ena
         CONFIG_NTFS_RW=y
         ```
 
-    !!! 注“关于内核模块的快速说明”
+    !!! NOTE "说明" 关于内核模块的快速说明”
 
      可加载模块支持是 Linux 内核功能，允许内核模块的动态加载(或移除)。    
     

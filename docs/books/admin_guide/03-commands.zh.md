@@ -58,7 +58,7 @@ contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrn
 
 通常，用户的登录目录被储存在工作站的 `/home` 目录中。 它将包含用户的个人数据和应用程序的配置文件。 默认情况下，登录时会选择 登录目录 作为当前目录。
 
-一个工作站类型的安装 (带有图形界面) 将在终端 1 上开启此界面。 Linux是多用户的，可以在不同的 **物理终端**(TTY) 或 **虚拟终端**(PTS) 上多次连接多个用户。 虚拟终端可以在图形化环境中使用。 一个用户可以通过 <kbd>Alt</kbd> + <kbd>Fx</kbd> 或 <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd> 来切换物理终端。
+一个工作站类型的安装 (带有图形界面) 将在终端 1 上开启此界面。 Linux是多用户的，可以在不同的 **物理终端**(TTY) 或 **虚拟终端**(PTS) 上多次连接多个用户。 虚拟终端可以在图形化环境中使用。 用户可通过 <kbd>Alt</kbd> + <kbd>Fx</kbd> 或 <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd> 来切换物理终端。
 
 ### shell
 
