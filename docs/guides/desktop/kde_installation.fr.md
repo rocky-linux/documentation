@@ -4,7 +4,7 @@ author: Steven Spencer
 contributors: Ezequiel Bruni, Ganna Zhyrnova
 tested_with: 9.0
 tags:
-  - bureau
+  - desktop
   - kde
 ---
 
@@ -25,7 +25,7 @@ Grâce à l'équipe de développement de Rocky Linux, il y a maintenant des imag
 
 ## Obtenir, vérifier et créer une image Live de KDE
 
-Avant l'installation, la première étape consiste à télécharger l'image live et à l'enregistrer sur un DVD ou une clé USB. Comme indiqué précédemment, l'image autonome sera amorçable, tout comme tout autre support d'installation pour Linux. Vous pouvez trouver la dernière image KDE dans la section de téléchargement pour Rocky Linux 9 [images lives](https://dl.rockylinux.org/pub/rocky/9.3/live/x86_64/).
+Avant l'installation, la première étape consiste à télécharger l'image live et à l'enregistrer sur un DVD ou une clé USB. Comme indiqué précédemment, l'image autonome sera amorçable, tout comme tout autre support d'installation pour Linux. Vous pouvez trouver la dernière image KDE dans la section de téléchargement pour Rocky Linux 9 [images live](https://dl.rockylinux.org/pub/rocky/9.3/live/x86_64/).
 
 Notez que ce lien particulier suppose que x86_64 est l'architecture de votre processeur. Si vous avez une architecture aarch64, vous pouvez utiliser l'image correspondante à la place. Téléchargez à la fois l'image live et les fichiers de somme de contrôle.
 
