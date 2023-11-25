@@ -23,7 +23,7 @@ L'ambiente desktop XFCE, creato come fork del Common Desktop Environment (CDE), 
     
     ## 9: Ottenere, verificare e scrivere l'immagine live di XFCE
     
-    Prima dell'installazione, il primo passo è scaricare l'immagine live e scriverla su un DVD o una chiavetta USB. Come detto in precedenza, l'immagine sarà avviabile, proprio come qualsiasi altro supporto di installazione per Linux. È possibile trovare l'ultima immagine di XFCE nella sezione download di Rocky Linux 9 [immagini live](https://dl.rockylinux.org/pub/rocky/9.2/live/x86_64/). Si noti che questo particolare collegamento presuppone che x86_64 sia l'architettura del vostro processore. 
+    Prima dell'installazione, il primo passo è scaricare l'immagine live e scriverla su un DVD o una chiavetta USB. Come detto in precedenza, l'immagine sarà avviabile, proprio come qualsiasi altro supporto di installazione per Linux. È possibile trovare l'ultima immagine di XFCE nella sezione download di Rocky Linux 9 [immagini live](https://dl.rockylinux.org/pub/rocky/9.3/live/x86_64/). Si noti che questo particolare collegamento presuppone che x86_64 sia l'architettura del vostro processore. 
     
     Al momento è possibile utilizzare architetture x86_64 o aarch64 per questa immagine live. Scaricare l'immagine live e i file di checksum. 
     
