@@ -103,4 +103,4 @@ Al termine di questo passaggio, apparirà il nome utente creato in precedenza. I
 
 ## Conclusione
 
-Grazie al team di sviluppo di Rocky Linux, è possibile installare diverse opzioni di desktop da immagini live per Rocky Linux 9.0. KDE è un'altra opzione per coloro che non amano il desktop GNOME predefinito e l'installazione, con l'immagine live, non è complessa. 
+Grazie al team di sviluppo di Rocky Linux, è possibile installare diverse opzioni di desktop da immagini live per Rocky Linux 9.0. KDE è un'altra opzione per coloro che non amano il desktop GNOME predefinito e l'installazione, con l'immagine live, non è complessa.
