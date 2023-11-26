@@ -35,7 +35,7 @@ Linux, UNIX, BSD, VxWorks, Windows und MacOS sind Beispiele für **Betriebssyste
 
 Unter dieser Ressourcenverwaltung muss das Betriebssystem folgendes tun:
 
-* Physischen und virtuellen Speicher verwalten.
+* Physikalischen und virtuellen Speicher verwalten.
     * Der **physikalische Speicher** besteht aus den RAM-Balken und dem Prozessor-Cache-Speicher, der zur Ausführung von Programmen verwendet wird.
     * Der **virtuelle Speicher** ist ein Ort auf der Festplatte (die **Swap** Partition), der das Entladen des physikalischen Speichers und die Speicherung des aktuellen Status des Systems während des elektrischen Herunterfahrens des Computers ermöglicht.
 * **Zugriff auf Peripheriegeräte** abfangen. Auf Hardware direkt zuzugreifen (außer Grafikkarten für sehr spezifische Bedürfnisse) ist der Software selten erlaubt.
