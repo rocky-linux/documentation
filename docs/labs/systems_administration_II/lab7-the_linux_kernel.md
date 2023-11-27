@@ -327,26 +327,32 @@ In this exercise you will build a new kernel from source, by configuring, compil
         CONFIG_BTRFS_FS=y
         ```
     
-18. Complete another important step for custom Kernels on Rocky Linux distro. Type:
+18. Let's optimize the kernel build time and also reduce the amount of disk space used during the kernel compile stage by setting. By setting `CONFIG_DEBUG_INFO=no`, the resulting kernel image will NOT include debugging info thereby resulting in a smaller kernel image. This removes debugging symbols from the built kernel and modules. Type:
+    
+    ```bash
+    # sed -ri '/CONFIG_DEBUG_INFO/s/=.+/="no"/g' ~/build/kernel/.config 
+    ```
+       
+19. Complete another important step for custom Kernels on Rocky Linux distro. Type:
     
     
     ```bash
     [root@localhost linux-6*]# sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config 
     ```
     
-19. Add a simple customization to the new kernel, allowing you to distinguish it from the other stock Kernels more easily. For this, use the `sed` utility to edit the Makefile in place. Type:
+20. Add a simple customization to the new kernel, allowing you to distinguish it from the other stock Kernels more easily. For this, use the `sed` utility to edit the Makefile in place. Type:
     
     ```bash
     [root@localhost linux-6.*]# sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
     ```
     
-20. Verify the full version of the kernel that you just customized by passing the `kernelversion` target to the `make` command. Type:
+21. Verify the full version of the kernel that you just customized by passing the `kernelversion` target to the `make` command. Type:
     
     ```bash
     [root@localhost ~]# make O=~/build/kernel kernelversion
     ```
     
-21. You are ready to compile the kernel. Type:
+22. You are ready to compile the kernel. Type:
     
     ```bash
     [root@localhost linux-6.*]# make  O=~/build/kernel -j $(nproc)
@@ -356,19 +362,19 @@ In this exercise you will build a new kernel from source, by configuring, compil
     HOSTCC  scripts/kconfig/conf.o
     ```
     
-22. After the compilation completes successfully, you'll end up with the finished kernel stored here:
+23. After the compilation completes successfully, you'll end up with the finished kernel stored here:
     
     ```bash
     ~/build/kernel/arch/x86/boot/bzImage
     ```
 
-23. Install the portions of the kernel that were configured as modules. Type:
+24. Install the portions of the kernel that were configured as modules. Type:
     
     ```bash
     [root@localhost linux-6.*]# make O=~/build/kernel modules_install      
     ```
     
-24. With the kernel now built it's time to install it. Type:
+25. With the kernel now built it's time to install it. Type:
     
     ```bash
     [root@localhost linux-6.*]# cp ~/build/kernel/arch/x86/boot/bzImage  \
@@ -382,21 +388,21 @@ In this exercise you will build a new kernel from source, by configuring, compil
     cp ~/build/kernel/arch/x86/boot/bzImage  /boot/vmlinuz-6.*-custom
     ```
     
-25. Copy over and rename the corresponding System.map file into the /boot directory using the same naming convention:
+26. Copy over and rename the corresponding System.map file into the /boot directory using the same naming convention:
     
     ```bash
     [root@localhost linux-6.*]# cp -v ~/build/kernel/System.map /boot/System.map-6.*-custom  
     ```
 
-26. Use the `kernel-install` utility to complete the file step. Type:
+27. Use the `kernel-install` utility to complete the file step. Type:
     
     ```bash
     [root@localhost linux-6.*]# kernel-install add  6.*-custom /boot/vmlinuz-6.*-custom
     ```
     
-27. The `kernel-install` utility will create a new boot entry in the boot loader configuration file. For EFI based systems you can look under /boot/loader/entries/ for matching entries.
+28. The `kernel-install` utility will create a new boot entry in the boot loader configuration file. For EFI based systems you can look under /boot/loader/entries/ for matching entries.
 
-28. All done. Moment of truth now. You can reboot your system and select the new custom Kernel in the GRUB boot menu.
+29. All done. Moment of truth now. You can reboot your system and select the new custom Kernel in the GRUB boot menu.
     If all goes well after the reboot, you can verify that system is running the custom kernel by running the `uname` command like this:
     
     ```bash
