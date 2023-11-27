@@ -22,7 +22,7 @@ https://www.rockylinux.org/download/
 To download the ISO directly from the command line, use the `wget` command:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.7/isos/x86_64/Rocky-8.7-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/8.9/isos/x86_64/Rocky-8.9-x86_64-minimal.iso
 ```
 
 Rocky Linux ISOs are named following this convention:
@@ -31,7 +31,7 @@ Rocky Linux ISOs are named following this convention:
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-For example, `Rocky-8.7-x86_64-minimal.iso`
+For example, `Rocky-8.9-x86_64-minimal.iso`
 
 !!! Note
 
@@ -44,7 +44,7 @@ If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, y
 First download the file that contains the official checksums for the available ISOs. While still in the folder that contains the downloaded Rocky Linux ISO download the checksum file for the ISO, type:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.7/isos/x86_64/CHECKSUM
+wget https://download.rockylinux.org/pub/rocky/8.9/isos/x86_64/CHECKSUM
 ```
 
 Use the `sha256sum` utility to verify the integrity of the ISO file against corruption and/or tampering.
@@ -56,7 +56,7 @@ sha256sum -c CHECKSUM --ignore-missing
 This will check the integrity of the previously downloaded ISO file, provided it is in the same directory. The output should show:
 
 ```
-Rocky-8.7-x86_64-minimal.iso: OK
+Rocky-8.9-x86_64-minimal.iso: OK
 ```
 
 ## The Installation
@@ -71,7 +71,7 @@ Insert and boot from the installation medium (optical disk, USB flash drive, and
 
 Once the computer has booted you will be presented with the Rocky Linux 8 welcome splash screen.
 
-![Rocky Linux installation splash screen](images/installation_8.5_F01.png)
+![Rocky Linux installation splash screen](images/install_8_9_01.png)
 
 If you do not press any key the installer will begin a countdown, after which the installation process will automatically execute the default, highlighted, option:
 
