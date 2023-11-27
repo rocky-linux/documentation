@@ -287,7 +287,7 @@ Afficher la table ARP :
 [root]# ip neigh
 ```
 
-Toutes les commandes de gestion de réseau historiques ont été regroupées sous la commande `ip` , bien connue des administrateurs réseau.
+Toutes les commandes de gestion de réseau historiques ont été regroupées sous la commande `ip`, bien connue des administrateurs réseau.
 
 ## Configuration DHCP
 
@@ -646,7 +646,7 @@ tcp  0  0  0.0.0.0:22  0.0.0.0:*  LISTEN 2161/sshd
 
 Une mauvaise configuration peut faire que plusieurs interfaces utilisent la même adresse IP. Cela peut se produire lorsqu'un réseau a plusieurs serveurs DHCP ou quand la même adresse IP est assignée manuellement plusieurs fois.
 
-Lorsque le réseau ne fonctionne pas, et quand un conflit d'adresse IP peut en être la cause, il est possible d'utiliser le logiciel `art-scan` (nécessite EPEL) :
+Lorsque le réseau ne fonctionne pas, et quand un conflit d'adresse IP peut en être la cause, il est possible d'utiliser le logiciel `arp-scan` (nécessite EPEL) :
 
 ```
 $ dnf install arp-scan
@@ -670,11 +670,11 @@ $ arp-scan -I eth0 -l
 
 !!! tip "Astuce"
 
-    Comme le montre l’exemple précédent, il est même possible d’avoir des conflits d’adresses MAC ! Ces problèmes sont causés par les technologies de virtualisation et le clonage de machines virtuelles.
+    Comme le montre l’exemple précédent, il est même possible d’avoir des conflits d’adresses MAC ! Ces problèmes peuvent être causés par les technologies de virtualisation et le clonage de machines virtuelles.
 
 ## Configuration à chaud
 
-La commande `IP` peut ajouter instantanément une adresse IP à une interface
+La commande `ip` peut ajouter instantanément une adresse IP à une interface
 
 ```
 ip addr add @IP dev DEVICE
