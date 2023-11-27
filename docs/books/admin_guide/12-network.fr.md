@@ -287,7 +287,7 @@ Afficher la table ARP :
 [root]# ip neigh
 ```
 
-Toutes les commandes de gestion de réseau historiques ont été regroupées sous la commande `ip` , bien connue des administrateurs réseau.
+Toutes les commandes de gestion de réseau historiques ont été regroupées sous la commande `ip`, bien connue des administrateurs réseau.
 
 ## Configuration DHCP
 
