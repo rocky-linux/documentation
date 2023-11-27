@@ -20,7 +20,7 @@ https://www.rockylinux.org/download/
 To download the ISO directly from the command line on an existing Linux based system use the `wget` command:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.2-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.3-x86_64-minimal.iso
 ```
 
 Rocky Linux ISOs follow this naming convention:
@@ -29,7 +29,7 @@ Rocky Linux ISOs follow this naming convention:
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-For example, `Rocky-9.2-x86_64-minimal.iso`
+For example, `Rocky-9.3-x86_64-minimal.iso`
 
 !!! Note
 
@@ -37,14 +37,14 @@ For example, `Rocky-9.2-x86_64-minimal.iso`
 
 ## Verifying the Installation Program ISO File
 
-If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-9.2-x86_64-minimal.iso` file by checking its checksum.
+If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, you can use the `sha256sum` utility to verify that file(s) you downloaded are not corrupt. We will show an example of how to verify the `Rocky-9.3-x86_64-minimal.iso` file by checking its checksum.
 
 1. Download the file that contains the official checksums for the available ISOs.
 
 1. While still in the folder that contains the downloaded Rocky Linux ISO, download the checksum file for the ISO, type:
 
     ```
-    wget -O CHECKSUM https://download.rockylinux.org/pub/rocky/9.2/isos/x86_64/CHECKSUM
+    wget -O CHECKSUM https://download.rockylinux.org/pub/rocky/9.3/isos/x86_64/CHECKSUM
     ```
 
 1. Use the `sha256sum` utility to verify the integrity of the ISO file against corruption or tampering.
@@ -56,7 +56,7 @@ If you've downloaded the Rocky Linux ISO(s) on an existing Linux distribution, y
     This checks the integrity of the ISO file downloaded previously, provided that it is in the same directory. The output should show:
 
     ```
-    Rocky-9.2-x86_64-minimal.iso: OK
+    Rocky-9.3-x86_64-minimal.iso: OK
     ```
 
 ## The Installation
@@ -71,11 +71,11 @@ If the computer is setup to boot from the media that has the ISO file, we can be
 
 1. Once the computer has booted you see the Rocky Linux 9 welcome splash screen.
 
-    ![Rocky Linux installation splash screen](images/installation_9.2_F01.png)
+    ![Rocky Linux installation splash screen](images/install_9_3_01.png)
 
 1. If you do not press any key, the installation program starts a countdown, after which the installation process automatically executes the default, highlighted, option:
 
-    `Test this media & install Rocky Linux 9.2`
+    `Test this media & install Rocky Linux 9.3`
 
     You can also press <kbd>Enter</kbd> at any time to start the process immediately.
 
@@ -135,7 +135,7 @@ Because the installation uses a Rocky Linux 9 ISO image, you will notice that *L
 
 !!! Tip
 
-    The installation Source area is where you can opt to perform a network-based installation (for example if you are using the Rocky Linux boot ISO - Rocky-9.2-x86_64-boot.iso). For a network-based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet. To perform a network-based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. Click `Done`.
+    The installation Source area is where you can opt to perform a network-based installation (for example if you are using the Rocky Linux boot ISO - Rocky-9.3-x86_64-boot.iso). For a network-based installation, you need to first ensure that a network adapter on the target system is properly configured, and is able to reach the internet. To perform a network-based installation, click on `Installation Source` and then select the `On the network` radio button. Once selected, choose `https` as the protocol and type the following URL in the text field `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. Click `Done`.
 
 #### Software Selection
 
