@@ -1,5 +1,5 @@
 - - -
-author: Wale Soyinka tested on: Tutte le versioni tags:
+author: Wale Soyinka contributors: Steven Spencer, Ganna Zhyrnova tested on: Tutte le versioni tags:
   - lab exercise
   - Linux Kernel
   - compile
@@ -9,7 +9,7 @@ author: Wale Soyinka tested on: Tutte le versioni tags:
 
 ## Obiettivi
 
-Dopo aver completato questo laboratorio, sarete in grado di
+Dopo aver completato questo laboratorio, sarete in grado di:
 
 - installare un nuovo kernel da un pacchetto binario
 - compilare e installare un nuovo kernel dai file sorgente
@@ -26,8 +26,7 @@ Il kernel è sempre in fase di miglioramento e vengono sempre aggiunte nuove fun
 
 1. Il kernel più recente contiene correzioni di bug o specifiche ottimizzazioni desiderate
 2. Ripara le falle di sicurezza presenti nel vecchio kernel
-3. Contiene i driver per un componente hardware che non era possibile utilizzare con il vecchio kernel.
-
+3. Contiene i driver per un componente hardware che non era possibile utilizzare con il vecchio kernel
 
 ### Codice sorgente e versioni del kernel
 
@@ -39,12 +38,12 @@ Il repository principale del kernel è il sito web del kernel gestito dall'URL:
 
 In questo sito troverete sempre le versioni più recenti [e più vecchie] del kernel.
 
-Come già detto, il kernel è comune a tutte le varie distro Linux. Le varie distro a volte reimpacchettano il codice sorgente del kernel per facilitare l'installazione e gli aggiornamenti o per adattarsi alle loro particolari distro.
+Come già detto, il kernel è comune a tutte le varie distribuzioni Linux. Queste distribuzioni a volte ri-pacchettizzano il codice sorgente del kernel per facilitare l'installazione e gli aggiornamenti o per adattarsi alla loro particolare distribuzione.
 
 Le varie versioni del codice sorgente del Kernel utilizzano la seguente convenzione di denominazione:
 
-```bash 
-linux-<kernel.version>.tar.bz2 (o linux-<kernel.version>.tar.gz)  
+```bash
+linux-<kernel.version>.tar.bz2 (o linux-<kernel.version>.tar.gz)
 ```
 
 La convenzione attuale è quella di chiamare e numerare le nuove versioni principali del kernel come "Linux 5.x" (chiamate anche kernel vanilla o mainline). Pertanto, la prima di questa serie sarà la versione 5.0 di Linux (uguale alla 5.0.0), la successiva sarà la versione 5.1 di Linux (uguale alla 5.1.0), seguita dalla versione 5.2 e così via.
@@ -55,28 +54,26 @@ Eventuali modifiche o aggiornamenti minori all'interno di ciascuna versione dell
 
 I moduli sono file di oggetti condivisi (con nomi come nome_modulo.o, nome_modulo.ko ecc.). Pensate ai moduli come ai *driver* di Microsoft Windows.
 
-I moduli sono pezzi di codice del kernel che possono o meno essere inclusi direttamente nel kernel. Sono compilati separatamente e possono essere inseriti e rimossi dal kernel in esecuzione in qualsiasi momento.  I sistemi moderni fanno ampio uso del supporto dei moduli caricabili. I moduli caricabili offrono diversi vantaggi, come ad esempio:
+I moduli sono pezzi di codice del kernel che possono o meno essere inclusi direttamente nel kernel. Sono compilati separatamente e possono essere inseriti e rimossi dal kernel in esecuzione in qualsiasi momento. I sistemi moderni fanno ampio uso del supporto dei moduli caricabili. I moduli caricabili offrono diversi vantaggi, come ad esempio:
 
 1. Riduce la dimensione complessiva dell'immagine finale del kernel, poiché non sono strettamente parte del kernel in esecuzione.
-2. In questo modo si risparmia la RAM: vengono caricati nella RAM solo quando sono necessari.
+2. Risparmia la RAM - vengono caricati nella RAM solo quando sono necessari
 
 Alcuni moduli devono essere compilati direttamente nel kernel, mentre altri possono essere caricati separatamente.
 
 La scelta di quando rendere disponibile una particolare funzionalità come modulo o compilarla nel kernel è di solito abbastanza semplice. In generale, se l'uso è poco frequente e se le funzionalità sono quelle di un modulo, è meglio compilarlo come modulo.
 
-
 ### Configurazione del kernel
 
-In genere esistono tre metodi per gestire il kernel nelle distro Linux. Questi sono:
+In genere esistono tre metodi per gestire il kernel nelle distribuzioni Linux. Questi sono:
 
-1. Utilizzando la versione preconfezionata del kernel fornita dal produttore della distribuzione.  ad esempio utilizzando kernel-<version>.*.rpm. È la soluzione più sicura, più semplice e preferibile
+1. Utilizzando la versione preconfezionata del kernel fornita dal produttore della distribuzione.  Ad esempio utilizzando kernel-<version>.*.rpm. È la soluzione più sicura, più semplice e preferibile
 
 2. Tramite il patching. Utilizzando file di patch come - patch-kernel.version.gz.
 
 3. Compilando il kernel dai sorgenti, ad esempio usando linux-kernel.version.tar.bz2
 
 Nei prossimi esercizi si aggiornerà il kernel in uso a una versione leggermente più recente. Per eseguire l'aggiornamento si utilizzerà innanzitutto una versione preconfezionata (binaria) del kernel Linux.
-
 
 ## Esercizio 1
 
@@ -132,7 +129,7 @@ In questo esercizio si aggiornerà direttamente il kernel utilizzando l'applicaz
 7. Utilizzare `dnf` per scaricare le dipendenze necessarie segnalate nel precedente messaggio di errore. Digitare:
 
     ```bash
-    $ dnf download kernel-core-uname-r kernel-modules-uname-r  
+    $ dnf download kernel-core-uname-r kernel-modules-uname-r
     ```
 
 8.  Eseguite di nuovo `rpm` con l'opzione test per vedere se il pacchetto del kernel può essere aggiornato. Digitare:
@@ -199,7 +196,7 @@ In questo esercizio si aggiornerà il kernel utilizzando l'applicazione `dnf`. D
 
 5. Usare `dnf` per trovare, scaricare e installare automaticamente l'ultimo pacchetto del kernel disponibile nel repository remoto dei pacchetti. Digitare:
 
-    ```bash 
+    ```bash
     [root@localhost ~]# dnf -y update  kernel
     ```
 
@@ -317,7 +314,7 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
         CONFIG_BTRFS_FS=y
         ```
 
-18. Ottimizziamo il tempo di compilazione del kernel e riduciamo anche la quantità di spazio su disco utilizzato durante la fase di compilazione del kernel. Impostando `CONFIG_DEBUG_INFO=no`, l'immagine del kernel risultante NON includerà le informazioni di debug, risultando così più piccola. Questo rimuove i simboli di debug dal kernel e dai moduli creati. Digitare:
+18. È possibile ottimizzare il tempo di compilazione del kernel e ridurre la quantità di spazio su disco utilizzato durante la fase di compilazione del kernel. Impostando `CONFIG_DEBUG_INFO=no`, l'immagine del kernel risultante NON includerà le informazioni di debug, risultando così più piccola. Questo rimuove i simboli di debug dal kernel e dai moduli creati. Digitare:
 
     ```bash 
     $ ./scripts/config --file ~/build/kernel/.config  -d DEBUG_INFO \
@@ -325,8 +322,7 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
       -d DEBUG_INFO_DWARF5 -e CONFIG_DEBUG_INFO_NONE
     ```
 
-19. Completate un altro passo importante per i kernel personalizzati su Rocky Linux distro. Digitare:
-
+19. Completare un altro passo importante per i kernel personalizzati sulla distribuzione Rocky Linux. Digitare:
 
     ```bash
     $ sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config 
@@ -375,14 +371,14 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
 24. Installare le parti del kernel configurate come moduli. Digitare:
 
     ```bash
-    $ sudo make O=~/build/kernel modules_install      
+    $ sudo make O=~/build/kernel modules_install
     ```
 
 25. Dopo aver compilato il kernel, è il momento di installarlo. Digitare:
 
     ```bash
     $ sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
-    /boot/vmlinuz-<kernel-version>      
+    /boot/vmlinuz-<kernel-version>
     ```
 
     Sostituire <kernel-version> con il numero di versione del kernel personalizzato. Per il kernel di esempio utilizzato in questa guida, il nome del file sarà vmlinuz-6.*-custom. Ecco il comando esatto per questo esempio:
@@ -411,9 +407,8 @@ In questo esercizio si costruirà un nuovo kernel dai sorgenti, configurandolo, 
     $ sudo grubby --default-kernel
     ```
 
-30. Tutto fatto. È il momento della verità. Il kernel più recente sarà probabilmente configurato come il nuovo kernel predefinito per l'avvio. Se si ha accesso alla console del sistema, è possibile riavviare il sistema e selezionare il nuovo kernel personalizzato nel menu di avvio di GRUB. Se tutto va bene dopo il riavvio, si può verificare che il sistema stia eseguendo il kernel personalizzato eseguendo il comando `uname` in questo modo:
+30. Tutto fatto. È il momento della verità. Il kernel più recente sarà probabilmente configurato come nuovo kernel predefinito per l'avvio. Se si ha accesso alla console del sistema, è possibile riavviare il sistema e selezionare il nuovo kernel personalizzato nel menu di avvio di GRUB. Se tutto va bene dopo il riavvio, si può verificare che il sistema stia eseguendo il kernel personalizzato eseguendo il comando `uname` in questo modo:
 
     ```bash
     $ uname -r
     ```
-    
