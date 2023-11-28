@@ -796,7 +796,17 @@ After installing relevant packages, in some cases, we need to determine whether 
 
 Using the "-V" option of the `rpm` command.
 
-Take the time synchronization program chrony as an example to illustrate the meaning of its output. It is assumed that you have installed chrony and modified the configuration file (/etc/chrony.conf)
+Take the time synchronization program `chrony`` as an example to illustrate the meaning of its output. 
+
+
+1. To demonstrate how the `rpm` package verification works, make a modififcation to chrony's
+    configuration file - `/etc/chrony.conf`. (It is assumed that you have installed chrony). Add 2 harmless comment `##` symbols to the end of the file. Type:
+
+  ```
+  $ echo -e "##"  | sudo tee -a /etc/chrony.conf
+  ```
+  
+2. Now run the `rpm` command with the `--verify` option. Type:
 
   ```
   $ rpm -V chrony

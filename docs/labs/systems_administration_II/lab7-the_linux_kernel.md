@@ -1,6 +1,5 @@
 ---
 author: Wale Soyinka
-contributors: Steven Spencer, Ganna Zhyrnova
 tested on: All Versions
 tags:
   - lab exercise
@@ -95,13 +94,13 @@ In this exercise you will directly upgrade your kernel using the rpm application
 2. Run the `rpm` utility to list all kernel packages currently installed on the system. Type:
        
     ``` { .sh data-copy="rpm -q kernel" }
-    [root@localhost ~]# rpm -q kernel
+    $ rpm -q kernel
     ```
 
 3. Execute the `uname` utility to view some information about the current running kernel. Type:
     
     ``` { .bash data-copy="uname --kernel-release" }
-    [root@localhost ~]# uname --kernel-release
+    $ uname --kernel-release
     
     5.*.el9_8.x86_64 
     ```
@@ -111,7 +110,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
 4. Use `dnf` to download the latest kernel package available from the official Rocky Linux package repository. Type:
     
     ```bash
-    [root@localhost ~]# dnf download kernel
+    $ dnf download kernel
     ```
     You should now have an RPM package with a name similar to kernel-*.x86_64.rpm saved in your PWD.
     
@@ -124,7 +123,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
 6. Use `rpm` to do a test install of the downloaded kernel*.rpm to ensure that all its dependencies will be met. Type:
     
     ```bash
-    [root@localhost ~]# rpm --test  -ivh kernel-*.x86_64.rpm
+    $ rpm --test  -ivh kernel-*.x86_64.rpm
     
     error: Failed dependencies:
     kernel-core-uname-r = *.x86_64 is needed by kernel-*.x86_64
@@ -136,13 +135,13 @@ In this exercise you will directly upgrade your kernel using the rpm application
 7. Use `dnf` to download the needed dependencies reported in the previous error message. Type:
     
     ```bash
-    [root@localhost ~]# dnf download kernel-core-uname-r kernel-modules-uname-r  
+    $ dnf download kernel-core-uname-r kernel-modules-uname-r  
     ```
     
 8.  Run `rpm` with the test option again to see if the kernel package can be upgraded. Type:
     
     ```bash
-    [root@localhost ~]# rpm --test  -Uvh kernel-*.rpm
+    $ rpm --test  -Uvh kernel-*.rpm
     
     Verifying...       ################################# [100%]
     Preparing...       ################################# [100%]
@@ -153,7 +152,7 @@ In this exercise you will directly upgrade your kernel using the rpm application
 9.  Finally use `rpm` to install the kernel package along with all its dependencies. Type:
     
     ```bash
-    [root@localhost ~]# rpm  -ivh kernel-*.rpm
+    $ sudo rpm  -ivh kernel-*.rpm
     ```
 
 10. Use `rpm` to list all the installed kernel packages on your system. 
@@ -232,13 +231,13 @@ In this exercise you will build a new kernel from source, by configuring, compil
 2.  Install needed development tools. Type:
     
     ```bash
-    [root@localhost linux-6.5.7]# dnf -y groupinstall 'Development Tools'
+    $ sudo dnf -y groupinstall 'Development Tools'
     ```
 
 3. Install the needed libraries and tools. Type:
      
     ```bash
-    [root@localhost linux-6.*]# dnf -y install ncurses-devel bc openssl-devel elfutils-libelf-devel python3 dwarves
+    $ sudo dnf -y install ncurses-devel bc openssl-devel elfutils-libelf-devel python3 dwarves
     ```
 
 4. Download the latest kernel source by typing:
@@ -263,25 +262,25 @@ In this exercise you will build a new kernel from source, by configuring, compil
 8. Change (cd) into the kernel source directory. Type:
     
     ```bash
-    [root@localhost ~]# cd linux-6.*
+    $ cd linux-6.5.7
     ```
 
 9. Clean (prepare) the kernel build environment by using the `make mrproper` command. Type:
     
     ```bash
-    [root@localhost ~]# make  O=~/build/kernel mrproper
+    $ make  O=~/build/kernel mrproper
     ```
 
 10. Copy over and rename the preexisting configuration file from the /boot directory into our kernel build environment:
     
     ```bash
-    [root@localhost ~]# cp /boot/config-`uname -r` ~/build/kernel/.config
+    $ cp /boot/config-`uname -r` ~/build/kernel/.config
     ```
 
 11. Launch the graphical kernel configuration utility. Type:
     
     ```bash
-    [root@localhost ~]# make O=~/build/kernel menuconfig
+    $ make O=~/build/kernel menuconfig
     ```
     A screen similar to this will appear:
     
@@ -329,37 +328,51 @@ In this exercise you will build a new kernel from source, by configuring, compil
     
 18. Let's optimize the kernel build time and also reduce the amount of disk space used during the kernel compile stage by setting. By setting `CONFIG_DEBUG_INFO=no`, the resulting kernel image will NOT include debugging info thereby resulting in a smaller kernel image. This removes debugging symbols from the built kernel and modules. Type:
     
-    ```bash
-    # sed -ri '/CONFIG_DEBUG_INFO/s/=.+/="no"/g' ~/build/kernel/.config 
+    ```bash 
+    $ ./scripts/config --file ~/build/kernel/.config  -d DEBUG_INFO \
+      -d DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT -d DEBUG_INFO_DWARF4  \
+      -d DEBUG_INFO_DWARF5 -e CONFIG_DEBUG_INFO_NONE
     ```
        
 19. Complete another important step for custom Kernels on Rocky Linux distro. Type:
     
     
     ```bash
-    [root@localhost linux-6*]# sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config 
+    $ sed -ri '/CONFIG_SYSTEM_TRUSTED_KEYS/s/=.+/=""/g' ~/build/kernel/.config 
     ```
     
 20. Add a simple customization to the new kernel, allowing you to distinguish it from the other stock Kernels more easily. For this, use the `sed` utility to edit the Makefile in place. Type:
     
     ```bash
-    [root@localhost linux-6.*]# sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
+    $ sed  -i 's/^EXTRAVERSION.*/EXTRAVERSION = -custom/'  Makefile
     ```
     
 21. Verify the full version of the kernel that you just customized by passing the `kernelversion` target to the `make` command. Type:
     
     ```bash
-    [root@localhost ~]# make O=~/build/kernel kernelversion
+    $ make O=~/build/kernel kernelversion
+    ```
+    
+    OUTPUT:
+    ```
+    make[1]: Entering directory '/home/rocky/build/kernel'
+    6.5.7-custom
+    make[1]: Leaving directory '/home/rocky/build/kernel'
     ```
     
 22. You are ready to compile the kernel. Type:
     
     ```bash
-    [root@localhost linux-6.*]# make  O=~/build/kernel -j $(nproc)
+    $ sudo make  O=~/build/kernel -j $(nproc)
+    ```
+    
+    OUTPUT:
+    ```
     make[1]: Entering directory '/root/build/kernel'
     SYNC    include/config/auto.conf.cmd
     GEN     Makefile
     HOSTCC  scripts/kconfig/conf.o
+    ...
     ```
     
 23. After the compilation completes successfully, you'll end up with the finished kernel stored here:
@@ -371,13 +384,13 @@ In this exercise you will build a new kernel from source, by configuring, compil
 24. Install the portions of the kernel that were configured as modules. Type:
     
     ```bash
-    [root@localhost linux-6.*]# make O=~/build/kernel modules_install      
+    $ sudo make O=~/build/kernel modules_install      
     ```
     
 25. With the kernel now built it's time to install it. Type:
     
     ```bash
-    [root@localhost linux-6.*]# cp ~/build/kernel/arch/x86/boot/bzImage  \
+    $ sudo cp ~/build/kernel/arch/x86/boot/bzImage  \
     /boot/vmlinuz-<kernel-version>      
     ```
     
@@ -385,27 +398,34 @@ In this exercise you will build a new kernel from source, by configuring, compil
     For the sample kernel we are using in this guide, the filename would be vmlinuz-6.*-custom. So here’s the exact command for this example:
     
     ```bash
-    cp ~/build/kernel/arch/x86/boot/bzImage  /boot/vmlinuz-6.*-custom
+    sudo cp ~/build/kernel/arch/x86/boot/bzImage  /boot/vmlinuz-6.5.7-custom
     ```
     
 26. Copy over and rename the corresponding System.map file into the /boot directory using the same naming convention:
     
     ```bash
-    [root@localhost linux-6.*]# cp -v ~/build/kernel/System.map /boot/System.map-6.*-custom  
+    $ sudo cp -v ~/build/kernel/System.map /boot/System.map-6.5.7-custom
     ```
 
 27. Use the `kernel-install` utility to complete the file step. Type:
     
     ```bash
-    [root@localhost linux-6.*]# kernel-install add  6.*-custom /boot/vmlinuz-6.*-custom
+    $ sudo kernel-install add  6.5.7-custom /boot/vmlinuz-6.5.7-custom
     ```
     
 28. The `kernel-install` utility will create a new boot entry in the boot loader configuration file. For EFI based systems you can look under /boot/loader/entries/ for matching entries.
+    
+29. Run the grubby program to view the default kernel for the server. Type:
+    
+    ```
+    $ sudo grubby --default-kernel
+    ```
 
-29. All done. Moment of truth now. You can reboot your system and select the new custom Kernel in the GRUB boot menu.
+30. All done. Moment of truth now. The latest kernel will likely be configured as the new
+     default kernel to boot into. If you have access to the system's console you can reboot your system and select the new custom Kernel in the GRUB boot menu.
     If all goes well after the reboot, you can verify that system is running the custom kernel by running the `uname` command like this:
     
     ```bash
-    [root@localhost linux-6.*]# uname -r
+    $ uname -r
     ```
     
