@@ -1104,7 +1104,7 @@ In the interim -
 
 **Perform this exercise from your partner-system** 
 
-Unreasonable user accidentally notices that new ***scratch*** file systems have been made available on the server overnight. Score. Profit.
+Unreasonable user accidentally notices that new ***scratch*** file systems have been made available on the server overnight. "This is great!" he says to himself.
 
 He then proceeds to fill up the volume with an arbitrarily large file.
 
