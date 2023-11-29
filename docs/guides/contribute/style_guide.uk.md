@@ -28,7 +28,7 @@ tags:
 
 * [Rocky Linux Contribution Guide](https://docs.rockylinux.org/guides/contribute/) містить вимоги до системи та програмного забезпечення для початку роботи.
 * [Rocky Linux First Time Contributors Guide](beginners.md) для ознайомлення з GitHub, нашою базою документації.
-* [Форматування Rocky Docs](../rockydocs_formatting/) для структури Markdown.
+* [Форматування Rocky Docs](rockydocs_formatting.md) для структури Markdown.
 
 ## Рекомендації щодо стилю
 
