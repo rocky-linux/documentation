@@ -9,11 +9,11 @@ update: 11-23-2021
 
 ## Prerequisiti e presupposti
 
-* CentOS Stream, CentOS, Alma Linux, RHEL, o Oracle Linux che funziona bene su un server hardware o VPS. La versione attualmente supportata per ciascuno di essi è la 8.8 o la 9.2.
+* CentOS Stream, CentOS, Alma Linux, RHEL, o Oracle Linux che funziona bene su un server hardware o VPS. La versione attualmente supportata per ciascuno di essi è la 8.9 o la 9.3.
 * Conoscenza della riga di comando
 * Conoscenza operativa di SSH per macchine remote.
 * Un atteggiamento di leggera propensione al rischio
-* Eseguire i comandi come root. Accedere come root o avere la possibilità di elevare i privilegi con `sudo`.
+* Eseguire i comandi come root. Accedere come root o avere la possibilità di elevare i privilegi con `sudo`
 
 ## Introduzione
 
@@ -23,7 +23,7 @@ Ad esempio, alcuni fornitori di server non supporteranno Rocky Linux di default 
 
 Abbiamo lo strumento che fa al caso vostro: [migrate2rocky](https://github.com/rocky-linux/rocky-tools/tree/main/migrate2rocky).
 
-Si tratta di uno script che, una volta eseguito, cambierà tutti i vostri repository con quelli di Rocky Linux. I pacchetti verranno installati e aggiornati o declassati secondo le necessità, e anche il marchio del sistema operativo cambierà.
+Si tratta di uno script che, una volta eseguito, cambierà tutti i vostri repository con quelli di Rocky Linux. I pacchetti verranno installati e aggiornati o declassati secondo le necessità, e anche il logo del sistema operativo cambierà.
 
 Non preoccupatevi, se siete alle prime armi con l'amministrazione dei sistemi, vi assicuro che il programma sarà il più semplice possibile per l'utente. Beh, per quanto user friendly possa essere la riga di comando.
 
