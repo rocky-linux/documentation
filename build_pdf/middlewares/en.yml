@@ -23,6 +23,7 @@ plugins:
 
 # Customize your own book
 nav:
+  - licence.md
   - database/database_mariadb-server.md
   - dns/private_dns_server_using_bind.md
   - email/postfix_reporting.md
