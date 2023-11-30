@@ -21,6 +21,7 @@ plugins:
 
 # Customize your own book
 nav:
+  - licence.md
   - admin_guide/00-toc.zh.md
   - admin_guide/01-presentation.zh.md
   - admin_guide/03-commands.zh.md

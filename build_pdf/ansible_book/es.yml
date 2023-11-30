@@ -20,6 +20,7 @@ plugins:
 
 # Customize your own book
 nav:
+  - licence.md
   - learning_ansible/00-toc.es.md
   - learning_ansible/01-basic.es.md
   - learning_ansible/02-advanced.es.md

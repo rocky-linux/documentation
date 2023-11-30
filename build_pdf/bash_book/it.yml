@@ -21,6 +21,7 @@ plugins:
 
 # Customize your own book
 nav:
+  - licence.md
   - learning_bash/00-toc.it.md
   - learning_bash/01-first-script.it.md
   - learning_bash/02-using-variables.it.md
