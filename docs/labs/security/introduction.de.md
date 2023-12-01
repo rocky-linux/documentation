@@ -16,7 +16,7 @@ Stellen Sie sich beim Lesen dieses Handbuchs vor, dass Sie Administrator einer u
 
 Wir sind stolz darauf, hohe Standards einzuhalten und erstklassige Hardware und Software zu verwenden. Aus diesem Grund haben wir uns für Rocky Linux für unsere Systeme entschieden. Es entspricht unseren strengen Anforderungen und stellt sicher, dass wir unseren Kunden die besten Widgets bieten.
 
-Lassen Sie uns nun darüber sprechen, wie Sie mit dem von uns verwendeten Linux-Betriebssystem interagieren. Es gibt zwei Möglichkeiten: die Kommandozeile bzw. _CLI_ (die Shell) und die grafische Oberfläche (GUI). In diesem Handbuch konzentrieren wir uns hauptsächlich auf die Befehlszeile, da sie eine effiziente Art ist, Dinge zu erledigen. Sobald Sie sich mit der Navigation über die Befehlszeile vertraut gemacht haben, können Sie jede Aufgabe erledigen, die auf Sie zukommt.
+Lassen Sie uns nun darüber sprechen, wie Sie mit dem von uns verwendeten Linux-Betriebssystem interagieren. Es gibt zwei Möglichkeiten: die Kommandozeile bzw. _CLI_ (die Shell) und die grafische Oberfläche (GUI). In diesem Handbuch konzentrieren wir uns hauptsächlich auf die Befehlszeile, da sie eine effiziente Art ist, die Dinge zu erledigen. Sobald Sie sich mit der Navigation über die Befehlszeile vertraut gemacht haben, können Sie jede Aufgabe erledigen, die auf Sie zukommt.
 
 Eines der großartigen Dinge an Linux ist, dass die Erfahrung mit der Befehlszeile über verschiedene Distributionen hinweg konsistent bleibt. Ganz gleich, auf welche Art von Linux Sie stoßen (Rocky, Ubuntu, Red Hat, usw.), das Erscheinungsbild, die Bedienung und die Funktionen bleiben vertraut und zuverlässig.
 

@@ -22,7 +22,7 @@ https://www.rockylinux.org/download/
 Щоб завантажити ISO безпосередньо з командного рядка, скористайтеся командою `wget`:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.7/isos/x86_64/Rocky-8.7-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/8.9/isos/x86_64/Rocky-8.9-x86_64-minimal.iso
 ```
 
 ISO Rocky Linux називаються відповідно до цієї угоди:
@@ -31,7 +31,7 @@ ISO Rocky Linux називаються відповідно до цієї уго
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-Наприклад, `Rocky-8.7-x86_64-minimal.iso`
+Наприклад, `Rocky-8.9-x86_64-minimal.iso`
 
 !!! Note "Примітка"
 
@@ -44,7 +44,7 @@ Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 Спочатку завантажте файл, який містить офіційні контрольні суми для доступних ISO. Перебуваючи в папці, яка містить завантажений ISO Rocky Linux, завантажте файл контрольної суми для ISO, введіть:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/8.7/isos/x86_64/CHECKSUM
+wget https://download.rockylinux.org/pub/rocky/8.9/isos/x86_64/CHECKSUM
 ```
 
 Використовуйте утиліту `sha256sum`, щоб перевірити цілісність файлу ISO на пошкодження та/або втручання.
@@ -56,7 +56,7 @@ sha256sum -c CHECKSUM --ignore-missing
 Це перевірить цілісність раніше завантаженого файлу ISO, якщо він знаходиться в тому самому каталозі. Вихід має показати:
 
 ```
-Rocky-8.7-x86_64-minimal.iso: OK
+Rocky-8.9-x86_64-minimal.iso: OK
 ```
 
 ## Встановлення
@@ -71,7 +71,7 @@ Rocky-8.7-x86_64-minimal.iso: OK
 
 Після завантаження комп’ютера ви побачите екран привітання Rocky Linux 8.
 
-![Заставка встановлення Rocky Linux](images/installation_8.5_F01.png)
+![Заставка встановлення Rocky Linux](images/install_8_9_01.png)
 
 Якщо ви не натиснете жодну клавішу, інсталятор почне зворотний відлік, після чого процес інсталяції автоматично виконає стандартний, виділений параметр:
 
