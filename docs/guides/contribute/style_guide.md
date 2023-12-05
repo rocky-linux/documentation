@@ -44,6 +44,7 @@ For a more complete understanding of contributing, please consult our related gu
 * Use a serial comma before the “and” in a list of three items: “Peas, mustard, and carrots.”
 * Headings should be generally made in headline-style capitalization: Capitalize the first and last words, as well as all nouns, pronouns, verbs, and adverbs. If your document works better with sentence-style capitalization, perhaps because you frequently reference acronyms, make it consistent within the entire document. 
 * Headings do not need a period or semicolon at the end, even with sentence-style capitalization, unless ending in an abbreviation.
+* Bulleted and numbered lists: Avoid beginnning capitalization or ending punctuation, unless the item is a complete sentence.
 
 ### Voice and Tone
 
@@ -126,7 +127,7 @@ Within Markdown, admonitions are a way to put information into a box to highligh
 
 * Some elements in Markdown, such as admonitions, have an assigned color to assist with visual comprehension. In general they also have an assigned name; for example, the “danger” admonition displays a red box but also has the descriptor “danger” built into the description. But when creating a custom admonition, be aware that color cannot be the only means of communicating a command or level of warning.
 * Any command that includes a sensory direction, such as *above* or *below*, *color*, *size*, *visual location* on the page, etc., should also include a direction that is communicable by only text description.
-* When creating a graphical element, make sure that there is enough contrast between the foreground and background colors to be easy for a screen reader to interpret.
+* When creating a graphical element, ensure that there is enough contrast between the foreground and background colors to be easy for a screen reader to interpret.
 
 ### Headings
 
@@ -138,6 +139,6 @@ Within Markdown, admonitions are a way to put information into a box to highligh
 
 This document lays out our contribution standards, including **style guidelines,** how to **structure** your document, and ways to incorporate **inclusivity** and **accessibility** into the text. These are the standards to which we aspire. As you are able, keep these standards in mind when creating and modifying documentation.
 
-However—and do not miss this caveat—**treat these standards as a tool, not an obstacle.** In the spirit of inclusivity and accessibility, we want to make sure your contribution has a smooth entry into the Rocky family tree. We are a friendly and helpful team of documentarians and stylists, and we will help shepherd your document into its final form.
+However—and do not miss this caveat—**treat these standards as a tool, not an obstacle.** In the spirit of inclusivity and accessibility, we want to ensure your contribution has a smooth entry into the Rocky family tree. We are a friendly and helpful team of documentarians and stylists, and we will help shepherd your document into its final form.
 
 Are you ready? Let’s get started!
