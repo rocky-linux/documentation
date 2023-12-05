@@ -31,17 +31,17 @@ The exercises in this lab will begin from the booting-up process down to the log
 
 *Summary Of Steps*
 
-1. The Hardware loads, reads and executes the boot sector.  
-2. The bootloader is executed. This bootloader is GRUB on most Linux distros.  
-3. kernel unpacks and is executed.  
-4. kernel initializes hardware.  
-5. kernel mounts root file system.  
-6. kernel executes /usr/lib/systemd/systemd as PID 1.  
-7. systemd starts the units needed and configured to run the default boot target.
-8. getty programs are spawned on each defined terminal.  
-9. getty prompts for login.  
-10. getty executes /bin/login to authentic user.  
-11. login starts shell.
+1. hardware loads, reads and executes the boot sector
+2. bootloader is executed (GRUB on most Linux distributions)
+3. kernel unpacks and is executed
+4. kernel initializes hardware
+5. kernel mounts root file system
+6. kernel executes /usr/lib/systemd/systemd as PID 1
+7. systemd starts the units needed and configured to run the default boot target
+8. getty programs are spawned on each defined terminal
+9. getty prompts for login
+10. getty executes /bin/login to authentic user
+11. login starts shell
 
 
 ### `systemd`
@@ -149,9 +149,9 @@ Once the first process runs, it then goes on to start other services, daemons, p
 
 1. poweroff.target
 2. rescue.target
-3. multi-user.target - Boots the system with full multi-user support with no graphical environment.
-4. graphical.target - Boots the system with network, multi-user support, and a display manager. 
-5. reboot.target 
+3. multi-user.target - boots the system with full multi-user support with no graphical environment
+4. graphical.target - boots the system with network, multi-user support, and a display manager
+5. reboot.target
 
 !!! Tip
 
@@ -480,7 +480,7 @@ For many services/daemons, restarting or reloading the running service/daemon wh
     
 ### To disable a service
 
-1. Use `systemctl` to check whether the `crond.service` is enabled to start with system boot automatically. Type: 
+1. Use `systemctl` to check whether the `crond.service` is enabled to start with system boot automatically. Type:
     
     ```bash
     [root@localhost ~]# systemctl is-enabled  crond.service
@@ -490,7 +490,7 @@ For many services/daemons, restarting or reloading the running service/daemon wh
     
     The sample output shows it is.
     
-2. Disable the `crond.service` from automatic startup. Type: 
+2. Disable the `crond.service` from automatic startup. Type:
     
     ```bash
     [root@localhost ~]# systemctl disable crond.service
