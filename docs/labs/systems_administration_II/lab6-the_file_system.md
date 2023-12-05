@@ -733,7 +733,7 @@ In this section, you will create a brand new standalone volume group named "scra
     
 #### To create a logical volume 
 
-With the additional free space we have been able to add to the rl volume group (VG), it is now possible to add a Logical volume that can be used to store data after formatting.
+With the additional free space we have been able to add to the `rl` volume group (VG), it is now possible to add a Logical volume that can be used to store data after formatting.
 
 1. Use the `lvdisplay` command to view the currently configured logical volumes. Type: 
     
@@ -1412,7 +1412,7 @@ This means that all users for which we apply the quota cannot exceed the hard li
     /dev/mapper/scratch-scratch1       5minutes                  7days
     ```
     
-3. Next apply the settings you have configured for the prototype user “me” to the users - “ying” and “unreasonable”.  Type:
+3. Next apply the settings you have configured for the prototype user “me” to the users “ying” and “unreasonable”.  Type:
     
     ```bash
     [root@localhost ~]# edquota -p me -u ying unreasonable
@@ -1444,7 +1444,7 @@ This means that all users for which we apply the quota cannot exceed the hard li
     [root@localhost ~]# rm -rf /mnt/2gb-scratch2-volume/LARGE-USELESS-FILE.tar
     ```
     
-6. Use the `su`` command to temporarily assume the identity of the `unreasonable` user and try creating additional files or directories as that user. Type: 
+6. Use the `su` command to temporarily assume the identity of the `unreasonable` user and try creating additional files or directories as that user. Type: 
     
     ```bash
     [root@localhost ~]# su - unreasonable
