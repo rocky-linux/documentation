@@ -44,7 +44,7 @@ For a more complete understanding of contributing, please consult our related gu
 * Use a serial comma before the “and” in a list of three items: “Peas, mustard, and carrots.”
 * Headings should be generally made in headline-style capitalization: Capitalize the first and last words, as well as all nouns, pronouns, verbs, and adverbs. If your document works better with sentence-style capitalization, perhaps because you frequently reference acronyms, make it consistent within the entire document. 
 * Headings do not need a period or semicolon at the end, even with sentence-style capitalization, unless ending in an abbreviation.
-* Bulleted and numbered lists: Avoid beginnning capitalization or ending punctuation, unless the item is a complete sentence.
+* Bulleted and numbered lists: Avoid beginning capitalization or ending punctuation, unless the item is a complete sentence.
 
 ### Voice and Tone
 
