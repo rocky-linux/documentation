@@ -736,7 +736,7 @@ In questa sezione verrà creato un nuovo gruppo di volumi autonomo denominato "s
 
 #### Per creare un volume logico
 
-Con lo spazio libero aggiuntivo che è stato possibile aggiungere al gruppo di volumi (VG) rl, è ora possibile aggiungere un volume logico che può essere utilizzato per memorizzare i dati dopo la formattazione.
+Con lo spazio libero aggiuntivo che è stato possibile aggiungere al gruppo di volumi (VG) `rl`, è ora possibile aggiungere un volume logico che può essere utilizzato per memorizzare i dati dopo la formattazione.
 
 1. Utilizzare il comando `lvdisplay` per visualizzare i volumi logici attualmente configurati. Digitare:
 
