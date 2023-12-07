@@ -44,6 +44,7 @@ Le **caratteristiche della scrittura tecnica** descritte nel Chicago Manual of S
 * In un elenco di tre elementi, utilizzare una virgola prima di "e": "Piselli, senape, e carote"
 * I titoli devono essere generalmente realizzati in stile titolo maiuscolo: La prima e l'ultima parola, così come tutti i nomi, i pronomi, i verbi e gli avverbi devono essere scritti in maiuscolo. Se il vostro documento funziona meglio con la capitalizzazione in stile frase, magari perché fate spesso riferimento ad acronimi, rendetela coerente all'interno dell'intero documento.
 * I titoli non necessitano di un punto o di un punto e virgola alla fine, anche con una capitalizzazione di tipo frase, a meno che non terminino con un'abbreviazione.
+* Elenchi puntati e numerati: Evitare la maiuscola iniziale o la punteggiatura finale, a meno che non si tratti di una frase completa.
 
 ### Voce e Tono
 
@@ -136,6 +137,6 @@ In Markdown, gli ammonimenti sono un modo per inserire le informazioni in un riq
 
 Questo documento definisce i nostri standard di contribuzione, comprese le **linee guida di stile** le modalità di **strutturazione** del documento e i modi per incorporare l'**'inclusività** e l'**accessibilità** nel testo. Questi sono gli standard a cui aspiriamo. Per quanto possibile, tenete a mente questi standard quando create e modificate la documentazione.
 
-Tuttavia - e non perdete questa avvertenza - trattate **questi standard come uno strumento, non come un ostacolo.** Nello spirito dell'inclusività e dell'accessibilità, vogliamo assicurarci che il vostro contributo entri senza problemi nell'albero genealogico di Rocky. Siamo un team amichevole e disponibile di documentaristi e stilisti e vi aiuteremo a portare il vostro documento alla sua forma finale.
+Tuttavia—e non perdetevi questa avvertenza—**trattate questi standard come uno strumento, non come un ostacolo.** Nello spirito dell'inclusività e dell'accessibilità, vogliamo assicurarci che il vostro contributo entri senza problemi nell'albero genealogico di Rocky. Siamo un team amichevole e disponibile di documentaristi e stilisti e vi aiuteremo a portare il vostro documento alla sua forma finale.
 
 Sei pronto? Cominciamo!
