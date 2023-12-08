@@ -210,7 +210,7 @@ Perform the following exercises as a regular user. e.g. user ying
 
     from Real Name, Comment and Email Address in this form:
 
-    "Firstname Lastname (any comment) &lt;yourname@serverXY&gt;"
+    "Firstname Lastname (any comment) <yourname@serverXY&>"
 
     Real name: Ying Yang <kbd>ENTER</kbd>
 
@@ -222,7 +222,7 @@ Perform the following exercises as a regular user. e.g. user ying
 
     You selected this USER-ID:
 
-    "Ying Yang (my test) &lt;ying@serverXY&gt;"
+    "Ying Yang (my test) <ying@serverXY>"
 
     Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
 
@@ -253,7 +253,7 @@ The gpg program is also used in key administration.
 
     -----------------------------
 
-    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;
+    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) <ying@serverXY>
 
     sub 1024g/1EDB00AC 2003-10-16 [expires: 2004-10-15]
     ```
@@ -261,7 +261,7 @@ The gpg program is also used in key administration.
 2. To suppress the somewhat annoying “warning” about “insecure memory” add the following option to your personal gpg configuration file. Type:
 
     ```
-    [ying@serverXY ying]$ echo "no-secmem-warning" &gt;&gt; ~/.gnupg/gpg.conf
+    [ying@serverXY ying]$ echo "no-secmem-warning" >> ~/.gnupg/gpg.conf
     ```
 
 3. Run the command to list your keys again. to ensure your change is in effect.
@@ -283,7 +283,7 @@ The gpg program is also used in key administration.
 
     -----------------------------
 
-    sec 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;
+    sec 1024D/1D12E484 2003-10-16 Ying Yang (my test) <ying@serverXY>
 
     ssb 1024g/1EDB00AC 2003-10-16
     ```
@@ -297,7 +297,7 @@ The gpg program is also used in key administration.
 
     -----------------------------
 
-    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;
+    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) <ying@serverXY>
 
     Key fingerprint = D61E 1538 EA12 9049 4ED3 5590 3BC4 A3C1 1D12 E484
 
@@ -343,12 +343,12 @@ Or at least make your public key available in any publicly accessible place (bil
 1. Export your public key in binary format to a file called “ying-pub.gpg”. Type:
 
     ```
-    [ying@serverXY ying]$ gpg --output ying-pub.gpg --export &lt;your_key’s_user_ID&gt;
+    [ying@serverXY ying]$ gpg --output ying-pub.gpg --export <your_key’s_user_ID>
     ```
 
     !!! note
 
-        Please replace &lt;your_key’s_user_ID&gt; with any string that correctly identifies your keys. On our sample system this value can be any one of the following:
+        Please replace <your_key’s_user_ID> with any string that correctly identifies your keys. On our sample system this value can be any one of the following:
 
         ying@serverXY, ying, yang
 
@@ -383,7 +383,7 @@ Creating and verifying signatures uses the public/private key pair, which differ
 1. Create a file named “secret-file.txt” with the text “Hello All” in it. Type:
 
     ```
-    [ying@serverXY ying]$ echo "Hello All" &gt; secret1.txt
+    [ying@serverXY ying]$ echo "Hello All" > secret1.txt
     ```
 
 2. Use cat to view the contents of the file. Use the file command to see the kind of file it is.
@@ -404,7 +404,7 @@ Creating and verifying signatures uses the public/private key pair, which differ
 
     gpg: Signature made Thu 16 Oct 2003 07:29:37 AM PDT using DSA key ID 1D12E484
 
-    gpg: Good signature from "Ying Yang (my test) &lt;ying@serverXY&gt;"
+    gpg: Good signature from "Ying Yang (my test) <ying@serverXY>"
     ```
 
 5. Create another file secret2.txt with the text “ Hello All” in it.
@@ -422,7 +422,7 @@ Creating and verifying signatures uses the public/private key pair, which differ
 8. Create another file called “secret3.txt” with the text “hello dude” in it. Type:
 
     ```
-    [ying@serverXY ying echo "hello dude" &gt; secret3.txt
+    [ying@serverXY ying echo "hello dude" > secret3.txt
     ```
 
 9. Append your signature to the body of the file you created above. Type:
@@ -476,7 +476,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
     ```
     [ying@serverXY ying]$ gpg --import me-pub.asc
 
-    gpg: key 1D0D7654: public key "Me Mao (my test) &lt;me@serverXY&gt;" imported
+    gpg: key 1D0D7654: public key "Me Mao (my test) <me@serverXY>" imported
 
     gpg: Total number processed: 1
 
@@ -492,11 +492,11 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
     -----------------------------
 
-    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;
+    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) <ying@serverXY>
 
     sub 1024g/1EDB00AC 2003-10-16 [expires: 2004-10-15]
 
-    pub 1024D/1D0D7654 2003-10-16 Me Mao (my test) &lt;me@serverXY&gt;
+    pub 1024D/1D0D7654 2003-10-16 Me Mao (my test) <me@serverXY>
 
     sub 1024g/FD20DBF1 2003-10-16 [expires: 2004-10-15]
     ```
@@ -529,7 +529,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 1. While logged into the system as the user ying, create a file called encrypt-sec.txt. Type:
 
     ```
-    [ying@serverXY ying]$ echo "hello" &gt; encrypt-sec.txt
+    [ying@serverXY ying]$ echo "hello" > encrypt-sec.txt
     ```
 
     Ensure you can read the contents of the file using cat.
@@ -553,7 +553,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
     gpg: encrypted with 1024-bit ELG-E key, ID FD20DBF1, created 2003-10-16
 
-    "Me Mao (my test) &lt;me@serverXY&gt;"
+    "Me Mao (my test) <me@serverXY>"
 
     gpg: decryption failed: secret key not available
     ```
@@ -605,7 +605,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
     
 6. There is a publicly available key server at wwwkeys.pgp.net. You can use gpg to upload your key there with:
 
-    gpg --send-keys &lt;your_real_email_address&gt; --keyserver wwwkeys.pgp.net
+    gpg --send-keys <your_real_email_address> --keyserver wwwkeys.pgp.net
     
 ## OpenSSH (www.openssh.org)
 
