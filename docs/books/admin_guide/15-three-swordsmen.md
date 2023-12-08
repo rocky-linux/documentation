@@ -1434,3 +1434,293 @@ ID      Name
 3       Django
 4       Tom
 ```
+
+### Basic usage example
+
+1. Reading awk program source files from files
+
+    ```bash
+    Shell > vim /tmp/read-print.awk
+    #!/bin/awk
+    {print $6}
+
+    Shell > df -hT | awk -f /tmp/read-print.awk
+    Use%
+    0%
+    0%
+    1%
+    0%
+    6%
+    18%
+    0%
+    ```
+
+2. Specify delimiter
+
+    ```bash
+    Shell > awk -F ":" '{print $1}' /etc/passwd
+    root
+    bin
+    daemon
+    adm
+    lp
+    sync
+    ...
+
+    Shell > tail -n 5 /etc/services | awk -F "\/" '{print $2}'
+    awk: warning: escape sequence `\/' treated as plain `/'
+    axio-disc       35100
+    pmwebapi        44323
+    cloudcheck-ping 45514
+    cloudcheck      45514
+    spremotetablet  46998
+    ```
+
+    You can also use words as delimiters. Parentheses indicate that this is an overall delimiter, and "|" means or.
+
+    ```bash
+    Shell > tail -n 5 /etc/services | awk -F "(tcp)|(udp)" '{print $1}'
+    axio-disc       35100/
+    pmwebapi        44323/
+    cloudcheck-ping 45514/
+    cloudcheck      45514/
+    spremotetablet  46998/
+    ```
+
+3. Variable assignment
+
+    ```bash
+    Shell > tail -n 5 /etc/services | awk -v a=123 'BEGIN{print a}{print $1}'
+    123
+    axio-disc
+    pmwebapi
+    cloudcheck-ping
+    cloudcheck
+    spremotetablet
+    ```
+
+    Assign the value of user-defined variables in bash to awk's variables.
+
+    ```bash
+    Shell > ab=123
+    Shell > echo ${ab}
+    123
+    Shell > tail -n 5 /etc/services | awk -v a=${ab} 'BEGIN{print a}{print $1}'
+    123
+    axio-disc
+    pmwebapi
+    cloudcheck-ping
+    cloudcheck
+    spremotetablet
+    ```
+
+4. Write awk's global variables to a file
+
+    ```bash
+    Shell > seq 1 6 | awk --dump-variables '{print $0}'
+    1
+    2
+    3
+    4
+    5
+    6
+
+    Shell > cat /root/awkvars.out
+    ARGC: 1
+    ARGIND: 0
+    ARGV: array, 1 elements
+    BINMODE: 0
+    CONVFMT: "%.6g"
+    ENVIRON: array, 27 elements
+    ERRNO: ""
+    FIELDWIDTHS: ""
+    FILENAME: "-"
+    FNR: 6
+    FPAT: "[^[:space:]]+"
+    FS: " "
+    FUNCTAB: array, 41 elements
+    IGNORECASE: 0
+    LINT: 0
+    NF: 1
+    NR: 6
+    OFMT: "%.6g"
+    OFS: " "
+    ORS: "\n"
+    PREC: 53
+    PROCINFO: array, 20 elements
+    RLENGTH: 0
+    ROUNDMODE: "N"
+    RS: "\n"
+    RSTART: 0
+    RT: "\n"
+    SUBSEP: "\034"
+    SYMTAB: array, 28 elements
+    TEXTDOMAIN: "messages"
+    ```
+
+    Later, we will introduce what these variables mean.
+
+5. BEGIN{ } and END{ }
+
+    ```bash
+    Shell > head -n 5 /etc/passwd | awk 'BEGIN{print "UserName:PasswordIdentification:UID:InitGID"}{print $0}END{print "one\ntwo"}'
+    UserName:PasswordIdentification:UID:InitGID
+    root:x:0:0:root:/root:/bin/bash
+    bin:x:1:1:bin:/bin:/sbin/nologin
+    daemon:x:2:2:daemon:/sbin:/sbin/nologin
+    adm:x:3:4:adm:/var/adm:/sbin/nologin
+    lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+    one
+    two
+    ```
+
+6. --profile option
+
+    ```bash
+    Shell > df -hT | awk --profile 'BEGIN{print "start line"}{print $0}END{print "end line"}'
+    start line
+    Filesystem     Type      Size  Used Avail Use% Mounted on
+    devtmpfs       devtmpfs  1.8G     0  1.8G   0% /dev
+    tmpfs          tmpfs     1.8G     0  1.8G   0% /dev/shm
+    tmpfs          tmpfs     1.8G  8.9M  1.8G   1% /run
+    tmpfs          tmpfs     1.8G     0  1.8G   0% /sys/fs/cgroup
+    /dev/nvme0n1p2 ext4       47G  2.7G   42G   6% /
+    /dev/nvme0n1p1 xfs      1014M  181M  834M  18% /boot
+    tmpfs          tmpfs     363M     0  363M   0% /run/user/0
+    end line
+
+    Shell > cat /root/awkprof.out
+        # gawk profile, created Fri Dec  8 15:12:56 2023
+
+        # BEGIN rule(s)
+
+        BEGIN {
+     1          print "start line"
+        }
+
+        # Rule(s)
+
+     8  {
+     8          print $0
+        }
+
+        # END rule(s)
+
+        END {
+     1          print "end line"
+        }
+    ```
+
+    Modify the awkprof.out file.
+
+    ```bash
+    Shell > vim /root/awkprof.out
+    BEGIN {
+        print "start line"
+    }
+
+    {
+        print $0
+    }
+
+    END {
+        print "end line"
+    }
+
+    Shell > df -hT | awk -f /root/awkprof.out
+    start line
+    Filesystem     Type      Size  Used Avail Use% Mounted on
+    devtmpfs       devtmpfs  1.8G     0  1.8G   0% /dev
+    tmpfs          tmpfs     1.8G     0  1.8G   0% /dev/shm
+    tmpfs          tmpfs     1.8G  8.9M  1.8G   1% /run
+    tmpfs          tmpfs     1.8G     0  1.8G   0% /sys/fs/cgroup
+    /dev/nvme0n1p2 ext4       47G  2.7G   42G   6% /
+    /dev/nvme0n1p1 xfs      1014M  181M  834M  18% /boot
+    tmpfs          tmpfs     363M     0  363M   0% /run/user/0
+    end line
+    ```
+
+7. Match rows (records) through regular expressions
+
+    ```bash
+    Shell > cat /etc/services | awk '/[^0-9a-zA-Z]1[1-9]{2}\/tcp/ {print $0}'
+    sunrpc          111/tcp         portmapper rpcbind      # RPC 4.0 portmapper TCP
+    auth            113/tcp         authentication tap ident
+    sftp            115/tcp
+    uucp-path       117/tcp
+    nntp            119/tcp         readnews untp   # USENET News Transfer Protocol
+    ntp             123/tcp
+    netbios-ns      137/tcp                         # NETBIOS Name Service
+    netbios-dgm     138/tcp                         # NETBIOS Datagram Service
+    netbios-ssn     139/tcp                         # NETBIOS session service
+    ...
+    ```
+
+8. Logical operations (logical and, logical OR, reverse)
+
+    logical and: &&
+    logical OR: ||
+    reverse: !
+
+    ```bash
+    Shell > cat /etc/services | awk '/[^0-9a-zA-Z]1[1-9]{2}\/tcp/ && /175/ {print $0}'
+    vmnet           175/tcp                 # VMNET
+    ```
+
+    ```bash
+    Shell > cat /etc/services | awk '/[^0-9a-zA-Z]9[1-9]{2}\/tcp/ || /91{2}\/tcp/ {print $0}'
+    telnets         992/tcp
+    imaps           993/tcp                         # IMAP over SSL
+    pop3s           995/tcp                         # POP-3 over SSL
+    mtp             1911/tcp                        #
+    rndc            953/tcp                         # rndc control sockets (BIND 9)
+    xact-backup     911/tcp                 # xact-backup
+    apex-mesh       912/tcp                 # APEX relay-relay service
+    apex-edge       913/tcp                 # APEX endpoint-relay service
+    ftps-data       989/tcp                 # ftp protocol, data, over TLS/SSL
+    nas             991/tcp                 # Netnews Administration System
+    vsinet          996/tcp                 # vsinet
+    maitrd          997/tcp                 #
+    busboy          998/tcp                 #
+    garcon          999/tcp                 #
+    #puprouter      999/tcp                 #
+    blockade        2911/tcp                # Blockade
+    prnstatus       3911/tcp                # Printer Status Port
+    cpdlc           5911/tcp                # Controller Pilot Data Link Communication
+    manyone-xml     8911/tcp                # manyone-xml
+    sype-transport  9911/tcp                # SYPECom Transport Protocol
+    ```
+
+    ```bash
+    Shell > cat /etc/services | awk '!/(tcp)|(udp)/ {print $0}'
+    discard         9/sctp                  # Discard
+    discard         9/dccp                  # Discard SC:DISC
+    ftp-data        20/sctp                 # FTP
+    ftp             21/sctp                 # FTP
+    ssh             22/sctp                 # SSH
+    exp1            1021/sctp                # RFC3692-style Experiment 1 (*)                [RFC4727]
+    exp1            1021/dccp                # RFC3692-style Experiment 1 (*)                [RFC4727]
+    exp2            1022/sctp                # RFC3692-style Experiment 2 (*)                [RFC4727]
+    exp2            1022/dccp                # RFC3692-style Experiment 2 (*)                [RFC4727]
+    ltp-deepspace   1113/dccp               # Licklider Transmission Protocol
+    cisco-ipsla     1167/sctp               # Cisco IP SLAs Control Protocol
+    rcip-itu        2225/sctp               # Resource Connection Initiation Protocol
+    m2ua            2904/sctp               # M2UA
+    m3ua            2905/sctp               # M3UA
+    megaco-h248     2944/sctp               # Megaco-H.248 text
+    ...
+    ```
+
+9. Locates consecutive lines by string and prints them
+
+    ```bash
+    Shell > cat /etc/services | awk '/^ntp/,/^netbios/ {print $0}'
+    ntp             123/tcp
+    ntp             123/udp                         # Network Time Protocol
+    netbios-ns      137/tcp                         # NETBIOS Name Service
+    ```
+
+    !!! info
+
+        Start range: do not match back when the first match result is encountered.
+        End range: do not match back when the first match result is encountered.
