@@ -46,18 +46,18 @@ dann
 fi
 
 # Prüfen Sie den fehlenden Parameter.
-# Nutzungsnachricht anzeigen und beenden, wenn sie fehlt:
+# Display usage message and exit if it is missing:
 
 if [ "$1" = "" ]
 then
-    echo "$PGM : Parameter 1 is required"
+    echo "$PGM : parameter 1 is required"
     echo "Usage: $PGM param-one"
     exit
 fi
 
-# Datenaufforderung (in diesem Fall eine Ja/Neinantwort, die standardmäßig auf "N"):
+# Prompt for data (in this case a yes/no response that defaults to "N"):
 
-/bin/echo -n "Möchten Sie fortfahren? [y/N] "
+/bin/echo -n "Do you wish to continue? [y/N] "
 read yn
 if [ "$yn" != "y" ] && [ "$yn" != "Y" ]
 then
@@ -66,7 +66,7 @@ then
 fi
 
 # If only one copy of your script can run at a time, use this block of code.
-# Check for lock file.  Wenn es nicht existiert, erstellen Sie es.
+# Check for lock file.  If it doesn't exist create it.
 # If it does exist, display error message and exit:
 
 LOCKF="/tmp/${PGM}.lock"

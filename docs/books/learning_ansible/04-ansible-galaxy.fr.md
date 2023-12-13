@@ -22,7 +22,7 @@ Dans ce chapitre, vous apprendrez comment utiliser, installer et gérer les rôl
 
 ****
 
-[La Ansible Galaxy](https://galaxy.ansible.com) fournit des Rôles Ansibles et des Collections de la Communauté Ansible.
+[Ansible Galaxy](https://galaxy.ansible.com) fournit des Rôles et des Collections de la Communauté Ansible.
 
 Les éléments fournis sont prêts à l'emploi et peuvent être référencés dans les playbooks
 
