@@ -96,7 +96,7 @@ src/unison
 
 **Our requirement is-Rocky Linux 8's /dir1/ directory is automatically synchronized to Fedora 34's /dir2/ directory; at the same time, Fedora 34's /dir2/ directory is automatically synchronized to Rocky Linux 8's /dir1/ directory**
 
-### Configure Rcoky Linux 8
+### Configure Rocky Linux 8
 
 ```bash
 [root@Rocky ~]# mkdir /dir1
