@@ -1558,7 +1558,7 @@ ID      Name
     TEXTDOMAIN: "messages"
     ```
 
-    Later, we will introduce what these variables mean.
+    Later, we will introduce what these variables mean. see [here](#VARIABLES)
 
 5. BEGIN{ } and END{ }
 
@@ -1722,5 +1722,334 @@ ID      Name
 
     !!! info
 
-        Start range: do not match back when the first match result is encountered.
-        End range: do not match back when the first match result is encountered.
+        Start range: stop matching when the first match is encountered.
+        End range: stop matching when the first match is encountered.
+
+### Built-in variable {#VARIABLES}
+
+| Variable name | Description |
+| :---:         | :---        |
+| FS         | The delimiter of the input field. The default is space or tab  |
+| OFS        | The delimiter of the output field. The default is space        |
+| RS         | The delimiter of the input row record. The default is a newline character (\n) |
+| ORS        | The delimiter of output row record. The default is a newline character (\n)|
+| NF         | Count the number of fields in the current row record |
+| NR         | Count the number of row records. After each line of text is processed, the value of this variable will be +1 |
+| FNR        | Count the number of row records. When the second file is processed, the NR variable continues to add up, but the FNR variable is recounted|
+| ARGC       | The number of command line arguments |
+| ARGV       | An array of command line arguments, with subscript starting at 0 and ARGV[0] representing awk|
+| ARGIND     | The index value of the file currently being processed. The first file is 1, the second file is 2, and so on|
+| ENVIRON    | Environment variables of the current system|
+| FILENAME   | Output the currently processed file name|
+| IGNORECASE | Ignore case |
+| SUBSEP     | The delimiter of the subscript in the array, which defaults to "\034"|
+
+1. FS and OFS
+
+    ```bash
+    Shell > cat /etc/passwd | awk 'BEGIN{FS=":"}{print $1}'
+    root
+    bin
+    daemon
+    adm
+    lp
+    sync
+    ```
+
+    You can also use the -v option to assign values to variables.
+
+    ```bash
+    Shell > cat /etc/passwd | awk -v FS=":" '{print $1}'
+    root
+    bin
+    daemon
+    adm
+    lp
+    sync
+    ```
+
+    When using commas to reference multiple fields, the default output delimiter is a space. Of course, you can specify the output delimiter separately.
+
+    ```bash
+    Shell > cat /etc/passwd | awk 'BEGIN{FS=":"}{print $1,$2}'
+    root x
+    bin x
+    daemon x
+    adm x
+    lp x
+    ```
+
+    ```bash
+    Shell > cat /etc/passwd | awk 'BEGIN{FS=":";OFS="\t"}{print $1,$2}'
+    # or
+    Shell > cat /etc/passwd | awk -v FS=":" -v OFS="\t" '{print $1,$2}'
+    root    x
+    bin     x
+    daemon  x
+    adm     x
+    lp      x
+    ```
+
+2. RS and ORS
+
+    By default, `awk` uses newline characters to distinguish each line record
+
+    ```bash
+    Shell > echo -e "https://google.com/books/index.html\ntitle//tcp"
+    https://google.com/books/index.html
+    title//tcp
+
+    Shell > echo -e "https://google.com/books/index.html\ntitle//tcp" | awk 'BEGIN{RS="\/\/";ORS="%%"}{print $0}'
+    awk: cmd. line:1: warning: escape sequence `\/' treated as plain `/'
+    https:%%google.com/books/index.html
+    title%%tcp
+    %%             ← Why? Because "print"
+    ```
+
+3. NF
+
+    Count the number of fields per line in the current text
+
+    ```bash
+    Shell > head -n 5 /etc/passwd | awk -F ":" 'BEGIN{RS="\n";ORS="\n"} {print NF}'
+    7
+    7
+    7
+    7
+    7
+    ```
+
+    Print the fifth field
+
+    ```bash
+    Shell > head -n 5 /etc/passwd | awk -F ":" 'BEGIN{RS="\n";ORS="\n"} {print $(NF-2)}'
+    root
+    bin
+    daemon
+    adm
+    lp
+    ```
+
+    Print the last field
+
+    ```bash
+    Shell > head -n 5 /etc/passwd | awk -F ":" 'BEGIN{RS="\n";ORS="\n"} {print $NF}'
+    /bin/bash
+    /sbin/nologin
+    /sbin/nologin
+    /sbin/nologin
+    /sbin/nologin
+    ```
+
+    Exclude the last two fields
+
+    ```bash
+    Shell > head -n 5 /etc/passwd | awk -F ":" 'BEGIN{RS="\n";ORS="\n"} {$NF=" ";$(NF-1)=" ";print $0}'
+    root x 0 0 root
+    bin x 1 1 bin
+    daemon x 2 2 daemon
+    adm x 3 4 adm
+    lp x 4 7 lp
+    ```
+
+    Exclude the first field
+
+    ```bash
+    Shell > head -n 5 /etc/passwd | awk -F ":" 'BEGIN{RS="\n";ORS="\n"} {$1=" ";print $0}' | sed -r 's/(^  )//g'
+    x 0 0 root /root /bin/bash
+    x 1 1 bin /bin /sbin/nologin
+    x 2 2 daemon /sbin /sbin/nologin
+    x 3 4 adm /var/adm /sbin/nologin
+    x 4 7 lp /var/spool/lpd /sbin/nologin
+    ```
+
+4. NR and FNR
+
+    ```bash
+    Shell > tail -n 5 /etc/services | awk '{print NR,$0}'
+    1 axio-disc       35100/udp               # Axiomatic discovery protocol
+    2 pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+    3 cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+    4 cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    5 spremotetablet  46998/tcp               # Capture handwritten signatures
+    ```
+
+    Print the total number of lines in the file content
+
+    ```bash
+    Shell > cat /etc/services | awk 'END{print NR}'
+    11473
+    ```
+
+    Print the content of line 200
+
+    ```bash
+    Shell > cat /etc/services | awk 'NR==200'
+    microsoft-ds    445/tcp
+    ```
+
+    Print the second field on line 200
+
+    ```bash
+    Shell > cat /etc/services | awk 'BEGIN{RS="\n";ORS="\n"} NR==200 {print $2}'
+    445/tcp
+    ```
+
+    Print content within a specific range
+
+    ```bash
+    Shell > cat /etc/services | awk 'BEGIN{RS="\n";ORS="\n"} NR<=10 {print NR,$0}'
+    1 # /etc/services:
+    2 # $Id: services,v 1.49 2017/08/18 12:43:23 ovasik Exp $
+    3 #
+    4 # Network services, Internet style
+    5 # IANA services version: last updated 2016-07-08
+    6 #
+    7 # Note that it is presently the policy of IANA to assign a single well-known
+    8 # port number for both TCP and UDP; hence, most entries here have two entries
+    9 # even if the protocol doesn't support UDP operations.
+    10 # Updated from RFC 1700, ``Assigned Numbers'' (October 1994).  Not all ports
+    ```
+
+    Comparison between NR and FNR
+
+    ```bash
+    Shell > head -n 3 /etc/services > /tmp/a.txt
+
+    Shell > cat /tmp/a.txt
+    # /etc/services:
+    # $Id: services,v 1.49 2017/08/18 12:43:23 ovasik Exp $
+    #
+
+    Shell > cat /etc/resolv.conf
+    # Generated by NetworkManager
+    nameserver 8.8.8.8
+    nameserver 114.114.114.114
+
+    Shell > awk '{print NR,$0}' /tmp/a.txt /etc/resolv.conf
+    1 # /etc/services:
+    2 # $Id: services,v 1.49 2017/08/18 12:43:23 ovasik Exp $
+    3 #
+    4 # Generated by NetworkManager
+    5 nameserver 8.8.8.8
+    6 nameserver 114.114.114.114
+
+    Shell > awk '{print FNR,$0}' /tmp/a.txt /etc/resolv.conf
+    1 # /etc/services:
+    2 # $Id: services,v 1.49 2017/08/18 12:43:23 ovasik Exp $
+    3 #
+    1 # Generated by NetworkManager
+    2 nameserver 8.8.8.8
+    3 nameserver 114.114.114.114
+    ```
+
+5. ARGC and ARGV
+
+    ```bash
+    Shell > awk 'BEGIN{print ARGC}' log dump long
+    4
+    Shell > awk 'BEGIN{print ARGV[0]}' log dump long
+    awk
+    Shell > awk 'BEGIN{print ARGV[1]}' log dump long
+    log
+    Shell > awk 'BEGIN{print ARGV[2]}' log dump long
+    dump
+    ```
+
+6. ARGIND
+
+    This variable is mainly used to determine which file the awk program is working on.
+
+    ```bash
+    Shell > awk '{print ARGIND,$0}' /etc/hostname /etc/resolv.conf
+    1 Master
+    2 # Generated by NetworkManager
+    2 nameserver 8.8.8.8
+    2 nameserver 114.114.114.114
+    ```
+
+7. ENVIRON
+
+    You can reference operating system variables or user-defined variables in awk programs.
+
+    ```bash
+    Shell > echo ${SSH_CLIENT}
+    192.168.100.2 6969 22
+
+    Shell > awk 'BEGIN{print ENVIRON["SSH_CLIENT"]}'
+    192.168.100.2 6969 22
+
+    Shell > export a=123
+    Shell > env | grep -w a
+    a=123
+    Shell > awk 'BEGIN{print ENVIRON["a"]}'
+    123
+    Shell > unset a
+    ```
+
+8. FILENAME
+
+    ```bash
+    Shell > awk 'BEGIN{RS="\n";ORS="\n"} NR=FNR {print ARGIND,FILENAME"---"$0}' /etc/hostname /etc/resolv.conf /etc/rocky-release
+    1 /etc/hostname---Master
+    2 /etc/resolv.conf---# Generated by NetworkManager
+    2 /etc/resolv.conf---nameserver 8.8.8.8
+    2 /etc/resolv.conf---nameserver 114.114.114.114
+    3 /etc/rocky-release---Rocky Linux release 8.9 (Green Obsidian)
+    ```
+
+9. IGNORECASE
+
+    This variable is useful if you want to use regular expressions in awk and ignore case.
+
+    ```bash
+    Shell > awk 'BEGIN{IGNORECASE=1;RS="\n";ORS="\n"} /^(SSH)|^(ftp)/ {print $0}' /etc/services
+    ftp-data        20/tcp
+    ftp-data        20/udp
+    ftp             21/tcp
+    ftp             21/udp          fsp fspd
+    ssh             22/tcp                          # The Secure Shell (SSH) Protocol
+    ssh             22/udp                          # The Secure Shell (SSH) Protocol
+    ftp-data        20/sctp                 # FTP
+    ftp             21/sctp                 # FTP
+    ssh             22/sctp                 # SSH
+    ftp-agent       574/tcp                 # FTP Software Agent System
+    ftp-agent       574/udp                 # FTP Software Agent System
+    sshell          614/tcp                 # SSLshell
+    sshell          614/udp                 #       SSLshell
+    ftps-data       989/tcp                 # ftp protocol, data, over TLS/SSL
+    ftps-data       989/udp                 # ftp protocol, data, over TLS/SSL
+    ftps            990/tcp                 # ftp protocol, control, over TLS/SSL
+    ftps            990/udp                 # ftp protocol, control, over TLS/SSL
+    ssh-mgmt        17235/tcp               # SSH Tectia Manager
+    ssh-mgmt        17235/udp               # SSH Tectia Manager
+    ```
+
+    ```bash
+    Shell > awk 'BEGIN{IGNORECASE=1;RS="\n";ORS="\n"} /^(SMTP)\s/,/^(TFTP)\s/ {print $0}' /etc/services
+    smtp            25/tcp          mail
+    smtp            25/udp          mail
+    time            37/tcp          timserver
+    time            37/udp          timserver
+    rlp             39/tcp          resource        # resource location
+    rlp             39/udp          resource        # resource location
+    nameserver      42/tcp          name            # IEN 116
+    nameserver      42/udp          name            # IEN 116
+    nicname         43/tcp          whois
+    nicname         43/udp          whois
+    tacacs          49/tcp                          # Login Host Protocol (TACACS)
+    tacacs          49/udp                          # Login Host Protocol (TACACS)
+    re-mail-ck      50/tcp                          # Remote Mail Checking Protocol
+    re-mail-ck      50/udp                          # Remote Mail Checking Protocol
+    domain          53/tcp                          # name-domain server
+    domain          53/udp
+    whois++         63/tcp          whoispp
+    whois++         63/udp          whoispp
+    bootps          67/tcp                          # BOOTP server
+    bootps          67/udp
+    bootpc          68/tcp          dhcpc           # BOOTP client
+    bootpc          68/udp          dhcpc
+    tftp            69/tcp
+    ```
+
+### Operator
