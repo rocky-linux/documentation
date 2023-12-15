@@ -55,7 +55,7 @@ title: Elenco dei Laboratori di Sicurezza
 1. Amministrazione della Chiave
 1. Certificati di revoca
 1. Firme digitali
-1. Crittografare e decrittografare file
+1. Crittografia e decrittografia dei file
 1. sshd
 1. ssh
 1. scp
