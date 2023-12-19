@@ -166,7 +166,7 @@ There are many websites available to practice your regular expression skills onl
 
 ## `grep` command
 
-The `grep` command is used to filter the content of a single or multiple file. There are some variants of this command tool, such as `egrep (grep -E)` and `fgrep (grep -f)`. For information not covered, please refer to [here]( https://www.gnu.org/software/grep/manual/ "grep manual").
+The `grep` command is used to filter the content of a single or multiple file. There are some variants of this command tool, such as `egrep (grep -E)` and `fgrep (grep -f)`. For information not covered, please refer to [here](https://www.gnu.org/software/grep/manual/ "grep manual").
 
 The usage of the grep command is:
 
@@ -1640,7 +1640,7 @@ ID      Name
     end line
     ```
 
-7. Match rows (records) through regular expressions
+7. Match rows (records) through regular expressions <a id="RE"></a>
 
     ```bash
     Shell > cat /etc/services | awk '/[^0-9a-zA-Z]1[1-9]{2}\/tcp/ {print $0}'
@@ -2053,3 +2053,308 @@ ID      Name
     ```
 
 ### Operator
+
+| Operator  | Description |
+| :---:     | :---        |
+| (...)     | Grouping    |
+| $n        | Field reference |
+| ++<br/>--      | Incremental<br/>Decreasing |
+| +<br/>-<br/>!  | Mathematical plus sign<br/>Mathematical minus sign<br/>Negation|
+| *<br/>/<br/>%  | Mathematical multiplication sign<br/>Mathematical division sign<br/>Modulo operation |
+| in             | Elements in an array |
+| &&<br/>\|\|    | Logic and Operations<br/>Logical OR operation |
+| ?:  |  Abbreviation of conditional expressions |
+| ~   | Another representation of regular expressions |
+| !~  | Reverse Regular Expression |
+
+!!! note
+
+    In the `awk` program, the following expressions will be judged as **false**:
+
+    * The number is 0;
+    * Empty string;
+    * Undefined value.
+
+    ```bash
+    Shell > awk 'BEGIN{n=0;if(n) print "Ture";else print "False"}'
+    False
+    Shell > awk 'BEGIN{s="";if(s) print "True";else print "False"}'
+    False
+    Shell > awk 'BEGIN{if(t) print "True";else print "Flase"}'
+    False
+    ```
+
+1. Exclamation point
+
+    Print odd rows:
+
+    ```bash
+    Shell > seq 1 10 | awk 'i=!i {print $0}'
+    1
+    3
+    5
+    7
+    9
+    ```
+
+    !!! question
+    
+        **Why?**
+        **Read the first line**: Because "i" is not assigned a value, so "i=!i" indicates TRUE.
+        **Read the second line**: At this point, "i=!i" indicates FALSE.
+        And so on, the final printed line is an odd number.
+    
+    Print even rows:
+
+    ```bash
+    Shell > seq 1 10 | awk '!(i=!i)'
+    # or
+    Shell > seq 1 10 | awk '!(i=!i) {print $0}'
+    2
+    4
+    6
+    8
+    10
+    ```
+
+    !!! note
+
+        As you can see, sometimes you can ignore the syntax for the "action" part, which by default is equivalent to "{print $0}".
+
+2. Reversal
+
+    ```bash
+    Shell > cat /etc/services | awk '!/(tcp)|(udp)|(^#)|(^$)/ {print $0}'
+    http            80/sctp                         # HyperText Transfer Protocol
+    bgp             179/sctp
+    https           443/sctp                        # http protocol over TLS/SSL
+    h323hostcall    1720/sctp                       # H.323 Call Control
+    nfs             2049/sctp       nfsd shilp      # Network File System
+    rtmp            1/ddp                           # Routing Table Maintenance Protocol
+    nbp             2/ddp                           # Name Binding Protocol
+    echo            4/ddp                           # AppleTalk Echo Protocol
+    zip             6/ddp                           # Zone Information Protocol
+    discard         9/sctp                  # Discard
+    discard         9/dccp                  # Discard SC:DISC
+    ...
+    ```
+  
+3. Basic operations in mathematics
+
+    ```bash
+    Shell > echo -e "36\n40\n50" | awk '{print $0+1}'
+    37
+    41
+
+    Shell > echo -e "30\t5\t8\n11\t20\t34"
+    30      5       8
+    11      20      34
+    Shell > echo -e "30\t5\t8\n11\t20\t34" | awk '{print $2*2+1}'
+    11
+    41
+    ```
+
+    It can also be used in the "pattern":
+
+    ```bash
+    Shell > cat -n /etc/services | awk  '/^[1-9]*/ && $1%2==0 {print $0}'
+    ...
+    24  tcpmux          1/udp                           # TCP port service multiplexer
+    26  rje             5/udp                           # Remote Job Entry
+    28  echo            7/udp
+    30  discard         9/udp           sink null
+    32  systat          11/udp          users
+    34  daytime         13/udp
+    36  qotd            17/udp          quote
+    ...
+
+    Shell > cat -n /etc/services | awk  '/^[1-9]*/ && $1%2!=0 {print $0}'
+    ...
+    23  tcpmux          1/tcp                           # TCP port service multiplexer
+    25  rje             5/tcp                           # Remote Job Entry
+    27  echo            7/tcp
+    29  discard         9/tcp           sink null
+    31  systat          11/tcp          users
+    ...
+    ```
+
+4. Pipe symbol
+
+    You can use the bash command in the awk program, for example:
+
+    ```bash
+    Shell > echo -e "6\n3\n9\n8" | awk '{print $0 | "sort"}'
+    3
+    6
+    8
+    9
+    ```
+    
+    !!! info
+
+        Please pay attention! You must use double quotes to include the command.
+
+5. Regular expression
+
+    [Here](#RE), we cover basic examples of regular expressions. You can use regular expressions on row records.
+
+    ```bash
+    Shell > cat /etc/services | awk '/[^0-9a-zA-Z]1[1-9]{2}\/tcp/ {print $0}'
+
+    # Be equivalent to:
+
+    Shell > cat /etc/services | awk '$0~/[^0-9a-zA-Z]1[1-9]{2}\/tcp/ {print $0}'
+    ```
+
+    If the file has a large amount of text, regular expressions can also be used for fields, which will help improve processing efficiency. The usage example is as follows:
+
+    ```bash
+    Shell > cat /etc/services | awk '$0~/^(ssh)/ && $2~/tcp/ {print $0}'
+    ssh             22/tcp                          # The Secure Shell (SSH) Protocol
+    sshell          614/tcp                 # SSLshell
+    ssh-mgmt        17235/tcp               # SSH Tectia Manager
+    
+    Shell > cat /etc/services | grep -v -E "(^#)|(^$)" | awk '$2!~/(tcp)|(udp)/ {print $0}'
+    http            80/sctp                         # HyperText Transfer Protocol
+    bgp             179/sctp
+    https           443/sctp                        # http protocol over TLS/SSL
+    h323hostcall    1720/sctp                       # H.323 Call Control
+    nfs             2049/sctp       nfsd shilp      # Network File System
+    rtmp            1/ddp                           # Routing Table Maintenance Protocol
+    nbp             2/ddp                           # Name Binding Protocol
+    ...
+    ```
+
+### Flow control
+
+1. **if** statement
+    
+    The basic syntax format is - `if (condition) statement [ else statement ]`
+
+    Example of a single branch use of an if statement:
+
+    ```bash
+    Shell > cat /etc/services | awk '{if(NR==110) print $0}'
+    pop3            110/udp         pop-3
+    ```
+
+    The condition is determined as a regular expression:
+
+    ```bash
+    Shell > cat /etc/services | awk '{if(/^(ftp)\s|^(ssh)\s/) print $0}'
+    ftp             21/tcp
+    ftp             21/udp          fsp fspd
+    ssh             22/tcp                          # The Secure Shell (SSH) Protocol
+    ssh             22/udp                          # The Secure Shell (SSH) Protocol
+    ftp             21/sctp                 # FTP
+    ssh             22/sctp                 # SSH
+    ```
+
+    Double branch:
+
+    ```bash
+    Shell > seq 1 10 | awk '{if($0==10) print $0 ; else print "False"}'
+    False
+    False
+    False
+    False
+    False
+    False
+    False
+    False
+    False
+    10
+    ```
+
+    Multiple branches:
+
+    ```bash
+    Shell > cat /etc/services | awk '{ \ 
+    if($1~/netbios/) 
+        {print $0} 
+    else if($2~/175/) 
+        {print "175"} 
+    else if($2~/137/) 
+        {print "137"} 
+    else {print "no"} 
+    }'
+    ```
+
+2. **while** statement
+
+    The basic syntax format is - `while (condition) statement`
+
+    Traverse and print out the fields of all row records.
+
+    ```bash
+    Shell > tail -n 2 /etc/services
+    cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    spremotetablet  46998/tcp               # Capture handwritten signatures
+
+    Shell > tail -n 2 /etc/services | awk '{ \
+    i=1;
+    while(i<=NF){print $i;i++}
+    }'
+
+    cloudcheck
+    45514/tcp
+    #
+    ASSIA
+    CloudCheck
+    WiFi
+    Management
+    System
+    spremotetablet
+    46998/tcp
+    #
+    Capture
+    handwritten
+    signatures
+    ```
+
+3. **for** statement
+
+    The basic syntax format is - `for (expr1; expr2; expr3) statement`
+
+    Traverse and print out the fields of all row records.
+
+    ```bash
+    Shell > tail -n 2 /etc/services | awk '{ \
+    for(i=1;i<=NF;i++) print $i
+    }'
+    ```
+
+    Print the fields for each row of records in reverse order.
+
+    ```bash
+    Shell > tail -n 2 /etc/services | awk '{ \
+    for(i=NF;i>=1;i--) print $i
+    }'
+
+    System
+    Management
+    WiFi
+    CloudCheck
+    ASSIA
+    #
+    45514/tcp
+    cloudcheck
+    signatures
+    handwritten
+    Capture
+    #
+    46998/tcp
+    spremotetablet
+    ```
+
+    Print each line of records in the opposite direction.
+
+    ```bash
+    Shell > tail -n 2 /etc/services | awk  '{ \
+    for(i=NF;i>=1;i--) {printf $i" "};
+    print ""
+    }'
+
+    System Management WiFi CloudCheck ASSIA # 45514/tcp cloudcheck
+    signatures handwritten Capture # 46998/tcp spremotetablet
+    ```
