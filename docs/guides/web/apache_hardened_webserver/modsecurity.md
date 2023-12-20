@@ -26,7 +26,7 @@ tags:
 
 If you want to use this and other hardening tools, refer back to the [Apache Hardened Web Server guide](index.md). This document also uses all of the assumptions and conventions outlined in that original document. It is a good idea to review it before continuing.
 
-One thing missing with `mod_security` when installed from the generic Rocky Linux repositories, is that the rules installed are minimal. To get a more extensive package of no cost `mod_security` rules, this procedure uses [OWASP mod_security rules found here](https://www.netnea.com/). OWASP stands for the Open Web Application Security Project. You can [find out more about OWASP here](https://owasp.org/).
+One thing missing with `mod_security` when installed from the generic Rocky Linux repositories, is that the rules installed are minimal. To get a more extensive package of no cost `mod_security` rules, this procedure uses [OWASP `mod_security` rules found here](https://coreruleset.org/). OWASP stands for the Open Web Application Security Project. You can [find out more about OWASP here](https://owasp.org/).
 
 !!! tip
 
@@ -61,26 +61,26 @@ dnf install mod_security wget
 5. Enter `wget` and paste your link. Example:
 
     ```
-    wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.4.tar.gz
+    wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.5.tar.gz
     ```
 
 6. Decompress the file: 
 
     ```
-    tar xzvf v3.3.4.tar.gz
+    tar xzvf v3.3.5.tar.gz
     ```
-    This creates a directory with the release information in the name. Example: "coreruleset-3.3.4"
+    This creates a directory with the release information in the name. Example: "coreruleset-3.3.5"
 
 7. Create a symbolic link called "crs" linking to the directory of the release. Example:
 
     ```
-    ln -s coreruleset-3.3.4/ /etc/httpd/conf/crs
+    ln -s coreruleset-3.3.5/ /etc/httpd/conf/crs
     ```
 
 8. Remove the `tar.gz` file. Example:
 
     ```
-    rm -f v3.3.4.tar.gz
+    rm -f v3.3.5.tar.gz
     ```
 
 9. Copy the temporary configuration so that it will load when started:

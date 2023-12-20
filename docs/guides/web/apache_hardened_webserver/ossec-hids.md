@@ -40,7 +40,7 @@ dnf install wget epel-release
 Download and enable Atomicorp's no cost repository:
 
 ```
-wget -q -O - http://www.atomicorp.com/installers/atomic | sh
+wget -q -O - https://www.atomicorp.com/installers/atomic | sh
 ```
 
 This script will ask you to agree to the terms. Enter "yes" or <kbd>Enter</kbd> to accept the default.
