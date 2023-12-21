@@ -26,7 +26,7 @@ tags:
 
 Якщо ви бажаєте скористатися цим та іншими інструментами захисту, зверніться до [посібника з надійного веб-сервера Apache](index.md). У цьому документі також використовуються всі припущення та умовності, викладені в цьому оригінальному документі. Перш ніж продовжити, варто переглянути його.
 
-Одного не вистачає `mod_security` під час встановлення із загальних репозиторіїв Rocky Linux: встановлені мінімальні правила. Щоб отримати розширеніший пакет безкоштовних правил `mod_security`, ця процедура використовує безкоштовні [правила mod_security OWASP, які можна знайти тут](https://www.netnea.com/). OWASP означає Open Web Application Security Project. Ви можете [дізнатися більше про OWASP тут](https://owasp.org/).
+Одного не вистачає `mod_security` під час встановлення із загальних репозиторіїв Rocky Linux: встановлені мінімальні правила. Щоб отримати розширеніший пакет безкоштовних правил `mod_security`, ця процедура використовує [OWASP `mod_security` правила, які можна знайти тут](https://coreruleset.org/). OWASP означає Open Web Application Security Project. Ви можете [дізнатися більше про OWASP тут](https://owasp.org/).
 
 !!! tip "Підказка"
 
@@ -61,26 +61,26 @@ dnf install mod_security wget
 5. Введіть `wget` і вставте своє посилання. Приклад:
 
     ```
-    wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.4.tar.gz
+    wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.5.tar.gz
     ```
 
 6. Розпакуйте файл:
 
     ```
-    tar xzvf v3.3.4.tar.gz
+    tar xzvf v3.3.5.tar.gz
     ```
-    Це створює каталог із інформацією про випуск у назві. Приклад: "coreruleset-3.3.4"
+    Це створює каталог із інформацією про випуск у назві. Приклад: "coreruleset-3.3.5"
 
 7. Створіть символічне посилання «crs» на каталог випуску. Приклад:
 
     ```
-    ln -s coreruleset-3.3.4/ /etc/httpd/conf/crs
+    ln -s coreruleset-3.3.5/ /etc/httpd/conf/crs
     ```
 
 8. Видаліть файл `tar.gz`. Приклад:
 
     ```
-    rm -f v3.3.4.tar.gz
+    rm -f v3.3.5.tar.gz
     ```
 
 9. Скопіюйте тимчасову конфігурацію, щоб вона завантажувалася під час запуску:
