@@ -40,7 +40,7 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
  2. 10.9.128.1 0.0% 10 13.9 14.8 8.5 20.7 3.9
  3. 120.80.175.109 0.0% 10 15.8 15.0 10.0 20.1 3.1
  4. 112.89.0.57 20.0% 10 18.9 15.2 11.5 18.9 2.9
- 5.219.158.8.114 0.0% 10 10.8 14.4 10.6 20.5 3.5
+ 5. 219.158.8.114 0.0% 10 10.8 14.4 10.6 20.5 3.5
  6. 219.158.24.134 0.0% 10 13.1 14.5 11.9 18.9 2.2
  7. 219.158.10.30 0.0% 10 14.9 21.2 12.0 29.8 6.9
  8. 219.158.33.114 0.0% 10 17.7 17.1 13.0 20.0 2.0
@@ -61,4 +61,4 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 * StDev - variance (stabilité)
 
 ## Racourcis de clavier
-<kbd>p</kbd> - pause; <kbd>d</kbd> - switch display mode; <kbd>n</kbd> - turn on/off DNS; <kbd>r</kbd> - reset all counters; <kbd>j</kbd> - Toggle delay display information; <kbd>y</kbd> - switch IP information; <kbd>q</kbd> - Quit interaction.
+<kbd>p</kbd> - pause; <kbd>d</kbd> - switch display mode; <kbd>n</kbd> - turn on/off DNS; <kbd>r</kbd> - reset all counters; <kbd>j</kbd> - toggle delay display information; <kbd>y</kbd> - switch IP information; <kbd>q</kbd> - quit.
