@@ -16,7 +16,7 @@ date: 2021-10-20
 shell > dnf -y install mtr
 ```
 
-Die allgemeinen Optionen des Befehls `mtr` sind folgende. Unter normalen Umständen sind keine zusätzlichen Optionen erforderlich, direkt gefolgt vom Hostnamen oder der IP-Adresse:
+Die allgemeinen Optionen des Befehls `mtr` sind folgende. Normalerweise ist keine Option erforderlich, es reicht aus, einfach einen Namen oder eine IP-Adresse anzugeben:
 
 | Optionen | Beschreibung                     |
 | -------- | -------------------------------- |
@@ -60,5 +60,5 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 * Wtst - maximale Verzögerung
 * StDev - Varianz (Stabilität)
 
-## Shortcuts für die Interaktion
-<kbd>p</kbd> - pause; <kbd>d</kbd> - switch display mode; <kbd>n</kbd> - turn on/off DNS; <kbd>r</kbd> - reset all counters; <kbd>j</kbd> - Toggle delay display information; <kbd>y</kbd> - switch IP information; <kbd>q</kbd> - Quit interaction.
+## Tastaturkürzel
+<kbd>p</kbd> - pause; <kbd>d</kbd> - switch display mode; <kbd>n</kbd> - turn on/off DNS; <kbd>r</kbd> - reset all counters; <kbd>j</kbd> - toggle delay display information; <kbd>y</kbd> - switch IP information; <kbd>q</kbd> - quit.
