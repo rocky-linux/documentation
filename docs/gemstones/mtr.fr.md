@@ -7,7 +7,7 @@ date: 2021-10-20
 
 # Présentation de `mtr`
 
-`mtr` est un outil d'analyse de réseau qui permet de diagnostiquer certains problèmes. Il remplace les commandes `ping` et `traceroute`. `mtr` est plus performant.
+`mtr` est un outil d'analyse de réseau qui permet de diagnostiquer certains problèmes. Il peut remplacer les commandes `ping` et `traceroute`. `mtr` est plus performant.
 
 ## Utilisation de `mtr`
 
