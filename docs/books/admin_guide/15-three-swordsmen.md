@@ -2358,3 +2358,359 @@ ID      Name
     System Management WiFi CloudCheck ASSIA # 45514/tcp cloudcheck
     signatures handwritten Capture # 46998/tcp spremotetablet
     ```
+
+4. **break** statement and **continue** statement
+
+    The comparison between the two is as follows:
+
+    ```bash
+    Shell > awk 'BEGIN{  \
+    for(i=1;i<=10;i++)
+      {
+        if(i==3) {break};
+        print i
+      }
+    }'
+
+    1
+    2
+    ```
+
+    ```bash
+    Shell > awk 'BEGIN{  \
+    for(i=1;i<=10;i++)
+      {
+        if(i==3) {continue};
+        print i
+      }
+    }'
+
+    1                                                                                                                           
+    2                                                                                                                                         
+    4                                                                                                                                         
+    5                                                                                                                                         
+    6                                                                                                                                         
+    7                                                                                                                                         
+    8                                                                                                                                         
+    9                                                                                                                                         
+    10
+    ```
+ 
+ 5. **exit** statement
+
+    You can specify a return value in the range of [0,255]
+
+    The basic syntax format is - `exit [expression]`
+
+    ```bash
+    Shell > seq 1 10 | awk '{
+      if($0~/5/) exit "135"
+    }'
+
+    Shell > echo $?
+    135
+    ```
+
+### Array
+
+**array**: A collection of data with the same data type arranged in a certain order. Each data in an array is called an element.
+
+Like most programming languages, `awk` also supports arrays, which are divided into **indexed arrays (with numbers as subscripts)** and **associative arrays (with strings as subscripts)**.
+
+`awk` has a lot of functions, and the functions related to arrays are:
+
+* **length(Array_Name)** - Get the length of the array.
+
+1. Custom array
+
+    Format - `Array_Name[Index]=Value`
+
+    ```bash
+    Shell > awk 'BEGIN{a1[0]="test0" ; a1[1]="s1"; print a1[0]}'
+    test0
+    ```
+
+    Get the length of the array:
+
+    ```bash
+    Shell > awk 'BEGIN{name[-1]="jimcat8" ; name[3]="jack" ; print length(name)}'
+    2
+    ```
+
+    Store all GNU/Linux users in an array:
+
+    ```bash
+    Shell > cat /etc/passwd | awk -F ":" '{username[NR]=$1}END{print username[2]}'
+    bin
+    Shell > cat /etc/passwd | awk -F ":" '{username[NR]=$1}END{print username[1]}'
+    root
+    ```
+
+    !!! info
+
+        The numeric subscript of an `awk` array can be a positive integer, a negative integer, or 0, so the numeric subscript of an `awk` array has no concept of an initial value. This is not the same as arrays in `bash`.
+
+        ```bash
+        Shell > arr1=(2 10 30 string1)
+        Shell > echo "${arr1[0]}"
+        2
+        Shell > unset arr1
+        ```
+
+2. Delete array
+
+    Format - `delete Array_Name`
+
+3. Delete an element from an array
+
+    Format - `delete Array_Name[Index]`
+
+4. Traversal array
+
+    We can use the **for** statement, which is suitable for cases where the array subscript is unknown:
+
+    ```bash
+    Shell > head -n 5 /etc/passwd | awk -F ":" ' \
+    {
+      username[NR]=$1
+    }
+    END {
+      for(i in username)
+      print username[i],i
+    }
+    '
+
+    root 1
+    bin 2
+    daemon 3
+    adm 4
+    lp 5
+    ```
+
+    If the subscript of an array is regular, you can use this form of the **for** statement:
+
+    ```bash
+    Shell > cat /etc/passwd | awk -F ":" ' \
+    {
+      username[NR]=$1
+    }
+    END{
+      for(i=1;i<=NR;i++)
+      print username[i],i
+    }
+    '
+
+    root 1
+    bin 2
+    daemon 3
+    adm 4
+    lp 5
+    sync 6
+    shutdown 7
+    halt 8
+    ...
+    ```
+
+5. Use "++" as the subscript of the array
+
+    ```bash
+    Shell > tail -n 5 /etc/group | awk -F ":" '\
+    {
+      a[x++]=$1
+    }
+    END{
+      for(i in a)
+      print a[i],i
+    }
+    '
+
+    slocate 0
+    unbound 1
+    docker 2
+    cgred 3
+    redis 4
+    ```
+
+6. Use a field as the subscript of an array
+
+    ```bash
+    Shell > tail -n 5 /etc/group | awk -F ":" '\
+    {
+      a[$1]=$3
+    }
+    END{
+      for(i in a)
+      print a[i],i
+    }
+    '
+
+    991 docker
+    21 slocate
+    989 redis
+    992 unbound
+    990 cgred
+    ```
+
+7. Count the number of occurrences of the same field
+
+    Count the number of occurrences of the same IPv4 address. Basic idea:
+
+    * First use the `grep` command to filter out all IPv4 addresses
+    * Then hand it over to the `awk` program for processing
+
+    ```bash
+    Shell > cat /var/log/secure | egrep -o "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | awk ' \
+    {
+      a[$1]++
+    } 
+    END{
+      for(v in a) print a[v],v
+    }
+    '
+
+    4 0.0.0.0
+    4 192.168.100.2
+    ```
+
+    !!! info
+    
+        `a[$1]++` is equivalent to `a[$1]+=1`
+
+
+    Count the number of occurrences of words regardless of case. Basic idea:
+
+    * Split all fields into multiple rows of records
+    * Then hand it over to the `awk` program for processing
+
+    ```bash
+    Shell > cat /etc/services | awk -F " " '{for(i=1;i<=NF;i++) print $i}'
+
+    Shell > cat /etc/services | awk -F " " '{for(i=1;i<=NF;i++) print $i}' | awk '\
+    BEGIN{IGNORECASE=1;OFS="\t"} /^netbios$/  ||  /^ftp$/  {a[$1]++}  END{for(v in a) print a[v],v}
+    '
+
+    3       NETBIOS
+    18      FTP
+    7       ftp
+
+    Shell > cat /etc/services | awk -F " " '{ for(i=1;i<=NF;i++) print $i }' | awk '\
+    BEGIN{IGNORECASE=1;OFS="\t"}  /^netbios$/  ||  /^ftp$/   {a[$1]++}  END{for(v in a)  \
+    if(a[v]>=5) print a[v],v}
+    '
+
+    18      FTP
+    7       ftp
+    ```
+
+    You can first filter specific row records and then perform statistics, such as:
+
+    ```bash
+    Shell > ss -tulnp | awk -F " "  '/tcp/ {a[$2]++} END{for(i in a) print a[i],i}'
+    2 LISTEN  
+    ```
+
+8. Print lines based on the number of occurrences of a specific field
+
+    ```bash
+    Shell > tail /etc/services
+    aigairserver    21221/tcp               # Services for Air Server
+    ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+    ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+    edi_service     34567/udp               # dhanalakshmi.org EDI Service
+    axio-disc       35100/tcp               # Axiomatic discovery protocol
+    axio-disc       35100/udp               # Axiomatic discovery protocol
+    pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+    cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+    cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    spremotetablet  46998/tcp               # Capture handwritten signatures
+
+    Shell > tail /etc/services | awk 'a[$1]++ {print $0}'
+    axio-disc       35100/udp               # Axiomatic discovery protocol
+    ```
+
+    Reverse:
+
+    ```bash
+    Shell > tail /etc/services | awk '!a[$1]++ {print $0}'
+    aigairserver    21221/tcp               # Services for Air Server
+    ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+    ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+    edi_service     34567/udp               # dhanalakshmi.org EDI Service
+    axio-disc       35100/tcp               # Axiomatic discovery protocol
+    pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+    cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+    cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    spremotetablet  46998/tcp               # Capture handwritten signatures
+    ```
+
+9. Multidimensional array
+
+    The `awk` program does not support multi-dimensional arrays, but support for multi-dimensional arrays can be achieved through simulation. By default, "\034" is used as the delimiter for the subscript of a multidimensional array.
+
+    Please note the following differences when using multidimensional arrays:
+
+    ```bash
+    Shell > awk 'BEGIN{ a["1,0"]=100 ; a[2,0]=200 ; a["3","0"]=300 ; for(i in a) print a[i],i }'
+    200 20
+    300 30
+    100 1,0
+    ```
+
+    Redefine the delimiter:
+
+    ```bash
+    Shell > awk 'BEGIN{ SUBSEP="----" ; a["1,0"]=100 ; a[2,0]=200 ; a["3","0"]=300 ; for(i in a) print a[i],i }'
+    300 3----0
+    200 2----0
+    100 1,0
+    ```
+    
+    Reorder：
+
+    ```bash
+    Shell > awk 'BEGIN{ SUBSEP="----" ; a["1,0"]=100 ; a[2,0]=200 ; a["3","0"]=300 ; for(i in a) print a[i],i | "sort" }'
+    100 1,0
+    200 2----0
+    300 3----0
+    ```
+
+    Count the number of times the field appears:
+
+    ```bash
+    Shell > cat c.txt
+    A 192.168.1.1 HTTP
+    B 192.168.1.2 HTTP
+    B 192.168.1.2 MYSQL
+    C 192.168.1.1 MYSQL
+    C 192.168.1.1 MQ
+    D 192.168.1.4 NGINX
+
+    Shell > cat c.txt | awk 'BEGIN{SUBSEP="----"} {a[$1,$2]++} END{for(i in a) print a[i],i}'
+    1 A----192.168.1.1
+    2 B----192.168.1.2
+    2 C----192.168.1.1
+    1 D----192.168.1.4
+    ```
+
+### Built-in function
+
+| Function name | Description |
+| :---          | :---        |
+| int(expr)     | Intercept into index |
+| sqrt(expr)    | Square root|
+| rand()        | Returns a random number N with a range of (0,1). The result is not that every run is a random number, but that it remains the same.|
+| srand([expr]) | Use "expr" to generate random numbers. If "expr" is not specified, the current time is used as the seed by default, and if there is a seed, the generated random number is used.|
+| asort(a,b)    | The elements of the array "a" are reordered (lexicographically) and stored in the new array "b", with the subscript in the array "b" starting at 1. This function returns the number of elements in the array.|
+| asorti(a,b)   | Reorder the subscript of the array "a" and store the sorted subscript in the new array "b" as an element, with the subscript of the array "b" starting at 1. |
+| sub(r,s[,t])  | Use the "r" regular expression to match the input records, and replace the matching result with "s". "t" is optional, indicating a replacement for a certain field. The function returns the number of replacements - 0 or 1. Similar to `sed s//`|
+| gsub(r,s[,t]) | Global replacement. Similar to `sed s///g` |
+| gensub(r,s,h[,t])  | Use the "r" regular expression to match the input records, and replace the matching result with "s". "t" is optional, indicating a replacement for a certain field. "h" represents replacing the specified index position|
+| index(s,t)    | Returns the index position of the string "t" in the string "s" (the string index starts from 1). If the function returns 0, it means it does not exist |
+| length([s])   | Returns the length of "s" |
+| match(s,r[,a])| |
+| split(s,a[,r[,seps]])| |
+| substr(s,i[,n])  | |
+| tolower(str)  | |
+| toupper(str)  | |
+| systime()     | |
+| strftime([format[,timestamp[,utc-flag]]]) | |
