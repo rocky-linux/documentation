@@ -2,6 +2,8 @@
 title: Commandes avancées Linux
 ---
 
+<!-- markdownlint-disable MD033 -->
+
 # Commandes avancées pour utilisateurs Linux
 
 Les commandes avancées offrent une plus grande personnalisation et des contrôles dans des situations plus spécifiques une fois que vous êtes familiarisés avec les commandes de base.
@@ -10,25 +12,24 @@ Les commandes avancées offrent une plus grande personnalisation et des contrôl
 
 **Objectifs** : Dans ce chapitre, les futurs administrateurs Linux vont apprendre :
 
-:heavy_check_mark: quelques commandes utiles non couvertes dans le chapitre précédent ;   
-:heavy_check_mark: quelques commandes avancées.
+:heavy_check_mark: quelques commandes utiles non traitées dans le chapitre précédent. :heavy_check_mark: des commandes avancées.
 
 :checkered_flag: **commandes utilisateurs**, **Linux**
 
-**Connaissances : ** :star:   
-**Complexité : ** :star: :star: :star:
+**Connaissances** :star:   
+**Complexité** :star: :star: :star:
 
 **Temps de lecture : **20 minutes
 
 ****
 
-## La commande `uniqu`
+## La commande `uniq`
 
 La commande `uniq` est une commande, utilisée avec la commande `sort`, très puissante, notamment pour l’analyse de fichiers de logs. Elle permet de trier et d’afficher des entrées en supprimant les doublons.
 
-Pour illustre le fonctionnement de la commande `uniq`, utilisons un fichier `firstnames.txt` contenant une liste de prénoms :
+Pour illustrer le fonctionnement de la commande `uniq`, utilisons un fichier `firstnames.txt` contenant une liste de prénoms :
 
-```
+```text
 antoine
 xavier
 steven
@@ -45,7 +46,7 @@ steven
 
 Sans argument, la commande `uniq` ne va pas afficher les lignes identiques qui se suivent du fichier `firstnames.txt` :
 
-```
+```bash
 $ sort firstnames.txt | uniq
 antoine
 patrick
@@ -55,14 +56,14 @@ xavier
 
 Pour n’afficher que les lignes n’apparaissant qu’une seule fois, il faut utiliser l’option `-u` :
 
-```
+```bash
 $ sort firstnames.txt | uniq -u
 patrick
 ```
 
 À l’inverse, pour n’afficher que les lignes apparaissant au moins deux fois dans le fichier, il faut utiliser l’option `-d` :
 
-```
+```bash
 $ sort firstnames.txt | uniq -d
 antoine
 steven
@@ -71,7 +72,7 @@ xavier
 
 Pour simplement supprimer les lignes qui n’apparaissent qu’une seule fois, il faut utiliser l’option `-D` :
 
-```
+```bash
 $ sort firstnames.txt | uniq -D
 antoine
 antoine
@@ -84,7 +85,7 @@ xavier
 
 Enfin, pour compter le nombre d’occurrences de chaque ligne, il faut utiliser l’option `-c` :
 
-```
+```bash
 $ sort firstnames.txt | uniq -c
       3 antoine
       1 patrick
@@ -92,7 +93,7 @@ $ sort firstnames.txt | uniq -c
       2 xavier
 ```
 
-```
+```bash
 $ sort firstnames.txt | uniq -cd
       3 antoine
       2 steven
@@ -107,7 +108,7 @@ La commande `xargs` lit des arguments délimités par des blancs ou par des saut
 
 Un premier exemple le plus simple possible serait le suivant :
 
-```
+```bash
 $ xargs
 use
 of
@@ -118,7 +119,7 @@ use of xargs
 
 La commande `xargs` attend une saisie depuis l’entrée standard **stdin**. Trois lignes sont saisies. La fin de la saisie utilisateur est spécifiée à `xargs` par la séquence de touches <kbd>CTRL</kbd> + <kbd>D</kbd>. `xargs` exécute alors la commande par défaut `echo` suivi des trois arguments correspondants à la saisie utilisateur, soit :
 
-```
+```bash
 $ echo "use" "of" "xargs"
 use of xargs
 ```
@@ -127,7 +128,7 @@ Il est possible de spécifier une commande à lancer par `xargs`.
 
 Dans l’exemple qui suit, `xargs` va exécuter la commande `ls -ld` sur l’ensemble des dossiers qui seront spécifiés depuis l’entrée standard :
 
-```
+```bash
 $ xargs ls -ld
 /home
 /tmp
@@ -142,7 +143,7 @@ En pratique, la commande `xargs` a exécuté la commande `ls -ld /home /tmp /roo
 
 Que se passe-t-il si la commande à exécuter n’accepte pas plusieurs arguments comme c’est le cas pour la commande `find` ?
 
-```
+```bash
 $ xargs find /var/log -name
 *.old
 *.log
@@ -151,14 +152,14 @@ find: paths must precede expression: *.log
 
 La commande `xargs` a tenté d’exécuter la commande `find` avec plusieurs arguments derrière l’option `-name`, ce qui fait généré par `find` une erreur :
 
-```
+```bash
 $ find /var/log -name "*.old" "*.log"
 find: paths must precede expression: *.log
 ```
 
 Dans ce cas, il faut forcer la commande `xargs` à exécuter plusieurs fois (une fois par ligne saisie en entrée standard) la commande `find`. L’option `-L `suivie d’un nombre **entier** permet de spécifier le nombre maximal d’entrées à traiter avec la commande en une seule fois :
 
-```
+```bash
 $ xargs -L 1 find /var/log -name
 *.old
 /var/log/dmesg.old
@@ -177,7 +178,7 @@ $ xargs -L 1 find /var/log -name
 
 Si nous avions voulu pouvoir spécifier sur la même ligne les deux arguments, il aurait fallut utiliser l’option `-n 1` :
 
-```
+```bash
 $ xargs -n 1 find /var/log -name
 *.old *.log
 /var/log/dmesg.old
@@ -195,32 +196,32 @@ $ xargs -n 1 find /var/log -name
 
 Cas concret d’une sauvegarde avec un `tar` en fonction d’une recherche :
 
-```
+```bash
 $ find /var/log/ -name "*.log" -mtime -1 | xargs tar cvfP /root/log.tar
 $ tar tvfP /root/log.tar
 -rw-r--r-- root/root      1720 2017-04-05 15:43 /var/log/boot.log
 -rw-r--r-- root/root    499270 2017-04-06 11:01 /var/log/audit/audit.log
 ```
 
-La particularité de la commande `xargs` est quelle place l’argument en entrée à la fin de la commande appelée. Ceci fonctionne très bien avec l’exemple ci-dessus puisque les fichiers passés en entrée vont constituer la liste des fichiers à ajouter à l’archive.
+La particularité de la commande `xargs` est qu'elle place l’argument en entrée à la fin de la commande appelée. Ceci fonctionne très bien avec l’exemple ci-dessus puisque les fichiers passés en entrée vont constituer la liste des fichiers à ajouter à l’archive.
 
 Maintenant, si nous prenons l’exemple de la commande `cp` en voulant copier une liste de fichiers dans un répertoire, cette liste de fichiers sera ajoutée en fin de commande… or ce qui est attendu par la commande `cp` en fin de commande est plutôt la destination. Pour ce faire, nous utilisons l’option `-I` afin de placer les arguments en entrée ailleurs qu’en fin de ligne.
 
-```
-$ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
+```bash
+find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 ```
 
 L’option `-I` permet de spécifier un caractère (dans notre exemple le caractère `%`) où seront placés les fichiers en entrée de `xargs`.
 
 ## Le paquet `yum-utils`
 
-Le paquet `yum-utils` est une collection d’utilitaires de différents auteurs pour `yum`, qui le rend plus simple et plus puissant à utiliser.
+Le paquet `yum-utils` est une collection d’utilitaires de différents auteurs pour `yum`, qui le rendent plus simple et plus puissant à utiliser.
 
 !!! Note
 
     Bien que `yum` ait été remplacé par `dnf` dans Rocky Linux 8, le nom du paquet est resté `yum-utils` mais il peut tout aussi bien être installé avec le paquet `dnf-utils`. Ce sont des utilitaires YUM classiques implémentés comme des CLI au-dessus de DNF pour maintenir une compatibilité ascendante avec `yum-3`.
 
-Voici quelques exemples d’utilisation :
+Voici quelques exemples d’utilitaires :
 
 * la commande `repoquery` :
 
@@ -229,13 +230,14 @@ La commande `repoquery` est utilisée pour rechercher les paquets dans le dépô
 Exemples d’utilisation :
 
   * Affiche les dépendances d'un paquet (il peut s'agir d'un paquet logiciel qui a été installé ou non), équivalent à `dnf deplist <package-name>`
-    ```
+
+    ```bash
     repoquery --requires <package-name>
     ```
 
   * Affiche les fichiers fournis par un paquet installé (ne fonctionne pas pour les paquets qui ne sont pas installés), équivalent à `rpm -ql <package-name>`
 
-    ```
+    ```bash
     $ repoquery -l yum-utils
     /etc/bash_completion.d
     /etc/bash_completion.d/yum-utils.bash
@@ -273,7 +275,7 @@ La commande `yumdownloader` télécharge les paquets RPM depuis les dépôts.  �
 
 Exemple : `yumdownloader` va télécharger le paquet rpm de _samba_ ainsi que toutes ses dépendances :
 
-```
+```bash
 $ yumdownloader --destdir /var/tmp --resolve samba
 or
 $ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
@@ -294,7 +296,7 @@ Le paquet `psmisc` contient des utilitaires pour gérer les processus du systèm
 
 Exemples :
 
-```
+```bash
 $ pstree
 systemd─┬─NetworkManager───2*[{NetworkManager}]
         ├─agetty
@@ -314,13 +316,13 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
         └─tuned───4*[{tuned}]
 ```
 
-```
+```bash
 # killall httpd
 ```
 
 Tue les processus (option `-k`) qui accèdent au fichier `/etc/httpd/conf/httpd.conf` :
 
-```
+```bash
 # fuser -k /etc/httpd/conf/httpd.conf
 ```
 
@@ -338,13 +340,13 @@ Exemples :
 
 * Afficher la fin du fichier `/etc/passwd` toutes les 5 secondes :
 
-```
-$ watch -n 5 tail -n 3 /etc/passwd
+```bash
+watch -n 5 tail -n 3 /etc/passwd
 ```
 
 Résultat :
 
-```
+```bash
 Every 5,0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
 
 sssd:x:996:993:User for sssd:/:/sbin/nologin
@@ -354,12 +356,88 @@ sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 
 * Surveiller le nombre de fichier dans un dossier :
 
-```
-$ watch -n 1 'ls -l | wc -l'
+```bash
+watch -n 1 'ls -l | wc -l'
 ```
 
 * Afficher une horloge :
 
+```bash
+watch -t -n 1 date
 ```
-$ watch -t -n 1 date
+
+## La commande `install`
+
+Contrairement à ce que le nom pourrait suggérer, la commande `install` n'est pas utilisée pour installer des paquets.
+
+La commande associe la copie de fichiers (`cp`) et la création de dossiers (`mkdir`), ainsi que la gestion des accès (`chmod`, `chown`) et autres fonctionalités utiles (comme les sauvegardes).
+
+```bash
+install source dest  
+install -t directory source [...]
+install -d directory
+```
+
+Options :
+
+| Option                           | Description                                                     |
+| -------------------------------- | --------------------------------------------------------------- |
+| `-b` ou bien `--backup[=suffix]` | créer une sauvegarde du fichier destinataire.                   |
+| `-d`                             | traiter les arguments comme des noms de dossiers.               |
+| `-D`                             | create all leading components before copying SOURCE to DEST.    |
+| `-g` et `-o`                     | appartenance.                                                   |
+| `-m`                             | permissions.                                                    |
+| `-p`                             | préserve la date et l'heure des fichiers sources.               |
+| `-t`                             | copie tous les arguments sources dans le dossier.               |
+
+!!! note "Remarque"
+
+    Il existe aussi des options pour gérer le contexte de SELinux (cf. man install).
+
+Exemples :
+
+Créer un dossier à l'aide de l'option `-d` :
+
+```bash
+install -d ~/samples
+```
+
+Copier un fichier source dans un dossier :
+
+```bash
+install src/sample.txt ~/samples/
+```
+
+Ces deux actions sont contenues dans une seule commande :
+
+```bash
+$ install -v -D -t ~/samples/ src/sample.txt
+install: creating directory '~/samples'
+'src/sample.txt' -> '~/samples/sample.txt'
+```
+
+Cette commande permet déjà de gagner du temps, maintenant ajoutons l'appartenance à l'utilisateur et au groupe ainsi que les droits d'accès :
+
+```bash
+sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
+```
+
+ !!! note "Remarque"
+
+     Dans ce cas `sudo` est nécessaire pour modifier les propriétés.
+
+Vous pouvez aussi créer une sauvegarde des fichiers existants grâce à l'option `-b` :
+
+```bash
+$ install -v -b -D -t ~/samples/ src/sample.txt
+'src/sample.txt' -> '~/samples/sample.txt' (archive: '~/samples/sample.txt~')
+```
+
+Comme vous pouvez le constater, la commande `install` permet de créer une sauvegarde en ajoutant un tilde `~` au nom original du fichier.
+
+Le suffixe peut être spécifié grâce à l'option `-S` :
+
+```bash
+$ install -v -b -S ".bak" -D -t ~/samples/ src/sample.txt
+'src/sample.txt' -> '~/samples/sample.txt' (archive: '~/samples/sample.txt.bak')
 ```
