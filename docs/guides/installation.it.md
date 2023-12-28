@@ -20,7 +20,7 @@ https://www.rockylinux.org/download/
 Per scaricare l'ISO direttamente dalla riga di comando su un sistema Linux esistente, utilizzare il comando `wget`:
 
 ```
-wget https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.2-x86_64-minimal.iso
+wget https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.3-x86_64-minimal.iso
 ```
 
 Le ISO di Rocky Linux seguono questa convenzione di denominazione:
@@ -29,7 +29,7 @@ Le ISO di Rocky Linux seguono questa convenzione di denominazione:
 Rocky-<MAJOR#>.<MINOR#>-<ARCH>-<VARIANT>.iso
 ```
 
-Ad esempio, `Rocky-9.2-x86_64-minimal.iso`
+Ad esempio, `Rocky-9.3-x86_64-minimal.iso`
 
 !!! Note "Nota"
 
@@ -37,14 +37,14 @@ Ad esempio, `Rocky-9.2-x86_64-minimal.iso`
 
 ## Verifica del file ISO del Programma di Installazione
 
-Se avete scaricato le ISO di Rocky Linux su una distribuzione Linux esistente, potete usare l'utility `sha256sum` per verificare che i file scaricati non siano corrotti. Mostreremo un esempio di come verificare il file `Rocky-9.2-x86_64-minimal.iso` controllando il suo checksum.
+Se avete scaricato le ISO di Rocky Linux su una distribuzione Linux esistente, potete usare l'utility `sha256sum` per verificare che i file scaricati non siano corrotti. Mostreremo un esempio di come verificare il file `Rocky-9.3-x86_64-minimal.iso` controllando il suo checksum.
 
 1. Scaricate il file che contiene le checksum ufficiali delle ISO disponibili.
 
 1. Mentre vi trovate ancora nella cartella che contiene l'ISO di Rocky Linux scaricata, scaricare il file di checksum dell'ISO, digitando:
 
     ```
-    wget -O CHECKSUM https://download.rockylinux.org/pub/rocky/9.2/isos/x86_64/CHECKSUM
+    wget -O CHECKSUM https://download.rockylinux.org/pub/rocky/9.3/isos/x86_64/CHECKSUM
     ```
 
 1. Utilizzare l'utilità `sha256sum` per verificare l'integrità del file ISO contro la corruzione o la manomissione.
@@ -56,7 +56,7 @@ Se avete scaricato le ISO di Rocky Linux su una distribuzione Linux esistente, p
     Controlla l'integrità del file ISO scaricato in precedenza, a condizione che si trovi nella stessa directory. L'output dovrebbe mostrare:
 
     ```
-    Rocky-9.2-x86_64-minimal.iso: OK
+    Rocky-9.3-x86_64-minimal.iso: OK
     ```
 
 ## L'installazione
@@ -71,11 +71,11 @@ Se il computer è impostato per l'avvio dal supporto che contiene il file ISO, p
 
 1. Una volta avviato il computer, viene visualizzata la schermata di benvenuto di Rocky Linux 9.
 
-    ![Schermata di avvio dell'installazione Rocky Linux](images/installation_9.2_F01.png)
+    ![Schermata di avvio dell'installazione Rocky Linux](images/install_9_3_01.png)
 
 1. Se non si preme alcun tasto, il programma di installazione avvia un conto alla rovescia, al termine del quale il processo di installazione esegue automaticamente l'opzione predefinita, evidenziata:
 
-    `Test this media & install Rocky Linux 9.2`
+    `Test this media & install Rocky Linux 9.3`
 
     È anche possibile premere <kbd>Invio</kbd> in qualsiasi momento per avviare immediatamente il processo.
 
@@ -135,7 +135,7 @@ Poiché l'installazione utilizza un'immagine ISO di Rocky Linux 9, si noterà ch
 
 !!! Tip "Suggerimento"
 
-    Nell'area installation Source è possibile scegliere di eseguire un'installazione basata sulla rete (ad esempio se si utilizza la ISO di avvio di Rocky Linux - Rocky-9.2-x86_64-boot.iso). Per un'installazione basata sulla rete, è necessario innanzitutto assicurarsi che una scheda di rete sul sistema di destinazione sia configurata correttamente e sia in grado di raggiungere Internet. Per eseguire un'installazione dalla rete, fare clic su `Installation Source` e selezionare il pulsante di opzione `On the network`. Una volta selezionato, scegliete `https' come protocollo e digitate il seguente URL nel campo di testo `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. Fare clic su "Done".
+    Nell'area installation Source è possibile scegliere di eseguire un'installazione basata sulla rete (ad esempio se si utilizza la ISO di avvio di Rocky Linux - Rocky-9.3-x86_64-boot.iso). Per un'installazione basata sulla rete, è necessario innanzitutto assicurarsi che una scheda di rete sul sistema di destinazione sia configurata correttamente e sia in grado di raggiungere Internet. Per eseguire un'installazione dalla rete, fare clic su `Installation Source` e selezionare il pulsante di opzione `On the network`. Una volta selezionato, scegliete `https' come protocollo e digitate il seguente URL nel campo di testo `download.rockylinux.org/pub/rocky/9/BaseOS/x86_64/os`. Fare clic su "Done".
 
 #### Selezione del software
 

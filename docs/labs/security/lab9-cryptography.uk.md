@@ -207,7 +207,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     from Real Name, Comment and Email Address in this form:
 
-    "Firstname Lastname (any comment) &lt;yourname@serverXY&gt;"
+    "Firstname Lastname (any comment) <yourname@serverXY&>"
 
     Real name: Ying Yang <kbd>ENTER</kbd>
 
@@ -219,7 +219,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     You selected this USER-ID:
 
-    "Ying Yang (my test) &lt;ying@serverXY&gt;"
+    "Ying Yang (my test) <ying@serverXY>"
 
     Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
 
@@ -250,7 +250,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     -----------------------------
 
-    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;
+    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) <ying@serverXY>
 
     sub 1024g/1EDB00AC 2003-10-16 [expires: 2004-10-15]
     ```
@@ -258,7 +258,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 2. Щоб придушити дещо дратівливе «попередження» про «незахищену пам’ять», додайте наступний параметр до вашого особистого файлу конфігурації gpg. Впишіть:
 
     ```
-    [ying@serverXY ying]$ echo "no-secmem-warning" &gt;&gt; ~/.gnupg/gpg.conf
+    [ying@serverXY ying]$ echo "no-secmem-warning" >> ~/.gnupg/gpg.conf
     ```
 
 3. Виконайте команду, щоб знову вивести ваші ключі. Переконайтеся, що ваші зміни діють.
@@ -280,7 +280,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     -----------------------------
 
-    sec 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;
+    sec 1024D/1D12E484 2003-10-16 Ying Yang (my test) <ying@serverXY>
 
     ssb 1024g/1EDB00AC 2003-10-16
     ```
@@ -294,7 +294,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     -----------------------------
 
-    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;
+    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) <ying@serverXY>
 
     Key fingerprint = D61E 1538 EA12 9049 4ED3 5590 3BC4 A3C1 1D12 E484
 
@@ -340,12 +340,12 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 1. Експортуйте свій відкритий ключ у двійковому форматі у файл під назвою «ying-pub.gpg». Впишіть:
 
     ```
-    [ying@serverXY ying]$ gpg --output ying-pub.gpg --export &lt;your_key’s_user_ID&gt;
+    [ying@serverXY ying]$ gpg --output ying-pub.gpg --export <your_key’s_user_ID>
     ```
 
     !!! note "Примітка"
 
-     Замініть &lt;ваш\_ключ\_user\_ID&gt; з будь-яким рядком, який правильно визначає ваші ключі. У нашій зразковій системі це значення може бути будь-яким із наведеного нижче:
+     Замініть <your_key’s_user_ID> з будь-яким рядком, який правильно визначає ваші ключі. У нашій зразковій системі це значення може бути будь-яким із наведеного нижче:
     
      ying@serverXY, ying, yang
     
@@ -380,7 +380,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 1. Створіть файл із назвою «secret-file.txt» із текстом «Hello All». Впишіть:
 
     ```
-    [ying@serverXY ying]$ echo "Hello All" &gt; secret1.txt
+    [ying@serverXY ying]$ echo "Hello All" > secret1.txt
     ```
 
 2. Використовуйте cat для перегляду вмісту файлу. Використовуйте команду file, щоб побачити тип файлу.
@@ -401,7 +401,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     gpg: Signature made Thu 16 Oct 2003 07:29:37 AM PDT using DSA key ID 1D12E484
 
-    gpg: Good signature from "Ying Yang (my test) &lt;ying@serverXY&gt;"
+    gpg: Good signature from "Ying Yang (my test) <ying@serverXY>"
     ```
 
 5. Створіть інший файл secret2.txt із текстом «Hello All».
@@ -419,7 +419,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 8. Створіть ще один файл під назвою «secret3.txt» із текстом «hello dude». Впишіть:
 
     ```
-    [ying@serverXY ying echo "hello dude" &gt; secret3.txt
+    [ying@serverXY ying echo "hello dude" > secret3.txt
     ```
 
 9. Додайте свій підпис до тіла файлу, який ви створили вище. Впишіть:
@@ -473,7 +473,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
     ```
     [ying@serverXY ying]$ gpg --import me-pub.asc
 
-    gpg: key 1D0D7654: public key "Me Mao (my test) &lt;me@serverXY&gt;" imported
+    gpg: key 1D0D7654: public key "Me Mao (my test) <me@serverXY>" imported
 
     gpg: Total number processed: 1
 
@@ -489,11 +489,11 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     -----------------------------
 
-    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) &lt;ying@serverXY&gt;
+    pub 1024D/1D12E484 2003-10-16 Ying Yang (my test) <ying@serverXY>
 
     sub 1024g/1EDB00AC 2003-10-16 [expires: 2004-10-15]
 
-    pub 1024D/1D0D7654 2003-10-16 Me Mao (my test) &lt;me@serverXY&gt;
+    pub 1024D/1D0D7654 2003-10-16 Me Mao (my test) <me@serverXY>
 
     sub 1024g/FD20DBF1 2003-10-16 [expires: 2004-10-15]
     ```
@@ -526,7 +526,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 1. Увійшовши в систему як користувач ying, створіть файл під назвою encrypt-sec.txt. Впишіть:
 
     ```
-    [ying@serverXY ying]$ echo "hello" &gt; encrypt-sec.txt
+    [ying@serverXY ying]$ echo "hello" > encrypt-sec.txt
     ```
 
     Переконайтеся, що ви можете прочитати вміст файлу за допомогою cat.
@@ -550,7 +550,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
     gpg: encrypted with 1024-bit ELG-E key, ID FD20DBF1, created 2003-10-16
 
-    "Me Mao (my test) &lt;me@serverXY&gt;"
+    "Me Mao (my test) <me@serverXY>"
 
     gpg: decryption failed: secret key not available
     ```
@@ -604,7 +604,7 @@ GnuPG (GNU Privacy Guard) — це набір програм для шифрув
 
 6. Існує загальнодоступний сервер ключів на wwwkeys.pgp.net. Ви можете використовувати gpg, щоб завантажити туди свій ключ за допомогою:
 
-    gpg --send-keys &lt;your_real_email_address&gt; --keyserver wwwkeys.pgp.net
+    gpg --send-keys <your_real_email_address> --keyserver wwwkeys.pgp.net
 
 ## OpenSSH (www.openssh.org)
 

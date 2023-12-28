@@ -39,7 +39,7 @@ Es verwendet das **SSH**-Protokoll, um GNU/Linux-Clients zu konfigurieren oder d
 
 Da Ansible push-basiert ist, wird die Software den Status seiner Zielserver nach jeder seiner Ausführung nicht zwischenspeichern. Im Gegenteil, Ansible wird bei jeder Ausführung eine neue Statusprüfung durchführen. Es wird als zustandslos bezeichnet.
 
-Es wird helfen mit:
+Es wird Ihnen helfen bei folgenden Aufgaben:
 
 * Provisionierung (Bereitstellung einer neuen VM),
 * Verteilung von Applikationen,
@@ -59,9 +59,9 @@ Es wird helfen mit:
 
 ![Die Features von Ansible](images/ansible-001.png)
 
-Um eine grafische Oberfläche für Ihre tägliche Nutzung von Ansible bereitzustellen, können Sie einige Tools wie Ansible Tower (RedHat) installieren, das nicht kostenlos ist, oder sein Open-Source-Gegenstück Awx, oder es können auch andere Projekte wie Jenkins und das hervorragende Rundeck verwendet werden.
+Um eine grafische Oberfläche für Ihre tägliche Arbeit mit Ansible bereitzustellen, können Sie einige Tools wie Ansible Tower (Red Hat) installieren, das nicht kostenlos ist, oder sein Open-Source-Gegenstück Awx, oder es können auch andere Projekte wie Jenkins und das hervorragende Rundeck verwendet werden.
 
-!!! abstract "Abstract"
+!!! abstract "Abstrakt"
 
     Um diesem Training zu folgen, benötigst du mindestens 2 Server unter Rocky 8:
 
@@ -102,7 +102,7 @@ $ sudo dnf install epel-release
 
 ### Installation über EPEL
 
-Wenn wir Ansible von _EPEL_ installieren, können wir Folgendes tun:
+Um Ansible über _EPEL_ zu installieren, können wir Folgendes tun:
 
 ```
 $ sudo dnf install ansible
@@ -455,7 +455,7 @@ SSH password:
     $ sudo dnf install sshpass
     ```
 
-!!! abstract "Abstract"
+!!! abstract "Abstrakt"
 
     Jetzt können Sie Befehle testen, die zuvor in diesem Kapitel nicht funktionierten.
 

@@ -1,5 +1,5 @@
 ---
-title: Service `systemd` - Python Script
+title: Service `systemd` - Python Skript
 author: Antoine Le Morvan
 contributors: Steven Spencer
 tested_with: 8.6, 9.0

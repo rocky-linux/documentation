@@ -10,11 +10,11 @@ In diesem Kapitel werden GNU/Linux Distributionen behandelt.
 
 **Ziele**: In diesem Kapitel lernen Sie Folgendes:
 
-:heavy_check_mark: beschreiben die Funktionen und möglichen Architekturen eines Betriebssystems   
-:heavy_check_mark: Erzählen Sie den Verlauf von UNIX und GNU/Linux   
-:heavy_check_mark: Wählen Sie die richtige Linux-Distribution für Ihre Bedürfnisse   
-:heavy_check_mark: Erklären Sie die Philosophie der freien und Open-Source-Software   
-:heavy_check_mark: Entdecken Sie die Nützlichkeit der SHELL.
+:heavy_check_mark: Funktionen und mögliche Architekturen eines Betriebssystems beschreiben   
+:heavy_check_mark: Die Entwicklung von UNIX und GNU/Linux   
+:heavy_check_mark: Wie sie die richtige Linux-Distribution für Ihre Bedürfnisse auswählen   
+:heavy_check_mark: Die Philosophie der freien und Open-Source-Software   
+:heavy_check_mark: Die Anwendung der SHELL.
 
 :checkered_flag: **Allgemeines**, **Linux**, **Distributionen**
 

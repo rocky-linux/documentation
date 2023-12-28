@@ -121,13 +121,13 @@ Options of the test command on files:
 
 | Option | Observation                                                     |
 |--------|-----------------------------------------------------------------|
-| `-e`   | Tests if the file exists                                         |
-| `-f`   | Tests if the file exists and is of normal type                   |
+| `-e`   | Tests if the file exists                                        |
+| `-f`   | Tests if the file exists and is of normal type                  |
 | `-d`   | Checks if the file exists and is of type directory              |
 | `-L`   | Checks if the file exists and is of type symbolic link          |
 | `-b`   | Checks if the file exists and is of special type block mode     |
 | `-c`   | Checks if the file exists and is of special type character mode |
-| `-p`   | Checks if the file exists and is of type tube                   |
+| `-p`   | Checks if the file exists and is of type named pipe (FIFO)      |
 | `-S`   | Checks if the file exists and is of type socket                 |
 | `-t`   | Checks if the file exists and is of type terminal               |
 | `-r`   | Checks if the file exists and is readable                       |
@@ -135,7 +135,7 @@ Options of the test command on files:
 | `-x`   | Checks if the file exists and is executable                     |
 | `-g`   | Checks if the file exists and has a set SGID                    |
 | `-u`   | Checks if the file exists and has a set SUID                    |
-| `-s`   | Tests if the file exists and is non-empty (size > 0 bytes)       |
+| `-s`   | Tests if the file exists and is non-empty (size > 0 bytes)      |
 
 Example:
 

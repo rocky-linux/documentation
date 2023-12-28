@@ -30,7 +30,7 @@ All of these steps will allow you to offer secure SFTP access for your customers
 
 !!! Note "chroot jails for beginners:"
 
-    chroot jails are a way to restrict what a process and all of its various child processes can do on your computer. It allows you to choose a specific directory or folder on your machine, and make that the "root" dirtectory for any process or program.
+    chroot jails are a way to restrict what a process and all of its various child processes can do on your computer. It allows you to choose a specific directory or folder on your machine, and make that the "root" directory for any process or program.
 
     From there on, that process or program can *only* access that folder and its subfolders.
 
