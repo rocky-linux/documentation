@@ -1,5 +1,5 @@
 ---
-title: Advanced Commands for Linux users
+title: Advanced Linux Commands
 ---
 <!-- markdownlint-disable MD033 -->
 
@@ -27,7 +27,7 @@ Advanced commands provide greater customization and controls in more specialized
 
 The `uniq` command is a very powerful command, used with the `sort` command, especially for log file analysis. It allows you to sort and display entries by removing duplicates.
 
-To illustrate how the `uniq` command works, let's use a `firstnames.txt` file containing a list of first names:
+To illustrate how the `uniq` command works, let us use a `firstnames.txt` file containing a list of first names:
 
 ```text
 antoine
@@ -390,7 +390,8 @@ Options:
 | `-p`    | preserve the timestamps of sources files.                    |
 | `-t`    | copy all source arguments to directory.                      |
 
-!!! NOTE
+!!! note
+
     There are options for managing the SELinux context (see the manual page).
 
 Examples:
@@ -421,7 +422,8 @@ This command already saves time, now let's combine it with owner, owner group an
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
 ```
 
- !!! NOTE
+ !!! note
+
      `sudo` is required in this case to make property changes.
 
 You can also create a backup of existing files thanks to the `-b` option:
