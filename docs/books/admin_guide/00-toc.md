@@ -1,6 +1,7 @@
 ---
 title: Learning Linux With Rocky
 ---
+<!-- markdownlint-disable MD025 MD007 -->
 
 # Learning Linux with Rocky
 
@@ -22,6 +23,4 @@ Backup and Restoration is essential info for the System Administrator. Linux com
 
 System Startup is also an important read because management of the system during the boot process has evolved significantly in recent years since the arrival of the systemd.
 
-
 Final chapters address Task Management, Implementing the Network, and Software Management including installation.
-

@@ -3,7 +3,7 @@ title: Linux Commands
 author: Antoine Le Morvan
 contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrnova
 ---
-
+<!-- markdownlint-disable MD025 MD007 -->
 # Commands for Linux Users
 
 In this chapter you will learn Linux commands and how to use them.
@@ -12,13 +12,13 @@ In this chapter you will learn Linux commands and how to use them.
 
 **Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: **Move** within the system tree.   
-:heavy_check_mark: **Create** a text file, **display** its contents and **modify** it.   
+:heavy_check_mark: **Move** within the system tree.  
+:heavy_check_mark: **Create** a text file, **display** its contents and **modify** it.  
 :heavy_check_mark: **Use** the most useful Linux commands.
 
 :checkered_flag: **user commands**, **linux**
 
-**Knowledge**: :star:   
+**Knowledge**: :star:  
 **Complexity**: :star:
 
 **Reading time**: 40 minutes
@@ -45,12 +45,15 @@ The user of a Linux system will be defined in the `/etc/passwd` file, by:
 * A numeric identifier: **UID** (User Identifier).
 * A group identifier: **GID** (Group Identifier).
 * A **command interpreter**, e.g., a shell, which can be different from one user to another.
-* A **connection directory**, e.g., the __home directory__.
+* A **connection directory**, e.g., the **home directory**.
 
 In other files the user will be defined by:
 
 * A **password**, which is encrypted before being stored (`/etc/shadow`).
-* A **command prompt**, or __prompt__ login, which is symbolized by a `#` for administrators and a `$` for other users (`/etc/profile`).
+* A **command prompt**, or **prompt** login, which is symbolized by a
+  
+    * `#` for administrators
+    * and a `$` for other users (`/etc/profile`).
 
 Depending on the security policy implemented on the system, the password will require a certain number of characters and meet certain complexity requirements.
 
@@ -58,7 +61,7 @@ Among the existing command interpreters, the **Bourne-Again Shell** (`/bin/bash`
 
 The user's login directory is by convention stored in the `/home` directory of the workstation. It will contain the user's personal data and the configuration files of his applications. By default, at login, the login directory is selected as the current directory.
 
-A workstation-type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
+A workstation-type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using  ++alt+"Fx"++ from the command line or using ++ctrl+alt+"Fx"++.
 
 ### The shell
 
@@ -72,7 +75,7 @@ Once the user is connected to a console, the shell displays the **command prompt
 * Displays the command prompt.
 * Etc.
 
-The key sequence <kbd>CTRL</kbd> + <kbd>C</kbd> is used to interrupt a running command.
+The key sequence ++ctrl+c++. is used to interrupt a running command.
 
 The use of a command generally follows this sequence:
 
@@ -90,19 +93,19 @@ A double dash (`--`) indicates the end of the option list.
 It is possible to group some short options together:
 
 ```bash
-$ ls -l -i -a
+ls -l -i -a
 ```
 
 is equivalent to:
 
 ```bash
-$ ls -lia
+ls -lia
 ```
 
 There can be several arguments after an option:
 
 ```bash
-$ ls -lia /etc /home /var
+ls -lia /etc /home /var
 ```
 
 In the literature, the term "option" is equivalent to the term "parameter," which is more commonly used in programming. The optional side of an option or argument is symbolized by enclosing it in square brackets `[` and `]`. When more than one option is possible, a vertical bar called a "pipe" separates them `[a|e|i]`.
@@ -191,7 +194,7 @@ man passwd
 will tell the administrator about the passwd command, its options, etc. While a:
 
 ```bash
-$ man 5 passwd
+man 5 passwd
 ```
 
 will inform him about the files related to the command.
@@ -552,7 +555,7 @@ $ ls -lhR /var/ | grep ^\- | grep -E "[1-9]*\.[0-9]*M"
 Of course, we highly recommend that you use the `find` command.
 
 ```bash
-$ find /var -size +1M -a -size -1024M  -a -type f  -exec ls -lh {} \;
+find /var -size +1M -a -size -1024M  -a -type f  -exec ls -lh {} \;
 ```
 
 * Show the rights on a folder:
@@ -572,14 +575,14 @@ drwxr-xr-x.  2 root root   4096 17 nov.  17:48 alternatives
 The above command will display the contents of the folder (inside) by default. For the folder itself, you can use the `-d` option.
 
 ```bash
-$ ls -ld /etc
+ls -ld /etc
 drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc
 ```
 
 * Sort by file size, largest first:
 
 ```bash
-$ ls -lhS
+ls -lhS
 ```
 
 * time/date format with `-l`:
@@ -604,7 +607,7 @@ $ ls -dF /etc
 * Hide some extensions:
 
 ```bash
-$ ls /etc --hide=*.conf
+ls /etc --hide=*.conf
 ```
 
 ### `mkdir` command
@@ -618,7 +621,7 @@ mkdir [-p] directory [directory] [...]
 Example:
 
 ```bash
-$ mkdir /home/rockstar/work
+mkdir /home/rockstar/work
 ```
 
 The "rockstar" directory must exist to create the "work" directory.
@@ -640,7 +643,7 @@ touch [-t date] file
 Example:
 
 ```bash
-$ touch /home/rockstar/myfile
+touch /home/rockstar/myfile
 ```
 
 | Option                            | Information                                                                |
@@ -660,7 +663,7 @@ The `rmdir` command deletes an empty directory.
 Example:
 
 ```bash
-$ rmdir /home/rockstar/work
+rmdir /home/rockstar/work
 ```
 
 | Option                                                                  | Information |
@@ -719,8 +722,9 @@ mv file [file ...] destination
 Examples:
 
 ```bash
-$ mv /home/rockstar/file1 /home/rockstar/file2
-$ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
+mv /home/rockstar/file1 /home/rockstar/file2
+
+mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
 | Options                                                                        | Information                                                     |
@@ -731,37 +735,37 @@ $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 A few concrete cases will help you understand the difficulties that can arise:
 
 ```bash
-$ mv /home/rockstar/file1 /home/rockstar/file2
+mv /home/rockstar/file1 /home/rockstar/file2
 ```
 
 Renames `file1` to `file2`. If `file2` already exists, replace the contents of the file with `file1`.
 
 ```bash
-$ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
+mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
 Moves `file1` and `file2` into the `/tmp` directory.
 
 ```bash
-$ mv file1 /repexist/file2
+mv file1 /repexist/file2
 ```
 
 Moves `file1` into `repexist` and renames it `file2`.
 
 ```bash
-$ mv file1 file2
+mv file1 file2
 ```
 
 `file1` is renamed to `file2`.
 
 ```bash
-$ mv file1 /repexist
+mv file1 /repexist
 ```
 
 If the destination directory exists, `file1` is moved to `/repexist`.
 
 ```bash
-$ mv file1 /wrongrep
+mv file1 /wrongrep
 ```
 
 If the destination directory does not exist, `file1` is renamed to `wrongrep` in the root directory.
@@ -777,7 +781,7 @@ cp file [file ...] destination
 Example:
 
 ```bash
-$ cp -r /home/rockstar /tmp
+cp -r /home/rockstar /tmp
 ```
 
 | Options | Information                                                      |
@@ -795,19 +799,19 @@ cp file1 /repexist/file2
 `file1` is copied to `/repexist` under the name `file2`.
 
 ```bash
-$ cp file1 file2
+cp file1 file2
 ```
 
 `file1` is copied as `file2` to this directory.
 
 ```bash
-$ cp file1 /repexist
+cp file1 /repexist
 ```
 
 If the destination directory exists, `file1` is copied to `/repexist`.
 
 ```bash
-$ cp file1 /wrongrep
+cp file1 /wrongrep
 ```
 
 If the destination directory does not exist, `file1` is copied under the name `wrongrep` to the root directory.
@@ -880,19 +884,19 @@ cat file1 [files]
 Example 1 - Displaying the contents of a file to the standard output:
 
 ```bash
-$ cat /etc/passwd
+cat /etc/passwd
 ```
 
 Example 2 - Displaying the contents of multiple files to standard output:
 
 ```bash
-$ cat /etc/passwd /etc/group
+cat /etc/passwd /etc/group
 ```
 
 Example 3 - Combining the contents of multiple files into one file using output redirection:
 
 ```bash
-$ cat /etc/passwd /etc/group > usersAndGroups.txt
+cat /etc/passwd /etc/group > usersAndGroups.txt
 ```
 
 Example 4 - Displaying the line numbering:
@@ -1020,7 +1024,7 @@ Some advanced examples of using the `sort` command:
 The `sort` command also allows you to shuffle values with the `-R` option:
 
 ```bash
-$ sort -R /etc/passwd
+sort -R /etc/passwd
 ```
 
 * Sorting IP addresses
@@ -1029,7 +1033,7 @@ A system administrator is quickly confronted with the processing of IP addresses
 
 Here is an example with the file `dns-client.txt`:
 
-```
+```text
 192.168.1.10
 192.168.1.200
 5.1.150.146
@@ -1052,14 +1056,15 @@ The `sort` command knows how to remove the duplicates from the file output using
 
 Here is an example with the file `colours.txt`:
 
-```
+```text
 Red
 Green
 Blue
 Red
 Pink
 ```
-```
+
+```text
 $ sort -u colours.txt
 Blue
 Green
@@ -1073,7 +1078,7 @@ The `sort` command knows how to recognize file sizes, from commands like `ls` wi
 
 Here is an example with the file `size.txt`:
 
-```
+```text
 1.7G
 18M
 69K
@@ -1139,7 +1144,7 @@ If the search directory is not specified, the `find` command will search from th
 It is possible to use the `-exec` option of the `find` command to execute a command on each result line:
 
 ```bash
-$ find /tmp -name *.txt -exec rm -f {} \;
+find /tmp -name *.txt -exec rm -f {} \;
 ```
 
 The previous command searches for all files in the `/tmp` directory named `*.txt` and deletes them.
@@ -1205,12 +1210,13 @@ root:x:0:0:root:/root:/bin/bash
 | `-w`                                                                                    | Searches for the exact word.              |
 
 The `grep` command returns the complete line containing the string you are looking for.
+
 * The `^` special character is used to search for a string at the beginning of a line.
 * The special character `$` searches for a string at the end of a line.
 
-```bash
-$ grep -w "^root" /etc/passwd
-```
+    ```bash
+    grep -w "^root" /etc/passwd
+    ```
 
 !!! Note
 
@@ -1290,7 +1296,7 @@ These streams point to peripheral files, but since everything is a file in UNIX/
 It is possible to redirect the input stream from another file with the character `<` or `<<`. The command will read the file instead of the keyboard:
 
 ```bash
-$ ftp -in serverftp << ftp-commands.txt
+ftp -in serverftp << ftp-commands.txt
 ```
 
 !!! Note
@@ -1343,13 +1349,13 @@ Standard output can be redirected to other files using the `>` or `>>` character
 The simple `>` redirection overwrites the contents of the output file:
 
 ```bash
-$ date +%F > date_file
+date +%F > date_file
 ```
 
 When the `>>` character is used, it indicates that the output result of the command is appended to the file content.
 
 ```bash
-$ date +%F >> date_file
+date +%F >> date_file
 ```
 
 In both cases, the file is automatically created when it does not exist.
@@ -1357,8 +1363,9 @@ In both cases, the file is automatically created when it does not exist.
 The standard error output can also be redirected to another file. This time it will be necessary to specify the channel number (which can be omitted for channels 0 and 1):
 
 ```bash
-$ ls -R / 2> errors_file
-$ ls -R / 2>> errors_file
+ls -R / 2> errors_file
+
+ls -R / 2>> errors_file
 ```
 
 ### Examples of redirection
@@ -1366,19 +1373,19 @@ $ ls -R / 2>> errors_file
 Redirection of 2 outputs to 2 files:
 
 ```bash
-$ ls -R / >> ok_file 2>> nok_file
+ls -R / >> ok_file 2>> nok_file
 ```
 
 Redirection of the 2 outputs to a single file:
 
 ```bash
-$ ls -R / >> log_file 2>&1
+ls -R / >> log_file 2>&1
 ```
 
-Redirection of *stderr* to a "bottomless pit" (`/dev/null`):
+Redirection of _stderr_ to a "bottomless pit" (`/dev/null`):
 
 ```bash
-$ ls -R / 2>> /dev/null
+ls -R / 2>> /dev/null
 ```
 
 When both output streams are redirected, no information is displayed on the screen. To use both the output redirection and to keep the display, you will have to use the command `tee`.
@@ -1400,31 +1407,31 @@ The commands particularly used after a pipe are filters.
 Display only the beginning:
 
 ```bash
-$ ls -lia / | head
+ls -lia / | head
 ```
 
 Display only the end:
 
 ```bash
-$ ls -lia / | tail
+ls -lia / | tail
 ```
 
 Sort the result:
 
 ```bash
-$ ls -lia / | sort
+ls -lia / | sort
 ```
 
 Count the number of words / characters:
 
 ```bash
-$ ls -lia / | wc
+ls -lia / | wc
 ```
 
 Search for a string in the result:
 
 ```bash
-$ ls -lia / | grep fichier
+ls -lia / | grep fichier
 ```
 
 ## Special Points
@@ -1436,8 +1443,9 @@ The `tee` command is used to redirect the standard output of a command to a file
 It is combined with the `|` pipe to receive as input the output of the command to be redirected:
 
 ```bash
-$ ls -lia / | tee fic
-$ cat fic
+ls -lia / | tee fic
+
+cat fic
 ```
 
 The `-a` option adds to the file instead of overwriting it.
@@ -1449,13 +1457,13 @@ Using **alias** is a way to ask the shell to remember a particular command with 
 For example:
 
 ```bash
-$ ll
+ll
 ```
 
 will replace the command:
 
 ```bash
-$ ls -l
+ls -l
 ```
 
 The `alias` command lists the aliases for the current session. Aliases are set by default on Linux distributions. Here, the aliases for a Rocky server:
@@ -1489,13 +1497,13 @@ The `unalias` command allows you to delete aliases.
 To delete a single alias:
 
 ```bash
-$ unalias ll
+unalias ll
 ```
 
 To delete all aliases:
 
 ```bash
-$ unalias -a
+unalias -a
 ```
 
 To disable an alias temporarily, the combination is `\<alias name>`.
@@ -1503,7 +1511,7 @@ To disable an alias temporarily, the combination is `\<alias name>`.
 For example if we do:
 
 ```bash
-$ type ls
+type ls
 ```
 
 it might return the following:
@@ -1591,7 +1599,7 @@ The `;` character strings the commands.
 The commands will all run sequentially in the order of input once the user presses <kbd>ENTER</kbd>.
 
 ```bash
-$ ls /; cd /home; ls -lia; cd /
+ls /; cd /home; ls -lia; cd /
 ```
 
 ## Check your Knowledge
@@ -1602,26 +1610,26 @@ $ ls /; cd /home; ls -lia; cd /
 
 :heavy_check_mark: Which commands allow you to search for help on a command?
 
-- [ ] `google`   
-- [ ] `chuck --norris`   
-- [ ] `info`   
-- [ ] `apropos`   
-- [ ] `whatis`   
+* [ ] `google`  
+* [ ] `chuck --norris`  
+* [ ] `info`  
+* [ ] `apropos`  
+* [ ] `whatis`  
 
 :heavy_check_mark: Which command allows you to view a user's history?
 
 :heavy_check_mark: Which command allows you to search for text in a file?
 
-- [ ] `find`   
-- [ ] `grep`   
+* [ ] `find`  
+* [ ] `grep`  
 
 :heavy_check_mark: Which command allows you to search for a file?
 
-- [ ] `find`    
-- [ ] `grep`   
+* [ ] `find`  
+* [ ] `grep`  
 
 :heavy_check_mark: Which command redirects the error stream of a command to a new `errors.log` file?
 
-- [ ] `ls -R / 2> errors.log`   
-- [ ] `ls -R / 2>> errors.log`   
-- [ ] `ls -R / 2> errors.log 2>&1`   
+* [ ] `ls -R / 2> errors.log`  
+* [ ] `ls -R / 2>> errors.log`  
+* [ ] `ls -R / 2> errors.log 2>&1`  
