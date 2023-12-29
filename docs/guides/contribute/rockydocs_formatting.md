@@ -251,13 +251,13 @@ That ends up looking like this when the page displays:
 
 ## Inline and block-level code blocks
 
-Our approach to the use of code blocks is pretty simple. If `your code` is short enough that you can (and want to) use it in a sentence like you just saw, use single backticks <kbd>`</kbd>:
+Our approach to the use of code blocks is pretty simple. If `your code` is short enough that you can (and want to) use it in a sentence like you just saw, use single backticks ++"`"++:
 
 ```
 A sentence with a `command of your choosing` in it.
 ```
 
-Any command that is not used inside of a text paragraph (especially the long bits of code with multiple lines) should be a full code block, defined with triple backticks <kbd>`</kbd>:
+Any command that is not used inside of a text paragraph (especially the long bits of code with multiple lines) should be a full code block, defined with triple backticks ++"```"++:
 
 ````markdown
 ```bash
@@ -267,7 +267,7 @@ sudo dnf install the-kitchen-sink
 
 The `bash` bit of that formatting is a non-essential code identifier but can help with syntax highlighting. If you showcase Python, PHP, Ruby, HTML, CSS, or any other kind of code, the "bash" will change to whatever language you use.
 
-Incidentally, if you need to show a code block within a code block, just add one more backtick <kbd>`</kbd> to the parent block:
+Incidentally, if you need to show a code block within a code block, just add one more backtick ++"`"++ to the parent block:
 
 `````markdown
 ````markdown
@@ -297,15 +297,21 @@ When using this method, the automatic line feed is also suppressed.
 
 ## Keyboard
 
-Another way to add as much clarity to your documents as possible is to represent the entering of keys on a keyboard in the correct manner. Do this with `<kbd>key</kbd>`. For instance, to represent that you need to hit the escape key in your document you would use `<kbd>ESC</kbd`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `<kbd>CTRL</kbd> + <kbd>F4</kbd>`. If requiring the pressing of keys simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
+Another way to add as much clarity to your documents as possible is to represent the entering of keys on a keyboard in the correct manner. In markdown, do this by surrounding the key or keys with double plus signs (`++`) Do this with `++key++`. For instance, to represent that you need to hit the escape key in your document you would use `++escape++`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `++ctrl+f4++`. For keys that aren't defined (for instance we are indicating a mystery function key, `Fx` below) put your definition in quotes (`++ctrl+"Fx"++`). If requiring the pressing of keys simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
 
 ```
-A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
+A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or using ++ctrl+alt+"Fx"++.
 ```
 
 Here is how that renders when displayed:
 
-A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using <kbd>Alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
+A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or using ++ctrl+alt+"Fx"++.
+
+A list of accepted keyboard commands [in this document](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#key-map-index).
+
+!!! note
+
+    These keyboard shortcuts are always entered in lower case except where a custom keyboard command is used within the quotes.
 
 ## Superscript, subscript and special symbols
 
@@ -382,7 +388,7 @@ Or you may have a numbered list, with an additional admonition:
 
     Here you are adding a keyboard command to the list item:
 
-    Press <kbd>ESC</kbd> for no particular reason.
+    Press ++escape++ for no particular reason.
 
 2. But this item is something very important *and* has multiple paragraphs to it
 
