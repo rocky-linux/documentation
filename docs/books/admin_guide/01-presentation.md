@@ -1,6 +1,7 @@
 ---
 title: Introduction to Linux
 ---
+<!-- markdownlint-disable MD025 MD007 -->
 
 # Introduction to the Linux Operating System
 
@@ -10,15 +11,16 @@ In this chapter you will learn about GNU/Linux distributions.
 
 **Objectives**: In this chapter you will learn how to:
 
-:heavy_check_mark: Describe the features and possible architectures of an operating system.   
-:heavy_check_mark: Recount the history of UNIX and GNU/Linux.   
-:heavy_check_mark: Choose the right Linux distribution for your needs.   
-:heavy_check_mark: Explain the philosophy of Free and Open-source Software.   
-:heavy_check_mark: Discover the usefulness of the shell.   
+:heavy_check_mark: Describe the features and possible architectures of an operating system.  
+:heavy_check_mark: Recount the history of UNIX and GNU/Linux.  
+:heavy_check_mark: Choose the right Linux distribution for your needs.  
+:heavy_check_mark: Explain the philosophy of Free and Open-source Software.  
+:heavy_check_mark: Discover the usefulness of the shell.
 
 :checkered_flag: **generalities**, **linux**, **distributions**
 
-**Knowledge**: :star:    
+**Knowledge**: :star:
+
 **Complexity**: :star:
 
 **Reading time**: 10 minutes
@@ -36,13 +38,19 @@ Linux, UNIX, BSD, Windows, and MacOS are all **operating systems**.
 As part of this management of resources, the operating system has to:
 
 * Manage the **physical** or **virtual** memory.
+
     * The **physical memory** is made up of the RAM bars and the processor cache memory, which are used for the execution of programs.
+
     * The **virtual memory** is a location on the hard disk (the **swap** partition) that allows the unloading of the physical memory and the saving of the current state of the system during the electrical shutdown of the computer.
+
 * Intercept **access to peripherals**.
   Software is rarely allowed to access hardware directly (except for graphics cards for very specific needs).
+
 * Provide applications with proper **task management**.
-  The operating system is responsible for scheduling processes to occupy the processor.
+  The operating system is responsible for scheduling processes to occupy the processor
+
 * **Protect files** from unauthorized access.
+
 * **Collect information** about programs in use or in progress.
 
 ![Operation of an operating system](images/operating_system.png)
@@ -113,12 +121,17 @@ Linux equips 100% of the top 500 supercomputers since 2018. A supercomputer is a
 ### Architectural design
 
 * The **kernel** is the first software component.
+
     * It is the heart of the Linux system.
     * It manages the hardware resources of the system.
     * The other software components must go through it to access the hardware.
+
 * The **shell** is a utility that interprets user commands and ensures their execution.
+
     * Main shells: Bourne shell, C shell, Korn shell and Bourne-Again shell (bash).
+
 * **Applications** are user programs including but not limited to:
+
     * Internet browsers
     * Word processors
     * Spreadsheets
@@ -161,8 +174,8 @@ Linux is based on recognized standards such as [POSIX](http://en.wikipedia.org/w
 * Value portability.
 * Do one thing and do it well.
 * KISS: Keep It Simple Stupid.
-* "UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity." (__Dennis Ritchie__)
-* "Unix is user-friendly. It just isn't promiscuous about which users it's friendly with." (__Steven King__)
+* "UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity." (**Dennis Ritchie**)
+* "Unix is user-friendly. It just isn't promiscuous about which users it's friendly with." (**Steven King**)
 
 ## The GNU/Linux distributions
 
@@ -176,7 +189,7 @@ This principle allows distributions to be geared to **beginners** (Ubuntu, Linux
 
 There are many graphic environments such as **GNOME**, **KDE**, **LXDE**, **XFCE**, etc. There is something for everyone, and their **ergonomics** hold their own against Microsoft or Apple systems.
 
-So why is there so little enthusiasm for Linux, when this system is practically **virus free**? Could it be because so many editors (Adobe) and manufacturers (Nvidia) do not play the free game and do not provide a version of their software or __drivers__ for GNU/Linux? Perhaps it's fear of change, or the difficulty of finding where to buy a Linux computer, or too few games distributed under Linux. That last excuse at least shouldn't be true for long, with the advent of the game engine Steam for Linux.
+So why is there so little enthusiasm for Linux, when this system is practically **virus free**? Could it be because so many editors (Adobe) and manufacturers (Nvidia) do not play the free game and do not provide a version of their software or **drivers** for GNU/Linux? Perhaps it's fear of change, or the difficulty of finding where to buy a Linux computer, or too few games distributed under Linux. That last excuse at least shouldn't be true for long, with the advent of the game engine Steam for Linux.
 
 ![GNOME Desktop](images/01-presentation-gnome.png)
 
@@ -254,62 +267,62 @@ There are several types of shells available and configurable on a platform or ac
 
 :heavy_check_mark: An operating system is a set of programs for managing the available resources of a computer:
 
-- [ ] True   
-- [ ] False
+* [ ] True  
+* [ ] False
 
 :heavy_check_mark: The operating system is necessary to:
 
-- [ ] Manage physical and virtual memory   
-- [ ] Allow direct access to peripherals   
-- [ ] Subcontract the management of tasks to the processor   
-- [ ] Collect information about the programs used or in use   
+* [ ] Manage physical and virtual memory  
+* [ ] Allow direct access to peripherals  
+* [ ] Subcontract the management of tasks to the processor  
+* [ ] Collect information about the programs used or in use  
 
 :heavy_check_mark: Among these personalities, which ones participated in the development of UNIX:
 
-- [ ] Linus Torvalds   
-- [ ] Ken Thompson   
-- [ ] Lionel Richie   
-- [ ] Brian Kernighan   
-- [ ] Andrew Stuart Tanenbaum   
+* [ ] Linus Torvalds  
+* [ ] Ken Thompson  
+* [ ] Lionel Richie  
+* [ ] Brian Kernighan  
+* [ ] Andrew Stuart Tanenbaum  
 
 :heavy_check_mark: The original nationality of Linus Torvalds, creator of the Linux kernel, is:
 
-- [ ] Swedish   
-- [ ] Finnish   
-- [ ] Norwegian   
-- [ ] Flemish   
-- [ ] French  
+* [ ] Swedish  
+* [ ] Finnish  
+* [ ] Norwegian  
+* [ ] Flemish  
+* [ ] French  
 
 :heavy_check_mark: Which of the following distributions is the oldest:
 
-- [ ] Debian   
-- [ ] Slackware   
-- [ ] Red Hat   
-- [ ] Arch
+* [ ] Debian  
+* [ ] Slackware  
+* [ ] Red Hat  
+* [ ] Arch
 
 :heavy_check_mark: Is the Linux kernel:
 
-- [ ] Multi-tasking   
-- [ ] Multi-user   
-- [ ] Multi-processor   
-- [ ] Multi-core   
-- [ ] Cross-platform   
-- [ ] Open   
+* [ ] Multi-tasking  
+* [ ] Multi-user  
+* [ ] Multi-processor  
+* [ ] Multi-core  
+* [ ] Cross-platform  
+* [ ] Open  
 
 :heavy_check_mark: Is free software necessarily open-source?
 
-- [ ] True   
-- [ ] False   
+* [ ] True  
+* [ ] False  
 
 :heavy_check_mark: Is open-source software necessarily free?
 
-- [ ] True   
-- [ ] False   
+* [ ] True  
+* [ ] False  
 
 :heavy_check_mark: Which of the following is not a shell:
 
-- [ ] Jason   
-- [ ] Jason-Bourne shell (jbsh)   
-- [ ] Bourne-Again shell (bash)   
-- [ ] C shell (csh)   
-- [ ] Korn shell (ksh)   
+* [ ] Jason  
+* [ ] Jason-Bourne shell (jbsh)  
+* [ ] Bourne-Again shell (bash)  
+* [ ] C shell (csh)  
+* [ ] Korn shell (ksh)  
