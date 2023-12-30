@@ -9,16 +9,16 @@ In this chapter you will learn how to manage users.
 ****
 **Objectives**: In this chapter, future Linux administrators will learn how to:
 
-:heavy_check_mark: add, delete or modify a **group**;   
-:heavy_check_mark: add, delete or modify a **user**;   
-:heavy_check_mark: understand the files associated with users and groups and learn how to manage them;   
-:heavy_check_mark: change the *owner* or the *group owner* of a file;   
-:heavy_check_mark: *secure* user accounts;   
+:heavy_check_mark: add, delete or modify a **group**;  
+:heavy_check_mark: add, delete or modify a **user**;  
+:heavy_check_mark: understand the files associated with users and groups and learn how to manage them;  
+:heavy_check_mark: change the *owner* or the *group owner* of a file;  
+:heavy_check_mark: *secure* user accounts;  
 :heavy_check_mark: change identity.
 
 :checkered_flag: **users**
 
-**Knowledge**: :star: :star:   
+**Knowledge**: :star: :star:  
 **Complexity**: :star: :star:
 
 **Reading time**: 30 minutes
@@ -38,8 +38,8 @@ Groups other than the primary group are called the user's **supplementary groups
 
 Groups and users are managed by their unique numerical identifiers `GID` and `UID`.
 
-* `UID`: _User IDentifier_. Unique user ID.
-* `GID`: _Group IDentifier_. Unique group identifier.
+* `UID`: *User IDentifier*. Unique user ID.
+* `GID`: *Group IDentifier*. Unique group identifier.
 
 Both UID and GID are recognized by the kernel, which means that the Super Admin is not necessarily the **root** user, as long as the **uid=0** user is the Super Admin.
 
@@ -57,6 +57,12 @@ The files related to users/groups are:
 
     You should always use the administration commands instead of manually editing the files.
 
+!!! Note
+
+    Some commands in this chapter require administrator rights. 
+    By convention, we will specify the command `sudo` when commands are to be run with administrator rights.
+    For the examples to work properly, please check that the account you're using has the right to use the `sudo` command.
+
 ## Group management
 
 Modified files, added lines:
@@ -67,21 +73,22 @@ Modified files, added lines:
 ### `groupadd` command
 
 The `groupadd` command adds a group to the system.
-```
+
+```bash
 groupadd [-f] [-g GID] group
 ```
 
 Example:
 
-```
-$ sudo groupadd -g 1012 GroupeB
+```bash
+sudo groupadd -g 1012 GroupeB
 ```
 
-| Option  |	Description                   |
+| Option  | Description                   |
 | --------| ----------------------------- |
-|`-g GID` |	Defines the `GID` of the group to create. |
-|`-f` |	The system chooses a `GID` if the one specified by the `-g` option already exists. |
-|`-r` |	Creates a system group with a `GID` between `SYS_GID_MIN` and `SYS_GID_MAX`. These two variables are defined in `/etc/login.defs`. |
+|`-g GID` | Defines the `GID` of the group to create. |
+|`-f` | The system chooses a `GID` if the one specified by the `-g` option already exists. |
+|`-r` | Creates a system group with a `GID` between `SYS_GID_MIN` and `SYS_GID_MAX`. These two variables are defined in `/etc/login.defs`. |
 
 Group naming rules:
 
@@ -105,42 +112,43 @@ Group naming rules:
 
 The `groupmod` command allows you to modify an existing group on the system.
 
-```
+```bash
 groupmod [-g GID] [-n nom] group
 ```
 
 Example:
 
-```
-$ sudo groupmod -g 1016 GroupP
-$ sudo groupmod -n GroupC GroupB
+```bash
+sudo groupmod -g 1016 GroupP
+
+sudo groupmod -n GroupC GroupB
 ```
 
-|Option |	Description |
+|Option | Description |
 | ------| ----------- |
-|`-g GID` |	New `GID` of the group to modify.
+|`-g GID` | New `GID` of the group to modify.
 |`-n name` | New name.
 
 It is possible to change the name of a group, its `GID` or both simultaneously.
 
 After modification, the files belonging to the group have an unknown `GID`. They must be reassigned the new `GID`.
 
-```
-$ sudo find / -gid 1002 -exec chgrp 1016 {} \;
+```bash
+sudo find / -gid 1002 -exec chgrp 1016 {} \;
 ```
 
 ### `groupdel` command
 
 The `groupdel` command is used to delete an existing group on the system.
 
-```
+```bash
 groupdel group
 ```
 
 Example:
 
-```
-$ sudo groupdel GroupC
+```bash
+sudo groupdel GroupC
 ```
 
 !!! Tip
@@ -153,17 +161,16 @@ $ sudo groupdel GroupC
     Examples: 
   
     ```bash
-    Shell > useradd testa
-    Shell > id testa
-    uid=1000(testa) gid=1000(testa) group=1000(testa)
-    Shell > groupdel testa
-    groupdel: cannot remove the primary group of user 'testa'
+    $ sudo useradd test
+    $ id test
+    uid=1000(test) gid=1000(test) group=1000(test)
+    $ sudo groupdel test
+    groupdel: cannot remove the primary group of user 'test'
     
-    Shell > groupadd -g 1001 testb
-    Shell > usermod -G testb root
-    Shell > id root
-    uid=0(root) gid=0(root) group=0(root),1001(testb)
-    Shell > groupdel testb
+    $ sudo usermod -g users -G test test
+    $ id test
+    uid=1000(test) gid=100(users) group=100(users),1000(test)
+    $ sudo groupdel testb
     ```
 
 !!! Tip
@@ -205,7 +212,7 @@ $ sudo groupdel GroupC
 
 This file contains the group information (separated by `:`).
 
-```
+```bash
 $ sudo tail -1 /etc/group
 GroupP:x:516:patrick
   (1)  (2)(3)   (4)
@@ -224,7 +231,7 @@ GroupP:x:516:patrick
 
 This file contains the security information about the groups (separated by `:`).
 
-```
+```bash
 $ sudo grep GroupA /etc/gshadow
 GroupA:$6$2,9,v...SBn160:alain:rockstar
    (1)      (2)            (3)      (4)
@@ -259,8 +266,8 @@ A user is defined as follows in the `/etc/passwd` file:
 There are three types of users:
 
 * **root(uid=0)**: the system administrator;
-* **system users(uid is one of the 201~999)**:	Used by the system to manage application access rights;
-* **regular user(uid>=1000)**:	Other account to log in to the system.
+* **system users(uid is one of the 201~999)**: Used by the system to manage application access rights;
+* **regular user(uid>=1000)**: Other account to log in to the system.
 
 Modified files, added lines:
 
@@ -271,27 +278,27 @@ Modified files, added lines:
 
 The `useradd` command is used to add a user.
 
-```
+```bash
 useradd [-u UID] [-g GID] [-d directory] [-s shell] login
 ```
 
 Example:
 
-```
-$ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
+```bash
+sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 ```
 
-| Option        |	Description                                                        |
-| --------------| ------------------------------------------------------------------ |
-|`-u UID`       |	`UID` of the user to create.                                       |
-|`-g GID`       |	`GID` of the primary group. The `GID` here can also be a `group name`. |
-|`-G GID1,[GID2]...`       |	`GID` of the supplementary groups. The `GID` here can also be a `group name`. It is possible to specify many supplementary groups separated by commas. |
-|`-d directory` |	Creates the home directory.                                                    |
-|`-s shell`     | Specifies the user's shell.                                              |
-|`-c COMMENT`           | Adds a comment.                                                     |
+| Option        | Description                                                            |
+| --------------| ---------------------------------------------------------------------- |
+|`-u UID`       | `UID` of the user to create.                                           |
+|`-g GID`       | `GID` of the primary group. The `GID` here can also be a `group name`. |
+|`-G GID1,[GID2]...`       | `GID` of the supplementary groups. The `GID` here can also be a `group name`. It is possible to specify many supplementary groups separated by commas. |
+|`-d directory` | Creates the home directory.                                            |
+|`-s shell`     | Specifies the user's shell.                                            |
+|`-c COMMENT`           | Adds a comment.                                                |
 |`-U`           | Adds the user to a group with the same name created simultaneously. If not specified, creation of a group with the same name occurs when creating the user. |
-|`-M`           | Does not create the user's home directory.                          |
-|`-r`           | Creates a system account. |
+|`-M`           | Does not create the user's home directory.                             |
+|`-r`           | Creates a system account.                                              |
 
 At creation, the account has no password and is locked.
 
@@ -299,7 +306,7 @@ A password must be assigned to unlock the account.
 
 When invoking the `useradd` command without any options, the following default settings are set for the new user:
 
-* A home directory with the same name as the username is created; 
+* A home directory with the same name as the username is created;
 * A primary group with the same name as the username is created;
 * A default shell that points to `/bin/bash` is assigned to the user;
 * The user's UID and primary group GID values are automatically deduced. This is usually a unique value between 1000 and 60,000.
@@ -309,24 +316,24 @@ When invoking the `useradd` command without any options, the following default s
     The default settings and values are obtained from the following configuration files:
 
     `/etc/login.defs` and `/etc/default/useradd`
-    
-```bash
-Shell > useradd test1
 
-Shell > tail -n 1 /etc/passwd
+```bash
+$ sudo useradd test1
+
+$ tail -n 1 /etc/passwd
 test1:x:1000:1000::/home/test1:/bin/bash
 
-Shell > tail -n 1 /etc/shadow
+$ tail -n 1 /etc/shadow
 test1:!!:19253:0:99999:7:::
 
-Shell > tail -n 1 /etc/group ; tail -n 1 /etc/gshadow
+$ tail -n 1 /etc/group ; tail -n 1 /etc/gshadow
 test1:x:1000:
 test1:!::
 ```
 
 Account naming rules:
 
-* Lowercase letters, numbers and underscores are allowed, and other special characters such as asterisks, percent signs, full-width symbols are not accepted. 
+* Lowercase letters, numbers and underscores are allowed, and other special characters such as asterisks, percent signs, full-width symbols are not accepted.
 * Although you can use an uppercase user name in RockyLinux, we do not recommend it;
 * It is not recommended to start with numbers and underscores, although you may be allowed to do so;
 * Different from the name of an existing group or system file;
@@ -342,8 +349,8 @@ The last directory is created by the `useradd` command, which takes the opportun
 
 Example:
 
-```
-$ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
+```bash
+sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
 ```
 
 !!! Note
@@ -357,46 +364,46 @@ $ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
          instead.
     ```
 
-#### Default value for user creation.
+#### Default value for user creation
 
 Modification of the file `/etc/default/useradd`.
 
-```
+```bash
 useradd -D [-b directory] [-g group] [-s shell]
 ```
 
 Example:
 
-```
-$ sudo useradd -D -g 1000 -b /home -s /bin/bash
+```bash
+sudo useradd -D -g 1000 -b /home -s /bin/bash
 ```
 
-| Option         | 	Description                                                                 |
-| -------------- | ---------------------------------------------------------------------------- |
-| `-D`           | Sets the default values for user creation.                                   |
-| `-b directory` | Sets the default login directory.                                            |
-| `-g group`     | Sets the default group.                                                      |
-| `-s shell`     | Sets the default shell.                                                      |
-| `-f`           | Sets the number of days after the password expires before disabling the account.|
-| `-e`           | Sets the date for disabling the account.                                       |
+| Option         | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `-D`           | Sets the default values for user creation.                                       |
+| `-b directory` | Sets the default login directory.                                                |
+| `-g group`     | Sets the default group.                                                          |
+| `-s shell`     | Sets the default shell.                                                          |
+| `-f`           | Sets the number of days after the password expires before disabling the account. |
+| `-e`           | Sets the date for disabling the account.                                         |
 
 ### `usermod` command
 
 The `usermod` command allows to modify a user.
 
-```
+```bash
 usermod [-u UID] [-g GID] [-d directory] [-m] login
 ```
 
 Example:
 
-```
-$ sudo usermod -u 1044 carine
+```bash
+sudo usermod -u 1044 carine
 ```
 
 Options identical to the `useradd` command.
 
-| Option         |	Description                                                                                  |
+| Option         | Description                                                                                  |
 | -------------- | --------------------------------------------------------------------------------------------- |
 |`-m`            | Associated with the `-d` option. Moves the contents of the old login directory to the new one. If the old home directory does not exist, creation of a new home directory does not occur; Creation of the new home directory occurs when it does not exist.|
 |`-l login`      | Modifies the login name. After you modify the login name, you also need to modify the name of the home directory to match it. |
@@ -410,42 +417,43 @@ Options identical to the `useradd` command.
 
     To be modified, a user must be disconnected and have no running processes.
 
-After changing the identifier, the files belonging to the user have an unknown `UID`. It must be reassigned to the new `UID`. 
+After changing the identifier, the files belonging to the user have an unknown `UID`. It must be reassigned to the new `UID`.
 
 Where `1000` is the old `UID` and `1044` is the new one. Examples are as follows:
 
-```
-$ sudo find / -uid 1000 -exec chown 1044: {} \;
+```bash
+sudo find / -uid 1000 -exec chown 1044: {} \;
 ```
 
 Locking and unlocking of user account, Examples are as follows:
 
-```
-Shell > usermod -L test1
-Shell > grep test1 /etc/shadow
+```bash
+$ usermod -L test1
+$ grep test1 /etc/shadow
 test1:!$6$n.hxglA.X5r7X0ex$qCXeTx.kQVmqsPLeuvIQnNidnSHvFiD7bQTxU7PLUCmBOcPNd5meqX6AEKSQvCLtbkdNCn.re2ixYxOeGWVFI0:19259:0:99999:7:::
 
-Shell > usermod -U test1
+$ usermod -U test1
 ```
 
 The difference between the `-aG` option and the `-G` option can be explained by the following example:
 
 ```bash
-Shell > useradd test1
-Shell > passwd test1
-Shell > groupadd groupA ; groupadd groupB ; groupadd groupC ; groupadd groupD
-Shell > id test1
+$ sudo useradd test1
+$ sudo passwd test1
+$ sudo groupadd groupA ; sudo groupadd groupB ; sudo groupadd groupC ; sudo groupadd groupD
+$ id test1
 uid=1000(test1) gid=1000(test1) groups=1000(test1)
 
-Shell > gpasswd -a test1 groupA
-Shell > id test1
+$ sudo gpasswd -a test1 groupA
+$ id test1
 uid=1000(test1) gid=1000(test1) groups=1000(test1),1002(groupA)
 
-Shell > usermod -G groupB,groupC test1
-Shell > id test1 
-uid=1000(test1) gid=1000(test1) gorups=1000(test1),1003(groupB),1004(groupC)
+$ sudo usermod -G groupB,groupC test1
+$ id test1 
+uid=1000(test1) gid=1000(test1) groups=1000(test1),1003(groupB),1004(groupC)
 
-Shell > usermod -aG groupD test1
+$ sudo usermod -aG groupD test1
+$ id test1
 uid=1000(test1) gid=1000(test1) groups=1000(test1),1003(groupB),1004(groupC),1005(groupD)
 ```
 
@@ -453,11 +461,11 @@ uid=1000(test1) gid=1000(test1) groups=1000(test1),1003(groupB),1004(groupC),100
 
 The `userdel` command allows you to delete a user's account.
 
-```
-$ sudo userdel -r carine
+```bash
+sudo userdel -r carine
 ```
 
-| Option |	Description                                              |
+| Option | Description                                               |
 | -------| --------------------------------------------------------- |
 | `-r`   | Deletes the user's home directory and mail files located in the `/var/spool/mail/` directory |
 
@@ -465,13 +473,13 @@ $ sudo userdel -r carine
 
     To be deleted, a user must be logged out and have no running processes.
 
-The `userdel` command removes the corresponding lines in `/etc/passwd`, `/ etc/shadow`, `/etc/group`, `/etc/gshadow`. As mentioned above, `userdel -r` will also delete the corresponding primary group of the user. 
+The `userdel` command removes the corresponding lines in `/etc/passwd`, `/ etc/shadow`, `/etc/group`, `/etc/gshadow`. As mentioned above, `userdel -r` will also delete the corresponding primary group of the user.
 
 ### `/etc/passwd` file
 
 This file contains user information (separated by `:`).
 
-```
+```bash
 $ sudo head -1 /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 (1)(2)(3)(4)(5)  (6)    (7)
@@ -488,21 +496,22 @@ root:x:0:0:root:/root:/bin/bash
 ### `/etc/shadow` file
 
 This file contains the users' security information (separated by `:`).
-```
+
+```bash
 $ sudo tail -1 /etc/shadow
 root:$6$...:15399:0:99999:7:::
  (1)    (2)  (3) (4) (5) (6)(7,8,9)
 ```
 
-* 1: Login name.   
+* 1: Login name.
 * 2: Encrypted password. Uses the SHA512 encryption algorithm, defined by the `ENCRYPT_METHOD` of `/etc/login.defs`.
-* 3: The time when the password was last changed, the timestamp format, in days. The so-called timestamp is based on January 1, 1970 as the standard time. Every time one day goes by, the timestamp is +1. 
+* 3: The time when the password was last changed, the timestamp format, in days. The so-called timestamp is based on January 1, 1970 as the standard time. Every time one day goes by, the timestamp is +1.
 * 4: Minimum lifetime of the password. That is, the time interval between two password changes (related to the third field), in days.  Defined by the `PASS_MIN_DAYS` of `/etc/login.defs`, the default is 0, that is, when you change the password for the second time, there is no restriction. However, if it is 5, it means that it is not allowed to change the password within 5 days, and only after 5 days.  
 * 5: Maximum lifetime of the password. That is, the validity period of the password (related to the third field). Defined by the `PASS_MAX_DAYS` of `/etc/login.defs`.
 * 6: The number of warning days before the password expires (related to the fifth field). The default is 7 days, defined by the `PASS_WARN_AGE` of `/etc/login.defs`.
 * 7: Number of days of grace after password expiration (related to the fifth field).  
 * 8: Account expiration time, the timestamp format, in days. **Note that an account expiration differs from a password expiration. In case of an account expiration, the user shall not be allowed to login. In case of a password expiration, the user is not allowed to login using her password.**
-* 9: Reserved for future use.   
+* 9: Reserved for future use.
 
 !!! Danger
 
@@ -512,10 +521,10 @@ For time stamp and date conversion, please refer to the following command format
 
 ```bash
 # The timestamp is converted to a date, "17718" indicates the timestamp to be filled in.
-Shell > date -d "1970-01-01 17718 days" 
+$ date -d "1970-01-01 17718 days" 
 
 # The date is converted to a timestamp, "2018-07-06" indicates the date to be filled in.
-Shell > echo $(($(date --date="2018-07-06" +%s)/86400+1))
+$ echo $(($(date --date="2018-07-06" +%s)/86400+1))
 ```
 
 ## File owners
@@ -531,62 +540,66 @@ The primary group of the user creating the file is, by default, the group that o
 #### `chown` command
 
 The `chown` command allows you to change the owners of a file.
-```
+
+```bash
 chown [-R] [-v] login[:group] file
 ```
 
 Examples:
-```
-$ sudo chown root myfile
-$ sudo chown albert:GroupA myfile
+
+```bash
+sudo chown root myfile
+
+sudo chown albert:GroupA myfile
 ```
 
-| Option |	Description                                           |
-| ------ | ------------------------------------------------------ |
-| `-R`   |	Recursively changes the owners of the directory and all files under the directory.|
-| `-v`   |	Displays the changes.                        |
+| Option | Description                                                                        |
+| ------ | ---------------------------------------------------------------------------------- |
+| `-R`   | Recursively changes the owners of the directory and all files under the directory. |
+| `-v`   | Displays the changes.                                                              |
 
 To change only the owner user:
 
-```
-$ sudo chown albert file
+```bash
+sudo chown albert file
 ```
 
 To modify only the owner group:
 
-```
-$ sudo chown :GroupA file
+```bash
+sudo chown :GroupA file
 ```
 
 Changing the user and owner group:
 
-```
-$ sudo chown albert:GroupA file
+```bash
+sudo chown albert:GroupA file
 ```
 
 In the following example the group assigned will be the primary group of the specified user.
 
-```
-$ sudo chown albert: file
+```bash
+sudo chown albert: file
 ```
 
 Change the owner and group of all files in a directory
 
-```
-$ sudo chown -R albert:GroupA /dir1
+```bash
+sudo chown -R albert:GroupA /dir1
 ```
 
 ### `chgrp` command
 
 The `chgrp` command allows you to change the owner group of a file.
 
-```
+```bash
 chgrp [-R] [-v] group file
 ```
 
 Example:
-```
-$ sudo chgrp group1 file
+
+```bash
+sudo chgrp group1 file
 ```
 
 | Option | Description                                                              |
@@ -598,13 +611,13 @@ $ sudo chgrp group1 file
 
     It is possible to apply to a file an owner and an owner group by taking as reference those of another file:
 
-```
+```bash
 chown [options] --reference=RRFILE FILE
 ```
 
 For example:
 
-```
+```bash
 chown --reference=/etc/groups /etc/passwd
 ```
 
@@ -614,27 +627,27 @@ chown --reference=/etc/groups /etc/passwd
 
 The command `gpasswd` allows to manage a group.
 
-```
+```bash
 gpasswd [option] group
 ```
 
 Examples:
 
-```
+```bash
 $ sudo gpasswd -A alain GroupA
 [alain]$ gpasswd -a patrick GroupA
 ```
 
-| Option        |	Description                         |
-| ----------    | ------------------------------------ |
+| Option        | Description                                                                          |
+| ----------    | ------------------------------------------------------------------------------------ |
 | `-a USER`     | Adds the user to the group. For the added user, this group is a supplementary group. |
-| `-A USER,...` | Sets the list of administrative users.       |
-| `-d USER`     | Removes the user from the group.     |
-| `-M USER,...` | Sets the list of group members.|
+| `-A USER,...` | Sets the list of administrative users.                                               |
+| `-d USER`     | Removes the user from the group.                                                     |
+| `-M USER,...` | Sets the list of group members.                                                      |
 
 The command `gpasswd -M` acts as a modification, not an addition.
 
-```
+```bash
 # gpasswd GroupeA
 New Password:
 Re-enter new password:
@@ -648,60 +661,60 @@ Re-enter new password:
 
 The `id` command displays the group names of a user.
 
-```
+```bash
 id USER
 ```
 
 Example:
 
-```
+```bash
 $ sudo id alain
 uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 ```
 
 ### `newgrp` command
 
-The `newgrp` command can select a group from the user's supplementary groups as the user's new **temporary** primary group. The `newgrp` command every time you switch a user's primary group, there will be a new **child shell**（child process). Be careful! **child shell** and **sub shell** are different. 
+The `newgrp` command can select a group from the user's supplementary groups as the user's new **temporary** primary group. The `newgrp` command every time you switch a user's primary group, there will be a new **child shell**（child process). Be careful! **child shell** and **sub shell** are different.
 
-```
+```bash
 newgrp [secondarygroups]
 ```
 
 Example:
 
-```
-Shell > useradd test1
-Shell > passwd test1
-Shell > groupadd groupA ; groupadd groupB 
-Shell > usermod -G groupA,groupB test1
-Shell > id test1
+```bash
+$ sudo useradd test1
+$ sudo passwd test1
+$ sudo groupadd groupA ; sudo groupadd groupB 
+$ sudo usermod -G groupA,groupB test1
+$ id test1
 uid=1000(test1) gid=1000(test1) groups=1000(test1),1001(groupA),1002(groupB)
-Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+$ echo $SHLVL ; echo $BASH_SUBSHELL
 1
 0
 
-Shell > su - test1
-Shell > touch a.txt
-Shell > ll
+$ su - test1
+$ touch a.txt
+$ ll
 -rw-rw-r-- 1 test1 test1 0 10月  7 14:02 a.txt
-Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+$ echo $SHLVL ; echo $BASH_SUBSHELL
 1
 0
 
 # Generate a new child shell
-Shell > newgrp groupA
-Shell > touch b.txt
-Shell > ll
+$ newgrp groupA
+$ touch b.txt
+$ ll
 -rw-rw-r-- 1 test1 test1  0 10月  7 14:02 a.txt
 -rw-r--r-- 1 test1 groupA 0 10月  7 14:02 b.txt
-Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+$ echo $SHLVL ; echo $BASH_SUBSHELL
 2
 0
 
 # You can exit the child shell using the `exit` command
-Shell > exit
-Shell > logout
-Shell > whoami
+$ exit
+$ logout
+$ whoami
 root
 ```
 
@@ -711,15 +724,16 @@ root
 
 The `passwd` command is used to manage a password.
 
-```
+```bash
 passwd [-d] [-l] [-S] [-u] [login]
 ```
 
 Examples:
 
-```
-Shell > passwd -l albert
-Shell > passwd -n 60 -x 90 -w 80 -i 10 patrick
+```bash
+sudo passwd -l albert
+
+sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
 
 | Option | Description                                            |
@@ -740,14 +754,14 @@ Example:
 
 * Alain changes his password:
 
-```
+```bash
 [alain]$ passwd
 ```
 
 * root changes Alain's password
 
-```
-$ sudo passwd alain
+```bash
+sudo passwd alain
 ```
 
 !!! Note
@@ -762,8 +776,8 @@ This can be done by passing the password to the `passwd` command.
 
 Example:
 
-```
-$ sudo echo "azerty,1" | passwd --stdin philippe
+```bash
+sudo echo "azerty,1" | passwd --stdin philippe
 ```
 
 !!! Warning
@@ -774,14 +788,14 @@ $ sudo echo "azerty,1" | passwd --stdin philippe
 
 The `chage` command is change user password expiry information.
 
-```
+```bash
 chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
 ```
 
 Example:
 
-```
-$ sudo chage -m 60 -M 90 -W 80 -I 10 alain
+```bash
+sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
 
 | Option | Description                                    |
@@ -796,7 +810,7 @@ $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 
 Examples:
 
-```
+```bash
 # The `chage` command also offers an interactive mode.
 $ sudo chage philippe
 
@@ -830,7 +844,7 @@ This file contains the default data settings.
 
 This file is modified by the command `useradd -D` (`useradd -D` entered without any other option displays the contents of the `/etc/default/useradd` file).
 
-```
+```bash
 Shell > grep -v ^# /etc/default/useradd 
 GROUP=100
 HOME=/home
@@ -841,19 +855,19 @@ SKEL=/etc/skel
 CREATE_MAIL_SPOOL=yes
 ```
 
-| Parameters | Comment                                                                  |
-| ---------- | ------------------------------------------------------------------------ |
-| `GROUP`    | Defines the default primary group GID.                                               |
-| `HOME`     | Defines the directory path of the upper level of the common user's home directory.      |
+| Parameters | Comment                                                                            |
+| ---------- | ---------------------------------------------------------------------------------- |
+| `GROUP`    | Defines the default primary group GID.                                             |
+| `HOME`     | Defines the directory path of the upper level of the common user's home directory. |
 | `INACTIVE` | Defines the number of days of grace after password expiration. Corresponds to the 7th field of the `/etc/shadow` file. `-1` value means that the grace period feature is turned off.|
 | `EXPIRE`   | Defines the account expiration date. Corresponds to the 8th field of the `/etc/shadow` file.                                                |
-| `SHELL`    | Defines the command interpreter.                                                     |
-| `SKEL`     | Defines the skeleton directory of the login directory.                               |
-| `CREATE_MAIL_SPOOL` |	Defines the mailbox creation in `/var/spool/mail/`.                          |
+| `SHELL`    | Defines the command interpreter.                                                   |
+| `SKEL`     | Defines the skeleton directory of the login directory.                             |
+| `CREATE_MAIL_SPOOL` | Defines the mailbox creation in `/var/spool/mail/`.                       |
 
 If you do not need a primary group with the same name when creating users, you can do this:
 
-```
+```bash
 Shell > useradd -N test2
 Shell > id test2
 uid=1001(test2) gid=100(users) groups=100(users)
@@ -886,7 +900,7 @@ ENCRYPT_METHOD SHA512
 
 `UMASK 022`: This means that the permission to create a file is 755 (rwxr-xr-x). However, for the sake of security, GNU/Linux does not have **x** permission for newly created files, this restriction applies to root(uid=0) and ordinary users(uid>=1000). For example:
 
-```
+```bash
 Shell > touch a.txt
 Shell > ll
 -rw-r--r-- 1 root root     0 Oct  8 13:00 a.txt
@@ -894,7 +908,7 @@ Shell > ll
 
 `HOME_MODE 0700`: The permissions of an ordinary user's home directory. Does not work for root's home directory.
 
-```
+```bash
 Shell > ll -d /root
 dr-xr-x---. 10 root root 4096 Oct  8 13:12 /root
 
@@ -922,21 +936,21 @@ All files and directories placed in this directory will be copied to the user tr
 
 The `su` command allows you to change the identity of the connected user.
 
-```
+```bash
 su [-] [-c command] [login]
 ```
 
 Examples:
 
-```
+```bash
 $ sudo su - alain
 [albert]$ su - root -c "passwd alain"
 ```
 
-| Option | Description                                           |
-| ------ | ----------------------------------------------------- |
-| `-` |	Loads the user's complete environment.                   |
-| `-c` command |	Executes the command under the user's identity.|
+| Option       | Description                                     |
+| ------------ | ------------------------------------------------|
+| `-`          | Loads the user's complete environment.          |
+| `-c` command | Executes the command under the user's identity. |
 
 If the login is not specified, it will be `root`.
 
@@ -947,28 +961,28 @@ Standard users will have to type the password for the new identity.
     You can use the `exit`/`logout` command to exit users who have been switched. It should be noted that after switching users, there is no new `child shell` or `sub shell`, for example:
 
     ```
-    Shell > whoami
+    $ whoami
     root
-    Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+    $ echo $SHLVL ; echo $BASH_SUBSHELL
     1
     0
 
-    Shell > su - test1
-    Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+    $ su - test1
+    $ echo $SHLVL ; echo $BASH_SUBSHELL
     1
     0
     ```
 
 Attention please! `su` and `su -` are different, as shown in the following example:
 
-```
-Shell > whoami
+```bash
+$ whoami
 test1
-Shell > su root
-Shell > pwd
+$ su root
+$ pwd
 /home/test1
 
-Shell > env
+$ env
 ...
 USER=test1
 PWD=/home/test1
@@ -978,14 +992,14 @@ LOGNAME=test1
 ...
 ```
 
-```
-Shell > whoami
+```bash
+$ whoami
 test1
-Shell > su - root
-Shell > pwd
+$ su - root
+$ pwd
 /root
 
-Shell > env
+$ env
 ...
 USER=root
 PWD=/root
