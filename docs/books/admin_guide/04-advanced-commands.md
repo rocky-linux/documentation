@@ -1,7 +1,6 @@
 ---
 title: Advanced Linux Commands
 ---
-<!-- markdownlint-disable MD033 -->
 
 # Advanced Commands for Linux users
 
@@ -117,7 +116,7 @@ xargs
 use of xargs
 ```
 
-The `xargs` command waits for an input from the standard **stdin** input. Three lines are entered. The end of the user input is specified to `xargs` by the keystroke sequence <kbd>CTRL</kbd>+<kbd>D</kbd>. `xargs` then executes the default command `echo` followed by the three arguments corresponding to the user input, namely:
+The `xargs` command waits for an input from the standard **stdin** input. Three lines are entered. The end of the user input is specified to `xargs` by the keystroke sequence ++ctrl+d++. `xargs` then executes the default command `echo` followed by the three arguments corresponding to the user input, namely:
 
 ```bash
 $ echo "use" "of" "xargs"
@@ -221,51 +220,51 @@ The `yum-utils` package is a collection of utilities, built for `yum` by various
 
     While `yum` has been replaced by `dnf` in Rocky Linux 8, the package name has remained `yum-utils`, although it can be installed as `dnf-utils` as well. These are classic YUM utilities implemented as CLI shims on top of DNF to maintain backwards compatibility with `yum-3`.
 
-Here are some examples of these utilities:
+Here are some examples of these utilities.
 
-* `repoquery` command
+### `repoquery` command
 
 The `repoquery` command is used to query the packages in the repository.
 
 Examples of use:
 
-  * Display the dependencies of a package (it can be a software package that has been installed or not installed), equivalent to `dnf deplist <package-name>`
+* Display the dependencies of a package (it can be a software package that has been installed or not installed), equivalent to `dnf deplist <package-name>`
 
-    ```bash
-    repoquery --requires <package-name>
-    ```
+```bash
+repoquery --requires <package-name>
+```
 
-  * Display the files provided by an installed package (does not work for packages that are not installed), equivalent to `rpm -ql <package-name>`
+* Display the files provided by an installed package (does not work for packages that are not installed), equivalent to `rpm -ql <package-name>`
 
-    ```bash
-    $ repoquery -l yum-utils
-    /etc/bash_completion.d
-    /etc/bash_completion.d/yum-utils.bash
-    /usr/bin/debuginfo-install
-    /usr/bin/find-repos-of-install
-    /usr/bin/needs-restarting
-    /usr/bin/package-cleanup
-    /usr/bin/repo-graph
-    /usr/bin/repo-rss
-    /usr/bin/repoclosure
-    /usr/bin/repodiff
-    /usr/bin/repomanage
-    /usr/bin/repoquery
-    /usr/bin/reposync
-    /usr/bin/repotrack
-    /usr/bin/show-changed-rco
-    /usr/bin/show-installed
-    /usr/bin/verifytree
-    /usr/bin/yum-builddep
-    /usr/bin/yum-config-manager
-    /usr/bin/yum-debug-dump
-    /usr/bin/yum-debug-restore
-    /usr/bin/yum-groups-manager
-    /usr/bin/yumdownloader
-    …
-    ```
+```bash
+$ repoquery -l yum-utils
+/etc/bash_completion.d
+/etc/bash_completion.d/yum-utils.bash
+/usr/bin/debuginfo-install
+/usr/bin/find-repos-of-install
+/usr/bin/needs-restarting
+/usr/bin/package-cleanup
+/usr/bin/repo-graph
+/usr/bin/repo-rss
+/usr/bin/repoclosure
+/usr/bin/repodiff
+/usr/bin/repomanage
+/usr/bin/repoquery
+/usr/bin/reposync
+/usr/bin/repotrack
+/usr/bin/show-changed-rco
+/usr/bin/show-installed
+/usr/bin/verifytree
+/usr/bin/yum-builddep
+/usr/bin/yum-config-manager
+/usr/bin/yum-debug-dump
+/usr/bin/yum-debug-restore
+/usr/bin/yum-groups-manager
+/usr/bin/yumdownloader
+…
+```
 
-* `yumdownloader` command:
+### `yumdownloader` command
 
 The `yumdownloader` command downloads RPM packages from the repositories.  Equivalent to `dnf download --downloadonly --downloaddir ./  package-name`
 
