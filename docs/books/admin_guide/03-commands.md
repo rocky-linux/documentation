@@ -3,7 +3,7 @@ title: Linux Commands
 author: Antoine Le Morvan
 contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrnova
 ---
-<!-- markdownlint-disable MD025 MD007 -->
+
 # Commands for Linux Users
 
 In this chapter you will learn Linux commands and how to use them.
