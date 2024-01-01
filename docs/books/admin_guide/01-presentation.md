@@ -19,7 +19,7 @@ In this chapter you will learn about GNU/Linux distributions.
 
 :checkered_flag: **generalities**, **linux**, **distributions**
 
-**Knowledge**: :star:
+**Knowledge**: :star:  
 
 **Complexity**: :star:
 
