@@ -2,6 +2,8 @@
 title: Belajar Linux Dengan Rocky
 ---
 
+<!-- markdownlint-disable MD025 MD007 -->
+
 # Belajar Linux Dengan Rocky
 
 Panduan Administrator adalah kumpulan dokumen pendidikan yang berfokus pada Administrator Sistem. Mereka dapat digunakan oleh Administrator Sistem masa depan yang mencoba untuk mempercepat, oleh Administrator Sistem saat ini yang menginginkan penyegaran, atau oleh pengguna Linux mana pun yang ingin mempelajari lebih lanjut tentang lingkungan Linux, perintah, proses, dan lainnya. Seperti semua dokumen jenis ini, itu akan berkembang dan diperbarui seiring waktu.
@@ -22,6 +24,4 @@ Pencadangan dan Pemulihan adalah info penting untuk Administrator Sistem. Linux 
 
 System Startup juga merupakan bacaan penting karena manajemen sistem selama proses boot telah berkembang secara signifikan dalam beberapa tahun terakhir sejak kedatangan systemd.
 
-
 Bab terakhir membahas Manajemen Tugas, Menerapkan Jaringan, dan Manajemen Perangkat Lunak termasuk instalasi.
-
