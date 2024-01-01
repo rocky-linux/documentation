@@ -2,6 +2,8 @@
 title: Apprendre Linux avec Rocky
 ---
 
+<!-- markdownlint-disable MD025 MD007 -->
+
 # Apprendre Linux avec Rocky
 
 Le Guide d'administration est une collection de documents éducatifs destinés aux administrateurs systèmes. Ils peuvent être utilisés par les futurs administrateurs systèmes qui veulent se mettre à niveau, par les administrateurs systèmes actuels qui souhaitent se rafraîchir la mémoire, ou par tout utilisateur de Linux qui souhaite en savoir plus sur l'environnement, les commandes, les processus etc. de Linux. Comme tous les documents de ce type, il évoluera et sera mis à jour au fil du temps.
@@ -22,6 +24,4 @@ La sauvegarde et la restauration sont des informations essentielles pour l'admin
 
 Le démarrage du système est également une lecture importante car la gestion du système du processus de démarrage a évolué de manière significative ces dernières années depuis l'arrivée de systemd.
 
-
 Les derniers chapitres traitent de la Gestion des Tâches, de la Mise en œuvre du Réseau et de la Gestion des Logiciels, y compris leur installation.
-

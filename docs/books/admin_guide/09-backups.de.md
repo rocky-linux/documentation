@@ -583,11 +583,11 @@ Hier liefert der Befehl `find /etc` eine Liste von Dateien, die dem Inhalt des `
 
 Vergessen Sie nicht das Zeichen `>` beim Speichern oder das Zeichen `F save_name_cpio`.
 
-| Optionen | Beschreibung                                           |
-| -------- | ------------------------------------------------------ |
-| `-o`     | Erstellt ein Backup (_output_).                        |
-| `-v`     | Verbose, zeigt den Namen der verarbeiteten Dateien an. |
-| `-F`     | Legt das zu ändernde Backup fest (Medium).             |
+| Option | Beschreibung                                           |
+| ------ | ------------------------------------------------------ |
+| `-o`   | Erstellt ein Backup (_output_).                        |
+| `-v`   | Verbose, zeigt den Namen der verarbeiteten Dateien an. |
+| `-F`   | Legt das zu ändernde Backup fest (Medium).             |
 
 Sicherungskopie mit Medium:
 
@@ -677,10 +677,10 @@ Beispiel:
 $ cpio -tv </backups/etc.152.cpio | less
 ```
 
-| Optionen | Beschreibung              |
-| -------- | ------------------------- |
-| `-t`     | Liest ein Backup.         |
-| `-v`     | Zeigt Datei-Attribute an. |
+| Option | Beschreibung              |
+| ------ | ------------------------- |
+| `-t`   | Liest ein Backup.         |
+| `-v`   | Zeigt Datei-Attribute an. |
 
 Nachdem Sie ein Backup erstellt haben, sollten Sie den Inhalt lesen, um sicher zu gehen, dass es keine Fehler gab.
 
@@ -700,7 +700,7 @@ Beispiel:
 $ cpio -iv </backups/etc.152.cpio | less
 ```
 
-| Optionen                     | Beschreibung                                                                    |
+| Option                       | Beschreibung                                                                    |
 | ---------------------------- | ------------------------------------------------------------------------------- |
 | `-i`                         | Wiederherstellen einer kompletten Sicherung.                                    |
 | `-E file`                    | Stellt nur die Dateien wieder her, deren Name in der Datei enthalten ist.       |

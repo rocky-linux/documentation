@@ -2,6 +2,8 @@
 title: Imparare Linux Con Rocky
 ---
 
+<!-- markdownlint-disable MD025 MD007 -->
+
 # Imparare Linux con Rocky
 
 La Guida dell'Amministratore è una raccolta di documenti didattici dedicati agli Amministratori di Sistema. Possono essere utilizzati dai futuri amministratori di sistema che cercano di aggiornarsi, dagli attuali amministratori di sistema che desiderano un ripasso o da qualsiasi utente di Linux che desideri saperne di più sull'ambiente Linux, sui comandi, sui processi e altro ancora. Come tutti i documenti di questo tipo, si evolverà e si aggiornerà nel tempo.
@@ -22,6 +24,4 @@ Il Backup e il Ripristino sono informazioni essenziali per l'Amministratore di S
 
 L'avvio del sistema è una lettura importante anche perché la gestione del sistema durante il processo di avvio si è evoluta in modo significativo negli ultimi anni con l'arrivo di systemd.
 
-
 I capitoli finali trattano la gestione dei processi, l'implementazione della rete e la gestione del software, compresa l'installazione.
-

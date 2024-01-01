@@ -2,6 +2,8 @@
 title: Aprendendo Linux com Rocky
 ---
 
+<!-- markdownlint-disable MD025 MD007 -->
+
 # Aprendendo Linux com Rocky
 
 O Guia da Administração é uma coleção de Documentos de Ensino para Administradores do Sistema. Esses documentos podem ser usados por futuros administradores do sistema que tentam aprimorar seu aprendizado rapidamente, pelos atuais administradores do sistema que gostariam de se atualizar, ou por qualquer usuário do Linux que gostaria de aprender mais sobre o ambiente do Linux, comandos, processos e mais. Como todos os documentos desse tipo, ele será incrementado e atualizado ao longo do tempo.
@@ -22,6 +24,4 @@ Backup e Restauração são informações essenciais para o Administrador de Sis
 
 A Inicialização do Sistema também é uma leitura importante porque a gestão do sistema durante o processo de inicialização evoluiu significativamente nos últimos anos desde a chegada do systemd.
 
-
 O capítulo final aborta a Gestão de Tarefas, Implementação da Rede e Gestão de Software incluindo a instalação.
-

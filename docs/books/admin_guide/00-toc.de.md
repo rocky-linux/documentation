@@ -2,6 +2,8 @@
 title: Linux lernen mit Rocky
 ---
 
+<!-- markdownlint-disable MD025 MD007 -->
+
 # Linux lernen mit Rocky
 
 Der Administrationsleitfaden ist eine Sammlung von Schulungsdokumenten für Systemadministratoren. Sie können von Systemadministratoren verwendet werden, um auf den neuesten Wissensstand gebracht zu werden oder von jedem Linux-Benutzer, der mehr über die Linux-Umgebung, Befehle, Prozesse und mehr erfahren möchte. Wie alle Dokumente in dieser Dokumentation werden sie im Laufe der Zeit weiterentwickelt und aktualisiert.
@@ -22,6 +24,4 @@ Die Beschreibung der Sicherung und Wiederherstellung enthält wichtige Informati
 
 Die Verwaltung des Systems während des Startvorgangs hat sich in den letzten Jahren seit der Einführung von systemd erheblich verändert.
 
-
 Die letzten Kapitel behandeln Prozessmanagement, Netzwerkimplementierung und Softwaremanagement, einschließlich Installation.
-
