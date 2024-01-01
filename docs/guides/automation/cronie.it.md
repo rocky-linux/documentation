@@ -110,7 +110,7 @@ I contenuti discussi finora sono opzioni semplicistiche, ma che dire di compiti 
 
 1. /etc/crontab e `crontab -e`, c'è qualche differenza tra i due metodi? `crontab -e` non ha bisogno di specificare un utente (l'utente attualmente registrato è usato di default), mentre /etc/crontab ha bisogno di specificare un utente.
 2. Cosa fare se il comando o lo script specificato non viene eseguito correttamente? Controllare il file /var/log/cron*, usare `journalctl -u crond.service` per verificare le informazioni sul processo demone, se lo script ha i permessi x e così via, per la risoluzione dei problemi.
-3. Oltre a cronie, quali varianti di cron esistono? [ dcron ](http://www.jimpryor.net/linux/dcron.html), l'ultima versione è la 4.5 (2011-50-01). [ fcron ](http://fcron.free.fr/), l'ultima versione è la 3.3.0 (dev, 2016-08-14). [ bcron ](http://untroubled.org/bcron/), l'ultima versione è la 0.11 (2015-08-12). [ cronsun ](https://github.com/shunfei/cronsun), l'ultima versione 0.3.5 (2018-11-20).
+3. Oltre a cronie, quali varianti di cron esistono? [ fcron ](http://fcron.free.fr/), l'ultima versione è la 3.3.0 (dev, 2016-08-14). [ bcron ](http://untroubled.org/bcron/), l'ultima versione è la 0.11 (2015-08-12). [ cronsun ](https://github.com/shunfei/cronsun), l'ultima versione 0.3.5 (2018-11-20).
 
 ## Sommario
 
