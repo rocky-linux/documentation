@@ -1,6 +1,7 @@
 ---
 title: Introduction to Linux
 ---
+<!-- markdownlint-disable MD025 MD007 -->
 
 # Introduction to the Linux Operating System
 
@@ -19,6 +20,7 @@ In this chapter you will learn about GNU/Linux distributions.
 :checkered_flag: **generalities**, **linux**, **distributions**
 
 **Knowledge**: :star:  
+
 **Complexity**: :star:
 
 **Reading time**: 10 minutes

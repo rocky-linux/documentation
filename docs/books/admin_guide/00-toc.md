@@ -1,6 +1,7 @@
 ---
 title: Learning Linux With Rocky
 ---
+<!-- markdownlint-disable MD025 MD007 -->
 
 # Learning Linux with Rocky
 
