@@ -126,7 +126,7 @@ Opzioni del comando test sui file:
 | `-L`    | Controlla se il file esiste e se è di tipo link simbolico              |
 | `-b`    | Verifica se il file esiste e se è di tipo speciale in modalità blocco  |
 | `-c`    | Controlla se il file esiste e se è di tipo speciale modalità carattere |
-| `-p`    | Controlla se il file esiste ed è di tipo tube                          |
+| `-p`    | Controlla se il file esiste ed è di tipo named pipe (FIFO)             |
 | `-S`    | Verifica se il file esiste ed è di tipo socket                         |
 | `-t`    | Verifica se il file esiste ed è di tipo terminale                      |
 | `-r`    | Verifica se il file esiste ed è leggibile                              |
