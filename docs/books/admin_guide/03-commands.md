@@ -75,7 +75,7 @@ Once the user is connected to a console, the shell displays the **command prompt
 * Displays the command prompt.
 * Etc.
 
-The key sequence ++ctrl+c++. is used to interrupt a running command.
+The key sequence ++ctrl+c++ is used to interrupt a running command.
 
 The use of a command generally follows this sequence:
 
