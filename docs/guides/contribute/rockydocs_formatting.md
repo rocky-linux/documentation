@@ -58,7 +58,7 @@ Admonitions are limitless, as noted in custom <sub>1</sub> above. It is possible
 
 An admonition is always entered in this way:
 
-```
+```text
 !!! admonition_type "custom title if any"
 
     text of admonition
@@ -126,7 +126,7 @@ If an admonition has very long content, consider an expandable admonition. It ha
 
 Which looks like this in your editor:
 
-```
+```text
 ??? warning "Warning Content"
     
     This is a warning, with not very much content. You would want to use a regular admonition for this, but Hey, this is just an example!
@@ -146,7 +146,7 @@ Formatting tabbed content is similar to admonitions. Instead of three exclamatio
 
 Which would look like this in your editor:
 
-```
+```text
 === "9.0"
 
     The procedure for doing this in 9.0
@@ -162,7 +162,7 @@ Remember that everything that falls inside of the section must continue to use t
 
 Numbered lists sound like they are easy to create and use, and once you get the hang of them, they really are. If you just have a single list of items with no complexity, then this sort of format works fine:
 
-```
+```text
 1. Item 1
 
 2. Item 2
@@ -186,7 +186,7 @@ Here is an example of a multi-line numbered list with a code block thrown in for
 
     For example: this has the four (4) space indentation and represents a new paragraph of text. In addition, we are adding a code block in. It is also indented by the same four (4) spaces as our paragraph:
 
-    ```
+    ```bash
     dnf update
     ```
 
@@ -199,7 +199,7 @@ And here is how that looks as raw text:
 
     For example: this has the four (4) space indentation and represents a new paragraph of text. In addition, we are adding a code block in. It is also indented by the same four (4) spaces as our paragraph:
 
-    ```
+    ```bash
     dnf update
     ```
 
@@ -210,7 +210,7 @@ And here is how that looks as raw text:
 
 Tables help us to lay out command options, or in the above case, admonition types and descriptions. Here is how the table in the Admonitions section was entered:
 
-```
+```text
 | type      | Description                                               |
 |-----------|-----------------------------------------------------------|
 | note      | displays text in a blue box                                   |
@@ -236,7 +236,7 @@ Note that it is not necessary to have each column broken down by size (as we hav
 
 Block quotes are actually designed for quoting text from other sources to include in your documentation, but using them that way is not required. Some contributors use block quotes instead of tables, for instance, to list out some options. Examples of block quotes in markdown would be:
 
-```
+```text
 > **an item** - A description of that item
 
 > **another item** - Another description of that item
@@ -253,7 +253,7 @@ That ends up looking like this when the page displays:
 
 Our approach to the use of code blocks is pretty simple. If `your code` is short enough that you can (and want to) use it in a sentence like you just saw, use single backticks ++"`"++:
 
-```
+```bash
 A sentence with a `command of your choosing` in it.
 ```
 
@@ -265,7 +265,7 @@ sudo dnf install the-kitchen-sink
 ```
 ````
 
-The `bash` bit of that formatting is a non-essential code identifier but can help with syntax highlighting. If you showcase Python, PHP, Ruby, HTML, CSS, or any other kind of code, the "bash" will change to whatever language you use.
+The `bash` bit of that formatting is a markdown recommended code identifier but can help with syntax highlighting. If you showcase text, Python, PHP, Ruby, HTML, CSS, or any other kind of code, the "bash" will change to whatever language you use.
 
 Incidentally, if you need to show a code block within a code block, just add one more backtick ++"`"++ to the parent block:
 
@@ -287,7 +287,7 @@ There might be times when writing documentation where you want to show a prompt 
 
 If formatted normally, the copy option will copy the prompt and the command, where copying just the command is preferable. To get around this, you can use the following syntax to tell the copy option what you want copied:
 
-````
+````text
 ``` { .sh data-copy="cd /usr/local" }
 [root@localhost root] cd /usr/local
 ```
@@ -299,7 +299,7 @@ When using this method, the automatic line feed is also suppressed.
 
 Another way to add as much clarity to your documents as possible is to represent the entering of keys on a keyboard in the correct manner. In markdown, do this by surrounding the key or keys with double plus signs (`++`) Do this with `++key++`. For instance, to represent that you need to hit the escape key in your document you would use `++escape++`. When you need to indicate the pressing of multiple keys, add a `+` between them like this: `++ctrl+f4++`. For keys that aren't defined (for instance we are indicating a mystery function key, `Fx` below) put your definition in quotes (`++ctrl+"Fx"++`). If requiring the pressing of keys simultaneously, add "simultaneously" or "at the same time" or some similar phrase to your instructions. Here is an example of a keyboard instruction in your editor:
 
-```
+```text
 A workstation type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using ++alt+"Fx"++ from the command line or using ++ctrl+alt+"Fx"++.
 ```
 
@@ -325,7 +325,7 @@ Some of the special characters, such as &copy; are not normally superscript, whi
 
 Here is how all the above looks in your markdown code:
 
-```
+```text
 * represent ordinal numbers, such as 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
 * copyright and trademark symbols, like <sup>&copy;</sup>, <sup>TM</sup> or &trade;, &reg;
 * as notation for references, such as this<sup>1</sup>, this<sup>2</sup> and this<sup>3</sup>
@@ -337,7 +337,7 @@ As you can see, to force superscript you can use the supported HTML tags of `<su
 
 Enter subscript with the `<sub></sub>` tags, and as noted earlier, is not <sub>used nearly as much</sub> in writing.
 
-### Superscript for references 
+### Superscript for references
 
 Some of you may feel the need to reference outside sources when writing documentation. If you only have a single source, you may wish to include it in your conclusion as a single link, but if you have multiples<sup>1</sup>, you can use superscript to note them in your text<sup>2</sup> and then list them at the end of your document. Note that the positioning of references should come after the "Conclusion" section.
 
@@ -353,7 +353,7 @@ or
 
 And here is what that all looks like in your editor:
 
-```
+```text
 1. "How Multiples Are Used In Text" by Wordy W. McWords [https://site1.com](https://site1.com)
 2. "Using Superscript In Text" by Sam B. Supersecret [https://site2.com](https://site2.com)
 
@@ -425,7 +425,7 @@ You can even embed a table or block quote (literally any formatting item type) w
 
 Here is what this example looks like in your editor:
 
-```
+```text
 
 As long as you keep track of the magic four (4) spaces to separate these items, they will display logically and exactly the way you want them to. Sometimes that is really important.
 
@@ -459,7 +459,7 @@ From time to time, you may want to add a comment to your markdown that will not 
 
 The best way to add a comment to your markdown is to use the square brackets "[]" around two forward slashes "//" followed by a colon and the content. This would look like this:
 
-```
+```text
 
 [//]: This is a comment to be replaced later
 
