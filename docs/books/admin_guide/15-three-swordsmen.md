@@ -2448,7 +2448,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 
     !!! info
 
-        The numeric subscript of an `awk` array can be a positive integer, a negative integer, or 0, so the numeric subscript of an `awk` array has no concept of an initial value. This is not the same as arrays in `bash`.
+        The numeric subscript of an `awk` array can be a positive integer, a negative integer, a string, or 0, so the numeric subscript of an `awk` array has no concept of an initial value. This is not the same as arrays in `bash`.
 
         ```bash
         Shell > arr1=(2 10 30 string1)
@@ -2696,7 +2696,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 
 | Function name | Description |
 | :---          | :---        |
-| int(expr)     | Intercept into index |
+| int(expr)     | Truncate as an integer |
 | sqrt(expr)    | Square root|
 | rand()        | Returns a random number N with a range of (0,1). The result is not that every run is a random number, but that it remains the same.|
 | srand([expr]) | Use "expr" to generate random numbers. If "expr" is not specified, the current time is used as the seed by default, and if there is a seed, the generated random number is used.|
@@ -2707,10 +2707,151 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 | gensub(r,s,h[,t])  | Use the "r" regular expression to match the input records, and replace the matching result with "s". "t" is optional, indicating a replacement for a certain field. "h" represents replacing the specified index position|
 | index(s,t)    | Returns the index position of the string "t" in the string "s" (the string index starts from 1). If the function returns 0, it means it does not exist |
 | length([s])   | Returns the length of "s" |
-| match(s,r[,a])| |
-| split(s,a[,r[,seps]])| |
-| substr(s,i[,n])  | |
-| tolower(str)  | |
-| toupper(str)  | |
-| systime()     | |
-| strftime([format[,timestamp[,utc-flag]]]) | |
+| match(s,r[,a])| Test whether the string "s" contains the string "r". If included, return the index position of "r" within it (string index starting from 1). If not, return 0 |
+| split(s,a[,r[,seps]])| Split string "s" into an array "a" based on the delimiter "seps"|
+| substr(s,i[,n])  | Intercept the string. "s" represents the string to be processed; "i" indicates the index position of the string; "n" is the length. |
+| tolower(str)  | Converts all strings to lowercase |
+| toupper(str)  | Converts all strings to uppercase |
+| systime()     | Current timestamp |
+| strftime([format[,timestamp[,utc-flag]]]) | Format the output time. Converts the timestamp to a string |
+
+
+1. **int** function
+
+    ```bash
+    Shell > echo -e "qwer123\n123\nabc\n123abc123\n100.55\n-155.27"
+    qwer123
+    123
+    abc
+    123abc123
+    100.55
+    -155.27
+
+    Shell > echo -e "qwer123\n123\nabc\n123abc123\n100.55\n-155.27" | awk '{print int($1)}'
+    0
+    123
+    0
+    123
+    100
+    -155
+    ```
+
+    As you can see, the int function only works for numbers, and when encountering a string, it is converted to 0. When encountering a string starting with a number, it is truncated.
+
+2. **sqrt** function
+
+    ```bash
+    Shell > awk 'BEGIN{print sqrt(9)}'
+    3
+    ```
+
+3. **rand** function and **srand** function
+
+
+    The example of using the rand function is as follows:
+
+    ```bash
+    Shell > awk 'BEGIN{print rand()}'
+    0.924046
+    Shell > awk 'BEGIN{print rand()}'
+    0.924046
+    Shell > awk 'BEGIN{print rand()}'
+    0.924046
+    ```
+
+    The example of using the srand function is as follows:
+
+    ```bash
+    Shell > awk 'BEGIN{srand() ; print rand()}'
+    0.975495
+    Shell > awk 'BEGIN{srand() ; print rand()}'
+    0.99187
+    Shell > awk 'BEGIN{srand() ; print rand()}'
+    0.069002
+    ```
+
+    Generate an integer within the range of (0,100):
+
+    ```bash
+    Shell > awk 'BEGIN{srand() ; print int(rand()*100)}'
+    56
+    Shell > awk 'BEGIN{srand() ; print int(rand()*100)}'
+    33
+    Shell > awk 'BEGIN{srand() ; print int(rand()*100)}'
+    42
+    ```
+
+4. **asort** function and **asorti** function
+
+    ```bash
+    Shell > cat /etc/passwd | awk -F ":" '{a[NR]=$1} END{anu=asort(a,b) ; for(i=1;i<=anu;i++) print i,b[i]}'
+    1 adm
+    2 bin
+    3 chrony
+    4 daemon
+    5 dbus
+    6 ftp
+    7 games
+    8 halt
+    9 lp
+    10 mail
+    11 nobody
+    12 operator
+    13 polkitd
+    14 redis
+    15 root
+    16 shutdown
+    17 sshd
+    18 sssd
+    19 sync
+    20 systemd-coredump
+    21 systemd-resolve
+    22 tss
+    23 unbound
+
+    Shell > awk 'BEGIN{a[1]=1000 ; a[2]=200 ; a[3]=30 ; a[4]="admin" ; a[5]="Admin" ; \
+    a[6]="12string" ; a[7]=-1 ; a[8]=-10 ; a[9]=-20 ; a[10]=-21 ;nu=asort(a,b) ; for(i=1;i<=nu;i++) print i,b[i]}'
+    1 -21
+    2 -20
+    3 -10
+    4 -1
+    5 30
+    6 200
+    7 1000
+    8 12string
+    9 Admin
+    10 admin
+    ```
+
+    !!! info
+
+        Sorting rules:
+
+        * Numbers have higher priority than strings and are arranged in ascending order.
+        * Arrange strings in ascending dictionary order
+        
+    If you are using the **asorti** function, the example is as follows:
+
+    ```bash
+    Shell > awk 'BEGIN{ a[-11]=1000 ; a[-2]=200 ; a[-10]=30 ; a[-21]="admin" ; a[41]="Admin" ; \
+    a[30]="12string" ; a["root"]="rootstr" ; a["Root"]="r1" ; nu=asorti(a,b) ; for(i in b) print i,b[i] }'
+    1 -10
+    2 -11
+    3 -2
+    4 -21
+    5 30
+    6 41
+    7 Root
+    8 root
+    ```
+
+    !!! info
+
+        Sorting rules:
+
+        * Numbers have priority over strings
+          * If a negative number is encountered, the first digit from the left will be compared. If it is the same, the second digit will be compared, and so on
+          * If a positive number is encountered, it will be arranged in ascending order
+        * Arrange strings in ascending dictionary order
+
+5. **sub** function and **gsub** function
