@@ -749,7 +749,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       SSH             22/udp
       ```
 
-    * Use the "&" symbol to reference a string
+    * Use the "&" symbol to reference a string<a id="symbol"></a>
 
       ```bash
       Shell > sed -n '44,45s/ssh/&-SSH/gp' /etc/services
@@ -1366,7 +1366,7 @@ The usage of awk is - `awk option  'pattern {action}'  FileName`
 
 `awk` is powerful and involves a lot of knowledge, so some of the content will be explained later.
 
-#### `printf`  commands
+#### `printf` commands
 
 Before formally learning `awk`, beginners need to understand the command `printf`.
 
@@ -2703,13 +2703,13 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 | asort(a,b)    | The elements of the array "a" are reordered (lexicographically) and stored in the new array "b", with the subscript in the array "b" starting at 1. This function returns the number of elements in the array.|
 | asorti(a,b)   | Reorder the subscript of the array "a" and store the sorted subscript in the new array "b" as an element, with the subscript of the array "b" starting at 1. |
 | sub(r,s[,t])  | Use the "r" regular expression to match the input records, and replace the matching result with "s". "t" is optional, indicating a replacement for a certain field. The function returns the number of replacements - 0 or 1. Similar to `sed s//`|
-| gsub(r,s[,t]) | Global replacement. Similar to `sed s///g` |
+| gsub(r,s[,t]) | Global replacement. "t" is optional, indicating the replacement of a certain field. If "t" is ignored, it indicates global replacement. Similar to `sed s///g` |
 | gensub(r,s,h[,t])  | Use the "r" regular expression to match the input records, and replace the matching result with "s". "t" is optional, indicating a replacement for a certain field. "h" represents replacing the specified index position|
 | index(s,t)    | Returns the index position of the string "t" in the string "s" (the string index starts from 1). If the function returns 0, it means it does not exist |
 | length([s])   | Returns the length of "s" |
 | match(s,r[,a])| Test whether the string "s" contains the string "r". If included, return the index position of "r" within it (string index starting from 1). If not, return 0 |
-| split(s,a[,r[,seps]])| Split string "s" into an array "a" based on the delimiter "seps"|
-| substr(s,i[,n])  | Intercept the string. "s" represents the string to be processed; "i" indicates the index position of the string; "n" is the length. |
+| split(s,a[,r[,seps]])| Split string "s" into an array "a" based on the delimiter "seps". The subscript of the array starts with 1.|
+| substr(s,i[,n])  | Intercept the string. "s" represents the string to be processed; "i" indicates the index position of the string; "n" is the length. If you do not specify "n", it means to intercept all remaining parts|
 | tolower(str)  | Converts all strings to lowercase |
 | toupper(str)  | Converts all strings to uppercase |
 | systime()     | Current timestamp |
@@ -2855,3 +2855,249 @@ Like most programming languages, `awk` also supports arrays, which are divided i
         * Arrange strings in ascending dictionary order
 
 5. **sub** function and **gsub** function
+
+    ```bash
+    Shell > cat /etc/services | awk '/netbios/ {sub(/tcp/,"test") ; print $0 }'
+    netbios-ns      137/test                         # NETBIOS Name Service
+    netbios-ns      137/udp
+    netbios-dgm     138/test                         # NETBIOS Datagram Service
+    netbios-dgm     138/udp
+    netbios-ssn     139/test                         # NETBIOS session service
+    netbios-ssn     139/udp
+
+    Shell > cat /etc/services |  awk '/^ftp/ && /21\/tcp/  {print $0}'
+    ftp             21/tcp
+      ↑                  ↑
+    Shell > cat /etc/services |  awk 'BEGIN{OFS="\t"}  /^ftp/ && /21\/tcp/   {gsub(/p/,"P",$2) ; print $0}'
+    ftp     21/tcP
+                 ↑
+    Shell > cat /etc/services |  awk 'BEGIN{OFS="\t"}  /^ftp/ && /21\/tcp/   {gsub(/p/,"P") ; print $0}'
+    ftP             21/tcP
+      ↑                  ↑
+    ```
+
+    Just like the `sed` command, you can also use the "&" symbol to reference strings that have already been matched. See [here](#symbol).
+
+    ```bash
+    Shell > vim /tmp/tmp-file1.txt
+    A 192.168.1.1 HTTP
+    B 192.168.1.2 HTTP
+    B 192.168.1.2 MYSQL
+    C 192.168.1.1 MYSQL
+    C 192.168.1.1 MQ
+    D 192.168.1.4 NGINX
+
+    # Add a line of text before the second line
+    Shell > cat /tmp/tmp-file1.txt | awk 'NR==2 {gsub(/.*/,"add a line\n&")} {print $0}'
+    A 192.168.1.1 HTTP
+    add a line
+    B 192.168.1.2 HTTP
+    B 192.168.1.2 MYSQL
+    C 192.168.1.1 MYSQL
+    C 192.168.1.1 MQ
+    D 192.168.1.4 NGINX
+
+    # Add a string after the IP address in the second line
+    Shell > cat /tmp/tmp-file1.txt | awk 'NR==2 {gsub(/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/,"&\tSTRING")} {print $0}'
+    A 192.168.1.1 HTTP
+    B 192.168.1.2   STRING HTTP
+    B 192.168.1.2 MYSQL
+    C 192.168.1.1 MYSQL
+    C 192.168.1.1 MQ
+    D 192.168.1.4 NGINX
+    ```
+
+6. **index** function
+
+    ```bash
+    Shell > tail -n 5 /etc/services
+    axio-disc       35100/udp               # Axiomatic discovery protocol
+    pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+    cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+    cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    spremotetablet  46998/tcp               # Capture handwritten signatures
+
+    Shell > tail -n 5 /etc/services | awk '{print index($2,"tcp")}'
+    0
+    7
+    0
+    7
+    7
+    ```
+
+7. **length** function
+
+    ```bash
+    # The length of the output field
+    Shell > tail -n 5 /etc/services | awk '{print length($1)}'
+    9
+    8
+    15
+    10
+    14
+
+    # The length of the output array
+    Shell > cat /etc/passwd | awk -F ":" 'a[NR]=$1 END{print length(a)}'
+    22
+    ```
+
+8. **match** function
+
+    ```bash
+    Shell > echo -e "1592abc144qszd\n144bc\nbn"
+    1592abc144qszd
+    144bc
+    bn
+
+    Shell > echo -e "1592abc144qszd\n144bc\nbn" | awk '{print match($1,144)}'
+    8
+    1
+    0
+    ```
+
+9. **split** function
+
+    ```bash
+    Shell > echo "365%tmp%dir%number" | awk '{split($1,a1,"%") ; for(i in a1) print i,a1[i]}'
+    1 365
+    2 tmp
+    3 dir
+    4 number
+    ```
+
+10. **substr** function
+
+    ```bash
+    Shell > head -n 5 /etc/passwd
+    root:x:0:0:root:/root:/bin/bash
+    bin:x:1:1:bin:/bin:/sbin/nologin
+    daemon:x:2:2:daemon:/sbin:/sbin/nologin
+    adm:x:3:4:adm:/var/adm:/sbin/nologin
+    lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+
+    # I need this part of the content - "emon:/sbin:/sbin/nologin"
+    Shell > head -n 5 /etc/passwd | awk '/daemon/ {print substr($0,16)}'
+    emon:/sbin:/sbin/nologin
+
+    Shell > tail -n 5 /etc/services
+    axio-disc       35100/udp               # Axiomatic discovery protocol
+    pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+    cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+    cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    spremotetablet  46998/tcp               # Capture handwritten signatures
+    
+    # I need this part of the content - "tablet"
+    Shell > tail  -n 5 /etc/services | awk '/^sp/ {print substr($1,9)}'
+    tablet
+    ```
+
+11. **tolower** function and **toupper** function
+
+    ```bash
+    Shell > echo -e "AbcD123\nqweR" | awk '{print tolower($0)}'
+    abcd123
+    qwer
+
+    Shell > tail -n 5 /etc/services | awk '{print toupper($0)}'
+    AXIO-DISC       35100/UDP               # AXIOMATIC DISCOVERY PROTOCOL
+    PMWEBAPI        44323/TCP               # PERFORMANCE CO-PILOT CLIENT HTTP API
+    CLOUDCHECK-PING 45514/UDP               # ASSIA CLOUDCHECK WIFI MANAGEMENT KEEPALIVE
+    CLOUDCHECK      45514/TCP               # ASSIA CLOUDCHECK WIFI MANAGEMENT SYSTEM
+    SPREMOTETABLET  46998/TCP               # CAPTURE HANDWRITTEN SIGNATURES
+    ```
+
+12. Functions that deal with time and date
+
+    **What is a UNIX timestamp?**
+    According to the development history of GNU/Linux, UNIX V1 was born in 1971, and the book "UNIX Programmer's Manual" was published on November 3 of the same year, which defines 1970-01-01 as the reference date of the start of UNIX.
+
+    The conversion between a timestamp and a natural date time in days:
+    
+    ```bash
+    Shell > echo "$(( $(date --date="2024/01/06" +%s)/86400 + 1 ))"
+    19728
+
+    Shell > date -d "1970-01-01 19728days"
+    Sat Jan  6 00:00:00 CST 2024
+    ```
+
+    The conversion between a timestamp and a natural date time in seconds:
+
+    ```bash
+    Shell > echo "$(date --date="2024/01/06 17:12:00" +%s)"
+    1704532320
+
+    Shell > echo "$(date --date='@1704532320')"
+    Sat Jan  6 17:12:00 CST 2024
+    ```
+
+
+    The conversion between natural date time and UNIX timestamp in awk program:
+
+    ```bash
+    Shell > awk 'BEGIN{print systime()}'
+    1704532597
+
+    Shell > echo "1704532597" | awk '{print strftime("%Y-%m-%d %H:%M:%S",$0)}'
+    2024-01-06 17:16:37
+    ```
+    
+### I/O statement
+
+| Statement                 | Description |
+| :---                      | :---        |
+| getline                   | Read the next matching row record and assign it to "$0". <br/>The return value is 1: Indicates that relevant row records have been read. <br/>The return value is 0: Indicates that the last line has been read <br/>The return value is negative: Indicates encountering an error |
+| getline var               | Read the next matching row record and assign it to the variable "var" |
+| command \| getline [var]  | Assign the result to "$0" or the variable "var" |
+| next                      | Stop the current input record and perform the following actions|
+| print                     | Print the result |
+| printf                    | See [here](#printf-commands)|
+| system(cmd-line)          | Execute the command and return the status code. 0 indicates that the command was executed successfully; non-0 indicates that the execution failed |
+| print ... >> file         | Output redirection |
+| print ... \| command      | Print the output and use it as input to the command |
+
+1. getline
+
+    ```bash
+    Shell > seq 1 10 | awk '/3/ || /6/ {getline ; print $0}'
+    4
+    7
+
+    Shell > seq 1 10 | awk '/3/ || /6/ {print $0 ; getline ; print $0}'
+    3
+    4
+    6
+    7
+    ```
+
+    Using the functions we learned earlier and the "&" symbol, we can:
+
+    ```bash
+    Shell > tail -n 5 /etc/services | awk '/45514\/tcp/ {getline ; gsub(/.*/ , "&\tSTRING1") ; print $0}'
+    spremotetablet  46998/tcp               # Capture handwritten signatures        STRING1
+
+    Shell > tail -n 5 /etc/services | awk '/45514\/tcp/ {print $0 ; getline; gsub(/.*/,"&\tSTRING2") } {print $0}'
+    axio-disc       35100/udp               # Axiomatic discovery protocol
+    pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+    cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+    cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    spremotetablet  46998/tcp               # Capture handwritten signatures        STRING2
+    ```
+
+    Print even and odd lines:
+
+    ```bash
+    Shell > tail -n 10 /etc/services | cat -n | awk '{ if( (getline) <= 1) print $0}'
+    2  ka-kdp          31016/udp               # Kollective Agent Kollective Delivery
+    4  edi_service     34567/udp               # dhanalakshmi.org EDI Service
+    6  axio-disc       35100/udp               # Axiomatic discovery protocol
+    8  cloudcheck-ping 45514/udp               # ASSIA CloudCheck WiFi Management keepalive
+    10  spremotetablet  46998/tcp               # Capture handwritten signatures
+
+    Shell > tail -n 10 /etc/services | cat -n | awk '{if(NR==1) print $0} { if(NR%2==0) {if(getline > 0) print $0} }'
+    1  aigairserver    21221/tcp               # Services for Air Server
+    3  ka-sddp         31016/tcp               # Kollective Agent Secure Distributed Delivery
+    5  axio-disc       35100/tcp               # Axiomatic discovery protocol
+    7  pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
+    9  cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
+    ```
