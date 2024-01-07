@@ -2178,7 +2178,7 @@ ID      Name
     ...
     ```
 
-4. Pipe symbol
+4. Pipe symbol<a id=ps></a>
 
     You can use the bash command in the awk program, for example:
 
@@ -2359,7 +2359,7 @@ ID      Name
     signatures handwritten Capture # 46998/tcp spremotetablet
     ```
 
-4. **break** statement and **continue** statement
+4. **break** statement and **continue** statement<a id="bc"></a>
 
     The comparison between the two is as follows:
 
@@ -3101,3 +3101,159 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     7  pmwebapi        44323/tcp               # Performance Co-Pilot client HTTP API
     9  cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
     ```
+
+2. getline var
+   
+    Add each line of the b file to the end of each line of the C file:
+
+    ```bash
+    Shell > cat /tmp/b.txt
+    b1
+    b2
+    b3
+    b4
+    b5
+    b6
+
+    Shell > cat /tmp/c.txt
+    A 192.168.1.1 HTTP
+    B 192.168.1.2 HTTP
+    B 192.168.1.2 MYSQL
+    C 192.168.1.1 MYSQL
+    C 192.168.1.1 MQ
+    D 192.168.1.4 NGINX
+
+    Shell > awk '{getline var1 <"/tmp/b.txt" ; print $0 , var1}' /tmp/c.txt
+    A 192.168.1.1 HTTP b1
+    B 192.168.1.2 HTTP b2
+    B 192.168.1.2 MYSQL b3
+    C 192.168.1.1 MYSQL b4
+    C 192.168.1.1 MQ b5
+    D 192.168.1.4 NGINX b6
+    ```
+
+    Replace the specified field of the c file with the content line of the b file:
+
+    ```bash
+    Shell > awk '{ getline var2 < "/tmp/b.txt" ; gsub($2 , var2 , $2) ; print $0 }' /tmp/c.txt
+    A b1 HTTP
+    B b2 HTTP
+    B b3 MYSQL
+    C b4 MYSQL
+    C b5 MQ
+    D b6 NGINX
+    ```
+
+3. command | getline &#91;var&#93;
+
+    ```bash
+    Shell > awk 'BEGIN{ "date +%Y%m%d" | getline datenow ; print datenow}'
+    20240107
+    ```
+
+    !!! tip
+
+        Use double quotes to include Shell command.
+
+4. next
+
+    Earlier, we introduced the **break** statement and the **continue** statement, the former used to terminate the loop, and the latter used to jump out of the current loop. See [here](#bc). For **next**, when the conditions are met, it will stop the input recording that meets the conditions and continue with subsequent actions.
+
+    ```bash
+    Shell > seq 1 5 | awk '{if(NR==3) {next} print $0}'
+    1
+    2
+    4
+    5
+
+    # equivalent to
+    Shell > seq 1 5 | awk '{if($1!=3) print $0}'
+    ```
+
+    Skip eligible line records:
+
+    ```bash
+    Shell > cat /etc/passwd | awk -F ":" 'NR>5 {next} {print $0}'
+    root:x:0:0:root:/root:/bin/bash
+    bin:x:1:1:bin:/bin:/sbin/nologin
+    daemon:x:2:2:daemon:/sbin:/sbin/nologin
+    adm:x:3:4:adm:/var/adm:/sbin/nologin
+    lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+
+    # equivalent to
+    Shell > cat /etc/passwd | awk -F ":" 'NR>=1 && NR<=5 {print $0}'
+    ```
+
+    !!! tip
+
+        "**next**" cannot be used in "BEGIN{}" and "END{}".
+
+5. **system** function
+
+    You can use this function to call commands in the Shell, such as:
+
+    ```bash
+    Shell > awk 'BEGIN{ system("echo nginx http") }'
+    nginx http
+    ```
+
+    !!! tip
+
+        Please note to add double quotes when using the **system** function. If not added, the awk program will consider it a variable of the awk program.
+
+        ```bash
+        Shell > awk 'BEGIN{ cmd1="date +%Y" ; system(cmd1)}'
+        2024
+        ```
+
+    **What if the Shell command itself contains double quotes?**
+    Using escape characters - "\\", such as:
+
+    ```bash
+    Shell > egrep "^root|^nobody" /etc/passwd
+    Shell > awk 'BEGIN{ system("egrep \"^root|^nobody\" /etc/passwd") }'
+    root:x:0:0:root:/root:/bin/bash
+    nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+    ```
+
+    Another example:
+
+    ```bash
+    Shell > awk 'BEGIN{ if ( system("xmind &> /dev/null") == 0 ) print "True"; else print "False" }'
+    False
+    ```
+
+6. Write the output of the awk program to a file
+
+    ```bash
+    Shell > head -n 5 /etc/passwd | awk -F ":" 'BEGIN{OFS="\t"} {print $1,$2 > "/tmp/user.txt"}'
+    Shell > cat /tmp/user.txt
+    root    x
+    bin     x
+    daemon  x
+    adm     x
+    lp      x
+    ```
+
+    !!! tip
+
+        "**>**" indicates writing to the file as an overlay. If you want to write to the file as an append, please use "**>>**". Reminder again, you should use double quotation marks to include the file path.
+
+7. pipe character
+
+    See [here](#ps)
+
+8. Custom functions
+
+    syntax - `function NAME(parameter list) { function body }`. Such as:
+
+    ```bash
+    Shell > awk 'function mysum(a,b) {return a+b} BEGIN{print mysum(1,6)}'
+    7
+    ```
+
+### Concluding remarks
+
+If you have specialized programming language skills, awk is relatively easy to learn. However, for most sysadmins with weak programming language skills (including the author), awk can be very complicated to learn. For information not covered, please refer to [here](https://www.gnu.org/software/gawk/manual/ "gawk manual").
+
+Thank you again for reading.
