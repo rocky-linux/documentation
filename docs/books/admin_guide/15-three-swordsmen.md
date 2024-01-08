@@ -11,13 +11,13 @@ tags:
 
 # Overview
 
-As we all know, the GNU/Linux operating system follows the philosophy of "everything is a file", so system administrators often need to deal with problems related to file names and file contents. 
+The GNU/Linux operating system follows the philosophy of "everything is a file", so system administrators often need to deal with problems related to file names and file contents.
 
 In terms of processing file content, the three tools `grep`, `sed`, and `awk` are very powerful and frequently used, so people call them the "Three Swordsmen".
 
 ## Regular expressions VS wildcards
 
-In the GNU/Linux operating system, regular expressions and wildcards often have the same symbol (or style), so people often confuse them. 
+In the GNU/Linux operating system, regular expressions and wildcards often have the same symbol (or style), so people often confuse them.
 
 What is the difference between regular expressions and wildcards?
 
@@ -30,13 +30,13 @@ Differences:
 * Regular expressions are used to match file content; Wildcards are typically used to match file or directory names.
 * Regular expressions can be used on commands such as `grep`, `sed`, `awk`, etc; Wildcards can be used on commands such as `cp`, `find`, `mv`, `touch`, `ls`, etc.
 
-###  Wildcards in the GNU/Linux
+###  Wildcards in GNU/Linux
 
-The GNU/Linux OS supports these wildcards:
+GNU/Linux OS supports these wildcards:
 
 | wildcards style | role |
 | :---:           | :---|
-| ?               | Match one character of a file or directory name. | 
+| ?               | Match one character of a file or directory name. |
 | *               | Match 0 or more arbitrary characters of a file or directory name.|
 | [ ]             | Match any single character in parentheses. For example, &#91;one&#93; which means to match o or n or e.|
 | [-]             | Matches any single character within the given range in parentheses. For example, &#91;0-9&#93; represents matching any single number from 0 to 9. |
@@ -65,14 +65,14 @@ Shell > cp /root/dir2/file{1..9} /root/dir3/
 Shell > find / -iname "dir[1-9]" -a -type d
 ```
 
-### Regular expressions in the GNU/Linux
+### Regular expressions in GNU/Linux
 
-Due to historical development, there are two major schools of regular expressions:
+Two major schools of regular expressions exist due to historical development:
 
 * POSIX:
-  * BRE（basic regular express）
-  * ERE（extend regular express）
-  * POSIX character class
+    * BRE（basic regular express）
+    * ERE（extend regular express）
+    * POSIX character class
 * PCRE (Perl Compatible Regular Expressions): The most common among various programming languages.
 
 |        | BRE      | ERE                             | POSIX character class | PCRE                       |
@@ -81,7 +81,7 @@ Due to historical development, there are two major schools of regular expression
 | `sed`  |  √       | √<br/>(Requires -r option)      | √                     | ×                          |
 | `awk`  |  √       | √                               | √                     | ×                          |
 
-If you are interested in regular expressions, please visit [this website](https://www.regular-expressions.info/) to learn more useful information.
+For more on regular expressions, visit [this website](https://www.regular-expressions.info/) to learn more useful information.
 
 #### BRE
 
@@ -92,7 +92,7 @@ BRE (Basic Regular Expression) is the oldest type of regular expression, introdu
 | *             | Match the number of occurrences of the previous character, which can be 0 or any number of times. |
 | .             | Match any single character except for line breaks. |
 | ^             | Match line beginning. For example - **^h** will match lines starting with h. |
-| $             | Match End of Line. For example - **h$** will match lines ending in h. | 
+| $             | Match End of Line. For example - **h$** will match lines ending in h. |
 | []            | Matches any single character specified in parentheses. For example - **[who]** will match w or h or o; **[0-9]** will match one digit; **[0-9][a-z]** will match characters composed of one digit and a single lowercase letter. | 
 | [^]           | Match any single character except for the characters in parentheses. For example - **[^0-9]** will match any single non numeric character. **[^a-z]** will match any single character that is not a lowercase letter. |
 | \             | Escape character, used to cancel the meaning represented by some special symbols. | `echo -e "1.2\n122"  \| grep -E '1\.2'`<br/>**1.2** |
@@ -108,8 +108,8 @@ BRE (Basic Regular Expression) is the oldest type of regular expression, introdu
 | ?             | Matches the number of occurrences of the previous single character, which can be 0 or 1. | `echo -e  "ac\nabc\nadd" \| grep -E 'a?c'`<br/>**ac**<br/>ab**c** |
 | \\<           | Boundary character, matching the beginning of a string. | `echo -e "1\n12\n123\n1234" \| grep -E "\<123"`<br/>**123**<br/>**123**4 |
 | \\>  | Boundary character, matching the end of the string. |  `echo -e "export\nimport\nout"  \| grep -E "port\>"`<br/>ex**port**<br/>im**port**|
-| ()           | Combinatorial matching, that is, the string in parentheses as a combination, and then match. | `echo -e "123abc\nabc123\na1b2c3" \| grep -E "([a-z][0-9])+"`<br/>ab**c1**23<br/>**a1b2c3** | 
-| \|           | The pipeline symbol represents the meaning of "or". | `echo -e "port\nimport\nexport\none123" \| grep -E "port\>\|123"`<br/>**port**<br/>im**port**<br/>ex**port**<br/>one**123** | 
+| ()           | Combinatorial matching, that is, the string in parentheses as a combination, and then match. | `echo -e "123abc\nabc123\na1b2c3" \| grep -E "([a-z][0-9])+"`<br/>ab**c1**23<br/>**a1b2c3** |
+| \|           | The pipeline symbol represents the meaning of "or". | `echo -e "port\nimport\nexport\none123" \| grep -E "port\>\|123"`<br/>**port**<br/>im**port**<br/>ex**port**<br/>one**123** |
 
 ERE also supports characters with special meanings:
 
@@ -123,7 +123,6 @@ ERE also supports characters with special meanings:
 | \\B                | Match non-boundary character.
 | \\s                | Match any whitespace character. Equivalent to **[ \f\n\r\t\v]** |
 | \\S                | Equivalent to **[^ \f\n\r\t\v]**  |
-
 
 |  blank character   | description                      |
 | :---:              | :---                             |
@@ -154,7 +153,7 @@ Sometimes, you may see "POSIX character"(also known as "POSIX character class").
 
 #### Introducing regular expressions
 
-There are many websites available to practice your regular expression skills online, such as:
+Many websites exist for practicing regular expression skills online, such as:
 
 * [regex101](https://regex101.com/)
 * [oschina](https://tool.oschina.net/regex/)
@@ -162,13 +161,12 @@ There are many websites available to practice your regular expression skills onl
 * [regexr](https://regexr.com/)
 * [regelearn](https://regexlearn.com/)
 * [coding](https://coding.tools/regex-tester)
-* ...
 
 ## `grep` command
 
-The `grep` command is used to filter the content of a single or multiple file. There are some variants of this command tool, such as `egrep (grep -E)` and `fgrep (grep -f)`. For information not covered, please refer to [here](https://www.gnu.org/software/grep/manual/ "grep manual").
+The `grep` command filters the content of single or multiple files. Some variants of this command tool exist, such as `egrep (grep -E)` and `fgrep (grep -f)`. For information not covered, see [the `grep` manual](https://www.gnu.org/software/grep/manual/ "grep manual").
 
-The usage of the grep command is:
+The usage of the `grep` command is:
 
 ```text
 grep [OPTIONS] PATTERN [FILE...]
@@ -177,6 +175,7 @@ grep [OPTIONS] -f FILE ... [FILE...]
 ```
 
 The options are mainly divided into four parts:
+
 * match control
 * output control
 * content line control
@@ -189,7 +188,7 @@ match control：
 | -E<br/>--extended-regexp | Enable ERE  |
 | -P<br/>--perl-regexp     | Enable PCRE |
 | -G<br/>--basic-regexp    | Enable BRE by default |
-| -e<br/>--regexp=PATTERN  | Pattern matching, multiple -e options can be specified. | 
+| -e<br/>--regexp=PATTERN  | Pattern matching, multiple -e options can be specified. |
 | -i                       | Ignore case |
 | -w                       | Accurately match the entire word |
 | -f FILE                  | Obtain patterns from FILE, one per line |
@@ -224,8 +223,8 @@ directory or file control:
 | :---                     | :---        |
 | --include=FILE_PATTERN   | Search only files that match FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,} |
 | --exclude=FILE_PATTERN   | Skip files and directories matching FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,}  |
-| --exclude-dir=PATTERN    | Exclude the specified directory name. Directory name support *, ?, [], [^], [-], {..}, {,} | 
-| --exclude-from=FILE      | Exclude the specified directory from the file content. | 
+| --exclude-dir=PATTERN    | Exclude the specified directory name. Directory name support *, ?, [], [^], [-], {..}, {,} |
+| --exclude-from=FILE      | Exclude the specified directory from the file content. |
 
 ### Examples of usage
 
@@ -365,7 +364,7 @@ directory or file control:
     140
     ```
 
-9. Filter which files in a directory have which lines that match the string (Exclude files in subdirectories)
+9. Filter files in a directory that have lines that match the string (Exclude files in subdirectories)
 
     ```bash
     Shell > grep -i -E "port" /etc/n*.conf -n
@@ -375,7 +374,7 @@ directory or file control:
     /etc/nsswitch.conf:33:# wins                    Use Samba wins support
     ```
   
-10. Filter which files in a directory have which lines that match the string (Include/Exclude files or directories in subdirectories)
+10. Filter files in a directory that have lines that match the string (include or exclude files or directories in subdirectories)
 
     Include syntax for multiple files:
 
@@ -399,36 +398,36 @@ directory or file control:
     /etc/grub.d/10_linux:3
     ```
 
-    If you need to exclude a single directory, refer to the following syntax:
+    If you need to exclude a single directory, use the following syntax:
 
     ```bash
     Shell > grep -n -i -r -E  "port" /etc/ --exclude-dir=selin[u]x
     ```
 
-    If you need to exclude multiple directories, please refer to the following syntax:
+    If you need to exclude multiple directories, use the following syntax:
 
     ```bash
     Shell > grep -n -i -r -E  "port" /etc/ --exclude-dir={selin[u]x,"profile.d",{a..z}ki,au[a-z]it}
     ```
 
-    If you need to exclude a single file, please refer to the following syntax:
+    If you need to exclude a single file, use the following syntax:
 
     ```bash
     Shell > grep -n -i -r -E  "port" /etc/ --exclude=sshd_config
     ```
 
-    If you need to exclude multiple files, please refer to the following syntax:
+    If you need to exclude multiple files, use the following syntax:
 
     ```bash
     Shell > grep -n -i -r -E  "port" /etc/ --exclude={ssh[a-z]_config,*.conf,services}
     ```
 
-    If you need to exclude multiple files and directories at the same time, please refer to the following syntax:
+    If you need to exclude multiple files and directories at the same time, use the following syntax:
 
     ```bash
     Shell > grep -n -i -r -E  "port" /etc/ --exclude-dir={selin[u]x,"profile.d",{a..z}ki,au[a-z]it} --exclude={ssh[a-z]_config,*.conf,services,[0-9][0-9]*}
     ```
-    
+
 11. Count all IPv4 addresses of the current machine
 
     ```bash
@@ -440,11 +439,11 @@ directory or file control:
 
 `sed`: Stream EDitor
 
-**Working principle**: The `sed` command will read the currently processed row and place it in the "pattern space" for processing. After processing, the result will be output and the "pattern space" will be cleared. Next, read the next line and place it in the "pattern space" for processing, and so on, until the last line. Some documents also mention a term called "hold space" (also known as "temporary-storage space"), which can be used to temporarily store some processed data and output it through "pattern space".
+**Working principle**: The `sed` command will read the currently processed row and place it in the "pattern space" for processing. After processing, the result will be output and the "pattern space" will be cleared. Next, read the next line and place it in the "pattern space" for processing, and so on, until the last line. Some documents also mention a term called "hold space" (also known as "temporary-storage space"), which can temporarily store some processed data and output it through "pattern space".
 
 **"pattern space" and "hold space"**: An area of memory where data is processed and stored.
 
-For information not covered, please refer to [here](https://www.gnu.org/software/sed/manual/ "sed manual").
+For information not covered, review [the `sed` manual](https://www.gnu.org/software/sed/manual/ "sed manual").
 
 The usage of the command is:
 
@@ -454,22 +453,22 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
 | options | description |
 | :---: | :--- |
-| -n    | Output text lines that will only be processed by the sed command to the screen |
+| -n    | Output text lines that will only be processed by the `sed` command to the screen |
 | -e    | Apply multiple `sed` operation commands to the input text line data |
 | -f    | Call and execute `sed` script command file |
 | -i    | Modify the original file |
-| -r    | Regular expression | 
+| -r    | Regular expression |
 
 | Operation command<br/>(sometimes called operation instruction)| description |
 | :---:                  | :--- |
 | s/regexp/replacement/  | Replacement string |
-|  p                     | Print the current "pattern space". Often used with the -n option, for example: `cat -n /etc/services \| sed -n '3,5p'` | 
+|  p                     | Print the current "pattern space". Often used with the -n option, for example: `cat -n /etc/services \| sed -n '3,5p'` |
 |  d                     | Delete "pattern space". Start next cycle    |
 |  D                     | Delete the first line of the "pattern space" and start next  cycle |
 |  =                     | Print Line Number |
-| a \text                | Add one or more lines of content after the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content is not ended | 
+| a \text                | Add one or more lines of content after the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content is not ended |
 | i \text                | Add one or more lines of content before the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content is not ended |
-| c \text                | Replace matching lines with new text | 
+| c \text                | Replace matching lines with new text |
 | q                      | Immediately exit the `sed` script    |
 | r                      | Append text read from file |
 | : label                | Label for b and t commands |
@@ -482,16 +481,16 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 | n N                    | Read/append the next line of input into the "pattern space" |
 | w FILENAME             | Write the current pattern space to FILENAME       |
 | !                      | negation |
-| &                      | Referencing a string that already matches | 
+| &                      | Referencing a string that already matches |
 
 | Addresses    | description |
 | :---:        |  :---       |
-| first~step   | Use "first" to specify the first line, and 'step' to specify the step size. For example, outputting odd lines of text can be done using `sed -n "1~2p" /etc/services` |
+| first~step   | Use "first" to specify the first line, and 'step' to specify the step size. For example, outputting odd lines of text with `sed -n "1~2p" /etc/services` |
 | $            | Match the last line of text |
-| /regexp/     | Using regular expressions to match text lines | 
+| /regexp/     | Using regular expressions to match text lines |
 | number       | Specify line number  |
-| addr1,addr2  | Use line number positioning to match all lines from "addr1" to "addr2" | 
-| addr1,+N     | Use line number positioning to match addr1 and the N lines following addr1  | 
+| addr1,addr2  | Use line number positioning to match all lines from "addr1" to "addr2" |
+| addr1,+N     | Use line number positioning to match addr1 and the N lines following addr1  |
 
 ### Examples of usage
 
@@ -509,9 +508,9 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       netbios-ssn     139/udp
       ```
 
-      !!! tip
+    !!! tip
 
-          As we all know, double quotation marks and single quotation marks in Shell play a different role. The **$**, **\`**, and **\\** in double quotes have a special meaning, so we recommend that you use single quotes more often when using the `sed` command.
+        As we all know, double quotation marks and single quotation marks in a shell play a different role. The **$**, **\`**, and **\\** in double quotes have a special meaning. The recommendation is to use single quotes more often when using the `sed` command.
 
     * Print the text from lines 23 to 26
 
@@ -603,10 +602,10 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       imap            143/tcp         imap2           # Interim Mail Access Proto v2
       ```
 
-      !!! info
+    !!! info
 
-          **Start of range**: Match the line where the string is located, only matching the first string that appears.
-          **End of range**: Match the line where the string is located, only matching the first string that appears.
+        **Start of range**: Match the line where the string is located, only matching the first string that appears.
+        **End of range**: Match the line where the string is located, only matching the first string that appears.
 
       ```bash
       Shell > grep -n ^netbios /etc/services
@@ -663,10 +662,10 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       netbios-ssn     139/udp
       ...
       ```
-      
+
 2. Match and delete (`d`)
 
-    It's similar to printing, except that the operation command is replaced with `d` and the -n option is not required.
+    It is similar to printing, except that the operation command is replaced with `d` and the -n option is not required.
 
     * Delete all lines that match the udp string, and delete all comment lines, and delete all Blank line
 
@@ -806,7 +805,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
     * Group replacement of regular expressions
 
-      In regular expressions, a "()" is a grouping. \1 represents reference group 1, \2 represents reference group 2, and so on. 
+      In regular expressions, a "()" is a grouping. \1 represents reference group 1, \2 represents reference group 2, and so on.
 
       ```bash
       Shell > cat /etc/services
@@ -894,11 +893,11 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       Shell > echo -e "abcd\t1 2 3 4\tWorld" | sed -r 's/(\s)*//g'
       abcd1234World
       ```
-    
+
 4. Execute multiple times using the -e option
 
     The following example:
-   
+
     ```bash
     Shell > tail -n 10 /etc/services
     aigairserver    21221/tcp               # Services for Air Server
@@ -958,7 +957,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       spremotetablet  46998/tcp               # Capture handwritten signatures
       ```
 
-   * Add three lines below the specified line number
+    * Add three lines below the specified line number
 
      ```bash
      Shell > cat /root/test.txt | sed '5a 123\
@@ -979,7 +978,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
      spremotetablet  46998/tcp               # Capture handwritten signatures
      ```
 
-    * Match a specific line based on a string and add 2 lines of content above it 
+    * Match a specific line based on a string and add 2 lines of content above it
 
       ```bash
       Shell > cat /root/test.txt | sed '/tcp/iTCP\
@@ -1126,9 +1125,9 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       cloudcheck      45514/tcp               # ASSIA CloudCheck WiFi Management System
       ```
 
-      !!! tip
+    !!! tip
 
-          Multiple `sed` operation commands may affect each other, and you can use "**{ }**" to reduce this effect.
+        Multiple `sed` operation commands may affect each other, and you can use "**{ }**" to reduce this effect.
 
     * Print even text lines
 
@@ -1194,7 +1193,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
       7
       8
       ```
-      
+
       When the last line is read, the `N` command is not executed and the output is as follows:
 
       ```bash
@@ -1221,7 +1220,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
 10. Ignore case (`I`)
 
-      There seems to be no information about ignoring case in `man 1 sed`.    
+      There seems to be no information about ignoring case in `man 1 sed`.
 
       ```bash
       Shell > echo -e "abc\nAbc" | sed -n 's/a/X/Igp'
@@ -1264,17 +1263,17 @@ In 1977, a programming language-level tool for processing text was born at Bell 
 * Peter **W**einberger
 * Brian **K**ernighan
 
-Just as shell is divided into bash, csh, zsh, and ksh, awk has different variants or derivatives with the development of history:
+Similar to shell (bash, csh, zsh, and ksh), `awk` has derivatives with the development of history:
 
 * `awk`: Born in 1977 Bell Labs.
-* `nawk` (new awk): It was born in 1985 and is an updated and enhanced version of awk. It was widely used with the release of Unix System V Release 3.1 (1987). The old version of awk is called `oawk` (old awk).
+* `nawk` (new awk): It was born in 1985 and is an updated and enhanced version of `awk`. It was widely used with the release of Unix System V Release 3.1 (1987). The old version of `awk` is called `oawk` (old awk).
 * `gawk` (GNU awk): It was written by Paul Rubin in 1986. The GNU Project was born in 1984.
-* `mawk`: It was written in 1996 by Mike Brennan, which is the interpreter of the awk programming language.
-* `jawk`: Implementation of awk in JAVA
+* `mawk`: It was written in 1996 by Mike Brennan, which is the interpreter of the `awk` programming language.
+* `jawk`: Implementation of `awk` in JAVA
 
-In the GNU/Linux operating system, the usual awk refers to `gawk`. However, some distributions use `mawk` as their default awk, such as Ubuntu or Debian.
+In the GNU/Linux operating system, the usual `awk` refers to `gawk`. However, some distributions use `mawk` as their default `awk`, such as Ubuntu or Debian.
 
-In the Rocky Linux 8.8, awk refers to gawk.
+In the Rocky Linux 8.8, `awk` refers to `gawk`.
 
 ```bash
 Shell > whereis awk
@@ -1287,7 +1286,7 @@ Shell > rpm -qf /usr/bin/awk
 gawk-4.2.1-4.el8.x86_64
 ```
 
-For information not covered, please refer to [here](https://www.gnu.org/software/gawk/manual/ "gawk manual")
+For information not covered, see the [gawk manual](https://www.gnu.org/software/gawk/manual/ "gawk manual").
 
 Although `awk` is a tool for processing text, it has some programming language features:
 
@@ -1299,7 +1298,7 @@ Although `awk` is a tool for processing text, it has some programming language f
 * array
 * ...
 
-**The working principle of `awk`**: Similar to relational databases, it supports processing of fields (columns) and records (rows). By default, awk treats each line of a file as a record and places these records in memory for line-by-line processing, with a portion of each line treated as a field in the record. By default, Spaces and tabs are used as delimiters to separate different fields, and numbers are used to represent different fields in the row record. To reference multiple fields, separate them with commas or tabs.
+**The working principle of `awk`**: Similar to relational databases, it supports processing of fields (columns) and records (rows). By default, `awk` treats each line of a file as a record and places these records in memory for line-by-line processing, with a portion of each line treated as a field in the record. By default, delimiters to separate different fields use spaces and tabs, while numbers represent different fields in the row record. To reference multiple fields, separate them with commas or tabs.
 
 A simple example that is easy to understand：
 
@@ -1339,22 +1338,22 @@ tmpfs          tmpfs     364M     0  364M    0%  /run/user/0
 
 ### Instructions for using `awk`
 
-The usage of awk is - `awk option  'pattern {action}'  FileName`
+The usage of `awk` is - `awk option  'pattern {action}'  FileName`
 
 **pattern**: Find specific content in the text
 **action**: Action instruction
 **{ }**: Group some instructions according to specific patterns
 
-| option | description | 
+| option | description |
 | :---   | :---        |
-| -f program-file<br/>--file program-file | Reading awk program source files from files |
-| -F FS  | Specify the separator for separating fields. The 'FS' here is a built-in variable in awk, with default values of spaces or tabs |
+| -f program-file<br/>--file program-file | Reading `awk` program source files from files |
+| -F FS  | Specify the separator for separating fields. The 'FS' here is a built-in variable in `awk`, with default values of spaces or tabs |
 | -v var=value | variable assignment |
 | --posix | Turn on compatibility mode |
-| --dump-variables=[file] | Write global variables in awk to a file. If no file is specified, the default file is awkvars.out |
+| --dump-variables=[file] | Write global variables in `awk` to a file. If no file is specified, the default file is awkvars.out |
 | --profile=[file] | Write performance analysis data to a specific file. If no file is specified, the default file is awkprof.out |
 
-| pattern                | description | 
+| pattern                | description |
 | :---                   | :---        |
 | BEGIN{ }               | An action that is performed before all row records are read |
 | END{ }                 | An action that is performed after all row records are read|
@@ -1383,7 +1382,7 @@ Before formally learning `awk`, beginners need to understand the command `printf
 * **\v** - vertical tab
 * **%Ns** - The output string. The N represents the number of strings, for example: `%s %s %s`
 * **%Ni** - Output integers. The N represents the number of integers of the output, for example: `%i %i`
-* **%m\.nf** - Output Floating Point Number. The m represents the total number of digits output, and the n represents the number of digits after the decimal point. For examle: `%8.5f`
+* **%m\.nf** - Output Floating Point Number. The m represents the total number of digits output, and the n represents the number of digits after the decimal point. For example: `%8.5f`
 
 **ARGUMENT**: If it is a file, you need to do some preprocessing to output correctly.
 
@@ -1417,7 +1416,7 @@ a       b       c       d
 1       2       3       4
 ```
 
-There is no `print` command in The RockyLinux OS, `print` can only be used in awk, and its difference from printf is that it automatically adds a newline at the end of each line. For example:
+No `print` command exists in RockyLinux OS. You can only use `print` in `awk`, and its difference from `printf` is that it automatically adds a newline at the end of each line. For example:
 
 ```bash
 Shell > awk '{printf $1 "\t" $2"\n"}' /tmp/printf.txt
@@ -1437,7 +1436,7 @@ ID      Name
 
 ### Basic usage example
 
-1. Reading awk program source files from files
+1. Reading `awk` program source files from files
 
     ```bash
     Shell > vim /tmp/read-print.awk
@@ -1558,7 +1557,7 @@ ID      Name
     TEXTDOMAIN: "messages"
     ```
 
-    Later, we will introduce what these variables mean. see [here](#VARIABLES)
+    Later, we will introduce what these variables mean. To review them now, [jump to variables](#VARIABLES).
 
 5. BEGIN{ } and END{ }
 
@@ -1737,7 +1736,7 @@ ID      Name
 | NR         | Count the number of row records. After each line of text is processed, the value of this variable will be +1 |
 | FNR        | Count the number of row records. When the second file is processed, the NR variable continues to add up, but the FNR variable is recounted|
 | ARGC       | The number of command line arguments |
-| ARGV       | An array of command line arguments, with subscript starting at 0 and ARGV[0] representing awk|
+| ARGV       | An array of command line arguments, with subscript starting at 0 and ARGV[0] representing `awk`|
 | ARGIND     | The index value of the file currently being processed. The first file is 1, the second file is 2, and so on|
 | ENVIRON    | Environment variables of the current system|
 | FILENAME   | Output the currently processed file name|
@@ -1768,7 +1767,7 @@ ID      Name
     sync
     ```
 
-    When using commas to reference multiple fields, the default output delimiter is a space. Of course, you can specify the output delimiter separately.
+    When using commas to reference multiple fields, the default output delimiter is a space. You can, however, specify the output delimiter separately.
 
     ```bash
     Shell > cat /etc/passwd | awk 'BEGIN{FS=":"}{print $1,$2}'
@@ -1958,7 +1957,7 @@ ID      Name
 
 6. ARGIND
 
-    This variable is mainly used to determine which file the awk program is working on.
+    This variable is mainly used to determine the file the `awk` program is working on.
 
     ```bash
     Shell > awk '{print ARGIND,$0}' /etc/hostname /etc/resolv.conf
@@ -1970,7 +1969,7 @@ ID      Name
 
 7. ENVIRON
 
-    You can reference operating system variables or user-defined variables in awk programs.
+    You can reference operating system variables or user-defined variables in `awk` programs.
 
     ```bash
     Shell > echo ${SSH_CLIENT}
@@ -2000,7 +1999,7 @@ ID      Name
 
 9. IGNORECASE
 
-    This variable is useful if you want to use regular expressions in awk and ignore case.
+    This variable is useful if you want to use regular expressions in `awk` and ignore case.
 
     ```bash
     Shell > awk 'BEGIN{IGNORECASE=1;RS="\n";ORS="\n"} /^(SSH)|^(ftp)/ {print $0}' /etc/services
@@ -2098,12 +2097,12 @@ ID      Name
     ```
 
     !!! question
-    
+
         **Why?**
         **Read the first line**: Because "i" is not assigned a value, so "i=!i" indicates TRUE.
         **Read the second line**: At this point, "i=!i" indicates FALSE.
         And so on, the final printed line is an odd number.
-    
+
     Print even rows:
 
     ```bash
@@ -2189,7 +2188,7 @@ ID      Name
     8
     9
     ```
-    
+
     !!! info
 
         Please pay attention! You must use double quotes to include the command.
@@ -2228,7 +2227,7 @@ ID      Name
 ### Flow control
 
 1. **if** statement
-    
+
     The basic syntax format is - `if (condition) statement [ else statement ]`
 
     Example of a single branch use of an if statement:
@@ -2395,8 +2394,8 @@ ID      Name
     9                                                                                                                                         
     10
     ```
- 
- 5. **exit** statement
+
+5. **exit** statement
 
     You can specify a return value in the range of [0,255]
 
@@ -2467,7 +2466,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 
 4. Traversal array
 
-    We can use the **for** statement, which is suitable for cases where the array subscript is unknown:
+    You can use the **for** statement, which is suitable for cases where the array subscript is unknown:
 
     ```bash
     Shell > head -n 5 /etc/passwd | awk -F ":" ' \
@@ -2573,9 +2572,8 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     ```
 
     !!! info
-    
-        `a[$1]++` is equivalent to `a[$1]+=1`
 
+        `a[$1]++` is equivalent to `a[$1]+=1`
 
     Count the number of occurrences of words regardless of case. Basic idea:
 
@@ -2645,7 +2643,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 
 9. Multidimensional array
 
-    The `awk` program does not support multi-dimensional arrays, but support for multi-dimensional arrays can be achieved through simulation. By default, "\034" is used as the delimiter for the subscript of a multidimensional array.
+    The `awk` program does not support multi-dimensional arrays, but support for multi-dimensional arrays is achievable through simulation. By default, "\034" is the delimiter for the subscript of a multidimensional array.
 
     Please note the following differences when using multidimensional arrays:
 
@@ -2664,7 +2662,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     200 2----0
     100 1,0
     ```
-    
+
     Reorder：
 
     ```bash
@@ -2708,13 +2706,12 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 | index(s,t)    | Returns the index position of the string "t" in the string "s" (the string index starts from 1). If the function returns 0, it means it does not exist |
 | length([s])   | Returns the length of "s" |
 | match(s,r[,a])| Test whether the string "s" contains the string "r". If included, return the index position of "r" within it (string index starting from 1). If not, return 0 |
-| split(s,a[,r[,seps]])| Split string "s" into an array "a" based on the delimiter "seps". The subscript of the array starts with 1.|
+| split(s,a[,r[,seps]])| Split string "s" into an array "a" based on the delimiter "steps". The subscript of the array starts with 1.|
 | substr(s,i[,n])  | Intercept the string. "s" represents the string to be processed; "i" indicates the index position of the string; "n" is the length. If you do not specify "n", it means to intercept all remaining parts|
 | tolower(str)  | Converts all strings to lowercase |
 | toupper(str)  | Converts all strings to uppercase |
 | systime()     | Current timestamp |
 | strftime([format[,timestamp[,utc-flag]]]) | Format the output time. Converts the timestamp to a string |
-
 
 1. **int** function
 
@@ -2736,7 +2733,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     -155
     ```
 
-    As you can see, the int function only works for numbers, and when encountering a string, it is converted to 0. When encountering a string starting with a number, it is truncated.
+    As you can see, the int function only works for numbers, and when encountering a string, converts it to 0. When encountering a string starting with a number, truncates it.
 
 2. **sqrt** function
 
@@ -2746,7 +2743,6 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     ```
 
 3. **rand** function and **srand** function
-
 
     The example of using the rand function is as follows:
 
@@ -2829,7 +2825,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 
         * Numbers have higher priority than strings and are arranged in ascending order.
         * Arrange strings in ascending dictionary order
-        
+
     If you are using the **asorti** function, the example is as follows:
 
     ```bash
@@ -2850,8 +2846,8 @@ Like most programming languages, `awk` also supports arrays, which are divided i
         Sorting rules:
 
         * Numbers have priority over strings
-          * If a negative number is encountered, the first digit from the left will be compared. If it is the same, the second digit will be compared, and so on
-          * If a positive number is encountered, it will be arranged in ascending order
+        * If a negative number is encountered, the first digit from the left will be compared. If it is the same, the second digit will be compared, and so on
+        * If a positive number is encountered, it will be arranged in ascending order
         * Arrange strings in ascending dictionary order
 
 5. **sub** function and **gsub** function
@@ -2876,7 +2872,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
       ↑                  ↑
     ```
 
-    Just like the `sed` command, you can also use the "&" symbol to reference strings that have already been matched. See [here](#symbol).
+    Just like the `sed` command, you can also use the "&" symbol to reference strings already matched. [Review that here](#symbol).
 
     ```bash
     Shell > vim /tmp/tmp-file1.txt
@@ -3012,7 +3008,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     According to the development history of GNU/Linux, UNIX V1 was born in 1971, and the book "UNIX Programmer's Manual" was published on November 3 of the same year, which defines 1970-01-01 as the reference date of the start of UNIX.
 
     The conversion between a timestamp and a natural date time in days:
-    
+
     ```bash
     Shell > echo "$(( $(date --date="2024/01/06" +%s)/86400 + 1 ))"
     19728
@@ -3031,8 +3027,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     Sat Jan  6 17:12:00 CST 2024
     ```
 
-
-    The conversion between natural date time and UNIX timestamp in awk program:
+    The conversion between natural date time and UNIX timestamp in `awk` program:
 
     ```bash
     Shell > awk 'BEGIN{print systime()}'
@@ -3041,7 +3036,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     Shell > echo "1704532597" | awk '{print strftime("%Y-%m-%d %H:%M:%S",$0)}'
     2024-01-06 17:16:37
     ```
-    
+
 ### I/O statement
 
 | Statement                 | Description |
@@ -3103,7 +3098,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     ```
 
 2. getline var
-   
+
     Add each line of the b file to the end of each line of the C file:
 
     ```bash
@@ -3199,7 +3194,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 
     !!! tip
 
-        Please note to add double quotes when using the **system** function. If not added, the awk program will consider it a variable of the awk program.
+        Please note to add double quotes when using the **system** function. If not added, the `awk` program will consider it a variable of the `awk` program.
 
         ```bash
         Shell > awk 'BEGIN{ cmd1="date +%Y" ; system(cmd1)}'
@@ -3223,7 +3218,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     False
     ```
 
-6. Write the output of the awk program to a file
+6. Write the output of the `awk` program to a file
 
     ```bash
     Shell > head -n 5 /etc/passwd | awk -F ":" 'BEGIN{OFS="\t"} {print $1,$2 > "/tmp/user.txt"}'
@@ -3254,6 +3249,6 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 
 ### Concluding remarks
 
-If you have specialized programming language skills, awk is relatively easy to learn. However, for most sysadmins with weak programming language skills (including the author), awk can be very complicated to learn. For information not covered, please refer to [here](https://www.gnu.org/software/gawk/manual/ "gawk manual").
+If you have specialized programming language skills, `awk` is relatively easy to learn. However, for most sysadmins with weak programming language skills (including the author), `awk` can be very complicated to learn. For information not covered, please refer to [here](https://www.gnu.org/software/gawk/manual/ "gawk manual").
 
 Thank you again for reading.
