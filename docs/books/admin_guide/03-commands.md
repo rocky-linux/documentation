@@ -491,7 +491,7 @@ The `ls` command, however, has a lot of options (see `man`):
 | `-d`                                                         | Displays information about a directory instead of listing its contents.                                                              |
 | `-g`                                                         | Like -l option, but do not list owner.                                                                                               |
 | `-h`                                                         | Displays file sizes in the most appropriate format (byte, kilobyte, megabyte, gigabyte, ...). `h` stands for Human Readable. Needs to be used with -l option.         |
-| `-s`                                                         | Displays the allocated size of each file, in blocks. In the GNU/Linux operating system, "block" is the smallest unit of storage in the file system, one block equals 4096Byte. |
+| `-s`                                                         | Displays the allocated size of each file, in blocks. By default, a block equals 1024 Byte. You can specify the size of a single block through the `-k` option. |
 | `-A`                                                         | Displays all files in the directory except `.` and `..`                                                                              |
 | `-R`                                                         | Displays the contents of subdirectories recursively.                                                                                 |
 | `-F`                                                         | Displays the type of files. Prints a `/` for a directory, `*` for executables, `@` for a symbolic link, and nothing for a text file. |
