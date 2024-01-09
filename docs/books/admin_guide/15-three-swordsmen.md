@@ -2706,7 +2706,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 | index(s,t)    | Returns the index position of the string "t" in the string "s" (the string index starts from 1). If the function returns 0, it means it does not exist |
 | length([s])   | Returns the length of "s" |
 | match(s,r[,a])| Test whether the string "s" contains the string "r". If included, return the index position of "r" within it (string index starting from 1). If not, return 0 |
-| split(s,a[,r[,seps]])| Split string "s" into an array "a" based on the delimiter "steps". The subscript of the array starts with 1.|
+| split(s,a[,r[,seps]])| Split string "s" into an array "a" based on the delimiter "seps". The subscript of the array starts with 1.|
 | substr(s,i[,n])  | Intercept the string. "s" represents the string to be processed; "i" indicates the index position of the string; "n" is the length. If you do not specify "n", it means to intercept all remaining parts|
 | tolower(str)  | Converts all strings to lowercase |
 | toupper(str)  | Converts all strings to uppercase |
