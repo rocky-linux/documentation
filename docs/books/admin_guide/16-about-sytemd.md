@@ -282,7 +282,135 @@ multi-user.target
 ● └─remote-fs.target
 ```
 
-You can also use the --all option to expand all units.
+You can also use the `--all` option to expand all "units".
 
 ## Use systemd
 
+### Unit types
+
+The `systemctl` command is the main tool for managing systemd, and it is a combination of previous `service` commands and `chkconfig` commands.
+
+Systemd manages so-called "units", which are representations of system resources and services. This following list shows the "unit" types that systemd can manage:
+
+* **service** - A service on the system, including instructions for starting, restarting, and stopping the service. See `man 5 systemd.service`.
+* **socket** - A network socket associated with a service. See `man 5 systemd.socket`.
+* **device** - A device specifically managed with systemd. See `man 5 systemd.device`.
+* **mount** - A mountpoint managed with systemd. See `man 5 systemd.mount`.
+* **automount** - A mountpoint automatically mounted on boot. See `man 5 systemd.automount`.
+* **swap** - Swap space on the system. See `man 5 systemd.swap`.
+* **target** - A synchronization point for other units. Usually used to start enabled services on boot. See `man 5 systemd.target`.
+* **path** - A path for path-based activation. For example, you can start services based on the state of a certain path, such as whether it exists or not. See `man 5 systemd.path`.
+* **timer** - A timer to schedule activation of another unit. See `man 5 systemd.timer`.
+* **snapshot** - A snapshot of the current systemd state. Usually used to rollback after making temporary changes to systemd.
+* **slice** - Restriction of resources through Linux Control Group nodes (cgroups). See `man 5 systemd.slice`.
+* **scope** - Information from systemd bus interfaces. Usually used to manage external system processes. See `man 5 systemd.scope`.
+
+### Operate "units"
+
+The usage of the `systemictl` command is - `systemctl [OPTIONS...] COMMAND [UNIT...]`.
+
+COMMAND can be divided into:
+
+* Unit Commands
+* Unit File Commands
+* Machine Commands
+* Job Commands
+* Environment Commands
+* Manager Lifecycle Commands
+* System Commands
+
+You can use `systemctl --help` to find out the details.
+
+Here are some common operational demonstration commands:
+
+```bash
+# Start the service
+Shell > systemctl start sshd.service
+
+# Stop the service
+Shell > systemctl stop sshd.service
+
+# Reload the service
+Shell > systemctl reload sshd.service
+
+# Restart the service
+Shell > systemctl restart sshd.service
+
+# View the status of the service
+Shell > systemctl status sshd.service
+
+# The service starts automatically after the system starts
+Shell > systemctl enable sshd.service
+
+# The service stops automatically after the system starts
+Shell > systemctl disable sshd.service
+
+# Check if the service automatically starts after startup
+Shell > systemctl is-enabled sshd.service
+
+# Mask one unit
+Shell > systemctl mask sshd.service
+
+# Unmask one unit
+Shell > systemctl unmask sshd.service
+
+# View the file contents of unit
+Shell > systemctl cat sshd.service
+
+# Edit the contents of the unit file and save it in the /etc/systemd/system/ directory after editing
+Shell > systemctl edit sshd.service
+
+# View the complete properties of unit
+Shell > systemctl show sshd.service
+```
+
+!!! info
+
+    For the above operations, you can operate on one or more units in a single command line. The above operations are not limited to ".service".
+
+About "units":
+
+```bash
+# List all currently running units.
+Shell > systemctl
+## or
+Shell > systemctl list-units
+## You can also add "--type=TYPE" for type filtering
+Shell > systemctl --type=target
+
+# List all unit files. You can also filter using "--type=TYPE"
+Shell > systemctl list-unit-files
+```
+
+About "target":
+
+```bash
+# Query current "target" ("runlevel") information
+Shell > systemctl get-default
+multi-user.target
+
+# Switch "target"（"runlevel"）. For example, you need to switch to the GUI environment
+Shell > systemctl isolate graphical.target
+
+# Define the default "target" ("runlevel")
+Shell > systemctl set-default graphical.target
+```
+
+### Important directory
+
+There are three main important directories, arranged in ascending order of priority:
+
+* **/usr/lib/systemd/system/** - Systemd unit files distributed with installed RPM packages. Similar to the /etc/init.d/ directory for Centos 6.
+* **/run/systemd/system/** - Systemd unit files created at run time.
+* **/etc/systemd/system/** - Systemd unit files created by `systemctl enable` as well as unit files added for extending a service.
+
+### Systemd configuration files
+
+`man 5 systemd-system.conf`:
+
+> When run as a system instance, systemd interprets the configuration file "system.conf" and the files in "system.conf.d" directories; when run as a user instance, it interprets the configuration file user.conf (either in the home directory of the user, or if not found, under "/etc/systemd/") and the files in "user.conf.d" directories. These configuration files contain a few  settings controlling basic manager operations.
+
+In the RockyLinux 8.x operating system, the relevant configuration files are:
+
+* **/etc/systemd/system.conf** - Edit the file to change the Settings. Deleting the file restores the default Settings. See `man 5 systemd-system.conf`
+* **/etc/systemd/user.conf** - You can override the directives in this file by creating files in "/etc/systemd/user.conf.d/*.conf". See `man 5 systemd-user.conf`
