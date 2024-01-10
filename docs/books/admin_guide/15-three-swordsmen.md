@@ -1794,13 +1794,13 @@ ID      Name
     By default, `awk` uses newline characters to distinguish each line record
 
     ```bash
-    Shell > echo -e "https://google.com/books/index.html\ntitle//tcp"
-    https://google.com/books/index.html
+    Shell > echo -e "https://example.com/books/index.html\ntitle//tcp"
+    https://example.com/books/index.html
     title//tcp
 
-    Shell > echo -e "https://google.com/books/index.html\ntitle//tcp" | awk 'BEGIN{RS="\/\/";ORS="%%"}{print $0}'
+    Shell > echo -e "https://example.com/books/index.html\ntitle//tcp" | awk 'BEGIN{RS="\/\/";ORS="%%"}{print $0}'
     awk: cmd. line:1: warning: escape sequence `\/' treated as plain `/'
-    https:%%google.com/books/index.html
+    https:%%example.com/books/index.html
     title%%tcp
     %%             ← Why? Because "print"
     ```
