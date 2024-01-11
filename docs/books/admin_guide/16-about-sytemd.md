@@ -11,7 +11,7 @@ tags:
 
 # Basic overview
 
-The **systemd**, also known as **system daemon**, is a kind of init software under GNU/linux OS. 
+**Systemd**, also known as **system daemon**, is a kind of init software under GNU/linux OS. 
 
 Purpose of development:
 
@@ -19,7 +19,7 @@ Purpose of development:
 * Implements parallel startup of services at system initialization
 * Reduces Shell overhead and replaces System V style init
 
-The **systemd** provides a series of system components for the GNU/Linux operating system, with the goal of unifying the service configuration and behavior across GNU/Linux distributions and eliminating differences in their usage.
+**Systemd** provides a series of system components for the GNU/Linux operating system, with the goal of unifying the service configuration and behavior across GNU/Linux distributions and eliminating differences in their usage.
 
 Since 2015, most GNU/Linux distributions have adopted systemd to replace traditional init programs such as SysV. It is worth noting that many of the concepts and designs of systemd are inspired by Apple Mac OS's **launchd**.
 
@@ -75,7 +75,7 @@ Here, I will use the systemd used by Samsung's Tizen as an example to illustrate
 
 !!! info
 
-    **Tizen** - A mobile operating system based on Linux kernel, supported by Linux Foundation, mainly developed and used by Samsung
+    **Tizen** - A mobile operating system based on Linux kernel, supported by Linux Foundation, mainly developed and used by Samsung.
 
 !!! info
 
