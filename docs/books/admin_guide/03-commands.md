@@ -61,7 +61,7 @@ Among the existing command interpreters, the **Bourne-Again Shell** (`/bin/bash`
 
 The user's login directory is by convention stored in the `/home` directory of the workstation. It will contain the user's personal data and the configuration files of his applications. By default, at login, the login directory is selected as the current directory.
 
-A workstation-type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using  <kbd>alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>ctrl</kbd> + <kbd>alt</kbd>+ <kbd>Fx</kbd>.
+A workstation-type installation (with graphical interface) starts this interface on terminal 1. Linux being multi-user, it is possible to connect several users several times, on different **physical terminals** (TTY) or **virtual terminals** (PTS). Virtual terminals are available within a graphical environment. A user switches from one physical terminal to another using  <kbd>alt</kbd> + <kbd>Fx</kbd> from the command line or using <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>Fx</kbd>.
 
 ### The shell
 
