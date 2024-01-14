@@ -33,8 +33,8 @@ shell > nmtui
 * `nmcli`. Uses the command line to configure the network, either a pure command line or an interactive command line.
 
 ```bash
-Shell > nmcli connection show                                                                                                        
-NAME    UUID                                  TYPE      DEVICE                                                                              
+Shell > nmcli connection show
+NAME    UUID                                  TYPE      DEVICE
 ens160  25106d13-ba04-37a8-8eb9-64daa05168c9  ethernet  ens160
 ```
 
@@ -139,7 +139,7 @@ Some use multiple network cards for link aggregation. In the early days, using *
 For example, the 0 mode of bonding:
 
 ```bash
-Shell > nmcli  connection  add  type  bond  con-name  BOND_CONNECTION_NAME   ifname  BOND_NIC_DEVICE_NAME  mode 0  
+Shell > nmcli  connection  add  type  bond  con-name  BOND_CONNECTION_NAME   ifname  BOND_NIC_DEVICE_NAME  mode 0
 Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME1   master  BOND_NIC_DEVICE_NAME
 Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   master  BOND_NIC_DEVICE_NAME
 ```
@@ -155,27 +155,27 @@ You can view more detailed information through `man 5 NetworkManager.conf` and `
 The content of the configuration file of the NetworkManager network card is an init-style key file. For example:
 
 ```bash
-Shell > cat /etc/NetworkManager/system-connections/ens160.nmconnection                                                               
-[connection]                                                                                                                                
-id=ens160                                                                                                                                   
-uuid=5903ac99-e03f-46a8-8806-0a7a8424497e                                                                                                   
-type=ethernet                                                                                                                               
-interface-name=ens160                                                                                                                       
-timestamp=1670056998                                                                                                                        
-                                                                                                                                            
-[ethernet]                                                                                                                                  
-mac-address=00:0C:29:47:68:D0                                                                                                               
-                                                                                                                                            
-[ipv4]                                                                                                                                      
-address1=192.168.100.4/24,192.168.100.1                                                                                                     
-dns=8.8.8.8;114.114.114.114;                                                                                                                
-method=manual                                                                                                                               
-                                                                                                                                            
-[ipv6]                                                                                                                                      
-addr-gen-mode=default                                                                                                                       
-method=disabled                                                                                                                             
-                                                                                                                                            
-[proxy] 
+Shell > cat /etc/NetworkManager/system-connections/ens160.nmconnection
+[connection]
+id=ens160
+uuid=5903ac99-e03f-46a8-8806-0a7a8424497e
+type=ethernet
+interface-name=ens160
+timestamp=1670056998
+
+[ethernet]
+mac-address=00:0C:29:47:68:D0
+
+[ipv4]
+address1=192.168.100.4/24,192.168.100.1
+dns=8.8.8.8;114.114.114.114;
+method=manual
+
+[ipv6]
+addr-gen-mode=default
+method=disabled
+
+[proxy]
 ```
 
 * Lines that start with # and blank lines are considered comments;
