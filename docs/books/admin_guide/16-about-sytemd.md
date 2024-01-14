@@ -414,3 +414,83 @@ In the RockyLinux 8.x operating system, the relevant configuration files are:
 
 * **/etc/systemd/system.conf** - Edit the file to change the Settings. Deleting the file restores the default Settings. See `man 5 systemd-system.conf`
 * **/etc/systemd/user.conf** - You can override the directives in this file by creating files in "/etc/systemd/user.conf.d/*.conf". See `man 5 systemd-user.conf`
+
+### Systemd units file content description
+
+Take the file sshd.service as an example.
+
+```bash
+Shell > systemctl cat sshd.service
+[Unit]
+Description=OpenSSH server daemon
+Documentation=man:sshd(8) man:sshd_config(5)
+After=network.target sshd-keygen.target
+Wants=sshd-keygen.target
+	
+[Service]
+Type=notify
+EnvironmentFile=-/etc/crypto-policies/back-ends/opensshserver.config
+EnvironmentFile=-/etc/sysconfig/sshd
+ExecStart=/usr/sbin/sshd -D $OPTIONS $CRYPTO_POLICY
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+	
+[Install]
+WantedBy=multi-user.target
+```
+
+As you can see, the content of the unit file has the same style as the configuration file of the RL 9 network card - use "[" and "]" to include the title, and below the title are the relevant key-value pairs.
+
+```bash
+# RL 9
+Shell > cat /etc/NetworkManager/system-connections/ens160.nmconnection
+[connection]
+id=ens160
+uuid=5903ac99-e03f-46a8-8806-0a7a8424497e
+type=ethernet
+interface-name=ens160
+timestamp=1670056998
+
+[ethernet]
+mac-address=00:0C:29:47:68:D0
+
+[ipv4]
+address1=192.168.100.4/24,192.168.100.1
+dns=8.8.8.8;114.114.114.114;
+method=manual
+
+[ipv6]
+addr-gen-mode=default
+method=disabled
+
+[proxy]
+```
+
+For unit of the ".service" type, there are usually three titles:
+
+* **Unit**
+* **Service**
+* **Install**
+
+1. Unit title
+
+    The following key-value pairs can be used:
+
+    * `Description=OpenSSH server daemon`. The string used to describe the "unit".
+    * `Documentation=man:sshd(8) man:sshd_config(5)`.  A space-separated list of URIs referencing documentation for this "unit" or its configuration. Accepted are only URIs of the types "http://", "https://", "file:", "info:", "man:".
+    * `After=network.target sshd-keygen.target`. Define the startup sequence relationship with other "units". In this example, "network.target" and "sshd-keygen.target" are started first, and "sshd.service" is started last.
+    * `Before=`. Define the startup sequence relationship with other "units".
+    * `Requires=`. Configure dependencies on other "units", whose values can be multiple unit separated by spaces. If the current "unit" is activated, the values listed here will also be activated. If at least one of the listed values of "unit" fails to activate successfully, systemd does not start the current "unit".
+    * `Wants=sshd-keygen.target`. Similar to the `Requires` key, the difference is that if the dependent unit fails to start, it will not affect the normal operation of the current "unit".
+    * `BindsTo=`. Similar to the `Requires` key, the difference is that if any dependent "unit" fails to start, the current unit will be stopped in addition to the "unit" that stops the dependency.
+    * `PartOf=`. Similar to the `Requires` key, the difference is that if any dependent "unit" fails to start, in addition to stopping and restarting the dependent units, the current "unit" will be stopped and restarted.
+    * `Conflicts=`. Its value is a "unit" list separated by spaces. If the "unit" listed by the value is running, the current "unit" cannot be run.
+    * `OnFailure=`. When the current "unit" fails, the "unit" in the value is activated, and multiple "units" are separated by spaces.
+
+    See `man 5 systemd.unit` for more information.
+
+2. Service title
+
+    The following key-value pairs can be used:
