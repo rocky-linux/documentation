@@ -869,7 +869,7 @@ The commands specific to `less` are:
 | <kbd>Enter</kbd>           | Move down one line.                             |
 | <kbd>Space</kbd>           | Move down one page.                             |
 | <kbd>PgUp</kbd> and <kbd>PgDn</kbd> | Move up or down one page.                       |
-| <kbd>gg</kbd> and <kbd>G</kbd> | Move to the first and last pages         |
+| <kbd>g</kbd> and <kbd>G</kbd> | Move to the first and last pages         |
 | `/text`           | Search for text.                                |
 | <kbd>q</kbd>               | Quit the `less` command.                        |
 
