@@ -1,7 +1,7 @@
 ---
 title: Pound
 author: Steven Spencer
-contributors: 'contributors: Ganna Zhyrnova'
+contributors: Ganna Zhyrnova
 tested_with: 8.5, 8.6
 tags:
   - proxy
