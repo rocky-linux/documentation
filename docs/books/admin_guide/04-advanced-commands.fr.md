@@ -1,5 +1,5 @@
 ---
-title: Commandes avancées Linux
+title: Commandes Avancées Linux
 ---
 
 # Commandes avancées pour utilisateurs Linux
@@ -38,7 +38,7 @@ antoine
 steven
 ```
 
-!!! Note
+!!! note "Note"
 
     `uniq` nécessite que le fichier d'entrée soit trié car il ne compare que des lignes consécutives.
 
@@ -215,11 +215,11 @@ L’option `-I` permet de spécifier un caractère (dans notre exemple le caract
 
 Le paquet `yum-utils` est une collection d’utilitaires de différents auteurs pour `yum`, qui le rendent plus simple et plus puissant à utiliser.
 
-!!! Note
+!!! note "Note"
 
     Bien que `yum` ait été remplacé par `dnf` dans Rocky Linux 8, le nom du paquet est resté `yum-utils` mais il peut tout aussi bien être installé avec le paquet `dnf-utils`. Ce sont des utilitaires YUM classiques implémentés comme des CLI au-dessus de DNF pour maintenir une compatibilité ascendante avec `yum-3`.
 
-Voici quelques exemples parmi ces utilitaires .
+Voici quelques exemples parmi ces utilitaires.
 
 ### la commande `repoquery`
 
@@ -332,7 +332,7 @@ L’option `-n` permet de spécifier le nombre de secondes entre chaque exécuti
 
 !!! Note
 
-    Pour quitter la commande `watch`, vous devez taper les clés : <kbd>CTRL</kbd>+<kbd>C</kbd> pour tuer le processus.
+    To exit the `watch` command, you must type the keys: <kbd>CTRL</kbd>+<kbd>C</kbd> to kill the process.
 
 Exemples :
 
@@ -386,9 +386,9 @@ Options :
 | `-g` et `-o`                     | appartenance.                                                   |
 | `-m`                             | permissions.                                                    |
 | `-p`                             | préserve la date et l'heure des fichiers sources.               |
-| `-t`                             | copie tous les arguments sources dans le dossier.               |
+| `-t`                             | copie tous les arguments sources vers le dossier.               |
 
-Cannot be displayed note "Remarque"
+!!! note "Remarque"
 
     Il existe aussi des options pour gérer le contexte de SELinux (cf. man install).
 
@@ -420,7 +420,7 @@ Cette commande permet déjà de gagner du temps, maintenant ajoutons l'appartena
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
 ```
 
- Cannot be displayed!!! note "Remarque"
+ !!! note "Remarque"
 
      Dans ce cas `sudo` est nécessaire pour modifier les propriétés.
 

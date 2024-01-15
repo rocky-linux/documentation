@@ -5,7 +5,7 @@ contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.7, 9.1
 tags:
   - nvchad
-  - extensions
+  - plugiciels
   - éditeur
 ---
 

@@ -96,7 +96,7 @@ src/unison
 
 **我们的需求是 —— Rocky Linux 8的 /dir1/ 目录自动同步到Fedora 34的 /dir2/ 目录 ；同时Fedora 34的 /dir2/ 目录自动同步到Rocky Linux 8 的 /dir1/ 目录**
 
-### 配置Rcoky Linux 8
+### 配置 Rocky Linux 8
 
 ```bash
 [root@Rocky ~]# mkdir /dir1

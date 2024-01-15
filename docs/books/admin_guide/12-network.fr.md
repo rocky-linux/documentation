@@ -646,7 +646,7 @@ tcp  0  0  0.0.0.0:22  0.0.0.0:*  LISTEN 2161/sshd
 
 Une mauvaise configuration peut faire que plusieurs interfaces utilisent la même adresse IP. Cela peut se produire lorsqu'un réseau a plusieurs serveurs DHCP ou quand la même adresse IP est assignée manuellement plusieurs fois.
 
-Lorsque le réseau ne fonctionne pas, et quand un conflit d'adresse IP peut en être la cause, il est possible d'utiliser le logiciel `arp-scan` (nécessite EPEL) :
+Lorsque le réseau ne fonctionne pas correctement et que la cause pourrait être un conflit d'adresse IP, vous pouvez utiliser le logiciel `arp-scan` (nécessite le dépôt d'EPEL) :
 
 ```
 $ dnf install arp-scan

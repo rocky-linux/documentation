@@ -200,7 +200,7 @@ PLAY RECAP *********************************************************************
 192.168.1.11               : ok=31   changed=1    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0  
 ```
 
-Trop facile pour un processus aussi complexe, n'est-ce pas?
+Trop facile pour un processus aussi complexe, n'est-ce pas ?
 
 Ce n'est qu'un exemple de ce qui peut être fait en utilisant les rôles mis à disposition par la communauté. Jetez un œil à [galaxy.ansible.com](https://galaxy.ansible.com/) pour découvrir les rôles qui pourraient vous être utiles !
 
