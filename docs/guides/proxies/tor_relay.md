@@ -47,7 +47,7 @@ With the packages installed, you need to configure Tor. The author uses `vi` for
 vi /etc/tor/torrc
 ```
 
-The default `torrc` file is pretty descriptive, but can get long if you just want a Tor relay. A minimum relay configuration can similar to this:
+The default `torrc` file is pretty descriptive, but can get long if you just want a Tor relay. A minimum relay configuration is similar to this:
 
 ```bash
 Nickname TorRelay
