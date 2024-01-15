@@ -1,6 +1,6 @@
 # Contribution Guide
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-94-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-95-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -348,6 +348,7 @@ Welcome aboard! Meet the rest of our awesome contributors below: ([emoji key](ht
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/zdover23"><img src="https://avatars.githubusercontent.com/u/1445107?v=4?s=100" width="100px;" alt="zdover23"/><br /><sub><b>zdover23</b></sub></a><br /><a href="#content-zdover23" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/YadlaMani"><img src="https://avatars.githubusercontent.com/u/133841094?v=4?s=100" width="100px;" alt="Mani Yadla"/><br /><sub><b>Mani Yadla</b></sub></a><br /><a href="#content-YadlaMani" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/DavisBarnabas"><img src="https://avatars.githubusercontent.com/u/39591292?v=4?s=100" width="100px;" alt="Dave_Barnabas"/><br /><sub><b>Dave_Barnabas</b></sub></a><br /><a href="#content-DavisBarnabas" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.neelc.org/"><img src="https://avatars.githubusercontent.com/u/5403564?v=4?s=100" width="100px;" alt="Neel Chauhan"/><br /><sub><b>Neel Chauhan</b></sub></a><br /><a href="#content-neelchauhan" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
