@@ -18,7 +18,7 @@ In diesem Kapitel erfahren Sie, wie Sie Ihr Konfigurationsmanagementsystem skali
 **Vorkenntnisse**: :star: :star: :star:       
 **Schwierigkeitsgrad**: :star: :star: :star: :star:
 
-**Lesezeit**: 30 Minuten
+**Lesezeit**: 31 Minuten
 
 ****
 
@@ -26,9 +26,9 @@ Wir haben in den vorherigen Kapiteln gesehen, wie wir unseren Code in Form von R
 
 Wie sieht es mit der Konfigurationsverwaltung aus? Wie verwaltet man die Konfiguration von zehn, Hunderten oder sogar Tausenden virtuellen Maschinen mit Ansible?
 
-Das Aufkommen der Cloud hat die herkömmlichen Methoden ein wenig verändert. Die VM wird zum Zeitpunkt der Bereitstellung konfiguriert. Stimmt seine Konfiguration nicht mehr überein, wird es gelöscht und durch eine neue ersetzt.
+Das Aufkommen der Cloud hat die herkömmlichen Methoden ein wenig verändert. Die VM wird zum Zeitpunkt der Bereitstellung konfiguriert. Stimmt die Konfiguration nicht mehr überein, wird es gelöscht und durch eine neue ersetzt.
 
-Die in diesem Kapitel vorgestellte Konfigurationsmanagementsystem-Organisation wird auf diese beiden Arten des IT-Verbrauchs reagieren: „einmalige Nutzung“ oder regelmäßige „Neukonfiguration“ eines Pools von Servern.
+The organization of the configuration management system presented in this chapter will respond to these two ways of consuming IT: "one-shot" use or regular "re-configuration" of a pool of servers.
 
 Seien Sie jedoch vorsichtig: Um die Konformität eines Serverpools mit Ansible zu gewährleisten, müssen Sie Ihre Arbeitsgewohnheiten ändern. Es ist nicht mehr möglich, die Konfiguration eines Service Managers manuell zu ändern, ohne dass diese Änderungen bei der nächsten Ausführung von Ansible überschrieben werden.
 
@@ -68,7 +68,7 @@ Wenn der ausgewählte Knoten `hostname1` von `group1` ist, werden die in den Dat
 
 Auf diese Weise wird die Inventardatei Ihres Servers zu seiner Identitätskarte. Sie enthält alle Variablen, die von den Standardvariablen für Ihren Server abweichen.
 
-Aus Sicht der Variablenzentralisierung ist es wichtig, die Namen ihrer Variablen in Rollen zu organisieren, indem ihnen beispielsweise der Name der Rolle vorangestellt wird. Es wird außerdem empfohlen, flache Variablennamen anstelle von Wörterbüchern zu verwenden.
+Aus Sicht der Variablenzentralisierung ist es wichtig, die Namen ihrer Variablen in Rollen zu organisieren, indem ihnen beispielsweise der Name der Rolle vorangestellt wird. Es wird außerdem empfohlen, flache Variablennamen anstelle von Dictionaries zu verwenden.
 
 Wenn Sie beispielsweise den Wert `PermitRootLogin` in der Datei `sshd_config` zu einer Variablen machen möchten, könnte ein guter Variablenname `sshd_config_permitrootlogin` sein (anstelle von `sshd.config.permitrootlogin`, was auch ein guter Variablenname sein könnte).
 
@@ -212,7 +212,7 @@ cms
 
 !!! Note
 
-    Es steht Ihnen frei, Ihre eigenen Rollen innerhalb einer Collection zu entwickeln
+    Es steht Ihnen frei, Ihre eigenen Rollen innerhalb einer Kollektion zu integrieren
 
 ## Tests
 
@@ -271,7 +271,7 @@ PLAY RECAP *********************************************************************
 client1                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-Versuchen Sie, nur `functionality2` anzuwenden:
+Lass uns versuchen, nur `functionality2` anzuwenden:
 
 ```
 $ ansible-playbook -i inventories/production/hosts -e "target=client1" --tags functionality2 site.yml
