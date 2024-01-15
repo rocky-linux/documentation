@@ -78,8 +78,8 @@ rpm -q [-a][-i][-l] package [-f] file
 Exemple :
 
 ```bash
-[root]# rpm -qil package
-[root]# rpm -qf /path/to/file
+rpm -qil package
+rpm -qf /path/to/file
 ```
 
 | Option           | Description                                                                                                          |
@@ -134,11 +134,11 @@ httpd-tools.x86_64                  2.4.37-30.module_el8.3.0+561+97fdbbcc   @app
 
 ## DNF: Dandified Yum
 
-**DNF** (**Dandified Yum**) est un gestionnaire de paquets logiciels, successeur de **YUM** (**Yellow dog **U**pdater **M**odified). Il fonctionne avec des paquets **RPM** regroupés dans un dépôt (un répertoire de stockage des paquets) local ou distant. Pour les commandes les plus courantes, son utilisation est identique à celle de `yum`.
+**DNF** (**Dandified Yum**) est un gestionnaire de paquets logiciels, successeur de **YUM** (**Y**ellow dog **U**pdater **M**odified). Il fonctionne avec des paquets **RPM** regroupés dans un dépôt (un répertoire de stockage des paquets) local ou distant. Pour les commandes les plus courantes, son utilisation est identique à celle de `yum`.
 
 La commande `dnf` permet la gestion des paquets en comparant ceux installés sur le système à ceux présents dans les dépôts définis sur le serveur. Elle permet aussi d’installer automatiquement les dépendances, si elles sont également présentes dans les dépôts.
 
-`dnf` est le gestionnaire utilisé par de nombreuses distributions à base RedHat (Rocky Linux, Fedora, CentOS, …​). Son équivalent dans le monde Debian est **APT** (**A**dvanced **P**ackaging **T**ool).
+`dnf` est le gestionnaire utilisé par de nombreuses distributions basées sur RedHat (Rocky Linux, Fedora, CentOS, …​). Son équivalent dans le monde Debian est **APT** (**A**dvanced **P**ackaging **T**ool).
 
 ### La commande `dnf`
 
@@ -217,7 +217,7 @@ pcp-pmda-nginx.aarch64 : Performance Co-Pilot (PCP) metrics for the Nginx Webser
 python3-certbot-nginx.noarch : The nginx plugin for certbot
 ```
 
-Le gestionnaire DNF s’appuie sur un ou plusieurs fichiers de configuration afin de cibler les dépôts contenant les paquets RPM.
+Une autre façon de rechercher un package en entrant une clé de recherche supplémentaire consiste à envoyer le résultat de la commande `dnf` via un pipe à la commande grep avec la clé souhaitée.
 
 ```bash
 dnf search nginx | grep mod
@@ -260,7 +260,7 @@ La commande `dnf list` liste tous les paquets installés sur le système ou pré
 
 | Paramètre   | Description                                                                  |
 | ----------- | ---------------------------------------------------------------------------- |
-| `all`       | Liste les paquets installés puis ceux disponibles sur les dépôts.            |
+| `all`       | Liste les paquets installés puis ceux disponibles dans les dépôts.           |
 | `available` | Liste uniquement les paquets disponibles pour installation.                  |
 | `updates`   | Liste les paquets pouvant être mis à jour.                                   |
 | `obsoletes` | Liste les paquets rendus obsolètes par des versions supérieures disponibles. |
@@ -415,7 +415,7 @@ Repo-pkgs          : 1,650
 Repo-available-pkgs: 1,107
 Repo-size          : 6.4 G
 Repo-mirrors       : https://mirrors.rockylinux.org/mirrorlist?arch=aarch64&repo=PowerTools-8
-Repo-baseurl       : https://mirror2.sandyriver.net/pub/rocky/8.8/PowerTools/x86_64/os/ (30 more)
+Repo-baseurl       : https://example.com/pub/rocky/8.8/PowerTools/x86_64/os/ (30 more)
 Repo-expire        : 172,800 second(s) (last: Tue 22 Mar 2022 05:49:24 PM CET)
 Repo-filename      : /etc/yum.repos.d/Rocky-PowerTools.repo
 ...
@@ -491,8 +491,8 @@ La commande `dnf clean` nettoie tous les caches et fichiers temporaires créés 
 | `all`          | Supprime tous les fichiers temporaires créés pour les dépôts activés. |
 | `dbcache`      | Supprime les fichiers de cache des métadonnées du dépôt.              |
 | `expire-cache` | Supprime les fichiers cookies locaux.                                 |
-| `métadonnées`  | Supprime toutes les métadonnées des dépôts.                           |
-| `paquets`      | Supprime tous les paquets mis en cache.                               |
+| `metadata`     | Supprime toutes les métadonnées des dépôts.                           |
+| `packages`     | Supprime tous les paquets mis en cache.                               |
 
 
 ### Comment fonctionne DNF
@@ -529,7 +529,7 @@ Les modules ont été introduits dans Rocky Linux 8 par le système upstream. Af
 
 !!! hint "Package Confusion"
 
-    La création de modules streams dans le dépôt AppStream a causé beaucoup de confusion. Puisque les modules sont empaquetés dans un flux (stream, voir nos exemples ci-dessous), un paquet particulier s'affichera dans nos RPMs, mais si une tentative était faite pour l'installer sans activer le module, rien ne se passerait. N'oubliez pas de regarder les modules si vous essayez d'installer un paquet et qu'il ne le trouve pas.
+    La création de modules streams dans le dépôt AppStream a causé beaucoup de confusion. Puisque les modules sont empaquetés dans un flux (stream, voir nos exemples ci-dessous), un paquet particulier s'affichera dans nos RPMs, mais si une tentative était faite pour l'installer sans activer le module, rien ne se passerait. N'oubliez pas d'examiner les modules si vous essayez d'installer un paquet et que dfn ne le trouve pas.
 
 ### Que sont les modules ?
 
@@ -771,7 +771,7 @@ Description  : This package contains the Extra Packages for Enterprise Linux
              : (EPEL) repository GPG key as well as configuration for yum.
 ```
 
-Le paquet, comme vous pouvez le voir dans la description du paquet ci-dessus, ne contient pas d'exécutables, de bibliothèques, etc. , mais seulement les fichiers de configuration et les clés GPG pour configurer le dépôt.
+Le paquet, comme vous pouvez le voir dans la description du paquet ci-dessus, ne contient pas d'exécutables, de bibliothèques, etc., mais seulement les fichiers de configuration et les clés GPG pour configurer le dépôt.
 
 Une autre façon de vérifier que l'installation est correcte est d'interroger la base de données rpm.
 
@@ -953,13 +953,13 @@ dnf config-manager --save --setopt=*.proxy=http://proxy.rocky.lan:3128/
 
 `copr` est un forgeage automatique de rpm, fournissant un dépôt avec les paquets construits.
 
-* Activer un dépôt de copr :
+* Activer un dépôt COPR :
 
 ```
 copr enable xxxx
 ```
 
-### `Télécharger` le plugin
+### `Télécharger` le plugiciel
 
 Télécharger le paquet rpm au lieu de l'installer :
 
@@ -967,7 +967,7 @@ Télécharger le paquet rpm au lieu de l'installer :
 dnf download ansible
 ```
 
-Si vous voulez juste obtenir l'url de l'emplacement distant du paquet :
+Si vous voulez juste obtenir l'URL de l'emplacement distant du paquet :
 
 ```
 dnf download --url ansible
@@ -983,7 +983,7 @@ dnf download --resolv --alldeps ansible
 
 Après avoir exécuté une mise à jour avec `dnf update`, les processus en cours d'exécution continueront à s'exécuter, mais avec les anciens binaires. Afin de prendre en compte les changements de code et en particulier les mises à jour de sécurité, ils doivent être redémarrés.
 
-Le plugin `needs-restarting` vous permettra de détecter les processus qui sont dans ce cas.
+Le plugiciel `needs-restarting` vous permettra de détecter les processus qui sont dans ce cas.
 
 ```
 dnf needs-restarting [-u] [-r] [-s]
@@ -991,7 +991,7 @@ dnf needs-restarting [-u] [-r] [-s]
 
 | Options | Observation                                                             |
 | ------- | ----------------------------------------------------------------------- |
-| `-u`    | Considérez uniquement les processus appartenant à l'utilisateur actuel. |
+| `-u`    | considérer uniquement les processus appartenant à l'utilisateur actuel. |
 | `-r`    | pour vérifier si un redémarrage peut être nécessaire.                   |
 | `-s`    | pour vérifier si les services ont besoin d'être redémarrés.             |
 | `-s -r` | pour faire les deux en une seule étape.                                 |
