@@ -215,13 +215,13 @@ Mit der Option `-I` können Sie ein Zeichen (in unserem Beispiel das `%` Zeichen
 
 Das `yum-utils` Paket ist eine Sammlung von Werkzeugen verschiedener Autoren für `yum`, die es einfacher und leistungsfähiger machen.
 
-!!! note "Hinweis"
+!!! note "Anmerkung"
 
     Während `yum` in Rocky Linux 8 durch `dnf` ersetzt wurde der Paketname bleibt `yum-utils`, obwohl er auch als `dnf-utils` installiert werden kann. Dies sind klassische YUM Werkzeuge, die als CLI Shims auf DNF implementiert werden, um die Rückwärtskompatibilität mit `yum-3` zu gewährleisten.
 
-Hier sind einige Beispiele:
+Nachfolgend finden Sie einige Beispiele für diese Dienstprogramme.
 
-### `repoquery` Befehl
+### Das Kommando `repoquery`
 
 Der Befehl `repoquery` wird verwendet, um die Pakete im Repository abzufragen.
 
@@ -267,7 +267,7 @@ $ repoquery -l yum-utils
 
 Der `yumdownloader` Befehl lädt RPM-Pakete aus den Repositories herunter.  Äquivalent zu `dnf download --downloadonly --downloaddir ./ package-name`
 
-!!! CANNOT BE TRANSLATED!!! note "Hinweis"
+!!! note "Anmerkung"
 
     Dieser Befehl ist sehr nützlich, um schnell ein lokales Repository für einige rpms zu erstellen!
 
@@ -332,7 +332,7 @@ Mit der Option `-n` können Sie die Anzahl der Sekunden zwischen jeder Ausführu
 
 !!! note "Anmerkung"
 
-    To exit the `watch` command, you must type the keys: <kbd>CTRL</kbd>+<kbd>C</kbd> to kill the process.
+    .
 
 Beispiele:
 
