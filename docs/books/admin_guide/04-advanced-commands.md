@@ -440,3 +440,24 @@ The suffix can be specified thanks to the `-S` option:
 $ install -v -b -S ".bak" -D -t ~/samples/ src/sample.txt
 'src/sample.txt' -> '~/samples/sample.txt' (archive: '~/samples/sample.txt.bak')
 ```
+
+## Multiple command execution
+
+This will involve the following symbols:
+
+* **;** - There is no logical relationship between commands, which are executed from left to right.
+* **&&** - "Logic And". When the first command is executed correctly (a return of 0 indicates successful execution), the next command is executed. If the first command is unsuccessful, the second command is not executed. For example: `COMMAND1 && COMMAND2 && COMMAND3`.
+* **||** - "Logic Or". The second command is executed only when the first command fails to be executed. After the first command is successfully executed, the second command is not executed. For example: `COMMAND1 || COMMAND2 || COMMAND3`.
+
+```bash
+Shell > ls -l /etc/chrony.conf
+-rw-r--r-- 1 root root 1175 12月 24 2022 /etc/chrony.conf
+
+# This part belongs to the content of Shell programming.
+Shell > echo $?
+0
+
+Shell > ls -l /etc/chrony.conf && echo "yes" || echo "no"
+-rw-r--r-- 1 root root 1175 12月 24 2022 /etc/chrony.conf
+yes
+```
