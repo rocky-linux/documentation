@@ -461,3 +461,41 @@ Shell > ls -l /etc/chrony.conf && echo "yes" || echo "no"
 -rw-r--r-- 1 root root 1175 Dec 24 2022 /etc/chrony.conf
 yes
 ```
+
+## `tree` command
+
+Expand the files or directories contained in the directory in a tree like manner. 
+
+| options | desction |
+| :--- | :--- |
+| `-a` | All files are listed |
+| `-h` | Print the size in a more human readable way |
+| `-u` | Displays file owner or UID number |
+| `-g` | Displays file group owner or GID number |
+| `-p` | Print the protections for each file |
+
+For example:
+
+```bash
+Shell > tree -hugp /etc/yum.repos.d/
+/etc/yum.repos.d/
+├── [-rw-r--r-- root     root      1.6K]  epel-modular.repo
+├── [-rw-r--r-- root     root      1.3K]  epel.repo
+├── [-rw-r--r-- root     root      1.7K]  epel-testing-modular.repo
+├── [-rw-r--r-- root     root      1.4K]  epel-testing.repo
+├── [-rw-r--r-- root     root       710]  Rocky-AppStream.repo
+├── [-rw-r--r-- root     root       695]  Rocky-BaseOS.repo
+├── [-rw-r--r-- root     root      1.7K]  Rocky-Debuginfo.repo
+├── [-rw-r--r-- root     root       360]  Rocky-Devel.repo
+├── [-rw-r--r-- root     root       695]  Rocky-Extras.repo
+├── [-rw-r--r-- root     root       731]  Rocky-HighAvailability.repo
+├── [-rw-r--r-- root     root       680]  Rocky-Media.repo
+├── [-rw-r--r-- root     root       680]  Rocky-NFV.repo
+├── [-rw-r--r-- root     root       690]  Rocky-Plus.repo
+├── [-rw-r--r-- root     root       715]  Rocky-PowerTools.repo
+├── [-rw-r--r-- root     root       746]  Rocky-ResilientStorage.repo
+├── [-rw-r--r-- root     root       681]  Rocky-RT.repo
+└── [-rw-r--r-- root     root      2.3K]  Rocky-Sources.repo
+
+0 directories, 17 files
+```
