@@ -458,6 +458,6 @@ Shell > echo $?
 0
 
 Shell > ls -l /etc/chrony.conf && echo "yes" || echo "no"
--rw-r--r-- 1 root root 1175 12月 24 2022 /etc/chrony.conf
+-rw-r--r-- 1 root root 1175 Dec 24 2022 /etc/chrony.conf
 yes
 ```
