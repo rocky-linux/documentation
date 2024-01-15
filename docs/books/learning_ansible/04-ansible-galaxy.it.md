@@ -1,5 +1,5 @@
 ---
-title: Galassia Ansible
+title: Ansible Galaxy
 ---
 
 # Galassia Ansibile: Collezioni e Ruoli
