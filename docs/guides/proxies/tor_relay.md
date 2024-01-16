@@ -84,7 +84,7 @@ Replace "9001" with the TCP Port you set in your "ORPort".
 
 ## Limiting the bandwidth
 
-If you do not want to dedicate all your bandwidth to Tor, say you have a fair use policy at your ISP, you can limit your bandwidth. You can limit in terms of bandwidth (e.g. 100 megabits) or traffic in a period of time (e.g. 5GB per day).
+If you do not want to dedicate all your bandwidth to Tor, say you have a fair use policy at your ISP, you can limit your bandwidth. You can limit in terms of bandwidth (e.g., 100 megabits) or traffic in a period of time (e.g., 5GB per day).
 
 To do this, edit the `torrc` file:
 
