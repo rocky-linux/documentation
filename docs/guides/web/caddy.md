@@ -193,7 +193,7 @@ vim /etc/caddy/Caddyfile
 Navigate to the server block we created earlier:
 
 ```bash
-example.com
+example.com {
     root * /usr/share/caddy/example.com
     file_server
 }
@@ -208,7 +208,7 @@ Add the following line after the "file\_server" line:
 Your PHP-enabled server block will look like this:
 
 ```bash
-example.com
+example.com {
     root * /usr/share/caddy/example.com
     file_server
     php_fastcgi 127.0.0.1:9000
