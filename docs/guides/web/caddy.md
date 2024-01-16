@@ -148,6 +148,89 @@ Within a minute, Caddy will obtain SSL certificates from Let's Encrypt. Then, yo
 
 It should have an SSL padlock that should work in every modern browser, and not just that, but also an A+ rating at [Qualys SSL Server Test](https://www.ssllabs.com/ssltest/).
 
+## Optional: PHP FastCGI
+
+Like mentioned earlier, Caddy supports FastCGI support for PHP. The good news is that unlike Apache and Nginx, Caddy automatically takes care of handling PHP file extensions.
+
+To install PHP, first add the Remi repository (note: if you are running Rocky Linux 8.x, substitute in 8 next to the "release-" below):
+
+```bash
+dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+```
+
+Next, we need to install PHP (note: if you are using another version of PHP, substitute your desired version for php81):
+
+```bash
+dnf install -y php81-php-fpm
+```
+
+If you require additional PHP modules (e.g. GD), add them to the above command.
+
+Then, we need to configure PHP to listen on a TCP socket:
+
+```bash
+vim /etc/opt/remi/php81/php-fpm.d/www.conf
+```
+
+Next, find the line:
+
+```bash
+listen = /var/opt/remi/php81/run/php-fpm/www.sock
+```
+
+Replace it with this:
+
+```bash
+listen = 127.0.0.1:9000
+````
+
+Then save and exit the www.conf file, and open the Caddyfile:
+
+```bash
+vim /etc/caddy/Caddyfile
+```
+
+Navigate to the server block we created earlier:
+
+```bash
+example.com
+    root * /usr/share/caddy/example.com
+    file_server
+}
+```
+
+Add the following line after the "file\_server" line:
+
+```bash
+    php_fastcgi 127.0.0.1:9000
+```
+
+Your PHP-enabled server block will look like this:
+
+```bash
+example.com
+    root * /usr/share/caddy/example.com
+    file_server
+    php_fastcgi 127.0.0.1:9000
+}
+```
+
+Then save and exit the Caddyfile, and restart Caddy:
+
+```bash
+systemctl restart caddy
+```
+
+To test if PHP works, let's add a simple PHP file:
+
+```bash
+echo "<?php phpinfo(); ?>" >> /usr/share/caddy/rockyexample.duckdns.org/phpinfo.php
+```
+
+Open your browser to the file you created, and you should be presented with PHP information:
+
+![Caddy serving our PHP file](../images/caddy_php.png)
+
 ## Conclusion
 
 The basic installation and configuration of Caddy is incredibly easy. Gone are the days where you spent hours configuring Apache. Yes, Nginx is certainly an improvement, but it still lacks modern but essential features such as Let's Encrypt and Kubernetes ingress support that Caddy builds in, whereas on Nginx (and Apache) you must add them separately.
