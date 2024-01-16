@@ -121,7 +121,7 @@ vim /etc/caddy/Caddyfile
 A minimum static web server configuration can be similar to this:
 
 ```bash
-example.com
+example.com {
     root * /usr/share/caddy/example.com
     file_server
 }
