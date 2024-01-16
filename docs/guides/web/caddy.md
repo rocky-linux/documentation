@@ -150,7 +150,7 @@ It should have an SSL padlock that should work in every modern browser, and not 
 
 ## Optional: PHP FastCGI
 
-Like mentioned earlier, Caddy supports FastCGI support for PHP. The good news is that unlike Apache and Nginx, Caddy automatically takes care of handling PHP file extensions.
+As mentioned earlier, Caddy supports FastCGI support for PHP. The good news is that unlike Apache and Nginx, Caddy automatically takes care of handling PHP file extensions.
 
 To install PHP, first add the Remi repository (note: if you are running Rocky Linux 8.x, substitute in 8 next to the "release-" below):
 
@@ -199,7 +199,7 @@ example.com {
 }
 ```
 
-Add the following line after the "file\_server" line:
+Add the following line after the "file_server" line:
 
 ```bash
     php_fastcgi 127.0.0.1:9000
@@ -235,4 +235,4 @@ Open your browser to the file you created, and you should be presented with PHP 
 
 The basic installation and configuration of Caddy is incredibly easy. Gone are the days where you spent hours configuring Apache. Yes, Nginx is certainly an improvement, but it still lacks modern but essential features such as Let's Encrypt and Kubernetes ingress support that Caddy builds in, whereas on Nginx (and Apache) you must add them separately.
 
-I've been using Caddy since 2019 as my go-to webserver, and it's just so good. In fact, whenever I deal with Apache, Nginx or IIS, it's almost like taking a time machine back to 2010 or earlier.
+I've been using Caddy since 2019 as my go-to web server, and it's just so good. In fact, whenever I deal with Apache, Nginx or IIS, it's almost like taking a time machine back to 2010 or earlier.
