@@ -7,36 +7,36 @@ tags:
   - web
 ---
 
-# How to Install the Latest Caddy Web Server on Rocky Linux
+# How to install the latest Caddy web server on Rocky Linux
 
 ## Introduction
 
-*Caddy* is a web server designed for modern web applications. Caddy is super simple to configure, and has automatic Let's Encrypt, so your websites are always secure by default. It's personally my go-to web server.
+*Caddy* is a web server designed for modern web applications. Caddy is simple to configure and has automatic Let's Encrypt, so your websites are always secure by default. It is the author's go-to web server.
 
-Here’s a short rundown of Caddy's features:
+Here is a short rundown of Caddy's features:
 
-* A basic web server 
+* A basic web server
 * A reverse proxy for directing traffic to multiple sites
 * Modules for many workloads, including TCP, SSH, and more
 * A built-in load balancer for managing traffic to multiple websites
-* Built in, automated Let's Encrypt support
+* Built-in, automated Let's Encrypt support
 * An API to re-configure the server programmatically
 * PHP FastCGI support
-* And, of course, IPv6
+* And IPv6
 
-## Prerequisites and Assumptions
+## Prerequisites and assumptions
 
-You’ll need:
+You will need:
 
 * An internet-connected Rocky Linux machine or server.
 * A basic familiarity with the command line.
-* The ability to run commands as root, either as the root user or with `sudo`.
-* A text editor of your choice, whether graphical or command-line based. For this tutorial, I’m using `vim`.
-* A domain name or other hostname, that's pointed to your server's public IP address.
+* The ability to run commands as the root user or with `sudo`.
+* A text editor of your choice, whether graphical or command-line based. For this tutorial, the author uses `vim`.
+* A domain name or other hostname pointed to your server's public IP address.
 
 ## Installing Caddy
 
-First, make sure your machine is updated:
+First, ensure your machine has the latest updates:
 
 ```bash
 sudo dnf update
@@ -48,32 +48,32 @@ Then, install the `epel-release` software repository:
 sudo dnf install -y epel-release
 ```
 
-Then install the `caddy` web server:
+Next, install the `caddy` web server:
 
 ```bash
 sudo dnf install -y caddy
 ```
 
-## Configuring the Firewall
+## Configuring the firewall
 
-If you try to view a web page at your machine’s IP address or domain name from another computer, you’re probably going to get nothing. Well, that’ll be the case as long as you have a firewall up and running.
+If you try to view a web page at your machine’s IP address or domain name from another computer, you are probably going to get nothing. That will be the case if you have a firewall up and running.
 
-To open up the necessary ports so that you can actually "see" your web pages, we will use Rocky Linux's build-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`.
+To open up the necessary ports so that you can actually "see" your web pages, you will use Rocky Linux's build-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`.
 
-In order to open up the `http` and `https` services, which is of course the services that handles web pages, run this:
+To open up the `http` and `https` services, the services that handles web pages, run:
 
 ```bash
 sudo firewall-cmd --permanent --zone=public --add-service=http
 sudo firewall-cmd --permanent --zone=public --add-service=https
 ```
 
-Let’s break this down:
+Breaking this down:
 
-* The `-–permanent` flag tells the firewall to ensure this configuration is used every time the firewall is restarted and when the server is restarted.
-* `–-zone=public` tells the firewall to take incoming connections to this port from everyone.
-* Lastly, `--add-service=http` and `--add-service=https` tells `firewalld` to let all HTTP and HTTPS traffic through to the server.
+* The `-–permanent` flag tells the firewall to apply this configuration every time the firewall restarts, and when the server restarts.
+* `–-zone=public` tells the firewall to allow incoming connections to this port from everyone.
+* Lastly, `--add-service=http` and `--add-service=https` tells `firewalld` to pass all HTTP and HTTPS traffic to the server.
 
-These configurations won’t take effect until you force the issue. To do that, tell `firewalld` to relead its configurations, like so:
+These configurations won’t take effect until you force the issue. To do that, tell `firewalld` to reload its configurations:
 
 ```bash
 sudo firewall-cmd --reload
@@ -81,13 +81,13 @@ sudo firewall-cmd --reload
 
 !!! Note
 
-    Now, there’s a very small chance that this won’t work. In those rare cases, make `firewalld` do your bidding with the old turn-it-off-and-turn-it-on-again.
+    Now, there is a very small chance that this will not work. In those rare cases, make `firewalld` do your bidding with the old turn-it-off-and-turn-it-on-again.
 
     ```bash
     systemctl restart firewalld
     ```
 
-To make sure the ports have been added properly, run `firewall-cmd --list-all`. A properly-configured firewall will look a bit like this:
+To ensure allowance of the ports, run `firewall-cmd --list-all`. A properly-configured firewall will look a bit like this:
 
 ```bash
 public (active)
@@ -106,11 +106,11 @@ public (active)
   rich rules:
 ```
 
-And that should be everything you need, firewall-wise.
+That should be everything you need, firewall-wise.
 
 ## Configuring Caddy
 
-Unlike traditional web servers like Apache and Nginx, Caddy's configuration format is significantly simpler. And I mean by a lot. Gone are the days where you had to configure the nitty gritty like your web server's threading model or SSL certificates. Well, unless you want to.
+Unlike traditional web servers like Apache and Nginx, Caddy's configuration format is significantly simpler. Gone are the days where you had to configure the nitty gritty like your web server's threading model or SSL certificates, unless you want to.
 
 To edit the Caddy configuration file:
 
@@ -118,7 +118,7 @@ To edit the Caddy configuration file:
 vim /etc/caddy/Caddyfile
 ```
 
-A minimum static webserver configuration can be similar to shia:
+A minimum static web server configuration can be similar to this:
 
 ```bash
 example.com
@@ -127,9 +127,9 @@ example.com
 }
 ```
 
-Replace "example.com" with a hostname that's pointed to your server.
+Replace "example.com" with a hostname pointed to your server.
 
-You will also have to add a website to the folder in Caddy's "root" directory. For simlicity's sake, we will add a one-page static website:
+You will also have to add a website to the folder in Caddy's "root" directory. For simplicity's sake, add a one-page static website:
 
 ```bash
 mkdir -p /usr/share/caddy/example.com
@@ -150,6 +150,6 @@ It should have an SSL padlock that should work in every modern browser, and not 
 
 ## Conclusion
 
-The basic installation and configuration of Caddy is incredibly easy. Gone are the days where you spent hours configuring Apache. Yes, Nginx is certainly an improvement, but it still lacks modern but essential features such as Let's Encrypt and Kubernetes Ingesss support that Caddy builds in, but has to be bolted on nginx (and Apache).
+The basic installation and configuration of Caddy is incredibly easy. Gone are the days where you spent hours configuring Apache. Yes, Nginx is certainly an improvement, but it still lacks modern but essential features such as Let's Encrypt and Kubernetes ingress support that Caddy builds in, whereas on Nginx (and Apache) you must add them separately.
 
 I've been using Caddy since 2019 as my go-to webserver, and it's just so good. In fact, whenever I deal with Apache, Nginx or IIS, it's almost like taking a time machine back to 2010 or earlier.
