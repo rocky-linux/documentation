@@ -1,7 +1,7 @@
 ---
 title: Caddy Web Server
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 tested_with: 9.3
 tags:
   - web
