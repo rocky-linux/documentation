@@ -26,7 +26,7 @@ tags:
 
 Se volete usare questo e altri strumenti di hardening, fate riferimento alla guida [Apache Hardened Web Server](index.md). Questo documento utilizza anche tutti i presupposti e le convenzioni delineati nel documento originale. È buona norma rivederlo prima di continuare.
 
-Una cosa che manca a `mod_security` quando viene installato dai repository generici di Rocky Linux, è che le regole installate sono minime. Per ottenere un pacchetto più ampio di regole `mod_security` a costo zero, questa procedura utilizza le regole mod_security [OWASP che si trovano qui](https://www.netnea.com/). OWASP è l'acronimo di Open Web Application Security Project. Per saperne [di più su OWASP, cliccate qui](https://owasp.org/).
+Una cosa che manca a `mod_security` quando viene installato dai repository generici di Rocky Linux, è che le regole installate sono minime. Per ottenere un pacchetto più ampio di regole di `mod_security` a costo zero, questa procedura utilizza le regole [OWASP `mod_security` che si trovano qui](https://coreruleset.org/). OWASP è l'acronimo di Open Web Application Security Project. Per saperne [di più su OWASP, cliccate qui](https://owasp.org/).
 
 !!! tip "Suggerimento"
 
@@ -61,26 +61,26 @@ dnf install mod_security wget
 5. Inserite `wget` e incollate il vostro link. Esempio:
 
     ```
-    wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.4.tar.gz
+    wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.5.tar.gz
     ```
 
 6. Decomprimere il file:
 
     ```
-    tar xzvf v3.3.4.tar.gz
+    tar xzvf v3.3.5.tar.gz
     ```
-    Questo crea una directory con le informazioni di rilascio nel nome. Esempio: "coreruleset-3.3.4"
+    Questo crea una directory con le informazioni di rilascio nel nome. Esempio: "coreruleset-3.3.5"
 
 7. Creare un collegamento simbolico chiamato "crs" che rimanda alla directory della release. Esempio:
 
     ```
-    ln -s coreruleset-3.3.4/ /etc/httpd/conf/crs
+    ln -s coreruleset-3.3.5/ /etc/httpd/conf/crs
     ```
 
 8. Rimuovere il file `tar.gz`. Esempio:
 
     ```
-    rm -f v3.3.4.tar.gz
+    rm -f v3.3.5.tar.gz
     ```
 
 9. Copiare la configurazione temporanea in modo che venga caricata all'avvio:
