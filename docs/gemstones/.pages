@@ -9,6 +9,7 @@ nav:
     - ... | https_rsa_keygen*.md
     - ... | markdown-demo-v2*.md
     - ... | mtr*.md
+    - ... | nload*.md
     - ... | nmcli*.md
     - ... | nmtui*.md
     - ... | NoSleep*.md

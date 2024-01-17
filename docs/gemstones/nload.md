@@ -1,7 +1,7 @@
 ---
 title : nload - Bandwidth Statistics
 author : Neel Chauhan
-contributors: 
+contributors: Steven Spencer 
 date : 2024-01-16
 ---
 
@@ -16,7 +16,7 @@ dnf -y install epel-release
 dnf -y install nload
 ```
 
-The common options of the `nload` command are as follows. Under normal circumstances, no additional options are required, followed by the interface to monitor:
+The common options of the `nload` command follow, and under normal circumstances, require nothing additional. The options come before the interface to monitor:
 
 |Options|Description|
 |---|---|
@@ -68,7 +68,7 @@ Outgoing:
                                              ########  Ttl: 1790.74 GByte
 ```
 
-The above lines mean the following:
+Breaking the above lines down:
 
 * Curr - current measured bandwidth use
 * Avg - average bandwidth use in period
@@ -76,10 +76,11 @@ The above lines mean the following:
 * Max - maximum measured bandwidth use
 * Ttl - data transferred in `nload` session
 
-##  Shortcut keys for interaction
-* <kbd>PgDn</kbd>, <kbd>Down</kbd> - Go down one interface
-* <kbd>PgUp</kbd>, <kbd>Up</kbd> - Go up one interface
-* <kbd>F2</kbd> - Show the option window
-* <kbd>F5</kbd> - Save the options
-* <kbd>F6</kbd> - Reload the settings from the config file
-* <kbd>q</kbd>, <kbd>Ctrl</kbd>+<kbd>C</kbd> - Quit `nload`
+## Shortcut keys for interaction
+
+* ++page-down++, ++down++ - Go down one interface
+* ++page-up++, ++up++ - Go up one interface
+* ++f2++ - Show the option window
+* ++f5++ - Save the options
+* ++f6++ - Reload the settings from the config file
+* ++q++, ++ctrl+c++ - Quit `nload`
