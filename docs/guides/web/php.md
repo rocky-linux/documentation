@@ -2,7 +2,7 @@
 title: PHP and PHP-FPM
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
-tested_with: 8.5
+tested_with: 8.9
 tags:
   - web
   - php
@@ -10,6 +10,10 @@ tags:
 ---
 
 # PHP and PHP-FPM
+
+!!! warning "Written for Rocky Linux 8.x"
+
+    Note that this procedure was initially published some time ago, at which time Rocky Linux 8.x was the only version. This procedure needs to be tested and rewritten as appropriate for Rocky Linux 9.x.
 
 **PHP** (**P**HP **H**ypertext **P**reprocessor) is a source scripting language, specially designed for web application development. In 2021, PHP represented a little less than 80% of the web pages generated in the world. PHP is open-source and is the core of the most famous CMS (WordPress, Drupal, Joomla!, Magento, ...).
 
@@ -35,35 +39,43 @@ PHP-FPM, **in addition to better performances**, brings:
 
 ## Choose a PHP version
 
-Rocky Linux, like its upstream, offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [ supported versions ](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
+Rocky Linux, like its upstream, offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [supported versions](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
 
 To obtain a list of available versions, simply enter the following command:
 
-```
+```bash
 $ sudo dnf module list php
+
 Rocky Linux 8 - AppStream
-Name         Stream          Profiles                           Summary                       
-php          7.2 [d]         common [d], devel, minimal         PHP scripting language        
-php          7.3             common [d], devel, minimal         PHP scripting language        
-php          7.4             common [d], devel, minimal         PHP scripting language        
+Name                                                 Stream                                                  Profiles                                                                   Summary                                                         
+php                                                  7.2 [d]                                                 common [d], devel, minimal                                                 PHP scripting language                                          
+php                                                  7.3                                                     common [d], devel, minimal                                                 PHP scripting language                                          
+php                                                  7.4                                                     common [d], devel, minimal                                                 PHP scripting language                                          
+php                                                  8.0                                                     common [d], devel, minimal                                                 PHP scripting language                                          
 
 Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
 Rocky provides, from its AppStream repository, different PHP modules.
 
-You will note that the default version of a Rocky 8.5 is 7.2 which has already reached its end of life at the time of writing.
+You will note that the default version of a Rocky 8.9 is 7.2 that has already reached its end of life at the time of writing.
 
 You can activate a newer module by entering the following command:
 
-```
-sudo dnf module enable php:7.4
+```bash
+sudo dnf module enable php:8.0
 ==============================================================================================
  Package               Architecture         Version               Repository             Size
 ==============================================================================================
 Enabling module streams:
- httpd                                      2.4                                              
- php                                        7.4                                              
+ httpd                                      2.4                                                                                                                              
+ nginx                                      1.14                                                                                                                             
+ php                                        8.0                                                                                                                              
+
+Transaction Summary
+==============================================================================================
+
+Is this ok [y/N]:
 
 Transaction Summary
 ==============================================================================================
@@ -71,7 +83,6 @@ Transaction Summary
 Is this ok [y/N]: y
 Complete!
 ```
-
 
 You can now proceed to the installation of the PHP engine.
 
@@ -85,13 +96,13 @@ The installation of PHP is relatively trivial, since it consists of installing t
 
 The example below installs PHP with the modules usually installed with it.
 
-```
-$ sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
+```bash
+sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
 ```
 
 You can check that the installed version corresponds to the expected one:
 
-```
+```bash
 $ php -v
 PHP 7.4.19 (cli) (built: May  4 2021 11:06:37) ( NTS )
 Copyright (c) The PHP Group
@@ -101,42 +112,42 @@ Zend Engine v3.4.0, Copyright (c) Zend Technologies
 
 ### Configuration
 
-### Apache integration
+#### Apache integration
 
 To serve PHP pages in CGI mode, you must install the apache server, configure it, activate it, and start it.
 
 * Installation:
 
-```
-$ sudo dnf install httpd
+```bash
+sudo dnf install httpd
 ```
 
 * Activation:
 
-```
-$ sudo systemctl enable httpd
-$ sudo systemctl start httpd
-$ sudo systemctl status httpd
+```bash
+sudo systemctl enable httpd
+sudo systemctl start httpd
+sudo systemctl status httpd
 ```
 
 * Don't forget to configure the firewall:
 
-```
-$ sudo firewall-cmd --add-service=http --permanent
-$ sudo firewall-cmd --reload
+```bash
+sudo firewall-cmd --add-service=http --permanent
+sudo firewall-cmd --reload
 ```
 
 The default vhost should work out of the box. PHP provides a `phpinfo()` function that generates a summary table of its configuration. It's very useful to test the good working of PHP. However, be careful not to leave such test files on your servers. They represent a huge security risk for your infrastructure.
 
 Create the file `/var/www/html/info.php` (`/var/www/html` being the default vhost directory of the default apache configuration):
 
-```
+```bash
 <?php
 phpinfo();
 ?>
 ```
 
-Use a web browser to check that the server is working properly by going to the page http://your-server-ip/info.php.
+Use a web browser to check that the server is working properly by going to the page [http://your-server-ip/info.php](http://your-server-ip/info.php).
 
 !!! Warning
 
@@ -150,23 +161,23 @@ As we highlighted earlier in this document, there are many advantages to switchi
 
 The installation is limited to the php-fpm package:
 
-```
-$ sudo dnf install php-fpm
+```bash
+sudo dnf install php-fpm
 ```
 
 As php-fpm is a service from a system point of view, it must be activated and started:
 
-```
-$ sudo systemctl enable php-fpm
-$ sudo systemctl start php-fpm
-$ sudo systemctl status php-fpm
+```bash
+sudo systemctl enable php-fpm
+sudo systemctl start php-fpm
+sudo systemctl status php-fpm
 ```
 
 ### Configuration
 
 The main configuration file is stored under `/etc/php-fpm.conf`.
 
-```
+```bash
 include=/etc/php-fpm.d/*.conf
 [global]
 pid = /run/php-fpm/php-fpm.pid
@@ -182,7 +193,7 @@ As you can see, the files in the `/etc/php-fpm/` directory with the `.conf` exte
 
 By default, a PHP process pool, named `www`, is declared in `/etc/php-fpm.d/www.conf`.
 
-```
+```bash
 [www]
 user = apache
 group = apache
@@ -239,7 +250,7 @@ The processes of PHP-FPM can be managed statically or dynamically.
 
 In static mode, the number of child processes is set by the value of `pm.max_children`;
 
-```
+```bash
 pm = static
 pm.max_children = 10
 ```
@@ -250,7 +261,7 @@ In dynamic mode, PHP-FPM will launch at most the number of processes specified b
 
 Example:
 
-```
+```bash
 pm = dynamic
 pm.max_children = 5
 pm.start_servers = 2
@@ -268,18 +279,17 @@ There is a third mode of operation, the `ondemand` mode. This mode only starts a
 
     The configuration of the operating mode of PHP-FPM is essential to ensure an optimal functioning of your web server.
 
-
 #### Process status
 
 PHP-FPM offers, like Apache and its `mod_status` module, a page indicating the status of the process.
 
 To activate the page, setup its access path via the `pm.status_path` directive:
 
-```
+```bash
 pm.status_path = /status
 ```
 
-```
+```bash
 $ curl http://localhost/status_php
 pool:                 www
 process manager:      dynamic
@@ -303,7 +313,7 @@ The slowlog directive specifies the file that receives logging of requests that 
 
 The default location of the generated file is `/var/log/php-fpm/www-slow.log`.
 
-```
+```bash
 request_slowlog_timeout = 5
 slowlog = /var/log/php-fpm/www-slow.log
 ```
@@ -316,7 +326,7 @@ The default setting of nginx already includes the necessary configuration to mak
 
 The configuration file `fastcgi.conf` (or `fastcgi_params`) is located under `/etc/nginx/`:
 
-```
+```bash
 fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
 fastcgi_param  QUERY_STRING       $query_string;
 fastcgi_param  REQUEST_METHOD     $request_method;
@@ -348,7 +358,7 @@ In order for nginx to process `.php` files, the following directives must be add
 
 If PHP-FPM is listening on port 9000:
 
-```
+```bash
 location ~ \.php$ {
   include /etc/nginx/fastcgi_params;
   fastcgi_pass 127.0.0.1:9000;
@@ -357,7 +367,7 @@ location ~ \.php$ {
 
 If php-fpm is listening on a unix socket:
 
-```
+```bash
 location ~ \.php$ {
   include /etc/nginx/fastcgi_params;
   fastcgi_pass unix:/run/php-fpm/www.sock;
@@ -368,7 +378,7 @@ location ~ \.php$ {
 
 The configuration of apache to use a PHP pool is quite simple. You just have to use the proxy modules with a `ProxyPassMatch` directive, for example:
 
-```
+```bash
 <VirtualHost *:80>
   ServerName web.rockylinux.org
   DocumentRoot "/var/www/html/current/public"
@@ -390,7 +400,7 @@ It is essential to optimize the number of requests that will be able to be serve
 
 First of all, we need to know the average amount of memory used by a PHP process, with the command:
 
-```
+```bash
 while true; do ps --no-headers -o "rss,cmd" -C php-fpm | grep "pool www" | awk '{ sum+=$1 } END { printf ("%d%s\n", sum/NR/1024,"Mb") }' >> avg_php_proc; sleep 60; done
 ```
 
@@ -404,7 +414,7 @@ We can easily conclude that this server can accept at most **50 threads** `((6*1
 
 A good configuration of `php-fpm` specific to this use case would be:
 
-```
+```bash
 pm = dynamic
 pm.max_children = 50
 pm.start_servers = 12
@@ -427,26 +437,19 @@ It keeps the compiled PHP scripts in memory, which strongly impacts the executio
 
 To configure it, we must work on:
 
-* The size of the memory dedicated to the opcache according to the hit ratio
-
-By configuring correctly
-
-
-
-
-
+* The size of the memory dedicated to the opcache according to the hit ratio, configuring it correctly
 * the number of PHP scripts to cache (number of keys + maximum number of scripts)
 * the number of strings to cache
 
 To install it:
 
-```
-$ sudo dnf install php-opcache
+```bash
+sudo dnf install php-opcache
 ```
 
 To configure it, edit the `/etc/php.d/10-opcache.ini` configuration file:
 
-```
+```bash
 opcache.memory_consumption=128
 opcache.interned_strings_buffer=8
 opcache.max_accelerated_files=4000
