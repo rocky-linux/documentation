@@ -1,15 +1,15 @@
 ---
 title : mtr - Network Diagnostics
 author : tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Neel Chauhan
 date : 2021-10-20
 ---
 
-#  `mtr` Introduction
+# `mtr` Introduction
 
 `mtr` is a network diagnostic tool that can diagnose network problems. It is used to replace the `ping` and `traceroute` commands. In terms of performance, the `mtr` command is faster.
 
-##  Use `mtr`
+## Using `mtr`
 
 ```bash
 # Install mtr
@@ -60,11 +60,12 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 * Wrst - Worst time delay
 * StDev - variance (stability)
 
-##  Shortcut keys for interaction
-<kbd>p</kbd> - pause;
-<kbd>d</kbd> - switch display mode;
-<kbd>n</kbd> - turn on/off DNS;
-<kbd>r</kbd> - reset all counters;
-<kbd>j</kbd> - Toggle delay display information;
-<kbd>y</kbd> - switch IP information;
-<kbd>q</kbd> - Quit interaction.
+## Shortcut keys for interaction
+
+* <kbd>p</kbd> - Pause
+* <kbd>d</kbd> - Switch display mode
+* <kbd>n</kbd> - Turn on/off DNS
+* <kbd>r</kbd> - Reset all counters
+* <kbd>j</kbd> - Toggle delay display information
+* <kbd>y</kbd> - Switch IP information
+* <kbd>q</kbd> - Suit `mtr`
