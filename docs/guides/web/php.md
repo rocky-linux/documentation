@@ -72,9 +72,6 @@ Is this ok [y/N]: y
 Complete!
 ```
 
-!!! Note
-
-    You cannot currently install PHP 8 from the AppStream repositories. For this, you will have to go through the REMI repository. This installation is not covered in this document.
 
 You can now proceed to the installation of the PHP engine.
 
