@@ -63,9 +63,9 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 ## Racourcis de clavier
 
 * ++p++ - Pause
-* ++d++ - Switch display mode
-* ++n++ - Turn on/off DNS
-* ++r++ - Reset all counters
-* ++j++ - Toggle delay display information
-* ++y++ - Switch IP information
-* ++q++ - Quit `mtr`
+* ++d++ - display - mode d'affichage
+* ++n++ - Activer/désactiver le DNS
+* ++r++ - Remettre tous les compteurs à zéro
+* ++j++ - Activer/désactiver les informations d'affichage du délai
+* ++y++ - Informations IP
+* ++q++ - Quitter `mtr`
