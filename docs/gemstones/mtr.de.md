@@ -63,9 +63,9 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 ## Tastaturkürzel
 
 * ++p++ - Pause
-* ++d++ - Switch display mode
-* ++n++ - Turn on/off DNS
-* ++r++ - Reset all counters
-* ++j++ - Toggle delay display information
-* ++y++ - Switch IP information
-* ++q++ - Quit `mtr`
+* ++d++ - Display-Modus umschalten
+* ++n++ - DNS ein-/ausschalten
+* ++r++ - Alle Zähler zurücksetzen
+* ++j++ - Anzeigeinformationen zur Verzögerung umschalten
+* ++y++ - IP-Information umschalten
+* ++q++ - `mtr` beenden
