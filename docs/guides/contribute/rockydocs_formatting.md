@@ -33,6 +33,14 @@ A document may or may not need to contain any of these elements. If you feel you
 
     The key here is that you can use as many of the 2 through 6 headings as necessary, but only **ONE** level 1 heading. While the document will appear correct with more than one level 1 heading, the automatically generated table of contents for the document that appears on the right-hand side will **NOT** display correctly (or sometimes at all) with more than one. Keep this in mind when writing your documents.
 
+!!! warning "A note about supported HTML elements"
+
+    There are HTML elements that are technically supported in markdown. Some of these are described in this document where no markdown syntax exists to replace them. These supported HTML tags should be used rarely, because markdown linters will complain about them in a document. For example:
+
+    * Inline HTML [element name]
+
+    If you find yourself needing to use a supported HTML element, see if you can find another way to write your document that will not use HTML elements. If you must use them, it is still allowed.
+
 ## Admonitions
 
 Admonitions are special visual "boxes" that allow you to call attention to important facts and highlight them. Following are types of admonitions:
