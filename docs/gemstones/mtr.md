@@ -62,10 +62,10 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 
 ## Shortcut keys for interaction
 
-* <kbd>p</kbd> - Pause
-* <kbd>d</kbd> - Switch display mode
-* <kbd>n</kbd> - Turn on/off DNS
-* <kbd>r</kbd> - Reset all counters
-* <kbd>j</kbd> - Toggle delay display information
-* <kbd>y</kbd> - Switch IP information
-* <kbd>q</kbd> - Suit `mtr`
+* ++p++ - Pause
+* ++d++ - Switch display mode
+* ++n++ - Turn on/off DNS
+* ++r++ - Reset all counters
+* ++j++ - Toggle delay display information
+* ++y++ - Switch IP information
+* ++q++ - Quit `mtr`
