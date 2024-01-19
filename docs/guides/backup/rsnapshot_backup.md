@@ -239,7 +239,7 @@ Remove the remark:
 
 `logfile        /var/log/rsnapshot`
 
-Finally, skip down to the `### BACKUP POINTS / SCRIPTS ###` section and add any directories that you want to add in the `# LOCALHOST` section, remember to use <kbd>TAB</kbd> rather than <kbd>SPACE</kbd> between elements!
+Finally, skip down to the `### BACKUP POINTS / SCRIPTS ###` section and add any directories that you want to add in the `# LOCALHOST` section, remember to use ++tab++ rather than ++space++ between elements!
 
 For now write your changes (`SHIFT :wq!` for `vi`) and exit the configuration file.
 
