@@ -43,9 +43,9 @@ The github repository - https://github.com/systemd/systemd
 
 In 2010, two Red Hat software engineers, Lennart Poettering and Kay Sievers, developed the first version of systemd to replace the traditional System V .
 
-![Lennart Poettering](./images/16-Lennart%20Poettering.jpg)
+![Lennart Poettering](./images/16-Lennart-Poettering.jpg)
 
-![Kay Sievers](./images/16-Kay-Sievers-.jpg)
+![Kay Sievers](./images/16-Kay-Sievers.jpg)
 
 In May 2011, Fedora 15 became the first GNU/Linux distribution to enable systemd by default, with the reason given at the time:
 
@@ -494,3 +494,100 @@ For unit of the ".service" type, there are usually three titles:
 2. Service title
 
     The following key-value pairs can be used:
+
+    * `Type=notify`. Configure the type of this ".service" unit, which can be one of the following:
+        * `simple` - The service starts as the main process. This is the default.
+        * `forking` - The service calls forked processes and run as part of the main daemon.
+        * `exec` - Similar to `simple`. The service manager will start this unit immediately after executing the binary of the main service. Other successor units must remain blocked until after this point in time before they can continue to start.
+        * `oneshot` - Similar to `simple`, except the process must exit before systemd starts follow-up services.
+        * `dbus` - Similar to `simple`, except the daemon acquires a name of the D-Bus bus.
+        * `notify` - Similar to `simple`, except the daemon sends a notification message using `sd_notify` or an equivalent call after starting up.
+        * `idle` - Similar to `simple`, except the execution of the service is delayed until all active jobs are dispatched.
+    * `RemainAfterExit=`. Whether the current service should be considered active when all processes of the service exit. The default is no.
+    * `GuessMainPID=`. The value is of type boolean and defaults to yes. In the absence of a clear location for the main process of the service, should systemd guess the PID of the main process (which may not be correct). If you set `Type=forking` and do not set `PIDFile`, this key value pair will take effect. Otherwise, ignore the key value pair.
+    * `PIDFile=`. Specify the file path (absolute path) of the service PID. For `Type=forking` services, it is recommended to use this key-value pair. Systemd reads the PID of the main process of the daemon after start-up of the service. 
+    * `BusName=`. A D-Bus bus name to reach this service. This option is mandatory for services where `Type=dbus`.
+    * `ExecStart=/usr/sbin/sshd -D $OPTIONS $CRYPTO_POLICY`. The commands and arguments executed when the service starts.
+    * `ExecStartPre=`. Other commands executed before commands in `ExecStart`.
+    * `ExecStartPost=`. Other commands executed after commands in `ExecStart`.
+    * `ExecReload=/bin/kill -HUP $MAINPID`. The commands and arguments to execute when the service reloads.
+    * `ExecStop=`. The commands and arguments to execute when the service stops.
+    * `ExecStopPost=`. Additional commands to execute after the service stops.
+    * `RestartSec=42s`. The time in seconds to sleep before restarting a service.
+    * `TimeoutStartSec=`. The time in seconds to wait for the service to start.
+    * `TimeoutStopSec=`. The time in seconds to wait for the service to stop.
+    * `TimeoutSec=`. A shorthand for configuring both `TimeoutStartSec` and `TimeoutStopSec` simultaneously.
+    * `RuntimeMaxSec=`. A maximum time in seconds for the service to run. Pass `infinity` (the default) to configure no runtime limit.
+    * `Restart=on-failure`. Configures whether to restart the service when the service’s process exits, is killed, or reaches a timeout:
+        * `no` - The service will not be restarted. This is the default.
+        * `on-success` - Restart only when the service process exits cleanly (exit code 0).
+        * `on-failure` - Restart only when the service process does not exit cleanly (node-zero exit code).
+        * `on-abnormal` - Restart if the process terminates with a signal or when a timeout occurs.
+        * `on-abort` - Restart if the process exits due to an uncaught signal not specified as a clean exit status.
+        * `on-watchdog` -  If set to `on-watchdog`, the service will be restarted only if the watchdog timeout for the service expires.
+        * `always` - Always restart.
+
+    Exit causes and the effect of the `Restart=` settings on them:
+
+    ![effect](./images/16-effect.png)
+
+    * `KillMode=process`. Specifies how processes of this unit shall be killed. Its value can be one of the following:
+        * `control-group` - Default value. If set to `control-group`, all remaining processes in the control group of this unit will be killed on unit stop.
+        * `process` - Only the main process itself is killed.
+        * `mixed` - The SIGTERM signal is sent to the main process while the subsequent SIGKILL signal is sent to all remaining processes of the unit's control group.
+        * `none` - Does not kill any processes.
+    * `PrivateTmp=`. Whether to use a private tmp directory. Based on certain security, it is recommended that you set the value to yes.
+    * `ProtectHome=`. Whether to protect the home directory. Its value can be one of the following:
+        * `yes` - The three directories (/root/, /home/, /run/user/) are not visible to unit.
+        * `no` - The three directories are visible to unit.
+        * `read-only` - The three directories are read-only to unit.
+        * `tmpfs` - The temporary file system will be mounted in read-only mode on these three directories.
+    * `ProtectSystem=`. The directory used to protect the system from being modified by the service. The value can be:
+        * `yes` - Indicates that the process called by the unit will be mounted read-only to the /usr/ and /boot/ directories.
+        * `no` - Default value
+        * `full` - Indicates that the /usr/, /boot/, /etc/ directories are mounted read-only.
+        * `strict` - All file systems are mounted read-only (excluding virtual file system directories such as /dev/, /proc/, and /sys/).
+    * `EnvironmentFile=-/etc/crypto-policies/back-ends/opensshserver.config`. Read environment variables from a text file. "-" means that if the file does not exist, the file will not be read and no errors or warnings will be logged.
+
+    See `man 5 systemd.service` for more information.
+
+3. Install title
+
+    * `Alias=`. A list of additional names separated by spaces. Attention please! Your additional name should have the same type (suffix) as the current unit.
+    * `RequiredBy=` or `WantedBy=multi-user.target`. Define the unit of the current operation as a dependency of unit in the value. After the definition is complete, you can find the relevant files in the /etc/systemd/systemd/ directory. For example:
+
+      ```bash
+      Shell > systemctl is-enabled chronyd.service
+      enabled
+
+      Shell > systemctl cat chronyd.service
+      ...
+      [Install]
+      WantedBy=multi-user.target
+
+      Shell > ls -l /etc/systemd/system/multi-user.target.wants/
+      total 0
+      lrwxrwxrwx. 1 root root 38 Sep 25 14:03 auditd.service -> /usr/lib/systemd/system/auditd.service
+      lrwxrwxrwx. 1 root root 39 Sep 25 14:03 chronyd.service -> /usr/lib/systemd/system/chronyd.service  ←←
+      lrwxrwxrwx. 1 root root 37 Sep 25 14:03 crond.service -> /usr/lib/systemd/system/crond.service
+      lrwxrwxrwx. 1 root root 42 Sep 25 14:03 irqbalance.service -> /usr/lib/systemd/system/irqbalance.service
+      lrwxrwxrwx. 1 root root 37 Sep 25 14:03 kdump.service -> /usr/lib/systemd/system/kdump.service
+      lrwxrwxrwx. 1 root root 46 Sep 25 14:03 NetworkManager.service -> /usr/lib/systemd/system/NetworkManager.service
+      lrwxrwxrwx. 1 root root 40 Sep 25 14:03 remote-fs.target -> /usr/lib/systemd/system/remote-fs.target
+      lrwxrwxrwx. 1 root root 36 Sep 25 14:03 sshd.service -> /usr/lib/systemd/system/sshd.service
+      lrwxrwxrwx. 1 root root 36 Sep 25 14:03 sssd.service -> /usr/lib/systemd/system/sssd.service
+      lrwxrwxrwx. 1 root root 37 Sep 25 14:03 tuned.service -> /usr/lib/systemd/system/tuned.service
+      ```
+
+    * `Also=`. Other units to install or uninstall when installing or uninstalling this unit.
+
+      In addition to the manual pages mentioned above, you can also type `man 5 systemd.exec` or `man 5 systemd.kill` to access other information.
+
+## Command related to other components
+
+* `timedatactl` - Query or change system time and date settings.
+* `hostnamectl` - Query or change system hostname.
+* `localectl` - Query or change system locale and keyboard settings.
+* `systemd-analyze` - Profile systemd, show unit dependencies, check unit files.
+* `journalctl` - View system or service logs. The `journalctl` command is so important that we'll have a section later on explaining its use and what to look out for.
+* `loginctl` - Session management of login users.
