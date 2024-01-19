@@ -171,7 +171,7 @@ include /etc/nginx/sites-enabled/*.conf;
 
 That will load in our website configuration files when they're ready to go live.
 
-Now head down to the section that looks like this, and either **comment it out** with the hash sign <kbd>#</kbd>, or delete it if you feel so inclined:
+Now head down to the section that looks like this, and either **comment it out** with the hash sign ++#++, or delete it if you feel so inclined:
 
 ```
 server {

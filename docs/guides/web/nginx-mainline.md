@@ -67,7 +67,7 @@ Then enable the right module for the latest version of `nginx`. This module will
 sudo dnf module enable nginx:mainline
 ```
 
-It'll give you the usual "Are you sure you want to do that?", but this isn't 2nd Edition D&D with Gary Gygax himself, so yes. Of course you do. Hit <kbd>y</kbd> to confirm.
+It'll give you the usual "Are you sure you want to do that?", but this isn't 2nd Edition D&D with Gary Gygax himself, so yes. Of course you do. Hit ++y++ to confirm.
 
 ## Installing and Running Nginx
 

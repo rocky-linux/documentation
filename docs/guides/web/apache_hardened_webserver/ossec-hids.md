@@ -43,7 +43,7 @@ Download and enable Atomicorp's no cost repository:
 wget -q -O - https://www.atomicorp.com/installers/atomic | sh
 ```
 
-This script will ask you to agree to the terms. Enter "yes" or <kbd>Enter</kbd> to accept the default.
+This script will ask you to agree to the terms. Enter "yes" or ++enter++ to accept the default.
 
 Next, it will ask you if you want to enable the repository by default, and again you want to accept the default or enter "yes".
 
@@ -61,7 +61,7 @@ Add this line beneath the "enabled = 1" in the top section:
 includepkgs = ossec* GeoIP* inotify-tools
 ```
 
-That is the only change you need. Save your changes and get out of the repository (in `vi` that is <kbd>esc</kbd> to enter command mode, then <kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq</kbd> to save and quit).
+That is the only change you need. Save your changes and get out of the repository (in `vi` that is ++esc++ to enter command mode, then ++shift+:+wq++ to save and quit).
 
 This restricts the Atomicorp repository only to install and update these packages.
 

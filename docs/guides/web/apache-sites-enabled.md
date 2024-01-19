@@ -119,7 +119,8 @@ The configuration file content will look something like this:
         </Directory>
 </VirtualHost>
 ```
-When created, you need to write (save) it with <kbd>shift</kbd>+<kbd>:</kbd>+<kbd>wq</kbd>.
+
+When created, you need to write (save) it with ++shift+:+wq++.
 
 In the example, loading the wiki site happens from the "html" subdirectory of _your-server-hostname_, which means that the path you created in _/var/www_ (above) will need some additional directories to satisfy this:
 

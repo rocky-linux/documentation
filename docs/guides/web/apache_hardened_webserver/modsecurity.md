@@ -129,7 +129,7 @@ Add the following content just before the end tag (`</IfModule`):
     # ...
 ```
 
-Use <kbd>ESC</kbd> to get out of insert mode, and <kbd>SHIFT</kbd>+<kbd>:</kbd>+<kbd>wq</kbd> to save your changes, and quit.
+Use ++esc++ to get out of insert mode, and ++shift+:+wq++ to save your changes, and quit.
 
 ## Restart `httpd` and verify `mod_security` 
 
