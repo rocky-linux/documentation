@@ -242,7 +242,7 @@ Rimuovere il commento:
 
 `logfile        /var/log/rsnapshot`
 
-Infine, passate alla sezione `### BACKUP POINTS / SCRIPTS ###` e aggiungere le directory che si desidera aggiungere nella sezione `# LOCALHOST`, ricordando di usare <kbd>TAB</kbd> anziché <kbd>SPAZIO</kbd> tra gli elementi!
+Infine, passate alla sezione `### BACKUP POINTS / SCRIPTS ###` e aggiungere le directory che si desidera aggiungere nella sezione `# LOCALHOST`, ricordando di usare ++tab++ anziché ++spazio++ tra gli elementi!
 
 Per ora scrivete le vostre modifiche (`SHIFT :wq!` per `vi`) e uscite dal file di configurazione.
 
