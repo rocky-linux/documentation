@@ -1,7 +1,7 @@
 ---
 title: mtr - Netzwerk-Diagnose
 author: tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Neel Chauhan
 date: 2021-10-20
 ---
 
@@ -61,4 +61,11 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 * StDev - Varianz (Stabilität)
 
 ## Tastaturkürzel
-<kbd>p</kbd> - pause; <kbd>d</kbd> - switch display mode; <kbd>n</kbd> - turn on/off DNS; <kbd>r</kbd> - reset all counters; <kbd>j</kbd> - toggle delay display information; <kbd>y</kbd> - switch IP information; <kbd>q</kbd> - quit.
+
+* ++p++ - Pause
+* ++d++ - Display-Modus umschalten
+* ++n++ - DNS ein-/ausschalten
+* ++r++ - Alle Zähler zurücksetzen
+* ++j++ - Anzeigeinformationen zur Verzögerung umschalten
+* ++y++ - IP-Information umschalten
+* ++q++ - `mtr` beenden

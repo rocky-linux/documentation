@@ -2,6 +2,8 @@
 title: Introduction à Linux
 ---
 
+<!-- markdownlint-disable MD025 MD007 -->
+
 # Introduction au système d'exploitation Linux
 
 Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/Linux.
@@ -10,18 +12,19 @@ Dans ce chapitre, vous allez en apprendre plus à propos des distributions GNU/L
 
 **Objectifs** : Dans ce chapitre, vous apprendrez à :
 
-:heavy_check_mark: Décrire les caractéristiques et les architectures possibles d'un système d'exploitation.   
-:heavy_check_mark: Retracer l'histoire d'UNIX et de GNU/Linux   
-:heavy_check_mark: Choisir la distribution Linux adaptée à ses besoins   
-:heavy_check_mark: Expliquer la philosophie des logiciels libres et open source   
+:heavy_check_mark: Décrire les caractéristiques et les architectures possibles d'un système d'exploitation.  
+:heavy_check_mark: Retracer l'histoire de UNIX et de GNU/Linux.  
+:heavy_check_mark: Choisir la distribution Linux adaptée à vos propres besoins.  
+:heavy_check_mark: Expliquer la philosophie des logiciels libres et open source.  
 :heavy_check_mark: Découvrir l'utilité de la SHELL.
 
 :checkered_flag: **généralités**, **linux**, **distributions**
 
-**Connaissances** : :star:    
-**Complexité** : :star:
+**Connaissances**: :star:
 
-**Temps de lecture** : 10 minutes
+**Complexité**: :star:
+
+**Temps de lecture** : 11 minutes
 
 ****
 
@@ -35,12 +38,18 @@ Linux, UNIX, BSD, VxWorks, Windows et MacOS sont tous des **systèmes d'exploita
 
 Dans le cadre de la gestion des ressources, le système d'exploitation doit :
 
-* Gérer la mémoire physique ou virtuelle.
+* Gérer la mémoire **physique** ou **virtuelle**.
+
     * La **mémoire physique** est constituée des barrettes de RAM et de la mémoire cache du processeur qui sont utilisées pour l'exécution des programmes.
+
     * La **mémoire virtuelle** est un emplacement sur le disque dur (la partition **swap**) qui permet de décharger la mémoire physique et de sauvegarder l'état actuel du système lors de l'arrêt électrique de l'ordinateur.
+
 * Intercepter les **accès aux périphériques**. Les logiciels sont rarement autorisés à accéder directement au matériel (sauf les cartes graphiques pour des besoins très spécifiques).
+
 * Fournir aux applications une **gestion correcte des tâches**. Le système d'exploitation est responsable de l'ordonnencement des processus pour les répartir sur le ou les processeur(s).
+
 * **Protéger les fichiers** contre les accès non autorisés.
+
 * **Collecter des informations** sur les programmes utilisés ou en cours d'exécution.
 
 ![Fonctionnement d'un système d'exploitation](images/operating_system.png)
@@ -110,12 +119,17 @@ Linux équipe 100% des 500 superordinateurs depuis 2018. Un superordinateur est 
 ### Conception architecturale
 
 * Le **noyau** est le premier composant logiciel.
+
     * C'est le cœur du système GNU/Linux.
     * Il gère les ressources matérielles du système.
     * Les autres composants logiciels doivent passer par lui pour accéder au matériel.
+
 * Le **shell** est un utilitaire qui interprète les commandes de l'utilisateur et assure leur exécution.
+
     * Principaux shells : Bourne shell, C shell, Korn shell et Bourne-Again shell (bash).
+
 * **Les applications** sont des programmes utilisateur incluant mais non limités à :
+
     * Navigateurs Internet
     * Traitement de texte
     * Tableurs
@@ -131,7 +145,7 @@ Linux appartient à la famille des systèmes d'exploitation à temps partagé. I
 
 #### Multi-utilisateurs
 
-Le but de MULTIX était de permettre à plusieurs utilisateurs de travailler à partir de plusieurs terminaux (écran et clavier) simultanément sur un seul ordinateur (très cher à l'époque). Linux, inspiré de ce système d'exploitation, a conservé cette capacité de travailler avec plusieurs utilisateurs simultanément et indépendamment, chacun ayant son propre compte utilisateur avec un espace mémoire et des droits d'accès aux fichiers et aux logiciels.
+Le but de MULTICS était de permettre à plusieurs utilisateurs de travailler à partir de plusieurs terminaux (écran et clavier) simultanément sur un seul ordinateur (très cher à l'époque). GNU/Linux, inspiré de ce système d'exploitation, a conservé cette capacité de travailler avec plusieurs utilisateurs simultanément et indépendamment, chacun ayant son propre compte utilisateur avec un espace mémoire et des droits d'accès aux fichiers et aux logiciels.
 
 #### Multi-processeurs
 
@@ -139,7 +153,7 @@ Linux est capable de fonctionner sur des ordinateurs multi-processeurs et/ou ave
 
 #### Multi-plateforme
 
-Linux est écrit dans un langage de haut niveau qui peut être adapté à différents types de plates-formes pendant la compilation. Cela lui permet de s'exécuter sur :
+Linux est écrit dans un langage de haut niveau qui peut être adapté à différents types de plates-formes lors de la compilation. Cela lui permet d'être exécuté sur :
 
 * Ordinateurs domestiques (PC ou ordinateur portable)
 * Serveurs (données, applications, ...)
@@ -158,12 +172,12 @@ Linux est basé sur et utilise des standards reconnus tels que [POSIX](http://fr
 * Portabilité.
 * Ne faire qu’une seule chose à la fois et la faire bien.
 * KISS : Keep It Simple and Stupid.
-* “UNIX est simple, il faut juste être un génie pour comprendre sa simplicité” (__Dennis Ritchie__)
-* “UNIX est convivial. Cependant UNIX ne précise pas vraiment avec qui.” (__Steven King__)
+* “UNIX est simple, il faut juste être un génie pour comprendre sa simplicité” (**Dennis Ritchie**)
+* “UNIX est convivial. Cependant UNIX ne précise pas vraiment avec qui.” (**Steven King**)
 
 ## Les distributions GNU/Linux
 
-Une distribution Linux est un **ensemble cohérent de logiciels** assemblés autour du noyau Linux et prêt à être installé ainsi que le nécessaire à la gestion de ces logiciels (installation, suppression, configuration). Il existe des **distributions associatives ou communautaires** (Debian, CentOS) ou **commerciales** (RedHat, Ubuntu).
+Une distribution Linux est un **ensemble cohérent de logiciels** assemblés autour du noyau Linux et prêt à être installé ainsi que le nécessaire à la gestion de ces logiciels (installation, suppression, configuration,...). Il existe des **distributions associatives ou communautaires** (Debian, CentOS) ou bien **commerciales** (RedHat, Ubuntu).
 
 Chaque distribution offre un ou plusieurs **environnements de bureau** et fournit un ensemble de logiciels préinstallés et une bibliothèque de logiciels supplémentaires. Les options de configuration (options du noyau ou des services par exemple) sont spécifiques à chaque distribution.
 
@@ -171,15 +185,15 @@ Ce principe permet aux distributions d'être orientées vers **débutants** (Ubu
 
 ### Les environnements de bureau
 
-Les environnements graphiques sont nombreux : **GNOME**, **KDE**, **LXDE**, **XFCE**, etc. Il y en a pour tous les goûts, et leurs **ergonomies** n’ont pas à rougir de ce que l’on peut retrouver sur les systèmes Microsoft ou Apple.
+Les environnements graphiques sont nombreux : **GNOME**, **KDE**, **LXDE**, **XFCE**, etc. Il y en a pour tous les goûts et leurs **ergonomies** n’ont pas à rougir de ce que l’on peut retrouver sur les systèmes Microsoft ou Apple.
 
-Alors pourquoi y a-t-il si peu d'enthousiasme pour Linux ? Peut-être est-ce parce que tant d'éditeurs (Adobe) et de fabricants (Nvidia) ne jouent pas au jeu du mouvement du libre et ne fournissent pas de version de leurs logiciels ou __pilotes__ pour GNU/Linux ? Peut-être est-ce la peur du changement, ou la difficulté de trouver où acheter un ordinateur Linux, ou trop peu de jeux distribués sous Linux. Cette dernière excuse au moins ne devrait pas être vraie pour longtemps, avec l'avènement du moteur de jeu Steam pour Linux.
+Alors pourquoi y a-t-il si peu d'enthousiasme pour Linux ? Peut-être est-ce parce que tant d'éditeurs (Adobe) et de fabricants (Nvidia) ne jouent pas au jeu du libre et ne fournissent pas de version de leurs logiciels ou **pilotes** pour GNU/Linux ? Peut-être est-ce la peur du changement, la difficulté de trouver où acheter un ordinateur Linux ou trop peu de jeux distribués sous Linux. Cette dernière excuse au moins ne devrait pas être vraie pour longtemps, avec l'avènement du moteur de jeu Steam pour Linux.
 
-![GNOME Desktop](images/01-presentation-gnome.png)
+![Environment de bureau GNOME](images/01-presentation-gnome.png)
 
 L'environnement de bureau **GNOME 3** n'utilise plus le concept de bureau mais celui de GNOME Shell (à ne pas confondre avec le shell en ligne de commande). Il sert à la fois de bureau, de tableau de bord, de zone de notification et de sélecteur de fenêtre. L'environnement de bureau GNOME est basé sur la bibliothèque de composants **GTK+**.
 
-![KDE Desktop](images/01-presentation-kde.png)
+![Le bureau KDE](images/01-presentation-kde.png)
 
 L’environnement de bureau **KDE** se base sur la bibliothèque de composants **Qt**. Il est traditionnellement recommandé pour les utilisateurs familiers avec un environnement Windows.
 
@@ -219,7 +233,7 @@ Une distribution Linux excelle pour :
 * **Ordinateur centraux** : Banques, assurances, industrie, etc.
 * **Systèmes embarqués**: Routeurs, boîtes Internet, SmartTVs, etc.
 
-Linux est un choix adapté pour l’hébergement de bases de données ou de sites Web ou comme serveur de messagerie, DNS, pare-feu. Bref Linux peut à peu près tout faire, ce qui explique la quantité de distributions spécifiques.
+Linux est un choix adapté pour l’hébergement de bases de données ou de sites Web ou comme serveur de messagerie, DNS ou bien pare-feu. Bref Linux peut à peu près tout faire, ce qui explique la quantité de distributions spécifiques.
 
 ## Le Shell
 
@@ -251,62 +265,62 @@ Il existe plusieurs types d'interpréteurs de commandes disponibles et configura
 
 :heavy_check_mark: Un système d’exploitation est un ensemble de programmes permettant la gestion des ressources disponibles d’un ordinateur :
 
-- [ ] Vrai
-- [ ] Faux
+* [ ] Vrai
+* [ ] Faux
 
 :heavy_check_mark: Le système d’exploitation est amené à :
 
-- [ ] Gérer la mémoire physique et virtuelle
-- [ ] Permettre l’accès direct aux périphériques
-- [ ] Sous traiter la gestion des tâches au processeur
-- [ ] Collecter des informations sur les programmes utilisées ou en cours d’exécution
+* [ ] Gérer la mémoire physique et virtuelle
+* [ ] Permettre l’accès direct aux périphériques
+* [ ] Sous traiter la gestion des tâches au processeur
+* [ ] Collecter des informations sur les programmes utilisées ou en cours d’exécution
 
 :heavy_check_mark: Parmi ces personnalités, lesquelles ont participé au développement de UNIX :
 
-- [ ] Linus Torvalds
-- [ ] Ken Thompson
-- [ ] Lionel Richie
-- [ ] Brian Kernighan
-- [ ] Andrew Stuart Tanenbaum
+* [ ] Linus Torvalds
+* [ ] Ken Thompson
+* [ ] Lionel Richie
+* [ ] Brian Kernighan
+* [ ] Andrew Stuart Tanenbaum
 
 :heavy_check_mark: La nationalité d’origine de Linus Torvalds, créateur du noyau Linux, est :
 
-- [ ] Suédoise
-- [ ] Finlandaise
-- [ ] Norvégienne
-- [ ] Flamande
-- [ ] Française (évidemment)
+* [ ] Suédoise
+* [ ] Finlandaise
+* [ ] Norvégienne
+* [ ] Flamande
+* [ ] Française (évidemment)
 
 :heavy_check_mark: Parmi les distributions suivantes, quelle est la plus ancienne :
 
-- [ ] Debian
-- [ ] Slackware
-- [ ] Red Hat
-- [ ] Arch
+* [ ] Debian
+* [ ] Slackware
+* [ ] Red Hat
+* [ ] Arch
 
 :heavy_check_mark: Le noyau Linux est-il :
 
-- [ ] Multitâche
-- [ ] Multiutilisateurs
-- [ ] Multi-processeurs
-- [ ] Multicoeurs
-- [ ] Multiplateforme
-- [ ] Ouvert
+* [ ] Multitâche
+* [ ] Multiutilisateurs
+* [ ] Multi-processeurs
+* [ ] Multicoeurs
+* [ ] Multiplateforme
+* [ ] Ouvert
 
 :heavy_check_mark: Un logiciel libre est-il forcément Open Source ?
 
-- [ ] Vrai
-- [ ] Faux
+* [ ] Vrai
+* [ ] Faux
 
 :heavy_check_mark: Un logiciel Open Source est-il forcément libre ?
 
-- [ ] Vrai
-- [ ] Faux
+* [ ] Vrai
+* [ ] Faux
 
 :heavy_check_mark: Parmi les propositions suivantes, laquelle n’est pas un shell :
 
-- [ ] Jason
-- [ ] Jason-Bourne shell (jbsh)
-- [ ] Bourne-Again shell (bash)
-- [ ] C shell (csh)
-- [ ] Korn shell (ksh)   
+* [ ] Jason
+* [ ] Jason-Bourne shell (jbsh)
+* [ ] Bourne-Again shell (bash)
+* [ ] C shell (csh)
+* [ ] Korn shell (ksh)  
