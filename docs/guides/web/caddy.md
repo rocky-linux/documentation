@@ -110,7 +110,7 @@ That should be everything you need, firewall-wise.
 
 ## Configuring Caddy
 
-Unlike traditional web servers like Apache and Nginx, Caddy's configuration format is significantly simpler. Gone are the days where you had to configure the nitty gritty like your web server's threading model or SSL certificates, unless you want to.
+Unlike traditional web servers like Apache and Nginx, Caddy's configuration format is significantly simpler. Gone are the days where you had to configure the nitty-gritty like your web server's threading model or SSL certificates, unless you want to.
 
 To edit the Caddy configuration file:
 
@@ -164,7 +164,7 @@ Next, we need to install PHP (note: if you are using another version of PHP, sub
 dnf install -y php81-php-fpm
 ```
 
-If you require additional PHP modules (e.g. GD), add them to the above command.
+If you require additional PHP modules (e.g., GD), add them to the above command.
 
 Then, we need to configure PHP to listen on a TCP socket:
 
