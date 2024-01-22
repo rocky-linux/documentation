@@ -1,7 +1,7 @@
 ---
 title: mtr - Diagnostica di rete
 author: tianci li
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Neel Chauhan
 date: 2022-02-13
 ---
 
@@ -61,4 +61,11 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 * StDev - varianza (stabilità)
 
 ## Tasti di scelta rapida per l'interazione
-<kbd>p</kbd> - pausa; <kbd>d</kbd> - cambia modalità di visualizzazione; <kbd>n</kbd> - attiva/disattiva il DNS; <kbd>r</kbd> - azzera tutti i contatori; <kbd>j</kbd> - alterna le informazioni di visualizzazione del ritardo; <kbd>y</kbd> - cambia le informazioni IP; <kbd>q</kbd> - Esce dall'interazione.
+
+* ++p++ - Pausa
+* ++d++ - Cambiare modalità di visualizzazione
+* ++n++ - Attivare/disattivare il DNS
+* ++r++ - Azzeramento di tutti i contatori
+* ++j++ - Cambia le informazioni sulla visualizzazione del ritardo
+* ++y++ - Informazioni IP dello switch
+* ++q++ - Uscire da `mtr`
