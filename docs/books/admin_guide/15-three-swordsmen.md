@@ -11,9 +11,9 @@ tags:
 
 # Overview
 
- The GNU/Linux operating system follows the philosophy of "everything is a file". A side consequence of this philosopy is that system administrators often have to interact with files, file names and file contents.
+ The GNU/Linux operating system follows the philosophy of "everything is a file". A side consequence of this philosophy is that system administrators often have to interact with files, file names and file contents.
 
-Regarding processing file content, the three tools grep, sed, and awk are potent and frequently used, so people call them the "Three Swordsmen".
+Regarding processing file content, the three tools `grep`, `sed`, and `awk` are potent and frequently used, so people call them the "Three Swordsmen".
 
 ## Regular expressions VS wildcards
 
@@ -28,11 +28,12 @@ Similarities:
 Differences:
 
 * Regular expressions match file content; Wildcards are typically used to match file or directory names.
-* Regular expressions can be used on commands such as `grep`, `sed`, `awk`, etc; Wildcards can be used on commands such as `cp`, `find`, `mv`, `touch`, `ls`, etc.
+* Regular expressions are typically used on commands such as `grep`, `sed`, `awk`, and so on.
+* Wildcards are typically used with commands such as `cp`, `find`, `mv`, `touch`, `ls`, and so on.
 
-###  Wildcards in GNU/Linux
+### Wildcards in GNU/Linux
 
-GNU/Linux OS supports these wildcards:
+GNU/Linux operating systems support these wildcards:
 
 | wildcards style | role |
 | :---:           | :---|
@@ -40,7 +41,7 @@ GNU/Linux OS supports these wildcards:
 | *               | Matches 0 or more arbitrary characters of a file or directory name.|
 | [ ]             |  Matches any single character in parentheses. For example, &#91;one&#93; which means to match o or n or e.|
 | [-]             | Matches any single character within the given range in parentheses. For example, &#91;0-9&#93; matches any single number from 0 to 9. |
-| [^]             | "logical non" matching of a single character. For example, &#91;^a-zA-Z&#93; represents matching a single nonletter character. |
+| [^]             | "logical non" matching of a single character. For example, &#91;^a-zA-Z&#93; represents matching a single non-letter character. |
 | {,}             |  Non continuous matching of multiple single characters. Separated by commas. |
 | {..}            | Same as &#91;-&#93;. For example {0..9} and {a..z}  |
 
@@ -134,7 +135,7 @@ ERE also supports characters with special meanings:
 
 #### POSIX character
 
-Sometimes, you may see "POSIX character"(also known as "POSIX character class"). 
+Sometimes, you may see "POSIX character"(also known as "POSIX character class").
 Please note that the author rarely uses the "POSIX character class", but has included this section to enhance basic understanding.
 
 | POSIX character  | equivalent to   |
@@ -1973,7 +1974,6 @@ ID      Name
 7. ENVIRON
 
     You can reference operating systems or user-defined variables in `awk` programs.
-.
 
     ```bash
     Shell > echo ${SSH_CLIENT}
