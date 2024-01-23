@@ -381,13 +381,13 @@ Options:
 
 | Options | Remarks                                                      |
 | ------- | ------------------------------------------------------------ |
-| `-b` or `--backup[=suffix]` | create a backup of destination file.     |
-| `-d`    | treat arguments as directory names.                          |
-| `-D`    | create all leading components before copying SOURCE to DEST. |
-| `-g` and `-o`    | set ownership.                                      |
-| `-m`    | set permissions.                                             |
-| `-p`    | preserve the timestamps of sources files.                    |
-| `-t`    | copy all source arguments to directory.                      |
+| `-b` or `--backup[=suffix]` | creates a backup of destination file     |
+| `-d`    | treats arguments as directory names                          |
+| `-D`    | creates all leading components before copying SOURCE to DEST |
+| `-g` and `-o`    | sets ownership                                      |
+| `-m`    | sets permissions                                             |
+| `-p`    | preserves the timestamps of the sources files                |
+| `-t`    | copies all source arguments to the directory                 |
 
 !!! note
 
@@ -415,7 +415,7 @@ install: creating directory '~/samples'
 'src/sample.txt' -> '~/samples/sample.txt'
 ```
 
-This command already saves time, now let's combine it with owner, owner group and rights management:
+This command already saves time. Combine it with owner, owner group, and rights management to improve the time savings:
 
 ```bash
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
