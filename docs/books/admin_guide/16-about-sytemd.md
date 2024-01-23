@@ -11,7 +11,7 @@ tags:
 
 # Basic overview
 
-**`systemd`**, also known as **system daemon**, is a kind of init software under GNU/linux operating system.
+**`systemd`**, also known as **system daemon**, is a kind of init software under GNU/Linux operating system.
 
 Purpose of development:
 
@@ -19,13 +19,13 @@ Purpose of development:
 * implements parallel startup of services at system initialization
 * reduces shell overhead and replaces SysV style init
 
-**`systemd`** provides a series of system components for the GNU/Linux operating system with the goal of unifying the service configuration and behavior across GNU/Linux distributions and eliminating differences in their usage.
+**`systemd`** provides a series of system components for the GNU/Linux operating system to unify the service configuration and behavior across GNU/Linux distributions and eliminate differences in their usage.
 
 Since 2015, most GNU/Linux distributions have adopted `systemd` to replace traditional init programs such as SysV. It is worth noting that many of the concepts and designs of `systemd` are inspired by Apple Mac OS's **launchd**.
 
 ![init-compare](./images/16-init-compare.jpg)
 
-The emergence of `systemd` caused huge controversy in the open source community.
+The emergence of `systemd` caused massive controversy in the open source community.
 
 Praising voices:
 
@@ -41,7 +41,7 @@ The GitHub repository - [https://github.com/systemd/systemd](https://github.com/
 
 ## Development history
 
-In 2010, two Red Hat software engineers, Lennart Poettering and Kay Sievers, developed the first version of `systemd` to replace the traditional SysV .
+In 2010, two Red Hat software engineers, Lennart Poettering and Kay Sievers, developed the first version of `systemd` to replace the traditional SysV.
 
 ![Lennart Poettering](./images/16-Lennart-Poettering.jpg)
 
@@ -53,13 +53,13 @@ In May 2011, Fedora 15 became the first GNU/Linux distribution to enable `system
 
 In October 2012, Arch Linux booted with `systemd` by default.
 
-From October 2013 to February 2014, the Debian Technical Committee had a long debate on the Debian mailing list, focusing on the topic "which init should be used by Debian 8 jessie as the system default" and finally decided to use `systemd`.
+From October 2013 to February 2014, the Debian Technical Committee had a lengthy debate on the Debian mailing list, focusing on "which init should be used by Debian 8 Jessie as the system default" and finally decided to use `systemd`.
 
 In February 2014, Ubuntu adopted `systemd` as its init and abandoned its own Upstart.
 
 In August 2015, `systemd` began providing login shells callable through `machinectl`.
 
-In 2016, `systemd` discovered a security vulnerability that allowed any non privileged user to perform a "denial of service attack" on `systemd`.
+In 2016, `systemd` discovered a security vulnerability that allows any non-privileged user to perform a "denial of service attack" on `systemd`.
 
 In 2017, `systemd` discovered another security vulnerability - **CVE-2017-9445**. Remote attackers can trigger a buffer overflow vulnerability and execute malicious code through malicious DNS responses.
 
@@ -81,18 +81,18 @@ Here, the author chose as an example of `systemd` the one used by Samsung's Tize
 
     Some "targets" of `systemd` do not belong to `systemd` components, such as `telephony`, `bootmode`, `dlog`, `tizen service`, they belong to Tizen.
 
-`systemd` uses a modular design. Many configuration switches exist at compile time to determine what will or will not be built, which is similar to the modular design of the Linux kernel. When compiled, `systemd` can have up to 69 binary executables that perform the following tasks, including:
+`systemd` uses a modular design. Many configuration switches exist at compile time to determine what will or will not be built, similar to the Linux kernel's modular design. When compiled, `systemd` can have up to 69 binary executables that perform the following tasks, including:
 
 * `systemd` runs with PID 1 and provides the startup of as many parallel services as possible. This also manages the shutdown sequence.
 * The `systemctl` program provides a user interface for service management.
-* To ensure compatibility, support for SysV and LSB scripts are also provided.
+* Support for SysV and LSB scripts are also provided to ensure compatibility.
 * Compared to SysV, `systemd` service management and reporting can output more detailed information.
-* By mounting and unmounting file systems in layers, `systemd` can more securely cascade mounted file systems.
+* By mounting and unmounting file systems in layers, `systemd` can cascade mounted file systems more securely.
 * `systemd` provides management of basic component configuration, including hostname, time and date, locale, log, and so on.
 * Provides management of sockets.
 * `systemd` timers provide functions similar to cron scheduled tasks.
 * Support for the creation and management of temporary files, including deletion.
-* The D-Bus interface provides the ability to run scripts when a device is inserted or removed. In this way, all devices, whether pluggable or not, can be regarded as plug and play devices, thus greatly simplifying the device processing process.
+* The D-Bus interface allows running scripts when a device is inserted or removed. In this way, all devices, whether pluggable or not, can be regarded as plug-and-play devices, thus greatly simplifying the device processing.
 * The startup sequence analysis tool can be used to locate the service that takes the longest time.
 * The management of logs and service logs.
 
@@ -100,9 +100,9 @@ Here, the author chose as an example of `systemd` the one used by Samsung's Tize
 
 ## `systemd` as PID 1
 
-The determination of the `systemd` mount occurs by using the contents of the **/etc/fstab** file, including the swap partition.
+The `systemd` mount is determined by using the contents of the **/etc/fstab** file, including the swap partition.
 
-The determination of the default "target" configuration occurs by using **/etc/systemd/system/default.target**.
+The default "target" configuration is determined by using **/etc/systemd/system/default.target**.
 
 Previously, with SysV initialization, there was the concept of a **runlevel**. With `systemd`, there is also a related compatibility comparison table as shown below (List in descending order by number of dependencies):
 
@@ -132,7 +132,7 @@ Shell > ls -l /etc/systemd/system/default.target
 lrwxrwxrwx. 1 root root 41 12月 23 2022 /etc/systemd/system/default.target -> /usr/lib/systemd/system/multi-user.target
 ```
 
-Each "target" has a set of dependencies described in its configuration file, which are the services required to run the GNU/Linux host at a specific runlevel. The more features you have, the more dependencies "target" requires, for example, the GUI environment requires more services than the command-line mode.
+Each "target" has a set of dependencies described in its configuration file, which are the services required to run the GNU/Linux host at a specific runlevel. The more features you have, the more dependencies the "target" requires. For example, the GUI environment requires more services than the command-line mode.
 
 From the man page (`man 7 bootup`), we can consult the boot diagram of `systemd`:
 
@@ -182,7 +182,7 @@ From the man page (`man 7 bootup`), we can consult the boot diagram of `systemd`
                              graphical.target
 ```
 
-* "sysinit.target" and "basic.target" can be considered checkpoints during the startup process. Although one of the design goals of `systemd` is to start system services in parallel, it is necessary to start the "targets" of certain services and features before starting other services and "targets"
+* "sysinit.target" and "basic.target" are checkpoints during the startup process. Although one of the design goals of `systemd` is to start system services in parallel, it is necessary to start the "targets" of certain services and features before starting other services and "targets"
 * After the "units" that "sysinit.target" depends on are completed, the startup will move to the "sysinit.target" phase. These "units" can be started in parallel, including:
     * Mount the file system
     * Set up the swap file
@@ -190,9 +190,9 @@ From the man page (`man 7 bootup`), we can consult the boot diagram of `systemd`
     * Set Random Generator seed
     * Start low-level services
     * Set up encryption services
-* "sysinit.target" will start all the low-level services and "units" required for the basic functions of the operating system, which are required before entering the "basic.target" phase.
+* "sysinit.target" will start all the low-level services and "units" required for the essential functions of the operating system, which are necessary before entering the "basic.target" phase.
 * After completing the "sysinit.target" phase, `systemd` starts all the "units" required to complete the next "target" (that is, "basic.target"). The target provides additional functions, including:
-    * Set the directories paths for the various executable files.
+    * Set the directory paths for the various executable files.
     * communication sockets
     * timers
 * Finally, initialization is performed for the user-level "target" ("multi-user.target" or "graphical.target"). `systemd` must arrive at "multi-user.target" before entering "graphical.target".
@@ -319,7 +319,7 @@ COMMAND can be divided into:
 * Manager Lifecycle Commands
 * System Commands
 
-You can use `systemctl --help` to find out the details.
+You can use `systemctl --help` to discover the details.
 
 Here are some common operational demonstration commands:
 
@@ -366,7 +366,7 @@ Shell > systemctl show sshd.service
 
 !!! info
 
-    For the above operations, you can operate on one or more units in a single command line. The above operations are not limited to ".service".
+     You can operate on one or more units in a single command line for the above operations. The above operations are not limited to ".service".
 
 About "units":
 
@@ -408,7 +408,7 @@ Three main important directories exist, arranged in ascending order of priority:
 
 `man 5 systemd-system.conf`:
 
-> When run as a system instance, systemd interprets the configuration file "system.conf" and the files in "system.conf.d" directories; when run as a user instance, it interprets the configuration file user.conf (either in the home directory of the user, or if not found, under "/etc/systemd/") and the files in "user.conf.d" directories. These configuration files contain a few  settings controlling basic manager operations.
+> When run as a system instance, systemd interprets the configuration file "system.conf" and the files in "system.conf.d" directories; when run as a user instance, it interprets the configuration file user.conf (either in the home directory of the user, or if not found, under "/etc/systemd/") and the files in "user.conf.d" directories. These configuration files contain a few settings controlling basic manager operations.
 
 In the Rocky Linux 8.x operating system, the relevant configuration files are:
 
@@ -478,7 +478,7 @@ Usually three titles exist for the ".service" type unit:
 
     The following key-value pairs are usable:
 
-    * `Description=OpenSSH server daemon`. The string used to describe the "unit".
+    * `Description=OpenSSH server daemon`. The string is used to describe the "unit".
     * `Documentation=man:sshd(8) man:sshd_config(5)`.  A space-separated list of URIs referencing documentation for this "unit" or its configuration. Accepted are only URIs of the types "http://", "https://", "file:", "info:", "man:".
     * `After=network.target sshd-keygen.target`. Defines the startup sequence relationship with other "units". In this example, "network.target" and "sshd-keygen.target" start first, and "sshd.service" starts last.
     * `Before=`. Define the startup sequence relationship with other "units".
@@ -497,8 +497,8 @@ Usually three titles exist for the ".service" type unit:
 
     * `Type=notify`. Configure the type of this ".service" unit, which can be one of the following:
         * `simple` - The service starts as the main process. This is the default.
-        * `forking` - The service calls forked processes and run as part of the main daemon.
-        * `exec` - Similar to `simple`. The service manager will start this unit immediately after executing the binary of the main service. Other successor units must remain blocked until after this point in time before they can continue to start.
+        * `forking` - The service calls forked processes and runs as part of the main daemon.
+        * `exec` - Similar to `simple`. The service manager will start this unit immediately after executing the binary of the main service. Other successor units must remain blocked until after this point before they can continue to start.
         * `oneshot` - Similar to `simple`, except the process must exit before `systemd` starts follow-up services.
         * `dbus` - Similar to `simple`, except the daemon acquires a name of the D-Bus bus.
         * `notify` - Similar to `simple`, except the daemon sends a notification message using `sd_notify` or an equivalent call after starting up.
@@ -506,7 +506,7 @@ Usually three titles exist for the ".service" type unit:
     * `RemainAfterExit=`. Whether the current service should be considered active when all processes of the service exit. The default is no.
     * `GuessMainPID=`. The value is of type boolean and defaults to yes. In the absence of a clear location for the main process of the service, should `systemd` guess the PID of the main process (which may not be correct). If you set `Type=forking` and do not set `PIDFile`, this key value pair will take effect. Otherwise, ignore the key value pair.
     * `PIDFile=`. Specify the file path (absolute path) of the service PID. For `Type=forking` services, it is recommended to use this key-value pair. `systemd` reads the PID of the main process of the daemon after start-up of the service.
-    * `BusName=`. A D-Bus bus name to reach this service. This option is mandatory for services where `Type=dbus`.
+    * `BusName=`. A D-Bus bus name to reach this service. This option is mandatory for services where `Type=dbus` is used.
     * `ExecStart=/usr/sbin/sshd -D $OPTIONS $CRYPTO_POLICY`. The commands and arguments executed when the service starts.
     * `ExecStartPre=`. Other commands run before commands in `ExecStart`.
     * `ExecStartPost=`. Other commands run after commands in `ExecStart`.
@@ -517,15 +517,15 @@ Usually three titles exist for the ".service" type unit:
     * `TimeoutStartSec=`. The time in seconds to wait for the service to start.
     * `TimeoutStopSec=`. The time in seconds to wait for the service to stop.
     * `TimeoutSec=`. A shorthand for configuring both `TimeoutStartSec` and `TimeoutStopSec` simultaneously.
-    * `RuntimeMaxSec=`. A maximum time in seconds for the service to run. Pass `infinity` (the default) to configure no runtime limit.
+    * `RuntimeMaxSec=`. A maximum time in seconds for the service to run. Passes `infinity` (the default) to configure no runtime limit.
     * `Restart=on-failure`. Configures whether to restart the service when the service’s process exits, is killed, or reaches a timeout:
         * `no` - The service will not restart. This is the default.
-        * `on-success` - Restart only when the service process exits cleanly (exit code 0).
-        * `on-failure` - Restart only when the service process does not exit cleanly (node-zero exit code).
-        * `on-abnormal` - Restart if the process terminates with a signal or when a timeout occurs.
-        * `on-abort` - Restart if the process exits due to an uncaught signal not specified as a clean exit status.
-        * `on-watchdog` -  If set to `on-watchdog`, the service will restart only if the watchdog timeout for the service expires.
-        * `always` - Always restart.
+        * `on-success` - Restarts only when the service process exits cleanly (exit code 0).
+        * `on-failure` - Restarts only when the service process does not exit cleanly (node-zero exit code).
+        * `on-abnormal` - Restarts if the process terminates with a signal or when a timeout occurs.
+        * `on-abort` - Restarts if the process exits due to an uncaught signal not specified as a clean exit status.
+        * `on-watchdog` -  If set to `on-watchdog`, the service restarts only if the watchdog timeout expires.
+        * `always` - Always restarts.
 
     Exit causes and the effect of the `Restart=` settings on them:
 
@@ -536,7 +536,7 @@ Usually three titles exist for the ".service" type unit:
         * `process` - Only the main process is killed.
         * `mixed` - The SIGTERM signal is sent to the main process while the subsequent SIGKILL signal is sent to all remaining processes of the unit's control group.
         * `none` - Does not kill any processes.
-    * `PrivateTmp=`. Whether to use a private tmp directory. Based on certain security, the recommendation is that you set the value to yes.
+    * `PrivateTmp=`. Whether to use a private tmp directory. Based on certain security, the recommendation is to set the value to yes.
     * `ProtectHome=`. Whether to protect the home directory. Its value can be one of the following:
         * `yes` - The three directories (/root/, /home/, /run/user/) are not visible to unit.
         * `no` - The three directories are visible to unit.
@@ -585,9 +585,9 @@ Usually three titles exist for the ".service" type unit:
 
 ## Command related to other components
 
-* `timedatactl` - Query or change system time and date settings.
-* `hostnamectl` - Query or change system hostname.
-* `localectl` - Query or change system locale and keyboard settings.
-* `systemd-analyze` - Profile `systemd`, show unit dependencies, check unit files.
-* `journalctl` - View system or service logs. The `journalctl` command is so important that a separate section will come later explaining its use and what to look out for.
+* `timedatactl` - Queries or changes system time and date settings.
+* `hostnamectl` - Queries or changes system hostname.
+* `localectl` - Queries or changes system locale and keyboard settings.
+* `systemd-analyze` - Profile `systemd`, shows unit dependencies, checks unit files.
+* `journalctl` - Views system or service logs. The `journalctl` command is so important that a separate section will come later explaining its use and what to look out for.
 * `loginctl` - Session management of login users.
