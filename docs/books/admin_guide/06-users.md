@@ -61,7 +61,7 @@ The files related to users/groups are:
 
     Some commands in this chapter require administrator rights. 
     By convention, we will specify the command `sudo` when commands are to be run with administrator rights.
-    For the examples to work properly, please check that the account you're using has the right to use the `sudo` command.
+    For the examples to work properly, please ensure your account has the right to use the `sudo` command.
 
 ## Group management
 
@@ -131,7 +131,7 @@ sudo groupmod -n GroupC GroupB
 
 It is possible to change the name of a group, its `GID` or both simultaneously.
 
-After modification, the files belonging to the group have an unknown `GID`. They must be reassigned the new `GID`.
+After modification, the files belonging to the group have an unknown `GID`. They must be reassigned to the new `GID`.
 
 ```bash
 sudo find / -gid 1002 -exec chgrp 1016 {} \;
@@ -139,7 +139,7 @@ sudo find / -gid 1002 -exec chgrp 1016 {} \;
 
 ### `groupdel` command
 
-The `groupdel` command is used to delete an existing group on the system.
+The `groupdel` command deletes an existing group on the system.
 
 ```bash
 groupdel group
@@ -153,7 +153,7 @@ sudo groupdel GroupC
 
 !!! Tip
 
-    When deleting a group, there are two conditions that can occur:
+    When deleting a group, two conditions can occur:
     
     * If a user has a unique primary group and you issue the `groupdel` command on that group, you will be prompted that there is a specific user under the group and it cannot be deleted.
     * If a user belongs to a supplementary group (not the primary group for the user) and that group is not the primary group for another user on the system, then the `groupdel` command will delete the group without any additional prompts.
@@ -179,7 +179,7 @@ sudo groupdel GroupC
 
 !!! Tip
 
-    Each group has a unique `GID`. A group can be used by multiple users as a supplementary group. By convention, The GID of super administrator is 0. The GIDS reserved for some services or processes are 201~999, which are called system groups or pseudo user groups. The GID for users is usually greater than or equal to 1000. These are related to <font color=red>/etc/login.defs</font>, which we will talk about later.
+    Each group has a unique `GID`. A group can be used by multiple users as a supplementary group. By convention, The GID of super administrator is 0. The GIDS reserved for some services or processes are 201-999, called system groups or pseudo user groups. The GID for users is usually greater than or equal to 1000. These are related to <font color=red>/etc/login.defs</font>, which we will talk about later.
 
     ```bash
     # Comment line ignored
@@ -246,7 +246,7 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
     The name of the group in **/etc/group** and **/etc/gshadow** must correspond one by one, that is, each line in the **/etc/group** file must have a corresponding line in the **/etc/gshadow** file.
 
-An `!` in the password indicates that it is locked.
+An `!` in the password indicates it is locked.
 Thus, no user can use the password to access the group (since group members do not need it).
 
 ## User management
@@ -276,7 +276,7 @@ Modified files, added lines:
 
 ### `useradd` command
 
-The `useradd` command is used to add a user.
+The `useradd` command adds a user.
 
 ```bash
 useradd [-u UID] [-g GID] [-d directory] [-s shell] login
@@ -898,7 +898,7 @@ USERGROUPS_ENAB yes
 ENCRYPT_METHOD SHA512
 ```
 
-`UMASK 022`: This means that the permission to create a file is 755 (rwxr-xr-x). However, for the sake of security, GNU/Linux does not have **x** permission for newly created files, this restriction applies to root(uid=0) and ordinary users(uid>=1000). For example:
+`UMASK 022`: This means that the permission to create a file is 755 (rwxr-xr-x). However, for the sake of security, GNU/Linux does not have **x** permission for newly created files. This restriction applies to root(uid=0) and ordinary users(uid>=1000). For example:
 
 ```bash
 Shell > touch a.txt
