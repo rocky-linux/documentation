@@ -11,9 +11,9 @@ tags:
 
 # Overview
 
-The GNU/Linux operating system follows the philosophy of "everything is a file", so system administrators often need to deal with problems related to file names and file contents.
+ The GNU/Linux operating system follows the philosophy of "everything is a file". A side consequence of this philosopy is that system administrators often have to interact with files, file names and file contents.
 
-In terms of processing file content, the three tools `grep`, `sed`, and `awk` are very powerful and frequently used, so people call them the "Three Swordsmen".
+Regarding processing file content, the three tools grep, sed, and awk are potent and frequently used, so people call them the "Three Swordsmen".
 
 ## Regular expressions VS wildcards
 
@@ -23,11 +23,11 @@ What is the difference between regular expressions and wildcards?
 
 Similarities:
 
-* Having the same symbol, but representing completely different meanings.
+* They have the same symbol but represent entirely different meanings.
 
 Differences:
 
-* Regular expressions are used to match file content; Wildcards are typically used to match file or directory names.
+* Regular expressions match file content; Wildcards are typically used to match file or directory names.
 * Regular expressions can be used on commands such as `grep`, `sed`, `awk`, etc; Wildcards can be used on commands such as `cp`, `find`, `mv`, `touch`, `ls`, etc.
 
 ###  Wildcards in GNU/Linux
@@ -36,12 +36,12 @@ GNU/Linux OS supports these wildcards:
 
 | wildcards style | role |
 | :---:           | :---|
-| ?               | Match one character of a file or directory name. |
-| *               | Match 0 or more arbitrary characters of a file or directory name.|
-| [ ]             | Match any single character in parentheses. For example, &#91;one&#93; which means to match o or n or e.|
-| [-]             | Matches any single character within the given range in parentheses. For example, &#91;0-9&#93; represents matching any single number from 0 to 9. |
-| [^]             | "logical non" matching of a single character. For example, &#91;^a-zA-Z&#93; represents matching a single non letter character. |
-| {,}             |  Non continuous matching of multiple single characters. Separate with commas. |
+| ?               | Matches one character of a file or directory name. |
+| *               | Matches 0 or more arbitrary characters of a file or directory name.|
+| [ ]             |  Matches any single character in parentheses. For example, &#91;one&#93; which means to match o or n or e.|
+| [-]             | Matches any single character within the given range in parentheses. For example, &#91;0-9&#93; matches any single number from 0 to 9. |
+| [^]             | "logical non" matching of a single character. For example, &#91;^a-zA-Z&#93; represents matching a single nonletter character. |
+| {,}             |  Non continuous matching of multiple single characters. Separated by commas. |
 | {..}            | Same as &#91;-&#93;. For example {0..9} and {a..z}  |
 
 Different commands have different support for wildcard styles:
@@ -81,7 +81,7 @@ Two major schools of regular expressions exist due to historical development:
 | `sed`  |  √       | √<br/>(Requires -r option)      | √                     | ×                          |
 | `awk`  |  √       | √                               | √                     | ×                          |
 
-For more on regular expressions, visit [this website](https://www.regular-expressions.info/) to learn more useful information.
+For more on regular expressions, visit [this website](https://www.regular-expressions.info/) for more helpful information.
 
 #### BRE
 
@@ -89,12 +89,12 @@ BRE (Basic Regular Expression) is the oldest type of regular expression, introdu
 
 | metacharacter | description | bash example |
 | :---:         | :---        | :---         |
-| *             | Match the number of occurrences of the previous character, which can be 0 or any number of times. |
-| .             | Match any single character except for line breaks. |
-| ^             | Match line beginning. For example - **^h** will match lines starting with h. |
-| $             | Match End of Line. For example - **h$** will match lines ending in h. |
+| *             | Matches the number of occurrences of the previous character, which can be 0 or any number of times. |
+| .             | Matches any single character except for line breaks. |
+| ^             | Matches line beginning. For example - **^h** will match lines starting with h. |
+| $             | Matches End of Line. For example - **h$** will match lines ending in h. |
 | []            | Matches any single character specified in parentheses. For example - **[who]** will match w or h or o; **[0-9]** will match one digit; **[0-9][a-z]** will match characters composed of one digit and a single lowercase letter. | 
-| [^]           | Match any single character except for the characters in parentheses. For example - **[^0-9]** will match any single non numeric character. **[^a-z]** will match any single character that is not a lowercase letter. |
+| [^]           | Matches any single character except for the characters in parentheses. For example - **[^0-9]** will match any single non-numeric character. **[^a-z]** will match any single character that is not a lowercase letter. |
 | \             | Escape character, used to cancel the meaning represented by some special symbols. | `echo -e "1.2\n122"  \| grep -E '1\.2'`<br/>**1.2** |
 | \\{n\\}       | Matches the number of occurrences of the previous single character, n represents the number of matches.     | `echo -e "1994\n2000\n2222" \| grep "[24]\{4\}"`<br/>**2222** |
 | \\{n,\\}      | Matches the previous single character at least n times. | `echo -e "1994\n2000\n2222" \| grep  "[29]\{2,\}"`<br/>1**99**4<br/>**2222** | 
@@ -120,21 +120,22 @@ ERE also supports characters with special meanings:
 | \\d                | Equivalent to **[0-9]**        |
 | \\D                | Equivalent to **[^0-9]**       |
 | \\b                | Equivalent to **\\<** or **\\>** |
-| \\B                | Match non-boundary character.
-| \\s                | Match any whitespace character. Equivalent to **[ \f\n\r\t\v]** |
+| \\B                | Matches non-boundary character.
+| \\s                | Matches any whitespace character. Equivalent to **[ \f\n\r\t\v]** |
 | \\S                | Equivalent to **[^ \f\n\r\t\v]**  |
 
 |  blank character   | description                      |
 | :---:              | :---                             |
-| \\f                | Match a single feed character. Equivalent to **\\x0c** and **\\cL**|
-| \\n                | Match individual line breaks. Equivalent to **\\x0a** and **\\cJ**    |
+| \\f                | Matches a single feed character. Equivalent to **\\x0c** and **\\cL**|
+| \\n                | Matches individual line breaks. Equivalent to **\\x0a** and **\\cJ**    |
 | \\r                | Matches a single carriage return. Equivalent to **\\x0d** and **\\cM**           |
 | \\t                | Matches a single tab. Equivalent to **\\x09** and **\\cI**      |
 | \\v                | Matches a single vertical tab. Equivalent to **\\x0b** and **\\cK**      |
 
 #### POSIX character
 
-Sometimes, you may see "POSIX character"(also known as "POSIX character class"). However, the author himself rarely uses the "POSIX character", so this section is only for basic understanding.
+Sometimes, you may see "POSIX character"(also known as "POSIX character class"). 
+Please note that the author rarely uses the "POSIX character class", but has included this section to enhance basic understanding.
 
 | POSIX character  | equivalent to   |
 | :---:            | :---            |
@@ -215,16 +216,16 @@ content line control:
 | :---                     | :---        |
 | -B NUM                   | Print NUM lines of leading context before matching lines |
 | -A NUM                   | Print NUM lines of trailing context after matching lines |
-| -C NUM                   | Print  NUM  lines  of  output  context                   |
+| -C NUM                   | Print NUM lines of output context                   |
 
 directory or file control:
 
 | options                  | description |
 | :---                     | :---        |
-| --include=FILE_PATTERN   | Search only files that match FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,} |
-| --exclude=FILE_PATTERN   | Skip files and directories matching FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,}  |
-| --exclude-dir=PATTERN    | Exclude the specified directory name. Directory name support *, ?, [], [^], [-], {..}, {,} |
-| --exclude-from=FILE      | Exclude the specified directory from the file content. |
+| --include=FILE_PATTERN   | Searches only files that match FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,} |
+| --exclude=FILE_PATTERN   | Skips files and directories matching FILE_PATTERN. Wildcard characters for file names support *, ?, [], [^], [-], {..}, {,}  |
+| --exclude-dir=PATTERN    | Excludes the specified directory name. Directory name support *, ?, [], [^], [-], {..}, {,} |
+| --exclude-from=FILE      | Excludes the specified directory from the file content. |
 
 ### Examples of usage
 
@@ -466,7 +467,8 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 |  d                     | Delete "pattern space". Start next cycle    |
 |  D                     | Delete the first line of the "pattern space" and start next  cycle |
 |  =                     | Print Line Number |
-| a \text                | Add one or more lines of content after the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content is not ended |
+| a \text                | Add one or more lines of content after the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content has not ended
+ |
 | i \text                | Add one or more lines of content before the matching line. When adding multiple lines, all lines except the last line need to use "\" to indicate that the content is not ended |
 | c \text                | Replace matching lines with new text |
 | q                      | Immediately exit the `sed` script    |
@@ -510,7 +512,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
     !!! tip
 
-        As we all know, double quotation marks and single quotation marks in a shell play a different role. The **$**, **\`**, and **\\** in double quotes have a special meaning. The recommendation is to use single quotes more often when using the `sed` command.
+        As we all know, double and single quotation marks in a shell play different roles. The **$**, **\`**, and **\\** in double quotes have a special meaning. The recommendation is to use single quotes more often when using the `sed` command.
 
     * Print the text from lines 23 to 26
 
@@ -1131,7 +1133,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
     * Print even text lines
 
-      First read the first line, as there is an `n` command present, the second line will be printed out, and so on.
+      First, read the first line, as an n command is present; the second line will be printed out, and so on.
 
       ```bash
       Shell > cat -n /root/test.txt | sed -n '{n;p}'
@@ -1257,7 +1259,8 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
 ## `awk` command
 
-In 1977, a programming language-level tool for processing text was born at Bell Labs, named `awk`. The name comes from the first letters of the last names of three famous people:
+In 1977, a programming language-level tool for processing text, named' awk', was born at Bell Labs.
+The name comes from the first letters of the last names of three famous people:
 
 * Alfred **A**ho
 * Peter **W**einberger
@@ -1266,12 +1269,12 @@ In 1977, a programming language-level tool for processing text was born at Bell 
 Similar to shell (bash, csh, zsh, and ksh), `awk` has derivatives with the development of history:
 
 * `awk`: Born in 1977 Bell Labs.
-* `nawk` (new awk): It was born in 1985 and is an updated and enhanced version of `awk`. It was widely used with the release of Unix System V Release 3.1 (1987). The old version of `awk` is called `oawk` (old awk).
+* `nawk` (new awk): It was born in 1985 and is an updated and enhanced version of `awk`. It was widely used with Unix System V Release 3.1 (1987). The old version of `awk` is called `oawk` (old awk).
 * `gawk` (GNU awk): It was written by Paul Rubin in 1986. The GNU Project was born in 1984.
-* `mawk`: It was written in 1996 by Mike Brennan, which is the interpreter of the `awk` programming language.
+* `mawk`: was written in 1996 by Mike Brennan, the interpreter of the awk programming language.
 * `jawk`: Implementation of `awk` in JAVA
 
-In the GNU/Linux operating system, the usual `awk` refers to `gawk`. However, some distributions use `mawk` as their default `awk`, such as Ubuntu or Debian.
+In the GNU/Linux operating system, the usual `awk` refers to `gawk`.  However, some distributions, such as Ubuntu or Debian, use `mawk` as their default `awk`.
 
 In the Rocky Linux 8.8, `awk` refers to `gawk`.
 
@@ -1298,7 +1301,7 @@ Although `awk` is a tool for processing text, it has some programming language f
 * array
 * ...
 
-**The working principle of `awk`**: Similar to relational databases, it supports processing of fields (columns) and records (rows). By default, `awk` treats each line of a file as a record and places these records in memory for line-by-line processing, with a portion of each line treated as a field in the record. By default, delimiters to separate different fields use spaces and tabs, while numbers represent different fields in the row record. To reference multiple fields, separate them with commas or tabs.
+**The working principle of `awk`**: Similar to relational databases, it supports processing fields (columns) and records (rows). By default, `awk` treats each line of a file as a record and places these records in memory for line-by-line processing, with a portion of each line treated as a field in the record. By default, delimiters to separate different fields use spaces and tabs, while numbers represent different fields in the row record. To reference multiple fields, separate them with commas or tabs.
 
 A simple example that is easy to understand：
 
@@ -1475,7 +1478,7 @@ ID      Name
     spremotetablet  46998
     ```
 
-    You can also use words as delimiters. Parentheses indicate that this is an overall delimiter, and "|" means or.
+    You can also use words as delimiters. Parentheses indicate this is an overall delimiter, and "|" means or.
 
     ```bash
     Shell > tail -n 5 /etc/services | awk -F "(tcp)|(udp)" '{print $1}'
@@ -1767,7 +1770,7 @@ ID      Name
     sync
     ```
 
-    When using commas to reference multiple fields, the default output delimiter is a space. You can, however, specify the output delimiter separately.
+    The default output delimiter is a space when using commas to reference multiple fields. You can, however, specify the output delimiter separately.
 
     ```bash
     Shell > cat /etc/passwd | awk 'BEGIN{FS=":"}{print $1,$2}'
@@ -1969,7 +1972,8 @@ ID      Name
 
 7. ENVIRON
 
-    You can reference operating system variables or user-defined variables in `awk` programs.
+    You can reference operating systems or user-defined variables in `awk` programs.
+.
 
     ```bash
     Shell > echo ${SSH_CLIENT}
@@ -2702,7 +2706,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
 | asorti(a,b)   | Reorder the subscript of the array "a" and store the sorted subscript in the new array "b" as an element, with the subscript of the array "b" starting at 1. |
 | sub(r,s[,t])  | Use the "r" regular expression to match the input records, and replace the matching result with "s". "t" is optional, indicating a replacement for a certain field. The function returns the number of replacements - 0 or 1. Similar to `sed s//`|
 | gsub(r,s[,t]) | Global replacement. "t" is optional, indicating the replacement of a certain field. If "t" is ignored, it indicates global replacement. Similar to `sed s///g` |
-| gensub(r,s,h[,t])  | Use the "r" regular expression to match the input records, and replace the matching result with "s". "t" is optional, indicating a replacement for a certain field. "h" represents replacing the specified index position|
+| gensub(r,s,h[,t])  | The "r" regular expression matches the input records and replaces the matching result with "s". "t" is optional, indicating a replacement for a certain field. "h" represents replacing the specified index position|
 | index(s,t)    | Returns the index position of the string "t" in the string "s" (the string index starts from 1). If the function returns 0, it means it does not exist |
 | length([s])   | Returns the length of "s" |
 | match(s,r[,a])| Test whether the string "s" contains the string "r". If included, return the index position of "r" within it (string index starting from 1). If not, return 0 |
@@ -2872,7 +2876,9 @@ Like most programming languages, `awk` also supports arrays, which are divided i
       ↑                  ↑
     ```
 
-    Just like the `sed` command, you can also use the "&" symbol to reference strings already matched. [Review that here](#symbol).
+    Just like the `sed` command, you can also use the "&" symbol to reference already matched strings.
+    
+     [Review that here](#symbol).
 
     ```bash
     Shell > vim /tmp/tmp-file1.txt
