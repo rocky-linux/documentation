@@ -10,13 +10,11 @@ title: Розширені команди Linux
 
 **Цілі**: у цьому розділі майбутні адміністратори Linux дізнаються про:
 
-:heavy_check_mark: деякі корисні команди, не описані в попередньому розділі.   
-:heavy_check_mark: деякі додаткові команди.
+:heavy_check_mark: деякі корисні команди, не висвітлені в попередньому розділі. :heavy_check_mark: деякі розширені команди.
 
 :checkered_flag: **Команди користувача**, **Linux**
 
-**Знання**: :star:   
-**Складність**: :star: :star: :star:
+**Знання**: :star: **Складність**: :star: :star: :star:
 
 **Час читання**: 20 хвилин
 
@@ -28,7 +26,7 @@ title: Розширені команди Linux
 
 Щоб проілюструвати, як працює команда `uniq`, скористаємося файлом `firstnames.txt`, який містить список імен:
 
-```
+```text
 antoine
 xavier
 steven
@@ -45,7 +43,7 @@ steven
 
 Без аргументів команда `uniq` не відображатиме ідентичні рядки, які слідують один за одним у файлі `firstnames.txt`:
 
-```
+```bash
 $ sort firstnames.txt | uniq
 antoine
 patrick
@@ -55,14 +53,14 @@ xavier
 
 Щоб відобразити лише ті рядки, які з’являються лише один раз, скористайтеся параметром `-u`:
 
-```
+```bash
 $ sort firstnames.txt | uniq -u
 patrick
 ```
 
 І навпаки, щоб відобразити лише ті рядки, які з’являються у файлі щонайменше двічі, скористайтеся параметром `-d`:
 
-```
+```bash
 $ sort firstnames.txt | uniq -d
 antoine
 steven
@@ -71,7 +69,7 @@ xavier
 
 Щоб просто видалити рядки, які з’являються лише один раз, скористайтеся опцією `-D`:
 
-```
+```bash
 $ sort firstnames.txt | uniq -D
 antoine
 antoine
@@ -84,7 +82,7 @@ xavier
 
 Нарешті, щоб підрахувати кількість входжень кожного рядка, використовуйте параметр `-c`:
 
-```
+```bash
 $ sort firstnames.txt | uniq -c
       3 antoine
       1 patrick
@@ -92,7 +90,7 @@ $ sort firstnames.txt | uniq -c
       2 xavier
 ```
 
-```
+```bash
 $ sort firstnames.txt | uniq -cd
       3 antoine
       2 steven
@@ -107,7 +105,7 @@ $ sort firstnames.txt | uniq -cd
 
 Першим і найпростішим прикладом може бути наступне:
 
-```
+```bash
 $ xargs
 use
 of
@@ -116,9 +114,9 @@ xargs
 use of xargs
 ```
 
-Команда `xargs` очікує введення зі стандартного введення **stdin**. Введено три рядки. Кінець введення користувача вказується в `xargs` послідовністю натискань клавіш <kbd>CTRL</kbd>+<kbd>D</kbd>. Потім `xargs` виконує команду за замовчуванням `echo`, за якою слідують три аргументи, що відповідають введеним користувачам, а саме:
+Команда `xargs` очікує введення зі стандартного введення **stdin**. Введено три рядки. Кінець введення користувача вказується в `xargs` послідовністю натискань клавіш ++ctrl+d++. Потім `xargs` виконує команду за замовчуванням `echo`, за якою слідують три аргументи, що відповідають введеним користувачам, а саме:
 
-```
+```bash
 $ echo "use" "of" "xargs"
 use of xargs
 ```
@@ -127,7 +125,7 @@ use of xargs
 
 У наступному прикладі `xargs` виконає команду `ls -ld` для набору папок, указаних у стандартному вводі:
 
-```
+```bash
 $ xargs ls -ld
 /home
 /tmp
@@ -142,7 +140,7 @@ drwxrwxrwt. 3 root root 4096  6 avril 10:25 /tmp
 
 Що станеться, якщо команда, яку потрібно виконати, не приймає кілька аргументів, як команда `find`?
 
-```
+```bash
 $ xargs find /var/log -name
 *.old
 *.log
@@ -151,14 +149,14 @@ find: paths must precede expression: *.log
 
 Команда `xargs` намагалася виконати команду `find` із кількома аргументами за параметром `-name`, що спричинило `find` створення помилки:
 
-```
+```bash
 $ find /var/log -name "*.old" "*.log"
 find: paths must precede expression: *.log
 ```
 
 У цьому випадку командою `xargs` потрібно примусово виконати команду `find` кілька разів (один раз на рядок, введений як стандартний ввід). Параметр `-L` із наступним **цілим числом** дозволяє вказати максимальну кількість записів, які потрібно обробити командою одночасно:
 
-```
+```bash
 $ xargs -L 1 find /var/log -name
 *.old
 /var/log/dmesg.old
@@ -177,7 +175,7 @@ $ xargs -L 1 find /var/log -name
 
 Щоб вказати обидва аргументи в одному рядку, скористайтеся параметром `-n 1`:
 
-```
+```bash
 $ xargs -n 1 find /var/log -name
 *.old *.log
 /var/log/dmesg.old
@@ -195,7 +193,7 @@ $ xargs -n 1 find /var/log -name
 
 Приклад резервного копіювання за допомогою `tar` на основі пошуку:
 
-```
+```bash
 $ find /var/log/ -name "*.log" -mtime -1 | xargs tar cvfP /root/log.tar
 $ tar tvfP /root/log.tar
 -rw-r--r-- root/root      1720 2017-04-05 15:43 /var/log/boot.log
@@ -206,8 +204,8 @@ $ tar tvfP /root/log.tar
 
 Використовуючи приклад команди `cp`, щоб скопіювати список файлів у каталозі, цей список файлів буде додано в кінці команди... але що команда `cp</ code> очікує в кінці команди призначення. Щоб зробити це, скористайтеся опцією <code>-I`, щоб розмістити вхідні аргументи не в кінці рядка.
 
-```
-$ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
+```bash
+find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 ```
 
 Параметр `-I` дозволяє вказати символ (символ `%` у наведеному вище прикладі), куди будуть розміщені вхідні файли для `xargs`.
@@ -220,50 +218,51 @@ $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 
     Хоча `yum` було замінено на `dnf` у Rocky Linux 8, назва пакета залишилася `yum-utils`, хоча його також можна встановити як `dnf-utils`. Це класичні утиліти YUM, реалізовані як прокладки CLI поверх DNF для підтримки зворотної сумісності з `yum-3`.
 
-Ось кілька прикладів цих утиліт:
+Ось кілька прикладів цих утиліт.
 
-* Команда `repoquery`
+### Команда `repoquery`
 
 Команда `repoquery` використовується для запиту пакетів у сховищі.
 
 Приклади використання:
 
-  * Відображення залежностей пакета (це може бути пакет програмного забезпечення, який було встановлено або не встановлено), еквівалентно `dnf deplist <package-name>`
-    ```
-    repoquery --requires <package-name>
-    ```
+* Відображення залежностей пакета (це може бути пакет програмного забезпечення, який було встановлено або не встановлено), еквівалентно `dnf deplist <package-name>`
 
-  * Відображення файлів, які були надані встановленим пакетом (не працює для пакетів, які не встановлено), еквівалентно `rpm -ql <package-name>`
+```bash
+repoquery --requires <package-name>
+```
 
-    ```
-    $ repoquery -l yum-utils
-    /etc/bash_completion.d
-    /etc/bash_completion.d/yum-utils.bash
-    /usr/bin/debuginfo-install
-    /usr/bin/find-repos-of-install
-    /usr/bin/needs-restarting
-    /usr/bin/package-cleanup
-    /usr/bin/repo-graph
-    /usr/bin/repo-rss
-    /usr/bin/repoclosure
-    /usr/bin/repodiff
-    /usr/bin/repomanage
-    /usr/bin/repoquery
-    /usr/bin/reposync
-    /usr/bin/repotrack
-    /usr/bin/show-changed-rco
-    /usr/bin/show-installed
-    /usr/bin/verifytree
-    /usr/bin/yum-builddep
-    /usr/bin/yum-config-manager
-    /usr/bin/yum-debug-dump
-    /usr/bin/yum-debug-restore
-    /usr/bin/yum-groups-manager
-    /usr/bin/yumdownloader
-    …
-    ```
+* Відображати файли, надані встановленим пакетом (не працює для пакетів, які не встановлено), еквівалентно `rpm -ql <package-name>`
 
-* Команда `yumdownloader`:
+```bash
+$ repoquery -l yum-utils
+/etc/bash_completion.d
+/etc/bash_completion.d/yum-utils.bash
+/usr/bin/debuginfo-install
+/usr/bin/find-repos-of-install
+/usr/bin/needs-restarting
+/usr/bin/package-cleanup
+/usr/bin/repo-graph
+/usr/bin/repo-rss
+/usr/bin/repoclosure
+/usr/bin/repodiff
+/usr/bin/repomanage
+/usr/bin/repoquery
+/usr/bin/reposync
+/usr/bin/repotrack
+/usr/bin/show-changed-rco
+/usr/bin/show-installed
+/usr/bin/verifytree
+/usr/bin/yum-builddep
+/usr/bin/yum-config-manager
+/usr/bin/yum-debug-dump
+/usr/bin/yum-debug-restore
+/usr/bin/yum-groups-manager
+/usr/bin/yumdownloader
+…
+```
+
+### Команда `yumdownloader`
 
 Команда `yumdownloader` завантажує пакети RPM зі сховищ.  Еквівалент `dnf download --downloadonly --downloaddir ./ package-name`
 
@@ -273,7 +272,7 @@ $ find /var/log -type f -name "*.log" | xargs -I % cp % /root/backup
 
 Приклад: `yumdownloader` завантажить пакет rpm _samba_ та всі його залежності:
 
-```
+```bash
 $ yumdownloader --destdir /var/tmp --resolve samba
 or
 $ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
@@ -294,7 +293,7 @@ $ dnf download --downloadonly --downloaddir /var/tmp  --resolve  samba
 
 Приклади:
 
-```
+```bash
 $ pstree
 systemd─┬─NetworkManager───2*[{NetworkManager}]
         ├─agetty
@@ -314,13 +313,13 @@ systemd─┬─NetworkManager───2*[{NetworkManager}]
         └─tuned───4*[{tuned}]
 ```
 
-```
+```bash
 # killall httpd
 ```
 
 Kill процеси (параметр `-k`), які мають доступ до файлу `/etc/httpd/conf/httpd.conf`:
 
-```
+```bash
 # fuser -k /etc/httpd/conf/httpd.conf
 ```
 
@@ -332,19 +331,19 @@ Kill процеси (параметр `-k`), які мають доступ до
 
 !!! note "Примітка"
 
-    Щоб вийти з команди `watch`, ви повинні ввести клавіші: <kbd>CTRL</kbd>+<kbd>C</kbd> щоб вбити процес.
+    Щоб вийти з команди `watch`, ви повинні ввести клавіші: <kbd>CTRL</kbd>+<kbd>C</kbd> для зупинки процесу.
 
 Приклади:
 
 * Відображати кінець файлу `/etc/passwd` кожні 5 секунд:
 
-```
-$ watch -n 5 tail -n 3 /etc/passwd
+```bash
+watch -n 5 tail -n 3 /etc/passwd
 ```
 
 Результат:
 
-```
+```bash
 Every 5.0s: tail -n 3 /etc/passwd                                                                                                                                rockstar.rockylinux.lan: Thu Jul  1 15:43:59 2021
 
 sssd:x:996:993:User for sssd:/:/sbin/nologin
@@ -354,12 +353,88 @@ sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 
 * Контроль кількості файлів у папці:
 
-```
-$ watch -n 1 'ls -l | wc -l'
+```bash
+watch -n 1 'ls -l | wc -l'
 ```
 
 * Показати годинник:
 
+```bash
+watch -t -n 1 date
 ```
-$ watch -t -n 1 date
+
+## Команда `install`
+
+На відміну від назви, команда `install` не використовується для встановлення нових пакетів.
+
+Ця команда поєднує копіювання файлів (`cp`) і створення каталогу (`mkdir`) із керуванням правами (`chmod`, `chown`) та інші корисні функції (наприклад, резервне копіювання).
+
+```bash
+install source dest  
+install -t directory source [...]
+install -d directory
+```
+
+Опції:
+
+| Опції                        | Зауваження                                                       |
+| ---------------------------- | ---------------------------------------------------------------- |
+| `-b` або `--backup[=suffix]` | створює резервну копію цільового файлу.                          |
+| `-d`                         | розглядає аргументи як імена каталогів.                          |
+| `-D`                         | створює всі провідні компоненти перед копіюванням SOURCE у DEST. |
+| `-g` та `-o`                 | встановлює право власності.                                      |
+| `-m`                         | встановлює дозволи.                                              |
+| `-p`                         | зберігає мітки часу вихідних файлів.                             |
+| `-t`                         | копіює всі вихідні аргументи до каталогу.                        |
+
+!!! note "Примітка"
+
+    Існують параметри для керування контекстом SELinux (див. сторінку підручника).
+
+Приклади:
+
+Створення каталогу за допомогою параметра `-d`:
+
+```bash
+install -d ~/samples
+```
+
+Скопіюйте файл із вихідного розташування до каталогу:
+
+```bash
+install src/sample.txt ~/samples/
+```
+
+Ці два накази можна було виконати за допомогою однієї команди:
+
+```bash
+$ install -v -D -t ~/samples/ src/sample.txt
+install: creating directory '~/samples'
+'src/sample.txt' -> '~/samples/sample.txt'
+```
+
+Ця команда вже економить час; тепер давайте поєднаємо його з власником, групою власників і керуванням правами:
+
+```bash
+sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
+```
+
+ !!! note "Примітка"
+
+     `sudo` потрібен у цьому випадку, щоб змінити властивість.
+
+Ви також можете створити резервну копію існуючих файлів завдяки опції `-b`:
+
+```bash
+$ install -v -b -D -t ~/samples/ src/sample.txt
+'src/sample.txt' -> '~/samples/sample.txt' (archive: '~/samples/sample.txt~')
+```
+
+Як бачите, команда `install` створює файл резервної копії з тильдою `~`, доданою до оригінального імені файлу.
+
+Суфікс можна вказати за допомогою параметра `-S`:
+
+```bash
+$ install -v -b -S ".bak" -D -t ~/samples/ src/sample.txt
+'src/sample.txt' -> '~/samples/sample.txt' (archive: '~/samples/sample.txt.bak')
 ```

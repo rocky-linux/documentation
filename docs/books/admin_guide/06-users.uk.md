@@ -9,16 +9,16 @@ title: Керування користувачами
 ****
 **Цілі**: у цьому розділі майбутні адміністратори Linux дізнаються, як:
 
-:heavy_check_mark: додати, видалити або змінити **групу**;   
-:heavy_check_mark: додати, видалити або змінити **користувача**;   
-:heavy_check_mark: зрозуміти файли, пов’язані з користувачами та групами, і навчитися ними керувати;   
-:heavy_check_mark: змінити *власника* або *власника групи* файлу;   
-:heavy_check_mark: *захистити* облікові записи користувачів;   
+:heavy_check_mark: додати, видалити або змінити **групу**;  
+:heavy_check_mark: додати, видалити або змінити **користувача**;  
+:heavy_check_mark: зрозуміти файли, пов’язані з користувачами та групами, і навчитися ними керувати;  
+:heavy_check_mark: змінити *власника* або *власника групи* файлу;  
+:heavy_check_mark: *захистити* облікові записи користувачів;  
 :heavy_check_mark: змінити ідентифікатор.
 
 :checkered_flag: **користувачі**
 
-**Знання**: :star: :star:   
+**Знання**: :star: :star:  
 **Складність**: :star: :star:
 
 **Час читання**: 30 хвилин
@@ -38,8 +38,8 @@ title: Керування користувачами
 
 Групи та користувачі керуються їхніми унікальними числовими ідентифікаторами `GID` та `UID`.
 
-* `UID`: _Ідентифікатор користувача_. Унікальний ідентифікатор користувача.
-* `GID`: _Ідентифікатор групи_. Унікальний ідентифікатор групи.
+* `UID`: *Ідентифікатор користувача*. Унікальний ідентифікатор користувача.
+* `GID`: *Ідентифікатор групи*. Унікальний ідентифікатор групи.
 
 І UID, і GID розпізнаються ядром, а це означає, що суперадміністратор не обов’язково є **root** користувачем, якщо <strong x-id="1" Користувач >uid=0</strong> є суперадміністратором.
 
@@ -57,6 +57,12 @@ title: Керування користувачами
 
     Ви завжди повинні використовувати команди адміністрування, а не редагувати файли вручну.
 
+!!! note "Примітка"
+
+    Деякі команди в цьому розділі вимагають прав адміністратора. 
+    За домовленістю ми вказуватимемо команду `sudo`, коли команди мають виконуватися з правами адміністратора.
+    Щоб приклади працювали правильно, переконайтеся, що ваш обліковий запис має право використовувати команду `sudo`.
+
 ## Управління групою
 
 Змінені файли, додані рядки:
@@ -67,14 +73,15 @@ title: Керування користувачами
 ### Команда `groupadd`
 
 Команда `groupadd` додає групу до системи.
-```
+
+```bash
 groupadd [-f] [-g GID] group
 ```
 
 Приклад:
 
-```
-$ sudo groupadd -g 1012 GroupeB
+```bash
+sudo groupadd -g 1012 GroupeB
 ```
 
 | Опція    | Опис                                                                                                            |
@@ -88,7 +95,7 @@ $ sudo groupadd -g 1012 GroupeB
 * Без наголосів і спеціальних символів;
 * Відрізняється від імені існуючого користувача або системних файлів.
 
-!!! Примітка
+!!! note "Примітка"
 
     У **Debian** адміністратор повинен використовувати, за винятком сценаріїв, призначених для перенесення на всі дистрибутиви Linux, команди `addgroup` і `delgroup`, як зазначено в `man`:
 
@@ -105,15 +112,16 @@ $ sudo groupadd -g 1012 GroupeB
 
 Команда `groupmod` дозволяє вам змінити існуючу групу в системі.
 
-```
+```bash
 groupmod [-g GID] [-n nom] group
 ```
 
 Приклад:
 
-```
-$ sudo groupmod -g 1016 GroupP
-$ sudo groupmod -n GroupC GroupB
+```bash
+sudo groupmod -g 1016 GroupP
+
+sudo groupmod -n GroupC GroupB
 ```
 
 | Опція     | Опис                                     |
@@ -121,31 +129,31 @@ $ sudo groupmod -n GroupC GroupB
 | `-g GID`  | Новий `GID` групи, яку потрібно змінити. |
 | `-n name` | Нове ім'я.                               |
 
-Можна змінити назву групи, її `GID` або все одночасно.
+Можна змінити назву групи, її `GID` або обидва одночасно.
 
-Після модифікації файли, що належать до групи, мають невідомий `GID`. Їм потрібно повторно призначити новий `GID`.
+Після модифікації файли, що належать до групи, мають невідомий `GID`. Їх потрібно перепризначити новому `GID`.
 
-```
-$ sudo find / -gid 1002 -exec chgrp 1016 {} \;
+```bash
+sudo find / -gid 1002 -exec chgrp 1016 {} \;
 ```
 
 ### Команда `groupdel`
 
-Команда `groupdel` використовується для видалення існуючої групи в системі.
+Команда `groupdel` видаляє наявну групу в системі.
 
-```
+```bash
 groupdel group
 ```
 
 Приклад:
 
-```
-$ sudo groupdel GroupC
+```bash
+sudo groupdel GroupC
 ```
 
-!!! Порада
+!!! tip "Порада"
 
-    Для видалення груп існують наступні умови:
+    При видаленні групи можуть виникнути дві умови:
 
     * Якщо користувач має унікальну основну групу, і ви виконуєте команду `groupdel` для цієї групи, вам буде запропоновано, що в групі є певний користувач, і його не можна видалити.
     * Якщо користувач належить до додаткової групи (а не основної групи для користувача), і ця група не є основною групою для іншого користувача в системі, тоді команда `groupdel` видалить групу без додаткових підказки.
@@ -153,17 +161,16 @@ $ sudo groupdel GroupC
     Приклади:
 
     ```bash
-    Shell > useradd testa
-    Shell > id testa
-    uid=1000(testa) gid=1000(testa) group=1000(testa)
-    Shell > groupdel testa
-    groupdel: cannot remove the primary group of user 'testa'
+    $ sudo useradd test
+    $ id test
+    uid=1000(test) gid=1000(test) group=1000(test)
+    $ sudo groupdel test
+    groupdel: cannot remove the primary group of user 'test'
 
-    Shell > groupadd -g 1001 testb
-    Shell > usermod -G testb root
-    Shell > id root
-    uid=0(root) gid=0(root) group=0(root),1001(testb)
-    Shell > groupdel testb
+    $ sudo usermod -g users -G test test
+    $ id test
+    uid=1000(test) gid=100(users) group=100(users),1000(test)
+    $ sudo groupdel testb
     ```
 
 !!! Tip "Підказка"
@@ -205,7 +212,7 @@ $ sudo groupdel GroupC
 
 Цей файл містить інформацію про групу (розділену `:`).
 
-```
+```bash
 $ sudo tail -1 /etc/group
 GroupP:x:516:patrick
   (1)  (2)(3)   (4)
@@ -216,7 +223,7 @@ GroupP:x:516:patrick
 * 3: GID.
 * 4: Додаткові користувачі в групі (за винятком унікального основного користувача).
 
-!!! note "Примітка"
+!!! Note "Примітка"
 
    Кожен рядок у файлі `/etc/group` відповідає групі. Інформація про основного користувача зберігається в `/etc/passwd`.
 
@@ -224,7 +231,7 @@ GroupP:x:516:patrick
 
 Цей файл містить інформацію про безпеку груп (розділених `:`).
 
-```
+```bash
 $ sudo grep GroupA /etc/gshadow
 GroupA:$6$2,9,v...SBn160:alain:rockstar
    (1)      (2)            (3)      (4)
@@ -268,16 +275,16 @@ GroupA:$6$2,9,v...SBn160:alain:rockstar
 
 ### Команда `useradd`
 
-Команда `useradd` використовується для додавання користувача.
+Команда `useradd` додає користувача.
 
-```
+```bash
 useradd [-u UID] [-g GID] [-d directory] [-s shell] login
 ```
 
 Приклад:
 
-```
-$ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
+```bash
+sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
 ```
 
 | Опція               | Опис                                                                                                                                                              |
@@ -310,16 +317,16 @@ $ sudo useradd -u 1000 -g 1013 -d /home/GroupC/carine carine
     `/etc/login.defs` і `/etc/default/user/add`
 
 ```bash
-Shell > useradd test1
+$ sudo useradd test1
 
-Shell > tail -n 1 /etc/passwd
+$ tail -n 1 /etc/passwd
 test1:x:1000:1000::/home/test1:/bin/bash
 
-Shell > tail -n 1 /etc/shadow
+$ tail -n 1 /etc/shadow
 test1:!!:19253:0:99999:7
 :::
 
-Shell > tail -n 1 /etc/group ; tail -n 1 /etc/gshadow
+$ tail -n 1 /etc/group ; tail -n 1 /etc/gshadow
 test1:x:1000:
 test1:!::
 ```
@@ -342,8 +349,8 @@ test1:!::
 
 Приклад:
 
-```
-$ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
+```bash
+sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
 ```
 
 !!! Note "Примітка"
@@ -361,14 +368,14 @@ $ sudo useradd -u 1000 -g GroupA -G GroupP,GroupC albert
 
 Модифікація файлу `/etc/default/useradd`.
 
-```
+```bash
 useradd -D [-b directory] [-g group] [-s shell]
 ```
 
 Приклад:
 
-```
-$ sudo useradd -D -g 1000 -b /home -s /bin/bash
+```bash
+sudo useradd -D -g 1000 -b /home -s /bin/bash
 ```
 
 | Опція         | Опис                                                                                          |
@@ -384,14 +391,14 @@ $ sudo useradd -D -g 1000 -b /home -s /bin/bash
 
 Команда `usermod` дозволяє змінити користувача.
 
-```
+```bash
 usermod [-u UID] [-g GID] [-d directory] [-m] login
 ```
 
 Приклад:
 
-```
-$ sudo usermod -u 1044 carine
+```bash
+sudo usermod -u 1044 carine
 ```
 
 Параметри, ідентичні команді `useradd`.
@@ -414,39 +421,40 @@ $ sudo usermod -u 1044 carine
 
 Де `1000` – це старий `UID`, а `1044` – новий. Приклади:
 
-```
-$ sudo find / -uid 1000 -exec chown 1044: {} \;
+```bash
+sudo find / -uid 1000 -exec chown 1044: {} \;
 ```
 
 Блокування та розблокування облікового запису користувача. Приклади:
 
-```
-Shell > usermod -L test1
-Shell > grep test1 /etc/shadow
+```bash
+$ usermod -L test1
+$ grep test1 /etc/shadow
 test1:!$6$n.hxglA.X5r7X0ex$qCXeTx.kQVmqsPLeuvIQnNidnSHvFiD7bQTxU7PLUCmBOcPNd5meqX6AEKSQvCLtbkdNCn.re2ixYxOeGWVFI0:19259:0:99999:7
 :::
 
-Shell > usermod -U test1
+$ usermod -U test1
 ```
 
 Різницю між параметрами `-aG` і `-G` можна пояснити за допомогою наступного приклада:
 
 ```bash
-Shell > useradd test1
-Shell > passwd test1
-Shell > groupadd groupA ; groupadd groupB ; groupadd groupC ; groupadd groupD
-Shell > id test1
+$ sudo useradd test1
+$ sudo passwd test1
+$ sudo groupadd groupA ; sudo groupadd groupB ; sudo groupadd groupC ; sudo groupadd groupD
+$ id test1
 uid=1000(test1) gid=1000(test1) groups=1000(test1)
 
-Shell > gpasswd -a test1 groupA
-Shell > id test1
+$ sudo gpasswd -a test1 groupA
+$ id test1
 uid=1000(test1) gid=1000(test1) groups=1000(test1),1002(groupA)
 
-Shell > usermod -G groupB,groupC test1
-Shell > id test1 
-uid=1000(test1) gid=1000(test1) gorups=1000(test1),1003(groupB),1004(groupC)
+$ sudo usermod -G groupB,groupC test1
+$ id test1 
+uid=1000(test1) gid=1000(test1) groups=1000(test1),1003(groupB),1004(groupC)
 
-Shell > usermod -aG groupD test1
+$ sudo usermod -aG groupD test1
+$ id test1
 uid=1000(test1) gid=1000(test1) groups=1000(test1),1003(groupB),1004(groupC),1005(groupD)
 ```
 
@@ -454,8 +462,8 @@ uid=1000(test1) gid=1000(test1) groups=1000(test1),1003(groupB),1004(groupC),100
 
 Команда `userdel` дозволяє видалити обліковий запис користувача.
 
-```
-$ sudo userdel -r carine
+```bash
+sudo userdel -r carine
 ```
 
 | Опція | Опис                                                                                             |
@@ -472,7 +480,7 @@ $ sudo userdel -r carine
 
 Цей файл містить інформацію про користувача (розділену `:`).
 
-```
+```bash
 $ sudo head -1 /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 (1)(2)(3)(4)(5)  (6)    (7)
@@ -489,7 +497,8 @@ root:x:0:0:root:/root:/bin/bash
 ### Файл `/etc/shadow`
 
 Цей файл містить інформацію про безпеку користувачів (розділену `:`).
-```
+
+```bash
 $ sudo tail -1 /etc/shadow
 root:$6$...:15399:0:99999:7
 :::
@@ -514,10 +523,10 @@ root:$6$...:15399:0:99999:7
 
 ```bash
 # Мітка часу перетворюється на дату, «17718» вказує позначку часу, яку потрібно заповнити.
-Shell > date -d "1970-01-01 17718 days" 
+$ date -d "1970-01-01 17718 days"
 
 # Дата перетворюється на позначку часу, «2018-07-06» вказує на дату, яку потрібно заповнити.
-Shell > echo $(($(date --date="2018-07-06" +%s)/86400+1))
+$ echo $(($(date --date="2018-07-06" +%s)/86400+1))
 ```
 
 ## Власники файлів
@@ -533,14 +542,17 @@ Shell > echo $(($(date --date="2018-07-06" +%s)/86400+1))
 #### Команда `chown`
 
 Команда `chown` дозволяє змінити власників файлу.
-```
+
+```bash
 chown [-R] [-v] login[:group] file
 ```
 
 Приклади:
-```
-$ sudo chown root myfile
-$ sudo chown albert:GroupA myfile
+
+```bash
+sudo chown root myfile
+
+sudo chown albert:GroupA myfile
 ```
 
 | Опція | Опис                                                            |
@@ -550,45 +562,46 @@ $ sudo chown albert:GroupA myfile
 
 Щоб змінити лише користувача-власника:
 
-```
-$ sudo chown albert file
+```bash
+sudo chown albert file
 ```
 
 Щоб змінити лише групу власників:
 
-```
-$ sudo chown :GroupA file
+```bash
+sudo chown :GroupA file
 ```
 
 Зміна користувача та групи власників:
 
-```
-$ sudo chown albert:GroupA file
+```bash
+sudo chown albert:GroupA file
 ```
 
-У наступному прикладі призначений група буде головною групою вказаного користувача.
+У наступному прикладі призначена група буде основною групою вказаного користувача.
 
-```
-$ sudo chown albert: файл
+```bash
+sudo chown albert: file
 ```
 
 Змінити власника і групу всіх файлів в каталозі
 
-```
-$ sudo chown -R albert:GroupA /dir1
+```bash
+sudo chown -R albert:GroupA /dir1
 ```
 
 ### `команда chgrp`
 
 Команда `chgrp` дозволяє змінити власника групи файлу.
 
-```
+```bash
 chgrp [-R] [-v] груповий файл
 ```
 
 Приклад:
-```
-$ sudo chgrp group1 файл
+
+```bash
+sudo chgrp group1 file
 ```
 
 | Опція | Опис                                                         |
@@ -596,17 +609,17 @@ $ sudo chgrp group1 файл
 | `-R`  | Повторно змінюйте групи каталогу та всі файли під каталогом. |
 | `-v`  | Відображає виконані зміни.                                   |
 
-!!! Примітка
+!!! Note "Примітка"
 
     Можна застосувати до файлу, власника і групи власників, приймаючи як посилання на файли з іншого файлу:
 
-```
+```bash
 chown [options] --reference=RRFILE FILE
 ```
 
 Наприклад:
 
-```
+```bash
 chown --reference=/etc/groups /etc/passwd
 ```
 
@@ -616,13 +629,13 @@ chown --reference=/etc/groups /etc/passwd
 
 Команда `gpasswd` дозволяє керувати групою.
 
-```
+```bash
 gpasswd [option] group
 ```
 
 Приклади:
 
-```
+```bash
 $ sudo gpasswd -A alain GroupA
 [alain]$ gpasswd -a patrick GroupA
 ```
@@ -636,10 +649,10 @@ $ sudo gpasswd -A alain GroupA
 
 Команда `gpasswd -M` діє як модифікація, а не доповнення.
 
-```
+```bash
 # gpasswd GroupeA
-Новий пароль:
-Повторно введіть новий пароль:
+New Password:
+Re-enter new password:
 ```
 
 !!! note "Примітка"
@@ -650,13 +663,13 @@ $ sudo gpasswd -A alain GroupA
 
 Команда `id` відображає назви груп користувача.
 
-```
-ідентифікатор користувача
+```bash
+id USER
 ```
 
 Приклад:
 
-```
+```bash
 $ sudo id alain
 uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 ```
@@ -665,45 +678,45 @@ uid=1000(alain) gid=1000(GroupA) groupes=1000(GroupA),1016(GroupP)
 
 Команда `newgrp` може вибрати групу з додаткових груп користувача як нову **тимчасову** основну групу користувача. Команда `newgrp` кожного разу, коли ви змінюєте основну групу користувача, створює нову **дочірню оболонку**（дочірній процес). Будьте обережні! **Дочірня оболонка** та **підоболонка** відрізняються.
 
-```
+```bash
 newgrp [secondarygroups]
 ```
 
 Приклад:
 
-```
-Shell > useradd test1
-Shell > passwd test1
-Shell > groupadd groupA ; groupadd groupB 
-Shell > usermod -G groupA,groupB test1
-Shell > id test1
+```bash
+$ sudo useradd test1
+$ sudo passwd test1
+$ sudo groupadd groupA ; sudo groupadd groupB 
+$ sudo usermod -G groupA,groupB test1
+$ id test1
 uid=1000(test1) gid=1000(test1) groups=1000(test1),1001(groupA),1002(groupB)
-Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+$ echo $SHLVL ; echo $BASH_SUBSHELL
 1
 0
 
-Shell > su - test1
-Shell > touch a.txt
-Shell > ll
+$ su - test1
+$ touch a.txt
+$ ll
 -rw-rw-r-- 1 test1 test1 0 10月  7 14:02 a.txt
-Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+$ echo $SHLVL ; echo $BASH_SUBSHELL
 1
 0
 
 # Generate a new child shell
-Shell > newgrp groupA
-Shell > touch b.txt
-Shell > ll
+$ newgrp groupA
+$ touch b.txt
+$ ll
 -rw-rw-r-- 1 test1 test1  0 10月  7 14:02 a.txt
 -rw-r--r-- 1 test1 groupA 0 10月  7 14:02 b.txt
-Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+$ echo $SHLVL ; echo $BASH_SUBSHELL
 2
 0
 
 # You can exit the child shell using the `exit` command
-Shell > exit
-Shell > logout
-Shell > whoami
+$ exit
+$ logout
+$ whoami
 root
 ```
 
@@ -713,15 +726,16 @@ root
 
 Команда `passwd` використовується для керування паролем.
 
-```
+```bash
 passwd [-d] [-l] [-S] [-u] [login]
 ```
 
 Приклади:
 
-```
-Shell > passwd -l albert
-Shell > passwd -n 60 -x 90 -w 80 -i 10 patrick
+```bash
+sudo passwd -l albert
+
+sudo passwd -n 60 -x 90 -w 80 -i 10 patrick
 ```
 
 | Опція     | Опис                                                                                                              |
@@ -742,14 +756,14 @@ Shell > passwd -n 60 -x 90 -w 80 -i 10 patrick
 
 * Ален змінює свій пароль:
 
-```
+```bash
 [alain]$ passwd
 ```
 
 * root змінює пароль Алана
 
-```
-$ sudo passwd alain
+```bash
+sudo passwd alain
 ```
 
 !!! Note "Примітка"
@@ -764,8 +778,8 @@ $ sudo passwd alain
 
 Приклад:
 
-```
-$ sudo echo "azerty,1" | passwd --stdin philippe
+```bash
+sudo echo "azerty,1" | passwd --stdin philippe
 ```
 
 !!! warning "Увага"
@@ -776,14 +790,14 @@ $ sudo echo "azerty,1" | passwd --stdin philippe
 
 Команда `chage` змінює інформацію про закінчення терміну дії пароля користувача.
 
-```
+```bash
 chage [-d date] [-E date] [-I days] [-l] [-m days] [-M days] [-W days] [login]
 ```
 
 Приклад:
 
-```
-$ sudo chage -m 60 -M 90 -W 80 -I 10 alain
+```bash
+sudo chage -m 60 -M 90 -W 80 -I 10 alain
 ```
 
 | Опція            | Опис                                                                                                                                           |
@@ -798,7 +812,7 @@ $ sudo chage -m 60 -M 90 -W 80 -I 10 alain
 
 Приклади:
 
-```
+```bash
 # Команда `chage` також пропонує інтерактивний режим.
 $ sudo hage
 
@@ -816,9 +830,9 @@ $ sudo chage -d 0 philippe
 * `/etc/login.defs`
 * `/etc/skel`
 
-!!! Примітка
+!!! Note "Примітка"
 
-    Редагування файлу `/etc/default/user/useradd` виконується за допомогою команди `useradd`.
+    Редагування файлу `/etc/default/useradd` виконується командою `useradd`.
     
     Інші файли мають бути змінені в текстовому редакторі.
 
@@ -828,12 +842,12 @@ $ sudo chage -d 0 philippe
 
 !!! tip "Порада"
 
-    Під час створення користувача, якщо не зазначені варіанти, система використовує значення за замовчуванням в `/etc/default/user/user/.
+    Під час створення користувача, якщо параметри не вказано, система використовує значення за замовчуванням, визначені в `/etc/default/useradd`.
 
-Цей файл змінено командою `useradd -D` (`useradd -D` введений без будь-якої іншої опції відображає вміст файлу `/etc/default/useradd`.
+Цей файл змінюється командою `useradd -D` (`useradd -D`, введений без будь-яких інших параметрів, відображає вміст `/etc/default/useradd` > файл).
 
-```
-Shell > сір -v ^# /etc/default/user/useradd 
+```bash
+Shell > grep -v ^# /etc/default/useradd 
 GROUP=100
 HOME=/home
 INACTIVE=-1
@@ -855,7 +869,7 @@ CREATE_MAIL_SPOOL=yes
 
 Якщо під час створення користувачів вам не потрібна первинна група з однаковою назвою, ви можете зробити це:
 
-```
+```bash
 Shell > useradd -N test2
 Shell > id test2
 uid=1001(test2) gid=100(users) groups=100(users)
@@ -886,17 +900,17 @@ USERGROUPS_ENAB yes
 ENCRYPT_METHOD SHA512
 ```
 
-`UMASK 022`: це означає, що дозвіл на створення файлу становить 755 (rwxr-xr-xr-xxxx). Однак з міркувань безпеки GNU/Linux не має дозволу **x** для новостворених файлів, це обмеження застосовується до root (uid=0) і звичайних користувачів (uid& #062;=1000). Наприклад:
+`UMASK 022`: це означає, що дозвіл на створення файлу становить 755 (rwxr-xr-x). Проте з міркувань безпеки GNU/Linux не має дозволу **x** для новостворених файлів; це обмеження стосується root (uid=0) і звичайних користувачів (uid>=1000). Наприклад:
 
-```
+```bash
 Shell > touch a.txt
 Shell > ll
--rw-r--r-- 1 root 0 Oct 8 13:00 a.txt
+-rw-r--r-- 1 root root     0 Oct  8 13:00 a.txt
 ```
 
 `HOME_MODE 0700`: Права звичайної домашньої теки користувача. Не працює для домашнього каталогу root.
 
-```
+```bash
 Shell > ll -d /root
 dr-xr-x---. 10 root root 4096 Oct  8 13:12 /root
 
@@ -924,13 +938,13 @@ drwx------ 2 test1 test1 4096 Oct  8 13:10 /home/test1/
 
 Команда `su` дозволяє змінити ідентифікатор підключеного користувача.
 
-```
+```bash
 su [-] [-c command] [login]
 ```
 
 Приклади:
 
-```
+```bash
 $ sudo su - alain
 [albert]$ su - root -c "passwd alain"
 ```
@@ -944,31 +958,33 @@ $ sudo su - alain
 
 Звичайним користувачам доведеться ввести пароль для нової ідентифікації.
 
-!!! Порада
+!!! Tip "Порада"
 
     Ви можете використати команду `exit`/`logout`, щоб вийти з користувачів, яких було переключено. Слід зазначити, що після зміни користувача не буде нової `дочірньої оболонки` або `підоболонки`, наприклад:
 
     ```
-    Ll > echo $SHLVL ; echo $BASH_SUBSHELL
+    $ whoami
+    root
+    $ echo $SHLVL ; echo $BASH_SUBSHELL
     1
     0
 
-    Shell > su - test1
-    Shell > echo $SHLVL ; echo $BASH_SUBSHELL
+    $ su - test1
+    $ echo $SHLVL ; echo $BASH_SUBSHELL
     1
     0
     ```
 
 Увага, будь ласка! `su` і `su -` відрізняються, як показано в наступному прикладі:
 
-```
-Shell > whoami
+```bash
+$ whoami
 test1
-Shell > su root
-Shell > pwd
+$ su root
+$ pwd
 /home/test1
 
-Shell > env
+$ env
 ...
 USER=test1
 PWD=/home/test1
@@ -978,14 +994,14 @@ LOGNAME=test1
 ...
 ```
 
-```
-Shell > whoami
+```bash
+$ whoami
 test1
-Shell > su - root
-Shell > pwd
+$ su - root
+$ pwd
 /root
 
-Shell > env
+$ env
 ...
 USER=root
 PWD=/root
