@@ -106,7 +106,7 @@ php                    remi-8.0 [e]                   common [d], devel, minimal
 У нашому прикладі використовуються Apache і mariadb, тому, щоб встановити те, що нам потрібно, нам просто потрібно зробити наступне:
 
 ```
-dnf install httpd mariadb-server vim wget zip unzip libxml2 openssl php80-php php80-php-ctype php80-php-curl php80-php-gd php80-php-iconv php80-php-json php80-php-libxml php80-php-mbstring php80-php-openssl php80-php-posix php80-php-session php80-php-xml php80-php-zip php80-php-zlib php80-php-pdo php80-php-mysqlnd php80-php-intl php80-php-bcmath php80-php-gmp
+dnf install httpd mariadb-server vim wget zip unzip libxml2 openssl php81-php php81-php-ctype php81-php-curl php81-php-gd php81-php-iconv php81-php-json php81-php-libxml php81-php-mbstring php81-php-openssl php81-php-posix php81-php-session php81-php-xml php81-php-zip php81-php-zlib php81-php-pdo php81-php-mysqlnd php81-php-intl php81-php-bcmath php81-php-gmp
 ```
 
 ### Конфігурація
@@ -176,7 +176,7 @@ mkdir -p /var/www/sub-domains/com.yourdomain.com/html
 Нам потрібно встановити часовий пояс для PHP. Для цього відкрийте php.ini за допомогою обраного вами текстового редактора:
 
 ```
-vi /etc/opt/remi/php80/php.ini
+vi /etc/opt/remi/php81/php.ini
 ```
 
 Потім знайдіть рядок:
