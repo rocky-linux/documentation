@@ -39,7 +39,7 @@ A document may or may not need to contain any of these elements. If you feel you
 
     * Inline HTML [element name]
 
-    If you find yourself needing to use a supported HTML element, see if you can find another way to write your document that will not use HTML elements. If you must use them, it is still allowed.
+    If you need to use a supported HTML element, see if you can find another way to write your document that will not use these elements. If you must use them, it is still allowed.
 
 ## Admonitions
 
@@ -216,7 +216,7 @@ And here is how that looks as raw text:
 
 ## Tables
 
-Tables help us to lay out command options, or in the above case, admonition types and descriptions. Here is how the table in the Admonitions section was entered:
+In the above case, tables help us lay out command options or admonition types and descriptions. Here is how the table in the Admonitions section was entered:
 
 ```text
 | type      | Description                                               |

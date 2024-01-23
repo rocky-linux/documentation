@@ -1,7 +1,7 @@
 ---
 title : nload - Bandwidth Statistics
 author : Neel Chauhan
-contributors: Steven Spencer 
+contributors: Steven Spencer, Ganna Zhyrnova 
 date : 2024-01-16
 ---
 
@@ -21,7 +21,7 @@ The common options of the `nload` command follow, and under normal circumstances
 |Options|Description|
 |---|---|
 |-a PERIOD |Length for time window of calculation in seconds (default: 300)|
-|-m |Show multiple devices and don't show traffic graph|
+|-m |Shows multiple devices and does not show a traffic graph|
 |-t INTERVAL |Refresh interval in milliseconds (default: 500)|
 |-u UNIT |One-letter unit for bandwidth display (default: k)|
 |-U UNIT |One-Letter unit for data transfer display (default: M)|
