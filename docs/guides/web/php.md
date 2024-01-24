@@ -13,7 +13,7 @@ tags:
 
 !!! warning "Written for Rocky Linux 8.x"
 
-    Note that this procedure was initially published some time ago, at which time Rocky Linux 8.x was the only version. This procedure needs to be tested and rewritten as appropriate for Rocky Linux 9.x.
+    This procedure was initially published when Rocky Linux 8.x was the only version. This procedure must tested and rewritten for Rocky Linux 9.x.
 
 **PHP** (**P**HP **H**ypertext **P**reprocessor) is a source scripting language, specially designed for web application development. In 2021, PHP represented a little less than 80% of the web pages generated in the world. PHP is open-source and is the core of the most famous CMS (WordPress, Drupal, Joomla!, Magento, ...).
 
