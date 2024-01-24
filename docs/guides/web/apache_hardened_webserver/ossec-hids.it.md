@@ -43,7 +43,7 @@ Scaricare e attivare il repository gratuito di Atomicorp:
 wget -q -O - https://www.atomicorp.com/installers/atomic | sh
 ```
 
-Questo script vi chiederà di accettare i termini. Immettere "yes" o <kbd>Invio</kbd> per accettare l'impostazione predefinita.
+Questo script vi chiederà di accettare i termini. Immettere "yes" o ++invio++ per accettare l'impostazione predefinita.
 
 Successivamente, verrà chiesto se si desidera abilitare il repository per impostazione predefinita e, anche in questo caso, si potrà accettare l'impostazione predefinita o inserire "yes".
 
@@ -61,7 +61,7 @@ Aggiungete questa riga sotto "enabled = 1" nella sezione superiore:
 includepkgs = ossec* GeoIP* inotify-tools
 ```
 
-Questo è l'unico cambiamento necessario. Salvare le modifiche e uscire dal repository (in `vi` è <kbd>esc</kbd> per entrare in modalità comando, poi <kbd>SHIFT+</kbd><kbd>:</kbd><kbd>+wq</kbd> per salvare e uscire).
+Questo è l'unico cambiamento necessario. Salvare le modifiche e uscire dal repository (in `vi` è ++esc++ per entrare in modalità comando, poi ++shift+:+wq++ per salvare e uscire).
 
 Questo limita il repository Atomicorp solo all'installazione e all'aggiornamento di questi pacchetti.
 
