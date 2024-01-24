@@ -47,7 +47,7 @@ A method of encryption and decryption is called a cipher.
 
 Hash Functions (Digest algorithms)
 
-Cryptographic hash functions are used in various contexts, for example to compute the message digest when making a digital signature. A hash function compresses the bits of a message to a fixed-size hash value to distribute the possible messages evenly among the possible hash values. A cryptographic hash function does this in a way that makes it extremely difficult to come up with a message that would hash to a particular hash value. Below are some examples of the best-known and most widely used hash functions. 
+Cryptographic hash functions are used in various contexts, for example to compute the message digest when making a digital signature. A hash function compresses the bits of a message to a fixed-size hash value to distribute the possible messages evenly among the possible hash values. A cryptographic hash function does this in a way that makes it extremely difficult to come up with a message that would hash to a particular hash value. Below are some examples of the best-known and most widely used hash functions.
 
 **a)** - **SHA-1 (Secure Hash Algorithm)** -This is a cryptographic hash algorithm published by the United States Government. It produces a 160 bit hash value from an arbitrary length string. It is considered to be very good.
 
@@ -116,19 +116,19 @@ Perform the following exercises as a regular user. e.g. user ying
 1. Log into the system as user “ying”
 
 2. Ensure that the GnuPG package is installed on your system. Type:
-    
-    ```
+
+    ```bash
     [ying@serverXY ying]$ rpm -q gnupg
     gnupg-*.*
     ```
-    
+
     If it isn’t, get the superuser to install it.
-    
+
 3. List and make a note of all the hidden directories in your home directory.
 
 4. List the keys you currently have in your keyring. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --list-keys
     ```
 
@@ -140,7 +140,7 @@ Perform the following exercises as a regular user. e.g. user ying
 
 5. Use the gpg program to create your new key-pairs. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --gen-key
 
     ......................................
@@ -168,7 +168,7 @@ Perform the following exercises as a regular user. e.g. user ying
 
 6. You will create an ELG-E key size of 1024. Accept the default again at the prompt below:
 
-    ```
+    ```bash
     DSA key pair will have 1024 bits.
 
     About to generate a new ELG-E key pair.
@@ -200,7 +200,7 @@ Perform the following exercises as a regular user. e.g. user ying
 
 8. Type “y” to accept the expiry date shown at the prompt:
 
-    ```
+    ```bash
     Is this correct (y/n)? y
     ```
 
@@ -228,7 +228,7 @@ Perform the following exercises as a regular user. e.g. user ying
 
 10. Select a passphrase that you WILL NOT forget at the next prompt:
 
-    ```
+    ```bash
     Enter passphrase: **
 
     Repeat passphrase: **
@@ -244,7 +244,7 @@ The gpg program is also used in key administration.
 
 1. While still logged into the system as the user ying. Display the keys in your key-ring. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$  gpg --list-keys
 
     gpg: WARNING: using insecure memory!
@@ -260,7 +260,7 @@ The gpg program is also used in key administration.
 
 2. To suppress the somewhat annoying “warning” about “insecure memory” add the following option to your personal gpg configuration file. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ echo "no-secmem-warning" >> ~/.gnupg/gpg.conf
     ```
 
@@ -268,7 +268,7 @@ The gpg program is also used in key administration.
 
 4. List your keys along with their signatures. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --list-sigs
 
     /home/ying/.gnupg/pubring.gpg
@@ -276,7 +276,7 @@ The gpg program is also used in key administration.
 
 5. List only your secret keys. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --list-secret-keys
 
     /home/ying/.gnupg/secring.gpg
@@ -290,7 +290,7 @@ The gpg program is also used in key administration.
 
 6. Display the key fingerprints. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --fingerprint
 
     /home/ying/.gnupg/pubring.gpg
@@ -312,7 +312,7 @@ The gpg program is also used in key administration.
 
 1. While still logged in as the user ying. Create a revocation certificate. It will be displayed on your standard output. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --gen-revoke ying@serverXY
     ```
 
@@ -322,7 +322,7 @@ The gpg program is also used in key administration.
 
     “revoke.asc”. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --output revoke.asc --gen-revoke ying@serverXY
     ```
 
@@ -342,7 +342,7 @@ Or at least make your public key available in any publicly accessible place (bil
 
 1. Export your public key in binary format to a file called “ying-pub.gpg”. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --output ying-pub.gpg --export <your_key’s_user_ID>
     ```
 
@@ -360,7 +360,7 @@ Or at least make your public key available in any publicly accessible place (bil
 
     ASCII-armored format. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$gpg --output ying-pub.asc --armor --export ying@serverXY 
     ```
 
@@ -382,7 +382,7 @@ Creating and verifying signatures uses the public/private key pair, which differ
 
 1. Create a file named “secret-file.txt” with the text “Hello All” in it. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ echo "Hello All" > secret1.txt
     ```
 
@@ -390,16 +390,17 @@ Creating and verifying signatures uses the public/private key pair, which differ
 
 3. Now sign the file with your digital signature. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg -s secret1.txt
     ```
+
     Input your passphrase when prompted.
 
     The above command will create another file “secret1.txt.gpg” which is compressed and has a signature attached to it. Run the “file” command on the file to check this. View the file with cat
 
 4. Check the signature on the signed “secret1.txt.gpg” file. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --verify secret1.txt.gpg
 
     gpg: Signature made Thu 16 Oct 2003 07:29:37 AM PDT using DSA key ID 1D12E484
@@ -411,7 +412,7 @@ Creating and verifying signatures uses the public/private key pair, which differ
 
 6. Sign the secret2.txt file, but let the file be ASCII armored this time. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg -sa secret2.txt
     ```
 
@@ -421,13 +422,13 @@ Creating and verifying signatures uses the public/private key pair, which differ
 
 8. Create another file called “secret3.txt” with the text “hello dude” in it. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying echo "hello dude" > secret3.txt
     ```
 
 9. Append your signature to the body of the file you created above. Type:
-    
-    ```
+
+    ```bash
     [ying@serverXY ying]$ gpg --clearsign secret3.txt
     ```
 
@@ -467,13 +468,13 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
         Select the most efficient method for yourself.
 
-3. Ask your partner to make their public key file available to you. 
+3. Ask your partner to make their public key file available to you.
 
 4. Assuming your partner’s public key is store in a file called “ me-pub.asc” in your pwd;
 
     Import the key into your key-ring. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --import me-pub.asc
 
     gpg: key 1D0D7654: public key "Me Mao (my test) <me@serverXY>" imported
@@ -485,7 +486,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
 5. Now list the keys in your key-ring. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --list-keys
 
     /home/ying/.gnupg/pubring.gpg
@@ -503,16 +504,15 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
 6. In particular list the key that is associated with the user-ID me@serverXY. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --list-keys me@serverXY
     ```
 
 7. View the fingerprint of the key for me@serverXY. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --fingerprint me@serverXY
     ```
-
 
     <span id="anchor-4"></span>Encrypting and decrypting files
 
@@ -528,7 +528,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
 1. While logged into the system as the user ying, create a file called encrypt-sec.txt. Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ echo "hello" > encrypt-sec.txt
     ```
 
@@ -536,7 +536,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
 2. Encrypt the file encrypt-sec.txt, such that only the user “me” can view the file. i.e. you will encrypt it using me@serverXY’s public key ( which you now have in your key-ring). Type:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --encrypt --recipient me@serverXY encrypt-sec.txt
     ```
 
@@ -547,8 +547,8 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 1. The file you encrypted above was meant for me@serverXY.
 
     Try to decrypt the file. Type:
-    
-    ```
+
+    ```bash
     [ying@serverXY ying]$ gpg --decrypt encrypt-sec.txt.gpg
 
     gpg: encrypted with 1024-bit ELG-E key, ID FD20DBF1, created 2003-10-16
@@ -568,7 +568,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
     Make a habit of using the command below instead when decrypting files:
 
-    ```
+    ```bash
     [ying@serverXY ying]$ gpg --output encrypt-sec --decrypt encrypt-sec.txt.gpg
     ```
 
@@ -591,22 +591,22 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
 4. To encrypt the string "hello" and mails it as an ASCII armored message to the user with the mail address ying@serverXY; Use the command below:
 
-    ```
+    ```bash
     echo "hello" | gpg -ea -r ying@serverXY | mail ying@serverXY
     ```
-    
+
 5. To encrypt the file "your_file" with the public key of "me@serverXY" and write it to "your_file.gpg"
 
     after signing it with your user id (using your digital signature); Use the command below:
 
-    ```
+    ```bash
     gpg -se -r me@serverXY your_file
     ```
-    
+
 6. There is a publicly available key server at wwwkeys.pgp.net. You can use gpg to upload your key there with:
 
     gpg --send-keys <your_real_email_address> --keyserver wwwkeys.pgp.net
-    
+
 ## OpenSSH (www.openssh.org)
 
 OpenSSH is OpenBSD's SSH (Secure SHell) protocol implementation.
@@ -641,7 +641,7 @@ The client's suite of programs includes `ssh`. This is a program used for loggin
 
 Some exercises cover the `sshd` server daemon.
 
-```
+```bash
 Usage: sshd [options]
 
 Options:
@@ -668,12 +668,12 @@ Most Linux systems out of the box already have the OpenSSH server configured and
 ### `sshd_config`
 
 1. Open up the SSH server’s configuration file with any pager and study it. Type:
-    
-    ```
+
+    ```bash
     [root@serverXY root]# less /etc/ssh/sshd_config
     ```
 
-    !!! note 
+    !!! note
 
         `sshd_config` is a rather odd configuration file. Unlike other Linux config files - comments (#) in the `sshd_config` file denotes the options' default values. (i.e. comments represents already compiled-in defaults.)
 
@@ -698,7 +698,7 @@ Your SSH server already has host keys that it uses. Those keys were generated wh
 
 1. Create a new directory under your pwd. Call it spare-keys. cd to the new directory. Type:
 
-    ```
+    ```bash
     [root@serverXY ssh]# mkdir spare-keys && cd spare-keys
     ```
 
@@ -711,22 +711,23 @@ Your SSH server already has host keys that it uses. Those keys were generated wh
 
     Type:
 
-    ```
+    ```bash
     [root@serverXY spare-keys]# ssh-keygen -q -t rsa -f ssh_host_rsa_key -C '' -N ''
     ```
 
-    !!! Question 
+    !!! Question
+
         What do you need to do to make the sshd daemon use the host key that you just generated ?
 
 3. View the fingerprint of the key you created above. Type:
 
-    ```
+    ```bash
     [root@serverXY spare-keys]# ssh-keygen -l -f ssh_host_rsa_key
     ```
 
 4. View the fingerprint of the key you created but this time include the visual ASCII art representation  of key fingerprint. Type:
 
-    ```
+    ```bash
     [root@localhost spare-keys]# ssh-keygen -l -v -f ssh_host_rsa_key
     3072 SHA256:1kQS0Nz4NofWkgqU0y+DxmDoY6AmGsF40GwZkobD8DM ssh_host_rsa_key.pub (RSA)
     +---[RSA 3072]----+
@@ -745,7 +746,7 @@ Your SSH server already has host keys that it uses. Those keys were generated wh
 5. Write down the command to create a dsa type key called “ssh_host_dsa_key” with no comments, and no passphrase.
 
 6. Check the status of the `sshd` service. Type:
-   
+
     ```bash
     [root@localhost ~]# systemctl -n 0 status sshd.service
     ● sshd.service - OpenSSH server daemon
@@ -753,18 +754,20 @@ Your SSH server already has host keys that it uses. Those keys were generated wh
     Active: active (running) since Thu 2023-10-05 23:56:34 EDT; 3 days ago
     ...<SNIP>...
     ```
+
 7. If you make any configuration changes to the `sshd` configuration file, you can restart the `sshd` service by running:
-    
+
     ```bash
     [root@localhost ~]# systemctl restart sshd.service
-    ``` 
+    ```
+
 ## Exercise 6
 
 ### `ssh`
 
 This section covers exercises covering the `ssh` client program.
 
-```
+```bash
 usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
            [-b bind_address] [-c cipher_spec] [-D [bind_address:]port]
            [-E log_file] [-e escape_char] [-F configfile] [-I pkcs11]
@@ -780,28 +783,29 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 
 2. Use `ssh` to connect to serverPR. Type:
 
-    ```
+    ```bash
     [me@serverXY me]$ ssh serverPR
     ```
+
     Type in me’s password when prompted. If you get any warning messages type “yes” to continue.
 
 3. After logging in, create a directory called - myexport and create an empty file named foobar under the new directory. Type:
 
-    ```
+    ```bash
     [me@serverPR me]$ mkdir ~/myexport && touch myexport/foobar
     ```
 
 4. Log off serverPR. Type:
 
-    ```
+    ```bash
     [me@serverPR me]$ exit
     ```
+
     You will be returned to your local shell at serverXY.
 
-5. Use `ssh` to remotely execute the “ls” command to recursively view the list of files in me's home 
-   directory at serverPR. Type:
+5. Use `ssh` to remotely execute the “ls” command to recursively view the list of files in me's home directory at serverPR. Type:
 
-    ```
+    ```bash
     [root@localhost ~]# ssh me@serverPR 'ls -lR /home/me/myexport'
     me@localhost's password:
     ...<SNIP>...
@@ -814,7 +818,7 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 
 6. While still logged into serverXY, try remotely rebooting serverPR as the user `ying`. Type:
 
-    ```
+    ```bash
     [me@localhost ~]# ssh -l ying localhost 'reboot'
     ying@localhost's password:
     ...<SNIP>...
@@ -823,10 +827,10 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
     Type in ying's password when prompted.
 
     !!! Question
-        
+
         Was the user ying able to remotely reboot serverPR ? Why can't ying remotely reboot serverPR?
 
-7. From serverXY, try remotely viewing the status of the `sshd` service running on serverPR as the user `ying`. Type: 
+7. From serverXY, try remotely viewing the status of the `sshd` service running on serverPR as the user `ying`. Type:
 
     ```bash
     [root@localhost ~]# ssh -l ying localhost 'systemctl status sshd.service'
@@ -834,7 +838,7 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
     ● sshd.service - OpenSSH server daemon
     ```
 
-8. From serverXY, try remotely restart the `sshd` service running on serverPR as the user `ying`. Type: 
+8. From serverXY, try remotely restart the `sshd` service running on serverPR as the user `ying`. Type:
 
     ```bash
     [root@localhost ~]# ssh -l ying localhost 'systemctl restart sshd.service'
@@ -855,7 +859,7 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 
 `scp` copies files between hosts on a network. It uses SSH for data transfer, uses the same authentication, and provides the same security as `ssh`.
 
-```
+```bash
 usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
             [-J destination] [-l limit] [-o ssh_option] [-P port]
             [-S program] source ... target
@@ -870,7 +874,7 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
 3. Use `scp` to copy over all the files under the “/home/me/myexport/” directory on the remote serverPR.
     (the dot "." at the end of the command is important). Type:
 
-    ```
+    ```bash
     [me@localhost ~myimport]# scp serverPR:/home/me/myexport  .
     me@serverPR's password:
     scp: /home/me/myexport: not a regular file
@@ -879,7 +883,6 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     !!! Question
 
         Write a brief explanation for why the previous command failed?
-
 
 4. Run the previous command again but this time adding the recursive option to `scp`. Type:
 
@@ -903,13 +906,13 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
 
 6. Now copy over ying’s home directory on serverPR.  Type:
 
-    ```
+    ```bash
     [me@localhost ~myimport]# scp -r  ying@localhost:/home/ying/  ying_home_directory_on_serverPR
     ```
 
 7. Again, run a slight variation of the previous command to copy over ying’s home directory on serverPR.  Type:
 
-    ```
+    ```bash
     [me@localhost ~myimport]# scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR
     ```
 
@@ -922,15 +925,15 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
         and
         
         -  `scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR`
-    
+
 8. Use `ls -alR` command to view a listing of the contents of the 2 previous steps. Type:
-   
+
     ```bash
     [me@localhost ~myimport]# ls -al ying_home_directory_on_serverPR/
     ```
 
     !!! Question
-    
+
         Provide a brief explanation for the output of the `ls -alR` command? Explain for example why you seem to have duplicates of the these files .bash_history, .bashrc ...
 
 ## Exercise 7
@@ -1007,7 +1010,7 @@ In this exercise you will configure public-key authentication between your user 
 3. Enter the commands below exactly as shown. You'll be prompted for the ying's password on serverPR.
    Type:
 
-    ```
+    ```bash
     [ying@serverXY .ssh]$ cat id_dsa.pub | ssh ying@serverPR \ 
 
     '(cd ~/.ssh && cat - >> authorized_keys && chmod 600 authorized_keys)'
@@ -1015,7 +1018,7 @@ In this exercise you will configure public-key authentication between your user 
 
     In plain-speak, the above command reads:
 
-    a. cat the contents of your dsa public-key file, and pipe/send ( | ) the output to the `ssh ying@serverPR` 
+    a. cat he contents of your dsa public-key file, and pipe/send ( | ) the output to the `ssh ying@serverPR`
 
     b. run the command “cd ~/.ssh && cat - >> authorized_keys && chmod 600 authorized_keys” as the user ying on serverPR.
 
@@ -1024,13 +1027,13 @@ In this exercise you will configure public-key authentication between your user 
         The purpose of the previous complicated looking command is to copy and append the contents of your public-key file to the “/home/ying/.ssh/authorized_keys” on serverPR and give it the correct permissions.
 
     !!! Tip
-    
+
         You can use the `ssh-copy-id` utility to easily and more gracefully setup public/private key authentication between systems. `ssh-copy-id` is a script that uses `ssh` to log into a remote machine (presumably initially using a login password. 
         It assembles a list of one or more fingerprints (as described below) and tries to log in with each key, to see if any of them are already installed. It then assembles a list of those that failed to log in, and using `ssh`, enables logins with those keys on the remote system. By default it adds the keys by appending them to the remote user's ~/.ssh/authorized_keys (creating the file, and directory, if necessary).
-    
+
 4. After you have added your public-key to the authorized_keys file on the remote system. Attempt to login to serverPR as ying via ssh. Type:
 
-    ```
+    ```bash
     [ying@serverXY .ssh]$ ssh serverPR
     Enter passphrase for key '/home/ying/.ssh/id_dsa': **
     ```
@@ -1045,7 +1048,7 @@ In this exercise you will configure public-key authentication between your user 
 
 According to the man page - `ssh-agent` is a program to hold private keys used for public key authentication (RSA, DSA, ECDSA, Ed25519). The idea is that `ssh-agent` is started at the beginning of a user or login session, and all other windows or programs are started as clients to the `ssh-agent` program. Through the use of environment variables the agent can be located and automatically used for authentication when logging into other machines using `ssh`.
 
-```
+```bash
 SYNOPSIS
      ssh-agent [-c | -s] [-Dd] [-a bind_address] [-E fingerprint_hash] [-P pkcs11_whitelist] [-t life] [command [arg ...]]
      ssh-agent [-c | -s] -k
@@ -1057,7 +1060,7 @@ In this exercise you will learn how to configure the agent so that you wont have
 
 2. Type in the command below:
 
-    ```
+    ```bash
     [ying@localhost ~]$ eval `ssh-agent`
     Agent pid 6354
     ```
@@ -1078,8 +1081,9 @@ In this exercise you will learn how to configure the agent so that you wont have
     ```bash
     [ying@localhost ~]$ ssh-add
     ```
+
     Enter your passphrase when prompted.
-    
+
     ```bash
     Enter passphrase for /home/ying/.ssh/id_dsa:
     Identity added: /home/ying/.ssh/id_dsa (ying@localhost.localdomain)
@@ -1095,16 +1099,16 @@ In this exercise you will learn how to configure the agent so that you wont have
 6. Now as the user *ying*, try connecting remotely to serverPR and run a simple test command.
 
     Assuming you've done everything correctly till this point regarding setting up and storing the relevant keys, has done correctly till this point you should NOT be prompted for a password or passphrase. Type:
-    
-    ```
+
+    ```bash
     [ying@serverXY .ssh]$ ssh serverPR 'ls /tmp'
     ```
-    
+
 7. If you are done and no longer in need of the services of the `ssh-agent` or you simply want to revert back to key based authentication you can delete all the [private/public] identities from the agent. Type:
-   
+
     ```bash
     [ying@localhost ~]$ ssh-add -D
     All identities removed.
     ```
-    
-8. All done! 
+
+8. All done!
