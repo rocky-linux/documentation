@@ -20,11 +20,11 @@ tags:
 
 ## Installing `vale` using Mason
 
-Installing `vale` from within NvChad using Mason, will keep the package up-to-date with just a few extra steps. Running Mason periodically from within `nvim` will show you if there are updates that need to be installed and allow you to update them from there. This includes `vale` once it is installed. Let us start by running `nvim` to pull up an empty file and then get into the command mode by using <kbd>SHIFT</kbd>+<kbd>:</kbd>+Mason, which should show an interface similar to this one:
+Installing `vale` from within NvChad using Mason, will keep the package up-to-date with just a few extra steps. Running Mason periodically from within `nvim` will show you if there are updates that need to be installed and allow you to update them from there. This includes `vale` once it is installed. Let us start by running `nvim` to pull up an empty file and then get into the command mode by using ++SHIFT++ + ++:++ + Mason, which should show an interface similar to this one:
 
 ![vale_mason](images/vale_mason.png)
 
-Rather than looking at the entire list of packages, let us use menu item 4 to limit the listing to linters. Press <kbd>4</kbd> and scroll down in the list until you find `vale` and with your cursor on that line, press <kbd>i</kbd> to install. Your listing should now show `vale` installed:
+Rather than looking at the entire list of packages, let us use menu item 4 to limit the listing to linters. Press ++4++ and scroll down in the list until you find `vale` and with your cursor on that line, press ++i++ to install. Your listing should now show `vale` installed:
 
 ![vale_mason_installed](images/vale_mason_installed.png)
 
@@ -84,7 +84,6 @@ Next, run the `vale sync` command. Since you are in your home directory, you wil
 ![vale_sync](images/vale_sync.png)
 
 In this case, there is no need to copy the files as they will be created in your home directory root.
-
 
 ## The `null-ls.lua` file changes
 

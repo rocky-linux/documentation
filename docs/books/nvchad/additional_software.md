@@ -4,8 +4,8 @@ author: Franco Colussi
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.7, 9.1
 tags:
-    - nvchad
-    - coding
+  - nvchad
+  - coding
 ---
 
 # Additional Software Needed
@@ -70,11 +70,11 @@ sudo dnf copr enable atim/lazygit -y
 sudo dnf install lazygit
 ```
 
-Once installed we open a terminal and type the command `lazygit` and an interface similar to this will appear: 
+Once installed we open a terminal and type the command `lazygit` and an interface similar to this will appear:
 
 ![LazyGit UI](images/lazygit_ui.png)
 
-With the <kbd>x</kbd> key, we can bring up the menu with all available commands.
+With the ++x++ key, we can bring up the menu with all available commands.
 
 ![LazyGit UI](images/lazygit_menu.png)
 

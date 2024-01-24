@@ -30,7 +30,7 @@ To install the plugin you will need to edit the **custom/plugins.lua** file by a
 },
 ```
 
-Once you have saved the file, the plugin will be available for installation. To install it open *lazy.nvim* with the command `:Lazy` and type <kbd>I</kbd>. Once the installation finishes you will have to exit the editor and reopen it to have it read the new configuration you entered.
+Once you have saved the file, the plugin will be available for installation. To install it open *lazy.nvim* with the command `:Lazy` and type ++I++. Once the installation finishes you will have to exit the editor and reopen it to have it read the new configuration you entered.
 
 The plugin provides a single command `:ProjectMgr` that opens an interactive buffer from which you can perform all operations by using keyboard shortcuts. When first opened, the buffer will be empty as this screenshot shows:
 
@@ -38,7 +38,7 @@ The plugin provides a single command `:ProjectMgr` that opens an interactive buf
 
 ### Using the Project Manager
 
-All operations are performed with the <kbd>Ctrl</kbd> key followed by a letter (e.g. `<C-a`), while the `<CR>` key corresponds to the <kbd>Enter</kbd> key.
+All operations are performed with the ++Ctrl++ key followed by a letter (e.g. `<C-a`), while the `<CR>` key corresponds to the ++Enter++ key.
 
 The following table shows all available operations
 
@@ -50,7 +50,7 @@ The following table shows all available operations
 | `<C-e>` | Change project settings                         |
 | `<C-q>` | Close buffer                                    |
 
-To add your first project you will need to use the combination <kbd>Ctrl</kbd> + <kbd>a</kbd> which will open an interactive menu in the *statusline*. In this example a clone of the Rocky Linux documentation saved in **~/lab/rockydocs/documentation** will be used.
+To add your first project you will need to use the combination ++Ctrl++ + ++a++ which will open an interactive menu in the *statusline*. In this example a clone of the Rocky Linux documentation saved in **~/lab/rockydocs/documentation** will be used.
 
 The first question will ask you for the name of the project:
 
@@ -72,13 +72,13 @@ Or to run a command before closing the editor.
 
 Commands should be entered by omitting the colon `:` used to run the same commands in the *statusline.*
 
-Once the configuration is finished, your project will be available in the buffer. To open it, select it and press <kbd>Enter</kbd>.
+Once the configuration is finished, your project will be available in the buffer. To open it, select it and press ++Enter++.
 
 ![ProjectMgr Add](./images/projectmgr_add.png)
 
 As you can see from the screenshot in the **Config & Info** section, the plugin has recognized the folder as managed by *Git* and provides us with some information about it.
 
-Editing a project is done with <kbd>Ctrl</kbd> + <kbd>e</kbd> and consists of a new interactive loop, while any deletion is accomplished with the combination <kbd>Ctrl</kbd> + <kbd>d</kbd>.
+Editing a project is done with ++Ctrl++ + ++e++ and consists of a new interactive loop, while any deletion is accomplished with the combination ++Ctrl++ + ++d++.
 
 ### Additional functions
 
@@ -146,13 +146,13 @@ To speed up the opening of your projects, you can create a keyboard shortcut to 
 ```lua
 -- Projects
 M.projects = {
-  n = {
-    ["<leader>fp"] = { "<cmd> ProjectMgr<CR>", "Open Projects"}
-    },
+	n = {
+		["<leader>fp"] = { "<cmd> ProjectMgr<CR>", "Open Projects" },
+	},
 }
 ```
 
-With the editor in the **NORMAL** state you can open the project manager with the combination <kbd>Space</kbd> + <kbd>f</kbd> followed by <kbd>p</kbd>.
+With the editor in the **NORMAL** state you can open the project manager with the combination ++Space++ + ++f++ followed by ++p++.
 
 ## Conclusions and final thoughts
 
