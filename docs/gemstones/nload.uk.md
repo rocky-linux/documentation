@@ -1,7 +1,7 @@
 ---
 title: nload - Статистика пропускної здатності
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 date: 2024-01-16
 ---
 
