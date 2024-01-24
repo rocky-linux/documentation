@@ -377,15 +377,15 @@ install -d directory
 
 Opzioni:
 
-| Opzioni                    | Osservazioni                                                         |
-| -------------------------- | -------------------------------------------------------------------- |
-| `-b` o `--backup[=suffix]` | crea un backup del file di destinazione.                             |
-| `-d`                       | tratta gli argomenti come nomi di cartelle.                          |
-| `-D`                       | crea tutti i componenti principali, prima di copiare SOURCE in DEST. |
-| `-g` e `-o`                | imposta la proprietà.                                                |
-| `-m`                       | imposta le autorizzazioni.                                           |
-| `-p`                       | preservare i timestamp dei file sorgente.                            |
-| `-t`                       | copia tutti gli argomenti di origine nella directory.                |
+| Opzioni                    | Osservazioni                                                        |
+| -------------------------- | ------------------------------------------------------------------- |
+| `-b` o `--backup[=suffix]` | crea un backup del file di destinazione                             |
+| `-d`                       | tratta gli argomenti come nomi di cartelle                          |
+| `-D`                       | crea tutti i componenti principali, prima di copiare SOURCE in DEST |
+| `-g` e `-o`                | imposta la proprietà                                                |
+| `-m`                       | imposta le autorizzazioni                                           |
+| `-p`                       | preservare i timestamp dei file sorgente                            |
+| `-t`                       | copia tutti gli argomenti di origine nella directory                |
 
 !!! note "Nota"
 
@@ -413,7 +413,7 @@ install: creating directory '~/samples'
 'src/sample.txt' -> '~/samples/sample.txt'
 ```
 
-Questo comando fa già risparmiare tempo, ora combiniamolo con la gestione dei proprietari, dei gruppi di proprietari e dei diritti:
+Questo comando consente di risparmiare tempo. Combinatelo con la gestione dei proprietari, dei gruppi di proprietari e dei diritti per migliorare e ridurre i tempi:
 
 ```bash
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
