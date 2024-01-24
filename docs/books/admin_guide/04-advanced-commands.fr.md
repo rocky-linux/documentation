@@ -378,15 +378,15 @@ install -d directory
 
 Options :
 
-| Option                           | Description                                                     |
-| -------------------------------- | --------------------------------------------------------------- |
-| `-b` ou bien `--backup[=suffix]` | créer une sauvegarde du fichier destinataire.                   |
-| `-d`                             | traiter les arguments comme des noms de dossiers.               |
-| `-D`                             | create all leading components before copying SOURCE to DEST.    |
-| `-g` et `-o`                     | appartenance.                                                   |
-| `-m`                             | permissions.                                                    |
-| `-p`                             | préserve la date et l'heure des fichiers sources.               |
-| `-t`                             | copie tous les arguments sources vers le dossier.               |
+| Option                           | Description                                                            |
+| -------------------------------- | ---------------------------------------------------------------------- |
+| `-b` ou bien `--backup[=suffix]` | créer une sauvegarde du fichier destinataire                           |
+| `-d`                             | traiter les arguments comme des noms de dossiers                       |
+| `-D`                             | créer tous les composants principaux, avant de copier SOURCE vers DEST |
+| `-g` et `-o`                     | définir l'appertenance                                                 |
+| `-m`                             | définir les permissions                                                |
+| `-p`                             | préserve la date et l'heure des fichiers sources                       |
+| `-t`                             | copie tous les arguments sources vers le dossier                       |
 
 !!! note "Remarque"
 
@@ -414,7 +414,7 @@ install: creating directory '~/samples'
 'src/sample.txt' -> '~/samples/sample.txt'
 ```
 
-Cette commande permet déjà de gagner du temps, maintenant ajoutons l'appartenance à l'utilisateur et au groupe ainsi que les droits d'accès :
+Cette commande permet déjà un gain de temps. Combinez-le avec propriétaire, groupe propriétaire et la gestion des droits pour optimiser le gain de temps :
 
 ```bash
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
