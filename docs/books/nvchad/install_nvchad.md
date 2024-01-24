@@ -172,10 +172,10 @@ require("core.utils").load_mappings()
 
 This sets four main keys from which, in association with other keys, commands can be launched. The main keys are:
 
-- C = ++CTRL++
-- leader = ++SPACE++
-- A = ++ALT++
-- S = ++SHIFT++
+- C = ++ctrl++
+- leader = ++space++
+- A = ++alt++
+- S = ++shift++
 
 !!! note
 

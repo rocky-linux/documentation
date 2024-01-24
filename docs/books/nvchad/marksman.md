@@ -103,17 +103,17 @@ These snippets are displayed within widgets that also contain other shortcuts. U
 | ++h++ | Allows for quick entry of title headings (*h1* to *h6*), for example, entering *h4* and pressing enter will insert four hash marks and a space and the cursor will already be in place to enter your title |
 | ++b++ | Typing this character activates the ability to use the shortcut for entering bold text by inserting four asterisks and placing the cursor in the middle making writing the **bold** part much faster |
 | ++i++ | As with the previous character, it allows you to select quick insertion of *italic* text by entering two asterisks and placing the cursor in between.   |
-| ++bi++ | This key inserts six asterisks by placing the cursor in the middle for writing text in ***bold and italics*** |
-| ++img++ | This key inserts the markdown structure for inserting an image into the document in the format `![alt text](path)`. Note that writing the path can be done using the autocomplete provided by the server.   |
-| ++link++ | This key creates the markdown tag structure for a `[text](url)` link. Again, if the link refers to a file in the **working directory** you will be able to use autocomplete and the server will check the correctness of the reference.    |
-| ++list++ | Typing this key allows the entry of a list of three items to begin the creation of a numbered or unordered list |
+| ++"bi"++ | This key inserts six asterisks by placing the cursor in the middle for writing text in ***bold and italics*** |
+| ++"img"++ | This key inserts the markdown structure for inserting an image into the document in the format `![alt text](path)`. Note that writing the path can be done using the autocomplete provided by the server.   |
+| ++"link"++ | This key creates the markdown tag structure for a `[text](url)` link. Again, if the link refers to a file in the **working directory** you will be able to use autocomplete and the server will check the correctness of the reference.    |
+| ++"list"++ | Typing this key allows the entry of a list of three items to begin the creation of a numbered or unordered list |
 | ++q++ | This character allows the insertion of the tag for a citation `>` followed by a space and positions the cursor for writing the citation |
 | ++s++ | This character activates numerous possibilities including inserting four tildes and placing the cursor in the middle for writing text ~~strikethrough~~ |
-| ++sup++ | The key inserts the *superscript* tag. Trademark<sup>TM |
-| ++sub++ | The key inserts the *subscript* tag. Notes<sub>1 |
-| ++table++ | This key enables quick creation of a table structure and allows you to choose from many starting structures |
-| ++code++ | Inserts a block of code inline by placing two backticks at the position where the cursor is located by placing it in the center of the two backticks. |
-| ++codeblock++ | Inserts three lines, two with triple backticks and one blank where you insert your code blocks. Note that it also inserts the string *language* which is to be compiled with the language you used in the block.
+| ++"sup"++ | The key inserts the *superscript* tag. Trademark<sup>TM |
+| ++"sub"++ | The key inserts the *subscript* tag. Notes<sub>1 |
+| ++"table"++ | This key enables quick creation of a table structure and allows you to choose from many starting structures |
+| ++"code"++ | Inserts a block of code inline by placing two backticks at the position where the cursor is located by placing it in the center of the two backticks. |
+| ++"codeblock"++ | Inserts three lines, two with triple backticks and one blank where you insert your code blocks. Note that it also inserts the string *language* which is to be compiled with the language you used in the block.
 
 !!! note "Code block statement"
 

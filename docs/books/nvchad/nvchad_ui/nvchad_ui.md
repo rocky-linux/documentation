@@ -19,10 +19,10 @@ tags:
 
     To avoid confusion in the documents you are now reading, we are going to assume that you are using the default `mappings.lua` file and will substitute in the actual commands that you need to use to access a function. Standard key references are:
 
-    * leader = ++SPACE++
-    * A = ++ALT++
-    * C = ++CTRL++
-    * S = ++SHFT++
+    * leader = ++space++
+    * A = ++alt++
+    * C = ++ctlr++
+    * S = ++shift++
 
     If a command would specify `<leader>uu` as an example, we will substitute in the actual key combination of ++SPACE++++uu++.
 
@@ -52,7 +52,7 @@ On the right we also have the icon for closing our editor.
 
 The central part of the editor is composed of the buffer active on the editor at that moment (_index.en.md_). To introduce some additional functionality, we can work simultaneously on two files in a split buffer by opening one more in the example (_index.it.md_).
 
-In the editor we will have the first buffer in the foreground and the second one listed in the Tabufline. Now if we split the first buffer with the ++SHIFT++ + ++:vsplit++ command and select the right buffer, clicking on the name of the second file (_index.it.md_) in the tabufline, this will be opened in the right buffer and we can work with the two files side by side.
+In the editor we will have the first buffer in the foreground and the second one listed in the Tabufline. Now if we split the first buffer with the ++shift++ + ++"":vsplit""++ command and select the right buffer, clicking on the name of the second file (_index.it.md_) in the tabufline, this will be opened in the right buffer and we can work with the two files side by side.
 
 ![NvChad Split](../images/ui_nvchad_split.png)
 
@@ -93,7 +93,7 @@ And by pressing ++d++ we can display the remaining commands:
 
 As we can see, almost all the commands refer to navigation within the document or buffer. No commands for opening the file are included. These are provided by the Neovim.
 
-To view all of Neovim's options, the ++SHIFT++ + ++:options++ command is available, which will present a tree of options indexed by category.
+To view all of Neovim's options, the ++"shift"++ + ++":options"++ command is available, which will present a tree of options indexed by category.
 
 ![Nvim Options](../images/nvim_options.png)
 
@@ -101,7 +101,7 @@ This gives us a way, through the built-in help, to learn the commands while usin
 
 ## NvimTree
 
-In order to work with our files we need a File Explorer, and this is provided by the _kyazdani42/nvim-tree.lua_ plugin. With the combination ++CTRL++ + ++n++ we can open NvimTree.
+In order to work with our files we need a File Explorer, and this is provided by the _kyazdani42/nvim-tree.lua_ plugin. With the combination ++ctrl++ + ++n++ we can open NvimTree.
 
 ![NvimTree](../images/nvim_tree.png)
 
