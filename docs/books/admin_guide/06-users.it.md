@@ -61,7 +61,7 @@ I file relativi agli utenti/gruppi sono:
 
     Alcuni comandi in questo capitolo richiedono i diritti di amministratore. 
     Per convenzione, si specifica il comando `sudo` quando i comandi devono essere eseguiti con diritti di amministratore.
-    Affinché gli esempi funzionino correttamente, verificare che l'account utilizzato abbia il permesso di utilizzare il comando `sudo`.
+    Affinché gli esempi funzionino correttamente, assicuratevi che il vostro account abbia il permesso di usare il comando `sudo`.
 
 ## Gestione del gruppo
 
@@ -139,7 +139,7 @@ sudo find / -gid 1002 -exec chgrp 1016 {} \;
 
 ### comando `groupdel`
 
-Il comando `groupdel` viene utilizzato per eliminare un gruppo esistente sul sistema.
+Il comando `groupdel` elimina un gruppo esistente sul sistema.
 
 ```bash
 groupdel group
@@ -153,7 +153,7 @@ sudo groupdel GroupC
 
 !!! Tip "Suggerimento"
 
-    Quando si elimina un gruppo, si possono verificare due condizioni:
+    Quando si elimina un gruppo, possono verificarsi due condizioni:
 
     * Se un utente ha un gruppo primario unico e si lancia il comando `groupdel` su quel gruppo, verrà indicato che c'è un utente specifico sotto il gruppo e che non può essere cancellato.
     * Se un utente appartiene a un gruppo supplementare (non il gruppo primario dell'utente) e tale gruppo non è il gruppo primario di un altro utente del sistema, il comando `groupdel` eliminerà il gruppo senza ulteriori richieste.
@@ -179,7 +179,7 @@ sudo groupdel GroupC
 
 !!! Tip "Suggerimento"
 
-    Ogni gruppo ha un `GID` univoco. Un gruppo può essere utilizzato da più utenti come gruppo supplementare. Per convenzione, il GID del super amministratore è 0. I GIDS riservati ad alcuni servizi o processi sono 201~999, chiamati gruppi di sistema o pseudo gruppi di utenti. Il GID per gli utenti è solitamente maggiore o uguale a 1000. Questi sono relativi a <font color=red>/etc/login.defs</font>, di cui parleremo più tardi.
+    Ogni gruppo ha un `GID` univoco. Un gruppo può essere utilizzato da più utenti come gruppo supplementare. Per convenzione, il GID del super amministratore è 0. I GIDS riservati ad alcuni servizi o processi sono 201-999, chiamati gruppi di sistema o pseudo gruppi di utenti. Il GID per gli utenti è solitamente maggiore o uguale a 1000. Questi sono relativi a <font color=red>/etc/login.defs</font>, di cui parleremo più tardi.
 
     ```bash
     # Comment line ignored
@@ -275,7 +275,7 @@ File modificati e righe aggiunte:
 
 ### comando `useradd`
 
-Il comando `useradd` è usato per aggiungere un utente.
+Il comando `useradd` aggiunge un utente.
 
 ```bash
 useradd [-u UID] [-g GID] [-d directory] [-s shell] login
@@ -900,7 +900,7 @@ USERGROUPS_ENAB yes
 ENCRYPT_METHOD SHA512
 ```
 
-`UMASK 022`: Ciò significa che il permesso di creare un file è 755 (rwxr-xr-x). Tuttavia, per motivi di sicurezza, GNU/Linux non prevede il permesso **x** per i file appena creati; questa restrizione si applica a root (uid=0) e agli utenti ordinari (uid>=1000). Per esempio:
+`UMASK 022`: Ciò significa che il permesso di creare un file è 755 (rwxr-xr-x). Tuttavia, per motivi di sicurezza, GNU/Linux non prevede il permesso **x** per i file appena creati. Questa restrizione si applica a root (uid=0) e agli utenti ordinari (uid>=1000). Per esempio:
 
 ```bash
 Shell > touch a.txt
