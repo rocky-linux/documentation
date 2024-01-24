@@ -1,7 +1,7 @@
 ---
 title: Caddy Web Server
 author: Neel Chauhan
-contributors: Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.3
 tags:
   - web
@@ -56,9 +56,9 @@ sudo dnf install -y caddy
 
 ## Configuring the firewall
 
-If you try to view a web page at your machine’s IP address or domain name from another computer, you are probably going to get nothing. That will be the case if you have a firewall up and running.
+If you try to view a web page at your machine’s IP address or domain name from another computer, you will probably get nothing. That will be the case if you have a firewall up and running.
 
-To open up the necessary ports so that you can actually "see" your web pages, you will use Rocky Linux's build-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`.
+To open up the necessary ports to actually "see" your web pages, you will use Rocky Linux's build-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`.
 
 To open up the `http` and `https` services, the services that handles web pages, run:
 
@@ -110,7 +110,7 @@ That should be everything you need, firewall-wise.
 
 ## Configuring Caddy
 
-Unlike traditional web servers like Apache and Nginx, Caddy's configuration format is significantly simpler. Gone are the days where you had to configure the nitty-gritty like your web server's threading model or SSL certificates, unless you want to.
+Unlike traditional web servers like Apache and Nginx, Caddy's configuration format is significantly simpler. Gone are the days where you had to configure the nitty-gritty, like your web server's threading model or SSL certificates, unless you want to.
 
 To edit the Caddy configuration file:
 
@@ -129,7 +129,7 @@ example.com {
 
 Replace "example.com" with a hostname pointed to your server.
 
-You will also have to add a website to the folder in Caddy's "root" directory. For simplicity's sake, add a one-page static website:
+You must also add a website to the folder in Caddy's "root" directory. For simplicity's sake, add a one-page static website:
 
 ```bash
 mkdir -p /usr/share/caddy/example.com
@@ -150,7 +150,7 @@ It should have an SSL padlock that should work in every modern browser, and not 
 
 ## Optional: PHP FastCGI
 
-As mentioned earlier, Caddy supports FastCGI support for PHP. The good news is that unlike Apache and Nginx, Caddy automatically takes care of handling PHP file extensions.
+As mentioned earlier, Caddy supports FastCGI support for PHP. The good news is that unlike Apache and Nginx, Caddy handles PHP file extensions automatically.
 
 To install PHP, first add the Remi repository (note: if you are running Rocky Linux 8.x, substitute in 8 next to the "release-" below):
 
@@ -233,6 +233,6 @@ Open your browser to the file you created, and you should be presented with PHP 
 
 ## Conclusion
 
-The basic installation and configuration of Caddy is incredibly easy. Gone are the days where you spent hours configuring Apache. Yes, Nginx is certainly an improvement, but it still lacks modern but essential features such as Let's Encrypt and Kubernetes ingress support that Caddy builds in, whereas on Nginx (and Apache) you must add them separately.
+The basic installation and configuration of Caddy is incredibly easy. Gone are the days when you spent hours configuring Apache. Yes, Nginx is certainly an improvement, but it still lacks modern but essential features such as Let's Encrypt and Kubernetes ingress support that Caddy builds in, whereas on Nginx (and Apache) you must add them separately.
 
 I've been using Caddy since 2019 as my go-to web server, and it's just so good. In fact, whenever I deal with Apache, Nginx or IIS, it's almost like taking a time machine back to 2010 or earlier.
