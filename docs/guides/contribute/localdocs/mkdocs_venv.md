@@ -13,15 +13,15 @@ tags:
 
 ## Introduction
 
-One of the aspects of the process of creating documentation for Rocky Linux is verifying that your new document displays correctly before publication. 
- 
+One of the aspects of the process of creating documentation for Rocky Linux is verifying that your new document displays correctly before publication.
+
 The purpose of this guide is to give some suggestions for performing this task in a local python environment dedicated solely to this purpose.
 
 The documentation for Rocky Linux is written using the Markdown language, generally converted to other formats. Markdown is clean in syntax and particularly well suited for writing technical documentation.
 
 In our case, the documentation is converted to `HTML` using a python application that takes care of building the static site. The application used by the developers is [MkDocs](https://www.mkdocs.org/).
 
-One problem that arises during the development of a python application is achieving isolation of the python instance used for development from the system interpreter. The isolation prevents incompatibilities between the modules needed to install the Python application and those installed on the host system. 
+One problem that arises during the development of a python application is achieving isolation of the python instance used for development from the system interpreter. The isolation prevents incompatibilities between the modules needed to install the Python application and those installed on the host system.
 
 There are already excellent guides that use **containers** for isolating the python interpreter. These guides, however, imply a knowledge of the various containerization techniques.
 
@@ -259,7 +259,7 @@ INFO     -  [11:46:50] Watching paths for changes:
 INFO     -  [11:46:50] Serving on http://127.0.0.1:8000/
 ```
 
-You will have your copy of the documentation site running when opening your browser at the address specified (http://1127.0.0.1:8000). The copy perfectly mirrors the online site in functionality and structure, allowing you to assess the appearance and impact your page will have on the site.
+You will have your copy of the documentation site running when opening your browser at the address specified [http://1127.0.0.1:8000](http://1127.0.0.1:8000). The copy perfectly mirrors the online site in functionality and structure, allowing you to assess the appearance and impact your page will have on the site.
 
 MkDocs incorporates a mechanism for checking changes to the files in the folder specified by the `docs_dir` path, and inserting a new page or modifying an existing one in `documentation/docs` will automatically be recognized and produce a new static site build.
 
@@ -267,7 +267,7 @@ Since the time for MkDocs to build the static site can be several minutes, the r
 
 ### Exit the development environment
 
-Once the display of your new page meets your satisfaction, you can exit your development environment. This involves first exiting *MkDocs* and then deactivating the python virtual environment. To exit *MkDocs* you need to use the key combination <kbd>CTRL</kbd> + <kbd>C</kbd>, and as you saw above, to exit the virtual environment you will need to invoke the `deactivate` command.
+Once the display of your new page meets your satisfaction, you can exit your development environment. This involves first exiting *MkDocs* and then deactivating the python virtual environment. To exit *MkDocs* you need to use the key combination ++ctrl++ + ++"C"++, and as you saw above, to exit the virtual environment you will need to invoke the `deactivate` command.
 
 ```bash
 ...
