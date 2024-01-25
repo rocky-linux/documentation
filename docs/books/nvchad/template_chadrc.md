@@ -4,9 +4,9 @@ author: Franco Colussi
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.7, 9.1
 tags:
-    - nvchad
-    - coding
-    - plugins
+  - nvchad
+  - coding
+  - plugins
 ---
 
 # Template Chadrc
@@ -19,7 +19,7 @@ The folder also contains files for code highlighting and custom command mapping.
 
 The folder is created from an example one on NvChad's GitHub repository: ([example-config](https://github.com/NvChad/example_config)). To create it during the installation, simply answer "y" to the question we are asked at the beginning of the installation:
 
->  Do you want to install chadrc template? (y/N) :
+> Do you want to install chadrc template? (y/N) :
 
 An affirmative answer will start a process that will clone the contents of the _example-config_ folder from GitHub into **~/.config/nvim/lua/custom/** and once finished, will remove the **.git** folder from it. This is to allow us to put the configuration under our own version control.
 
@@ -54,20 +54,20 @@ Let us now go on to examine its contents:
 local M = {}
 
 -- Path to overriding theme and highlights files
-local highlights = require "custom.highlights"
+local highlights = require("custom.highlights")
 
 M.ui = {
-  theme = "onedark",
-  theme_toggle = { "onedark", "one_light" },
+    theme = "onedark",
+    theme_toggle = { "onedark", "one_light" },
 
-  hl_override = highlights.override,
-  hl_add = highlights.add,
+    hl_override = highlights.override,
+    hl_add = highlights.add,
 }
 
 M.plugins = "custom.plugins"
 
 -- check core.mappings for table structure
-M.mappings = require "custom.mappings"
+M.mappings = require("custom.mappings")
 
 return M
 ```
@@ -81,17 +81,17 @@ M.load_config = function()
 ...
 ```
 
-Its function is to insert files from our _custom_ folder into the NvChad configuration to then be used along with the default files to start the _Neovim_ instance. The files are inserted into the configuration tree through `require` functions such as: 
+Its function is to insert files from our _custom_ folder into the NvChad configuration to then be used along with the default files to start the _Neovim_ instance. The files are inserted into the configuration tree through `require` functions such as:
 
 ```lua
-require "custom.mappings"
+require("custom.mappings")
 ```
 
 The string **custom.mappings** indicates the relative path to the file without the extension as opposed to the default path, which in this case is **~/.config/nvim/lua/**. The dot replaces the slash since this is the convention in code written in Lua (in the _lua language_ there is no concept of _directory_).
 
 In summary, we can say that the call described above inserts the configurations written in the **custom/mappings.lua** file into the NvChad mapping thus inserting our shortcuts to invoke the commands of our plugins.
 
-We then have a section that overrides some of the NvChad UI configuration settings contained in **~/.config/nvim/lua/core/default_config.lua**, more specifically the `M.ui` section that allows us, for example, to select a light or dark theme. 
+We then have a section that overrides some of the NvChad UI configuration settings contained in **~/.config/nvim/lua/core/default_config.lua**, more specifically the `M.ui` section that allows us, for example, to select a light or dark theme.
 
 And we also have the inclusion of our plugins defined in **custom/plugins.lua** corresponding to the string:
 
@@ -130,7 +130,7 @@ In this way our settings will replace the default settings.
 
 #### plugins.lua
 
-This file, as you can guess from the name, is used to add our plugins to those in the basic NvChad configuration. The insertion of plugins is explained in detail on the page dedicated to [Plugins Manager](nvchad_ui/plugins_manager.md). 
+This file, as you can guess from the name, is used to add our plugins to those in the basic NvChad configuration. The insertion of plugins is explained in detail on the page dedicated to [Plugins Manager](nvchad_ui/plugins_manager.md).
 
 The _plugins.lua_ file created by the _template chadrc_ has in the first part a number of customizations that override the plugin definition options and default plugin configurations. This part of the file does not need to be modified by us as the developers have prepared special files for this purpose that are present in the _config_ folder.
 
@@ -157,17 +157,17 @@ An example setting is also presented here so that its format can be studied:
 
 ```lua
 M.general = {
-  n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
-  },
+    n = {
+        [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    },
 }
 ```
 
-This mapping is entered for the NORMAL state `n =` the character <kbd>;</kbd> which when pressed on the keyboard plays the character <kbd>:</kbd>. This character is the character used to enter COMMAND mode. The option `nowait = true` is also set to enter that mode immediately. In this way on a keyboard with a US QWERTY layout, we will not need to use <kbd>SHIFT</kbd> to enter COMMAND mode.
+This mapping is entered for the NORMAL state `n =` the character ++";"++ which when pressed on the keyboard plays the character ++":"++. This character is the character used to enter COMMAND mode. The option `nowait = true` is also set to enter that mode immediately. In this way on a keyboard with a US QWERTY layout, we will not need to use ++shift++ to enter COMMAND mode.
 
 !!! Tip
 
-    For users of European keyboards (such as Italian), it is recommended to substitute the character <kbd>;</kbd> with <kbd>,</kbd>.
+    For users of European keyboards (such as Italian), it is recommended to substitute the character ++";"++ with ++","++.
 
 #### highlights.lua
 
@@ -211,14 +211,14 @@ Again, a table has been set up, the `local sources` table, where we can enter ou
 ```lua
 local sources = {
 
-  -- webdev stuff
-  b.formatting.deno_fmt,
-  b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } },
-  -- Lua
-  b.formatting.stylua,
+    -- webdev stuff
+    b.formatting.deno_fmt,
+    b.formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }),
+    -- Lua
+    b.formatting.stylua,
 
-  -- cpp
-  b.formatting.clang_format,
+    -- cpp
+    b.formatting.clang_format,
 }
 ```
 
@@ -236,7 +236,7 @@ Again, the configuration needs the installation of the related package, which we
 ```
 
 !!! Note
-    
+
     Configuration of this diagnostic tool also requires the creation of a configuration file in your home folder, which will not be covered in this document.
 
 #### overrides.lua
@@ -251,24 +251,24 @@ The part of the code that deals with this is as follows:
 
 ```lua
 M.treesitter = {
-  ensure_installed = {
-    "vim",
-    "lua",
-    "html",
-    "css",
-    "javascript",
-    "typescript",
-    "tsx",
-    "c",
-    "markdown",
-    "markdown_inline",
-  },
-  indent = {
-    enable = true,
-    -- disable = {
-    --   "python"
-    -- },
-  },
+    ensure_installed = {
+        "vim",
+        "lua",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "c",
+        "markdown",
+        "markdown_inline",
+    },
+    indent = {
+        enable = true,
+        -- disable = {
+        --   "python"
+        -- },
+    },
 }
 ```
 
@@ -296,18 +296,18 @@ Following in the file is the part regarding the installation of servers by _Maso
 
 ```lua
 M.mason = {
-  ensure_installed = {
-    -- lua stuff
-    "lua-language-server",
-    "stylua",
+    ensure_installed = {
+        -- lua stuff
+        "lua-language-server",
+        "stylua",
 
-    -- web dev stuff
-    "css-lsp",
-    "html-lsp",
-    "typescript-language-server",
-    "deno",
-    "prettier"
-  },
+        -- web dev stuff
+        "css-lsp",
+        "html-lsp",
+        "typescript-language-server",
+        "deno",
+        "prettier",
+    },
 }
 ```
 
@@ -324,7 +324,7 @@ Again, following the initial example where we enabled support for _yaml_ by manu
     ...
 ```
 
-Although this aspect may be marginal on a running instance of NvChad since we can always manually install the missing servers it turns out to be very useful during the transfer of our configuration from one machine to another. 
+Although this aspect may be marginal on a running instance of NvChad since we can always manually install the missing servers it turns out to be very useful during the transfer of our configuration from one machine to another.
 
 For example, suppose we have configured our `custom` folder with all the features we need and we want to transfer it to another installation of NvChad. If we have configured this file, after copying or cloning our `custom` folder a `:MasonInstallAll` will be sufficient to have all the servers ready to use on the other installation as well.
 

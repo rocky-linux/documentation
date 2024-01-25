@@ -13,7 +13,6 @@ tags:
 
 Marksman is a useful tool when drafting your document for Rocky Linux. It allows the easy entry of symbols needed to define the *markdown* language tags. This allows you to write faster and reduces the possibility of errors.
 
-
 NvChad/Neovim already includes text widgets that aid writing, such as the repetition of often-used words indexed by frequency of entry. The new options included by this language server will enrich these widgets.
 
 [Marksman](https://github.com/artempyanykh/marksman) integrates with your editor to help you write and maintain your Markdown documents with the [LSP protocol](https://microsoft.github.io/language-server-protocol/), thereby providing features such as completion, go-to definition, reference searching, name refactoring, diagnostics, and more.
@@ -39,7 +38,7 @@ Installation of the language server does not involve any particular problems sin
 
 `:MasonInstall marksman`
 
-The command will open the *Mason* interface and directly install the required language server. Once binary installation completes, you can close the *Mason* screen with the <kbd>q</kbd> key.
+The command will open the *Mason* interface and directly install the required language server. Once binary installation completes, you can close the *Mason* screen with the ++"q"++ key.
 
 Its installation, however, does not yet involve its integration into the editor. Enable this by editing the `custom/configs/lspconfig.lua` file of the *Chadrc Template*.
 
@@ -71,10 +70,10 @@ To check if the language server is properly activated, open a markdown file in y
 
 ```text
  Client: marksman (id: 2, bufnr: [11, 156])
- 	filetypes:       markdown
- 	autostart:       true
- 	root directory:  /home/your_user/your_path/your_directory
- 	cmd:             /home/your_user/.local/share/nvim/mason/bin/marksman server
+  filetypes:       markdown
+  autostart:       true
+  root directory:  /home/your_user/your_path/your_directory
+  cmd:             /home/your_user/.local/share/nvim/mason/bin/marksman server
  
  Configured servers list: cssls, tsserver, clangd, html, yamlls, lua_ls, marksman
 ```
@@ -97,26 +96,24 @@ Once you have completed all the steps to enter it, activation of the language se
 
 The language server provides many shortcuts that activate writing assistance. This includes quick insertion of Markdown tags, creation of links, and insertion of images into the document. A non-exhaustive list of characters that activate the various snippets is below.
 
-These snippets are displayed within widgets that also contain other shortcuts. Use the <kbd>Tab</kbd> key for navigation of the widget to select those provided by *marksman*.
-
+These snippets are displayed within widgets that also contain other shortcuts. Use the ++tab++ key for navigation of the widget to select those provided by *marksman*.
 
 | Key | Snippets |
 |--------------- | --------------- |
-| <kbd>h</kbd> | Allows for quick entry of title headings (*h1* to *h6*), for example, entering *h4* and pressing enter will insert four hash marks and a space and the cursor will already be in place to enter your title |
-| <kbd>b</kbd> | Typing this character activates the ability to use the shortcut for entering bold text by inserting four asterisks and placing the cursor in the middle making writing the **bold** part much faster |
-| <kbd>i</kbd> | As with the previous character, it allows you to select quick insertion of *italic* text by entering two asterisks and placing the cursor in between.   |
-| <kbd>bi</kbd> | This key inserts six asterisks by placing the cursor in the middle for writing text in ***bold and italics*** |
-| <kbd>img</kbd> | This key inserts the markdown structure for inserting an image into the document in the format `![alt text](path)`. Note that writing the path can be done using the autocomplete provided by the server.   |
-| <kbd>link</kbd> | This key creates the markdown tag structure for a `[text](url)` link. Again, if the link refers to a file in the **working directory** you will be able to use autocomplete and the server will check the correctness of the reference.    |
-| <kbd>list</kbd> | Typing this key allows the entry of a list of three items to begin the creation of a numbered or unordered list |
-| <kbd>q</kbd> | This character allows the insertion of the tag for a citation `>` followed by a space and positions the cursor for writing the citation |
-| <kbd>s</kbd> | This character activates numerous possibilities including inserting four tildes and placing the cursor in the middle for writing text ~~strikethrough~~ |
-| <kbd>sup</kbd> | The key inserts the *superscript* tag. Trademark<sup>TM |
-| <kbd>sub</kbd> | The key inserts the *subscript* tag. Notes<sub>1 |
-| <kbd>table</kbd> | This key enables quick creation of a table structure and allows you to choose from many starting structures |
-| <kbd>code</kbd> | Inserts a block of code inline by placing two backticks at the position where the cursor is located by placing it in the center of the two backticks. |
-| <kbd>codeblock</kbd> | Inserts three lines, two with triple backticks and one blank where you insert your code blocks. Note that it also inserts the string *language* which is to be compiled with the language you used in the block.
-
+| ++"h"++ | Allows for quick entry of title headings (*h1* to *h6*), for example, entering *h4* and pressing enter will insert four hash marks and a space and the cursor will already be in place to enter your title |
+| ++"b"++ | Typing this character activates the ability to use the shortcut for entering bold text by inserting four asterisks and placing the cursor in the middle making writing the **bold** part much faster |
+| ++"i"++ | As with the previous character, it allows you to select quick insertion of *italic* text by entering two asterisks and placing the cursor in between.   |
+| ++"bi"++ | This key inserts six asterisks by placing the cursor in the middle for writing text in ***bold and italics*** |
+| ++"img"++ | This key inserts the markdown structure for inserting an image into the document in the format `![alt text](path)`. Note that writing the path can be done using the autocomplete provided by the server.   |
+| ++"link"++ | This key creates the markdown tag structure for a `[text](url)` link. Again, if the link refers to a file in the **working directory** you will be able to use autocomplete and the server will check the correctness of the reference.    |
+| ++"list"++ | Typing this key allows the entry of a list of three items to begin the creation of a numbered or unordered list |
+| ++"q"++ | This character allows the insertion of the tag for a citation `>` followed by a space and positions the cursor for writing the citation |
+| ++"s"++ | This character activates numerous possibilities including inserting four tildes and placing the cursor in the middle for writing text ~~strikethrough~~ |
+| ++"sup"++ | The key inserts the *superscript* tag. Trademark<sup>TM |
+| ++"sub"++ | The key inserts the *subscript* tag. Notes<sub>1 |
+| ++"table"++ | This key enables quick creation of a table structure and allows you to choose from many starting structures |
+| ++"code"++ | Inserts a block of code inline by placing two backticks at the position where the cursor is located by placing it in the center of the two backticks. |
+| ++"codeblock"++ | Inserts three lines, two with triple backticks and one blank where you insert your code blocks. Note that it also inserts the string *language* which is to be compiled with the language you used in the block.
 
 !!! note "Code block statement"
 
@@ -128,6 +125,4 @@ The activation keys for Markdown tagging shortcuts also include other combinatio
 
 Although not strictly necessary, this language server can over time become a great companion in your documentation writing for Rocky Linux.
 
-
 By using it and consequently memorizing the main keys for inserting Markdown code symbols it will enable effectively faster writing by allowing you to focus your attention on the content.
-

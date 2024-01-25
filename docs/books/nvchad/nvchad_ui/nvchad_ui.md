@@ -19,12 +19,12 @@ tags:
 
     To avoid confusion in the documents you are now reading, we are going to assume that you are using the default `mappings.lua` file and will substitute in the actual commands that you need to use to access a function. Standard key references are:
 
-    * leader = <kbd>SPACE</kbd>
-    * A = <kbd>ALT</kbd>
-    * C = <kbd>CTRL</kbd>
-    * S = <kbd>SHFT</kbd>
+    * leader = ++space++
+    * A = ++alt++
+    * C = ++ctrl++
+    * S = ++shift++
 
-    If a command would specify `<leader>uu` as an example, we will substitute in the actual key combination of <kbd>SPACE</kbd><kbd>uu</kbd>.
+    If a command would specify `<leader>uu` as an example, we will substitute in the actual key combination of ++space++++"uu"++.
 
     This will be covered again in the next section [Using NvChad](./using_nvchad.md)
 
@@ -40,7 +40,7 @@ The interface already comes with some advanced functionality, such as indicating
 
 The user interface presents a top bar called `Tabufline` where the open buffers are managed. `Tabufline` only shows if you have more than one file open. The open buffer presents the file type icon, the file name, and its status. Status is indicated with an icon.
 
-If, as in the screenshot, we have a red `x`, it means that the file can be closed as it is already saved. If instead the icon is a green dot `.`, then the file needs to be saved, and a close command <kbd>SHIFT</kbd> + <kbd>:q</kbd> will produce a warning: "No write since last change".
+If, as in the screenshot, we have a red `x`, it means that the file can be closed as it is already saved. If instead the icon is a green dot `.`, then the file needs to be saved, and a close command ++shift++ + ++":"++ + ++"q"++ will produce a warning: "No write since last change".
 
 To the right is the icon for setting the _dark_ or _light_ theme. By clicking on it with the mouse, we can select the theme we want.
 
@@ -52,7 +52,7 @@ On the right we also have the icon for closing our editor.
 
 The central part of the editor is composed of the buffer active on the editor at that moment (_index.en.md_). To introduce some additional functionality, we can work simultaneously on two files in a split buffer by opening one more in the example (_index.it.md_).
 
-In the editor we will have the first buffer in the foreground and the second one listed in the Tabufline. Now if we split the first buffer with the <kbd>SHIFT</kbd> + <kbd>:vsplit</kbd> command and select the right buffer, clicking on the name of the second file (_index.it.md_) in the tabufline, this will be opened in the right buffer and we can work with the two files side by side.
+In the editor we will have the first buffer in the foreground and the second one listed in the Tabufline. Now if we split the first buffer with the ++shift++ + ++":"++ + **vsplit** command and select the right buffer, clicking on the name of the second file (_index.it.md_) in the tabufline, this will be opened in the right buffer and we can work with the two files side by side.
 
 ![NvChad Split](../images/ui_nvchad_split.png)
 
@@ -67,9 +67,9 @@ At the bottom we find the Statusline, which handles status information. On the r
 - **COMMAND**
 - **VISUAL**
 
-Editing a document starts from the **NORMAL** mode where you open the file, then you can switch to **INSERT** mode for editing, and when finished exit with <kbd>ESC</kbd> and return to **NORMAL** mode.
+Editing a document starts from the **NORMAL** mode where you open the file, then you can switch to **INSERT** mode for editing, and when finished exit with ++esc++ and return to **NORMAL** mode.
 
-Now to save the file you switch to **COMMAND** mode by typing `:` in the statusline followed by `w` (_write_) to write it and with <kbd>ESC</kbd> you return to **NORMAL** mode. The status indication is very useful while learning how to use it, particularly if one is not very familiar with the Vim workflow.
+Now to save the file you switch to **COMMAND** mode by typing `:` in the statusline followed by `w` (_write_) to write it and with ++esc++ you return to **NORMAL** mode. The status indication is very useful while learning how to use it, particularly if one is not very familiar with the Vim workflow.
 
 We then find the name of the open file, and if we are working on a git repository, we will have indications of the status of the repository. This is thanks to the _lewis6991/gitsigns.nvim_ plugin.
 
@@ -79,21 +79,21 @@ Turning to the right side we find the name of the folder from which we opened th
 
 NvChad and Neovim provide some useful commands for displaying preset key combinations and available options.
 
-If the <kbd>SPACE</kbd> key is pressed alone, it will provide a legend of associated commands as in the following screenshot:
+If the ++space++ key is pressed alone, it will provide a legend of associated commands as in the following screenshot:
 
 ![Space Key](../images/ui_escape_key.png)
 
-To view all the commands included in the editor we can use the <kbd>SPACE</kbd> + <kbd>wK</kbd> command, which will give the following result:
+To view all the commands included in the editor we can use the ++space++ + ++"wK"++ command, which will give the following result:
 
 ![leader wK](../images/ui_wK_key.png)
 
-And by pressing <kbd>d</kbd> we can display the remaining commands:
+And by pressing ++"d"++ we can display the remaining commands:
 
 ![leader wK d](../images/ui_wK_01.png)
 
 As we can see, almost all the commands refer to navigation within the document or buffer. No commands for opening the file are included. These are provided by the Neovim.
 
-To view all of Neovim's options, the <kbd>SHIFT</kbd> + <kbd>:options</kbd> command is available, which will present a tree of options indexed by category.
+To view all of Neovim's options, the ++shift++ + ++":"++ + **options** command is available, which will present a tree of options indexed by category.
 
 ![Nvim Options](../images/nvim_options.png)
 
@@ -101,7 +101,7 @@ This gives us a way, through the built-in help, to learn the commands while usin
 
 ## NvimTree
 
-In order to work with our files we need a File Explorer, and this is provided by the _kyazdani42/nvim-tree.lua_ plugin. With the combination <kbd>CTRL</kbd> + <kbd>n</kbd> we can open NvimTree.
+In order to work with our files we need a File Explorer, and this is provided by the _kyazdani42/nvim-tree.lua_ plugin. With the combination ++ctrl++ + ++"n"++ we can open NvimTree.
 
 ![NvimTree](../images/nvim_tree.png)
 

@@ -16,9 +16,9 @@ As specified on the NvChad site you need to ensure the system meets the followin
 
 - [Neovim 0.8.3](https://github.com/neovim/neovim/releases/tag/v0.8.3).
 - [Nerd Font](https://www.nerdfonts.com/) Set it in your terminal emulator.
-  - Make sure the nerd font you set doesn't end with **Mono**
-   - **Example:** Iosevka Nerd Font and not ~~Iosevka Nerd Font Mono~~ 
-- [Ripgrep](https://github.com/BurntSushi/ripgrep) is required for grep searching with Telescope **(OPTIONAL)**. 
+    - Make sure the nerd font you set doesn't end with **Mono**
+    - **Example:** Iosevka Nerd Font and not ~~Iosevka Nerd Font Mono~~
+- [Ripgrep](https://github.com/BurntSushi/ripgrep) is required for grep searching with Telescope **(OPTIONAL)**.
 - GCC
 
 This is actually not a real "installation" but rather writing a custom Neovim configuration for our user.
@@ -68,7 +68,7 @@ Once the cloning process is finished in the second part of the command, the Neov
 
 Before starting the bootstrap, the installation will offer us the installation of a base structure (_template chadrc_) for our further customizations:
 
->  Do you want to install chadrc template? (y/n):
+> Do you want to install chadrc template? (y/n):
 
 Although choosing to install the recommended structure is not mandatory, it is definitely recommended for anyone new to this Editor. Current users of NvChad who already have a `custom` folder will be able to continue using it after making the necessary changes.
 
@@ -80,7 +80,7 @@ The page contains information about the structure of the folder that will be cre
 
 At this point the downloading and configuration of the basic plugins and if we have chosen to install the template as well the installation of the configured language server will begin. Once the process is complete, we will have our Editor ready to use.
 
-![Installation](images/installed_first_time.png) 
+![Installation](images/installed_first_time.png)
 
 As can be seen from the screenshot below, thanks to the configuration changes made, the editor has completely changed in appearance from the basic version of Neovim. It should be remembered, however, that although the configuration of NvChad completely transforms the editor, the base remains Neovim.
 
@@ -131,32 +131,31 @@ And if we chose to also install the _template chadrc_ we will also have the `nvi
 └── plugins.lua
 ```
 
-
 The first file we encounter is the `init.lua` file which initializes the configuration by inserting the `lua/core` folder and `lua/core/utils.lua` (and if present, the `lua/custom/init.lua`) files into the _nvim_ tree. Runs the bootstrap of `lazy.nvim` (the plugin manager) and once finished initialize the `plugins` folder.
 
-In particular, the `load_mappings()` function is called for loading keyboard shortcuts. In addition, the `gen_chadrc_template()` function provides the subroutine for creating the `custom` folder. 
+In particular, the `load_mappings()` function is called for loading keyboard shortcuts. In addition, the `gen_chadrc_template()` function provides the subroutine for creating the `custom` folder.
 
 ```lua
-require "core"
+require("core")
 
 local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
 
 if custom_init_path then
-  dofile(custom_init_path)
+    dofile(custom_init_path)
 end
 
 require("core.utils").load_mappings()
 
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 -- bootstrap lazy.nvim!
 if not vim.loop.fs_stat(lazypath) then
-  require("core.bootstrap").gen_chadrc_template()
-  require("core.bootstrap").lazy(lazypath)
+    require("core.bootstrap").gen_chadrc_template()
+    require("core.bootstrap").lazy(lazypath)
 end
 
 vim.opt.rtp:prepend(lazypath)
-require "plugins"
+require("plugins")
 
 dofile(vim.g.base46_cache .. "defaults")
 ```
@@ -173,10 +172,10 @@ require("core.utils").load_mappings()
 
 This sets four main keys from which, in association with other keys, commands can be launched. The main keys are:
 
-- C = <kbd>CTRL</kbd>
-- leader = <kbd>SPACE</kbd>
-- A = <kbd>ALT</kbd>
-- S = <kbd>SHIFT</kbd>
+- C = ++ctrl++
+- leader = ++space++
+- A = ++alt++
+- S = ++shift++
 
 !!! note
 
