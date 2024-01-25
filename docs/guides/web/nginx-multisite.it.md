@@ -1,7 +1,7 @@
 ---
 title: Nginx Multisito
 author: Ezequiel Bruni
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.5
 tags:
   - web
@@ -173,7 +173,7 @@ include /etc/nginx/sites-enabled/*.conf;
 
 Questo caricherà i file di configurazione del nostro sito web quando saranno pronti per la messa in funzione.
 
-Ora scendete fino alla sezione che appare come questa e **commentatela** con il segno di hash <kbd>#</kbd>, oppure cancellatela se preferite:
+Ora scendete fino alla sezione che appare come questa e **commentatela** con il segno di hash ++#++, oppure cancellatela se preferite:
 
 ```
 server {

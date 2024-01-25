@@ -48,7 +48,7 @@ I presupposti sono che:
 * si è a proprio agio nell'eseguire i comandi dalla riga di comando.
 * si può usare un editor a riga di comando, come `vi` (usato qui), `nano`, `micro`, ecc.
 * si conoscono i comandi di base di Linux utilizzati per l'aggiunta di gruppi e utenti, o si è in grado di seguirli bene.
-* il vostro sito web multisito è come questo: [Apache Multi Sito](../web/apache-sites-enabled/)
+* il vostro sito web multisito è come questo: [Apache Multi Sito](../web/apache-sites-enabled.md)
 * avete già installato `httpd` (Apache) sul server.
 
 !!! note "Nota"

@@ -129,7 +129,7 @@ Aggiungere il seguente contenuto subito prima del tag finale`(</IfModule`):
     # ...
 ```
 
-Usare <kbd>ESC</kbd> per uscire dalla modalità di inserimento e <kbd>SHIFT+</kbd><kbd>:</kbd><kbd>+wq</kbd> per salvare le modifiche e uscire.
+Usare ++esc++ per uscire dalla modalità di inserimento e ++shift+:+wq++ per salvare le modifiche e uscire.
 
 ## Riavviare `httpd` e verificare `mod_security`
 

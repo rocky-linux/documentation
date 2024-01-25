@@ -67,7 +67,7 @@ Quindi abilita il modulo giusto per l'ultima versione di `nginx`. Questo modulo 
 sudo dnf module enable nginx:mainline
 ```
 
-Ti darà il solito "Sei sicuro di volerlo fare? , ma questa non è la seconda edizione D&D con Gary Gygax stesso, quindi sì. Certo che lo fai. Premi <kbd>y</kbd> per confermare.
+Ti darà il solito "Sei sicuro di volerlo fare? , ma questa non è la seconda edizione D&D con Gary Gygax stesso, quindi sì. Certo che lo fai. Premi ++y++ per confermare.
 
 ## Installare ed eseguire Nginx
 

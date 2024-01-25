@@ -1,7 +1,7 @@
 ---
 title: nload - Statistiche sulla larghezza di banda
 author: Neel Chauhan
-contributors: Spencer Steven
+contributors: Steven Spencer, Franco Colussi
 date: 2024-01-16
 ---
 
@@ -21,7 +21,7 @@ Seguono le opzioni comuni del comando `nload` che, in circostanze normali, non r
 | Opzioni       | Descrizione                                                                                          |
 | ------------- | ---------------------------------------------------------------------------------------------------- |
 | -a PERIODO    | Lunghezza della finestra temporale di calcolo in secondi (default: 300)           |
-| -m            | Mostra più dispositivi e non mostra il grafico del traffico                                          |
+| -m            | Mostra più dispositivi e non mostra un grafico del traffico                                          |
 | -t INTERVALLO | Intervallo di aggiornamento in millisecondi (valore predefinito: 500)             |
 | -u UNITA'     | Unità di una lettera per la visualizzazione della larghezza di banda (default: k) |
 | -U UNITA'     | Unità di una lettera per la visualizzazione del trasferimento dati (default: M)   |

@@ -119,7 +119,8 @@ Il contenuto del file di configurazione sarà simile a questo:
         </Directory>
 </VirtualHost>
 ```
-Una volta creato, è necessario scriverlo (salvarlo) con <kbd>shift+</kbd><kbd>:</kbd><kbd>+wq</kbd>.
+
+Una volta creato, è necessario scriverlo (salvarlo) con ++shift+:+wq++.
 
 Nell'esempio, il caricamento del sito wiki avviene dalla sottodirectory "html" di _your-server-hostname_, il che significa che il percorso creato in _/var/www_ (sopra) avrà bisogno di alcune directory aggiuntive per soddisfare questa esigenza:
 

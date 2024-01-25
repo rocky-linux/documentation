@@ -35,6 +35,14 @@ Un documento può contenere o meno uno di questi elementi. Se ritenete che il vo
 
     La chiave è che si possono usare tutti i titoli dal 2 al 6, ma solo **UNO** di livello 1. Mentre il documento viene visualizzato correttamente con più di un'intestazione di livello 1, l'indice generato automaticamente per il documento, che appare sul lato destro, **NON** viene visualizzato correttamente (o talvolta per niente) con più di un'intestazione. Tienilo a mente quando scrivi i tuoi documenti.
 
+!!! warning "Una nota sugli elementi HTML supportati"
+
+    Ci sono elementi HTML che sono tecnicamente supportati in markdown. Alcuni di questi sono descritti in questo documento, dove non esiste una sintassi markdown che li sostituisca. Questi tag HTML supportati dovrebbero essere usati raramente, perché i linters di markdown potrebbero segnalarli in un documento. Per esempio:
+
+    * Inline HTML [nome elemento]
+
+    Se dovete usare un elemento HTML supportato, cercate di trovare un altro modo per scrivere il vostro documento che non utilizzi questi elementi. Se dovete usarli, è comunque consentito.
+
 ## Ammonimenti
 
 Gli ammonimenti sono speciali "riquadri" visivi che consentono di richiamare l'attenzione su fatti importanti e di metterli in evidenza. Di seguito sono elencati i tipi di ammonimenti:
@@ -60,7 +68,7 @@ Gli ammonimenti sono illimitati, come si può notare in custom <sub>1</sub> sopr
 
 Un'ammonimento viene sempre inserito in questo modo:
 
-```
+```text
 !!! admonition_type "titolo personalizzato, se presente".
 
     testo dell'ammonimento
@@ -128,7 +136,7 @@ Se un ammonimento ha un contenuto molto lungo, prendete in considerazione un amm
 
 Che si presenta così nell'editor:
 
-```
+```text
 ??? warning "Avvertenze sul contenuto"
 
     Si tratta di un avviso, con poco contenuto. Per questo si dovrebbe usare un ammonimento normale, ma questo è solo un esempio!
@@ -148,7 +156,7 @@ La formattazione dei contenuti a schede è simile a quella degli ammonimenti. In
 
 Che si presenterebbe così nell'editor:
 
-```
+```text
 === "9.0"
 
     La procedura per farlo in 9.0
@@ -164,7 +172,7 @@ Ricordate che tutto ciò che rientra nella sezione deve continuare a utilizzare 
 
 Le liste numerate sembrano facili da creare e da usare e, una volta che ci si è abituati, lo sono davvero. Se si dispone di un unico elenco di elementi senza alcuna complessità, questo tipo di formato va bene:
 
-```
+```text
 1. Elemento 1
 
 2. Elemento 2
@@ -188,7 +196,7 @@ Ecco un esempio di elenco numerato a più righe, con un blocco di codice aggiunt
 
     Ad esempio: questo ha un rientro di quattro (4) spazi e rappresenta un nuovo paragrafo di testo. Inoltre, aggiungiamo un blocco di codice all'interno. È anche rientrato degli stessi quattro (4) spazi del nostro paragrafo:
 
-    ```
+    ```bash
     dnf update
     ```
 
@@ -200,11 +208,6 @@ Ecco come appare il testo raw:
 1. Quando si tratta di elenchi numerati a più righe che includono blocchi di codice o altri elementi, si può usare l'indentazione spaziale per ottenere ciò che si desidera.
 
     Ad esempio: questo ha un rientro di quattro (4) spazi e rappresenta un nuovo paragrafo di testo. Inoltre, aggiungiamo un blocco di codice all'interno. È anche rientrato degli stessi quattro (4) spazi del nostro paragrafo:
-
-    ```
-
-
-    dnf update
     ```
 
 2. Ecco il nostro secondo articolo in elenco. Poiché si è utilizzato il rientro di quattro (4) spazi (sopra), viene visualizzato con la sequenza di numerazione successiva (2), ma se si fosse inserito l'elemento 1 senza il rientro (nel paragrafo e nel codice successivi), questo verrebbe visualizzato di nuovo come elemento 1, il che non è ciò che si desidera.
@@ -212,38 +215,38 @@ Ecco come appare il testo raw:
 
 ## Tabelle
 
-Le tabelle ci aiutano a disporre le opzioni di comando o, nel caso precedente, i tipi di ammonimento e le descrizioni. Ecco come è stata inserita la tabella nella sezione Ammonimenti:
+Nel caso precedente, le tabelle aiutano a disporre le opzioni di comando o i tipi di ammonimento e le relative descrizioni. Ecco com'è stata inserita la tabella nella sezione delle Ammonizioni:
+
+```text
+| tipo      | Descrizione                                               |
+|-----------|-----------------------------------------------------------|
+| note      | mostra il testo in una casella blu                                   |
+| abstract  | mostra il testo in una casella azzurra                             |
+| info      | mostra il testo in una casella verde-azzurra                             |
+| tip       | mostra il testo in una casella verde-azzurra (icona lievemente più verde)    |
+| success   | mostra il testo in una casella verde                                 |
+| question  | mostra il testo in una casella verde chiara                            |
+| warning   | mostra il testo in una casella arancione                                 |
+| failure   | mostra il testo in una casella rossa chiara                              |
+| danger    | mostra il testo in una casella rossa                                   |
+| bug       | mostra il testo in una casella rossa                                    |
+| example   | mostra il testo in una casella viola                                 |
+| quote     | mostra il testo in una casella grigia                                   |
+| custom <sub>1</sub> | mostra sempre il testo in una casella blu                  |
+| custom <sub>2</sub> | mostra il testo in una casella del colore scelto |
 
 ```
-| tipo      | Descrizione                                                                     |
-|-----------|---------------------------------------------------------------------------------|
-| note      | visualizza il testo in un riquadro blu                                          |
-| abstract  | visualizza il testo in un riquadro blu                                          |
-| info      | visualizza il testo in un riquadro blu-verde                                    |
-| tip       | visualizza il testo in un riquadro blu-verde (icona leggermente più verde)      |
-| success   | visualizza il testo in un riquadro verde                                        |
-| question  | visualizza il testo in un riquadro verde chiaro                                 |
-| warning   | visualizza il testo in un riquadro verde chiaro                                 |
-| failure   | visualizza il testo in un riquadro rosso chiaro                                 |
-| danger    | visualizza il testo in un riquadro rosso                                        |
-| bug       | visualizza il testo in un riquadro rosso                                        |
-| example   | visualizza il testo in un riquadro viola                                        |
-| quote     | visualizza il testo in una casella grigia                                       |
-| custom <sub>1</sub> | visualizza sempre il testo in un riquadro blu                         |
-| custom <sub>2</sub> | visualizza il testo nel colore del riquadro della tipologia prescelta |
 
-```
+Si noti che non è necessario che ogni colonna sia suddivisa per dimensione (come abbiamo fatto nella prima parte della tabella), ma è certamente più leggibile nel file sorgente markdown. La confusione può essere maggiore quando si mettono in fila gli elementi, semplicemente interrompendo le colonne con il carattere pipe "|" ovunque si trovi l'interruzione naturale, come si può vedere nell'ultimo elemento della tabella.
 
-Da notare che non è necessario che ogni colonna sia suddivisa per dimensione (come abbiamo fatto nella prima parte della tabella), ma è certamente più leggibile nel file sorgente markdown. La confusione può essere maggiore quando si mettono in fila gli elementi, semplicemente interrompendo le colonne con il carattere pipe "|" ovunque si trovi l'interruzione naturale, come si può vedere nell'ultimo elemento della tabella.
-
-## Blocco Citazioni
+## Virgolettato
 
 Le virgolette sono in realtà pensate per citare il testo di altre fonti da includere nella documentazione, ma non è obbligatorio usarle in questo modo. Alcuni collaboratori usano le virgolette invece delle tabelle, ad esempio per elencare alcune opzioni. Esempi di virgolette in markdown sono:
 
-```
+```text
 > **un elemento** - Una descrizione di quell'elemento
 
-> **un'altra voce** - Un'altra descrizione di quell'elemento
+> **altro elemento** - Un'altra descrizione di quell'elemento
 ```
 
 La linea di "spaziatura" aggiuntiva è necessaria per evitare che le linee si sovrappongano.
@@ -254,21 +257,21 @@ L'aspetto finale è questo quando la pagina viene visualizzata:
 
 ## Blocchi di codice in linea e a livello di blocco
 
-Our approach to the use of code blocks is pretty simple. Se `il vostro codice` è abbastanza breve da poterlo (e volerlo) usare in una riga come quella che avete appena visto, usate dei singoli backtick <kbd>`</kbd>:
+Our approach to the use of code blocks is pretty simple. Se `il vostro codice` è abbastanza breve da poterlo (e volerlo) usare in una riga come quella che avete appena visto, usate dei singoli backtick ++"`"++:
 
-```
-Una frase con un "comando a scelta".
+```bash
+Una frase che contiene un "comando scelto da voi".
 ```
 
-Qualsiasi comando che non sia usato all'interno di un paragrafo di testo (specialmente i pezzi di codice lunghi con più righe) dovrebbe essere un blocco di codice completo, definito con tripli backtick <kbd>`</kbd>:
+Qualsiasi comando che non sia usato all'interno di un paragrafo di testo (specialmente i pezzi di codice lunghi con più righe) dovrebbe essere un blocco di codice completo, definito con tripli backtick ++"```"++:
 
 ````markdown
 ```bash
 sudo dnf install the-kitchen-sink
 ```
 ````
-La parte `bash` di questa formattazione è un identificatore di codice non essenziale, ma può essere utile per l'evidenziazione della sintassi. Se si mostra Python, PHP, Ruby, HTML, CSS o qualsiasi altro tipo di codice, "bash" cambierà in base al linguaggio usato.
-Per inciso, se è necessario mostrare un blocco di codice all'interno di un blocco di codice, basta aggiungere un altro backtick <kbd>`</kbd> al blocco genitore:
+La parte `bash` di questa formattazione è un identificatore di codice raccomandato da markdown, ma può essere utile per l'evidenziazione della sintassi. Se mostrate testo, Python, PHP, Ruby, HTML, CSS o qualsiasi altro tipo di codice, il "bash" verrà modificato con il linguaggio utilizzato.
+Per inciso, se è necessario mostrare un blocco di codice all'interno di un blocco di codice, basta aggiungere un altro backtick ++"`"++ al blocco genitore:
 
 `````markdown
 ````markdown
@@ -288,50 +291,70 @@ In alcuni casi, durante la stesura della documentazione, si desidera mostrare un
 
 Se la formattazione è normale, l'opzione di copia copierà il prompt e il comando, mentre è preferibile copiare solo il comando. Per ovviare a questo problema, si può usare la seguente sintassi per indicare all'opzione copy ciò che si vuole copiare:
 
-````
+````text
 ``` { .sh data-copy="cd /usr/local" }
 [root@localhost root] cd /usr/local
 ```
 ````
 Quando si utilizza questo metodo, anche l'avanzamento automatico delle righe viene soppresso.
 ## Tastiera
-Un altro modo per aggiungere più chiarezza possibile ai documenti è quello di rappresentare la digitazione dei tasti su una tastiera nel modo corretto. Per farlo, utilizzate `<kbd>key</kbd>`. Ad esempio, per rappresentare la necessità di premere il tasto escape nel documento, si userà `<kbd>ESC</kbd`. Quando è necessario indicare la pressione di più tasti, aggiungere un `+` tra di essi, come in questo caso: `<kbd>CTRL</kbd> + <kbd>F4</kbd>`. Se si richiede la pressione simultanea dei tasti, aggiungere "simultaneamente" o "allo stesso tempo" o una frase simile alle istruzioni. Ecco un esempio di istruzione da tastiera nell'editor:
+Un altro modo per aggiungere più chiarezza possibile ai documenti è quello di rappresentare la digitazione dei tasti su una tastiera nel modo corretto. Per farlo, utilizzate `<kbd>key</kbd>`. Per esempio, per rappresentare la necessità di premere il tasto escape nel documento, si userebbe `++escape++`. Quando è necessario indicare la pressione di più tasti, aggiungete un `+` tra di essi, in questo modo: `++ctrl+f4++`. Per i tasti non definiti (ad esempio, stiamo indicando un tasto funzione misterioso, `Fx`) mettete la definizione tra virgolette (`++ctrl+"Fx"++`). Se si richiede la pressione simultanea dei tasti, aggiungere "simultaneamente" o "allo stesso tempo" o una frase simile alle istruzioni. Ecco un esempio di istruzione da tastiera nell'editor:
 
+```text
+Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. Un utente passa da un terminale fisico a un altro usando ++alt+"Fx"++ o dalla riga di comando utilizzando ++ctrl+alt+"Fx"++.
 ```
-Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. Un utente passa da un terminale fisico a un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> o dalla riga di comando utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
-```
-Ecco come appare tutto questo nel codice markdown:
-Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. Un utente passa da un terminale fisico a un altro usando <kbd>Alt</kbd> + <kbd>Fx</kbd> o dalla riga di comando utilizzando <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>.
-## Simboli di Apice, Pedice e Speciali
+
+Ecco come viene visualizzato:
+
+Un'installazione di tipo workstation (con interfaccia grafica) avvia questa interfaccia sul terminale 1. Essendo Linux multiutente, è possibile connettere più utenti più volte, su diversi **terminali fisici** (TTY) o **terminali virtuali** (PTS). I terminali virtuali sono disponibili in un ambiente grafico. Un utente passa da un terminale fisico a un altro usando ++alt+"Fx"++ o dalla riga di comando utilizzando ++ctrl+alt+"Fx"++.
+
+Un elenco dei comandi da tastiera accettati si trova [in questo documento](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#key-map-index).
+
+!!! note "Nota"
+
+    Queste scorciatoie da tastiera sono sempre inserite in minuscolo, tranne quando è utilizzato un comando da tastiera personalizzato, tra virgolette.
+
+## Superscript, subscript e simboli speciali
+
 Le notazioni in apice e in pedice non sono un normale markdown, ma sono supportate nella documentazione di Rocky Linux attraverso i tag HTML usati per lo stesso scopo. Il superscript pone il testo inserito tra i tag leggermente al di sopra del testo normale, mentre il subscript lo pone leggermente al di sotto. Superscript è di gran lunga il più usato tra questi due nella scrittura. Alcuni caratteri speciali appaiono già in apice senza l'aggiunta dei tag, ma è possibile combinare i tag per cambiare l'orientamento di tali caratteri, come si vede con il simbolo del copyright qui sotto. È possibile utilizzare il superscript per:
+
 * rappresentano numeri ordinali, come 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
 * simboli di copyright e marchi, come <sup>&copy;</sup>, <sup>TM</sup>, o &trade;, &reg;
 * come notazione per riferimenti, come questo<sup>1</sup>, questo<sup>2</sup> e questo<sup>3</sup>
-Alcuni caratteri speciali, come &copy;, non sono normalmente apici, mentre altri, come &trade;, lo sono.
+
+Alcuni caratteri speciali, come &copy;, non sono normalmente apicali, mentre altri, come &trade;, lo sono.
+
 Ecco come appare tutto questo nel codice markdown:
 
+```text
+* rappresentano i numeri ordinali, come 1<sup>°</sup>, 2<sup>°</sup>, 3<sup>°</sup>
+* simboli di copyright e marchi, come <sup>&copy;</sup>, <sup>TM</sup> o &trade;, &reg;
+* come notazione per i riferimenti, come questo <sup>1</sup>, questo <sup>2</sup> e questo <sup>3</sup>
+
+Alcuni caratteri speciali, come &copy; non sono normalmente apicali, mentre altri come &trade;, lo sono.
 ```
 
-* rappresentano numeri ordinali, come 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
-* simboli di copyright e di trademark, come <sup>&copy;</sup>, <sup>TM</sup> o &trade;, &reg;
-* come notazione per i riferimenti, come questo<sup>1</sup>, this<sup>2</sup> e questo<sup>3</sup>
+Come si può vedere, per forzare l'apice possiamo usare i tag HTML supportati `<sup></sup>`.
 
-Alcuni caratteri speciali, come &copy;, non sono normalmente apici, mentre altri, come &trade;, lo sono.
-```
-Come si può vedere, per forzare l'apice si possono usare i tag HTML supportati di `<sup></sup>`.
 Si inserisce il pedice con i tag `<sub></sub>` e, come notato in precedenza, non è <sub>utilizzato molto</sub> nella scrittura.
-### Apice per i riferimenti
+
+### Superscript per i riferimenti
+
 Alcuni di voi potrebbero avere la necessità di fare riferimento a fonti esterne quando scrivono la documentazione. Se avete una sola fonte, potete includerla nella conclusione come un unico link, ma se ne avete più di una<sup>1</sup>, potete usare l'apice per annotarle nel testo<sup>2</sup> e poi elencarle alla fine del documento. Si noti che il posizionamento dei riferimenti deve avvenire dopo la sezione "Conclusioni".
+
 Dopo la conclusione, è possibile inserire le notazioni in un elenco numerato che corrisponde all'apice, oppure come link. Entrambi gli esempi sono illustrati qui:
+
 1. "Come si usano i multipli nel testo" di Wordy W. McWords [https://site1.com](https://site1.com)
 2. "Usare l'apice nel testo" di Sam B. Supersecret [https://site2.com](https://site2.com)
+
 o
+
 [1](https://site1.com) "Come si usano i multipli nel testo" di Wordy W. McWords  
 [2](https://site2.com) "Usare l'apice nel testo" by Sam B. Supersecret
+
 Ecco come si presenta il tutto nel vostro editor:
 
-```
-
+```text
 1. "Come si usano i multipli nel testo" di Wordy W. McWords [https://site1.com](https://site1.com)
 2. "Usare l'apice nel testo" di Sam B. Supersecret [https://site2.com](https://site2.com)
 
@@ -341,34 +364,52 @@ o
 [2](https://site2.com) "Usare l'apice nel testo" di by Sam B. Supersecret  
 
 ```
+
 ## Raggruppare diversi tipi di formattazione
+
 La documentazione Rocky offre alcune eleganti opzioni di formattazione quando si combinano più elementi all'interno di un altro elemento. Per esempio, un ammonimento con un elenco numerato:
+
 !!! note "Nota"
 
-    Le cose possono diventare un po' strane quando si raggruppano gli oggetti. A volte è davvero importante.
-1. Si aggiunge un elenco numerato di opzioni all'interno di un ammonimento
-2. Oppure si aggiunge un elenco numerato con più blocchi di codice:
+    Le cose possono diventare un po' strane quando si raggruppano gli oggetti. Come quando:
+
+    1. Si aggiunge un elenco numerato di opzioni all'interno di un ammonimento
+
+    2. Oppure si aggiunge un elenco numerato con più blocchi di codice:
 
         ```
         dnf install some-great-package
         ```
-Che è anche all'interno di un elenco numerato di più paragrafi.
+
+        Che è anche all'interno di un elenco numerato di più paragrafi.
+
 Oppure si può avere un elenco numerato, con un'ulteriore ammonimento:
+
 1. Questo elemento è molto importante
-Qui si aggiunge un comando da tastiera all'elemento dell'elenco:
-Premere <kbd>ESC</kbd> senza un motivo particolare.
+
+    Qui si aggiunge un comando da tastiera all'elemento dell'elenco:
+
+    Premere ++escape++ senza un motivo particolare.
+
 2. Ma questo articolo è qualcosa di molto importante *e* ha più paragrafi ad esso dedicati
-E ha un ammonimento nel mezzo:
-!!! warning "Attenzione"
+
+    E ha un ammonimento nel mezzo:
+
+    !!! warning "Attenzione"
    
         Le cose possono diventare un po' strane con più elementi all'interno di diversi tipi di formattazione!
-Se si tiene conto dei quattro (4) spazi magici per rientrare e separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desiderano. A volte è davvero importante.
+
+Se si tiene conto dei magici quattro (4) spazi per rientrare e separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come lo si desidera. A volte questo è davvero importante.
+
 È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui ci sono un elenco numerato, un ammonimento, una tabella e alcuni elementi di blocco di citazione, tutti raggruppati insieme:
+
 1. Cercare di tenere il passo con tutto ciò che accade nel documento può essere un vero compito quando si lavora con più elementi.
+
 2. Se vi sentite sopraffatti, prendete in considerazione:
-!!! warning "importante: credo che mi faccia male la testa!"
+
+    !!! warning "importante: credo che mi faccia male la testa!"
    
-        Quando si combinano più elementi di formattazione, il cervello può impazzire. Prendete in considerazione l'idea di assumere un po' di caffeina in più prima di cominciare!
+        Quando si combinano più elementi di formattazione, è possibile che il cervello impazzisca. Prendete in considerazione l'idea di assumere un po' di caffeina in più prima di cominciare!
        
         | tipo            |   dose giornaliera di caffeina       |
         |-----------------|----------------------------------|
@@ -380,12 +421,14 @@ Se si tiene conto dei quattro (4) spazi magici per rientrare e separare questi e
         > **zucchero** se la caffeina non è di vostro gradimento
        
         > **soffrire** se tutto il resto fallisce, concentrarsi di più
-3. Esistono molti esempi, ma quello riportato sopra illustra come sia possibile annidare tutto all'interno. Ricordate i quattro (4) spazi magici.
+
+3. Esistono molti esempi, ma quello sopra illustra come sia possibile annidare tutto all'interno. Ricordate i quattro (4) spazi magici.
+
 Ecco come appare questo esempio nell'editor:
 
-```
+```text
 
-Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desiderano. A volte è davvero importante.
+Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desiderano. A volte questo è davvero importante.
 
 È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui ci sono un elenco numerato, un'ammonimento, una tabella e alcuni elementi di citazione a blocchi, tutti raggruppati insieme:
 
@@ -395,7 +438,7 @@ Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi v
 
     !!! warning "importante: credo che mi faccia male la testa!"
 
-        Quando si combinano più elementi di formattazione, il cervello può impazzire. Prendete in considerazione l'idea di assumere un po' di caffeina in più prima di cominciare!
+        Quando si combinano più elementi di formattazione, è possibile che il cervello impazzisca. Prendete in considerazione l'idea di assumere un po' di caffeina in più prima di cominciare!
 
         | tipo            |   dose giornaliera di caffeina       |
         |-----------------|----------------------------------|
@@ -408,13 +451,16 @@ Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi v
 
         > **soffrire** se tutto il resto fallisce, concentrarsi di più
 
-3. Esistono molti esempi, ma quello riportato sopra illustra come sia possibile annidare tutto all'interno. Ricordate i quattro (4) spazi magici.
+3. Esistono molti esempi, ma quello sopra illustra come sia possibile annidare tutto all'interno. Ricordate i quattro (4) spazi magici.
 ```
-## Un ultimo punto: i commenti
-Di tanto in tanto, si potrebbe voler aggiungere un commento al markdown che non verrà visualizzato quando sarà visualizzato. Le ragioni sono molteplici. Ad esempio, se si vuole aggiungere un segnaposto per qualcosa che verrà aggiunto in seguito, si può usare un commento per contrassegnare il punto.
-Il modo migliore per aggiungere un commento al markdown è usare le parentesi quadre "[]" attorno a due slashes "//" seguite da due punti e dal contenuto. Il risultato sarebbe il seguente:
 
-```
+## Un ultimo punto - i commenti
+
+Di tanto in tanto, si potrebbe voler aggiungere un commento al markdown che non verrà visualizzato quando sarà visualizzato. Le ragioni sono molteplici. Ad esempio, se si vuole aggiungere un segnaposto per qualcosa che verrà aggiunto in seguito, si può usare un commento per contrassegnare il punto.
+
+Il modo migliore per aggiungere un commento al markdown è usare le parentesi quadre "[]" che circondano due slashes "//" seguite da due punti e dal contenuto. Il risultato sarebbe il seguente:
+
+```text
 
 [//]: Questo è un commento da sostituire in seguito
 
