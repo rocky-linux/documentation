@@ -57,11 +57,11 @@ local M = {}
 local highlights = require("custom.highlights")
 
 M.ui = {
-	theme = "onedark",
-	theme_toggle = { "onedark", "one_light" },
+    theme = "onedark",
+    theme_toggle = { "onedark", "one_light" },
 
-	hl_override = highlights.override,
-	hl_add = highlights.add,
+    hl_override = highlights.override,
+    hl_add = highlights.add,
 }
 
 M.plugins = "custom.plugins"
@@ -157,17 +157,17 @@ An example setting is also presented here so that its format can be studied:
 
 ```lua
 M.general = {
-	n = {
-		[";"] = { ":", "enter command mode", opts = { nowait = true } },
-	},
+    n = {
+        [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    },
 }
 ```
 
-This mapping is entered for the NORMAL state `n =` the character ++;++ which when pressed on the keyboard plays the character ++:++. This character is the character used to enter COMMAND mode. The option `nowait = true` is also set to enter that mode immediately. In this way on a keyboard with a US QWERTY layout, we will not need to use ++SHIFT++ to enter COMMAND mode.
+This mapping is entered for the NORMAL state `n =` the character ++";"++ which when pressed on the keyboard plays the character ++":"++. This character is the character used to enter COMMAND mode. The option `nowait = true` is also set to enter that mode immediately. In this way on a keyboard with a US QWERTY layout, we will not need to use ++shift++ to enter COMMAND mode.
 
 !!! Tip
 
-    For users of European keyboards (such as Italian), it is recommended to substitute the character ++;++ with ++,++.
+    For users of European keyboards (such as Italian), it is recommended to substitute the character ++";"++ with ++","++.
 
 #### highlights.lua
 
@@ -211,14 +211,14 @@ Again, a table has been set up, the `local sources` table, where we can enter ou
 ```lua
 local sources = {
 
-	-- webdev stuff
-	b.formatting.deno_fmt,
-	b.formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }),
-	-- Lua
-	b.formatting.stylua,
+    -- webdev stuff
+    b.formatting.deno_fmt,
+    b.formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }),
+    -- Lua
+    b.formatting.stylua,
 
-	-- cpp
-	b.formatting.clang_format,
+    -- cpp
+    b.formatting.clang_format,
 }
 ```
 
@@ -251,24 +251,24 @@ The part of the code that deals with this is as follows:
 
 ```lua
 M.treesitter = {
-	ensure_installed = {
-		"vim",
-		"lua",
-		"html",
-		"css",
-		"javascript",
-		"typescript",
-		"tsx",
-		"c",
-		"markdown",
-		"markdown_inline",
-	},
-	indent = {
-		enable = true,
-		-- disable = {
-		--   "python"
-		-- },
-	},
+    ensure_installed = {
+        "vim",
+        "lua",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "c",
+        "markdown",
+        "markdown_inline",
+    },
+    indent = {
+        enable = true,
+        -- disable = {
+        --   "python"
+        -- },
+    },
 }
 ```
 
@@ -296,18 +296,18 @@ Following in the file is the part regarding the installation of servers by _Maso
 
 ```lua
 M.mason = {
-	ensure_installed = {
-		-- lua stuff
-		"lua-language-server",
-		"stylua",
+    ensure_installed = {
+        -- lua stuff
+        "lua-language-server",
+        "stylua",
 
-		-- web dev stuff
-		"css-lsp",
-		"html-lsp",
-		"typescript-language-server",
-		"deno",
-		"prettier",
-	},
+        -- web dev stuff
+        "css-lsp",
+        "html-lsp",
+        "typescript-language-server",
+        "deno",
+        "prettier",
+    },
 }
 ```
 

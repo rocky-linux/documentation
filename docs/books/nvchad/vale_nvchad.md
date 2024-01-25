@@ -20,11 +20,11 @@ tags:
 
 ## Installing `vale` using Mason
 
-Installing `vale` from within NvChad using Mason, will keep the package up-to-date with just a few extra steps. Running Mason periodically from within `nvim` will show you if there are updates that need to be installed and allow you to update them from there. This includes `vale` once it is installed. Let us start by running `nvim` to pull up an empty file and then get into the command mode by using ++SHIFT++ + ++:++ + Mason, which should show an interface similar to this one:
+Installing `vale` from within NvChad using Mason, will keep the package up-to-date with just a few extra steps. Running Mason periodically from within `nvim` will show you if there are updates that need to be installed and allow you to update them from there. This includes `vale` once it is installed. Let us start by running `nvim` to pull up an empty file and then get into the command mode by using ++shift++ + ++":"++ + Mason, which should show an interface similar to this one:
 
 ![vale_mason](images/vale_mason.png)
 
-Rather than looking at the entire list of packages, let us use menu item 4 to limit the listing to linters. Press ++4++ and scroll down in the list until you find `vale` and with your cursor on that line, press ++i++ to install. Your listing should now show `vale` installed:
+Rather than looking at the entire list of packages, let us use menu item 4 to limit the listing to linters. Press ++4++ and scroll down in the list until you find `vale` and with your cursor on that line, press ++"i"++ to install. Your listing should now show `vale` installed:
 
 ![vale_mason_installed](images/vale_mason_installed.png)
 
@@ -52,7 +52,7 @@ Simply copy the contents at the bottom, create the `.vale.ini` file with your fa
 
 You need to create the "styles" folder. Do this by running the `vale` binary with the `sync` command. Again, if you are doing this from the `~/.local/share/nvim/mason/packages/vale/` directory, just do:
 
-```
+```bash
 ./vale sync
 ```
 
@@ -62,7 +62,7 @@ This will show the following when done:
 
 Copy the `.vale.ini` and the `styles` folder to the root of your home folder:
 
-```
+```bash
 cp .vale.ini ~/
 cp -rf styles ~/
 ```
@@ -77,7 +77,7 @@ First, create the `.vale.ini` in your home folder using [the `vale.sh` website](
 
 Next, run the `vale sync` command. Since you are in your home directory, you will need the entire path to the binary:
 
-```
+```bash
 ~/.local/share/nvim/mason/packages/vale/vale sync
 ```
 
@@ -91,7 +91,7 @@ There is one final step needed. You need to change the `null-ls.lua` file found 
 
 If you have no other linters installed, make a section with two dashes (comments) called "linters" then place this code there:
 
-```
+```lua
 b.diagnostics.vale,
 ```
 

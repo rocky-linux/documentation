@@ -38,7 +38,7 @@ Installation of the language server does not involve any particular problems sin
 
 `:MasonInstall marksman`
 
-The command will open the *Mason* interface and directly install the required language server. Once binary installation completes, you can close the *Mason* screen with the ++q++ key.
+The command will open the *Mason* interface and directly install the required language server. Once binary installation completes, you can close the *Mason* screen with the ++"q"++ key.
 
 Its installation, however, does not yet involve its integration into the editor. Enable this by editing the `custom/configs/lspconfig.lua` file of the *Chadrc Template*.
 
@@ -96,19 +96,19 @@ Once you have completed all the steps to enter it, activation of the language se
 
 The language server provides many shortcuts that activate writing assistance. This includes quick insertion of Markdown tags, creation of links, and insertion of images into the document. A non-exhaustive list of characters that activate the various snippets is below.
 
-These snippets are displayed within widgets that also contain other shortcuts. Use the ++Tab++ key for navigation of the widget to select those provided by *marksman*.
+These snippets are displayed within widgets that also contain other shortcuts. Use the ++tab++ key for navigation of the widget to select those provided by *marksman*.
 
 | Key | Snippets |
 |--------------- | --------------- |
-| ++h++ | Allows for quick entry of title headings (*h1* to *h6*), for example, entering *h4* and pressing enter will insert four hash marks and a space and the cursor will already be in place to enter your title |
-| ++b++ | Typing this character activates the ability to use the shortcut for entering bold text by inserting four asterisks and placing the cursor in the middle making writing the **bold** part much faster |
-| ++i++ | As with the previous character, it allows you to select quick insertion of *italic* text by entering two asterisks and placing the cursor in between.   |
+| ++"h"++ | Allows for quick entry of title headings (*h1* to *h6*), for example, entering *h4* and pressing enter will insert four hash marks and a space and the cursor will already be in place to enter your title |
+| ++"b"++ | Typing this character activates the ability to use the shortcut for entering bold text by inserting four asterisks and placing the cursor in the middle making writing the **bold** part much faster |
+| ++"i"++ | As with the previous character, it allows you to select quick insertion of *italic* text by entering two asterisks and placing the cursor in between.   |
 | ++"bi"++ | This key inserts six asterisks by placing the cursor in the middle for writing text in ***bold and italics*** |
 | ++"img"++ | This key inserts the markdown structure for inserting an image into the document in the format `![alt text](path)`. Note that writing the path can be done using the autocomplete provided by the server.   |
 | ++"link"++ | This key creates the markdown tag structure for a `[text](url)` link. Again, if the link refers to a file in the **working directory** you will be able to use autocomplete and the server will check the correctness of the reference.    |
 | ++"list"++ | Typing this key allows the entry of a list of three items to begin the creation of a numbered or unordered list |
-| ++q++ | This character allows the insertion of the tag for a citation `>` followed by a space and positions the cursor for writing the citation |
-| ++s++ | This character activates numerous possibilities including inserting four tildes and placing the cursor in the middle for writing text ~~strikethrough~~ |
+| ++"q"++ | This character allows the insertion of the tag for a citation `>` followed by a space and positions the cursor for writing the citation |
+| ++"s"++ | This character activates numerous possibilities including inserting four tildes and placing the cursor in the middle for writing text ~~strikethrough~~ |
 | ++"sup"++ | The key inserts the *superscript* tag. Trademark<sup>TM |
 | ++"sub"++ | The key inserts the *subscript* tag. Notes<sub>1 |
 | ++"table"++ | This key enables quick creation of a table structure and allows you to choose from many starting structures |

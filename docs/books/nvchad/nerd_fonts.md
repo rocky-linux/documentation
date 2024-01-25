@@ -11,7 +11,7 @@ tags:
 
 # Nerd Fonts - Fonts for Developers
 
-Installation of Nerd Fonts does not change the function of Neovim or NvChad, but simply adds fonts that are more pleasing to the eye than whatever the standard terminal font is currently. 
+Installation of Nerd Fonts does not change the function of Neovim or NvChad, but simply adds fonts that are more pleasing to the eye than whatever the standard terminal font is currently.
 
 ![Nerd Fonts](images/nerd_fonts_site_small.png){ align=right } Nerd Fonts are a collection of modified fonts aimed at developers. In particular, "iconic fonts" such as Font Awesome, Devicons, Octicons etc. are used to add extra glyphs.
 
@@ -31,7 +31,7 @@ The procedure for installing fonts on Rocky Linux is to save the fonts you want 
 
 !!! warning "Creation of compressed packages"
 
-	The procedure described below is not a standard procedure as each developer has packaged fonts using a custom scheme. So once downloaded and extracted, the contents must be checked to choose the procedure for copying the fonts.
+    The procedure described below is not a standard procedure as each developer has packaged fonts using a custom scheme. So once downloaded and extracted, the contents must be checked to choose the procedure for copying the fonts.
 
 For this guide we will use the `Sauce Code Pro Nerd` font.
 
@@ -53,6 +53,6 @@ fc-cache ~/.local/share/fonts
 
 At this point the Nerd Font of your choice should be available for selection. To actually select it you must refer to the desktop you are using.
 
-![Font Manager](images/font_nerd_view.png) 
+![Font Manager](images/font_nerd_view.png)
 
 If you are using the default Rocky Linux desktop (Gnome), to change the font in the terminal emulator you will just need to open `gnome-terminal`, go to "Preferences", and set the Nerd Font for your profile.

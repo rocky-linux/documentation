@@ -20,7 +20,7 @@ There are several pieces of additional software that, while not required, will a
 
 In both Rocky Linux 8 and 9, you can install RipGrep from the EPEL. To do this, install the `epel-release`, upgrade the system, and then install `ripgrep`:
 
-```
+```bash
 sudo dnf install -y epel-release
 sudo dnf upgrade
 sudo dnf install ripgrep
