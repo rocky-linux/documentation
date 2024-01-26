@@ -197,28 +197,23 @@ sudo dnf install httpd
 
 * Activation:
 
-````markdown
-  ```bash
-  sudo systemctl enable httpd
-  ```
-  ```bash
-  sudo systemctl start httpd
-  ```
-  ```bash { .sh data-copy="sudo systemctl status httpd" }
+```bash
+sudo systemctl enable --now httpd 
+```
+
+```bash { .sh data-copy="sudo systemctl status httpd" }
   $ sudo systemctl status httpd
-  ```
-````
+```
 
 * Don't forget to configure the firewall:
 
-````markdown
-  ```bash
-  sudo firewall-cmd --add-service=http --permanent
-  ```
-  ```bash
-  sudo firewall-cmd --reload
-  ```
-````
+```bash
+sudo firewall-cmd --add-service=http --permanent
+```
+
+```bash
+sudo firewall-cmd --reload
+```
 
 The default vhost should work out of the box. PHP provides a `phpinfo()` function that generates a summary table of its configuration. It's very useful to test the good working of PHP. However, be careful not to leave such test files on your servers. They represent a huge security risk for your infrastructure.
 
@@ -250,17 +245,13 @@ sudo dnf install php-fpm
 
 As php-fpm is a service from a system point of view, it must be activated and started:
 
-````markdown
-  ```bash
-  sudo systemctl enable php-fpm
-  ```
-  ```bash
-  sudo systemctl start php-fpm
-  ```
-  ```bash { .sh data-copy="sudo systemctl status php-fpm" }
-  $ sudo systemctl status php-fpm
-  ```
-````
+```bash
+sudo systemctl enable --now php-fpm
+```
+
+```bash { .sh data-copy="sudo systemctl status php-fpm" }
+$ sudo systemctl status php-fpm
+```
 
 ### Configuration
 
