@@ -122,7 +122,6 @@ git clone https://github.com/neovim/neovim
 
 Una volta terminata l'operazione, avremo una cartella denominata _neovim_ contenente tutti i file necessari. Il passo successivo consiste nel fare il checkout del ramo stabile, quindi configurare e compilare i sorgenti con il comando `make`.
 
-
 ```bash
 cd ~/lab/build/neovim/
 git checkout stable
@@ -141,7 +140,7 @@ Poiché questo comando modificherà il filesystem, deve essere eseguito come sup
 
 Una volta terminata l'installazione, possiamo verificare che tutto sia andato bene controllando il percorso di Neovim:
 
-```
+```bash
 whereis nvim
 nvim: /usr/local/bin/nvim
 ```
