@@ -1,8 +1,8 @@
 ---
 title: PHP and PHP-FPM
 author: Antoine Le Morvan
-contributors: Steven Spencer, Ganna Zhyrnova, Joseph Brinkman
-tested_with: 8.9, 9.3
+contributors: Steven Spencer, Ganna Zhyrnova
+tested_with: 8.9
 tags:
   - web
   - php
@@ -11,7 +11,11 @@ tags:
 
 # PHP and PHP-FPM
 
-**PHP** (**P**HP **H**ypertext **P**reprocessor) is a source scripting language, specially designed for web application development. In 2024, PHP represented a little less than 80% of the web pages generated in the world. PHP is open-source and is the core of the most famous CMS (WordPress, Drupal, Joomla!, Magento, ...).
+!!! warning "Written for Rocky Linux 8.x"
+
+    This procedure was initially published when Rocky Linux 8.x was the only version. This procedure must tested and rewritten for Rocky Linux 9.x.
+
+**PHP** (**P**HP **H**ypertext **P**reprocessor) is a source scripting language, specially designed for web application development. In 2021, PHP represented a little less than 80% of the web pages generated in the world. PHP is open-source and is the core of the most famous CMS (WordPress, Drupal, Joomla!, Magento, ...).
 
 **PHP-FPM** (**F**astCGI **P**rocess **M**anager) is integrated to PHP since its version 5.3.3. The FastCGI version of PHP brings additional functionalities.
 
@@ -39,85 +43,47 @@ Rocky Linux, like its upstream, offers many versions of the language. Some of th
 
 To obtain a list of available versions, simply enter the following command:
 
-=== "9.0"
+```bash
+$ sudo dnf module list php
 
-  ```bash { .sh data-copy="sudo dnf module list php" }
-  $ sudo dnf module list php
-  
-  Rocky Linux 9 - AppStream
-  Name                                                 Stream                                                  Profiles                                                                   Summary                                                         
-  php                                                  8.1 [d]                                                 common [d], devel, minimal                                 
-  
-  Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
-  ```
+Rocky Linux 8 - AppStream
+Name                                                 Stream                                                  Profiles                                                                   Summary                                                         
+php                                                  7.2 [d]                                                 common [d], devel, minimal                                                 PHP scripting language                                          
+php                                                  7.3                                                     common [d], devel, minimal                                                 PHP scripting language                                          
+php                                                  7.4                                                     common [d], devel, minimal                                                 PHP scripting language                                          
+php                                                  8.0                                                     common [d], devel, minimal                                                 PHP scripting language                                          
 
-  The Remi repository offers more recent releases of PHP than the Appstream repository, including versions 8.2 and 8.3. 
-  
-  To install the Remi repository, run the following command:
-  
-  ```bash
-  sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
-  ```
-  
-  Once the Remi repository is installed, enable it by running the following command.
-  
-  ```bash
-  sudo dnf config-manager --set-enabled remi
-  ```
-  
-  You can now activate a newer module (PHP 8.3) by entering the following command:
-  
-  ```bash
-  sudo dnf module enable php:8.3
-  ```
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+```
 
-=== "8.9"
-  
-  Rocky Linux, like its upstream, offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [supported versions](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
-  
-  To obtain a list of available versions, simply enter the following command:
-  
-  ```bash { .sh data-copy="sudo dnf module list php" }
-  $ sudo dnf module list php
-  
-  Rocky Linux 8 - AppStream
-  Name                                                 Stream                                                  Profiles                                                                   Summary                                                         
-  php                                                  7.2 [d]                                                 common [d], devel, minimal                                                 PHP scripting language                                          
-  php                                                  7.3                                                     common [d], devel, minimal                                                 PHP scripting language                                          
-  php                                                  7.4                                                     common [d], devel, minimal                                                 PHP scripting language                                          
-  php                                                  8.0                                                     common [d], devel, minimal                                                 PHP scripting language                                          
-  
-  Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
-  ```
+Rocky provides, from its AppStream repository, different PHP modules.
 
-  Rocky provides, from its AppStream repository, different PHP modules.
-  
-  You will note that the default version of a Rocky 8.9 is 7.2 that has already reached its end of life at the time of writing.
-  
-  You can activate a newer module by entering the following command:
+You will note that the default version of a Rocky 8.9 is 7.2 that has already reached its end of life at the time of writing.
 
-  ```bash { .sh data-copy="sudo dnf module enable php:8.0" }
-  sudo dnf module enable php:8.0
-  ==============================================================================================
-   Package               Architecture         Version               Repository             Size
-  ==============================================================================================
-  Enabling module streams:
-   httpd                                      2.4                                                                                                                              
-   nginx                                      1.14                                                                                                                             
-   php                                        8.0                                                                                                                              
-  
-  Transaction Summary
-  ==============================================================================================
-  
-  Is this ok [y/N]:
-  
-  Transaction Summary
-  ==============================================================================================
-  
-  Is this ok [y/N]: y
-  Complete!
-  ```
-    
+You can activate a newer module by entering the following command:
+
+```bash
+sudo dnf module enable php:8.0
+==============================================================================================
+ Package               Architecture         Version               Repository             Size
+==============================================================================================
+Enabling module streams:
+ httpd                                      2.4                                                                                                                              
+ nginx                                      1.14                                                                                                                             
+ php                                        8.0                                                                                                                              
+
+Transaction Summary
+==============================================================================================
+
+Is this ok [y/N]:
+
+Transaction Summary
+==============================================================================================
+
+Is this ok [y/N]: y
+Complete!
+```
+
 You can now proceed to the installation of the PHP engine.
 
 ## PHP cgi mode
@@ -130,58 +96,19 @@ The installation of PHP is relatively trivial, since it consists of installing t
 
 The example below installs PHP with the modules usually installed with it.
 
-!!! Note
-
-    To avoid installing weak dependencies such as php-fpm use the following flag with dnf `--setopt=install_weak_deps=false`
-
 ```bash
-sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring php-mysqlnd
-```
-
-During installation you will be prompted to import GPG keys for the epel9 (Extra Packages for Enterprise Linux 9) and Remi repositories, enter y to import the keys:
-
-```bash                                                                                                             
-Extra Packages for Enterprise Linux 9 - x86_64                                                                        
-Importing GPG key 0x3228467C:
- Userid     : "Fedora (epel9) <epel@fedoraproject.org>"
- Fingerprint: FF8A D134 4597 106E CE81 3B91 8A38 72BF 3228 467C
- From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9
-Is this ok [y/N]: y
-Key imported successfully
-Remi's RPM repository for Enterprise Linux 9 - x86_64                                                         
-Importing GPG key 0x478F8947:
- Userid     : "Remi's RPM repository (https://rpms.remirepo.net/) <remi@remirepo.net>"
- Fingerprint: B1AB F71E 14C9 D748 97E1 98A8 B195 27F1 478F 8947
- From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9
-Is this ok [y/N]: y
-Key imported successfully
-Running transaction check
-Transaction check succeeded.
-Running transaction test
-Transaction test succeeded.
-
-Complete!
+sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
 ```
 
 You can check that the installed version corresponds to the expected one:
 
-=== "9.0"
-  ```bash { .sh data-copy="php -v" }
-  $ php -v
-  PHP 8.3.2 (cli) (built: Jan 16 2024 13:46:41) (NTS gcc x86_64)
-  Copyright (c) The PHP Group
-  Zend Engine v4.3.2, Copyright (c) Zend Technologies
-      with Zend OPcache v8.3.2, Copyright (c), by Zend Technologies
-  ```
-
-=== "8.9"
-  ```bash { .sh data-copy="php -v" }
-  $ php -v
-  PHP 7.4.19 (cli) (built: May  4 2021 11:06:37) ( NTS )
-  Copyright (c) The PHP Group
-  Zend Engine v3.4.0, Copyright (c) Zend Technologies
-      with Zend OPcache v7.4.19, Copyright (c), by Zend Technologies
-  ```
+```bash
+$ php -v
+PHP 7.4.19 (cli) (built: May  4 2021 11:06:37) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v3.4.0, Copyright (c) Zend Technologies
+    with Zend OPcache v7.4.19, Copyright (c), by Zend Technologies
+```
 
 ### Configuration
 
@@ -198,20 +125,15 @@ sudo dnf install httpd
 * Activation:
 
 ```bash
-sudo systemctl enable --now httpd 
-```
-
-```bash { .sh data-copy="sudo systemctl status httpd" }
-  $ sudo systemctl status httpd
+sudo systemctl enable httpd
+sudo systemctl start httpd
+sudo systemctl status httpd
 ```
 
 * Don't forget to configure the firewall:
 
 ```bash
 sudo firewall-cmd --add-service=http --permanent
-```
-
-```bash
 sudo firewall-cmd --reload
 ```
 
@@ -246,11 +168,9 @@ sudo dnf install php-fpm
 As php-fpm is a service from a system point of view, it must be activated and started:
 
 ```bash
-sudo systemctl enable --now php-fpm
-```
-
-```bash { .sh data-copy="sudo systemctl status php-fpm" }
-$ sudo systemctl status php-fpm
+sudo systemctl enable php-fpm
+sudo systemctl start php-fpm
+sudo systemctl status php-fpm
 ```
 
 ### Configuration
@@ -269,7 +189,7 @@ daemonize = yes
 
     The php-fpm configuration files are widely commented. Go and have a look!
 
-As you can see, the files in the `/etc/php-fpm.d/` directory with the `.conf` extension are always included.
+As you can see, the files in the `/etc/php-fpm/` directory with the `.conf` extension are always included.
 
 By default, a PHP process pool, named `www`, is declared in `/etc/php-fpm.d/www.conf`.
 
@@ -366,38 +286,23 @@ PHP-FPM offers, like Apache and its `mod_status` module, a page indicating the s
 To activate the page, setup its access path via the `pm.status_path` directive:
 
 ```bash
-pm.status_path = /fpm-status
-```
-
-You must also add the following vhost to your apache configuration file in /etc/httpd/httpd.conf
-
-```bash
-<LocationMatch "/fpm-status">
-   Require local 
-   ProxyPass "unix:/var/run/php-fpm/www.sock|fcgi://localhost/"
-</LocationMatch>
-```
-
-After editing the php and apache conf files you will need to restart php-fpm and httpd before the changes take place.
-
-```bash
-sudo systemctl restart php-fpm && sudo systemctl restart httpd
+pm.status_path = /status
 ```
 
 ```bash
-curl http://localhost/fpm-status
+$ curl http://localhost/status_php
 pool:                 www
 process manager:      dynamic
-start time:           25/Jan/2024:19:30:59 +0000
-start since:          18447
-accepted conn:        10
+start time:           03/Dec/2021:14:00:00 +0100
+start since:          600
+accepted conn:        548
 listen queue:         0
-max listen queue:     0
-listen queue len:     0
-idle processes:       4
-active processes:     1
+max listen queue:     15
+listen queue len:     128
+idle processes:       3
+active processes:     3
 total processes:      5
-max active processes: 1
+max active processes: 5
 max children reached: 0
 slow requests:        0
 ```
