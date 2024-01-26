@@ -20,11 +20,11 @@ tags:
 
 ## Installazione di `vale` con Mason
 
-L'installazione di `vale` dall'interno di NvChad, usando Mason, manterrà il pacchetto aggiornato con pochi passi in più. L'esecuzione periodica di Mason da `nvim` mostrerà se ci sono aggiornamenti da installare e permetterà di aggiornarli da lì. Questo include `vale` una volta installato. Cominciamo con l'eseguire `nvim` per visualizzare un file vuoto e poi entriamo nella modalità di comando usando <kbd>SHIFT+</kbd><kbd>:</kbd>+Mason, che dovrebbe mostrare un'interfaccia simile a questa:
+L'installazione di `vale` dall'interno di NvChad, usando Mason, manterrà il pacchetto aggiornato con pochi passi in più. L'esecuzione periodica di Mason da `nvim` mostrerà se ci sono aggiornamenti da installare e permetterà di aggiornarli da lì. Questo include `vale` una volta installato. Cominciamo con l'eseguire `nvim` per visualizzare un file vuoto e poi entriamo nella modalità di comando usando ++shift++ + ++":"++ + Mason, che dovrebbe mostrare un'interfaccia simile a questa:
 
 ![vale_mason](images/vale_mason.png)
 
-Invece di consultare l'intero elenco dei pacchetti, utilizziamo la voce di menu 4 per limitare l'elenco dei linters. Premete <kbd>4</kbd> e scorrete l'elenco fino a trovare `vale` e, con il cursore su quella riga, premete <kbd>i</kbd> per installare. Il vostro elenco dovrebbe ora mostrare `vale` installato:
+Invece di consultare l'intero elenco dei pacchetti, utilizziamo la voce di menu 4 per limitare l'elenco dei linters. Premete ++shift++ + ++":"++ + e scorrete l'elenco fino a trovare `vale` e, con il cursore su quella riga, premete ++"i"++ per installare. Il vostro elenco dovrebbe ora mostrare `vale` installato:
 
 ![vale_mason_installed](images/vale_mason_installed.png)
 
@@ -52,7 +52,7 @@ Se ci si trova nel percorso del binario di `vale` qui: `~/.local/share/nvim/maso
 
 È necessario creare la cartella "styles". Per farlo, eseguire il binario `vale` con il comando `sync`. Anche in questo caso, se si sta eseguendo questa operazione dalla cartella `~/.local/share/nvim/mason/packages/vale/`, basta fare:
 
-```
+```bash
 ./vale sync
 ```
 
@@ -62,7 +62,7 @@ Una volta terminata l'operazione, verrà visualizzato quanto segue:
 
 Copiare il file `.vale.ini` e la cartella `styles` nella radice della cartella home:
 
-```
+```bash
 cp .vale.ini ~/
 cp -rf styles ~/
 ```
@@ -77,7 +77,7 @@ Per prima cosa, creare il file `.vale.ini` nella cartella principale utilizzando
 
 Quindi, eseguire il comando `vale sync.`  Dal momento che ci si trova nella propria home directory, è necessario l'intero percorso del binario:
 
-```
+```bash
 ~/.local/share/nvim/mason/packages/vale/vale sync
 ```
 
@@ -85,14 +85,13 @@ Quindi, eseguire il comando `vale sync.`  Dal momento che ci si trova nella prop
 
 In questo caso, non è necessario copiare i file, poiché verranno creati nella directory principale.
 
-
 ## Modifiche al file `null-ls.lua`
 
 È necessario un ultimo passo. È necessario modificare il file `null-ls.lua` che si trova in `~/.config/nvim/lua/custom/configs/` e aggiungere il linter `vale`.
 
 Se non sono stati installati altri linters, creare una sezione con due trattini (commenti) chiamata "linters" e inserirvi questo codice:
 
-```
+```lua
 b.diagnostica.vale,
 ```
 
