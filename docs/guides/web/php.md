@@ -2,7 +2,7 @@
 title: PHP and PHP-FPM
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova, Joseph Brinkman
-tested_with: 9.3
+tested_with: 8.9, 9.3
 tags:
   - web
   - php
@@ -39,36 +39,85 @@ Rocky Linux, like its upstream, offers many versions of the language. Some of th
 
 To obtain a list of available versions, simply enter the following command:
 
-```bash
-$ sudo dnf module list php
+=== "9.0"
 
-Rocky Linux 9 - AppStream
-Name                                                 Stream                                                  Profiles                                                                   Summary                                                         
-php                                                  8.1 [d]                                                 common [d], devel, minimal                                 
+  ```bash { .sh data-copy="sudo dnf module list php" }
+  $ sudo dnf module list php
+  
+  Rocky Linux 9 - AppStream
+  Name                                                 Stream                                                  Profiles                                                                   Summary                                                         
+  php                                                  8.1 [d]                                                 common [d], devel, minimal                                 
+  
+  Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+  ```
 
-Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
-```
+  The Remi repository offers more recent releases of PHP than the Appstream repository, including versions 8.2 and 8.3. 
+  
+  To install the Remi repository, run the following command:
+  
+  ```bash
+  sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+  ```
+  
+  Once the Remi repository is installed, enable it by running the following command.
+  
+  ```bash
+  sudo dnf config-manager --set-enabled remi
+  ```
+  
+  You can now activate a newer module (PHP 8.3) by entering the following command:
+  
+  ```bash
+  sudo dnf module enable php:8.3
+  ```
 
-The Remi repository offers more recent releases of PHP than the Appstream repository, including versions 8.2 and 8.3. 
+=== "8.9"
+  
+  Rocky Linux, like its upstream, offers many versions of the language. Some of them have reached the end of their life but are kept to continue hosting historical applications that are not yet compatible with new versions of PHP. Please refer to the [supported versions](https://www.php.net/supported-versions.php) page of the php.net website to choose a supported version.
+  
+  To obtain a list of available versions, simply enter the following command:
+  
+  ```bash { .sh data-copy="sudo dnf module list php" }
+  $ sudo dnf module list php
+  
+  Rocky Linux 8 - AppStream
+  Name                                                 Stream                                                  Profiles                                                                   Summary                                                         
+  php                                                  7.2 [d]                                                 common [d], devel, minimal                                                 PHP scripting language                                          
+  php                                                  7.3                                                     common [d], devel, minimal                                                 PHP scripting language                                          
+  php                                                  7.4                                                     common [d], devel, minimal                                                 PHP scripting language                                          
+  php                                                  8.0                                                     common [d], devel, minimal                                                 PHP scripting language                                          
+  
+  Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+  ```
 
-To install the Remi repository, run the following command:
+  Rocky provides, from its AppStream repository, different PHP modules.
+  
+  You will note that the default version of a Rocky 8.9 is 7.2 that has already reached its end of life at the time of writing.
+  
+  You can activate a newer module by entering the following command:
 
-```bash
-$ sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
-```
-
-Once the Remi repository is installed, enable it by running the following command.
-
-```bash
-$ sudo dnf config-manager --set-enabled remi
-```
-
-You can now activate a newer module (PHP 8.3) by entering the following command:
-
-```bash
-$ sudo dnf module enable php:8.3
-```
-
+  ```bash { .sh data-copy="sudo dnf module enable php:8.0" }
+  sudo dnf module enable php:8.0
+  ==============================================================================================
+   Package               Architecture         Version               Repository             Size
+  ==============================================================================================
+  Enabling module streams:
+   httpd                                      2.4                                                                                                                              
+   nginx                                      1.14                                                                                                                             
+   php                                        8.0                                                                                                                              
+  
+  Transaction Summary
+  ==============================================================================================
+  
+  Is this ok [y/N]:
+  
+  Transaction Summary
+  ==============================================================================================
+  
+  Is this ok [y/N]: y
+  Complete!
+  ```
+    
 You can now proceed to the installation of the PHP engine.
 
 ## PHP cgi mode
@@ -86,7 +135,7 @@ The example below installs PHP with the modules usually installed with it.
     To avoid installing weak dependencies such as php-fpm use the following flag with dnf `--setopt=install_weak_deps=false`
 
 ```bash
-$ sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring php-mysqlnd
+sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring php-mysqlnd
 ```
 
 During installation you will be prompted to import GPG keys for the epel9 (Extra Packages for Enterprise Linux 9) and Remi repositories, enter y to import the keys:
@@ -116,13 +165,23 @@ Complete!
 
 You can check that the installed version corresponds to the expected one:
 
-```bash
-$ php -v
-PHP 8.3.2 (cli) (built: Jan 16 2024 13:46:41) (NTS gcc x86_64)
-Copyright (c) The PHP Group
-Zend Engine v4.3.2, Copyright (c) Zend Technologies
-    with Zend OPcache v8.3.2, Copyright (c), by Zend Technologies
-```
+=== "9.0"
+  ```bash { .sh data-copy="php -v" }
+  $ php -v
+  PHP 8.3.2 (cli) (built: Jan 16 2024 13:46:41) (NTS gcc x86_64)
+  Copyright (c) The PHP Group
+  Zend Engine v4.3.2, Copyright (c) Zend Technologies
+      with Zend OPcache v8.3.2, Copyright (c), by Zend Technologies
+  ```
+
+=== "8.9"
+  ```bash { .sh data-copy="php -v" }
+  $ php -v
+  PHP 7.4.19 (cli) (built: May  4 2021 11:06:37) ( NTS )
+  Copyright (c) The PHP Group
+  Zend Engine v3.4.0, Copyright (c) Zend Technologies
+      with Zend OPcache v7.4.19, Copyright (c), by Zend Technologies
+  ```
 
 ### Configuration
 
@@ -133,23 +192,33 @@ To serve PHP pages in CGI mode, you must install the apache server, configure it
 * Installation:
 
 ```bash
-$ sudo dnf install httpd
+sudo dnf install httpd
 ```
 
 * Activation:
 
-```bash
-$ sudo systemctl enable httpd
-$ sudo systemctl start httpd
-$ sudo systemctl status httpd
-```
+````markdown
+  ```bash
+  sudo systemctl enable httpd
+  ```
+  ```bash
+  sudo systemctl start httpd
+  ```
+  ```bash { .sh data-copy="sudo systemctl status httpd" }
+  $ sudo systemctl status httpd
+  ```
+````
 
 * Don't forget to configure the firewall:
 
-```bash
-$ sudo firewall-cmd --add-service=http --permanent
-$ sudo firewall-cmd --reload
-```
+````markdown
+  ```bash
+  sudo firewall-cmd --add-service=http --permanent
+  ```
+  ```bash
+  sudo firewall-cmd --reload
+  ```
+````
 
 The default vhost should work out of the box. PHP provides a `phpinfo()` function that generates a summary table of its configuration. It's very useful to test the good working of PHP. However, be careful not to leave such test files on your servers. They represent a huge security risk for your infrastructure.
 
@@ -176,16 +245,22 @@ As we highlighted earlier in this document, there are many advantages to switchi
 The installation is limited to the php-fpm package:
 
 ```bash
-$ sudo dnf install php-fpm
+sudo dnf install php-fpm
 ```
 
 As php-fpm is a service from a system point of view, it must be activated and started:
 
-```bash
-$ sudo systemctl enable php-fpm
-$ sudo systemctl start php-fpm
-$ sudo systemctl status php-fpm
-```
+````markdown
+  ```bash
+  sudo systemctl enable php-fpm
+  ```
+  ```bash
+  sudo systemctl start php-fpm
+  ```
+  ```bash { .sh data-copy="sudo systemctl status php-fpm" }
+  $ sudo systemctl status php-fpm
+  ```
+````
 
 ### Configuration
 
@@ -315,11 +390,11 @@ You must also add the following vhost to your apache configuration file in /etc/
 After editing the php and apache conf files you will need to restart php-fpm and httpd before the changes take place.
 
 ```bash
-$ sudo systemctl restart php-fpm && sudo systemctl restart httpd
+sudo systemctl restart php-fpm && sudo systemctl restart httpd
 ```
 
 ```bash
-$ curl http://localhost/status_php
+curl http://localhost/fpm-status
 pool:                 www
 process manager:      dynamic
 start time:           25/Jan/2024:19:30:59 +0000
@@ -473,7 +548,7 @@ To configure it, we must work on:
 To install it:
 
 ```bash
-$ sudo dnf install php-opcache
+sudo dnf install php-opcache
 ```
 
 To configure it, edit the `/etc/php.d/10-opcache.ini` configuration file:
