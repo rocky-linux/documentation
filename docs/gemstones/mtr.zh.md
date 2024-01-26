@@ -1,7 +1,7 @@
 ---
 title: mtr - 网络诊断
 author: tianci li
-contributors: Steven Spencer
+contributors: Steven Spencer, Neel Chauhan
 date: 2021-10-20
 ---
 
@@ -61,4 +61,11 @@ HOST: li Loss% Snt Last Avg Best Wrst StDev
 * StDev - 方差(稳定性)
 
 ## 交互时的快捷键
-<kbd>p</kbd> - 暂停; <kbd>d</kbd> - 切换显示模式; <kbd>n</kbd> - 开/关 DNS; <kbd>r</kbd> - 重置所有计数器; <kbd>j</kbd> - 切换延迟显示信息; <kbd>y</kbd> - 切换IP信息; <kbd>q</kbd> - 退出交互.
+
+* ++p++ - 暂停
+* ++d++ - 切换显示模式
+* ++n++ - 打开或关闭 DNS
+* ++r++ - 重置所有的计数器
+* ++j++ - 切换延迟显示信息
+* ++y++ - 切换 IP 信息
+* ++q++ - 退出 `mtr`
