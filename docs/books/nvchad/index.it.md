@@ -19,7 +19,7 @@ Volete un IDE che vi aiuti a scrivere i playbook di Ansible? Puoi ottenerlo! Vol
 
 Grazie all'uso dei **L**anguage **S**erver **P**rotocols e dei linters, è possibile configurare un ambiente personalizzato per l'utente. La cosa migliore è che una volta configurato l'ambiente, è possibile aggiornarlo rapidamente quando sono disponibili nuove modifiche attraverso l'uso di Packer e Mason, entrambi trattati qui.
 
-Poiché Neovim è un fork di `vim`, l'interfaccia generale sarà familiare agli utenti di `vim`. Se non siete utenti di `vim`, con questo libro imparerete rapidamente la sintassi dei comandi. Le informazioni trattate sono molte, ma è facile seguirle e, una volta completato il contenuto, si saprà abbastanza per costruire il proprio IDE per le _proprie_ esigenze con questi strumenti.
+Poiché Neovim è un fork di `vim`, l'interfaccia generale sarà familiare agli utenti di `vim`. Se non siete utenti di `vim`, con questo libro imparerete rapidamente la sintassi dei comandi. Le informazioni trattate sono molte, ma è facile seguirle e, una volta completato il contenuto, saprete abbastanza per costruire il vostro IDE per *le vostre* esigenze con questi strumenti.
 
 L'intento dell'autore era quello di **non** suddividere il libro in capitoli. Il motivo è che ciò implica un ordine da seguire che, nella maggior parte dei casi, non è necessario. *Si* consiglia di iniziare da questa pagina, leggere e seguire le sezioni "Software aggiuntivo", "Installare Neovim" e "Installare NvChad", ma da lì si può scegliere come procedere.
 

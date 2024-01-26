@@ -54,20 +54,20 @@ Passiamo ora ad esaminarne il contenuto:
 local M = {}
 
 -- Path to overriding theme and highlights files
-local highlights = require "custom.highlights"
+local highlights = require("custom.highlights")
 
 M.ui = {
-  theme = "onedark",
-  theme_toggle = { "onedark", "one_light" },
+    theme = "onedark",
+    theme_toggle = { "onedark", "one_light" },
 
-  hl_override = highlights.override,
-  hl_add = highlights.add,
+    hl_override = highlights.override,
+    hl_add = highlights.add,
 }
 
 M.plugins = "custom.plugins"
 
 -- check core.mappings for table structure
-M.mappings = require "custom.mappings"
+M.mappings = require("custom.mappings")
 
 return M
 ```
@@ -84,7 +84,7 @@ M.load_config = function()
 La sua funzione è quella di inserire i file della nostra cartella _custom_ nella configurazione di NvChad, per poi utilizzarli insieme ai file predefiniti per avviare l'istanza di _Neovim_. I file vengono inseriti nell'albero di configurazione attraverso funzioni `require` come:
 
 ```lua
-require "custom.mappings"
+require("custom.mappings")
 ```
 
 La stringa **custom.mappings** indica il percorso relativo al file senza estensione rispetto al percorso predefinito, che in questo caso è **~/.config/nvim/lua/**. Il punto sostituisce la barra, poiché questa è la convenzione nel codice scritto in Lua (nel _linguaggio lua_ non esiste il concetto di _directory_).
@@ -157,17 +157,17 @@ Viene inoltre presentato un esempio di impostazioni, in modo da poterne studiare
 
 ```lua
 M.general = {
-  n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
-  },
+    n = {
+        [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    },
 }
 ```
 
-Questa mappatura viene inserita per lo stato NORMAL `n =` il carattere <kbd>;</kbd> una volta premuto sulla tastiera, riproduce il carattere <kbd>:</kbd>. Questo carattere è quello utilizzato per accedere alla modalità COMMAND. L'opzione `nowait = true` è anche impostata per entrare immediatamente in questa modalità. In questo modo, su una tastiera con layout QWERTY statunitense, non sarà necessario utilizzare <kbd>MAIUSC</kbd> per accedere alla modalità COMMAND.
+Questa mappatura viene inserita per lo stato NORMAL `n =` il carattere ++";"++ una volta premuto sulla tastiera, riproduce il carattere ++":"++. Questo carattere è quello utilizzato per accedere alla modalità COMMAND. L'opzione `nowait = true` è anche impostata per entrare immediatamente in questa modalità. In questo modo, su una tastiera con layout QWERTY statunitense, non sarà necessario utilizzare ++shift++ per accedere alla modalità COMMAND.
 
 !!! Tip "Suggerimento"
 
-    Per gli utenti di tastiere europee (come quella italiana), si consiglia di sostituire il carattere <kbd>;</kbd> con <kbd>,</kbd>.
+    Per gli utenti di tastiere europee (come quella italiana), si consiglia di sostituire il carattere ++";"++ con ++","++.
 
 #### highlights.lua
 
@@ -211,14 +211,14 @@ Anche in questo caso è stata creata una tabella, la tabella delle `local source
 ```lua
 local sources = {
 
-  -- webdev stuff
-  b.formatting.deno_fmt,
-  b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } },
-  -- Lua
-  b.formatting.stylua,
+    -- webdev stuff
+    b.formatting.deno_fmt,
+    b.formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }),
+    -- Lua
+    b.formatting.stylua,
 
-  -- cpp
-  b.formatting.clang_format,
+    -- cpp
+    b.formatting.clang_format,
 }
 ```
 
@@ -251,24 +251,24 @@ La parte del codice che si occupa di questo aspetto è la seguente:
 
 ```lua
 M.treesitter = {
-  ensure_installed = {
-    "vim",
-    "lua",
-    "html",
-    "css",
-    "javascript",
-    "typescript",
-    "tsx",
-    "c",
-    "markdown",
-    "markdown_inline",
-  },
-  indent = {
-    enable = true,
-    -- disable = {
-    --   "python"
-    -- },
-  },
+    ensure_installed = {
+        "vim",
+        "lua",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "c",
+        "markdown",
+        "markdown_inline",
+    },
+    indent = {
+        enable = true,
+        -- disable = {
+        --   "python"
+        -- },
+    },
 }
 ```
 
@@ -296,18 +296,18 @@ Proseguendo, il file contiene la parte relativa all'installazione dei server da 
 
 ```lua
 M.mason = {
-  ensure_installed = {
-    -- lua stuff
-    "lua-language-server",
-    "stylua",
+    ensure_installed = {
+        -- lua stuff
+        "lua-language-server",
+        "stylua",
 
-    -- web dev stuff
-    "css-lsp",
-    "html-lsp",
-    "typescript-language-server",
-    "deno",
-    "prettier"
-  },
+        -- web dev stuff
+        "css-lsp",
+        "html-lsp",
+        "typescript-language-server",
+        "deno",
+        "prettier",
+    },
 }
 ```
 

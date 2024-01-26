@@ -4,6 +4,7 @@ author: Antoine Le Morvan
 contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrnova
 ---
 
+<!-- markdownlint-disable MD025 MD007 -->
 # 针对 Linux 用户的命令
 
 在本章中，您将学习如何使用 Linux 中的命令。
@@ -12,13 +13,13 @@ contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrn
 
 **目标**： 在本章中，未来的 Linux 管理员们将学习如何：
 
-:heavy_check_mark: 在系统树中 **移动**   
-。 :heavy_check_mark: **创建** 一个文本文件, **显示** 其内容并对其 **修改**。    
+:heavy_check_mark: 在系统树中 **移动**。  
+:heavy_check_mark: **创建** 一个文本文件, **显示** 其内容并对其 **修改**。   
 :heavy_check_mark: **使用** 最实用的Linux命令。
 
 :checkered_flag: **用户命令**，**linux**
 
-**知识**: :star:   
+**知识性**: :star:  
 **复杂度**: :star:
 
 **阅读时间**: 40 分钟
@@ -45,12 +46,15 @@ contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrn
 * 数字标识符：**UID** (用户标识符)。
 * 所属组标识符：**GID** (用户组标识符)。
 * **命令解释器**，例如 shell ，不同用户可以不同。
-* **连接目录**，例如 __家目录__ 。
+* **连接目录**，例如 **家目录** 。
 
 在其他文件中，用户由以下条目定义：
 
 * **密码**，它会在储存之前被加密 (`/etc/shadow`)。
-* **命令提示符**，或登录 __提示符__ ，`#` 代表管理员，`$` 代表其他用户 (`/etc/profile`)。
+* **命令提示符** 或 **登录提示符**，其符号为
+
+    * `#` 为管理员
+    * 其他用户为 `$` （`/etc/profile`）。
 
 根据系统的安全策略，设置的密码有一定的字符数和复杂度要求。
 
@@ -58,7 +62,7 @@ contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrn
 
 通常，用户的登录目录被储存在工作站的 `/home` 目录中。 它将包含用户的个人数据和应用程序的配置文件。 默认情况下，登录时会选择 登录目录 作为当前目录。
 
-一个工作站类型的安装 (带有图形界面) 将在终端 1 上开启此界面。 Linux是多用户的，可以在不同的 **物理终端**(TTY) 或 **虚拟终端**(PTS) 上多次连接多个用户。 虚拟终端可以在图形化环境中使用。 用户可通过 <kbd>Alt</kbd> + <kbd>Fx</kbd> 或 <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd> 来切换物理终端。
+一个工作站类型的安装 (带有图形界面) 将在终端 1 上开启此界面。 Linux是多用户的，可以在不同的 **物理终端**(TTY) 或 **虚拟终端**(PTS) 上多次连接多个用户。 虚拟终端可以在图形化环境中使用。 用户可通过 ++Alt++ + ++Fx++ 或 ++CTRL++ + ++Alt++ + ++Fx++ 来切换物理终端。
 
 ### shell
 
@@ -72,7 +76,7 @@ contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrn
 * 显示命令提示符。
 * 等等
 
-<kbd>CTRL</kbd> + <kbd>C</kbd> 两个按键用于中断正在运行的命令。
+++ctrl+c++ 两个按键用于中断正在运行的命令。
 
 命令的使用通常遵循以下顺序：
 
@@ -89,19 +93,19 @@ command [option(s)] [arguments(s)]
 可以将一些短选项组合在一起：
 
 ```bash
-$ ls -l -i -a
+ls -l -i -a
 ```
 
 等同于：
 
 ```bash
-$ ls -lia
+ls -lia
 ```
 
-当然，在选项后面可以跟几个对象：
+选项后面可以有多个参数：
 
 ```bash
-$ ls -lia /etc /home /var
+ls -lia /etc /home /var
 ```
 
 在文献资料中，术语 "option"（选项） 相当于术语"parameter"（参数），后者在编程中更常用。 选项或参数的可选部分用方括号括起来 —— `[` 和 `]`。 当可能有多个选项时，一个称为 "管道" 的垂直条将它们分隔开来 `[a|e|i]`。
@@ -189,7 +193,7 @@ man passwd
 这将告诉管理员 passwd 命令及其选项等。 但这条命令：
 
 ```bash
-$ man 5 passwd
+man 5 passwd
 ```
 
 将告知用户 passwd 命令有关的文件。
@@ -481,16 +485,16 @@ $ ls /home
 
 但是，`ls` 命令有很多选项（见 `man` ）：
 
-| 选项   | 信息                                                                   |
-| ---- | -------------------------------------------------------------------- |
-| `-d` | 显示有关目录的信息，而不是列出其内容。                                                  |
-| `-g` | 与 -l 选项类似，但不列出所有者。                                                   |
-| `-h` | 以最合适的格式显示文件大小(字节、千字节、兆字节、吉字节等)。 `h` 表示人类可读。 需要与 -l 选项一起使用。           |
-| `-s` | 以块为单位显示每个文件的分配大小。 在 GNU/Linux 操作系统中，"块" 是文件系统中最小的存储单位，一个块等于4096Byte。 |
-| `-A` | 显示目录中除 `.` 和 `..` 之外的所有文件                                            |
-| `-R` | 递归显示子目录的内容。                                                          |
-| `-F` | 显示文件的类型。 为目录打印 `/` ，为执行文件打印 `*` ，为符号链接打印 `@` ，对文本文件不打印任何内容。          |
-| `-X` | 根据文件的扩展名对文件进行排序。                                                     |
+| 选项   | 信息                                                                                                                                                                                               |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `-d` | 显示有关目录的信息，而不是列出其内容。                                                                                                                                                                              |
+| `-g` | 与 -l 选项类似，但不列出所有者。                                                                                                                                                                               |
+| `-h` | 以最合适的格式显示文件大小(字节、千字节、兆字节、吉字节等)。 `h` 表示人类可读。 需要与 -l 选项一起使用。                                                                                                                                       |
+| `-s` | 以块为单位显示每个文件的分配大小。 在 `ls` 命令中，单个块的默认大小为 1024 字节。 在 GNU/Linux 操作系统中，"块"(block) 是文件系统中最小的存储单元，通常而言，一个块等于 4096 字节。 在 Windows 操作系统中，以 NTFS 文件系统为例，其最小的存储单元被称为 "集群"(Cluster)。 最小存储单元名称的定义可能因文件系统不同而不同。 |
+| `-A` | 显示目录中除 `.` 和 `..` 之外的所有文件                                                                                                                                                                        |
+| `-R` | 递归显示子目录的内容。                                                                                                                                                                                      |
+| `-F` | 显示文件的类型。 为目录打印 `/` ，为执行文件打印 `*` ，为符号链接打印 `@` ，对文本文件不打印任何内容。                                                                                                                                      |
+| `-X` | 根据文件的扩展名对文件进行排序。                                                                                                                                                                                 |
 
 * 运行 `ls -lia` 命令生成的列的说明：
 
@@ -550,7 +554,7 @@ $ ls -lhR /var/ | grep ^\- | grep -E "[1-9]*\.[0-9]*M"
 当然，我们强烈建议您使用 `find` 命令。
 
 ```bash
-$ find /var -size +1M -a -size -1024M  -a -type f  -exec ls -lh {} \;
+find /var -size +1M -a -size -1024M  -a -type f  -exec ls -lh {} \;
 ```
 
 * 显示文件夹的权限：
@@ -570,14 +574,14 @@ drwxr-xr-x.  2 root root   4096 17 nov.  17:48 alternatives
 默认情况下，上述命令将显示文件夹（里面）的内容。 对于文件夹本身，您可以使用 `-d` 选项。
 
 ```bash
-$ ls -ld /etc
+ls -ld /etc
 drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc
 ```
 
 * 按文件大小排序，最大优先：
 
 ```bash
-$ ls -lhS
+ls -lhS
 ```
 
 * 使用 `-l` 的 时间/日期 格式：
@@ -601,7 +605,7 @@ $ ls -dF /etc
 * 隐藏一些扩展名：
 
 ```bash
-$ ls /etc --hide=*.conf
+ls /etc --hide=*.conf
 ```
 
 ### `mkdir` 命令
@@ -615,7 +619,7 @@ mkdir [-p] directory [directory] [...]
 示例：
 
 ```bash
-$ mkdir /home/rockstar/work
+mkdir /home/rockstar/work
 ```
 
 必须存在 "rockstar" 目录才能创建 "work" 目录。
@@ -637,7 +641,7 @@ touch [-t date] file
 示例：
 
 ```bash
-$ touch /home/rockstar/myfile
+touch /home/rockstar/myfile
 ```
 
 | 选项        | 信息                 |
@@ -657,7 +661,7 @@ $ touch /home/rockstar/myfile
 示例：
 
 ```bash
-$ rmdir /home/rockstar/work
+rmdir /home/rockstar/work
 ```
 
 | 选项   | 信息                      |
@@ -716,8 +720,9 @@ mv file [file ...] destination
 示例：
 
 ```bash
-$ mv /home/rockstar/file1 /home/rockstar/file2
-$ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
+mv /home/rockstar/file1 /home/rockstar/file2
+
+mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
 | 选项   | 信息                  |
@@ -728,37 +733,37 @@ $ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 以下几个具体案例将帮助您了解可能出现的难题：
 
 ```bash
-$ mv /home/rockstar/file1 /home/rockstar/file2
+mv /home/rockstar/file1 /home/rockstar/file2
 ```
 
 将 `file1` 重命名为 `file2`。 如果 `file2` 已经存在，则将文件内容替换为`file1`。
 
 ```bash
-$ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
+mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
 将 `file1` 和 `file2` 移动到 `/tmp` 目录。
 
 ```bash
-$ mv file1 /repexist/file2
+mv file1 /repexist/file2
 ```
 
-将 `file1` 移动到 `repext` 并重命名为 `file2`。
+将 `file1` 移动到 `repexist` 目录中并重命名为 `file2`。
 
 ```bash
-$ mv file1 file2
+mv file1 file2
 ```
 
 `file1` 已重命名为 `file2` 。
 
 ```bash
-$ mv file1 /repexist
+mv file1 /repexist
 ```
 
-如果目标目录存在， 则 `file1` 将移动到 `/repext` 中。
+如果目标目录存在， 则 `file1` 将移动到 `/repexist` 中。
 
 ```bash
-$ mv file1 /wrongrep
+mv file1 /wrongrep
 ```
 
 如果目标目录不存在，`file1` 将在根目录中被重命名为 `wrongrep` 。
@@ -774,7 +779,7 @@ cp file [file ...] destination
 示例：
 
 ```bash
-$ cp -r /home/rockstar /tmp
+cp -r /home/rockstar /tmp
 ```
 
 | 选项   | 信息                  |
@@ -792,19 +797,19 @@ cp file1 /repexist/file2
 `file1` 将复制到 `/repexist` 目录下，且文件名为 `file2` 。
 
 ```bash
-$ cp file1 file2
+cp file1 file2
 ```
 
 在此目录中，`file1` 已经复制为 `file2` 。
 
 ```bash
-$ cp file1 /repexist
+cp file1 /repexist
 ```
 
 如果目标目录存在，则 `file1` 将被复制到 `/repexist` 目录中。
 
 ```bash
-$ cp file1 /wrongrep
+cp file1 /wrongrep
 ```
 
 如果目标目录不存在，`file1` 将在根目录中被重命名为 `wrongrep` 。
@@ -862,7 +867,7 @@ less file1 [files]
 | <kbd>Enter</kbd>                                 | 下移一行。          |
 | <kbd>Space</kbd>                                 | 向下移动一页。        |
 | <kbd>PgUp</kbd> 和 <kbd>PgDn</kbd>                | 向上或向下移动一页。     |
-| <kbd>gg</kbd> 和 <kbd>G</kbd>                     | 移动到文件的首页或尾页。   |
+| <kbd>g</kbd> 和 <kbd>G</kbd>                      | 移动到文件的首页或尾页。   |
 | `/texte`                                         | 搜索文本。          |
 | <kbd>q</kbd>                                     | 退出 `less` 命令。  |
 
@@ -877,19 +882,19 @@ cat file1 [files]
 例1 - 在标准输出中显示文件的内容：
 
 ```bash
-$ cat /etc/passwd
+cat /etc/passwd
 ```
 
 例2 - 在标准输出中显示多个文件的内容：
 
 ```bash
-$ cat /etc/passwd /etc/group
+cat /etc/passwd /etc/group
 ```
 
 例3 - 使用输出重定向将多个文件的内容合并为一个文件：
 
 ```bash
-$ cat /etc/passwd /etc/group > usersAndGroups.txt
+cat /etc/passwd /etc/group > usersAndGroups.txt
 ```
 
 例4 - 显示行号：
@@ -1017,7 +1022,7 @@ polkitd:x:998:996:User for polkitd:/:/sbin/nologin
 `sort` 命令也允许您用 `-R` 选项来随机排序值：
 
 ```bash
-$ sort -R /etc/passwd
+sort -R /etc/passwd
 ```
 
 * 对 IP 地址进行排序
@@ -1026,7 +1031,7 @@ $ sort -R /etc/passwd
 
 以下是文件 `dns-client.txt` 的示例：
 
-```
+```text
 192.168.1.10
 192.168.1.200
 5.1.150.146
@@ -1049,14 +1054,15 @@ $ sort -nr dns-client.txt
 
 这是文件 `colours.txt` 的示例：
 
-```
+```text
 Red
 Green
 Blue
 Red
 Pink
 ```
-```
+
+```text
 $ sort -u colours.txt
 Blue
 Green
@@ -1070,7 +1076,7 @@ Red
 
 这是文件 `size.txt` 的示例：
 
-```
+```text
 1.7G
 18M
 69K
@@ -1136,7 +1142,7 @@ find directory [-name name] [-type type] [-user login] [-date date]
 可以使用 `find` 命令的 `-exec` 选项对每个结果行执行命令：
 
 ```bash
-$ find /tmp -name *.txt -exec rm -f {} \;
+find /tmp -name *.txt -exec rm -f {} \;
 ```
 
 如上命令所示，在`/tmp` 目录下搜索所有的 `*.txt` 文件并将其删除。
@@ -1203,12 +1209,13 @@ root:x:0:0:root:/root:/bin/bash
 | `-w` | 搜索准确的单词。     |
 
 `grep` 命令返回包含您要查找的字符串的完整行。
+
 * `^` 特殊字符用于搜索行首的字符串。
 * 特殊字符 `$` 用来搜索行尾的字符串。
 
-```bash
-$ grep -w "^root" /etc/passwd
-```
+    ```bash
+    grep -w "^root" /etc/passwd
+    ```
 
 !!! Note "说明"
 
@@ -1288,7 +1295,7 @@ $ find /home -name "test[123]*"
 可以使用字符 `<` 或 `<<` 重定向来自另一个文件的输入流。 命令将读取文件，而不是键盘：
 
 ```bash
-$ ftp -in serverftp << ftp-commands.txt
+ftp -in serverftp << ftp-commands.txt
 ```
 
 !!! Note "说明"
@@ -1329,9 +1336,9 @@ STOP
 
 ```bash
 $ wc -l .bash_profile
-27 .bash_profile # the number of lines is followed by the file name
+27 .bash_profile # 行数后面跟随文件名
 $ wc -l < .bash_profile
-27 # returns only the number of lines
+27 # 仅返回行数
 ```
 
 ### 输出重定向
@@ -1341,13 +1348,13 @@ $ wc -l < .bash_profile
 简单的使用 `>` 重定向覆盖输出文件的内容：
 
 ```bash
-$ date +%F > date_file
+date +%F > date_file
 ```
 
 当使用 `>>` 字符时，它表示命令的输出结果被追加到文件内容中。
 
 ```bash
-$ date +%F >> date_file
+date +%F >> date_file
 ```
 
 在这两种情况下，文件在不存在时自动创建。
@@ -1355,8 +1362,9 @@ $ date +%F >> date_file
 也可以将标准错误输出重定向到另一个文件。 这一次需要指定通道编号(通道0和1可以省略该编号)：
 
 ```bash
-$ ls -R / 2> errors_file
-$ ls -R / 2>> errors_file
+ls -R / 2> errors_file
+
+ls -R / 2>> errors_file
 ```
 
 ### 重定向示例
@@ -1364,19 +1372,19 @@ $ ls -R / 2>> errors_file
 将2个输出重定向到 2 个文件：
 
 ```bash
-$ ls -R / >> ok_file 2>> nok_file
+ls -R / >> ok_file 2>> nok_file
 ```
 
 将2个输出重定向到单个文件：
 
 ```bash
-$ ls -R / >> log_file 2>&1
+ls -R / >> log_file 2>&1
 ```
 
 *stderr* 重定向到 "无底洞" (`/dev/null`)：
 
 ```bash
-$ ls -R / 2>> /dev/null
+ls -R / 2>> /dev/null
 ```
 
 当两个输出流都被重定向时，屏幕上不会显示任何信息。 要同时使用输出重定向且保持显示，您必须使用命令 `tee` 。
@@ -1398,31 +1406,31 @@ $ ls -R / 2>> /dev/null
 仅显示开头：
 
 ```bash
-$ ls -lia / | head
+ls -lia / | head
 ```
 
 只显示末尾：
 
 ```bash
-$ ls -lia / | tail
+ls -lia / | tail
 ```
 
 对结果进行排序：
 
 ```bash
-$ ls -lia / | sort
+ls -lia / | sort
 ```
 
 计算单词/字符的数量：
 
 ```bash
-$ ls -lia / | wc
+ls -lia / | wc
 ```
 
 在结果中搜索字符串：
 
 ```bash
-$ ls -lia / | grep fichier
+ls -lia / | grep fichier
 ```
 
 ## 特殊点
@@ -1434,8 +1442,7 @@ $ ls -lia / | grep fichier
 它与 `|` 管道结合使用，以接收要重定向的命令的输出作为输入：
 
 ```bash
-$ ls -lia / | tee fic
-$ cat fic
+ls -lia / | tee fic
 ```
 
 `-a` 选项表示添加到文件当中，而不是覆盖文件。
@@ -1447,13 +1454,13 @@ $ cat fic
 例如：
 
 ```bash
-$ ll
+ll
 ```
 
 将替换该命令：
 
 ```bash
-$ ls -l
+ls -l
 ```
 
 `alias` 命令会列出当前会话的别名。 在 Linux 发行版上，别名是默认设置的。 这里是 Rocky 服务器的别名：
@@ -1487,13 +1494,13 @@ alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-ti
 删除单个别名：
 
 ```bash
-$ unalias ll
+unalias ll
 ```
 
 要删除所有别名：
 
 ```bash
-$ unalias -a
+unalias -a
 ```
 
 要暂时禁用别名，组合是 `\&#060;别名&#062;`
@@ -1501,7 +1508,7 @@ $ unalias -a
 例如，如果我们这样做：
 
 ```bash
-$ type ls
+type ls
 ```
 
 它可能会返回以下内容：
@@ -1589,7 +1596,7 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 一旦用户键入 <kbd>ENTER</kbd> ，所有命令都将按输入顺序运行。
 
 ```bash
-$ ls /; cd /home; ls -lia; cd /
+ls /; cd /home; ls -lia; cd /
 ```
 
 ## 检测所学知识
@@ -1600,26 +1607,26 @@ $ ls /; cd /home; ls -lia; cd /
 
 :heavy_check_mark: 哪些命令允许您搜索有关命令的帮助？
 
-- [ ] `google`
-- [ ] `chuck --norris`
-- [ ] `info`
-- [ ] `apropos`
-- [ ] `whatis`
+* [ ] `google`
+* [ ] `chuck --norris`
+* [ ] `info`
+* [ ] `apropos`
+* [ ] `whatis`
 
 :heavy_check_mark: 哪个命令允许您查看用户的历史记录？
 
 :heavy_check_mark: 哪个命令允许您在文件中搜索文本？
 
-- [ ] `find`
-- [ ] `grep`
+* [ ] `find`
+* [ ] `grep`
 
 :heavy_check_mark: 哪个命令允许您搜索文件？
 
-- [ ] `find`
-- [ ] `grep`
+* [ ] `find`
+* [ ] `grep`
 
 :heavy_check_mark: 哪个命令将命令的错误流重定向到新的 `errors.log` 文件？
 
-- [ ] `ls -R / 2> errors.log`
-- [ ] `ls -R / 2>> errors.log`
-- [ ] `ls -R / 2> errors.log 2>&1`   
+* [ ] `ls -R / 2> errors.log`
+* [ ] `ls -R / 2>> errors.log`
+* [ ] `ls -R / 2> errors.log 2>&1`  

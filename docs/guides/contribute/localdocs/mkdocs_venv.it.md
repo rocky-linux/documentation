@@ -259,7 +259,7 @@ INFO     -  [11:46:50] Watching paths for changes:
 INFO     -  [11:46:50] Serving on http://127.0.0.1:8000/
 ```
 
-La copia del sito di documentazione sarà in esecuzione quando si aprirà il browser all'indirizzo specificato (http://1127.0.0.1:8000). La copia rispecchia perfettamente il sito online in termini di funzionalità e struttura, consentendovi di valutare l'aspetto e l'impatto che la vostra pagina avrà sul sito.
+La copia del sito di documentazione sarà in esecuzione quando si aprirà il browser all'indirizzo specificato [http://1127.0.0.1:8000](http://1127.0.0.1:8000). La copia rispecchia perfettamente il sito online in termini di funzionalità e struttura, consentendovi di valutare l'aspetto e l'impatto che la vostra pagina avrà sul sito.
 
 MkDocs incorpora un meccanismo di controllo delle modifiche apportate ai file nella cartella specificata dal percorso `docs_dir`; l'inserimento di una nuova pagina o la modifica di una esistente in `documentation/docs` verrà automaticamente riconosciuta e produrrà una nuova creazione del sito statico.
 
@@ -267,7 +267,7 @@ Poiché il tempo necessario a MkDocs per costruire il sito statico può essere d
 
 ### Uscire dall'ambiente di sviluppo
 
-Quando la visualizzazione della nuova pagina è soddisfacente, si può uscire dall'ambiente di sviluppo. Questo comporta prima l'uscita da *MkDocs* e poi la disattivazione dell'ambiente virtuale python. Per uscire da *MkDocs* è necessario utilizzare la combinazione di tasti <kbd>CTRL</kbd> + <kbd>C</kbd> e, come visto in precedenza, per uscire dall'ambiente virtuale è necessario richiamare il comando di `deactivate`.
+Quando la visualizzazione della nuova pagina è soddisfacente, si può uscire dall'ambiente di sviluppo. Questo comporta prima l'uscita da *MkDocs* e poi la disattivazione dell'ambiente virtuale python. Per uscire da *MkDocs* è necessario utilizzare la combinazione di tasti ++ctrl++ + ++"C"++ e, come visto in precedenza, per uscire dall'ambiente virtuale è necessario richiamare il comando di `deactivate`.
 
 ```bash
 ...

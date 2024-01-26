@@ -33,8 +33,8 @@ shell > nmtui
 * `nmcli`. 使用命令行配置网络，可以是纯命令行，也可以是交互式命令行。
 
 ```bash
-Shell > nmcli connection show                                                                                                        
-NAME    UUID                                  TYPE      DEVICE                                                                              
+Shell > nmcli connection show
+NAME    UUID                                  TYPE      DEVICE
 ens160  25106d13-ba04-37a8-8eb9-64daa05168c9  ethernet  ens160
 ```
 
@@ -138,7 +138,7 @@ Shell > nmcli connection modify CONNECTION_NAME autoconnect yes ipv6.method dhcp
 例如，bonding 的0模式：
 
 ```bash
-Shell > nmcli  connection  add  type  bond  con-name  BOND_CONNECTION_NAME   ifname  BOND_NIC_DEVICE_NAME  mode 0  
+Shell > nmcli  connection  add  type  bond  con-name  BOND_CONNECTION_NAME   ifname  BOND_NIC_DEVICE_NAME  mode 0
 Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME1   master  BOND_NIC_DEVICE_NAME
 Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   master  BOND_NIC_DEVICE_NAME
 ```
@@ -154,27 +154,27 @@ Shell > nmcli  connection  add  type  bond-slave   ifname NIC_DEVICE_NAME2   mas
 NetwrokManager 网卡配置文件的内容为一个 init 风格的 key 文件。 例如：
 
 ```bash
-Shell > cat /etc/NetworkManager/system-connections/ens160.nmconnection                                                               
-[connection]                                                                                                                                
-id=ens160                                                                                                                                   
-uuid=5903ac99-e03f-46a8-8806-0a7a8424497e                                                                                                   
-type=ethernet                                                                                                                               
-interface-name=ens160                                                                                                                       
-timestamp=1670056998                                                                                                                        
+Shell > cat /etc/NetworkManager/system-connections/ens160.nmconnection
+[connection]
+id=ens160
+uuid=5903ac99-e03f-46a8-8806-0a7a8424497e
+type=ethernet
+interface-name=ens160
+timestamp=1670056998
 
-[ethernet]                                                                                                                                  
-mac-address=00:0C:29:47:68:D0                                                                                                               
+[ethernet]
+mac-address=00:0C:29:47:68:D0
 
-[ipv4]                                                                                                                                      
-address1=192.168.100.4/24,192.168.100.1                                                                                                     
-dns=8.8.8.8;114.114.114.114;                                                                                                                
-method=manual                                                                                                                               
+[ipv4]
+address1=192.168.100.4/24,192.168.100.1
+dns=8.8.8.8;114.114.114.114;
+method=manual
 
-[ipv6]                                                                                                                                      
-addr-gen-mode=default                                                                                                                       
-method=disabled                                                                                                                             
+[ipv6]
+addr-gen-mode=default
+method=disabled
 
-[proxy] 
+[proxy]
 ```
 
 * 以 # 开头的行和空行被视为注释；
