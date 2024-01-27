@@ -1,7 +1,7 @@
 ---
 title: Marksman
 author: Franco Colussi
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tested with: 8.8, 9.2
 tags:
   - nvchad
@@ -12,7 +12,6 @@ tags:
 # Marksman - assistente del codice
 
 Marksman è uno strumento utile quando si redige un documento per Rocky Linux. Permette di inserire facilmente i simboli necessari per definire i tag del linguaggio *markdown*. Ciò consente di scrivere più velocemente e riduce la possibilità di errori.
-
 
 NvChad/Neovim include già dei widget di testo che aiutano nella scrittura, come la ripetizione delle parole più usate indicizzate in base alla frequenza di inserimento. Le nuove opzioni incluse in questo server linguistico arricchiranno questi widget.
 
@@ -39,7 +38,7 @@ L'installazione del server linguistico non comporta particolari problemi, poich�
 
 `:MasonInstall marksman`
 
-Il comando aprirà l'interfaccia di *Mason* e installerà direttamente il server linguistico richiesto. Una volta completata l'installazione binaria, è possibile chiudere la schermata di *Mason* con il tasto <kbd>q</kbd>.
+Il comando aprirà l'interfaccia di *Mason* e installerà direttamente il server linguistico richiesto. Una volta completata l'installazione binaria, è possibile chiudere la schermata di *Mason* con il tasto ++"q"++.
 
 La sua installazione, tuttavia, non comporta ancora la sua integrazione nell'editor. Per abilitare questa funzione, si deve modificare il file `custom/configs/lspconfig.lua` del *Template Chadrc*.
 
@@ -71,10 +70,10 @@ Per verificare se il server linguistico viene attivato correttamente, aprire un 
 
 ```text
  Client: marksman (id: 2, bufnr: [11, 156])
-    filetypes:       markdown
-    autostart:       true
-    root directory:  /home/your_user/your_path/your_directory
-    cmd:             /home/your_user/.local/share/nvim/mason/bin/marksman server
+  filetypes:       markdown
+  autostart:       true
+  root directory:  /home/your_user/your_path/your_directory
+  cmd:             /home/your_user/.local/share/nvim/mason/bin/marksman server
 
  Configured servers list: cssls, tsserver, clangd, html, yamlls, lua_ls, marksman
 ```
@@ -97,11 +96,11 @@ Una volta completati tutti i passaggi per l'inserimento, l'attivazione del serve
 
 Il server linguistico fornisce molte scorciatoie che attivano l'assistenza alla scrittura. Questo include l'inserimento rapido di tag Markdown, la creazione di collegamenti e l'inserimento di immagini nel documento. Di seguito è riportato un elenco non esaustivo dei caratteri che attivano i vari snippet.
 
-Questi snippet vengono visualizzati all'interno di widget che contengono anche altre scorciatoie. Utilizzare il tasto <kbd>Tab</kbd> per la navigazione del widget e selezionare quelli forniti da *marksman*.La chiave inserisce il tag *superscript*. Trademark<sup>TM</td> </tr> 
+Questi snippet vengono visualizzati all'interno di widget che contengono anche altre scorciatoie. Utilizzare il tasto ++tab++ per la navigazione del widget e selezionare quelli forniti da *marksman*.La chiave inserisce il tag *superscript*. Trademark<sup>TM</td> </tr> 
 
 <tr>
   <td>
-    <kbd>sub</kbd>
+    ++"sub"++
   </td>
   
   <td>
@@ -109,7 +108,7 @@ Questi snippet vengono visualizzati all'interno di widget che contengono anche a
     
     <tr>
       <td>
-        <kbd>table</kbd>
+        ++"table"++
       </td>
       
       <td>
@@ -119,7 +118,7 @@ Questi snippet vengono visualizzati all'interno di widget che contengono anche a
     
     <tr>
       <td>
-        <kbd>code</kbd>
+        ++"code"++
       </td>
       
       <td>
@@ -129,7 +128,7 @@ Questi snippet vengono visualizzati all'interno di widget che contengono anche a
     
     <tr>
       <td>
-        <kbd>codeblock</kbd>
+        ++"codeblock"++
       </td>
       
       <td>
@@ -161,4 +160,3 @@ Questi snippet vengono visualizzati all'interno di widget che contengono anche a
 <p spaces-before="0">
   Il suo utilizzo e la conseguente memorizzazione dei principali tasti per l'inserimento dei simboli del codice Markdown consentirà una scrittura più rapida, permettendo di concentrare l'attenzione sul contenuto.
 </p>
-
