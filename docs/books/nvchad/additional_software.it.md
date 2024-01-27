@@ -20,7 +20,7 @@ Esistono diversi software aggiuntivi che, pur non essendo necessari, facilitano 
 
 In entrambi Rocky Linux 8 e 9, è possibile installare RipGrep dall'EPEL. Per farlo, installate la `epel-release`, aggiornate il sistema e quindi installate `ripgrep`:
 
-```
+```bash
 sudo dnf install -y epel-release
 sudo dnf upgrade
 sudo dnf install ripgrep
@@ -74,7 +74,7 @@ Una volta installato, apriamo un terminale e digitiamo il comando `lazygit`: app
 
 ![LazyGit UI](images/lazygit_ui.png)
 
-Con il tasto <kbd>x</kbd> è possibile richiamare il menu con tutti i comandi disponibili.
+Con il tasto ++x++ è possibile richiamare il menu con tutti i comandi disponibili.
 
 ![Interfaccia utente di LazyGit](images/lazygit_menu.png)
 
