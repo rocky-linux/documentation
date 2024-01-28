@@ -378,15 +378,15 @@ install -d directory
 
 Optionen:
 
-| Option                        | Beschreibung                                                         |
-| ----------------------------- | -------------------------------------------------------------------- |
-| `-b` oder `--backup[=suffix]` | ein Backup der Ziel-Datei erstellen.                                 |
-| `-d`                          | Argumente als Directory-Namen behandeln.                             |
-| `-D`                          | create all leading components before copying SOURCE to DEST.         |
-| `-g` und `-o`                 | Eigentümer-Eigenschaft setzen.                                       |
-| `-m`                          | Berechtigungen setzen.                                               |
-| `-p`                          | Datum und Uhrzeit der ursprünglichen Dateien behalten.               |
-| `-t`                          | kopiert alle Quellargumente in den Ordner.                           |
+| Option                        | Beschreibung                                                          |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `-b` oder `--backup[=suffix]` | ein Backup der Ziel-Datei erstellen.                                  |
+| `-d`                          | Argumente als Directory-Namen behandeln                               |
+| `-D`                          | Erstellen aller Hauptkomponenten, bevor QUELLE nach ZIEL kopiert wird |
+| `-g` und `-o`                 | Eigentümer-Eigenschaft setzen.                                        |
+| `-m`                          | Berechtigungen setzen                                                 |
+| `-p`                          | Datum und Uhrzeit der ursprünglichen Dateien behalten                 |
+| `-t`                          | kopiert alle Quellargumente in den Ordner                             |
 
 !!! note "Anmerkung"
 
@@ -414,7 +414,7 @@ install: creating directory '~/samples'
 'src/sample.txt' -> '~/samples/sample.txt'
 ```
 
-Dieser Befehl spart bereits Zeit. Jetzt fügen wir Benutzer- und Gruppenmitgliedschaft sowie Zugriffsrechte hinzu:
+Dieses Kommando spart Zeit. Kombiniert Eigentümer-, Eigentümergruppen- und Rechteverwaltung zur Verbesserung und Zeitersparnis:
 
 ```bash
 sudo install -v -o rocky -g users -m 644 -D -t ~/samples/ src/sample.txt
