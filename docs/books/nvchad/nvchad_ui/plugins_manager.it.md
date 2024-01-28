@@ -39,7 +39,7 @@ lazy: require("lazy.health").check()
 
 Anche se non è strettamente necessario, controllare l'ambiente di compilazione prima di iniziare a lavorare sulla nostra configurazione personalizzata ci permette di escludere questa variabile da eventuali errori o malfunzionamenti che potrebbero verificarsi nei plugins stessi o nella scrittura delle loro configurazioni.
 
-Potrebbe anche essere interessante consultare l'aiuto in linea fornito dal plugin stesso. Per aprirlo si può usare il comando `:Lazy help` o richiamarlo dall'interfaccia del plugin digitando <kbd>?</kbd>
+Potrebbe anche essere interessante consultare l'aiuto in linea fornito dal plugin stesso. Per aprirlo si può usare il comando `:Lazy help` o richiamarlo dall'interfaccia del plugin digitando ++"?"++.
 
 ![Lazy Help](../images/lazy_help.png)
 
@@ -90,7 +90,7 @@ Questo grazie al meccanismo incorporato in _lazy.nvim_ che controlla lo stato de
 
 Chiaramente risponderemo "sì".
 
-Ora, se apriamo il gestore dei plugin con il comando `:Lazy`, scopriremo che il nostro plugin è stato riconosciuto ed è pronto per essere installato. Per installarlo, è sufficiente digitare <kbd>I</kbd>
+Ora, se apriamo il gestore dei plugin con il comando `:Lazy`, scopriremo che il nostro plugin è stato riconosciuto ed è pronto per essere installato. Per installarlo, è sufficiente digitare ++"I"++
 
 ![Install Plugin](../images/lazy_install.png)
 
@@ -125,6 +125,7 @@ L'inserimento comporta anche l'aggiunta di una stringa al file _lazy-lock.json_ 
 ```json
   "workspaces.nvim": { "branch": "master", "commit": "dd9574c8a6fbd4910bf298fcd1175a0222e9a09d" },
 ```
+
 ## Rimozione di un plugin
 
 Come per l'installazione, la rimozione di un plugin dalla configurazione passa anche attraverso la modifica manuale del file _custom/plugins.lua_. In questo esempio stiamo per rimuovere il plugin [TimUntersberger/neogit](https://github.com/TimUntersberger/neogit) questo plugin permette una gestione dei repository git direttamente dall'editor.
@@ -133,11 +134,11 @@ Come per l'installazione, la rimozione di un plugin dalla configurazione passa a
 
     La scelta del plugin è puramente casuale. Il plugin utilizzato per l'esempio non ha problemi a funzionare in NvChad.
 
-Apriamo il nostro editor e rimuoviamo il plugin dalla configurazione. Questo può essere fatto comodamente selezionando le quattro righe da eliminare con il mouse e quindi premendo <kbd>x</kbd> per eliminarle e <kbd>CTRL</kbd> + <kbd>s</kbd> per salvare il file.
+Apriamo il nostro editor e rimuoviamo il plugin dalla configurazione. Questo può essere fatto comodamente selezionando le quattro righe da eliminare con il mouse e quindi premendo ++"x"++ per eliminarle e ++ctrl++ + ++"s"++ per salvare il file.
 
 ![Remove Plugin](../images/remove_plugin_01.png)
 
-Anche in questo caso riceveremo un avviso sulla modifica del file _plugins.lua_ al quale risponderemo "sì" e una volta aperto _Lazy_ avremo il nostro plugin contrassegnato come da rimuovere. La rimozione viene eseguita premendo il tasto <kbd>X</kbd>.
+Anche in questo caso riceveremo un avviso sulla modifica del file _plugins.lua_ al quale risponderemo "sì" e una volta aperto _Lazy_ avremo il nostro plugin contrassegnato come da rimuovere. La rimozione viene eseguita premendo il tasto ++"X"++.
 
 ![Lazy Clean](../images/remove_plugin_02.png)
 
@@ -145,7 +146,7 @@ La rimozione di un plugin consiste fondamentalmente nella rimozione della cartel
 
 ## Aggiornamento dei Plugins
 
-Una volta che i plugins sono installati e configurati, sono gestiti in modo indipendente da _lazy.nvim_. Per verificare la presenza di aggiornamenti, è sufficiente aprire il manager e digitare <kbd>C</kbd>. _Lazy_ controllerà i repository dei plugins installati_(git fetch_) e poi ci presenterà un elenco di plugins aggiornabili che, una volta controllati, possono essere aggiornati tutti in una volta con <kbd>U</kbd> o singolarmente dopo averli selezionati con <kbd>u</kbd>.
+Una volta che i plugins sono installati e configurati, sono gestiti in modo indipendente da _lazy.nvim_. Per verificare la presenza di aggiornamenti, è sufficiente aprire il manager e digitare ++"C"++. _Lazy_ controllerà i repository dei plugins installati_(git fetch_) e poi ci presenterà un elenco di plugins aggiornabili che, una volta controllati, possono essere aggiornati tutti in una volta con ++"U"++ o singolarmente dopo averli selezionati con ++"u"++.
 
 ![Lazy Check](../images/lazy_check.png)
 
@@ -153,25 +154,25 @@ Una volta che i plugins sono installati e configurati, sono gestiti in modo indi
 
     Anche se non è presente nella schermata precedente, se ci sono plugin con commit che includono "breaking changes", questi verranno visualizzati per primi.
 
-Esiste anche la possibilità di eseguire l'intero ciclo di aggiornamento con il solo comando `Sync`. Dall'interfaccia digitando <kbd>S</kbd> o con il comando `:Lazy sync` invocheremo la funzione, che consiste nella concatenazione di `install` + `clean` + `update`.
+Esiste anche la possibilità di eseguire l'intero ciclo di aggiornamento con il solo comando `Sync`. Dall'interfaccia digitando ++"S"++ o con il comando `:Lazy sync` invocheremo la funzione, che consiste nella concatenazione di `install` + `clean` + `update`.
 
 Il processo di aggiornamento, sia individuale che cumulativo, modificherà anche il file _lazy-lock.json._  In particolare, i commit saranno modificati per sincronizzarli con lo stato del repository su GitHub.
 
 ## Funzionalità Aggiuntive
 
-Nella scrittura del plugin si è prestata particolare attenzione alle prestazioni e all'efficienza del codice, oltre a fornire un modo per valutare i tempi di avvio dei vari plugins. Viene fornito un _profiler_ che può essere invocato con il comando `:Lazy profile` o con il tasto <kbd>P</kbd> dell'interfaccia.
+Nella scrittura del plugin si è prestata particolare attenzione alle prestazioni e all'efficienza del codice, oltre a fornire un modo per valutare i tempi di avvio dei vari plugins. Viene fornito un _profiler_ che può essere invocato con il comando `:Lazy profile` o con il tasto ++"P"++ dell'interfaccia.
 
 ![Lazy Profiler](../images/lazy_profile.png)
 
-Qui possiamo vedere i tempi di caricamento dei vari plugins che possono essere ordinati con la combinazione di tasti <knd>CTRL</kbd> + <kbd>s</kbd> per inserimento nella configurazione o per tempo di caricamento. Abbiamo anche la possibilità di effettuare ricerche sul tempo di caricamento dei plugins, impostando una soglia minima in millisecondi con la combinazione <kbd>CTRL</kbd> + <kbd>f</kbd>.
+Qui si possono vedere i tempi di caricamento dei vari plugin, che possono essere ordinati con la combinazione di tasti ++ctrl++ ++"s "++ per voce nella configurazione o per tempo di caricamento. Abbiamo anche la possibilità di effettuare ricerche sul tempo di caricamento dei plugin impostando una soglia minima in millisecondi con la combinazione ++ctrl++ ++"f "++.
 
 Queste informazioni possono essere utili per la risoluzione dei problemi se l'editor rallenta in modo anomalo.
 
-Il plugin fornisce anche una visualizzazione delle ultime operazioni eseguite sui plugins, visualizzazione che può essere richiamata con il tasto <kbd>L</kbd> dall'interfaccia o con il comando `:Lazy log` dall'editor stesso.
+Il plugin fornisce anche una visualizzazione delle ultime operazioni eseguite sui plugins, visualizzazione che può essere richiamata con il tasto ++"L"++ dall'interfaccia o con il comando `:Lazy log` dall'editor stesso.
 
 ![Lazy Log](../images/lazy_log.png)
 
-Integra anche una funzione di debug che ci permette di controllare i gestori attivi in lazy-loading e ciò che è presente nella cache del modulo. Per attivarlo possiamo utilizzare il tasto <kbd>D</kbd> dall'interfaccia o invocarlo con il comando `:Lazy debug`.
+Integra anche una funzione di debug che ci permette di controllare i gestori attivi in lazy-loading e ciò che è presente nella cache del modulo. Per attivarlo possiamo utilizzare il tasto ++"D"++ dall'interfaccia o invocarlo con il comando `:Lazy debug`.
 
 ![Lazy Debug](../images/lazy_debug.png)
 
@@ -193,7 +194,7 @@ Lazy.nvim consente la sincronizzazione di tutti i plugin installati, memorizzand
 ...
 ```
 
-Grazie alla memorizzazione dei commit, possiamo vedere esattamente lo stato del plugin nel repository al momento dell'installazione o dell'aggiornamento. Questo ci permette, attraverso la funzione di `restore`, di riportarlo o portarlo allo stesso stato anche nell'editor. La funzione, richiamabile con il tasto <kbd>R</kbd> dell'interfaccia o con `:Lazy restore`, aggiorna tutti i plugin dell'editor allo stato definito nel file _lazy-lock.json._
+Grazie alla memorizzazione dei commit, possiamo vedere esattamente lo stato del plugin nel repository al momento dell'installazione o dell'aggiornamento. Questo ci permette, attraverso la funzione di `restore`, di riportarlo o portarlo allo stesso stato anche nell'editor. La funzione, richiamabile con il tasto ++"R"++ dell'interfaccia o con `:Lazy restore`, aggiorna tutti i plugin dell'editor allo stato definito nel file _lazy-lock.json_.
 
 Copiando il file _lazy-lock.json_ da una configurazione stabile in un posto sicuro, si ha la possibilità di ripristinare l'editor in quella condizione se un aggiornamento dovesse creare problemi. Esportandolo invece su un'altra stazione di lavoro, possiamo utilizzarlo per configurare l'editor con le stesse funzionalità.
 

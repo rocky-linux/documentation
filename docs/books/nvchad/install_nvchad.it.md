@@ -16,8 +16,8 @@ Come specificato sul sito di NvChad, è necessario assicurarsi che il sistema so
 
 - [Neovim 0.8.3](https://github.com/neovim/neovim/releases/tag/v0.8.3).
 - [Nerd Font](https://www.nerdfonts.com/) Impostato nel tuo emulatore di terminale.
-  - Assicurati che il carattere nerd che hai impostato non finisca con **Mono**
-   - **Esempio:** Carattere Iosevka Nerd e non ~~Iosevka Nerd Font Mono~~
+    - Assicuratevi che il carattere nerd impostato non finisca con **Mono**
+    - **Esempio:** Carattere Iosevka Nerd e non ~~Iosevka Nerd Font Mono~~
 - [Ripgrep](https://github.com/BurntSushi/ripgrep) è necessario per la ricerca con grep in Telescope **(OPZIONALEL)**.
 - GCC
 
@@ -131,32 +131,31 @@ Se si sceglie di installare anche il _template chadrc_, si avrà anche la cartel
 └── plugins.lua
 ```
 
-
 Il primo file che incontriamo è il file `init.lua`, che inizializza la configurazione inserendo la cartella `lua/core` e i file `lua/core/utils.lua` (e, se presente, `lua/custom/init.lua`) nell'albero di _nvim_. Esegue il bootstrap di `lazy.nvim` (il plugin manager) e una volta finito inizializza la cartella `plugins`.
 
 In particolare, la funzione `load_mappings()` è chiamata per caricare le scorciatoie da tastiera. Inoltre, la funzione `gen_chadrc_template()` fornisce la subroutine per creare la cartella `custom`.
 
 ```lua
-require "core"
+require("core")
 
 local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
 
 if custom_init_path then
-  dofile(custom_init_path)
+    dofile(custom_init_path)
 end
 
 require("core.utils").load_mappings()
 
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 -- bootstrap lazy.nvim!
 if not vim.loop.fs_stat(lazypath) then
-  require("core.bootstrap").gen_chadrc_template()
-  require("core.bootstrap").lazy(lazypath)
+    require("core.bootstrap").gen_chadrc_template()
+    require("core.bootstrap").lazy(lazypath)
 end
 
 vim.opt.rtp:prepend(lazypath)
-require "plugins"
+require("plugins")
 
 dofile(vim.g.base46_cache .. "defaults")
 ```
@@ -173,10 +172,10 @@ require("core.utils").load_mappings()
 
 Questo sistema prevede quattro tasti principali dai quali, in associazione con altri tasti, è possibile lanciare i comandi. Le chiavi principali sono:
 
-- C = <kbd>CTRL</kbd>
-- leader = <kbd>SPAZIO</kbd>
-- A = <kbd>ALT</kbd>
-- S = <kbd>MAIUSC</kbd>
+- C = ++ctrl++
+- leader = ++space++
+- A = ++alt++
+- S = ++shift++
 
 !!! note "Nota"
 

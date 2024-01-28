@@ -29,7 +29,7 @@ Se è stato installato anche il [Template Chadrc](../template_chadrc.md), questo
 
 !!! Warning "Attenzione"
 
-    Il server linguistico **deve** essere installato prima di procedere all'installazione del plugin. In caso contrario, l'installazione fallirà e sarà necessario rimuovere il codice da **/custom/plugins.lua**, eseguire una pulizia della configurazione aprendo `Lazy` e digitando <kbd>X</kbd> per eliminare il plugin e quindi ripetere la procedura di installazione.
+    Il server linguistico **deve** essere installato prima di procedere all'installazione del plugin. In caso contrario, l'installazione fallirà e sarà necessario rimuovere il codice da **/custom/plugins.lua**, eseguire una pulizia della configurazione aprendo `Lazy` e digitando ++"X"++ per eliminare il plugin e quindi ripetere la procedura di installazione.
 
 Per installare il plugin è necessario modificare il file **/custom/plugins.lua** aggiungendo il seguente blocco di codice:
 
@@ -55,11 +55,11 @@ Per installare il plugin è necessario modificare il file **/custom/plugins.lua*
 },
 ```
 
-Una volta salvato il file, è possibile eseguirne l'installazione aprendo l'interfaccia del gestore dei plugin con il comando `:Lazy`. Il gestore dei plugin lo avrà già riconosciuto automaticamente e vi permetterà di installarlo digitando <kbd>I</kbd>.
+Una volta salvato il file, è possibile eseguirne l'installazione aprendo l'interfaccia del gestore dei plugin con il comando `:Lazy`. Il gestore dei plugin lo avrà già riconosciuto automaticamente e vi permetterà di installarlo digitando ++"I"++.
 
 Per ottenere tutte le funzionalità, tuttavia, è necessario chiudere NvChad (*nvim*) e riaprirlo. Questo per consentire all'editor di caricare quelle di **Peek** nella configurazione.
 
-La sua configurazione include già il comando per attivarlo `<leader>op`, che sulla tastiera si traduce in <kbd>Spazio</kbd> + <kbd>o</kbd> seguito da <kbd>p</kbd>.
+La sua configurazione include già il comando per attivarlo `<leader>op`, che sulla tastiera si traduce in ++space++ + ++"o"++ seguito da ++"p"++.
 
 ![Peek](./images/peek_command.png)
 
@@ -98,7 +98,7 @@ Come per il plugin precedente, è necessario chiudere l'editor e riaprirlo per d
 Tuttavia, le opzioni devono essere modificate per adattarsi alla configurazione di `lazy.nvim`, in particolare l'opzione configurata in questo esempio:
 
 ```lua
-vim.g.mkdp_theme = 'dark'
+vim.g.mkdp_theme = "dark"
 ```
 
 Corrisponde all'opzione descritta sul sito del progetto come:
@@ -115,9 +115,8 @@ let g:mkdp_browser = '/usr/bin/chromium-browser'
 
 Per interpretarlo correttamente in NvChad, è necessario modificare il testo sostituendo `let g:` con `vim.g.`.
 
-
 ```lua
-vim.g.mkdp_browser = '/usr/bin/chromium-browser'
+vim.g.mkdp_browser = "/usr/bin/chromium-browser"
 ```
 
 In questo modo, alla prossima apertura di NvChad, verrà utilizzato `chromium-browser`, indipendentemente dal browser predefinito del sistema.
@@ -127,14 +126,14 @@ La configurazione fornisce anche i comandi `:MarkdownPreview` e `:MarkdownPrevie
 ```lua
 -- binding for Markdown Preview
 M.mdpreview = {
-  n = {
-    ["<leader>mp"] = { "<cmd> MarkdownPreview<CR>", "Open Preview"},
-    ["<leader>mc"] = { "<cmd> MarkdownPreviewStop<CR>", "Close Preview"},
+    n = {
+        ["<leader>mp"] = { "<cmd> MarkdownPreview<CR>", "Open Preview" },
+        ["<leader>mc"] = { "<cmd> MarkdownPreviewStop<CR>", "Close Preview" },
     },
 }
 ```
 
-In questo modo è possibile aprire l'anteprima del markdown digitando <kbd>Invio</kbd> + <kbd>m</kbd> seguito da <kbd>p</kbd> e chiuderla con la combinazione <kbd>Invio</kbd> + <kbd>m</kbd> seguito da <kbd>c</kbd>.
+In questo modo è possibile aprire l'anteprima del markdown digitando ++enter++ + ++"m"++ seguito da ++"p"++ e chiuderla con la combinazione ++enter++ + ++"m"++ seguito da ++"c"++.
 
 !!! Note "Nota"
 
