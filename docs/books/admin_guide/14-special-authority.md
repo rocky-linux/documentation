@@ -297,7 +297,7 @@ default:other::---
 
 !!! info
 
-    The default and recursion of using ACL permissions require that the operating object of the command be a directory! If the operation object is a file, an error will be reported.
+    The default and recursion of using ACL permissions require that the operating object of the command be a directory! If the operation object is a file, an error prompt will be output.
 
 ### SetUID
 
