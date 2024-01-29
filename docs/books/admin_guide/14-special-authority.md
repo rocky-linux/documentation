@@ -239,7 +239,7 @@ For ACL permissions, this means that when the parent directory sets ACL permissi
 
 !!! info
 
-    Recursion applies to files/directories that already exist.
+    Recursion is suitable for files/directories that already exist in the directory.
 
 Look at the following example:
 
@@ -294,6 +294,10 @@ default:group::rwx
 default:mask::rwx
 default:other::---
 ```
+
+!!! info
+
+    The default and recursion of using ACL permissions require that the operating object of the command be a directory! If the operation object is a file, an error will be reported.
 
 ### SetUID
 
