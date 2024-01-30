@@ -16,8 +16,8 @@ tags:
 
 - [Neovim 0.8.3](https://github.com/neovim/neovim/releases/tag/v0.8.3).
 - [Шрифт Nerd](https://www.nerdfonts.com/) Установіть його в емуляторі терміналу.
-  - Переконайтеся, що шрифт, який ви налаштували, не закінчується на **Mono**
-   - **Приклад:** шрифт Iosevka Nerd, а не ~~Шрифт Iosevka Nerd Mono~~
+    - Переконайтеся, що шрифт, який ви налаштували, не закінчується на **Mono**
+    - **Приклад:** шрифт Iosevka Nerd, а не ~~Шрифт Iosevka Nerd Mono~~
 - [Ripgrep](https://github.com/BurntSushi/ripgrep) потрібен для пошуку grep за допомогою Telescope **(НЕОБОВ’ЯЗКОВО)**.
 - GCC
 
@@ -131,32 +131,31 @@ git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 └── plugins.lua
 ```
 
-
 Перший файл, який ми зустрічаємо, це файл `init.lua`, який ініціалізує конфігурацію, вставляючи папку `lua/core` та `lua/core/utils.lua` (і якщо є, файли `lua/custom/init.lua`) у дерево _nvim_. Запускає завантажувальну програму `lazy.nvim` (менеджер плагінів) і після завершення ініціалізує папку `plugins`.
 
 Зокрема, функція `load_mappings()` викликається для завантаження комбінацій клавіш. Крім того, функція `gen_chadrc_template()` надає підпрограму для створення папки `custom`.
 
 ```lua
-require "core"
+require("core")
 
 local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
 
 if custom_init_path then
-  dofile(custom_init_path)
+    dofile(custom_init_path)
 end
 
 require("core.utils").load_mappings()
 
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 -- bootstrap lazy.nvim!
 if not vim.loop.fs_stat(lazypath) then
-  require("core.bootstrap").gen_chadrc_template()
-  require("core.bootstrap").lazy(lazypath)
+    require("core.bootstrap").gen_chadrc_template()
+    require("core.bootstrap").lazy(lazypath)
 end
 
 vim.opt.rtp:prepend(lazypath)
-require "plugins"
+require("plugins")
 
 dofile(vim.g.base46_cache .. "defaults")
 ```
@@ -173,10 +172,10 @@ require("core.utils").load_mappings()
 
 Це встановлює чотири основні клавіші, за допомогою яких разом з іншими клавішами можна запускати команди. Основні ключі:
 
-- C = <kbd>CTRL</kbd>
-- leader = <kbd>ПРОБІЛ</kbd>
-- A = <kbd>ALT</kbd>
-- S = <kbd>SHIFT</kbd>
+- C = ++ctrl++
+- leader = ++пробіл++
+- A = ++alt++
+- S = ++shift++
 
 !!! note "примітка"
 
