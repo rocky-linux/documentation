@@ -563,7 +563,7 @@ Shell > chattr -i /tmp/filei /tmp/diri
 |            | Delete | Free modification | Append file content | View | Create file | 
 |:----------:|:------:|:-----------------:|:-------------------:|:----:|:-----------:|
 | file       |  ×     |       ×           |   √                 | √    |    -        |
-| directory  |  x <br>(Directory and files under the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory) | √  |
+| directory  |  x <br>(Directory and files under the directory) | x<br>(Files in the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory) | √  |
 
 Examples for files:
 
@@ -594,19 +594,19 @@ Shell > mkdir /etc/dira
 Shell > cd /etc/dira && echo "asdf" > afile
 
 Shell > chattr +a /etc/dira
-Shell > lsattr -a /etc/dira
+Shell > lsattr -ad /etc/dira
 -----a--------e----- /etc/dira/
 
 Shell > rm -rf /etc/dira
 rm: cannot remove '/etc/dira/afile': Operation not permitted
 
-# Allow modification
+# Free modification is not allowed
 Shell > vim /etc/dira/afile
-asdf-bcd
+asdf
 
 Shell > echo "new line" >> /etc/dira/afile
 Shell > cat /etc/dira/afile
-asdf-bcd
+asdf
 new line
 
 # Allow creation of new files
