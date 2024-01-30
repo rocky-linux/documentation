@@ -54,20 +54,20 @@ custom/
 local M = {}
 
 -- Path to overriding theme and highlights files
-local highlights = require "custom.highlights"
+local highlights = require("custom.highlights")
 
 M.ui = {
-  theme = "onedark",
-  theme_toggle = { "onedark", "one_light" },
+    theme = "onedark",
+    theme_toggle = { "onedark", "one_light" },
 
-  hl_override = highlights.override,
-  hl_add = highlights.add,
+    hl_override = highlights.override,
+    hl_add = highlights.add,
 }
 
 M.plugins = "custom.plugins"
 
 -- check core.mappings for table structure
-M.mappings = require "custom.mappings"
+M.mappings = require("custom.mappings")
 
 return M
 ```
@@ -84,7 +84,7 @@ M.load_config = function()
 Його функція полягає в тому, щоб вставити файли з нашої папки _custom_ у конфігурацію NvChad, щоб потім використовувати їх разом із файлами за замовчуванням для запуску _ Neovim_екземпляра. Файли вставляються в дерево конфігурації за допомогою функцій `require`, таких як:
 
 ```lua
-require "custom.mappings"
+require("custom.mappings")
 ```
 
 Рядок **custom.mappings** вказує відносний шлях до файлу без розширення на відміну від шляху за замовчуванням, який у цьому випадку становить **~/.config/nvim/lua/**. Крапка замінює косу риску, оскільки це конвенція в коді, написаному мовою Lua (у _мові lua_ немає поняття _каталогу _).
@@ -157,17 +157,17 @@ opt.smartindent = true
 
 ```lua
 M.general = {
-  n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
-  },
+    n = {
+        [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    },
 }
 ```
 
-Це відображення вводиться для НОРМАЛЬНОГО стану `n =` символ <kbd>;</kbd>, який при натисканні на клавіатурі відтворює символ <kbd>:</kbd>. Цей символ використовується для входу в режим COMMAND. Параметр `nowait = true` також встановлено для негайного входу в цей режим. Таким чином, на клавіатурі з американською розкладкою QWERTY нам не потрібно буде використовувати <kbd>SHIFT</kbd> для входу в режим COMMAND.
+Це відображення вводиться для стану NORMAL `n =` символ ++";"++, який при натисканні на клавіатурі відтворює символ ++":"++. Цей символ використовується для входу в режим COMMAND. Параметр `nowait = true` також встановлено для негайного входу в цей режим. Таким чином, на клавіатурі з американською розкладкою QWERTY нам не потрібно буде використовувати ++shift++ для входу в режим COMMAND.
 
 !!! tip "Порада"
 
-    Для користувачів європейських клавіатур (таких як італійська) рекомендується замінити символ <kbd>;</kbd> з <kbd>,</kbd>.
+    Користувачам європейських клавіатур (наприклад, італійської) рекомендується замінити символ ++";"++ на ++","++.
 
 #### highlights.lua
 
@@ -211,14 +211,14 @@ local servers = { "html", "cssls", "tsserver", "clangd", "yamlls" }
 ```lua
 local sources = {
 
-  -- webdev stuff
-  b.formatting.deno_fmt,
-  b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } },
-  -- Lua
-  b.formatting.stylua,
+    -- webdev stuff
+    b.formatting.deno_fmt,
+    b.formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }),
+    -- Lua
+    b.formatting.stylua,
 
-  -- cpp
-  b.formatting.clang_format,
+    -- cpp
+    b.formatting.clang_format,
 }
 ```
 
@@ -251,24 +251,24 @@ _treesitter_ — це аналізатор коду, який інтеракти
 
 ```lua
 M.treesitter = {
-  ensure_installed = {
-    "vim",
-    "lua",
-    "html",
-    "css",
-    "javascript",
-    "typescript",
-    "tsx",
-    "c",
-    "markdown",
-    "markdown_inline",
-  },
-  indent = {
-    enable = true,
-    -- disable = {
-    --   "python"
-    -- },
-  },
+    ensure_installed = {
+        "vim",
+        "lua",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "c",
+        "markdown",
+        "markdown_inline",
+    },
+    indent = {
+        enable = true,
+        -- disable = {
+        --   "python"
+        -- },
+    },
 }
 ```
 
@@ -296,18 +296,18 @@ M.treesitter = {
 
 ```lua
 M.mason = {
-  ensure_installed = {
-    -- lua stuff
-    "lua-language-server",
-    "stylua",
+    ensure_installed = {
+        -- lua stuff
+        "lua-language-server",
+        "stylua",
 
-    -- web dev stuff
-    "css-lsp",
-    "html-lsp",
-    "typescript-language-server",
-    "deno",
-    "prettier"
-  },
+        -- web dev stuff
+        "css-lsp",
+        "html-lsp",
+        "typescript-language-server",
+        "deno",
+        "prettier",
+    },
 }
 ```
 
