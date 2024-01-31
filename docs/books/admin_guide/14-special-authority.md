@@ -239,7 +239,7 @@ For ACL permissions, this means that when the parent directory sets ACL permissi
 
 !!! info
 
-    Recursion applies to files/directories that already exist.
+    Recursion is suitable for files/directories that already exist in the directory.
 
 Look at the following example:
 
@@ -294,6 +294,10 @@ default:group::rwx
 default:mask::rwx
 default:other::---
 ```
+
+!!! info
+
+    The default and recursion of using ACL permissions require that the operating object of the command be a directory! If the operation object is a file, an error prompt will be output.
 
 ### SetUID
 
@@ -559,7 +563,7 @@ Shell > chattr -i /tmp/filei /tmp/diri
 |            | Delete | Free modification | Append file content | View | Create file | 
 |:----------:|:------:|:-----------------:|:-------------------:|:----:|:-----------:|
 | file       |  ×     |       ×           |   √                 | √    |    -        |
-| directory  |  x <br>(Directory and files under the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory) | √  |
+| directory  |  x <br>(Directory and files under the directory) | x<br>(Files in the directory) | √ <br>(Files in the directory) | √ <br>(Files in the directory) | √  |
 
 Examples for files:
 
@@ -590,19 +594,19 @@ Shell > mkdir /etc/dira
 Shell > cd /etc/dira && echo "asdf" > afile
 
 Shell > chattr +a /etc/dira
-Shell > lsattr -a /etc/dira
+Shell > lsattr -ad /etc/dira
 -----a--------e----- /etc/dira/
 
 Shell > rm -rf /etc/dira
 rm: cannot remove '/etc/dira/afile': Operation not permitted
 
-# Allow modification
+# Free modification is not allowed
 Shell > vim /etc/dira/afile
-asdf-bcd
+asdf
 
 Shell > echo "new line" >> /etc/dira/afile
 Shell > cat /etc/dira/afile
-asdf-bcd
+asdf
 new line
 
 # Allow creation of new files
