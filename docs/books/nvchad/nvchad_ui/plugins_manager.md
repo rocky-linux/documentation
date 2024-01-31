@@ -164,7 +164,7 @@ In writing the plugin, special attention was paid to performance and code effici
 
 ![Lazy Profiler](../images/lazy_profile.png)
 
-Here we can see the loading times of the various plugins that can be sorted with the key combination ++ctrl++ + ++"s"++ by entry in the configuration or by loading time. We also have the possibility to perform searches on the loading time of plugins by setting a minimum threshold in milliseconds with the combination ++ctrl++ + ++"f"++.
+Here, we can see the loading times of the various plugins that can be sorted with the key combination ++ctrl++ + ++"s"++ by entry in the configuration or by loading time. We can also perform searches on plugins' loading time by setting a minimum threshold in milliseconds with the combination ++ctrl++ + ++"f"++.
 
 This information can be useful in troubleshooting if the editor slows down abnormally.
 
