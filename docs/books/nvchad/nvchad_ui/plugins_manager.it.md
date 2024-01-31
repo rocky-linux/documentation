@@ -164,7 +164,7 @@ Nella scrittura del plugin si è prestata particolare attenzione alle prestazion
 
 ![Lazy Profiler](../images/lazy_profile.png)
 
-Qui si possono vedere i tempi di caricamento dei vari plugin, che possono essere ordinati con la combinazione di tasti ++ctrl++ ++"s "++ per voce nella configurazione o per tempo di caricamento. Abbiamo anche la possibilità di effettuare ricerche sul tempo di caricamento dei plugin impostando una soglia minima in millisecondi con la combinazione ++ctrl++ ++"f "++.
+Qui si possono vedere i tempi di caricamento dei vari plugin, che possono essere ordinati con la combinazione di tasti ++ctrl++ ++"s "++ per voce nella configurazione o per tempo di caricamento. Possiamo anche eseguire ricerche sul tempo di caricamento dei plugin impostando una soglia minima in millisecondi con la combinazione ++ctrl++ ++"f "++.
 
 Queste informazioni possono essere utili per la risoluzione dei problemi se l'editor rallenta in modo anomalo.
 
