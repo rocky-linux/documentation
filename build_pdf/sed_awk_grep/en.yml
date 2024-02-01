@@ -1,0 +1,30 @@
+---
+INHERIT: ../build_base.yml
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 3
+  ordered_chapter_level: 3
+  verbose: false
+  back_cover: true
+  
+# You are free to configure here what you want
+plugins:
+  - with-pdf:
+      <<: *pdf-config
+      cover_title: Sed & Awk & Grep - The Tree Swordsmen (English version)
+      output_path: ../pdf/Sed_Awk_Grep_TheTreeSwordsmen.pdf
+
+# Customize your own book
+nav:
+  - licence.md
+  - sed_awk_grep/index.md
+
+  - sed_awk_grep/1_regular_expressions_vs_wildcards.md
+  - sed_awk_grep/2_grep_command.md
+  - sed_awk_grep/3_sed_command.md
+  - sed_awk_grep/4_awk_command.md
