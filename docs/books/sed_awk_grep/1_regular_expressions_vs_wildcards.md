@@ -6,7 +6,7 @@ tags:
   - Regular expression
 ---
 
-# Regular expressions VS wildcards
+# Regular expressions and wildcards
 
 In the GNU/Linux operating system, regular expressions and wildcards often have the same symbol (or style), so people often confuse them.
 
