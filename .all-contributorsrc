@@ -881,6 +881,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "ShyRain",
+      "name": "Emre Çamalan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/610692?v=4",
+      "profile": "http://www.camalan.net",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
