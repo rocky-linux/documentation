@@ -7,5 +7,5 @@ nav:
     - Learning Rsync: learning_rsync
     - LXD Server: lxd_server
     - DISA STIG: disa_stig
-    - Sed & Awk & Grep: sed_awk_grep
+    - Sed, Awk & Grep: sed_awk_grep
     - ...
