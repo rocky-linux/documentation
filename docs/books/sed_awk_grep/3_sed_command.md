@@ -8,7 +8,7 @@ tags:
 
 # `sed` command
 
-`sed`: Stream EDitor
+`sed`: Stream Editor
 
 **Working principle**: The `sed` command will read the currently processed row and place it in the "pattern space" for processing. After processing, the result will be output and the "pattern space" will be cleared. Next, read the next line and place it in the "pattern space" for processing, and so on, until the last line. Some documents also mention a term called "hold space" (also known as "temporary-storage space"), which can temporarily store some processed data and output it through "pattern space".
 
