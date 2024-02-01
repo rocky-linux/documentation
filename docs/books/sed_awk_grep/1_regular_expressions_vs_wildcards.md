@@ -3,7 +3,8 @@ title: Regular expressions and wildcards
 author: tianci li
 contributors: 
 tags:
-  - Regular expression
+  - Regular expressions
+  - Wildcards
 ---
 
 # Regular expressions and wildcards
