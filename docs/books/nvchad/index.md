@@ -17,9 +17,9 @@ I say "ways" because there are many possibilities. The author focuses here on us
 
 Want an IDE that will help in writing Ansible playbooks? You can get that! Want an IDE for Golang? That's available too. Simply want a good interface for writing BASH scripts? It's also available.
 
-Through the use of ==**L**anguage **S**erver **P**rotocols== and ==linters==, you can setup an environment that is customized just for you. The best part is that once you have the environment setup, it can quickly be updated when new changes are available through the use of [lazy.nvim] and [Mason], both of which are covered here.
+Through the use of ==**L**anguage **S**erver **P**rotocols== and ==linters==, you can setup an environment that is customized just for you. The best part is that once you have the environment setup, it can quickly be updated when new changes are available through the use of [lazy.nvim](https://github.com/folke/lazy.nvim) and [Mason](https://github.com/williamboman/mason.nvim), both of which are covered here.
 
-Because Neovim is a fork of [Vim], the overall interface will be familiar to *vim* users. If you aren't a *vim* user, you will pick up on the syntax of the commands quickly using this book. There's a lot of information covered here but it's easy to follow along, and once you've completed the content, you'll know enough to build your own IDE for *your* needs with these tools.
+Because Neovim is a fork of [Vim](https://www.vim.org/), the overall interface will be familiar to *vim* users. If you aren't a *vim* user, you will pick up on the syntax of the commands quickly using this book. There's a lot of information covered here but it's easy to follow along, and once you've completed the content, you'll know enough to build your own IDE for *your* needs with these tools.
 
 It was the author's intent **not** to break this book down into chapters. The reason is that this implies an order that must be followed and, for the most part, that's not necessary. You *will* want to start with this page, read and follow the "Additional Software", "Install Neovim" and "Install NvChad" sections, but from there, you can choose how you want to proceed.
 
@@ -97,7 +97,7 @@ The idea behind the Language Server Protocol (LSP) is to standardize the communi
 
 ### :material-file-document-check-outline: tree-sitter
 
-[Tree-sitter] basically consists of two components: a ==parser generator==, and an ==incremental parsing library==. It can build a syntactic tree of the source file and efficiently update it with each change.
+[Tree-sitter](https://tree-sitter.github.io/tree-sitter/) basically consists of two components: a ==parser generator==, and an ==incremental parsing library==. It can build a syntactic tree of the source file and efficiently update it with each change.
 
 A parser is a component that decomposes data into smaller elements to facilitate its translation into another language, or as in our case, to be then passed to the parsing library. Once the source file has been decomposed, the parsing library parses the code and transforms it into a syntactic tree, allowing the structure of the code to be manipulated more intelligently. This makes it possible to improve (and speed up)
 
@@ -110,10 +110,4 @@ A parser is a component that decomposes data into smaller elements to facilitate
 
     Although it may seem that the two services (LSP and tree-sitter) are redundant, they are actually complementary in that LSP works at the project level while tree-sitter works only on the open source file.
 
-Now that we have explained a bit about the technologies used to create the IDE we can move on to the [Additional Software] needed to configure our NvChad.
-
-[lazy.nvim]: https://github.com/folke/lazy.nvim
-[Mason]: https://github.com/williamboman/mason.nvim
-[Tree-sitter]: https://tree-sitter.github.io/tree-sitter/
-[Vim]: https://www.vim.org/
-[Additional Software]: additional_software.md
+Now that we have explained a bit about the technologies used to create the IDE we can move on to the [Additional Software](additional_software.md) needed to configure our NvChad.
