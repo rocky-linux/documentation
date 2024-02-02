@@ -1,8 +1,8 @@
 ---
 title: XFCE Desktop
-author: Gerard Arthus, Steven Spencer
+author: Gerard Arthus, Steven Spencer, Emre Camalan
 contributors: Steven Spencer, Antoine Le Morvan, K.Prasad, Ganna Zhyrnova
-tested_with: 8.5, 8.6, 9.0
+tested_with: 8.9, 9.3
 tags:
   - xfce
   - desktop
@@ -16,8 +16,9 @@ It is also one of the most accessible desktop environments to combine with alter
 
 ## Prerequisites
 
-* A Workstation or notebook
+* A workstation or notebook
 * A desire to run XFCE as your desktop instead of the default GNOME desktop
+* For the 9 minimal and 8 procedures, the ability to `sudo` to elevate privileges
 
 === "9"
 
@@ -28,7 +29,7 @@ It is also one of the most accessible desktop environments to combine with alter
     ## 9: Get, verify, and write the XFCE live image
 
     Prior to installation, the first step is to download the live image and write that to a DVD or a USB thumb drive. As stated earlier, the image will be bootable, just like any other installation media for Linux. You can find the latest XFCE image in the download section for Rocky Linux 9 [live images](https://dl.rockylinux.org/pub/rocky/9.3/live/x86_64/). Note that this particular link assumes x86_64 is your processor's architecture. 
-	
+    
     As of this writing, you can use x86_64 or aarch64 architectures for this live image. Download the live image and checksum files. 
 
     Verify the image with the CHECKSUM file with the following 
@@ -95,6 +96,66 @@ It is also one of the most accessible desktop environments to combine with alter
     Next you will get a login screen with the user you created above. Enter your password, which will get you to the XFCE desktop:
 
     ![xfce_desktop](images/xfce_desktop.png)
+
+=== "9-minimal"
+
+    ## 9 minimal: Introduction
+
+    If you installed Rocky Linux 9.x and decide that you want to install XFCE after, this procedure will get you there. This procedure assumes installation of `Rocky-9.3-x86_64-minimal.iso`.
+
+    ### Update your system
+
+    First, ensure the update of your system:
+
+    ```bash
+    sudo dnf update -y && dnf upgrade -y
+    ```
+
+    ![9_min1](images/xfce_9_min_1.png)
+
+    Secondly, run the command below to install epel-release repo which contains all packages that we need to install for Xfce Desktop.
+
+    ```bash
+    sudo dnf install epel-release -y
+    ```
+
+    ![9_min2](images/xfce_9_min_2.png)
+
+    ### Install XFCE desktop
+
+    Install XFCE by running this command:
+
+    ```bash
+    sudo dnf groupinstall xfce -y
+    ```
+
+    ![9_min3](images/xfce_9_min_3.png)
+
+    ### Starting the XFCE desktop
+
+    You can launch the XFCE desktop from the command line if you see the message "Complete!" in the command output and no errors. 
+
+    ```bash
+    sudo systemctl isolate graphical.target
+    ```
+
+    ### Enable XFCE desktop on boot
+
+    At this point you have installed the XFCE desktop on the system and ensured it functions by running it from the command line. If you always want your system to start with XFCE instead of the command line, you need to run the following command. You will need to open the XFCE terminal from the 9 points icon first:
+
+    ```bash
+    sudo systemctl set-default graphical.target
+    ```
+
+    ![9_min5](images/xfce_9_min_5.png)
+
+    **NOTE:** You can log in with your root username and password.
+
+    ![9_min6](images/xfce_9_min_6.png)
+
+    Now you can test it. Reboot your system with the `sudo reboot` command. You will see your system opening with the XFCE desktop login screen.
+
+    ![9_min7](images/xfce_9_min_7.png)
 
 === "8"
 
