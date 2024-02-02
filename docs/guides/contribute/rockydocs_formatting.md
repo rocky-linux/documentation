@@ -323,7 +323,7 @@ A list of accepted keyboard commands [in this document](https://facelessuser.git
 
 ## Superscript, subscript and special symbols
 
-Superscript and subscript notation are supported in Rocky Linux documentation by use of the `^` for superscript and `~` for subscript. Superscript places text entered between the tags slightly above the normal text, while subscript places the text slightly below. Superscript is by far the more commonly used of these two in writing. Some special characters already appear in superscript without adding the tags, but you can also combine the tag to change the orientation of those characters as seen with the copyright symbol below. You can use superscript to:
+Superscript and subscript notation are supported in Rocky Linux documentation by use of the `^` for superscript and the HTML tags `<sub></sub>` for subscript. Superscript places text entered between the tags slightly above the normal text, while subscript places the text slightly below. Superscript is by far the more commonly used of these two in writing. Some special characters already appear in superscript without adding the tags, but you can also combine the tag to change the orientation of those characters as seen with the copyright symbol below. You can use superscript to:
 
 * represent ordinal numbers, such as 1^st^, 2^nd^, 3^rd^
 * copyright and trademark symbols, like ^&copy;^, ^TM^, or ^&trade;^, ^&reg;&^
@@ -343,7 +343,7 @@ Some of the special characters, such as &copy; are not normally superscript, whi
 
 To force superscript you surround what you want superscript with `^`.
 
-Enter subscript with the `~` tag, and as noted earlier, is not ~used nearly as much~ in writing.
+Enter subscript by surrounding your text with the `<sub></sub>` tag, and as noted earlier, is not <sub>used nearly as much</sub> in writing.
 
 ### Superscript for references
 
@@ -374,7 +374,7 @@ or
 
 ## Highlighting text
 
-Another possible way to enhance documentation is with ==highlighting==. Highlighting is handled by surrounding the text with `==`. 
+Another possible way to enhance documentation is with ==highlighting==. Highlighting is handled by surrounding the text with `==`.
 
 This looks like this in your editor:
 
