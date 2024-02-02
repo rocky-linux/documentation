@@ -20,7 +20,7 @@ tags:
 
 У Rocky Linux 8 і 9 ви можете встановити RipGrep з EPEL. Для цього встановіть `epel-release,` оновіть систему, а потім інсталюйте `ripgrep.`:
 
-```
+```bash
 sudo dnf install -y epel-release
 sudo dnf upgrade
 sudo dnf install ripgrep
@@ -74,7 +74,7 @@ sudo dnf install lazygit
 
 ![LazyGit UI](images/lazygit_ui.png)
 
-За допомогою клавіші <kbd>x</kbd> ми можемо відкрити меню з усіма доступними командами.
+За допомогою клавіші ++x++ ми можемо відкрити меню з усіма доступними командами.
 
 ![LazyGit UI](images/lazygit_menu.png)
 

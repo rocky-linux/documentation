@@ -13,7 +13,6 @@ tags:
 
 Marksman є корисним інструментом під час створення вашого документа для Rocky Linux. Це дозволяє легко вводити символи, необхідні для визначення мовних тегів *markdown*. Це дозволяє писати швидше та зменшує ймовірність помилок.
 
-
 NvChad/Neovim вже містить текстові віджети, які допомагають писати, наприклад, повторення часто використовуваних слів, індексованих за частотою введення. Нові параметри, включені цим мовним сервером, збагатять ці віджети.
 
 [Marksman](https://github.com/artempyanykh/marksman) інтегрується з вашим редактором, щоб допомогти вам створювати та підтримувати документи Markdown за допомогою [протокол LSP](https://microsoft.github.io/language-server-protocol/), що забезпечує такі функції, як завершення, визначення переходу, пошук посилань, рефакторинг імен, діагностика тощо.
@@ -39,7 +38,7 @@ NvChad/Neovim вже містить текстові віджети, які до
 
 `:MasonInstall marksman`
 
-Ця команда відкриє інтерфейс *Mason* і безпосередньо встановить потрібний мовний сервер. Після завершення двійкового встановлення ви можете закрити екран *Mason* за допомогою клавіші <kbd>q</kbd>.
+Ця команда відкриє інтерфейс *Mason* і безпосередньо встановить потрібний мовний сервер. Після завершення двійкового встановлення ви можете закрити екран *Mason* за допомогою клавіші ++"q"++.
 
 Його встановлення, однак, ще не передбачає його інтеграції в редактор. Увімкніть це, відредагувавши файл `custom/configs/lspconfig.lua` *шаблону Chadrc*.
 
@@ -71,10 +70,10 @@ local servers = { "html", "cssls", "tsserver", "clangd", "marksman" }
 
 ```text
  Client: marksman (id: 2, bufnr: [11, 156])
-    filetypes:       markdown
-    autostart:       true
-    root directory:  /home/your_user/your_path/your_directory
-    cmd:             /home/your_user/.local/share/nvim/mason/bin/marksman server
+  filetypes:       markdown
+  autostart:       true
+  root directory:  /home/your_user/your_path/your_directory
+  cmd:             /home/your_user/.local/share/nvim/mason/bin/marksman server
 
  Configured servers list: cssls, tsserver, clangd, html, yamlls, lua_ls, marksman
 ```
@@ -97,11 +96,11 @@ local servers = { "html", "cssls", "tsserver", "clangd", "marksman" }
 
 Мовний сервер надає багато ярликів, які активують допомогу при написанні. Це включає швидку вставку тегів Markdown, створення посилань і вставлення зображень у документ. Нижче наведено неповний список персонажів, які активують різні фрагменти.
 
-Ці фрагменти відображаються у віджетах, які також містять інші ярлики. Використовуйте клавішу <kbd>Tab</kbd> для навігації віджетами, щоб вибрати віджети, надані *marksman*.Ключ вставляє тег *верхнього індексу*. Trademark<sup>TM</td> </tr> 
+Ці фрагменти відображаються у віджетах, які також містять інші ярлики. Використовуйте клавішу ++tab++ для навігації віджетами, щоб вибрати віджети, надані *marksman*.Ключ вставляє тег *верхнього індексу*. Trademark<sup>TM</td> </tr> 
 
 <tr>
   <td>
-    <kbd>sub</kbd>
+    ++"sub"++
   </td>
   
   <td>
@@ -109,7 +108,7 @@ local servers = { "html", "cssls", "tsserver", "clangd", "marksman" }
     
     <tr>
       <td>
-        <kbd>table</kbd>
+        ++"table"++
       </td>
       
       <td>
@@ -119,7 +118,7 @@ local servers = { "html", "cssls", "tsserver", "clangd", "marksman" }
     
     <tr>
       <td>
-        <kbd>code</kbd>
+        ++"code"++
       </td>
       
       <td>
@@ -129,7 +128,7 @@ local servers = { "html", "cssls", "tsserver", "clangd", "marksman" }
     
     <tr>
       <td>
-        <kbd>codeblock</kbd>
+        ++"codeblock"++
       </td>
       
       <td>
@@ -161,4 +160,3 @@ local servers = { "html", "cssls", "tsserver", "clangd", "marksman" }
 <p spaces-before="0">
   Його використання та, як наслідок, запам’ятовування первинних ключів для вставлення символів коду Markdown забезпечать ефективне пришвидшення запису, дозволяючи вам зосередити свою увагу на вмісті.
 </p>
-
