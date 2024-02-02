@@ -133,7 +133,7 @@ It is also one of the most accessible desktop environments to combine with alter
 
     ### Starting the XFCE desktop
 
-    If you see the message "Complete!" in the command output and no errors, you are now ready to launch the XFCE desktop from the command line.
+    You can launch the XFCE desktop from the command line if you see the message "Complete!" in the command output and no errors. 
 
     ```bash
     sudo systemctl isolate graphical.target
@@ -149,7 +149,7 @@ It is also one of the most accessible desktop environments to combine with alter
 
     ![9_min5](images/xfce_9_min_5.png)
 
-    **NOTE:** You can login as your root username and password.
+    **NOTE:** You can log in with your root username and password.
 
     ![9_min6](images/xfce_9_min_6.png)
 
