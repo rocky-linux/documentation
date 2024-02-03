@@ -108,7 +108,7 @@ Previously, with SysV initialization, there was the concept of a **runlevel**. W
 
 | systemd targets   | SystemV runlevel | target alias (soft link) | description |
 | :---              | :---             | :---                     | :---        |
-| defautl.target    |                  | | This "target" is always a soft link to "multi-user.target" or "graphical.target". `systemd` always uses "default.target" to start the system. Attention please! It cannot be a soft link to "halt.target", "poweroff.target" or "reboot.target". |
+| default.target    |                  | | This "target" is always a soft link to "multi-user.target" or "graphical.target". `systemd` always uses "default.target" to start the system. Attention please! It cannot be a soft link to "halt.target", "poweroff.target" or "reboot.target". |
 | graphical.target  | 5                | runlevel5.target | GUI environment. |
 |                   | 4                | runlevel4.target | Reserved and unused. In the SysV initialization program, runlevel4 is the same as runlevel3. In the `systemd` initialization program, users can create and customize this "target" to start local services without changing the default "multi-user.target". |
 | multi-user.target | 3                | runlevel3.target | Full multi-user command line mode.  |
