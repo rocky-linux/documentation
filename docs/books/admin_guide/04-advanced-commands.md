@@ -372,7 +372,7 @@ Contrary to what its name might suggest, the `install` command is not used to in
 This command combines file copying (`cp`) and directory creation (`mkdir`), with rights management (`chmod`, `chown`) and other useful functionalities (like backups).
 
 ```bash
-install source dest  
+install source dest
 install -t directory source [...]
 install -d directory
 ```
@@ -497,7 +497,7 @@ Change: 2024-01-24 16:37:34.315995221 +0800
 
 * `File` - Displays the path location of the file.
 * `Size` - Displays the file size in bytes. If this is a directory, display the fixed 4096 bytes occupied by the directory name.
-* `Blocks` - Displays the number of allocated blocks. Attention, please! The size of each block in this command is 512 bytes. The default size of each block in 'ls-ls' is 1024 bytes.
+* `Blocks` - Displays the number of allocated blocks. Attention, please! The size of each block in this command is 512 bytes. The default size of each block in `ls -ls` is 1024 bytes.
 * `Device` - Device number in decimal notation. Device number in hexadecimal notation.
 * `Inode` - Inode is a unique ID number assigned by the Linux kernel to a file or directory.
 * `Links` - Number of hard links. Hard links are sometimes referred to as physical links.
