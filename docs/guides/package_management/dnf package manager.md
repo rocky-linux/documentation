@@ -56,11 +56,11 @@ sudo dnf install @kde-desktop-environment
 
 ## Update and Upgrade Packages
 
-  ## Update & Upgrade
+### Update & Upgrade
 
   If you decided to update your packages, use this simple code on the terminal.
 
-  ### Update your system
+### Update your system
 
 
   ```bash
@@ -69,7 +69,7 @@ sudo dnf install @kde-desktop-environment
 
   ![dnf update](../images/dnf_update_1.png)
 
-    ### Upgrade your system
+### Upgrade your system
 
   ```bash
   sudo dnf upgrade
@@ -78,7 +78,7 @@ sudo dnf install @kde-desktop-environment
     ![dnf upgrade](../images/dnf_upgrade_1.png)
 
 
-  ### Update your single package
+### Update your single package
 
 
   ```bash
