@@ -59,8 +59,8 @@ Admonitions are special visual "boxes" that allow you to call attention to impor
 | bug       | displays text in a red box                                    |
 | example   | displays text in a purple box                                 |
 | quote     | displays text in a grey box                                   |
-| custom <sub>1</sub> | always displays text in a blue box                  |
-| custom <sub>2</sub> | displays text in the color of the box of the chosen type |
+| custom ^1^ | always displays text in a blue box                  |
+| custom ^2^ | displays text in the color of the box of the chosen type |
 
 Admonitions are limitless, as noted in custom <sub>1</sub> above. It is possible to add a custom title to any admonition type to get the box color you want for a specific admonition, as noted in custom <sub>2</sub> above.
 
@@ -114,11 +114,11 @@ Here are examples of each admonition type, and how they will look in your docume
 
 !!! custom
 
-    A custom <sub>1</sub> type. We have used "custom" as our admonition type. Again, this will always render in blue.
+    A custom^1^ type. We have used "custom" as our admonition type. Again, this will always render in blue.
 
 !!! warning "custom title"
 
-    A custom <sub>2</sub> type. We have modified the "warning" admonition type with a custom header. Here is what that looks like:
+    A custom^2^ type. We have modified the "warning" admonition type with a custom header. Here is what that looks like:
 
     ```
     !!! warning "custom title"
@@ -233,8 +233,8 @@ In the above case, tables help us lay out command options or admonition types an
 | bug       | displays text in a red box                                    |
 | example   | displays text in a purple box                                 |
 | quote     | displays text in a grey box                                   |
-| custom <sub>1</sub> | always displays text in a blue box                  |
-| custom <sub>2</sub> | displays text in a box with the color of the chosen type |
+| custom^1^ | always displays text in a blue box                  |
+| custom^2^ | displays text in a box with the color of the chosen type |
 
 ```
 
@@ -323,31 +323,31 @@ A list of accepted keyboard commands [in this document](https://facelessuser.git
 
 ## Superscript, subscript and special symbols
 
-Superscript and subscript notation are not normal markdown, but are supported in Rocky Linux documentation via the HTML tags used for the same purpose. Superscript places text entered between the tags slightly above the normal text, while subscript places the text slightly below. Superscript is by far the more commonly used of these two in writing. Some special characters already appear in superscript without adding the tags, but you can also combine the tag to change the orientation of those characters as seen with the copyright symbol below. You can use superscript to:
+Superscript and subscript notation are supported in Rocky Linux documentation by use of the `^` for superscript and `~` for subscript. Superscript places text entered between the tags slightly above the normal text, while subscript places the text slightly below. Superscript is by far the more commonly used of these two in writing. Some special characters already appear in superscript without adding the tags, but you can also combine the tag to change the orientation of those characters as seen with the copyright symbol below. You can use superscript to:
 
-* represent ordinal numbers, such as 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
-* copyright and trademark symbols, like <sup>&copy;</sup>, <sup>TM</sup>, or &trade;, &reg;
-* as notation for references, such as this<sup>1</sup>, this<sup>2</sup> and this<sup>3</sup>
+* represent ordinal numbers, such as 1^st^, 2^nd^, 3^rd^
+* copyright and trademark symbols, like ^&copy;^, ^TM^, or ^&trade;^, ^&reg;&^
+* as notation for references, such as this^1^, this^2^ and this^3^
 
 Some of the special characters, such as &copy; are not normally superscript, while others such as &trade;, are.
 
 Here is how all the above looks in your markdown code:
 
 ```text
-* represent ordinal numbers, such as 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
-* copyright and trademark symbols, like <sup>&copy;</sup>, <sup>TM</sup> or &trade;, &reg;
-* as notation for references, such as this<sup>1</sup>, this<sup>2</sup> and this<sup>3</sup>
+* represent ordinal numbers, such as 1^st^, 2^nd^, 3^rd^
+* copyright and trademark symbols, like ^&copy;^, ^TM^ or ^&trade;^, ^&reg;^
+* as notation for references, such as this^1^, this^2^ and this^3^
 
 Some of the special characters, such as &copy; are not normally superscript, while others such as &trade;, are.
 ```
 
-As you can see, to force superscript you can use the supported HTML tags of `<sup></sup>`.
+To force superscript you surround what you want superscript with `^`.
 
-Enter subscript with the `<sub></sub>` tags, and as noted earlier, is not <sub>used nearly as much</sub> in writing.
+Enter subscript by surrounding your text with the `~` tag (H~2~0 is `H~2~0`) and as noted earlier, is not used nearly as much in writing.
 
 ### Superscript for references
 
-Some of you may feel the need to reference outside sources when writing documentation. If you only have a single source, you may wish to include it in your conclusion as a single link, but if you have multiples<sup>1</sup>, you can use superscript to note them in your text<sup>2</sup> and then list them at the end of your document. Note that the positioning of references should come after the "Conclusion" section.
+Some of you may feel the need to reference outside sources when writing documentation. If you only have a single source, you can include it in your conclusion as a single link, but if you have multiples^1^, you can use superscript to note them in your text^2^ and then list them at the end of your document. Note that the positioning of references should come after the "Conclusion" section.
 
 Following the conclusion, you can have your notations in a numbered list to match the superscript, or you can enter them as links. Both examples are shown here:
 
@@ -370,6 +370,16 @@ or
 [1](https://site1.com) "How Multiples Are Used In Text" by Wordy W. McWords  
 [2](https://site2.com) "Using Superscript In Text" by Sam B. Supersecret  
 
+```
+
+## Highlighting text
+
+Another possible way to enhance documentation is with ==highlighting==. Highlighting is handled by surrounding the text with `==`.
+
+This looks like this in your editor:
+
+```bash
+Another possible way to enhance documentation is with ==highlighting==. Highlighting is handled by surrounding the text with `==`. 
 ```
 
 ## Grouping different formatting types

@@ -1,0 +1,40 @@
+---
+INHERIT: ../build_base.yml
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 3
+  ordered_chapter_level: 3
+  verbose: false
+  back_cover: true
+  
+# You are free to configure here what you want
+plugins:
+  - with-pdf:
+      <<: *pdf-config
+      cover_title: NvChad (English version)
+      output_path: ../pdf/NvChad.pdf
+
+# Customize your own book
+nav:
+  - licence.md
+  - nvchad/index.md
+  - nvchad/additional_software.md
+  - nvchad/install_nvim.md
+  - nvchad/install_nvchad.md
+  - nvchad/template_chadrc.md
+  - nvchad/nerd_fonts.md
+  - nvchad/vale_nvchad.md
+  - nvchad/marksman.md
+  - nvchad/nvchad_ui/builtin_plugins.md
+  - nvchad/nvchad_ui/plugins_manager.md
+  - nvchad/nvchad_ui/nvchad_ui.md
+  - nvchad/nvchad_ui/using_nvchad.md
+  - nvchad/nvchad_ui/nvimtree.md
+  - nvchad/nvchad/plugins/index.md
+  - nvchad/plugins/md_preview.md
+  - nvchad/plugins/projectmgr.md

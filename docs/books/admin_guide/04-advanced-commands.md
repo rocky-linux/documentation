@@ -372,7 +372,7 @@ Contrary to what its name might suggest, the `install` command is not used to in
 This command combines file copying (`cp`) and directory creation (`mkdir`), with rights management (`chmod`, `chown`) and other useful functionalities (like backups).
 
 ```bash
-install source dest  
+install source dest
 install -t directory source [...]
 install -d directory
 ```
@@ -440,3 +440,87 @@ The suffix can be specified thanks to the `-S` option:
 $ install -v -b -S ".bak" -D -t ~/samples/ src/sample.txt
 'src/sample.txt' -> '~/samples/sample.txt' (archive: '~/samples/sample.txt.bak')
 ```
+
+## `tree` command
+
+Expand the files or directories in the directory in a tree-like manner.
+
+| options | description |
+| :--- | :--- |
+| `-a` | All files are listed |
+| `-h` | Prints the size in a more human-readable way |
+| `-u` | Displays file owner or UID number |
+| `-g` | Displays file group owner or GID number |
+| `-p` | Print the protections for each file |
+
+For example:
+
+```bash
+$ tree -hugp /etc/yum.repos.d/
+/etc/yum.repos.d/
+├── [-rw-r--r-- root     root      1.6K]  epel-modular.repo
+├── [-rw-r--r-- root     root      1.3K]  epel.repo
+├── [-rw-r--r-- root     root      1.7K]  epel-testing-modular.repo
+├── [-rw-r--r-- root     root      1.4K]  epel-testing.repo
+├── [-rw-r--r-- root     root       710]  Rocky-AppStream.repo
+├── [-rw-r--r-- root     root       695]  Rocky-BaseOS.repo
+├── [-rw-r--r-- root     root      1.7K]  Rocky-Debuginfo.repo
+├── [-rw-r--r-- root     root       360]  Rocky-Devel.repo
+├── [-rw-r--r-- root     root       695]  Rocky-Extras.repo
+├── [-rw-r--r-- root     root       731]  Rocky-HighAvailability.repo
+├── [-rw-r--r-- root     root       680]  Rocky-Media.repo
+├── [-rw-r--r-- root     root       680]  Rocky-NFV.repo
+├── [-rw-r--r-- root     root       690]  Rocky-Plus.repo
+├── [-rw-r--r-- root     root       715]  Rocky-PowerTools.repo
+├── [-rw-r--r-- root     root       746]  Rocky-ResilientStorage.repo
+├── [-rw-r--r-- root     root       681]  Rocky-RT.repo
+└── [-rw-r--r-- root     root      2.3K]  Rocky-Sources.repo
+
+0 directories, 17 files
+```
+
+## `stat` command
+
+The `stat` command displays the status of a file or file system.
+
+```bash
+$ stat /root/anaconda-ks.cfg
+  File: /root/anaconda-ks.cfg
+  Size: 1352            Blocks: 8          IO Block: 4096   regular file
+Device: 10302h/66306d   Inode: 2757097     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2024-01-20 13:04:57.012033583 +0800
+Modify: 2023-09-25 14:04:48.524760784 +0800
+Change: 2024-01-24 16:37:34.315995221 +0800
+ Birth: 2
+```
+
+* `File` - Displays the path location of the file.
+* `Size` - Displays the file size in bytes. If this is a directory, it displays the fixed 4096 bytes occupied by the directory name.
+* `Blocks` - Displays the number of allocated blocks. Attention, please! The size of each block in this command is 512 bytes. The default size of each block in `ls -ls` is 1024 bytes.
+* `Device` - Device number in decimal or hexadecimal notation.
+* `Inode` - Inode is a unique ID number the Linux kernel assigns to a file or directory.
+* `Links` - Number of hard links. Hard links are sometimes referred to as physical links.
+* `Access` - The last access time of files and directories, i.e. `atime` in GNU/Linux.
+* `Modify` - The last modification time of files and directories, i.e. `mtime` in GNU/Linux.
+* `Change` - The last time the property is changed, i.e. `ctime` in GNU/Linux.
+* `Birth` - Birth time (Creation time). In some documents, it is abbreviated as `btime` or `crtime`. You need a file system and kernel version higher than a certain version to display the creation time.
+
+For files:
+
+**atime** - After accessing the file content using commands such as `cat`, `less`, `more`, and `head`, the `atime` of the file can be updated. Please pay attention! The `atime` of the file is not updated in real-time, and for performance reasons, it needs to wait for a period of time before it can be displayed.
+**mtime** - Modifying the file content can update the `mtime` of the file (such as appending or overwriting the file content through redirection), because the file size is a property of the file, the `ctime` will also be updated simultaneously.
+**ctime** - Changing the owner, group, permissions, file size, and links (soft and hard links) of the file will update ctime.
+
+For directories:
+
+**atime** - After using the `cd` command to enter a new directory that has never been accessed before, you can update and fix the `atime` of that directory.
+**mtime** - Performing operations such as creating, deleting, and renaming files in this directory will update the `mtime` and `ctime` of the directory.
+**ctime** - When the permissions, owner, group, etc. of a directory change, the `ctime` of the directory will be updated.
+
+!!! tip
+
+    * If you create a new file or directory, its `atime`, `mtime`, and `ctime` are exactly the same
+    * If the file content is modified, the `mtime` and `ctime` of the file will inevitably be updated.
+    * If a brand new file is created in the directory, the `atime`, `ctime`, and `mtime` of that directory will be updated simultaneously.
+    * If the `mtime` of a directory is updated, then the `ctime` of that directory must be updated.

@@ -1,5 +1,5 @@
 - - -
-title: XFCE Desktop author: Gerard Arthus, Steven Spencer contributors: Steven Spencer, Antoine Le Morvan, K.Prasad, Ganna Zhyrnova tested_with: 8.5, 8.6, 9.0 tags:
+title: XFCE Desktop author: Gerard Arthus, Steven Spencer contributors: Steven Spencer, Antoine Le Morvan, K.Prasad, Ganna Zhyrnova tested_with: 8.9, 9.3 tags:
   - xfce
   - робочий стіл
 - - -
@@ -14,6 +14,7 @@ title: XFCE Desktop author: Gerard Arthus, Steven Spencer contributors: Steven S
 
 * Робоча станція або ноутбук
 * Бажання запустити XFCE як робочий стіл замість стандартного робочого столу GNOME
+* Для 9 мінімальних і 8 процедур, можливість `sudo` для підвищення привілеїв
 
 === "9"
 
@@ -92,6 +93,71 @@ title: XFCE Desktop author: Gerard Arthus, Steven Spencer contributors: Steven S
     Далі ви отримаєте екран входу з користувачем, якого ви створили вище. Введіть свій пароль, який переведе вас на робочий стіл XFCE:
 
     ![xfce_desktop](images/xfce_desktop.png)
+
+=== "9-minimal"
+
+    ## 9 minimal: Вступ
+    
+    Якщо ви встановили Rocky Linux 9.x і вирішите встановити XFCE після цього, ця процедура допоможе вам це зробити. Ця процедура передбачає встановлення `Rocky-9.3-x86_64-minimal.iso`.
+    
+    ### Оновіть свою систему
+    
+    Спочатку переконайтеся, що ваша система оновлена:
+
+    ```bash
+    sudo dnf update -y && dnf upgrade -y
+    ```
+
+
+    ![9_min1](images/xfce_9_min_1.png)
+    
+    По-друге, виконайте наведену нижче команду, щоб установити репозиторій epel-release, який містить усі пакунки, необхідні для встановлення для Xfce Desktop.
+
+    ```bash
+    sudo dnf install epel-release -y
+    ```
+
+
+    ![9_min2](images/xfce_9_min_2.png)
+    
+    ### Встановіть XFCE desktop
+    
+    Встановіть XFCE, виконавши цю команду:
+
+    ```bash
+    sudo dnf groupinstall xfce -y
+    ```
+
+
+    ![9_min3](images/xfce_9_min_3.png)
+    
+    ### Запуск робочого столу XFCE
+    
+    Ви можете запустити робочий стіл XFCE з командного рядка, якщо побачите повідомлення «Complete!» у виведенні команди та без помилок.
+
+    ```bash
+    sudo systemctl isolate graphical.target
+    ```
+
+
+    ### Увімкнути робочий стіл XFCE під час завантаження
+    
+    На цьому етапі ви встановили робочий стіл XFCE у системі та переконалися, що він працює, запустивши його з командного рядка. Якщо ви хочете, щоб ваша система завжди запускалася з XFCE замість командного рядка, ви повинні виконати таку команду. Вам потрібно буде спочатку відкрити термінал XFCE за допомогою значка 9 точок:
+
+    ```bash
+    sudo systemctl set-default graphical.target
+    ```
+
+
+    ![9_min5](images/xfce_9_min_5.png)
+    
+    **Важливо:** Ви можете увійти за допомогою свого імені користувача та пароля root.
+    
+    ![9_min6](images/xfce_9_min_6.png)
+    
+    Тепер ви можете перевірити це. Перезавантажте систему за допомогою команди `sudo reboot`. Ви побачите, що ваша система відкривається на екрані входу на робочий стіл XFCE.
+    
+    ![9_min7](images/xfce_9_min_7.png)
 
 === "8"
 

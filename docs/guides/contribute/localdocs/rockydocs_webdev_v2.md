@@ -48,7 +48,7 @@ git clone https://github.com/rocky-linux/docs.rockylinux.org.git
 You will now have a `$ROCKYDOCS/docs.rockylinux.org` folder. This folder is where you can experiment with your web development contributions.
 
 
-## Create and Start the RockyDocs web developmwnt environment
+## Create and Start the RockyDocs web development environment
 
 5.  Ensure you have Podman up and running on your local machine (you can check with `systemctl `). Test by running:
 
