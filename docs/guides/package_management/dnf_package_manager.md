@@ -28,7 +28,7 @@ At this point you can use the Dnf package manager on Rocky Linux operating syste
 sudo dnf install package_name1 package_name2 package_name3 
 ```
 
-To install perl:
+To install `perl`:
 
 ```bash
 sudo dnf install perl
@@ -83,7 +83,7 @@ Is this ok [y/N]:
 Installing a package group, as for **Xfce desktop** or  **Kde desktop**, and so on, is similar:
 
 ```bash
-sudo dnf groupinstall xfce
+sudo dnf group install xfce
 ```
 
 Which will generate output such as this:
@@ -297,7 +297,7 @@ Freed space: 343 M
 Is this ok [y/N]:
 ```
 
-Removing a group has the following syntax. Note that removing the KDE group can be done several ways:
+Removing a group has the following syntax. Note that removing the KDE group is possible several ways:
 
 ```bash
 sudo dnf group remove "KDE Plasma Workspaces"
@@ -305,7 +305,7 @@ sudo dnf group remove kde-desktop-environment
 sudo dnf remove @kde-desktop-environment
 ```
 
-## Dnf list
+## DNF list
 
 You can list any package, even if you do not know the entire name of the package, by running this command:
 
@@ -343,7 +343,7 @@ kernel-uki-virt.x86_64                                                          
 kernelshark.x86_64                                                                                                              1:1.2-10.el9                                                                                            appstream
 ```
 
-List information on installed and available kernel tools and modules matching information with this command:
+List information on installed and available kernel tools, modules, and matching information with this command:
 
 ```bash
 sudo dnf list kernel-tools\* kernel-modules\*
@@ -519,7 +519,7 @@ Search for more than one package in one search by running this command:
 sudo dnf search all yum vim 
 ```
 
-The command will return a long list of packages that include "yum" and "vim", either as the package name, or as descriptions for other packages.
+The command will return a long list of packages that include "yum" and "vim", as the package name, or as descriptions for other packages.
 
 ### DNF package information
 
@@ -563,7 +563,7 @@ To display information about all available packages, both installed and availabl
 sudo dnf repoquery perl --info
 ```
 
-While it is not always the case, in the above instance, the results of the command is identical to the `sudo dnf info perl` command.
+While it is not always the case, in the above instance, the results of this command is identical to the `sudo dnf info perl` command.
 
 ## DNF repository configuration
 
