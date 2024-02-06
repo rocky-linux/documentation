@@ -39,7 +39,7 @@ As the developers of NvChad are keen to point out, the project is only intended 
 
 * :material-run-fast: **Designed to be fast.** From the choice of programming language to techniques for loading components, everything is designed to minimize execution time.
 * :material-invert-colors: **Attractive Interface.** Despite being a *cli* application the interface looks modern and beautiful graphically, plus all the components fit the UI perfectly.
-* :material-file-settings-outline: **Extremely Configurable.** Due to the modularity derived from the base application (NeoVim), the editor can be adapted perfectly to one's needs. Keep in mind, however, that when we talk about customization we are referring to functionality, and not to the appearance of the interface.
+* :material-file-settings-outline: **Extremely Configurable.** Due to the modularity derived from the base application (NeoVim), the editor can be adapted perfectly to one's needs. However, remember that when we talk about customization, we are referring to functionality, and not to the appearance of the interface.
 * :material-update: **Automatic update mechanism.** The editor comes with a mechanism (through the use of *git*) that allows updates with a simple `:NvChadUpdate` command.
 * :material-language-lua: **Powered by Lua.** NvChad's configuration is written entirely in *lua*, which allows it to integrate seamlessly into Neovim's configuration by taking advantage of the full potential of the editor on which it is based.
 * :material-palette-outline: **Numerous inbuilt themes.** The configuration already includes a large number of themes to use, always keeping in mind that we are talking about a *cli* application, themes can be selected with the `<leader> + th` key.
@@ -72,9 +72,9 @@ Lua is not interpreted directly through a Lua file like other languages, for exa
 #### Key Features
 
 * Speed: Lua is considered one of the fastest programming languages among interpreted scripting languages; it can perform very performance-heavy tasks faster than most other programming languages.
-* Size: Lua has a really small size compared to other programming languages. This small size is ideal for integrating Lua into multiple platforms, from embedded devices to game engines.
-* Portability and integration: The portability of Lua is almost unlimited. Any platform that supports the standard C compiler can run Lua without problems. Lua does not require complex rewrites to be compatible with other programming languages.
-* Simplicity: Lua has a simple design but provides powerful functionality. One of the main features of Lua is meta-mechanisms, which allow developers to implement their own functionality. The syntax is simple and in an easily understood format, so that anyone can easily learn Lua and use it in their own programs.
+* Size: Lua is tiny compared to other programming languages. This small size is ideal for integrating Lua into multiple platforms, from embedded devices to game engines.
+* Portability and integration: Lua's portability is almost unlimited. Any platform that supports the standard C compiler can run Lua without problems. Lua does not require complex rewrites to be compatible with other programming languages.
+* Simplicity: Lua has a simple design but provides powerful functionality. One of the main features of Lua is meta-mechanisms, which allow developers to implement their own functionality. The syntax is simple and easily understood, so that anyone can learn Lua and use it in their own programs.
 * License: Lua is free and open-source software distributed under the MIT license. This allows anyone to use it for any purpose without paying any license or royalties.
 
 ### :simple-neovim: Neovim

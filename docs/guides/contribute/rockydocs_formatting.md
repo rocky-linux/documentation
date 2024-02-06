@@ -379,7 +379,7 @@ Another possible way to enhance documentation is with ==highlighting==. Highligh
 This looks like this in your editor:
 
 ```bash
-Another possible way to enhance documentation is with ==highlighting==. Higlighting is handled by surrounding the text with `==`. 
+Another possible way to enhance documentation is with ==highlighting==. Highlighting is handled by surrounding the text with `==`. 
 ```
 
 ## Grouping different formatting types
