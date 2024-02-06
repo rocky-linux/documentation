@@ -39,14 +39,14 @@ jobs:
       - name: Build all
         run: ${PWD}/build_pdf/build_all.sh
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+        
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: pdfs
+          # name: pdfs
           path: build_pdf/pdf/*
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
       
       - name: Deploy to GitHub Pages
         id: deployment
