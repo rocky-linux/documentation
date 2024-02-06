@@ -12,7 +12,7 @@ tags:
 
 There are several pieces of additional software that, while not required, will aid in the overall use of NvChad. The sections below will walk you through that software and its uses.
 
-## :material-file-search-outline: RipGrep
+## :material-text-search: RipGrep
 
 `ripgrep` is a line-oriented search tool that recursively searches the current directory for a *regex* (regular expression) pattern. By default, *ripgrep* respects the rules of *gitignore* and automatically skips hidden files/directories and binaries. Ripgrep offers excellent support on Windows, macOS and Linux, with binaries available for each release.
 
@@ -28,7 +28,7 @@ There are several pieces of additional software that, while not required, will a
 
 === "Install RipGrep using cargo"
 
-    Ripgrep is software written in ==Rust== and is installable with the `cargo` utility. Note, however, that `cargo` is not installed by the default installation of *rust*, so you have to install it explicitly. If you run into errors using this method, revert back to installing from the EPEL.
+    Ripgrep is software written in *Rust* and is installable with the `cargo` utility. Note, however, that `cargo` is not installed by the default installation of *rust*, so you have to install it explicitly. If you run into errors using this method, revert back to installing from the EPEL.
 
     ```bash
     dnf install rust cargo
@@ -46,7 +46,7 @@ There are several pieces of additional software that, while not required, will a
     ln -s ~/.cargo/bin/rg ~/.local/bin/
     ```
 
-## RipGrep Verification
+## :material-check-all: RipGrep Verification
 
 At this point we can check that everything is okay with:
 
@@ -59,7 +59,7 @@ ripgrep 13.0.0
 
 RipGrep is needed for recursive searches with `:Telescope`.
 
-## :octicons-git-merge-24: Lazygit
+## :material-source-merge: Lazygit
 
 [LazyGit](https://github.com/jesseduffield/lazygit) is an ncurses-style interface that allows you to perform all `git` operations in a more user-friendly way. It is required by the ==lazygit.nvim== plugin. This plugin makes it possible to use LazyGit directly from NvChad, it opens a floating window from where you can perform all operations on your repositories, thus allowing you to make all changes to the *git repository* without leaving the editor.
 
@@ -72,9 +72,9 @@ sudo dnf install lazygit
 
 Once installed we open a terminal and type the command `lazygit` and an interface similar to this will appear:
 
-![LazyGit UI](images/lazygit_ui.png)
+![LazyGit UI](./images/lazygit_ui.png)
 
-With the ++"x"++ key, we can bring up the menu with all available commands.
+With the ++"?"++ key, we can bring up the menu with all available commands.
 
 ![LazyGit UI](images/lazygit_menu.png)
 
