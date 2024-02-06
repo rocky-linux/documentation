@@ -3145,7 +3145,7 @@ Like most programming languages, `awk` also supports arrays, which are divided i
     D b6 NGINX
     ```
 
-3. command | getline &#91;var&#93;
+3. command \| getline [var]
 
     ```bash
     Shell > awk 'BEGIN{ "date +%Y%m%d" | getline datenow ; print datenow}'
