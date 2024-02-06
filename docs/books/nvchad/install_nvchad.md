@@ -187,6 +187,8 @@ Finally, we find the ==lazy-lock.json== file. This file allows us to synchronize
 
 ## :material-keyboard-outline: Main keyboard keys
 
+The installation of NvChad also inserts a set of keys for common commands into the editor, their configuration is contained in the file `lua/core/mappings.lua` and can be modified or extended with the file `lua/custom/mappings.lua`.
+
 This is the call that returns basic command mappings:
 
 ```lua
@@ -204,7 +206,7 @@ This sets four main keys from which, in association with other keys, commands ca
 
     We will refer to these key mappings several times throughout these documents. 
 
-The default mapping is contained in *core/mapping.lua* but can be extended with other custom commands using its own *mappings.lua*.
+These are some of the keys set, for an exhaustive list we recommend consulting the file mentioned above.
 
 `<leader>th` to change the theme ++space++ + ++"t"++ + ++"h"++  
 `<C-n>` to open nvimtree ++ctrl++ + ++"n"++  
