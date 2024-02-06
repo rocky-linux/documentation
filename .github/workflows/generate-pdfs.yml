@@ -33,3 +33,10 @@ jobs:
         with:
           name: pdfs
           path: build_pdf/pdf/*
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
