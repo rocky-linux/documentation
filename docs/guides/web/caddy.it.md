@@ -146,7 +146,7 @@ systemctl enable --now caddy
 
 Entro un minuto, Caddy otterrà i certificati SSL da Let's Encrypt. A questo punto, è possibile visualizzare il sito web appena impostato in un browser:
 
-![Caddy serve il nostro sito web dimostrativo](../images/caddy_esempio.png)
+![Caddy serve il nostro sito web dimostrativo](../images/caddy_example.png)
 
 Dovrebbe avere un lucchetto SSL che dovrebbe funzionare in ogni browser moderno, e non solo, anche una valutazione A+ al [Qualys SSL Server Test](https://www.ssllabs.com/ssltest/).
 

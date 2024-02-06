@@ -443,12 +443,12 @@ $ install -v -b -S ".bak" -D -t ~/samples/ src/sample.txt
 
 ## `tree` command
 
-Expand the files or directories contained in the directory in a tree like manner. 
+Expand the files or directories in the directory in a tree-like manner.
 
-| options | desction |
+| options | description |
 | :--- | :--- |
 | `-a` | All files are listed |
-| `-h` | Print the size in a more human readable way |
+| `-h` | Prints the size in a more human-readable way |
 | `-u` | Displays file owner or UID number |
 | `-g` | Displays file group owner or GID number |
 | `-p` | Print the protections for each file |
@@ -481,7 +481,7 @@ $ tree -hugp /etc/yum.repos.d/
 
 ## `stat` command
 
-The `stat` command is used to display the status of a file or file system.
+The `stat` command displays the status of a file or file system.
 
 ```bash
 $ stat /root/anaconda-ks.cfg
@@ -496,15 +496,15 @@ Change: 2024-01-24 16:37:34.315995221 +0800
 ```
 
 * `File` - Displays the path location of the file.
-* `Size` - Displays the file size in bytes. If this is a directory, display the fixed 4096 bytes occupied by the directory name.
+* `Size` - Displays the file size in bytes. If this is a directory, it displays the fixed 4096 bytes occupied by the directory name.
 * `Blocks` - Displays the number of allocated blocks. Attention, please! The size of each block in this command is 512 bytes. The default size of each block in `ls -ls` is 1024 bytes.
-* `Device` - Device number in decimal notation. Device number in hexadecimal notation.
-* `Inode` - Inode is a unique ID number assigned by the Linux kernel to a file or directory.
+* `Device` - Device number in decimal or hexadecimal notation.
+* `Inode` - Inode is a unique ID number the Linux kernel assigns to a file or directory.
 * `Links` - Number of hard links. Hard links are sometimes referred to as physical links.
 * `Access` - The last access time of files and directories, i.e. `atime` in GNU/Linux.
 * `Modify` - The last modification time of files and directories, i.e. `mtime` in GNU/Linux.
 * `Change` - The last time the property is changed, i.e. `ctime` in GNU/Linux.
-* `Birth` - Birth time (Creation time). In some documents, it is abbreviated as `btime` or `crtime`. To display the creation time, you need a file system and kernel version higher than a certain version.
+* `Birth` - Birth time (Creation time). In some documents, it is abbreviated as `btime` or `crtime`. You need a file system and kernel version higher than a certain version to display the creation time.
 
 For files:
 
