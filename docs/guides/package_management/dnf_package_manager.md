@@ -10,11 +10,11 @@ tags:
   - Package Manager
 ---
 
-# Dnf package manager
+# DNF package manager
 
-DNF, or Dandified Yum, is a package manager used in some Linux distributions. It is the next generation version of the Yum (Yellowdog Updater, Modified) package manager, which was widely used in Red Hat-based systems. DNF was introduced as a replacement for Yum to address some limitations and improve performance. 
+DNF, or Dandified Yum, is a package manager in some Linux distributions. It is the next-generation version of the Yum (Yellowdog Updater, Modified) package manager, widely used in Red Hat-based systems. DNF was introduced as a replacement for Yum to address some limitations and improve performance.
 
-DNF is commonly used in Rocky Linux, Fedora, RHEL (Red Hat Enterprise Linux) 8 and later, and other Linux distributions that have adopted it as their package manager. It aims to provide a more modern and efficient package management experience for users and administrators.
+DNF is commonly used in Rocky Linux, Fedora, RHEL (Red Hat Enterprise Linux) 8 and later, and other Linux distributions that have adopted it as their package manager. It aims to provide users and administrators a more modern and efficient package management experience.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ DNF is commonly used in Rocky Linux, Fedora, RHEL (Red Hat Enterprise Linux) 8 a
 
 ## Installing packages
 
-At this point you can use the Dnf package manager on Rocky Linux operating system just like you do with other package managers to install, remove, and update the packages you desire.
+You can use the DNF package manager on Rocky Linux operating system just like you do with other package managers to install, remove, and update the packages you desire.
 
 ```bash
 sudo dnf install package_name1 package_name2 package_name3 
@@ -228,11 +228,11 @@ If you used the `sudo dnf update` or `sudo dnf upgrade` commands earlier, your e
 
 ## Removing packages
 
-Similar to installing packages, you can use `dnf` to uninstall packages. Dependencies are crucial in the Linux system however, and if you are not aware of these dependencies, it is recommended not to remove a package. For instance, a mistakenly installed package may have 20 dependencies, and when you remove that package, the system will also remove those 20 packages shared with other programs. Consequently, some previously functioning programs may become unusable. Moreover, if you think you can resolve it by reinstalling the same package, you may encounter version and old version conflict issues. Be cautious in this regard.
+Like installing packages, you can use `dnf` to uninstall packages. However, dependencies are crucial in the Linux system, and if you are not aware of them, it is recommended not to remove a package. For instance, a mistakenly installed package may have 20 dependencies, and when you remove that package, the system will also remove those 20 packages shared with other programs. Consequently, some previously functioning programs may become unusable. Moreover, if you think you can resolve it by reinstalling the same package, you may encounter version and old version conflict issues. Be cautious in this regard.
 
 !!! Warning
 
-    DNF cannot remove a package without also removing packages that depend on it.
+    DNF cannot remove a package without removing packages that depend on it.
 
 The syntax to remove packages is:
 
@@ -444,7 +444,7 @@ extras                                                                          
 
 ## DNF list history
 
-You can see dnf list history with this command:
+You can see DNF list history with this command:
 
 ```bash
 sudo dnf history list
@@ -497,7 +497,7 @@ Warning, the following problems occurred while running a transaction:
   Package "tar.x86_64" is already installed for action "Install".
 ```
 
-The `sudo dnf history redo 20` command used to repeat the command with ID:20 from the DNF history list, and it attempted to reinstall `tar`. Naturally, since it had been installed before, the operation displayed 'is already installed'.
+The `sudo dnf history redo 20` command used above, attempts to repeat the command with ID:20 from the DNF history list, to reinstall `tar`. Naturally, the operation displayed 'is already installed', since it had been installed before.
 
 ### Searching packages
 
@@ -707,4 +707,4 @@ zchunk = 1
 
 ## Conclusion
 
-Rocky linux uses DNF, the next generation replacement for YUM. Shown on this page were examples of basic DNF usage. For more information, refer to the [official documentation for DNF](https://dnf.readthedocs.io/en/latest/index.html)
+Rocky linux uses DNF, the next-generation replacement for YUM. Shown on this page were examples of basic DNF usage. For more information, refer to the [official documentation for DNF](https://dnf.readthedocs.io/en/latest/index.html)
