@@ -2,12 +2,8 @@
 name: Mkdocs build PDFs
 
 on:
-  push:
-    branches:
-      - main
   schedule:
-    - cron: '0 12 1 * *'
-  workflow_dispatch:
+    - cron: '0 0 * * *'
 
 jobs:
   build_pdfs:
