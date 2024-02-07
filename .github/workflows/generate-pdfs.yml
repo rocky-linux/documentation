@@ -25,7 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Build PDFs
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - uses: actions/setup-python@v4
         with:
@@ -39,13 +40,13 @@ jobs:
       - name: Build all
         run: ${PWD}/build_pdf/build_all.sh
 
-      #- name: Setup Pages
-      #  uses: actions/configure-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
         
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v2.0.0
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: build_pdf/pdf/*
+          path: './build_pdf/pdf/*'
           
   deploy:
     runs-on: ubuntu-latest
@@ -53,4 +54,5 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
+        
