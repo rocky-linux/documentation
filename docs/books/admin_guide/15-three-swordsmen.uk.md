@@ -3171,7 +3171,7 @@ False
    D b6 NGINX
    ```
 
-3. command | getline [var\&#93
+3. command | getline [var]
 
    ```bash
    Shell > awk 'BEGIN{ "date +%Y%m%d" | getline datenow ; print datenow}'
