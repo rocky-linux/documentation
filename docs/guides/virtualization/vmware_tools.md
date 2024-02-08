@@ -50,9 +50,9 @@ sudo shutdown -r now
 
 Right-click VM in the virtual machine menu, then click Guest > Install/Upgrade VMware Tools.
 
-> VM Tab => Select Install Vmware Tools
+> VM Tab => Select Install VMware Tools
 
-Mounting Vmware Tools CDROM complete.
+Mounting VMware Tools CDROM complete.
 
 ### Mounting VMware tools from the command-line
 
@@ -84,7 +84,7 @@ manifest.txt  run_upgrader.sh  VMwareTools-10.3.23-16594550.tar.gz  vmware-tools
 
 ## Installing VMware tools
 
-Copy the Vmware tools gzip file to local `/tmp` directory with this command:
+Copy the VMware tools gzip file to local `/tmp` directory with this command:
 
 ```bash
 cp /mnt/cdrom/VMwareTools-10.3.23-16594550.tar.gz /tmp/
@@ -124,7 +124,6 @@ vmware-tools-distrib/doc/INSTALL
 vmware-tools-distrib/doc/open_source_licenses.txt
 vmware-tools-distrib/doc/README
 vmware-tools-distrib/vmware-install.pl
-
 ```
 
 !!! Warning
@@ -152,7 +151,7 @@ vmware-tools-distrib/vmware-install.pl
 
 !!! Warning
 
-    Be carefull changing the default init script directory which should be `/etc/init.d/`.
+    Be careful changing the default init script directory which should be `/etc/init.d/`.
 
     >What is the directory that contains the init directories (rc0.d/ to rc6.d/)? 
     >[/etc] /etc/init.d
