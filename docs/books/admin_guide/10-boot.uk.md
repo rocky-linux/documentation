@@ -13,7 +13,7 @@ title: Запуск системи
 :heavy_check_mark: Як Rocky Linux підтримує це завантаження через GRUB2 і systemd;   
 :heavy_check_mark: Як захистити GRUB2 від атаки;   
 :heavy_check_mark: Як керувати послугами;   
-:heavy_check_mark: Як отримати доступ до журналів з journald.
+:heavy_check_mark: Як отримати доступ до журналів з `journald`.
 
 :checkered_flag: **користувачі**
 
