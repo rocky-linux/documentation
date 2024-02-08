@@ -1,5 +1,5 @@
 ---
-title: VMware Tools Installation
+title: VMware™ Tools Installation
 author: Emre Camalan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.9, 9.3
@@ -10,7 +10,7 @@ tags:
 
 # VMware tools installation
 
-VMware Tools is a suite of utilities that enhances the performance and management of virtual machines (VMs) running on VMware virtualization platforms such as VMware vSphere, VMware Workstation, and VMware Fusion. VMware tools improve the interaction between the guest operating system and the host environment.
+VMware Tools™ is a suite of utilities that enhances the performance and management of virtual machines (VMs) running on VMware virtualization platforms such as VMware vSphere, VMware Workstation, and VMware Fusion. VMware tools improve the interaction between the guest operating system and the host environment.
 
 ## Prerequisites and assumptions
 
