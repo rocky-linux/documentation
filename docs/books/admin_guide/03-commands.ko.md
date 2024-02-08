@@ -1,9 +1,10 @@
 ---
 title: Linux 명령어
 author: Antoine Le Morvan
-contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque
+contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque, Ganna Zhyrnova
 ---
 
+<!-- markdownlint-disable MD025 MD007 -->
 # Linux 사용자를 위한 명령어
 
 이 문서에서는 Linux 명령어와 명령어 사용 방법에 대해 설명합니다.
@@ -12,13 +13,13 @@ contributors: Steven Spencer, Aditya Putta, tianci li, Grammaresque
 
 **목표**: 이 문서에서는 미래의 Linux 관리자가 다음을 수행하는 방법을 배웁니다:
 
-:heavy_check_mark: 시스템 트리 내에서 **이동**   
-:heavy_check_mark: 텍스트 파일 **생성**, 내용을** 표시 ** 및 ** 수정**   
-:heavy_check_mark: 가장 유용한 Linux 명령어를 **사용**
+:heavy_check_mark: **이동**: 시스템 트리 내에서 이동합니다.   
+:heavy_check_mark: 텍스트 파일을 **생성**하고, 그 내용을 **표시**하며, **수정**합니다.   
+:heavy_check_mark: 가장 유용한 리눅스 명령어를 **사용**합니다.
 
 :checkered_flag: **사용자 명령어**, **linux**
 
-**지식**: :star:   
+**지식**: :star:  
 **복잡성**: :star:
 
 **소요 시간**: 40분
@@ -45,12 +46,15 @@ Linux 시스템의 사용자는 `/etc/passwd` 파일에서 다음과 같이 정�
 * 숫자 식별자: **UID**(User Identifier - 사용자 식별자).
 * 그룹 식별자: **GID**(Group Identifier - 그룹 식별자).
 * **명령 인터프리터**(예: 셸)는 사용자마다 다를 수 있습니다.
-* **연결 디렉토리**(예: __홈 디렉토리__).
+* **연결 디렉토리**(예: **홈 디렉토리**).
 
 다른 파일에서는 사용자는 다음과 같이 정의됩니다:
 
 * **비밀번호**: 저장하기 전에 암호화됩니다 (`/etc/shadow`).
-* **명령 프롬프트** 또는 __프롬프트__ 로그인: 관리자의 경우 `#`로 표시되며, 다른 사용자의 경우 `$`로 표시됩니다 (`/etc/profile`).
+* **명령 프롬프트**, 또는 **프롬프트** 로그인은
+
+    * `#` 관리자를 위한
+    * 다른 사용자에게는 `$`로 상징됩니다 (`/etc/profile`).
 
 시스템에 구현된 보안 정책에 따라, 암호는 특정 수의 문자를 필요로 하며 특정 복잡성 요구 사항을 충족해야합니다.
 
@@ -58,7 +62,7 @@ Linux 시스템의 사용자는 `/etc/passwd` 파일에서 다음과 같이 정�
 
 사용자의 로그인 디렉토리는 관례적으로 워크스테이션의 `/home` 디렉토리에 저장됩니다. 이 디렉토리에는 사용자의 개인 데이터와 응용 프로그램의 구성 파일이 포함됩니다. 로그인할 때 기본적으로 로그인 디렉토리가 현재 디렉토리로 선택됩니다.
 
-작업 스테이션 유형의 설치 (그래픽 인터페이스 포함)는 터미널 1에서 이 인터페이스를 시작합니다. Linux는 다중 사용자 시스템이므로 서로 다른 **물리 터미널**(TTY) 또는 **가상 터미널**(PTS)에서 여러 사용자를 여러 번 연결할 수 있습니다. 가상 터미널은 그래픽 환경 내에서 사용할 수 있습니다. 사용자가 명령줄에서 <kbd>Alt</kbd> + <kbd>Fx</kbd> 또는 <kbd>CTRL</kbd> + <kbd>Alt</kbd> + <kbd>Fx</kbd>를 사용하여 하나의 물리 터미널에서 다른 터미널로 전환할 수 있습니다.
+작업 스테이션 유형의 설치 (그래픽 인터페이스 포함)는 터미널 1에서 이 인터페이스를 시작합니다. Linux는 다중 사용자 시스템이므로 서로 다른 **물리 터미널**(TTY) 또는 **가상 터미널**(PTS)에서 여러 사용자를 여러 번 연결할 수 있습니다. 가상 터미널은 그래픽 환경 내에서 사용할 수 있습니다. 사용자는 커맨드 라인에서 ++alt+"Fx"++ 또는 ++ctrl+alt+"Fx"++를 사용하여 한 물리적 터미널에서 다른 터미널로 전환할 수 있습니다.
 
 ### 셸
 
@@ -72,7 +76,7 @@ Linux 시스템의 사용자는 `/etc/passwd` 파일에서 다음과 같이 정�
 * 명령 프롬프트를 표시합니다.
 * 등등.
 
-명령을 실행하는 동안 실행 중인 명령을 중단하기 위해 <kbd>CTRL</kbd> + <kbd>C</kbd> 키 조합을 사용합니다.
+키 시퀀스 ++ctrl+c++는 실행 중인 명령을 중단하는 데 사용됩니다.
 
 일반적으로 명령의 사용은 다음 순서를 따릅니다:
 
@@ -481,16 +485,16 @@ $ ls /home
 
 그러나 `ls` 명령어는 는 많은 옵션을 가지고 있습니다(`man` 참조하세요).
 
-| 옵션   | 정보                                                                                                                      |
-| ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| `-d` | 내용을 나열하는 대신 디렉토리에 대한 정보를 표시합니다.                                                                                         |
-| `-g` | -l 옵션과 비슷하지만 소유자를 나열하지 않습니다.                                                                                            |
-| `-h` | 파일 크기를 가장 적합한 형식(바이트, 킬로바이트, 메가바이트, 기가바이트, ...)으로 표시합니다. `h`는 인간이 읽을 수 있는(Human Readable) 뜻의 약자입니다. -l 옵션과 함께 사용해야 합니다. |
-| `-s` | 각 파일의 할당된 크기를 블록 단위로 표시합니다. GNU/Linux 운영 체제에서 "블록"은 파일 시스템의 최소 저장 단위이며 한 블록은 4096Byte에 해당합니다.                           |
-| `-A` | `.` 및 `..`를 제외한 디렉토리의 모든 파일을 표시합니다.                                                                                     |
-| `-R` | 하위 디렉토리의 내용을 재귀적으로 표시합니다.                                                                                               |
-| `-F` | 파일 유형을 표시합니다. 디렉토리의 경우 `/`, 실행 파일의 경우 `*`, 심볼릭 링크의 경우 `@`를 표시하고, 텍스트 파일의 경우 아무것도 표시하지 않습니다.                             |
-| `-X` | 확장자에 따라 파일을 정렬합니다.                                                                                                      |
+| 옵션   | 정보                                                                                                                                                                                                                                                  |
+| ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-d` | 내용을 나열하는 대신 디렉토리에 대한 정보를 표시합니다.                                                                                                                                                                                                                     |
+| `-g` | -l 옵션과 비슷하지만 소유자를 나열하지 않습니다.                                                                                                                                                                                                                        |
+| `-h` | 파일 크기를 가장 적합한 형식(바이트, 킬로바이트, 메가바이트, 기가바이트, ...)으로 표시합니다. `h`는 인간이 읽을 수 있는(Human Readable) 뜻의 약자입니다. -l 옵션과 함께 사용해야 합니다.                                                                                                                             |
+| `-s` | 각 파일의 할당된 크기를 블록 단위로 표시합니다. `ls` 명령어에서 단일 블록의 기본 크기는 1024-바이트입니다. GNU/Linux 운영 체제에서 "블록"은 파일 시스템의 최소 저장 단위이며, 일반적으로 한 블록은 4096-바이트와 같습니다. Windows 운영 체제에서 NTFS 파일 시스템을 예로 들면, 그 최소 저장 단위는 "클러스터"라고 불립니다. 최소 저장 단위 이름의 정의는 다른 파일 시스템에 따라 달라질 수 있습니다. |
+| `-A` | `.` 및 `..`를 제외한 디렉토리의 모든 파일을 표시합니다.                                                                                                                                                                                                                 |
+| `-R` | 하위 디렉토리의 내용을 재귀적으로 표시합니다.                                                                                                                                                                                                                           |
+| `-F` | 파일 유형을 표시합니다. 디렉토리의 경우 `/`, 실행 파일의 경우 `*`, 심볼릭 링크의 경우 `@`를 표시하고, 텍스트 파일의 경우 아무것도 표시하지 않습니다.                                                                                                                                                         |
+| `-X` | 확장자에 따라 파일을 정렬합니다.                                                                                                                                                                                                                                  |
 
 * `ls -lia` 명령을 실행하여 생성된 열에 대한 설명:
 
@@ -716,8 +720,9 @@ mv file [file ...] destination
 예시:
 
 ```bash
-$ mv /home/rockstar/file1 /home/rockstar/file2
-$ mv /home/rockstar/file1 /home/rockstar/file2 /tmp
+mv /home/rockstar/file1 /home/rockstar/file2
+
+mv /home/rockstar/file1 /home/rockstar/file2 /tmp
 ```
 
 | 옵션   | 정보                           |
@@ -1026,7 +1031,7 @@ $ sort -R /etc/passwd
 
 다음은 `dns-client.txt` 파일의 예입니다.
 
-```
+```text
 192.168.1.10
 192.168.1.200
 5.1.150.146
@@ -1049,14 +1054,15 @@ $ sort -nr dns-client.txt
 
 다음은 `colours.txt` 파일의 예입니다.
 
-```
+```text
 Red
 Green
 Blue
 Red
 Pink
 ```
-```
+
+```text
 $ sort -u colours.txt
 Blue
 Green
@@ -1070,7 +1076,7 @@ Red
 
 다음은 `size.txt` 파일의 예입니다.
 
-```
+```text
 1.7G
 18M
 69K
@@ -1203,12 +1209,13 @@ root:x:0:0:root:/root:/bin/bash
 | `-w` | 정확한 단어를 검색합니다.        |
 
 `grep` 명령은 찾고 있는 문자열이 포함된 전체 줄을 반환합니다.
+
 * 특수 문자는 줄의 시작 부분에서 문자열을 검색하는 데 사용됩니다.
 * `$` 특수 문자는 줄의 끝 부분에서 문자열을 검색하는 데 사용됩니다.
 
-```bash
-$ grep -w "^root" /etc/passwd
-```
+    ```bash
+    grep -w "^root" /etc/passwd
+    ```
 
 !!! 참고 사항
 
@@ -1288,7 +1295,7 @@ UNIX 및 Linux 시스템에는 세 가지 표준 스트림이 있습니다. `std
 문자 `<` 또는 `<<`를 사용하여  입력 스트림을 다른 파일로 리디렉션할 수 있습니다. 명령은 키보드 대신 파일을 읽을 것입니다.
 
 ```bash
-$ ftp -in serverftp << ftp-commands.txt
+ftp -in serverftp << ftp-commands.txt
 ```
 
 !!! 참고 사항
@@ -1329,9 +1336,9 @@ STOP
 
 ```bash
 $ wc -l .bash_profile
-27 .bash_profile # the number of lines is followed by the file name
+27 .bash_profile # 파일 이름 뒤에 줄 수가 표시됩니다
 $ wc -l < .bash_profile
-27 # returns only the number of lines
+27 # 줄 수만 반환합니다
 ```
 
 ### 출력 리디렉션
@@ -1341,13 +1348,13 @@ $ wc -l < .bash_profile
 간단한 `>` 리디렉션은 출력 파일의 내용을 덮어씁니다.
 
 ```bash
-$ date +%F > date_file
+date +%F > date_file
 ```
 
 `>>` 문자를 사용하면 명령의 출력 결과가 파일 내용에 추가되는 것을 나타냅니다.
 
 ```bash
-$ date +%F >> date_file
+date +%F >> date_file
 ```
 
 두 경우 모두 파일이 없으면 자동으로 생성됩니다.
@@ -1355,8 +1362,9 @@ $ date +%F >> date_file
 표준 오류 출력을 다른 파일로 리디렉션할 수도 있습니다. 이 경우 채널 번호를 지정해야 합니다 (채널 0과 1은 생략할 수 있음):
 
 ```bash
-$ ls -R / 2> errors_file
-$ ls -R / 2>> errors_file
+ls -R / 2> errors_file
+
+ls -R / 2>> errors_file
 ```
 
 ### 리디렉션의 예
@@ -1364,19 +1372,19 @@ $ ls -R / 2>> errors_file
 2개의 출력을 2개의 파일로 리디렉션:
 
 ```bash
-$ ls -R / >> ok_file 2>> nok_file
+ls -R / >> ok_file 2>> nok_file
 ```
 
 2개의 출력을 하나의 파일로 리디렉션:
 
 ```bash
-$ ls -R / >> log_file 2>&1
+$ ls -R / >> ok_file 2>> nok_file
 ```
 
-*stderr*을 "끝없는 구덩이"로 리디렉션하기(`/dev/null`):
+_stderr_을 "끝없는 구덩이"로 리디렉션하기(`/dev/null`):
 
 ```bash
-$ ls -R / 2>> /dev/null
+$ ls -R / >> log_file 2>&1
 ```
 
 두 출력 스트림이 모두 리디렉션된 경우, 화면에는 정보가 표시되지 않습니다. 출력 리디렉션과 동시에 표시를 유지하려면 `tee` 명령어를 사용해야 합니다.
@@ -1398,31 +1406,31 @@ $ ls -R / 2>> /dev/null
 시작 부분만 표시:
 
 ```bash
-$ ls -lia / | head
+$ ls -R / 2>> /dev/null
 ```
 
 끝만 표시:
 
 ```bash
-$ ls -lia / | tail
+$ ls -lia / | head
 ```
 
 결과 정렬:
 
 ```bash
-$ ls -lia / | sort
+$ ls -lia / | tail
 ```
 
 단어/문자 수 세기:
 
 ```bash
-$ ls -lia / | wc
+$ ls -lia / | sort
 ```
 
 결과에서 문자열을 검색:
 
 ```bash
-$ ls -lia / | grep fichier
+$ ls -lia / | wc
 ```
 
 ## 특별한 점
@@ -1434,8 +1442,7 @@ $ ls -lia / | grep fichier
 이 명령어는 `|` 파이프와 결합되어 리디렉션할 명령어의 출력을 입력으로 수신합니다:
 
 ```bash
-$ ls -lia / | tee fic
-$ cat fic
+$ ls -lia / | grep fichier
 ```
 
 `-a` 옵션은 파일을 덮어쓰는 대신 파일에 추가합니다.
@@ -1447,13 +1454,14 @@ $ cat fic
 예시:
 
 ```bash
-$ ll
+$ ls -lia / | tee fic
+$ cat fic
 ```
 
 다음 명령을 대체합니다:
 
 ```bash
-$ ls -l
+$ ll
 ```
 
 `alias` 명령은 현재 세션의 별칭을 나열합니다. 별칭은 리눅스 배포판에서 기본적으로 설정됩니다. 여기서 Rocky 서버의 별칭은 다음과 같습니다:
@@ -1487,13 +1495,13 @@ alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-ti
 한 개의 별칭을 삭제하려면:
 
 ```bash
-$ unalias ll
+unalias ll
 ```
 
 모든 별칭을 삭제하려면:
 
 ```bash
-$ unalias -a
+$ unalias ll
 ```
 
 별칭을 일시적으로 비활성화하려면 `\&#060;alias name&#062;`. 조합을 사용합니다.
@@ -1501,7 +1509,7 @@ $ unalias -a
 예를 들면 다음과 같습니다:
 
 ```bash
-$ type ls
+type ls
 ```
 
 다음과 같은 결과가 반환됩니다:
@@ -1589,7 +1597,7 @@ none        on  /proc/sys/fs/binfmt_misc                   type  binfmt_misc  (r
 명령은 사용자가 <kbd>ENTER</kbd>를 누르면 입력된 순서대로 모두 순차적으로 실행됩니다.
 
 ```bash
-$ ls /; cd /home; ls -lia; cd /
+ls /; cd /home; ls -lia; cd /
 ```
 
 ## 배운 내용 확인하기
@@ -1600,26 +1608,26 @@ $ ls /; cd /home; ls -lia; cd /
 
 :heavy_check_mark: 어떤 명령어를 사용하면 명령어에 대한 도움말을 검색할 수 있나요?
 
-- [ ] `google`
-- [ ] `chuck --norris`
-- [ ] `info`
-- [ ] `apropos`
-- [ ] `whatis`
+* [ ] `google`
+* [ ] `chuck --norris`
+* [ ] `info`
+* [ ] `apropos`
+* [ ] `whatis`
 
 :heavy_check_mark: 어떤 명령어를 사용하면 사용자의 히스토리를 볼 수 있나요?
 
 :heavy_check_mark: 어떤 명령어를 사용하면 파일에서 텍스트를 검색할 수 있나요?
 
-- [ ] `find`
-- [ ] `grep`
+* [ ] `find`
+* [ ] `grep`
 
 :heavy_check_mark: 어떤 명령어를 사용하면 파일을 검색할 수 있나요?
 
-- [ ] `find`
-- [ ] `grep`
+* [ ] `find`
+* [ ] `grep`
 
 :heavy_check_mark: 명령의 오류 스트림을 새 `errors.log` 파일로 리디렉션하는 명령은 무엇인가요?
 
-- [ ] `ls -R / 2> errors.log`
-- [ ] `ls -R / 2>> errors.log`
-- [ ] `ls -R / 2> errors.log 2>&1`   
+* [ ] `ls -R / 2> errors.log`
+* [ ] `ls -R / 2>> errors.log`
+* [ ] `ls -R / 2> errors.log 2>&1`  
