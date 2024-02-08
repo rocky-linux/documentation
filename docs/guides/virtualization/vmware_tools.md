@@ -178,7 +178,6 @@ sudo cd /tmp/vmware-tools-distrib/
 sudo ./vmware-install.pl
 
 A previous installation of VMware Tools has been detected.
-A previous installation of VMware Tools has been detected.
 
 The previous installation was made by the tar installer (version 4).
 
