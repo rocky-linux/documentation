@@ -1,0 +1,31 @@
+---
+INHERIT: ../build_base.yml
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 3
+  ordered_chapter_level: 3
+  verbose: false
+  back_cover: true
+  
+# You are free to configure here what you want
+plugins:
+  - with-pdf:
+      <<: *pdf-config
+      cover_title: Learning Rsync On Rocky Linux (English version)
+      output_path: ../pdf/learning_rsync_rocky_linux.pdf
+
+# Customize your own book
+nav:
+  - licence.md
+  - learning_rsync/01_rsync_overview.md
+  - learning_rsync/02_rsync_demo01.md
+  - learning_rsync/03_rsync_demo02.md
+  - learning_rsync/04_rsync_configure.md
+  - learning_rsync/05_rsync_authentication-free_login.md
+  - learning_rsync/06_rsync_inotify.md
+  - learning_rsync/07_rsync_unison_use.md

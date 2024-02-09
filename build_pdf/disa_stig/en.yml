@@ -1,0 +1,27 @@
+---
+INHERIT: ../build_base.yml
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 3
+  ordered_chapter_level: 3
+  verbose: false
+  back_cover: true
+  
+# You are free to configure here what you want
+plugins:
+  - with-pdf:
+      <<: *pdf-config
+      cover_title: DISA STIG On Rocky Linux 8 (English version)
+      output_path: ../pdf/Disa_stig_rocky_linux.pdf
+
+# Customize your own book
+nav:
+  - licence.md
+  - disa_stig/disa_stig_part1.md
+  - disa_stig/disa_stig_part2.md
+  - disa_stig/disa_stig_part3.md
