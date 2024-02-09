@@ -31,6 +31,18 @@ Unsere Bücher als stehen als PDF zum herunterladen zur Verfügung.
 * [Englisch](https://rocky-linux.github.io/documentation/LearningBashWithRocky.pdf)
 * [Italienisch](https://rocky-linux.github.io/documentation/LearningBashWithRocky.it.pdf)
 
+### DISA Stig
+
+* [Englisch](https://rocky-linux.github.io/documentation/Disa_stig_rocky_linux.pdf)
+* [Italienisch](https://rocky-linux.github.io/documentation/Disa_stig_rocky_linux.it.pdf)
+* [Ukrainisch](https://rocky-linux.github.io/documentation/Disa_stig_rocky_linux.uk.pdf)
+
+### LXD Server
+
+* [Englisch](https://rocky-linux.github.io/documentation/lxd_server_rocky_linux.pdf)
+* [Italienisch](https://rocky-linux.github.io/documentation/lxd_server_rocky_linux.it.pdf)
+* [Ukrainisch](https://rocky-linux.github.io/documentation/lxd_server_rocky_linux.uk.pdf)
+
 ### NvChad
 
 * [Englisch](https://rocky-linux.github.io/documentation/NvChad.pdf)
@@ -41,6 +53,12 @@ Unsere Bücher als stehen als PDF zum herunterladen zur Verfügung.
 
 * [Englisch](https://rocky-linux.github.io/documentation/RockyLinuxMiddlewaresGuide.pdf)
 * [Italienisch](https://rocky-linux.github.io/documentation/RockyLinuxMiddlewaresGuide.it.pdf)
+
+### RSync - Tutorial
+
+* [Englisch](https://rocky-linux.github.io/documentation/learning_rsync_rocky_linux.pdf)
+* [Italienisch](https://rocky-linux.github.io/documentation/learning_rsync_rocky_linux.it.pdf)
+* [Ukrainisch](https://rocky-linux.github.io/documentation/learning_rsync_rocky_linux.uk.pdf)
 
 ### Sed, Awk, Grep: TheTreeSwordsmen
 
