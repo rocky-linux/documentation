@@ -3,7 +3,7 @@
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 cd $SCRIPTPATH
 
-for book in admin_book ansible_book bash_book middlewares sed_awk_grep nvchad_book
+for book in admin_book ansible_book bash_book disa_stig lxd_server middlewares rsync_book sed_awk_grep nvchad_book
 
 do
   for config_file in $(ls ${SCRIPTPATH}/${book}/*.yml)

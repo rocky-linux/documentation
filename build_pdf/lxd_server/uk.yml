@@ -1,0 +1,36 @@
+---
+INHERIT: ../build_base.yml
+
+# Do not modify this block
+pdf-config: &pdf-config
+  author: Rocky Documentation Team
+  cover: true
+  cover_logo: ../assets/rocky-linux-logo.svg
+  cover_subtitle: A book from the Documentation Team
+  toc_level: 3
+  ordered_chapter_level: 3
+  verbose: false
+  back_cover: true
+
+# You are free to configure here what you want
+plugins:
+  - with-pdf:
+      <<: *pdf-config
+      cover_title: Creating a full LXD server On Rocky Linux (Ukrainian version)
+      output_path: ../pdf/lxd_server_rocky_linux.uk.pdf
+
+# Customize your own book
+nav:
+  - licence.md
+  - lxd_server/00-toc.uk.md
+  - lxd_server/01-install.uk.md
+  - lxd_server/02-zfs_setup.uk.md
+  - lxd_server/03-lxdinit.uk.md
+  - lxd_server/04-firewall.uk.md
+  - lxd_server/05-lxd_images.uk.md
+  - lxd_server/06-profiles.uk.md
+  - lxd_server/07-configurations.uk.md
+  - lxd_server/08-snapshots.uk.md
+  - lxd_server/09-snapshot_server.uk.md
+  - lxd_server/10-automating.uk.md
+  - lxd_server/30-appendix_a.uk.md
