@@ -284,7 +284,7 @@ What processes are using the most memory?
 
 ## Exercise 4
 
-### Changing Process Priority with nice
+### Changing Process Priority with nice and renice
 
 #### To adjust process priority using nice
 
@@ -814,40 +814,3 @@ Is the process listed in the "mygroup" cgroup?
 
     !!! Question
         Explain the concept of cgroups in Linux and how they can be used to manage and control resource allocation for processes.
-
-## Exercise 13
-
-### Managing Processes with renice
-
-#### To adjust the priority of a running process using renice
-
-1. Identify a running process with a specific PID and priority using ps.
-
-    ```bash
-    ps -p <PID> -o ni
-```
-
-What is the current priority (nice value) of the process?
-
-2. Use the renice command to change the priority (nice value) of the running process.
-
-```bash
- renice <PRIORITY> -p <PID>
-```
-
-Replace <PRIORITY> with the new priority value you want to set, and <PID> with the actual PID of the process.
-
-3. Verify that the priority of the process has been changed using ps.
-
-```bash
- ps -p <PID> -o ni
-```
-
-Is the priority now different?
-
-4. Experiment with changing the priority to a higher and lower value and observe the impact on the process's resource usage.
-
-What happens to the process's resource consumption with different nice values?
-
-    !!! Question
-        Explain how the renice command is used to adjust the priority of running processes and its effects on process resource utilization.
