@@ -16,6 +16,7 @@ files:
       - '*.pt-BR.md'
       - '*.ru.md'
       - '*.sv.md'
+      - '*.tr.md'
       - '*.uk.md'
       - '*.zh.md'
       - '/docs/release_notes/8.5.md'
