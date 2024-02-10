@@ -284,7 +284,11 @@ What processes are using the most memory?
 
 ## Exercise 4
 
+<<<<<<< HEAD
+### Changing Process Priority with nice and renice
+=======
 ### Changing Process Priority with nice
+>>>>>>> upstream/main
 
 #### To adjust process priority using nice
 
@@ -814,6 +818,8 @@ Is the process listed in the "mygroup" cgroup?
 
     !!! Question
         Explain the concept of cgroups in Linux and how they can be used to manage and control resource allocation for processes.
+<<<<<<< HEAD
+=======
 
 ## Exercise 13
 
@@ -851,3 +857,4 @@ What happens to the process's resource consumption with different nice values?
 
     !!! Question
         Explain how the renice command is used to adjust the priority of running processes and its effects on process resource utilization.
+>>>>>>> upstream/main
