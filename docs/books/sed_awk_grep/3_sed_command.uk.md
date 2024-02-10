@@ -176,7 +176,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
      imap            143/tcp         imap2           # Interim Mail Access Proto v2
      ```
 
-   !!! info
+   !!! info "примітка"
 
    ```
     **Початок діапазону**: відповідність рядку, де розташований рядок, лише збігання з першим рядком, який з’являється.
