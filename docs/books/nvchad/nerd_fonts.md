@@ -9,7 +9,7 @@ tags:
     - fonts
 ---
 
-# Nerd Fonts - Fonts for Developers
+# :material-format-font: Nerd Fonts - Fonts for Developers
 
 Installation of Nerd Fonts does not change the function of Neovim or NvChad, but simply adds fonts that are more pleasing to the eye than whatever the standard terminal font is currently.
 
@@ -17,7 +17,7 @@ Installation of Nerd Fonts does not change the function of Neovim or NvChad, but
 
 Nerd Fonts takes the most popular programming fonts and modifies them by adding a group of glyphs (icons). A font patcher is also available if the font you'd like to use has not already been edited. A convenient preview is available on the site, allowing you to see how the font should look in the editor. For more information, check the project's main [site](https://www.nerdfonts.com/).
 
-## Download
+## :material-monitor-arrow-down-variant: Download
 
 Fonts are available for download at:
 
@@ -25,7 +25,7 @@ Fonts are available for download at:
 https://www.nerdfonts.com/font-downloads
 ```
 
-## Installation
+## :material-monitor-arrow-down-variant: Installation
 
 The procedure for installing fonts on Rocky Linux is to save the fonts you want to add somewhere, and then install them with the `fc-cache` command. This procedure is not a true installation so much as a registration of the new fonts in the system.
 
@@ -49,7 +49,7 @@ unzip SourceCodePro.zip -d ~/.local/share/fonts/
 fc-cache ~/.local/share/fonts
 ```
 
-## Configuration
+## :material-file-cog-outline: Configuration
 
 At this point the Nerd Font of your choice should be available for selection. To actually select it you must refer to the desktop you are using.
 
