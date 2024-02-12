@@ -64,7 +64,7 @@ sudo mount /dev/cdrom /mnt/cdrom
 mount: /mnt/cdrom: WARNING: source write-protected, mounted read-only.
 ```
 
-Check `/dev/cdrom` mounted or not:
+Check if `/dev/cdrom` mounted or not:
 
 ```bash
 sudo df -h
@@ -128,7 +128,7 @@ vmware-tools-distrib/vmware-install.pl
 
 !!! Warning
 
-    Before you start you need to check if the `/etc/init.d` directory exists or not.
+    Before you start, you need to check whether the `/etc/init.d` directory exists or not.
     If not you may see the following error:
     
     >What is the directory that contains the init directories (rc0.d/ to rc6.d/)?
