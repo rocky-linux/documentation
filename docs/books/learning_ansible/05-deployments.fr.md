@@ -676,7 +676,7 @@ Un déploiement utilisant Ansistrano poursuit les étapes suivantes :
 
 Il est possible d'intervenir avant et après chacune des étapes.
 
-![Étapes de déploiement](images/ansistrano-001.png)
+![Étapes d'un déploiement](images/ansistrano-001.png)
 
 Un playbook peut être inclus par l'intermédiaire de variables prévues dans ce but :
 
