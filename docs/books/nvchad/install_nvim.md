@@ -43,20 +43,20 @@ As with Vim, Neovim requires a basic knowledge of its commands and options. You 
 
 !!! warning "Installation from EPEL"
 
-    Neovim is also installable from the EPEL repository, the version available however is always too old to meet the minimum requirements of the NvChad installation.  
+    Neovim is also installable from the EPEL repository. The available version is always too old to meet the minimum requirements of the NvChad installation.  
     Installation by this method is strongly discouraged and is not supported in this guide.
 
-=== "Installation from Precompiled Package"
+=== "Installation from pre-compiled package"
 
-    Use of the pre-package allows installation of both the development and stable versions, both of which meet the requirements and can be used as the basis for configuring NvChad.
+    Use of the pre-compiled package allows installation of both the development and stable versions, which meet the requirements, and can be used as the basis for configuring NvChad.
 
-    In order to use the full functionality of the editor, it is necessary to satisfy the dependencies required by Neovim by manually providing the precompiled package dependencies. The required packages can be installed with:
+    To use the full functionality of the editor, it is necessary to satisfy the dependencies required by Neovim by manually providing the pre-compiled package dependencies. The required packages can be installed with:
 
     ```bash
     dnf install compat-lua-libs libtermkey libtree-sitter libvterm luajit luajit2.1-luv msgpack unibilium xsel
     ```
 
-    Having finished installing the required dependencies, it is time to acquire the chosen package.
+    After installing the required dependencies, it is time to acquire the chosen package.
 
     By accessing the [release page](https://github.com/neovim/neovim/releases) it will be possible to download the development version (==pre-release==) or the stable version (==stable==).
     In both cases the compressed archive to download for our architecture is ==linux64==.
@@ -117,7 +117,7 @@ As with Vim, Neovim requires a basic knowledge of its commands and options. You 
     git clone https://github.com/neovim/neovim
     ```
 
-    Once the operation is finished, we will have a folder named *neovim* containing all the necessary files. The next step is to checkout the stable branch, and then configure and compile the sources with the `make` command.
+    Once the operation is finished, we will have a folder named *neovim* containing all the necessary files. The next step is to check out the stable branch, and then configure and compile the sources with the `make` command.
 
     ```bash
     cd ~/lab/build/neovim/
@@ -125,7 +125,7 @@ As with Vim, Neovim requires a basic knowledge of its commands and options. You 
     make CMAKE_BUILD_TYPE=RelWithDebInfo
     ```
 
-    We chose the `RelWithDebInfo` type because it provides not only optimizations, but also a useful debugging layer for later customizations. You could have also used the `Release` type if you want maximum performance.
+    We chose the `RelWithDebInfo` type because it provides optimizations, and a useful debugging layer for later customizations. You could also use the `Release` type if you prefer maximum performance.
 
     The process takes care of configuring and compiling the files that are to be put into our system. These files are saved in `neovim/build`. To install them, we will use the *make install* command:
 
@@ -133,7 +133,7 @@ As with Vim, Neovim requires a basic knowledge of its commands and options. You 
     make install
     ```
 
-    Because this command is going to modify the filesystem, it needs to be run as the superuser, either with `sudo`, or directly by the root user.
+    Because this command will modify the filesystem, it must run as the superuser, either with `sudo` or directly by the root user.
 
     Once the installation is finished, we can verify that everything went well by checking the path to Neovim:
 
@@ -156,7 +156,7 @@ As with Vim, Neovim requires a basic knowledge of its commands and options. You 
 
     ### :material-package-variant-closed-remove: Uninstall
 
-    In case we need to remove the installation, for example to switch to another version, we will have to take ourselves back to the build folder and use the `target` cmake provided by Neovim itself. To perform the uninstallation, you need to execute the following command:
+    If we need to remove the installation, for example, to switch to another version, we will have to take ourselves back to the build folder and use the `target` cmake provided by Neovim. To perform the uninstallation, you need to execute the following command:
 
     ```bash
     cmake --build build/ --target uninstall
