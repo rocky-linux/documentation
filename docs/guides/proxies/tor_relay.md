@@ -18,12 +18,12 @@ tags:
 
 The following are minimum requirements for using this procedure:
 
-* A public IP address, whether directly on the server or with port forwarding.
-* A system that is able to run 24/7, to be useful for the Tor network.
-* The ability to run commands as the root user or use `sudo` to elevate privileges.
-* Familiarity with a command-line editor. The author is using `vi` or `vim` here, but substitute in your favorite editor.
-* Comfort with changing SELinux and firewall settings.
-* An unmetered connection, or a connection with a high bandwidth limit.
+* A public IP address, whether directly on the server or with port forwarding
+* A system that is able to run 24/7, to be useful for the Tor network
+* The ability to run commands as the root user or use `sudo` to elevate privileges
+* Familiarity with a command-line editor. The author is using `vi` or `vim` here, but substitute in your favorite editor
+* Comfort with changing SELinux and firewall settings
+* An unmetered connection, or a connection with a high bandwidth limit
 
 ## Installing Tor
 
@@ -156,7 +156,7 @@ ExitRelay 1
 
 However, this will use the following default exit policy:
 
-```
+```bash
 ExitPolicy reject *:25
 ExitPolicy reject *:119
 ExitPolicy reject *:135-139
@@ -246,7 +246,7 @@ tar jxvf obfs4-obfs4proxy-0.0.14.tar.bz2
 cd obfs4-obfs4proxy-0.0.14/obfs4proxy/
 ```
 
-You can also get obfs4 directly from `git clone`, but that depends on a newer version of Go than what exists in AppStream, so we won't use that.
+You can also get obfs4 directly from `git clone`, but that depends on a newer version of Go than what exists in AppStream, so we will not use that.
 
 Then, we will compile and install obfs4:
 
@@ -265,13 +265,13 @@ ExtORPort auto
 
 These values imply that:
 
-* We are running an obfs4 pluggable transport located at `/usr/local/bin/obfs4proxy` on our `ServerTransportPlugin` line.
-* `ServerTransportListenAddr` makes our pluggable transport listen on port 12345.
-* Our `ExtORPort` line will listen on an randomly-chosen port for connections between Tor and our pluggable transport. Normally, this line shouldn't be changed.
+* We are running an obfs4 pluggable transport located at `/usr/local/bin/obfs4proxy` on our `ServerTransportPlugin` line
+* `ServerTransportListenAddr` makes our pluggable transport listen on port 12345
+* Our `ExtORPort` line will listen on an randomly-chosen port for connections between Tor and our pluggable transport. Normally, this line shouldn't be changed
 
-If you wish to listen on another TCP port, change "12345" with your desired TCP port.
+If you want to listen on another TCP port, change "12345" with your desired TCP port.
 
-We'll also have to allow our chosen TCP port "12345" (or the port you chose) in SELinux and firewalld:
+We will also have to allow our chosen TCP port "12345" (or the port you chose) in SELinux and `firewalld`:
 
 ```bash
 semanage port -a -t tor_port_t -p tcp 12345
