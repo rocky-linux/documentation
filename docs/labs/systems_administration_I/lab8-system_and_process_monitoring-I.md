@@ -310,7 +310,7 @@ The following steps show how to use `ps` for displaying basic process informatio
 
 ## Exercise 4
 
-### Changing process priority with `nice`
+### Changing Process Priority with `nice` and `renice`
 
 #### To adjust process priority using `nice`
 
