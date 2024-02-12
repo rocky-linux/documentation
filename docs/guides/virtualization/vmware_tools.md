@@ -1,20 +1,20 @@
 ---
-title: VMware™ Tools Installation
+title: VMware Tools™ Installation
 author: Emre Camalan
 contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.9, 9.3
 tags:
-  - Vmware
+  - VMware
   - Tools
 ---
 
-# VMware tools installation
+# VMware Tools™ installation
 
-VMware Tools™ is a suite of utilities that enhances the performance and management of virtual machines (VMs) running on VMware virtualization platforms such as VMware vSphere, VMware Workstation, and VMware Fusion. VMware tools improve the interaction between the guest operating system and the host environment.
+VMware Tools™ is a suite of utilities that enhances the performance and management of virtual machines (VMs) running on VMware virtualization platforms such as VMware vSphere, VMware Workstation, and VMware Fusion. VMware Tools™ improve the interaction between the guest operating system and the host environment.
 
 ## Prerequisites and assumptions
 
-* a desire to manage VMware instances with VMware Tools
+* a desire to manage VMware instances with VMware Tools™
 * the ability to escalate privileges with `sudo` 
 * it is assumed that you are starting with a Rocky Linux minimal installation
 
@@ -44,19 +44,19 @@ Reboot your system:
 sudo shutdown -r now
 ```
 
-## Mounting VMware tools
+## Mounting VMware Tools™
 
-### Mount VMware tools in the graphical interface
+### Mount VMware Tools™ in the graphical interface
 
-Right-click VM in the virtual machine menu, then click Guest > Install/Upgrade VMware Tools.
+Right-click VM in the virtual machine menu, then click Guest > Install/Upgrade VMware Tools™.
 
 > VM Tab => Select Install VMware Tools
 
 Mounting VMware Tools CDROM complete.
 
-### Mounting VMware tools from the command-line
+### Mounting VMware Tools™ from the command-line
 
-Create a mount point for VMware tools and mount it:
+Create a mount point for VMware Tools™ and mount it:
 
 ```bash
 sudo mkdir /mnt/cdrom 
@@ -82,9 +82,9 @@ tmpfs                362M   84K  362M   1% /run/user/1001
 manifest.txt  run_upgrader.sh  VMwareTools-10.3.23-16594550.tar.gz  vmware-tools-upgrader-32  vmware-tools-upgrader-64
 ```
 
-## Installing VMware tools
+## Installing VMware Tools™
 
-Copy the VMware tools gzip file to local `/tmp` directory with this command:
+Copy the VMware Tools™ gzip file to local `/tmp` directory with this command:
 
 ```bash
 cp /mnt/cdrom/VMwareTools-10.3.23-16594550.tar.gz /tmp/
@@ -189,13 +189,13 @@ first uninstall the currently installed version.  Do you wish to continue?
 
 INPUT: [yes]  default
 
-Uninstalling the tar installation of VMware Tools.
+Uninstalling the tar installation of VMware Tools™.
 
 Can't exec "/etc/vmware-caf/pme/install/preupgrade.sh": No such file or directory at /usr/bin/vmware-uninstall-tools.pl line 4421.
 The removal of VMware Tools 10.3.23 build-16594550 for Linux completed 
 successfully.
 
-Installing VMware Tools.
+Installing VMware Tools™.
 
 In which directory do you want to install the binary files? 
 [/usr/bin] 
@@ -372,4 +372,4 @@ sudo shutdown -r now
 
 ## Conclusion
 
-We started with a minimal installation of Rocky Linux, which led to many deficiencies and encountered errors along the way. Despite this, we managed to install and run VMware Tools, albeit with some challenges.
+We started with a minimal installation of Rocky Linux, which led to many deficiencies and encountered errors along the way. Despite this, we managed to install and run VMware Tools™, albeit with some challenges.
