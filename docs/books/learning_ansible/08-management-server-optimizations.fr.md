@@ -1,5 +1,5 @@
 ---
-title: Optimisations du serveur de Management Ansible
+title: Optimisations du serveur de gestion Ansible
 author: Antoine Le Morvan
 contributors: Steven Spencer, Ganna Zhyrnova
 update: 06-Dec-2021
