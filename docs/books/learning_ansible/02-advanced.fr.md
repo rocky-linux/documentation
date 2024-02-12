@@ -17,10 +17,10 @@ Dans ce chapitre, vous allez approfondir vos connaissances sur Ansible.
 
 :checkered_flag: **ansible**, **module**, **playbook**
 
-**Connaissances**: :star : :star : :star :     
-**Complexité**: :star : :star :
+**Connaissances** : :star : :star : :star :     
+**Complexité** : :star : :star :
 
-**Temps de lecture** : 31 minutes
+**Temps de lecture** : 30 minutes
 
 ****
 
