@@ -9,7 +9,7 @@ tags:
   - font
 ---
 
-# Caratteri Nerd - Caratteri per sviluppatori
+# :material-format-font: Caratteri Nerd - Caratteri per sviluppatori
 
 L'installazione dei Nerd Fonts non modifica la funzione di Neovim o NvChad, ma aggiunge semplicemente dei caratteri più gradevoli alla vista rispetto al carattere standard del terminale.
 
@@ -17,7 +17,7 @@ L'installazione dei Nerd Fonts non modifica la funzione di Neovim o NvChad, ma a
 
 Nerd Fonts prende i caratteri di programmazione più popolari e li modifica aggiungendo un gruppo di glifi (icone). È disponibile anche un font patcher se il carattere che vuoi usare non è già stato modificato. Sul sito è disponibile una comoda anteprima che consente di vedere come dovrebbe apparire il font nell'editor. Per ulteriori informazioni, consultare il [sito](https://www.nerdfonts.com/) principale del progetto.
 
-## Download
+## :material-monitor-arrow-down-variant: Download
 
 I caratteri sono disponibili per il download su:
 
@@ -25,7 +25,7 @@ I caratteri sono disponibili per il download su:
 https://www.nerdfonts.com/font-downloads
 ```
 
-## Installazione
+## :material-monitor-arrow-down-variant: Installazione
 
 La procedura per l'installazione dei font su Rocky Linux consiste nel salvare da qualche parte i font che si desidera aggiungere e poi installarli con il comando `fc-cache`. Questa procedura non è una vera e propria installazione, ma piuttosto una registrazione dei nuovi font nel sistema.
 
@@ -49,7 +49,7 @@ unzip SourceCodePro.zip -d ~/.local/share/fonts/
 fc-cache ~/.local/share/fonts
 ```
 
-## Configurazione
+## :material-file-cog-outline: Configurazione
 
 A questo punto il carattere Nerd scelto dovrebbe essere disponibile per la selezione. Per selezionarlo effettivamente è necessario fare riferimento al desktop in uso.
 
