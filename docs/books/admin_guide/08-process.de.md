@@ -10,7 +10,7 @@ In diesem Kapitel erfahren Sie, wie Sie mit Prozessen arbeiten.
 
 **Ziele**: In diesem Kapitel lernen zukünftige Linux-Administratoren Folgendes:
 
-:heavy_check_mark: die `PID` und `PPID` eines Prozesss;   
+:heavy_check_mark: die `PID` und `PPID` eines Prozesses;   
 erkennen :heavy_check_mark: Prozesse anschauen und durchsuchen;   
 :heavy_check_mark: Prozesse verwalten.
 

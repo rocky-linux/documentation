@@ -1,7 +1,7 @@
 ---
 title: DISA STIG Su Rocky Linux 8 - Parte 1
 author: Scott Shinn
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 8.6
 tags:
   - DISA
