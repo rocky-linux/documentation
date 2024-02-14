@@ -1,7 +1,7 @@
 ---
 title: nload - Statistiche sulla larghezza di banda
 author: Neel Chauhan
-contributors: Steven Spencer, Franco Colussi
+contributors: Steven Spencer, Ganna Zhyrnova
 date: 2024-01-16
 ---
 
