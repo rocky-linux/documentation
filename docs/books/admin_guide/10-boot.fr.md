@@ -9,18 +9,18 @@ Dans ce chapitre, vous apprendrez comment le système démarre.
 ****
 **Objectifs** : Dans ce chapitre, les futurs administrateurs Linux vont apprendre :
 
-:heavy_check_mark: Les différentes étapes du processus de démarrage du système ;   
-:heavy_check_mark: Comment Rocky Linux supporte ce démarrage via GRUB2 et systemd ;   
-:heavy_check_mark: Comment protéger GRUB2 contre une attaque ;   
-:heavy_check_mark: Comment gérer les services ;   
-:heavy_check_mark: Comment accéder aux logs avec journald.
+:heavy_check_mark : Les différentes étapes du processus de démarrage ;   
+:heavy_check_mark : Comment Rocky Linux prend en charge ce démarrage en utilisant GRUB2 et systemd ;   
+:heavy_check_mark : Comment protéger GRUB2 d'une attaque ;   
+:heavy_check_mark : Comment gérer les services ;   
+:heavy_check_mark : Comment accéder aux journaux depuis `journald`.
 
 :checkered_flag: **utilisateurs**
 
 **Connaissances** : :star: :star:   
 **Complexité** : :star: :star: :star:
 
-**Temps de lecture** : 20 minutes
+**Temps de lecture** : 23 minutes
 ****
 
 ## Le processus de démarrage
