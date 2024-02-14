@@ -1,22 +1,20 @@
 ---
 title: Tor Onion Service
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.3
 tags:
   - proxy
   - proxies
 ---
 
-# Tor Onion Service
+# Tor Onion service
 
 ## Introduction
 
 [Tor](https://www.torproject.org/) is an anonymity service and software that routes traffic by way of three volunteer-run servers called relays. The three-hop design is to ensure privacy by resisting surveillance attempts.
 
-One feature of Tor is that you can run hidden, Tor-exclusive websites called
-[onion services](https://community.torproject.org/onion-services/). All traffic
-to an onion service is therefore private and encrypted.
+One feature of Tor is that you can run hidden, Tor-exclusive websites called [onion services](https://community.torproject.org/onion-services/). All traffic to an onion service is therefore private and encrypted.
 
 ## Prerequisites and assumptions
 
@@ -57,8 +55,8 @@ HiddenServicePort 80 127.0.0.1:80
 
 ### Taking a closer look
 
-* The "HiddenServiceDir" is the location of your onion service's hostname and cryptographic keys. We are storing these keys at `/var/lib/tor/onion-site/`.
-* The "HiddenServicePort" is the port forwarding from your local server to the onion service. We are forwarding 127.0.0.1:8080 to Port 80 on our Tor-facing service.
+* The "HiddenServiceDir" is the location of your onion service's hostname and cryptographic keys. You are storing these keys in `/var/lib/tor/onion-site/`.
+* The "HiddenServicePort" is the port forwarding from your local server to the onion service. You are forwarding 127.0.0.1:8080 to Port 80 on our Tor-facing service.
 
 !!! warning
 
@@ -66,13 +64,13 @@ HiddenServicePort 80 127.0.0.1:80
 
 ## Configuring a web server
 
-We will also need a web server on our machine in order to service clients to our onion service. The author likes Caddy, but Apache or Nginx can also be used. For simplicity's sake, let's install Caddy:
+You will also need a web server on our machine to service clients to your onion service. Use the web server you like (Caddy, Apache, or Nginx). The author likes Caddy. For simplicity's sake, let us install Caddy:
 
 ```bash
 dnf -y install caddy
 ```
 
-Next, we should insert the following to `/etc/caddy/Caddyfile`:
+Next, insert the following into `/etc/caddy/Caddyfile`:
 
 ```bash
 http://127.0.0.1:80 {
@@ -95,12 +93,12 @@ You can get your onion service's hostname with this command:
 cat /var/lib/tor/onion-site/hostname
 ```
 
-Within an hour, your onion service will propagate via Tor's onion service directories and you will be able to view your onion service in Tor Browser:
+Within an hour, your onion service will propagate using Tor's onion service directories and you will be able to view your onion service in the Tor browser:
 
 TODO: Insert image here
 
 ## Conclusion
 
-Onion services are an invaluable tool if you're interested in hosting a website privately or want a way to bypass your ISP's Carrier Grade NAT using only open source software.
+Onion services are an invaluable tool if you are interested in hosting a website privately or want a way to bypass your ISP's Carrier Grade NAT using only open source software.
 
-While onion services will never be as fast as hosting a website directly (understandable due to Tor's privacy-first design), it's way more secure and private than the public internet.
+While onion services will never be as fast as hosting a website directly (understandable due to Tor's privacy-first design), it is way more secure and private than the public internet.
