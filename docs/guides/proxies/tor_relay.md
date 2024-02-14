@@ -134,7 +134,7 @@ Within a few hours, your relay will be listed on [Tor Relay Status](https://metr
 
 ## Relay considerations
 
-You can also extend the configuration to make your Tor relay an exit or bridge relay.
+You can also extend the configuration to make your Tor relay an exit or bridge relay. You can also set up a maximum of 8 relays per public IP address. The Tor systemd unit file in EPEL is not designed for more than one instance, but the unit file can be copied and modified to accommodate a multi-relay setup.
 
 Exit relays are the last hop of a Tor circuit connecting directly to websites. Bridge relays are unlisted relays that help users with internet censorship connect to Tor.
 
