@@ -15,9 +15,7 @@ tags:
 
 [Tor](https://www.torproject.org/) is an anonymity service and software that routes traffic by way of three volunteer-run servers called relays. The three-hop design is to ensure privacy by resisting surveillance attempts.
 
-One feature of Tor is that you can run hidden, Tor-exclusive websites called
-[onion services](https://community.torproject.org/onion-services/). All traffic
-to an onion service is therefore private and encrypted.
+One feature of Tor is that you can run hidden, Tor-exclusive websites called [onion services](https://community.torproject.org/onion-services/). All traffic to an onion service is therefore private and encrypted.
 
 ## Prerequisites and assumptions
 
