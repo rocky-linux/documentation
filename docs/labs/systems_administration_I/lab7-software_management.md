@@ -728,7 +728,7 @@ You will build the hello application in the following steps. This is where some 
 
     OUTPUT:
 
-   ```bash
+    ```bash
     gcc  -g -O2   -o hello src/hello.o  ./lib/libhello.a
     make[2]: Leaving directory '/home/rocky/hello-2.12'
     ...<OUTPUT TRUNCATED>...
