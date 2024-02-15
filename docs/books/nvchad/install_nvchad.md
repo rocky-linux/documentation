@@ -73,7 +73,7 @@ Once the cloning process is finished in the second part of the command, the Neov
 
 ### :material-timer-cog-outline: Bootstrap
 
-Before starting the bootstrap, the installation will offer us the installation of a base structure (*template chadrc*) for our further customizations:
+Before starting the bootstrap, the installation will offer us the installation of a base structure (*template chadrc*) for our further customization:
 
 > Do you want to install chadrc template? (y/n):
 
@@ -130,7 +130,7 @@ The part reserved for the editor is as follows:
 
 ### Template Structure
 
-While the part concerning customizations consists of the following structure:
+While the part concerning customization consists of the following structure:
 
 ```text
 .config/nvim/lua/custom/
