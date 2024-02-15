@@ -212,4 +212,4 @@ These are some of the keys set. We recommend consulting the file mentioned above
 `<C-n>` to open nvimtree ++ctrl++ + ++"n"++  
 `<A-i>` to open a terminal in a floating tab ++alt++ + ++"i"++
 
-There are many combinations pre-set for you, and they cover all the uses of NvChad. It is worth pausing to analyze the key mappings before starting to use your NvChad-configured instance of Neovim.
+There are many combinations preset for you, and they cover all the uses of NvChad. It is worth pausing to analyze the key mappings before starting to use your NvChad-configured instance of Neovim.
