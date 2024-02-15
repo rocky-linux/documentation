@@ -125,7 +125,7 @@ As with Vim, Neovim requires a basic knowledge of its commands and options. You 
     make CMAKE_BUILD_TYPE=RelWithDebInfo
     ```
 
-    We chose the `RelWithDebInfo` type because it provides optimizations, and a useful debugging layer for later customizations. You could also use the `Release` type if you prefer maximum performance.
+    We chose the `RelWithDebInfo` type because it provides optimizations, and a useful debugging layer for later customization. You could also use the `Release` type if you prefer maximum performance.
 
     The process takes care of configuring and compiling the files that are to be put into our system. These files are saved in `neovim/build`. To install them, we will use the *make install* command:
 
