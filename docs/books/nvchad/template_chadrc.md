@@ -36,7 +36,7 @@ The folder is created from an example one on NvChad's GitHub repository: ([examp
 
     The installation of the configuration provided by ==example-config== can also be done after the installation of NvChad, in which case the repository is still used but is retrieved by a manual operation.
 
-    The standard installation without ==example-config== still creates a *custom* folder where to save the ==chadrc.lua== file for user customizations and should be deleted or saved in a ==backup== to allow the clone to run. Then save the existing configuration with:
+    The standard installation without ==example-config== still creates a *custom* folder where to save the ==chadrc.lua== file for user customization and should be deleted or saved in a ==backup== to allow the clone to run. Then save the existing configuration with:
 
     ```bash
     mv ~/.config/nvim/lua/custom/ ~/.config/nvim/lua/custom.bak
@@ -171,7 +171,7 @@ This among other things replaces 2-space tabulation with 4-space tabulation more
 
 This file sets the plugins to be added to those in the basic NvChad configuration. Adding plugins is explained in detail on the page dedicated to [Plugins Manager](nvchad_ui/plugins_manager.md).
 
-The *plugins.lua* file created by the *example-config* has in the first part a number of customizations that override the plugin definition options and default plugin configurations. This part of the file does not need to be modified by us as the developers have prepared special files for this purpose that are present in the *config* folder.
+The *plugins.lua* file created by the *example-config* has in the first part a number of customization that override the plugin definition options and default plugin configurations. This part of the file does not need to be modified by us as the developers have prepared special files for this purpose that are present in the *config* folder.
 
 Installation of a plugin follows; this was created as an example so that you can begin to become familiar with the format used by *lazy.nvim*.
 
@@ -245,7 +245,7 @@ Changing the file, however, does not involve installing the related language ser
 
 This file takes care of configuring some features geared toward control and formatting of written code. Editing this file requires a bit more research for configuration than the previous file. An overview of the available components can be found on [the builtins page](https://github.com/stevearc/conform.nvim/tree/master?tab=readme-ov-file#formatters).
 
-Again, a table was created, the ==formatters_by_ft== table, in which to enter customizations:
+Again, a table was created, the ==formatters_by_ft== table, in which to enter customization:
 
 ```lua
 --type conform.options
