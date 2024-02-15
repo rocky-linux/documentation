@@ -45,13 +45,13 @@ The applications used for managing software on Linux distributions are called pa
 
 Some popular command-line options and syntax for the RPM command are listed next:
 
-**rpm**
+### `rpm`
 
 Usage: rpm [OPTION...]
 
 **QUERYING PACKAGES**
 
-```
+```bash
 Query options (with -q or --query):
   -c, --configfiles                  list all configuration files
   -d, --docfiles                     list all documentation files
@@ -65,7 +65,7 @@ Query options (with -q or --query):
 
 **VERIFYING PACKAGES**
 
-```
+```bash
 Verify options (with -V or --verify):
       --nofiledigest                 don't verify digest of files
       --nofiles                      don't verify files in package
@@ -75,7 +75,7 @@ Verify options (with -V or --verify):
 
 **INSTALLING, UPGRADING, AND REMOVING PACKAGES**
 
-```
+```bash
 Install/Upgrade/Erase options:
       --allfiles                     install all files, even configurations that might otherwise be skipped
   -e, --erase=<package>+             erase (uninstall) package
@@ -113,20 +113,20 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
 #### To query packages for information
 
 1. To see a list of all the packages currently installed on your local system type:
-   
-    ```
+
+    ```bash
     $ rpm -qa
     python3-gobject-base-*
     NetworkManager-*
     rocky-repos-*
     ...<OUTPUT TRUNCATED>...
     ```
-    
+
     You should see a long list.
 
 2. Let us delve a little deeper and learn more about one of the packages installed on the system. We will examine NetworkManager. We will use the --query (-q) and --info (-i) options with the `rpm` command. Type:
 
-    ```
+    ```bash
     $ rpm -qi NetworkManager
     Name        : NetworkManager
     Epoch       : 1
@@ -139,22 +139,22 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
 
     For example, to view only the Summary field, type:
 
-    ```
-    $ rpm -q --queryformat '%{summary}\n' NetworkManager
+    ```bash
+    rpm -q --queryformat '%{summary}\n' NetworkManager
     ```
 
     The name of the field is case-insensitive.
 
 4. To view both the Version and Summary fields of the installed NetworkManager package type:
 
-    ```
-    $ rpm -q --queryformat '%{version}  %{summary}\n' NetworkManager
+    ```bash
+    rpm -q --queryformat '%{version}  %{summary}\n' NetworkManager
     ```
 
 5. Type the command to view information about the bash package that is installed on the system.
-   
-    ```
-    $ rpm -qi bash
+
+    ```bash
+    rpm -qi bash
     ```
 
     !!! note
@@ -163,8 +163,8 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
 
 6. First, ensure the `wget` application is not already installed on the system. Type:
 
-    ```
-    $ rpm -q wget
+    ```bash
+    rpm -q wget
     package wget is not installed
     ```
 
@@ -172,20 +172,20 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
 
 7. As of Rocky Linux 8.x, the `dnf download` command will allow you to get the latest `rpm` package for `wget`. Type:
 
-    ```
+    ```bash
     dnf download wget
     ```
 
 8. Use the `ls` command to ensure that the package was downloaded into your current directory. Type:
 
-    ```
-    $ ls -lh wg*
+    ```bash
+    ls -lh wg*
     ```
 
 9. Use the `rpm` command to query for information about the downloaded wget-*.rpm. Type:
 
-    ```
-    $ rpm -qip wget-*.rpm
+    ```bash
+    rpm -qip wget-*.rpm
     Name        : wget
     Architecture: x86_64
     Install Date: (not installed)
@@ -193,12 +193,14 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
     ...<TRUNCATED>...
     ```
 
-10. From your output in the previous step, what exactly is the `wget` package? Hint: you can use the rpm query format option to view the description field for the download package.
+    !!! question
 
-11.  If you are interested in the `wget files-.rpm` package, you could list all the files included in the package by typing:
+        From your output in the previous step, what exactly is the `wget` package? Hint: you can use the `rpm` query format option to view the description field for the download package.
 
-    ```
-    $ rpm -qlp wget-*.rpm | head
+10. If you are interested in the `wget files-.rpm` package, you could list all the files included in the package by typing:
+
+    ```bash
+    rpm -qlp wget-*.rpm | head
     /etc/wgetrc
     /usr/bin/wget
     ...<TRUNCATED>...
@@ -208,10 +210,10 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
     /usr/share/doc/wget/NEWS
     ```
 
-12. Let us view the contents of the `/usr/share/doc/wget/AUTHORS` file listed as part of the `wget` package. We will use the `cat` command. Type:
+11. Let us view the contents of the `/usr/share/doc/wget/AUTHORS` file listed as part of the `wget` package. We will use the `cat` command. Type:
 
-    ```
-    $ cat /usr/share/doc/wget/AUTHORS
+    ```bash
+    cat /usr/share/doc/wget/AUTHORS
     cat: /usr/share/doc/wget/AUTHORS: No such file or directory
     ```
 
@@ -219,7 +221,7 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
 
 13. View the list of files that come with another package (curl) that is *already* installed on the system. Type:
 
-    ```
+    ```bash
     $ rpm -ql curl
     /usr/bin/curl
     /usr/lib/.build-id
@@ -233,48 +235,48 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
 
 #### Extended knowledge about package name
 
-* **Full package name** : When you download a package from a trusted source (for example - vendor website, developer repository), the name of the downloaded file is the full package name, such as -- htop-3.2.1-1.el8.x86_64.rpm. When using the `rpm` command to install/update this package, the object operated by the command must be the full name (or matching wildcard equivalent) of the package, such as:
-    
-    ```
-    $ rpm -ivh htop-3.2.1-1.el8.x86_64.rpm
+- **Full package name** : When you download a package from a trusted source (for example - vendor website, developer repository), the name of the downloaded file is the full package name, such as -- htop-3.2.1-1.el8.x86_64.rpm. When using the `rpm` command to install/update this package, the object operated by the command must be the full name (or matching wildcard equivalent) of the package, such as:
+
+    ```bash
+    rpm -ivh htop-3.2.1-1.el8.x86_64.rpm
     ```
 
-    ```
-    $ rpm -Uvh htop-3.2.1-1.*.rpm
-    ```
-
-    ```
-    $ rpm -qip htop-3.*.rpm
+    ```bash
+    rpm -Uvh htop-3.2.1-1.*.rpm
     ```
 
+    ```bash
+    rpm -qip htop-3.*.rpm
     ```
-    $ rpm -qlp wget-1.19.5-11.el8.x86_64.rpm
+
+    ```bash
+    rpm -qlp wget-1.19.5-11.el8.x86_64.rpm
     ```
 
     The full name of the package follows a naming convention similar to this —— `[Package_Name]-[Version]-[Release].[OS].[Arch].rpm` or `[Package_Name]-[Version]-[Release].[OS].[Arch].src.rpm`
 
-* **Package name**: Because RPM uses a database to manage software, the database will have corresponding records once the package installation completes. Currently, the operating object of the `rpm` command only needs to type the package name. such as:
+- **Package name**: Because RPM uses a database to manage software, the database will have corresponding records once the package installation completes. Currently, the operating object of the `rpm` command only needs to type the package name. such as:
 
-    ```
-    $ rpm -qi bash
-    ```
-
-    ```
-    $ rpm -q systemd
+    ```bash
+    rpm -qi bash
     ```
 
+    ```bash
+    rpm -q systemd
     ```
-    $ rpm -ql chrony
+
+    ```bash
+    rpm -ql chrony
     ```
-    
+
 ## Exercise 2
 
 ### Package integrity
 
 1. It is possible to download or end up with a corrupted or tainted file. Verify the integrity of the `wget` package that you downloaded. Type:
 
-    ```
-    $ rpm -K  wget-*.rpm
+    ```bash
+    rpm -K  wget-*.rpm
     wget-1.19.5-10.el8.x86_64.rpm: digests signatures OK
     ```
 
@@ -282,13 +284,13 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
 
 2. Let us be malicious and deliberately alter the downloaded package. This can be done by adding anything to, or removing something from, the original package. Anything that changes the package in a way the original packagers did not intend will corrupt the package. We will alter the file using the `echo` command to add the string "haha" to the package. Type:
 
-    ```
-    $ echo haha >> wget-1.19.5-10.el8.x86_64.rpm 
+    ```bash
+    echo haha >> wget-1.19.5-10.el8.x86_64.rpm 
     ```
 
 3. Now try to verify the integrity of the package again using rpm's -K option.
 
-    ```
+    ```bash
     $ rpm -K  wget-*.rpm
     wget-1.19.5-10.el8.x86_64.rpm: DIGESTS SIGNATURES NOT OK
     ```
@@ -296,9 +298,9 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
     It is a very different message now. The output "DIGESTS SIGNATURES NOT OK" clearly warns you should not try using or installing the package. It should no longer be trusted.
 
 4. Use the `rm` command to delete the corrupted `wget` package file and download a fresh copy using `dnf`. Type:
-    
-    ```
-    $ rm wget-*.rpm  && dnf download wget
+
+    ```bash
+    rm wget-*.rpm  && dnf download wget
     ```
 
     Check one more time that the newly downloaded package passes RPMs integrity checks.
@@ -319,8 +321,8 @@ In this exercise you will try to install the `wget` package (wget-*.rpm).
 
 1. Try installing the `wget` application. Use RPM's -ivh command line options. Type:
 
-    ```
-    $ rpm -ivh wget-*.rpm
+    ```bash
+    rpm -ivh wget-*.rpm
     error: Failed dependencies:
         libmetalink.so.3()(64bit) is needed by wget-*
     ```
@@ -331,9 +333,9 @@ In this exercise you will try to install the `wget` package (wget-*.rpm).
 
         According to the output of the test above, the wget-*.rpm package requires that the libmetalink-*.rpm package be installed. In other words, libmetalink is a prerequisite for installing wget-*.rpm. You can forcefully install wget-*.rpm package using the “nodeps” option if you absolutely know what you are doing, but this is generally a BAD practice.
 
-2. RPM has helpfully given us a hint for what is missing. You will remember that rpm knows the what and how but does not necessarily know the where. Let us use the `dnf` utility to determine the package name that provides the missing library. Type:
-    
-    ```
+2. RPM has helpfully given us a hint for what is missing. You will remember that `rpm` knows the what and how but does not necessarily know the where. Let us use the `dnf` utility to determine the package name that provides the missing library. Type:
+
+    ```bash
     $ dnf whatprovides libmetalink.so.3
     ...<TRUNCATED>...
     libmetalink-* : Metalink library written in C
@@ -344,56 +346,56 @@ In this exercise you will try to install the `wget` package (wget-*.rpm).
 
 3. From the output, we need to download the `libmetalink` package that provides the missing library. Specifically, we want the 64bit version of the library. Let us call on a separate utility (`dnf`) to help us find and download the package for our demo 64-bit (x86_64) architecture. Type:
 
-    ```
+    ```bash
     dnf download --arch x86_64  libmetalink
     ```
 
 4. You should now have at least 2 rpm packages in your working directory. Use the `ls` command to confirm this.
 
 5. Install the missing `libmetalink` dependency. Type:
-    
-    ```
-    $ sudo rpm -ivh libmetalink-*.rpm
+
+    ```bash
+    sudo rpm -ivh libmetalink-*.rpm
     ```
 
 6. With the dependency now installed, we can now revisit our original objective of installing the `wget` package. Type:
 
+    ```bash
+    sudo rpm -ivh wget-*.rpm
     ```
-    $ sudo rpm -ivh wget-*.rpm
-    ```
-    
+
     !!! note
-    
+
         RPM supports transactions. In the previous exercises, we could have performed a single rpm transaction that included the original package we wanted to install and all the packages and libraries it depended on. A single command such as the one below would have sufficed:
 
-            ```
-            $  rpm -Uvh  wget-*.rpm  libmetalink-*.rpm
+            ```bash
+            rpm -Uvh  wget-*.rpm  libmetalink-*.rpm
             ```
 
 7. Moment of truth now. Try running the `wget` program without any option to see if it is installed. Type:
 
-    ```
-    $ wget
+    ```bash
+    wget
     ```
 
 8. Let us see `wget` in action. Use `wget` to download a file from the internet from the command line. Type:
 
-    ```
+    ```bash
     wget  https://kernel.org
     ```
 
     This will download the default index.html from kernel.org website!
 
 9. Use `rpm` to view a list of all the files included with the `wget` application.
-    
+
 10. Use `rpm` to view any documentation packaged with `wget`.
-    
+
 11. Use `rpm` to view the list of all the binaries installed with the `wget` package.
 
 12. You had to install the `libmetalink` package to install `wget`. Try running or executing `libmetalink` from the command-line. Type:
-    
-    ```
-    $ libmetalink
+
+    ```bash
+    libmetalink
     -bash: libmetalink: command not found
     ```
 
@@ -401,16 +403,15 @@ In this exercise you will try to install the `wget` package (wget-*.rpm).
 
         What gives? Why can't you run or execute `libmetalink`?
 
-#### To import a public key via rpm
+#### To import a public key via `rpm`
 
 !!! tip
 
     The GPG keys used for signing packages used in the Rocky Linux project can be obtained from various sources such as - the Project website, ftp site,    distribution media, local source and so on. Just in case the proper key is missing on your RL system's keyring, you can use the `rpm`'s `--import` option to import Rocky Linux’s public key from your local RL system by running: `sudo  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial`
 
 !!! question
-    
-    When installing packages, what is the difference between `rpm -Uvh` and `rpm -ivh`.
-    Consult the man page for `rpm`.
+
+    When installing packages, what is the difference between `rpm -Uvh` and `rpm -ivh`? Consult the man page for `rpm`.
 
 ## Exercise 4
 
@@ -418,14 +419,14 @@ In this exercise you will try to install the `wget` package (wget-*.rpm).
 
 Uninstalling packages is as easy as installing with Red Hat’s package manager (RPM).
 
- In this exercise, you will try to use `rpm` to uninstall some packages from the system. 
+In this exercise, you will try to use `rpm` to uninstall some packages from the system.
 
 #### To uninstall packages
 
 1. Uninstall the `libmetalink` package from your system. Type:
 
-    ```
-    $ sudo rpm -e libmetalink
+    ```bash
+    sudo rpm -e libmetalink
     ```
 
     !!! question
@@ -434,12 +435,12 @@ Uninstalling packages is as easy as installing with Red Hat’s package manager 
 
 2. The clean and proper way to remove packages using RPM is to remove the package(s) along with their dependencies. To remove `libmetalink` package we will also have to remove the `wget` package that depends on it. Type:
 
-    ```
-    $ sudo rpm -e libmetalink wget
+    ```bash
+    sudo rpm -e libmetalink wget
     ```
 
     !!! note
-     
+
         If you want to break the package that relies on libmetalink and *forcefully* remove the package from your system, you can use rpm's `--nodeps` option like this: `$ sudo rpm  -e  --nodeps  libmetalink`.
 
         **i.** The “nodeps” option means No dependencies. I.e., ignore all dependencies.
@@ -458,7 +459,7 @@ DNF (and other tools like it) acts as a sort of wrapper around RPM and provides 
 
 Common options used with the `dnf` utility are:
 
-```
+```bash
     usage: dnf [options] COMMAND
 
     List of Main Commands:
@@ -501,16 +502,16 @@ Assuming you have already uninstalled the `wget` utility from an exercise, we wi
 
 1. First, let us ensure that `wget` and `libmetalink` are uninstalled from the system. Type:
 
+    ```bash
+    sudo rpm -e wget libmetalink
     ```
-    $ sudo rpm -e wget libmetalink
-    ```
-    
+
     After removing, if you try running `wget` from the CLI you see a message like *wget: command not found*
 
-2. Now use dnf to install `wget`. Type:
+2. Now use `dnf` to install `wget`. Type:
 
-    ```
-    $ sudo dnf -y install wget
+    ```bash
+    sudo dnf -y install wget
     Dependencies resolved.
     ...<TRUNCATED>...
     Installed:
@@ -524,40 +525,40 @@ Assuming you have already uninstalled the `wget` utility from an exercise, we wi
 
 3. DNF provides an "Environment Group" option that makes adding a new feature set to a system easy. To add the feature, you would typically have to install a few packages individually, but using `dnf`, all you need to know is the name or description of the feature you want. Use `dnf` to display a list of available groups. Type:
 
-    ```
-    $ dnf group list
+    ```bash
+    dnf group list
     ```
 
 4. We are interested in the "Development Tools" group/feature. Let us get more information about that group. Type:
   
-    ```
-   $ dnf group info "Development Tools"
+    ```bash
+   dnf group info "Development Tools"
    ```
 
 5. Later, we will need some programs with the "Development Tools" group. Install the "Development Tools" group using `dnf` by running:
 
-    ```
-    $ sudo dnf -y group install "Development Tools"
+    ```bash
+    sudo dnf -y group install "Development Tools"
     ```
 
 #### To use `dnf` for uninstalling packages
 
 1. To use `dnf` to uninstall the `wget` package type:
 
-    ```
-    $ sudo dnf -y remove wget
+    ```bash
+    sudo dnf -y remove wget
     ```
 
 2. Use `dnf` to ensure the package has indeed been removed from the system. Type:
 
-    ```
-    $ sudo dnf -y remove wget
+    ```bash
+    sudo dnf -y remove wget
     ```
 
 3. Try using/running `wget`. Type:
 
-    ```
-    $ wget
+    ```bash
+    wget
     ```
 
 #### To use `dnf` for package update
@@ -566,32 +567,32 @@ DNF can check for and install the latest version of individual packages availabl
 
 1. Use the list option with `dnf` to view your system's available versions of the `wget` program. Type:
 
-    ```
-    $ dnf list wget
+    ```bash
+    dnf list wget
     ```
 
 2. If you only want to see if there are updated versions available for a package, use the check-update option with `dnf`. For example, for the `wget` package type:
 
-    ```
-    $ dnf check-update wget
+    ```bash
+    dnf check-update wget
     ```
 
 3. Now, list all the available versions for the kernel package for your system. Type:
 
-    ```
-    $ sudo dnf list kernel
+    ```bash
+    sudo dnf list kernel
     ```
 
 4. Next, check if any updated packages are available for the installed kernel package. Type:
 
-    ```
-    $ dnf  check-update kernel
+    ```bash
+    dnf check-update kernel
     ```
 
 5. Package updates might be due to bug fixes, new features, or security patches. To view if there are any security related updates for the kernel package, type:
 
-    ```
-    $ dnf  --security check-update kernel
+    ```bash
+    dnf  --security check-update kernel
     ```
 
 #### To use `dnf` for system updates
@@ -600,20 +601,20 @@ DNF can be used to check for and install the latest versions all packages instal
 
 1. To check if there are any updates for the packages you currently have installed on your system, type:
 
-    ```
-    $ dnf check-update
+    ```bash
+    dnf check-update
     ```
 
 2. To check if there are any security related updates for all packages installed on your system, type:
 
-    ```
-    $ dnf --security check-update
+    ```bash
+    dnf --security check-update
     ```
 
 3. To update the entire packages installed on your system to the most up-to-date versions available for your distribution run:
 
-    ```
-    $ dnf -y check-update
+    ```bash
+    dnf -y check-update
     ```
 
 ## Exercise 6
@@ -638,13 +639,13 @@ The following exercises will be based on the venerable Hello project source code
 
 2. Unpack (un-tar) the tarball using the `tar` program. Type:
 
+    ```bash
+    tar -xvzf hello-2.12.tar.gz
     ```
-    $ tar -xvzf hello-2.12.tar.gz
-    ```
-    
+
     OUTPUT:
-    
-    ```
+
+    ```bash
     hello-2.12/
     hello-2.12/NEWS
     hello-2.12/AUTHORS
@@ -659,16 +660,16 @@ The following exercises will be based on the venerable Hello project source code
 
 4. Change to that directory and list its contents. Type:
 
-    ```
-    $ cd hello-2.12 ; ls
+    ```bash
+    cd hello-2.12 ; ls
     ```
 
 5. Reviewing any special installation instructions that might come with the source code is always good practice. Those files usually have names like: INSTALL, README and so on.
 
     Use a pager to open up the INSTALL file and read it. Type:
 
-    ```
-    $ less INSTALL
+    ```bash
+    less INSTALL
     ```
 
     Exit the pager when you are done reviewing the file.
@@ -683,16 +684,16 @@ The script that usually lets you configure the software is usually aptly named �
 
     Make sure that you have the "Development Tools" package group installed before attempting to complete the following exercises.
 
+    ```bash
+    sudo dnf -y group install "Development Tools"
     ```
-    $ sudo dnf -y group install "Development Tools"
-  
 
 1. Use the `ls` command again to ensure that you indeed have a file named *configure* in your pwd.
 
 2. To see all the options, you can enable or disable in the `hello` program type:
 
-    ```
-    $ ./configure --help
+    ```bash
+    ./configure --help
     ```
 
     !!! question
@@ -701,8 +702,8 @@ The script that usually lets you configure the software is usually aptly named �
 
 3. If you are happy with the default options that the configure script offers. Type:
 
-    ```
-    $ ./configure
+    ```bash
+    ./configure
     ```
 
     !!! note
@@ -721,12 +722,13 @@ You will build the hello application in the following steps. This is where some 
 
 1. Use the make command to compile the package after running the “configure” script. Type:
 
-    ```
-    $ make
+    ```bash
+    make
     ```
 
     OUTPUT:
-    ```
+
+   ```bash
     gcc  -g -O2   -o hello src/hello.o  ./lib/libhello.a
     make[2]: Leaving directory '/home/rocky/hello-2.12'
     ...<OUTPUT TRUNCATED>...
@@ -743,8 +745,8 @@ Amongst other housekeeping tasks, the final installation step also involves copy
 
 1. To install the hello application run the make install command. Type:
 
-    ```
-    $ sudo make install
+    ```bash
+    sudo make install
     ```
 
     This will install package into the location specified by the default prefix (--prefix) argument that may have been used with the “configure” script earlier. If no --prefix was set, a default prefix of `/usr/local/` will be used.
@@ -752,36 +754,37 @@ Amongst other housekeeping tasks, the final installation step also involves copy
 #### To run the hello program
 
 1. Use the `whereis` command to see where the `hello` program is on your system. Type:
-   
-    ```
-    $ whereis hello
+
+    ```bash
+    whereis hello
     ```
 
 2. Try running the `hello` application to see what it does. Type:
-   
-    ```
-    $ hello
+
+    ```bash
+    hello
     ```
 
 3. Run `hello` again, with the `--help` option to see the other things it can do.
 
 4. Now using `sudo`, run `hello` again as a superuser. Type:
-   
-    ```
-    $ sudo hello
+
+    ```bash
+    sudo hello
     ```
 
     OUTPUT:
-    ```
+
+    ```bash
     sudo: hello: command not found
     ```
-    
+
     !!! Question
 
         Investigate what causes the error when you try running `hello` with `sudo`. Fix the issue and make sure the `hello` program can be used with `sudo`.
 
     !!! tip
-    
+
         It is good practice to test a program as a regular user to ensure that regular users can indeed use the program. It is possible that the permissions on the binary are set incorrectly such that only the super-user can use the programs. This of course assumes that you indeed want regular users to be able to use the program.
 
 5. That's it. This exercise is complete!
@@ -798,49 +801,50 @@ Using the "-V" option of the `rpm` command.
 
 Take the time synchronization program `chrony` as an example to illustrate the meaning of its output.
 
-
 1. To demonstrate how the `rpm` package verification works, make a modification to chrony's configuration file - `/etc/chrony.conf`. (It is assumed that you have installed chrony). Add 2 harmless comment `##` symbols to the end of the file. Type:
 
-  ```
-  $ echo -e "##"  | sudo tee -a /etc/chrony.conf
-  ```
-  
+    ```bash
+    echo -e "##"  | sudo tee -a /etc/chrony.conf
+    ```
+
 2. Now run the `rpm` command with the `--verify` option. Type:
 
-  ```
-  $ rpm -V chrony
-  ```
-  OUTPUT:
-  ```
-  S.5....T.  c  /etc/chrony.conf
-  ```
+    ```bash
+    rpm -V chrony
+    ```
 
-  The output is broken down into 3 separate columns.
+    OUTPUT:
 
-  **First Column (S.5....T.)**
+    ```bash
+    S.5....T.  c  /etc/chrony.conf
+    ```
+
+    The output is broken down into 3 separate columns.
+
+    - **First Column (S.5....T.)**
   
-The sample output - `S.5....T.` indicates the 9 fields that are used to indicate useful information   about the validity of files in an RPM package. Any field or characteristic that passed a given check/test is indicated by a ".".
+        The sample output - `S.5....T.` indicates the 9 fields that are used to indicate useful information   about the validity of files in an RPM package. Any field or characteristic that passed a given check/test is indicated by a ".".
 
-These 9 different fields or checks are described here:
+        These 9 different fields or checks are described here:
 
-  * S: Whether the size of the file has been modified.
-  * M: Whether the type of file or file permissions (rwx) have been modified.
-  * 5: Whether the file MD5 checksum has modified.
-  * D: Whether the number of the device has been modified.
-  * L: Whether the path to the file has been modified.
-  * U: Whether the owner of the file has been modified.
-  * G: Whether the group to which the file belongs has been modified.
-  * T: Whether the mTime (modify time) of the file has been modified.
-  * P: Whether the program function has been modified.
+        - S: Whether the size of the file has been modified.
+        - M: Whether the type of file or file permissions (rwx) have been modified.
+        - 5: Whether the file MD5 checksum has modified.
+        - D: Whether the number of the device has been modified.
+        - L: Whether the path to the file has been modified.
+        - U: Whether the owner of the file has been modified.
+        - G: Whether the group to which the file belongs has been modified.
+        - T: Whether the mTime (modify time) of the file has been modified.
+        - P: Whether the program function has been modified.
 
-  **Second Column (c)**
+    - **Second Column (c)**
 
-* **c**: Indicates modifications to the configuration file. It can also be the following values:
-  * d: documentation file.
-  * g: ghost file. Very few can be seen.
-  * l: license file.
-  * r: readme file.
+        - **c**: Indicates modifications to the configuration file. It can also be the following values:
+        - d: documentation file.
+        - g: ghost file. Very few can be seen.
+        - l: license file.
+        - r: readme file.
 
-  **Third column (/etc/chrony.conf)**
+    - **Third column (/etc/chrony.conf)**
 
-  * **/etc/chrony.conf**: Represents the path of the modified file.
+        - **/etc/chrony.conf**: Represents the path of the modified file.
