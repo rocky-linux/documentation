@@ -73,7 +73,7 @@ Once the cloning process is finished in the second part of the command, the Neov
 
 ### :material-timer-cog-outline: Bootstrap
 
-Before starting the bootstrap, the installation will offer us the installation of a base structure (*template chadrc*) for our further customizations:
+Before starting the bootstrap, the installation will offer us the installation of a base structure (*template chadrc*) for our further customization:
 
 > Do you want to install chadrc template? (y/n):
 
@@ -130,7 +130,7 @@ The part reserved for the editor is as follows:
 
 ### Template Structure
 
-While the part concerning customizations consists of the following structure:
+While the part concerning customization consists of the following structure:
 
 ```text
 .config/nvim/lua/custom/
@@ -206,10 +206,10 @@ This sets four main keys from which, in association with other keys, commands ca
 
     We will refer to these key mappings several times throughout these documents. 
 
-These are some the keys set. We recommend consulting the file mentioned above for an exhaustive list.
+These are some of the keys set. We recommend consulting the file mentioned above for an exhaustive list.
 
 `<leader>th` to change the theme ++space++ + ++"t"++ + ++"h"++  
 `<C-n>` to open nvimtree ++ctrl++ + ++"n"++  
 `<A-i>` to open a terminal in a floating tab ++alt++ + ++"i"++
 
-There are many combinations pre-set for you, and they cover all the uses of NvChad. It is worth pausing to analyze the key mappings before starting to use your NvChad-configured instance of Neovim.
+There are many combinations preset for you, and they cover all the uses of NvChad. It is worth pausing to analyze the key mappings before starting to use your NvChad-configured instance of Neovim.
