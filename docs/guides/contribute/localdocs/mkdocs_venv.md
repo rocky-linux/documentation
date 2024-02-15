@@ -259,7 +259,7 @@ INFO     -  [11:46:50] Watching paths for changes:
 INFO     -  [11:46:50] Serving on http://127.0.0.1:8000/
 ```
 
-You will have your copy of the documentation site running when opening your browser at the address specified [http://1127.0.0.1:8000](http://1127.0.0.1:8000). The copy perfectly mirrors the online site in functionality and structure, allowing you to assess the appearance and impact your page will have on the site.
+You will have your copy of the documentation site running when opening your browser at the address specified [http://1127.0.0.1:8000](http://127.0.0.1:8000). The copy perfectly mirrors the online site in functionality and structure, allowing you to assess the appearance and impact your page will have on the site.
 
 MkDocs incorporates a mechanism for checking changes to the files in the folder specified by the `docs_dir` path, and inserting a new page or modifying an existing one in `documentation/docs` will automatically be recognized and produce a new static site build.
 
@@ -274,7 +274,7 @@ Once the display of your new page meets your satisfaction, you can exit your dev
 INFO     -  [22:32:41] Serving on http://127.0.0.1:8000/
 ^CINFO     -  Shutting down...
 (env) [rocky_user@rl9 env]$
-(env) [rocky_user@rl9 env]$ deacticate
+(env) [rocky_user@rl9 env]$ deactivate
 [rocky_user@rl9 env]$
 ```
 
