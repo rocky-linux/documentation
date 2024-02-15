@@ -206,7 +206,7 @@ This sets four main keys from which, in association with other keys, commands ca
 
     We will refer to these key mappings several times throughout these documents. 
 
-These are some the keys set. We recommend consulting the file mentioned above for an exhaustive list.
+These are some of the keys set. We recommend consulting the file mentioned above for an exhaustive list.
 
 `<leader>th` to change the theme ++space++ + ++"t"++ + ++"h"++  
 `<C-n>` to open nvimtree ++ctrl++ + ++"n"++  
