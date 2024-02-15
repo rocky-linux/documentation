@@ -210,7 +210,7 @@ This mapping is entered for the NORMAL state `n =` the character ++";"++ which w
 
 #### :material-language-lua: highlights.lua
 
-The file is used to customize the style of the editor. The settings written here are used to change aspects such as font style (**bold**,*italic*), background color of an element, foreground color and so on.
+The file is used to customize the style of the editor. The settings written here are used to change aspects such as font style (**bold**, *italic*), background color of an element, foreground color and so on.
 
 ### :material-folder-cog-outline: Configs folder
 
@@ -281,7 +281,7 @@ Again, configuration requires installation of the corresponding package, which c
 
 #### :material-language-lua: overrides.lua
 
-The *overrides.lua* file contains the changes to be made to the default plugin settings. The plugins to which the changes are to be applied are specified in the ==-- Override plugin definition options== section of the `custom/plugins.lua` file through the use of the **opts** option (e.g. `opts = overrides.mason`).
+The *overrides.lua* file contains the changes to be made to the default plugin settings. The plugins to which the changes are to be applied are specified in the ==-- Override plugin definition options== section of the `custom/plugins.lua` file through the use of the **opts** option (e.g., `opts = overrides.mason`).
 
 In the initial configuration there are three plugins marked as needing to be overridden and they are *treesitter*, *mason* and *nvim-tree*. Leaving out *nvim-tree* for the moment, we will focus on the first two that allow us to change our editing experience significantly.
 
