@@ -279,6 +279,72 @@ firewall-cmd --zone=public --add-port=12345/tcp
 firewall-cmd --runtime-to-permanent
 ```
 
+## Running multiple relays
+
+As mentioned earlier, you can set up to 8 Tor relays per public IP address. For instance, if we have 5 public IP addresses, we can set up a maximum of 40 relays on our server.
+
+However, we need a custom systemd unit file for each relay we run.
+
+Let us now add a secondary systemd unit file at `/usr/lib/systemd/system/torX`:
+
+```bash
+[Unit]
+Description=Anonymizing overlay network for TCP
+After=syslog.target network.target nss-lookup.target
+PartOf=tor-master.service
+ReloadPropagatedFrom=tor-master.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+ExecStartPre=/usr/bin/tor --runasdaemon 0 -f /etc/tor/torrcX --DataDirectory /var/lib/tor/X --DataDirectoryGroupReadable 1 --User toranon --verify-config
+ExecStart=/usr/bin/tor --runasdaemon 0 -f /etc/tor/torrcX --DataDirectory /var/lib/tor/X --DataDirectoryGroupReadable 1 --User toranon
+ExecReload=/bin/kill -HUP ${MAINPID}
+KillSignal=SIGINT
+TimeoutSec=30
+Restart=on-failure
+RestartSec=1
+WatchdogSec=1m
+LimitNOFILE=32768
+
+# Hardening
+PrivateTmp=yes
+DeviceAllow=/dev/null rw
+DeviceAllow=/dev/urandom r
+ProtectHome=yes
+ProtectSystem=full
+ReadOnlyDirectories=/run
+ReadOnlyDirectories=/var
+ReadWriteDirectories=/run/tor
+ReadWriteDirectories=/var/lib/tor
+ReadWriteDirectories=/var/log/tor
+CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH
+PermissionsStartOnly=yes
+
+[Install]
+WantedBy = multi-user.target
+```
+
+Replace the `X` suffix after `tor`/`torrc` with your desired name. The author likes to number it for simplicity, but it can be anything.
+
+Subsequently, we will add the instance's `torrc` file in `/etc/tor/torrcX`. Be sure to give each instance a separate port and/or IP address.
+
+We will also allow our chosen TCP port "12345" (or the port in `torrcX`) in SELinux and `firewalld`:
+
+```bash
+semanage port -a -t tor_port_t -p tcp 12345
+firewall-cmd --zone=public --add-port=12345/tcp
+firewall-cmd --runtime-to-permanent
+```
+
+After that, enable the `torX` systemd unit:
+
+```bash
+systemctl enable --now torX
+```
+
+Repeat these steps for each relay you want to run.
+
 ## Conclusion
 
 Unlike a conventional VPN service, Tor takes advantage of volunteer-run relays to ensure privacy and anonymity, which you just set up.
