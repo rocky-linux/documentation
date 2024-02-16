@@ -18,12 +18,13 @@ tags:
 
 The following are minimum requirements for using this procedure:
 
-* A public IP address, whether directly on the server or with port forwarding
+* A public IPv4 address, whether directly on the server or with port forwarding
 * A system that is able to run 24/7, to be useful for the Tor network
 * The ability to run commands as the root user or use `sudo` to elevate privileges
 * Familiarity with a command-line editor. The author is using `vi` or `vim` here, but substitute in your favorite editor
 * Comfort with changing SELinux and firewall settings
 * An unmetered connection, or a connection with a high bandwidth limit
+* Optional: A public IPv6 address, for dual-stack connectivity
 
 ## Installing Tor
 
@@ -271,7 +272,7 @@ These values imply that:
 
 If you want to listen on another TCP port, change "12345" with your desired TCP port.
 
-We will also have to allow our chosen TCP port "12345" (or the port you chose) in SELinux and `firewalld`:
+We will also allow our chosen TCP port "12345" (or the port you chose) in SELinux and `firewalld`:
 
 ```bash
 semanage port -a -t tor_port_t -p tcp 12345
