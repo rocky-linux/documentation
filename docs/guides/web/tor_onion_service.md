@@ -9,7 +9,7 @@ tags:
   - proxies
 ---
 
-# Tor Onion Service
+# Tor Onion service
 
 ## Introduction
 
@@ -56,8 +56,8 @@ HiddenServicePort 80 127.0.0.1:80
 
 ### Taking a closer look
 
-* The "HiddenServiceDir" is the location of your onion service's hostname and cryptographic keys. We are storing these keys at `/var/lib/tor/onion-site/`
-* The "HiddenServicePort" is the port forwarding from your local server to the onion service. We are forwarding 127.0.0.1:80 to port 80 on our Tor-facing service
+* The "HiddenServiceDir" is the location of your onion service's hostname and cryptographic keys. You are storing these keys at `/var/lib/tor/onion-site/`
+* The "HiddenServicePort" is the port forwarding from your local server to the onion service. You are forwarding 127.0.0.1:80 to port 80 on our Tor-facing service
 
 !!! warning
 
@@ -65,13 +65,13 @@ HiddenServicePort 80 127.0.0.1:80
 
 ## Configuring a web server
 
-We will also need a web server on our machine in order to service clients to our onion service. The author likes Caddy, but Apache or Nginx can also be used. For simplicity's sake, let's install Caddy:
+You will also need a web server on our machine to service clients to your onion service. Any web server is usable (Caddy, Apache, or Nginx). The author prefers Caddy. For simplicity's sake, install Caddy:
 
 ```bash
 dnf -y install caddy
 ```
 
-Next, we should insert the following to `/etc/caddy/Caddyfile`:
+Next, you will insert the following to `/etc/caddy/Caddyfile`:
 
 ```bash
 http:// {
@@ -94,12 +94,12 @@ You can get your onion service's hostname with this command:
 cat /var/lib/tor/onion-site/hostname
 ```
 
-Within a few minutes, your onion service will propagate via the Tor network and you can view your new onion service in Tor Browser:
+Within a few minutes, your onion service will propagate via the Tor network and you can view your new onion service in the Tor browser:
 
 ![Tor Browser showing our Onion Service](../images/onion_service.png)
 
 ## Conclusion
 
-Onion services are an invaluable tool if you're hosting a website privately or need to bypass your ISP's Carrier Grade NAT using only open source software.
+Onion services are an invaluable tool if you are hosting a website privately or need to bypass your ISP's Carrier Grade NAT using only open source software.
 
-While onion services aren't as fast as hosting a website directly (understandable due to Tor's privacy-first design), it's way more secure and private than the public internet.
+While onion services are not as fast as hosting a website directly (understandable due to Tor's privacy-first design), it is way more secure and private than the public internet.
