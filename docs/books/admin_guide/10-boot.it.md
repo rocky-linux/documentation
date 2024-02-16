@@ -4,16 +4,16 @@ title: Avvio del sistema
 
 # Avvio del sistema
 
-In questo capitolo imparerai come si avvia il sistema.
+In questo capitolo verrà illustrato come si avvia il sistema.
 
 ****
 **Obiettivi** : In questo capitolo, i futuri amministratori Linux apprenderanno:
 
-:heavy_check_mark: Le diverse fasi del processo di avvio;  
-:heavy_check_mark: Come Rocky Linux supporta questo avvio tramite Grub2 e systemd;  
-:heavy_check_mark: Come proteggere Grub2 da un attacco;  
-:heavy_check_mark: Come gestire i servizi;  
-:heavy_check_mark: Come accedere ai registri di log con journald.
+:heavy_check_mark: Le diverse fasi del processo di avvio;   
+:heavy_check_mark: Come Rocky Linux supporta questo avvio tramite Grub2 e systemd;   
+:heavy_check_mark: Come proteggere Grub2 da un attacco;   
+:heavy_check_mark: Come gestire i servizi;   
+:heavy_check_mark: Come accedere ai registri di log con `journald`.
 
 :checkered_flag: **utenti**
 

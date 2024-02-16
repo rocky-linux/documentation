@@ -1,7 +1,7 @@
 ---
 title: Gestione del Software
 author: Antoine Le Morvan
-contributors: Colussi Franco, Steven Spencer
+contributors: Steven Spencer, Ganna Zhyrnova
 tested version: 8.5
 tags:
   - education

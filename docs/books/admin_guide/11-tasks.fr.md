@@ -2,7 +2,7 @@
 title: Gestion des tâches
 ---
 
-# Gestion des tâches
+# Gestion des Tâches
 
 Dans ce chapitre, vous allez apprendre à gérer les tâches planifiées.
 
