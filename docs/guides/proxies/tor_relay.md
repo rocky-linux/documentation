@@ -24,7 +24,7 @@ The following are minimum requirements for using this procedure:
 * Familiarity with a command-line editor. The author is using `vi` or `vim` here, but substitute in your favorite editor
 * Comfort with changing SELinux and firewall settings
 * An unmetered connection, or a connection with a high bandwidth limit
-* Optional: A public IPv6 address, for dual-stack connectivity
+* Optional: A public IPv6 address for dual-stack connectivity
 
 ## Installing Tor
 
