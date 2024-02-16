@@ -9,11 +9,11 @@ tags:
   - plugins
 ---
 
-# Example Config
+# Example configuration
 
 ## :material-message-outline: Introduction
 
-Version 2.0 of NvChad introduces the ability to create a ==custom== folder during the installation phase. Its creation is the starting point for customizing the editor by modifying the files contained within it. Installed at bootstrap it allows for an editor with the basic features of an IDE at first startup but can also be included after the installation of NvChad.
+Version 2.0 of NvChad introduces the ability to create a ==custom== folder during the installation phase. Its creation is the starting point for customizing the editor by modifying its files. Installed at bootstrap it allows for an editor with the basic features of an IDE at first startup but can also be included after the installation of NvChad.
 
 The most important aspect of its installation is the creation of the basic structures for the inclusion of some advanced features such as language servers, linters and formatters. These structures allow the necessary functionality to be integrated with little modification.
 
@@ -23,18 +23,18 @@ The folder is created from an example one on NvChad's GitHub repository: ([examp
 
 === "Install at bootstrap"
 
-    To create it during the installation, simply answer "y" to the question we are asked at the beginning of the installation:
+    To create it during the installation, answer "y" to the question we are asked at the beginning of the installation:
 
     > Do you want to install example custom config? (y/N):
 
     An affirmative answer will start a process that will clone the contents of the *example-config* folder from GitHub into **~/.config/nvim/lua/custom/** and once finished, will remove the **.git** folder from it.  
     Removing it allows the folder to be placed under a personal version control.
 
-    At this point the folder is ready and will be used the next time NvChad is started to enter custom configurations into the editor.
+    The folder is ready and will be used the next time NvChad is started to enter custom configurations into the editor.
 
 === "Install from repository"
 
-    The installation of the configuration provided by ==example-config== can also be done after the installation of NvChad, in which case the repository is still used but is retrieved by a manual operation.
+    The configuration installation provided by ==example-config== can also be done after the installation of NvChad, in which case the repository is still used but is retrieved by a manual operation.
 
     The standard installation without ==example-config== still creates a *custom* folder where to save the ==chadrc.lua== file for user customizations and should be deleted or saved in a ==backup== to allow the clone to run. Then save the existing configuration with:
 
@@ -42,24 +42,25 @@ The folder is created from an example one on NvChad's GitHub repository: ([examp
     mv ~/.config/nvim/lua/custom/ ~/.config/nvim/lua/custom.bak
     ```
 
-    And clone the GitHub repository to your own configuration:
+    And clone the GitHub repository to your configuration:
 
     ```bash
     git clone https://github.com/NvChad/example_config.git ~/.config/nvim/lua/custom
     ```
 
-    The command copies the entire contents of the repository found online to the `~/.config/nvim/lua/custom/` folder, also copying the hidden `.git` folder, which will have to be deleted manually to allow the switch to a personal version control. For its deletion run the command:
+    The command copies the entire repositories contents found online to the `~/.config/nvim/lua/custom/` folder, copying the hidden `.git` folder, which you must delete manually to allow the switch to a personal version control. For its deletion run the command:
 
     ```bash
     rm rf ~/.config/nvim/lua/custom/.git/
     ```
-    At this point the folder is ready and will be used the next time NvChad is started to enter custom configurations into the editor.
+
+    The folder is ready and will be used the next time NvChad is started to enter custom configurations into the editor.
 
 ## :material-file-outline: Structure
 
-The structure of the ==custom== folder consists of a number of configuration files and a `configs` folder containing the plugin option files set in *plugins.lua*.
+The structure of the ==custom== folder consists of several configuration files and a `configs` folder containing the plugin option files set in *plugins.lua*.
 
-Using separate files for plugin settings allows you to have a much more streamlined *plugins.lua* file and to work only on the plugin code while customizing it. This is also the recommended method for developing your own plugins that you will be adding later.
+Using separate files for plugin settings allows you to have a much more streamlined *plugins.lua* file, and to work only on the plugin code while customizing it. This is also the recommended method for developing plugins that you will be adding later.
 
 The structure created is as follows:
 
@@ -78,7 +79,7 @@ custom/
 
 ```
 
-As we can see, the folder contains some files with the same name also encountered in the basic structure of NvChad. These files allow you to integrate the configuration and override the basic settings of the editor.
+As we can see, the folder contains some files with the same name, which are also encountered in the basic structure of NvChad. These files allow you to integrate the configuration and override the basic settings of the editor.
 
 ## :octicons-file-code-16: Structure Analysis
 
@@ -111,7 +112,7 @@ M.mappings = require "custom.mappings"
 return M
 ```
 
-The file is inserted into the Neovim configuration by the `load_config` function set in the file **~/.config/nvim/lua/core/utils.lua**, the function takes care of loading the default settings and, if present, also those of the *chadrc.lua* file in the *custom* folder:
+The file is inserted into the Neovim configuration by the `load_config` function set in the file **~/.config/nvim/lua/core/utils.lua**. The function takes care of loading the default settings and, if present, also those of the *chadrc.lua* file in the *custom* folder:
 
 ```lua
 M.load_config = function()
@@ -130,7 +131,7 @@ The string **custom.mappings** indicates the relative path to the file without t
 
 In summary, we can say that the call described above inserts the configurations written in the file `custom/mappings.lua` into the NvChad mapping, thus inserting shortcuts to invoke the commands for the plugins set in `custom/plugins.lua`.
 
-There is also a section in the file that overrides some of the NvChad user interface configuration settings contained in `core/default_config.lua`, specifically the **M.ui** section that allows, for example, to select a light or dark theme.
+A section in the file also overrides some of the NvChad user interface configuration settings contained in `core/default_config.lua`, specifically the **M.ui** section that allows, for example, to select a light or dark theme.
 
 At the end of the file is set the ==require== call to the `custom/plugins.lua` file corresponding to the string:
 
@@ -138,11 +139,11 @@ At the end of the file is set the ==require== call to the `custom/plugins.lua` f
 M.plugins = "custom.plugins"
 ```
 
-In this way plugins set in `custom/plugins.lua` will be passed along with those that make up the NvChad configuration to *lazy.nvim* for installation and their management. The inclusion in this case is not in the Neovim tree, but rather in the configuration of *lazy.nvim*, since this plugin completely disables the related editor functionality with the call `vim.go.loadplugins = false`.
+This way, plugins set in `custom/plugins.lua` are passed along with those that make up the NvChad configuration to *lazy.nvim* for installation and their management. In this case, inclusion is not in the Neovim tree. Instead, it is in the configuration of *lazy.nvim*, since this plugin completely disables the related editor functionality with the call `vim.go.loadplugins = false`.
 
 #### :material-language-lua: init.lua
 
-This file is used for overwriting settings defined in `core/init.lua`, such as indentation or swap write interval, to disk. It is also used for the creation of auto-commands, as described in the commented lines in the file. An example might be the following in which some settings for writing documents in Markdown have been included:
+This file is used for overwriting settings defined in `core/init.lua`, such as indentation or swap write interval, to disk. It is also used to create auto-commands, as described in the commented lines in the file. An example might be the following in which some settings for writing documents in Markdown have been included:
 
 ```lua
 --local autocmd = vim.api.nvim_create_autocmd
@@ -165,7 +166,7 @@ opt.smartindent = true
 -- })
 ```
 
-This among other things replaces 2-space tabulation with 4-space tabulation more suitable for Markdown code.
+This, among other things, replaces the 2-space tabulation with 4-space tabulation more suitable for Markdown code.
 
 #### :material-language-lua: plugins.lua
 
@@ -173,7 +174,7 @@ This file sets the plugins to be added to those in the basic NvChad configuratio
 
 The *plugins.lua* file created by the *example-config* has in the first part a number of customizations that override the plugin definition options and default plugin configurations. This part of the file does not need to be modified by us as the developers have prepared special files for this purpose that are present in the *config* folder.
 
-Installation of a plugin follows; this was created as an example so that you can begin to become familiar with the format used by *lazy.nvim*.
+Installation of a plugin follows. This was created as an example so that you can become familiar with the format used by *lazy.nvim*.
 
 ```lua
   -- Install a plugin
@@ -186,7 +187,7 @@ Installation of a plugin follows; this was created as an example so that you can
   },
 ```
 
-After this plugin and before the last parenthesis you can insert all additional plugins. There is a whole ecosystem of plugins suitable for every purpose. For a first overview you can visit [Neovimcraft](https://neovimcraft.com/).
+You can insert all additional plugins after this plugin and before the last parenthesis. There is a whole ecosystem of plugins suitable for every purpose. You can visit [Neovimcraft](https://neovimcraft.com/) for a first overview.
 
 #### :material-language-lua: mappings.lua
 
@@ -214,7 +215,7 @@ The file is used to customize the style of the editor. The settings written here
 
 ### :material-folder-cog-outline: Configs folder
 
-The files in this folder are all configuration files that are used in the **custom/plugins.lua** file to change the default settings of the plugins that deal with language servers (*lspconfig*), linter/formatters (*conform*), and for overriding the basic settings of **treesitter**, **mason**, and **nvim-tree** (*override*).
+This folder contains all configuration files used in the **custom/plugins.lua** file to change the default settings of the plugins that deal with language servers (*lspconfig*), linter/formatters (*conform*), and for overriding the basic settings of **treesitter**, **mason**, and **nvim-tree** (*override*).
 
 ```text
 configs/
@@ -225,13 +226,13 @@ configs/
 
 #### :material-language-lua: lspconfig.lua
 
-The *lspconfig.lua* file sets the local language servers that the editor can use. This will allow for advanced features for supported files, such as autocomplete or snippets, for quick creation of pieces of code. To add our *lsp* to the configuration, we simply edit the table (in *lua* what is represented below in curly brackets is a table) prepared especially by the NvChad developers:
+The *lspconfig.lua* file sets the local language servers that the editor can use. This will allow advanced features for supported files, such as autocomplete or snippets, to create code pieces quickly. To add our *lsp* to the configuration, we simply edit the table (in *lua* what is represented below in curly brackets is a table) prepared especially by the NvChad developers:
 
 ```lua
 local servers = { "html", "cssls", "tsserver", "clangd" }
 ```
 
-As we can see some servers are already set up by default. To add a new one simply enter it at the end of the table. The available servers can be found at [mason packages](https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md) and for their configurations you can refer to [lsp server configurations](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md).
+As we can see some servers are already set up by default. To add a new one, enter it at the end of the table. The available servers can be found at [mason packages](https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md) and for their configurations you can refer to [lsp server configurations](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md).
 
 For example if we also want to have support for the `yaml` language we can add it as in the following example:
 
@@ -239,11 +240,11 @@ For example if we also want to have support for the `yaml` language we can add i
 local servers = { "html", "cssls", "tsserver", "clangd", "yamlls" }
 ```
 
-Changing the file, however, does not involve installing the related language server. This will have to be installed separately with *Mason*. The language server that provides support for *yaml* is [yaml-language-server](https://github.com/redhat-developer/yaml-language-server) which we will have to install with the command `:MasonInstall yaml-language-server`. At this point we will have, for example, control of the code written in the headers (*frontmatter*) of the Rocky Linux documentation pages.
+Changing the file, however, does not involve installing the related language server. This must be installed separately with *Mason*. The language server that provides support for *yaml* is [yaml-language-server](https://github.com/redhat-developer/yaml-language-server) which we will have to install with the command `:MasonInstall yaml-language-server`. At this point we will have, for example, control of the code written in the headers (*frontmatter*) of the Rocky Linux documentation pages.
 
 #### :material-language-lua: conform.lua
 
-This file takes care of configuring some features geared toward control and formatting of written code. Editing this file requires a bit more research for configuration than the previous file. An overview of the available components can be found on [the builtins page](https://github.com/stevearc/conform.nvim/tree/master?tab=readme-ov-file#formatters).
+ This file configures some features geared toward controlling and formatting written code. Editing this file requires more research for configuration than the previous one. An overview of the available components can be found on [the builtins page](https://github.com/stevearc/conform.nvim/tree/master?tab=readme-ov-file#formatters).
 
 Again, a table was created, the ==formatters_by_ft== table, in which to enter customizations:
 
@@ -263,13 +264,13 @@ local options = {
 }
 ```
 
-As you can see, only standard formatters were included in the initial configuration, but you might, for example, need a formatter for the Markdown language, and in that case you could add, for example [Markdownlint](https://github.com/DavidAnson/markdownlint):
+As you can see, only standard formatters were included in the initial configuration. You might, for example, need a formatter for the Markdown language, and in that case you could add, for example [Markdownlint](https://github.com/DavidAnson/markdownlint):
 
 ```lua
     markdown = { "markdownlint" },
 ```
 
-Again, configuration requires installation of the corresponding package, which can be installed with *Mason*:
+Again, configuration requires installation of the corresponding package, which is done with *Mason*:
 
 ```text
 :MasonInstall markdownlint
@@ -285,7 +286,7 @@ The *overrides.lua* file contains the changes to be made to the default plugin s
 
 In the initial configuration there are three plugins marked as needing to be overridden and they are *treesitter*, *mason* and *nvim-tree*. Leaving out *nvim-tree* for the moment, we will focus on the first two that allow us to change our editing experience significantly.
 
-*treesitter* is a code parser that takes care of its formatting in an interactive way. Whenever we save a file recognized by *treesitter* it is passed to the parser which returns an optimally indented and highlighted code tree, so it will be easier to read, interpret and edit the code in the editor.
+*treesitter* is a code parser that takes care of its formatting in an interactive way. Whenever we save a file recognized by *treesitter*, it is passed to the parser, which returns an optimally indented and highlighted code tree, making it easier to read, interpret, and edit the code in the editor.
 
 The part of the code that deals with this is as follows:
 
@@ -324,7 +325,7 @@ Now following the example given earlier, if we want the *frontmatter* of our doc
     ...
 ```
 
-Now the next time we open NvChad, the parser we just added will also be automatically installed.
+The next time we open NvChad, the parser we just added will also be automatically installed.
 
 To have the parser available directly in the running instance of NvChad we can always install it, even without having edited the file, with the command:
 
@@ -332,7 +333,7 @@ To have the parser available directly in the running instance of NvChad we can a
 :TSInstall yaml
 ```
 
-Following in the file is the part regarding the installation of servers by *Mason*. All servers set in this table are installed in one operation with the command `:MasonInstallAll` (this command is also invoked during the creation of the *custom* folder). The part is as follows:
+Following in the file is the part regarding the installing servers by *Mason*. All servers set in this table are installed in one operation with the command `:MasonInstallAll` (this command is also invoked during the creation of the *custom* folder). The part is as follows:
 
 ```lua
 M.mason = {
@@ -366,9 +367,10 @@ Again, following the initial example where we enabled support for *yaml* by manu
 
 Although this aspect may be marginal on a running instance of NvChad since we can always manually install the missing servers it turns out to be very useful during the transfer of our configuration from one machine to another.
 
-For example, suppose we have configured our `custom` folder with all the features we need and we want to transfer it to another installation of NvChad. If we have configured this file, after copying or cloning our `custom` folder a `:MasonInstallAll` will be sufficient to have all the servers ready to use on the other installation as well.
+For example, suppose we have configured our `custom` folder and want to transfer it to another installation of NvChad. If we have configured this file, after copying or cloning our `custom` folder a `:MasonInstallAll` will be sufficient to have all the servers ready to use on the other installation as well.
 
-The final part of the configuration, the `M.nvimtree` section, takes care of configuring *nvim-tree* by enabling the functionality to display the state in the file tree with respect to the git repository:
+
+The final part of the configuration, the `M.nvimtree` section, takes care of configuring *nvim-tree* by enabling the functionality to display the state in the file tree concerning the git repository:
 
 ```lua
   git = {
@@ -393,4 +395,4 @@ their highlighting and corresponding icons:
 
 The introduction in NvChad 2.0 of the possibility to create a `custom` folder during the first installation is certainly a great help for all those users who are approaching this editor for the first time. It is also a considerable time-saver for those who have already dealt with NvChad.
 
-Thanks to its introduction, and along with the use of *Mason*, it is very easy and fast to integrate your own functionality. It only takes a few changes and you are immediately ready to use the IDE to write code.
+Thanks to its introduction and the use of *Mason*, integrating your own functionality is straightforward and fast. It only takes a few changes and you are immediately ready to use the IDE to write code.
