@@ -65,7 +65,7 @@ HiddenServicePort 80 127.0.0.1:80
 
 ## Configuring a web server
 
-You will also need a web server on our machine to service clients to your onion service. Any web server is usable (Caddy, Apache, or Nginx). The author prefers Caddy. For simplicity's sake, install Caddy:
+You will also need a web server on our machine to service clients to your onion service. Any web server (Caddy, Apache, or Nginx) is usable. The author prefers Caddy. For simplicity's sake, install Caddy:
 
 ```bash
 dnf -y install caddy
