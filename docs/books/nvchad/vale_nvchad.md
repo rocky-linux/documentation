@@ -17,11 +17,11 @@ tags:
 
 * Familiarity with NvChad 2.0 is helpful
 * Ability to change files from the command line by using your favorite editor. (`vi` or your favorite)
-* The *nvim-lint* plugin correctly installed in NvChad.
+* The *nvim-lint* plugin is correctly installed in NvChad.
 
 ### :material-monitor-arrow-down-variant: Installation of nvim-lint
 
-The [nvim-lint](https://github.com/mfussenegger/nvim-lint) plugin provides support for inserting ==linters== into the editor by providing code or content correction for both the syntactic and semantic parts.
+The [nvim-lint](https://github.com/mfussenegger/nvim-lint) plugin provides support for inserting ==linters== into the editor by correcting code or content for both the syntactic and semantic parts.
 
 To install the plugin, you need to edit the `custom/plugins.lua` file by adding the following block of code:
 
@@ -35,7 +35,7 @@ To install the plugin, you need to edit the `custom/plugins.lua` file by adding 
   },
 ```
 
-The plugin comes with a configuration file to be placed in the `custom/configs` folder, inside it we find a table ==linters_by_ft== where you can enter the *linters* for the languages used for development.
+The plugin has a configuration file to be placed in the `custom/configs` folder. Inside it we find a table ==linters_by_ft== where you can enter the *linters* for the languages used for development.
 
 ```lua title="lint.lua"
 require("lint").linters_by_ft = {
