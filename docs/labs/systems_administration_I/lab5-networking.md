@@ -607,7 +607,7 @@ This exercise shows how to configure network interfaces using the NetworkManager
     tcpdump -i macvtap1
     ```
 
-    Analyze captured packets and observe network activity. You can stop the packet capture when done by pressing ++ctrl+c++)
+    Analyze captured packets and observe network activity. You can stop the packet capture when done by pressing ++ctrl+c++
 
 ### View Network Logs
 

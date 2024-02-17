@@ -9,7 +9,7 @@ tags:
 
 # Overview
 
-In this guide, we will walk through the process of acquiring a kernel source tree, configuring it, compiling it, and, finally, installing and booting the kernel.
+In this guide, we will walk through the process of acquiring a kernel source tree, configuring it, compiling it, and installing and booting it.
 
 !!! warning "Kernel rebuilds are not recommended nor supported for Rocky Linux. Before attempting to build a custom kernel, please consider the following:"
 
@@ -23,14 +23,14 @@ In this guide, we will walk through the process of acquiring a kernel source tre
 ## The Kernel
 
 Most often, when people say _Linux_, they are usually referring to a "_Linux distribution_" - for example, Rocky Linux and Debian are types of Linux distribution. A distribution comprises everything necessary to get Linux to exist as a functional operating system.
-Distributions make use of code from various open-source projects that are independent of Linux.
+Distributions make use of code from various open source projects that are independent of Linux.
 
 Linux is The kernel. The kernel literally sits right at the heart of the [operating system] matter.
 
 The only thing more fundamental than the kernel is the system hardware itself.
 Although the kernel is a small part of a complete Linux distribution, it is by far the most critical element. If the kernel fails or crashes, the rest of the system goes with it.
 
-## The Kernel Source Code
+## The kernel source code
 
 The Rocky Linux distribution has the source code for the specific kernel version it supports available in one form or another. These could be in the form of a compiled binary (`*.src.rpm`), a source RPM (`*.srpm`), or the like.
 
@@ -38,7 +38,7 @@ If you need to download a different (possibly newer) version than the one your s
 
 [www.kernel.org](https://www.kernel.org)
 
-This site maintains a listing of web sites mirroring the kernel source, as well as tons of other open-source software, distributions and general-purpose utilities.
+This site maintains a listing of web sites mirroring the kernel source, as well as tons of other open source software, distributions and general-purpose utilities.
 
 The list of mirrors is maintained at:
 
@@ -173,11 +173,11 @@ The Makefile in the root of the kernel source tree contains specific targets tha
 
 `make xconfig`
 
-:   This is a GUI based kernel configuration tool/target that relies on the Qt graphical development libraries. These libraries are used by KDE/Plasma-based applications.
+:   This GUI-based kernel configuration tool/target relies on the Qt graphical development libraries. KDE/Plasma-based applications use these libraries.
 
 `make gconfig`
 
-:   This is also a GUI  based kernel configuration tool/target, but it relies on the GTK+  toolkit. This GTK toolkit is heavily used in the GNOME desktop world.
+:   This is also a GUI-based kernel configuration tool/target but relies on the GTK+ toolkit. This GTK+ toolkit is heavily used in the GNOME desktop world.
 
 `make olddefconfig`
 
@@ -185,7 +185,7 @@ The Makefile in the root of the kernel source tree contains specific targets tha
 
 `make help`
 
-:   This target will show you all the other possible make targets and also serves as a quick online help system.
+:   This target will show you all the possible targets and serve as a quick online help system.
 
 We will use only one of the targets to configure the kernel in this section. In particular, we will use the make menuconfig command. The menuconfig kernel config editor is a simple and popular text-based configuration utility that consists of menus, radio button lists, and dialogs.  
 
@@ -201,7 +201,7 @@ make  O=~/build/kernel mrproper
 
 ### Kernel Configuration
 
-Next, we will step through the process of configuring a Linux 6.* series kernel. To explore some of the innards of this process, we will enable the support of a specific feature that we will pretend is a MUST have feature on the system. Once you understand how this works, you can apply the same procedure to add support for any new kernel feature you want. Specifically, we will enable support for the NTFS file system into our custom kernel.
+Next, we will begin configuring a Linux 6.* series kernel. To explore some of the innards of this process, we will enable the support of a specific feature that we will pretend is a MUST have feature on the system. Once you understand how this works, you can apply the same procedure to add support for any new kernel feature you want. Specifically, we will enable support for the NTFS file system into our custom kernel.
 
 Most modern Linux distros ship with a kernel configuration file for the running kernel available on the local file system as a compressed or regular file. On our sample Rocky system, this file resides in the `/boot` directory and is usually named something like `config-*`.
 
@@ -236,8 +236,8 @@ The following steps cover how to configure the kernel. We will be using a text-b
     ![Main Kernel Configuration screen](images/Il01-kernel.png)
 
     The kernel configuration screen that appears is divided into roughly three areas.
-    The top part shows various helpful information, keyboard shortcuts, and legends that can help you navigate the application.
-    The main body of the screen shows an expandable tree-structured list of the overall configurable kernel options. You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items. And finally, the bottom of the screen displays the actual actions/options that the user can choose.
+    The top part shows helpful information, keyboard shortcuts, and legends to help you navigate the application.
+    The main body of the screen shows an expandable tree-structured list of the overall configurable kernel options. You can further drill down into items with arrows in the parent to view and/or configure sub-menu (or child) items. Finally, the bottom of the screen displays the actions/options the user can choose.
 
 3. Next, we will add support for NTFS into our custom kernel for demonstration purposes.
 
@@ -304,7 +304,7 @@ The compilation stage of the kernel-building process is by far the easiest, but 
 
 Because of the amount of code that needs to be compiled, be prepared to wait a few minutes, at the very least, depending on your system's processing power. Let’s dig into the specific steps required to compile your new kernel.
 
-1. First, we will add an extra piece to the identification string for the kernel we are about to build. While still in the root of the kernel source tree, we will use the sed utility edit the Makefile in place. The variable we want to change is close to the top of the file.
+1. First, we will add an extra piece to the identification string for the kernel we are about to build. While still in the root of the kernel source tree, we will use the `sed` utility to edit the Makefile in place. The variable we want to change is close to the top of the file.
 We want to change the line in the file that looks like this:
 
     ```bash
@@ -374,11 +374,11 @@ We want to change the line in the file that looks like this:
     sudo make O=~/build/kernel modules_install
     ```
 
-    On our Rocky system, this command will install all the compiled kernel modules into the `/lib/modules/<new_kernel-version>` directory. In this example, this path will translate to `/lib/modules/6.5.7-custom/`. This is the path from which the kernel will load all loadable modules, as needed.
+    On our Rocky system, this command will install all the compiled kernel modules into the `/lib/modules/<new_kernel-version>` directory. This path will translate to `/lib/modules/6.5.7-custom/` in this example. This is the path from which the kernel will load all loadable modules, as needed.
 
     !!! TIP
 
-        The footprint (size) of the kernel modules installed via `make modules_install` can end up getting pretty large because the modules include debugging symbols. As a result, you could easily end up with a `/lib/modules/6.5.7-custom/` directory that is close to  5GB in size!
+        The footprint (size) of the kernel modules installed via `make modules_install` can get pretty significant because the modules include debugging symbols. As a result, you could easily end up with a `/lib/modules/6.5.7-custom/` directory that is close to  5GB in size!
 
         For this guide we avoid this large size by including the `INSTALL_MOD_STRIP=1` option in our `make modules_install` invocation. You can reduce the total size by orders of magnitude (For example - less than 200 MB!!) by stripping away these debugging symbols.
 
@@ -394,7 +394,7 @@ The `System.map` file is useful when the kernel is misbehaving and generating �
 
 This error is akin to the Blue Screen of Death (BSOD) in Microsoft Windows. These messages include a lot of detail about the system's current state, including several hexadecimal numbers.
 
-`System.map` gives Linux a chance to turn those hexadecimal numbers into readable names, making debugging easier. Although this is mostly for the benefit of developers, it can be handy when you are reporting a problem.
+`System.map` allows Linux to turn those hexadecimal numbers into readable names, making debugging easier. Although this is mainly for the benefit of developers, it can be handy when you are reporting a problem.
 
 Let’s go through the steps required to install the new kernel image.
 
@@ -405,7 +405,7 @@ Let’s go through the steps required to install the new kernel image.
     /boot/vmlinuz-<kernel-version>
     ```
 
-    Here, `<kernel-version>` is the version number of the kernel. For the sample kernel we are using in this guide, the filename would be `vmlinuz-6.5.7-custom`. So here is the exact command for this example:
+    Here, `<kernel-version>` is the version number of the kernel. The filename for the example kernel we are using in this guide is  `vmlinuz-6.5.7-custom`. So here is the exact command for this example:
 
     ```bash
     sudo cp ~/build/kernel/arch/x86/boot/bzImage \
@@ -438,7 +438,7 @@ Let’s go through the steps required to install the new kernel image.
     add  6.5.7-custom /boot/vmlinuz-6.5.7-custom
     ```
 
-The `kernel-install` command used here is a nifty little shell script. It might not be available in every Linux distribution, but it is available in newer Fedora, RHEL, CentOS distros. This tool automates a lot of the final manual things we’d ordinarily have to do to set up the system to boot the new kernel we just built.
+The `kernel-install` command is a nifty shell script. It might not be available in every Linux distribution, but it is available in newer Fedora, RHEL, CentOS distros. This tool automates a lot of the final manual things we’d ordinarily have to do to set up the system to boot the new kernel we just built.
 
 In particular, the tool does the following:
 
