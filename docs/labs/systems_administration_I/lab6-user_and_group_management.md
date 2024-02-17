@@ -382,7 +382,7 @@ You will also create a group called “common” and add the user "me" and "ying
 
     !!! question
 
-        What is the commands to do this?
+        What are the commands to do this?
 
 ## Exercise 3
 

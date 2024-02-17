@@ -217,9 +217,9 @@ In this Lab, you will learn how to use the RPM system and install a sample appli
     cat: /usr/share/doc/wget/AUTHORS: No such file or directory
     ```
 
-    `wget` is not [yet] installed on our demo system! And so, we can't view the AUTHORS file that is packaged with it!
+    `wget` has not [yet] been installed on our demo system! And so, we can't view the AUTHORS file that is packaged with it!
 
-13. View the list of files that come with another package (curl) that is *already* installed on the system. Type:
+12. View the list of files that come with another package (curl) that is *already* installed on the system. Type:
 
     ```bash
     $ rpm -ql curl
