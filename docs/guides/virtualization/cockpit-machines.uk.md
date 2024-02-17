@@ -34,7 +34,7 @@ dnf install -y libvirtd
 
 ## Увімкнення `cockpit`
 
-Щоб увімкнути віртуалізацію KVM і Cockpit, увімкніть служби systemd:
+Щоб увімкнути віртуалізацію KVM і Cockpit, увімкніть служби `systemd`:
 
 ```bash
 systemctl enable --now libvirtd cockpit
