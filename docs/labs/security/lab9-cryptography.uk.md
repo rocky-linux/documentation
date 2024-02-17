@@ -914,7 +914,7 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     [me@localhost ~myimport]# scp -r  ying@localhost:/home/ying  ying_home_directory_on_serverPR
     ```
 
-    !!! Questions "Питання"
+    !!! Question "Питання"
 
      Яка невелика, але дуже важлива різниця між варіаціями двох попередніх команд? І який результат кожної команди?
     
