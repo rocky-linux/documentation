@@ -123,7 +123,7 @@ Pour qu'un ordinateur fasse partie d'un domaine DNS, il faut lui attribuer un su
 
 **La couche 5** (Session) supporte la communication entre deux ordinateurs.
 
-**La couche 6** (Présentation) représente la zone indépendante des données à la couche d'application. Fondamentalement, cette couche traduit du format réseau au format de l'application, ou du format de l'application au format réseau.
+**La couche 6** (Présentation) représente la zone indépendante des données à la couche d'application. Fondamentalement, cette couche traduit du format réseau au format de l'application ou du format de l'application au format réseau.
 
 **La couche 7** (Application) représente le contact avec l'utilisateur. Elle prend en charge les services dédiés au réseau : http, dns, ftp, imap, pop, smtp, etc.
 
