@@ -16,7 +16,7 @@ After completing this lab, you will be able to
 
 Estimated time to complete this lab: 60 minutes
 
-> I always use iptables on my Linux boxes. Look - even if you don't want to keep hackers out, you can do things like block advertising sites like* doubleclick.com and other evil bastards. Or maybe you just want to do a bit more logging? …Iptables rule!                         
+> I always use iptables on my Linux boxes. Look - even if you don't want to keep hackers out, you can do things like block advertising sites like* doubleclick.com and other evil bastards. Or maybe you just want to do a bit more logging? …Iptables rule!
 
 -- George W.Bush
 
@@ -32,26 +32,25 @@ Some common terminologies used in `iptables` discussions are described below:
 
 Out of the box, three independent tables are defined in most Linux Kernels. The tables present at any time depend on the kernel configuration options and which  modules are present. The tables are:
 
-* filter: This is the main and default table (if no -t option is passed). It  contains the built-in chains:
+- filter: This is the main and default table (if no -t option is passed). It  contains the built-in chains:
 
-    * **INPUT** (for packets coming into the box itself)
-    * **FORWARD** (for packets being routed through the box)
-    * **OUTPUT** (for locally generated packets).
+    - **INPUT** (for packets coming into the box itself)
+    - **FORWARD** (for packets being routed through the box)
+    - **OUTPUT** (for locally generated packets).
 
-* nat: This table is consulted when a packet that creates a new connection is encountered. It consists of the following three built-in chains:
+- nat: This table is consulted when a packet that creates a new connection is encountered. It consists of the following three built-in chains:
 
-    * **PREROUTING** (for  altering  packets  as  soon  as they come in)
-    * **OUTPUT** (for altering  locally generated packets before routing)
-    * **POSTROUTING** (for altering packets as they are about to go out)
+    - **PREROUTING** (for  altering  packets  as  soon  as they come in)
+    - **OUTPUT** (for altering  locally generated packets before routing)
+    - **POSTROUTING** (for altering packets as they are about to go out)
 
-* mangle: This table is used for  specialized  packet  alteration. It has the following 5 built-in chains:
+- mangle: This table is used for  specialized  packet  alteration. It has the following 5 built-in chains:
 
-    * **PREROUTING** (for altering incoming packets before routing)
-    * **OUTPUT** (for altering locally generated packets before routing)
-    * **INPUT** (for packets  coming  into the box itself)
-    * **FORWARD** (for altering packets being routed through the box)
-    * **POSTROUTING**  (for altering packets as they are about to go out)
-
+    - **PREROUTING** (for altering incoming packets before routing)
+    - **OUTPUT** (for altering locally generated packets before routing)
+    - **INPUT** (for packets  coming  into the box itself)
+    - **FORWARD** (for altering packets being routed through the box)
+    - **POSTROUTING**  (for altering packets as they are about to go out)
 
 ### CHAINS
 
@@ -59,9 +58,9 @@ A chain is a list of rules which can match a set of  packets. Each rule specifie
 
 ### TARGETS
 
-A  firewall rule specifies criteria for a packet, and a target.  If the packet does not match, the next rule in the chain is the  examined; if it does match, then the next rule is specified by the value of the target, which can be the name of a user-defined chain or one of the special values ACCEPT, DROP, QUEUE, or RETURN.
+A firewall rule specifies criteria for a packet, and a target. If the packet does not match, the next rule in the chain is the  examined; if it does match, then the next rule is specified by the value of the target, which can be the name of a user-defined chain or one of the special values ACCEPT, DROP, QUEUE, or RETURN.
 
-```
+```bash
 
 Usage: iptables -[ACD] chain rule-specification [options]
        iptables -I chain [rulenum] rule-specification [options]
@@ -76,59 +75,59 @@ Usage: iptables -[ACD] chain rule-specification [options]
 
 Commands:
 Either long or short options are allowed.
-  --append  -A chain		Append to chain
-  --check   -C chain		Check for the existence of a rule
-  --delete  -D chain		Delete matching rule from chain
+  --append  -A chain Append to chain
+  --check   -C chain Check for the existence of a rule
+  --delete  -D chain Delete matching rule from chain
   --delete  -D chain rulenum
-				Delete rule rulenum (1 = first) from chain
+    Delete rule rulenum (1 = first) from chain
   --insert  -I chain [rulenum]
-				Insert in chain as rulenum (default 1=first)
+    Insert in chain as rulenum (default 1=first)
   --replace -R chain rulenum
-				Replace rule rulenum (1 = first) in chain
+    Replace rule rulenum (1 = first) in chain
   --list    -L [chain [rulenum]]
-				List the rules in a chain or all chains
+    List the rules in a chain or all chains
   --list-rules -S [chain [rulenum]]
-				Print the rules in a chain or all chains
-  --flush   -F [chain]		Delete all rules in  chain or all chains
+    Print the rules in a chain or all chains
+  --flush   -F [chain] Delete all rules in  chain or all chains
   --zero    -Z [chain [rulenum]]
-				Zero counters in chain or all chains
-  --new     -N chain		Create a new user-defined chain
+    Zero counters in chain or all chains
+  --new     -N chain Create a new user-defined chain
   --delete-chain
-            -X [chain]		Delete a user-defined chain
+    -X [chain] Delete a user-defined chain
   --policy  -P chain target
-				Change policy on chain to target
+    Change policy on chain to target
   --rename-chain
             -E old-chain new-chain
-				Change chain name, (moving any references)
+                Change chain name, (moving any references)
 
 Options:
-    --ipv4	-4		Nothing (line is ignored by ip6tables-restore)
-    --ipv6	-6		Error (line is ignored by iptables-restore)
-[!] --protocol	-p proto	protocol: by number or name, eg. `tcp'
-[!] --source	-s address[/mask][...]
-				source specification
+    --ipv4 -4 Nothing (line is ignored by ip6tables-restore)
+    --ipv6 -6 Error (line is ignored by iptables-restore)
+[!] --protocol -p proto protocol: by number or name, eg. `tcp'
+[!] --source -s address[/mask][...]
+        source specification
 [!] --destination -d address[/mask][...]
-				destination specification
+        destination specification
 [!] --in-interface -i input name[+]
-				network interface name ([+] for wildcard)
- --jump	-j target
-				target for rule (may load target extension)
+        network interface name ([+] for wildcard)
+ --jump -j target
+    target for rule (may load target extension)
   --goto      -g chain
-			       jump to chain with no return
-  --match	-m match
-				extended match (may load extension)
-  --numeric	-n		numeric output of addresses and ports
+    jump to chain with no return
+  --match -m match
+    extended match (may load extension)
+  --numeric -n numeric output of addresses and ports
 [!] --out-interface -o output name[+]
-				network interface name ([+] for wildcard)
-  --table	-t table	table to manipulate (default: `filter')
-  --verbose	-v		verbose mode
-  --wait	-w [seconds]	maximum wait to acquire xtables lock before give up
-  --line-numbers		print line numbers when listing
-  --exact	-x		expand numbers (display exact values)
-[!] --fragment	-f		match second or further fragments only
-  --modprobe=<command>		try to insert modules using this command
-  --set-counters -c PKTS BYTES	set the counter during insert/append
-[!] --version	-V		print package version.
+    network interface name ([+] for wildcard)
+  --table -t table table to manipulate (default: `filter')
+  --verbose -v verbose mode
+  --wait -w [seconds] maximum wait to acquire xtables lock before give up
+  --line-numbers print line numbers when listing
+  --exact -x expand numbers (display exact values)
+[!] --fragment -f match second or further fragments only
+  --modprobe=<command> try to insert modules using this command
+  --set-counters -c PKTS BYTES set the counter during insert/append
+[!] --version -V print package version.
 
 ```
 
@@ -144,31 +143,31 @@ Without further ado let's dive straight into using `iptables`.
 
 1. While logged in as the superuser list all the rules in the filter table. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -L
     ```
 
-2.  To view a more verbose output type:
+2. To view a more verbose output type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -L -v
     ```
 
-3.  Display only the rules under the INPUT chain. Type:
+3. Display only the rules under the INPUT chain. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -v  -L INPUT
     ```
 
-4.  Display all the rules under the mangle table. Type:
+4. Display all the rules under the mangle table. Type:
 
-    ```
+    ```bash
     [root@serverXY root]#  iptables  -L  -t   mangle
     ```
 
-5.  Display all the rules under the nat table. Type:
+5. Display all the rules under the nat table. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -L -t nat
     ```
 
@@ -176,21 +175,21 @@ Without further ado let's dive straight into using `iptables`.
 
 1. Clean out (or delete) all the rules that “may” be currently loaded. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables --flush
     ```
 
 #### To create your own chains
 
-1.  Create your own custom chain and name it “mychain”. Type:
+1. Create your own custom chain and name it “mychain”. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables  -N  mychain
     ```
 
 2. List the rules under the chain you created above. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables  -L mychain
 
     Chain mychain (0 references)
@@ -202,21 +201,23 @@ Without further ado let's dive straight into using `iptables`.
 
 1. First try deleting the built in INPUT chain. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -X INPUT
     ```
 
-    What was your output ?
+    !!! question
+
+        What was your output?
 
 2. Next try deleting the chain you created above. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -X mychain
     ```
 
-3.  Try listing the rules in the chain you just deleted again.  Type:
+3. Try listing the rules in the chain you just deleted again. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -L  mychain
     ```
 
@@ -230,7 +231,7 @@ This exercise will teach you how to craft slightly more advanced packet filterin
 
 1. Before starting ensure that you can ping your partner system and that your partner system can ping you too successfully. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# ping -c 2 serverPR
 
     <SNIP>
@@ -242,15 +243,15 @@ This exercise will teach you how to craft slightly more advanced packet filterin
     ...............................................
     ```
 
-2.  Flush all your existing rules. Type:
+2. Flush all your existing rules. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -F
     ```
 
 3. Create a rule to prevent all outgoing icmp type packets to any destination. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables  -A  OUTPUT  -o  eth0 -p  icmp  -j  DROP
     ```
 
@@ -258,7 +259,7 @@ This exercise will teach you how to craft slightly more advanced packet filterin
 
 4. Test the effect of your rule above by trying to ping serverPR. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# ping -c 2 serverPR
 
     PING serverPR (10.0.5.8) 56(84) bytes of data.
@@ -268,9 +269,9 @@ This exercise will teach you how to craft slightly more advanced packet filterin
     ping: sendmsg: Operation not permitted
     ```
 
-5.  View the rule you just created. Type:
+5. View the rule you just created. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables  -vL OUTPUT
 
     Chain OUTPUT (policy ACCEPT 21221 packets, 2742K bytes)
@@ -280,11 +281,15 @@ This exercise will teach you how to craft slightly more advanced packet filterin
     93  7812 DROP     icmp    --  any         eth0    anywhere          anywhere
     ```
 
-6. Flush all the rules and try the ping command again from both systems. Success or Failure?
+6. Flush all the rules and try the ping command again from both systems.
+
+    !!! question
+
+        Success or failure?
 
 7. Now create another rule that will drop icmp packets that originate from a specific unwanted IP address (e.g. 172.16.0.44 ). Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -A INPUT -i eth0 -p icmp --source 172.16.0.44 -j DROP
     ```
 
@@ -294,7 +299,7 @@ This exercise will teach you how to craft slightly more advanced packet filterin
 
 9. Instead of flushing all the rules in your tables. Delete only the rule you created above. To do this you need to know the rule number. To find out the rule number type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -vL  INPUT --line-numbers
 
     Chain INPUT (policy ACCEPT 31287 packets, 9103K bytes)
@@ -309,13 +314,13 @@ This exercise will teach you how to craft slightly more advanced packet filterin
 
 10. Using the line-number that matches the rule in you want to delete, you can delete the specific rule (line number 1) in the INPUT chain by running:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -D INPUT 1
     ```
 
 #### To filter other kinds of traffic
 
-In this exercise you will learn how filter tcp type traffic. 
+In this exercise you will learn how filter tcp type traffic.
 
 The popular ftp protocol is a TCP based service. This means that it is transported over TCP type packets.
 
@@ -323,7 +328,7 @@ In the following steps we will explore targeting and filtering out FTP-type traf
 
 1. Start the ftp server you configured and enabled in one of the earlier labs. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# *service vsftpd restart*
 
     Shutting down vsftpd: [  OK  ]
@@ -333,9 +338,9 @@ In the following steps we will explore targeting and filtering out FTP-type traf
 
 2. Ask your partner to try logging on as an anonymous user to your ftp server. Ensure your partner is able to log on successfully from serverPR - do this *before* you go on to the next step.
 
-3.  While your partner is still logged on, create a rule to disable all ftp type traffic originating from serverPR. Type:
+3. While your partner is still logged on, create a rule to disable all ftp type traffic originating from serverPR. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# iptables -A INPUT -i  eth0 -s 172.16.0.z  -p tcp  --dport 21 -j DROP*
     ```
 
@@ -343,13 +348,21 @@ In the following steps we will explore targeting and filtering out FTP-type traf
 
 4. As soon as you execute the above command, the netfilter stack puts it into effect immediately. To see this, ask your partner to try any ftp commands while still logged into your ftp server - e.g.  `ls`. Success or Failure?
 
-    If it fails ask your partner to try disconnecting and try logging on again from scratch. Success of failure?  
+    !!! question "Lab tasks:"
 
-5. Ask another person that is NOT your partner to try logging on to your ftp server anonymously. You could also ask somebody from hq.example.org to try connecting to your ftp site. Success or failure?   
+        Success or failure?
 
-6.  Enable and start your web server on serverXY.
+        If it fails ask your partner to try disconnecting and try logging on again from scratch, and check for success again.  
 
-7.  Ensure other people can visit your web site using a browser. Create a rule to block http traffic from hq.example.org to your local machine.
+5. Ask another person that is NOT your partner to try logging on to your ftp server anonymously. You could also ask somebody from hq.example.org to try connecting to your ftp site.
+
+    !!! question
+
+        Success or failure?
+
+6. Enable and start your web server on serverXY.
+
+7. Ensure other people can visit your web site using a browser. Create a rule to block http traffic from hq.example.org to your local machine.
 
 ### Exercise 3
 
@@ -379,7 +392,6 @@ v. Interface eth1 has an IP address of  10.0.0.z with a netmask of  255.0.0.0
 
 vi. That you successfully completed “Lab 2” and understood the basis concepts therein.
 
-
 ServerPR
 
 The following assumptions are made about your partner’s system.
@@ -398,35 +410,39 @@ Our usual icons for serverXY and serverPR has been replaced above with the icons
 
 #### To create the forwarding rule
 
-1.  Ensure you that your network is as cabled physically as illustrated above.
+1. Ensure you that your network is as cabled physically as illustrated above.
 
 2. Assign all the interfaces their appropriate IP address, netmask, and gateway settings.
 
-3.  Flush all the iptables rules that you have loaded currently.
+3. Flush all the iptables rules that you have loaded currently.
 
     !!! note
 
         Flushing the tables is not always essential or compulsory. You may have noticed at the beginning of some of the exercises completed thus far, we have specified that you flush existing tables. This to ensure that you start with a clean slate and that you don't have any errant rules hiding somewhere in your tables that might make things not work correctly. Normally you could have hundreds of rules loaded at the same time, serving different functions.
 
-4.  Ask your partner at serverPR to try pinging  172.16.0.100 (hq.example.org) , this should fail because you are now serving as serverPR’s default gateway and you have *not* yet enabled any routing on your system yet.
+4. Ask your partner at serverPR to try pinging  172.16.0.100 (hq.example.org) , this should fail because you are now serving as serverPR’s default gateway and you have *not* yet enabled any routing on your system yet.
 
-5.  As root on serverXY type:
+5. As root on serverXY type:
 
-    ```
+    ```bash
     [root@serverXY root]# *iptables --table  nat  -A  POSTROUTING -o eth0  -j  MASQUERADE*
     ```
-    
-6.  Now repeat step 4 again. Success or Failure?
 
-7.  The above should have failed. You also need to enable packet forwarding in your running kernel. Type:
+6. Now repeat step 4 again.
 
-    ```
+    !!! question
+
+        Were you successful?
+
+7. The above should have failed. You also need to enable packet forwarding in your running kernel. Type:
+
+    ```bash
     [root@serverXY root]#  *echo 1   >   /proc/sys/net/ipv4/ip_forward*
     ```
 
-8.  To make the above change to the kernel permanent between reboots, create the entry below in your “/etc/sysctl.conf” file:
+8. To make the above change to the kernel permanent between reboots, create the entry below in your “/etc/sysctl.conf” file:
 
-    ```
+    ```bash
     net.ipv4.ip_forward = 0
     ```
 
@@ -438,31 +454,26 @@ To prevent this, you need a mechanism for writing or saving the temporary run-ti
 
 1. Use the `iptables-save` command to save all your changes to the /etc/sysconfig/iptables file. Type:
 
-    ```
+    ```bash
     [root@serverXY root]# *iptables-save   >   /etc/sysconfig/iptables*
     ```
-
 
     !!! tip
 
         You are limited by the things you can with `iptables` only by your imagination. We have barely scratched the surface in this lab. Hopefully we have scratched off enough of the surface to allow you to let your imagination flourish.
 
-# Extra Points
+## Extra Points
 
-1. What option is needed to get a more verbose version of this command *iptables -L  -t   nat* ?
+    !!! question "Questions and tasks:"
 
-2. What is the command to display the rules under the OUTPUT chain?
+        1. What option is needed to get a more verbose version of this command *iptables -L  -t   nat*?
 
-3. What port does the ftp service “normally” listen on?
+        2. What is the command to display the rules under the OUTPUT chain?
 
-4. What is the command to create a chain called “mynat-chain” under the nat table?
+        3. What port does the ftp service “normally” listen on?
 
-5. Research online and list the names of some easier to use tools or applications that can be used to manage the firewall sub-system on Linux based systems.   
+        4. What is the command to create a chain called “mynat-chain” under the nat table?
 
-6a. Create an `iptables` rule to block http traffic from hq.example.org to your local machine.
+        5. Research online and list the names of some easier to use tools or applications that can be used to manage the firewall sub-system on Linux based systems.   
 
-6b. What is the well known port that web servers listen on?
-
-6c. Write down the complete command to achieve this?
-
-6d. Convert or translate the command you wrote down above, into it’s plain-speak equivalent?
+        6. Create an `iptables` rule to block http traffic from hq.example.org to your local machine. What is the well known port that web servers listen on? Write down the complete command to achieve this? Convert or translate the command you wrote down above into its plain-speak equivalent.
