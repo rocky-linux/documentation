@@ -464,16 +464,18 @@ To prevent this, you need a mechanism for writing or saving the temporary run-ti
 
 ## Extra Points
 
-    !!! question "Questions and tasks:"
+Here are some additional ways to explore `iptables`:
 
-        1. What option is needed to get a more verbose version of this command *iptables -L  -t   nat*?
+!!! question "Questions and tasks:"
 
-        2. What is the command to display the rules under the OUTPUT chain?
+    1. What option is needed to get a more verbose version of this command *iptables -L  -t   nat*?
 
-        3. What port does the ftp service “normally” listen on?
+    2. What is the command to display the rules under the OUTPUT chain?
 
-        4. What is the command to create a chain called “mynat-chain” under the nat table?
+    3. What port does the ftp service “normally” listen on?
 
-        5. Research online and list the names of some easier to use tools or applications that can be used to manage the firewall sub-system on Linux based systems.   
+    4. What is the command to create a chain called “mynat-chain” under the nat table?
 
-        6. Create an `iptables` rule to block http traffic from hq.example.org to your local machine. What is the well known port that web servers listen on? Write down the complete command to achieve this? Convert or translate the command you wrote down above into its plain-speak equivalent.
+    5. Research online and list the names of some easier to use tools or applications that can be used to manage the firewall sub-system on Linux based systems.   
+
+    6. Create an `iptables` rule to block http traffic from hq.example.org to your local machine. What is the well known port that web servers listen on? Write down the complete command to achieve this? Convert or translate the command you wrote down above into its plain-speak equivalent.
