@@ -136,7 +136,9 @@ Perform the following exercises as a regular user. e.g. user ying
 
         You shouldn’t have any keys in your key-ring yet. But the above command will also help create a default environment to enable you create a new key-pair successfully the first time.
 
-    List the hidden directories in your home directory again. What is the name of the new directory added?
+    !!! question "Lab task:"
+
+        List the hidden directories in your home directory again. What is the name of the new directory added?
 
 5. Use the gpg program to create your new key-pairs. Type:
 
@@ -186,15 +188,15 @@ Perform the following exercises as a regular user. e.g. user ying
 
     Please specify how long the key should be valid.
 
-    <kbd>0</kbd> = key does not expire
+    ++0++ = key does not expire
 
-    <kbd>n</kbd> = key expires in n days
+    ++"n"++ = key expires in n days
 
-    <kbd>n</kbd><kbd>w</kbd>  = key expires in n weeks
+    ++"n"+"w"++  = key expires in n weeks
 
-    <kbd>n</kbd><kbd>m</kbd> = key expires in n months
+    ++"n"+"m"++> = key expires in n months
 
-    <kbd>n</kbd><kbd>y</kbd> = key expires in n years
+    ++"n"+"y"++ = key expires in n years
 
     Key is valid for? (0) 1y
 
@@ -212,11 +214,11 @@ Perform the following exercises as a regular user. e.g. user ying
 
     "Firstname Lastname (any comment) <yourname@serverXY&>"
 
-    Real name: Ying Yang <kbd>ENTER</kbd>
+    Real name: Ying Yang ++enter++
 
-    Comment : my test <kbd>ENTER</kbd>
+    Comment : my test ++enter++
 
-    Email address: ying@serverXY <kbd>ENTER</kbd>
+    Email address: ying@serverXY ++enter++
 
     At the confirmation prompt type “o” (Okay) to accept the correct values.
 
@@ -436,7 +438,11 @@ Creating and verifying signatures uses the public/private key pair, which differ
 
     Write down the command to verify the file's signature created for you.
 
-10. Open up the file to view its contents with any pager. Can you read the text you entered into the file?
+10. Open up the file to view its contents with any pager.
+
+    !!! question
+
+        Can you read the text you entered into the file?
 
 !!! warning "Read Before Continuing"
 
@@ -607,7 +613,7 @@ In this exercise, you will use the so-called “Web of Trust” to communicate w
 
     gpg --send-keys <your_real_email_address> --keyserver wwwkeys.pgp.net
 
-## OpenSSH (www.openssh.org)
+## [OpenSSH](https://www.openssh.org)
 
 OpenSSH is OpenBSD's SSH (Secure SHell) protocol implementation.
 
@@ -617,7 +623,7 @@ It helps to provide secure encrypted communications between two untrusted hosts 
 
 It includes both the server-side components and the client-side suite of programs.
 
-*sshd*
+### sshd
 
 The server side includes the secure shell daemon (`sshd`). `sshd` is the daemon that listens for connections from clients.
 
@@ -631,7 +637,7 @@ Finally, the server and the client enter an authentication dialog. The client tr
 
 The SSH2 protocol implemented in OpenSSH is standardized by the “IETF secsh” working group.
 
-*ssh*
+### ssh
 
 The client's suite of programs includes `ssh`. This is a program used for logging into remote systems and can also be used for executing commands on remote systems.
 
@@ -677,14 +683,18 @@ Most Linux systems out of the box already have the OpenSSH server configured and
 
         `sshd_config` is a rather odd configuration file. Unlike other Linux config files - comments (#) in the `sshd_config` file denotes the options' default values. (i.e. comments represents already compiled-in defaults.)
 
-2. Consult the man page for `sshd_config` and explain what the options below do?
+2. Consult the man page for `sshd_config`.
 
-    - AuthorizedKeysFile
-    - Ciphers
-    - Port
-    - Protocol
-    - X11Forwarding
-    - HostKey
+    !!! question
+
+        What do the following options do?
+    
+        - AuthorizedKeysFile
+        - Ciphers
+        - Port
+        - Protocol
+        - X11Forwarding
+        - HostKey
 
 3. Change your pwd to the /etc/ssh/ directory.
 
@@ -717,7 +727,7 @@ Your SSH server already has host keys that it uses. Those keys were generated wh
 
     !!! Question
 
-        What do you need to do to make the sshd daemon use the host key that you just generated ?
+        What do you need to do to make the sshd daemon use the host key that you just generated?
 
 3. View the fingerprint of the key you created above. Type:
 
@@ -826,9 +836,9 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 
     Type in ying's password when prompted.
 
-    !!! Question
+    !!! Question "Questions"
 
-        Was the user ying able to remotely reboot serverPR ? Why can't ying remotely reboot serverPR?
+        Was the user ying able to remotely reboot serverPR? Why can't ying remotely reboot serverPR?
 
 7. From serverXY, try remotely viewing the status of the `sshd` service running on serverPR as the user `ying`. Type:
 
@@ -892,9 +902,9 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
     foobar
     ```
 
-    !!! Question "Questions"
+    !!! Question
 
-        What is the difference between the variations of these 2 commands? And under what circumstances will they have the same result?:
+        What is the difference between the variations of these 2 commands and under what circumstances will they have the same result?
         
         - scp me@serverPR:/home/me/myexport.
 
@@ -960,7 +970,7 @@ The public is stored in a file with the same file name as the private key but wi
     Generating public/private dsa key pair.
     ```
 
-    Press <kbd>ENTER</kbd> to accept the default file location.
+    Press ++enter++ to accept the default file location.
 
     ```bash
     Enter file in which to save the key (/home/ying/.ssh/id_dsa):
@@ -987,7 +997,7 @@ The public is stored in a file with the same file name as the private key but wi
 
 3. cd to your `~/.ssh/` directory. List the files in the directory.
 
-4. What is the “ssh-keygen” command to view the fingerprint of your keys?
+4. What is the `ssh-keygen` command to view the fingerprint of your keys?
 
 5. Use the cat command to view the contents of your public-key file (i.e. `~/.ssh/id_dsa.pub`).
 
@@ -1022,7 +1032,7 @@ In this exercise you will configure public-key authentication between your user 
 
     b. run the command “cd ~/.ssh && cat - >> authorized_keys && chmod 600 authorized_keys” as the user ying on serverPR.
 
-    !!! Note 
+    !!! Note
 
         The purpose of the previous complicated looking command is to copy and append the contents of your public-key file to the “/home/ying/.ssh/authorized_keys” on serverPR and give it the correct permissions.
 
