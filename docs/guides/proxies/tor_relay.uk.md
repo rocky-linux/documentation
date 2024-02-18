@@ -24,6 +24,7 @@ tags:
 - Знайомство з редактором командного рядка. Автор використовує `vi` або `vim` тут, але замініть у вашому улюбленому редакторі.
 - Комфорт зі зміною налаштувань SELinux і брандмауера.
 - Необліковане з’єднання або з’єднання з високим обмеженням пропускної здатності.
+- Додатково: загальнодоступна адреса IPv6 для з’єднання з двома стеками
 
 ## Встановлення Tor
 
@@ -134,13 +135,13 @@ systemctl enable --now tor
 
 ## Міркування про реле
 
-Ви також можете розширити конфігурацію, щоб зробити ваше реле Tor вихідним або мостовим реле.
+Ви також можете розширити конфігурацію, щоб зробити ваше реле Tor вихідним або мостовим реле. Ви також можете налаштувати максимум 8 ретрансляторів на одну публічну IP-адресу. Файл модуля Tor systemd у EPEL не призначений для кількох екземплярів, але файл модуля можна скопіювати та змінити для налаштування кількох реле.
 
 Ретранслятори виходу є останнім стрибком у схемі Tor, яка підключається безпосередньо до веб-сайтів. Мостові ретранслятори – це ретранслятори, які не входять до списку, які допомагають користувачам із інтернет-цензурою підключатися до Tor.
 
-Параметри для файлу `torrc` знаходяться на [сторінці довідки](https://2019.www.torproject.org/docs/tor-manual.html.en).
+Параметри для файлу `torrc` знаходяться на [сторінці довідки](https://2019.www.torproject.org/docs/tor-manual.html.en). Тут ми описуємо базову конфігурацію реле виходу та мосту.
 
-Ви також можете налаштувати максимум 8 ретрансляторів на одну публічну IP-адресу. Файл модуля Tor systemd у EPEL не призначений для кількох екземплярів, але файл модуля можна скопіювати та змінити для налаштування кількох реле.
+### Запуск вихідного реле
 
 !!! warning "Важливо"
 
@@ -149,6 +150,203 @@ systemctl enable --now tor
 
 Якщо ви не впевнені, що ваш інтернет-провайдер дозволяє вихідні реле Tor, перегляньте умови обслуговування або запитайте свого інтернет-провайдера. Якщо ваш інтернет-провайдер відповість «ні», зверніться до іншого інтернет-провайдера чи хостингової компанії або розгляньте проміжний ретранслятор.
 ```
+
+Якщо ви хочете запустити реле виходу, вам потрібно буде додати наступне до свого `torrc`:
+
+```bash
+ExitRelay 1
+```
+
+Однак це буде використовувати таку політику виходу за замовчуванням:
+
+```bash
+ExitPolicy reject *:25
+ExitPolicy reject *:119
+ExitPolicy reject *:135-139
+ExitPolicy reject *:445
+ExitPolicy reject *:563
+ExitPolicy reject *:1214
+ExitPolicy reject *:4661-4666
+ExitPolicy reject *:6346-6429
+ExitPolicy reject *:6699
+ExitPolicy reject *:6881-6999
+ExitPolicy accept *:*
+```
+
+Ця політика виходу блокує лише крихітну підмножину TCP-портів, що дозволяє зловживати BitTorrent і SSH, які незручні багатьом провайдерам.
+
+Якщо ви хочете використовувати [скорочену політику виходу](https://gitlab.torproject.org/legacy/trac/-/wikis/doc/ReducedExitPolicy), ви можете встановити її в `torrc`:
+
+```bash
+ReducedExitPolicy 1
+```
+
+Ви також можете мати більш обмежувальну політику виходу, наприклад, дозволяючи лише трафік DNS, HTTP та HTTPS. Це можна встановити як:
+
+```bash
+ExitPolicy accept *:53
+ExitPolicy accept *:80
+ExitPolicy accept *:443
+ExitPolicy reject *:*
+```
+
+Ці значення означають, що:
+
+- Ми дозволяємо вихідний трафік до TCP-портів 53 (DNS), 80 (HTTP) і 443 (HTTPS) за допомогою наших рядків "ExitPolicy accept"
+- Ми забороняємо вихідний трафік до будь-якого іншого TCP-порту за допомогою рядків підстановки «ExitPolicy reject».
+
+Якщо вам потрібна необмежена політика виходу, лише блокуючи трафік SMTP, це можна встановити так:
+
+```bash
+ExitPolicy reject *:25
+ExitPolicy reject *:465
+ExitPolicy reject *:587
+ExitPolicy accpet *:*
+```
+
+Ці значення означають що
+
+- Ми забороняємо вихідний трафік до стандартних TCP-портів SMTP 25, 465 і 587 у наших рядках "ExitPolicy reject".
+- Ми дозволяємо вихідний трафік до всіх інших TCP-портів у рядку підстановки «ExitPolicy accept».
+
+Ми також можемо дозволити або заблокувати ряд портів наступним чином:
+
+```bash
+ExitPolicy accept *:80-81
+ExitPolicy reject *:993-995
+```
+
+Ці значення означають, що:
+
+- Ми дозволяємо вихідний трафік на порти TCP 80-81.
+- Ми забороняємо вихідний трафік до TCP-портів 993–995, які використовуються для захищених SSL варіантів IMAP, IRC і POP3.
+
+Ви також можете дозволити вихідний трафік на адреси IPv6, припускаючи, що ваш сервер має з’єднання з двома стеками:
+
+```bash
+IPv6Exit 1
+```
+
+### Запуск мосту obfs4
+
+Прямі з’єднання з Tor заблоковані в багатьох частинах світу, включаючи Китай, Іран, Росію та Туркменістан. У цих країнах клієнти Tor використовують незареєстровані мостові реле.
+
+Tor працює за допомогою системи [підключених транспортів](https://support.torproject.org/glossary/pluggable-transports/), яка дозволяє маскувати трафік Tor під інші протоколи, такі як неідентифікований фіктивний трафік (obfs4), WebRTC ( сніжинка) або підключення HTTPS до служб Microsoft (meek).
+
+Завдяки своїй універсальності obfs4 є найпопулярнішим підключеним транспортом.
+
+Щоб налаштувати міст obfs4, оскільки obfs4 немає в сховищах EPEL, нам потрібно буде скомпілювати його з нуля. Давайте спочатку встановимо необхідні пакети:
+
+```bash
+dnf install git golang policycoreutils-python-utils
+```
+
+Далі ми завантажимо та видобудемо вихідний код obfs4:
+
+```bash
+wget https://gitlab.com/yawning/obfs4/-/archive/obfs4proxy-0.0.14/obfs4-obfs4proxy-0.0.14.tar.bz2
+tar jxvf obfs4-obfs4proxy-0.0.14.tar.bz2
+cd obfs4-obfs4proxy-0.0.14/obfs4proxy/
+```
+
+Ви також можете отримати obfs4 безпосередньо з `git clone`, але це залежить від новішої версії Go, ніж та, що існує в AppStream, тому ми не будемо її використовувати.
+
+Потім ми скомпілюємо та встановимо obfs4:
+
+```bash
+go build
+cp -a obfs4proxy /usr/local/bin/
+```
+
+Після встановлення obfs4 ми додамо наступне до нашого `torrc`:
+
+```bash
+ServerTransportPlugin obfs4 exec /usr/local/bin/obfs4proxy
+ServerTransportListenAddr obfs4 0.0.0.0:12345
+ExtORPort auto
+```
+
+Ці значення означають, що:
+
+- Ми використовуємо підключений транспорт obfs4, розташований за адресою `/usr/local/bin/obfs4proxy` у нашому рядку `ServerTransportPlugin`
+- `ServerTransportListenAddr` змушує наш підключений транспорт слухати порт 12345
+- Наша лінія `ExtORPort` прослуховуватиме навмання вибраний порт для з’єднання між Tor і нашим підключеним транспортом. Зазвичай цей рядок не слід змінювати
+
+Якщо ви хочете прослуховувати інший TCP-порт, змініть "12345" на потрібний TCP-порт.
+
+Ми також дозволимо вибраний нами порт TCP "12345" (або порт, який ви вибрали) у SELinux і `firewalld`:
+
+```bash
+semanage port -a -t tor_port_t -p tcp 12345
+firewall-cmd --zone=public --add-port=12345/tcp
+firewall-cmd --runtime-to-permanent
+```
+
+## Виконання кількох естафет
+
+Як згадувалося раніше, ви можете встановити до 8 ретрансляторів Tor на одну публічну IP-адресу. Наприклад, якщо у нас є п’ять загальнодоступних IP-адрес, ми можемо встановити максимум 40 ретрансляторів на нашому сервері.
+
+Однак нам потрібен спеціальний файл systemd unit для кожного реле, яке ми запускаємо.
+
+Давайте тепер додамо додатковий файл модуля systemd у `/usr/lib/systemd/system/torX`:
+
+```bash
+[Unit]
+Description=Anonymizing overlay network for TCP
+After=syslog.target network.target nss-lookup.target
+PartOf=tor-master.service
+ReloadPropagatedFrom=tor-master.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+ExecStartPre=/usr/bin/tor --runasdaemon 0 -f /etc/tor/torrcX --DataDirectory /var/lib/tor/X --DataDirectoryGroupReadable 1 --User toranon --verify-config
+ExecStart=/usr/bin/tor --runasdaemon 0 -f /etc/tor/torrcX --DataDirectory /var/lib/tor/X --DataDirectoryGroupReadable 1 --User toranon
+ExecReload=/bin/kill -HUP ${MAINPID}
+KillSignal=SIGINT
+TimeoutSec=30
+Restart=on-failure
+RestartSec=1
+WatchdogSec=1m
+LimitNOFILE=32768
+
+# Hardening
+PrivateTmp=yes
+DeviceAllow=/dev/null rw
+DeviceAllow=/dev/urandom r
+ProtectHome=yes
+ProtectSystem=full
+ReadOnlyDirectories=/run
+ReadOnlyDirectories=/var
+ReadWriteDirectories=/run/tor
+ReadWriteDirectories=/var/lib/tor
+ReadWriteDirectories=/var/log/tor
+CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH
+PermissionsStartOnly=yes
+
+[Install]
+WantedBy = multi-user.target
+```
+
+Замініть суфікс `X` після `tor`/`torrc` на потрібне ім'я. Автор любить нумерувати для простоти, але це може бути що завгодно.
+
+Згодом ми додамо файл `torrc` примірника в `/etc/tor/torrcX`. Переконайтеся, що кожен екземпляр має окремий порт та/або IP-адресу.
+
+Ми також дозволимо вибраний TCP-порт «12345» (або порт у `torrcX`) у SELinux і `firewalld`:
+
+```bash
+semanage port -a -t tor_port_t -p tcp 12345
+firewall-cmd --zone=public --add-port=12345/tcp
+firewall-cmd --runtime-to-permanent
+```
+
+Після цього увімкніть блок `torX` systemd:
+
+```bash
+systemctl enable --now torX
+```
+
+Повторіть ці кроки для кожного реле, яке ви хочете запустити.
 
 ## Висновок
 

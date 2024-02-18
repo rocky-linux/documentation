@@ -5,11 +5,11 @@ contributors: tianci li, Steven Spencer, Ganna Zhyrnova
 update: 23.11.2021
 ---
 
-# Як перейти на Rocky Linux із CentOS Stream, CentOS, Alma Linux, RHEL або Oracle Linux
+# Як перейти на Rocky Linux із CentOS Stream, CentOS, AlmaLinux, RHEL або Oracle Linux
 
 ## Передумови і Припущення
 
-* CentOS Stream, CentOS, Alma Linux, RHEL або Oracle Linux добре працюють на апаратному сервері або VPS. Поточна підтримувана версія для кожного з них – 8.9 або 9.3.
+* CentOS Stream, CentOS, AlmaLinux, RHEL або Oracle Linux, які працюють на апаратному сервері або VPS. Non-Stream CentOS завис на версії 8.5. Поточна підтримувана версія інших систем – 8.9 або 9.3.
 * Практичні знання командного рядка.
 * Практичні знання SSH для віддалених машин.
 * Помірно ризиковане ставлення.

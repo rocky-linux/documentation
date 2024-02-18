@@ -371,7 +371,7 @@ Contrairement à ce que le nom pourrait suggérer, la commande `install` n'est p
 La commande associe la copie de fichiers (`cp`) et la création de dossiers (`mkdir`), ainsi que la gestion des accès (`chmod`, `chown`) et autres fonctionalités utiles (comme les sauvegardes).
 
 ```bash
-install source dest  
+install source dest
 install -t directory source [...]
 install -d directory
 ```
@@ -439,3 +439,83 @@ Le suffixe peut être spécifié grâce à l'option `-S` :
 $ install -v -b -S ".bak" -D -t ~/samples/ src/sample.txt
 'src/sample.txt' -> '~/samples/sample.txt' (archive: '~/samples/sample.txt.bak')
 ```
+
+## La commande `tree`
+
+Affiche les fichiers ou dossiers du répertoire dans une structure arborescente.
+
+| Options | Description                                   |
+|:------- |:--------------------------------------------- |
+| `-a`    | Tous les fichiers sont affichés               |
+| `-h`    | Affiche la taille d'une façon plus lisible    |
+| `-u`    | Affiche le propriétaire  ou bien l'UID        |
+| `-g`    | Affiche le groupe propriétaire ou bien le GID |
+| `-p`    | Affiche les protections de chaque fichier     |
+
+Par exemple :
+
+```bash
+$ tree -hugp /etc/yum.repos.d/
+/etc/yum.repos.d/
+├── [-rw-r--r-- root     root      1.6K]  epel-modular.repo
+├── [-rw-r--r-- root     root      1.3K]  epel.repo
+├── [-rw-r--r-- root     root      1.7K]  epel-testing-modular.repo
+├── [-rw-r--r-- root     root      1.4K]  epel-testing.repo
+├── [-rw-r--r-- root     root       710]  Rocky-AppStream.repo
+├── [-rw-r--r-- root     root       695]  Rocky-BaseOS.repo
+├── [-rw-r--r-- root     root      1.7K]  Rocky-Debuginfo.repo
+├── [-rw-r--r-- root     root       360]  Rocky-Devel.repo
+├── [-rw-r--r-- root     root       695]  Rocky-Extras.repo
+├── [-rw-r--r-- root     root       731]  Rocky-HighAvailability.repo
+├── [-rw-r--r-- root     root       680]  Rocky-Media.repo
+├── [-rw-r--r-- root     root       680]  Rocky-NFV.repo
+├── [-rw-r--r-- root     root       690]  Rocky-Plus.repo
+├── [-rw-r--r-- root     root       715]  Rocky-PowerTools.repo
+├── [-rw-r--r-- root     root       746]  Rocky-ResilientStorage.repo
+├── [-rw-r--r-- root     root       681]  Rocky-RT.repo
+└── [-rw-r--r-- root     root      2.3K]  Rocky-Sources.repo
+
+0 directories, 17 files
+```
+
+## La commande `stat`
+
+La commande `stat` affiche l'état d'un fichier ou système de fichiers.
+
+```bash
+$ stat /root/anaconda-ks.cfg
+  File: /root/anaconda-ks.cfg
+  Size: 1352            Blocks: 8          IO Block: 4096   regular file
+Device: 10302h/66306d   Inode: 2757097     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2024-01-20 13:04:57.012033583 +0800
+Modify: 2023-09-25 14:04:48.524760784 +0800
+Change: 2024-01-24 16:37:34.315995221 +0800
+ Birth: 2
+```
+
+* `File` - Affiche le chemin du fichier.
+* `Size` - Affiche la taille du fichier en octets. Dans le cas d'un répertoire, affiche une taille fixe de 4096 octets correspondant à l'enregistrement du nom de dossier.
+* `Blocks` - Affiche le nombre de blocs alloués. Attention s'il vous plaît ! La taille de chaque bloc dans cette commande est de 512 octets. La taille par défault de chaque bloc dans la commande `ls -ls` est de 1024 octets.
+* `Device` - Numéro de périphérique en décimal ou bien hexadécimal.
+* `Inode` - Numéro d'Inode unique assigné par le noyau Linux au fichier ou dossier.
+* `Links` - Nombre de liens physiques. Les liens directs sont parfois appelés liens physiques.
+* `Access` : L'heure du dernier accès aux fichiers et répertoires, c'est-à-dire `atime` dans GNU/Linux.
+* `Modify` : la date à laquelle les fichiers et répertoires ont été modifiés pour la dernière fois, c'est-à-dire `mtime` dans GNU/Linux.
+* `Change` : la date à laquelle la propriété a été modifiée pour la dernière fois, c'est-à-dire `ctime` dans GNU/Linux.
+* `Birth` - Date d'origine (date et heure de création). Dans certains documents, il est abrégé par `btime` ou `crtime`. Pour afficher la date de création, la version du système de fichiers et du noyau doit être supérieure à une certaine version.
+
+Concernant les fichiers :
+
+**atime** : Après avoir accédé au contenu du fichier avec des commandes telles que `cat`, `less`, `more` et `head`, le `atime` du fichier peut être mis à jour. Veuillez prêter attention ! Le `atime` du fichier n'est pas mis à jour en temps réel et doit, pour des raisons de performances, attendre un certain temps avant de pouvoir être visualisé. **mtime** : la modification du contenu du fichier peut mettre à jour le `mtime` du fichier (identique à l'ajout ou à l'écrasement du contenu du fichier via la redirection) ; puisque la taille du fichier est une propriété du fichier, le `ctime` du fichier sera également mis à jour simultanément. **ctime** : la modification du propriétaire, du groupe, des autorisations, de la taille du fichier et des liens (liens logiciels et physiques) du fichier mettra à jour `ctime`.
+
+Concernant les dossiers :
+
+**atime** : après avoir utilisé la commande `cd` pour entrer dans un nouveau répertoire auquel vous n'avez jamais accédé auparavant, vous pouvez mettre à jour et corriger le `atime` de ce répertoire. **mtime** : effectuer des opérations telles que créer, supprimer et renommer des fichiers dans ce répertoire mettra à jour le `mtime` et le `ctime` du répertoire. **ctime** : lorsque les autorisations, le propriétaire, le groupe, etc. d'un répertoire changent, le `ctime` du répertoire est mis à jour.
+
+!!! tip "Astuce"
+
+    * Si vous créez un nouveau fichier ou répertoire, ses `atime`, `mtime` et `ctime` sont exactement identiques
+    * Si le contenu du fichier est modifié, les `mtime` et `ctime` du fichier seront forcément mis à jour.
+    * Si un nouveau fichier est créé dans le répertoire, les valeurs `atime`, `ctime` et `mtime` du répertoire seront mises à jour simultanément.
+    * Si le `mtime` d'un répertoire est mis à jour, le `ctime` de ce répertoire doit également être mis à jour.
