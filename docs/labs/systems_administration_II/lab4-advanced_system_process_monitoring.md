@@ -113,6 +113,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
     sudo dnf -y install bc
     ```
 
+
 #### To create a script to generate CPU load
 
 1. Create a CPU Load Script and make it executable by running:
@@ -138,6 +139,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
 
         The generate_cpu_load.sh script is a simple tool for generating CPU load by calculating Pi (π) to a high degree of precision. The same calculation is done 10 times. The script accepts an integer as the parameter for specifying the number of decimal places for calculating Pi.
 
+
 #### To simulate extra CPU load
 
 1. Let's do a simple test run and calculate Pi to 50 decimal places. Run the Script by typing:
@@ -149,6 +151,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
 2. Run the script again but this time use `perf` to record the performance of the script to analyze CPU usage and other metrics. Type:
 
     ```bash
+
      ./generate_cpu_load.sh 1000  &  perf record -p $! sleep 5
     ```
 
@@ -186,6 +189,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
     ```bash
     sudo perf stat -e cycles find /proc
     ```
+
 
 3. Do the same thing but with the ./generate_cpu_load.sh script. Count specific events like CPU cycles to evaluate the performance of the ./generate_cpu_load.sh script. Type:
 
@@ -356,7 +360,6 @@ The `fuser` command in Linux is used to identify processes using files or socket
     ```
 
 5. Switch between different resource views to focus on specific aspects of system performance.
-
 6. Generate a log file report for system activity, capturing data every 60 seconds, 3 times in total. Type:
 
     ```bash
@@ -503,6 +506,7 @@ This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
     ls /sys/fs/cgroup/
     ```
 
+
 2. Use the `ls` command again to list the *.slice folders under the `cgroup` filesystem. These folders Type:
 
     ```bash
@@ -546,11 +550,11 @@ This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
 1. Create a simple executable script that will use the `dd` command to test the memory resource limit. Type:
 
     ```bash
-      cat > ~/memory_stress.sh << EOF
-      #!/bin/bash
-      dd if=/dev/zero of=/tmp/stress_test bs=10M count=2000
-      EOF
-      chmod +x ~/memory_stress.sh
+   cat > ~/memory_stress.sh << EOF
+   #!/bin/bash
+   dd if=/dev/zero of=/tmp/stress_test bs=10M count=2000
+   EOF
+   chmod +x ~/memory_stress.sh
     ```
 
 #### To run and add process/script to the memory `cgroup`
@@ -587,6 +591,7 @@ This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
     ```bash
     echo 10000 | sudo tee /sys/fs/cgroup/exercise_group/cpu.max
     ```
+
 
     10000 represents the CPU bandwidth limit. Here, it's set to 10% of a single CPU core's total capacity.
 
@@ -916,6 +921,8 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
     #!/bin/bash
     while true; do
          openssl speed > /dev/null 2>&1
+         openssl speed > /dev/null 2>&1
+
     done
     EOF
     chmod +x ~/cpu_load_generator.sh
@@ -954,7 +961,6 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
     ```bash
     sudo schedtool -F -p 10 $!
     ```
-
 2. View the effect of the changes. Type:
 
     ```bash
@@ -966,7 +972,6 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
     ```bash
       sudo schedtool -R -p 50 $MYPID
     ```
-
 4. View the effect of the changes. Type:
 
     ```bash
@@ -978,7 +983,6 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
     ```bash
     sudo schedtool -D $MYPID
     ```
-
 6. View the effect of the changes.
 
 7. Finally, reset the scheduling policy of the process back to the original default SCHED_NORMAL (N or other). Type:
