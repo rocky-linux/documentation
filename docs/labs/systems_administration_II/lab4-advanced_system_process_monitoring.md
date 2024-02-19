@@ -536,7 +536,6 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
 
    The /sys/fs/cgroup/exercise_group/cgroup.procs file can be used for adding or viewing the PIDs (Process IDs) of processes that are members of a given cgroup. 
    Writing a PID to this file assigns the ~/memory_stress.sh script process to the exercise_group cgroup.
-
 2. The previous command will end very quickly before completion because it has 
    exceeded the memory limits of the cgroup. You can run the following journalctl command in another terminal to view the error as it happens. Type:
    
@@ -564,8 +563,7 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
    echo 10000 | sudo tee /sys/fs/cgroup/exercise_group/cpu.max
   ```
 
-10000 represents the CPU bandwidth limit. Here, it's set to 10% of a single CPU core's total capacity.
-
+   10000 represents the CPU bandwidth limit. Here, it's set to 10% of a single CPU core's total capacity.
 2. Confirm CPU Limit has been set. Type:
 
    ```bash
@@ -598,7 +596,6 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
     echo $! | sudo tee /sys/fs/cgroup/exercise_group/cgroup.procs
   ```
 
-
 #### To confirm process CPU usage resource control
 
 1. Check the CPU usage of the process.
@@ -608,7 +605,6 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
   ```
 
   The output should show the real-time CPU usage of the yes process. The %CPU for yes should be limited as per the cgroup's configuration (e.g., around 10% if the limit is set to 10000).
-
 2. Set and experiment with other values for cpu.max for the exercise_group cgroup
    and then observe the effect every time you rerun the ~/cpu_stress.sh script within the control group.
 
@@ -642,13 +638,13 @@ Storage devices on Linux systems have major and minor device numbers that can be
    under the exercise_group cgroup. Type:
 
   ```bash
-      echo "$primary_device_num rbps=1048576 wbps=1048576" | \
-      sudo tee /sys/fs/cgroup/exercise_group/io.max
+   echo "$primary_device_num rbps=1048576 wbps=1048576" | \
+   sudo tee /sys/fs/cgroup/exercise_group/io.max
   ```
 2. Confirm I/O limits set. Type:
 
 ```bash
-  cat /sys/fs/cgroup/exercise_group/io.max
+cat /sys/fs/cgroup/exercise_group/io.max
 ```
 
 #### To create the I/O stress test process
@@ -684,9 +680,9 @@ Storage devices on Linux systems have major and minor device numbers that can be
    and remove the /tmp/io_stress file.
 
   ```bash
-    kill %1
-    sudo rmdir /sys/fs/cgroup/exercise_group/
-    sudo rm -rf /tmp/io_stress
+   kill %1
+   sudo rmdir /sys/fs/cgroup/exercise_group/
+   sudo rm -rf /tmp/io_stress
   ```
 
 ## Exercise 8
@@ -728,8 +724,11 @@ This exercise demonstrates the use of `taskset` to set or retrieve the CPU affin
       Therefore on 4 core CPU, with the mask "f":
 
       Core 0: Enabled
+
       Core 1: Enabled
+      
       Core 2: Enabled
+      
       Core 3: Enabled
 
 ### To set/change CPU affinity
@@ -752,7 +751,6 @@ This exercise demonstrates the use of `taskset` to set or retrieve the CPU affin
    ```
 
    The output indicates the CPU affinity mask of the process with PID $MYPID. The affinity mask is "1" in decimal, which translates to "1" in binary. This means that the process is currently bound to CPU core 0.
-
 3. Now set the CPU affinity of the dd process to multiple CPUs (CPUs 0 and 1).
    Type:
 
@@ -769,10 +767,10 @@ This exercise demonstrates the use of `taskset` to set or retrieve the CPU affin
 
 !!! tip
 
-   Decimal "3" is "11" (or 0011) in binary.
-   Each binary digit corresponds to a CPU core: core 0, core 1, core 2, core 3 (from right to left).
-   The digit "1" in the forth and third position (from the right) indicates that the process is  allowed to run on cores 0 and 1. 
-   Therefore, "3" signifies that the process is bound to CPU cores 0 and 1.
+      Decimal "3" is "11" (or 0011) in binary.
+      Each binary digit corresponds to a CPU core: core 0, core 1, core 2, core 3 (from right to left).
+      The digit "1" in the forth and third position (from the right) indicates that the process is  allowed to run on cores 0 and 1. 
+      Therefore, "3" signifies that the process is bound to CPU cores 0 and 1.
 
 
 1. In a separate terminal, launch either the top or htop utility and observe to see if you see anything interest as you experiment with different tasksel configurations for a process.
@@ -789,6 +787,7 @@ The systemd-run command is used for creating and starting transient service unit
 This exercise shows how to use `systemd-run` for creating transient service units in systemd.
 
 #### To run a command as a transient Service
+
 
 1. Run the simple sleep 300 command as a transient systemd service using systemd-run. Type.
 
@@ -816,10 +815,10 @@ This exercise shows how to use `systemd-run` for creating transient service unit
 
 !!! tip
 
-   systemd.resource-control is a configuration or management entity (concept) within the systemd framework, designed for controlling and allocating system resources to processes and services.
-   And systemd.exec is a systemd component that is responsible for defining the execution environment in which commands are executed.
-   To view the various settings (properties) that you can tweak when using systemd-run consult the 
-   systemd.resource-control and systemd.exec manual pages. This is where you'll find documentation for properties like MemoryMax, CPUAccounting, IOWeight and so on 
+      systemd.resource-control is a configuration or management entity (concept) within the systemd framework, designed for controlling and allocating system resources to processes and services.
+      And systemd.exec is a systemd component that is responsible for defining the execution environment in which commands are executed.
+      To view the various settings (properties) that you can tweak when using systemd-run consult the 
+      systemd.resource-control and systemd.exec manual pages. This is where you'll find documentation for properties like MemoryMax, CPUAccounting, IOWeight and so on 
 
 
 #### To set CPU resource limit for a transient service
@@ -827,16 +826,14 @@ This exercise shows how to use `systemd-run` for creating transient service unit
 1. Let's create a transient systemd unit called myrealtime.service. Run myrealtime.service with a specific round robin (rr) scheduling policy and priority . Type:
    
    ```bash
-      systemd-run --unit=myrealtime.service \
-      --property=CPUSchedulingPolicy=rr --property=CPUSchedulingPriority=50 sleep 300
+   systemd-run --unit=myrealtime.service \
+   --property=CPUSchedulingPolicy=rr --property=CPUSchedulingPriority=50 sleep 300
    ```
-
 2. View the status for myrealtime.service. Also capture/store the PID for the main [sleep] in a variable named MYPID. Type:
 
    ```bash
-      MYPID=$(systemctl status myrealtime.service   |  awk '/Main PID/ {print $3}')
+   MYPID=$(systemctl status myrealtime.service   |  awk '/Main PID/ {print $3}')
    ```
-
 3. While the service is still running, verify its CPU scheduling policy. Type:
 
    ```bash
