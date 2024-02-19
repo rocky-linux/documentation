@@ -526,13 +526,10 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
 
     The output shows the files and directories that are automatically created by the cgroup subsystem to manage and monitor the resources for the cgroup. 
 
-
-### 2. Setting Resource Limits
-
-
 #### To set a new memory resource limit
 
-1. Let's set a memory resource limit to limit memory usage to 4096 bytes (4kB). To restrict processes in the cgroup to use a maximum of 4kB of memory type:
+1. Let's set a memory resource limit to limit memory usage to 4096 bytes (4kB). 
+   To restrict processes in the cgroup to use a maximum of 4kB of memory type:
 
     ```bash
       echo 4096 | sudo tee /sys/fs/cgroup/exercise_group/memory.max
@@ -544,11 +541,9 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
       cat /sys/fs/cgroup/exercise_group/memory.max
     ```
 
-### Creating the memory test script
-
 #### To create the memory_stress test script
 
-1. Create a simple executable script that'll use the dd command to test the memory resource limit. Type:
+1. Create a simple executable script that'll use the `dd` command to test the memory resource limit. Type:
    
     ```bash
       cat > ~/memory_stress.sh << EOF
@@ -567,10 +562,11 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
       echo $! | sudo tee /sys/fs/cgroup/exercise_group/cgroup.procs
    ```
 
-  The /sys/fs/cgroup/exercise_group/cgroup.procs file can be used for adding or viewing the PIDs (Process IDs) of processes that are members of a given cgroup. 
-  Writing a PID to this file assigns the ~/memory_stress.sh script process to the exercise_group cgroup.
+   The /sys/fs/cgroup/exercise_group/cgroup.procs file can be used for adding or viewing the PIDs (Process IDs) of processes that are members of a given cgroup. 
+   Writing a PID to this file assigns the ~/memory_stress.sh script process to the exercise_group cgroup.
 
-2. The previous command will end very quickly before completion because it has exceeded the memory limits of the cgroup. You can run the following journalctl command in another terminal to view the error as it happens. Type:
+2. The previous command will end very quickly before completion because it has 
+   exceeded the memory limits of the cgroup. You can run the following journalctl command in another terminal to view the error as it happens. Type:
    
    ```bash
       journalctl -xe -f  | grep -i memory
@@ -605,7 +601,7 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
       cat /sys/fs/cgroup/exercise_group/cpu.max
    ```
 
-#### #### To create the CPU stress test script
+#### To create the CPU stress test script
 
 1. Create and set executable permissions for a script that will generate high CPU usage. Type:
 
@@ -637,13 +633,13 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
 1. Check the CPU usage of the process.
 
   ```bash
-  pidof yes | xargs top -b -n 1 -p
+   pidof yes | xargs top -b -n 1 -p
   ```
 
   The output should show the real-time CPU usage of the yes process. The %CPU for yes should be limited as per the cgroup's configuration (e.g., around 10% if the limit is set to 10000).
 
-2. Set and experiment with other values for cpu.max for the exercise_group cgroup and then observe
-   the effect every time you rerun the ~/cpu_stress.sh script within the control group.
+2. Set and experiment with other values for cpu.max for the exercise_group cgroup
+   and then observe the effect every time you rerun the ~/cpu_stress.sh script within the control group.
 
 
 #### To identify and select primary storage device
@@ -651,8 +647,8 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
 The primary storage device can be used as a target device for setting I/O resource limits. 
 Storage devices on Linux systems have major and minor device numbers that can be used to uniquely identify them.
 
-1. Let's first create set some helper variables to detect and store the device number for the 
-   primary storage device on the server. Type:
+1. Let's first create set some helper variables to detect and store the device
+   number for the primary storage device on the server. Type:
 
   ```bash
     primary_device=$(lsblk | grep disk | awk '{print $1}' | head -n 1)
@@ -671,14 +667,15 @@ Storage devices on Linux systems have major and minor device numbers that can be
 
 #### To set a new I/O resource limit
 
-1. Set the I/O operations to 1 MB/s for both read and write for processes running under the exercise_group cgroup. Type:
+1. Set the I/O operations to 1 MB/s for both read and write for processes running
+   under the exercise_group cgroup. Type:
 
   ```bash
       echo "$primary_device_num rbps=1048576 wbps=1048576" | \
       sudo tee /sys/fs/cgroup/exercise_group/io.max
   ```
 
-2. Confirm I/O limits set. Type:
+1. Confirm I/O limits set. Type:
 
 ```bash
   cat /sys/fs/cgroup/exercise_group/io.max
@@ -686,11 +683,12 @@ Storage devices on Linux systems have major and minor device numbers that can be
 
 #### To create the I/O stress test process
 
-1. Start a dd process to create a large file named /tmp/io_stress. Also capture and store the PID
-   of the dd process in a variable named MYPID. Type:
+1. Start a dd process to create a large file named /tmp/io_stress. Also capture
+   and store the PID of the dd process in a variable named `MYPID`. Type:
 
   ```bash
-    dd if=/dev/zero of=/tmp/io_stress bs=10M count=500 oflag=dsync  & export MYPID=$!
+   dd if=/dev/zero of=/tmp/io_stress bs=10M count=500 oflag=dsync \
+   & export MYPID=$!
   ```
 
 #### To add a process/script to the I/O cgroup
@@ -786,9 +784,10 @@ This exercise demonstrates the use of `taskset` to set or retrieve the CPU affin
       taskset -p $MYPID
    ```
 
-The output indicates the CPU affinity mask of the process with PID $MYPID. The affinity mask is "1" in decimal, which translates to "1" in binary. This means that the process is currently bound to CPU core 0.
+   The output indicates the CPU affinity mask of the process with PID $MYPID. The affinity mask is "1" in decimal, which translates to "1" in binary. This means that the process is currently bound to CPU core 0.
 
-3. Now set the CPU affinity of the dd process to multiple CPUs (CPUs 0 and 1). Type:
+3. Now set the CPU affinity of the dd process to multiple CPUs (CPUs 0 and 1).
+   Type:
 
    ```bash
       taskset -p 0x3 $MYPID
@@ -800,7 +799,7 @@ The output indicates the CPU affinity mask of the process with PID $MYPID. The a
       taskset -p $MYPID
    ```
 
-On our demo 4 core CPU server, the output shows that the CPU affinity mask of the process is "3" (in decimal). This translates to "11" in binary. 
+   On our demo 4 core CPU server, the output shows that the CPU affinity mask of the process is "3" (in decimal). This translates to "11" in binary. 
 
    !!! tip
 
@@ -813,7 +812,6 @@ On our demo 4 core CPU server, the output shows that the CPU affinity mask of th
 5. In a separate terminal, launch either the top or htop utility and observe to see if you see anything interest as you experiment with different tasksel configurations for a process.
 
 6. All done. Use its PID ($MYPID) to kill the `dd` process.  
-
 
 
 ## Exercise 9
@@ -945,9 +943,9 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
   ```
 3. Capture the PID for the main openssl process launched within the cpu_load_generator.sh script. Store the PID in a variable named MYPID. Type:
    
-```bash
- export  MYPID=$(pidof openssl) ; echo $MYPID
-```
+   ```bash
+   export  MYPID=$(pidof openssl) ; echo $MYPID
+   ```
 
 ### To use schedtool to check current scheduling policy
 
@@ -991,7 +989,7 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
 5. Change the scheduling policy of the process to Idle or SCHED_IDLEPRIO (D). Type:
 
     ```bash
-      sudo schedtool -D $!
+      sudo schedtool -D $MYPID
     ```
 
 6. View the effect of the changes.
@@ -1002,12 +1000,11 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
       sudo schedtool -N $MYPID
    ```
 
-
-### To terminate and clean up the clean up the cpu_load_generator.sh process
+#### To terminate and clean up the clean up the cpu_load_generator.sh process
 
 1. All done. Terminate the script and delete the cpu_load_generator.sh script.
  
-  ```bash
-  kill $MYPID
-  rm ~/cpu_load_generator.sh
-  ```
+   ```bash
+      kill $MYPID
+      rm ~/cpu_load_generator.sh
+   ```
