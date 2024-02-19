@@ -160,12 +160,12 @@ Le fichier Makefile situé à la racine de l'arborescence des sources du noyau c
 `make mrproper`
 :
 
-Cet objectif nettoie l’environnement de construction de tous les fichiers et dépendances hérités qui auraient pu être laissés par une version précédente du noyau. Toutes les configurations précédentes du noyau seront nettoyées (supprimées) de l'environnement de construction.
+Cet cible nettoie l’environnement de construction de tous les fichiers et dépendances hérités qui auraient pu être laissés par une version précédente du noyau. Toutes les configurations précédentes du noyau seront nettoyées (supprimées) de l'environnement de construction.
 
 `make clean`
 :
 
-This target does not do as thorough a job as the mrproper target.?!?! Il ne supprime que la plupart des fichiers générés. Il ne supprime pas le fichier de configuration du noyau (.config).
+Cette cible n'est pas aussi efficace que la cible mrproper. Il ne supprime que la plupart des fichiers générés. Il ne supprime pas le fichier de configuration du noyau (.config).
 
 `make menuconfig`
 :
