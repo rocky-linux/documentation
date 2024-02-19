@@ -36,7 +36,7 @@ Then install Tailscale:
 dnf install tailscale
 ```
 
-## Configuring Tor
+## Configuring Tailscale
 
 With the packages installed, you need to enable and configure Tailscale. To enable the Tailscale daemon:
 
@@ -68,7 +68,7 @@ Once your server is authenticated with Tailscale, it will get a Tailscale IPv4 a
 tailscale ip -4
 ```
 
-You will also get a non-routable Tailscale IPv6 address:
+It will also get a RFC 4193 (Unique Local Address) Tailscale IPv6 address:
 
 ```bash
 tailscale ip -6
