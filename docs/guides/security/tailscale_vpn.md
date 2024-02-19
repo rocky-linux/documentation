@@ -1,10 +1,11 @@
 ---
 title: Tailscale VPN
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.3
 tags:
   - security
+  - vpn
 ---
 
 # Tailscale VPN
@@ -13,7 +14,7 @@ tags:
 
 [Tailscale](https://tailscale.com/) is a zero-config, end-to-end encrypted, peer-to-peer VPN based on Wireguard. Tailscale supports all major desktop and mobile operating systems.
 
-When compared to other VPN solutions, Tailscale does not require open TCP/IP ports and can work behind Network Address Translation or a firewall.
+Compared to other VPN solutions, Tailscale does not require open TCP/IP ports and can work behind Network Address Translation or a firewall.
 
 ## Prerequisites and assumptions
 
@@ -54,7 +55,7 @@ You will get a URL for authentication. Visit that in a browser and log into Tail
 
 ![Tailscale login screen](../images/tailscale_1.png)
 
-Subsequently, you will grant access to your server. Click **Connect** to do so:
+Next, you will grant access to your server. Click **Connect** to do so:
 
 ![Tailscale grant access dialog](../images/tailscale_2.png)
 
