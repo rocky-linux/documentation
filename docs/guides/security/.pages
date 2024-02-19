@@ -11,3 +11,4 @@ nav:
     - ... | learning_selinux*.md
     - ... | ssh_public_private_keys*.md
     - ... | tailscale_vpn*.md
+    - ...
