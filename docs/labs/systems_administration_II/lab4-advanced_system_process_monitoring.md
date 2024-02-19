@@ -190,18 +190,18 @@ The `fuser` command in Linux is used to identify processes using files or socket
    ```
    OUTPUT:
    ```bash
-      ...<SNIP>...
-         3.141592653589793238462643383279502884197169399375105820974944592307\
-      81640628620899862803482534211.....
+   ...<SNIP>...
+   3.141592653589793238462643383279502884197169399375105820974944592307\
+   81640628620899862803482534211.....
 
-      Performance counter stats for './generate_cpu_load.sh 500':
+   Performance counter stats for './generate_cpu_load.sh 500':
 
-         1,670,638,886      cycles
+      1,670,638,886      cycles
 
-            0.530479014 seconds time elapsed
+         0.530479014 seconds time elapsed
 
-            0.488580000 seconds user
-            0.034628000 seconds sys
+         0.488580000 seconds user
+         0.034628000 seconds sys
    ```
 
 !!! Note
@@ -256,8 +256,8 @@ The `fuser` command in Linux is used to identify processes using files or socket
     ```
 
     OUTPUT:
-    ```
-   4006301
+    ```bash
+    4006301
     ```
 3. Start tracing the system calls of the script to understand how it interacts with the kernel. Attach `strace` to the running script process by typing:
    
@@ -281,7 +281,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
    sudo strace -o strace_output.txt -p $MYPID
    ```
    
-#### To analyze the Frequency of System Calls
+#### To analyze the frequency of system calls
 
 1. Summarize the system call counts to identify the most frequently used system calls by the process. Do this for only 10 seconds by appending the `timeout` command. Type:
    
@@ -292,7 +292,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
    Our sample system shows a summary report output like this:
    
    OUTPUT:
-    ```
+    ```bash
     strace: Process 4006301 attached
     strace: Process 4006301 detached
     % time     seconds  usecs/call     calls    errors syscall
@@ -306,7 +306,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
     ------ ----------- ----------- --------- --------- ----------------
     100.00    0.047498         175       270        18 total
    ```
-9. Terminate the script and remove any files created.
+2. Terminate the script and remove any files created.
    
    ```bash
       kill $MYPID
@@ -324,12 +324,12 @@ The `fuser` command in Linux is used to identify processes using files or socket
 1. Install the atop application if it is not already installed on your server. Type:
    
     ```bash
-      sudo dnf -y install atop
+   sudo dnf -y install atop
     ```
 2. Run `atop` by typing:
    
    ```bash
-    sudo atop
+   sudo atop
    ```
 
 3. Within the atop interface, you can explore various atop metrics by pressing specific keys on your keyboard. 
@@ -339,7 +339,7 @@ The `fuser` command in Linux is used to identify processes using files or socket
 4. Monitor system performance at a custom interval of 2 seconds, allowing a more granular view of system activity. Type:
    
    ```bash
-      sudo atop 2
+   sudo atop 2
    ```  
 
 5. Switch between different resource views to focus on specific aspects of system performance.
@@ -347,18 +347,18 @@ The `fuser` command in Linux is used to identify processes using files or socket
 6. Generate a log file report for system activity, capturing data every 60 seconds, 3 times in total. Type:
    
    ```bash
-    sudo atop -w /tmp/atop_log 60 3
+   sudo atop -w /tmp/atop_log 60 3
    ```    
 7. Once the previous command is completed, you can take your time and review the binary file that the logs were saved to. To read back the saved log file, type:
 
    ```bash
-      sudo atop -r /tmp/atop_log   
+   sudo atop -r /tmp/atop_log   
    ```
    
 8. Clean up by removing any logs or files generated.
    
    ```bash
-      sudo rm /tmp/atop_log
+   sudo rm /tmp/atop_log
    ```
 
 ## Exercise 5
@@ -375,7 +375,7 @@ The `numactl` application manages NUMA policy, optimizing performance on NUMA-ba
 1. Install the numactl application if it is not already installed on your server. Type:
    
     ```bash
-      sudo dnf -y install numactl
+   sudo dnf -y install numactl
     ```
 
 #### To create a memory intensive script
@@ -396,7 +396,7 @@ The `numactl` application manages NUMA policy, optimizing performance on NUMA-ba
 1. Run the script with numactl, type:
    
    ```bash
-      numactl --membind=0 ~/memory_intensive.sh
+   numactl --membind=0 ~/memory_intensive.sh
    ```
 2. If your system has more than one NUMA node available, you can run the script on
     multiple NUMA nodes via:
@@ -416,7 +416,7 @@ The `numactl` application manages NUMA policy, optimizing performance on NUMA-ba
 5. Clean up your working environment by removing the script.
    
    ```bash
-      rm ~/memory_intensive.sh
+   rm ~/memory_intensive.sh
    ```
 
 ## Exercise 6
@@ -430,7 +430,7 @@ The `iotop` command is a tool for monitoring disk I/O (input/output) usage by pr
 1. Install the `iotop` utility if it is not already installed. Type:
    
    ```bash
-      sudo dnf -y install iotop
+   sudo dnf -y install iotop
    ```
 
 #### To use iotop to monitor disk I/O
@@ -438,7 +438,7 @@ The `iotop` command is a tool for monitoring disk I/O (input/output) usage by pr
 1. Run the iotop command without any options to use it in its default interactive mode. Type:
     
     ```bash
-      sudo iotop
+   sudo iotop
     ```
 
     Observe the live disk I/O usage by various processes. Use this to identify processes that are currently reading from or writing to the disk.
@@ -450,20 +450,20 @@ The `iotop` command is a tool for monitoring disk I/O (input/output) usage by pr
 1. Run `iotop` in batch mode (-b) to get a non-interactive, one-shot view of I/O usage. The `-n 10` option tells iotop to take 10 samples before exiting. 
 
     ```bash
-      sudo iotop -b -n 10
+   sudo iotop -b -n 10
     ```
 
 2. `iotop` can be used for filtering I/O for specific processes. 
 Identify a process ID (PID) from your system using the ps command or from the iotop display. Then, filter iotop output for that specific PID. For example filter for the PID for the `sshd` process, by running:
 
     ```bash
-      sudo iotop -p $(pgrep sshd | head -1)
+   sudo iotop -p $(pgrep sshd | head -1)
     ```
 
 3. The -`o` option with `iotop` can be used for showing processes or threads doing actual I/O, instead of displaying all processes or threads. Display only I/O Processes by running:
 
     ```bash
-       sudo iotop -o
+   sudo iotop -o
     ```
 
 !!! Question
@@ -485,13 +485,13 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
 1. Use the `ls` command to explore the contents and structure of the cgroup filesystem. Type:
    
    ```bash
-      ls /sys/fs/cgroup/
+   ls /sys/fs/cgroup/
    ```
 
 2. Use the `ls` command again to list the *.slice folders under the cgroup filesystem. These folders Type:
    
    ```bash
-      ls -d /sys/fs/cgroup/*.slice
+   ls -d /sys/fs/cgroup/*.slice
    ```
 
    The folders with the .slice suffix are typically used in systemd to represent a slice of system resources.These are standard cgroups managed by systemd for organizing and managing system processes 
@@ -519,13 +519,13 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
    To restrict processes in the cgroup to use a maximum of 4kB of memory type:
 
     ```bash
-      echo 4096 | sudo tee /sys/fs/cgroup/exercise_group/memory.max
+   echo 4096 | sudo tee /sys/fs/cgroup/exercise_group/memory.max
     ```
 
 2. Confirm Memory Limit has been set. Type:
 
     ```bash
-      cat /sys/fs/cgroup/exercise_group/memory.max
+   cat /sys/fs/cgroup/exercise_group/memory.max
     ```
 
 #### To create the memory_stress test script
@@ -545,8 +545,8 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
 1. Launch the memory_stress.sh, capture its PID and add the PID to cgroup.procs. Type:
 
    ```bash
-      ~/memory_stress.sh &
-      echo $! | sudo tee /sys/fs/cgroup/exercise_group/cgroup.procs
+   ~/memory_stress.sh &
+   echo $! | sudo tee /sys/fs/cgroup/exercise_group/cgroup.procs
    ```
 
    The /sys/fs/cgroup/exercise_group/cgroup.procs file can be used for adding or viewing the PIDs (Process IDs) of processes that are members of a given cgroup. 
@@ -556,7 +556,7 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
    exceeded the memory limits of the cgroup. You can run the following journalctl command in another terminal to view the error as it happens. Type:
    
    ```bash
-      journalctl -xe -f  | grep -i memory
+   journalctl -xe -f  | grep -i memory
    ```
    
 
@@ -565,7 +565,7 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
       You can quickly use the ps command to check the approximate memory usage of a process if you know the PID of the process by running:
 
       ```bash
-         pidof <PROCESS_NAME> | xargs ps -o pid,comm,rss
+      pidof <PROCESS_NAME> | xargs ps -o pid,comm,rss
       ```
 
       This output should show the Resident Set Size (RSS) in KB, indicating the actual memory used by the specified process at a point in time. 
@@ -593,11 +593,11 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
 1. Create and set executable permissions for a script that will generate high CPU usage. Type:
 
    ```bash
-      cat > ~/cpu_stress.sh << EOF
-      #!/bin/bash
-      exec yes > /dev/null
-      EOF
-      chmod +x ~/cpu_stress.sh
+   cat > ~/cpu_stress.sh << EOF
+   #!/bin/bash
+   exec yes > /dev/null
+   EOF
+   chmod +x ~/cpu_stress.sh
    ```
 
 !!! note
