@@ -113,7 +113,6 @@ The `fuser` command in Linux is used to identify processes using files or socket
     sudo dnf -y install bc
     ```
 
-
 #### To create a script to generate CPU load
 
 1. Create a CPU Load Script and make it executable by running:
@@ -138,7 +137,6 @@ The `fuser` command in Linux is used to identify processes using files or socket
     !!! tip
 
         The generate_cpu_load.sh script is a simple tool for generating CPU load by calculating Pi (π) to a high degree of precision. The same calculation is done 10 times. The script accepts an integer as the parameter for specifying the number of decimal places for calculating Pi.
-
 
 #### To simulate extra CPU load
 
@@ -189,7 +187,6 @@ The `fuser` command in Linux is used to identify processes using files or socket
     ```bash
     sudo perf stat -e cycles find /proc
     ```
-
 
 3. Do the same thing but with the ./generate_cpu_load.sh script. Count specific events like CPU cycles to evaluate the performance of the ./generate_cpu_load.sh script. Type:
 
@@ -506,7 +503,6 @@ This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
     ls /sys/fs/cgroup/
     ```
 
-
 2. Use the `ls` command again to list the *.slice folders under the `cgroup` filesystem. These folders Type:
 
     ```bash
@@ -529,7 +525,7 @@ This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
     sudo ls /sys/fs/cgroup/exercise_group/
     ```
 
-    The output shows the files and directories that are automatically created by the `cgroup` subsystem to manage and monitor the resources for the `cgroup`. 
+    The output shows the files and directories that are automatically created by the `cgroup` subsystem to manage and monitor the resources for the `cgroup`.
 
 #### To set a new memory resource limit
 
@@ -591,7 +587,6 @@ This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
     ```bash
     echo 10000 | sudo tee /sys/fs/cgroup/exercise_group/cpu.max
     ```
-
 
     10000 represents the CPU bandwidth limit. Here, it's set to 10% of a single CPU core's total capacity.
 
@@ -907,7 +902,7 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
 #### To install `schedtool`
 
 1. Install the `schedtool` application if it is not already installed on your server. Type:
-   
+
     ```bash
     sudo dnf -y install schedtool
     ```
@@ -961,6 +956,7 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
     ```bash
     sudo schedtool -F -p 10 $!
     ```
+
 2. View the effect of the changes. Type:
 
     ```bash
@@ -972,6 +968,7 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
     ```bash
       sudo schedtool -R -p 50 $MYPID
     ```
+
 4. View the effect of the changes. Type:
 
     ```bash
@@ -983,6 +980,7 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
     ```bash
     sudo schedtool -D $MYPID
     ```
+
 6. View the effect of the changes.
 
 7. Finally, reset the scheduling policy of the process back to the original default SCHED_NORMAL (N or other). Type:
