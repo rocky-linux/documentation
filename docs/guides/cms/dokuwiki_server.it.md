@@ -103,7 +103,7 @@ Nel server, passare alla root directory.
 
 Ora che il nostro ambiente è pronto, prendiamo l'ultima versione stabile di DokuWiki. Potete trovarlo andando alla [pagina di download](https://download.dokuwiki.org/) e sul lato sinistro della pagina, alla voce "Version", vedrete "Stable (Recommended) (direct link)."
 
-Fare clic con il tasto destro del mouse sulla parte "(link diretto)" e copiare l'indirizzo del link. Nella console del vostro server DokuWiki, digitate "wget" e uno spazio e poi incollate il link copiato nel terminale. Dovresti ottenere qualcosa di simile:
+Fare clic con il tasto destro del mouse sulla parte "(link diretto)" e copiare l'indirizzo del link. Nella console del vostro server DokuWiki, digitate "wget" e uno spazio e poi incollate il link copiato nel terminale. Si dovrebbe ottenere qualcosa di simile a questo:
 
 `wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz`
 
@@ -130,7 +130,7 @@ Una volta eseguito questo comando, tutto DokuWiki dovrebbe trovarsi nella nostra
 
 È necessario fare una copia del file _.htaccess.dist_ fornito con DokuWiki e conservare anche quello vecchio, nel caso in cui si debba tornare all'originale in futuro.
 
-Nel processo, cambieremo il nome di questo file in _.htaccess_, che è quello che _apache_ cercherà. Per ora fare:
+Nel processo, cambieremo il nome di questo file in _.htaccess_, che è quello che _apache_ cercherà. Per farlo:
 
 `cp /var/www/sub-domains/com.example/html/.htaccess{.dist,}`
 
