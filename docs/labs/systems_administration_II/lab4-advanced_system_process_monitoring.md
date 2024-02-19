@@ -24,7 +24,6 @@ After completing this lab, you will be able to
 Estimated time to complete this lab: 60 minutes 
 
 
-
 ## Introduction
 
 The commands in this Lab cover a broader spectrum of process management, system monitoring, and resource control in Linux. They add more depth and variety to your System Administrator repertoire.  
@@ -70,7 +69,6 @@ The `fuser` command in Linux is used to identify processes using files or socket
    ```bash
    fuser ~/testfile.txt
    ```
-
 2. Explore additional `fuser` options by using the `-v` option. Type:
    
    ```bash
@@ -206,16 +204,16 @@ The `fuser` command in Linux is used to identify processes using files or socket
             0.034628000 seconds sys
    ```
 
-   !!! Note
+!!! Note
 
-         Here's the breakdown of the final sample output of the `perf stat` command:
-         *1,670,638,886 cycles*: This indicates the total number of CPU cycles consumed during the execution of the script. Each cycle represents a single step in the CPU's instruction execution.
+   Here's the breakdown of the final sample output of the `perf stat` command:
+   *1,670,638,886 cycles*: This indicates the total number of CPU cycles consumed during the execution of the script. Each cycle represents a single step in the CPU's instruction execution.
 
-         *0.530479014 seconds time elapsed*: This is the total elapsed real-world time (or wall-clock time) from the start to the end of the script execution. This duration includes all types of waits (like waiting for disk I/O or system calls).
+   *0.530479014 seconds time elapsed*: This is the total elapsed real-world time (or wall-clock time) from the start to the end of the script execution. This duration includes all types of waits (like waiting for disk I/O or system calls).
 
-         *0.488580000 seconds user*: This is the amount of CPU time spent in user mode. This time specifically excludes time spent doing system-level tasks.
+   *0.488580000 seconds user*: This is the amount of CPU time spent in user mode. This time specifically excludes time spent doing system-level tasks.
 
-         *0.034628000 seconds sys*: This is the amount of CPU time spent in the kernel or system mode. This includes time the CPU spends executing system calls or performing other system-level tasks on behalf of the script.
+   *0.034628000 seconds sys*: This is the amount of CPU time spent in the kernel or system mode. This includes time the CPU spends executing system calls or performing other system-level tasks on behalf of the script.
 
 4. All done with `perf` tool. Make sure to stop any background scripts for a clean working environment.
    
@@ -744,7 +742,7 @@ This exercise demonstrates the use of `taskset` to set or retrieve the CPU affin
 
    The output shows the CPU affinity mask of the process with PID of 1211483 ($MYPID), represented in hexadecimal format. On our sample system, the affinity mask displayed is "f", which typically means that the process can run on any CPU core in the system.
 
-   !!! note
+!!! note
 
       The CPU affinity mask "f" represents a configuration where all CPU cores are enabled for the process. In hexadecimal notation, "f" corresponds to the binary value "1111". Each bit in the binary representation corresponds to a CPU core, with "1" indicating that the core is enabled and available for the process to run on.
       Therefore on 4 core CPU, with the mask "f":
