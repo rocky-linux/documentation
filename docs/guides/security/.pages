@@ -10,4 +10,4 @@ nav:
     - Rootkit Hunter: https://docs.rockylinux.org/guides/web/apache_hardened_webserver/rkhunter/
     - ... | learning_selinux*.md
     - ... | ssh_public_private_keys*.md
-    - ... | tailscale_vpn.md
+    - ... | tailscale_vpn*.md
