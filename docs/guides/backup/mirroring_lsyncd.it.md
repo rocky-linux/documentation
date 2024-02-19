@@ -230,7 +230,7 @@ Se il servizio è in esecuzione, usare tail per vedere le estremità dei due fil
 
 `tail /var/log/lsyncd.log`
 
-E poi:
+E quindi:
 
 `tail /var/log/lsyncd-status.log`
 
