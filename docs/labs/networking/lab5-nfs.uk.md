@@ -84,7 +84,9 @@ SYNOPSIS
     ```bash
      systemctl show  -p "Wants"  nfs-server
     ```
+
     **Вихід**
+
     ```bash
     Wants=nfs-idmapd.service nfsdcld.service rpcbind.socket rpc-statd-notify.service rpc-statd.service auth-rpcgss-module.service network-online.target
     ```
@@ -98,6 +100,7 @@ SYNOPSIS
     ```
 
     **Вихід**
+
     ```bash
     program vers proto   port  service
     100000    4   tcp    111  portmapper
@@ -108,22 +111,26 @@ SYNOPSIS
 
     З наведеного вище зразка вихідних даних ми можемо сказати, що служба portmapper зареєстрована на сервері RPC, на якому працює localhost.
 
-    !!! Question "Питання"
+    !!! question "Питання"
 
-     A) Що таке portmapper? 
-     B) Дізнайтеся значення різних полів (заголовка стовпця) команди `rpcinfo`? (Програма, версії, прото та сервіс.)
+     1. Що таке portmapper? 
+    
+     2. Дізнайтеся значення різних полів команди `rpcinfo` (заголовки стовпців) (Програма, Версія, прото та служба).
 
 5. Перевірте статус `nfs-server.service`. Впишіть:
 
     ```bash
     systemctl status nfs-server
     ```
+
    **Вихід**
+
    ```bash
     ● nfs-server.service - NFS server and services
     Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; disabled; vendor preset: disabled)
     Active: inactive (dead)
     ```
+
     nfs-server.service наразі не працює відповідно до результатів нашої демонстраційної системи.
 
 6. Використовуйте systemctl для запуску демона nfs-server. Впишіть:
@@ -201,6 +208,7 @@ SYNOPSIS
     /mnt/nfs    172.16.99.0/24(rw)   localhost(rw)
     EOF
     ```
+
     Ви також можете скористатися будь-яким зручним для вас текстовим редактором для створення запису.
 
 5. Перевірте вміст `/etc/exports`, щоб переконатися, що немає помилок.
@@ -217,7 +225,9 @@ SYNOPSIS
     exportfs -s
     ```
 
-    Вкажіть свій результат нижче.
+    !!! question "Питання"
+
+     Який був вихід? Складіть список вихідного вмісту.
 
 ## Завдання 3
 
@@ -257,8 +267,10 @@ OPTIONS
     ```bash
     showmount  -e localhost
     ```
+
     **Вихід**
-    ```
+
+    ```bash
     Export list for localhost:
     /mnt/nfs 172.16.99.0/24,localhost
     ```
@@ -278,7 +290,9 @@ OPTIONS
     ```bash
     rm -rf 1nfs  2nfs
     ```
+
     **Вихід**
+
     ```bash
     rm: cannot remove '1nfs': Permission denied
     rm: cannot remove '2nfs': Permission denied
@@ -288,7 +302,7 @@ OPTIONS
 
      Чи була ваша спроба видалити файл успішною?
 
-7. Тепер спробуйте створити додаткові файли (6nfs, 7nfs, 8nfs) на спільному ресурсі NFS. Впишіть:
+6. Тепер спробуйте створити додаткові файли (6nfs, 7nfs, 8nfs) на спільному ресурсі NFS. Впишіть:
 
     ```bash
     touch {6..8}nfs
@@ -297,7 +311,6 @@ OPTIONS
     !!! Question "Питання"
 
      Ваша спроба створити файл була успішною? Як ви думаєте, чому це не вдалося?
-
 
 ВИКОНАЙТЕ ЦЮ ВПРАВУ ЗІ СВОЄЇ ПАРТНЕРСЬКОЇ СИСТЕМИ
 
@@ -322,7 +335,9 @@ OPTIONS
     ```bash
      mount -t nfs4
     ```
+
     **Вихід**
+
     ```bash
     172.16.99.100:/mnt/nfs on /mnt/nfs-remote type nfs4 (rw,relatime,vers=4.2,rsize=1048576,wsize=1048576,namlen=255
     ...<SNIP>...
@@ -334,7 +349,9 @@ OPTIONS
     cd /mnt/nfs-remote ; rm -f   
     ```
 
-    Ваша спроба була успішною?
+    !!! question "Питання"
+
+     Чи була ця спроба успішною?
 
 6. Вийдіть із serverPR як суперкористувач і знову увійдіть як непривілейований користувач «ying»
 
@@ -346,7 +363,7 @@ OPTIONS
 
 8. Занотуйте вміст довідника. Якщо ви бачите очікувані файли, ви завершили лабораторію NFS!
 
-    !!! question "Питання"
+    !!! question "Лабораторні завдання:"
    
         1. Налаштуйте налаштування NFS на локальному сервері (serverXY), щоб суперкористувач у H.Q. (hq.example.org) зможе підключити ваш спільний ресурс nfs (/mnt/nfsXY) для використання на машині hq.
        
@@ -359,4 +376,3 @@ OPTIONS
         ```bash
         /mnt/nfs    172.16.99.0/24(rw)   localhost(rw,no_root_squash)
         ```
-

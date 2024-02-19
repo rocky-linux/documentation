@@ -39,7 +39,7 @@ Es verwendet das **SSH**-Protokoll, um GNU/Linux-Clients zu konfigurieren oder d
 
 Da Ansible push-basiert ist, wird die Software den Status seiner Zielserver nach jeder seiner Ausführung nicht zwischenspeichern. Im Gegenteil, Ansible wird bei jeder Ausführung eine neue Statusprüfung durchführen. Es wird als zustandslos bezeichnet.
 
-Es wird Ihnen helfen bei folgenden Aufgaben:
+Es wird Ihnen bei folgenden Aufgaben helfen:
 
 * Provisionierung (Bereitstellung einer neuen VM),
 * Verteilung von Applikationen,
@@ -360,7 +360,7 @@ ansible rocky8 -i ./local-inventory -m command -a 'date'
 
     Wie in diesem Beispiel ist es manchmal einfacher, die Deklaration verwalteter Geräte in verschiedene Dateien zu unterteilen (z. B. beim Cloud-Projekt) und Ansible den Pfad zu diesen Dateien bereitzustellen, als eine lange Inventardatei zu pflegen.
 
-| Option                   | Informationen                                                                                                |
+| Option                   | Beschreibung                                                                                                 |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `-a 'arguments'`         | Die Argumente, die an das Modul übergeben werden.                                                            |
 | `-b -K`                  | Fordert ein Passwort an und führt das Kommando mit höheren Rechten aus.                                      |
