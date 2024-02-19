@@ -1,5 +1,6 @@
 ---
 author: Wale Soyinka 
+contributors: Steven Spencer, Ganna Zhrynova
 tested on: All Versions
 tags:
   - system monitoring
@@ -10,9 +11,9 @@ tags:
 
 # Lab 4: Advanced System and process monitoring
 
-## Objectives 
+## Objectives
 
-After completing this lab, you will be able to 
+After completing this lab, you will be able to
 
 - view and manage processes using advanced tools
 - diagnose and debug system calls
@@ -20,179 +21,186 @@ After completing this lab, you will be able to
 - view and set custom scheduling policies for processes
 - analyzing system and application performance
 
-
-Estimated time to complete this lab: 90 minutes 
-
+Estimated time to complete this lab: 90 minutes
 
 ## Introduction
 
 The commands in this Lab cover a broader spectrum of process management, system monitoring, and resource control in Linux. They add more depth and variety to your System Administrator repertoire.  
 
-These exercises cover the additional Linux commands and concepts, providing hands-on experience in using them for process management, resource monitoring, and advanced control. 
+These exercises cover the additional Linux commands and concepts, providing hands-on experience in using them for process management, resource monitoring, and advanced control.
 
 ## Exercise 1
 
-### fuser
+### `fuser`
 
 The `fuser` command in Linux is used to identify processes using files or sockets. It can be a useful aid in file-related process management and conflict resolution.
 
 #### To create a script to simulate file usage
 
 1. First create an empty test file that we want to access. Type:
-   
-   ```bash
-   touch ~/testfile.txt
-   ```
+
+    ```bash
+    touch ~/testfile.txt
+    ```
+
 2. Create the script that we will use for simulating access to testfile.txt. Type:
-   
-   ```bash
-   cat > ~/simulate_file_usage.sh << EOF
-   #!/bin/bash
-   tail -f ~/testfile.txt
-   EOF   
-   ```
+
+    ```bash
+    cat > ~/simulate_file_usage.sh << EOF
+    #!/bin/bash
+    tail -f ~/testfile.txt
+    EOF   
+    ```
+
 3. Make the script executable. Type:
- 
-   ```bash
-   chmod +x ~/simulate_file_usage.sh
-   ```
+
+    ```bash
+    chmod +x ~/simulate_file_usage.sh
+    ```
+
 4. Launch the script. Type:
-   
-   ```bash
-   ~/simulate_file_usage.sh &
-   ```
+
+    ```bash
+    ~/simulate_file_usage.sh &
+    ```
 
 #### To identify processes accessing a file
 
 1. Identify Processes using or accessing `testfile.txt`, run:
 
-   ```bash
-   fuser ~/testfile.txt
-   ```
+    ```bash
+    fuser ~/testfile.txt
+    ```
+
 2. Explore additional `fuser` options by using the `-v` option. Type:
-   
-   ```bash
-   fuser -v ~/testfile.txt
-   ```
+
+    ```bash
+    fuser -v ~/testfile.txt
+    ```
+
 3. All done with testfile.txt and simulate_file_usage.sh. You can now remove the files. Type:
-   
-   ```bash
-   kill %1
-   rm ~/testfile.txt ~/simulate_file_usage.sh
-   ```
+
+    ```bash
+    kill %1
+    rm ~/testfile.txt ~/simulate_file_usage.sh
+    ```
 
 #### To identify a process Accessing a TCP/UDP Port
 
 1. Use the `fuser` command to identify the process accessing the TCP port 22 on your server. Type:
-   
-   ```bash
-   sudo fuser 22/tcp
-   ```
+
+    ```bash
+    sudo fuser 22/tcp
+    ```
 
 ## Exercise 2
 
-### perf
+### `perf`
 
 `perf` is a versatile tool for analyzing system and application performance in Linux. It can offer extra insights that can aid performance tuning.
 
-#### To install perf 
+#### To install `perf`
 
 1. Install the `perf` application if it is not already installed on your server. Type:
-   
-   ```bash
-   sudo dnf -y install perf
-   ```
 
-2. The `bc` application is a command-line precision calculator. `bc` will be used in this exercise to simulate high CPU load. If `bc` is not already installed on your server, install it via:
-   
-   ```bash
-   sudo dnf -y install bc
-   ```
+    ```bash
+    sudo dnf -y install perf
+    ```
+
+2. The `bc` application is a command-line precision calculator. `bc` will be used in this exercise to simulate high CPU load. If `bc` is not already installed on your server, install it with:
+
+    ```bash
+    sudo dnf -y install bc
+    ```
 
 #### To create a script to generate CPU load
 
 1. Create a CPU Load Script and make it executable by running:
-   
-   ```bash
-   cat > ~/generate_cpu_load.sh << EOF
-   #!/bin/bash
 
-   # Check if the number of decimal places is passed as an argument
-   if [ "$#" -ne 1 ]; then
+    ```bash
+    cat > ~/generate_cpu_load.sh << EOF
+    #!/bin/bash
+
+    # Check if the number of decimal places is passed as an argument
+    if [ "$#" -ne 1 ]; then
       echo "Usage: $0 <number_of_decimal_places>"
       exit 1
-   fi
+    fi
 
-   # Calculate Pi to the specified number of decimal places
-   for i in {1..10}; do echo "scale=$1; 4*a(1)" | bc -l; done
+    # Calculate Pi to the specified number of decimal places
+    for i in {1..10}; do echo "scale=$1; 4*a(1)" | bc -l; done
 
-   EOF
-   chmod +x ~/generate_cpu_load.sh
-   ```
+    EOF
+    chmod +x ~/generate_cpu_load.sh
+    ```
 
-!!! TIP
-   The generate_cpu_load.sh script is a simple tool for generating CPU load by calculating Pi (π) to a high degree of precision. The same calculation is done 10 times. The script accepts an integer as the parameter for specifying the number of decimal places for calculating Pi.
+    !!! tip
+
+        The generate_cpu_load.sh script is a simple tool for generating CPU load by calculating Pi (π) to a high degree of precision. The same calculation is done 10 times. The script accepts an integer as the parameter for specifying the number of decimal places for calculating Pi.
 
 #### To simulate extra CPU load
 
 1. Let's do a simple test run and calculate Pi to 50 decimal places. Run the Script by typing:
-    
-   ```bash
-      ~/generate_cpu_load.sh 50 & 
-   ```
 
-2. Run the script again but this time use perf to record the performance of the script to analyze CPU usage and other metrics.  Type:
-   
-   ```bash
+    ```bash
+    ~/generate_cpu_load.sh 50 & 
+    ```
+
+2. Run the script again but this time use `perf` to record the performance of the script to analyze CPU usage and other metrics. Type:
+
+    ```bash
      ./generate_cpu_load.sh 1000  &  perf record -p $! sleep 5
-   ```
+    ```
 
-!!! tip
-   The `sleep 5` option used with the `perf record` command is used to define the time window for perf to collect performance data about the CPU load generated by the generate_cpu_load.sh script. It allows perf to record system performance metrics for 5 seconds before automatically stopping.
-   
+    !!! tip
+
+        The `sleep 5` option used with the `perf record` command is used to define the time window for `perf` to collect performance data about the CPU load generated by the generate_cpu_load.sh script. It allows `perf to record system performance metrics for 5 seconds before automatically stopping.
+
 #### To analyze performance data and monitor real-time events
 
 1. Use the `perf report` command to review the performance data report to understand the CPU and memory utilization patterns. Type:
 
-   ```bash
-      sudo perf report
-   ```
+    ```bash
+    sudo perf report
+    ```
 
-   You can use various keyboard keys to further explore the report. 
-   Type `q` to exit/quit the perf report viewer interface.   
+    You can use various keyboard keys to further explore the report.
+    Type ++"q"++ to exit/quit the `perf` report viewer interface.
 
 2. Observe/capture real-time CPU cache events for 40 seconds, to identify potential performance bottlenecks. Type:
-   
-   ```bash
-      sudo perf stat -e cache-references,cache-misses sleep 40
-   ```
-   
+
+    ```bash
+    sudo perf stat -e cache-references,cache-misses sleep 40
+    ```
+
 #### To record system wide performance
 
-1. Capture system-wide performance data that can be used for extra analysis.Type:
-   
-   ```bash
-      sudo perf record -a sleep 10
-   ```
+1. Capture system-wide performance data that can be used for extra analysis. Type:
+
+    ```bash
+    sudo perf record -a sleep 10
+    ```
 
 2. Explore specific event counters. Count specific events like CPU cycles to evaluate the performance of a given script or application. Let's test with a basic `find` command, type:
 
-   ```bash
-      sudo perf stat -e cycles find /proc
-   ```
+    ```bash
+    sudo perf stat -e cycles find /proc
+    ```
 
 3. Do the same thing but with the ./generate_cpu_load.sh script. Count specific events like CPU cycles to evaluate the performance of the ./generate_cpu_load.sh script. Type:
 
-   ```bash
-   sudo perf stat -e cycles ./generate_cpu_load.sh 500
-   ```
-   OUTPUT:
-   ```bash
-   ...<SNIP>...
-   3.141592653589793238462643383279502884197169399375105820974944592307\
-   81640628620899862803482534211.....
+    ```bash
+    sudo perf stat -e cycles ./generate_cpu_load.sh 500
+    ```
 
-   Performance counter stats for './generate_cpu_load.sh 500':
+    OUTPUT:
+
+    ```bash
+    ...<SNIP>...
+    3.141592653589793238462643383279502884197169399375105820974944592307\
+    81640628620899862803482534211.....
+
+    Performance counter stats for './generate_cpu_load.sh 500':
 
       1,670,638,886      cycles
 
@@ -200,96 +208,101 @@ The `fuser` command in Linux is used to identify processes using files or socket
 
          0.488580000 seconds user
          0.034628000 seconds sys
-   ```
+    ```
 
-!!! Note
+    !!! note
 
-   Here's the breakdown of the final sample output of the `perf stat` command:
-   *1,670,638,886 cycles*: This indicates the total number of CPU cycles consumed during the execution of the script. Each cycle represents a single step in the CPU's instruction execution.
+        Here's the breakdown of the final sample output of the `perf stat` command:
+        
+        *1,670,638,886 cycles*: This indicates the total number of CPU cycles consumed during the execution of the script. Each cycle represents a single step in the CPU's instruction execution.
 
-   *0.530479014 seconds time elapsed*: This is the total elapsed real-world time (or wall-clock time) from the start to the end of the script execution. This duration includes all types of waits (like waiting for disk I/O or system calls).
+        *0.530479014 seconds time elapsed*: This is the total elapsed real-world time (or wall-clock time) from the start to the end of the script execution. This duration includes all types of waits (like waiting for disk I/O or system calls).
 
-   *0.488580000 seconds user*: This is the amount of CPU time spent in user mode. This time specifically excludes time spent doing system-level tasks.
+        *0.488580000 seconds user*: This is the amount of CPU time spent in user mode. This time specifically excludes time spent doing system-level tasks.  
 
-   *0.034628000 seconds sys*: This is the amount of CPU time spent in the kernel or system mode. This includes time the CPU spends executing system calls or performing other system-level tasks on behalf of the script.
+        *0.034628000 seconds sys*: This is the amount of CPU time spent in the kernel or system mode. This includes time the CPU spends executing system calls or performing other system-level tasks on behalf of the script.
 
-4. All done with `perf` tool. Make sure to stop any background scripts for a clean working environment.
-   
-   ```bash
-   kill %1
-   ```
+4. All done with `perf` tool. Ensure to stop any background scripts for a clean working environment.
+
+    ```bash
+    kill %1
+    ```
 
 ## Exercise 3
 
-### strace
+### `strace`
 
 `strace` is used for diagnosing and debugging system call interactions in Linux.
 
-#### To create a script for exploring strace
+#### To create a script for exploring `strace`
 
 1. Create a simple script named `strace_script.sh` and make it executable. Type:
-   
-   ```bash
-   cat > ~/strace_script.sh << EOF
-   #!/bin/bash
-   while true; do
-      date
-      sleep 1
-   done
-   EOF
-   chmod +x ~/strace_script.sh
-   ```
-
-#### To use strace on running processes
-
-1. Run the script and attach strace. Type:
-   
-   ```bash
-    ~/strace_script.sh &
-   ```
-2. In a separate terminal find the PID for the strace_script.sh process. Store the PID in a variable named MYPID. We'll use the `pgrep` command for this by running:
 
     ```bash
-   export MYPID=$(pgrep strace_script) ; echo $MYPID
+    cat > ~/strace_script.sh << EOF
+    #!/bin/bash
+    while true; do
+      date
+      sleep 1
+    done
+    EOF
+    chmod +x ~/strace_script.sh
+    ```
+
+#### To use `strace` on running processes
+
+1. Run the script and attach `strace`. Type:
+
+    ```bash
+    ~/strace_script.sh &
+    ```
+
+2. In a separate terminal find the PID for the `strace_script.sh` process. Store the PID in a variable named MYPID. We'll use the `pgrep` command for this by running:
+
+    ```bash
+    export MYPID=$(pgrep strace_script) ; echo $MYPID
     ```
 
     OUTPUT:
+
     ```bash
     4006301
     ```
-3. Start tracing the system calls of the script to understand how it interacts with the kernel. Attach `strace` to the running script process by typing:
-   
-   ```bash
-   sudo strace -p $MYPID
-   ```
-4. Detach or stop the strace process by typing [CTRL] + [C]
-   
-5. The `strace` output can be filtered by focusing on specific system calls such as `open` and `read` to analyze their behavior. Try doing this for the `open` and `read` system calls. Type:
-   
-   ```bash
-   sudo strace -e trace=open,read -p $MYPID
-   ```
 
-   When you are done trying to decipher the strace output, stop the strace process by typing 
-   [CTRL] + [C]
-   
-6. Redirect the output to a file for later analysis, which can be helpful in diagnosing issues. Save strace output to a file by running:
-   
-   ```bash
-   sudo strace -o strace_output.txt -p $MYPID
-   ```
-   
+3. Start tracing the system calls of the script to understand how it interacts with the kernel. Attach `strace` to the running script process by typing:
+
+    ```bash
+    sudo strace -p $MYPID
+    ```
+
+4. Detach or stop the `strace` process by typing ++ctrl+c++
+
+5. The `strace` output can be filtered by focusing on specific system calls such as `open` and `read` to analyze their behavior. Try doing this for the `open` and `read` system calls. Type:
+
+    ```bash
+    sudo strace -e trace=open,read -p $MYPID
+    ```
+
+    When you are done trying to decipher the `strace` output, stop the `strace` process by typing ++ctrl+c++
+
+6. Redirect the output to a file for later analysis, which can be helpful in diagnosing issues. Save `strace` output to a file by running:
+
+    ```bash
+    sudo strace -o strace_output.txt -p $MYPID
+    ```
+
 #### To analyze the frequency of system calls
 
 1. Summarize the system call counts to identify the most frequently used system calls by the process. Do this for only 10 seconds by appending the `timeout` command. Type:
-   
-   ```bash
-   sudo timeout 10 strace -c -p $MYPID
-   ```
-   
-   Our sample system shows a summary report output like this:
-   
-   OUTPUT:
+
+    ```bash
+    sudo timeout 10 strace -c -p $MYPID
+    ```
+
+    Our sample system shows a summary report output like this:
+
+    OUTPUT:
+
     ```bash
     strace: Process 4006301 attached
     strace: Process 4006301 detached
@@ -303,233 +316,235 @@ The `fuser` command in Linux is used to identify processes using files or socket
     0.25    0.000119           6        18           rt_sigreturn
     ------ ----------- ----------- --------- --------- ----------------
     100.00    0.047498         175       270        18 total
-   ```
+    ```
+
 2. Terminate the script and remove any files created.
-   
-   ```bash
-      kill $MYPID
-      rm ~/strace_script.sh ~/strace_output.txt
-   ```
+
+    ```bash
+    kill $MYPID
+    rm ~/strace_script.sh ~/strace_output.txt
+    ```
 
 ## Exercise 4
 
-### atop
+### `atop`
 
 `atop` provides a comprehensive view of system performance, covering various resource metrics.
 
-#### To launch and explore atop
+#### To launch and explore `atop`
 
-1. Install the atop application if it is not already installed on your server. Type:
-   
+1. Install the `atop` application if it is not already installed on your server. Type:
+
     ```bash
-   sudo dnf -y install atop
+    sudo dnf -y install atop
     ```
-2. Run `atop` by typing:
-   
-   ```bash
-   sudo atop
-   ```
 
-3. Within the atop interface, you can explore various atop metrics by pressing specific keys on your keyboard. 
-   
-   Use 'm', 'd', or 'n' to switch between memory, disk, or network views. Observe how resources are being utilized in real-time.
+2. Run `atop` by typing:
+
+    ```bash
+    sudo atop
+    ```
+
+3. Within the `atop` interface, you can explore various `atop` metrics by pressing specific keys on your keyboard.
+
+    Use 'm', 'd', or 'n' to switch between memory, disk, or network views. Observe how resources are being utilized in real-time.
 
 4. Monitor system performance at a custom interval of 2 seconds, allowing a more granular view of system activity. Type:
-   
-   ```bash
-   sudo atop 2
-   ```  
+
+    ```bash
+    sudo atop 2
+    ```
 
 5. Switch between different resource views to focus on specific aspects of system performance.
 
 6. Generate a log file report for system activity, capturing data every 60 seconds, 3 times in total. Type:
-   
-   ```bash
-   sudo atop -w /tmp/atop_log 60 3
-   ```    
+
+    ```bash
+    sudo atop -w /tmp/atop_log 60 3
+    ```
+
 7. Once the previous command is completed, you can take your time and review the binary file that the logs were saved to. To read back the saved log file, type:
 
-   ```bash
-   sudo atop -r /tmp/atop_log   
-   ```
-   
+    ```bash
+    sudo atop -r /tmp/atop_log   
+    ```
+
 8. Clean up by removing any logs or files generated.
-   
-   ```bash
-   sudo rm /tmp/atop_log
-   ```
+
+    ```bash
+    sudo rm /tmp/atop_log
+    ```
 
 ## Exercise 5
 
-### numactl
+### `numactl`
 
 NUMA stands for "Non-Uniform Memory Access". It is a computer memory design/architecture used in multiprocessing, that enhances memory access speed by considering the physical location of memory in relation to processors.
 In NUMA-based systems, multiple processors (or CPU cores) are physically grouped together, and each group has its local memory.
 
 The `numactl` application manages NUMA policy, optimizing performance on NUMA-based systems.
 
-#### To install numactl
+#### To install `numactl`
 
-1. Install the numactl application if it is not already installed on your server. Type:
-   
+1. Install the `numactl` application if it is not already installed on your server. Type:
+
     ```bash
-   sudo dnf -y install numactl
+    sudo dnf -y install numactl
     ```
 
 #### To create a memory intensive script
 
 1. Create a simple script to help simulate a memory intensive workload on your server. Type:
-    
-   ```bash
-      cat > ~/memory_intensive.sh << EOF
+
+    ```bash
+    cat > ~/memory_intensive.sh << EOF
       #!/bin/bash
 
       awk 'BEGIN{for(i=0;i<1000000;i++)for(j=0;j<1000;j++);}{}'
       EOF
       chmod +x ~/memory_intensive.sh
-   ```
+    ```
 
-#### To use numactl
+#### To use `numactl`
 
-1. Run the script with numactl, type:
-   
-   ```bash
-   numactl --membind=0 ~/memory_intensive.sh
-   ```
-2. If your system has more than one NUMA node available, you can run the script on
-    multiple NUMA nodes via:
-   
-   ```bash
-   numactl --cpunodebind=0,1 --membind=0,1 ~/memory_intensive.sh
-   ```
-3. Show Memory Allocation on NUMA Nodes
-   ```bash
-   numactl --show
-   ```
-4. Bind memory to a specific node by running:
-   
-   ```bash
+1. Run the script with `numactl`, type:
+
+    ```bash
     numactl --membind=0 ~/memory_intensive.sh
-   ```
+    ```
+
+2. If your system has more than one NUMA node available, you can run the script on multiple NUMA nodes via:
+
+    ```bash
+    numactl --cpunodebind=0,1 --membind=0,1 ~/memory_intensive.sh
+    ```
+
+3. Show Memory Allocation on NUMA Nodes
+
+    ```bash
+    numactl --show
+    ```
+
+4. Bind memory to a specific node by running:
+
+    ```bash
+    numactl --membind=0 ~/memory_intensive.sh
+    ```
+
 5. Clean up your working environment by removing the script.
-   
-   ```bash
-   rm ~/memory_intensive.sh
-   ```
+
+    ```bash
+    rm ~/memory_intensive.sh
+    ```
 
 ## Exercise 6
 
-### iotop
+### `iotop`
 
 The `iotop` command is a tool for monitoring disk I/O (input/output) usage by processes and threads. It provides real-time information similar to the `top` command, but specifically for disk I/O. This makes it essential for diagnosing system slowdowns caused by disk activity.
 
-#### To install iotop (if not already installed):
+#### To install `iotop`
 
 1. Install the `iotop` utility if it is not already installed. Type:
-   
-   ```bash
-   sudo dnf -y install iotop
-   ```
 
-#### To use iotop to monitor disk I/O
-
-1. Run the iotop command without any options to use it in its default interactive mode. Type:
-    
     ```bash
-   sudo iotop
+    sudo dnf -y install iotop
+    ```
+
+#### To use `iotop` to monitor disk I/O
+
+1. Run the `iotop` command without any options to use it in its default interactive mode. Type:
+
+    ```bash
+    sudo iotop
     ```
 
     Observe the live disk I/O usage by various processes. Use this to identify processes that are currently reading from or writing to the disk.
 
-2. Type `q` to quit or exit `iotop`.
-   
-#### To use iotop in non-interactive mode
+2. Type ++"q"++ to quit or exit `iotop`.
 
-1. Run `iotop` in batch mode (-b) to get a non-interactive, one-shot view of I/O usage. The `-n 10` option tells iotop to take 10 samples before exiting. 
+#### To use `iotop` in non-interactive mode
+
+1. Run `iotop` in batch mode (-b) to get a non-interactive, one-shot view of I/O usage. The `-n 10` option tells `iotop` to take 10 samples before exiting.
 
     ```bash
-   sudo iotop -b -n 10
+    sudo iotop -b -n 10
     ```
 
-2. `iotop` can be used for filtering I/O for specific processes. 
-Identify a process ID (PID) from your system using the ps command or from the iotop display. Then, filter iotop output for that specific PID. For example filter for the PID for the `sshd` process, by running:
+2. `iotop` can be used for filtering I/O for specific processes. Identify a process ID (PID) from your system using the ps command or from the `iotop` display. Then, filter `iotop` output for that specific PID. For example filter for the PID for the `sshd` process, by running:
 
     ```bash
-   sudo iotop -p $(pgrep sshd | head -1)
+    sudo iotop -p $(pgrep sshd | head -1)
     ```
 
 3. The -`o` option with `iotop` can be used for showing processes or threads doing actual I/O, instead of displaying all processes or threads. Display only I/O Processes by running:
 
     ```bash
-   sudo iotop -o
+    sudo iotop -o
     ```
 
-!!! Question
+    !!! Question "Discussion"
 
-    Discuss the impact of disk I/O on overall system performance and how tools like iotop can aid in system optimization.
-
-
+        Discuss the impact of disk I/O on overall system performance and how tools like `iotop` can aid in system optimization.
 
 ## Exercise 7
 
-### cgroups
+### `cgroups`
 
-Control Groups (cgroups) provide a mechanism in Linux to organize, limit and prioritize the resource usage of processes.
+Control Groups (`cgroups`) provide a mechanism in Linux to organize, limit and prioritize the resource usage of processes.
 
-This exercise demonstrates direct interaction with the cgroup v2 filesystem.
+This exercise demonstrates direct interaction with the `cgroup` v2 filesystem.
 
-### To explore the cgroup filesystem
+### To explore the `cgroup` filesystem
 
-1. Use the `ls` command to explore the contents and structure of the cgroup filesystem. Type:
-   
-   ```bash
-   ls /sys/fs/cgroup/
-   ```
+1. Use the `ls` command to explore the contents and structure of the `cgroup` filesystem. Type:
 
-2. Use the `ls` command again to list the *.slice folders under the cgroup filesystem. These folders Type:
-   
-   ```bash
-   ls -d /sys/fs/cgroup/*.slice
-   ```
-
-   The folders with the .slice suffix are typically used in systemd to represent a slice of system resources.These are standard cgroups managed by systemd for organizing and managing system processes 
-
-
-### To create a custom cgroup
-
-1. Create a directory named exercise_group under the /sys/fs/cgroup file-system. This new folder will house the control group structures needed for the rest of this exercise. Use the mkdir command by typing:
-
-  ```bash
-   sudo mkdir -p /sys/fs/cgroup/exercise_group
-  ```
-
-2. Now list the files and directories under the /sys/fs/cgroup/exercise_group structure. Type:
-   
     ```bash
-      sudo ls /sys/fs/cgroup/exercise_group/
+    ls /sys/fs/cgroup/
     ```
 
-    The output shows the files and directories that are automatically created by the cgroup subsystem to manage and monitor the resources for the cgroup. 
+2. Use the `ls` command again to list the *.slice folders under the `cgroup` filesystem. These folders Type:
+
+    ```bash
+    ls -d /sys/fs/cgroup/*.slice
+    ```
+
+    The folders with the .slice suffix are typically used in `systemd` to represent a slice of system resources. These are standard `cgroups` managed by `systemd` for organizing and managing system processes.
+
+### To create a custom `cgroup`
+
+1. Create a directory named "exercise_group" under the /sys/fs/cgroup file-system. This new folder will house the control group structures needed for the rest of this exercise. Use the `mkdir` command by typing:
+
+    ```bash
+    sudo mkdir -p /sys/fs/cgroup/exercise_group
+    ```
+
+2. Now list the files and directories under the /sys/fs/cgroup/exercise_group structure. Type:
+
+    ```bash
+    sudo ls /sys/fs/cgroup/exercise_group/
+    ```
+
+    The output shows the files and directories that are automatically created by the `cgroup` subsystem to manage and monitor the resources for the `cgroup`. 
 
 #### To set a new memory resource limit
 
-1. Let's set a memory resource limit to limit memory usage to 4096 bytes (4kB). 
-   To restrict processes in the cgroup to use a maximum of 4kB of memory type:
+1. Let's set a memory resource limit to limit memory usage to 4096 bytes (4kB). To restrict processes in the `cgroup` to use a maximum of 4kB of memory type:
 
     ```bash
-   echo 4096 | sudo tee /sys/fs/cgroup/exercise_group/memory.max
+    echo 4096 | sudo tee /sys/fs/cgroup/exercise_group/memory.max
     ```
 
 2. Confirm Memory Limit has been set. Type:
 
     ```bash
-   cat /sys/fs/cgroup/exercise_group/memory.max
+    cat /sys/fs/cgroup/exercise_group/memory.max
     ```
 
 #### To create the memory_stress test script
 
-1. Create a simple executable script that'll use the `dd` command to test the memory resource limit. Type:
-   
+1. Create a simple executable script that will use the `dd` command to test the memory resource limit. Type:
+
     ```bash
       cat > ~/memory_stress.sh << EOF
       #!/bin/bash
@@ -538,424 +553,413 @@ This exercise demonstrates direct interaction with the cgroup v2 filesystem.
       chmod +x ~/memory_stress.sh
     ```
 
-#### To run and add process/script to the memory cgroup
+#### To run and add process/script to the memory `cgroup`
 
 1. Launch the memory_stress.sh, capture its PID and add the PID to cgroup.procs. Type:
 
-   ```bash
-   ~/memory_stress.sh &
-   echo $! | sudo tee /sys/fs/cgroup/exercise_group/cgroup.procs
-   ```
+    ```bash
+    ~/memory_stress.sh &
+    echo $! | sudo tee /sys/fs/cgroup/exercise_group/cgroup.procs
+    ```
 
-   The /sys/fs/cgroup/exercise_group/cgroup.procs file can be used for adding or viewing the PIDs (Process IDs) of processes that are members of a given cgroup. 
-   Writing a PID to this file assigns the ~/memory_stress.sh script process to the exercise_group cgroup.
+    The /sys/fs/cgroup/exercise_group/cgroup.procs file can be used for adding or viewing the PIDs (Process IDs) of processes that are members of a given `cgroup`. Writing a PID to this file assigns the ~/memory_stress.sh script process to the exercise_group `cgroup`.
 
-2. The previous command will end very quickly before completion because it has 
-   exceeded the memory limits of the cgroup. You can run the following journalctl command in another terminal to view the error as it happens. Type:
-   
-   ```bash
-   journalctl -xe -f  | grep -i memory
-   ```
-   
+2. The previous command will end very quickly before completion because it has exceeded the memory limits of the `cgroup`. You can run the following `journalctl` command in another terminal to view the error as it happens. Type:
 
-!!! Tip
+    ```bash
+    journalctl -xe -f  | grep -i memory
+    ```
 
-      You can quickly use the ps command to check the approximate memory usage of a process if you know the PID of the process by running:
+    !!! Tip
 
-      ```bash
-      pidof <PROCESS_NAME> | xargs ps -o pid,comm,rss
-      ```
+        You can quickly use the ps command to check the approximate memory usage of a process if you know the PID of the process by running:
 
-      This output should show the Resident Set Size (RSS) in KB, indicating the actual memory used by the specified process at a point in time. 
-      Whenever the RSS value of a process exceeds the memory limit specified in cgroup's memory.max value, the process may be subject to memory management policies enforced by the kernel or the cgroup itself. Depending on the system configuration, the system may take actions such as throttling the process's memory usage, killing the process, or triggering an out-of-memory (OOM) event.
+        ```bash
+        pidof <PROCESS_NAME> | xargs ps -o pid,comm,rss
+        ```
 
+        This output should show the Resident Set Size (RSS) in KB, indicating the actual memory used by the specified process at a point in time. Whenever the RSS value of a process exceeds the memory limit specified in `cgroup's` memory.max value, the process may be subject to memory management policies enforced by the kernel or the `cgroup` itself. Depending on the system configuration, the system may take actions such as throttling the process's memory usage, killing the process, or triggering an out-of-memory (OOM) event.
 
 #### To set a new CPU resource limit
 
-1. Restrict the script to use only 10% of a CPU core.  Type:
+1. Restrict the script to use only 10% of a CPU core. Type:
 
-  ```bash
-   echo 10000 | sudo tee /sys/fs/cgroup/exercise_group/cpu.max
-  ```
+    ```bash
+    echo 10000 | sudo tee /sys/fs/cgroup/exercise_group/cpu.max
+    ```
 
-10000 represents the CPU bandwidth limit. Here, it's set to 10% of a single CPU core's total capacity.
+    10000 represents the CPU bandwidth limit. Here, it's set to 10% of a single CPU core's total capacity.
 
 2. Confirm CPU Limit has been set. Type:
 
-   ```bash
-   cat /sys/fs/cgroup/exercise_group/cpu.max
-   ```
+    ```bash
+    cat /sys/fs/cgroup/exercise_group/cpu.max
+    ```
 
 #### To create the CPU stress test script
 
 1. Create and set executable permissions for a script that will generate high CPU usage. Type:
 
-   ```bash
-   cat > ~/cpu_stress.sh << EOF
-   #!/bin/bash
-   exec yes > /dev/null
-   EOF
-   chmod +x ~/cpu_stress.sh
-   ```
+    ```bash
+    cat > ~/cpu_stress.sh << EOF
+    #!/bin/bash
+    exec yes > /dev/null
+    EOF
+    chmod +x ~/cpu_stress.sh
+    ```
 
-!!! note
+    !!! note
 
-     `yes > /dev/null` is a simple command that generates a high CPU load.
+         `yes > /dev/null` is a simple command that generates a high CPU load.
 
+#### To run and add a process/script to the CPU `cgroup`
 
-#### To run and add a process/script to the CPU cgroup
+1. Run the script and immediately add its PID to the `cgroup`, by typing:
 
-1. Run the script and immediately add its PID to the cgroup, by typing:
-
-  ```bash
+    ```bash
     ~/cpu_stress.sh &
     echo $! | sudo tee /sys/fs/cgroup/exercise_group/cgroup.procs
-  ```
-
+    ```
 
 #### To confirm process CPU usage resource control
 
 1. Check the CPU usage of the process.
 
-  ```bash
-   pidof yes | xargs top -b -n 1 -p
-  ```
+    ```bash
+    pidof yes | xargs top -b -n 1 -p
+    ```
 
-  The output should show the real-time CPU usage of the yes process. The %CPU for yes should be limited as per the cgroup's configuration (e.g., around 10% if the limit is set to 10000).
+    The output should show the real-time CPU usage of the yes process. The %CPU for yes should be limited as per the `cgroup` configuration (e.g., around 10% if the limit is set to 10000).
 
-2. Set and experiment with other values for cpu.max for the exercise_group cgroup
-   and then observe the effect every time you rerun the ~/cpu_stress.sh script within the control group.
-
+2. Set and experiment with other values for cpu.max for the exercise_group `cgroup` and then observe the effect every time you rerun the ~/cpu_stress.sh script within the control group.
 
 #### To identify and select primary storage device
 
-The primary storage device can be used as a target device for setting I/O resource limits. 
-Storage devices on Linux systems have major and minor device numbers that can be used to uniquely identify them.
+The primary storage device can be used as a target device for setting I/O resource limits. Storage devices on Linux systems have major and minor device numbers that can be used to uniquely identify them.
 
-1. Let's first create set some helper variables to detect and store the device
-   number for the primary storage device on the server. Type:
+1. Let's first create set some helper variables to detect and store the device number for the primary storage device on the server. Type:
 
-  ```bash
+    ```bash
     primary_device=$(lsblk | grep disk | awk '{print $1}' | head -n 1)
     primary_device_num=$(ls -l /dev/$primary_device | awk '{print $5, $6}' | sed 's/,/:/')
-  ```
+    ```
+
 2. Display the value of the $primary_device_num variable. Type:
 
     ```bash
     echo "Primary Storage Device Number: $primary_device_num"
     ```
+
 3. The major and minor device number should match what you see in this ls output:
- 
+
     ```bash
       ls -l /dev/$primary_device
     ```
 
 #### To set a new I/O resource limit
 
-1. Set the I/O operations to 1 MB/s for both read and write for processes running
-   under the exercise_group cgroup. Type:
+1. Set the I/O operations to 1 MB/s for both read and write for processes running under the exercise_group `cgroup`. Type:
 
-  ```bash
-      echo "$primary_device_num rbps=1048576 wbps=1048576" | \
-      sudo tee /sys/fs/cgroup/exercise_group/io.max
-  ```
+    ```bash
+    echo "$primary_device_num rbps=1048576 wbps=1048576" | \
+    sudo tee /sys/fs/cgroup/exercise_group/io.max
+    ```
 
-1. Confirm I/O limits set. Type:
+2. Confirm I/O limits set. Type:
 
-```bash
-  cat /sys/fs/cgroup/exercise_group/io.max
-```
+    ```bash
+    cat /sys/fs/cgroup/exercise_group/io.max
+    ```
 
 #### To create the I/O stress test process
 
-1. Start a dd process to create a large file named /tmp/io_stress. Also capture
-   and store the PID of the dd process in a variable named `MYPID`. Type:
+1. Start a `dd` process to create a large file named /tmp/io_stress. Also capture and store the PID of the `dd` process in a variable named `MYPID`. Type:
 
-  ```bash
-   dd if=/dev/zero of=/tmp/io_stress bs=10M count=500 oflag=dsync \
-   & export MYPID=$!
-  ```
+    ```bash
+    dd if=/dev/zero of=/tmp/io_stress bs=10M count=500 oflag=dsync \
+    & export MYPID=$!
+    ```
 
-#### To add a process/script to the I/O cgroup
+#### To add a process/script to the I/O `cgroup`
 
-1. Add the PID of the previous dd process to the exercise_group control group. Type:
+1. Add the PID of the previous `dd` process to the exercise_group control `cgroup`. Type:
 
-  ```bash
+    ```bash
     echo $MYPID | sudo tee /sys/fs/cgroup/exercise_group/cgroup.procs
-  ```
+    ```
 
 #### To confirm process I/O usage resource control
 
 1. Check the I/O usage of the process by executing:
 
-  ```bash
+    ```bash
     iotop -p $MYPID
-  ```
+    ```
+
   Output will display I/O read/write speeds for the io_stress.sh process, which should not exceed 1 MB/s as per the limit.
 
-#### To remove cgroups 
+#### To remove `cgroups`
 
-1. Type the following commands to end any background process, delete the no-longer needed cgroup
-   and remove the /tmp/io_stress file.
+1. Type the following commands to end any background process, delete the no-longer needed `cgroup` and remove the /tmp/io_stress file.
 
-  ```bash
+    ```bash
     kill %1
     sudo rmdir /sys/fs/cgroup/exercise_group/
     sudo rm -rf /tmp/io_stress
-  ```
+    ```
 
 ## Exercise 8
 
-### taskset
+### `taskset`
 
-CPU affinity is the concept of binding specific processes or threads to particular CPU cores in a multi-core system.
-This exercise demonstrates the use of `taskset` to set or retrieve the CPU affinity of a process in Linux.
+CPU affinity is the concept of binding specific processes or threads to particular CPU cores in a multi-core system. This exercise demonstrates the use of `taskset` to set or retrieve the CPU affinity of a process in Linux.
 
-### To explore CPU Affinity with taskset
+### To explore CPU Affinity with `taskset`
 
-1. Use the lscpu to list available CPUs on your system. Type:
+1. Use the `lscpu` to list available CPUs on your system. Type:
 
-   ```bash
-   lscpu | grep "On-line"
-   ```
+    ```bash
+    lscpu | grep "On-line"
+    ```
 
 2. Let's create a sample process using the dd utility and also store its PID in a variable named MYPID. Type:
 
-   ```bash
-   dd if=/dev/zero of=/dev/null & export MYPID="$!"
-   echo $MYPID
-   ```
+    ```bash
+    dd if=/dev/zero of=/dev/null & export MYPID="$!"
+    echo $MYPID
+    ```
 
 3. Retrieve current affinity for the `dd` process. Type:
-   
-   ```bash
-   taskset -p $MYPID
-   ```
 
-   OUTPUT:
+    ```bash
+    taskset -p $MYPID
+    ```
 
-   ```bash
-   pid 1211483's current affinity mask: f
-   ```
+    OUTPUT:
 
-   The output shows the CPU affinity mask of the process with PID of 1211483 ($MYPID), represented in hexadecimal format. On our sample system, the affinity mask displayed is "f", which typically means that the process can run on any CPU core in the system.
+    ```bash
+    pid 1211483's current affinity mask: f
+    ```
 
-!!! note
+    The output shows the CPU affinity mask of the process with PID of 1211483 ($MYPID), represented in hexadecimal format. On our sample system, the affinity mask displayed is "f", which typically means that the process can run on any CPU core in the system.
 
-      The CPU affinity mask "f" represents a configuration where all CPU cores are enabled for the process. In hexadecimal notation, "f" corresponds to the binary value "1111". Each bit in the binary representation corresponds to a CPU core, with "1" indicating that the core is enabled and available for the process to run on.
-      Therefore on 4 core CPU, with the mask "f":
-      Core 0: Enabled
-      Core 1: Enabled
-      Core 2: Enabled
-      Core 3: Enabled
+    !!! note
+
+        The CPU affinity mask "f" represents a configuration where all CPU cores are enabled for the process. In hexadecimal notation, "f" corresponds to the binary value "1111". Each bit in the binary representation corresponds to a CPU core, with "1" indicating that the core is enabled and available for the process to run on.
+
+        Therefore on 4 core CPU, with the mask "f":
+
+        Core 0: Enabled
+        Core 1: Enabled
+        Core 2: Enabled
+        Core 3: Enabled
 
 ### To set/change CPU affinity
 
 1. Set the CPU affinity of the dd process to a single CPU (CPU 0). Type:
-   
-   ```bash
-   taskset -p 0x1 $MYPID
-   ```
 
-   OUTPUT
-   ```bash
-   pid 1211483's current affinity mask: f
-   pid 1211483's new affinity mask: 1
-   ```
+    ```bash
+    taskset -p 0x1 $MYPID
+    ```
+
+    OUTPUT
+
+    ```bash
+    pid 1211483's current affinity mask: f
+    pid 1211483's new affinity mask: 1
+    ```
+
 2. Verify the change by running:
 
-   ```bash
-   taskset -p $MYPID
-   ```
+    ```bash
+    taskset -p $MYPID
+    ```
 
-   The output indicates the CPU affinity mask of the process with PID $MYPID. The affinity mask is "1" in decimal, which translates to "1" in binary. This means that the process is currently bound to CPU core 0.
+    The output indicates the CPU affinity mask of the process with PID $MYPID. The affinity mask is "1" in decimal, which translates to "1" in binary. This means that the process is currently bound to CPU core 0.
 
-3. Now set the CPU affinity of the dd process to multiple CPUs (CPUs 0 and 1).
-   Type:
+3. Now set the CPU affinity of the dd process to multiple CPUs (CPUs 0 and 1). Type:
 
-   ```bash
-   taskset -p 0x3 $MYPID
-   ```
+    ```bash
+    taskset -p 0x3 $MYPID
+    ```
+
 4. Issue the correct `tasksel` command to verify the latest change.
 
-   ```bash
-   taskset -p $MYPID
-   ```
+    ```bash
+    taskset -p $MYPID
+    ```
 
-   On our demo 4 core CPU server, the output shows that the CPU affinity mask of the process is "3" (in decimal). This translates to "11" in binary. 
+    On our demo 4 core CPU server, the output shows that the CPU affinity mask of the process is "3" (in decimal). This translates to "11" in binary.
 
-!!! tip
+    !!! tip
 
-   Decimal "3" is "11" (or 0011) in binary.
-   Each binary digit corresponds to a CPU core: core 0, core 1, core 2, core 3 (from right to left).
-   The digit "1" in the forth and third position (from the right) indicates that the process is  allowed to run on cores 0 and 1. 
-   Therefore, "3" signifies that the process is bound to CPU cores 0 and 1.
+        Decimal "3" is "11" (or 0011) in binary.
+        Each binary digit corresponds to a CPU core: core 0, core 1, core 2, core 3 (from right to left).
+        The digit "1" in the forth and third position (from the right) indicates that the process is allowed to run on cores 0 and 1.
+        Therefore, "3" signifies that the process is bound to CPU cores 0 and 1.
 
+5. In a separate terminal, launch either the `top` or `htop` utility and observe if you see anything of interest as you experiment with different `taskset` configurations for a process.
 
-1. In a separate terminal, launch either the top or htop utility and observe to see if you see anything interest as you experiment with different tasksel configurations for a process.
-
-2. All done. Use its PID ($MYPID) to kill the `dd` process.  
-
+6. All done. Use its PID ($MYPID) to kill the `dd` process.  
 
 ## Exercise 9
 
-### systemd-run
+### `systemd-run`
 
-The systemd-run command is used for creating and starting transient service units for running commands or process. It can also be used to run programs in transient scope units,  or path-, socket-, or timer-triggered service units.
+The `systemd-run` command is used for creating and starting transient service units for running commands or process. It can also be used to run programs in transient scope units,  or path-, socket-, or timer-triggered service units.
 
-This exercise shows how to use `systemd-run` for creating transient service units in systemd.
+This exercise shows how to use `systemd-run` for creating transient service units in `systemd`.
 
-#### To run a command as a transient Service
+#### To run a command as a transient service
 
-1. Run the simple sleep 300 command as a transient systemd service using systemd-run. Type.
+1. Run the simple sleep 300 command as a transient `systemd` service using `systemd-run`. Type:
 
-   ```bash
-   systemd-run --unit=mytransient.service --description="Example Service" sleep 300
-   ```
-2. Check the status of the transient service using systemctl status. Type:
+    ```bash
+    systemd-run --unit=mytransient.service --description="Example Service" sleep 300
+    ```
 
-   ```bash
-   systemctl status mytransient.service
-   ```
+2. Check the status of the transient service using `systemctl status`. Type:
+
+    ```bash
+    systemctl status mytransient.service
+    ```
 
 #### To set memory resource limit for a transient service
 
-1. Use the `--property` parameter with `systemd-run` to limit the maximum memory usage for the transcient process to 200M. Type: 
+1. Use the `--property` parameter with `systemd-run` to limit the maximum memory usage for the transient process to 200M. Type:
 
-   ```bash
-      systemd-run --unit=mylimited.service --property=MemoryMax=200M sleep 300
-   ```
-2. Look under the corresponding cgroup file system for the process to verify the setting. Type:
+    ```bash
+    systemd-run --unit=mylimited.service --property=MemoryMax=200M sleep 300
+    ```
 
-   ```bash
-   sudo cat /sys/fs/cgroup/system.slice/mytransient.service/memory.max
-   ```
+2. Look under the corresponding `cgroup` file system for the process to verify the setting. Type:
 
-!!! tip
+    ```bash
+    sudo cat /sys/fs/cgroup/system.slice/mytransient.service/memory.max
+    ```
 
-   systemd.resource-control is a configuration or management entity (concept) within the systemd framework, designed for controlling and allocating system resources to processes and services.
-   And systemd.exec is a systemd component that is responsible for defining the execution environment in which commands are executed.
-   To view the various settings (properties) that you can tweak when using systemd-run consult the 
-   systemd.resource-control and systemd.exec manual pages. This is where you'll find documentation for properties like MemoryMax, CPUAccounting, IOWeight and so on 
+    !!! tip
 
+        `systemd.resource-control` is a configuration or management entity (concept) within the `systemd` framework, designed for controlling and allocating system resources to processes and services.  And `systemd.exec` is a `systemd` component that is responsible for defining the execution environment in which commands are executed. To view the various settings (properties) that you can tweak when using systemd-run consult the `systemd.resource-control` and `systemd.exec` manual pages. This is where you will find documentation for properties like MemoryMax, CPUAccounting, IOWeight and so on. 
 
 #### To set CPU resource limit for a transient service
 
-1. Let's create a transient systemd unit called myrealtime.service. Run myrealtime.service with a specific round robin (rr) scheduling policy and priority . Type:
-   
-   ```bash
-      systemd-run --unit=myrealtime.service \
-      --property=CPUSchedulingPolicy=rr --property=CPUSchedulingPriority=50 sleep 300
-   ```
+1. Let's create a transient `systemd` unit called "myrealtime.service". Run myrealtime.service with a specific round robin (rr) scheduling policy and priority . Type:
+
+    ```bash
+    systemd-run --unit=myrealtime.service \
+    --property=CPUSchedulingPolicy=rr --property=CPUSchedulingPriority=50 sleep 300
+    ```
 
 2. View the status for myrealtime.service. Also capture/store the PID for the main [sleep] in a variable named MYPID. Type:
 
-   ```bash
-      MYPID=$(systemctl status myrealtime.service   |  awk '/Main PID/ {print $3}')
-   ```
+    ```bash
+    MYPID=$(systemctl status myrealtime.service   |  awk '/Main PID/ {print $3}')
+    ```
 
 3. While the service is still running, verify its CPU scheduling policy. Type:
 
-   ```bash
-      chrt  -p $MYPID
-      pid 2553792's current scheduling policy: SCHED_RR
-      pid 2553792's current scheduling priority: 50
-   ```
+    ```bash
+    chrt  -p $MYPID
+    pid 2553792's current scheduling policy: SCHED_RR
+    pid 2553792's current scheduling priority: 50
+    ```
 
 ### To create a transient timer unit
 
 1. Create a simple timer unit that runs a simple echo command. The `--on-active=2m` option sets the timer to trigger 2 minutes after the timer unit becomes active. Type:
-   
-   ```bash
-   systemd-run --on-active=2m --unit=mytimer.timer \
-   --description="Example Timer" echo "Timer triggered"
-   ```
-    The timer will start counting down from the time the unit is activated, and after 2 minutes, it will trigger the specified action.
 
+    ```bash
+    systemd-run --on-active=2m --unit=mytimer.timer \
+    --description="Example Timer" echo "Timer triggered"
+    ```
+
+    The timer will start counting down from the time the unit is activated, and after 2 minutes, it will trigger the specified action.
 
 2. View details/status for the timer unit that was just created. Type:
 
-   ```bash
-      systemctl status mytimer.timer
-   ```
+    ```bash
+    systemctl status mytimer.timer
+    ```
 
-#### To stop and clean up transcient systemd units
+#### To stop and clean up transcient `systemd` units
 
-1. Type the following commands to ensure that the varoius transcient services/process that were started for this exercise are properly stopped and removed from your system. Type:
-   
-   ```bash
-      systemctl stop mytransient.service
-      systemctl stop mylimited.service
-      systemctl stop myrealtime.service
-      systemctl stop mytimer.timer
-   ```
+1. Type the following commands to ensure that the various transient services/process that were started for this exercise are properly stopped and removed from your system. Type:
+
+    ```bash
+    systemctl stop mytransient.service
+    systemctl stop mylimited.service
+    systemctl stop myrealtime.service
+    systemctl stop mytimer.timer
+    ```
 
 ## Exercise 10
 
-### schedtool
+### `schedtool`
 
 This exercise demonstrates the use of `schedtool` to understand and manipulate process scheduling in Rocky Linux. We will also create a script to simulate a process for this purpose.
 
-#### To install schedtool
+#### To install `schedtool`
 
-1. Install the schedtool application if it is not already installed on your server.
-   Type:
+1. Install the `schedtool` application if it is not already installed on your server. Type:
    
     ```bash
-       sudo dnf -y install schedtool
+    sudo dnf -y install schedtool
     ```
 
 #### To create a simulated process script
 
 1. Create a script that generates CPU load for testing purposes. Type:
-   
-   ```bash
-      cat > ~/cpu_load_generator.sh << EOF
-      #!/bin/bash
-      while true; do
+
+    ```bash
+    cat > ~/cpu_load_generator.sh << EOF
+    #!/bin/bash
+    while true; do
          openssl speed > /dev/null 2>&1
-      done
-      EOF
-      chmod +x ~/cpu_load_generator.sh
-   ```
+    done
+    EOF
+    chmod +x ~/cpu_load_generator.sh
+    ```
 
 2. Start the script in the background. Type
-   
-  ```bash
-  ~/cpu_load_generator.sh & echo $!
-  ```
-3. Capture the PID for the main openssl process launched within the cpu_load_generator.sh script. Store the PID in a variable named MYPID. Type:
-   
-   ```bash
-   export  MYPID=$(pidof openssl) ; echo $MYPID
-   ```
 
-### To use schedtool to check current scheduling policy
+    ```bash
+    ~/cpu_load_generator.sh & echo $!
+    ```
 
-1. Use the schedtool command to display the scheduling information of the process with PID $MYPID. Type:
+3. Capture the PID for the main `openssl` process launched within the cpu_load_generator.sh script. Store the PID in a variable named MYPID. Type:
 
-  ```bash
-  schedtool $MYPID
-  ```
+    ```bash
+    export  MYPID=$(pidof openssl) ; echo $MYPID
+    ```
 
-  OUTPUT:
-  ```bash
-  PID 2565081: PRIO   0, POLICY N: SCHED_NORMAL  , NICE   0, AFFINITY 0xf
-  ```
+#### To use `schedtool` to check current scheduling policy
 
-#### To use schedtool to modify scheduling policy
+1. Use the `schedtool` command to display the scheduling information of the process with PID $MYPID. Type:
+
+    ```bash
+    schedtool $MYPID
+    ```
+
+    OUTPUT:
+
+    ```bash
+    PID 2565081: PRIO   0, POLICY N: SCHED_NORMAL  , NICE   0, AFFINITY 0xf
+    ```
+
+#### To use `schedtool` to modify scheduling policy
 
 1. Change the scheduling policy and priority of the process FIFO and 10 respectively. Type:
 
     ```bash
-      sudo schedtool -F -p 10 $!
+    sudo schedtool -F -p 10 $!
     ```
 
 2. View the effect of the changes. Type:
 
-   ```bash
-   schedtool $MYPID
-   ```
+    ```bash
+    schedtool $MYPID
+    ```
 
 3. Change the scheduling policy and priority of the process to round robin or SCHED_RR (RR) and 50 respectively. Type:
 
@@ -965,29 +969,29 @@ This exercise demonstrates the use of `schedtool` to understand and manipulate p
 
 4. View the effect of the changes. Type:
 
-```bash
-  schedtool $MYPID
-```
+    ```bash
+    schedtool $MYPID
+    ```
 
 5. Change the scheduling policy of the process to Idle or SCHED_IDLEPRIO (D). Type:
 
     ```bash
-      sudo schedtool -D $MYPID
+    sudo schedtool -D $MYPID
     ```
 
 6. View the effect of the changes.
-   
-7. Finally, reset the  the scheduling policy of the process back to the original default SCHED_NORMAL (N or other). Type:
 
-   ```bash
-      sudo schedtool -N $MYPID
-   ```
+7. Finally, reset the scheduling policy of the process back to the original default SCHED_NORMAL (N or other). Type:
 
-#### To terminate and clean up the clean up the cpu_load_generator.sh process
+    ```bash
+    sudo schedtool -N $MYPID
+    ```
 
-1. All done. Terminate the script and delete the cpu_load_generator.sh script.
- 
-   ```bash
-      kill $MYPID
-      rm ~/cpu_load_generator.sh
-   ```
+#### To terminate and clean up the `cpu_load_generator.sh` process
+
+1. All done. Terminate the script and delete the `cpu_load_generator.sh` script.
+
+    ```bash
+    kill $MYPID
+    rm ~/cpu_load_generator.sh
+    ```
