@@ -73,7 +73,7 @@ Per capire meglio:
 - `--zone=public` indica al firewall di consentire le connessioni in entrata a questa porta da parte di tutti.
 - Infine, `--add-service=http` e `--add-service=https` indicano a `firewalld` di passare tutto il traffico HTTP e HTTPS al server.
 
-Queste configurazioni non avranno effetto finché non forzerete la questione. Per farlo, occorre indicare a `firewalld` di ricaricare le sue configurazioni:
+Queste configurazioni non avranno effetto finché non si forzerà il problema. Per farlo, occorre indicare a `firewalld` di ricaricare le sue configurazioni:
 
 ```bash
 sudo firewall-cmd --reload
