@@ -27,14 +27,14 @@ Il sistema di posta elettronica si compone principalmente di quattro parti: **MU
 
 La differenza tra IMAP e POP3 è la seguente:
 
-| Posizione operativa |                                    Contenuti dell'operazione                                     |                                 IMAP                                  |            POP3             |
-|:-------------------:|:------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------:|:---------------------------:|
-|        Inbox        |              Lettura, etichettatura, trasferimento, eliminazione delle e-mail, ecc.              | Il client si sincronizza con gli aggiornamenti della cassetta postale | Solo all'interno del client |
-|       Outbox        |                                   Salvare nella posta inviata                                    | Il client si sincronizza con gli aggiornamenti della cassetta postale | Solo all'interno del client |
-|    create folder    |                             Creare una nuova cartella personalizzata                             | Il client si sincronizza con gli aggiornamenti della cassetta postale | Solo all'interno del client |
-|        draft        |                                   Salvare la bozza dell'e-mail                                   | Il client si sincronizza con gli aggiornamenti della cassetta postale | Solo all'interno del client |
-|     Junk folder     | Ricezione di e-mail che sono state erroneamente spostate nella cartella della posta indesiderata |                               supporto                                |       non supportato        |
-|  Advertising email  |      Ricezione dei messaggi che sono stati spostati nella cartella della posta indesiderata      |                               supporto                                |       non supportato        |
+| Posizione operativa |                                    Contenuti dell'operazione                                     |                                 IMAP                                  |      POP3       |
+|:-------------------:|:------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------:|:---------------:|
+|        Inbox        |              Lettura, etichettatura, trasferimento, eliminazione delle e-mail, ecc.              | Il client si sincronizza con gli aggiornamenti della cassetta postale | Solo nel client |
+|       Outbox        |                                   Salvare nella posta inviata                                    |   Il client viene sincronizzato con gli aggiornamenti della mailbox   | Solo nel client |
+|    create folder    |                             Creare una nuova cartella personalizzata                             | Il client si sincronizza con gli aggiornamenti della cassetta postale | Solo nel client |
+|        draft        |                                   Salvare la bozza dell'e-mail                                   | Il client si sincronizza con gli aggiornamenti della cassetta postale | Solo nel client |
+|     Junk folder     | Ricezione di e-mail che sono state erroneamente spostate nella cartella della posta indesiderata |                              supportato                               | non supportato  |
+|  Advertising email  |      Ricezione dei messaggi che sono stati spostati nella cartella della posta indesiderata      |                              supportato                               | non supportato  |
 
 ### Realizzazione concreta
 
