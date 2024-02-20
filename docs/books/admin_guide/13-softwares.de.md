@@ -158,7 +158,7 @@ Es wird nur der Kurzname des Pakets benötigt.
 
 | Option                    | Beschreibung                                                                                      |
 | ------------------------- | ------------------------------------------------------------------------------------------------- |
-| `install`                 | installiert das Paket.                                                                            |
+| `install`                 | Installiert das Paket.                                                                            |
 | `remove`                  | Das Paket deinstallieren.                                                                         |
 | `list all`                | Listet die Pakete auf, die bereits im Repository sind.                                            |
 | `search`                  | Suche nach einem Paket im Repository.                                                             |
