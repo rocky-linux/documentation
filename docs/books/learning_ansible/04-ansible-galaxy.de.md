@@ -51,7 +51,7 @@ ansible-galaxy role [import|init|install|login|remove|...]
 ansible-galaxy collection [import|init|install|login|remove|...]
 ```
 
-| Sub-Kommandos | Funktion                                                           |
+| Sub-Kommandos | Funktionen                                                         |
 | ------------- | ------------------------------------------------------------------ |
 | `init`        | das Skelett einer neuen Kollektion generieren.                     |
 | `install`     | eine Kollektion installieren.                                      |
