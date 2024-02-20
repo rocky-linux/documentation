@@ -6,7 +6,7 @@ contributors: Steven Spencer, Serge, Ganna Zhyrnova
 
 # Network File System
 
-**Conoscenza**: :star: :star:  
+**Conoscenza**: :star: :star:   
 **Complessità**: :star: :star:
 
 **Tempo di lettura**: 15 minuti

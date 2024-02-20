@@ -1,5 +1,5 @@
 - - -
-title: XFCE Desktop author: Gerard Arthus, Steven Spencer contributors: Steven Spencer, Antoine Le Morvan, K.Prasad, Ganna Zhyrnova tested_with: 8.5, 8.6, 9.0 tags:
+title: XFCE Desktop author: Gerard Arthus, Steven Spencer, Emre Camalan contributors: Steven Spencer, Antoine Le Morvan, K.Prasad, Ganna Zhyrnova tested_with: 8.9, 9.3 tags:
   - xfce
   - desktop
 - - -
@@ -12,8 +12,9 @@ L'ambiente desktop XFCE, creato come fork del Common Desktop Environment (CDE), 
 
 ## Prerequisiti
 
-* Una Workstation o un notebook
+* Una workstation o un computer portatile
 * Desiderio di eseguire XFCE come desktop invece del desktop predefinito GNOME
+* Per le procedure 9 minimale e 8, la possibilità di utilizzare `sudo` per elevare i privilegi
 
 === "9"
 
@@ -94,11 +95,76 @@ L'ambiente desktop XFCE, creato come fork del Common Desktop Environment (CDE), 
 
     ![xfce_desktop](images/xfce_desktop.png)
 
+=== "9-minimal"
+
+    ## 9 minimal: Introduzione
+    
+    Se avete installato Rocky Linux 9.x e successivamente decidete di installare XFCE, questa procedura vi permetterà di farlo. Questa procedura presuppone l'installazione di `Rocky-9.3-x86_64-minimal.iso`.
+    
+    ### Aggiornare il sistema
+    
+    Per prima cosa, assicuratevi che il vostro sistema sia aggiornato:
+
+    ```bash
+    sudo dnf update -y && dnf upgrade -y
+    ```
+
+
+    ![9_min1](images/xfce_9_min_1.png)
+    
+    In secondo luogo, eseguite il comando seguente per installare il repo epel-release, che contiene tutti i pacchetti da installare per il Desktop Xfce.
+
+    ```bash
+    sudo dnf install epel-release -y
+    ```
+
+
+    ![9_min2](images/xfce_9_min_2.png)
+    
+    ### Installare il desktop XFCE
+    
+    Installare XFCE con questo comando:
+
+    ```bash
+    sudo dnf groupinstall xfce -y
+    ```
+
+
+    ![9_min3](images/xfce_9_min_3.png)
+    
+    ### Avvio del desktop XFCE
+    
+    È possibile avviare il desktop XFCE dalla riga di comando se viene visualizzato il messaggio "Complete!" nell'output del comando e se non ci sono errori.
+
+    ```bash
+    sudo systemctl isolate graphical.target
+    ```
+
+
+    ### Abilitare il desktop XFCE all'avvio
+    
+    A questo punto avete installato il desktop XFCE sul sistema e vi siete assicurati che funzioni eseguendolo dalla riga di comando. Se si desidera che il sistema si avvii sempre con XFCE invece che con la riga di comando, è necessario eseguire il seguente comando. È necessario aprire prima il terminale XFCE dall'icona dei 9 punti:
+
+    ```bash
+    sudo systemctl set-default graphical.target
+    ```
+
+
+    ![9_min5](images/xfce_9_min_5.png)
+    
+    **NOTA:** È possibile accedere con il nome utente e la password di root.
+    
+    ![9_min6](images/xfce_9_min_6.png)
+    
+    Ora è possibile testarlo. Riavviare il sistema con il comando `sudo reboot`. Il sistema si aprirà con la schermata di accesso al desktop XFCE.
+    
+    ![9_min7](images/xfce_9_min_7.png)
+
 === "8"
 
     ## 8: Installare Rocky Linux minimale
     
-    !!! note
+    !!! note "Nota"
     
         In questa sezione, è necessario essere l'utente root o essere in grado di eseguire `sudo` per elevare i propri privilegi.
     

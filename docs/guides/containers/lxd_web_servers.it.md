@@ -247,7 +247,7 @@ firewall-cmd --permanent --zone=public --add-port=80/tcp
 Vediamo di analizzare il tutto:
 
 * La flag `--permanent` dice al firewall di assicurarsi che questa configurazione sia usata ogni volta che il firewall viene riavviato, e quando il server stesso viene riavviato.
-* `--zone=public` dice al firewall di accettare connessioni in entrata a questa porta da chiunque.
+* `--zone=public` indica al firewall di accettare le connessioni in entrata a questa porta da chiunque.
 * Infine, `–-add-port=80/tcp` dice al firewall di accettare connessioni in entrata sulla porta 80, fintanto che stanno utilizzando il Transmission Control Protocol, che è quello che si desidera in questo caso.
 
 Per ripetere il processo per il traffico HTTPS, basta eseguire nuovamente il comando e cambiare il numero.
@@ -256,7 +256,7 @@ Per ripetere il processo per il traffico HTTPS, basta eseguire nuovamente il com
 firewall-cmd --permanent --zone=public --add-port=443/tcp
 ```
 
-Queste configurazioni non avranno effetto finché non forzerete la questione. Per farlo, dite a *firewalld* di ricaricare le sue configurazioni, in questo modo:
+Queste configurazioni non avranno effetto finché non si forzerà il problema. Per farlo, dite a *firewalld* di ricaricare le sue configurazioni, in questo modo:
 
 ```bash
 firewall-cmd --reload

@@ -47,22 +47,22 @@ Un documento può contenere o meno uno di questi elementi. Se ritenete che il vo
 
 Gli ammonimenti sono speciali "riquadri" visivi che consentono di richiamare l'attenzione su fatti importanti e di metterli in evidenza. Di seguito sono elencati i tipi di ammonimenti:
 
-| tipo                | Descrizione                                                                |
-| ------------------- | -------------------------------------------------------------------------- |
-| note                | visualizza il testo in un riquadro blu                                     |
-| abstract            | visualizza il testo in un riquadro azzurro                                 |
-| info                | visualizza il testo in un riquadro blu-verde                               |
-| tip                 | visualizza il testo in un riquadro blu-verde (icona leggermente più verde) |
-| success             | visualizza il testo in un riquadro verde                                   |
-| question "Domanda"  | visualizza il testo in un riquadro verde chiaro                            |
-| warning             | visualizza il testo in un riquadro arancione                               |
-| failure             | visualizza il testo in un riquadro rosso chiaro                            |
-| danger "Pericolo"   | visualizza il testo in un riquadro rosso                                   |
-| bug                 | visualizza il testo in un riquadro rosso                                   |
-| example             | visualizza il testo in un riquadro viola                                   |
-| quote               | visualizza il testo in una casella grigia                                  |
-| custom <sub>1</sub> | visualizza sempre il testo in un riquadro blu                              |
-| custom <sub>2</sub> | visualizza il testo nel colore del riquadro della tipologia prescelta      |
+| tipo               | Descrizione                                                                |
+| ------------------ | -------------------------------------------------------------------------- |
+| note               | visualizza il testo in un riquadro blu                                     |
+| abstract           | visualizza il testo in un riquadro azzurro                                 |
+| info               | visualizza il testo in un riquadro blu-verde                               |
+| tip                | visualizza il testo in un riquadro blu-verde (icona leggermente più verde) |
+| success            | visualizza il testo in un riquadro verde                                   |
+| question "Domanda" | visualizza il testo in un riquadro verde chiaro                            |
+| warning            | visualizza il testo in un riquadro arancione                               |
+| failure            | visualizza il testo in un riquadro rosso chiaro                            |
+| danger "Pericolo"  | visualizza il testo in un riquadro rosso                                   |
+| bug                | visualizza il testo in un riquadro rosso                                   |
+| example            | visualizza il testo in un riquadro viola                                   |
+| quote              | visualizza il testo in una casella grigia                                  |
+| custom ^1^         | visualizza sempre il testo in un riquadro blu                              |
+| custom ^2^         | visualizza il testo nel colore del riquadro della tipologia prescelta      |
 
 Gli ammonimenti sono illimitati, come si può notare in custom <sub>1</sub> sopra. È possibile aggiungere un titolo personalizzato a qualsiasi tipo di ammonimento per ottenere il colore del riquadro desiderato per un ammonimento specifico, come indicato nel precedente custom <sub>2</sub> personalizzato.
 
@@ -116,11 +116,11 @@ Qui ci sono esempi di ogni tipo di ammonimento e come appariranno nel vostro doc
 
 !!! custom "Titolo personalizzato"
 
-    Un tipo custom  <sub>1</sub>. Abbiamo usato " custom" come tipo di ammonimento. Di nuovo, questo risulterà sempre in blu.
+    Un tipo custom^1^. Abbiamo usato " custom" come tipo di ammonimento. Di nuovo, questo risulterà sempre in blu.
 
 !!! warning "titolo personalizzato"
 
-    Un tipo custom <sub>2</sub>. Abbiamo modificato il tipo di ammonimento "warning" con un'intestazione personalizzata. Ecco come appare:
+    Un tipo custom^2^. Abbiamo modificato il tipo di ammonimento "warning" con un'intestazione personalizzata. Ecco come appare:
 
     ```
     !!! warning "titolo personalizzato"
@@ -207,7 +207,7 @@ Ecco come appare il testo raw:
 ```markdown
 1. Quando si tratta di elenchi numerati a più righe che includono blocchi di codice o altri elementi, si può usare l'indentazione spaziale per ottenere ciò che si desidera.
 
-    Ad esempio: questo ha un rientro di quattro (4) spazi e rappresenta un nuovo paragrafo di testo. Inoltre, aggiungiamo un blocco di codice all'interno. È anche rientrato degli stessi quattro (4) spazi del nostro paragrafo:
+    Ad esempio: questo ha un rientro di quattro (4) spazi e rappresenta un nuovo paragrafo di testo. Inoltre, è stato aggiunto un blocco di codice in. È anche rientrato degli stessi quattro (4) spazi del nostro paragrafo:
     ```
 
 2. Ecco il nostro secondo articolo in elenco. Poiché si è utilizzato il rientro di quattro (4) spazi (sopra), viene visualizzato con la sequenza di numerazione successiva (2), ma se si fosse inserito l'elemento 1 senza il rientro (nel paragrafo e nel codice successivi), questo verrebbe visualizzato di nuovo come elemento 1, il che non è ciò che si desidera.
@@ -316,7 +316,7 @@ Un elenco dei comandi da tastiera accettati si trova [in questo documento](https
 
 ## Superscript, subscript e simboli speciali
 
-Le notazioni in apice e in pedice non sono un normale markdown, ma sono supportate nella documentazione di Rocky Linux attraverso i tag HTML usati per lo stesso scopo. Il superscript pone il testo inserito tra i tag leggermente al di sopra del testo normale, mentre il subscript lo pone leggermente al di sotto. Superscript è di gran lunga il più usato tra questi due nella scrittura. Alcuni caratteri speciali appaiono già in apice senza l'aggiunta dei tag, ma è possibile combinare i tag per cambiare l'orientamento di tali caratteri, come si vede con il simbolo del copyright qui sotto. È possibile utilizzare il superscript per:
+La notazione in apice e in pedice è supportata nella documentazione di Rocky Linux dall'uso di `^` per l'apice e `~` per il pedice. Il superscript pone il testo inserito tra i tag leggermente al di sopra del testo normale, mentre il subscript lo pone leggermente al di sotto. Superscript è di gran lunga il più usato tra questi due nella scrittura. Alcuni caratteri speciali appaiono già in apice senza l'aggiunta dei tag, ma è possibile combinare i tag per cambiare l'orientamento di tali caratteri, come si vede con il simbolo del copyright qui sotto. È possibile utilizzare il superscript per:
 
 * rappresentano numeri ordinali, come 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>
 * simboli di copyright e marchi, come <sup>&copy;</sup>, <sup>TM</sup>, o &trade;, &reg;
@@ -334,13 +334,13 @@ Ecco come appare tutto questo nel codice markdown:
 Alcuni caratteri speciali, come &copy; non sono normalmente apicali, mentre altri come &trade;, lo sono.
 ```
 
-Come si può vedere, per forzare l'apice possiamo usare i tag HTML supportati `<sup></sup>`.
+Per forzare l'apice si circonda ciò che si vuole che venga apostrofato con `^`.
 
-Si inserisce il pedice con i tag `<sub></sub>` e, come notato in precedenza, non è <sub>utilizzato molto</sub> nella scrittura.
+Si inserisce il pedice circondando il testo con il tag `~` (H~2~0 è `H~2~0`) e, come già detto, non è molto usato nella scrittura.
 
 ### Superscript per i riferimenti
 
-Alcuni di voi potrebbero avere la necessità di fare riferimento a fonti esterne quando scrivono la documentazione. Se avete una sola fonte, potete includerla nella conclusione come un unico link, ma se ne avete più di una<sup>1</sup>, potete usare l'apice per annotarle nel testo<sup>2</sup> e poi elencarle alla fine del documento. Si noti che il posizionamento dei riferimenti deve avvenire dopo la sezione "Conclusioni".
+Alcuni di voi potrebbero avere la necessità di fare riferimento a fonti esterne quando scrivono la documentazione. Se si dispone di una sola fonte, è possibile includerla nella conclusione come un singolo link, ma se si dispone di più fonti^1^, si può usare l'apice per annotarle nel testo^2^ e poi elencarle alla fine del documento. Si noti che il posizionamento dei riferimenti deve avvenire dopo la sezione "Conclusioni".
 
 Dopo la conclusione, è possibile inserire le notazioni in un elenco numerato che corrisponde all'apice, oppure come link. Entrambi gli esempi sono illustrati qui:
 
@@ -363,6 +363,16 @@ o
 [1](https://site1.com) "Come si usano i multipli nel testo" di Wordy W. McWords  
 [2](https://site2.com) "Usare l'apice nel testo" di by Sam B. Supersecret  
 
+```
+
+## Evidenziare testi
+
+Un altro modo possibile per migliorare la documentazione è l'==evidenziazione==. L'evidenziazione viene gestita circondando il testo con `==`.
+
+L'aspetto è questo nell'editor:
+
+```bash
+Un altro modo possibile per migliorare la documentazione è l'==evidenziazione==. L'evidenziazione viene gestita circondando il testo con `==`. 
 ```
 
 ## Raggruppare diversi tipi di formattazione
@@ -399,7 +409,7 @@ Oppure si può avere un elenco numerato, con un'ulteriore ammonimento:
    
         Le cose possono diventare un po' strane con più elementi all'interno di diversi tipi di formattazione!
 
-Se si tiene conto dei magici quattro (4) spazi per rientrare e separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come lo si desidera. A volte questo è davvero importante.
+Se si rispettano i magici quattro (4) spazi per rientrare e separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desidera. A volte questo è davvero importante.
 
 È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui ci sono un elenco numerato, un ammonimento, una tabella e alcuni elementi di blocco di citazione, tutti raggruppati insieme:
 
@@ -428,7 +438,7 @@ Ecco come appare questo esempio nell'editor:
 
 ```text
 
-Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desiderano. A volte questo è davvero importante.
+Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi verranno visualizzati in modo logico ed esattamente come si desiderano. A volte è davvero importante.
 
 È anche possibile incorporare una tabella o una citazione a blocchi (letteralmente qualsiasi tipo di elemento di formattazione) all'interno di un'altra. Qui ci sono un elenco numerato, un'ammonimento, una tabella e alcuni elementi di citazione a blocchi, tutti raggruppati insieme:
 
@@ -451,12 +461,12 @@ Se si rispettano i magici quattro (4) spazi per separare questi elementi, essi v
 
         > **soffrire** se tutto il resto fallisce, concentrarsi di più
 
-3. Esistono molti esempi, ma quello sopra illustra come sia possibile annidare tutto all'interno. Ricordate i quattro (4) spazi magici.
+3. Esistono molti esempi, ma quello sopra illustra come sia possibile annidare tutto all'interno. Basta ricordare i quattro (4) spazi magici.
 ```
 
 ## Un ultimo punto - i commenti
 
-Di tanto in tanto, si potrebbe voler aggiungere un commento al markdown che non verrà visualizzato quando sarà visualizzato. Le ragioni sono molteplici. Ad esempio, se si vuole aggiungere un segnaposto per qualcosa che verrà aggiunto in seguito, si può usare un commento per contrassegnare il punto.
+Occasionalmente, si potrebbe voler aggiungere un commento al markdown che non verrà visualizzato quando sarà elaborato. Le ragioni sono molteplici. Ad esempio, se si vuole aggiungere un segnaposto per qualcosa che verrà aggiunto in seguito, si può usare un commento per contrassegnare il punto.
 
 Il modo migliore per aggiungere un commento al markdown è usare le parentesi quadre "[]" che circondano due slashes "//" seguite da due punti e dal contenuto. Il risultato sarebbe il seguente:
 

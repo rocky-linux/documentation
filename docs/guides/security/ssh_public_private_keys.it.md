@@ -13,7 +13,7 @@ tags:
 
 ## Prerequisiti
 
-* Una certa comodità nell'operare dalla riga di comando
+* Un discreto comfort nell'operare dalla riga di comando
 * Un server Linux o workstation con *openssh* installato
 * Facoltativo: familiarità con i permessi di file Linux e directory
 

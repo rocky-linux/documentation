@@ -52,7 +52,7 @@ Per qualsiasi domanda riguardante la configurazione del tuo mirror unisciti a ht
 
 Quando avete finito, passate alla sezione successiva e proponete il vostro mirror per renderlo pubblico!
 
-## Cosa Ti Serve
+## Cosa Serve
 * Un account su https://accounts.rockylinux.org/
 
 ## Creare un sito

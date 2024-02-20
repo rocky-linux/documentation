@@ -8,17 +8,17 @@ update: 13-Feb-2023
 # Esecuzione del sito docs.rockylinux.org in locale per lo sviluppo web | Podman
 
 
-Questo documento spiega come ricreare ed eseguire una copia locale dell'intero sito web docs.rockylinux.org sulla vostra macchina locale. Eseguire una copia locale del sito web della documentazione potrebbe essere utile nei seguenti scenari:
+Questo documento spiega come ricreare ed eseguire una copia locale dell'intero sito web docs.rockylinux.org sulla vostra macchina locale. Utilizzare una copia locale del sito web della documentazione può essere utile nei seguenti scenari:
 
-* Sei interessato a conoscere e contribuire agli aspetti di sviluppo web del sito docs.rockylinux.org
-* Sei un autore e vorresti vedere come i tuoi documenti saranno renderizzati/visualizzati sul sito web di docs prima di contribuirvi
+* Siete interessati a conoscere e a contribuire agli aspetti dello sviluppo web del sito docs.rockylinux.org
+* Siete un autore e volete vedere come i vostri documenti verranno visualizzati sul sito web della documentazione prima di inviarli
 
 
-## Creare l'ambiente dei contenuti
+## Creare l'ambiente del contenuti
 
 1. Assicuratevi che i prerequisiti siano soddisfatti. In caso contrario, passare alla sezione "[Impostare-i-prerequisiti](#setup-the-prerequisites)" e poi tornare qui.
 
-2. Cambiate la directory di lavoro corrente sul vostro sistema locale in una cartella dove intendete scrivere. Ci riferiremo a questa directory come `$ROCKYDOCS` nel resto di questa guida. Per la nostra dimostrazione, `$ROCKYDOCS` punta a `$HOME/projects/rockydocs` sul nostro sistema demo.
+2. Passare dalla directory di lavoro corrente del sistema locale alla cartella in cui si intende effettuare le operazioni di scrittura. Ci riferiremo a questa directory come `$ROCKYDOCS` nel resto di questa guida. Per la nostra dimostrazione, `$ROCKYDOCS` punta a `$HOME/projects/rockydocs` sul nostro sistema demo.
 
 Crea $ROCKYDOCS se non esiste già e cambia la tua directory di lavoro in $ROCKYDOCS digita:
 
@@ -28,13 +28,13 @@ export ROCKYDOCS=${HOME}/projects/rockydocs
 cd  $ROCKYDOCS
 ```
 
-3. Assicuratevi di avere installato `git`. (`dnf -y install git`).  Mentre sei in $ROCKYDOCS usa git per clonare il repo ufficiale dei contenuti della Documentazione Rocky. Digitate:
+3. Assicuratevi di avere installato `git`. (`dnf -y install git`).  Mentre ci si trova in $ROCKYDOCS, usare git per clonare il repo dei contenuti della documentazione ufficiale di Rocky. Digitare:
 
 ```
 git clone https://github.com/rocky-linux/documentation.git
 ```
 
-Ora avrete una cartella `$ROCKYDOCS/documentation`. Questa cartella è un repository git e sotto il controllo di git.
+Ora avrete una cartella `$ROCKYDOCS/documentation`. Questa cartella è un repository git ed è sotto il controllo di git.
 
 4. Usate sempre `git` per clonare il repo ufficiale docs.rockylinux.org. Digitate:
 
@@ -89,7 +89,7 @@ services:
 
 ```
 
-Salva il file con il nome `docker-compose.yml` nella tua directory di lavoro $ROCKYDOCS.
+Salvare il file con il nome `docker-compose.yml` nella cartella di lavoro $ROCKYDOCS.
 
 È anche possibile scaricare rapidamente una copia del file docker-compose.yml eseguendo:
 
@@ -105,7 +105,7 @@ docker-compose  up
 ```
 
 
-## Visualizza il sito web locale docs.rockylinux.org
+## Visualizzare il sito web locale docs.rockylinux.org
 
 8. Se sul sistema Rocky Linux è attivo un firewall, assicurarsi che la porta 8001 sia aperta. Digitate:
 
@@ -114,7 +114,7 @@ firewall-cmd  --add-port=8001/tcp  --permanent
 firewall-cmd  --reload
 ```
 
-Con il container attivo e funzionante, dovresti ora essere in grado di puntare il tuo browser web al seguente URL per visualizzare la tua copia locale del sito:
+Con il container attivo e funzionante, ora si dovrebbe essere in grado di puntare il browser web al seguente URL per visualizzare la copia locale del sito:
 
 http://localhost:8001
 
