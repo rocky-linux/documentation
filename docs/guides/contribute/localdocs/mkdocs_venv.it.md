@@ -274,7 +274,7 @@ Quando la visualizzazione della nuova pagina è soddisfacente, si può uscire da
 INFO     -  [22:32:41] Serving on http://127.0.0.1:8000/
 ^CINFO     -  Shutting down...
 (env) [rocky_user@rl9 env]$
-(env) [rocky_user@rl9 env]$ deacticate
+(env) [rocky_user@rl9 env]$ deactivate
 [rocky_user@rl9 env]$
 ```
 
