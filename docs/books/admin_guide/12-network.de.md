@@ -49,7 +49,7 @@ Beispiel:
 *   `192.168.1.10`;
 *   `255.255.255.0`.
 
-Die Notation namens CIDR ist immer häufiger: 192.168.1.10/24
+Die Notation namens CIDR wird immer häufiger: 192.168.1.10/24
 
 IP-Adressen werden für das korrekte Routen von Nachrichten (Pakete) verwendet. Sie sind in zwei Teile aufgeteilt:
 
