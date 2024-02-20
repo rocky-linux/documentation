@@ -36,7 +36,7 @@ dnf config-manager --add-repo https://pkgs.tailscale.com/stable/rhel/9/tailscale
 dnf install tailscale
 ```
 
-## Налаштування Tor
+## Налаштування Tailscale
 
 Після встановлення пакетів вам потрібно ввімкнути та налаштувати Tailscale. Щоб увімкнути демон Tailscale:
 
@@ -68,7 +68,7 @@ tailscale up
 tailscale ip -4
 ```
 
-Ви також отримаєте немаршрутизовану IPv6-адресу Tailscale:
+Він також отримає IPv6-адресу Tailscale RFC 4193 (унікальна локальна адреса):
 
 ```bash
 tailscale ip -6
