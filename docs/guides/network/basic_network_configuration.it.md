@@ -592,7 +592,7 @@ Al giorno d'oggi non si può fare molto con un computer senza la connettività d
         * `ip` accetta l'abbreviazione quindi `ip a`, `ip addr` e `ip address` sono equivalenti
 
 
-    ### Porta l'interfaccia su o giù
+    ### Portare l'interfaccia su o giù
 
     Per portare l'interfaccia *ens19* su, basta usare `ip link set ens19 up` e per portarla giù, usare `ip link set ens19 down`.
 
