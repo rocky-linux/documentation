@@ -31,7 +31,7 @@ These exercises cover the additional Linux commands and concepts, providing hand
 
 ## Exercise 1
 
-### `fuser`
+### fuser
 
 The `fuser` command in Linux is used to identify processes using files or sockets. It can be a useful aid in file-related process management and conflict resolution.
 
