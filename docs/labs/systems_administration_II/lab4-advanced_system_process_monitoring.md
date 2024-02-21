@@ -5,7 +5,16 @@ tested on: All Versions
 tags:
   - system monitoring
   - process monitoring
-  - fuser numactl perf chrt schedtool atop strace systemd-run taskset cgroups
+  - fuser
+  - numactl
+  - perf
+  - chrt
+  - schedtool
+  - atop
+  - strace
+  - systemd-run
+  - taskset
+  - cgroups
 ---
 
 

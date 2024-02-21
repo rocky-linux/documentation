@@ -5,7 +5,16 @@ tested on: All Versions
 tags:
   - system monitoring
   - process monitoring
-  - ps pgrep pidof cgroups pstree top kill lsof pkill exec
+  - ps
+  - pgrep
+  - pidof
+  - cgroups
+  - pstree
+  - top
+  - kill
+  - lsof
+  - pkill
+  - exec
 ---
 
 # Lab 8: System and process monitoring
