@@ -69,7 +69,7 @@ Once your server is authenticated with Tailscale, it will get a Tailscale IPv4 a
 tailscale ip -4
 ```
 
-It will also get a RFC 4193 (Unique Local Address) Tailscale IPv6 address:
+It will also get an RFC 4193 (Unique Local Address) Tailscale IPv6 address:
 
 ```bash
 tailscale ip -6
