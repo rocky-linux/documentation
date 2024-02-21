@@ -532,7 +532,11 @@ Running Tripwire in this mode (integrity check mode) compares the current file s
 
 Tripwire’s report files, are a collection of rule violations discovered during an integrity check.
 
-There are several methods of viewing the Tripwire report file. You could have been viewing it while the integrity check was running, you could view it in the form of an e-mail automatically sent to you, or you could view it using the “twprint” command provided with the Tripwire package.
+There are several ways to view a Tripwire report file:
+
+- during integrity check
+- in the form of an email automatically sent to you
+- using the `twprint` command provided with the Tripwire package
 
 !!! note
 
