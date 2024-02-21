@@ -33,7 +33,7 @@ Some parameters and values of this file are as follows, [ here ](04_rsync_config
 | auth users = li                           | Activez les utilisateurs virtuels et définissez un utilisateur virtuel. Besoin de le créer vous-même                                                                                               |
 | secrets file = /etc/rsyncd_users.db       | Utilisé pour spécifier l'emplacement du fichier de mot de passe de l'utilisateur virtuel, qui doit se terminer en .db. Le format de contenu du fichier est "Username : mot de passe", un par ligne |
 
-!!! tip "Astuce"
+!!! tip "tip"
 
     La permission du fichier de mot de passe doit être <font color=red>600</font>.
 
