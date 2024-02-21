@@ -4,7 +4,9 @@ contributors: Steven Spencer, Ganna Zhyrnova
 tested on: All versions
 tags:
   - lab exercises
-  - bootup, target and service management
+  - bootup management
+  - target management
+  - service management
   - systemd
   - systemctl
 ---
