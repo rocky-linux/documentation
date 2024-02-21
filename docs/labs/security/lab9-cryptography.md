@@ -702,7 +702,7 @@ Most Linux systems out of the box already have the OpenSSH server configured and
 
 ### Creating host keys
 
-Your SSH server already has host keys that it uses. Those keys were generated when your system was first installed. In this exercise you will learn how to create host-type keys for your server, but you wont use the keys.
+Your SSH server already has host keys that it uses. Those keys were generated when your system was first installed. In this exercise, you will learn how to create host-type keys for your server, but you wont use the keys.
 
 #### To generate host keys for your server
 
@@ -727,7 +727,7 @@ Your SSH server already has host keys that it uses. Those keys were generated wh
 
     !!! Question
 
-        What do you need to do to make the sshd daemon use the host key that you just generated?
+        What must you do to make the sshd daemon use the host key that you just generated?
 
 3. View the fingerprint of the key you created above. Type:
 
@@ -838,7 +838,7 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 
     !!! Question "Questions"
 
-        Was the user ying able to remotely reboot serverPR? Why can't ying remotely reboot serverPR?
+        Was user ying able to reboot serverPR remotely? Why can't ying remotely reboot serverPR?
 
 7. From serverXY, try remotely viewing the status of the `sshd` service running on serverPR as the user `ying`. Type:
 
@@ -928,7 +928,7 @@ usage: scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
 
     !!! Question "Questions"
 
-        What is the slight but very important difference between the variations of the 2 previous commands? And what is the result of each command?
+        What is the slight but significant difference between the variations of the 2 previous commands? And what is the result of each command?
         
         - `scp -r  ying@localhost:/home/ying/  ying_home_directory_on_serverPR`
         
