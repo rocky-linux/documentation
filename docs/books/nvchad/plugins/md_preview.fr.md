@@ -29,7 +29,7 @@ Si vous avez également installé le [Template Chadrc](../template_chadrc.md) ce
 
 !!! warning "Avertissement"
 
-    Le serveur de langage **doit** être installé avant de procéder à l'installation du plugiciel. Sinon, l'installation échouera et il sera nécessaire de supprimer le code contenu dans **/custom/plugins.ua**, effectuer un nettoyage de configuration en éditant `Lazy` et en tapant <kbd>X</kbd> pour supprimer le plugin puis répéter la procédure d'installation.
+    Le serveur de langage **doit** être installé avant de procéder à l'installation du plugiciel. Sinon, l'installation échouera et il sera nécessaire de supprimer le code contenu dans **/custom/plugins.lua**, effectuer un nettoyage de configuration en éditant `Lazy` et en tapant <kbd>X</kbd> pour supprimer le plugin puis répéter la procédure d'installation.
 
 Pour installer le plugiciel, vous devrez éditer le fichier **/custom/plugins.lua** en ajoutant le bloc de code suivant :
 
@@ -55,11 +55,11 @@ Pour installer le plugiciel, vous devrez éditer le fichier **/custom/plugins.lu
 },
 ```
 
-Une fois que vous avez enregistré le fichier, vous pouvez effectuer son installation en ouvrant l'interface du gestionnaire de plugiciels avec la commande `:Lazy`. Le gestionnaire de plugiciels l'aura déjà reconnu automatiquement et vous permettra de l'installer en tapant <kbd>I</kbd>.
+Une fois que vous avez enregistré le fichier, vous pouvez effectuer son installation en ouvrant l'interface du gestionnaire de plugiciels avec la commande `:Lazy`. Le gestionnaire de plugiciels l'aura déjà reconnu automatiquement et vous permettra de l'installer en tapant ++I++.
 
 Pour obtenir toutes les fonctionnalités, cependant, vous devez fermer NvChad (*nvim*) et le relancer. Ceci permet à l'éditeur de charger ceux de **Peek** dans la configuration.
 
-Sa configuration inclut déjà la commande pour l'activer `<leader>op` qui, sur le clavier, se traduit par <kbd>Espace</kbd> + <kbd>o</kbd> suivi de <kbd>p</kbd>.
+Sa configuration inclut déjà la commande pour l'activer `<leader>op` qui, sur le clavier, se traduit par ++space++ + ++o++ suivi de ++p++.
 
 ![Peek](./images/peek_command.png)
 
@@ -98,7 +98,7 @@ Comme pour le plugiciel précédent, vous devrez relancer l'éditeur pour permet
 Cependant, les options doivent être modifiées pour correspondre à la configuration de `lazy.nvim`, en particulier l'option indiquée dans cet exemple :
 
 ```lua
-vim.g.mkdp_theme = 'dark'
+vim.g.mkdp_theme = "dark"
 ```
 
 Elle correspond à l'option décrite sur le site du projet en tant que :
@@ -115,9 +115,8 @@ let g:mkdp_browser = '/usr/bin/chromium-browser'
 
 Pour interpréter correctement cela dans NvChad, il devra être modifié en remplaçant `let g:` par `vim.g.`.
 
-
 ```lua
-vim.g.mkdp_browser = '/usr/bin/chromium-browser'
+vim.g.mkdp_browser = "/usr/bin/chromium-browser"
 ```
 
 De cette façon, la prochaine fois que NvChad sera lancé, le `navigateur chromium-` sera utilisé indépendamment du navigateur par défaut du système.
@@ -127,14 +126,14 @@ La configuration fournit également les commandes `:MarkdownPreview` et `:Markdo
 ```lua
 -- binding for Markdown Preview
 M.mdpreview = {
-  n = {
-    ["<leader>mp"] = { "<cmd> MarkdownPreview<CR>", "Open Preview"},
-    ["<leader>mc"] = { "<cmd> MarkdownPreviewStop<CR>", "Close Preview"},
+    n = {
+        ["<leader>mp"] = { "<cmd> MarkdownPreview<CR>", "Open Preview" },
+        ["<leader>mc"] = { "<cmd> MarkdownPreviewStop<CR>", "Close Preview" },
     },
 }
 ```
 
-Cela vous permettra d'ouvrir l'aperçu markdown en tapant <kbd>Enter</kbd> + <kbd>m</kbd> suivi de <kbd>p</kbd> et de le fermer avec la combinaison <kbd>Enter</kbd> + <kbd>m</kbd> suivie de <kbd>c</kbd>.
+Cela vous permettra d'ouvrir l'aperçu markdown en tapant ++enter++ + ++m++ suivi de ++p++ et de le fermer avec la combinaison ++enter++ + ++m++ suivie de ++c++.
 
 !!! note "Remarque"
 
@@ -142,7 +141,7 @@ Cela vous permettra d'ouvrir l'aperçu markdown en tapant <kbd>Enter</kbd> + <kb
 
 ![Aperçu de Markdown](./images/markdown_preview_nvim.png)
 
-## Conclusions et pensées finales
+## Conclusion
 
 Un aperçu de ce que vous écrivez peut être utile, à la fois pour les nouveaux utilisateurs de cet éditeur et pour ceux qui ont une connaissance plus approfondie du langage Markdown. L'aperçu vous permet d'évaluer l'impact du code une fois converti et toutes les erreurs qu'il contient.
 

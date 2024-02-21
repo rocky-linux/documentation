@@ -1,10 +1,11 @@
 ---
 title: Tailscale VPN
 author: Neel Chauhan
-contributors: null
+contributors: Steven Spencer, Ganna Zhyrnova
 tested_with: 9.3
 tags:
   - безпека
+  - vpn
 ---
 
 # Tailscale VPN
