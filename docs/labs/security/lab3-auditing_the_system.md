@@ -17,7 +17,7 @@ Estimated time to complete this lab: 90 minutes
 
 ## A simple home grown integrity checker
 
-Before we begin to install and configure Tripwire, we create a sample script that performs a similar function. This script will help in gaining a better understanding of how Tripwire and similar tools function.
+Before installing and configuring Tripwire, we create a sample script that performs a similar function. This script will help in gaining a better understanding of how Tripwire and similar tools function.
 
 The script relies heavily on the md5sum program. The md5sum program is used to compute a 128-bit checksum (or "fingerprint") for a specified FILE.
 
@@ -399,7 +399,7 @@ OPTIONS
 
 ### To configure Tripwire
 
-Configuring Tripwire involves (if needed) customizing the Tripwire configuration file, customizing the policy file, and then running the configuration script. The script will prompt you for a passphrase that will be used to sign/protect the configuration file, the policy file and the database file.
+Configuring Tripwire involves (if needed) customizing the Tripwire configuration file, the policy file, and then running the configuration script. The script will prompt you for a passphrase that will be used to sign/protect the configuration file, the policy file and the database file.
 
 1. Change your pwd to Tripwire’s working directory: Type:
 
@@ -532,7 +532,7 @@ Running Tripwire in this mode (integrity check mode) compares the current file s
 
 Tripwire’s report files, are a collection of rule violations discovered during an integrity check.
 
-There are several methods of viewing the Tripwire report file. You could have been viewing it whilst the integrity check was running, you could view it in the form of an e-mail automatically sent to you or you could view it using the “twprint” command provided with the Tripwire package.
+There are several methods of viewing the Tripwire report file. You could have been viewing it while the integrity check was running, you could view it in the form of an e-mail automatically sent to you, or you could view it using the “twprint” command provided with the Tripwire package.
 
 !!! note
 
