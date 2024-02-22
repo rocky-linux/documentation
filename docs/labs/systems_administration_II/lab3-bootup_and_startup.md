@@ -67,9 +67,9 @@ The exercises in this lab will begin from the booting-up process down to the log
 
 *Timer units* are useful for triggering activation of other units based on timers.
 
-*Swap units* are very similar to mount units and encapsulate memory swap partitions or files of the operating system.
+*Swap units* are very similar to mount units and encapsulate the operating system's memory swap partitions or files.
 
-*Path units* may be used to activate other services when file system objects change or are modified.
+*Path units* may activate other services when file system objects change or are modified.
 
 *Slice units* may be used to group units which manage system processes (such as service and scope units) in a hierarchical tree for resource management purposes.
 
@@ -309,7 +309,7 @@ The exercises in this section will show you how to configure system/user process
 
     This will show the complete list of active and loaded but inactive units.
 
-2. View the list of active `systemd` units that have a type of service.
+2. View the list of active `systemd` units with a service type.
 
     ```bash
     [root@localhost ~]# systemctl list-units --state=active --type service
@@ -428,7 +428,7 @@ The exercises in this section will show you how to configure system/user process
 
 ### To restart services
 
-For many services/daemons, restarting or reloading the running service/daemon whenever changes are made to their underlying configuration files is often necessary. This is so that the given process/service/daemon can apply the latest configuration changes.
+For many services/daemons, restarting or reloading the running service/daemon whenever changes are made to their underlying configuration files is often necessary. This is so the given process/service/daemon can apply the latest configuration changes.
 
 1. View the status of crond.service. Type:
 
@@ -436,7 +436,7 @@ For many services/daemons, restarting or reloading the running service/daemon wh
     [root@localhost ~]# systemctl -n 0 status crond.service
     ```
 
-    Make a note of the PID for `crond` in the output.
+    In the output, note the PID for `crond`.
 
 2. Run `systemctl restart` to restart `crond.service`. Type:
 
@@ -502,7 +502,7 @@ For many services/daemons, restarting or reloading the running service/daemon wh
 
 Even though the `systemctl disable` command can be used to disable services as you saw in the previous exercises, other `systemd` units (processes, services , daemons and so on) can stealthily re-enable a disabled service if needed. This can happen when a service depends on another [disabled] service.
 
-To ensure disabling of a `systemd` service unit and prevent accidental reactivation, you should mask the service.
+You should mask the service to ensure disabling of a `systemd` service unit and prevent accidental reactivation.
 
 1. Use `systemctl` to mask the `crond.service` and prevent any undesired reactivation, type:
 
