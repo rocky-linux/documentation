@@ -370,7 +370,7 @@ watch -t -n 1 date
 此命令结合了文件复制（`cp`）和目录创建（`mkdir`），以及权限管理（`chmod`、`chown`）和其他有用的功能（如备份）。
 
 ```bash
-install source dest  
+install source dest
 install -t directory source [...]
 install -d directory
 ```
@@ -495,14 +495,14 @@ Change: 2024-01-24 16:37:34.315995221 +0800
 
 * `File` - 显示文件的路径位置。
 * `Size` - 以字节为单位显示文件大小。 如果这是一个目录，则显示目录名所占用的固定 4096 字节。
-* `Blocks` - 显示已分配的块数。 请注意！ 此命令中每个块的大小为 512 字节。 'ls -ls' 中每个块的默认大小为1024字节。
-* `Device` - 十进制格式的设备编号。 十六进制格式的设备编号。
+* `Blocks` - 显示已分配的块数。 请注意！ 此命令中每个块的大小为 512 字节。 `ls -ls`中每个块的默认大小为 1024 字节。
+* `Device` - 以十进制或十六进制表示的设备编号。
 * `Inode` - Inode是 Linux 内核为文件或目录分配的唯一 ID 号。
 * `Links` - 硬链接数。 硬链接有时也被称为物理链接。
 * `Access` - 文件和目录的最后访问时间，即 GNU/Linux 中的 `atime` 。
 * `Modify` - 文件和目录的最后修改时间，即 GNU/Linux 中的 `mtime` 。
 * `Change` - 最后一次修改属性的时间，即 GNU/Linux 中的 `ctime` 。
-* `Birth` - 诞生时间（创建时间）。 在某些文档中，缩写为 `btime` 或 `crtime` 。 要显示创建时间，需要文件系统和内核版本高于某个版本。
+* `Birth` - 诞生时间（创建时间）。 在某些文档中，缩写为 `btime` 或 `crtime` 。 您需要一个高于某个版本的文件系统和内核版本来显示创建时间。
 
 对于文件而言：
 
