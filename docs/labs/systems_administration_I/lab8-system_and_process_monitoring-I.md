@@ -31,7 +31,7 @@ Estimated time to complete this lab: 60 minutes
 
 ## Introduction
 
-These exercises cover a wide range of topics related to monitoring and managing processes on a Linux systems. Topics covered include process identification and control, process priority management, signal handling, resource monitoring, and "cgroups" management.
+These exercises cover various topics related to monitoring and managing processes on a Linux systems. Topics covered include process identification and control, process priority management, signal handling, resource monitoring, and "cgroups" management.
 
 ## Exercise 1
 
@@ -87,7 +87,7 @@ These exercises cover a wide range of topics related to monitoring and managing 
 
 #### To display detailed process information using `ps`
 
-The following steps show how to use `ps` for displaying basic process information.
+The following steps show how to use `ps` to display basic process information.
 
 1. Use the `ps` command to display a list of all processes in a tree structure.
 
@@ -99,7 +99,7 @@ The following steps show how to use `ps` for displaying basic process informatio
 
         What is the structure of the process list, and what information is displayed?
 
-2. Filter the list to only show processes associated with a specific user, e.g., the user "root."
+2. Filter the list only to show processes associated with a specific user, e.g., the user "root."
 
     ```bash
     ps -U root
@@ -133,7 +133,7 @@ The following steps show how to use `ps` for displaying basic process informatio
 
 #### To terminate a process using `kill`
 
-1. Start a long running sleep process in the background and display the PID for the process on your terminal. Type:
+1. Start a long running sleep process in the background and display the PID on your terminal. Type:
 
     ```bash
     (sleep 3600 & MYPROC1=$! && echo PID is: $MYPROC1) 2>/dev/null
@@ -163,7 +163,7 @@ The following steps show how to use `ps` for displaying basic process informatio
 
 #### To terminate processes using `kill` signals
 
-1. Start a new sleep process and make note of its PID. Type:
+1. Start a new sleep process and make a note of its PID. Type:
 
     ```bash
     (sleep 3600 & MYPROC2=$! && echo PID is: $MYPROC2) 2>/dev/null
@@ -183,7 +183,7 @@ The following steps show how to use `ps` for displaying basic process informatio
 
     Confirm that $MYPROC2 is no longer in the process table.
 
-3. Start a new ping process and make note of its PID. Type:
+3. Start a new ping process and make a note of its PID. Type:
 
     ```bash
     { ping localhost > /dev/null 2>&1 & MYPROC3=$!; } \
@@ -198,7 +198,7 @@ The following steps show how to use `ps` for displaying basic process informatio
 
     Replace MYPROC3 with the actual PID of the process on your system.
 
-5. Start a long running process using the `cat` command. Type:
+5. Start a long-running process using the `cat` command. Type:
 
     ```bash
     { cat /dev/random > /dev/null 2>&1 & MYPROC4=$!; } \
@@ -241,7 +241,7 @@ The following steps show how to use `ps` for displaying basic process informatio
 
         What processes are consuming the most CPU and memory?
 
-3. Sort the processes in top by CPU usage (press P) and by memory usage (press M).
+3. Sort the processes in `top` by CPU usage (press P) and by memory usage (press M).
 
     !!! question
 
@@ -273,13 +273,13 @@ The following steps show how to use `ps` for displaying basic process informatio
 
         What is the process ID and resource utilization of the intensive process?
 
-5. Change the sorting order in top to display processes using the most CPU or memory (press P or M).
+5. Change the sorting order in `top` to display processes using the most CPU or memory (press P or M).
 
     !!! question
 
         What process is at the top of the list after sorting?
 
-6. Exit top by pressing `q`.
+6. Exit `top` by pressing `q`.
 
 #### To monitor processes and resource usage using `top`
 
@@ -311,11 +311,11 @@ The following steps show how to use `ps` for displaying basic process informatio
 
         What processes are using the most memory?
 
-5. Exit top by pressing q.
+5. Exit top by pressing ++"q"++.
 
     !!! question
 
-        Explain the significance of monitoring system resources using the top command and how it can help in troubleshooting performance issues.
+        Explain the significance of monitoring system resources using the `top` command and how it can help troubleshoot performance issues.
 
 ## Exercise 4
 
@@ -342,9 +342,9 @@ The following steps show how to use `ps` for displaying basic process informatio
 
     The value of the PID will be different on your system.
 
-    Make note of the value of PID being continuously displayed on the screen on your system.
+    Note of the value of the PID being continuously displayed on the screen on your system.
 
-2. In a different terminal, using your value of the PID, check the process' default priority using `ps`. Type:
+2. In a different terminal, using your PID value, check the process' default priority using `ps`. Type:
 
     ```bash
     ps -p <PID> -o ni
@@ -352,17 +352,17 @@ The following steps show how to use `ps` for displaying basic process informatio
 
     !!! question
 
-        What is the default process priority (`nice` value) of the running process?
+        What is the running process' default process priority (`nice` value)?
 
 3. Using the PID of the process printed, end the process using the `kill` command.
 
-4. Using the `nice` command, relaunch a similar process but with a lower niceness value (i.e. more favorable to the process OR higher priority). Use a `nice` value of `-20`. Type:
+4. Using the `nice` command, relaunch a similar process with a lower niceness value (i.e. more favorable to the process OR higher priority). Use a `nice` value of `-20`. Type:
 
     ```bash
     nice -n -20 bash -c  'while true; do echo "High priority: The PID is $$"; done'
     ```
 
-5. Using your own value of the PID, check the process' priority using `ps`. Type:
+5. Using your value of the PID, check the process' priority using `ps`. Type:
 
     ```bash
     ps -p <PID> -o ni
@@ -372,7 +372,7 @@ The following steps show how to use `ps` for displaying basic process informatio
 
         Has the process priority been successfully set?
 
-6. Simultaneously press the ++ctrl+c++ keys on your keyboard to `kill` the new high priority process.
+6. Simultaneously press the ++ctrl+c++ keys on your keyboard to `kill` the new high-priority process.
 
 7. Using the `nice` command again relaunch another process but this time with a higher niceness value (i.e. least favorable to the process OR lower priority). Use a `nice` value of `19` Type:
 
@@ -394,7 +394,7 @@ The following steps show how to use `ps` for displaying basic process informatio
     ps -p <PID> -o ni
     ```
 
-9. Simultaneously press the ++ctrl+c++ keys on your keyboard to kill the new low priority process.
+9. Simultaneously press the ++ctrl+c++ keys on your keyboard to kill the new low-priority process.
 
 10. Experiment with altering the priority of different processes to higher and lower values and observe the impact on the process's resource usage.
 
@@ -422,7 +422,7 @@ The following steps show how to use `ps` for displaying basic process informatio
 
     The value of the PID will be different on your system.
 
-    Make note of the value of the PID on your system.
+    Make a note of the value of the PID on your system.
 
 3. Use the `renice` command to adjust the priority of the running `find/md5sum` process to a lower niceness value (e.g., -10, higher priority). Type:
 
@@ -490,9 +490,9 @@ The following steps show how to use `ps` for displaying basic process informatio
      ps -p <PID1,PID2,...>
     ```
 
-    Replace "<PID1,PID2,...>" with the actual process IDs obtained from step 1.
+    Replace "<PID1,PID2,...>" with the process IDs obtained from step 1.
 
-3. Use the `pgrep` command to identify any processes with a specific name, e.g., "cron."
+3. Use the `pgrep` command to identify processes with a specific name, e.g., "cron."
 
     ```bash
     pgrep cron
@@ -554,11 +554,11 @@ This exercise covers managing processes with `fg` and `bg`
 
     !!! question
 
-        Explain the purpose of foreground and background processes, and how they  are managed using `fg` and `bg` commands.
+        Explain the foreground and background process' purpose, and how they are managed using `fg` and `bg` commands.
 
 #### To start a process in the background
 
-1. The `&` symbol can be used to launch a process that immediately runs in the background. For example to start off the `sleep` command in the background type:
+1. The `&` symbol can launch a process that immediately runs in the background. For example, to start the `sleep` command in the background type:
 
     ```bash
     sleep 300 &
@@ -576,7 +576,7 @@ This exercise covers managing processes with `fg` and `bg`
 
         What is the status of the `sleep 300` process?
 
-3. Bring the background process back to the foreground using the `fg` command.
+3. Return the background process to the foreground using the `fg` command.
 
     ```bash
     fg
@@ -586,7 +586,7 @@ This exercise covers managing processes with `fg` and `bg`
 
 #### To manage interactive processes using `bg` and `fg`
 
-1. Start an interactive process such as the `vi` text editor to create and edit a sample file text file named "foobar.txt". Type:
+1. Start an interactive process like the `vi` text editor to create and edit a sample file text file named "foobar.txt". Type:
 
     ```bash
     vi foobar1.txt
@@ -604,7 +604,7 @@ This exercise covers managing processes with `fg` and `bg`
 
         Is the process now running in the background?
 
-2. Enter the text "Hello" inside `foobar1.txt` in your `vi` editor.
+2. Enter "Hello" inside `foobar1.txt` in your `vi` editor.
 
 3. Suspend the running `vi` text editing session by pressing ++ctrl+z++.
 
@@ -631,7 +631,7 @@ This exercise covers managing processes with `fg` and `bg`
     [2]+ 2977612 Stopped       vi foobar2.txt
     ```
 
-    You should have at least 2 jobs listed in your output. The number in the 1st column of the output shows the job number - [1] and [2].
+    You should have at least 2 jobs listed in your output. The number in the 1st column of the output shows the job numbers - [1] and [2].
 
 8. Resume ==and bring to the foreground== the 1st `vi` session by typing:
 
@@ -647,7 +647,7 @@ This exercise covers managing processes with `fg` and `bg`
     fg %2
     ```
 
-11. Ungracefully terminate both `vi` editing sessions by sending the KILL signal to both  jobs. Follow the `kill` command with the jobs command. Type:
+11. Ungracefully terminate both `vi` editing sessions by sending the KILL signal to both jobs. Follow the `kill` command with the jobs command. Type:
 
     ```bash
      kill -SIGKILL  %1 %2 && jobs
@@ -674,7 +674,7 @@ This exercise covers managing processes with `fg` and `bg`
     pidof systemd
     ```
 
-    Make a note of the process ID(s) of `systemd`.
+    Note the process ID(s) of `systemd`.
 
 3. Verify the existence of the identified process using the `ps` command.
 
@@ -776,7 +776,7 @@ This exercise covers using the powerful `exec` command.
     bash
     ```
 
-2. In the new shell, run a command that does not exit, such as a simple while loop.
+2. Run a command that does not exit in the new shell, such as a simple while loop.
 
     ```bash
      while true; do echo "Running..."; done
@@ -802,13 +802,13 @@ This exercise covers using the powerful `exec` command.
 
     !!! question
 
-        Explain how the `exec` command can be used to replace the current shell process with a different command.
+        Explain how the `exec` command can replace the current shell process with a different command.
 
 ## Exercise 11
 
 ### Process management with `killall`
 
-Similar to `kill`, `killall` is a command to terminate processes by name. Some similarities can be observed between the usage of `killall` , `kill`, and `pkill` in process termination.
+Like `kill`, `killall` is a command to terminate processes by name instead of PID. Some similarities can be observed between the usage of `killall` , `kill`, and `pkill` in process termination.
 
 #### To terminate processes by name using `killall`
 
@@ -842,7 +842,7 @@ Similar to `kill`, `killall` is a command to terminate processes by name. Some s
 
     !!! question
 
-        How does `killall` differ from `pkill` and `kill` when it comes to terminating processes by name?
+        How does `killall` differ from `pkill` and `kill` when terminating processes by name?
 
 ## Exercise 12
 
@@ -886,7 +886,7 @@ Similar to `kill`, `killall` is a command to terminate processes by name. Some s
 
     !!! question
 
-        Explain the concept of `cgroups` in Linux and how they can be used to manage and control resource allocation for processes.
+        Explain the concept of `cgroups` in Linux and how they can manage and control resource allocation for processes.
 
 ## Exercise 13
 
@@ -912,7 +912,7 @@ Similar to `kill`, `killall` is a command to terminate processes by name. Some s
 
     Replace <PRIORITY> with the new priority value you want to set, and <PID> with the actual PID of the process.
 
-3. Verify that the priority of the process has been changed using `ps`.
+3. Verify that the process' priority has changed using `ps`.
 
     ```bash
     ps -p <PID> -o ni
