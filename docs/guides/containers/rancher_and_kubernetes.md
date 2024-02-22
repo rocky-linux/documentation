@@ -33,7 +33,7 @@ This guide will help you discover Rancher, install and start it, and then create
 
 Installing Rancher is quite trivial, if you have Docker installed on your server.
 
-Docker installation found in the gemstone [docker installation](./gemstones/docker/).
+You can find the Docker installation [here in gemstones](https://docs.rockylinux.org/gemstones/docker/).
 
 To run on a Rocky 9, Rancher will also require loading modules/
 /run//run/
