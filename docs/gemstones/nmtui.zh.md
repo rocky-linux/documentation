@@ -35,7 +35,7 @@ shell > nmtui
 
 ### 手动固定网络信息
 
-如果要将所有IPv4的网络信息进行手动固定，需要选择 **&lt;Manual&gt;** 后面的 *IPv4 CONFIGURATION*，一行一行进行添加， 例如，像我这样的：
+如果要将所有 IPv4 的网络信息进行手动固定，需要选择 *IPv4 CONFIGURATION* 后面的 **&lt;Manual&gt;**，逐行进行添加。 例如，像我这样的：
 
 | 项           | 值                |
 | ----------- | ---------------- |
@@ -51,7 +51,7 @@ shell > nmtui
 
 !!! warning "警告"
 
-    在 RHEL 9.x 分发中，存储 NIC 配置文件的目录的位置已被更改，即**/etc/NetworkManager/system-connections/**。 更多信息请见 [这里](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-sinle/configuring_and_managing_networking/index)。
+    在 RHEL 9.x 发行版中，存储 NIC 配置文件的目录的位置已被更改，即 **/etc/NetworkManager/system-connections/**。 更多信息请见 [这里](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index)
 
 ```bash
 shell > ls /etc/sysconfig/network-scripts/
@@ -119,4 +119,4 @@ IPV6_FAILURE_FATAL=no
 
 ## 查看网络信息
 
-`ip a`或者`nmcli device show`
+`ip a` 或者 `nmcli device show`
