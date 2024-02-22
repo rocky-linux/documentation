@@ -1,3 +1,16 @@
+---
+title: Working with Rancher and Kubernetes
+author: Antoine Le Morvan
+contributors: Steven Spencer, Ganna Zhyrnova
+update: 22-Feb-2024
+tested_with: 9.3
+tags:
+  - rancher
+  - kubernetes
+  - containers
+  - docker
+---
+
 # Working with Rancher and Kubernetes
 
 **Kubernetes** (**K8s**) is an open-source container orchestration system for managing the deployment and management of containerized applications.
