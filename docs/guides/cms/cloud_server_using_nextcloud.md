@@ -50,7 +50,7 @@ To install the EPEL run:
 dnf install epel-release
 ```
 
-To install the Remi repository run (note if you are using Rocky Linux 9.x, substitute in 9 next to "release-" below):
+To install the Remi repository run (note: if you are using Rocky Linux 9.x, substitute in 9 next to "release-" below):
 
 ```
 dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
