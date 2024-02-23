@@ -58,7 +58,7 @@ sudo dnf install -y caddy
 
 If you try to view a web page at your machine’s IP address or domain name from another computer, you will probably get nothing. That will be the case if you have a firewall up and running.
 
-To open up the necessary ports to actually "see" your web pages, you will use Rocky Linux's build-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`.
+To open up the necessary ports to actually "see" your web pages, you will use Rocky Linux's built-in firewall, `firewalld`. The `firewalld` command for doing this is `firewall-cmd`.
 
 To open up the `http` and `https` services, the services that handles web pages, run:
 
