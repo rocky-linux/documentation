@@ -1,8 +1,8 @@
 ---
 title: nmtui - Network Management Tool
-author : tianci li
+author: tianci li
 contributors: Steven Spencer, Neil Hanlon
-update : 2021-10-23
+update: 2021-10-23
 ---
 
 # Introduction
