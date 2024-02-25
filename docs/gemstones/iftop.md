@@ -1,8 +1,8 @@
 ---
-title : nload - Live Per-Connection Bandwidth Statistics
-author : Neel Chauhan
+title: iftop - Live Per-Connection Bandwidth Statistics
+author: Neel Chauhan
 contributors:
-date : 2024-02-24
+date: 2024-02-24
 ---
 
 # `iftop` Introduction
@@ -36,7 +36,7 @@ The options of the `iftop` command follow.
 |-c config |Use the following configuration file|
 |-t |Use non-ncurses mode|
 
-The units for the **-M** flag is as follows:
+The units for the **-M** flag are as follows:
 
 |Unit|Meaning|
 |---|---|
@@ -44,7 +44,7 @@ The units for the **-M** flag is as follows:
 |M |Mega|
 |G |Giga|
 
-The units for the **-u** flag is as follows:
+The units for the **-u** flag are as follows:
 
 |Unit|Meaning|
 |---|---|
