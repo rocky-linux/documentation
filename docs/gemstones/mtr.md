@@ -1,8 +1,8 @@
 ---
-title : mtr - Network Diagnostics
-author : tianci li
+title: mtr - Network Diagnostics
+author: tianci li
 contributors: Steven Spencer, Neel Chauhan
-date : 2021-10-20
+date: 2021-10-20
 ---
 
 # `mtr` Introduction

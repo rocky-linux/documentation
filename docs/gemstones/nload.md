@@ -1,8 +1,8 @@
 ---
-title : nload - Bandwidth Statistics
-author : Neel Chauhan
+title: nload - Bandwidth Statistics
+author: Neel Chauhan
 contributors: Steven Spencer, Ganna Zhyrnova 
-date : 2024-01-16
+date: 2024-01-16
 ---
 
 # `nload` Introduction
