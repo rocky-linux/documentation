@@ -9,7 +9,7 @@ date: 2024-02-24
 
 `iftop` is a text console-based network traffic monitor. It shows your server's per-connection traffic and bandwidth statistics.
 
-## Using `nload`
+## Using `iftop`
 
 ```bash
 dnf -y install epel-release
