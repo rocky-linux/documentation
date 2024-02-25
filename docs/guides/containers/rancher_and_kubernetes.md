@@ -15,7 +15,7 @@ tags:
 
 **Kubernetes** (**K8s**) is an open-source container orchestration system for managing the deployment and management of containerized applications.
 
-K8S has made a name for itself on the market, so there is no need to introduce it anymore.
+K8s has made a name for itself on the market, so there is no need to introduce it anymore.
 
 Cloud providers have made it easy to deploy managed Kubernetes platforms, but what about setting up and managing an on-premise cluster?
 
@@ -25,7 +25,7 @@ The answer to the last two questions is No. Setting up an on-premise cluster is 
 
 That is where the subject of this guide comes in: **Rancher**! Rancher is also an open-source system, enabling the installation and orchestration of several multi-cloud or on-premise clusters and providing interesting features such as an application catalog and a practical web interface for visualizing resources.
 
-Rancher will enable you to deploy Kubernetes clusters managed by cloud providers, import existing Kubernetes clusters, or deploy K3S (for short, it is a lighter version of K8S) or K8S clusters.
+Rancher will enable you to deploy Kubernetes clusters managed by cloud providers, import existing Kubernetes clusters, or deploy K3s (for short, it is a lighter version of K8s) or K8s clusters.
 
 This guide will help you discover Rancher, install and start it, and then create an on-premise Kubernetes cluster deployed on Rocky Linux servers.
 
@@ -60,7 +60,7 @@ docker run -d --name=rancher --privileged --restart=unless-stopped -p 80:80 -p 4
 
 !!! NOTE
 
-    If you are curious, look at the new container's logs. You will see that a K3S cluster (with a single node) has just been created! This is how Rancher works in its standalone version.
+    If you are curious, look at the new container's logs. You will see that a K3s cluster (with a single node) has just been created! This is how Rancher works in its standalone version.
 
     ![k3s local cluster](img/rancher_k3s_local_cluster.png)
 
@@ -85,7 +85,7 @@ You are ready to connect to the Rancher's webUI.
 
 !!! NOTE
 
-    This solution is by no means production-ready. You will need to ensure the system is highly available, but it is a good start. Consider deploying Rancher on an existing K8S cluster for optimal HA.
+    This solution is by no means production-ready. You will need to ensure the system is highly available, but it is a good start. Consider deploying Rancher on an existing K8s cluster for optimal HA.
 
 ## Kubernetes on Rocky Linux 9 servers
 
