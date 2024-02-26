@@ -151,7 +151,6 @@ Many websites exist for practicing regular expression skills online, such as:
 
 * [regex101](https://regex101.com/)
 * [oschina](https://tool.oschina.net/regex/)
-* [oktools](https://oktools.net/regex)
 * [regexr](https://regexr.com/)
 * [regelearn](https://regexlearn.com/)
 * [coding](https://coding.tools/regex-tester)
