@@ -25,7 +25,7 @@ Please note that this is *not* intended to be a complete or exhaustive firewall 
 
 ### A note on using the command line for managing your firewall
 
-Well... there *are* graphical firewall configuration options. On the desktop, there's `firewall-config` which can be installed from the repos, and on servers you can [install Cockpit](https://linoxide.com/install-cockpit-on-almalinux-or-rocky-linux/) to help you manage firewalls and a whole bunch of other stuff. **However, I'll be teaching you the command-line way to do things in this tutorial for a couple of reasons:**
+Well... there *are* graphical firewall configuration options. On the desktop, there's `firewall-config` which can be installed from the repos, and on servers you can [install Cockpit](https://wiki.crowncloud.net/?How_to_enable_Cockpit_Server_Manager_in_Rocky_Linux_9) to help you manage firewalls and a whole bunch of other stuff. **However, I'll be teaching you the command-line way to do things in this tutorial for a couple of reasons:**
 
 1. If you're running a server, you'll be using the command line for most of this stuff anyway. Lots of tutorials and guides for the Rocky server will give command-line instructions for firewall management, and you should understand those instructions rather than just copying and pasting whatever you see.
 2. Understanding how the `firewalld` commands work might help you better grasp how the firewall software works.  You can take the same principles you learn here and better understand what you're doing if you decide to use a graphical interface in the future.
