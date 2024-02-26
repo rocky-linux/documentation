@@ -1,7 +1,7 @@
 ---
 title: iftop - Live Per-Connection Bandwidth Statistics
 author: Neel Chauhan
-contributors:
+contributors: Ganna Zhyrnova
 date: 2024-02-24
 ---
 
