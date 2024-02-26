@@ -1,7 +1,7 @@
 ---
 title: torsocks - Route Traffic Via Tor/SOCKS5
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 date: 2024-02-25
 ---
 
@@ -26,7 +26,7 @@ The common options of the `torsocks` command follow, and under normal circumstan
 |-p PASS |Set the SOCKS5 password|
 |-a ADDRESS |Set the SOCKS5 server address|
 |-P PORT |Set the SOCKS5 server port|
-|-i |Enable Tor isolation)
+|-i |Enable Tor isolation|
 
 A sample (redacted) output from the IP checker [icanhazip.com](https://icanhazip.com/) via `torsocks`:
 

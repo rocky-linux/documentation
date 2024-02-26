@@ -1,7 +1,7 @@
 ---
 title: iftop - Live Per-Connection Bandwidth Statistics
 author: Neel Chauhan
-contributors: Ganna Zhyrnova
+contributors: Ganna Zhyrnova, Steven Spencer
 date: 2024-02-24
 ---
 
@@ -76,7 +76,7 @@ tt.neelc.org               => X.X.X.X                    2.80Mb  2.80Mb  2.80Mb
 tt.neelc.org               => X.X.X.X                     136Kb   136Kb   136Kb
                            <=                            2.45Mb  2.45Mb  2.45Mb
 ────────────────────────────────────────────────────────────────────────────────
-TX:             cum:   30.1MB   peak:	 121Mb  rates:    121Mb   121Mb   121Mb
+TX:             cum:   30.1MB   peak:    121Mb  rates:    121Mb   121Mb   121Mb
 RX:                    30.4MB            122Mb            122Mb   122Mb   122Mb
 TOTAL:                 60.5MB            242Mb            242Mb   242Mb   242Mb
 ```
