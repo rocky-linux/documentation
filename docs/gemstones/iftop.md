@@ -20,21 +20,21 @@ The options of the `iftop` command follow.
 
 |Options|Description|
 |---|---|
-|-n |Avoid hostname lookups|
-|-N |Avoid resolving port numbers to service names|
-|-p |Run in promiscuous mode, so all traffic is counted|
-|-P |Display the port numbers for connections|
-|-l |Display and count traffic to or from link-local IPv6 addresses|
-|-b |Don't display bar graphs for traffic|
-|-m LIMIT |Set an upper limit for the bandwidth graph, specified as a number and a unit suffix|
-|-u UNIT |Display traffic rates with the given unit|
+|-n |Avoids hostname lookups|
+|-N |Avoids resolving port numbers to service names|
+|-p |Runs in promiscuous mode, so all traffic is counted|
+|-P |Displays the port numbers for connections|
+|-l |Displays and counts traffic to or from link-local IPv6 addresses|
+|-b |Doesn't display bar graphs for traffic|
+|-m LIMIT |Sets an upper limit for the bandwidth graph, specified as a number and a unit suffix|
+|-u UNIT |Displays traffic rates with the given unit|
 |-B UNIT |Synonym for -u|
 |-i INTERFACE |Interface to measure|
-|-f FILTER CODE |Use the following filter code|
-|-F NET/MASK |Only measure traffic going to the specified IPv4 network|
-|-G NET/MASK |Only measure traffic going to the specified IPv6 network|
-|-c config |Use the following configuration file|
-|-t |Use non-ncurses mode|
+|-f FILTER CODE |Uses the following filter code|
+|-F NET/MASK |Only measures traffic going to the specified IPv4 network|
+|-G NET/MASK |Only measures traffic going to the specified IPv6 network|
+|-c config |Uses the following configuration file|
+|-t |Uses non-ncurses mode|
 
 The units for the **-M** flag are as follows:
 
@@ -89,15 +89,15 @@ Breaking the bottom pane's lines:
 
 ## Shortcut keys for interaction
 
-* ++s++ - aggregate all traffic for each source
-* ++d++ - aggregate all traffic for each destination
-* ++shift+s++ - toggle display of source port
-* ++shift+d++ - toggle display of destination port
-* ++t++ - toggle between display modes: default two-line display with send and receive traffic, and three-line display of send, receive, and total traffic
+* ++s++ - aggregates all traffic for each source
+* ++d++ - aggregates all traffic for each destination
+* ++shift+s++ - toggles display of the source port
+* ++shift+d++ - toggles display of destination port
+* ++t++ - toggles between display modes: default two-line display with send and receive traffic and three-line display of send, receive, and total traffic
 * ++1++, ++2++, ++3++ - sort by 1st, 2nd, or 3rd column
-* ++l++ - enter a POSIX regular expression to filter hostnames
-* ++shift+p++ - pause current display
-* ++o++ - freeze total bandwidth counts
-* ++j++ - scroll down
-* ++k++ - scroll up
-* ++f++ - edit the filter code
+* ++l++ - enters a POSIX regular expression to filter hostnames
+* ++shift+p++ - pauses current display
+* ++o++ - freezes total bandwidth counts
+* ++j++ - scrolls down
+* ++k++ - scrolls up
+* ++f++ - edits the filter code
