@@ -151,7 +151,6 @@ ERE також підтримує символи зі спеціальними �
 
 - [regex101](https://regex101.com/)
 - [oschina](https://tool.oschina.net/regex/)
-- [oktools](https://oktools.net/regex)
 - [regexr](https://regexr.com/)
 - [regelearn](https://regexlearn.com/)
 - [coding](https://coding.tools/regex-tester)
