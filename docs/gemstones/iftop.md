@@ -91,12 +91,12 @@ Breaking the bottom pane's lines:
 
 * ++s++ - aggregate all traffic for each source
 * ++d++ - aggregate all traffic for each destination
-* ++S++ - toggle display of source port
-* ++D++ - toggle display of destination port
+* ++shift+s++ - toggle display of source port
+* ++shift+d++ - toggle display of destination port
 * ++t++ - toggle between display modes: default two-line display with send and receive traffic, and three-line display of send, receive, and total traffic
 * ++1++, ++2++, ++3++ - sort by 1st, 2nd, or 3rd column
 * ++l++ - enter a POSIX regular expression to filter hostnames
-* ++P++ - pause current display
+* ++shift+p++ - pause current display
 * ++o++ - freeze total bandwidth counts
 * ++j++ - scroll down
 * ++k++ - scroll up
