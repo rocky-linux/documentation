@@ -17,7 +17,7 @@ dnf -y install tor torsocks
 systemctl enable --now tor
 ```
 
-The common options of the `torsocks` command follow and, under normal circumstances, require nothing additional. The options come before the application runs (e.g., `curl`):
+The common options of the `torsocks` command follow and, under normal circumstances, require nothing additional. The options come before the application to run (e.g., `curl`):
 
 |Options|Description|
 |---|---|
