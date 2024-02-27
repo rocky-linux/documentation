@@ -77,4 +77,4 @@ tailscale ip -6
 
 ## Conclusion
 
-Traditionally, VPN services operated in a Client-Server model where a VPN gateway was centralized. This required manual configuration, firewall configuration and giving user accounts. Tailscale solves this problem by its peer-to-peer model combined with network-level access control.
+Traditional VPN services using a VPN gateway are centralized. This requires manual configuration, setting up your firewall and giving user accounts. Tailscale solves this problem by its peer-to-peer model combined with network-level access control.
