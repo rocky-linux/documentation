@@ -21,7 +21,7 @@ The common options of the `torsocks` command follow and, under normal circumstan
 
 |Options|Description|
 |---|---|
-|--shell |Creates a new shell with LD\_PRELOAD`|
+|--shell |Creates a new shell with LD\_PRELOAD|
 |-u USER |Sets the SOCKS5 username|
 |-p PASS |Sets the SOCKS5 password|
 |-a ADDRESS |Sets the SOCKS5 server address|
