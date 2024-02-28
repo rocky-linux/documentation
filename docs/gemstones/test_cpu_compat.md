@@ -1,22 +1,22 @@
 ---
 title: Test CPU compatibility
 author: Steven Spencer
-contributors: Louis Abel
+contributors: Louis Abel, Ganna Zhyrnova
 tags:
   - cpu test 
 ---
 
 # Introduction
 
-Since the release of Rocky Linux 9, some installations on x86-64 platforms fail with a kernel panic. In most cases, ==this is due to the CPU's incompatibility== with Rocky Linux 9. This procedure will verify CPU compatibility prior to installation.
+Since the release of Rocky Linux 9, some installations on x86-64 platforms have failed with a kernel panic. In most cases, ==this is due to the CPU's incompatibility== with Rocky Linux 9. This procedure will verify CPU compatibility before installation.
 
 ## Testing
 
-1. Obtain a boot image of Rocky Linux 8, Fedora, or other.
+1. Obtain a boot image of Rocky Linux 8, Fedora, or others.
 
 2. Boot this live image on the machine where you want the installation of Rocky Linux 9 to be.
 
-3. After boot completes, open a terminal window and run this procedure:
+3. After the boot completes, open a terminal window and run this procedure:
 
     ```bash
     /lib64/ld-linux-x86-64.so.2 --help | grep x86-64
