@@ -19,5 +19,7 @@ nav:
     - ... | sed_search_replace*.md
     - ... | setup_local_repo*.md
     - ... | systemd_service_for_python_script*.md
+    - ... | test_cpu_compat*.md
+    - ... | torsocks*.md
     - ... | view_kernel_conf*.md
     - ...
