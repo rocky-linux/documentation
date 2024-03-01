@@ -129,19 +129,19 @@ Example:
 
 ```bash
 $ apropos clear
-clear (1)            - clear the terminal screen
-clear_console (1)    - clear the console
-clearenv (3)         - clear the environment
-clearerr (3)         - check and reset stream status
-clearerr_unlocked (3) - nonlocking stdio functions
-feclearexcept (3)    - floating-point rounding and exception handling
-fwup_clear_status (3) - library to support management of system firmware updates
-klogctl (3)          - read and/or clear kernel message ring buffer; set console_loglevel
-sgt-samegame (6)     - block-clearing puzzle
-syslog (2)           - read and/or clear kernel message ring buffer; set console_loglevel
-timerclear (3)       - timeval operations
-XClearArea (3)       - clear area or window
-XClearWindow (3)     - clear area or window
+clear (1)                - clear the terminal screen
+clear_console (1)        - clear the console
+clearenv (3)             - clear the environment
+clearerr (3)             - check and reset stream status
+clearerr_unlocked (3)    - nonlocking stdio functions
+feclearexcept (3)        - floating-point rounding and exception handling
+fwup_clear_status (3)    - library to support management of system firmware updates
+klogctl (3)              - read and/or clear kernel message ring buffer; set console_loglevel
+sgt-samegame (6)         - block-clearing puzzle
+syslog (2)               - read and/or clear kernel message ring buffer; set console_loglevel
+timerclear (3)           - timeval operations
+XClearArea (3)           - clear area or window
+XClearWindow (3)         - clear area or window
 XSelectionClearEvent (3) - SelectionClear event structure
 ```
 
@@ -179,7 +179,7 @@ This set of manuals is divided into 8 sections, grouping information by topic, t
 4. Special files (usually found in /dev).
 5. File Formats and conventions (configuration files such as etc/passwd).
 6. Games (such as character-based applications).
-7. Miscellaneous (e.g. man (7)).
+7. Miscellaneous (e.g., man (7)).
 8. System administration commands (usually only for root).
 9. Kernel routines (non-standard).
 
