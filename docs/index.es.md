@@ -4,54 +4,54 @@ title: Inicio
 
 # Documentación de Rocky Linux
 
-## ¡Bienvenido!
+## ¡Bienvenidos!
 
-¡Nos has encontrado! Bienvenido al hub de documentación de Rocky Linux; estamos contentos de que estés aquí. Tenemos una serie de colaboradores que añaden contenido, y esa caché de contenido está creciendo constantemente. Aquí encontrará documentos sobre cómo construir Rocky Linux en sí mismo, así como documentos sobre varios temas que son importantes para la comunidad Rocky Linux. ¿Quién compone esa comunidad que usted pregunta?
+¡Nos has encontrado! Este es el centro de documentación de Rocky Linux; estamos muy contentos de que estés aquí. Tenemos una serie de colaboradores que añaden contenido, y esa caché de contenido está creciendo constantemente. Aquí podrá encontrar documentación relacionada con la implementación y el despliegue de Rocky Linux como también varias tópicas de interés relevantes para toda la comunidad. Si se pregunta quienes componen la comunidad,
 
-Bueno, en realidad, lo hace.
+la respuesta es: gente como usted.
 
-Esta página de inicio le dará una introducción al sitio web de documentación y a cómo encontrar su camino alrededor — estamos seguros de que se sentirá como en casa.
+Aquí en esta página de inicio encontrará todos los elementos para poder comenzar a navegarla y sentirse a gusto.
 
 ## Navegando por el sitio
 
-### Alrededor
+### Comenzando
 
-Ahora mismo está en la página principal de la documentación. Si echa un vistazo al menú superior (que siempre está disponible, incluso en dispositivos móviles) puede ver la estructura principal que muestra las secciones de nivel superior del sitio de documentación. Si haces clic en cada elemento del menú superior (prueba 'Guías', por ejemplo), en el lado izquierdo verás la lista de *subsecciones* para cada sección principal. Las guías tienen muchos temas de interés.
+En este momento usted se encuentra en la página principal Si observa el menú superior, que se encuentra disponible aún en dispositivos móviles, encontrará la estructura que muestra todas las secciones principales del sitio de documentación. Si hace clic en algún ítem, (Pruebe "Guías" por ejemplo) verá en el margen izquierdo una lista de *elementos subordinados* a cada sección principal. Las guías poseen diversos temas de interés.
 
-Cuando abre un documento, en el lado derecho verá una 'Tabla de contenidos' con enlaces de navegación pulsables para ese documento (para dispositivos móviles pruebe la orientación horizontal). Para documentos largos, como las [notas de lanzamiento](release_notes/8_8.md), la tabla de contenidos hace fácil saltar alrededor del documento. Si estás leyendo un documento largo y quieres volver a la parte superior, pulsa <kbd>pg up</kbd> y verás un botón `Back to top` que aparecerá en la parte superior de la pantalla.
+Cuando se abre un documento, observará en el margen derecho una tabla de contenidos con links a los cuales puede hacerle clic. Si está navegando desde un dispositivo móvil recomendamos apaisar el dispositivo. Para documentos largos, como las [notas de lanzamiento](release_notes/8_8.md), la tabla de contenidos hará desplazarse alrededor del documento con facilidad. Si está leyendo un documento extenso y desea volver hacia arriba, presione la tecla <kbd>AvPag</kbd> para visualizar el botón `Ir arriba` que aparecerá en la parte superior de su pantalla.
 
-Las secciones principales del sitio de documentación son:
+Las secciones principales de la plataforma de documentación son las siguientes:
 
 * **Guías**: que cubren formas específicas de configurar y usar Rocky Linux.
 * **Libros**: son información más detallada basada en un área específica.
-* **Labs**: es 'de vuelta a la escuela', ¡pero estos tutoriales te encantarán!
-* **Gemas**: Se pueden compartir algunos consejos comunes de script o uso de comandos aquí
-* **Notas de lanzamiento**: Cubrimientos notas de lanzamiento Rocky Linux e información de actualización de versión
-* **Rocky Linux**: Enlace salto de página web oficial
+* **Labs**: Es casi como vuelta a clases ¡Pero les prometemos que les encantarán!
+* **Gemas**: Para conocer y compartir pequeños scripts o tips de uso general del sistema.
+* **Notas de lanzamiento**: Información sobre los lanzamientos actualizaciones y versiones de Rocky Linux
+* **Rocky Linux**: Link al sitio oficial
 
-### Múltiples idiomas
+### Idiomas Múltiples
 
-Por supuesto que no todos tienen Inglés como su primer idioma! En Rocky Linux queremos hacer el sitio de documentación lo más accesible posible para todos—  *las traducciones a diferentes idiomas son una parte importante de ese*. Si haces clic en el (símbolo común) selector de idioma en el menú superior verás los idiomas en los que está disponible el sitio web hay dos partes de esto: Hay dos partes de esto:
+¡Por supuesto que no todo el mundo habla inglés como su idioma principal! En Rocky Linux queremos hacer el sitio de documentación lo más accesible posible para todas las personas. —  *las traducciones a diferentes idiomas son una parte fundamental para lograr este objetivo. *. Si haces clic en el selector de idioma en el menú superior verás todos los idiomas disponibles en este momento. Hay dos partes de esto:
 
-1. Localización de la interfaz del sitio web: si eliges otro idioma, por ejemplo Francia, notará que la interfaz, por ejemplo los navegadores 'Siguiente' y 'Anteriores', será localizada.
-1. Contenido: la traducción del contenido es, obviamente, una tarea (significativa) continua. Todavía no todo el contenido está traducido a todos los idiomas. Todas las páginas que hayan sido traducidas (a la lengua seleccionada) se verán en el idioma elegido, aquellos que no hayan accedido al idioma por defecto en inglés. Si desea contribuir a la comunidad a través de las traducciones, al equipo de documentación le encantaría saber de usted — vea abajo para más detalles.
+1. Regionalización de la interfaz del sitio web: si se elige otro idioma, observará que los botones de navegación  'Siguiente' y 'Anteriores', estarán en el idioma elegido.
+1. Naturalmente la traducción de nuestro sitio es un trabajo en curso y constante. No todo el contenido actual está traducido a todos los idiomas disponibles aun. Así que todas las páginas que han sido traducidas a tu idioma de preferencia se mostrarán en dicho idioma excepto las que aun estén pendientes de traducción que, por defecto, se mostrarán en el idioma inglés. Si desea contribuir a la comunidad a través de las traducciones, al equipo de documentación le encantaría saber de usted — vea abajo para más detalles.
 
-!!! note "Nota"
+!!! Observación:
 
-    No todas las funcionalidades pueden estar disponibles en todos los idiomas, esto es una limitación de los módulos MkDocs subyacentes disponibles.
+    Debido a una limitación inherente a MkDocs,  puede que algunas funciones de la plataforma no estén disponibles en todos los idiomas.
 
-### Usando Búsqueda
+### Utilizando la búsqueda:
 
-Si desea encontrar rápidamente información específica/documento, el sitio de documentación tiene una capacidad de búsqueda de texto completo. Simplemente comience a escribir en el campo de entrada "Buscar" en la barra de menú superior y el sitio devolverá los resultados de la búsqueda.
+La plataforma cuenta con una función de búsqueda integral. Puede utilizarla para buscar información específica de manera rápida. Simplemente comience a escribir en el campo de entrada "Buscar" en la barra de menú superior y el sitio devolverá los resultados de la búsqueda.
 
 Para abrir una página en los resultados de la búsqueda simplemente haga clic (o toque en el móvil) en la página deseada en la lista mostrada.
 
-## Primera vez
+## Primeros Pasos
 
-Si esta es su primera vez en visitar el sitio de documentación de Rocky Linux, es probable que usted sea nuevo en Rocky Linux y usted está intentando instalarlo! No hay problema, salta a la página [Instalar Rocky Linux](guides/installation.md) para instrucciones detalladas.
+Si esta es su primera vez visitando esta plataforma de documentación puede que sea porque está necesitando encontrar información relacionada con la instalación y/o el despliegue de Rocky Linux. No hay problema, puede visitar [Instalar Rocky Linux](guides/installation.md) Para ver más información detallada al respecto.
 
-Si se queda atascado y tiene una pregunta la comunidad Rocky Linux está ahí para ayudar. Visita el [foro de la comunidad](https://forums.rockylinux.org) y puedes buscar una solución y publicar tus propias preguntas a la comunidad.
+Pero si le llegan a surgir preguntas que no se encuentran cubiertas, puede acudir a la comunidad de Rocky Linux para pedir ayuda. Visite el [foro de la comunidad](https://forums.rockylinux.org) Para consultas y preguntas a la comunidad.
 
-## Contribuyendo
+## Como contribuir al proyecto
 
-¿Has encontrado algo que falta? ¿Has encontrado un error? ¿Te estás preguntando cómo crear un documento propio, o cómo arreglar cosas aquí? ¿Recuerdas cómo dijimos que *tú* eras la comunidad de Rocky? Bueno, eso significa que *tú* eres importante para nosotros y queremos que te unas a nosotros, si lo desea, y ayudar a mejorar esta documentación. Si estás interesado en esto, ve a nuestra [Guía de Donaciones](https://github.com/rocky-linux/documentation/blob/main/README.md) para averiguar cómo puedes hacer justo eso!
+¿Has encontrado algo que falta? ¿Has encontrado un error? ¿Te estás preguntando cómo crear un documento propio, o cómo arreglar cosas aquí? ¿Recuerda cuando dijimos que *usted* forma parte de la comunidad de Rocky? Bueno, eso significa que *usted* es importante para nosotros y queremos que se una, si lo desea, para, entre todos, mejorar esta documentación. ¡Si le resulta de interés, visite nuestra [Guía Para Contribuciones](https://github.com/rocky-linux/documentation/blob/main/README.md) para aprender como contribuir!
