@@ -13,10 +13,10 @@ Dans ce guide, nous allons examiner le processus d'acquisition d'une arborescenc
 
 !!! warning "Les reconstructions du noyau ne sont ni recommandées ni prises en charge pour Rocky Linux. Avant de construire un noyau personnalisé ou même de l'envisager, posez-vous les questions suivantes :"
 
-    * La fonctionnalité dont vous avez besoin est-elle disponible en installant un module de noyau à partir d'[elrepo](https://elrepo.org)?
+    * La fonctionnalité dont vous avez besoin est-elle disponible en installant un module de noyau à partir d'[elrepo](https://elrepo.org) ?
     * La fonctionnalité dont vous avez besoin est-elle disponible sous la forme d'un module distinct du noyau lui-même ?
-    * Rocky Linux et la plupart des autres dérivés d'EL ont été conçus pour fonctionner comme un environnement complet. Le remplacement de composants critiques peut avoir une incidence sur le fonctionnement du système.
-    * La plupart des utilisateurs n'ont pas besoin de construire leur propre noyau. Il se peut que vous ayez simplement besoin d'un module/pilote de noyau ou de construitre votre propre module de noyau (kmod/dkms)
+    * Rocky Linux et la plupart des autres dérivés d'Enterprise Linux ont été conçus pour fonctionner comme un environnement complet. Le remplacement de composants critiques peut avoir une incidence sur le fonctionnement du système.
+    * La plupart des utilisateurs n'ont pas besoin de construire leur propre noyau. Il se peut que vous ayez simplement besoin d'un module/pilote de noyau ou de construitre votre propre module de noyau (kmod/dkms).
 
     Dernier avertissement : Si vous cassez le noyau, vous êtes responsable de la résolution des problèmes qui en résultent sur votre système.
 
