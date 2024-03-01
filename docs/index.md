@@ -1,5 +1,6 @@
 ---
 title: Home
+contributors: [translators](https://crowdin.com/project/rockydocs/activity-stream)
 ---
 
 # Rocky Linux Documentation
