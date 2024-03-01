@@ -152,7 +152,7 @@ $ sudo cfdisk /dev/sda
 The preparation, without _LVM_, of the physical media goes through five steps:
 
 * Setting up the physical disk;
-* Partitioning of the volumes (geographical division of the disk, possibility of installing several systems, ...);
+* Partitioning of the volumes (division of the disk, possibility of installing several systems, ...);
 * Creation of the file systems (allows the operating system to manage the files, the tree structure, the rights, ...);
 * Mounting of file systems (registration of the file system in the tree structure);
 * Manage user access.
