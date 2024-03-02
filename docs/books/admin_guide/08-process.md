@@ -295,8 +295,8 @@ The columns represent:
 
 1. job number
 2. the order that the processes run
-- a `+` : this process is the next process to run by default with `fg` or `bg`  
-- a `-` : this process is the next process to take the `+`   
+- a `+` : The process selected by default for the `fg` and `bg` commands when no job number is specified
+- a `-` : This process is the next process to take the `+`   
 3.  _Running_ (running process) or _Stopped_ (suspended process)  
 4. the command
 
