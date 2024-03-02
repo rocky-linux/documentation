@@ -24,10 +24,10 @@ All commands in this document are executed using **root(uid=0)**.
 
 ### Install and configure `bind`
 
-First, install BIND
+First, install BIND:
 
 ```bash
-dnf -y install bind bind-utils
+Shell(192.168.100.7) > dnf -y install bind bind-utils
 ```
 
 Next, edit `/etc/named.conf`:
@@ -121,7 +121,7 @@ dns.rockylinux.me.      86400   IN      A       192.168.100.7
 
 ### Install and configure MariaDB
 
-First, lets install MariaDB
+Lets now install MariaDB:
 
 ```bash
 Shell(192.168.100.7) > sudo dnf install mariadb-server
@@ -168,7 +168,7 @@ Mysql > grant all privileges on *.* to 'mailrl'@'%' with grant option;
 #### Create tables and insert data
 
 ```sql
-# /usr/local/mysql/bin/mysql -u mailrl --password="mail.rockylinux.me"
+Shell(192.168.100.7) > mysql -u mailrl --password="mail.rockylinux.me"
 
 Mysql > create database mailserver;
 
@@ -220,14 +220,14 @@ In the SHA-2 hashing standard, the number in the algorithm refers to the digest 
 It is well known that in Rocky Linux 8 and other RHEL 8 variants, the algorithm used to encrypt user passwords is SHA-512.
 
 ```bash
-# grep -i method /etc/login.defs
+Shell(192.168.100.7) > grep -i method /etc/login.defs
 ENCRYPT_METHOD SHA512
 ```
 
 We can see its structure in the /etc/shadow file:
 
 ```bash
-# grep -i root /etc/shadow | cut -f 2 -d ":"
+Shell(192.168.100.7) > grep -i root /etc/shadow | cut -f 2 -d ":"
 $6$8jpmvCw8RqNfHYW4$pOlsEZG066eJuTmNHoidtvfWHe/6HORrKkQPwv4eyFxqGXKEXhep6aIRxAtv7FDDIq/ojIY1SfWAQkk7XACeZ0
 ```
 
@@ -270,7 +270,7 @@ These are the Postfix binaries:
 #### Explanation of the /etc/postfix/main.cf file
 
 ```bash
-# egrep -v "^#|^$" /etc/postfix/main.cf
+Shell(192.168.100.7) > egrep -v "^#|^$" /etc/postfix/main.cf
 compatibility_level = 2
 queue_directory = /var/spool/postfix
 command_directory = /usr/sbin
@@ -336,13 +336,7 @@ Except for the parameter items mentioned or displayed above, some parameters are
 
 #### Modify /etc/postfix/main.cf
 
-With the packages installed, you need to configure Postfix:
-
-```bash
-vim /etc/postfix/main.cf
-```
-
-Make the following changes:
+With the packages installed, you need to configure Postfix. Make the following changes in `/etc/postfix/main.cf`:
 
 ```bash
 myhostname = mail.rockylinux.me
@@ -436,6 +430,7 @@ query = SELECT 1 FROM virtual_users WHERE email='%s'
 ```
 
 In `/etc/postfix/mysql-virtual-alias-maps.cf`:
+
 ```bash
 user = mailrl
 password = mail.rockylinux.me
@@ -445,6 +440,7 @@ query = SELECT destination FROM virtual_aliases WHERE source='%s'
 ```
 
 In `/etc/postfix/mysql-virtual-email2email.cf`:
+
 ```bash
 user = mailrl
 password = mail.rockylinux.me
@@ -460,17 +456,17 @@ query = SELECT email FROM virtual_users WHERE email='%s'
 Testing Postfix configure:
 
 ```bash
-# systemctl start postfix.service
-# postfix check
-# postfix status
+Shell(192.168.100.7) > systemctl start postfix.service
+Shell(192.168.100.7) > postfix check
+Shell(192.168.100.7) > postfix status
 
-# postmap -q mail.rockylinux.me mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
-# echo $?
+Shell(192.168.100.7) > postmap -q mail.rockylinux.me mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
+Shell(192.168.100.7) > echo $?
 1
-# postmap -q frank@mail.rockylinux.me mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
-# echo $?
+Shell(192.168.100.7) > postmap -q frank@mail.rockylinux.me mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
+Shell(192.168.100.7) > echo $?
 1
-# postmap -q all@mail.rockylinux.me mysql:/etc/postfix/mysql-virtual-alias-maps.cf
+Shell(192.168.100.7) > postmap -q all@mail.rockylinux.me mysql:/etc/postfix/mysql-virtual-alias-maps.cf
 frank@mail.rockylinux.me,leeo@mail.rockylinux.me
 ```
 
@@ -517,7 +513,7 @@ dnf -y install dovecot dovecot-devel dovecot-mysql
 Without changing any files, the default Dovecot directory structure is as follows:
 
 ```bash
-$ tree /etc/dovecot/
+Shell(192.168.100.7) > tree /etc/dovecot/
 /etc/dovecot/
 ├── conf.d
 │   ├── 10-auth.conf
@@ -581,7 +577,7 @@ The file description is as follows:
 First, edit the Dovecot configuration:
 
 ```bash
-vim /etc/dovecot/dovecot.conf
+Shell(192.168.100.7) > vim /etc/dovecot/dovecot.conf
 ```
 
 Include the following:
@@ -594,7 +590,7 @@ listen = 192.168.100.6
 Next, edit the mail storage configuration:
 
 ```bash
-vim /etc/dovecot/conf.d/10-mail.conf
+Shell(192.168.100.7) > vim /etc/dovecot/conf.d/10-mail.conf
 ```
 
 Include the following:
@@ -611,7 +607,7 @@ mail_privileged_group = mail
 Create the mail directory:
 
 ```bash
-mkdir -p /var/mail/vhosts/rockylinux.me
+Shell(192.168.100.7) > mkdir -p /var/mail/vhosts/rockylinux.me
 ```
 
 `rockylinx.me` refers to the domain name you are hosting. 
@@ -619,14 +615,14 @@ mkdir -p /var/mail/vhosts/rockylinux.me
 Add the Dovecot user and home directory:
 
 ```bash
-groupadd -g 2000 vmail
-useradd -g vmail -u 2000 -d /var/mail/ vmail
+Shell(192.168.100.7) > groupadd -g 2000 vmail
+Shell(192.168.100.7) > useradd -g vmail -u 2000 -d /var/mail/ vmail
 ```
 
 Change owner and group:
 
 ```bash
-chown -R vmail:vmail /var/mail/
+Shell(192.168.100.7) > chown -R vmail:vmail /var/mail/
 ```
 
 Cancel the relevant comments on the file:
@@ -651,7 +647,7 @@ userdb {
 Edit the `/etc/dovecot/dovecot-sql.conf.ext` file:
 
 ```bash
-vim /etc/dovecot/dovecot-sql.conf.ext
+Shell(192.168.100.7) > vim /etc/dovecot/dovecot-sql.conf.ext
 ```
 
 Add the following contents:
@@ -665,19 +661,19 @@ password_query = SELECT password FROM virtual_users WHERE email='%u'
 
 Now change the owner and group:
 ```bash
-chown -R vmail:dovecot /etc/dovecot
+Shell(192.168.100.7) > chown -R vmail:dovecot /etc/dovecot
 ```
 
 Then change folder permissions:
 
 ```bash
-chmod -R 770 /etc/dovecot
+Shell(192.168.100.7) > chmod -R 770 /etc/dovecot
 ```
 
 Now, edit the authorization configuration file:
 
 ```bash
-vim /etc/dovecot/conf.d/10-auth.conf
+Shell(192.168.100.7) > vim /etc/dovecot/conf.d/10-auth.conf
 ```
 
 In the configuration file, add the following:
@@ -689,7 +685,7 @@ auth_mechanisms = plain login
 ```
 
 ```bash
-vim /etc/dovecot/conf.d/10-master.conf
+Shell(192.168.100.7) > vim /etc/dovecot/conf.d/10-master.conf
 ```
 
 In the configuration file, add the following:
@@ -726,7 +722,7 @@ service auth-worker {
 Next enable Dovecot:
 
 ```bash
-systemctl enable --now dovecot
+Shell(192.168.100.7) > systemctl enable --now dovecot
 ```
 
 !!! info 
@@ -736,12 +732,7 @@ systemctl enable --now dovecot
 You can check the listening ports using the following command:
 
 ```bash
-ss -tulnp
-```
-
-Below is a sample output from the author's system:
-
-```
+Shell(192.168.100.7) > ss -tulnp
 Netid    State     Recv-Q    Send-Q                           Local Address:Port       Peer Address:Port   Process
 udp      UNCONN    0         0                                    127.0.0.1:323             0.0.0.0:*       users:(("chronyd",pid=715,fd=5))
 udp      UNCONN    0         0                                        [::1]:323                [::]:*       users:(("chronyd",pid=715,fd=6))
