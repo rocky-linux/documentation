@@ -47,7 +47,7 @@ include "/etc/named.root.key";
 Check if the BIND configuration is correct.
 
 ```bash
-named-checkconf /etc/named.conf
+Shell(192.168.100.7) > named-checkconf /etc/named.conf
 ```
 
 Now, edit `/etc/named.rfc1912.zones`:
@@ -68,8 +68,8 @@ zone "rockylinux.me" IN {
 First, initalize BIND:
 
 ```bash
-# cp -p /var/named/named.localhost /var/named/rockylinux.localhost
-# vim /var/named/rockylinux.localhost
+Shell(192.168.100.7) > cp -p /var/named/named.localhost /var/named/rockylinux.localhost
+Shell(192.168.100.7) > vim /var/named/rockylinux.localhost
 $TTL 1D
 @       IN SOA   rockylinux.me. rname.invalid. (
                                         0       ; serial
@@ -82,7 +82,7 @@ $TTL 1D
 dns     A       192.168.100.7
 mail    A       192.168.100.6
 
-# named-checkzone  rockylinux.me  /var/named/rockylinux.localhost
+Shell(192.168.100.7) > named-checkzone  rockylinux.me  /var/named/rockylinux.localhost
 zone rockylinux.me/IN: loaded serial 0
 OK
 ```
@@ -90,17 +90,17 @@ OK
 Now, start BIND:
 
 ```bash
-systemctl start named.service
+Shell(192.168.100.7) > systemctl start named.service
 ```
 
 We can test if our server's DNS resolution is working:
 
 ```bash
-# systemctl start named.service
-# nmcli connection modify ens160 ipv4.dns "192.168.100.7,8.8.8.8"
-# systemctl restart NetworkManager.service
+Shell(192.168.100.7) > systemctl start named.service
+Shell(192.168.100.7) > nmcli connection modify ens160 ipv4.dns "192.168.100.7,8.8.8.8"
+Shell(192.168.100.7) # systemctl restart NetworkManager.service
 
-# dig mail.rockylinux.me
+Shell(192.168.100.7) > dig mail.rockylinux.me
 ...
 ;mail.rockylinux.me.            IN      A
 
@@ -119,40 +119,18 @@ dns.rockylinux.me.      86400   IN      A       192.168.100.7
 
     Our domain name cannot be our server's hostname.
 
-### Install and configure MySQL
+### Install and configure MariaDB
 
-First, lets install MySQL from source:
+First, lets install MariaDB
 
 ```bash
-# groupadd mysql && useradd -r -g mysql -s /sbin/nologin mysql
-# id mysql
-uid=995(mysql) gid=1000(mysql) groups=1000(mysql)
-# dnf config-manager --enable powertools
-# dnf -y install libaio ncurses-compat-libs ncurses-devel make cmake gcc bison git libtirpc-devel openssl  openssl-devel rpcgen wget tar gzip bzip2 zip unzip  gcc-toolset-12-gcc gcc-toolset-12-gcc-c++ gcc-toolset-12-binutils gcc-toolset-12-annobin-annocheck gcc-toolset-12-annobin-plugin-gcc
-# wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-boost-8.0.33.tar.gz  && tar -zvxf mysql-boost-8.0.33.tar.gz  -C /usr/local/src/
-
-# cd /usr/local/src/mysql-8.0.33 && mkdir build && cd build && cmake .. \
--DDEFAULT_CHARSET=utf8mb4 \
--DDEFAULT_COLLATION=utf8mb4_0900_ai_ci \
--DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
--DCMAKE_BUILD_TYPE=RelWithDebInfo \
--DENABLED_LOCAL_INFILE=1 \
--DMYSQL_TCP_PORT=3306 \
--DWITH_BOOST=/usr/local/src/mysql-8.0.33/boost/ \
--DMYSQL_DATADIR=/usr/local/mysql/data \
-&& make && make install 
+Shell(192.168.100.7) > sudo dnf install mariadb-server
 ```
 
 Then, initialize the MySQL database:
 
 ```bash
-# chown -R mysql:mysql /usr/local/mysql
-# chmod -R 755 /usr/local/mysql
-# /usr/local/mysql/bin/mysqld  --initialize  --user=mysql  --basedir=/usr/local/mysql  --datadir=/usr/local/mysql/data
-2023-07-14T14:46:49.474684Z 0 [System] [MY-013169] [Server] /usr/local/mysql/bin/mysqld (mysqld 8.0.33) initializing of server in progress as process 42038
-2023-07-14T14:46:49.496908Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
-2023-07-14T14:46:50.210118Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
-2023-07-14T14:46:51.305307Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: pkqaXRuTn1/N
+Shell(192.168.100.7) > mysql_secure_installation
 ```
 
 Next, edit the `/etc/my.cnf` configuration as follows: 
@@ -172,11 +150,11 @@ user=mysql
 log-error=/usr/local/mysql/data/mysql_log.error
 ```
 
-Now, log into MySQL:
+Now, enable and log into MySQL:
 
 ```bash
-/usr/local/mysql/bin/mysqld_safe  --user=mysql &
-/usr/local/mysql/bin/mysql -u root --password="pkqaXRuTn1/N"
+Shell(192.168.100.7) > systemctl enable --now mariadb
+Shell(192.168.100.7) > mysql -u root -p
 ```
 
 ```sql
@@ -186,10 +164,6 @@ Mysql > create user 'mailrl'@'%' identified by 'mail.rockylinux.me';
 
 Mysql > grant all privileges on *.* to 'mailrl'@'%' with grant option;
 ```
-
-!!! info 
-
-    You don't have to use the same method as the author. Installing MySQL from another repository or container is also possible.
 
 #### Create tables and insert data
 
