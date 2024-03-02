@@ -405,9 +405,9 @@ You can't do much with a computer these days without network connectivity. Wheth
     
     ### IP Address
 
-    In the previous `/etc/sysconfig/network-scripts/ifcfg-enp1s0` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. The configred system is set to a static IP address scheme.
+    In the previous `/etc/sysconfig/network-scripts/ifcfg-enp1s0` listing, we see that the value of the `BOOTPROTO` parameter or key is set to `none`. The configured system is set to a static IP address scheme.
 
-    If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all that information will be automaically obtained from any available DHCP server.
+    If instead you want to configure the system to use a dynamic IP address scheme, you will have to change the value of the `BOOTPROTO` parameter from `none` to `dhcp` and also remove the `IPADDR`, `PREFIX` and `GATEWAY` lines. This is necessary because all that information will be automatically obtained from any available DHCP server.
 
     To configure a static IP address attribution, set the following:
 
