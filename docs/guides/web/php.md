@@ -131,6 +131,7 @@ The example below installs PHP with the modules usually installed with it.
 	```bash
 	sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
 	```
+	
 	During installation you will be prompted to import GPG keys for the epel9 (Extra Packages for Enterprise Linux 9) and Remi repositories, enter y to import the keys:
 
 	```bash
