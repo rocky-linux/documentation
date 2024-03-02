@@ -15,7 +15,7 @@ You can't do much with a computer these days without network connectivity. Wheth
 ## Prerequisites
 
 * A certain amount of comfort operating from the command line
-* Elevated or administrative privileges on the system (For example root, `sudo` and so on)
+* Elevated or administrative privileges on the system (for example root, `sudo` and so on)
 * Optional: familiarity with networking concepts
 
 === "9"
@@ -27,7 +27,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     ## Prerequisites
 
     * A certain amount of comfort operating from the command line
-    * Elevated or administrative privileges on the system (For example root, `sudo` and so on)
+    * Elevated or administrative privileges on the system (for example root, `sudo` and so on)
     * Optional: familiarity with networking concepts
 
     ## Using NetworkManager service
