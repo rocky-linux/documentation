@@ -516,7 +516,7 @@ You can't do much with a computer these days without network connectivity. Wheth
     [user@server ~]$ sudo nmcli connection modify enp1s0 ipv4.method manual
     ```
 
-    !!!tip "When does the connection get updated?"
+    !!! tip "When does the connection get updated?"
 
         `nmcli connection modify` will not modify the *runtime* configuration, but update the `/etc/sysconfig/network-scripts` configuration files with the appropriate values based on what you have told `nmcli` to configure.
 
