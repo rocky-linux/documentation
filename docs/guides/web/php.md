@@ -39,7 +39,7 @@ Rocky Linux, like its upstream, offers many versions of the language. Some of th
 
 To obtain a list of available versions, simply enter the following command:
 
-=== "9.3"
+=== "9.3 PHP module list"
 
 	```bash
 	$ sudo dnf module list php
@@ -71,7 +71,7 @@ To obtain a list of available versions, simply enter the following command:
 	sudo dnf module enable php:remi-8.3
 	```
 
-=== "8.9"
+=== "8.9 PHP module list"
 
 	```bash
 	$ sudo dnf module list php
@@ -126,7 +126,7 @@ The installation of PHP is relatively trivial, since it consists of installing t
 
 The example below installs PHP with the modules usually installed with it.
 
-=== "9.3"
+=== "9.3 install PHP"
 
 	```bash
 	sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
@@ -156,7 +156,7 @@ The example below installs PHP with the modules usually installed with it.
 	Complete!
 	```
 
-=== "8.9"
+=== "8.9 install PHP"
 
 	```bash
 	sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
@@ -164,7 +164,7 @@ The example below installs PHP with the modules usually installed with it.
 
 You can check that the installed version corresponds to the expected one:
 
-=== "9.3"
+=== "9.3 check PHP version"
 
 	```bash
 	$ php -v
@@ -174,7 +174,7 @@ You can check that the installed version corresponds to the expected one:
 	with Zend OPcache v8.3.2, Copyright (c), by Zend Technologies
 	```
 
-=== "8.9"
+=== "8.9 check PHP version"
 
 	```bash
 	$ php -v
