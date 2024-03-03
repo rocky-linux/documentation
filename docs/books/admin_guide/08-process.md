@@ -409,7 +409,7 @@ $ pkill -t pts/1
 
 The function of this command is roughly the same as that of the `pkill` command. The usage is - `killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. The default signal is _SIGTERM_.
 
-| options | Description |
+| Options | Description |
 | :--- | :--- |
 | `-l` | list all known signal names |
 | `-i` | ask for confirmation before killing |
@@ -419,6 +419,42 @@ Example:
 
 ```
 $ killall tomcat
+```
+
+### `pstree` command
+
+This command displays the progress in a tree style and its usage is - `pstree [option]`.
+
+| Option | Description |
+| :--- | :--- |
+| `-p` | Displays the PID of the process |
+| `-n` | sort output by PID |
+| `-h` | highlight current process and its ancestors |
+| `-u` | show uid transitions |
+
+```bash
+$ pstree -pnhu
+systemd(1)─┬─systemd-journal(595)
+           ├─systemd-udevd(625)
+           ├─auditd(671)───{auditd}(672)
+           ├─dbus-daemon(714,dbus)
+           ├─NetworkManager(715)─┬─{NetworkManager}(756)
+           │                     └─{NetworkManager}(757)
+           ├─systemd-logind(721)
+           ├─chronyd(737,chrony)
+           ├─sshd(758)───sshd(1398)───sshd(1410)───bash(1411)───pstree(1500)
+           ├─tuned(759)─┬─{tuned}(1376)
+           │            ├─{tuned}(1381)
+           │            ├─{tuned}(1382)
+           │            └─{tuned}(1384)
+           ├─agetty(763)
+           ├─crond(768)
+           ├─polkitd(1375,polkitd)─┬─{polkitd}(1387)
+           │                       ├─{polkitd}(1388)
+           │                       ├─{polkitd}(1389)
+           │                       ├─{polkitd}(1390)
+           │                       └─{polkitd}(1392)
+           └─systemd(1401)───(sd-pam)(1404)
 ```
 
 ### Orphan process and zombie process
