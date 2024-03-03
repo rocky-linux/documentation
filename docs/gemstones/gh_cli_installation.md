@@ -1,0 +1,57 @@
+
+---
+title: Installing and Setting Up GitHub CLI on Rocky Linux 9.3
+author: Wale Soyinka
+tags:
+  - GitHub CLI
+  - gh
+  - git
+  - github
+---
+
+## Introduction 
+
+This gemstone covers the installation and basic setup of the GitHub CLI tool (gh) on Rocky Linux 9.3, enabling users to interact with GitHub repositories directly from the command line.
+
+## Problem Description
+
+Users need a convenient way to interact with GitHub without leaving the command line environment.
+
+## Prerequisites 
+
+- A system running Rocky Linux 9.3.
+- Access to a terminal.
+- Basic familiarity with command line operations.
+
+## Solution Steps
+
+1. **Install GitHub CLI Using Script**:
+   Use the provided script to install `gh`.
+   ```
+   curl -fsSL https://cli.github.com/packages/rpm/gh-cli.repo | sudo tee /etc/yum.repos.d/github-cli.repo
+   sudo dnf -y install gh
+   ```
+
+2. **Verify Installation**:
+   Ensure that `gh` is correctly installed.
+   ```
+   gh --version
+   ```
+
+3. **Authenticate with GitHub**:
+   Log in to your GitHub account.
+   ```
+   gh auth login
+   ```
+   Follow the prompts to authenticate.
+
+## Conclusion
+
+You should now have the GitHub CLI installed and set up on your Rocky Linux 9.3 system, allowing you to interact with GitHub repositories directly from your terminal.
+
+## Additional Information (Optional)
+
+- GitHub CLI provides various commands like `gh repo clone`, `gh pr create`, `gh issue list`, etc.
+- For more detailed usage, refer to the [official GitHub CLI documentation](https://cli.github.com/manual/).
+
+
