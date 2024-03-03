@@ -40,7 +40,7 @@ Shell classification:
     * zsh (Z-shell) - For more detailed information, please [read here](https://zsh.sourceforge.io/).
 * C Shell - This family includes but is not limited to:
     * csh
-    * tcsh - For more detailed information, please [read here](https://www.tcsh.org/)
+    * tcsh - For more detailed information, please [visit this website](https://www.tcsh.org/)
 * Power Shell
 
 ## Fence Code Block style description
