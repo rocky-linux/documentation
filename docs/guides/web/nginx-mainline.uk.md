@@ -205,6 +205,7 @@ sudo mkdir /usr/share/nginx/html/www
 ```bash
 sudo groupadd www
 ```
+
 Потім створюємо користувача:
 
 ```bash
@@ -239,7 +240,7 @@ nginx -t
 
 Якщо ви отримали наступне повідомлення про успіх, все пройшло правильно:
 
-```
+```nginx
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```

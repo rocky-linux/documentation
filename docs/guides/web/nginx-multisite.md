@@ -48,6 +48,7 @@ This is everything you'll need:
 ## Setting up Your Folders and Test Sites
 
 ### The website folders
+
 First, you're going to need a couple of folders for your website files. When you first install Nginx, all of the "demo" website files will be in `/usr/share/nginx/html`. That's fine if you're hosting just the one site, but we're going to get fancy. Ignore the `html` directory for now, and just navigate its parent folder:
 
 ```bash
@@ -159,13 +160,13 @@ nano nginx.conf
 
 First, find the line that looks like this:
 
-```
+```bash
 include /etc/nginx/conf.d/*.conf;
 ```
 
 And **add** this bit just below it:
 
-```
+```bash
 include /etc/nginx/sites-enabled/*.conf;
 ```
 
@@ -173,7 +174,7 @@ That will load in our website configuration files when they're ready to go live.
 
 Now head down to the section that looks like this, and either **comment it out** with the hash sign ++#++, or delete it if you feel so inclined:
 
-```
+```bash
 server {
     listen       80;
     listen       [::]:80;
@@ -195,7 +196,7 @@ server {
 
 What that would look like "commented out":
 
-```
+```bash
 #server {
 #    listen       80;
 #    listen       [::]:80;
@@ -235,7 +236,6 @@ Now let's make your test websites available on the server. As previously mention
 
     However, if you delete a link to the target, nothing at all happens to the original file. This trick is what allows us to put the website configuration files in a working directory (`sites-available`), and then "activate" them by linking to those files from `sites-enabled`.
 
-
 I'll show you what I mean. Make a configuration file for the first website like so:
 
 ```bash
@@ -244,7 +244,7 @@ nano sites-available/test.server.site1.conf
 
 Now paste in this code. This is about the simplest working Nginx configuration you can have, and should work fine for most static HTML websites:
 
-```
+```bash
 server {
     listen 80;
     listen [::]:80;
@@ -338,14 +338,14 @@ On Windows, the hosts file is located at `C:\Windows\system32\drivers\etc\hosts`
 
 So if you're working on a Rocky Linux computer, and are running your Nginx server on the same machine, you'd just open up the file, and define the domains/IP addresses you want. If you're running your workstation and test server on the same machine, that'd be:
 
-```
+```table
 127.0.0.1           site1.server.test
 127.0.0.1           site2.server.test
 ```
 
 If you're running your Nginx server on another machine on the network, just use the address of that machine, eg.:
 
-```
+```table
 192.168.0.45           site1.server.test
 192.168.0.45           site2.server.test
 ```

@@ -49,6 +49,7 @@ Questo è tutto ciò di cui hai bisogno:
 ## Impostazione delle Cartelle e dei Siti di Test
 
 ### Le cartelle del sito web
+
 In primo luogo, hai bisogno di un paio di cartelle per i file del tuo sito web. Quando si installa Nginx per la prima volta, tutti i file del sito web "demo" si trovano in `/usr/share/nginx/html`. Questo va bene se state ospitando un solo sito, ma noi ci stiamo sbizzarrendo. Ignorare la cartella `html` per ora e navigare solo nella sua cartella madre:
 
 ```bash
@@ -161,13 +162,13 @@ nano nginx.conf
 
 Per prima cosa, trovare la linea che assomiglia a questa:
 
-```
+```bash
 include /etc/nginx/conf.d/*.conf;
 ```
 
 E **aggiungere** questo pezzo appena sotto:
 
-```
+```bash
 include /etc/nginx/sites-enabled/*.conf;
 ```
 
@@ -175,7 +176,7 @@ Questo caricherà i file di configurazione del nostro sito web quando saranno pr
 
 Ora scendete fino alla sezione che appare come questa e **commentatela** con il segno di hash ++#++, oppure cancellatela se preferite:
 
-```
+```bash
 server {
     listen       80;
     listen       [::]:80;
@@ -197,7 +198,7 @@ server {
 
 Come sarebbe "commentato":
 
-```
+```bash
 #server {
 #    listen       80;
 #    listen       [::]:80;
@@ -237,7 +238,6 @@ Ora rendiamo disponibili i siti web di prova sul server. Come già accennato in 
     
     Tuttavia, se si elimina un collegamento alla destinazione, non succede nulla al file originale. Questo trucco ci permette di mettere i file di configurazione del sito web in una cartella di lavoro (`sites-available`) e poi di "attivarli" collegandosi a quei file da `sites-enabled`.
 
-
 Vi faccio vedere cosa intendo. Creare un file di configurazione per il primo sito web in questo modo:
 
 ```bash
@@ -246,7 +246,7 @@ nano sites-available/test.server.site1.conf
 
 Ora incollate questo codice. Questa è la configurazione di Nginx più semplice che si possa avere e dovrebbe funzionare bene per la maggior parte dei siti web HTML statici:
 
-```
+```bash
 server {
     listen 80;
     listen [::]:80;
@@ -340,14 +340,14 @@ Su Windows, il file hosts si trova in `C:\Windows\system32\drivers\etc\hosts` e 
 
 Quindi, se si lavora su un computer Rocky Linux e si esegue il server Nginx sulla stessa macchina, basta aprire il file e definire i domini/indirizzi IP desiderati. Se la workstation e il server di prova sono in esecuzione sulla stessa macchina, è così:
 
-```
+```table
 127.0.0.1           site1.server.test
 127.0.0.1           site2.server.test
 ```
 
 Se il server Nginx è in esecuzione su un'altra macchina della rete, è sufficiente utilizzare l'indirizzo di tale macchina, ad es.:
 
-```
+```table
 192.168.0.45           site1.server.test
 192.168.0.45           site2.server.test
 ```

@@ -35,11 +35,11 @@ PHP-FPM은 **더 나은 성능**을 제공하는 것 외에도 다음과 같은 
 
 ## PHP 버전 선택
 
-Rocky Linux는 상위 호환성을 유지하면서 언어의 여러 버전을 제공합니다. 일부 버전은 지원 기간이 종료되었지만, 새로운 PHP 버전과 호환되지 않는 기존 애플리케이션을 계속 호스팅하기 위해 유지되고 있습니다. 지원되는 버전을 선택하기 위해 php.net 웹사이트의 [지원되는 버전 ](https://www.php.net/supported-versions.php) 페이지를 참조하십시오
+Rocky Linux는 상위 호환성을 유지하면서 언어의 여러 버전을 제공합니다. 일부 버전은 지원 기간이 종료되었지만, 새로운 PHP 버전과 호환되지 않는 기존 애플리케이션을 계속 호스팅하기 위해 유지되고 있습니다. 지원되는 버전을 선택하기 위해 php.net 웹사이트의 [지원되는 버전](https://www.php.net/supported-versions.php) 페이지를 참조하십시오
 
 사용 가능한 버전 목록을 얻으려면 다음 명령을 입력하면 됩니다:
 
-```
+```bash
 $ sudo dnf module list php
 Rocky Linux 8 - AppStream
 Name         Stream          Profiles                           Summary                       
@@ -56,7 +56,7 @@ Rocky는 AppStream 저장소에서 다양한 PHP 모듈을 제공합니다.
 
 다음 명령을 입력하여 새로운 모듈을 활성화할 수 있습니다:
 
-```
+```bash
 sudo dnf module enable php:7.4
 ==============================================================================================
  Package               Architecture         Version               Repository             Size
@@ -88,13 +88,13 @@ PHP의 설치는 매우 간단합니다. 주요 패키지와 필요한 몇 가�
 
 아래 예시는 PHP와 일반적으로 함께 설치되는 모듈을 함께 설치하는 방법을 보여줍니다.
 
-```
-$ sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
+```bash
+sudo dnf install php php-cli php-gd php-curl php-zip php-mbstring
 ```
 
 설치된 버전이 기대한 버전과 일치하는지 확인할 수 있습니다:
 
-```
+```bash
 $ php -v
 PHP 7.4.19 (cli) (built: May  4 2021 11:06:37) ( NTS )
 Copyright (c) The PHP Group
@@ -110,36 +110,36 @@ CGI 모드에서 php 페이지를 서비스하려면 Apache 서버를 설치하�
 
 * 설치:
 
-```
-$ sudo dnf install httpd
+```bash
+sudo dnf install httpd
 ```
 
 * 활성화:
 
-```
-$ sudo systemctl enable httpd
-$ sudo systemctl start httpd
-$ sudo systemctl status httpd
+```bash
+sudo systemctl start httpd
+sudo systemctl status httpd
+sudo systemctl enable httpd
 ```
 
 * 방화벽 구성을 잊지 마세요:
 
-```
-$ sudo firewall-cmd --add-service=http --permanent
-$ sudo firewall-cmd --reload
+```bash
+sudo firewall-cmd --add-service=http --permanent
+sudo firewall-cmd --reload
 ```
 
 기본 가상 호스트(vhost)는 기본 설정으로 작동해야 합니다. PHP는 구성에 대한 요약 테이블을 생성하는 `phpinfo()` 함수를 제공합니다. 이 함수는 PHP가 올바르게 작동하는지 테스트하는 데 매우 유용합니다. 그러나 이러한 테스트 파일을 서버에 그대로 두지 않도록 주의해야 합니다. 이러한 파일은 인프라에 대한 엄청난 보안 위험을 표현합니다.
 
 `/var/www/html/info.php` 파일을 생성하세요 (`/var/www/html`은 기본 Apache 구성의 기본 가상 호스트 디렉토리입니다):
 
-```
+```php
 <?php
 phpinfo();
 ?>
 ```
 
-웹 브라우저를 사용하여 http://your-server-ip/info.php  페이지로 이동하여 서버가 올바르게 작동하는지 확인하세요.
+웹 브라우저를 사용하여 <http://your-server-ip/info.php>  페이지로 이동하여 서버가 올바르게 작동하는지 확인하세요.
 
 !!! warning "주의"
 
@@ -153,23 +153,23 @@ phpinfo();
 
 설치는 php-fpm 패키지로 제한됩니다:
 
-```
-$ sudo dnf install php-fpm
+```bash
+sudo dnf install php-fpm
 ```
 
 php-fpm은 시스템적인 측면에서 서비스이므로 활성화되고 시작되어야 합니다:
 
-```
-$ sudo systemctl enable php-fpm
-$ sudo systemctl start php-fpm
-$ sudo systemctl status php-fpm
+```bash
+sudo systemctl enable php-fpm
+sudo systemctl start php-fpm
+sudo systemctl status php-fpm
 ```
 
 ### 구성
 
 주요 구성 파일은 `/etc/php-fpm.conf`에 저장됩니다.
 
-```
+```bash
 include=/etc/php-fpm.d/*.conf
 [global]
 pid = /run/php-fpm/php-fpm.pid
@@ -185,7 +185,7 @@ daemonize = yes
 
 기본적으로 `/etc/php-fpm.d/www.conf`에 `www`라는 이름의 php 프로세스 풀이 선언됩니다.
 
-```
+```bash
 [www]
 user = apache
 group = apache
@@ -242,7 +242,7 @@ php-fpm 프로세스는 정적 또는 동적으로 관리할 수 있습니다.
 
 정적 모드에서는 자식 프로세스의 수가 `pm.max_children` 값에 의해 설정됩니다.
 
-```
+```bash
 pm = static
 pm.max_children = 10
 ```
@@ -253,7 +253,7 @@ pm.max_children = 10
 
 예시:
 
-```
+```bash
 pm = dynamic
 pm.max_children = 5
 pm.start_servers = 2
@@ -271,18 +271,17 @@ PHP-FPM은 `pm.max_requests`에 해당하는 요청을 처리한 프로세스를
 
     PHP-FPM의 운영 모드 구성은 웹 서버의 최적 동작을 보장하기 위해 필수적입니다.
 
-
 #### 프로세스 상태
 
 PHP-FPM은 Apache와 `mod_status` 모듈과 마찬가지로 프로세스 상태를 나타내는 페이지를 제공합니다.
 
 페이지를 활성화하려면 `pm.status_path` 지시문을 통해 액세스 경로를 설정하세요.
 
-```
+```bash
 pm.status_path = /status
 ```
 
-```
+```bash
 $ curl http://localhost/status_php
 pool:                 www
 process manager:      dynamic
@@ -306,7 +305,7 @@ slowlog 지시문은 시간이 `request_slowlog_timeout` 지시문의 값보다 
 
 생성된 파일의 기본 위치는 `/var/log/php-fpm/www-slow.log`입니다.
 
-```
+```bash
 request_slowlog_timeout = 5
 slowlog = /var/log/php-fpm/www-slow.log
 ```
@@ -319,7 +318,7 @@ Nginx의 기본 설정에는 PHP-FPM과 함께 작동하기 위해 필요한 구
 
 구성 파일 `fastcgi.conf` (또는 `fastcgi_params`)은 `/etc/nginx/` 아래에 위치합니다.
 
-```
+```bash
 fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
 fastcgi_param  QUERY_STRING       $query_string;
 fastcgi_param  REQUEST_METHOD     $request_method;
@@ -351,7 +350,7 @@ nginx가 `.php` 파일을 처리하려면 사이트 구성 파일에 다음 지�
 
 php-fpm이 포트 9000에서 수신하는 경우:
 
-```
+```php
 location ~ \.php$ {
   include /etc/nginx/fastcgi_params;
   fastcgi_pass 127.0.0.1:9000;
@@ -360,7 +359,7 @@ location ~ \.php$ {
 
 php-fpm이 유닉스 소켓에서 수신하는 경우:
 
-```
+```php
 location ~ \.php$ {
   include /etc/nginx/fastcgi_params;
   fastcgi_pass unix:/run/php-fpm/www.sock;
@@ -371,7 +370,7 @@ location ~ \.php$ {
 
 PHP 풀을 사용하기 위한 아파치의 구성은 매우 간단합니다. 예를 들어 `ProxyPassMatch` 지시문과 함께 프록시 모듈을 사용해야 합니다.
 
-```
+```apache
 <VirtualHost *:80>
   ServerName web.rockylinux.org
   DocumentRoot "/var/www/html/current/public"
@@ -393,7 +392,7 @@ PHP 풀을 사용하기 위한 아파치의 구성은 매우 간단합니다. �
 
 먼저, 다음 명령어를 사용하여 PHP 프로세스가 사용하는 평균 메모리 양을 알아야 합니다:
 
-```
+```bash
 while true; do ps --no-headers -o "rss,cmd" -C php-fpm | grep "pool www" | awk '{ sum+=$1 } END { printf ("%d%s\n", sum/NR/1024,"Mb") }' >> avg_php_proc; sleep 60; done
 ```
 
@@ -407,7 +406,7 @@ while true; do ps --no-headers -o "rss,cmd" -C php-fpm | grep "pool www" | awk '
 
 이러한 사용 사례에 특화된 `php-fpm`의 좋은 구성은 다음과 같을 것입니다:
 
-```
+```bash
 pm = dynamic
 pm.max_children = 50
 pm.start_servers = 12
@@ -434,22 +433,18 @@ pm.max_requests = 500
 
 정확하게 구성함으로써
 
-
-
-
-
 * 캐시할 PHP 스크립트의 수 (키의 수 + 최대 스크립트 수)
 * 캐시할 문자열의 수
 
 설치하려면:
 
-```
-$ sudo dnf install php-opcache
+```bash
+sudo dnf install php-opcache
 ```
 
 구성하기 위해 `/etc/php.d/10-opcache.ini` 구성 파일을 편집하세요:
 
-```
+```bash
 opcache.memory_consumption=128
 opcache.interned_strings_buffer=8
 opcache.max_accelerated_files=4000

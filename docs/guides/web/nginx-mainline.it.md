@@ -26,7 +26,7 @@ Ecco una breve panoramica dei modi in cui Nginx si distingue e delle sue caratte
 
 È fantastico! Quindi basta `sudo dnf install nginx`, giusto? Beh, non esattamente. È sufficiente abilitare prima il modulo giusto, per attivare il ramo "mainline", in modo da avere l'ultima versione di Nginx.
 
-!!! Note "Nota"
+!!! Note Nota
 
     C'è un altro ramo chiamato "stable", ma in realtà è un po' superato per la maggior parte dei casi d'uso. Non riceverà nuove caratteristiche man mano che vengono sviluppate, e solo le correzioni di bug e gli aggiornamenti di sicurezza più urgenti.
     
@@ -205,6 +205,7 @@ Poi, create il gruppo www:
 ```bash
 sudo groupadd www
 ```
+
 Quindi, creiamo l'utente:
 
 ```bash
@@ -239,7 +240,7 @@ nginx -t
 
 Se si ottiene il seguente messaggio di successo, tutto è andato bene:
 
-```
+```nginx
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```

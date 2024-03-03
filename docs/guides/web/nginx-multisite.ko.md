@@ -29,7 +29,7 @@ Rocky Linux에서 Nginx 다중 사이트 설정에 대한 가이드입니다. �
 
 다음이 필요합니다:
 
-* 이미 Nginx가 설치된 인터넷에 연결된 Rocky Linux 서버입니다. 아직 설치하지 않은 경우 [ Nginx 설치 가이드](nginx-mainline.md)를 먼저 따라하십시오.
+* 이미 Nginx가 설치된 인터넷에 연결된 Rocky Linux 서버입니다. 아직 설치하지 않은 경우 [Nginx 설치 가이드](nginx-mainline.md)를 먼저 따라하십시오.
 * 명령 줄에서 작업하고, `nano`와 같은 터미널 기반 텍스트 편집기에 익숙해야 합니다.
 
     !!! 팁 "급한 경우"
@@ -48,6 +48,7 @@ Rocky Linux에서 Nginx 다중 사이트 설정에 대한 가이드입니다. �
 ## 폴더 및 테스트 사이트 설정하기
 
 ### 웹사이트 폴더
+
 먼저, 웹사이트 파일을 위한 몇 개의 폴더가 필요합니다. Nginx를 처음 설치하면 "데모" 웹사이트 파일이 `/usr/share/nginx/html`에 있습니다. 하나의 사이트만 호스팅하는 경우에는 문제가 없지만, 여러 사이트를 호스팅할 것입니다. 일단 `html` 디렉토리를 무시하고 상위 폴더로 이동합니다:
 
 ```bash
@@ -160,13 +161,13 @@ nano nginx.conf
 
 먼저 다음과 같이 보이는 줄을 찾습니다.
 
-```
+```bash
 include /etc/nginx/conf.d/*.conf;
 ```
 
 그리고 아래에 다음 부분을 **추가**합니다.
 
-```
+```bash
 include /etc/nginx/sites-enabled/*.conf;
 ```
 
@@ -174,7 +175,7 @@ include /etc/nginx/sites-enabled/*.conf;
 
 이제 다음과 같이 보이는 섹션으로 이동하여 해시 기호 <kbd>#</kbd>로 **주석 처리**하거나 원하는 경우 삭제하세요.
 
-```
+```bash
 server {
     listen       80;
     listen       [::]:80;
@@ -196,7 +197,7 @@ server {
 
 "주석 처리됨"과 같이 표시됩니다.
 
-```
+```bash
 #server {
 #    listen       80;
 #    listen       [::]:80;
@@ -236,7 +237,6 @@ systemctl restart nginx
     
     그러나 대상으로의 링크를 삭제하면 원본 파일에는 아무런 변화가 없습니다. 이 작업을 통해 웹사이트 구성 파일을 작업 디렉토리(`sites-available`)에 넣고, 그 파일들에 대한 링크를 `sites-enabled`에서 만들어 "활성화"할 수 있게 됩니다.
 
-
 어떤 말인지 보여드리겠습니다. 첫 번째 웹사이트를 위한 구성 파일을 다음과 같이 만들어보세요:
 
 ```bash
@@ -245,7 +245,7 @@ nano sites-available/test.server.site1.conf
 
 그런 다음 다음 코드를 붙여넣으세요. 이것은 동작하는 데 가장 간단한 Nginx 구성 중 하나로, 대부분의 정적 HTML 웹사이트에 잘 작동할 것입니다:
 
-```
+```bash
 server {
     listen 80;
     listen [::]:80;
@@ -339,14 +339,14 @@ Windows에서 호스트 파일은 `C:\Windows\system32\drivers\etc\hosts` 경로
 
 Rocky Linux 컴퓨터에서 작업하고 있으며, 동일한 컴퓨터에서 Nginx 서버를 실행하는 경우 다음과 같이 파일을 열고 원하는 도메인/IP 주소를 정의할 수 있습니다. 작업 스테이션과 테스트 서버를 동일한 컴퓨터에서 실행하는 경우 다음과 같습니다:
 
-```
+```table
 127.0.0.1           site1.server.test
 127.0.0.1           site2.server.test
 ```
 
 네트워크의 다른 머신에서 Nginx 서버를 실행 중인 경우 해당 머신의 주소를 사용하십시오. 예:
 
-```
+```table
 192.168.0.45           site1.server.test
 192.168.0.45           site2.server.test
 ```

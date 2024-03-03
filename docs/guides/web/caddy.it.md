@@ -79,15 +79,13 @@ Queste configurazioni non avranno effetto finché non si forzerà il problema. P
 sudo firewall-cmd --reload
 ```
 
-!!! Note "Nota"
+!!! Note Nota
 
-````
-Ora, c'è una piccolissima possibilità che questo non funzioni. In questi rari casi, fate in modo che `firewalld` esegua i vostri ordini con il vecchio spegnimento-e-riaccensione.
+    Ora, c'è una piccolissima possibilità che questo non funzioni. In questi rari casi, fate in modo che `firewalld` esegua i vostri ordini con il vecchio spegnimento-e-riaccensione.
 
-```bash
-systemctl restart firewalld
-```
-````
+    ```bash
+    systemctl restart firewalld
+    ````
 
 Per garantire l'autorizzazione delle porte, eseguire `firewall-cmd --list-all`. Un firewall correttamente configurato avrà un aspetto simile a questo:
 

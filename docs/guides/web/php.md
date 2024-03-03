@@ -11,7 +11,7 @@ tags:
 
 # PHP and PHP-FPM
 
-!!! warning "Written for Rocky Linux 8.x"
+!!! warning Written for Rocky Linux 8.x
 
     This procedure was initially published when Rocky Linux 8.x was the only version. This procedure must tested and rewritten for Rocky Linux 9.x.
 
@@ -141,7 +141,7 @@ The default vhost should work out of the box. PHP provides a `phpinfo()` functio
 
 Create the file `/var/www/html/info.php` (`/var/www/html` being the default vhost directory of the default apache configuration):
 
-```bash
+```php
 <?php
 phpinfo();
 ?>

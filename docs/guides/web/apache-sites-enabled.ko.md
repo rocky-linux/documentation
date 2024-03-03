@@ -31,13 +31,14 @@ Rocky Linux에는 웹 사이트를 설정하는 다양한 방법이 있습니다
 Nginx에 대한 유사한 설정을 찾고 있다면, [이 가이드를 살펴보세요](nginx-multisite.md).
 
 ## Apache 설치
+
 아마도 웹 사이트를 위해 PHP, 데이터베이스 또는 기타 패키지와 함께 다른 패키지가 필요할 것입니다. `http`와 함께 PHP를 설치하면 Rocky Linux 저장소에서 가장 최신 버전을 얻을 수 있습니다.
 
 다만, `php-bcmath` 또는 `php-mysqlind`와 같은 모듈이 필요할 수 있습니다. 웹 응용 프로그램의 요구 사항에 따라 필요한 패키지를 설치할 수 있습니다. 필요할 때 설치할 수 있습니다. 일단, 거의 필수적인 요소인 `http`와 PHP를 설치하겠습니다:
 
 명령 줄에서 다음을 실행하세요:
 
-```
+```bash
 dnf install httpd php
 ```
 
@@ -47,7 +48,7 @@ dnf install httpd php
 
 명령 줄에서 다음을 입력하세요:
 
-```
+```bash
 mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
 ```
 
@@ -59,13 +60,13 @@ mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
 
 `httpd.conf` 파일의 맨 아래에 한 줄을 추가해야 합니다. 이를 위해 다음을 입력하세요:
 
-```
+```bash
 vi /etc/httpd/conf/httpd.conf
 ```
 
 파일의 맨 아래로 이동하여 다음을 추가하세요:
 
-```
+```bash
 Include /etc/httpd/sites-enabled
 ```
 
@@ -89,7 +90,7 @@ SSL/TLS를 사용하여 웹사이트를 제공하려면 (대부분의 경우 그
 
 먼저 *sites-available*에 이 구성 파일을 생성해야 합니다:
 
-```
+```bash
 vi /etc/httpd/sites-available/com.wiki.www
 ```
 
@@ -119,11 +120,12 @@ vi /etc/httpd/sites-available/com.wiki.www
         </Directory>
 </VirtualHost>
 ```
+
 생성된 후, 저장하기 위해 <kbd>Shift</kbd>+<kbd>:</kbd>+<kbd>wq</kbd>를 눌러야 합니다.
 
 예를 들어, 위에서 생성한 경로인 _/var/www_에서 _your-server-hostname_의 "html" 하위 디렉토리를 통해 위키 사이트를 로드합니다. 이는 다음 명령을 통해 해당 경로를 생성해야 함을 의미합니다:
 
-```
+```bash
 mkdir -p /var/www/sub-domains/your-server-hostname/html
 ```
 
@@ -131,17 +133,17 @@ mkdir -p /var/www/sub-domains/your-server-hostname/html
 
 생성한 경로로 파일을 복사합니다:
 
-```
+```bash
 cp -Rf wiki_source/* /var/www/sub-domains/your-server-hostname/html/
 ```
 
-## <a name="https"></a>SSL/TLS 인증서를 사용한 `https` 구성
+## SSL/TLS 인증서를 사용한 `https` 구성
 
-앞서 언급했듯이, 현재 모든 웹 서버는 SSL/TLS(보안 소켓 레이어)를 _사용해야 합니다_.
+앞서 언급했듯이, 현재 모든 웹 서버는 SSL/TLS(보안 소켓 레이어)를 *사용해야 합니다*.
 
 certificate signing request 이 과정은 개인 키와 CSR(certificate signing request - 인증서 서명 요청)를 생성하고 CSR을 인증 기관에 제출하여 SSL/TLS 인증서를 구입하는 것으로 시작됩니다. 이러한 키를 생성하는 과정은 다소 복잡합니다.
 
-SSL/TLS 키 생성에 익숙하지 않다면, 다음을 살펴보세요 : [ SSL 키 생성](../security/ssl_keys_https.md)
+SSL/TLS 키 생성에 익숙하지 않다면, 다음을 살펴보세요 : [SSL 키 생성](../security/ssl_keys_https.md)
 
 [Let's Encrypt의 SSL 인증서](../security/generating_ssl_keys_lets_encrypt.md)를 사용하여 이 대체 프로세스를 사용할 수도 있습니다.
 
@@ -149,13 +151,13 @@ SSL/TLS 키 생성에 익숙하지 않다면, 다음을 살펴보세요 : [ SSL 
 
 키와 인증서 파일을 가지고 있으므로, 이를 웹 서버의 파일 시스템에 논리적으로 배치해야 합니다. 예제 구성 파일에서 보았듯이, 웹 파일을 _/var/www/sub-domains/your-server-hostname/html_에 배치하고 있습니다.
 
-인증서와 키 파일을 도메인과 함께, 그러나 문서 루트인 _html_ 폴더 외부에 배치하고 싶습니다.
+인증서와 키 파일을 도메인과 함께, 그러나 문서 루트인 *html* 폴더 외부에 배치하고 싶습니다.
 
 인증서와 키를 웹에 노출시키는 것은 절대로 원치 않습니다. 그렇게 된다면 안 좋은 일이 벌어질 수 있습니다!
 
 대신, 문서 루트 외부에 SSL/TLS 파일을 위한 디렉토리 구조를 생성합니다:
 
-```
+```bash
 mkdir -p /var/www/sub-domains/your-server-hostname/ssl/{ssl.key,ssl.crt,ssl.csr}`
 ```
 
@@ -167,7 +169,7 @@ mkdir -p /var/www/sub-domains/your-server-hostname/ssl/{ssl.key,ssl.crt,ssl.csr}
 
 키, csr 및 crt(인증서) 파일을 사이트 이름으로 지정하고, 해당 파일을 _/root_에 저장했다고 가정하고, 해당 위치로 복사하면 됩니다.
 
-```
+```bash
 cp /root/com.wiki.www.key /var/www/sub-domains/your-server-hostname/ssl/ssl.key/
 cp /root/com.wiki.www.csr /var/www/sub-domains/your-server-hostname/ssl/ssl.csr/
 cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
@@ -180,7 +182,6 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
 우선, 구성 파일의 시작 부분을 살펴보겠습니다. 예를 들어, 여전히 표준 `http`  포트인 포트 80에서 들어오는 요청을 수신하긴 하지만, 실제로는 이러한 요청을 포트 80으로 보내고 싶지 않습니다.
 
 대신에 이러한 요청을 포트 443(또는 SSL/TLS 또는 `https`로 알려진 "안전한 `http`")로 보내고 싶습니다. 포트 80의 구성 섹션은 최소한으로 유지하겠습니다:
-
 
 ```apache
 <VirtualHost *:80>
@@ -253,10 +254,9 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
 
 이것은 의도된 것으로, `httpd`가 재시작하지 못할 경우에는 구성 파일을 제거할 수 있도록 합니다. 구성 파일을 활성화하려면 *sites-enabled*에 해당 파일에 대한 심볼릭 링크를 생성하고 웹 서비스를 시작 또는 재시작해야 합니다. 이를 위해 다음 명령을 사용합니다:
 
-```
+```bash
 ln -s /etc/httpd/sites-available/your-server-hostname /etc/httpd/sites-enabled/
 ```
-
 
 이것은 우리가 원하는 대로 *sites-enabled*에 구성 파일에 대한 링크를 만들 것입니다.
 

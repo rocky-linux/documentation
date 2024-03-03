@@ -7,7 +7,7 @@
     * Si vous êtes intéressé pour apprendre à utiliser l'éditeur de texte vi, [voici un tutoriel pratique](https://www.tutorialspoint.com/unix/unix-vi-editor.htm).
 * Des connaissances élémentaires sur l'installation et le lancement de services web.
 
-# Configuration Apache Web Server Multi-Sites
+## Introduction
 
 Il y a de nombreuses façons pour vous de configurer un site web sur Rocky Linux. Celle-ci est juste une méthode utilisant Apache et est conçue pour accueillir une configuration multi-sites sur un seul serveur. Bien que cette méthode soit conçue pour des serveurs multi-sites, elle peut tout aussi bien faire office de configuration de base pour un server mono-site.
 
@@ -51,7 +51,6 @@ Maintenant, disons que vous avez un site web qui charge un wiki. Vous allez avoi
 
 Si vous voulez servir le site en SSL (et regardons les choses en face, nous devrions tous faire ça maintenant) alors vous devrez ajouter une autre section (quasiment identique) au même fichier afin d'activer le port 443.
 
-
 Vous pouvez jeter un œil à cela ci-dessous dans la section [La configuration https - Utiliser un certificat SSL](#https).
 
 Nous devons dans un premier temps créer ce fichier de configuration dans *sites-available*: `vi /etc/httpd/sites-available/com.ourownwiki.www`
@@ -67,8 +66,8 @@ Le contenu du fichier de configuration devrait ressembler à quelque chose comme
         Alias /icons/ /var/www/icons/
         # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.ourownwiki.www/cgi-bin/
 
-	CustomLog "/var/log/httpd/com.ourownwiki.www-access_log" combined
-	ErrorLog  "/var/log/httpd/com.ourownwiki.www-error_log"
+        CustomLog "/var/log/httpd/com.ourownwiki.www-access_log" combined
+        ErrorLog  "/var/log/httpd/com.ourownwiki.www-error_log"
 
         <Directory /var/www/sub-domains/com.ourownwiki.www/html>
                 Options -ExecCGI -Indexes
@@ -85,7 +84,7 @@ Le contenu du fichier de configuration devrait ressembler à quelque chose comme
 
 Une fois le fichier créé, nous devons l'écrire (le sauvegarder) avec : `shift : wq`
 
-Dans notre exemple précédent, le site du wiki est chargé depuis le sous répertoire html de _com.ourownwiki.www_,  ce qui veut dire que le répertoire _sub-domains_ que nous nous avons créé dans _/var/www_ (précédemment) va nécessiter des répertoires supplémentaires pour satisfaire cela :
+Dans notre exemple précédent, le site du wiki est chargé depuis le sous répertoire html de *com.ourownwiki.www*,  ce qui veut dire que le répertoire *sub-domains* que nous nous avons créé dans */var/www* (précédemment) va nécessiter des répertoires supplémentaires pour satisfaire cela :
 
 `mkdir -p /var/www/sub-domains/com.ourownwiki.www/html`
 
@@ -95,9 +94,9 @@ Copiez vos fichiers dans le répertoire créé précédemment :
 
 `cp -Rf wiki_source/* /var/www/sub-domains/com.ourownwiki.www/html/`
 
-## <a name="https"></a>La configuration https - Utiliser un certificat SSL
+## La configuration https - Utiliser un certificat SSL
 
-Comme discuté précédemment, chaque serveur web créé de nos jours _devrait_ fonctionner avec du SSL (Secure Socket Layer).
+Comme discuté précédemment, chaque serveur web créé de nos jours *devrait* fonctionner avec du SSL (Secure Socket Layer).
 
 Ce processus commence par la génération d'une clef privée et d'un CSR (Certificate Signing Request) et ensuite par l'envoi du CSR à l'autorité de certification pour acheter le certificat SSL. Ce processus de génération de clefs sort du cadre de ce document.
 
@@ -107,7 +106,7 @@ Vous pouvez aussi utiliser ce processus alternatif pour utiliser [un certificat 
 
 ### Placement des clefs SSL et des certificats
 
-Maintenant que vous disposez des fichiers de vos clefs et de vos certificats, nous devons logiquement les placer sur le système de fichiers de votre serveur web. Comme nous l'avons vu dans l'exemple de fichier de configuration (voir ci-dessus), nous plaçons les fichiers web dans  _/var/www/sub-domains/com.ourownwiki.www/html_.
+Maintenant que vous disposez des fichiers de vos clefs et de vos certificats, nous devons logiquement les placer sur le système de fichiers de votre serveur web. Comme nous l'avons vu dans l'exemple de fichier de configuration (voir ci-dessus), nous plaçons les fichiers web dans  */var/www/sub-domains/com.ourownwiki.www/html*.
 
 Nous voulons placer nos fichiers de certificats et de clefs avec le domaine, mais PAS à la racine des pages web (qui dans ce cas est dans le dossier _html).
 
@@ -125,9 +124,9 @@ Juste une petite note en avance de phase : ce n'est pas nécessaire pour le fonc
 
 Si jamais vous avez besoin d'une nouvelle édition de votre certificat depuis un fournisseur différent par exemple, c'est une bonne idée d'avoir une copie de sauvegarde de ce fichier CSR. La question devient alors où le stocker de manière à s'en souvenir et le fait de le stocker dans l'arborescence du site web devient logique.
 
-En supposant que vous avez nommé vos fichiers .key, .csr et .crt (certificat) avec le nom de votre site et que vous les avez stockés  dans _/root_, nous allons alors les copier dans leurs emplacements respectifs que nous venons juste de créer :
+En supposant que vous avez nommé vos fichiers .key, .csr et .crt (certificat) avec le nom de votre site et que vous les avez stockés  dans */root*, nous allons alors les copier dans leurs emplacements respectifs que nous venons juste de créer :
 
-```
+```bash
 cp /root/com.wiki.www.key /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/
 cp /root/com.wiki.www.csr /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.csr/
 cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
@@ -141,7 +140,7 @@ Pour les débutants, décomposons le début du fichier de configuration. Par exe
 
 Nous voulons qu'elles soient redirigées vers le port 443 (ou http sécurisé, mieux connu sous SSL). Notre section de configuration du port 80 sera réduite au minimum :
 
-```
+```apache
 <VirtualHost *:80>
         ServerName www.ourownwiki.com
         ServerAdmin username@rockylinux.org
@@ -155,7 +154,7 @@ Une redirection permanente va être apprise par les moteurs de recherche et rapi
 
 Ensuite, nous devons définir la partie https du fichier de configuration. La section http est dupliquée par clarté pour montrer que tout cela se passe dans le même fichier de configuration :
 
-```
+```apache
 <VirtualHost *:80>
         ServerName www.ourownwiki.com
         ServerAdmin username@rockylinux.org

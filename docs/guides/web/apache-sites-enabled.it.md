@@ -1,7 +1,7 @@
 ---
 title: Sito Multiplo Apache
 author: Steven Spencer
-contributors: Ezequiel Bruni, Ganna Zhyrnova
+contributors: Ezequiel Bruni, Ganna Zhyrnova, Nishant Viswanadha
 tested_with: 8.5, 8.6, 9.0
 tags:
   - web
@@ -31,13 +31,14 @@ Fatto storico: questa configurazione del server sembra essere nata con sistemi b
 Per chi è alla ricerca di una configurazione simile per Nginx, si consiglia di [consultare questa guida](nginx-multisite.md).
 
 ## Installare Apache
+
 Probabilmente avrete bisogno di altri pacchetti per il vostro sito web, come PHP, database o altri pacchetti. Installando PHP insieme ad `http` si otterrà la versione più recente dai repository Rocky Linux.
 
 Si ricordi che potrebbero essere necessari dei moduli, come `php-bcmath` o `php-mysqlind`. Le specifiche della vostra applicazione web determineranno ciò di cui avete bisogno. È possibile installarli quando necessario. Per il momento, installerete `http` e PHP, poiché sono quasi scontati:
 
 Dalla riga di comando eseguire:
 
-```
+```bash
 dnf install httpd php
 ```
 
@@ -47,7 +48,7 @@ Questo metodo utilizza un paio di directory aggiuntive, che attualmente non esis
 
 Dalla riga di comando inserire:
 
-```
+```bash
 mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
 ```
 
@@ -59,13 +60,13 @@ In questo modo verranno create entrambe le directory necessarie.
 
 È inoltre necessario aggiungere una riga in fondo al file `httpd.conf.`  A tal fine, inserire:
 
-```
+```bash
 vi /etc/httpd/conf/httpd.conf
 ```
 
 e andare in fondo al file e aggiungere:
 
-```
+```bash
 Include /etc/httpd/sites-enabled
 ```
 
@@ -89,7 +90,7 @@ Lo si può esaminare di seguito nella sezione [Configurazione `https` con un cer
 
 È necessario creare questo file di configurazione in *sites-available*:
 
-```
+```bash
 vi /etc/httpd/sites-available/com.wiki.www
 ```
 
@@ -122,9 +123,9 @@ Il contenuto del file di configurazione sarà simile a questo:
 
 Una volta creato, è necessario scriverlo (salvarlo) con ++shift+:+wq++.
 
-Nell'esempio, il caricamento del sito wiki avviene dalla sottodirectory "html" di _your-server-hostname_, il che significa che il percorso creato in _/var/www_ (sopra) avrà bisogno di alcune directory aggiuntive per soddisfare questa esigenza:
+Nell'esempio, il caricamento del sito wiki avviene dalla sottodirectory "html" di *your-server-hostname*, il che significa che il percorso creato in */var/www* (sopra) avrà bisogno di alcune directory aggiuntive per soddisfare questa esigenza:
 
-```
+```bash
 mkdir -p /var/www/sub-domains/your-server-hostname/html
 ```
 
@@ -132,13 +133,13 @@ Questo crea l'intero percorso con un solo comando. Successivamente, è necessari
 
 Copiare i file nel percorso creato:
 
-```
+```bash
 cp -Rf wiki_source/* /var/www/sub-domains/your-server-hostname/html/
 ```
 
-## <a name="https"></a>Configurazione `https` con un certificato SSL/TLS
+## Configurazione `https` con un certificato SSL/TLS
 
-Come già detto, ogni server Web creato al giorno d'oggi _dovrebbe_ funzionare con SSL/TLS (secure socket layer).
+Come già detto, ogni server Web creato al giorno d'oggi *dovrebbe* funzionare con SSL/TLS (secure socket layer).
 
 Questo processo inizia con la generazione di una chiave privata e di un CSR (certificate signing request) e l'invio del CSR all'autorità di certificazione per l'acquisto del certificato SSL/TLS. Il processo di generazione di queste chiavi è piuttosto lungo.
 
@@ -148,15 +149,15 @@ Se non si ha familiarità con la generazione di chiavi SSL/TLS, esaminare: [Gene
 
 ### Posizionamento delle chiavi e dei certificati SSL/TLS
 
-Dal momento che si dispone dei file delle chiavi e dei certificati, è necessario posizionarli logicamente nel file system del server web. Come si è visto con il file di configurazione di esempio, i file web si trovano in _/var/www/sub-domains/your-server-hostname/html_.
+Dal momento che si dispone dei file delle chiavi e dei certificati, è necessario posizionarli logicamente nel file system del server web. Come si è visto con il file di configurazione di esempio, i file web si trovano in */var/www/sub-domains/your-server-hostname/html*.
 
-Si desidera collocare i file del certificato e della chiave nel dominio, ma al di fuori della radice del documento, che in questo caso è la cartella _html_.
+Si desidera collocare i file del certificato e della chiave nel dominio, ma al di fuori della radice del documento, che in questo caso è la cartella *html*.
 
 Non si vuole mai rischiare di esporre i propri certificati e le proprie chiavi al web. Sarebbe una brutta cosa!
 
 Si creerà invece una struttura di directory per i file SSL/TLS, al di fuori della radice del documento:
 
-```
+```bash
 mkdir -p /var/www/sub-domains/your-server-hostname/ssl/{ssl.key,ssl.crt,ssl.csr}`
 ```
 
@@ -166,9 +167,9 @@ Se non si conosce la sintassi "ad albero" per creare le directory, ciò che si d
 
 Una nota in anticipo: La memorizzazione del file CSR (Certificate Signature Request) nella struttura non è necessaria, ma semplifica alcune cose. Se si ha la necessità di riemettere il certificato da un altro fornitore, è bene avere una copia memorizzata del CSR. La domanda diventa dove memorizzarlo in modo da ricordarlo, e memorizzarlo all'interno dell'albero del vostro sito web è logico.
 
-Assumendo che i file key, csr e crt (certificati) siano stati denominati con il nome del sito e che siano memorizzati in _/root_, li copieremo nella loro posizione:
+Assumendo che i file key, csr e crt (certificati) siano stati denominati con il nome del sito e che siano memorizzati in */root*, li copieremo nella loro posizione:
 
-```
+```bash
 cp /root/com.wiki.www.key /var/www/sub-domains/your-server-hostname/ssl/ssl.key/
 cp /root/com.wiki.www.csr /var/www/sub-domains/your-server-hostname/ssl/ssl.csr/
 cp /root/com.wiki.www.crt /var/www/sub-domains/your-server-hostname/ssl/ssl.crt/
@@ -181,7 +182,6 @@ Una volta generate le chiavi e acquistato il certificato SSL/TLS, è possibile p
 Per cominciare, scomponete l'inizio del file di configurazione. Per esempio, anche se si desidera ascoltare la porta 80 (porta `http` standard) per le richieste in arrivo, non si vuole che nessuna di queste richieste vada effettivamente alla porta 80.
 
 Si vuole che vadano sulla porta 443 (o`"http` secure", meglio nota come SSL/TLS o `https`). La sezione di configurazione della porta 80 sarà minima:
-
 
 ```apache
 <VirtualHost *:80>
@@ -254,10 +254,9 @@ Ricordate che il nostro file *httpd.conf* include */etc/httpd/sites-enabled* all
 
 Questo è stato progettato in modo da poter rimuovere le cose quando o se `httpd` non si riavvia. Per abilitare il nostro file di configurazione, è necessario creare un collegamento simbolico a tale file in *sites-enabled* e avviare o riavviare il servizio web. Per farlo, si utilizza questo comando:
 
-```
+```bash
 ln -s /etc/httpd/sites-available/your-server-hostname /etc/httpd/sites-enabled/
 ```
-
 
 Questo creerà il collegamento al file di configurazione in *sites-enabled*.
 

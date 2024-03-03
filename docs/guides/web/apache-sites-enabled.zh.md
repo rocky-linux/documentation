@@ -4,7 +4,7 @@
 
 # Apache Web 服务器多站点设置
 
-Rocky Linux 提供了许多方法来设置网络站点。Apache 只是在单台服务器上进行多站点设置的其中一种方法。尽管 Apache 是为多站点服务器设计的，但 Apache 也可以用于配置单站点服务器。 
+Rocky Linux 提供了许多方法来设置网络站点。Apache 只是在单台服务器上进行多站点设置的其中一种方法。尽管 Apache 是为多站点服务器设计的，但 Apache 也可以用于配置单站点服务器。
 
 历史事实：这个服务器设置方法似乎源自 Debian 系发行版，但它完全适合于任何运行 Apache 的 Linux 操作系统。
 
@@ -62,8 +62,8 @@ Rocky Linux 提供了许多方法来设置网络站点。Apache 只是在单台�
         Alias /icons/ /var/www/icons/
         # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.wiki.www/cgi-bin/
 
-	CustomLog "/var/log/httpd/com.wiki.www-access_log" combined
-	ErrorLog  "/var/log/httpd/com.wiki.www-error_log"
+        CustomLog "/var/log/httpd/com.wiki.www-access_log" combined
+        ErrorLog  "/var/log/httpd/com.wiki.www-error_log"
 
         <Directory /var/www/sub-domains/com.wiki.www/html>
                 Options -ExecCGI -Indexes
@@ -98,9 +98,9 @@ Rocky Linux 提供了许多方法来设置网络站点。Apache 只是在单台�
 
 ### 密钥和证书的位置
 
-现在您已经拥有了密钥和证书文件，此时需要将它们按逻辑放置在 Web 服务器上的文件系统中。正如在上面示例配置文件中所看到的，将 Web 文件放置在 _/var/www/sub-domains/com.ourownwiki.www/html_ 中。
+现在您已经拥有了密钥和证书文件，此时需要将它们按逻辑放置在 Web 服务器上的文件系统中。正如在上面示例配置文件中所看到的，将 Web 文件放置在 */var/www/sub-domains/com.ourownwiki.www/html* 中。
 
-我们建议您将证书和密钥文件放在域（domain）中，而不是放在文档根（document root）目录中（在本例中是 _html_ 文件夹）。
+我们建议您将证书和密钥文件放在域（domain）中，而不是放在文档根（document root）目录中（在本例中是 *html* 文件夹）。
 
 如果不这样做，证书和密钥有可能暴露在网络上。那会很糟糕！
 
@@ -116,9 +116,9 @@ Rocky Linux 提供了许多方法来设置网络站点。Apache 只是在单台�
 
 如果您需要从其他供应商重新颁发证书，则最好保存 CSR 文件的副本。问题变成了在何处存储它以便您记住，将其存储在 web 站点的树中是合乎逻辑的。
 
-假设已使用站点名称来命名 key、csr 和 crt（证书）文件，并且已将它们存储在  _/root_ 中，那么将它们复制到刚才创建的相应位置：
+假设已使用站点名称来命名 key、csr 和 crt（证书）文件，并且已将它们存储在  */root* 中，那么将它们复制到刚才创建的相应位置：
 
-```
+```bash
 cp /root/com.wiki.www.key /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.key/
 cp /root/com.wiki.www.csr /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.csr/
 cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
@@ -132,7 +132,7 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
 
 希望请求转到 443 端口（或安全的 http，著名的 SSL）。80 端口的配置部分将变得最少：
 
-```
+```apache
 <VirtualHost *:80>
         ServerName www.ourownwiki.com 
         ServerAdmin username@rockylinux.org
@@ -146,7 +146,7 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
 
 接下来，定义配置文件的 https 部分。为了清楚起见，此处重复了 http 部分，以表明这一切都发生在同一配置文件中：
 
-```
+```apache
 <VirtualHost *:80>
         ServerName www.ourownwiki.com 
         ServerAdmin username@rockylinux.org
@@ -160,8 +160,8 @@ cp /root/com.wiki.www.crt /var/www/sub-domains/com.ourownwiki.www/ssl/ssl.crt/
         Alias /icons/ /var/www/icons/
         # ScriptAlias /cgi-bin/ /var/www/sub-domains/com.ourownwiki.www/cgi-bin/
 
-	CustomLog "/var/log/httpd/com.ourownwiki.www-access_log" combined
-	ErrorLog  "/var/log/httpd/com.ourownwiki.www-error_log"
+        CustomLog "/var/log/httpd/com.ourownwiki.www-access_log" combined
+        ErrorLog  "/var/log/httpd/com.ourownwiki.www-error_log"
 
         SSLEngine on
         SSLProtocol all -SSLv2 -SSLv3 -TLSv1

@@ -16,7 +16,7 @@ tags:
 
 Here’s a short rundown of the ways Nginx stands out/features it has:
 
-* A basic web server 
+* A basic web server
 * A reverse proxy for directing traffic to multiple sites
 * A built-in load balancer for managing traffic to multiple websites
 * Built-in file caching for speed
@@ -205,6 +205,7 @@ Next, create the www group:
 ```bash
 sudo groupadd www
 ```
+
 Then, we create the user:
 
 ```bash
@@ -239,7 +240,7 @@ nginx -t
 
 If you get the following success message, everything went right:
 
-```
+```nginx
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```

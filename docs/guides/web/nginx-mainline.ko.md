@@ -190,7 +190,7 @@ curl -I http://[your-ip-address]
 
 그러나 LXD/LXC와 같은 컨테이너에서 `nginx`를 실행하는 경우 SELinux가 설치되지 않을 가능성이 높으며 파일을 원하는 위치에 둘 수 있습니다. 이 경우 일반적인 홈 폴더의 디렉토리 아래에 사용자의 모든 웹 사이트 파일을 두는 것이 좋습니다. 예를 들어 `/home/www/`와 같이 하위 디렉토리에 사용자의 웹 사이트 파일을 모두 두는 방식입니다.
 
-하지만 이 가이드에서는 SELinux가 설치된 것으로 가정하고 진행하겠습니다. 사용 사례에 따라 필요한 부분을 변경하십시오. SELinux의 작동 방식에 대한 자세한 내용은 [ SELinux 학습 가이드](../security/learning_selinux.md)에서 자세히 알아볼 수 있습니다.
+하지만 이 가이드에서는 SELinux가 설치된 것으로 가정하고 진행하겠습니다. 사용 사례에 따라 필요한 부분을 변경하십시오. SELinux의 작동 방식에 대한 자세한 내용은 [SELinux 학습 가이드](../security/learning_selinux.md)에서 자세히 알아볼 수 있습니다.
 
 ### 사용자 생성
 
@@ -205,6 +205,7 @@ sudo mkdir /usr/share/nginx/html/www
 ```bash
 sudo groupadd www
 ```
+
 그런 다음 사용자를 생성합니다:
 
 ```bash
@@ -239,7 +240,7 @@ nginx -t
 
 다음과 같은 성공 메시지가 표시되면 모든 것이 올바르게 진행된 것입니다:
 
-```
+```nginx
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
@@ -288,7 +289,7 @@ That basically gives everyone the right to look at files on the server, but not 
 ## 추가 구성 옵션 및 가이드
 
 * *Nginx*를 PHP와 특히 PHP-FPM과 함께 사용하는 방법을 알고 싶다면 [Rocky Linux에서 PHP 설정 가이드](../web/php.md)를 확인해보세요.
-* 여러 웹사이트를 위해 *Nginx*를 설정하는 방법을 배우고 싶다면[ 해당 주제에 대한 가이드](nginx-multisite.md)를 참조하세요.
+* 여러 웹사이트를 위해 *Nginx*를 설정하는 방법을 배우고 싶다면 [해당 주제에 대한 가이드](nginx-multisite.md)를 참조하세요.
 
 ## Rocky의 공식 저장소에서 안정 버전 설치
 
