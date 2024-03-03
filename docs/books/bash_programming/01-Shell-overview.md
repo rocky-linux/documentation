@@ -35,7 +35,7 @@ Shell classification:
 * Bourne Shell - This family includes but is not limited to:
     * sh (Bourne Shell, /usr/bin/sh). It was developed at Bell LABS in 1977 by Stephen Bourne and used on V7 UNIX
     * ksh (Korn Shell, /usr/bin/ksh)
-    * Bash (GNU Bourne-Again Shell, /bin/bash) - Born in 1987, it is the product of the GNU Project. Most GNU/Linux operating systems use bash as their default shell. For more detailed information, please [read here](https://www.gnu.org/software/bash/manual/bash.html).
+    * Bash (GNU Bourne-Again Shell, /bin/bash) - Born in 1987, it is the product of the GNU Project. Most GNU/Linux operating systems use bash as their default shell. For more detailed information, please [read this manual](https://www.gnu.org/software/bash/manual/bash.html).
     * psh (POSIX Shell) - For more detailed information, please [read here](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html).
     * zsh (Z-shell) - For more detailed information, please [read here](https://zsh.sourceforge.io/).
 * C Shell - This family includes but is not limited to:
