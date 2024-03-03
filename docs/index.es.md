@@ -36,7 +36,7 @@ Las secciones principales de la plataforma de documentación son las siguientes:
 1. Regionalización de la interfaz del sitio web: si se elige otro idioma, observará que los botones de navegación  'Siguiente' y 'Anteriores', estarán en el idioma elegido.
 1. Naturalmente la traducción de nuestro sitio es un trabajo en curso y constante. No todo el contenido actual está traducido a todos los idiomas disponibles aun. Así que todas las páginas que han sido traducidas a tu idioma de preferencia se mostrarán en dicho idioma excepto las que aun estén pendientes de traducción que, por defecto, se mostrarán en el idioma inglés. Si desea contribuir a la comunidad a través de las traducciones, al equipo de documentación le encantaría saber de usted — vea abajo para más detalles.
 
-!!! note "Observación"
+!!! Observación
 
     Debido a una limitación inherente a MkDocs,  puede que algunas funciones de la plataforma no estén disponibles en todos los idiomas.
 
