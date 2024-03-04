@@ -291,8 +291,8 @@ Le colonne rappresentano:
 
 1. numero di lavoro
 2. l'ordine in cui i processi sono in esecuzione
-- un `+` : questo processo è il prossimo processo da eseguire per impostazione predefinita con `fg` o `bg`
-- un `-` : questo processo è il prossimo processo a prendere il `+` `+`
+- un `+` : Il processo selezionato per impostazione predefinita per i comandi `fg` e `bg` quando non viene specificato un numero di processo
+- a `-` : Questo processo è il processo successivo che prende il `+`
 3.  _Running_ (processo in esecuzione) o _Stopped_ (processo sospeso).
 4. il comando
 
