@@ -47,6 +47,6 @@ tags:
 ## REFERENCES
 
 1. Footnotes/Reference links (URLs, manpage websites, etc)
-2. Links to scripts, code and custom programs (for posterity in some cases if the originals might disappear )
+2. Links to scripts, code and custom programs (for posterity in some cases if the originals might disappear)
 
 ## Plus all the things I've thought of in the past and can't remember
