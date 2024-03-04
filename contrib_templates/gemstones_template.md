@@ -67,4 +67,4 @@ double asterisk: **may**
 
 ### References/Footnotes
 
-[14](https://rockylinux.org) (or use a bulleted list, numbered list, etc)
+[14](https://rockylinux.org) (or use a bulleted list, numbered list, etc.)
