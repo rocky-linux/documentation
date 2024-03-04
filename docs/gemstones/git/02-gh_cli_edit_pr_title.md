@@ -11,7 +11,7 @@ tags:
 
 ## Introduction 
 
-This guide explains how to edit or change the title of an existing pull request (PR) in a GitHub repository, using both the GitHub web interface and CLI.
+This Gemstone explains how to edit or change the title of an existing pull request (PR) in a GitHub repository, using both the GitHub web interface and CLI.
 
 ## Problem Description
 
