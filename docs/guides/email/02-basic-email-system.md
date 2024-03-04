@@ -65,7 +65,7 @@ zone "rockylinux.me" IN {
 
     **What is a DNS zone?** A DNS zone is aportion of the DNS namespace that's hosted on a DNS server. A DNS zone contains resource records, and a DNS server responds to queries for records in that namespace. A DNS server can have multiple DNS zones. Simply put, a DNS zone is analogous to a book catalog.
 
-First, initalize BIND:
+First, initialize BIND:
 
 ```bash
 Shell(192.168.100.7) > cp -p /var/named/named.localhost /var/named/rockylinux.localhost
