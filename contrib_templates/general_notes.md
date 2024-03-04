@@ -26,7 +26,7 @@ tags:
 ## Process
 
   Detailed Process steps
-  Try a link to a footnote/reference secton here
+  Try a link to a footnote/reference section here
 
 ## Dependencies
 
