@@ -1,8 +1,7 @@
-
 ---
 title: 1st time contribution to Rocky Linux Documentation via CLI
 author: Wale Soyinka
-contributors: [List of Contributors]
+contributors:
 tags:
   - GitHub
   - Rocky Linux
@@ -13,7 +12,7 @@ tags:
 
 ## Introduction 
 
-This guide details how to contribute to the Rocky Linux documentation using only the command line interface (CLI). It covers forking the repository and creating a pull request.
+This Gemstone details how to contribute to the Rocky Linux documentation project using only the command line interface (CLI). It covers forking the repository the 1st time and creating a pull request.
 We'll use contributing a new Gemstone document in our example.
 
 ## Problem Description
