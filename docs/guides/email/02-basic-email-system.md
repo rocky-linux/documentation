@@ -271,7 +271,7 @@ Use the $ sign to separate the output text information.
 dnf -y install postfix postfix-mysql
 ```
 
-After installing Postfix, the following files need to be know:
+After installing Postfix, the following files need to be known:
 
 * `/etc/postfix/main.cf`: The main and most important configuration file
 * `/etc/postfix/master.cf`: Used to set runtime parameters for each component. In general, no changes are required, except when performance optimization is required.
