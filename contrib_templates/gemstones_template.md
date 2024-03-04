@@ -16,7 +16,7 @@ Description Here
 - <https://docs.rockylinux.org/guides/contribute/>
 - More detailed info: [RockyLinux First-Time Contributor Guide](https://docs.rockylinux.org/guides/contribute/beginners/#first-time-contributor-guide)
 
-!!! warning
+!!! warning "Warning"
 
     A warning admonition here
 
