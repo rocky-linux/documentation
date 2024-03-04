@@ -15,7 +15,7 @@ update : 2021-10-20
 
 ##  Assumptions
 
-* You have understood the basic knowledge of bash, python or other scripting or programming tools, and want to run the script automatically.
+* You have the basic knowledge of bash, python or other scripting or programming tools, and want to run the script automatically.
 * You connected in as the root user, or switch to root with `su - root`.
 
 ##  `anacron` Introduction
@@ -93,11 +93,12 @@ For more configuration file information, [browse the manual page](https://man7.o
 
 ## User use
 
-To make certain files run within these automatically defined times, all you need to do is to copy the script file to the relevant directory and verify that it has ** x execution permission (chmod +x) ** . Therefore, you only need to let the system automatically run the script at one of these scheduled times, which simplifies the automation task.
+To make certain files run within these automatically defined times, all you need to do is to copy the script file to the relevant directory and verify that it has **execution permission (chmod +x)**. Therefore, you only need to let the system automatically run the script at one of these scheduled times, which simplifies the automation task.
+
 
 Let us use cron.daily to illustrate the run process of /etc/anacrontab:
 
-1. `anacron` reads the ** /var/spool/anacron/cron.daily ** file, and the content of the file shows the time of the last run.
+1. `anacron` reads the **/var/spool/anacron/cron.daily** file, and the content of the file shows the time of the last run.
 2. Compared with the current time, if the difference between the two times exceeds 1 day, the cron.daily job will run.
 3. This work can only run from 03:00-22:00.
 4. Verify whether a file runs after 5 minutes after booting. When the first one runs, it will be randomly delayed for 0～45 minutes to run the next one.
