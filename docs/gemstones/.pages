@@ -1,25 +1,9 @@
 ---
 nav:
     - ... | index*.md
-    - ... | bash_stub*.md
-    - ... | string_color*.md
-    - ... | docker*.md
-    - ... | dnf-swap*.md
-    - ... | htop*.md
-    - ... | https_rsa_keygen*.md
-    - ... | iftop*.md
-    - ... | markdown-demo-v2*.md
-    - ... | mtr*.md
-    - ... | nload*.md
-    - ... | nmcli*.md
-    - ... | nmtui*.md
-    - ... | NoSleep*.md
-    - ... | perl_search_replace*.md
-    - ... | rpaste*.md
-    - ... | sed_search_replace*.md
-    - ... | setup_local_repo*.md
-    - ... | systemd_service_for_python_script*.md
-    - ... | test_cpu_compat*.md
-    - ... | torsocks*.md
-    - ... | view_kernel_conf*.md
+    - Core: core
+    - Networking: network
+    - Scripts: scripts
+    - Containers: containers
+    - Git: git
     - ...
