@@ -1,7 +1,7 @@
 ---
 title: Editing or Changing the Title of an Existing Pull Request via CLI
 author: Wale Soyinka
-contributors:
+contributors: Ganna Zhyrnova
 tags:
   - GitHub
   - Pull Request
@@ -11,11 +11,11 @@ tags:
 
 ## Introduction 
 
-This Gemstone explains how to edit or change the title of an existing pull request (PR) in a GitHub repository, using both the GitHub web interface and CLI.
+This Gemstone explains how to edit or change the title of an existing pull request (PR) in a GitHub repository using both the GitHub web interface and CLI.
 
 ## Problem Description
 
-Sometimes, there may be a need to modify the title of a PR after its creation to better reflect the current changes or discussions.
+Sometimes, there may be a need to modify the title of a PR after its creation to reflect the current changes or discussions better.
 
 ## Prerequisites 
 
@@ -46,4 +46,4 @@ Sometimes, there may be a need to modify the title of a PR after its creation to
 
 ## Conclusion
 
-By following these steps, you can easily change the title of an existing pull request in a GitHub repository, through the GitHub CLI tool (gh).
+Following these steps, you can easily change the title of an existing pull request in a GitHub repository through the GitHub CLI tool (gh).
