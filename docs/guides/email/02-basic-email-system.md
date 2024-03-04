@@ -668,7 +668,7 @@ userdb {
 ...
 ```
 
-!!! warning
+!!! warning "Warning"
 
     Don't write the above grammar on one line, such as this: `userdb {driver = sql args = uid=vmail gid=vmail home=/var/mail/vhosts/%d/%n}`. Otherwise, it won't work.
 
