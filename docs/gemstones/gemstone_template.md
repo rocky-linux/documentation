@@ -1,7 +1,7 @@
 ---
 title: Simple Gemstone template
 author: Author's Name
-contributors: [Comma seperated list of contributors]
+contributors: [Comma separated list of contributors]
 tags:
   - List
   - Of
@@ -11,7 +11,7 @@ tags:
 
 ## Introduction 
 
-Brief overview of the topic. State the relevance and purpose of the Gemstone.
+A brief overview of the topic. State the relevance and purpose of the Gemstone.
 
 ## Problem Description
 
