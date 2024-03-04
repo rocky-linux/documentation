@@ -57,7 +57,7 @@ done
 
 single asteriks: *may*
 
-double asteriks: **may**
+double asterisk: **may**
 
 ## Conclusions
 
