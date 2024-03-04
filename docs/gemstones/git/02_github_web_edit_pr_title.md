@@ -32,7 +32,7 @@ Sometimes, there may be a need to modify the title of a PR after its creation to
 2. **Edit the PR Title**:
    - Click on the title of the PR.
    - An editable text box will appear.
-   - Modify the title, press 'Enter,' or click outside the text box to save changes.
+   - Modify the title, press ++enter++, or click outside the text box to save changes.
 
 ## Additional Information (Optional)
 
