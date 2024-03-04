@@ -1,5 +1,5 @@
 ---
-title: Installing and Setting Up GitHub CLI on Rocky Linux 9.3
+title: Installing and Setting Up GitHub CLI on Rocky Linux
 author: Wale Soyinka
 tags:
   - GitHub CLI
@@ -10,7 +10,7 @@ tags:
 
 ## Introduction 
 
-This gemstone covers the installation and basic setup of the GitHub CLI tool (gh) on Rocky Linux 9.3, enabling users to interact with GitHub repositories directly from the command line.
+This gemstone covers the installation and basic setup of the GitHub CLI tool (gh) on Rocky Linux system, enabling users to interact with GitHub repositories directly from the command line.
 
 ## Problem Description
 
@@ -23,24 +23,25 @@ Users need a convenient way to interact with GitHub without leaving the command 
 - Basic familiarity with command line operations
 - An existing Github account
 
-## Proceedure
+## Procedure
 
-1. **Install GitHub CLI Using Script**:
+1. **Install GitHub CLI repo using curl**:
    Use the curl command to download the official repository file for `gh`. The downloaded file will be saved under the /etc/yum.repos.d/ directory. After downloading, use the dnf command to install `gh` from the repository. Type:
-   ```
+
+   ```bash
    curl -fsSL https://cli.github.com/packages/rpm/gh-cli.repo | sudo tee /etc/yum.repos.d/github-cli.repo
    sudo dnf -y install gh
    ```
-
 2. **Verify Installation**:
-   Ensure that `gh` is correctly installed.
-   ```
+   Ensure that `gh` is correctly installed. Type:
+
+   ```bash
    gh --version
    ```
-
 3. **Authenticate with GitHub**:
-   Log in to your GitHub account.
-   ```
+   Log in to your GitHub account. Type:
+   
+   ```bash
    gh auth login
    ```
    Follow the prompts to authenticate.
@@ -51,7 +52,5 @@ You should now have the GitHub CLI installed and set up on your Rocky Linux 9.3 
 
 ## Additional Information (Optional)
 
-- GitHub CLI provides various commands like `gh repo clone`, `gh pr create`, `gh issue list`, etc.
+- GitHub CLI provides various commands like `gh repo clone`, `gh pr create`, `gh issue list`, and so on.
 - For more detailed usage, refer to the [official GitHub CLI documentation](https://cli.github.com/manual/).
-
-
