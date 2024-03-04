@@ -17,7 +17,7 @@ We'll use contributing a new Gemstone document in our example.
 
 ## Problem Description
 
-Contributors may prefer or need to perform all actions via the CLI, from forking repositories to submitting pull requests for the very first time.
+Contributors may prefer or need to perform all actions via the CLI, from forking repositories to submitting pull requests for the first time.
 
 ## Prerequisites 
 
@@ -50,7 +50,7 @@ Contributors may prefer or need to perform all actions via the CLI, from forking
    ```
 
 5. **Add Your New Document**:
-   Use your favorite text editor to create and edit the file containing your new contribution. 
+   Use your favorite text editor to create and edit your new contribution file. 
    For this example, we'll create a new file named `gemstome_new_pr.md` and save the file under the  `docs/gemstones/` directory. 
 
 6. **Commit Your Changes**:
