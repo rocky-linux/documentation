@@ -378,19 +378,110 @@ The `pkill` command will send the specified signal (by default _SIGTERM_) to eac
 
 ```
 pgrep process
-pkill [-signal] process
+pkill [option] [-signal] process
 ```
 
 Examples:
 
 * Get the process number from `sshd`:
 
-```
-$ pgrep -u root sshd
-```
+  ```
+  $ pgrep -u root sshd
+  ```
 
 * Kill all `tomcat` processes:
 
+  ```
+  $ pkill tomcat
+  ```
+
+!!! note
+
+    Before you decide to kill a process, it's best to know exactly what the process is for, otherwise it can lead to system crashes or other unpredictable problems.
+
+In addition to sending signals to the relevant processes, the `pkill` command can also end the user's connection session according to the terminal number, such as:
+
 ```
-$ pkill tomcat
+$ pkill -t pts/1
 ```
+
+### `killall` command
+
+The function of this command is roughly the same as that of the `pkill` command. The usage is - `killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. The default signal is _SIGTERM_.
+
+| Options | Description |
+| :--- | :--- |
+| `-l` | list all known signal names |
+| `-i` | ask for confirmation before killing |
+| `-I` | case insensitive process name match |
+
+Example:
+
+```
+$ killall tomcat
+```
+
+### `pstree` command
+
+This command displays the progress in a tree style and its usage is - `pstree [option]`.
+
+| Option | Description |
+| :--- | :--- |
+| `-p` | Displays the PID of the process |
+| `-n` | sort output by PID |
+| `-h` | highlight current process and its ancestors |
+| `-u` | show uid transitions |
+
+```bash
+$ pstree -pnhu
+systemd(1)─┬─systemd-journal(595)
+           ├─systemd-udevd(625)
+           ├─auditd(671)───{auditd}(672)
+           ├─dbus-daemon(714,dbus)
+           ├─NetworkManager(715)─┬─{NetworkManager}(756)
+           │                     └─{NetworkManager}(757)
+           ├─systemd-logind(721)
+           ├─chronyd(737,chrony)
+           ├─sshd(758)───sshd(1398)───sshd(1410)───bash(1411)───pstree(1500)
+           ├─tuned(759)─┬─{tuned}(1376)
+           │            ├─{tuned}(1381)
+           │            ├─{tuned}(1382)
+           │            └─{tuned}(1384)
+           ├─agetty(763)
+           ├─crond(768)
+           ├─polkitd(1375,polkitd)─┬─{polkitd}(1387)
+           │                       ├─{polkitd}(1388)
+           │                       ├─{polkitd}(1389)
+           │                       ├─{polkitd}(1390)
+           │                       └─{polkitd}(1392)
+           └─systemd(1401)───(sd-pam)(1404)
+```
+
+### Orphan process and zombie process
+
+**orphan process**: When a parent process dies, its children are said to be orphans. These special state processes are adopted by the init process  and status collection is completed until they are destroyed. Conceptually speaking, the orphanage process does not pose any harm.
+
+**zombie process**: After a child process completes its work and is terminated, its parent process needs to call the signal processing function wait() or waitpid() to obtain the termination status of the child process. If the parent process does not do so, although the child process has already exited, it still retains some exit status information in the system process table, because the parent process cannot obtain the status information of the child process, these processes will continue to occupy resources in the process table. We refer to processes in this state as zombies.
+
+Hazard:
+
+* Occupying system resources and causing a decrease in machine performance.
+* Unable to generate new child processes.
+
+How to check if there are any zombie processes in the current system?
+
+```
+$ ps -lef | awk '{print $2}' | grep Z
+```
+
+These characters may appear in this column:
+
+* **D** - uninterruptible sleep (usually IO)
+* **I** - Idle kernel thread
+* **R** - running or runnable (on run queue)
+* **S** - interruptible sleep (waiting for an event to complete)
+* **T** - stopped by job control signal
+* **t** - stopped by debugger during the tracing
+* **W** - paging (not valid since the 2.6.xx kernel)
+* **X** - dead (should never be seen)
+* **Z** - defunct ("zombie") process, terminated but not reaped by its parent
