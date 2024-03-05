@@ -15,6 +15,8 @@ tags:
 
 Rootkit hunter (`rkhunter`) is a well known tool for checking vulnerabilities, rootkits, back doors, and possible local exploits on a server. It is possible to use it on _any_ server used for _any_ purpose. When tuned and automated, it can report any suspicious activity to the system administrator. This procedure outlines the installation, tuning, and use of rootkit hunter.
 
+`rkhunter` is just one possible part of a hardened server setup. Use it alone or with other tools to maximize security.
+
 ## Prerequisites
 
 * Proficiency with a command-line editor (using `vi` in this example)
@@ -23,14 +25,6 @@ Rootkit hunter (`rkhunter`) is a well known tool for checking vulnerabilities, r
 * Running all commands as root or as a regular user with `sudo`
 
 This document was originally written in conjunction with the apache hardened web server routines, but works equally well on a server running any software.
-
-## Introduction
-
-`rkhunter` (Root Kit Hunter) is a Unix-based tool that scans for rootkits, back doors, and possible local exploits. It is a good part of a hardened server, and will notify the administrator quickly when something suspicious happens on the server's file system, providing it is properly configured.
-
-`rkhunter` is just one possible part of a hardened Apache web server setup. Use it alone or with other tools to maximize security. If you want to use this along with other tools for hardening, refer back to the [Apache Hardened Web Server guide](index.md).
-
-This document also uses all of the assumptions and conventions outlined in that original document. It is a good idea to review it before continuing.
 
 ## General steps
 
@@ -44,34 +38,33 @@ This document also uses all of the assumptions and conventions outlined in that 
 
 `rkhunter` requires the EPEL (Extra Packages for Enterprise Linux) repository. Install that repository if you do not have it installed already:
 
-```
+```bash
 dnf install epel-release
 ```
 
 Install `rkhunter`:
 
-```
+```bash
 dnf install rkhunter
 ```
 
 ## Configuring `rkhunter`
 
-The only configuration options that you _need_ to set are those dealing with mailing reports to the Administrator. 
+The only configuration options that you _need_ to set are those dealing with mailing reports to the Administrator.
 
 !!! warning
 
     Modification of _any_ configuration file in Linux carries risk. Before altering **any** configuration file in Linux, creating a backup of the _original_ file is recommended.
 
-
 To change the configuration file, run:
 
-```
+```bash
 vi /etc/rkhunter.conf
 ```
 
 Search for:
 
-```
+```bash
 #MAIL-ON-WARNING=me@mydomain   root@mydomain
 ```
 
@@ -81,8 +74,7 @@ Change the `root@mydomain` to `root@whatever_the_server_name_is`.
 
 You will probably also want to remove the remark (and edit the line to fit your needs) from the `MAIL-CMD` line:
 
-
-```
+```bash
 MAIL_CMD=mail -s "[rkhunter] Warnings found for ${HOST_NAME}"
 ```
 
@@ -96,7 +88,7 @@ You will also need to move the script somewhere other than `/etc/cron.daily/`, s
 
 If you want to test `rkhunter` before you start, including all email functionality, run `rkhunter --check` from the command line. If installed and functioning correctly, you should receive an output similar to the following:
 
-```
+```bash
 [root@sol admin]# rkhunter --check
 [Rootkit Hunter version 1.4.6]
 
@@ -252,7 +244,7 @@ Performing file properties checks
 
 Hold off completing the remaining steps if problems exist with the email setup. When confirming email works, but before allowing `rkhunter` to run automatically, run the command manually again with the "--propupd" flag to create the `rkhunter.dat` file. This ensures recognition of your environment and configuration:
 
-```
+```bash
 rkhunter --propupd
 ```
 
