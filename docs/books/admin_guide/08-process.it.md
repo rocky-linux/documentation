@@ -4,7 +4,7 @@ title: Gestione dei processi
 
 # Gestione dei processi
 
-In questo capitolo imparerai come lavorare con i processi.
+In questo capitolo si apprenderà come lavorare con i processi.
 
 ****
 
@@ -25,9 +25,9 @@ In questo capitolo imparerai come lavorare con i processi.
 
 ## Generalità
 
-Un sistema operativo è costituito da processi. Questi processi sono eseguiti in un ordine specifico e sono correlati tra loro. Ci sono due categorie di processi, quelli focalizzati sull'ambiente utente e quelli focalizzati sull'ambiente hardware.
+Un sistema operativo è costituito da processi. Questi processi vengono eseguiti in un ordine specifico e sono correlati. Ci sono due categorie di processi, quelli focalizzati sull'ambiente utente e quelli focalizzati sull'ambiente hardware.
 
-Quando viene eseguito un programma, Il sistema creerà un processo posizionando i dati del programma e il codice in memoria e creando una **runtime stack**. Un processo è quindi un'istanza di un programma con un ambiente di processore associato (contatore ordinale, registri, etc...) e ambiente di memoria.
+Quando viene eseguito un programma, Il sistema creerà un processo posizionando i dati del programma e il codice in memoria e creando una **runtime stack**. Un processo è un'istanza di un programma con un ambiente di processore associato (contatore ordinale, registri, ecc.) e un ambiente di memoria.
 
 Ogni processo ha:
 
@@ -39,11 +39,11 @@ Da filiazioni successive, il processo `init` è il padre di tutti i processi.
 * Un processo è sempre creato da un processo genitore
 * Un processo genitore può avere più processi figlio
 
-C'è una relazione genitore/figlio tra i processi. Un processo figlio è il risultato del processo genitore che chiama il _fork ()_ iniziale e duplicando il proprio codice crea un processo figlio. Il _PID_ del processo figlio viene restituito al processo genitore in modo che possa comunicare. Ogni processo figlio ha l'identificatore del suo processo genitore, il _PPID_.
+C'è una relazione genitore/figlio tra i processi. Un processo figlio è il risultato di un genitore che chiama la primitiva _fork()_ e duplica il suo codice per creare un figlio. Il _PID_ del processo figlio viene restituito al processo genitore in modo che possa comunicare. Ogni processo figlio ha l'identificatore del suo processo genitore, il _PPID_.
 
 Il numero _PID_ rappresenta il processo al momento dell'esecuzione. Quando il processo finisce, il numero è di nuovo disponibile per un altro processo. Eseguendo lo stesso comando più volte produrrà un diverso _PID_ ogni volta.<!-- TODO !\[Parent/child relationship between processes\](images/FON-050-001.png) -->!!! Note "Nota"
 
-    I processi non devono essere confusi con i _threads_. Ogni processo ha il proprio contesto di memoria (risorse e spazio di indirizzamento), mentre il threads dello stesso processo condivide lo stesso contesto.
+    I processi non devono essere confusi con i _threads_. Ogni processo ha il suo contesto di memoria (risorse e spazio degli indirizzi), mentre i _thread_ dello stesso processo condividono questo contesto.
 
 ## Visualizzazione dei processi
 
@@ -73,12 +73,12 @@ Alcune opzioni aggiuntive:
 | `-H`                  | Visualizza le informazioni in una struttura ad albero.  |
 | `-I`                  | Visualizza ulteriori informazioni.                      |
 | `--sort COL`          | Ordina il risultato secondo una colonna.                |
-| `--headers`           | Visualizza l'intestazione su ogni pagina del terminale. |
+| `--headers`           | Visualizza l'intestazione di ogni pagina del terminale. |
 | `--format "%a %b %c"` | Personalizza il formato di visualizzazione dell'uscita. |
 
 Senza un'opzione specificata, il comando `ps` visualizza solo i processi in esecuzione sul terminale corrente.
 
-Il risultato viene visualizzato in colonne:
+Il risultato viene visualizzato nelle seguenti colonne:
 
 ```
 # ps -ef
@@ -130,7 +130,7 @@ I processi di sistema sono quindi chiamati daemons (_**D**isk **A**nd **E**xecut
 
 ## Autorizzazioni e diritti
 
-Quando viene eseguito un comando, le credenziali dell'utente sono passate al processo creato.
+Le credenziali dell'utente vengono passate al processo creato quando viene eseguito un comando.
 
 Per impostazione predefinita., l'attuale `UID` e `GID` (del processo) sono quindi identici al **effettivo** `UID` e `GID` (il `UID` e `GID` dell'utente che ha eseguito il comando).
 
@@ -142,7 +142,7 @@ Ogni volta che si accede a un file, il sistema controlla i diritti del processo 
 
 Un processo non può essere eseguito indefinitamente, perchè questo sarebbe a discapito di altri processi in esecuzione e impedirebbe il multitasking.
 
-Il tempo totale di elaborazione disponibile è quindi diviso in piccoli intervalli, e ogni processo (con una priorità) accede al processore in modo sequenziale. Il processo prenderà diversi stati durante la sua vita tra gli stati:
+Pertanto, il tempo di elaborazione totale disponibile viene suddiviso in piccoli intervalli e ogni processo (con una priorità) accede al processore in modo sequenziale. Il processo prenderà diversi stati durante la sua vita tra gli stati:
 
 * pronto: in attesa della disponibilità del processo
 * in esecuzione: accede al processore
@@ -157,13 +157,13 @@ La sequenza di chiusura del processo è la seguente:
 2. Rilascio della memoria usata
 3. Invio di un segnale ai processi genitore e figlio
 
-Quando un processo genitore muore, si dice che i suoi processi figli sono orfani. Sono quindi adottati dal processo `init` che li distruggerà.
+Quando un genitore termina, i suoi figli diventano orfani. Vengono quindi adottati dal processo `init`, che provvederà a distruggerli.
 
 ### La priorità di un processo
 
-Il processore funziona in condivisione del tempo (time sharing) con ogni processo occupando una determinata quantità di tempo del processore.
+Il processore lavora in time sharing, con ogni processo che occupa una quantità di tempo del processore.
 
-I processi sono classificati per priorità il cui valore varia da **-20** (la massima priorità) a **+19** (la priorità più bassa).
+I processi sono classificati per priorità, il cui valore varia da **-20** (la priorità più alta) a **+19** (la priorità più bassa).
 
 La priorità predefinita di un processo è **0**.
 
@@ -232,7 +232,7 @@ $ nohup myprogram.sh 0</dev/null &
 
 !!! Note "Domanda"
 
-    `nohup` gestisce l'output standard e l'errore, ma non l'input standard, quindi il reindirizzamento di questo input a `/dev/null`.
+    `nohup` gestisce l'output e l'error standard ma non l'input standard, da cui il reindirizzamento di questo input a `/dev/null`.
 
 ### [CTRL] + [Z]
 
@@ -291,8 +291,8 @@ Le colonne rappresentano:
 
 1. numero di lavoro
 2. l'ordine in cui i processi sono in esecuzione
-- un `+` : questo processo è il prossimo processo da eseguire per impostazione predefinita con `fg` o `bg`
-- un `-` : questo processo è il prossimo processo a prendere il `+` `+`
+- un `+` : Il processo selezionato per impostazione predefinita per i comandi `fg` e `bg` quando non viene specificato un numero di processo
+- a `-` : Questo processo è il processo successivo che prende il `+`
 3.  _Running_ (processo in esecuzione) o _Stopped_ (processo sospeso).
 4. il comando
 
@@ -364,29 +364,120 @@ PID  USER PR NI ... %CPU %MEM  TIME+    COMMAND
 | `TIME+`   | Tempo di utilizzo del processore. |
 | `COMMAND` | Comando eseguito.                 |
 
-Il comando `top` consente il controllo dei processi in tempo reale e in modalità interattiva.
+Il comando `top` permette di controllare i processi in tempo reale e in modalità interattiva.
 
 ### comandi `pgrep` e `pkill`
 
 Il comando `pgrep` cerca i processi in esecuzione per un nome di processo e visualizza il _PID_ che soddisfa i criteri di selezione sull'output standard.
 
-Il comando `pkill` invierà il segnale specificato (per impostazione predefinita _SIGTERM_) ad ogni processo.
+Il comando `pkill` invia a ogni processo il segnale specificato (per impostazione predefinita _SIGTERM_).
 
 ```
 pgrep process
-pkill [-signal] process
+pkill [option] [-signal] process
 ```
 
 Esempi:
 
-* Ottenere il numero di processo di `sshd`:
+* Ottenere il numero del processo da `sshd`:
+
+  ```
+  $ pgrep -u root sshd
+  ```
+
+* Terminare tutti i processi di `tomcat`:
+
+  ```
+  $ pkill tomcat
+  ```
+
+!!! note "Nota"
+
+    Prima di terminare un processo, è meglio conoscere esattamente lo scopo del processo, altrimenti si possono verificare arresti del sistema o altri problemi imprevedibili.
+
+Oltre a inviare segnali ai processi interessati, il comando `pkill` può anche terminare la sessione di connessione dell'utente in base al numero di terminale, come ad esempio:
 
 ```
-$ pgrep -u root sshd
+$ pkill -t pts/1
 ```
 
-* Termina tutti i processi `tomcat`:
+### comando `killall`
+
+La funzione di questo comando è pressoché identica a quella del comando `pkill`. L'utilizzo è - `killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. Il segnale predefinito è _SIGTERM_.
+
+| Opzioni | Descrizione                                                                      |
+|:------- |:-------------------------------------------------------------------------------- |
+| `-l`    | elencare tutti i nomi dei segnali conosciuti                                     |
+| `-i`    | chiedere conferma prima di terminare                                             |
+| `-I`    | corrispondenza del nome del processo senza distinzione tra maiuscole e minuscole |
+
+Esempio:
 
 ```
-$ pkill tomcat
+$ killall tomcat
 ```
+
+### comando `pstree`
+
+Questo comando visualizza l'avanzamento in una struttura ad albero e il suo utilizzo è - `pstree [opzione]`.
+
+| Opzione | Descrizione                                           |
+|:------- |:----------------------------------------------------- |
+| `-p`    | Visualizzare il PID del processo                      |
+| `-n`    | ordinare l'output per PID                             |
+| `-h`    | evidenziare il processo corrente e i suoi progenitori |
+| `-u`    | mostrare le transizioni uid                           |
+
+```bash
+$ pstree -pnhu
+systemd(1)─┬─systemd-journal(595)
+           ├─systemd-udevd(625)
+           ├─auditd(671)───{auditd}(672)
+           ├─dbus-daemon(714,dbus)
+           ├─NetworkManager(715)─┬─{NetworkManager}(756)
+           │                     └─{NetworkManager}(757)
+           ├─systemd-logind(721)
+           ├─chronyd(737,chrony)
+           ├─sshd(758)───sshd(1398)───sshd(1410)───bash(1411)───pstree(1500)
+           ├─tuned(759)─┬─{tuned}(1376)
+           │            ├─{tuned}(1381)
+           │            ├─{tuned}(1382)
+           │            └─{tuned}(1384)
+           ├─agetty(763)
+           ├─crond(768)
+           ├─polkitd(1375,polkitd)─┬─{polkitd}(1387)
+           │                       ├─{polkitd}(1388)
+           │                       ├─{polkitd}(1389)
+           │                       ├─{polkitd}(1390)
+           │                       └─{polkitd}(1392)
+           └─systemd(1401)───(sd-pam)(1404)
+```
+
+### Processi orfani e processi zombie
+
+**processo orfano**: Quando un processo genitore termina, i suoi figli sono detti orfani. Il processo di init adotta questi processi in stato speciale e la raccolta dello stato viene completata finché non vengono distrutti. Dal punto di vista concettuale, il processo di orfanizzazione non comporta alcun danno.
+
+**processo zombie**: Dopo che un processo figlio ha completato il suo lavoro e viene terminato, il suo processo genitore deve chiamare la funzione di elaborazione del segnale wait() o waitpid() per ottenere lo stato di cessazione del processo figlio. Se il processo padre non lo fa, anche se il processo figlio è già uscito, conserva alcune informazioni sullo stato di uscita nella tabella dei processi di sistema. Poiché il processo padre non può ottenere le informazioni sullo stato del processo figlio, questi processi continueranno a occupare risorse nella tabella dei processi. I processi in questo stato vengono chiamati zombie.
+
+Pericolo:
+
+* Occupa le risorse del sistema e causa una riduzione delle prestazioni della macchina.
+* Impossibile generare nuovi processi figli.
+
+Come verificare se ci sono processi zombie nel sistema in uso?
+
+```
+$ ps -lef | awk '{print $2}' | grep Z
+```
+
+Questi caratteri possono comparire in questa colonna:
+
+* **D** - sospensione ininterrotta (di solito IO)
+* **I** - Thread del kernel inattivo
+* **R** - in esecuzione o eseguibile (in coda di esecuzione)
+* **S** - sospensione interrompibile (attesa del completamento di un evento)
+* **T** - fermato dal segnale di controllo del lavoro
+* **t** - interrotto dal debugger durante il tracciamento
+* **W** - paging (non più valido dal kernel 2.6.xx)
+* **X** - morto (non si dovrebbe mai vedere)
+* **Z** - processo defunto ("zombie"), terminato ma non recuperato dal suo genitore
