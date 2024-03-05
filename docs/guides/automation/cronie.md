@@ -22,7 +22,7 @@ GNU/Linux provides the *cron* system, which is a time-based `cron` jobs program 
 *  **crontab** -command to maintain `crontab` (task schedule) for each user;
 *  **crond.service** -cronie's daemon, you can manage the daemon by `systemctl start | restart | stop | status` ;
 *  **/etc/crontab** -Assign cron jobs to different users, usually we are more accustomed to using `crontab -e` . For example, if you are currently logged in as the root user, type `crontab -e` and you will see specific cron jobs in the file /var/spool/cron/root after saving.
-*  **/var/log/cron \* ** -Cronie's log, by default, does log rotation and ends with a date suffix. \* Here means wildcard
+*  **/var/log/cron**  -Cronie's log, by default, does log rotation and ends with a date suffix. Here, it means wildcard.
 *  **anacron** -part of cronie . For more information about `anacron`, see [anacron-automation commands](anacron.md).
 
 ##  `crontab` Command
