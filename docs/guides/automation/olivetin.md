@@ -34,13 +34,13 @@ To follow this guide you will need:
 * A computer running Rocky Linux
 * A minimal amount of comfort or experience with the command line.
 * Root access, or  the ability to use `sudo`.
-* To learn the basics of YAML. It is not hard; you'll get the hang of it down below.
+* To learn the basics of YAML. It is not hard, you'll get the hang of it down below.
 
 ## Installing OliveTin
 
 OliveTin includes pre-built RPMs. Just download the latest release here for your architecture, and install it. If you're following this guide on a workstation with a graphical desktop, just download the file and double-click on it in your file manager of choice.
 
-If you are installing this app on a server, then you can download it on your work machine and upload it by way of SSH/SCP/SFTP, or do the thing some people say not to do, and download it with `wget`.
+If you are installing this app on a server, then you can download it on your work machine and upload it by way of SSH/SCP/SFTP, or do the thing some people say not to do and download it with `wget`.
 
 For example:
 
