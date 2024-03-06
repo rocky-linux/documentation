@@ -263,7 +263,7 @@ sudo reboot
 
     Beware of the SELinux mode change!
 
-In permissive or disabled mode, newly created files will not have any labels.
+In disabled mode, newly created files will not have any labels.
 
 To reactivate SELinux, you will have to reposition the labels on your entire system.
 

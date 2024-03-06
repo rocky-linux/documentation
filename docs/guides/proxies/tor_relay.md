@@ -59,29 +59,29 @@ Log notice syslog
 
 ### Taking a closer look
 
-* The "Nickname" is a (non-unique) nickname for your Tor relay.
-* The "ORPort" is the TCP port your Tor relay listens on. The default is "9001".
-* The "ContactInfo" is your contact information, in case there's issues with your Tor relay. Set this to your email address.
-* The "Log" is the severity and destination of your Tor relay logs. We are logging "notice" to prevent sensitive information from logging, and "syslog" to output to the `systemd` log.
+* The `Nickname` is a (non-unique) nickname for your Tor relay.
+* The `ORPort` is the TCP port your Tor relay listens on. The default is `9001`.
+* The `ContactInfo` is your contact information, in case there's issues with your Tor relay. Set this to your email address.
+* The `Log` is the severity and destination of your Tor relay logs. We are logging `notice` to prevent sensitive information from being logged, and `syslog` to output to the `systemd` log.
 
 ### System configuration
 
-If you have chosen another TCP/IP port than "9001" (the default), you will need to adjust the SELinux `tor_port_t` to whitelist your Tor relay's port. To do so:
+If you have chosen another TCP/IP port than `9001` (the default), you will need to adjust the SELinux `tor_port_t` to whitelist your Tor relay's port. To do so:
 
 ```bash
 semanage port -a -t tor_port_t -p tcp 12345
 ```
 
-Replace "12345" with the TCP Port you set in your "ORPort".
+Replace `12345` with the TCP Port you set in your `ORPort`.
 
-You will also need to open your "ORPort" port in the firewall. To do so:
+You will also need to open your `ORPort` port in the firewall. To do so:
 
 ```bash
 firewall-cmd --zone=public --add-port=9001/tcp
 firewall-cmd --runtime-to-permanent
 ```
 
-Replace "9001" with the TCP Port you set in your "ORPort".
+Replace `9001` with the TCP Port you set in your `ORPort`.
 
 ## Limiting the bandwidth
 
@@ -110,7 +110,7 @@ AccountingMax 20 GB
 
 These values imply that:
 
-* Your bandwidth accounting period is every day starting at 00:00 system time. You can also change "day" to "week" or "month", or replace "00:00" with another time.
+* Your bandwidth accounting period is every day starting at 00:00 system time. You can also change `day` to `week` or `month`, or replace `00:00` with another time.
 * In your bandwidth accounting period, you will transfer 20 GB. Increase or decrease the value if you want to allow more or less bandwidth for your relay.
 
 What happens after you used your specified bandwidth? Your relay will block new connection attempts until the end of the period. If your relay did not use the specified bandwidth in your period, the counter will reset without any downtime.
@@ -145,7 +145,7 @@ Options for the `torrc` file are in [the man page](https://2019.www.torproject.o
 
 !!! warning
 
-    If you plan to run an exit relay, make sure your ISP or hosting company is comfortable with it. Abuse complaints from exit relays are widespread, as it is the last node of a Tor circuit that connects directly to websites on behalf of Tor users. Many hosting companies disallow Tor exit relays for this reason.
+    If you plan to run an exit relay, make sure your ISP or hosting company is comfortable with it. Abuse complaints from exit relays are very common, as it is the last node of a Tor circuit that connects directly to websites on behalf of Tor users. Many ISPs and hosting companies disallow Tor exit relays for this reason.
 
     If you are unsure your ISP allows Tor exit relays, look at the terms of service or ask your ISP. If your ISP says no, look at another ISP or hosting company or consider a middle or bridge relay instead.
 
@@ -190,8 +190,8 @@ ExitPolicy reject *:*
 
 These values imply that:
 
-* We allow exit traffic to TCP ports 53 (DNS), 80 (HTTP), and 443 (HTTPS) with our "ExitPolicy accept" lines
-* We disallow exit traffic to any other TCP port with our wildcard "ExitPolicy reject" lines
+* We allow exit traffic to TCP ports 53 (DNS), 80 (HTTP), and 443 (HTTPS) with our `ExitPolicy accept` lines
+* We disallow exit traffic to any other TCP port with our wildcard `ExitPolicy reject` lines
 
 If you want an unrestrictive exit policy, by only blocking SMTP traffic, this can be set as:
 
@@ -204,8 +204,8 @@ ExitPolicy accpet *:*
 
 These values imply that
 
-* We disallow exit traffic to the standard SMTP TCP ports of 25, 465, and 587 in our "ExitPolicy reject" lines
-* We allow exit traffic to all other TCP ports in our wildcard "ExitPolicy accept" line
+* We disallow exit traffic to the standard SMTP TCP ports of 25, 465, and 587 in our `ExitPolicy reject` lines
+* We allow exit traffic to all other TCP ports in our wildcard `ExitPolicy accept` line
 
 We can also allow or block a range of ports as follows:
 
@@ -270,9 +270,9 @@ These values imply that:
 * `ServerTransportListenAddr` makes our pluggable transport listen on port 12345
 * Our `ExtORPort` line will listen on an randomly chosen port for connections between Tor and our pluggable transport. Normally, this line should not be changed
 
-If you want to listen on another TCP port, change "12345" with your desired TCP port.
+If you want to listen on another TCP port, change `12345` with your desired TCP port.
 
-We will also allow our chosen TCP port "12345" (or the port you chose) in SELinux and `firewalld`:
+We will also allow our chosen TCP port `12345` (or the port you chose) in SELinux and `firewalld`:
 
 ```bash
 semanage port -a -t tor_port_t -p tcp 12345
@@ -330,7 +330,7 @@ Replace the `X` suffix after `tor`/`torrc` with your desired name. The author li
 
 Subsequently, we will add the instance's `torrc` file in `/etc/tor/torrcX`. Ensure each instance has a separate port and/or IP address.
 
-We will also allow our chosen TCP port "12345" (or the port in `torrcX`) in SELinux and `firewalld`:
+We will also allow our chosen TCP port `12345` (or the port in `torrcX`) in SELinux and `firewalld`:
 
 ```bash
 semanage port -a -t tor_port_t -p tcp 12345

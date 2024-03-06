@@ -91,7 +91,7 @@ You are ready to connect to the Rancher's webUI.
 
 Rancher offers its docker-based version of Kubernetes: RKE (Rancher Kubernetes Engine).
 
-All you need is several Rocky Linux servers and the [Docker engine](https://docs.rockylinux.org/gemstones/docker/) installed on them.
+All you need is several Rocky Linux servers and the [Docker engine](https://docs.rockylinux.org/gemstones/containers/docker/) installed on them.
 
 Do not forget that one of the requirements of Kubernetes is to have an odd number of master nodes (1 or 3, for example). For our tests, start with 3 master nodes and 2 additional nodes with only the worker role.
 
