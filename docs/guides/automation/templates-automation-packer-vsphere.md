@@ -64,7 +64,7 @@ There are two ways to install Packer on your Rocky Linux system.
 HashiCorp maintains and signs packages for different Linux distributions. To install packer in our Rocky Linux system, please follow the next steps:
 
 
-#### Download and install from the Packer website
+<!-- -->
 
 1. Install dnf-config-manager:
 
