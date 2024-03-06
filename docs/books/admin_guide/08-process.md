@@ -169,7 +169,7 @@ GNU/Linux belongs to the family of time-sharing operating systems. Processors wo
 
 * Real-time process: the process with priority of **0-99** is scheduled by real-time scheduling algorithm.
 * Ordinary processes: processes with dynamic priorities of **100-139** are scheduled using a fully fair scheduling algorithm.
-* Nice value: a parameter used to adjust the priority of a ordinary process. The range is **-20-19**.
+* Nice value: a parameter used to adjust the priority of an ordinary process. The range is **-20-19**.
 
 The default priority of a process is **0**.
 
