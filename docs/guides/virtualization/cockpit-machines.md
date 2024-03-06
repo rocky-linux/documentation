@@ -1,7 +1,7 @@
 ---
 title: Cockpit KVM Dashboard
 author: Neel Chauhan
-contributors:
+contributors: Ganna Zhrynova
 tested on: 9.3
 tags:
   - virtualization

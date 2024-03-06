@@ -1,7 +1,7 @@
 ---
 title: Tor Onion Service
 author: Neel Chauhan
-contributors:
+contributors: Ganna Zhrynova
 tested_with: 9.3
 tags:
   - web
