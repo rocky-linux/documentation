@@ -1,6 +1,6 @@
 ---
 title: Basic e-mail system
-auther: tianci li
+author: tianci li
 contributors: Ganna Zhyrnova, Neel Chauhan
 ---
 
