@@ -23,13 +23,13 @@ Cockpit is a server administration tool that provides an easy-to-use dashboard t
 Cockpit comes by default in Rocky Linux. However, KVM support does not come installed out-of-the-box. We will install it via `dnf`:
 
 ```bash
-dnf install -y cockpit-machine
+dnf install -y cockpit-machines
 ```
 
 Also install `libvirtd`:
 
 ```bash
-dnf install -y libvirtd
+dnf install -y libvirt
 ```
 
 ## Enabling `cockpit`
