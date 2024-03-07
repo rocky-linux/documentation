@@ -50,7 +50,7 @@ Per installare  EPEL esegui:
 dnf install epel-release
 ```
 
-Per installare il repository Remi, eseguite (se state usando Rocky Linux 9.x, sostituite 9 con "release-"):
+Per installare il repository Remi eseguire (nota: se si sta usando Rocky Linux 9.x, sostituire 9 dopo "release-"):
 
 ```
 dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
