@@ -22,7 +22,7 @@ GNU/Linux fornisce il sistema *cron*, che è un programma di lavoro `cron` basat
 *  **crontab** -comando per mantenere `crontab` (pianificazione delle attività) per ogni utente;
 *  **crond.service** - demone di Cronie, è possibile gestire il demone con `systemctl start | restart | stop | status`;
 *  **/etc/crontab** -Assegnare i cron job a diversi utenti, di solito siamo più abituati a usare `crontab -e`. Per esempio, se siete attualmente registrati come utente root, digitate `crontab -e` e vedrete i specifici cron job nel file /var/spool/cron/root dopo il salvataggio.
-*  **/var/log/cron \* ** -Il registro di Cronie, per impostazione predefinita, effettua la rotazione dei registri e termina con un suffisso di data. \* Qui significa jolly
+*  **/var/log/cron** \* -Il registro di Cronie, per impostazione predefinita, effettua la rotazione dei registri e termina con un suffisso di data. In questo caso, si tratta di una wildcard.
 *  **anacron** - parte di cronie. Per maggiori informazioni su `anacron`, vedi [anacron - automatizzare i comandi](anacron.md).
 
 ## Comando `crontab`

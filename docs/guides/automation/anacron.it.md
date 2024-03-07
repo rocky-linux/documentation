@@ -15,7 +15,7 @@ update: 2022-02-13
 
 ## Presupposti
 
-* Avete compreso le conoscenze di base di bash, python o altri strumenti di scripting o di programmazione e volete eseguire lo script automaticamente.
+* Disponete di conoscenze di base di bash, python o altri strumenti di scripting o di programmazione e volete eseguire lo script automaticamente.
 * Ci si è collegati come utente root o si è passati a root con `su - root`.
 
 ## `anacron` Introduzione
@@ -93,11 +93,12 @@ Per ulteriori informazioni sui file di configurazione, [consultare la pagina del
 
 ## Utilizzo da parte dell'utente
 
-Per fare in modo che alcuni file vengano eseguiti entro questi tempi definiti automaticamente, è sufficiente copiare il file di script nella directory corrispondente e verificare che abbia ** x permessi di esecuzione (chmod +x) ** . Pertanto, è sufficiente lasciare che il sistema esegua automaticamente lo script in uno di questi momenti programmati, semplificando così l'attività di automazione.
+Per far sì che alcuni file vengano eseguiti entro questi tempi definiti automaticamente, è sufficiente copiare il file di script nella directory pertinente e verificare che abbia **il permesso di esecuzione (chmod +x)**. Pertanto, è sufficiente lasciare che il sistema esegua automaticamente lo script in uno di questi momenti programmati, semplificando così l'attività di automazione.
+
 
 Utilizziamo cron.daily per illustrare il processo di esecuzione di /etc/anacrontab:
 
-1. `anacron` legge il file ** /var/spool/anacron/cron.daily ** e il contenuto del file mostra l'ora dell'ultima esecuzione.
+1. `anacron` legge il file **/var/spool/anacron/cron.daily** e il contenuto del file mostra l'ora dell'ultima esecuzione.
 2. Rispetto all'ora corrente, se la differenza tra i due orari supera 1 giorno, verrà eseguito il lavoro cron.daily.
 3. Questo lavoro può essere eseguito solo dalle 03:00-22:00.
 4. Verificare se un file viene eseguito dopo 5 minuti dall'avvio. Quando viene eseguito il primo, l'esecuzione del successivo viene ritardata in modo casuale di 0～45 minuti.
