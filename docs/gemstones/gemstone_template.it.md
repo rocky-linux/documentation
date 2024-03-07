@@ -12,7 +12,7 @@ tags:
 
 ## Introduzione
 
-Breve panoramica sull'argomento. Indicare l'importanza e lo scopo della Gemma.
+Una breve panoramica dell'argomento. Indicare l'importanza e lo scopo della Gemma.
 
 ## Descrizione del problema
 
