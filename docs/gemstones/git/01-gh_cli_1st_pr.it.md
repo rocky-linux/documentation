@@ -17,7 +17,7 @@ Nel nostro esempio utilizzeremo la creazione di un nuovo documento Gemstone.
 
 ## Descrizione del problema
 
-I collaboratori possono preferire o avere la necessità di eseguire tutte le azioni tramite la CLI, dal fork dei repository all'invio di richieste di pull per la prima volta.
+I collaboratori possono preferire o avere bisogno di eseguire tutte le azioni tramite la CLI, dal fork dei repository all'invio di richieste di pull per la prima volta.
 
 ## Prerequisiti
 
@@ -50,7 +50,7 @@ I collaboratori possono preferire o avere la necessità di eseguire tutte le azi
    ```
 
 5. **Aggiungere il nuovo documento**:
-   Utilizzate il vostro editor di testo preferito per creare e modificare il file contenente il vostro nuovo contributo.
+   Utilizzate il vostro editor di testo preferito per creare e modificare il vostro nuovo file di contributo.
    Per questo esempio, creeremo un nuovo file chiamato `gemstome_new_pr.md` e lo salveremo nella cartella `docs/gemstones/`.
 
 6. **Effettuare il commit delle modifiche**:
