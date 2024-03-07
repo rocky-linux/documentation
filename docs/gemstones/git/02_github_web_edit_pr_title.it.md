@@ -1,7 +1,7 @@
 ---
 title: Modificare o cambiare il titolo di una richiesta di pull esistente tramite github.com
 author: Wale Soyinka
-contributors: null
+contributors: Ganna Zhyrnova
 tags:
   - GitHub
   - Pull Request
@@ -10,7 +10,7 @@ tags:
 
 ## Introduzione
 
-Questa guida spiega come modificare o cambiare il titolo di una richiesta di pull (PR) esistente in un repository GitHub, utilizzando l'interfaccia web di GitHub.
+Questa guida illustra come modificare o cambiare il titolo di una richiesta di pull (PR) esistente in un repository GitHub utilizzando l'interfaccia web di GitHub.
 
 ## Descrizione del problema
 
@@ -32,7 +32,7 @@ A volte può essere necessario modificare il titolo di un PR dopo la sua creazio
 2. **Modificare il titolo del PR**:
    - Cliccare sul titolo del PR.
    - Apparirà una casella di testo modificabile.
-   - Modificare il titolo come necessario e premere "Invio" o fare clic all'esterno della casella di testo per salvare le modifiche.
+   - Modificare il titolo, premere ++enter++ o cliccare al di fuori della casella di testo per salvare le modifiche.
 
 ## Informazioni aggiuntive (facoltative)
 
@@ -41,4 +41,4 @@ A volte può essere necessario modificare il titolo di un PR dopo la sua creazio
 
 ## Conclusione
 
-Seguendo questi passaggi, è possibile modificare facilmente il titolo di una richiesta di pull esistente in un repository GitHub, attraverso l'interfaccia web.
+Seguendo questi passaggi, è possibile modificare facilmente il titolo di una richiesta di pull esistente in un repository GitHub attraverso l'interfaccia web.
