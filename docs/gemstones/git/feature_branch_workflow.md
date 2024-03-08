@@ -11,7 +11,6 @@ tags:
   - git add
   - git pull
   - git checkout
-  - 
 ---
 
 ## Feature Branch Workflow
