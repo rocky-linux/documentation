@@ -37,7 +37,7 @@ dnf install -y libvirt
 To enable both KVM virtualization and Cockpit, enable the `systemd` services:
 
 ```bash
-systemctl enable --now libvirtd cockpit
+systemctl enable --now libvirtd cockpit.socket
 ```
 
 After you enable `cockpit`, open a browser to http://ip_address:9090 (note: replace "ip_address" with the IP address of your server):
