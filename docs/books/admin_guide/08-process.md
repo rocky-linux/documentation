@@ -165,9 +165,11 @@ When a parent process dies, their children are said to be orphans. They are then
 
 ### The priority of a process
 
-The processor works in time sharing, with each process occupying a quantity of processor time.
+GNU/Linux belongs to the family of time-sharing operating systems. Processors work in a time-sharing manner, and each process takes up some processor time. Processes are classified by priority:
 
-The processes are classified by priority, whose value varies from **-20** (the highest priority) to **+19** (the lowest priority).
+* Real-time process: the process with priority of **0-99** is scheduled by real-time scheduling algorithm.
+* Ordinary processes: processes with dynamic priorities of **100-139** are scheduled using a fully fair scheduling algorithm.
+* Nice value: a parameter used to adjust the priority of an ordinary process. The range is **-20-19**.
 
 The default priority of a process is **0**.
 
