@@ -21,15 +21,15 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/dock
 
 ## Install the needed packages
 
-Install the latest version of Docker Engine, containerd, and Docker Compose, by running:
+Install the latest version of Docker Engine, container and Docker Compose, by running:
 
 ```
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
-## Start and enable the systemd docker service (dockerd)
+## Start and enable the systemd docker service (docker)
 
-Use the `systemctl` utility to configure the dockerd daemon to automatically startup with the next system reboot and simultaneously start it for the current session. Type:
+Use the `systemctl` utility to configure the docker daemon to automatically startup with the next system reboot and simultaneously start it for the current session. Type:
 
 ```
 sudo systemctl --now enable docker
