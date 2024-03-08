@@ -801,5 +801,5 @@ Use the **frank** user to attempt to send an email to the **leeo** user.
 
 ### Additional description
 
-* You should have a domain name with MX records pointing to your server.
+* You must have a domain name or an internal DNS entry with MX records pointing to your server.
 * You should get a SSL certificate via [Let's Encrypt](https://docs.rockylinux.org/guides/security/generating_ssl_keys_lets_encrypt/) or another source.
