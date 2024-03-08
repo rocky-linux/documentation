@@ -40,7 +40,7 @@ To enable both KVM virtualization and Cockpit, enable the `systemd` services:
 systemctl enable --now libvirtd cockpit
 ```
 
-After you enable `cockpit`, open a browser to http://ip_address:9090 (note: replace "ip_address" with the IP address of your server):
+After you enable `cockpit`, open a browser to **http://ip_address:9090** (note: replace **ip_address** with the IP address of your server):
 
 ![Cockpit login screen](../images/cockpit_login.png)
 
