@@ -519,7 +519,7 @@ Text document, directory, binary, partition, network resource, screen, keyboard,
 
 Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) which defines the names of folders and their roles.
 
-| Directory  | Functionality                                                 | Abbreviation of               |
+| Directory  | Functionality                                                 | Complete word                 |
 |------------|---------------------------------------------------------------|-------------------------------|
 | `/`        | Contains special directories                                  |                               |
 | `/boot`    | Files related to system startup                               |                               |
@@ -527,18 +527,18 @@ Linux meets the **FHS** (_Filesystems Hierarchy Standard_) (see `man hier`) whic
 | `/bin`     | Executables of basic system commands                          | _binaries_                    |
 | `/usr/bin` | System administration commands                                |                               |
 | `/lib`     | Shared libraries and kernel modules                           | _libraries_                   |
-| `/usr`     | Everything that is not necessary for minimal system operation | _UNIX System Resources_       |
-| `/mnt`     | For mounting temporary SF                                     | _mount_                       |
+| `/usr`     | Save data resources related to UNIX                           | _UNIX System Resources_       |
+| `/mnt`     | Temporary mount point directory                               | _mount_                       |
 | `/media`   | For mounting removable media                                  |                               |
-| `/misc`    | For mounting the shared directory of the NFS service.                |                               |
+| `/misc`    | For mounting the shared directory of the NFS service.         |                               |
 | `/root`    | Administrator's login directory                               |                               |
-| `/home`    | User data                                                     |                               |
-| `/tmp`     | Temporary files                                               | _temporary_                   |
+| `/home`    | The upper-level directory of a common user's home directory   |                               |
+| `/tmp`     | Directory containing temporary files                          | _temporary_                   |
 | `/dev`     | Special device files                                          | _device_                      |
 | `/etc`     | Configuration and script files                                | _editable text configuration_ |
 | `/opt`     | Specific to installed applications                            | _optional_                    |
-| `/proc`    | Virtual file system representing different processes          | _processes_                   |
-| `/var`     | Miscellaneous variable files                                  | _variables_                   |
+| `/proc`    | This is a mount point for the proc filesystem, which provides information about running processes and the kernel           | _processes_                   |
+| `/var`     | This directory contains files which may change in size, such as spool and log files                                        | _variables_                   |
 | `/sys`     | Virtual file system, similar to /proc                         |                               |
 | `/run`     | That is /var/run                                              |                               |
 | `/srv`     | Service Data Directory                                        | _service_                     |
@@ -573,7 +573,7 @@ proc                           /proc     proc    defaults        0   0
 | 2      | Mount point name, **absolute path** (except **swap**)                                             |
 | 3      | Filesystem type (ext4, swap, ...)                                                                 |
 | 4      | Special options for mounting (`defaults`, `ro`, ...)                                              |
-| 5      | Enable or disable backup management (0:not backed up, 1:backed up)                                |
+| 5      | Enable or disable backup management (0:not backed up, 1:backed up). The `dump` command is used for backup here. This is an outdated feature that was originally designed to back up old file systems on tape.  |
 | 6      | Check order when checking the SF with the `fsck` command (0:no check, 1:priority, 2:not priority) |
 
 The `mount -a` command allows you to mount automatically based on the contents of the configuration file `/etc/fstab`, the mounted information is then written to `/etc/mtab`.
