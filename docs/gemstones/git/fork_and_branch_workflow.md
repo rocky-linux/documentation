@@ -11,7 +11,6 @@ tags:
   - git pull
   - git checkout
   - gh repo
-  - 
 ---
 
 ## Fork and Branch Workflow
