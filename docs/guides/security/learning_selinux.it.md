@@ -263,7 +263,7 @@ sudo reboot
 
     Attenzione al cambiamento della modalità SELinux!
 
-In modalità permissiva o disabilitata, i nuovi file creati non avranno alcuna etichetta.
+In modalità disabilitata, i file appena creati non avranno alcuna etichetta.
 
 Per riattivare SELinux, dovrai riposizionare le etichette sull'intero sistema.
 

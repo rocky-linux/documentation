@@ -25,7 +25,7 @@ Si noti che questa *non* vuole essere una guida completa o esaustiva sul firewal
 
 ### Una nota sull'uso della riga di comando per la gestione del firewall
 
-Beh... ci *sono* le opzioni di configurazione grafica del firewall. Sul desktop, c'è `firewall-config` che può essere installato dai repo, mentre sui server si può [installare Cockpit](https://linoxide.com/install-cockpit-on-almalinux-or-rocky-linux/) per gestire i firewall e un sacco di altre cose. **Tuttavia, in questo tutorial vi insegnerò il modo di procedere da riga di comando per un paio di motivi:**
+Beh... ci *sono* le opzioni di configurazione grafica del firewall. Sul desktop, c'è `firewall-config` che può essere installato dai repo, mentre sui server si può [installare Cockpit](https://wiki.crowncloud.net/?How_to_enable_Cockpit_Server_Manager_in_Rocky_Linux_9) per gestire i firewall e tante altre cose ancora. **Tuttavia, in questo tutorial vi insegnerò il modo di procedere da riga di comando per un paio di motivi:**
 
 1. Se state gestendo un server, userete comunque la riga di comando per la maggior parte di queste cose. Molti tutorial e guide per il server Rocky forniranno istruzioni a riga di comando per la gestione del firewall, e dovreste comprendere tali istruzioni piuttosto che copiare e incollare qualsiasi cosa vediate.
 2. Capire come funzionano i comandi `firewalld` potrebbe aiutarvi a capire meglio come funziona il software del firewall.  Se in futuro deciderete di utilizzare un'interfaccia grafica, potrete applicare gli stessi principi appresi qui e comprendere meglio ciò che state facendo.
