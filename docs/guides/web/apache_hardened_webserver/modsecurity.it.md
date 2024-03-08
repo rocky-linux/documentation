@@ -36,7 +36,7 @@ Una cosa che manca a `mod_security` quando viene installato dai repository gener
 
 Per installare il pacchetto base, utilizzate questo comando. Installerà tutte le dipendenze mancanti. È necessario anche `wget`, se non è installato:
 
-```
+```bash
 dnf install mod_security wget
 ```
 
@@ -54,40 +54,42 @@ dnf install mod_security wget
 
 4. Sul vostro server, andate nella directory di configurazione di Apache:
 
-    ```
+    ```bash
     cd /etc/httpd/conf
     ```
 
 5. Inserite `wget` e incollate il vostro link. Esempio:
 
-    ```
+    ```bash
     wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.5.tar.gz
     ```
 
 6. Decomprimere il file:
 
-    ```
+    ```bash
     tar xzvf v3.3.5.tar.gz
     ```
+
     Questo crea una directory con le informazioni di rilascio nel nome. Esempio: "coreruleset-3.3.5"
 
 7. Creare un collegamento simbolico chiamato "crs" che rimanda alla directory della release. Esempio:
 
-    ```
+    ```bash
     ln -s coreruleset-3.3.5/ /etc/httpd/conf/crs
     ```
 
 8. Rimuovere il file `tar.gz`. Esempio:
 
-    ```
+    ```bash
     rm -f v3.3.5.tar.gz
     ```
 
 9. Copiare la configurazione temporanea in modo che venga caricata all'avvio:
 
-    ```
+    ```bash
     cp crs/crs-setup.conf.example crs/crs-setup.conf
     ```
+
     Questo file è modificabile, ma probabilmente non sarà necessario apportare alcuna modifica.
 
 Le regole di `mod_security` sono ora in vigore.
@@ -98,12 +100,13 @@ Una volta definite le regole, il passo successivo consiste nel configurarle in m
 
 `mod_security` ha già un file di configurazione che si trova in `/etc/httpd/conf.d/mod_security.conf`. È necessario modificare questo file per includere le regole OWASP. Per farlo, modificare il file di configurazione:
 
-```
+```bash
 vi /etc/httpd/conf.d/mod_security.conf
 ```
+
 Aggiungere il seguente contenuto subito prima del tag finale`(</IfModule`):
 
-```
+```bash
     Include    /etc/httpd/conf/crs/crs-setup.conf
 
     SecAction "id:900110,phase:1,pass,nolog,\
@@ -129,25 +132,25 @@ Aggiungere il seguente contenuto subito prima del tag finale`(</IfModule`):
     # ...
 ```
 
-Usare ++esc++ per uscire dalla modalità di inserimento e ++shift+:+wq++ per salvare le modifiche e uscire.
+Utilizzare ++esc++ per uscire dalla modalità di inserimento e ++shift+colon+"wq "++ per salvare le modifiche e uscire.
 
 ## Riavviare `httpd` e verificare `mod_security`
 
 A questo punto è sufficiente riavviare `httpd`:
 
-```
+```bash
 systemctl restart httpd
 ```
 
 Verificare che il servizio sia stato avviato come previsto:
 
-```
+```bash
 systemctl status httpd
 ```
 
 Voci come questa in `/var/log/httpd/error_log` mostrano che `mod_security` si sta caricando correttamente:
 
-```
+```bash
 [Thu Jun 08 20:31:50.259935 2023] [:notice] [pid 1971:tid 1971] ModSecurity: PCRE compiled version="8.44 "; loaded version="8.44 2020-02-12"
 [Thu Jun 08 20:31:50.259936 2023] [:notice] [pid 1971:tid 1971] ModSecurity: LUA compiled version="Lua 5.4"
 [Thu Jun 08 20:31:50.259937 2023] [:notice] [pid 1971:tid 1971] ModSecurity: YAJL compiled version="2.1.0"
@@ -156,7 +159,7 @@ Voci come questa in `/var/log/httpd/error_log` mostrano che `mod_security` si st
 
 Se si accede al sito web sul server, si dovrebbe ricevere una voce in `/var/log/httpd/modsec_audit.log` che mostra il caricamento delle regole OWASP:
 
-```
+```bash
 Apache-Handler: proxy:unix:/run/php-fpm/www.sock|fcgi://localhost
 Stopwatch: 1686249687051191 2023 (- - -)
 Stopwatch2: 1686249687051191 2023; combined=697, p1=145, p2=458, p3=14, p4=45, p5=35, sr=22, sw=0, l=0, gc=0
@@ -165,6 +168,7 @@ Producer: ModSecurity for Apache/2.9.6 (http://www.modsecurity.org/); OWASP_CRS/
 Server: Apache/2.4.53 (Rocky Linux)
 Engine-Mode: "ENABLED"
 ```
+
 ## Conclusione
 
 `mod_security` con le regole OWASP è un altro strumento che aiuta a rendere più sicuro un server web Apache. Il controllo periodico del [sito GitHub per verificare la presenza di nuove regole](https://github.com/coreruleset/coreruleset) e dell'ultima release ufficiale è un'operazione di manutenzione continua da fare.
