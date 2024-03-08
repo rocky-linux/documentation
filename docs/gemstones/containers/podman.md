@@ -1,15 +1,16 @@
 ---
 title: Podman
 author: Neel Chauhan
-contributors:
+contributors: Steven Spencer
 date: 2024-03-07
 tags:
   - docker
+  - podman
 ---
 
 # Introduction
 
-[Podman](https://podman.io/) is a Docker-compatible alternative container runtime that unlike Docker is included in the Rocky Linux repositories and can run containers as a `systemd` service.
+[Podman](https://podman.io/) is a Docker-compatible alternative container runtime that, unlike Docker, is included in the Rocky Linux repositories and can run containers as a `systemd` service.
 
 ## Install Podman
 
@@ -21,13 +22,13 @@ dnf install podman
 
 ## Adding a container
 
-As an example, let's run a [Nextcloud](https://nextcloud.com/) self-hosted cloud platform:
+Let us run a [Nextcloud](https://nextcloud.com/) self-hosted cloud platform as an example:
 
 ```
 podman run -d -p 8080:80 nextcloud
 ```
 
-You will be prompted to select the container registry to download from. In our example, we will use `docker.io/library/nextcloud:latest`.
+You will receive a prompt to select the container registry to download from. We will use `docker.io/library/nextcloud:latest` in our example.
 
 Once you have downloaded the Nextcloud container, it will run.
 
@@ -37,7 +38,7 @@ Enter **ip_address:8080** in your web browser (assuming you opened the port in `
 
 ## Running containers as `systemd` services
 
-As mentioned earlier, you can run Podman containers as `systemd` services. Let's now do it with Nextcloud. Run:
+As mentioned earlier, you can run Podman containers as `systemd` services. Let us now do it with Nextcloud. Run:
 
 ```bash
 podman ps
@@ -49,11 +50,11 @@ You will get a list of running containers:
 04f7553f431a  docker.io/library/nextcloud:latest  apache2-foregroun...  5 minutes ago  Up 5 minutes  0.0.0.0:8080->80/tcp  compassionate_meninsky
 ```
 
-To make a systemd container and enable it on reboot, run:
+To make a `systemd` container and enable it on reboot, run:
 
 ```bash
 podman generate systemd --name compassionate_meninsky > /usr/lib/systemd/system/nextcloud.service
 systemctl enable nextcloud
 ```
 
-After this, when your system reboots, Nextcloud will restart in Podman.
+When your system reboots, Nextcloud will restart in Podman.
