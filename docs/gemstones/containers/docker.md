@@ -27,9 +27,9 @@ Install the latest version of Docker Engine, `containerd`, and Docker Compose, b
 sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
-## Start and enable the systemd `docker` service (dockerd)
+## Start and enable Docker (`dockerd`)
 
-Use `systemctl` to configure the `docker` daemon to automatically startup upon reboot and simultaneously start it now. Type:
+Use `systemctl` to configure Docker to automatically startup upon reboot and simultaneously start it now. Type:
 
 ```
 sudo systemctl --now enable docker
