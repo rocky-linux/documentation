@@ -574,7 +574,7 @@ proc                           /proc     proc    defaults        0   0
 | 3      | Filesystem type (ext4, swap, ...)                                                                 |
 | 4      | Special options for mounting (`defaults`, `ro`, ...)                                              |
 | 5      | Enable or disable backup management (0:not backed up, 1:backed up). The `dump` command is used for backup here. This is an outdated feature that was originally designed to back up old file systems on tape.  |
-| 6      | Check order when checking the SF with the `fsck` command (0:no check, 1:priority, 2:not priority) |
+| 6      | Check order when checking the FS with the `fsck` command (0:no check, 1:priority, 2:not priority) |
 
 The `mount -a` command allows you to mount automatically based on the contents of the configuration file `/etc/fstab`, the mounted information is then written to `/etc/mtab`.
 
