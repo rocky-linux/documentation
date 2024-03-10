@@ -616,16 +616,16 @@ Example:
 
 | Option | Description                                                                    |
 |--------|--------------------------------------------------------------------------------|
-| `-n`   | Sets mount without writing to `/etc/mtab`.                                          |
-| `-t`   | Indicates the type of file system to use.                                    |
+| `-n`   | Sets mount without writing to `/etc/mtab`.                                     |
+| `-t`   | Indicates the type of file system to use.                                      |
 | `-a`   | Mounts all filesystems mentioned in `/etc/fstab`.                              |
 | `-r`   | Mounts the file system read-only (equivalent to `-o ro`).                      |
 | `-w`   | Mounts the file system read/write, by default (equivalent `-o rw`).            |
-| `-o`   | Argument followed by a comma-separated list of options (`remount`, `ro`, ...). |
+| `-o opts`   | The opts argument is a comma-separated list (`remount`, `ro`, ...).        |
 
 !!! Note
 
-    The `mount` command alone displays all mounted file systems.
+    The `mount` command alone displays all mounted file systems. If the mount parameter is `-o defaults`, it means that it is equivalent to `-o rw,suid,dev,exec,auto,nouser,async` and these parameters are independent of the file system. If you need to browse special mount options related to the file system, please read the "Mount options FS-TYPE" section in `man 8 mount` (FS-TYPE is replaced with the corresponding file system, such as ntfs, vfat, ufs, etc.)
 
 #### `umount` command
 
