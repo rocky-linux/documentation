@@ -1,5 +1,5 @@
 ---
-title: 初学者贡献者指南
+title: 初学者贡献指南
 author: Krista Burdine
 contributors: Ezequiel Bruni, Steven Spencer, Ganna Zhyrnova
 tags:
@@ -9,7 +9,7 @@ tags:
   - howto
 ---
 
-# 首次贡献者指南
+# 首次贡献指南
 
 _凡事都有个开头。 如果这是您第一次在 GitHub 上为开源文档做出贡献，恭喜您迈出了这一步。 我们迫不及待地想听听你要说什么！_
 
