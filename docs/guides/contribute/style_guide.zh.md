@@ -80,11 +80,11 @@ tags:
 
 * 关于 UI 的文本说明：当描述要输入到用户界面中的命令时，请使用单词 "enter"，而不是 "put" 或 "type"。 使用代码块写出命令（即用反引号将其设置）：
 
-<em x-id="3"示例 Markdown 文本</em> `在 **提交消息** 框中，输入 update_thisdoc。`
+*示例 Markdown 文本* `在 **提交消息** 框中，输入 update_thisdoc。`
 
 * UI 元素的名称：UI元素（如按钮、菜单项、对话框名称等）的 **粗体** 名称，即使单词不可单击：
 
-*Markdown文本示例* `在 **Format** 菜单中，点击 **Line Spacing** 。`
+*示例 Markdown 文本* `在 **Format** 菜单中，点击 **Line Spacing** 。`
 
 ## 结构
 
