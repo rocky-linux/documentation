@@ -621,7 +621,7 @@ Example:
 | `-a`   | Mounts all filesystems mentioned in `/etc/fstab`.                              |
 | `-r`   | Mounts the file system read-only (equivalent to `-o ro`).                      |
 | `-w`   | Mounts the file system read/write, by default (equivalent `-o rw`).            |
-| `-o opts`   | The opts argument is a comma-separated list(`remount`, `ro`, ...).        |
+| `-o opts`   | The opts argument is a comma-separated list (`remount`, `ro`, ...).        |
 
 !!! Note
 
