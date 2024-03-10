@@ -31,7 +31,7 @@ In this chapter you will learn how to make your scripts interact with users and 
 
 ****
 
-Depending on the purpose of the script, it may be necessary to send it information when it is launched or during its execution. This information, not known when the script is written, can be extracted from files or entered by the user. It is also possible to send this information in the form of arguments when the script command is entered. This is the way many Linux commands work.
+Depending on the script's purpose, it might need information either at launch or during execution. This info, not predetermined during script writing, can come from files, user input, or be passed as arguments when entering the script command, similar to many Linux commands.
 
 ## The `read` command
 
