@@ -782,8 +782,8 @@ Their main features are:
 
 | Link types        | Description        | 
 | ---               | ---                |
-| soft link file    | Represents a shortcut similar to Windows. It has permission of 777 and points to the original file. When the original file is deleted, the linked file and the original file are displayed in red.|
-| Hard link file    | Represents the original file. It has the same _ inode_ number as the hard-linked file. They can be updated synchronously, including the contents of the file and when it was modified. Cannot cross partitions, cannot cross file systems. Cannot be used for directories. |
+| Soft link file    | Represents a shortcut similar to Windows. It has permission of 777 and points to the original file. When the original file is deleted, the linked file and the original file are displayed in red.|
+| Hard link file    | The original file and the hard link file can be updated simultaneously, including the file's attributes (file size, owner, group, atime, mtime, ctime, and so on). The original file and the hard link file use the same _inode_. Cannot be used across partitions (mount points). Cannot be used for directories. |
 
 Specific examples are as follows:
 
@@ -817,6 +817,13 @@ Shell > ls –li /home/*/*
 Shell > ln  /etc/  /root/etc_hardlink
 ln: /etc: hard link not allowed for directory
 ```
+
+!!! warning "Instructions for soft link deletion"
+
+    When using soft link for a single directory (For example - `ln -s /etc/ /tmp/etc.slink`), if the user wants to delete the soft link file, please note:
+
+    * The command `rm -rf /tmp/etc.slink/` will delete **all** files under the directory /etc/. The correct way is to not add the trailing "/" character, such as `rm -rf /tmp/etc.sink`. For beginners, it is especially necessary to pay attention to!
+    * To safely delete a soft link file, use the `unlink` command (`unlink /tmp/etc.sink`)
 
 ## File attributes
 
