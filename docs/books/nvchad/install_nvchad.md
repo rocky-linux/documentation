@@ -11,6 +11,10 @@ tags:
 
 # :simple-neovim: Turning Neovim into an advanced IDE
 
+!!! danger "Wrong instructions"
+
+    With the release of version 2.5, the instructions on this page are no longer correct; its use is not recommended for new installations. For more information see [the main page of the guide](./index.md).
+
 ## :material-arrow-bottom-right-bold-outline: Pre-requisites
 
 As specified on the NvChad site you need to ensure the system meets the following requirements:

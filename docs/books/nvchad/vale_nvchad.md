@@ -9,6 +9,10 @@ tags:
 
 # `vale` in NvChad (Neovim)
 
+!!! danger "Wrong instructions"
+
+    With the release of version 2.5, the instructions on this page are no longer correct; its use is not recommended for new installations. For more information see [the main page of the guide](../index.md).
+
 ## :material-message-outline: Introduction
 
 `vale.sh` is one of the foremost open source projects for technical writers looking to improve their voice and style consistency. It can be used with a number of editors on nearly every major OS platform (Linux, MacOS, Windows). You can find out more about the project by heading up to [the vale.sh website](https://vale.sh/). This guide is going to walk you through adding `vale` to NvChad. Since it is included in the Mason packages used for install, the process is not too difficult, although it does involve some minor editing and configuration to get things going. To be clear, NvChad is really the configuration manager for the editor Neovim, so from this point forward, the reference will be `nvim`.

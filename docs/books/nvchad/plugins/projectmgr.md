@@ -13,6 +13,10 @@ tags:
 
 ## Introduction
 
+!!! danger "Wrong instructions"
+
+    With the release of version 2.5, the instructions on this page are no longer correct; its use is not recommended for new installations. For more information see [the main page of the guide](../index.md).
+
 One of the features that an IDE must surely have is the ability to manage the various projects that a developer or publisher works on. Being able to select the project to work on once NvChad is open, without the need to type commands in the *statusline* to achieve the goal. This saves time and allows for simplified management in the case of a large number of projects.
 
 Using [charludo/projectmgr.nvim](https://github.com/charludo/projectmgr.nvim) will integrate this functionality. The plugin provides excellent integration with `Telescope` and some interesting additional features such as the ability to synchronize a *git* repository when opening the *project*.

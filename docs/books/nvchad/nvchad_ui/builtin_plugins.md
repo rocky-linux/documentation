@@ -11,6 +11,10 @@ tags:
 
 # Basic configuration plugins
 
+!!! danger "Wrong instructions"
+
+    With the release of version 2.5, the instructions on this page are no longer correct; its use is not recommended for new installations. For more information see [the main page of the guide](../index.md).
+
 !!! note "Plugin Naming Convention"
 
     In this chapter, the format `user_github/plugin_name` will be used to identify the plugin. This is to avoid possible errors with similarly named plugins and to introduce the format that is used for plugin entry by both NvChad, and the `custom` configuration.

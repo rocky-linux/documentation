@@ -11,6 +11,10 @@ tags:
 
 # Plugins Manager
 
+!!! danger "Wrong instructions"
+
+    With the release of version 2.5, the instructions on this page are no longer correct; its use is not recommended for new installations. For more information see [the main page of the guide](../index.md).
+
 The management of plugins in NvChad 2.0 is done by [folke/lazy.nvim](https://github.com/folke/lazy.nvim), this plugin is installed during the first installation from the bootstrap procedure. The plugin allows you to perform all common operations on plugins, such as installing, updating, etc.
 
 ![Lazy Nvim](../images/lazy_nvim.png)

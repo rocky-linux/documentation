@@ -11,6 +11,10 @@ tags:
 
 # Markdown Preview
 
+!!! danger "Wrong instructions"
+
+    With the release of version 2.5, the instructions on this page are no longer correct; its use is not recommended for new installations. For more information see [the main page of the guide](../index.md).
+
 ## Introduction
 
 One of the features of the Markdown language that make it widely used in writing technical documentation is its convertibility. Code can be converted for display in many formats (HTML, PDF, plain text,..), therefore making content usable in numerous scenarios.
