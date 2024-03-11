@@ -820,7 +820,7 @@ ln: /etc: hard link not allowed for directory
 
 !!! warning "Instructions for soft link deletion"
 
-    When using soft link for a single directory (For example - `ln -s /etc/ /tmp/etc.slink`), if the user wants to delete the soft link file, please note:
+    When using soft link for a single directory (for example, `ln -s /etc/ /tmp/etc.slink`), if the user wants to delete the soft link file, please note:
 
     * The command `rm -rf /tmp/etc.slink/` will delete **all** files under the directory /etc/. The correct way is to not add the trailing "/" character, such as `rm -rf /tmp/etc.sink`. For beginners, it is especially necessary to pay attention to!
     * To safely delete a soft link file, use the `unlink` command (`unlink /tmp/etc.sink`)
