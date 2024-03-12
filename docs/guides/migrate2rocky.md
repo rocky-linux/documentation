@@ -40,11 +40,11 @@ You will need to grab the actual script file from the repository. You can do thi
 
 ### The manual way
 
-Download the compressed files from GitHub and extract the one you need (That will be *migrate2rocky.sh*). You can find zip files for any GitHub repository on the right-ish side of the repositorie's main page:
+Download the compressed files from GitHub and extract the one you need (That will be *migrate2rocky.sh* or *migrate2rocky9.sh*). You can find zip files for any GitHub repository on the right-ish side of the repositorie's main page:
 
 ![The "Download Zip" button](images/migrate2rocky-github-zip.png)
 
-Then, upload the executable to your server with SSH by running this command on your local machine:
+Then, upload the executable to your server with SSH by running this command on your local machine (note: if you're running a 9.x system, add a 9 before the `.sh`):
 
 ```
 scp PATH/TO/FILE/migrate2rocky.sh root@yourdomain.com:/home/
@@ -72,7 +72,7 @@ Note: this method will download all of the scripts and files in the rocky-tools 
 
 This is probably the easiest way to obtain the script. You only need a suitable HTTP client (`curl`, `wget`, `lynx` and so on) installed on the server.
 
-Assuming you have the `curl` utility installed, run this command to download the script into whatever directory you are using:
+Assuming you have the `curl` utility installed, run this command to download the script into whatever directory you are using (note: if you're running a 9.x system, add a 9 before the `.sh`):
 
 ```
 curl https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh -o migrate2rocky.sh
@@ -82,7 +82,7 @@ That command will download the file straight to your server, and *only* the file
 
 ## Running the script and installation
 
-Use the `cd` command to switch to the directory where the script is, ensure the file is executable, and give the owner of the script file x permissions.
+Use the `cd` command to switch to the directory where the script is, ensure the file is executable, and give the owner of the script file x permissions (note: iin the below commands, if you're running a 9.x system, add a 9 before the `.sh`).
 
 ```
 chmod u+x migrate2rocky.sh
