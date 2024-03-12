@@ -11,6 +11,10 @@ tags:
 
 # Overview
 
+!!! danger "Wrong instructions"
+
+    With the release of version 2.5, the instructions on this page are no longer correct; its use is not recommended for new installations. For more information see [the main page of the guide](../index.md).
+
 ## Introduction
 
 The custom configuration created by the developers of NvChad allows you to have an integrated environment with many of the features of a graphical IDE. These features are built into the Neovim configuration by means of plugins. Those selected for NvChad by the developers have the function of setting up the editor for general use.

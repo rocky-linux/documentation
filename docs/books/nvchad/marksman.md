@@ -11,6 +11,10 @@ tags:
 
 # Marksman - code assistant
 
+!!! danger "Wrong instructions"
+
+    With the release of version 2.5, the instructions on this page are no longer correct; its use is not recommended for new installations. For more information see [the main page of the guide](./index.md).
+
 Marksman is a useful tool when drafting your document for Rocky Linux. It allows the easy entry of symbols needed to define the *markdown* language tags. This allows you to write faster and reduces the possibility of errors.
 
 NvChad/Neovim already includes text widgets that aid writing, such as the repetition of often-used words indexed by frequency of entry. The new options included by this language server will enrich these widgets.
