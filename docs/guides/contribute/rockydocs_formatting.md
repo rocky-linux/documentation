@@ -250,12 +250,43 @@ Block quotes are actually designed for quoting text from other sources to includ
 > **another item** - Another description of that item
 ```
 
-The extra "spacing" line is necessary to keep the lines from running together.
+Multiple block quotes need to be separated by blank lines in the middle to indicate that they are multiple block quotes.
 
 That ends up looking like this when the page displays:
 
 > **an item** - A description of that item
+
 > **another item** - Another description of  an item
+
+When you want to hierarchically display individual referenced content, it looks like this in the editor:
+
+```text
+> JAVA
+>> Python
+>>> C
+>>>> Go
+```
+
+The display is as follows:
+
+> JAVA
+>> Python
+>>> C
+>>>> Golang
+
+When you use five spaces after the ">" symbol, it will produce some special effects, such as:
+
+```
+> Code
+
+>     Code
+```
+
+The display is as follows:
+
+> Code
+
+>     Code
 
 ## Inline and block-level code blocks
 
