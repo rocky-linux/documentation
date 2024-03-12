@@ -288,35 +288,76 @@ The display is as follows:
 
 >     Code
 
-## Inline and block-level code blocks
+## Inline code
 
-Our approach to the use of code blocks is pretty simple. If `your code` is short enough that you can (and want to) use it in a sentence like you just saw, use single backticks ++"`"++:
+This markdown syntax is used to identify some special items, and the usage is - **\`Item\`**. They are often used in:
 
+* Identifies the command used.. For example - `rm`
+* Syntax of the command. For example - `pstree [option]`
+* Identify command options in a table in Markdown. For example - `-h`
+* Explain the output items of the command. For example, the entry for explaining the `top` command - `load average: 0.00, 0.00, 0.00`
+* Identify special words. For example - `systemd`
+
+### Fenced code blocks
+
+A code fence is a sequence of at least three consecutive backtick characters (`) or tildes (~). (Tildes and backticks cannot be mixed.)
+
+It looks like this in the editor:
+
+`````
 ```bash
-A sentence with a `command of your choosing` in it.
+sudo systemctl restart sshd.service
 ```
 
-Any command that is not used inside of a text paragraph (especially the long bits of code with multiple lines) should be a full code block, defined with triple backticks ++"```"++:
-
-````markdown
-```bash
-sudo dnf install the-kitchen-sink
+```text
+This is a text.
 ```
-````
 
-The `bash` bit of that formatting is a markdown recommended code identifier but can help with syntax highlighting. If you showcase text, Python, PHP, Ruby, HTML, CSS, or any other kind of code, the "bash" will change to whatever language you use.
-
-Incidentally, if you need to show a code block within a code block, just add one more backtick ++"`"++ to the parent block:
-
-`````markdown
-````markdown
-```bash
-sudo dnf install the-kitchen-sink
 ```
-````
+This is a text.
+```
 `````
 
-And yes, the code block you just saw used five backticks at the beginning and end to make it render properly.
+You can use keywords to identify the type of text content:
+
+* text - This is the default when no keywords are added for identification.
+* python
+* php
+* perl
+* css
+* golang
+* java
+* bash
+* c
+* c#
+* ruby
+* sql
+* swift
+* ...
+
+!!! note
+
+    In addition to identifying the type of text content, the fenced code blocks can also expand functionality, such as the common [mermaid](https://github.com/mermaid-js/mermaid). Yes, we also support this feature extension in this document project. For example, I need to draw a working example diagram of git. Instead of uploading an image directly, you can use mermaid:
+
+    `````
+    ```mermaid
+    flowchart BT
+    id1(Working Directory) -- git add files --> id2([Stage])
+    id2([Stage]) -- git commit --> id3[(Local Repository)]
+    id3[(Local Repository)]-- git push --> id4[(Remote Repository)]
+    id4[(Remote Repository)] -- git clone/git fetch/git pull --> id1(Working Directory)
+    ```
+    `````
+
+    ```mermaid
+    flowchart BT
+    id1(Working Directory) -- git add files --> id2([Stage])
+    id2([Stage]) -- git commit --> id3[(Local Repository)]
+    id3[(Local Repository)]-- git push --> id4[(Remote Repository)]
+    id4[(Remote Repository)] -- git clone/git fetch/git pull --> id1(Working Directory)
+    ```
+
+    The mermaid has Many functions, which are beyond the scope of this document. Readers are required to read various examples on the official website.
 
 ### Suppressing the displayed prompt and automatic line feed
 
