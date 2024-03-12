@@ -337,7 +337,7 @@ You can use keywords to identify the type of text content:
 
 !!! note
 
-    In addition to identifying the type of text content, the fenced code blocks can also expand functionality, such as the common [mermaid](https://github.com/mermaid-js/mermaid). Yes, we also support this feature extension in this document project. For example, I need to draw a working example diagram of git. Instead of uploading an image directly, you can use mermaid:
+    In addition to identifying the type of text content, the fenced code blocks can also expand functionality, such as the common [mermaid](https://github.com/mermaid-js/mermaid). Yes, we also support this feature extension in this document project. For example, I can illustrate the git workflow without uploading an image:
 
     `````
     ```mermaid
