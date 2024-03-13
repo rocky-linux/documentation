@@ -13,13 +13,13 @@ tags:
 
 !!! warning "Release 2.5 changes"
 
-    With the release of version 2.5, the developers of the editor significantly changed the structure of the configuration. The most important changes concern the following aspects:
+    With the release of version 2.5, the editor's developers significantly changed the configuration's structure. The most significant changes concern the following aspects:
 
-    * The transformation of the configuration into a Neovim plugin, which can then be updated using the *lazy.nvim* plugins manager
-    * The removal of the `custom` folder for editor customization (now integrated into the main folder). A [migration script](https://gist.github.com/siduck/048bed2e7570569e6b327b35d1715404) is provided for current users.
+    * The configuration transformation into a Neovim plugin can then be updated using the *lazy.nvim* plugins manager
+    * Removing the `custom` folder for editor customization (now integrated into the main folder). A [migration script](https://gist.github.com/siduck/048bed2e7570569e6b327b35d1715404) is provided for current users.
     * The mappings have been changed and no longer use nvchad's custom syntax, instead nvim's **vim.keymap.set** is used.
 
-    As a result, some pages of the guide, especially the whole part concerning the installation of NvChad and the subsequent installation of plugins appears to be incorrect. The guide is **under revision** and will be updated as soon as possible.
+    As a result, some pages of the guide, especially the whole part concerning the installation of NvChad and the subsequent installation of plugins, appear incorrect. The guide is **under revision** and will be updated soon.
 
 Throughout this book, you will find ways to implement Neovim, along with NvChad, to create a fully functional ==**I**ntegrated **D**evelopment **E**nvironment== (IDE).
 
