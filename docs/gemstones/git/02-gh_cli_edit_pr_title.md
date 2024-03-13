@@ -15,7 +15,7 @@ This Gemstone explains how to edit or change the title of an existing pull reque
 
 ## Problem Description
 
-Sometimes, there may be a need to modify the title of a PR after its creation to reflect the current changes or discussions better.
+Sometimes, the title of a PR after its creation may need to be modified to better reflect the current changes or discussions.
 
 ## Prerequisites 
 
