@@ -1,7 +1,7 @@
 ---
 title: Fork and Branch Git workflow
 author: Wale Soyinka
-contributors: null
+contributors: Ganna Zhyrnova
 tags:
   - GitHub
   - git
