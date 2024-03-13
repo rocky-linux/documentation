@@ -11,7 +11,6 @@ tags:
   - git add
   - git pull
   - git checkout
-  - null
 ---
 
 ## Flusso di lavoro Feature Branch
