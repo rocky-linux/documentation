@@ -247,7 +247,7 @@ tar jxvf obfs4-obfs4proxy-0.0.14.tar.bz2
 cd obfs4-obfs4proxy-0.0.14/obfs4proxy/
 ```
 
-You can also get obfs4 directly from `git clone`, but that depends on a newer version of Go than what exists in AppStream, so we will not use that.
+You can also get obfs4 directly from `git clone`, but that depends on a newer version of Go than what exists in AppStream so we will not use that.
 
 Then, we will compile and install obfs4:
 
