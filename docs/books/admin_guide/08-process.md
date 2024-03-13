@@ -399,7 +399,7 @@ Examples:
 
 !!! note
 
-    Before you kill a process, it's best to know exactly what the process is for, otherwise it can lead to system crashes or other unpredictable problems.
+    Before you kill a process, it's best to know exactly what it is for; otherwise, it can lead to system crashes or other unpredictable problems.
 
 In addition to sending signals to the relevant processes, the `pkill` command can also end the user's connection session according to the terminal number, such as:
 
@@ -409,12 +409,12 @@ $ pkill -t pts/1
 
 ### `killall` command
 
-The function of this command is roughly the same as that of the `pkill` command. The usage is - `killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. The default signal is _SIGTERM_.
+This command's function is roughly the same as that of the `pkill` command. The usage is —`killall [option] [ -s SIGNAL | -SIGNAL ] NAME`. The default signal is _SIGTERM_.
 
 | Options | Description |
 | :--- | :--- |
-| `-l` | list all known signal names |
-| `-i` | ask for confirmation before killing |
+| `-l` | lists all known signal names |
+| `-i` | asks for confirmation before killing |
 | `-I` | case insensitive process name match |
 
 Example:
@@ -430,9 +430,9 @@ This command displays the progress in a tree style, and its usage is - `pstree [
 | Option | Description |
 | :--- | :--- |
 | `-p` | Displays the PID of the process |
-| `-n` | sort output by PID |
-| `-h` | highlight current process and its ancestors |
-| `-u` | show uid transitions |
+| `-n` | sorts output by PID |
+| `-h` | highlights the current process and its ancestors |
+| `-u` | shows uid transitions |
 
 ```bash
 $ pstree -pnhu
@@ -467,10 +467,10 @@ systemd(1)─┬─systemd-journal(595)
 
 Hazard:
 
-* Occupying system resources and causing a decrease in machine performance.
+* They are occupying system resources and causing a decrease in machine performance.
 * Unable to generate new child processes.
 
-How to check if there are any zombie processes in the current system?
+How can we check for any zombie processes in the current system?
 
 ```
 $ ps -lef | awk '{print $2}' | grep Z
