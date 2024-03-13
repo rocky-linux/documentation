@@ -1,7 +1,7 @@
 ---
 title: Feature Branch Workflow in Git
 author: Wale Soyinka
-contributors: 
+contributors: Ganna Zhyrnova
 tags:
   - git
   - Feature Branch Workflow
@@ -15,7 +15,7 @@ tags:
 
 ## Feature Branch Workflow
 
-This popular git workflow involves creating new branches for every new feature or fix directly in the main repository. 
+This popular git workflow involves creating new branches for every new feature or fixes directly in the main repository. 
 It’s usually employed in projects where contributors have direct push access to the repository.
 
 This Gemstone outlines the process of setting up a local repository to work on and contribute to the `rocky-linux/documentation` project using the Git Feature Branch Workflow. 
@@ -46,7 +46,7 @@ The user "rockstar" has forked this repository, and we will use `https://github.
    ```bash
    git checkout -b feature-branch-name
    ```
-5. Make changes, add new files and commit them:
+5. Make changes, add new files, and commit them:
    
      ```bash
      git add .
@@ -72,11 +72,11 @@ The Feature Branch workflow is a common collaboration technique, allowing teams 
 The high-level steps involved are:
    
 1. Clone the Main Repository: Directly clone the main project repository to your local machine.
-2. Create a Feature Branch: For every new task, create a new branch off the main branch with a descriptive name.
+2. Create a Feature Branch: For every new task, create a new branch of the main branch with a descriptive name.
 3. Commit Changes: Work on the feature or fix in your branch and commit changes.
-4. Keep Branch Updated: Regularly merge or rebase with the main branch to stay updated with its changes.
-5. Open a Pull Request: Once your feature is ready, push the branch to the main repository and open a PR for review.
-6. Code Review and Merge: After review and approval, the branch is merged into the main branch.
+4. Keep Branch Updated: Regularly merge or rebase with the main branch to stay updated on changes.
+5. Open a Pull Request: Push the branch to the main repository and open a PR for review once your feature is ready.
+6. Code Review and Merge: The branch is merged into the main branch after review and approval.
 
 *Benefits*:
 
